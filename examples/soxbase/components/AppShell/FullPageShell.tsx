@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Theme, makeStyles, Fab } from '@material-ui/core'
+import { Fab, makeStyles, Theme } from '@material-ui/core'
 import { CartFab } from '@reachdigital/magento-cart'
 import CustomerFab from '@reachdigital/magento-customer/AccountFab'
 import { SearchButton } from '@reachdigital/magento-search'
@@ -48,6 +48,8 @@ function FullPageShell(props: FullPageShellProps) {
   const storeConfig = useQuery(StoreConfigDocument)
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
 
+  const withMenu = menuData?.items && menuData?.items?.length > 0
+
   const menuProps: MenuProps = {
     menu: [
       ...(menuData?.items?.map((item) => ({
@@ -61,7 +63,7 @@ function FullPageShell(props: FullPageShellProps) {
     ],
   }
 
-  if (menuData) {
+  if (withMenu) {
     menuProps.menu.push({ href: '/blog', children: 'Blog' })
   }
 
@@ -77,7 +79,7 @@ function FullPageShell(props: FullPageShellProps) {
           <Logo />
           <DesktopNavBar {...menuProps} />
 
-          {menuData && (
+          {withMenu && (
             <DesktopNavActions>
               {!router.pathname.startsWith('/search') && (
                 <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
@@ -121,7 +123,7 @@ function FullPageShell(props: FullPageShellProps) {
         </MenuFabSecondaryItem>
       </MenuFab>
 
-      {menuData && <CartFab style={{ boxShadow: 'none' }} />}
+      {withMenu && <CartFab style={{ boxShadow: 'none' }} />}
 
       {children}
 
