@@ -1,20 +1,32 @@
 import { useQuery } from '@apollo/client'
-import { Container, NoSsr } from '@material-ui/core'
+import { Container, NoSsr, Switch } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AccountDashboardDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboard.gql'
-import AccountHeader from '@reachdigital/magento-customer/AccountHeader'
-import AccountLatestOrder from '@reachdigital/magento-customer/AccountLatestOrder'
 import AccountMenu from '@reachdigital/magento-customer/AccountMenu'
 import AccountMenuItem from '@reachdigital/magento-customer/AccountMenuItem'
+import AddressSingleLine from '@reachdigital/magento-customer/AddressSingleLine'
+import OrderStateLabel from '@reachdigital/magento-customer/OrderStateLabel'
 import SignOutForm from '@reachdigital/magento-customer/SignOutForm'
-import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import IconHeader from '@reachdigital/next-ui/IconHeader'
+import {
+  iconBox,
+  iconEmailOutline,
+  iconHome,
+  iconId,
+  iconLock,
+  iconNewspaper,
+  iconPersonAlt,
+  iconShutdown,
+  iconStar,
+} from '@reachdigital/next-ui/icons'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { iconBox, iconHome, iconPerson, iconShutdown, iconStar } from '@reachdigital/next-ui/icons'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
+import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
+import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<SheetShellProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps>
 
 function AccountIndexPage() {
   const { data, loading } = useQuery(AccountDashboardDocument, {
@@ -22,29 +34,91 @@ function AccountIndexPage() {
     ssr: false,
   })
 
+  // todo(yvo): skeleton
+
+  const isLoading = typeof data?.customer === 'undefined'
+
+  const address =
+    data?.customer?.addresses?.filter((a) => a.default_shipping)?.[0] ||
+    data?.customer?.addresses?.[0]
+
+  const latestOrder = data?.customer?.orders?.items[data?.customer?.orders?.items.length - 1]
+
+  const totalMsInDay = 1000 * 60 * 60 * 24
+  const today = new Date()
+  const then = new Date(latestOrder?.order_date ?? today)
+  const timeDiff = today.getTime() - then.getTime()
+  const days = Math.floor(timeDiff / totalMsInDay)
+
   return (
     <Container maxWidth='md'>
+      <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
       <NoSsr>
-        <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
-        <AccountHeader {...data?.customer} loading={loading} />
-
+        <IconHeader src={iconPersonAlt} title='Account' alt='account' size='large' />
         <AccountMenu>
-          <AccountMenuItem href='/account/orders' iconSrc={iconBox}>
-            Orders
-          </AccountMenuItem>
-
-          <AccountMenuItem href='/account/personal' iconSrc={iconPerson}>
-            Personal information
-          </AccountMenuItem>
-
-          <AccountMenuItem href='/account/addresses' iconSrc={iconHome}>
-            Addresses
-          </AccountMenuItem>
-
-          <AccountMenuItem href='/account/reviews' iconSrc={iconStar}>
-            Reviews
-          </AccountMenuItem>
-
+          <AccountMenuItem
+            href='/account/name'
+            iconSrc={iconId}
+            title='Name'
+            subtitle={`${data?.customer?.firstname} ${data?.customer?.lastname}`}
+            // loading={isLoading}
+          />
+          <AccountMenuItem
+            href='/account/contact'
+            iconSrc={iconEmailOutline}
+            title='Contact'
+            subtitle={data?.customer?.email}
+            // loading={isLoading}
+          />
+          <AccountMenuItem
+            href='/account/authentication'
+            iconSrc={iconLock}
+            title='Authentication'
+            subtitle='Password'
+            // loading={isLoading}
+          />
+          <AccountMenuItem
+            href='/account/orders'
+            iconSrc={iconBox}
+            title='Orders'
+            subtitle={
+              <>
+                {`${days} days ago`},{' '}
+                <OrderStateLabel // todo(yvo): OrderStateLabelInline component
+                  items={data?.customer?.orders?.items ?? []}
+                  renderer={{
+                    Ordered: () => <span>processed</span>,
+                    Invoiced: () => <span>invoiced</span>,
+                    Shipped: () => <span>shipped</span>,
+                    Refunded: () => <span>refunded</span>,
+                    Canceled: () => <span>canceled</span>,
+                    Returned: () => <span>returned</span>,
+                    Partial: () => <span>partially processed</span>,
+                  }}
+                />
+              </>
+            }
+            // loading={isLoading}
+          />
+          <AccountMenuItem
+            href='/account/addresses'
+            iconSrc={iconHome}
+            title='Addresses'
+            subtitle={<AddressSingleLine {...address} />}
+            // loading={isLoading}
+          />
+          <AccountMenuItem
+            href='/account/reviews'
+            iconSrc={iconStar}
+            title='Reviews'
+            subtitle={`Written ${data?.customer?.reviews.items.length} reviews`}
+          />
+          <AccountMenuItem
+            iconSrc={iconNewspaper}
+            title='Newsletter'
+            subtitle='Be the first to know about everything new!'
+            endIcon={<Switch color='primary' />} // todo(yvo): NewsletterSubscriptionForm
+          />
           <SignOutForm
             button={({ formState }) => (
               <AccountMenuItem
@@ -52,37 +126,43 @@ function AccountIndexPage() {
                 loading={formState.isSubmitting}
                 type='submit'
                 disabled={loading}
-              >
-                Sign out
-              </AccountMenuItem>
+                title='Sign out'
+              />
             )}
           />
         </AccountMenu>
-
-        <AccountLatestOrder {...data?.customer} loading={loading} />
       </NoSsr>
     </Container>
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
-  overlayGroup: 'account',
-  SharedComponent: SheetShell,
-  sharedKey: () => 'account',
+const pageOptions: PageOptions<FullPageShellProps> = {
+  SharedComponent: FullPageShell,
+  sharedKey: () => 'page',
 }
+
 AccountIndexPage.pageOptions = pageOptions
 
 export default AccountIndexPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
+  const staticClient = apolloClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
+
+  const page = staticClient.query({
+    query: DefaultPageDocument,
+    variables: {
+      url: `account`,
+      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+    },
+  })
 
   return {
     props: {
+      ...(await page).data,
       apolloState: await conf.then(() => client.cache.extract()),
-      variant: 'bottom',
-      size: 'max',
     },
+    revalidate: 60 * 20,
   }
 }
