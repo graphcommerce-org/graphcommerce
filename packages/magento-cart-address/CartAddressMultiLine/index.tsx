@@ -4,7 +4,7 @@ import { CountryRegionsQuery } from '@reachdigital/magento-store'
 import React from 'react'
 import { CartAddressFragment } from '../CartAddress/CartAddress.gql'
 
-type CartAddressMultiLineProps = CartAddressFragment & CountryRegionsQuery
+export type CartAddressMultiLineProps = CartAddressFragment & CountryRegionsQuery
 
 export default function CartAddressMultiLine(props: CartAddressMultiLineProps) {
   const { country, countries } = props
