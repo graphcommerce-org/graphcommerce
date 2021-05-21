@@ -67,10 +67,9 @@ function ProductConfigurable(props: Props) {
     return <></>
 
   return (
-    <>
+    <div itemScope itemType='https://schema.org/Product'>
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
         <ProductPageMeta {...product} />
-
         <ProductPageGallery {...product}>
           <Typography paragraph>
             <Typography
@@ -78,14 +77,16 @@ function ProductConfigurable(props: Props) {
               className={classes.prePrice}
               variant='body1'
               display='inline'
+              itemScope
+              itemType='https://schema.org/Offer'
             >
               As low as &nbsp;
             </Typography>
-            <Typography component='span' variant='h5' display='inline'>
+            <Typography component='span' variant='h5' display='inline' itemProp='price'>
               <Money {...product.price_range.minimum_price.regular_price} />
             </Typography>
           </Typography>
-          <Typography component='h1' variant='h2' className={classes.productName}>
+          <Typography itemProp='name' component='h1' variant='h2' className={classes.productName}>
             {product.name}
           </Typography>
           <ConfigurableProductAddToCart
@@ -118,7 +119,7 @@ function ProductConfigurable(props: Props) {
           content={productpages?.[0].content}
         />
       </ConfigurableContextProvider>
-    </>
+    </div>
   )
 }
 

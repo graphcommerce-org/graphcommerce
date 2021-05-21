@@ -47,10 +47,10 @@ function ProductSimple(props: Props) {
     return <></>
 
   return (
-    <>
+    <div itemScope itemType='https://schema.org/Product'>
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
-        <Typography component='h1' variant='h2'>
+        <Typography itemProp='name' component='h1' variant='h2'>
           {product.name}
         </Typography>
         <AddToCartButton
@@ -76,7 +76,7 @@ function ProductSimple(props: Props) {
         }}
         content={productpages?.[0].content}
       />
-    </>
+    </div>
   )
 }
 

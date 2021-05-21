@@ -39,6 +39,7 @@ export default function ProductPageDescription(props: ProductPageDescriptionProp
       {/* eslint-disable-next-line react/no-danger */}
       {description && (
         <div
+          itemProp='description'
           className={classes.description}
           dangerouslySetInnerHTML={{ __html: description.html }}
         />

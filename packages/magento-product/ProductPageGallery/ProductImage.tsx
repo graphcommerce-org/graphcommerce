@@ -8,5 +8,14 @@ export default function ProductImage(props: ProductImageFragment) {
 
   // eslint-disable-next-line jsx-a11y/alt-text
 
-  return <PictureResponsiveNext src={url} type='image/jpeg' width={328} height={328} alt='hoi' />
+  return (
+    <PictureResponsiveNext
+      itemProp='image'
+      src={url}
+      type='image/jpeg'
+      width={328}
+      height={328}
+      alt={url}
+    />
+  )
 }

@@ -37,7 +37,7 @@ export default function ColorSwatchData(props: ColorSwatchDataProps) {
         })}
         style={{ backgroundColor: value ?? undefined }}
       />
-      {size !== 'small' && store_label}
+      <span itemProp='color'>{size !== 'small' && store_label}</span>
     </div>
   )
 }
