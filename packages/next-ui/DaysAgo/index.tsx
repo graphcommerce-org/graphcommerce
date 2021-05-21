@@ -1,14 +1,14 @@
 type DaysAgoProps = {
   date: Date
+  locale: string
 }
 
 export default function DaysAgo(props: DaysAgoProps) {
-  const { date } = props
-  const totalMsInDay = 1000 * 60 * 60 * 24
-
+  const { date, locale } = props
+  const msInDay = 1000 * 60 * 60 * 24
+  const rtf = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' })
   const today = new Date()
-  const timeDiff = today.getTime() - date.getTime()
-  const days = Math.floor(timeDiff / totalMsInDay)
+  const timeDiff = date.getTime() - today.getTime()
 
-  return <span> {`${days} days ago`}</span>
+  return <span>{rtf.format(Math.round(timeDiff / msInDay), 'days')}</span>
 }
