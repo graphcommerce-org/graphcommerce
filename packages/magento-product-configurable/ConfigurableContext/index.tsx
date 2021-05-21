@@ -76,7 +76,7 @@ function generateAttrTree(
     const filteredVariants = variants?.filter(
       (variant) =>
         !!variant?.attributes?.find(
-          (attr) => attr?.code === attribute.attribute_code && val.uid === attr?.value_index,
+          (attr) => attr?.code === attribute.attribute_code && val.uid === attr?.uid,
         ),
     )
 
@@ -132,7 +132,7 @@ export default function ConfigurableContextProvider(
   const getVariants: GetVariants = (options: Selected = {}) => traverseAttrTree(options, lookupTree)
 
   const getUids: GetUids = (options: Selected = {}) =>
-    (getVariants((options as unknown) as Selected) ?? [])
+    (getVariants(options as unknown as Selected) ?? [])
       .map((variant) => (variant?.attributes?.map((attr) => attr?.uid) ?? []) as string[])
       .flat()
 

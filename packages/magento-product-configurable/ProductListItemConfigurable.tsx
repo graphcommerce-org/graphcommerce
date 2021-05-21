@@ -55,7 +55,7 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
       variant?.attributes?.filter(
         (attribute) =>
           selected[attribute?.code ?? ''] !== undefined &&
-          selected[attribute?.code ?? ''].includes(String(attribute?.value_index)),
+          selected[attribute?.code ?? ''].includes(String(attribute?.uid)),
       ).length,
   )
 

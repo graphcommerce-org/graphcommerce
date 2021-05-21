@@ -17,7 +17,6 @@ fragment ProductListItemConfigurable on ConfigurableProduct @inject(into: ["Prod
     attributes {
       uid
       code
-      value_index
     }
     product {
       uid

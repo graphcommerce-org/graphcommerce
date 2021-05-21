@@ -22,7 +22,6 @@ fragment ConfigurableProductForm on ConfigurableProduct {
   variants {
     attributes {
       code
-      value_index
       label
       uid
     }
