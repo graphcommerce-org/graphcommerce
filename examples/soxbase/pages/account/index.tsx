@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Container, NoSsr, Switch } from '@material-ui/core'
+import { Container, makeStyles, NoSsr, Switch, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
   AccountDashboardDocument,
@@ -10,9 +10,12 @@ import {
 import AddressSingleLine from '@reachdigital/magento-customer/AddressSingleLine'
 import OrderStateLabelInline from '@reachdigital/magento-customer/OrderStateLabelInline'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import Button from '@reachdigital/next-ui/Button'
 import DaysAgo from '@reachdigital/next-ui/DaysAgo'
+import FullPageMessage from '@reachdigital/next-ui/FullPageMessage'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
 import {
   iconBox,
   iconEmailOutline,
@@ -21,6 +24,7 @@ import {
   iconLock,
   iconNewspaper,
   iconPersonAlt,
+  iconPersonAltBig,
   iconShutdown,
   iconStar,
 } from '@reachdigital/next-ui/icons'
@@ -43,6 +47,25 @@ function AccountIndexPage() {
     customer?.addresses?.filter((a) => a?.default_shipping)?.[0] || customer?.addresses?.[0]
   const orders = customer?.orders
   const latestOrder = orders?.items?.[orders?.items?.length - 1]
+
+  if (!customer) {
+    return (
+      <FullPageMessage
+        title='You must be authenticated to view this page'
+        icon={<SvgImage src={iconPersonAltBig} size={148} alt='person' />}
+        button={
+          <Button variant='contained' color='primary' text='bold' size='large'>
+            Login
+          </Button>
+        }
+        altButton={
+          <Button variant='text' color='primary'>
+            Or create an account
+          </Button>
+        }
+      />
+    )
+  }
 
   return (
     <Container maxWidth='md'>
@@ -113,7 +136,7 @@ function AccountIndexPage() {
             iconSrc={iconNewspaper}
             title='Newsletter'
             subtitle='Be the first to know about everything new!'
-            endIcon={<Switch color='primary' />} // todo(yvo): NewsletterSubscriptionForm
+            endIcon={<Switch color='primary' />}
           />
           <SignOutForm
             button={({ formState }) => (
