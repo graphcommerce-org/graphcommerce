@@ -1,6 +1,7 @@
 import {
   ListItem,
   ListItemAvatar,
+  ListItemIcon,
   ListItemText,
   makeStyles,
   Theme,
@@ -35,10 +36,6 @@ const useStyles = makeStyles(
     heading: {
       fontWeight: 400,
     },
-    avatar: {
-      display: 'flex',
-      paddingRight: theme.spacings.xs,
-    },
     subheading: {
       color: theme.palette.primary.mutedText,
       ...theme.typography.body2,
@@ -67,9 +64,9 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
       {...buttonProps}
     >
       <ListItem>
-        <ListItemAvatar className={avatar}>
+        <ListItemIcon>
           <SvgImage src={iconSrc} alt={iconSrc} size='medium' loading='eager' shade='muted' />
-        </ListItemAvatar>
+        </ListItemIcon>
         <ListItemText
           primary={
             <Typography variant='h6' component='span' className={heading}>
