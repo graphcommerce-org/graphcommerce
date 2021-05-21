@@ -120,7 +120,7 @@ export default function AccountSignInUpForm() {
               <ApolloErrorAlert error={error} />
 
               {mode === 'email' && (
-                <AnimatedRow key='submit'>
+                <AnimatedRow key='submit-form'>
                   <div className={formClasses.actions}>
                     <Button
                       type='submit'

@@ -15,7 +15,7 @@ export default function useFormIsEmailAvailable(props: useFormIsEmailAvailablePr
 
   const form = useFormGqlQuery(IsEmailAvailableDocument, {
     mode: 'onChange',
-    defaultValues: { email: email ?? undefined },
+    defaultValues: { email: email ?? '' },
   })
   const { formState, data, handleSubmit } = form
 
