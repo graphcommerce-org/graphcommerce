@@ -33,6 +33,8 @@ function AccountIndexPage() {
     fetchPolicy: 'cache-and-network',
     ssr: false,
   })
+  const { data: config } = useQuery(StoreConfigDocument)
+  const locale = config?.storeConfig?.locale?.replace('_', '-')
 
   const customer = data?.customer
   const address =
@@ -71,7 +73,7 @@ function AccountIndexPage() {
             subtitle={
               latestOrder ? (
                 <>
-                  <DaysAgo date={new Date(latestOrder?.order_date ?? new Date())} />
+                  <DaysAgo date={new Date(latestOrder?.order_date ?? new Date())} locale={locale} />
                   {', '}
                   {latestOrder?.items && (
                     <OrderStateLabelInline
