@@ -16,7 +16,10 @@ export function useFormGqlMutationCart<Q, V extends { cartId: string; [index: st
   const cartId = useCartIdCreate()
   const clear = useClearCurrentCartId()
 
-  const onBeforeSubmit = async (variables: V) => ({ ...variables, cartId: await cartId() })
+  const onBeforeSubmit = async (variables: V) => {
+    const vars = { ...variables, cartId: await cartId() }
+    return options.onBeforeSubmit ? options.onBeforeSubmit(vars) : vars
+  }
   const result = useFormGqlMutation<Q, V>(
     document,
     { ...options, onBeforeSubmit },

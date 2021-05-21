@@ -1,14 +1,17 @@
 import { useQuery } from '@apollo/client'
 import { Divider, makeStyles, Theme, Box } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { Money } from '@reachdigital/magento-store'
+import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
 import { iconCheckmark, iconChevronRight } from '@reachdigital/next-ui/icons'
+import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
@@ -56,13 +59,13 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
 
   const form = useFormGqlMutationCart(ConfigurableProductAddToCartDocument, {
     defaultValues: variables,
-    onBeforeSubmit: async ({ selectedOptions, ...vars }) => ({
+    onBeforeSubmit: ({ selectedOptions, ...vars }) => ({
       ...vars,
       // todo: selectedOptions should contain the correct values directly
-      selectedOptions: getUids((selectedOptions?.[0] as unknown) as Selected),
+      selectedOptions: getUids(selectedOptions?.[0] as unknown as Selected),
     }),
   })
-  const { handleSubmit, formState, muiRegister, required, control, error } = form
+  const { handleSubmit, formState, muiRegister, required, control, error, data } = form
   const submitHandler = handleSubmit(() => {})
 
   const { data: tokenQuery } = useQuery(CustomerTokenDocument)
@@ -77,7 +80,6 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
   ) : (
     <form onSubmit={submitHandler} noValidate className={classes.form}>
       <Divider className={classes.divider} />
-
       <ConfigurableOptionsInput
         name='selectedOptions'
         sku={variables.sku}
@@ -86,9 +88,6 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         errors={formState.errors.selectedOptions}
         optionEndLabels={optionEndLabels}
       />
-
-      <ApolloErrorAlert error={error} />
-
       <TextInputNumber
         variant='outlined'
         error={formState.isSubmitted && !!formState.errors.quantity}
@@ -100,14 +99,12 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         size='small'
         className={classes.quantity}
       />
-
       <div className={classes.finalPrice}>
         <Money
           {...cheapestVariant(getVariants(selection))?.product?.price_range.minimum_price
             .final_price}
         />
       </div>
-
       <Button
         type='submit'
         loading={formState.isSubmitting}
@@ -120,6 +117,16 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
       >
         Add to Cart
       </Button>
+
+      <ApolloErrorAlert error={error} />
+
+      <AnimatePresence initial={false}>
+        {data?.addProductsToCart?.user_errors.map((e) => (
+          <AnimatedRow key={e?.code}>
+            <Alert severity='error'>{e?.message}</Alert>
+          </AnimatedRow>
+        ))}
+      </AnimatePresence>
 
       <MessageSnackbar
         open={formState.isSubmitSuccessful && !error?.message}
