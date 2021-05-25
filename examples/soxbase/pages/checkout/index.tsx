@@ -1,6 +1,6 @@
 import { Container, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { useCartQuery, EmptyCart } from '@reachdigital/magento-cart'
+import { EmptyCart, useCartQuery } from '@reachdigital/magento-cart'
 import { ShippingPageDocument } from '@reachdigital/magento-cart-checkout/ShippingPage.gql'
 import { EmailForm } from '@reachdigital/magento-cart-email'
 import { ShippingAddressForm } from '@reachdigital/magento-cart-shipping-address'
@@ -8,7 +8,7 @@ import { ShippingMethodForm } from '@reachdigital/magento-cart-shipping-method'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
+import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import FormHeader from '@reachdigital/next-ui/FormHeader'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -26,7 +26,6 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function ShippingPage() {
-  const formClasses = useFormStyles()
   const { data: cartData } = useCartQuery(ShippingPageDocument, { returnPartialData: true })
   const cartExists = typeof cartData?.cart !== 'undefined'
   const router = useRouter()
@@ -59,7 +58,7 @@ function ShippingPage() {
               onSubmitSuccessful={() => router.push('/checkout/payment')}
               render={({ buttonState, submit, error }) => (
                 <>
-                  <div className={formClasses.actions}>
+                  <FormActions>
                     <Button
                       type='submit'
                       color='secondary'
@@ -76,7 +75,7 @@ function ShippingPage() {
                         loading='eager'
                       />
                     </Button>
-                  </div>
+                  </FormActions>
                   <ApolloErrorAlert
                     key='error'
                     error={buttonState.isSubmitting ? undefined : error}

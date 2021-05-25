@@ -1,5 +1,5 @@
 import { IconButton, makeStyles, TextField, Theme } from '@material-ui/core'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
+import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconClose, iconSearch } from '@reachdigital/next-ui/icons'
@@ -27,7 +27,6 @@ export type SearchFormProps = {
 
 export default function SearchForm(props: SearchFormProps) {
   const { totalResults = 0, search = '' } = props
-  const formClasses = useFormStyles()
   const pageClasses = useStyles(props)
   const router = useRouter()
 
@@ -77,7 +76,7 @@ export default function SearchForm(props: SearchFormProps) {
         }
       }}
     >
-      <div className={formClasses.formRow}>
+      <FormRow>
         <TextField
           variant='outlined'
           type='text'
@@ -89,7 +88,7 @@ export default function SearchForm(props: SearchFormProps) {
           {...muiRegister('search', { required: true, minLength: 2 })}
           InputProps={{ endAdornment }}
         />
-      </div>
+      </FormRow>
     </form>
   )
 }

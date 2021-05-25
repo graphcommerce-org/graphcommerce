@@ -1,11 +1,11 @@
 import { TextField } from '@material-ui/core'
 import { CountryRegionsQuery } from '@reachdigital/magento-store'
+import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import {
-  UseFormReturn,
   assertFormGqlOperation,
   houseNumberPattern,
+  UseFormReturn,
 } from '@reachdigital/react-hook-form'
 import React, { useMemo } from 'react'
 
@@ -28,7 +28,6 @@ export default function AddressFields(props: AddressFieldsProps) {
   const { form, countries, readOnly } = props
   assertFormGqlOperation<AddressFieldValues>(form)
   const { watch, formState, required, muiRegister, register, valid } = form
-  const classes = useFormStyles()
 
   const country = watch('countryCode')
 
@@ -54,7 +53,7 @@ export default function AddressFields(props: AddressFieldsProps) {
 
   return (
     <>
-      <div className={classes.formRow}>
+      <FormRow>
         <TextField
           variant='outlined'
           type='text'
@@ -100,8 +99,8 @@ export default function AddressFields(props: AddressFieldsProps) {
             endAdornment: <InputCheckmark show={valid.addition} />,
           }}
         />
-      </div>
-      <div className={classes.formRow}>
+      </FormRow>
+      <FormRow>
         <TextField
           variant='outlined'
           type='text'
@@ -128,8 +127,8 @@ export default function AddressFields(props: AddressFieldsProps) {
             endAdornment: <InputCheckmark show={valid.city} />,
           }}
         />
-      </div>
-      <div className={classes.formRow}>
+      </FormRow>
+      <FormRow>
         <TextField
           select
           SelectProps={{ native: true }}
@@ -186,7 +185,7 @@ export default function AddressFields(props: AddressFieldsProps) {
             value={undefined}
           />
         )}
-      </div>
+      </FormRow>
     </>
   )
 }

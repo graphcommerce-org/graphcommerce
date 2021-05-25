@@ -4,16 +4,18 @@ import { useCartQuery, useFormGqlMutationCart } from '@reachdigital/magento-cart
 import AddressFields from '@reachdigital/magento-customer/AddressFields'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import NameFields from '@reachdigital/magento-customer/NameFields'
-import { StoreConfigDocument, CountryRegionsDocument } from '@reachdigital/magento-store'
+import { CountryRegionsDocument, StoreConfigDocument } from '@reachdigital/magento-store'
+import Form from '@reachdigital/next-ui/Form'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import {
-  useFormAutoSubmit,
-  useFormPersist,
   phonePattern,
+  useFormAutoSubmit,
   useFormCompose,
   UseFormComposeOptions,
+  useFormPersist,
 } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import React, { useRef } from 'react'
@@ -24,7 +26,6 @@ export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'>
 
 export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   const { step } = props
-  const classes = useFormStyles()
   const ref = useRef<HTMLFormElement>(null)
   const { data: cartQuery } = useCartQuery(GetShippingAddressDocument)
   const { data: config } = useQuery(StoreConfigDocument)
@@ -82,7 +83,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   const readOnly = formState.isSubmitting && !autoSubmitting
 
   return (
-    <form onSubmit={submit} noValidate className={classes.form} ref={ref}>
+    <Form onSubmit={submit} noValidate ref={ref}>
       <AnimatePresence initial={false}>
         <NameFields form={form} key='name' readOnly={readOnly} />
         <AddressFields
@@ -92,7 +93,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           readOnly={readOnly}
         />
 
-        <div className={classes.formRow} key='telephone'>
+        <FormRow key='telephone'>
           <TextField
             variant='outlined'
             type='text'
@@ -109,10 +110,10 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
               endAdornment: <InputCheckmark show={valid.telephone} />,
             }}
           />
-        </div>
+        </FormRow>
 
         <ApolloErrorAlert error={error} />
       </AnimatePresence>
-    </form>
+    </Form>
   )
 }

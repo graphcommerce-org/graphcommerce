@@ -2,8 +2,10 @@ import { useQuery } from '@apollo/client'
 import { CircularProgress, Link, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
+import Form from '@reachdigital/next-ui/Form'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
+import FormActions from '@reachdigital/next-ui/Form/FormActions'
+import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { emailPattern, useFormPersist } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
@@ -25,19 +27,17 @@ const useStyles = makeStyles(
 )
 
 export default function AccountSignInUpForm() {
-  const classes = useStyles()
-  const formClasses = useFormStyles()
-
   const customerQuery = useQuery(CustomerDocument, { ssr: false })
   const { email, firstname } = customerQuery.data?.customer ?? {}
   const { mode, form, token, autoSubmitting, submit } = useFormIsEmailAvailable({ email })
   const { formState, muiRegister, required, watch, error } = form
   const disableFields = formState.isSubmitting && !autoSubmitting
+  const classes = useStyles()
 
   useFormPersist({ form, name: 'IsEmailAvailable' })
 
   return (
-    <div className={formClasses.form}>
+    <Form component='div'>
       {mode === 'email' && (
         <div className={classes.titleContainer} key='email'>
           <Typography variant='h3' align='center'>
@@ -93,7 +93,7 @@ export default function AccountSignInUpForm() {
           <form noValidate onSubmit={submit} key='emailform'>
             <AnimatePresence initial={false}>
               <AnimatedRow key='email'>
-                <div className={formClasses.formRow}>
+                <FormRow>
                   <TextField
                     key='email'
                     variant='outlined'
@@ -114,14 +114,14 @@ export default function AccountSignInUpForm() {
                       readOnly: !!token?.customerToken,
                     }}
                   />
-                </div>
+                </FormRow>
               </AnimatedRow>
 
               <ApolloErrorAlert error={error} />
 
               {mode === 'email' && (
                 <AnimatedRow key='submit-form'>
-                  <div className={formClasses.actions}>
+                  <FormActions>
                     <Button
                       type='submit'
                       loading={formState.isSubmitting}
@@ -131,7 +131,7 @@ export default function AccountSignInUpForm() {
                     >
                       Continue
                     </Button>
-                  </div>
+                  </FormActions>
                 </AnimatedRow>
               )}
             </AnimatePresence>
@@ -149,6 +149,6 @@ export default function AccountSignInUpForm() {
           </AnimatedRow>
         )}
       </AnimatePresence>
-    </div>
+    </Form>
   )
 }

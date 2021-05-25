@@ -4,20 +4,19 @@ import {
   PaymentMethodButton,
   PaymentMethodContextProvider,
   PaymentMethodOptions,
-  PaymentMethodToggle,
   PaymentMethodPlaceOrder,
+  PaymentMethodToggle,
 } from '@reachdigital/magento-cart-payment-method'
 import { braintree_local_payment } from '@reachdigital/magento-payment-braintree'
 import { included_methods } from '@reachdigital/magento-payment-included'
 import { mollie_methods } from '@reachdigital/magento-payment-mollie'
-import { PageMeta, StoreConfigDocument, CountryRegionsDocument } from '@reachdigital/magento-store'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
+import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import Form from '@reachdigital/next-ui/Form'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import Stepper from '@reachdigital/next-ui/Stepper/Stepper'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconChevronRight } from '@reachdigital/next-ui/icons'
 import { ComposedForm } from '@reachdigital/react-hook-form'
-import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -28,8 +27,6 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function PaymentPage(props: Props) {
-  const formClasses = useFormStyles()
-
   return (
     <Container maxWidth='md'>
       <ComposedForm>
@@ -56,9 +53,9 @@ function PaymentPage(props: Props) {
                 key='options'
                 step={1}
                 Container={({ children }) => (
-                  <div className={clsx(formClasses.form, formClasses.formContained)}>
+                  <Form component='div' contained>
                     {children}
-                  </div>
+                  </Form>
                 )}
               />
 

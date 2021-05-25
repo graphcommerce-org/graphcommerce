@@ -1,8 +1,10 @@
 import { makeStyles, TextField, Theme } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import Button from '@reachdigital/next-ui/Button'
+import Form from '@reachdigital/next-ui/Form'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
+import FormActions from '@reachdigital/next-ui/Form/FormActions'
+import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { emailPattern, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
 import {
@@ -22,11 +24,11 @@ const useStyles = makeStyles(
 )
 
 export default function ForgotPasswordForm() {
-  const formClasses = useFormStyles()
   const classes = useStyles()
-  const form = useFormGqlMutation<ForgotPasswordMutation, ForgotPasswordMutationVariables>(
-    ForgotPasswordDocument,
-  )
+  const form =
+    useFormGqlMutation<ForgotPasswordMutation, ForgotPasswordMutationVariables>(
+      ForgotPasswordDocument,
+    )
   const { muiRegister, handleSubmit, required, data, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
@@ -39,8 +41,8 @@ export default function ForgotPasswordForm() {
   }
 
   return (
-    <form onSubmit={submitHandler} noValidate className={formClasses.form}>
-      <div className={formClasses.formRow}>
+    <Form onSubmit={submitHandler} noValidate>
+      <FormRow>
         <TextField
           variant='outlined'
           type='text'
@@ -54,11 +56,11 @@ export default function ForgotPasswordForm() {
           helperText={formState.errors.email?.message}
           disabled={formState.isSubmitting}
         />
-      </div>
+      </FormRow>
 
       <ApolloErrorAlert error={error} />
 
-      <div className={formClasses.actions}>
+      <FormActions>
         <Button
           type='submit'
           loading={formState.isSubmitting}
@@ -69,7 +71,7 @@ export default function ForgotPasswordForm() {
         >
           Send password reset email
         </Button>
-      </div>
-    </form>
+      </FormActions>
+    </Form>
   )
 }

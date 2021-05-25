@@ -9,7 +9,8 @@ import {
 import { CountryRegionsQuery } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import { useFormAutoSubmit, useFormGqlMutation, Controller } from '@reachdigital/react-hook-form'
+import FormActions from '@reachdigital/next-ui/Form/FormActions'
+import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import PageLink from 'next/link'
 import React, { useEffect, useMemo } from 'react'
 import { UpdateDefaultAddressDocument } from '../AccountAddresses/UpdateDefaultAddress.gql'
@@ -128,13 +129,13 @@ export default function AccountAddress(props: AccountAddressProps) {
           </form>
         </div>
       </div>
-      <div className={classes.actions}>
+      <FormActions>
         <PageLink href={`/account/addresses/edit?addressId=${id}`} passHref>
           <Button variant='text' color='primary'>
             Edit
           </Button>
         </PageLink>
-      </div>
+      </FormActions>
     </div>
   )
 }

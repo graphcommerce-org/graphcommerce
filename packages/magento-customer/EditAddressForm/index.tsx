@@ -1,11 +1,14 @@
 import { makeStyles, TextField } from '@material-ui/core'
 import { CountryRegionsQuery } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
+import Form from '@reachdigital/next-ui/Form'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import FormActions from '@reachdigital/next-ui/Form/FormActions'
+import FormDivider from '@reachdigital/next-ui/Form/FormDivider'
+import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import { useFormGqlMutation, phonePattern } from '@reachdigital/react-hook-form'
-import clsx from 'clsx'
+import { phonePattern, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
@@ -77,11 +80,11 @@ export default function EditAddressForm(props: EditAddressFormProps) {
 
   return (
     <>
-      <form onSubmit={submitHandler} noValidate className={formClasses.form}>
+      <Form onSubmit={submitHandler} noValidate>
         <NameFields form={form} prefix />
         <AddressFields form={form} countries={countries} />
 
-        <div className={formClasses.formRow}>
+        <FormRow>
           <TextField
             variant='outlined'
             type='text'
@@ -96,11 +99,11 @@ export default function EditAddressForm(props: EditAddressFormProps) {
             disabled={formState.isSubmitting}
             InputProps={{ endAdornment: <InputCheckmark show={valid.telephone} /> }}
           />
-        </div>
+        </FormRow>
 
-        <div className={formClasses.divider} />
+        <FormDivider />
 
-        <div className={clsx(formClasses.actions, classes.editActions)}>
+        <FormActions classes={{ root: classes.editActions }}>
           <Button
             type='submit'
             variant='contained'
@@ -110,8 +113,8 @@ export default function EditAddressForm(props: EditAddressFormProps) {
           >
             Save changes
           </Button>
-        </div>
-      </form>
+        </FormActions>
+      </Form>
 
       <ApolloErrorAlert error={error} />
     </>

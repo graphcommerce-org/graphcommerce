@@ -1,13 +1,13 @@
 import { MenuItem, TextField } from '@material-ui/core'
 import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import {
-  PaymentOptionsProps,
   PaymentMethodOptionsNoopDocument,
   PaymentMethodOptionsNoopMutation,
   PaymentMethodOptionsNoopMutationVariables,
+  PaymentOptionsProps,
 } from '@reachdigital/magento-cart-payment-method'
+import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { useFormCompose, useFormPersist, useFormValidFields } from '@reachdigital/react-hook-form'
 import React from 'react'
 
@@ -18,7 +18,6 @@ export const selectedOption: { issuer?: string } = {
 export default function MollieIdealOptions(props: PaymentOptionsProps) {
   const { mollie_available_issuers = [] } = props
   const { code, step, Container } = props
-  const formClasses = useFormStyles()
 
   const form = useFormGqlMutationCart<
     PaymentMethodOptionsNoopMutation,
@@ -39,7 +38,7 @@ export default function MollieIdealOptions(props: PaymentOptionsProps) {
   return (
     <Container>
       <form onSubmit={submit} noValidate>
-        <div className={formClasses.formRow}>
+        <FormRow>
           <TextField
             variant='outlined'
             select
@@ -62,7 +61,7 @@ export default function MollieIdealOptions(props: PaymentOptionsProps) {
               )
             })}
           </TextField>
-        </div>
+        </FormRow>
       </form>
     </Container>
   )

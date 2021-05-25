@@ -1,18 +1,18 @@
-import { useMutation, useQuery } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { CircularProgress, makeStyles, TextField, Theme } from '@material-ui/core'
 import { useCartQuery } from '@reachdigital/magento-cart'
-import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import SignInFormInline from '@reachdigital/magento-customer/SignInFormInline'
 import SignUpFormInline from '@reachdigital/magento-customer/SignUpFormInline'
 import useFormIsEmailAvailable from '@reachdigital/magento-customer/useFormIsEmailAvailable'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
+import Form from '@reachdigital/next-ui/Form'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
+import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { emailPattern, useFormCompose, UseFormComposeOptions } from '@reachdigital/react-hook-form'
-import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
+import EmailHelperList from '../EmailHelperList'
 import { CartEmailDocument } from './CartEmail.gql'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
 
@@ -25,29 +25,10 @@ const useStyles = makeStyles(
   { name: 'EmailForm' },
 )
 
-function HelperList(props: { classNames?: string | string[] }) {
-  const { classNames } = props
-  const { data: tokenData } = useQuery(CustomerTokenDocument)
-  const formClasses = useFormStyles()
-
-  return (
-    <>
-      {!tokenData?.customerToken && (
-        <ul className={clsx(formClasses.helperList, classNames)}>
-          <li>E-mail address of existing customers will be recognized, sign in is optional.</li>
-          <li>Fill in password fields to create an account.</li>
-          <li>Leave passwords fields empty to order as guest.</li>
-        </ul>
-      )}
-    </>
-  )
-}
-
 export type EmailFormProps = Pick<UseFormComposeOptions, 'step'>
 
 export default function EmailForm(props: EmailFormProps) {
   const { step } = props
-  const formClasses = useFormStyles()
   const classes = useStyles()
 
   const [expand, setExpand] = useState(false)
@@ -90,11 +71,11 @@ export default function EmailForm(props: EmailFormProps) {
   if (formState.isSubmitting) endAdornment = <CircularProgress />
 
   return (
-    <div className={clsx(formClasses.form, formClasses.formContained)}>
+    <Form component='div' contained>
       <AnimatePresence initial={false}>
         <AnimatedRow key='emailform'>
           <form noValidate onSubmit={submit}>
-            <div className={formClasses.formRow}>
+            <FormRow>
               <TextField
                 variant='outlined'
                 type='email'
@@ -112,7 +93,7 @@ export default function EmailForm(props: EmailFormProps) {
                   readOnly: mode === 'signedin',
                 }}
               />
-            </div>
+            </FormRow>
             <ApolloErrorAlert error={error} />
           </form>
         </AnimatedRow>
@@ -126,7 +107,9 @@ export default function EmailForm(props: EmailFormProps) {
         {mode === 'signup' && expand && (
           <AnimatedRow key='inline-signup'>
             <SignUpFormInline
-              helperList={<HelperList key='signup-helper-list' classNames={classes.helperList} />}
+              helperList={
+                <EmailHelperList key='signup-helper-list' classes={{ root: classes.helperList }} />
+              }
               key='signup-form-inline'
               email={watch('email')}
             />
@@ -135,10 +118,10 @@ export default function EmailForm(props: EmailFormProps) {
 
         {((mode !== 'signup' && expand) || !expand) && (
           <AnimatedRow key='email-helperlist'>
-            <HelperList />
+            <EmailHelperList />
           </AnimatedRow>
         )}
       </AnimatePresence>
-    </div>
+    </Form>
   )
 }

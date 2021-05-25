@@ -2,7 +2,8 @@ import { FormControlLabel, Switch, TextField } from '@material-ui/core'
 import { graphqlErrorByCategory } from '@reachdigital/magento-graphql'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
+import FormActions from '@reachdigital/next-ui/Form/FormActions'
+import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { useFormGqlMutation, useFormPersist } from '@reachdigital/react-hook-form'
 import React from 'react'
 import NameFields from './NameFields'
@@ -14,7 +15,6 @@ type SignUpFormProps = {
 
 export default function SignUpForm(props: SignUpFormProps) {
   const { email } = props
-  const classes = useFormStyles()
   const form = useFormGqlMutation<
     SignUpMutation,
     SignUpMutationVariables & { confirmPassword?: string }
@@ -25,11 +25,11 @@ export default function SignUpForm(props: SignUpFormProps) {
   const [remainingError, inputError] = graphqlErrorByCategory('graphql-input', error)
 
   const submitHandler = handleSubmit(() => {})
-  const watchPassword = watch('password');
+  const watchPassword = watch('password')
 
   return (
     <form onSubmit={submitHandler} noValidate>
-      <div className={classes.formRow}>
+      <FormRow>
         <TextField
           variant='outlined'
           type='password'
@@ -58,12 +58,12 @@ export default function SignUpForm(props: SignUpFormProps) {
           required
           {...muiRegister('confirmPassword', {
             required: true,
-            validate: (value) => value === watchPassword  || "Passwords don't match",
+            validate: (value) => value === watchPassword || "Passwords don't match",
           })}
           helperText={formState.errors.confirmPassword?.message}
           disabled={formState.isSubmitting}
         />
-      </div>
+      </FormRow>
 
       <NameFields form={form} prefix />
 
@@ -76,7 +76,7 @@ export default function SignUpForm(props: SignUpFormProps) {
 
       <ApolloErrorAlert error={remainingError} />
 
-      <div className={classes.actions}>
+      <FormActions>
         <Button
           type='submit'
           variant='contained'
@@ -86,7 +86,7 @@ export default function SignUpForm(props: SignUpFormProps) {
         >
           Create Account
         </Button>
-      </div>
+      </FormActions>
     </form>
   )
 }
