@@ -2,11 +2,13 @@ import { Container, Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import React from 'react'
 import PageMeta from '../PageMeta'
+import responsiveVal from '../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      minHeight: '100vh',
+      minHeight: '75vh',
+      marginTop: responsiveVal(50, 250),
       alignItems: 'center',
     },
     subject: {
