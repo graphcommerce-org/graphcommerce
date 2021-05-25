@@ -1,8 +1,10 @@
+import { Fab, Link } from '@material-ui/core'
 import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import Pagination from '@reachdigital/next-ui/Pagination'
 import { GetStaticPaths } from 'next'
+import PageLink from 'next/link'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import BlogList from '../../../components/Blog'
@@ -36,7 +38,11 @@ function BlogPage(props: Props) {
       <Pagination
         count={Math.ceil(pagesConnection.aggregate.count / pageSize)}
         page={Number(router.query.page ? router.query.page : 1)}
-        url={(p) => (p === 1 ? '/blog' : `/blog/page/${p}`)}
+        renderLink={(p: number, icon: React.ReactNode) => (
+          <PageLink href={p === 1 ? '/blog' : `/blog/page/${p}`} passHref>
+            <Link color='primary'>{icon}</Link>
+          </PageLink>
+        )}
       />
     </>
   )
