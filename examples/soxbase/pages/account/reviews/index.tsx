@@ -9,6 +9,7 @@ import { iconStar } from '@reachdigital/next-ui/icons'
 import { GetStaticProps } from 'next'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import MessageAuthRequired from '../../../components/MessageAuthRequired'
 import apolloClient from '../../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
@@ -19,6 +20,8 @@ function AccountReviewsPage() {
     ssr: false,
   })
   const customer = data?.customer
+
+  if (!customer) return <MessageAuthRequired />
 
   return (
     <Container maxWidth='md'>

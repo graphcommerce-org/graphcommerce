@@ -1,11 +1,12 @@
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CreateCustomerAddressForm } from '@reachdigital/magento-customer'
+import { AccountDashboardAddressesQuery } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardAddresses.gql'
 import {
-  StoreConfigDocument,
-  PageMeta,
   CountryRegionsDocument,
   CountryRegionsQuery,
+  PageMeta,
+  StoreConfigDocument,
 } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -13,13 +14,16 @@ import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import { iconAddresses } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import MessageAuthRequired from '../../../components/MessageAuthRequired'
 import apolloClient from '../../../lib/apolloClient'
 
-type Props = CountryRegionsQuery
+type Props = CountryRegionsQuery & AccountDashboardAddressesQuery
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function AddNewAddressPage(props: Props) {
-  const { countries } = props
+  const { countries, customer } = props
+
+  if (!customer) return <MessageAuthRequired />
 
   return (
     <Container maxWidth='md'>
