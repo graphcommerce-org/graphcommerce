@@ -17,6 +17,7 @@ import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import { iconAddresses } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import MessageAuthRequired from '../../../components/MessageAuthRequired'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
@@ -35,6 +36,8 @@ function EditAddressPage(props: Props) {
   const numAddressId = Number(addressId)
   const addresses = data?.customer?.addresses
   const address = addresses?.filter((a) => a?.id === numAddressId)?.[0]
+
+  if (!data?.customer) return <MessageAuthRequired />
 
   return (
     <Container maxWidth='md'>

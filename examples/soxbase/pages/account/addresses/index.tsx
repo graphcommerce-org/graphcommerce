@@ -4,16 +4,17 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import AccountAddresses from '@reachdigital/magento-customer/AccountAddresses'
 import { AccountDashboardAddressesDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardAddresses.gql'
 import {
-  StoreConfigDocument,
-  PageMeta,
   CountryRegionsDocument,
   CountryRegionsQuery,
+  PageMeta,
+  StoreConfigDocument,
 } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { iconAddresses } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import MessageAuthRequired from '../../../components/MessageAuthRequired'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
@@ -27,6 +28,8 @@ function AccountAddressesPage(props: Props) {
   })
   const customer = data?.customer
 
+  if (!customer) return <MessageAuthRequired />
+
   return (
     <Container maxWidth='md'>
       <PageMeta
@@ -36,7 +39,12 @@ function AccountAddressesPage(props: Props) {
       />
       <NoSsr>
         <IconHeader src={iconAddresses} title='Addresses' alt='addresses' size='large' />
-        <AccountAddresses loading={!data} addresses={customer?.addresses} countries={countries} />
+        <AccountAddresses
+          {...data}
+          loading={!data}
+          addresses={customer?.addresses}
+          countries={countries}
+        />
       </NoSsr>
     </Container>
   )

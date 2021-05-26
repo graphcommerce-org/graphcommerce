@@ -6,16 +6,17 @@ import useOrderCardItemImages from '@reachdigital/magento-customer/OrderCardItem
 import OrderDetails from '@reachdigital/magento-customer/OrderDetails'
 import OrderItems from '@reachdigital/magento-customer/OrderItems'
 import {
-  PageMeta,
-  StoreConfigDocument,
   CountryRegionsDocument,
   CountryRegionsQuery,
+  PageMeta,
+  StoreConfigDocument,
 } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { iconBox } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import MessageAuthRequired from '../../../components/MessageAuthRequired'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
@@ -34,6 +35,8 @@ function OrderDetailPage(props: Props) {
   const images = useOrderCardItemImages(data?.customer?.orders)
   const order = data?.customer?.orders?.items?.[0]
   const isLoading = orderId ? loading : true
+
+  if (!data?.customer) return <MessageAuthRequired />
 
   return (
     <Container maxWidth='md'>

@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Container, makeStyles, NoSsr, Switch, Theme, Typography } from '@material-ui/core'
+import { Container, NoSsr, Switch } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AccountDashboardDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboard.gql'
 import AccountMenu from '@reachdigital/magento-customer/AccountMenu'
@@ -8,12 +8,9 @@ import AddressSingleLine from '@reachdigital/magento-customer/AddressSingleLine'
 import OrderStateLabelInline from '@reachdigital/magento-customer/OrderStateLabelInline'
 import SignOutForm from '@reachdigital/magento-customer/SignOutForm'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import Button from '@reachdigital/next-ui/Button'
 import DaysAgo from '@reachdigital/next-ui/DaysAgo'
-import FullPageMessage from '@reachdigital/next-ui/FullPageMessage'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
 import {
   iconBox,
   iconEmailOutline,
@@ -22,12 +19,12 @@ import {
   iconLock,
   iconNewspaper,
   iconPersonAlt,
-  iconPersonAltBig,
   iconShutdown,
   iconStar,
 } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
+import MessageAuthRequired from '../../components/MessageAuthRequired'
 import apolloClient from '../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<FullPageShellProps>
@@ -46,24 +43,7 @@ function AccountIndexPage() {
   const orders = customer?.orders
   const latestOrder = orders?.items?.[orders?.items?.length - 1]
 
-  if (!customer) {
-    return (
-      <FullPageMessage
-        title='You must be authenticated to view this page'
-        icon={<SvgImage src={iconPersonAltBig} size={148} alt='person' />}
-        button={
-          <Button variant='contained' color='primary' text='bold' size='large'>
-            Login
-          </Button>
-        }
-        altButton={
-          <Button variant='text' color='primary'>
-            Or create an account
-          </Button>
-        }
-      />
-    )
-  }
+  if (!customer) return <MessageAuthRequired />
 
   return (
     <Container maxWidth='md'>

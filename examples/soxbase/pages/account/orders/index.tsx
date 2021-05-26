@@ -9,6 +9,7 @@ import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { iconBox } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import MessageAuthRequired from '../../../components/MessageAuthRequired'
 import apolloClient from '../../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
@@ -19,6 +20,8 @@ function AccountOrdersPage() {
     ssr: false,
   })
   const customer = data?.customer
+
+  if (!customer) return <MessageAuthRequired />
 
   return (
     <Container maxWidth='md'>
