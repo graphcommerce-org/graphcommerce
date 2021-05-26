@@ -1,8 +1,8 @@
 import { useClientSize } from '@reachdigital/framer-utils'
 import { m, useIsPresent } from 'framer-motion'
 import React from 'react'
-import type { PageItem } from './types'
 import { scrollPos } from './utils'
+import type { PageItem } from './types'
 
 export type PageProps = Pick<PageItem, 'historyIdx'> & {
   active: boolean

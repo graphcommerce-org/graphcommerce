@@ -1,11 +1,11 @@
 import { AnimatePresence } from 'framer-motion'
-import type { AppPropsType } from 'next/dist/next-server/lib/utils'
-import type { NextRouter } from 'next/router'
 import React, { useRef } from 'react'
 import Page from './Page'
 import { pageContext, pageRouterContext } from './PageContext'
-import type { PageComponent, PageItem } from './types'
 import { createRouterProxy } from './utils'
+import type { PageComponent, PageItem } from './types'
+import type { AppPropsType } from 'next/dist/next-server/lib/utils'
+import type { NextRouter } from 'next/router'
 
 function findPlainIdx(items: PageItem[]) {
   return items.reduce((acc, item, i) => (typeof item.overlayGroup === 'string' ? acc : i), -1)
@@ -70,7 +70,7 @@ export default function FramerNextPages(props: PagesProps) {
   /**
    * Cleanup the `renderItems`:
    *
-   * - A key can only occur once in AnimatePresence, therfor we remove duplicates and maintain the
+   * - A key can only occur once in AnimatePresence, therefore we remove duplicates and maintain the
    *   last one as that one has the most recent props.
    * - We remove all overlays that aren't of the same overlay type
    */

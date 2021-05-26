@@ -2,8 +2,6 @@ import { makeStyles, Theme } from '@material-ui/core'
 import { usePageRouter } from '@reachdigital/framer-next-pages'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
-import { useRouter } from 'next/router'
-
 import PageLoadIndicator from '../PageLoadIndicator'
 import { UseStyles } from '../Styles'
 import BackButton from './BackButton'
