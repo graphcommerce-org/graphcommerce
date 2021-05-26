@@ -1,6 +1,5 @@
 import {
   ListItem,
-  ListItemAvatar,
   ListItemIcon,
   ListItemText,
   makeStyles,
@@ -53,7 +52,7 @@ export type AccountMenuItemProps = {
 
 export default function AccountMenuItem(props: AccountMenuItemProps) {
   const { title, subtitle, iconSrc, endIcon, href, disabled, ...buttonProps } = props
-  const { heading, subheading, avatar, ...buttonClasses } = useStyles()
+  const { heading, subheading, ...buttonClasses } = useStyles()
 
   const button = (
     <Button

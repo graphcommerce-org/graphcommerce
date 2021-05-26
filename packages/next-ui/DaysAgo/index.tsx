@@ -1,10 +1,10 @@
 type DaysAgoProps = {
   date: Date
-  locale: string
+  locale?: string
 }
 
 export default function DaysAgo(props: DaysAgoProps) {
-  const { date, locale } = props
+  const { date, locale = 'en' } = props
   const msInDay = 1000 * 60 * 60 * 24
   const rtf = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' })
   const today = new Date()
