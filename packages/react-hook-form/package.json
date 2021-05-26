@@ -23,7 +23,6 @@
     "@reachdigital/typescript-config-pwa": "^0.1.0"
   },
   "dependencies": {
-    "@material-ui/core": "^4.11.4",
     "@apollo/client": "^3.3.19",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@reachdigital/next-ui": "^0.1.0",
