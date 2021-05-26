@@ -18,7 +18,7 @@ sure you have set up
 
 ## Usage
 
-### Inling styles
+### Inline styles
 
 ```tsx
 import {
