@@ -27,7 +27,6 @@ export type ProductSpecsProps = ProductSpecsFragment & UseStyles<typeof useStyle
 export default function ProductSpecs(props: ProductSpecsProps) {
   const { aggregations } = props
   const classes = useStyles(props)
-  const supportedItemProps = ['pattern', 'material']
   const filter = ['price', 'category_id', 'size', 'new', 'sale', 'color']
   const specs = aggregations?.filter(
     (attr) => !filter.includes(attr?.attribute_code ?? '') && attr?.options?.[0]?.value !== '0',
@@ -42,14 +41,7 @@ export default function ProductSpecs(props: ProductSpecsProps) {
       {specs?.map((aggregation) => (
         <li key={aggregation?.attribute_code}>
           <div>{aggregation?.label}</div>
-          <div
-            className={classes.options}
-            itemProp={
-              supportedItemProps.includes((aggregation?.label ?? '').toLowerCase())
-                ? (aggregation?.label ?? '').toLowerCase()
-                : undefined
-            }
-          >
+          <div className={classes.options}>
             {aggregation?.options?.map((option) => (
               <span key={option?.label}>{option?.label === '1' ? 'Yes' : option?.label}</span>
             ))}
@@ -59,7 +51,3 @@ export default function ProductSpecs(props: ProductSpecsProps) {
     </ul>
   )
 }
-
-// material
-// pattern
-//

@@ -49,12 +49,10 @@ function ProductDownloadable(props: Props) {
     return <></>
 
   return (
-    <div itemScope itemType='https://schema.org/Product'>
+    <div>
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
-        <Typography itemProp='name' variant='h1'>
-          {product.name ?? ''}
-        </Typography>
+        <Typography variant='h1'>{product.name ?? ''}</Typography>
         <AddToCartButton
           mutation={ProductAddToCartDocument}
           variables={{ sku: product.sku ?? '', quantity: 1 }}

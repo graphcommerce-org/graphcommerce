@@ -7,5 +7,5 @@ export default function ProductVideo(props: ProductVideoFragment) {
   if (!video_content?.video_url) return null
 
   // eslint-disable-next-line jsx-a11y/media-has-caption
-  return <video itemScope itemType='https://schema.org/VideoObject' src={video_content.video_url} />
+  return <video src={video_content.video_url} />
 }

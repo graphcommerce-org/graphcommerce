@@ -61,12 +61,7 @@ export default function ProductReview(props: ProductReviewProps) {
   return (
     <div>
       {reviews.items.map((review) => (
-        <div
-          key={review?.summary}
-          className={classes.review}
-          itemScope
-          itemType='https://schema.org/Rating'
-        >
+        <div key={review?.summary} className={classes.review}>
           <div className={classes.title}>
             <Chip
               label={`${Number(review?.average_rating) / 20}/5`}
@@ -77,16 +72,11 @@ export default function ProductReview(props: ProductReviewProps) {
               size='medium'
               className={classes.averageChip}
             />
-            <Typography variant='h5' itemProp='description'>
-              {' '}
-              {review?.summary}
-            </Typography>
+            <Typography variant='h5'> {review?.summary}</Typography>
           </div>
           <Typography variant='body1'>{review?.text}</Typography>
           <div className={classes.meta}>
-            <div className={classes.nickname}>
-              Written by <span itemProp='author'>{review?.nickname}</span>
-            </div>
+            <div className={classes.nickname}>Written by {review?.nickname}</div>
             <time className={classes.date} dateTime={review?.created_at}>
               {review?.created_at &&
                 formatter.format(new Date(review?.created_at.replace(/-/g, '/')))}

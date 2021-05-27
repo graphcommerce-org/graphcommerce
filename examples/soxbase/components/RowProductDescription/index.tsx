@@ -13,7 +13,7 @@ export default function RowProductPageDescription(props: RowProductDescriptionPr
   return (
     <ColumnTwoWithTop
       top={
-        <Typography variant='h1' component='h2' itemProp='name'>
+        <Typography variant='h1' component='h2'>
           {name}
         </Typography>
       }

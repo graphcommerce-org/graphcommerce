@@ -46,10 +46,10 @@ function ProductVirtual(props: Props) {
     return <></>
 
   return (
-    <div itemScope itemType='https://schema.org/Product'>
+    <div>
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
-        <Typography itemProp='name' component='h1' variant='h2'>
+        <Typography component='h1' variant='h2'>
           {product.name}
         </Typography>
         <AddToCartButton
