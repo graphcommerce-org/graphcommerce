@@ -11,7 +11,7 @@ import {
 import { CartPageDocument } from '@reachdigital/magento-cart-checkout/CartPage.gql'
 import { CouponAccordion } from '@reachdigital/magento-cart-coupon'
 import { CartItem, CartItems } from '@reachdigital/magento-cart-items'
-import ConfigurableCartItem from '@reachdigital/magento-product-configurable/ConfigurableCartItem'
+import { ConfigurableCartItem } from '@reachdigital/magento-product-configurable'
 import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'

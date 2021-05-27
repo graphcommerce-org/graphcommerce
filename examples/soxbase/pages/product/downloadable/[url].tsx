@@ -4,7 +4,7 @@ import { AddToCartButton } from '@reachdigital/magento-cart'
 import {
   DownloadableProductPageDocument,
   DownloadableProductPageQuery,
-} from '@reachdigital/magento-product-downloadable/DownloadableProductPage.gql'
+} from '@reachdigital/magento-product-downloadable'
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'

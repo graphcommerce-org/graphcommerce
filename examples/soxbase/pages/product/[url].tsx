@@ -4,7 +4,7 @@ import { AddToCartButton } from '@reachdigital/magento-cart'
 import {
   SimpleProductPageDocument,
   SimpleProductPageQuery,
-} from '@reachdigital/magento-product-simple/SimpleProductPage.gql'
+} from '@reachdigital/magento-product-simple'
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'

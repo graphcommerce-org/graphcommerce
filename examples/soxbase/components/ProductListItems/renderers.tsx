@@ -1,12 +1,14 @@
 import { Typography, TypographyProps } from '@material-ui/core'
 import ProductListItemBundle from '@reachdigital/magento-product-bundle/ProductListItemBundle'
 import ProductListItemConfigurable from '@reachdigital/magento-product-configurable/ProductListItemConfigurable'
-import ProductListItemDownloadable from '@reachdigital/magento-product-downloadable/ProductListItemDownloadable'
+import { ProductListItemDownloadable } from '@reachdigital/magento-product-downloadable'
 import ProductListItemGrouped from '@reachdigital/magento-product-grouped/ProductListItemGrouped'
 import ProductListItemSimple from '@reachdigital/magento-product-simple/ProductListItemSimple'
-import ProductListItemVirtual from '@reachdigital/magento-product-virtual/ProductListItemVirtual'
+import { ProductListItemVirtual } from '@reachdigital/magento-product-virtual'
 import { ProductListItemRenderer } from '@reachdigital/magento-product/ProductListItems/renderer'
 import React from 'react'
+
+console.log(ProductListItemDownloadable)
 
 const Subtitle = (props: TypographyProps) => (
   <Typography component='span' variant='subtitle2' {...props} />

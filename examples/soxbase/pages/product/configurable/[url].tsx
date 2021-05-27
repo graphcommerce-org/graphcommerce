@@ -1,11 +1,11 @@
 import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import ConfigurableContextProvider from '@reachdigital/magento-product-configurable/ConfigurableContext'
-import ConfigurableProductAddToCart from '@reachdigital/magento-product-configurable/ConfigurableProductAddToCart/ConfigurableProductAddToCart'
 import {
   ConfigurableProductPageDocument,
   ConfigurableProductPageQuery,
-} from '@reachdigital/magento-product-configurable/ConfigurableProductPage.gql'
+  ConfigurableContextProvider,
+} from '@reachdigital/magento-product-configurable'
+import ConfigurableProductAddToCart from '@reachdigital/magento-product-configurable/ConfigurableProductAddToCart/ConfigurableProductAddToCart'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
