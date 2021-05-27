@@ -2,7 +2,7 @@ import { IconButton, makeStyles, TextField, Theme } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconClose } from '@reachdigital/next-ui/icons'
+import { iconClose, iconSearch } from '@reachdigital/next-ui/icons'
 import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -49,7 +49,11 @@ export default function SearchForm(props: SearchFormProps) {
     router.replace(`/search`)
   }
 
-  const endAdornment = (
+  const endAdornment = !watch('search') ? (
+    <IconButton size='small'>
+      <SvgImage src={iconSearch} alt='search' size='small' loading='eager' />
+    </IconButton>
+  ) : (
     <>
       {totalResults > 0 && (
         <div className={pageClasses.totalProducts}>
@@ -78,11 +82,12 @@ export default function SearchForm(props: SearchFormProps) {
           variant='outlined'
           type='text'
           autoFocus
+          placeholder='Search'
           defaultValue={search}
           error={formState.isSubmitted && !!formState.errors.search}
           helperText={formState.isSubmitted && formState.errors.search?.message}
           {...muiRegister('search', { required: true, minLength: 2 })}
-          InputProps={{ endAdornment: watch('search') && endAdornment }}
+          InputProps={{ endAdornment }}
         />
       </div>
     </form>
