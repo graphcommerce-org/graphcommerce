@@ -29,7 +29,7 @@ const renderers: ProductListItemRenderer = {
         topLeft: [],
         topRight: ['size'],
         bottomLeft: ['color'],
-        bottomRight: [],
+        bottomRight: ['review'],
       }}
     />
   ),
