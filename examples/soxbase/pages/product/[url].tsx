@@ -6,6 +6,7 @@ import {
   SimpleProductPageQuery,
 } from '@reachdigital/magento-product-simple/SimpleProductPage.gql'
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
+import ProductJsonLd from '@reachdigital/magento-product/ProductJsonLd'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
@@ -48,6 +49,8 @@ function ProductSimple(props: Props) {
 
   return (
     <div>
+      <ProductJsonLd {...product} />
+
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
         <Typography component='h1' variant='h2'>

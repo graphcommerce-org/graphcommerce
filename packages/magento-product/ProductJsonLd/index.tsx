@@ -24,11 +24,6 @@ export default function ProductJsonLd(props: ProductJsonLdProps) {
   )
   const url = useProductLink(props)
 
-  console.log('#####################')
-  console.log('url', url)
-  console.log(props)
-  console.log('#####################')
-
   return (
     <Head>
       <script
@@ -38,7 +33,7 @@ export default function ProductJsonLd(props: ProductJsonLdProps) {
           '@type': 'Product',
           name,
           sku,
-          url,
+          url: `${process.env.NEXT_PUBLIC_SITE_URL}${url}`,
           image: media_gallery.map((img) => img.url),
           identifier: url_key,
           category: categories?.[0],
@@ -46,20 +41,15 @@ export default function ProductJsonLd(props: ProductJsonLdProps) {
             '@type': 'Review',
             reviewRating: {
               '@type': 'Rating',
-              ratingValue: '4',
+              ratingValue: (review.average_rating * 0.5).toString(),
             },
-            name: 'iPhone 6 Case Plus',
+            name: review.summary,
             author: {
               '@type': 'Person',
-              name: 'Linus Torvalds',
+              name: review.nickname,
             },
-            datePublished: '2016-04-04',
-            reviewBody:
-              'I loved this case, it is strurdy and lightweight. Only issue is that it smudges.',
-            publisher: {
-              '@type': 'Organization',
-              name: 'iPhone 6 Cases Inc.',
-            },
+            datePublished: review.created_at,
+            reviewBody: review.text,
           })),
           aggregateRating: {
             '@type': 'AggregateRating',
@@ -67,7 +57,6 @@ export default function ProductJsonLd(props: ProductJsonLdProps) {
             ratingValue,
           },
           offers: {
-            // configurable product specific?
             '@type': 'AggregateOffer',
             priceCurrency: price_range.minimum_price.final_price.currency,
             lowPrice: price_range.minimum_price.final_price.value,
