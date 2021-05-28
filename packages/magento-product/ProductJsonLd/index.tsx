@@ -6,22 +6,30 @@ import { useProductLink } from '..'
 
 type ProductJsonLdProps = any // todo: correct type
 
-/*
-  todo: support every product type
-*/
-
 export default function ProductJsonLd(props: ProductJsonLdProps) {
-  const { name, categories, price_range, sku, url_key, reviews, review_count, media_gallery } =
-    props
+  const {
+    name,
+    categories,
+    price_range,
+    sku,
+    url_key,
+    reviews,
+    review_count,
+    media_gallery,
+    description,
+  } = props
 
-  const ratingValue = Math.round(
-    (reviews.items.reduce(
-      (acc, current) => (acc as number) + (current.average_rating as number),
-      0,
-    ) *
-      0.5) /
-      reviews.items.length,
-  )
+  const ratingValue =
+    reviews?.items?.length > 0
+      ? Math.round(
+          (reviews.items.reduce(
+            (acc, current) => (acc as number) + (current.average_rating as number),
+            0,
+          ) *
+            0.5) /
+            reviews.items.length,
+        )
+      : undefined
   const url = useProductLink(props)
 
   return (
@@ -33,10 +41,11 @@ export default function ProductJsonLd(props: ProductJsonLdProps) {
           '@type': 'Product',
           name,
           sku,
+          description: (description?.html ?? '').replace(/(<([^>]+)>)/gi, ''),
           url: `${process.env.NEXT_PUBLIC_SITE_URL}${url}`,
           image: media_gallery.map((img) => img.url),
           identifier: url_key,
-          category: categories?.[0],
+          category: categories?.[0].name,
           review: reviews.items.map((review) => ({
             '@type': 'Review',
             reviewRating: {
@@ -53,7 +62,7 @@ export default function ProductJsonLd(props: ProductJsonLdProps) {
           })),
           aggregateRating: {
             '@type': 'AggregateRating',
-            reviewCount: review_count.toString(),
+            reviewCount: review_count > 0 ? review_count.toString() : undefined,
             ratingValue,
           },
           offers: {
@@ -62,6 +71,10 @@ export default function ProductJsonLd(props: ProductJsonLdProps) {
             lowPrice: price_range.minimum_price.final_price.value,
             highPrice: price_range.maximum_price.final_price.value,
             itemCondition: 'https://schema.org/NewCondition',
+            seller: {
+              '@type': 'Organization',
+              name: 'Soxbase',
+            },
           },
         })}
       />
