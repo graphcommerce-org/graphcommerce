@@ -33,6 +33,8 @@
     "next": "^10.2.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-schemaorg": "^1.3.1",
+    "schema-dts": "^0.8.2",
     "type-fest": "^1.1.3",
     "use-resize-observer": "^7.0.0"
   }

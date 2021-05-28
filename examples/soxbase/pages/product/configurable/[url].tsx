@@ -6,6 +6,7 @@ import {
   ConfigurableProductPageDocument,
   ConfigurableProductPageQuery,
 } from '@reachdigital/magento-product-configurable/ConfigurableProductPage.gql'
+import ProductJsonLd from '@reachdigital/magento-product/ProductJsonLd'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
@@ -40,7 +41,7 @@ const useStyles = makeStyles(
       marginBottom: 5,
     },
     prePrice: {
-      color: `rgba(0, 0, 0, 0.3)`,
+      color: theme.palette.primary.mutedText,
       fontSize: responsiveVal(12, 16),
     },
   }),
@@ -68,6 +69,8 @@ function ProductConfigurable(props: Props) {
 
   return (
     <div>
+      <ProductJsonLd {...product} />
+
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
         <ProductPageMeta {...product} />
         <ProductPageGallery {...product}>
