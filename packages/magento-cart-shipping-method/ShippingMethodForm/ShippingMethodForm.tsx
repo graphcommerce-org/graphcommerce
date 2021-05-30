@@ -17,7 +17,7 @@ import {
 export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'>
 
 export default function ShippingMethodForm(props: ShippingMethodFormProps) {
-  const { step } = ProductListParamsProvider
+  const { step } = props
   const { data: cartQuery } = useCartQuery(GetShippingMethodsDocument)
 
   const currentAddress = cartQuery?.cart?.shipping_addresses?.[0]
