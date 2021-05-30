@@ -7,7 +7,6 @@ import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import FormDivider from '@reachdigital/next-ui/Form/FormDivider'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { phonePattern, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -31,7 +30,6 @@ type EditAddressFormProps = {
 
 export default function EditAddressForm(props: EditAddressFormProps) {
   const { countries, address } = props
-  const formClasses = useFormStyles()
   const classes = useStyles()
   const router = useRouter()
 

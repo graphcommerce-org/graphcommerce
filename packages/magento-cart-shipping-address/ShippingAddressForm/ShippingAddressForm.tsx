@@ -9,7 +9,6 @@ import Form from '@reachdigital/next-ui/Form'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import {
   phonePattern,
   useFormAutoSubmit,
