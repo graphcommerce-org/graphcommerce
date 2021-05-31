@@ -1,4 +1,4 @@
-fragment CartQuickCheckout on Cart {
+fragment CartQuickCheckout on Cart @inject(into: ["CartItemCountChanged"]) {
   prices {
     grand_total {
       ...Money

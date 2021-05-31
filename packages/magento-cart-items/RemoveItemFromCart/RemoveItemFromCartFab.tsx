@@ -14,7 +14,7 @@ export type RemoveItemFromCartProps = Omit<RemoveItemFromCartMutationVariables, 
 
 export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
   const { uid, ...formProps } = props
-  const form = useFormGqlMutationCart(RemoveItemFromCartDocument)
+  const form = useFormGqlMutationCart(RemoveItemFromCartDocument, { defaultValues: { uid } })
   const { handleSubmit, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
