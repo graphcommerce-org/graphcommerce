@@ -8,7 +8,7 @@ import {
   EmptyCart,
   useClearCurrentCartId,
 } from '@reachdigital/magento-cart'
-import { CartPageDocument } from '@reachdigital/magento-cart-checkout/CartPage.gql'
+import { CartPageDocument } from '@reachdigital/magento-cart-checkout'
 import { CouponAccordion } from '@reachdigital/magento-cart-coupon'
 import { CartItem, CartItems } from '@reachdigital/magento-cart-items'
 import { ConfigurableCartItem } from '@reachdigital/magento-product-configurable'

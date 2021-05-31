@@ -10,6 +10,7 @@ export { default as CreateCustomerAddressForm } from './CreateCustomerAddressFor
 export { default as DeleteCustomerAddressForm } from './DeleteCustomerAddressForm'
 export { default as EditAddressForm } from './EditAddressForm'
 export { default as AccountAddresses } from './AccountAddresses'
+export { default as ChangePasswordForm } from './ChangePasswordForm'
 export { default as AccountOrders } from './AccountOrders'
 export { default as AccountReviews } from './AccountReviews'
 export { default as OrderDetails } from './OrderDetails'
