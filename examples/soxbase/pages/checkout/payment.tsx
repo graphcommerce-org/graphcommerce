@@ -1,4 +1,4 @@
-import { Container, NoSsr } from '@material-ui/core'
+import { Container, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
   PaymentMethodButton,
@@ -13,6 +13,7 @@ import { mollie_methods } from '@reachdigital/magento-payment-mollie'
 import { PageMeta, StoreConfigDocument, CountryRegionsDocument } from '@reachdigital/magento-store'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import Stepper from '@reachdigital/next-ui/Stepper/Stepper'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconChevronRight } from '@reachdigital/next-ui/icons'
 import { ComposedForm } from '@reachdigital/react-hook-form'
@@ -32,6 +33,12 @@ function PaymentPage(props: Props) {
   return (
     <Container maxWidth='md'>
       <ComposedForm>
+        <Typography variant='h5' component='h1' align='center'>
+          Checkout
+        </Typography>
+
+        <Stepper steps={3} currentStep={3} />
+
         <PaymentMethodContextProvider
           modules={{
             braintree_local_payment,
@@ -96,6 +103,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     props: {
       ...(await countryRegions).data,
       apolloState: await conf.then(() => client.cache.extract()),
+      backFallbackHref: '/checkout',
+      backFallbackTitle: 'Shipping',
     },
   }
 }

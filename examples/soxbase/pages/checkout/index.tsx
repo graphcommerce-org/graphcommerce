@@ -1,4 +1,4 @@
-import { Container, NoSsr } from '@material-ui/core'
+import { Container, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { useCartQuery, EmptyCart } from '@reachdigital/magento-cart'
 import { ShippingPageDocument } from '@reachdigital/magento-cart-checkout/ShippingPage.gql'
@@ -39,6 +39,10 @@ function ShippingPage() {
 
         {cartExists && (
           <ComposedForm>
+            <Typography variant='h5' component='h1' align='center'>
+              Checkout
+            </Typography>
+
             <Stepper steps={3} currentStep={2} />
 
             <IconHeader src={iconBox} title='Shipping' alt='box' size='large' />
@@ -106,6 +110,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
+      backFallbackHref: '/cart',
+      backFallbackTitle: 'Cart',
     },
   }
 }
