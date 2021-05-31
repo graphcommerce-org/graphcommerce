@@ -203,7 +203,7 @@ export const magentoTypePolicies: TypedTypePolicies = {
   // SearchResultPageInfo: { keyFields: false },
   SelectedBundleOption: { keyFields: ['uid'] },
   SelectedBundleOptionValue: { keyFields: ['uid'] },
-  SelectedConfigurableOption: { keyFields: ['value_id'] },
+  SelectedConfigurableOption: { keyFields: ['configurable_product_option_value_uid'] },
   SelectedCustomizableOption: { keyFields: ['customizable_option_uid'] },
   SelectedCustomizableOptionValue: { keyFields: ['customizable_option_value_uid'] },
   SelectedPaymentMethod: { keyFields: ['code'] },
