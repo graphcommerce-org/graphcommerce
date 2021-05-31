@@ -1,7 +1,11 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { Chip, ChipProps } from '@material-ui/core'
-import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
-import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
+import {
+  CategoryLink,
+  useCategoryPushRoute,
+  useProductListParamsContext,
+} from '@reachdigital/magento-category'
+
 import { useChipMenuStyles } from '@reachdigital/next-ui/ChipMenu'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconCloseCircle } from '@reachdigital/next-ui/icons'

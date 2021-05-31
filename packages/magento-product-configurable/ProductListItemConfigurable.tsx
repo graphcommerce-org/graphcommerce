@@ -1,5 +1,5 @@
 import { cloneDeep } from '@apollo/client/utilities'
-import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
+import { useProductListParamsContext } from '@reachdigital/magento-category'
 import {
   ProductListItem,
   OverlayAreaKeys,

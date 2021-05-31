@@ -1,5 +1,5 @@
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import CmsPageContent from '@reachdigital/magento-cms/CmsPageContent'
+import { CmsPageContent } from '@reachdigital/magento-cms'
 import {
   ProductListDocument,
   ProductListQuery,

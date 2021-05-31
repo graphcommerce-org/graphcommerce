@@ -1,8 +1,12 @@
 import { useQuery } from '@apollo/client'
 import { cloneDeep } from '@apollo/client/utilities'
 import { ListItem, ListItemText } from '@material-ui/core'
-import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
-import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
+import {
+  CategoryLink,
+  useCategoryPushRoute,
+  useProductListParamsContext,
+} from '@reachdigital/magento-category'
+
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import ChipMenu, { ChipMenuProps } from '@reachdigital/next-ui/ChipMenu'
 import React from 'react'

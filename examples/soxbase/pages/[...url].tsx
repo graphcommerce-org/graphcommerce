@@ -1,12 +1,15 @@
 import { mergeDeep } from '@apollo/client/utilities'
 import { Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
-import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
-import CategoryHeroNav from '@reachdigital/magento-category/CategoryHeroNav'
-import CategoryMeta from '@reachdigital/magento-category/CategoryMeta'
-import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
-import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
+import {
+  CategoryChildren,
+  CategoryDescription,
+  CategoryHeroNav,
+  CategoryMeta,
+  getCategoryStaticPaths,
+  ProductListParamsProvider,
+} from '@reachdigital/magento-category'
+
 import {
   ProductListCount,
   ProductListFilters,
