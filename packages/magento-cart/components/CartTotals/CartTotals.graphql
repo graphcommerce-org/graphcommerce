@@ -1,4 +1,4 @@
-fragment CartTotals on Cart {
+fragment CartTotals on Cart @inject(into: ["CartItemCountChanged"]) {
   shipping_addresses {
     selected_shipping_method {
       carrier_code
