@@ -186,13 +186,7 @@ export default function ProductListItem(props: ProductListItemProps) {
               </div>
               <div className={clsx(classes.overlayItem, classes.cellAlignRight)}>{topRight}</div>
               <div className={clsx(classes.overlayItem, classes.cellAlignBottom)}>{bottomLeft}</div>
-              <div
-                className={clsx(
-                  classes.overlayItem,
-                  classes.cellAlignBottom,
-                  classes.cellAlignRight,
-                )}
-              >
+              <div className={clsx(classes.cellAlignBottom, classes.cellAlignRight)}>
                 {bottomRight}
               </div>
             </div>

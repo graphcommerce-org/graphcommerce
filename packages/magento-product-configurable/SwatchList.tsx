@@ -4,6 +4,7 @@ import React from 'react'
 import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
 import { SwatchSize, SwatchTypeRenderer } from './Swatches'
 import ColorSwatchData from './Swatches/ColorSwatchData'
+import IconSwatchData from './Swatches/IconSwatchData'
 import ImageSwatchData from './Swatches/ImageSwatchData'
 import TextSwatchData from './Swatches/TextSwatchData'
 
@@ -12,12 +13,17 @@ type SwatchListProps = {
   configurable_options: Maybe<ProductListItemConfigurableFragment['configurable_options']>
 }
 
-const renderer: SwatchTypeRenderer = { TextSwatchData, ImageSwatchData, ColorSwatchData }
+const renderer: SwatchTypeRenderer = {
+  TextSwatchData,
+  ImageSwatchData,
+  ColorSwatchData,
+}
 
 export default function SwatchList({ attributes, configurable_options }: SwatchListProps) {
   const options =
     configurable_options?.filter((option) => attributes.includes(option?.attribute_code ?? '')) ??
     []
+  console.log(options)
 
   return (
     <>

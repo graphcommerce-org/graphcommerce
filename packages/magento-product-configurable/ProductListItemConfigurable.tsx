@@ -9,6 +9,7 @@ import { isFilterTypeEqual } from '@reachdigital/magento-product/ProductListItem
 import React, { useState } from 'react'
 import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
 import SwatchList from './SwatchList'
+import IconSwatchData from './Swatches/IconSwatchData'
 
 export type ProductListItemConfigurableActionProps = ProductListItemConfigurableFragment & {
   variant?: NonNullable<ProductListItemConfigurableFragment['variants']>[0]
@@ -65,12 +66,13 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
 
   // merge unused swatches with the swatches assigned to the bottom right corner
   const usedSwatchAttrCodes = Object.values(swatchLocations).flat()
+
   const unusedSwatchAttrCodes =
     configurable_options
       ?.filter((option) => !usedSwatchAttrCodes.includes(option?.attribute_code ?? ''))
       .map((option) => option?.attribute_code ?? '') ?? []
 
-  swatchLocations.bottomRight = [...swatchLocations.bottomRight, ...unusedSwatchAttrCodes]
+  // swatchLocations.bottomRight = [...swatchLocations.bottomRight, ...unusedSwatchAttrCodes]
 
   return (
     <ProductListItem
@@ -93,12 +95,7 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
           configurable_options={configurable_options}
         />
       }
-      bottomRight={
-        <SwatchList
-          attributes={swatchLocations.bottomRight}
-          configurable_options={configurable_options}
-        />
-      }
+      bottomRight={<IconSwatchData />}
     >
       {Actions && <Actions {...configurableProduct} variant={matchingVariants?.[0]} />}
       {children}

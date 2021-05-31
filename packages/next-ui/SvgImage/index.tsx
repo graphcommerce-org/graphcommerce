@@ -42,6 +42,7 @@ export default function SvgImage(props: SvgImageProps) {
   const { src, size = 'medium', shade = 'default', ...pictureResponsiveProps } = props
 
   const baseSizes = {
+    extrasmall: 12,
     small: 24,
     medium: 32,
     large: 48,

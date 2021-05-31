@@ -35,6 +35,7 @@ export type ProductItemsGridProps = {
 export default function ProductListItemsBase(props: ProductItemsGridProps) {
   const { items, renderers, loadingEager = 0, size, ...divProps } = props
   const classes = useProductGridStyles(props)
+  console.log(items)
 
   return (
     <div
