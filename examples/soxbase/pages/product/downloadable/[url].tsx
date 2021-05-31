@@ -140,8 +140,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await productPage).data,
       ...(await typeProductPage).data,
       apolloState: await conf.then(() => client.cache.extract()),
-      backFallbackHref: category?.url_path ? `/${category?.url_path}` : undefined,
-      backFallbackTitle: category?.name ?? undefined,
+      backFallbackHref: category?.url_path ? `/${category?.url_path}` : null,
+      backFallbackTitle: category?.name ?? null,
     },
     revalidate: 60 * 20,
   }
