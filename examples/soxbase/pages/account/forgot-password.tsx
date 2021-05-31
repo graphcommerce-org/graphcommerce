@@ -1,6 +1,6 @@
 import { Box, Container, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import ForgotPasswordForm from '@reachdigital/magento-customer/ForgotPasswordForm'
+import { ForgotPasswordForm } from '@reachdigital/magento-customer'
 import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import React from 'react'

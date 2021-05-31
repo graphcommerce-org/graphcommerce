@@ -1,9 +1,12 @@
 import { useMutation } from '@apollo/client'
 import { CircularProgress, makeStyles, TextField, Theme } from '@material-ui/core'
 import { useCartQuery } from '@reachdigital/magento-cart'
-import SignInFormInline from '@reachdigital/magento-customer/SignInFormInline'
-import SignUpFormInline from '@reachdigital/magento-customer/SignUpFormInline'
-import useFormIsEmailAvailable from '@reachdigital/magento-customer/useFormIsEmailAvailable'
+import {
+  CustomerTokenDocument,
+  SignInFormInline,
+  SignUpFormInline,
+  useFormIsEmailAvailable,
+} from '@reachdigital/magento-customer'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
 import Form from '@reachdigital/next-ui/Form'

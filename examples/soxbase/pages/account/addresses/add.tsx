@@ -1,6 +1,6 @@
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import CreateCustomerAddressForm from '@reachdigital/magento-customer/CreateCustomerAddressForm'
+import { CreateCustomerAddressForm } from '@reachdigital/magento-customer'
 import {
   StoreConfigDocument,
   PageMeta,

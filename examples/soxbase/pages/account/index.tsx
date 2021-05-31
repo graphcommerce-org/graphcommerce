@@ -1,12 +1,15 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { AccountDashboardDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboard.gql'
-import AccountHeader from '@reachdigital/magento-customer/AccountHeader'
-import AccountLatestOrder from '@reachdigital/magento-customer/AccountLatestOrder'
-import AccountMenu from '@reachdigital/magento-customer/AccountMenu'
-import AccountMenuItem from '@reachdigital/magento-customer/AccountMenuItem'
-import SignOutForm from '@reachdigital/magento-customer/SignOutForm'
+import {
+  AccountDashboardDocument,
+  AccountHeader,
+  AccountLatestOrder,
+  AccountMenu,
+  AccountMenuItem,
+  SignOutForm,
+} from '@reachdigital/magento-customer'
+
 import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { iconBox, iconHome, iconPerson, iconShutdown, iconStar } from '@reachdigital/next-ui/icons'

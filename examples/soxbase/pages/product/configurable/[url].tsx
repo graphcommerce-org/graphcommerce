@@ -4,8 +4,8 @@ import {
   ConfigurableProductPageDocument,
   ConfigurableProductPageQuery,
   ConfigurableContextProvider,
+  ConfigurableProductAddToCart,
 } from '@reachdigital/magento-product-configurable'
-import ConfigurableProductAddToCart from '@reachdigital/magento-product-configurable/ConfigurableProductAddToCart/ConfigurableProductAddToCart'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'

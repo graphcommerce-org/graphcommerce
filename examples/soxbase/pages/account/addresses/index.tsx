@@ -1,8 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import AccountAddresses from '@reachdigital/magento-customer/AccountAddresses'
-import { AccountDashboardAddressesDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardAddresses.gql'
+import { AccountAddresses, AccountDashboardAddressesDocument } from '@reachdigital/magento-customer'
 import {
   StoreConfigDocument,
   PageMeta,

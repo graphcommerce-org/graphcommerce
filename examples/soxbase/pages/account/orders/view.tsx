@@ -1,10 +1,12 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
-import { OrderDetailPageDocument } from '@reachdigital/magento-customer/AccountDashboard/OrderDetailPage.gql'
-import useOrderCardItemImages from '@reachdigital/magento-customer/OrderCardItemImage/useOrderCardItemImages'
-import OrderDetails from '@reachdigital/magento-customer/OrderDetails'
-import OrderItems from '@reachdigital/magento-customer/OrderItems'
+import {
+  useOrderCardItemImages,
+  OrderDetails,
+  OrderItems,
+  OrderDetailPageDocument,
+} from '@reachdigital/magento-customer'
 import {
   PageMeta,
   StoreConfigDocument,

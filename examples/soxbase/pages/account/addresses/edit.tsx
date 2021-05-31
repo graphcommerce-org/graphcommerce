@@ -2,9 +2,12 @@ import { useQuery } from '@apollo/client'
 import { Box, Container, NoSsr } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
-import { AccountDashboardAddressesDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardAddresses.gql'
-import DeleteCustomerAddressForm from '@reachdigital/magento-customer/DeleteCustomerAddressForm'
-import EditAddressForm from '@reachdigital/magento-customer/EditAddressForm'
+import {
+  DeleteCustomerAddressForm,
+  EditAddressForm,
+  AccountDashboardAddressesDocument,
+} from '@reachdigital/magento-customer'
+
 import {
   PageMeta,
   StoreConfigDocument,

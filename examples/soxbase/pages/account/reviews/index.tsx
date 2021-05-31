@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { AccountDashboardReviewsDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardReviews.gql'
-import AccountReviews from '@reachdigital/magento-customer/AccountReviews'
+import { AccountDashboardReviewsDocument, AccountReviews } from '@reachdigital/magento-customer'
+
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { iconStar } from '@reachdigital/next-ui/icons'

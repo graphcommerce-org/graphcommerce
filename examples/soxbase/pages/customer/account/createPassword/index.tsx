@@ -1,7 +1,6 @@
 import { Box, Container, Link, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import ContinueShoppingButton from '@reachdigital/magento-customer/ContinueShoppingButton'
-import ResetPasswordForm from '@reachdigital/magento-customer/ResetPasswordForm'
+import { ContinueShoppingButton, ResetPasswordForm } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { useRouter } from 'next/router'
