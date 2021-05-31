@@ -17,7 +17,7 @@ export default async function getProductStaticPaths(
     query: ProductStaticPathsDocument,
     variables: {
       currentPage: 1,
-      pageSize: 100000,
+      pageSize: 100,
     },
   })
   const pages: Promise<ApolloQueryResult<ProductStaticPathsQuery>>[] = [query]
