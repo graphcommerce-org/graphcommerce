@@ -23,11 +23,12 @@ import {
   iconStar,
 } from '@reachdigital/next-ui/icons'
 import React from 'react'
-import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
+import PageShell, { PageShellProps } from '../../components/AppShell/PageShell'
+import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import MessageAuthRequired from '../../components/MessageAuthRequired'
 import apolloClient from '../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<FullPageShellProps>
+type GetPageStaticProps = GetStaticProps<PageShellProps>
 
 function AccountIndexPage() {
   const { data, loading } = useQuery(AccountDashboardDocument, {
@@ -46,9 +47,10 @@ function AccountIndexPage() {
   if (!customer) return <MessageAuthRequired />
 
   return (
-    <Container maxWidth='md'>
-      <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
-      <NoSsr>
+    <NoSsr>
+      <Container maxWidth='md'>
+        <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
+
         <IconHeader src={iconPersonAlt} title='Account' alt='account' size='large' />
         <AccountMenu>
           <AccountMenuItem
@@ -128,13 +130,13 @@ function AccountIndexPage() {
             )}
           />
         </AccountMenu>
-      </NoSsr>
-    </Container>
+      </Container>
+    </NoSsr>
   )
 }
 
-const pageOptions: PageOptions<FullPageShellProps> = {
-  SharedComponent: FullPageShell,
+const pageOptions: PageOptions<PageShellProps> = {
+  SharedComponent: PageShell,
   sharedKey: () => 'page',
 }
 
@@ -143,11 +145,21 @@ AccountIndexPage.pageOptions = pageOptions
 export default AccountIndexPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
+  const staticClient = apolloClient(locale)
   const client = apolloClient(locale, true)
   const conf = client.query({ query: StoreConfigDocument })
 
+  const page = staticClient.query({
+    query: DefaultPageDocument,
+    variables: {
+      url: '/account',
+      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+    },
+  })
+
   return {
     props: {
+      ...(await page).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
