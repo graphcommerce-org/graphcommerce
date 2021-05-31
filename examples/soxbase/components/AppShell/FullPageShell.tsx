@@ -35,7 +35,7 @@ const useStyles = makeStyles(
       height: responsiveVal(42, 56),
     },
   }),
-  { name: 'FullPageUI' },
+  { name: 'FullPageShell' },
 )
 
 export type FullPageShellProps = Omit<DefaultPageQuery, 'pages'> &
@@ -48,8 +48,6 @@ function FullPageShell(props: FullPageShellProps) {
   const storeConfig = useQuery(StoreConfigDocument)
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
 
-  const withMenu = menuData?.items && menuData?.items?.length > 0
-
   const menuProps: MenuProps = {
     menu: [
       ...(menuData?.items?.map((item) => ({
@@ -60,11 +58,8 @@ function FullPageShell(props: FullPageShellProps) {
           item?.name ?? ''
         ),
       })) ?? []),
+      { href: '/blog', children: 'Blog' },
     ],
-  }
-
-  if (withMenu) {
-    menuProps.menu.push({ href: '/blog', children: 'Blog' })
   }
 
   const router = useRouter()
@@ -79,26 +74,24 @@ function FullPageShell(props: FullPageShellProps) {
           <Logo />
           <DesktopNavBar {...menuProps} />
 
-          {withMenu && (
-            <DesktopNavActions>
-              {!router.pathname.startsWith('/search') && (
-                <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
-              )}
+          <DesktopNavActions>
+            {!router.pathname.startsWith('/search') && (
+              <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
+            )}
 
-              <PageLink href='/service' passHref>
-                <Fab
-                  style={{ boxShadow: 'none' }}
-                  aria-label='Account'
-                  size='medium'
-                  classes={{ root: classes.fab }}
-                >
-                  <SvgImage src={iconCustomerService} alt='Customer Service' loading='eager' />
-                </Fab>
-              </PageLink>
+            <PageLink href='/service' passHref>
+              <Fab
+                style={{ boxShadow: 'none' }}
+                aria-label='Account'
+                size='medium'
+                classes={{ root: classes.fab }}
+              >
+                <SvgImage src={iconCustomerService} alt='Customer Service' loading='eager' />
+              </Fab>
+            </PageLink>
 
-              <CustomerFab />
-            </DesktopNavActions>
-          )}
+            <CustomerFab />
+          </DesktopNavActions>
         </>
       }
     >
@@ -123,7 +116,7 @@ function FullPageShell(props: FullPageShellProps) {
         </MenuFabSecondaryItem>
       </MenuFab>
 
-      {withMenu && <CartFab style={{ boxShadow: 'none' }} />}
+      <CartFab style={{ boxShadow: 'none' }} />
 
       {children}
 
