@@ -10,6 +10,7 @@ import {
   ProductListPagination,
   ProductListSort,
 } from '@reachdigital/magento-product'
+import { ProductListDocument } from '@reachdigital/magento-product/ProductList/ProductList.gql'
 import {
   FilterTypes,
   ProductListParams,
@@ -27,7 +28,7 @@ import {
   SearchForm,
   SearchQuery,
 } from '@reachdigital/magento-search'
-import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import React from 'react'
@@ -50,6 +51,7 @@ function SearchResultPage(props: Props) {
   const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
   const search = params.url.split('/')[1]
   const totalSearchResults = (categories?.items?.length ?? 0) + (products?.total_count ?? 0)
+  const noSearchResults = search && (!products || (products.items && products?.items?.length <= 0))
 
   return (
     <>
@@ -64,6 +66,8 @@ function SearchResultPage(props: Props) {
         {categories?.items?.map((category) => (
           <CategorySearchResult key={category?.url_path} search={search} {...category} />
         ))}
+
+        {noSearchResults && <NoSearchResults search={search} />}
       </Container>
 
       <SearchDivider />
@@ -71,7 +75,9 @@ function SearchResultPage(props: Props) {
       {products && products.items && products?.items?.length > 0 && (
         <ProductListParamsProvider value={params}>
           <Container maxWidth='xl'>
-            <CategoryDescription name={`Results for '${search}'`} />
+            <CategoryDescription
+              name={typeof search !== 'undefined' ? `Results for '${search}'` : 'All products'}
+            />
 
             <ProductListFiltersContainer>
               <ProductListSort sort_fields={products?.sort_fields} />
@@ -89,10 +95,6 @@ function SearchResultPage(props: Props) {
             <ProductListPagination page_info={products?.page_info} />
           </Container>
         </ProductListParamsProvider>
-      )}
-
-      {search && (!products || (products.items && products?.items?.length <= 0)) && (
-        <NoSearchResults />
       )}
     </>
   )
@@ -129,7 +131,11 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     variables: { url: 'search', rootCategory },
   })
 
-  const productListParams = parseParams(`search/${search}`, query, await filterTypes)
+  const productListParams = parseParams(
+    `search${search.length > 2 ? `/${search}` : search}`,
+    query,
+    await filterTypes,
+  )
 
   if (!productListParams) return { notFound: true }
 
@@ -142,7 +148,12 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
             search,
           }),
         })
-      : { data: undefined }
+      : client.query({
+          query: ProductListDocument,
+          variables: mergeDeep(productListParams, {
+            categoryUid: rootCategory,
+          }),
+        })
 
   return {
     props: {
