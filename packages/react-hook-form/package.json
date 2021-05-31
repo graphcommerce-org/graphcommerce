@@ -29,7 +29,7 @@
     "graphql": "15.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-hook-form": "^7.6.2",
+    "react-hook-form": "^7.7.1",
     "type-fest": "^1.1.3"
   }
 }
