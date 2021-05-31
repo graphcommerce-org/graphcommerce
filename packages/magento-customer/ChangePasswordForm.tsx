@@ -1,7 +1,9 @@
 import { TextField } from '@material-ui/core'
 import Button from '@reachdigital/next-ui/Button'
+import Form from '@reachdigital/next-ui/Form'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
+import FormActions from '@reachdigital/next-ui/Form/FormActions'
+import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
 import {
@@ -11,11 +13,11 @@ import {
 } from './ChangePassword.gql'
 
 export default function ChangePasswordForm() {
-  const classes = useFormStyles()
-  const form = useFormGqlMutation<
-    ChangePasswordMutation,
-    ChangePasswordMutationVariables & { confirmPassword?: string }
-  >(ChangePasswordDocument)
+  const form =
+    useFormGqlMutation<
+      ChangePasswordMutation,
+      ChangePasswordMutationVariables & { confirmPassword?: string }
+    >(ChangePasswordDocument)
   const { muiRegister, handleSubmit, required, watch, data, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
@@ -26,8 +28,8 @@ export default function ChangePasswordForm() {
   const pass = watch('newPassword')
 
   return (
-    <form onSubmit={submitHandler} noValidate className={classes.form}>
-      <div className={classes.formRow}>
+    <Form onSubmit={submitHandler} noValidate>
+      <FormRow>
         <TextField
           variant='outlined'
           type='password'
@@ -38,9 +40,9 @@ export default function ChangePasswordForm() {
           helperText={formState.errors.currentPassword?.message}
           disabled={formState.isSubmitting}
         />
-      </div>
+      </FormRow>
 
-      <div className={classes.formRow}>
+      <FormRow>
         <TextField
           variant='outlined'
           type='password'
@@ -65,11 +67,11 @@ export default function ChangePasswordForm() {
           helperText={formState.errors.confirmPassword?.message}
           disabled={formState.isSubmitting}
         />
-      </div>
+      </FormRow>
 
       <ApolloErrorAlert error={error} />
 
-      <div className={classes.actions}>
+      <FormActions>
         <Button
           type='submit'
           loading={formState.isSubmitting}
@@ -80,7 +82,7 @@ export default function ChangePasswordForm() {
         >
           Save new password
         </Button>
-      </div>
-    </form>
+      </FormActions>
+    </Form>
   )
 }

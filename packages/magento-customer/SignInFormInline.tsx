@@ -1,5 +1,6 @@
 import { makeStyles, TextField, Theme } from '@material-ui/core'
 import Button from '@reachdigital/next-ui/Button'
+import Form from '@reachdigital/next-ui/Form'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
@@ -33,7 +34,7 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
   const submitHandler = handleSubmit(() => {})
 
   return (
-    <form onSubmit={submitHandler} noValidate className={classes.form}>
+    <Form onSubmit={submitHandler} noValidate>
       <TextField
         variant='outlined'
         type='password'
@@ -59,6 +60,6 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
       <Button type='submit' loading={formState.isSubmitting} color='secondary' variant='pill'>
         Sign in
       </Button>
-    </form>
+    </Form>
   )
 }

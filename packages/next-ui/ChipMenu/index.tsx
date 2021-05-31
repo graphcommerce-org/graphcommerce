@@ -18,12 +18,12 @@ export const useChipMenuStyles = makeStyles(
       '& .MuiChip-label': {
         wordWrap: 'break-word',
       },
+      '&:hover': {
+        background: `${theme.palette.background.highlight} !important`,
+      },
       '&:focus': {
         background: `${theme.palette.background.default} !important`,
       },
-    },
-    chipOpenMenu: {
-      borderWidth: 2,
     },
     chipSelected: {
       border: `1px solid ${theme.palette.text.primary}`,
@@ -68,27 +68,25 @@ export type ChipMenuProps = PropsWithChildren<Omit<ChipProps, 'children'>> & {
 }
 
 export default function ChipMenu(props: ChipMenuProps) {
-  const {
-    children,
-    selected,
-    onDelete,
-    label,
-    labelRight,
-    onClose,
-    selectedLabel,
-    ...chipProps
-  } = props
+  const { children, selected, onDelete, label, labelRight, onClose, selectedLabel, ...chipProps } =
+    props
   const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
   const classes = useChipMenuStyles(props)
 
   let deleteIcon = selected ? (
-    <SvgImage size='small' src={iconCloseCircle} alt='close' loading='eager' shade='default' />
+    <SvgImage size='medium' src={iconCloseCircle} alt='close' loading='eager' shade='default' />
   ) : (
-    <SvgImage size='small' src={iconChevronDown} alt='chevron down' loading='eager' shade='muted' />
+    <SvgImage
+      size='medium'
+      src={iconChevronDown}
+      alt='chevron down'
+      loading='eager'
+      shade='muted'
+    />
   )
   if (openEl)
     deleteIcon = (
-      <SvgImage size='small' src={iconChevronUp} alt='chevron up' loading='eager' shade='muted' />
+      <SvgImage size='medium' src={iconChevronUp} alt='chevron up' loading='eager' shade='muted' />
     )
 
   const selectedAndMenuHidden = selected && !openEl && selectedLabel
@@ -108,7 +106,6 @@ export default function ChipMenu(props: ChipMenuProps) {
           classes.chip,
           chipProps.className,
           selectedAndMenuHidden && classes.chipSelected,
-          openEl && classes.chipOpenMenu,
         )}
       />
       <Menu

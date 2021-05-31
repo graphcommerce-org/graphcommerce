@@ -1,14 +1,13 @@
 import Button from '@reachdigital/next-ui/Button'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
+import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import { useRouter } from 'next/router'
 import React from 'react'
 
 export default function ContinueShoppingButton() {
   const router = useRouter()
-  const classes = useFormStyles()
 
   return (
-    <div className={classes.actions}>
+    <FormActions>
       <Button
         onClick={() => router.back()}
         color='primary'
@@ -18,6 +17,6 @@ export default function ContinueShoppingButton() {
       >
         Continue shopping
       </Button>
-    </div>
+    </FormActions>
   )
 }

@@ -20,12 +20,13 @@ const useStyles = makeStyles(
       width: 48,
     },
   }),
-  { name: 'HeaderActions' },
+  { name: 'DesktopNavActions' },
 )
 
 export default function DesktopNavActions(props: { children?: React.ReactNode }) {
   const { children } = props
   const classes = useStyles()
+
   return (
     <div className={classes.actions}>
       {children}

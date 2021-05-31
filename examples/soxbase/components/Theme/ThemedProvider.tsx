@@ -224,6 +224,14 @@ defaultTheme.overrides = {
       borderColor: defaultTheme.palette.divider,
     },
   },
+  MuiCheckbox: {
+    colorPrimary: {
+      color: '#EAEAEA',
+      '&$checked': {
+        color: defaultTheme.palette.primary.main,
+      },
+    },
+  },
 }
 
 const ThemedProvider: React.FC = ({ children }) => (

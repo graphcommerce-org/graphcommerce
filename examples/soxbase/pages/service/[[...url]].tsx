@@ -1,6 +1,6 @@
 import { Box, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import FramerNextPagesSlider from '@reachdigital/next-ui/FramerNextPagesSlider'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
@@ -31,7 +31,7 @@ function ServicePage({ pages }: Props) {
       />
 
       {title && (
-        <Box pt={4} pb={4}>
+        <Box pt={8} pb={4}>
           <Typography variant='h2' component='h1' align='center'>
             {title}
           </Typography>
@@ -85,9 +85,19 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
 
+  let backFallbackHref: string | null = null
+  let backFallbackTitle: string | null = null
+
+  if (typeof params?.url !== 'undefined' && params.url.length > 0) {
+    backFallbackHref = '/service'
+    backFallbackTitle = 'Help Center'
+  }
+
   return {
     props: {
       ...(await page).data,
+      backFallbackHref,
+      backFallbackTitle,
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

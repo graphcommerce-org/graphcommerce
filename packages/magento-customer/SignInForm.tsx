@@ -1,10 +1,11 @@
 import { useQuery } from '@apollo/client'
-import { TextField, makeStyles, Theme, FormControl, Link } from '@material-ui/core'
+import { FormControl, Link, makeStyles, TextField, Theme } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { graphqlErrorByCategory } from '@reachdigital/magento-graphql'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
+import FormActions from '@reachdigital/next-ui/Form/FormActions'
+import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import PageLink from 'next/link'
 import React from 'react'
@@ -25,7 +26,6 @@ type SignInFormProps = { email: string }
 export default function SignInForm(props: SignInFormProps) {
   const { email } = props
   const classes = useStyles()
-  const formClasses = useFormStyles()
   const { data } = useQuery(CustomerTokenDocument)
   const form = useFormGqlMutation(SignInDocument, { defaultValues: { email } })
   const { muiRegister, handleSubmit, required, formState, error } = form
@@ -42,7 +42,7 @@ export default function SignInForm(props: SignInFormProps) {
         </Alert>
       )}
 
-      <div className={formClasses.formRow}>
+      <FormRow>
         <TextField
           key='password'
           variant='outlined'
@@ -67,11 +67,11 @@ export default function SignInForm(props: SignInFormProps) {
           helperText={formState.errors.password?.message || authError?.message}
           disabled={formState.isSubmitting}
         />
-      </div>
+      </FormRow>
 
       <ApolloErrorAlert error={remainingError} key='error' />
 
-      <div className={formClasses.actions}>
+      <FormActions>
         <FormControl>
           <Button
             type='submit'
@@ -83,7 +83,7 @@ export default function SignInForm(props: SignInFormProps) {
             Log In
           </Button>
         </FormControl>
-      </div>
+      </FormActions>
     </form>
   )
 }

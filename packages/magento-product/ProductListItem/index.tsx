@@ -1,4 +1,4 @@
-import { Typography, makeStyles, Theme, Link as MuiLink } from '@material-ui/core'
+import { Link as MuiLink, makeStyles, Theme, Typography } from '@material-ui/core'
 import PictureResponsiveNext, {
   PictureResponsiveNextProps,
 } from '@reachdigital/next-ui/PictureResponsiveNext'
@@ -27,13 +27,34 @@ export const useProductListItemStyles = makeStyles(
       wordBreak: 'break-all',
       maxWidth: '100%',
       marginRight: responsiveVal(3, 5),
+      gridArea: 'title',
     },
     itemTitleContainer: {
       display: 'grid',
-      gridTemplateColumns: 'auto min-content',
+      gridTemplateColumns: 'unset',
       gap: responsiveVal(3, 6),
       margin: `${responsiveVal(6, 16)} 0`,
       marginBottom: responsiveVal(4, 8),
+      gridTemplateAreas: `
+        "title title"
+        "subtitle price"
+      `,
+      justifyContent: 'space-between',
+      [theme.breakpoints.up('md')]: {
+        gridTemplateAreas: `
+        "title subtitle price"
+      `,
+        gridTemplateColumns: 'auto auto 1fr',
+      },
+    },
+    subtitle: {
+      gridArea: 'subtitle',
+    },
+    price: {
+      gridArea: 'price',
+      [theme.breakpoints.up('sm')]: {
+        justifySelf: 'flex-end',
+      },
     },
     imageContainerOverlayGrid: {
       display: 'grid',
@@ -182,13 +203,13 @@ export default function ProductListItem(props: ProductListItemProps) {
       {!imageOnly && (
         <>
           <div className={classes.itemTitleContainer}>
-            <div>
-              <Typography component='h2' className={classes.title}>
-                {name}
-              </Typography>
-              {subTitle}
-            </div>
-            <ProductListPrice {...price_range.minimum_price} />
+            {/* <div> */}
+            <Typography component='h2' className={classes.title}>
+              {name}
+            </Typography>
+            {/* </div> */}
+            <div className={classes.subtitle}>{subTitle}</div>
+            <ProductListPrice {...price_range.minimum_price} classes={{ root: classes.price }} />
           </div>
 
           {children}

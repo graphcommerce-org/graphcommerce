@@ -1,8 +1,9 @@
 import { FormControl } from '@material-ui/core'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
+import Form from '@reachdigital/next-ui/Form'
+import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import ToggleButton from '@reachdigital/next-ui/ToggleButton'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
-import { useForm, Controller, useFormPersist } from '@reachdigital/react-hook-form'
+import { Controller, useForm, useFormPersist } from '@reachdigital/react-hook-form'
 import React, { useEffect } from 'react'
 import { PaymentMethod, PaymentToggleProps } from '../Api/PaymentMethod'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
@@ -17,15 +18,8 @@ function Content(props: PaymentMethod) {
 }
 
 export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
-  const {
-    methods,
-    selectedMethod,
-    setSelectedMethod,
-    setSelectedModule,
-    modules,
-  } = usePaymentMethodContext()
-
-  const classes = useFormStyles()
+  const { methods, selectedMethod, setSelectedMethod, setSelectedModule, modules } =
+    usePaymentMethodContext()
 
   const form = useForm<{ code: string; paymentMethod?: string }>({
     mode: 'onChange',
@@ -52,9 +46,9 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
   }, [methods, modules, paymentMethod, selectedMethod?.code, setSelectedMethod, setSelectedModule])
 
   return (
-    <form onSubmit={submitHandler} noValidate className={classes.form}>
+    <Form onSubmit={submitHandler} noValidate>
       <input type='hidden' {...register('code', { required: true })} required />
-      <div className={classes.formRow}>
+      <FormRow>
         <FormControl>
           <Controller
             defaultValue=''
@@ -83,7 +77,7 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
             )}
           />
         </FormControl>
-      </div>
-    </form>
+      </FormRow>
+    </Form>
   )
 }

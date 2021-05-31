@@ -1,4 +1,4 @@
-import { usePageRouter, usePageDepth } from '@reachdigital/framer-next-pages'
+import { usePageDepth, usePageRouter } from '@reachdigital/framer-next-pages'
 import {
   Sheet,
   SheetBackdrop,
@@ -23,15 +23,8 @@ export type SheetShellBaseProps = {
   PageLayoutBaseProps
 
 function SheetShellBase(props: SheetShellBaseProps) {
-  const {
-    children,
-    backFallbackHref,
-    backFallbackTitle,
-    headerForward,
-    variant,
-    size,
-    name,
-  } = props
+  const { children, backFallbackHref, backFallbackTitle, headerForward, variant, size, name } =
+    props
 
   const sheetClasses = useSheetStyles()
   const router = useRouter()

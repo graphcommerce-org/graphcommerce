@@ -1,8 +1,8 @@
 import { makeStyles, TextField, Theme } from '@material-ui/core'
 import Button from '@reachdigital/next-ui/Button'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
+import Form from '@reachdigital/next-ui/Form'
+import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
-import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 
@@ -39,7 +39,6 @@ export default function SignUpFormInline({
   helperList,
 }: PropsWithChildren<SignUpFormInlineProps>) {
   const classes = useStyles()
-  const formClasses = useFormStyles()
   const form = useFormGqlMutation<
     SignUpMutation,
     SignUpMutationVariables & { confirmPassword?: string }
@@ -51,8 +50,8 @@ export default function SignUpFormInline({
   const submitHandler = handleSubmit(() => {})
 
   return (
-    <form onSubmit={submitHandler} noValidate className={clsx(formClasses.form, classes.form)}>
-      <div key='inline-signup' className={clsx(formClasses.formRow, classes.row)}>
+    <Form onSubmit={submitHandler} noValidate classes={{ root: classes.form }}>
+      <FormRow key='inline-signup' classes={{ root: classes.row }}>
         <TextField
           variant='outlined'
           type='password'
@@ -80,10 +79,10 @@ export default function SignUpFormInline({
           helperText={!!formState.errors.confirmPassword && 'Passwords should match'}
           disabled={formState.isSubmitting}
         />
-      </div>
+      </FormRow>
 
-      <div className={formClasses.formRow} key='signup-submit'>
-        <div className={clsx(formClasses.formRow, classes.buttonFormRow)}>
+      <FormRow key='signup-submit'>
+        <FormRow classes={{ root: classes.buttonFormRow }}>
           <div>{helperList}</div>
           <div className={classes.buttonContainer}>
             <Button
@@ -96,8 +95,8 @@ export default function SignUpFormInline({
               Sign up
             </Button>
           </div>
-        </div>
-      </div>
-    </form>
+        </FormRow>
+      </FormRow>
+    </Form>
   )
 }

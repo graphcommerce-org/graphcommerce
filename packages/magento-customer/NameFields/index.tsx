@@ -1,7 +1,7 @@
 import { MenuItem, TextField } from '@material-ui/core'
+import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import { Controller, UseFormReturn, assertFormGqlOperation } from '@reachdigital/react-hook-form'
+import { assertFormGqlOperation, Controller, UseFormReturn } from '@reachdigital/react-hook-form'
 import React from 'react'
 
 type NameFieldValues = {
@@ -21,11 +21,10 @@ export default function NameFields(props: NameFieldProps) {
   assertFormGqlOperation<NameFieldValues>(form)
 
   const { control, formState, muiRegister, required, valid } = form
-  const classes = useFormStyles()
 
   return (
     <>
-      <div className={classes.formRow}>
+      <FormRow>
         {prefix && (
           <Controller
             defaultValue='Dhr.'
@@ -56,9 +55,9 @@ export default function NameFields(props: NameFieldProps) {
             )}
           />
         )}
-      </div>
+      </FormRow>
 
-      <div className={classes.formRow}>
+      <FormRow>
         <TextField
           variant='outlined'
           type='text'
@@ -85,7 +84,7 @@ export default function NameFields(props: NameFieldProps) {
           }}
           {...muiRegister('lastname', { required: required?.lastname })}
         />
-      </div>
+      </FormRow>
     </>
   )
 }

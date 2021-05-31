@@ -1,7 +1,9 @@
 import { TextField } from '@material-ui/core'
 import Button from '@reachdigital/next-ui/Button'
+import Form from '@reachdigital/next-ui/Form'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
+import FormActions from '@reachdigital/next-ui/Form/FormActions'
+import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -29,10 +31,8 @@ export default function ResetPasswordForm(props: ResetPasswordFormProps) {
   })
 
   const router = useRouter()
-  const classes = useFormStyles()
   const { muiRegister, handleSubmit, required, watch, data, formState, error } = form
   const submitHandler = handleSubmit(() => {})
-
   const newPass = watch('newPassword')
 
   if (formState.isSubmitSuccessful && data) {
@@ -41,8 +41,8 @@ export default function ResetPasswordForm(props: ResetPasswordFormProps) {
   }
 
   return (
-    <form onSubmit={submitHandler} noValidate className={classes.form}>
-      <div className={classes.formRow}>
+    <Form onSubmit={submitHandler} noValidate>
+      <FormRow>
         <TextField
           variant='outlined'
           type='email'
@@ -53,8 +53,8 @@ export default function ResetPasswordForm(props: ResetPasswordFormProps) {
           helperText={formState.errors.email?.message}
           disabled={formState.isSubmitting}
         />
-      </div>
-      <div className={classes.formRow}>
+      </FormRow>
+      <FormRow>
         <TextField
           variant='outlined'
           type='password'
@@ -65,8 +65,8 @@ export default function ResetPasswordForm(props: ResetPasswordFormProps) {
           helperText={formState.errors.newPassword?.message}
           disabled={formState.isSubmitting}
         />
-      </div>
-      <div className={classes.formRow}>
+      </FormRow>
+      <FormRow>
         <TextField
           variant='outlined'
           type='password'
@@ -80,11 +80,11 @@ export default function ResetPasswordForm(props: ResetPasswordFormProps) {
           helperText={formState.errors.confirmPassword?.message}
           disabled={formState.isSubmitting}
         />
-      </div>
+      </FormRow>
 
       <ApolloErrorAlert error={error} />
 
-      <div className={classes.actions}>
+      <FormActions>
         <Button
           type='submit'
           loading={formState.isSubmitting}
@@ -95,7 +95,7 @@ export default function ResetPasswordForm(props: ResetPasswordFormProps) {
         >
           Save new password
         </Button>
-      </div>
-    </form>
+      </FormActions>
+    </Form>
   )
 }
