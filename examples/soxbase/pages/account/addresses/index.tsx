@@ -21,13 +21,13 @@ type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function AccountAddressesPage(props: Props) {
   const { countries } = props
-  const { data } = useQuery(AccountDashboardAddressesDocument, {
+  const { data, loading } = useQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'network-only',
     ssr: false,
   })
   const customer = data?.customer
 
-  if (!customer) return <MessageAuthRequired />
+  if (!loading && !customer) return <MessageAuthRequired />
 
   return (
     <Container maxWidth='md'>

@@ -46,13 +46,12 @@ function AccountIndexPage() {
   const orders = customer?.orders
   const latestOrder = orders?.items?.[orders?.items?.length - 1]
 
-  if (!customer) return <MessageAuthRequired />
+  if (!loading && !customer) return <MessageAuthRequired />
 
   return (
-    <NoSsr>
-      <Container maxWidth='md'>
+    <Container maxWidth='md'>
+      <NoSsr>
         <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
-
         <IconHeader src={iconPersonAlt} title='Account' alt='account' size='large' />
         <AccountMenu>
           <AccountMenuItem
@@ -133,8 +132,8 @@ function AccountIndexPage() {
             )}
           />
         </AccountMenu>
-      </Container>
-    </NoSsr>
+      </NoSsr>
+    </Container>
   )
 }
 

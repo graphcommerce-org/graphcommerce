@@ -21,7 +21,7 @@ function AccountReviewsPage() {
   })
   const customer = data?.customer
 
-  if (!customer) return <MessageAuthRequired />
+  if (!loading && !customer) return <MessageAuthRequired />
 
   return (
     <Container maxWidth='md'>
