@@ -8,7 +8,7 @@ import { StoreConfigDocument } from '@reachdigital/magento-store'
 import DesktopNavActions from '@reachdigital/next-ui/AppShell/DesktopNavActions'
 import DesktopNavBar from '@reachdigital/next-ui/AppShell/DesktopNavBar'
 import FullPageShellBase, {
-  FullPageShellBaseProps
+  FullPageShellBaseProps,
 } from '@reachdigital/next-ui/AppShell/FullPageShellBase'
 import { MenuProps } from '@reachdigital/next-ui/AppShell/Menu'
 import MenuFab from '@reachdigital/next-ui/AppShell/MenuFab'
