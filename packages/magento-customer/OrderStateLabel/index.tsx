@@ -41,7 +41,7 @@ const useStyles = makeStyles(
     orderStateShipped: {
       color: theme.palette.success.main,
       fontStyle: 'normal',
-      fontWeight: 'bold',
+      fontWeight: 600,
     },
     orderStateCanceled: {
       color: theme.palette.primary.main,
@@ -75,8 +75,8 @@ export default function OrderStateLabel(props: OrderStateLabelProps) {
   const StateLabel = renderer[orderState]
 
   return (
-    <div className={clsx(classes.orderStatus, classes?.[`orderState${orderState}`])}>
+    <span className={clsx(classes.orderStatus, classes?.[`orderState${orderState}`])}>
       <StateLabel items={items} {...orderProps} />
-    </div>
+    </span>
   )
 }
