@@ -2,6 +2,7 @@ import Button from '@reachdigital/next-ui/Button'
 import FullPageMessage from '@reachdigital/next-ui/FullPageMessage'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconPersonAltBig } from '@reachdigital/next-ui/icons'
+import PageLink from 'next/link'
 import React from 'react'
 
 export default function MessageAuthRequired() {
@@ -10,14 +11,18 @@ export default function MessageAuthRequired() {
       title='You must be authenticated to view this page'
       icon={<SvgImage src={iconPersonAltBig} size={148} alt='person' />}
       button={
-        <Button variant='contained' color='primary' text='bold' size='large'>
-          Login
-        </Button>
+        <PageLink href='/account/signin' passHref>
+          <Button variant='contained' color='primary' text='bold' size='large'>
+            Login
+          </Button>
+        </PageLink>
       }
       altButton={
-        <Button variant='text' color='primary'>
-          Or create an account
-        </Button>
+        <PageLink href='/account/signin' passHref>
+          <Button variant='text' color='primary'>
+            Or create an account
+          </Button>
+        </PageLink>
       }
     />
   )
