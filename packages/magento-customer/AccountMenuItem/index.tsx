@@ -65,7 +65,7 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
     noBorderBottom = false,
     ...buttonProps
   } = props
-  const { heading, subheading, ...buttonClasses } = useStyles()
+  const { heading, subheading, borderBottom, ...buttonClasses } = useStyles()
 
   const button = (
     <Button
@@ -73,7 +73,7 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
       disableElevation
       disabled={disabled}
       classes={buttonClasses}
-      className={clsx(!noBorderBottom && buttonClasses.borderBottom)}
+      className={clsx({ [borderBottom]: !noBorderBottom })}
       {...buttonProps}
     >
       <ListItem>
