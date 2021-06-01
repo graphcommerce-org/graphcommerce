@@ -1,5 +1,7 @@
 import { Chip, makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
+import JsonLdProductAggregateRating from '../JsonLdProductAggregateRating'
+import JsonLdProductReview from '../JsonLdProductReview'
 import { ProductReviewFragment } from './ProductReview.gql'
 
 const useStyles = makeStyles(
@@ -60,8 +62,10 @@ export default function ProductReview(props: ProductReviewProps) {
 
   return (
     <div>
+      <JsonLdProductAggregateRating reviews={reviews} />
       {reviews.items.map((review) => (
         <div key={review?.summary} className={classes.review}>
+          {review && <JsonLdProductReview {...review} />}
           <div className={classes.title}>
             <Chip
               label={`${Number(review?.average_rating) / 20}/5`}

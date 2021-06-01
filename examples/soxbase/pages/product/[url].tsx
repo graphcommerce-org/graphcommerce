@@ -1,12 +1,14 @@
 import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
+import { ProductImage } from '@reachdigital/graphql'
 import { AddToCartButton } from '@reachdigital/magento-cart'
 import {
   SimpleProductPageDocument,
   SimpleProductPageQuery,
 } from '@reachdigital/magento-product-simple/SimpleProductPage.gql'
+import JsonLdProduct from '@reachdigital/magento-product/JsonLdProduct'
+import JsonLdProductOffer from '@reachdigital/magento-product/JsonLdProductOffer'
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
-import ProductJsonLd from '@reachdigital/magento-product/ProductJsonLd'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
@@ -49,7 +51,20 @@ function ProductSimple(props: Props) {
 
   return (
     <div>
-      <ProductJsonLd {...product} />
+      <JsonLdProduct
+        name={product.name ?? ''}
+        sku={product.sku ?? ''}
+        description={product.description?.html}
+        image={product.media_gallery?.map((img) => (img as ProductImage)?.url ?? '')}
+        identifier={product?.url_key ?? ''}
+        category={product?.categories?.[0]?.name ?? ''}
+      />
+
+      <JsonLdProductOffer
+        priceCurrency={product?.price_range.minimum_price.final_price.currency ?? 'USD'}
+        lowPrice={product?.price_range.minimum_price.final_price.value ?? 0}
+        highPrice={product?.price_range?.maximum_price?.final_price.value ?? 0}
+      />
 
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>

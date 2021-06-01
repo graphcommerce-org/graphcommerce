@@ -1,10 +1,13 @@
 import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
+import { ProductImage } from '@reachdigital/graphql'
 import { AddToCartButton } from '@reachdigital/magento-cart'
 import {
   DownloadableProductPageDocument,
   DownloadableProductPageQuery,
 } from '@reachdigital/magento-product-downloadable/DownloadableProductPage.gql'
+import JsonLdProduct from '@reachdigital/magento-product/JsonLdProduct'
+import JsonLdProductOffer from '@reachdigital/magento-product/JsonLdProductOffer'
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
@@ -50,6 +53,21 @@ function ProductDownloadable(props: Props) {
 
   return (
     <div>
+      <JsonLdProduct
+        name={product.name ?? ''}
+        sku={product.sku ?? ''}
+        description={product.description?.html}
+        image={product.media_gallery?.map((img) => (img as ProductImage)?.url ?? '')}
+        identifier={product?.url_key ?? ''}
+        category={product?.categories?.[0]?.name ?? ''}
+      />
+
+      <JsonLdProductOffer
+        priceCurrency={product?.price_range.minimum_price.final_price.currency ?? 'USD'}
+        lowPrice={product?.price_range.minimum_price.final_price.value ?? 0}
+        highPrice={product?.price_range?.maximum_price?.final_price.value ?? 0}
+      />
+
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
         <Typography variant='h1'>{product.name ?? ''}</Typography>
