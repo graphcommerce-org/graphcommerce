@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client'
 import { Fab, makeStyles, Theme } from '@material-ui/core'
 import { CartFab } from '@reachdigital/magento-cart'
 import { CustomerFab } from '@reachdigital/magento-customer'
+import CustomerMenuFabItem from '@reachdigital/magento-customer/CustomerMenuFabItem'
 import { SearchButton } from '@reachdigital/magento-search'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import DesktopNavActions from '@reachdigital/next-ui/AppShell/DesktopNavActions'
@@ -14,7 +15,7 @@ import MenuFab from '@reachdigital/next-ui/AppShell/MenuFab'
 import MenuFabSecondaryItem from '@reachdigital/next-ui/AppShell/MenuFabSecondaryItem'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconCustomerService, iconPersonAlt, iconStar } from '@reachdigital/next-ui/icons'
+import { iconCustomerService, iconStar } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'
@@ -90,18 +91,15 @@ function FullPageShell(props: FullPageShellProps) {
               </Fab>
             </PageLink>
 
-            <CustomerFab />
+            <CustomerFab guestHref='/account/signin' authHref='/account' />
           </DesktopNavActions>
         </>
       }
     >
       <MenuFab {...menuProps} search={<SearchButton onClick={onSearchStart} />}>
-        <MenuFabSecondaryItem
-          icon={<SvgImage src={iconPersonAlt} size='small' alt='Account' />}
-          href='/account'
-        >
+        <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>
           Account
-        </MenuFabSecondaryItem>
+        </CustomerMenuFabItem>
         <MenuFabSecondaryItem
           icon={<SvgImage src={iconCustomerService} size='small' alt='Customer Service' />}
           href='/service'
