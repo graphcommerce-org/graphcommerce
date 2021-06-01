@@ -23,28 +23,25 @@ Hosting:
 
 ## Install
 
-Make sure you're using Node >= 12: `nvm install 12 && nvm alias default node`
-
-1. `yarn`
-2. `cp .env.example .env`
-3. `cp examples/soxbase-api/.env.example examples/soxbase-api/.env`
-4. `cp examples/soxbase/.env.example examples/soxbase/.env`
-5. Fill in `GRAPHCMS_BEARER` in `examples/soxbase-api/.env`, in 1Pass under
+1. Make sure you are using node 14. (`nvm install 14 && nvm use 14`)
+2. `git clone git@github.com:ho-nl/m2-pwa.git && cd m2-pwa`
+3. `yarn install`
+4. `cp examples/soxbase-api/.env.example examples/soxbase-api/.env`
+5. `cp examples/soxbase/.env.example examples/soxbase/.env`
+6. Fill in `GRAPHCMS_BEARER` in `examples/soxbase-api/.env`, in 1Pass under
    `soxbase-api`
-6. `cp examples/soxbase/.env.example examples/soxbase/.env`
 
-## Customize endpoint:
+## Customize endpoint (optional):
 
 Replace MAGENTO_ENDPOINT in `.env` and `examples/soxbase-api/.env` with your own
 endpoint.
 
-## Run
+## Commands
 
-`yarn dev` + `yarn stop`
-
-## Local build
-
-- `yarn build`
+- `yarn dev`: Start development server
+- `yarn stop`: Stop development server
+- `yarn build`: Create production build of everything
+- `yarn tsc:lint`: Lint the installation with TypeScript
 
 ## Commits
 
