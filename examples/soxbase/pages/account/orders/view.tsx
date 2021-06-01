@@ -36,7 +36,7 @@ function OrderDetailPage(props: Props) {
   const order = data?.customer?.orders?.items?.[0]
   const isLoading = orderId ? loading : true
 
-  if (!data?.customer) return <MessageAuthRequired />
+  if (!loading && !data?.customer) return <MessageAuthRequired />
 
   return (
     <Container maxWidth='md'>

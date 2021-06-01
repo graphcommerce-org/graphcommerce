@@ -15,13 +15,13 @@ import apolloClient from '../../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountOrdersPage() {
-  const { data } = useQuery(AccountDashboardOrdersDocument, {
+  const { data, loading } = useQuery(AccountDashboardOrdersDocument, {
     fetchPolicy: 'cache-and-network',
     ssr: false,
   })
   const customer = data?.customer
 
-  if (!customer) return <MessageAuthRequired />
+  if (!loading && !customer) return <MessageAuthRequired />
 
   return (
     <Container maxWidth='md'>

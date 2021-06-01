@@ -37,7 +37,7 @@ function EditAddressPage(props: Props) {
   const addresses = data?.customer?.addresses
   const address = addresses?.filter((a) => a?.id === numAddressId)?.[0]
 
-  if (!data?.customer) return <MessageAuthRequired />
+  if (!loading && !data?.customer) return <MessageAuthRequired />
 
   return (
     <Container maxWidth='md'>
