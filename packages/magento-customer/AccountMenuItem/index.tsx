@@ -10,6 +10,7 @@ import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconChevronRight } from '@reachdigital/next-ui/icons'
+import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
 
@@ -19,7 +20,6 @@ const useStyles = makeStyles(
       width: '100%',
       height: responsiveVal(72, 112),
       fontSize: theme.typography.fontSize,
-      borderBottom: `1px solid ${theme.palette.divider}`,
       borderRadius: 0,
       '&:hover': {
         background: theme.palette.background.highlight,
@@ -31,6 +31,9 @@ const useStyles = makeStyles(
         // fix: disableElevation does not work when button is focused
         boxShadow: 'none',
       },
+    },
+    borderBottom: {
+      borderBottom: `1px solid ${theme.palette.divider}`,
     },
     heading: {
       fontWeight: 400,
@@ -48,10 +51,20 @@ export type AccountMenuItemProps = {
   title: React.ReactNode
   subtitle?: React.ReactNode
   endIcon?: React.ReactNode
+  noBorderBottom?: boolean
 } & Omit<ButtonProps, 'endIcon' | 'startIcon' | 'disableElevation'>
 
 export default function AccountMenuItem(props: AccountMenuItemProps) {
-  const { title, subtitle, iconSrc, endIcon, href, disabled, ...buttonProps } = props
+  const {
+    title,
+    subtitle,
+    iconSrc,
+    endIcon,
+    href,
+    disabled,
+    noBorderBottom = false,
+    ...buttonProps
+  } = props
   const { heading, subheading, ...buttonClasses } = useStyles()
 
   const button = (
@@ -60,6 +73,7 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
       disableElevation
       disabled={disabled}
       classes={buttonClasses}
+      className={clsx(!noBorderBottom && buttonClasses.borderBottom)}
       {...buttonProps}
     >
       <ListItem>

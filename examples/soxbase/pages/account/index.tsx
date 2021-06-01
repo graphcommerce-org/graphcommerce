@@ -126,6 +126,7 @@ function AccountIndexPage() {
                 type='submit'
                 disabled={loading}
                 title='Sign out'
+                noBorderBottom
               />
             )}
           />
