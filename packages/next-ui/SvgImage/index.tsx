@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import React from 'react'
 import PictureResponsive, { PictureResponsiveProps } from '../PictureResponsive'
 import { UseStyles } from '../Styles'
+import responsiveVal from '../Styles/responsiveVal'
 
 export type SvgImageSize = 'small' | 'medium' | 'large' | 'extralarge'
 
@@ -26,8 +27,8 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: ({ shade, baseSize }: UseStylesProps) => ({
       filter: shade > 0 ? `invert(${shade}%)` : undefined,
-      width: baseSize,
-      height: baseSize,
+      width: `${responsiveVal(0.75 * baseSize, baseSize)}`,
+      height: `${responsiveVal(0.75 * baseSize, baseSize)}`,
     }),
   }),
   { name: 'SvgImage' },

@@ -7,6 +7,7 @@ import {
   Typography,
 } from '@material-ui/core'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconChevronRight } from '@reachdigital/next-ui/icons'
@@ -18,8 +19,9 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       width: '100%',
-      height: responsiveVal(72, 112),
+      height: responsiveVal(88, 104),
       fontSize: theme.typography.fontSize,
+      padding: 0,
       borderRadius: 0,
       '&:hover': {
         background: theme.palette.background.highlight,
@@ -32,15 +34,32 @@ const useStyles = makeStyles(
         boxShadow: 'none',
       },
     },
+    icon: {
+      minWidth: `${responsiveVal(40, 56)}`,
+    },
     borderBottom: {
       borderBottom: `1px solid ${theme.palette.divider}`,
     },
     heading: {
       fontWeight: 400,
+      fontSize: theme.typography.h4.fontSize,
+      [theme.breakpoints.up('md')]: {
+        fontSize: theme.typography.h6.fontSize,
+      },
     },
     subheading: {
+      display: 'block',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
       color: theme.palette.primary.mutedText,
-      ...theme.typography.body2,
+      ...theme.typography.caption,
+      [theme.breakpoints.up('md')]: {
+        ...theme.typography.body2,
+      },
+    },
+    itemLink: {
+      padding: 0,
     },
   }),
   { name: 'AccountMenuItem' },
@@ -52,7 +71,8 @@ export type AccountMenuItemProps = {
   subtitle?: React.ReactNode
   endIcon?: React.ReactNode
   noBorderBottom?: boolean
-} & Omit<ButtonProps, 'endIcon' | 'startIcon' | 'disableElevation'>
+} & Omit<ButtonProps, 'endIcon' | 'startIcon' | 'disableElevation'> &
+  UseStyles<typeof useStyles>
 
 export default function AccountMenuItem(props: AccountMenuItemProps) {
   const {
@@ -65,28 +85,28 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
     noBorderBottom = false,
     ...buttonProps
   } = props
-  const { heading, subheading, borderBottom, ...buttonClasses } = useStyles()
+  const classes = useStyles(props)
 
   const button = (
     <Button
       variant='contained'
       disableElevation
       disabled={disabled}
-      classes={buttonClasses}
-      className={clsx({ [borderBottom]: !noBorderBottom })}
+      classes={{ root: classes.root }}
+      className={clsx({ [classes.borderBottom]: !noBorderBottom })}
       {...buttonProps}
     >
-      <ListItem>
-        <ListItemIcon>
+      <ListItem disableGutters>
+        <ListItemIcon className={classes.icon}>
           <SvgImage src={iconSrc} alt={iconSrc} size='medium' loading='eager' shade='muted' />
         </ListItemIcon>
         <ListItemText
           primary={
-            <Typography variant='h6' component='span' className={heading}>
+            <Typography variant='h6' component='span' className={classes.heading}>
               {title}
             </Typography>
           }
-          secondary={<span className={subheading}>{subtitle}</span>}
+          secondary={<span className={classes.subheading}>{subtitle}</span>}
         />
         {endIcon ?? (
           <SvgImage src={iconChevronRight} alt='chevron right' size='small' loading='eager' />

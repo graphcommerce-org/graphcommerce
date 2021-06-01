@@ -35,5 +35,5 @@ export default function AddressSingleLine(props: AddressSingleLineProps) {
   address = address.replace('$suffix', suffix ? `${suffix},` : '')
   address = address.replace('$countryName', countryName ? `${countryName},` : '')
 
-  return <span>{address}</span>
+  return <>{address}</>
 }

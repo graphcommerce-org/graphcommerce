@@ -5,12 +5,8 @@ import React from 'react'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      marginTop: theme.spacings.lg,
-      marginBottom: theme.spacings.lg,
-      [theme.breakpoints.up('sm')]: {
-        marginTop: theme.spacings.md,
-        marginBottom: theme.spacings.md,
-      },
+      marginTop: theme.spacings.md,
+      marginBottom: theme.spacings.md,
     },
   }),
   { name: 'AccountMenu' },

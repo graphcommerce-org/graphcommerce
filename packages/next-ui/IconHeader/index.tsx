@@ -8,11 +8,16 @@ const useStyles = makeStyles(
     container: {
       textAlign: 'center',
       fontSize: responsiveVal(16, 24),
-      marginBottom: theme.spacings.md,
+      marginTop: theme.spacings.sm,
+      marginBottom: theme.spacings.sm,
     },
-    img: {
-      display: 'block',
-      margin: `0 auto ${responsiveVal(2, 8)} auto`,
+    innerContainer: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: 4,
+      [theme.breakpoints.up('md')]: {
+        display: 'unset',
+      },
     },
   }),
   { name: 'IconHeader' },
@@ -47,11 +52,12 @@ export default function IconHeader(props: IconHeaderProps) {
 
   return (
     <div className={classes.container}>
-      <SvgImage {...svgImageProps} size={iconSizes[size]} loading='eager' className={classes.img} />
-
-      <Typography variant={variants[size]} component='h2'>
-        {title}
-      </Typography>
+      <div className={classes.innerContainer}>
+        <SvgImage {...svgImageProps} size={iconSizes[size]} loading='eager' />
+        <Typography variant={variants[size]} component='h2'>
+          {title}
+        </Typography>
+      </div>
     </div>
   )
 }
