@@ -4,10 +4,10 @@ import { jsonLdScriptProps } from 'react-schemaorg'
 import { Product } from 'schema-dts'
 import { ProductReviewItemFragment } from '../ProductReview/ProductReviewItem.gql'
 
-type JsonLdProductReviewProps = ProductReviewItemFragment
+type JsonLdProductReviewProps = { name: string } & ProductReviewItemFragment
 
 export default function JsonLdProductReview(props: JsonLdProductReviewProps) {
-  const { average_rating, summary, nickname, created_at, text } = props
+  const { name, average_rating, summary, nickname, created_at, text } = props
 
   return (
     <Head>
@@ -16,6 +16,7 @@ export default function JsonLdProductReview(props: JsonLdProductReviewProps) {
         {...jsonLdScriptProps<Product>({
           '@context': 'https://schema.org',
           '@type': 'Product',
+          name,
           review: {
             '@type': 'Review',
             reviewRating: {

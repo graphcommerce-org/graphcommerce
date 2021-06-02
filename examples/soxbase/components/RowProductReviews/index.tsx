@@ -7,14 +7,14 @@ import { RowProductReviewsFragment } from './RowProductReviews.gql'
 type RowProductReviewProps = RowProductReviewsFragment & Partial<ProductReviewProps>
 
 export default function RowProductReviews(props: RowProductReviewProps) {
-  const { title, reviews } = props
+  const { title, reviews, ...product } = props
 
   if (!reviews || reviews?.items.length === 0) return null
 
   return (
     <Row maxWidth='md'>
       <SectionHeader labelLeft={title} />
-      <ProductReview reviews={reviews} />
+      <ProductReview name={product.name ?? ''} reviews={reviews} />
     </Row>
   )
 }

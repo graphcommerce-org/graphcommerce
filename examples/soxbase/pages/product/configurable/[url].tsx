@@ -8,7 +8,6 @@ import {
   ConfigurableProductPageQuery,
 } from '@reachdigital/magento-product-configurable/ConfigurableProductPage.gql'
 import JsonLdProduct from '@reachdigital/magento-product/JsonLdProduct'
-import JsonLdProductOffer from '@reachdigital/magento-product/JsonLdProductOffer'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
@@ -78,9 +77,6 @@ function ProductConfigurable(props: Props) {
         image={product.media_gallery?.map((img) => (img as ProductImage)?.url ?? '')}
         identifier={product?.url_key ?? ''}
         category={product?.categories?.[0]?.name ?? ''}
-      />
-
-      <JsonLdProductOffer
         priceCurrency={product?.price_range.minimum_price.final_price.currency ?? 'USD'}
         lowPrice={product?.price_range.minimum_price.final_price.value ?? 0}
         highPrice={product?.price_range?.maximum_price?.final_price.value ?? 0}

@@ -7,7 +7,6 @@ import {
   GroupedProductPageQuery,
 } from '@reachdigital/magento-product-grouped/GroupedProductPage.gql'
 import JsonLdProduct from '@reachdigital/magento-product/JsonLdProduct'
-import JsonLdProductOffer from '@reachdigital/magento-product/JsonLdProductOffer'
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
@@ -20,8 +19,8 @@ import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
-import ProductUsps from '../../../components/ProductUsps'
 import ProductpagesContent from '../../../components/ProductpagesContent'
+import ProductUsps from '../../../components/ProductUsps'
 import RowProductDescription from '../../../components/RowProductDescription'
 import RowProductFeature from '../../../components/RowProductFeature'
 import RowProductFeatureBoxed from '../../../components/RowProductFeatureBoxed'
@@ -58,9 +57,6 @@ function ProductGrouped(props: Props) {
         image={product.media_gallery?.map((img) => (img as ProductImage)?.url ?? '')}
         identifier={product?.url_key ?? ''}
         category={product?.categories?.[0]?.name ?? ''}
-      />
-
-      <JsonLdProductOffer
         priceCurrency={product?.price_range.minimum_price.final_price.currency ?? 'USD'}
         lowPrice={product?.price_range.minimum_price.final_price.value ?? 0}
         highPrice={product?.price_range?.maximum_price?.final_price.value ?? 0}
