@@ -1,8 +1,7 @@
 import { mergeDeep } from '@apollo/client/utilities'
 import { Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
-import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
+import { CategoryDescription, ProductListParamsProvider } from '@reachdigital/magento-category'
 import {
   ProductListCount,
   ProductListFilters,

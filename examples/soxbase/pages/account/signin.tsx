@@ -1,6 +1,6 @@
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import AccountSignInUpForm from '@reachdigital/magento-customer/AccountSignInUpForm'
+import { AccountSignInUpForm } from '@reachdigital/magento-customer'
 import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import React from 'react'

@@ -1,7 +1,7 @@
 import { TypedDocumentNode, useQuery } from '@apollo/client'
 import { Box, makeStyles, Theme } from '@material-ui/core'
 import { ProductInterface } from '@reachdigital/graphql'
-import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
+import { CustomerTokenDocument } from '@reachdigital/magento-customer'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
