@@ -8,10 +8,10 @@ import AddressSingleLine from '@reachdigital/magento-customer/AddressSingleLine'
 import OrderStateLabelInline from '@reachdigital/magento-customer/OrderStateLabelInline'
 import SignOutForm from '@reachdigital/magento-customer/SignOutForm'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import DaysAgo from '@reachdigital/next-ui/DaysAgo'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import TimeAgo from '@reachdigital/next-ui/TimeAgo'
 import {
   iconBox,
   iconEmailOutline,
@@ -78,7 +78,7 @@ function AccountIndexPage() {
             subtitle={
               latestOrder ? (
                 <>
-                  <DaysAgo date={new Date(latestOrder?.order_date ?? new Date())} locale={locale} />
+                  <TimeAgo date={new Date(latestOrder?.order_date ?? new Date())} locale={locale} />
                   {', '}
                   {latestOrder?.items && (
                     <OrderStateLabelInline
