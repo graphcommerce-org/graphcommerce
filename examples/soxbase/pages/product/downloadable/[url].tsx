@@ -5,6 +5,7 @@ import {
   DownloadableProductPageDocument,
   DownloadableProductPageQuery,
 } from '@reachdigital/magento-product-downloadable'
+import { ProductReviewSummary } from '@reachdigital/magento-product-review'
 import {
   jsonLdProduct,
   jsonLdProductOffer,
@@ -69,10 +70,12 @@ function ProductDownloadable(props: Props) {
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
         <Typography variant='h1'>{product.name ?? ''}</Typography>
+        <ProductReviewSummary {...product} />
         <AddToCartButton
           mutation={ProductAddToCartDocument}
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
+          price={product.price_range.minimum_price.regular_price}
         />
         {typeProduct.downloadable_product_links?.map((option) => (
           <div key={option?.title}>

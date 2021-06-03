@@ -3,6 +3,7 @@ import { ProductListItemBundle } from '@reachdigital/magento-product-bundle'
 import { ProductListItemConfigurable } from '@reachdigital/magento-product-configurable'
 import { ProductListItemDownloadable } from '@reachdigital/magento-product-downloadable'
 import { ProductListItemGrouped } from '@reachdigital/magento-product-grouped'
+import { ProductReviewSummary } from '@reachdigital/magento-product-review'
 import { ProductListItemSimple } from '@reachdigital/magento-product-simple'
 import { ProductListItemVirtual } from '@reachdigital/magento-product-virtual'
 import { ProductListItemRenderer } from '@reachdigital/magento-product/ProductListItems/renderer'
@@ -18,6 +19,7 @@ const renderers: ProductListItemRenderer = {
       {...props}
       subTitle={<Subtitle>By Soxbase</Subtitle>}
       aspectRatio={[1, 1]}
+      bottomRight={<ProductReviewSummary {...props} />}
     />
   ),
   ConfigurableProduct: (props) => (
@@ -29,8 +31,9 @@ const renderers: ProductListItemRenderer = {
         topLeft: [],
         topRight: ['size'],
         bottomLeft: ['color'],
-        bottomRight: ['review'],
+        bottomRight: [],
       }}
+      bottomRight={<ProductReviewSummary {...props} />}
     />
   ),
   BundleProduct: (props) => (
@@ -38,6 +41,7 @@ const renderers: ProductListItemRenderer = {
       {...props}
       subTitle={<Subtitle>By Soxbase</Subtitle>}
       aspectRatio={[1, 1]}
+      bottomRight={<ProductReviewSummary {...props} />}
     />
   ),
   VirtualProduct: (props) => (
@@ -45,6 +49,7 @@ const renderers: ProductListItemRenderer = {
       {...props}
       subTitle={<Subtitle>By Soxbase</Subtitle>}
       aspectRatio={[1, 1]}
+      bottomRight={<ProductReviewSummary {...props} />}
     />
   ),
   DownloadableProduct: (props) => (
@@ -52,6 +57,7 @@ const renderers: ProductListItemRenderer = {
       {...props}
       subTitle={<Subtitle>By Soxbase</Subtitle>}
       aspectRatio={[1, 1]}
+      bottomRight={<ProductReviewSummary {...props} />}
     />
   ),
   GroupedProduct: (props) => (
@@ -59,6 +65,7 @@ const renderers: ProductListItemRenderer = {
       {...props}
       subTitle={<Subtitle>By Soxbase</Subtitle>}
       aspectRatio={[1, 1]}
+      bottomRight={<ProductReviewSummary {...props} />}
     />
   ),
   // // eslint-disable-next-line @typescript-eslint/ban-ts-comment

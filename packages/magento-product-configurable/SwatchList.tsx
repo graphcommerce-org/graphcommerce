@@ -23,7 +23,6 @@ export default function SwatchList({ attributes, configurable_options }: SwatchL
   const options =
     configurable_options?.filter((option) => attributes.includes(option?.attribute_code ?? '')) ??
     []
-  console.log(options)
 
   return (
     <>
