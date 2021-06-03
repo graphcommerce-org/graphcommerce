@@ -4,7 +4,6 @@ import React from 'react'
 import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
 import { SwatchSize, SwatchTypeRenderer } from './Swatches'
 import ColorSwatchData from './Swatches/ColorSwatchData'
-import IconSwatchData from './Swatches/IconSwatchData'
 import ImageSwatchData from './Swatches/ImageSwatchData'
 import TextSwatchData from './Swatches/TextSwatchData'
 

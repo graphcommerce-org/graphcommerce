@@ -9,7 +9,6 @@ import { isFilterTypeEqual } from '@reachdigital/magento-product/ProductListItem
 import React, { useState } from 'react'
 import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
 import SwatchList from './SwatchList'
-import IconSwatchData from './Swatches/IconSwatchData'
 
 export type ProductListItemConfigurableActionProps = ProductListItemConfigurableFragment & {
   variant?: NonNullable<ProductListItemConfigurableFragment['variants']>[0]

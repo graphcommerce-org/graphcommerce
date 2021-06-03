@@ -73,6 +73,7 @@ function ProductVirtual(props: Props) {
           mutation={ProductAddToCartDocument}
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
+          price={product.price_range.minimum_price.regular_price}
         />
       </ProductPageGallery>
       <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
