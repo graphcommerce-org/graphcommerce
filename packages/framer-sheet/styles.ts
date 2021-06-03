@@ -24,11 +24,9 @@ const styles: Styles<ClassKeys> = {
   },
   indicatorRootright: {
     flexDirection: 'column-reverse',
-    height: '100%',
   },
   indicatorRootleft: {
     flexDirection: 'column-reverse',
-    height: '100%',
     alignItems: 'flex-end',
   },
   indicator: { borderRadius: 99, backgroundColor: '#ddd' },

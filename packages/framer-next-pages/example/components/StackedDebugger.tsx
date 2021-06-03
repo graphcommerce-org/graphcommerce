@@ -1,34 +1,33 @@
-import { usePageDepth, usePageRouter } from '@reachdigital/framer-next-pages'
-import { useEffect, useState } from 'react'
+import { usePageRouter } from '@reachdigital/framer-next-pages'
+import React, { useState } from 'react'
+import PageDepthDebug from './PageDepthDebug'
+import useRenderCount from './useRenderCount'
 
 export default function StackDebug() {
   const pageRouter = usePageRouter()
-  const depth = usePageDepth()
-  const [color, setColor] = useState<string>()
-
-  useEffect(() => {
-    setColor(Math.floor(Math.random() * 16777215).toString(16))
-  }, [])
+  const [color] = useState<string>(Math.floor(Math.random() * 16777215).toString(16))
+  const renderCounter = useRenderCount()
 
   return (
     <>
       <code
         style={{
-          background: `#${color}`,
           display: 'block',
-          marginLeft: -60,
-          padding: 20,
-          paddingInlineStart: 120,
-          marginBlockEnd: 20,
+          // marginLeft: -60,
+          paddingBlock: 20,
+          textAlign: 'center',
         }}
       >
-        <strong>Color change means: This component is recreated</strong>
+        uid: <span style={{ backgroundColor: `#${color}` }}>{color}</span>
+        <br />
+        renderCount: {renderCounter}
         <br />
         asPath: {pageRouter.asPath}
         <br />
         pathname: {pageRouter.pathname}
         <br />
-        depth: {depth}
+        depth: <PageDepthDebug />
+        {/* rendercount: {renderCounter} */}
       </code>
 
       <div style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none' }}>

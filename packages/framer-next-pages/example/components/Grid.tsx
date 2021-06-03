@@ -42,19 +42,44 @@ export default function PostCardGrid() {
         ))}
       </div>
 
-      <h2>Bottom sheet</h2>
+      <h2>Framer-sheet</h2>
       <div className={styles.postCardGrid}>
-        {data.map((id) => (
-          <Link key={id} href={`/bottom-sheet/${id}`}>
-            <a
-              className={`${styles.postCard} ${
-                pageRouter.asPath === `/bottom-sheet/${id}` && styles.postCardActive
-              }`}
-            >
-              {id}
-            </a>
-          </Link>
-        ))}
+        <Link href='/bottom-sheet/bottom'>
+          <a
+            className={`${styles.postCard} ${
+              pageRouter.asPath === `/bottom-sheet/1` && styles.postCardActive
+            }`}
+          >
+            Bottom Sheet
+          </a>
+        </Link>
+        <Link href='/bottom-sheet/left'>
+          <a
+            className={`${styles.postCard} ${
+              pageRouter.asPath === `/bottom-sheet/1` && styles.postCardActive
+            }`}
+          >
+            Left Sheet
+          </a>
+        </Link>
+        <Link href='/bottom-sheet/right'>
+          <a
+            className={`${styles.postCard} ${
+              pageRouter.asPath === `/bottom-sheet/1` && styles.postCardActive
+            }`}
+          >
+            Right Sheet
+          </a>
+        </Link>
+        <Link href='/bottom-sheet/top'>
+          <a
+            className={`${styles.postCard} ${
+              pageRouter.asPath === `/bottom-sheet/1` && styles.postCardActive
+            }`}
+          >
+            Top Sheet
+          </a>
+        </Link>
       </div>
     </div>
   )

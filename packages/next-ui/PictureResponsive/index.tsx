@@ -106,13 +106,22 @@ const PictureResponsive = React.forwardRef<HTMLImageElement, PictureResponsivePr
 
     useEffect(() => {
       // Excuted on the client, when the image is rendered we can upgrade the image to high resolution.
-      if (!ref.current || !width) return
+      if (!ref.current || !width) return () => {}
+
+      // Since we're using promises it can be that the component is unmounted when the promise resolves.
+      let isUnmounted = false
 
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       requestUpgrade(ref.current).then(() => {
+        if (isUnmounted) return
+
         // If the connection is slow, request a lower quality image
         setSize(Math.ceil(width / (connectionType === '4g' ? 1 : window.devicePixelRatio)))
       })
+
+      return () => {
+        isUnmounted = true
+      }
     }, [width, connectionType, ref])
 
     const types = Object.keys(srcSets)

@@ -1,11 +1,11 @@
 import { AnimatePresence } from 'framer-motion'
+import type { AppPropsType } from 'next/dist/next-server/lib/utils'
+import type { NextRouter } from 'next/router'
 import React, { useRef } from 'react'
 import Page from './Page'
 import { pageContext, pageRouterContext } from './PageContext'
-import { createRouterProxy } from './utils'
 import type { PageComponent, PageItem } from './types'
-import type { AppPropsType } from 'next/dist/next-server/lib/utils'
-import type { NextRouter } from 'next/router'
+import { createRouterProxy } from './utils'
 
 function findPlainIdx(items: PageItem[]) {
   return items.reduce((acc, item, i) => (typeof item.overlayGroup === 'string' ? acc : i), -1)
@@ -29,21 +29,28 @@ export default function FramerNextPages(props: PagesProps) {
   prevHistory.current = idx
 
   /** We never need to render anything beyong the current idx and we can safely omit everything */
-  items.current = items.current.slice(0, idx)
+  items.current = items.current.slice(0, idx + 1)
 
-  /** Add the current page to the items */
-  const proxy = createRouterProxy(router)
-  const activeItem: PageItem = {
-    children: <Component {...pageProps} />,
-    routerProxy: proxy,
-    SharedComponent: Component.pageOptions?.SharedComponent,
-    sharedProps: Component.pageOptions?.sharedProps,
-    sharedPageProps: pageProps,
-    sharedKey: Component.pageOptions?.sharedKey?.(proxy) ?? proxy.pathname,
-    overlayGroup: Component.pageOptions?.overlayGroup,
-    historyIdx: idx,
+  let activeItem: PageItem = items.current[idx]
+
+  const mustRerender = () =>
+    JSON.stringify(pageProps) !== JSON.stringify(items.current[idx]?.sharedPageProps)
+
+  if (!activeItem || mustRerender()) {
+    const proxy = createRouterProxy(router)
+
+    activeItem = {
+      children: <Component {...pageProps} />,
+      routerProxy: proxy,
+      SharedComponent: Component.pageOptions?.SharedComponent,
+      sharedProps: Component.pageOptions?.sharedProps,
+      sharedPageProps: pageProps,
+      sharedKey: Component.pageOptions?.sharedKey?.(proxy) ?? proxy.pathname,
+      overlayGroup: Component.pageOptions?.overlayGroup,
+      historyIdx: idx,
+    }
+    items.current[idx] = activeItem
   }
-  items.current.push(activeItem)
 
   let renderItems = items.current
 

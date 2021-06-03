@@ -73,15 +73,16 @@ export type PageOptions<T extends Record<string, unknown> = Record<string, unkno
    *
    * *In React, changing a component's key makes React treat it as an entirely new component. So the
    * old one is unmounted before the new one is mounted. So by changing the key of a single child of
-   * AnimatePresence, we can easily make components like slideshows.*
+   * AnimatePresence, we can easily make animated page transitions! 🎉*
    *
-   * **🎉 And not only slideshows, but also animated page transitions!**
+   * To create transitions we need to let React know if we should create a new component. We do this
+   * by specifying a 'sharedKey'. By default this key is the same as the pathname:
    *
    * Default:
    *
    * ```tsx
    * const overlay: PageOptions = {
-   *   sharedKey: ({ router }) => router.pathname, // e.g. becomes: pages/page/[id]
+   *   sharedKey: ({ pathname }) => pathname, // e.g. becomes: pages/page/[id]
    * }
    * ```
    *
@@ -89,7 +90,7 @@ export type PageOptions<T extends Record<string, unknown> = Record<string, unkno
    *
    * ```tsx
    * const overlay: PageOptions = {
-   *   sharedKey: ({ router }) => router.asPath, // e.g. becomes: pages/page/123
+   *   sharedKey: ({ asPath }) => asPath, // e.g. becomes: pages/page/123
    * }
    * ```
    *
