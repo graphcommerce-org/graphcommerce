@@ -25,6 +25,7 @@ export { default as NameFields } from './NameFields'
 export { default as useFormIsEmailAvailable } from './useFormIsEmailAvailable'
 export { default as ContinueShoppingButton } from './ContinueShoppingButton'
 export { default as useOrderCardItemImages } from './OrderCardItemImage/useOrderCardItemImages'
+export { default as OrderStateLabelInline } from './OrderStateLabelInline'
 
 export * from './AccountDashboard/AccountDashboard.gql'
 export * from './AccountDashboard/AccountDashboardAddresses.gql'
@@ -33,3 +34,5 @@ export * from './AccountDashboard/OrderDetailPage.gql'
 export * from './AccountDashboard/AccountDashboardReviews.gql'
 export * from './CustomerToken.gql'
 export * from './Customer.gql'
+
+export * from './typePolicies'

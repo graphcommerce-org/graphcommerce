@@ -73,10 +73,8 @@ const customer: FieldReadFunction<Query['customer']> = (incoming, options) => {
   return incoming
 }
 
-const typePolicies: TypedTypePolicies = {
+export const customerTypePolicies: TypedTypePolicies = {
   Query: { fields: { customer } },
   Mutation: { fields: { generateCustomerToken, revokeCustomerToken, createCustomer } },
   CustomerToken: { fields: { valid } },
 }
-
-export default typePolicies

@@ -6,9 +6,9 @@ import {
   AccountMenu,
   AccountMenuItem,
   SignOutForm,
+  AddressSingleLine,
+  OrderStateLabelInline,
 } from '@reachdigital/magento-customer'
-import AddressSingleLine from '@reachdigital/magento-customer/AddressSingleLine'
-import OrderStateLabelInline from '@reachdigital/magento-customer/OrderStateLabelInline'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'

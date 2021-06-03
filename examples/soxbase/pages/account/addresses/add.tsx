@@ -1,7 +1,9 @@
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { CreateCustomerAddressForm } from '@reachdigital/magento-customer'
-import { AccountDashboardAddressesQuery } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardAddresses.gql'
+import {
+  CreateCustomerAddressForm,
+  AccountDashboardAddressesQuery,
+} from '@reachdigital/magento-customer'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
