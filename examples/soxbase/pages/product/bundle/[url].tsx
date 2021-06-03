@@ -1,11 +1,13 @@
 import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
+import { ProductImage } from '@reachdigital/graphql'
 import { AddToCartButton } from '@reachdigital/magento-cart'
 import BundleItemsForm from '@reachdigital/magento-product-bundle/BundleItemsForm'
 import {
   BundleProductPageDocument,
   BundleProductPageQuery,
 } from '@reachdigital/magento-product-bundle/BundleProductPage.gql'
+import JsonLdProduct from '@reachdigital/magento-product/JsonLdProduct'
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
@@ -48,6 +50,18 @@ function ProductBundle(props: Props) {
 
   return (
     <>
+      <JsonLdProduct
+        name={product.name ?? ''}
+        sku={product.sku ?? ''}
+        description={product.description?.html}
+        image={product.media_gallery?.map((img) => (img as ProductImage)?.url ?? '')}
+        identifier={product?.url_key ?? ''}
+        category={product?.categories?.[0]?.name ?? ''}
+        priceCurrency={product?.price_range.minimum_price.final_price.currency ?? 'USD'}
+        lowPrice={product?.price_range.minimum_price.final_price.value ?? 0}
+        highPrice={product?.price_range?.maximum_price?.final_price.value ?? 0}
+      />
+
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
         <Typography variant='h1'>{product.name ?? ''}</Typography>

@@ -1,10 +1,12 @@
 import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
+import { ProductImage } from '@reachdigital/graphql'
 import { AddToCartButton } from '@reachdigital/magento-cart'
 import {
   GroupedProductPageDocument,
   GroupedProductPageQuery,
 } from '@reachdigital/magento-product-grouped/GroupedProductPage.gql'
+import JsonLdProduct from '@reachdigital/magento-product/JsonLdProduct'
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
@@ -17,8 +19,8 @@ import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
-import ProductUsps from '../../../components/ProductUsps'
 import ProductpagesContent from '../../../components/ProductpagesContent'
+import ProductUsps from '../../../components/ProductUsps'
 import RowProductDescription from '../../../components/RowProductDescription'
 import RowProductFeature from '../../../components/RowProductFeature'
 import RowProductFeatureBoxed from '../../../components/RowProductFeatureBoxed'
@@ -47,7 +49,19 @@ function ProductGrouped(props: Props) {
     return <></>
 
   return (
-    <>
+    <div>
+      <JsonLdProduct
+        name={product.name ?? ''}
+        sku={product.sku ?? ''}
+        description={product.description?.html}
+        image={product.media_gallery?.map((img) => (img as ProductImage)?.url ?? '')}
+        identifier={product?.url_key ?? ''}
+        category={product?.categories?.[0]?.name ?? ''}
+        priceCurrency={product?.price_range.minimum_price.final_price.currency ?? 'USD'}
+        lowPrice={product?.price_range.minimum_price.final_price.value ?? 0}
+        highPrice={product?.price_range?.maximum_price?.final_price.value ?? 0}
+      />
+
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
         <Typography component='h1' variant='h2'>
@@ -88,7 +102,7 @@ function ProductGrouped(props: Props) {
         }}
         content={productpages?.[0].content}
       />
-    </>
+    </div>
   )
 }
 

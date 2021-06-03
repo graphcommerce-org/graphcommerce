@@ -1,11 +1,13 @@
 import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
+import { ProductImage } from '@reachdigital/graphql'
 import ConfigurableContextProvider from '@reachdigital/magento-product-configurable/ConfigurableContext'
 import ConfigurableProductAddToCart from '@reachdigital/magento-product-configurable/ConfigurableProductAddToCart/ConfigurableProductAddToCart'
 import {
   ConfigurableProductPageDocument,
   ConfigurableProductPageQuery,
 } from '@reachdigital/magento-product-configurable/ConfigurableProductPage.gql'
+import JsonLdProduct from '@reachdigital/magento-product/JsonLdProduct'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
@@ -40,7 +42,7 @@ const useStyles = makeStyles(
       marginBottom: 5,
     },
     prePrice: {
-      color: `rgba(0, 0, 0, 0.3)`,
+      color: theme.palette.primary.mutedText,
       fontSize: responsiveVal(12, 16),
     },
   }),
@@ -67,10 +69,21 @@ function ProductConfigurable(props: Props) {
     return <></>
 
   return (
-    <>
+    <div>
+      <JsonLdProduct
+        name={product.name ?? ''}
+        sku={product.sku ?? ''}
+        description={product.description?.html}
+        image={product.media_gallery?.map((img) => (img as ProductImage)?.url ?? '')}
+        identifier={product?.url_key ?? ''}
+        category={product?.categories?.[0]?.name ?? ''}
+        priceCurrency={product?.price_range.minimum_price.final_price.currency ?? 'USD'}
+        lowPrice={product?.price_range.minimum_price.final_price.value ?? 0}
+        highPrice={product?.price_range?.maximum_price?.final_price.value ?? 0}
+      />
+
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
         <ProductPageMeta {...product} />
-
         <ProductPageGallery {...product}>
           <Typography paragraph>
             <Typography
@@ -118,7 +131,7 @@ function ProductConfigurable(props: Props) {
           content={productpages?.[0].content}
         />
       </ConfigurableContextProvider>
-    </>
+    </div>
   )
 }
 
