@@ -27,8 +27,12 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: ({ shade, baseSize }: UseStylesProps) => ({
       filter: shade > 0 ? `invert(${shade}%)` : undefined,
-      width: `${responsiveVal(0.75 * baseSize, baseSize)}`,
-      height: `${responsiveVal(0.75 * baseSize, baseSize)}`,
+      width: Math.round(baseSize * 0.75),
+      height: Math.round(baseSize * 0.75),
+      [theme.breakpoints.up('md')]: {
+        width: baseSize,
+        height: baseSize,
+      },
     }),
   }),
   { name: 'SvgImage' },
@@ -57,8 +61,8 @@ export default function SvgImage(props: SvgImageProps) {
           'image/svg+xml': src as string,
         }}
         className={clsx(classes.root)}
-        height={baseSizes[size] ?? size}
-        width={baseSizes[size] ?? size}
+        height={24}
+        width={24}
         {...pictureResponsiveProps}
       />
     </>
