@@ -26,10 +26,14 @@ export default function AddressSingleLine(props: AddressSingleLineProps) {
   // todo: detect correct format by locale
   // for now, US format will be returned by default
 
-  return (
-    <div>
-      {company},{prefix},{firstname},{middlename},{lastname},{suffix},{street?.[0]},{' '}
-      {street?.slice(1).join(' ')}, {postcode} {city}, {regionName}, {countryName}
-    </div>
-  )
+  let address = `$company ${prefix}, ${firstname}, $middlename ${lastname}, $suffix ${
+    street?.[0]
+  }, ${street?.slice(1).join(' ')}, ${postcode}, ${city}, ${regionName} $countryName`
+
+  address = address.replace('$company', company ? `${company},` : '')
+  address = address.replace('$middlename', middlename ? `${middlename},` : '')
+  address = address.replace('$suffix', suffix ? `${suffix},` : '')
+  address = address.replace('$countryName', countryName ? `${countryName},` : '')
+
+  return <span>{address}</span>
 }
