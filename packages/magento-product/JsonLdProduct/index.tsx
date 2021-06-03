@@ -47,6 +47,7 @@ export default function JsonLdProduct(props: ProductJsonLdProps) {
         {...jsonLdScriptProps<Product>({
           '@context': 'https://schema.org',
           '@type': 'Product',
+          gtin8: sku,
           name,
           sku,
           image,
