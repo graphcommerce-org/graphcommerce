@@ -49,18 +49,7 @@ function ProductVirtual(props: Props) {
 
   return (
     <div>
-      <JsonLdProduct
-        name={product.name ?? ''}
-        sku={product.sku ?? ''}
-        description={product.description?.html}
-        image={product.media_gallery?.map((img) => (img as ProductImage)?.url ?? '')}
-        identifier={product?.url_key ?? ''}
-        category={product?.categories?.[0]?.name ?? ''}
-        priceCurrency={product?.price_range.minimum_price.final_price.currency ?? 'USD'}
-        lowPrice={product?.price_range.minimum_price.final_price.value ?? 0}
-        highPrice={product?.price_range?.maximum_price?.final_price.value ?? 0}
-        reviews={product?.reviews}
-      />
+      <JsonLdProduct {...product} />
 
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>

@@ -1,88 +1,81 @@
-import Head from 'next/head'
+import JsonLd from '@reachdigital/next-ui/JsonLd/JsonLd'
 import React from 'react'
-import { jsonLdScriptProps } from 'react-schemaorg'
-import { AggregateOffer, Product } from 'schema-dts'
-import { ProductReviewFragment } from '../ProductReview/ProductReview.gql'
+import { Product } from 'schema-dts'
+import { ProductImage } from '../../graphql'
+import { JsonLdProductFragment } from './JsonLdProduct.gql'
+import { JsonLdProductOfferFragment } from './JsonLdProductOffer.gql'
+import { JsonLdProductReviewFragment } from './JsonLdProductReview.gql'
 
-type ProductJsonLdProps = Pick<
-  Product,
-  'name' | 'sku' | 'description' | 'image' | 'identifier' | 'category'
-> &
-  Pick<AggregateOffer, 'priceCurrency' | 'lowPrice' | 'highPrice'> &
-  ProductReviewFragment
+type JsonLdProductProps = JsonLdProductFragment
 
-export default function JsonLdProduct(props: ProductJsonLdProps) {
-  const {
-    name,
-    sku,
-    image,
-    identifier,
-    category,
-    description,
-    highPrice,
-    lowPrice,
-    priceCurrency,
-    reviews,
-  } = props
+export function jsonLdProduct(props: JsonLdProductFragment): Product {
+  const { name, sku, media_gallery, categories, description, url_key } = props
 
-  // calculate average rating.
-  // divide sum of ratings by 0.5, because by default ratings go from 0-10 instead of required 0-5
-  // divide by 10%, because ther result is between 0-50 instead of required 0-5
-  const ratingValue =
-    reviews?.items?.length > 0
-      ? (Math.round(
-          reviews.items.reduce(
-            (acc, current) => acc + (current ?? { average_rating: 1 }).average_rating,
-            0,
-          ) * 0.5,
-        ) /
-          reviews.items.length) *
-        0.1
-      : undefined
+  return {
+    '@type': 'Product',
+    name: name ?? undefined,
+    sku: sku ?? undefined,
+    image: media_gallery
+      ? media_gallery?.map((img) => (img as ProductImage)?.url ?? '')
+      : undefined,
+    category: categories?.[0]?.name ?? undefined,
+    identifier: url_key ?? undefined,
+    description: description?.html
+      ? (description.html ?? '').replace(/(<([^>]+)>)/gi, '')
+      : undefined,
+  }
+}
 
+export function jsonLdProductOffer(props: JsonLdProductOfferFragment): Partial<Product> {
+  const { price_range } = props
+
+  return {
+    offers: {
+      '@type': 'AggregateOffer',
+      itemCondition: 'https://schema.org/NewCondition',
+      offerCount: 1,
+      priceCurrency: price_range.minimum_price.regular_price.currency ?? undefined,
+      highPrice: price_range?.minimum_price?.regular_price.value ?? undefined,
+      lowPrice: price_range.minimum_price.final_price.value ?? undefined,
+    },
+  }
+}
+
+export function jsonLdProductReview(props: JsonLdProductReviewFragment): Partial<Product> {
+  const { reviews, review_count, rating_summary } = props
+
+  return {
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      reviewCount: review_count, // reviews.items.length > 0 ? reviews.items.length : undefined,
+      ratingValue: (rating_summary * 0.5 * 0.1).toString(),
+    },
+    review: reviews.items.map((review) => ({
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: ((review?.average_rating || 0) * 0.5 * 0.1).toString(),
+      },
+      name: review?.summary,
+      author: {
+        '@type': 'Person',
+        name: review?.nickname,
+      },
+      datePublished: review?.created_at,
+      reviewBody: review?.text,
+    })),
+  }
+}
+
+export default function JsonLdProduct(props: JsonLdProductProps) {
   return (
-    <Head>
-      <script
-        key='product-jsonld-product'
-        {...jsonLdScriptProps<Product>({
-          '@context': 'https://schema.org',
-          '@type': 'Product',
-          gtin8: sku,
-          name,
-          sku,
-          image,
-          identifier,
-          category,
-          description: (description as string).replace(/(<([^>]+)>)/gi, ''),
-          offers: {
-            '@type': 'AggregateOffer',
-            itemCondition: 'https://schema.org/NewCondition',
-            offerCount: 1,
-            priceCurrency,
-            highPrice,
-            lowPrice,
-          },
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            reviewCount: reviews.items.length > 0 ? reviews.items.length : undefined,
-            ratingValue,
-          },
-          review: reviews.items.map((review) => ({
-            '@type': 'Review',
-            reviewRating: {
-              '@type': 'Rating',
-              ratingValue: ((review?.average_rating || 0) * 0.5 * 0.1).toString(),
-            },
-            name: review?.summary,
-            author: {
-              '@type': 'Person',
-              name: review?.nickname,
-            },
-            datePublished: review?.created_at,
-            reviewBody: review?.text,
-          })),
-        })}
-      />
-    </Head>
+    <JsonLd<Product>
+      item={{
+        '@context': 'https://schema.org',
+        ...jsonLdProduct(props),
+        ...jsonLdProductOffer(props as unknown as JsonLdProductOfferFragment),
+        ...jsonLdProductReview(props as unknown as JsonLdProductReviewFragment),
+      }}
+    />
   )
 }

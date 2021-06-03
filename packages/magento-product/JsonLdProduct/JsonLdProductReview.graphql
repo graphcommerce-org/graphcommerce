@@ -1,0 +1,5 @@
+fragment JsonLdProductReview on ProductInterface {
+  ...ProductReview
+  review_count
+  rating_summary
+}

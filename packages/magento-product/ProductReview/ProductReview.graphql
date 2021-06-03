@@ -1,7 +1,15 @@
 fragment ProductReview on ProductInterface {
   reviews(pageSize: 10, currentPage: $reviewPage) {
     items {
-      ...ProductReviewItem
+      average_rating
+      created_at
+      nickname
+      ratings_breakdown {
+        name
+        value
+      }
+      summary
+      text
     }
   }
 }

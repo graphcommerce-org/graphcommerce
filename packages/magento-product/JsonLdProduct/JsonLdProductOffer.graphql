@@ -1,0 +1,13 @@
+fragment JsonLdProductOffer on ProductInterface {
+  price_range {
+    minimum_price {
+      regular_price {
+        value
+        currency
+      }
+      final_price {
+        value
+      }
+    }
+  }
+}

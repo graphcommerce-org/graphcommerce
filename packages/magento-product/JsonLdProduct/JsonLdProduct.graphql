@@ -1,0 +1,23 @@
+fragment JsonLdProduct on ProductInterface {
+  uid
+  name
+  sku
+  description {
+    html
+  }
+  media_gallery {
+    label
+    __typename
+    ... on ProductImage {
+      url
+    }
+  }
+  url_key
+  categories {
+    uid
+    url_key
+    name
+  }
+  ...JsonLdProductOfferFragment
+  ...JsonLdProductReviewFragment
+}
