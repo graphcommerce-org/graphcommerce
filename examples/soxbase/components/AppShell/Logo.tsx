@@ -7,10 +7,11 @@ import svgLogo from './logo.svg'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     logo: {
-      pointerEvents: 'all',
-      transform: 'scale(.65)',
+      width: 136,
+      height: 16,
       [theme.breakpoints.up('md')]: {
-        transform: 'scale(1)',
+        width: 209,
+        height: 25,
       },
     },
   }),
@@ -21,8 +22,8 @@ export default function Logo() {
   const classes = useStyles()
 
   return (
-    <PageLink href='/'>
-      <a className={classes.logo}>
+    <PageLink href='/' passHref>
+      <a>
         <PictureResponsiveNext
           alt='logo'
           width={209}
@@ -30,6 +31,7 @@ export default function Logo() {
           src={svgLogo}
           type='image/svg+xml'
           loading='eager'
+          className={classes.logo}
         />
       </a>
     </PageLink>
