@@ -10,6 +10,7 @@ import SignOutForm from '@reachdigital/magento-customer/SignOutForm'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import DaysAgo from '@reachdigital/next-ui/DaysAgo'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
+import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import {
   iconBox,
@@ -25,7 +26,6 @@ import {
 import React from 'react'
 import PageShell, { PageShellProps } from '../../components/AppShell/PageShell'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
-import MessageAuthRequired from '../../components/MessageAuthRequired'
 import apolloClient from '../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<PageShellProps>
@@ -44,7 +44,8 @@ function AccountIndexPage() {
   const orders = customer?.orders
   const latestOrder = orders?.items?.[orders?.items?.length - 1]
 
-  if (!loading && !customer) return <MessageAuthRequired />
+  if (!loading && !customer)
+    return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
 
   return (
     <Container maxWidth='md'>
