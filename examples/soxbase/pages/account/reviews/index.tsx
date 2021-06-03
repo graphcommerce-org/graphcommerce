@@ -5,11 +5,11 @@ import { AccountDashboardReviewsDocument, AccountReviews } from '@reachdigital/m
 
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
+import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
 import { iconStar } from '@reachdigital/next-ui/icons'
 import { GetStaticProps } from 'next'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
-import MessageAuthRequired from '../../../components/MessageAuthRequired'
 import apolloClient from '../../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
@@ -21,7 +21,8 @@ function AccountReviewsPage() {
   })
   const customer = data?.customer
 
-  if (!loading && !customer) return <MessageAuthRequired />
+  if (!loading && !customer)
+    return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
 
   return (
     <Container maxWidth='md'>
