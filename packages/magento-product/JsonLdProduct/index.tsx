@@ -43,14 +43,14 @@ export function jsonLdProductReview(props: JsonLdProductReviewFragment): Partial
   return {
     aggregateRating: {
       '@type': 'AggregateRating',
-      reviewCount: review_count, // reviews.items.length > 0 ? reviews.items.length : undefined,
-      ratingValue: (rating_summary * 0.5 * 0.1).toString(),
+      reviewCount: review_count ?? 0,
+      ratingValue: Math.max(rating_summary * 0.5 * 0.1, 1),
     },
     review: reviews.items.map((review) => ({
       '@type': 'Review',
       reviewRating: {
         '@type': 'Rating',
-        ratingValue: ((review?.average_rating || 0) * 0.5 * 0.1).toString(),
+        ratingValue: Math.max((review?.average_rating || 1) * 0.5 * 0.1, 1),
       },
       name: review?.summary,
       author: {
