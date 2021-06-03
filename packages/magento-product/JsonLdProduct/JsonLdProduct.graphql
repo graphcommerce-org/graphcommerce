@@ -18,6 +18,6 @@ fragment JsonLdProduct on ProductInterface {
     url_key
     name
   }
-  ...JsonLdProductOfferFragment
-  ...JsonLdProductReviewFragment
+  ...JsonLdProductOffer
+  ...JsonLdProductReview
 }

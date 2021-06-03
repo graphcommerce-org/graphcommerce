@@ -73,8 +73,8 @@ export default function JsonLdProduct(props: JsonLdProductProps) {
       item={{
         '@context': 'https://schema.org',
         ...jsonLdProduct(props),
-        ...jsonLdProductOffer(props as unknown as JsonLdProductOfferFragment),
-        ...jsonLdProductReview(props as unknown as JsonLdProductReviewFragment),
+        ...jsonLdProductOffer(props),
+        ...jsonLdProductReview(props),
       }}
     />
   )
