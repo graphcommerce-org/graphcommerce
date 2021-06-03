@@ -59,6 +59,7 @@ function ProductVirtual(props: Props) {
         priceCurrency={product?.price_range.minimum_price.final_price.currency ?? 'USD'}
         lowPrice={product?.price_range.minimum_price.final_price.value ?? 0}
         highPrice={product?.price_range?.maximum_price?.final_price.value ?? 0}
+        reviews={product?.reviews}
       />
 
       <ProductPageMeta {...product} />

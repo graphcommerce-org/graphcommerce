@@ -19,8 +19,8 @@ import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
-import ProductpagesContent from '../../../components/ProductpagesContent'
 import ProductUsps from '../../../components/ProductUsps'
+import ProductpagesContent from '../../../components/ProductpagesContent'
 import RowProductDescription from '../../../components/RowProductDescription'
 import RowProductFeature from '../../../components/RowProductFeature'
 import RowProductFeatureBoxed from '../../../components/RowProductFeatureBoxed'
@@ -60,6 +60,7 @@ function ProductGrouped(props: Props) {
         priceCurrency={product?.price_range.minimum_price.final_price.currency ?? 'USD'}
         lowPrice={product?.price_range.minimum_price.final_price.value ?? 0}
         highPrice={product?.price_range?.maximum_price?.final_price.value ?? 0}
+        reviews={product?.reviews}
       />
 
       <ProductPageMeta {...product} />
