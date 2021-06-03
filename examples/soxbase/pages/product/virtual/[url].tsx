@@ -54,7 +54,7 @@ function ProductVirtual(props: Props) {
     return <></>
 
   return (
-    <div>
+    <>
       <JsonLd<Product>
         item={{
           '@context': 'https://schema.org',
@@ -91,7 +91,7 @@ function ProductVirtual(props: Props) {
         }}
         content={productpages?.[0].content}
       />
-    </div>
+    </>
   )
 }
 

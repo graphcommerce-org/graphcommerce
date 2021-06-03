@@ -54,7 +54,7 @@ function ProductGrouped(props: Props) {
     return <></>
 
   return (
-    <div>
+    <>
       <JsonLd<Product>
         item={{
           '@context': 'https://schema.org',
@@ -104,7 +104,7 @@ function ProductGrouped(props: Props) {
         }}
         content={productpages?.[0].content}
       />
-    </div>
+    </>
   )
 }
 

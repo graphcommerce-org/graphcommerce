@@ -54,7 +54,7 @@ function ProductSimple(props: Props) {
     return <></>
 
   return (
-    <div>
+    <>
       <JsonLd<Product>
         item={{
           '@context': 'https://schema.org',
@@ -92,7 +92,7 @@ function ProductSimple(props: Props) {
         }}
         content={productpages?.[0].content}
       />
-    </div>
+    </>
   )
 }
 

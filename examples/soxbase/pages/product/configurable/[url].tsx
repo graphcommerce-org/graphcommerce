@@ -72,7 +72,7 @@ function ProductConfigurable(props: Props) {
     return <></>
 
   return (
-    <div>
+    <>
       <JsonLd<Product>
         item={{
           '@context': 'https://schema.org',
@@ -131,7 +131,7 @@ function ProductConfigurable(props: Props) {
           content={productpages?.[0].content}
         />
       </ConfigurableContextProvider>
-    </div>
+    </>
   )
 }
 
