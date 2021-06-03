@@ -8,8 +8,6 @@ import { ProductListItemVirtual } from '@reachdigital/magento-product-virtual'
 import { ProductListItemRenderer } from '@reachdigital/magento-product/ProductListItems/renderer'
 import React from 'react'
 
-console.log(ProductListItemDownloadable)
-
 const Subtitle = (props: TypographyProps) => (
   <Typography component='span' variant='subtitle2' {...props} />
 )
