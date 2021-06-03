@@ -49,6 +49,8 @@ function AccountIndexPage() {
   if (!loading && !customer)
     return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
 
+  const latestOrderDate = new Date(latestOrder?.order_date ?? new Date())
+
   return (
     <Container maxWidth='md'>
       <NoSsr>
@@ -80,7 +82,9 @@ function AccountIndexPage() {
             subtitle={
               latestOrder ? (
                 <>
-                  <TimeAgo date={new Date(latestOrder?.order_date ?? new Date())} locale={locale} />
+                  <time dateTime={latestOrderDate.toDateString()}>
+                    <TimeAgo date={latestOrderDate} locale={locale} />
+                  </time>
                   {', '}
                   {latestOrder?.items && (
                     <OrderStateLabelInline
