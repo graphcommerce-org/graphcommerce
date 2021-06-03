@@ -1,7 +1,17 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import {
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  makeStyles,
+  Theme,
+  Typography,
+} from '@material-ui/core'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconChevronRight } from '@reachdigital/next-ui/icons'
+import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
 
@@ -9,32 +19,47 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       width: '100%',
-      padding: theme.spacings.xs,
+      height: responsiveVal(88, 104),
       fontSize: theme.typography.fontSize,
-      borderBottom: `1px solid ${theme.palette.divider}`,
+      padding: 0,
       borderRadius: 0,
-      '& > span': {
-        display: 'flex',
-        justifyContent: 'start',
+      '&:hover': {
+        background: theme.palette.background.highlight,
       },
-      '& span.MuiButton-endIcon': {
-        justifyContent: 'flex-end',
-        flex: '1 1',
+      '&:disabled': {
+        background: theme.palette.background.highlight,
       },
       '&:focus': {
         // fix: disableElevation does not work when button is focused
         boxShadow: 'none',
       },
     },
-    startIcon: {
+    icon: {
+      minWidth: `${responsiveVal(40, 56)}`,
+    },
+    borderBottom: {
+      borderBottom: `1px solid ${theme.palette.divider}`,
+    },
+    heading: {
+      fontWeight: 400,
+      fontSize: theme.typography.h4.fontSize,
+      [theme.breakpoints.up('md')]: {
+        fontSize: theme.typography.h6.fontSize,
+      },
+    },
+    subheading: {
+      display: 'block',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
       color: theme.palette.primary.mutedText,
-      marginRight: theme.spacings.xxs,
+      ...theme.typography.caption,
+      [theme.breakpoints.up('md')]: {
+        ...theme.typography.body2,
+      },
     },
-    disabled: {
-      backgroundColor: '#fff',
-    },
-    childText: {
-      alignSelf: 'flex-start',
+    itemLink: {
+      padding: 0,
     },
   }),
   { name: 'AccountMenuItem' },
@@ -42,34 +67,51 @@ const useStyles = makeStyles(
 
 export type AccountMenuItemProps = {
   iconSrc: string
-  children: React.ReactNode
-} & Omit<ButtonProps, 'endIcon' | 'startIcon' | 'disableElevation'>
+  title: React.ReactNode
+  subtitle?: React.ReactNode
+  endIcon?: React.ReactNode
+  noBorderBottom?: boolean
+} & Omit<ButtonProps, 'endIcon' | 'startIcon' | 'disableElevation'> &
+  UseStyles<typeof useStyles>
 
 export default function AccountMenuItem(props: AccountMenuItemProps) {
-  const { children, iconSrc, href, disabled, ...buttonProps } = props
-  const { childText, ...classes } = useStyles()
+  const {
+    title,
+    subtitle,
+    iconSrc,
+    endIcon,
+    href,
+    disabled,
+    noBorderBottom = false,
+    ...buttonProps
+  } = props
+  const classes = useStyles(props)
 
   const button = (
     <Button
       variant='contained'
-      endIcon={
-        <SvgImage
-          src={iconChevronRight}
-          alt='chevron right'
-          size='small'
-          loading='eager'
-          shade='muted'
-        />
-      }
-      startIcon={
-        <SvgImage src={iconSrc} alt={iconSrc} size='small' loading='eager' shade='muted' />
-      }
       disableElevation
       disabled={disabled}
-      classes={classes}
+      classes={{ root: classes.root }}
+      className={clsx({ [classes.borderBottom]: !noBorderBottom })}
       {...buttonProps}
     >
-      <span className={childText}>{children}</span>
+      <ListItem disableGutters>
+        <ListItemIcon className={classes.icon}>
+          <SvgImage src={iconSrc} alt={iconSrc} size='medium' loading='eager' shade='muted' />
+        </ListItemIcon>
+        <ListItemText
+          primary={
+            <Typography variant='h6' component='span' className={classes.heading}>
+              {title}
+            </Typography>
+          }
+          secondary={<span className={classes.subheading}>{subtitle}</span>}
+        />
+        {endIcon ?? (
+          <SvgImage src={iconChevronRight} alt='chevron right' size='small' loading='eager' />
+        )}
+      </ListItem>
     </Button>
   )
 

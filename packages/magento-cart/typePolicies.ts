@@ -1,6 +1,6 @@
 import type { QueryCartArgs, ShippingCartAddress, TypedTypePolicies } from '@reachdigital/graphql'
 
-export const typePolicies: TypedTypePolicies = {
+export const cartTypePolicies: TypedTypePolicies = {
   CurrentCartId: { keyFields: [] },
   Cart: {
     fields: {

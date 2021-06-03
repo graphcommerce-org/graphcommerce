@@ -8,12 +8,13 @@ import {
   OrderDetailPageDocument,
 } from '@reachdigital/magento-customer'
 import {
-  PageMeta,
-  StoreConfigDocument,
   CountryRegionsDocument,
   CountryRegionsQuery,
+  PageMeta,
+  StoreConfigDocument,
 } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
+import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { iconBox } from '@reachdigital/next-ui/icons'
 import React from 'react'
@@ -36,6 +37,9 @@ function OrderDetailPage(props: Props) {
   const images = useOrderCardItemImages(data?.customer?.orders)
   const order = data?.customer?.orders?.items?.[0]
   const isLoading = orderId ? loading : true
+
+  if (!loading && !data?.customer)
+    return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
 
   return (
     <Container maxWidth='md'>

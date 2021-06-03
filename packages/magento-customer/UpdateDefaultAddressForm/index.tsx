@@ -1,0 +1,87 @@
+import { FormControl, FormControlLabel, FormHelperText, Switch } from '@material-ui/core'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@reachdigital/react-hook-form'
+import React, { useEffect, useMemo } from 'react'
+import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
+import { UpdateDefaultAddressDocument } from '../AccountAddresses/UpdateDefaultAddress.gql'
+
+export type AccountAddressProps = Pick<
+  AccountAddressFragment,
+  'id' | 'default_shipping' | 'default_billing'
+>
+
+export default function UpdateDefaultAddressForm(props: AccountAddressProps) {
+  const { id, default_shipping, default_billing } = props
+  const defaultValues = useMemo(
+    () => ({
+      addressId: id ?? undefined,
+      defaultBilling: !!default_billing,
+      defaultShipping: !!default_shipping,
+    }),
+    [default_billing, default_shipping, id],
+  )
+
+  const form = useFormGqlMutation(UpdateDefaultAddressDocument, {
+    mode: 'onChange',
+    defaultValues,
+  })
+
+  const { handleSubmit, control, error, reset, formState } = form
+
+  const submit = handleSubmit(() => {
+    //
+  })
+  useFormAutoSubmit({ form, submit })
+
+  useEffect(() => {
+    reset(defaultValues)
+  }, [defaultValues, reset])
+
+  return (
+    <form onSubmit={() => {}} noValidate>
+      <Controller
+        name='defaultBilling'
+        control={control}
+        render={({ field: { onChange, value, name, ref, onBlur } }) => (
+          <FormControl error={!!formState.errors.defaultBilling}>
+            <FormControlLabel
+              control={<Switch color='primary' />}
+              label='Billing address'
+              checked={value}
+              inputRef={ref}
+              onBlur={onBlur}
+              name={name}
+              onChange={(e) => onChange((e as React.ChangeEvent<HTMLInputElement>).target.checked)}
+            />
+
+            {formState.errors.defaultBilling?.message && (
+              <FormHelperText>{formState.errors.defaultBilling?.message}</FormHelperText>
+            )}
+          </FormControl>
+        )}
+      />
+      <Controller
+        name='defaultShipping'
+        control={control}
+        render={({ field: { onChange, value, name, ref, onBlur } }) => (
+          <FormControl error={!!formState.errors.defaultShipping}>
+            <FormControlLabel
+              control={<Switch color='primary' />}
+              label='Shipping address'
+              checked={value}
+              inputRef={ref}
+              onBlur={onBlur}
+              name={name}
+              onChange={(e) => onChange((e as React.ChangeEvent<HTMLInputElement>).target.checked)}
+            />
+
+            {formState.errors.defaultShipping?.message && (
+              <FormHelperText>{formState.errors.defaultShipping?.message}</FormHelperText>
+            )}
+          </FormControl>
+        )}
+      />
+      <ApolloErrorAlert error={error} />
+    </form>
+  )
+}

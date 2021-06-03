@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
-import { Theme, makeStyles, Fab } from '@material-ui/core'
+import { Fab, makeStyles, Theme } from '@material-ui/core'
 import { CartFab } from '@reachdigital/magento-cart'
-import { CustomerFab } from '@reachdigital/magento-customer'
+import { CustomerFab, CustomerMenuFabItem } from '@reachdigital/magento-customer'
 import { SearchButton } from '@reachdigital/magento-search'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import DesktopNavActions from '@reachdigital/next-ui/AppShell/DesktopNavActions'
@@ -14,7 +14,7 @@ import MenuFab from '@reachdigital/next-ui/AppShell/MenuFab'
 import MenuFabSecondaryItem from '@reachdigital/next-ui/AppShell/MenuFabSecondaryItem'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconCustomerService, iconPersonAlt, iconStar } from '@reachdigital/next-ui/icons'
+import { iconCustomerService, iconStar } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'
@@ -35,7 +35,7 @@ const useStyles = makeStyles(
       height: responsiveVal(42, 56),
     },
   }),
-  { name: 'FullPageUI' },
+  { name: 'FullPageShell' },
 )
 
 export type FullPageShellProps = Omit<DefaultPageQuery, 'pages'> &
@@ -73,6 +73,7 @@ function FullPageShell(props: FullPageShellProps) {
         <>
           <Logo />
           <DesktopNavBar {...menuProps} />
+
           <DesktopNavActions>
             {!router.pathname.startsWith('/search') && (
               <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
@@ -89,33 +90,23 @@ function FullPageShell(props: FullPageShellProps) {
               </Fab>
             </PageLink>
 
-            <CustomerFab />
+            <CustomerFab guestHref='/account/signin' authHref='/account' />
           </DesktopNavActions>
         </>
       }
     >
       <MenuFab {...menuProps} search={<SearchButton onClick={onSearchStart} />}>
-        <MenuFabSecondaryItem
-          icon={<SvgImage src={iconPersonAlt} size='small' alt='Account' loading='lazy' />}
-          href='/account'
-        >
+        <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>
           Account
-        </MenuFabSecondaryItem>
+        </CustomerMenuFabItem>
         <MenuFabSecondaryItem
-          icon={
-            <SvgImage
-              src={iconCustomerService}
-              size='small'
-              alt='Customer Service'
-              loading='lazy'
-            />
-          }
+          icon={<SvgImage src={iconCustomerService} size='small' alt='Customer Service' />}
           href='/service'
         >
           Customer Service
         </MenuFabSecondaryItem>
         <MenuFabSecondaryItem
-          icon={<SvgImage src={iconStar} size='small' alt='Wishlist' loading='lazy' />}
+          icon={<SvgImage src={iconStar} size='small' alt='Wishlist' />}
           href='/wishlist'
         >
           Wishlist

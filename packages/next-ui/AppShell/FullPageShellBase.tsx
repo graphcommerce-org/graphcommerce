@@ -29,6 +29,7 @@ const useStyles = makeStyles(
       width: '100%',
       [theme.breakpoints.up('md')]: {
         background: theme.palette.background.default,
+        justifyContent: 'unset',
       },
     },
   }),

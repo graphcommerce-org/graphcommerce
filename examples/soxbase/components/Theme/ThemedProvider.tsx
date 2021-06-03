@@ -88,8 +88,8 @@ export const defaultTheme = createMuiTheme({
       lineHeight: 1.42,
     },
     h3: {
-      fontSize: responsiveVal(22, 30),
-      fontWeight: 600,
+      fontSize: responsiveVal(18, 30),
+      fontWeight: 500,
       letterSpacing: '-0.0375em',
       lineHeight: 1.55,
     },
@@ -230,6 +230,25 @@ defaultTheme.overrides = {
       '&$checked': {
         color: defaultTheme.palette.primary.main,
       },
+    },
+  },
+  MuiSwitch: {
+    root: {
+      padding: 7,
+    },
+    track: {
+      '$colorPrimary + &': {
+        backgroundColor: defaultTheme.palette.primary,
+        borderRadius: 30,
+      },
+      '$checked$colorPrimary + &': {
+        opacity: 1,
+        backgroundColor: defaultTheme.palette.primary,
+        borderRadius: 30,
+      },
+    },
+    thumb: {
+      backgroundColor: '#fff',
     },
   },
 }
