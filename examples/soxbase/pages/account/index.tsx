@@ -26,11 +26,11 @@ import {
   iconStar,
 } from '@reachdigital/next-ui/icons'
 import React from 'react'
-import PageShell, { PageShellProps } from '../../components/AppShell/PageShell'
+import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<PageShellProps>
+type GetPageStaticProps = GetStaticProps<MinimalPageShellProps>
 
 function AccountIndexPage() {
   const { data, loading } = useQuery(AccountDashboardDocument, {
@@ -138,8 +138,8 @@ function AccountIndexPage() {
   )
 }
 
-const pageOptions: PageOptions<PageShellProps> = {
-  SharedComponent: PageShell,
+const pageOptions: PageOptions<MinimalPageShellProps> = {
+  SharedComponent: MinimalPageShell,
   sharedKey: () => 'page',
 }
 
