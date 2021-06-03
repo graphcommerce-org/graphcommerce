@@ -35,6 +35,7 @@ function SheetPage() {
 const pageOptions: PageOptions = {
   overlayGroup: 'bottom',
   SharedComponent: SheetShell,
+  sharedKey: ({ asPath }) => asPath,
 }
 SheetPage.pageOptions = pageOptions
 
