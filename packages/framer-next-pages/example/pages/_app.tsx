@@ -11,7 +11,7 @@ const Fallback = dynamic(() => import('./index'), { ssr: false })
 export default function MyApp(props: AppPropsType<Router> & { Component: PageComponent }) {
   return (
     <LazyMotion features={async () => (await import('../components/lazyMotion')).default}>
-      <FramerNextPages {...props} fallback={<Fallback />} fallbackKey='/' />
+      <FramerNextPages {...props} fallback={<Fallback title='' />} fallbackKey='/' />
     </LazyMotion>
   )
 }

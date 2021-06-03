@@ -55,6 +55,6 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult<ParsedUrlQu
 }
 
 export const getStaticProps: GetStaticProps<SheetShellProps, ParsedUrlQuery> = async (ctx) => {
-  const { sheetId } = ctx.params
-  return { props: { variant: sheetId } }
+  const sheetId = ctx.params?.sheetId
+  return { props: { variant: sheetId ?? 'top' } }
 }
