@@ -46,7 +46,7 @@ const useStyles = makeStyles(
       marginTop: theme.spacings.sm,
     },
     divider: {
-      margin: '5px 0',
+      margin: '20px 0 5px 0',
     },
     messageIcon: {
       marginBottom: '-2px',
