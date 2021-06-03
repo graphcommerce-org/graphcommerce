@@ -53,10 +53,10 @@ export default function JsonLdProduct(props: ProductJsonLdProps) {
           identifier,
           category,
           description: (description as string).replace(/(<([^>]+)>)/gi, ''),
-          offerCount: 1,
           offers: {
             '@type': 'AggregateOffer',
             itemCondition: 'https://schema.org/NewCondition',
+            offerCount: 1,
             priceCurrency,
             highPrice,
             lowPrice,
