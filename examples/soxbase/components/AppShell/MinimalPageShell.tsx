@@ -8,10 +8,10 @@ import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
 import Footer from './Footer'
 import Logo from './Logo'
 
-export type PageShellProps = Omit<DefaultPageQuery, 'pages'> &
+export type MinimalPageShellProps = Omit<DefaultPageQuery, 'pages'> &
   Omit<FullPageShellBaseProps, 'menu' | 'logo' | 'actions' | 'classes' | 'name'>
 
-function PageShell(props: PageShellProps) {
+function MinimalPageShell(props: MinimalPageShellProps) {
   const { footer, menu, children, ...uiProps } = props
   const storeConfig = useQuery(StoreConfigDocument)
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
@@ -24,4 +24,4 @@ function PageShell(props: PageShellProps) {
   )
 }
 
-export default PageShell
+export default MinimalPageShell
