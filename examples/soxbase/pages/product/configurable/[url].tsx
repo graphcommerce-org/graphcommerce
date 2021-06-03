@@ -1,23 +1,28 @@
 import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { ProductImage } from '@reachdigital/graphql'
 import ConfigurableContextProvider from '@reachdigital/magento-product-configurable/ConfigurableContext'
 import ConfigurableProductAddToCart from '@reachdigital/magento-product-configurable/ConfigurableProductAddToCart/ConfigurableProductAddToCart'
 import {
   ConfigurableProductPageDocument,
   ConfigurableProductPageQuery,
 } from '@reachdigital/magento-product-configurable/ConfigurableProductPage.gql'
-import JsonLdProduct from '@reachdigital/magento-product/JsonLdProduct'
+import {
+  jsonLdProduct,
+  jsonLdProductOffer,
+  jsonLdProductReview,
+} from '@reachdigital/magento-product/JsonLdProduct'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
 import { Money, StoreConfigDocument } from '@reachdigital/magento-store'
+import JsonLd from '@reachdigital/next-ui/JsonLd'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
+import { Product } from 'schema-dts'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import ProductUsps from '../../../components/ProductUsps'
@@ -30,8 +35,6 @@ import RowProductReviews from '../../../components/RowProductReviews'
 import RowProductSpecs from '../../../components/RowProductSpecs'
 import RowProductUpsells from '../../../components/RowProductUpsells'
 import apolloClient from '../../../lib/apolloClient'
-
-export const config = { unstable_JsPreload: false }
 
 type Props = ProductPageQuery & ConfigurableProductPageQuery
 
@@ -70,7 +73,14 @@ function ProductConfigurable(props: Props) {
 
   return (
     <div>
-      <JsonLdProduct {...product} />
+      <JsonLd<Product>
+        item={{
+          '@context': 'https://schema.org',
+          ...jsonLdProduct(product),
+          ...jsonLdProductOffer(product),
+          ...jsonLdProductReview(product),
+        }}
+      />
 
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
         <ProductPageMeta {...product} />

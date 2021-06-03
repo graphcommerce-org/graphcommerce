@@ -1,12 +1,8 @@
-import JsonLd from '@reachdigital/next-ui/JsonLd/JsonLd'
-import React from 'react'
 import { Product } from 'schema-dts'
 import { ProductImage } from '../../graphql'
 import { JsonLdProductFragment } from './JsonLdProduct.gql'
 import { JsonLdProductOfferFragment } from './JsonLdProductOffer.gql'
 import { JsonLdProductReviewFragment } from './JsonLdProductReview.gql'
-
-type JsonLdProductProps = JsonLdProductFragment
 
 export function jsonLdProduct(props: JsonLdProductFragment): Product {
   const { name, sku, media_gallery, categories, description, url_key } = props
@@ -65,17 +61,4 @@ export function jsonLdProductReview(props: JsonLdProductReviewFragment): Partial
       reviewBody: review?.text,
     })),
   }
-}
-
-export default function JsonLdProduct(props: JsonLdProductProps) {
-  return (
-    <JsonLd<Product>
-      item={{
-        '@context': 'https://schema.org',
-        ...jsonLdProduct(props),
-        ...jsonLdProductOffer(props),
-        ...jsonLdProductReview(props),
-      }}
-    />
-  )
 }
