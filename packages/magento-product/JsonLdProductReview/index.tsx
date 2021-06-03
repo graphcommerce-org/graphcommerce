@@ -21,7 +21,7 @@ export default function JsonLdProductReview(props: JsonLdProductReviewProps) {
             '@type': 'Review',
             reviewRating: {
               '@type': 'Rating',
-              ratingValue: (average_rating * 0.5).toString(),
+              ratingValue: (average_rating * 0.5 * 0.1).toString(),
             },
             name: summary,
             author: {
