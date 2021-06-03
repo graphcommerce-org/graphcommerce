@@ -1,19 +1,27 @@
 import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
+import { ProductImage } from '@reachdigital/graphql'
 import { AddToCartButton } from '@reachdigital/magento-cart'
 import {
   VirtualProductPageDocument,
   VirtualProductPageQuery,
 } from '@reachdigital/magento-product-virtual'
+import {
+  jsonLdProduct,
+  jsonLdProductReview,
+  jsonLdProductOffer,
+} from '@reachdigital/magento-product/JsonLdProduct'
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
+import JsonLd from '@reachdigital/next-ui/JsonLd'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import React from 'react'
+import { Product } from 'schema-dts'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import ProductUsps from '../../../components/ProductUsps'
@@ -47,6 +55,15 @@ function ProductVirtual(props: Props) {
 
   return (
     <>
+      <JsonLd<Product>
+        item={{
+          '@context': 'https://schema.org',
+          ...jsonLdProduct(product),
+          ...jsonLdProductOffer(product),
+          ...jsonLdProductReview(product),
+        }}
+      />
+
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
         <Typography component='h1' variant='h2'>

@@ -27,7 +27,6 @@ export type ProductSpecsProps = ProductSpecsFragment & UseStyles<typeof useStyle
 export default function ProductSpecs(props: ProductSpecsProps) {
   const { aggregations } = props
   const classes = useStyles(props)
-
   const filter = ['price', 'category_id', 'size', 'new', 'sale', 'color']
   const specs = aggregations?.filter(
     (attr) => !filter.includes(attr?.attribute_code ?? '') && attr?.options?.[0]?.value !== '0',
@@ -36,6 +35,7 @@ export default function ProductSpecs(props: ProductSpecsProps) {
   if (specs?.length === 0) {
     return null
   }
+
   return (
     <ul className={classes.specs}>
       {specs?.map((aggregation) => (

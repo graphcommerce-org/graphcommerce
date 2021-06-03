@@ -57,6 +57,7 @@ export default function ProductReview(props: ProductReviewProps) {
   if (!reviews) {
     return null
   }
+
   return (
     <div>
       {reviews.items.map((review) => (

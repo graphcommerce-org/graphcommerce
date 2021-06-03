@@ -6,16 +6,23 @@ import {
   ConfigurableContextProvider,
   ConfigurableProductAddToCart,
 } from '@reachdigital/magento-product-configurable'
+import {
+  jsonLdProduct,
+  jsonLdProductOffer,
+  jsonLdProductReview,
+} from '@reachdigital/magento-product/JsonLdProduct'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
 import { Money, StoreConfigDocument } from '@reachdigital/magento-store'
+import JsonLd from '@reachdigital/next-ui/JsonLd'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
+import { Product } from 'schema-dts'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import ProductUsps from '../../../components/ProductUsps'
@@ -29,8 +36,6 @@ import RowProductSpecs from '../../../components/RowProductSpecs'
 import RowProductUpsells from '../../../components/RowProductUpsells'
 import apolloClient from '../../../lib/apolloClient'
 
-export const config = { unstable_JsPreload: false }
-
 type Props = ProductPageQuery & ConfigurableProductPageQuery
 
 const useStyles = makeStyles(
@@ -40,7 +45,7 @@ const useStyles = makeStyles(
       marginBottom: 5,
     },
     prePrice: {
-      color: `rgba(0, 0, 0, 0.3)`,
+      color: theme.palette.primary.mutedText,
       fontSize: responsiveVal(12, 16),
     },
   }),
@@ -68,9 +73,17 @@ function ProductConfigurable(props: Props) {
 
   return (
     <>
+      <JsonLd<Product>
+        item={{
+          '@context': 'https://schema.org',
+          ...jsonLdProduct(product),
+          ...jsonLdProductOffer(product),
+          ...jsonLdProductReview(product),
+        }}
+      />
+
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
         <ProductPageMeta {...product} />
-
         <ProductPageGallery {...product}>
           <Typography paragraph>
             <Typography
