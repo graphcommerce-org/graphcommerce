@@ -13,9 +13,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.palette.grey['500'],
   },
   badge: {
-    top: 5,
-    right: 7,
-    padding: 4,
+    top: 3,
+    right: 3,
+    padding: 3,
+    [theme.breakpoints.up('md')]: {
+      top: 5,
+      right: 7,
+      padding: 4,
+    },
   },
 }))
 
