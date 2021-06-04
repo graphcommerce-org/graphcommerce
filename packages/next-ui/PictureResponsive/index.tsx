@@ -104,12 +104,12 @@ const PictureResponsive = React.forwardRef<HTMLImageElement, PictureResponsivePr
     // By default (on the server) we scale down the image for the lighthouse test for the Nexus 5X
     const [size, setSize] = useState<number>(Math.ceil(imgProps.width / 3))
 
-    useEffect(() => {
-      // Excuted on the client, when the image is rendered we can upgrade the image to high resolution.
-      if (!ref.current || !width) return () => {}
+    // Since we're using promises it can be that the component is unmounted when the promise resolves.
+    const [isUnmounted, setIsUnmounted] = useState<boolean>(false)
 
-      // Since we're using promises it can be that the component is unmounted when the promise resolves.
-      let isUnmounted = false
+    useEffect(() => {
+      // Executed on the client, when the image is rendered we can upgrade the image to high resolution.
+      if (!ref.current || !width) return () => {}
 
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       requestUpgrade(ref.current).then(() => {
@@ -119,10 +119,8 @@ const PictureResponsive = React.forwardRef<HTMLImageElement, PictureResponsivePr
         setSize(Math.ceil(width / (connectionType === '4g' ? 1 : window.devicePixelRatio)))
       })
 
-      return () => {
-        isUnmounted = true
-      }
-    }, [width, connectionType, ref])
+      return () => setIsUnmounted(true)
+    }, [width, connectionType, ref, isUnmounted])
 
     const types = Object.keys(srcSets)
     const firstSet = srcSets[types[0]] as string
