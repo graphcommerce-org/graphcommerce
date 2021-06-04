@@ -48,10 +48,6 @@ const useFilterEqualStyles = makeStyles(
           maxWidth: '72%',
         },
       },
-      '& > div > span': {
-        overflow: 'hidden',
-        whiteSpace: 'nowrap',
-      },
     },
     checkbox: {
       padding: 0,
@@ -85,6 +81,8 @@ const useFilterEqualStyles = makeStyles(
     },
     filterLabel: {
       display: 'inline',
+      overflow: 'hidden',
+      whiteSpace: 'break-spaces',
     },
   }),
   { name: 'FilterEqual' },
