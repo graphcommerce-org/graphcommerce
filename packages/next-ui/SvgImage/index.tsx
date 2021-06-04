@@ -5,7 +5,7 @@ import PictureResponsive, { PictureResponsiveProps } from '../PictureResponsive'
 import { UseStyles } from '../Styles'
 import responsiveVal from '../Styles/responsiveVal'
 
-export type SvgImageSize = 'extrasmall' | 'small' | 'medium' | 'large' | 'extralarge'
+export type SvgImageSize = 'small' | 'medium' | 'large' | 'extralarge'
 
 export type SvgImageProps = Omit<PictureResponsiveProps, 'srcSets' | 'width' | 'height'> & {
   src: React.ReactNode
@@ -42,7 +42,6 @@ export default function SvgImage(props: SvgImageProps) {
   const { src, size = 'medium', shade = 'default', ...pictureResponsiveProps } = props
 
   const baseSizes = {
-    extrasmall: 14,
     small: 24,
     medium: 32,
     large: 48,

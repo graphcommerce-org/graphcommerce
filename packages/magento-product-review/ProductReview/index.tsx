@@ -1,4 +1,6 @@
 import { Chip, makeStyles, Theme, Typography } from '@material-ui/core'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconStarYellow } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import { ProductReviewFragment } from './ProductReview.gql'
 
@@ -17,12 +19,12 @@ const useStyles = makeStyles(
       gap: theme.spacings.xs,
       alignItems: 'center',
     },
-    averageChip: {
-      fontSize: 14,
-      '& > span:first-of-type': {
-        marginLeft: 10,
-        color: '#FFDA1C',
-      },
+    icon: {
+      height: '14px',
+    },
+    label: {
+      marginBottom: '-2px',
+      ...theme.typography.subtitle2,
     },
     meta: {
       color: theme.palette.text.disabled,
@@ -65,12 +67,10 @@ export default function ProductReview(props: ProductReviewProps) {
           <div className={classes.title}>
             <Chip
               label={`${Number(review?.average_rating) / 20}/5`}
-              icon={<span>★</span>}
-              clickable
+              icon={<SvgImage src={iconStarYellow} size={10} alt='review' loading='lazy' />}
               color='default'
               variant='outlined'
-              size='medium'
-              className={classes.averageChip}
+              classes={{ icon: classes.icon, label: classes.label }}
             />
             <Typography variant='h5'> {review?.summary}</Typography>
           </div>
