@@ -2,13 +2,14 @@ import { makeStyles, Theme } from '@material-ui/core'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import PageLink from 'next/link'
 import React from 'react'
-import svgLogo from './logo.svg'
+import svgLogo from './graphcommerce.svg'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     logo: {
       width: 136,
       height: 16,
+      pointerEvents: 'all',
       [theme.breakpoints.up('md')]: {
         width: 209,
         height: 25,

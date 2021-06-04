@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
-import { Badge, Fab, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import { Fab, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import StyledBadge from '@reachdigital/next-ui/StyledBadge'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
@@ -37,14 +38,14 @@ function CustomerFabContent(props: CustomerFabContentProps) {
         size='medium'
         classes={{ root: classes.fab }}
       >
-        <Badge
+        <StyledBadge
           badgeContent={customerToken?.token ? 1 : 0}
           color={customerToken?.valid ? 'primary' : 'error'}
           variant='dot'
           classes={{ colorError: classes.colorError }}
         >
           {icon ?? <SvgImage src={iconPersonAlt} alt='Account' loading='eager' />}
-        </Badge>
+        </StyledBadge>
       </Fab>
     </PageLink>
   )

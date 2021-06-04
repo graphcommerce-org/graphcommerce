@@ -52,8 +52,6 @@ function FullPageShell(props: FullPageShellProps) {
   const storeConfig = useQuery(StoreConfigDocument)
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
 
-  const { data } = useQuery(CustomerTokenDocument)
-
   const menuProps: MenuProps = {
     menu: [
       ...(menuData?.items?.map((item) => ({
