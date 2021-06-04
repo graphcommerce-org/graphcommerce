@@ -5,12 +5,8 @@ import {
   DownloadableProductPageDocument,
   DownloadableProductPageQuery,
 } from '@reachdigital/magento-product-downloadable'
-import { ProductReviewSummary } from '@reachdigital/magento-product-review'
-import {
-  jsonLdProduct,
-  jsonLdProductOffer,
-  jsonLdProductReview,
-} from '@reachdigital/magento-product/JsonLdProduct'
+import { ProductReviewSummary, jsonLdProductReview } from '@reachdigital/magento-product-review'
+import { jsonLdProduct, jsonLdProductOffer } from '@reachdigital/magento-product/JsonLdProduct'
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'

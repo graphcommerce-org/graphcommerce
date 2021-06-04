@@ -1,16 +1,12 @@
 import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AddToCartButton } from '@reachdigital/magento-cart'
-import { ProductReviewSummary } from '@reachdigital/magento-product-review'
+import { ProductReviewSummary, jsonLdProductReview } from '@reachdigital/magento-product-review'
 import {
   SimpleProductPageDocument,
   SimpleProductPageQuery,
 } from '@reachdigital/magento-product-simple'
-import {
-  jsonLdProduct,
-  jsonLdProductOffer,
-  jsonLdProductReview,
-} from '@reachdigital/magento-product/JsonLdProduct'
+import { jsonLdProduct, jsonLdProductOffer } from '@reachdigital/magento-product/JsonLdProduct'
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'

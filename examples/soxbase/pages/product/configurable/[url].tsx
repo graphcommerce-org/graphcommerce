@@ -6,12 +6,8 @@ import {
   ConfigurableContextProvider,
   ConfigurableProductAddToCart,
 } from '@reachdigital/magento-product-configurable'
-import { ProductReviewSummary } from '@reachdigital/magento-product-review'
-import {
-  jsonLdProduct,
-  jsonLdProductOffer,
-  jsonLdProductReview,
-} from '@reachdigital/magento-product/JsonLdProduct'
+import { ProductReviewSummary, jsonLdProductReview } from '@reachdigital/magento-product-review'
+import { jsonLdProduct, jsonLdProductOffer } from '@reachdigital/magento-product/JsonLdProduct'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
