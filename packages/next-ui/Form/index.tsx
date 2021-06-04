@@ -34,13 +34,13 @@ function isDivComponent(props: FormFormProps | DivFormProps): props is DivFormPr
 }
 
 export default function Form(props: FormFormProps | DivFormProps) {
-  const { contained } = props
   const classes = useStyles(props)
-  const className = clsx(classes.root, contained && classes.contained)
 
-  return isDivComponent(props) ? (
-    <div {...props} className={className} />
-  ) : (
-    <form {...props} className={className} />
-  )
+  if (isDivComponent(props)) {
+    const { contained, ...divProps } = props
+    return <div {...divProps} className={clsx(classes.root, contained && classes.contained)} />
+  }
+
+  const { contained, ...formProps } = props
+  return <form {...formProps} className={clsx(classes.root, contained && classes.contained)} />
 }
