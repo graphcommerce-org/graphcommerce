@@ -11,30 +11,6 @@ export type ClassKeys =
   | SheetPanelClasskey
 
 const styles: Styles<ClassKeys> = {
-  // SheetDragIndicatorClassKeys
-  indicatorRoot: {
-    display: 'flex',
-    justifyContent: 'center',
-    gridArea: 'center',
-    padding: 6,
-  },
-  indicatorRoottop: {},
-  indicatorRootbottom: {
-    paddingTop: 12,
-  },
-  indicatorRootright: {
-    flexDirection: 'column-reverse',
-  },
-  indicatorRootleft: {
-    flexDirection: 'column-reverse',
-    alignItems: 'flex-end',
-  },
-  indicator: { borderRadius: 99, backgroundColor: '#ddd' },
-  indicatorleft: { width: 4, height: 18 },
-  indicatorright: { width: 4, height: 18 },
-  indicatortop: { width: 18, height: 4 },
-  indicatorbottom: { width: 18, height: 4 },
-
   // SheetBackdropClassKeys
   backdrop: {
     position: 'fixed',
@@ -89,8 +65,6 @@ const styles: Styles<ClassKeys> = {
 
   // SheetPanelClasskey
   dragHandle: {
-    backgroundColor: '#fff',
-    boxShadow: '0px -2px 16px rgba(0, 0, 0, 0.3)',
     willChange: `transform`,
     pointerEvents: 'all',
     display: 'grid',
@@ -99,27 +73,39 @@ const styles: Styles<ClassKeys> = {
   dragHandletop: {
     borderBottomRightRadius: '8px',
     borderBottomLeftRadius: '8px',
-    padding: `6px 16px 12px 16px`,
+    // padding: `6px 16px 12px 16px`,
     gridTemplate: `"left center right"`,
     gridTemplateColumns: `1fr min-content 1fr`,
+    backgroundColor: '#fff',
+    boxShadow: '0px 2px 16px rgba(0, 0, 0, 0.3)',
   },
   dragHandlebottom: {
     borderTopRightRadius: '8px',
     borderTopLeftRadius: '8px',
-    padding: 6,
+    // padding: 6,
     gridTemplate: `"left center right"`,
     gridTemplateColumns: `1fr min-content 1fr`,
+    backgroundColor: '#fff',
+    boxShadow: '0px -2px 16px rgba(0, 0, 0, 0.3)',
   },
   dragHandleleft: {
     borderTopRightRadius: '8px',
     borderBottomRightRadius: '8px',
     padding: `12px 6px 12px 0`,
     gridTemplate: `"center"`,
+    // position: 'absolute',
+    // height: '100%',
+    // zIndex: 1,
   },
   dragHandleright: {
     borderTopLeftRadius: '8px',
     borderBottomLeftRadius: '8px',
     gridTemplate: `"center"`,
+    padding: `12px 6px 12px 0`,
+
+    // position: 'absolute',
+    // height: '100%',
+    // zIndex: 1,
   },
   content: {
     backgroundColor: '#fff',
@@ -133,5 +119,33 @@ const styles: Styles<ClassKeys> = {
   contentright: {},
   back: { position: 'absolute', left: 12, top: 12 },
   forward: { position: 'absolute', right: 2, top: 12 },
+
+  // SheetDragIndicatorClassKeys
+  indicatorRoot: {
+    display: 'flex',
+    justifyContent: 'center',
+    gridArea: 'center',
+    padding: 6,
+  },
+  indicatorRoottop: {
+    paddingTop: 12,
+    paddingBottom: 12,
+  },
+  indicatorRootbottom: {
+    paddingTop: 12,
+    paddingBottom: 12,
+  },
+  indicatorRootright: {
+    flexDirection: 'column-reverse',
+  },
+  indicatorRootleft: {
+    flexDirection: 'column-reverse',
+    alignItems: 'flex-end',
+  },
+  indicator: { borderRadius: 99, backgroundColor: '#ddd' },
+  indicatorleft: { width: 4, height: 18 },
+  indicatorright: { width: 4, height: 18 },
+  indicatortop: { width: 18, height: 4 },
+  indicatorbottom: { width: 18, height: 4 },
 }
 export default styles
