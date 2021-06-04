@@ -13,8 +13,12 @@ export const useProductGridStyles = makeStyles(
   (theme: Theme) => ({
     productList: {
       display: 'grid',
-      gridColumnGap: theme.spacings.md,
-      gridRowGap: theme.spacings.lg,
+      gridColumnGap: theme.spacings.xxs,
+      gridRowGap: theme.spacings.sm,
+      [theme.breakpoints.up('md')]: {
+        gridColumnGap: theme.spacings.md,
+        gridRowGap: theme.spacings.lg,
+      },
       gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 360)}, 1fr))`,
     },
     productListsmall: {
