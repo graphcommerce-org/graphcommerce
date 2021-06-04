@@ -23,7 +23,10 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     labelInnerContainer: {
       borderBottom: 'none',
-      padding: `${theme.spacings.xxs} 0`,
+      padding: `${theme.spacings.md} 0`,
+      [theme.breakpoints.up('md')]: {
+        padding: `${theme.spacings.xxs} 0`,
+      },
     },
     toggleButtonGroup: {
       display: 'grid',
