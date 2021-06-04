@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
-import { Theme, makeStyles, Fab } from '@material-ui/core'
+import { Fab, makeStyles, Theme } from '@material-ui/core'
 import { CartFab } from '@reachdigital/magento-cart'
-import { CustomerFab } from '@reachdigital/magento-customer'
+import { CustomerFab, CustomerTokenDocument } from '@reachdigital/magento-customer'
 import { SearchButton } from '@reachdigital/magento-search'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import DesktopNavActions from '@reachdigital/next-ui/AppShell/DesktopNavActions'
@@ -47,6 +47,9 @@ function FullPageShell(props: FullPageShellProps) {
 
   const storeConfig = useQuery(StoreConfigDocument)
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
+
+  const { data } = useQuery(CustomerTokenDocument)
+  const requireAuth = Boolean(data?.customerToken && !data?.customerToken.valid)
 
   const menuProps: MenuProps = {
     menu: [
@@ -97,7 +100,7 @@ function FullPageShell(props: FullPageShellProps) {
       <MenuFab {...menuProps} search={<SearchButton onClick={onSearchStart} />}>
         <MenuFabSecondaryItem
           icon={<SvgImage src={iconPersonAlt} size='small' alt='Account' />}
-          href='/account'
+          href={requireAuth ? '/account/signin' : '/account'}
         >
           Account
         </MenuFabSecondaryItem>
