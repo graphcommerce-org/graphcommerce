@@ -44,8 +44,9 @@ const useStyles = makeStyles(
   { name: 'ShippingMethodToggleButton' },
 )
 
-export type AvailableShippingMethodProps = AvailableShippingMethodFragment &
-  Omit<ToggleButtonProps, 'size'> & { showAmountLabel?: boolean } & UseStyles<typeof useStyles>
+export type AvailableShippingMethodProps = Omit<AvailableShippingMethodFragment, 'amount'> &
+  Omit<ToggleButtonProps, 'size'> &
+  UseStyles<typeof useStyles>
 
 const AvailableShippingMethod = React.forwardRef<any, AvailableShippingMethodProps>(
   (props, ref) => {
@@ -59,7 +60,6 @@ const AvailableShippingMethod = React.forwardRef<any, AvailableShippingMethodPro
       method_code,
       method_title,
       children,
-      showAmountLabel = true,
       ...toggleProps
     } = props
     const {
@@ -76,16 +76,13 @@ const AvailableShippingMethod = React.forwardRef<any, AvailableShippingMethodPro
         <div className={methodTitle}>
           {carrier_title} {method_title}
         </div>
-        {showAmountLabel && (
-          <>
-            {amount?.value === 0 ? (
-              <div className={clsx(amountLabel, amountLabelFree)}>Free</div>
-            ) : (
-              <div className={amountLabel}>
-                <Money {...amount} />
-              </div>
-            )}
-          </>
+
+        {amount?.value === 0 ? (
+          <div className={clsx(amountLabel, amountLabelFree)}>Free</div>
+        ) : (
+          <div className={amountLabel}>
+            <Money {...amount} />
+          </div>
         )}
 
         {error_message ? (
