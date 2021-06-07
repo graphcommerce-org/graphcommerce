@@ -81,8 +81,9 @@ export const useProductListItemStyles = makeStyles(
     overlayItem: {
       '& div': {
         margin: `${responsiveVal(3, 5)} 0`,
-        maxWidth: 20,
-        fontSize: 14,
+        gap: 0,
+        whiteSpace: 'nowrap',
+        fontSize: 12,
       },
     },
     imageContainer: ({ aspectRatio = [4, 3] }: BaseProps) => ({
