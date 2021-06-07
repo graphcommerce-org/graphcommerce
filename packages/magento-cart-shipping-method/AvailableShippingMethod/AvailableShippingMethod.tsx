@@ -1,5 +1,5 @@
 import { FormHelperText, makeStyles, Theme } from '@material-ui/core'
-import { Money } from '@reachdigital/magento-store'
+import { Money, MoneyProps } from '@reachdigital/magento-store'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import ToggleButton, { ToggleButtonProps } from '@reachdigital/next-ui/ToggleButton'
 import clsx from 'clsx'
@@ -45,8 +45,7 @@ const useStyles = makeStyles(
 )
 
 export type AvailableShippingMethodProps = Omit<AvailableShippingMethodFragment, 'amount'> &
-  Omit<ToggleButtonProps, 'size'> &
-  UseStyles<typeof useStyles>
+  Omit<ToggleButtonProps, 'size'> & { amount?: MoneyProps } & UseStyles<typeof useStyles>
 
 const AvailableShippingMethod = React.forwardRef<any, AvailableShippingMethodProps>(
   (props, ref) => {
