@@ -5,6 +5,9 @@ fragment AccountMenu on Customer {
     }
   }
   orders {
+    items {
+      ...OrderCard
+    }
     page_info {
       total_pages
     }

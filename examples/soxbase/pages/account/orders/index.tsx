@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
-import { PageOptions } from '@reachdigital/framer-next-pages'
+import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
 import { AccountDashboardOrdersDocument, AccountOrders } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
@@ -14,9 +14,15 @@ import apolloClient from '../../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountOrdersPage() {
+  const { query } = usePageRouter()
+
   const { data, loading } = useQuery(AccountDashboardOrdersDocument, {
     fetchPolicy: 'cache-and-network',
     ssr: false,
+    variables: {
+      pageSize: 5,
+      currentPage: Number(query?.page ?? 1),
+    },
   })
   const customer = data?.customer
 
