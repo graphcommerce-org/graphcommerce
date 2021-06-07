@@ -7,6 +7,9 @@ module.exports = {
   generateRobotsTxt: true,
   exclude: ['*/account*', '*/cart*', '*/checkout*', '*/test/*', '/test/*'],
   robotsTxtOptions: {
-    policies: [{ userAgent: '*', disallow: '/' }],
+    policies: [
+      { userAgent: '*', disallow: '/' },
+      { userAgent: 'Googlebot-Image', disallow: '/' },
+    ],
   },
 }
