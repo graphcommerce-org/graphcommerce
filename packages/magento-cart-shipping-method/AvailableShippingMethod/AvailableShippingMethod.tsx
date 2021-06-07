@@ -4,6 +4,7 @@ import { UseStyles } from '@reachdigital/next-ui/Styles'
 import ToggleButton, { ToggleButtonProps } from '@reachdigital/next-ui/ToggleButton'
 import clsx from 'clsx'
 import React from 'react'
+import { SetOptional } from 'type-fest'
 import { AvailableShippingMethodFragment } from './AvailableShippingMethod.gql'
 
 const useStyles = makeStyles(
@@ -44,7 +45,7 @@ const useStyles = makeStyles(
   { name: 'ShippingMethodToggleButton' },
 )
 
-export type AvailableShippingMethodProps = AvailableShippingMethodFragment &
+export type AvailableShippingMethodProps = SetOptional<AvailableShippingMethodFragment, 'amount'> &
   Omit<ToggleButtonProps, 'size'> &
   UseStyles<typeof useStyles>
 
@@ -76,7 +77,8 @@ const AvailableShippingMethod = React.forwardRef<any, AvailableShippingMethodPro
         <div className={methodTitle}>
           {carrier_title} {method_title}
         </div>
-        {amount.value === 0 ? (
+
+        {amount?.value === 0 ? (
           <div className={clsx(amountLabel, amountLabelFree)}>Free</div>
         ) : (
           <div className={amountLabel}>
