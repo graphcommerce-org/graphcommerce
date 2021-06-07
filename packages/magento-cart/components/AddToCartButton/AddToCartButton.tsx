@@ -19,6 +19,10 @@ const useStyles = makeStyles(
       marginTop: theme.spacings.sm,
       width: '100%',
     },
+    messageIcon: {
+      marginBottom: '-2px',
+      marginRight: 5,
+    },
   }),
   { name: 'AddToCart' },
 )
@@ -88,10 +92,15 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
           </PageLink>
         }
       >
-        <Box alignItems='center' display='flex'>
-          <SvgImage src={iconCheckmark} loading='eager' alt='checkmark' />
+        <div>
+          <SvgImage
+            src={iconCheckmark}
+            loading='eager'
+            alt='checkmark'
+            className={classes.messageIcon}
+          />
           <strong>{name}</strong>&nbsp;has been added to your shopping cart!
-        </Box>
+        </div>
       </MessageSnackbar>
     </form>
   )

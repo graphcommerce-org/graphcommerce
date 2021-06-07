@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Divider, makeStyles, Theme, Box } from '@material-ui/core'
+import { Divider, makeStyles, Theme } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer'
@@ -47,6 +47,10 @@ const useStyles = makeStyles(
     },
     divider: {
       margin: '5px 0',
+    },
+    messageIcon: {
+      marginBottom: '-2px',
+      marginRight: 5,
     },
   }),
   { name: 'ConfigurableAddToCart' },
@@ -152,10 +156,16 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
           </PageLink>
         }
       >
-        <Box alignItems='center' display='flex'>
-          <SvgImage src={iconCheckmark} loading='eager' alt='checkmark' />
+        <div>
+          <SvgImage
+            src={iconCheckmark}
+            size='small'
+            loading='eager'
+            alt='checkmark'
+            className={classes.messageIcon}
+          />
           <strong>{name}</strong>&nbsp;has been added to your shopping cart!
-        </Box>
+        </div>
       </MessageSnackbar>
     </form>
   )

@@ -98,10 +98,10 @@ function AppShellTestIndex(props: Props) {
           </Button>
         }
       >
-        <Box alignItems='center' display='flex'>
+        <div>
           <SvgImage src={iconCheckmark} loading='eager' alt='checkmark' />
           <strong>Blissful Brush</strong>&nbsp;has been added to your shopping cart!
-        </Box>
+        </div>
       </MessageSnackbar>
     </>
   )
