@@ -7,7 +7,7 @@ export default function PaymentMethodOptions(props: PaymentMethodOptionsProps) {
   const { selectedMethod, selectedModule } = usePaymentMethodContext()
 
   return (
-    <AnimatePresence>
+    <AnimatePresence initial={false}>
       {selectedModule && selectedMethod && (
         <AnimatedRow key={selectedMethod.code}>
           <selectedModule.PaymentOptions {...selectedMethod} {...props} />
