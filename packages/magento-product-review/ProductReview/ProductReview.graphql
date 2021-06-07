@@ -1,4 +1,4 @@
-fragment ProductReview on ProductInterface {
+fragment ProductReview on ProductInterface @inject(into: ["ProductPageItem"]) {
   reviews(pageSize: 10, currentPage: $reviewPage) {
     items {
       average_rating

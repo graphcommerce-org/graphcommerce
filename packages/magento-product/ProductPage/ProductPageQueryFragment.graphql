@@ -4,15 +4,7 @@ fragment ProductPageQueryFragment on Query {
     items {
       __typename
       uid
-      ...ProductPageCategory
-      ...ProductPageDescription
-      ...ProductPageGallery
-      ...ProductPageMeta
-      ...ProductPagePrice
-      ...ProductReview
-      ...ProductReviewSummary
-      ...UpsellProducts
-      ...RelatedProducts
+      ...ProductPageItem
     }
   }
 }

@@ -1,0 +1,5 @@
+fragment JsonLdProductReview on ProductInterface @inject(into: ["ProductPageItem"]) {
+  ...ProductReview
+  review_count
+  rating_summary
+}
