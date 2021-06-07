@@ -1,6 +1,8 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { Link, makeStyles, Theme } from '@material-ui/core'
+import Pagination from '@reachdigital/next-ui/Pagination'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import clsx from 'clsx'
+import PageLink from 'next/link'
 import React from 'react'
 import NoOrdersFound from '../NoOrdersFound'
 import OrderCard from '../OrderCard'
@@ -33,6 +35,9 @@ export default function AccountOrders(props: AccountOrdersProps) {
   const amountLatestOrders = 2
   const images = useOrderCardItemImages(orders)
 
+  const pageInfo = orders?.page_info
+  const isFirstPage = pageInfo?.current_page === 1
+
   // whenever it's possible, pick last {amountLatestOrders} items, then reverse the resulting array,
   // because we want to render the latest order first,
   // but the API returns the orders in ASC order...
@@ -40,24 +45,39 @@ export default function AccountOrders(props: AccountOrdersProps) {
     .slice(Math.max(orders?.items?.length - 2, 0), orders?.items?.length)
     .reverse()
 
-  const olderOrders = orders?.items.slice(0, Math.max(orders?.items?.length - 2, 0)).reverse()
+  const olderOrders = isFirstPage
+    ? orders?.items.slice(0, Math.max(orders?.items?.length - 2, 0)).reverse()
+    : orders?.items
 
   return (
     <div className={classes.ordersContainer}>
-      <SectionContainer label='Latest orders'>
-        {latestOrders?.map(
-          (order) => order && <OrderCard key={order.number} {...order} images={images} />,
-        )}
-        {orders?.items && !orders?.items?.length && <NoOrdersFound />}
-      </SectionContainer>
-
-      {orders?.items && orders?.items?.length >= amountLatestOrders + 1 && (
-        <SectionContainer label='Older' className={clsx(classes.olderOrdersContainer)}>
-          {olderOrders?.map(
+      {isFirstPage && (
+        <SectionContainer label='Latest orders'>
+          {latestOrders?.map(
             (order) => order && <OrderCard key={order.number} {...order} images={images} />,
           )}
+          {orders?.items && !orders?.items?.length && <NoOrdersFound />}
         </SectionContainer>
       )}
+
+      {orders?.items &&
+        ((isFirstPage && orders?.items?.length >= amountLatestOrders + 1) || !isFirstPage) && (
+          <SectionContainer label='Older' className={clsx(classes.olderOrdersContainer)}>
+            {olderOrders?.map(
+              (order) => order && <OrderCard key={order.number} {...order} images={images} />,
+            )}
+          </SectionContainer>
+        )}
+
+      <Pagination
+        count={pageInfo?.total_pages ?? 1}
+        page={pageInfo?.current_page ?? 1}
+        renderLink={(p: number, icon: React.ReactNode) => (
+          <PageLink href={p === 1 ? '/account/orders' : `/account/orders/page/${p}`} passHref>
+            <Link color='primary'>{icon}</Link>
+          </PageLink>
+        )}
+      />
     </div>
   )
 }

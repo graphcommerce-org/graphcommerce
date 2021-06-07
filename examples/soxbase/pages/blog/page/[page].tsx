@@ -1,6 +1,6 @@
-import { Fab, Link } from '@material-ui/core'
+import { Link } from '@material-ui/core'
 import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
-import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import Pagination from '@reachdigital/next-ui/Pagination'
 import { GetStaticPaths } from 'next'

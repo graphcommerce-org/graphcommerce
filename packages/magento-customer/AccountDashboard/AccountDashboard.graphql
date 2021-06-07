@@ -2,7 +2,6 @@ query AccountDashboard {
   customer {
     ...AccountHeader
     ...AccountMenu
-    ...AccountOrders
     reviews {
       ...AccountReviews
     }
