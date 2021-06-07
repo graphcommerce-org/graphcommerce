@@ -83,6 +83,8 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
                       available={false}
                       carrier_code='none'
                       carrier_title='No Shipping methods available'
+                      amount={{ value: 0, currency: 'EUR' }}
+                      showAmountLabel={false}
                     >
                       Please fill in your address to see shipping methods
                     </AvailableShippingMethod>
