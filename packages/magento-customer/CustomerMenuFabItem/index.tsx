@@ -1,15 +1,26 @@
 import { useQuery } from '@apollo/client'
-import { Badge, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import { makeStyles, NoSsr, Theme } from '@material-ui/core'
 import MenuFabSecondaryItem from '@reachdigital/next-ui/AppShell/MenuFabSecondaryItem'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconPersonAlt } from '@reachdigital/next-ui/icons'
 import React from 'react'
+import StyledBadge from '../../next-ui/StyledBadge'
 import { CustomerTokenDocument, CustomerTokenQuery } from '../CustomerToken.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
   colorError: {
     backgroundColor: theme.palette.grey['500'],
+  },
+  badge: {
+    top: 3,
+    right: 3,
+    padding: 3,
+    [theme.breakpoints.up('md')]: {
+      top: 5,
+      right: 7,
+      padding: 4,
+    },
   },
 }))
 
@@ -28,14 +39,14 @@ function CustomerMenuFabItemContent(props: CustomerMenuFabItemProps) {
   return (
     <MenuFabSecondaryItem
       icon={
-        <Badge
+        <StyledBadge
           badgeContent={customerToken?.token ? 1 : 0}
           color={customerToken?.valid ? 'primary' : 'error'}
           variant='dot'
-          classes={{ colorError: classes.colorError }}
+          classes={{ colorError: classes.colorError, badge: classes.badge }}
         >
           {icon ?? <SvgImage src={iconPersonAlt} size='small' alt='Account' />}
-        </Badge>
+        </StyledBadge>
       }
       href={requireAuth ? guestHref : authHref}
     >

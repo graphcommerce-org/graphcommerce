@@ -1,7 +1,11 @@
 import { useQuery } from '@apollo/client'
 import { Fab, makeStyles, Theme } from '@material-ui/core'
 import { CartFab } from '@reachdigital/magento-cart'
-import { CustomerFab, CustomerMenuFabItem } from '@reachdigital/magento-customer'
+import {
+  CustomerFab,
+  CustomerMenuFabItem,
+  CustomerTokenDocument,
+} from '@reachdigital/magento-customer'
 import { SearchButton } from '@reachdigital/magento-search'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import DesktopNavActions from '@reachdigital/next-ui/AppShell/DesktopNavActions'

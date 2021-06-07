@@ -1,5 +1,6 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
+import Button from '../../../Button'
 import { UseStyles } from '../../../Styles'
 
 const useStyles = makeStyles(
@@ -12,8 +13,11 @@ const useStyles = makeStyles(
       border: `1px solid ${theme.palette.grey[300]}`,
       padding: `${theme.spacings.sm}`,
       borderRadius: '6px',
-      cursor: 'pointer',
       textAlign: 'center',
+      color: theme.palette.primary.contrastText,
+    },
+    link: {
+      textDecoration: 'none',
     },
   }),
   { name: 'IconBlock' },
@@ -23,17 +27,30 @@ type IconBlockProps = UseStyles<typeof useStyles> & {
   title: string
   icon: React.ReactNode
   children: React.ReactNode
+  href?: string
 }
 
 export default function IconBlock(props: IconBlockProps) {
-  const { title, children, icon } = props
+  const { title, children, icon, href } = props
   const classes = useStyles(props)
 
-  return (
-    <div className={classes.block}>
+  const content = (
+    <>
       {icon}
       <Typography variant='h6'>{title}</Typography>
       {children}
-    </div>
+    </>
   )
+
+  if (href) {
+    return (
+      <a href={href} className={classes.link}>
+        <Button variant='text' color='primary' className={classes.block}>
+          <div>{content}</div>
+        </Button>
+      </a>
+    )
+  }
+
+  return <div className={classes.block}>{content}</div>
 }

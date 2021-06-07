@@ -105,7 +105,7 @@ const PictureResponsive = React.forwardRef<HTMLImageElement, PictureResponsivePr
     const [size, setSize] = useState<number>(Math.ceil(imgProps.width / 3))
 
     useEffect(() => {
-      // Excuted on the client, when the image is rendered we can upgrade the image to high resolution.
+      // Executed on the client, when the image is rendered we can upgrade the image to high resolution.
       if (!ref.current || !width) return () => {}
 
       // Since we're using promises it can be that the component is unmounted when the promise resolves.
@@ -153,7 +153,7 @@ const PictureResponsive = React.forwardRef<HTMLImageElement, PictureResponsivePr
                 as='image'
                 // @ts-expect-error: imagesrcset is not yet in the link element type
                 imagesrcset={firstSet}
-                imagesizes={`${size}px`}
+                imagesizes={`${Math.ceil(imgProps.width / 3)}px`}
                 key={firstSet}
               />
             )}
