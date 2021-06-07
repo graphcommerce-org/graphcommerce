@@ -76,7 +76,7 @@ const AvailableShippingMethod = React.forwardRef<any, AvailableShippingMethodPro
         <div className={methodTitle}>
           {carrier_title} {method_title}
         </div>
-        {amount.value === 0 ? (
+        {amount?.value === 0 ? (
           <div className={clsx(amountLabel, amountLabelFree)}>Free</div>
         ) : (
           <div className={amountLabel}>
