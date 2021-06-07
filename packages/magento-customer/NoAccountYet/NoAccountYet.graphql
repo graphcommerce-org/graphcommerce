@@ -1,4 +1,4 @@
-query Cart($cartId: String!) {
+query NoAccountYet($cartId: String!) {
   cart(cart_id: $cartId) {
     __typename
     id

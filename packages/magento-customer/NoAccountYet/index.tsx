@@ -1,12 +1,12 @@
 import { useQuery } from '@apollo/client'
 import { makeStyles, TextField, Theme, Typography } from '@material-ui/core'
-import { CartDocument } from '@reachdigital/magento-cart'
 import Button from '@reachdigital/next-ui/Button'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import { AnimatePresence, m } from 'framer-motion'
 import React, { useState } from 'react'
 import SignUpFormInline from '../SignUpFormInline'
+import { NoAccountYetDocument } from './NoAccountYet.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -46,14 +46,16 @@ export default function NoAccountYet(props: NoAccountYetProps) {
   // todo: error form handling
   // todo: why is my email info@reachdigital.nl when I entered test@testje.nl?
 
-  const { loading, data } = useQuery(CartDocument, {
-    fetchPolicy: 'network-only',
+  const { loading, data } = useQuery(NoAccountYetDocument, {
+    fetchPolicy: 'cache-and-network',
     variables: {
       cartId: cartId ?? '',
     },
   })
   const cart = data?.cart
   const { firstname, lastname } = cart?.shipping_addresses?.[0] ?? {}
+
+  console.log(cart)
 
   return (
     <AnimatePresence>
