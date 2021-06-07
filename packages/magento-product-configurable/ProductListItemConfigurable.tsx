@@ -27,6 +27,10 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
     configurable_options,
     children,
     swatchLocations = { bottomLeft: [], bottomRight: [], topLeft: [], topRight: [] },
+    bottomLeft,
+    bottomRight,
+    topLeft,
+    topRight,
     ...configurableProduct
   } = props
   const { params } = useProductListParamsContext()
@@ -65,6 +69,7 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
 
   // merge unused swatches with the swatches assigned to the bottom right corner
   const usedSwatchAttrCodes = Object.values(swatchLocations).flat()
+
   const unusedSwatchAttrCodes =
     configurable_options
       ?.filter((option) => !usedSwatchAttrCodes.includes(option?.attribute_code ?? ''))
@@ -76,28 +81,40 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
     <ProductListItem
       {...productProps}
       topLeft={
-        <SwatchList
-          attributes={swatchLocations.topLeft}
-          configurable_options={configurable_options}
-        />
+        <>
+          {topLeft}
+          <SwatchList
+            attributes={swatchLocations.topLeft}
+            configurable_options={configurable_options}
+          />
+        </>
       }
       topRight={
-        <SwatchList
-          attributes={swatchLocations.topRight}
-          configurable_options={configurable_options}
-        />
+        <>
+          {topRight}
+          <SwatchList
+            attributes={swatchLocations.topRight}
+            configurable_options={configurable_options}
+          />
+        </>
       }
       bottomLeft={
-        <SwatchList
-          attributes={swatchLocations.bottomLeft}
-          configurable_options={configurable_options}
-        />
+        <>
+          {bottomLeft}
+          <SwatchList
+            attributes={swatchLocations.bottomLeft}
+            configurable_options={configurable_options}
+          />
+        </>
       }
       bottomRight={
-        <SwatchList
-          attributes={swatchLocations.bottomRight}
-          configurable_options={configurable_options}
-        />
+        <>
+          {bottomRight}
+          <SwatchList
+            attributes={swatchLocations.bottomRight}
+            configurable_options={configurable_options}
+          />
+        </>
       }
     >
       {Actions && <Actions {...configurableProduct} variant={matchingVariants?.[0]} />}

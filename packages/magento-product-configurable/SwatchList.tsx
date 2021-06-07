@@ -12,7 +12,11 @@ type SwatchListProps = {
   configurable_options: Maybe<ProductListItemConfigurableFragment['configurable_options']>
 }
 
-const renderer: SwatchTypeRenderer = { TextSwatchData, ImageSwatchData, ColorSwatchData }
+const renderer: SwatchTypeRenderer = {
+  TextSwatchData,
+  ImageSwatchData,
+  ColorSwatchData,
+}
 
 export default function SwatchList({ attributes, configurable_options }: SwatchListProps) {
   const options =

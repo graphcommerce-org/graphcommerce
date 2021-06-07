@@ -1,15 +1,12 @@
 import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AddToCartButton } from '@reachdigital/magento-cart'
+import { ProductReviewSummary, jsonLdProductReview } from '@reachdigital/magento-product-review'
 import {
   SimpleProductPageDocument,
   SimpleProductPageQuery,
 } from '@reachdigital/magento-product-simple'
-import {
-  jsonLdProduct,
-  jsonLdProductOffer,
-  jsonLdProductReview,
-} from '@reachdigital/magento-product/JsonLdProduct'
+import { jsonLdProduct, jsonLdProductOffer } from '@reachdigital/magento-product/JsonLdProduct'
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
@@ -66,13 +63,16 @@ function ProductSimple(props: Props) {
 
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
-        <Typography component='h1' variant='h2'>
+        <Typography component='h1' variant='h2' paragraph>
           {product.name}
         </Typography>
+        <ProductReviewSummary {...product} />
+
         <AddToCartButton
           mutation={ProductAddToCartDocument}
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
+          price={product.price_range.minimum_price.regular_price}
         />
         <ProductWeight weight={typeProduct?.weight} />
       </ProductPageGallery>

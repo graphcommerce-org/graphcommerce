@@ -1,0 +1,11 @@
+fragment ProductPageItem on ProductInterface @injectable {
+  __typename
+  uid
+  ...ProductPageCategory
+  ...ProductPageDescription
+  ...ProductPageGallery
+  ...ProductPageMeta
+  ...ProductPagePrice
+  ...UpsellProducts
+  ...RelatedProducts
+}

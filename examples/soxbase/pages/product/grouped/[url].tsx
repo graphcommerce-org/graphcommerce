@@ -5,11 +5,8 @@ import {
   GroupedProductPageDocument,
   GroupedProductPageQuery,
 } from '@reachdigital/magento-product-grouped'
-import {
-  jsonLdProduct,
-  jsonLdProductOffer,
-  jsonLdProductReview,
-} from '@reachdigital/magento-product/JsonLdProduct'
+import { jsonLdProductReview } from '@reachdigital/magento-product-review'
+import { jsonLdProduct, jsonLdProductOffer } from '@reachdigital/magento-product/JsonLdProduct'
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
@@ -80,6 +77,7 @@ function ProductGrouped(props: Props) {
                       mutation={ProductAddToCartDocument}
                       variables={{ sku: item.product.sku ?? '', quantity: item.qty || 1 }}
                       name={product.name ?? ''}
+                      price={product.price_range.minimum_price.regular_price}
                     />
                   </div>
                 </li>

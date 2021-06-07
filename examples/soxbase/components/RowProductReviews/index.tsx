@@ -1,4 +1,4 @@
-import ProductReview, { ProductReviewProps } from '@reachdigital/magento-product/ProductReview'
+import { ProductReview, ProductReviewProps } from '@reachdigital/magento-product-review'
 import Row from '@reachdigital/next-ui/Row'
 import SectionHeader from '@reachdigital/next-ui/SectionHeader'
 import React from 'react'

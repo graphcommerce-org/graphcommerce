@@ -1,7 +1,8 @@
 import { TypedDocumentNode, useQuery } from '@apollo/client'
-import { Box, makeStyles, Theme } from '@material-ui/core'
+import { Box, Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import { ProductInterface } from '@reachdigital/graphql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer'
+import { Money, MoneyProps } from '@reachdigital/magento-store'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
@@ -23,6 +24,13 @@ const useStyles = makeStyles(
       marginBottom: '-2px',
       marginRight: 5,
     },
+    price: {
+      fontWeight: theme.typography.fontWeightBold,
+      margin: `${theme.spacings.sm} 0`,
+    },
+    divider: {
+      margin: `${theme.spacings.xs} 0`,
+    },
   }),
   { name: 'AddToCart' },
 )
@@ -34,9 +42,10 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
     mutation: TypedDocumentNode<Q, V>
     variables: Omit<V, 'cartId'>
     name: string
+    price: MoneyProps
   } & Omit<ButtonProps, 'type' | 'name'>,
 ) {
-  const { name, mutation, variables, ...buttonProps } = props
+  const { name, mutation, variables, price, ...buttonProps } = props
 
   const form = useFormGqlMutationCart<Q, V>(mutation, {
     defaultValues: variables as UnpackNestedValue<DeepPartial<V>>,
@@ -50,6 +59,12 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
 
   return (
     <form onSubmit={submitHandler} noValidate>
+      <Divider className={classes.divider} />
+
+      <Typography variant='h4' className={classes.price}>
+        <Money {...price} />
+      </Typography>
+
       <TextInputNumber
         variant='outlined'
         error={formState.isSubmitted && !!formState.errors.quantity}

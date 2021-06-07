@@ -1,0 +1,4 @@
+fragment ProductReviewSummary on ProductInterface
+@inject(into: ["ProductListItem", "ProductPageItem"]) {
+  rating_summary
+}

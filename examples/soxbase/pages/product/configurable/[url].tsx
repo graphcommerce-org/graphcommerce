@@ -6,11 +6,8 @@ import {
   ConfigurableContextProvider,
   ConfigurableProductAddToCart,
 } from '@reachdigital/magento-product-configurable'
-import {
-  jsonLdProduct,
-  jsonLdProductOffer,
-  jsonLdProductReview,
-} from '@reachdigital/magento-product/JsonLdProduct'
+import { ProductReviewSummary, jsonLdProductReview } from '@reachdigital/magento-product-review'
+import { jsonLdProduct, jsonLdProductOffer } from '@reachdigital/magento-product/JsonLdProduct'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
@@ -86,21 +83,17 @@ function ProductConfigurable(props: Props) {
         <ProductPageMeta {...product} />
         <ProductPageGallery {...product}>
           <Typography paragraph>
-            <Typography
-              component='span'
-              className={classes.prePrice}
-              variant='body1'
-              display='inline'
-            >
+            <Typography component='span' className={classes.prePrice} variant='body1'>
               As low as &nbsp;
             </Typography>
-            <Typography component='span' variant='h5' display='inline'>
+            <Typography component='span' variant='h5'>
               <Money {...product.price_range.minimum_price.regular_price} />
             </Typography>
           </Typography>
           <Typography component='h1' variant='h2' className={classes.productName}>
             {product.name}
           </Typography>
+          <ProductReviewSummary {...product} />
           <ConfigurableProductAddToCart
             variables={{ sku: product.sku ?? '', quantity: 1 }}
             name={product.name ?? ''}

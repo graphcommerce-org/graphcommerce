@@ -19,5 +19,4 @@ fragment JsonLdProduct on ProductInterface {
     name
   }
   ...JsonLdProductOffer
-  ...JsonLdProductReview
 }
