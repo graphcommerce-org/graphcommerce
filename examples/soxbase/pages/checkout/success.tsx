@@ -1,5 +1,6 @@
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
+import NoAccountYet from '@reachdigital/magento-customer/NoAccountYet'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { useRouter } from 'next/router'
@@ -13,12 +14,15 @@ type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function ShippingPage() {
   const router = useRouter()
-  const cartId = router.query.cartId as string
+  const cartId = (router.query.cartId as string) ?? ''
 
   return (
     <Container maxWidth='md'>
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots={['noindex']} />
-      <NoSsr>Show info about cartId: {cartId}</NoSsr>
+      <NoSsr>
+        Show info about cartId: {cartId}
+        {cartId && <NoAccountYet cartId={cartId} />}
+      </NoSsr>
     </Container>
   )
 }
@@ -36,7 +40,6 @@ export default ShippingPage
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
   const staticClient = apolloClient(locale)
-
   const conf = client.query({ query: StoreConfigDocument })
 
   return {

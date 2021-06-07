@@ -1,6 +1,6 @@
 import { Container, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { useCartQuery, EmptyCart } from '@reachdigital/magento-cart'
+import { EmptyCart, useCartQuery } from '@reachdigital/magento-cart'
 import { ShippingPageDocument } from '@reachdigital/magento-cart-checkout'
 import { EmailForm } from '@reachdigital/magento-cart-email'
 import { ShippingAddressForm } from '@reachdigital/magento-cart-shipping-address'

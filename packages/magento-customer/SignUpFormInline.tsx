@@ -31,12 +31,17 @@ const useStyles = makeStyles(
 )
 
 type SignUpFormInlineProps = Pick<SignUpMutationVariables, 'email'> & {
-  helperList: React.ReactNode
+  helperList?: React.ReactNode
+} & {
+  firstname?: string
+  lastname?: string
 }
 
 export default function SignUpFormInline({
   email,
   helperList,
+  firstname,
+  lastname,
 }: PropsWithChildren<SignUpFormInlineProps>) {
   const classes = useStyles()
   const form = useFormGqlMutation<
@@ -44,7 +49,12 @@ export default function SignUpFormInline({
     SignUpMutationVariables & { confirmPassword?: string }
   >(SignUpDocument, {
     // todo(paales): This causes dirty data to be send to the backend.
-    defaultValues: { email, prefix: '-', firstname: '-', lastname: '-' },
+    defaultValues: {
+      email,
+      prefix: '-',
+      firstname: firstname ?? '-',
+      lastname: lastname ?? '-',
+    },
   })
   const { muiRegister, watch, handleSubmit, required, formState, error } = form
   const submitHandler = handleSubmit(() => {})
@@ -91,6 +101,7 @@ export default function SignUpFormInline({
               loading={formState.isSubmitting}
               color='secondary'
               variant='pill'
+              text='bold'
             >
               Sign up
             </Button>
