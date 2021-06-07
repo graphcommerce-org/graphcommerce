@@ -43,7 +43,7 @@ const useStyles = makeStyles(
     },
     prePrice: {
       color: theme.palette.primary.mutedText,
-      fontSize: responsiveVal(12, 16),
+      fontSize: responsiveVal(12, 18),
     },
   }),
   { name: 'ConfigurableProduct' },
