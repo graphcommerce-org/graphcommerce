@@ -52,9 +52,11 @@ function FullPageShell(props: FullPageShellProps) {
   const storeConfig = useQuery(StoreConfigDocument)
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
 
+  const menuItemsIncludeInMenu = menuData?.items?.filter((items) => items?.include_in_menu === 1)
+
   const menuProps: MenuProps = {
     menu: [
-      ...(menuData?.items?.map((item) => ({
+      ...(menuItemsIncludeInMenu?.map((item) => ({
         href: `/${item?.url_path}`,
         children: item?.name?.toLowerCase().includes('sale') ? (
           <span style={{ textTransform: 'uppercase', color: 'red' }}>{item.name}</span>
