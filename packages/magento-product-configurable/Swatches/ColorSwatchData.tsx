@@ -15,8 +15,8 @@ export const useStyles = makeStyles(
       borderRadius: '50%',
     },
     sizeSmall: {
-      height: 20,
-      width: 20,
+      height: responsiveVal(15, 20),
+      width: responsiveVal(15, 20),
     },
   }),
   { name: 'ColorSwatchData' },
