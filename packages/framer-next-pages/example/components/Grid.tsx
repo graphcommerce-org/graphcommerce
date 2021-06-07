@@ -12,36 +12,6 @@ export default function PostCardGrid() {
         <a className={styles.postCard}>Index Page</a>
       </Link>
 
-      <h2>Overlay</h2>
-      <div className={styles.postCardGrid}>
-        {data.map((id) => (
-          <Link key={id} href={`/single-stack/${id}`}>
-            <a
-              className={`${styles.postCard} ${
-                pageRouter.asPath === `/single-stack/${id}` && styles.postCardActive
-              }`}
-            >
-              {id}
-            </a>
-          </Link>
-        ))}
-      </div>
-
-      <h2>Stacking multiple overlays on top of each other</h2>
-      <div className={styles.postCardGrid}>
-        {data.map((id) => (
-          <Link key={id} href={`/multi-stack/${id}`}>
-            <a
-              className={`${styles.postCard} ${
-                pageRouter.asPath === `/multi-stack/${id}` && styles.postCardActive
-              }`}
-            >
-              {id}
-            </a>
-          </Link>
-        ))}
-      </div>
-
       <h2>Framer-sheet</h2>
       <div className={styles.postCardGrid}>
         <Link href='/bottom-sheet/bottom'>
@@ -80,6 +50,36 @@ export default function PostCardGrid() {
             Top Sheet
           </a>
         </Link>
+      </div>
+
+      <h2>Overlay</h2>
+      <div className={styles.postCardGrid}>
+        {data.map((id) => (
+          <Link key={id} href={`/single-stack/${id}`}>
+            <a
+              className={`${styles.postCard} ${
+                pageRouter.asPath === `/single-stack/${id}` && styles.postCardActive
+              }`}
+            >
+              {id}
+            </a>
+          </Link>
+        ))}
+      </div>
+
+      <h2>Stacking multiple overlays on top of each other</h2>
+      <div className={styles.postCardGrid}>
+        {data.map((id) => (
+          <Link key={id} href={`/multi-stack/${id}`}>
+            <a
+              className={`${styles.postCard} ${
+                pageRouter.asPath === `/multi-stack/${id}` && styles.postCardActive
+              }`}
+            >
+              {id}
+            </a>
+          </Link>
+        ))}
       </div>
     </div>
   )

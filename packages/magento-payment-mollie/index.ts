@@ -1,7 +1,3 @@
-import mollie_methods_ideal from './Method/Ideal'
+export * as mollie_methods from './Method/mollie_methods'
 
-export const mollie_methods = {
-  mollie_methods_ideal,
-}
-
-export { default as PaymentToggle } from './PaymentToggle/PaymentToggle'
+export { default as PaymentToggle } from './MolliePaymentToggle/MolliePaymentToggle'

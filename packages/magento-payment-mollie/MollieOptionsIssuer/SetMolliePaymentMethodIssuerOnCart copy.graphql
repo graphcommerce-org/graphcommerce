@@ -1,0 +1,9 @@
+mutation SetMolliePaymentMethodTokenOnCart($cartId: String!, $code: String!, $token: String!) {
+  setPaymentMethodOnCart(
+    input: { cart_id: $cartId, payment_method: { code: $code, mollie_card_token: $token } }
+  ) {
+    cart {
+      ...PaymentMethodUpdated
+    }
+  }
+}

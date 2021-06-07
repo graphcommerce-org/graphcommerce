@@ -1,5 +1,0 @@
-mutation CreateIdealTransaction($paymentToken: String!, $issuer: String!) {
-  createMollieTransaction(input: { payment_token: $paymentToken, issuer: $issuer }) {
-    checkout_url
-  }
-}
