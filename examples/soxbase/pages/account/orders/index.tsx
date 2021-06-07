@@ -7,23 +7,21 @@ import IconHeader from '@reachdigital/next-ui/IconHeader'
 import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { iconBox } from '@reachdigital/next-ui/icons'
-import { GetStaticPaths } from 'next'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
 
-type RouteProps = { url: string[] }
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
 
 function AccountOrdersPage() {
   const { query } = usePageRouter()
+
   const { data, loading } = useQuery(AccountDashboardOrdersDocument, {
     fetchPolicy: 'cache-and-network',
     ssr: false,
     variables: {
       pageSize: 5,
-      currentPage: Number(query?.url?.[1] ?? 1),
+      currentPage: Number(query?.page ?? 1),
     },
   })
   const customer = data?.customer
@@ -50,19 +48,6 @@ const pageOptions: PageOptions<SheetShellProps> = {
 AccountOrdersPage.pageOptions = pageOptions
 
 export default AccountOrdersPage
-
-// eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
-
-  const urls = ['account/orders']
-
-  const paths = locales
-    .map((locale) => urls.map((url) => ({ params: { url: [url] }, locale })))
-    .flat(1)
-
-  return { paths, fallback: 'blocking' }
-}
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
