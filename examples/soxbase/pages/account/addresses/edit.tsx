@@ -1,24 +1,20 @@
 import { useQuery } from '@apollo/client'
 import { Box, Container, NoSsr } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
-import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
+import { PageOptions } from '@reachdigital/framer-next-pages'
+import { AccountDashboardAddressesDocument, EditAddressForm } from '@reachdigital/magento-customer'
 import {
-  DeleteCustomerAddressForm,
-  EditAddressForm,
-  AccountDashboardAddressesDocument,
-} from '@reachdigital/magento-customer'
-
-import {
-  PageMeta,
-  StoreConfigDocument,
   CountryRegionsDocument,
   CountryRegionsQuery,
+  PageMeta,
+  StoreConfigDocument,
 } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import { iconAddresses } from '@reachdigital/next-ui/icons'
+import { useRouter } from 'next/router'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
@@ -28,7 +24,7 @@ type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function EditAddressPage(props: Props) {
   const { countries } = props
-  const router = usePageRouter()
+  const router = useRouter()
   const { addressId } = router.query
 
   const { data, loading } = useQuery(AccountDashboardAddressesDocument, {
@@ -38,7 +34,7 @@ function EditAddressPage(props: Props) {
 
   const numAddressId = Number(addressId)
   const addresses = data?.customer?.addresses
-  const address = addresses?.filter((a) => a?.id === numAddressId)?.[0]
+  const address = addresses?.find((a) => a?.id === numAddressId)
 
   if (!loading && !data?.customer)
     return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
@@ -73,10 +69,6 @@ function EditAddressPage(props: Props) {
           )}
 
           {address && !loading && <EditAddressForm countries={countries} address={address} />}
-
-          {address && !loading && (
-            <DeleteCustomerAddressForm addressId={address?.id ?? undefined} />
-          )}
         </SectionContainer>
       </NoSsr>
     </Container>

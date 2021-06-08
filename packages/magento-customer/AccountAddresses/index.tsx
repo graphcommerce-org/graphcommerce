@@ -1,6 +1,7 @@
-import { Button, makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import { CountryRegionsQuery } from '@reachdigital/magento-store'
+import Button from '@reachdigital/next-ui/Button'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import PageLink from 'next/link'
@@ -21,6 +22,7 @@ const useStyles = makeStyles(
     },
     button: {
       display: 'block',
+      maxWidth: 'max-content',
       margin: `${theme.spacings.md} auto`,
       padding: `${theme.spacings.xxs} ${theme.spacings.md}`,
     },
@@ -44,7 +46,7 @@ export default function AccountAddresses(props: AccountAddressesProps) {
           <Skeleton height={128} />
           <Skeleton height={128} />
         </div>
-        <Button className={classes.button} variant='contained' color='primary' disabled>
+        <Button className={classes.button} variant='contained' color='primary' text='bold' disabled>
           Add new address
         </Button>
       </SectionContainer>
@@ -63,13 +65,15 @@ export default function AccountAddresses(props: AccountAddressesProps) {
         <>Address was deleted</>
       </MessageSnackbar>
 
-      <PageLink href='/account/addresses/add'>
-        <a className={classes.link}>
-          <Button className={classes.button} variant='contained' color='primary'>
-            Add new address
-          </Button>
-        </a>
-      </PageLink>
+      <Button
+        className={classes.button}
+        variant='contained'
+        color='primary'
+        text='bold'
+        href='/account/addresses/add'
+      >
+        Add new address
+      </Button>
     </SectionContainer>
   )
 }
