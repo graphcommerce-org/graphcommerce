@@ -1,4 +1,5 @@
 import Button from '@reachdigital/next-ui/Button'
+import Form from '@reachdigital/next-ui/Form'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import FormDivider from '@reachdigital/next-ui/Form/FormDivider'
@@ -28,11 +29,18 @@ export default function ChangeNameForm(props: ChangeNameFormProps) {
   const submit = handleSubmit(() => {})
 
   return (
-    <form onSubmit={submit} noValidate>
+    <Form onSubmit={submit} noValidate>
       <NameFields form={form} prefix />
       <FormDivider />
       <FormActions>
-        <Button type='submit' text='bold' color='primary' variant='contained' size='large'>
+        <Button
+          type='submit'
+          text='bold'
+          color='primary'
+          variant='contained'
+          size='large'
+          loading={formState.isSubmitting}
+        >
           Save changes
         </Button>
       </FormActions>
@@ -41,6 +49,6 @@ export default function ChangeNameForm(props: ChangeNameFormProps) {
       <MessageSnackbar open={formState.isSubmitSuccessful && !error}>
         <>Successfully saved changes</>
       </MessageSnackbar>
-    </form>
+    </Form>
   )
 }

@@ -1,5 +1,6 @@
 import { TextField } from '@material-ui/core'
 import Button from '@reachdigital/next-ui/Button'
+import Form from '@reachdigital/next-ui/Form'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import FormDivider from '@reachdigital/next-ui/Form/FormDivider'
@@ -35,7 +36,7 @@ export default function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormPr
   const watchNewEmail = watch('email')
 
   return (
-    <form onSubmit={submit} noValidate>
+    <Form onSubmit={submit} noValidate>
       <FormRow>
         <TextField
           key='current-email'
@@ -109,7 +110,14 @@ export default function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormPr
 
       <FormDivider />
       <FormActions>
-        <Button type='submit' text='bold' color='primary' variant='contained' size='large'>
+        <Button
+          type='submit'
+          text='bold'
+          color='primary'
+          variant='contained'
+          size='large'
+          loading={formState.isSubmitting}
+        >
           Save changes
         </Button>
       </FormActions>
@@ -118,6 +126,6 @@ export default function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormPr
       <MessageSnackbar open={formState.isSubmitSuccessful && !error}>
         <>Successfully updated email</>
       </MessageSnackbar>
-    </form>
+    </Form>
   )
 }
