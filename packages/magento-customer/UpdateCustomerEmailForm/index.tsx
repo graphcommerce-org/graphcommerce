@@ -22,7 +22,10 @@ export default function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormPr
 
   const form = useFormGqlMutation<
     UpdateCustomerEmailMutation,
-    UpdateCustomerEmailMutationVariables
+    UpdateCustomerEmailMutationVariables & {
+      currentEmail?: string
+      confirmEmail?: string
+    }
   >(UpdateCustomerEmailDocument)
 
   const { handleSubmit, error, required, formState, watch, muiRegister, reset } = form
@@ -49,6 +52,9 @@ export default function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormPr
             required: true,
             pattern: { value: emailPattern, message: '' },
           })}
+          InputProps={{
+            readOnly: true,
+          }}
         />
       </FormRow>
 
