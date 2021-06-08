@@ -32,9 +32,9 @@ const useStyles = makeStyles(
 
 type SignUpFormInlineProps = Pick<SignUpMutationVariables, 'email'> & {
   helperList?: React.ReactNode
-} & {
   firstname?: string
   lastname?: string
+  onSubmitted?: () => void
 }
 
 export default function SignUpFormInline({
@@ -42,6 +42,7 @@ export default function SignUpFormInline({
   helperList,
   firstname,
   lastname,
+  onSubmitted = () => {},
 }: PropsWithChildren<SignUpFormInlineProps>) {
   const classes = useStyles()
   const form = useFormGqlMutation<
@@ -57,7 +58,8 @@ export default function SignUpFormInline({
     },
   })
   const { muiRegister, watch, handleSubmit, required, formState, error } = form
-  const submitHandler = handleSubmit(() => {})
+  const submitHandler = handleSubmit(onSubmitted)
+  const watchPassword = watch('password')
 
   return (
     <Form onSubmit={submitHandler} noValidate classes={{ root: classes.form }}>
@@ -84,7 +86,7 @@ export default function SignUpFormInline({
           required
           {...muiRegister('confirmPassword', {
             required: true,
-            validate: (value) => value === watch('password'),
+            validate: (value) => value === watchPassword,
           })}
           helperText={!!formState.errors.confirmPassword && 'Passwords should match'}
           disabled={formState.isSubmitting}

@@ -2,7 +2,6 @@ import { useMutation } from '@apollo/client'
 import { CircularProgress, makeStyles, TextField, Theme } from '@material-ui/core'
 import { useCartQuery } from '@reachdigital/magento-cart'
 import {
-  CustomerTokenDocument,
   SignInFormInline,
   SignUpFormInline,
   useFormIsEmailAvailable,

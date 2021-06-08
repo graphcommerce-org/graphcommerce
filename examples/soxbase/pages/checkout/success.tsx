@@ -1,6 +1,6 @@
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import NoAccountYet from '@reachdigital/magento-customer/NoAccountYet'
+import InlineAccount from '@reachdigital/magento-customer/InlineAccount'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { useRouter } from 'next/router'
@@ -21,7 +21,9 @@ function ShippingPage() {
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots={['noindex']} />
       <NoSsr>
         Show info about cartId: {cartId}
-        {cartId && <NoAccountYet cartId={cartId} />}
+        {cartId && (
+          <InlineAccount cartId={cartId} signInHref='/account/signin' accountHref='/account' />
+        )}
       </NoSsr>
     </Container>
   )
