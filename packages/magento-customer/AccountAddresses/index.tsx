@@ -22,6 +22,9 @@ const useStyles = makeStyles(
         borderBottom: `1px solid ${theme.palette.divider}`,
       },
     },
+    sectionContainer: {
+      position: 'absolute',
+    },
     button: {
       display: 'block',
       maxWidth: 'max-content',
@@ -30,6 +33,9 @@ const useStyles = makeStyles(
     },
     link: {
       textDecoration: 'none',
+    },
+    anchorOriginBottomCenter: {
+      position: 'sticky',
     },
   }),
   { name: 'AccountAddresses' },
@@ -95,7 +101,10 @@ export default function AccountAddresses(props: AccountAddressesProps) {
             Add new address
           </Button>
 
-          <MessageSnackbar open={router.query.confirm_delete !== undefined}>
+          <MessageSnackbar
+            open={router.query.confirm_delete !== undefined}
+            classes={{ anchorOriginBottomCenter: classes.anchorOriginBottomCenter }}
+          >
             <>Address was deleted</>
           </MessageSnackbar>
         </SectionContainer>
