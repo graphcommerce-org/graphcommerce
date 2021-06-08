@@ -135,50 +135,59 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
           const labelId = `filter-equal-${attribute_code}-${option?.value}`
 
           return (
-            <ListItem
-              button
+            <CategoryLink
+              {...params}
               key={option?.value}
-              dense
-              className={classes.listItem}
-              onClick={() => {
-                if (selectedFilter?.in?.includes(option?.value ?? '')) {
-                  setSelectedFilter({
-                    ...selectedFilter,
-                    in: selectedFilter?.in?.filter((v) => v !== option?.value),
-                  })
-                } else {
-                  setSelectedFilter({
-                    ...selectedFilter,
-                    in: [...(selectedFilter.in ?? []), option?.value ?? ''],
-                  })
-                }
+              filters={{
+                ...params.filters,
+                [attribute_code]: selectedFilter,
               }}
+              noLink
             >
-              <div className={classes.listItemInnerContainer}>
-                <ListItemText
-                  primary={option?.label}
-                  classes={{ primary: classes.filterLabel, secondary: classes.filterAmount }}
-                  secondary={`(${option?.count})`}
-                />
-                <ListItemSecondaryAction>
-                  <Checkbox
-                    edge='start'
-                    checked={selectedFilter.in?.includes(option?.value ?? '')}
-                    tabIndex={-1}
-                    size='small'
-                    color='primary'
-                    disableRipple
-                    inputProps={{ 'aria-labelledby': labelId }}
-                    className={classes.checkbox}
+              <ListItem
+                button
+                dense
+                className={classes.listItem}
+                onClick={() => {
+                  if (selectedFilter?.in?.includes(option?.value ?? '')) {
+                    setSelectedFilter({
+                      ...selectedFilter,
+                      in: selectedFilter?.in?.filter((v) => v !== option?.value),
+                    })
+                  } else {
+                    setSelectedFilter({
+                      ...selectedFilter,
+                      in: [...(selectedFilter.in ?? []), option?.value ?? ''],
+                    })
+                  }
+                }}
+              >
+                <div className={classes.listItemInnerContainer}>
+                  <ListItemText
+                    primary={option?.label}
+                    classes={{ primary: classes.filterLabel, secondary: classes.filterAmount }}
+                    secondary={`(${option?.count})`}
                   />
-                </ListItemSecondaryAction>
-              </div>
-            </ListItem>
+                  <ListItemSecondaryAction>
+                    <Checkbox
+                      edge='start'
+                      checked={selectedFilter.in?.includes(option?.value ?? '')}
+                      tabIndex={-1}
+                      size='small'
+                      color='primary'
+                      disableRipple
+                      inputProps={{ 'aria-labelledby': labelId }}
+                      className={classes.checkbox}
+                    />
+                  </ListItemSecondaryAction>
+                </div>
+              </ListItem>
+            </CategoryLink>
           )
         })}
       </div>
 
-      <CategoryLink
+      {/* <CategoryLink
         {...params}
         filters={{ ...params.filters, [attribute_code]: selectedFilter }}
         noLink
@@ -198,7 +207,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
         >
           Apply
         </Button>
-      </CategoryLink>
+      </CategoryLink> */}
 
       <Button
         onClick={resetFilter}
