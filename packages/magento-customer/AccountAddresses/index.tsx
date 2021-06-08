@@ -2,9 +2,11 @@ import { makeStyles, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import { CountryRegionsQuery } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
+import FullPageMessage from '@reachdigital/next-ui/FullPageMessage'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
-import PageLink from 'next/link'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconHome } from '@reachdigital/next-ui/icons'
 import { useRouter } from 'next/router'
 import React from 'react'
 import AccountAddress from '../AccountAddress'
@@ -54,26 +56,50 @@ export default function AccountAddresses(props: AccountAddressesProps) {
   }
 
   return (
-    <SectionContainer label='Shipping addresses'>
-      <div className={classes.root}>
-        {addresses?.map((address) => (
-          <AccountAddress key={address?.id} {...address} countries={countries} />
-        ))}
-      </div>
+    <>
+      {addresses && addresses.length < 1 && (
+        <>
+          <FullPageMessage
+            title='You have no addresses saved yet'
+            icon={<SvgImage src={iconHome} size={148} alt='home' />}
+            button={
+              <Button
+                size='large'
+                variant='contained'
+                color='primary'
+                text='bold'
+                href='/account/addresses/add'
+              >
+                Add new address
+              </Button>
+            }
+          />
+        </>
+      )}
 
-      <MessageSnackbar open={router.query.confirm_delete !== undefined}>
-        <>Address was deleted</>
-      </MessageSnackbar>
+      {addresses && addresses.length > 1 && (
+        <SectionContainer label='Shipping addresses'>
+          <div className={classes.root}>
+            {addresses?.map((address) => (
+              <AccountAddress key={address?.id} {...address} countries={countries} />
+            ))}
+          </div>
 
-      <Button
-        className={classes.button}
-        variant='contained'
-        color='primary'
-        text='bold'
-        href='/account/addresses/add'
-      >
-        Add new address
-      </Button>
-    </SectionContainer>
+          <Button
+            className={classes.button}
+            variant='contained'
+            color='primary'
+            text='bold'
+            href='/account/addresses/add'
+          >
+            Add new address
+          </Button>
+
+          <MessageSnackbar open={router.query.confirm_delete !== undefined}>
+            <>Address was deleted</>
+          </MessageSnackbar>
+        </SectionContainer>
+      )}
+    </>
   )
 }
