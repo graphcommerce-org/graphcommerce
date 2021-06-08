@@ -9,11 +9,11 @@ import {
 
 import { Money } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
+import ChipMenu, { ChipMenuProps } from '@reachdigital/next-ui/ChipMenu'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React from 'react'
-import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 type FilterRangeTypeProps = NonNullable<

@@ -28,6 +28,7 @@ export { default as useOrderCardItemImages } from './OrderCardItemImage/useOrder
 export { default as OrderStateLabelInline } from './OrderStateLabelInline'
 export { default as CustomerMenuFabItem } from './CustomerMenuFabItem'
 export { default as ChangeNameForm } from './ChangeNameForm'
+export { default as UpdateCustomerEmailForm } from './UpdateCustomerEmailForm'
 
 export * from './AccountDashboard/AccountDashboard.gql'
 export * from './AccountDashboard/AccountDashboardAddresses.gql'
