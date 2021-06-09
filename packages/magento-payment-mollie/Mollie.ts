@@ -13,22 +13,18 @@ export type ComponentFieldState = {
   touched: boolean
   error?: string
 }
-export type ComponentEventListener = (fieldState: ComponentFieldState) => void
+export type ComponentEventHandler = (fieldState: ComponentFieldState) => void
 
-interface ComponentInstance {
+export interface ComponentHandler {
   mount(element: string | HTMLElement): void
   unmount(): void
-  addEventListener(type: 'change' | 'focus' | 'blur', listener: ComponentEventListener): void
-  removeEventListener(listener: ComponentEventListener): void
+  addEventListener(type: 'change' | 'focus' | 'blur', listener: ComponentEventHandler): void
+  removeEventListener(listener: ComponentEventHandler): void
 }
 
-export type MollieComponentVariants =
-  | 'cardNumber'
-  | 'cardHolder'
-  | 'expiryDate'
-  | 'verificationCode'
+export type MollieFieldName = 'cardNumber' | 'cardHolder' | 'expiryDate' | 'verificationCode'
 
-type CreateComponent = (component: MollieComponentVariants) => ComponentInstance
+type CreateComponent = (name: MollieFieldName) => ComponentHandler
 
 type TokenInstance = {}
 type CreateToken = () => TokenInstance
