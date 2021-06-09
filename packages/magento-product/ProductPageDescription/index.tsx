@@ -5,6 +5,12 @@ import { ProductPageDescriptionFragment } from './ProductPageDescription.gql'
 const useStyles = makeStyles((theme: Theme) => ({
   /* nested styles because we don't know beforehand which elements the description contains */
   description: {
+    ...theme.typography.h4,
+    fontWeight: 400,
+    [theme.breakpoints.up('md')]: {
+      ...theme.typography.h3,
+      fontWeight: 400,
+    },
     '& p:first-of-type': {
       marginTop: 0,
     },
