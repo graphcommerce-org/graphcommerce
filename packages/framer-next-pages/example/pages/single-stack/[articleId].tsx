@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/require-await */
-import { PageOptions, usePageDepth, usePageDirection } from '@reachdigital/framer-next-pages'
+import { PageOptions, usePageContext } from '@reachdigital/framer-next-pages'
 import { AnimatePresence, motion } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import dynamic from 'next/dynamic'
@@ -12,8 +12,7 @@ import StackedDrawer from '../../components/StackedDrawer'
 const sidecar = dynamic(() => import('react-focus-lock/sidecar'), { ssr: false }) as React.FC
 
 function ArticlePage({ articleId }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const direction = usePageDirection()
-  const depth = usePageDepth()
+  const { direction, depth } = usePageContext()
 
   type Custom = {
     depth: typeof depth

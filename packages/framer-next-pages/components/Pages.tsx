@@ -2,10 +2,11 @@ import { AnimatePresence } from 'framer-motion'
 import type { AppPropsType } from 'next/dist/next-server/lib/utils'
 import type { NextRouter } from 'next/router'
 import React, { useRef } from 'react'
+import { pageContext } from '../context/pageContext'
+import { pageRouterContext } from '../context/pageRouterContext'
+import type { PageComponent, PageItem } from '../types'
+import { createRouterProxy } from '../utils'
 import Page from './Page'
-import { pageContext, pageRouterContext } from './PageContext'
-import type { PageComponent, PageItem } from './types'
-import { createRouterProxy } from './utils'
 
 function findPlainIdx(items: PageItem[]) {
   return items.reduce((acc, item, i) => (typeof item.overlayGroup === 'string' ? acc : i), -1)
@@ -101,7 +102,7 @@ export default function FramerNextPages(props: PagesProps) {
 
   return (
     <AnimatePresence initial={false}>
-      {renderItems.map((item, itemIdx) => {
+      {renderItems.map((item, level) => {
         const {
           children,
           historyIdx,
@@ -111,10 +112,10 @@ export default function FramerNextPages(props: PagesProps) {
           sharedPageProps,
           routerProxy,
         } = item
-        const active = itemIdx === renderItems.length - 1
-        const depth = itemIdx - (renderItems.length - 1)
+        const active = level === renderItems.length - 1
+        const depth = level - (renderItems.length - 1)
         return (
-          <pageContext.Provider key={sharedKey} value={{ depth, active, direction }}>
+          <pageContext.Provider key={sharedKey} value={{ depth, active, direction, level }}>
             <Page active={active} historyIdx={historyIdx}>
               <pageRouterContext.Provider value={routerProxy}>
                 <SharedComponent {...sharedPageProps} {...sharedProps}>

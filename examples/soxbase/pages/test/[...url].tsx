@@ -42,10 +42,24 @@ function AppShellTestIndex(props: Props) {
             </Button>
           </PageLink>
         )}
-
-        <PageLink href='/test/overlay/1' passHref>
+        <PageLink href='/test/overlay/left' passHref>
           <Button variant='outlined' color='secondary'>
-            Overlay
+            Left Sheet
+          </Button>
+        </PageLink>
+        <PageLink href='/test/overlay/right' passHref>
+          <Button variant='outlined' color='secondary'>
+            Right Sheet
+          </Button>
+        </PageLink>
+        <PageLink href='/test/overlay/bottom' passHref>
+          <Button variant='outlined' color='secondary'>
+            Bottom Sheet
+          </Button>
+        </PageLink>
+        <PageLink href='/test/overlay/top' passHref>
+          <Button variant='outlined' color='secondary'>
+            Top Sheet
           </Button>
         </PageLink>
         <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>

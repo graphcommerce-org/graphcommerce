@@ -1,4 +1,4 @@
-import { usePageDepth, usePageRouter } from '@reachdigital/framer-next-pages'
+import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
 import {
   Sheet,
   SheetBackdrop,
@@ -22,7 +22,7 @@ function SheetShell(props: SheetShellProps) {
 
   const router = useRouter()
   const pageRouter = usePageRouter()
-  const depth = usePageDepth()
+  const { depth } = usePageContext()
 
   const isActive = depth < 0 || router.asPath === pageRouter.asPath
 

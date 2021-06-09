@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/styles'
-import { usePageDepth, usePageDirection, usePageRouter } from '@reachdigital/framer-next-pages'
+import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
 import { AnimatePresence } from 'framer-motion'
 import React, { useRef } from 'react'
 import RouterSlide from './Slide'
@@ -22,8 +22,7 @@ type SliderRouteProps = { children?: React.ReactNode }
 export default function Slider(props: SliderRouteProps) {
   const classes = useStyles()
   const { children } = props
-  const direction = usePageDirection()
-  const depth = usePageDepth()
+  const { depth, direction } = usePageContext()
   const router = usePageRouter()
 
   const scrollPositions = useRef<ScrollPositions>({})

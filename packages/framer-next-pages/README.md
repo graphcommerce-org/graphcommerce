@@ -154,8 +154,7 @@ We have multiple hooks available to animate based on certain states, etc.
 
 ```tsx
 export default function MyComponent() {
-  const direction = usePageDirection()
-  const depth = usePageDepth()
+  const { level, depth, direction } = usePageContext()
   const pageRouter = usePageRouter()
 }
 ```
@@ -168,35 +167,55 @@ E.g.:
 
 - `/my-regular-page`:
   - `useRouter().asPath === '/overlay'`
-  - `usePageRouter().asPath === '/my-regular-page'` We maintain the state
-- `/overlay`: `usePageDepth() === 0`
+  - `usePageRouter().asPath === '/my-regular-page'` We maintain the state here!
+- `/overlay`:
   - `useRouter().asPath === '/overlay'`
   - `usePageRouter().asPath === '/overlay'`
 
-### usePageDepth
+### usePageContext().level
+
+If we have multiple pages layered on top of each other we get the level the page
+has.
+
+E.g.
+
+- `/my-regular-page`: `level === 0`
+
+After navigating to `overlay-one`
+
+- `/my-regular-page`: `level === 0`
+- `/overlay-one`: `level === 1`
+
+After navigation to `overlay-two`
+
+- `/my-regular-page`: `level === 0`
+- `/overlay-one`: `level === 1`
+- `/overlay-two`: `level === 2` /
+
+### usePageContext().depth
 
 If we have multiple pages layered on top of each other we get the depth the page
 has.
 
 E.g.
 
-- `/my-regular-page`: `usePageDepth() === 0`
+- `/my-regular-page`: `depth === 0`
 
-After navigating to overlay-one:
+After navigating to `overlay-one`
 
-- `/my-regular-page`: `usePageDepth() === -1`
-- `/overlay-one`: `usePageDepth() === 0`
+- `/my-regular-page`: `depth === -1`
+- `/overlay-one`: `depth === 0`
 
-After navigation to overlay-two
+After navigation to `overlay-two`
 
-- `/my-regular-page`: `usePageDepth() === -2`
-- `/overlay-one`: `usePageDepth() === -1`
-- `/overlay-two`: `usePageDepth() === 0`
+- `/my-regular-page`: `depth === -2`
+- `/overlay-one`: `depth === -1`
+- `/overlay-two`: `depth === 0`
 
-### usePageDirection
+### usePageContext().direction
 
-- Will return `usePageDirection() === 1` when navigating forward
-- Will return `usePageDirection() === -1` when navigating back
+- When navigating forward: `usePageContext().direction === 1`
+- When navigating back: `usePageContext().direction === -1`
 
 ## Fallback routes
 

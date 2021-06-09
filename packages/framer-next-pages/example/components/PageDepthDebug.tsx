@@ -1,7 +1,7 @@
-import { usePageDepth } from '@reachdigital/framer-next-pages'
+import { usePageContext } from '@reachdigital/framer-next-pages'
 
 export default function PageDepthDebug() {
-  const depth = usePageDepth()
+  const { depth } = usePageContext()
 
   return <>{depth}</>
 }
