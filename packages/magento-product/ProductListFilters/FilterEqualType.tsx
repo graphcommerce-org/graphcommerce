@@ -90,12 +90,13 @@ const useFilterEqualStyles = makeStyles(
 
 export default function FilterEqualType(props: FilterEqualTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props
-  const { params, setParams } = useProductListParamsContext()
+  const { params } = useProductListParamsContext()
   const classes = useFilterEqualStyles()
   const pushRoute = useCategoryPushRoute({ scroll: false })
 
-  const currentFilter = (params.filters[attribute_code] ?? { in: [] }) as FilterEqualTypeInput
-  const [selectedFilter, setSelectedFilter] = useState(currentFilter)
+  const currentFilter: FilterEqualTypeInput = cloneDeep(params.filters[attribute_code]) ?? {
+    in: [],
+  }
 
   const currentLabels =
     options
@@ -106,18 +107,6 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
     const linkParams = cloneDeep(params)
     delete linkParams.filters[attribute_code]
     delete linkParams.currentPage
-    pushRoute(linkParams)
-  }
-
-  const resetFilter = () => {
-    const linkParams = cloneDeep(params)
-
-    delete linkParams.currentPage
-    delete linkParams.filters[attribute_code]
-
-    setSelectedFilter({ in: [] })
-    params.filters[attribute_code] = { in: [] }
-
     pushRoute(linkParams)
   }
 
@@ -132,36 +121,31 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
     >
       <div className={classes.linkContainer}>
         {options?.map((option) => {
+          if (!option?.value) return null
           const labelId = `filter-equal-${attribute_code}-${option?.value}`
+          const filters = cloneDeep(params.filters)
+
+          if (currentFilter.in?.includes(option.value)) {
+            filters[attribute_code] = {
+              ...currentFilter,
+              in: currentFilter.in?.filter((v) => v !== option.value),
+            }
+          } else {
+            filters[attribute_code] = {
+              ...currentFilter,
+              in: [...(currentFilter?.in ?? []), option.value],
+            }
+          }
 
           return (
             <CategoryLink
               {...params}
+              filters={filters}
+              currentPage={undefined}
               key={option?.value}
-              filters={{
-                ...params.filters,
-                [attribute_code]: selectedFilter,
-              }}
-              noLink
+              color='inherit'
             >
-              <ListItem
-                button
-                dense
-                className={classes.listItem}
-                onClick={() => {
-                  if (selectedFilter?.in?.includes(option?.value ?? '')) {
-                    setSelectedFilter({
-                      ...selectedFilter,
-                      in: selectedFilter?.in?.filter((v) => v !== option?.value),
-                    })
-                  } else {
-                    setSelectedFilter({
-                      ...selectedFilter,
-                      in: [...(selectedFilter.in ?? []), option?.value ?? ''],
-                    })
-                  }
-                }}
-              >
+              <ListItem dense className={classes.listItem}>
                 <div className={classes.listItemInnerContainer}>
                   <ListItemText
                     primary={option?.label}
@@ -171,7 +155,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
                   <ListItemSecondaryAction>
                     <Checkbox
                       edge='start'
-                      checked={selectedFilter.in?.includes(option?.value ?? '')}
+                      checked={currentFilter.in?.includes(option?.value ?? '')}
                       tabIndex={-1}
                       size='small'
                       color='primary'
@@ -208,7 +192,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
           Apply
         </Button>
       </CategoryLink> */}
-
+      {/* 
       <Button
         onClick={resetFilter}
         size='small'
@@ -217,7 +201,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
         className={clsx(classes.button, classes.resetButton)}
       >
         Reset
-      </Button>
+      </Button> */}
     </ChipMenu>
   )
 }

@@ -1,5 +1,4 @@
 import { ProductListParams } from '@reachdigital/magento-product/ProductListItems/filterTypes'
-import { useRouter } from 'next/router'
 import React, { useState, useContext, useEffect, PropsWithChildren } from 'react'
 
 const context = React.createContext<{
@@ -12,13 +11,10 @@ export function ProductListParamsProvider({
   value,
 }: PropsWithChildren<{ value: ProductListParams }>) {
   const [params, setParams] = useState<ProductListParams>(value)
-  const router = useRouter()
 
   useEffect(() => {
-    const updateParams = () => setParams(value)
-    router.events.on('routeChangeComplete', updateParams)
-    return () => router.events.off('routeChangeComplete', updateParams)
-  }, [router.events, value])
+    setParams(value)
+  }, [value])
 
   return <context.Provider value={{ params, setParams }}>{children}</context.Provider>
 }
