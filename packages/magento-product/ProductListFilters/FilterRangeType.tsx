@@ -166,7 +166,13 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
           onChange={(e, newValue) => {
             setValue(Array.isArray(newValue) ? [newValue[0], newValue[1]] : [0, 0])
           }}
-          onChangeCommitted={() => pushNewRoute()}
+          onChangeCommitted={(e, newValue) => {
+            if (newValue[0] > min || newValue[1] < max) {
+              pushNewRoute()
+            } else {
+              resetFilter()
+            }
+          }}
           valueLabelDisplay='off'
           className={classes.slider}
         />
