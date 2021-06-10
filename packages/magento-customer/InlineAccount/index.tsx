@@ -3,7 +3,6 @@ import { makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import Button from '@reachdigital/next-ui/Button'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
-import { AnimatePresence, m } from 'framer-motion'
 import React, { useState } from 'react'
 import { CustomerTokenDocument } from '..'
 import { IsEmailAvailableDocument } from '../IsEmailAvailable.gql'
@@ -37,14 +36,13 @@ const useStyles = makeStyles(
 
 type InlineAccountProps = {
   cartId: string
-  title?: string
-  description?: string
+  title?: React.ReactNode
+  description?: React.ReactNode
   accountHref: string
-  signInHref: string
 } & UseStyles<typeof useStyles>
 
 export default function InlineAccount(props: InlineAccountProps) {
-  const { cartId, title, description, accountHref, signInHref } = props
+  const { cartId, title, description, accountHref } = props
   const classes = useStyles(props)
 
   const [toggled, setToggled] = useState<boolean>(false)
@@ -67,11 +65,13 @@ export default function InlineAccount(props: InlineAccountProps) {
   const signedIn = Boolean(
     customerTokenData?.customerToken && customerTokenData?.customerToken.valid,
   )
-  const canSignUp = isEmailAvailableData?.isEmailAvailable?.is_email_available
+  const canSignUp = isEmailAvailableData?.isEmailAvailable?.is_email_available === true
+
+  if (!canSignUp) return <></>
 
   return (
-    <AnimatePresence>
-      <m.div key='signupaccount' className={classes.root}>
+    <div>
+      <div key='signupaccount' className={classes.root}>
         {!signedIn && canSignUp && (
           <>
             <div className={classes.innerContainer}>
@@ -97,7 +97,7 @@ export default function InlineAccount(props: InlineAccountProps) {
               </div>
             </div>
             {cart?.email && toggled && (
-              <m.div className={classes.form}>
+              <div className={classes.form}>
                 <FormRow>
                   <TextField
                     variant='outlined'
@@ -110,12 +110,12 @@ export default function InlineAccount(props: InlineAccountProps) {
                   />
                 </FormRow>
                 <SignUpFormInline
-                  firstname={firstname}
+                  firstname={firstname ?? ''}
                   lastname={lastname}
                   email={cart?.email}
                   onSubmitted={() => setToggled(false)}
                 />
-              </m.div>
+              </div>
             )}
           </>
         )}
@@ -142,7 +142,7 @@ export default function InlineAccount(props: InlineAccountProps) {
           </div>
         )}
 
-        {!canSignUp && (
+        {/* {!canSignUp && (
           <div className={classes.innerContainer}>
             <div>
               <Typography variant='h6' className={classes.title}>
@@ -162,8 +162,8 @@ export default function InlineAccount(props: InlineAccountProps) {
               </Button>
             </div>
           </div>
-        )}
-      </m.div>
-    </AnimatePresence>
+        )} */}
+      </div>
+    </div>
   )
 }

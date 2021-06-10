@@ -21,9 +21,7 @@ function ShippingPage() {
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots={['noindex']} />
       <NoSsr>
         Show info about cartId: {cartId}
-        {cartId && (
-          <InlineAccount cartId={cartId} signInHref='/account/signin' accountHref='/account' />
-        )}
+        {cartId && <InlineAccount cartId={cartId} accountHref='/account' />}
       </NoSsr>
     </Container>
   )

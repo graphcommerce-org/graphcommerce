@@ -1,4 +1,4 @@
-export { default as CustomerFab } from './AccountFab'
+export { default as CustomerFab } from './CustomerFab'
 export { default as ForgotPasswordForm } from './ForgotPasswordForm'
 export { default as AccountHeader } from './AccountHeader'
 export { default as AccountLatestOrder } from './AccountLatestOrder'
