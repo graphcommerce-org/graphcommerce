@@ -49,10 +49,6 @@ const useFilterRangeType = makeStyles(
       float: 'right',
       textDecoration: 'none',
     },
-    resetButton: {
-      background: theme.palette.grey['100'],
-      marginRight: responsiveVal(4, 8),
-    },
   }),
   { name: 'FilterRangeType' },
 )
@@ -174,15 +170,6 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
           valueLabelDisplay='off'
           className={classes.slider}
         />
-        <Button
-          onClick={resetFilter}
-          size='small'
-          disableElevation
-          className={clsx(classes.button, classes.resetButton)}
-          variant='pill'
-        >
-          Reset
-        </Button>
       </div>
     </ChipMenu>
   )
