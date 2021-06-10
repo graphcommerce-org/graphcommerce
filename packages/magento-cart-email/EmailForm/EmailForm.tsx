@@ -2,7 +2,6 @@ import { useMutation } from '@apollo/client'
 import { CircularProgress, makeStyles, TextField, Theme } from '@material-ui/core'
 import { useCartQuery } from '@reachdigital/magento-cart'
 import {
-  CustomerTokenDocument,
   SignInFormInline,
   SignUpFormInline,
   useFormIsEmailAvailable,
@@ -33,13 +32,14 @@ export type EmailFormProps = Pick<UseFormComposeOptions, 'step'>
 export default function EmailForm(props: EmailFormProps) {
   const { step } = props
   const classes = useStyles()
-
   const [expand, setExpand] = useState(false)
 
-  const { data: cartData } = useCartQuery(CartEmailDocument)
   const [setGuestEmailOnCart] = useMutation(SetGuestEmailOnCartDocument)
+  const { data: cartData } = useCartQuery(CartEmailDocument)
   const { mode, form, submit } = useFormIsEmailAvailable({ email: cartData?.cart?.email })
+
   const { formState, muiRegister, required, watch, error, getValues } = form
+
   useFormCompose({ form, step, submit, key: 'EmailForm' })
 
   useEffect(() => {
@@ -91,7 +91,7 @@ export default function EmailForm(props: EmailFormProps) {
                   pattern: { value: emailPattern, message: '' },
                 })}
                 InputProps={{
-                  autoComplete: 'username',
+                  autoComplete: 'email',
                   endAdornment,
                   readOnly: mode === 'signedin',
                 }}
