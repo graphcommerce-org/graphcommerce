@@ -50,17 +50,9 @@ export type SheetPanelProps = {
 
 export default function SheetPanel(props: SheetPanelProps) {
   const { header, back, forward, children, styles, classes } = props
-  const {
-    drag,
-    size,
-    maxSize,
-    snapPoints,
-    controls,
-    variant,
-    variantSize,
-    onSnap,
-    onSnapEnd,
-  } = useSheetContext()
+  const { drag, size, maxSize, snapPoints, controls, variant, variantSize, onSnap, onSnapEnd } =
+    useSheetContext()
+
   const last = snapPoints.length - 1
 
   const axis = ['top', 'bottom'].includes(variant) ? 'y' : 'x'
