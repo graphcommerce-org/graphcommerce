@@ -102,7 +102,7 @@ export default function FramerNextPages(props: PagesProps) {
 
   return (
     <AnimatePresence initial={false}>
-      {renderItems.map((item, level) => {
+      {renderItems.map((item, itemIdx) => {
         const {
           children,
           historyIdx,
@@ -112,10 +112,12 @@ export default function FramerNextPages(props: PagesProps) {
           sharedPageProps,
           routerProxy,
         } = item
-        const active = level === renderItems.length - 1
-        const depth = level - (renderItems.length - 1)
+        const active = itemIdx === renderItems.length - 1
+        const depth = itemIdx - (renderItems.length - 1)
+        const backSteps = historyIdx - (renderItems[itemIdx - 1]?.historyIdx ?? 0)
+
         return (
-          <pageContext.Provider key={sharedKey} value={{ depth, active, direction, level }}>
+          <pageContext.Provider key={sharedKey} value={{ depth, active, direction, backSteps }}>
             <Page active={active} historyIdx={historyIdx}>
               <pageRouterContext.Provider value={routerProxy}>
                 <SharedComponent {...sharedPageProps} {...sharedProps}>

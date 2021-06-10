@@ -217,6 +217,18 @@ After navigation to `overlay-two`
 - When navigating forward: `usePageContext().direction === 1`
 - When navigating back: `usePageContext().direction === -1`
 
+### useCloseOverlay()
+
+When navigating inside an overlay we need to be able to navigate back x-times to
+close the overlay.
+
+```tsx
+function MyComponent {
+  const close = useCloseOverlay();
+  return <button onClick={close}>close</button>
+}
+```
+
 ## Fallback routes
 
 When an overlay is accessed by URL, it will render but it won't render as a

@@ -4,24 +4,10 @@ export type Direction = 1 | -1
 
 export type PageContext = {
   /**
-   * If we have multiple pages layered on top of each other we get the level the page has.
-   *
-   * E.g.
-   *
-   * - `/my-regular-page`: `level === 0`
-   *
-   * After navigating to `overlay-one`
-   *
-   * - `/my-regular-page`: `level === 0`
-   * - `/overlay-one`: `level === 1`
-   *
-   * After navigation to `overlay-two`
-   *
-   * - `/my-regular-page`: `level === 0`
-   * - `/overlay-one`: `level === 1`
-   * - `/overlay-two`: `level === 2`
+   * To be able to navigate back to the last known non-overlay page we need to know how many steps
+   * we need to navigate back.
    */
-  level: number
+  backSteps: number
   /**
    * If we have multiple pages layered on top of each other we get the depth the page has.
    *

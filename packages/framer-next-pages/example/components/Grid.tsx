@@ -4,51 +4,40 @@ import styles from './styles.module.css'
 
 export const data = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
+function usePostcardClass(asPath: string) {
+  const router = usePageRouter()
+  return `${styles.postCard} ${asPath === router.asPath && styles.postCardActive}`
+}
+
 export default function PostCardGrid() {
   const pageRouter = usePageRouter()
   return (
     <div className={styles.postCardGridWrapper}>
-      <Link href='/'>
-        <a className={styles.postCard}>Index Page</a>
-      </Link>
+      <div className={styles.postCardGrid}>
+        <Link href='/'>
+          <a className={usePostcardClass('/')}>Index Page</a>
+        </Link>
+        <Link href='/second'>
+          <a className={usePostcardClass('/second')}>Second Page</a>
+        </Link>
+        <Link href='/third'>
+          <a className={usePostcardClass('/third')}>Third Page</a>
+        </Link>
+      </div>
 
       <h2>Framer-sheet</h2>
       <div className={styles.postCardGrid}>
         <Link href='/bottom-sheet/bottom'>
-          <a
-            className={`${styles.postCard} ${
-              pageRouter.asPath === `/bottom-sheet/1` && styles.postCardActive
-            }`}
-          >
-            Bottom Sheet
-          </a>
+          <a className={usePostcardClass('/bottom-sheet/bottom')}>Bottom Sheet</a>
         </Link>
         <Link href='/bottom-sheet/left'>
-          <a
-            className={`${styles.postCard} ${
-              pageRouter.asPath === `/bottom-sheet/1` && styles.postCardActive
-            }`}
-          >
-            Left Sheet
-          </a>
+          <a className={usePostcardClass('/bottom-sheet/left')}>Left Sheet</a>
         </Link>
         <Link href='/bottom-sheet/right'>
-          <a
-            className={`${styles.postCard} ${
-              pageRouter.asPath === `/bottom-sheet/1` && styles.postCardActive
-            }`}
-          >
-            Right Sheet
-          </a>
+          <a className={usePostcardClass('/bottom-sheet/right')}>Right Sheet</a>
         </Link>
         <Link href='/bottom-sheet/top'>
-          <a
-            className={`${styles.postCard} ${
-              pageRouter.asPath === `/bottom-sheet/1` && styles.postCardActive
-            }`}
-          >
-            Top Sheet
-          </a>
+          <a className={usePostcardClass('/bottom-sheet/top')}>Top Sheet</a>
         </Link>
       </div>
 
@@ -56,13 +45,7 @@ export default function PostCardGrid() {
       <div className={styles.postCardGrid}>
         {data.map((id) => (
           <Link key={id} href={`/single-stack/${id}`}>
-            <a
-              className={`${styles.postCard} ${
-                pageRouter.asPath === `/single-stack/${id}` && styles.postCardActive
-              }`}
-            >
-              {id}
-            </a>
+            <a className={usePostcardClass(`/single-stack/${id}`)}>{id}</a>
           </Link>
         ))}
       </div>
@@ -71,13 +54,7 @@ export default function PostCardGrid() {
       <div className={styles.postCardGrid}>
         {data.map((id) => (
           <Link key={id} href={`/multi-stack/${id}`}>
-            <a
-              className={`${styles.postCard} ${
-                pageRouter.asPath === `/multi-stack/${id}` && styles.postCardActive
-              }`}
-            >
-              {id}
-            </a>
+            <a className={usePostcardClass(`/multi-stack/${id}`)}>{id}</a>
           </Link>
         ))}
       </div>

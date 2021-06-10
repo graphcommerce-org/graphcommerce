@@ -1,4 +1,4 @@
-import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
+import { useCloseOverlay, usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
 import {
   Sheet,
   SheetBackdrop,
@@ -26,18 +26,18 @@ function SheetShellBase(props: SheetShellBaseProps) {
   const router = useRouter()
   const pageRouter = usePageRouter()
   const { depth } = usePageContext()
-
-  const isActive = depth < 0 || router.asPath === pageRouter.asPath
+  const close = useCloseOverlay()
+  const open = depth < 0 || router.asPath === pageRouter.asPath
 
   return (
     <ShellBase name={name}>
       <Sheet
-        open={isActive}
+        open={open}
         onSnap={(snapPoint) => snapPoint === 'closed' && router.back()}
         variant={variant}
         size={size}
       >
-        <SheetBackdrop onTap={() => router.back()} classes={sheetClasses} />
+        <SheetBackdrop onTap={close} classes={sheetClasses} />
         <SheetContainer classes={sheetClasses}>
           <SheetPanel header={<SheetDragIndicator classes={sheetClasses} />} classes={sheetClasses}>
             {/* <FocusLock returnFocus={{ preventScroll: true }} disabled={!isActive}> */}

@@ -1,4 +1,4 @@
-import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
+import { usePageContext, usePageRouter, useCloseOverlay } from '@reachdigital/framer-next-pages'
 import {
   Sheet,
   SheetBackdrop,
@@ -23,17 +23,17 @@ function SheetShell(props: SheetShellProps) {
   const router = useRouter()
   const pageRouter = usePageRouter()
   const { depth } = usePageContext()
-
-  const isActive = depth < 0 || router.asPath === pageRouter.asPath
+  const close = useCloseOverlay()
+  const open = depth < 0 || router.asPath === pageRouter.asPath
 
   return (
     <Sheet
-      open={isActive}
+      open={open}
       onSnap={(snapPoint) => snapPoint === 'closed' && router.back()}
       variant={variant}
       size={size}
     >
-      <SheetBackdrop onTap={() => router.back()} styles={styles} />
+      <SheetBackdrop onTap={close} styles={styles} />
       <SheetContainer styles={styles}>
         <SheetPanel
           forward={headerForward}
