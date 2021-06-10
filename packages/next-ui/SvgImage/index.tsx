@@ -3,13 +3,13 @@ import clsx from 'clsx'
 import React from 'react'
 import PictureResponsive, { PictureResponsiveProps } from '../PictureResponsive'
 import { UseStyles } from '../Styles'
-import responsiveVal from '../Styles/responsiveVal'
 
 export type SvgImageSize = 'small' | 'medium' | 'large' | 'extralarge'
 
 export type SvgImageProps = Omit<PictureResponsiveProps, 'srcSets' | 'width' | 'height'> & {
   src: React.ReactNode
   size?: SvgImageSize | number
+  mobileSize?: SvgImageSize | number
   shade?: SvgImageShade
 } & UseStyles<typeof useStyles>
 
@@ -21,14 +21,14 @@ export const SvgImageShades: Record<SvgImageShade, number> = {
   inverted: 100,
 }
 
-type UseStylesProps = { shade: number; baseSize: number }
+type UseStylesProps = { shade: number; baseSize: number; mobileSize: number }
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    root: ({ shade, baseSize }: UseStylesProps) => ({
+    root: ({ shade, baseSize, mobileSize }: UseStylesProps) => ({
       filter: shade > 0 ? `invert(${shade}%)` : undefined,
-      width: Math.round(baseSize * 0.6),
-      height: Math.round(baseSize * 0.6),
+      width: mobileSize ?? Math.round(baseSize * 0.75),
+      height: mobileSize ?? Math.round(baseSize * 0.75),
       [theme.breakpoints.up('md')]: {
         width: baseSize,
         height: baseSize,
@@ -39,7 +39,7 @@ const useStyles = makeStyles(
 )
 
 export default function SvgImage(props: SvgImageProps) {
-  const { src, size = 'medium', shade = 'default', ...pictureResponsiveProps } = props
+  const { src, size = 'medium', mobileSize, shade = 'default', ...pictureResponsiveProps } = props
 
   const baseSizes = {
     small: 24,
@@ -50,6 +50,7 @@ export default function SvgImage(props: SvgImageProps) {
 
   const classes = useStyles({
     ...props,
+    mobileSize: baseSizes[mobileSize ?? ''] ?? mobileSize,
     baseSize: baseSizes[size] ?? size,
     shade: SvgImageShades[shade],
   })

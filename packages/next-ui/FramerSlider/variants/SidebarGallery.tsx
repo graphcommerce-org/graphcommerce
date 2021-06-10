@@ -98,9 +98,13 @@ const useStyles = makeStyles(
       },
     },
     sliderButtons: {
+      boxShadow: theme.shadows[2],
       [theme.breakpoints.down('sm')]: {
         display: 'none',
       },
+    },
+    toggleIcon: {
+      boxShadow: theme.shadows[2],
     },
     topRight: {
       display: 'grid',
@@ -157,6 +161,7 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
                 <Fab
                   color='inherit'
                   size='small'
+                  classes={{ root: classes.toggleIcon }}
                   onClick={() => {
                     setLayout(true)
                     setZoomed(!zoomed)
