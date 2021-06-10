@@ -13,7 +13,6 @@ import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
 
 export type CartFabProps = {
   icon?: React.ReactNode
-  qty?: number
 } & Omit<FabProps, 'children' | 'aria-label'>
 
 const useStyles = makeStyles(

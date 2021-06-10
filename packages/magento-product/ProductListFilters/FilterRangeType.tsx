@@ -1,5 +1,5 @@
 import { cloneDeep } from '@apollo/client/utilities'
-import { debounce, makeStyles, Mark, Slider, Theme } from '@material-ui/core'
+import { makeStyles, Mark, Slider, Theme } from '@material-ui/core'
 import { FilterRangeTypeInput } from '@reachdigital/graphql'
 import { useCategoryPushRoute, useProductListParamsContext } from '@reachdigital/magento-category'
 import { Money } from '@reachdigital/magento-store'
@@ -139,8 +139,6 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
       )
   }
 
-  const pushNewRoute = debounce(() => pushRoute({ ...priceFilterUrl }), 500)
-
   return (
     <ChipMenu
       variant='outlined'
@@ -168,7 +166,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
           }}
           onChangeCommitted={(e, newValue) => {
             if (newValue[0] > min || newValue[1] < max) {
-              pushNewRoute()
+              pushRoute({ ...priceFilterUrl })
             } else {
               resetFilter()
             }

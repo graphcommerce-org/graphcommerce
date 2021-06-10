@@ -13,11 +13,8 @@ import {
   useCategoryPushRoute,
   useProductListParamsContext,
 } from '@reachdigital/magento-category'
-
-import Button from '@reachdigital/next-ui/Button'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import clsx from 'clsx'
-import React, { useState } from 'react'
+import React from 'react'
 import { SetRequired } from 'type-fest'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
@@ -170,38 +167,6 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
           )
         })}
       </div>
-
-      {/* <CategoryLink
-        {...params}
-        filters={{ ...params.filters, [attribute_code]: selectedFilter }}
-        noLink
-      >
-        <Button
-          variant='pill'
-          size='small'
-          color='primary'
-          disableElevation
-          className={classes.button}
-          onClick={() => {
-            setParams({
-              ...params,
-              filters: { ...params.filters, [attribute_code]: selectedFilter },
-            })
-          }}
-        >
-          Apply
-        </Button>
-      </CategoryLink> */}
-      {/* 
-      <Button
-        onClick={resetFilter}
-        size='small'
-        variant='pill'
-        disableElevation
-        className={clsx(classes.button, classes.resetButton)}
-      >
-        Reset
-      </Button> */}
     </ChipMenu>
   )
 }
