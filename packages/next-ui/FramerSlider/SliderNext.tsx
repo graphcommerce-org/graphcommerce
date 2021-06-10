@@ -2,7 +2,7 @@ import { Fab, FabProps } from '@material-ui/core'
 import { m, useDomEvent } from 'framer-motion'
 import React from 'react'
 import SvgImage from '../SvgImage'
-import { iconArrowForward } from '../icons'
+import { iconChevronRight } from '../icons'
 import { useSliderContext } from './SliderContext'
 
 type SliderPrevProps = Omit<FabProps, 'disabled' | 'onClick' | 'children'> & { layout?: boolean }
@@ -27,7 +27,7 @@ export default function SliderNext(props: SliderPrevProps) {
   return (
     <m.div layout={layout} className={className} animate={{ scale: disabled ? 0.001 : 1 }}>
       <Fab color='inherit' size='small' {...fabProps} onClick={next}>
-        <SvgImage src={iconArrowForward} alt='arrow forward' size='small' title='Forward' />
+        <SvgImage src={iconChevronRight} alt='forwards' size='small' title='Forward' />
       </Fab>
     </m.div>
   )

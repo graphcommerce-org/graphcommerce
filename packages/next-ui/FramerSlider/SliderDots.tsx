@@ -1,5 +1,4 @@
 import { Fab, makeStyles, Theme, useTheme } from '@material-ui/core'
-import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React from 'react'
 import { UseStyles } from '../Styles'
@@ -10,7 +9,7 @@ const useStyles = makeStyles(
     dots: {
       borderRadius: 20,
       background: theme.palette.background.paper,
-      boxShadow: theme.shadows[6],
+      boxShadow: theme.shadows[2],
       width: 'fit-content',
       display: 'grid',
       gridAutoFlow: 'column',

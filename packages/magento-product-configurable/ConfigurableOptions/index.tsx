@@ -39,10 +39,10 @@ const useStyles = makeStyles(
       backgroundColor: theme.palette.background.default,
       borderRadius: 4,
       boxShadow: `0px 0px 2px ${theme.palette.grey[400]}`,
-      '&$selected': {
-        border: `2px solid ${theme.palette.primary.main}`,
-        boxShadow: `unset`,
-      },
+    },
+    buttonSelected: {
+      border: `2px solid ${theme.palette.primary.main}`,
+      boxShadow: `unset`,
     },
   }),
   { name: 'ConfigurableOptions' },
@@ -124,7 +124,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                         key={val.uid}
                         value={val.uid ?? ''}
                         name={inputName}
-                        classes={{ root: classes.button }}
+                        classes={{ root: classes.button, selected: classes.buttonSelected }}
                       >
                         <RenderType
                           renderer={renderer}

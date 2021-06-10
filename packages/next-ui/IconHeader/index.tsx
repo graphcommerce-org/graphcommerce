@@ -35,8 +35,10 @@ type IconHeaderProps = {
 type IconHeaderHeadings = 'h6' | 'h5' | 'h3'
 
 export default function IconHeader(props: IconHeaderProps) {
-  const { title, size = 'medium', ...svgImageProps } = props
+  const { title, ...svgImageProps } = props
   const classes = useStyles()
+
+  const size = 'large'
 
   const variants: Record<IconHeaderSize, IconHeaderHeadings> = {
     small: 'h6',
@@ -50,10 +52,21 @@ export default function IconHeader(props: IconHeaderProps) {
     large: 64,
   }
 
+  const iconMobileSizes = {
+    small: 16,
+    medium: 32,
+    large: 40,
+  }
+
   return (
     <div className={classes.container}>
       <div className={classes.innerContainer}>
-        <SvgImage {...svgImageProps} size={iconSizes[size]} loading='eager' />
+        <SvgImage
+          {...svgImageProps}
+          size={iconSizes[size]}
+          mobileSize={iconMobileSizes[size]}
+          loading='eager'
+        />
         <Typography variant={variants[size]} component='h2'>
           {title}
         </Typography>
