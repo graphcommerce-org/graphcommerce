@@ -1,17 +1,11 @@
 import { cloneDeep } from '@apollo/client/utilities'
-import { Slider, makeStyles, Theme, Mark } from '@material-ui/core'
+import { makeStyles, Mark, Slider, Theme } from '@material-ui/core'
 import { FilterRangeTypeInput } from '@reachdigital/graphql'
-import {
-  CategoryLink,
-  useCategoryPushRoute,
-  useProductListParamsContext,
-} from '@reachdigital/magento-category'
-
+import { useCategoryPushRoute, useProductListParamsContext } from '@reachdigital/magento-category'
 import { Money } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
-import { m } from 'framer-motion'
 import React from 'react'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
@@ -54,10 +48,6 @@ const useFilterRangeType = makeStyles(
     button: {
       float: 'right',
       textDecoration: 'none',
-    },
-    resetButton: {
-      background: theme.palette.grey['100'],
-      marginRight: responsiveVal(4, 8),
     },
   }),
   { name: 'FilterRangeType' },
@@ -165,38 +155,21 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
         <Slider
           min={min}
           max={max}
-          // marks={Object.values(marks)}
-          // step={Math.floor(max / 20)}
           aria-labelledby='range-slider'
           value={value}
           onChange={(e, newValue) => {
             setValue(Array.isArray(newValue) ? [newValue[0], newValue[1]] : [0, 0])
           }}
+          onChangeCommitted={(e, newValue) => {
+            if (newValue[0] > min || newValue[1] < max) {
+              pushRoute({ ...priceFilterUrl })
+            } else {
+              resetFilter()
+            }
+          }}
           valueLabelDisplay='off'
           className={classes.slider}
         />
-
-        <CategoryLink {...priceFilterUrl} link={{ scroll: false }}>
-          <Button
-            variant='pill'
-            size='small'
-            color='primary'
-            disableElevation
-            className={classes.button}
-          >
-            Apply
-          </Button>
-        </CategoryLink>
-
-        <Button
-          onClick={resetFilter}
-          size='small'
-          disableElevation
-          className={clsx(classes.button, classes.resetButton)}
-          variant='pill'
-        >
-          Reset
-        </Button>
       </div>
     </ChipMenu>
   )
