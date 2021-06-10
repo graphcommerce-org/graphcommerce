@@ -41,7 +41,7 @@ export default function Sheet(props: SheetProps) {
     const init = (v: number) => {
       if (v === 0) return
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      context.controls.start(open ? `snapPoint0` : `snapPoint${last}`)
+      if (open) context.controls.start(`snapPoint0`)
       cancel()
     }
     cancel = context.size.onChange(init)
