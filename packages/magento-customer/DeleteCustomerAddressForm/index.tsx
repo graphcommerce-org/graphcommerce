@@ -33,7 +33,7 @@ export default function DeleteCustomerAddressForm(props: DeleteCustomerAddressFo
 
   return (
     <form onSubmit={submitHandler} noValidate>
-      <Button type='submit' variant='text' className={classes.button}>
+      <Button type='submit' variant='text' color='inherit' className={classes.button}>
         Delete this address
       </Button>
       <ApolloErrorAlert error={error} />

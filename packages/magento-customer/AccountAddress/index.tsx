@@ -25,12 +25,6 @@ const useStyles = makeStyles(
     switches: {
       paddingTop: theme.spacings.xxs,
     },
-    deleteAddress: {
-      color: theme.palette.primary.contrastText,
-      '&:hover': {
-        textDecoration: 'none',
-      },
-    },
     actions: {
       display: 'flex',
       justifyContent: 'space-between',
