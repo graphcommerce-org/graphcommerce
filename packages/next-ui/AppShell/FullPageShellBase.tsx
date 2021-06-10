@@ -2,7 +2,6 @@ import { makeStyles, Theme } from '@material-ui/core'
 import { usePageRouter } from '@reachdigital/framer-next-pages'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
-import PageLoadIndicator from '../PageLoadIndicator'
 import { UseStyles } from '../Styles'
 import BackButton from './BackButton'
 import ShellBase, { PageLayoutBaseProps } from './ShellBase'
@@ -51,8 +50,6 @@ function FullPageShellBase(props: FullPageShellBaseProps) {
 
   return (
     <ShellBase name={name}>
-      <PageLoadIndicator />
-
       {router.pathname !== '/' && (
         <m.div className={classes.backButtonRoot}>
           <BackButton href={backFallbackHref ?? undefined}>{backFallbackTitle}</BackButton>
