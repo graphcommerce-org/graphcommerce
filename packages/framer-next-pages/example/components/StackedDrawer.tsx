@@ -1,10 +1,10 @@
-import { usePageDepth } from '@reachdigital/framer-next-pages'
+import { usePageContext } from '@reachdigital/framer-next-pages'
 import { motion } from 'framer-motion'
 import { PropsWithChildren } from 'react'
 
 export default function StackedDrawer(props: PropsWithChildren<{ variant: 'left' | 'right' }>) {
   const { children, variant } = props
-  const depth = usePageDepth()
+  const { depth } = usePageContext()
 
   const offset = variant === 'right' ? depth * 40 : depth * -40
 

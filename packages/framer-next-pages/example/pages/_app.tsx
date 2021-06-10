@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic'
 import { Router } from 'next/router'
 import React from 'react'
 
-const Fallback = dynamic(() => import('./index'), { ssr: false })
+const Fallback = dynamic(() => import('./[url]'), { ssr: false })
 
 export default function MyApp(props: AppPropsType<Router> & { Component: PageComponent }) {
   return (

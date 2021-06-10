@@ -3,7 +3,7 @@ import Grid from '../components/Grid'
 import StackDebug from '../components/StackedDebugger'
 
 type IndexProps = { title: string }
-type RouteProps = { url: string[] }
+type RouteProps = { url: string }
 
 function Index(props: IndexProps) {
   const { title } = props
@@ -19,8 +19,11 @@ function Index(props: IndexProps) {
 
 export default Index
 
-export const getStaticProps: GetStaticProps<IndexProps> = async () => ({
-  props: {
-    title: 'Index Page',
-  },
+export const getStaticPaths: GetStaticPaths<RouteProps> = async () => ({
+  paths: [{ params: { url: 'second' } }, { params: { url: 'third' } }],
+  fallback: 'blocking',
+})
+
+export const getStaticProps: GetStaticProps<IndexProps, RouteProps> = async ({ params }) => ({
+  props: { title: `Page ${params?.url}` },
 })

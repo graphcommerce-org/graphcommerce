@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core'
-import { usePageDepth, usePageDirection, usePageRouter } from '@reachdigital/framer-next-pages'
+import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
 import { SPRING_ANIM } from '@reachdigital/framer-sheet'
 import { m, motionValue, useElementScroll } from 'framer-motion'
 import React, { useEffect, useRef } from 'react'
@@ -34,8 +34,7 @@ export default function RouterSlide({ children, scrollPositions }: RouterSlidePr
   const classes = useStyles()
   const ref = useRef<HTMLDivElement>(null)
   const { scrollY } = useElementScroll(ref)
-  const direction = usePageDirection()
-  const depth = usePageDepth()
+  const { direction, depth } = usePageContext()
   const router = usePageRouter()
 
   useEffect(() => {
