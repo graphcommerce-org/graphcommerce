@@ -15,25 +15,22 @@ import apolloClient from '../../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountAuthenticationPage() {
-  const { loading, data } = useQuery(CustomerDocument)
+  const { loading, data } = useQuery(CustomerDocument, {
+    ssr: false,
+  })
   const customer = data?.customer
 
   if (!loading && !customer)
     return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
 
   return (
-    <NoSsr>
-      <Container maxWidth='md'>
-        <PageMeta
-          title='Authentication'
-          metaDescription='Change password'
-          metaRobots={['noindex']}
-        />
-
+    <Container maxWidth='md'>
+      <PageMeta title='Authentication' metaDescription='Change password' metaRobots={['noindex']} />
+      <NoSsr>
         <IconHeader src={iconLock} title='Authentication' alt='authentication' size='large' />
         <SectionContainer label='Password'>{customer && <ChangePasswordForm />}</SectionContainer>
-      </Container>
-    </NoSsr>
+      </NoSsr>
+    </Container>
   )
 }
 

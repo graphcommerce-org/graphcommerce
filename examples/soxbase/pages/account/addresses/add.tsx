@@ -25,7 +25,9 @@ type Props = CountryRegionsQuery & AccountDashboardAddressesQuery
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function AddNewAddressPage(props: Props) {
-  const { loading, data } = useQuery(CustomerDocument)
+  const { loading, data } = useQuery(CustomerDocument, {
+    ssr: false,
+  })
   const customer = data?.customer
   const { countries } = props
 

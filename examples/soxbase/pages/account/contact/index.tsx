@@ -15,7 +15,9 @@ import apolloClient from '../../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountContactPage() {
-  const { loading, data } = useQuery(CustomerDocument)
+  const { loading, data } = useQuery(CustomerDocument, {
+    ssr: false,
+  })
   const customer = data?.customer
 
   if (!loading && !customer)
