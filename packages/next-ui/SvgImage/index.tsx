@@ -27,8 +27,8 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: ({ shade, baseSize }: UseStylesProps) => ({
       filter: shade > 0 ? `invert(${shade}%)` : undefined,
-      width: Math.round(baseSize * 0.75),
-      height: Math.round(baseSize * 0.75),
+      width: Math.round(baseSize * 0.6),
+      height: Math.round(baseSize * 0.6),
       [theme.breakpoints.up('md')]: {
         width: baseSize,
         height: baseSize,
