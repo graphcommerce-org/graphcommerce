@@ -57,7 +57,7 @@ export default function AccountAddresses(props: AccountAddressesProps) {
 
   return (
     <>
-      {addresses && addresses.length < 1 && (
+      {((addresses && addresses.length === 0) || !addresses) && (
         <>
           <FullPageMessage
             title='You have no addresses saved yet'
