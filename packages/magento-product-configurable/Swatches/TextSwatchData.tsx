@@ -39,7 +39,7 @@ type TextSwatchDataProps = TextSwatchDataFragment & SwatchDataProps & UseStyles<
 
 export default function TextSwatchData(props: TextSwatchDataProps) {
   const classes = useStyles(props)
-  const { value, store_label, size, price } = props
+  const { store_label, size, price } = props
 
   return (
     <div className={classes.root}>
@@ -51,7 +51,7 @@ export default function TextSwatchData(props: TextSwatchDataProps) {
           </div>
           <div className={classes.delivery}>
             {/* TODO: change to actual delivery data */}
-            <Typography variant='caption'> Next day delivery</Typography>
+            <Typography variant='caption'>Next day delivery</Typography>
           </div>
         </>
       ) : (

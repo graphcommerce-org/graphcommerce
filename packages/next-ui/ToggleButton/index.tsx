@@ -4,6 +4,7 @@ import { capitalize, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
 import Button, { ButtonProps } from '../Button'
+import { UseStyles } from '../Styles'
 
 export const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -14,10 +15,7 @@ export const useStyles = makeStyles(
         borderWidth: 2,
       },
       '&:hover': {},
-
-      '&$selected': {
-        border: `2px solid ${theme.palette.secondary.main}`,
-      },
+      '&$selected': {},
     },
     disabled: {},
     selected: {},
@@ -35,7 +33,7 @@ export type ToggleButtonProps = ButtonProps & {
   selected?: boolean
   onClick?: (e: React.MouseEvent, v: any) => void
   onChange?: (e: React.MouseEvent, v: any) => void
-}
+} & UseStyles<typeof useStyles>
 
 const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
   const { root, ...classes } = useStyles(props)
