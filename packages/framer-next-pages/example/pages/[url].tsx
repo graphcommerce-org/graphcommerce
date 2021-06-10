@@ -25,5 +25,5 @@ export const getStaticPaths: GetStaticPaths<RouteProps> = async () => ({
 })
 
 export const getStaticProps: GetStaticProps<IndexProps, RouteProps> = async ({ params }) => ({
-  props: { title: `Page ${params.url}` },
+  props: { title: `Page ${params?.url}` },
 })

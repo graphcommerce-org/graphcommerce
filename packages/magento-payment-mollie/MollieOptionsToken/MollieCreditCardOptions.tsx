@@ -41,8 +41,10 @@ export default function MollieCreditCardOptions(props: PaymentOptionsProps) {
   useFormCompose({ form, step, submit, key: `PaymentMethodOptions_${code}` })
 
   useEffect(() => {
+    // @ts-expect-error window.Mollie is not defined in TS
     if (!window.Mollie || mollie) return
 
+    // @ts-expect-error window.Mollie is not defined in TS
     const mollieInstance = (window.Mollie as Mollie)('pfl_Ah5xUV4c6z', {
       locale: 'nl_NL',
       testmode: true,

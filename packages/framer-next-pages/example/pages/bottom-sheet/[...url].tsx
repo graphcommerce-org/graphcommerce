@@ -78,7 +78,7 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult<ParsedUrlQu
 }
 
 export const getStaticProps: GetStaticProps<SheetShellProps, ParsedUrlQuery> = async (ctx) => {
-  const [variant, ...rest] = ctx.params?.url
+  const variant = ctx.params?.url?.[0] ?? 'top'
   const variants = ['top', 'left', 'bottom', 'right']
 
   return { props: { variant: variants.includes(variant) ? variant : 'top' } }
