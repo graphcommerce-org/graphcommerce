@@ -1,15 +1,16 @@
+import { AnyARecord } from 'dns'
 import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
-import { Cart } from '@reachdigital/graphql'
+import { Cart, CartPrices } from '@reachdigital/graphql'
 import { CartTotals } from '@reachdigital/magento-cart'
-import { CartItems } from '@reachdigital/magento-cart-items'
+import { CartItems, CartProps } from '@reachdigital/magento-cart-items'
 import SliderContainer from '@reachdigital/next-ui/FramerSlider/SliderContainer'
 import { SliderContext } from '@reachdigital/next-ui/FramerSlider/SliderContext'
+import SliderNext from '@reachdigital/next-ui/FramerSlider/SliderNext'
+import SliderPrev from '@reachdigital/next-ui/FramerSlider/SliderPrev'
 import SliderScroller from '@reachdigital/next-ui/FramerSlider/SliderScroller'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import SectionHeader from '@reachdigital/next-ui/SectionHeader'
 import React from 'react'
-
-const OrderCart = CartItems & CartTotals
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -27,6 +28,27 @@ const useStyles = makeStyles(
     },
     sliderContainer: {
       padding: theme.spacings.xs,
+      position: 'relative',
+    },
+    sliderButtons: {
+      pointerEvents: 'all',
+      width: '100%',
+      position: 'absolute',
+      top: 45,
+      '& > *': {
+        pointerEvents: 'all',
+      },
+    },
+    sliderNext: {
+      right: theme.spacings.sm,
+      position: 'absolute',
+    },
+    sliderPrev: {
+      left: '-20px',
+      position: 'absolute',
+    },
+    prevNextFab: {
+      boxShadow: 'none',
     },
     sectionHeader: {
       textTransform: 'none',
@@ -40,7 +62,7 @@ const useStyles = makeStyles(
   { name: 'OrderSuccessSummary' },
 )
 
-export default function OrderSummary(props: OrderCart) {
+export default function OrderSummary(props: any) {
   const classes = useStyles()
   const { items, prices, shipping_addresses } = props
 
@@ -52,6 +74,7 @@ export default function OrderSummary(props: OrderCart) {
             Order summary
           </Typography>
         }
+        labelRight={<Typography>Download invoice</Typography>}
       />
       <SliderContext scrollSnapAlign='start'>
         <SliderContainer classes={{ container: classes.sliderContainer }}>
@@ -68,6 +91,10 @@ export default function OrderSummary(props: OrderCart) {
               />
             ))}
           </SliderScroller>
+          <div className={classes.sliderButtons}>
+            <SliderPrev className={classes.sliderPrev} classes={{ root: classes.prevNextFab }} />
+            <SliderNext className={classes.sliderNext} classes={{ root: classes.prevNextFab }} />
+          </div>
         </SliderContainer>
       </SliderContext>
       <Divider />
