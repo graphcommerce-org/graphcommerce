@@ -113,7 +113,8 @@ export default function FramerNextPages(props: PagesProps) {
         } = item
         const active = itemIdx === renderItems.length - 1
         const depth = itemIdx - (renderItems.length - 1)
-        const backSteps = historyIdx - (renderItems[itemIdx - 1]?.historyIdx ?? 0)
+        const prevIdx = renderItems[itemIdx - 1]?.historyIdx
+        const backSteps = prevIdx > -1 ? historyIdx - prevIdx : 0
 
         return (
           <pageContext.Provider key={sharedKey} value={{ depth, active, direction, backSteps }}>

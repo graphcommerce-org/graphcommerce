@@ -28,7 +28,7 @@ function SheetShell(props: SheetShellProps) {
   return (
     <Sheet
       open={open}
-      onSnap={(snapPoint) => snapPoint === 'closed' && router.back()}
+      onSnap={(snapPoint) => snapPoint === 'closed' && pageRouter.go(backSteps * -1)}
       variant={variant}
       size={size}
     >
@@ -40,16 +40,6 @@ function SheetShell(props: SheetShellProps) {
           header={<SheetDragIndicator styles={styles} />}
           styles={styles}
         >
-          {backSteps > 1 && (
-            <button type='button' onClick={() => pageRouter.go(-1)}>
-              Back
-            </button>
-          )}
-          {backSteps > 0 && (
-            <button type='button' onClick={() => pageRouter.go(backSteps * -1)}>
-              Close
-            </button>
-          )}
           {children}
         </SheetPanel>
       </SheetContainer>

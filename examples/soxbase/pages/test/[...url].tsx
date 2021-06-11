@@ -62,6 +62,11 @@ function AppShellTestIndex(props: Props) {
             Top Sheet
           </Button>
         </PageLink>
+        <PageLink href='/test/slider' passHref>
+          <Button variant='outlined' color='secondary'>
+            Slider
+          </Button>
+        </PageLink>
         <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>
           <m.img
             src='/manifest/icon.png'

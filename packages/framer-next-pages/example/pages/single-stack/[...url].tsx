@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/require-await */
-import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
-import { SheetVariant, SPRING_ANIM } from '@reachdigital/framer-sheet'
+import { PageOptions, usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
+import { SheetHeader, SheetVariant, SPRING_ANIM } from '@reachdigital/framer-sheet'
 import { motion } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticProps } from 'next'
 import Link from 'next/link'
@@ -11,12 +11,39 @@ import SheetShell, { SheetShellProps } from '../../components/SheetShell'
 function MultiStack() {
   const [expanded, setExpanded] = useState(true)
   const router = usePageRouter()
+  const { backSteps } = usePageContext()
 
   const [variant] = router.query.url as string[]
   const page = Number.isNaN(Number(router.query.url?.[1])) ? 0 : Number(router.query.url?.[1])
 
   return (
     <>
+      <SheetHeader
+        back={
+          backSteps > 1 && (
+            <button type='button' onClick={() => router.back()}>
+              Back
+            </button>
+          )
+        }
+        close={
+          backSteps > 0 ? (
+            <button type='button' onClick={() => router.go(backSteps * -1)}>
+              Close
+            </button>
+          ) : (
+            <Link href='/'>
+              <a>fallback close</a>
+            </Link>
+          )
+        }
+        primary={
+          <Link href={`/single-stack/${variant}/${page + 1}`}>
+            <a>{page + 1}</a>
+          </Link>
+        }
+      />
+
       <button type='button' onClick={() => setExpanded(!expanded)}>
         {expanded ? 'collapse' : 'expand'}
       </button>
