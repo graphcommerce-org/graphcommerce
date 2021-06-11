@@ -1,23 +1,32 @@
 import { NextRouter } from 'next/router'
-import { createContext, useContext } from 'react'
+import { createContext } from 'react'
 
-export const pageRouterContext = createContext(undefined as unknown as NextRouter)
+export type PageRouterContext = NextRouter & { go(delta: number): void }
 
-/**
- * The pageRouter maintains state for the old page.
- *
- * E.g.:
- *
- * `/my-regular-page`:
- *
- * - `useRouter().asPath === '/overlay'`
- * - `usePageRouter().asPath === '/my-regular-page'` We maintain the state
- *
- * `/overlay`:
- *
- * - `useRouter().asPath === '/overlay'`
- * - `usePageRouter().asPath === '/overlay'`
- */
-export function usePageRouter() {
-  return useContext(pageRouterContext)
+export const pageRouterContext = createContext(undefined as unknown as PageRouterContext)
+
+export function createRouterProxy(router: NextRouter): PageRouterContext {
+  const { asPath, pathname, query, locale, push } = router
+
+  function go(delta: number) {
+    if (delta >= 0) {
+      console.error(`Called .go(${delta}), only negative numbers are allowed. Redirecting to home`)
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      push('/')
+      return
+    }
+
+    const deltaAbs = Math.abs(delta)
+    for (let i = 0; i < deltaAbs; i++) {
+      router.back()
+    }
+  }
+
+  // We create an object with the current stale properties
+  const overrideProps = { asPath, pathname, query, locale, go }
+
+  return new Proxy<PageRouterContext>(router as PageRouterContext, {
+    get: (target, prop: string, receiver) =>
+      overrideProps[prop] ?? Reflect.get(target, prop, receiver),
+  })
 }

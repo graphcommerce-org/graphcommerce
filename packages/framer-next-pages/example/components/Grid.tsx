@@ -25,38 +25,36 @@ export default function PostCardGrid() {
         </Link>
       </div>
 
-      <h2>Framer-sheet</h2>
+      <h2>Framer-sheet, using a single overlay</h2>
       <div className={styles.postCardGrid}>
-        <Link href='/bottom-sheet/bottom'>
+        <Link href='/single-stack/bottom'>
           <a className={usePostcardClass('/bottom-sheet/bottom')}>Bottom Sheet</a>
         </Link>
-        <Link href='/bottom-sheet/left'>
+        <Link href='/single-stack/left'>
           <a className={usePostcardClass('/bottom-sheet/left')}>Left Sheet</a>
         </Link>
-        <Link href='/bottom-sheet/right'>
+        <Link href='/single-stack/right'>
           <a className={usePostcardClass('/bottom-sheet/right')}>Right Sheet</a>
         </Link>
-        <Link href='/bottom-sheet/top'>
+        <Link href='/single-stack/top'>
           <a className={usePostcardClass('/bottom-sheet/top')}>Top Sheet</a>
         </Link>
       </div>
 
-      <h2>Overlay</h2>
+      <h2>Framer-sheet, using a multiple stacked overlays</h2>
       <div className={styles.postCardGrid}>
-        {data.map((id) => (
-          <Link key={id} href={`/single-stack/${id}`}>
-            <a className={usePostcardClass(`/single-stack/${id}`)}>{id}</a>
-          </Link>
-        ))}
-      </div>
-
-      <h2>Stacking multiple overlays on top of each other</h2>
-      <div className={styles.postCardGrid}>
-        {data.map((id) => (
-          <Link key={id} href={`/multi-stack/${id}`}>
-            <a className={usePostcardClass(`/multi-stack/${id}`)}>{id}</a>
-          </Link>
-        ))}
+        <Link href='/multi-stack/bottom'>
+          <a className={usePostcardClass('/bottom-sheet/bottom')}>Bottom Sheet</a>
+        </Link>
+        <Link href='/multi-stack/left'>
+          <a className={usePostcardClass('/bottom-sheet/left')}>Left Sheet</a>
+        </Link>
+        <Link href='/multi-stack/right'>
+          <a className={usePostcardClass('/bottom-sheet/right')}>Right Sheet</a>
+        </Link>
+        <Link href='/multi-stack/top'>
+          <a className={usePostcardClass('/bottom-sheet/top')}>Top Sheet</a>
+        </Link>
       </div>
     </div>
   )

@@ -1,9 +1,13 @@
-import { Container, Typography } from '@material-ui/core'
+import { Container, Fab, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
+import Button from '@reachdigital/next-ui/Button'
+import SheetHeader from '@reachdigital/next-ui/FramerSheet/SheetHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconArrowForward } from '@reachdigital/next-ui/icons'
 import { GetStaticPaths } from 'next'
+import Link from 'next/link'
 import React, { useState } from 'react'
 import { SheetVariant } from '../../../../../packages/framer-sheet'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
@@ -23,16 +27,27 @@ function AppShellTextOverlay({ url, pages }: Props) {
 
   const next = Number(url) + 1
   return (
-    <Container maxWidth='md'>
-      <Typography variant='h1'>{title}</Typography> Content here
-    </Container>
+    <>
+      <SheetHeader
+        primary={
+          <Link href='/test/overlay/bottom/2' passHref>
+            <Button color='secondary' variant='pill'>
+              Next
+            </Button>
+          </Link>
+        }
+      />
+      <Container maxWidth='md'>
+        <Typography variant='h1'>{title}</Typography> Content here
+      </Container>
+    </>
   )
 }
 
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'test',
   SharedComponent: SheetShell,
-  sharedProps: { size: responsiveVal(320, 800) },
+  sharedProps: { size: 'max' },
 }
 AppShellTextOverlay.pageOptions = pageOptions
 
@@ -52,6 +67,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
+  const [variant] = params?.url ?? 'bottom'
   const url = params?.url.join('/') ?? ''
 
   const client = apolloClient(locale, true)
@@ -61,7 +77,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const page = staticClient.query({
     query: DefaultPageDocument,
     variables: {
-      url: `test/overlay/${url}`,
+      url,
       rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
     },
   })
@@ -73,7 +89,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       url,
       ...(await page).data,
       apolloState: await conf.then(() => client.cache.extract()),
-      variant: variants.includes(url) ? (url as SheetVariant) : 'bottom',
+      variant: variants.includes(variant) ? (variant as SheetVariant) : 'bottom',
     },
   }
 }

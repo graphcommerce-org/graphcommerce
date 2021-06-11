@@ -1,4 +1,4 @@
-import { useCloseOverlay, usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
+import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
 import {
   Sheet,
   SheetBackdrop,
@@ -10,7 +10,6 @@ import {
 import { useRouter } from 'next/router'
 import React from 'react'
 import useSheetStyles from '../FramerSheet/useSheetStyles'
-import BackButton from './BackButton'
 import ShellBase, { PageLayoutBaseProps } from './ShellBase'
 
 export type SheetShellBaseProps = {
@@ -25,19 +24,18 @@ function SheetShellBase(props: SheetShellBaseProps) {
   const sheetClasses = useSheetStyles()
   const router = useRouter()
   const pageRouter = usePageRouter()
-  const { depth } = usePageContext()
-  const close = useCloseOverlay()
+  const { depth, backSteps } = usePageContext()
   const open = depth < 0 || router.asPath === pageRouter.asPath
 
   return (
     <ShellBase name={name}>
       <Sheet
         open={open}
-        onSnap={(snapPoint) => snapPoint === 'closed' && router.back()}
+        onSnap={(snapPoint) => snapPoint === 'closed' && pageRouter.go(backSteps * -1)}
         variant={variant}
         size={size}
       >
-        <SheetBackdrop onTap={close} classes={sheetClasses} />
+        <SheetBackdrop onTap={() => pageRouter.go(backSteps * -1)} classes={sheetClasses} />
         <SheetContainer classes={sheetClasses}>
           <SheetPanel header={<SheetDragIndicator classes={sheetClasses} />} classes={sheetClasses}>
             {/* <FocusLock returnFocus={{ preventScroll: true }} disabled={!isActive}> */}

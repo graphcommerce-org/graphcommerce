@@ -128,12 +128,10 @@ const styles: Styles<ClassKeys> = {
     padding: 6,
   },
   indicatorRoottop: {
-    paddingTop: 12,
-    paddingBottom: 12,
+    padding: `12px 6px`,
   },
   indicatorRootbottom: {
-    paddingTop: 12,
-    paddingBottom: 12,
+    padding: `12px 6px`,
   },
   indicatorRootright: {
     flexDirection: 'column-reverse',

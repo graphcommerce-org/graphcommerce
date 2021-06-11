@@ -37,7 +37,3 @@ export type PageContext = {
 }
 
 export const pageContext = createContext(undefined as unknown as PageContext)
-
-export function usePageContext(): PageContext {
-  return useContext(pageContext)
-}

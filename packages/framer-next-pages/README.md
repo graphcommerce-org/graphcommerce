@@ -217,15 +217,16 @@ After navigation to `overlay-two`
 - When navigating forward: `usePageContext().direction === 1`
 - When navigating back: `usePageContext().direction === -1`
 
-### useCloseOverlay()
+### usePageContext().backSteps
 
 When navigating inside an overlay we need to be able to navigate back x-times to
-close the overlay.
+close the overlay. So we give the times it needs to go back.
 
 ```tsx
 function MyComponent {
-  const close = useCloseOverlay();
-  return <button onClick={close}>close</button>
+  const { backSteps } = usePageContext();
+  const router = usePageRouter();
+  return <button onClick={() => router.go(backSteps * -1)}>close</button>
 }
 ```
 

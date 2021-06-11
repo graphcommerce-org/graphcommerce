@@ -4,4 +4,5 @@ export * from './context/pageContext'
 export * from './context/pageRouterContext'
 export type { PageOptions, PageComponent } from './types'
 
-export * from './hooks/useCloseOverlay'
+export * from './hooks/usePageContext'
+export * from './hooks/usePageRouter'
