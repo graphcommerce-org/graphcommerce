@@ -69,7 +69,7 @@ export type PagePaginationProps = {
  */
 export default function Pagination(props: PagePaginationProps) {
   const { count, page, renderLink, classes: styles, ...paginationProps } = props
-  const classes = useStyles(styles)
+  const classes = useStyles(props)
   const { items } = usePagination({
     count,
     defaultPage: 1,

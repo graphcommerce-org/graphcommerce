@@ -83,7 +83,14 @@ function ProductVirtual(props: Props) {
           RowProductSpecs: (rowProps) => (
             <RowProductSpecs {...rowProps} {...product} aggregations={aggregations} />
           ),
-          RowProductReviews: (rowProps) => <RowProductReviews {...rowProps} {...product} />,
+          RowProductReviews: (rowProps) => (
+            <RowProductReviews
+              {...rowProps}
+              {...product}
+              urlKey={product?.url_key ?? ''}
+              reviewCount={product?.review_count}
+            />
+          ),
           RowProductRelated: (rowProps) => <RowProductRelated {...rowProps} {...product} />,
           RowProductUpsells: (rowProps) => <RowProductUpsells {...rowProps} {...product} />,
         }}

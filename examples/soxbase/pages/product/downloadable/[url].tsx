@@ -94,7 +94,9 @@ function ProductDownloadable(props: Props) {
           RowProductSpecs: (rowProps) => (
             <RowProductSpecs {...rowProps} {...product} aggregations={aggregations} />
           ),
-          RowProductReviews: (rowProps) => <RowProductReviews {...rowProps} {...product} />,
+          RowProductReviews: (rowProps) => (
+            <RowProductReviews {...rowProps} {...product} urlKey={product?.url_key ?? ''} />
+          ),
           RowProductRelated: (rowProps) => <RowProductRelated {...rowProps} {...product} />,
           RowProductUpsells: (rowProps) => <RowProductUpsells {...rowProps} {...product} />,
         }}

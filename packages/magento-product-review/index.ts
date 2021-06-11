@@ -1,4 +1,4 @@
 export { default as ProductReviewSummary } from './ProductReviewSummary'
-export { default as ProductReview } from './ProductReview'
+export { default as ProductReviews } from './ProductReviews'
 export * from './JsonLdProductReview'
-export * from './ProductReview'
+export * from './ProductReviews'
