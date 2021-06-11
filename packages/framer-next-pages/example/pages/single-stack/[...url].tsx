@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/require-await */
-import { PageOptions, usePageRouter, useCloseOverlay } from '@reachdigital/framer-next-pages'
+import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
 import { SheetVariant, SPRING_ANIM } from '@reachdigital/framer-sheet'
 import { motion } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticProps } from 'next'
@@ -8,20 +8,15 @@ import React, { useState } from 'react'
 import Grid from '../../components/Grid'
 import SheetShell, { SheetShellProps } from '../../components/SheetShell'
 
-function SheetPage() {
+function MultiStack() {
   const [expanded, setExpanded] = useState(true)
   const router = usePageRouter()
-  const close = useCloseOverlay()
 
   const [variant] = router.query.url as string[]
   const page = Number.isNaN(Number(router.query.url?.[1])) ? 0 : Number(router.query.url?.[1])
 
   return (
     <>
-      <button type='button' onClick={close}>
-        close
-      </button>
-
       <button type='button' onClick={() => setExpanded(!expanded)}>
         {expanded ? 'collapse' : 'expand'}
       </button>
@@ -29,12 +24,12 @@ function SheetPage() {
       <h1>
         Overlay{' '}
         {page > 0 && (
-          <Link href={`/bottom-sheet/${variant}/${page - 1}`}>
+          <Link href={`/single-stack/${variant}/${page - 1}`}>
             <a>{page - 1}</a>
           </Link>
         )}{' '}
         {page}{' '}
-        <Link href={`/bottom-sheet/${variant}/${page + 1}`}>
+        <Link href={`/single-stack/${variant}/${page + 1}`}>
           <a>{page + 1}</a>
         </Link>
       </h1>
@@ -58,11 +53,10 @@ function SheetPage() {
 const pageOptions: PageOptions = {
   overlayGroup: 'bottom',
   SharedComponent: SheetShell,
-  sharedKey: ({ asPath }) => asPath,
 }
-SheetPage.pageOptions = pageOptions
+MultiStack.pageOptions = pageOptions
 
-export default SheetPage
+export default MultiStack
 
 type ParsedUrlQuery = { url: [SheetVariant, string] }
 export async function getStaticPaths(): Promise<GetStaticPathsResult<ParsedUrlQuery>> {

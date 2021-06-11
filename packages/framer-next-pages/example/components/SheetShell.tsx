@@ -1,4 +1,4 @@
-import { usePageContext, usePageRouter, useCloseOverlay } from '@reachdigital/framer-next-pages'
+import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
 import {
   Sheet,
   SheetBackdrop,
@@ -13,17 +13,16 @@ import React from 'react'
 
 export type SheetShellProps = {
   headerBack?: React.ReactNode
-  headerForward?: React.ReactNode
+  cta?: React.ReactNode
   children?: React.ReactNode
 } & Pick<SheetProps, 'size' | 'variant'>
 
 function SheetShell(props: SheetShellProps) {
-  const { children, headerBack, headerForward, variant, size } = props
+  const { children, headerBack, cta, variant, size } = props
 
   const router = useRouter()
   const pageRouter = usePageRouter()
-  const { depth } = usePageContext()
-  const close = useCloseOverlay()
+  const { depth, backSteps } = usePageContext()
   const open = depth < 0 || router.asPath === pageRouter.asPath
 
   return (
@@ -33,14 +32,24 @@ function SheetShell(props: SheetShellProps) {
       variant={variant}
       size={size}
     >
-      <SheetBackdrop onTap={close} styles={styles} />
+      <SheetBackdrop onTap={() => pageRouter.go(backSteps * -1)} styles={styles} />
       <SheetContainer styles={styles}>
         <SheetPanel
-          forward={headerForward}
+          forward={cta}
           back={headerBack}
           header={<SheetDragIndicator styles={styles} />}
           styles={styles}
         >
+          {backSteps > 1 && (
+            <button type='button' onClick={() => pageRouter.go(-1)}>
+              Back
+            </button>
+          )}
+          {backSteps > 0 && (
+            <button type='button' onClick={() => pageRouter.go(backSteps * -1)}>
+              Close
+            </button>
+          )}
           {children}
         </SheetPanel>
       </SheetContainer>

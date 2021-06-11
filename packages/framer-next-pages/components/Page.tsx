@@ -2,11 +2,15 @@ import { useClientSize } from '@reachdigital/framer-utils'
 import { m, useIsPresent } from 'framer-motion'
 import React from 'react'
 import type { PageItem } from '../types'
-import { scrollPos } from '../utils'
 
 export type PageProps = Pick<PageItem, 'historyIdx'> & {
   active: boolean
   children: React.ReactNode
+}
+
+function scrollPos(idx: number): { x: number; y: number } {
+  const scroll = global.window?.sessionStorage[`__next_scroll_${idx}`]
+  return scroll ? JSON.parse(scroll) : { x: 0, y: 0 }
 }
 
 export default function Page(props: PageProps) {

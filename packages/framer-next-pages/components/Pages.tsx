@@ -3,9 +3,8 @@ import type { AppPropsType } from 'next/dist/next-server/lib/utils'
 import type { NextRouter } from 'next/router'
 import React, { useRef } from 'react'
 import { pageContext } from '../context/pageContext'
-import { pageRouterContext } from '../context/pageRouterContext'
+import { pageRouterContext, createRouterProxy } from '../context/pageRouterContext'
 import type { PageComponent, PageItem } from '../types'
-import { createRouterProxy } from '../utils'
 import Page from './Page'
 
 function findPlainIdx(items: PageItem[]) {
