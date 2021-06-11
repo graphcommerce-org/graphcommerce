@@ -11,18 +11,19 @@ import {
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { useCartQuery } from '@reachdigital/magento-cart'
 import { CartPageDocument, OrderSummary } from '@reachdigital/magento-cart-checkout'
-import { AddressMultiLine } from '@reachdigital/magento-customer'
-<<<<<<< HEAD
+import {
+  AddressMultiLine,
+  AddressMultiLine,
+  OrderStateLabelInline,
+} from '@reachdigital/magento-customer'
 import InlineAccount from '@reachdigital/magento-customer/InlineAccount'
 import { ConfigurableCartItem } from '@reachdigital/magento-product-configurable'
-=======
->>>>>>> f0a18b4c (style: signup and newsletter styling)
+
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import Row from '@reachdigital/next-ui/Row'
 import SectionHeader from '@reachdigital/next-ui/SectionHeader'
 import Stepper from '@reachdigital/next-ui/Stepper/Stepper'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconHeart } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
 import React from 'react'
@@ -59,70 +60,6 @@ const useStyles = makeStyles(
       display: 'grid',
       gridTemplateColumns: `2fr 1fr`,
     },
-    orderReceived: {
-      color: theme.palette.common.white,
-      background: theme.palette.secondary.main,
-      padding: 2,
-    },
-    buttonRow: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      display: 'flex',
-      marginTop: theme.spacings.lg,
-    },
-    newsletter: {
-      background: theme.palette.background.highlight,
-      padding: theme.spacings.sm,
-      borderRadius: 4,
-      marginBottom: theme.spacings.xs,
-      marginTop: theme.spacings.lg,
-      display: 'flex',
-      flexDirection: 'column',
-      [theme.breakpoints.up('md')]: {
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexDirection: 'row',
-      },
-    },
-    newsletterAction: {
-      display: 'flex',
-      alignItems: 'center',
-    },
-    signup: {
-      padding: theme.spacings.sm,
-      border: `2px ${theme.palette.background.highlight} solid`,
-      borderRadius: 4,
-      gridColumnGap: theme.spacings.sm,
-      display: 'grid',
-      marginBottom: theme.spacings.sm,
-      gridTemplateAreas: `
-      "title"
-      "description"
-      "button"
-    `,
-      [theme.breakpoints.up('md')]: {
-        gridTemplateAreas: `
-        "title title"
-        "description button"
-      `,
-      },
-    },
-    signupTitle: {
-      gridArea: 'title',
-    },
-    signupDescription: {
-      gridArea: 'description',
-      display: 'flex',
-      alignItems: 'center',
-    },
-    signupButton: {
-      gridArea: 'button',
-      justifySelf: 'start',
-      margintTop: '-3px',
-      [theme.breakpoints.up('md')]: {
-        justifySelf: 'end',
-      },
-    },
   }),
   { name: 'OrderSuccess' },
 )
@@ -132,6 +69,7 @@ function ShippingPage() {
   // const router = useRouter()
   // const cartId = router.query.cartId as string
   const classes = useStyles()
+  console.log(data, 'DATA')
 
   return (
     <Container maxWidth='md'>
@@ -143,13 +81,7 @@ function ShippingPage() {
 
       <Stepper steps={3} currentStep={3} key='checkout-stepper' />
 
-      <Box textAlign='center'>
-        <SvgImage src={iconHeart} loading='eager' alt='party' />
-
-        <Typography variant='h4' component='h1' align='center'>
-          Thank you for your order!
-        </Typography>
-      </Box>
+      <IconHeader src={iconHeart} title='Thank you for your order' alt='celebrate' size='large' />
 
       <div className={classes.orderDetailContainer}>
         <div>
@@ -159,7 +91,18 @@ function ShippingPage() {
           />
           <span className={classes.orderNumberLabel}>
             <Typography variant='body1'>12525052020</Typography>
-            <span className={classes.orderReceived}>Order received</span>
+            <OrderStateLabelInline
+              items={data?.cart?.items}
+              renderer={{
+                Ordered: () => <span>processed</span>,
+                Invoiced: () => <span>invoiced</span>,
+                Shipped: () => <span>shipped</span>,
+                Refunded: () => <span>refunded</span>,
+                Canceled: () => <span>canceled</span>,
+                Returned: () => <span>returned</span>,
+                Partial: () => <span>partially processed</span>,
+              }}
+            />
           </span>
         </div>
         <div>
@@ -195,44 +138,6 @@ function ShippingPage() {
       </div>
 
       <OrderSummary {...data?.cart} />
-
-      <div className={classes.newsletter}>
-        <Typography className={classes.newsletterTitle} variant='h5'>
-          Sign up for our newsletter and stay updated
-        </Typography>
-        <div className={classes.newsletterAction}>
-          <Switch color='primary' />
-          <Typography variant='body1'>info@someemail.co.uk</Typography>
-        </div>
-      </div>
-
-      <div className={classes.signup}>
-        <Typography variant='h5' className={classes.signupTitle}>
-          No account yet?
-        </Typography>
-        <Typography variant='caption' className={classes.signupDescription}>
-          You can track your order status and much more!
-        </Typography>
-        <Button
-          url='/signup'
-          title='Create an account'
-          variant='pill'
-          size='medium'
-          color='secondary'
-          text='bold'
-        />
-      </div>
-
-      <Row maxWidth='lg' classes={{ root: classes.buttonRow }}>
-        <Button
-          url='/'
-          title='Continue shopping'
-          variant='pill'
-          size='large'
-          color='secondary'
-          text='bold'
-        />
-      </Row>
     </Container>
   )
 }
