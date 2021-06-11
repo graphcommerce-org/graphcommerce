@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { makeStyles, TextField, Theme, Typography } from '@material-ui/core'
+import { useCartQuery } from '@reachdigital/magento-cart'
 import Button from '@reachdigital/next-ui/Button'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
@@ -14,12 +15,19 @@ const useStyles = makeStyles(
     root: {
       borderRadius: 4,
       border: `1px solid ${theme.palette.divider}`,
-      padding: theme.spacings.sm,
+      padding: theme.spacings.md,
     },
     innerContainer: {
       display: 'flex',
       justifyContent: 'space-between',
-      alignItems: 'flex-end',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      gap: 32,
+      [theme.breakpoints.up('sm')]: {
+        alignItems: 'flex-end',
+        flexDirection: 'unset',
+        gap: 0,
+      },
     },
     form: {
       marginTop: theme.spacings.sm,
@@ -35,23 +43,18 @@ const useStyles = makeStyles(
 )
 
 type InlineAccountProps = {
-  cartId: string
   title?: React.ReactNode
   description?: React.ReactNode
   accountHref: string
 } & UseStyles<typeof useStyles>
 
 export default function InlineAccount(props: InlineAccountProps) {
-  const { cartId, title, description, accountHref } = props
+  const { title, description, accountHref } = props
   const classes = useStyles(props)
 
   const [toggled, setToggled] = useState<boolean>(false)
 
-  const { loading, data } = useQuery(InlineAccountDocument, {
-    variables: {
-      cartId: cartId ?? '',
-    },
-  })
+  const { loading, data } = useCartQuery(InlineAccountDocument)
   const cart = data?.cart
 
   const { data: customerTokenData } = useQuery(CustomerTokenDocument)
@@ -76,7 +79,7 @@ export default function InlineAccount(props: InlineAccountProps) {
           <>
             <div className={classes.innerContainer}>
               <div>
-                <Typography variant='h6' className={classes.title}>
+                <Typography variant='h4' className={classes.title}>
                   {title ?? 'No account yet?'}
                 </Typography>
                 {description ?? 'You can track your order status and much more!'}
@@ -123,7 +126,7 @@ export default function InlineAccount(props: InlineAccountProps) {
         {signedIn && (
           <div className={classes.innerContainer}>
             <div>
-              <Typography variant='h6' className={classes.title}>
+              <Typography variant='h4' className={classes.title}>
                 {title ?? 'Have an account?'}
               </Typography>
               {description ?? 'You can find your order history in your account!'}
@@ -141,28 +144,6 @@ export default function InlineAccount(props: InlineAccountProps) {
             </div>
           </div>
         )}
-
-        {/* {!canSignUp && (
-          <div className={classes.innerContainer}>
-            <div>
-              <Typography variant='h6' className={classes.title}>
-                {title ?? 'Sign in to your account'}
-              </Typography>
-              {description ?? 'You can find your order history in your account!'}
-            </div>
-            <div>
-              <Button
-                variant='pill'
-                color='secondary'
-                text='bold'
-                href={signInHref}
-                className={classes.button}
-              >
-                Sign In
-              </Button>
-            </div>
-          </div>
-        )} */}
       </div>
     </div>
   )
