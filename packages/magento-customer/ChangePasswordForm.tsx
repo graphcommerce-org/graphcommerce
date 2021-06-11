@@ -6,6 +6,8 @@ import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
+import FormDivider from '../next-ui/Form/FormDivider'
+import MessageSnackbar from '../next-ui/Snackbar/MessageSnackbar'
 import {
   ChangePasswordDocument,
   ChangePasswordMutation,
@@ -20,11 +22,6 @@ export default function ChangePasswordForm() {
     >(ChangePasswordDocument)
   const { muiRegister, handleSubmit, required, watch, data, formState, error } = form
   const submitHandler = handleSubmit(() => {})
-
-  if (formState.isSubmitSuccessful && data) {
-    return <div>Password changed!</div>
-  }
-
   const pass = watch('newPassword')
 
   return (
@@ -71,6 +68,8 @@ export default function ChangePasswordForm() {
 
       <ApolloErrorAlert error={error} />
 
+      <FormDivider />
+
       <FormActions>
         <Button
           type='submit'
@@ -83,6 +82,10 @@ export default function ChangePasswordForm() {
           Save new password
         </Button>
       </FormActions>
+
+      <MessageSnackbar open={Boolean(formState.isSubmitSuccessful && data)}>
+        <>Password changed</>
+      </MessageSnackbar>
     </Form>
   )
 }

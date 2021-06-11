@@ -38,7 +38,10 @@ function AccountAddressesPage(props: Props) {
         metaRobots={['noindex']}
       />
       <NoSsr>
-        <IconHeader src={iconAddresses} title='Addresses' alt='addresses' size='large' />
+        {((customer?.addresses && customer.addresses.length > 1) || !customer?.addresses) && (
+          <IconHeader src={iconAddresses} title='Addresses' alt='addresses' size='large' />
+        )}
+
         <AccountAddresses
           {...data}
           loading={!data}

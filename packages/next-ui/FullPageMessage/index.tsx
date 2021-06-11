@@ -13,7 +13,7 @@ const useStyles = makeStyles(
     },
     subject: {
       textAlign: 'center',
-      margin: `${theme.spacings.md} 0`,
+      margin: `${theme.spacings.sm} 0`,
     },
     description: {
       marginTop: 8,

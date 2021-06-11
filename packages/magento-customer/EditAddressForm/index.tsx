@@ -107,6 +107,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
             variant='contained'
             color='primary'
             size='large'
+            text='bold'
             loading={formState.isSubmitting}
           >
             Save changes

@@ -4,10 +4,10 @@ import { FilterRangeTypeInput } from '@reachdigital/graphql'
 import { useCategoryPushRoute, useProductListParamsContext } from '@reachdigital/magento-category'
 import { Money } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
+import ChipMenu, { ChipMenuProps } from '@reachdigital/next-ui/ChipMenu'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import React from 'react'
-import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 type FilterRangeTypeProps = NonNullable<

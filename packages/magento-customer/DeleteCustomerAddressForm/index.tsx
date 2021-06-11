@@ -12,7 +12,7 @@ export type DeleteCustomerAddressFormProps = {
 const useStyles = makeStyles((theme: Theme) => ({
   button: {
     display: 'block',
-    margin: `0 auto ${theme.spacings.sm} auto`,
+    color: theme.palette.primary.contrastText,
   },
 }))
 
@@ -33,7 +33,7 @@ export default function DeleteCustomerAddressForm(props: DeleteCustomerAddressFo
 
   return (
     <form onSubmit={submitHandler} noValidate>
-      <Button type='submit' variant='text' color='primary' className={classes.button}>
+      <Button type='submit' variant='text' color='inherit' className={classes.button}>
         Delete this address
       </Button>
       <ApolloErrorAlert error={error} />

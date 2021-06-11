@@ -13,10 +13,10 @@ import {
   useCategoryPushRoute,
   useProductListParamsContext,
 } from '@reachdigital/magento-category'
+import ChipMenu, { ChipMenuProps } from '@reachdigital/next-ui/ChipMenu'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
 import { SetRequired } from 'type-fest'
-import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 export type FilterIn = SetRequired<Omit<FilterEqualTypeInput, 'eq'>, 'in'>

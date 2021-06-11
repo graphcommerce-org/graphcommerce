@@ -3,9 +3,11 @@ import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
 import { AccountDashboardOrdersDocument, AccountOrders } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import FullPageMessage from '@reachdigital/next-ui/FullPageMessage'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconBox } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
@@ -33,8 +35,22 @@ function AccountOrdersPage() {
     <Container maxWidth='md'>
       <PageMeta title='Orders' metaDescription='View all your orders' metaRobots={['noindex']} />
       <NoSsr>
-        <IconHeader src={iconBox} title='Orders' alt='orders' size='large' />
-        <AccountOrders {...customer} />
+        {customer?.orders && customer.orders.items.length > 1 && (
+          <>
+            <IconHeader src={iconBox} title='Orders' alt='orders' size='large' />
+            <AccountOrders {...customer} />
+          </>
+        )}
+
+        {customer?.orders && customer.orders.items.length < 1 && (
+          <>
+            <FullPageMessage
+              title='You have no orders yet'
+              description='Discover our collection and place your first order!'
+              icon={<SvgImage src={iconBox} size={148} alt='box' />}
+            />
+          </>
+        )}
       </NoSsr>
     </Container>
   )

@@ -1,8 +1,10 @@
+import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
-  CreateCustomerAddressForm,
   AccountDashboardAddressesQuery,
+  CreateCustomerAddressForm,
+  CustomerDocument,
 } from '@reachdigital/magento-customer'
 import {
   CountryRegionsDocument,
@@ -23,9 +25,13 @@ type Props = CountryRegionsQuery & AccountDashboardAddressesQuery
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function AddNewAddressPage(props: Props) {
-  const { countries, customer } = props
+  const { loading, data } = useQuery(CustomerDocument, {
+    ssr: false,
+  })
+  const customer = data?.customer
+  const { countries } = props
 
-  if (!customer)
+  if (!loading && !customer)
     return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
 
   return (

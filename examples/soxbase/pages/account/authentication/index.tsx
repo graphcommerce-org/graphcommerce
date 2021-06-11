@@ -1,23 +1,21 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { AccountDashboardReviewsDocument, AccountReviews } from '@reachdigital/magento-customer'
+import { ChangePasswordForm, CustomerDocument } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import FullPageMessage from '@reachdigital/next-ui/FullPageMessage'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconStar } from '@reachdigital/next-ui/icons'
-import { GetStaticProps } from 'next'
+import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import SectionContainer from '@reachdigital/next-ui/SectionContainer'
+import { iconLock } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
-function AccountReviewsPage() {
-  const { data, loading } = useQuery(AccountDashboardReviewsDocument, {
-    fetchPolicy: 'cache-and-network',
+function AccountAuthenticationPage() {
+  const { loading, data } = useQuery(CustomerDocument, {
     ssr: false,
   })
   const customer = data?.customer
@@ -27,22 +25,10 @@ function AccountReviewsPage() {
 
   return (
     <Container maxWidth='md'>
-      <PageMeta title='Reviews' metaDescription='View all your reviews' metaRobots={['noindex']} />
+      <PageMeta title='Authentication' metaDescription='Change password' metaRobots={['noindex']} />
       <NoSsr>
-        {((customer?.reviews && customer?.reviews.items.length < 1) || !customer?.reviews) && (
-          <FullPageMessage
-            title={`You haven't placed any reviews yet`}
-            description='Discover our collection and write your first review!'
-            icon={<SvgImage src={iconStar} size={148} alt='star' />}
-          />
-        )}
-
-        {customer?.reviews && customer?.reviews.items.length > 1 && (
-          <>
-            <IconHeader src={iconStar} title='Reviews' alt='reviews' size='large' />
-            {customer?.reviews && <AccountReviews {...customer?.reviews} loading={loading} />}
-          </>
-        )}
+        <IconHeader src={iconLock} title='Authentication' alt='authentication' size='large' />
+        <SectionContainer label='Password'>{customer && <ChangePasswordForm />}</SectionContainer>
       </NoSsr>
     </Container>
   )
@@ -51,11 +37,11 @@ function AccountReviewsPage() {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
-  sharedKey: () => 'account',
+  sharedKey: () => 'account-authentication',
 }
-AccountReviewsPage.pageOptions = pageOptions
+AccountAuthenticationPage.pageOptions = pageOptions
 
-export default AccountReviewsPage
+export default AccountAuthenticationPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)

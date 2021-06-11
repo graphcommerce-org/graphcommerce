@@ -1,10 +1,8 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { Link, makeStyles, Theme } from '@material-ui/core'
 import { CountryRegionsQuery } from '@reachdigital/magento-store/CountryRegions.gql'
-import Button from '@reachdigital/next-ui/Button'
-import FormActions from '@reachdigital/next-ui/Form/FormActions'
-import PageLink from 'next/link'
 import React from 'react'
 import AddressMultiLine from '../AddressMultiLine'
+import DeleteCustomerAddressForm from '../DeleteCustomerAddressForm'
 import UpdateDefaultAddressForm from '../UpdateDefaultAddressForm'
 import { AccountAddressFragment } from './AccountAddress.gql'
 
@@ -27,6 +25,12 @@ const useStyles = makeStyles(
     switches: {
       paddingTop: theme.spacings.xxs,
     },
+    actions: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      flexDirection: 'column',
+      textAlign: 'right',
+    },
   }),
   { name: 'AccountAddress' },
 )
@@ -44,13 +48,12 @@ export default function AccountAddress(props: AccountAddressProps) {
           <UpdateDefaultAddressForm {...props} />
         </div>
       </div>
-      <FormActions>
-        <PageLink href={`/account/addresses/edit?addressId=${id}`} passHref>
-          <Button variant='text' color='primary'>
-            Edit
-          </Button>
-        </PageLink>
-      </FormActions>
+      <div className={classes.actions}>
+        <Link color='primary' href={`/account/addresses/edit?addressId=${id}`}>
+          Edit
+        </Link>
+        <DeleteCustomerAddressForm addressId={id ?? undefined} />
+      </div>
     </div>
   )
 }

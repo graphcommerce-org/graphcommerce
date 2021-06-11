@@ -2,9 +2,9 @@ import { ListItemIcon, MenuItem, TextField, Typography } from '@material-ui/core
 import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import { PaymentOptionsProps } from '@reachdigital/magento-cart-payment-method'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { useFormCompose, useFormPersist } from '@reachdigital/react-hook-form'
 import React from 'react'
-import SvgImage from '../../next-ui/SvgImage'
 import { SetMolliePaymentMethodIssuerOnCartDocument } from '../MollieOptionsToken/SetMolliePaymentMethodIssuerOnCart.gql'
 
 type MollieIssuerOptionsProps = PaymentOptionsProps & { label: string }
