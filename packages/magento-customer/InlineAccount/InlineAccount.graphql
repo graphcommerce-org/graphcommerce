@@ -1,0 +1,10 @@
+query InlineAccount($cartId: String!) {
+  cart(cart_id: $cartId) {
+    __typename
+    id
+    shipping_addresses {
+      ...CartAddress
+    }
+    email
+  }
+}
