@@ -6,10 +6,15 @@ export type PageRouterContext = NextRouter & { go(delta: number): void }
 export const pageRouterContext = createContext(undefined as unknown as PageRouterContext)
 
 export function createRouterProxy(router: NextRouter): PageRouterContext {
-  const { asPath, pathname, query, locale } = router
+  const { asPath, pathname, query, locale, push } = router
 
   function go(delta: number) {
-    if (delta >= 0) throw Error('Only negative numbers supported')
+    if (delta >= 0) {
+      console.error(`Called .go(${delta}), only negative numbers are allowed. Redirecting to home`)
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      push('/')
+      return
+    }
 
     const deltaAbs = Math.abs(delta)
     for (let i = 0; i < deltaAbs; i++) {
