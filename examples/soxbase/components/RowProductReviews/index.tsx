@@ -8,7 +8,7 @@ import { RowProductReviewsFragment } from './RowProductReviews.gql'
 type RowProductReviewsProps = RowProductReviewsFragment & Partial<ProductReviewsProps>
 
 export default function RowProductReviews(props: RowProductReviewsProps) {
-  const { title, reviews, url_key, review_count } = props
+  const { title, reviews, url_key, review_count, sku } = props
 
   if (!reviews || reviews?.items.length === 0) return null
 
@@ -21,7 +21,12 @@ export default function RowProductReviews(props: RowProductReviewsProps) {
           </>
         }
       />
-      <ProductReviews reviews={reviews} url_key={url_key ?? ''} review_count={review_count ?? 0} />
+      <ProductReviews
+        reviews={reviews}
+        url_key={url_key ?? ''}
+        sku={sku}
+        review_count={review_count ?? 0}
+      />
     </Row>
   )
 }

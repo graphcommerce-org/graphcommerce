@@ -66,7 +66,7 @@ const useStyles = makeStyles(
 export type ProductReviewsProps = ProductReviewsFragment
 
 export default function ProductReviews(props: ProductReviewsProps) {
-  const { reviews, url_key, review_count } = props
+  const { reviews, url_key, sku } = props
   const classes = useStyles()
   const config = 'en_US'
   const locale = config.replace('_', '-')
@@ -125,7 +125,13 @@ export default function ProductReviews(props: ProductReviewsProps) {
           </div>
         ))}
       <div className={classes.reviewsBottomContainer}>
-        <Button variant='pill' color='primary' text='bold' size='large'>
+        <Button
+          variant='pill'
+          color='primary'
+          text='bold'
+          size='large'
+          href={`/account/reviews/add/${sku}`}
+        >
           Write a review
         </Button>
 

@@ -89,6 +89,7 @@ function ProductBundle(props: Props) {
               {...rowProps}
               {...product}
               url_key={product?.url_key ?? ''}
+              sku={product?.sku ?? ''}
               review_count={product?.review_count}
             />
           ),
