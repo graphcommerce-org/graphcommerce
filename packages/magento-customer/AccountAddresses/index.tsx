@@ -22,6 +22,9 @@ const useStyles = makeStyles(
         borderBottom: `1px solid ${theme.palette.divider}`,
       },
     },
+    sectionContainer: {
+      position: 'absolute',
+    },
     button: {
       display: 'block',
       maxWidth: 'max-content',
@@ -95,7 +98,7 @@ export default function AccountAddresses(props: AccountAddressesProps) {
             Add new address
           </Button>
 
-          <MessageSnackbar open={router.query.confirm_delete !== undefined}>
+          <MessageSnackbar sticky open={router.query.confirm_delete !== undefined}>
             <>Address was deleted</>
           </MessageSnackbar>
         </SectionContainer>

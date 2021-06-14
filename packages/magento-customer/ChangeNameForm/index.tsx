@@ -46,7 +46,7 @@ export default function ChangeNameForm(props: ChangeNameFormProps) {
       </FormActions>
       <ApolloErrorAlert error={error} />
 
-      <MessageSnackbar open={formState.isSubmitSuccessful && !error}>
+      <MessageSnackbar sticky open={formState.isSubmitSuccessful && !error}>
         <>Successfully saved changes</>
       </MessageSnackbar>
     </Form>
