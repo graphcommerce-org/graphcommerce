@@ -121,8 +121,8 @@ function ProductConfigurable(props: Props) {
               <RowProductReviews
                 {...rowProps}
                 {...product}
-                urlKey={product?.url_key ?? ''}
-                reviewCount={product?.review_count}
+                url_key={product?.url_key ?? ''}
+                review_count={product?.review_count}
               />
             ),
             RowProductRelated: (rowProps) => <RowProductRelated {...rowProps} {...product} />,

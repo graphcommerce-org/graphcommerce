@@ -5,7 +5,7 @@ import Pagination from '@reachdigital/next-ui/Pagination'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconStarYellow } from '@reachdigital/next-ui/icons'
 import React, { useState } from 'react'
-import { ProductReviewFragment } from './ProductReview.gql'
+import { ProductReviewsFragment } from './ProductReviews.gql'
 import { ProductReviewsPageDocument } from './ProductReviewsPage.gql'
 
 const useStyles = makeStyles(
@@ -63,10 +63,10 @@ const useStyles = makeStyles(
   { name: 'ProductReviews' },
 )
 
-export type ProductReviewsProps = ProductReviewFragment & { urlKey: string; reviewCount: number }
+export type ProductReviewsProps = ProductReviewsFragment
 
 export default function ProductReviews(props: ProductReviewsProps) {
-  const { reviews, urlKey } = props
+  const { reviews, url_key, review_count } = props
   const classes = useStyles()
   const config = 'en_US'
   const locale = config.replace('_', '-')
@@ -76,7 +76,7 @@ export default function ProductReviews(props: ProductReviewsProps) {
   const { data: otherReviewsPage, loading } = useQuery(ProductReviewsPageDocument, {
     skip: reviewPage === 1,
     variables: {
-      urlKey,
+      urlKey: url_key ?? '',
       reviewPage,
       reviewPageSize: 3,
     },
@@ -130,7 +130,7 @@ export default function ProductReviews(props: ProductReviewsProps) {
         </Button>
 
         <Pagination
-          count={total_pages}
+          count={total_pages ?? 1}
           page={current_page ?? 1}
           classes={{ root: classes.paginationRoot }}
           renderLink={(p: number, icon: React.ReactNode) => (

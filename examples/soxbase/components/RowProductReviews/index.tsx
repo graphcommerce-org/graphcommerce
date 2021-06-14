@@ -8,7 +8,7 @@ import { RowProductReviewsFragment } from './RowProductReviews.gql'
 type RowProductReviewsProps = RowProductReviewsFragment & Partial<ProductReviewsProps>
 
 export default function RowProductReviews(props: RowProductReviewsProps) {
-  const { title, reviews, urlKey, reviewCount } = props
+  const { title, reviews, url_key, review_count } = props
 
   if (!reviews || reviews?.items.length === 0) return null
 
@@ -17,11 +17,11 @@ export default function RowProductReviews(props: RowProductReviewsProps) {
       <SectionHeader
         labelLeft={
           <>
-            {title} ({reviewCount})
+            {title} ({review_count})
           </>
         }
       />
-      <ProductReviews reviews={reviews} urlKey={urlKey ?? ''} reviewCount={reviewCount ?? 0} />
+      <ProductReviews reviews={reviews} url_key={url_key ?? ''} review_count={review_count ?? 0} />
     </Row>
   )
 }

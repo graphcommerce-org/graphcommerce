@@ -16,4 +16,6 @@ fragment ProductReviews on ProductInterface @inject(into: ["ProductPageItem"]) {
       text
     }
   }
+  review_count
+  url_key
 }

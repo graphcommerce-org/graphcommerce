@@ -97,7 +97,12 @@ function ProductGrouped(props: Props) {
             <RowProductSpecs {...rowProps} {...product} aggregations={aggregations} />
           ),
           RowProductReviews: (rowProps) => (
-            <RowProductReviews {...rowProps} {...product} urlKey={product?.url_key ?? ''} />
+            <RowProductReviews
+              {...rowProps}
+              {...product}
+              url_key={product?.url_key ?? ''}
+              review_count={product?.review_count}
+            />
           ),
           RowProductRelated: (rowProps) => <RowProductRelated {...rowProps} {...product} />,
           RowProductUpsells: (rowProps) => <RowProductUpsells {...rowProps} {...product} />,
