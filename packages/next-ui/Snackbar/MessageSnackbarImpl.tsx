@@ -103,6 +103,9 @@ const useStyles = makeStyles(
         },
       },
     },
+    sticky: {
+      position: 'sticky',
+    },
   }),
   { name: 'Impl' },
 )
@@ -112,6 +115,7 @@ export type MessageSnackbarImplProps = Omit<
   'autoHideDuration' | 'onClose' | 'anchorOrigin'
 > & {
   autoHide?: boolean
+  sticky?: boolean
   variant?: Variant
   size?: Size
   color?: PropTypes.Color
@@ -130,6 +134,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
     action,
     open,
     message,
+    sticky,
     children,
     ...snackbarProps
   } = props
@@ -162,7 +167,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
       autoHideDuration={autoHide ? 6000 : null}
       classes={{
         root: classes.snackbarRoot,
-        anchorOriginBottomCenter: classes.anchorOriginBottomCenter,
+        anchorOriginBottomCenter: clsx(classes.anchorOriginBottomCenter, sticky && classes.sticky),
       }}
     >
       <SnackbarContent

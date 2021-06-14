@@ -34,9 +34,6 @@ const useStyles = makeStyles(
     link: {
       textDecoration: 'none',
     },
-    anchorOriginBottomCenter: {
-      position: 'sticky',
-    },
   }),
   { name: 'AccountAddresses' },
 )
@@ -101,10 +98,7 @@ export default function AccountAddresses(props: AccountAddressesProps) {
             Add new address
           </Button>
 
-          <MessageSnackbar
-            open={router.query.confirm_delete !== undefined}
-            classes={{ anchorOriginBottomCenter: classes.anchorOriginBottomCenter }}
-          >
+          <MessageSnackbar sticky open={router.query.confirm_delete !== undefined}>
             <>Address was deleted</>
           </MessageSnackbar>
         </SectionContainer>

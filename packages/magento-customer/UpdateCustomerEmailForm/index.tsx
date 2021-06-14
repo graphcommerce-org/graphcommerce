@@ -123,7 +123,7 @@ export default function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormPr
       </FormActions>
       <ApolloErrorAlert error={error} />
 
-      <MessageSnackbar open={formState.isSubmitSuccessful && !error}>
+      <MessageSnackbar sticky open={formState.isSubmitSuccessful && !error}>
         <>Successfully updated email</>
       </MessageSnackbar>
     </Form>
