@@ -6,9 +6,9 @@ import {
 } from '@reachdigital/framer-sheet'
 import Link from 'next/link'
 import React from 'react'
-import BackButton from '../AppShell/BackButton'
-import SvgImage from '../SvgImage'
-import { iconClose } from '../icons'
+import SvgImage from '../../SvgImage'
+import { iconClose } from '../../icons'
+import BackButton from '../BackButton'
 
 type SheetHeaderProps = Omit<SheetHeaderCodeProps, 'back' | 'close'>
 

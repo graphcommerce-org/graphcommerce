@@ -9,8 +9,8 @@ import {
 } from '@reachdigital/framer-sheet'
 import { useRouter } from 'next/router'
 import React from 'react'
-import useSheetStyles from '../FramerSheet/useSheetStyles'
-import ShellBase, { PageLayoutBaseProps } from './ShellBase'
+import ShellBase, { PageLayoutBaseProps } from '../ShellBase'
+import useSheetStyles from './useSheetStyles'
 
 export type SheetShellBaseProps = {
   header?: React.ReactNode
