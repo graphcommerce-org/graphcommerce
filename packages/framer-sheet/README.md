@@ -69,7 +69,7 @@ import React from 'react'
 
 const useSheetStyles = makeStyles<Theme, never, ClassKeys>(
   styles as StyleRules<ClassKeys>,
-) as () => ClassNameMap<ClassKeys>
+) as (props?: Record<string, unknown>) => ClassNameMap<ClassKeys>
 
 type Props = { children: React.ReactNode }
 
