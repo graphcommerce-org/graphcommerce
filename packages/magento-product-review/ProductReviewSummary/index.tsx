@@ -4,18 +4,18 @@ import { iconStarYellow } from '@reachdigital/next-ui/icons'
 import { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'
 
 const useStyles = makeStyles(
-  {
+  (theme: Theme) => ({
     icon: {
       height: 14,
     },
-  },
+  }),
   { name: 'ProductReviewSummary' },
 )
 
 type ProductReviewSummaryProps = ProductReviewSummaryFragment & ChipProps
 
 export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
-  const classes = useStyles(props)
+  const { icon } = useStyles(props)
   const { rating_summary } = props
 
   if (!rating_summary) return null
@@ -29,7 +29,7 @@ export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
       icon={<SvgImage src={iconStarYellow} alt='review' loading='lazy' />}
       color='default'
       size='medium'
-      classes={classes}
+      classes={{ icon }}
       label={`${rating}/5`}
     />
   )
