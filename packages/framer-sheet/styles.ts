@@ -2,6 +2,7 @@ import { Styles } from '@reachdigital/framer-utils'
 import { SheetBackdropClassKeys } from './components/SheetBackdrop'
 import { SheetContainerClassKeys } from './components/SheetContainer'
 import { SheetDragIndicatorClassKeys } from './components/SheetDragIndicator'
+import { SheetHeaderClasskey } from './components/SheetHeader'
 import { SheetPanelClasskey } from './components/SheetPanel'
 
 export type ClassKeys =
@@ -9,6 +10,7 @@ export type ClassKeys =
   | SheetBackdropClassKeys
   | SheetContainerClassKeys
   | SheetPanelClasskey
+  | SheetHeaderClasskey
 
 const styles: Styles<ClassKeys> = {
   // SheetBackdropClassKeys
@@ -145,5 +147,10 @@ const styles: Styles<ClassKeys> = {
   indicatorright: { width: 4, height: 18 },
   indicatortop: { width: 18, height: 4 },
   indicatorbottom: { width: 18, height: 4 },
+
+  sheetHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
 }
 export default styles

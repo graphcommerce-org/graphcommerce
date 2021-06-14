@@ -21,7 +21,7 @@ export type SheetShellBaseProps = {
 function SheetShellBase(props: SheetShellBaseProps) {
   const { children, variant, size, name } = props
 
-  const sheetClasses = useSheetStyles()
+  const sheetClasses = useSheetStyles(props)
   const router = useRouter()
   const pageRouter = usePageRouter()
   const { depth, backSteps } = usePageContext()
