@@ -69,7 +69,11 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
                 exclusive
               >
                 {methods?.map((pm) => (
-                  <ToggleButton key={`${pm.code}___${pm.child}`} value={`${pm.code}___${pm.child}`}>
+                  <ToggleButton
+                    key={`${pm.code}___${pm.child}`}
+                    value={`${pm.code}___${pm.child}`}
+                    color='secondary'
+                  >
                     <Content {...pm} />
                   </ToggleButton>
                 ))}

@@ -1,3 +1,6 @@
+import { useQuery } from '@apollo/client'
+import { Typography } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import { PaymentOptionsProps } from '@reachdigital/magento-cart-payment-method'
 import Form from '@reachdigital/next-ui/Form'
@@ -5,36 +8,35 @@ import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { useFormCompose, useFormPersist } from '@reachdigital/react-hook-form'
 import Script from 'next/experimental-script'
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { ComponentHandler, Mollie, MollieInstance } from '../Mollie'
+import { StoreConfigDocument } from '../../magento-store'
+import { ComponentHandler, Mollie, MollieInstance, MollieTokenReturn } from '../Mollie'
 import { SetMolliePaymentMethodTokenOnCartDocument } from '../MollieOptionsIssuer/SetMolliePaymentMethodIssuerOnCart copy.gql'
 import MollieField from './MollieField'
-
-type MollieContext =
-  | (MollieInstance & {
-      cardHolder: ComponentHandler
-      cardNumber: ComponentHandler
-      expiryDate: ComponentHandler
-      verificationCode: ComponentHandler
-    })
-  | undefined
-const mollieContext = React.createContext<MollieContext>(undefined)
-
-export function useMollieContext() {
-  return useContext(mollieContext)
-}
+import { mollieContext, MollieContext } from './mollieContext'
 
 export default function MollieCreditCardOptions(props: PaymentOptionsProps) {
   const { mollie_available_issuers = [], mollie_meta } = props
   const { code, step, Container } = props
   const [loaded, setLoaded] = useState<boolean>(false)
   const [mollie, setMollie] = useState<MollieContext>(undefined)
+  const conf = useQuery(StoreConfigDocument)
 
   const form = useFormGqlMutationCart(SetMolliePaymentMethodTokenOnCartDocument, {
     mode: 'onChange',
     defaultValues: { code },
+    onBeforeSubmit: async (variables) => {
+      const result = await mollie?.createToken()
+
+      if (!result?.token || result?.error) {
+        throw Error(`Error while requesting token`)
+      }
+
+      return { ...variables, token: result.token }
+    },
   })
 
-  const { handleSubmit } = form
+  const { handleSubmit, formState } = form
+
   const submit = handleSubmit(() => {})
 
   useFormPersist({ form, name: `PaymentMethodOptions_${code}` })
@@ -46,7 +48,7 @@ export default function MollieCreditCardOptions(props: PaymentOptionsProps) {
 
     // @ts-expect-error window.Mollie is not defined in TS
     const mollieInstance = (window.Mollie as Mollie)('pfl_Ah5xUV4c6z', {
-      locale: 'nl_NL',
+      locale: conf.data?.storeConfig?.locale ?? 'en_US',
       testmode: true,
     })
 
@@ -57,7 +59,7 @@ export default function MollieCreditCardOptions(props: PaymentOptionsProps) {
       expiryDate: mollieInstance.createComponent('expiryDate'),
       verificationCode: mollieInstance.createComponent('verificationCode'),
     })
-  }, [loaded, mollie])
+  }, [conf.data?.storeConfig?.locale, loaded, mollie])
 
   return (
     <Container>
@@ -69,7 +71,7 @@ export default function MollieCreditCardOptions(props: PaymentOptionsProps) {
               name='cardNumber'
               variant='outlined'
               label='Credit Card Number'
-              form={form}
+              isSubmitted={formState.isSubmitted}
             />
           </FormRow>
           <FormRow>
@@ -77,20 +79,31 @@ export default function MollieCreditCardOptions(props: PaymentOptionsProps) {
               name='cardHolder'
               variant='outlined'
               label='Credit Card Holder'
-              form={form}
+              isSubmitted={formState.isSubmitted}
             />
           </FormRow>
           <FormRow>
-            <MollieField name='expiryDate' variant='outlined' label='Expiration Date' form={form} />
+            <MollieField
+              name='expiryDate'
+              variant='outlined'
+              label='Expiration Date'
+              isSubmitted={formState.isSubmitted}
+            />
           </FormRow>
           <FormRow>
             <MollieField
               name='verificationCode'
               variant='outlined'
               label='Verification Code'
-              form={form}
+              isSubmitted={formState.isSubmitted}
             />
           </FormRow>
+
+          {formState.submitCount === 0 && (
+            <Alert severity='warning' variant='filled'>
+              Todo: form needs to be submitted twice
+            </Alert>
+          )}
         </form>
       </mollieContext.Provider>
     </Container>
