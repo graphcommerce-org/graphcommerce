@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/require-await */
 import { PageOptions, usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
-import { SheetHeader, SheetVariant, SPRING_ANIM } from '@reachdigital/framer-sheet'
+import { SheetHeader, SheetVariant, SPRING_ANIM, styles } from '@reachdigital/framer-sheet'
 import { motion } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticProps } from 'next'
 import Link from 'next/link'
@@ -18,6 +18,7 @@ function MultiStack() {
   return (
     <>
       <SheetHeader
+        styles={styles}
         back={
           backSteps > 1 && (
             <button type='button' onClick={() => router.back()}>
