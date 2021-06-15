@@ -26,5 +26,5 @@ export type MollieFieldName = 'cardNumber' | 'cardHolder' | 'expiryDate' | 'veri
 
 type CreateComponent = (name: MollieFieldName) => ComponentHandler
 
-type TokenInstance = {}
-type CreateToken = () => TokenInstance
+export type MollieTokenReturn = { token?: string; error?: string } | undefined
+type CreateToken = () => Promise<MollieTokenReturn>

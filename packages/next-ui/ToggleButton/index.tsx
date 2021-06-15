@@ -10,7 +10,11 @@ export const useStyles = makeStyles(
   (theme: Theme) => ({
     /* Styles applied to the root element. */
     root: {
-      borderWidth: 2,
+      border: '2px solid transparent',
+      backgroundColor: theme.palette.background.default,
+      borderRadius: 4,
+      // boxShadow: theme.shadows['1'],
+      boxShadow: `0px 0px 2px ${theme.palette.grey[400]}`,
       '&$disabled': {
         borderWidth: 2,
       },
@@ -18,7 +22,10 @@ export const useStyles = makeStyles(
       '&$selected': {},
     },
     disabled: {},
-    selected: {},
+    selected: ({ color = 'default' }: ButtonProps) => ({
+      border: `2px solid ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
+      boxShadow: `unset`,
+    }),
     /* Styles applied to the `label` wrapper element. */
     label: {},
     sizeSmall: {},
@@ -46,6 +53,7 @@ const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
     selected,
     size = 'medium',
     value,
+    color,
     ...other
   } = props
 

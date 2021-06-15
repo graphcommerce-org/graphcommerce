@@ -5,54 +5,31 @@ import {
   TextFieldProps,
   Theme,
 } from '@material-ui/core'
-import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
-import { Controller, UseFormReturn } from '../../react-hook-form'
-import {
-  ComponentEventHandler,
-  ComponentFieldState,
-  ComponentHandler,
-  MollieFieldName,
-} from '../Mollie'
-import { useMollieContext } from './MollieCreditCardOptions'
-
-interface InputElement {
-  focus(): void
-  value?: string
-}
+import React, { Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from 'react'
+import { ComponentEventHandler, ComponentFieldState, MollieFieldName } from '../Mollie'
+import { useMollieContext } from './mollieContext'
 
 type MollieFieldContext = [ComponentFieldState, Dispatch<SetStateAction<ComponentFieldState>>]
 const mollieFieldContext = React.createContext(undefined as unknown as MollieFieldContext)
 
-const InputComponent = (props, ref) => {
+const InputComponent = (props) => {
   const { component, inputRef, ...other } = props
-
-  const Component = component as typeof DivComponent
-  React.useImperativeHandle(inputRef, () => {
-    const handle: InputElement = {
-      focus: () => {
-        console.log('asdfaaaa')
-        // logic to focus the rendered component from 3rd party belongs here
-      },
-      // hiding the value e.g. react-stripe-elements
-    }
-    return handle
-  })
-
+  const Component = component as typeof IframeField
   return <Component {...other} ref={inputRef} />
 }
 
-type DivComponentProps = Omit<InputBaseComponentProps, 'onChange'> & {
+type IframeFieldProps = Omit<InputBaseComponentProps, 'onChange'> & {
   name: MollieFieldName
   onChange: (event: { target: { name: string; value: string } }) => void
 }
 
-const DivComponent = React.forwardRef<any, DivComponentProps>((props, forwardedRef) => {
+const IframeField = React.forwardRef<any, IframeFieldProps>((props, forwardedRef) => {
   const { name, onChange, onFocus, onBlur, ...otherProps } = props
   const internalRef = useRef<HTMLDivElement>(null)
   const forkRef = forwardedRef
   const mollie = useMollieContext()
   const mollieComponent = mollie?.[name]
-  const [state, setState] = React.useContext(mollieFieldContext)
+  const [state, setState] = useContext(mollieFieldContext)
 
   const prevFocus = useRef<boolean>(false)
 
@@ -67,7 +44,7 @@ const DivComponent = React.forwardRef<any, DivComponentProps>((props, forwardedR
     if (!mollieComponent) return () => {}
     const handleChange: ComponentEventHandler = (e) => {
       onChange({ target: { name, value: e.error ? '' : '1' } })
-      setState(e)
+      setState((current) => (JSON.stringify(current) === JSON.stringify(e) ? current : e))
     }
 
     // console.log('trigggerr')
@@ -117,7 +94,7 @@ const DivComponent = React.forwardRef<any, DivComponentProps>((props, forwardedR
 
 type MollieFieldProps = {
   name: MollieFieldName
-  form: UseFormReturn<any>
+  isSubmitted?: boolean
 } & TextFieldProps
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -127,45 +104,31 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 export default function MollieField(props: MollieFieldProps) {
-  const { name, form } = props
+  const { isSubmitted = false, ...fieldProps } = props
 
-  const { control, setError, setValue } = form
   const classes = useStyles()
   const [state, setState] = useState<ComponentFieldState>({
     dirty: false,
     touched: false,
-    valid: false,
     error: undefined,
+    valid: false,
   })
 
   return (
     <mollieFieldContext.Provider value={[state, setState]}>
-      {/* <Controller
-        name={name}
-        control={control}
-        render={({
-          field: { ref, ...fieldProps },
-          fieldState: { error, invalid, isDirty, isTouched },
-          formState: { isSubmitted },
-        }) => {
-          console.log(isDirty) */}
-      {/* return ( */}
       <TextField
-        {...props}
-        // error={!!state.error}
-        // helperText={state.error}
+        {...fieldProps}
+        error={isSubmitted && !!state.error}
+        helperText={isSubmitted && state.error}
         InputProps={{
           inputComponent: InputComponent,
-          inputProps: { component: DivComponent },
+          inputProps: { component: IframeField },
         }}
         InputLabelProps={{
           shrink: true,
           classes: { root: classes.label },
         }}
       />
-      {/* )
-        }}
-      /> */}
     </mollieFieldContext.Provider>
   )
 }

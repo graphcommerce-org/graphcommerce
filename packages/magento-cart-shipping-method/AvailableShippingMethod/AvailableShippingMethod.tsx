@@ -73,7 +73,14 @@ const AvailableShippingMethod = React.forwardRef<any, AvailableShippingMethodPro
     } = useStyles(props)
 
     return (
-      <ToggleButton {...toggleProps} classes={classes} ref={ref} disabled={!available} size='large'>
+      <ToggleButton
+        {...toggleProps}
+        classes={classes}
+        ref={ref}
+        disabled={!available}
+        size='large'
+        color='secondary'
+      >
         <div className={methodTitle}>
           {carrier_title} {method_title}
         </div>

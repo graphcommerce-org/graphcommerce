@@ -41,7 +41,7 @@ export default function ApolloErrorAlert(props: ApolloErrorAlertProps) {
               {error.networkError && (
                 <AnimatedRow key='networkError'>
                   <div className={classes.alert} key={error.networkError.message}>
-                    <Alert severity='error'>{error.networkError.message}</Alert>
+                    <Alert severity='error'>Network Error: {error.networkError.message}</Alert>
                   </div>
                 </AnimatedRow>
               )}
