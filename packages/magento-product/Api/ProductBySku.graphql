@@ -1,0 +1,9 @@
+query ProductBySku($sku: String!) {
+  products(filter: { sku: { eq: $sku } }) {
+    items {
+      __typename
+      uid
+      name
+    }
+  }
+}

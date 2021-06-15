@@ -128,6 +128,7 @@ export default function AccountSignInUpForm() {
                       variant='contained'
                       color='primary'
                       size='large'
+                      text='bold'
                     >
                       Continue
                     </Button>

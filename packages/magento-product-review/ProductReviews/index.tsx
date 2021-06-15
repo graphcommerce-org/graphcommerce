@@ -2,6 +2,8 @@ import { useQuery } from '@apollo/client'
 import { Chip, makeStyles, Theme, Typography } from '@material-ui/core'
 import Button from '@reachdigital/next-ui/Button'
 import Pagination from '@reachdigital/next-ui/Pagination'
+import StarRatingField from '@reachdigital/next-ui/StarRatingField'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconStarYellow } from '@reachdigital/next-ui/icons'
 import React, { useState } from 'react'
@@ -59,6 +61,18 @@ const useStyles = makeStyles(
         padding: 0,
       },
     },
+    ratingRow: {
+      display: 'grid',
+      gap: responsiveVal(32, 64),
+      gridAutoFlow: 'column',
+      color: theme.palette.text.disabled,
+      ...theme.typography.body2,
+    },
+    rating: {
+      display: 'flex',
+      gap: responsiveVal(8, 16),
+      alignItems: 'center',
+    },
   }),
   { name: 'ProductReviews' },
 )
@@ -100,7 +114,6 @@ export default function ProductReviews(props: ProductReviewsProps) {
 
   return (
     <div>
-      {loading && <div>loading</div>}
       {!loading &&
         myReviews.items.map((review) => (
           <div key={review?.summary} className={classes.review}>
@@ -115,6 +128,20 @@ export default function ProductReviews(props: ProductReviewsProps) {
               <Typography variant='h5'> {review?.summary}</Typography>
             </div>
             <Typography variant='body1'>{review?.text}</Typography>
+
+            <div className={classes.ratingRow}>
+              {review?.ratings_breakdown.map((ratingBreakdown) => (
+                <div key={`rating-${ratingBreakdown?.value}`} className={classes.rating}>
+                  <span>{ratingBreakdown?.name}</span>
+                  <StarRatingField
+                    readOnly
+                    size='small'
+                    defaultValue={Number(ratingBreakdown?.value ?? 0)}
+                  />
+                </div>
+              ))}
+            </div>
+
             <div className={classes.meta}>
               <div className={classes.nickname}>Written by {review?.nickname}</div>
               <time className={classes.date} dateTime={review?.created_at}>
