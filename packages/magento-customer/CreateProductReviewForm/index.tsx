@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
-import { makeStyles, TextField, Theme, Typography } from '@material-ui/core'
+import { makeStyles, TextField, Theme, Typography, Box } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 import Button from '@reachdigital/next-ui/Button'
 import Form from '@reachdigital/next-ui/Form'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
@@ -95,6 +96,27 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
   }, [loading, data, ratings.length])
 
   if (!data) return <></>
+
+  if (formState.isSubmitSuccessful && data) {
+    return (
+      <>
+        <Alert severity='success' variant='standard'>
+          Thank you! Your review was successfully submitted for approval
+        </Alert>
+        <Box mt={6}>
+          <Button
+            variant='contained'
+            color='primary'
+            text='bold'
+            size='large'
+            onClick={() => router.back()}
+          >
+            Continue shopping
+          </Button>
+        </Box>
+      </>
+    )
+  }
 
   return (
     <Form onSubmit={submitHandler} noValidate>

@@ -67,6 +67,7 @@ const useStyles = makeStyles(
       gridAutoFlow: 'column',
       color: theme.palette.text.disabled,
       ...theme.typography.body2,
+      justifyContent: 'space-between',
     },
     rating: {
       display: 'flex',
@@ -130,16 +131,19 @@ export default function ProductReviews(props: ProductReviewsProps) {
             <Typography variant='body1'>{review?.text}</Typography>
 
             <div className={classes.ratingRow}>
-              {review?.ratings_breakdown.map((ratingBreakdown) => (
-                <div key={`rating-${ratingBreakdown?.value}`} className={classes.rating}>
-                  <span>{ratingBreakdown?.name}</span>
-                  <StarRatingField
-                    readOnly
-                    size='small'
-                    defaultValue={Number(ratingBreakdown?.value ?? 0)}
-                  />
-                </div>
-              ))}
+              {review?.ratings_breakdown.map(
+                (ratingBreakdown) =>
+                  ratingBreakdown?.name !== 'Rating' && (
+                    <div key={`rating-${ratingBreakdown?.value}`} className={classes.rating}>
+                      <span>{ratingBreakdown?.name}</span>
+                      <StarRatingField
+                        readOnly
+                        size='small'
+                        defaultValue={Number(ratingBreakdown?.value ?? 0)}
+                      />
+                    </div>
+                  ),
+              )}
             </div>
 
             <div className={classes.meta}>

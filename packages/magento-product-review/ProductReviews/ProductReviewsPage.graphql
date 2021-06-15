@@ -2,8 +2,8 @@ query ProductReviewsPage($urlKey: String!, $reviewPageSize: Int, $reviewPage: In
   products(filter: { url_key: { eq: $urlKey } }) {
     items {
       __typename
-      review_count
       uid
+      review_count
       ...ProductReviews
     }
   }
