@@ -19,8 +19,8 @@ export function mergeErrors(errors: ApolloError[]): ApolloError | undefined {
 
 export default function ComposedSubmit(props: ComposedSubmitProps) {
   const { render: Render, onSubmitSuccessful } = props
-  const [state, dispatch] = useContext(composedFormContext)
-  const { formState, buttonState, isCompleting, forms } = state
+  const [formContext, dispatch] = useContext(composedFormContext)
+  const { formState, buttonState, isCompleting, forms } = formContext
 
   const formEntries = Object.entries(forms).sort((a, b) => a[1].step - b[1].step)
 
@@ -58,16 +58,19 @@ export default function ComposedSubmit(props: ComposedSubmitProps) {
 
     dispatch({ type: 'SUBMIT' })
 
-    /**
-     * We're executing these steps all in sequence, since certain forms can depend on other forms in
-     * the backend.
-     *
-     * Todo: There might be a performance optimization by submitting multiple forms in parallel.
-     */
-    // eslint-disable-next-line no-await-in-loop
-    for (const [, { submit }] of formsToSubmit) await submit()
-
-    dispatch({ type: 'SUBMITTING' })
+    try {
+      /**
+       * We're executing these steps all in sequence, since certain forms can depend on other forms
+       * in the backend.
+       *
+       * Todo: There might be a performance optimization by submitting multiple forms in parallel.
+       */
+      // eslint-disable-next-line no-await-in-loop
+      for (const [, { submit }] of formsToSubmit) await submit()
+      dispatch({ type: 'SUBMITTING' })
+    } catch (error) {
+      dispatch({ type: 'SUBMITTED', isSubmitSuccessful: false })
+    }
   }
 
   const errors: ApolloError[] = []
