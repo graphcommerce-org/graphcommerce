@@ -93,7 +93,11 @@ export function createApolloClient(
       window.localStorage.setItem('apollo-cache-persist', JSON.stringify(state))
     }
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    persistCache({ cache, storage: window.localStorage as PersistentStorage<unknown> })
+    persistCache({
+      cache,
+      storage: window.localStorage as PersistentStorage<unknown>,
+      maxSize: false,
+    })
   }
 
   cache.restore(state)
