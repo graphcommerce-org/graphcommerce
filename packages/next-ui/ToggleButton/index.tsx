@@ -36,7 +36,7 @@ export type ToggleButtonProps = ButtonProps & {
 } & UseStyles<typeof useStyles>
 
 const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
-  const { root, ...classes } = useStyles(props)
+  const { root, selected: selectedClass, ...classes } = useStyles(props)
   const {
     children,
     className,
@@ -63,12 +63,11 @@ const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
         root,
         {
           [classes.disabled]: disabled,
-          [classes.selected]: selected,
+          [selectedClass]: selected,
           [classes[`size${capitalize(size)}`]]: size !== 'medium',
         },
         className,
       )}
-      // classes={classes}
       variant='outlined'
       disabled={disabled}
       ref={ref}
@@ -78,6 +77,7 @@ const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
       aria-pressed={selected}
       size={size}
       {...other}
+      classes={classes}
     >
       {children}
     </Button>
