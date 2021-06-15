@@ -23,9 +23,7 @@ obs.observe({ entryTypes: ['measure'] })
 
 /** @type {import('next/dist/next-server/server/config').NextConfig} */
 const nextConfig = {
-  future: {
-    webpack5: true,
-  },
+  webpack5: true,
   webpackStats: process.env.ANALYZE === 'true',
   rewrites() {
     return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
@@ -51,4 +49,4 @@ const nextConfig = {
   productionBrowserSourceMaps: true,
 }
 
-module.exports = withBundleAnalyzer(withPWA(withImages(withYarn1Workspaces(nextConfig))))
+module.exports = withBundleAnalyzer(withPWA(withYarn1Workspaces(nextConfig)))
