@@ -15,7 +15,7 @@ const useStyles = makeStyles(
 type ProductReviewSummaryProps = ProductReviewSummaryFragment & ChipProps
 
 export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
-  const { icon } = useStyles(props)
+  const classes = useStyles(props)
   const { rating_summary } = props
 
   if (!rating_summary) return null
@@ -29,8 +29,9 @@ export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
       icon={<SvgImage src={iconStarYellow} alt='review' loading='lazy' />}
       color='default'
       size='medium'
-      classes={{ icon }}
       label={`${rating}/5`}
+      {...props}
+      classes={classes}
     />
   )
 }

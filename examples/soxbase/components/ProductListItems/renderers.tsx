@@ -14,60 +14,80 @@ const Subtitle = (props: TypographyProps) => (
 )
 
 const renderers: ProductListItemRenderer = {
-  SimpleProduct: (props) => (
-    <ProductListItemSimple
-      {...props}
-      subTitle={<Subtitle>By Soxbase</Subtitle>}
-      aspectRatio={[1, 1]}
-      bottomRight={<ProductReviewSummary {...props} />}
-    />
-  ),
-  ConfigurableProduct: (props) => (
-    <ProductListItemConfigurable
-      {...props}
-      subTitle={<Subtitle>By Soxbase</Subtitle>}
-      aspectRatio={[1, 1]}
-      swatchLocations={{
-        topLeft: [],
-        topRight: ['size'],
-        bottomLeft: ['color'],
-        bottomRight: [],
-      }}
-      bottomRight={<ProductReviewSummary {...props} />}
-    />
-  ),
-  BundleProduct: (props) => (
-    <ProductListItemBundle
-      {...props}
-      subTitle={<Subtitle>By Soxbase</Subtitle>}
-      aspectRatio={[1, 1]}
-      bottomRight={<ProductReviewSummary {...props} />}
-    />
-  ),
-  VirtualProduct: (props) => (
-    <ProductListItemVirtual
-      {...props}
-      subTitle={<Subtitle>By Soxbase</Subtitle>}
-      aspectRatio={[1, 1]}
-      bottomRight={<ProductReviewSummary {...props} />}
-    />
-  ),
-  DownloadableProduct: (props) => (
-    <ProductListItemDownloadable
-      {...props}
-      subTitle={<Subtitle>By Soxbase</Subtitle>}
-      aspectRatio={[1, 1]}
-      bottomRight={<ProductReviewSummary {...props} />}
-    />
-  ),
-  GroupedProduct: (props) => (
-    <ProductListItemGrouped
-      {...props}
-      subTitle={<Subtitle>By Soxbase</Subtitle>}
-      aspectRatio={[1, 1]}
-      bottomRight={<ProductReviewSummary {...props} />}
-    />
-  ),
+  SimpleProduct: (props) => {
+    const { rating_summary } = props
+    return (
+      <ProductListItemSimple
+        {...props}
+        subTitle={<Subtitle>By Soxbase</Subtitle>}
+        aspectRatio={[1, 1]}
+        bottomRight={<ProductReviewSummary rating_summary={rating_summary} />}
+      />
+    )
+  },
+  ConfigurableProduct: (props) => {
+    const { rating_summary } = props
+    return (
+      <ProductListItemConfigurable
+        {...props}
+        subTitle={<Subtitle>By Soxbase</Subtitle>}
+        aspectRatio={[1, 1]}
+        swatchLocations={{
+          topLeft: [],
+          topRight: ['size'],
+          bottomLeft: ['color'],
+          bottomRight: [],
+        }}
+        bottomRight={<ProductReviewSummary rating_summary={rating_summary} />}
+      />
+    )
+  },
+  BundleProduct: (props) => {
+    const { rating_summary } = props
+    return (
+      <ProductListItemBundle
+        {...props}
+        subTitle={<Subtitle>By Soxbase</Subtitle>}
+        aspectRatio={[1, 1]}
+        bottomRight={<ProductReviewSummary rating_summary={rating_summary} />}
+      />
+    )
+  },
+  VirtualProduct: (props) => {
+    const { rating_summary } = props
+    return (
+      <ProductListItemVirtual
+        {...props}
+        subTitle={<Subtitle>By Soxbase</Subtitle>}
+        aspectRatio={[1, 1]}
+        bottomRight={<ProductReviewSummary rating_summary={rating_summary} />}
+      />
+    )
+  },
+  DownloadableProduct: (props) => {
+    const { rating_summary } = props
+
+    return (
+      <ProductListItemDownloadable
+        {...props}
+        subTitle={<Subtitle>By Soxbase</Subtitle>}
+        aspectRatio={[1, 1]}
+        bottomRight={<ProductReviewSummary rating_summary={rating_summary} />}
+      />
+    )
+  },
+  GroupedProduct: (props) => {
+    const { rating_summary } = props
+
+    return (
+      <ProductListItemGrouped
+        {...props}
+        subTitle={<Subtitle>By Soxbase</Subtitle>}
+        aspectRatio={[1, 1]}
+        bottomRight={<ProductReviewSummary rating_summary={rating_summary} />}
+      />
+    )
+  },
   // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // // @ts-ignore GiftCardProduct is only available in Commerce
   // GiftCardProduct: (props) => (
