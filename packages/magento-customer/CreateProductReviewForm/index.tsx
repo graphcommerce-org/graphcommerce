@@ -75,7 +75,7 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
     defaultValues: { sku, nickname },
     onBeforeSubmit: (formData) => ({
       ...formData,
-      ratings,
+      ratings: ratings.some((r) => r.value_id === '') ? [] : ratings,
     }),
   })
   const { handleSubmit, muiRegister, formState, required, error } = form
@@ -159,7 +159,7 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
 
                   if (
                     !clonedProductReviewRatingInputValue ||
-                    !productReviewRatingInputValue?.value_id
+                    typeof productReviewRatingInputValue?.value_id === undefined
                   ) {
                     console.error('Cannot find product review rating input value in local state')
                     return
