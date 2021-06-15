@@ -1,21 +1,18 @@
 import { useQuery } from '@apollo/client'
-import { Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import { PaymentOptionsProps } from '@reachdigital/magento-cart-payment-method'
-import Form from '@reachdigital/next-ui/Form'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { useFormCompose, useFormPersist } from '@reachdigital/react-hook-form'
 import Script from 'next/experimental-script'
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StoreConfigDocument } from '../../magento-store'
-import { ComponentHandler, Mollie, MollieInstance, MollieTokenReturn } from '../Mollie'
+import { Mollie } from '../Mollie'
 import { SetMolliePaymentMethodTokenOnCartDocument } from '../MollieOptionsIssuer/SetMolliePaymentMethodIssuerOnCart copy.gql'
 import MollieField from './MollieField'
 import { mollieContext, MollieContext } from './mollieContext'
 
 export default function MollieCreditCardOptions(props: PaymentOptionsProps) {
-  const { mollie_available_issuers = [], mollie_meta } = props
   const { code, step, Container } = props
   const [loaded, setLoaded] = useState<boolean>(false)
   const [mollie, setMollie] = useState<MollieContext>(undefined)
