@@ -5,7 +5,7 @@ import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { useFormCompose, useFormPersist } from '@reachdigital/react-hook-form'
 import React from 'react'
-import { SetMolliePaymentMethodIssuerOnCartDocument } from '../MollieOptionsToken/SetMolliePaymentMethodIssuerOnCart.gql'
+import { SetMolliePaymentMethodIssuerOnCartDocument } from './SetMolliePaymentMethodIssuerOnCart.gql'
 
 type MollieIssuerOptionsProps = PaymentOptionsProps & { label: string }
 
