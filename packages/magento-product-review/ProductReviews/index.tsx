@@ -6,6 +6,7 @@ import StarRatingField from '@reachdigital/next-ui/StarRatingField'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconStarYellow } from '@reachdigital/next-ui/icons'
+import Link from 'next/link'
 import React, { useState } from 'react'
 import { ProductReviewsFragment } from './ProductReviews.gql'
 import { ProductReviewsPageDocument } from './ProductReviewsPage.gql'
@@ -155,15 +156,11 @@ export default function ProductReviews(props: ProductReviewsProps) {
           </div>
         ))}
       <div className={classes.reviewsBottomContainer}>
-        <Button
-          variant='pill'
-          color='primary'
-          text='bold'
-          size='large'
-          href={`/account/reviews/add/${sku}`}
-        >
-          Write a review
-        </Button>
+        <Link href={`/account/reviews/add?sku=${sku}`} passHref>
+          <Button variant='pill' color='primary' text='bold' size='large'>
+            Write a review
+          </Button>
+        </Link>
 
         <Pagination
           count={total_pages ?? 1}
