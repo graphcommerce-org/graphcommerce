@@ -93,7 +93,6 @@ export default function ProductReviews(props: ProductReviewsProps) {
     variables: {
       urlKey: url_key ?? '',
       reviewPage,
-      reviewPageSize: 3,
     },
   })
 

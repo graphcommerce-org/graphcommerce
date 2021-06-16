@@ -89,7 +89,7 @@ export const magentoTypePolicies: TypedTypePolicies = {
   // CustomerDownloadableProduct: { keyFields: false },
   // CustomerDownloadableProducts: { keyFields: false },
   // CustomerOrder: { keyFields: ['id'] },
-  CustomerOrders: { keyFields: [] },
+  // CustomerOrders: { keyFields: [] },
   // CustomerOutput: { keyFields: false },
   // CustomerPaymentTokens: { keyFields: false },
   CustomerToken: { keyFields: [] },

@@ -2,7 +2,7 @@ query ProductPage(
   $urlKey: String!
   $rootCategory: String!
   $productUrls: [String!]!
-  $reviewPageSize: Int = 3
+  $reviewPageSize: Int = 1
   $reviewPage: Int = 1
 ) {
   ...MenuQueryFragment
