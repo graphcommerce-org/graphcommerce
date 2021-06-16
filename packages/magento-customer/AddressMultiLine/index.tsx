@@ -1,5 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import { CountryRegionsQuery } from '@reachdigital/magento-store'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
 import { CustomerAddressFragment } from '../CustomerAddress/CustomerAddress.gql'
 import { OrderAddressFragment } from '../OrderAddress/OrderAddress.gql'
 import useCountry from '../useCountry'
@@ -25,7 +26,9 @@ const useStyles = makeStyles(
   },
 )
 
-type AddressMultiLineProps = (CustomerAddressFragment | OrderAddressFragment) & CountryRegionsQuery
+type AddressMultiLineProps = (CustomerAddressFragment | OrderAddressFragment) &
+  CountryRegionsQuery &
+  UseStyles<typeof useStyles>
 
 export default function AddressMultiLine(props: AddressMultiLineProps) {
   const {
@@ -44,7 +47,7 @@ export default function AddressMultiLine(props: AddressMultiLineProps) {
   } = props
   const countryName = useCountry(countries, country_code ?? '')?.full_name_locale
   const regionName = typeof region === 'string' ? region : region?.region
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   // todo: detect correct format by locale
   // for now, US format will be returned by default
