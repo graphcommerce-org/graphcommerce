@@ -154,7 +154,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const productListParams = parseParams(url, query, await filterTypes)
   if (!productListParams || !(await categoryUid)) return { notFound: true }
 
-  const products = client.query({
+  const products = staticClient.query({
     query: ProductListDocument,
     variables: mergeDeep(productListParams, {
       filters: { category_uid: { eq: await categoryUid } },
