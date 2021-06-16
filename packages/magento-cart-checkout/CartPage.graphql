@@ -8,5 +8,8 @@ query CartPage($cartId: String!) {
     ...Coupon
     ...CartItems
     ...CartTotals
+    ...EmailForm
+    ...CartBillingAddress
+    ...ShippingAddress
   }
 }
