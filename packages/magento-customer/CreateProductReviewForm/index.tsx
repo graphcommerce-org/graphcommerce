@@ -68,10 +68,7 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
 
   const { data, loading } = useQuery(ProductReviewRatingsMetadataDocument)
 
-  const form = useFormGqlMutation<
-    CreateProductReviewMutation,
-    CreateProductReviewMutationVariables
-  >(CreateProductReviewDocument, {
+  const form = useFormGqlMutation(CreateProductReviewDocument, {
     defaultValues: { sku, nickname },
     onBeforeSubmit: (formData) => ({
       ...formData,
