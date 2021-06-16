@@ -9,7 +9,7 @@ import React from 'react'
 import MessageAuthRequired from '../../../../../../packages/next-ui/MessageAuthRequired'
 import SheetShell, { SheetShellProps } from '../../../../components/AppShell/SheetShell'
 import apolloClient from '../../../../lib/apolloClient'
-import { ProductReviewProductNameDocument } from './ProductReviewProductNameDocument.gql'
+import { ProductReviewProductNameDocument } from './ProductReviewProductName.gql'
 
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
 type RouteProps = { url: string }
