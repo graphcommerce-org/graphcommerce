@@ -200,7 +200,8 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
           helperText={formState.errors.text?.message}
           disabled={formState.isSubmitting}
           multiline
-          rowsMax={6}
+          rows={8}
+          rowsMax={8}
         />
       </FormRow>
 
