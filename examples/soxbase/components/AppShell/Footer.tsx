@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
     [theme.breakpoints.down('sm')]: {
       justifyItems: 'center',
+      marginBottom: theme.spacings.xl,
       '& > *': {
         maxWidth: 'max-content',
       },
