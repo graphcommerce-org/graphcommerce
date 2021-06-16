@@ -40,13 +40,18 @@ function AccountReviewsAddPage() {
     },
   })
 
+  const { data: storeConfigData, loading: loadingStoreConfig } = useQuery(StoreConfigDocument)
+
+  const storeConfig = storeConfigData?.storeConfig
   const customer = customerData?.customer
   const product = productData?.products?.items?.[0]
 
-  if (!customerLoading && !customer)
-    return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
+  if (productLoading || loadingStoreConfig) return <></>
 
-  if (productLoading) return <></>
+  if (!storeConfig?.product_reviews_enabled) return <></>
+
+  if (!storeConfig.allow_guests_to_write_product_reviews && !customerLoading && !customer)
+    return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
 
   return (
     <Container maxWidth='md'>
@@ -63,7 +68,7 @@ function AccountReviewsAddPage() {
           </Box>
           <CreateProductReviewForm
             sku={(url as string) ?? ''}
-            nickname={`${customer?.firstname} ${customer?.lastname}`}
+            nickname={customer ? `${customer?.firstname} ${customer?.lastname}` : ''}
           />
         </Box>
       </NoSsr>

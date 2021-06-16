@@ -1,8 +1,10 @@
+import { useQuery } from '@apollo/client'
 import { ProductReviews } from '@reachdigital/magento-product-review'
 import Row from '@reachdigital/next-ui/Row'
 import SectionHeader from '@reachdigital/next-ui/SectionHeader'
 import React from 'react'
 import { ProductReviewsProps } from '../../../../packages/magento-product-review/ProductReviews'
+import { StoreConfigDocument } from '../../../../packages/magento-store'
 import { RowProductReviewsFragment } from './RowProductReviews.gql'
 
 type RowProductReviewsProps = RowProductReviewsFragment & Partial<ProductReviewsProps>
@@ -10,7 +12,11 @@ type RowProductReviewsProps = RowProductReviewsFragment & Partial<ProductReviews
 export default function RowProductReviews(props: RowProductReviewsProps) {
   const { title, reviews, url_key, review_count, sku } = props
 
-  if (!reviews || reviews?.items.length === 0) return null
+  const { data, loading } = useQuery(StoreConfigDocument)
+
+  if (!reviews || reviews?.items.length === 0 || loading) return null
+
+  if (!data?.storeConfig?.product_reviews_enabled) return <></>
 
   return (
     <Row maxWidth='md'>
