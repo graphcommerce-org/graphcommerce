@@ -2,15 +2,14 @@ import { useQuery } from '@apollo/client'
 import { Box, Container, makeStyles, NoSsr, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CreateProductReviewForm, CustomerDocument } from '@reachdigital/magento-customer'
-import { ProductBySkuDocument } from '@reachdigital/magento-product'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
 import MessageAuthRequired from '../../../../../../packages/next-ui/MessageAuthRequired'
 import SheetShell, { SheetShellProps } from '../../../../components/AppShell/SheetShell'
 import apolloClient from '../../../../lib/apolloClient'
+import { ProductReviewProductNameDocument } from './ProductReviewProductNameDocument.gql'
 
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
 type RouteProps = { url: string }
@@ -34,11 +33,14 @@ function AccountReviewsAddPage() {
 
   const { data: customerData, loading: customerLoading } = useQuery(CustomerDocument)
 
-  const { data: productData, loading: productLoading } = useQuery(ProductBySkuDocument, {
-    variables: {
-      sku: url as string,
+  const { data: productData, loading: productLoading } = useQuery(
+    ProductReviewProductNameDocument,
+    {
+      variables: {
+        sku: url as string,
+      },
     },
-  })
+  )
 
   const { data: storeConfigData, loading: loadingStoreConfig } = useQuery(StoreConfigDocument)
 
@@ -79,8 +81,7 @@ function AccountReviewsAddPage() {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'left',
   SharedComponent: SheetShell,
-  sharedKey: () => 'reviews',
-  sharedProps: { variant: 'left', size: responsiveVal(520, 1000) },
+  sharedProps: { variant: 'left' },
 }
 AccountReviewsAddPage.pageOptions = pageOptions
 

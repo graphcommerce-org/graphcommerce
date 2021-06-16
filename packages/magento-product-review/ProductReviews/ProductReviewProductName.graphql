@@ -1,4 +1,4 @@
-query ProductBySku($sku: String!) {
+query ProductReviewProductName($sku: String!) {
   products(filter: { sku: { eq: $sku } }) {
     items {
       __typename
