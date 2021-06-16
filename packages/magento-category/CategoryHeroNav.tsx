@@ -36,20 +36,24 @@ const useStyles = makeStyles(
     },
     placeholder: {
       gridArea: 'placeholder',
-      background: '#efefef',
+      background: '#fff',
       margin: `${theme.spacings.sm} 0`,
       minHeight: '20vh',
-      '& img': {
+      overflow: 'hidden',
+      '& *': {
         width: '100%',
         height: '100%',
         objectFit: 'cover',
       },
     },
     [theme.breakpoints.up('md')]: {
+      placeholder: {
+        minHeight: '60vh',
+      },
       wrapper: {
         paddingTop: '0',
         gridColumnGap: '0',
-        gridTemplateColumns: '1fr 3.6fr 0.4fr 8fr',
+        gridTemplateColumns: '1fr 4.6fr 0.4fr 8fr',
         gridTemplateAreas: `". categories . placeholder"`,
         gridTemplateRows: 'auto',
       },

@@ -39,5 +39,9 @@ export default function Asset(props: AssetProps) {
     )
   }
 
+  if (asset.mimeType === 'video/mp4') {
+    return <video src={asset.url} autoPlay muted loop playsInline />
+  }
+
   return <div>{asset.mimeType} not supported</div>
 }
