@@ -2,14 +2,14 @@ import { useQuery } from '@apollo/client'
 import { Box, Container, makeStyles, NoSsr, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CreateProductReviewForm, CustomerDocument } from '@reachdigital/magento-customer'
+import { ProductReviewProductNameDocument } from '@reachdigital/magento-product-review'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
-import MessageAuthRequired from '../../../../../../packages/next-ui/MessageAuthRequired'
 import SheetShell, { SheetShellProps } from '../../../../components/AppShell/SheetShell'
 import apolloClient from '../../../../lib/apolloClient'
-import { ProductReviewProductNameDocument } from './ProductReviewProductName.gql'
 
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
 type RouteProps = { url: string }
