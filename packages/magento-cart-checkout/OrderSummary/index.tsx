@@ -1,8 +1,5 @@
-import { AnyARecord } from 'dns'
 import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
-import { Cart, CartPrices } from '@reachdigital/graphql'
 import { CartTotals } from '@reachdigital/magento-cart'
-import { CartItems, CartProps } from '@reachdigital/magento-cart-items'
 import SliderContainer from '@reachdigital/next-ui/FramerSlider/SliderContainer'
 import { SliderContext } from '@reachdigital/next-ui/FramerSlider/SliderContext'
 import SliderNext from '@reachdigital/next-ui/FramerSlider/SliderNext'
@@ -10,6 +7,9 @@ import SliderPrev from '@reachdigital/next-ui/FramerSlider/SliderPrev'
 import SliderScroller from '@reachdigital/next-ui/FramerSlider/SliderScroller'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import SectionHeader from '@reachdigital/next-ui/SectionHeader'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import clsx from 'clsx'
+import PageLink from 'next/link'
 import React from 'react'
 
 const useStyles = makeStyles(
@@ -30,33 +30,41 @@ const useStyles = makeStyles(
       padding: theme.spacings.xs,
       position: 'relative',
     },
-    sliderButtons: {
+    prevNext: {
       pointerEvents: 'all',
-      width: '100%',
       position: 'absolute',
+    },
+    prev: {
+      left: 0,
       top: 45,
-      '& > *': {
-        pointerEvents: 'all',
-      },
     },
-    sliderNext: {
-      right: theme.spacings.sm,
-      position: 'absolute',
-    },
-    sliderPrev: {
-      left: '-20px',
-      position: 'absolute',
+    next: {
+      right: 0,
+      top: 45,
     },
     prevNextFab: {
       boxShadow: 'none',
     },
     sectionHeader: {
       textTransform: 'none',
+      textWeight: theme.typography.fontWeightBold,
       color: theme.palette.common.black,
     },
     costContainer: {
       background: theme.palette.common.white,
       padding: 0,
+      marginTop: 0,
+    },
+    labelContainer: {
+      alignItems: 'center',
+      paddingBottom: 10,
+    },
+    downloadLink: {
+      fontSize: responsiveVal(14, 18),
+      '& > a': {
+        textDecoration: 'none!important',
+        color: theme.palette.secondary.main,
+      },
     },
   }),
   { name: 'OrderSuccessSummary' },
@@ -69,12 +77,17 @@ export default function OrderSummary(props: any) {
   return (
     <div className={classes.root}>
       <SectionHeader
+        classes={{ labelRight: classes.downloadLink, labelInnerContainer: classes.labelContainer }}
         labelLeft={
-          <Typography variant='h5' className={classes.sectionHeader}>
+          <Typography variant='h6' className={classes.sectionHeader}>
             Order summary
           </Typography>
         }
-        labelRight={<Typography>Download invoice</Typography>}
+        labelRight={
+          <PageLink key='download-invoice' href='/download'>
+            Download invoice
+          </PageLink>
+        }
       />
       <SliderContext scrollSnapAlign='start'>
         <SliderContainer classes={{ container: classes.sliderContainer }}>
@@ -91,10 +104,14 @@ export default function OrderSummary(props: any) {
               />
             ))}
           </SliderScroller>
-          <div className={classes.sliderButtons}>
-            <SliderPrev className={classes.sliderPrev} classes={{ root: classes.prevNextFab }} />
-            <SliderNext className={classes.sliderNext} classes={{ root: classes.prevNextFab }} />
-          </div>
+          <SliderPrev
+            className={clsx(classes.prevNext, classes.prev)}
+            classes={{ root: classes.prevNextFab }}
+          />
+          <SliderNext
+            className={clsx(classes.prevNext, classes.next)}
+            classes={{ root: classes.prevNextFab }}
+          />
         </SliderContainer>
       </SliderContext>
       <Divider />

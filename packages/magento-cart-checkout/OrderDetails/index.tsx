@@ -40,7 +40,7 @@ const useStyles = makeStyles(
     },
     labelRight: {
       fontSize: responsiveVal(12, 16),
-      '& > a ': {
+      '& > a': {
         textDecoration: 'none!important',
         color: theme.palette.secondary.main,
       },
@@ -66,8 +66,6 @@ export type OrderDetailProps = CartAddressMultiLineProps &
 export default function OrderDetails(props: any) {
   const classes = useStyles()
   const { email, shipping_addresses, billing_address, children, editable } = props
-
-  console.log(props)
 
   return (
     <div className={classes.root}>

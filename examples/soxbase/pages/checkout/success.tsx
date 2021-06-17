@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Container, Typography } from '@material-ui/core'
+import { Container, Divider, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CartPageDocument, OrderSummary } from '@reachdigital/magento-cart-checkout'
 import {
@@ -37,10 +37,10 @@ function ShippingPage() {
   const router = useRouter()
 
   const { data, error } = useQuery(CartPageDocument, {
+    fetchPolicy: 'cache-only',
     returnPartialData: true,
     variables: { cartId: router.query.cartId as string },
   })
-
   return (
     <Container maxWidth='md'>
       <PageMeta title='Checkout summary' metaDescription='Ordered items' metaRobots={['noindex']} />
@@ -53,13 +53,8 @@ function ShippingPage() {
 
       <IconHeader src={iconParty} title='Thank you for your order' alt='celebrate' size='large' />
 
-      <OrderSummaryDetails {...data?.cart} optionEndLabels>
-        <CartTotals
-          key='totals'
-          prices={data?.cart?.prices}
-          shipping_addresses={data?.cart?.shipping_addresses ?? []}
-        />
-      </OrderSummaryDetails>
+      <OrderSummaryDetails {...data?.cart} />
+
       <OrderSummary {...data?.cart} />
     </Container>
   )
