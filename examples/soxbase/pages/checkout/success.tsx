@@ -1,24 +1,11 @@
 import { useQuery } from '@apollo/client'
-import { Container, Divider, Typography } from '@material-ui/core'
+import { Container, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { CartPageDocument, OrderSummary } from '@reachdigital/magento-cart-checkout'
-import {
-  AddressMultiLine,
-  AddressMultiLine,
-  OrderStateLabelInline,
-} from '@reachdigital/magento-customer'
-import InlineAccount from '@reachdigital/magento-customer/InlineAccount'
-import { ConfigurableCartItem } from '@reachdigital/magento-product-configurable'
-
-import { CartItemsQueryDocument } from '@reachdigital/magento-cart-items/CartItems/CartItemsQuery.gql'
-import { OrderDetails } from '@reachdigital/magento-customer'
-import { CartTotals } from '@reachdigital/magento-cart'
 import {
   CartPageDocument,
   OrderSummary,
   OrderDetails as OrderSummaryDetails,
 } from '@reachdigital/magento-cart-checkout'
->>>>>>> 9a5db79a (fix: use order summary component in succes page)
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
