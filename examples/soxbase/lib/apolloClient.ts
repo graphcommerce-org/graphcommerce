@@ -1,7 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable global-require */
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 import MutationQueueLink from '@adobe/apollo-link-mutation-queue'
 import {
   ApolloClient,
@@ -15,13 +11,18 @@ import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
 import { RetryLink } from '@apollo/client/link/retry'
 import { mergeDeep } from '@apollo/client/utilities'
-import { fragments, measurePerformanceLink } from '@reachdigital/graphql'
+import {
+  fragments,
+  measurePerformanceLink,
+  mergeTypePolicies,
+  getTypePoliciesVersion,
+  migrateCacheHandler,
+} from '@reachdigital/graphql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer'
 import { localeToStore, defaultLocale } from '@reachdigital/magento-store'
-import { persistCache } from 'apollo-cache-persist'
+import { CachePersistor } from 'apollo-cache-persist'
 import { PersistentStorage } from 'apollo-cache-persist/types'
-import { TracingFormat } from 'apollo-tracing'
-import typePolicies from './typePolicies'
+import { policies, migrations } from './typePolicies'
 
 export function createApolloClient(
   locale: string,
@@ -39,6 +40,9 @@ export function createApolloClient(
       console.error(`[Network error]: ${networkError}`)
     }
   })
+
+  const typePolicies = mergeTypePolicies(policies)
+  const typePoliciesVersion = getTypePoliciesVersion(policies)
 
   const cache = new InMemoryCache({
     possibleTypes: fragments.possibleTypes,
@@ -84,20 +88,43 @@ export function createApolloClient(
 
   let state = initialState
 
+  const APOLLO_CACHE_PERSIST = 'apollo-cache-persist'
+  const APOLLO_CACHE_VERSION = 'apollo-cache-version'
   if (typeof window !== 'undefined') {
-    if (window.localStorage.getItem('apollo-cache-persist')) {
-      state = mergeDeep(
-        JSON.parse(window.localStorage.getItem('apollo-cache-persist') ?? '{}'),
-        initialState,
-      )
-      window.localStorage.setItem('apollo-cache-persist', JSON.stringify(state))
-    }
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    persistCache({
+    const persistor = new CachePersistor({
       cache,
       storage: window.localStorage as PersistentStorage<unknown>,
       maxSize: false,
     })
+
+    const storedState = window.localStorage[APOLLO_CACHE_PERSIST]
+    const currentVersion = window.localStorage[APOLLO_CACHE_VERSION]
+
+    if (currentVersion === typePoliciesVersion && storedState) {
+      state = mergeDeep(JSON.parse(storedState), initialState)
+    } else if (storedState) {
+      console.info('[@graphcommerce/graphql] migrating apollo cache, detected a typePolicy change')
+      try {
+        const oldCache = new InMemoryCache({ possibleTypes: fragments.possibleTypes, typePolicies })
+        oldCache.restore(JSON.parse(storedState))
+
+        // Run the migration
+        migrateCacheHandler(oldCache, cache, migrations)
+
+        state = mergeDeep(cache.extract(), initialState)
+        console.info('migration complete')
+      } catch (e) {
+        console.info('migration error (starting with a clean state):', e)
+
+        // couldn't be upgraded
+        state = initialState
+      }
+    }
+    window.localStorage[APOLLO_CACHE_VERSION] = typePoliciesVersion
+    window.localStorage[APOLLO_CACHE_PERSIST] = JSON.stringify(state)
+
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    persistor.restore()
   }
 
   cache.restore(state)

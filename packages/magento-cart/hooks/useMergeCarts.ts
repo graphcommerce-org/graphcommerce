@@ -2,7 +2,7 @@ import { useMutation, useQuery } from '@apollo/client'
 import { useEffect } from 'react'
 import { MergeCartsDocument } from './MergeCarts.gql'
 import { useAssignCurrentCartId } from './useAssignCurrentCartId'
-import { useCurrentCartId } from './useCartId'
+import { useCurrentCartId } from './useCurrentCartId'
 
 /**
  * ```tsx

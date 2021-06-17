@@ -40,7 +40,7 @@ const config = {
 
 ## Creating overlays
 
-### Create a page that works as an overlayGroup:
+### Create a page that works as an overlay:
 
 Define pageOptions on a page. This can be any static or dynamic page:
 
@@ -58,6 +58,7 @@ export default function Overlay() {
 
 Overlay.pageOptions = {
   overlayGroup: 'left',
+  // sharedKey default is `pages/overlay/[overlayId]`
 } as PageOptions
 ```
 
@@ -74,7 +75,7 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 
 Overlay.pageOptions = {
   overlayGroup: 'left',
-  sharedsharedKey: (router) => router.asPath, // will return pages/overlay/123
+  sharedKey: (router) => router.asPath, // will return pages/overlay/123
 } as PageOptions
 ```
 
