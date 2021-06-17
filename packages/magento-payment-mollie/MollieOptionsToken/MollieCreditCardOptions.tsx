@@ -8,8 +8,8 @@ import Script from 'next/experimental-script'
 import React, { useEffect, useState } from 'react'
 import { StoreConfigDocument } from '../../magento-store'
 import { Mollie } from '../Mollie'
-import { SetMolliePaymentMethodTokenOnCartDocument } from '../MollieOptionsIssuer/SetMolliePaymentMethodTokenOnCart.gql'
 import MollieField from './MollieField'
+import { SetMolliePaymentMethodTokenOnCartDocument } from './SetMolliePaymentMethodTokenOnCart.gql'
 import { mollieContext, MollieContext } from './mollieContext'
 
 export default function MollieCreditCardOptions(props: PaymentOptionsProps) {
