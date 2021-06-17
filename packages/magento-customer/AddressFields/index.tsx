@@ -27,7 +27,7 @@ type AddressFieldsProps = CountryRegionsQuery & {
 export default function AddressFields(props: AddressFieldsProps) {
   const { form, countries, readOnly } = props
   assertFormGqlOperation<AddressFieldValues>(form)
-  const { watch, formState, required, muiRegister, register, valid } = form
+  const { watch, formState, required, muiRegister, valid } = form
 
   const country = watch('countryCode')
 
@@ -154,10 +154,10 @@ export default function AddressFields(props: AddressFieldsProps) {
           })}
         </TextField>
 
-        {regionList.length > 0 ? (
+        {regionList.length > 0 && (
           <TextField
             select
-            SelectProps={{ native: true }}
+            SelectProps={{ native: true, displayEmpty: true }}
             variant='outlined'
             error={!!formState.errors.regionId}
             label='Region'
@@ -167,8 +167,10 @@ export default function AddressFields(props: AddressFieldsProps) {
             InputProps={{
               readOnly,
               endAdornment: <InputCheckmark show={valid.regionId} />,
+              notched: true,
             }}
           >
+            <option value='' />
             {regionList.map((r) => {
               if (!r?.id) return null
               return (
@@ -178,12 +180,6 @@ export default function AddressFields(props: AddressFieldsProps) {
               )
             })}
           </TextField>
-        ) : (
-          <input
-            type='hidden'
-            {...register('regionId', { required: false, shouldUnregister: true })}
-            value={undefined}
-          />
         )}
       </FormRow>
     </>
