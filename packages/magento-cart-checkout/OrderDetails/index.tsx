@@ -1,8 +1,6 @@
-import { makeStyles, Theme, Typography, Link } from '@material-ui/core'
-import { EmailFormProps } from '@reachdigital/magento-cart-email'
-import { CartProps, DeliveryLabelProps } from '@reachdigital/magento-cart-items'
-import { ShippingAddressFormProps } from '@reachdigital/magento-cart-shipping-address'
-import { AddressMultiLine, OrderStateLabelInline } from '@reachdigital/magento-customer'
+import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { DeliveryLabelProps } from '@reachdigital/magento-cart-items'
+import { AddressMultiLine } from '@reachdigital/magento-customer'
 import SectionHeader from '@reachdigital/next-ui/SectionHeader'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
@@ -15,21 +13,17 @@ const useStyles = makeStyles(
     root: {
       borderRadius: 4,
       background: '#FFFADD',
-      padding: theme.spacings.xs,
       margin: `${theme.spacings.lg} 0`,
-
-      [theme.breakpoints.up('md')]: {
-        padding: theme.spacings.md,
-        marginTop: theme.spacings.md,
-      },
     },
     detailsContainer: {
+      padding: theme.spacings.sm,
       gridColumnGap: theme.spacings.lg,
       gridRowGap: theme.spacings.md,
       display: `grid`,
 
       [theme.breakpoints.up('md')]: {
         gridTemplateColumns: `1fr 1fr`,
+        marginTop: theme.spacings.md,
       },
     },
     labelLeft: {
@@ -64,16 +58,14 @@ const useStyles = makeStyles(
 )
 
 export type OrderDetailProps = CartAddressMultiLineProps &
-  DeliveryLabelProps &
-  ShippingAddressFormProps &
-  EmailFormProps & {
+  DeliveryLabelProps & {
     children: React.ReactNode
-    optionEndLabels: boolean
+    editable: boolean
   } & UseStyles<typeof useStyles>
 
 export default function OrderDetails(props: any) {
   const classes = useStyles()
-  const { email, shipping_addresses, billing_address, children, optionEndLabels } = props
+  const { email, shipping_addresses, billing_address, children, editable } = props
 
   console.log(props)
 
@@ -89,7 +81,7 @@ export default function OrderDetails(props: any) {
             }}
             labelLeft={<Typography variant='h6'>Confirmation + Track & trace</Typography>}
             labelRight={
-              optionEndLabels ? (
+              editable ? (
                 <PageLink key='Confirmation + track & trace' href='/checkout/edit'>
                   Edit
                 </PageLink>
@@ -107,7 +99,7 @@ export default function OrderDetails(props: any) {
             }}
             labelLeft={<Typography variant='h6'>Shipping method</Typography>}
             labelRight={
-              optionEndLabels ? (
+              editable ? (
                 <PageLink key='Shipping method' href='/checkout/edit/shipping'>
                   Edit
                 </PageLink>
@@ -129,7 +121,7 @@ export default function OrderDetails(props: any) {
                 }}
                 labelLeft={<Typography variant='h6'>Shipping address</Typography>}
                 labelRight={
-                  optionEndLabels ? (
+                  editable ? (
                     <PageLink key='Shipping address' href='/checkout/edit/shipping_address'>
                       Edit
                     </PageLink>
@@ -149,7 +141,7 @@ export default function OrderDetails(props: any) {
                 }}
                 labelLeft={<Typography variant='h6'>Billing address</Typography>}
                 labelRight={
-                  optionEndLabels ? (
+                  editable ? (
                     <PageLink key='Billing address' href='/checkout/edit/billing_address'>
                       Edit
                     </PageLink>
