@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Box, Container, makeStyles, NoSsr, Theme, Typography } from '@material-ui/core'
+import { Box, Container, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CreateProductReviewForm, CustomerDocument } from '@reachdigital/magento-customer'
 import { ProductReviewProductNameDocument } from '@reachdigital/magento-product-review'
@@ -17,28 +17,10 @@ import apolloClient from '../../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    subtitle: {
-      fontWeight: 400,
-    },
-    box: {
-      padding: theme.spacings.lg,
-    },
-  }),
-  {
-    name: 'AccountsReviewsAddPage',
-  },
-)
-
 function AccountReviewsAddPage() {
   const router = useRouter()
-  const classes = useStyles()
-
   const { data: customerData, loading: customerLoading } = useQuery(CustomerDocument)
-
   const { sku } = router.query
-
   const { data: productData, loading: productLoading } = useQuery(
     ProductReviewProductNameDocument,
     {
@@ -47,7 +29,6 @@ function AccountReviewsAddPage() {
       },
     },
   )
-
   const { data: storeConfigData, loading: loadingStoreConfig } = useQuery(StoreConfigDocument)
 
   const storeConfig = storeConfigData?.storeConfig
@@ -56,7 +37,7 @@ function AccountReviewsAddPage() {
 
   if (productLoading || loadingStoreConfig) return <></>
 
-  if (!storeConfig?.product_reviews_enabled) return <></>
+  if (!storeConfig?.product_reviews_enabled) return null
 
   if (!storeConfig.allow_guests_to_write_product_reviews && !customerLoading && !customer)
     return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
@@ -75,19 +56,18 @@ function AccountReviewsAddPage() {
     <Container maxWidth='md'>
       <PageMeta title='Add review' metaDescription='Add a review' metaRobots={['noindex']} />
       <NoSsr>
-        <Box textAlign='center' className={classes.box}>
-          <Box mb={6} textAlign='center'>
-            <Typography variant='h3' component='h1' gutterBottom>
-              You are reviewing {product?.name}
-            </Typography>
-            <Typography variant='h5' className={classes.subtitle}>
-              What do you think of this product?
-            </Typography>
+        <Box mb={8} mt={8} textAlign='center'>
+          <Typography variant='h3' component='h1' gutterBottom>
+            You are reviewing {product?.name}
+          </Typography>
+          <Typography variant='h6'>What do you think of this product?</Typography>
+
+          <Box textAlign='center' p={2} mt={2}>
+            <CreateProductReviewForm
+              sku={(sku as string) ?? ''}
+              nickname={customer ? `${customer?.firstname} ${customer?.lastname}` : undefined}
+            />
           </Box>
-          <CreateProductReviewForm
-            sku={(sku as string) ?? ''}
-            nickname={customer ? `${customer?.firstname} ${customer?.lastname}` : undefined}
-          />
         </Box>
       </NoSsr>
     </Container>

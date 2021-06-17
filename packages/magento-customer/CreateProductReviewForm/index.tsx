@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { makeStyles, TextField, Theme, Typography, Box } from '@material-ui/core'
+import { Box, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import Button from '@reachdigital/next-ui/Button'
 import Form from '@reachdigital/next-ui/Form'
@@ -13,11 +13,7 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { ProductReviewRatingInput } from '../../graphql'
 import responsiveVal from '../../next-ui/Styles/responsiveVal'
-import {
-  CreateProductReviewDocument,
-  CreateProductReviewMutation,
-  CreateProductReviewMutationVariables,
-} from './CreateProductReview.gql'
+import { CreateProductReviewDocument } from './CreateProductReview.gql'
 import { ProductReviewRatingsMetadataDocument } from './ProductReviewRatingsMetadata.gql'
 
 const useStyles = makeStyles(
@@ -114,8 +110,6 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
       </>
     )
   }
-
-  console.log(nickname)
 
   return (
     <Form onSubmit={submitHandler} noValidate>
