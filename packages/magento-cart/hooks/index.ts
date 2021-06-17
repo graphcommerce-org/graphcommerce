@@ -1,5 +1,5 @@
 export * from './useAssignCurrentCartId'
-export * from './useCartId'
+export * from './useCurrentCartId'
 export * from './useCartQuery'
 export * from './useClearCurrentCartId'
 export * from './useCartIdCreate'

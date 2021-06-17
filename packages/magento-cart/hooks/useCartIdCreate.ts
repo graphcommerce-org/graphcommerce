@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client'
 import { CreateEmptyCartDocument } from './CreateEmptyCart.gql'
 import { useAssignCurrentCartId } from './useAssignCurrentCartId'
-import { useCurrentCartId } from './useCartId'
+import { useCurrentCartId } from './useCurrentCartId'
 
 export function useCartIdCreate() {
   const cartId = useCurrentCartId()

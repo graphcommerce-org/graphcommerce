@@ -59,6 +59,16 @@ function CartFabContent(props: CartFabProps & CartTotalQuantityFragment) {
   )
 }
 
+/**
+ * We give CartFab a bit of special handling. We don't want to make requests for this component
+ * whilly nilly. We've imposed some limitations:
+ *
+ * We use useCartQuery that means that this will only execute when there is a cartId.
+ *
+ * We use fetchPolicy 'cache-only' so that when the cart comes into existence it will not
+ * immediately start fetching. Why? There is a time between creating a cart and adding the first
+ * product to the cart. This would mean that it would immediately start executing this query.
+ */
 export default function CartFab(props: CartFabProps) {
   const { data } = useCartQuery(CartFabDocument, {
     fetchPolicy: 'cache-only',

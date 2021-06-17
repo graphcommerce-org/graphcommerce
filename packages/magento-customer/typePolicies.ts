@@ -1,5 +1,11 @@
 import { FieldPolicy, FieldReadFunction } from '@apollo/client'
-import { CustomerToken, Mutation, Query, TypedTypePolicies } from '@reachdigital/graphql'
+import {
+  CustomerToken,
+  MigrateCache,
+  Mutation,
+  Query,
+  TypedTypePolicies,
+} from '@reachdigital/graphql'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { IsEmailAvailableDocument } from './IsEmailAvailable.gql'
 
@@ -77,4 +83,9 @@ export const customerTypePolicies: TypedTypePolicies = {
   Query: { fields: { customer } },
   Mutation: { fields: { generateCustomerToken, revokeCustomerToken, createCustomer } },
   CustomerToken: { fields: { valid } },
+}
+
+export const migrateCustomer: MigrateCache = (oldCache, newCache) => {
+  const token = oldCache.readQuery({ query: CustomerTokenDocument })
+  newCache.writeQuery({ query: CustomerTokenDocument, data: token, broadcast: true })
 }
