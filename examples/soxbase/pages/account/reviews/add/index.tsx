@@ -4,21 +4,26 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CreateProductReviewForm, CustomerDocument } from '@reachdigital/magento-customer'
 import { ProductReviewProductNameDocument } from '@reachdigital/magento-product-review'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import FullPageMessage from '@reachdigital/next-ui/FullPageMessage'
 import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
-import { GetStaticPaths, GetStaticProps } from 'next'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconBox } from '@reachdigital/next-ui/icons'
+import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../../components/AppShell/SheetShell'
 import apolloClient from '../../../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
-type RouteProps = { url: string }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     subtitle: {
       fontWeight: 400,
+    },
+    box: {
+      padding: theme.spacings.lg,
     },
   }),
   {
@@ -28,16 +33,17 @@ const useStyles = makeStyles(
 
 function AccountReviewsAddPage() {
   const router = useRouter()
-  const { url } = router.query
   const classes = useStyles()
 
   const { data: customerData, loading: customerLoading } = useQuery(CustomerDocument)
+
+  const { sku } = router.query
 
   const { data: productData, loading: productLoading } = useQuery(
     ProductReviewProductNameDocument,
     {
       variables: {
-        sku: url as string,
+        sku: sku as string,
       },
     },
   )
@@ -55,11 +61,21 @@ function AccountReviewsAddPage() {
   if (!storeConfig.allow_guests_to_write_product_reviews && !customerLoading && !customer)
     return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
 
+  if (!product) {
+    return (
+      <FullPageMessage
+        title='Product could not be found'
+        description='Try a different product'
+        icon={<SvgImage src={iconBox} size={148} alt='box' />}
+      />
+    )
+  }
+
   return (
     <Container maxWidth='md'>
       <PageMeta title='Add review' metaDescription='Add a review' metaRobots={['noindex']} />
       <NoSsr>
-        <Box p={10} textAlign='center'>
+        <Box textAlign='center' className={classes.box}>
           <Box mb={6} textAlign='center'>
             <Typography variant='h3' component='h1' gutterBottom>
               You are reviewing {product?.name}
@@ -69,7 +85,7 @@ function AccountReviewsAddPage() {
             </Typography>
           </Box>
           <CreateProductReviewForm
-            sku={(url as string) ?? ''}
+            sku={(sku as string) ?? ''}
             nickname={customer ? `${customer?.firstname} ${customer?.lastname}` : ''}
           />
         </Box>
@@ -81,20 +97,11 @@ function AccountReviewsAddPage() {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'left',
   SharedComponent: SheetShell,
-  sharedProps: { variant: 'left' },
+  sharedProps: { variant: 'left', size: responsiveVal(320, 800) },
 }
 AccountReviewsAddPage.pageOptions = pageOptions
 
 export default AccountReviewsAddPage
-
-// eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
-
-  const urls = ['add']
-  const paths = locales.map((locale) => urls.map((url) => ({ params: { url }, locale }))).flat(1)
-  return { paths, fallback: 'blocking' }
-}
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)

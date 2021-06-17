@@ -84,15 +84,7 @@ function ProductBundle(props: Props) {
           RowProductSpecs: (rowProps) => (
             <RowProductSpecs {...rowProps} {...product} aggregations={aggregations} />
           ),
-          RowProductReviews: (rowProps) => (
-            <RowProductReviews
-              {...rowProps}
-              {...product}
-              url_key={product?.url_key ?? ''}
-              sku={product?.sku ?? ''}
-              review_count={product?.review_count}
-            />
-          ),
+          RowProductReviews: (rowProps) => <RowProductReviews {...rowProps} {...product} />,
           RowProductRelated: (rowProps) => <RowProductRelated {...rowProps} {...product} />,
           RowProductUpsells: (rowProps) => <RowProductUpsells {...rowProps} {...product} />,
         }}

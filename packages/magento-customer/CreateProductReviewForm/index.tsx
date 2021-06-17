@@ -35,9 +35,9 @@ const useStyles = makeStyles(
       justifySelf: 'left',
     },
     submitButton: {
-      width: responsiveVal(100, 250),
-      height: responsiveVal(30, 50),
-      borderRadius: responsiveVal(15, 25),
+      width: responsiveVal(200, 250),
+      height: responsiveVal(40, 50),
+      borderRadius: responsiveVal(20, 25),
     },
     cancelButton: {
       display: 'block',

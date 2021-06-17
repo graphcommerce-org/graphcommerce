@@ -1,12 +1,12 @@
 import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
-  ConfigurableProductPageDocument,
-  ConfigurableProductPageQuery,
   ConfigurableContextProvider,
   ConfigurableProductAddToCart,
+  ConfigurableProductPageDocument,
+  ConfigurableProductPageQuery,
 } from '@reachdigital/magento-product-configurable'
-import { ProductReviewSummary, jsonLdProductReview } from '@reachdigital/magento-product-review'
+import { jsonLdProductReview, ProductReviewSummary } from '@reachdigital/magento-product-review'
 import { jsonLdProduct, jsonLdProductOffer } from '@reachdigital/magento-product/JsonLdProduct'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
@@ -117,15 +117,7 @@ function ProductConfigurable(props: Props) {
             RowProductSpecs: (rowProps) => (
               <RowProductSpecs {...rowProps} {...product} aggregations={aggregations} />
             ),
-            RowProductReviews: (rowProps) => (
-              <RowProductReviews
-                {...rowProps}
-                {...product}
-                url_key={product?.url_key ?? ''}
-                sku={product?.sku ?? ''}
-                review_count={product?.review_count}
-              />
-            ),
+            RowProductReviews: (rowProps) => <RowProductReviews {...rowProps} {...product} />,
             RowProductRelated: (rowProps) => <RowProductRelated {...rowProps} {...product} />,
             RowProductUpsells: (rowProps) => <RowProductUpsells {...rowProps} {...product} />,
           }}
