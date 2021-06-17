@@ -43,7 +43,7 @@ function PaymentPage(props: Props) {
             ...mollie_methods,
           }}
         >
-          <PageMeta title='Payment' metaDescription='Cart Items' metaRobots={['noindex']} />
+          <PageMeta title='Payment' metaDescription='Payment' metaRobots={['noindex']} />
 
           <NoSsr>
             <AnimatePresence initial={false}>
