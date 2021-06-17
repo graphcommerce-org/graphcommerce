@@ -62,7 +62,7 @@ const useStyles = makeStyles(
     downloadLink: {
       fontSize: responsiveVal(14, 18),
       '& > a': {
-        textDecoration: 'none!important',
+        textDecoration: 'none',
         color: theme.palette.secondary.main,
       },
     },

@@ -41,7 +41,7 @@ const useStyles = makeStyles(
     labelRight: {
       fontSize: responsiveVal(12, 16),
       '& > a': {
-        textDecoration: 'none!important',
+        textDecoration: 'none',
         color: theme.palette.secondary.main,
       },
     },
