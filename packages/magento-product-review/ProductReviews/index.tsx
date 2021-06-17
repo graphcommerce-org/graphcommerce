@@ -63,16 +63,20 @@ const useStyles = makeStyles(
       },
     },
     ratingRow: {
-      display: 'grid',
-      gap: responsiveVal(32, 64),
-      gridAutoFlow: 'column',
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: theme.spacings.sm,
       color: theme.palette.text.disabled,
       ...theme.typography.body2,
-      justifyContent: 'space-between',
     },
     rating: {
-      display: 'flex',
-      gap: responsiveVal(8, 16),
+      display: 'grid',
+      gridAutoFlow: 'column',
+      gridTemplateColumns: '0.4fr 0.6fr',
+      justifyContent: 'space-between',
+      marginRight: theme.spacings.xxs,
+      rowGap: responsiveVal(8, 16),
+      gap: 8,
       alignItems: 'center',
     },
   }),
@@ -94,6 +98,7 @@ export default function ProductReviews(props: ProductReviewsProps) {
     variables: {
       urlKey: url_key ?? '',
       reviewPage,
+      reviewPageSize: 3,
     },
   })
 
@@ -131,19 +136,17 @@ export default function ProductReviews(props: ProductReviewsProps) {
             <Typography variant='body1'>{review?.text}</Typography>
 
             <div className={classes.ratingRow}>
-              {review?.ratings_breakdown.map(
-                (ratingBreakdown) =>
-                  ratingBreakdown?.name !== 'Rating' && (
-                    <div key={`rating-${ratingBreakdown?.value}`} className={classes.rating}>
-                      <span>{ratingBreakdown?.name}</span>
-                      <StarRatingField
-                        readOnly
-                        size='small'
-                        defaultValue={Number(ratingBreakdown?.value ?? 0)}
-                      />
-                    </div>
-                  ),
-              )}
+              {review?.ratings_breakdown.map((ratingBreakdown) => (
+                <div key={`rating-${ratingBreakdown?.value}`} className={classes.rating}>
+                  <span>{ratingBreakdown?.name}</span>
+                  <StarRatingField
+                    iconSize={16}
+                    readOnly
+                    size='small'
+                    defaultValue={Number(ratingBreakdown?.value ?? 0)}
+                  />
+                </div>
+              ))}
             </div>
 
             <div className={classes.meta}>

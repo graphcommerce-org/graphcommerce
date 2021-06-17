@@ -7,6 +7,7 @@ import { iconStarFilledMuted, iconStarYellow } from '../icons'
 type StarRatingFieldProps = {
   id?: string
   onChange?: (id: string, value: number) => void
+  iconSize?: number
 } & Omit<RatingProps, 'id' | 'onChange'>
 
 const useStyles = makeStyles(
@@ -22,7 +23,7 @@ const useStyles = makeStyles(
 )
 
 export default function StarRatingField(props: StarRatingFieldProps) {
-  const { id, onChange = () => {}, ...ratingProps } = props
+  const { id, onChange = () => {}, iconSize = 20, ...ratingProps } = props
   const classes = useStyles(props)
 
   return (
@@ -33,19 +34,19 @@ export default function StarRatingField(props: StarRatingFieldProps) {
       emptyIcon={
         <SvgImage
           src={iconStarFilledMuted}
-          size={20}
+          size={iconSize}
           alt='star'
           loading='eager'
-          className={classes.icon}
+          classes={{ root: classes.icon }}
         />
       }
       icon={
         <SvgImage
           src={iconStarYellow}
-          size={20}
+          size={iconSize}
           alt='star'
           loading='eager'
-          className={classes.icon}
+          classes={{ root: classes.icon }}
         />
       }
       onChange={(event, value) => {
