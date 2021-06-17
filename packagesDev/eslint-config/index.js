@@ -44,7 +44,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/react-in-jsx-scope': 'off',
     'react-hooks/exhaustive-deps': ['error', { additionalHooks: '(useIsomorphicLayoutEffect)' }],
-    'no-console': [1, { allow: ['warn', 'error'] }],
+    'no-console': [1, { allow: ['warn', 'error', 'info'] }],
     '@typescript-eslint/semi': 'off',
     'spaced-comment': [
       'error',
