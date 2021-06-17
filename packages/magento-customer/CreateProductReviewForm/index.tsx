@@ -57,7 +57,7 @@ const useStyles = makeStyles(
 
 type CreateProductReviewFormProps = {
   sku: string
-  nickname: string
+  nickname?: string
 } & UseStyles<typeof useStyles>
 
 export default function CreateProductReviewForm(props: CreateProductReviewFormProps) {
@@ -115,6 +115,8 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
     )
   }
 
+  console.log(nickname)
+
   return (
     <Form onSubmit={submitHandler} noValidate>
       <FormRow>
@@ -128,7 +130,7 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
           helperText={formState.errors.nickname?.message}
           disabled={formState.isSubmitting}
           InputProps={{
-            readOnly: true,
+            readOnly: typeof nickname !== 'undefined',
           }}
         />
       </FormRow>

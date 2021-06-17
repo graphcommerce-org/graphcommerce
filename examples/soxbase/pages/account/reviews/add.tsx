@@ -12,8 +12,8 @@ import { iconBox } from '@reachdigital/next-ui/icons'
 import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../../../components/AppShell/SheetShell'
-import apolloClient from '../../../../lib/apolloClient'
+import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import apolloClient from '../../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
@@ -86,7 +86,7 @@ function AccountReviewsAddPage() {
           </Box>
           <CreateProductReviewForm
             sku={(sku as string) ?? ''}
-            nickname={customer ? `${customer?.firstname} ${customer?.lastname}` : ''}
+            nickname={customer ? `${customer?.firstname} ${customer?.lastname}` : undefined}
           />
         </Box>
       </NoSsr>
