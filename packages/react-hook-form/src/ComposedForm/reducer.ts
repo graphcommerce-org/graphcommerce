@@ -3,14 +3,22 @@ import { ComposedFormReducer, ComposedFormState } from './types'
 
 function updateFormStateIfNecessary(state: ComposedFormState): ComposedFormState {
   const formEntries = Object.entries(state.forms)
-  const formState = Object.entries(state.forms).map(([, { form }]) => form.formState)
+  const formState = Object.entries(state.forms).map(
+    ([, { form }]) =>
+      form?.formState ?? {
+        isSubmitting: false,
+        isSubmitSuccessful: false,
+        isSubmitted: false,
+        isValid: false,
+      },
+  )
   const hasState = formState.length > 0
 
   const isSubmitting = hasState && formState.some((fs) => fs.isSubmitting)
   const isSubmitSuccessful =
     hasState &&
     formState.every((f) => f.isSubmitSuccessful) &&
-    formEntries.every(([, f]) => (isFormGqlOperation(f.form) ? !f.form.error : true))
+    formEntries.every(([, f]) => (f.form && isFormGqlOperation(f.form) ? !f.form.error : true))
   const isSubmitted = hasState && formState.every((fs) => fs.isSubmitted)
   const isValid = hasState ? formState.every((fs) => fs.isValid) : false
 

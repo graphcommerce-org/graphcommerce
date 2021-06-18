@@ -31,7 +31,7 @@ export default function ComposedSubmit(props: ComposedSubmitProps) {
        * submission of the invalid forms and highlight those forms.
        */
       const isSubmitSuccessful = !formEntries.some(
-        ([, f]) => Object.keys(f.form.formState.errors).length > 0,
+        ([, f]) => Object.keys(f.form?.formState.errors ?? {}).length > 0,
       )
 
       dispatch({ type: 'SUBMITTED', isSubmitSuccessful })
