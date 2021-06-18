@@ -1,0 +1,10 @@
+query ProductReviewsPage($urlKey: String!, $reviewPageSize: Int, $reviewPage: Int!) {
+  products(filter: { url_key: { eq: $urlKey } }) {
+    items {
+      __typename
+      uid
+      review_count
+      ...ProductReviews
+    }
+  }
+}

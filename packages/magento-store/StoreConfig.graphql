@@ -22,5 +22,8 @@ query StoreConfig {
     root_category_uid
 
     weight_unit
+
+    product_reviews_enabled
+    allow_guests_to_write_product_reviews
   }
 }

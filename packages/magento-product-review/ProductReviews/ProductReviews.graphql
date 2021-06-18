@@ -1,0 +1,22 @@
+fragment ProductReviews on ProductInterface @inject(into: ["ProductPageItem"]) {
+  reviews(pageSize: $reviewPageSize, currentPage: $reviewPage) {
+    page_info {
+      total_pages
+      current_page
+    }
+    items {
+      average_rating
+      created_at
+      nickname
+      ratings_breakdown {
+        name
+        value
+      }
+      summary
+      text
+    }
+  }
+  review_count
+  url_key
+  sku
+}

@@ -1,12 +1,12 @@
 import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
-  ConfigurableProductPageDocument,
-  ConfigurableProductPageQuery,
   ConfigurableContextProvider,
   ConfigurableProductAddToCart,
+  ConfigurableProductPageDocument,
+  ConfigurableProductPageQuery,
 } from '@reachdigital/magento-product-configurable'
-import { ProductReviewSummary, jsonLdProductReview } from '@reachdigital/magento-product-review'
+import { jsonLdProductReview, ProductReviewSummary } from '@reachdigital/magento-product-review'
 import { jsonLdProduct, jsonLdProductOffer } from '@reachdigital/magento-product/JsonLdProduct'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
@@ -93,7 +93,7 @@ function ProductConfigurable(props: Props) {
           <Typography component='h1' variant='h2' className={classes.productName}>
             {product.name}
           </Typography>
-          <ProductReviewSummary {...product} />
+          <ProductReviewSummary {...product} reviewSectionId='reviews' />
           <ConfigurableProductAddToCart
             variables={{ sku: product.sku ?? '', quantity: 1 }}
             name={product.name ?? ''}

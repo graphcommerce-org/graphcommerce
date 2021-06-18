@@ -106,7 +106,7 @@ export const defaultTheme = createMuiTheme({
     },
     h6: {
       fontSize: responsiveVal(13, 18),
-      fontWeight: 500,
+      fontWeight: 400,
       letterSpacing: '-0.0375em',
       lineHeight: 1.55,
     },

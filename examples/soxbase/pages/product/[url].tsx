@@ -66,7 +66,7 @@ function ProductSimple(props: Props) {
         <Typography component='h1' variant='h2' paragraph>
           {product.name}
         </Typography>
-        <ProductReviewSummary {...product} />
+        <ProductReviewSummary {...product} reviewSectionId='reviews' />
 
         <AddToCartButton
           mutation={ProductAddToCartDocument}

@@ -18,7 +18,7 @@ import MenuFab from '@reachdigital/next-ui/AppShell/MenuFab'
 import MenuFabSecondaryItem from '@reachdigital/next-ui/AppShell/MenuFabSecondaryItem'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconCustomerService, iconStar } from '@reachdigital/next-ui/icons'
+import { iconCustomerService, iconHeart, iconStar } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'
@@ -112,7 +112,7 @@ function FullPageShell(props: FullPageShellProps) {
           Customer Service
         </MenuFabSecondaryItem>
         <MenuFabSecondaryItem
-          icon={<SvgImage src={iconStar} size='small' alt='Wishlist' />}
+          icon={<SvgImage src={iconHeart} size='small' alt='Wishlist' />}
           href='/wishlist'
         >
           Wishlist

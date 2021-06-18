@@ -1,5 +1,5 @@
 fragment JsonLdProductReview on ProductInterface @inject(into: ["ProductPageItem"]) {
-  ...ProductReview
+  ...ProductReviews
   review_count
   rating_summary
 }
