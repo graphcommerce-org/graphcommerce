@@ -60,7 +60,7 @@ function AccountReviewsAddPage() {
           <Typography variant='h3' component='h1' gutterBottom>
             You are reviewing {product?.name}
           </Typography>
-          <Typography variant='h6'>What do you think of this product?</Typography>
+          <Typography variant='body1'>What do you think of this product?</Typography>
 
           <Box textAlign='center' p={2} mt={2}>
             <CreateProductReviewForm
