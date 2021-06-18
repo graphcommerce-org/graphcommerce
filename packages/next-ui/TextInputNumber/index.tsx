@@ -63,47 +63,30 @@ export default function TextInputNumber(props: TextInputNumberProps) {
     ref.current?.focus()
   }, [ref])
 
+  const down = useCallback(() => {
+    if ((ref.current?.value ?? 0) <= inputProps.min) {
+      stop()
+      return
+    }
+
+    ref.current?.stepDown()
+    ref.current?.dispatchEvent(new Event('change', { bubbles: true }))
+  }, [inputProps.min, stop])
+
+  const up = useCallback(() => {
+    if ((ref.current?.value ?? Infinity) >= inputProps.max) {
+      stop()
+      return
+    }
+
+    ref.current?.stepUp()
+    ref.current?.dispatchEvent(new Event('change', { bubbles: true }))
+  }, [inputProps.max, stop])
+
   useEffect(() => {
-    let clear: NodeJS.Timeout
-
-    const down = () => {
-      if ((ref.current?.value ?? 0) <= inputProps.min) {
-        stop()
-        return
-      }
-
-      ref.current?.focus()
-      ref.current?.stepDown()
-      ref.current?.dispatchEvent(new Event('change', { bubbles: true }))
-    }
-    const up = () => {
-      if ((ref.current?.value ?? Infinity) >= inputProps.max) {
-        stop()
-        return
-      }
-
-      ref.current?.focus()
-      ref.current?.stepUp()
-      ref.current?.dispatchEvent(new Event('change', { bubbles: true }))
-    }
-
-    if (direction === 'up') {
-      up()
-      setTimeout(() => setDirection((old) => (old === 'up' ? 'runUp' : null)), 500)
-    }
-    if (direction === 'runUp') {
-      clear = setInterval(up, 50)
-    }
-    if (direction === 'down') {
-      down()
-      setTimeout(() => setDirection((old) => (old === 'down' ? 'runDown' : null)), 500)
-    }
-    if (direction === 'runDown') {
-      clear = setInterval(down, 50)
-    }
-
-    return () => clearInterval(clear)
-  }, [direction, inputProps.max, inputProps.min, ref, stop])
+    if (direction === 'up') up()
+    if (direction === 'down') down()
+  }, [direction, down, inputProps.max, inputProps.min, ref, stop, up])
 
   const updateDisabled = (target: HTMLInputElement) => {
     if (target.value === target.min) setDisabled('min')
