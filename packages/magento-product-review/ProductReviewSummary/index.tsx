@@ -1,6 +1,7 @@
 import { Chip, ChipProps, Link, makeStyles, Theme } from '@material-ui/core'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconStarYellow } from '@reachdigital/next-ui/icons'
+import PageLink from 'next/link'
 import React from 'react'
 import { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'
 
@@ -29,18 +30,18 @@ export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
 
   return (
     <Link
-      underline='none'
       href={`#${reviewSectionId}`}
-      onClick={(e) => {
+      underline='none'
+      onClick={(event) => {
         const element = document.getElementById(reviewSectionId)
 
-        e.preventDefault()
+        event.preventDefault()
 
         if (!element) {
           return
         }
 
-        ;(window as any).scrollTo({
+        window.scrollTo({
           top: element.offsetTop - 50,
           left: 0,
           behavior: 'smooth',
