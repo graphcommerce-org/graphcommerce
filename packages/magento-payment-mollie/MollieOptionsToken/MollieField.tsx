@@ -47,7 +47,6 @@ const IframeField = React.forwardRef<any, IframeFieldProps>((props, forwardedRef
       setState((current) => (JSON.stringify(current) === JSON.stringify(e) ? current : e))
     }
 
-    // console.log('trigggerr')
     mollieComponent.addEventListener('change', handleChange)
     return () => {
       try {
@@ -104,7 +103,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 export default function MollieField(props: MollieFieldProps) {
-  const { isSubmitted = false, ...fieldProps } = props
+  const { isSubmitted = false, label, ...fieldProps } = props
 
   const classes = useStyles()
   const [state, setState] = useState<ComponentFieldState>({
@@ -118,8 +117,9 @@ export default function MollieField(props: MollieFieldProps) {
     <mollieFieldContext.Provider value={[state, setState]}>
       <TextField
         {...fieldProps}
-        error={isSubmitted && !!state.error}
-        helperText={isSubmitted && state.error}
+        label={label}
+        error={isSubmitted && (!!state.error || !state.valid)}
+        helperText={isSubmitted && (state.error || (!state.valid && `${label} cannot be empty`))}
         InputProps={{
           inputComponent: InputComponent,
           inputProps: { component: IframeField },
