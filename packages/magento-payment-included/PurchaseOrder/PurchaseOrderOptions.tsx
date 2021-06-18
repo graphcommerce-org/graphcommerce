@@ -9,13 +9,13 @@ import { PurchaseOrderOptionsDocument } from './PurchaseOrderOptions.gql'
 
 function PurchaseOrderOptions(props: PaymentOptionsProps) {
   const { code, step, selected, Container } = props
+  const poNumber = selected?.purchase_order_number ?? undefined
+
   const form = useFormGqlMutationCart(PurchaseOrderOptionsDocument, {
     mode: 'onChange',
-    defaultValues: {
-      poNumber: selected?.purchase_order_number ?? undefined,
-    },
+    defaultValues: { code, poNumber },
   })
-  const { handleSubmit, register, muiRegister, formState, required } = form
+  const { handleSubmit, muiRegister, formState, required } = form
   const submit = handleSubmit(() => {})
 
   useFormCompose({ form, step, submit, key: `PaymentMethodOptions_${code}` })
@@ -24,8 +24,6 @@ function PurchaseOrderOptions(props: PaymentOptionsProps) {
   return (
     <Container>
       <form onSubmit={submit} noValidate>
-        <input type='hidden' {...register('code')} value={code} />
-
         <FormRow>
           <TextField
             variant='outlined'

@@ -5,7 +5,8 @@ import { PaymentMethodOptionsNoopDocument } from './PaymentMethodOptionsNoop.gql
 
 function PaymentMethodOptionsNoop(props: PaymentOptionsProps) {
   const { code, step } = props
-  const form = useFormGqlMutationCart(PaymentMethodOptionsNoopDocument)
+
+  const form = useFormGqlMutationCart(PaymentMethodOptionsNoopDocument, { defaultValues: { code } })
 
   const { handleSubmit, register } = form
   const submit = handleSubmit(() => {})
