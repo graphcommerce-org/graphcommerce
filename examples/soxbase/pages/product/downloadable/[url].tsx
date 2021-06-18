@@ -66,7 +66,7 @@ function ProductDownloadable(props: Props) {
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
         <Typography variant='h1'>{product.name ?? ''}</Typography>
-        <ProductReviewSummary {...product} />
+        <ProductReviewSummary {...product} reviewSectionId='reviews' />
         <AddToCartButton
           mutation={ProductAddToCartDocument}
           variables={{ sku: product.sku ?? '', quantity: 1 }}

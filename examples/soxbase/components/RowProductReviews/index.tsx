@@ -19,7 +19,7 @@ export default function RowProductReviews(props: RowProductReviewsProps) {
   if (!data?.storeConfig?.product_reviews_enabled) return <></>
 
   return (
-    <Row maxWidth='md'>
+    <Row maxWidth='md' id='reviews'>
       <SectionHeader
         labelLeft={
           <>

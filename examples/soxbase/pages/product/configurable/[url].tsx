@@ -93,7 +93,7 @@ function ProductConfigurable(props: Props) {
           <Typography component='h1' variant='h2' className={classes.productName}>
             {product.name}
           </Typography>
-          <ProductReviewSummary {...product} />
+          <ProductReviewSummary {...product} reviewSectionId='reviews' />
           <ConfigurableProductAddToCart
             variables={{ sku: product.sku ?? '', quantity: 1 }}
             name={product.name ?? ''}
