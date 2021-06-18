@@ -46,12 +46,12 @@ export default function ComposedSubmit(props: ComposedSubmitProps) {
      * the submission of the invalid forms and highlight those forms.
      */
     let formsToSubmit = formEntries.filter(
-      ([, f]) => Object.keys(f.form.formState.errors).length > 0,
+      ([, f]) => Object.keys(f.form?.formState.errors ?? {}).length > 0,
     )
 
     /** If we have invalid forms we can submit those and show errors */
     if (!formsToSubmit.length)
-      formsToSubmit = formEntries.filter(([, f]) => !f.form.formState.isValid)
+      formsToSubmit = formEntries.filter(([, f]) => !f.form?.formState.isValid)
 
     // We have no errors or invalid forms
     if (!formsToSubmit.length) formsToSubmit = formEntries
@@ -66,7 +66,7 @@ export default function ComposedSubmit(props: ComposedSubmitProps) {
        * Todo: There might be a performance optimization by submitting multiple forms in parallel.
        */
       // eslint-disable-next-line no-await-in-loop
-      for (const [, { submit }] of formsToSubmit) await submit()
+      for (const [, { submit }] of formsToSubmit) await submit?.()
       dispatch({ type: 'SUBMITTING' })
     } catch (error) {
       dispatch({ type: 'SUBMITTED', isSubmitSuccessful: false })
@@ -75,7 +75,7 @@ export default function ComposedSubmit(props: ComposedSubmitProps) {
 
   const errors: ApolloError[] = []
   formEntries.forEach(([, { form }]) => {
-    if (isFormGqlOperation(form) && form.error) errors.push(form.error)
+    if (form && isFormGqlOperation(form) && form.error) errors.push(form.error)
   })
 
   return <Render buttonState={buttonState} submit={submitAll} error={mergeErrors(errors)} />

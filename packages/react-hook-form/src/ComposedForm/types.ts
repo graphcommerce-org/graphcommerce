@@ -1,5 +1,6 @@
 import { ApolloError } from '@apollo/client'
 import { FieldValues, FormState, UseFormReturn } from 'react-hook-form'
+import { SetOptional } from 'type-fest'
 
 export type UseFormComposeOptions<V extends FieldValues = FieldValues> = {
   /** The form that is used to submit */
@@ -38,7 +39,9 @@ export type ComposedSubmitRenderComponentProps = {
 }
 
 export type ComposedFormState = {
-  forms: { [step: number]: UseFormComposeOptions }
+  forms: {
+    [step: number]: UseFormComposeOptions | SetOptional<UseFormComposeOptions, 'form' | 'submit'>
+  }
   isCompleting: boolean
   buttonState: ButtonState
   formState: FormStateAll
@@ -47,12 +50,17 @@ export type ComposedFormState = {
 }
 
 /** Register a new form with the useFormCompose hook */
-export type RegisterAction = { type: 'REGISTER' } & UseFormComposeOptions
+export type RegisterAction = {
+  type: 'REGISTER'
+} & Pick<UseFormComposeOptions, 'key' | 'step'>
+
+/** Assign the current state to the form */
+export type AssignAction = { type: 'ASSIGN' } & Omit<UseFormComposeOptions, 'step'>
+
 /** Cleanup the form if the useFromCompose hook changes */
 export type UnregisterAction = {
   type: 'UNREGISTER'
-  key: UseFormComposeOptions['key']
-}
+} & Pick<UseFormComposeOptions, 'key'>
 /** Recalculate the combined formstate */
 export type FormStateAction = { type: 'FORMSTATE' }
 /** Submit all forms and call onSubmitComplete?.() when done */
@@ -61,6 +69,7 @@ export type SubmittingAction = { type: 'SUBMITTING' }
 export type SubmittedAction = { type: 'SUBMITTED'; isSubmitSuccessful: boolean }
 
 export type Actions =
+  | AssignAction
   | RegisterAction
   | UnregisterAction
   | FormStateAction

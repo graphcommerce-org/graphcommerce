@@ -32,10 +32,14 @@ function updateFormStateIfNecessary(state: ComposedFormState): ComposedFormState
 export const composedFormReducer: ComposedFormReducer = (state, action) => {
   switch (action.type) {
     case 'REGISTER':
-      state.forms[action.key] = action
+      return { ...state, forms: { ...state.forms, [action.key]: undefined } }
       break
     case 'UNREGISTER':
       delete state.forms[action.key]
+      return { ...state }
+      break
+    case 'ASSIGN':
+      state.forms[action.key] = { ...state.forms[action.key], ...action }
       break
     case 'SUBMIT':
       return {
