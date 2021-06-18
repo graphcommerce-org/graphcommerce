@@ -88,7 +88,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const categoryUid = String((await conf).data.storeConfig?.root_category_uid ?? '')
   const productList = staticClient.query({
     query: ProductListDocument,
-    variables: { categoryUid, pageSize: 8, filters: { category_uid: { eq: 'NzM=' } } },
+    variables: { categoryUid, pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
   })
 
   return {
