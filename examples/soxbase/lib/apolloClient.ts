@@ -20,8 +20,8 @@ import {
 } from '@reachdigital/graphql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer'
 import { localeToStore, defaultLocale } from '@reachdigital/magento-store'
-import { CachePersistor } from 'apollo-cache-persist'
-import { PersistentStorage } from 'apollo-cache-persist/types'
+import { CachePersistor, LocalStorageWrapper } from 'apollo3-cache-persist'
+
 import { policies, migrations } from './typePolicies'
 
 export function createApolloClient(
@@ -91,10 +91,12 @@ export function createApolloClient(
   const APOLLO_CACHE_PERSIST = 'apollo-cache-persist'
   const APOLLO_CACHE_VERSION = 'apollo-cache-version'
   if (typeof window !== 'undefined') {
+    const storage = new LocalStorageWrapper(window.localStorage)
     const persistor = new CachePersistor({
       cache,
-      storage: window.localStorage as PersistentStorage<unknown>,
+      storage,
       maxSize: false,
+      key: APOLLO_CACHE_PERSIST,
     })
 
     const storedState = window.localStorage[APOLLO_CACHE_PERSIST]
