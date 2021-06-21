@@ -1,10 +1,10 @@
-import { Box, Container, Link, Typography } from '@material-ui/core'
+import { Box, Container, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
+import { SearchForm } from '@reachdigital/magento-search'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import DividedLinks from '@reachdigital/next-ui/DividedLinks'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import PageLink from 'next/link'
 import React from 'react'
-import { SearchForm } from '../../../packages/magento-search'
 import FullPageShell, { FullPageShellProps } from '../components/AppShell/FullPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../lib/apolloClient'
@@ -31,16 +31,20 @@ function RouteNotFoundPage() {
           </Box>
           Or follow these links to get you back on track!
           <Box mb={8}>
-            <PageLink passHref href='/home'>
-              <Link color='primary'>Store Home</Link>
-            </PageLink>
-            <Typography component='span' variant='body1'>
-              {'  '}|{'  '}
-            </Typography>
-
-            <PageLink passHref href='/account'>
-              <Link color='primary'>My account</Link>
-            </PageLink>
+            <DividedLinks
+              divider='|'
+              links={[
+                {
+                  href: 'home',
+                  text: 'Store home',
+                },
+                {
+                  href: 'account',
+                  text: 'My account',
+                },
+              ]}
+              textColor='primary'
+            />
           </Box>
         </Box>
       </Container>
