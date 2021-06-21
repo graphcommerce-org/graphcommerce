@@ -35,11 +35,11 @@ function RouteNotFoundPage() {
               divider='|'
               links={[
                 {
-                  href: 'home',
+                  href: '/',
                   text: 'Store home',
                 },
                 {
-                  href: 'account',
+                  href: '/account',
                   text: 'My account',
                 },
               ]}

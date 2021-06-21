@@ -39,7 +39,7 @@ export default function DividedLinks(props: DividedLinksProps) {
     <>
       {links.map((link, index) => (
         <React.Fragment key={link.href}>
-          <PageLink passHref href={`/${link.href}`}>
+          <PageLink passHref href={link.href}>
             <Link color={textColor}>{link.text}</Link>
           </PageLink>
 
