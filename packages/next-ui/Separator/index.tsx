@@ -4,8 +4,8 @@ import { UseStyles } from '../Styles'
 
 type DividedLinksProps = {
   icon?: React.ReactNode
-  color?: Pick<TypographyProps, 'color'>
-} & UseStyles<typeof useStyles>
+} & Pick<TypographyProps, 'color'> &
+  UseStyles<typeof useStyles>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -14,9 +14,7 @@ const useStyles = makeStyles(
       padding: `0 ${theme.spacings.xxs} 0 ${theme.spacings.xxs}`,
     },
   }),
-  {
-    name: 'Separator',
-  },
+  { name: 'Separator' },
 )
 
 export default function Separator(props: DividedLinksProps) {

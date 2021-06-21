@@ -4,7 +4,7 @@ import { SearchForm } from '@reachdigital/magento-search'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import Separator from '@reachdigital/next-ui/Separator'
-import PageLink, { LinkProps } from 'next/link'
+import PageLink from 'next/link'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../components/AppShell/FullPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../components/GraphQL/DefaultPage.gql'
@@ -21,7 +21,7 @@ function RouteNotFoundPage() {
       <Link color='primary'>Store home</Link>
     </PageLink>,
     <PageLink key={1} passHref href='/account'>
-      <Link color='primary'>My account</Link>
+      <Link color='primary'>Account</Link>
     </PageLink>,
   ]
 
@@ -42,7 +42,8 @@ function RouteNotFoundPage() {
           Or follow these links to get you back on track!
           <Box mb={8}>
             {links.map((link, index) => (
-              <React.Fragment key={(link as any).href}>
+              // eslint-disable-next-line react/no-array-index-key
+              <React.Fragment key={index}>
                 {index > 0 && <Separator />}
                 {link}
               </React.Fragment>
