@@ -1,7 +1,6 @@
 import { Chip, ChipProps, Link, makeStyles, Theme } from '@material-ui/core'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconStarYellow } from '@reachdigital/next-ui/icons'
-import PageLink from 'next/link'
 import React from 'react'
 import { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'
 
@@ -28,6 +27,23 @@ export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
 
   const rating = Math.round(rating_summary / 2) / 10
 
+  const chip = (
+    <Chip
+      variant='outlined'
+      clickable
+      icon={<SvgImage src={iconStarYellow} alt='review' loading='lazy' />}
+      color='default'
+      size='medium'
+      label={`${rating}/5`}
+      {...props}
+      classes={classes}
+    />
+  )
+
+  if (!reviewSectionId) {
+    return <>{chip}</>
+  }
+
   return (
     <Link
       href={`#${reviewSectionId}`}
@@ -48,16 +64,7 @@ export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
         })
       }}
     >
-      <Chip
-        variant='outlined'
-        clickable
-        icon={<SvgImage src={iconStarYellow} alt='review' loading='lazy' />}
-        color='default'
-        size='medium'
-        label={`${rating}/5`}
-        {...props}
-        classes={classes}
-      />
+      {chip}
     </Link>
   )
 }
