@@ -1,9 +1,10 @@
-import { Box, Container, Typography } from '@material-ui/core'
+import { Box, Container, Typography, Link } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { SearchForm } from '@reachdigital/magento-search'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import DividedLinks from '@reachdigital/next-ui/DividedLinks'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import Separator from '@reachdigital/next-ui/Separator'
+import PageLink, { LinkProps } from 'next/link'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../components/AppShell/FullPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../components/GraphQL/DefaultPage.gql'
@@ -15,6 +16,15 @@ type Props = DefaultPageQuery
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function RouteNotFoundPage() {
+  const links = [
+    <PageLink key={0} passHref href='/'>
+      <Link color='primary'>Store home</Link>
+    </PageLink>,
+    <PageLink key={1} passHref href='/account'>
+      <Link color='primary'>My account</Link>
+    </PageLink>,
+  ]
+
   return (
     <>
       <PageMeta title='Page not found' metaRobots={['noindex']} />
@@ -31,7 +41,14 @@ function RouteNotFoundPage() {
           </Box>
           Or follow these links to get you back on track!
           <Box mb={8}>
-            <DividedLinks
+            {links.map((link, index) => (
+              <React.Fragment key={(link as any).href}>
+                {index > 0 && <Separator />}
+                {link}
+              </React.Fragment>
+            ))}
+
+            {/* <DividedLinks
               divider='|'
               links={[
                 {
@@ -44,7 +61,7 @@ function RouteNotFoundPage() {
                 },
               ]}
               textColor='primary'
-            />
+            /> */}
           </Box>
         </Box>
       </Container>
