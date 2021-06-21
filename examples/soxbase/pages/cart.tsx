@@ -85,12 +85,8 @@ function CartPage() {
                   }}
                 />
                 <CouponAccordion key='couponform' />
-                <CartTotals
-                  key='totals'
-                  prices={data?.cart?.prices}
-                  shipping_addresses={data?.cart?.shipping_addresses ?? []}
-                />
-                <ApolloCartErrorAlert error={error} />
+                <CartTotals />
+                <ApolloErrorAlert error={error} />
                 <AnimatedRow key='checkout-button'>
                   <CartStartCheckout {...data?.cart} />
                 </AnimatedRow>

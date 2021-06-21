@@ -1,7 +1,6 @@
 import { Container, Divider, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { CartTotals, useCartQuery } from '@reachdigital/magento-cart'
-import { CartPageDocument, OrderDetails } from '@reachdigital/magento-cart-checkout'
+import { CartTotals, CartSummary } from '@reachdigital/magento-cart'
 import {
   PaymentMethodButton,
   PaymentMethodContextProvider,
@@ -29,8 +28,6 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function PaymentPage(props: Props) {
-  const { data, error } = useCartQuery(CartPageDocument, { returnPartialData: true })
-
   return (
     <Container maxWidth='md'>
       <ComposedForm>
@@ -75,14 +72,10 @@ function PaymentPage(props: Props) {
               >
                 Pay
               </PaymentMethodButton>
-              <OrderDetails {...data?.cart} editable>
+              <CartSummary editable>
                 <Divider />
-                <CartTotals
-                  key='totals'
-                  prices={data?.cart?.prices}
-                  shipping_addresses={data?.cart?.shipping_addresses ?? []}
-                />
-              </OrderDetails>
+                <CartTotals />
+              </CartSummary>
             </AnimatePresence>
           </NoSsr>
         </PaymentMethodContextProvider>

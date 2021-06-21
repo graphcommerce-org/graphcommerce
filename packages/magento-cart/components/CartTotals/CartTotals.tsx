@@ -5,7 +5,8 @@ import { UseStyles } from '@reachdigital/next-ui/Styles'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
-import { CartTotalsFragment } from './CartTotals.gql'
+import { useCartQuery } from '../../hooks'
+import { GetCartTotalsDocument } from './GetCartTotals.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -54,14 +55,16 @@ const useStyles = makeStyles(
   { name: 'TotalCosts' },
 )
 
-export type CartTotalsProps = CartTotalsFragment & UseStyles<typeof useStyles>
+export type CartTotalsProps = UseStyles<typeof useStyles>
 
 export default function CartTotals(props: CartTotalsProps) {
-  const { shipping_addresses, prices } = props
-  const shippingMethod = shipping_addresses?.[0]?.selected_shipping_method
+  const { data } = useCartQuery(GetCartTotalsDocument, { returnPartialData: true })
   const classes = useStyles(props)
 
-  if (!prices) return null
+  if (!data?.cart) return null
+
+  const { shipping_addresses, prices } = data.cart
+  const shippingMethod = shipping_addresses?.[0]?.selected_shipping_method
 
   return (
     <AnimatedRow className={classes.costsContainer} key='total-costs'>
@@ -75,7 +78,7 @@ export default function CartTotals(props: CartTotalsProps) {
           </AnimatedRow>
         )}
 
-        {prices.discounts && prices.discounts.length > 1 && (
+        {prices?.discounts && prices.discounts.length > 1 && (
           <AnimatedRow className={clsx(classes.costsRow, classes.costsDiscount)} key='discount'>
             <div>Product discount</div>
             <div>
@@ -135,7 +138,7 @@ export default function CartTotals(props: CartTotalsProps) {
           </AnimatedRow>
         )}
 
-        {prices.applied_taxes?.map((tax) => (
+        {prices?.applied_taxes?.map((tax) => (
           <AnimatedRow className={clsx(classes.costsRow, classes.costsTax)} key={tax?.label ?? ''}>
             <div>Including {tax?.label}</div>
             <div>
