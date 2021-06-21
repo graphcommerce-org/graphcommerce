@@ -47,21 +47,6 @@ function RouteNotFoundPage() {
                 {link}
               </React.Fragment>
             ))}
-
-            {/* <DividedLinks
-              divider='|'
-              links={[
-                {
-                  href: '/',
-                  text: 'Store home',
-                },
-                {
-                  href: '/account',
-                  text: 'My account',
-                },
-              ]}
-              textColor='primary'
-            /> */}
           </Box>
         </Box>
       </Container>
