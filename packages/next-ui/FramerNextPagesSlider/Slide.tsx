@@ -39,7 +39,7 @@ export default function RouterSlide({ children, scrollPositions }: RouterSlidePr
 
   useEffect(() => {
     scrollPositions.current[router.asPath] ??= motionValue(0)
-    scrollY.attach((v) => scrollPositions.current[router.asPath].set(v))
+    scrollY.onChange((v) => scrollPositions.current[router.asPath].set(v))
   }, [router.asPath, scrollPositions, scrollY])
 
   useEffect(() => {
