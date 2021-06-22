@@ -9,7 +9,7 @@ export function useMotionValueValue<T, R>(motionValue: MotionValue<T>, effect: (
   useIsomorphicLayoutEffect(() => {
     const set = (v: T) => setResult(effect(v))
     set(motionValue.get())
-    return motionValue.attach(set)
+    return motionValue.onChange(set)
     // we're not recalculating
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [motionValue])
