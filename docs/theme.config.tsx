@@ -1,20 +1,20 @@
 export default {
   github: 'https://github.com/ho-nl/m2-pwa',
   siteGithub: 'https://github.com/ho-nl/m2-pwa',
-  titleSuffix: ' – Soxbase Commerce',
+  titleSuffix: ' – GraphCommerce',
   nextLinks: true,
   prevLinks: true,
   search: true,
   customSearch: null,
   darkMode: 'class',
   footer: true,
-  footerText: 'Soxbase Commerce © Reach Digital 2021',
+  footerText: 'GraphCommerce © Reach Digital 2021',
   footerEditOnGitHubLink: true,
   logo: (
     <>
-      <span className='mr-2 font-extrabold hidden md:inline'>Soxbase Commerce</span>
+      <span className='mr-2 font-extrabold hidden md:inline'>GraphCommerce</span>
       <span className='text-gray-600 font-normal hidden md:inline'>
-        Reach Digital PWA Framework
+        GraphCommerce PWA framework by Reach Digital
       </span>
     </>
   ),
@@ -24,8 +24,8 @@ export default {
       <meta name='theme-color' content='#ffffff' />
       <meta name='viewport' content='width=device-width, initial-scale=1.0' />
       <meta httpEquiv='Content-Language' content='en' />
-      <meta name='description' content='Soxbase Commerce' />
-      <meta name='apple-mobile-web-app-title' content='Soxbase Commerce' />
+      <meta name='description' content='GraphCommerce' />
+      <meta name='apple-mobile-web-app-title' content='GraphCommerce' />
     </>
   ),
 }
