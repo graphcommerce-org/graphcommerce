@@ -1,6 +1,5 @@
 import { Fab } from '@material-ui/core'
-import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconClose } from '@reachdigital/next-ui/icons'
 import React from 'react'
@@ -23,7 +22,7 @@ export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
       <Fab aria-label='Remove Product' size='small' type='submit' disabled={formState.isSubmitting}>
         <SvgImage src={iconClose} size='small' shade='inverted' alt='close' loading='eager' />
       </Fab>
-      <ApolloErrorAlert error={error} />
+      <ApolloCartErrorAlert error={error} />
     </form>
   )
 }

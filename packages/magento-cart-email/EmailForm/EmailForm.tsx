@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client'
 import { CircularProgress, makeStyles, TextField, Theme } from '@material-ui/core'
-import { useCartQuery } from '@reachdigital/magento-cart'
+import { useCartQuery, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
 import {
   SignInFormInline,
   SignUpFormInline,
@@ -9,7 +9,6 @@ import {
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
 import Form from '@reachdigital/next-ui/Form'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { emailPattern, useFormCompose, UseFormComposeOptions } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
@@ -97,7 +96,7 @@ export default function EmailForm(props: EmailFormProps) {
                 }}
               />
             </FormRow>
-            <ApolloErrorAlert error={error} />
+            <ApolloCartErrorAlert error={error} />
           </form>
         </AnimatedRow>
 

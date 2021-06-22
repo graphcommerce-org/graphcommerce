@@ -1,13 +1,12 @@
 import { Container, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { EmptyCart, useCartQuery } from '@reachdigital/magento-cart'
+import { EmptyCart, useCartQuery, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
 import { ShippingPageDocument } from '@reachdigital/magento-cart-checkout'
 import { EmailForm } from '@reachdigital/magento-cart-email'
 import { ShippingAddressForm } from '@reachdigital/magento-cart-shipping-address'
 import { ShippingMethodForm } from '@reachdigital/magento-cart-shipping-method'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import FormHeader from '@reachdigital/next-ui/Form/FormHeader'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
@@ -76,7 +75,7 @@ function ShippingPage() {
                       />
                     </Button>
                   </FormActions>
-                  <ApolloErrorAlert
+                  <ApolloCartErrorAlert
                     key='error'
                     error={buttonState.isSubmitting ? undefined : error}
                   />

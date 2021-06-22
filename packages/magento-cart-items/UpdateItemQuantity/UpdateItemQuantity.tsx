@@ -1,5 +1,4 @@
-import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
 import { useFormAutoSubmit } from '@reachdigital/react-hook-form'
 import React from 'react'
@@ -33,7 +32,7 @@ export default function UpdateItemQuantity(props: UpdateItemQuantityProps) {
         {...muiRegister('quantity', { required: required.quantity })}
         helperText={formState.errors.quantity?.message}
       />
-      <ApolloErrorAlert error={error} />
+      <ApolloCartErrorAlert error={error} />
     </form>
   )
 }
