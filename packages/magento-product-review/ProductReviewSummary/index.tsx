@@ -19,9 +19,8 @@ type ProductReviewSummaryProps = ProductReviewSummaryFragment &
   }
 
 export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
-  const { reviewSectionId = '' } = props
   const classes = useStyles(props)
-  const { rating_summary } = props
+  const { rating_summary, reviewSectionId = '', ...chipProps } = props
 
   if (!rating_summary) return null
 
@@ -35,7 +34,7 @@ export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
       color='default'
       size='medium'
       label={`${rating}/5`}
-      {...props}
+      {...chipProps}
       classes={classes}
     />
   )
