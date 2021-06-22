@@ -35,6 +35,7 @@ const useStyles = makeStyles(
     },
     button: {
       marginTop: theme.spacings.sm,
+      marginBottom: theme.spacings.sm,
       width: '100%',
     },
     finalPrice: {

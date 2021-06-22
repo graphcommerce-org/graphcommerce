@@ -23,6 +23,7 @@ export type UseFormAutoSubmitOptions<TForm extends UseFormReturn<V>, V extends F
  * Make sure the form is set to { mode: 'onChange' }
  *
  * The form will automatically submit when:
+ *
  * - The form is dirty (has modifications)
  * - The form is valid (has no errors)
  * - The form is not already submitting
@@ -55,7 +56,13 @@ export function useFormAutoSubmit<Form extends UseFormReturn<V>, V = FieldValues
   const submitDebounced = useCallback(
     debounce(async () => {
       setSubmitting(true)
-      await submit()
+
+      try {
+        await submit()
+      } catch (e) {
+        // We're not interested if the submission actually succeeds, that should be handled by the form itself.
+      }
+
       setOldValues(values)
       setSubmitting(false)
     }, wait),

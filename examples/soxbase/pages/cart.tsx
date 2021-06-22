@@ -27,11 +27,13 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function CartPage() {
-  const { data, error } = useCartQuery(CartPageDocument, { returnPartialData: true })
+  const { data, error, loading } = useCartQuery(CartPageDocument, { returnPartialData: true })
   const clear = useClearCurrentCartId()
   const hasItems =
     (data?.cart?.total_quantity ?? 0) > 0 &&
     typeof data?.cart?.prices?.grand_total?.value !== 'undefined'
+
+  if (loading) return null
 
   return (
     <>

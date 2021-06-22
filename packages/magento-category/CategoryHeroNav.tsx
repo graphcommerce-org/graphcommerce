@@ -1,4 +1,4 @@
-import { Theme, Typography, makeStyles } from '@material-ui/core'
+import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 import { CategoryHeroNavFragment } from './CategoryHeroNav.gql'
 import CategoryLink from './CategoryLink'
@@ -10,23 +10,29 @@ const useStyles = makeStyles(
       gridTemplateColumns: '1fr',
       gridTemplateAreas: `"categories" "placeholder"`,
       gridTemplateRows: 'auto 60vw',
-      gap: `${theme.spacings.sm}`,
       borderBottom: '1px solid rgba(0,0,0,0.15)',
       marginBottom: theme.spacings.xl,
+      [theme.breakpoints.up('sm')]: {
+        rowGap: theme.spacings.sm,
+        width: '100%',
+      },
     },
     categories: {
       gridArea: 'categories',
       display: 'grid',
-      gridRowGap: `${theme.spacings.lg}`,
-      gridColumnGap: `${theme.spacings.xs}`,
+      gridColumnGap: theme.spacings.xl,
+      gridTemplateColumns: 'repeat(2, min-content)',
+      gridRowGap: theme.spacings.lg,
       height: 'min-content',
       alignSelf: 'center',
-      width: '100%',
       maxWidth: '80vw',
       justifySelf: 'center',
       [theme.breakpoints.up('md')]: {
-        gridRowGap: `${theme.spacings.md}`,
+        gridColumnGap: theme.spacings.md,
+        gridRowGap: theme.spacings.md,
+        gridTemplateColumns: 'repeat(2, 1fr)',
         maxWidth: '100vw',
+        width: '100%',
       },
     },
     title: {
@@ -77,6 +83,7 @@ export default function CategoryHeroNav({ children, name, asset }: CategoryHeroN
         <Typography variant='h2' component='h1' className={classes.title}>
           {name}
         </Typography>
+
         {children?.map((category) => {
           if (!category?.url_path || !category.uid || !category.name) return null
           return (
