@@ -1,10 +1,13 @@
 import { useQuery } from '@apollo/client'
 import { TextField } from '@material-ui/core'
-import { useCartQuery, useFormGqlMutationCart } from '@reachdigital/magento-cart'
+import {
+  useCartQuery,
+  useFormGqlMutationCart,
+  ApolloCartErrorAlert,
+} from '@reachdigital/magento-cart'
 import { AddressFields, CustomerDocument, NameFields } from '@reachdigital/magento-customer'
 import { StoreConfigDocument, CountryRegionsDocument } from '@reachdigital/magento-store'
 import Form from '@reachdigital/next-ui/Form'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import {
@@ -109,7 +112,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           />
         </FormRow>
 
-        <ApolloErrorAlert error={error} />
+        <ApolloCartErrorAlert error={error} />
       </AnimatePresence>
     </Form>
   )

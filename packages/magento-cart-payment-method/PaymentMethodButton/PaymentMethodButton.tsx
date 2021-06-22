@@ -1,5 +1,5 @@
+import { ApolloCartErrorAlert } from '@reachdigital/magento-cart'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { ComposedSubmit } from '@reachdigital/react-hook-form'
 import React from 'react'
@@ -43,7 +43,7 @@ export default function PaymentMethodButton(props: PaymentMethodButtonProps) {
               />
             )}
           </FormRow>
-          <ApolloErrorAlert key='error' error={buttonState.isSubmitting ? undefined : error} />
+          <ApolloCartErrorAlert key='error' error={buttonState.isSubmitting ? undefined : error} />
         </>
       )}
     />
