@@ -11,7 +11,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "next-transpile-modules": "^7.3.0",
-    "type-fest": "^1.2.0"
+    "next-transpile-modules": "^8.0.0",
+    "type-fest": "^1.2.1"
   }
 }
