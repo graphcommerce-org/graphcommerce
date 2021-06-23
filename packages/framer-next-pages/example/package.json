@@ -12,7 +12,7 @@
     "@reachdigital/next-config": "0.1.0",
     "@reachdigital/next-ui": "^0.1.0",
     "framer-motion": "^4.1.17",
-    "next": "^11.0.0",
+    "next": "^11.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-focus-lock": "^2.5.1"
