@@ -131,7 +131,7 @@ export default function AddressFields(props: AddressFieldsProps) {
       <FormRow>
         <TextField
           select
-          SelectProps={{ native: true }}
+          SelectProps={{ native: true, displayEmpty: true }}
           {...muiRegister('countryCode', { required: required.countryCode })}
           variant='outlined'
           error={!!formState.errors.countryCode}
@@ -144,6 +144,7 @@ export default function AddressFields(props: AddressFieldsProps) {
             endAdornment: <InputCheckmark show={valid.countryCode} />,
           }}
         >
+          <option value='' />
           {countryList.map((c) => {
             if (!c?.two_letter_abbreviation) return null
             return (
@@ -161,13 +162,16 @@ export default function AddressFields(props: AddressFieldsProps) {
             variant='outlined'
             error={!!formState.errors.regionId}
             label='Region'
-            {...muiRegister('regionId', { required: true, shouldUnregister: true })}
+            {...muiRegister('regionId', {
+              required: true,
+              shouldUnregister: true,
+              valueAsNumber: true,
+            })}
             required
             helperText={formState.errors.regionId?.message}
             InputProps={{
               readOnly,
               endAdornment: <InputCheckmark show={valid.regionId} />,
-              notched: true,
             }}
           >
             <option value='' />

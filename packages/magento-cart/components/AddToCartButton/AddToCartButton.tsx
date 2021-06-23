@@ -1,10 +1,9 @@
 import { TypedDocumentNode, useQuery } from '@apollo/client'
-import { Box, Divider, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import { ProductInterface } from '@reachdigital/graphql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer'
 import { Money, MoneyProps } from '@reachdigital/magento-store'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
@@ -13,6 +12,7 @@ import { DeepPartial, UnpackNestedValue, Path } from '@reachdigital/react-hook-f
 import PageLink from 'next/link'
 import React from 'react'
 import { useFormGqlMutationCart } from '../../hooks/useFormGqlMutationCart'
+import ApolloCartErrorAlert from '../ApolloCartErrorAlert/ApolloCartErrorAlert'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -88,7 +88,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
         Add to Cart
       </Button>
 
-      <ApolloErrorAlert error={error} />
+      <ApolloCartErrorAlert error={error} />
 
       <MessageSnackbar
         open={!formState.isSubmitting && formState.isSubmitSuccessful && !error?.message}

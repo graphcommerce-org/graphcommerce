@@ -1,6 +1,6 @@
 import { IconButton, makeStyles, Theme } from '@material-ui/core'
 import { Clear } from '@material-ui/icons'
-import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
+import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import React from 'react'
@@ -46,7 +46,7 @@ export default function RemoveCouponForm(props: CartCouponProps) {
         <Clear fontSize='small' />
       </IconButton>
 
-      <ApolloErrorAlert error={error} />
+      <ApolloCartErrorAlert error={error} />
     </form>
   )
 }

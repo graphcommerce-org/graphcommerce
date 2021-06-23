@@ -10,7 +10,7 @@ export default function PaymentMethodPlaceOrder(props: PaymentMethodPlaceOrderPr
   const clearCurrentCartId = useClearCurrentCartId()
 
   const onPaymentDone = () => {
-    clearCurrentCartId()
+    clearCurrentCartId?.()
   }
 
   if (!selectedModule || !selectedMethod?.code) return null

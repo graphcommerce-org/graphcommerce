@@ -1,7 +1,10 @@
 import { FormControl } from '@material-ui/core'
-import { useCartQuery, useFormGqlMutationCart } from '@reachdigital/magento-cart'
+import {
+  useCartQuery,
+  useFormGqlMutationCart,
+  ApolloCartErrorAlert,
+} from '@reachdigital/magento-cart'
 import Form from '@reachdigital/next-ui/Form'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
 import { Controller, useFormCompose, UseFormComposeOptions } from '@reachdigital/react-hook-form'
@@ -93,7 +96,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
           />
         </FormControl>
       </FormRow>
-      <ApolloErrorAlert error={error} />
+      <ApolloCartErrorAlert error={error} />
     </Form>
   )
 }
