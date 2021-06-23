@@ -5,6 +5,7 @@ import SectionHeader from '@reachdigital/next-ui/SectionHeader'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import PageLink from 'next/link'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
 import { GetCartSummaryDocument } from './GetCartSummary.gql'
@@ -22,7 +23,7 @@ const useStyles = makeStyles(
       gridRowGap: theme.spacings.md,
       display: `grid`,
 
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('sm')]: {
         gridTemplateColumns: `1fr 1fr`,
         marginTop: theme.spacings.md,
       },
@@ -67,7 +68,7 @@ export default function CartSummary(props: CartSummaryProps) {
   const classes = useStyles(props)
   const { children, editable } = props
 
-  const { data } = useCartQuery(GetCartSummaryDocument, { returnPartialData: true })
+  const { data } = useCartQuery(GetCartSummaryDocument, { allowUrl: true })
 
   if (!data?.cart) return null
 
@@ -133,9 +134,7 @@ export default function CartSummary(props: CartSummaryProps) {
                   ) : undefined
                 }
               />
-              <Typography variant='body1'>
-                <AddressMultiLine classes={{ title: classes.address }} {...shipping_addresses[0]} />
-              </Typography>
+              <AddressMultiLine classes={{ title: classes.address }} {...shipping_addresses[0]} />
             </div>
             <div>
               <SectionHeader
@@ -153,9 +152,7 @@ export default function CartSummary(props: CartSummaryProps) {
                   ) : undefined
                 }
               />
-              <Typography variant='body1'>
-                <AddressMultiLine classes={{ title: classes.address }} {...billing_address} />
-              </Typography>
+              <AddressMultiLine classes={{ title: classes.address }} {...billing_address} />
             </div>
           </>
         )}

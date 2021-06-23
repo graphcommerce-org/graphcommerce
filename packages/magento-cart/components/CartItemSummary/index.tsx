@@ -20,7 +20,7 @@ import { CartItemSummaryDocument } from './GetCartItemSummary.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      padding: theme.spacings.md,
+      padding: theme.spacings.sm,
       border: `2px ${theme.palette.background.highlight} solid`,
       borderRadius: 4,
       [theme.breakpoints.up('md')]: {},
@@ -32,7 +32,7 @@ const useStyles = makeStyles(
       boxShadow: `0px 0px 2px ${theme.palette.grey[700]}`,
     },
     sliderContainer: {
-      padding: theme.spacings.xs,
+      padding: `${theme.spacings.xs} 0`,
       position: 'relative',
     },
     prevNext: {
@@ -79,13 +79,8 @@ type OrderSummaryProps = UseStyles<typeof useStyles>
 
 export default function CartItemSummary(props: OrderSummaryProps) {
   const classes = useStyles(props)
-  const router = useRouter()
 
-  const { data, error } = useQuery(CartItemSummaryDocument, {
-    fetchPolicy: 'cache-only',
-    returnPartialData: true,
-    variables: { cartId: router.query.cartId as string },
-  })
+  const { data } = useCartQuery(CartItemSummaryDocument, { allowUrl: true })
 
   if (!data?.cart) return null
 
