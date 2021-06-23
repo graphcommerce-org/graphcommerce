@@ -4,6 +4,7 @@ import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
 import { GetCartTotalsDocument } from './GetCartTotals.gql'
@@ -17,6 +18,8 @@ const useStyles = makeStyles(
       paddingTop: `calc(${theme.spacings.xs} - 6px)`,
       paddingLeft: theme.spacings.sm,
       paddingRight: theme.spacings.sm,
+    },
+    containerMarginTop: {
       marginTop: theme.spacings.md,
     },
     costsDivider: {
@@ -55,19 +58,25 @@ const useStyles = makeStyles(
   { name: 'TotalCosts' },
 )
 
-export type CartTotalsProps = UseStyles<typeof useStyles>
+export type CartTotalsProps = { containerMargin?: boolean } & UseStyles<typeof useStyles>
 
 export default function CartTotals(props: CartTotalsProps) {
-  const { data } = useCartQuery(GetCartTotalsDocument, { returnPartialData: true })
+  const { data } = useCartQuery(GetCartTotalsDocument, { allowUrl: false })
   const classes = useStyles(props)
 
   if (!data?.cart) return null
-
+  const { containerMargin } = props
   const { shipping_addresses, prices } = data.cart
   const shippingMethod = shipping_addresses?.[0]?.selected_shipping_method
 
   return (
-    <AnimatedRow className={classes.costsContainer} key='total-costs'>
+    <AnimatedRow
+      className={clsx(
+        containerMargin ? classes.containerMarginTop : undefined,
+        classes.costsContainer,
+      )}
+      key='total-costs'
+    >
       <AnimatePresence initial={false}>
         {prices?.subtotal_including_tax && (
           <AnimatedRow className={classes.costsRow} key='subtotal'>
@@ -125,15 +134,9 @@ export default function CartTotals(props: CartTotalsProps) {
             className={clsx(classes.costsRow, classes.costsGrandTotal)}
             key='grand_total'
           >
+            <div>Total</div>
             <div>
-              Total {(!prices?.applied_taxes || prices?.applied_taxes.length < 1) && '(excl. VAT)'}
-            </div>
-            <div>
-              <Money
-                {...(!prices?.applied_taxes || prices.applied_taxes.length < 1
-                  ? prices.subtotal_with_discount_excluding_tax
-                  : prices.grand_total)}
-              />
+              <Money {...prices.grand_total} />
             </div>
           </AnimatedRow>
         )}
