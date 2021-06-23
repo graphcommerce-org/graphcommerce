@@ -27,7 +27,7 @@ export function useFormGqlMutationCart<Q, V extends { cartId: string; [index: st
   )
 
   const [error, unauthorized] = graphqlErrorByCategory('graphql-authorization', result.error)
-  if (unauthorized) clear()
+  if (unauthorized) clear?.()
 
   return { ...result, error }
 }
