@@ -6,6 +6,9 @@ import { CurrentCartIdDocument } from './hooks/CurrentCartId.gql'
 
 export const cartTypePolicies: TypedTypePolicies = {
   CurrentCartId: { keyFields: [] },
+  CartPrices: {
+    merge: (exiting, incomming, { mergeObjects }) => mergeObjects(exiting, incomming),
+  },
   Cart: {
     fields: {
       shipping_addresses: {
