@@ -21,22 +21,24 @@ const useStyles = makeStyles(
   { name: 'SignIn' },
 )
 
-type SignInFormProps = { email: string }
+type SignInFormProps = { email: string; hideSessionExpiredAlert?: boolean }
 
 export default function SignInForm(props: SignInFormProps) {
-  const { email } = props
+  const { email, hideSessionExpiredAlert = false } = props
   const classes = useStyles()
   const { data } = useQuery(CustomerTokenDocument)
   const form = useFormGqlMutation(SignInDocument, { defaultValues: { email } })
   const { muiRegister, handleSubmit, required, formState, error } = form
   const [remainingError, authError] = graphqlErrorByCategory('graphql-authentication', error)
-  const submitHandler = handleSubmit(() => {})
+  const submitHandler = handleSubmit(() => {
+    console.log('successfully logged in?')
+  })
 
   const requireAuth = Boolean(data?.customerToken && !data?.customerToken.valid)
 
   return (
     <form onSubmit={submitHandler} noValidate>
-      {requireAuth && (
+      {!hideSessionExpiredAlert && requireAuth && (
         <Alert severity='error' variant='standard'>
           Your session has expired, please reauthenticate
         </Alert>
