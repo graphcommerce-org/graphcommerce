@@ -135,7 +135,7 @@ defaultTheme.overrides = {
   MuiCssBaseline: {
     '@global': {
       body: {
-        overflowY: 'scroll',
+        overflowY: 'scroll!important',
       },
       '@font-face': fonts.map(({ font, fontWeight, fontStyle }) => ({
         fontFamily: 'Graphik',
