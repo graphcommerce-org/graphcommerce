@@ -9,24 +9,36 @@ export type ErrorCategory =
   | 'graphql-input'
   | 'graphql-no-such-entity'
 
+export type GraphQLErroByCategoryProps = {
+  category: ErrorCategory
+  error?: ApolloError
+  extract?: boolean
+  mask?: string
+}
+
 /**
  * Extract Magento specific erros from the error object.
  *
  * It recognizes the errors specified here:
  * https://devdocs.magento.com/guides/v2.4/graphql/develop/exceptions.html
  */
-export function graphqlErrorByCategory(
-  category: ErrorCategory,
-  error?: ApolloError,
-): [ApolloError | undefined, GraphQLError | undefined] {
+export function graphqlErrorByCategory({
+  category,
+  error,
+  extract = true,
+  mask,
+}: GraphQLErroByCategoryProps): [ApolloError | undefined, GraphQLError | undefined] {
   if (!error) return [error, undefined]
 
   const newError = new ApolloError({
     ...error,
-    graphQLErrors: error.graphQLErrors.filter((err) => err?.extensions?.category !== category),
+    graphQLErrors: error.graphQLErrors.filter(
+      (err) => !extract || err?.extensions?.category !== category,
+    ),
   })
 
   const graphqlError = error.graphQLErrors.find((err) => err?.extensions?.category === category)
+  if (mask && graphqlError) graphqlError.message = mask
 
   return newError.graphQLErrors.length === 0 && !newError.networkError
     ? [undefined, graphqlError]

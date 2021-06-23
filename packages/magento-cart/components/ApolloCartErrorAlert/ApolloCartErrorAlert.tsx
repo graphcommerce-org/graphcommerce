@@ -12,12 +12,8 @@ export default function ApolloCartErrorAlert(props: ApolloCartErrorAlertProps) {
   const { error } = props
   const clear = useClearCurrentCartId()
 
-  const [, noSuchEntity] = graphqlErrorByCategory('graphql-no-such-entity', error)
+  const [, noSuchEntity] = graphqlErrorByCategory({ category: 'graphql-no-such-entity', error })
   const action = noSuchEntity && clear ? <Button onClick={clear}>Reset Cart</Button> : undefined
 
-  return (
-    <>
-      <ApolloErrorAlert {...props} graphqlErrorAlertProps={{ action }} />
-    </>
-  )
+  return <ApolloErrorAlert {...props} graphqlErrorAlertProps={{ action }} />
 }

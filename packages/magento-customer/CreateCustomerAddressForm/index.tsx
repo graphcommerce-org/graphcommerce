@@ -2,7 +2,6 @@ import { TextField } from '@material-ui/core'
 import { CountryRegionsQuery } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import Form from '@reachdigital/next-ui/Form'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import FormDivider from '@reachdigital/next-ui/Form/FormDivider'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
@@ -11,6 +10,7 @@ import { phonePattern, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
 import AddressFields from '../AddressFields'
+import ApolloCustomerErrorAlert from '../ApolloCustomerErrorAlert/ApolloCustomerErrorAlert'
 import NameFields from '../NameFields'
 import { CreateCustomerAddressDocument } from './CreateCustomerAddress.gql'
 
@@ -20,28 +20,32 @@ export default function CreateCustomerAddressForm(props: CreateCustomerAddressFo
   const { countries } = props
   const router = useRouter()
 
-  const form = useFormGqlMutation(CreateCustomerAddressDocument, {
-    onBeforeSubmit: (formData) => {
-      const region = countries
-        ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)
-        ?.available_regions?.find((r) => r?.id === formData.region)
+  const form = useFormGqlMutation(
+    CreateCustomerAddressDocument,
+    {
+      onBeforeSubmit: (formData) => {
+        const region = countries
+          ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)
+          ?.available_regions?.find((r) => r?.id === formData.region)
 
-      return {
-        ...formData,
-        region:
-          (region && {
-            region: region.name,
-            region_code: region.code,
-            region_id: region.id,
-          }) ??
-          {},
-      }
+        return {
+          ...formData,
+          region:
+            (region && {
+              region: region.name,
+              region_code: region.code,
+              region_id: region.id,
+            }) ??
+            {},
+        }
+      },
+      onComplete: (e) => {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        router.push(`/account/addresses/edit?addressId=${e.data?.createCustomerAddress?.id}`)
+      },
     },
-    onComplete: (e) => {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.push(`/account/addresses/edit?addressId=${e.data?.createCustomerAddress?.id}`)
-    },
-  })
+    { errorPolicy: 'all' },
+  )
 
   const { handleSubmit, formState, required, error, muiRegister, valid } = form
   const submitHandler = handleSubmit((_, e) => {
@@ -86,7 +90,7 @@ export default function CreateCustomerAddressForm(props: CreateCustomerAddressFo
         </FormActions>
       </Form>
 
-      <ApolloErrorAlert error={error} />
+      <ApolloCustomerErrorAlert error={error} />
     </>
   )
 }
