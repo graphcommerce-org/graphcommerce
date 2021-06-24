@@ -67,6 +67,7 @@ export default function MenuFab(props: MenuFabProps) {
   const classes = useStyles(props)
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
+
   const { filter, opacity, translateY } = useFabAnimation()
 
   Router.events.on('routeChangeStart', () => setOpenEl(null))
@@ -88,6 +89,7 @@ export default function MenuFab(props: MenuFabProps) {
         open={!!openEl}
         onClose={() => setOpenEl(null)}
         classes={{ paper: classes.menu }}
+        disableScrollLock
       >
         {search && (
           <List>
