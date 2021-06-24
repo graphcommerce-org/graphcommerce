@@ -54,10 +54,6 @@ const useStyles = makeStyles(
       letterSpacing: '-0.0375em',
       lineHeight: 1,
     },
-    test: {
-      overflowY: 'visible',
-      backgroundColor: 'red',
-    },
     menuItem: {},
   }),
   { name: 'Menu' },
