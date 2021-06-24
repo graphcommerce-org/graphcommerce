@@ -21,18 +21,22 @@ export default function ApolloCustomerErrorFullPage(props: ApolloCustomerErrorFu
       error={error}
       icon={<SvgImage src={iconPersonAltBig} size={148} alt='person' />}
       button={
-        <PageLink href={signInHref} passHref>
-          <Button variant='contained' color='primary' text='bold' size='large'>
-            Login
-          </Button>
-        </PageLink>
+        unauthorized ? (
+          <PageLink href={signInHref} passHref>
+            <Button variant='contained' color='primary' text='bold' size='large'>
+              Login
+            </Button>
+          </PageLink>
+        ) : undefined
       }
       altButton={
-        <PageLink href={signUpHref} passHref>
-          <Button variant='text' color='primary'>
-            Or create an account
-          </Button>
-        </PageLink>
+        unauthorized ? (
+          <PageLink href={signUpHref} passHref>
+            <Button variant='text' color='primary'>
+              Or create an account
+            </Button>
+          </PageLink>
+        ) : undefined
       }
     />
   )
