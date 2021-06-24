@@ -2,7 +2,11 @@ import { useQuery } from '@apollo/client'
 import { Box, Container, NoSsr } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { AccountDashboardAddressesDocument, EditAddressForm } from '@reachdigital/magento-customer'
+import {
+  AccountDashboardAddressesDocument,
+  ApolloCustomerErrorFullPage,
+  EditAddressForm,
+} from '@reachdigital/magento-customer'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
@@ -10,7 +14,6 @@ import {
   StoreConfigDocument,
 } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
-import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import { iconAddresses } from '@reachdigital/next-ui/icons'
@@ -27,7 +30,7 @@ function EditAddressPage(props: Props) {
   const router = useRouter()
   const { addressId } = router.query
 
-  const { data, loading } = useQuery(AccountDashboardAddressesDocument, {
+  const { data, loading, error } = useQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'network-only',
     ssr: false,
   })
@@ -36,8 +39,15 @@ function EditAddressPage(props: Props) {
   const addresses = data?.customer?.addresses
   const address = addresses?.find((a) => a?.id === numAddressId)
 
-  if (!loading && !data?.customer)
-    return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
+  if (loading) return <></>
+  if (error)
+    return (
+      <ApolloCustomerErrorFullPage
+        error={error}
+        signInHref='/account/signin'
+        signUpHref='/account/signin'
+      />
+    )
 
   return (
     <Container maxWidth='md'>

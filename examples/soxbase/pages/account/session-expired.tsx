@@ -86,7 +86,7 @@ function AccountSessionExpiredPage() {
 
                 {continued && (
                   <AnimatedRow key='signinform'>
-                    <SignInForm email={customer?.email} hideSessionExpiredAlert />
+                    <SignInForm email={customer?.email ?? ''} hideSessionExpiredAlert />
                   </AnimatedRow>
                 )}
               </>

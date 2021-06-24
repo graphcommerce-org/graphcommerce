@@ -1,11 +1,14 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
-import { AccountDashboardOrdersDocument, AccountOrders } from '@reachdigital/magento-customer'
+import {
+  AccountDashboardOrdersDocument,
+  AccountOrders,
+  ApolloCustomerErrorFullPage,
+} from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import FullPageMessage from '@reachdigital/next-ui/FullPageMessage'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
-import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconBox } from '@reachdigital/next-ui/icons'
@@ -18,7 +21,7 @@ type GetPageStaticProps = GetStaticProps<SheetShellProps>
 function AccountOrdersPage() {
   const { query } = usePageRouter()
 
-  const { data, loading } = useQuery(AccountDashboardOrdersDocument, {
+  const { data, loading, error } = useQuery(AccountDashboardOrdersDocument, {
     fetchPolicy: 'cache-and-network',
     ssr: false,
     variables: {
@@ -28,8 +31,15 @@ function AccountOrdersPage() {
   })
   const customer = data?.customer
 
-  if (!loading && !customer)
-    return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
+  if (loading) return <></>
+  if (error)
+    return (
+      <ApolloCustomerErrorFullPage
+        error={error}
+        signInHref='/account/signin'
+        signUpHref='/account/signin'
+      />
+    )
 
   return (
     <Container maxWidth='md'>

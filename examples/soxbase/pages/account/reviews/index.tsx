@@ -1,11 +1,14 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { AccountDashboardReviewsDocument, AccountReviews } from '@reachdigital/magento-customer'
+import {
+  AccountDashboardReviewsDocument,
+  AccountReviews,
+  ApolloCustomerErrorFullPage,
+} from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import FullPageMessage from '@reachdigital/next-ui/FullPageMessage'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
-import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconStar } from '@reachdigital/next-ui/icons'
 import { GetStaticProps } from 'next'
@@ -16,14 +19,21 @@ import apolloClient from '../../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountReviewsPage() {
-  const { data, loading } = useQuery(AccountDashboardReviewsDocument, {
+  const { data, loading, error } = useQuery(AccountDashboardReviewsDocument, {
     fetchPolicy: 'cache-and-network',
     ssr: false,
   })
   const customer = data?.customer
 
-  if (!loading && !customer)
-    return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
+  if (loading) return <></>
+  if (error)
+    return (
+      <ApolloCustomerErrorFullPage
+        error={error}
+        signInHref='/account/signin'
+        signUpHref='/account/signin'
+      />
+    )
 
   return (
     <Container maxWidth='md'>

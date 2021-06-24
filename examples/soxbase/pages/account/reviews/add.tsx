@@ -1,11 +1,14 @@
 import { useQuery } from '@apollo/client'
 import { Box, Container, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { CreateProductReviewForm, CustomerDocument } from '@reachdigital/magento-customer'
+import {
+  ApolloCustomerErrorFullPage,
+  CreateProductReviewForm,
+  CustomerDocument,
+} from '@reachdigital/magento-customer'
 import { ProductReviewProductNameDocument } from '@reachdigital/magento-product-review'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import FullPageMessage from '@reachdigital/next-ui/FullPageMessage'
-import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconBox } from '@reachdigital/next-ui/icons'
@@ -19,7 +22,7 @@ type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountReviewsAddPage() {
   const router = useRouter()
-  const { data: customerData, loading: customerLoading } = useQuery(CustomerDocument)
+  const { data: customerData, loading: customerLoading, error } = useQuery(CustomerDocument)
   const { sku } = router.query
   const { data: productData, loading: productLoading } = useQuery(
     ProductReviewProductNameDocument,
@@ -39,8 +42,15 @@ function AccountReviewsAddPage() {
 
   if (!storeConfig?.product_reviews_enabled) return null
 
-  if (!storeConfig.allow_guests_to_write_product_reviews && !customerLoading && !customer)
-    return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
+  if (customerLoading) return <></>
+  if (error && !customer && !storeConfig.allow_guests_to_write_product_reviews)
+    return (
+      <ApolloCustomerErrorFullPage
+        error={error}
+        signInHref='/account/signin'
+        signUpHref='/account/signin'
+      />
+    )
 
   if (!product) {
     return (
