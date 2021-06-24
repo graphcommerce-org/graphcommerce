@@ -6,7 +6,6 @@ import {
   UseFormGraphQlOptions,
 } from '@reachdigital/react-hook-form'
 import { useCartIdCreate } from './useCartIdCreate'
-import { useClearCurrentCartId } from './useClearCurrentCartId'
 
 export function useFormGqlMutationCart<Q, V extends { cartId: string; [index: string]: unknown }>(
   document: TypedDocumentNode<Q, V>,
@@ -14,7 +13,6 @@ export function useFormGqlMutationCart<Q, V extends { cartId: string; [index: st
   operationOptions?: MutationHookOptions<Q, V>,
 ): UseFormGqlMutationReturn<Q, V> {
   const cartId = useCartIdCreate()
-  const clear = useClearCurrentCartId()
 
   const onBeforeSubmit = async (variables: V) => {
     const vars = { ...variables, cartId: await cartId() }
@@ -23,11 +21,8 @@ export function useFormGqlMutationCart<Q, V extends { cartId: string; [index: st
   const result = useFormGqlMutation<Q, V>(
     document,
     { ...options, onBeforeSubmit },
-    operationOptions,
+    { errorPolicy: 'all', ...operationOptions },
   )
 
-  const [error, unauthorized] = graphqlErrorByCategory('graphql-authorization', result.error)
-  if (unauthorized) clear()
-
-  return { ...result, error }
+  return result
 }

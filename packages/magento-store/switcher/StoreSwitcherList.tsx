@@ -70,6 +70,7 @@ export default function StoreSwitcherList(props: StoreSwitcherListProps) {
             key={group.stores[0].store_code}
             href='/switch-stores'
             locale={storeToLocale(group.stores[0].store_code)}
+            replace
             passHref
           >
             <ListItem
@@ -97,6 +98,7 @@ export default function StoreSwitcherList(props: StoreSwitcherListProps) {
                   key={store.store_code}
                   href='/switch-stores'
                   locale={storeToLocale(store.store_code)}
+                  replace
                   passHref
                 >
                   <ListItem

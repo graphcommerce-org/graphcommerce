@@ -1,9 +1,9 @@
 import { FormControl, FormControlLabel, FormHelperText, Switch } from '@material-ui/core'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React, { useEffect, useMemo } from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import { UpdateDefaultAddressDocument } from '../AccountAddresses/UpdateDefaultAddress.gql'
+import ApolloCustomerErrorAlert from '../ApolloCustomerErrorAlert/ApolloCustomerErrorAlert'
 
 export type AccountAddressProps = Pick<
   AccountAddressFragment,
@@ -21,10 +21,14 @@ export default function UpdateDefaultAddressForm(props: AccountAddressProps) {
     [default_billing, default_shipping, id],
   )
 
-  const form = useFormGqlMutation(UpdateDefaultAddressDocument, {
-    mode: 'onChange',
-    defaultValues,
-  })
+  const form = useFormGqlMutation(
+    UpdateDefaultAddressDocument,
+    {
+      mode: 'onChange',
+      defaultValues,
+    },
+    { errorPolicy: 'all' },
+  )
 
   const { handleSubmit, control, error, reset, formState } = form
 
@@ -81,7 +85,7 @@ export default function UpdateDefaultAddressForm(props: AccountAddressProps) {
           </FormControl>
         )}
       />
-      <ApolloErrorAlert error={error} />
+      <ApolloCustomerErrorAlert error={error} />
     </form>
   )
 }

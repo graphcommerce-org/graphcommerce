@@ -1,4 +1,4 @@
-import { makeStyles, Container, Theme, IconButton, Link } from '@material-ui/core'
+import { Container, IconButton, Link, makeStyles, Theme } from '@material-ui/core'
 import Facebook from '@material-ui/icons/Facebook'
 import Instagram from '@material-ui/icons/Instagram'
 import LinkedIn from '@material-ui/icons/LinkedIn'
@@ -7,6 +7,7 @@ import Youtube from '@material-ui/icons/YouTube'
 import { StoreSwitcherButton } from '@reachdigital/magento-store'
 import PageLink from 'next/link'
 import React from 'react'
+import responsiveVal from '../../../../packages/next-ui/Styles/responsiveVal'
 import Button from '../PageLink/Button'
 import { FooterQueryFragment } from './FooterQueryFragment.gql'
 
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
     [theme.breakpoints.down('sm')]: {
       justifyItems: 'center',
+      marginBottom: 50,
       '& > *': {
         maxWidth: 'max-content',
       },
@@ -35,16 +37,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'grid',
     gridAutoFlow: 'column',
     alignContent: 'center',
-    fontSize: '9px',
+    fontSize: 9,
     gap: `${theme.spacings.sm}`,
     [theme.breakpoints.up('md')]: {
-      order: '3',
+      order: 3,
       ...theme.typography.body2,
     },
   },
   support: {
     [theme.breakpoints.up('md')]: {
-      order: '4',
+      order: 3,
     },
   },
   social: {

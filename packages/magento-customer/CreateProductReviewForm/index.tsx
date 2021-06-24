@@ -3,7 +3,6 @@ import { Box, makeStyles, TextField, Theme, Typography } from '@material-ui/core
 import { Alert } from '@material-ui/lab'
 import Button from '@reachdigital/next-ui/Button'
 import Form from '@reachdigital/next-ui/Form'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import StarRatingField from '@reachdigital/next-ui/StarRatingField'
@@ -13,6 +12,7 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { ProductReviewRatingInput } from '../../graphql'
 import responsiveVal from '../../next-ui/Styles/responsiveVal'
+import ApolloCustomerErrorAlert from '../ApolloCustomerErrorAlert/ApolloCustomerErrorAlert'
 import { CreateProductReviewDocument } from './CreateProductReview.gql'
 import { ProductReviewRatingsMetadataDocument } from './ProductReviewRatingsMetadata.gql'
 
@@ -64,13 +64,17 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
 
   const { data, loading } = useQuery(ProductReviewRatingsMetadataDocument)
 
-  const form = useFormGqlMutation(CreateProductReviewDocument, {
-    defaultValues: { sku, nickname },
-    onBeforeSubmit: (formData) => ({
-      ...formData,
-      ratings: ratings.some((r) => r.value_id === '') ? [] : ratings,
-    }),
-  })
+  const form = useFormGqlMutation(
+    CreateProductReviewDocument,
+    {
+      defaultValues: { sku, nickname },
+      onBeforeSubmit: (formData) => ({
+        ...formData,
+        ratings: ratings.some((r) => r.value_id === '') ? [] : ratings,
+      }),
+    },
+    { errorPolicy: 'all' },
+  )
   const { handleSubmit, muiRegister, formState, required, error } = form
   const submitHandler = handleSubmit(() => {})
 
@@ -219,7 +223,7 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
         </Button>
       </FormActions>
 
-      <ApolloErrorAlert error={error} />
+      <ApolloCustomerErrorAlert error={error} />
     </Form>
   )
 }

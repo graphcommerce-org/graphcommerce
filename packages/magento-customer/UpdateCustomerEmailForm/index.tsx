@@ -1,13 +1,13 @@
 import { TextField } from '@material-ui/core'
 import Button from '@reachdigital/next-ui/Button'
 import Form from '@reachdigital/next-ui/Form'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import FormDivider from '@reachdigital/next-ui/Form/FormDivider'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import React from 'react'
 import { emailPattern, useFormGqlMutation } from '../../react-hook-form'
+import ApolloCustomerErrorAlert from '../ApolloCustomerErrorAlert/ApolloCustomerErrorAlert'
 import {
   UpdateCustomerEmailDocument,
   UpdateCustomerEmailMutation,
@@ -121,7 +121,7 @@ export default function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormPr
           Save changes
         </Button>
       </FormActions>
-      <ApolloErrorAlert error={error} />
+      <ApolloCustomerErrorAlert error={error} />
 
       <MessageSnackbar sticky open={formState.isSubmitSuccessful && !error}>
         <>Successfully updated email</>

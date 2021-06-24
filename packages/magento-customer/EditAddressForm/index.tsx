@@ -2,7 +2,6 @@ import { makeStyles, TextField } from '@material-ui/core'
 import { CountryRegionsQuery } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import Form from '@reachdigital/next-ui/Form'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import FormDivider from '@reachdigital/next-ui/Form/FormDivider'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
@@ -12,6 +11,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import AddressFields from '../AddressFields'
+import ApolloCustomerErrorAlert from '../ApolloCustomerErrorAlert/ApolloCustomerErrorAlert'
 import NameFields from '../NameFields'
 import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
 
@@ -33,45 +33,49 @@ export default function EditAddressForm(props: EditAddressFormProps) {
   const classes = useStyles()
   const router = useRouter()
 
-  const form = useFormGqlMutation(UpdateCustomerAddressDocument, {
-    defaultValues: {
-      id: address?.id ?? undefined,
-      firstname: address?.firstname,
-      lastname: address?.lastname,
-      street: address?.street?.[0] ?? undefined,
-      postcode: address?.postcode,
-      city: address?.city,
-      countryCode: address?.country_code,
-      telephone: address?.telephone,
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      houseNumber: address?.street?.[1],
-      addition: address?.street?.[2],
-    },
-    onBeforeSubmit: (formData) => {
-      const region = countries
-        ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)
-        ?.available_regions?.find((r) => r?.id === formData.region)
-      const regionData = {
-        region:
-          (region && {
-            region: region.name,
-            region_code: region.code,
-            region_id: region.id,
-          }) ??
-          null,
-      }
+  const form = useFormGqlMutation(
+    UpdateCustomerAddressDocument,
+    {
+      defaultValues: {
+        id: address?.id ?? undefined,
+        firstname: address?.firstname,
+        lastname: address?.lastname,
+        street: address?.street?.[0] ?? undefined,
+        postcode: address?.postcode,
+        city: address?.city,
+        countryCode: address?.country_code,
+        telephone: address?.telephone,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        houseNumber: address?.street?.[1],
+        addition: address?.street?.[2],
+      },
+      onBeforeSubmit: (formData) => {
+        const region = countries
+          ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)
+          ?.available_regions?.find((r) => r?.id === formData.region)
+        const regionData = {
+          region:
+            (region && {
+              region: region.name,
+              region_code: region.code,
+              region_id: region.id,
+            }) ??
+            null,
+        }
 
-      return {
-        ...formData,
-        ...regionData,
-      }
+        return {
+          ...formData,
+          ...regionData,
+        }
+      },
+      onComplete: () => {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        router.push('/account/addresses')
+      },
     },
-    onComplete: () => {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.push('/account/addresses')
-    },
-  })
+    { errorPolicy: 'all' },
+  )
 
   const { handleSubmit, formState, required, error, muiRegister, valid } = form
   const submitHandler = handleSubmit(() => {})
@@ -115,7 +119,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
         </FormActions>
       </Form>
 
-      <ApolloErrorAlert error={error} />
+      <ApolloCustomerErrorAlert error={error} />
     </>
   )
 }

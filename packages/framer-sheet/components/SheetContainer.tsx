@@ -39,7 +39,7 @@ export default function SheetContainer(props: SheetContainerProps) {
     return () => ro.disconnect()
   }, [calcMaxSize, containerRef, dimension, size])
 
-  useIsomorphicLayoutEffect(() => clientSize[axis].attach(calcMaxSize), [axis, calcMaxSize])
+  useIsomorphicLayoutEffect(() => clientSize[axis].onChange(calcMaxSize), [axis, calcMaxSize])
 
   return (
     <div

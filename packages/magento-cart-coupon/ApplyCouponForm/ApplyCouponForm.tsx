@@ -1,8 +1,7 @@
 import { FormControl, makeStyles, TextField, Theme } from '@material-ui/core'
-import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
+import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
 import Button from '@reachdigital/next-ui/Button'
 import Form from '@reachdigital/next-ui/Form'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import React from 'react'
 import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
@@ -46,7 +45,7 @@ export default function ApplyCouponForm(props: ApplyCouponFormProps) {
         </Button>
       </FormControl>
 
-      <ApolloErrorAlert error={error} />
+      <ApolloCartErrorAlert error={error} />
     </Form>
   )
 }

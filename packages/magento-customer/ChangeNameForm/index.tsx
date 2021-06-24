@@ -1,11 +1,11 @@
 import Button from '@reachdigital/next-ui/Button'
 import Form from '@reachdigital/next-ui/Form'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import FormDivider from '@reachdigital/next-ui/Form/FormDivider'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import React from 'react'
 import { useFormGqlMutation } from '../../react-hook-form'
+import ApolloCustomerErrorAlert from '../ApolloCustomerErrorAlert/ApolloCustomerErrorAlert'
 import NameFields from '../NameFields'
 import { UpdateCustomerNameDocument } from '../UpdateCustomerName/UpdateCustomerName.gql'
 
@@ -17,13 +17,17 @@ type ChangeNameFormProps = {
 
 export default function ChangeNameForm(props: ChangeNameFormProps) {
   const { prefix, firstname, lastname } = props
-  const form = useFormGqlMutation(UpdateCustomerNameDocument, {
-    defaultValues: {
-      prefix: prefix ?? '',
-      firstname: firstname ?? '',
-      lastname: lastname ?? '',
+  const form = useFormGqlMutation(
+    UpdateCustomerNameDocument,
+    {
+      defaultValues: {
+        prefix: prefix ?? '',
+        firstname: firstname ?? '',
+        lastname: lastname ?? '',
+      },
     },
-  })
+    { errorPolicy: 'all' },
+  )
 
   const { handleSubmit, error, formState } = form
   const submit = handleSubmit(() => {})
@@ -44,7 +48,7 @@ export default function ChangeNameForm(props: ChangeNameFormProps) {
           Save changes
         </Button>
       </FormActions>
-      <ApolloErrorAlert error={error} />
+      <ApolloCustomerErrorAlert error={error} />
 
       <MessageSnackbar sticky open={formState.isSubmitSuccessful && !error}>
         <>Successfully saved changes</>

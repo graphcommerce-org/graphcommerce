@@ -3,13 +3,13 @@ import { CircularProgress, Link, makeStyles, TextField, Theme, Typography } from
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
 import Form from '@reachdigital/next-ui/Form'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { emailPattern, useFormPersist } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
+import ApolloCustomerErrorAlert from '../ApolloCustomerErrorAlert/ApolloCustomerErrorAlert'
 import ContinueShoppingButton from '../ContinueShoppingButton'
 import { CustomerDocument } from '../Customer.gql'
 import SignInForm from '../SignInForm'
@@ -117,7 +117,7 @@ export default function AccountSignInUpForm() {
                 </FormRow>
               </AnimatedRow>
 
-              <ApolloErrorAlert error={error} />
+              <ApolloCustomerErrorAlert error={error} />
 
               {mode === 'email' && (
                 <AnimatedRow key='submit-form'>

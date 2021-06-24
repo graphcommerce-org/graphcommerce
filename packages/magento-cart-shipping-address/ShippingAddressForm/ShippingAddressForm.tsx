@@ -1,10 +1,13 @@
 import { useQuery } from '@apollo/client'
 import { TextField } from '@material-ui/core'
-import { useCartQuery, useFormGqlMutationCart } from '@reachdigital/magento-cart'
+import {
+  useCartQuery,
+  useFormGqlMutationCart,
+  ApolloCartErrorAlert,
+} from '@reachdigital/magento-cart'
 import { AddressFields, CustomerDocument, NameFields } from '@reachdigital/magento-customer'
 import { StoreConfigDocument, CountryRegionsDocument } from '@reachdigital/magento-store'
 import Form from '@reachdigital/next-ui/Form'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import {
@@ -35,20 +38,20 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   const currentCustomer = customerQuery?.customer
   const currentCountryCode = currentAddress?.country.code ?? shopCountry ?? 'NLD'
 
+  console.log(currentCountryCode)
   const form = useFormGqlMutationCart(ShippingAddressFormDocument, {
     defaultValues: {
       // todo(paales): change to something more sustainable
-      firstname: currentAddress?.firstname ?? currentCustomer?.firstname ?? undefined, // todo: allow for null values in defaultValues
-      lastname: currentAddress?.lastname ?? currentCustomer?.lastname ?? undefined,
-      telephone:
-        currentAddress?.telephone !== '000 - 000 0000' ? currentAddress?.telephone : undefined,
-      city: currentAddress?.city,
-      company: currentAddress?.company,
+      firstname: currentAddress?.firstname ?? currentCustomer?.firstname ?? '',
+      lastname: currentAddress?.lastname ?? currentCustomer?.lastname ?? '',
+      telephone: currentAddress?.telephone !== '000 - 000 0000' ? currentAddress?.telephone : '',
+      city: currentAddress?.city ?? '',
+      company: currentAddress?.company ?? '',
       postcode: currentAddress?.postcode ?? '',
-      street: currentAddress?.street?.[0] ?? undefined,
-      houseNumber: currentAddress?.street?.[1] ?? undefined,
-      addition: currentAddress?.street?.[2] ?? undefined,
-      regionId: currentAddress?.region?.region_id,
+      street: currentAddress?.street?.[0] ?? '',
+      houseNumber: currentAddress?.street?.[1] ?? '',
+      addition: currentAddress?.street?.[2] ?? '',
+      regionId: currentAddress?.region?.region_id ?? null,
       countryCode: currentCountryCode, // todo: replace by the default shipping country of the store + geoip,
       saveInAddressBook: true,
     },
@@ -109,7 +112,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           />
         </FormRow>
 
-        <ApolloErrorAlert error={error} />
+        <ApolloCartErrorAlert error={error} />
       </AnimatePresence>
     </Form>
   )

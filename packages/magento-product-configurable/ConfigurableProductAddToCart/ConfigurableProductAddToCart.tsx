@@ -1,12 +1,11 @@
 import { useQuery } from '@apollo/client'
 import { Divider, makeStyles, Theme } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
-import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
+import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer'
 import { Money } from '@reachdigital/magento-store'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
@@ -35,6 +34,7 @@ const useStyles = makeStyles(
     },
     button: {
       marginTop: theme.spacings.sm,
+      marginBottom: theme.spacings.sm,
       width: '100%',
     },
     finalPrice: {
@@ -122,7 +122,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         Add to Cart
       </Button>
 
-      <ApolloErrorAlert error={error} />
+      <ApolloCartErrorAlert error={error} />
 
       <AnimatePresence initial={false}>
         {data?.addProductsToCart?.user_errors.map((e) => (
