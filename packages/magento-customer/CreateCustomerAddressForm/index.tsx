@@ -10,7 +10,7 @@ import { phonePattern, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
 import AddressFields from '../AddressFields'
-import ApolloCustomerErrorAlert from '../ApolloCustomerErrorAlert/ApolloCustomerErrorAlert'
+import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import NameFields from '../NameFields'
 import { CreateCustomerAddressDocument } from './CreateCustomerAddress.gql'
 

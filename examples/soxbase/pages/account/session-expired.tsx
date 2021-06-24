@@ -62,7 +62,7 @@ function AccountSessionExpiredPage() {
                       type='text'
                       autoFocus
                       label='Email'
-                      value={customer?.email ?? 'info@reachdigital.nl'}
+                      value={customer?.email}
                       InputProps={{
                         readOnly: true,
                       }}
@@ -86,10 +86,7 @@ function AccountSessionExpiredPage() {
 
                 {continued && (
                   <AnimatedRow key='signinform'>
-                    <SignInForm
-                      email={customer?.email ?? 'info@reachdigital.nl'}
-                      hideSessionExpiredAlert
-                    />
+                    <SignInForm email={customer?.email} hideSessionExpiredAlert />
                   </AnimatedRow>
                 )}
               </>

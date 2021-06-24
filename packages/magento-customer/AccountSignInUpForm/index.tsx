@@ -9,9 +9,10 @@ import { emailPattern, useFormPersist } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
-import ApolloCustomerErrorAlert from '../ApolloCustomerErrorAlert/ApolloCustomerErrorAlert'
+import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import ContinueShoppingButton from '../ContinueShoppingButton'
 import { CustomerDocument } from '../Customer.gql'
+import { CustomerTokenDocument } from '../CustomerToken.gql'
 import SignInForm from '../SignInForm'
 import SignUpForm from '../SignUpForm'
 import useFormIsEmailAvailable from '../useFormIsEmailAvailable'
@@ -27,9 +28,14 @@ const useStyles = makeStyles(
 )
 
 export default function AccountSignInUpForm() {
-  const customerQuery = useQuery(CustomerDocument, { ssr: false })
+  const customerToken = useQuery(CustomerTokenDocument)
+  const customerQuery = useQuery(CustomerDocument, {
+    ssr: false,
+    skip: typeof customerToken.data === 'undefined',
+  })
+
   const { email, firstname } = customerQuery.data?.customer ?? {}
-  const { mode, form, token, autoSubmitting, submit } = useFormIsEmailAvailable({ email })
+  const { mode, form, autoSubmitting, submit } = useFormIsEmailAvailable({ email })
   const { formState, muiRegister, required, watch, error } = form
   const disableFields = formState.isSubmitting && !autoSubmitting
   const classes = useStyles()
@@ -111,7 +117,7 @@ export default function AccountSignInUpForm() {
                     })}
                     InputProps={{
                       endAdornment: formState.isSubmitting && <CircularProgress />,
-                      readOnly: !!token?.customerToken,
+                      readOnly: !!customerQuery.data?.customer?.email,
                     }}
                   />
                 </FormRow>

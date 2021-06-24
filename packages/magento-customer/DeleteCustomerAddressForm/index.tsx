@@ -2,7 +2,7 @@ import { Button, makeStyles, Theme } from '@material-ui/core'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
-import ApolloCustomerErrorAlert from '../ApolloCustomerErrorAlert/ApolloCustomerErrorAlert'
+import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { DeleteCustomerAddressFormDocument } from './DeleteCustomerAddressForm.gql'
 
 export type DeleteCustomerAddressFormProps = {

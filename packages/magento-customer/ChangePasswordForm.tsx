@@ -7,7 +7,7 @@ import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
 import FormDivider from '../next-ui/Form/FormDivider'
 import MessageSnackbar from '../next-ui/Snackbar/MessageSnackbar'
-import ApolloCustomerErrorAlert from './ApolloCustomerErrorAlert/ApolloCustomerErrorAlert'
+import ApolloCustomerErrorAlert from './ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
   ChangePasswordDocument,
   ChangePasswordMutation,

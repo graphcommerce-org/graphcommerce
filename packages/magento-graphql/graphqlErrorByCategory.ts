@@ -9,7 +9,7 @@ export type ErrorCategory =
   | 'graphql-input'
   | 'graphql-no-such-entity'
 
-export type GraphQLErroByCategoryProps = {
+export type GraphQLErrorByCategoryProps = {
   category: ErrorCategory
   error?: ApolloError
   extract?: boolean
@@ -27,7 +27,7 @@ export function graphqlErrorByCategory({
   error,
   extract = true,
   mask,
-}: GraphQLErroByCategoryProps): [ApolloError | undefined, GraphQLError | undefined] {
+}: GraphQLErrorByCategoryProps): [ApolloError | undefined, GraphQLError | undefined] {
   if (!error) return [error, undefined]
 
   const newError = new ApolloError({

@@ -12,7 +12,7 @@ import { DeepPartial, UnpackNestedValue, Path } from '@reachdigital/react-hook-f
 import PageLink from 'next/link'
 import React from 'react'
 import { useFormGqlMutationCart } from '../../hooks/useFormGqlMutationCart'
-import ApolloCartErrorAlert from '../ApolloCartErrorAlert/ApolloCartErrorAlert'
+import ApolloCartErrorAlert from '../ApolloCartError/ApolloCartErrorAlert'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

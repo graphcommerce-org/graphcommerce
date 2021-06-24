@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import AddressFields from '../AddressFields'
-import ApolloCustomerErrorAlert from '../ApolloCustomerErrorAlert/ApolloCustomerErrorAlert'
+import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import NameFields from '../NameFields'
 import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
 

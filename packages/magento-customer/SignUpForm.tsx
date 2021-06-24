@@ -5,7 +5,7 @@ import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { useFormGqlMutation, useFormPersist } from '@reachdigital/react-hook-form'
 import React from 'react'
-import ApolloCustomerErrorAlert from './ApolloCustomerErrorAlert/ApolloCustomerErrorAlert'
+import ApolloCustomerErrorAlert from './ApolloCustomerError/ApolloCustomerErrorAlert'
 import NameFields from './NameFields'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 

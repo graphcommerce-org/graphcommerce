@@ -74,13 +74,13 @@ const createCustomer: FieldPolicy<Mutation['createCustomer']> = {
   },
 }
 
-const customer: FieldReadFunction<Query['customer']> = (incoming, options) => {
-  if (!options.canRead(incoming)) return null
-  return incoming
-}
+// const customer: FieldReadFunction<Query['customer']> = (incoming, options) => {
+//   if (!options.canRead(incoming)) return null
+//   return incoming
+// }
 
 export const customerTypePolicies: TypedTypePolicies = {
-  Query: { fields: { customer } },
+  // Query: { fields: { customer } },
   Mutation: { fields: { generateCustomerToken, revokeCustomerToken, createCustomer } },
   CustomerToken: { fields: { valid } },
 }

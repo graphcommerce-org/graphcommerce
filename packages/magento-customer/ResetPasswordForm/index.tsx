@@ -6,7 +6,7 @@ import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
-import ApolloCustomerErrorAlert from '../ApolloCustomerErrorAlert/ApolloCustomerErrorAlert'
+import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
   ResetPasswordDocument,
   ResetPasswordMutation,

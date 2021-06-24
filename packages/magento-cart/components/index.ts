@@ -1,9 +1,6 @@
 export * from './AddToCartButton/AddToCartButton'
 export { default as AddToCartButton } from './AddToCartButton/AddToCartButton'
 
-export * from './ApolloCartErrorAlert/ApolloCartErrorAlert'
-export { default as ApolloCartErrorAlert } from './ApolloCartErrorAlert/ApolloCartErrorAlert'
-
 export * from './CartFab/CartFab'
 export { default as CartFab } from './CartFab/CartFab'
 

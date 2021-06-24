@@ -5,7 +5,7 @@ import FormDivider from '@reachdigital/next-ui/Form/FormDivider'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import React from 'react'
 import { useFormGqlMutation } from '../../react-hook-form'
-import ApolloCustomerErrorAlert from '../ApolloCustomerErrorAlert/ApolloCustomerErrorAlert'
+import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import NameFields from '../NameFields'
 import { UpdateCustomerNameDocument } from '../UpdateCustomerName/UpdateCustomerName.gql'
 

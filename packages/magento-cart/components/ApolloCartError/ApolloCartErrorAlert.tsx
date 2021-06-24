@@ -1,8 +1,8 @@
 import { graphqlErrorByCategory } from '@reachdigital/magento-graphql'
-import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert, {
   ApolloErrorAlertProps,
-} from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+} from '@reachdigital/next-ui/ApolloError/ApolloErrorAlert'
+import Button from '@reachdigital/next-ui/Button'
 import React from 'react'
 import { useClearCurrentCartId } from '../../hooks/useClearCurrentCartId'
 

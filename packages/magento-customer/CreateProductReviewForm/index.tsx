@@ -12,7 +12,7 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { ProductReviewRatingInput } from '../../graphql'
 import responsiveVal from '../../next-ui/Styles/responsiveVal'
-import ApolloCustomerErrorAlert from '../ApolloCustomerErrorAlert/ApolloCustomerErrorAlert'
+import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { CreateProductReviewDocument } from './CreateProductReview.gql'
 import { ProductReviewRatingsMetadataDocument } from './ProductReviewRatingsMetadata.gql'
 

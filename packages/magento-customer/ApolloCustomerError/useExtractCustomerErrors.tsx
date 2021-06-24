@@ -1,23 +1,17 @@
-import { Link } from '@material-ui/core'
+import { ApolloError, useApolloClient } from '@apollo/client'
 import { graphqlErrorByCategory } from '@reachdigital/magento-graphql'
-import NextLink from 'next/link'
-import ApolloErrorAlert, {
-  ApolloErrorAlertProps,
-} from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import React, { useEffect } from 'react'
-import { useApolloClient } from '@apollo/client'
+import { useEffect } from 'react'
 import { CustomerTokenDocument } from '../CustomerToken.gql'
 
-type MagentoErrorAlertProps = ApolloErrorAlertProps
-export default function ApolloCustomerErrorAlert(props: MagentoErrorAlertProps) {
-  const { error } = props
+export type UseExtractErrors = { error?: ApolloError }
+export function useExtractCustomerErrors({ error }: UseExtractErrors) {
   const client = useApolloClient()
 
   const [newError, unauthorized] = graphqlErrorByCategory({
     category: 'graphql-authorization',
     error,
     extract: false,
-    mask: 'Your session has expired, please reauthenticate',
+    mask: 'You need to login to continue',
   })
 
   useEffect(() => {
@@ -42,13 +36,7 @@ export default function ApolloCustomerErrorAlert(props: MagentoErrorAlertProps) 
         broadcast: true,
       })
     }
-  }, [unauthorized])
+  }, [client.cache, unauthorized])
 
-  const action = unauthorized && (
-    <NextLink href='/account/authentication' passHref>
-      <Link>Sign In</Link>
-    </NextLink>
-  )
-
-  return <ApolloErrorAlert error={newError} graphqlErrorAlertProps={{ action }} />
+  return { error: newError, unauthorized }
 }

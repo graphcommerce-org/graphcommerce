@@ -6,7 +6,7 @@ import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { emailPattern, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
-import ApolloCustomerErrorAlert from './ApolloCustomerErrorAlert/ApolloCustomerErrorAlert'
+import ApolloCustomerErrorAlert from './ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
   ForgotPasswordDocument,
   ForgotPasswordMutation,

@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   support: {
     [theme.breakpoints.up('md')]: {
-      order: 3,
+      order: 4,
     },
   },
   social: {
