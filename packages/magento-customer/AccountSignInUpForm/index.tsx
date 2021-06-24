@@ -94,6 +94,17 @@ export default function AccountSignInUpForm() {
         </div>
       )}
 
+      {mode === 'session-expired' && (
+        <div className={classes.titleContainer} key='email'>
+          <Typography variant='h3' align='center'>
+            Your session is expired
+          </Typography>
+          <Typography variant='h6' align='center'>
+            Login to continue shopping
+          </Typography>
+        </div>
+      )}
+
       <AnimatePresence>
         {mode !== 'signedin' && (
           <form noValidate onSubmit={submit} key='emailform'>
@@ -125,22 +136,23 @@ export default function AccountSignInUpForm() {
 
               <ApolloCustomerErrorAlert error={error} />
 
-              {mode === 'email' && (
-                <AnimatedRow key='submit-form'>
-                  <FormActions>
-                    <Button
-                      type='submit'
-                      loading={formState.isSubmitting}
-                      variant='contained'
-                      color='primary'
-                      size='large'
-                      text='bold'
-                    >
-                      Continue
-                    </Button>
-                  </FormActions>
-                </AnimatedRow>
-              )}
+              {mode === 'email' ||
+                (mode === 'session-expired' && (
+                  <AnimatedRow key='submit-form'>
+                    <FormActions>
+                      <Button
+                        type='submit'
+                        loading={formState.isSubmitting}
+                        variant='contained'
+                        color='primary'
+                        size='large'
+                        text='bold'
+                      >
+                        Continue
+                      </Button>
+                    </FormActions>
+                  </AnimatedRow>
+                ))}
             </AnimatePresence>
           </form>
         )}

@@ -11,7 +11,7 @@ type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountSignInPage() {
   return (
-    <Container maxWidth='md'>
+    <Container maxWidth='sm'>
       <PageMeta
         title='Sign in'
         metaRobots={['noindex']}
