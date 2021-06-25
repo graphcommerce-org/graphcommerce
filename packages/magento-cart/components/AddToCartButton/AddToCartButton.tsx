@@ -76,9 +76,8 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
         disabled={formState.isSubmitting}
         size='small'
       />
-
+      {/* TODO: fill with actual delivery data, is static information now  */}
       <ProductSidebarDelivery />
-
       <Button
         type='submit'
         classes={{ root: classes.button }}

@@ -110,6 +110,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
             .final_price}
         />
       </div>
+      {/* TODO: fill with actual delivery data, is static information now  */}
       <ProductSidebarDelivery />
       <Button
         type='submit'
