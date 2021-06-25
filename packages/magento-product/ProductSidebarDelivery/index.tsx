@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   title: {
     textTransform: 'none',
     fontWeight: theme.typography.fontWeightBold,
-    marginBottom: 5,
+    marginBottom: responsiveVal(2, 5),
     fontSize: responsiveVal(12, 14),
   },
   subtitle: {
