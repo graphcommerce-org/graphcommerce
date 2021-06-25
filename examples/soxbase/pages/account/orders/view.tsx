@@ -6,6 +6,7 @@ import {
   OrderDetails,
   OrderItems,
   OrderDetailPageDocument,
+  ApolloCustomerErrorFullPage,
 } from '@reachdigital/magento-customer'
 import {
   CountryRegionsDocument,
@@ -14,7 +15,6 @@ import {
   StoreConfigDocument,
 } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
-import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { iconBox } from '@reachdigital/next-ui/icons'
 import React from 'react'
@@ -29,7 +29,7 @@ function OrderDetailPage(props: Props) {
   const router = usePageRouter()
   const { orderId } = router.query
 
-  const { data, loading } = useQuery(OrderDetailPageDocument, {
+  const { data, loading, error } = useQuery(OrderDetailPageDocument, {
     fetchPolicy: 'cache-and-network',
     variables: { orderNumber: orderId as string },
     ssr: false,
@@ -38,8 +38,15 @@ function OrderDetailPage(props: Props) {
   const order = data?.customer?.orders?.items?.[0]
   const isLoading = orderId ? loading : true
 
-  if (!loading && !data?.customer)
-    return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
+  if (loading) return <></>
+  if (error)
+    return (
+      <ApolloCustomerErrorFullPage
+        error={error}
+        signInHref='/account/signin'
+        signUpHref='/account/signin'
+      />
+    )
 
   return (
     <Container maxWidth='md'>

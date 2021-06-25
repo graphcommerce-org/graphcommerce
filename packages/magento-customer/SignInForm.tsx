@@ -3,12 +3,12 @@ import { FormControl, Link, makeStyles, TextField, Theme } from '@material-ui/co
 import { Alert } from '@material-ui/lab'
 import { graphqlErrorByCategory } from '@reachdigital/magento-graphql'
 import Button from '@reachdigital/next-ui/Button'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import PageLink from 'next/link'
 import React from 'react'
+import ApolloCustomerErrorAlert from './ApolloCustomerError/ApolloCustomerErrorAlert'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { SignInDocument } from './SignIn.gql'
 
@@ -21,22 +21,29 @@ const useStyles = makeStyles(
   { name: 'SignIn' },
 )
 
-type SignInFormProps = { email: string }
+type SignInFormProps = { email: string; hideSessionExpiredAlert?: boolean }
 
 export default function SignInForm(props: SignInFormProps) {
-  const { email } = props
+  const { email, hideSessionExpiredAlert = false } = props
   const classes = useStyles()
   const { data } = useQuery(CustomerTokenDocument)
-  const form = useFormGqlMutation(SignInDocument, { defaultValues: { email } })
+  const form = useFormGqlMutation(
+    SignInDocument,
+    { defaultValues: { email } },
+    { errorPolicy: 'all' },
+  )
   const { muiRegister, handleSubmit, required, formState, error } = form
-  const [remainingError, authError] = graphqlErrorByCategory('graphql-authentication', error)
+  const [remainingError, authError] = graphqlErrorByCategory({
+    category: 'graphql-authentication',
+    error,
+  })
   const submitHandler = handleSubmit(() => {})
 
   const requireAuth = Boolean(data?.customerToken && !data?.customerToken.valid)
 
   return (
     <form onSubmit={submitHandler} noValidate>
-      {requireAuth && (
+      {!hideSessionExpiredAlert && requireAuth && (
         <Alert severity='error' variant='standard'>
           Your session has expired, please reauthenticate
         </Alert>
@@ -69,7 +76,7 @@ export default function SignInForm(props: SignInFormProps) {
         />
       </FormRow>
 
-      <ApolloErrorAlert error={remainingError} key='error' />
+      <ApolloCustomerErrorAlert error={remainingError} key='error' />
 
       <FormActions>
         <FormControl>

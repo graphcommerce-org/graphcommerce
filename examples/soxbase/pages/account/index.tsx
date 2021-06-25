@@ -5,13 +5,13 @@ import {
   AccountDashboardDocument,
   AccountMenu,
   AccountMenuItem,
-  SignOutForm,
   AddressSingleLine,
+  ApolloCustomerErrorFullPage,
   OrderStateLabelInline,
+  SignOutForm,
 } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
-import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import TimeAgo from '@reachdigital/next-ui/TimeAgo'
 import {
@@ -33,7 +33,7 @@ import apolloClient from '../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<MinimalPageShellProps>
 
 function AccountIndexPage() {
-  const { data, loading } = useQuery(AccountDashboardDocument, {
+  const { data, loading, error } = useQuery(AccountDashboardDocument, {
     fetchPolicy: 'cache-and-network',
     ssr: false,
   })
@@ -46,8 +46,15 @@ function AccountIndexPage() {
   const orders = customer?.orders
   const latestOrder = orders?.items?.[orders?.items?.length - 1]
 
-  if (!loading && !customer)
-    return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
+  if (loading) return <></>
+  if (error)
+    return (
+      <ApolloCustomerErrorFullPage
+        error={error}
+        signInHref='/account/signin'
+        signUpHref='/account/signin'
+      />
+    )
 
   const latestOrderDate = new Date(latestOrder?.order_date ?? new Date())
 

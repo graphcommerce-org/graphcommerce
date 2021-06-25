@@ -30,6 +30,8 @@ export { default as CustomerMenuFabItem } from './CustomerMenuFabItem'
 export { default as ChangeNameForm } from './ChangeNameForm'
 export { default as UpdateCustomerEmailForm } from './UpdateCustomerEmailForm'
 export { default as CreateProductReviewForm } from './CreateProductReviewForm'
+export { default as ApolloCustomerErrorAlert } from './ApolloCustomerError/ApolloCustomerErrorAlert'
+export { default as ApolloCustomerErrorFullPage } from './ApolloCustomerError/ApolloCustomerErrorFullPage'
 
 export * from './AccountDashboard/AccountDashboard.gql'
 export * from './AccountDashboard/AccountDashboardAddresses.gql'

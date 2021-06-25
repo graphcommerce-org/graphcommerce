@@ -1,10 +1,13 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { ChangeNameForm, CustomerDocument } from '@reachdigital/magento-customer'
+import {
+  ApolloCustomerErrorFullPage,
+  ChangeNameForm,
+  CustomerDocument,
+} from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
-import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import { iconId } from '@reachdigital/next-ui/icons'
@@ -15,11 +18,18 @@ import apolloClient from '../../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountNamePage() {
-  const { loading, data } = useQuery(CustomerDocument)
+  const { loading, data, error } = useQuery(CustomerDocument)
   const customer = data?.customer
 
-  if (!loading && !customer)
-    return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
+  if (loading) return <></>
+  if (error)
+    return (
+      <ApolloCustomerErrorFullPage
+        error={error}
+        signInHref='/account/signin'
+        signUpHref='/account/signin'
+      />
+    )
 
   return (
     <NoSsr>

@@ -1,13 +1,13 @@
 import { TextField } from '@material-ui/core'
 import Button from '@reachdigital/next-ui/Button'
 import Form from '@reachdigital/next-ui/Form'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
 import FormDivider from '../next-ui/Form/FormDivider'
 import MessageSnackbar from '../next-ui/Snackbar/MessageSnackbar'
+import ApolloCustomerErrorAlert from './ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
   ChangePasswordDocument,
   ChangePasswordMutation,
@@ -66,7 +66,7 @@ export default function ChangePasswordForm() {
         />
       </FormRow>
 
-      <ApolloErrorAlert error={error} />
+      <ApolloCustomerErrorAlert error={error} />
 
       <FormDivider />
 

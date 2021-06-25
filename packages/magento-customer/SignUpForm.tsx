@@ -1,11 +1,11 @@
 import { FormControlLabel, Switch, TextField } from '@material-ui/core'
 import { graphqlErrorByCategory } from '@reachdigital/magento-graphql'
 import Button from '@reachdigital/next-ui/Button'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { useFormGqlMutation, useFormPersist } from '@reachdigital/react-hook-form'
 import React from 'react'
+import ApolloCustomerErrorAlert from './ApolloCustomerError/ApolloCustomerErrorAlert'
 import NameFields from './NameFields'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 
@@ -22,7 +22,7 @@ export default function SignUpForm(props: SignUpFormProps) {
 
   useFormPersist({ form, name: 'SignUp', exclude: ['password', 'confirmPassword'] })
   const { muiRegister, handleSubmit, required, watch, formState, error } = form
-  const [remainingError, inputError] = graphqlErrorByCategory('graphql-input', error)
+  const [remainingError, inputError] = graphqlErrorByCategory({ category: 'graphql-input', error })
 
   const submitHandler = handleSubmit(() => {})
   const watchPassword = watch('password')
@@ -74,7 +74,7 @@ export default function SignUpForm(props: SignUpFormProps) {
         label='Subscribe to newsletter'
       />
 
-      <ApolloErrorAlert error={remainingError} />
+      <ApolloCustomerErrorAlert error={remainingError} />
 
       <FormActions>
         <Button

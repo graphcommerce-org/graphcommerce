@@ -32,7 +32,7 @@ const useStyles = makeStyles(
   },
 )
 
-type FullPageMessageProps = {
+export type FullPageMessageProps = {
   icon: React.ReactNode
   title: React.ReactNode
   description?: React.ReactNode
