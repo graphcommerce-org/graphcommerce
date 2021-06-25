@@ -1,0 +1,8 @@
+fragment ProductSidebarUsps on Query {
+  sidebarUsps: usps(where: { identity: "sidebarusps" }) {
+    uspsMultiple {
+      id
+      ...PageLink
+    }
+  }
+}
