@@ -1,17 +1,21 @@
 import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
+  ProductPageGallery,
+  ProductPageMeta,
+  ProductSidebarUsps,
+  jsonLdProduct,
+  jsonLdProductOffer,
+  productPageCategory,
+  getProductStaticPaths,
+} from '@reachdigital/magento-product'
+import {
   ConfigurableContextProvider,
   ConfigurableProductAddToCart,
   ConfigurableProductPageDocument,
   ConfigurableProductPageQuery,
 } from '@reachdigital/magento-product-configurable'
 import { jsonLdProductReview, ProductReviewSummary } from '@reachdigital/magento-product-review'
-import { jsonLdProduct, jsonLdProductOffer } from '@reachdigital/magento-product/JsonLdProduct'
-import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
-import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
-import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
-import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
 import { Money, StoreConfigDocument } from '@reachdigital/magento-store'
 import JsonLd from '@reachdigital/next-ui/JsonLd'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -105,6 +109,7 @@ function ProductConfigurable(props: Props) {
               ),
             }}
           />
+          <ProductSidebarUsps {...props} />
         </ProductPageGallery>
 
         <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />

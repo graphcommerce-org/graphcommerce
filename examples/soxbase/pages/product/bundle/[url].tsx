@@ -2,17 +2,21 @@ import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AddToCartButton } from '@reachdigital/magento-cart'
 import {
+  ProductSidebarUsps,
+  jsonLdProduct,
+  ProductPageGallery,
+  ProductPageMeta,
+  jsonLdProductOffer,
+  ProductAddToCartDocument,
+  productPageCategory,
+  getProductStaticPaths,
+} from '@reachdigital/magento-product'
+import {
   BundleProductPageDocument,
   BundleProductPageQuery,
   BundleItemsForm,
 } from '@reachdigital/magento-product-bundle'
 import { ProductReviewSummary, jsonLdProductReview } from '@reachdigital/magento-product-review'
-import { jsonLdProduct, jsonLdProductOffer } from '@reachdigital/magento-product/JsonLdProduct'
-import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
-import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
-import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
-import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
-import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import JsonLd from '@reachdigital/next-ui/JsonLd'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -73,6 +77,7 @@ function ProductBundle(props: Props) {
           price={product.price_range.minimum_price.regular_price}
         />
         <BundleItemsForm {...typeProduct} />
+        <ProductSidebarUsps {...props} />
       </ProductPageGallery>
       <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
       <ProductpagesContent

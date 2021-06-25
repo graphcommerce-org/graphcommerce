@@ -1,6 +1,7 @@
 import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AddToCartButton } from '@reachdigital/magento-cart'
+import { ProductSidebarUsps } from '@reachdigital/magento-product'
 import { ProductReviewSummary, jsonLdProductReview } from '@reachdigital/magento-product-review'
 import {
   SimpleProductPageDocument,
@@ -75,6 +76,7 @@ function ProductSimple(props: Props) {
           price={product.price_range.minimum_price.regular_price}
         />
         <ProductWeight weight={typeProduct?.weight} />
+        <ProductSidebarUsps {...props} />
       </ProductPageGallery>
       <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
       <ProductpagesContent
