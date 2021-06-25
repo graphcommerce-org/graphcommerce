@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     display: 'flex',
     alignItems: 'center',
-    width: '100%',
     flexFlow: 'wrap',
   },
   icon: {

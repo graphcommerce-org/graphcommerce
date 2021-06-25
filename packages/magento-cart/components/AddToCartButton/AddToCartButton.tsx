@@ -2,6 +2,7 @@ import { TypedDocumentNode, useQuery } from '@apollo/client'
 import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import { ProductInterface } from '@reachdigital/graphql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer'
+import { ProductSidebarDelivery } from '@reachdigital/magento-product'
 import { Money, MoneyProps } from '@reachdigital/magento-store'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
@@ -75,6 +76,8 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
         disabled={formState.isSubmitting}
         size='small'
       />
+
+      <ProductSidebarDelivery />
 
       <Button
         type='submit'
