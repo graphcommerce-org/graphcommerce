@@ -37,13 +37,18 @@ export default function PaymentMethodContextProvider(props: PaymentMethodContext
     ;(async () => {
       if (!cartContext) return
 
+      const freeMethod = cartContext.available_payment_methods?.find(
+        (method) => method?.code === 'free',
+      )
+
       const promises =
-        cartContext.available_payment_methods?.map(async (method) =>
-          method
-            ? modules?.[method.code]?.expandMethods?.(method, cartContext) ?? [
-                { ...method, child: '' },
-              ]
-            : Promise.resolve([]),
+        [...(freeMethod ? [freeMethod] : cartContext.available_payment_methods ?? [])].map(
+          async (method) =>
+            method
+              ? modules?.[method.code]?.expandMethods?.(method, cartContext) ?? [
+                  { ...method, child: '' },
+                ]
+              : Promise.resolve([]),
         ) ?? []
 
       setMethods((await Promise.all(promises)).flat(1).sort((a) => (a.preferred ? 1 : 0)))
