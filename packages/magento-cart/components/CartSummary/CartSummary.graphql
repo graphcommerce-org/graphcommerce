@@ -1,0 +1,16 @@
+fragment CartSummary on Cart {
+  email
+
+  shipping_addresses {
+    selected_shipping_method {
+      carrier_title
+      method_title
+    }
+
+    ...CartAddress
+  }
+
+  billing_address {
+    ...CartAddress
+  }
+}

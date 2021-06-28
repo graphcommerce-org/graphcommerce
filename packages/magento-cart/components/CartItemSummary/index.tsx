@@ -1,5 +1,5 @@
+import { useQuery } from '@apollo/client'
 import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
-import { CartTotals } from '@reachdigital/magento-cart'
 import SliderContainer from '@reachdigital/next-ui/FramerSlider/SliderContainer'
 import { SliderContext } from '@reachdigital/next-ui/FramerSlider/SliderContext'
 import SliderNext from '@reachdigital/next-ui/FramerSlider/SliderNext'
@@ -7,10 +7,15 @@ import SliderPrev from '@reachdigital/next-ui/FramerSlider/SliderPrev'
 import SliderScroller from '@reachdigital/next-ui/FramerSlider/SliderScroller'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import SectionHeader from '@reachdigital/next-ui/SectionHeader'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import PageLink from 'next/link'
+import { useRouter } from 'next/router'
 import React from 'react'
+import { useCartQuery } from '../../hooks'
+import CartTotals from '../CartTotals/CartTotals'
+import { CartItemSummaryDocument } from './GetCartItemSummary.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -67,12 +72,24 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'OrderSuccessSummary' },
+  { name: 'CartItemSummary' },
 )
 
-export default function OrderSummary(props: any) {
-  const classes = useStyles()
-  const { items, prices, shipping_addresses } = props
+type OrderSummaryProps = UseStyles<typeof useStyles>
+
+export default function CartItemSummary(props: OrderSummaryProps) {
+  const classes = useStyles(props)
+  const router = useRouter()
+
+  const { data, error } = useQuery(CartItemSummaryDocument, {
+    fetchPolicy: 'cache-only',
+    returnPartialData: true,
+    variables: { cartId: router.query.cartId as string },
+  })
+
+  if (!data?.cart) return null
+
+  const { items } = data?.cart
 
   return (
     <div className={classes.root}>
@@ -84,6 +101,7 @@ export default function OrderSummary(props: any) {
           </Typography>
         }
         labelRight={
+          // todo: create link to actual download
           <PageLink key='download-invoice' href='/download'>
             Download invoice
           </PageLink>
@@ -115,12 +133,7 @@ export default function OrderSummary(props: any) {
         </SliderContainer>
       </SliderContext>
       <Divider />
-      <CartTotals
-        classes={{ costsContainer: classes.costContainer }}
-        key='totals'
-        prices={prices}
-        shipping_addresses={shipping_addresses ?? []}
-      />
+      <CartTotals classes={{ costsContainer: classes.costContainer }} />
     </div>
   )
 }

@@ -1,12 +1,13 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
-import { DeliveryLabelProps } from '@reachdigital/magento-cart-items'
+import { Cart } from '@reachdigital/graphql'
 import { AddressMultiLine } from '@reachdigital/magento-customer'
 import SectionHeader from '@reachdigital/next-ui/SectionHeader'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import PageLink from 'next/link'
 import React from 'react'
-import { CartAddressMultiLineProps } from '../../magento-cart-address'
+import { useCartQuery } from '../../hooks'
+import { GetCartSummaryDocument } from './GetCartSummary.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -54,18 +55,23 @@ const useStyles = makeStyles(
       padding: 0,
     },
   }),
-  { name: 'OrderDetailSummary' },
+  { name: 'OrderDetails' },
 )
 
-export type OrderDetailProps = CartAddressMultiLineProps &
-  DeliveryLabelProps & {
-    children: React.ReactNode
-    editable: boolean
-  } & UseStyles<typeof useStyles>
+export type CartSummaryProps = {
+  children?: React.ReactNode
+  editable?: boolean
+} & UseStyles<typeof useStyles>
 
-export default function OrderDetails(props: any) {
-  const classes = useStyles()
-  const { email, shipping_addresses, billing_address, children, editable } = props
+export default function CartSummary(props: CartSummaryProps) {
+  const classes = useStyles(props)
+  const { children, editable } = props
+
+  const { data } = useCartQuery(GetCartSummaryDocument, { returnPartialData: true })
+
+  if (!data?.cart) return null
+
+  const { email, shipping_addresses, billing_address } = data.cart
 
   return (
     <div className={classes.root}>
@@ -105,7 +111,8 @@ export default function OrderDetails(props: any) {
             }
           />
           <Typography variant='body1'>
-            {shipping_addresses?.[0]?.selected_shipping_method?.carrier_code || ''}
+            {shipping_addresses?.[0]?.selected_shipping_method?.carrier_title}
+            {shipping_addresses?.[0]?.selected_shipping_method?.method_title}
           </Typography>
         </div>
         {shipping_addresses && (
@@ -147,10 +154,7 @@ export default function OrderDetails(props: any) {
                 }
               />
               <Typography variant='body1'>
-                <AddressMultiLine
-                  classes={{ title: classes.address }}
-                  {...(billing_address || shipping_addresses[0])}
-                />
+                <AddressMultiLine classes={{ title: classes.address }} {...billing_address} />
               </Typography>
             </div>
           </>
