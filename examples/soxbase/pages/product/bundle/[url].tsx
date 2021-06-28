@@ -66,12 +66,12 @@ function ProductBundle(props: Props) {
       <ProductPageGallery {...product}>
         <Typography variant='h1'>{product.name ?? ''}</Typography>
         <ProductReviewSummary {...product} reviewSectionId='reviews' />
-        <AddToCartButton
+        {/* <AddToCartButton
           mutation={ProductAddToCartDocument}
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
           price={product.price_range.minimum_price.regular_price}
-        />
+        /> */}
         <BundleItemsForm {...typeProduct} />
       </ProductPageGallery>
       <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
