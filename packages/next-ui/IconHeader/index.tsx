@@ -1,4 +1,5 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
+import clsx from 'clsx'
 import React from 'react'
 import responsiveVal from '../Styles/responsiveVal'
 import SvgImage from '../SvgImage'
@@ -8,16 +9,19 @@ const useStyles = makeStyles(
     container: {
       textAlign: 'center',
       fontSize: responsiveVal(16, 24),
-      marginTop: theme.spacings.sm,
-      marginBottom: theme.spacings.sm,
     },
     innerContainer: {
-      display: 'inline-flex',
+      display: 'flex',
       alignItems: 'center',
+      justifyContent: 'center',
       gap: 4,
       [theme.breakpoints.up('md')]: {
         display: 'unset',
       },
+    },
+    margin: {
+      marginTop: theme.spacings.sm,
+      marginBottom: theme.spacings.sm,
     },
   }),
   { name: 'IconHeader' },
@@ -30,12 +34,14 @@ type IconHeaderProps = {
   alt: string
   title: string
   size?: IconHeaderSize
+  iconSize?: IconHeaderSize | number
+  noMargin?: boolean
 }
 
 type IconHeaderHeadings = 'h6' | 'h5' | 'h3'
 
 export default function IconHeader(props: IconHeaderProps) {
-  const { title, ...svgImageProps } = props
+  const { title, iconSize = 'large', noMargin = false, ...svgImageProps } = props
   const classes = useStyles()
 
   const size = 'large'
@@ -59,12 +65,12 @@ export default function IconHeader(props: IconHeaderProps) {
   }
 
   return (
-    <div className={classes.container}>
+    <div className={clsx(classes.container, !noMargin && classes.margin)}>
       <div className={classes.innerContainer}>
         <SvgImage
           {...svgImageProps}
-          size={iconSizes[size]}
-          mobileSize={iconMobileSizes[size]}
+          size={iconSize ?? iconSizes[iconSize]}
+          mobileSize={iconSize ?? iconMobileSizes[iconSize]}
           loading='eager'
         />
         <Typography variant={variants[size]} component='h2'>
