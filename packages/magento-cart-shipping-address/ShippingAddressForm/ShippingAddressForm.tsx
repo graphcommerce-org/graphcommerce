@@ -85,12 +85,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
     <Form onSubmit={submit} noValidate ref={ref}>
       <AnimatePresence initial={false}>
         <NameFields form={form} key='name' readOnly={readOnly} />
-        <AddressFields
-          form={form}
-          key='addressfields'
-          countries={countriesData?.countries}
-          readOnly={readOnly}
-        />
+        <AddressFields form={form} key='addressfields' readOnly={readOnly} />
 
         <FormRow key='telephone'>
           <TextField

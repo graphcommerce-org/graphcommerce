@@ -55,7 +55,7 @@ export default function CreateCustomerAddressForm() {
     <>
       <Form onSubmit={submitHandler} noValidate>
         <NameFields form={form} prefix />
-        <AddressFields form={form} countries={countries} />
+        <AddressFields form={form} />
 
         <FormRow>
           <TextField

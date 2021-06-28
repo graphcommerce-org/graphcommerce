@@ -21,7 +21,7 @@ type ConfigurableOptionsProps = {
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    labelInnerContainer: {
+    sectionHeaderWrapper: {
       borderBottom: 'none',
       padding: `${theme.spacings.md} 0`,
       [theme.breakpoints.up('md')]: {
@@ -82,9 +82,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                     ? optionEndLabels[option.label.toLowerCase()]
                     : undefined
                 }
-                classes={{
-                  labelInnerContainer: classes.labelInnerContainer,
-                }}
+                classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
               >
                 <ToggleButtonGroup
                   defaultValue={selection[attribute_code] ?? ''}

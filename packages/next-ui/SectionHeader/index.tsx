@@ -30,12 +30,14 @@ const useStyles = makeStyles(
 )
 
 export type SectionHeaderProps = {
-  labelLeft: React.ReactNode
   variantLeft?: TypographyProps['variant']
-  labelRight?: React.ReactNode
   variantRight?: TypographyProps['variant']
   usePadding?: boolean
-} & UseStyles<typeof useStyles>
+} & UseStyles<typeof useStyles> &
+  (
+    | { labelLeft: React.ReactNode; labelRight?: React.ReactNode }
+    | { labelLeft?: React.ReactNode; labelRight: React.ReactNode }
+  )
 
 export default function SectionHeader(props: SectionHeaderProps) {
   const {
