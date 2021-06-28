@@ -1,5 +1,6 @@
+import { useQuery } from '@apollo/client'
 import { TextField } from '@material-ui/core'
-import { CountryRegionsQuery } from '@reachdigital/magento-store'
+import { CountryRegionsDocument } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import Form from '@reachdigital/next-ui/Form'
 import FormActions from '@reachdigital/next-ui/Form/FormActions'
@@ -14,10 +15,8 @@ import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerError
 import NameFields from '../NameFields'
 import { CreateCustomerAddressDocument } from './CreateCustomerAddress.gql'
 
-type CreateCustomerAddressFormProps = CountryRegionsQuery
-
-export default function CreateCustomerAddressForm(props: CreateCustomerAddressFormProps) {
-  const { countries } = props
+export default function CreateCustomerAddressForm() {
+  const countries = useQuery(CountryRegionsDocument).data?.countries
   const router = useRouter()
 
   const form = useFormGqlMutation(

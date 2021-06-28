@@ -1,7 +1,12 @@
 import { useQuery } from '@apollo/client'
 import { makeStyles, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
-import { StoreConfigDocument, Money, CountryRegionsQuery } from '@reachdigital/magento-store'
+import {
+  StoreConfigDocument,
+  Money,
+  useFindCountry,
+  useFindRegion,
+} from '@reachdigital/magento-store'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
@@ -9,8 +14,6 @@ import { iconInvoiceRed } from '@reachdigital/next-ui/icons'
 import clsx from 'clsx'
 import React from 'react'
 import TrackingLink from '../TrackingLink'
-import useCountry from '../useCountry'
-import useRegion from '../useRegion'
 import { OrderDetailsFragment } from './OrderDetails.gql'
 
 const useStyles = makeStyles(
@@ -74,7 +77,7 @@ const useStyles = makeStyles(
 
 export type OrderDetailsProps = Partial<OrderDetailsFragment> & {
   loading?: boolean
-} & CountryRegionsQuery
+}
 
 export default function OrderDetails(props: OrderDetailsProps) {
   const {
@@ -86,7 +89,6 @@ export default function OrderDetails(props: OrderDetailsProps) {
     shipments,
     total,
     invoices,
-    countries,
     loading,
   } = props
   const classes = useStyles()
@@ -100,17 +102,15 @@ export default function OrderDetails(props: OrderDetailsProps) {
     day: 'numeric',
   })
 
-  const billingAddressCountry = useCountry(countries, billing_address?.country_code ?? '')
-  const billingAddressRegion = useRegion(
-    countries,
-    billing_address?.country_code ?? '',
+  const billingAddressCountry = useFindCountry(billing_address?.country_code)
+  const billingAddressRegion = useFindRegion(
+    billing_address?.country_code,
     Number(billing_address?.region_id) ?? undefined,
   )
 
-  const shippingAddressCountry = useCountry(countries, shipping_address?.country_code ?? '')
-  const shippingAddressRegion = useRegion(
-    countries,
-    shipping_address?.country_code ?? '',
+  const shippingAddressCountry = useFindCountry(shipping_address?.country_code)
+  const shippingAddressRegion = useFindRegion(
+    shipping_address?.country_code,
     Number(shipping_address?.region_id) ?? undefined,
   )
 

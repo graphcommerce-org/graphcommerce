@@ -1,6 +1,6 @@
+import { useQuery } from '@apollo/client'
 import { makeStyles, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
-import { CountryRegionsQuery } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import FullPageMessage from '@reachdigital/next-ui/FullPageMessage'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
@@ -12,8 +12,7 @@ import React from 'react'
 import AccountAddress from '../AccountAddress'
 import { AccountAddressesFragment } from './AccountAddresses.gql'
 
-export type AccountAddressesProps = AccountAddressesFragment &
-  CountryRegionsQuery & { loading: boolean }
+export type AccountAddressesProps = AccountAddressesFragment & { loading: boolean }
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -39,7 +38,7 @@ const useStyles = makeStyles(
 )
 
 export default function AccountAddresses(props: AccountAddressesProps) {
-  const { addresses, countries, loading } = props
+  const { addresses, loading } = props
   const classes = useStyles()
   const router = useRouter()
 
@@ -84,7 +83,7 @@ export default function AccountAddresses(props: AccountAddressesProps) {
         <SectionContainer label='Shipping addresses'>
           <div className={classes.root}>
             {addresses?.map((address) => (
-              <AccountAddress key={address?.id} {...address} countries={countries} />
+              <AccountAddress key={address?.id} {...address} />
             ))}
           </div>
 

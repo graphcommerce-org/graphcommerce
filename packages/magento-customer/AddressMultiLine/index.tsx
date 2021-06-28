@@ -1,9 +1,8 @@
-import { makeStyles, Theme } from '@material-ui/core'
-import { CountryRegionsQuery } from '@reachdigital/magento-store'
+import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { useFindCountry } from '@reachdigital/magento-store'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import { CustomerAddressFragment } from '../CustomerAddress/CustomerAddress.gql'
 import { OrderAddressFragment } from '../OrderAddress/OrderAddress.gql'
-import useCountry from '../useCountry'
 
 // exports.getEuMembers = function()
 // {
@@ -17,8 +16,8 @@ import useCountry from '../useCountry'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     title: {
-      fontWeight: 'bold',
-      paddingBottom: theme.spacings.xxs,
+      // fontWeight: 'bold',
+      // paddingBottom: theme.spacings.xxs,
     },
   }),
   {
@@ -27,7 +26,6 @@ const useStyles = makeStyles(
 )
 
 type AddressMultiLineProps = (CustomerAddressFragment | OrderAddressFragment) &
-  CountryRegionsQuery &
   UseStyles<typeof useStyles>
 
 export default function AddressMultiLine(props: AddressMultiLineProps) {
@@ -43,17 +41,14 @@ export default function AddressMultiLine(props: AddressMultiLineProps) {
     city,
     postcode,
     country_code,
-    countries,
   } = props
-  const countryName = useCountry(countries, country_code ?? '')?.full_name_locale
+  const countryName = useFindCountry(country_code)?.full_name_locale ?? country_code
+
   const regionName = typeof region === 'string' ? region : region?.region
   const classes = useStyles(props)
 
-  // todo: detect correct format by locale
-  // for now, US format will be returned by default
-
   return (
-    <div>
+    <Typography variant='body1' component='div'>
       <div className={classes.title}>
         <div>{company}</div>
         <div>
@@ -67,9 +62,9 @@ export default function AddressMultiLine(props: AddressMultiLineProps) {
         {postcode} {city}
       </div>
       <div>
-        {regionName && `${regionName},`}
+        {regionName && `${regionName}, `}
         {countryName}
       </div>
-    </div>
+    </Typography>
   )
 }
