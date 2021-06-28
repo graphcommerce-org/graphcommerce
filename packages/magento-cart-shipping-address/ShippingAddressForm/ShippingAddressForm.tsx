@@ -36,9 +36,8 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
 
   const currentAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const currentCustomer = customerQuery?.customer
-  const currentCountryCode = currentAddress?.country.code ?? shopCountry ?? 'NLD'
+  const currentCountryCode = currentAddress?.country.code ?? shopCountry
 
-  console.log(currentCountryCode)
   const form = useFormGqlMutationCart(ShippingAddressFormDocument, {
     defaultValues: {
       // todo(paales): change to something more sustainable

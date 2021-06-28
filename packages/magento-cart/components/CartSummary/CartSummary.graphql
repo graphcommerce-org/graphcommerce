@@ -8,11 +8,8 @@ fragment CartSummary on Cart {
       carrier_title
       method_title
     }
-
-    ...CartAddress
   }
 
-  billing_address {
-    ...CartAddress
-  }
+  ...ShippingAddress
+  ...BillingAddress
 }

@@ -1,5 +1,6 @@
-import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import { Cart } from '@reachdigital/graphql'
+import { CartAddressMultiLine } from '@reachdigital/magento-cart-address'
 import { AddressMultiLine } from '@reachdigital/magento-customer'
 import SectionHeader from '@reachdigital/next-ui/SectionHeader'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
@@ -7,6 +8,7 @@ import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
+import SectionContainer from '../../../next-ui/SectionContainer'
 import { useCartQuery } from '../../hooks'
 import { GetCartSummaryDocument } from './GetCartSummary.gql'
 
@@ -28,32 +30,9 @@ const useStyles = makeStyles(
         marginTop: theme.spacings.md,
       },
     },
-    labelLeft: {
-      textTransform: 'none',
-      ...theme.typography.h6,
-      fontWeight: theme.typography.fontWeightBold,
-      color: theme.palette.common.black,
-    },
-    labelInnerContainer: {
-      paddingBottom: 5,
-      marginBottom: 10,
-      display: 'flex',
-      alignItems: 'center',
-    },
-    labelRight: {
-      fontSize: responsiveVal(12, 16),
-      '& > a': {
-        textDecoration: 'none',
-        color: theme.palette.secondary.main,
-      },
-    },
     orderNumberLabel: {
       display: 'grid',
       gridTemplateColumns: `2fr 1fr`,
-    },
-    address: {
-      fontWeight: theme.typography.fontWeightRegular,
-      padding: 0,
     },
   }),
   { name: 'OrderDetails' },
@@ -78,17 +57,15 @@ export default function CartSummary(props: CartSummaryProps) {
     <div className={classes.root}>
       <div className={classes.detailsContainer}>
         <div>
-          <SectionHeader
-            classes={{
-              labelLeft: classes.labelLeft,
-              labelInnerContainer: classes.labelInnerContainer,
-              labelRight: classes.labelRight,
-            }}
-            labelLeft={<Typography variant='h6'>Confirmation + Track & trace</Typography>}
+          <SectionContainer
+            variantLeft='h5'
+            labelLeft='Confirmation + Track & trace'
             labelRight={
               editable ? (
-                <PageLink key='Confirmation + track & trace' href='/checkout/edit'>
-                  Edit
+                <PageLink href='/checkout/edit' passHref>
+                  <Link color='secondary' variant='body2'>
+                    Edit
+                  </Link>
                 </PageLink>
               ) : undefined
             }
@@ -96,17 +73,15 @@ export default function CartSummary(props: CartSummaryProps) {
           <Typography variant='body1'>{email || ''}</Typography>
         </div>
         <div>
-          <SectionHeader
-            classes={{
-              labelLeft: classes.labelLeft,
-              labelInnerContainer: classes.labelInnerContainer,
-              labelRight: classes.labelRight,
-            }}
-            labelLeft={<Typography variant='h6'>Shipping method</Typography>}
+          <SectionContainer
+            variantLeft='h5'
+            labelLeft='Shipping method'
             labelRight={
               editable ? (
-                <PageLink key='Shipping method' href='/checkout/edit/shipping'>
-                  Edit
+                <PageLink href='/checkout/edit/shipping' passHref>
+                  <Link color='secondary' variant='body2'>
+                    Edit
+                  </Link>
                 </PageLink>
               ) : undefined
             }
@@ -119,40 +94,37 @@ export default function CartSummary(props: CartSummaryProps) {
         {shipping_addresses && (
           <>
             <div>
-              <SectionHeader
-                classes={{
-                  labelLeft: classes.labelLeft,
-                  labelInnerContainer: classes.labelInnerContainer,
-                  labelRight: classes.labelRight,
-                }}
-                labelLeft={<Typography variant='h6'>Shipping address</Typography>}
+              <SectionContainer
+                variantLeft='h5'
+                labelLeft='Shipping address'
                 labelRight={
                   editable ? (
-                    <PageLink key='Shipping address' href='/checkout/edit/shipping_address'>
-                      Edit
+                    <PageLink href='/checkout/edit/shipping_address' passHref>
+                      <Link color='secondary' variant='body2'>
+                        Edit
+                      </Link>
                     </PageLink>
                   ) : undefined
                 }
               />
-              <AddressMultiLine classes={{ title: classes.address }} {...shipping_addresses[0]} />
+              <CartAddressMultiLine {...shipping_addresses[0]} />
             </div>
             <div>
-              <SectionHeader
-                classes={{
-                  labelLeft: classes.labelLeft,
-                  labelInnerContainer: classes.labelInnerContainer,
-                  labelRight: classes.labelRight,
-                }}
-                labelLeft={<Typography variant='h6'>Billing address</Typography>}
+              <SectionContainer
+                variantLeft='h5'
+                labelLeft='Billing Address'
                 labelRight={
                   editable ? (
-                    <PageLink key='Billing address' href='/checkout/edit/billing_address'>
-                      Edit
+                    <PageLink href='/checkout/edit/billing_address' passHref>
+                      <Link color='secondary' variant='body2'>
+                        Edit
+                      </Link>
                     </PageLink>
                   ) : undefined
                 }
-              />
-              <AddressMultiLine classes={{ title: classes.address }} {...billing_address} />
+              >
+                <CartAddressMultiLine {...billing_address} />
+              </SectionContainer>
             </div>
           </>
         )}

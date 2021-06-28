@@ -86,7 +86,7 @@ function CartPage() {
                 />
                 <CouponAccordion key='couponform' />
                 <CartTotals containerMargin />
-                <ApolloErrorAlert error={error} />
+                <ApolloCartErrorAlert error={error} />
                 <AnimatedRow key='checkout-button'>
                   <CartStartCheckout {...data?.cart} />
                 </AnimatedRow>

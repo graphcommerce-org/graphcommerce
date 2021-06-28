@@ -47,9 +47,9 @@ export default function OrderItems(props: OrderItemsProps) {
   if (loading) {
     return (
       <SectionContainer
-        label='Ordered items'
+        labelLeft='Ordered items'
         /* endLabel='SHIPPED'*/
-        className={classes.sectionContainer}
+        classes={{ sectionContainer: classes.sectionContainer }}
       >
         <div className={classes.orderItemsInnerContainer}>
           <div className={classes.skeletonOrderItem}>
@@ -68,9 +68,9 @@ export default function OrderItems(props: OrderItemsProps) {
 
   return (
     <SectionContainer
-      label='Ordered items'
+      labelLeft='Ordered items'
       /* endLabel='SHIPPED'*/
-      className={classes.sectionContainer}
+      classes={{ sectionContainer: classes.sectionContainer }}
     >
       <div className={classes.orderItemsInnerContainer}>
         <AnimatePresence initial={false}>

@@ -1,10 +1,10 @@
 import { useQuery } from '@apollo/client'
 import { ProductReviews } from '@reachdigital/magento-product-review'
+import { ProductReviewsProps } from '@reachdigital/magento-product-review/ProductReviews'
+import { StoreConfigDocument } from '@reachdigital/magento-store'
 import Row from '@reachdigital/next-ui/Row'
-import SectionHeader from '@reachdigital/next-ui/SectionHeader'
+import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import React from 'react'
-import { ProductReviewsProps } from '../../../../packages/magento-product-review/ProductReviews'
-import { StoreConfigDocument } from '../../../../packages/magento-store'
 import { RowProductReviewsFragment } from './RowProductReviews.gql'
 
 type RowProductReviewsProps = RowProductReviewsFragment & Partial<ProductReviewsProps>
@@ -20,19 +20,20 @@ export default function RowProductReviews(props: RowProductReviewsProps) {
 
   return (
     <Row maxWidth='md' id='reviews'>
-      <SectionHeader
+      <SectionContainer
         labelLeft={
           <>
             {title} ({review_count})
           </>
         }
-      />
-      <ProductReviews
-        reviews={reviews}
-        url_key={url_key ?? ''}
-        sku={sku}
-        review_count={review_count ?? 0}
-      />
+      >
+        <ProductReviews
+          reviews={reviews}
+          url_key={url_key ?? ''}
+          sku={sku}
+          review_count={review_count ?? 0}
+        />
+      </SectionContainer>
     </Row>
   )
 }

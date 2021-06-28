@@ -1,31 +1,28 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme, Typography, TypographyProps } from '@material-ui/core'
 import clsx from 'clsx'
+import React from 'react'
 import { UseStyles } from '../Styles'
-import responsiveVal from '../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    labelContainer: {
+    sectionHeader: {
       position: 'relative',
       '&:focus': {
         outline: 'none',
       },
     },
-    labelContainerSidePadding: {
+    sectionHeaderSidePadding: {
       paddingLeft: theme.spacings.xxs,
       paddingRight: theme.spacings.xxs,
     },
-    labelInnerContainer: {
+    sectionHeaderWrapper: {
       display: 'flex',
       justifyContent: 'space-between',
       borderBottom: `1px solid ${theme.palette.divider}`,
       paddingBottom: theme.spacings.xxs,
     },
-    labelLeft: {
-      ...theme.typography.subtitle1,
-    },
+    labelLeft: {},
     labelRight: {
-      ...theme.typography.body2,
       color: theme.palette.primary.contrastText,
     },
   }),
@@ -34,23 +31,35 @@ const useStyles = makeStyles(
 
 export type SectionHeaderProps = {
   labelLeft: React.ReactNode
+  variantLeft?: TypographyProps['variant']
   labelRight?: React.ReactNode
+  variantRight?: TypographyProps['variant']
   usePadding?: boolean
 } & UseStyles<typeof useStyles>
 
 export default function SectionHeader(props: SectionHeaderProps) {
-  const { labelLeft, labelRight, usePadding } = props
+  const {
+    labelLeft,
+    labelRight,
+    usePadding,
+    variantLeft = 'subtitle1',
+    variantRight = 'body2',
+  } = props
   const classes = useStyles(props)
 
   return (
     <div
-      className={clsx(classes.labelContainer, {
-        [classes.labelContainerSidePadding]: usePadding,
-      })}
+      className={clsx(classes.sectionHeader, { [classes.sectionHeaderSidePadding]: usePadding })}
     >
-      <div className={classes.labelInnerContainer}>
-        <div className={classes.labelLeft}>{labelLeft}</div>
-        {labelRight && <div className={classes.labelRight}>{labelRight}</div>}
+      <div className={classes.sectionHeaderWrapper}>
+        <Typography className={classes.labelLeft} variant={variantLeft} component='div'>
+          {labelLeft}
+        </Typography>
+        {labelRight && (
+          <Typography className={classes.labelRight} variant={variantRight} component='div'>
+            {labelRight}
+          </Typography>
+        )}
       </div>
     </div>
   )

@@ -49,7 +49,7 @@ function EditAddressPage(props: Props) {
       <NoSsr>
         <IconHeader src={iconAddresses} title='Addresses' alt='addresses' size='large' />
 
-        <SectionContainer label='Edit address'>
+        <SectionContainer labelLeft='Edit address'>
           {!address && !loading && (
             <Box marginTop={3}>
               <IconHeader

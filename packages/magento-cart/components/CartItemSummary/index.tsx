@@ -51,16 +51,16 @@ const useStyles = makeStyles(
       boxShadow: 'none',
     },
     sectionHeader: {
-      textTransform: 'none',
-      textWeight: theme.typography.fontWeightBold,
-      color: theme.palette.common.black,
+      // textTransform: 'none',
+      // textWeight: theme.typography.fontWeightBold,
+      // color: theme.palette.common.black,
     },
     costContainer: {
       background: theme.palette.common.white,
       padding: 0,
       marginTop: 0,
     },
-    labelContainer: {
+    sectionHeaderWrapper: {
       alignItems: 'center',
       paddingBottom: 10,
     },
@@ -89,7 +89,10 @@ export default function CartItemSummary(props: OrderSummaryProps) {
   return (
     <div className={classes.root}>
       <SectionHeader
-        classes={{ labelRight: classes.downloadLink, labelInnerContainer: classes.labelContainer }}
+        classes={{
+          labelRight: classes.downloadLink,
+          sectionHeaderWrapper: classes.sectionHeaderWrapper,
+        }}
         labelLeft={
           <Typography variant='h6' className={classes.sectionHeader}>
             Order summary

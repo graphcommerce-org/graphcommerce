@@ -44,7 +44,7 @@ export default function AccountAddresses(props: AccountAddressesProps) {
 
   if (loading) {
     return (
-      <SectionContainer label='Shipping addresses'>
+      <SectionContainer labelLeft='Shipping addresses'>
         <div className={classes.root}>
           <Skeleton height={128} />
           <Skeleton height={128} />
@@ -80,7 +80,7 @@ export default function AccountAddresses(props: AccountAddressesProps) {
       )}
 
       {addresses && addresses.length > 1 && (
-        <SectionContainer label='Shipping addresses'>
+        <SectionContainer labelRight='Shipping addresses'>
           <div className={classes.root}>
             {addresses?.map((address) => (
               <AccountAddress key={address?.id} {...address} />

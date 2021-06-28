@@ -38,7 +38,9 @@ function AccountAuthenticationPage() {
       <PageMeta title='Authentication' metaDescription='Change password' metaRobots={['noindex']} />
       <NoSsr>
         <IconHeader src={iconLock} title='Authentication' alt='authentication' size='large' />
-        <SectionContainer label='Password'>{customer && <ChangePasswordForm />}</SectionContainer>
+        <SectionContainer labelLeft='Password'>
+          {customer && <ChangePasswordForm />}
+        </SectionContainer>
       </NoSsr>
     </Container>
   )

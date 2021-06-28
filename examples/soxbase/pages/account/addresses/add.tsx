@@ -40,7 +40,7 @@ function AddNewAddressPage(props: Props) {
       <PageMeta title='Add address' metaDescription='Add new address' metaRobots={['noindex']} />
       <NoSsr>
         <IconHeader src={iconAddresses} title='Addresses' alt='addresses' size='large' />
-        <SectionContainer label='Add new address'>
+        <SectionContainer labelLeft='Add new address'>
           <CreateCustomerAddressForm />
         </SectionContainer>
       </NoSsr>

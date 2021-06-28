@@ -117,7 +117,7 @@ export default function CartTotals(props: CartTotalsProps) {
         {shippingMethod && (
           <AnimatedRow className={classes.costsRow} key='shippingMethod'>
             <div>
-              {shippingMethod.carrier_title} {shippingMethod.method_title}
+              Shipping ({shippingMethod.carrier_title} {shippingMethod.method_title})
             </div>
             <div>
               <Money {...shippingMethod.amount} />

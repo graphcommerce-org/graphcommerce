@@ -39,7 +39,7 @@ function AccountContactPage() {
         <PageMeta title='Contact' metaDescription='Contact information' metaRobots={['noindex']} />
 
         <IconHeader src={iconEmailOutline} title='Contact' alt='name' size='large' />
-        <SectionContainer label='Email'>
+        <SectionContainer labelLeft='Email'>
           {customer && <UpdateCustomerEmailForm email={customer.email ?? ''} />}
         </SectionContainer>
       </Container>

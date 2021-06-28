@@ -116,7 +116,11 @@ export default function OrderDetails(props: OrderDetailsProps) {
 
   if (loading) {
     return (
-      <SectionContainer label='Order details' className={classes.sectionContainer} borderBottom>
+      <SectionContainer
+        labelLeft='Order details'
+        classes={{ sectionContainer: classes.sectionContainer }}
+        borderBottom
+      >
         <div className={classes.orderDetailsInnerContainer}>
           <div>
             <Skeleton height={100} />
@@ -176,7 +180,11 @@ export default function OrderDetails(props: OrderDetailsProps) {
   }
 
   return (
-    <SectionContainer label='Order details' className={classes.sectionContainer} borderBottom>
+    <SectionContainer
+      labelLeft='Order details'
+      classes={{ sectionContainer: classes.sectionContainer }}
+      borderBottom
+    >
       <div className={classes.orderDetailsInnerContainer}>
         <div>
           <span className={classes.orderDetailTitle}>Order number</span>

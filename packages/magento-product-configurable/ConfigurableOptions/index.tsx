@@ -76,8 +76,8 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
               fieldState: { error: errorHelperText },
             }) => (
               <SectionContainer
-                label={`choose your ${option?.label}`}
-                endLabel={
+                labelLeft={`choose your ${option?.label}`}
+                labelRight={
                   optionEndLabels && option?.label
                     ? optionEndLabels[option.label.toLowerCase()]
                     : undefined
@@ -85,7 +85,6 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                 classes={{
                   labelInnerContainer: classes.labelInnerContainer,
                 }}
-                borderBottom={false}
               >
                 <ToggleButtonGroup
                   defaultValue={selection[attribute_code] ?? ''}
