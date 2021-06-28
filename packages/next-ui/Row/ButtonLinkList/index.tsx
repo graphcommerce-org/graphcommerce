@@ -50,7 +50,7 @@ export default function ButtonLinkList(props: ButtonLinkListProps) {
 
   return (
     <Row maxWidth='md' className={classes.container}>
-      <SectionContainer label={title}>
+      <SectionContainer labelLeft={title}>
         <div className={linkClasses.links}>{links}</div>
       </SectionContainer>
     </Row>

@@ -7,12 +7,7 @@ import {
   CreateCustomerAddressForm,
   CustomerDocument,
 } from '@reachdigital/magento-customer'
-import {
-  CountryRegionsDocument,
-  CountryRegionsQuery,
-  PageMeta,
-  StoreConfigDocument,
-} from '@reachdigital/magento-store'
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
@@ -21,7 +16,7 @@ import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
 
-type Props = CountryRegionsQuery & AccountDashboardAddressesQuery
+type Props = AccountDashboardAddressesQuery
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function AddNewAddressPage(props: Props) {
@@ -29,7 +24,6 @@ function AddNewAddressPage(props: Props) {
     ssr: false,
   })
   const customer = data?.customer
-  const { countries } = props
 
   if (loading) return <></>
   if (error)
@@ -46,8 +40,8 @@ function AddNewAddressPage(props: Props) {
       <PageMeta title='Add address' metaDescription='Add new address' metaRobots={['noindex']} />
       <NoSsr>
         <IconHeader src={iconAddresses} title='Addresses' alt='addresses' size='large' />
-        <SectionContainer label='Add new address'>
-          <CreateCustomerAddressForm countries={countries} />
+        <SectionContainer labelLeft='Add new address'>
+          <CreateCustomerAddressForm />
         </SectionContainer>
       </NoSsr>
     </Container>
@@ -68,13 +62,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = apolloClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
-  const countryRegions = staticClient.query({
-    query: CountryRegionsDocument,
-  })
-
   return {
     props: {
-      ...(await countryRegions).data,
       apolloState: await conf.then(() => client.cache.extract()),
       variant: 'bottom',
       size: 'max',

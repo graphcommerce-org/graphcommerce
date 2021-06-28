@@ -1,37 +1,43 @@
-import { Container, NoSsr } from '@material-ui/core'
+import { Container, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import InlineAccount from '@reachdigital/magento-customer/InlineAccount'
+import { CartItemSummary, CartSummary } from '@reachdigital/magento-cart'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { useRouter } from 'next/router'
+import Stepper from '@reachdigital/next-ui/Stepper/Stepper'
+import { iconParty } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
+import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function ShippingPage() {
-  const router = useRouter()
-  const cartId = (router.query.cartId as string) ?? ''
-
   return (
     <Container maxWidth='md'>
-      <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots={['noindex']} />
-      <NoSsr>
-        Show info about cartId: {cartId}
-        {cartId && <InlineAccount accountHref='/account' />}
-      </NoSsr>
+      <PageMeta title='Checkout summary' metaDescription='Ordered items' metaRobots={['noindex']} />
+
+      <Typography variant='h6' component='h1' align='center'>
+        Checkout
+      </Typography>
+
+      <Stepper steps={3} currentStep={3} key='checkout-stepper' />
+
+      <IconHeader src={iconParty} title='Thank you for your order' alt='celebrate' size='large' />
+
+      <CartSummary />
+
+      <CartItemSummary />
     </Container>
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<MinimalPageShellProps> = {
   overlayGroup: 'checkout',
-  SharedComponent: SheetShell,
+  SharedComponent: MinimalPageShell,
   sharedKey: () => 'checkout',
-  sharedProps: { variant: 'bottom', size: 'max' },
 }
 ShippingPage.pageOptions = pageOptions
 
@@ -39,7 +45,6 @@ export default ShippingPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
   return {

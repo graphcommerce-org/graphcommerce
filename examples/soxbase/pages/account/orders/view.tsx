@@ -8,12 +8,7 @@ import {
   OrderDetailPageDocument,
   ApolloCustomerErrorFullPage,
 } from '@reachdigital/magento-customer'
-import {
-  CountryRegionsDocument,
-  CountryRegionsQuery,
-  PageMeta,
-  StoreConfigDocument,
-} from '@reachdigital/magento-store'
+import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { iconBox } from '@reachdigital/next-ui/icons'
@@ -21,11 +16,10 @@ import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
 
-type Props = CountryRegionsQuery
+type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function OrderDetailPage(props: Props) {
-  const { countries } = props
   const router = usePageRouter()
   const { orderId } = router.query
 
@@ -63,7 +57,7 @@ function OrderDetailPage(props: Props) {
               metaRobots={['noindex']}
             />
             <OrderItems {...order} loading={isLoading} images={images} />
-            <OrderDetails {...order} loading={isLoading} countries={countries} />
+            <OrderDetails {...order} loading={isLoading} />
           </>
         )}
       </NoSsr>

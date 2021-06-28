@@ -37,7 +37,7 @@ function AccountNamePage() {
         <PageMeta title='Name' metaDescription='Update your name' metaRobots={['noindex']} />
 
         <IconHeader src={iconId} title='Name' alt='name' size='large' />
-        <SectionContainer label='Name'>
+        <SectionContainer labelLeft='Name'>
           {customer && (
             <ChangeNameForm
               prefix={customer.prefix ?? ''}

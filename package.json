@@ -81,7 +81,6 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "eslint": "^7.27.0",
-    "husky": "^6.0.0",
     "jest": "^27.0.3",
     "next": "^10.2.3",
     "prettier": "^2.3.0",
@@ -162,10 +161,5 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   }
 }

@@ -7,12 +7,7 @@ import {
   ApolloCustomerErrorFullPage,
   EditAddressForm,
 } from '@reachdigital/magento-customer'
-import {
-  CountryRegionsDocument,
-  CountryRegionsQuery,
-  PageMeta,
-  StoreConfigDocument,
-} from '@reachdigital/magento-store'
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
@@ -22,11 +17,10 @@ import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
 
-type Props = CountryRegionsQuery
+type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function EditAddressPage(props: Props) {
-  const { countries } = props
   const router = useRouter()
   const { addressId } = router.query
 
@@ -55,7 +49,7 @@ function EditAddressPage(props: Props) {
       <NoSsr>
         <IconHeader src={iconAddresses} title='Addresses' alt='addresses' size='large' />
 
-        <SectionContainer label='Edit address'>
+        <SectionContainer labelLeft='Edit address'>
           {!address && !loading && (
             <Box marginTop={3}>
               <IconHeader
@@ -78,7 +72,7 @@ function EditAddressPage(props: Props) {
             </div>
           )}
 
-          {address && !loading && <EditAddressForm countries={countries} address={address} />}
+          {address && !loading && <EditAddressForm address={address} />}
         </SectionContainer>
       </NoSsr>
     </Container>
@@ -99,13 +93,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = apolloClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
-  const countryRegions = staticClient.query({
-    query: CountryRegionsDocument,
-  })
-
   return {
     props: {
-      ...(await countryRegions).data,
       apolloState: await conf.then(() => client.cache.extract()),
       variant: 'bottom',
       size: 'max',

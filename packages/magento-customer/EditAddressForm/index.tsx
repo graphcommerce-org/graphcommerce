@@ -1,5 +1,6 @@
+import { useQuery } from '@apollo/client'
 import { makeStyles, TextField } from '@material-ui/core'
-import { CountryRegionsQuery } from '@reachdigital/magento-store'
+import { CountryRegionsDocument } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import Form from '@reachdigital/next-ui/Form'
 import FormActions from '@reachdigital/next-ui/Form/FormActions'
@@ -24,12 +25,11 @@ const useStyles = makeStyles(
   { name: 'EditAddressForm' },
 )
 
-type EditAddressFormProps = {
-  address?: AccountAddressFragment
-} & CountryRegionsQuery
+type EditAddressFormProps = { address?: AccountAddressFragment }
 
 export default function EditAddressForm(props: EditAddressFormProps) {
-  const { countries, address } = props
+  const countries = useQuery(CountryRegionsDocument).data?.countries
+  const { address } = props
   const classes = useStyles()
   const router = useRouter()
 
@@ -84,7 +84,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
     <>
       <Form onSubmit={submitHandler} noValidate>
         <NameFields form={form} prefix />
-        <AddressFields form={form} countries={countries} />
+        <AddressFields form={form} />
 
         <FormRow>
           <TextField

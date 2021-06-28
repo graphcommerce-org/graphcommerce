@@ -34,7 +34,7 @@ export default function AccountReviews(props: AccountReviewsProps) {
   if (loading) {
     return (
       <div className={classes.reviewsContainer}>
-        <SectionContainer label='Latest'>
+        <SectionContainer labelLeft='Latest'>
           <Skeleton height={196} />
           <Skeleton height={196} />
         </SectionContainer>
@@ -43,14 +43,17 @@ export default function AccountReviews(props: AccountReviewsProps) {
   }
   return (
     <div className={classes.reviewsContainer}>
-      <SectionContainer label='Latest'>
+      <SectionContainer labelLeft='Latest'>
         {latestReviews?.map(
           (review) => review && <CustomerReview key={review.created_at} {...review} />,
         )}
       </SectionContainer>
 
       {items && items.length >= showLatestReviews + 1 && (
-        <SectionContainer label='Older' className={classes.olderReviewsContainer}>
+        <SectionContainer
+          labelLeft='Older'
+          classes={{ sectionContainer: classes.olderReviewsContainer }}
+        >
           {olderReviews?.map(
             (review, i) => review && <CustomerReview key={review.created_at} {...review} />,
           )}

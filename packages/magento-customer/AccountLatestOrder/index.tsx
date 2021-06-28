@@ -18,7 +18,7 @@ export default function AccountLatestOrder(props: AccountLatestOrderProps) {
   // const latestOrderCard = orders?.items?.[0]
 
   return (
-    <SectionContainer label='Latest order'>
+    <SectionContainer labelLeft='Latest order'>
       {!loading && (
         <>
           {!latestOrderCard && <NoOrdersFound />}
