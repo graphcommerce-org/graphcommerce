@@ -4,7 +4,6 @@ import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
-import { useRouter } from 'next/router'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
 import { GetCartTotalsDocument } from './GetCartTotals.gql'
@@ -61,7 +60,7 @@ const useStyles = makeStyles(
 export type CartTotalsProps = { containerMargin?: boolean } & UseStyles<typeof useStyles>
 
 export default function CartTotals(props: CartTotalsProps) {
-  const { data } = useCartQuery(GetCartTotalsDocument, { allowUrl: false })
+  const { data } = useCartQuery(GetCartTotalsDocument, { allowUrl: true })
   const classes = useStyles(props)
 
   if (!data?.cart) return null
