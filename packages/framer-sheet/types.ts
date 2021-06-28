@@ -23,6 +23,8 @@ export type SheetContext = {
 
   containerRef: React.RefObject<HTMLDivElement>
 
+  contentRef: React.RefObject<HTMLDivElement>
+
   /**
    * Animate to a snapPoint:
    *

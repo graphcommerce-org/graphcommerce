@@ -28,6 +28,7 @@ export default function Sheet(props: SheetProps) {
     maxSize: useMotionValue<number>(0),
     controls: useAnimation(),
     containerRef: useRef<HTMLDivElement>(null),
+    contentRef: useRef<HTMLDivElement>(null),
     variantSize: size,
     snapPoints,
     ...contextProps,

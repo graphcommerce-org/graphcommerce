@@ -50,8 +50,18 @@ export type SheetPanelProps = {
 
 export default function SheetPanel(props: SheetPanelProps) {
   const { header, back, forward, children, styles, classes } = props
-  const { drag, size, maxSize, snapPoints, controls, variant, variantSize, onSnap, onSnapEnd } =
-    useSheetContext()
+  const {
+    drag,
+    size,
+    maxSize,
+    snapPoints,
+    controls,
+    variant,
+    variantSize,
+    contentRef,
+    onSnap,
+    onSnapEnd,
+  } = useSheetContext()
 
   const last = snapPoints.length - 1
 
@@ -76,7 +86,7 @@ export default function SheetPanel(props: SheetPanelProps) {
     await controls.start(`snapPoint${index}`)
     onSnapEnd?.(snapPoints[index], index)
   }
-  const contentRef = useRef<HTMLDivElement>(null)
+
   const dragHandleRef = useRef<HTMLDivElement>(null)
   const dragHandleHeight = useMotionValue(0)
 
@@ -93,6 +103,7 @@ export default function SheetPanel(props: SheetPanelProps) {
   }, [dragHandleRef, dragHandleHeight])
 
   const Variant = variant[0].toUpperCase() + variant.slice(1)
+
   return (
     <>
       <m.div

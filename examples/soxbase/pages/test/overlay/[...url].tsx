@@ -1,15 +1,15 @@
-import { Container, Fab, Typography } from '@material-ui/core'
+import { Container, makeStyles } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import SheetHeader from '@reachdigital/next-ui/AppShell/ContentHeader'
+import ContentHeader from '@reachdigital/next-ui/AppShell/ContentHeader'
 import Button from '@reachdigital/next-ui/Button'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconArrowForward } from '@reachdigital/next-ui/icons'
 import { GetStaticPaths } from 'next'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React from 'react'
 import { SheetVariant } from '../../../../../packages/framer-sheet'
+import IconHeader from '../../../../../packages/next-ui/IconHeader'
+import { iconPersonAlt } from '../../../../../packages/next-ui/icons'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../../lib/apolloClient'
@@ -19,28 +19,53 @@ type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props, RouteProps>
 
-const cycles = [100, 200, 1000, 2000]
+// TODO: throw away. for testing only
+const useStyles = makeStyles({
+  hoi: {
+    height: '2000px',
+  },
+})
+
+// stepper styles:
+// max-width: 100%;
+// padding-left: 8px;
+// padding-right: 8px;
 
 function AppShellTextOverlay({ url, pages }: Props) {
   const title = `Overlay ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
-  const [cycle, setCycle] = useState(url === 'index' ? 0 : 3)
+  const classes = useStyles()
 
-  const next = Number(url) + 1
   return (
-    <>
-      <SheetHeader
+    <div>
+      <ContentHeader
         primary={
           <Link href='/test/overlay/bottom/2' passHref>
-            <Button color='secondary' variant='pill'>
+            <Button color='secondary' variant='text' disableElevation>
               Next
             </Button>
           </Link>
         }
+        title={
+          <IconHeader
+            src={iconPersonAlt}
+            title={title}
+            alt={title}
+            size='small'
+            iconSize={24}
+            noMargin
+          />
+        }
+        // divider={
+        //   // <Stepper steps={3} currentStep={1} />
+        // }
       />
-      <Container maxWidth='md'>
-        <Typography variant='h1'>{title}</Typography> Content here
-      </Container>
-    </>
+      <>
+        <IconHeader src={iconPersonAlt} title={title} alt={title} size='large' />
+        <Container maxWidth='md'>
+          <p className={classes.hoi}>Content here</p>
+        </Container>
+      </>
+    </div>
   )
 }
 

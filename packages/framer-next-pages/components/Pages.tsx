@@ -3,7 +3,7 @@ import type { AppPropsType } from 'next/dist/next-server/lib/utils'
 import type { NextRouter } from 'next/router'
 import React, { useRef } from 'react'
 import { pageContext } from '../context/pageContext'
-import { pageRouterContext, createRouterProxy } from '../context/pageRouterContext'
+import { createRouterProxy, pageRouterContext } from '../context/pageRouterContext'
 import type { PageComponent, PageItem } from '../types'
 import Page from './Page'
 
@@ -113,11 +113,17 @@ export default function FramerNextPages(props: PagesProps) {
         } = item
         const active = itemIdx === renderItems.length - 1
         const depth = itemIdx - (renderItems.length - 1)
-        const prevIdx = renderItems[itemIdx - 1]?.historyIdx
-        const backSteps = prevIdx > -1 ? historyIdx - prevIdx : 0
+        const closeIdx = renderItems[itemIdx - 1]?.historyIdx
+        const closeSteps = closeIdx > -1 ? historyIdx - closeIdx : 0
+
+        const backIdx = items.current.reverse().findIndex((i) => i && i.sharedKey !== sharedKey) + 1
+        const backSteps = historyIdx - items.current[backIdx]?.historyIdx
 
         return (
-          <pageContext.Provider key={sharedKey} value={{ depth, active, direction, backSteps }}>
+          <pageContext.Provider
+            key={sharedKey}
+            value={{ depth, active, direction, closeSteps, backSteps }}
+          >
             <Page active={active} historyIdx={historyIdx}>
               <pageRouterContext.Provider value={routerProxy}>
                 <SharedComponent {...sharedPageProps} {...sharedProps}>

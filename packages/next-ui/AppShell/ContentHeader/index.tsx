@@ -1,14 +1,46 @@
-import { Container, Fab } from '@material-ui/core'
+import { Fab, makeStyles, Theme } from '@material-ui/core'
 import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
 import { SheetHeader, SheetHeaderProps } from '@reachdigital/framer-sheet'
+import { m } from 'framer-motion'
 import Link from 'next/link'
 import React from 'react'
 import SvgImage from '../../SvgImage'
 import { iconClose } from '../../icons'
 import BackButton from '../BackButton'
-import useSheetStyles from '../SheetShellBase/useSheetStyles'
 
 type ContentHeaderProps = Omit<SheetHeaderProps, 'back' | 'close'>
+
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    title: {
+      alignSelf: 'center',
+      ...theme.typography.h5,
+    },
+    divider: {
+      borderBottom: '1px solid #ddd',
+    },
+    sheetHeader: {
+      position: 'sticky',
+      top: 0,
+      background: theme.palette.background.default,
+    },
+    sheetHeaderActions: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 3fr 1fr',
+      gridAutoFlow: 'column',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      padding: 4,
+    },
+    sheetHeaderActionRight: {
+      justifySelf: 'flex-end',
+    },
+    fab: {
+      boxShadow: 'none',
+    },
+  }),
+  { name: 'ContentHeader' },
+)
 
 /**
  * Render a Sheet compatible header that: *
@@ -34,36 +66,55 @@ type ContentHeaderProps = Omit<SheetHeaderProps, 'back' | 'close'>
  * @returns
  */
 export default function ContentHeader(props: ContentHeaderProps) {
+  const { title } = props
   const router = usePageRouter()
-  const { backSteps } = usePageContext()
-  const sheetClasses = useSheetStyles(props)
+  const { closeSteps, backSteps } = usePageContext()
+  const classes = useStyles(props)
+
+  // const theme = useTheme()
+  // const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+
+  // const { contentRef } = useSheetContext()
+
+  // const { y } = useElementScroll(contentRef)
+
+  // const opacityFadseOut = useTransform(y, [0, 15], [1, 0])
+  // const opacityFadeIn = useTransform(y, [0, 15], [0, 1])
 
   return (
-    <Container maxWidth={false}>
-      <SheetHeader
-        {...props}
-        back={
-          backSteps > 1 && (
-            <BackButton type='button' onClick={() => router.back()}>
-              Back
-            </BackButton>
-          )
-        }
-        close={
-          backSteps > 0 ? (
-            <Fab size='small' type='button' onClick={() => router.go(backSteps * -1)}>
+    <SheetHeader
+      divider={<m.div className={classes.divider} style={{ opacity: 1 }} />}
+      {...props}
+      back={
+        backSteps > 0 && (
+          <BackButton type='button' onClick={() => router.back()}>
+            Back
+          </BackButton>
+        )
+      }
+      close={
+        closeSteps > 0 ? (
+          <Fab
+            size='small'
+            type='button'
+            onClick={() => router.go(closeSteps * -1)}
+            classes={{ root: classes.fab }}
+          >
+            <SvgImage src={iconClose} alt='Close overlay' loading='eager' />
+          </Fab>
+        ) : (
+          <Link href='/' passHref>
+            <Fab size='small' classes={{ root: classes.fab }}>
               <SvgImage src={iconClose} alt='Close overlay' loading='eager' />
             </Fab>
-          ) : (
-            <Link href='/' passHref>
-              <Fab size='small'>
-                <SvgImage src={iconClose} alt='Close overlay' loading='eager' />
-              </Fab>
-            </Link>
-          )
-        }
-        classes={sheetClasses}
-      />
-    </Container>
+          </Link>
+        )
+      }
+      classes={classes}
+    >
+      <m.div style={{ opacity: 1 }} className={classes.title}>
+        {title}
+      </m.div>
+    </SheetHeader>
   )
 }
