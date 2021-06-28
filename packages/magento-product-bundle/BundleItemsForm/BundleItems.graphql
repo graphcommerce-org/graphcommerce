@@ -1,4 +1,5 @@
 fragment BundleItems on BundleProduct {
+  sku
   ship_bundle_items
   dynamic_sku
   dynamic_price
