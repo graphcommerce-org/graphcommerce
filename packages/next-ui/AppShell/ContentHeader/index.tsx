@@ -96,7 +96,7 @@ export default function ContentHeader(props: ContentHeaderProps) {
       {...props}
       back={
         backSteps > 0 && (
-          <BackButton type='button' onClick={() => router.back()}>
+          <BackButton type='button' onClick={() => router.back()} className={classes.fab}>
             Back
           </BackButton>
         )

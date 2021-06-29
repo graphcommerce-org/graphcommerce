@@ -55,7 +55,13 @@ const BackButton = React.forwardRef<any, BackButtonProps>((props, ref) => {
         ref={ref}
         {...fabProps}
       >
-        <SvgImage src={iconChevronBack} size='small' alt='chevron back' loading='eager' />
+        <SvgImage
+          src={iconChevronBack}
+          size='small'
+          alt='chevron back'
+          loading='eager'
+          mobileSize={24}
+        />
         <span className={clsx(classes.text, overflow && classes.textOverflow)}>
           {children ?? 'Home'}
         </span>
