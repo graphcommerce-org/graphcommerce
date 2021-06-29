@@ -13,7 +13,7 @@ const useStyles = makeStyles(
       maxWidth: 'max-content',
       alignItems: 'center',
     },
-    addedGap: {
+    gap: {
       gap: theme.spacings.xs,
     },
     smallText: {
@@ -40,7 +40,7 @@ export default function UspListItem(props: UspListItemProps) {
   const classes = useStyles()
 
   return (
-    <li className={clsx(classes.root, size === 'normal' && classes.addedGap)}>
+    <li className={clsx(classes.root, size === 'normal' && classes.gap)}>
       <div>{icon}</div>
       <span className={clsx(size === 'small' ? classes.smallText : classes.normalText)}>
         {text}
