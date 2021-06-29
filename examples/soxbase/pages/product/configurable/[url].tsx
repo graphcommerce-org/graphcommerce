@@ -3,11 +3,11 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
   ProductPageGallery,
   ProductPageMeta,
-  ProductSidebarUsps,
   jsonLdProduct,
   jsonLdProductOffer,
   productPageCategory,
   getProductStaticPaths,
+  ProductSidebarDelivery,
 } from '@reachdigital/magento-product'
 import {
   ConfigurableContextProvider,
@@ -58,7 +58,7 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductConfigurable(props: Props) {
-  const { products, usps, typeProducts, productpages } = props
+  const { products, usps, typeProducts, sidebarUsps, productpages } = props
   const classes = useStyles()
 
   const product = products?.items?.[0]
@@ -108,11 +108,13 @@ function ProductConfigurable(props: Props) {
                 </PageLink>
               ),
             }}
-          />
-          <ProductSidebarUsps {...props} />
+          >
+            <ProductSidebarDelivery />
+          </ConfigurableProductAddToCart>
+          <ProductUsps usps={sidebarUsps} size='small' />
         </ProductPageGallery>
 
-        <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
+        <RowProductDescription {...product} right={<ProductUsps usps={usps} iconSize={38} />} />
         <ProductpagesContent
           renderer={{
             RowProductFeature: (rowProps) => <RowProductFeature {...rowProps} {...product} />,

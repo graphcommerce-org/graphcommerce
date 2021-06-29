@@ -2,7 +2,6 @@ import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AddToCartButton } from '@reachdigital/magento-cart'
 import {
-  ProductSidebarUsps,
   ProductWeight,
   getProductStaticPaths,
   ProductPageMeta,
@@ -11,6 +10,7 @@ import {
   ProductAddToCartDocument,
   jsonLdProduct,
   jsonLdProductOffer,
+  ProductSidebarDelivery,
 } from '@reachdigital/magento-product'
 import {
   GroupedProductPageDocument,
@@ -45,7 +45,7 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductGrouped(props: Props) {
-  const { products, usps, typeProducts, productpages } = props
+  const { products, usps, sidebarUsps, typeProducts, productpages } = props
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
@@ -82,14 +82,16 @@ function ProductGrouped(props: Props) {
                       variables={{ sku: item.product.sku ?? '', quantity: item.qty || 1 }}
                       name={product.name ?? ''}
                       price={product.price_range.minimum_price.regular_price}
-                    />
+                    >
+                      <ProductSidebarDelivery />
+                    </AddToCartButton>
                   </div>
                 </li>
               ),
           )}
         </ul>
         <ProductWeight weight={typeProduct?.weight} />
-        <ProductSidebarUsps {...props} />
+        <ProductUsps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
       <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
       <ProductpagesContent

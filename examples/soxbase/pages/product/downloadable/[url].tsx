@@ -2,7 +2,6 @@ import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AddToCartButton } from '@reachdigital/magento-cart'
 import {
-  ProductSidebarUsps,
   getProductStaticPaths,
   ProductPageMeta,
   ProductPageGallery,
@@ -10,6 +9,7 @@ import {
   jsonLdProduct,
   jsonLdProductOffer,
   ProductAddToCartDocument,
+  ProductSidebarDelivery,
 } from '@reachdigital/magento-product'
 import {
   DownloadableProductPageDocument,
@@ -44,7 +44,7 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductDownloadable(props: Props) {
-  const { products, usps, typeProducts, productpages } = props
+  const { products, usps, typeProducts, sidebarUsps, productpages } = props
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
@@ -76,7 +76,9 @@ function ProductDownloadable(props: Props) {
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
           price={product.price_range.minimum_price.regular_price}
-        />
+        >
+          <ProductSidebarDelivery />
+        </AddToCartButton>
         {typeProduct.downloadable_product_links?.map((option) => (
           <div key={option?.title}>
             {option?.title} + {option?.price}
@@ -87,7 +89,8 @@ function ProductDownloadable(props: Props) {
             {sample?.title} {sample?.sample_url} {sample?.sort_order}
           </div>
         ))}
-        <ProductSidebarUsps {...props} />
+
+        <ProductUsps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
       <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
       <ProductpagesContent

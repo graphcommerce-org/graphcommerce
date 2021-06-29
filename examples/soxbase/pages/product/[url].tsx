@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AddToCartButton } from '@reachdigital/magento-cart'
-import { ProductSidebarUsps } from '@reachdigital/magento-product'
+import { ProductSidebarDelivery } from '@reachdigital/magento-product'
 import { ProductReviewSummary, jsonLdProductReview } from '@reachdigital/magento-product-review'
 import {
   SimpleProductPageDocument,
@@ -42,7 +42,7 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductSimple(props: Props) {
-  const { products, usps, typeProducts, productpages } = props
+  const { products, usps, sidebarUsps, typeProducts, productpages } = props
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
@@ -74,9 +74,11 @@ function ProductSimple(props: Props) {
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
           price={product.price_range.minimum_price.regular_price}
-        />
+        >
+          <ProductSidebarDelivery />
+        </AddToCartButton>
         <ProductWeight weight={typeProduct?.weight} />
-        <ProductSidebarUsps {...props} />
+        <ProductUsps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
       <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
       <ProductpagesContent

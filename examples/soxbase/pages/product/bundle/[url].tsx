@@ -2,7 +2,6 @@ import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AddToCartButton } from '@reachdigital/magento-cart'
 import {
-  ProductSidebarUsps,
   jsonLdProduct,
   ProductPageGallery,
   ProductPageMeta,
@@ -10,6 +9,7 @@ import {
   ProductAddToCartDocument,
   productPageCategory,
   getProductStaticPaths,
+  ProductSidebarDelivery,
 } from '@reachdigital/magento-product'
 import {
   BundleProductPageDocument,
@@ -46,7 +46,7 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductBundle(props: Props) {
-  const { products, usps, typeProducts, productpages } = props
+  const { products, usps, typeProducts, sidebarUsps, productpages } = props
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
@@ -75,9 +75,11 @@ function ProductBundle(props: Props) {
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
           price={product.price_range.minimum_price.regular_price}
-        />
+        >
+          <ProductSidebarDelivery />
+        </AddToCartButton>
         <BundleItemsForm {...typeProduct} />
-        <ProductSidebarUsps {...props} />
+        <ProductUsps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
       <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
       <ProductpagesContent
