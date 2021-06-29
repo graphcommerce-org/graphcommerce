@@ -1,6 +1,8 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
+import responsiveVal from '../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -10,30 +12,39 @@ const useStyles = makeStyles(
       justifyItems: 'start',
       maxWidth: 'max-content',
       alignItems: 'center',
-      gap: theme.spacings.xs,
-      ...theme.typography.body1,
     },
-    icon: {
-      width: 38,
-      height: 38,
+    addedGap: {
+      gap: theme.spacings.xs,
+    },
+    smallText: {
+      '& > *': {
+        fontSize: responsiveVal(12, 14),
+        marginLeft: 5,
+      },
+    },
+    normalText: {
+      ...theme.typography.body1,
     },
   }),
   { name: 'UspListItem' },
 )
 
 export type UspListItemProps = UseStyles<typeof useStyles> & {
-  title: React.ReactNode
+  text: React.ReactNode
   icon?: React.ReactNode
+  size?: string
 }
 
 export default function UspListItem(props: UspListItemProps) {
-  const { title, icon } = props
-  const classes = useStyles()
+  const { text, icon, size = 'normal' } = props
+  const classes = useStyles(props)
 
   return (
-    <li className={classes.root}>
-      <div className={classes.icon}>{icon}</div>
-      {title}
+    <li className={clsx(classes.root, size === 'normal' && classes.addedGap)}>
+      <div>{icon}</div>
+      <span className={clsx(size === 'small' ? classes.smallText : classes.normalText)}>
+        {text}
+      </span>
     </li>
   )
 }

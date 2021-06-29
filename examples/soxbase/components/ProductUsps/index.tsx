@@ -1,23 +1,31 @@
+import RichText from '@reachdigital/graphcms-ui/RichText'
 import UspList from '@reachdigital/next-ui/UspList'
 import UspListItem from '@reachdigital/next-ui/UspList/UspListItem'
 import React from 'react'
 import Asset from '../Asset'
 import { UspsQueryFragment } from './UspsQueryFragment.gql'
 
-export type ProductUspsProps = UspsQueryFragment
+export type ProductUspsProps = UspsQueryFragment & {
+  icon?: React.ReactNode
+  size?: string
+  iconSize?: number
+}
 
 export default function ProductUsps(props: ProductUspsProps) {
-  const { usps } = props
+  const { usps, size, iconSize } = props
 
   if (!usps?.uspsMultiple) return <></>
 
   return (
-    <UspList>
+    <UspList size={size}>
       {usps?.uspsMultiple.map((usp) => (
         <UspListItem
           key={usp.title}
-          title={usp.title}
-          icon={usp.asset && <Asset asset={usp.asset} width={38} />}
+          text={usp.description && <RichText raw={usp.description?.raw} />}
+          icon={
+            usp.asset && <Asset asset={usp.asset} width={iconSize || usp?.asset?.height || 38} />
+          }
+          size={size}
         />
       ))}
     </UspList>
