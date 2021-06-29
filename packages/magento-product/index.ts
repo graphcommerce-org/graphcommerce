@@ -1,7 +1,6 @@
 export * from './ProductLink'
 export * from './ProductListCount'
 export { default as ProductListCount } from './ProductListCount'
-export { default as ProductSidebarUsps } from './ProductSidebarUsps'
 export { default as ProductSidebarDelivery } from './ProductSidebarDelivery'
 export * from './ProductListFilters'
 export { default as ProductListFilters } from './ProductListFilters'
