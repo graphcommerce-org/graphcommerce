@@ -26,6 +26,7 @@ type ConfigurableProductAddToCartProps = {
   variables: Omit<ConfigurableProductAddToCartMutationVariables, 'cartId' | 'selectedOptions'>
   name: string
   optionEndLabels?: Record<string, React.ReactNode>
+  children?: React.ReactNode
 }
 
 const useStyles = makeStyles(
@@ -58,7 +59,7 @@ const useStyles = makeStyles(
 )
 
 export default function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
-  const { name, variables, optionEndLabels, ...buttonProps } = props
+  const { name, children, variables, optionEndLabels, ...buttonProps } = props
   const { getUids, getVariants, selection } = useConfigurableContext(variables.sku)
   const classes = useStyles()
 
@@ -110,8 +111,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
             .final_price}
         />
       </div>
-      {/* TODO: fill with actual delivery data, is static information now  */}
-      <ProductSidebarDelivery />
+      {children}
       <Button
         type='submit'
         loading={formState.isSubmitting}

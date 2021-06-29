@@ -44,9 +44,10 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
     variables: Omit<V, 'cartId'>
     name: string
     price: MoneyProps
+    children?: React.ReactNode
   } & Omit<ButtonProps, 'type' | 'name'>,
 ) {
-  const { name, mutation, variables, price, ...buttonProps } = props
+  const { name, children, mutation, variables, price, ...buttonProps } = props
 
   const form = useFormGqlMutationCart<Q, V>(mutation, {
     defaultValues: variables as UnpackNestedValue<DeepPartial<V>>,
@@ -76,8 +77,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
         disabled={formState.isSubmitting}
         size='small'
       />
-      {/* TODO: fill with actual delivery data, is static information now  */}
-      <ProductSidebarDelivery />
+      {children}
       <Button
         type='submit'
         classes={{ root: classes.button }}
