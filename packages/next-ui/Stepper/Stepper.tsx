@@ -1,6 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
+import { UseStyles } from '../Styles'
 import responsiveVal from '../Styles/responsiveVal'
 
 const useStyles = makeStyles(
@@ -28,14 +29,14 @@ const useStyles = makeStyles(
   { name: 'Stepper' },
 )
 
-type StepperProps = {
+export type StepperProps = {
   steps: number
   currentStep: number
-}
+} & UseStyles<typeof useStyles>
 
 export default function Stepper(props: StepperProps) {
   const { steps, currentStep } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   return (
     <div className={classes.root}>

@@ -75,6 +75,7 @@
     "@reachdigital/next-config": "0.1.0",
     "@reachdigital/next-ui": "^0.1.0",
     "@reachdigital/react-hook-form": "^0.1.0",
+    "@reachdigital/framer-sheet": "^0.1.0",
     "apollo3-cache-persist": "^0.9.1",
     "clsx": "^1.1.1",
     "dotenv": "^10.0.0",

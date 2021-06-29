@@ -19,7 +19,7 @@ const useStyles = makeStyles(
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: 20,
-      color: theme.palette.secondary.contrastText,
+      color: theme.palette.text.secondary,
       background: theme.palette.secondary.main,
     },
     itemAlt: {

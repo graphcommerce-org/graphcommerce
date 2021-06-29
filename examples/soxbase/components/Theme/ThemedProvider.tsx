@@ -16,7 +16,7 @@ export const defaultTheme = createMuiTheme({
     },
     secondary: {
       main: '#006BFF',
-      contrastText: '#000',
+      contrastText: '#FFF',
       mutedText: `rgba(0,0,0,0.4)`,
     },
     // tertiary: {

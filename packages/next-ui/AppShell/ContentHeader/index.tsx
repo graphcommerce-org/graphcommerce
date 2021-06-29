@@ -1,23 +1,24 @@
 import { Fab, makeStyles, Theme } from '@material-ui/core'
 import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
 import { SheetHeader, SheetHeaderProps } from '@reachdigital/framer-sheet'
-import { m } from 'framer-motion'
-import Link from 'next/link'
+import { useElementScroll } from '@reachdigital/framer-utils'
+import { m, useTransform } from 'framer-motion'
+import PageLink from 'next/link'
 import React from 'react'
+import useSheetContext from '../../../framer-sheet/hooks/useSheetContext'
+import responsiveVal from '../../Styles/responsiveVal'
 import SvgImage from '../../SvgImage'
 import { iconClose } from '../../icons'
 import BackButton from '../BackButton'
 
-type ContentHeaderProps = Omit<SheetHeaderProps, 'back' | 'close'>
+type ContentHeaderProps = Omit<SheetHeaderProps, 'back' | 'close'> & {
+  animateStart?: number
+}
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    title: {
-      alignSelf: 'center',
-      ...theme.typography.h5,
-    },
     divider: {
-      borderBottom: '1px solid #ddd',
+      borderBottom: `1px solid ${theme.palette.divider}`,
     },
     sheetHeader: {
       position: 'sticky',
@@ -30,13 +31,24 @@ const useStyles = makeStyles(
       gridAutoFlow: 'column',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: 4,
+      padding: responsiveVal(4, 12),
     },
     sheetHeaderActionRight: {
       justifySelf: 'flex-end',
     },
+    innerContainer: {
+      display: 'grid',
+    },
+    innerContainerItem: {
+      gridColumn: 1,
+      gridRow: 1,
+      alignSelf: 'center',
+      ...theme.typography.h5,
+    },
     fab: {
-      boxShadow: 'none',
+      [theme.breakpoints.down('sm')]: {
+        boxShadow: 'none',
+      },
     },
   }),
   { name: 'ContentHeader' },
@@ -66,24 +78,21 @@ const useStyles = makeStyles(
  * @returns
  */
 export default function ContentHeader(props: ContentHeaderProps) {
-  const { title } = props
+  const { title, logo, animateStart = 20 } = props
   const router = usePageRouter()
   const { closeSteps, backSteps } = usePageContext()
   const classes = useStyles(props)
 
-  // const theme = useTheme()
-  // const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const { contentRef } = useSheetContext()
 
-  // const { contentRef } = useSheetContext()
+  const { y } = useElementScroll(contentRef)
 
-  // const { y } = useElementScroll(contentRef)
-
-  // const opacityFadseOut = useTransform(y, [0, 15], [1, 0])
-  // const opacityFadeIn = useTransform(y, [0, 15], [0, 1])
+  const opacityFadeOut = useTransform(y, [animateStart, animateStart + 20], [1, 0])
+  const opacityFadeIn = useTransform(y, [animateStart, animateStart + 20], [0, 1])
 
   return (
     <SheetHeader
-      divider={<m.div className={classes.divider} style={{ opacity: 1 }} />}
+      divider={<m.div className={classes.divider} style={{ opacity: opacityFadeIn }} />}
       {...props}
       back={
         backSteps > 0 && (
@@ -103,18 +112,27 @@ export default function ContentHeader(props: ContentHeaderProps) {
             <SvgImage src={iconClose} alt='Close overlay' loading='eager' />
           </Fab>
         ) : (
-          <Link href='/' passHref>
+          <PageLink href='/' passHref>
             <Fab size='small' classes={{ root: classes.fab }}>
               <SvgImage src={iconClose} alt='Close overlay' loading='eager' />
             </Fab>
-          </Link>
+          </PageLink>
         )
       }
       classes={classes}
     >
-      <m.div style={{ opacity: 1 }} className={classes.title}>
-        {title}
-      </m.div>
+      <div className={classes.innerContainer}>
+        {logo && (
+          <m.div style={{ opacity: opacityFadeOut }} className={classes.innerContainerItem}>
+            {logo}
+          </m.div>
+        )}
+        {title && (
+          <m.div style={{ opacity: opacityFadeIn }} className={classes.innerContainerItem}>
+            {title}
+          </m.div>
+        )}
+      </div>
     </SheetHeader>
   )
 }

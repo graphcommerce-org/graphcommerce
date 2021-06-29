@@ -11,6 +11,8 @@ export type SheetHeaderProps = {
   secondary?: React.ReactNode
   children?: React.ReactNode
   divider?: React.ReactNode
+  /* When a logo is given, title prop should be given too */
+  logo?: React.ReactNode
 } & Styled<SheetHeaderClassKeys>
 
 /**

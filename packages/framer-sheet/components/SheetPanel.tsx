@@ -59,6 +59,7 @@ export default function SheetPanel(props: SheetPanelProps) {
     variant,
     variantSize,
     contentRef,
+    contentRefCallback,
     onSnap,
     onSnapEnd,
   } = useSheetContext()
@@ -143,7 +144,7 @@ export default function SheetPanel(props: SheetPanelProps) {
         onDragEnd={onDragEnd}
         dragTransition={INERTIA_ANIM}
         transition={SPRING_ANIM}
-        ref={contentRef}
+        ref={contentRefCallback}
         className={clsx(classes?.content, classes?.[`content${variant}`])}
         style={{
           ...styles?.content,

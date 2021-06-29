@@ -4,6 +4,8 @@ import React from 'react'
 import responsiveVal from '../Styles/responsiveVal'
 import SvgImage from '../SvgImage'
 
+// TODO: fix hot reloading issues when modifying implementations of this component
+
 const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
@@ -15,6 +17,8 @@ const useStyles = makeStyles(
       alignItems: 'center',
       justifyContent: 'center',
       gap: 4,
+    },
+    breakColumnsDesktop: {
       [theme.breakpoints.up('md')]: {
         display: 'unset',
       },
@@ -34,21 +38,29 @@ type IconHeaderProps = {
   alt: string
   title: string
   size?: IconHeaderSize
-  iconSize?: IconHeaderSize | number
+  iconSize?: number
+  iconSizeMobile?: number
   noMargin?: boolean
+  stayInline?: boolean
 }
 
-type IconHeaderHeadings = 'h6' | 'h5' | 'h3'
+type IconHeaderHeadings = 'h5' | 'h4' | 'h3'
 
 export default function IconHeader(props: IconHeaderProps) {
-  const { title, iconSize = 'large', noMargin = false, ...svgImageProps } = props
+  const {
+    title,
+    size = 'large',
+    stayInline = false,
+    noMargin = false,
+    iconSize,
+    iconSizeMobile,
+    ...svgImageProps
+  } = props
   const classes = useStyles()
 
-  const size = 'large'
-
   const variants: Record<IconHeaderSize, IconHeaderHeadings> = {
-    small: 'h6',
-    medium: 'h5',
+    small: 'h5',
+    medium: 'h4',
     large: 'h3',
   }
 
@@ -66,11 +78,11 @@ export default function IconHeader(props: IconHeaderProps) {
 
   return (
     <div className={clsx(classes.container, !noMargin && classes.margin)}>
-      <div className={classes.innerContainer}>
+      <div className={clsx(classes.innerContainer, !stayInline && classes.breakColumnsDesktop)}>
         <SvgImage
           {...svgImageProps}
-          size={iconSize ?? iconSizes[iconSize]}
-          mobileSize={iconSize ?? iconMobileSizes[iconSize]}
+          size={iconSize ?? iconSizes[size]}
+          mobileSize={iconSizeMobile ?? iconMobileSizes[size]}
           loading='eager'
         />
         <Typography variant={variants[size]} component='h2'>

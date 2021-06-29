@@ -1,15 +1,15 @@
-import { Container, makeStyles } from '@material-ui/core'
+import { Container, makeStyles, Theme } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
+import { SheetVariant } from '@reachdigital/framer-sheet'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import ContentHeader from '@reachdigital/next-ui/AppShell/ContentHeader'
-import Button from '@reachdigital/next-ui/Button'
+import ContentHeaderPrimaryAction from '@reachdigital/next-ui/AppShell/ContentHeaderPrimaryAction'
+import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import { iconPersonAlt } from '@reachdigital/next-ui/icons'
 import { GetStaticPaths } from 'next'
-import Link from 'next/link'
-import React from 'react'
-import { SheetVariant } from '../../../../../packages/framer-sheet'
-import IconHeader from '../../../../../packages/next-ui/IconHeader'
-import { iconPersonAlt } from '../../../../../packages/next-ui/icons'
+import React, { useEffect, useRef, useState } from 'react'
+import Logo from '../../../components/AppShell/Logo'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../../lib/apolloClient'
@@ -20,47 +20,55 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props, RouteProps>
 
 // TODO: throw away. for testing only
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => ({
   hoi: {
     height: '2000px',
   },
-})
-
-// stepper styles:
-// max-width: 100%;
-// padding-left: 8px;
-// padding-right: 8px;
+}))
 
 function AppShellTextOverlay({ url, pages }: Props) {
   const title = `Overlay ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
   const classes = useStyles()
 
+  // TODO: in sheet context as 'sheetTitle' ??
+  const titleRefInternal = useRef<HTMLDivElement>()
+  const [titleRef, setTitleRef] = useState<React.MutableRefObject<HTMLDivElement | undefined>>()
+  const titleRefCallback: React.RefCallback<HTMLDivElement> = (node) => {
+    titleRefInternal.current = node ?? undefined
+    setTitleRef(titleRefInternal)
+  }
+  const [animateStart, setAnimateStart] = useState<number | undefined>(undefined)
+
+  useEffect(() => {
+    setAnimateStart(
+      ((titleRef?.current?.offsetTop ?? 0) + (titleRef?.current?.clientHeight ?? 0)) * 0.5,
+    )
+  }, [titleRef])
+
   return (
     <div>
       <ContentHeader
-        primary={
-          <Link href='/test/overlay/bottom/2' passHref>
-            <Button color='secondary' variant='text' disableElevation>
-              Next
-            </Button>
-          </Link>
-        }
+        primary={<ContentHeaderPrimaryAction href='/test/overlay/bottom/2' text='Next' />}
+        logo={<Logo />}
         title={
           <IconHeader
             src={iconPersonAlt}
             title={title}
             alt={title}
-            size='small'
-            iconSize={24}
+            size='medium'
+            iconSize={32}
+            iconSizeMobile={24}
+            stayInline
             noMargin
           />
         }
-        // divider={
-        //   // <Stepper steps={3} currentStep={1} />
-        // }
+        animateStart={animateStart}
+        // divider={<ContentHeaderStepper steps={3} currentStep={1} />}
       />
       <>
-        <IconHeader src={iconPersonAlt} title={title} alt={title} size='large' />
+        <div ref={titleRefCallback}>
+          <IconHeader src={iconPersonAlt} title={title} alt={title} size='large' />
+        </div>
         <Container maxWidth='md'>
           <p className={classes.hoi}>Content here</p>
         </Container>
