@@ -37,7 +37,7 @@ export type UspListItemProps = UseStyles<typeof useStyles> & {
 
 export default function UspListItem(props: UspListItemProps) {
   const { text, icon, size = 'normal' } = props
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   return (
     <li className={clsx(classes.root, size === 'normal' && classes.addedGap)}>
