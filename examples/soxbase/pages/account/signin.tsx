@@ -1,5 +1,6 @@
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
+import { useMergeCustomerCart } from '@reachdigital/magento-cart'
 import { AccountSignInUpForm } from '@reachdigital/magento-customer'
 import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -10,6 +11,7 @@ import apolloClient from '../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountSignInPage() {
+  useMergeCustomerCart()
   return (
     <Container maxWidth='sm'>
       <PageMeta
