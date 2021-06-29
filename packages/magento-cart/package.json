@@ -28,7 +28,6 @@
     "@reachdigital/magento-customer": "^0.1.0",
     "@reachdigital/magento-graphql": "^0.1.0",
     "@reachdigital/magento-store": "^0.1.0",
-    "@reachdigital/magento-product": "^0.1.0",
     "@reachdigital/next-ui": "^0.1.0",
     "@reachdigital/react-hook-form": "^0.1.0",
     "clsx": "^1.1.1",
