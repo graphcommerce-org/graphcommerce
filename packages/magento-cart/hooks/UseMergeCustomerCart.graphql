@@ -1,4 +1,4 @@
-mutation MergeCarts($sourceCartId: String!, $destinationCartId: String!) {
+mutation UseMergeCustomerCart($sourceCartId: String!, $destinationCartId: String!) {
   mergeCarts(source_cart_id: $sourceCartId, destination_cart_id: $destinationCartId) {
     __typename
     id
