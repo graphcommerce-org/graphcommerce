@@ -10,7 +10,6 @@ require('dotenv').config()
 
 const withYarn1Workspaces = require('@reachdigital/next-config').withYarn1Workspaces()
 
-const withImages = require('next-images')
 const withPWA = require('next-pwa')
 
 const obs = new PerformanceObserver((entryList) => {
