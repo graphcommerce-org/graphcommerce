@@ -1,31 +1,49 @@
 import { Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import Button from '@reachdigital/next-ui/Button'
-import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { m } from 'framer-motion'
-import { GetStaticPaths } from 'next'
-import PageLink from 'next/link'
 import React from 'react'
-import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
+import ContentHeader from '../../../../packages/next-ui/AppShell/ContentHeader'
+import ContentHeaderPrimaryAction from '../../../../packages/next-ui/AppShell/ContentHeaderPrimaryAction'
+import IconHeader from '../../../../packages/next-ui/IconHeader'
+import { iconPersonAlt } from '../../../../packages/next-ui/icons'
+import Logo from '../../components/AppShell/Logo'
+import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import PageContent from '../../components/PageContent'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = { url: string } & DefaultPageQuery
 type RouteProps = { url: string[] }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<MinimalPageShellProps, Props, RouteProps>
 
-function AppShellTestIndex(props: Props) {
+function MinimalAppShellTestIndex(props: Props) {
   const { url, pages } = props
   const title = `Testpage ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
 
   return (
     <>
-      <Container>
-        {/* {url === 'index' ? (
+      <ContentHeader
+        primary={<ContentHeaderPrimaryAction href='/test/minimal-page-shell' text='Next' />}
+        logo={<Logo />}
+        title={
+          <IconHeader
+            src={iconPersonAlt}
+            title={title}
+            alt={title}
+            size='medium'
+            iconSize={32}
+            iconSizeMobile={24}
+            stayInline
+            noMargin
+          />
+        }
+        // animateStart={animateStart}
+        // divider={<ContentHeaderStepper steps={3} currentStep={1} />}
+      />
+      <Container>hoi</Container>
+
+      {/* <Container>
+        {url === 'index' ? (
           <PageLink href='/test/deeper' passHref>
             <Button variant='outlined' color='secondary'>
               Sibling
@@ -37,15 +55,8 @@ function AppShellTestIndex(props: Props) {
               Index
             </Button>
           </PageLink>
-        )} */}
-
-        <PageLink href='/test/sheet/bottom-sheet-cross' passHref>
-          <Button variant='outlined' color='secondary'>
-            Bottom Sheet (cross only)
-          </Button>
-        </PageLink>
-
-        {/* <PageLink href='/test/overlay/left' passHref>
+        )}
+        <PageLink href='/test/overlay/left' passHref>
           <Button variant='outlined' color='secondary'>
             Left Sheet
           </Button>
@@ -69,8 +80,7 @@ function AppShellTestIndex(props: Props) {
           <Button variant='outlined' color='secondary'>
             Slider
           </Button>
-        </PageLink> */}
-
+        </PageLink>
         <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>
           <m.img
             src='/manifest/icon.png'
@@ -102,12 +112,11 @@ function AppShellTestIndex(props: Props) {
         </div>
       </Container>
       <PageContent {...pages?.[0]} />
-
       <Container>
         <DebugSpacer height={2000} />
       </Container>
 
-      {/* <MessageSnackbar
+      <MessageSnackbar
         open
         variant='pill'
         color='default'
@@ -131,25 +140,12 @@ function AppShellTestIndex(props: Props) {
   )
 }
 
-AppShellTestIndex.pageOptions = {
-  SharedComponent: FullPageShell,
+MinimalAppShellTestIndex.pageOptions = {
+  SharedComponent: MinimalPageShell,
   sharedKey: () => 'page',
 } as PageOptions
 
-export default AppShellTestIndex
-
-// eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
-
-  const urls = ['index', 'other']
-
-  const paths = locales
-    .map((locale) => urls.map((url) => ({ params: { url: [url] }, locale })))
-    .flat(1)
-
-  return { paths, fallback: 'blocking' }
-}
+export default MinimalAppShellTestIndex
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
   const url = params?.url.join('/') ?? ''

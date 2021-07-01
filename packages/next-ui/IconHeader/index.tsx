@@ -27,6 +27,11 @@ const useStyles = makeStyles(
       marginTop: theme.spacings.sm,
       marginBottom: theme.spacings.sm,
     },
+    ellipsis: {
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+    },
   }),
   { name: 'IconHeader' },
 )
@@ -42,9 +47,10 @@ type IconHeaderProps = {
   iconSizeMobile?: number
   noMargin?: boolean
   stayInline?: boolean
+  ellipsis?: boolean
 }
 
-type IconHeaderHeadings = 'h5' | 'h4' | 'h3'
+type IconHeaderHeadings = 'h2' | 'h3' | 'h4'
 
 export default function IconHeader(props: IconHeaderProps) {
   const {
@@ -52,6 +58,7 @@ export default function IconHeader(props: IconHeaderProps) {
     size = 'large',
     stayInline = false,
     noMargin = false,
+    ellipsis = false,
     iconSize,
     iconSizeMobile,
     ...svgImageProps
@@ -59,9 +66,9 @@ export default function IconHeader(props: IconHeaderProps) {
   const classes = useStyles()
 
   const variants: Record<IconHeaderSize, IconHeaderHeadings> = {
-    small: 'h5',
-    medium: 'h4',
-    large: 'h3',
+    small: 'h4',
+    medium: 'h3',
+    large: 'h2',
   }
 
   const iconSizes = {
@@ -71,7 +78,7 @@ export default function IconHeader(props: IconHeaderProps) {
   }
 
   const iconMobileSizes = {
-    small: 16,
+    small: 24,
     medium: 32,
     large: 40,
   }
@@ -85,7 +92,7 @@ export default function IconHeader(props: IconHeaderProps) {
           mobileSize={iconSizeMobile ?? iconMobileSizes[size]}
           loading='eager'
         />
-        <Typography variant={variants[size]} component='h2'>
+        <Typography variant={variants[size]} component='h2' className={ellipsis && classes.ellipsis}>
           {title}
         </Typography>
       </div>

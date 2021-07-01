@@ -1,12 +1,10 @@
-import { Container, makeStyles, Theme } from '@material-ui/core'
+import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { SheetVariant } from '@reachdigital/framer-sheet'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import ContentHeader from '@reachdigital/next-ui/AppShell/ContentHeader'
 import ContentHeaderPrimaryAction from '@reachdigital/next-ui/AppShell/ContentHeaderPrimaryAction'
-import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { iconPersonAlt } from '@reachdigital/next-ui/icons'
 import { GetStaticPaths } from 'next'
 import React, { useEffect, useRef, useState } from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
@@ -20,13 +18,13 @@ type GetPageStaticProps = GetStaticProps<SheetShellProps, Props, RouteProps>
 
 // TODO: throw away. for testing only
 const useStyles = makeStyles((theme: Theme) => ({
-  hoi: {
-    height: '2000px',
+  highContent: {
+    height: 800,
   },
 }))
 
-function AppShellTextOverlay({ url, pages }: Props) {
-  const title = `Overlay ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
+function SheetCTAPage({ url, pages }: Props) {
+  const title = `${url?.charAt(0).toUpperCase() + url?.slice(1)}`
   const classes = useStyles()
 
   // TODO: in sheet context as 'sheetTitle' ??
@@ -48,29 +46,40 @@ function AppShellTextOverlay({ url, pages }: Props) {
   return (
     <div>
       <ContentHeader
-        primary={<ContentHeaderPrimaryAction href='/test/overlay/bottom/2' text='Next' />}
+        primary={
+          <ContentHeaderPrimaryAction href='/test/sheet-primary-action/navigated' text='Next' />
+        }
         // logo={<Logo />}
         title={
-          <IconHeader
-            src={iconPersonAlt}
-            title={title}
-            alt={title}
-            size='medium'
-            iconSize={32}
-            iconSizeMobile={24}
-            stayInline
-            noMargin
-          />
+          <Typography variant='h4' component='span'>
+            {title}
+          </Typography>
+          // <IconHeader
+          //   src={iconPersonAlt}
+          //   title={title}
+          //   alt={title}
+          //   size='medium'
+          //   iconSize={32}
+          //   iconSizeMobile={24}
+          //   stayInline
+          //   noMargin
+          // />
         }
         animateStart={animateStart}
         // divider={<ContentHeaderStepper steps={3} currentStep={1} />}
       />
       <>
         <div ref={titleRefCallback}>
-          <IconHeader src={iconPersonAlt} title={title} alt={title} size='large' />
+          <Box textAlign='center' mb={3}>
+            <Typography variant='h2' component='h2'>
+              {title}
+            </Typography>
+            {/* <IconHeader src={iconPersonAlt} title={title} alt={title} size='large' /> */}
+          </Box>
         </div>
-        <Container maxWidth='md'>
-          <p className={classes.hoi}>Content here</p>
+        <Container maxWidth='md' className={classes.highContent}>
+          Als een overlay een call to action heeft, staat deze rechtsboven en het kruisje wordt naar
+          links gedrukt.
         </Container>
       </>
     </div>
@@ -82,9 +91,9 @@ const pageOptions: PageOptions<SheetShellProps> = {
   SharedComponent: SheetShell,
   sharedProps: { size: 'max' },
 }
-AppShellTextOverlay.pageOptions = pageOptions
+SheetCTAPage.pageOptions = pageOptions
 
-export default AppShellTextOverlay
+export default SheetCTAPage
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {

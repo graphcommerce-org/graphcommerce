@@ -2,7 +2,6 @@ import { Styles } from '@reachdigital/framer-utils'
 import { SheetBackdropClassKeys } from './components/SheetBackdrop'
 import { SheetContainerClassKeys } from './components/SheetContainer'
 import { SheetDragIndicatorClassKeys } from './components/SheetDragIndicator'
-import { SheetHeaderClassKeys } from './components/SheetHeader'
 import { SheetPanelClasskey } from './components/SheetPanel'
 
 export type ClassKeys =
@@ -10,7 +9,6 @@ export type ClassKeys =
   | SheetBackdropClassKeys
   | SheetContainerClassKeys
   | SheetPanelClasskey
-  | SheetHeaderClassKeys
 
 const styles: Styles<ClassKeys> = {
   // SheetBackdropClassKeys
@@ -40,28 +38,28 @@ const styles: Styles<ClassKeys> = {
     width: '100%',
     left: 0,
     top: 0,
-    paddingBottom: 24,
+    paddingBottom: 26,
     flexDirection: 'column-reverse',
   },
   containerbottom: {
     width: '100%',
     left: 0,
     bottom: 0,
-    paddingTop: 24,
+    paddingTop: 26,
     flexDirection: 'column',
   },
   containerleft: {
     height: '100%',
     top: 0,
     left: 0,
-    paddingRight: 24,
+    paddingRight: 26,
     flexDirection: 'row-reverse',
   },
   containerright: {
     height: '100%',
     top: 0,
     right: 0,
-    paddingLeft: 24,
+    paddingLeft: 26,
     flexDirection: 'row',
   },
 
@@ -73,8 +71,8 @@ const styles: Styles<ClassKeys> = {
     columnGap: 6,
   },
   dragHandletop: {
-    borderBottomRightRadius: '8px',
-    borderBottomLeftRadius: '8px',
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
     // padding: `6px 16px 12px 16px`,
     gridTemplate: `"left center right"`,
     gridTemplateColumns: `1fr min-content 1fr`,
@@ -82,8 +80,8 @@ const styles: Styles<ClassKeys> = {
     boxShadow: '0px 2px 16px rgba(0, 0, 0, 0.3)',
   },
   dragHandlebottom: {
-    borderTopRightRadius: '8px',
-    borderTopLeftRadius: '8px',
+    borderTopRightRadius: 8,
+    borderTopLeftRadius: 8,
     // padding: 6,
     gridTemplate: `"left center right"`,
     gridTemplateColumns: `1fr min-content 1fr`,
@@ -91,8 +89,8 @@ const styles: Styles<ClassKeys> = {
     boxShadow: '0px -2px 16px rgba(0, 0, 0, 0.3)',
   },
   dragHandleleft: {
-    borderTopRightRadius: '8px',
-    borderBottomRightRadius: '8px',
+    borderTopRightRadius: 8,
+    borderBottomRightRadius: 8,
     padding: `12px 6px 12px 0`,
     gridTemplate: `"center"`,
     // position: 'absolute',
@@ -100,8 +98,8 @@ const styles: Styles<ClassKeys> = {
     // zIndex: 1,
   },
   dragHandleright: {
-    borderTopLeftRadius: '8px',
-    borderBottomLeftRadius: '8px',
+    borderTopLeftRadius: 8,
+    borderBottomLeftRadius: 8,
     gridTemplate: `"center"`,
     padding: `12px 6px 12px 0`,
 
@@ -147,17 +145,5 @@ const styles: Styles<ClassKeys> = {
   indicatorright: { width: 4, height: 18 },
   indicatortop: { width: 18, height: 4 },
   indicatorbottom: { width: 18, height: 4 },
-
-  // SheetHeaderClassKeys
-  sheetHeader: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  sheetHeaderActions: {
-    //
-  },
-  sheetHeaderActionRight: {
-    //
-  },
 }
 export default styles

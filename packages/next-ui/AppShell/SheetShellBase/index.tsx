@@ -46,10 +46,7 @@ function SheetShellBase(props: SheetShellBaseProps) {
       <Sheet open={open} onSnap={handleSnap} variant={variant} size={size}>
         <SheetBackdrop onTap={handleClose} classes={sheetClasses} />
         <SheetContainer classes={sheetClasses}>
-          <SheetPanel
-            header={closeSteps ? <SheetDragIndicator classes={sheetClasses} /> : undefined}
-            classes={sheetClasses}
-          >
+          <SheetPanel header={<SheetDragIndicator classes={sheetClasses} />} classes={sheetClasses}>
             {/* <FocusLock returnFocus={{ preventScroll: true }} disabled={!isActive}> */}
             {children}
             {/* </FocusLock> */}

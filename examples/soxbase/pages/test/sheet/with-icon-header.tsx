@@ -1,32 +1,30 @@
-import { Container, makeStyles, Theme } from '@material-ui/core'
+import { Box, Container, makeStyles, Theme } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { SheetVariant } from '@reachdigital/framer-sheet'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import ContentHeader from '@reachdigital/next-ui/AppShell/ContentHeader'
-import ContentHeaderPrimaryAction from '@reachdigital/next-ui/AppShell/ContentHeaderPrimaryAction'
-import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { iconPersonAlt } from '@reachdigital/next-ui/icons'
-import { GetStaticPaths } from 'next'
+import PageLink from 'next/link'
 import React, { useEffect, useRef, useState } from 'react'
+import Button from '../../../../../packages/next-ui/Button'
+import IconHeader from '../../../../../packages/next-ui/IconHeader'
+import { iconPersonAlt } from '../../../../../packages/next-ui/icons'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = { url: string } & DefaultPageQuery
 type RouteProps = { url: string[] }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props, RouteProps>
 
 // TODO: throw away. for testing only
 const useStyles = makeStyles((theme: Theme) => ({
-  hoi: {
-    height: '2000px',
+  longContent: {
+    height: 900,
   },
 }))
 
-function AppShellTextOverlay({ url, pages }: Props) {
-  const title = `Overlay ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
+function BottomSheetCross({ url, pages }: Props) {
+  const title = `Icon Header`
   const classes = useStyles()
 
   // TODO: in sheet context as 'sheetTitle' ??
@@ -48,7 +46,7 @@ function AppShellTextOverlay({ url, pages }: Props) {
   return (
     <div>
       <ContentHeader
-        primary={<ContentHeaderPrimaryAction href='/test/overlay/bottom/2' text='Next' />}
+        // primary={<ContentHeaderPrimaryAction href='/test/overlay/bottom/2' text='Next' />}
         // logo={<Logo />}
         title={
           <IconHeader
@@ -60,6 +58,7 @@ function AppShellTextOverlay({ url, pages }: Props) {
             iconSizeMobile={24}
             stayInline
             noMargin
+            ellipsis
           />
         }
         animateStart={animateStart}
@@ -67,11 +66,18 @@ function AppShellTextOverlay({ url, pages }: Props) {
       />
       <>
         <div ref={titleRefCallback}>
-          <IconHeader src={iconPersonAlt} title={title} alt={title} size='large' />
+          <Box textAlign='center' mb={3}>
+            <IconHeader src={iconPersonAlt} title={title} alt={title} size='medium' />
+          </Box>
         </div>
-        <Container maxWidth='md'>
-          <p className={classes.hoi}>Content here</p>
+        <Container maxWidth='md' className={classes.longContent}>
+          Als een titel een icon heeft en wordt gescrollt dan fade deze ook in in de header
         </Container>
+        <PageLink href='/test/sheet/navigated' passHref>
+          <Button variant='outlined' color='secondary'>
+            Navigated Bottom Sheet
+          </Button>
+        </PageLink>
       </>
     </div>
   )
@@ -82,30 +88,14 @@ const pageOptions: PageOptions<SheetShellProps> = {
   SharedComponent: SheetShell,
   sharedProps: { size: 'max' },
 }
-AppShellTextOverlay.pageOptions = pageOptions
+BottomSheetCross.pageOptions = pageOptions
 
-export default AppShellTextOverlay
-
-// eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
-
-  const urls = ['1']
-
-  const paths = locales
-    .map((locale) => urls.map((url) => ({ params: { url: [url] }, locale })))
-    .flat(1)
-
-  return { paths, fallback: 'blocking' }
-}
+export default BottomSheetCross
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const [variant] = params?.url ?? 'bottom'
   const url = params?.url.join('/') ?? ''
-
   const client = apolloClient(locale, true)
   const staticClient = apolloClient(locale)
-
   const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,
@@ -115,14 +105,12 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     },
   })
 
-  const variants = ['top', 'bottom', 'left', 'right']
-
   return {
     props: {
       url,
       ...(await page).data,
       apolloState: await conf.then(() => client.cache.extract()),
-      variant: variants.includes(variant) ? (variant as SheetVariant) : 'bottom',
+      variant: 'bottom',
     },
   }
 }

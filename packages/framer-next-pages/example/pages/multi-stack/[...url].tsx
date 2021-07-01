@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/require-await */
 import { PageOptions, usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
-import { SheetHeader, SheetVariant, SPRING_ANIM, styles } from '@reachdigital/framer-sheet'
+import { SheetVariant, SPRING_ANIM } from '@reachdigital/framer-sheet'
 import { motion } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticProps } from 'next'
 import Link from 'next/link'
@@ -17,7 +17,7 @@ function MultiStack() {
 
   return (
     <>
-      <SheetHeader
+      {/* <SheetHeader
         styles={styles}
         back={
           backSteps > 1 && (
@@ -42,7 +42,7 @@ function MultiStack() {
             <a>{page + 1}</a>
           </Link>
         }
-      />
+      /> */}
 
       <button type='button' onClick={() => setExpanded(!expanded)}>
         {expanded ? 'collapse' : 'expand'}
