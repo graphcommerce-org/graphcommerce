@@ -5,7 +5,6 @@ import FullPageShellBase, {
 } from '@reachdigital/next-ui/AppShell/FullPageShellBase'
 import React from 'react'
 import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
-import Footer from './Footer'
 import Logo from './Logo'
 
 export type MinimalPageShellProps = Omit<DefaultPageQuery, 'pages'> &
@@ -19,7 +18,7 @@ function MinimalPageShell(props: MinimalPageShellProps) {
   return (
     <FullPageShellBase {...uiProps} name={name} header={<Logo />}>
       {children}
-      <Footer footer={footer} />
+      {/* <Footer footer={footer} /> */}
     </FullPageShellBase>
   )
 }

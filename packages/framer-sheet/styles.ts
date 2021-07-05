@@ -141,9 +141,9 @@ const styles: Styles<ClassKeys> = {
     alignItems: 'flex-end',
   },
   indicator: { borderRadius: 99, backgroundColor: '#ddd' },
-  indicatorleft: { width: 4, height: 18 },
-  indicatorright: { width: 4, height: 18 },
-  indicatortop: { width: 18, height: 4 },
-  indicatorbottom: { width: 18, height: 4 },
+  indicatorleft: { width: 3, height: 12 },
+  indicatorright: { width: 3, height: 12 },
+  indicatortop: { width: 12, height: 3 },
+  indicatorbottom: { width: 12, height: 3 },
 }
 export default styles

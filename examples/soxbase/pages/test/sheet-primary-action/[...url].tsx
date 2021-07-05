@@ -2,8 +2,8 @@ import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { SheetVariant } from '@reachdigital/framer-sheet'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import ContentHeader from '@reachdigital/next-ui/AppShell/ContentHeader'
 import ContentHeaderPrimaryAction from '@reachdigital/next-ui/AppShell/ContentHeaderPrimaryAction'
+import SheetContentHeader from '@reachdigital/next-ui/AppShell/SheetContentHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import React, { useEffect, useRef, useState } from 'react'
@@ -45,7 +45,7 @@ function SheetCTAPage({ url, pages }: Props) {
 
   return (
     <div>
-      <ContentHeader
+      <SheetContentHeader
         primary={
           <ContentHeaderPrimaryAction href='/test/sheet-primary-action/navigated' text='Next' />
         }

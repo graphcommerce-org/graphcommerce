@@ -23,10 +23,11 @@ const useStyles = makeStyles(
 export type SearchFormProps = {
   totalResults?: number
   search?: string
+  urlHandle?: string
 } & UseStyles<typeof useStyles>
 
 export default function SearchForm(props: SearchFormProps) {
-  const { totalResults = 0, search = '' } = props
+  const { totalResults = 0, search = '', urlHandle = 'search' } = props
   const pageClasses = useStyles(props)
   const router = useRouter()
 
@@ -37,7 +38,7 @@ export default function SearchForm(props: SearchFormProps) {
 
   const submit = handleSubmit((formData) => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    router.replace(`/search/${formData.search}`)
+    router.replace(`/${urlHandle}/${formData.search}`)
     reset(getValues())
   })
   useFormAutoSubmit({ form, submit })
@@ -45,7 +46,7 @@ export default function SearchForm(props: SearchFormProps) {
   const handleReset = () => {
     reset({ search: '' })
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    router.replace(`/search`)
+    router.replace(`/${urlHandle}`)
   }
 
   const endAdornment = !watch('search') ? (

@@ -2,6 +2,7 @@ import { Box, Container, makeStyles, Theme } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import ContentHeader from '@reachdigital/next-ui/AppShell/ContentHeader'
+import SheetContentHeader from '@reachdigital/next-ui/AppShell/SheetContentHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import PageLink from 'next/link'
 import React, { useEffect, useRef, useState } from 'react'
@@ -23,8 +24,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-function BottomSheetCross({ url, pages }: Props) {
-  const title = `Icon Header`
+function BottomSheetWithIconHeader({ url, pages }: Props) {
+  const title = `Icon Header mega lnage title`
   const classes = useStyles()
 
   // TODO: in sheet context as 'sheetTitle' ??
@@ -45,7 +46,7 @@ function BottomSheetCross({ url, pages }: Props) {
 
   return (
     <div>
-      <ContentHeader
+      <SheetContentHeader
         // primary={<ContentHeaderPrimaryAction href='/test/overlay/bottom/2' text='Next' />}
         // logo={<Logo />}
         title={
@@ -65,19 +66,14 @@ function BottomSheetCross({ url, pages }: Props) {
         // divider={<ContentHeaderStepper steps={3} currentStep={1} />}
       />
       <>
-        <div ref={titleRefCallback}>
-          <Box textAlign='center' mb={3}>
-            <IconHeader src={iconPersonAlt} title={title} alt={title} size='medium' />
-          </Box>
-        </div>
         <Container maxWidth='md' className={classes.longContent}>
+          <div ref={titleRefCallback}>
+            <Box textAlign='center' mb={3}>
+              <IconHeader src={iconPersonAlt} title={title} alt={title} size='medium' />
+            </Box>
+          </div>
           Als een titel een icon heeft en wordt gescrollt dan fade deze ook in in de header
         </Container>
-        <PageLink href='/test/sheet/navigated' passHref>
-          <Button variant='outlined' color='secondary'>
-            Navigated Bottom Sheet
-          </Button>
-        </PageLink>
       </>
     </div>
   )
@@ -88,9 +84,9 @@ const pageOptions: PageOptions<SheetShellProps> = {
   SharedComponent: SheetShell,
   sharedProps: { size: 'max' },
 }
-BottomSheetCross.pageOptions = pageOptions
+BottomSheetWithIconHeader.pageOptions = pageOptions
 
-export default BottomSheetCross
+export default BottomSheetWithIconHeader
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
   const url = params?.url.join('/') ?? ''

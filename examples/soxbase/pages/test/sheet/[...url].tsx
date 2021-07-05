@@ -2,8 +2,8 @@ import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { SheetVariant } from '@reachdigital/framer-sheet'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import ContentHeader from '@reachdigital/next-ui/AppShell/ContentHeader'
 import ContentHeaderPrimaryAction from '@reachdigital/next-ui/AppShell/ContentHeaderPrimaryAction'
+import SheetContentHeader from '@reachdigital/next-ui/AppShell/SheetContentHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-function AppShellTextOverlay({ url, pages }: Props) {
+function BottomSheetWithPrimaryActionAndNavigatable({ url, pages }: Props) {
   const title = `${url?.charAt(0).toUpperCase() + url?.slice(1)}`
   const classes = useStyles()
 
@@ -47,7 +47,7 @@ function AppShellTextOverlay({ url, pages }: Props) {
 
   return (
     <div>
-      <ContentHeader
+      <SheetContentHeader
         // primary={<ContentHeaderPrimaryAction href='/test/overlay/bottom/2' text='Next' />}
         // logo={<Logo />}
         title={
@@ -102,9 +102,9 @@ const pageOptions: PageOptions<SheetShellProps> = {
   SharedComponent: SheetShell,
   sharedProps: { size: 'max' },
 }
-AppShellTextOverlay.pageOptions = pageOptions
+BottomSheetWithPrimaryActionAndNavigatable.pageOptions = pageOptions
 
-export default AppShellTextOverlay
+export default BottomSheetWithPrimaryActionAndNavigatable
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {

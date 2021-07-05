@@ -1,18 +1,16 @@
-import { Fab, makeStyles, Theme } from '@material-ui/core'
+import { Container, Fab, makeStyles, Theme } from '@material-ui/core'
 import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
-import { useElementScroll } from '@reachdigital/framer-utils'
 import clsx from 'clsx'
-import { m, useTransform } from 'framer-motion'
+import { m, MotionValue, useTransform } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
-import useSheetContext from '../../../framer-sheet/hooks/useSheetContext'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
 import SvgImage from '../../SvgImage'
 import { iconClose } from '../../icons'
 import BackButton from '../BackButton'
 
-type ContentHeaderProps = {
+export type ContentHeaderProps = {
   title?: React.ReactNode
   primary?: React.ReactNode
   secondary?: React.ReactNode
@@ -20,6 +18,11 @@ type ContentHeaderProps = {
   /* When a logo is given, title prop should be given too */
   logo?: React.ReactNode
   animateStart?: number
+  yPos: MotionValue<number>
+  noClose?: boolean
+  scrolled?: boolean
+  subHeader?: React.ReactNode
+  billBoard?: React.ReactNode
 } & UseStyles<typeof useStyles>
 
 const useStyles = makeStyles(
@@ -32,10 +35,11 @@ const useStyles = makeStyles(
       top: 0,
       background: theme.palette.background.default,
       marginBottom: 32,
+      paddingBottom: 2,
     },
     sheetHeaderActions: {
       display: 'grid',
-      gridTemplateColumns: '1fr 3fr 1fr',
+      gridTemplateColumns: `1fr 4fr 1fr`, // o.b.v. resizeobserver dit aan/uit zetten (dirty)
       gridAutoFlow: 'column',
       alignItems: 'center',
       justifyContent: 'space-between',
@@ -101,13 +105,26 @@ const useStyles = makeStyles(
  * @returns
  */
 export default function ContentHeader(props: ContentHeaderProps) {
-  const { title, logo, divider, primary = null, secondary = null, animateStart = 20 } = props
+  const {
+    title,
+    logo,
+    divider,
+    primary = null,
+    secondary = null,
+    noClose,
+    animateStart = 20,
+    yPos,
+    subHeader,
+    scrolled,
+    billBoard,
+  } = props
   const router = usePageRouter()
   const { closeSteps, backSteps } = usePageContext()
   const classes = useStyles(props)
 
   const close =
-    closeSteps > 0 ? (
+    !noClose &&
+    (closeSteps > 0 ? (
       <Fab
         size='small'
         type='button'
@@ -122,9 +139,9 @@ export default function ContentHeader(props: ContentHeaderProps) {
           <SvgImage src={iconClose} alt='Close overlay' loading='eager' />
         </Fab>
       </PageLink>
-    )
+    ))
 
-  const back = backSteps > 0 && (
+  const back = (backSteps > 0 || noClose) && (
     <BackButton type='button' onClick={() => router.back()} className={classes.fab}>
       Back
     </BackButton>
@@ -135,26 +152,29 @@ export default function ContentHeader(props: ContentHeaderProps) {
   if (rightAction !== close && !leftAction) leftAction = close
   if (!leftAction) leftAction = <div />
 
-  const { contentRef } = useSheetContext()
-  const { y } = useElementScroll(contentRef)
-  const opacityFadeOut = useTransform(y, [animateStart, animateStart + 20], [1, 0])
-  const opacityFadeIn = useTransform(y, [animateStart, animateStart + 20], [0, 1])
+  const opacityFadeOut = useTransform(yPos, [animateStart, animateStart + 20], [1, 0])
+  const opacityFadeIn = useTransform(yPos, [animateStart, animateStart + 20], [0, 1])
 
-  const divide = divider ?? <m.div className={classes.divider} style={{ opacity: opacityFadeIn }} />
+  const divide = divider ?? (
+    <m.div className={classes.divider} style={{ opacity: scrolled ? 1 : opacityFadeIn }} />
+  )
 
   return (
     <div className={classes?.sheetHeader}>
       <div className={classes?.sheetHeaderActions}>
-        <div>{leftAction}</div>
+        {leftAction && <div>{leftAction}</div>}
         <div className={classes.innerContainer}>
           {logo && (
-            <m.div style={{ opacity: opacityFadeOut }} className={classes.innerContainerItem}>
+            <m.div
+              style={{ opacity: !scrolled ? opacityFadeOut : 0 }}
+              className={classes.innerContainerItem}
+            >
               {logo}
             </m.div>
           )}
           {title && (
             <m.div
-              style={{ opacity: opacityFadeIn }}
+              style={{ opacity: scrolled ? 1 : opacityFadeIn }}
               className={clsx(classes.innerContainerItem, classes.title)}
             >
               {title}
@@ -163,7 +183,9 @@ export default function ContentHeader(props: ContentHeaderProps) {
         </div>
         <div className={classes?.sheetHeaderActionRight}>{rightAction}</div>
       </div>
+      {subHeader && <Container maxWidth={false}>{subHeader}</Container>}
       <div>{divide}</div>
+      {billBoard && <div>{billBoard}</div>}
     </div>
   )
 }

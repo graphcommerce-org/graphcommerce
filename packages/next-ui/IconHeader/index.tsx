@@ -92,7 +92,11 @@ export default function IconHeader(props: IconHeaderProps) {
           mobileSize={iconSizeMobile ?? iconMobileSizes[size]}
           loading='eager'
         />
-        <Typography variant={variants[size]} component='h2' className={ellipsis && classes.ellipsis}>
+        <Typography
+          variant={variants[size]}
+          component='h2'
+          className={clsx(ellipsis && classes.ellipsis)}
+        >
           {title}
         </Typography>
       </div>
