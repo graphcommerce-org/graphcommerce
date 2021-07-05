@@ -114,7 +114,7 @@ function ProductConfigurable(props: Props) {
           <ProductUsps usps={sidebarUsps} size='small' />
         </ProductPageGallery>
 
-        <RowProductDescription {...product} right={<ProductUsps usps={usps} iconSize={38} />} />
+        <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
         <ProductpagesContent
           renderer={{
             RowProductFeature: (rowProps) => <RowProductFeature {...rowProps} {...product} />,

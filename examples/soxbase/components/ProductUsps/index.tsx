@@ -8,11 +8,10 @@ import { UspsQueryFragment } from './UspsQueryFragment.gql'
 export type ProductUspsProps = UspsQueryFragment & {
   icon?: React.ReactNode
   size?: string
-  iconSize?: number
 }
 
 export default function ProductUsps(props: ProductUspsProps) {
-  const { usps, size, iconSize } = props
+  const { usps, size } = props
 
   if (!usps?.uspsMultiple) return <></>
 
@@ -23,7 +22,7 @@ export default function ProductUsps(props: ProductUspsProps) {
           key={usp.title}
           text={usp.description && <RichText raw={usp.description?.raw} />}
           icon={
-            usp.asset && <Asset asset={usp.asset} width={iconSize || usp?.asset?.height || 38} />
+            usp.asset && usp.asset?.height && <Asset asset={usp.asset} width={usp?.asset?.height} />
           }
           size={size}
         />
