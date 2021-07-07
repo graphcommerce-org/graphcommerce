@@ -1,4 +1,4 @@
-import { Image, getInt, ImageProps } from '@reachdigital/image'
+import { Image, ImageProps } from '@reachdigital/image'
 import React from 'react'
 import { AssetFragment } from './Asset.gql'
 
@@ -13,19 +13,19 @@ function isImage(asset: AssetFragment): asset is ImageAsset {
 
 type AssetProps = {
   asset: AssetFragment
-} & Omit<ImageProps, 'type' | 'alt' | 'src' | 'height' | 'ref'>
+} & Pick<ImageProps, 'sizes'>
 
 export default function Asset(props: AssetProps) {
-  const { asset, width = 1, ...imgProps } = props
+  const { asset, sizes } = props
 
   if (isImage(asset)) {
     return (
       <Image
-        // {...imgProps}
         src={asset.url}
-        height={Math.round((asset.height / asset.width) * width)}
-        width={width}
+        height={asset.height}
+        width={asset.width}
         alt={asset.url}
+        sizes={sizes ?? `${asset.width}px`}
       />
     )
   }

@@ -178,16 +178,6 @@ function generateSourceAttrs({
   }
 }
 
-export function getInt(x: unknown): number | undefined {
-  if (typeof x === 'number') {
-    return x
-  }
-  if (typeof x === 'string') {
-    return parseInt(x, 10)
-  }
-  return undefined
-}
-
 function defaultImageLoader(loaderProps: ImageLoaderProps) {
   const load = loaders.get(configLoader)
   if (load) {
@@ -271,7 +261,7 @@ type IntrisincImage = Omit<
 
 export type BaseImageProps = IntrisincImage & {
   loader?: ImageLoader
-  quality?: number | string
+  quality?: number
   unoptimized?: boolean
   noReport?: boolean
 
@@ -384,7 +374,7 @@ export type StringImageProps = {
 export type ObjectImageProps = {
   src: StaticImport
   width?: number
-  height?: number | string
+  height?: number
   layout?: LayoutValue
   placeholder?: PlaceholderValue
   blurDataURL?: never
@@ -522,10 +512,6 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     }
     src = typeof src === 'string' ? src : staticSrc
 
-    const widthInt = getInt(width)
-    const heightInt = getInt(height)
-    const qualityInt = getInt(quality)
-
     if (process.env.NODE_ENV !== 'production') {
       if (!src) {
         throw new Error(
@@ -542,8 +528,8 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
         )
       }
       if (
-        (typeof widthInt !== 'undefined' && Number.isNaN(widthInt)) ||
-        (typeof heightInt !== 'undefined' && Number.isNaN(heightInt))
+        (typeof width !== 'undefined' && Number.isNaN(width)) ||
+        (typeof height !== 'undefined' && Number.isNaN(height))
       ) {
         throw new Error(
           `[@reachdigital/image]: Image with src "${src}" has invalid "width" or "height" property. These should be numeric values.`,
@@ -557,7 +543,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
         )
       }
       if (placeholder === 'blur') {
-        if (layout !== 'fill' && (widthInt || 0) * (heightInt || 0) < 1600) {
+        if (layout !== 'fill' && (width || 0) * (height || 0) < 1600) {
           console.warn(
             `[@reachdigital/image]: Image with src "${src}" is smaller than 40x40. Consider removing the "placeholder='blur'" property to improve performance.`,
           )
@@ -579,7 +565,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       }
     }
 
-    if (typeof widthInt === 'undefined' && typeof heightInt === 'undefined') {
+    if (typeof width === 'undefined' && typeof height === 'undefined') {
       if (layout === 'fill') {
         // handle fill
       } else if (process.env.NODE_ENV !== 'production') {
@@ -600,9 +586,9 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       src,
       layout: layout as LayoutValue,
       loader,
-      quality: qualityInt,
+      quality,
       sizes,
-      width: widthInt,
+      width,
       scale: 1.5,
     })
 
@@ -610,9 +596,9 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       src,
       layout: layout as LayoutValue,
       loader,
-      quality: qualityInt,
+      quality,
       sizes,
-      width: widthInt,
+      width,
       scale: 1,
     })
 
@@ -620,9 +606,9 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       src,
       layout: layout as LayoutValue,
       loader,
-      quality: qualityInt,
+      quality,
       sizes,
-      width: widthInt,
+      width,
       scale: 0.5,
     })
 
