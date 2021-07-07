@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { makeStyles, Theme } from '@material-ui/core'
+import { Image } from '@reachdigital/image'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { CustomerReviewFragment } from './CustomerReview.gql'
 import filledStar from './review_star_filled.svg'
@@ -78,18 +78,17 @@ export default function CustomerReview(props: CustomerReviewProps) {
     <div className={classes.container}>
       <div className={classes.image}>
         {product && product.thumbnail && (
-          <PictureResponsiveNext
+          <Image
             src={product.thumbnail?.url ?? ''}
             width={196}
             height={196}
-            type='image/jpeg'
             alt={product.thumbnail?.label ?? ''}
           />
         )}
       </div>
       <div className={classes.stars}>
         {[...new Array(totalStars)].map((value, index) => (
-          <img
+          <Image
             src={index < totalFilledStars ? filledStar : outlinedStar}
             alt='star'
             loading='eager'

@@ -43,6 +43,7 @@
     "@reachdigital/graphql": "^0.1.0",
     "@reachdigital/graphql-codegen-near-operation-file": "^0.1.0",
     "@reachdigital/graphql-codegen-relay-optimizer-plugin": "^0.1.0",
+    "@reachdigital/image": "^0.1.0",
     "@reachdigital/magento-cart": "^0.1.0",
     "@reachdigital/magento-cart-address": "^0.1.0",
     "@reachdigital/magento-cart-billing-address": "^0.1.0",

@@ -1,6 +1,5 @@
 import { Link, Typography } from '@material-ui/core'
-import { ImageMimeTypes } from '@reachdigital/next-ui/PictureResponsive'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import { Image } from '@reachdigital/image'
 import PageLink from 'next/link'
 import React from 'react'
 import useRichTextStyles, { UseRichTextStyles } from './useRichTextStyles'
@@ -49,7 +48,7 @@ interface ImageElement extends Element {
   title: string
   width: number
   height: number
-  mimeType: ImageMimeTypes
+  mimeType: string
 }
 
 interface VideoElement extends Element {
@@ -239,11 +238,10 @@ function RenderElement({ classes, ...element }: ElementNode & Required<UseRichTe
       // eslint-disable-next-line no-case-declarations
       const imageElement = element as ImageElement
       return (
-        <PictureResponsiveNext
+        <Image
           src={imageElement.src}
           width={imageElement.width}
           height={imageElement.height}
-          type={imageElement.mimeType}
           alt={imageElement.title}
           className={asset}
         />

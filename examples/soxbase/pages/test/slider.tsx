@@ -1,5 +1,6 @@
 import { Container, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
+import { Image } from '@reachdigital/image'
 import {
   ProductListDocument,
   ProductListQuery,
@@ -11,7 +12,6 @@ import Multi from '@reachdigital/next-ui/FramerSlider/test/Multi'
 import Single from '@reachdigital/next-ui/FramerSlider/test/Single'
 import SidebarGallery from '@reachdigital/next-ui/FramerSlider/variants/SidebarGallery'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import { m } from 'framer-motion'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -57,13 +57,7 @@ function TestSlider({ products }: Props) {
       >
         {images.map((image) => (
           <SliderImage key={image} width={1532} height={1678}>
-            <PictureResponsiveNext
-              src={image}
-              type='image/jpeg'
-              width={1532}
-              height={1678}
-              alt='img'
-            />
+            <Image src={image} width={1532} height={1678} alt='img' />
           </SliderImage>
         ))}
       </SidebarGallery>

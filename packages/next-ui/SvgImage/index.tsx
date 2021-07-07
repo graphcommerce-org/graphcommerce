@@ -1,13 +1,12 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import { Image, isStaticImageData, ObjectImage } from '@reachdigital/image'
 import clsx from 'clsx'
 import React from 'react'
-import PictureResponsive, { PictureResponsiveProps } from '../PictureResponsive'
 import { UseStyles } from '../Styles'
 
 export type SvgImageSize = 'small' | 'medium' | 'large' | 'extralarge'
 
-export type SvgImageProps = Omit<PictureResponsiveProps, 'srcSets' | 'width' | 'height'> & {
-  src: React.ReactNode
+export type SvgImageProps = ObjectImage & {
   size?: SvgImageSize | number
   mobileSize?: SvgImageSize | number
   shade?: SvgImageShade
@@ -27,6 +26,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: ({ shade, baseSize, mobileSize }: UseStylesProps) => ({
       filter: shade > 0 ? `invert(${shade}%)` : undefined,
+      objectFit: 'contain',
       width: mobileSize ?? Math.round(baseSize * 0.75),
       height: mobileSize ?? Math.round(baseSize * 0.75),
       [theme.breakpoints.up('md')]: {
@@ -40,6 +40,11 @@ const useStyles = makeStyles(
 
 export default function SvgImage(props: SvgImageProps) {
   const { src, size = 'medium', mobileSize, shade = 'default', ...pictureResponsiveProps } = props
+
+  // if (isStaticImageData(src)) {
+  //   console.log(src.height)
+  //   console.log(src.width)
+  // }
 
   const baseSizes = {
     small: 24,
@@ -57,13 +62,13 @@ export default function SvgImage(props: SvgImageProps) {
 
   return (
     <>
-      <PictureResponsive
-        srcSets={{
-          'image/svg+xml': src as string,
-        }}
+      <Image
+        layout='fixed'
+        unoptimized
+        src={src}
         className={clsx(classes.root)}
-        height={24}
-        width={24}
+        // height={24}
+        // width={24}
         {...pictureResponsiveProps}
       />
     </>

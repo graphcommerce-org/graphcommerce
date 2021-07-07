@@ -8,6 +8,7 @@
     "packagesDev/*",
     "packages/*",
     "packages/*/example",
+    "packages/*/examples/*",
     "examples/*"
   ],
   "engines": {

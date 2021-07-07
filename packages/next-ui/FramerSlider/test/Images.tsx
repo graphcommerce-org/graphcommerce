@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import { Image } from '@reachdigital/image'
 import React from 'react'
-import PictureResponsiveNext from '../../PictureResponsiveNext'
 import SliderImage from '../SliderImage'
 import ExpandableGallery from '../variants/ExpandableGallery'
 
@@ -46,13 +46,7 @@ export default function Images({ urls }: { urls: string[] }) {
       <ExpandableGallery classes={classes}>
         {urls.map((url) => (
           <SliderImage key={url} width={1532} height={1678}>
-            <PictureResponsiveNext
-              src={url}
-              type='image/jpeg'
-              width={1532}
-              height={1678}
-              alt='img'
-            />
+            <Image src={url} type='image/jpeg' width={1532} height={1678} alt='img' />
           </SliderImage>
         ))}
       </ExpandableGallery>

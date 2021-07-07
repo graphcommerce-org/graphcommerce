@@ -51,7 +51,7 @@ export default function ProductListItemsBase(props: ProductItemsGridProps) {
             key={item.uid ?? ''}
             renderer={renderers}
             {...item}
-            imageProps={{ loading: loadingEager > idx ? 'eager' : 'lazy' }}
+            loading={loadingEager > idx ? 'eager' : 'lazy'}
           />
         ) : null,
       )}
