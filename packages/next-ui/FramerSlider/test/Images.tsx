@@ -46,7 +46,7 @@ export default function Images({ urls }: { urls: string[] }) {
       <ExpandableGallery classes={classes}>
         {urls.map((url) => (
           <SliderImage key={url} width={1532} height={1678}>
-            <Image src={url} type='image/jpeg' width={1532} height={1678} alt='img' />
+            <Image src={url} width={1532} height={1678} alt='img' />
           </SliderImage>
         ))}
       </ExpandableGallery>

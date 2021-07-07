@@ -19,6 +19,7 @@
     "@reachdigital/framer-next-pages": "^0.1.0",
     "@reachdigital/framer-sheet": "^0.1.0",
     "@reachdigital/graphql": "^0.1.0",
+    "@reachdigital/image": "^0.1.0",
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.17",
     "graphql": "15.5.1",

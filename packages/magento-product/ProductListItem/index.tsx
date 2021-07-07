@@ -132,9 +132,9 @@ type BaseProps = PropsWithChildren<
     subTitle?: React.ReactNode
     aspectRatio?: [number, number]
     imageOnly?: boolean
-    loading?: ImageProps['loading']
   } & OverlayAreas &
-    ProductListItemFragment
+    ProductListItemFragment &
+    Pick<ImageProps, 'loading' | 'sizes' | 'noReport'>
 >
 
 export type ProductListItemProps = BaseProps & UseStyles<typeof useProductListItemStyles>
@@ -152,6 +152,8 @@ export default function ProductListItem(props: ProductListItemProps) {
     children,
     imageOnly = false,
     loading,
+    sizes,
+    noReport,
   } = props
   const classes = useProductListItemStyles(props)
   const productLink = useProductLink(props)
@@ -165,7 +167,8 @@ export default function ProductListItem(props: ProductListItemProps) {
             {small_image ? (
               <Image
                 layout='fill'
-                sizes='384px'
+                sizes={sizes}
+                noReport={noReport}
                 src={small_image.url ?? ''}
                 alt={small_image.label ?? ''}
                 className={classes.image}

@@ -21,10 +21,10 @@ export default function Asset(props: AssetProps) {
   if (isImage(asset)) {
     return (
       <Image
+        // {...imgProps}
         src={asset.url}
-        height={Math.round((asset.height / asset.width) * (getInt(width) ?? 1))}
+        height={Math.round((asset.height / asset.width) * width)}
         width={width}
-        {...imgProps}
         alt={asset.url}
       />
     )

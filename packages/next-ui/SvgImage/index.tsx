@@ -1,5 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { Image, isStaticImageData, ObjectImage } from '@reachdigital/image'
+import { Image, ObjectImage } from '@reachdigital/image'
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'

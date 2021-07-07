@@ -1,11 +1,11 @@
 import { useQuery } from '@apollo/client'
 import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Image } from '@reachdigital/image'
 import SliderContainer from '@reachdigital/next-ui/FramerSlider/SliderContainer'
 import { SliderContext } from '@reachdigital/next-ui/FramerSlider/SliderContext'
 import SliderNext from '@reachdigital/next-ui/FramerSlider/SliderNext'
 import SliderPrev from '@reachdigital/next-ui/FramerSlider/SliderPrev'
 import SliderScroller from '@reachdigital/next-ui/FramerSlider/SliderScroller'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import SectionHeader from '@reachdigital/next-ui/SectionHeader'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
@@ -109,13 +109,12 @@ export default function CartItemSummary(props: OrderSummaryProps) {
         <SliderContainer classes={{ container: classes.sliderContainer }}>
           <SliderScroller>
             {items?.map((item) => (
-              <PictureResponsiveNext
+              <Image
                 key={item?.uid}
                 alt={item?.product.thumbnail?.label ?? ''}
                 width={90}
                 height={90}
                 src={item?.product.thumbnail?.url ?? ''}
-                type='image/jpeg'
                 className={classes.pictureResponsive}
               />
             ))}

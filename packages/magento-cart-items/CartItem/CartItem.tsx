@@ -161,11 +161,10 @@ export default function CartItem(props: CartItemProps) {
             <div className={classes.pictureSpacing}>
               {product?.thumbnail?.url && (
                 <Image
+                  src={product.thumbnail.url ?? ''}
                   layout='fill'
                   alt={product.thumbnail.label ?? product.name ?? ''}
-                  width={104}
-                  height={86}
-                  src={product.thumbnail.url}
+                  sizes='104px'
                   className={classes.pictureResponsive}
                 />
               )}

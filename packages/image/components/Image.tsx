@@ -7,7 +7,6 @@ import { LoaderValue, VALID_LOADERS } from 'next/dist/next-server/server/image-c
 import Head from 'next/head'
 import type { ImageLoaderProps, ImageLoader } from 'next/image'
 import React, { useEffect, useState } from 'react'
-import useResizeObserver from 'use-resize-observer'
 import {
   akamaiLoader,
   cloudinaryLoader,
@@ -19,7 +18,6 @@ import {
   defaultLoader,
   imgixLoader,
 } from '../config/config'
-import useConnectionType from '../hooks/useConnectionType'
 
 if (typeof window === 'undefined') {
   // eslint-disable-next-line no-underscore-dangle
@@ -275,6 +273,7 @@ export type BaseImageProps = IntrisincImage & {
   loader?: ImageLoader
   quality?: number | string
   unoptimized?: boolean
+  noReport?: boolean
 
   /**
    * Possible values:
@@ -411,6 +410,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       loader = defaultImageLoader,
       placeholder = 'empty',
       blurDataURL,
+      noReport,
       ...imgProps
     },
     forwardedRef,
@@ -429,7 +429,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
 
     useEffect(() => {
       if (process.env.NODE_ENV === 'production') return () => {}
-      if (!ref.current) return () => {}
+      if (!ref.current || unoptimized || noReport) return () => {}
 
       function getContainedSize(img: HTMLImageElement) {
         let ratio = img.naturalWidth / img.naturalHeight
@@ -449,8 +449,9 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
 
         let msg = ''
         const [breakpoint, size] = sizesEntries(sizesOrig).find(([s]) =>
-          s === 0 ? true : window.matchMedia(`(min-width: ${s})`).matches,
+          s === 0 ? true : window.matchMedia(`(min-width: ${s}px)`).matches,
         ) ?? [0, '100vw']
+
         if (size) {
           const el = document.createElement('div')
           el.setAttribute('style', `width: ${size}`)
@@ -467,14 +468,14 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
         }
 
         const round = (nr: number) => Math.round(nr * 100) / 100
-        if (ratio > 1.5) {
+        if (ratio > 2.5) {
           console.warn(
             `[@reachdigital/image]: ${msg} Currently downloading an image that has ${round(
               ratio,
             )}x too many pixels`,
             img,
           )
-        } else if (ratio < 0.66) {
+        } else if (1 / ratio > 2.5) {
           console.warn(
             `[@reachdigital/image]: ${msg} Currently downloading an image that has ${round(
               1 / ratio,
@@ -493,7 +494,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       ro.observe(ref.current)
 
       return () => ro.disconnect()
-    }, [layout, ref, sizesOrig, src, width])
+    }, [layout, ref, unoptimized, sizesOrig, src, width, noReport])
 
     let staticSrc = ''
     if (isStaticImport(src)) {
@@ -652,12 +653,12 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
         {loading === 'eager' && (
           <Head>
             <link
-              key={`__nimg-2x-${attributes1x.srcSet}${attributes1x.sizes}`}
+              key={`__nimg-2x-${attributes3x.srcSet}${attributes3x.sizes}`}
               rel='preload'
               as='image'
               media='(-webkit-min-device-pixel-ratio: 2.5)'
               // @ts-expect-error imagesrcset is not yet in the link element type
-              imagesrcset={attributes1x.srcSet}
+              imagesrcset={attributes3x.srcSet}
               imagesizes={sizes}
             />
           </Head>

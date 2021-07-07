@@ -25,7 +25,14 @@ export default function Logo() {
   return (
     <PageLink href='/' passHref>
       <a>
-        <Image layout='fixed' alt='logo' src={svgLogo} loading='eager' className={classes.logo} />
+        <Image
+          layout='fixed'
+          alt='logo'
+          src={svgLogo}
+          unoptimized
+          loading='eager'
+          className={classes.logo}
+        />
       </a>
     </PageLink>
   )
