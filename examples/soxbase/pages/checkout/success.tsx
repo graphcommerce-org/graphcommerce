@@ -1,6 +1,7 @@
 import { Container, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CartItemSummary, CartSummary } from '@reachdigital/magento-cart'
+import { ContinueShoppingButton } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { IconHeader, GetStaticProps, Stepper, iconParty } from '@reachdigital/next-ui'
 import React from 'react'
@@ -27,6 +28,8 @@ function ShippingPage() {
       <CartSummary />
 
       <CartItemSummary />
+
+      <ContinueShoppingButton variant='pill' color='secondary' route='/' />
     </Container>
   )
 }
