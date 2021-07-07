@@ -2,16 +2,20 @@ import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AddToCartButton } from '@reachdigital/magento-cart'
 import {
+  getProductStaticPaths,
+  ProductPageMeta,
+  ProductPageGallery,
+  productPageCategory,
+  jsonLdProduct,
+  jsonLdProductOffer,
+  ProductAddToCartDocument,
+  ProductSidebarDelivery,
+} from '@reachdigital/magento-product'
+import {
   DownloadableProductPageDocument,
   DownloadableProductPageQuery,
 } from '@reachdigital/magento-product-downloadable'
 import { ProductReviewSummary, jsonLdProductReview } from '@reachdigital/magento-product-review'
-import { jsonLdProduct, jsonLdProductOffer } from '@reachdigital/magento-product/JsonLdProduct'
-import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
-import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
-import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
-import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
-import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import JsonLd from '@reachdigital/next-ui/JsonLd'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -40,7 +44,7 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductDownloadable(props: Props) {
-  const { products, usps, typeProducts, productpages } = props
+  const { products, usps, typeProducts, sidebarUsps, productpages } = props
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
@@ -72,7 +76,9 @@ function ProductDownloadable(props: Props) {
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
           price={product.price_range.minimum_price.regular_price}
-        />
+        >
+          <ProductSidebarDelivery />
+        </AddToCartButton>
         {typeProduct.downloadable_product_links?.map((option) => (
           <div key={option?.title}>
             {option?.title} + {option?.price}
@@ -83,6 +89,8 @@ function ProductDownloadable(props: Props) {
             {sample?.title} {sample?.sample_url} {sample?.sort_order}
           </div>
         ))}
+
+        <ProductUsps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
       <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
       <ProductpagesContent

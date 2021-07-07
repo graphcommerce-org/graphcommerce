@@ -1,18 +1,21 @@
 import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AddToCartButton } from '@reachdigital/magento-cart'
+import {
+  getProductStaticPaths,
+  ProductPageMeta,
+  ProductPageGallery,
+  productPageCategory,
+  ProductAddToCartDocument,
+  jsonLdProduct,
+  jsonLdProductOffer,
+  ProductSidebarDelivery,
+} from '@reachdigital/magento-product'
 import { jsonLdProductReview } from '@reachdigital/magento-product-review'
 import {
   VirtualProductPageDocument,
   VirtualProductPageQuery,
 } from '@reachdigital/magento-product-virtual'
-
-import { jsonLdProduct, jsonLdProductOffer } from '@reachdigital/magento-product/JsonLdProduct'
-import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
-import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
-import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
-import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
-import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import JsonLd from '@reachdigital/next-ui/JsonLd'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -41,7 +44,7 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductVirtual(props: Props) {
-  const { products, usps, typeProducts, productpages } = props
+  const { products, usps, sidebarUsps, typeProducts, productpages } = props
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
@@ -71,7 +74,10 @@ function ProductVirtual(props: Props) {
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
           price={product.price_range.minimum_price.regular_price}
-        />
+        >
+          <ProductSidebarDelivery />
+        </AddToCartButton>
+        <ProductUsps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
       <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
       <ProductpagesContent
