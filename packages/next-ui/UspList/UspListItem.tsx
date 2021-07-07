@@ -17,7 +17,7 @@ const useStyles = makeStyles(
       gap: theme.spacings.xs,
     },
     smallText: {
-      '& > *': {
+      '& > p': {
         fontSize: responsiveVal(12, 14),
         marginLeft: 5,
       },
