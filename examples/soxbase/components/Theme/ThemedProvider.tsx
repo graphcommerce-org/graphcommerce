@@ -2,7 +2,6 @@
 
 import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import Head from 'next/head'
 import React from 'react'
 import fonts from './fonts'
 import shadows from './shadows'
@@ -56,7 +55,7 @@ export const defaultTheme = createTheme({
   },
   shadows,
   typography: {
-    fontFamily: ['Graphik', 'sans-serif'].join(', '),
+    fontFamily: ['Public Sans', 'sans-serif'].join(', '),
     subtitle1: {
       fontSize: responsiveVal(12, 14),
       color: `rgba(0, 0, 0, 0.3)`,
@@ -139,13 +138,6 @@ defaultTheme.overrides = {
       body: {
         overflowY: 'scroll',
       },
-      '@font-face': fonts.map(({ font, fontWeight, fontStyle }) => ({
-        fontFamily: 'Graphik',
-        fontWeight,
-        fontStyle,
-        fontDisplay: 'swap',
-        src: `url('/fonts/${font}.woff2') format('woff2')`,
-      })),
       '::selection': { background: `rgba(20, 227, 173, 0.5)` },
       '::-moz-selection': { background: `rgba(20, 227, 173, 0.5)` },
     },
@@ -257,13 +249,6 @@ defaultTheme.overrides = {
 
 const ThemedProvider: React.FC = ({ children }) => (
   <ThemeProvider theme={defaultTheme}>
-    <Head>
-      {fonts
-        .filter(({ preload }) => preload)
-        .map(({ font }) => (
-          <link key={font} rel='preload' href={`/fonts/${font}.woff2`} as='font' crossOrigin='' />
-        ))}
-    </Head>
     <CssBaseline />
     {children}
   </ThemeProvider>
