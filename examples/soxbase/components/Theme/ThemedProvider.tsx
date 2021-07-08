@@ -1,6 +1,6 @@
 /// <reference types="@reachdigital/next-ui/types" />
 
-import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core'
+import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import Head from 'next/head'
 import React from 'react'
@@ -8,7 +8,7 @@ import fonts from './fonts'
 import shadows from './shadows'
 
 // Create a theme instance.
-export const defaultTheme = createMuiTheme({
+export const defaultTheme = createTheme({
   palette: {
     primary: {
       main: '#FF4A55',
