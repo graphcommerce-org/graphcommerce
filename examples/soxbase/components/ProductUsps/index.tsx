@@ -21,9 +21,7 @@ export default function ProductUsps(props: ProductUspsProps) {
         <UspListItem
           key={usp.title}
           text={usp.description && <RichText raw={usp.description?.raw} />}
-          icon={
-            usp.asset && usp.asset?.height && <Asset asset={usp.asset} width={usp?.asset?.height} />
-          }
+          icon={usp.asset && <Asset asset={usp.asset} />}
           size={size}
         />
       ))}
