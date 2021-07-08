@@ -1,5 +1,6 @@
 import { Fab, makeStyles, Theme } from '@material-ui/core'
 import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
+import clsx from 'clsx'
 import { m, MotionValue, useMotionValue, useTransform } from 'framer-motion'
 import PageLink from 'next/link'
 import React, { useEffect } from 'react'
@@ -42,11 +43,7 @@ const useStyles = makeStyles(
       gridAutoFlow: 'column',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: `
-        ${responsiveVal(6, 12)}
-        ${responsiveVal(18, 32)}
-        ${responsiveVal(6, 12)}
-      `,
+      padding: `4px ${responsiveVal(18, 28)} ${responsiveVal(4, 16)}`,
     },
     sheetHeaderActionsLongTitle: {
       gridTemplateColumns: 'max-content 3fr 1fr',
@@ -84,6 +81,11 @@ const useStyles = makeStyles(
       left: 0,
       right: 0,
       paddingTop: 20,
+    },
+    subLogo: {
+      [theme.breakpoints.up('md')]: {
+        display: 'none',
+      },
     },
   }),
   { name: 'ContentHeader' },
@@ -180,7 +182,7 @@ export default function ContentHeader(props: ContentHeaderProps) {
         {logo && (
           <m.div
             style={{ opacity: !scrolled ? opacityFadeOut : 0 }}
-            className={classes.innerContainerItem}
+            className={clsx(classes.subLogo, classes.innerContainerItem)}
           >
             {logo}
           </m.div>

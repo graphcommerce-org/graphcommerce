@@ -50,19 +50,14 @@ function FullPageShellBase(props: FullPageShellBaseProps) {
 
   return (
     <ShellBase name={name}>
-      {/* {router.pathname !== '/' && (
-        <m.div className={classes.backButtonRoot}>
-          <BackButton href={backFallbackHref ?? undefined}>{backFallbackTitle}</BackButton>
-        </m.div>
-      )} */}
-      {/* <m.header
+      <m.header
         className={clsx(classes.header)}
         layoutId='header'
         transition={{ type: 'tween' }}
         layout='position'
       >
         {header}
-      </m.header> */}
+      </m.header>
       {children}
     </ShellBase>
   )
