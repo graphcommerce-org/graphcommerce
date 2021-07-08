@@ -3,8 +3,10 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import PageContentHeader from '@reachdigital/next-ui/AppShell/PageContentHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import React, { useRef } from 'react'
-import ContentHeaderPrimaryAction from '../../../../packages/next-ui/AppShell/ContentHeaderPrimaryAction'
+import React from 'react'
+import SheetContent from '../../../../packages/next-ui/AppShell/SheetContent'
+import SheetContentTitle from '../../../../packages/next-ui/AppShell/SheetContentTitle'
+import SheetPrimaryAction from '../../../../packages/next-ui/AppShell/SheetPrimaryAction'
 import Logo from '../../components/AppShell/Logo'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
@@ -25,34 +27,29 @@ function MinimalAppShellTestIndex(props: Props) {
   const { url, pages } = props
   const classes = useStyles()
 
-  const contentHeaderRef = useRef<HTMLDivElement>(null)
-  const titleRef = useRef<HTMLDivElement>(null)
-
   return (
-    <>
+    <SheetContent>
       <PageContentHeader
-        primary={<ContentHeaderPrimaryAction href='/test/minimal-page-shell' text='Next' />}
+        primary={<SheetPrimaryAction href='/test/minimal-page-shell' text='Next' />}
         logo={<Logo />}
         title={
           <Typography variant='h4' component='span'>
             Minimal UI
           </Typography>
         }
-        ref={contentHeaderRef}
-        titleRef={titleRef}
       />
       <Container maxWidth='md' className={classes.longContent}>
-        <div ref={titleRef}>
+        <SheetContentTitle>
           <Box textAlign='center' mb={3}>
             <Typography variant='h2' component='h2'>
               Minimal UI
             </Typography>
           </Box>
-        </div>
+        </SheetContentTitle>
         Functioneert bijna het zelfde als de Bottom Sheet maar nu standaard een logo. Na scrollen
         wordt het logo vervangen (crossfade) door de content titel.
       </Container>
-    </>
+    </SheetContent>
   )
 }
 

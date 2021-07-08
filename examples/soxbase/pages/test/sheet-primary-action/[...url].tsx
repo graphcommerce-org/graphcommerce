@@ -2,11 +2,13 @@ import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { SheetVariant } from '@reachdigital/framer-sheet'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import ContentHeaderPrimaryAction from '@reachdigital/next-ui/AppShell/ContentHeaderPrimaryAction'
 import SheetContentHeader from '@reachdigital/next-ui/AppShell/SheetContentHeader'
+import SheetPrimaryAction from '@reachdigital/next-ui/AppShell/SheetPrimaryAction'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
-import React, { useRef } from 'react'
+import React from 'react'
+import SheetContent from '../../../../../packages/next-ui/AppShell/SheetContent'
+import SheetContentTitle from '../../../../../packages/next-ui/AppShell/SheetContentTitle'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../../lib/apolloClient'
@@ -27,37 +29,30 @@ function SheetCTAPage({ url, pages }: Props) {
   const title = `${url?.charAt(0).toUpperCase() + url?.slice(1)}`
   const classes = useStyles()
 
-  const contentHeaderRef = useRef<HTMLDivElement>(null)
-  const titleRef = useRef<HTMLDivElement>(null)
-
   return (
-    <div>
+    <SheetContent>
       <SheetContentHeader
-        primary={
-          <ContentHeaderPrimaryAction href='/test/sheet-primary-action/navigated' text='Next' />
-        }
+        primary={<SheetPrimaryAction href='/test/sheet-primary-action/navigated' text='Next' />}
         title={
           <Typography variant='h4' component='span'>
             {title}
           </Typography>
         }
-        ref={contentHeaderRef}
-        titleRef={titleRef}
       />
-      <>
-        <div ref={titleRef}>
-          <Box textAlign='center' mb={3}>
-            <Typography variant='h2' component='h2'>
-              {title}
-            </Typography>
-          </Box>
-        </div>
-        <Container maxWidth='md' className={classes.highContent}>
-          Als een overlay een call to action heeft, staat deze rechtsboven en het kruisje wordt naar
-          links gedrukt.
-        </Container>
-      </>
-    </div>
+
+      <SheetContentTitle>
+        <Box textAlign='center' mb={3}>
+          <Typography variant='h2' component='h2'>
+            {title}
+          </Typography>
+        </Box>
+      </SheetContentTitle>
+
+      <Container maxWidth='md' className={classes.highContent}>
+        Als een overlay een call to action heeft, staat deze rechtsboven en het kruisje wordt naar
+        links gedrukt.
+      </Container>
+    </SheetContent>
   )
 }
 

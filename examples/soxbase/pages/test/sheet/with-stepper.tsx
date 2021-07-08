@@ -1,10 +1,12 @@
 import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
+import SheetContent from '@reachdigital/next-ui/AppShell/SheetContent'
 import SheetContentHeader from '@reachdigital/next-ui/AppShell/SheetContentHeader'
+import SheetContentTitle from '@reachdigital/next-ui/AppShell/SheetContentTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import React, { useRef } from 'react'
-import ContentHeaderPrimaryAction from '../../../../../packages/next-ui/AppShell/ContentHeaderPrimaryAction'
+import React from 'react'
+import SheetPrimaryAction from '../../../../../packages/next-ui/AppShell/SheetPrimaryAction'
 import Stepper from '../../../../../packages/next-ui/Stepper/Stepper'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
@@ -24,37 +26,30 @@ const useStyles = makeStyles((theme: Theme) => ({
 function BottomSheetWithStepper({ url, pages }: Props) {
   const classes = useStyles()
 
-  // TODO: create a context for getting/setting contentHeaderRef & titleRef
-  const contentHeaderRef = useRef<HTMLDivElement>(null)
-  const titleRef = useRef<HTMLDivElement>(null)
-
   return (
-    <div>
+    <SheetContent>
       <SheetContentHeader
-        primary={<ContentHeaderPrimaryAction href='/test/overlay/bottom/2' text='Next' />}
-        // logo={<Logo />}
+        primary={<SheetPrimaryAction href='/test/overlay/bottom/2' text='Next' />}
         title={
           <Typography variant='h4' component='span'>
             Bottom Sheet Stepper
           </Typography>
         }
-        ref={contentHeaderRef}
-        titleRef={titleRef}
         divider={<Stepper steps={3} currentStep={2} />}
       />
-      <>
-        <div ref={titleRef}>
-          <Box textAlign='center' mb={3}>
-            <Typography variant='h2' component='h2'>
-              Bottom Sheet Stepper
-            </Typography>
-          </Box>
-        </div>
-        <Container maxWidth='md' className={classes.longContent}>
-          De stepper vervangt de bottom border van de header welke je bij scrollen ziet.
-        </Container>
-      </>
-    </div>
+
+      <SheetContentTitle>
+        <Box textAlign='center' mb={3}>
+          <Typography variant='h2' component='h2'>
+            Bottom Sheet Stepper
+          </Typography>
+        </Box>
+      </SheetContentTitle>
+
+      <Container maxWidth='md' className={classes.longContent}>
+        De stepper vervangt de bottom border van de header welke je bij scrollen ziet.
+      </Container>
+    </SheetContent>
   )
 }
 

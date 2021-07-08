@@ -2,12 +2,14 @@ import { Box, Container, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { SheetVariant } from '@reachdigital/framer-sheet'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import ContentHeaderPrimaryAction from '@reachdigital/next-ui/AppShell/ContentHeaderPrimaryAction'
 import SheetContentHeader from '@reachdigital/next-ui/AppShell/SheetContentHeader'
+import SheetPrimaryAction from '@reachdigital/next-ui/AppShell/SheetPrimaryAction'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
-import React, { useRef } from 'react'
+import React from 'react'
+import SheetContent from '../../../../../packages/next-ui/AppShell/SheetContent'
+import SheetContentTitle from '../../../../../packages/next-ui/AppShell/SheetContentTitle'
 import Button from '../../../../../packages/next-ui/Button'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
@@ -21,45 +23,39 @@ type GetPageStaticProps = GetStaticProps<SheetShellProps, Props, RouteProps>
 function BottomSheetWithPrimaryActionAndNavigatable({ url, pages }: Props) {
   const title = `${url?.charAt(0).toUpperCase() + url?.slice(1)}`
 
-  const contentHeaderRef = useRef<HTMLDivElement>(null)
-  const titleRef = useRef<HTMLDivElement>(null)
-
   return (
-    <div>
+    <SheetContent>
       <SheetContentHeader
         title={
           <Typography variant='h4' component='span'>
             {title}
           </Typography>
         }
-        ref={contentHeaderRef}
-        titleRef={titleRef}
       />
-      <>
-        <div ref={titleRef}>
-          <Box textAlign='center' mb={3}>
-            <Typography variant='h2' component='h2'>
-              {title}
-            </Typography>
-          </Box>
-        </div>
 
-        <ContentHeaderPrimaryAction
-          href='/test/sheet/bottom-sheet-navigated'
-          text='Bottom Sheet Navigated >'
-        />
+      <SheetContentTitle>
+        <Box textAlign='center' mb={3}>
+          <Typography variant='h2' component='h2'>
+            {title}
+          </Typography>
+        </Box>
+      </SheetContentTitle>
 
-        <PageLink href='/test/sheet-primary-action/default' passHref>
-          <Button variant='outlined' color='secondary'>
-            Bottom Sheet + Primary Action
-          </Button>
-        </PageLink>
+      <SheetPrimaryAction
+        href='/test/sheet/bottom-sheet-navigated'
+        text='Bottom Sheet Navigated >'
+      />
 
-        <Container maxWidth='md'>
-          Als er binnen een overlay genavigeerd is, krijgen we linksboven een terugknop te zien.
-        </Container>
-      </>
-    </div>
+      <PageLink href='/test/sheet-primary-action/default' passHref>
+        <Button variant='outlined' color='secondary'>
+          Bottom Sheet + Primary Action
+        </Button>
+      </PageLink>
+
+      <Container maxWidth='md'>
+        Als er binnen een overlay genavigeerd is, krijgen we linksboven een terugknop te zien.
+      </Container>
+    </SheetContent>
   )
 }
 

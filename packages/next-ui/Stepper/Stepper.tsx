@@ -9,15 +9,13 @@ const useStyles = makeStyles(
     root: {
       display: 'flex',
       justifyContent: 'space-between',
-      paddingLeft: responsiveVal(6, 10),
-      paddingRight: responsiveVal(6, 10),
     },
     step: {
       height: 2,
       background: theme.palette.divider,
       flex: 1,
-      marginRight: responsiveVal(6, 10),
-      marginLeft: responsiveVal(6, 10),
+      marginRight: responsiveVal(12, 16),
+      marginLeft: responsiveVal(12, 16),
     },
     current: {
       background: theme.palette.secondary.main,

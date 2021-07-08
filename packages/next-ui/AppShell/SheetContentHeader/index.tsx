@@ -3,13 +3,9 @@ import React from 'react'
 import useSheetContext from '../../../framer-sheet/hooks/useSheetContext'
 import ContentHeader, { ContentHeaderProps } from '../ContentHeader'
 
-const SheetContentHeader = React.forwardRef<HTMLDivElement, Omit<ContentHeaderProps, 'scrollY'>>(
-  (props, ref) => {
-    const { contentRef } = useSheetContext()
-    const { y } = useElementScroll(contentRef)
+export default function SheetContentHeader(props: Omit<ContentHeaderProps, 'scrollY'>) {
+  const { contentRef } = useSheetContext()
+  const { y } = useElementScroll(contentRef)
 
-    return <ContentHeader {...props} scrollY={y} ref={ref} />
-  },
-)
-
-export default SheetContentHeader
+  return <ContentHeader {...props} scrollY={y} />
+}

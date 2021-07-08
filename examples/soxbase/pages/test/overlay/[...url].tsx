@@ -2,13 +2,15 @@ import { Container, makeStyles, Theme } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { SheetVariant } from '@reachdigital/framer-sheet'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import ContentHeaderPrimaryAction from '@reachdigital/next-ui/AppShell/ContentHeaderPrimaryAction'
+import SheetPrimaryAction from '@reachdigital/next-ui/AppShell/SheetPrimaryAction'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { iconPersonAlt } from '@reachdigital/next-ui/icons'
 import { GetStaticPaths } from 'next'
-import React, { useRef } from 'react'
+import React from 'react'
+import SheetContent from '../../../../../packages/next-ui/AppShell/SheetContent'
 import SheetContentHeader from '../../../../../packages/next-ui/AppShell/SheetContentHeader'
+import SheetContentTitle from '../../../../../packages/next-ui/AppShell/SheetContentTitle'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../../lib/apolloClient'
@@ -29,14 +31,10 @@ function AppShellTextOverlay({ url, pages }: Props) {
   const title = `Overlay ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
   const classes = useStyles()
 
-  // TODO: create a context for getting/setting contentHeaderRef & titleRef
-  const contentHeaderRef = useRef<HTMLDivElement>(null)
-  const titleRef = useRef<HTMLDivElement>(null)
-
   return (
-    <div>
+    <SheetContent>
       <SheetContentHeader
-        primary={<ContentHeaderPrimaryAction href='/test/overlay/bottom/2' text='Next' />}
+        primary={<SheetPrimaryAction href='/test/overlay/bottom/2' text='Next' />}
         title={
           <IconHeader
             src={iconPersonAlt}
@@ -49,18 +47,16 @@ function AppShellTextOverlay({ url, pages }: Props) {
             noMargin
           />
         }
-        titleRef={titleRef}
-        ref={contentHeaderRef}
       />
-      <>
-        <div ref={titleRef}>
-          <IconHeader src={iconPersonAlt} title={title} alt={title} size='large' />
-        </div>
-        <Container maxWidth='md'>
-          <p className={classes.hoi}>Content here</p>
-        </Container>
-      </>
-    </div>
+
+      <SheetContentTitle>
+        <IconHeader src={iconPersonAlt} title={title} alt={title} size='large' />
+      </SheetContentTitle>
+
+      <Container maxWidth='md'>
+        <p className={classes.hoi}>Content here</p>
+      </Container>
+    </SheetContent>
   )
 }
 

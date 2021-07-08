@@ -1,8 +1,9 @@
 import { Container, makeStyles, Theme } from '@material-ui/core'
-import { MotionValue, m } from 'framer-motion'
-import React from 'react'
+import { useMotionValue } from 'framer-motion'
+import React, { useEffect } from 'react'
 import { useMotionValueValue } from '../../../framer-utils'
 import { UseStyles } from '../../Styles'
+import useContentHeaderContext from '../ContentHeader/useContentHeaderContext'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -17,7 +18,6 @@ const useStyles = makeStyles(
 
 type SheetBillboardBaseProps = {
   children: React.ReactNode
-  offsetTop: MotionValue<number>
 }
 
 type SheetBillboardProps = SheetBillboardBaseProps & UseStyles<typeof useStyles>
@@ -28,8 +28,20 @@ type SheetBillboardProps = SheetBillboardBaseProps & UseStyles<typeof useStyles>
  - determines top offset based on header height dynamically
 */
 export default function SheetBillboard(props: SheetBillboardProps) {
-  const { children, offsetTop } = props
+  const { children } = props
   const classes = useStyles(props)
+
+  const { contentHeaderRef } = useContentHeaderContext()
+  const offsetTop = useMotionValue<number>(0)
+
+  useEffect(() => {
+    if (!contentHeaderRef?.current) return () => {}
+
+    const ro = new ResizeObserver(([entry]) => offsetTop.set(entry.contentRect.height))
+
+    ro.observe(contentHeaderRef.current)
+    return () => ro.disconnect()
+  }, [contentHeaderRef, offsetTop])
 
   const top = useMotionValueValue(offsetTop, (v) => v)
 

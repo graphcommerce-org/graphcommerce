@@ -5,9 +5,8 @@ import { StoreConfigDocument } from '@reachdigital/magento-store'
 import PageContentHeader from '@reachdigital/next-ui/AppShell/PageContentHeader'
 import SheetBillboard from '@reachdigital/next-ui/AppShell/SheetBillboard'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { useMotionValue } from 'framer-motion'
 import { GetStaticPaths } from 'next'
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import { ProductListParamsProvider } from '../../../../../packages/magento-category'
 import {
   ProductListFilters,
@@ -25,7 +24,9 @@ import {
 } from '../../../../../packages/magento-product/ProductListItems/filteredProductList'
 import { getFilterTypes } from '../../../../../packages/magento-product/ProductListItems/getFilterTypes'
 import { SearchDocument, SearchForm, SearchQuery } from '../../../../../packages/magento-search'
-import ContentHeaderPrimaryAction from '../../../../../packages/next-ui/AppShell/ContentHeaderPrimaryAction'
+import SheetContent from '../../../../../packages/next-ui/AppShell/SheetContent'
+import SheetContentTitle from '../../../../../packages/next-ui/AppShell/SheetContentTitle'
+import SheetPrimaryAction from '../../../../../packages/next-ui/AppShell/SheetPrimaryAction'
 import Logo from '../../../components/AppShell/Logo'
 import MinimalPageShell, {
   MinimalPageShellProps,
@@ -50,56 +51,42 @@ function MinimalAppShellSubheader(props: Props) {
   const { params, products, filters, filterTypes } = props
   const classes = useStyles()
 
-  // TODO: create a context for getting/setting contentHeaderRef & titleRef
-  const contentHeaderRef = useRef<HTMLDivElement>(null)
-  const titleRef = useRef<HTMLDivElement>(null)
-
-  const stickyTopPosition = useMotionValue<number>(0)
-  useEffect(() => {
-    if (!contentHeaderRef?.current) return () => {}
-
-    const ro = new ResizeObserver(([entry]) => stickyTopPosition.set(entry.contentRect.height))
-
-    ro.observe(contentHeaderRef.current)
-    return () => ro.disconnect()
-  }, [stickyTopPosition, contentHeaderRef])
-
   return (
-    <ProductListParamsProvider value={params}>
-      <PageContentHeader
-        primary={<ContentHeaderPrimaryAction href='/test/minimal-page-shell' text='Next' />}
-        logo={<Logo />}
-        title={
-          <Typography variant='h4' component='span'>
-            Minimal UI
-          </Typography>
-        }
-        subHeader={
-          <Container maxWidth='sm'>
-            <SearchForm urlHandle='test/minimal-page-shell-subheader' />
-          </Container>
-        }
-        scrolled
-        titleRef={titleRef}
-        ref={contentHeaderRef}
-      />
-      <Container maxWidth='md' className={classes.longContent}>
-        <div ref={titleRef}>
-          <Box textAlign='center' mb={3}>
-            <Typography variant='h2' component='h2'>
+    <SheetContent>
+      <ProductListParamsProvider value={params}>
+        <PageContentHeader
+          primary={<SheetPrimaryAction href='/test/minimal-page-shell' text='Next' />}
+          logo={<Logo />}
+          title={
+            <Typography variant='h4' component='span'>
               Minimal UI
             </Typography>
-          </Box>
-        </div>
+          }
+          subHeader={
+            <Container maxWidth='sm'>
+              <SearchForm urlHandle='test/minimal-page-shell-subheader' />
+            </Container>
+          }
+          scrolled
+        />
+        <Container maxWidth='md' className={classes.longContent}>
+          <SheetContentTitle>
+            <Box textAlign='center' mb={3}>
+              <Typography variant='h2' component='h2'>
+                Minimal UI
+              </Typography>
+            </Box>
+          </SheetContentTitle>
 
-        <SheetBillboard offsetTop={stickyTopPosition}>
-          <ProductListFiltersContainer>
-            <ProductListSort sort_fields={products?.sort_fields} />
-            <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-          </ProductListFiltersContainer>
-        </SheetBillboard>
-      </Container>
-    </ProductListParamsProvider>
+          <SheetBillboard>
+            <ProductListFiltersContainer>
+              <ProductListSort sort_fields={products?.sort_fields} />
+              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
+            </ProductListFiltersContainer>
+          </SheetBillboard>
+        </Container>
+      </ProductListParamsProvider>
+    </SheetContent>
   )
 }
 

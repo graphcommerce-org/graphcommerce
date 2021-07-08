@@ -3,7 +3,9 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import SheetContentHeader from '@reachdigital/next-ui/AppShell/SheetContentHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import React, { useRef } from 'react'
+import React from 'react'
+import SheetContent from '../../../../../packages/next-ui/AppShell/SheetContent'
+import SheetContentTitle from '../../../../../packages/next-ui/AppShell/SheetContentTitle'
 import IconHeader from '../../../../../packages/next-ui/IconHeader'
 import { iconPersonAlt } from '../../../../../packages/next-ui/icons'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
@@ -25,11 +27,8 @@ function BottomSheetWithIconHeader({ url, pages }: Props) {
   const title = `Icon Header mega lnage title`
   const classes = useStyles()
 
-  const contentHeaderRef = useRef<HTMLDivElement>(null)
-  const titleRef = useRef<HTMLDivElement>(null)
-
   return (
-    <div>
+    <SheetContent>
       <SheetContentHeader
         title={
           <IconHeader
@@ -44,20 +43,17 @@ function BottomSheetWithIconHeader({ url, pages }: Props) {
             ellipsis
           />
         }
-        ref={contentHeaderRef}
-        titleRef={titleRef}
       />
-      <>
-        <Container maxWidth='md' className={classes.longContent}>
-          <div ref={titleRef}>
-            <Box textAlign='center' mb={3}>
-              <IconHeader src={iconPersonAlt} title={title} alt={title} size='medium' />
-            </Box>
-          </div>
-          Als een titel een icon heeft en wordt gescrollt dan fade deze ook in in de header
-        </Container>
-      </>
-    </div>
+
+      <Container maxWidth='md' className={classes.longContent}>
+        <SheetContentTitle>
+          <Box textAlign='center' mb={3}>
+            <IconHeader src={iconPersonAlt} title={title} alt={title} size='medium' />
+          </Box>
+        </SheetContentTitle>
+        Als een titel een icon heeft en wordt gescrollt dan fade deze ook in in de header
+      </Container>
+    </SheetContent>
   )
 }
 

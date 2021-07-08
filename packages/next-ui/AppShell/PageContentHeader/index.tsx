@@ -12,11 +12,9 @@ const useStyles = makeStyles(() => ({
 
 type PageContentHeaderProps = Omit<ContentHeaderProps, 'scrollY'> & UseStyles<typeof useStyles>
 
-const PageContentHeader = React.forwardRef<HTMLDivElement, PageContentHeaderProps>((props, ref) => {
+export default function PageContentHeader(props: PageContentHeaderProps) {
   const { scrollY } = useViewportScroll()
   const classes = useStyles(props)
 
-  return <ContentHeader {...props} classes={classes} scrollY={scrollY} noClose ref={ref} />
-})
-
-export default PageContentHeader
+  return <ContentHeader {...props} classes={classes} scrollY={scrollY} noClose />
+}
