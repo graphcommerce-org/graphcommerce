@@ -3,9 +3,8 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import PageContentHeader from '@reachdigital/next-ui/AppShell/PageContentHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import ContentHeaderPrimaryAction from '../../../../packages/next-ui/AppShell/ContentHeaderPrimaryAction'
-import ContentHeaderStepper from '../../../../packages/next-ui/AppShell/ContentHeaderStepper'
 import Logo from '../../components/AppShell/Logo'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
@@ -26,20 +25,8 @@ function MinimalAppShellTestIndex(props: Props) {
   const { url, pages } = props
   const classes = useStyles()
 
-  // TODO: something like useContentHeaderTitleOffset() hook or something more abstract like 'useElementOffset()' hook?
-  const titleRefInternal = useRef<HTMLDivElement>()
-  const [titleRef, setTitleRef] = useState<React.MutableRefObject<HTMLDivElement | undefined>>()
-  const titleRefCallback: React.RefCallback<HTMLDivElement> = (node) => {
-    titleRefInternal.current = node ?? undefined
-    setTitleRef(titleRefInternal)
-  }
-  const [animateStart, setAnimateStart] = useState<number | undefined>(undefined)
-
-  useEffect(() => {
-    setAnimateStart(
-      ((titleRef?.current?.offsetTop ?? 0) + (titleRef?.current?.clientHeight ?? 0)) * 0.5,
-    )
-  }, [titleRef])
+  const contentHeaderRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLDivElement>(null)
 
   return (
     <>
@@ -51,11 +38,11 @@ function MinimalAppShellTestIndex(props: Props) {
             Minimal UI
           </Typography>
         }
-        animateStart={animateStart}
-        divider={<ContentHeaderStepper steps={3} currentStep={1} />}
+        ref={contentHeaderRef}
+        titleRef={titleRef}
       />
       <Container maxWidth='md' className={classes.longContent}>
-        <div ref={titleRefCallback}>
+        <div ref={titleRef}>
           <Box textAlign='center' mb={3}>
             <Typography variant='h2' component='h2'>
               Minimal UI

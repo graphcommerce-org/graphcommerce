@@ -6,7 +6,7 @@ import ContentHeaderPrimaryAction from '@reachdigital/next-ui/AppShell/ContentHe
 import SheetContentHeader from '@reachdigital/next-ui/AppShell/SheetContentHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../../lib/apolloClient'
@@ -27,21 +27,8 @@ function SheetCTAPage({ url, pages }: Props) {
   const title = `${url?.charAt(0).toUpperCase() + url?.slice(1)}`
   const classes = useStyles()
 
-  // TODO: in sheet context as 'sheetTitle' ??
-  // or: useContentHeaderAnimation() hook?
-  const titleRefInternal = useRef<HTMLDivElement>()
-  const [titleRef, setTitleRef] = useState<React.MutableRefObject<HTMLDivElement | undefined>>()
-  const titleRefCallback: React.RefCallback<HTMLDivElement> = (node) => {
-    titleRefInternal.current = node ?? undefined
-    setTitleRef(titleRefInternal)
-  }
-  const [animateStart, setAnimateStart] = useState<number | undefined>(undefined)
-
-  useEffect(() => {
-    setAnimateStart(
-      ((titleRef?.current?.offsetTop ?? 0) + (titleRef?.current?.clientHeight ?? 0)) * 0.5,
-    )
-  }, [titleRef])
+  const contentHeaderRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLDivElement>(null)
 
   return (
     <div>
@@ -49,32 +36,20 @@ function SheetCTAPage({ url, pages }: Props) {
         primary={
           <ContentHeaderPrimaryAction href='/test/sheet-primary-action/navigated' text='Next' />
         }
-        // logo={<Logo />}
         title={
           <Typography variant='h4' component='span'>
             {title}
           </Typography>
-          // <IconHeader
-          //   src={iconPersonAlt}
-          //   title={title}
-          //   alt={title}
-          //   size='medium'
-          //   iconSize={32}
-          //   iconSizeMobile={24}
-          //   stayInline
-          //   noMargin
-          // />
         }
-        animateStart={animateStart}
-        // divider={<ContentHeaderStepper steps={3} currentStep={1} />}
+        ref={contentHeaderRef}
+        titleRef={titleRef}
       />
       <>
-        <div ref={titleRefCallback}>
+        <div ref={titleRef}>
           <Box textAlign='center' mb={3}>
             <Typography variant='h2' component='h2'>
               {title}
             </Typography>
-            {/* <IconHeader src={iconPersonAlt} title={title} alt={title} size='large' /> */}
           </Box>
         </div>
         <Container maxWidth='md' className={classes.highContent}>

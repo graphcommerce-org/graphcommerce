@@ -10,11 +10,13 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-export default function PageContentHeader(
-  props: Omit<ContentHeaderProps, 'yPos'> & UseStyles<typeof useStyles>,
-) {
+type PageContentHeaderProps = Omit<ContentHeaderProps, 'scrollY'> & UseStyles<typeof useStyles>
+
+const PageContentHeader = React.forwardRef<HTMLDivElement, PageContentHeaderProps>((props, ref) => {
   const { scrollY } = useViewportScroll()
   const classes = useStyles(props)
 
-  return <ContentHeader {...props} classes={classes} yPos={scrollY} noClose />
-}
+  return <ContentHeader {...props} classes={classes} scrollY={scrollY} noClose ref={ref} />
+})
+
+export default PageContentHeader

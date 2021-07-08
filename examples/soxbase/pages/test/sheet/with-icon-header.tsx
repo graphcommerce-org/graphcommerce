@@ -1,12 +1,9 @@
 import { Box, Container, makeStyles, Theme } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import ContentHeader from '@reachdigital/next-ui/AppShell/ContentHeader'
 import SheetContentHeader from '@reachdigital/next-ui/AppShell/SheetContentHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import PageLink from 'next/link'
-import React, { useEffect, useRef, useState } from 'react'
-import Button from '../../../../../packages/next-ui/Button'
+import React, { useRef } from 'react'
 import IconHeader from '../../../../../packages/next-ui/IconHeader'
 import { iconPersonAlt } from '../../../../../packages/next-ui/icons'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
@@ -28,27 +25,12 @@ function BottomSheetWithIconHeader({ url, pages }: Props) {
   const title = `Icon Header mega lnage title`
   const classes = useStyles()
 
-  // TODO: in sheet context as 'sheetTitle' ??
-  // or: useContentHeaderAnimation() hook?
-  const titleRefInternal = useRef<HTMLDivElement>()
-  const [titleRef, setTitleRef] = useState<React.MutableRefObject<HTMLDivElement | undefined>>()
-  const titleRefCallback: React.RefCallback<HTMLDivElement> = (node) => {
-    titleRefInternal.current = node ?? undefined
-    setTitleRef(titleRefInternal)
-  }
-  const [animateStart, setAnimateStart] = useState<number | undefined>(undefined)
-
-  useEffect(() => {
-    setAnimateStart(
-      ((titleRef?.current?.offsetTop ?? 0) + (titleRef?.current?.clientHeight ?? 0)) * 0.5,
-    )
-  }, [titleRef])
+  const contentHeaderRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLDivElement>(null)
 
   return (
     <div>
       <SheetContentHeader
-        // primary={<ContentHeaderPrimaryAction href='/test/overlay/bottom/2' text='Next' />}
-        // logo={<Logo />}
         title={
           <IconHeader
             src={iconPersonAlt}
@@ -62,12 +44,12 @@ function BottomSheetWithIconHeader({ url, pages }: Props) {
             ellipsis
           />
         }
-        animateStart={animateStart}
-        // divider={<ContentHeaderStepper steps={3} currentStep={1} />}
+        ref={contentHeaderRef}
+        titleRef={titleRef}
       />
       <>
         <Container maxWidth='md' className={classes.longContent}>
-          <div ref={titleRefCallback}>
+          <div ref={titleRef}>
             <Box textAlign='center' mb={3}>
               <IconHeader src={iconPersonAlt} title={title} alt={title} size='medium' />
             </Box>

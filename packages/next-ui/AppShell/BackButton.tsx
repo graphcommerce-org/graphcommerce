@@ -12,7 +12,7 @@ const useStyles = makeStyles(
     root: {
       width: 'min-content',
       pointerEvents: 'all',
-      marginLeft: -6,
+      marginLeft: -14,
       zIndex: 2,
       [theme.breakpoints.down('sm')]: {
         height: 40,

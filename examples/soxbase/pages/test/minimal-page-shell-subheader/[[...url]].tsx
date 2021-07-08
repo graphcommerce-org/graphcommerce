@@ -3,8 +3,11 @@ import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import PageContentHeader from '@reachdigital/next-ui/AppShell/PageContentHeader'
+import SheetBillboard from '@reachdigital/next-ui/AppShell/SheetBillboard'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import React, { useEffect, useRef, useState } from 'react'
+import { useMotionValue } from 'framer-motion'
+import { GetStaticPaths } from 'next'
+import React, { useEffect, useRef } from 'react'
 import { ProductListParamsProvider } from '../../../../../packages/magento-category'
 import {
   ProductListFilters,
@@ -21,8 +24,7 @@ import {
   parseParams,
 } from '../../../../../packages/magento-product/ProductListItems/filteredProductList'
 import { getFilterTypes } from '../../../../../packages/magento-product/ProductListItems/getFilterTypes'
-import { SearchDocument, SearchQuery, SearchForm } from '../../../../../packages/magento-search'
-
+import { SearchDocument, SearchForm, SearchQuery } from '../../../../../packages/magento-search'
 import ContentHeaderPrimaryAction from '../../../../../packages/next-ui/AppShell/ContentHeaderPrimaryAction'
 import Logo from '../../../components/AppShell/Logo'
 import MinimalPageShell, {
@@ -34,12 +36,13 @@ import apolloClient from '../../../lib/apolloClient'
 type Props = DefaultPageQuery &
   SearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
 type RouteProps = { url: string[] }
+type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<MinimalPageShellProps, Props, RouteProps>
 
 // TODO: throw away. for testing only
 const useStyles = makeStyles((theme: Theme) => ({
   longContent: {
-    height: 800,
+    height: 2000,
   },
 }))
 
@@ -47,20 +50,19 @@ function MinimalAppShellSubheader(props: Props) {
   const { params, products, filters, filterTypes } = props
   const classes = useStyles()
 
-  // TODO: something like useContentHeaderTitleOffset() hook or something more abstract like 'useElementOffset()' hook?
-  const titleRefInternal = useRef<HTMLDivElement>()
-  const [titleRef, setTitleRef] = useState<React.MutableRefObject<HTMLDivElement | undefined>>()
-  const titleRefCallback: React.RefCallback<HTMLDivElement> = (node) => {
-    titleRefInternal.current = node ?? undefined
-    setTitleRef(titleRefInternal)
-  }
-  const [animateStart, setAnimateStart] = useState<number | undefined>(undefined)
+  // TODO: create a context for getting/setting contentHeaderRef & titleRef
+  const contentHeaderRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLDivElement>(null)
 
+  const stickyTopPosition = useMotionValue<number>(0)
   useEffect(() => {
-    setAnimateStart(
-      ((titleRef?.current?.offsetTop ?? 0) + (titleRef?.current?.clientHeight ?? 0)) * 0.5,
-    )
-  }, [titleRef])
+    if (!contentHeaderRef?.current) return () => {}
+
+    const ro = new ResizeObserver(([entry]) => stickyTopPosition.set(entry.contentRect.height))
+
+    ro.observe(contentHeaderRef.current)
+    return () => ro.disconnect()
+  }, [stickyTopPosition, contentHeaderRef])
 
   return (
     <ProductListParamsProvider value={params}>
@@ -72,28 +74,30 @@ function MinimalAppShellSubheader(props: Props) {
             Minimal UI
           </Typography>
         }
-        animateStart={animateStart}
-        // divider={<ContentHeaderStepper steps={3} currentStep={1} />}
-        subHeader={<SearchForm urlHandle='test/minimal-page-shell-subheader' />}
-        scrolled
-        billBoard={
-          <Container maxWidth={false}>
-            <ProductListFiltersContainer>
-              <ProductListSort sort_fields={products?.sort_fields} />
-              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-            </ProductListFiltersContainer>
+        subHeader={
+          <Container maxWidth='sm'>
+            <SearchForm urlHandle='test/minimal-page-shell-subheader' />
           </Container>
         }
+        scrolled
+        titleRef={titleRef}
+        ref={contentHeaderRef}
       />
       <Container maxWidth='md' className={classes.longContent}>
-        <div ref={titleRefCallback}>
+        <div ref={titleRef}>
           <Box textAlign='center' mb={3}>
             <Typography variant='h2' component='h2'>
               Minimal UI
             </Typography>
           </Box>
         </div>
-        Content here
+
+        <SheetBillboard offsetTop={stickyTopPosition}>
+          <ProductListFiltersContainer>
+            <ProductListSort sort_fields={products?.sort_fields} />
+            <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
+          </ProductListFiltersContainer>
+        </SheetBillboard>
       </Container>
     </ProductListParamsProvider>
   )

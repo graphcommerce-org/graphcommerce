@@ -9,14 +9,11 @@ const useStyles = makeStyles(
     root: {
       display: 'flex',
       justifyContent: 'space-between',
-      maxWidth: '60%',
-      margin: `${theme.spacings.sm} auto ${theme.spacings.md} auto`,
-      [theme.breakpoints.down('xs')]: {
-        maxWidth: '75%',
-      },
+      paddingLeft: responsiveVal(6, 10),
+      paddingRight: responsiveVal(6, 10),
     },
     step: {
-      height: responsiveVal(2, 4),
+      height: 2,
       background: theme.palette.divider,
       flex: 1,
       marginRight: responsiveVal(6, 10),

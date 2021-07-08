@@ -2,13 +2,13 @@ import { Container, makeStyles, Theme } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { SheetVariant } from '@reachdigital/framer-sheet'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import ContentHeader from '@reachdigital/next-ui/AppShell/ContentHeader'
 import ContentHeaderPrimaryAction from '@reachdigital/next-ui/AppShell/ContentHeaderPrimaryAction'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { iconPersonAlt } from '@reachdigital/next-ui/icons'
 import { GetStaticPaths } from 'next'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
+import SheetContentHeader from '../../../../../packages/next-ui/AppShell/SheetContentHeader'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../../lib/apolloClient'
@@ -29,27 +29,14 @@ function AppShellTextOverlay({ url, pages }: Props) {
   const title = `Overlay ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
   const classes = useStyles()
 
-  // TODO: in sheet context as 'sheetTitle' ??
-  // or: useContentHeaderAnimation() hook?
-  const titleRefInternal = useRef<HTMLDivElement>()
-  const [titleRef, setTitleRef] = useState<React.MutableRefObject<HTMLDivElement | undefined>>()
-  const titleRefCallback: React.RefCallback<HTMLDivElement> = (node) => {
-    titleRefInternal.current = node ?? undefined
-    setTitleRef(titleRefInternal)
-  }
-  const [animateStart, setAnimateStart] = useState<number | undefined>(undefined)
-
-  useEffect(() => {
-    setAnimateStart(
-      ((titleRef?.current?.offsetTop ?? 0) + (titleRef?.current?.clientHeight ?? 0)) * 0.5,
-    )
-  }, [titleRef])
+  // TODO: create a context for getting/setting contentHeaderRef & titleRef
+  const contentHeaderRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLDivElement>(null)
 
   return (
     <div>
-      <ContentHeader
+      <SheetContentHeader
         primary={<ContentHeaderPrimaryAction href='/test/overlay/bottom/2' text='Next' />}
-        // logo={<Logo />}
         title={
           <IconHeader
             src={iconPersonAlt}
@@ -62,11 +49,11 @@ function AppShellTextOverlay({ url, pages }: Props) {
             noMargin
           />
         }
-        animateStart={animateStart}
-        // divider={<ContentHeaderStepper steps={3} currentStep={1} />}
+        titleRef={titleRef}
+        ref={contentHeaderRef}
       />
       <>
-        <div ref={titleRefCallback}>
+        <div ref={titleRef}>
           <IconHeader src={iconPersonAlt} title={title} alt={title} size='large' />
         </div>
         <Container maxWidth='md'>

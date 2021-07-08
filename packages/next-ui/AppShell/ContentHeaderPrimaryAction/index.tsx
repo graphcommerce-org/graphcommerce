@@ -9,6 +9,8 @@ type ContentHeaderPrimaryActionProps = {
 
 const useStyles = makeStyles((theme: Theme) => ({
   button: {
+    minWidth: 'unset',
+    marginRight: -8,
     [theme.breakpoints.up('md')]: {
       background: theme.palette.secondary.main,
       color: theme.palette.secondary.contrastText,

@@ -25,52 +25,36 @@ function BottomSheetDefault({ url, pages }: Props) {
   const title = `Bottom Sheet`
   const classes = useStyles()
 
-  // TODO: in sheet context as 'sheetTitle' ??
-  // or: useContentHeaderAnimation() hook?
-  const titleRefInternal = useRef<HTMLDivElement>()
-  const [titleRef, setTitleRef] = useState<React.MutableRefObject<HTMLDivElement | undefined>>()
-  const titleRefCallback: React.RefCallback<HTMLDivElement> = (node) => {
-    titleRefInternal.current = node ?? undefined
-    setTitleRef(titleRefInternal)
-  }
-  const [animateStart, setAnimateStart] = useState<number | undefined>(undefined)
+  // TODO: create a context for getting/setting contentHeaderRef & titleRef
+  const contentHeaderRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLDivElement>(null)
+  //  const stickyTopPosition = useMotionValue<number>(0)
+  //  useEffect(() => {
+  //    if (!contentHeaderRef?.current) return () => {}
 
-  useEffect(() => {
-    setAnimateStart(
-      ((titleRef?.current?.offsetTop ?? 0) + (titleRef?.current?.clientHeight ?? 0)) * 0.5,
-    )
-  }, [titleRef])
+  //    const ro = new ResizeObserver(([entry]) => stickyTopPosition.set(entry.contentRect.height))
+
+  //    ro.observe(contentHeaderRef.current)
+  //    return () => ro.disconnect()
+  //  }, [stickyTopPosition, contentHeaderRef])
 
   return (
     <div>
       <SheetContentHeader
-        // primary={<ContentHeaderPrimaryAction href='/test/overlay/bottom/2' text='Next' />}
-        // logo={<Logo />}
         title={
           <Typography variant='h4' component='span'>
             {title}
           </Typography>
-          // <IconHeader
-          //   src={iconPersonAlt}
-          //   title={title}
-          //   alt={title}
-          //   size='medium'
-          //   iconSize={32}
-          //   iconSizeMobile={24}
-          //   stayInline
-          //   noMargin
-          // />
         }
-        animateStart={animateStart}
-        // divider={<ContentHeaderStepper steps={3} currentStep={1} />}
+        titleRef={titleRef}
+        ref={contentHeaderRef}
       />
       <>
-        <div ref={titleRefCallback}>
+        <div ref={titleRef}>
           <Box textAlign='center' mb={3}>
             <Typography variant='h2' component='h2'>
               {title}
             </Typography>
-            {/* <IconHeader src={iconPersonAlt} title={title} alt={title} size='large' /> */}
           </Box>
         </div>
         <Container maxWidth='md'>
