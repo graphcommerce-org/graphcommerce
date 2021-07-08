@@ -3,7 +3,6 @@
 import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
-import fonts from './fonts'
 import shadows from './shadows'
 
 // Create a theme instance.
