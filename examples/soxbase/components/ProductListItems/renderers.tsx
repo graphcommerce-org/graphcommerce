@@ -10,7 +10,7 @@ import { ProductListItemRenderer } from '@reachdigital/magento-product/ProductLi
 import React from 'react'
 
 const Subtitle = (props: TypographyProps) => (
-  <Typography component='span' variant='subtitle2' {...props} />
+  <Typography component='span' variant='subtitle2Old' {...props} />
 )
 
 const renderers: ProductListItemRenderer = {

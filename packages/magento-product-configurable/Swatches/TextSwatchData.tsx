@@ -24,7 +24,7 @@ export const useStyles = makeStyles(
     value: {
       gridArea: 'value',
       justifySelf: 'end',
-      ...theme.typography.caption,
+      ...theme.typography.captionOldOld,
       margin: 'auto 0',
     },
     delivery: {
@@ -51,7 +51,7 @@ export default function TextSwatchData(props: TextSwatchDataProps) {
           </div>
           <div className={classes.delivery}>
             {/* TODO: change to actual delivery data */}
-            <Typography variant='caption'>Next day delivery</Typography>
+            <Typography variant='captionOldOld'>Next day delivery</Typography>
           </div>
         </>
       ) : (

@@ -35,7 +35,7 @@ const useStyles = makeStyles(
     },
     label: {
       marginBottom: '-2px',
-      ...theme.typography.subtitle2,
+      ...theme.typography.subtitle2Old,
     },
     meta: {
       color: theme.palette.text.disabled,
