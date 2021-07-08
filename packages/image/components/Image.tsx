@@ -620,7 +620,15 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     return (
       <>
         {unoptimized ? (
-          <img ref={ref} {...imgProps} src={src} width={width} height={height} style={style} />
+          <img
+            ref={ref}
+            {...imgProps}
+            loading={loading}
+            src={src}
+            width={width}
+            height={height}
+            style={style}
+          />
         ) : (
           <picture>
             <source media='(-webkit-min-device-pixel-ratio: 2.5)' {...attributes3x} />
