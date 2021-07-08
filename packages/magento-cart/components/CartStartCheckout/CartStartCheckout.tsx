@@ -1,11 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import { Money } from '@reachdigital/magento-store'
-import {
-  NextButton as Button,
-  SvgImage,
-  iconChevronRight,
-  responsiveVal,
-} from '@reachdigital/next-ui'
+import { Button, SvgImage, iconChevronRight, responsiveVal } from '@reachdigital/next-ui'
 
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'

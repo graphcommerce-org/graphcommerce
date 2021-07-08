@@ -1,6 +1,6 @@
 import { FormControlLabel, Switch, TextField } from '@material-ui/core'
 import { graphqlErrorByCategory } from '@reachdigital/magento-graphql'
-import { NextButton as Button, FormActions, FormRow } from '@reachdigital/next-ui'
+import { Button, FormActions, FormRow } from '@reachdigital/next-ui'
 import { useFormGqlMutation, useFormPersist } from '@reachdigital/react-hook-form'
 import React from 'react'
 import ApolloCustomerErrorAlert from './ApolloCustomerError/ApolloCustomerErrorAlert'

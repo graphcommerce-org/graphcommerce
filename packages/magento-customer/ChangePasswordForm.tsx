@@ -1,6 +1,6 @@
 import { TextField } from '@material-ui/core'
 import {
-  NextButton as Button,
+  Button,
   Form,
   FormActions,
   FormRow,

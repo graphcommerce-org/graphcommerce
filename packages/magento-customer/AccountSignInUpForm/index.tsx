@@ -1,12 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { CircularProgress, Link, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
-import {
-  AnimatedRow,
-  NextButton as Button,
-  Form,
-  FormActions,
-  FormRow,
-} from '@reachdigital/next-ui'
+import { AnimatedRow, Button, Form, FormActions, FormRow } from '@reachdigital/next-ui'
 import { emailPattern, useFormPersist } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'

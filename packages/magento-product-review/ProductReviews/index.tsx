@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Chip, makeStyles, Theme, Typography } from '@material-ui/core'
 import {
-  NextButton as Button,
+  Button,
   Pagination,
   StarRatingField,
   responsiveVal,

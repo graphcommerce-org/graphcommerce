@@ -7,7 +7,7 @@ import {
   Typography,
 } from '@material-ui/core'
 import {
-  NextButton as Button,
+  Button,
   ButtonProps,
   UseStyles,
   responsiveVal,

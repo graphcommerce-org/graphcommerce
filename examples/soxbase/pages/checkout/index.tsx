@@ -7,7 +7,7 @@ import { ShippingAddressForm } from '@reachdigital/magento-cart-shipping-address
 import { ShippingMethodForm } from '@reachdigital/magento-cart-shipping-method'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
-  NextButton as Button,
+  Button,
   FormActions,
   FormHeader,
   IconHeader,

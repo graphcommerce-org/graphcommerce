@@ -1,7 +1,7 @@
 import { Container, Fab, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { ContentHeader, NextButton as Button, GetStaticProps } from '@reachdigital/next-ui'
+import { ContentHeader, Button, GetStaticProps } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import Link from 'next/link'
 import React, { useState } from 'react'

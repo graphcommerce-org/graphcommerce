@@ -1,5 +1,5 @@
 import { TextField } from '@material-ui/core'
-import { NextButton as Button, Form, FormActions, FormRow } from '@reachdigital/next-ui'
+import { Button, Form, FormActions, FormRow } from '@reachdigital/next-ui'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'

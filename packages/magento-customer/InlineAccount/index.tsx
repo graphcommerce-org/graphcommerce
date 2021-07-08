@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import { useCartQuery } from '@reachdigital/magento-cart'
-import { NextButton as Button, FormRow, UseStyles } from '@reachdigital/next-ui'
+import { Button, FormRow, UseStyles } from '@reachdigital/next-ui'
 import React, { useState } from 'react'
 import { CustomerTokenDocument } from '..'
 import { IsEmailAvailableDocument } from '../IsEmailAvailable.gql'

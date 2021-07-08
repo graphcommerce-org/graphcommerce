@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client'
 import { makeStyles, TextField } from '@material-ui/core'
 import { CountryRegionsDocument } from '@reachdigital/magento-store'
 import {
-  NextButton as Button,
+  Button,
   Form,
   FormActions,
   FormDivider,

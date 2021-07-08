@@ -7,7 +7,7 @@ import { ProductSidebarDelivery } from '@reachdigital/magento-product'
 import { Money } from '@reachdigital/magento-store'
 import {
   AnimatedRow,
-  NextButton as Button,
+  Button,
   MessageSnackbar,
   SvgImage,
   TextInputNumber,

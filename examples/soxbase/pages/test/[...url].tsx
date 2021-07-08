@@ -2,7 +2,7 @@ import { Container, Box } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import {
-  NextButton as Button,
+  Button,
   DebugSpacer,
   GetStaticProps,
   MessageSnackbar,

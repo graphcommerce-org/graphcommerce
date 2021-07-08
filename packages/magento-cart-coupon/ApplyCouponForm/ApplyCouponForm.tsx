@@ -1,6 +1,6 @@
 import { FormControl, makeStyles, TextField, Theme } from '@material-ui/core'
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
-import { NextButton as Button, Form, UseStyles } from '@reachdigital/next-ui'
+import { Button, Form, UseStyles } from '@reachdigital/next-ui'
 import React from 'react'
 import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
 

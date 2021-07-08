@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client'
 import { Box, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import {
-  NextButton as Button,
+  Button,
   Form,
   UseStyles,
   responsiveVal,

@@ -1,5 +1,5 @@
 import { makeStyles, TextField, Theme } from '@material-ui/core'
-import { NextButton as Button, Form } from '@reachdigital/next-ui'
+import { Button, Form } from '@reachdigital/next-ui'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'

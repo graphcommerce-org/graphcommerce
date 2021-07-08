@@ -1,7 +1,7 @@
 import {
   ApolloErrorFullPage,
   ApolloErrorAlertProps,
-  NextButton as Button,
+  Button,
   SvgImage,
   iconPersonAltBig,
 } from '@reachdigital/next-ui'

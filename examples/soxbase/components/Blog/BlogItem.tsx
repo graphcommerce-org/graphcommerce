@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Typography } from '@material-ui/core'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { NextBlogListItem } from '@reachdigital/next-ui'
+import { BlogListItem } from '@reachdigital/next-ui'
 import Asset from '../Asset'
 import { BlogItemFragment } from './BlogItem.gql'
 
@@ -14,7 +14,7 @@ export default function BlogItem(props: BlogItemProps) {
   const locale = config?.storeConfig?.locale?.replace('_', '-')
 
   return (
-    <NextBlogListItem
+    <BlogListItem
       asset={
         asset ? (
           <Asset asset={asset} sizes={{ 0: '100vw', 800: '800px' }} />

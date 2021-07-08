@@ -5,7 +5,7 @@ import { CustomerTokenDocument } from '@reachdigital/magento-customer'
 import { ProductSidebarDelivery } from '@reachdigital/magento-product'
 import { Money, MoneyProps } from '@reachdigital/magento-store'
 import {
-  NextButton as Button,
+  Button,
   ButtonProps,
   MessageSnackbar,
   SvgImage,

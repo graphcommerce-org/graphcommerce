@@ -23,11 +23,11 @@ export { default as useFabAnimation } from './AppShell/useFabAnimation'
 export { default as AspectRationContainer } from './AspectRatioContainer'
 
 export { default as BlogContent } from './Blog/BlogContent'
-export { default as NextBlogHeader } from './Blog/BlogHeader'
-export { default as NextBlogList } from './Blog/BlogList'
-export { default as NextBlogListItem } from './Blog/BlogListItem'
+export { default as BlogHeader } from './Blog/BlogHeader'
+export { default as BlogList } from './Blog/BlogList'
+export { default as BlogListItem } from './Blog/BlogListItem'
 
-export { default as NextButton } from './Button'
+export { default as Button } from './Button'
 export * from './Button'
 
 export { default as ButtonLink } from './ButtonLink'

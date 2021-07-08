@@ -1,5 +1,5 @@
 import { ApolloCartErrorAlert } from '@reachdigital/magento-cart'
-import { NextButton as Button, ButtonProps, FormRow } from '@reachdigital/next-ui'
+import { Button, ButtonProps, FormRow } from '@reachdigital/next-ui'
 import { ComposedSubmit } from '@reachdigital/react-hook-form'
 import React from 'react'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'

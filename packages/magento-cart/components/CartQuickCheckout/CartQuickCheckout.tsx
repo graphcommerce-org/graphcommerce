@@ -1,7 +1,7 @@
 import { Theme, makeStyles } from '@material-ui/core'
 import { Money } from '@reachdigital/magento-store'
 import {
-  NextButton as Button,
+  Button,
   responsiveVal,
   SvgImage,
   iconChevronRight,

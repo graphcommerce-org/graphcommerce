@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import {
-  NextButton as Button,
+  Button,
   FullPageMessage,
   SectionContainer,
   MessageSnackbar,
