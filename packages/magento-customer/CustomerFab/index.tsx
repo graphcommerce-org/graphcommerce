@@ -44,7 +44,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
           variant='dot'
           classes={{ colorError: classes.colorError }}
         >
-          {icon ?? <SvgImage src={iconPersonAlt} alt='Account' loading='eager' />}
+          {icon ?? <SvgImage src={iconPersonAlt} alt='Account' />}
         </StyledBadge>
       </Fab>
     </PageLink>

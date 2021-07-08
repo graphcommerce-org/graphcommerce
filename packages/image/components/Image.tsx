@@ -638,15 +638,39 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
         )}
         {loading === 'eager' && (
           <Head>
-            <link
-              key={`__nimg-2x-${attributes3x.srcSet}${attributes3x.sizes}`}
-              rel='preload'
-              as='image'
-              media='(-webkit-min-device-pixel-ratio: 2.5)'
-              // @ts-expect-error imagesrcset is not yet in the link element type
-              imagesrcset={attributes3x.srcSet}
-              imagesizes={sizes}
-            />
+            {unoptimized ? (
+              <link key={`__nimg-unoptimized-${src}`} rel='preload' as='image' href={src} />
+            ) : (
+              <>
+                <link
+                  key={`__nimg-3x-${attributes3x.srcSet}${attributes3x.sizes}`}
+                  rel='preload'
+                  as='image'
+                  media='(-webkit-min-device-pixel-ratio: 2.5)'
+                  // @ts-expect-error imagesrcset is not yet in the link element type
+                  imagesrcset={attributes3x.srcSet}
+                  imagesizes={attributes3x.sizes}
+                />
+                <link
+                  key={`__nimg-2x-${attributes2x.srcSet}${attributes2x.sizes}`}
+                  rel='preload'
+                  as='image'
+                  media='(-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 2.49)'
+                  // @ts-expect-error imagesrcset is not yet in the link element type
+                  imagesrcset={attributes2x.srcSet}
+                  imagesizes={attributes2x.sizes}
+                />
+                <link
+                  key={`__nimg-1x-${attributes1x.srcSet}${attributes1x.sizes}`}
+                  rel='preload'
+                  as='image'
+                  media='(-webkit-max-device-pixel-ratio: 1.49)'
+                  // @ts-expect-error imagesrcset is not yet in the link element type
+                  imagesrcset={attributes1x.srcSet}
+                  imagesizes={attributes1x.sizes}
+                />
+              </>
+            )}
           </Head>
         )}
       </>

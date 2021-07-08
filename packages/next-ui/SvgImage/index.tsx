@@ -39,7 +39,7 @@ const useStyles = makeStyles(
 )
 
 export default function SvgImage(props: SvgImageProps) {
-  const { src, size = 'medium', mobileSize, shade = 'default', ...pictureResponsiveProps } = props
+  const { src, size = 'medium', mobileSize, shade = 'default', ...imageProps } = props
 
   // if (isStaticImageData(src)) {
   //   console.log(src.height)
@@ -69,7 +69,7 @@ export default function SvgImage(props: SvgImageProps) {
         className={clsx(classes.root)}
         // height={24}
         // width={24}
-        {...pictureResponsiveProps}
+        {...imageProps}
       />
     </>
   )

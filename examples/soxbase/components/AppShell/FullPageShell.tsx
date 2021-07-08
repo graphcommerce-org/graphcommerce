@@ -92,7 +92,7 @@ function FullPageShell(props: FullPageShellProps) {
                 size='medium'
                 classes={{ root: classes.fab }}
               >
-                <SvgImage src={iconCustomerService} alt='Customer Service' loading='eager' />
+                <SvgImage src={iconCustomerService} alt='Customer Service' />
               </Fab>
             </PageLink>
 
