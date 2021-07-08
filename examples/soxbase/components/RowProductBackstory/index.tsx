@@ -20,7 +20,7 @@ export default function RowProductBackstory(props: RowProductBackstoryProps) {
 
   return (
     <ParagraphWithSidebarSlide
-      background={<Asset asset={asset} width={328} />}
+      background={<Asset asset={asset} />}
       slidingItems={<ProductListItems {...singleItem} />}
     >
       <RichTextParagraphStrongStroked {...copy} />

@@ -17,7 +17,7 @@ export default function BlogItem(props: BlogItemProps) {
     <NextBlogListItem
       asset={
         asset ? (
-          <Asset asset={asset} width={328} />
+          <Asset asset={asset} sizes={{ 0: '100vw', 800: '800px' }} />
         ) : (
           <Typography variant='body2'>No Image</Typography>
         )
