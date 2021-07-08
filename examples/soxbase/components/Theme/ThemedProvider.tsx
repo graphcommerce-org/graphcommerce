@@ -19,15 +19,6 @@ export const defaultTheme = createTheme({
       contrastText: '#000',
       mutedText: `rgba(0,0,0,0.4)`,
     },
-    // tertiary: {
-    //   main: '#2b153d',
-    //   light: '#463058',
-    //   '100': '#9f89b1',
-    //   '500': '#2a183e',
-    //   '600': '#2c153d',
-    //   contrastText: '#fff',
-    //   mutedText: `rgba(1,1,1,0.6)`,
-    // },
     background: {
       default: '#fff',
       highlight: '#f8f8f8',
@@ -54,7 +45,8 @@ export const defaultTheme = createTheme({
   },
   shadows,
   typography: {
-    fontFamily: ['Public Sans', 'sans-serif'].join(', '),
+    fontFamily:
+      '-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji',
     subtitle1: {
       fontSize: responsiveVal(12, 14),
       color: `rgba(0, 0, 0, 0.3)`,
@@ -74,33 +66,37 @@ export const defaultTheme = createTheme({
       lineHeight: 1.8,
     },
     h1: {
+      fontFamily: ['Public Sans', 'sans-serif'].join(', '),
       fontSize: responsiveVal(36, 74),
-      fontWeight: 600,
+      fontWeight: 700,
       letterSpacing: '-0.0375em',
       marginTop: '0.24em',
       marginBottom: '0.58em',
       lineHeight: 1.16,
     },
     h2: {
+      fontFamily: ['Public Sans', 'sans-serif'].join(', '),
       fontSize: responsiveVal(28, 48),
-      fontWeight: 600,
+      fontWeight: 700,
       letterSpacing: '-0.0375em',
       lineHeight: 1.42,
     },
     h3: {
+      fontFamily: ['Public Sans', 'sans-serif'].join(', '),
       fontSize: responsiveVal(18, 30),
       fontWeight: 500,
-      letterSpacing: '-0.0375em',
+      // letterSpacing: '-0.0375em',
       lineHeight: 1.55,
     },
     h4: {
+      fontFamily: ['Public Sans', 'sans-serif'].join(', '),
       fontSize: responsiveVal(18, 25),
       fontWeight: 500,
-      letterSpacing: '-0.0375em',
+      // letterSpacing: '-0.0375em',
     },
     h5: {
       fontSize: responsiveVal(14, 22),
-      fontWeight: 600,
+      fontWeight: 700,
       letterSpacing: '-0.0375em',
       lineHeight: 1.55,
     },
@@ -110,7 +106,7 @@ export const defaultTheme = createTheme({
       letterSpacing: '-0.0375em',
       lineHeight: 1.55,
     },
-    fontWeightBold: 600,
+    fontWeightBold: 700,
   },
   spacings: {
     xxs: responsiveVal(10, 16),
