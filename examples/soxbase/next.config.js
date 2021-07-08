@@ -46,6 +46,9 @@ const nextConfig = {
   },
   inlineImageLimit: false,
   productionBrowserSourceMaps: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 }
 
 module.exports = withBundleAnalyzer(withPWA(withYarn1Workspaces(nextConfig)))

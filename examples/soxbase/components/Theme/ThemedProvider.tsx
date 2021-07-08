@@ -1,3 +1,5 @@
+/// <reference types="@reachdigital/next-ui/types" />
+
 import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import Head from 'next/head'

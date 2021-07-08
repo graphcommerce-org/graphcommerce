@@ -7,6 +7,9 @@ const nextConfig = {
   onDemandEntries: {
     maxInactiveAge: 10 * 60 * 1000, // 10 minutes
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 }
 
 module.exports = withYarn1Workspaces(nextConfig)
