@@ -1,5 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import { Image } from '@reachdigital/image'
 import clsx from 'clsx'
 import React from 'react'
 import { OrderCardItemImageFragment } from './OrderCardItemImage.gql'
@@ -28,12 +28,11 @@ export default function OrderCardItemImage(props: OrderCardItemImageProps) {
   return (
     <>
       {thumbnail ? (
-        <PictureResponsiveNext
+        <Image
           alt={thumbnail?.label ?? ''}
           width={64}
           height={64}
           src={thumbnail?.url ?? ''}
-          type='image/jpeg'
           className={classes.image}
         />
       ) : (

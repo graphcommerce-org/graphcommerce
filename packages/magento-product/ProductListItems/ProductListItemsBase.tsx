@@ -13,12 +13,8 @@ export const useProductGridStyles = makeStyles(
   (theme: Theme) => ({
     productList: {
       display: 'grid',
-      gridColumnGap: theme.spacings.xxs,
-      gridRowGap: theme.spacings.sm,
-      [theme.breakpoints.up('md')]: {
-        gridColumnGap: theme.spacings.md,
-        gridRowGap: theme.spacings.lg,
-      },
+      gridColumnGap: theme.spacings.sm,
+      gridRowGap: theme.spacings.md,
       gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 360)}, 1fr))`,
     },
     productListsmall: {
@@ -51,7 +47,9 @@ export default function ProductListItemsBase(props: ProductItemsGridProps) {
             key={item.uid ?? ''}
             renderer={renderers}
             {...item}
-            imageProps={{ loading: loadingEager > idx ? 'eager' : 'lazy' }}
+            loading={loadingEager > idx ? 'eager' : 'lazy'}
+            sizes={{ 0: '50vw', 922: '30vw', 1500: '23vw', 1920: '428px' }}
+            noReport
           />
         ) : null,
       )}

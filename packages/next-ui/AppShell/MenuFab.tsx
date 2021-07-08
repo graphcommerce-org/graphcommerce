@@ -81,7 +81,7 @@ export default function MenuFab(props: MenuFabProps) {
         onClick={(event) => setOpenEl(event.currentTarget)}
         className={classes.menuFab}
       >
-        <SvgImage src={iconMenu} shade='inverted' alt='menu' size='small' />
+        <SvgImage src={iconMenu} shade='inverted' alt='menu' size='small' loading='eager' />
       </Fab>
 
       <Menu

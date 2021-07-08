@@ -77,7 +77,7 @@ export default function CouponAccordion(props: CouponAccordionProps) {
               )
             }
           >
-            <Typography variant='h6'>Discount code</Typography>
+            <Typography variant='h6'>Coupon code</Typography>
             {coupon && <RemoveCouponForm {...data.cart} />}
           </Button>
         </m.div>
@@ -87,7 +87,6 @@ export default function CouponAccordion(props: CouponAccordionProps) {
             <AnimatedRow key='discount-codes-form-wrap'>
               <m.div layout='position' className={classes.couponFormWrap}>
                 {!coupon && <ApplyCouponForm />}
-                {coupon && <i>Only one active coupon allowed</i>}
               </m.div>
             </AnimatedRow>
           )}

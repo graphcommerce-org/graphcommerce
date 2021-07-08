@@ -1,7 +1,7 @@
 import { Badge, makeStyles, Theme } from '@material-ui/core'
+import { Image } from '@reachdigital/image'
 import { useProductLink } from '@reachdigital/magento-product'
 import { Money } from '@reachdigital/magento-store'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
@@ -83,8 +83,6 @@ const useStyles = makeStyles(
     },
     pictureSpacing: {
       overflow: 'hidden',
-      width: '100%',
-      height: '100%',
       display: 'flex',
       position: 'relative',
       alignItems: 'center',
@@ -161,13 +159,12 @@ export default function CartItem(props: CartItemProps) {
         <PageLink href={productLink}>
           <a className={classes.productLink}>
             <div className={classes.pictureSpacing}>
-              {product?.thumbnail?.url && product.thumbnail.label && (
-                <PictureResponsiveNext
-                  alt={product.thumbnail.label ?? ''}
-                  width={104}
-                  height={86}
+              {product?.thumbnail?.url && (
+                <Image
                   src={product.thumbnail.url ?? ''}
-                  type='image/jpeg'
+                  layout='fill'
+                  alt={product.thumbnail.label ?? product.name ?? ''}
+                  sizes='104px'
                   className={classes.pictureResponsive}
                 />
               )}

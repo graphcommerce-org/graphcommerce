@@ -20,19 +20,20 @@
     "@reachdigital/typescript-config-pwa": "^0.1.0"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.19",
+    "@apollo/client": "^3.3.21",
     "@graphql-typed-document-node/core": "^3.1.0",
-    "@material-ui/core": "^4.11.4",
-    "@material-ui/lab": "^4.0.0-alpha.58",
+    "@material-ui/core": "^4.12.1",
+    "@material-ui/lab": "^4.0.0-alpha.60",
     "@reachdigital/graphql": "^0.1.0",
+    "@reachdigital/image": "^0.1.0",
     "@reachdigital/magento-cart": "^0.1.0",
     "@reachdigital/magento-store": "^0.1.0",
     "@reachdigital/next-ui": "^0.1.0",
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.17",
-    "next": "^10.2.3",
+    "next": "^11.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "type-fest": "^1.1.3"
+    "type-fest": "^1.2.1"
   }
 }
