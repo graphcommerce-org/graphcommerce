@@ -18,7 +18,7 @@ export const useStyles = makeStyles(
       gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 360)}, 1fr))`,
     },
     productListsmall: {
-      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
+      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 260)}, 1fr))`,
     },
   }),
   { name: 'ProductList' },
@@ -48,8 +48,12 @@ export default function ProductListItemsBase(props: ProductItemsGridProps) {
             renderer={renderers}
             {...item}
             loading={loadingEager > idx ? 'eager' : 'lazy'}
-            sizes={size === 'small' ? '360px' : '280px'}
-            dontReportWronglySizedImages
+            sizes={
+              size === 'small'
+                ? { 0: '100vw', 354: '50vw', 667: '30vw', 1255: '23vw', 1500: '337px' }
+                : { 0: '100vw', 367: '48vw', 994: '30vw', 1590: '23vw', 1920: '443px' }
+            }
+            noReport
           />
         ) : null,
       )}
