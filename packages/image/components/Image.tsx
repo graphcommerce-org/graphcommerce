@@ -26,6 +26,8 @@ if (typeof window === 'undefined') {
 
 export type { ImageLoaderProps, ImageLoader }
 
+const DEFAULT_SIZES: SizesRecord = { 0: '100vw', 1200: '50vw' }
+
 const VALID_LOADING_VALUES = ['lazy', 'eager', undefined] as const
 type LoadingValue = typeof VALID_LOADING_VALUES[number]
 
@@ -77,7 +79,6 @@ function getWidths(
   width: number | undefined,
   layout: LayoutValue,
   sizes = '',
-  scale: number,
 ): { widths: number[]; kind: 'w' | 'x' } {
   if ((sizes && layout === 'fill') || layout === 'responsive') {
     // Find all the "vw" percent sizes used in the sizes prop
@@ -92,25 +93,6 @@ function getWidths(
 
       return {
         widths: allSizes.filter((s) => s >= configDeviceSizes[0] * smallestRatio),
-        kind: 'w',
-      }
-    }
-
-    // Find all the "px" sizes used in the sizes prop
-    const pxWidthRe = /(^|\s)(1?\d+)px/g
-    const pxSizes: number[] = []
-    // eslint-disable-next-line no-cond-assign
-    for (let match: string[] | null; (match = pxWidthRe.exec(sizes)); match) {
-      pxSizes.push(parseInt(match?.[2], 10))
-    }
-
-    if (pxSizes.length) {
-      return {
-        widths: pxSizes.map((pxSize) => {
-          const scaled = allSizes.filter((s) => s * scale > pxSize)?.[0]
-          const dpr2 = allSizes.filter((s) => s > pxSize)?.[0]
-          return scale > 1 ? Math.max(scaled, dpr2) : Math.min(scaled, dpr2)
-        }),
         kind: 'w',
       }
     }
@@ -145,37 +127,29 @@ type GenImgAttrsData = {
   loader: ImageLoader
   width?: number
   quality?: number
-  sizes?: string
+  sizes: string
   scale: number
 }
 
-type GenImgAttrsResult = {
-  srcSet: string | undefined
-  sizes: string | undefined
-}
-
-function generateSourceAttrs({
+function generateSrcSet({
   src,
   layout,
   width,
-  quality = 44,
+  quality = 52,
   sizes,
   loader,
   scale,
-}: GenImgAttrsData): GenImgAttrsResult {
-  const { widths, kind } = getWidths(width, layout, sizes, scale)
+}: GenImgAttrsData): string {
+  const { widths, kind } = getWidths(width, layout, sizes)
 
-  return {
-    sizes: !sizes && kind === 'w' ? `50vw` : sizes,
-    srcSet: widths
-      .map(
-        (w, i) =>
-          `${loader({ src, quality, width: w })} ${
-            kind === 'w' ? Math.round(w * scale) : i + 1
-          }${kind}`,
-      )
-      .join(', '),
-  }
+  return widths
+    .map(
+      (w, i) =>
+        `${loader({ src, quality, width: w })} ${
+          kind === 'w' ? Math.round(w * scale) : i + 1
+        }${kind}`,
+    )
+    .join(', ')
 }
 
 function defaultImageLoader(loaderProps: ImageLoaderProps) {
@@ -188,38 +162,6 @@ function defaultImageLoader(loaderProps: ImageLoaderProps) {
       ', ',
     )}. Received: ${configLoader}`,
   )
-}
-
-// See https://stackoverflow.com/q/39777833/266535 for why we use this ref
-// handler instead of the img's onLoad attribute.
-function removePlaceholder(img: HTMLImageElement | null, placeholder: PlaceholderValue) {
-  if (placeholder === 'blur' && img) {
-    const handleLoad = () => {
-      if (!img.src.startsWith('data:')) {
-        const p = 'decode' in img ? img.decode() : Promise.resolve()
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        p.catch(() => {}).then(() => {
-          img.style.filter = 'none'
-          img.style.backgroundSize = 'none'
-          img.style.backgroundImage = 'none'
-        })
-      }
-    }
-    if (img.complete) {
-      // If the real image fails to load, this will still remove the placeholder.
-      // This is the desired behavior for now, and will be revisited when error
-      // handling is worked on for the image component itself.
-      handleLoad()
-    } else {
-      img.onload = handleLoad
-    }
-  }
-}
-
-/** Checks whether an image is currently in the viewport */
-function isInViewport(elem: HTMLImageElement): boolean {
-  const { top, right, bottom, left } = elem.getBoundingClientRect()
-  return bottom >= 0 && right >= 0 && top <= window.innerHeight && left <= window.innerWidth
 }
 
 type SizesString =
@@ -263,7 +205,7 @@ export type BaseImageProps = IntrisincImage & {
   loader?: ImageLoader
   quality?: number
   unoptimized?: boolean
-  noReport?: boolean
+  dontReportWronglySizedImages?: boolean
 
   /**
    * Possible values:
@@ -400,7 +342,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       loader = defaultImageLoader,
       placeholder = 'empty',
       blurDataURL,
-      noReport,
+      dontReportWronglySizedImages,
       ...imgProps
     },
     forwardedRef,
@@ -412,14 +354,11 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
         ? (`${width}px` as SizesString)
         : sizesIncomming
 
-    const sizes = generateSizesString(sizesOrig) ?? '50vw'
-
-    // If no responsive sizes are given, we're defaulting to 50vw on mobile
-    // const [sizes, setSizes] = useState(toSizesString(sizesOrig) ?? `50vw`)
+    const sizes = generateSizesString(sizesOrig) || generateSizesString(DEFAULT_SIZES)
 
     useEffect(() => {
       if (process.env.NODE_ENV === 'production') return () => {}
-      if (!ref.current || unoptimized || noReport) return () => {}
+      if (!ref.current || unoptimized || dontReportWronglySizedImages) return () => {}
 
       function getContainedSize(img: HTMLImageElement) {
         let ratio = img.naturalWidth / img.naturalHeight
@@ -438,34 +377,33 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
         const reportedSize = img.clientWidth
 
         let msg = ''
-        const [breakpoint, size] = sizesEntries(sizesOrig).find(([s]) =>
+        const sizesEntr = sizesOrig ? sizesEntries(sizesOrig) : sizesEntries(DEFAULT_SIZES)
+        const matched = sizesEntr.find(([s]) =>
           s === 0 ? true : window.matchMedia(`(min-width: ${s}px)`).matches,
-        ) ?? [0, '100vw']
+        )
 
-        if (size) {
-          const el = document.createElement('div')
-          el.setAttribute('style', `width: ${size}`)
-          document.body.appendChild(el)
-          const measuredWidth = el.getBoundingClientRect().width
-          el.remove()
-          ratio = measuredWidth ** 2 / reportedSize ** 2
-          msg += `Image has "sizes" property set, but size '${
-            breakpoint > 0 ? `min-width(${breakpoint}px) ` : ''
-          }${size}' is incorrect.`
-        } else {
-          msg += `Image has no "sizes" property set.`
-          ratio = (window.innerWidth * 0.5) ** 2 / reportedSize ** 2
-        }
+        const breakpoint = matched?.[0] ?? 0
+        const size = matched?.[1]
+
+        const el = document.createElement('div')
+        el.setAttribute('style', `width: ${size}`)
+        document.body.appendChild(el)
+        const measuredWidth = el.getBoundingClientRect().width
+        el.remove()
+        ratio = measuredWidth ** 2 / reportedSize ** 2
+        msg += `Image's "sizes" value '${
+          breakpoint > 0 ? `min-width(${breakpoint}px) ` : ''
+        }${size}' is incorrect.`
 
         const round = (nr: number) => Math.round(nr * 100) / 100
-        if (ratio > 2.5) {
+        if (ratio > 2) {
           console.warn(
             `[@reachdigital/image]: ${msg} Currently downloading an image that has ${round(
               ratio,
             )}x too many pixels`,
             img,
           )
-        } else if (1 / ratio > 2.5) {
+        } else if (1 / ratio > 2) {
           console.warn(
             `[@reachdigital/image]: ${msg} Currently downloading an image that has ${round(
               1 / ratio,
@@ -484,7 +422,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       ro.observe(ref.current)
 
       return () => ro.disconnect()
-    }, [layout, ref, unoptimized, sizesOrig, src, width, noReport])
+    }, [layout, ref, unoptimized, sizesOrig, src, width, dontReportWronglySizedImages])
 
     let staticSrc = ''
     if (isStaticImport(src)) {
@@ -576,41 +514,12 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       }
     }
 
-    loading ??= 'lazy'
-    if (src && src.startsWith('data:')) {
-      // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
-      unoptimized = true
-    }
+    // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
+    if (src && src.startsWith('data:')) unoptimized = true
 
-    const attributes3x = generateSourceAttrs({
-      src,
-      layout: layout as LayoutValue,
-      loader,
-      quality,
-      sizes,
-      width,
-      scale: 1.5,
-    })
-
-    const attributes2x = generateSourceAttrs({
-      src,
-      layout: layout as LayoutValue,
-      loader,
-      quality,
-      sizes,
-      width,
-      scale: 1,
-    })
-
-    const attributes1x = generateSourceAttrs({
-      src,
-      layout: layout as LayoutValue,
-      loader,
-      quality,
-      sizes,
-      width,
-      scale: 0.5,
-    })
+    const srcSet3x = generateSrcSet({ src, layout, loader, quality, sizes, width, scale: 1.5 })
+    const srcSet2x = generateSrcSet({ src, layout, loader, quality, sizes, width, scale: 1 })
+    const srcSet1x = generateSrcSet({ src, layout, loader, quality, sizes, width, scale: 0.5 })
 
     if (layout !== 'fixed' && !style) style = {}
     if (layout === 'responsive') style = { ...style, width: '100%', height: 'auto' }
@@ -623,7 +532,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
           <img
             ref={ref}
             {...imgProps}
-            loading={loading}
+            loading={loading ?? 'lazy'}
             src={src}
             width={width}
             height={height}
@@ -631,16 +540,21 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
           />
         ) : (
           <picture>
-            <source media='(-webkit-min-device-pixel-ratio: 2.5)' {...attributes3x} />
-            <source media='(-webkit-min-device-pixel-ratio: 1.5)' {...attributes2x} />
+            <source media='(-webkit-min-device-pixel-ratio: 2.5)' srcSet={srcSet3x} sizes={sizes} />
+            <source media='(-webkit-min-device-pixel-ratio: 1.5)' srcSet={srcSet2x} sizes={sizes} />
+            <source
+              media='(-webkit-max-device-pixel-ratio: 1.49)'
+              srcSet={srcSet1x}
+              sizes={sizes}
+            />
             <img
               ref={ref}
               {...imgProps}
-              {...attributes1x}
-              loading={loading}
+              loading={loading ?? 'lazy'}
               width={width}
               height={height}
               style={style}
+              sizes={sizes}
             />
           </picture>
         )}
@@ -651,31 +565,31 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
             ) : (
               <>
                 <link
-                  key={`__nimg-3x-${attributes3x.srcSet}${attributes3x.sizes}`}
+                  key={`img-${srcSet3x}${sizes}`}
                   rel='preload'
                   as='image'
                   media='(-webkit-min-device-pixel-ratio: 2.5)'
                   // @ts-expect-error imagesrcset is not yet in the link element type
-                  imagesrcset={attributes3x.srcSet}
-                  imagesizes={attributes3x.sizes}
+                  imagesrcset={srcSet3x}
+                  imagesizes={sizes}
                 />
                 <link
-                  key={`__nimg-2x-${attributes2x.srcSet}${attributes2x.sizes}`}
+                  key={`img-${srcSet2x}${sizes}`}
                   rel='preload'
                   as='image'
                   media='(-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 2.49)'
                   // @ts-expect-error imagesrcset is not yet in the link element type
-                  imagesrcset={attributes2x.srcSet}
-                  imagesizes={attributes2x.sizes}
+                  imagesrcset={srcSet2x}
+                  imagesizes={sizes}
                 />
                 <link
-                  key={`__nimg-1x-${attributes1x.srcSet}${attributes1x.sizes}`}
+                  key={`img-${srcSet1x}${sizes}`}
                   rel='preload'
                   as='image'
                   media='(-webkit-max-device-pixel-ratio: 1.49)'
                   // @ts-expect-error imagesrcset is not yet in the link element type
-                  imagesrcset={attributes1x.srcSet}
-                  imagesizes={attributes1x.sizes}
+                  imagesrcset={srcSet1x}
+                  imagesizes={sizes}
                 />
               </>
             )}

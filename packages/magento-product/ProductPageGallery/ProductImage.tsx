@@ -6,5 +6,5 @@ export default function ProductImage(props: ProductImageFragment) {
 
   if (!url) return null
 
-  return <Image src={url} width={328} height={328} alt={url} />
+  return <Image src={url} width={328} height={328} alt={url} dontReportWronglySizedImages />
 }
