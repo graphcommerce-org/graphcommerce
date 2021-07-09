@@ -1,12 +1,17 @@
-import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Box, Container, Fab, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import PageContentHeader from '@reachdigital/next-ui/AppShell/PageContentHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import PageLink from 'next/link'
 import React from 'react'
+import { CustomerFab } from '../../../../packages/magento-customer'
+import { SearchButton } from '../../../../packages/magento-search'
+import DesktopNavActions from '../../../../packages/next-ui/AppShell/DesktopNavActions'
 import SheetContent from '../../../../packages/next-ui/AppShell/SheetContent'
 import SheetContentTitle from '../../../../packages/next-ui/AppShell/SheetContentTitle'
-import SheetPrimaryAction from '../../../../packages/next-ui/AppShell/SheetPrimaryAction'
+import SvgImage from '../../../../packages/next-ui/SvgImage'
+import { iconCustomerService } from '../../../../packages/next-ui/icons'
 import FullPageShell from '../../components/AppShell/FullPageShell'
 import Logo from '../../components/AppShell/Logo'
 import { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
@@ -31,7 +36,9 @@ function FullAppShellTestIndex(props: Props) {
   return (
     <SheetContent>
       <PageContentHeader
-        // primary={<SheetPrimaryAction href='/test/minimal-page-shell' text='Next' />}
+        // primary={
+        // <SheetPrimaryAction href='/test/minimal-page-shell' text='Next' />
+        // }
         logo={<Logo />}
         title={
           <Typography variant='h4' component='span'>
@@ -47,8 +54,9 @@ function FullAppShellTestIndex(props: Props) {
             </Typography>
           </Box>
         </SheetContentTitle>
-        Functioneert bijna het zelfde als de Bottom Sheet maar nu standaard een logo. Na scrollen
-        wordt het logo vervangen (crossfade) door de content titel.
+        When life gives you lemons, you want to wear bananas. That’s how we roll. And no matter if
+        you choose those bananas or rather go with kiwis, pears or apples - you’ll always feel fresh
+        and fruity.
       </Container>
     </SheetContent>
   )

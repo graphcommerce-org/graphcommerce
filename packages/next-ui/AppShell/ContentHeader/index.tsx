@@ -43,7 +43,10 @@ const useStyles = makeStyles(
       gridAutoFlow: 'column',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: `4px ${responsiveVal(18, 28)} ${responsiveVal(4, 16)}`,
+      padding: `${responsiveVal(4, 16)} ${responsiveVal(18, 28)} ${responsiveVal(4, 16)}`,
+      [theme.breakpoints.up('md')]: {
+        minHeight: 72,
+      },
     },
     sheetHeaderActionsLongTitle: {
       gridTemplateColumns: 'max-content 3fr 1fr',

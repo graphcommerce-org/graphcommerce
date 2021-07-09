@@ -1,9 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { usePageRouter } from '@reachdigital/framer-next-pages'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import { UseStyles } from '../Styles'
-import BackButton from './BackButton'
 import ShellBase, { PageLayoutBaseProps } from './ShellBase'
 
 const useStyles = makeStyles(
@@ -19,20 +17,20 @@ const useStyles = makeStyles(
       },
     },
     header: {
-      padding: `${theme.page.vertical} ${theme.page.horizontal} ${theme.spacings.sm}`,
-      top: 0,
-      display: 'flex',
-      pointerEvents: 'none',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '100%',
+      display: 'none',
       [theme.breakpoints.up('md')]: {
-        background: theme.palette.background.default,
-        justifyContent: 'unset',
+        padding: `${theme.page.vertical} ${theme.page.horizontal} ${theme.spacings.sm}`,
+        top: 0,
+        display: 'flex',
+        pointerEvents: 'none',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        paddingBottom: 0,
       },
     },
   }),
-  { name: 'FullPageUi' },
+  { name: 'FullPageShellBase' },
 )
 
 export type FullPageShellBaseProps = {
@@ -44,8 +42,7 @@ export type FullPageShellBaseProps = {
   PageLayoutBaseProps
 
 function FullPageShellBase(props: FullPageShellBaseProps) {
-  const { children, backFallbackHref, backFallbackTitle, header, name } = props
-  const router = usePageRouter()
+  const { children, header, name } = props
   const classes = useStyles(props)
 
   return (

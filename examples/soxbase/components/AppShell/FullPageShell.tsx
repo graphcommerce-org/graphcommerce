@@ -1,11 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Fab, makeStyles, Theme } from '@material-ui/core'
 import { CartFab } from '@reachdigital/magento-cart'
-import {
-  CustomerFab,
-  CustomerMenuFabItem,
-  CustomerTokenDocument,
-} from '@reachdigital/magento-customer'
+import { CustomerFab, CustomerMenuFabItem } from '@reachdigital/magento-customer'
 import { SearchButton } from '@reachdigital/magento-search'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import DesktopNavActions from '@reachdigital/next-ui/AppShell/DesktopNavActions'
@@ -16,12 +12,12 @@ import FullPageShellBase, {
 import { MenuProps } from '@reachdigital/next-ui/AppShell/Menu'
 import MenuFab from '@reachdigital/next-ui/AppShell/MenuFab'
 import MenuFabSecondaryItem from '@reachdigital/next-ui/AppShell/MenuFabSecondaryItem'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconCustomerService, iconHeart, iconStar } from '@reachdigital/next-ui/icons'
+import { iconCustomerService, iconHeart } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'
+import responsiveVal from '../../../../packages/next-ui/Styles/responsiveVal'
 import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
 import Footer from './Footer'
 import Logo from './Logo'
@@ -30,13 +26,15 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     navbarSearch: {
       marginRight: theme.spacings.xxs,
-      [theme.breakpoints.up('sm')]: {
-        minWidth: 130,
-      },
+      width: responsiveVal(64, 172),
     },
-    fab: {
-      width: responsiveVal(42, 56),
-      height: responsiveVal(42, 56),
+    desktopActionsSpacer: {
+      minWidth: 'unset',
+      display: 'none',
+      [theme.breakpoints.up('md')]: {
+        display: 'block',
+        minWidth: responsiveVal(224, 424),
+      },
     },
   }),
   { name: 'FullPageShell' },
@@ -79,25 +77,7 @@ function FullPageShell(props: FullPageShellProps) {
         <>
           <Logo />
           <DesktopNavBar {...menuProps} />
-
-          <DesktopNavActions>
-            {!router.pathname.startsWith('/search') && (
-              <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
-            )}
-
-            <PageLink href='/service' passHref>
-              <Fab
-                style={{ boxShadow: 'none' }}
-                aria-label='Account'
-                size='medium'
-                classes={{ root: classes.fab }}
-              >
-                <SvgImage src={iconCustomerService} alt='Customer Service' loading='eager' />
-              </Fab>
-            </PageLink>
-
-            <CustomerFab guestHref='/account/signin' authHref='/account' />
-          </DesktopNavActions>
+          <div className={classes.desktopActionsSpacer} />
         </>
       }
     >
@@ -119,7 +99,19 @@ function FullPageShell(props: FullPageShellProps) {
         </MenuFabSecondaryItem>
       </MenuFab>
 
-      <CartFab style={{ boxShadow: 'none' }} />
+      <DesktopNavActions>
+        {!router.pathname.startsWith('/search') && (
+          <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
+        )}
+
+        <PageLink href='/service' passHref>
+          <Fab style={{ boxShadow: 'none' }} aria-label='Account' size='medium'>
+            <SvgImage src={iconCustomerService} alt='Customer Service' loading='eager' />
+          </Fab>
+        </PageLink>
+        <CustomerFab guestHref='/account/signin' authHref='/account' />
+        <CartFab style={{ boxShadow: 'none' }} />
+      </DesktopNavActions>
 
       {children}
 

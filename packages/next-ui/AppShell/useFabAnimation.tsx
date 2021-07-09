@@ -8,7 +8,7 @@ export default function useFabAnimation() {
   const scrollTo = isMobile ? 0 : 130
 
   const opacity = useTransform(scrollY, [50, scrollTo], [0, 1])
-  const translateY = useTransform(scrollY, [0, scrollTo], [-48, 0])
+  const translateY = useTransform(scrollY, [0, scrollTo], [-48, 80])
   const opacity1 = useTransform(scrollY, [0, scrollTo], [0, 0.08])
   const opacity2 = useTransform(scrollY, [0, scrollTo], [0, 0.1])
   const filter = useMotionTemplate`

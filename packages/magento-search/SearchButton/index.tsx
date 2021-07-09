@@ -1,4 +1,4 @@
-import { makeStyles, TextField, Theme } from '@material-ui/core'
+import { ButtonProps, makeStyles, TextField, Theme } from '@material-ui/core'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconSearch } from '@reachdigital/next-ui/icons'
@@ -19,11 +19,11 @@ const useStyles = makeStyles(
   { name: 'SearchButton' },
 )
 
-export type SearchButtonProps = UseStyles<typeof useStyles> & { onClick?: () => void }
+export type SearchButtonProps = Pick<ButtonProps, 'onClick'> & UseStyles<typeof useStyles>
 
 export default function SearchButton(props: SearchButtonProps) {
   const { onClick } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   return (
     <TextField
