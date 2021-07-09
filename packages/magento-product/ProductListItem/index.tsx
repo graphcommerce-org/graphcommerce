@@ -134,7 +134,7 @@ type BaseProps = PropsWithChildren<
     imageOnly?: boolean
   } & OverlayAreas &
     ProductListItemFragment &
-    Pick<ImageProps, 'loading' | 'sizes' | 'noReport'>
+    Pick<ImageProps, 'loading' | 'sizes' | 'dontReportWronglySizedImages'>
 >
 
 export type ProductListItemProps = BaseProps & UseStyles<typeof useProductListItemStyles>
@@ -153,7 +153,7 @@ export default function ProductListItem(props: ProductListItemProps) {
     imageOnly = false,
     loading,
     sizes,
-    noReport,
+    dontReportWronglySizedImages,
   } = props
   const classes = useProductListItemStyles(props)
   const productLink = useProductLink(props)
@@ -168,7 +168,7 @@ export default function ProductListItem(props: ProductListItemProps) {
               <Image
                 layout='fill'
                 sizes={sizes}
-                noReport={noReport}
+                dontReportWronglySizedImages={dontReportWronglySizedImages}
                 src={small_image.url ?? ''}
                 alt={small_image.label ?? ''}
                 className={classes.image}

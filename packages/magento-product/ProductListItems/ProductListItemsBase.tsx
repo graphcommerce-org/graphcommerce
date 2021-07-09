@@ -9,7 +9,7 @@ import { ProductListItemFragment } from '../Api/ProductListItem.gql'
 import { ProductListItemProps } from '../ProductListItem'
 import { ProductListItemRenderer } from './renderer'
 
-export const useProductGridStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme: Theme) => ({
     productList: {
       display: 'grid',
@@ -18,7 +18,7 @@ export const useProductGridStyles = makeStyles(
       gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 360)}, 1fr))`,
     },
     productListsmall: {
-      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 260)}, 1fr))`,
+      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
     },
   }),
   { name: 'ProductList' },
@@ -29,12 +29,12 @@ export type ProductItemsGridProps = {
   renderers: ProductListItemRenderer
   loadingEager?: number
   size?: 'normal' | 'small'
-} & UseStyles<typeof useProductGridStyles> &
+} & UseStyles<typeof useStyles> &
   JSX.IntrinsicElements['div']
 
 export default function ProductListItemsBase(props: ProductItemsGridProps) {
   const { items, renderers, loadingEager = 0, size, ...divProps } = props
-  const classes = useProductGridStyles(props)
+  const classes = useStyles(props)
 
   return (
     <div
@@ -48,8 +48,8 @@ export default function ProductListItemsBase(props: ProductItemsGridProps) {
             renderer={renderers}
             {...item}
             loading={loadingEager > idx ? 'eager' : 'lazy'}
-            sizes={{ 0: '50vw', 922: '30vw', 1500: '23vw', 1920: '428px' }}
-            noReport
+            sizes={size === 'small' ? '360px' : '280px'}
+            dontReportWronglySizedImages
           />
         ) : null,
       )}

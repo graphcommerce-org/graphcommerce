@@ -2,7 +2,7 @@ import { Image, ImageProps } from '@reachdigital/image'
 import React from 'react'
 import { AssetFragment } from './Asset.gql'
 
-type ImageAsset = Pick<AssetFragment, 'url'> & {
+type ImageAsset = Pick<AssetFragment, 'url' | 'alt'> & {
   width: number
   height: number
 }
@@ -24,8 +24,8 @@ export default function Asset(props: AssetProps) {
         src={asset.url}
         height={asset.height}
         width={asset.width}
-        alt={asset.url}
-        sizes={sizes ?? `${asset.width}px`}
+        alt={asset.alt ?? undefined}
+        sizes={sizes}
       />
     )
   }

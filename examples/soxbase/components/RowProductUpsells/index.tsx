@@ -32,6 +32,7 @@ export default function RowProductUpsells(props: RowProductUpsellsProps) {
             key={item.uid ?? ''}
             renderer={renderers}
             classes={{ item: classes.item }}
+            sizes={responsiveVal(200, 400)}
             {...item}
           />
         ) : null,
