@@ -52,7 +52,7 @@ function TypographyOverview() {
         lacus. Sed sed enim et quam tincidunt sollicitudin. Curabitur eget dignissim lorem. Interdum
         et malesuada fames ac ante ipsum primis in faucibus. Integer maximus ex at placerat egestas.
         Vivamus vehicula nisl urna, nec congue nisl ultricies nec. Gebruik: Reguliere teksten,
-        Voorbeeld: Product specs, "How I track my package"-tekst
+        Voorbeeld: Product specs, &ldquo;How I track my package&rdquo;-tekst
       </Typography>
 
       <Typography variant='subtitle2' display='block'>

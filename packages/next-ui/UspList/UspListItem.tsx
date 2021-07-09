@@ -18,7 +18,7 @@ const useStyles = makeStyles(
     },
     smallText: {
       '& > p': {
-        fontSize: responsiveVal(12, 14),
+        ...theme.typography.body2,
         marginLeft: 5,
       },
     },

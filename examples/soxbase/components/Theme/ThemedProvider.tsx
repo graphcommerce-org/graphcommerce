@@ -48,22 +48,6 @@ export const defaultTheme = createTheme({
   typography: {
     fontFamily:
       '-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji',
-    // fontWeightBold: 600,
-    // subtitle1Old: {
-    //   fontSize: responsiveVal(12, 14),
-    //   color: `rgba(0, 0, 0, 0.3)`,
-    //   fontWeight: 500,
-    //   letterSpacing: 1,
-    //   textTransform: 'uppercase',
-    // },
-    // subtitle2Old: {
-    //   textTransform: 'uppercase',
-    //   fontSize: responsiveVal(11, 13),
-    //   fontWeight: 400,
-    //   whiteSpace: 'nowrap',
-    // },
-    // fontSize: 16,
-
     /**
      * `h1-h6` typography values refer to Headline type scale form the Material Design specifiction.
      * Although they are mapped by default to Heading elements they do not respresent them semantically
@@ -110,8 +94,8 @@ export const defaultTheme = createTheme({
     h3: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
       fontSize: responsiveVal(18, 30),
-      fontWeight: 500,
-      // letterSpacing: '-0.0375em',
+      fontWeight: 700,
+      letterSpacing: '-0.0375em',
       lineHeight: 1.55,
     },
     h4: {
@@ -137,7 +121,7 @@ export const defaultTheme = createTheme({
     },
     subtitle1: {
       fontSize: responsiveVal(17, 20),
-      // fontWeight: 500,
+      fontWeight: 600,
       // letterSpacing: '-0.0375em',
       lineHeight: 1.55,
     },
@@ -149,17 +133,23 @@ export const defaultTheme = createTheme({
     },
     subtitle2: {
       fontSize: responsiveVal(14, 16),
-      fontWeight: 400,
+      fontWeight: 600,
     },
     body2: {
       fontSize: responsiveVal(13, 15),
       lineHeight: 1.8,
     },
     caption: {
-      fontSize: 13,
+      // fontSize: 13,
     },
     button: {},
-    overline: {},
+    overline: {
+      fontSize: responsiveVal(12, 14),
+      color: `rgba(0, 0, 0, 0.3)`,
+      fontWeight: 500,
+      letterSpacing: 1,
+      textTransform: 'uppercase',
+    },
   },
   spacings: {
     xxs: responsiveVal(10, 16),

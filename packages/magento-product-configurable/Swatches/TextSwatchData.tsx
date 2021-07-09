@@ -19,12 +19,12 @@ export const useStyles = makeStyles(
     },
     storeLabel: {
       gridArea: 'label',
-      fontWeight: theme.typography.fontWeightMedium,
+      // fontWeight: theme.typography.fontWeightMedium,
     },
     value: {
       gridArea: 'value',
       justifySelf: 'end',
-      ...theme.typography.captionOldOld,
+      // ...theme.typography.body1,
       margin: 'auto 0',
     },
     delivery: {
@@ -45,14 +45,15 @@ export default function TextSwatchData(props: TextSwatchDataProps) {
     <div className={classes.root}>
       {size === 'large' ? (
         <>
-          <div className={classes.storeLabel}>{store_label}</div>
-          <div className={classes.value}>
+          <Typography className={classes.storeLabel} variant='subtitle2' component='div'>
+            {store_label}
+          </Typography>
+          <Typography className={classes.value} variant='body2' component='div'>
             <Money {...price} />
-          </div>
-          <div className={classes.delivery}>
-            {/* TODO: change to actual delivery data */}
-            <Typography variant='captionOldOld'>Next day delivery</Typography>
-          </div>
+          </Typography>
+          <Typography variant='body2' className={classes.delivery} component='div'>
+            Next day delivery
+          </Typography>
         </>
       ) : (
         <>{store_label}</>
