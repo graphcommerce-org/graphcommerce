@@ -1,5 +1,10 @@
 import { makeStyles } from '@material-ui/core'
-import { SheetDragIndicator, SheetDragIndicatorProps, styles } from '@reachdigital/framer-sheet'
+import {
+  SheetDragIndicator,
+  SheetDragIndicatorClassKeys,
+  SheetDragIndicatorProps,
+  styles,
+} from '@reachdigital/framer-sheet'
 import React from 'react'
 import responsiveVal from '../../Styles/responsiveVal'
 
@@ -27,10 +32,10 @@ const useStyles = makeStyles(
       borderRadius: 99,
       backgroundColor: '#ddd',
     },
-    indicatortop: { ...styles.indicatortop, width: 40, height: 4 },
-    indicatorbottom: { ...styles.indicatorbottom, width: 40, height: 4 },
-    indicatorleft: { ...styles.indicatorleft, width: 4, height: 40 },
-    indicatorright: { ...styles.indicatorright, width: 4, height: 40 },
+    indicatortop: { ...styles.indicatortop, width: responsiveVal(12, 40), height: 4 },
+    indicatorbottom: { ...styles.indicatorbottom, width: responsiveVal(12, 40), height: 4 },
+    indicatorleft: { ...styles.indicatorleft, width: 4, height: responsiveVal(12, 40) },
+    indicatorright: { ...styles.indicatorright, width: 4, height: responsiveVal(12, 40) },
   }),
   { name: 'SheetShellDragIndicator' },
 )
