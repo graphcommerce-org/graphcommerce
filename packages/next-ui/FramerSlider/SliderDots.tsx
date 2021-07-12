@@ -1,4 +1,5 @@
 import { Fab, makeStyles, Theme, useTheme } from '@material-ui/core'
+import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import { m } from 'framer-motion'
 import React from 'react'
 import { UseStyles } from '../Styles'

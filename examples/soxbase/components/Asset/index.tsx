@@ -1,40 +1,31 @@
-import { imageMimeTypes, ImageMimeTypes } from '@reachdigital/next-ui/PictureResponsive'
-import PictureResponsiveNext, {
-  PictureResponsiveNextProps,
-} from '@reachdigital/next-ui/PictureResponsiveNext'
+import { Image, ImageProps } from '@reachdigital/image'
 import React from 'react'
 import { AssetFragment } from './Asset.gql'
 
-type ImageAsset = Pick<AssetFragment, 'url'> & {
-  mimeType: ImageMimeTypes
+type ImageAsset = Pick<AssetFragment, 'url' | 'alt'> & {
   width: number
   height: number
 }
 
 function isImage(asset: AssetFragment): asset is ImageAsset {
-  return !!(
-    asset.width &&
-    asset.height &&
-    imageMimeTypes.includes(asset.mimeType as ImageMimeTypes)
-  )
+  return !!(asset.width && asset.height)
 }
 
 type AssetProps = {
   asset: AssetFragment
-} & Omit<PictureResponsiveNextProps, 'type' | 'alt' | 'src' | 'height' | 'ref'>
+} & Pick<ImageProps, 'sizes' | 'loading'>
 
 export default function Asset(props: AssetProps) {
-  const { asset, width, ...imgProps } = props
+  const { asset, sizes } = props
 
   if (isImage(asset)) {
     return (
-      <PictureResponsiveNext
-        type={asset.mimeType}
+      <Image
         src={asset.url}
-        height={Math.round((asset.height / asset.width) * width)}
-        width={width}
-        {...imgProps}
-        alt={asset.url}
+        height={asset.height}
+        width={asset.width}
+        alt={asset.alt ?? undefined}
+        sizes={sizes}
       />
     )
   }

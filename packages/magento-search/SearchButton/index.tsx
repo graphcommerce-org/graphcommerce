@@ -32,7 +32,7 @@ export default function SearchButton(props: SearchButtonProps) {
       classes={{ root: classes.root }}
       InputProps={{
         readOnly: true,
-        endAdornment: <SvgImage src={iconSearch} alt='Search' loading='eager' size='small' />,
+        endAdornment: <SvgImage src={iconSearch} alt='Search' size='small' />,
         classes: { root: classes.inputRoot },
       }}
       placeholder=''

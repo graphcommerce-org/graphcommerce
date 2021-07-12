@@ -1,5 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import { Image } from '@reachdigital/image'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import PageLink from 'next/link'
 import React from 'react'
@@ -36,12 +36,11 @@ export default function Logo(props: LogoProps) {
   return (
     <PageLink href='/' passHref>
       <a className={classes.link}>
-        <PictureResponsiveNext
+        <Image
+          layout='fixed'
           alt='logo'
-          width={209}
-          height={25}
           src={svgLogo}
-          type='image/svg+xml'
+          unoptimized
           loading='eager'
           className={classes.logo}
         />

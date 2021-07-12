@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import { Image } from '@reachdigital/image'
 import { Money } from '@reachdigital/magento-store'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import PageLink from 'next/link'
@@ -142,12 +142,11 @@ export default function OrderItem(props: OrderItemProps) {
           <a className={classes.productLink}>
             <div className={classes.pictureSpacing}>
               {thumbnail?.url && thumbnail?.label && (
-                <PictureResponsiveNext
+                <Image
                   alt={thumbnail?.label ?? ''}
                   width={104}
                   height={86}
                   src={thumbnail?.url ?? ''}
-                  type='image/jpeg'
                   className={classes.pictureResponsive}
                 />
               )}

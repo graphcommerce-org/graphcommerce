@@ -32,7 +32,7 @@ export default function RowProductSpecs(props: RowProductSpecsProps) {
   return (
     <Row className={classes.root}>
       <SectionContainer
-        label='Product specifications'
+        labelLeft='Product specifications'
         classes={{ sectionHeader: classes.sectionHeader }}
       >
         <ProductSpecs aggregations={aggregations} />

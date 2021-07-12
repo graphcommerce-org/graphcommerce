@@ -1,10 +1,13 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { CustomerDocument, UpdateCustomerEmailForm } from '@reachdigital/magento-customer'
+import {
+  ApolloCustomerErrorFullPage,
+  CustomerDocument,
+  UpdateCustomerEmailForm,
+} from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
-import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import { iconEmailOutline } from '@reachdigital/next-ui/icons'
@@ -15,13 +18,20 @@ import apolloClient from '../../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountContactPage() {
-  const { loading, data } = useQuery(CustomerDocument, {
+  const { loading, data, error } = useQuery(CustomerDocument, {
     ssr: false,
   })
   const customer = data?.customer
 
-  if (!loading && !customer)
-    return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
+  if (loading) return <></>
+  if (error)
+    return (
+      <ApolloCustomerErrorFullPage
+        error={error}
+        signInHref='/account/signin'
+        signUpHref='/account/signin'
+      />
+    )
 
   return (
     <NoSsr>
@@ -29,7 +39,7 @@ function AccountContactPage() {
         <PageMeta title='Contact' metaDescription='Contact information' metaRobots={['noindex']} />
 
         <IconHeader src={iconEmailOutline} title='Contact' alt='name' size='large' />
-        <SectionContainer label='Email'>
+        <SectionContainer labelLeft='Email'>
           {customer && <UpdateCustomerEmailForm email={customer.email ?? ''} />}
         </SectionContainer>
       </Container>

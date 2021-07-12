@@ -10,7 +10,6 @@ require('dotenv').config()
 
 const withYarn1Workspaces = require('@reachdigital/next-config').withYarn1Workspaces()
 
-const withImages = require('next-images')
 const withPWA = require('next-pwa')
 
 const obs = new PerformanceObserver((entryList) => {
@@ -23,9 +22,7 @@ obs.observe({ entryTypes: ['measure'] })
 
 /** @type {import('next/dist/next-server/server/config').NextConfig} */
 const nextConfig = {
-  future: {
-    webpack5: true,
-  },
+  webpack5: true,
   webpackStats: process.env.ANALYZE === 'true',
   rewrites() {
     return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
@@ -41,7 +38,7 @@ const nextConfig = {
   },
   images: {
     domains: (process.env.IMAGE_DOMAINS ?? '').split(',').map((s) => s.trim()),
-    imageSizes: [16, 32, 64, 128, 256, 384],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   i18n: {
     locales: Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES)),
@@ -49,6 +46,9 @@ const nextConfig = {
   },
   inlineImageLimit: false,
   productionBrowserSourceMaps: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 }
 
-module.exports = withBundleAnalyzer(withPWA(withImages(withYarn1Workspaces(nextConfig))))
+module.exports = withBundleAnalyzer(withPWA(withYarn1Workspaces(nextConfig)))

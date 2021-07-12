@@ -8,6 +8,7 @@ query ProductPage(
   ...MenuQueryFragment
   ...FooterQueryFragment
   ...UspsQueryFragment
+  ...ProductSidebarUsps
   ...ProductpagesContentQueryFragment
   ...ProductPageQueryFragment
 }

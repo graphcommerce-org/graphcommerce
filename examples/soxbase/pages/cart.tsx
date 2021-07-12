@@ -14,7 +14,6 @@ import { CartItem, CartItems } from '@reachdigital/magento-cart-items'
 import { ConfigurableCartItem } from '@reachdigital/magento-product-configurable'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import Stepper from '@reachdigital/next-ui/Stepper/Stepper'
 import { AnimatePresence } from 'framer-motion'
@@ -86,11 +85,7 @@ function CartPage() {
                   }}
                 />
                 <CouponAccordion key='couponform' />
-                <CartTotals
-                  key='totals'
-                  prices={data?.cart?.prices}
-                  shipping_addresses={data?.cart?.shipping_addresses ?? []}
-                />
+                <CartTotals containerMargin />
                 <ApolloCartErrorAlert error={error} />
                 <AnimatedRow key='checkout-button'>
                   <CartStartCheckout {...data?.cart} />

@@ -51,7 +51,7 @@ export default function SearchForm(props: SearchFormProps) {
 
   const endAdornment = !watch('search') ? (
     <IconButton size='small'>
-      <SvgImage src={iconSearch} alt='search' size='small' loading='eager' />
+      <SvgImage src={iconSearch} alt='search' size='small' />
     </IconButton>
   ) : (
     <>
@@ -61,7 +61,7 @@ export default function SearchForm(props: SearchFormProps) {
         </div>
       )}
       <IconButton onClick={handleReset} size='small'>
-        <SvgImage src={iconClose} alt='close' size='small' loading='eager' />
+        <SvgImage src={iconClose} alt='close' size='small' />
       </IconButton>
     </>
   )

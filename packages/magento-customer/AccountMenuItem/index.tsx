@@ -6,6 +6,7 @@ import {
   Theme,
   Typography,
 } from '@material-ui/core'
+import { ObjectImage } from '@reachdigital/image'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
@@ -66,7 +67,7 @@ const useStyles = makeStyles(
 )
 
 export type AccountMenuItemProps = {
-  iconSrc: string
+  iconSrc: ObjectImage['src']
   title: React.ReactNode
   subtitle?: React.ReactNode
   endIcon?: React.ReactNode
@@ -98,7 +99,7 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
     >
       <ListItem disableGutters>
         <ListItemIcon className={classes.icon}>
-          <SvgImage src={iconSrc} alt={iconSrc} size='medium' loading='eager' shade='muted' />
+          <SvgImage src={iconSrc} alt='' size='medium' loading='eager' shade='muted' />
         </ListItemIcon>
         <ListItemText
           primary={

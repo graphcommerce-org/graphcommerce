@@ -9,20 +9,16 @@ import { ProductListItemFragment } from '../Api/ProductListItem.gql'
 import { ProductListItemProps } from '../ProductListItem'
 import { ProductListItemRenderer } from './renderer'
 
-export const useProductGridStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme: Theme) => ({
     productList: {
       display: 'grid',
-      gridColumnGap: theme.spacings.xxs,
-      gridRowGap: theme.spacings.sm,
-      [theme.breakpoints.up('md')]: {
-        gridColumnGap: theme.spacings.md,
-        gridRowGap: theme.spacings.lg,
-      },
+      gridColumnGap: theme.spacings.sm,
+      gridRowGap: theme.spacings.md,
       gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 360)}, 1fr))`,
     },
     productListsmall: {
-      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 260)}, 1fr))`,
+      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
     },
   }),
   { name: 'ProductList' },
@@ -33,12 +29,12 @@ export type ProductItemsGridProps = {
   renderers: ProductListItemRenderer
   loadingEager?: number
   size?: 'normal' | 'small'
-} & UseStyles<typeof useProductGridStyles> &
+} & UseStyles<typeof useStyles> &
   JSX.IntrinsicElements['div']
 
 export default function ProductListItemsBase(props: ProductItemsGridProps) {
   const { items, renderers, loadingEager = 0, size, ...divProps } = props
-  const classes = useProductGridStyles(props)
+  const classes = useStyles(props)
 
   return (
     <div
@@ -51,7 +47,13 @@ export default function ProductListItemsBase(props: ProductItemsGridProps) {
             key={item.uid ?? ''}
             renderer={renderers}
             {...item}
-            imageProps={{ loading: loadingEager > idx ? 'eager' : 'lazy' }}
+            loading={loadingEager > idx ? 'eager' : 'lazy'}
+            sizes={
+              size === 'small'
+                ? { 0: '100vw', 354: '50vw', 675: '30vw', 1255: '23vw', 1500: '337px' }
+                : { 0: '100vw', 367: '48vw', 994: '30vw', 1590: '23vw', 1920: '443px' }
+            }
+            noReport
           />
         ) : null,
       )}

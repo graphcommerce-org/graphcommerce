@@ -2,11 +2,13 @@ query CartPage($cartId: String!) {
   cart(cart_id: $cartId) {
     id
     __typename
+    email
     total_quantity
     ...CartQuickCheckout
     ...CartStartCheckout
     ...Coupon
     ...CartItems
     ...CartTotals
+    ...CartBillingAddress
   }
 }

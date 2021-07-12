@@ -1,9 +1,8 @@
-import { CountryRegionsQuery } from '@reachdigital/magento-store'
+import { useFindCountry } from '@reachdigital/magento-store'
 import { CustomerAddressFragment } from '../CustomerAddress/CustomerAddress.gql'
 import { OrderAddressFragment } from '../OrderAddress/OrderAddress.gql'
-import useCountry from '../useCountry'
 
-type AddressSingleLineProps = (CustomerAddressFragment | OrderAddressFragment) & CountryRegionsQuery
+type AddressSingleLineProps = CustomerAddressFragment | OrderAddressFragment
 
 export default function AddressSingleLine(props: AddressSingleLineProps) {
   const {
@@ -18,9 +17,8 @@ export default function AddressSingleLine(props: AddressSingleLineProps) {
     city,
     postcode,
     country_code,
-    countries,
   } = props
-  const countryName = useCountry(countries, country_code ?? '')?.full_name_locale
+  const countryName = useFindCountry(country_code)?.full_name_locale
   const regionName = typeof region === 'string' ? region : region?.region
 
   // todo: detect correct format by locale

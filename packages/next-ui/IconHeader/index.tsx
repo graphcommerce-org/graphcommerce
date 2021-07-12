@@ -2,7 +2,7 @@ import { makeStyles, Theme, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
 import responsiveVal from '../Styles/responsiveVal'
-import SvgImage from '../SvgImage'
+import SvgImage, { SvgImageProps } from '../SvgImage'
 
 // TODO: fix hot reloading issues when modifying implementations of this component
 
@@ -39,8 +39,6 @@ const useStyles = makeStyles(
 type IconHeaderSize = 'small' | 'medium' | 'large'
 
 type IconHeaderProps = {
-  src: string
-  alt: string
   title: string
   size?: IconHeaderSize
   iconSize?: number
@@ -48,7 +46,7 @@ type IconHeaderProps = {
   noMargin?: boolean
   stayInline?: boolean
   ellipsis?: boolean
-}
+} & Pick<SvgImageProps, 'src' | 'alt'>
 
 type IconHeaderHeadings = 'h2' | 'h3' | 'h4'
 

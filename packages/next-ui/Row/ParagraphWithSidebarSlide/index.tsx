@@ -21,7 +21,7 @@ const useStyles = makeStyles(
         top: '0',
         zIndex: -1,
         width: '100%',
-        height: '100%',
+        height: '100% !important',
         objectFit: 'cover',
         filter: 'brightness(80%)',
         [theme.breakpoints.up('md')]: {

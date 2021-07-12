@@ -1,17 +1,21 @@
 import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
+  ProductPageGallery,
+  ProductPageMeta,
+  jsonLdProduct,
+  jsonLdProductOffer,
+  productPageCategory,
+  getProductStaticPaths,
+  ProductSidebarDelivery,
+} from '@reachdigital/magento-product'
+import {
   ConfigurableContextProvider,
   ConfigurableProductAddToCart,
   ConfigurableProductPageDocument,
   ConfigurableProductPageQuery,
 } from '@reachdigital/magento-product-configurable'
 import { jsonLdProductReview, ProductReviewSummary } from '@reachdigital/magento-product-review'
-import { jsonLdProduct, jsonLdProductOffer } from '@reachdigital/magento-product/JsonLdProduct'
-import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
-import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
-import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
-import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
 import { Money, StoreConfigDocument } from '@reachdigital/magento-store'
 import JsonLd from '@reachdigital/next-ui/JsonLd'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -54,7 +58,7 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductConfigurable(props: Props) {
-  const { products, usps, typeProducts, productpages } = props
+  const { products, usps, typeProducts, sidebarUsps, productpages } = props
   const classes = useStyles()
 
   const product = products?.items?.[0]
@@ -104,7 +108,10 @@ function ProductConfigurable(props: Props) {
                 </PageLink>
               ),
             }}
-          />
+          >
+            <ProductSidebarDelivery />
+          </ConfigurableProductAddToCart>
+          <ProductUsps usps={sidebarUsps} size='small' />
         </ProductPageGallery>
 
         <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />

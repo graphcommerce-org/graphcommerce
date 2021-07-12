@@ -1,8 +1,9 @@
 import { useQuery } from '@apollo/client'
-import { Divider, makeStyles, Theme } from '@material-ui/core'
+import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer'
+import { ProductSidebarDelivery } from '@reachdigital/magento-product'
 import { Money } from '@reachdigital/magento-store'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
@@ -25,6 +26,7 @@ type ConfigurableProductAddToCartProps = {
   variables: Omit<ConfigurableProductAddToCartMutationVariables, 'cartId' | 'selectedOptions'>
   name: string
   optionEndLabels?: Record<string, React.ReactNode>
+  children?: React.ReactNode
 }
 
 const useStyles = makeStyles(
@@ -57,7 +59,7 @@ const useStyles = makeStyles(
 )
 
 export default function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
-  const { name, variables, optionEndLabels, ...buttonProps } = props
+  const { name, children, variables, optionEndLabels, ...buttonProps } = props
   const { getUids, getVariants, selection } = useConfigurableContext(variables.sku)
   const classes = useStyles()
 
@@ -109,6 +111,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
             .final_price}
         />
       </div>
+      {children}
       <Button
         type='submit'
         loading={formState.isSubmitting}

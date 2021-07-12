@@ -1,5 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import { Image } from '@reachdigital/image'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
@@ -32,9 +32,8 @@ export default function ImageSwatchData(props: ImageSwatchDataProps) {
   return (
     <>
       {thumbnail ? (
-        <PictureResponsiveNext
+        <Image
           src={thumbnail}
-          type='image/jpeg'
           width={classes.sizeSmall ? 20 : 40}
           height={classes.sizeSmall ? 20 : 40}
           alt={value ?? ''}

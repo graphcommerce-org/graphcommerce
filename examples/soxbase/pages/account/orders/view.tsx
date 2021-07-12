@@ -6,30 +6,24 @@ import {
   OrderDetails,
   OrderItems,
   OrderDetailPageDocument,
+  ApolloCustomerErrorFullPage,
 } from '@reachdigital/magento-customer'
-import {
-  CountryRegionsDocument,
-  CountryRegionsQuery,
-  PageMeta,
-  StoreConfigDocument,
-} from '@reachdigital/magento-store'
+import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
-import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { iconBox } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
 
-type Props = CountryRegionsQuery
+type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function OrderDetailPage(props: Props) {
-  const { countries } = props
   const router = usePageRouter()
   const { orderId } = router.query
 
-  const { data, loading } = useQuery(OrderDetailPageDocument, {
+  const { data, loading, error } = useQuery(OrderDetailPageDocument, {
     fetchPolicy: 'cache-and-network',
     variables: { orderNumber: orderId as string },
     ssr: false,
@@ -38,8 +32,15 @@ function OrderDetailPage(props: Props) {
   const order = data?.customer?.orders?.items?.[0]
   const isLoading = orderId ? loading : true
 
-  if (!loading && !data?.customer)
-    return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
+  if (loading) return <></>
+  if (error)
+    return (
+      <ApolloCustomerErrorFullPage
+        error={error}
+        signInHref='/account/signin'
+        signUpHref='/account/signin'
+      />
+    )
 
   return (
     <Container maxWidth='md'>
@@ -56,7 +57,7 @@ function OrderDetailPage(props: Props) {
               metaRobots={['noindex']}
             />
             <OrderItems {...order} loading={isLoading} images={images} />
-            <OrderDetails {...order} loading={isLoading} countries={countries} />
+            <OrderDetails {...order} loading={isLoading} />
           </>
         )}
       </NoSsr>

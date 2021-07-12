@@ -1,5 +1,6 @@
-import { Container, NoSsr, Typography } from '@material-ui/core'
+import { Container, Divider, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
+import { CartTotals, CartSummary } from '@reachdigital/magento-cart'
 import {
   PaymentMethodButton,
   PaymentMethodContextProvider,
@@ -10,7 +11,7 @@ import {
 import { braintree_local_payment } from '@reachdigital/magento-payment-braintree'
 import { included_methods } from '@reachdigital/magento-payment-included'
 import { mollie_methods } from '@reachdigital/magento-payment-mollie'
-import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import Form from '@reachdigital/next-ui/Form'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import Stepper from '@reachdigital/next-ui/Stepper/Stepper'
@@ -71,6 +72,10 @@ function PaymentPage(props: Props) {
               >
                 Pay
               </PaymentMethodButton>
+              <CartSummary editable>
+                <Divider />
+                <CartTotals />
+              </CartSummary>
             </AnimatePresence>
           </NoSsr>
         </PaymentMethodContextProvider>
@@ -94,11 +99,9 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = apolloClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
-  const countryRegions = staticClient.query({ query: CountryRegionsDocument })
 
   return {
     props: {
-      ...(await countryRegions).data,
       apolloState: await conf.then(() => client.cache.extract()),
       backFallbackHref: '/checkout',
       backFallbackTitle: 'Shipping',

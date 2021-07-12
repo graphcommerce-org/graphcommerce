@@ -1,7 +1,5 @@
 import { Link as MuiLink, makeStyles, Theme, Typography } from '@material-ui/core'
-import PictureResponsiveNext, {
-  PictureResponsiveNextProps,
-} from '@reachdigital/next-ui/PictureResponsiveNext'
+import { Image, ImageProps } from '@reachdigital/image'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
@@ -105,8 +103,6 @@ export const useProductListItemStyles = makeStyles(
       userSelect: 'none',
     },
     image: {
-      width: '100%',
-      height: '100%',
       objectFit: 'contain',
       position: 'absolute',
       top: 0,
@@ -136,9 +132,9 @@ type BaseProps = PropsWithChildren<
     subTitle?: React.ReactNode
     aspectRatio?: [number, number]
     imageOnly?: boolean
-    imageProps?: Partial<PictureResponsiveNextProps>
   } & OverlayAreas &
-    ProductListItemFragment
+    ProductListItemFragment &
+    Pick<ImageProps, 'loading' | 'sizes' | 'dontReportWronglySizedImages'>
 >
 
 export type ProductListItemProps = BaseProps & UseStyles<typeof useProductListItemStyles>
@@ -155,7 +151,9 @@ export default function ProductListItem(props: ProductListItemProps) {
     price_range,
     children,
     imageOnly = false,
-    imageProps,
+    loading,
+    sizes,
+    dontReportWronglySizedImages,
   } = props
   const classes = useProductListItemStyles(props)
   const productLink = useProductLink(props)
@@ -167,14 +165,14 @@ export default function ProductListItem(props: ProductListItemProps) {
         <MuiLink underline='none'>
           <div className={classes.imageContainer}>
             {small_image ? (
-              <PictureResponsiveNext
-                alt={small_image.label ?? ''}
-                width={328}
-                height={328}
+              <Image
+                layout='fill'
+                sizes={sizes}
+                dontReportWronglySizedImages={dontReportWronglySizedImages}
                 src={small_image.url ?? ''}
-                type='image/jpeg'
+                alt={small_image.label ?? ''}
                 className={classes.image}
-                {...(imageProps ?? {})}
+                loading={loading}
               />
             ) : (
               <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>

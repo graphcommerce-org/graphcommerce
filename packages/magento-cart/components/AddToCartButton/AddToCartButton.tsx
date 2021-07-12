@@ -2,6 +2,7 @@ import { TypedDocumentNode, useQuery } from '@apollo/client'
 import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import { ProductInterface } from '@reachdigital/graphql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer'
+import { ProductSidebarDelivery } from '@reachdigital/magento-product'
 import { Money, MoneyProps } from '@reachdigital/magento-store'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
@@ -12,7 +13,7 @@ import { DeepPartial, UnpackNestedValue, Path } from '@reachdigital/react-hook-f
 import PageLink from 'next/link'
 import React from 'react'
 import { useFormGqlMutationCart } from '../../hooks/useFormGqlMutationCart'
-import ApolloCartErrorAlert from '../ApolloCartErrorAlert/ApolloCartErrorAlert'
+import ApolloCartErrorAlert from '../ApolloCartError/ApolloCartErrorAlert'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -43,9 +44,10 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
     variables: Omit<V, 'cartId'>
     name: string
     price: MoneyProps
+    children?: React.ReactNode
   } & Omit<ButtonProps, 'type' | 'name'>,
 ) {
-  const { name, mutation, variables, price, ...buttonProps } = props
+  const { name, children, mutation, variables, price, ...buttonProps } = props
 
   const form = useFormGqlMutationCart<Q, V>(mutation, {
     defaultValues: variables as UnpackNestedValue<DeepPartial<V>>,
@@ -75,7 +77,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
         disabled={formState.isSubmitting}
         size='small'
       />
-
+      {children}
       <Button
         type='submit'
         classes={{ root: classes.button }}

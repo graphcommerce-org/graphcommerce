@@ -13,3 +13,8 @@ export const banktransfer: PaymentModule = {
   PaymentOptions: PaymentMethodOptionsNoop,
   PaymentPlaceOrder: PaymentMethodPlaceOrderNoop,
 }
+
+export const free: PaymentModule = {
+  PaymentOptions: PaymentMethodOptionsNoop,
+  PaymentPlaceOrder: PaymentMethodPlaceOrderNoop,
+}

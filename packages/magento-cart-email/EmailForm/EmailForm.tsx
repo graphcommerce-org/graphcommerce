@@ -1,6 +1,10 @@
 import { useMutation } from '@apollo/client'
 import { CircularProgress, makeStyles, TextField, Theme } from '@material-ui/core'
-import { useCartQuery, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
+import {
+  useCartQuery,
+  ApolloCartErrorAlert,
+  useMergeCustomerCart,
+} from '@reachdigital/magento-cart'
 import {
   SignInFormInline,
   SignUpFormInline,
@@ -32,6 +36,8 @@ export default function EmailForm(props: EmailFormProps) {
   const { step } = props
   const classes = useStyles()
   const [expand, setExpand] = useState(false)
+
+  useMergeCustomerCart()
 
   const [setGuestEmailOnCart] = useMutation(SetGuestEmailOnCartDocument)
   const { data: cartData } = useCartQuery(CartEmailDocument)

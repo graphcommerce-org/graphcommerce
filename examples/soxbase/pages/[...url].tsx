@@ -76,9 +76,7 @@ function CategoryPage(props: Props) {
         <Container maxWidth={false}>
           <CategoryHeroNav
             {...category}
-            asset={
-              pages?.[0]?.asset && <Asset asset={pages[0].asset} width={328} loading='eager' />
-            }
+            asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} loading='eager' />}
           />
         </Container>
       ) : (

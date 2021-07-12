@@ -2,11 +2,11 @@ import { makeStyles, TextField, Theme } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import Button from '@reachdigital/next-ui/Button'
 import Form from '@reachdigital/next-ui/Form'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import FormActions from '@reachdigital/next-ui/Form/FormActions'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import { emailPattern, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
+import ApolloCustomerErrorAlert from './ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
   ForgotPasswordDocument,
   ForgotPasswordMutation,
@@ -58,7 +58,7 @@ export default function ForgotPasswordForm() {
         />
       </FormRow>
 
-      <ApolloErrorAlert error={error} />
+      <ApolloCustomerErrorAlert error={error} />
 
       <FormActions>
         <Button

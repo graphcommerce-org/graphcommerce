@@ -1,5 +1,6 @@
+import { useQuery } from '@apollo/client'
 import { TextField } from '@material-ui/core'
-import { CountryRegionsQuery } from '@reachdigital/magento-store'
+import { CountryRegionsDocument } from '@reachdigital/magento-store'
 import FormRow from '@reachdigital/next-ui/Form/FormRow'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import {
@@ -19,13 +20,11 @@ type AddressFieldValues = {
   city?: string
 }
 
-type AddressFieldsProps = CountryRegionsQuery & {
-  form: UseFormReturn<any>
-  readOnly?: boolean
-}
+type AddressFieldsProps = { form: UseFormReturn<any>; readOnly?: boolean }
 
 export default function AddressFields(props: AddressFieldsProps) {
-  const { form, countries, readOnly } = props
+  const { form, readOnly } = props
+  const countries = useQuery(CountryRegionsDocument).data?.countries
   assertFormGqlOperation<AddressFieldValues>(form)
   const { watch, formState, required, muiRegister, valid } = form
 

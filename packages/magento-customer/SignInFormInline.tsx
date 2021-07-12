@@ -29,7 +29,11 @@ type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'>
 
 export default function SignInFormInline({ email }: PropsWithChildren<InlineSignInFormProps>) {
   const classes = useStyles()
-  const form = useFormGqlMutation(SignInDocument, { defaultValues: { email } })
+  const form = useFormGqlMutation(
+    SignInDocument,
+    { defaultValues: { email } },
+    { errorPolicy: 'all' },
+  )
   const { muiRegister, handleSubmit, required, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 

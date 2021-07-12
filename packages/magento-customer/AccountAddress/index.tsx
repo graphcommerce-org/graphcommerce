@@ -1,12 +1,11 @@
 import { Link, makeStyles, Theme } from '@material-ui/core'
-import { CountryRegionsQuery } from '@reachdigital/magento-store/CountryRegions.gql'
 import React from 'react'
 import AddressMultiLine from '../AddressMultiLine'
 import DeleteCustomerAddressForm from '../DeleteCustomerAddressForm'
 import UpdateDefaultAddressForm from '../UpdateDefaultAddressForm'
 import { AccountAddressFragment } from './AccountAddress.gql'
 
-export type AccountAddressProps = AccountAddressFragment & CountryRegionsQuery
+export type AccountAddressProps = AccountAddressFragment
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -36,13 +35,13 @@ const useStyles = makeStyles(
 )
 
 export default function AccountAddress(props: AccountAddressProps) {
-  const { id, countries } = props
+  const { id } = props
   const classes = useStyles()
 
   return (
     <div className={classes.root}>
       <div className={classes.address}>
-        <AddressMultiLine {...props} countries={countries} />
+        <AddressMultiLine {...props} />
 
         <div className={classes.switches}>
           <UpdateDefaultAddressForm {...props} />

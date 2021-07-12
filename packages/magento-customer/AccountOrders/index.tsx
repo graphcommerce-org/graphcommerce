@@ -52,7 +52,7 @@ export default function AccountOrders(props: AccountOrdersProps) {
   return (
     <div className={classes.ordersContainer}>
       {isFirstPage && (
-        <SectionContainer label='Latest orders'>
+        <SectionContainer labelLeft='Latest orders'>
           {latestOrders?.map(
             (order) => order && <OrderCard key={order.number} {...order} images={images} />,
           )}
@@ -62,7 +62,10 @@ export default function AccountOrders(props: AccountOrdersProps) {
 
       {orders?.items &&
         ((isFirstPage && orders?.items?.length >= amountLatestOrders + 1) || !isFirstPage) && (
-          <SectionContainer label='Older' className={clsx(classes.olderOrdersContainer)}>
+          <SectionContainer
+            labelLeft='Older'
+            classes={{ sectionContainer: classes.olderOrdersContainer }}
+          >
             {olderOrders?.map(
               (order) => order && <OrderCard key={order.number} {...order} images={images} />,
             )}

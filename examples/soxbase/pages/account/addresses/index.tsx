@@ -1,34 +1,38 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { AccountAddresses, AccountDashboardAddressesDocument } from '@reachdigital/magento-customer'
 import {
-  CountryRegionsDocument,
-  CountryRegionsQuery,
-  PageMeta,
-  StoreConfigDocument,
-} from '@reachdigital/magento-store'
+  AccountAddresses,
+  AccountDashboardAddressesDocument,
+  ApolloCustomerErrorFullPage,
+} from '@reachdigital/magento-customer'
+import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
-import MessageAuthRequired from '@reachdigital/next-ui/MessageAuthRequired'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { iconAddresses } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
 
-type Props = CountryRegionsQuery
+type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function AccountAddressesPage(props: Props) {
-  const { countries } = props
-  const { data, loading } = useQuery(AccountDashboardAddressesDocument, {
+  const { data, loading, error } = useQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'network-only',
     ssr: false,
   })
   const customer = data?.customer
 
-  if (!loading && !customer)
-    return <MessageAuthRequired signInHref='/account/signin' signUpHref='/account/signin' />
+  if (loading) return <></>
+  if (error)
+    return (
+      <ApolloCustomerErrorFullPage
+        error={error}
+        signInHref='/account/signin'
+        signUpHref='/account/signin'
+      />
+    )
 
   return (
     <Container maxWidth='md'>
@@ -42,12 +46,7 @@ function AccountAddressesPage(props: Props) {
           <IconHeader src={iconAddresses} title='Addresses' alt='addresses' size='large' />
         )}
 
-        <AccountAddresses
-          {...data}
-          loading={!data}
-          addresses={customer?.addresses}
-          countries={countries}
-        />
+        <AccountAddresses {...data} loading={!data} addresses={customer?.addresses} />
       </NoSsr>
     </Container>
   )

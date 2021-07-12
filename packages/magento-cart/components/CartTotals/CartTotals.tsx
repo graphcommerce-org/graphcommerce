@@ -1,10 +1,12 @@
 import { Divider, makeStyles, Theme } from '@material-ui/core'
 import { Money } from '@reachdigital/magento-store'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
-import { CartTotalsFragment } from './CartTotals.gql'
+import { useCartQuery } from '../../hooks'
+import { GetCartTotalsDocument } from './GetCartTotals.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -15,6 +17,8 @@ const useStyles = makeStyles(
       paddingTop: `calc(${theme.spacings.xs} - 6px)`,
       paddingLeft: theme.spacings.sm,
       paddingRight: theme.spacings.sm,
+    },
+    containerMarginTop: {
       marginTop: theme.spacings.md,
     },
     costsDivider: {
@@ -53,17 +57,25 @@ const useStyles = makeStyles(
   { name: 'TotalCosts' },
 )
 
-export type CartTotalsProps = CartTotalsFragment
+export type CartTotalsProps = { containerMargin?: boolean } & UseStyles<typeof useStyles>
 
 export default function CartTotals(props: CartTotalsProps) {
-  const { shipping_addresses, prices } = props
-  const shippingMethod = shipping_addresses?.[0]?.selected_shipping_method
-  const classes = useStyles()
+  const { data } = useCartQuery(GetCartTotalsDocument, { allowUrl: true })
+  const classes = useStyles(props)
 
-  if (!prices) return null
+  if (!data?.cart) return null
+  const { containerMargin } = props
+  const { shipping_addresses, prices } = data.cart
+  const shippingMethod = shipping_addresses?.[0]?.selected_shipping_method
 
   return (
-    <AnimatedRow className={classes.costsContainer} key='total-costs'>
+    <AnimatedRow
+      className={clsx(
+        containerMargin ? classes.containerMarginTop : undefined,
+        classes.costsContainer,
+      )}
+      key='total-costs'
+    >
       <AnimatePresence initial={false}>
         {prices?.subtotal_including_tax && (
           <AnimatedRow className={classes.costsRow} key='subtotal'>
@@ -74,7 +86,7 @@ export default function CartTotals(props: CartTotalsProps) {
           </AnimatedRow>
         )}
 
-        {prices.discounts && prices.discounts.length > 1 && (
+        {prices?.discounts && prices.discounts.length > 1 && (
           <AnimatedRow className={clsx(classes.costsRow, classes.costsDiscount)} key='discount'>
             <div>Product discount</div>
             <div>
@@ -104,7 +116,7 @@ export default function CartTotals(props: CartTotalsProps) {
         {shippingMethod && (
           <AnimatedRow className={classes.costsRow} key='shippingMethod'>
             <div>
-              {shippingMethod.carrier_title} {shippingMethod.method_title}
+              Shipping ({shippingMethod.carrier_title} {shippingMethod.method_title})
             </div>
             <div>
               <Money {...shippingMethod.amount} />
@@ -121,20 +133,14 @@ export default function CartTotals(props: CartTotalsProps) {
             className={clsx(classes.costsRow, classes.costsGrandTotal)}
             key='grand_total'
           >
+            <div>Total</div>
             <div>
-              Total {(!prices?.applied_taxes || prices?.applied_taxes.length < 1) && '(excl. VAT)'}
-            </div>
-            <div>
-              <Money
-                {...(!prices?.applied_taxes || prices.applied_taxes.length < 1
-                  ? prices.subtotal_with_discount_excluding_tax
-                  : prices.grand_total)}
-              />
+              <Money {...prices.grand_total} />
             </div>
           </AnimatedRow>
         )}
 
-        {prices.applied_taxes?.map((tax) => (
+        {prices?.applied_taxes?.map((tax) => (
           <AnimatedRow className={clsx(classes.costsRow, classes.costsTax)} key={tax?.label ?? ''}>
             <div>Including {tax?.label}</div>
             <div>

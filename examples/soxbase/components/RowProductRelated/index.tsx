@@ -33,6 +33,7 @@ export default function RowProductRelated(props: RowProductRelatedProps) {
             renderer={renderers}
             {...item}
             classes={{ item: classes.item }}
+            sizes={responsiveVal(200, 400)}
           />
         ) : null,
       )}
