@@ -10,11 +10,11 @@ const useStyles = makeStyles(
     },
     indicatorRoottop: {
       ...styles.indicatorRoottop,
-      padding: `${responsiveVal(4, 8)} 4px 0 4px`,
+      padding: `${responsiveVal(4, 8)} 4px 4px 4px`,
     },
     indicatorRootbottom: {
       ...styles.indicatorRootbottom,
-      padding: `${responsiveVal(4, 8)} 4px 0 4px`,
+      padding: `${responsiveVal(4, 8)} 4px 4px 4px`,
     },
     indicatorRootleft: {
       ...styles.indicatorRootleft,
