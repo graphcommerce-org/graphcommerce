@@ -1,15 +1,18 @@
+import { makeStyles } from '@material-ui/core'
 import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
 import {
   Sheet,
   SheetBackdrop,
   SheetContainer,
-  SheetDragIndicator,
   SheetPanel,
   SheetProps,
   SnapPoint,
+  styles,
 } from '@reachdigital/framer-sheet'
 import { useRouter } from 'next/router'
 import React, { useRef } from 'react'
+import responsiveVal from '../../Styles/responsiveVal'
+import SheetShellDragIndicator from '../SheetShellDragIndicator'
 import ShellBase, { PageLayoutBaseProps } from '../ShellBase'
 import useSheetStyles from './useSheetStyles'
 
@@ -19,9 +22,33 @@ export type SheetShellBaseProps = {
 } & Pick<SheetProps, 'size' | 'variant'> &
   PageLayoutBaseProps
 
+const useStyles = makeStyles(
+  () => ({
+    container: {
+      ...styles.container,
+    },
+    containertop: {
+      ...styles.containertop,
+    },
+    containerbottom: {
+      ...styles.containerbottom,
+      paddingTop: responsiveVal(26, 40),
+    },
+    containerleft: {
+      ...styles.containerleft,
+      paddingRight: responsiveVal(26, 40),
+    },
+    containerright: {
+      ...styles.containerright,
+      paddingLeft: responsiveVal(26, 40),
+    },
+  }),
+  { name: 'SheetContainer' },
+)
+
 function SheetShellBase(props: SheetShellBaseProps) {
   const { children, variant, size, name } = props
-
+  const sheetContainerClasses = useStyles()
   const sheetClasses = useSheetStyles(props)
   const router = useRouter()
   const pageRouter = usePageRouter()
@@ -45,8 +72,11 @@ function SheetShellBase(props: SheetShellBaseProps) {
     <ShellBase name={name}>
       <Sheet open={open} onSnap={handleSnap} variant={variant} size={size}>
         <SheetBackdrop onTap={handleClose} classes={sheetClasses} />
-        <SheetContainer classes={sheetClasses}>
-          <SheetPanel header={<SheetDragIndicator classes={sheetClasses} />} classes={sheetClasses}>
+        <SheetContainer classes={sheetContainerClasses}>
+          <SheetPanel
+            header={<SheetShellDragIndicator classes={sheetClasses} />}
+            classes={sheetClasses}
+          >
             {/* <FocusLock returnFocus={{ preventScroll: true }} disabled={!isActive}> */}
             {children}
             {/* </FocusLock> */}

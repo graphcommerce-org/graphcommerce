@@ -33,7 +33,7 @@ function MinimalAppShellTestIndex(props: Props) {
         primary={<SheetPrimaryAction href='/test/minimal-page-shell' text='Next' />}
         logo={<Logo />}
         title={
-          <Typography variant='h4' component='span'>
+          <Typography variant='h5' component='span'>
             Minimal UI
           </Typography>
         }

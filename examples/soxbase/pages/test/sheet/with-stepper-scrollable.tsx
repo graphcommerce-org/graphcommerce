@@ -31,7 +31,7 @@ function BottomSheetWithStepperScrollable({ url, pages }: Props) {
       <SheetContentHeader
         primary={<SheetPrimaryAction href='/test/overlay/bottom/2' text='Next' />}
         title={
-          <Typography variant='h4' component='span'>
+          <Typography variant='h5' component='span'>
             Bottom Sheet Stepper
           </Typography>
         }

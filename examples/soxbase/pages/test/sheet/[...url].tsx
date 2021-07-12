@@ -27,7 +27,7 @@ function BottomSheetWithPrimaryActionAndNavigatable({ url, pages }: Props) {
     <SheetContent>
       <SheetContentHeader
         title={
-          <Typography variant='h4' component='span'>
+          <Typography variant='h5' component='span'>
             {title}
           </Typography>
         }

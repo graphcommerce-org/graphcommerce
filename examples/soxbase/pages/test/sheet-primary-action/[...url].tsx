@@ -34,7 +34,7 @@ function SheetCTAPage({ url, pages }: Props) {
       <SheetContentHeader
         primary={<SheetPrimaryAction href='/test/sheet-primary-action/navigated' text='Next' />}
         title={
-          <Typography variant='h4' component='span'>
+          <Typography variant='h5' component='span'>
             {title}
           </Typography>
         }
