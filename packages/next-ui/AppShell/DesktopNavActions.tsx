@@ -8,7 +8,7 @@ const useStyles = makeStyles(
       display: 'none',
       [theme.breakpoints.up('md')]: {
         position: 'fixed',
-        top: 12,
+        top: 8,
         right: theme.page.horizontal,
         zIndex: 8,
         '& > *': {

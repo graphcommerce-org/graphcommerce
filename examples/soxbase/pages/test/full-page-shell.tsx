@@ -36,12 +36,9 @@ function FullAppShellTestIndex(props: Props) {
   return (
     <SheetContent>
       <PageContentHeader
-        // primary={
-        // <SheetPrimaryAction href='/test/minimal-page-shell' text='Next' />
-        // }
         logo={<Logo />}
         title={
-          <Typography variant='h4' component='span'>
+          <Typography variant='h5' component='span'>
             Full Page UI
           </Typography>
         }
@@ -57,7 +54,6 @@ function FullAppShellTestIndex(props: Props) {
         When life gives you lemons, you want to wear bananas. That’s how we roll. And no matter if
         you choose those bananas or rather go with kiwis, pears or apples - you’ll always feel fresh
         and fruity.
-        <a href='http://localhost:3000/en/test/sheet-primary-action/default'>hoi</a>
       </Container>
     </SheetContent>
   )

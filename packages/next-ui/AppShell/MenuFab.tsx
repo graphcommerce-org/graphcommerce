@@ -24,8 +24,9 @@ const useStyles = makeStyles(
     menuWrapper: {
       position: 'fixed',
       zIndex: 11,
-      left: `calc(${theme.page.horizontal} + 10px)`,
+      left: theme.page.horizontal,
       [theme.breakpoints.down('sm')]: {
+        left: `calc(${theme.page.horizontal} + 8px)`,
         bottom: `calc(${theme.page.vertical} + 14px)`,
         transform: 'none !important',
         opacity: '1 !important',

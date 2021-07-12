@@ -36,6 +36,7 @@ const useStyles = makeStyles(
       background: theme.palette.background.default,
       marginBottom: 32,
       paddingBottom: 2,
+      zIndex: 99,
     },
     sheetHeaderActions: {
       display: 'grid',
@@ -43,14 +44,7 @@ const useStyles = makeStyles(
       gridAutoFlow: 'column',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: `${responsiveVal(4, 16)} ${responsiveVal(18, 28)} ${responsiveVal(4, 16)}`,
-      [theme.breakpoints.up('md')]: {
-        minHeight: 72,
-      },
-    },
-    sheetHeaderActionsLongTitle: {
-      gridTemplateColumns: 'max-content 3fr 1fr',
-      columnGap: 4,
+      padding: `${responsiveVal(4, 12)} ${responsiveVal(18, 28)} ${responsiveVal(4, 12)}`,
     },
     sheetHeaderActionRight: {
       justifySelf: 'flex-end',
@@ -83,7 +77,7 @@ const useStyles = makeStyles(
       position: 'absolute',
       left: 0,
       right: 0,
-      paddingTop: 20,
+      paddingTop: responsiveVal(16, 30),
     },
     subLogo: {
       [theme.breakpoints.up('md')]: {

@@ -32,15 +32,15 @@ const useStyles = makeStyles(
     },
     containerbottom: {
       ...styles.containerbottom,
-      paddingTop: responsiveVal(26, 40),
+      paddingTop: responsiveVal(26, 48),
     },
     containerleft: {
       ...styles.containerleft,
-      paddingRight: responsiveVal(26, 40),
+      paddingRight: responsiveVal(26, 48),
     },
     containerright: {
       ...styles.containerright,
-      paddingLeft: responsiveVal(26, 40),
+      paddingLeft: responsiveVal(26, 48),
     },
   }),
   { name: 'SheetContainer' },

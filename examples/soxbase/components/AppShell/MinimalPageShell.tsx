@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import FullPageShellBase, {
+import MinimalPageShellBase, {
   FullPageShellBaseProps,
 } from '@reachdigital/next-ui/AppShell/FullPageShellBase'
 import React from 'react'
@@ -16,10 +16,10 @@ function MinimalPageShell(props: MinimalPageShellProps) {
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
 
   return (
-    <FullPageShellBase {...uiProps} name={name} header={<Logo />}>
+    <MinimalPageShellBase {...uiProps} name={name} header={<Logo />}>
       {children}
       {/* <Footer footer={footer} /> */}
-    </FullPageShellBase>
+    </MinimalPageShellBase>
   )
 }
 
