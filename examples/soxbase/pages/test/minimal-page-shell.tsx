@@ -32,12 +32,11 @@ function MinimalAppShellTestIndex(props: Props) {
       <PageContentHeader
         primary={<SheetPrimaryAction href='/test/minimal-page-shell' text='Next' />}
         logo={<Logo />}
-        title={
-          <Typography variant='h5' component='span'>
-            Minimal UI
-          </Typography>
-        }
-      />
+      >
+        <Typography variant='h5' component='span'>
+          Minimal UI
+        </Typography>
+      </PageContentHeader>
       <Container maxWidth='md' className={classes.longContent}>
         <SheetContentTitle>
           <Box textAlign='center' mb={3}>

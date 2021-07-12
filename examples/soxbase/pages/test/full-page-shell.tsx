@@ -35,14 +35,11 @@ function FullAppShellTestIndex(props: Props) {
 
   return (
     <SheetContent>
-      <PageContentHeader
-        logo={<Logo />}
-        title={
-          <Typography variant='h5' component='span'>
-            Full Page UI
-          </Typography>
-        }
-      />
+      <PageContentHeader logo={<Logo />}>
+        <Typography variant='h5' component='span'>
+          Full Page UI
+        </Typography>
+      </PageContentHeader>
       <Container maxWidth='md' className={classes.longContent}>
         <SheetContentTitle>
           <Box textAlign='center' mb={3}>

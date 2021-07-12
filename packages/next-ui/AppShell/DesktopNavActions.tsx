@@ -10,7 +10,7 @@ const useStyles = makeStyles(
         position: 'fixed',
         top: 8,
         right: theme.page.horizontal,
-        zIndex: 8,
+        zIndex: 100,
         '& > *': {
           pointerEvents: 'all',
         },

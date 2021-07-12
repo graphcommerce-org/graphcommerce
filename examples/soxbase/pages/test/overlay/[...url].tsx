@@ -35,19 +35,18 @@ function AppShellTextOverlay({ url, pages }: Props) {
     <SheetContent>
       <SheetContentHeader
         primary={<SheetPrimaryAction href='/test/overlay/bottom/2' text='Next' />}
-        title={
-          <IconHeader
-            src={iconPersonAlt}
-            title={title}
-            alt={title}
-            size='medium'
-            iconSize={32}
-            iconSizeMobile={24}
-            stayInline
-            noMargin
-          />
-        }
-      />
+      >
+        <IconHeader
+          src={iconPersonAlt}
+          title={title}
+          alt={title}
+          size='medium'
+          iconSize={32}
+          iconSizeMobile={24}
+          stayInline
+          noMargin
+        />
+      </SheetContentHeader>
 
       <SheetContentTitle>
         <IconHeader src={iconPersonAlt} title={title} alt={title} size='large' />

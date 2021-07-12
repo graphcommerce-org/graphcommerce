@@ -15,8 +15,8 @@ const useStyles = makeStyles(
       height: 2,
       background: theme.palette.divider,
       flex: 1,
-      marginRight: responsiveVal(12, 16),
-      marginLeft: responsiveVal(12, 16),
+      marginRight: responsiveVal(8, 12),
+      marginLeft: responsiveVal(8, 12),
     },
     current: {
       background: theme.palette.secondary.main,

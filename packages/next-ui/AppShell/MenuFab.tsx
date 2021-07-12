@@ -23,7 +23,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     menuWrapper: {
       position: 'fixed',
-      zIndex: 11,
+      zIndex: 99,
       left: theme.page.horizontal,
       [theme.breakpoints.down('sm')]: {
         left: `calc(${theme.page.horizontal} + 8px)`,

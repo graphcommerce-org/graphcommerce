@@ -12,7 +12,7 @@ import BackButton from '../BackButton'
 import useContentHeaderContext from './useContentHeaderContext'
 
 export type ContentHeaderProps = {
-  title?: React.ReactNode
+  children?: React.ReactNode
   primary?: React.ReactNode
   secondary?: React.ReactNode
   divider?: React.ReactNode
@@ -22,7 +22,6 @@ export type ContentHeaderProps = {
   noClose?: boolean
   scrolled?: boolean
   subHeader?: React.ReactNode
-  titleRef?: React.RefObject<HTMLDivElement>
 } & UseStyles<typeof useStyles>
 
 const useStyles = makeStyles(
@@ -35,8 +34,10 @@ const useStyles = makeStyles(
       top: 0,
       background: theme.palette.background.default,
       marginBottom: 32,
-      paddingBottom: 2,
-      zIndex: 99,
+      zIndex: 98,
+    },
+    sheetHeaderScrolled: {
+      marginTop: -60,
     },
     sheetHeaderActions: {
       display: 'grid',
@@ -66,7 +67,7 @@ const useStyles = makeStyles(
         boxShadow: 'none',
       },
     },
-    title: {
+    childs: {
       marginLeft: 12,
       marginRight: 12,
       whiteSpace: 'nowrap',
@@ -90,7 +91,7 @@ const useStyles = makeStyles(
 
 export default function ContentHeader(props: ContentHeaderProps) {
   const {
-    title,
+    children,
     logo,
     divider,
     primary = null,
@@ -152,12 +153,12 @@ export default function ContentHeader(props: ContentHeaderProps) {
         onClick={() => router.go(closeSteps * -1)}
         classes={{ root: classes.fab }}
       >
-        <SvgImage src={iconClose} alt='Close overlay' loading='eager' />
+        <SvgImage src={iconClose} mobileSize={20} size={20} alt='Close overlay' loading='eager' />
       </Fab>
     ) : (
       <PageLink href='/' passHref>
         <Fab size='small' classes={{ root: classes.fab }}>
-          <SvgImage src={iconClose} alt='Close overlay' loading='eager' />
+          <SvgImage src={iconClose} alt='Close overlay' size={20} mobileSize={20} loading='eager' />
         </Fab>
       </PageLink>
     ))
@@ -174,7 +175,10 @@ export default function ContentHeader(props: ContentHeaderProps) {
   if (!leftAction) leftAction = <div />
 
   return (
-    <div className={classes?.sheetHeader} ref={contentHeaderRef}>
+    <div
+      className={clsx(classes?.sheetHeader, scrolled && classes?.sheetHeaderScrolled)}
+      ref={contentHeaderRef}
+    >
       <div className={classes.logoContainer}>
         {logo && (
           <m.div
@@ -189,9 +193,9 @@ export default function ContentHeader(props: ContentHeaderProps) {
       <div className={classes?.sheetHeaderActions}>
         {leftAction && <div>{leftAction}</div>}
         <div className={classes.innerContainer}>
-          {title && (
-            <m.div style={{ opacity: scrolled ? 1 : opacityFadeIn }} className={classes.title}>
-              {title}
+          {children && (
+            <m.div style={{ opacity: scrolled ? 1 : opacityFadeIn }} className={classes.childs}>
+              {children}
             </m.div>
           )}
         </div>

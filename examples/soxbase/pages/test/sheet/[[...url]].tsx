@@ -71,8 +71,9 @@ function BottomSheetWithPrimaryActionAndNavigatable() {
       <SheetContentHeader
         primary={primaryAction}
         divider={withStepper ? <Stepper steps={3} currentStep={step} /> : undefined}
-        title={titleComponent}
-      />
+      >
+        {titleComponent}
+      </SheetContentHeader>
 
       <SheetContentTitle>
         <Box textAlign='center' mb={3}>

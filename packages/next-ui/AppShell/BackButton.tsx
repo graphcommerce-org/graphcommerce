@@ -57,10 +57,10 @@ const BackButton = React.forwardRef<any, BackButtonProps>((props, ref) => {
     >
       <SvgImage
         src={iconChevronLeft}
-        size='small'
         alt='chevron back'
         loading='eager'
-        mobileSize={32}
+        size={26}
+        mobileSize={30}
       />
       <span className={clsx(classes.text, overflow && classes.textOverflow)}>
         {children ?? 'Home'}
