@@ -39,9 +39,9 @@ function AppShellTestIndex(props: Props) {
           </PageLink>
         )} */}
 
-        <PageLink href='/test/sheet/bottom-sheet-cross' passHref>
+        <PageLink href='/test/sheet/bottom-sheet' passHref>
           <Button variant='outlined' color='secondary'>
-            Bottom Sheet (cross only)
+            Bottom Sheet (default)
           </Button>
         </PageLink>
 
