@@ -57,6 +57,7 @@ function FullAppShellTestIndex(props: Props) {
         When life gives you lemons, you want to wear bananas. That’s how we roll. And no matter if
         you choose those bananas or rather go with kiwis, pears or apples - you’ll always feel fresh
         and fruity.
+        <a href='http://localhost:3000/en/test/sheet-primary-action/default'>hoi</a>
       </Container>
     </SheetContent>
   )

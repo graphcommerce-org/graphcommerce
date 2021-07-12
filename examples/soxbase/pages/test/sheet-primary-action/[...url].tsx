@@ -39,7 +39,6 @@ function SheetCTAPage({ url, pages }: Props) {
           </Typography>
         }
       />
-
       <SheetContentTitle>
         <Box textAlign='center' mb={3}>
           <Typography variant='h2' component='h2'>
@@ -47,7 +46,6 @@ function SheetCTAPage({ url, pages }: Props) {
           </Typography>
         </Box>
       </SheetContentTitle>
-
       <Container maxWidth='md' className={classes.highContent}>
         Als een overlay een call to action heeft, staat deze rechtsboven en het kruisje wordt naar
         links gedrukt.
