@@ -58,7 +58,7 @@ export default function Overlay() {
 
 Overlay.pageOptions = {
   overlayGroup: 'left',
-  // sharedKey default is `pages/overlay/[overlayId]`
+  // sharedKey default is `(router) => router.asPath` resulting in `pages/overlay/[overlayId]`
 } as PageOptions
 ```
 

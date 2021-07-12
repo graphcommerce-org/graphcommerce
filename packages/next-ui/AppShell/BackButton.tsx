@@ -45,29 +45,27 @@ const BackButton = React.forwardRef<any, BackButtonProps>((props, ref) => {
   const { down, children, href, overflow, ...fabProps } = props
 
   return (
-    <Link href={href ?? '/'} passHref>
-      <Button
-        variant='pill'
-        classes={{
-          root: clsx(classes.root, props.className),
-          pill: classes.root,
-        }}
-        aria-label='Previous page'
-        ref={ref}
-        {...fabProps}
-      >
-        <SvgImage
-          src={iconChevronLeft}
-          size='small'
-          alt='chevron back'
-          loading='eager'
-          mobileSize={32}
-        />
-        <span className={clsx(classes.text, overflow && classes.textOverflow)}>
-          {children ?? 'Home'}
-        </span>
-      </Button>
-    </Link>
+    <Button
+      variant='pill'
+      classes={{
+        root: clsx(classes.root, props.className),
+        pill: classes.root,
+      }}
+      aria-label='Previous page'
+      ref={ref}
+      {...fabProps}
+    >
+      <SvgImage
+        src={iconChevronLeft}
+        size='small'
+        alt='chevron back'
+        loading='eager'
+        mobileSize={32}
+      />
+      <span className={clsx(classes.text, overflow && classes.textOverflow)}>
+        {children ?? 'Home'}
+      </span>
+    </Button>
   )
 })
 export default BackButton
