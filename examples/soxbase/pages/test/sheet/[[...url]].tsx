@@ -79,7 +79,7 @@ function BottomSheetWithPrimaryActionAndNavigatable() {
           {withIcon ? (
             <IconHeader src={iconPersonAlt} title={title} alt={title} size='medium' />
           ) : (
-            <Typography variant='h2' component='h2'>
+            <Typography variant='h3' component='h1'>
               {title}
             </Typography>
           )}
