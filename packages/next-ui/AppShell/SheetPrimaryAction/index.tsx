@@ -13,16 +13,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-/*
-  Renders a text button on mobile and a pill button on desktop
-*/
-export default function SheetPrimaryAction(props: SheetPrimaryActionProps) {
+const SheetPrimaryAction = React.forwardRef<any, SheetPrimaryActionProps>((props, ref) => {
   const { text } = props
   const classes = useStyles(props)
 
   return (
-    <Button color='secondary' variant='pill-link' className={classes.button}>
+    <Button color='secondary' variant='pill-link' className={classes.button} ref={ref}>
       {text}
     </Button>
   )
-}
+})
+
+export default SheetPrimaryAction
