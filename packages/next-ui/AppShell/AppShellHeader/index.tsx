@@ -4,24 +4,25 @@ import clsx from 'clsx'
 import { m, MotionValue, useMotionValue, useTransform } from 'framer-motion'
 import PageLink from 'next/link'
 import React, { useEffect } from 'react'
+import Button from '../../Button'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
 import SvgImage from '../../SvgImage'
-import { iconClose } from '../../icons'
-import BackButton from '../BackButton'
-import useContentHeaderContext from './useContentHeaderContext'
+import { iconChevronLeft, iconClose } from '../../icons'
+import useAppShellHeaderContext from './useAppShellHeaderContext'
 
-export type ContentHeaderProps = {
+export type AppShellHeaderProps = {
   children?: React.ReactNode
   primary?: React.ReactNode
   secondary?: React.ReactNode
   divider?: React.ReactNode
-  /* When a logo is given, title prop should be given too */
+  /* When a logo is given, children should be given too */
   logo?: React.ReactNode
   scrollY: MotionValue<number>
   noClose?: boolean
   scrolled?: boolean
-  subHeader?: React.ReactNode
+  dragIndicator?: React.ReactNode
+  additional?: React.ReactNode
 } & UseStyles<typeof useStyles>
 
 const useStyles = makeStyles(
@@ -45,7 +46,15 @@ const useStyles = makeStyles(
       gridAutoFlow: 'column',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: `${responsiveVal(4, 12)} ${responsiveVal(18, 28)} ${responsiveVal(4, 12)}`,
+      padding: `${responsiveVal(8, 12)} ${responsiveVal(16, 24)} ${responsiveVal(8, 12)}`,
+      '& > div > .MuiFab-sizeSmall': {
+        marginLeft: -12,
+        marginRight: -12,
+      },
+      '& > div > .MuiButtonBase-root': {
+        marginRight: -8,
+        marginLeft: -8,
+      },
     },
     sheetHeaderActionRight: {
       justifySelf: 'flex-end',
@@ -61,8 +70,6 @@ const useStyles = makeStyles(
       ...theme.typography.h5,
     },
     fab: {
-      marginRight: -12,
-      marginLeft: -12,
       [theme.breakpoints.down('sm')]: {
         boxShadow: 'none',
       },
@@ -86,10 +93,10 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'ContentHeader' },
+  { name: 'AppShellHeader' },
 )
 
-export default function ContentHeader(props: ContentHeaderProps) {
+export default function AppShellHeader(props: AppShellHeaderProps) {
   const {
     children,
     logo,
@@ -98,14 +105,15 @@ export default function ContentHeader(props: ContentHeaderProps) {
     secondary = null,
     noClose,
     scrollY,
-    subHeader,
+    additional: subHeader,
+    dragIndicator,
     scrolled,
   } = props
   const router = usePageRouter()
   const { closeSteps, backSteps } = usePageContext()
   const classes = useStyles(props)
 
-  const { titleRef, contentHeaderRef } = useContentHeaderContext()
+  const { titleRef, contentHeaderRef } = useAppShellHeaderContext()
 
   const sheetHeaderHeight = useMotionValue<number>(0)
   const titleOffset = useMotionValue<number>(100)
@@ -150,8 +158,8 @@ export default function ContentHeader(props: ContentHeaderProps) {
       <Fab
         size='small'
         type='button'
-        onClick={() => router.go(closeSteps * -1)}
         classes={{ root: classes.fab }}
+        onClick={() => router.go(closeSteps * -1)}
       >
         <SvgImage src={iconClose} mobileSize={20} size={20} alt='Close overlay' loading='eager' />
       </Fab>
@@ -164,9 +172,22 @@ export default function ContentHeader(props: ContentHeaderProps) {
     ))
 
   const back = (backSteps > 0 || noClose) && (
-    <BackButton type='button' onClick={() => router.back()} className={classes.fab}>
+    <Button
+      onClick={() => router.back()}
+      color='secondary'
+      variant='pill-link'
+      startIcon={
+        <SvgImage
+          src={iconChevronLeft}
+          alt='chevron back'
+          loading='eager'
+          size={26}
+          mobileSize={30}
+        />
+      }
+    >
       Back
-    </BackButton>
+    </Button>
   )
 
   let leftAction: React.ReactNode = secondary ?? back
@@ -189,6 +210,8 @@ export default function ContentHeader(props: ContentHeaderProps) {
           </m.div>
         )}
       </div>
+
+      {dragIndicator}
 
       <div className={classes?.sheetHeaderActions}>
         {leftAction && <div>{leftAction}</div>}

@@ -1,13 +1,13 @@
 import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import PageContentHeader from '@reachdigital/next-ui/AppShell/PageContentHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import PageLink from 'next/link'
 import React from 'react'
-import SheetContent from '../../../../packages/next-ui/AppShell/SheetContent'
-import SheetContentTitle from '../../../../packages/next-ui/AppShell/SheetContentTitle'
-import SheetPrimaryAction from '../../../../packages/next-ui/AppShell/SheetPrimaryAction'
+import { Button } from '../../../../packages/next-ui'
+import AppShellProvider from '../../../../packages/next-ui/AppShell/AppShellProvider'
+import AppShellTitle from '../../../../packages/next-ui/AppShell/AppShellTitle'
+import PageShellHeader from '../../../../packages/next-ui/AppShell/PageShellHeader'
 import Logo from '../../components/AppShell/Logo'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
@@ -29,11 +29,13 @@ function MinimalAppShellTestIndex(props: Props) {
   const classes = useStyles()
 
   return (
-    <SheetContent>
-      <PageContentHeader
+    <AppShellProvider>
+      <PageShellHeader
         primary={
           <PageLink href='/test/minimal-page-shell' passHref>
-            <SheetPrimaryAction text='Next' />
+            <Button color='secondary' variant='pill-link'>
+              Next
+            </Button>
           </PageLink>
         }
         logo={<Logo />}
@@ -41,19 +43,19 @@ function MinimalAppShellTestIndex(props: Props) {
         <Typography variant='h5' component='span'>
           Minimal UI
         </Typography>
-      </PageContentHeader>
+      </PageShellHeader>
       <Container maxWidth='md' className={classes.longContent}>
-        <SheetContentTitle>
+        <AppShellTitle>
           <Box textAlign='center' mb={3}>
             <Typography variant='h2' component='h2'>
               Minimal UI
             </Typography>
           </Box>
-        </SheetContentTitle>
+        </AppShellTitle>
         Functioneert bijna het zelfde als de Bottom Sheet maar nu standaard een logo. Na scrollen
         wordt het logo vervangen (crossfade) door de content titel.
       </Container>
-    </SheetContent>
+    </AppShellProvider>
   )
 }
 

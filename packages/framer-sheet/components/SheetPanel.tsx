@@ -33,7 +33,7 @@ export type SheetPanelProps = {
    * />
    * ```
    */
-  header: React.ReactNode
+  header?: React.ReactNode
 
   forward?: React.ReactNode
   back?: React.ReactNode
@@ -132,7 +132,6 @@ export default function SheetPanel(props: SheetPanelProps) {
 
           /** There sometimes is a very small gap (<1px) between the dragHandle and the content */
           [`margin${Variant}`]: -1,
-          [`border${Variant}`]: '1px solid transparent',
         }}
       >
         {variant === 'bottom' && <div>{back}</div>}

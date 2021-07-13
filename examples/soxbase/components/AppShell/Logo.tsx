@@ -20,6 +20,7 @@ const useStyles = makeStyles(
       height: '100%',
       width: 'max-content',
       display: 'flex',
+      alignItems: 'center',
       margin: '0 auto',
       justifyContent: 'center',
       [theme.breakpoints.up('md')]: {

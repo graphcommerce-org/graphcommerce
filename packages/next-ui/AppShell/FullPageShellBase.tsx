@@ -6,16 +6,6 @@ import ShellBase, { PageLayoutBaseProps } from './ShellBase'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    backButtonRoot: {
-      position: 'fixed',
-      zIndex: 10,
-      left: theme.page.horizontal,
-      top: theme.page.vertical,
-      [theme.breakpoints.up('md')]: {
-        // @todo, replace 48 with content height variable.
-        top: `calc(48px + ${theme.spacings.sm} * 2)`,
-      },
-    },
     header: {
       display: 'flex',
       alignItems: 'center',

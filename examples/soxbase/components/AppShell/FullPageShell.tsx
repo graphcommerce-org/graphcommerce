@@ -38,6 +38,12 @@ const useStyles = makeStyles(
         minWidth: responsiveVal(224, 424),
       },
     },
+    logo: {
+      display: 'none',
+      [theme.breakpoints.up('md')]: {
+        display: 'unset',
+      },
+    },
   }),
   { name: 'FullPageShell' },
 )
@@ -77,7 +83,7 @@ function FullPageShell(props: FullPageShellProps) {
       name={name}
       header={
         <>
-          <Logo />
+          <Logo classes={{ logo: classes.logo }} />
           <DesktopNavBar {...menuProps} />
           <div className={classes.desktopActionsSpacer} />
         </>

@@ -2,8 +2,6 @@ import { mergeDeep } from '@apollo/client/utilities'
 import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import PageContentHeader from '@reachdigital/next-ui/AppShell/PageContentHeader'
-import SheetBillboard from '@reachdigital/next-ui/AppShell/SheetBillboard'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
@@ -25,9 +23,11 @@ import {
 } from '../../../../../packages/magento-product/ProductListItems/filteredProductList'
 import { getFilterTypes } from '../../../../../packages/magento-product/ProductListItems/getFilterTypes'
 import { SearchDocument, SearchForm, SearchQuery } from '../../../../../packages/magento-search'
-import SheetContent from '../../../../../packages/next-ui/AppShell/SheetContent'
-import SheetContentTitle from '../../../../../packages/next-ui/AppShell/SheetContentTitle'
-import SheetPrimaryAction from '../../../../../packages/next-ui/AppShell/SheetPrimaryAction'
+import { Button } from '../../../../../packages/next-ui'
+import AppShellProvider from '../../../../../packages/next-ui/AppShell/AppShellProvider'
+import SheetBillboard from '../../../../../packages/next-ui/AppShell/AppShellSticky'
+import AppShellTitle from '../../../../../packages/next-ui/AppShell/AppShellTitle'
+import PageShellHeader from '../../../../../packages/next-ui/AppShell/PageShellHeader'
 import Logo from '../../../components/AppShell/Logo'
 import MinimalPageShell, {
   MinimalPageShellProps,
@@ -53,16 +53,18 @@ function MinimalAppShellSubheader(props: Props) {
   const classes = useStyles()
 
   return (
-    <SheetContent>
+    <AppShellProvider>
       <ProductListParamsProvider value={params}>
-        <PageContentHeader
+        <PageShellHeader
           primary={
             <PageLink href='/test/minimal-page-shell' passHref>
-              <SheetPrimaryAction text='Next' />
+              <Button color='secondary' variant='pill-link'>
+                Next
+              </Button>
             </PageLink>
           }
           logo={<Logo />}
-          subHeader={
+          additional={
             <Container maxWidth='sm'>
               <SearchForm urlHandle='test/minimal-page-shell-subheader' />
             </Container>
@@ -72,15 +74,15 @@ function MinimalAppShellSubheader(props: Props) {
           <Typography variant='h5' component='span'>
             Minimal UI
           </Typography>
-        </PageContentHeader>
+        </PageShellHeader>
         <Container maxWidth='md' className={classes.longContent}>
-          <SheetContentTitle>
+          <AppShellTitle>
             <Box textAlign='center' mb={3}>
               <Typography variant='h2' component='h2'>
                 Minimal UI
               </Typography>
             </Box>
-          </SheetContentTitle>
+          </AppShellTitle>
 
           <SheetBillboard>
             <ProductListFiltersContainer>
@@ -90,7 +92,7 @@ function MinimalAppShellSubheader(props: Props) {
           </SheetBillboard>
         </Container>
       </ProductListParamsProvider>
-    </SheetContent>
+    </AppShellProvider>
   )
 }
 

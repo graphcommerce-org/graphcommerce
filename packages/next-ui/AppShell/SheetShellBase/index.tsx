@@ -12,7 +12,6 @@ import {
 import { useRouter } from 'next/router'
 import React, { useRef } from 'react'
 import responsiveVal from '../../Styles/responsiveVal'
-import SheetShellDragIndicator from '../SheetShellDragIndicator'
 import ShellBase, { PageLayoutBaseProps } from '../ShellBase'
 import useSheetStyles from './useSheetStyles'
 
@@ -43,7 +42,7 @@ const useStyles = makeStyles(
       paddingLeft: responsiveVal(26, 48),
     },
   }),
-  { name: 'SheetContainer' },
+  { name: 'SheetShellBase' },
 )
 
 function SheetShellBase(props: SheetShellBaseProps) {
@@ -73,10 +72,7 @@ function SheetShellBase(props: SheetShellBaseProps) {
       <Sheet open={open} onSnap={handleSnap} variant={variant} size={size}>
         <SheetBackdrop onTap={handleClose} classes={sheetClasses} />
         <SheetContainer classes={sheetContainerClasses}>
-          <SheetPanel
-            header={<SheetShellDragIndicator classes={sheetClasses} />}
-            classes={sheetClasses}
-          >
+          <SheetPanel classes={sheetClasses}>
             {/* <FocusLock returnFocus={{ preventScroll: true }} disabled={!isActive}> */}
             {children}
             {/* </FocusLock> */}

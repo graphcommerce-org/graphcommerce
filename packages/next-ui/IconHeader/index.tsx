@@ -4,7 +4,7 @@ import React from 'react'
 import responsiveVal from '../Styles/responsiveVal'
 import SvgImage, { SvgImageProps } from '../SvgImage'
 
-// todo: fix hot reloading issue when modifying implementations of this component
+// TODO: remove all occurrences. deprecated component
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -32,6 +32,9 @@ const useStyles = makeStyles(
       overflow: 'hidden',
       textOverflow: 'ellipsis',
     },
+    mediumFontWeight: {
+      fontWeight: 700,
+    },
   }),
   { name: 'IconHeader' },
 )
@@ -48,7 +51,7 @@ type IconHeaderProps = {
   ellipsis?: boolean
 } & Pick<SvgImageProps, 'src' | 'alt'>
 
-type IconHeaderHeadings = 'h2' | 'h3' | 'h4'
+type IconHeaderHeadings = 'h2' | 'h4' | 'h5'
 
 export default function IconHeader(props: IconHeaderProps) {
   const {
@@ -64,8 +67,8 @@ export default function IconHeader(props: IconHeaderProps) {
   const classes = useStyles()
 
   const variants: Record<IconHeaderSize, IconHeaderHeadings> = {
-    small: 'h4',
-    medium: 'h3',
+    small: 'h5',
+    medium: 'h4',
     large: 'h2',
   }
 
@@ -93,7 +96,10 @@ export default function IconHeader(props: IconHeaderProps) {
         <Typography
           variant={variants[size]}
           component='h2'
-          className={clsx(ellipsis && classes.ellipsis)}
+          className={clsx(
+            ellipsis && classes.ellipsis,
+            size === 'medium' && classes.mediumFontWeight,
+          )}
         >
           {title}
         </Typography>

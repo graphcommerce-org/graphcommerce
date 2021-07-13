@@ -1,31 +1,22 @@
-import { Box, Container, Divider, List, ListItem, Typography } from '@material-ui/core'
+import { Container, Divider, List, ListItem, Typography } from '@material-ui/core'
 import { PageOptions, usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
-import SheetContent from '@reachdigital/next-ui/AppShell/SheetContent'
-import SheetContentHeader from '@reachdigital/next-ui/AppShell/SheetContentHeader'
-import SheetContentTitle from '@reachdigital/next-ui/AppShell/SheetContentTitle'
-import SheetPrimaryAction from '@reachdigital/next-ui/AppShell/SheetPrimaryAction'
-import IconHeader from '@reachdigital/next-ui/IconHeader'
-import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import AppShellTitle from '@reachdigital/next-ui/AppShell/AppShellTitle'
+import SheetShellHeader from '@reachdigital/next-ui/AppShell/SheetShellHeader'
 import Stepper from '@reachdigital/next-ui/Stepper/Stepper'
 import { iconPersonAlt } from '@reachdigital/next-ui/icons'
 import { m } from 'framer-motion'
-import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React, { useState } from 'react'
+import { Button } from '../../../../../packages/next-ui'
+import AppShellProvider from '../../../../../packages/next-ui/AppShell/AppShellProvider'
+import Title from '../../../../../packages/next-ui/Title'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
-import { DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
-
-type Props = DefaultPageQuery
-type RouteProps = { url: string[] }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<SheetShellProps, Props, RouteProps>
 
 function BottomSheetWithPrimaryActionAndNavigatable() {
   const urlParts = usePageRouter().asPath.split('/').pop()?.split('-') ?? []
   const title = urlParts.map((s) => `${s?.charAt(0).toUpperCase() + s?.slice(1)}`).join(' ')
   const [scroll, setScroll] = useState<boolean>(false)
-
-  const { closeSteps, backSteps } = usePageContext()
+  const { backSteps } = usePageContext()
 
   const withPrimary = urlParts.includes('primary')
   const withStepper = urlParts.includes('stepper')
@@ -36,59 +27,45 @@ function BottomSheetWithPrimaryActionAndNavigatable() {
   if (withPrimary)
     primaryAction = (
       <PageLink href='/test/sheet/bottom-sheet-with-primary-navigated' passHref>
-        <SheetPrimaryAction text='Navigate' />
+        <Button color='secondary' variant='pill-link'>
+          Navigate
+        </Button>
       </PageLink>
     )
 
   if (withStepper && step < 3) {
     primaryAction = (
       <PageLink href={`/test/sheet/bottom-sheet-with-stepper-${step + 1}`} passHref>
-        <SheetPrimaryAction text='Navigate' />
+        <Button color='secondary' variant='pill-link'>
+          Navigate
+        </Button>
       </PageLink>
     )
   }
 
   let titleComponent = (
-    <Typography variant='h5' component='span'>
+    <Title size='small' component='span'>
       {title}
-    </Typography>
+    </Title>
   )
 
   if (withIcon)
     titleComponent = (
-      <IconHeader
-        src={iconPersonAlt}
-        title={title}
-        alt={title}
-        size='medium'
-        iconSize={32}
-        iconSizeMobile={24}
-        stayInline
-        noMargin
-        ellipsis
-      />
+      <Title icon={iconPersonAlt} size='small' component='span'>
+        {title}
+      </Title>
     )
 
   return (
-    <SheetContent>
-      <SheetContentHeader
+    <AppShellProvider>
+      <SheetShellHeader
         primary={primaryAction}
         divider={withStepper ? <Stepper steps={3} currentStep={step} /> : undefined}
       >
         {titleComponent}
-      </SheetContentHeader>
+      </SheetShellHeader>
 
-      <SheetContentTitle>
-        <Box textAlign='center' mb={3}>
-          {withIcon ? (
-            <IconHeader src={iconPersonAlt} title={title} alt={title} size='medium' />
-          ) : (
-            <Typography variant='h3' component='h1'>
-              {title}
-            </Typography>
-          )}
-        </Box>
-      </SheetContentTitle>
+      <AppShellTitle icon={withIcon ? iconPersonAlt : undefined}>{title}</AppShellTitle>
 
       <Container maxWidth='md'>
         {!primaryAction && (
@@ -179,7 +156,7 @@ function BottomSheetWithPrimaryActionAndNavigatable() {
           />
         </div>
       </Container>
-    </SheetContent>
+    </AppShellProvider>
   )
 }
 

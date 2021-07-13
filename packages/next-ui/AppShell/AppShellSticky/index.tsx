@@ -3,7 +3,7 @@ import { useMotionValue } from 'framer-motion'
 import React, { useEffect } from 'react'
 import { useMotionValueValue } from '../../../framer-utils'
 import { UseStyles } from '../../Styles'
-import useContentHeaderContext from '../ContentHeader/useContentHeaderContext'
+import useAppShellHeaderContext from '../AppShellHeader/useAppShellHeaderContext'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -12,26 +12,25 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: 'SheetBillboard',
+    name: 'AppShellSticky',
   },
 )
 
-type SheetBillboardBaseProps = {
+type AppShellStickyBaseProps = {
   children: React.ReactNode
 }
 
-type SheetBillboardProps = SheetBillboardBaseProps & UseStyles<typeof useStyles>
+type AppShellStickyProps = AppShellStickyBaseProps & UseStyles<typeof useStyles>
 
 /*
-  SheetBillboard
  - makes the children sticky to the parent container
  - determines top offset based on header height dynamically
 */
-export default function SheetBillboard(props: SheetBillboardProps) {
+export default function AppShellSticky(props: AppShellStickyProps) {
   const { children } = props
   const classes = useStyles(props)
 
-  const { contentHeaderRef } = useContentHeaderContext()
+  const { contentHeaderRef } = useAppShellHeaderContext()
   const offsetTop = useMotionValue<number>(0)
 
   useEffect(() => {

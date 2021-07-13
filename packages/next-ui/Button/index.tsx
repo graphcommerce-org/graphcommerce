@@ -16,6 +16,8 @@ type ButtonClassKey =
   | 'pillSizeSmall'
   | 'pillNoElevation'
   | 'textBold'
+  | 'withStartIcon'
+  | 'startIconText'
 
 type ClassKeys = ButtonClassKey | MuiButtonClassKey
 type Text = 'normal' | 'bold'
@@ -32,6 +34,18 @@ const useStyles = makeStyles<
   ButtonClassKey
 >(
   (theme: Theme) => ({
+    withStartIcon: {
+      [theme.breakpoints.down('sm')]: {
+        height: 40,
+        width: 40,
+        textAlign: 'center',
+        minWidth: 'unset',
+        borderRadius: 99,
+        '& > span > .MuiButton-startIcon': {
+          margin: 'unset',
+        },
+      },
+    },
     pill: {
       borderRadius: 40 / 2,
     },
@@ -41,6 +55,7 @@ const useStyles = makeStyles<
         color: theme.palette.secondary.contrastText,
         boxShadow: theme.shadows[2],
         borderRadius: 25,
+        padding: '6px 16px',
         '&:hover': {
           background: theme.palette.secondary.dark,
         },
@@ -66,6 +81,12 @@ const useStyles = makeStyles<
     },
     textBold: {
       fontWeight: theme.typography.fontWeightBold,
+    },
+    startIconText: {
+      display: 'none',
+      [theme.breakpoints.up('md')]: {
+        display: 'unset',
+      },
     },
   }),
   { name: 'MuiPillButton' },
@@ -96,6 +117,8 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
     'pill-link': 'text',
   }
 
+  const withIcon = typeof buttonProps.startIcon !== 'undefined'
+
   return (
     <MuiButton
       {...buttonProps}
@@ -115,11 +138,14 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
           [pillClasses.pillNoElevation]: buttonProps.disableElevation,
           [pillClasses.pillLink]: variant === 'pill-link',
           [pillClasses.textBold]: text === 'bold',
+          [pillClasses.withStartIcon]: withIcon,
         },
         className,
       )}
     >
-      {loading ? <>Loading</> : children}
+      <span className={clsx(classes.text, withIcon && pillClasses.startIconText)}>
+        {loading ? <>Loading</> : children}
+      </span>
     </MuiButton>
   )
 })

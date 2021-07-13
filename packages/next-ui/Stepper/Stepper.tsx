@@ -9,7 +9,9 @@ const useStyles = makeStyles(
     root: {
       display: 'flex',
       justifyContent: 'space-between',
-      paddingTop: responsiveVal(0, 12),
+      [theme.breakpoints.up('lg')]: {
+        paddingTop: 12,
+      },
     },
     step: {
       height: 2,
