@@ -3,6 +3,7 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import PageContentHeader from '@reachdigital/next-ui/AppShell/PageContentHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import PageLink from 'next/link'
 import React from 'react'
 import SheetContent from '../../../../packages/next-ui/AppShell/SheetContent'
 import SheetContentTitle from '../../../../packages/next-ui/AppShell/SheetContentTitle'
@@ -30,7 +31,11 @@ function MinimalAppShellTestIndex(props: Props) {
   return (
     <SheetContent>
       <PageContentHeader
-        primary={<SheetPrimaryAction href='/test/minimal-page-shell' text='Next' />}
+        primary={
+          <PageLink href='/test/minimal-page-shell' passHref>
+            <SheetPrimaryAction text='Next' />
+          </PageLink>
+        }
         logo={<Logo />}
       >
         <Typography variant='h5' component='span'>

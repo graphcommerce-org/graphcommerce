@@ -6,6 +6,7 @@ import PageContentHeader from '@reachdigital/next-ui/AppShell/PageContentHeader'
 import SheetBillboard from '@reachdigital/next-ui/AppShell/SheetBillboard'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
+import PageLink from 'next/link'
 import React from 'react'
 import { ProductListParamsProvider } from '../../../../../packages/magento-category'
 import {
@@ -55,7 +56,11 @@ function MinimalAppShellSubheader(props: Props) {
     <SheetContent>
       <ProductListParamsProvider value={params}>
         <PageContentHeader
-          primary={<SheetPrimaryAction href='/test/minimal-page-shell' text='Next' />}
+          primary={
+            <PageLink href='/test/minimal-page-shell' passHref>
+              <SheetPrimaryAction text='Next' />
+            </PageLink>
+          }
           logo={<Logo />}
           subHeader={
             <Container maxWidth='sm'>

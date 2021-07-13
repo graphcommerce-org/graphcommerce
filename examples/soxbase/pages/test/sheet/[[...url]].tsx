@@ -1,7 +1,5 @@
-import { Box, Container, Divider, Link, List, ListItem, Typography } from '@material-ui/core'
+import { Box, Container, Divider, List, ListItem, Typography } from '@material-ui/core'
 import { PageOptions, usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
-import { SheetVariant } from '@reachdigital/framer-sheet'
-import { StoreConfigDocument } from '@reachdigital/magento-store'
 import SheetContent from '@reachdigital/next-ui/AppShell/SheetContent'
 import SheetContentHeader from '@reachdigital/next-ui/AppShell/SheetContentHeader'
 import SheetContentTitle from '@reachdigital/next-ui/AppShell/SheetContentTitle'
@@ -15,8 +13,7 @@ import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React, { useState } from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
-import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
-import apolloClient from '../../../lib/apolloClient'
+import { DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 
 type Props = DefaultPageQuery
 type RouteProps = { url: string[] }
@@ -38,19 +35,25 @@ function BottomSheetWithPrimaryActionAndNavigatable() {
   let primaryAction: React.ReactNode
   if (withPrimary)
     primaryAction = (
-      <SheetPrimaryAction href='/test/sheet/bottom-sheet-with-primary-navigated' text='Navigate' />
+      <PageLink href='/test/sheet/bottom-sheet-with-primary-navigated' passHref>
+        <SheetPrimaryAction text='Navigate' />
+      </PageLink>
     )
 
   if (withStepper && step < 3) {
     primaryAction = (
-      <SheetPrimaryAction href={`/test/sheet/bottom-sheet-with-stepper-${step + 1}`} text='Next' />
+      <PageLink href={`/test/sheet/bottom-sheet-with-stepper-${step + 1}`} passHref>
+        <SheetPrimaryAction text='Navigate' />
+      </PageLink>
     )
   }
+
   let titleComponent = (
     <Typography variant='h5' component='span'>
       {title}
     </Typography>
   )
+
   if (withIcon)
     titleComponent = (
       <IconHeader

@@ -7,6 +7,7 @@ import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { iconPersonAlt } from '@reachdigital/next-ui/icons'
 import { GetStaticPaths } from 'next'
+import PageLink from 'next/link'
 import React from 'react'
 import SheetContent from '../../../../../packages/next-ui/AppShell/SheetContent'
 import SheetContentHeader from '../../../../../packages/next-ui/AppShell/SheetContentHeader'
@@ -34,7 +35,11 @@ function AppShellTextOverlay({ url, pages }: Props) {
   return (
     <SheetContent>
       <SheetContentHeader
-        primary={<SheetPrimaryAction href='/test/overlay/bottom/2' text='Next' />}
+        primary={
+          <PageLink href='/test/overlay/bottom/2' passHref>
+            <SheetPrimaryAction text='Next' />
+          </PageLink>
+        }
       >
         <IconHeader
           src={iconPersonAlt}
