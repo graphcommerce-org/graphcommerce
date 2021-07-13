@@ -38,7 +38,9 @@ const useStyles = makeStyles(
   { name: 'SidebarSlider' },
 )
 
-type SidebarSliderProps = { children: ReactNode; sidebar: ReactNode } & UseStyles<typeof useStyles>
+export type SidebarSliderProps = { children: ReactNode; sidebar: ReactNode } & UseStyles<
+  typeof useStyles
+>
 
 export default function SidebarSlider(props: SidebarSliderProps) {
   const { children, sidebar } = props

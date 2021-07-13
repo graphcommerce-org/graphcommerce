@@ -27,7 +27,7 @@ const useStyles = makeStyles(
   { name: 'SingleItemSlider' },
 )
 
-type SingleItemSliderProps = { children: React.ReactNode } & UseStyles<typeof useStyles>
+export type SingleItemSliderProps = { children: React.ReactNode } & UseStyles<typeof useStyles>
 
 export default function SingleItemSlider(props: SingleItemSliderProps) {
   const { children } = props

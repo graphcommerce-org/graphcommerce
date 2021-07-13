@@ -1,4 +1,4 @@
-type TimeAgoProps = {
+export type TimeAgoProps = {
   date: Date
   locale?: string
 }

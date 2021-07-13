@@ -14,7 +14,9 @@ const useStyles = makeStyles(
   { name: 'SliderDots' },
 )
 
-type SliderPageCounterProps = { count: number; layout?: boolean } & UseStyles<typeof useStyles>
+export type SliderPageCounterProps = { count: number; layout?: boolean } & UseStyles<
+  typeof useStyles
+>
 
 export default function SliderPageCounter(props: SliderPageCounterProps) {
   const { count, layout } = props

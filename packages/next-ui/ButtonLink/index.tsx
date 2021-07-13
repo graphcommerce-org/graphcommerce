@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-type ButtonLinkProps = {
+export type ButtonLinkProps = {
   title: string
   url: string
   endIcon?: React.ReactNode

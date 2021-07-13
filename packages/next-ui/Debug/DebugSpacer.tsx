@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core'
 import { CSSProperties } from '@material-ui/styles'
 import { AnimatePresence, HTMLMotionProps, m } from 'framer-motion'
 
-type DebugSpacerProps = {
+export type DebugSpacerProps = {
   height?: number
   color?: CSSProperties['color']
 } & HTMLMotionProps<'div'>

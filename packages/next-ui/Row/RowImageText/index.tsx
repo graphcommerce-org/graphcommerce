@@ -51,7 +51,7 @@ const useStyles = makeStyles(
   { name: 'RowImageText' },
 )
 
-type RowImageTextProps = UseStyles<typeof useStyles> & {
+export type RowImageTextProps = UseStyles<typeof useStyles> & {
   item?: React.ReactNode
   children: React.ReactNode
 }

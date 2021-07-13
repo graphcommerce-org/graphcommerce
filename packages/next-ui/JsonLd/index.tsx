@@ -3,7 +3,7 @@ import React from 'react'
 import { jsonLdScriptProps } from 'react-schemaorg'
 import { Thing, WithContext } from 'schema-dts'
 
-type JsonLdProps<T extends Thing> = {
+export type JsonLdProps<T extends Thing> = {
   item: WithContext<T>
 }
 

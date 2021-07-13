@@ -12,7 +12,7 @@ function isValueSelected(value: string, candidate: string | string[]) {
   return value === candidate
 }
 
-type ToggleButtonPropsBase = Omit<PropsWithoutRef<ToggleButtonGroupProps>, 'size'> & {
+export type ToggleButtonPropsBase = Omit<PropsWithoutRef<ToggleButtonGroupProps>, 'size'> & {
   required?: boolean
   minWidth?: number
 }

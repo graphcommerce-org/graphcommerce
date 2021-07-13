@@ -13,7 +13,7 @@ import ColorSwatchData from '../Swatches/ColorSwatchData'
 import ImageSwatchData from '../Swatches/ImageSwatchData'
 import TextSwatchData from '../Swatches/TextSwatchData'
 
-type ConfigurableOptionsProps = {
+export type ConfigurableOptionsProps = {
   sku: string
   errors?: FieldErrors
 } & UseControllerProps<any> &
@@ -21,7 +21,7 @@ type ConfigurableOptionsProps = {
     optionEndLabels?: Record<string, React.ReactNode>
   }
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme: Theme) => ({
     sectionHeaderWrapper: {
       borderBottom: 'none',

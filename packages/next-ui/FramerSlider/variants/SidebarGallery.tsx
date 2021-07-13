@@ -12,7 +12,7 @@ import SliderNext from '../SliderNext'
 import SliderPrev from '../SliderPrev'
 import SliderScroller from '../SliderScroller'
 
-type StyleProps = {
+export type StyleProps = {
   maxWidth?: ContainerProps['maxWidth']
   aspectRatio?: [number, number]
 }

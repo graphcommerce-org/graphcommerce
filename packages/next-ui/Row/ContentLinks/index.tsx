@@ -27,7 +27,7 @@ const useStyles = makeStyles(
   { name: 'ContentLinks' },
 )
 
-type ContentLinksProps = UseStyles<typeof useStyles> & {
+export type ContentLinksProps = UseStyles<typeof useStyles> & {
   title: string
   children: React.ReactNode
 }

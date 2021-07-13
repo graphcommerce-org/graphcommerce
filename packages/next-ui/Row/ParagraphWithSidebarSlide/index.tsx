@@ -56,7 +56,7 @@ const useStyles = makeStyles(
   { name: 'ParagraphWithSidebarSlide' },
 )
 
-type ParagraphWithSidebarSlideProps = UseStyles<typeof useStyles> &
+export type ParagraphWithSidebarSlideProps = UseStyles<typeof useStyles> &
   ContainerProps & {
     slidingItems: React.ReactNode
     background: React.ReactNode

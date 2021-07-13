@@ -20,14 +20,14 @@ const useStyles = makeStyles(
   { name: 'Form' },
 )
 
-type BaseFormProps = {
+export type BaseFormProps = {
   contained?: boolean
   children: React.ReactNode
 } & UseStyles<typeof useStyles>
 
-type FormFormProps = BaseFormProps & JSX.IntrinsicElements['form'] & { component?: 'form' }
+export type FormFormProps = BaseFormProps & JSX.IntrinsicElements['form'] & { component?: 'form' }
 
-type DivFormProps = BaseFormProps & JSX.IntrinsicElements['div'] & { component: 'div' }
+export type DivFormProps = BaseFormProps & JSX.IntrinsicElements['div'] & { component: 'div' }
 
 function isDivComponent(props: FormFormProps | DivFormProps): props is DivFormProps {
   return props.component === 'div'

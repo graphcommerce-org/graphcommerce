@@ -14,7 +14,7 @@ const useStyles = makeStyles(
   { name: 'MultiItemSlider' },
 )
 
-type MultiItemSliderProps = Pick<SliderScrollerProps, 'children'> &
+export type MultiItemSliderProps = Pick<SliderScrollerProps, 'children'> &
   Partial<SliderState['options']> &
   UseStyles<typeof useStyles>
 

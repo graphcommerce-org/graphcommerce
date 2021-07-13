@@ -32,12 +32,12 @@ const useStyles = makeStyles(
   { name: 'TextInputNumber' },
 )
 
-type IconButtonPropsOmit = Omit<
+export type IconButtonPropsOmit = Omit<
   IconButtonProps,
   'aria-label' | 'size' | 'onMouseDown' | 'onMouseUp' | 'disabled'
 >
 
-type TextInputNumberProps = Omit<TextFieldProps, 'type'> & {
+export type TextInputNumberProps = Omit<TextFieldProps, 'type'> & {
   DownProps?: IconButtonPropsOmit
   UpProps?: IconButtonPropsOmit
 } & UseStyles<typeof useStyles>

@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-type ProductDescriptionProps = PropsWithChildren<
+export type ProductDescriptionProps = PropsWithChildren<
   UseStyles<typeof useStyles> & {
     top: React.ReactNode
     left: React.ReactNode

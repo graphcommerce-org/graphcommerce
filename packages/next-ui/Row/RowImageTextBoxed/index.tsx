@@ -55,7 +55,7 @@ const useStyles = makeStyles(
   { name: 'RowImageTextBoxed' },
 )
 
-type RowImageTextBoxedProps = UseStyles<typeof useStyles> & {
+export type RowImageTextBoxedProps = UseStyles<typeof useStyles> & {
   children: React.ReactNode
   item?: React.ReactNode
 }
