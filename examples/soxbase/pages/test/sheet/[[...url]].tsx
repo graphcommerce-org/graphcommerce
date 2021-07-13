@@ -187,16 +187,13 @@ const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'test',
   SharedComponent: SheetShell,
   sharedProps: { size: 'max', variant: 'bottom' },
-  sharedKey: (router) => {
-    const sharedKey = [
+  sharedKey: (router) =>
+    [
       router.pathname,
       router.asPath.includes('primary') ? 'primary' : '',
       router.asPath.includes('stepper') ? 'stepper' : '',
       router.asPath.includes('icon') ? 'icon' : '',
-    ].join('-')
-    console.log(sharedKey)
-    return sharedKey
-  },
+    ].join('-'),
 }
 BottomSheetWithPrimaryActionAndNavigatable.pageOptions = pageOptions
 
