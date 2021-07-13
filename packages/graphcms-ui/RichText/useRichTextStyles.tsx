@@ -1,6 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import { UseStyles, responsiveVal } from '@reachdigital/next-ui'
 
 const useRichTextStyles = makeStyles(
   ({ spacings, breakpoints, palette, typography }: Theme) => ({

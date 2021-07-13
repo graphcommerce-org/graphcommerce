@@ -1,10 +1,12 @@
 import { TextField } from '@material-ui/core'
-import Button from '@reachdigital/next-ui/Button'
-import Form from '@reachdigital/next-ui/Form'
-import FormActions from '@reachdigital/next-ui/Form/FormActions'
-import FormDivider from '@reachdigital/next-ui/Form/FormDivider'
-import FormRow from '@reachdigital/next-ui/Form/FormRow'
-import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
+import {
+  NextButton as Button,
+  Form,
+  FormActions,
+  FormDivider,
+  FormRow,
+  MessageSnackbar,
+} from '@reachdigital/next-ui'
 import React from 'react'
 import { emailPattern, useFormGqlMutation } from '../../react-hook-form'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'

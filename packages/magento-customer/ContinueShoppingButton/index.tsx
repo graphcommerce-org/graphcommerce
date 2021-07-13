@@ -1,5 +1,4 @@
-import Button from '@reachdigital/next-ui/Button'
-import FormActions from '@reachdigital/next-ui/Form/FormActions'
+import { NextButton as Button, FormActions } from '@reachdigital/next-ui'
 import { useRouter } from 'next/router'
 import React from 'react'
 

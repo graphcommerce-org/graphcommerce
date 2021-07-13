@@ -1,7 +1,6 @@
 import { Link as MuiLink, makeStyles, Theme, Typography } from '@material-ui/core'
 import { Image, ImageProps } from '@reachdigital/image'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import { UseStyles, responsiveVal } from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'

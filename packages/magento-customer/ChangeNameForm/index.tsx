@@ -1,8 +1,11 @@
-import Button from '@reachdigital/next-ui/Button'
-import Form from '@reachdigital/next-ui/Form'
-import FormActions from '@reachdigital/next-ui/Form/FormActions'
-import FormDivider from '@reachdigital/next-ui/Form/FormDivider'
-import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
+import {
+  NextButton as Button,
+  Form,
+  FormActions,
+  FormDivider,
+  MessageSnackbar,
+} from '@reachdigital/next-ui'
+
 import React from 'react'
 import { useFormGqlMutation } from '../../react-hook-form'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'

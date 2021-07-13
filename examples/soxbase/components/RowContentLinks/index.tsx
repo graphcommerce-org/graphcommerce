@@ -1,5 +1,5 @@
 import { Link } from '@material-ui/core'
-import ContentLinks from '@reachdigital/next-ui/Row/ContentLinks'
+import { ContentLinks } from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import { RowContentLinksFragment } from './RowContentLinks.gql'

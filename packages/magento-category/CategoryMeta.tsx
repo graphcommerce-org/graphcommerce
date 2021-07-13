@@ -1,6 +1,6 @@
 import { ProductListParams } from '@reachdigital/magento-product/ProductListItems/filterTypes'
 import { PageMeta } from '@reachdigital/magento-store'
-import { PageMetaProps } from '@reachdigital/next-ui/PageMeta'
+import { PageMetaProps } from '@reachdigital/next-ui'
 import React from 'react'
 import { CategoryMetaFragment } from './CategoryMeta.gql'
 

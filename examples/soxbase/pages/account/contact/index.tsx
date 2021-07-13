@@ -7,10 +7,12 @@ import {
   UpdateCustomerEmailForm,
 } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import IconHeader from '@reachdigital/next-ui/IconHeader'
-import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import SectionContainer from '@reachdigital/next-ui/SectionContainer'
-import { iconEmailOutline } from '@reachdigital/next-ui/icons'
+import {
+  IconHeader,
+  GetStaticProps,
+  SectionContainer,
+  iconEmailOutline,
+} from '@reachdigital/next-ui'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'

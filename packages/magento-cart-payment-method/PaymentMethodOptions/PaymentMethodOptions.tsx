@@ -1,4 +1,4 @@
-import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
+import { AnimatedRow } from '@reachdigital/next-ui'
 import { AnimatePresence } from 'framer-motion'
 import { PaymentMethodOptionsProps } from '../Api/PaymentMethod'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'

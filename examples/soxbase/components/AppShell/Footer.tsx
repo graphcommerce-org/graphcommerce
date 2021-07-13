@@ -7,7 +7,6 @@ import Youtube from '@material-ui/icons/YouTube'
 import { StoreSwitcherButton } from '@reachdigital/magento-store'
 import PageLink from 'next/link'
 import React from 'react'
-import responsiveVal from '../../../../packages/next-ui/Styles/responsiveVal'
 import Button from '../PageLink/Button'
 import { FooterQueryFragment } from './FooterQueryFragment.gql'
 

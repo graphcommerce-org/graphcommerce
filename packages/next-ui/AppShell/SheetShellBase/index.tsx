@@ -3,14 +3,13 @@ import {
   Sheet,
   SheetBackdrop,
   SheetContainer,
-  SheetContext,
   SheetDragIndicator,
   SheetPanel,
   SheetProps,
   SnapPoint,
 } from '@reachdigital/framer-sheet'
 import { useRouter } from 'next/router'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import ShellBase, { PageLayoutBaseProps } from '../ShellBase'
 import useSheetStyles from './useSheetStyles'
 

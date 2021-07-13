@@ -1,8 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { TextField } from '@material-ui/core'
 import { CountryRegionsDocument } from '@reachdigital/magento-store'
-import FormRow from '@reachdigital/next-ui/Form/FormRow'
-import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
+import { FormRow, InputCheckmark } from '@reachdigital/next-ui'
 import {
   assertFormGqlOperation,
   houseNumberPattern,

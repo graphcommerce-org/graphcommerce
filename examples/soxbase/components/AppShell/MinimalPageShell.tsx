@@ -1,8 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import FullPageShellBase, {
-  FullPageShellBaseProps,
-} from '@reachdigital/next-ui/AppShell/FullPageShellBase'
+import { FullPageShellBase, FullPageShellBaseProps } from '@reachdigital/next-ui'
 import React from 'react'
 import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
 import Footer from './Footer'

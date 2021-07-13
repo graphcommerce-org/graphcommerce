@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import SliderContainer from '../SliderContainer'
-import { SliderContext } from '../SliderContext'
+import SliderContext from '../SliderContext'
 import SliderScroller, { SliderScrollerProps } from '../SliderScroller'
 import { SliderState } from '../sliderReducer'
 

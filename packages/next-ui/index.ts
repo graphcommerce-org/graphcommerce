@@ -91,14 +91,6 @@ export * from './PageMeta'
 
 export { default as Pagination } from './Pagination'
 
-export { default as PictureResponsive } from './PictureResponsive'
-export * from './PictureResponsive'
-export { default as useConnectionType } from './PictureResponsive/useConnectionType'
-export { default as VideoResponsive } from './PictureResponsive/VideoResponsive'
-
-export { default as PictureResponsiveNext } from './PictureResponsiveNext'
-export * from './PictureResponsiveNext'
-
 export { default as RenderType } from './RenderType'
 export * from './RenderType'
 

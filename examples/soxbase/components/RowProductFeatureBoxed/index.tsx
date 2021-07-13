@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core'
 import RichText from '@reachdigital/graphcms-ui/RichText'
 import { Image } from '@reachdigital/image'
-import RowImageTextBoxed from '@reachdigital/next-ui/Row/RowImageTextBoxed'
+import { RowImageTextBoxed } from '@reachdigital/next-ui'
 import React from 'react'
 import { ProductFeatureMediaBoxedFragment } from './ProductFeatureMediaBoxed.gql'
 import { RowProductFeatureBoxedFragment } from './RowProductFeatureBoxed.gql'

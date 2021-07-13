@@ -3,10 +3,7 @@ import { makeStyles, Mark, Slider, Theme } from '@material-ui/core'
 import { FilterRangeTypeInput } from '@reachdigital/graphql'
 import { useCategoryPushRoute, useProductListParamsContext } from '@reachdigital/magento-category'
 import { Money } from '@reachdigital/magento-store'
-import Button from '@reachdigital/next-ui/Button'
-import ChipMenu, { ChipMenuProps } from '@reachdigital/next-ui/ChipMenu'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import clsx from 'clsx'
+import { ChipMenu, ChipMenuProps } from '@reachdigital/next-ui'
 import React from 'react'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
@@ -44,10 +41,6 @@ const useFilterRangeType = makeStyles(
         background: theme.palette.background.default,
         boxShadow: theme.shadows[4],
       },
-    },
-    button: {
-      float: 'right',
-      textDecoration: 'none',
     },
   }),
   { name: 'FilterRangeType' },

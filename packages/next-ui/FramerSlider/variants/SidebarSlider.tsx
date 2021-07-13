@@ -4,7 +4,7 @@ import React, { ReactNode } from 'react'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
 import SliderContainer from '../SliderContainer'
-import { SliderContext } from '../SliderContext'
+import SliderContext from '../SliderContext'
 import SliderPageCounter from '../SliderPageCounter'
 import SliderScroller from '../SliderScroller'
 

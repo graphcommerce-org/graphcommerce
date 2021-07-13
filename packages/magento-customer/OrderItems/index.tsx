@@ -1,9 +1,11 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
-import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
-import Button from '@reachdigital/next-ui/Button'
-import SectionContainer from '@reachdigital/next-ui/SectionContainer'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import {
+  AnimatedRow,
+  NextButton as Button,
+  SectionContainer,
+  responsiveVal,
+} from '@reachdigital/next-ui'
 import { AnimatePresence } from 'framer-motion'
 import React, { useState } from 'react'
 import { UseOrderCardItemImages } from '../OrderCardItemImage/useOrderCardItemImages'

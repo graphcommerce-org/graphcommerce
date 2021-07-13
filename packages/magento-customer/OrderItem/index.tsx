@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import { Image } from '@reachdigital/image'
 import { Money } from '@reachdigital/magento-store'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import { responsiveVal } from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'

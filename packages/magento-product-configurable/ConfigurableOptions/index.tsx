@@ -1,8 +1,10 @@
 import { BaseTextFieldProps, FormHelperText, makeStyles, Theme } from '@material-ui/core'
-import RenderType from '@reachdigital/next-ui/RenderType'
-import SectionContainer from '@reachdigital/next-ui/SectionContainer'
-import ToggleButton from '@reachdigital/next-ui/ToggleButton'
-import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
+import {
+  RenderType,
+  SectionContainer,
+  ToggleButton,
+  ToggleButtonGroup,
+} from '@reachdigital/next-ui'
 import { Controller, FieldErrors, UseControllerProps } from '@reachdigital/react-hook-form'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'

@@ -1,5 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
+import { UseStyles } from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import { OrderStateLabelFragment } from './OrderStateLabel.gql'
 

@@ -1,6 +1,6 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import { Money } from '@reachdigital/magento-store'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
+import { UseStyles } from '@reachdigital/next-ui'
 import React from 'react'
 import { TextSwatchDataFragment } from './TextSwatchData.gql'
 import { SwatchDataProps } from '.'

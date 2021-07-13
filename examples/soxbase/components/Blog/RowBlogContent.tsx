@@ -1,5 +1,5 @@
 import RichText from '@reachdigital/graphcms-ui/RichText'
-import BlogContent from '@reachdigital/next-ui/Blog/BlogContent'
+import { BlogContent } from '@reachdigital/next-ui'
 import { RowBlogContentFragment } from './RowBlogContent.gql'
 
 type RowBlogContentProps = RowBlogContentFragment

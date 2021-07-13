@@ -1,4 +1,4 @@
-import { ChipMenuProps } from '@reachdigital/next-ui/ChipMenu'
+import { ChipMenuProps } from '@reachdigital/next-ui'
 import React from 'react'
 import { FilterTypes } from '../ProductListItems/filterTypes'
 import FilterCheckboxType from './FilterCheckboxType'

@@ -1,7 +1,6 @@
-import { isElementNode, isTextNode, Node } from '@reachdigital/graphcms-ui/RichText'
 import RichTextColumns from '@reachdigital/graphcms-ui/RichText/RichTextColumns'
 import getNodeLength from '@reachdigital/graphcms-ui/RichText/getNodeLength'
-import ColumnTwoSpread from '@reachdigital/next-ui/Row/ColumnTwoSpread'
+import { ColumnTwoSpread } from '@reachdigital/next-ui'
 import React from 'react'
 import { RowColumnTwoFragment } from './RowColumnTwo.gql'
 

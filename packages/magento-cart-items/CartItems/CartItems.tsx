@@ -1,6 +1,5 @@
 import { useCartQuery } from '@reachdigital/magento-cart'
-import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
-import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
+import { AnimatedRow, RenderType, TypeRenderer } from '@reachdigital/next-ui'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { CartItemsFragment } from '../Api/CartItems.gql'

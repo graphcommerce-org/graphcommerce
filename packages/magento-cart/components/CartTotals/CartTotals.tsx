@@ -1,7 +1,6 @@
 import { Divider, makeStyles, Theme } from '@material-ui/core'
 import { Money } from '@reachdigital/magento-store'
-import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
+import { AnimatedRow, UseStyles } from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'

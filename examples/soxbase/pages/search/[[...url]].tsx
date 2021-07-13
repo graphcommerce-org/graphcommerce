@@ -28,7 +28,7 @@ import {
   SearchQuery,
 } from '@reachdigital/magento-search'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import { GetStaticProps } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'

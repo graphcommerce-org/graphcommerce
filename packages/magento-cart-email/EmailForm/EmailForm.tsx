@@ -10,10 +10,7 @@ import {
   SignUpFormInline,
   useFormIsEmailAvailable,
 } from '@reachdigital/magento-customer'
-import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
-import Button from '@reachdigital/next-ui/Button'
-import Form from '@reachdigital/next-ui/Form'
-import FormRow from '@reachdigital/next-ui/Form/FormRow'
+import { AnimatedRow, NextButton as Button, Form, FormRow } from '@reachdigital/next-ui'
 import { emailPattern, useFormCompose, UseFormComposeOptions } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'

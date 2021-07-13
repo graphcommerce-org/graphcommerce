@@ -1,7 +1,5 @@
 import { makeStyles, TextField, Theme } from '@material-ui/core'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconSearch } from '@reachdigital/next-ui/icons'
+import { UseStyles, SvgImage, iconSearch } from '@reachdigital/next-ui'
 import React from 'react'
 
 const useStyles = makeStyles(

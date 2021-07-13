@@ -7,8 +7,7 @@ import {
   StoreSwitcherListQuery,
   PageMeta,
 } from '@reachdigital/magento-store'
-import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import { GetStaticProps, responsiveVal } from '@reachdigital/next-ui'
 import React from 'react'
 import { FullPageShellProps } from '../components/AppShell/FullPageShell'
 import SheetShell, { SheetShellProps } from '../components/AppShell/SheetShell'

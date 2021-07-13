@@ -1,6 +1,4 @@
-import SliderImage from '@reachdigital/next-ui/FramerSlider/SliderImage'
-import SidebarGallery from '@reachdigital/next-ui/FramerSlider/variants/SidebarGallery'
-import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
+import { SliderImage, SidebarGallery, RenderType, TypeRenderer } from '@reachdigital/next-ui'
 import React, { PropsWithChildren } from 'react'
 import ProductImage from './ProductImage'
 import { ProductPageGalleryFragment } from './ProductPageGallery.gql'

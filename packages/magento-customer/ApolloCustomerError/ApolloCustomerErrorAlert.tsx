@@ -1,7 +1,5 @@
 import { Link } from '@material-ui/core'
-import ApolloErrorAlert, {
-  ApolloErrorAlertProps,
-} from '@reachdigital/next-ui/ApolloError/ApolloErrorAlert'
+import { ApolloErrorAlert, ApolloErrorAlertProps } from '@reachdigital/next-ui'
 import NextLink from 'next/link'
 import React from 'react'
 import { useExtractCustomerErrors } from './useExtractCustomerErrors'

@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Typography } from '@material-ui/core'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import NextBlogListItem from '@reachdigital/next-ui/Blog/BlogListItem'
+import { NextBlogListItem } from '@reachdigital/next-ui'
 import Asset from '../Asset'
 import { BlogItemFragment } from './BlogItem.gql'
 

@@ -6,14 +6,17 @@ import { EmailForm } from '@reachdigital/magento-cart-email'
 import { ShippingAddressForm } from '@reachdigital/magento-cart-shipping-address'
 import { ShippingMethodForm } from '@reachdigital/magento-cart-shipping-method'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import Button from '@reachdigital/next-ui/Button'
-import FormActions from '@reachdigital/next-ui/Form/FormActions'
-import FormHeader from '@reachdigital/next-ui/Form/FormHeader'
-import IconHeader from '@reachdigital/next-ui/IconHeader'
-import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import Stepper from '@reachdigital/next-ui/Stepper/Stepper'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconBox, iconChevronRight } from '@reachdigital/next-ui/icons'
+import {
+  NextButton as Button,
+  FormActions,
+  FormHeader,
+  IconHeader,
+  GetStaticProps,
+  Stepper,
+  SvgImage,
+  iconBox,
+  iconChevronRight,
+} from '@reachdigital/next-ui'
 import { ComposedForm, ComposedSubmit } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'

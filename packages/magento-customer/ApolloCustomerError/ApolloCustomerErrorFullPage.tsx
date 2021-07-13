@@ -1,10 +1,13 @@
-import ApolloErrorFullPage from '@reachdigital/next-ui/ApolloError/ApolloErrorFullPage'
+import {
+  ApolloErrorFullPage,
+  ApolloErrorAlertProps,
+  NextButton as Button,
+  SvgImage,
+  iconPersonAltBig,
+} from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
-import { ApolloErrorAlertProps } from '../../next-ui/ApolloError/ApolloErrorAlert'
-import Button from '../../next-ui/Button'
-import SvgImage from '../../next-ui/SvgImage'
-import { iconPersonAltBig } from '../../next-ui/icons'
+
 import { useExtractCustomerErrors } from './useExtractCustomerErrors'
 
 type ApolloCustomerErrorFullPageProps = {

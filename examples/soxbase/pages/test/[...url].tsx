@@ -1,13 +1,15 @@
 import { Container, Box } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import Button from '@reachdigital/next-ui/Button'
-import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
-import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-
-import { iconCheckmark, iconChevronRight } from '@reachdigital/next-ui/icons'
+import {
+  NextButton as Button,
+  DebugSpacer,
+  GetStaticProps,
+  MessageSnackbar,
+  SvgImage,
+  iconCheckmark,
+  iconChevronRight,
+} from '@reachdigital/next-ui'
 import { m } from 'framer-motion'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
