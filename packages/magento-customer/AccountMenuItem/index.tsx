@@ -6,6 +6,7 @@ import {
   Theme,
   Typography,
 } from '@material-ui/core'
+import { ObjectImage } from '@reachdigital/image'
 import {
   Button,
   ButtonProps,
