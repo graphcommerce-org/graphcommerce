@@ -8,7 +8,7 @@ Form)(https://react-hook-form.com/) package which adds new hooks.
 Simple example:
 
 ```tsx
-import useFormGqlMutation from '@reachdigital/next-ui/Form/useFormGqlMutation'
+import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 
 const mutation = gql`
   mutation ApplyCouponToCart($cartId: String!, $couponCode: String!) {
@@ -46,7 +46,7 @@ export default function MyComponent() {
 ## `useFormGqlQuery`
 
 ```tsx
-import useFormGqlQuery from '@reachdigital/next-ui/Form/useFormGqlQuery'
+import { useFormGqlQuery } from '@reachdigital/react-hook-form'
 
 const query = gql`
   query IsEmailAvailable($email: String!) {
@@ -80,7 +80,7 @@ export default function MyComponent() {
 ## `useFormAutoSubmit`
 
 ```tsx
-import useFormAutoSubmit from '@reachdigital/next-ui/Form/useFormAutoSubmit'
+import { useFormAutoSubmit } from '@reachdigital/react-hook-form'
 
 export default function MyAutoSubmitForm() {
   // Regular useForm hook, but you can also use useFormGqlMutation
@@ -114,7 +114,7 @@ export default function MyAutoSubmitForm() {
 ### `useFormPersist`
 
 ```tsx
-import useFormAutoSubmit from '@reachdigital/next-ui/Form/useFormAutoSubmit'
+import { useFormAutoSubmit } from '@reachdigital'
 
 export default function MyAutoSubmitForm() {
   // Regular useForm hook, but you can also use useFormGqlMutation

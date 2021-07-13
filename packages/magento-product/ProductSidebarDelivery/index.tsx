@@ -1,8 +1,6 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconBox } from '@reachdigital/next-ui/icons'
+import { SvgImage, responsiveVal, iconBox } from '@reachdigital/next-ui'
 import React from 'react'
-import responsiveVal from '../../next-ui/Styles/responsiveVal'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
