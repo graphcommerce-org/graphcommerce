@@ -101,7 +101,11 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                   classes={{ root: classes.toggleButtonGroup }}
                 >
                   {option?.values?.map((val) => {
-                    if (!val?.swatch_data || !val.uid || !option.attribute_code) return null
+                    if (!val?.uid || !option.attribute_code) return null
+
+                    // Fall back to text swatch if no swatch is given
+                    if (!val.swatch_data)
+                      val.swatch_data = { __typename: 'TextSwatchData', value: val.store_label }
 
                     const copySelection = { ...selection }
                     delete copySelection[attribute_code]
