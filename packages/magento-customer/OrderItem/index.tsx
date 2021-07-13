@@ -70,7 +70,7 @@ const useStyles = makeStyles(
       justifyContent: 'center',
       backgroundColor: 'rgb(248,248,248)',
     },
-    pictureResponsive: {
+    image: {
       gridColumn: 1,
       backgroundColor: theme.palette.background.paper,
       objectFit: 'cover',
@@ -147,7 +147,7 @@ export default function OrderItem(props: OrderItemProps) {
                   width={104}
                   height={86}
                   src={thumbnail?.url ?? ''}
-                  className={classes.pictureResponsive}
+                  className={classes.image}
                 />
               )}
             </div>

@@ -25,7 +25,7 @@ const useStyles = makeStyles(
       borderRadius: 4,
       [theme.breakpoints.up('md')]: {},
     },
-    pictureResponsive: {
+    image: {
       borderRadius: '50%',
       marginRight: theme.spacings.xs,
       border: `5px ${theme.palette.common.white} solid`,
@@ -115,7 +115,7 @@ export default function CartItemSummary(props: OrderSummaryProps) {
                 width={90}
                 height={90}
                 src={item?.product.thumbnail?.url ?? ''}
-                className={classes.pictureResponsive}
+                className={classes.image}
               />
             ))}
           </SliderScroller>

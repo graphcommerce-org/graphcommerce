@@ -91,7 +91,7 @@ const useStyles = makeStyles(
       justifyContent: 'center',
       backgroundColor: 'rgb(248,248,248)',
     },
-    pictureResponsive: {
+    image: {
       gridColumn: 1,
       backgroundColor: theme.palette.background.paper,
       objectFit: 'cover',
@@ -164,7 +164,7 @@ export default function CartItem(props: CartItemProps) {
                   layout='fill'
                   alt={product.thumbnail.label ?? product.name ?? ''}
                   sizes='104px'
-                  className={classes.pictureResponsive}
+                  className={classes.image}
                 />
               )}
             </div>
