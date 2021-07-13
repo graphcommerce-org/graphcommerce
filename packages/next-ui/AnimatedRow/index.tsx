@@ -1,7 +1,7 @@
 import { HTMLMotionProps, m } from 'framer-motion'
 import { ReactHTML } from 'react'
 
-type AnimatedRowProps = Omit<
+export type AnimatedRowProps = Omit<
   ReactHTML['div'] & HTMLMotionProps<'div'>,
   'layout' | 'initial' | 'animate' | 'exit' | 'transition'
 >

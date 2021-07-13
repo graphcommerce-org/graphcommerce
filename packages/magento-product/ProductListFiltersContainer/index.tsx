@@ -1,10 +1,12 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import SliderContainer from '@reachdigital/next-ui/FramerSlider/SliderContainer'
-import { SliderContext } from '@reachdigital/next-ui/FramerSlider/SliderContext'
-import SliderNext from '@reachdigital/next-ui/FramerSlider/SliderNext'
-import SliderPrev from '@reachdigital/next-ui/FramerSlider/SliderPrev'
-import SliderScroller from '@reachdigital/next-ui/FramerSlider/SliderScroller'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
+import {
+  SliderContainer,
+  SliderContext,
+  SliderNext,
+  SliderPrev,
+  SliderScroller,
+  UseStyles,
+} from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import { m, useMotionTemplate, useTransform, useViewportScroll } from 'framer-motion'
 import React, { PropsWithChildren, useEffect, useRef, useState } from 'react'

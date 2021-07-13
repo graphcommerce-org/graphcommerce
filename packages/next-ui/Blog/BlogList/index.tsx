@@ -15,7 +15,7 @@ const useStyles = makeStyles(
   { name: 'BlogList' },
 )
 
-type BlogListProps = UseStyles<typeof useStyles> & {
+export type BlogListProps = UseStyles<typeof useStyles> & {
   children: React.ReactElement
 }
 

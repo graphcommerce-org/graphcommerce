@@ -4,7 +4,7 @@ import React from 'react'
 import responsiveVal from '../Styles/responsiveVal'
 import SvgImage, { SvgImageProps } from '../SvgImage'
 
-// TODO: fix hot reloading issues when modifying implementations of this component
+// todo: fix hot reloading issue when modifying implementations of this component
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -36,7 +36,7 @@ const useStyles = makeStyles(
   { name: 'IconHeader' },
 )
 
-type IconHeaderSize = 'small' | 'medium' | 'large'
+export type IconHeaderSize = 'small' | 'medium' | 'large'
 
 type IconHeaderProps = {
   title: string

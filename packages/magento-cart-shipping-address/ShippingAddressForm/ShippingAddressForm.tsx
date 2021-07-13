@@ -7,9 +7,7 @@ import {
 } from '@reachdigital/magento-cart'
 import { AddressFields, CustomerDocument, NameFields } from '@reachdigital/magento-customer'
 import { StoreConfigDocument, CountryRegionsDocument } from '@reachdigital/magento-store'
-import Form from '@reachdigital/next-ui/Form'
-import FormRow from '@reachdigital/next-ui/Form/FormRow'
-import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
+import { Form, FormRow, InputCheckmark } from '@reachdigital/next-ui'
 import {
   phonePattern,
   useFormAutoSubmit,

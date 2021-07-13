@@ -55,7 +55,7 @@ const useStyles = makeStyles(
   { name: 'HeroBanner' },
 )
 
-type HeroBannerProps = UseStyles<typeof useStyles> &
+export type HeroBannerProps = UseStyles<typeof useStyles> &
   ContainerProps & {
     pageLinks: React.ReactNode
     videoSrc: string

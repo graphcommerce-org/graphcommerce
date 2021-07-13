@@ -4,11 +4,15 @@ import { ProductInterface } from '@reachdigital/graphql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer'
 import { ProductSidebarDelivery } from '@reachdigital/magento-product'
 import { Money, MoneyProps } from '@reachdigital/magento-store'
-import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
-import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
-import { iconCheckmark, iconChevronRight } from '@reachdigital/next-ui/icons'
+import {
+  Button,
+  ButtonProps,
+  MessageSnackbar,
+  SvgImage,
+  TextInputNumber,
+  iconCheckmark,
+  iconChevronRight,
+} from '@reachdigital/next-ui'
 import { DeepPartial, UnpackNestedValue, Path } from '@reachdigital/react-hook-form'
 import PageLink from 'next/link'
 import React from 'react'

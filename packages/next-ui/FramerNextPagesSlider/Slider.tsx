@@ -16,7 +16,7 @@ const useStyles = makeStyles(
   { name: 'FramerNextPagesSlider' },
 )
 
-type SliderRouteProps = { children?: React.ReactNode }
+export type SliderRouteProps = { children?: React.ReactNode }
 
 /** RouteSlider provides an iOS settings style navigation */
 export default function Slider(props: SliderRouteProps) {

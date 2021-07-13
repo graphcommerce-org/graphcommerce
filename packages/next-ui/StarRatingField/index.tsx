@@ -4,7 +4,7 @@ import React from 'react'
 import SvgImage from '../SvgImage'
 import { iconStarFilledMuted, iconStarYellow } from '../icons'
 
-type StarRatingFieldProps = {
+export type StarRatingFieldProps = {
   id?: string
   onChange?: (id: string, value: number) => void
   iconSize?: number

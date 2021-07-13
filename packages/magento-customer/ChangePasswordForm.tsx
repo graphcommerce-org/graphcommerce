@@ -1,12 +1,15 @@
 import { TextField } from '@material-ui/core'
-import Button from '@reachdigital/next-ui/Button'
-import Form from '@reachdigital/next-ui/Form'
-import FormActions from '@reachdigital/next-ui/Form/FormActions'
-import FormRow from '@reachdigital/next-ui/Form/FormRow'
+import {
+  Button,
+  Form,
+  FormActions,
+  FormRow,
+  MessageSnackbar,
+  FormDivider,
+} from '@reachdigital/next-ui'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
-import FormDivider from '../next-ui/Form/FormDivider'
-import MessageSnackbar from '../next-ui/Snackbar/MessageSnackbar'
+
 import ApolloCustomerErrorAlert from './ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
   ChangePasswordDocument,

@@ -1,5 +1,5 @@
 import RichText from '@reachdigital/graphcms-ui/RichText'
-import ColumnThree from '@reachdigital/next-ui/Row/ColumnThree'
+import { ColumnThree } from '@reachdigital/next-ui'
 import React from 'react'
 import { RowColumnThreeFragment } from './RowColumnThree.gql'
 

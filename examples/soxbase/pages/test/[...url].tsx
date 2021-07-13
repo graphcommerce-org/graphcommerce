@@ -1,9 +1,7 @@
 import { Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import Button from '@reachdigital/next-ui/Button'
-import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
-import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import { Button, DebugSpacer, GetStaticProps } from '@reachdigital/next-ui'
 import { m } from 'framer-motion'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
@@ -13,6 +11,7 @@ import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/
 import PageContent from '../../components/PageContent'
 import apolloClient from '../../lib/apolloClient'
 
+;('')
 type Props = { url: string } & DefaultPageQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>

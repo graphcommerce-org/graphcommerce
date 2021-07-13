@@ -1,6 +1,5 @@
 import { MenuItem, TextField } from '@material-ui/core'
-import FormRow from '@reachdigital/next-ui/Form/FormRow'
-import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
+import { FormRow, InputCheckmark } from '@reachdigital/next-ui'
 import { assertFormGqlOperation, Controller, UseFormReturn } from '@reachdigital/react-hook-form'
 import React from 'react'
 

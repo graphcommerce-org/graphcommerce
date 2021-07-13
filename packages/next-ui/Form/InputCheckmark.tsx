@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react'
 import SvgImage from '../SvgImage'
 import { iconCheckmarkGreen } from '../icons'
 
-type InputCheckmarkProps = PropsWithChildren<{ show?: boolean }>
+export type InputCheckmarkProps = PropsWithChildren<{ show?: boolean }>
 
 /**
  * When the `valid` prop is passed it will render a CheckIcon, else it will render children.

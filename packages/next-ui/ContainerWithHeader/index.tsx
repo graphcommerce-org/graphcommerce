@@ -19,7 +19,7 @@ const useStyles = makeStyles(
   { name: 'ContainerWithHeader' },
 )
 
-type ContainerWithHeaderProps = {
+export type ContainerWithHeaderProps = {
   title: string
   rightArea: React.ReactNode
   children: React.ReactNode

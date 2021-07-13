@@ -11,7 +11,7 @@ const useStyles = makeStyles(
   { name: 'FabMenuSecondaryItem' },
 )
 
-type FabMenuSecondaryItemProps = {
+export type FabMenuSecondaryItemProps = {
   href: string
   children: React.ReactNode
   icon: React.ReactNode

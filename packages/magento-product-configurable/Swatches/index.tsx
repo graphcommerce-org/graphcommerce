@@ -1,5 +1,5 @@
 import { MoneyProps } from '@reachdigital/magento-store'
-import { TypeRenderer } from '@reachdigital/next-ui/RenderType'
+import { TypeRenderer } from '@reachdigital/next-ui'
 import { ProductListItemConfigurableFragment } from '../ProductListItemConfigurable.gql'
 import { SwatchDataFragment } from './SwatchData.gql'
 

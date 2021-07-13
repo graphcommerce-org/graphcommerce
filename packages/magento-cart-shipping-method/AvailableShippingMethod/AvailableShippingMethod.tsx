@@ -1,7 +1,6 @@
 import { FormHelperText, makeStyles, Theme } from '@material-ui/core'
 import { Money } from '@reachdigital/magento-store'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
-import ToggleButton, { ToggleButtonProps } from '@reachdigital/next-ui/ToggleButton'
+import { UseStyles, ToggleButton, ToggleButtonProps } from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { SetOptional } from 'type-fest'

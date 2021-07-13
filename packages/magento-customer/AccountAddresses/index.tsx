@@ -1,12 +1,13 @@
-import { useQuery } from '@apollo/client'
 import { makeStyles, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
-import Button from '@reachdigital/next-ui/Button'
-import FullPageMessage from '@reachdigital/next-ui/FullPageMessage'
-import SectionContainer from '@reachdigital/next-ui/SectionContainer'
-import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconHome } from '@reachdigital/next-ui/icons'
+import {
+  Button,
+  FullPageMessage,
+  SectionContainer,
+  MessageSnackbar,
+  SvgImage,
+  iconHome,
+} from '@reachdigital/next-ui'
 import { useRouter } from 'next/router'
 import React from 'react'
 import AccountAddress from '../AccountAddress'

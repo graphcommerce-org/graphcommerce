@@ -4,9 +4,7 @@ import {
   useFormGqlMutationCart,
   ApolloCartErrorAlert,
 } from '@reachdigital/magento-cart'
-import Form from '@reachdigital/next-ui/Form'
-import FormRow from '@reachdigital/next-ui/Form/FormRow'
-import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
+import { Form, FormRow, ToggleButtonGroup } from '@reachdigital/next-ui'
 import { Controller, useFormCompose, UseFormComposeOptions } from '@reachdigital/react-hook-form'
 import React from 'react'
 import AvailableShippingMethod from '../AvailableShippingMethod/AvailableShippingMethod'

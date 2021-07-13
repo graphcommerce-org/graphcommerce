@@ -31,7 +31,7 @@ import {
 } from '@reachdigital/magento-product/ProductListItems/filteredProductList'
 import { getFilterTypes } from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import { GetStaticProps } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../components/AppShell/FullPageShell'

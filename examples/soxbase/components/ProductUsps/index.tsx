@@ -1,6 +1,5 @@
 import RichText from '@reachdigital/graphcms-ui/RichText'
-import UspList from '@reachdigital/next-ui/UspList'
-import UspListItem from '@reachdigital/next-ui/UspList/UspListItem'
+import { UspList, UspListItem } from '@reachdigital/next-ui'
 import React from 'react'
 import Asset from '../Asset'
 import { UspsQueryFragment } from './UspsQueryFragment.gql'

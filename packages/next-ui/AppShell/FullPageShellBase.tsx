@@ -45,7 +45,7 @@ export type FullPageShellBaseProps = {
 } & UseStyles<typeof useStyles> &
   PageLayoutBaseProps
 
-function FullPageShellBase(props: FullPageShellBaseProps) {
+export default function FullPageShellBase(props: FullPageShellBaseProps) {
   const { children, header, name } = props
   const classes = useStyles(props)
 
@@ -63,5 +63,3 @@ function FullPageShellBase(props: FullPageShellBaseProps) {
     </ShellBase>
   )
 }
-
-export default FullPageShellBase

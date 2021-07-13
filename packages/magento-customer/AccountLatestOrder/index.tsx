@@ -1,4 +1,4 @@
-import SectionContainer from '@reachdigital/next-ui/SectionContainer'
+import { SectionContainer } from '@reachdigital/next-ui'
 import React from 'react'
 import { AccountOrdersFragment } from '../AccountOrders/AccountOrders.gql'
 import NoOrdersFound from '../NoOrdersFound'

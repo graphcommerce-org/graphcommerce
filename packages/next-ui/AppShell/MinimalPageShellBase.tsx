@@ -15,10 +15,8 @@ const useStyles = makeStyles(
 
 export type MinimalPageShellBaseProps = FullPageShellBaseProps
 
-function MinimalPageShellBase(props: MinimalPageShellBaseProps) {
+export default function MinimalPageShellBase(props: MinimalPageShellBaseProps) {
   const classes = useStyles(props)
 
   return <FullPageShellBase {...props} classes={classes} />
 }
-
-export default MinimalPageShellBase

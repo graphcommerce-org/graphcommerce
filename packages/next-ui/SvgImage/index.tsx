@@ -21,7 +21,7 @@ export const SvgImageShades: Record<SvgImageShade, number> = {
   inverted: 100,
 }
 
-type UseStylesProps = { shade: number; baseSize: number; mobileSize: number }
+export type UseStylesProps = { shade: number; baseSize: number; mobileSize: number }
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

@@ -10,7 +10,7 @@ import {
   PaymentOptionsProps,
   usePaymentMethodContext,
 } from '@reachdigital/magento-cart-payment-method'
-import Button from '@reachdigital/next-ui/Button'
+import { Button } from '@reachdigital/next-ui'
 import { BraintreeError } from 'braintree-web'
 import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'

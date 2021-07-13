@@ -1,7 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import { ProductSpecs, ProductSpecsProps } from '@reachdigital/magento-product'
-import Row from '@reachdigital/next-ui/Row'
-import SectionContainer from '@reachdigital/next-ui/SectionContainer'
+import { Row, SectionContainer } from '@reachdigital/next-ui'
 import React from 'react'
 import { RowProductSpecsFragment } from './RowProductSpecs.gql'
 

@@ -20,7 +20,7 @@ export function useSliderContext() {
 
 export type SliderContextProps = PropsWithChildren<Partial<SliderState['options']>>
 
-export function SliderContext(props: SliderContextProps) {
+export default function SliderContext(props: SliderContextProps) {
   const {
     children,
     transition = { type: 'spring', stiffness: 200, mass: 1, damping: 20 },

@@ -4,20 +4,22 @@ import { CartFab } from '@reachdigital/magento-cart'
 import { CustomerFab, CustomerMenuFabItem } from '@reachdigital/magento-customer'
 import { SearchButton } from '@reachdigital/magento-search'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import DesktopNavActions from '@reachdigital/next-ui/AppShell/DesktopNavActions'
-import DesktopNavBar from '@reachdigital/next-ui/AppShell/DesktopNavBar'
-import FullPageShellBase, {
+import {
+  FullPageShellBase,
   FullPageShellBaseProps,
-} from '@reachdigital/next-ui/AppShell/FullPageShellBase'
-import { MenuProps } from '@reachdigital/next-ui/AppShell/Menu'
-import MenuFab from '@reachdigital/next-ui/AppShell/MenuFab'
-import MenuFabSecondaryItem from '@reachdigital/next-ui/AppShell/MenuFabSecondaryItem'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconCustomerService, iconHeart } from '@reachdigital/next-ui/icons'
+  DesktopNavActions,
+  DesktopNavBar,
+  iconCustomerService,
+  iconHeart,
+  MenuFab,
+  MenuFabSecondaryItem,
+  MenuProps,
+  responsiveVal,
+  SvgImage,
+} from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'
-import responsiveVal from '../../../../packages/next-ui/Styles/responsiveVal'
 import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
 import Footer from './Footer'
 import Logo from './Logo'

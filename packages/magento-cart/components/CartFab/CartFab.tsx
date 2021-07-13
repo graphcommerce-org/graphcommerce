@@ -1,7 +1,5 @@
 import { Fab, FabProps, NoSsr } from '@material-ui/core'
-import StyledBadge from '@reachdigital/next-ui/StyledBadge'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconShoppingBag } from '@reachdigital/next-ui/icons'
+import { iconShoppingBag, StyledBadge, SvgImage } from '@reachdigital/next-ui'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'

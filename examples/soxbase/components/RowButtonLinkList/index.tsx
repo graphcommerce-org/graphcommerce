@@ -1,5 +1,4 @@
-import ButtonLink from '@reachdigital/next-ui/ButtonLink'
-import ButtonLinkList from '@reachdigital/next-ui/Row/ButtonLinkList'
+import { ButtonLink, ButtonLinkList } from '@reachdigital/next-ui'
 import React from 'react'
 import { RowButtonLinkListFragment } from './RowButtonLinkList.gql'
 

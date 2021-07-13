@@ -1,6 +1,5 @@
 import { ApolloProvider } from '@apollo/client'
-import App from '@reachdigital/next-ui/Page/App'
-import { AppProps } from '@reachdigital/next-ui/Page/types'
+import { App, AppProps } from '@reachdigital/next-ui'
 import { useRouter } from 'next/router'
 import React from 'react'
 import ThemedProvider from '../components/Theme/ThemedProvider'

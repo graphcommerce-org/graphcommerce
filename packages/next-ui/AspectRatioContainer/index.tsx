@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   }),
 })
 
-type Props = { width: number; height: number }
+export type Props = { width: number; height: number }
 export type AspectRatioContainerProps = Props & UseStyles<typeof useStyles>
 
 const AspectRatioContainer: React.FC<AspectRatioContainerProps> = ({ children, ...styleProps }) => {

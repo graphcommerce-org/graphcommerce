@@ -11,10 +11,10 @@ import {
   SignOutForm,
 } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import IconHeader from '@reachdigital/next-ui/IconHeader'
-import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import TimeAgo from '@reachdigital/next-ui/TimeAgo'
 import {
+  IconHeader,
+  GetStaticProps,
+  TimeAgo,
   iconBox,
   iconEmailOutline,
   iconHome,
@@ -24,7 +24,7 @@ import {
   iconPersonAlt,
   iconShutdown,
   iconStar,
-} from '@reachdigital/next-ui/icons'
+} from '@reachdigital/next-ui'
 import React from 'react'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'

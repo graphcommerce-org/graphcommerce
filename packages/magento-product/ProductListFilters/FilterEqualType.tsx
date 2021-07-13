@@ -13,8 +13,7 @@ import {
   useCategoryPushRoute,
   useProductListParamsContext,
 } from '@reachdigital/magento-category'
-import ChipMenu, { ChipMenuProps } from '@reachdigital/next-ui/ChipMenu'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import { ChipMenu, ChipMenuProps, responsiveVal } from '@reachdigital/next-ui'
 import React from 'react'
 import { SetRequired } from 'type-fest'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'

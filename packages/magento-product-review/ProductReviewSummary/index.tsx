@@ -1,6 +1,5 @@
 import { Chip, ChipProps, Link, makeStyles, Theme } from '@material-ui/core'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconStarYellow } from '@reachdigital/next-ui/icons'
+import { SvgImage, iconStarYellow } from '@reachdigital/next-ui'
 import React from 'react'
 import { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'
 

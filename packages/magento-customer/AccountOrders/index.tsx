@@ -1,7 +1,5 @@
 import { Link, makeStyles, Theme } from '@material-ui/core'
-import Pagination from '@reachdigital/next-ui/Pagination'
-import SectionContainer from '@reachdigital/next-ui/SectionContainer'
-import clsx from 'clsx'
+import { Pagination, SectionContainer } from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import NoOrdersFound from '../NoOrdersFound'

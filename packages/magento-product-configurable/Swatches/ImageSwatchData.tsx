@@ -1,7 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import { Image } from '@reachdigital/image'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import { UseStyles, responsiveVal } from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { ImageSwatchDataFragment } from './ImageSwatchData.gql'

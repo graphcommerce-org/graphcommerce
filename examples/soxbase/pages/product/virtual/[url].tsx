@@ -17,8 +17,7 @@ import {
   VirtualProductPageQuery,
 } from '@reachdigital/magento-product-virtual'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import JsonLd from '@reachdigital/next-ui/JsonLd'
-import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import { JsonLd, GetStaticProps } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { Product } from 'schema-dts'

@@ -5,14 +5,16 @@ import SvgImage from '../SvgImage'
 import { iconChevronRight } from '../icons'
 import { useSliderContext } from './SliderContext'
 
-type SliderPrevProps = Omit<FabProps, 'disabled' | 'onClick' | 'children'> & { layout?: boolean }
+export type SliderNextProps = Omit<FabProps, 'disabled' | 'onClick' | 'children'> & {
+  layout?: boolean
+}
 
 /**
  * - Next button to navigate to the next slide
  * - Handles the `ArrowRight` key
  * - Hides when disabled
  */
-export default function SliderNext(props: SliderPrevProps) {
+export default function SliderNext(props: SliderNextProps) {
   const { layout, className, ...fabProps } = props
   const [{ items, containerRef }, dispatch] = useSliderContext()
 

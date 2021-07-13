@@ -1,11 +1,13 @@
 import { useQuery } from '@apollo/client'
 import { Chip, makeStyles, Theme, Typography } from '@material-ui/core'
-import Button from '@reachdigital/next-ui/Button'
-import Pagination from '@reachdigital/next-ui/Pagination'
-import StarRatingField from '@reachdigital/next-ui/StarRatingField'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconStarYellow } from '@reachdigital/next-ui/icons'
+import {
+  Button,
+  Pagination,
+  StarRatingField,
+  responsiveVal,
+  SvgImage,
+  iconStarYellow,
+} from '@reachdigital/next-ui'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { ProductReviewsFragment } from './ProductReviews.gql'

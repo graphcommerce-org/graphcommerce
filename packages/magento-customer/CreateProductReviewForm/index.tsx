@@ -1,17 +1,20 @@
 import { useQuery } from '@apollo/client'
 import { Box, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
-import Button from '@reachdigital/next-ui/Button'
-import Form from '@reachdigital/next-ui/Form'
-import FormActions from '@reachdigital/next-ui/Form/FormActions'
-import FormRow from '@reachdigital/next-ui/Form/FormRow'
-import StarRatingField from '@reachdigital/next-ui/StarRatingField'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
+import {
+  Button,
+  Form,
+  UseStyles,
+  responsiveVal,
+  FormActions,
+  FormRow,
+  StarRatingField,
+} from '@reachdigital/next-ui'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { ProductReviewRatingInput } from '../../graphql'
-import responsiveVal from '../../next-ui/Styles/responsiveVal'
+
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { CreateProductReviewDocument } from './CreateProductReview.gql'
 import { ProductReviewRatingsMetadataDocument } from './ProductReviewRatingsMetadata.gql'

@@ -1,17 +1,17 @@
-import { useQuery } from '@apollo/client'
 import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import { Image } from '@reachdigital/image'
-import SliderContainer from '@reachdigital/next-ui/FramerSlider/SliderContainer'
-import { SliderContext } from '@reachdigital/next-ui/FramerSlider/SliderContext'
-import SliderNext from '@reachdigital/next-ui/FramerSlider/SliderNext'
-import SliderPrev from '@reachdigital/next-ui/FramerSlider/SliderPrev'
-import SliderScroller from '@reachdigital/next-ui/FramerSlider/SliderScroller'
-import SectionHeader from '@reachdigital/next-ui/SectionHeader'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import {
+  SliderContainer,
+  SliderContext,
+  SliderNext,
+  SliderPrev,
+  SliderScroller,
+  SectionHeader,
+  UseStyles,
+  responsiveVal,
+} from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import PageLink from 'next/link'
-import { useRouter } from 'next/router'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
 import CartTotals from '../CartTotals/CartTotals'
@@ -25,7 +25,7 @@ const useStyles = makeStyles(
       borderRadius: 4,
       [theme.breakpoints.up('md')]: {},
     },
-    pictureResponsive: {
+    image: {
       borderRadius: '50%',
       marginRight: theme.spacings.xs,
       border: `5px ${theme.palette.common.white} solid`,
@@ -115,7 +115,7 @@ export default function CartItemSummary(props: OrderSummaryProps) {
                 width={90}
                 height={90}
                 src={item?.product.thumbnail?.url ?? ''}
-                className={classes.pictureResponsive}
+                className={classes.image}
               />
             ))}
           </SliderScroller>

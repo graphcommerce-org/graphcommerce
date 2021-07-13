@@ -1,5 +1,5 @@
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
-import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
+import { TextInputNumber } from '@reachdigital/next-ui'
 import { useFormAutoSubmit } from '@reachdigital/react-hook-form'
 import React from 'react'
 import {

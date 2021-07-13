@@ -1,7 +1,7 @@
 /// <reference types="@reachdigital/next-ui/types" />
 
 import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import { responsiveVal } from '@reachdigital/next-ui'
 import React from 'react'
 import shadows from './shadows'
 

@@ -1,10 +1,9 @@
 import { useTheme } from '@material-ui/core'
 import RichTextParagraphStrongStroked from '@reachdigital/graphcms-ui/RichText/RichTextParagraphStrongStroked'
-import ParagraphWithSidebarSlide from '@reachdigital/next-ui/Row/ParagraphWithSidebarSlide'
+import { ParagraphWithSidebarSlide, RenderType } from '@reachdigital/next-ui'
 import React from 'react'
-import RenderType from '../../../../packages/next-ui/RenderType'
 import Asset from '../Asset'
-import ProductListItems, { ProductListItemsProps } from '../ProductListItems/ProductListItems'
+import { ProductListItemsProps } from '../ProductListItems/ProductListItems'
 import renderers from '../ProductListItems/renderers'
 import { RowProductBackstoryFragment } from './RowProductBackstory.gql'
 

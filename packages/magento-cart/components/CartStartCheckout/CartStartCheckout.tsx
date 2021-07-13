@@ -1,9 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { Money, MoneyFragment } from '@reachdigital/magento-store'
-import Button from '@reachdigital/next-ui/Button'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconChevronRight } from '@reachdigital/next-ui/icons'
+import { Money } from '@reachdigital/magento-store'
+import { Button, SvgImage, iconChevronRight, responsiveVal } from '@reachdigital/next-ui'
+
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'

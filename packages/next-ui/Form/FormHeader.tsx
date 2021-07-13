@@ -12,7 +12,8 @@ const useStyles = makeStyles(
   { name: 'FormHeader' },
 )
 
-type FormHeaderProps = TypographyProps & UseStyles<typeof useStyles> & { children: React.ReactNode }
+export type FormHeaderProps = TypographyProps &
+  UseStyles<typeof useStyles> & { children: React.ReactNode }
 
 export default function FormHeader(props: FormHeaderProps) {
   const { children, ...typographyProps } = props

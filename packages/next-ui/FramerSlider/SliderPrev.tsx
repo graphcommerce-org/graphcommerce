@@ -5,7 +5,9 @@ import SvgImage from '../SvgImage'
 import { iconChevronLeft } from '../icons'
 import { useSliderContext } from './SliderContext'
 
-type SliderPrevProps = Omit<FabProps, 'disabled' | 'onClick' | 'children'> & { layout?: boolean }
+export type SliderPrevProps = Omit<FabProps, 'disabled' | 'onClick' | 'children'> & {
+  layout?: boolean
+}
 
 /**
  * - Prev button to navigate to the previous slide

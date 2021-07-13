@@ -2,7 +2,7 @@ import { makeStyles, Theme, Typography, TypographyProps } from '@material-ui/cor
 import React from 'react'
 import { UseStyles } from '../Styles'
 
-type DividedLinksProps = {
+export type DividedLinksProps = {
   icon?: React.ReactNode
 } & Pick<TypographyProps, 'color'> &
   UseStyles<typeof useStyles>

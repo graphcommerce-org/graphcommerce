@@ -7,8 +7,7 @@ import {
   Collapse,
   ListItemAvatar,
 } from '@material-ui/core'
-import FlagAvatar from '@reachdigital/next-ui/FlagAvatar'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
+import { FlagAvatar, UseStyles } from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import { localeToStore, storeToLocale } from '../localeToStore'

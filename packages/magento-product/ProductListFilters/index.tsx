@@ -1,4 +1,4 @@
-import { ChipMenuProps } from '@reachdigital/next-ui/ChipMenu'
+import { ChipMenuProps } from '@reachdigital/next-ui'
 import React from 'react'
 import { FilterTypes } from '../ProductListItems/filterTypes'
 import FilterCheckboxType from './FilterCheckboxType'
@@ -53,7 +53,8 @@ export default function ProductListFilters(props: ProductFiltersProps) {
               />
             )
         }
-        return 'FilterMatchTypeInput not implemented'
+        console.log('Filter not recognized', aggregation)
+        return null // `FilterMatchTypeInput not ${aggregation.attribute_code}`
       })}
     </>
   )
