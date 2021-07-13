@@ -52,7 +52,7 @@ export default function FramerNextPages(props: PagesProps) {
     items.current[idx] = activeItem
   }
 
-  let renderItems = items.current
+  let renderItems = [...items.current]
 
   /** We need to render back to the last item that isn't an overlay. */
   const plainIdx = findPlainIdx(items.current)
