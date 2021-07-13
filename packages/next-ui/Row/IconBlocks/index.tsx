@@ -35,7 +35,7 @@ const useStyles = makeStyles(
   { name: 'IconBlocks' },
 )
 
-type IconBlocksProps = UseStyles<typeof useStyles> & {
+export type IconBlocksProps = UseStyles<typeof useStyles> & {
   title: string
   options: React.ReactNode
 }

@@ -1,6 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import { UseStyles, responsiveVal } from '@reachdigital/next-ui'
 import { ProductSpecsFragment } from './ProductSpecs.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({

@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import { Image } from '@reachdigital/image'
 import { Money } from '@reachdigital/magento-store'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import { responsiveVal } from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
@@ -70,7 +70,7 @@ const useStyles = makeStyles(
       justifyContent: 'center',
       backgroundColor: 'rgb(248,248,248)',
     },
-    pictureResponsive: {
+    image: {
       gridColumn: 1,
       backgroundColor: theme.palette.background.paper,
       objectFit: 'cover',
@@ -147,7 +147,7 @@ export default function OrderItem(props: OrderItemProps) {
                   width={104}
                   height={86}
                   src={thumbnail?.url ?? ''}
-                  className={classes.pictureResponsive}
+                  className={classes.image}
                 />
               )}
             </div>

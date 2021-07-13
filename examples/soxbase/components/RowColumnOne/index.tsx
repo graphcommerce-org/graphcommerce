@@ -1,6 +1,6 @@
 import RichText from '@reachdigital/graphcms-ui/RichText'
 import { UseRichTextStyles } from '@reachdigital/graphcms-ui/RichText/useRichTextStyles'
-import ColumnOne from '@reachdigital/next-ui/Row/ColumnOne'
+import { ColumnOne } from '@reachdigital/next-ui'
 import React from 'react'
 import type { RowColumnOneFragment } from './RowColumnOne.gql'
 

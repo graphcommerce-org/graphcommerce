@@ -1,6 +1,6 @@
 import { PaginationProps } from '@material-ui/lab'
 import { CategoryLink, useProductListParamsContext } from '@reachdigital/magento-category'
-import Pagination from '@reachdigital/next-ui/Pagination'
+import { Pagination } from '@reachdigital/next-ui'
 import React from 'react'
 import { ProductListPaginationFragment } from './ProductListPagination.gql'
 

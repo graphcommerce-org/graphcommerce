@@ -1,18 +1,18 @@
 import { ContainerProps, Fab, makeStyles, Theme } from '@material-ui/core'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import { UseStyles } from '../../Styles'
+import SvgImage from '../../SvgImage'
 import { iconCollapseVertical, iconExpandVertical } from '../../icons'
 import SliderContainer from '../SliderContainer'
-import { SliderContext } from '../SliderContext'
+import SliderContext from '../SliderContext'
 import SliderDots from '../SliderDots'
 import SliderNext from '../SliderNext'
 import SliderPrev from '../SliderPrev'
 import SliderScroller from '../SliderScroller'
 
-type StyleProps = {
+export type StyleProps = {
   maxWidth?: ContainerProps['maxWidth']
   aspectRatio?: [number, number]
 }

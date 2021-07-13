@@ -5,12 +5,15 @@ import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@reachdigital/mage
 import { CustomerTokenDocument } from '@reachdigital/magento-customer'
 import { ProductSidebarDelivery } from '@reachdigital/magento-product'
 import { Money } from '@reachdigital/magento-store'
-import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
-import Button from '@reachdigital/next-ui/Button'
-import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
-import { iconCheckmark, iconChevronRight } from '@reachdigital/next-ui/icons'
+import {
+  AnimatedRow,
+  Button,
+  MessageSnackbar,
+  SvgImage,
+  TextInputNumber,
+  iconCheckmark,
+  iconChevronRight,
+} from '@reachdigital/next-ui'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'

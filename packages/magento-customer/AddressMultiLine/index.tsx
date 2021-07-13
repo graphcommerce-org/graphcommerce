@@ -1,6 +1,6 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import { useFindCountry } from '@reachdigital/magento-store'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
+import { UseStyles } from '@reachdigital/next-ui'
 import { CustomerAddressFragment } from '../CustomerAddress/CustomerAddress.gql'
 import { OrderAddressFragment } from '../OrderAddress/OrderAddress.gql'
 

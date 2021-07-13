@@ -1,4 +1,4 @@
-import { TypeRenderer } from '@reachdigital/next-ui/RenderType'
+import { TypeRenderer } from '@reachdigital/next-ui'
 import { ProductListItemFragment } from '../Api/ProductListItem.gql'
 import ProductListItem from '../ProductListItem'
 

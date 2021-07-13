@@ -1,5 +1,4 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
-import { ImageProps } from 'next/image'
 import React from 'react'
 import { ObjectImage } from '../../image'
 import responsiveVal from '../Styles/responsiveVal'
@@ -25,14 +24,14 @@ const useStyles = makeStyles(
   { name: 'IconHeader' },
 )
 
-type IconHeaderSize = 'small' | 'medium' | 'large'
+export type IconHeaderSize = 'small' | 'medium' | 'large'
 
 type IconHeaderProps = {
   title: string
   size?: IconHeaderSize
 } & Pick<ObjectImage, 'src' | 'alt'>
 
-type IconHeaderHeadings = 'h6' | 'h5' | 'h3'
+export type IconHeaderHeadings = 'h6' | 'h5' | 'h3'
 
 export default function IconHeader(props: IconHeaderProps) {
   const { title, ...svgImageProps } = props

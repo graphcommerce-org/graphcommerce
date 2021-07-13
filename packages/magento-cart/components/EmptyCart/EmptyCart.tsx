@@ -1,7 +1,5 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconSadShoppingBag } from '@reachdigital/next-ui/icons'
+import { responsiveVal, SvgImage, iconSadShoppingBag } from '@reachdigital/next-ui'
 import React from 'react'
 
 const useStyles = makeStyles(

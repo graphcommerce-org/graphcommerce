@@ -4,7 +4,7 @@ import React, { ReactNode } from 'react'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
 import SliderContainer from '../SliderContainer'
-import { SliderContext } from '../SliderContext'
+import SliderContext from '../SliderContext'
 import SliderPageCounter from '../SliderPageCounter'
 import SliderScroller from '../SliderScroller'
 
@@ -38,7 +38,9 @@ const useStyles = makeStyles(
   { name: 'SidebarSlider' },
 )
 
-type SidebarSliderProps = { children: ReactNode; sidebar: ReactNode } & UseStyles<typeof useStyles>
+export type SidebarSliderProps = { children: ReactNode; sidebar: ReactNode } & UseStyles<
+  typeof useStyles
+>
 
 export default function SidebarSlider(props: SidebarSliderProps) {
   const { children, sidebar } = props

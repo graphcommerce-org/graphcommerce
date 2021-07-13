@@ -28,7 +28,7 @@ const useStyles = makeStyles(
   { name: 'Stepper' },
 )
 
-type StepperProps = {
+export type StepperProps = {
   steps: number
   currentStep: number
 }

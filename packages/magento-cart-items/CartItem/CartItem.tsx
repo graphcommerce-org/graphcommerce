@@ -2,8 +2,7 @@ import { Badge, makeStyles, Theme } from '@material-ui/core'
 import { Image } from '@reachdigital/image'
 import { useProductLink } from '@reachdigital/magento-product'
 import { Money } from '@reachdigital/magento-store'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import { UseStyles, responsiveVal } from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
@@ -92,7 +91,7 @@ const useStyles = makeStyles(
       justifyContent: 'center',
       backgroundColor: 'rgb(248,248,248)',
     },
-    pictureResponsive: {
+    image: {
       gridColumn: 1,
       backgroundColor: theme.palette.background.paper,
       objectFit: 'cover',
@@ -165,7 +164,7 @@ export default function CartItem(props: CartItemProps) {
                   layout='fill'
                   alt={product.thumbnail.label ?? product.name ?? ''}
                   sizes='104px'
-                  className={classes.pictureResponsive}
+                  className={classes.image}
                 />
               )}
             </div>

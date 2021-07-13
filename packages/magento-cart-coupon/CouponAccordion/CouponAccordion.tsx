@@ -1,9 +1,12 @@
 import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
 import { useCartQuery } from '@reachdigital/magento-cart'
-import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconChevronDown, iconChevronUp } from '@reachdigital/next-ui/icons'
+import {
+  AnimatedRow,
+  UseStyles,
+  SvgImage,
+  iconChevronDown,
+  iconChevronUp,
+} from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import { m, AnimatePresence } from 'framer-motion'
 import React, { useState } from 'react'

@@ -1,5 +1,5 @@
 import { Theme, withStyles } from '@material-ui/core'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import { responsiveVal } from '@reachdigital/next-ui'
 import RichText from '.'
 
 const RichTextParagraphStrongStroked = withStyles((theme: Theme) => ({

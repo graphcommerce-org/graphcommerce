@@ -12,7 +12,7 @@ const useStyles = makeStyles(
   { name: 'BlogContent' },
 )
 
-type BlogContentProps = {
+export type BlogContentProps = {
   content: React.ReactElement
 }
 

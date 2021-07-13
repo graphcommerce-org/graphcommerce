@@ -45,7 +45,7 @@ const useStyles = makeStyles(
   { name: 'BlogHeader' },
 )
 
-type BlogHeaderProps = UseStyles<typeof useStyles> & {
+export type BlogHeaderProps = UseStyles<typeof useStyles> & {
   asset?: React.ReactNode
 }
 

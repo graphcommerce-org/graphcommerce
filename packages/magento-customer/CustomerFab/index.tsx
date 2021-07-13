@@ -1,10 +1,12 @@
 import { useQuery } from '@apollo/client'
 import { Fab, makeStyles, NoSsr, Theme } from '@material-ui/core'
-import StyledBadge from '@reachdigital/next-ui/StyledBadge'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconPersonAlt } from '@reachdigital/next-ui/icons'
+import {
+  StyledBadge,
+  UseStyles,
+  responsiveVal,
+  SvgImage,
+  iconPersonAlt,
+} from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from '../CustomerToken.gql'

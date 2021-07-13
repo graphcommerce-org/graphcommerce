@@ -7,10 +7,7 @@ import {
   useFindCountry,
   useFindRegion,
 } from '@reachdigital/magento-store'
-import SectionContainer from '@reachdigital/next-ui/SectionContainer'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconInvoiceRed } from '@reachdigital/next-ui/icons'
+import { SectionContainer, responsiveVal, SvgImage, iconInvoiceRed } from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import TrackingLink from '../TrackingLink'

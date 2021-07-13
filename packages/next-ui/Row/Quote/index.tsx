@@ -2,7 +2,7 @@ import { ContainerProps } from '@material-ui/core'
 import React from 'react'
 import Row from '..'
 
-type QuoteProps = {
+export type QuoteProps = {
   children: React.ReactElement
 } & ContainerProps
 

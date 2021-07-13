@@ -5,10 +5,7 @@ import {
   useCategoryPushRoute,
   useProductListParamsContext,
 } from '@reachdigital/magento-category'
-
-import { useChipMenuStyles } from '@reachdigital/next-ui/ChipMenu'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconCloseCircle } from '@reachdigital/next-ui/icons'
+import { useChipMenuStyles, SvgImage, iconCloseCircle } from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { FilterIn } from './FilterEqualType'

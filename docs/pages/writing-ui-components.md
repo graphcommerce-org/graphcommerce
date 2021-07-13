@@ -22,7 +22,7 @@ Below is a full typescript example:
 
 ```tsx
 import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
+import { UseStyles } from '@reachdigital/next-ui'
 
 const useStyles = makeStyles((theme: Theme) => ({
   myComponentRoot: {
@@ -44,7 +44,9 @@ function MyComponent(props: MyComponentProps) {
 
 - A UI Component **should** use a mobile first development strategy
 - A UI Component **should** use theme variables where possible
-- A UI Component **must not** use [nesting selectors](https://material-ui.com/styles/basics/#nesting-selectors) on passed props
+- A UI Component **must not** use
+  [nesting selectors](https://material-ui.com/styles/basics/#nesting-selectors)
+  on passed props
 
 ```tsx
 const useStyles = makeStyles((theme: Theme) => ({

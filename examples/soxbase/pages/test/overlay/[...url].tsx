@@ -1,11 +1,7 @@
 import { Container, Fab, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import SheetHeader from '@reachdigital/next-ui/AppShell/ContentHeader'
-import Button from '@reachdigital/next-ui/Button'
-import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconArrowForward } from '@reachdigital/next-ui/icons'
+import { ContentHeader, Button, GetStaticProps } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import Link from 'next/link'
 import React, { useState } from 'react'
@@ -28,7 +24,7 @@ function AppShellTextOverlay({ url, pages }: Props) {
   const next = Number(url) + 1
   return (
     <>
-      <SheetHeader
+      <ContentHeader
         primary={
           <Link href='/test/overlay/bottom/2' passHref>
             <Button color='secondary' variant='pill'>

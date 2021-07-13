@@ -2,7 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import SliderContainer from '../SliderContainer'
-import { SliderContext } from '../SliderContext'
+import SliderContext from '../SliderContext'
 import SliderDots from '../SliderDots'
 import SliderNext from '../SliderNext'
 import SliderPrev from '../SliderPrev'
@@ -27,7 +27,7 @@ const useStyles = makeStyles(
   { name: 'SingleItemSlider' },
 )
 
-type SingleItemSliderProps = { children: React.ReactNode } & UseStyles<typeof useStyles>
+export type SingleItemSliderProps = { children: React.ReactNode } & UseStyles<typeof useStyles>
 
 export default function SingleItemSlider(props: SingleItemSliderProps) {
   const { children } = props

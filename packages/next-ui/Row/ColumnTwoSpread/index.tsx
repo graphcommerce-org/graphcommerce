@@ -27,7 +27,7 @@ const useStyles = makeStyles(
   { name: 'ColumnTwoSpread' },
 )
 
-type ColumnTwoSpreadProps = Omit<ContainerProps, 'children'> &
+export type ColumnTwoSpreadProps = Omit<ContainerProps, 'children'> &
   UseStyles<typeof useStyles> & {
     nodeLength: boolean
     colOneContent: React.ReactNode

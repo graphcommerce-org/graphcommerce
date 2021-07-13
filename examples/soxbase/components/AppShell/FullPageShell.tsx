@@ -1,24 +1,22 @@
 import { useQuery } from '@apollo/client'
 import { Fab, makeStyles, Theme } from '@material-ui/core'
 import { CartFab } from '@reachdigital/magento-cart'
-import {
-  CustomerFab,
-  CustomerMenuFabItem,
-  CustomerTokenDocument,
-} from '@reachdigital/magento-customer'
+import { CustomerFab, CustomerMenuFabItem } from '@reachdigital/magento-customer'
 import { SearchButton } from '@reachdigital/magento-search'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import DesktopNavActions from '@reachdigital/next-ui/AppShell/DesktopNavActions'
-import DesktopNavBar from '@reachdigital/next-ui/AppShell/DesktopNavBar'
-import FullPageShellBase, {
+import {
+  FullPageShellBase,
   FullPageShellBaseProps,
-} from '@reachdigital/next-ui/AppShell/FullPageShellBase'
-import { MenuProps } from '@reachdigital/next-ui/AppShell/Menu'
-import MenuFab from '@reachdigital/next-ui/AppShell/MenuFab'
-import MenuFabSecondaryItem from '@reachdigital/next-ui/AppShell/MenuFabSecondaryItem'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconCustomerService, iconHeart, iconStar } from '@reachdigital/next-ui/icons'
+  DesktopNavActions,
+  DesktopNavBar,
+  MenuProps,
+  MenuFab,
+  MenuFabSecondaryItem,
+  responsiveVal,
+  SvgImage,
+  iconCustomerService,
+  iconHeart,
+} from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'

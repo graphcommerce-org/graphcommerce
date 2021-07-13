@@ -6,12 +6,14 @@ import {
   ProductListQuery,
 } from '@reachdigital/magento-product/ProductList/ProductList.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import SliderImage from '@reachdigital/next-ui/FramerSlider/SliderImage'
-import Images from '@reachdigital/next-ui/FramerSlider/test/Images'
-import Multi from '@reachdigital/next-ui/FramerSlider/test/Multi'
-import Single from '@reachdigital/next-ui/FramerSlider/test/Single'
-import SidebarGallery from '@reachdigital/next-ui/FramerSlider/variants/SidebarGallery'
-import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import {
+  SliderImage,
+  Images,
+  Multi,
+  Single,
+  SidebarGallery,
+  GetStaticProps,
+} from '@reachdigital/next-ui'
 import { m } from 'framer-motion'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'

@@ -1,6 +1,6 @@
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
-import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import { GetStaticProps } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'

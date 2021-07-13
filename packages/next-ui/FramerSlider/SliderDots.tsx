@@ -32,7 +32,7 @@ const useStyles = makeStyles(
   { name: 'SliderDots' },
 )
 
-type SliderDotsProps = { count: number; layout?: boolean } & UseStyles<typeof useStyles>
+export type SliderDotsProps = { count: number; layout?: boolean } & UseStyles<typeof useStyles>
 
 export default function SliderDots(props: SliderDotsProps) {
   const { count, layout } = props

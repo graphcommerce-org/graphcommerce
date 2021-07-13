@@ -1,12 +1,14 @@
 import { useQuery } from '@apollo/client'
 import { makeStyles, TextField } from '@material-ui/core'
 import { CountryRegionsDocument } from '@reachdigital/magento-store'
-import Button from '@reachdigital/next-ui/Button'
-import Form from '@reachdigital/next-ui/Form'
-import FormActions from '@reachdigital/next-ui/Form/FormActions'
-import FormDivider from '@reachdigital/next-ui/Form/FormDivider'
-import FormRow from '@reachdigital/next-ui/Form/FormRow'
-import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
+import {
+  Button,
+  Form,
+  FormActions,
+  FormDivider,
+  FormRow,
+  InputCheckmark,
+} from '@reachdigital/next-ui'
 import { phonePattern, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'

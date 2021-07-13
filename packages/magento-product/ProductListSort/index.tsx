@@ -6,9 +6,8 @@ import {
   useCategoryPushRoute,
   useProductListParamsContext,
 } from '@reachdigital/magento-category'
-
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import ChipMenu, { ChipMenuProps } from '@reachdigital/next-ui/ChipMenu'
+import { ChipMenu, ChipMenuProps } from '@reachdigital/next-ui'
 import React from 'react'
 import { ProductListSortFragment } from './ProductListSort.gql'
 

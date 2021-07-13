@@ -7,11 +7,14 @@ import {
   Typography,
 } from '@material-ui/core'
 import { ObjectImage } from '@reachdigital/image'
-import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconChevronRight } from '@reachdigital/next-ui/icons'
+import {
+  Button,
+  ButtonProps,
+  UseStyles,
+  responsiveVal,
+  SvgImage,
+  iconChevronRight,
+} from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'

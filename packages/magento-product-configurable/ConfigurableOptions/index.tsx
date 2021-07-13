@@ -1,8 +1,10 @@
 import { BaseTextFieldProps, FormHelperText, makeStyles, Theme } from '@material-ui/core'
-import RenderType from '@reachdigital/next-ui/RenderType'
-import SectionContainer from '@reachdigital/next-ui/SectionContainer'
-import ToggleButton from '@reachdigital/next-ui/ToggleButton'
-import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
+import {
+  RenderType,
+  SectionContainer,
+  ToggleButton,
+  ToggleButtonGroup,
+} from '@reachdigital/next-ui'
 import { Controller, FieldErrors, UseControllerProps } from '@reachdigital/react-hook-form'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
@@ -11,7 +13,7 @@ import ColorSwatchData from '../Swatches/ColorSwatchData'
 import ImageSwatchData from '../Swatches/ImageSwatchData'
 import TextSwatchData from '../Swatches/TextSwatchData'
 
-type ConfigurableOptionsProps = {
+export type ConfigurableOptionsProps = {
   sku: string
   errors?: FieldErrors
 } & UseControllerProps<any> &
@@ -19,7 +21,7 @@ type ConfigurableOptionsProps = {
     optionEndLabels?: Record<string, React.ReactNode>
   }
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme: Theme) => ({
     sectionHeaderWrapper: {
       borderBottom: 'none',

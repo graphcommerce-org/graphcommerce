@@ -8,7 +8,7 @@ const useStyles = makeStyles(
   { name: 'FlagAvatar' },
 )
 
-type FlagAvatarProps = { country: string } & Omit<AvatarProps, 'src'>
+export type FlagAvatarProps = { country: string } & Omit<AvatarProps, 'src'>
 
 export default function FlagAvatar(props: FlagAvatarProps) {
   const { country, ...avatarProps } = props

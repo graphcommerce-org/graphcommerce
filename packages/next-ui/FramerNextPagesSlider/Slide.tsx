@@ -25,7 +25,7 @@ type Custom = {
   exiting: boolean
 }
 
-type RouterSlideProps = {
+export type RouterSlideProps = {
   children?: React.ReactNode
   scrollPositions: React.MutableRefObject<ScrollPositions>
 }

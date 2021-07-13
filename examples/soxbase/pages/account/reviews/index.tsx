@@ -7,10 +7,7 @@ import {
   ApolloCustomerErrorFullPage,
 } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import FullPageMessage from '@reachdigital/next-ui/FullPageMessage'
-import IconHeader from '@reachdigital/next-ui/IconHeader'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconStar } from '@reachdigital/next-ui/icons'
+import { FullPageMessage, IconHeader, SvgImage, iconStar } from '@reachdigital/next-ui'
 import { GetStaticProps } from 'next'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'

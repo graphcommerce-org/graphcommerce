@@ -1,7 +1,6 @@
 import { Fab } from '@material-ui/core'
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
-import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconClose } from '@reachdigital/next-ui/icons'
+import { SvgImage, iconClose } from '@reachdigital/next-ui'
 import React from 'react'
 import {
   RemoveItemFromCartDocument,

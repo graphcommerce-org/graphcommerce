@@ -1,6 +1,6 @@
 import { Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
+import { DebugSpacer } from '@reachdigital/next-ui'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 

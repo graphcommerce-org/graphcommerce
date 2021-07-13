@@ -8,7 +8,7 @@ import { iconClose } from '../../icons'
 import BackButton from '../BackButton'
 import useSheetStyles from '../SheetShellBase/useSheetStyles'
 
-type ContentHeaderProps = Omit<SheetHeaderProps, 'back' | 'close'>
+export type ContentHeaderProps = Omit<SheetHeaderProps, 'back' | 'close'>
 
 /**
  * Render a Sheet compatible header that: *

@@ -23,7 +23,7 @@ const useStyles = makeStyles(
   { name: 'IconBlock' },
 )
 
-type IconBlockProps = UseStyles<typeof useStyles> & {
+export type IconBlockProps = UseStyles<typeof useStyles> & {
   title: string
   icon: React.ReactNode
   children: React.ReactNode

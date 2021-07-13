@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import SliderContainer from '../SliderContainer'
-import { SliderContext } from '../SliderContext'
+import SliderContext from '../SliderContext'
 import SliderScroller, { SliderScrollerProps } from '../SliderScroller'
 import { SliderState } from '../sliderReducer'
 
@@ -14,7 +14,7 @@ const useStyles = makeStyles(
   { name: 'MultiItemSlider' },
 )
 
-type MultiItemSliderProps = Pick<SliderScrollerProps, 'children'> &
+export type MultiItemSliderProps = Pick<SliderScrollerProps, 'children'> &
   Partial<SliderState['options']> &
   UseStyles<typeof useStyles>
 

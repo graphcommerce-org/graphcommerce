@@ -6,7 +6,7 @@ import { UseStyles } from '../../Styles'
 import SvgImage from '../../SvgImage'
 import { iconCollapseVertical, iconExpandVertical } from '../../icons'
 import SliderContainer from '../SliderContainer'
-import { SliderContext } from '../SliderContext'
+import SliderContext from '../SliderContext'
 import SliderDots from '../SliderDots'
 import SliderNext from '../SliderNext'
 import SliderPrev from '../SliderPrev'
@@ -41,9 +41,10 @@ const useStyles = makeStyles(
   { name: 'ExandableGallery' },
 )
 
-type SingleItemSliderProps = PropsWithChildren<unknown> & UseStyles<typeof useStyles>
+export type SingleItemExpandableSliderProps = PropsWithChildren<unknown> &
+  UseStyles<typeof useStyles>
 
-export default function ExpandableGallery(props: SingleItemSliderProps) {
+export default function ExpandableGallery(props: SingleItemExpandableSliderProps) {
   const { children } = props
   const classes = useStyles(props)
   const [zoomed, setZoomed] = useState(false)
