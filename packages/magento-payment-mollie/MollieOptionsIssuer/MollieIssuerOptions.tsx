@@ -31,15 +31,14 @@ export default function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
             defaultValue=''
             variant='outlined'
             select
-            SelectProps={{
-              native: true,
-            }}
+            SelectProps={{ native: true, displayEmpty: true }}
             error={formState.isSubmitted && !!formState.errors.issuer}
             helperText={formState.isSubmitted && formState.errors.issuer?.message}
             label='Bank'
             required={required.issuer}
             {...muiRegister('issuer', { required: required.issuer })}
           >
+            <option value='' />
             {/* <MenuItem value='' /> */}
             {mollie_available_issuers?.map((issuer) => {
               if (!issuer?.code || !issuer.name) return null
