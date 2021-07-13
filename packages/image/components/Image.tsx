@@ -395,15 +395,17 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
           breakpoint > 0 ? `min-width(${breakpoint}px) ` : ''
         }${size}' is incorrect.`
 
+        const isSmall = measuredWidth < 50 && reportedSize < 50
+
         const round = (nr: number) => Math.round(nr * 100) / 100
-        if (ratio > 2) {
+        if (!isSmall && ratio > 2) {
           console.warn(
             `[@reachdigital/image]: ${msg} Currently downloading an image that has ${round(
               ratio,
             )}x too many pixels`,
             img,
           )
-        } else if (1 / ratio > 2) {
+        } else if (!isSmall && 1 / ratio > 2) {
           console.warn(
             `[@reachdigital/image]: ${msg} Currently downloading an image that has ${round(
               1 / ratio,

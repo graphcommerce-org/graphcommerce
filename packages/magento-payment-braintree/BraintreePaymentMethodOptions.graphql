@@ -1,4 +1,4 @@
-mutation BraintreePaymentMethod(
+mutation BraintreePaymentMethodOptions(
   $cartId: String!
   $code: String!
   $deviceData: String!
