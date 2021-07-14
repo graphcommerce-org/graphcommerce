@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
     marginBottom: 62,
   },
   sheetHeaderActions: {
-    paddingTop: responsiveVal(4, 16),
+    // paddingTop: responsiveVal(4, 16),
   },
 }))
 

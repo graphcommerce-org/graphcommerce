@@ -95,6 +95,13 @@ const useStyles = makeStyles(
         display: 'none',
       },
     },
+    backButton: {
+      background: theme.palette.background.default,
+      color: theme.palette.text.primary,
+      '&:hover': {
+        background: theme.palette.background.highlight,
+      },
+    },
   }),
   { name: 'AppShellHeader' },
 )
@@ -177,8 +184,8 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   const back = (backSteps > 0 || noClose) && (
     <Button
       onClick={() => router.back()}
-      color='secondary'
       variant='pill-link'
+      className={classes.backButton}
       startIcon={
         <SvgImage
           src={iconChevronLeft}
