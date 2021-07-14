@@ -46,7 +46,10 @@ const useStyles = makeStyles(
       gridAutoFlow: 'column',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: `${responsiveVal(8, 12)} ${responsiveVal(16, 24)} ${responsiveVal(8, 12)}`,
+      padding: `8px 16px 8px`,
+      [theme.breakpoints.up('md')]: {
+        padding: '12px 24px 12px',
+      },
       '& > div > .MuiFab-sizeSmall': {
         marginLeft: -12,
         marginRight: -12,
