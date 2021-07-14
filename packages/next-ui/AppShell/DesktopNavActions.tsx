@@ -1,7 +1,8 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { m, useTransform, useViewportScroll } from 'framer-motion'
+import { m } from 'framer-motion'
 import React from 'react'
 import responsiveVal from '../Styles/responsiveVal'
+import useDesktopNavActionsAnimation from './useDesktopNavActionsAnimation'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -28,9 +29,7 @@ const useStyles = makeStyles(
 export default function DesktopNavActions(props: { children?: React.ReactNode }) {
   const { children } = props
   const classes = useStyles()
-
-  const { scrollY } = useViewportScroll()
-  const translateY = useTransform(scrollY, [0, 60], [14, 8])
+  const { translateY } = useDesktopNavActionsAnimation()
 
   return (
     <m.div className={classes.actions} style={{ top: translateY }}>

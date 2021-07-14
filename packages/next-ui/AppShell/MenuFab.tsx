@@ -26,13 +26,13 @@ const useStyles = makeStyles(
       zIndex: 99,
       left: theme.page.horizontal,
       [theme.breakpoints.down('sm')]: {
-        left: `calc(${theme.page.horizontal} + 8px)`,
-        bottom: `calc(${theme.page.vertical} + 14px)`,
+        left: 20,
+        bottom: 20,
         transform: 'none !important',
         opacity: '1 !important',
       },
       [theme.breakpoints.up('md')]: {
-        top: theme.page.vertical,
+        top: 74,
       },
     },
     menuFab: {
@@ -69,12 +69,12 @@ export default function MenuFab(props: MenuFabProps) {
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
-  const { filter, opacity, translateY } = useFabAnimation()
+  const { filter, opacity, scale } = useFabAnimation()
 
   Router.events.on('routeChangeStart', () => setOpenEl(null))
 
   return (
-    <m.div className={classes.menuWrapper} style={{ opacity, translateY, filter }}>
+    <m.div className={classes.menuWrapper} style={{ opacity, scale, filter }}>
       <Fab
         color='primary'
         aria-label='Open Menu'

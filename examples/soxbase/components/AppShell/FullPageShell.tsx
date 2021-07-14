@@ -16,6 +16,7 @@ import {
   MenuProps,
   responsiveVal,
   SvgImage,
+  FixedFab,
 } from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -43,6 +44,10 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('md')]: {
         display: 'unset',
       },
+    },
+    spacer: {
+      width: 48,
+      height: 48,
     },
   }),
   { name: 'FullPageShell' },
@@ -111,15 +116,18 @@ function FullPageShell(props: FullPageShellProps) {
         {!router.pathname.startsWith('/search') && (
           <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
         )}
-
         <PageLink href='/service' passHref>
           <Fab style={{ boxShadow: 'none' }} aria-label='Account' size='medium'>
             <SvgImage src={iconCustomerService} alt='Customer Service' loading='eager' />
           </Fab>
         </PageLink>
         <CustomerFab guestHref='/account/signin' authHref='/account' />
-        <CartFab style={{ boxShadow: 'none' }} />
+        <div className={classes.spacer} />
       </DesktopNavActions>
+
+      <FixedFab>
+        <CartFab style={{ boxShadow: 'unset' }} />
+      </FixedFab>
 
       {children}
 
