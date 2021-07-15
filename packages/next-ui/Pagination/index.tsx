@@ -46,12 +46,24 @@ const useStyles = makeStyles((theme: Theme) => ({
         background: 'rgba(0, 0, 0, 0.04)',
       },
     },
+    [theme.breakpoints.down('xs')]: {
+      alignItems: 'center',
+    },
   },
   icon: {
     borderRadius: '100%',
     padding: 6,
     height: 40,
     width: 40,
+  },
+  label: {
+    textAlign: 'center',
+  },
+  labelTitle: {
+    display: 'inline',
+    [theme.breakpoints.down('xs')]: {
+      display: 'block',
+    },
   },
 }))
 
@@ -101,7 +113,12 @@ export default function Pagination(props: PagePaginationProps) {
   return (
     <div className={classes.root}>
       {page === 1 ? chevronLeft : renderLink(page - 1, chevronLeft, prevBtnProps)}
-      <span>{`Page ${page} of ${count}`}</span>
+
+      <span className={classes.label}>
+        <span className={classes.labelTitle}>Page</span>
+        {`${page} of ${count}`}
+      </span>
+
       {page === count ? chevronRight : renderLink(page + 1, chevronRight, nextBtnProps)}
     </div>
   )

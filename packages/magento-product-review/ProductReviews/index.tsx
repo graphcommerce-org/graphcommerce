@@ -2,11 +2,11 @@ import { useQuery } from '@apollo/client'
 import { Chip, makeStyles, Theme, Typography } from '@material-ui/core'
 import {
   Button,
-  Pagination,
-  StarRatingField,
-  responsiveVal,
-  SvgImage,
   iconStarYellow,
+  Pagination,
+  responsiveVal,
+  StarRatingField,
+  SvgImage,
 } from '@reachdigital/next-ui'
 import Link from 'next/link'
 import React, { useState } from 'react'
@@ -80,6 +80,12 @@ const useStyles = makeStyles(
       rowGap: responsiveVal(8, 16),
       gap: 8,
       alignItems: 'center',
+    },
+    writeReviewButton: {
+      [theme.breakpoints.down('xs')]: {
+        padding: '8px 16px 8px',
+        whiteSpace: 'nowrap',
+      },
     },
   }),
   { name: 'ProductReviews' },
@@ -162,7 +168,13 @@ export default function ProductReviews(props: ProductReviewsProps) {
         ))}
       <div className={classes.reviewsBottomContainer}>
         <Link href={`/account/reviews/add?sku=${sku}`} passHref>
-          <Button variant='pill' color='primary' text='bold' size='large'>
+          <Button
+            variant='pill'
+            color='primary'
+            text='bold'
+            size='large'
+            className={classes.writeReviewButton}
+          >
             Write a review
           </Button>
         </Link>
