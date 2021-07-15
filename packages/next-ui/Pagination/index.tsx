@@ -116,7 +116,7 @@ export default function Pagination(props: PagePaginationProps) {
 
       <span className={classes.label}>
         <span className={classes.labelTitle}>Page</span>
-        {`${page} of ${count}`}
+        {`${page} of ${Math.max(1, count)}`}
       </span>
 
       {page === count ? chevronRight : renderLink(page + 1, chevronRight, nextBtnProps)}

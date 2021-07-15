@@ -13,7 +13,7 @@ export default function RowProductReviews(props: RowProductReviewsProps) {
 
   const { data, loading } = useQuery(StoreConfigDocument)
 
-  if (!reviews || reviews?.items.length === 0 || loading) return null
+  if (!reviews || loading) return null
 
   if (!data?.storeConfig?.product_reviews_enabled) return <></>
 
