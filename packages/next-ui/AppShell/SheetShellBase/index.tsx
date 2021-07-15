@@ -9,6 +9,7 @@ import {
   SnapPoint,
   styles,
 } from '@reachdigital/framer-sheet'
+import { useDomEvent } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useRef } from 'react'
 import responsiveVal from '../../Styles/responsiveVal'
@@ -51,7 +52,7 @@ function SheetShellBase(props: SheetShellBaseProps) {
   const sheetClasses = useSheetStyles(props)
   const router = useRouter()
   const pageRouter = usePageRouter()
-  const { depth, closeSteps } = usePageContext()
+  const { depth, closeSteps, active } = usePageContext()
   const open = depth < 0 || router.asPath === pageRouter.asPath
   const initialLocale = useRef(router.locale)
 
@@ -66,6 +67,19 @@ function SheetShellBase(props: SheetShellBaseProps) {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     handleClose()
   }
+
+  const windowRef = useRef(typeof window !== 'undefined' ? window : null)
+
+  function handleEscapeKey(e: KeyboardEvent | Event) {
+    if (active) {
+      if ((e as KeyboardEvent)?.key === 'Escape') {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        handleClose()
+      }
+    }
+  }
+
+  useDomEvent(windowRef, 'keyup', handleEscapeKey, { passive: true })
 
   return (
     <ShellBase name={name}>
