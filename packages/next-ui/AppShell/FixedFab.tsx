@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import { m } from 'framer-motion'
 import { UseStyles } from '../Styles'
-import useDesktopNavActionsAnimation from './useDesktopNavActionsAnimation'
+import useFixedFabAnimation from './useFixedFabAnimation'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -36,7 +36,7 @@ type FixedFabProps = {
 export default function FixedFab(props: FixedFabProps) {
   const { children } = props
   const classes = useStyles(props)
-  const { translateY } = useDesktopNavActionsAnimation()
+  const { translateY } = useFixedFabAnimation()
 
   return (
     <m.div style={{ top: translateY }} className={classes.root}>

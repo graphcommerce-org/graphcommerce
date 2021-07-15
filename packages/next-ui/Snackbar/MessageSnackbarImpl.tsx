@@ -25,12 +25,12 @@ const useStyles = makeStyles(
       bottom: 0,
       pointerEvents: 'none',
       [theme.breakpoints.up('md')]: {
-        padding: `${theme.page.vertical} ${theme.page.horizontal}`,
+        padding: `${theme.page.vertical}px ${theme.page.horizontal}px`,
       },
     },
     root: {
       pointerEvents: 'all',
-      padding: `16px ${theme.page.horizontal} max(16px, env(safe-area-inset-bottom))`,
+      padding: `16px ${theme.page.horizontal}px max(16px, env(safe-area-inset-bottom))`,
     },
     rootPill: {
       backgroundColor: theme.palette.background.paper,

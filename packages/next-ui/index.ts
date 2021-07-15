@@ -30,7 +30,7 @@ export { default as SheetShellDragIndicator } from './AppShell/SheetShellDragInd
 export { default as SheetShellHeader } from './AppShell/SheetShellHeader'
 export * from './AppShell/ShellBase'
 export { default as ShellBase } from './AppShell/ShellBase'
-export { default as useDesktopNavActionsAnimation } from './AppShell/useDesktopNavActionsAnimation'
+export { default as useFixedFabAnimation } from './AppShell/useFixedFabAnimation'
 export { default as useFabAnimation } from './AppShell/useFabAnimation'
 export * from './AspectRatioContainer'
 export { default as AspectRationContainer } from './AspectRatioContainer'

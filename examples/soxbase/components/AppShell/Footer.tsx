@@ -13,10 +13,10 @@ import { FooterQueryFragment } from './FooterQueryFragment.gql'
 const useStyles = makeStyles((theme: Theme) => ({
   footer: {
     borderTop: '1px solid rgba(0,0,0,0.08)',
-    padding: `${theme.spacings.sm} ${theme.spacings.sm} ${theme.spacings.md}`,
+    padding: `${theme.page.vertical}px ${theme.page.horizontal}px ${theme.page.vertical}px`,
     display: 'grid',
     gridAutoRows: '1fr',
-    gap: `${theme.spacings.xs}`,
+    gap: theme.spacings.xs,
     alignItems: 'center',
     [theme.breakpoints.down('sm')]: {
       justifyItems: 'center',
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     gridAutoFlow: 'column',
     alignContent: 'center',
     fontSize: 9,
-    gap: `${theme.spacings.sm}`,
+    gap: theme.spacings.sm,
     [theme.breakpoints.up('md')]: {
       order: 3,
       ...theme.typography.body2,

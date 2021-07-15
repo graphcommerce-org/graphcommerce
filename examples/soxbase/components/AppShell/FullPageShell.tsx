@@ -31,21 +31,13 @@ const useStyles = makeStyles(
       marginRight: theme.spacings.xxs,
       width: responsiveVal(64, 172),
     },
-    desktopActionsSpacer: {
-      minWidth: 'unset',
-      display: 'none',
-      [theme.breakpoints.up('md')]: {
-        display: 'block',
-        minWidth: responsiveVal(224, 424),
-      },
-    },
     logo: {
       display: 'none',
       [theme.breakpoints.up('md')]: {
         display: 'unset',
       },
     },
-    spacer: {
+    cartSpacer: {
       width: 48,
       height: 48,
     },
@@ -90,7 +82,19 @@ function FullPageShell(props: FullPageShellProps) {
         <>
           <Logo classes={{ logo: classes.logo }} />
           <DesktopNavBar {...menuProps} />
-          <div className={classes.desktopActionsSpacer} />
+
+          <DesktopNavActions>
+            {!router.pathname.startsWith('/search') && (
+              <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
+            )}
+            <PageLink href='/service' passHref>
+              <Fab style={{ boxShadow: 'none' }} aria-label='Account' size='medium'>
+                <SvgImage src={iconCustomerService} alt='Customer Service' loading='eager' />
+              </Fab>
+            </PageLink>
+            <CustomerFab guestHref='/account/signin' authHref='/account' />
+            <div className={classes.cartSpacer} />
+          </DesktopNavActions>
         </>
       }
     >
@@ -111,19 +115,6 @@ function FullPageShell(props: FullPageShellProps) {
           Wishlist
         </MenuFabSecondaryItem>
       </MenuFab>
-
-      <DesktopNavActions>
-        {!router.pathname.startsWith('/search') && (
-          <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
-        )}
-        <PageLink href='/service' passHref>
-          <Fab style={{ boxShadow: 'none' }} aria-label='Account' size='medium'>
-            <SvgImage src={iconCustomerService} alt='Customer Service' loading='eager' />
-          </Fab>
-        </PageLink>
-        <CustomerFab guestHref='/account/signin' authHref='/account' />
-        <div className={classes.spacer} />
-      </DesktopNavActions>
 
       <FixedFab>
         <CartFab style={{ boxShadow: 'unset' }} />

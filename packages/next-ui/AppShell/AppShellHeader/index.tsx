@@ -48,15 +48,17 @@ const useStyles = makeStyles(
       justifyContent: 'space-between',
       padding: `8px 16px 8px`,
       [theme.breakpoints.up('md')]: {
-        padding: '12px 24px 12px',
+        padding: `12px ${theme.page.horizontal}px 12px`,
       },
-      '& > div > .MuiFab-sizeSmall': {
-        marginLeft: -12,
-        marginRight: -12,
-      },
-      '& > div > .MuiButtonBase-root': {
-        marginRight: -8,
-        marginLeft: -8,
+      [theme.breakpoints.down('sm')]: {
+        '& > div > .MuiFab-sizeSmall': {
+          marginLeft: -12,
+          marginRight: -12,
+        },
+        '& > div > .MuiButtonBase-root': {
+          marginRight: -8,
+          marginLeft: -8,
+        },
       },
     },
     sheetHeaderActionRight: {

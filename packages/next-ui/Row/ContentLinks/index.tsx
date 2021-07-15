@@ -9,7 +9,7 @@ const useStyles = makeStyles(
       padding: 0,
     },
     scroller: {
-      padding: `0 ${theme.page.horizontal}`,
+      padding: `0 ${theme.page.horizontal}px`,
       marginBottom: `${theme.spacings.lg}`,
       display: 'grid',
       gridAutoFlow: 'column',

@@ -118,8 +118,8 @@ export const defaultTheme = createTheme({
     xxl: responsiveVal(100, 220),
   },
   page: {
-    horizontal: responsiveVal(8, 16),
-    vertical: responsiveVal(4, 8),
+    horizontal: 30,
+    vertical: 30,
     headerInnerHeight: {
       xs: responsiveVal(21, 33),
       sm: `56px`,
