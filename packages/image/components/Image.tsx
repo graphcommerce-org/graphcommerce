@@ -558,6 +558,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
               height={height}
               style={style}
               sizes={sizes}
+              decoding='async'
             />
           </picture>
         )}
