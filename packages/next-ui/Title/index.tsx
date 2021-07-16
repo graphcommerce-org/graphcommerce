@@ -32,9 +32,9 @@ export default function Title(props: TitleProps) {
     <div className={clsx(classes.container, small && classes.inline)}>
       {icon && (
         <SvgImage
-          src={icon as any} /* why doesn't this prop work? */
-          size={small ? 20 : 56}
-          mobileSize={small ? 20 : 56}
+          src={icon as any} /* why doesn't this prop work without any? */
+          size={small ? 28 : 56}
+          mobileSize={small ? 28 : 56}
           loading='eager'
         />
       )}

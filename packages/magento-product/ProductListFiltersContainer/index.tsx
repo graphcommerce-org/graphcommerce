@@ -26,7 +26,7 @@ const useStyles = makeStyles(
       [theme.breakpoints.down('sm')]: {
         textAlign: 'center',
         maxWidth: 'unset',
-        margin: `0 calc(${theme.page.horizontal}px * -1)`,
+        margin: `0 calc(${theme.page.horizontal} * -1)`,
       },
       [theme.breakpoints.down('xs')]: {
         textAlign: 'center',

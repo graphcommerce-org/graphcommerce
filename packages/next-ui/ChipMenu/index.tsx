@@ -45,7 +45,7 @@ export const useChipMenuStyles = makeStyles(
       [theme.breakpoints.down('xs')]: {
         minWidth: 0,
         width: '100%',
-        maxWidth: `calc(100% - (${theme.page.horizontal}px * 2))`,
+        maxWidth: `calc(100% - (${theme.page.horizontal} * 2))`,
         margin: '0 auto',
         marginTop: '8px',
       },

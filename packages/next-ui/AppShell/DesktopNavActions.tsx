@@ -1,7 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import { m } from 'framer-motion'
 import React from 'react'
-import responsiveVal from '../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -14,7 +13,7 @@ const useStyles = makeStyles(
         alignItems: 'center',
         display: 'grid',
         gridAutoFlow: 'column',
-        columnGap: responsiveVal(4, 16),
+        columnGap: 6,
       },
     },
   }),

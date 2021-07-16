@@ -1,10 +1,11 @@
 import { Container, Divider, List, ListItem, Typography } from '@material-ui/core'
 import { PageOptions, usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
 import {
-  Button,
-  SheetShellHeader,
   AppShellTitle,
+  Button,
+  iconBox,
   iconPersonAlt,
+  SheetShellHeader,
   Stepper,
   Title,
 } from '@reachdigital/next-ui'
@@ -52,7 +53,7 @@ function BottomSheetWithPrimaryActionAndNavigatable() {
 
   if (withIcon)
     titleComponent = (
-      <Title icon={iconPersonAlt} size='small' component='span'>
+      <Title icon={iconBox} size='small' component='span'>
         {title}
       </Title>
     )
@@ -66,7 +67,7 @@ function BottomSheetWithPrimaryActionAndNavigatable() {
         {titleComponent}
       </SheetShellHeader>
 
-      <AppShellTitle icon={withIcon ? iconPersonAlt : undefined}>{title}</AppShellTitle>
+      <AppShellTitle icon={withIcon ? iconBox : undefined}>{title}</AppShellTitle>
 
       <Container maxWidth='md'>
         {!primaryAction && (

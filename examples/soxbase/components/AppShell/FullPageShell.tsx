@@ -37,9 +37,11 @@ const useStyles = makeStyles(
         display: 'unset',
       },
     },
-    cartSpacer: {
-      width: 48,
-      height: 48,
+    cartFab: {
+      [theme.breakpoints.down('sm')]: {
+        width: responsiveVal(42, 56),
+        height: responsiveVal(42, 56),
+      },
     },
   }),
   { name: 'FullPageShell' },
@@ -74,8 +76,6 @@ function FullPageShell(props: FullPageShellProps) {
   const router = useRouter()
   const onSearchStart = useCallback(() => router.push('/search'), [router])
 
-  // const { isTransparent } = useAppShellHeaderContext()
-
   return (
     <FullPageShellBase
       {...uiProps}
@@ -89,12 +89,14 @@ function FullPageShell(props: FullPageShellProps) {
               <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
             )}
             <PageLink href='/service' passHref>
-              <Fab style={{ boxShadow: 'none' }} aria-label='Account' size='medium'>
+              <Fab style={{ boxShadow: 'none' }} aria-label='Account' size='large'>
                 <SvgImage src={iconCustomerService} alt='Customer Service' loading='eager' />
               </Fab>
             </PageLink>
             <CustomerFab guestHref='/account/signin' authHref='/account' />
-            <div className={classes.cartSpacer} />
+            <Fab style={{ boxShadow: 'none' }} size='large'>
+              <></>
+            </Fab>
           </DesktopNavActions>
         </>
       }
@@ -118,7 +120,7 @@ function FullPageShell(props: FullPageShellProps) {
       </MenuFab>
 
       <FixedFab>
-        <CartFab style={{ boxShadow: 'none' }} />
+        <CartFab style={{ boxShadow: 'none' }} className={classes.cartFab} />
       </FixedFab>
 
       {children}

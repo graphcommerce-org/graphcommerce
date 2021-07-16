@@ -6,7 +6,6 @@ import PageLink from 'next/link'
 import React, { useEffect } from 'react'
 import Button from '../../Button'
 import { UseStyles } from '../../Styles'
-import responsiveVal from '../../Styles/responsiveVal'
 import SvgImage from '../../SvgImage'
 import { iconChevronLeft, iconClose } from '../../icons'
 import useAppShellHeaderContext from './useAppShellHeaderContext'
@@ -48,10 +47,6 @@ const useStyles = makeStyles(
       gridAutoFlow: 'column',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: `8px ${theme.page.horizontal} 8px`,
-      [theme.breakpoints.up('md')]: {
-        padding: `12px ${theme.page.horizontal} 12px`,
-      },
       [theme.breakpoints.down('sm')]: {
         '& > div > .MuiFab-sizeSmall': {
           marginLeft: -12,
@@ -64,12 +59,26 @@ const useStyles = makeStyles(
         },
       },
     },
+    sheetHeaderActionsPadding: {
+      padding: `8px ${theme.page.horizontal} 8px`,
+      [theme.breakpoints.up('md')]: {
+        padding: `12px ${theme.page.horizontal} 12px`,
+      },
+    },
+    sheetHeaderActionsNoTitle: {
+      [theme.breakpoints.up('md')]: {
+        padding: `${theme.page.vertical} ${theme.page.horizontal} ${theme.page.vertical}`,
+      },
+    },
     sheetHeaderActionRight: {
       justifySelf: 'flex-end',
     },
     sheetHeaderNoTitle: {
       pointerEvents: 'none',
       background: 'transparent',
+      [theme.breakpoints.up('md')]: {
+        top: 98,
+      },
     },
     innerContainer: {
       display: 'grid',
@@ -95,9 +104,9 @@ const useStyles = makeStyles(
     },
     logoContainer: {
       position: 'absolute',
+      top: 12,
       left: 0,
       right: 0,
-      paddingTop: responsiveVal(16, 30),
     },
     subLogo: {
       [theme.breakpoints.up('md')]: {
@@ -109,6 +118,13 @@ const useStyles = makeStyles(
       color: theme.palette.text.primary,
       '&:hover': {
         background: theme.palette.background.highlight,
+      },
+    },
+    backButtonTransparentHeader: {
+      top: 'unset',
+      boxShadow: theme.shadows[4],
+      [theme.breakpoints.up('md')]: {
+        top: -24,
       },
     },
   }),
@@ -134,9 +150,9 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   const { closeSteps, backSteps } = usePageContext()
   const classes = useStyles(props)
 
-  const { titleRef, contentHeaderRef, isTransparent } = useAppShellHeaderContext()
+  const { titleRef, contentHeaderRef } = useAppShellHeaderContext()
 
-  //  isTransparent = typeof children === 'undefined' || !children
+  const noChildren = typeof children === 'undefined' || !children
 
   const sheetHeaderHeight = useMotionValue<number>(0)
   const titleOffset = useMotionValue<number>(100)
@@ -201,7 +217,9 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     <Button
       onClick={() => router.back()}
       variant='pill-link'
-      className={classes.backButton}
+      className={clsx(classes.backButton, {
+        [classes.backButtonTransparentHeader]: noChildren,
+      })}
       startIcon={backIcon}
     >
       Back
@@ -210,7 +228,13 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   if (!back && backFallbackHref) {
     back = (
       <PageLink href={backFallbackHref} passHref>
-        <Button variant='pill-link' className={classes.backButton} startIcon={backIcon}>
+        <Button
+          variant='pill-link'
+          className={clsx(classes.backButton, {
+            [classes.backButtonTransparentHeader]: noChildren,
+          })}
+          startIcon={backIcon}
+        >
           {backFallbackTitle ?? 'Back'}
         </Button>
       </PageLink>
@@ -227,11 +251,11 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
       className={clsx(
         classes?.sheetHeader,
         scrolled && classes?.sheetHeaderScrolled,
-        !children && classes.sheetHeaderNoTitle,
+        noChildren && classes.sheetHeaderNoTitle,
       )}
       ref={contentHeaderRef}
     >
-      <div className={classes.logoContainer}>
+      <div className={clsx(classes.logoContainer, classes.sheetHeaderActionsPadding)}>
         {logo && (
           <m.div
             style={{ opacity: !scrolled ? opacityFadeOut : 0 }}
@@ -244,7 +268,13 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
 
       {dragIndicator}
 
-      <div className={classes?.sheetHeaderActions}>
+      <div
+        className={clsx(
+          classes.sheetHeaderActions,
+          classes.sheetHeaderActionsPadding,
+          noChildren && classes.sheetHeaderActionsNoTitle,
+        )}
+      >
         {leftAction && <div>{leftAction}</div>}
         <div className={classes.innerContainer}>
           {children && (

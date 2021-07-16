@@ -24,7 +24,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
 
   return (
     <PageLink href={requireAuth ? guestHref : authHref} passHref>
-      <Fab style={{ boxShadow: 'none' }} aria-label='Open Menu' size='medium'>
+      <Fab style={{ boxShadow: 'none' }} aria-label='Open Menu' size='large'>
         <StyledBadge
           badgeContent={customerToken?.token ? 1 : 0}
           color={customerToken?.valid ? 'primary' : 'error'}

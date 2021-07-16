@@ -1,7 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import { m } from 'framer-motion'
 import { UseStyles } from '../Styles'
-import useFixedFabAnimation from './useFixedFabAnimation'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -17,7 +16,7 @@ const useStyles = makeStyles(
         top: 'unset !important',
       },
       [theme.breakpoints.up('md')]: {
-        top: 14,
+        top: theme.page.vertical,
         right: theme.page.horizontal,
         bottom: 'unset',
         boxShadow: 'unset',
@@ -36,11 +35,6 @@ type FixedFabProps = {
 export default function FixedFab(props: FixedFabProps) {
   const { children } = props
   const classes = useStyles(props)
-  const { translateY, filter, opacity } = useFixedFabAnimation()
 
-  return (
-    <m.div style={{ top: translateY }} className={classes.root}>
-      {children}
-    </m.div>
-  )
+  return <m.div className={classes.root}>{children}</m.div>
 }

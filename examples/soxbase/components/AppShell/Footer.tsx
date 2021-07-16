@@ -13,7 +13,7 @@ import { FooterQueryFragment } from './FooterQueryFragment.gql'
 const useStyles = makeStyles((theme: Theme) => ({
   footer: {
     borderTop: '1px solid rgba(0,0,0,0.08)',
-    padding: `${theme.page.vertical}px ${theme.page.horizontal}px ${theme.page.vertical}px`,
+    padding: `${theme.page.vertical} ${theme.page.horizontal} ${theme.page.vertical}`,
     display: 'grid',
     gridAutoRows: '1fr',
     gap: theme.spacings.xs,

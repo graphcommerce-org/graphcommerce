@@ -25,7 +25,7 @@ function FullAppShellNoTitle(props: Props) {
 
   return (
     <>
-      <PageShellHeader />
+      <PageShellHeader backFallbackHref='/' backFallbackTitle='Home' />
       <Container maxWidth='md' className={classes.longContent}>
         <AppShellTitle>
           <Box textAlign='center' mb={3}>

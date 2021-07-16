@@ -27,6 +27,8 @@ function MinimalAppShellTestIndex(props: Props) {
   return (
     <>
       <PageShellHeader
+        backFallbackHref='/'
+        backFallbackTitle='Home'
         primary={
           <PageLink href='/test/minimal-page-shell' passHref>
             <Button color='secondary' variant='pill-link'>

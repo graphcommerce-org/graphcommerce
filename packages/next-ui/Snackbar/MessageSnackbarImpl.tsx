@@ -25,7 +25,7 @@ const useStyles = makeStyles(
       bottom: 0,
       pointerEvents: 'none',
       [theme.breakpoints.up('md')]: {
-        padding: `${theme.page.vertical}px ${theme.page.horizontal}px`,
+        padding: `${theme.page.vertical} ${theme.page.horizontal}`,
       },
     },
     root: {

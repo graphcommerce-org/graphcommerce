@@ -19,7 +19,7 @@ const useStyles = makeStyles(
     sidebar: {
       display: 'grid',
       alignContent: 'space-between',
-      padding: `0 ${theme.spacings.lg} 0 ${theme.page.horizontal}px`,
+      padding: `0 ${theme.spacings.lg} 0 ${theme.page.horizontal}`,
     },
     h2: {
       ...theme.typography.h1,
