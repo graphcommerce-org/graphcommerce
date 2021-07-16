@@ -2,11 +2,12 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
-import useForwardedRef from '@bedrock-layout/use-forwarded-ref'
+
+import { useForkRef } from '@material-ui/core'
 import { LoaderValue, VALID_LOADERS } from 'next/dist/next-server/server/image-config'
 import Head from 'next/head'
 import type { ImageLoaderProps, ImageLoader } from 'next/image'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
   akamaiLoader,
   cloudinaryLoader,
@@ -347,7 +348,8 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     },
     forwardedRef,
   ) => {
-    const ref = useForwardedRef(forwardedRef)
+    const ref = useRef<HTMLImageElement>(null)
+    const combinedRef = useForkRef(ref, forwardedRef)
 
     const sizesOrig =
       layout === 'fixed' && width && !sizesIncomming
@@ -532,7 +534,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       <>
         {unoptimized ? (
           <img
-            ref={ref}
+            ref={combinedRef}
             {...imgProps}
             loading={loading ?? 'lazy'}
             src={src}
@@ -603,6 +605,6 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     )
   },
 )
-Image.displayName = 'NextPicture'
+Image.displayName = 'Image'
 
 export { Image }
