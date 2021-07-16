@@ -1,29 +1,29 @@
 import { mergeDeep } from '@apollo/client/utilities'
 import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
+import { ProductListParamsProvider } from '@reachdigital/magento-category'
+import {
+  ProductListFilters,
+  ProductListFiltersContainer,
+  ProductListSort,
+} from '@reachdigital/magento-product'
+import { ProductListDocument } from '@reachdigital/magento-product/ProductList/ProductList.gql'
+import {
+  FilterTypes,
+  ProductListParams,
+} from '@reachdigital/magento-product/ProductListItems/filterTypes'
+import {
+  extractUrlQuery,
+  parseParams,
+} from '@reachdigital/magento-product/ProductListItems/filteredProductList'
+import { getFilterTypes } from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
+import { SearchDocument, SearchForm, SearchQuery } from '@reachdigital/magento-search'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { AppShellSticky, AppShellTitle, Button } from '@reachdigital/next-ui'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
-import { ProductListParamsProvider } from '../../../../../packages/magento-category'
-import {
-  ProductListFilters,
-  ProductListFiltersContainer,
-  ProductListSort,
-} from '../../../../../packages/magento-product'
-import { ProductListDocument } from '../../../../../packages/magento-product/ProductList/ProductList.gql'
-import {
-  FilterTypes,
-  ProductListParams,
-} from '../../../../../packages/magento-product/ProductListItems/filterTypes'
-import {
-  extractUrlQuery,
-  parseParams,
-} from '../../../../../packages/magento-product/ProductListItems/filteredProductList'
-import { getFilterTypes } from '../../../../../packages/magento-product/ProductListItems/getFilterTypes'
-import { SearchDocument, SearchForm, SearchQuery } from '../../../../../packages/magento-search'
 import MinimalPageShell, {
   MinimalPageShellProps,
 } from '../../../components/AppShell/MinimalPageShell'
