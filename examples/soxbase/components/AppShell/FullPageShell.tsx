@@ -17,6 +17,7 @@ import {
   responsiveVal,
   SvgImage,
   FixedFab,
+  AppShellProvider,
 } from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -75,55 +76,57 @@ function FullPageShell(props: FullPageShellProps) {
   const onSearchStart = useCallback(() => router.push('/search'), [])
 
   return (
-    <FullPageShellBase
-      {...uiProps}
-      name={name}
-      header={
-        <>
-          <Logo classes={{ logo: classes.logo }} />
-          <DesktopNavBar {...menuProps} />
+    <AppShellProvider>
+      <FullPageShellBase
+        {...uiProps}
+        name={name}
+        header={
+          <>
+            <Logo classes={{ logo: classes.logo }} />
+            <DesktopNavBar {...menuProps} />
 
-          <DesktopNavActions>
-            {!router.pathname.startsWith('/search') && (
-              <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
-            )}
-            <PageLink href='/service' passHref>
-              <Fab style={{ boxShadow: 'none' }} aria-label='Account' size='medium'>
-                <SvgImage src={iconCustomerService} alt='Customer Service' loading='eager' />
-              </Fab>
-            </PageLink>
-            <CustomerFab guestHref='/account/signin' authHref='/account' />
-            <div className={classes.cartSpacer} />
-          </DesktopNavActions>
-        </>
-      }
-    >
-      <MenuFab {...menuProps} search={<SearchButton onClick={onSearchStart} />}>
-        <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>
-          Account
-        </CustomerMenuFabItem>
-        <MenuFabSecondaryItem
-          icon={<SvgImage src={iconCustomerService} size='small' alt='Customer Service' />}
-          href='/service'
-        >
-          Customer Service
-        </MenuFabSecondaryItem>
-        <MenuFabSecondaryItem
-          icon={<SvgImage src={iconHeart} size='small' alt='Wishlist' />}
-          href='/wishlist'
-        >
-          Wishlist
-        </MenuFabSecondaryItem>
-      </MenuFab>
+            <DesktopNavActions>
+              {!router.pathname.startsWith('/search') && (
+                <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
+              )}
+              <PageLink href='/service' passHref>
+                <Fab style={{ boxShadow: 'none' }} aria-label='Account' size='medium'>
+                  <SvgImage src={iconCustomerService} alt='Customer Service' loading='eager' />
+                </Fab>
+              </PageLink>
+              <CustomerFab guestHref='/account/signin' authHref='/account' />
+              <div className={classes.cartSpacer} />
+            </DesktopNavActions>
+          </>
+        }
+      >
+        <MenuFab {...menuProps} search={<SearchButton onClick={onSearchStart} />}>
+          <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>
+            Account
+          </CustomerMenuFabItem>
+          <MenuFabSecondaryItem
+            icon={<SvgImage src={iconCustomerService} size='small' alt='Customer Service' />}
+            href='/service'
+          >
+            Customer Service
+          </MenuFabSecondaryItem>
+          <MenuFabSecondaryItem
+            icon={<SvgImage src={iconHeart} size='small' alt='Wishlist' />}
+            href='/wishlist'
+          >
+            Wishlist
+          </MenuFabSecondaryItem>
+        </MenuFab>
 
-      <FixedFab>
-        <CartFab style={{ boxShadow: 'unset' }} />
-      </FixedFab>
+        <FixedFab>
+          <CartFab style={{ boxShadow: 'unset' }} />
+        </FixedFab>
 
-      {children}
+        {children}
 
-      <Footer footer={footer} />
-    </FullPageShellBase>
+        <Footer footer={footer} />
+      </FullPageShellBase>
+    </AppShellProvider>
   )
 }
 

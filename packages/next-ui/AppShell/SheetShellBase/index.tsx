@@ -13,6 +13,7 @@ import { useDomEvent } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useRef } from 'react'
 import responsiveVal from '../../Styles/responsiveVal'
+import AppShellProvider from '../AppShellProvider'
 import ShellBase, { PageLayoutBaseProps } from '../ShellBase'
 import useSheetStyles from './useSheetStyles'
 
@@ -82,18 +83,20 @@ function SheetShellBase(props: SheetShellBaseProps) {
   useDomEvent(windowRef, 'keyup', handleEscapeKey, { passive: true })
 
   return (
-    <ShellBase name={name}>
-      <Sheet open={open} onSnap={handleSnap} variant={variant} size={size}>
-        <SheetBackdrop onTap={handleClose} classes={sheetClasses} />
-        <SheetContainer classes={sheetContainerClasses}>
-          <SheetPanel classes={sheetClasses}>
-            {/* <FocusLock returnFocus={{ preventScroll: true }} disabled={!isActive}> */}
-            {children}
-            {/* </FocusLock> */}
-          </SheetPanel>
-        </SheetContainer>
-      </Sheet>
-    </ShellBase>
+    <AppShellProvider>
+      <ShellBase name={name}>
+        <Sheet open={open} onSnap={handleSnap} variant={variant} size={size}>
+          <SheetBackdrop onTap={handleClose} classes={sheetClasses} />
+          <SheetContainer classes={sheetContainerClasses}>
+            <SheetPanel classes={sheetClasses}>
+              {/* <FocusLock returnFocus={{ preventScroll: true }} disabled={!isActive}> */}
+              {children}
+              {/* </FocusLock> */}
+            </SheetPanel>
+          </SheetContainer>
+        </Sheet>
+      </ShellBase>
+    </AppShellProvider>
   )
 }
 

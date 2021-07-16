@@ -1,15 +1,11 @@
 import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import { Button, AppShellTitle, GetStaticProps } from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
-import { Button } from '../../../../packages/next-ui'
-import AppShellProvider from '../../../../packages/next-ui/AppShell/AppShellProvider'
-import AppShellTitle from '../../../../packages/next-ui/AppShell/AppShellTitle'
-import PageShellHeader from '../../../../packages/next-ui/AppShell/PageShellHeader'
-import Logo from '../../components/AppShell/Logo'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
+import PageLogoShellHeader from '../../components/AppShell/PageLogoShellHeader'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
 
@@ -29,8 +25,8 @@ function MinimalAppShellTestIndex(props: Props) {
   const classes = useStyles()
 
   return (
-    <AppShellProvider>
-      <PageShellHeader
+    <>
+      <PageLogoShellHeader
         primary={
           <PageLink href='/test/minimal-page-shell' passHref>
             <Button color='secondary' variant='pill-link'>
@@ -38,12 +34,11 @@ function MinimalAppShellTestIndex(props: Props) {
             </Button>
           </PageLink>
         }
-        logo={<Logo />}
       >
         <Typography variant='h5' component='span'>
           Minimal UI
         </Typography>
-      </PageShellHeader>
+      </PageLogoShellHeader>
       <Container maxWidth='md' className={classes.longContent}>
         <AppShellTitle>
           <Box textAlign='center' mb={3}>
@@ -55,7 +50,7 @@ function MinimalAppShellTestIndex(props: Props) {
         Functioneert bijna het zelfde als de Bottom Sheet maar nu standaard een logo. Na scrollen
         wordt het logo vervangen (crossfade) door de content titel.
       </Container>
-    </AppShellProvider>
+    </>
   )
 }
 

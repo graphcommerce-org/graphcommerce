@@ -1,20 +1,23 @@
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 import { useViewportScroll } from 'framer-motion'
 import React from 'react'
 import { UseStyles } from '../../Styles'
-import responsiveVal from '../../Styles/responsiveVal'
 import AppShellHeader, { AppShellHeaderProps } from '../AppShellHeader'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: Theme) => ({
   sheetHeader: {
     marginBottom: 62,
   },
   sheetHeaderActions: {
-    // paddingTop: responsiveVal(4, 16),
+    padding: `8px ${theme.page.horizontal}px 8px`,
+    [theme.breakpoints.up('md')]: {
+      padding: `12px ${theme.page.horizontal}px 12px`,
+    },
   },
 }))
 
-type PageShellHeaderProps = Omit<AppShellHeaderProps, 'scrollY'> & UseStyles<typeof useStyles>
+export type PageShellHeaderProps = Omit<AppShellHeaderProps, 'scrollY'> &
+  UseStyles<typeof useStyles>
 
 export default function PageShellHeader(props: PageShellHeaderProps) {
   const { scrollY } = useViewportScroll()

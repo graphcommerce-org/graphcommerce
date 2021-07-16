@@ -1,20 +1,11 @@
-import { Box, Container, Fab, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import PageLink from 'next/link'
+import { AppShellTitle, GetStaticProps } from '@reachdigital/next-ui'
 import React from 'react'
-import { CustomerFab } from '../../../../packages/magento-customer'
-import { SearchButton } from '../../../../packages/magento-search'
-import AppShellProvider from '../../../../packages/next-ui/AppShell/AppShellProvider'
-import AppShellTitle from '../../../../packages/next-ui/AppShell/AppShellTitle'
-import DesktopNavActions from '../../../../packages/next-ui/AppShell/DesktopNavActions'
-import PageShellHeader from '../../../../packages/next-ui/AppShell/PageShellHeader'
-import SvgImage from '../../../../packages/next-ui/SvgImage'
-import { iconCustomerService } from '../../../../packages/next-ui/icons'
 import FullPageShell from '../../components/AppShell/FullPageShell'
-import Logo from '../../components/AppShell/Logo'
 import { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
+import PageLogoShellHeader from '../../components/AppShell/PageLogoShellHeader'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
 
@@ -34,12 +25,12 @@ function FullAppShellTestIndex(props: Props) {
   const classes = useStyles()
 
   return (
-    <AppShellProvider>
-      <PageShellHeader logo={<Logo />}>
+    <>
+      <PageLogoShellHeader>
         <Typography variant='h5' component='span'>
           Full Page UI
         </Typography>
-      </PageShellHeader>
+      </PageLogoShellHeader>
       <Container maxWidth='md' className={classes.longContent}>
         <AppShellTitle>
           <Box textAlign='center' mb={3}>
@@ -52,7 +43,7 @@ function FullAppShellTestIndex(props: Props) {
         you choose those bananas or rather go with kiwis, pears or apples - you’ll always feel fresh
         and fruity.
       </Container>
-    </AppShellProvider>
+    </>
   )
 }
 

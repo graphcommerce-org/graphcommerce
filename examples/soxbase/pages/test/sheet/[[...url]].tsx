@@ -1,15 +1,16 @@
 import { Container, Divider, List, ListItem, Typography } from '@material-ui/core'
 import { PageOptions, usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
-import AppShellTitle from '@reachdigital/next-ui/AppShell/AppShellTitle'
-import SheetShellHeader from '@reachdigital/next-ui/AppShell/SheetShellHeader'
-import Stepper from '@reachdigital/next-ui/Stepper/Stepper'
-import { iconPersonAlt } from '@reachdigital/next-ui/icons'
+import {
+  Button,
+  SheetShellHeader,
+  AppShellTitle,
+  iconPersonAlt,
+  Stepper,
+  Title,
+} from '@reachdigital/next-ui'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React, { useState } from 'react'
-import { Button } from '../../../../../packages/next-ui'
-import AppShellProvider from '../../../../../packages/next-ui/AppShell/AppShellProvider'
-import Title from '../../../../../packages/next-ui/Title'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 
 function BottomSheetWithPrimaryActionAndNavigatable() {
@@ -57,7 +58,7 @@ function BottomSheetWithPrimaryActionAndNavigatable() {
     )
 
   return (
-    <AppShellProvider>
+    <>
       <SheetShellHeader
         primary={primaryAction}
         divider={withStepper ? <Stepper steps={3} currentStep={step} /> : undefined}
@@ -156,7 +157,7 @@ function BottomSheetWithPrimaryActionAndNavigatable() {
           />
         </div>
       </Container>
-    </AppShellProvider>
+    </>
   )
 }
 
