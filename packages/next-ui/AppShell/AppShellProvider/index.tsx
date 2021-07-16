@@ -12,6 +12,7 @@ export default function AppShellProvider(props: AppShellProviderProps) {
   const context: AppShellHeaderContext = {
     titleRef: useRef<HTMLDivElement>(null),
     contentHeaderRef: useRef<HTMLDivElement>(null),
+    isTransparent: false,
   }
 
   return <appShellHeaderContext.Provider value={context}>{children}</appShellHeaderContext.Provider>

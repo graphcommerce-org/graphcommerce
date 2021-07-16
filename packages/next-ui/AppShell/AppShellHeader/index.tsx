@@ -64,6 +64,10 @@ const useStyles = makeStyles(
     sheetHeaderActionRight: {
       justifySelf: 'flex-end',
     },
+    sheetHeaderNoTitle: {
+      pointerEvents: 'none',
+      background: 'transparent',
+    },
     innerContainer: {
       display: 'grid',
       textAlign: 'center',
@@ -125,7 +129,9 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   const { closeSteps, backSteps } = usePageContext()
   const classes = useStyles(props)
 
-  const { titleRef, contentHeaderRef } = useAppShellHeaderContext()
+  const { titleRef, contentHeaderRef, isTransparent } = useAppShellHeaderContext()
+
+  //  isTransparent = typeof children === 'undefined' || !children
 
   const sheetHeaderHeight = useMotionValue<number>(0)
   const titleOffset = useMotionValue<number>(100)
@@ -209,7 +215,11 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
 
   return (
     <div
-      className={clsx(classes?.sheetHeader, scrolled && classes?.sheetHeaderScrolled)}
+      className={clsx(
+        classes?.sheetHeader,
+        scrolled && classes?.sheetHeaderScrolled,
+        !children && classes.sheetHeaderNoTitle,
+      )}
       ref={contentHeaderRef}
     >
       <div className={classes.logoContainer}>
@@ -238,9 +248,10 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
       </div>
       {subHeader && <>{subHeader}</>}
       <div>
-        {divider ?? (
-          <m.div className={classes.divider} style={{ opacity: scrolled ? 1 : opacityFadeIn }} />
-        )}
+        {children &&
+          (divider ?? (
+            <m.div className={classes.divider} style={{ opacity: scrolled ? 1 : opacityFadeIn }} />
+          ))}
       </div>
     </div>
   )

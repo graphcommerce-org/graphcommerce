@@ -36,7 +36,7 @@ type FixedFabProps = {
 export default function FixedFab(props: FixedFabProps) {
   const { children } = props
   const classes = useStyles(props)
-  const { translateY } = useFixedFabAnimation()
+  const { translateY, filter, opacity } = useFixedFabAnimation()
 
   return (
     <m.div style={{ top: translateY }} className={classes.root}>

@@ -1,7 +1,9 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
+import React from 'react'
 import { UseStyles } from '../Styles'
+import AppShellProvider from './AppShellProvider'
 import ShellBase, { PageLayoutBaseProps } from './ShellBase'
 
 const useStyles = makeStyles(
@@ -39,16 +41,18 @@ export default function FullPageShellBase(props: FullPageShellBaseProps) {
   const classes = useStyles(props)
 
   return (
-    <ShellBase name={name}>
-      <m.header
-        className={clsx(classes.header)}
-        layoutId='header'
-        transition={{ type: 'tween' }}
-        layout='position'
-      >
-        {header}
-      </m.header>
-      {children}
-    </ShellBase>
+    <AppShellProvider>
+      <ShellBase name={name}>
+        <m.header
+          className={clsx(classes.header)}
+          layoutId='header'
+          transition={{ type: 'tween' }}
+          layout='position'
+        >
+          {header}
+        </m.header>
+        {children}
+      </ShellBase>
+    </AppShellProvider>
   )
 }

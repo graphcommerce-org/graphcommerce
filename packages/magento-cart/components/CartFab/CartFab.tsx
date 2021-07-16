@@ -1,7 +1,9 @@
 import { Fab, FabProps, NoSsr } from '@material-ui/core'
-import { iconShoppingBag, StyledBadge, SvgImage, UseStyles } from '@reachdigital/next-ui'
+import { iconShoppingBag, StyledBadge, SvgImage, useFixedFabAnimation } from '@reachdigital/next-ui'
+import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
+import useAppShellHeaderContext from '../../../next-ui/AppShell/AppShellHeader/useAppShellHeaderContext'
 import { useCartQuery } from '../../hooks/useCartQuery'
 import { CartFabDocument } from './CartFab.gql'
 import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
@@ -15,18 +17,22 @@ type CartFabContentProps = CartFabProps & CartTotalQuantityFragment
 function CartFabContent(props: CartFabContentProps) {
   const { total_quantity, icon, ...fabProps } = props
   const cartIcon = icon ?? <SvgImage src={iconShoppingBag} alt='Shopping Bag' loading='eager' />
+  const { filter } = useFixedFabAnimation()
+
   return (
-    <PageLink href='/cart' passHref>
-      <Fab aria-label='Cart' color='inherit' size='medium' {...fabProps}>
-        {total_quantity > 0 ? (
-          <StyledBadge color='primary' variant='dot'>
-            {cartIcon}
-          </StyledBadge>
-        ) : (
-          cartIcon
-        )}
-      </Fab>
-    </PageLink>
+    <m.div style={{ filter }}>
+      <PageLink href='/cart' passHref>
+        <Fab aria-label='Cart' color='inherit' size='medium' {...fabProps}>
+          {total_quantity > 0 ? (
+            <StyledBadge color='primary' variant='dot'>
+              {cartIcon}
+            </StyledBadge>
+          ) : (
+            cartIcon
+          )}
+        </Fab>
+      </PageLink>
+    </m.div>
   )
 }
 
