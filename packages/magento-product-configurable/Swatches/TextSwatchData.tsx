@@ -49,10 +49,11 @@ export default function TextSwatchData(props: TextSwatchDataProps) {
           <div className={classes.value}>
             <Money {...price} />
           </div>
-          <div className={classes.delivery}>
-            {/* TODO: change to actual delivery data */}
-            <Typography variant='caption'>{store_label}</Typography>
-          </div>
+          {store_label !== value && (
+            <Typography variant='caption' className={classes.delivery}>
+              {store_label}
+            </Typography>
+          )}
         </>
       ) : (
         <>{value ?? store_label}</>

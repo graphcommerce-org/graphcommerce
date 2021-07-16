@@ -78,7 +78,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
               fieldState: { error: errorHelperText },
             }) => (
               <SectionContainer
-                labelLeft={`choose your ${option?.label}`}
+                labelLeft={option?.label}
                 labelRight={
                   optionEndLabels && option?.label
                     ? optionEndLabels[option.label.toLowerCase()]
