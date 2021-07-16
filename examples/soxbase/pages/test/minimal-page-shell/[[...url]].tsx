@@ -3,14 +3,21 @@ import { PageOptions, usePageContext, usePageRouter } from '@reachdigital/framer
 import { Button, AppShellTitle, iconPersonAlt, Stepper, Title } from '@reachdigital/next-ui'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import MinimalPageShell, {
   MinimalPageShellProps,
 } from '../../../components/AppShell/MinimalPageShell'
 import PageShellHeader from '../../../components/AppShell/PageShellHeader'
-import { SheetShellProps } from '../../../components/AppShell/SheetShell'
 
-function MinimalPageShellDemo() {
+type AppShellDemoProps = {
+  baseUrl: string
+  Header: React.FC<{ primary?: React.ReactNode; divider?: React.ReactNode }>
+}
+
+export function AppShellDemo(props: AppShellDemoProps) {
+  const { baseUrl, Header } = props
+
   const urlParts = usePageRouter().asPath.split('/').pop()?.split('-') ?? []
   const title = urlParts.map((s) => `${s?.charAt(0).toUpperCase() + s?.slice(1)}`).join(' ')
   const [scroll, setScroll] = useState<boolean>(true)
@@ -21,10 +28,12 @@ function MinimalPageShellDemo() {
   const step = Number(urlParts[urlParts.length - 1])
   const withIcon = urlParts.includes('icon')
 
+  const isSheet = urlParts.includes('sheet')
+
   let primaryAction: React.ReactNode
   if (withPrimary)
     primaryAction = (
-      <PageLink href='/test/sheet/bottom-sheet-with-primary-navigated' passHref>
+      <PageLink href={`${baseUrl}/with-primary-navigated`} passHref>
         <Button color='secondary' variant='pill-link'>
           Navigate
         </Button>
@@ -33,7 +42,7 @@ function MinimalPageShellDemo() {
 
   if (withStepper && step < 3) {
     primaryAction = (
-      <PageLink href={`/test/sheet/bottom-sheet-with-stepper-${step + 1}`} passHref>
+      <PageLink href={`${baseUrl}/with-stepper-${step + 1}`} passHref>
         <Button color='secondary' variant='pill-link'>
           Navigate
         </Button>
@@ -56,17 +65,17 @@ function MinimalPageShellDemo() {
 
   return (
     <>
-      <PageShellHeader
+      <Header
         primary={primaryAction}
         divider={withStepper ? <Stepper steps={3} currentStep={step} /> : undefined}
       >
         {titleComponent}
-      </PageShellHeader>
+      </Header>
 
       <AppShellTitle icon={withIcon ? iconPersonAlt : undefined}>{title}</AppShellTitle>
 
       <Container maxWidth='md'>
-        {!primaryAction && (
+        {isSheet && !primaryAction && (
           <Typography variant='body1' gutterBottom>
             When opening a sheet a close icon is shown at the top right.
           </Typography>
@@ -96,43 +105,73 @@ function MinimalPageShellDemo() {
         <List>
           {!!primaryAction ||
             (backSteps === 0 && (
-              <PageLink href='/test/minimal-page-shell/navigated' passHref>
+              <PageLink href={`${baseUrl}/navigated`} passHref>
                 <ListItem button component='a' style={{ paddingLeft: 0, paddingRight: 0 }}>
                   Navigate
                 </ListItem>
               </PageLink>
             ))}
 
-          <PageLink href='/test/minimal-page-shell/with-primary' passHref>
+          <PageLink href={`${baseUrl}/with-primary`} passHref>
             <ListItem
               button
               component='a'
               disabled={!!primaryAction}
               style={{ paddingLeft: 0, paddingRight: 0 }}
             >
-              Bottom sheet with primary action
+              With primary action
             </ListItem>
           </PageLink>
 
-          <PageLink href='/test/minimal-page-shell/with-stepper-1' passHref>
+          <PageLink href={`${baseUrl}/with-stepper-1`} passHref>
             <ListItem
               button
               component='a'
               disabled={withStepper}
               style={{ paddingLeft: 0, paddingRight: 0 }}
             >
-              Bottom sheet with stepper
+              With stepper
             </ListItem>
           </PageLink>
 
-          <PageLink href='/test/minimal-page-shell/with-icon' passHref>
+          <PageLink href={`${baseUrl}/with-icon`} passHref>
             <ListItem
               button
               component='a'
               disabled={withIcon}
               style={{ paddingLeft: 0, paddingRight: 0 }}
             >
-              Bottom sheet with icon
+              With icon
+            </ListItem>
+          </PageLink>
+          <PageLink href='/test/sheet/bottom-sheet' passHref>
+            <ListItem
+              button
+              component='a'
+              disabled={isSheet}
+              style={{ paddingLeft: 0, paddingRight: 0 }}
+            >
+              Bottom sheet
+            </ListItem>
+          </PageLink>
+          <PageLink href='/test/minimal-page-shell' passHref>
+            <ListItem
+              button
+              component='a'
+              disabled={urlParts.includes('minimal')}
+              style={{ paddingLeft: 0, paddingRight: 0 }}
+            >
+              Minimal Page Shell
+            </ListItem>
+          </PageLink>
+          <PageLink href='/test/minimal-page-shell' passHref>
+            <ListItem
+              button
+              component='a'
+              disabled={!(urlParts.includes('minimal') || urlParts.includes('full'))}
+              style={{ paddingLeft: 0, paddingRight: 0 }}
+            >
+              Full Page Shell
             </ListItem>
           </PageLink>
           <ListItem
@@ -155,6 +194,10 @@ function MinimalPageShellDemo() {
       </Container>
     </>
   )
+}
+
+function MinimalPageShellDemo() {
+  return <AppShellDemo baseUrl='/test/minimal-page-shell' Header={PageShellHeader} />
 }
 
 const pageOptions: PageOptions<MinimalPageShellProps> = {
