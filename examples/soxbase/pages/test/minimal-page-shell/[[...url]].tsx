@@ -1,19 +1,16 @@
 import { Container, Divider, List, ListItem, Typography } from '@material-ui/core'
 import { PageOptions, usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
-import {
-  Button,
-  SheetShellHeader,
-  AppShellTitle,
-  iconPersonAlt,
-  Stepper,
-  Title,
-} from '@reachdigital/next-ui'
+import { Button, AppShellTitle, iconPersonAlt, Stepper, Title } from '@reachdigital/next-ui'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React, { useState } from 'react'
-import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import MinimalPageShell, {
+  MinimalPageShellProps,
+} from '../../../components/AppShell/MinimalPageShell'
+import PageShellHeader from '../../../components/AppShell/PageShellHeader'
+import { SheetShellProps } from '../../../components/AppShell/SheetShell'
 
-function BottomSheetWithPrimaryActionAndNavigatable() {
+function MinimalPageShellDemo() {
   const urlParts = usePageRouter().asPath.split('/').pop()?.split('-') ?? []
   const title = urlParts.map((s) => `${s?.charAt(0).toUpperCase() + s?.slice(1)}`).join(' ')
   const [scroll, setScroll] = useState<boolean>(true)
@@ -59,12 +56,12 @@ function BottomSheetWithPrimaryActionAndNavigatable() {
 
   return (
     <>
-      <SheetShellHeader
+      <PageShellHeader
         primary={primaryAction}
         divider={withStepper ? <Stepper steps={3} currentStep={step} /> : undefined}
       >
         {titleComponent}
-      </SheetShellHeader>
+      </PageShellHeader>
 
       <AppShellTitle icon={withIcon ? iconPersonAlt : undefined}>{title}</AppShellTitle>
 
@@ -99,14 +96,14 @@ function BottomSheetWithPrimaryActionAndNavigatable() {
         <List>
           {!!primaryAction ||
             (backSteps === 0 && (
-              <PageLink href='/test/sheet/bottom-sheet-navigated' passHref>
+              <PageLink href='/test/minimal-page-shell/navigated' passHref>
                 <ListItem button component='a' style={{ paddingLeft: 0, paddingRight: 0 }}>
-                  Navigate inside the overlay
+                  Navigate
                 </ListItem>
               </PageLink>
             ))}
 
-          <PageLink href='/test/sheet/bottom-sheet-with-primary' passHref>
+          <PageLink href='/test/minimal-page-shell/with-primary' passHref>
             <ListItem
               button
               component='a'
@@ -117,7 +114,7 @@ function BottomSheetWithPrimaryActionAndNavigatable() {
             </ListItem>
           </PageLink>
 
-          <PageLink href='/test/sheet/bottom-sheet-with-stepper-1' passHref>
+          <PageLink href='/test/minimal-page-shell/with-stepper-1' passHref>
             <ListItem
               button
               component='a'
@@ -128,7 +125,7 @@ function BottomSheetWithPrimaryActionAndNavigatable() {
             </ListItem>
           </PageLink>
 
-          <PageLink href='/test/sheet/bottom-sheet-with-icon' passHref>
+          <PageLink href='/test/minimal-page-shell/with-icon' passHref>
             <ListItem
               button
               component='a'
@@ -138,7 +135,6 @@ function BottomSheetWithPrimaryActionAndNavigatable() {
               Bottom sheet with icon
             </ListItem>
           </PageLink>
-
           <ListItem
             button
             onClick={() => setScroll(!scroll)}
@@ -161,18 +157,9 @@ function BottomSheetWithPrimaryActionAndNavigatable() {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
-  overlayGroup: 'test',
-  SharedComponent: SheetShell,
-  sharedProps: { size: 'max', variant: 'bottom' },
-  sharedKey: (router) =>
-    [
-      router.pathname,
-      router.asPath.includes('primary') ? 'primary' : '',
-      router.asPath.includes('stepper') ? 'stepper' : '',
-      router.asPath.includes('icon') ? 'icon' : '',
-    ].join('-'),
+const pageOptions: PageOptions<MinimalPageShellProps> = {
+  SharedComponent: MinimalPageShell,
 }
-BottomSheetWithPrimaryActionAndNavigatable.pageOptions = pageOptions
+MinimalPageShellDemo.pageOptions = pageOptions
 
-export default BottomSheetWithPrimaryActionAndNavigatable
+export default MinimalPageShellDemo

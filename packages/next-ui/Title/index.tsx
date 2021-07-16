@@ -33,7 +33,7 @@ export default function Title(props: TitleProps) {
       {icon && (
         <SvgImage
           src={icon as any} /* why doesn't this prop work? */
-          size={small ? 20 : 56}
+          size={small ? 30 : 56}
           mobileSize={small ? 20 : 56}
           loading='eager'
         />
