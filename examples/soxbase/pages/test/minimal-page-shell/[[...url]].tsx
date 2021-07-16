@@ -29,6 +29,8 @@ export function AppShellDemo(props: AppShellDemoProps) {
   const withIcon = urlParts.includes('icon')
 
   const isSheet = urlParts.includes('sheet')
+  const isMinimal = urlParts.includes('minimal')
+  const isFullPage = !isSheet && !isMinimal
 
   let primaryAction: React.ReactNode
   if (withPrimary)
@@ -69,7 +71,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
         primary={primaryAction}
         divider={withStepper ? <Stepper steps={3} currentStep={step} /> : undefined}
       >
-        {titleComponent}
+        {!isFullPage ? titleComponent : undefined}
       </Header>
 
       <AppShellTitle icon={withIcon ? iconPersonAlt : undefined}>{title}</AppShellTitle>
