@@ -39,23 +39,23 @@ type TextSwatchDataProps = TextSwatchDataFragment & SwatchDataProps & UseStyles<
 
 export default function TextSwatchData(props: TextSwatchDataProps) {
   const classes = useStyles(props)
-  const { store_label, size, price } = props
+  const { store_label, size, price, value } = props
 
   return (
     <div className={classes.root}>
       {size === 'large' ? (
         <>
-          <div className={classes.storeLabel}>{store_label}</div>
+          <div className={classes.storeLabel}>{value}</div>
           <div className={classes.value}>
             <Money {...price} />
           </div>
           <div className={classes.delivery}>
             {/* TODO: change to actual delivery data */}
-            <Typography variant='caption'>Next day delivery</Typography>
+            <Typography variant='caption'>{store_label}</Typography>
           </div>
         </>
       ) : (
-        <>{store_label}</>
+        <>{value ?? store_label}</>
       )}
     </div>
   )
