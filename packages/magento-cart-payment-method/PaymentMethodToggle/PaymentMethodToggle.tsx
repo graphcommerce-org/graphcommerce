@@ -1,4 +1,4 @@
-import { FormControl } from '@material-ui/core'
+import { FormControl, Typography } from '@material-ui/core'
 import { Form, FormRow, ToggleButton, ToggleButtonGroup } from '@reachdigital/next-ui'
 import { Controller, useForm, useFormPersist } from '@reachdigital/react-hook-form'
 import React, { useEffect } from 'react'
@@ -36,7 +36,7 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
       (method) => method.code === code && (!child || method.child === child),
     )
     if (foundMethod && !modules?.[foundMethod?.code ?? '']) {
-      console.log('no payment method found for method', foundMethod)
+      console.error(`No PaymentModule found for method ${foundMethod.code}`)
     }
     setSelectedMethod(foundMethod)
     setSelectedModule(modules?.[foundMethod?.code ?? ''])
@@ -70,8 +70,9 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
                     key={`${pm.code}___${pm.child}`}
                     value={`${pm.code}___${pm.child}`}
                     color='secondary'
+                    disabled={!modules?.[pm.code]}
                   >
-                    <Content {...pm} />
+                    {!modules?.[pm.code] ? <>{pm.code} not implemented</> : <Content {...pm} />}
                   </ToggleButton>
                 ))}
               </ToggleButtonGroup>

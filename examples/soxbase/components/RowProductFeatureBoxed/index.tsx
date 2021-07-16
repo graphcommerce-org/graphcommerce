@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core'
+import { Typography, useTheme } from '@material-ui/core'
 import RichText from '@reachdigital/graphcms-ui/RichText'
 import { Image } from '@reachdigital/image'
 import { RowImageTextBoxed } from '@reachdigital/next-ui'
@@ -11,6 +11,7 @@ type RowProductFeatureBoxedProps = RowProductFeatureBoxedFragment & ProductFeatu
 export default function RowProductFeatureBoxedBoxed(props: RowProductFeatureBoxedProps) {
   const { copy, topic, media_gallery } = props
   const item = media_gallery?.[1] ?? media_gallery?.[0]
+  const theme = useTheme()
 
   if (!item) return null
 
@@ -18,7 +19,18 @@ export default function RowProductFeatureBoxedBoxed(props: RowProductFeatureBoxe
     <RowImageTextBoxed
       item={
         item.__typename === 'ProductImage' &&
-        item.url && <Image alt={item.label ?? ''} width={328} height={328} src={item.url} />
+        item.url && (
+          <Image
+            alt={item.label ?? ''}
+            width={328}
+            height={328}
+            src={item.url}
+            sizes={{
+              0: '100vw',
+              [theme.breakpoints.values.md]: '50vw',
+            }}
+          />
+        )
       }
     >
       {topic && <Typography variant='caption'>{topic}</Typography>}

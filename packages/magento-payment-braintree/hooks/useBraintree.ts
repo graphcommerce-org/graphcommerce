@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client'
 import braintree, { Client } from 'braintree-web'
 import { useEffect, useState } from 'react'
-import { BraintreeClientTokenDocument } from './BraintreeClientToken.gql'
+import { UseBraintreeDocument } from './UseBraintree.gql'
 
 export type StartPaymentOptions = {
   fallback: {
@@ -29,7 +29,7 @@ export type StartPaymentOptions = {
 }
 
 export default function useBraintree() {
-  const [execute, { called, data, error }] = useMutation(BraintreeClientTokenDocument)
+  const [execute, { called, data, error }] = useMutation(UseBraintreeDocument)
   const [client, setClient] = useState<Client>()
   const authorization = data?.createBraintreeClientToken
 
