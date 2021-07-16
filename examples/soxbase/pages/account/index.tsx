@@ -12,7 +12,6 @@ import {
 } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
-  IconHeader,
   GetStaticProps,
   TimeAgo,
   iconBox,
@@ -24,9 +23,12 @@ import {
   iconPersonAlt,
   iconShutdown,
   iconStar,
+  Title,
+  AppShellTitle,
 } from '@reachdigital/next-ui'
 import React from 'react'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
+import PageShellHeader from '../../components/AppShell/PageShellHeader'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
 
@@ -62,7 +64,15 @@ function AccountIndexPage() {
     <Container maxWidth='md'>
       <NoSsr>
         <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
-        <IconHeader src={iconPersonAlt} title='Account' alt='account' size='large' />
+        <PageShellHeader>
+          <Title component='span' size='small'>
+            Account
+          </Title>
+        </PageShellHeader>
+        <AppShellTitle icon={iconPersonAlt}>
+          <Title>Account</Title>
+        </AppShellTitle>
+
         <AccountMenu>
           <AccountMenuItem
             href='/account/name'

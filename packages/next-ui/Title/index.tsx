@@ -18,9 +18,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export type TitleProps = {
   children: React.ReactNode
-  icon?: Pick<SvgImageProps, 'src'>
+  icon?: SvgImageProps['src']
   size?: 'small' | 'medium'
-  component: React.ElementType
+  component?: React.ElementType
 }
 
 export default function Title(props: TitleProps) {
@@ -31,12 +31,7 @@ export default function Title(props: TitleProps) {
   return (
     <div className={clsx(classes.container, small && classes.inline)}>
       {icon && (
-        <SvgImage
-          src={icon as any} /* why doesn't this prop work? */
-          size={small ? 30 : 56}
-          mobileSize={small ? 20 : 56}
-          loading='eager'
-        />
+        <SvgImage src={icon} size={small ? 30 : 56} mobileSize={small ? 20 : 56} loading='eager' />
       )}
       <Typography variant={small ? 'h5' : 'h2'} component={component ?? 'h1'}>
         {children}

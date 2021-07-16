@@ -3,7 +3,6 @@ import { PageOptions, usePageContext, usePageRouter } from '@reachdigital/framer
 import { Button, AppShellTitle, iconPersonAlt, Stepper, Title } from '@reachdigital/next-ui'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
-import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import MinimalPageShell, {
   MinimalPageShellProps,
@@ -73,7 +72,6 @@ export function AppShellDemo(props: AppShellDemoProps) {
       >
         {!isFullPage ? titleComponent : undefined}
       </Header>
-
       <AppShellTitle icon={withIcon ? iconPersonAlt : undefined}>{title}</AppShellTitle>
 
       <Container maxWidth='md'>
