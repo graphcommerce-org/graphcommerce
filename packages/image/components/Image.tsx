@@ -550,6 +550,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
               sizes={sizes}
             />
             <img
+              src={srcSet1x[0]}
               ref={ref}
               {...imgProps}
               loading={loading ?? 'lazy'}
