@@ -5,7 +5,7 @@ import { Button, AppShellTitle, GetStaticProps } from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
-import PageLogoShellHeader from '../../components/AppShell/PageLogoShellHeader'
+import PageShellHeader from '../../components/AppShell/PageShellHeader'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
 
@@ -16,7 +16,7 @@ type GetPageStaticProps = GetStaticProps<MinimalPageShellProps, Props, RouteProp
 // TODO: throw away. for testing only
 const useStyles = makeStyles((theme: Theme) => ({
   longContent: {
-    height: 800,
+    height: 2000,
   },
 }))
 
@@ -26,7 +26,7 @@ function MinimalAppShellTestIndex(props: Props) {
 
   return (
     <>
-      <PageLogoShellHeader
+      <PageShellHeader
         primary={
           <PageLink href='/test/minimal-page-shell' passHref>
             <Button color='secondary' variant='pill-link'>
@@ -38,7 +38,7 @@ function MinimalAppShellTestIndex(props: Props) {
         <Typography variant='h5' component='span'>
           Minimal UI
         </Typography>
-      </PageLogoShellHeader>
+      </PageShellHeader>
       <Container maxWidth='md' className={classes.longContent}>
         <AppShellTitle>
           <Box textAlign='center' mb={3}>

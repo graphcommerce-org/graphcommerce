@@ -5,7 +5,7 @@ import { AppShellTitle, GetStaticProps } from '@reachdigital/next-ui'
 import React from 'react'
 import FullPageShell from '../../components/AppShell/FullPageShell'
 import { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
-import PageLogoShellHeader from '../../components/AppShell/PageLogoShellHeader'
+import PageShellHeader from '../../components/AppShell/PageShellHeader'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
 
@@ -26,11 +26,11 @@ function FullAppShellTestIndex(props: Props) {
 
   return (
     <>
-      <PageLogoShellHeader>
+      <PageShellHeader>
         <Typography variant='h5' component='span'>
           Full Page UI
         </Typography>
-      </PageLogoShellHeader>
+      </PageShellHeader>
       <Container maxWidth='md' className={classes.longContent}>
         <AppShellTitle>
           <Box textAlign='center' mb={3}>

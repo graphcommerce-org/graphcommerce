@@ -19,10 +19,12 @@ export type AppShellHeaderProps = {
   /* When a logo is given, children should be given too */
   logo?: React.ReactNode
   scrollY: MotionValue<number>
-  noClose?: boolean
+  hideClose?: boolean
   scrolled?: boolean
   dragIndicator?: React.ReactNode
   additional?: React.ReactNode
+  backFallbackHref?: string | null
+  backFallbackTitle?: string | null
 } & UseStyles<typeof useStyles>
 
 const useStyles = makeStyles(
@@ -46,9 +48,9 @@ const useStyles = makeStyles(
       gridAutoFlow: 'column',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: `8px 16px 8px`,
+      padding: `8px ${theme.page.horizontal} 8px`,
       [theme.breakpoints.up('md')]: {
-        padding: `12px 24px 12px`,
+        padding: `12px ${theme.page.horizontal} 12px`,
       },
       [theme.breakpoints.down('sm')]: {
         '& > div > .MuiFab-sizeSmall': {
@@ -56,6 +58,7 @@ const useStyles = makeStyles(
           marginRight: -12,
         },
         '& > div > .MuiButtonBase-root': {
+          minWidth: 'unset',
           marginRight: -8,
           marginLeft: -8,
         },
@@ -119,11 +122,13 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     divider,
     primary = null,
     secondary = null,
-    noClose,
+    hideClose,
     scrollY,
-    additional: subHeader,
+    additional,
     dragIndicator,
     scrolled,
+    backFallbackHref,
+    backFallbackTitle,
   } = props
   const router = usePageRouter()
   const { closeSteps, backSteps } = usePageContext()
@@ -171,7 +176,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   const opacityFadeOut = useTransform(opacityFadeIn, [0, 1], [1, 0])
 
   const close =
-    !noClose &&
+    !hideClose &&
     (closeSteps > 0 ? (
       <Fab
         size='small'
@@ -189,24 +194,28 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
       </PageLink>
     ))
 
-  const back = (backSteps > 0 || noClose) && (
+  const backIcon = (
+    <SvgImage src={iconChevronLeft} alt='chevron back' loading='eager' size={26} mobileSize={30} />
+  )
+  let back = backSteps > 0 && (
     <Button
       onClick={() => router.back()}
       variant='pill-link'
       className={classes.backButton}
-      startIcon={
-        <SvgImage
-          src={iconChevronLeft}
-          alt='chevron back'
-          loading='eager'
-          size={26}
-          mobileSize={30}
-        />
-      }
+      startIcon={backIcon}
     >
       Back
     </Button>
   )
+  if (!back && backFallbackHref) {
+    back = (
+      <PageLink href={backFallbackHref} passHref>
+        <Button variant='pill-link' className={classes.backButton} startIcon={backIcon}>
+          {backFallbackTitle ?? 'Back'}
+        </Button>
+      </PageLink>
+    )
+  }
 
   let leftAction: React.ReactNode = secondary ?? back
   const rightAction: React.ReactNode = primary ?? close
@@ -246,7 +255,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
         </div>
         <div className={classes?.sheetHeaderActionRight}>{rightAction}</div>
       </div>
-      {subHeader && <>{subHeader}</>}
+      {additional && <>{additional}</>}
       <div>
         {children &&
           (divider ?? (

@@ -27,7 +27,7 @@ import { SearchDocument, SearchForm, SearchQuery } from '../../../../../packages
 import MinimalPageShell, {
   MinimalPageShellProps,
 } from '../../../components/AppShell/MinimalPageShell'
-import PageLogoShellHeader from '../../../components/AppShell/PageLogoShellHeader'
+import PageShellHeader from '../../../components/AppShell/PageShellHeader'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../../lib/apolloClient'
 
@@ -51,7 +51,7 @@ function MinimalAppShellSubheader(props: Props) {
   return (
     <>
       <ProductListParamsProvider value={params}>
-        <PageLogoShellHeader
+        <PageShellHeader
           primary={
             <PageLink href='/test/minimal-page-shell' passHref>
               <Button color='secondary' variant='pill-link'>
@@ -69,7 +69,7 @@ function MinimalAppShellSubheader(props: Props) {
           <Typography variant='h5' component='span'>
             Minimal UI
           </Typography>
-        </PageLogoShellHeader>
+        </PageShellHeader>
         <Container maxWidth='md' className={classes.longContent}>
           <AppShellTitle>
             <Box textAlign='center' mb={3}>
