@@ -530,6 +530,10 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     if (layout === 'intrinsic') style = { ...style, width: '100%', height: 'auto', maxWidth: width }
     if (layout === 'fill') style = { ...style, width: '100%', height: '100%' }
 
+    if (loading !== 'eager') {
+      return null
+    }
+
     return (
       <>
         {unoptimized ? (
