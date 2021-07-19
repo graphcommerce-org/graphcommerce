@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/graphql-codegen-near-operation-file",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "sideEffects": false,
   "main": "dist/index.js",
