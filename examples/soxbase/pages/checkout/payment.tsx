@@ -1,6 +1,6 @@
 import { Container, Divider, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { CartTotals, CartSummary } from '@reachdigital/magento-cart'
+import { CartSummary, CartTotals } from '@reachdigital/magento-cart'
 import {
   PaymentMethodButton,
   PaymentMethodContextProvider,
@@ -12,79 +12,108 @@ import { braintree_local_payment } from '@reachdigital/magento-payment-braintree
 import { included_methods } from '@reachdigital/magento-payment-included'
 import { mollie_methods } from '@reachdigital/magento-payment-mollie'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import { Form, GetStaticProps, Stepper, SvgImage, iconChevronRight } from '@reachdigital/next-ui'
+import {
+  AppShellTitle,
+  Button,
+  Form,
+  GetStaticProps,
+  iconChevronRight,
+  iconId,
+  PageShellHeader,
+  Stepper,
+  SvgImage,
+  Title,
+} from '@reachdigital/next-ui'
 import { ComposedForm } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
+import PageLink from 'next/link'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
+import MinimalPageShell from '../../components/AppShell/MinimalPageShell'
+import { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
-function PaymentPage(props: Props) {
+function PaymentPage() {
   return (
-    <Container maxWidth='md'>
-      <ComposedForm>
-        <Typography variant='h5' component='h1' align='center'>
-          Checkout
-        </Typography>
+    <>
+      <PageMeta title='Payment' metaDescription='Payment' metaRobots={['noindex']} />
+      <PageShellHeader
+        primary={
+          <PageLink href='/checkout/payment' passHref>
+            {/* TODO: PaymentMethodButton primary action */}
+            <Button color='secondary' variant='pill-link'>
+              Place Order
+            </Button>
+          </PageLink>
+        }
+        divider={
+          <Container maxWidth={false}>
+            <Stepper steps={3} currentStep={3} />
+          </Container>
+        }
+        backFallbackHref='/cart'
+        backFallbackTitle='Cart'
+      >
+        <Title size='small' icon={iconId}>
+          Payment
+        </Title>
+      </PageShellHeader>
+      <Container maxWidth='md'>
+        <ComposedForm>
+          <AppShellTitle icon={iconId}>Payment</AppShellTitle>
 
-        <Stepper steps={3} currentStep={3} />
+          <PaymentMethodContextProvider
+            modules={{
+              braintree_local_payment,
+              ...included_methods,
+              ...mollie_methods,
+            }}
+          >
+            <NoSsr>
+              <AnimatePresence initial={false}>
+                <PaymentMethodToggle key='toggle' />
 
-        <PaymentMethodContextProvider
-          modules={{
-            braintree_local_payment,
-            ...included_methods,
-            ...mollie_methods,
-          }}
-        >
-          <PageMeta title='Payment' metaDescription='Payment' metaRobots={['noindex']} />
+                <PaymentMethodOptions
+                  key='options'
+                  step={1}
+                  Container={({ children }) => (
+                    <Form component='div' contained>
+                      {children}
+                    </Form>
+                  )}
+                />
 
-          <NoSsr>
-            <AnimatePresence initial={false}>
-              <PaymentMethodToggle key='toggle' />
+                <PaymentMethodPlaceOrder key='placeorder' step={2} />
 
-              <PaymentMethodOptions
-                key='options'
-                step={1}
-                Container={({ children }) => (
-                  <Form component='div' contained>
-                    {children}
-                  </Form>
-                )}
-              />
-
-              <PaymentMethodPlaceOrder key='placeorder' step={2} />
-
-              <PaymentMethodButton
-                key='button'
-                type='submit'
-                color='secondary'
-                variant='pill'
-                size='large'
-                endIcon={<SvgImage src={iconChevronRight} loading='eager' alt='chevron right' />}
-              >
-                Pay
-              </PaymentMethodButton>
-              <CartSummary editable>
-                <Divider />
-                <CartTotals />
-              </CartSummary>
-            </AnimatePresence>
-          </NoSsr>
-        </PaymentMethodContextProvider>
-      </ComposedForm>
-    </Container>
+                <PaymentMethodButton
+                  key='button'
+                  type='submit'
+                  color='secondary'
+                  variant='pill'
+                  size='large'
+                  endIcon={<SvgImage src={iconChevronRight} loading='eager' alt='chevron right' />}
+                >
+                  Pay
+                </PaymentMethodButton>
+                <CartSummary editable>
+                  <Divider />
+                  <CartTotals />
+                </CartSummary>
+              </AnimatePresence>
+            </NoSsr>
+          </PaymentMethodContextProvider>
+        </ComposedForm>
+      </Container>
+    </>
   )
 }
 
 const pageOptions: PageOptions<SheetShellProps> = {
-  overlayGroup: 'checkout',
-  SharedComponent: SheetShell,
+  SharedComponent: MinimalPageShell,
   sharedKey: () => 'checkout',
-  sharedProps: { variant: 'bottom', size: 'max' },
 }
 PaymentPage.pageOptions = pageOptions
 
@@ -92,7 +121,7 @@ export default PaymentPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  // const staticClient = apolloClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
 

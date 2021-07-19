@@ -37,6 +37,12 @@ const useStyles = makeStyles(
         display: 'unset',
       },
     },
+    header: {
+      [theme.breakpoints.down('sm')]: {
+        marginTop: 16,
+        marginBottom: 16,
+      },
+    },
     cartFab: {
       [theme.breakpoints.down('sm')]: {
         width: responsiveVal(42, 56),
@@ -48,10 +54,12 @@ const useStyles = makeStyles(
 )
 
 export type FullPageShellProps = Omit<DefaultPageQuery, 'pages'> &
-  Omit<FullPageShellBaseProps, 'menu' | 'logo' | 'actions' | 'classes' | 'name'>
+  Omit<FullPageShellBaseProps, 'menu' | 'logo' | 'actions' | 'classes' | 'name'> & {
+    alwaysShowLogo?: boolean
+  }
 
 function FullPageShell(props: FullPageShellProps) {
-  const { footer, menu: menuData = {}, children, ...uiProps } = props
+  const { footer, menu: menuData = {}, children, alwaysShowLogo, ...uiProps } = props
   const classes = useStyles()
 
   const storeConfig = useQuery(StoreConfigDocument)
@@ -82,7 +90,7 @@ function FullPageShell(props: FullPageShellProps) {
       name={name}
       header={
         <>
-          <Logo classes={{ logo: classes.logo }} />
+          <Logo classes={{ logo: alwaysShowLogo ? undefined : classes.logo }} />
           <DesktopNavBar {...menuProps} />
           <DesktopNavActions>
             {!router.pathname.startsWith('/search') && (
@@ -100,6 +108,7 @@ function FullPageShell(props: FullPageShellProps) {
           </DesktopNavActions>
         </>
       }
+      classes={{ header: alwaysShowLogo ? classes.header : undefined }}
     >
       <MenuFab {...menuProps} search={<SearchButton onClick={onSearchStart} />}>
         <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>

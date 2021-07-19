@@ -93,6 +93,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
 
   return {
     props: {
+      alwaysShowLogo: true,
       ...(await page).data,
       ...(await productList).data,
       apolloState: await conf.then(() => client.cache.extract()),

@@ -1,5 +1,4 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React from 'react'
 import { UseStyles } from '../Styles'
@@ -44,7 +43,7 @@ export default function FullPageShellBase(props: FullPageShellBaseProps) {
     <AppShellProvider>
       <ShellBase name={name}>
         <m.header
-          className={clsx(classes.header)}
+          className={classes.header}
           layoutId='header'
           transition={{ type: 'tween' }}
           layout='position'

@@ -70,17 +70,6 @@ export default function CartQuickCheckout(props: CartQuickCheckoutProps) {
       <span className={classes.total}>
         Cart Total: <Money {...prices?.grand_total} />
       </span>
-      <PageLink href='/checkout' passHref>
-        <Button
-          variant='pill'
-          color='secondary'
-          className={classes.button}
-          endIcon={<SvgImage src={iconChevronRight} shade='inverted' alt='checkout' />}
-          disabled={(prices?.grand_total?.value ?? 0) === 0}
-        >
-          <div className={classes.buttonLabel}>Start Checkout</div>
-        </Button>
-      </PageLink>
       {children}
     </div>
   )

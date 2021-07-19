@@ -1,8 +1,17 @@
-import { Container, Typography } from '@material-ui/core'
+import { Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CartItemSummary, CartSummary } from '@reachdigital/magento-cart'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import { IconHeader, GetStaticProps, Stepper, iconParty } from '@reachdigital/next-ui'
+import {
+  AppShellTitle,
+  Button,
+  GetStaticProps,
+  iconParty,
+  PageShellHeader,
+  Stepper,
+  Title,
+} from '@reachdigital/next-ui'
+import PageLink from 'next/link'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
@@ -13,21 +22,35 @@ type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function ShippingPage() {
   return (
-    <Container maxWidth='md'>
+    <>
       <PageMeta title='Checkout summary' metaDescription='Ordered items' metaRobots={['noindex']} />
+      <PageShellHeader
+        primary={
+          <PageLink href='/checkout/payment' passHref>
+            {/* TODO: PaymentMethodButton primary action */}
+            <Button color='secondary' variant='pill-link'>
+              Back to Home
+            </Button>
+          </PageLink>
+        }
+        divider={
+          <Container maxWidth={false}>
+            <Stepper steps={3} currentStep={3} />
+          </Container>
+        }
+      >
+        <Title size='small' icon={iconParty}>
+          Thank you for your order!
+        </Title>
+      </PageShellHeader>
+      <Container maxWidth='md'>
+        <AppShellTitle icon={iconParty}>Thank you for your order!</AppShellTitle>
 
-      <Typography variant='h6' component='h1' align='center'>
-        Checkout
-      </Typography>
+        <CartSummary />
 
-      <Stepper steps={3} currentStep={3} key='checkout-stepper' />
-
-      <IconHeader src={iconParty} title='Thank you for your order' alt='celebrate' size='large' />
-
-      <CartSummary />
-
-      <CartItemSummary />
-    </Container>
+        <CartItemSummary />
+      </Container>
+    </>
   )
 }
 

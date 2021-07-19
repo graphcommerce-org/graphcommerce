@@ -1,20 +1,28 @@
-import { Container, NoSsr, Typography } from '@material-ui/core'
+import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
+  ApolloCartErrorAlert,
   CartQuickCheckout,
   CartStartCheckout,
   CartTotals,
   EmptyCart,
   useCartQuery,
-  ApolloCartErrorAlert,
 } from '@reachdigital/magento-cart'
 import { CartPageDocument } from '@reachdigital/magento-cart-checkout'
 import { CouponAccordion } from '@reachdigital/magento-cart-coupon'
 import { CartItem, CartItems } from '@reachdigital/magento-cart-items'
 import { ConfigurableCartItem } from '@reachdigital/magento-product-configurable'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import { AnimatedRow, GetStaticProps, Stepper } from '@reachdigital/next-ui'
+import {
+  AnimatedRow,
+  Button,
+  GetStaticProps,
+  SheetShellHeader,
+  Stepper,
+  Title,
+} from '@reachdigital/next-ui'
 import { AnimatePresence } from 'framer-motion'
+import PageLink from 'next/link'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../components/AppShell/SheetShell'
 import apolloClient from '../lib/apolloClient'
@@ -34,33 +42,29 @@ function CartPage() {
     <>
       <PageMeta title='Cart' metaDescription='Cart Items' metaRobots={['noindex']} />
       <NoSsr>
-        {/* {hasItems && (
-          <>
-            <div style={{ display: 'flex', 'justify-content': 'space-between' }}>
-              <div style={{ 'text-align': 'left', flex: '1' }} />
-
-              <div style={{ flex: '1' }}>
-                <Typography variant='h5' component='h1' align='center'>
-                  Checkout
-                </Typography>
-                <Stepper steps={3} currentStep={1} key='checkout-stepper' />
-              </div>
-
-              <div style={{ 'text-align': 'right', flex: '1' }}>
-                <Button color='secondary' variant='pill'>
-                  Right button
+        <SheetShellHeader
+          primary={
+            hasItems ? (
+              <PageLink href='/checkout' passHref>
+                <Button color='secondary' variant='pill-link'>
+                  Start Checkout
                 </Button>
-              </div>
-            </div>
-          </>
-        )} */}
-
-        <Container maxWidth='md'>
-          <Typography variant='h5' component='h1' align='center'>
+              </PageLink>
+            ) : undefined
+          }
+          divider={
+            hasItems ? (
+              <Container maxWidth={false}>
+                <Stepper steps={3} currentStep={1} />
+              </Container>
+            ) : undefined
+          }
+        >
+          <Title size='small' component='span'>
             Checkout
-          </Typography>
-          <Stepper steps={3} currentStep={1} key='checkout-stepper' />
-
+          </Title>
+        </SheetShellHeader>
+        <Container maxWidth='md'>
           <AnimatePresence initial={false}>
             {hasItems ? (
               <>
