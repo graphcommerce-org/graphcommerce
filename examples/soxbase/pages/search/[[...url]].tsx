@@ -8,17 +8,13 @@ import {
   ProductListFiltersContainer,
   ProductListPagination,
   ProductListSort,
-} from '@reachdigital/magento-product'
-import { ProductListDocument } from '@reachdigital/magento-product/ProductList/ProductList.gql'
-import {
-  FilterTypes,
-  ProductListParams,
-} from '@reachdigital/magento-product/ProductListItems/filterTypes'
-import {
+  ProductListDocument,
   extractUrlQuery,
   parseParams,
-} from '@reachdigital/magento-product/ProductListItems/filteredProductList'
-import { getFilterTypes } from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
+  FilterTypes,
+  ProductListParams,
+  getFilterTypes,
+} from '@reachdigital/magento-product'
 import {
   CategorySearchResult,
   NoSearchResults,

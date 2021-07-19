@@ -4,7 +4,7 @@ import {
   isFilterTypeEqual,
   isFilterTypeMatch,
   isFilterTypeRange,
-} from '@reachdigital/magento-product/ProductListItems/filterTypes'
+} from '@reachdigital/magento-product'
 import PageLink, { LinkProps as PageLinkProps } from 'next/link'
 import Router from 'next/router'
 import React, { PropsWithChildren } from 'react'

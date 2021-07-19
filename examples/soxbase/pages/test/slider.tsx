@@ -1,10 +1,7 @@
 import { Container, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { Image } from '@reachdigital/image'
-import {
-  ProductListDocument,
-  ProductListQuery,
-} from '@reachdigital/magento-product/ProductList/ProductList.gql'
+import { ProductListDocument, ProductListQuery } from '@reachdigital/magento-product'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   SliderImage,

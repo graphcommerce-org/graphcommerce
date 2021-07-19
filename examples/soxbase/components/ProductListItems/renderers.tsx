@@ -1,4 +1,5 @@
 import { Typography, TypographyProps } from '@material-ui/core'
+import { ProductListItemRenderer } from '@reachdigital/magento-product'
 import { ProductListItemBundle } from '@reachdigital/magento-product-bundle'
 import { ProductListItemConfigurable } from '@reachdigital/magento-product-configurable'
 import { ProductListItemDownloadable } from '@reachdigital/magento-product-downloadable'
@@ -6,7 +7,6 @@ import { ProductListItemGrouped } from '@reachdigital/magento-product-grouped'
 import { ProductReviewSummary } from '@reachdigital/magento-product-review'
 import { ProductListItemSimple } from '@reachdigital/magento-product-simple'
 import { ProductListItemVirtual } from '@reachdigital/magento-product-virtual'
-import { ProductListItemRenderer } from '@reachdigital/magento-product/ProductListItems/renderer'
 import React from 'react'
 
 const Subtitle = (props: TypographyProps) => (

@@ -16,20 +16,15 @@ import {
   ProductListFiltersContainer,
   ProductListPagination,
   ProductListSort,
-} from '@reachdigital/magento-product'
-import {
   ProductListDocument,
   ProductListQuery,
-} from '@reachdigital/magento-product/ProductList/ProductList.gql'
-import {
   FilterTypes,
   ProductListParams,
-} from '@reachdigital/magento-product/ProductListItems/filterTypes'
-import {
   extractUrlQuery,
   parseParams,
-} from '@reachdigital/magento-product/ProductListItems/filteredProductList'
-import { getFilterTypes } from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
+  getFilterTypes,
+} from '@reachdigital/magento-product'
+
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'

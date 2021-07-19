@@ -1,6 +1,4 @@
-import ProductListItem, {
-  ProductListItemProps,
-} from '@reachdigital/magento-product/ProductListItem'
+import { ProductListItem, ProductListItemProps } from '@reachdigital/magento-product'
 import React from 'react'
 import { ProductListItemGroupedFragment } from './ProductListItemGrouped.gql'
 
