@@ -1,7 +1,7 @@
 {
   "name": "@reachdigital/next-ui",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0-alpha.0",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -15,10 +15,10 @@
     "@material-ui/core": "^4.12.1",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@material-ui/styles": "^4.11.4",
-    "@reachdigital/framer-next-pages": "^0.1.0",
-    "@reachdigital/framer-sheet": "^0.1.0",
-    "@reachdigital/graphql": "^0.1.0",
-    "@reachdigital/image": "^0.1.0",
+    "@reachdigital/framer-next-pages": "^1.0.0-alpha.0",
+    "@reachdigital/framer-sheet": "^1.0.0-alpha.0",
+    "@reachdigital/graphql": "^1.0.0-alpha.0",
+    "@reachdigital/image": "^1.0.0-alpha.0",
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.17",
     "graphql": "15.5.1",
@@ -35,9 +35,9 @@
     "use-resize-observer": "^7.0.0"
   },
   "devDependencies": {
-    "@reachdigital/browserslist-config-pwa": "^0.1.0",
-    "@reachdigital/eslint-config-pwa": "^0.1.0",
-    "@reachdigital/typescript-config-pwa": "^0.1.0",
+    "@reachdigital/browserslist-config-pwa": "^1.0.0-alpha.0",
+    "@reachdigital/eslint-config-pwa": "^1.0.0-alpha.0",
+    "@reachdigital/typescript-config-pwa": "^1.0.0-alpha.0",
     "@testing-library/react": "^12.0.0",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",

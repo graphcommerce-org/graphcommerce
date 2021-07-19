@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/framer-utils",
-  "version": "0.1.0",
+  "version": "1.0.0-alpha.0",
   "private": true,
   "sideEffects": false,
   "scripts": {
@@ -17,10 +17,10 @@
     }
   },
   "devDependencies": {
-    "@reachdigital/browserslist-config-pwa": "^0.1.0",
-    "@reachdigital/eslint-config-pwa": "^0.1.0",
-    "@reachdigital/prettier-config-pwa": "^0.1.0",
-    "@reachdigital/typescript-config-pwa": "^0.1.0"
+    "@reachdigital/browserslist-config-pwa": "^1.0.0-alpha.0",
+    "@reachdigital/eslint-config-pwa": "^1.0.0-alpha.0",
+    "@reachdigital/prettier-config-pwa": "^1.0.0-alpha.0",
+    "@reachdigital/typescript-config-pwa": "^1.0.0-alpha.0"
   },
   "peerDependencies": {
     "framer-motion": "^4.1.3",
