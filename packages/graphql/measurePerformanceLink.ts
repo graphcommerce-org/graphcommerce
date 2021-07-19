@@ -1,9 +1,25 @@
 /* eslint-disable no-console */
 import { ApolloLink } from '@apollo/client/core'
-import type { TracingFormat } from 'apollo-tracing'
 
 const slowOperationThreshold = 1000
 const slowResolverThreshold = 300
+
+interface TracingFormat {
+  version: 1
+  startTime: string
+  endTime: string
+  duration: number
+  execution: {
+    resolvers: {
+      path: (string | number)[]
+      parentType: string
+      fieldName: string
+      returnType: string
+      startOffset: number
+      duration: number
+    }[]
+  }
+}
 
 export const measurePerformanceLink = new ApolloLink((operation, forward) => {
   if (typeof global.window !== 'undefined') {
