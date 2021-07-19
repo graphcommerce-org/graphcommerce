@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: 14
       - run: yarn --frozen-lockfile
-      - run: yarn lerna version --conventional-commits --conventional-prerelease --create-release github --yes
+      - run: yarn lerna version --conventional-commits --conventional-prerelease --yes
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
