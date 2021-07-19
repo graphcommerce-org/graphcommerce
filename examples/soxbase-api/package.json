@@ -14,17 +14,17 @@
     "start-local": "next start -p 3001"
   },
   "dependencies": {
-    "@reachdigital/graphql-mesh": "^0.1.0",
-    "@reachdigital/next-config": "0.1.0",
+    "@reachdigital/graphql-mesh": "^1.0.0-alpha.0",
+    "@reachdigital/next-config": "^1.0.0-alpha.0",
+    "@reachdigital/browserslist-config-pwa": "^1.0.0-alpha.0",
+    "@reachdigital/eslint-config-pwa": "^1.0.0-alpha.0",
+    "@reachdigital/prettier-config-pwa": "^1.0.0-alpha.0",
+    "@reachdigital/typescript-config-pwa": "^1.0.0-alpha.0",
     "next": "^11.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@reachdigital/browserslist-config-pwa": "^0.1.0",
-    "@reachdigital/eslint-config-pwa": "^0.1.0",
-    "@reachdigital/prettier-config-pwa": "^0.1.0",
-    "@reachdigital/typescript-config-pwa": "^0.1.0",
     "typescript": "^4.3.5"
   },
   "prettier": "@reachdigital/prettier-config-pwa",

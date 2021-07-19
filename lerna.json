@@ -1,7 +1,11 @@
 {
   "packages": [
+    "docs",
+    "packagesDev/*",
     "packages/*",
-    "packagesDev/*"
+    "packages/*/example",
+    "packages/*/examples/*",
+    "examples/*"
   ],
   "version": "1.0.0-alpha.0"
 }
