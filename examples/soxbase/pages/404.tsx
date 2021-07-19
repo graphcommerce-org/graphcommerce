@@ -9,8 +9,6 @@ import FullPageShell, { FullPageShellProps } from '../components/AppShell/FullPa
 import { DefaultPageDocument, DefaultPageQuery } from '../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../lib/apolloClient'
 
-export const config = { unstable_JsPreload: false }
-
 type Props = DefaultPageQuery
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 

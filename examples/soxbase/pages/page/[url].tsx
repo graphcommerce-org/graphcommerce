@@ -17,8 +17,6 @@ import RowProductGrid from '../../components/RowProductGrid'
 import RowSwipeableGrid from '../../components/RowSwipeableGrid'
 import apolloClient from '../../lib/apolloClient'
 
-export const config = { unstable_JsPreload: false }
-
 type Props = DefaultPageQuery & CmsPageQuery & ProductListQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>

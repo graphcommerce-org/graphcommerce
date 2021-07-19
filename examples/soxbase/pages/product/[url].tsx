@@ -32,8 +32,6 @@ import RowProductSpecs from '../../components/RowProductSpecs'
 import RowProductUpsells from '../../components/RowProductUpsells'
 import apolloClient from '../../lib/apolloClient'
 
-export const config = { unstable_JsPreload: false }
-
 type Props = ProductPageQuery & SimpleProductPageQuery
 
 type RouteProps = { url: string }
