@@ -37,6 +37,8 @@ import ProductListItems from '../../components/ProductListItems/ProductListItems
 import useProductListStyles from '../../components/ProductListItems/useProductListStyles'
 import apolloClient from '../../lib/apolloClient'
 
+export const config = { unstable_JsPreload: false }
+
 type Props = DefaultPageQuery &
   SearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
 type RouteProps = { url: string[] }
