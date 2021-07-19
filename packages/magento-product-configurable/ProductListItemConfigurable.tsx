@@ -4,8 +4,8 @@ import {
   ProductListItem,
   OverlayAreaKeys,
   ProductListItemProps,
+  isFilterTypeEqual,
 } from '@reachdigital/magento-product'
-import { isFilterTypeEqual } from '@reachdigital/magento-product/ProductListItems/filterTypes'
 import React, { useState } from 'react'
 import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
 import SwatchList from './SwatchList'
