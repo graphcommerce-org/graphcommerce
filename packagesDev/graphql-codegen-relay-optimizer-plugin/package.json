@@ -5,18 +5,6 @@
   "license": "MIT",
   "main": "dist/main/index.js",
   "module": "dist/module/index.js",
-  "author": {
-    "name": "Laurin Quast",
-    "email": "laurinquast@googlemail.com",
-    "url": "https://github.com/n1ru4l"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/n1ru4l/graphql-codegen-relay-plugins"
-  },
-  "bugs": {
-    "url": "https://github.com/n1ru4l/graphql-codegen-relay-plugins/issues"
-  },
   "keywords": [
     "graphql",
     "codegen",
