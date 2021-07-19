@@ -24,7 +24,7 @@ function ShippingPage() {
       <CartSummary />
       <CartItemSummary />
       <Box textAlign='center' m={8}>
-        <PageLink href='/'>
+        <PageLink href='/' passHref>
           <Button color='secondary' variant='pill' size='large' text='bold'>
             Continue shopping
           </Button>
