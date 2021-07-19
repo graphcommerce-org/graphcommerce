@@ -17,8 +17,8 @@
     "@reachdigital/graphql-mesh": "^0.1.0",
     "@reachdigital/next-config": "0.1.0",
     "next": "^11.0.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "^18.0.0-alpha-310187264-20210716",
+    "react-dom": "^18.0.0-alpha-310187264-20210716"
   },
   "devDependencies": {
     "@reachdigital/browserslist-config-pwa": "^0.1.0",
