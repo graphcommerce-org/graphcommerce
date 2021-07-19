@@ -6,7 +6,6 @@ export default class ThemedDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='' />
           {/** We're using a variable font that supports multiple modes */}
           {/* eslint-disable-next-line @next/next/no-page-custom-font */}
           <link
