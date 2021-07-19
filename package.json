@@ -1,7 +1,7 @@
 {
   "name": "project-reachdigital.nl",
   "homepage": "https://soxbase.vercel.app",
-  "version": "2.100.0",
+  "version": "2.100.1",
   "private": true,
   "workspaces": [
     "docs",
