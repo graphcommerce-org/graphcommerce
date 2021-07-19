@@ -28,9 +28,8 @@ const nextConfig = {
     return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
   },
   experimental: {
-    optimizeImages: true,
-    optimizeFonts: true,
     scrollRestoration: true,
+    disableOptimizedLoading: true,
   },
   pwa: {
     dest: 'public',
@@ -48,6 +47,9 @@ const nextConfig = {
   productionBrowserSourceMaps: true,
   eslint: {
     ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   },
 }
 
