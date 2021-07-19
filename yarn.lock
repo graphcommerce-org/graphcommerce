@@ -1485,18 +1485,6 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@bedrock-layout/use-forwarded-ref@^1.1.8":
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/@bedrock-layout/use-forwarded-ref/-/use-forwarded-ref-1.1.8.tgz#16388e2b1e5d961d0b8b4c74564b6d92d5977ad1"
-  integrity sha512-kDSIFUrSExIgbrErrH9FXLH5ah806gVFRxAWETztSU2j0p+CcrAijNzdd0azwgra065jlsc6c2AezEwEEqPa8A==
-  dependencies:
-    "@bedrock-layout/use-stateful-ref" "^1.1.8"
-
-"@bedrock-layout/use-stateful-ref@^1.1.8":
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/@bedrock-layout/use-stateful-ref/-/use-stateful-ref-1.1.8.tgz#639993dc31889e13fd2b1fa31352ccc882f3e187"
-  integrity sha512-MDMW1tN9VqsbdXpaPRhqn6jwwUqwmyfDSSDrPK+rEB9EQXwf1v7KD6B1f+sBrXlLzKPYFDIyPRJMxLAaMm37JQ==
-
 "@braintree/asset-loader@0.4.4":
   version "0.4.4"
   resolved "https://registry.yarnpkg.com/@braintree/asset-loader/-/asset-loader-0.4.4.tgz#9a5eda24c3627bfd5c7f7483cd48f0e411dd2f09"
