@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/lighthouse",
-  "version": "0.1.0",
+  "version": "1.0.0-alpha.0",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
@@ -14,9 +14,9 @@
     }
   },
   "devDependencies": {
-    "@reachdigital/browserslist-config-pwa": "^0.1.0",
-    "@reachdigital/eslint-config-pwa": "^0.1.0",
-    "@reachdigital/prettier-config-pwa": "^0.1.0",
-    "@reachdigital/typescript-config-pwa": "^0.1.0"
+    "@reachdigital/browserslist-config-pwa": "^1.0.0-alpha.0",
+    "@reachdigital/eslint-config-pwa": "^1.0.0-alpha.0",
+    "@reachdigital/prettier-config-pwa": "^1.0.0-alpha.0",
+    "@reachdigital/typescript-config-pwa": "^1.0.0-alpha.0"
   }
 }
