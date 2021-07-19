@@ -1,14 +1,14 @@
 {
   "name": "@reachdigital/pwa-docs",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.1",
   "private": true,
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@reachdigital/browserslist-config-pwa": "^1.0.0-alpha.0",
-    "@reachdigital/eslint-config-pwa": "^1.0.0-alpha.0",
-    "@reachdigital/prettier-config-pwa": "^1.0.0-alpha.0",
-    "@reachdigital/typescript-config-pwa": "^1.0.0-alpha.0",
+    "@reachdigital/browserslist-config-pwa": "^1.0.0-alpha.1",
+    "@reachdigital/eslint-config-pwa": "^1.0.0-alpha.1",
+    "@reachdigital/prettier-config-pwa": "^1.0.0-alpha.1",
+    "@reachdigital/typescript-config-pwa": "^1.0.0-alpha.1",
     "autoprefixer": "^10.3.1",
     "next": "^11.0.1",
     "nextra": "^0.4.5",
@@ -18,7 +18,6 @@
     "react-dom": "^17.0.2",
     "tailwindcss": "^2.2.4"
   },
-  "devDependencies": {},
   "scripts": {
     "dev": "next dev -p 3002",
     "build": "next build",

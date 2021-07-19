@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/browserslist-config-pwa",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "main": "index.js",
   "private": true,
   "sideEffects": false,
@@ -14,9 +14,8 @@
     }
   },
   "dependencies": {
-    "@reachdigital/browserslist-config-pwa": "^1.0.0-alpha.0",
-    "@reachdigital/eslint-config-pwa": "^1.0.0-alpha.0",
-    "@reachdigital/typescript-config-pwa": "^1.0.0-alpha.0"
-  },
-  "devDependencies": {}
+    "@reachdigital/browserslist-config-pwa": "^1.0.0-alpha.1",
+    "@reachdigital/eslint-config-pwa": "^1.0.0-alpha.1",
+    "@reachdigital/typescript-config-pwa": "^1.0.0-alpha.1"
+  }
 }
