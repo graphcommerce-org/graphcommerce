@@ -16,6 +16,6 @@ jobs:
       - run: yarn --frozen-lockfile
       - run: yarn lerna version --conventional-commits --conventional-prerelease --create-release github --yes
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_PWA }}
