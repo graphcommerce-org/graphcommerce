@@ -1,9 +1,9 @@
 import { Box, Container, Link, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { ContinueShoppingButton, ResetPasswordForm } from '@reachdigital/magento-customer'
+import { ResetPasswordForm } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import { GetStaticProps } from '@reachdigital/next-ui'
-import { useRouter } from 'next/router'
+import { Button, GetStaticProps } from '@reachdigital/next-ui'
+import router, { useRouter } from 'next/router'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../../components/AppShell/SheetShell'
 import apolloClient from '../../../../lib/apolloClient'
@@ -54,7 +54,15 @@ function CustomerAccountCreatePasswordPage() {
                   .
                 </p>
 
-                <ContinueShoppingButton />
+                <Button
+                  onClick={() => router.back()}
+                  color='primary'
+                  variant='contained'
+                  size='large'
+                  text='bold'
+                >
+                  Continue shopping
+                </Button>
               </Box>
             </Container>
           )}

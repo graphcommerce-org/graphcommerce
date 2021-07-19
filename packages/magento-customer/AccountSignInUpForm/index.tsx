@@ -4,9 +4,9 @@ import { AnimatedRow, Button, Form, FormActions, FormRow } from '@reachdigital/n
 import { emailPattern, useFormPersist } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
+import router from 'next/router'
 import React from 'react'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
-import ContinueShoppingButton from '../ContinueShoppingButton'
 import { CustomerDocument } from '../Customer.gql'
 import { CustomerTokenDocument } from '../CustomerToken.gql'
 import SignInForm from '../SignInForm'
@@ -86,7 +86,15 @@ export default function AccountSignInUpForm() {
             .
           </Typography>
 
-          <ContinueShoppingButton />
+          <Button
+            onClick={() => router.back()}
+            color='primary'
+            variant='contained'
+            size='large'
+            text='bold'
+          >
+            Continue shopping
+          </Button>
         </div>
       )}
 
