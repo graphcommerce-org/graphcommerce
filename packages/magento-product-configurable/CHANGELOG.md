@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.100.12](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product-configurable@2.100.11...@reachdigital/magento-product-configurable@2.100.12) (2021-07-20)
+
+
+### Bug Fixes
+
+* only cart should be fixed on scroll ([9c8f536](https://github.com/ho-nl/m2-pwa/commit/9c8f5366c53798b377dcf397822b0945774b1dce))
+
+
+
+
+
 ## [2.100.11](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product-configurable@2.100.10...@reachdigital/magento-product-configurable@2.100.11) (2021-07-20)
 
 
