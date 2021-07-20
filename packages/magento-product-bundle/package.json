@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-product-bundle",
-  "version": "2.100.7",
+  "version": "2.100.8",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
@@ -14,20 +14,20 @@
     }
   },
   "devDependencies": {
-    "@reachdigital/browserslist-config-pwa": "^2.100.7",
-    "@reachdigital/eslint-config-pwa": "^2.100.7",
-    "@reachdigital/prettier-config-pwa": "^2.100.7",
-    "@reachdigital/typescript-config-pwa": "^2.100.7",
+    "@reachdigital/browserslist-config-pwa": "^2.100.8",
+    "@reachdigital/eslint-config-pwa": "^2.100.8",
+    "@reachdigital/prettier-config-pwa": "^2.100.8",
+    "@reachdigital/typescript-config-pwa": "^2.100.8",
     "react": "^17.0.1"
   },
   "dependencies": {
     "@graphql-typed-document-node/core": "^3.1.0",
-    "@reachdigital/graphql": "^2.100.7",
-    "@reachdigital/magento-cart": "^2.100.7",
-    "@reachdigital/magento-cart-items": "^2.100.7",
-    "@reachdigital/magento-product": "^2.100.7",
-    "@reachdigital/magento-product-simple": "^2.100.7",
-    "@reachdigital/magento-product-virtual": "^2.100.7",
+    "@reachdigital/graphql": "^2.100.8",
+    "@reachdigital/magento-cart": "^2.100.8",
+    "@reachdigital/magento-cart-items": "^2.100.8",
+    "@reachdigital/magento-product": "^2.100.8",
+    "@reachdigital/magento-product-simple": "^2.100.8",
+    "@reachdigital/magento-product-virtual": "^2.100.8",
     "next": "^11.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

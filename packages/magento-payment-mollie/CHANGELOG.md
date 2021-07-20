@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.100.8 (2021-07-20)
+
+
+### Bug Fixes
+
+* do not create release notes when there is nothing to report ([5232942](https://github.com/ho-nl/m2-pwa/commit/523294290408f822f40f1f3fec19bbcf825f6526))
+
+
+
+
+
 ## 2.100.7 (2021-07-20)
 
 
