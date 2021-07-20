@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/prettier-config-pwa",
-  "version": "2.100.5",
+  "version": "2.100.6",
   "private": true,
   "dependencies": {
     "prettier-plugin-jsdoc": "^0.3.23"
