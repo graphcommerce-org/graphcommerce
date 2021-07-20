@@ -1,6 +1,6 @@
+import { OrderAddressFragment } from '@reachdigital/magento-order'
 import { useFindCountry } from '@reachdigital/magento-store'
 import { CustomerAddressFragment } from '../CustomerAddress/CustomerAddress.gql'
-import { OrderAddressFragment } from '../OrderAddress/OrderAddress.gql'
 
 type AddressSingleLineProps = CustomerAddressFragment | OrderAddressFragment
 

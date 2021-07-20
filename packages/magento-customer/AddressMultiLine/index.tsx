@@ -1,8 +1,8 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { OrderAddressFragment } from '@reachdigital/magento-order'
 import { useFindCountry } from '@reachdigital/magento-store'
 import { UseStyles } from '@reachdigital/next-ui'
 import { CustomerAddressFragment } from '../CustomerAddress/CustomerAddress.gql'
-import { OrderAddressFragment } from '../OrderAddress/OrderAddress.gql'
 
 // exports.getEuMembers = function()
 // {
