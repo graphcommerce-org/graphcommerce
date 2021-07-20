@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/next-config",
-  "version": "2.100.6",
+  "version": "2.100.7",
   "private": true,
   "type": "commonjs",
   "main": "js/index.js",
