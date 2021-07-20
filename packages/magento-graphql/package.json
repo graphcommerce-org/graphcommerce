@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-graphql",
-  "version": "1.0.0-alpha.2",
+  "version": "2.100.1",
   "private": true,
   "sideEffects": false,
   "main": "index.ts",

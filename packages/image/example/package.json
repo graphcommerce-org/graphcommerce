@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/image-example",
-  "version": "1.0.0-alpha.2",
+  "version": "2.100.1",
   "scripts": {
     "dev": "next",
     "build": "next build",
