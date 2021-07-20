@@ -45,10 +45,8 @@ endpoint.
 
 ## Commits
 
-Commits are validated with https://github.com/conventional-changelog/commitlint
-
-Gittower: Gittower doesn't properly read your PATH variable and thus commit
-validation doesn't work. Use `gittower .` to open this repo.
+Commits should follow conventional commit standard for changes to pop up in the
+release notes.
 
 ## Deploy
 
