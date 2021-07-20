@@ -1,5 +1,6 @@
 {
   "name": "@reachdigital/image-example",
+  "private": true,
   "version": "2.100.9",
   "scripts": {
     "dev": "next",
