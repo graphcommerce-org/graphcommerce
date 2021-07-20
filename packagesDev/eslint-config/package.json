@@ -5,9 +5,9 @@
   "private": true,
   "dependencies": {
     "@next/eslint-plugin-next": "^11.0.1",
-    "@reachdigital/browserslist-config-pwa": "^1.0.0-alpha.2",
-    "@reachdigital/eslint-config-pwa": "^1.0.0-alpha.2",
-    "@reachdigital/typescript-config-pwa": "^1.0.0-alpha.2",
+    "@reachdigital/browserslist-config-pwa": "2.100.1",
+    "@reachdigital/eslint-config-pwa": "2.100.1",
+    "@reachdigital/typescript-config-pwa": "2.100.1",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
     "eslint": "^7.31.0",

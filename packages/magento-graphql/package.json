@@ -15,14 +15,14 @@
     }
   },
   "devDependencies": {
-    "@reachdigital/browserslist-config-pwa": "^1.0.0-alpha.2",
-    "@reachdigital/eslint-config-pwa": "^1.0.0-alpha.2",
-    "@reachdigital/prettier-config-pwa": "^1.0.0-alpha.2",
-    "@reachdigital/typescript-config-pwa": "^1.0.0-alpha.2"
+    "@reachdigital/browserslist-config-pwa": "2.100.1",
+    "@reachdigital/eslint-config-pwa": "2.100.1",
+    "@reachdigital/prettier-config-pwa": "2.100.1",
+    "@reachdigital/typescript-config-pwa": "2.100.1"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
-    "@reachdigital/graphql": "^1.0.0-alpha.2",
+    "@reachdigital/graphql": "2.100.1",
     "graphql": "15.5.1",
     "next": "^11.0.1",
     "react": "^17.0.2",
