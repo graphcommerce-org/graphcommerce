@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-product-virtual",
-  "version": "2.100.11",
+  "version": "2.100.12",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
@@ -22,8 +22,8 @@
   "dependencies": {
     "@graphql-typed-document-node/core": "^3.1.0",
     "@reachdigital/graphql": "^2.100.10",
-    "@reachdigital/magento-cart": "^2.101.0",
-    "@reachdigital/magento-product": "^2.100.11",
+    "@reachdigital/magento-cart": "^2.101.1",
+    "@reachdigital/magento-product": "^2.100.12",
     "next": "^11.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
