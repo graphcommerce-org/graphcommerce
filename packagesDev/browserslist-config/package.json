@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/browserslist-config-pwa",
-  "version": "2.100.3",
+  "version": "2.100.4",
   "main": "index.js",
   "private": true,
   "sideEffects": false
