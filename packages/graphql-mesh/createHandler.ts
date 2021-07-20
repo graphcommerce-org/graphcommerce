@@ -8,6 +8,7 @@ import '@graphql-mesh/graphql'
 import '@graphql-mesh/merger-stitching'
 import '@graphql-mesh/transform-cache'
 import 'ts-tiny-invariant'
+import 'micro'
 import cors from 'micro-cors'
 
 function injectEnv(json: YamlConfig.Config): YamlConfig.Config {
