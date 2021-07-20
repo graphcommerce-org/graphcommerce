@@ -15,7 +15,7 @@ const useStyles = makeStyles(
       textAlign: 'center',
       ...theme.typography.h2,
     },
-    caption: {
+    captionOldOld: {
       display: 'block',
       padding: `${theme.spacings.xs} 0`,
       borderBottom: `1px solid ${theme.palette.grey[300]}`,

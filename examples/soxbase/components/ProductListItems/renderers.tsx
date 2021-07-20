@@ -10,7 +10,7 @@ import { ProductListItemVirtual } from '@reachdigital/magento-product-virtual'
 import React from 'react'
 
 const Subtitle = (props: TypographyProps) => (
-  <Typography component='span' variant='subtitle2' {...props} />
+  <Typography component='span' variant='overline' {...props} />
 )
 
 const renderers: ProductListItemRenderer = {

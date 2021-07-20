@@ -42,8 +42,7 @@ const useStyles = makeStyles(
       boxShadow: 'none',
     },
     link: {
-      ...theme.typography.body1,
-      fontWeight: 500,
+      ...theme.typography.subtitle1,
       textTransform: 'unset',
       whiteSpace: 'nowrap',
       color: 'black',

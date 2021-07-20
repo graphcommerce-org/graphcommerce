@@ -57,7 +57,7 @@ const useStyles = makeStyles(
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       color: theme.palette.primary.mutedText,
-      ...theme.typography.caption,
+      ...theme.typography.captionOldOld,
       [theme.breakpoints.up('md')]: {
         ...theme.typography.body2,
       },

@@ -35,11 +35,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'grid',
     gridAutoFlow: 'column',
     alignContent: 'center',
-    fontSize: 9,
+    ...theme.typography.caption,
     gap: theme.spacings.sm,
     [theme.breakpoints.up('md')]: {
       order: 3,
-      ...theme.typography.body2,
     },
   },
   support: {

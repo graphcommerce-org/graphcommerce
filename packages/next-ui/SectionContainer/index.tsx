@@ -10,7 +10,10 @@ const useStyles = makeStyles(
     sectionHeader: {
       marginBottom: theme.spacings.xxs,
     },
+    sectionHeaderSidePadding: {},
     sectionHeaderWrapper: {},
+    labelLeft: {},
+    labelRight: {},
     borderBottom: {
       borderBottom: `1px solid ${theme.palette.divider}`,
     },

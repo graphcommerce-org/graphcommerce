@@ -44,7 +44,7 @@ export default function SectionHeader(props: SectionHeaderProps) {
     labelLeft,
     labelRight,
     usePadding,
-    variantLeft = 'subtitle1',
+    variantLeft = 'overline',
     variantRight = 'body2',
   } = props
   const classes = useStyles(props)

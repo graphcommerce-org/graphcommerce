@@ -44,27 +44,37 @@ export const defaultTheme = createTheme({
     },
   },
   shadows,
+
   typography: {
     fontFamily:
       '-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji',
-    subtitle1: {
-      fontSize: responsiveVal(12, 14),
-      color: `rgba(0, 0, 0, 0.3)`,
-      fontWeight: 500,
-      letterSpacing: 1,
-      textTransform: 'uppercase',
-    },
-    subtitle2: {
-      textTransform: 'uppercase',
-      fontSize: responsiveVal(11, 13),
-      fontWeight: 400,
-      whiteSpace: 'nowrap',
-    },
-    fontSize: 16,
-    body1: {
-      fontSize: responsiveVal(15, 18),
-      lineHeight: 1.8,
-    },
+    /**
+     * `h1-h6` typography values refer to Headline type scale form the Material Design specifiction.
+     * Although they are mapped by default to Heading elements they do not respresent them semantically
+     *
+     * - [1]: [Headline type scale](https://material.io/design/typography/the-type-system.html#type-scale)
+     * - [2]: [Heading Elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements)
+     *
+     * If we take a look at [Applying the type
+     * scale](https://material.io/design/typography/the-type-system.html#applying-the-type-scale) we
+     * see that the Headline 6 element is used in the `<h1/>` location.
+     *
+     * Since Material-UI doesn't allow for different Headline styles per used component, we map
+     * these styles ourselves;
+     *
+     *     Variant    sm         md         lg         xl
+     *     h1         headline4  headline3  headline2  headline1
+     *     h2         headline5  headline5  headline4  headline3  headline2
+     *     h3         headline6  headline6  headline5  headline4  headline3
+     *     h4         ??         ??         headline6  headline5  headline4
+     *     h5                                          headline6  headline5
+     *     h6                                                     headline6
+     *     subtitle1
+     *     subtitle2
+     *
+     * This effectively means that we're only able to use h1 to h3, but that is fine, since we have
+     * subtitle1 and subtitle2 as well.
+     */
     h1: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
       fontSize: responsiveVal(36, 74),
@@ -84,29 +94,62 @@ export const defaultTheme = createTheme({
     h3: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
       fontSize: responsiveVal(18, 30),
-      fontWeight: 500,
-      // letterSpacing: '-0.0375em',
-      lineHeight: 1.55,
-    },
-    h4: {
-      fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-      fontSize: responsiveVal(18, 25),
-      fontWeight: 500,
-      // letterSpacing: '-0.0375em',
-    },
-    h5: {
-      fontSize: responsiveVal(14, 22),
       fontWeight: 700,
       letterSpacing: '-0.0375em',
       lineHeight: 1.55,
     },
-    h6: {
-      fontSize: responsiveVal(13, 18),
-      fontWeight: 400,
+    h4: {
+      fontFamily: ['Public Sans', 'sans-serif'].join(', '),
+      fontWeight: 500,
+      fontSize: responsiveVal(18, 30),
       letterSpacing: '-0.0375em',
+      lineHeight: 1.55,
+      // letterSpacing: '-0.0375em',
+    },
+    h5: {
+      fontWeight: 700,
+      letterSpacing: '-0.0375em',
+      fontSize: responsiveVal(17, 22),
+      // letterSpacing: '-0.0375em',
+      lineHeight: 1.55,
+    },
+    h6: {
+      fontSize: responsiveVal(17, 20),
+      fontWeight: 500,
+      // letterSpacing: '-0.0375em',
+      lineHeight: 1.55,
+    },
+    subtitle1: {
+      fontSize: responsiveVal(17, 20),
+      fontWeight: 600,
+      // letterSpacing: '-0.0375em',
       lineHeight: 1.55,
     },
     fontWeightBold: 700,
+    body1: {
+      // We're boosting the fontSize to be 17px at 1280
+      fontSize: responsiveVal(15, 18, 1920),
+      lineHeight: 1.8,
+    },
+    subtitle2: {
+      fontSize: responsiveVal(14, 16),
+      fontWeight: 600,
+    },
+    body2: {
+      fontSize: responsiveVal(13, 15),
+      lineHeight: 1.8,
+    },
+    caption: {
+      // fontSize: 13,
+    },
+    button: {},
+    overline: {
+      fontSize: responsiveVal(12, 14),
+      color: `rgba(0, 0, 0, 0.3)`,
+      fontWeight: 500,
+      letterSpacing: 1,
+      textTransform: 'uppercase',
+    },
   },
   spacings: {
     xxs: responsiveVal(10, 16),

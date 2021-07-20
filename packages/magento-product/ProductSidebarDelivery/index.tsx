@@ -7,22 +7,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     alignItems: 'center',
     flexFlow: 'wrap',
-    // padding: `${theme.spacings.xs} 0`,
     marginTop: theme.spacings.xs,
   },
   text: {
     marginLeft: theme.spacings.xxs,
   },
-  title: {
-    textTransform: 'none',
-    fontWeight: theme.typography.fontWeightBold,
-    marginBottom: responsiveVal(0, 5),
-    fontSize: responsiveVal(12, 14),
-  },
+  title: {},
   subtitle: {
-    textTransform: 'none',
-    letterSpacing: 'unset',
-    fontWeight: theme.typography.fontWeightRegular,
+    color: theme.palette.primary.mutedText,
   },
 }))
 
@@ -36,7 +28,7 @@ export default function ProductSidebarDelivery() {
         <Typography className={classes.title} variant='subtitle2'>
           Order before 22:00 and
         </Typography>
-        <Typography className={classes.subtitle} variant='subtitle1'>
+        <Typography className={classes.subtitle} variant='body2' color='error'>
           Next day delivery - Shipping free
         </Typography>
       </div>
