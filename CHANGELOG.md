@@ -5,12 +5,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## 2.100.2-alpha.1 (2021-07-20)
 
-**Note:** Version bump only for package @reachdigital/magento-product-virtual
-
-
-
-
-
-## 2.100.2-alpha.0 (2021-07-20)
-
-**Note:** Version bump only for package @reachdigital/magento-product-virtual
+**Note:** Version bump only for package project-reachdigital.nl
