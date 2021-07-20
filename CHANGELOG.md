@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.100.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.100.9...@graphcommerce/graphcommerce@2.100.10) (2021-07-20)
+
+
+### Bug Fixes
+
+* make sure all tags are fetched when checking out ([4a9f8e3](https://github.com/ho-nl/m2-pwa/commit/4a9f8e38cbd1ebb9c2b5d201a1ebc146f9c42332))
+
+
+
+
+
 ## 2.100.8 (2021-07-20)
 
 
