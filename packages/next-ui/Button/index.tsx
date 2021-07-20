@@ -18,7 +18,6 @@ type ButtonClassKey =
   | 'textBold'
   | 'withStartIcon'
   | 'startIconText'
-  | 'textContainer'
 
 type ClassKeys = ButtonClassKey | MuiButtonClassKey
 type Text = 'normal' | 'bold'
