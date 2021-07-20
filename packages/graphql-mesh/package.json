@@ -1,7 +1,7 @@
 {
   "name": "@reachdigital/graphql-mesh",
   "private": true,
-  "version": "2.100.10",
+  "version": "2.100.11",
   "author": "",
   "license": "MIT",
   "scripts": {

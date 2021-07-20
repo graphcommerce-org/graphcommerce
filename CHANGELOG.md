@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.101.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.101.1...@graphcommerce/graphcommerce@2.101.2) (2021-07-20)
+
+
+### Bug Fixes
+
+* apollo server ([43c3535](https://github.com/ho-nl/m2-pwa/commit/43c3535fe26ab9c7b97be8feacba34794bb3fa20))
+
+
+
+
+
 # [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.100.14...@graphcommerce/graphcommerce@2.101.0) (2021-07-20)
 
 
