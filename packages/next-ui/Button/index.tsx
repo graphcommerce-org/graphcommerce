@@ -4,17 +4,21 @@ import clsx from 'clsx'
 import React from 'react'
 
 type BaseButtonProps = Omit<Parameters<typeof MuiButton>['0'], 'variant' | 'classes'> & {
-  variant?: 'text' | 'outlined' | 'contained' | 'pill'
+  variant?: 'text' | 'outlined' | 'contained' | 'pill' | 'pill-link'
 }
 
 type ButtonClassKey =
   | 'pill'
+  | 'pillLink'
   | 'pillPrimary'
   | 'pillSecondary'
   | 'pillSizeLarge'
   | 'pillSizeSmall'
   | 'pillNoElevation'
   | 'textBold'
+  | 'withStartIcon'
+  | 'startIconText'
+  | 'textContainer'
 
 type ClassKeys = ButtonClassKey | MuiButtonClassKey
 type Text = 'normal' | 'bold'
@@ -31,8 +35,32 @@ const useStyles = makeStyles<
   ButtonClassKey
 >(
   (theme: Theme) => ({
+    withStartIcon: {
+      [theme.breakpoints.down('sm')]: {
+        height: 40,
+        width: 40,
+        textAlign: 'center',
+        minWidth: 'unset',
+        borderRadius: 99,
+        '& > span > .MuiButton-startIcon': {
+          margin: 'unset',
+        },
+      },
+    },
     pill: {
       borderRadius: 40 / 2,
+    },
+    pillLink: {
+      [theme.breakpoints.up('md')]: {
+        background: theme.palette.secondary.main,
+        color: theme.palette.secondary.contrastText,
+        boxShadow: theme.shadows[2],
+        borderRadius: 25,
+        padding: '6px 16px',
+        '&:hover': {
+          background: theme.palette.secondary.dark,
+        },
+      },
     },
     pillPrimary: {
       //
@@ -55,44 +83,59 @@ const useStyles = makeStyles<
     textBold: {
       fontWeight: theme.typography.fontWeightBold,
     },
+    startIconText: {
+      display: 'none',
+      [theme.breakpoints.up('md')]: {
+        display: 'unset',
+      },
+    },
   }),
   { name: 'MuiPillButton' },
 )
 
 export default React.forwardRef<any, ButtonProps>((props, ref) => {
   const { classes = {}, ...baseProps } = props
-  const {
-    variant,
-    color,
-    size,
-    className,
-    children,
-    loading,
-    disabled,
-    text,
-    ...buttonProps
-  } = baseProps
+  const { variant, color, size, className, children, loading, disabled, text, ...buttonProps } =
+    baseProps
   const {
     pill,
     pillPrimary,
     pillSecondary,
     pillSizeLarge,
     pillSizeSmall,
+    pillLink,
     textBold,
     ...buttonClasses
   } = classes
 
   const pillClasses = useStyles({
     ...baseProps,
-    classes: { pill, pillPrimary, pillSecondary, pillSizeLarge, pillSizeSmall, textBold },
+    classes: {
+      pill,
+      pillPrimary,
+      pillSecondary,
+      pillSizeLarge,
+      pillSizeSmall,
+      pillLink,
+      textBold,
+      ...buttonClasses,
+    },
   })
+
+  const variantMap = {
+    pill: 'contained',
+    'pill-link': 'text',
+  }
+
+  const withIcon = typeof buttonProps.startIcon !== 'undefined'
+  const content = <>{loading ? <>Loading</> : children}</>
 
   return (
     <MuiButton
       {...buttonProps}
       classes={buttonClasses}
       color={color}
-      variant={variant === 'pill' ? 'contained' : variant}
+      variant={variantMap[variant ?? ''] ?? variant}
       size={size}
       ref={ref}
       disabled={loading || disabled}
@@ -104,12 +147,15 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
           [pillClasses.pillSizeLarge]: variant === 'pill' && size === 'large',
           [pillClasses.pillSizeSmall]: variant === 'pill' && size === 'small',
           [pillClasses.pillNoElevation]: buttonProps.disableElevation,
+          [pillClasses.pillLink]: variant === 'pill-link',
           [pillClasses.textBold]: text === 'bold',
+          [pillClasses.withStartIcon]: withIcon,
         },
         className,
       )}
     >
-      {loading ? <>Loading</> : children}
+      {withIcon && <span className={pillClasses.startIconText}>{content}</span>}
+      {!withIcon && content}
     </MuiButton>
   )
 })

@@ -1,12 +1,12 @@
 import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
-  ProductPageGallery,
-  ProductPageMeta,
+  getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
   productPageCategory,
-  getProductStaticPaths,
+  ProductPageGallery,
+  ProductPageMeta,
   ProductSidebarDelivery,
 } from '@reachdigital/magento-product'
 import {
@@ -17,12 +17,13 @@ import {
 } from '@reachdigital/magento-product-configurable'
 import { jsonLdProductReview, ProductReviewSummary } from '@reachdigital/magento-product-review'
 import { Money, StoreConfigDocument } from '@reachdigital/magento-store'
-import { JsonLd, GetStaticProps, responsiveVal } from '@reachdigital/next-ui'
+import { GetStaticProps, JsonLd, responsiveVal, Title } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
 import { Product } from 'schema-dts'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
+import PageShellHeader from '../../../components/AppShell/PageShellHeader'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import ProductUsps from '../../../components/ProductUsps'
 import ProductpagesContent from '../../../components/ProductpagesContent'
@@ -35,7 +36,9 @@ import RowProductSpecs from '../../../components/RowProductSpecs'
 import RowProductUpsells from '../../../components/RowProductUpsells'
 import apolloClient from '../../../lib/apolloClient'
 
-type Props = ProductPageQuery & ConfigurableProductPageQuery
+type Props = ProductPageQuery &
+  ConfigurableProductPageQuery &
+  Pick<FullPageShellProps, 'backFallbackHref' | 'backFallbackTitle'>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -56,7 +59,15 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductConfigurable(props: Props) {
-  const { products, usps, typeProducts, sidebarUsps, productpages } = props
+  const {
+    products,
+    usps,
+    typeProducts,
+    sidebarUsps,
+    productpages,
+    backFallbackHref,
+    backFallbackTitle,
+  } = props
   const classes = useStyles()
 
   const product = products?.items?.[0]
@@ -72,6 +83,7 @@ function ProductConfigurable(props: Props) {
 
   return (
     <>
+      <PageShellHeader backFallbackHref={backFallbackHref} backFallbackTitle={backFallbackTitle} />
       <JsonLd<Product>
         item={{
           '@context': 'https://schema.org',

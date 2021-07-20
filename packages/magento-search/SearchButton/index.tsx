@@ -17,11 +17,11 @@ const useStyles = makeStyles(
   { name: 'SearchButton' },
 )
 
-export type SearchButtonProps = UseStyles<typeof useStyles> & { onClick?: () => void }
+export type SearchButtonProps = UseStyles<typeof useStyles> & { onClick: () => void }
 
 export default function SearchButton(props: SearchButtonProps) {
   const { onClick } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   return (
     <TextField

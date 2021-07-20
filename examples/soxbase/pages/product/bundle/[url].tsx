@@ -18,11 +18,12 @@ import {
 } from '@reachdigital/magento-product-bundle'
 import { ProductReviewSummary, jsonLdProductReview } from '@reachdigital/magento-product-review'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { JsonLd, GetStaticProps } from '@reachdigital/next-ui'
+import { JsonLd, GetStaticProps, Title } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { Product } from 'schema-dts'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
+import PageShellHeader from '../../../components/AppShell/PageShellHeader'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import ProductUsps from '../../../components/ProductUsps'
 import ProductpagesContent from '../../../components/ProductpagesContent'
@@ -38,14 +39,24 @@ import apolloClient from '../../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
 
-type Props = ProductPageQuery & BundleProductPageQuery
+type Props = ProductPageQuery &
+  BundleProductPageQuery &
+  Pick<FullPageShellProps, 'backFallbackHref' | 'backFallbackTitle'>
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductBundle(props: Props) {
-  const { products, usps, typeProducts, sidebarUsps, productpages } = props
+  const {
+    products,
+    usps,
+    typeProducts,
+    sidebarUsps,
+    productpages,
+    backFallbackHref,
+    backFallbackTitle,
+  } = props
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
@@ -56,6 +67,7 @@ function ProductBundle(props: Props) {
 
   return (
     <>
+      <PageShellHeader backFallbackHref={backFallbackHref} backFallbackTitle={backFallbackTitle} />
       <JsonLd<Product>
         item={{
           '@context': 'https://schema.org',
@@ -64,7 +76,6 @@ function ProductBundle(props: Props) {
           ...jsonLdProductReview(product),
         }}
       />
-
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
         <Typography variant='h1'>{product.name ?? ''}</Typography>

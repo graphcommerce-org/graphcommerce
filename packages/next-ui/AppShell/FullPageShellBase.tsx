@@ -1,38 +1,30 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { usePageRouter } from '@reachdigital/framer-next-pages'
-import clsx from 'clsx'
 import { m } from 'framer-motion'
+import React from 'react'
 import { UseStyles } from '../Styles'
-import BackButton from './BackButton'
+import AppShellProvider from './AppShellProvider'
 import ShellBase, { PageLayoutBaseProps } from './ShellBase'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    backButtonRoot: {
-      position: 'fixed',
-      zIndex: 10,
-      left: theme.page.horizontal,
-      top: theme.page.vertical,
-      [theme.breakpoints.up('md')]: {
-        // @todo, replace 48 with content height variable.
-        top: `calc(48px + ${theme.spacings.sm} * 2)`,
-      },
-    },
     header: {
-      padding: `${theme.page.vertical} ${theme.page.horizontal} ${theme.spacings.sm}`,
-      top: 0,
       display: 'flex',
-      pointerEvents: 'none',
       alignItems: 'center',
       justifyContent: 'center',
-      width: '100%',
+      marginBottom: -8,
       [theme.breakpoints.up('md')]: {
-        background: theme.palette.background.default,
-        justifyContent: 'unset',
+        padding: `${theme.page.vertical} ${theme.page.horizontal}`,
+        marginBottom: -12,
+        top: 0,
+        display: 'flex',
+        pointerEvents: 'none',
+        alignItems: 'left',
+        justifyContent: 'left',
+        width: '100%',
       },
     },
   }),
-  { name: 'FullPageUi' },
+  { name: 'FullPageShellBase' },
 )
 
 export type FullPageShellBaseProps = {
@@ -44,26 +36,22 @@ export type FullPageShellBaseProps = {
   PageLayoutBaseProps
 
 export default function FullPageShellBase(props: FullPageShellBaseProps) {
-  const { children, backFallbackHref, backFallbackTitle, header, name } = props
-  const router = usePageRouter()
+  const { children, header, name } = props
   const classes = useStyles(props)
 
   return (
-    <ShellBase name={name}>
-      {router.pathname !== '/' && (
-        <m.div className={classes.backButtonRoot}>
-          <BackButton href={backFallbackHref ?? undefined}>{backFallbackTitle}</BackButton>
-        </m.div>
-      )}
-      <m.header
-        className={clsx(classes.header)}
-        layoutId='header'
-        transition={{ type: 'tween' }}
-        layout='position'
-      >
-        {header}
-      </m.header>
-      {children}
-    </ShellBase>
+    <AppShellProvider>
+      <ShellBase name={name}>
+        <m.header
+          className={classes.header}
+          layoutId='header'
+          transition={{ type: 'tween' }}
+          layout='position'
+        >
+          {header}
+        </m.header>
+        {children}
+      </ShellBase>
+    </AppShellProvider>
   )
 }

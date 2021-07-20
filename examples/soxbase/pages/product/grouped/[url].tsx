@@ -18,11 +18,12 @@ import {
 } from '@reachdigital/magento-product-grouped'
 import { jsonLdProductReview } from '@reachdigital/magento-product-review'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { JsonLd, GetStaticProps } from '@reachdigital/next-ui'
+import { JsonLd, GetStaticProps, Title } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { Product } from 'schema-dts'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
+import PageShellHeader from '../../../components/AppShell/PageShellHeader'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import ProductUsps from '../../../components/ProductUsps'
 import ProductpagesContent from '../../../components/ProductpagesContent'
@@ -37,14 +38,24 @@ import apolloClient from '../../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
 
-type Props = ProductPageQuery & GroupedProductPageQuery
+type Props = ProductPageQuery &
+  GroupedProductPageQuery &
+  Pick<FullPageShellProps, 'backFallbackHref' | 'backFallbackTitle'>
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductGrouped(props: Props) {
-  const { products, usps, sidebarUsps, typeProducts, productpages } = props
+  const {
+    products,
+    usps,
+    sidebarUsps,
+    typeProducts,
+    productpages,
+    backFallbackHref,
+    backFallbackTitle,
+  } = props
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
@@ -55,6 +66,7 @@ function ProductGrouped(props: Props) {
 
   return (
     <>
+      <PageShellHeader backFallbackHref={backFallbackHref} backFallbackTitle={backFallbackTitle} />
       <JsonLd<Product>
         item={{
           '@context': 'https://schema.org',

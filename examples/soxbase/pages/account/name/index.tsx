@@ -7,7 +7,14 @@ import {
   CustomerDocument,
 } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import { IconHeader, GetStaticProps, SectionContainer, iconId } from '@reachdigital/next-ui'
+import {
+  AppShellTitle,
+  GetStaticProps,
+  iconId,
+  SectionContainer,
+  SheetShellHeader,
+  Title,
+} from '@reachdigital/next-ui'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
@@ -29,29 +36,37 @@ function AccountNamePage() {
     )
 
   return (
-    <NoSsr>
-      <Container maxWidth='md'>
-        <PageMeta title='Name' metaDescription='Update your name' metaRobots={['noindex']} />
+    <>
+      <SheetShellHeader backFallbackTitle='Account' backFallbackHref='/account'>
+        <Title size='small' component='span' icon={iconId}>
+          Name
+        </Title>
+      </SheetShellHeader>
+      <NoSsr>
+        <Container maxWidth='md'>
+          <PageMeta title='Name' metaDescription='Update your name' metaRobots={['noindex']} />
 
-        <IconHeader src={iconId} title='Name' alt='name' size='large' />
-        <SectionContainer labelLeft='Name'>
-          {customer && (
-            <ChangeNameForm
-              prefix={customer.prefix ?? ''}
-              firstname={customer.firstname ?? ''}
-              lastname={customer.lastname ?? ''}
-            />
-          )}
-        </SectionContainer>
-      </Container>
-    </NoSsr>
+          <AppShellTitle icon={iconId}>Name</AppShellTitle>
+
+          <SectionContainer labelLeft='Name'>
+            {customer && (
+              <ChangeNameForm
+                prefix={customer.prefix ?? ''}
+                firstname={customer.firstname ?? ''}
+                lastname={customer.lastname ?? ''}
+              />
+            )}
+          </SectionContainer>
+        </Container>
+      </NoSsr>
+    </>
   )
 }
 
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
-  sharedKey: () => 'account-name',
+  sharedKey: () => 'page',
 }
 AccountNamePage.pageOptions = pageOptions
 

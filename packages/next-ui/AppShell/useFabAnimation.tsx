@@ -7,13 +7,13 @@ export default function useFabAnimation() {
   const { scrollY } = useViewportScroll()
   const scrollTo = isMobile ? 0 : 130
 
+  const scale = useTransform(scrollY, [50, scrollTo], [0.4, 1])
   const opacity = useTransform(scrollY, [50, scrollTo], [0, 1])
-  const translateY = useTransform(scrollY, [0, scrollTo], [-48, 0])
   const opacity1 = useTransform(scrollY, [0, scrollTo], [0, 0.08])
   const opacity2 = useTransform(scrollY, [0, scrollTo], [0, 0.1])
   const filter = useMotionTemplate`
     drop-shadow(0 1px 4px rgba(0,0,0,${opacity1}))
     drop-shadow(0 4px 10px rgba(0,0,0,${opacity2}))`
 
-  return { filter, opacity, translateY }
+  return { filter, opacity, scale }
 }

@@ -22,7 +22,6 @@ obs.observe({ entryTypes: ['measure'] })
 
 /** @type {import('next/dist/next-server/server/config').NextConfig} */
 const nextConfig = {
-  webpack5: true,
   webpackStats: process.env.ANALYZE === 'true',
   rewrites() {
     return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]

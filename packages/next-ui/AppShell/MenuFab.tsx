@@ -8,6 +8,7 @@ import {
   Menu,
   Theme,
 } from '@material-ui/core'
+import clsx from 'clsx'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import { Router, useRouter } from 'next/router'
@@ -23,15 +24,15 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     menuWrapper: {
       position: 'fixed',
-      zIndex: 11,
+      zIndex: 99,
       left: theme.page.horizontal,
+      top: theme.page.vertical,
       [theme.breakpoints.down('sm')]: {
-        bottom: theme.page.vertical,
+        top: 'unset',
+        left: 20,
+        bottom: 20,
         transform: 'none !important',
         opacity: '1 !important',
-      },
-      [theme.breakpoints.up('md')]: {
-        top: theme.page.vertical,
       },
     },
     menuFab: {
@@ -68,12 +69,12 @@ export default function MenuFab(props: MenuFabProps) {
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
-  const { filter, opacity, translateY } = useFabAnimation()
+  const { filter, opacity, scale } = useFabAnimation()
 
   Router.events.on('routeChangeStart', () => setOpenEl(null))
 
   return (
-    <m.div className={classes.menuWrapper} style={{ opacity, translateY, filter }}>
+    <m.div className={clsx(classes.menuWrapper)} style={{ opacity, scale, filter }}>
       <Fab
         color='primary'
         aria-label='Open Menu'

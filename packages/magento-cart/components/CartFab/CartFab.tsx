@@ -1,11 +1,5 @@
-import { Fab, FabProps, makeStyles, NoSsr, Theme } from '@material-ui/core'
-import {
-  useFabAnimation,
-  StyledBadge,
-  responsiveVal,
-  SvgImage,
-  iconShoppingBag,
-} from '@reachdigital/next-ui'
+import { Fab, FabProps, NoSsr } from '@material-ui/core'
+import { iconShoppingBag, StyledBadge, SvgImage, useFixedFabAnimation } from '@reachdigital/next-ui'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
@@ -17,37 +11,17 @@ export type CartFabProps = {
   icon?: React.ReactNode
 } & Omit<FabProps, 'children' | 'aria-label'>
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    wrapper: {
-      position: 'fixed',
-      zIndex: 8,
-      right: theme.page.horizontal,
-      [theme.breakpoints.down('sm')]: {
-        bottom: theme.page.vertical,
-      },
-      [theme.breakpoints.up('md')]: {
-        top: theme.page.vertical,
-      },
-    },
-    fab: {
-      width: responsiveVal(42, 56),
-      height: responsiveVal(42, 56),
-    },
-  }),
-  { name: 'CartFab' },
-)
+type CartFabContentProps = CartFabProps & CartTotalQuantityFragment
 
-function CartFabContent(props: CartFabProps & CartTotalQuantityFragment) {
+function CartFabContent(props: CartFabContentProps) {
   const { total_quantity, icon, ...fabProps } = props
-  const classes = useStyles()
-  const { filter } = useFabAnimation()
   const cartIcon = icon ?? <SvgImage src={iconShoppingBag} alt='Shopping Bag' loading='eager' />
+  const { filter } = useFixedFabAnimation()
 
   return (
-    <m.div className={classes.wrapper} style={{ filter }}>
+    <m.div style={{ filter }}>
       <PageLink href='/cart' passHref>
-        <Fab aria-label='Cart' color='inherit' size='large' className={classes.fab} {...fabProps}>
+        <Fab aria-label='Cart' color='inherit' size='large' {...fabProps}>
           {total_quantity > 0 ? (
             <StyledBadge color='primary' variant='dot'>
               {cartIcon}

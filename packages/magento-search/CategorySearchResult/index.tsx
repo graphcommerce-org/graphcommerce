@@ -10,10 +10,12 @@ const useStyles = makeStyles(
       padding: `${theme.spacings.xs} 18px ${theme.spacings.xs} 14px`,
       display: 'flex',
       justifyContent: 'space-between',
-      borderBottom: `1px solid ${theme.palette.divider}`,
       minWidth: '100%',
       maxWidth: 'unset',
       borderRadius: '0',
+      '&:not(&:last-child)': {
+        borderBottom: `1px solid ${theme.palette.divider}`,
+      },
       '&:focus': {
         boxShadow: 'none',
       },

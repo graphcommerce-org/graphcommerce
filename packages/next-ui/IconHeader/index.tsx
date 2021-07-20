@@ -1,24 +1,39 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
+import clsx from 'clsx'
 import React from 'react'
-import { ObjectImage } from '../../image'
 import responsiveVal from '../Styles/responsiveVal'
-import SvgImage from '../SvgImage'
+import SvgImage, { SvgImageProps } from '../SvgImage'
+
+// TODO: remove all occurrences. deprecated component
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
       textAlign: 'center',
       fontSize: responsiveVal(16, 24),
-      marginTop: theme.spacings.sm,
-      marginBottom: theme.spacings.sm,
     },
     innerContainer: {
-      display: 'inline-flex',
+      display: 'flex',
       alignItems: 'center',
+      justifyContent: 'center',
       gap: 4,
+    },
+    breakColumnsDesktop: {
       [theme.breakpoints.up('md')]: {
         display: 'unset',
       },
+    },
+    margin: {
+      marginTop: theme.spacings.sm,
+      marginBottom: theme.spacings.sm,
+    },
+    ellipsis: {
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+    },
+    mediumFontWeight: {
+      fontWeight: 700,
     },
   }),
   { name: 'IconHeader' },
@@ -29,20 +44,32 @@ export type IconHeaderSize = 'small' | 'medium' | 'large'
 type IconHeaderProps = {
   title: string
   size?: IconHeaderSize
-} & Pick<ObjectImage, 'src' | 'alt'>
+  iconSize?: number
+  iconSizeMobile?: number
+  noMargin?: boolean
+  stayInline?: boolean
+  ellipsis?: boolean
+} & Pick<SvgImageProps, 'src' | 'alt'>
 
-export type IconHeaderHeadings = 'h6' | 'h5' | 'h3'
+type IconHeaderHeadings = 'h2' | 'h4' | 'h5'
 
 export default function IconHeader(props: IconHeaderProps) {
-  const { title, ...svgImageProps } = props
+  const {
+    title,
+    size = 'large',
+    stayInline = false,
+    noMargin = false,
+    ellipsis = false,
+    iconSize,
+    iconSizeMobile,
+    ...svgImageProps
+  } = props
   const classes = useStyles()
 
-  const size = 'large'
-
   const variants: Record<IconHeaderSize, IconHeaderHeadings> = {
-    small: 'h6',
-    medium: 'h5',
-    large: 'h3',
+    small: 'h5',
+    medium: 'h4',
+    large: 'h2',
   }
 
   const iconSizes = {
@@ -52,21 +79,28 @@ export default function IconHeader(props: IconHeaderProps) {
   }
 
   const iconMobileSizes = {
-    small: 16,
+    small: 24,
     medium: 32,
     large: 40,
   }
 
   return (
-    <div className={classes.container}>
-      <div className={classes.innerContainer}>
+    <div className={clsx(classes.container, !noMargin && classes.margin)}>
+      <div className={clsx(classes.innerContainer, !stayInline && classes.breakColumnsDesktop)}>
         <SvgImage
           {...svgImageProps}
-          size={iconSizes[size]}
-          mobileSize={iconMobileSizes[size]}
+          size={iconSize ?? iconSizes[size]}
+          mobileSize={iconSizeMobile ?? iconMobileSizes[size]}
           loading='eager'
         />
-        <Typography variant={variants[size]} component='h2'>
+        <Typography
+          variant={variants[size]}
+          component='h2'
+          className={clsx(
+            ellipsis && classes.ellipsis,
+            size === 'medium' && classes.mediumFontWeight,
+          )}
+        >
           {title}
         </Typography>
       </div>

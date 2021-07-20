@@ -1,5 +1,5 @@
 import { mergeDeep } from '@apollo/client/utilities'
-import { Container } from '@material-ui/core'
+import { Container, makeStyles, Theme } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CategoryDescription, ProductListParamsProvider } from '@reachdigital/magento-category'
 import {
@@ -24,10 +24,11 @@ import {
   SearchQuery,
 } from '@reachdigital/magento-search'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import { GetStaticProps } from '@reachdigital/next-ui'
+import { AppShellSticky, GetStaticProps, Title } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
+import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import ProductListItems from '../../components/ProductListItems/ProductListItems'
 import useProductListStyles from '../../components/ProductListItems/useProductListStyles'
@@ -41,12 +42,28 @@ type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    hideOnMobile: {
+      display: 'none',
+      [theme.breakpoints.up('md')]: {
+        display: 'block',
+      },
+    },
+  }),
+  {
+    name: 'SearchResultPage',
+  },
+)
+
 function SearchResultPage(props: Props) {
   const { products, categories, params, filters, filterTypes } = props
   const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
   const search = params.url.split('/')[1]
   const totalSearchResults = (categories?.items?.length ?? 0) + (products?.total_count ?? 0)
   const noSearchResults = search && (!products || (products.items && products?.items?.length <= 0))
+  const title = typeof search !== 'undefined' ? `Results for '${search}'` : 'All products'
+  const classes = useStyles()
 
   return (
     <>
@@ -56,28 +73,46 @@ function SearchResultPage(props: Props) {
         canonical='/search'
       />
 
-      <Container maxWidth='sm'>
+      <FullPageShellHeader
+        backFallbackHref='/'
+        backFallbackTitle='Home'
+        additional={
+          <Container maxWidth={false}>
+            <SearchForm totalResults={totalSearchResults} search={search} />
+            {categories?.items?.map((category) => (
+              <CategorySearchResult key={category?.url_path} search={search} {...category} />
+            ))}
+          </Container>
+        }
+        scrolled
+      >
+        <Title size='small'>{title}</Title>
+      </FullPageShellHeader>
+
+      <Container maxWidth='sm' className={classes.hideOnMobile}>
         <SearchForm totalResults={totalSearchResults} search={search} />
         {categories?.items?.map((category) => (
           <CategorySearchResult key={category?.url_path} search={search} {...category} />
         ))}
-
         {noSearchResults && <NoSearchResults search={search} />}
       </Container>
 
-      <SearchDivider />
+      <SearchDivider className={classes.hideOnMobile} />
 
       {products && products.items && products?.items?.length > 0 && (
         <ProductListParamsProvider value={params}>
           <Container maxWidth='xl'>
-            <CategoryDescription
-              name={typeof search !== 'undefined' ? `Results for '${search}'` : 'All products'}
-            />
+            <CategoryDescription name={title} classes={{ root: classes.hideOnMobile }} />
 
-            <ProductListFiltersContainer>
-              <ProductListSort sort_fields={products?.sort_fields} />
-              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-            </ProductListFiltersContainer>
+            <AppShellSticky headerFill='mobile-only'>
+              <ProductListFiltersContainer>
+                <ProductListSort sort_fields={products?.sort_fields} />
+                <ProductListFilters
+                  aggregations={filters?.aggregations}
+                  filterTypes={filterTypes}
+                />
+              </ProductListFiltersContainer>
+            </AppShellSticky>
 
             <ProductListCount total_count={products?.total_count} />
 

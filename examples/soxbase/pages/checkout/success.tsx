@@ -1,8 +1,8 @@
-import { Box, Container, Typography } from '@material-ui/core'
+import { Box, Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CartItemSummary, CartSummary } from '@reachdigital/magento-cart'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import { Button, IconHeader, GetStaticProps, Stepper, iconParty } from '@reachdigital/next-ui'
+import { Button, GetStaticProps, iconParty, PageShellHeader, Stepper, Title } from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -14,13 +14,28 @@ type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function ShippingPage() {
   return (
-    <Container maxWidth='md'>
+    <>
       <PageMeta title='Checkout summary' metaDescription='Ordered items' metaRobots={['noindex']} />
-      <Typography variant='h6' component='h1' align='center'>
-        Checkout
-      </Typography>
-      <Stepper steps={3} currentStep={3} key='checkout-stepper' />
-      <IconHeader src={iconParty} title='Thank you for your order' alt='celebrate' size='large' />
+      <PageShellHeader
+        primary={
+          <PageLink href='/checkout/payment' passHref>
+            {/* TODO: PaymentMethodButton primary action */}
+            <Button color='secondary' variant='pill-link'>
+              Back to Home
+            </Button>
+          </PageLink>
+        }
+        divider={
+          <Container maxWidth={false}>
+            <Stepper steps={3} currentStep={3} />
+          </Container>
+        }
+      >
+        <Title size='small' icon={iconParty}>
+          Thank you for your order!
+        </Title>
+      </PageShellHeader>
+    <Container maxWidth='md'>
       <CartSummary />
       <CartItemSummary />
       <Box textAlign='center' m={8}>
@@ -31,6 +46,7 @@ function ShippingPage() {
         </PageLink>
       </Box>
     </Container>
+    </>
   )
 }
 

@@ -5,17 +5,18 @@ import { CustomerFab, CustomerMenuFabItem } from '@reachdigital/magento-customer
 import { SearchButton } from '@reachdigital/magento-search'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import {
-  FullPageShellBase,
-  FullPageShellBaseProps,
   DesktopNavActions,
   DesktopNavBar,
-  MenuProps,
-  MenuFab,
-  MenuFabSecondaryItem,
-  responsiveVal,
-  SvgImage,
+  FixedFab,
+  FullPageShellBase,
+  FullPageShellBaseProps,
   iconCustomerService,
   iconHeart,
+  MenuFab,
+  MenuFabSecondaryItem,
+  MenuProps,
+  responsiveVal,
+  SvgImage,
 } from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -28,23 +29,37 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     navbarSearch: {
       marginRight: theme.spacings.xxs,
-      [theme.breakpoints.up('sm')]: {
-        minWidth: 130,
+      width: responsiveVal(64, 172),
+    },
+    logo: {
+      display: 'none',
+      [theme.breakpoints.up('md')]: {
+        display: 'unset',
       },
     },
-    fab: {
-      width: responsiveVal(42, 56),
-      height: responsiveVal(42, 56),
+    header: {
+      [theme.breakpoints.down('sm')]: {
+        marginTop: 16,
+        marginBottom: 16,
+      },
+    },
+    cartFab: {
+      [theme.breakpoints.down('sm')]: {
+        width: responsiveVal(42, 56),
+        height: responsiveVal(42, 56),
+      },
     },
   }),
   { name: 'FullPageShell' },
 )
 
 export type FullPageShellProps = Omit<DefaultPageQuery, 'pages'> &
-  Omit<FullPageShellBaseProps, 'menu' | 'logo' | 'actions' | 'classes' | 'name'>
+  Omit<FullPageShellBaseProps, 'menu' | 'logo' | 'actions' | 'classes' | 'name'> & {
+    alwaysShowLogo?: boolean
+  }
 
 function FullPageShell(props: FullPageShellProps) {
-  const { footer, menu: menuData = {}, children, ...uiProps } = props
+  const { footer, menu: menuData = {}, children, alwaysShowLogo, ...uiProps } = props
   const classes = useStyles()
 
   const storeConfig = useQuery(StoreConfigDocument)
@@ -67,7 +82,7 @@ function FullPageShell(props: FullPageShellProps) {
   }
 
   const router = useRouter()
-  const onSearchStart = useCallback(() => router.push('/search'), [])
+  const onSearchStart = useCallback(() => router.push('/search'), [router])
 
   return (
     <FullPageShellBase
@@ -75,29 +90,25 @@ function FullPageShell(props: FullPageShellProps) {
       name={name}
       header={
         <>
-          <Logo />
+          <Logo classes={{ logo: alwaysShowLogo ? undefined : classes.logo }} />
           <DesktopNavBar {...menuProps} />
-
           <DesktopNavActions>
             {!router.pathname.startsWith('/search') && (
               <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
             )}
-
             <PageLink href='/service' passHref>
-              <Fab
-                style={{ boxShadow: 'none' }}
-                aria-label='Account'
-                size='medium'
-                classes={{ root: classes.fab }}
-              >
-                <SvgImage src={iconCustomerService} alt='Customer Service' />
+              <Fab style={{ boxShadow: 'none' }} aria-label='Account' size='large'>
+                <SvgImage src={iconCustomerService} alt='Customer Service' loading='eager' />
               </Fab>
             </PageLink>
-
             <CustomerFab guestHref='/account/signin' authHref='/account' />
+            <Fab style={{ boxShadow: 'none' }} size='large'>
+              <></>
+            </Fab>
           </DesktopNavActions>
         </>
       }
+      classes={{ header: alwaysShowLogo ? classes.header : undefined }}
     >
       <MenuFab {...menuProps} search={<SearchButton onClick={onSearchStart} />}>
         <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>
@@ -117,7 +128,9 @@ function FullPageShell(props: FullPageShellProps) {
         </MenuFabSecondaryItem>
       </MenuFab>
 
-      <CartFab style={{ boxShadow: 'none' }} />
+      <FixedFab>
+        <CartFab style={{ boxShadow: 'none' }} className={classes.cartFab} />
+      </FixedFab>
 
       {children}
 

@@ -2,30 +2,28 @@ import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AddToCartButton } from '@reachdigital/magento-cart'
 import {
-  ProductSidebarDelivery,
-  jsonLdProduct,
+  getProductStaticPaths, jsonLdProduct,
   jsonLdProductOffer,
   ProductAddToCartDocument,
   productPageCategory,
   ProductPageGallery,
-  ProductPageMeta,
-  getProductStaticPaths,
-  ProductWeight,
+  ProductPageMeta, ProductSidebarDelivery, ProductWeight
 } from '@reachdigital/magento-product'
-import { ProductReviewSummary, jsonLdProductReview } from '@reachdigital/magento-product-review'
+import { jsonLdProductReview, ProductReviewSummary } from '@reachdigital/magento-product-review'
 import {
   SimpleProductPageDocument,
-  SimpleProductPageQuery,
+  SimpleProductPageQuery
 } from '@reachdigital/magento-product-simple'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { JsonLd, GetStaticProps } from '@reachdigital/next-ui'
+import { GetStaticProps, JsonLd } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { Product } from 'schema-dts'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
+import PageShellHeader from '../../components/AppShell/PageShellHeader'
 import { ProductPageDocument, ProductPageQuery } from '../../components/GraphQL/ProductPage.gql'
-import ProductUsps from '../../components/ProductUsps'
 import ProductpagesContent from '../../components/ProductpagesContent'
+import ProductUsps from '../../components/ProductUsps'
 import RowProductDescription from '../../components/RowProductDescription'
 import RowProductFeature from '../../components/RowProductFeature'
 import RowProductFeatureBoxed from '../../components/RowProductFeatureBoxed'
@@ -37,14 +35,22 @@ import apolloClient from '../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
 
-type Props = ProductPageQuery & SimpleProductPageQuery
+type Props = ProductPageQuery & SimpleProductPageQuery & Pick<FullPageShellProps, 'backFallbackTitle' | 'backFallbackHref'>
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductSimple(props: Props) {
-  const { products, usps, sidebarUsps, typeProducts, productpages } = props
+  const {
+    products,
+    usps,
+    sidebarUsps,
+    typeProducts,
+    productpages,
+    backFallbackHref,
+    backFallbackTitle,
+  } = props
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
@@ -55,6 +61,7 @@ function ProductSimple(props: Props) {
 
   return (
     <>
+      <PageShellHeader backFallbackHref={backFallbackHref} backFallbackTitle={backFallbackTitle} />
       <JsonLd<Product>
         item={{
           '@context': 'https://schema.org',

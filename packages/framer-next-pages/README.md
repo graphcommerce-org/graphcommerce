@@ -58,7 +58,7 @@ export default function Overlay() {
 
 Overlay.pageOptions = {
   overlayGroup: 'left',
-  // sharedKey default is `pages/overlay/[overlayId]`
+  // sharedKey default is `(router) => router.asPath` resulting in `pages/overlay/[overlayId]`
 } as PageOptions
 ```
 
@@ -220,14 +220,27 @@ After navigation to `overlay-two`
 
 ### usePageContext().backSteps
 
-When navigating inside an overlay we need to be able to navigate back x-times to
-close the overlay. So we give the times it needs to go back.
+When navigating inside an overlay we need to be able to navigate back. We give a
+count that shows us if we can go back
 
 ```tsx
 function MyComponent {
   const { backSteps } = usePageContext();
   const router = usePageRouter();
-  return <button onClick={() => router.go(backSteps * -1)}>close</button>
+  return <button onClick={backSteps > 0 && () => router.back()}>back</button>
+}
+```
+
+### usePageContext().closeSteps
+
+When tying to close an overlay we need to be able to navigate back x-times to
+close the overlay. So we give the times it needs to go back.
+
+```tsx
+function MyComponent {
+  const { closeSteps } = usePageContext();
+  const router = usePageRouter();
+  return <button onClick={closeSteps > 0 && () => router.go(closeSteps * -1)}>close</button>
 }
 ```
 

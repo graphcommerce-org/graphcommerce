@@ -1,4 +1,4 @@
-import { Theme, makeStyles, Link } from '@material-ui/core'
+import { Link, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -22,7 +22,7 @@ const useStyles = makeStyles(
       },
     },
     scroller: {
-      columnGap: '40px',
+      columnGap: 40,
       padding: '0 40px',
     },
     prevNext: {

@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
 
+// TODO: fix hot reloading issues when modifying implementations of this component
 export type SvgImageSize = 'small' | 'medium' | 'large' | 'extralarge'
 
 export type SvgImageProps = ObjectImage & {
@@ -56,7 +57,7 @@ export default function SvgImage(props: SvgImageProps) {
   const classes = useStyles({
     ...props,
     mobileSize: baseSizes[mobileSize ?? ''] ?? mobileSize,
-    baseSize: baseSizes[size] ?? size,
+    baseSize: baseSizes[size ?? ''] ?? size,
     shade: SvgImageShades[shade],
   })
 

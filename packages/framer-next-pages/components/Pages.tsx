@@ -3,7 +3,7 @@ import type { AppPropsType } from 'next/dist/next-server/lib/utils'
 import type { NextRouter } from 'next/router'
 import React, { useRef } from 'react'
 import { pageContext } from '../context/pageContext'
-import { pageRouterContext, createRouterProxy } from '../context/pageRouterContext'
+import { createRouterProxy, pageRouterContext } from '../context/pageRouterContext'
 import type { PageComponent, PageItem } from '../types'
 import Page from './Page'
 
@@ -52,7 +52,7 @@ export default function FramerNextPages(props: PagesProps) {
     items.current[idx] = activeItem
   }
 
-  let renderItems = items.current
+  let renderItems = [...items.current]
 
   /** We need to render back to the last item that isn't an overlay. */
   const plainIdx = findPlainIdx(items.current)
@@ -113,11 +113,16 @@ export default function FramerNextPages(props: PagesProps) {
         } = item
         const active = itemIdx === renderItems.length - 1
         const depth = itemIdx - (renderItems.length - 1)
-        const prevIdx = renderItems[itemIdx - 1]?.historyIdx
-        const backSteps = prevIdx > -1 ? historyIdx - prevIdx : 0
+        const closeIdx = renderItems[itemIdx - 1]?.historyIdx ?? -1
+        const closeSteps = closeIdx > -1 ? historyIdx - closeIdx : 0
+
+        const backSteps = historyIdx - closeIdx - 1
 
         return (
-          <pageContext.Provider key={sharedKey} value={{ depth, active, direction, backSteps }}>
+          <pageContext.Provider
+            key={sharedKey}
+            value={{ depth, active, direction, closeSteps, backSteps }}
+          >
             <Page active={active} historyIdx={historyIdx}>
               <pageRouterContext.Provider value={routerProxy}>
                 <SharedComponent {...sharedPageProps} {...sharedProps}>

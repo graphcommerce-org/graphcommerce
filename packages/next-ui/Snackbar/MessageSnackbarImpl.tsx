@@ -30,7 +30,7 @@ const useStyles = makeStyles(
     },
     root: {
       pointerEvents: 'all',
-      padding: `16px ${theme.page.horizontal} max(16px, env(safe-area-inset-bottom))`,
+      padding: `16px ${theme.page.horizontal}px max(16px, env(safe-area-inset-bottom))`,
     },
     rootPill: {
       backgroundColor: theme.palette.background.paper,

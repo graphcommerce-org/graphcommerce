@@ -1,12 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Fab, makeStyles, NoSsr, Theme } from '@material-ui/core'
-import {
-  StyledBadge,
-  UseStyles,
-  responsiveVal,
-  SvgImage,
-  iconPersonAlt,
-} from '@reachdigital/next-ui'
+import { iconPersonAlt, StyledBadge, SvgImage, UseStyles } from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from '../CustomerToken.gql'
@@ -14,10 +8,6 @@ import { CustomerTokenDocument, CustomerTokenQuery } from '../CustomerToken.gql'
 const useStyles = makeStyles((theme: Theme) => ({
   colorError: {
     backgroundColor: theme.palette.grey['500'],
-  },
-  fab: {
-    width: responsiveVal(42, 56),
-    height: responsiveVal(42, 56),
   },
 }))
 
@@ -34,12 +24,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
 
   return (
     <PageLink href={requireAuth ? guestHref : authHref} passHref>
-      <Fab
-        style={{ boxShadow: 'none' }}
-        aria-label='Open Menu'
-        size='medium'
-        classes={{ root: classes.fab }}
-      >
+      <Fab style={{ boxShadow: 'none' }} aria-label='Open Menu' size='large'>
         <StyledBadge
           badgeContent={customerToken?.token ? 1 : 0}
           color={customerToken?.valid ? 'primary' : 'error'}

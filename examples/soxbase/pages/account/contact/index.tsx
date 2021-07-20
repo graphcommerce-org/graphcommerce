@@ -8,10 +8,12 @@ import {
 } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
-  IconHeader,
+  AppShellTitle,
   GetStaticProps,
-  SectionContainer,
   iconEmailOutline,
+  SectionContainer,
+  SheetShellHeader,
+  Title,
 } from '@reachdigital/next-ui'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
@@ -36,23 +38,35 @@ function AccountContactPage() {
     )
 
   return (
-    <NoSsr>
-      <Container maxWidth='md'>
-        <PageMeta title='Contact' metaDescription='Contact information' metaRobots={['noindex']} />
+    <>
+      <SheetShellHeader backFallbackTitle='Account' backFallbackHref='/account'>
+        <Title size='small' component='span' icon={iconEmailOutline}>
+          Contact
+        </Title>
+      </SheetShellHeader>
+      <NoSsr>
+        <Container maxWidth='md'>
+          <PageMeta
+            title='Contact'
+            metaDescription='Contact information'
+            metaRobots={['noindex']}
+          />
 
-        <IconHeader src={iconEmailOutline} title='Contact' alt='name' size='large' />
-        <SectionContainer labelLeft='Email'>
-          {customer && <UpdateCustomerEmailForm email={customer.email ?? ''} />}
-        </SectionContainer>
-      </Container>
-    </NoSsr>
+          <AppShellTitle icon={iconEmailOutline}>Contact</AppShellTitle>
+
+          <SectionContainer labelLeft='Email'>
+            {customer && <UpdateCustomerEmailForm email={customer.email ?? ''} />}
+          </SectionContainer>
+        </Container>
+      </NoSsr>
+    </>
   )
 }
 
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
-  sharedKey: () => 'account-contact',
+  sharedKey: () => 'page',
 }
 AccountContactPage.pageOptions = pageOptions
 

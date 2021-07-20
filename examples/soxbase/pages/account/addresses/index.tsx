@@ -7,7 +7,13 @@ import {
   ApolloCustomerErrorFullPage,
 } from '@reachdigital/magento-customer'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import { IconHeader, GetStaticProps, iconAddresses } from '@reachdigital/next-ui'
+import {
+  AppShellTitle,
+  GetStaticProps,
+  iconAddresses,
+  SheetShellHeader,
+  Title,
+} from '@reachdigital/next-ui'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
@@ -33,27 +39,33 @@ function AccountAddressesPage(props: Props) {
     )
 
   return (
-    <Container maxWidth='md'>
-      <PageMeta
-        title='Addresses'
-        metaDescription='View all your addresses'
-        metaRobots={['noindex']}
-      />
-      <NoSsr>
-        {((customer?.addresses && customer.addresses.length > 1) || !customer?.addresses) && (
-          <IconHeader src={iconAddresses} title='Addresses' alt='addresses' size='large' />
-        )}
-
-        <AccountAddresses {...data} loading={!data} addresses={customer?.addresses} />
-      </NoSsr>
-    </Container>
+    <>
+      <SheetShellHeader backFallbackTitle='Account' backFallbackHref='/account'>
+        <Title size='small' component='span' icon={iconAddresses}>
+          Addresses
+        </Title>
+      </SheetShellHeader>
+      <Container maxWidth='md'>
+        <PageMeta
+          title='Addresses'
+          metaDescription='View all your addresses'
+          metaRobots={['noindex']}
+        />
+        <NoSsr>
+          {((customer?.addresses && customer.addresses.length > 1) || !customer?.addresses) && (
+            <AppShellTitle icon={iconAddresses}>Addresses</AppShellTitle>
+          )}
+          <AccountAddresses {...data} loading={!data} addresses={customer?.addresses} />
+        </NoSsr>
+      </Container>
+    </>
   )
 }
 
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
-  sharedKey: () => 'account-addresses',
+  sharedKey: () => 'page',
 }
 AccountAddressesPage.pageOptions = pageOptions
 

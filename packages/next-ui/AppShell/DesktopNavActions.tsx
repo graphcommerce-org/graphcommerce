@@ -1,23 +1,20 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import { m } from 'framer-motion'
 import React from 'react'
-import responsiveVal from '../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     actions: {
-      '& > *': {
-        pointerEvents: 'all',
-      },
       display: 'none',
       [theme.breakpoints.up('md')]: {
+        '& > *': {
+          pointerEvents: 'all',
+        },
         alignItems: 'center',
         display: 'grid',
         gridAutoFlow: 'column',
-        columnGap: responsiveVal(4, 16),
+        columnGap: 6,
       },
-    },
-    spacer: {
-      width: 48,
     },
   }),
   { name: 'DesktopNavActions' },
@@ -27,10 +24,5 @@ export default function DesktopNavActions(props: { children?: React.ReactNode })
   const { children } = props
   const classes = useStyles()
 
-  return (
-    <div className={classes.actions}>
-      {children}
-      <div className={classes.spacer} />
-    </div>
-  )
+  return <m.div className={classes.actions}>{children}</m.div>
 }

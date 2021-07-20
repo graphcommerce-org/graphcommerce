@@ -1,25 +1,20 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
+import { UseStyles } from '../Styles'
 import responsiveVal from '../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      maxWidth: '60%',
-      margin: `${theme.spacings.sm} auto ${theme.spacings.md} auto`,
-      [theme.breakpoints.down('xs')]: {
-        maxWidth: '75%',
-      },
+      display: 'grid',
+      gridAutoFlow: 'column',
+      gap: responsiveVal(8, 12),
+      // padding: `0 ${theme.page.horizontal}`,
     },
     step: {
-      height: responsiveVal(2, 4),
+      height: 2,
       background: theme.palette.divider,
-      flex: 1,
-      marginRight: responsiveVal(6, 10),
-      marginLeft: responsiveVal(6, 10),
     },
     current: {
       background: theme.palette.secondary.main,
@@ -31,11 +26,11 @@ const useStyles = makeStyles(
 export type StepperProps = {
   steps: number
   currentStep: number
-}
+} & UseStyles<typeof useStyles>
 
 export default function Stepper(props: StepperProps) {
   const { steps, currentStep } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   return (
     <div className={classes.root}>

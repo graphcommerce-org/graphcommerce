@@ -33,7 +33,7 @@ export type SheetPanelProps = {
    * />
    * ```
    */
-  header: React.ReactNode
+  header?: React.ReactNode
 
   forward?: React.ReactNode
   back?: React.ReactNode
@@ -50,8 +50,19 @@ export type SheetPanelProps = {
 
 export default function SheetPanel(props: SheetPanelProps) {
   const { header, back, forward, children, styles, classes } = props
-  const { drag, size, maxSize, snapPoints, controls, variant, variantSize, onSnap, onSnapEnd } =
-    useSheetContext()
+  const {
+    drag,
+    size,
+    maxSize,
+    snapPoints,
+    controls,
+    variant,
+    variantSize,
+    contentRef,
+    contentRefCallback,
+    onSnap,
+    onSnapEnd,
+  } = useSheetContext()
 
   const last = snapPoints.length - 1
 
@@ -76,7 +87,7 @@ export default function SheetPanel(props: SheetPanelProps) {
     await controls.start(`snapPoint${index}`)
     onSnapEnd?.(snapPoints[index], index)
   }
-  const contentRef = useRef<HTMLDivElement>(null)
+
   const dragHandleRef = useRef<HTMLDivElement>(null)
   const dragHandleHeight = useMotionValue(0)
 
@@ -93,6 +104,7 @@ export default function SheetPanel(props: SheetPanelProps) {
   }, [dragHandleRef, dragHandleHeight])
 
   const Variant = variant[0].toUpperCase() + variant.slice(1)
+
   return (
     <>
       <m.div
@@ -120,7 +132,6 @@ export default function SheetPanel(props: SheetPanelProps) {
 
           /** There sometimes is a very small gap (<1px) between the dragHandle and the content */
           [`margin${Variant}`]: -1,
-          [`border${Variant}`]: '1px solid transparent',
         }}
       >
         {variant === 'bottom' && <div>{back}</div>}
@@ -132,7 +143,7 @@ export default function SheetPanel(props: SheetPanelProps) {
         onDragEnd={onDragEnd}
         dragTransition={INERTIA_ANIM}
         transition={SPRING_ANIM}
-        ref={contentRef}
+        ref={contentRefCallback}
         className={clsx(classes?.content, classes?.[`content${variant}`])}
         style={{
           ...styles?.content,

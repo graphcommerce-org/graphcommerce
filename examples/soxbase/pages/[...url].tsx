@@ -9,7 +9,6 @@ import {
   getCategoryStaticPaths,
   ProductListParamsProvider,
 } from '@reachdigital/magento-category'
-
 import {
   ProductListCount,
   ProductListFilters,
@@ -26,10 +25,11 @@ import {
 } from '@reachdigital/magento-product'
 
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { GetStaticProps } from '@reachdigital/next-ui'
+import { AppShellSticky, AppShellTitle, GetStaticProps, Title } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../components/AppShell/FullPageShell'
+import FullPageShellHeader from '../components/AppShell/FullPageShellHeader'
 import Asset from '../components/Asset'
 import { CategoryPageDocument, CategoryPageQuery } from '../components/GraphQL/CategoryPage.gql'
 import PageContent from '../components/PageContent'
@@ -46,13 +46,22 @@ type Props = CategoryPageQuery &
   ProductListQuery & {
     filterTypes: FilterTypes
     params: ProductListParams
-  }
+  } & Pick<FullPageShellProps, 'backFallbackHref' | 'backFallbackTitle'>
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function CategoryPage(props: Props) {
-  const { categories, products, filters, params, filterTypes, pages } = props
+  const {
+    categories,
+    products,
+    filters,
+    params,
+    filterTypes,
+    pages,
+    backFallbackHref,
+    backFallbackTitle,
+  } = props
   const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
 
   const category = categories?.items?.[0]
@@ -66,14 +75,19 @@ function CategoryPage(props: Props) {
   return (
     <>
       <CategoryMeta params={params} {...category} />
+      <FullPageShellHeader
+        backFallbackHref={backFallbackHref}
+        backFallbackTitle={backFallbackTitle}
+      >
+        <Title size='small'>{category?.name}</Title>
+      </FullPageShellHeader>
 
       {isLanding ? (
-        <Container maxWidth={false}>
-          <CategoryHeroNav
-            {...category}
-            asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} loading='eager' />}
-          />
-        </Container>
+        <CategoryHeroNav
+          {...category}
+          asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} loading='eager' />}
+          title={<AppShellTitle>{category?.name}</AppShellTitle>}
+        />
       ) : (
         <ProductListParamsProvider value={params}>
           <Container maxWidth='xl'>
@@ -81,10 +95,15 @@ function CategoryPage(props: Props) {
 
             <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
-            <ProductListFiltersContainer>
-              <ProductListSort sort_fields={products?.sort_fields} />
-              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-            </ProductListFiltersContainer>
+            <AppShellSticky headerFill='mobile-only'>
+              <ProductListFiltersContainer>
+                <ProductListSort sort_fields={products?.sort_fields} />
+                <ProductListFilters
+                  aggregations={filters?.aggregations}
+                  filterTypes={filterTypes}
+                />
+              </ProductListFiltersContainer>
+            </AppShellSticky>
 
             <ProductListCount total_count={products?.total_count} />
 

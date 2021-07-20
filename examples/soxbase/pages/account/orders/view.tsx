@@ -9,7 +9,14 @@ import {
   ApolloCustomerErrorFullPage,
 } from '@reachdigital/magento-customer'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import { IconHeader, GetStaticProps, iconBox } from '@reachdigital/next-ui'
+import {
+  IconHeader,
+  GetStaticProps,
+  iconBox,
+  SheetShellHeader,
+  Title,
+  AppShellTitle,
+} from '@reachdigital/next-ui'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
@@ -41,32 +48,41 @@ function OrderDetailPage(props: Props) {
     )
 
   return (
-    <Container maxWidth='md'>
-      <NoSsr>
-        {(!orderId || !order) && (
-          <IconHeader src={iconBox} title='Order not found' alt='no order' size='large' />
-        )}
+    <>
+      <SheetShellHeader backFallbackTitle='Account' backFallbackHref='/account'>
+        <Title size='small' component='span' icon={iconBox}>
+          Order #{orderId}
+        </Title>
+      </SheetShellHeader>
+      <Container maxWidth='md'>
+        <NoSsr>
+          {(!orderId || !order) && (
+            <IconHeader src={iconBox} title='Order not found' alt='no order' size='large' />
+          )}
 
-        {orderId && order && (
-          <>
-            <PageMeta
-              title={`Order view #${orderId}`}
-              metaDescription={`Order detail page for order #${orderId}`}
-              metaRobots={['noindex']}
-            />
-            <OrderItems {...order} loading={isLoading} images={images} />
-            <OrderDetails {...order} loading={isLoading} />
-          </>
-        )}
-      </NoSsr>
-    </Container>
+          <AppShellTitle icon={iconBox}>Order #{orderId}</AppShellTitle>
+
+          {orderId && order && (
+            <>
+              <PageMeta
+                title={`Order view #${orderId}`}
+                metaDescription={`Order detail page for order #${orderId}`}
+                metaRobots={['noindex']}
+              />
+              <OrderItems {...order} loading={isLoading} images={images} />
+              <OrderDetails {...order} loading={isLoading} />
+            </>
+          )}
+        </NoSsr>
+      </Container>
+    </>
   )
 }
 
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
-  sharedKey: () => 'account-orders',
+  sharedKey: () => 'page',
 }
 OrderDetailPage.pageOptions = pageOptions
 

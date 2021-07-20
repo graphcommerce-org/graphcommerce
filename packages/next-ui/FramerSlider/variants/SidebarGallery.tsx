@@ -21,7 +21,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     wrapper: {
       [theme.breakpoints.up('md')]: {
-        padding: `0 ${theme.page.horizontal}`,
+        padding: `0 ${theme.page.horizontal}px`,
       },
     },
     root: ({ maxWidth }: StyleProps) => ({

@@ -21,8 +21,8 @@ export default function SheetDragIndicator(props: SheetDragIndicatorProps) {
 
   const degLeft = useTransform([vsize, vdrag] as MotionValue[], ([vsizeDx, vdragDx]: number[]) => {
     let deg = 0
-    if (vsizeDx > 10 || vdragDx > 10) deg = 10
-    if (vsizeDx < -10 || vdragDx < -10) deg = -10
+    if (vsizeDx > 8 || vdragDx > 8) deg = 8
+    if (vsizeDx < -8 || vdragDx < -8) deg = -8
     return deg
   })
   const degRight = useTransform(degLeft, (v) => v * -1)

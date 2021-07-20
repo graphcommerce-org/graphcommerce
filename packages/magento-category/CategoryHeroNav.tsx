@@ -71,38 +71,39 @@ const useStyles = makeStyles(
   { name: 'CategoryHeroNav' },
 )
 type Props = {
+  title: React.ReactNode
   asset?: React.ReactNode
 }
 type CategoryHeroNavProps = Props & CategoryHeroNavFragment
 
-export default function CategoryHeroNav({ children, name, asset }: CategoryHeroNavProps) {
+export default function CategoryHeroNav({ children, title, asset }: CategoryHeroNavProps) {
   const classes = useStyles()
-  return (
-    <div className={classes.wrapper}>
-      <div className={classes.categories}>
-        <Typography variant='h2' component='h1' className={classes.title}>
-          {name}
-        </Typography>
 
-        {children?.map((category) => {
-          if (!category?.url_path || !category.uid || !category.name) return null
-          return (
-            <CategoryLink
-              underline='none'
-              color='textPrimary'
-              url={category.url_path}
-              filters={{}}
-              sort={{}}
-              key={category.uid}
-            >
-              <Typography variant='h4' component='span'>
-                {category.name}
-              </Typography>
-            </CategoryLink>
-          )
-        })}
+  return (
+    <>
+      {title}
+      <div className={classes.wrapper}>
+        <div className={classes.categories}>
+          {children?.map((category) => {
+            if (!category?.url_path || !category.uid || !category.name) return null
+            return (
+              <CategoryLink
+                underline='none'
+                color='textPrimary'
+                url={category.url_path}
+                filters={{}}
+                sort={{}}
+                key={category.uid}
+              >
+                <Typography variant='h4' component='span'>
+                  {category.name}
+                </Typography>
+              </CategoryLink>
+            )
+          })}
+        </div>
+        <div className={classes.placeholder}>{asset}</div>
       </div>
-      <div className={classes.placeholder}>{asset}</div>
-    </div>
+    </>
   )
 }

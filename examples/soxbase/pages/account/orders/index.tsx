@@ -8,11 +8,13 @@ import {
 } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
+  AppShellTitle,
   FullPageMessage,
-  IconHeader,
   GetStaticProps,
-  SvgImage,
   iconBox,
+  SheetShellHeader,
+  SvgImage,
+  Title,
 } from '@reachdigital/next-ui'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
@@ -44,34 +46,41 @@ function AccountOrdersPage() {
     )
 
   return (
-    <Container maxWidth='md'>
-      <PageMeta title='Orders' metaDescription='View all your orders' metaRobots={['noindex']} />
-      <NoSsr>
-        {customer?.orders && customer.orders.items.length > 1 && (
-          <>
-            <IconHeader src={iconBox} title='Orders' alt='orders' size='large' />
-            <AccountOrders {...customer} />
-          </>
-        )}
+    <>
+      <SheetShellHeader backFallbackTitle='Account' backFallbackHref='/account'>
+        <Title size='small' component='span' icon={iconBox}>
+          Orders
+        </Title>
+      </SheetShellHeader>
+      <Container maxWidth='md'>
+        <PageMeta title='Orders' metaDescription='View all your orders' metaRobots={['noindex']} />
+        <NoSsr>
+          {customer?.orders && customer.orders.items.length > 1 && (
+            <>
+              <AppShellTitle icon={iconBox}>Orders</AppShellTitle>
+              <AccountOrders {...customer} />
+            </>
+          )}
 
-        {customer?.orders && customer.orders.items.length < 1 && (
-          <>
-            <FullPageMessage
-              title='You have no orders yet'
-              description='Discover our collection and place your first order!'
-              icon={<SvgImage src={iconBox} size={148} alt='box' />}
-            />
-          </>
-        )}
-      </NoSsr>
-    </Container>
+          {customer?.orders && customer.orders.items.length < 1 && (
+            <>
+              <FullPageMessage
+                title='You have no orders yet'
+                description='Discover our collection and place your first order!'
+                icon={<SvgImage src={iconBox} size={148} alt='box' />}
+              />
+            </>
+          )}
+        </NoSsr>
+      </Container>
+    </>
   )
 }
 
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
-  sharedKey: () => 'account-orders',
+  sharedKey: () => 'page',
 }
 AccountOrdersPage.pageOptions = pageOptions
 

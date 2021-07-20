@@ -1,12 +1,12 @@
-import { createContext, useContext } from 'react'
+import { createContext } from 'react'
 
 export type Direction = 1 | -1
 
 export type PageContext = {
-  /**
-   * To be able to navigate back to the last known non-overlay page we need to know how many steps
-   * we need to navigate back.
-   */
+  /** Number of steps we need to navigate back to go to the last non-overlay page and thus close the overlay */
+  closeSteps: number
+
+  /** Number of steps we can go back inside the the current overlay */
   backSteps: number
   /**
    * If we have multiple pages layered on top of each other we get the depth the page has.

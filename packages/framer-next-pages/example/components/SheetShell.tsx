@@ -22,17 +22,17 @@ function SheetShell(props: SheetShellProps) {
 
   const router = useRouter()
   const pageRouter = usePageRouter()
-  const { depth, backSteps } = usePageContext()
+  const { depth, backSteps, closeSteps } = usePageContext()
   const open = depth < 0 || router.asPath === pageRouter.asPath
 
   return (
     <Sheet
       open={open}
-      onSnap={(snapPoint) => snapPoint === 'closed' && pageRouter.go(backSteps * -1)}
+      onSnap={(snapPoint) => snapPoint === 'closed' && pageRouter.go(closeSteps * -1)}
       variant={variant}
       size={size}
     >
-      <SheetBackdrop onTap={() => pageRouter.go(backSteps * -1)} styles={styles} />
+      <SheetBackdrop onTap={() => pageRouter.go(closeSteps * -1)} styles={styles} />
       <SheetContainer styles={styles}>
         <SheetPanel
           forward={cta}
