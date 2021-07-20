@@ -1,7 +1,7 @@
 {
   "name": "@reachdigital/soxbase",
   "homepage": "https://soxbase.vercel.app/",
-  "version": "2.100.10",
+  "version": "2.100.11",
   "private": true,
   "sideEffects": false,
   "engines": {
@@ -67,7 +67,7 @@
     "@reachdigital/magento-payment-mollie": "^2.100.10",
     "@reachdigital/magento-product": "^2.100.10",
     "@reachdigital/magento-product-bundle": "^2.100.10",
-    "@reachdigital/magento-product-configurable": "^2.100.10",
+    "@reachdigital/magento-product-configurable": "^2.100.11",
     "@reachdigital/magento-product-downloadable": "^2.100.10",
     "@reachdigital/magento-product-grouped": "^2.100.10",
     "@reachdigital/magento-product-review": "^2.100.10",
