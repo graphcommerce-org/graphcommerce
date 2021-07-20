@@ -1,12 +1,12 @@
 {
   "name": "@reachdigital/eslint-config-pwa",
-  "version": "2.100.8",
+  "version": "2.100.9",
   "main": "index.js",
   "private": true,
   "dependencies": {
     "@next/eslint-plugin-next": "^11.0.1",
-    "@reachdigital/prettier-config-pwa": "^2.100.8",
-    "@reachdigital/typescript-config-pwa": "^2.100.8",
+    "@reachdigital/prettier-config-pwa": "^2.100.9",
+    "@reachdigital/typescript-config-pwa": "^2.100.9",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
     "eslint": "^7.31.0",
