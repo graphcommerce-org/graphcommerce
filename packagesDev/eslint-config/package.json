@@ -5,8 +5,7 @@
   "private": true,
   "dependencies": {
     "@next/eslint-plugin-next": "^11.0.1",
-    "@reachdigital/browserslist-config-pwa": "^2.100.2",
-    "@reachdigital/eslint-config-pwa": "^2.100.2",
+    "@reachdigital/prettier-config-pwa": "^2.100.2",
     "@reachdigital/typescript-config-pwa": "^2.100.2",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
@@ -24,14 +23,5 @@
   "engines": {
     "node": "14.x"
   },
-  "prettier": "@reachdigital/prettier-config-pwa",
-  "browserslist": [
-    "extends @reachdigital/browserslist-config-pwa"
-  ],
-  "eslintConfig": {
-    "extends": "@reachdigital/eslint-config-pwa",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    }
-  }
+  "prettier": "@reachdigital/prettier-config-pwa"
 }
