@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Divider, makeStyles, Theme } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer'
