@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/react-hook-form",
-  "version": "2.100.9",
+  "version": "2.100.10",
   "private": true,
   "sideEffects": false,
   "engines": {
@@ -18,9 +18,9 @@
   },
   "devDependencies": {
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
-    "@reachdigital/eslint-config-pwa": "^2.100.9",
+    "@reachdigital/eslint-config-pwa": "^2.100.10",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
-    "@reachdigital/typescript-config-pwa": "^2.100.9"
+    "@reachdigital/typescript-config-pwa": "^2.100.10"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",

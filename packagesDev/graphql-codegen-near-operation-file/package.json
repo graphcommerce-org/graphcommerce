@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/graphql-codegen-near-operation-file",
-  "version": "2.100.9",
+  "version": "2.100.10",
   "private": true,
   "sideEffects": false,
   "main": "dist/index.js",
@@ -26,9 +26,9 @@
   },
   "devDependencies": {
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
-    "@reachdigital/eslint-config-pwa": "^2.100.9",
+    "@reachdigital/eslint-config-pwa": "^2.100.10",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
-    "@reachdigital/typescript-config-pwa": "^2.100.9"
+    "@reachdigital/typescript-config-pwa": "^2.100.10"
   },
   "dependencies": {
     "@graphql-codegen/add": "^2.0.2",

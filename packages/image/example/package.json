@@ -1,14 +1,14 @@
 {
   "name": "@reachdigital/image-example",
   "private": true,
-  "version": "2.100.9",
+  "version": "2.100.10",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "@reachdigital/image": "^2.100.9",
+    "@reachdigital/image": "^2.100.10",
     "@reachdigital/next-config": "^2.100.9",
     "framer-motion": "^4.1.17",
     "next": "^11.0.1",

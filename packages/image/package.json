@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/image",
-  "version": "2.100.9",
+  "version": "2.100.10",
   "private": true,
   "sideEffects": false,
   "scripts": {
@@ -17,13 +17,13 @@
     }
   },
   "dependencies": {
-    "@reachdigital/framer-utils": "^2.100.9"
+    "@reachdigital/framer-utils": "^2.100.10"
   },
   "devDependencies": {
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
-    "@reachdigital/eslint-config-pwa": "^2.100.9",
+    "@reachdigital/eslint-config-pwa": "^2.100.10",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
-    "@reachdigital/typescript-config-pwa": "^2.100.9"
+    "@reachdigital/typescript-config-pwa": "^2.100.10"
   },
   "peerDependencies": {
     "clsx": "^1.1.1",

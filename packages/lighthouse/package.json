@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/lighthouse",
-  "version": "2.100.9",
+  "version": "2.100.10",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
@@ -15,8 +15,8 @@
   },
   "devDependencies": {
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
-    "@reachdigital/eslint-config-pwa": "^2.100.9",
+    "@reachdigital/eslint-config-pwa": "^2.100.10",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
-    "@reachdigital/typescript-config-pwa": "^2.100.9"
+    "@reachdigital/typescript-config-pwa": "^2.100.10"
   }
 }

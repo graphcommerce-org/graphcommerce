@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.100.10](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/typescript-config-pwa@2.100.9...@reachdigital/typescript-config-pwa@2.100.10) (2021-07-20)
+
+
+### Bug Fixes
+
+* make packages private so they dont get published accidently ([f7b693f](https://github.com/ho-nl/m2-pwa/commit/f7b693ff6a4d232d0871f6a68922d14678853a96))
+
+
+
+
+
 ## 2.100.8 (2021-07-20)
 
 
