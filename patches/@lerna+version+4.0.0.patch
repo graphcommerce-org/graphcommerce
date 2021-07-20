@@ -1,0 +1,13 @@
+diff --git a/node_modules/@lerna/version/index.js b/node_modules/@lerna/version/index.js
+index 3fcea7c..1319717 100644
+--- a/node_modules/@lerna/version/index.js
++++ b/node_modules/@lerna/version/index.js
+@@ -558,7 +558,7 @@ class VersionCommand extends Command {
+           changedFiles.add(logPath);
+ 
+           // add release notes
+-          if (independentVersions) {
++          if (independentVersions && newEntry) {
+             this.releaseNotes.push({
+               name: pkg.name,
+               notes: newEntry,
