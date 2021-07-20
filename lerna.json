@@ -11,6 +11,7 @@
   "version": "independent",
   "command": {
     "publish": {
+      "ignoreChanges": ["*.md"],
       "message": "chore: release"
     }
   }
