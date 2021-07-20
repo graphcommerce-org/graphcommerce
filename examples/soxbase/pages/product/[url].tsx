@@ -1,19 +1,22 @@
 import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AddToCartButton } from '@reachdigital/magento-cart'
-import { ProductSidebarDelivery } from '@reachdigital/magento-product'
+import {
+  ProductSidebarDelivery,
+  jsonLdProduct,
+  jsonLdProductOffer,
+  ProductAddToCartDocument,
+  productPageCategory,
+  ProductPageGallery,
+  ProductPageMeta,
+  getProductStaticPaths,
+  ProductWeight,
+} from '@reachdigital/magento-product'
 import { ProductReviewSummary, jsonLdProductReview } from '@reachdigital/magento-product-review'
 import {
   SimpleProductPageDocument,
   SimpleProductPageQuery,
 } from '@reachdigital/magento-product-simple'
-import { jsonLdProduct, jsonLdProductOffer } from '@reachdigital/magento-product/JsonLdProduct'
-import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
-import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
-import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
-import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
-import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
-import ProductWeight from '@reachdigital/magento-product/ProductWeight'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { JsonLd, GetStaticProps } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'

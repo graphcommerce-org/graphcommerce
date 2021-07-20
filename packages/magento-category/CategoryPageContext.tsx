@@ -1,4 +1,4 @@
-import { ProductListParams } from '@reachdigital/magento-product/ProductListItems/filterTypes'
+import { ProductListParams } from '@reachdigital/magento-product'
 import React, { useState, useContext, useEffect, PropsWithChildren } from 'react'
 
 const context = React.createContext<{

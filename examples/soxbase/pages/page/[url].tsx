@@ -1,9 +1,6 @@
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CmsPageContent } from '@reachdigital/magento-cms'
-import {
-  ProductListDocument,
-  ProductListQuery,
-} from '@reachdigital/magento-product/ProductList/ProductList.gql'
+import { ProductListDocument, ProductListQuery } from '@reachdigital/magento-product'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
