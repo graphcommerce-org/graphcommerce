@@ -1,7 +1,7 @@
 {
   "name": "project-reachdigital.nl",
   "homepage": "https://soxbase.vercel.app",
-  "version": "2.100.2",
+  "version": "2.100.3",
   "private": true,
   "workspaces": [
     "docs",
@@ -56,9 +56,9 @@
     }
   },
   "dependencies": {
-    "@reachdigital/browserslist-config-pwa": "^2.100.2",
-    "@reachdigital/eslint-config-pwa": "^2.100.2",
-    "@reachdigital/prettier-config-pwa": "^2.100.2",
+    "@reachdigital/browserslist-config-pwa": "^2.100.3",
+    "@reachdigital/eslint-config-pwa": "^2.100.3",
+    "@reachdigital/prettier-config-pwa": "^2.100.3",
     "lerna": "^4.0.0",
     "patch-package": "^6.4.3",
     "pm2": "^5.1.0",

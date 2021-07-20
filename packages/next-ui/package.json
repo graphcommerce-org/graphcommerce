@@ -1,7 +1,7 @@
 {
   "name": "@reachdigital/next-ui",
   "private": true,
-  "version": "2.100.2",
+  "version": "2.100.3",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -15,10 +15,10 @@
     "@material-ui/core": "^4.12.1",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@material-ui/styles": "^4.11.4",
-    "@reachdigital/framer-next-pages": "^2.100.2",
-    "@reachdigital/framer-sheet": "^2.100.2",
-    "@reachdigital/graphql": "^2.100.2",
-    "@reachdigital/image": "^2.100.2",
+    "@reachdigital/framer-next-pages": "^2.100.3",
+    "@reachdigital/framer-sheet": "^2.100.3",
+    "@reachdigital/graphql": "^2.100.3",
+    "@reachdigital/image": "^2.100.3",
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.17",
     "graphql": "15.5.1",
@@ -35,9 +35,9 @@
     "use-resize-observer": "^7.0.0"
   },
   "devDependencies": {
-    "@reachdigital/browserslist-config-pwa": "^2.100.2",
-    "@reachdigital/eslint-config-pwa": "^2.100.2",
-    "@reachdigital/typescript-config-pwa": "^2.100.2",
+    "@reachdigital/browserslist-config-pwa": "^2.100.3",
+    "@reachdigital/eslint-config-pwa": "^2.100.3",
+    "@reachdigital/typescript-config-pwa": "^2.100.3",
     "@testing-library/react": "^12.0.0",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
