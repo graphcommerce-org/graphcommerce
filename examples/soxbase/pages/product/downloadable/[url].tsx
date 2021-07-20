@@ -22,7 +22,7 @@ import { GetStaticPaths } from 'next'
 import React from 'react'
 import { Product } from 'schema-dts'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
-import PageShellHeader from '../../../components/AppShell/PageShellHeader'
+import FullPageShellHeader from '../../../components/AppShell/FullPageShellHeader'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import ProductUsps from '../../../components/ProductUsps'
 import ProductpagesContent from '../../../components/ProductpagesContent'
@@ -68,7 +68,14 @@ function ProductDownloadable(props: Props) {
 
   return (
     <>
-      <PageShellHeader backFallbackHref={backFallbackHref} backFallbackTitle={backFallbackTitle} />
+      <FullPageShellHeader
+        backFallbackHref={backFallbackHref}
+        backFallbackTitle={backFallbackTitle}
+      >
+        <Title size='small' component='span'>
+          {product.name}
+        </Title>
+      </FullPageShellHeader>
       <JsonLd<Product>
         item={{
           '@context': 'https://schema.org',
