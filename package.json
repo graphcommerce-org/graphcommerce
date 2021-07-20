@@ -1,7 +1,7 @@
 {
   "name": "project-reachdigital.nl",
   "homepage": "https://soxbase.vercel.app",
-  "version": "2.100.1",
+  "version": "2.100.2-alpha.0",
   "private": true,
   "workspaces": [
     "docs",
@@ -56,9 +56,9 @@
     }
   },
   "dependencies": {
-    "@reachdigital/browserslist-config-pwa": "2.100.1",
-    "@reachdigital/eslint-config-pwa": "2.100.1",
-    "@reachdigital/prettier-config-pwa": "2.100.1",
+    "@reachdigital/browserslist-config-pwa": "2.100.2-alpha.0",
+    "@reachdigital/eslint-config-pwa": "2.100.2-alpha.0",
+    "@reachdigital/prettier-config-pwa": "2.100.2-alpha.0",
     "lerna": "^4.0.0",
     "patch-package": "^6.4.3",
     "pm2": "^5.1.0",
@@ -70,10 +70,7 @@
   "devDependencies": {
     "@babel/compat-data": "^7.14.7",
     "@babel/core": "^7.14.6",
-    "@commitlint/cli": "^12.1.4",
-    "@commitlint/config-conventional": "^12.1.4",
     "@graphql-typed-document-node/patch-cli": "^3.0.8",
-    "@semantic-release/git": "^9.0.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@types/node": "^16.3.3",
@@ -88,80 +85,7 @@
     "prettier": "^2.3.2",
     "pretty-quick": "^3.1.1",
     "react-test-renderer": "^17.0.2",
-    "semantic-release": "^17.4.4",
-    "semantic-release-slack-bot": "^2.1.1",
     "ts-jest": "^27.0.3",
     "typescript": "^4.3.5"
-  },
-  "release": {
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      [
-        "@semantic-release/release-notes-generator",
-        {
-          "preset": "conventionalcommits",
-          "presetConfig": {
-            "types": [
-              {
-                "type": "docs",
-                "section": "Documentation"
-              },
-              {
-                "type": "feat",
-                "section": "Features"
-              },
-              {
-                "type": "fix",
-                "section": "Fixes"
-              },
-              {
-                "type": "perf",
-                "section": "Performance Improvements"
-              },
-              {
-                "type": "build",
-                "section": "Build"
-              },
-              {
-                "type": "refactor",
-                "section": "Refactor"
-              }
-            ]
-          }
-        }
-      ],
-      "@semantic-release/npm",
-      "@semantic-release/git",
-      "@semantic-release/github",
-      [
-        "semantic-release-slack-bot",
-        {
-          "notifyOnSuccess": true,
-          "notifyOnFail": true,
-          "markdownReleaseNotes": true,
-          "onSuccessTemplate": {
-            "blocks": [
-              {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "*New release for $repo_url 🎉*\n$release_notes"
-                }
-              }
-            ]
-          }
-        }
-      ]
-    ],
-    "branches": [
-      {
-        "name": "master"
-      }
-    ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
   }
 }
