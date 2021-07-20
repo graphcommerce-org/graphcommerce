@@ -21,7 +21,8 @@
     "@graphql-mesh/types": "^0.42.0",
     "apollo-server-micro": "^3.0.1",
     "graphql": "15.5.1",
-    "micro-cors": "^0.1.1"
+    "micro-cors": "^0.1.1",
+    "ts-tiny-invariant": "^0.0.3"
   },
   "devDependencies": {
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
