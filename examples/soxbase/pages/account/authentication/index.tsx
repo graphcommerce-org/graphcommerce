@@ -7,7 +7,15 @@ import {
   CustomerDocument,
 } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import { IconHeader, GetStaticProps, SectionContainer, iconLock } from '@reachdigital/next-ui'
+import {
+  IconHeader,
+  GetStaticProps,
+  SectionContainer,
+  iconLock,
+  AppShellTitle,
+  SheetShellHeader,
+  Title,
+} from '@reachdigital/next-ui'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
@@ -31,22 +39,33 @@ function AccountAuthenticationPage() {
     )
 
   return (
-    <Container maxWidth='md'>
-      <PageMeta title='Authentication' metaDescription='Change password' metaRobots={['noindex']} />
-      <NoSsr>
-        <IconHeader src={iconLock} title='Authentication' alt='authentication' size='large' />
-        <SectionContainer labelLeft='Password'>
-          {customer && <ChangePasswordForm />}
-        </SectionContainer>
-      </NoSsr>
-    </Container>
+    <>
+      <SheetShellHeader backFallbackTitle='Account' backFallbackHref='/account'>
+        <Title size='small' component='span' icon={iconLock}>
+          Orders
+        </Title>
+      </SheetShellHeader>
+      <Container maxWidth='md'>
+        <PageMeta
+          title='Authentication'
+          metaDescription='Change password'
+          metaRobots={['noindex']}
+        />
+        <NoSsr>
+          <AppShellTitle icon={iconLock}>Authentication</AppShellTitle>
+          <SectionContainer labelLeft='Password'>
+            {customer && <ChangePasswordForm />}
+          </SectionContainer>
+        </NoSsr>
+      </Container>
+    </>
   )
 }
 
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
-  sharedKey: () => 'account-authentication',
+  sharedKey: () => 'page',
 }
 AccountAuthenticationPage.pageOptions = pageOptions
 

@@ -1,4 +1,5 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { UseStyles } from '@reachdigital/next-ui'
 import React from 'react'
 
 const useStyles = makeStyles(
@@ -14,11 +15,11 @@ const useStyles = makeStyles(
   },
 )
 
-export type NoSearchResultsProps = { search: string }
+export type NoSearchResultsProps = { search: string } & UseStyles<typeof useStyles>
 
 export default function NoSearchResults(props: NoSearchResultsProps) {
   const { search } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   return (
     <div className={classes.container}>

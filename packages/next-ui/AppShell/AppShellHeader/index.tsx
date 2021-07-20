@@ -24,6 +24,7 @@ export type AppShellHeaderProps = {
   additional?: React.ReactNode
   backFallbackHref?: string | null
   backFallbackTitle?: string | null
+  fill?: 'both' | 'mobile-only'
 } & UseStyles<typeof useStyles>
 
 const useStyles = makeStyles(
@@ -80,6 +81,13 @@ const useStyles = makeStyles(
         top: 98,
       },
     },
+    sheetHeaderNoTitleFillMobileOnly: {
+      [theme.breakpoints.up('md')]: {
+        pointerEvents: 'none',
+        background: 'transparent',
+        top: 98,
+      },
+    },
     innerContainer: {
       display: 'grid',
       textAlign: 'center',
@@ -101,6 +109,11 @@ const useStyles = makeStyles(
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
+    },
+    fillMobileOnly: {
+      [theme.breakpoints.up('md')]: {
+        display: 'none',
+      },
     },
     logoContainer: {
       position: 'absolute',
@@ -145,6 +158,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     scrolled,
     backFallbackHref,
     backFallbackTitle,
+    fill = 'both',
   } = props
   const router = usePageRouter()
   const { closeSteps, backSteps } = usePageContext()
@@ -153,12 +167,13 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   const { titleRef, contentHeaderRef } = useAppShellHeaderContext()
 
   const noChildren = typeof children === 'undefined' || !children
+  const fillMobileOnly = fill === 'mobile-only'
 
   const sheetHeaderHeight = useMotionValue<number>(0)
   const titleOffset = useMotionValue<number>(100)
   const titleHeight = useMotionValue<number>(100)
 
-  // Measure the title sizes so we can aimate the opacity
+  // Measure the title sizes so we can animate the opacity
   useEffect(() => {
     if (!titleRef.current) return () => {}
 
@@ -172,7 +187,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     return () => ro.disconnect()
   }, [titleHeight, titleOffset, titleRef])
 
-  // Measure the sheetHeight sizes so we can aimate the opacity
+  // Measure the sheetHeight sizes so we can animate the opacity
   useEffect(() => {
     if (!contentHeaderRef.current) return () => {}
 
@@ -252,6 +267,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
         classes?.sheetHeader,
         scrolled && classes?.sheetHeaderScrolled,
         noChildren && classes.sheetHeaderNoTitle,
+        fillMobileOnly && classes.sheetHeaderNoTitleFillMobileOnly,
       )}
       ref={contentHeaderRef}
     >
@@ -278,18 +294,26 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
         {leftAction && <div>{leftAction}</div>}
         <div className={classes.innerContainer}>
           {children && (
-            <m.div style={{ opacity: scrolled ? 1 : opacityFadeIn }} className={classes.childs}>
+            <m.div
+              style={{ opacity: scrolled ? 1 : opacityFadeIn }}
+              className={clsx(classes.childs, fillMobileOnly && classes.fillMobileOnly)}
+            >
               {children}
             </m.div>
           )}
         </div>
         <div className={classes?.sheetHeaderActionRight}>{rightAction}</div>
       </div>
-      {additional && <>{additional}</>}
+      <div className={clsx(fillMobileOnly && classes.fillMobileOnly)}>
+        {additional && <>{additional}</>}
+      </div>
       <div>
         {children &&
           (divider ?? (
-            <m.div className={classes.divider} style={{ opacity: scrolled ? 1 : opacityFadeIn }} />
+            <m.div
+              className={clsx(classes.divider, fillMobileOnly && classes.fillMobileOnly)}
+              style={{ opacity: scrolled ? 1 : opacityFadeIn }}
+            />
           ))}
       </div>
     </div>

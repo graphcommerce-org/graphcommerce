@@ -7,7 +7,15 @@ import {
   ApolloCustomerErrorFullPage,
 } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import { FullPageMessage, IconHeader, SvgImage, iconStar } from '@reachdigital/next-ui'
+import {
+  FullPageMessage,
+  IconHeader,
+  SvgImage,
+  iconStar,
+  AppShellTitle,
+  SheetShellHeader,
+  Title,
+} from '@reachdigital/next-ui'
 import { GetStaticProps } from 'next'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
@@ -33,32 +41,43 @@ function AccountReviewsPage() {
     )
 
   return (
-    <Container maxWidth='md'>
-      <PageMeta title='Reviews' metaDescription='View all your reviews' metaRobots={['noindex']} />
-      <NoSsr>
-        {((customer?.reviews && customer?.reviews.items.length < 1) || !customer?.reviews) && (
-          <FullPageMessage
-            title={`You haven't placed any reviews yet`}
-            description='Discover our collection and write your first review!'
-            icon={<SvgImage src={iconStar} size={148} alt='star' />}
-          />
-        )}
+    <>
+      <SheetShellHeader backFallbackTitle='Account' backFallbackHref='/account'>
+        <Title size='small' component='span' icon={iconStar}>
+          Orders
+        </Title>
+      </SheetShellHeader>
+      <Container maxWidth='md'>
+        <PageMeta
+          title='Reviews'
+          metaDescription='View all your reviews'
+          metaRobots={['noindex']}
+        />
+        <NoSsr>
+          {((customer?.reviews && customer?.reviews.items.length < 1) || !customer?.reviews) && (
+            <FullPageMessage
+              title={`You haven't placed any reviews yet`}
+              description='Discover our collection and write your first review!'
+              icon={<SvgImage src={iconStar} size={148} alt='star' />}
+            />
+          )}
 
-        {customer?.reviews && customer?.reviews.items.length > 1 && (
-          <>
-            <IconHeader src={iconStar} title='Reviews' alt='reviews' size='large' />
-            {customer?.reviews && <AccountReviews {...customer?.reviews} loading={loading} />}
-          </>
-        )}
-      </NoSsr>
-    </Container>
+          {customer?.reviews && customer?.reviews.items.length > 1 && (
+            <>
+              <AppShellTitle icon={iconStar}>Reviews</AppShellTitle>
+              {customer?.reviews && <AccountReviews {...customer?.reviews} loading={loading} />}
+            </>
+          )}
+        </NoSsr>
+      </Container>
+    </>
   )
 }
 
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
-  sharedKey: () => 'account',
+  sharedKey: () => 'page',
 }
 AccountReviewsPage.pageOptions = pageOptions
 

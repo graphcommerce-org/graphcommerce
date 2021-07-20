@@ -1,9 +1,11 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { UseStyles } from '@reachdigital/next-ui'
 import React from 'react'
 import { CategoryDescriptionFragment } from './CategoryDescription.gql'
 
 type CategoryDescriptionProps = Omit<CategoryDescriptionFragment, 'uid'> &
-  JSX.IntrinsicElements['div']
+  JSX.IntrinsicElements['div'] &
+  UseStyles<typeof useStyles>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

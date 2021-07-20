@@ -61,101 +61,104 @@ function AccountIndexPage() {
   const latestOrderDate = new Date(latestOrder?.order_date ?? new Date())
 
   return (
-    <Container maxWidth='md'>
-      <NoSsr>
-        <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
-        <PageShellHeader>
-          <Title component='span' size='small'>
-            Account
-          </Title>
-        </PageShellHeader>
-        <AppShellTitle icon={iconPersonAlt}>
-          <Title>Account</Title>
-        </AppShellTitle>
+    <>
+      <PageShellHeader backFallbackHref='/' backFallbackTitle='Home'>
+        <Title component='span' size='small' icon={iconPersonAlt}>
+          Account
+        </Title>
+      </PageShellHeader>
+      <Container maxWidth='md'>
+        <NoSsr>
+          <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
 
-        <AccountMenu>
-          <AccountMenuItem
-            href='/account/name'
-            iconSrc={iconId}
-            title='Name'
-            subtitle={`${customer?.firstname} ${customer?.lastname}`}
-          />
-          <AccountMenuItem
-            href='/account/contact'
-            iconSrc={iconEmailOutline}
-            title='Contact'
-            subtitle={customer?.email}
-          />
-          <AccountMenuItem
-            href='/account/authentication'
-            iconSrc={iconLock}
-            title='Authentication'
-            subtitle='Password'
-          />
-          <AccountMenuItem
-            href='/account/orders'
-            iconSrc={iconBox}
-            title='Orders'
-            subtitle={
-              latestOrder ? (
-                <>
-                  <time dateTime={latestOrderDate.toDateString()}>
-                    <TimeAgo date={latestOrderDate} locale={locale} />
-                  </time>
-                  {', '}
-                  {latestOrder?.items && (
-                    <OrderStateLabelInline
-                      items={latestOrder?.items}
-                      renderer={{
-                        Ordered: () => <span>processed</span>,
-                        Invoiced: () => <span>invoiced</span>,
-                        Shipped: () => <span>shipped</span>,
-                        Refunded: () => <span>refunded</span>,
-                        Canceled: () => <span>canceled</span>,
-                        Returned: () => <span>returned</span>,
-                        Partial: () => <span>partially processed</span>,
-                      }}
-                    />
-                  )}
-                </>
-              ) : undefined
-            }
-          />
-          <AccountMenuItem
-            href='/account/addresses'
-            iconSrc={iconHome}
-            title='Addresses'
-            subtitle={address ? <AddressSingleLine {...address} /> : undefined}
-          />
-          {customer?.reviews.items.length !== 0 && (
+          <AppShellTitle icon={iconPersonAlt}>
+            <Title>Account</Title>
+          </AppShellTitle>
+
+          <AccountMenu>
             <AccountMenuItem
-              href='/account/reviews'
-              iconSrc={iconStar}
-              title='Reviews'
-              subtitle={`Written ${customer?.reviews.items.length} reviews`}
+              href='/account/name'
+              iconSrc={iconId}
+              title='Name'
+              subtitle={`${customer?.firstname} ${customer?.lastname}`}
             />
-          )}
-          <AccountMenuItem
-            iconSrc={iconNewspaper}
-            title='Newsletter'
-            subtitle='Be the first to know about everything new!'
-            endIcon={<Switch color='primary' />}
-          />
-          <SignOutForm
-            button={({ formState }) => (
+            <AccountMenuItem
+              href='/account/contact'
+              iconSrc={iconEmailOutline}
+              title='Contact'
+              subtitle={customer?.email}
+            />
+            <AccountMenuItem
+              href='/account/authentication'
+              iconSrc={iconLock}
+              title='Authentication'
+              subtitle='Password'
+            />
+            <AccountMenuItem
+              href='/account/orders'
+              iconSrc={iconBox}
+              title='Orders'
+              subtitle={
+                latestOrder ? (
+                  <>
+                    <time dateTime={latestOrderDate.toDateString()}>
+                      <TimeAgo date={latestOrderDate} locale={locale} />
+                    </time>
+                    {', '}
+                    {latestOrder?.items && (
+                      <OrderStateLabelInline
+                        items={latestOrder?.items}
+                        renderer={{
+                          Ordered: () => <span>processed</span>,
+                          Invoiced: () => <span>invoiced</span>,
+                          Shipped: () => <span>shipped</span>,
+                          Refunded: () => <span>refunded</span>,
+                          Canceled: () => <span>canceled</span>,
+                          Returned: () => <span>returned</span>,
+                          Partial: () => <span>partially processed</span>,
+                        }}
+                      />
+                    )}
+                  </>
+                ) : undefined
+              }
+            />
+            <AccountMenuItem
+              href='/account/addresses'
+              iconSrc={iconHome}
+              title='Addresses'
+              subtitle={address ? <AddressSingleLine {...address} /> : undefined}
+            />
+            {customer?.reviews.items.length !== 0 && (
               <AccountMenuItem
-                iconSrc={iconShutdown}
-                loading={formState.isSubmitting}
-                type='submit'
-                disabled={loading}
-                title='Sign out'
-                noBorderBottom
+                href='/account/reviews'
+                iconSrc={iconStar}
+                title='Reviews'
+                subtitle={`Written ${customer?.reviews.items.length} reviews`}
               />
             )}
-          />
-        </AccountMenu>
-      </NoSsr>
-    </Container>
+            <AccountMenuItem
+              iconSrc={iconNewspaper}
+              title='Newsletter'
+              subtitle='Be the first to know about everything new!'
+              endIcon={<Switch color='primary' />}
+            />
+            <SignOutForm
+              button={({ formState }) => (
+                <AccountMenuItem
+                  iconSrc={iconShutdown}
+                  loading={formState.isSubmitting}
+                  type='submit'
+                  disabled={loading}
+                  title='Sign out'
+                  noBorderBottom
+                />
+              )}
+            />
+          </AccountMenu>
+        </NoSsr>
+      </Container>
+    </>
   )
 }
 

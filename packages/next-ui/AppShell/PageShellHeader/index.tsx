@@ -1,14 +1,13 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 import { useViewportScroll } from 'framer-motion'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import AppShellHeader, { AppShellHeaderProps } from '../AppShellHeader'
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   sheetHeader: {
     marginBottom: 62,
   },
-  sheetHeaderActions: {},
 }))
 
 export type PageShellHeaderProps = Omit<

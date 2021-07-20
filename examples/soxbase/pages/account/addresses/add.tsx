@@ -8,7 +8,15 @@ import {
   CustomerDocument,
 } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import { IconHeader, GetStaticProps, SectionContainer, iconAddresses } from '@reachdigital/next-ui'
+import {
+  IconHeader,
+  GetStaticProps,
+  SectionContainer,
+  iconAddresses,
+  SheetShellHeader,
+  Title,
+  AppShellTitle,
+} from '@reachdigital/next-ui'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
@@ -33,22 +41,29 @@ function AddNewAddressPage(props: Props) {
     )
 
   return (
-    <Container maxWidth='md'>
-      <PageMeta title='Add address' metaDescription='Add new address' metaRobots={['noindex']} />
-      <NoSsr>
-        <IconHeader src={iconAddresses} title='Addresses' alt='addresses' size='large' />
-        <SectionContainer labelLeft='Add new address'>
-          <CreateCustomerAddressForm />
-        </SectionContainer>
-      </NoSsr>
-    </Container>
+    <>
+      <SheetShellHeader backFallbackTitle='Account' backFallbackHref='/account'>
+        <Title size='small' component='span' icon={iconAddresses}>
+          Addresses
+        </Title>
+      </SheetShellHeader>
+      <Container maxWidth='md'>
+        <PageMeta title='Add address' metaDescription='Add new address' metaRobots={['noindex']} />
+        <NoSsr>
+          <AppShellTitle icon={iconAddresses}>Addresses</AppShellTitle>
+          <SectionContainer labelLeft='Add new address'>
+            <CreateCustomerAddressForm />
+          </SectionContainer>
+        </NoSsr>
+      </Container>
+    </>
   )
 }
 
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
-  sharedKey: () => 'account-addresses',
+  sharedKey: () => 'page',
 }
 AddNewAddressPage.pageOptions = pageOptions
 

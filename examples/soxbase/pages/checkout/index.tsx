@@ -88,7 +88,7 @@ function ShippingPage() {
                         loading={buttonState.isSubmitting || buttonState.isSubmitSuccessful}
                         onClick={submit}
                       >
-                        Next{' '}
+                        Next
                         <SvgImage
                           src={iconChevronRight}
                           alt='chevron right'

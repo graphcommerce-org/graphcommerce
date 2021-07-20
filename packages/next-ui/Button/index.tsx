@@ -18,6 +18,7 @@ type ButtonClassKey =
   | 'textBold'
   | 'withStartIcon'
   | 'startIconText'
+  | 'textContainer'
 
 type ClassKeys = ButtonClassKey | MuiButtonClassKey
 type Text = 'normal' | 'bold'
@@ -109,7 +110,16 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
 
   const pillClasses = useStyles({
     ...baseProps,
-    classes: { pill, pillPrimary, pillSecondary, pillSizeLarge, pillSizeSmall, pillLink, textBold },
+    classes: {
+      pill,
+      pillPrimary,
+      pillSecondary,
+      pillSizeLarge,
+      pillSizeSmall,
+      pillLink,
+      textBold,
+      ...buttonClasses,
+    },
   })
 
   const variantMap = {
@@ -118,6 +128,7 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
   }
 
   const withIcon = typeof buttonProps.startIcon !== 'undefined'
+  const content = <>{loading ? <>Loading</> : children}</>
 
   return (
     <MuiButton
@@ -143,9 +154,8 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
         className,
       )}
     >
-      <span className={clsx(classes.text, withIcon && pillClasses.startIconText)}>
-        {loading ? <>Loading</> : children}
-      </span>
+      {withIcon && <span className={pillClasses.startIconText}>{content}</span>}
+      {!withIcon && content}
     </MuiButton>
   )
 })

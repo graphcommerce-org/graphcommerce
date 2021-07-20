@@ -84,6 +84,7 @@ export default function CreateCustomerAddressForm() {
             variant='contained'
             color='primary'
             size='large'
+            text='bold'
             loading={formState.isSubmitting}
           >
             Save changes
