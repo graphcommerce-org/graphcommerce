@@ -72,7 +72,7 @@
     "@reachdigital/magento-product-configurable": "^2.100.11",
     "@reachdigital/magento-product-downloadable": "^2.100.10",
     "@reachdigital/magento-product-grouped": "^2.100.10",
-    "@reachdigital/magento-product-review": "^2.100.10",
+    "@reachdigital/magento-review": "^2.100.10",
     "@reachdigital/magento-product-simple": "^2.100.10",
     "@reachdigital/magento-product-virtual": "^2.100.10",
     "@reachdigital/magento-search": "^2.100.10",

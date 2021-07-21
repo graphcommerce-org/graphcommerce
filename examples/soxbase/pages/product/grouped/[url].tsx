@@ -16,7 +16,7 @@ import {
   GroupedProductPageDocument,
   GroupedProductPageQuery,
 } from '@reachdigital/magento-product-grouped'
-import { jsonLdProductReview } from '@reachdigital/magento-product-review'
+import { jsonLdProductReview } from '@reachdigital/magento-review'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { JsonLd, GetStaticProps, Title } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'

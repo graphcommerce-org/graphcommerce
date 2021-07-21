@@ -1,6 +1,6 @@
 {
-  "name": "@reachdigital/magento-product-review",
-  "version": "2.101.1",
+  "name": "@reachdigital/magento-review",
+  "version": "2.101.0",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",

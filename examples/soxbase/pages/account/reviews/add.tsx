@@ -1,12 +1,11 @@
 import { useQuery } from '@apollo/client'
 import { Box, Container, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
+import { ApolloCustomerErrorFullPage, CustomerDocument } from '@reachdigital/magento-customer'
 import {
-  ApolloCustomerErrorFullPage,
+  ProductReviewProductNameDocument,
   CreateProductReviewForm,
-  CustomerDocument,
-} from '@reachdigital/magento-customer'
-import { ProductReviewProductNameDocument } from '@reachdigital/magento-product-review'
+} from '@reachdigital/magento-review'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { FullPageMessage, responsiveVal, SvgImage, iconBox } from '@reachdigital/next-ui'
 import { GetStaticProps } from 'next'
