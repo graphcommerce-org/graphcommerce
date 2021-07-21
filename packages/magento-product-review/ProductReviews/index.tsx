@@ -2,11 +2,12 @@ import { useQuery } from '@apollo/client'
 import { Chip, makeStyles, Theme, Typography } from '@material-ui/core'
 import {
   Button,
-  Pagination,
-  StarRatingField,
-  responsiveVal,
-  SvgImage,
+  iconStarFilledMuted,
   iconStarYellow,
+  Pagination,
+  responsiveVal,
+  StarRatingField,
+  SvgImage,
 } from '@reachdigital/next-ui'
 import Link from 'next/link'
 import React, { useState } from 'react'
@@ -33,7 +34,7 @@ const useStyles = makeStyles(
       height: '14px',
     },
     chipRoot: {
-      boxShadow: theme.shadows[2],
+      boxShadow: theme.shadows[5],
     },
     label: {
       marginBottom: '-2px',
@@ -54,7 +55,7 @@ const useStyles = makeStyles(
       marginTop: 32,
     },
     paginationRoot: {
-      margin: 0,
+      margin: `0 -16px 0`,
     },
     paginationButton: {
       padding: 0,
@@ -80,6 +81,15 @@ const useStyles = makeStyles(
       rowGap: responsiveVal(8, 16),
       gap: 8,
       alignItems: 'center',
+    },
+    writeReviewButton: {
+      [theme.breakpoints.down('xs')]: {
+        padding: '8px 16px 8px',
+        whiteSpace: 'nowrap',
+      },
+    },
+    container: {
+      marginTop: `calc(${theme.spacings.xxs} * -1)`,
     },
   }),
   { name: 'ProductReviews' },
@@ -120,8 +130,60 @@ export default function ProductReviews(props: ProductReviewsProps) {
     return null
   }
 
+  const actions = (
+    <div className={classes.reviewsBottomContainer}>
+      <Link href={`/account/reviews/add?sku=${sku}`} passHref>
+        <Button
+          variant='pill'
+          color='primary'
+          text='bold'
+          size='large'
+          className={classes.writeReviewButton}
+        >
+          Write a review
+        </Button>
+      </Link>
+
+      <Pagination
+        count={total_pages ?? 1}
+        page={current_page ?? 1}
+        classes={{ root: classes.paginationRoot }}
+        renderLink={(p: number, icon: React.ReactNode) => (
+          <Button
+            onClick={() => {
+              setPage(p)
+            }}
+            className={classes.paginationButton}
+          >
+            {icon}
+          </Button>
+        )}
+      />
+    </div>
+  )
+
+  if (reviews?.items.length === 0) {
+    return (
+      <div className={classes.container}>
+        <div className={classes.review}>
+          <div className={classes.title}>
+            <Chip
+              label='0/0'
+              icon={<SvgImage src={iconStarFilledMuted} size={10} alt='review' loading='lazy' />}
+              color='default'
+              variant='outlined'
+              classes={{ root: classes.chipRoot, icon: classes.icon, label: classes.label }}
+            />
+            <Typography variant='h5'>Be the first to write a review!</Typography>
+          </div>
+        </div>
+        {actions}
+      </div>
+    )
+  }
+
   return (
-    <div>
+    <div className={classes.container}>
       {!loading &&
         myReviews.items.map((review) => (
           <div key={review?.summary} className={classes.review}>
@@ -160,29 +222,7 @@ export default function ProductReviews(props: ProductReviewsProps) {
             </div>
           </div>
         ))}
-      <div className={classes.reviewsBottomContainer}>
-        <Link href={`/account/reviews/add?sku=${sku}`} passHref>
-          <Button variant='pill' color='primary' text='bold' size='large'>
-            Write a review
-          </Button>
-        </Link>
-
-        <Pagination
-          count={total_pages ?? 1}
-          page={current_page ?? 1}
-          classes={{ root: classes.paginationRoot }}
-          renderLink={(p: number, icon: React.ReactNode) => (
-            <Button
-              onClick={() => {
-                setPage(p)
-              }}
-              className={classes.paginationButton}
-            >
-              {icon}
-            </Button>
-          )}
-        />
-      </div>
+      {actions}
     </div>
   )
 }
