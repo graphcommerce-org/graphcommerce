@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.101.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.101.1...@reachdigital/next-ui@2.101.2) (2021-07-21)
+
+
+### Bug Fixes
+
+* scrollbar layout shift when using layered nav ([f51f285](https://github.com/ho-nl/m2-pwa/commit/f51f28572e1f0116ef46869bd3eb988585e0d5b9))
+
+
+
+
+
 # [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.100.10...@reachdigital/next-ui@2.101.0) (2021-07-20)
 
 
