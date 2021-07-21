@@ -10,7 +10,7 @@ import {
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
 
-import ApolloCustomerErrorAlert from './ApolloCustomerError/ApolloCustomerErrorAlert'
+import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
   ChangePasswordDocument,
   ChangePasswordMutation,

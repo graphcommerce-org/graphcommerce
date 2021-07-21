@@ -1,0 +1,7 @@
+export * from './Customer.gql'
+export * from './CustomerInfo.gql'
+export * from './CustomerToken.gql'
+export * from './IsEmailAvailable.gql'
+export * from './SignIn.gql'
+export * from './SignUp.gql'
+export * from './typePolicies'

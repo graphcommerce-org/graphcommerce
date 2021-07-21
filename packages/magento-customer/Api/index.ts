@@ -1,0 +1,6 @@
+export * from './AccountDashboard/AccountDashboard.gql'
+export * from './AccountDashboard/AccountDashboardAddresses.gql'
+export * from './AccountDashboard/AccountDashboardReviews.gql'
+export * from './UpdateCustomerName/UpdateCustomerName.gql'
+export * from './CustomerAddress/CustomerAddress.gql'
+export * from './CustomerAddressEdit/CustomerAddressEdit.gql'
