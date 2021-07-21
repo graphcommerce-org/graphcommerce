@@ -11,10 +11,8 @@ const useStyles = makeStyles(
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      marginBottom: -8,
       [theme.breakpoints.up('md')]: {
         padding: `${theme.page.vertical} ${theme.page.horizontal}`,
-        marginBottom: -12,
         top: 0,
         display: 'flex',
         pointerEvents: 'none',

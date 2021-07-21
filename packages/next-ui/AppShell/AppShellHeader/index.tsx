@@ -36,8 +36,11 @@ const useStyles = makeStyles(
       position: 'sticky',
       top: 0,
       background: theme.palette.background.default,
-      marginBottom: 32,
       zIndex: 98,
+      [theme.breakpoints.up('md')]: {
+        marginBottom: 16,
+        marginTop: 16,
+      },
     },
     sheetHeaderScrolled: {
       marginTop: -60,
