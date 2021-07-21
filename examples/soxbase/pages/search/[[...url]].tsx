@@ -132,7 +132,6 @@ function SearchResultPage(props: Props) {
 
 SearchResultPage.pageOptions = {
   SharedComponent: FullPageShell,
-  sharedKey: () => 'page',
 } as PageOptions
 
 export default SearchResultPage

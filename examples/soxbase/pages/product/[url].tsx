@@ -123,7 +123,6 @@ function ProductSimple(props: Props) {
 
 ProductSimple.pageOptions = {
   SharedComponent: FullPageShell,
-  sharedKey: () => 'page',
 } as PageOptions
 
 export default ProductSimple

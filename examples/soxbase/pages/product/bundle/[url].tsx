@@ -119,7 +119,6 @@ function ProductBundle(props: Props) {
 
 ProductBundle.pageOptions = {
   SharedComponent: FullPageShell,
-  sharedKey: () => 'page',
 } as PageOptions
 
 export default ProductBundle

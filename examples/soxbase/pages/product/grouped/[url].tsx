@@ -133,7 +133,6 @@ function ProductGrouped(props: Props) {
 
 ProductGrouped.pageOptions = {
   SharedComponent: FullPageShell,
-  sharedKey: () => 'page',
 } as PageOptions
 
 export default ProductGrouped

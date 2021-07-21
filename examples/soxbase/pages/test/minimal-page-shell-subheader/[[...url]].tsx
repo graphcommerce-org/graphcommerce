@@ -93,7 +93,6 @@ function MinimalAppShellSubheader(props: Props) {
 
 MinimalAppShellSubheader.pageOptions = {
   SharedComponent: MinimalPageShell,
-  sharedKey: () => 'page',
 } as PageOptions
 
 export default MinimalAppShellSubheader

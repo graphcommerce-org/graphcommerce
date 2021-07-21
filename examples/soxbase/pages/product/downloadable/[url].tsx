@@ -132,7 +132,6 @@ function ProductDownloadable(props: Props) {
 
 ProductDownloadable.pageOptions = {
   SharedComponent: FullPageShell,
-  sharedKey: () => 'page',
 } as PageOptions
 
 export default ProductDownloadable

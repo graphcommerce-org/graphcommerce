@@ -154,7 +154,6 @@ function ProductConfigurable(props: Props) {
 
 ProductConfigurable.pageOptions = {
   SharedComponent: FullPageShell,
-  sharedKey: () => 'page',
 } as PageOptions
 
 export default ProductConfigurable

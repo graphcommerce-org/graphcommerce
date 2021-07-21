@@ -119,7 +119,6 @@ function ProductVirtual(props: Props) {
 
 ProductVirtual.pageOptions = {
   SharedComponent: FullPageShell,
-  sharedKey: () => 'page',
 } as PageOptions
 
 export default ProductVirtual
