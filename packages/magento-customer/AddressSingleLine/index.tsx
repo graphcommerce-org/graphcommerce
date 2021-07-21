@@ -1,10 +1,7 @@
-import { OrderAddressFragment } from '@reachdigital/magento-order'
 import { useFindCountry } from '@reachdigital/magento-store'
 import { CustomerAddressFragment } from '../CustomerAddress/CustomerAddress.gql'
 
-type AddressSingleLineProps = CustomerAddressFragment | OrderAddressFragment
-
-export default function AddressSingleLine(props: AddressSingleLineProps) {
+export default function AddressSingleLine(props: CustomerAddressFragment) {
   const {
     company,
     prefix,

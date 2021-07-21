@@ -1,5 +1,4 @@
-export { default as AccountLatestOrder } from './AccountLatestOrder'
-export { default as AccountOrders } from './AccountOrders'
+export { default as AccountLatestOrder } from '../magento-customer-account/AccountLatestOrder'
 export { default as OrderDetails } from './OrderDetails'
 export { default as OrderItems } from './OrderItems'
 export { default as useOrderCardItemImages } from './OrderCardItemImage/useOrderCardItemImages'

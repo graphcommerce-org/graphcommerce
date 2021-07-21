@@ -1,9 +1,12 @@
+import {
+  NoOrdersFound,
+  OrderCard,
+  useOrderCardItemImages,
+} from '@reachdigital/magento-customer-order'
+
 import { SectionContainer } from '@reachdigital/next-ui'
 import React from 'react'
-import { AccountOrdersFragment } from '../AccountOrders/AccountOrders.gql'
-import NoOrdersFound from '../NoOrdersFound'
-import OrderCard from '../OrderCard'
-import useOrderCardItemImages from '../OrderCardItemImage/useOrderCardItemImages'
+import { AccountOrdersFragment } from './AccountOrders'
 
 type AccountLatestOrderProps = AccountOrdersFragment & {
   loading: boolean

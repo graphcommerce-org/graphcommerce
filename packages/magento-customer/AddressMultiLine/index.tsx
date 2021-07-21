@@ -1,5 +1,4 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
-import { OrderAddressFragment } from '@reachdigital/magento-order'
 import { useFindCountry } from '@reachdigital/magento-store'
 import { UseStyles } from '@reachdigital/next-ui'
 import { CustomerAddressFragment } from '../CustomerAddress/CustomerAddress.gql'
@@ -25,8 +24,7 @@ const useStyles = makeStyles(
   },
 )
 
-type AddressMultiLineProps = (CustomerAddressFragment | OrderAddressFragment) &
-  UseStyles<typeof useStyles>
+type AddressMultiLineProps = CustomerAddressFragment & UseStyles<typeof useStyles>
 
 export default function AddressMultiLine(props: AddressMultiLineProps) {
   const {
