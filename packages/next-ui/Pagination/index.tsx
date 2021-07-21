@@ -31,11 +31,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: theme.spacings.lg,
     marginBottom: theme.spacings.lg,
     display: 'flex',
-    alignItems: 'left',
+    alignItems: 'center',
     justifyContent: 'center',
     fontSize: 18,
     '& span': {
-      padding: '8px 8px 0 10px',
+      padding: '0 8px 0 0',
     },
     '& a': {
       transition: 'background .25s ease',
@@ -114,10 +114,8 @@ export default function Pagination(props: PagePaginationProps) {
     <div className={classes.root}>
       {page === 1 ? chevronLeft : renderLink(page - 1, chevronLeft, prevBtnProps)}
 
-      <span className={classes.label}>
-        <span className={classes.labelTitle}>Page</span>
-        {`${page} of ${Math.max(1, count)}`}
-      </span>
+      <span className={classes.labelTitle}>Page</span>
+      <span className={classes.label}>{`${page} of ${Math.max(1, count)}`}</span>
 
       {page === count ? chevronRight : renderLink(page + 1, chevronRight, nextBtnProps)}
     </div>
