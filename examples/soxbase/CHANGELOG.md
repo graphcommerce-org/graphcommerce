@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.101.3...@reachdigital/soxbase@2.102.0) (2021-07-21)
+
+
+### Features
+
+* **reviews:** no reviews written message ([8ade3db](https://github.com/ho-nl/m2-pwa/commit/8ade3dbe830f5a59af09c002dfa38fa5349a4b61))
+
+
+
+
+
 ## [2.101.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.101.2...@reachdigital/soxbase@2.101.3) (2021-07-21)
 
 
