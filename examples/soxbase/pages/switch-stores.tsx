@@ -36,7 +36,6 @@ function StoresIndexPage({ availableStores }: Props) {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'left',
   SharedComponent: SheetShell,
-  sharedKey: () => 'switch-stores',
   sharedProps: { variant: 'left', size: responsiveVal(320, 800) },
 }
 StoresIndexPage.pageOptions = pageOptions

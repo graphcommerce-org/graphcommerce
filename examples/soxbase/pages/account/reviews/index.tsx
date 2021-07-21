@@ -77,7 +77,6 @@ function AccountReviewsPage() {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
-  sharedKey: () => 'page',
 }
 AccountReviewsPage.pageOptions = pageOptions
 

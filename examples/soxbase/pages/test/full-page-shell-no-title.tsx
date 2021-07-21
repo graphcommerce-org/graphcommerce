@@ -44,7 +44,6 @@ function FullAppShellNoTitle(props: Props) {
 
 FullAppShellNoTitle.pageOptions = {
   SharedComponent: FullPageShell,
-  sharedKey: () => 'page',
 } as PageOptions
 
 export default FullAppShellNoTitle

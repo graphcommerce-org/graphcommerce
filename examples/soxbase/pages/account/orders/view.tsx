@@ -82,7 +82,6 @@ function OrderDetailPage(props: Props) {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
-  sharedKey: () => 'page',
 }
 OrderDetailPage.pageOptions = pageOptions
 

@@ -82,7 +82,6 @@ function TestSlider({ products }: Props) {
 
 TestSlider.pageOptions = {
   SharedComponent: FullPageShell,
-  sharedKey: () => 'page',
 } as PageOptions
 export default TestSlider
 

@@ -127,6 +127,7 @@ const useStyles = makeStyles(
       },
     },
     backButton: {
+      pointerEvents: 'all',
       background: theme.palette.background.default,
       color: theme.palette.text.primary,
       '&:hover': {

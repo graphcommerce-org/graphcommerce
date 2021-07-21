@@ -106,7 +106,6 @@ function CartPage() {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'checkout',
   SharedComponent: SheetShell,
-  sharedKey: () => 'checkout',
 }
 CartPage.pageOptions = pageOptions
 
