@@ -13,7 +13,7 @@ const useStyles = makeStyles(
       color: theme.palette.primary.main,
     },
   }),
-  { name: 'OrderCard' },
+  { name: 'TrackingLink' },
 )
 
 export default function TrackingLink(props: TrackingLinkProps) {
