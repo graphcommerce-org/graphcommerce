@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.102.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.102.0...@graphcommerce/graphcommerce@2.102.1) (2021-07-21)
+
+
+### Bug Fixes
+
+* header spacings ([f00462f](https://github.com/ho-nl/m2-pwa/commit/f00462f9abb61a54552c96dbed35ef708fe05608))
+
+
+
+
+
 # [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.101.4...@graphcommerce/graphcommerce@2.102.0) (2021-07-21)
 
 
