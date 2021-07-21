@@ -3,7 +3,7 @@ import { Alert } from '@material-ui/lab'
 import { Button, Form, FormActions, FormRow } from '@reachdigital/next-ui'
 import { emailPattern, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
-import ApolloCustomerErrorAlert from './ApolloCustomerError/ApolloCustomerErrorAlert'
+import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
   ForgotPasswordDocument,
   ForgotPasswordMutation,

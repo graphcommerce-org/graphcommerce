@@ -7,7 +7,7 @@ import {
   OrderDetails,
   OrderItems,
   OrderDetailPageDocument,
-} from '@reachdigital/magento-order'
+} from '@reachdigital/magento-customer-order'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   IconHeader,

@@ -1,5 +1,5 @@
 {
-  "name": "@reachdigital/magento-order",
+  "name": "@reachdigital/magento-customer-account",
   "version": "2.100.10",
   "private": true,
   "sideEffects": false,

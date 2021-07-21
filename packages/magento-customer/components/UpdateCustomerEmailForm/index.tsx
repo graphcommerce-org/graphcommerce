@@ -7,8 +7,8 @@ import {
   FormRow,
   MessageSnackbar,
 } from '@reachdigital/next-ui'
+import { emailPattern, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
-import { emailPattern, useFormGqlMutation } from '../../react-hook-form'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
   UpdateCustomerEmailDocument,

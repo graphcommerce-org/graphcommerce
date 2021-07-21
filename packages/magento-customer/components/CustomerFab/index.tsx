@@ -3,7 +3,7 @@ import { Fab, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import { iconPersonAlt, StyledBadge, SvgImage, UseStyles } from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
-import { CustomerTokenDocument, CustomerTokenQuery } from '../CustomerToken.gql'
+import { CustomerTokenDocument, CustomerTokenQuery } from '../../hooks'
 
 const useStyles = makeStyles((theme: Theme) => ({
   colorError: {

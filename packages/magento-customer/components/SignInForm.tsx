@@ -6,9 +6,8 @@ import { FormRow, Button, FormActions } from '@reachdigital/next-ui'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import PageLink from 'next/link'
 import React from 'react'
+import { CustomerTokenDocument, SignInDocument } from '../hooks'
 import ApolloCustomerErrorAlert from './ApolloCustomerError/ApolloCustomerErrorAlert'
-import { CustomerTokenDocument } from './CustomerToken.gql'
-import { SignInDocument } from './SignIn.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

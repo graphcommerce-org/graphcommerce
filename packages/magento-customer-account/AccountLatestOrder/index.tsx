@@ -6,7 +6,7 @@ import {
 
 import { SectionContainer } from '@reachdigital/next-ui'
 import React from 'react'
-import { AccountOrdersFragment } from './AccountOrders'
+import { AccountOrdersFragment } from '../AccountOrders/AccountOrders.gql'
 
 type AccountLatestOrderProps = AccountOrdersFragment & {
   loading: boolean

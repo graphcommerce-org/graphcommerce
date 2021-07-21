@@ -2,7 +2,7 @@ import { makeStyles, TextField, Theme } from '@material-ui/core'
 import { Button, Form, FormRow } from '@reachdigital/next-ui'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React, { PropsWithChildren } from 'react'
-import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
+import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from '../hooks'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

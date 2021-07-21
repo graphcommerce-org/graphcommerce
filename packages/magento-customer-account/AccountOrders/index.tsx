@@ -1,10 +1,12 @@
 import { Link, makeStyles, Theme } from '@material-ui/core'
+import {
+  NoOrdersFound,
+  OrderCard,
+  useOrderCardItemImages,
+} from '@reachdigital/magento-customer-order'
 import { Pagination, SectionContainer } from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
-import NoOrdersFound from '../NoOrdersFound'
-import OrderCard from '../OrderCard'
-import useOrderCardItemImages from '../OrderCardItemImage/useOrderCardItemImages'
 import { AccountOrdersFragment } from './AccountOrders.gql'
 
 export type AccountOrdersProps = AccountOrdersFragment

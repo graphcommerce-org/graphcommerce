@@ -1,10 +1,10 @@
 import { Button, Form, FormActions, FormDivider, MessageSnackbar } from '@reachdigital/next-ui'
 
+import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
-import { useFormGqlMutation } from '../../react-hook-form'
+import { UpdateCustomerNameDocument } from '../../Api'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import NameFields from '../NameFields'
-import { UpdateCustomerNameDocument } from '../UpdateCustomerName/UpdateCustomerName.gql'
 
 type ChangeNameFormProps = {
   prefix?: string

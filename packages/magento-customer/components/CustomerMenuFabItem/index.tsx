@@ -8,7 +8,7 @@ import {
   iconPersonAlt,
 } from '@reachdigital/next-ui'
 import React from 'react'
-import { CustomerTokenDocument, CustomerTokenQuery } from '../CustomerToken.gql'
+import { CustomerTokenDocument, CustomerTokenQuery } from '../../hooks'
 
 const useStyles = makeStyles((theme: Theme) => ({
   colorError: {

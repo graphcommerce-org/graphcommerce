@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Box, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
+import { ProductReviewRatingInput } from '@reachdigital/graphql'
 import {
   Button,
   Form,
@@ -13,8 +14,6 @@ import {
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { ProductReviewRatingInput } from '../../graphql'
-
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { CreateProductReviewDocument } from './CreateProductReview.gql'
 import { ProductReviewRatingsMetadataDocument } from './ProductReviewRatingsMetadata.gql'

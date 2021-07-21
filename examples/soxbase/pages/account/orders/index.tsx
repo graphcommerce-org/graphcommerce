@@ -2,7 +2,8 @@ import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
 import { ApolloCustomerErrorFullPage } from '@reachdigital/magento-customer'
-import { AccountDashboardOrdersDocument, AccountOrders } from '@reachdigital/magento-order'
+import { AccountOrders } from '@reachdigital/magento-customer-account'
+import { AccountDashboardOrdersDocument } from '@reachdigital/magento-customer-order'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   AppShellTitle,

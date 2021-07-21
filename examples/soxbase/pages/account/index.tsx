@@ -9,7 +9,7 @@ import {
   ApolloCustomerErrorFullPage,
   SignOutForm,
 } from '@reachdigital/magento-customer'
-import { OrderStateLabelInline } from '@reachdigital/magento-order'
+import { OrderStateLabelInline } from '@reachdigital/magento-customer-order'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   GetStaticProps,

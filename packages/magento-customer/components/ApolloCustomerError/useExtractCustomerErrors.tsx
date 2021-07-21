@@ -1,7 +1,7 @@
 import { ApolloError, useApolloClient } from '@apollo/client'
 import { graphqlErrorByCategory } from '@reachdigital/magento-graphql'
 import { useEffect } from 'react'
-import { CustomerTokenDocument } from '../CustomerToken.gql'
+import { CustomerTokenDocument } from '../../hooks'
 
 export type UseExtractErrors = { error?: ApolloError }
 export function useExtractCustomerErrors({ error }: UseExtractErrors) {
