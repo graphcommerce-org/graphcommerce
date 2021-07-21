@@ -29,7 +29,6 @@ function AccountSignInPage() {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account-public',
   SharedComponent: SheetShell,
-  sharedKey: () => 'account',
 }
 AccountSignInPage.pageOptions = pageOptions
 

@@ -2,7 +2,14 @@ import { Box, Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CartItemSummary, CartSummary } from '@reachdigital/magento-cart'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import { Button, GetStaticProps, iconParty, PageShellHeader, Stepper, Title } from '@reachdigital/next-ui'
+import {
+  Button,
+  GetStaticProps,
+  iconParty,
+  PageShellHeader,
+  Stepper,
+  Title,
+} from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -35,17 +42,17 @@ function ShippingPage() {
           Thank you for your order!
         </Title>
       </PageShellHeader>
-    <Container maxWidth='md'>
-      <CartSummary />
-      <CartItemSummary />
-      <Box textAlign='center' m={8}>
-        <PageLink href='/' passHref>
-          <Button color='secondary' variant='pill' size='large' text='bold'>
-            Continue shopping
-          </Button>
-        </PageLink>
-      </Box>
-    </Container>
+      <Container maxWidth='md'>
+        <CartSummary />
+        <CartItemSummary />
+        <Box textAlign='center' m={8}>
+          <PageLink href='/' passHref>
+            <Button color='secondary' variant='pill' size='large' text='bold'>
+              Continue shopping
+            </Button>
+          </PageLink>
+        </Box>
+      </Container>
     </>
   )
 }

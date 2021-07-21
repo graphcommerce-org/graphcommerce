@@ -1,7 +1,7 @@
 {
   "name": "@reachdigital/graphql-mesh",
   "private": true,
-  "version": "2.100.10",
+  "version": "2.100.11",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -19,9 +19,12 @@
     "@graphql-mesh/transform-federation": "^0.5.15",
     "@graphql-mesh/transform-filter-schema": "^0.10.17",
     "@graphql-mesh/types": "^0.42.0",
+    "apollo-server-core": "^3.0.2",
     "apollo-server-micro": "^3.0.1",
     "graphql": "15.5.1",
-    "micro-cors": "^0.1.1"
+    "micro": "^9.3.4",
+    "micro-cors": "^0.1.1",
+    "ts-tiny-invariant": "^0.0.3"
   },
   "devDependencies": {
     "@reachdigital/browserslist-config-pwa": "^2.100.9",

@@ -31,11 +31,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: theme.spacings.lg,
     marginBottom: theme.spacings.lg,
     display: 'flex',
-    alignItems: 'left',
+    alignItems: 'center',
     justifyContent: 'center',
     // fontSize: 18,
     '& span': {
-      padding: '8px 8px 0 10px',
+      padding: '0 8px 0 0',
     },
     '& a': {
       transition: 'background .25s ease',
@@ -46,12 +46,24 @@ const useStyles = makeStyles((theme: Theme) => ({
         background: 'rgba(0, 0, 0, 0.04)',
       },
     },
+    [theme.breakpoints.down('xs')]: {
+      alignItems: 'center',
+    },
   },
   icon: {
     borderRadius: '100%',
     padding: 6,
     height: 40,
     width: 40,
+  },
+  label: {
+    textAlign: 'center',
+  },
+  labelTitle: {
+    display: 'inline',
+    [theme.breakpoints.down('xs')]: {
+      display: 'block',
+    },
   },
 }))
 
@@ -101,7 +113,10 @@ export default function Pagination(props: PagePaginationProps) {
   return (
     <div className={classes.root}>
       {page === 1 ? chevronLeft : renderLink(page - 1, chevronLeft, prevBtnProps)}
-      <span>{`Page ${page} of ${count}`}</span>
+
+      <span className={classes.labelTitle}>Page</span>
+      <span className={classes.label}>{`${page} of ${Math.max(1, count)}`}</span>
+
       {page === count ? chevronRight : renderLink(page + 1, chevronRight, nextBtnProps)}
     </div>
   )

@@ -111,6 +111,7 @@ export default function ChipMenu(props: ChipMenuProps) {
       <Menu
         anchorEl={openEl}
         open={!!openEl}
+        disableScrollLock
         onClose={() => {
           if (onClose) onClose()
 

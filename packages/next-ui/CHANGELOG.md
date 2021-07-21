@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.101.3...@reachdigital/next-ui@2.102.0) (2021-07-21)
+
+
+### Bug Fixes
+
+* pagination markup ([0ab7707](https://github.com/ho-nl/m2-pwa/commit/0ab7707aa4cbf49c5df1da3e806641a840ec2aff))
+* write review button mobile styles ([8f6b883](https://github.com/ho-nl/m2-pwa/commit/8f6b883fa0a513f84b7c6d8ed376b0e8d4b8a3bd))
+
+
+### Features
+
+* **reviews:** no reviews written message ([8ade3db](https://github.com/ho-nl/m2-pwa/commit/8ade3dbe830f5a59af09c002dfa38fa5349a4b61))
+
+
+
+
+
+## [2.101.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.101.2...@reachdigital/next-ui@2.101.3) (2021-07-21)
+
+
+### Bug Fixes
+
+* unresponsive back button ([91d66d7](https://github.com/ho-nl/m2-pwa/commit/91d66d762281ef9e9ffe800bb68530073a3d76f1))
+
+
+
+
+
+## [2.101.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.101.1...@reachdigital/next-ui@2.101.2) (2021-07-21)
+
+
+### Bug Fixes
+
+* scrollbar layout shift when using layered nav ([f51f285](https://github.com/ho-nl/m2-pwa/commit/f51f28572e1f0116ef46869bd3eb988585e0d5b9))
+
+
+
+
+
 # [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.100.10...@reachdigital/next-ui@2.101.0) (2021-07-20)
 
 

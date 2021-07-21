@@ -56,7 +56,6 @@ function RouteNotFoundPage() {
 
 RouteNotFoundPage.pageOptions = {
   SharedComponent: FullPageShell,
-  sharedKey: () => 'page',
 } as PageOptions
 
 export default RouteNotFoundPage

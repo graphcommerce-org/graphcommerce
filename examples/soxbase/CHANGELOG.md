@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.101.3...@reachdigital/soxbase@2.102.0) (2021-07-21)
+
+
+### Features
+
+* **reviews:** no reviews written message ([8ade3db](https://github.com/ho-nl/m2-pwa/commit/8ade3dbe830f5a59af09c002dfa38fa5349a4b61))
+
+
+
+
+
+## [2.101.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.101.2...@reachdigital/soxbase@2.101.3) (2021-07-21)
+
+
+### Bug Fixes
+
+* backdrop overlays ([7a3b7a6](https://github.com/ho-nl/m2-pwa/commit/7a3b7a6d9ef6dec8872c598f2c5674ed1c4775f2))
+* product page app shell mobile view ([2d4e91a](https://github.com/ho-nl/m2-pwa/commit/2d4e91a741dc78e563eabcccad1ce183c0b41d85))
+* shared key usage ([5664886](https://github.com/ho-nl/m2-pwa/commit/56648860f7b77cabc1f294f6cf41f9621b9ee94b))
+
+
+
+
+
 # [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.100.11...@reachdigital/soxbase@2.101.0) (2021-07-20)
 
 

@@ -164,7 +164,6 @@ function AccountIndexPage() {
 
 const pageOptions: PageOptions<MinimalPageShellProps> = {
   SharedComponent: MinimalPageShell,
-  sharedKey: () => 'page',
 }
 
 AccountIndexPage.pageOptions = pageOptions

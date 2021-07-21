@@ -2,28 +2,28 @@ import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AddToCartButton } from '@reachdigital/magento-cart'
 import {
+  getProductStaticPaths,
   jsonLdProduct,
-  ProductPageGallery,
-  ProductPageMeta,
   jsonLdProductOffer,
   ProductAddToCartDocument,
   productPageCategory,
-  getProductStaticPaths,
+  ProductPageGallery,
+  ProductPageMeta,
   ProductSidebarDelivery,
 } from '@reachdigital/magento-product'
 import {
+  BundleItemsForm,
   BundleProductPageDocument,
   BundleProductPageQuery,
-  BundleItemsForm,
 } from '@reachdigital/magento-product-bundle'
-import { ProductReviewSummary, jsonLdProductReview } from '@reachdigital/magento-product-review'
+import { jsonLdProductReview, ProductReviewSummary } from '@reachdigital/magento-product-review'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { JsonLd, GetStaticProps, Title } from '@reachdigital/next-ui'
+import { GetStaticProps, JsonLd, Title } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { Product } from 'schema-dts'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
-import PageShellHeader from '../../../components/AppShell/PageShellHeader'
+import FullPageShellHeader from '../../../components/AppShell/FullPageShellHeader'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import ProductUsps from '../../../components/ProductUsps'
 import ProductpagesContent from '../../../components/ProductpagesContent'
@@ -34,7 +34,6 @@ import RowProductRelated from '../../../components/RowProductRelated'
 import RowProductReviews from '../../../components/RowProductReviews'
 import RowProductSpecs from '../../../components/RowProductSpecs'
 import RowProductUpsells from '../../../components/RowProductUpsells'
-
 import apolloClient from '../../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -67,7 +66,14 @@ function ProductBundle(props: Props) {
 
   return (
     <>
-      <PageShellHeader backFallbackHref={backFallbackHref} backFallbackTitle={backFallbackTitle} />
+      <FullPageShellHeader
+        backFallbackHref={backFallbackHref}
+        backFallbackTitle={backFallbackTitle}
+      >
+        <Title size='small' component='span'>
+          {product.name}
+        </Title>
+      </FullPageShellHeader>
       <JsonLd<Product>
         item={{
           '@context': 'https://schema.org',
@@ -113,7 +119,6 @@ function ProductBundle(props: Props) {
 
 ProductBundle.pageOptions = {
   SharedComponent: FullPageShell,
-  sharedKey: () => 'page',
 } as PageOptions
 
 export default ProductBundle

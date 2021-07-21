@@ -36,7 +36,6 @@ function BlogPage(props: Props) {
 
 BlogPage.pageOptions = {
   SharedComponent: FullPageShell,
-  sharedKey: () => 'page',
 } as PageOptions
 
 export default BlogPage

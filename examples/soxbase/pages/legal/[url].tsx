@@ -19,7 +19,6 @@ function LegalPage({ pages }) {
 
 LegalPage.pageOptions = {
   SharedComponent: FullPageShell,
-  sharedKey: () => 'page',
 } as PageOptions
 
 export default LegalPage

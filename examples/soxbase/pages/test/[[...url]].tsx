@@ -19,7 +19,6 @@ function AppShellTestIndex() {
 
 AppShellTestIndex.pageOptions = {
   SharedComponent: FullPageShell,
-  sharedKey: () => 'page',
 } as PageOptions
 
 export default AppShellTestIndex

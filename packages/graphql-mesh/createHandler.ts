@@ -1,11 +1,14 @@
 import { processConfig } from '@graphql-mesh/config'
 import { getMesh } from '@graphql-mesh/runtime'
 import { YamlConfig } from '@graphql-mesh/types'
+import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core'
 import { ApolloServer } from 'apollo-server-micro'
 import '@graphql-mesh/transform-filter-schema'
 import '@graphql-mesh/graphql'
 import '@graphql-mesh/merger-stitching'
 import '@graphql-mesh/transform-cache'
+import 'ts-tiny-invariant'
+import 'micro'
 import cors from 'micro-cors'
 
 function injectEnv(json: YamlConfig.Config): YamlConfig.Config {
@@ -49,16 +52,18 @@ export default async function createHandler(config: YamlConfig.Config, path: str
    * - Todo: Disable Varnish backend cachinng and switch to POST for requests
    */
   const apolloServer = new ApolloServer({
-    tracing: true,
     // engine: { reportSchema: true },
     context: mesh.contextBuilder,
     introspection: true,
-    playground: {
-      // @ts-expect-error https://github.com/graphql/graphql-playground/issues/1289
-      shareEnabled: true,
-    },
+    plugins: [
+      ApolloServerPluginLandingPageGraphQLPlayground({
+        // @ts-expect-error https://github.com/graphql/graphql-playground/issues/1289
+        shareEnabled: true,
+      }),
+    ],
     ...mesh,
   })
+  await apolloServer.start()
 
   const corsHandler = cors({
     allowMethods: ['GET', 'POST', 'OPTIONS'],
