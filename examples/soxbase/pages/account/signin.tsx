@@ -1,7 +1,7 @@
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { useMergeCustomerCart } from '@reachdigital/magento-cart'
-import { AccountSignInUpForm } from '@reachdigital/magento-customer'
+import { AccountSignInUpForm } from '@reachdigital/magento-customer-account'
 import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui'
 import React from 'react'

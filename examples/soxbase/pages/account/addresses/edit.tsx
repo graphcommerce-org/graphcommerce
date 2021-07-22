@@ -2,11 +2,8 @@ import { useQuery } from '@apollo/client'
 import { Box, Container, NoSsr } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import {
-  AccountDashboardAddressesDocument,
-  ApolloCustomerErrorFullPage,
-  EditAddressForm,
-} from '@reachdigital/magento-customer'
+import { ApolloCustomerErrorFullPage, EditAddressForm } from '@reachdigital/magento-customer'
+import { AccountDashboardAddressesDocument } from '@reachdigital/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   AppShellTitle,

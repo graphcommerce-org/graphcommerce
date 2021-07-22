@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { useFormAutoSubmit, useFormGqlQuery, useFormPersist } from '@reachdigital/react-hook-form'
 import { useEffect, useState } from 'react'
-import { CustomerDocument, CustomerTokenDocument, IsEmailAvailableDocument } from '../../hooks'
+import { CustomerDocument, CustomerTokenDocument, IsEmailAvailableDocument } from '..'
 
 type useFormIsEmailAvailableProps = {
   email?: string | null

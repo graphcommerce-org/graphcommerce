@@ -1,16 +1,19 @@
 import { useQuery } from '@apollo/client'
 import { CircularProgress, Link, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
+import {
+  ApolloCustomerErrorAlert,
+  SignInForm,
+  SignUpForm,
+  useFormIsEmailAvailable,
+  CustomerDocument,
+  CustomerTokenDocument,
+} from '@reachdigital/magento-customer'
 import { AnimatedRow, Button, Form, FormActions, FormRow } from '@reachdigital/next-ui'
 import { emailPattern, useFormPersist } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import router from 'next/router'
 import React from 'react'
-import { CustomerDocument, CustomerTokenDocument } from '../../hooks'
-import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
-import SignInForm from '../SignInForm'
-import SignUpForm from '../SignUpForm'
-import useFormIsEmailAvailable from '../useFormIsEmailAvailable'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

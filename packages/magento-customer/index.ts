@@ -1,3 +1,4 @@
-export * from './Api'
 export * from './components'
 export * from './hooks'
+
+export * from './typePolicies'

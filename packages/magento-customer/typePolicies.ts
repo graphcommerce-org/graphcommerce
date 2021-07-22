@@ -6,8 +6,8 @@ import {
   Query,
   TypedTypePolicies,
 } from '@reachdigital/graphql'
-import { CustomerTokenDocument } from './CustomerToken.gql'
-import { IsEmailAvailableDocument } from './IsEmailAvailable.gql'
+import { CustomerTokenDocument } from './hooks/CustomerToken.gql'
+import { IsEmailAvailableDocument } from './hooks/IsEmailAvailable.gql'
 
 const revokeCustomerToken: FieldPolicy<Mutation['revokeCustomerToken']> = {
   merge(_existing, incoming, options) {
