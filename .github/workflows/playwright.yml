@@ -1,7 +1,7 @@
 name: playwright
 on: [pull_request]
 jobs:
-  lhci:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -10,6 +10,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
+      - uses: bahmutov/npm-install@v1
+        with:
+          useRollingCache: true
       - name: Install operating system dependencies
         run: npx playwright install-deps
       - name: Install operating system dependencies
