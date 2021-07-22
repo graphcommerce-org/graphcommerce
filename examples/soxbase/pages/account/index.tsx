@@ -8,8 +8,8 @@ import {
 } from '@reachdigital/magento-customer'
 import {
   AccountDashboardDocument,
-  AccountMenu,
   AccountMenuItem,
+  AccountMenu,
 } from '@reachdigital/magento-customer-account'
 import { OrderStateLabelInline } from '@reachdigital/magento-customer-order'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
