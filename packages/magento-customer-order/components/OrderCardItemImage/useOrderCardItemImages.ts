@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { Maybe } from '@reachdigital/graphql'
+import { UseOrderCardItemImagesFragment } from '../../hooks/UseOrderCardItemImages.gql'
 import { OrderCardItemImagesDocument } from '../OrderCardItemImages/OrderCardItemImages.gql'
 import { OrderCardItemImageFragment } from './OrderCardItemImage.gql'
-import { UseOrderCardItemImagesFragment } from './UseOrderCardItemImages.gql'
 
 type UseOrderCardItemImagesProps = UseOrderCardItemImagesFragment | null
 

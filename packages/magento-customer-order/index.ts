@@ -1,11 +1,2 @@
-export { default as AccountLatestOrder } from '../magento-customer-account/AccountLatestOrder'
-export { default as OrderCard } from './OrderCard'
-export { default as OrderDetails } from './OrderDetails'
-export { default as OrderItems } from './OrderItems'
-export { default as useOrderCardItemImages } from './OrderCardItemImage/useOrderCardItemImages'
-export { default as OrderStateLabelInline } from './OrderStateLabelInline'
-export { default as NoOrdersFound } from './NoOrdersFound'
-
-export * from './OrderAddress/OrderAddress.gql'
-export * from './AccountDashboardOrders.gql'
-export * from './OrderDetailPage.gql'
+export * from './components'
+export * from './hooks'
