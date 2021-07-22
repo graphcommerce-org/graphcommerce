@@ -80,6 +80,7 @@
     "@reachdigital/next-config": "^2.100.9",
     "@reachdigital/next-ui": "^2.102.3",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
+    "@reachdigital/playwright": "^1.0.0",
     "@reachdigital/react-hook-form": "^2.100.10",
     "@reachdigital/typescript-config-pwa": "^2.100.10",
     "apollo3-cache-persist": "^0.10.0",
