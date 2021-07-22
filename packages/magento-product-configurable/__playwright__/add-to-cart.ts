@@ -1,7 +1,7 @@
-import { test, expect } from '@reachdigital/playwright'
+import { test, expect, baseUrl } from '@reachdigital/playwright'
 
-test('can add product to the cart', async ({ page }) => {
-  await page.goto('http://localhost:3000/product/configurable/gc-puny-dots-sock', {})
+test('add configurable to cart', async ({ page }) => {
+  await page.goto(`${baseUrl}/product/configurable/gc-puny-dots-sock`)
 
   const groups = await page.$$('form[class*=ConfigurableAddToCart] [role=group]')
   expect(groups.length).toBeGreaterThan(0)

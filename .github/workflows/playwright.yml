@@ -1,0 +1,25 @@
+name: playwright
+on: [pull_request]
+jobs:
+  lhci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - name: Install operating system dependencies
+        run: npx playwright install-deps
+      - name: Install operating system dependencies
+        run: npx playwright install
+      - id: deployment
+        uses: dorshinar/get-deployment-url@v1.0.6
+        timeout-minutes: 5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          retryInterval: 2000
+      - run: npx playwright test
+        env:
+          URL: ${{ steps.deployment.outputs.deployment }}
