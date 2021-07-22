@@ -15,7 +15,7 @@ jobs:
           useRollingCache: true
       - name: Install operating system dependencies
         run: npx playwright install-deps
-      - name: Install operating system dependencies
+      - name: Install browsers
         run: npx playwright install
       - id: deployment
         uses: dorshinar/get-deployment-url@v1.0.6
@@ -25,4 +25,5 @@ jobs:
           retryInterval: 2000
       - run: npx playwright test
         env:
-          URL: ${{ steps.deployment.outputs.deployment }}
+          URL: https://graphcommerce.vercel.app
+          # URL: ${{ steps.deployment.outputs.deployment }}
