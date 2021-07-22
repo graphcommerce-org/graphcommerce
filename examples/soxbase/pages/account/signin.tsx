@@ -3,7 +3,7 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import { useMergeCustomerCart } from '@reachdigital/magento-cart'
 import { AccountSignInUpForm } from '@reachdigital/magento-customer'
 import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
-import { GetStaticProps } from '@reachdigital/next-ui'
+import { GetStaticProps, SheetShellHeader, Title } from '@reachdigital/next-ui'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
@@ -13,16 +13,23 @@ type GetPageStaticProps = GetStaticProps<SheetShellProps>
 function AccountSignInPage() {
   useMergeCustomerCart()
   return (
-    <Container maxWidth='sm'>
-      <PageMeta
-        title='Sign in'
-        metaRobots={['noindex']}
-        metaDescription='Sign in to your account'
-      />
-      <NoSsr>
-        <AccountSignInUpForm />
-      </NoSsr>
-    </Container>
+    <>
+      <SheetShellHeader backFallbackHref='/' backFallbackTitle='Home'>
+        <Title size='small' component='span'>
+          Sign in
+        </Title>
+      </SheetShellHeader>
+      <Container maxWidth='sm'>
+        <PageMeta
+          title='Sign in'
+          metaRobots={['noindex']}
+          metaDescription='Sign in to your account'
+        />
+        <NoSsr>
+          <AccountSignInUpForm />
+        </NoSsr>
+      </Container>
+    </>
   )
 }
 
@@ -41,7 +48,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
-      variant: 'top',
+      variant: 'bottom',
+      size: 'max',
     },
   }
 }

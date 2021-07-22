@@ -1,7 +1,13 @@
 import { Typography, Box } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
-import { GetStaticProps, MetaRobots } from '@reachdigital/next-ui'
+import {
+  AppShellTitle,
+  GetStaticProps,
+  MetaRobots,
+  SheetShellHeader,
+  Title,
+} from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
@@ -26,6 +32,11 @@ function ModalPage(props: Props) {
 
   return (
     <>
+      <SheetShellHeader backFallbackHref='/' backFallbackTitle='Home'>
+        <Title size='small' component='span'>
+          {page.title}
+        </Title>
+      </SheetShellHeader>
       <PageMeta
         title={page.metaTitle ?? ''}
         metaDescription={page.metaDescription}
@@ -33,9 +44,7 @@ function ModalPage(props: Props) {
         canonical={page.url}
       />
       <Box pt={4}>
-        <Typography variant='h3' align='center'>
-          {page.title}
-        </Typography>
+        <AppShellTitle>{page.title}</AppShellTitle>
         <Typography variant='body1' align='center'>
           {page.metaDescription ?? ''}
         </Typography>
@@ -84,7 +93,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     props: {
       ...(await page).data,
       apolloState: await conf.then(() => client.cache.extract()),
-      variant: 'top',
+      variant: 'bottom',
+      size: 'max',
     },
     revalidate: 60 * 20,
   }

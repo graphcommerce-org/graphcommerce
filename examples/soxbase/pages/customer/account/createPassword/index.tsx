@@ -1,8 +1,14 @@
-import { Box, Container, Link, NoSsr, Typography } from '@material-ui/core'
+import { Box, Container, Link, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { ResetPasswordForm } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import { Button, GetStaticProps } from '@reachdigital/next-ui'
+import {
+  AppShellTitle,
+  Button,
+  GetStaticProps,
+  SheetShellHeader,
+  Title,
+} from '@reachdigital/next-ui'
 import router, { useRouter } from 'next/router'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../../components/AppShell/SheetShell'
@@ -23,13 +29,16 @@ function CustomerAccountCreatePasswordPage() {
         metaDescription='Create new password'
         metaRobots={['noindex']}
       />
+      <SheetShellHeader backFallbackHref='/' backFallbackTitle='Home'>
+        <Title size='small' component='span'>
+          {!success ? 'Set your new password' : 'You have now successfully reset your password'}
+        </Title>
+      </SheetShellHeader>
       <NoSsr>
         <Box pt={4} pb={4}>
           {!success && (
             <Container maxWidth='sm'>
-              <Typography variant='h3' align='center'>
-                Set your new password
-              </Typography>
+              <AppShellTitle>Set your new password</AppShellTitle>
 
               <Box textAlign='center'>
                 <p>Fill in your new password, confirm it and click on the save button.</p>
@@ -41,9 +50,7 @@ function CustomerAccountCreatePasswordPage() {
 
           {success && (
             <Container>
-              <Typography variant='h3' align='center'>
-                You have now successfully reset your password
-              </Typography>
+              <AppShellTitle>You have now successfully reset your password</AppShellTitle>
 
               <Box textAlign='center'>
                 <p>
@@ -87,7 +94,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
-      variant: 'top',
+      variant: 'bottom',
+      size: 'max',
       backFallbackHref: '/account/signin',
       backFallbackTitle: 'Sign In',
     },
