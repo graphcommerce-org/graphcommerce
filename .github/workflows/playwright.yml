@@ -20,7 +20,7 @@ jobs:
       - name: Install chromium
         run: npx playwright install chromium
       - id: deployment
-        uses: paales/get-deployment-url@021318a35de1d15497e47dcb250d912d9d02669b
+        uses: paales/get-deployment-url@feature/match
         timeout-minutes: 5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
