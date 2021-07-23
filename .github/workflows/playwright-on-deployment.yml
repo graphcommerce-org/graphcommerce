@@ -1,5 +1,5 @@
 name: playwright
-on: [pull_request]
+on: [deployment]
 jobs:
   test:
     runs-on: ubuntu-latest
