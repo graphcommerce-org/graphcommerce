@@ -120,7 +120,7 @@ const useStyles = makeStyles(
     },
     logoContainer: {
       position: 'absolute',
-      top: 12,
+      top: 6,
       left: 0,
       right: 0,
     },
@@ -182,9 +182,15 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     if (!titleRef.current) return () => {}
 
     const ro = new ResizeObserver(([entry]) => {
-      const { offsetTop, clientHeight } = entry.target as HTMLDivElement
+      const { offsetTop, offsetParent, clientHeight } = entry.target as HTMLDivElement
       titleHeight.set(clientHeight)
-      titleOffset.set(offsetTop)
+
+      let offsetParentTop = 0
+      if (offsetParent && offsetParent instanceof HTMLElement) {
+        offsetParentTop = offsetParent.offsetTop
+      }
+
+      titleOffset.set(offsetTop + offsetParentTop)
     })
 
     ro.observe(titleRef.current)

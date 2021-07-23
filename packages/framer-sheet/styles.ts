@@ -118,7 +118,9 @@ const styles: Styles<ClassKeys> = {
     borderTopRightRadius: 20,
   },
   contenttop: {},
-  contentbottom: {},
+  contentbottom: {
+    zIndex: 101,
+  },
   contentleft: {},
   contentright: {},
   back: { position: 'absolute', left: 12, top: 12 },

@@ -8,6 +8,7 @@ import {
   CategoryMeta,
   getCategoryStaticPaths,
   ProductListParamsProvider,
+  CategoryHeroNavTitle,
 } from '@reachdigital/magento-category'
 import {
   ProductListCount,
@@ -86,7 +87,7 @@ function CategoryPage(props: Props) {
         <CategoryHeroNav
           {...category}
           asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} loading='eager' />}
-          title={<AppShellTitle>{category?.name}</AppShellTitle>}
+          title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
         />
       ) : (
         <ProductListParamsProvider value={params}>
