@@ -1,5 +1,6 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
+import responsiveVal from '../next-ui/Styles/responsiveVal'
 import { CategoryHeroNavFragment } from './CategoryHeroNav.gql'
 import CategoryLink from './CategoryLink'
 
@@ -16,6 +17,7 @@ const useStyles = makeStyles(
       paddingBottom: theme.page.vertical,
       marginTop: theme.spacings.lg,
       [theme.breakpoints.up('md')]: {
+        marginTop: `calc(${responsiveVal(40, 64)} * -1)`,
         rowGap: theme.spacings.md,
         width: '100%',
         paddingRight: theme.page.horizontal,
