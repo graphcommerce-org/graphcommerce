@@ -16,6 +16,7 @@ const useStyles = makeStyles(
         top: 'unset !important',
       },
       [theme.breakpoints.up('md')]: {
+        pointerEvents: 'all',
         top: theme.page.vertical,
         right: theme.page.horizontal,
         bottom: 'unset',

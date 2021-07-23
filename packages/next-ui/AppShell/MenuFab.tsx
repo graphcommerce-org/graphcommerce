@@ -40,6 +40,7 @@ const useStyles = makeStyles(
       boxShadow: theme.shadows[2],
       width: responsiveVal(42, 56),
       height: responsiveVal(42, 56),
+      pointerEvents: 'all',
       '&:hover, &:focus': {
         background: theme.palette.text.primary,
       },
