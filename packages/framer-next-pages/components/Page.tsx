@@ -35,7 +35,17 @@ export default function Page(props: PageProps) {
   const pointerEvents = activePresent ? undefined : 'none'
 
   return (
-    <m.div style={{ position, top, left: 0, right: 0, pointerEvents, minHeight: y }}>
+    <m.div
+      style={{
+        position,
+        top,
+        left: 0,
+        right: 0,
+        pointerEvents,
+        minHeight: y,
+        zIndex: active ? 1 : undefined,
+      }}
+    >
       {children}
     </m.div>
   )

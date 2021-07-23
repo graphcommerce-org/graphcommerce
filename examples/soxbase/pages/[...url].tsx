@@ -92,7 +92,7 @@ function CategoryPage(props: Props) {
       ) : (
         <ProductListParamsProvider value={params}>
           <Container maxWidth='xl'>
-            <CategoryDescription name={category?.name} description={category?.description} />
+            <AppShellTitle>{category?.name}</AppShellTitle>
 
             <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
