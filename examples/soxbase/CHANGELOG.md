@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.102.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.102.1...@reachdigital/soxbase@2.102.2) (2021-07-23)
+
+
+### Bug Fixes
+
+* adjust imports to correct ones ([c6e3092](https://github.com/ho-nl/m2-pwa/commit/c6e3092569d1c49fe138b3810704da8e04acbbe2))
+* make separate queries folder, create injectable for account and inject reviews ([5d82a5d](https://github.com/ho-nl/m2-pwa/commit/5d82a5d9162f687c2678cce215b77eedbaf1669e))
+* simplify xl grid items ([af1e851](https://github.com/ho-nl/m2-pwa/commit/af1e85133f8c6681c97cd0d4f066844589dade38))
+* wrong export for accountmenuitem ([5c6c21f](https://github.com/ho-nl/m2-pwa/commit/5c6c21f7759799b2725bff3d943d94fd9aef6820))
+
+
+
+
+
 # [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.101.3...@reachdigital/soxbase@2.102.0) (2021-07-21)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-customer-account",
-  "version": "2.100.10",
+  "version": "2.100.11",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
@@ -26,8 +26,8 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@reachdigital/graphql": "^2.100.10",
     "@reachdigital/image": "^2.100.10",
-    "@reachdigital/magento-customer": "^2.100.10",
-    "@reachdigital/magento-customer-order": "^2.100.10",
+    "@reachdigital/magento-customer": "^2.101.6",
+    "@reachdigital/magento-customer-order": "^2.100.11",
     "@reachdigital/magento-graphql": "^2.100.10",
     "@reachdigital/magento-store": "^2.100.10",
     "@reachdigital/next-ui": "^2.100.10",

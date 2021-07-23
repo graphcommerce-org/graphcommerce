@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-payment-included",
-  "version": "2.100.16",
+  "version": "2.100.17",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
@@ -27,8 +27,8 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@reachdigital/graphql": "^2.100.10",
     "@reachdigital/image": "^2.100.12",
-    "@reachdigital/magento-cart": "^2.101.5",
-    "@reachdigital/magento-cart-payment-method": "^2.100.16",
+    "@reachdigital/magento-cart": "^2.101.6",
+    "@reachdigital/magento-cart-payment-method": "^2.100.17",
     "@reachdigital/magento-store": "^2.100.16",
     "@reachdigital/next-ui": "^2.102.1",
     "@reachdigital/react-hook-form": "^2.100.10",

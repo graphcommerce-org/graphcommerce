@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-cart-address",
-  "version": "2.100.16",
+  "version": "2.100.17",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
@@ -27,7 +27,7 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@reachdigital/graphql": "^2.100.10",
     "@reachdigital/image": "^2.100.12",
-    "@reachdigital/magento-customer": "^2.101.5",
+    "@reachdigital/magento-customer": "^2.101.6",
     "@reachdigital/magento-product": "^2.100.16",
     "@reachdigital/magento-store": "^2.100.16",
     "@reachdigital/next-ui": "^2.102.1",

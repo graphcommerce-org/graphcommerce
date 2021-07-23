@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.100.17](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-email@2.100.16...@reachdigital/magento-cart-email@2.100.17) (2021-07-23)
+
+
+### Bug Fixes
+
+* adjust imports to correct ones ([c6e3092](https://github.com/ho-nl/m2-pwa/commit/c6e3092569d1c49fe138b3810704da8e04acbbe2))
+
+
+
+
+
 ## [2.100.11](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-email@2.100.10...@reachdigital/magento-cart-email@2.100.11) (2021-07-20)
 
 

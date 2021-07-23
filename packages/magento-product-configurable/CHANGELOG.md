@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.100.18](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product-configurable@2.100.17...@reachdigital/magento-product-configurable@2.100.18) (2021-07-23)
+
+
+### Bug Fixes
+
+* missing NoOrdersFound export ([81e1177](https://github.com/ho-nl/m2-pwa/commit/81e1177dfa6347b310ec5cf4a7085edec7c86497))
+
+
+
+
+
 ## [2.100.12](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product-configurable@2.100.11...@reachdigital/magento-product-configurable@2.100.12) (2021-07-20)
 
 
