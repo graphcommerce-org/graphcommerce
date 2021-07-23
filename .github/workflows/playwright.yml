@@ -15,8 +15,10 @@ jobs:
           useRollingCache: true
       - name: Install operating system dependencies
         run: npx playwright install-deps
-      - name: Install browsers
-        run: npx playwright install
+      - name: Install webkit
+        run: npx playwright install webkit
+      - name: Install chromium
+        run: npx playwright install chromium
       - id: deployment
         uses: paales/get-deployment-url@feature/match
         timeout-minutes: 5
@@ -26,5 +28,4 @@ jobs:
           pattern: https://graphcommerce-\w{9}-reachdigital\.vercel\.app/
       - run: npx playwright test
         env:
-          URL: https://graphcommerce.vercel.app
-          # URL: ${{ steps.deployment.outputs.deployment }}
+          URL: ${{ steps.deployment.outputs.deployment }}
