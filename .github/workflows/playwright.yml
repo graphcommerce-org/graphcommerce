@@ -18,11 +18,12 @@ jobs:
       - name: Install browsers
         run: npx playwright install
       - id: deployment
-        uses: dorshinar/get-deployment-url@v1.0.6
+        uses: paales/get-deployment-url@feature/match
         timeout-minutes: 5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           retryInterval: 2000
+          pattern: https://graphcommerce-\w{9}-reachdigital\.vercel\.app/
       - run: npx playwright test
         env:
           URL: https://graphcommerce.vercel.app
