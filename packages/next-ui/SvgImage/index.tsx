@@ -1,6 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import { Image, ObjectImage } from '@reachdigital/image'
-import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
 
@@ -67,7 +66,7 @@ export default function SvgImage(props: SvgImageProps) {
         layout='fixed'
         unoptimized
         src={src}
-        className={clsx(classes.root)}
+        className={classes.root}
         // height={24}
         // width={24}
         {...imageProps}

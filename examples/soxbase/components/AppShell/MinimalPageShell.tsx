@@ -26,15 +26,13 @@ export default function MinimalPageShell(props: MinimalPageShellProps) {
   const classes = useStyles()
 
   return (
-    <AppShellProvider>
-      <MinimalPageShellBase
-        {...uiProps}
-        name={name}
-        header={<Logo classes={{ logo: classes.logo }} />}
-      >
-        {children}
-        {/* <Footer footer={footer} /> */}
-      </MinimalPageShellBase>
-    </AppShellProvider>
+    <MinimalPageShellBase
+      {...uiProps}
+      name={name}
+      header={<Logo classes={{ logo: classes.logo }} />}
+    >
+      {children}
+      {/* <Footer footer={footer} /> */}
+    </MinimalPageShellBase>
   )
 }

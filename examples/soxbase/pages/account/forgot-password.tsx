@@ -1,8 +1,8 @@
-import { Box, Container, NoSsr, Typography } from '@material-ui/core'
+import { Box, Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { ForgotPasswordForm } from '@reachdigital/magento-customer'
-import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
-import { GetStaticProps } from '@reachdigital/next-ui'
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { AppShellTitle, GetStaticProps, SheetShellHeader, Title } from '@reachdigital/next-ui'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
@@ -11,23 +11,33 @@ type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountForgotPasswordPage() {
   return (
-    <Container maxWidth='sm'>
-      <PageMeta
-        title='Forgot Password'
-        metaDescription='Forgot password'
-        metaRobots={['noindex']}
-      />
-      <NoSsr>
-        <Box pt={4} textAlign='center'>
-          <Typography variant='h3'>Forgot your password?</Typography>
-          <p>
-            No worries! Enter your email address and we will send an email with instructions to
-            reset your password.
-          </p>
-          <ForgotPasswordForm />
-        </Box>
-      </NoSsr>
-    </Container>
+    <>
+      <SheetShellHeader backFallbackHref='/' backFallbackTitle='Home'>
+        <Title size='small' component='span'>
+          Forgot your password?
+        </Title>
+      </SheetShellHeader>
+      <Container maxWidth='sm'>
+        <PageMeta
+          title='Forgot Password'
+          metaDescription='Forgot password'
+          metaRobots={['noindex']}
+        />
+        <NoSsr>
+          <Box pt={4} textAlign='center'>
+            {/* <Typography variant='h3'>Forgot your password?</Typography> */}
+
+            <AppShellTitle>Forgot your password?</AppShellTitle>
+
+            <p>
+              No worries! Enter your email address and we will send an email with instructions to
+              reset your password.
+            </p>
+            <ForgotPasswordForm />
+          </Box>
+        </NoSsr>
+      </Container>
+    </>
   )
 }
 
@@ -46,7 +56,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
-      variant: 'top',
+      variant: 'bottom',
+      size: 'max',
       backFallbackHref: '/account/signin',
       backFallbackTitle: 'Sign In',
     },

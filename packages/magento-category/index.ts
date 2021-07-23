@@ -4,6 +4,6 @@ export { default as CategoryHeroNav } from './CategoryHeroNav'
 export { default as CategoryMeta } from './CategoryMeta'
 export { default as getCategoryStaticPaths } from './getCategoryStaticPaths'
 export { default as CategoryLink } from './CategoryLink'
-
+export { default as CategoryHeroNavTitle } from './CategoryHeroNavTitle'
 export * from './CategoryLink'
 export * from './CategoryPageContext'

@@ -7,6 +7,9 @@ import ShellBase, { PageLayoutBaseProps } from './ShellBase'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
+    root: {
+      background: '#fff',
+    },
     header: {
       display: 'flex',
       alignItems: 'center',
@@ -38,18 +41,20 @@ export default function FullPageShellBase(props: FullPageShellBaseProps) {
   const classes = useStyles(props)
 
   return (
-    <AppShellProvider>
-      <ShellBase name={name}>
-        <m.header
-          className={classes.header}
-          layoutId='header'
-          transition={{ type: 'tween' }}
-          layout='position'
-        >
-          {header}
-        </m.header>
-        {children}
-      </ShellBase>
-    </AppShellProvider>
+    <div className={classes.root}>
+      <AppShellProvider>
+        <ShellBase name={name}>
+          <m.header
+            className={classes.header}
+            layoutId='header'
+            transition={{ type: 'tween' }}
+            layout='position'
+          >
+            {header}
+          </m.header>
+          {children}
+        </ShellBase>
+      </AppShellProvider>
+    </div>
   )
 }

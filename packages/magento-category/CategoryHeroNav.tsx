@@ -1,5 +1,6 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
+import responsiveVal from '../next-ui/Styles/responsiveVal'
 import { CategoryHeroNavFragment } from './CategoryHeroNav.gql'
 import CategoryLink from './CategoryLink'
 
@@ -8,13 +9,18 @@ const useStyles = makeStyles(
     wrapper: {
       display: 'grid',
       gridTemplateColumns: '1fr',
-      gridTemplateAreas: `"categories" "placeholder"`,
+      gridTemplateAreas: `"title" "categories" "placeholder"`,
       gridTemplateRows: 'auto 60vw',
       borderBottom: '1px solid rgba(0,0,0,0.15)',
       marginBottom: theme.spacings.xl,
-      [theme.breakpoints.up('sm')]: {
-        rowGap: theme.spacings.sm,
+      paddingRight: 0,
+      paddingBottom: theme.page.vertical,
+      marginTop: theme.spacings.lg,
+      [theme.breakpoints.up('md')]: {
+        marginTop: `calc(${responsiveVal(40, 64)} * -1)`,
+        rowGap: theme.spacings.md,
         width: '100%',
+        paddingRight: theme.page.horizontal,
       },
     },
     categories: {
@@ -33,19 +39,23 @@ const useStyles = makeStyles(
         gridTemplateColumns: 'repeat(2, 1fr)',
         maxWidth: '100vw',
         width: '100%',
+        alignSelf: 'flex-start',
       },
     },
     title: {
-      gridColumn: '1/3',
+      gridArea: 'title',
       position: 'relative',
-      textAlign: 'center',
+      alignSelf: 'center',
+      [theme.breakpoints.up('md')]: {
+        alignSelf: 'flex-end',
+      },
     },
     placeholder: {
       gridArea: 'placeholder',
       background: '#fff',
-      margin: `${theme.spacings.sm} 0`,
-      minHeight: '20vh',
+      minHeight: '40vh',
       overflow: 'hidden',
+
       '& *': {
         width: '100%',
         height: '100%',
@@ -54,26 +64,29 @@ const useStyles = makeStyles(
     },
     [theme.breakpoints.up('md')]: {
       placeholder: {
-        minHeight: '60vh',
+        minHeight: '80vh',
       },
       wrapper: {
-        paddingTop: '0',
-        gridColumnGap: '0',
+        paddingTop: 0,
+        gridColumnGap: 0,
+        display: 'grid',
+        gridTemplateAreas: `
+         ". title . placeholder"
+         ". categories . placeholder"
+        `,
         gridTemplateColumns: '1fr 4.6fr 0.4fr 8fr',
-        gridTemplateAreas: `". categories . placeholder"`,
-        gridTemplateRows: 'auto',
-      },
-      title: {
-        textAlign: 'left',
+        gridTemplateRows: '0.3fr 0.7fr',
       },
     },
   }),
   { name: 'CategoryHeroNav' },
 )
+
 type Props = {
   title: React.ReactNode
   asset?: React.ReactNode
 }
+
 type CategoryHeroNavProps = Props & CategoryHeroNavFragment
 
 export default function CategoryHeroNav({ children, title, asset }: CategoryHeroNavProps) {
@@ -81,8 +94,8 @@ export default function CategoryHeroNav({ children, title, asset }: CategoryHero
 
   return (
     <>
-      {title}
       <div className={classes.wrapper}>
+        <div className={classes.title}>{title}</div>
         <div className={classes.categories}>
           {children?.map((category) => {
             if (!category?.url_path || !category.uid || !category.name) return null

@@ -12,8 +12,11 @@ type AppShellTitleProps = {
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
+      marginTop: theme.spacings.lg,
       marginBottom: theme.spacings.lg,
     },
+    container: {},
+    title: {},
   }),
   {
     name: 'AppShellTitle',
@@ -27,8 +30,13 @@ export default function AppShellTitle(props: AppShellTitleProps) {
 
   return (
     <div ref={titleRef} className={classes.root}>
-      <Container maxWidth='md'>
-        <Title component='h2' size='medium' icon={icon ?? undefined}>
+      <Container maxWidth='md' className={classes.container}>
+        <Title
+          component='h2'
+          size='medium'
+          icon={icon ?? undefined}
+          classes={{ container: classes.title }}
+        >
           {children}
         </Title>
       </Container>
