@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.103.0...@graphcommerce/graphcommerce@2.103.1) (2021-07-23)
+
+
+### Bug Fixes
+
+* **app-shell-header:** offset not always correctly set ([11a8907](https://github.com/ho-nl/m2-pwa/commit/11a890764be1ab4f6c584a5c8ca4e6620d0d73e5))
+* **app-shell-header:** title offset top not correctly set ([c144309](https://github.com/ho-nl/m2-pwa/commit/c1443095317c1779074f3a4058f4041159c8e31b))
+* category hero nav margin top ([31f8dee](https://github.com/ho-nl/m2-pwa/commit/31f8deed1d545d78bb856d4cfdfe0c7ec8671308))
+* top sheets to bottom sheets ([ae18115](https://github.com/ho-nl/m2-pwa/commit/ae1811590ca3c7b7eba6569f11129ce1c1d593f1))
+
+
+
+
+
 # [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.102.1...@graphcommerce/graphcommerce@2.103.0) (2021-07-23)
 
 

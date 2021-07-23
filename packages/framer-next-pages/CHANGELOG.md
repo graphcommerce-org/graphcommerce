@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.101.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/framer-next-pages@2.101.1...@reachdigital/framer-next-pages@2.101.2) (2021-07-23)
+
+
+### Bug Fixes
+
+* **app-shell-header:** offset not always correctly set ([11a8907](https://github.com/ho-nl/m2-pwa/commit/11a890764be1ab4f6c584a5c8ca4e6620d0d73e5))
+
+
+
+
+
 # [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/framer-next-pages@2.100.10...@reachdigital/framer-next-pages@2.101.0) (2021-07-20)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.101.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/framer-sheet@2.101.1...@reachdigital/framer-sheet@2.101.2) (2021-07-23)
+
+
+### Bug Fixes
+
+* **app-shell-header:** title offset top not correctly set ([c144309](https://github.com/ho-nl/m2-pwa/commit/c1443095317c1779074f3a4058f4041159c8e31b))
+
+
+
+
+
 # [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/framer-sheet@2.100.10...@reachdigital/framer-sheet@2.101.0) (2021-07-20)
 
 

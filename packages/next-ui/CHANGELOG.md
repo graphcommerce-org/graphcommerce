@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.102.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.102.1...@reachdigital/next-ui@2.102.2) (2021-07-23)
+
+
+### Bug Fixes
+
+* **app-shell-header:** offset not always correctly set ([11a8907](https://github.com/ho-nl/m2-pwa/commit/11a890764be1ab4f6c584a5c8ca4e6620d0d73e5))
+* **app-shell-header:** title offset top not correctly set ([c144309](https://github.com/ho-nl/m2-pwa/commit/c1443095317c1779074f3a4058f4041159c8e31b))
+
+
+
+
+
 ## [2.102.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.102.0...@reachdigital/next-ui@2.102.1) (2021-07-21)
 
 
