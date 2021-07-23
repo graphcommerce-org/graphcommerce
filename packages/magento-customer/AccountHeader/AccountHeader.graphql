@@ -1,4 +1,0 @@
-fragment AccountHeader on Customer {
-  firstname
-  lastname
-}

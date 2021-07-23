@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { makeStyles, Theme } from '@material-ui/core'
-import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
+import { CustomerTokenDocument } from '@reachdigital/magento-customer'
 import { UseStyles } from '@reachdigital/next-ui'
 import clsx from 'clsx'
 

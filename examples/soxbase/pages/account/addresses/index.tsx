@@ -1,11 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import {
-  AccountAddresses,
-  AccountDashboardAddressesDocument,
-  ApolloCustomerErrorFullPage,
-} from '@reachdigital/magento-customer'
+import { AccountAddresses, ApolloCustomerErrorFullPage } from '@reachdigital/magento-customer'
+import { AccountDashboardAddressesDocument } from '@reachdigital/magento-customer-account'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   AppShellTitle,

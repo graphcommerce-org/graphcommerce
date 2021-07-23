@@ -16,7 +16,7 @@ import {
   BundleProductPageDocument,
   BundleProductPageQuery,
 } from '@reachdigital/magento-product-bundle'
-import { jsonLdProductReview, ProductReviewSummary } from '@reachdigital/magento-product-review'
+import { jsonLdProductReview, ProductReviewSummary } from '@reachdigital/magento-review'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps, JsonLd, Title } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'

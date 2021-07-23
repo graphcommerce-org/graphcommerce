@@ -2,7 +2,6 @@ import { TypedDocumentNode, useQuery } from '@apollo/client'
 import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import { ProductInterface } from '@reachdigital/graphql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer'
-import { ProductSidebarDelivery } from '@reachdigital/magento-product'
 import { Money, MoneyProps } from '@reachdigital/magento-store'
 import {
   Button,

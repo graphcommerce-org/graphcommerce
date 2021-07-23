@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { ProductReviews } from '@reachdigital/magento-product-review'
-import { ProductReviewsProps } from '@reachdigital/magento-product-review/ProductReviews'
+import { ProductReviews, ProductReviewsProps } from '@reachdigital/magento-review'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { Row, SectionContainer } from '@reachdigital/next-ui'
 import React from 'react'

@@ -12,11 +12,11 @@ import {
   ProductSidebarDelivery,
   ProductWeight,
 } from '@reachdigital/magento-product'
-import { jsonLdProductReview, ProductReviewSummary } from '@reachdigital/magento-product-review'
 import {
   SimpleProductPageDocument,
   SimpleProductPageQuery,
 } from '@reachdigital/magento-product-simple'
+import { jsonLdProductReview, ProductReviewSummary } from '@reachdigital/magento-review'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps, JsonLd, Title } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'

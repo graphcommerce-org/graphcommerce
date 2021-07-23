@@ -15,7 +15,7 @@ import {
   DownloadableProductPageDocument,
   DownloadableProductPageQuery,
 } from '@reachdigital/magento-product-downloadable'
-import { ProductReviewSummary, jsonLdProductReview } from '@reachdigital/magento-product-review'
+import { ProductReviewSummary, jsonLdProductReview } from '@reachdigital/magento-review'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { JsonLd, GetStaticProps, Title } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
