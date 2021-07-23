@@ -3,7 +3,7 @@ import { Button, Form } from '@reachdigital/next-ui'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
-import { SignInDocument, SignInMutationVariables } from '../hooks'
+import { SignInDocument, SignInMutationVariables } from './SignIn.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

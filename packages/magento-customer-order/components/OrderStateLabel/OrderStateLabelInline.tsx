@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import OrderStateLabel, { OrderStateLabelProps } from '../OrderStateLabel'
+import OrderStateLabel, { OrderStateLabelProps } from '.'
 
 type OrderStateLabelInlineProps = OrderStateLabelProps
 

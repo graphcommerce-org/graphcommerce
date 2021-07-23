@@ -6,8 +6,9 @@ import { FormRow, Button, FormActions } from '@reachdigital/next-ui'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import PageLink from 'next/link'
 import React from 'react'
-import { CustomerTokenDocument, SignInDocument } from '../hooks'
-import ApolloCustomerErrorAlert from './ApolloCustomerError/ApolloCustomerErrorAlert'
+import { CustomerTokenDocument } from '../../hooks'
+import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
+import { SignInDocument } from './SignIn.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -29,6 +30,7 @@ export default function SignInForm(props: SignInFormProps) {
     { defaultValues: { email } },
     { errorPolicy: 'all' },
   )
+
   const { muiRegister, handleSubmit, required, formState, error } = form
   const [remainingError, authError] = graphqlErrorByCategory({
     category: 'graphql-authentication',

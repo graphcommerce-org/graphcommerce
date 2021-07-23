@@ -5,7 +5,7 @@ import { responsiveVal } from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
-import { OrderCardItemImageFragment } from '../OrderCardItemImage/OrderCardItemImage.gql'
+import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
 import { OrderItemFragment } from './OrderItem.gql'
 
 type OrderItemProps = OrderItemFragment & Omit<OrderCardItemImageFragment, 'uid'>

@@ -11,3 +11,6 @@ export * from './ProductReviewSummary/ProductReviewSummary.gql'
 export * from './ProductReviews/ProductReviewProductName.gql'
 export * from './CreateProductReviewForm/CreateProductReview.gql'
 export * from './CreateProductReviewForm/ProductReviewRatingsMetadata.gql'
+
+export * from './JsonLdProductReview/JsonLdProductReview.gql'
+export * from './JsonLdProductReview'

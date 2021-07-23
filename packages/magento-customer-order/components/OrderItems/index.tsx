@@ -3,7 +3,7 @@ import { Skeleton } from '@material-ui/lab'
 import { AnimatedRow, Button, SectionContainer, responsiveVal } from '@reachdigital/next-ui'
 import { AnimatePresence } from 'framer-motion'
 import React, { useState } from 'react'
-import { UseOrderCardItemImages } from '../OrderCardItemImage/useOrderCardItemImages'
+import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import OrderItem from '../OrderItem'
 import { OrderItemsFragment } from './OrderItems.gql'
 

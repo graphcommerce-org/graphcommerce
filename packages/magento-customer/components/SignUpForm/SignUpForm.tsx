@@ -3,9 +3,9 @@ import { graphqlErrorByCategory } from '@reachdigital/magento-graphql'
 import { Button, FormActions, FormRow } from '@reachdigital/next-ui'
 import { useFormGqlMutation, useFormPersist } from '@reachdigital/react-hook-form'
 import React from 'react'
-import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from '../hooks'
-import ApolloCustomerErrorAlert from './ApolloCustomerError/ApolloCustomerErrorAlert'
-import NameFields from './NameFields'
+import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
+import NameFields from '../NameFields'
+import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 
 type SignUpFormProps = {
   email?: string
