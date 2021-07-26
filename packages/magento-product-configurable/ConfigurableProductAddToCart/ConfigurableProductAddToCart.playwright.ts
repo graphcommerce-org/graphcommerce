@@ -1,9 +1,8 @@
-import { test } from '@reachdigital/magento-product/__playwright__/fixtures/testProduct'
-import { expect } from '@reachdigital/playwright'
+import { expect, Page } from '@reachdigital/playwright'
+import { test } from '../../magento-product/__playwright__/fixtures/withProduct'
 
-test('add configurable to cart', async ({ page, productURL }) => {
-  expect(productURL.ConfigurableProduct).toBeDefined()
-  await page.goto(productURL.ConfigurableProduct)
+export const addProductToCart = async (page: Page, productUrl: string) => {
+  await page.goto(productUrl)
 
   const groups = await page.$$('form [role=group]')
   expect(groups.length).toBeGreaterThan(0)
@@ -15,7 +14,10 @@ test('add configurable to cart', async ({ page, productURL }) => {
 
   await page.waitForResponse('**/graphql')
   await page.waitForResponse('**/graphql')
+}
 
-  const bla = await page.waitForSelector('text=has been added to your shopping cart')
-  expect(bla).toBeDefined()
+test('add configurable to cart', async ({ page, productURL }) => {
+  expect(productURL.ConfigurableProduct).toBeDefined()
+  await addProductToCart(page, productURL.ConfigurableProduct)
+  expect(await page.waitForSelector('text=has been added to your shopping cart')).toBeDefined()
 })

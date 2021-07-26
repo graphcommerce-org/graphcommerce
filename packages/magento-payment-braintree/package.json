@@ -19,6 +19,8 @@
     "@reachdigital/playwright": "^1.1.0",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
     "@reachdigital/typescript-config-pwa": "^2.100.10",
+    "@reachdigital/magento-product-configurable": "^2.101.0",
+    "@reachdigital/magento-product": "^2.101.0",
     "@types/braintree-web": "^3.75.5"
   },
   "dependencies": {
