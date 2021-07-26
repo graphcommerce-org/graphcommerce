@@ -32,10 +32,10 @@ module.exports = {
       'error',
       {
         devDependencies: [
-          '**/*.test.js',
           'next.config.js',
           '**/__tests__/**',
           '**/__playwright__/**',
+          '**/*.playwright.ts',
         ],
       },
     ],
