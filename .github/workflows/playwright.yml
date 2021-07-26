@@ -1,0 +1,31 @@
+name: playwright
+on: [pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - uses: bahmutov/npm-install@v1
+        with:
+          useRollingCache: true
+      - name: Install operating system dependencies
+        run: npx playwright install-deps
+      - name: Install webkit
+        run: npx playwright install webkit
+      - name: Install chromium
+        run: npx playwright install chromium
+      - id: deployment
+        uses: paales/get-deployment-url@feature/match
+        timeout-minutes: 5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          retryInterval: 2000
+          pattern: https://graphcommerce-?????????-reachdigital.vercel.app
+      - run: npx playwright test
+        env:
+          URL: ${{ steps.deployment.outputs.deployment }}

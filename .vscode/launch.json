@@ -22,6 +22,12 @@
       "type": "node-terminal"
     },
     {
+      "command": "npx playwright test",
+      "name": "Playwright",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
       "type": "chrome",
       "request": "launch",
       "name": "Launch Chrome against localhost",

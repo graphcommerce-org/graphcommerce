@@ -11,8 +11,7 @@
           },
           "schemaHeaders": {
             "Authorization": "${GRAPHCMS_BEARER}"
-          },
-          "cacheIntrospection": true
+          }
         }
       },
       "transforms": [
@@ -29,7 +28,6 @@
       "handler": {
         "graphql": {
           "endpoint": "${MAGENTO_ENDPOINT}",
-          "cacheIntrospection": true,
           "schemaHeaders": {
             "Store": "{context.req.headers.store}",
             "Authorization": "{context.req.headers.authorization}"
