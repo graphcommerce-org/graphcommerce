@@ -1,7 +1,7 @@
-import { test, expect, baseUrl } from '@reachdigital/playwright'
+import { test, expect } from '@reachdigital/playwright'
 
-test('add configurable to cart', async ({ page }) => {
-  await page.goto(`https://graphcommerce.vercel.app/product/configurable/gc-puny-dots-sock`)
+test('add configurable to cart', async ({ page, baseURL }) => {
+  await page.goto(`${baseURL}/product/configurable/gc-puny-dots-sock`)
 
   const groups = await page.$$('form [role=group]')
   expect(groups.length).toBeGreaterThan(0)

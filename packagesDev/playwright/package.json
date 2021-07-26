@@ -17,11 +17,11 @@
     }
   },
   "dependencies": {
-    "@playwright/test": "^1.12.3",
+    "@playwright/test": "^1.13.0",
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
     "@reachdigital/eslint-config-pwa": "^2.100.10",
-    "@reachdigital/prettier-config-pwa": "^2.100.9",
     "@reachdigital/playwright": "^1.0.0",
+    "@reachdigital/prettier-config-pwa": "^2.100.9",
     "@reachdigital/typescript-config-pwa": "^2.100.10"
   }
 }

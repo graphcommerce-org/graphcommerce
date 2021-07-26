@@ -79,8 +79,8 @@
     "@reachdigital/magento-store": "^2.100.18",
     "@reachdigital/next-config": "^2.100.9",
     "@reachdigital/next-ui": "^2.102.3",
-    "@reachdigital/prettier-config-pwa": "^2.100.9",
     "@reachdigital/playwright": "^1.0.0",
+    "@reachdigital/prettier-config-pwa": "^2.100.9",
     "@reachdigital/react-hook-form": "^2.100.10",
     "@reachdigital/typescript-config-pwa": "^2.100.10",
     "apollo3-cache-persist": "^0.10.0",
@@ -99,11 +99,11 @@
     "schema-dts": "^0.9.0",
     "sharp": "^0.28.3",
     "vercel": "^23.0.1",
-    "webpack": "^5.45.1"
+    "webpack": "^5.46.0"
   },
   "devDependencies": {
-    "@types/node": "^16.3.3",
-    "@types/react": "^17.0.14",
+    "@types/node": "^16.4.3",
+    "@types/react": "^17.0.15",
     "@types/sharp": "^0.28.4",
     "type-fest": "^1.2.2",
     "typescript": "^4.3.5"
