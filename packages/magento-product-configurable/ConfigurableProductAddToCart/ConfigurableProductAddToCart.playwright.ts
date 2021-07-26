@@ -1,7 +1,9 @@
-import { test, expect } from '@reachdigital/playwright'
+import { test } from '@reachdigital/magento-product/__playwright__/fixtures/testProduct'
+import { expect } from '@reachdigital/playwright'
 
-test('add configurable to cart', async ({ page, baseURL }) => {
-  await page.goto(`${baseURL}/product/configurable/gc-puny-dots-sock`)
+test('add configurable to cart', async ({ page, productURL }) => {
+  expect(productURL.ConfigurableProduct).toBeDefined()
+  await page.goto(productURL.ConfigurableProduct)
 
   const groups = await page.$$('form [role=group]')
   expect(groups.length).toBeGreaterThan(0)

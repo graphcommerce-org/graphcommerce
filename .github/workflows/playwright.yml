@@ -29,3 +29,6 @@ jobs:
       - run: npx playwright test
         env:
           URL: ${{ steps.deployment.outputs.deployment }}
+          NEXT_PUBLIC_GRAPHQL_ENDPOINT: ${{ secrets.NEXT_PUBLIC_GRAPHQL_ENDPOINT }}
+          NEXT_PUBLIC_LOCALE_STORES: ${{ secrets.NEXT_PUBLIC_LOCALE_STORES }}
+          VERCEL_ENV: development

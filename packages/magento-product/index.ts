@@ -40,7 +40,7 @@ export { default as ProductSpecs } from './ProductSpecs'
 export { default as productPageCategory } from './ProductPageCategory'
 export { default as ProductPageGallery } from './ProductPageGallery'
 export { default as ProductPageMeta } from './ProductPageMeta'
-export { default as getProductStaticPaths } from './ProductStaticPaths/getProductStaticPaths'
+export * from './ProductStaticPaths/getProductStaticPaths'
 export { default as ProductWeight } from './ProductWeight'
 
 export * from './ProductUpsells/UpsellProducts.gql'
