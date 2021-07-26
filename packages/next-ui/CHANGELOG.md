@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.102.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.102.2...@reachdigital/next-ui@2.102.3) (2021-07-26)
+
+
+### Bug Fixes
+
+* **full-page-shell:** fabs not clickable ([2c8d7f9](https://github.com/ho-nl/m2-pwa/commit/2c8d7f9529e83ac08d4fd758547379b72eb2f3d1))
+
+
+
+
+
 ## [2.102.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.102.1...@reachdigital/next-ui@2.102.2) (2021-07-23)
 
 
