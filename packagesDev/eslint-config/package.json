@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/eslint-config-pwa",
-  "version": "2.100.10",
+  "version": "2.101.0",
   "main": "index.js",
   "private": true,
   "dependencies": {

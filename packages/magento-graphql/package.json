@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-graphql",
-  "version": "2.100.10",
+  "version": "2.101.0",
   "private": true,
   "sideEffects": false,
   "main": "index.ts",
@@ -16,14 +16,14 @@
   },
   "devDependencies": {
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
-    "@reachdigital/eslint-config-pwa": "^2.100.10",
+    "@reachdigital/eslint-config-pwa": "^2.101.0",
+    "@reachdigital/playwright": "^1.1.0",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
-    "@reachdigital/playwright": "^1.0.0",
     "@reachdigital/typescript-config-pwa": "^2.100.10"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
-    "@reachdigital/graphql": "^2.100.10",
+    "@reachdigital/graphql": "^2.101.0",
     "graphql": "15.5.1",
     "next": "^11.0.1",
     "react": "^17.0.2",

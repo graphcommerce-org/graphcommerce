@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.103.2...@graphcommerce/graphcommerce@2.104.0) (2021-07-26)
+
+
+### Bug Fixes
+
+* playwright.ts files error ([4296f64](https://github.com/ho-nl/m2-pwa/commit/4296f648b11ea2a01e220cc0cbe1f6114e83e747))
+* **playwright:** install dependencies ([50fa562](https://github.com/ho-nl/m2-pwa/commit/50fa562ffbd4755d02792d296a40c035564e5dc7))
+* try and use the right url to test ([39180c3](https://github.com/ho-nl/m2-pwa/commit/39180c3c98f49dfd3e233e389f639bfecd742013))
+
+
+### Features
+
+* **playwright:** add github action ([0ef1094](https://github.com/ho-nl/m2-pwa/commit/0ef109400488869b40e1cc973effeb5976a2adb9))
+* **playwright:** added new playwright package to enable browser testing ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
+
+
+
+
+
 ## [2.103.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.103.1...@graphcommerce/graphcommerce@2.103.2) (2021-07-26)
 
 

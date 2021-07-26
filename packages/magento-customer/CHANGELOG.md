@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-customer@2.101.8...@reachdigital/magento-customer@2.102.0) (2021-07-26)
+
+
+### Features
+
+* **playwright:** added new playwright package to enable browser testing ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
+
+
+
+
+
 ## [2.101.6](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-customer@2.101.5...@reachdigital/magento-customer@2.101.6) (2021-07-23)
 
 

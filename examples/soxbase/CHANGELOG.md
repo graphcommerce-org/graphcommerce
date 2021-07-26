@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.102.4...@reachdigital/soxbase@2.103.0) (2021-07-26)
+
+
+### Features
+
+* **playwright:** added new playwright package to enable browser testing ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
+
+
+
+
+
 ## [2.102.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.102.2...@reachdigital/soxbase@2.102.3) (2021-07-23)
 
 
