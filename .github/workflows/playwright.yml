@@ -25,7 +25,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           retryInterval: 2000
-          pattern: https:\/\/graphcommerce-\w{9}-reachdigital\.vercel\.app
+          pattern: https://graphcommerce-?????????-reachdigital.vercel.app
       - run: npx playwright test
         env:
           URL: ${{ steps.deployment.outputs.deployment }}
