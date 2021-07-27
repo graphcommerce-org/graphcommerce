@@ -38,26 +38,12 @@ test.only('create braintree payment', async ({ page, productURL }) => {
 
   await page.click('button[value=braintree_local_payment___ideal]')
 
+  // Click button:has-text("Pay (iDEAL)")
+  const [page1] = await Promise.all([
+    page.waitForEvent('popup'),
+    page.click('button:has-text("Pay (iDEAL)")'),
+  ])
+
+  await page1.click('text=Proceed with Sandbox Purchase')
   await page.pause()
-
-  await page.click('button[type=submit]')
-  const paypalSandbox = await page.waitForEvent('popup')
-  await page.waitForNavigation()
-
-  await paypalSandbox.waitForNavigation()
-  // Click text=Proceed with Sandbox Purchase
-  await paypalSandbox.click('text=Proceed with Sandbox Purchase')
-  await paypalSandbox.close()
-
-  // // Click text=Unable to place order: Your payment could not be taken. Please try again or use
-  // await Promise.all([
-  //   page.waitForNavigation(/* { url: 'http://localhost:3000/checkout/success?cartId=' }*/),
-  //   page.click(
-  //     'text=Unable to place order: Your payment could not be taken. Please try again or use ',
-  //   ),
-  // ])
-  // // Click [id="__next"] div:has-text("BackThank you for your order!Back to HomeContinue shopping")
-  // await page.click(
-  //   '[id="__next"] div:has-text("BackThank you for your order!Back to HomeContinue shopping")',
-  // )
 })
