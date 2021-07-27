@@ -21,7 +21,7 @@ jobs:
         run: npx playwright install chromium
       - id: deployment
         uses: paales/get-deployment-url@feature/match
-        timeout-minutes: 5
+        timeout-minutes: 20
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           retryInterval: 2000
