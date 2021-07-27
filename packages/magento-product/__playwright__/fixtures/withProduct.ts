@@ -2,11 +2,18 @@
 import { gql } from '@apollo/client'
 import { test as base } from '@reachdigital/graphql/__playwright__/fixtures/testGraphQl'
 import { productLink } from '../../ProductLink'
-import { ProductTypenames } from '../../ProductStaticPaths/getProductStaticPaths'
 
 type ProductUrls = {
   all: string[]
-} & Record<`${ProductTypenames}`, string>
+} & Record<
+  | 'BundleProduct'
+  | 'ConfigurableProduct'
+  | 'DownloadableProduct'
+  | 'SimpleProduct'
+  | 'VirtualProduct'
+  | 'GroupedProduct',
+  string
+>
 
 const test = base.extend<{ productURL: ProductUrls }>({
   productURL: async ({ apolloClient, baseURL }, use) => {
