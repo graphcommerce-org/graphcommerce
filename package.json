@@ -1,7 +1,7 @@
 {
   "name": "@graphcommerce/graphcommerce",
   "homepage": "https://soxbase.vercel.app",
-  "version": "2.104.0",
+  "version": "2.105.0",
   "private": true,
   "workspaces": [
     "docs",
@@ -56,9 +56,9 @@
     }
   },
   "dependencies": {
-    "@reachdigital/browserslist-config-pwa": "^2.100.9",
-    "@reachdigital/eslint-config-pwa": "^2.101.0",
     "@playwright/test": "^1.13.0",
+    "@reachdigital/browserslist-config-pwa": "^2.100.9",
+    "@reachdigital/eslint-config-pwa": "^2.102.0",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
     "lerna": "^4.0.0",
     "patch-package": "^6.4.3",

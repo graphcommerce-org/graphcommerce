@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/eslint-config-pwa@2.101.0...@reachdigital/eslint-config-pwa@2.102.0) (2021-07-28)
+
+
+### Features
+
+* **eslint:** no-relative-packages, prevent importing other packages by relative paths ([b3d23b0](https://github.com/ho-nl/m2-pwa/commit/b3d23b0217f808bb251ecaf67ccc618f9a10eefe))
+
+
+
+
+
 # [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/eslint-config-pwa@2.100.10...@reachdigital/eslint-config-pwa@2.101.0) (2021-07-26)
 
 

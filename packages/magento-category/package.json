@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-category",
-  "version": "2.101.0",
+  "version": "2.101.1",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
@@ -14,9 +14,9 @@
     }
   },
   "devDependencies": {
-    "@reachdigital/browserslist-config-pwa": "^2.100.9",
-    "@reachdigital/eslint-config-pwa": "^2.101.0",
     "@playwright/test": "^1.13.0",
+    "@reachdigital/browserslist-config-pwa": "^2.100.9",
+    "@reachdigital/eslint-config-pwa": "^2.102.0",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
     "@reachdigital/typescript-config-pwa": "^2.100.10"
   },
@@ -24,11 +24,11 @@
     "@apollo/client": "^3.3.21",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.12.1",
-    "@reachdigital/graphql": "^2.101.0",
-    "@reachdigital/image": "^2.101.0",
-    "@reachdigital/magento-product": "^2.101.0",
-    "@reachdigital/magento-store": "^2.101.0",
-    "@reachdigital/next-ui": "^2.103.0",
+    "@reachdigital/graphql": "^2.101.1",
+    "@reachdigital/image": "^2.101.1",
+    "@reachdigital/magento-product": "^2.101.1",
+    "@reachdigital/magento-store": "^2.101.1",
+    "@reachdigital/next-ui": "^2.103.1",
     "next": "^11.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

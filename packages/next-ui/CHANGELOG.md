@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.103.0...@reachdigital/next-ui@2.103.1) (2021-07-28)
+
+
+### Bug Fixes
+
+* buttons reporting errors all over the place ([0fa9099](https://github.com/ho-nl/m2-pwa/commit/0fa9099671659094f990449d3286e5216fce6a51))
+
+
+
+
+
 # [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.102.3...@reachdigital/next-ui@2.103.0) (2021-07-26)
 
 

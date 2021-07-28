@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.104.0...@graphcommerce/graphcommerce@2.105.0) (2021-07-28)
+
+
+### Bug Fixes
+
+* **braintree:** allow for proper initialization of braintree client libraries ([af87d1c](https://github.com/ho-nl/m2-pwa/commit/af87d1ccde1378127b9ef76b197d3946a9c7ca92))
+* buttons reporting errors all over the place ([0fa9099](https://github.com/ho-nl/m2-pwa/commit/0fa9099671659094f990449d3286e5216fce6a51))
+* playwright ([57098a5](https://github.com/ho-nl/m2-pwa/commit/57098a56f50f175cc753339aeba7c577288e20d6))
+* **playwright:** github action missed graphql-codegen modules ([aca35d8](https://github.com/ho-nl/m2-pwa/commit/aca35d8a212f9a8ef940625773197a08d3e274f0))
+
+
+### Features
+
+* **eslint:** no-relative-packages, prevent importing other packages by relative paths ([b3d23b0](https://github.com/ho-nl/m2-pwa/commit/b3d23b0217f808bb251ecaf67ccc618f9a10eefe))
+
+
+
+
+
 # [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.103.2...@graphcommerce/graphcommerce@2.104.0) (2021-07-26)
 
 
