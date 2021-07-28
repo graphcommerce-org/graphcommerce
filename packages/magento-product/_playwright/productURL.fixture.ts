@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { test as base } from '@reachdigital/graphql/__playwright__/fixtures/testGraphQl'
+import { test as base } from '@reachdigital/graphql/_playwright/apolloClient.fixture'
 import { productLink } from '../ProductLink'
 import { ProductStaticPathsDocument } from '../ProductStaticPaths/ProductStaticPaths.gql'
 import { ProductTypenames } from '../ProductStaticPaths/getProductStaticPaths'
@@ -17,8 +17,8 @@ const test = base.extend<{ productURL: ProductUrls }>({
 
     const productUrls: Partial<Omit<ProductUrls, 'all'>> = {}
     const urls = (query.data.products?.items ?? []).map((p) => {
-      productUrls[`${p?.__typename}`] = `${baseURL}${productLink(p!)}`
-      return `${baseURL}${productLink(p!)}`
+      productUrls[`${p?.__typename}`] = `${baseURL}${productLink(p)}`
+      return `${baseURL}${productLink(p)}`
     })
 
     await use({ all: urls, ...productUrls } as ProductUrls)

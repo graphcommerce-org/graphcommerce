@@ -1,5 +1,4 @@
-import { test } from '@reachdigital/magento-product/_playwright/withProduct'
-import { expect, Page } from '@reachdigital/playwright'
+import { Page } from '@reachdigital/playwright'
 
 export async function addConfigurableProductToCart(page: Page, productUrl: string) {
   await page.goto(productUrl)
@@ -15,9 +14,3 @@ export async function addConfigurableProductToCart(page: Page, productUrl: strin
   await page.waitForResponse('**/graphql')
   await page.waitForResponse('**/graphql')
 }
-
-test('add configurable to cart', async ({ page, productURL }) => {
-  expect(productURL.ConfigurableProduct).toBeDefined()
-  await addConfigurableProductToCart(page, productURL.ConfigurableProduct)
-  expect(await page.waitForSelector('text=has been added to your shopping cart')).toBeDefined()
-})

@@ -31,12 +31,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: [
-          'next.config.js',
-          '**/__tests__/**',
-          '**/_playwright**',
-          '**/*.playwright.ts',
-        ],
+        devDependencies: ['next.config.js', '**/__tests__/**', '**/_playwright/**'],
       },
     ],
     'import/order': ['warn', { alphabetize: { order: 'asc' } }],
