@@ -1,7 +1,7 @@
-import { test, expect } from '@reachdigital/playwright'
+import { Page, expect } from '@playwright/test'
 
-test('add configurable to cart', async ({ page, baseURL }) => {
-  await page.goto(`${baseURL}/product/configurable/gc-puny-dots-sock`)
+export async function addConfigurableProductToCart(page: Page, productUrl: string) {
+  await page.goto(productUrl)
 
   const groups = await page.$$('form [role=group]')
   expect(groups.length).toBeGreaterThan(0)
@@ -13,7 +13,4 @@ test('add configurable to cart', async ({ page, baseURL }) => {
 
   await page.waitForResponse('**/graphql')
   await page.waitForResponse('**/graphql')
-
-  const bla = await page.waitForSelector('text=has been added to your shopping cart')
-  expect(bla).toBeDefined()
-})
+}

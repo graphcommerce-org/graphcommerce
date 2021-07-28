@@ -1,15 +1,14 @@
 import { useCartQuery, useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import { PaymentOptionsProps } from '@reachdigital/magento-cart-payment-method'
 import { useFormCompose } from '@reachdigital/react-hook-form'
-import { useRouter } from 'next/router'
-import { BraintreePaymentMethodOptionsDocument } from '../BraintreePaymentMethodOptions.gql'
-import { StartPaymentOptions } from '../hooks/useBraintree'
-import useBraintreeLocalPayment from '../hooks/useBraintreeLocalPayment'
+import { BraintreePaymentMethodOptionsDocument } from '../../BraintreePaymentMethodOptions.gql'
+import { StartPaymentOptions } from '../../hooks/useBraintree'
+import { useBraintreeLocalPayment } from '../../hooks/useBraintreeLocalPayment'
 import { BraintreeLocalPaymentsCartDocument } from './BraintreeLocalPaymentsCart.gql'
 
 /** It sets the selected payment method on the cart. */
 function PaymentMethodOptions(props: PaymentOptionsProps) {
-  const localPayment = useBraintreeLocalPayment()
+  const localPaymentPromise = useBraintreeLocalPayment()
 
   const { code, step, child, title, preferred, ...other } = props
   const paymentType = child as StartPaymentOptions['paymentType']
@@ -23,10 +22,11 @@ function PaymentMethodOptions(props: PaymentOptionsProps) {
   const form = useFormGqlMutationCart(BraintreePaymentMethodOptionsDocument, {
     defaultValues: { code },
     onBeforeSubmit: async () => {
-      if (!cartData || !localPayment || !paymentType) throw Error('no ready')
+      if (!cartData || !paymentType) throw Error('no ready')
 
       const address = cartData.cart?.shipping_addresses?.[0]
 
+      const localPayment = await localPaymentPromise
       const paymentResult = await localPayment.startPayment({
         paymentType,
         amount: cartData.cart?.prices?.grand_total?.value?.toString() ?? '0.00',
@@ -73,7 +73,7 @@ function PaymentMethodOptions(props: PaymentOptionsProps) {
 
   /** This is the form that the user can fill in. In this case we don't wat the user to fill in anything. */
   return (
-    <form onSubmit={submit} style={{ visibility: 'hidden' }}>
+    <form onSubmit={submit}>
       <input type='hidden' {...register('code')} />
     </form>
   )

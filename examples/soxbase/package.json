@@ -79,7 +79,7 @@
     "@reachdigital/magento-store": "^2.101.0",
     "@reachdigital/next-config": "^2.100.9",
     "@reachdigital/next-ui": "^2.103.0",
-    "@reachdigital/playwright": "^1.1.0",
+    "@playwright/test": "^1.13.0",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
     "@reachdigital/react-hook-form": "^2.101.0",
     "@reachdigital/typescript-config-pwa": "^2.100.10",

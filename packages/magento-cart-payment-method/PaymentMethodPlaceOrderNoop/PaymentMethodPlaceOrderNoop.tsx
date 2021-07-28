@@ -15,9 +15,10 @@ export default function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProp
   const router = useRouter()
 
   const submit = handleSubmit(({ cartId }) => {
-    paymentDone()
+    console.log('payment is done')
+    // paymentDone()
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    router.push({ pathname: '/checkout/success', query: { cartId } })
+    // router.push({ pathname: '/checkout/success', query: { cartId } })
   })
 
   useFormCompose({ form, step, submit, key: `PaymentMethodPlaceOrder_${code}` })

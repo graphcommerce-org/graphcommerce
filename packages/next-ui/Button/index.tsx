@@ -34,6 +34,9 @@ const useStyles = makeStyles<
   ButtonClassKey
 >(
   (theme: Theme) => ({
+    root: {},
+    label: {},
+    disabled: {},
     withStartIcon: {
       [theme.breakpoints.down('sm')]: {
         height: 40,

@@ -31,12 +31,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: [
-          'next.config.js',
-          '**/__tests__/**',
-          '**/__playwright__/**',
-          '**/*.playwright.ts',
-        ],
+        devDependencies: ['next.config.js', '**/__tests__/**', '**/_playwright/**'],
       },
     ],
     'import/order': ['warn', { alphabetize: { order: 'asc' } }],
@@ -97,6 +92,8 @@ module.exports = {
 
     // Remove when fixed: https://github.com/react-hook-form/react-hook-form/issues/2887
     '@typescript-eslint/unbound-method': 'off',
+
+    'import/no-relative-packages': 'error',
   },
   overrides: [
     {

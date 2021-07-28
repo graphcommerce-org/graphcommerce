@@ -4,11 +4,11 @@ import { ProductStaticPathsDocument, ProductStaticPathsQuery } from './ProductSt
 
 type Return = GetStaticPathsResult<{ url: string }>
 
-type ProductTypenames = NonNullable<
+export type ProductTypenames = NonNullable<
   NonNullable<NonNullable<ProductStaticPathsQuery['products']>['items']>[0]
 >['__typename']
 
-export default async function getProductStaticPaths(
+export async function getProductStaticPaths(
   client: ApolloClient<NormalizedCacheObject>,
   locale: string,
   typename: ProductTypenames,

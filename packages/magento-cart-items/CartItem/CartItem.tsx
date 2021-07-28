@@ -153,7 +153,7 @@ export default function CartItem(props: CartItemProps) {
         badgeContent={<RemoveItemFromCartFab uid={uid} className={classes.badge} />}
         component='div'
         className={classes.picture}
-        overlap='circle'
+        overlap='circular'
       >
         <PageLink href={productLink}>
           <a className={classes.productLink}>
