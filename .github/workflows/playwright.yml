@@ -19,6 +19,10 @@ jobs:
         run: npx playwright install webkit
       - name: Install chromium
         run: npx playwright install chromium
+      - name: graphql-codegen-near-operation-file
+        run: yarn workspace @reachdigital/graphql-codegen-near-operation-file build
+      - name: graphql-codegen-relay-optimizer-plugin
+        run: yarn workspace @reachdigital/graphql-codegen-relay-optimizer-plugin build
       - name: Codegen
         run: yarn workspace @reachdigital/soxbase codegen
         env:
