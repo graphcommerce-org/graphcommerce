@@ -1,4 +1,4 @@
-import { Page } from '@reachdigital/playwright'
+import { Page, expect } from '@playwright/test'
 
 export async function addConfigurableProductToCart(page: Page, productUrl: string) {
   await page.goto(productUrl)

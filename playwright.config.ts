@@ -1,4 +1,4 @@
-import { PlaywrightTestConfig, devices } from '@reachdigital/playwright'
+import { PlaywrightTestConfig, devices } from '@playwright/test'
 
 const config: PlaywrightTestConfig = {
   testMatch: ['**/_playwright/**.spec.ts'],
@@ -17,7 +17,6 @@ const config: PlaywrightTestConfig = {
     },
   ],
   use: {
-    video: 'retain-on-failure',
     baseURL: process.env.URL || 'http://localhost:3000',
   },
 

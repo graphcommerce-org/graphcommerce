@@ -1,4 +1,4 @@
-import { Page } from '@reachdigital/playwright'
+import { Page } from '@playwright/test'
 
 export async function fillShippingAddressForm(page: Page) {
   await page.click('input[name="firstname"]')

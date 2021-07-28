@@ -1,6 +1,6 @@
 /* eslint-disable no-empty-pattern */
 import { ApolloClient, InMemoryCache, NormalizedCacheObject } from '@apollo/client'
-import { test as base } from '@reachdigital/playwright'
+import { test as base } from '@playwright/test'
 
 const test = base.extend<{ apolloClient: ApolloClient<NormalizedCacheObject> }>({
   apolloClient: async ({}, use) => {

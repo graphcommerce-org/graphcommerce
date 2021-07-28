@@ -1,5 +1,5 @@
+import { expect } from '@playwright/test'
 import { test } from '@reachdigital/magento-product/_playwright/productURL.fixture'
-import { expect } from '@reachdigital/playwright'
 import { addConfigurableProductToCart } from './addConfigurableProductToCart'
 
 test('add configurable to cart', async ({ page, productURL }) => {
