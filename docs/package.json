@@ -4,12 +4,15 @@
   "private": true,
   "main": "index.js",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
+    "@playwright/test": "^1.13.0",
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
     "@reachdigital/eslint-config-pwa": "^2.101.0",
-    "@playwright/test": "^1.13.0",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
-    "@reachdigital/typescript-config-pwa": "^2.100.10",
+    "@reachdigital/typescript-config-pwa": "^2.100.10"
+  },
+  "dependencies": {
+    "@reachdigital/next-config": "^2.100.9",
     "next": "^11.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
