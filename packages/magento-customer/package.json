@@ -27,7 +27,6 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@reachdigital/graphql": "^2.101.0",
     "@reachdigital/image": "^2.101.0",
-    "@reachdigital/magento-cart": "^2.102.0",
     "@reachdigital/magento-graphql": "^2.101.0",
     "@reachdigital/magento-product": "^2.101.0",
     "@reachdigital/magento-store": "^2.101.0",
