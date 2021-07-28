@@ -97,6 +97,8 @@ module.exports = {
 
     // Remove when fixed: https://github.com/react-hook-form/react-hook-form/issues/2887
     '@typescript-eslint/unbound-method': 'off',
+
+    'import/no-relative-packages': 'error',
   },
   overrides: [
     {
