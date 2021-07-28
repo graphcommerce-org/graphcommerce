@@ -16,7 +16,9 @@ const useStyles = makeStyles(
       position: 'relative',
     },
     copy: {
-      color: '#fff',
+      zIndex: 1,
+      color: theme.palette.secondary.contrastText,
+      position: 'relative',
       display: 'grid',
       justifyItems: 'center',
       alignContent: 'center',
@@ -36,7 +38,6 @@ const useStyles = makeStyles(
     asset: {
       position: 'absolute',
       top: '0',
-      zIndex: -1,
       width: '100%',
       height: '100%',
       display: 'grid',

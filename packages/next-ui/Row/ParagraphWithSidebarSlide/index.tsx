@@ -19,7 +19,6 @@ const useStyles = makeStyles(
       '& img': {
         position: 'absolute',
         top: '0',
-        zIndex: -1,
         width: '100%',
         height: '100% !important',
         objectFit: 'cover',
@@ -33,8 +32,10 @@ const useStyles = makeStyles(
     copy: {
       color: '#fff',
       display: 'grid',
+      zIndex: 1,
       justifyItems: 'start',
       alignContent: 'end',
+      position: 'relative',
       padding: `${theme.spacings.md}`,
       '& > *': {
         maxWidth: 'max-content',
