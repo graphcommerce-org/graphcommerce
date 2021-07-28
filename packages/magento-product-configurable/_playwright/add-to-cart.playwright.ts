@@ -1,7 +1,7 @@
+import { test } from '@reachdigital/magento-product/_playwright/withProduct'
 import { expect, Page } from '@reachdigital/playwright'
-import { test } from '../../magento-product/__playwright__/fixtures/withProduct'
 
-export const addProductToCart = async (page: Page, productUrl: string) => {
+export async function addConfigurableProductToCart(page: Page, productUrl: string) {
   await page.goto(productUrl)
 
   const groups = await page.$$('form [role=group]')
@@ -18,6 +18,6 @@ export const addProductToCart = async (page: Page, productUrl: string) => {
 
 test('add configurable to cart', async ({ page, productURL }) => {
   expect(productURL.ConfigurableProduct).toBeDefined()
-  await addProductToCart(page, productURL.ConfigurableProduct)
+  await addConfigurableProductToCart(page, productURL.ConfigurableProduct)
   expect(await page.waitForSelector('text=has been added to your shopping cart')).toBeDefined()
 })

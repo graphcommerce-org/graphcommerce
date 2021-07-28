@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { test as base } from '@reachdigital/graphql/__playwright__/fixtures/testGraphQl'
-import { productLink } from '../../ProductLink'
-import { ProductStaticPathsDocument } from '../../ProductStaticPaths/ProductStaticPaths.gql'
-import { ProductTypenames } from '../../ProductStaticPaths/getProductStaticPaths'
+import { productLink } from '../ProductLink'
+import { ProductStaticPathsDocument } from '../ProductStaticPaths/ProductStaticPaths.gql'
+import { ProductTypenames } from '../ProductStaticPaths/getProductStaticPaths'
 
 type ProductUrls = {
   all: string[]

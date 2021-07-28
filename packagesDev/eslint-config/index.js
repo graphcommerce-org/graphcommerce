@@ -34,7 +34,7 @@ module.exports = {
         devDependencies: [
           'next.config.js',
           '**/__tests__/**',
-          '**/__playwright__/**',
+          '**/_playwright**',
           '**/*.playwright.ts',
         ],
       },
