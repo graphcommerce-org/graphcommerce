@@ -2,13 +2,11 @@ mutation BraintreeCcVaultPaymentMethod(
   $cartId: String!
   $deviceData: String!
   $publicHash: String!
-  $poNr: String
 ) {
   setPaymentMethodOnCart(
     input: {
       cart_id: $cartId
       payment_method: {
-        purchase_order_number: $poNr
         code: "braintree_cc_vault"
         braintree_cc_vault: { device_data: $deviceData, public_hash: $publicHash }
       }

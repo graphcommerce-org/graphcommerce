@@ -8,7 +8,7 @@ import {
   PaymentMethodPlaceOrder,
   PaymentMethodToggle,
 } from '@reachdigital/magento-cart-payment-method'
-import { braintree_local_payment } from '@reachdigital/magento-payment-braintree'
+import { braintree_local_payment, braintree } from '@reachdigital/magento-payment-braintree'
 import { included_methods } from '@reachdigital/magento-payment-included'
 import { mollie_methods } from '@reachdigital/magento-payment-mollie'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
@@ -69,6 +69,7 @@ function PaymentPage() {
           <PaymentMethodContextProvider
             modules={{
               braintree_local_payment,
+              braintree,
               ...included_methods,
               ...mollie_methods,
             }}
