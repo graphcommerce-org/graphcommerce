@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.105.1...@graphcommerce/graphcommerce@2.106.0) (2021-07-29)
+
+
+### Bug Fixes
+
+* add footer to MinimalPageShell on all pages ([698a012](https://github.com/ho-nl/m2-pwa/commit/698a012e17ffe0bbb845a4a593d798f8fff38aa3))
+* **checkout:** succes page links /checkout/payment ([0927790](https://github.com/ho-nl/m2-pwa/commit/09277909f16e627dcebfacd435738495a7de8776))
+* duplicate key error when multiple errors of the same error occur ([f2c5bc0](https://github.com/ho-nl/m2-pwa/commit/f2c5bc040c1e9cc1340f67c68460b8fe42230659))
+* paymentDone removed in favor of a more simple clearCart method ([5314f77](https://github.com/ho-nl/m2-pwa/commit/5314f7752c2f75a55dcd926bfc26607124561e5d))
+* **react-hook-form:** validate if the previous request succeeds before moving on to the next request ([1985d09](https://github.com/ho-nl/m2-pwa/commit/1985d0938cd509532fa3b6bc801a3399c2baae09))
+
+
+### Features
+
+* **braintree:** very basic implementation of credit card ([bb24f7e](https://github.com/ho-nl/m2-pwa/commit/bb24f7ec0577d018f0aff9b50de14f219e7504c5))
+
+
+
+
+
 # [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.104.0...@graphcommerce/graphcommerce@2.105.0) (2021-07-28)
 
 

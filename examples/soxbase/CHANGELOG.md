@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.103.2...@reachdigital/soxbase@2.104.0) (2021-07-29)
+
+
+### Bug Fixes
+
+* add footer to MinimalPageShell on all pages ([698a012](https://github.com/ho-nl/m2-pwa/commit/698a012e17ffe0bbb845a4a593d798f8fff38aa3))
+* **checkout:** succes page links /checkout/payment ([0927790](https://github.com/ho-nl/m2-pwa/commit/09277909f16e627dcebfacd435738495a7de8776))
+
+
+### Features
+
+* **braintree:** very basic implementation of credit card ([bb24f7e](https://github.com/ho-nl/m2-pwa/commit/bb24f7ec0577d018f0aff9b50de14f219e7504c5))
+
+
+
+
+
 # [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.102.4...@reachdigital/soxbase@2.103.0) (2021-07-26)
 
 

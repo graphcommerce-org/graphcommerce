@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-payment-braintree@2.101.2...@reachdigital/magento-payment-braintree@2.102.0) (2021-07-29)
+
+
+### Bug Fixes
+
+* paymentDone removed in favor of a more simple clearCart method ([5314f77](https://github.com/ho-nl/m2-pwa/commit/5314f7752c2f75a55dcd926bfc26607124561e5d))
+
+
+### Features
+
+* **braintree:** very basic implementation of credit card ([bb24f7e](https://github.com/ho-nl/m2-pwa/commit/bb24f7ec0577d018f0aff9b50de14f219e7504c5))
+
+
+
+
+
 ## [2.101.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-payment-braintree@2.101.0...@reachdigital/magento-payment-braintree@2.101.1) (2021-07-28)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.103.2...@reachdigital/next-ui@2.103.3) (2021-07-29)
+
+
+### Bug Fixes
+
+* duplicate key error when multiple errors of the same error occur ([f2c5bc0](https://github.com/ho-nl/m2-pwa/commit/f2c5bc040c1e9cc1340f67c68460b8fe42230659))
+
+
+
+
+
 ## [2.103.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.103.0...@reachdigital/next-ui@2.103.1) (2021-07-28)
 
 
