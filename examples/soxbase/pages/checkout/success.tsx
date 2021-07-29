@@ -3,6 +3,7 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CartItemSummary, CartSummary } from '@reachdigital/magento-cart'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
+  AppShellTitle,
   Button,
   GetStaticProps,
   iconParty,
@@ -26,9 +27,8 @@ function ShippingPage() {
       <PageMeta title='Checkout summary' metaDescription='Ordered items' metaRobots={['noindex']} />
       <PageShellHeader
         primary={
-          <PageLink href='/checkout/payment' passHref>
-            {/* TODO: PaymentMethodButton primary action */}
-            <Button color='secondary' variant='pill-link'>
+          <PageLink href='/' passHref>
+            <Button color='secondary' variant='text'>
               Back to Home
             </Button>
           </PageLink>
@@ -44,12 +44,14 @@ function ShippingPage() {
         </Title>
       </PageShellHeader>
       <Container maxWidth='md'>
+        <AppShellTitle icon={iconParty}>Thank you for your order!</AppShellTitle>
+
         <CartSummary />
         <CartItemSummary />
         <Box textAlign='center' m={8}>
           <PageLink href='/' passHref>
             <Button color='secondary' variant='pill' size='large' text='bold'>
-              Continue shopping
+              Back to home
             </Button>
           </PageLink>
         </Box>
