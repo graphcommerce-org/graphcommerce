@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-search",
-  "version": "2.102.1",
+  "version": "2.102.2",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
@@ -23,10 +23,10 @@
   "dependencies": {
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.12.1",
-    "@reachdigital/graphql": "^2.101.1",
+    "@reachdigital/graphql": "^2.101.2",
     "@reachdigital/image": "^2.101.1",
-    "@reachdigital/next-ui": "^2.103.1",
-    "@reachdigital/react-hook-form": "^2.101.1",
+    "@reachdigital/next-ui": "^2.103.2",
+    "@reachdigital/react-hook-form": "^2.101.2",
     "next": "^11.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
