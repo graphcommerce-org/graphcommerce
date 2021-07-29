@@ -1,6 +1,6 @@
-import { useApolloClient, useMutation } from '@apollo/client'
+import { ApolloClient, useApolloClient } from '@apollo/client'
 import braintree, { Client } from 'braintree-web'
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import { UseBraintreeDocument } from './UseBraintree.gql'
 
 export type StartPaymentOptions = {
@@ -28,11 +28,10 @@ export type StartPaymentOptions = {
   onPaymentStart?(paymentData: { paymentId: string }, continueCallback: () => void): void
 }
 
-export function useBraintreeClient() {
-  const apolloClient = useApolloClient()
-
-  const clientPromise = useRef<Promise<Client>>(
-    new Promise((resolve, reject) => {
+let clientPromise: Promise<Client> | undefined
+function getClientPromise(apolloClient: ApolloClient<unknown>) {
+  if (!clientPromise) {
+    clientPromise = new Promise((resolve, reject) => {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       ;(async () => {
         const res = await apolloClient.mutate({ mutation: UseBraintreeDocument })
@@ -50,7 +49,12 @@ export function useBraintreeClient() {
           reject(e)
         }
       })()
-    }),
-  )
-  return clientPromise.current
+    })
+  }
+  return clientPromise
+}
+
+export function useBraintreeClient(): Promise<Client> {
+  const apolloClient = useApolloClient()
+  return useRef<Promise<Client>>(getClientPromise(apolloClient)).current
 }

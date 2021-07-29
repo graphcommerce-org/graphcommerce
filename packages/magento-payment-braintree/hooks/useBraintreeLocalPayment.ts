@@ -22,10 +22,10 @@ type LocalPayment = {
   }): Promise<StartPaymentPayload>
 }
 
-export function useBraintreeLocalPayment() {
-  const braintreePromise = useBraintreeClient()
-  const localPayment = useRef<Promise<LocalPayment>>(
-    new Promise((resolve, reject) => {
+let localPaymentPromise: Promise<LocalPayment> | undefined
+function getLocalPaymentPromise(braintreePromise: ReturnType<typeof useBraintreeClient>) {
+  if (!localPaymentPromise) {
+    localPaymentPromise = new Promise((resolve, reject) => {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       ;(async () => {
         try {
@@ -37,8 +37,13 @@ export function useBraintreeLocalPayment() {
           reject(e)
         }
       })()
-    }),
-  )
+    })
+  }
 
-  return localPayment.current
+  return localPaymentPromise
+}
+
+export function useBraintreeLocalPayment() {
+  const braintreePromise = useBraintreeClient()
+  return useRef<Promise<LocalPayment>>(getLocalPaymentPromise(braintreePromise)).current
 }
