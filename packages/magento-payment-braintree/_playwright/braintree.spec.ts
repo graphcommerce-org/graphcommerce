@@ -21,14 +21,27 @@ test('place order', async ({ page, productURL }) => {
   await page.click('button[value=flatrate-flatrate]')
   await page.click('button:has-text("Next")')
 
-  await page.click('button[value=braintree_local_payment___ideal]')
+  await page.click('button[value=braintree___]')
 
-  const [braintreePopup] = await Promise.all([
-    page.waitForEvent('popup'),
-    page.click('button:has-text("Pay (iDEAL)")'),
-  ])
+  await page.click('button:has-text("Credit Card")')
 
-  await braintreePopup.click('text=Proceed with Sandbox Purchase')
+  await page.waitForSelector('[name=braintree-hosted-field-number]')
+  const ccFrame = page.frame('braintree-hosted-field-number')
+  expect(ccFrame).toBeDefined()
+  await ccFrame?.click('input[name=credit-card-number]')
+  await ccFrame?.fill('input[name=credit-card-number]', '4111111111111111')
+
+  const ccvFrame = page.frame({ name: 'braintree-hosted-field-cvv' })
+  await ccvFrame?.click('input[name="cvv"]')
+  await ccvFrame?.fill('input[name="cvv"]', '123')
+
+  const expirationFrame = page.frame({ name: 'braintree-hosted-field-expirationDate' })
+  await expirationFrame?.click('input[name="expiration"]')
+  await expirationFrame?.fill('input[name="expiration"]', '102022')
+
+  // Click button:has-text("Pay (Credit Card)")
+  await page.click('button:has-text("Pay (Credit Card)")')
+
   const result = await waitForGraphQlResponse(page, PaymentMethodPlaceOrderNoopDocument)
   expect(result.errors).toBeUndefined()
   expect(result.data?.placeOrder?.order.order_number).toBeDefined()

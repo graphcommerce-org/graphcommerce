@@ -1,25 +1,32 @@
-import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
+import {
+  useFormGqlMutationCart,
+  useCurrentCartId,
+  useClearCurrentCartId,
+} from '@reachdigital/magento-cart'
 import { useFormCompose } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { PaymentPlaceOrderProps } from '../Api/PaymentMethod'
 import { PaymentMethodPlaceOrderNoopDocument } from './PaymentMethodPlaceOrderNoop.gql'
 
 export default function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProps) {
-  const { step, paymentDone, code } = props
+  const { step, code } = props
+  const clearCurrentCartId = useClearCurrentCartId()
 
-  const form = useFormGqlMutationCart(PaymentMethodPlaceOrderNoopDocument, {
-    mode: 'onChange',
-  })
+  const cartId = useCurrentCartId()
+  const form = useFormGqlMutationCart(PaymentMethodPlaceOrderNoopDocument, { mode: 'onChange' })
 
-  const { handleSubmit } = form
+  const { handleSubmit, data, error } = form
   const router = useRouter()
 
-  const submit = handleSubmit(({ cartId }) => {
-    console.log('payment is done')
-    // paymentDone()
+  useEffect(() => {
+    if (!data?.placeOrder?.order || error || !cartId) return
+    clearCurrentCartId?.()
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    // router.push({ pathname: '/checkout/success', query: { cartId } })
-  })
+    router.push({ pathname: '/checkout/success', query: { cartId } })
+  }, [cartId, clearCurrentCartId, data?.placeOrder?.order, error, router])
+
+  const submit = handleSubmit(() => {})
 
   useFormCompose({ form, step, submit, key: `PaymentMethodPlaceOrder_${code}` })
 

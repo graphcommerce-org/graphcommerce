@@ -31,8 +31,9 @@ export default function ApolloErrorAlert(props: ApolloErrorAlertProps) {
         <AnimatedRow key='alerts'>
           <div className={classes.alerts}>
             <AnimatePresence initial={false}>
-              {error.graphQLErrors.map((e) => (
-                <AnimatedRow key={e.message}>
+              {error.graphQLErrors.map((e, index) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <AnimatedRow key={index}>
                   <div className={classes.alert}>
                     <Alert severity='error' {...graphqlErrorAlertProps}>
                       {e.message}
@@ -42,7 +43,7 @@ export default function ApolloErrorAlert(props: ApolloErrorAlertProps) {
               ))}
               {error.networkError && (
                 <AnimatedRow key='networkError'>
-                  <div className={classes.alert} key={error.networkError.message}>
+                  <div className={classes.alert} key='networkError'>
                     <Alert severity='error' {...networkErrorAlertProps}>
                       Network Error: {error.networkError.message}
                     </Alert>

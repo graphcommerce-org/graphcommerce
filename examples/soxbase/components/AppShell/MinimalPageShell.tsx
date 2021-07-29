@@ -1,10 +1,11 @@
 import { useQuery } from '@apollo/client'
 import { makeStyles, Theme } from '@material-ui/core'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { AppShellProvider, FullPageShellBaseProps } from '@reachdigital/next-ui'
+import { FullPageShellBaseProps } from '@reachdigital/next-ui'
 import MinimalPageShellBase from '@reachdigital/next-ui/AppShell/FullPageShellBase'
 import React from 'react'
 import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
+import Footer from './Footer'
 import Logo from './Logo'
 
 export type MinimalPageShellProps = Omit<DefaultPageQuery, 'pages'> &
@@ -32,7 +33,7 @@ export default function MinimalPageShell(props: MinimalPageShellProps) {
       header={<Logo classes={{ logo: classes.logo }} />}
     >
       {children}
-      {/* <Footer footer={footer} /> */}
+      <Footer footer={footer} />
     </MinimalPageShellBase>
   )
 }

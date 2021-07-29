@@ -61,8 +61,14 @@ export default function ComposedSubmit(props: ComposedSubmitProps) {
        *
        * Todo: There might be a performance optimization by submitting multiple forms in parallel.
        */
-      // eslint-disable-next-line no-await-in-loop
-      for (const [, { submit }] of formsToSubmit) await submit?.()
+      let canSubmit = true
+      for (const [, { submit, form }] of formsToSubmit) {
+        // eslint-disable-next-line no-await-in-loop
+        if (canSubmit) await submit?.()
+        // eslint-disable-next-line no-await-in-loop
+        if (!canSubmit) await form?.trigger()
+        if (!form?.formState.isValid || (isFormGqlOperation(form) && form.error)) canSubmit = false
+      }
       dispatch({ type: 'SUBMITTING' })
     } catch (error) {
       dispatch({ type: 'SUBMITTED', isSubmitSuccessful: false })

@@ -35,6 +35,7 @@
     "@reachdigital/magento-cart-payment-method": "^2.101.2",
     "@reachdigital/magento-store": "^2.101.2",
     "@reachdigital/next-ui": "^2.103.2",
+    "@reachdigital/react-hook-form": "^2.101.2",
     "braintree-web": "^3.79.1",
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.17",

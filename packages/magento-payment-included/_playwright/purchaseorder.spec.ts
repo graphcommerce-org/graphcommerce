@@ -21,15 +21,19 @@ test('place order', async ({ page, productURL }) => {
   await page.click('button[value=flatrate-flatrate]')
   await page.click('button:has-text("Next")')
 
-  await page.click('button[value=braintree_local_payment___ideal]')
+  await page.click('button[value=purchaseorder___]')
 
-  const [braintreePopup] = await Promise.all([
-    page.waitForEvent('popup'),
-    page.click('button:has-text("Pay (iDEAL)")'),
+  await page.click('input[name="poNumber"]')
+  await page.fill('input[name="poNumber"]', '1234567890')
+
+  const [, , placeOrder] = await Promise.all([
+    page.waitForNavigation(),
+    page.click('button:has-text("Pay (Purchase Order)")'),
+    waitForGraphQlResponse(page, PaymentMethodPlaceOrderNoopDocument),
   ])
 
-  await braintreePopup.click('text=Proceed with Sandbox Purchase')
-  const result = await waitForGraphQlResponse(page, PaymentMethodPlaceOrderNoopDocument)
-  expect(result.errors).toBeUndefined()
-  expect(result.data?.placeOrder?.order.order_number).toBeDefined()
+  expect(placeOrder.errors).toBeUndefined()
+  expect(placeOrder.data?.placeOrder?.order.order_number).toBeDefined()
+
+  expect(await page.$('h2:has-text("Thank you for your order!")')).toBeDefined()
 })
