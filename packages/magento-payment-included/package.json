@@ -18,6 +18,9 @@
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
     "@reachdigital/eslint-config-pwa": "^2.102.0",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
+    "@reachdigital/magento-cart-shipping-address": "^2.101.2",
+    "@reachdigital/magento-product": "^2.101.2",
+    "@reachdigital/magento-product-configurable": "^2.101.2",
     "@reachdigital/typescript-config-pwa": "^2.100.10",
     "@types/braintree-web": "^3.75.5"
   },
