@@ -85,7 +85,9 @@ function ShippingPage() {
                         color='secondary'
                         variant='pill'
                         size='large'
-                        loading={buttonState.isSubmitting || buttonState.isSubmitSuccessful}
+                        loading={
+                          buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)
+                        }
                         onClick={submit}
                       >
                         Next

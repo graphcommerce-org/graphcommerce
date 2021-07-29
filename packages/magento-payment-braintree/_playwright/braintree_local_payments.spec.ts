@@ -1,4 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { expect } from '@playwright/test'
+import { waitForGraphQlResponse } from '@reachdigital/graphql/_playwright/apolloClient.fixture'
+import { PaymentMethodPlaceOrderNoopDocument } from '@reachdigital/magento-cart-payment-method/PaymentMethodPlaceOrderNoop/PaymentMethodPlaceOrderNoop.gql'
 import { fillShippingAddressForm } from '@reachdigital/magento-cart-shipping-address/_playwright/fillShippingAddressForm'
 import { addConfigurableProductToCart } from '@reachdigital/magento-product-configurable/_playwright/addConfigurableProductToCart'
 import { test } from '@reachdigital/magento-product/_playwright/productURL.fixture'
@@ -26,5 +29,7 @@ test('place order', async ({ page, productURL }) => {
   ])
 
   await braintreePopup.click('text=Proceed with Sandbox Purchase')
-  await page.pause()
+  const result = await waitForGraphQlResponse(page, PaymentMethodPlaceOrderNoopDocument)
+  expect(result.errors).toBeUndefined()
+  expect(result.data?.placeOrder?.order.order_number).toBeDefined()
 })

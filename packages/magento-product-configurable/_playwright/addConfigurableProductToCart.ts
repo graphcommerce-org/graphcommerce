@@ -1,4 +1,7 @@
 import { Page, expect } from '@playwright/test'
+import { waitForGraphQlResponse } from '@reachdigital/graphql/_playwright/apolloClient.fixture'
+import { CreateEmptyCartDocument } from '@reachdigital/magento-cart/hooks/CreateEmptyCart.gql'
+import { ConfigurableProductAddToCartDocument } from '../ConfigurableProductAddToCart/ConfigurableProductAddToCart.gql'
 
 export async function addConfigurableProductToCart(page: Page, productUrl: string) {
   await page.goto(productUrl)
@@ -11,6 +14,11 @@ export async function addConfigurableProductToCart(page: Page, productUrl: strin
 
   await page.click('button[type=submit]')
 
-  await page.waitForResponse('**/graphql')
-  await page.waitForResponse('**/graphql')
+  const createCart = await waitForGraphQlResponse(page, CreateEmptyCartDocument)
+  expect(createCart.errors).toBeUndefined()
+  expect(createCart.data?.createEmptyCart).toBeDefined()
+
+  const addToCart = await waitForGraphQlResponse(page, ConfigurableProductAddToCartDocument)
+  expect(addToCart.errors).toBeUndefined()
+  expect(addToCart.data?.addProductsToCart?.user_errors.length).toBe(0)
 }

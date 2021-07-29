@@ -67,13 +67,13 @@ type FieldTypes = LiteralUnion<keyof Scalars, string> | FieldTypes[]
 
 function variableType<T extends TypeNode>(type: T): FieldTypes {
   if (type.kind === 'ListType') {
-    return [variableType((type as ListTypeNode).type)]
+    return [variableType(type.type)]
   }
   if (type.kind === 'NonNullType') {
-    return variableType((type as NonNullTypeNode).type)
+    return variableType(type.type)
   }
 
-  return (type as NamedTypeNode).name.value as keyof Scalars
+  return type.name.value as keyof Scalars
 }
 
 export type UseGqlDocumentHandler<V extends FieldValues> = {
@@ -109,7 +109,7 @@ export function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>): UseGqlD
       if (variable.defaultValue && isWithValueNode(variable.defaultValue)) {
         defaultVariables = {
           ...defaultVariables,
-          [name]: (variable.defaultValue.value as unknown) as Defaults[keyof Defaults],
+          [name]: variable.defaultValue.value as unknown as Defaults[keyof Defaults],
         }
       }
     })
