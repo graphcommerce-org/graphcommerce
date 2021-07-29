@@ -14,6 +14,7 @@ import PageLink from 'next/link'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
+import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = Record<string, unknown>
@@ -68,10 +69,19 @@ export default ShippingPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
+  const staticClient = apolloClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
+  const page = staticClient.query({
+    query: DefaultPageDocument,
+    variables: {
+      url: `checkout/success`,
+      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+    },
+  })
 
   return {
     props: {
+      ...(await page).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }
