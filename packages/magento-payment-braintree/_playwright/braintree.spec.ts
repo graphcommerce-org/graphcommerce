@@ -23,7 +23,6 @@ test('place order', async ({ page, productURL }) => {
 
   await page.click('button[value=braintree___]')
 
-  // Click button:has-text("Credit Card")
   await page.click('button:has-text("Credit Card")')
 
   await page.waitForSelector('[name=braintree-hosted-field-number]')
@@ -32,15 +31,13 @@ test('place order', async ({ page, productURL }) => {
   await ccFrame?.click('input[name=credit-card-number]')
   await ccFrame?.fill('input[name=credit-card-number]', '4111111111111111')
 
-  await page.frame({ name: 'braintree-hosted-field-cvv' })?.click('input[name="cvv"]')
-  await page.frame({ name: 'braintree-hosted-field-cvv' })?.fill('input[name="cvv"]', '123')
+  const ccvFrame = page.frame({ name: 'braintree-hosted-field-cvv' })
+  await ccvFrame?.click('input[name="cvv"]')
+  await ccvFrame?.fill('input[name="cvv"]', '123')
 
-  await page
-    .frame({ name: 'braintree-hosted-field-expirationDate' })
-    ?.click('input[name="expiration"]')
-  await page
-    .frame({ name: 'braintree-hosted-field-expirationDate' })
-    ?.fill('input[name="expiration"]', '102022')
+  const expirationFrame = page.frame({ name: 'braintree-hosted-field-expirationDate' })
+  await expirationFrame?.click('input[name="expiration"]')
+  await expirationFrame?.fill('input[name="expiration"]', '102022')
 
   // Click button:has-text("Pay (Credit Card)")
   await page.click('button:has-text("Pay (Credit Card)")')
