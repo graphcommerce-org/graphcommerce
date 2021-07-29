@@ -37,16 +37,27 @@ function ShippingPage() {
   const cartExists = typeof cartData?.cart !== 'undefined'
   const router = useRouter()
 
+  const onSubmitSuccessful = () => router.push('/checkout/payment')
+
   return (
-    <>
+    <ComposedForm>
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots={['noindex']} />
       <PageShellHeader
         primary={
-          <PageLink href='/checkout/payment' passHref>
-            <Button color='secondary' variant='pill-link'>
-              Next
-            </Button>
-          </PageLink>
+          <ComposedSubmit
+            onSubmitSuccessful={onSubmitSuccessful}
+            render={({ buttonState, submit, error }) => (
+              <Button
+                type='submit'
+                color='secondary'
+                variant='pill-link'
+                loading={buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)}
+                onClick={submit}
+              >
+                Next
+              </Button>
+            )}
+          />
         }
         divider={
           <Container maxWidth={false}>
@@ -65,7 +76,7 @@ function ShippingPage() {
           {!cartExists && <EmptyCart />}
 
           {cartExists && (
-            <ComposedForm>
+            <>
               <AppShellTitle icon={iconBox}>Shipping</AppShellTitle>
 
               <EmailForm step={1} />
@@ -77,7 +88,7 @@ function ShippingPage() {
               <ShippingMethodForm step={3} />
 
               <ComposedSubmit
-                onSubmitSuccessful={() => router.push('/checkout/payment')}
+                onSubmitSuccessful={onSubmitSuccessful}
                 render={({ buttonState, submit, error }) => (
                   <>
                     <FormActions>
@@ -107,11 +118,11 @@ function ShippingPage() {
                   </>
                 )}
               />
-            </ComposedForm>
+            </>
           )}
         </NoSsr>
       </Container>
-    </>
+    </ComposedForm>
   )
 }
 

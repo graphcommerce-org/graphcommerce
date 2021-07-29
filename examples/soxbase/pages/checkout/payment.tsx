@@ -39,16 +39,19 @@ type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function PaymentPage() {
   return (
-    <>
+    <ComposedForm>
       <PageMeta title='Payment' metaDescription='Payment' metaRobots={['noindex']} />
       <PageShellHeader
         primary={
-          <PageLink href='/checkout/payment' passHref>
-            {/* TODO: PaymentMethodButton primary action */}
-            <Button color='secondary' variant='pill-link'>
-              Place Order
-            </Button>
-          </PageLink>
+          <PaymentMethodButton
+            key='button'
+            type='submit'
+            color='secondary'
+            variant='pill-link'
+            display='inline'
+          >
+            Pay
+          </PaymentMethodButton>
         }
         divider={
           <Container maxWidth={false}>
@@ -63,53 +66,51 @@ function PaymentPage() {
         </Title>
       </PageShellHeader>
       <Container maxWidth='md'>
-        <ComposedForm>
-          <AppShellTitle icon={iconId}>Payment</AppShellTitle>
+        <AppShellTitle icon={iconId}>Payment</AppShellTitle>
 
-          <PaymentMethodContextProvider
-            modules={{
-              braintree_local_payment,
-              braintree,
-              ...included_methods,
-              ...mollie_methods,
-            }}
-          >
-            <NoSsr>
-              <AnimatePresence initial={false}>
-                <PaymentMethodToggle key='toggle' />
+        <PaymentMethodContextProvider
+          modules={{
+            braintree_local_payment,
+            braintree,
+            ...included_methods,
+            ...mollie_methods,
+          }}
+        >
+          <NoSsr>
+            <AnimatePresence initial={false}>
+              <PaymentMethodToggle key='toggle' />
 
-                <PaymentMethodOptions
-                  key='options'
-                  step={1}
-                  Container={({ children }) => (
-                    <Form component='div' contained>
-                      {children}
-                    </Form>
-                  )}
-                />
+              <PaymentMethodOptions
+                key='options'
+                step={1}
+                Container={({ children }) => (
+                  <Form component='div' contained>
+                    {children}
+                  </Form>
+                )}
+              />
 
-                <PaymentMethodPlaceOrder key='placeorder' step={2} />
+              <PaymentMethodPlaceOrder key='placeorder' step={2} />
 
-                <PaymentMethodButton
-                  key='button'
-                  type='submit'
-                  color='secondary'
-                  variant='pill'
-                  size='large'
-                  endIcon={<SvgImage src={iconChevronRight} loading='eager' alt='chevron right' />}
-                >
-                  Pay
-                </PaymentMethodButton>
-                <CartSummary editable>
-                  <Divider />
-                  <CartTotals />
-                </CartSummary>
-              </AnimatePresence>
-            </NoSsr>
-          </PaymentMethodContextProvider>
-        </ComposedForm>
+              <PaymentMethodButton
+                key='button'
+                type='submit'
+                color='secondary'
+                variant='pill'
+                size='large'
+                endIcon={<SvgImage src={iconChevronRight} loading='eager' alt='chevron right' />}
+              >
+                Pay
+              </PaymentMethodButton>
+              <CartSummary editable>
+                <Divider />
+                <CartTotals />
+              </CartSummary>
+            </AnimatePresence>
+          </NoSsr>
+        </PaymentMethodContextProvider>
       </Container>
-    </>
+    </ComposedForm>
   )
 }
 
