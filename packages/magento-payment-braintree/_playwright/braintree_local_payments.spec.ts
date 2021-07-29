@@ -9,7 +9,7 @@ import { test } from '@reachdigital/magento-product/_playwright/productURL.fixtu
 test('place order', async ({ page, productURL }) => {
   await addConfigurableProductToCart(page, productURL.ConfigurableProduct)
 
-  await page.click('button:has-text("View shopping cart")')
+  await page.click('a:has-text("View shopping cart")')
 
   await page.click('a[href="/checkout"]:last-of-type')
 

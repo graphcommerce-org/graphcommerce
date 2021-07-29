@@ -25,10 +25,7 @@ export type ExpandPaymentMethods = (
   context: PaymentMethodContextFragment,
 ) => Promise<PaymentMethod[]> | PaymentMethod[]
 
-export type PaymentPlaceOrderProps = PaymentMethod &
-  Pick<UseFormComposeOptions, 'step'> & {
-    paymentDone: () => void
-  }
+export type PaymentPlaceOrderProps = PaymentMethod & Pick<UseFormComposeOptions, 'step'>
 
 export interface PaymentModule {
   PaymentOptions: React.VFC<PaymentOptionsProps>

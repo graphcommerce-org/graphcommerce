@@ -6,10 +6,10 @@ import { fillShippingAddressForm } from '@reachdigital/magento-cart-shipping-add
 import { addConfigurableProductToCart } from '@reachdigital/magento-product-configurable/_playwright/addConfigurableProductToCart'
 import { test } from '@reachdigital/magento-product/_playwright/productURL.fixture'
 
-test.only('place order', async ({ page, productURL }) => {
+test('place order', async ({ page, productURL }) => {
   await addConfigurableProductToCart(page, productURL.ConfigurableProduct)
 
-  await page.click('button:has-text("View shopping cart")')
+  await page.click('a:has-text("View shopping cart")')
 
   await page.click('a[href="/checkout"]:last-of-type')
 
@@ -26,9 +26,14 @@ test.only('place order', async ({ page, productURL }) => {
   await page.click('input[name="poNumber"]')
   await page.fill('input[name="poNumber"]', '1234567890')
 
-  await page.click('button:has-text("Pay (Purchase Order)")')
+  const [, , placeOrder] = await Promise.all([
+    page.waitForNavigation(),
+    page.click('button:has-text("Pay (Purchase Order)")'),
+    waitForGraphQlResponse(page, PaymentMethodPlaceOrderNoopDocument),
+  ])
 
-  const result = await waitForGraphQlResponse(page, PaymentMethodPlaceOrderNoopDocument)
-  expect(result.errors).toBeUndefined()
-  expect(result.data?.placeOrder?.order.order_number).toBeDefined()
+  expect(placeOrder.errors).toBeUndefined()
+  expect(placeOrder.data?.placeOrder?.order.order_number).toBeDefined()
+
+  expect(await page.$('h2:has-text("Thank you for your order!")')).toBeDefined()
 })

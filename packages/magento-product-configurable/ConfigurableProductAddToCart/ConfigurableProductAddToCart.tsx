@@ -138,11 +138,16 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
       </AnimatePresence>
 
       <MessageSnackbar
-        open={!formState.isSubmitting && formState.isSubmitSuccessful && !error?.message && !data?.addProductsToCart?.user_errors?.length}
+        open={
+          !formState.isSubmitting &&
+          formState.isSubmitSuccessful &&
+          !error?.message &&
+          !data?.addProductsToCart?.user_errors?.length
+        }
         variant='pill'
         color='default'
         action={
-          <PageLink href='/cart'>
+          <PageLink href='/cart' passHref>
             <Button
               size='medium'
               variant='pill'
