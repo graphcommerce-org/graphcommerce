@@ -1,5 +1,16 @@
-import { FormControl, Typography } from '@material-ui/core'
-import { Form, FormRow, ToggleButton, ToggleButtonGroup } from '@reachdigital/next-ui'
+import { FormControl } from '@material-ui/core'
+import {
+  Form,
+  FormRow,
+  ToggleButton,
+  ToggleButtonGroup,
+  SliderContainer,
+  SliderContext,
+  SliderNext,
+  SliderPrev,
+  SliderScroller,
+  UseStyles,
+} from '@reachdigital/next-ui'
 import { Controller, useForm, useFormPersist } from '@reachdigital/react-hook-form'
 import React, { useEffect } from 'react'
 import { PaymentMethod, PaymentToggleProps } from '../Api/PaymentMethod'
@@ -45,6 +56,7 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
   return (
     <Form onSubmit={submitHandler} noValidate>
       <input type='hidden' {...register('code', { required: true })} required />
+      <FormRow />
       <FormRow>
         <FormControl>
           <Controller
@@ -65,16 +77,30 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
                 required
                 exclusive
               >
-                {methods?.map((pm) => (
-                  <ToggleButton
-                    key={`${pm.code}___${pm.child}`}
-                    value={`${pm.code}___${pm.child}`}
-                    color='secondary'
-                    disabled={!modules?.[pm.code]}
-                  >
-                    {!modules?.[pm.code] ? <>{pm.code} not implemented</> : <Content {...pm} />}
-                  </ToggleButton>
-                ))}
+                <SliderContext scrollSnapAlign='start'>
+                  <SliderContainer>
+                    <SliderScroller>
+                      {methods?.map((pm) => (
+                        <ToggleButton
+                          key={`${pm.code}___${pm.child}`}
+                          value={`${pm.code}___${pm.child}`}
+                          color='secondary'
+                          disabled={!modules?.[pm.code]}
+                          size='large'
+                          style={{ width: 200, margin: 5 }}
+                        >
+                          {!modules?.[pm.code] ? (
+                            <>{pm.code} not implemented</>
+                          ) : (
+                            <Content {...pm} />
+                          )}
+                        </ToggleButton>
+                      ))}
+                    </SliderScroller>
+                    <SliderPrev />
+                    <SliderNext />
+                  </SliderContainer>
+                </SliderContext>
               </ToggleButtonGroup>
             )}
           />
