@@ -6,11 +6,8 @@ import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
   couponForm: {
-    gridTemplateColumns: '2fr 0.5fr',
+    gridTemplateColumns: '1.5fr 0.5fr',
     gridColumnGap: theme.spacings.sm,
-    [theme.breakpoints.up('md')]: {
-      gridTemplateColumns: '3fr 0.5fr',
-    },
   },
 }))
 

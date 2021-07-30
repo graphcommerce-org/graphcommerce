@@ -9,19 +9,18 @@ import { RemoveCouponFormDocument } from './RemoveCouponForm.gql'
 const useStyles = makeStyles((theme: Theme) => ({
   inlineCoupon: {
     background: `${theme.palette.secondary.main}12`,
-    padding: `4px ${theme.spacings.xxs}`,
+    padding: `4px ${theme.spacings.xxs} 4px ${theme.spacings.xxs}`,
     color: theme.palette.secondary.main,
     textTransform: 'uppercase',
-    fontWeight: 600,
     borderRadius: 4,
+    ...theme.typography.h6,
     display: 'flex',
     alignItems: 'center',
-    ...theme.typography.h6,
     '& .MuiIconButton-root': {
       width: 14,
       height: 14,
       marginLeft: 4,
-      color: theme.palette.grey[800],
+      color: theme.palette.grey[400],
       '& .MuiSvgIcon-root': {
         padding: 2,
       },
