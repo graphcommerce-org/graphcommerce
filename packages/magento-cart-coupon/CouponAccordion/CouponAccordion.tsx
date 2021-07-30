@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: 8,
   },
   button: {
-    padding: theme.spacings.xs,
+    padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
     width: '100%',
     '& .MuiButton-label': {
       display: 'flex',
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   couponFormWrap: {
     background: 'rgba(0,0,0,0.04)',
-    padding: theme.spacings.xs,
+    padding: `0 ${theme.spacings.sm} ${theme.spacings.xs}`,
   },
   buttonOpen: {
     '&.MuiButton-root': {
@@ -70,26 +70,26 @@ export default function CouponAccordion(props: CouponAccordionProps) {
       <m.div layout className={classes.accordion}>
         <m.div layout>
           <Button
+            disableRipple={!!coupon}
             onClick={() => setOpen(!open)}
-            className={clsx(classes.button, { [classes.buttonOpen]: open })}
+            className={clsx(classes.button, { [classes.buttonOpen]: !coupon && open })}
             endIcon={
-              open ? (
-                <SvgImage src={iconChevronUp} alt='expand more' loading='eager' />
-              ) : (
-                <SvgImage src={iconChevronDown} alt='expand less' loading='eager' />
-              )
+              <>
+                {!coupon && open && <SvgImage src={iconChevronUp} alt='Open' loading='eager' />}
+                {!coupon && !open && <SvgImage src={iconChevronDown} alt='Close' loading='eager' />}
+              </>
             }
           >
-            <Typography variant='h6'>Coupon code</Typography>
+            <Typography variant='h6'>Discount code</Typography>
             {coupon && <RemoveCouponForm {...data.cart} />}
           </Button>
         </m.div>
 
         <AnimatePresence>
-          {open && (
+          {open && !coupon && (
             <AnimatedRow key='discount-codes-form-wrap'>
               <m.div layout='position' className={classes.couponFormWrap}>
-                {!coupon && <ApplyCouponForm />}
+                <ApplyCouponForm />
               </m.div>
             </AnimatedRow>
           )}

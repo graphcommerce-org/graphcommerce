@@ -53,7 +53,7 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'TotalCosts' },
+  { name: 'CartTotals' },
 )
 
 export type CartTotalsProps = { containerMargin?: boolean } & UseStyles<typeof useStyles>

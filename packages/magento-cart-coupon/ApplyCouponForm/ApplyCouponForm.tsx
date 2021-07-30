@@ -1,13 +1,18 @@
 import { FormControl, makeStyles, TextField, Theme } from '@material-ui/core'
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
-import { Button, Form, UseStyles } from '@reachdigital/next-ui'
+import { Button, responsiveVal, UseStyles } from '@reachdigital/next-ui'
 import React from 'react'
 import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
   couponForm: {
-    gridTemplateColumns: '1.5fr 0.5fr',
+    display: 'grid',
+    alignItems: 'center',
+    gridTemplateColumns: `1fr minmax(min-content, ${responsiveVal(70, 140)})`,
     gridColumnGap: theme.spacings.sm,
+  },
+  button: {
+    whiteSpace: 'nowrap',
   },
 }))
 
@@ -20,12 +25,11 @@ export default function ApplyCouponForm(props: ApplyCouponFormProps) {
   const classes = useStyles(props)
 
   return (
-    <Form onSubmit={submitHandler} noValidate classes={{ root: classes.couponForm }}>
+    <form onSubmit={submitHandler} noValidate className={classes.couponForm}>
       <TextField
         variant='outlined'
         type='text'
         error={!!formState.errors.couponCode || !!error}
-        label='Discount code'
         required={required.couponCode}
         {...muiRegister('couponCode', { required: required.couponCode })}
         helperText={formState.errors.couponCode?.message}
@@ -34,6 +38,7 @@ export default function ApplyCouponForm(props: ApplyCouponFormProps) {
       <FormControl>
         <Button
           type='submit'
+          className={classes.button}
           loading={formState.isSubmitting}
           color='secondary'
           variant='pill'
@@ -44,6 +49,6 @@ export default function ApplyCouponForm(props: ApplyCouponFormProps) {
       </FormControl>
 
       <ApolloCartErrorAlert error={error} />
-    </Form>
+    </form>
   )
 }
