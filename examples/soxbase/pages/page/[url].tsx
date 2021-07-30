@@ -9,9 +9,9 @@ import FullPageShell, { FullPageShellProps } from '../../components/AppShell/Ful
 import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.gql'
 import { DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
-import RowProductBackstory from '../../components/RowProductBackstory'
-import RowProductGrid from '../../components/RowProductGrid'
-import RowSwipeableGrid from '../../components/RowSwipeableGrid'
+import RowProductBackstory from '../../components/Row/RowProductBackstory'
+import RowProductGrid from '../../components/Row/RowProductGrid'
+import RowSwipeableGrid from '../../components/Row/RowSwipeableGrid'
 import apolloClient from '../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }

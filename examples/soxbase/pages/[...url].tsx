@@ -36,9 +36,9 @@ import { CategoryPageDocument, CategoryPageQuery } from '../components/GraphQL/C
 import PageContent from '../components/PageContent'
 import ProductListItems from '../components/ProductListItems/ProductListItems'
 import useProductListStyles from '../components/ProductListItems/useProductListStyles'
-import RowProductBackstory from '../components/RowProductBackstory'
-import RowProductGrid from '../components/RowProductGrid'
-import RowSwipeableGrid from '../components/RowSwipeableGrid'
+import RowProductBackstory from '../components/Row/RowProductBackstory'
+import RowProductGrid from '../components/Row/RowProductGrid'
+import RowSwipeableGrid from '../components/Row/RowSwipeableGrid'
 import apolloClient from '../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }

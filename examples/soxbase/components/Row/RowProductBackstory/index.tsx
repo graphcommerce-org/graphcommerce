@@ -2,9 +2,9 @@ import { useTheme } from '@material-ui/core'
 import RichTextParagraphStrongStroked from '@reachdigital/graphcms-ui/RichText/RichTextParagraphStrongStroked'
 import { ParagraphWithSidebarSlide, RenderType } from '@reachdigital/next-ui'
 import React from 'react'
-import Asset from '../Asset'
-import { ProductListItemsProps } from '../ProductListItems/ProductListItems'
-import renderers from '../ProductListItems/renderers'
+import Asset from '../../Asset'
+import { ProductListItemsProps } from '../../ProductListItems/ProductListItems'
+import renderers from '../../ProductListItems/renderers'
 import { RowProductBackstoryFragment } from './RowProductBackstory.gql'
 
 type RowProductBackstoryProps = RowProductBackstoryFragment & ProductListItemsProps

@@ -3,7 +3,7 @@ import RichTextHeadingStrongStroked from '@reachdigital/graphcms-ui/RichText/Ric
 import { SpecialBanner } from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
-import Asset from '../Asset'
+import Asset from '../../Asset'
 import { RowSpecialBannerFragment } from './RowSpecialBanner.gql'
 
 type RowSpecialBannerProps = RowSpecialBannerFragment

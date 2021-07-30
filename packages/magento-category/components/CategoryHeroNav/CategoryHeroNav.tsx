@@ -1,7 +1,7 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import { ProductListLink } from '@reachdigital/magento-product'
+import { responsiveVal } from '@reachdigital/next-ui'
 import React from 'react'
-import responsiveVal from '../next-ui/Styles/responsiveVal'
 import { CategoryHeroNavFragment } from './CategoryHeroNav.gql'
 
 const useStyles = makeStyles(
