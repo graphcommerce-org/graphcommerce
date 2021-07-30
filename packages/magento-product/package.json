@@ -27,7 +27,6 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@reachdigital/graphql": "^2.101.0",
     "@reachdigital/image": "^2.101.0",
-    "@reachdigital/magento-category": "^2.101.0",
     "@reachdigital/magento-store": "^2.101.0",
     "@reachdigital/next-ui": "^2.103.0",
     "clsx": "^1.1.1",

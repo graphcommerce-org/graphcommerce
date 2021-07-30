@@ -1,13 +1,11 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { Chip, ChipProps } from '@material-ui/core'
-import {
-  CategoryLink,
-  useCategoryPushRoute,
-  useProductListParamsContext,
-} from '@reachdigital/magento-category'
 import { useChipMenuStyles, SvgImage, iconCloseCircle } from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import React from 'react'
+import { useProductListLinkPush } from '../../hooks/useProductListLinkPush'
+import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
+import ProductListLink from '../ProductListLink/ProductListLink'
 import { FilterIn } from './FilterEqualType'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
@@ -21,7 +19,7 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const { params } = useProductListParamsContext()
   const classes = useChipMenuStyles(props)
   const currentFilter = params.filters[attribute_code]
-  const pushRoute = useCategoryPushRoute({ scroll: false })
+  const pushRoute = useProductListLinkPush({ scroll: false })
 
   if (!options?.[0]) return null
 
@@ -31,7 +29,7 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const filter = isActive ? {} : ({ in: [option.value] } as FilterIn)
 
   return (
-    <CategoryLink
+    <ProductListLink
       {...params}
       filters={{ ...params.filters, [attribute_code]: filter }}
       currentPage={undefined}
@@ -63,6 +61,6 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
         {...chipProps}
         className={clsx(classes.chip, isActive && classes.chipSelected, chipProps.className)}
       />
-    </CategoryLink>
+    </ProductListLink>
   )
 }

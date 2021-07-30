@@ -1,7 +1,8 @@
 import { PaginationProps } from '@material-ui/lab'
-import { CategoryLink, useProductListParamsContext } from '@reachdigital/magento-category'
 import { Pagination } from '@reachdigital/next-ui'
 import React from 'react'
+import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
+import ProductListLink from '../ProductListLink/ProductListLink'
 import { ProductListPaginationFragment } from './ProductListPagination.gql'
 
 export type ProductPaginationProps = ProductListPaginationFragment &
@@ -20,9 +21,9 @@ export default function ProductListPagination({
       count={page_info?.total_pages}
       page={page_info?.current_page ?? 1}
       renderLink={(page: number, icon: React.ReactNode, btnProps: any) => (
-        <CategoryLink {...btnProps} {...params} currentPage={btnProps.page}>
+        <ProductListLink {...btnProps} {...params} currentPage={btnProps.page}>
           {icon}
-        </CategoryLink>
+        </ProductListLink>
       )}
       {...paginationProps}
     />

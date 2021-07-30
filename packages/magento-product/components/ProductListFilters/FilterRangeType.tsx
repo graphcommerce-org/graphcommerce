@@ -1,10 +1,11 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { makeStyles, Mark, Slider, Theme } from '@material-ui/core'
 import { FilterRangeTypeInput } from '@reachdigital/graphql'
-import { useCategoryPushRoute, useProductListParamsContext } from '@reachdigital/magento-category'
 import { Money } from '@reachdigital/magento-store'
 import { ChipMenu, ChipMenuProps } from '@reachdigital/next-ui'
 import React from 'react'
+import { useProductListLinkPush } from '../../hooks/useProductListLinkPush'
+import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 type FilterRangeTypeProps = NonNullable<
@@ -50,7 +51,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
   const { attribute_code, label, options, ...chipProps } = props
   const classes = useFilterRangeType(props)
   const { params } = useProductListParamsContext()
-  const pushRoute = useCategoryPushRoute({ scroll: false })
+  const pushRoute = useProductListLinkPush({ scroll: false })
 
   // eslint-disable-next-line no-case-declarations
   const marks: { [index: number]: Mark } = {}

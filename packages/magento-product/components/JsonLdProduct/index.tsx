@@ -1,5 +1,5 @@
+import { ProductImage } from '@reachdigital/graphql'
 import { Product } from 'schema-dts'
-import { ProductImage } from '../../graphql'
 import { JsonLdProductFragment } from './JsonLdProduct.gql'
 import { JsonLdProductOfferFragment } from './JsonLdProductOffer.gql'
 

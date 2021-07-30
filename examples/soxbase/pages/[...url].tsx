@@ -7,7 +7,6 @@ import {
   CategoryHeroNav,
   CategoryMeta,
   getCategoryStaticPaths,
-  ProductListParamsProvider,
   CategoryHeroNavTitle,
 } from '@reachdigital/magento-category'
 import {
@@ -15,6 +14,7 @@ import {
   ProductListFilters,
   ProductListFiltersContainer,
   ProductListPagination,
+  ProductListParamsProvider,
   ProductListSort,
   ProductListDocument,
   ProductListQuery,

@@ -1,14 +1,12 @@
 import { useQuery } from '@apollo/client'
 import { cloneDeep } from '@apollo/client/utilities'
 import { ListItem, ListItemText } from '@material-ui/core'
-import {
-  CategoryLink,
-  useCategoryPushRoute,
-  useProductListParamsContext,
-} from '@reachdigital/magento-category'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { ChipMenu, ChipMenuProps } from '@reachdigital/next-ui'
 import React from 'react'
+import { useProductListLinkPush } from '../../hooks/useProductListLinkPush'
+import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
+import ProductListLink from '../ProductListLink/ProductListLink'
 import { ProductListSortFragment } from './ProductListSort.gql'
 
 export type ProductListSortProps = ProductListSortFragment &
@@ -16,7 +14,7 @@ export type ProductListSortProps = ProductListSortFragment &
 
 export default function ProductListSort({ sort_fields, ...filterMenuProps }: ProductListSortProps) {
   const { params } = useProductListParamsContext()
-  const pushRoute = useCategoryPushRoute()
+  const pushRoute = useProductListLinkPush()
   const { data: storeConfigQuery } = useQuery(StoreConfigDocument)
   const defaultSort = storeConfigQuery?.storeConfig?.catalog_default_sort_by
 
@@ -53,7 +51,7 @@ export default function ProductListSort({ sort_fields, ...filterMenuProps }: Pro
             dense
             selected={option?.value === currentSort}
             component={(chipProps) => (
-              <CategoryLink
+              <ProductListLink
                 {...chipProps}
                 {...linkParams}
                 color='inherit'

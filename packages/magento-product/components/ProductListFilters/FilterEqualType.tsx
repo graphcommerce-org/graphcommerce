@@ -8,14 +8,12 @@ import {
   Theme,
 } from '@material-ui/core'
 import { FilterEqualTypeInput } from '@reachdigital/graphql'
-import {
-  CategoryLink,
-  useCategoryPushRoute,
-  useProductListParamsContext,
-} from '@reachdigital/magento-category'
 import { ChipMenu, ChipMenuProps, responsiveVal } from '@reachdigital/next-ui'
 import React from 'react'
 import { SetRequired } from 'type-fest'
+import { useProductListLinkPush } from '../../hooks/useProductListLinkPush'
+import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
+import ProductListLink from '../ProductListLink/ProductListLink'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 export type FilterIn = SetRequired<Omit<FilterEqualTypeInput, 'eq'>, 'in'>
@@ -88,7 +86,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props
   const { params } = useProductListParamsContext()
   const classes = useFilterEqualStyles()
-  const pushRoute = useCategoryPushRoute({ scroll: false })
+  const pushRoute = useProductListLinkPush({ scroll: false })
 
   const currentFilter: FilterEqualTypeInput = cloneDeep(params.filters[attribute_code]) ?? {
     in: [],
@@ -134,7 +132,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
           }
 
           return (
-            <CategoryLink
+            <ProductListLink
               {...params}
               filters={filters}
               currentPage={undefined}
@@ -162,7 +160,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
                   </ListItemSecondaryAction>
                 </div>
               </ListItem>
-            </CategoryLink>
+            </ProductListLink>
           )
         })}
       </div>

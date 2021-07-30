@@ -1,8 +1,8 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { ProductListLink } from '@reachdigital/magento-product'
 import React from 'react'
 import responsiveVal from '../next-ui/Styles/responsiveVal'
 import { CategoryHeroNavFragment } from './CategoryHeroNav.gql'
-import CategoryLink from './CategoryLink'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -100,7 +100,7 @@ export default function CategoryHeroNav({ children, title, asset }: CategoryHero
           {children?.map((category) => {
             if (!category?.url_path || !category.uid || !category.name) return null
             return (
-              <CategoryLink
+              <ProductListLink
                 underline='none'
                 color='textPrimary'
                 url={category.url_path}
@@ -111,7 +111,7 @@ export default function CategoryHeroNav({ children, title, asset }: CategoryHero
                 <Typography variant='h4' component='span'>
                   {category.name}
                 </Typography>
-              </CategoryLink>
+              </ProductListLink>
             )
           })}
         </div>
