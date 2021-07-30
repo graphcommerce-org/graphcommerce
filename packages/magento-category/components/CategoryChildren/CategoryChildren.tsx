@@ -1,9 +1,8 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { makeStyles, Theme } from '@material-ui/core'
-import { ProductListParams } from '@reachdigital/magento-product'
+import { ProductListLink, ProductListParams } from '@reachdigital/magento-product'
 import { SliderContainer, SliderContext, SliderScroller, UseStyles } from '@reachdigital/next-ui'
 import React from 'react'
-import ProductListLink from '../magento-product/components/ProductListLink/ProductListLink'
 import { CategoryChildrenFragment } from './CategoryChildren.gql'
 
 const useStyles = makeStyles(

@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import { AppShellTitle } from '@reachdigital/next-ui'
 import React from 'react'
-import { AppShellTitle } from '../next-ui'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

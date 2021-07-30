@@ -5,7 +5,7 @@ import {
   ProductListParams,
 } from '../components/ProductListItems/filterTypes'
 
-export function createCategoryLink(props: ProductListParams): string {
+export function createProductListLink(props: ProductListParams): string {
   const { url, sort, currentPage, filters } = props
 
   // base url path generation
@@ -34,5 +34,5 @@ export function createCategoryLink(props: ProductListParams): string {
 }
 
 export function useProductListLink(props: ProductListParams): string {
-  return createCategoryLink({ ...props, url: `${props.url}` })
+  return createProductListLink({ ...props, url: `${props.url}` })
 }

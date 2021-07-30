@@ -32,4 +32,4 @@ const getCategoryStaticPaths = async (
   return process.env.VERCEL_ENV !== 'production' ? paths.slice(0, 1) : paths
 }
 
-export default getCategoryStaticPaths
+export { getCategoryStaticPaths }

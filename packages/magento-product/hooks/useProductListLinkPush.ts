@@ -1,6 +1,6 @@
 import Router from 'next/router'
 import { ProductListParams } from '../components/ProductListItems/filterTypes'
-import { createCategoryLink } from './useProductListLink'
+import { createProductListLink } from './useProductListLink'
 import { useProductListParamsContext } from './useProductListParamsContext'
 
 type UseProductLinkPushProps = {
@@ -15,7 +15,7 @@ export function useProductListLinkPush(props?: UseProductLinkPushProps) {
   return (params: ProductListParams) => {
     setParams(params)
 
-    const path = createCategoryLink(params)
+    const path = createProductListLink(params)
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     Router.push(path, path, props)
   }
