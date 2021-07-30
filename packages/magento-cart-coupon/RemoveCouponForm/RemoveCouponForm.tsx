@@ -9,6 +9,7 @@ import { RemoveCouponFormDocument } from './RemoveCouponForm.gql'
 const useStyles = makeStyles((theme: Theme) => ({
   inlineCoupon: {
     background: `${theme.palette.secondary.main}12`,
+    margin: `-1px 0 -2px`,
     padding: `4px ${theme.spacings.xxs} 4px ${theme.spacings.xxs}`,
     color: theme.palette.secondary.main,
     textTransform: 'uppercase',

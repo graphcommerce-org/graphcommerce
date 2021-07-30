@@ -46,7 +46,7 @@ const useStyles = makeStyles(
       color: theme.palette.primary.contrastText,
     },
     message: {
-      padding: 0,
+      padding: theme.spacings.xxs,
       display: 'grid',
       alignItems: 'center',
       gap: theme.spacings.xs,

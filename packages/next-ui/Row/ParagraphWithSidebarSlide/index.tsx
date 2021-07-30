@@ -1,5 +1,5 @@
 import { ContainerProps, makeStyles, Theme } from '@material-ui/core'
-import { m, useTransform, useViewportScroll } from 'framer-motion'
+import { m, useSpring, useTransform, useViewportScroll } from 'framer-motion'
 import React, { useEffect, useRef, useState } from 'react'
 import Row from '..'
 import { UseStyles } from '../../Styles'
@@ -19,7 +19,6 @@ const useStyles = makeStyles(
       '& img': {
         position: 'absolute',
         top: '0',
-        zIndex: -1,
         width: '100%',
         height: '100% !important',
         objectFit: 'cover',
@@ -33,8 +32,10 @@ const useStyles = makeStyles(
     copy: {
       color: '#fff',
       display: 'grid',
+      zIndex: 1,
       justifyItems: 'start',
       alignContent: 'end',
+      position: 'relative',
       padding: `${theme.spacings.md}`,
       '& > *': {
         maxWidth: 'max-content',
@@ -70,32 +71,38 @@ export default function ParagraphWithSidebarSlide(props: ParagraphWithSidebarSli
   const [windowHeight, setHeight] = useState(0)
   const [itemY, setItemY] = useState(0)
   const [parentHeight, setParentHeight] = useState(0)
-  const wrapper = useRef() as React.MutableRefObject<HTMLDivElement>
-  const sidebar = useRef() as React.MutableRefObject<HTMLDivElement>
-  const scrollPath = parentHeight > windowHeight / 2 ? windowHeight / 2 : 0
+  const sidebar = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // todo(erwin): Needs useResizeObserver hook
-    setParentHeight(sidebar?.current?.offsetHeight)
-    setHeight(window.innerHeight)
-    setItemY(sidebar?.current?.offsetTop)
+    if (!sidebar.current) return () => {}
+    const ro = new ResizeObserver(([entry]) => {
+      if (entry.target instanceof HTMLElement) {
+        setParentHeight(entry.target.offsetHeight)
+        setHeight(window.innerHeight)
+        setItemY(entry.target.offsetTop)
+      }
+    })
+    ro.observe(sidebar.current)
+    return () => ro.disconnect()
   }, [])
 
   const { scrollY } = useViewportScroll()
-  const transformY = useTransform(
-    scrollY,
-    [itemY - windowHeight / 4, itemY + windowHeight / 2],
-    [0, scrollPath],
+  const y = useSpring(
+    useTransform(
+      scrollY,
+      [itemY - windowHeight / 4, itemY + windowHeight / 2],
+      [0, parentHeight > windowHeight / 2 ? windowHeight / 2 : 0],
+    ),
   )
 
   return (
     <Row maxWidth={false} {...containerProps}>
-      <div className={classes.wrapper} ref={wrapper}>
+      <div className={classes.wrapper}>
         <div className={classes.backstory}>
           <div className={classes.copy}>{children}</div>
           {background}
         </div>
-        <m.div ref={sidebar} transition={{ ease: 'linear' }} style={{ y: transformY }}>
+        <m.div ref={sidebar} transition={{ ease: 'linear' }} style={{ y }}>
           {slidingItems}
         </m.div>
       </div>

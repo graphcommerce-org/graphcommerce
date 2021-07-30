@@ -47,11 +47,11 @@ Now everything should be hooked up and you are able to add content in GraphCMS.
 
 In the GraphQL explorer (http://localhost:3001/api/graphql) create a fragment
 for your data `ComponentName.graphql`. e.g.:
-[`RowColumnThree.graphql`](../examples/soxbase/components/RowColumnThree/RowColumnThree.graphql)
+[`RowColumnThree.graphql`](../examples/soxbase/components/Row/RowColumnThree/RowColumnThree.graphql)
 
 If the development environment is up and running it will create a
 `ComponentName.gql.ts` with a `ComponentNameFragment` type. e.g.:
-[`RowColumnThree.gql.ts`](../examples/soxbase/components/RowColumnThree/RowColumnThree.gql.ts)
+[`RowColumnThree.gql.ts`](../examples/soxbase/components/Row/RowColumnThree/RowColumnThree.gql.ts)
 
 ### 5. Create a component which renders the retrieved data
 
@@ -68,7 +68,7 @@ function ComponentName(props: ComponentNameFragment) {
 ```
 
 Example:
-[`RowColumnThree`](../examples/soxbase/components/RowColumnThree/index.tsx)
+[`RowColumnThree`](../examples/soxbase/components/Row/RowColumnThree/index.tsx)
 
 Restart your dev environment
 

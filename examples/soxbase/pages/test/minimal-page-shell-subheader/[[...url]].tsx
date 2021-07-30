@@ -1,22 +1,18 @@
 import { mergeDeep } from '@apollo/client/utilities'
 import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { ProductListParamsProvider } from '@reachdigital/magento-category'
-import {
-  ProductListFilters,
-  ProductListFiltersContainer,
-  ProductListSort,
-} from '@reachdigital/magento-product'
-import { ProductListDocument } from '@reachdigital/magento-product/ProductList/ProductList.gql'
-import {
-  FilterTypes,
-  ProductListParams,
-} from '@reachdigital/magento-product/ProductListItems/filterTypes'
 import {
   extractUrlQuery,
+  FilterTypes,
+  getFilterTypes,
   parseParams,
-} from '@reachdigital/magento-product/ProductListItems/filteredProductList'
-import { getFilterTypes } from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
+  ProductListDocument,
+  ProductListFilters,
+  ProductListFiltersContainer,
+  ProductListParams,
+  ProductListParamsProvider,
+  ProductListSort,
+} from '@reachdigital/magento-product'
 import { SearchDocument, SearchForm, SearchQuery } from '@reachdigital/magento-search'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { AppShellSticky, AppShellTitle, Button } from '@reachdigital/next-ui'
