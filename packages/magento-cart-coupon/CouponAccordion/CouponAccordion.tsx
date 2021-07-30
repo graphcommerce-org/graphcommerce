@@ -23,26 +23,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     border: '1px solid #ededed',
     borderRadius: 8,
   },
-  accordionInner: {
-    padding: theme.spacings.xs,
-    position: 'relative',
-    display: 'flex',
-  },
-  accordionLabel: {
-    marginRight: theme.spacings.xxs,
-  },
-  accordionOpen: {
-    background: 'rgba(0,0,0,0.04)',
-  },
   button: {
-    height: '100%',
-    position: 'absolute',
-    right: 0,
-    top: 0,
-    marginLeft: 'auto',
+    padding: theme.spacings.xs,
+    width: '100%',
     '& .MuiButton-label': {
-      width: 'auto',
       display: 'flex',
+      justifyContent: 'flex-start',
       '& span:last-child': {
         marginLeft: 'auto',
       },
@@ -82,37 +68,32 @@ export default function CouponAccordion(props: CouponAccordionProps) {
   return (
     <AnimatedRow key='discount-codes'>
       <m.div layout className={classes.accordion}>
-        <m.div className={clsx(classes.accordionInner, { [classes.accordionOpen]: open })}>
-          <Typography className={classes.accordionLabel} variant='h6'>
-            Coupon code
-          </Typography>
-          {coupon && <RemoveCouponForm {...data.cart} />}
-
-          {!coupon && (
-            <Button
-              onClick={() => setOpen(!open)}
-              className={clsx(classes.button, { [classes.buttonOpen]: open })}
-              endIcon={
-                open ? (
-                  <SvgImage src={iconChevronUp} alt='expand more' loading='eager' />
-                ) : (
-                  <SvgImage src={iconChevronDown} alt='expand less' loading='eager' />
-                )
-              }
-            />
-          )}
+        <m.div layout>
+          <Button
+            onClick={() => setOpen(!open)}
+            className={clsx(classes.button, { [classes.buttonOpen]: open })}
+            endIcon={
+              open ? (
+                <SvgImage src={iconChevronUp} alt='expand more' loading='eager' />
+              ) : (
+                <SvgImage src={iconChevronDown} alt='expand less' loading='eager' />
+              )
+            }
+          >
+            <Typography variant='h6'>Coupon code</Typography>
+            {coupon && <RemoveCouponForm {...data.cart} />}
+          </Button>
         </m.div>
-        {!coupon && (
-          <AnimatePresence>
-            {open && (
-              <AnimatedRow key='discount-codes-form-wrap'>
-                <m.div layout='position' className={classes.couponFormWrap}>
-                  {!coupon && <ApplyCouponForm />}
-                </m.div>
-              </AnimatedRow>
-            )}
-          </AnimatePresence>
-        )}
+
+        <AnimatePresence>
+          {open && (
+            <AnimatedRow key='discount-codes-form-wrap'>
+              <m.div layout='position' className={classes.couponFormWrap}>
+                {!coupon && <ApplyCouponForm />}
+              </m.div>
+            </AnimatedRow>
+          )}
+        </AnimatePresence>
       </m.div>
     </AnimatedRow>
   )
