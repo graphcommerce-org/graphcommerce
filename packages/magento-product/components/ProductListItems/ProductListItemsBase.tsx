@@ -3,7 +3,7 @@ import { Maybe } from '@reachdigital/graphql'
 import { RenderType, UseStyles, responsiveVal } from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import React from 'react'
-import { ProductListItemFragment } from '../Api/ProductListItem.gql'
+import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { ProductListItemProps } from '../ProductListItem'
 import { ProductListItemRenderer } from './renderer'
 

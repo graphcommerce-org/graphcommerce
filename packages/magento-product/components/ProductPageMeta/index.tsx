@@ -1,6 +1,6 @@
 import { PageMeta } from '@reachdigital/magento-store'
 import React from 'react'
-import { useProductLink } from '../ProductLink'
+import { useProductLink } from '../../hooks/useProductLink'
 import { ProductPageMetaFragment } from './ProductPageMeta.gql'
 
 export default function ProductPageMeta(props: ProductPageMetaFragment) {
