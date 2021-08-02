@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.106.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.106.0...@graphcommerce/graphcommerce@2.106.1) (2021-08-02)
+
+
+### Bug Fixes
+
+* disappearing asset with zIndex -1 ([44956e5](https://github.com/ho-nl/m2-pwa/commit/44956e5d0b57a62322033395d378d0e4788454b1))
+
+
+
+
+
 # [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.105.1...@graphcommerce/graphcommerce@2.106.0) (2021-07-29)
 
 

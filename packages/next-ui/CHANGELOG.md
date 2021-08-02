@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.4](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.103.3...@reachdigital/next-ui@2.103.4) (2021-08-02)
+
+
+### Bug Fixes
+
+* disappearing asset with zIndex -1 ([44956e5](https://github.com/ho-nl/m2-pwa/commit/44956e5d0b57a62322033395d378d0e4788454b1))
+
+
+
+
+
 ## [2.103.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.103.2...@reachdigital/next-ui@2.103.3) (2021-07-29)
 
 
