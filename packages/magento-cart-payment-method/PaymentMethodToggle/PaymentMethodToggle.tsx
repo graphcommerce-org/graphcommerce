@@ -1,4 +1,4 @@
-import { FormControl } from '@material-ui/core'
+import { FormControl, makeStyles, Theme } from '@material-ui/core'
 import {
   Form,
   FormRow,
@@ -9,12 +9,24 @@ import {
   SliderNext,
   SliderPrev,
   SliderScroller,
-  UseStyles,
 } from '@reachdigital/next-ui'
 import { Controller, useForm, useFormPersist } from '@reachdigital/react-hook-form'
 import React, { useEffect } from 'react'
 import { PaymentMethod, PaymentToggleProps } from '../Api/PaymentMethod'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
+
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    root: {
+      padding: 0,
+    },
+    toggleGroup: {
+      display: 'inline-flex',
+      gap: 0,
+    },
+  }),
+  { name: 'PaymentMethodToggle' },
+)
 
 export type PaymentMethodToggleProps = Record<string, unknown>
 
@@ -28,6 +40,7 @@ function Content(props: PaymentMethod) {
 export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
   const { methods, selectedMethod, setSelectedMethod, setSelectedModule, modules } =
     usePaymentMethodContext()
+  const classes = useStyles()
 
   const form = useForm<{ code: string; paymentMethod?: string }>({
     mode: 'onChange',
@@ -56,8 +69,7 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
   return (
     <Form onSubmit={submitHandler} noValidate>
       <input type='hidden' {...register('code', { required: true })} required />
-      <FormRow />
-      <FormRow>
+      <FormRow className={classes.root}>
         <FormControl>
           <Controller
             defaultValue=''
@@ -65,21 +77,22 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
             name='paymentMethod'
             rules={{ required: 'Please select a payment method' }}
             render={({ field: { onChange, value, name, ref, onBlur } }) => (
-              <ToggleButtonGroup
-                onChange={(_, val: string) => {
-                  onChange(val)
-                  setValue('code', val?.split('___')[0])
-                }}
-                defaultValue=''
-                aria-label='Payment Method'
-                onBlur={onBlur}
-                value={value}
-                required
-                exclusive
-              >
-                <SliderContext scrollSnapAlign='start'>
-                  <SliderContainer>
-                    <SliderScroller>
+              <SliderContext scrollSnapAlign='start'>
+                <SliderContainer>
+                  <SliderScroller>
+                    <ToggleButtonGroup
+                      classes={{ root: classes.toggleGroup }}
+                      onChange={(_, val: string) => {
+                        onChange(val)
+                        setValue('code', val?.split('___')[0])
+                      }}
+                      defaultValue=''
+                      aria-label='Payment Method'
+                      onBlur={onBlur}
+                      value={value}
+                      required
+                      exclusive
+                    >
                       {methods?.map((pm) => (
                         <ToggleButton
                           key={`${pm.code}___${pm.child}`}
@@ -96,12 +109,12 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
                           )}
                         </ToggleButton>
                       ))}
-                    </SliderScroller>
-                    <SliderPrev />
-                    <SliderNext />
-                  </SliderContainer>
-                </SliderContext>
-              </ToggleButtonGroup>
+                    </ToggleButtonGroup>
+                  </SliderScroller>
+                  {/* <SliderPrev />
+                  <SliderNext /> */}
+                </SliderContainer>
+              </SliderContext>
             )}
           />
         </FormControl>
