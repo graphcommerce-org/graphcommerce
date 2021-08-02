@@ -1,6 +1,7 @@
 import { Container, Divider, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CartSummary, CartTotals } from '@reachdigital/magento-cart'
+import { CouponAccordion } from '@reachdigital/magento-cart-coupon'
 import {
   PaymentMethodButton,
   PaymentMethodContextProvider,
@@ -104,6 +105,7 @@ function PaymentPage() {
                   <Divider />
                   <CartTotals />
                 </CartSummary>
+                <CouponAccordion />
               </AnimatePresence>
             </NoSsr>
           </PaymentMethodContextProvider>
