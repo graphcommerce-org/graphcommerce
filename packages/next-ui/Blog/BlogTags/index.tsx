@@ -1,7 +1,6 @@
 import { Chip, makeStyles, Theme, Link } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
-import Row from '../../Row'
 import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
@@ -9,16 +8,19 @@ const useStyles = makeStyles(
     wrapper: {
       maxWidth: 800,
       margin: `0 auto`,
+      marginBottom: theme.spacings.sm,
     },
     tag: {
-      marginRight: 10,
+      marginRight: 8,
+      borderRadius: 4,
+      fontSize: 14,
     },
   }),
   { name: 'BlogTitle' },
 )
 
 export type blogTagsProps = UseStyles<typeof useStyles> & {
-  tags: string
+  tags: []
 }
 
 export default function BlogTitle(props: blogTagsProps) {
@@ -29,9 +31,7 @@ export default function BlogTitle(props: blogTagsProps) {
     <div className={classes.wrapper}>
       {tags.map((tag) => (
         <PageLink key={tag} href='' passHref>
-          <Link color='inherit' className={classes.tag}>
-            <Chip label={tag} />
-          </Link>
+          <Chip label={tag} className={classes.tag} />
         </PageLink>
       ))}
     </div>
