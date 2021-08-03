@@ -5,6 +5,8 @@ fragment PageContentQueryFragment on Query {
     metaDescription
     metaRobots
     url
+    author
+    date
     content {
       __typename
       ... on Node {
