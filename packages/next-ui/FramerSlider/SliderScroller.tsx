@@ -33,6 +33,8 @@ export type SliderScrollerStyles = UseStyles<typeof useStyles>
 export type SliderScrollerProps = {
   /** Array of items that will be provided */
   children: React.ReactNode
+
+  childrenRef?: React.Ref<HTMLElement>
 } & MotionProps &
   UseStyles<typeof useStyles>
 
@@ -90,6 +92,7 @@ export default function SliderScroller(props: SliderScrollerProps) {
 
   /**
    * After dragging completes
+   *
    * - Calculate the new x-position with the velocity taken in account.
    * - We clamp the position for small gestures.
    */

@@ -3,15 +3,16 @@ import {
   Form,
   FormRow,
   ToggleButton,
-  ToggleButtonGroup,
   SliderContainer,
   SliderContext,
   SliderNext,
   SliderPrev,
   SliderScroller,
+  ToggleButtonGroup,
 } from '@reachdigital/next-ui'
 import { Controller, useForm, useFormPersist } from '@reachdigital/react-hook-form'
-import React, { useEffect } from 'react'
+import React, { FormEventHandler, MouseEvent, useEffect, useRef } from 'react'
+
 import { PaymentMethod, PaymentToggleProps } from '../Api/PaymentMethod'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
@@ -23,13 +24,24 @@ const useStyles = makeStyles(
     root: {
       padding: 0,
     },
+    label: {
+      [theme.breakpoints.down('md')]: {
+        ...theme.typography.h6,
+        fontWeight: theme.typography.fontWeightBold,
+      },
+    },
     toggleGroup: {
       display: 'inline-flex',
-      gap: 0,
+      gap: 10,
     },
     toggleButton: {
-      width: 200,
+      width: 150,
+      height: 60,
       margin: 5,
+      [theme.breakpoints.up('md')]: {
+        width: 200,
+        height: 'auto',
+      },
     },
   }),
   { name: 'PaymentMethodToggle' },
@@ -73,6 +85,8 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
     setSelectedModule(modules?.[foundMethod?.code ?? ''])
   }, [methods, modules, paymentMethod, selectedMethod?.code, setSelectedMethod, setSelectedModule])
 
+  const groupRef = useRef<HTMLDivElement>(null)
+
   return (
     <Form onSubmit={submitHandler} noValidate classes={{ root: classes.formRoot }}>
       <input type='hidden' {...register('code', { required: true })} required />
@@ -84,11 +98,11 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
             name='paymentMethod'
             rules={{ required: 'Please select a payment method' }}
             render={({ field: { onChange, value, name, ref, onBlur } }) => (
-              <SliderContext scrollSnapAlign='start'>
+              <SliderContext scrollSnapAlign={false}>
                 <SliderContainer>
-                  <SliderScroller>
+                  <SliderScroller childrenRef={groupRef}>
                     <ToggleButtonGroup
-                      classes={{ root: classes.toggleGroup }}
+                      ref={groupRef}
                       onChange={(_, val: string) => {
                         onChange(val)
                         setValue('code', val?.split('___')[0])
@@ -99,6 +113,7 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
                       value={value}
                       required
                       exclusive
+                      className={classes.toggleGroup}
                     >
                       {methods?.map((pm) => (
                         <ToggleButton
@@ -106,8 +121,6 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
                           value={`${pm.code}___${pm.child}`}
                           color='secondary'
                           disabled={!modules?.[pm.code]}
-                          size='large'
-                          className={classes.toggleButton}
                         >
                           {!modules?.[pm.code] ? (
                             <>{pm.code} not implemented</>

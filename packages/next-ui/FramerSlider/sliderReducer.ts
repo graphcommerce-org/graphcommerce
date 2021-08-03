@@ -151,9 +151,9 @@ const sliderReducer: SliderReducer = (state: SliderState, action: SliderActions)
     case 'SCROLL':
       ;(() => {
         const containerRect = state.containerRef.current?.getBoundingClientRect()
-        const scrollerRect = (state.containerRef.current?.children?.[0] as
-          | HTMLElement
-          | undefined)?.getBoundingClientRect()
+        const scrollerRect = (
+          state.containerRef.current?.children?.[0] as HTMLElement | undefined
+        )?.getBoundingClientRect()
 
         if (!containerRect || !scrollerRect) return
         if (!state.containerSize || !state.scrollerSize) return
