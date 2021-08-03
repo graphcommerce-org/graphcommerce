@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
-import { GetStaticProps } from '@reachdigital/next-ui'
+import { GetStaticProps, Row } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -30,13 +30,17 @@ function BlogPage(props: Props) {
   const title = page.title ?? ''
   return (
     <>
-      <PageMeta title={title} metaDescription={title} canonical={page.url} />
-      <BlogTitle title={page.title} />
-      <BlogAuthor author={page.author} date={page.date} />
-      <BlogHeader asset={page.asset} />
-      <PageContent {...page} />
-      <BlogTags tags={page.blogTags} />
-      <BlogList blogPosts={blogPosts} />
+      <Row>
+        <PageMeta title={title} metaDescription={title} canonical={page.url} />
+        <BlogTitle title={page.title} />
+        <BlogAuthor author={page.author} date={page.date} />
+        <BlogHeader asset={page.asset} />
+        <PageContent {...page} />
+        <BlogTags tags={page.blogTags} />
+      </Row>
+      <Row>
+        <BlogList blogPosts={blogPosts} />
+      </Row>
     </>
   )
 }
