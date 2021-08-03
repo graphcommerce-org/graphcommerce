@@ -5,9 +5,6 @@ import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    root: {
-      marginBottom: 0,
-    },
     wrapper: {
       maxWidth: 800,
       margin: `0 auto`,
@@ -16,19 +13,17 @@ const useStyles = makeStyles(
   { name: 'BlogTitle' },
 )
 
-export type BlogAuthorProps = UseStyles<typeof useStyles> & {
+export type BlogTitleProps = UseStyles<typeof useStyles> & {
   title: string
 }
 
-export default function BlogAuthor(props: BlogAuthorProps) {
+export default function BlogTitle(props: BlogTitleProps) {
   const { title } = props
   const classes = useStyles()
 
   return (
-    <Row className={classes.root}>
-      <div className={classes.wrapper}>
-        <Typography variant='h1'>{title}</Typography>
-      </div>
-    </Row>
+    <div className={classes.wrapper}>
+      <Typography variant='h1'>{title}</Typography>
+    </div>
   )
 }
