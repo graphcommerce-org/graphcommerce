@@ -31,9 +31,9 @@ function BlogPage(props: Props) {
   return (
     <>
       <PageMeta title={title} metaDescription={title} canonical={page.url} />
-      <BlogHeader asset={page.asset} />
       <BlogTitle title={page.title} />
       <BlogAuthor author={page.author} date={page.date} />
+      <BlogHeader asset={page.asset} />
       <PageContent {...page} />
       <BlogList blogPosts={blogPosts} />
     </>
