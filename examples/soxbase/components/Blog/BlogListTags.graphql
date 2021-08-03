@@ -1,0 +1,10 @@
+query BlogListTags($currentUrl: [String!]!, $first: Int = 4, $skip: Int = 0, $tag: [BlogTags!]) {
+  blogPosts: pages(
+    where: { url_starts_with: "blog/", url_not_in: $currentUrl, blogTags_contains_some: $tag }
+    orderBy: date_DESC
+    first: $first
+    skip: $skip
+  ) {
+    ...BlogItem
+  }
+}

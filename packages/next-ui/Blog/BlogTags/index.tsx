@@ -29,11 +29,15 @@ export default function BlogTitle(props: blogTagsProps) {
 
   return (
     <div className={classes.wrapper}>
-      {tags.map((tag) => (
-        <PageLink key={tag} href='' passHref>
-          <Chip label={tag} className={classes.tag} />
-        </PageLink>
-      ))}
+      {tags.map((tag) => {
+        const lowercaseTag = String(tag).toLowerCase()
+
+        return (
+          <PageLink key={tag} href={`/blog/tagged/${lowercaseTag}`}>
+            <Chip label={tag} className={classes.tag} />
+          </PageLink>
+        )
+      })}
     </div>
   )
 }
