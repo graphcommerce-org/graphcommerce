@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.5](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.103.4...@reachdigital/next-ui@2.103.5) (2021-08-03)
+
+
+### Bug Fixes
+
+* footer spacing missing ([6198665](https://github.com/ho-nl/m2-pwa/commit/61986653411dda9cb70ea15dd2d74ef1d48c2721))
+* index page video and image overlay fix ([53c9d70](https://github.com/ho-nl/m2-pwa/commit/53c9d70bae1229c44f6a45730abe47482d0b9ac2))
+* janky animation for last block on homepage ([a572986](https://github.com/ho-nl/m2-pwa/commit/a572986d87ee450badf96ef6608f75f30f71ed5b))
+* spacing on message snackbar ([0899321](https://github.com/ho-nl/m2-pwa/commit/0899321a3ea74a2d4c714e2dbe17c785a07dfc11))
+
+
+
+
+
 ## [2.103.4](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.103.3...@reachdigital/next-ui@2.103.4) (2021-08-02)
 
 

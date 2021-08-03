@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.102.5](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart@2.102.4...@reachdigital/magento-cart@2.102.5) (2021-08-03)
+
+
+### Bug Fixes
+
+* coupon animations, spacing, rippl;ie ([cef3a08](https://github.com/ho-nl/m2-pwa/commit/cef3a08d0545947518873c5257c59fc1b98f1a21))
+* discount error when removing a discount ([bb6fae3](https://github.com/ho-nl/m2-pwa/commit/bb6fae3ccee694d6a19d9de01febd4cc0166b49c))
+
+
+
+
+
 # [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart@2.101.8...@reachdigital/magento-cart@2.102.0) (2021-07-26)
 
 

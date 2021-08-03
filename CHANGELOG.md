@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.106.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.106.1...@graphcommerce/graphcommerce@2.106.2) (2021-08-03)
+
+
+### Bug Fixes
+
+* coupon animations, spacing, rippl;ie ([cef3a08](https://github.com/ho-nl/m2-pwa/commit/cef3a08d0545947518873c5257c59fc1b98f1a21))
+* discount error when removing a discount ([bb6fae3](https://github.com/ho-nl/m2-pwa/commit/bb6fae3ccee694d6a19d9de01febd4cc0166b49c))
+* footer spacing missing ([6198665](https://github.com/ho-nl/m2-pwa/commit/61986653411dda9cb70ea15dd2d74ef1d48c2721))
+* index page video and image overlay fix ([53c9d70](https://github.com/ho-nl/m2-pwa/commit/53c9d70bae1229c44f6a45730abe47482d0b9ac2))
+* janky animation for last block on homepage ([a572986](https://github.com/ho-nl/m2-pwa/commit/a572986d87ee450badf96ef6608f75f30f71ed5b))
+* magento-customer circular dependency ([57052d5](https://github.com/ho-nl/m2-pwa/commit/57052d504c488ee15b22aa204e50fa61a8ff6cae))
+* remove magento-category package from magento-product solving a circular dependency ([7379e6e](https://github.com/ho-nl/m2-pwa/commit/7379e6ede4829392b35008c17743181d9cac0636))
+* spacing on message snackbar ([0899321](https://github.com/ho-nl/m2-pwa/commit/0899321a3ea74a2d4c714e2dbe17c785a07dfc11))
+
+
+### Reverts
+
+* Revert "style: coupon input conform design" ([3ac7182](https://github.com/ho-nl/m2-pwa/commit/3ac7182eb6bb7c86ccba6464d1f206dc30a5a1da))
+* Revert "style: coupon accordion icon/button alignment" ([165f91c](https://github.com/ho-nl/m2-pwa/commit/165f91c8f0e587ea26bcf441f48a6a13df74891c))
+
+
+
+
+
 ## [2.106.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.106.0...@graphcommerce/graphcommerce@2.106.1) (2021-08-02)
 
 

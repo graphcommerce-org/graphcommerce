@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.101.5](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product-configurable@2.101.4...@reachdigital/magento-product-configurable@2.101.5) (2021-08-03)
+
+
+### Bug Fixes
+
+* remove magento-category package from magento-product solving a circular dependency ([7379e6e](https://github.com/ho-nl/m2-pwa/commit/7379e6ede4829392b35008c17743181d9cac0636))
+
+
+
+
+
 ## [2.101.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product-configurable@2.101.2...@reachdigital/magento-product-configurable@2.101.3) (2021-07-29)
 
 
