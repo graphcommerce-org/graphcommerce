@@ -98,7 +98,7 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
             name='paymentMethod'
             rules={{ required: 'Please select a payment method' }}
             render={({ field: { onChange, value, name, ref, onBlur } }) => (
-              <SliderContext scrollSnapAlign={false}>
+              <SliderContext>
                 <SliderContainer>
                   <SliderScroller childrenRef={groupRef}>
                     <ToggleButtonGroup

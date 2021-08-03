@@ -34,7 +34,7 @@ export type SliderScrollerProps = {
   /** Array of items that will be provided */
   children: React.ReactNode
 
-  childrenRef?: React.Ref<HTMLElement>
+  childrenRef?: React.RefObject<HTMLElement>
 } & MotionProps &
   UseStyles<typeof useStyles>
 
@@ -49,7 +49,7 @@ export type SliderScrollerProps = {
  * - Disable any `onClick` while dragging
  */
 export default function SliderScroller(props: SliderScrollerProps) {
-  const { children, layout, ...motionProps } = props
+  const { children, childrenRef, layout, ...motionProps } = props
   const { scroller, scrollerDragging, scrollerEnabled } = useStyles(props)
   const [state, dispatch] = useSliderContext()
   const { containerRef, containerSize, scrollerRef, scrollerSize, controls } = state
@@ -71,7 +71,9 @@ export default function SliderScroller(props: SliderScrollerProps) {
   useEffect(() => {
     if (!scrollerRef.current || !containerRef.current || layout) return () => {}
 
-    const elements = Array.from(scrollerRef.current.children) as HTMLElement[]
+    const elements = Array.from(
+      childrenRef?.current?.children ?? scrollerRef.current.children,
+    ) as HTMLElement[]
 
     dispatch({ type: 'REGISTER_CHILDREN', elements })
     const ro = new IntersectionObserver(
@@ -88,7 +90,7 @@ export default function SliderScroller(props: SliderScrollerProps) {
 
     elements.forEach((e) => ro.observe(e))
     return () => ro.disconnect()
-  }, [layout, containerRef, dispatch, scrollerRef, scrollerRef.current?.children])
+  }, [layout, containerRef, dispatch, scrollerRef, childrenRef])
 
   /**
    * After dragging completes
