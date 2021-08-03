@@ -5,12 +5,16 @@ import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
+    root: {
+      marginBottom: 0,
+    },
     header: {
+      maxWidth: 800,
+      margin: `0 auto`,
+      marginBottom: theme.spacings.md,
       position: 'relative',
       backgroundColor: 'rgba(0,0,0,0.08)',
       overflow: 'hidden',
-      maxWidth: 800,
-      margin: `0 auto ${theme.spacings.lg} auto`,
     },
     copy: {
       color: '#fff',
@@ -20,6 +24,7 @@ const useStyles = makeStyles(
       padding: `${theme.spacings.lg} ${theme.spacings.md}`,
       minHeight: '30vh',
       '& > *': {
+        zIndex: 0,
         maxWidth: 'max-content',
       },
       [theme.breakpoints.up('lg')]: {
@@ -29,12 +34,12 @@ const useStyles = makeStyles(
     asset: {
       position: 'absolute',
       top: '0',
-      zIndex: -1,
+      zIndex: 0,
       width: '100%',
       height: '100%',
       '& img': {
         width: '100%',
-        height: '100%',
+        height: '100% !important',
         objectFit: 'cover',
       },
       [theme.breakpoints.up('md')]: {
@@ -54,7 +59,7 @@ export default function BlogHeader(props: BlogHeaderProps) {
   const classes = useStyles()
 
   return (
-    <Row>
+    <Row className={classes.root}>
       <div className={classes.header}>
         <Typography variant='body1' className={classes.copy} />
         {asset && <div className={classes.asset}>{asset}</div>}
