@@ -27,7 +27,11 @@ function BlogPage(props: Props) {
 
   return (
     <>
-      <PageMeta title={title} metaDescription={title} canonical={page.url} />
+      <PageMeta
+        title={`Tagged in: ${tag}`}
+        metaDescription={`Tagged in: ${tag}`}
+        metaRobots={['noindex']}
+      />
       <BlogTitle title={`Tagged in: ${tag}`} />
       <BlogList blogPosts={blogPosts} />
     </>
