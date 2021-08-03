@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { test as base } from '@reachdigital/graphql/_playwright/apolloClient.fixture'
-import { productLink } from '../ProductLink'
-import { ProductStaticPathsDocument } from '../ProductStaticPaths/ProductStaticPaths.gql'
-import { ProductTypenames } from '../ProductStaticPaths/getProductStaticPaths'
+import { ProductStaticPathsDocument } from '../components/ProductStaticPaths/ProductStaticPaths.gql'
+import { ProductTypenames } from '../components/ProductStaticPaths/getProductStaticPaths'
+import { productLink } from '../hooks/useProductLink'
 
 type ProductUrls = {
   all: string[]
@@ -17,8 +17,8 @@ const test = base.extend<{ productURL: ProductUrls }>({
 
     const productUrls: Partial<Omit<ProductUrls, 'all'>> = {}
     const urls = (query.data.products?.items ?? []).map((p) => {
-      productUrls[`${p?.__typename}`] = `${baseURL}${productLink(p)}`
-      return `${baseURL}${productLink(p)}`
+      productUrls[`${p?.__typename}`] = `${baseURL}${productLink(p!)}`
+      return `${baseURL}${productLink(p!)}`
     })
 
     await use({ all: urls, ...productUrls } as ProductUrls)

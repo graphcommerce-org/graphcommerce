@@ -1,8 +1,6 @@
-import { useQuery } from '@apollo/client'
 import { useCartQuery, useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import { PaymentOptionsProps } from '@reachdigital/magento-cart-payment-method'
 import { useFormCompose } from '@reachdigital/react-hook-form'
-import { StoreConfigDocument } from '../../../magento-store'
 import { BraintreePaymentMethodOptionsDocument } from '../../BraintreePaymentMethodOptions.gql'
 import { StartPaymentOptions } from '../../hooks/useBraintree'
 import { useBraintreeLocalPayment } from '../../hooks/useBraintreeLocalPayment'
@@ -12,7 +10,7 @@ import { BraintreeLocalPaymentsCartDocument } from './BraintreeLocalPaymentsCart
 function PaymentMethodOptions(props: PaymentOptionsProps) {
   const localPaymentPromise = useBraintreeLocalPayment()
 
-  const { code, step, child, title, preferred, ...other } = props
+  const { code, step, child, title, preferred } = props
   const paymentType = child as StartPaymentOptions['paymentType']
   const { data: cartData } = useCartQuery(BraintreeLocalPaymentsCartDocument)
 
