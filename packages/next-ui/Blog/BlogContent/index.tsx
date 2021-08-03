@@ -4,9 +4,12 @@ import Row from '../../Row'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
+    root: {
+      marginBottom: theme.spacings.sm,
+    },
     wrapper: {
       maxWidth: 800,
-      margin: `0 auto ${theme.spacings.xl} auto`,
+      margin: '0 auto',
     },
   }),
   { name: 'BlogContent' },
@@ -21,7 +24,7 @@ export default function BlogContent(props: BlogContentProps) {
   const classes = useStyles()
 
   return (
-    <Row>
+    <Row className={classes.root}>
       <div className={classes.wrapper}>{content}</div>
     </Row>
   )

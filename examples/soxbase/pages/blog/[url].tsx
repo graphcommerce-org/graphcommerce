@@ -10,8 +10,8 @@ import BlogAuthor from '../../components/Blog/BlogAuthor'
 import BlogHeader from '../../components/Blog/BlogHeader'
 import { BlogListDocument, BlogListQuery } from '../../components/Blog/BlogList.gql'
 import { BlogPostPathsDocument } from '../../components/Blog/BlogPostPaths.gql'
+import BlogTags from '../../components/Blog/BlogTags'
 import BlogTitle from '../../components/Blog/BlogTitle'
-
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
 import apolloClient from '../../lib/apolloClient'
@@ -35,6 +35,7 @@ function BlogPage(props: Props) {
       <BlogAuthor author={page.author} date={page.date} />
       <BlogHeader asset={page.asset} />
       <PageContent {...page} />
+      <BlogTags tags={page.blogTags} />
       <BlogList blogPosts={blogPosts} />
     </>
   )
