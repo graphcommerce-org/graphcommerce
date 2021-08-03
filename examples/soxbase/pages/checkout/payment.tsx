@@ -1,4 +1,4 @@
-import { Container, Divider, NoSsr, Typography } from '@material-ui/core'
+import { Container, Divider, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CartSummary, CartTotals } from '@reachdigital/magento-cart'
 import { CouponAccordion } from '@reachdigital/magento-cart-coupon'
@@ -18,11 +18,9 @@ import {
   Button,
   Form,
   GetStaticProps,
-  iconChevronRight,
   iconId,
   PageShellHeader,
   Stepper,
-  SvgImage,
   Title,
 } from '@reachdigital/next-ui'
 import { ComposedForm } from '@reachdigital/react-hook-form'
@@ -91,21 +89,21 @@ function PaymentPage() {
 
                 <PaymentMethodPlaceOrder key='placeorder' step={2} />
 
-                <PaymentMethodButton
-                  key='button'
-                  type='submit'
-                  color='secondary'
-                  variant='pill'
-                  size='large'
-                  endIcon={<SvgImage src={iconChevronRight} loading='eager' alt='chevron right' />}
-                >
-                  Pay
-                </PaymentMethodButton>
                 <CartSummary editable>
                   <Divider />
                   <CartTotals />
                 </CartSummary>
                 <CouponAccordion />
+                <PaymentMethodButton
+                  text='bold'
+                  key='button'
+                  type='submit'
+                  color='secondary'
+                  variant='pill'
+                  size='large'
+                >
+                  Place order
+                </PaymentMethodButton>
               </AnimatePresence>
             </NoSsr>
           </PaymentMethodContextProvider>
