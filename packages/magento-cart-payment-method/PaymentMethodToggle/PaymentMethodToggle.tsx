@@ -17,12 +17,19 @@ import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodCo
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
+    formRoot: {
+      padding: '5px 0',
+    },
     root: {
       padding: 0,
     },
     toggleGroup: {
       display: 'inline-flex',
       gap: 0,
+    },
+    toggleButton: {
+      width: 200,
+      margin: 5,
     },
   }),
   { name: 'PaymentMethodToggle' },
@@ -67,7 +74,7 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
   }, [methods, modules, paymentMethod, selectedMethod?.code, setSelectedMethod, setSelectedModule])
 
   return (
-    <Form onSubmit={submitHandler} noValidate>
+    <Form onSubmit={submitHandler} noValidate classes={{ root: classes.formRoot }}>
       <input type='hidden' {...register('code', { required: true })} required />
       <FormRow className={classes.root}>
         <FormControl>
@@ -100,7 +107,7 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
                           color='secondary'
                           disabled={!modules?.[pm.code]}
                           size='large'
-                          style={{ width: 200, margin: 5 }}
+                          className={classes.toggleButton}
                         >
                           {!modules?.[pm.code] ? (
                             <>{pm.code} not implemented</>
