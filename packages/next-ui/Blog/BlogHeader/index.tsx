@@ -5,9 +5,6 @@ import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    root: {
-      marginBottom: 0,
-    },
     header: {
       maxWidth: 800,
       margin: `0 auto`,
@@ -59,11 +56,9 @@ export default function BlogHeader(props: BlogHeaderProps) {
   const classes = useStyles()
 
   return (
-    <Row className={classes.root}>
-      <div className={classes.header}>
-        <Typography variant='body1' className={classes.copy} />
-        {asset && <div className={classes.asset}>{asset}</div>}
-      </div>
-    </Row>
+    <div className={classes.header}>
+      <Typography variant='body1' className={classes.copy} />
+      {asset && <div className={classes.asset}>{asset}</div>}
+    </div>
   )
 }

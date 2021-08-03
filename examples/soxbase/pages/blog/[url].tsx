@@ -38,9 +38,7 @@ function BlogPage(props: Props) {
         <PageContent {...page} />
         <BlogTags tags={page.blogTags} />
       </Row>
-      <Row>
-        <BlogList blogPosts={blogPosts} />
-      </Row>
+      <BlogList blogPosts={blogPosts} />
     </>
   )
 }

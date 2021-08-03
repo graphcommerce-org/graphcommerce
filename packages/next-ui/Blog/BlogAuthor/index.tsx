@@ -5,10 +5,7 @@ import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    root: {
-      marginBottom: 0,
-    },
-    chipWrapper: {
+    wrapper: {
       display: 'flex',
       justifyContent: 'left',
       maxWidth: 800,
@@ -47,19 +44,17 @@ export default function BlogAuthor(props: BlogAuthorProps) {
   })
 
   return (
-    <Row className={classes.root}>
-      <div className={classes.chipWrapper}>
-        <Chip
-          variant='outlined'
-          avatar={<Avatar>{author.charAt(0).toUpperCase()}</Avatar>}
-          label={
-            <section>
-              <div className={classes.author}>{author}</div>
-              <div className={classes.date}>{formatter.format(new Date(date))}</div>
-            </section>
-          }
-        />
-      </div>
-    </Row>
+    <div className={classes.wrapper}>
+      <Chip
+        variant='outlined'
+        avatar={<Avatar>{author.charAt(0).toUpperCase()}</Avatar>}
+        label={
+          <section>
+            <div className={classes.author}>{author}</div>
+            <div className={classes.date}>{formatter.format(new Date(date))}</div>
+          </section>
+        }
+      />
+    </div>
   )
 }

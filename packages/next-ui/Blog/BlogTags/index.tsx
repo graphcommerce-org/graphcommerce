@@ -6,9 +6,6 @@ import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    root: {
-      marginBottom: theme.spacings.lg,
-    },
     wrapper: {
       maxWidth: 800,
       margin: `0 auto`,
@@ -29,16 +26,14 @@ export default function BlogTitle(props: blogTagsProps) {
   const classes = useStyles()
 
   return (
-    <Row className={classes.root}>
-      <div className={classes.wrapper}>
-        {tags.map((tag) => (
-          <PageLink key={tag} href='' passHref>
-            <Link color='inherit' className={classes.tag}>
-              <Chip label={tag} />
-            </Link>
-          </PageLink>
-        ))}
-      </div>
-    </Row>
+    <div className={classes.wrapper}>
+      {tags.map((tag) => (
+        <PageLink key={tag} href='' passHref>
+          <Link color='inherit' className={classes.tag}>
+            <Chip label={tag} />
+          </Link>
+        </PageLink>
+      ))}
+    </div>
   )
 }
