@@ -1,4 +1,3 @@
-import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
 import { GetStaticProps, Row } from '@reachdigital/next-ui'
@@ -12,7 +11,7 @@ import {
   BlogListTaggedDocument,
   BlogListTaggedQuery,
 } from '../../../components/Blog/BlogListTagged.gql'
-import { BlogPostPathsDocument } from '../../../components/Blog/BlogPostPaths.gql'
+import { BlogPostTaggedPathsDocument } from '../../../components/Blog/BlogPostTaggedPaths.gql'
 import BlogTags from '../../../components/Blog/BlogTags'
 import BlogTitle from '../../../components/Blog/BlogTitle'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
@@ -57,10 +56,13 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
   const responses = locales.map(async (locale) => {
     const staticClient = apolloClient(locale)
-    const BlogPostPaths = staticClient.query({ query: BlogPostPathsDocument })
+    const BlogPostPaths = staticClient.query({ query: BlogPostTaggedPathsDocument })
     const { pages } = (await BlogPostPaths).data
     return (
-      pages.map((page) => ({ params: { url: `${page?.url}`.replace('blog/', '') }, locale })) ?? []
+      pages.map((page) => ({
+        params: { url: `${page?.url}`.replace('blog/tagged/', '') },
+        locale,
+      })) ?? []
     )
   })
   const paths = (await Promise.all(responses)).flat(1)
