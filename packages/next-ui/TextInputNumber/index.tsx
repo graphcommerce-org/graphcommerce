@@ -2,6 +2,7 @@ import {
   IconButton,
   IconButtonProps,
   makeStyles,
+  OutlinedTextFieldProps,
   TextField,
   TextFieldProps,
   Theme,
@@ -49,15 +50,12 @@ export type TextInputNumberProps = Omit<TextFieldProps, 'type'> & {
   UpProps?: IconButtonPropsOmit
 } & UseStyles<typeof useStyles>
 
+function isOutlined(props: TextFieldProps): props is OutlinedTextFieldProps {
+  return props.variant === 'outlined'
+}
+
 export default function TextInputNumber(props: TextInputNumberProps) {
-  const {
-    InputProps = {},
-    DownProps = {},
-    UpProps = {},
-    inputProps = {},
-    inputRef,
-    ...textFieldProps
-  } = props
+  const { DownProps = {}, UpProps = {}, inputProps = {}, inputRef, ...textFieldProps } = props
   const classes = useStyles(props)
   const ref = useRef<HTMLInputElement>(null)
   const forkRef = useForkRef<HTMLInputElement>(ref, inputRef as Ref<HTMLInputElement>)
@@ -103,6 +101,15 @@ export default function TextInputNumber(props: TextInputNumberProps) {
     setTimeout(() => ref.current && updateDisabled(ref.current))
   }, [ref, inputProps.min, inputProps.max])
 
+  if (!textFieldProps.InputProps) textFieldProps.InputProps = {}
+  if (isOutlined(textFieldProps)) {
+    textFieldProps.InputProps.classes = {
+      ...textFieldProps.InputProps?.classes,
+      adornedEnd: classes.adornedEnd,
+      adornedStart: classes.adornedStart,
+    }
+  }
+
   return (
     <TextField
       {...textFieldProps}
@@ -111,11 +118,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
       className={clsx(textFieldProps.className, classes.quantity)}
       autoComplete='off'
       InputProps={{
-        ...InputProps,
-        classes: {
-          adornedEnd: classes.adornedEnd,
-          adornedStart: classes.adornedStart,
-        },
+        ...textFieldProps.InputProps,
         startAdornment: (
           <IconButton
             aria-label='step down'
