@@ -1,4 +1,6 @@
 fragment BlogTags on Page {
-  title
-  url
+  relatedPages {
+    title
+    url
+  }
 }
