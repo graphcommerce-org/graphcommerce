@@ -36,7 +36,7 @@ function BlogPage(props: Props) {
         <BlogAuthor author={page.author} date={page.date} />
         <BlogHeader asset={page.asset} />
         <PageContent {...page} />
-        <BlogTags tags={page.blogTags} />
+        <BlogTags blogTags={page.blogTags} />
       </Row>
       <BlogList blogPosts={blogPosts} />
     </>
