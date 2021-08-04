@@ -20,7 +20,7 @@ type RouteProps = { page: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
-const pageSize = 8
+const pageSize = 16
 
 function BlogPage(props: Props) {
   const { pages, blogPosts, pagesConnection } = props
