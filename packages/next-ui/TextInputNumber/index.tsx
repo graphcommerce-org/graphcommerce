@@ -10,13 +10,14 @@ import {
 import clsx from 'clsx'
 import React, { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
 import { UseStyles } from '../Styles'
+import responsiveVal from '../Styles/responsiveVal'
 import SvgImage from '../SvgImage'
 import { iconMin, iconPlus } from '../icons'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     quantity: {
-      width: 120,
+      width: responsiveVal(80, 120),
       backgroundColor: theme.palette.background.default,
     },
     quantityInput: {
@@ -27,6 +28,12 @@ const useStyles = makeStyles(
     },
     button: {
       fontSize: 22,
+    },
+    adornedEnd: {
+      paddingRight: responsiveVal(7, 14),
+    },
+    adornedStart: {
+      paddingLeft: responsiveVal(7, 14),
     },
   }),
   { name: 'TextInputNumber' },
@@ -58,30 +65,27 @@ export default function TextInputNumber(props: TextInputNumberProps) {
   const [direction, setDirection] = useState<'up' | 'down' | 'runUp' | 'runDown' | null>(null)
   const [disabled, setDisabled] = useState<'min' | 'max' | null>(null)
 
-  const stop = useCallback(() => {
-    setDirection(null)
-    ref.current?.focus()
-  }, [ref])
+  const stop = useCallback(() => setDirection(null), [])
 
   const down = useCallback(() => {
     if ((ref.current?.value ?? 0) <= inputProps.min) {
-      stop()
+      setDirection(null)
       return
     }
 
     ref.current?.stepDown()
     ref.current?.dispatchEvent(new Event('change', { bubbles: true }))
-  }, [inputProps.min, stop])
+  }, [inputProps.min])
 
   const up = useCallback(() => {
     if ((ref.current?.value ?? Infinity) >= inputProps.max) {
-      stop()
+      setDirection(null)
       return
     }
 
     ref.current?.stepUp()
     ref.current?.dispatchEvent(new Event('change', { bubbles: true }))
-  }, [inputProps.max, stop])
+  }, [inputProps.max])
 
   useEffect(() => {
     if (direction === 'up') up()
@@ -108,6 +112,10 @@ export default function TextInputNumber(props: TextInputNumberProps) {
       autoComplete='off'
       InputProps={{
         ...InputProps,
+        classes: {
+          adornedEnd: classes.adornedEnd,
+          adornedStart: classes.adornedStart,
+        },
         startAdornment: (
           <IconButton
             aria-label='step down'
@@ -115,7 +123,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             edge='start'
             onPointerDown={() => setDirection('down')}
             onPointerUp={stop}
-            disabled={textFieldProps.disabled || disabled === 'min'}
+            // disabled={textFieldProps.disabled || disabled === 'min'}
             tabIndex='-1'
             color='inherit'
             className={clsx(classes.button, DownProps.className)}
@@ -133,7 +141,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             edge='end'
             onPointerDown={() => setDirection('up')}
             onPointerUp={() => setDirection(null)}
-            disabled={textFieldProps.disabled || disabled === 'max'}
+            // disabled={textFieldProps.disabled || disabled === 'max'}
             tabIndex='-1'
             color='inherit'
             className={clsx(classes.button, UpProps.className)}
