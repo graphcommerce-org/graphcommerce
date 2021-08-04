@@ -1,7 +1,6 @@
-import { Chip, makeStyles, Theme, Link } from '@material-ui/core'
+import { Chip, makeStyles, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
-import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -19,17 +18,13 @@ const useStyles = makeStyles(
   { name: 'BlogTitle' },
 )
 
-export type blogTagsProps = UseStyles<typeof useStyles> & {
-  tags: []
-}
-
-export default function BlogTitle(props: blogTagsProps) {
-  const { tags } = props
+export default function BlogTitle(props) {
+  const { blogTags } = props
   const classes = useStyles()
 
   return (
     <div className={classes.wrapper}>
-      {tags.map((tag) => {
+      {blogTags.map((tag) => {
         const lowercaseTag = String(tag).toLowerCase()
 
         return (

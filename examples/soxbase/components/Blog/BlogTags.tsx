@@ -1,7 +1,10 @@
 import { BlogTags as NextBlogTags } from '@reachdigital/next-ui'
+import { BlogTagsFragment } from './BlogTags.gql'
 
-export default function BlogTags(props) {
-  const { tags } = props
+type BlogTagsProps = BlogTagsFragment
 
-  return <NextBlogTags tags={tags} />
+export default function BlogTags(props: BlogTagsProps) {
+  const { blogTags } = props
+
+  return <NextBlogTags blogTags={blogTags} />
 }
