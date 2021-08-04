@@ -5,6 +5,9 @@ fragment PageContentQueryFragment on Query {
     metaDescription
     metaRobots
     url
+    author
+    date
+    ...BlogTags
     content {
       __typename
       ... on Node {
