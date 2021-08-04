@@ -11,5 +11,5 @@ export default function BlogAuthor(props: BlogAuthorProps) {
   const { data: config } = useQuery(StoreConfigDocument)
   const locale = config?.storeConfig?.locale?.replace('_', '-')
 
-  return <NextBlogAuthor author={author} date={date} locale={locale ?? ''} />
+  return <NextBlogAuthor author={author ?? ''} date={date} locale={locale ?? ''} />
 }
