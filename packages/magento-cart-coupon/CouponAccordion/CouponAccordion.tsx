@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   button: {
     padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
     width: '100%',
+
     '& .MuiButton-label': {
       display: 'flex',
       justifyContent: 'flex-start',
@@ -46,10 +47,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: `0 ${theme.spacings.sm} ${theme.spacings.xs}`,
   },
   buttonOpen: {
-    '&.MuiButton-root': {
-      background: 'rgba(0,0,0,0.04)',
-      borderBottomLeftRadius: 0,
-      borderBottomRightRadius: 0,
+    background: 'rgba(0,0,0,0.04)',
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0,
+  },
+  disabled: {
+    cursor: 'default',
+    '&:hover': {
+      background: 'transparent',
     },
   },
 }))
@@ -67,28 +72,41 @@ export default function CouponAccordion(props: CouponAccordionProps) {
 
   return (
     <AnimatedRow key='discount-codes'>
-      <m.div layout className={classes.accordion}>
-        <m.div layout>
-          <Button
-            disableRipple={!!coupon}
-            onClick={() => setOpen(!open)}
-            className={clsx(classes.button, { [classes.buttonOpen]: !coupon && open })}
-            endIcon={
-              <>
-                {!coupon && open && <SvgImage src={iconChevronUp} alt='Open' loading='eager' />}
-                {!coupon && !open && <SvgImage src={iconChevronDown} alt='Close' loading='eager' />}
-              </>
-            }
-          >
-            <Typography variant='h6'>Discount code</Typography>
-            {coupon && <RemoveCouponForm {...data.cart} />}
-          </Button>
-        </m.div>
+      <m.div className={classes.accordion}>
+        <Button
+          component={coupon ? 'div' : 'button'}
+          onClick={() => setOpen(!open)}
+          disableRipple={!!coupon}
+          className={clsx(classes.button, {
+            [classes.buttonOpen]: !coupon && open,
+            [classes.disabled]: coupon,
+          })}
+          endIcon={
+            <>
+              {!coupon && open && <SvgImage src={iconChevronUp} alt='Open' loading='eager' />}
+              {!coupon && !open && <SvgImage src={iconChevronDown} alt='Close' loading='eager' />}
+            </>
+          }
+        >
+          <Typography variant='h6'>Discount code</Typography>
+          <AnimatePresence>
+            {coupon && (
+              <m.div
+                key='remove'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <RemoveCouponForm {...data.cart} />
+              </m.div>
+            )}
+          </AnimatePresence>
+        </Button>
 
         <AnimatePresence>
           {open && !coupon && (
             <AnimatedRow key='discount-codes-form-wrap'>
-              <m.div layout='position' className={classes.couponFormWrap}>
+              <m.div className={classes.couponFormWrap}>
                 <ApplyCouponForm />
               </m.div>
             </AnimatedRow>

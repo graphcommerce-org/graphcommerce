@@ -80,27 +80,21 @@ const useStyles = makeStyles(
         },
       },
     },
-    pictureSpacing: {
-      overflow: 'hidden',
-      display: 'flex',
-      position: 'relative',
-      alignItems: 'center',
-      flexShrink: 0,
-      userSelect: 'none',
+    productLink: {
+      display: 'block',
+      width: '100%',
       borderRadius: '50%',
-      justifyContent: 'center',
-      backgroundColor: 'rgb(248,248,248)',
+      overflow: 'hidden',
     },
     image: {
       gridColumn: 1,
       backgroundColor: theme.palette.background.paper,
       objectFit: 'cover',
       display: 'block',
-      transform: 'scale(1.1)',
-    },
-    productLink: {
-      display: 'block',
-      width: '100%',
+      width: '110% !important',
+      height: '110% !important',
+      marginLeft: '-5%',
+      marginTop: '-5%',
     },
     itemName: {
       ...theme.typography.h5,
@@ -157,17 +151,15 @@ export default function CartItem(props: CartItemProps) {
       >
         <PageLink href={productLink}>
           <a className={classes.productLink}>
-            <div className={classes.pictureSpacing}>
-              {product?.thumbnail?.url && (
-                <Image
-                  src={product.thumbnail.url ?? ''}
-                  layout='fill'
-                  alt={product.thumbnail.label ?? product.name ?? ''}
-                  sizes='104px'
-                  className={classes.image}
-                />
-              )}
-            </div>
+            {product?.thumbnail?.url && (
+              <Image
+                src={product.thumbnail.url ?? ''}
+                layout='fill'
+                alt={product.thumbnail.label ?? product.name ?? ''}
+                sizes={responsiveVal(70, 125)}
+                className={classes.image}
+              />
+            )}
           </a>
         </PageLink>
       </Badge>

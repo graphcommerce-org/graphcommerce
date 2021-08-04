@@ -35,6 +35,7 @@ jobs:
           retryInterval: 2000
           pattern: https://graphcommerce-?????????-reachdigital.vercel.app
       - run: npx playwright test
+        timeout-minutes: 10
         env:
           URL: ${{ steps.deployment.outputs.deployment }}
           NEXT_PUBLIC_GRAPHQL_ENDPOINT: ${{ secrets.NEXT_PUBLIC_GRAPHQL_ENDPOINT }}
