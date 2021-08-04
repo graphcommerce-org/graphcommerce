@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/image",
-  "version": "2.101.1",
+  "version": "2.101.2",
   "private": true,
   "sideEffects": false,
   "scripts": {
@@ -17,7 +17,7 @@
     }
   },
   "dependencies": {
-    "@reachdigital/framer-utils": "^2.102.1"
+    "@reachdigital/framer-utils": "^2.102.2"
   },
   "devDependencies": {
     "@playwright/test": "^1.13.0",

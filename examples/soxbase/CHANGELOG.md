@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.104.2...@reachdigital/soxbase@2.105.0) (2021-08-04)
+
+
+### Bug Fixes
+
+* add blogTags fragment ([8ab1ee8](https://github.com/ho-nl/m2-pwa/commit/8ab1ee874fa0174b15f2df5108cdca03599f1ef5))
+* add Rows ([1445e88](https://github.com/ho-nl/m2-pwa/commit/1445e883bc4a051b1e7b05a48511558ac1c020dd))
+* base mechanics on page relations ([345a682](https://github.com/ho-nl/m2-pwa/commit/345a68274dc7bc7f561a963d29fd9cd96907d4d1))
+* blogTags ([eef3c86](https://github.com/ho-nl/m2-pwa/commit/eef3c86680846618b8408328874f4b9be8c01254))
+* deploy ([f662c5c](https://github.com/ho-nl/m2-pwa/commit/f662c5cfbb26138208c272f27facacbd5f17be8d))
+* relatedPages in BlogTags fragment ([8f87250](https://github.com/ho-nl/m2-pwa/commit/8f87250c6213039e3b95b6d0be334d6f64048b73))
+* remove component specific Rows ([ed60655](https://github.com/ho-nl/m2-pwa/commit/ed60655ffca8e4578cf2627bf0a9428fd9a79337))
+* staticPaths for blog/tagged/ ([5b170e4](https://github.com/ho-nl/m2-pwa/commit/5b170e43de9620bca2681e8459fa02b838d6fe45))
+
+
+### Features
+
+* add blog tags to page ([bdc31af](https://github.com/ho-nl/m2-pwa/commit/bdc31af37e1b348f409dd347fe0c88581b0cf375))
+* add Chip with author and publish date ([20a28a5](https://github.com/ho-nl/m2-pwa/commit/20a28a5c4fdbb4cd883b69459e13ac481bdf3a64))
+* change pageSize ([5cb824e](https://github.com/ho-nl/m2-pwa/commit/5cb824e23287eb86a8460f15ff4027af4ded407e))
+* individual components for title and author ([e1962b6](https://github.com/ho-nl/m2-pwa/commit/e1962b6f873442dba731d288872a03af9dee2e1f))
+* medium style layout ([b872843](https://github.com/ho-nl/m2-pwa/commit/b87284333b4c2753f3f126c9c5897a1008e5cdb0))
+* standalone Blog Title ([311a468](https://github.com/ho-nl/m2-pwa/commit/311a4688833e054660c57e06dc98176163f3d14f))
+* tagged list index meta ([93697f4](https://github.com/ho-nl/m2-pwa/commit/93697f4c93326d5d4b0f66db6e2bba1e17599b3a))
+* view list of blogposts tagged ([9efe088](https://github.com/ho-nl/m2-pwa/commit/9efe0884d43e0dc63e614f625b81e6f8b3f1dc50))
+
+
+
+
+
 ## [2.104.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.104.1...@reachdigital/soxbase@2.104.2) (2021-08-03)
 
 

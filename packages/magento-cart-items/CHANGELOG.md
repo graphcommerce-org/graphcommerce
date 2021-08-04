@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.101.6](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-items@2.101.5...@reachdigital/magento-cart-items@2.101.6) (2021-08-04)
+
+
+### Bug Fixes
+
+* cart item image sizes ([e7c860c](https://github.com/ho-nl/m2-pwa/commit/e7c860c785e172b9275e1a00c8b51509d6b297a8))
+
+
+
+
+
 # [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-items@2.100.19...@reachdigital/magento-cart-items@2.101.0) (2021-07-26)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.101.6](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-coupon@2.101.5...@reachdigital/magento-cart-coupon@2.101.6) (2021-08-04)
+
+
+### Bug Fixes
+
+* coupon stylign ([796bbb2](https://github.com/ho-nl/m2-pwa/commit/796bbb2ad5eda6dc9c5aa37034586705b24a0023))
+
+
+
+
+
 ## [2.101.5](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-coupon@2.101.4...@reachdigital/magento-cart-coupon@2.101.5) (2021-08-03)
 
 

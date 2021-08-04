@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.101.6](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-checkout@2.101.5...@reachdigital/magento-cart-checkout@2.101.6) (2021-08-04)
+
+
+### Bug Fixes
+
+* **coupon:** applying coupon doesnt change totals ([5e4d768](https://github.com/ho-nl/m2-pwa/commit/5e4d768e19471b527da92cd46c313b59df9ca8cb))
+
+
+
+
+
 # [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-checkout@2.100.19...@reachdigital/magento-cart-checkout@2.101.0) (2021-07-26)
 
 

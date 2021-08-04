@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.106.2...@graphcommerce/graphcommerce@2.107.0) (2021-08-04)
+
+
+### Bug Fixes
+
+* add blogTags fragment ([8ab1ee8](https://github.com/ho-nl/m2-pwa/commit/8ab1ee874fa0174b15f2df5108cdca03599f1ef5))
+* add Rows ([1445e88](https://github.com/ho-nl/m2-pwa/commit/1445e883bc4a051b1e7b05a48511558ac1c020dd))
+* add types ([18dac42](https://github.com/ho-nl/m2-pwa/commit/18dac421042e4050407987b33eae0bf33e2f6e12))
+* base mechanics on page relations ([345a682](https://github.com/ho-nl/m2-pwa/commit/345a68274dc7bc7f561a963d29fd9cd96907d4d1))
+* blogTags ([eef3c86](https://github.com/ho-nl/m2-pwa/commit/eef3c86680846618b8408328874f4b9be8c01254))
+* bottom sheet is not properly sized when scrolled ([93a1dc4](https://github.com/ho-nl/m2-pwa/commit/93a1dc40c37de74a8223657add77c51d51a24d92))
+* cart item image sizes ([e7c860c](https://github.com/ho-nl/m2-pwa/commit/e7c860c785e172b9275e1a00c8b51509d6b297a8))
+* compact text input number ([8999053](https://github.com/ho-nl/m2-pwa/commit/899905364808d6ea6ef257e948c68dc3851717a6))
+* coupon stylign ([796bbb2](https://github.com/ho-nl/m2-pwa/commit/796bbb2ad5eda6dc9c5aa37034586705b24a0023))
+* **coupon:** applying coupon doesnt change totals ([5e4d768](https://github.com/ho-nl/m2-pwa/commit/5e4d768e19471b527da92cd46c313b59df9ca8cb))
+* deploy ([f662c5c](https://github.com/ho-nl/m2-pwa/commit/f662c5cfbb26138208c272f27facacbd5f17be8d))
+* image height in grid ([e95fe1a](https://github.com/ho-nl/m2-pwa/commit/e95fe1a613e2047ca9aae54ea413c592eba19bf3))
+* image height on blog view ([2f8aaa3](https://github.com/ho-nl/m2-pwa/commit/2f8aaa32af3d4d8c4e3412c3b4dcab5485a0504f))
+* playwright timeout ([af21611](https://github.com/ho-nl/m2-pwa/commit/af2161119b4ea83edd27ce7238ebca70368e8b85))
+* relatedPages in BlogTags fragment ([8f87250](https://github.com/ho-nl/m2-pwa/commit/8f87250c6213039e3b95b6d0be334d6f64048b73))
+* remove component specific Row ([fcad430](https://github.com/ho-nl/m2-pwa/commit/fcad430ba01b215e77abb2c1ae01071a8ea1ec55))
+* remove component specific Rows ([ed60655](https://github.com/ho-nl/m2-pwa/commit/ed60655ffca8e4578cf2627bf0a9428fd9a79337))
+* staticPaths for blog/tagged/ ([5b170e4](https://github.com/ho-nl/m2-pwa/commit/5b170e43de9620bca2681e8459fa02b838d6fe45))
+* tags styling ([1a4bcf2](https://github.com/ho-nl/m2-pwa/commit/1a4bcf2e339647cc93120ea9f951253a4e138142))
+
+
+### Features
+
+* add blog tags to page ([bdc31af](https://github.com/ho-nl/m2-pwa/commit/bdc31af37e1b348f409dd347fe0c88581b0cf375))
+* add Chip with author and publish date ([20a28a5](https://github.com/ho-nl/m2-pwa/commit/20a28a5c4fdbb4cd883b69459e13ac481bdf3a64))
+* change pageSize ([5cb824e](https://github.com/ho-nl/m2-pwa/commit/5cb824e23287eb86a8460f15ff4027af4ded407e))
+* individual components for title and author ([e1962b6](https://github.com/ho-nl/m2-pwa/commit/e1962b6f873442dba731d288872a03af9dee2e1f))
+* medium style layout ([b872843](https://github.com/ho-nl/m2-pwa/commit/b87284333b4c2753f3f126c9c5897a1008e5cdb0))
+* standalone Blog Title ([311a468](https://github.com/ho-nl/m2-pwa/commit/311a4688833e054660c57e06dc98176163f3d14f))
+* tagged list index meta ([93697f4](https://github.com/ho-nl/m2-pwa/commit/93697f4c93326d5d4b0f66db6e2bba1e17599b3a))
+* view list of blogposts tagged ([9efe088](https://github.com/ho-nl/m2-pwa/commit/9efe0884d43e0dc63e614f625b81e6f8b3f1dc50))
+
+
+
+
+
 ## [2.106.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.106.1...@graphcommerce/graphcommerce@2.106.2) (2021-08-03)
 
 

@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.103.5...@reachdigital/next-ui@2.104.0) (2021-08-04)
+
+
+### Bug Fixes
+
+* add blogTags fragment ([8ab1ee8](https://github.com/ho-nl/m2-pwa/commit/8ab1ee874fa0174b15f2df5108cdca03599f1ef5))
+* add types ([18dac42](https://github.com/ho-nl/m2-pwa/commit/18dac421042e4050407987b33eae0bf33e2f6e12))
+* base mechanics on page relations ([345a682](https://github.com/ho-nl/m2-pwa/commit/345a68274dc7bc7f561a963d29fd9cd96907d4d1))
+* cart item image sizes ([e7c860c](https://github.com/ho-nl/m2-pwa/commit/e7c860c785e172b9275e1a00c8b51509d6b297a8))
+* compact text input number ([8999053](https://github.com/ho-nl/m2-pwa/commit/899905364808d6ea6ef257e948c68dc3851717a6))
+* image height in grid ([e95fe1a](https://github.com/ho-nl/m2-pwa/commit/e95fe1a613e2047ca9aae54ea413c592eba19bf3))
+* image height on blog view ([2f8aaa3](https://github.com/ho-nl/m2-pwa/commit/2f8aaa32af3d4d8c4e3412c3b4dcab5485a0504f))
+* remove component specific Row ([fcad430](https://github.com/ho-nl/m2-pwa/commit/fcad430ba01b215e77abb2c1ae01071a8ea1ec55))
+* remove component specific Rows ([ed60655](https://github.com/ho-nl/m2-pwa/commit/ed60655ffca8e4578cf2627bf0a9428fd9a79337))
+* tags styling ([1a4bcf2](https://github.com/ho-nl/m2-pwa/commit/1a4bcf2e339647cc93120ea9f951253a4e138142))
+
+
+### Features
+
+* add blog tags to page ([bdc31af](https://github.com/ho-nl/m2-pwa/commit/bdc31af37e1b348f409dd347fe0c88581b0cf375))
+* add Chip with author and publish date ([20a28a5](https://github.com/ho-nl/m2-pwa/commit/20a28a5c4fdbb4cd883b69459e13ac481bdf3a64))
+* standalone Blog Title ([311a468](https://github.com/ho-nl/m2-pwa/commit/311a4688833e054660c57e06dc98176163f3d14f))
+* view list of blogposts tagged ([9efe088](https://github.com/ho-nl/m2-pwa/commit/9efe0884d43e0dc63e614f625b81e6f8b3f1dc50))
+
+
+
+
+
 ## [2.103.5](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.103.4...@reachdigital/next-ui@2.103.5) (2021-08-03)
 
 
