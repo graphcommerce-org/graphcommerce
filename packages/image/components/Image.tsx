@@ -168,9 +168,11 @@ function defaultImageLoader(loaderProps: ImageLoaderProps) {
 type SizesString =
   | `${number}vw`
   | `${number}px`
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Functions#math_functions
   | `calc(${string})`
   | `min(${string})`
   | `max(${string})`
+  | `clamp(${string})`
 type SizesRecord = Record<number, SizesString>
 type Sizes = SizesString | SizesRecord | undefined
 
