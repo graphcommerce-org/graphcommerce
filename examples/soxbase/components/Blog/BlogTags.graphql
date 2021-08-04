@@ -1,3 +1,4 @@
 fragment BlogTags on Page {
-  blogTags
+  title
+  url
 }

@@ -7,7 +7,9 @@ fragment PageContentQueryFragment on Query {
     url
     author
     date
-    blogTags
+    relatedPages {
+      ...BlogTags
+    }
     content {
       __typename
       ... on Node {

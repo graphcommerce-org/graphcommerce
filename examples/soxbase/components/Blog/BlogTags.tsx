@@ -4,7 +4,7 @@ import { BlogTagsFragment } from './BlogTags.gql'
 type BlogTagsProps = BlogTagsFragment
 
 export default function BlogTags(props: BlogTagsProps) {
-  const { blogTags } = props
+  const { relatedPages } = props
 
-  return <NextBlogTags blogTags={blogTags} />
+  return <NextBlogTags relatedPages={relatedPages} />
 }

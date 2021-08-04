@@ -19,20 +19,16 @@ const useStyles = makeStyles(
 )
 
 export default function BlogTitle(props) {
-  const { blogTags } = props
+  const { relatedPages } = props
   const classes = useStyles()
 
   return (
     <div className={classes.wrapper}>
-      {blogTags.map((tag) => {
-        const lowercaseTag = String(tag).toLowerCase()
-
-        return (
-          <PageLink key={tag} href={`/blog/tagged/${lowercaseTag}`}>
-            <Chip label={tag} className={classes.tag} />
-          </PageLink>
-        )
-      })}
+      {relatedPages.map((page) => (
+        <PageLink key={page.url} href={`/${page.url}`} passHref>
+          <Chip label={page.title} className={classes.tag} />
+        </PageLink>
+      ))}
     </div>
   )
 }
