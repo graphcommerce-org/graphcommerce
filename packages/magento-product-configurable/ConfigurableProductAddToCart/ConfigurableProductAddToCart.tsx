@@ -1,8 +1,6 @@
-import { useQuery } from '@apollo/client'
 import { Divider, makeStyles, Theme } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
-import { CustomerTokenDocument } from '@reachdigital/magento-customer'
 import { Money } from '@reachdigital/magento-store'
 import {
   AnimatedRow,
@@ -76,16 +74,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
   const { handleSubmit, formState, muiRegister, required, control, error, data } = form
   const submitHandler = handleSubmit(() => {})
 
-  const { data: tokenQuery } = useQuery(CustomerTokenDocument)
-  const requireAuth = Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid)
-
-  return requireAuth ? (
-    <PageLink href='/account/signin' passHref>
-      <Button color='primary' variant='contained' {...buttonProps}>
-        Add to Cart
-      </Button>
-    </PageLink>
-  ) : (
+  return (
     <form onSubmit={submitHandler} noValidate className={classes.form}>
       <Divider className={classes.divider} />
       <ConfigurableOptionsInput
