@@ -33,7 +33,7 @@ export default function RowProductFeatureBoxedBoxed(props: RowProductFeatureBoxe
         )
       }
     >
-      {topic && <Typography variant='captionOldOld'>{topic}</Typography>}
+      {topic && <Typography variant='overline'>{topic}</Typography>}
       <RichText {...copy} />
     </RowImageTextBoxed>
   )

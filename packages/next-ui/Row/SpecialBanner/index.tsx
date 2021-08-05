@@ -55,7 +55,7 @@ const useStyles = makeStyles(
       },
     },
     topic: {
-      ...theme.typography.captionOldOld,
+      ...theme.typography.overline,
     },
     links: {
       ...theme.typography.body2,

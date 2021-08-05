@@ -21,7 +21,7 @@ export default function RowProductFeature(props: ProductFeatureProps) {
         item.url && <Image alt={item.label ?? ''} width={328} height={328} src={item.url} />
       }
     >
-      {topic && <Typography variant='captionOldOld'>{topic}</Typography>}
+      {topic && <Typography variant='overline'>{topic}</Typography>}
       <RichText {...copy} />
     </RowImageText>
   )

@@ -15,18 +15,12 @@ const useStyles = makeStyles(
       textAlign: 'center',
       ...theme.typography.h2,
     },
-    captionOldOld: {
+    overline: {
       display: 'block',
       padding: `${theme.spacings.xs} 0`,
       borderBottom: `1px solid ${theme.palette.grey[300]}`,
     },
-  }),
-  { name: 'ButtonLinkList' },
-)
-
-const useLinkStyles = makeStyles(
-  (theme: Theme) => ({
-    links: ({ containsBigLinks }: any) => ({
+    links: ({ containsBigLinks }: ButtonLinkListPropsBase) => ({
       display: 'grid',
       gridTemplateColumns: containsBigLinks
         ? undefined
@@ -34,24 +28,25 @@ const useLinkStyles = makeStyles(
       columnGap: theme.spacings.sm,
     }),
   }),
-  { name: 'ButtonLinkListLinks' },
+  { name: 'ButtonLinkList' },
 )
 
-export type ButtonLinkListProps = UseStyles<typeof useStyles & typeof useLinkStyles> & {
+type ButtonLinkListPropsBase = {
   title: string
   links: React.ReactNode
   containsBigLinks: boolean
 }
 
+export type ButtonLinkListProps = UseStyles<typeof useStyles> & ButtonLinkListPropsBase
+
 export default function ButtonLinkList(props: ButtonLinkListProps) {
   const { title, links } = props
   const classes = useStyles(props)
-  const linkClasses = useLinkStyles(props)
 
   return (
     <Row maxWidth='md' className={classes.container}>
       <SectionContainer labelLeft={title}>
-        <div className={linkClasses.links}>{links}</div>
+        <div className={classes.links}>{links}</div>
       </SectionContainer>
     </Row>
   )
