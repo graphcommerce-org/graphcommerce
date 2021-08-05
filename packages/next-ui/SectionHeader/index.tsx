@@ -5,25 +5,24 @@ import { UseStyles } from '../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    sectionHeader: {
-      position: 'relative',
-      '&:focus': {
-        outline: 'none',
-      },
-    },
     sectionHeaderSidePadding: {
       paddingLeft: theme.spacings.xxs,
       paddingRight: theme.spacings.xxs,
     },
     sectionHeaderWrapper: {
+      position: 'relative',
+      '&:focus': {
+        outline: 'none',
+      },
       display: 'flex',
       justifyContent: 'space-between',
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      paddingBottom: theme.spacings.xxs,
+      marginTop: theme.spacings.sm,
+      marginBottom: theme.spacings.xxs,
     },
     labelLeft: {},
     labelRight: {
       color: theme.palette.primary.contrastText,
+      lineHeight: 1,
     },
   }),
   { name: 'SectionHeader' },
@@ -51,18 +50,19 @@ export default function SectionHeader(props: SectionHeaderProps) {
 
   return (
     <div
-      className={clsx(classes.sectionHeader, { [classes.sectionHeaderSidePadding]: usePadding })}
+      className={clsx({
+        [classes.sectionHeaderWrapper]: true,
+        [classes.sectionHeaderSidePadding]: usePadding,
+      })}
     >
-      <div className={classes.sectionHeaderWrapper}>
-        <Typography className={classes.labelLeft} variant={variantLeft} component='div'>
-          {labelLeft}
+      <Typography className={classes.labelLeft} variant={variantLeft} component='div'>
+        {labelLeft}
+      </Typography>
+      {labelRight && (
+        <Typography className={classes.labelRight} variant={variantRight} component='div'>
+          {labelRight}
         </Typography>
-        {labelRight && (
-          <Typography className={classes.labelRight} variant={variantRight} component='div'>
-            {labelRight}
-          </Typography>
-        )}
-      </div>
+      )}
     </div>
   )
 }

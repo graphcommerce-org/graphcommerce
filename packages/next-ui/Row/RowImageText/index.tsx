@@ -1,8 +1,7 @@
-import { Container, makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import Row from '..'
 import { UseStyles } from '../../Styles'
-import responsiveVal from '../../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -10,18 +9,17 @@ const useStyles = makeStyles(
       display: 'grid',
       background: 'rgba(0,0,0,0.03)',
       justifyItems: 'center',
-      columnGap: `${theme.spacings.lg}`,
+      columnGap: theme.spacings.lg,
       padding: `${theme.spacings.xl} 0`,
       [theme.breakpoints.up('md')]: {
         padding: 0,
         background: 'none',
         gridTemplateColumns: '1fr 1fr',
-        columnGap: `${theme.spacings.lg}`,
       },
     },
     asset: {
       height: '100%',
-      width: responsiveVal(300, 900),
+      width: '100%',
       '& img': {
         height: '100%',
         width: '100%',
@@ -61,11 +59,9 @@ export default function RowImageText(props: RowImageTextProps) {
   const classes = useStyles(props)
 
   return (
-    <Row>
-      <div className={classes.wrapper}>
-        <div className={classes.asset}>{item}</div>
-        <div className={classes.copy}>{children}</div>
-      </div>
+    <Row className={classes.wrapper}>
+      <div className={classes.asset}>{item}</div>
+      <div className={classes.copy}>{children}</div>
     </Row>
   )
 }

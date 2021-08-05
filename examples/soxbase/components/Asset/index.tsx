@@ -13,7 +13,7 @@ function isImage(asset: AssetFragment): asset is ImageAsset {
 
 type AssetProps = {
   asset: AssetFragment
-} & Pick<ImageProps, 'sizes' | 'loading'>
+} & Pick<ImageProps, 'sizes' | 'layout' | 'loading'>
 
 export default function Asset(props: AssetProps) {
   const { asset, sizes } = props

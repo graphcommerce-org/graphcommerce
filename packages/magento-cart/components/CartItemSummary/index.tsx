@@ -50,18 +50,12 @@ const useStyles = makeStyles(
     prevNextFab: {
       boxShadow: 'none',
     },
-    sectionHeader: {
-      // textTransform: 'none',
-      // textWeight: theme.typography.fontWeightBold,
-      // color: theme.palette.common.black,
-    },
     costContainer: {
       background: theme.palette.common.white,
       padding: 0,
       marginTop: 0,
     },
     sectionHeaderWrapper: {
-      alignItems: 'center',
       paddingBottom: 10,
     },
     downloadLink: {

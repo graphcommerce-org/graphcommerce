@@ -2,6 +2,7 @@ import { BaseTextFieldProps, FormHelperText, makeStyles, Theme } from '@material
 import {
   RenderType,
   SectionContainer,
+  SectionHeader,
   ToggleButton,
   ToggleButtonGroup,
 } from '@reachdigital/next-ui'
@@ -23,13 +24,6 @@ export type ConfigurableOptionsProps = {
 
 export const useStyles = makeStyles(
   (theme: Theme) => ({
-    sectionHeaderWrapper: {
-      borderBottom: 'none',
-      padding: `${theme.spacings.md} 0`,
-      [theme.breakpoints.up('md')]: {
-        padding: `${theme.spacings.xs} 0`,
-      },
-    },
     toggleButtonGroup: {
       display: 'grid',
       gridTemplateColumns: 'repeat(2, 1fr)',
@@ -77,15 +71,11 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
               field: { onChange, value, name: inputName, ref, onBlur },
               fieldState: { error: errorHelperText },
             }) => (
-              <SectionContainer
-                labelLeft={option?.label}
-                labelRight={
-                  optionEndLabels && option?.label
-                    ? optionEndLabels[option.label.toLowerCase()]
-                    : undefined
-                }
-                classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
-              >
+              <>
+                <SectionHeader
+                  labelLeft={option?.label}
+                  labelRight={optionEndLabels?.[option?.attribute_code ?? '']}
+                />
                 <ToggleButtonGroup
                   defaultValue={selection[attribute_code] ?? ''}
                   required
@@ -139,7 +129,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                     {`${option.label} is ${errorHelperText?.type}`}
                   </FormHelperText>
                 )}
-              </SectionContainer>
+              </>
             )}
           />
         )

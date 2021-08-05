@@ -11,28 +11,24 @@ const useStyles = makeStyles(
     root: {
       ...theme.typography.body1,
     },
-    sectionHeader: {
+    sectionHeaderWrapper: {
       marginBottom: theme.spacings.md,
     },
   }),
-  {
-    name: 'RowProductSpecs',
-  },
+  { name: 'RowProductSpecs' },
 )
 
 export default function RowProductSpecs(props: RowProductSpecsProps) {
   const { aggregations } = props
   const classes = useStyles()
 
-  if (!aggregations) {
-    return null
-  }
+  if (!aggregations) return null
 
   return (
     <Row className={classes.root}>
       <SectionContainer
         labelLeft='Product specifications'
-        classes={{ sectionHeader: classes.sectionHeader }}
+        classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
       >
         <ProductSpecs aggregations={aggregations} />
       </SectionContainer>

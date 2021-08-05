@@ -163,23 +163,7 @@ export default function ProductReviews(props: ProductReviewsProps) {
   )
 
   if (reviews?.items.length === 0) {
-    return (
-      <div className={classes.container}>
-        <div className={classes.review}>
-          <div className={classes.title}>
-            <Chip
-              label='0/0'
-              icon={<SvgImage src={iconStarFilledMuted} size={10} alt='review' loading='lazy' />}
-              color='default'
-              variant='outlined'
-              classes={{ root: classes.chipRoot, icon: classes.icon, label: classes.label }}
-            />
-            <Typography variant='h5'>Be the first to write a review!</Typography>
-          </div>
-        </div>
-        {actions}
-      </div>
-    )
+    return <div className={classes.container}>{actions}</div>
   }
 
   return (

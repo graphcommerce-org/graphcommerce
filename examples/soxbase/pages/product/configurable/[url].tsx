@@ -17,7 +17,7 @@ import {
 } from '@reachdigital/magento-product-configurable'
 import { jsonLdProductReview, ProductReviewSummary } from '@reachdigital/magento-review'
 import { Money, StoreConfigDocument } from '@reachdigital/magento-store'
-import { GetStaticProps, JsonLd, responsiveVal, Title } from '@reachdigital/next-ui'
+import { GetStaticProps, JsonLd, AppShellTitle, Title } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
@@ -42,16 +42,11 @@ type Props = ProductPageQuery &
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    productName: {
-      fontSize: responsiveVal(28, 38),
-      marginBottom: 5,
-    },
     prePrice: {
       color: theme.palette.primary.mutedText,
-      fontSize: responsiveVal(12, 18),
     },
   }),
-  { name: 'ConfigurableProduct' },
+  { name: 'ProductConfigurable' },
 )
 
 type RouteProps = { url: string }
@@ -99,21 +94,18 @@ function ProductConfigurable(props: Props) {
           ...jsonLdProductReview(product),
         }}
       />
-
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
         <ProductPageMeta {...product} />
         <ProductPageGallery {...product}>
-          <Typography paragraph>
-            <Typography component='span' className={classes.prePrice} variant='body1'>
+          <Typography paragraph component='div'>
+            <Typography component='span' className={classes.prePrice} variant='body2'>
               As low as &nbsp;
             </Typography>
-            <Typography component='span' variant='h5'>
+            <Typography component='span' variant='h6'>
               <Money {...product.price_range.minimum_price.regular_price} />
             </Typography>
           </Typography>
-          <Typography component='h1' variant='h2' className={classes.productName}>
-            {product.name}
-          </Typography>
+          <AppShellTitle bare>{product.name}</AppShellTitle>
           <ProductReviewSummary {...product} reviewSectionId='reviews' />
           <ConfigurableProductAddToCart
             variables={{ sku: product.sku ?? '', quantity: 1 }}

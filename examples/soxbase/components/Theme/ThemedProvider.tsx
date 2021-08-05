@@ -100,23 +100,20 @@ export const defaultTheme = createTheme({
       marginTop: '0.24em',
       marginBottom: '0.58em',
       lineHeight: 1.16,
-      // ...debug('h1'),
     },
     h2: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
       fontSize: responsiveVal(28, 48),
-      fontWeight: 700,
+      fontWeight: 800,
       // letterSpacing: '-0.0375em',
       lineHeight: 1.42,
-      // ...debug('h2'),
     },
     h3: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-      fontSize: responsiveVal(18, 30),
+      fontSize: responsiveVal(22, 30),
       fontWeight: 700,
       // letterSpacing: '-0.0375em',
       lineHeight: 1.55,
-      // ...debug('h3'),
     },
     h4: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
@@ -124,7 +121,6 @@ export const defaultTheme = createTheme({
       fontSize: responsiveVal(18, 30),
       // letterSpacing: '-0.0375em',
       lineHeight: 1.55,
-      ...debug('❌h4'),
     },
     h5: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
@@ -142,7 +138,6 @@ export const defaultTheme = createTheme({
       fontWeight: 600,
       // letterSpacing: '-0.0375em',
       lineHeight: 1.8,
-      ...debug('h6'),
     },
     subtitle1: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
@@ -151,14 +146,12 @@ export const defaultTheme = createTheme({
       fontWeight: 400,
       // letterSpacing: '-0.0375em',
       lineHeight: 1.7,
-      // ...debug('s1'),
     },
     fontWeightBold: 600,
     body1: {
       // We're boosting the fontSize to be 17px at 1280
       fontSize: responsiveVal(15, 18, 1920),
       lineHeight: 1.7,
-      // ...debug('b1'),
     },
     subtitle2: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
@@ -166,20 +159,15 @@ export const defaultTheme = createTheme({
       fontSize: responsiveVal(14, 16),
       fontWeight: 600,
       lineHeight: 1.7,
-      ...debug('s2'),
     },
     body2: {
       fontSize: responsiveVal(13, 15),
       lineHeight: 1.7,
-      // ...debug('b2'),
     },
     caption: {
       fontSize: responsiveVal(11, 13),
-      // ...debug('c'),
     },
-    button: {
-      // ...debug('b'),
-    },
+    button: {},
     overline: {
       fontSize: responsiveVal(12, 14),
       color: `rgba(0, 0, 0, 0.3)`,
@@ -187,7 +175,6 @@ export const defaultTheme = createTheme({
       letterSpacing: 1,
       lineHeight: 1.2,
       textTransform: 'uppercase',
-      // ...debug('o'),
     },
   },
   spacings: {
@@ -215,8 +202,8 @@ defaultTheme.overrides = {
       body: {
         overflowY: 'scroll',
       },
-      '::selection': { background: `rgba(20, 227, 173, 0.5)` },
-      '::-moz-selection': { background: `rgba(20, 227, 173, 0.5)` },
+      '::selection': { background: '#ff4a557d' },
+      '::-moz-selection': { background: '#ff4a557d' },
     },
   },
   MuiContainer: {
