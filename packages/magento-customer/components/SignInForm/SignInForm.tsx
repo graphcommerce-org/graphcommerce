@@ -19,10 +19,10 @@ const useStyles = makeStyles(
   { name: 'SignIn' },
 )
 
-type SignInFormProps = { email: string; hideSessionExpiredAlert?: boolean }
+type SignInFormProps = { email: string }
 
 export default function SignInForm(props: SignInFormProps) {
-  const { email, hideSessionExpiredAlert = false } = props
+  const { email } = props
   const classes = useStyles()
   const { data } = useQuery(CustomerTokenDocument)
   const form = useFormGqlMutation(
@@ -42,7 +42,7 @@ export default function SignInForm(props: SignInFormProps) {
 
   return (
     <form onSubmit={submitHandler} noValidate>
-      {!hideSessionExpiredAlert && requireAuth && (
+      {requireAuth && (
         <Alert severity='error' variant='standard'>
           Your session has expired, please reauthenticate
         </Alert>
