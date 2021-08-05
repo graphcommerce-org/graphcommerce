@@ -36,10 +36,10 @@ export const defaultTheme = createTheme({
   },
   breakpoints: {
     values: {
-      xs: 300,
+      xs: 0,
       sm: 600,
-      md: 960,
-      lg: 1500,
+      md: 900,
+      lg: 1536,
       xl: 1920,
     },
   },
