@@ -9,8 +9,11 @@ type RowSwipeableGridProps = RowSwipeableGridFragment & ProductListItemsFragment
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
+    title: {
+      textTransform: 'uppercase',
+    },
     item: {
-      minWidth: responsiveVal(200, 900),
+      minWidth: responsiveVal(180, 900),
     },
   }),
   {
@@ -25,7 +28,13 @@ export default function RowSwipeableGrid(props: RowSwipeableGridProps) {
   if (!items || items.length === 0) return null
 
   return (
-    <SidebarSlider sidebar={<Typography variant='h2'>{title}</Typography>}>
+    <SidebarSlider
+      sidebar={
+        <Typography variant='h3' className={classes.title}>
+          {title}
+        </Typography>
+      }
+    >
       {items?.map((item) =>
         item ? (
           <RenderType

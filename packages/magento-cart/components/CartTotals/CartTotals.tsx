@@ -12,45 +12,39 @@ const useStyles = makeStyles(
     costsContainer: {
       borderRadius: 4,
       background: '#FFFADD',
-      paddingBottom: theme.spacings.xs,
-      paddingTop: `calc(${theme.spacings.xs} - 6px)`,
-      paddingLeft: theme.spacings.sm,
-      paddingRight: theme.spacings.sm,
+      padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
     },
     containerMarginTop: {
       marginTop: theme.spacings.md,
     },
     costsDivider: {
-      marginTop: theme.spacings.xs,
-      marginBottom: `calc(${theme.spacings.xs} - 6px)`,
+      margin: `1em 0`,
     },
     costsRow: {
       display: 'flex',
       justifyContent: 'space-between',
-      ...theme.typography.body1,
-      '& > div': {
-        paddingTop: 6,
-      },
+      ...theme.typography.subtitle1,
     },
     costsGrandTotal: {
       fontWeight: theme.typography.fontWeightBold,
       color: theme.palette.primary.main,
     },
     costsDiscount: {
-      fontWeight: 600,
+      fontWeight: theme.typography.fontWeightBold,
     },
     costsDiscountSub: {
-      color: theme.palette.primary.mutedText,
-      ...theme.typography.body2,
+      // color: theme.palette.primary.mutedText,
+      fontWeight: theme.typography.fontWeightBold,
     },
     costsTax: {
-      ...theme.typography.body2,
-      fontWeight: 600,
       color: theme.palette.primary.mutedText,
       paddingTop: 0,
       '& > div': {
-        paddingTop: 5,
+        // paddingTop: 5,
       },
+    },
+    money: {
+      whiteSpace: 'nowrap',
     },
   }),
   { name: 'CartTotals' },
@@ -79,27 +73,26 @@ export default function CartTotals(props: CartTotalsProps) {
         {prices?.subtotal_including_tax && (
           <AnimatedRow className={classes.costsRow} key='subtotal'>
             <div>Products</div>
-            <div>
+            <div className={classes.money}>
               <Money {...prices.subtotal_excluding_tax} />
             </div>
           </AnimatedRow>
         )}
 
-        {prices?.discounts && prices.discounts.length > 1 && (
+        {/* {prices?.discounts && prices.discounts.length > 1 && (
           <AnimatedRow className={clsx(classes.costsRow, classes.costsDiscount)} key='discount'>
             <div>Product discount</div>
-            <div>
-              {'- '}
+            <div className={classes.money}>
               <Money
                 currency={prices.subtotal_with_discount_excluding_tax?.currency}
                 value={
-                  (prices.subtotal_excluding_tax?.value ?? 0) -
-                  (prices.subtotal_with_discount_excluding_tax?.value ?? 0)
+                  (prices.subtotal_excluding_tax?.value ?? 0) * -1 -
+                  (prices.subtotal_with_discount_excluding_tax?.value ?? 0) * -1
                 }
               />
             </div>
           </AnimatedRow>
-        )}
+        )} */}
 
         {prices?.discounts?.map((discount) => (
           <AnimatedRow
@@ -107,7 +100,7 @@ export default function CartTotals(props: CartTotalsProps) {
             key={discount?.label}
           >
             <div>{discount?.label}</div>
-            <div>
+            <div className={classes.money}>
               {discount?.amount && (
                 <Money {...discount.amount} value={(discount.amount.value ?? 0) * -1} />
               )}
@@ -120,7 +113,7 @@ export default function CartTotals(props: CartTotalsProps) {
             <div>
               Shipping ({shippingMethod.carrier_title} {shippingMethod.method_title})
             </div>
-            <div>
+            <div className={classes.money}>
               <Money {...shippingMethod.amount} />
             </div>
           </AnimatedRow>
@@ -136,7 +129,7 @@ export default function CartTotals(props: CartTotalsProps) {
             key='grand_total'
           >
             <div>Total</div>
-            <div>
+            <div className={classes.money}>
               <Money {...prices.grand_total} />
             </div>
           </AnimatedRow>
@@ -145,7 +138,7 @@ export default function CartTotals(props: CartTotalsProps) {
         {prices?.applied_taxes?.map((tax) => (
           <AnimatedRow className={clsx(classes.costsRow, classes.costsTax)} key={tax?.label ?? ''}>
             <div>Including {tax?.label}</div>
-            <div>
+            <div className={classes.money}>
               <Money {...tax?.amount} />
             </div>
           </AnimatedRow>

@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxShadow: 'none',
     border: '1px solid #ededed',
     borderRadius: 8,
+    overflow: 'hidden',
   },
   button: {
     padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
@@ -88,7 +89,7 @@ export default function CouponAccordion(props: CouponAccordionProps) {
             </>
           }
         >
-          <Typography variant='h6'>Discount code</Typography>
+          <Typography variant='subtitle1'>Discount code</Typography>
           <AnimatePresence>
             {coupon && (
               <m.div
@@ -106,9 +107,9 @@ export default function CouponAccordion(props: CouponAccordionProps) {
         <AnimatePresence>
           {open && !coupon && (
             <AnimatedRow key='discount-codes-form-wrap'>
-              <m.div className={classes.couponFormWrap}>
+              <div className={classes.couponFormWrap}>
                 <ApplyCouponForm />
-              </m.div>
+              </div>
             </AnimatedRow>
           )}
         </AnimatePresence>

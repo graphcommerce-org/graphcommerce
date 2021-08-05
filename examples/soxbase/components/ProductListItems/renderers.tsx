@@ -10,7 +10,7 @@ import { ProductReviewSummary } from '@reachdigital/magento-review'
 import React from 'react'
 
 const Subtitle = (props: TypographyProps) => (
-  <Typography component='span' variant='overline' {...props} />
+  <Typography component='span' variant='caption' {...props} />
 )
 
 const renderers: ProductListItemRenderer = {
@@ -19,7 +19,7 @@ const renderers: ProductListItemRenderer = {
     return (
       <ProductListItemSimple
         {...props}
-        subTitle={<Subtitle>By Soxbase</Subtitle>}
+        subTitle={<Subtitle>BY SOXBASE</Subtitle>}
         aspectRatio={[1, 1]}
         bottomRight={<ProductReviewSummary rating_summary={rating_summary} />}
       />
@@ -30,7 +30,7 @@ const renderers: ProductListItemRenderer = {
     return (
       <ProductListItemConfigurable
         {...props}
-        subTitle={<Subtitle>By Soxbase</Subtitle>}
+        subTitle={<Subtitle>BY SOXBASE</Subtitle>}
         aspectRatio={[1, 1]}
         swatchLocations={{
           topLeft: [],
@@ -58,7 +58,7 @@ const renderers: ProductListItemRenderer = {
     return (
       <ProductListItemVirtual
         {...props}
-        subTitle={<Subtitle>By Soxbase</Subtitle>}
+        subTitle={<Subtitle>BY SOXBASE</Subtitle>}
         aspectRatio={[1, 1]}
         bottomRight={<ProductReviewSummary rating_summary={rating_summary} />}
       />
@@ -70,7 +70,7 @@ const renderers: ProductListItemRenderer = {
     return (
       <ProductListItemDownloadable
         {...props}
-        subTitle={<Subtitle>By Soxbase</Subtitle>}
+        subTitle={<Subtitle>BY SOXBASE</Subtitle>}
         aspectRatio={[1, 1]}
         bottomRight={<ProductReviewSummary rating_summary={rating_summary} />}
       />
@@ -82,7 +82,7 @@ const renderers: ProductListItemRenderer = {
     return (
       <ProductListItemGrouped
         {...props}
-        subTitle={<Subtitle>By Soxbase</Subtitle>}
+        subTitle={<Subtitle>BY SOXBASE</Subtitle>}
         aspectRatio={[1, 1]}
         bottomRight={<ProductReviewSummary rating_summary={rating_summary} />}
       />

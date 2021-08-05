@@ -8,6 +8,9 @@ const useStyles = makeStyles(
     icon: {
       height: 14,
     },
+    root: {
+      background: theme.palette.background.highlight,
+    },
   }),
   { name: 'ProductReviewSummary' },
 )
@@ -31,7 +34,7 @@ export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
       clickable
       icon={<SvgImage src={iconStarYellow} alt='review' loading='lazy' />}
       color='default'
-      size='medium'
+      size='small'
       label={`${rating}/5`}
       {...chipProps}
       classes={classes}

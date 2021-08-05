@@ -9,11 +9,15 @@ const useStyles = makeStyles(
       display: 'grid',
       justifyContent: 'space-between',
       gridTemplateColumns: 'auto auto',
-      alignItems: 'center',
+      alignItems: 'end',
       marginBottom: theme.spacings.md,
     },
     title: {
+      lineHeight: 1,
       textTransform: 'uppercase',
+    },
+    right: {
+      lineHeight: 1,
     },
   }),
   { name: 'ContainerWithHeader' },
@@ -35,7 +39,9 @@ export default function ContainerWithHeader(props: ContainerWithHeaderProps) {
         <Typography variant='h3' component='h2' className={classes.title}>
           {title}
         </Typography>
-        <div>{rightArea}</div>
+        <Typography component='div' variant='subtitle1' className={classes.right}>
+          {rightArea}
+        </Typography>
       </div>
       {children}
     </Row>

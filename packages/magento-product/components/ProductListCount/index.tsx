@@ -3,7 +3,7 @@ import { UseStyles, responsiveVal } from '@reachdigital/next-ui'
 
 import { ProductListCountFragment } from './ProductListCount.gql'
 
-const useProductCountStyles = makeStyles(
+const useStyles = makeStyles(
   (theme: Theme) => ({
     productListCount: {
       maxWidth: '100%',
@@ -34,15 +34,15 @@ const useProductCountStyles = makeStyles(
     },
   }),
   {
-    name: 'ProductCountStyles',
+    name: 'ProductListCount',
   },
 )
 
-export type ProductCountProps = ProductListCountFragment & UseStyles<typeof useProductCountStyles>
+export type ProductCountProps = ProductListCountFragment & UseStyles<typeof useStyles>
 
 export default function ProductListCount(props: ProductCountProps) {
   const { total_count } = props
-  const classes = useProductCountStyles(props)
+  const classes = useStyles(props)
 
   return (
     <div className={classes.productListCount}>

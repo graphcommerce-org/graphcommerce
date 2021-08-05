@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme, Typography } from '@material-ui/core'
 import { Money } from '@reachdigital/magento-store'
 import { UseStyles } from '@reachdigital/next-ui'
 import React from 'react'
@@ -12,7 +12,6 @@ const useStyles = makeStyles(
       color: theme.palette.primary.mutedText,
       display: 'inline',
       marginRight: 8,
-      ...theme.typography.overline,
     },
   }),
   { name: 'ProductListPrice' },
@@ -25,13 +24,13 @@ export default function ProductListPrice(props: ProductListPriceProps) {
   const classes = useStyles(props)
 
   return (
-    <div className={classes.root}>
+    <Typography component='div' variant='body1' className={classes.root}>
       {regular_price.value !== final_price.value && (
         <div className={classes.discount}>
           <Money {...regular_price} />
         </div>
       )}
       <Money {...final_price} />
-    </div>
+    </Typography>
   )
 }

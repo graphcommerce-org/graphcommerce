@@ -1,6 +1,7 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import { Money } from '@reachdigital/magento-store'
 import { UseStyles } from '@reachdigital/next-ui'
+import clsx from 'clsx'
 import React from 'react'
 import { TextSwatchDataFragment } from './TextSwatchData.gql'
 import { SwatchDataProps } from '.'
@@ -17,6 +18,7 @@ export const useStyles = makeStyles(
         "delivery delivery"
       `,
     },
+    sizesmall: {},
     storeLabel: {
       gridArea: 'label',
       // fontWeight: theme.typography.fontWeightMedium,
@@ -42,7 +44,7 @@ export default function TextSwatchData(props: TextSwatchDataProps) {
   const { store_label, size, price, value } = props
 
   return (
-    <div className={classes.root}>
+    <div className={clsx(classes.root, classes?.[`size${size}`])}>
       {size === 'large' ? (
         <>
           <Typography className={classes.storeLabel} variant='subtitle2' component='div'>
@@ -58,7 +60,7 @@ export default function TextSwatchData(props: TextSwatchDataProps) {
           )}
         </>
       ) : (
-        <>{value ?? store_label}</>
+        <Typography variant='caption'>{value ?? store_label}</Typography>
       )}
     </div>
   )

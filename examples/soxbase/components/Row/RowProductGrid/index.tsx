@@ -15,7 +15,7 @@ export default function RowProductGrid(props: RowProductGridProps) {
       title={title}
       rightArea={pageLinks.map((pageLink) => (
         <PageLink href={pageLink.url} key={pageLink.url} passHref>
-          <Link color='textPrimary' href={pageLink.url} underline='always'>
+          <Link color='inherit' href={pageLink.url} underline='always'>
             {pageLink.title}
           </Link>
         </PageLink>
