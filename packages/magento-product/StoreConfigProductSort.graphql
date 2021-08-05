@@ -1,4 +1,0 @@
-fragment StoreConfigProductSort on StoreConfig {
-  store_code
-  catalog_default_sort_by
-}

@@ -1,0 +1,3 @@
+fragment AccountDashboardCustomer on Customer @injectable {
+  email
+}

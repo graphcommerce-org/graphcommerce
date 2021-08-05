@@ -12,11 +12,11 @@ import {
   ProductSidebarDelivery,
   ProductWeight,
 } from '@reachdigital/magento-product'
-import { jsonLdProductReview, ProductReviewSummary } from '@reachdigital/magento-product-review'
 import {
   SimpleProductPageDocument,
   SimpleProductPageQuery,
 } from '@reachdigital/magento-product-simple'
+import { jsonLdProductReview, ProductReviewSummary } from '@reachdigital/magento-review'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps, JsonLd, Title } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
@@ -27,13 +27,13 @@ import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
 import { ProductPageDocument, ProductPageQuery } from '../../components/GraphQL/ProductPage.gql'
 import ProductUsps from '../../components/ProductUsps'
 import ProductpagesContent from '../../components/ProductpagesContent'
-import RowProductDescription from '../../components/RowProductDescription'
-import RowProductFeature from '../../components/RowProductFeature'
-import RowProductFeatureBoxed from '../../components/RowProductFeatureBoxed'
-import RowProductRelated from '../../components/RowProductRelated'
-import RowProductReviews from '../../components/RowProductReviews'
-import RowProductSpecs from '../../components/RowProductSpecs'
-import RowProductUpsells from '../../components/RowProductUpsells'
+import RowProductDescription from '../../components/Row/RowProductDescription'
+import RowProductFeature from '../../components/Row/RowProductFeature'
+import RowProductFeatureBoxed from '../../components/Row/RowProductFeatureBoxed'
+import RowProductRelated from '../../components/Row/RowProductRelated'
+import RowProductReviews from '../../components/Row/RowProductReviews'
+import RowProductSpecs from '../../components/Row/RowProductSpecs'
+import RowProductUpsells from '../../components/Row/RowProductUpsells'
 import apolloClient from '../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }

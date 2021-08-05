@@ -1,12 +1,12 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import Row from '../../Row'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     wrapper: {
       maxWidth: 800,
-      margin: `0 auto ${theme.spacings.xl} auto`,
+      margin: '0 auto',
+      marginBottom: theme.spacings.sm,
     },
   }),
   { name: 'BlogContent' },
@@ -20,9 +20,5 @@ export default function BlogContent(props: BlogContentProps) {
   const { content } = props
   const classes = useStyles()
 
-  return (
-    <Row>
-      <div className={classes.wrapper}>{content}</div>
-    </Row>
-  )
+  return <div className={classes.wrapper}>{content}</div>
 }

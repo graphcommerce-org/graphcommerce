@@ -130,7 +130,7 @@ type SidebarGalleryProps = {
 
 export default function SidebarGallery(props: SidebarGalleryProps) {
   const { children, sidebar, maxWidth, aspectRatio } = props
-  const classes = useStyles({ maxWidth, aspectRatio })
+  const classes = useStyles({ maxWidth, aspectRatio, ...props })
   const [zoomed, setZoomed] = useState(false)
 
   /**

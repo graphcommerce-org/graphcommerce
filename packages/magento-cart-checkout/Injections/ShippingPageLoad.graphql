@@ -1,3 +1,0 @@
-fragment ShippingPageLoad on Cart {
-  id
-}

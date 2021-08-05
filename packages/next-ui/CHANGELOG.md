@@ -3,6 +3,126 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.103.5...@reachdigital/next-ui@2.104.0) (2021-08-04)
+
+
+### Bug Fixes
+
+* add blogTags fragment ([8ab1ee8](https://github.com/ho-nl/m2-pwa/commit/8ab1ee874fa0174b15f2df5108cdca03599f1ef5))
+* add types ([18dac42](https://github.com/ho-nl/m2-pwa/commit/18dac421042e4050407987b33eae0bf33e2f6e12))
+* base mechanics on page relations ([345a682](https://github.com/ho-nl/m2-pwa/commit/345a68274dc7bc7f561a963d29fd9cd96907d4d1))
+* cart item image sizes ([e7c860c](https://github.com/ho-nl/m2-pwa/commit/e7c860c785e172b9275e1a00c8b51509d6b297a8))
+* compact text input number ([8999053](https://github.com/ho-nl/m2-pwa/commit/899905364808d6ea6ef257e948c68dc3851717a6))
+* image height in grid ([e95fe1a](https://github.com/ho-nl/m2-pwa/commit/e95fe1a613e2047ca9aae54ea413c592eba19bf3))
+* image height on blog view ([2f8aaa3](https://github.com/ho-nl/m2-pwa/commit/2f8aaa32af3d4d8c4e3412c3b4dcab5485a0504f))
+* remove component specific Row ([fcad430](https://github.com/ho-nl/m2-pwa/commit/fcad430ba01b215e77abb2c1ae01071a8ea1ec55))
+* remove component specific Rows ([ed60655](https://github.com/ho-nl/m2-pwa/commit/ed60655ffca8e4578cf2627bf0a9428fd9a79337))
+* tags styling ([1a4bcf2](https://github.com/ho-nl/m2-pwa/commit/1a4bcf2e339647cc93120ea9f951253a4e138142))
+
+
+### Features
+
+* add blog tags to page ([bdc31af](https://github.com/ho-nl/m2-pwa/commit/bdc31af37e1b348f409dd347fe0c88581b0cf375))
+* add Chip with author and publish date ([20a28a5](https://github.com/ho-nl/m2-pwa/commit/20a28a5c4fdbb4cd883b69459e13ac481bdf3a64))
+* standalone Blog Title ([311a468](https://github.com/ho-nl/m2-pwa/commit/311a4688833e054660c57e06dc98176163f3d14f))
+* view list of blogposts tagged ([9efe088](https://github.com/ho-nl/m2-pwa/commit/9efe0884d43e0dc63e614f625b81e6f8b3f1dc50))
+
+
+
+
+
+## [2.103.5](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.103.4...@reachdigital/next-ui@2.103.5) (2021-08-03)
+
+
+### Bug Fixes
+
+* footer spacing missing ([6198665](https://github.com/ho-nl/m2-pwa/commit/61986653411dda9cb70ea15dd2d74ef1d48c2721))
+* index page video and image overlay fix ([53c9d70](https://github.com/ho-nl/m2-pwa/commit/53c9d70bae1229c44f6a45730abe47482d0b9ac2))
+* janky animation for last block on homepage ([a572986](https://github.com/ho-nl/m2-pwa/commit/a572986d87ee450badf96ef6608f75f30f71ed5b))
+* spacing on message snackbar ([0899321](https://github.com/ho-nl/m2-pwa/commit/0899321a3ea74a2d4c714e2dbe17c785a07dfc11))
+
+
+
+
+
+## [2.103.4](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.103.3...@reachdigital/next-ui@2.103.4) (2021-08-02)
+
+
+### Bug Fixes
+
+* disappearing asset with zIndex -1 ([44956e5](https://github.com/ho-nl/m2-pwa/commit/44956e5d0b57a62322033395d378d0e4788454b1))
+
+
+
+
+
+## [2.103.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.103.2...@reachdigital/next-ui@2.103.3) (2021-07-29)
+
+
+### Bug Fixes
+
+* duplicate key error when multiple errors of the same error occur ([f2c5bc0](https://github.com/ho-nl/m2-pwa/commit/f2c5bc040c1e9cc1340f67c68460b8fe42230659))
+
+
+
+
+
+## [2.103.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.103.0...@reachdigital/next-ui@2.103.1) (2021-07-28)
+
+
+### Bug Fixes
+
+* buttons reporting errors all over the place ([0fa9099](https://github.com/ho-nl/m2-pwa/commit/0fa9099671659094f990449d3286e5216fce6a51))
+
+
+
+
+
+# [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.102.3...@reachdigital/next-ui@2.103.0) (2021-07-26)
+
+
+### Features
+
+* **playwright:** added new playwright package to enable browser testing ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
+
+
+
+
+
+## [2.102.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.102.2...@reachdigital/next-ui@2.102.3) (2021-07-26)
+
+
+### Bug Fixes
+
+* **full-page-shell:** fabs not clickable ([2c8d7f9](https://github.com/ho-nl/m2-pwa/commit/2c8d7f9529e83ac08d4fd758547379b72eb2f3d1))
+
+
+
+
+
+## [2.102.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.102.1...@reachdigital/next-ui@2.102.2) (2021-07-23)
+
+
+### Bug Fixes
+
+* **app-shell-header:** offset not always correctly set ([11a8907](https://github.com/ho-nl/m2-pwa/commit/11a890764be1ab4f6c584a5c8ca4e6620d0d73e5))
+* **app-shell-header:** title offset top not correctly set ([c144309](https://github.com/ho-nl/m2-pwa/commit/c1443095317c1779074f3a4058f4041159c8e31b))
+
+
+
+
+
+## [2.102.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.102.0...@reachdigital/next-ui@2.102.1) (2021-07-21)
+
+
+### Bug Fixes
+
+* header spacings ([f00462f](https://github.com/ho-nl/m2-pwa/commit/f00462f9abb61a54552c96dbed35ef708fe05608))
+
+
+
+
+
 # [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.101.3...@reachdigital/next-ui@2.102.0) (2021-07-21)
 
 

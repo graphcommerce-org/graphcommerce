@@ -1,7 +1,7 @@
 {
   "name": "@graphcommerce/graphcommerce",
   "homepage": "https://soxbase.vercel.app",
-  "version": "2.102.0",
+  "version": "2.107.0",
   "private": true,
   "workspaces": [
     "docs",
@@ -56,36 +56,32 @@
     }
   },
   "dependencies": {
+    "@playwright/test": "^1.13.0",
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
-    "@reachdigital/eslint-config-pwa": "^2.100.10",
+    "@reachdigital/eslint-config-pwa": "^2.102.0",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
     "lerna": "^4.0.0",
     "patch-package": "^6.4.3",
     "pm2": "^5.1.0",
     "postinstall-postinstall": "^2.1.0",
-    "ts-node": "^10.1.0",
     "type-fest": "^1.2.2",
     "vercel": "^23.0.1"
   },
   "devDependencies": {
     "@babel/compat-data": "^7.14.7",
-    "@babel/core": "^7.14.6",
+    "@babel/core": "^7.14.8",
     "@graphql-typed-document-node/patch-cli": "^3.0.8",
-    "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
-    "@types/node": "^16.3.3",
-    "@types/react": "^17.0.14",
+    "@types/node": "^16.4.3",
+    "@types/react": "^17.0.15",
     "@types/sharp": "^0.28.4",
-    "babel-jest": "^27.0.6",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "eslint": "^7.31.0",
-    "jest": "^27.0.6",
     "next": "^11.0.1",
     "prettier": "^2.3.2",
     "pretty-quick": "^3.1.1",
     "react-test-renderer": "^17.0.2",
-    "ts-jest": "^27.0.3",
     "typescript": "^4.3.5"
   }
 }

@@ -7,13 +7,14 @@ import {
   CategoryHeroNav,
   CategoryMeta,
   getCategoryStaticPaths,
-  ProductListParamsProvider,
+  CategoryHeroNavTitle,
 } from '@reachdigital/magento-category'
 import {
   ProductListCount,
   ProductListFilters,
   ProductListFiltersContainer,
   ProductListPagination,
+  ProductListParamsProvider,
   ProductListSort,
   ProductListDocument,
   ProductListQuery,
@@ -35,9 +36,9 @@ import { CategoryPageDocument, CategoryPageQuery } from '../components/GraphQL/C
 import PageContent from '../components/PageContent'
 import ProductListItems from '../components/ProductListItems/ProductListItems'
 import useProductListStyles from '../components/ProductListItems/useProductListStyles'
-import RowProductBackstory from '../components/RowProductBackstory'
-import RowProductGrid from '../components/RowProductGrid'
-import RowSwipeableGrid from '../components/RowSwipeableGrid'
+import RowProductBackstory from '../components/Row/RowProductBackstory'
+import RowProductGrid from '../components/Row/RowProductGrid'
+import RowSwipeableGrid from '../components/Row/RowSwipeableGrid'
 import apolloClient from '../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -86,12 +87,12 @@ function CategoryPage(props: Props) {
         <CategoryHeroNav
           {...category}
           asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} loading='eager' />}
-          title={<AppShellTitle>{category?.name}</AppShellTitle>}
+          title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
         />
       ) : (
         <ProductListParamsProvider value={params}>
           <Container maxWidth='xl'>
-            <CategoryDescription name={category?.name} description={category?.description} />
+            <AppShellTitle>{category?.name}</AppShellTitle>
 
             <CategoryChildren params={params}>{category.children}</CategoryChildren>
 

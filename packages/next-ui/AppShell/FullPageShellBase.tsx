@@ -7,14 +7,15 @@ import ShellBase, { PageLayoutBaseProps } from './ShellBase'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
+    root: {
+      background: '#fff',
+    },
     header: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      marginBottom: -8,
       [theme.breakpoints.up('md')]: {
         padding: `${theme.page.vertical} ${theme.page.horizontal}`,
-        marginBottom: -12,
         top: 0,
         display: 'flex',
         pointerEvents: 'none',
@@ -40,18 +41,20 @@ export default function FullPageShellBase(props: FullPageShellBaseProps) {
   const classes = useStyles(props)
 
   return (
-    <AppShellProvider>
-      <ShellBase name={name}>
-        <m.header
-          className={classes.header}
-          layoutId='header'
-          transition={{ type: 'tween' }}
-          layout='position'
-        >
-          {header}
-        </m.header>
-        {children}
-      </ShellBase>
-    </AppShellProvider>
+    <div className={classes.root}>
+      <AppShellProvider>
+        <ShellBase name={name}>
+          <m.header
+            className={classes.header}
+            layoutId='header'
+            transition={{ type: 'tween' }}
+            layout='position'
+          >
+            {header}
+          </m.header>
+          {children}
+        </ShellBase>
+      </AppShellProvider>
+    </div>
   )
 }

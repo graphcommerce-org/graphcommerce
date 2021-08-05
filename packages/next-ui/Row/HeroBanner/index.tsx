@@ -16,13 +16,16 @@ const useStyles = makeStyles(
       position: 'relative',
     },
     copy: {
-      color: '#fff',
+      zIndex: 1,
+      color: theme.palette.secondary.contrastText,
+      position: 'relative',
       display: 'grid',
       justifyItems: 'center',
       alignContent: 'center',
       padding: `${theme.spacings.lg} ${theme.spacings.md}`,
       minHeight: '90vh',
       '& > *': {
+        zIndex: 1,
         maxWidth: 'max-content',
       },
       [theme.breakpoints.up('md')]: {
@@ -36,7 +39,7 @@ const useStyles = makeStyles(
     asset: {
       position: 'absolute',
       top: '0',
-      zIndex: -1,
+      zIndex: 0,
       width: '100%',
       height: '100%',
       display: 'grid',

@@ -8,7 +8,7 @@ import {
   PaymentMethodPlaceOrder,
   PaymentMethodToggle,
 } from '@reachdigital/magento-cart-payment-method'
-import { braintree_local_payment } from '@reachdigital/magento-payment-braintree'
+import { braintree_local_payment, braintree } from '@reachdigital/magento-payment-braintree'
 import { included_methods } from '@reachdigital/magento-payment-included'
 import { mollie_methods } from '@reachdigital/magento-payment-mollie'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
@@ -31,6 +31,7 @@ import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import MinimalPageShell from '../../components/AppShell/MinimalPageShell'
 import { SheetShellProps } from '../../components/AppShell/SheetShell'
+import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = Record<string, unknown>
@@ -68,6 +69,7 @@ function PaymentPage() {
           <PaymentMethodContextProvider
             modules={{
               braintree_local_payment,
+              braintree,
               ...included_methods,
               ...mollie_methods,
             }}
@@ -121,12 +123,21 @@ export default PaymentPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
-  // const staticClient = apolloClient(locale)
+  const staticClient = apolloClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
 
+  const page = staticClient.query({
+    query: DefaultPageDocument,
+    variables: {
+      url: `checkout/payment`,
+      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+    },
+  })
+
   return {
     props: {
+      ...(await page).data,
       apolloState: await conf.then(() => client.cache.extract()),
       backFallbackHref: '/checkout',
       backFallbackTitle: 'Shipping',

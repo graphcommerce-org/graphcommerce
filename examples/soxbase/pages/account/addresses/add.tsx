@@ -2,11 +2,11 @@ import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
-  AccountDashboardAddressesQuery,
   ApolloCustomerErrorFullPage,
   CreateCustomerAddressForm,
   CustomerDocument,
 } from '@reachdigital/magento-customer'
+import { AccountDashboardAddressesQuery } from '@reachdigital/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   IconHeader,

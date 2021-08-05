@@ -1,17 +1,17 @@
 {
   "name": "@reachdigital/framer-next-pages-example",
   "private": true,
-  "version": "2.100.15",
+  "version": "2.100.25",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "@reachdigital/framer-next-pages": "^2.101.1",
-    "@reachdigital/framer-sheet": "^2.101.1",
+    "@reachdigital/framer-next-pages": "^2.102.3",
+    "@reachdigital/framer-sheet": "^2.102.2",
     "@reachdigital/next-config": "^2.100.9",
-    "@reachdigital/next-ui": "^2.102.0",
+    "@reachdigital/next-ui": "^2.104.0",
     "framer-motion": "^4.1.17",
     "next": "^11.0.1",
     "react": "^17.0.2",
@@ -20,7 +20,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/react": "^17.0.14",
+    "@types/react": "^17.0.15",
     "typescript": "^4.3.5"
   }
 }

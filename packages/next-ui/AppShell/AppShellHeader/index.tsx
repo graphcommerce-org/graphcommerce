@@ -3,7 +3,7 @@ import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
 import clsx from 'clsx'
 import { m, MotionValue, useMotionValue, useTransform } from 'framer-motion'
 import PageLink from 'next/link'
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import Button from '../../Button'
 import { UseStyles } from '../../Styles'
 import SvgImage from '../../SvgImage'
@@ -36,8 +36,11 @@ const useStyles = makeStyles(
       position: 'sticky',
       top: 0,
       background: theme.palette.background.default,
-      marginBottom: 32,
       zIndex: 98,
+      [theme.breakpoints.up('md')]: {
+        marginBottom: 16,
+        marginTop: 16,
+      },
     },
     sheetHeaderScrolled: {
       marginTop: -60,
@@ -49,6 +52,7 @@ const useStyles = makeStyles(
       alignItems: 'center',
       justifyContent: 'space-between',
       [theme.breakpoints.down('sm')]: {
+        minHeight: 56,
         '& > div > .MuiFab-sizeSmall': {
           marginLeft: -12,
           marginRight: -12,
@@ -120,6 +124,7 @@ const useStyles = makeStyles(
       top: 12,
       left: 0,
       right: 0,
+      minHeight: 32,
     },
     subLogo: {
       [theme.breakpoints.up('md')]: {
@@ -174,19 +179,40 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   const titleOffset = useMotionValue<number>(100)
   const titleHeight = useMotionValue<number>(100)
 
+  const setOffset = useCallback(
+    (offsetTop: number, offsetParent: Element | null, clientHeight: number) => {
+      titleHeight.set(clientHeight)
+
+      let offsetParentTop = 0
+      if (offsetParent && offsetParent instanceof HTMLElement) {
+        offsetParentTop = offsetParent.offsetTop
+      }
+
+      titleOffset.set(offsetTop + offsetParentTop)
+    },
+    [titleHeight, titleOffset],
+  )
+
+  if (titleRef.current) {
+    setOffset(
+      titleRef.current.offsetTop,
+      titleRef.current.offsetParent,
+      titleRef.current.clientHeight,
+    )
+  }
+
   // Measure the title sizes so we can animate the opacity
   useEffect(() => {
     if (!titleRef.current) return () => {}
 
     const ro = new ResizeObserver(([entry]) => {
-      const { offsetTop, clientHeight } = entry.target as HTMLDivElement
-      titleHeight.set(clientHeight)
-      titleOffset.set(offsetTop)
+      const { offsetTop, offsetParent, clientHeight } = entry.target as HTMLDivElement
+      setOffset(offsetTop, offsetParent, clientHeight)
     })
 
     ro.observe(titleRef.current)
     return () => ro.disconnect()
-  }, [titleHeight, titleOffset, titleRef])
+  }, [setOffset, titleHeight, titleOffset, titleRef])
 
   // Measure the sheetHeight sizes so we can animate the opacity
   useEffect(() => {

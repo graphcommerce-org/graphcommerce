@@ -1,0 +1,5 @@
+query BlogPostTaggedPaths {
+  pages(where: { url_starts_with: "blog/tagged/" }) {
+    url
+  }
+}

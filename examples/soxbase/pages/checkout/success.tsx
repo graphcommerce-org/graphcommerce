@@ -3,6 +3,7 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CartItemSummary, CartSummary } from '@reachdigital/magento-cart'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
+  AppShellTitle,
   Button,
   GetStaticProps,
   iconParty,
@@ -14,6 +15,7 @@ import PageLink from 'next/link'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
+import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = Record<string, unknown>
@@ -25,9 +27,8 @@ function ShippingPage() {
       <PageMeta title='Checkout summary' metaDescription='Ordered items' metaRobots={['noindex']} />
       <PageShellHeader
         primary={
-          <PageLink href='/checkout/payment' passHref>
-            {/* TODO: PaymentMethodButton primary action */}
-            <Button color='secondary' variant='pill-link'>
+          <PageLink href='/' passHref>
+            <Button color='secondary' variant='text'>
               Back to Home
             </Button>
           </PageLink>
@@ -43,12 +44,14 @@ function ShippingPage() {
         </Title>
       </PageShellHeader>
       <Container maxWidth='md'>
+        <AppShellTitle icon={iconParty}>Thank you for your order!</AppShellTitle>
+
         <CartSummary />
         <CartItemSummary />
         <Box textAlign='center' m={8}>
           <PageLink href='/' passHref>
             <Button color='secondary' variant='pill' size='large' text='bold'>
-              Continue shopping
+              Back to home
             </Button>
           </PageLink>
         </Box>
@@ -68,10 +71,19 @@ export default ShippingPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
+  const staticClient = apolloClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
+  const page = staticClient.query({
+    query: DefaultPageDocument,
+    variables: {
+      url: `checkout/success`,
+      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+    },
+  })
 
   return {
     props: {
+      ...(await page).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

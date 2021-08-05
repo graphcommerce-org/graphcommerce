@@ -5,9 +5,7 @@ import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    root: {
-      padding: 0,
-    },
+    root: {},
     scroller: {
       padding: `0 ${theme.page.horizontal}px`,
       marginBottom: `${theme.spacings.lg}`,

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.101.6](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-checkout@2.101.5...@reachdigital/magento-cart-checkout@2.101.6) (2021-08-04)
+
+
+### Bug Fixes
+
+* **coupon:** applying coupon doesnt change totals ([5e4d768](https://github.com/ho-nl/m2-pwa/commit/5e4d768e19471b527da92cd46c313b59df9ca8cb))
+
+
+
+
+
+# [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-checkout@2.100.19...@reachdigital/magento-cart-checkout@2.101.0) (2021-07-26)
+
+
+### Features
+
+* **playwright:** added new playwright package to enable browser testing ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
+
+
+
+
+
 ## [2.100.11](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-checkout@2.100.10...@reachdigital/magento-cart-checkout@2.100.11) (2021-07-20)
 
 

@@ -53,7 +53,7 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'TotalCosts' },
+  { name: 'CartTotals' },
 )
 
 export type CartTotalsProps = { containerMargin?: boolean } & UseStyles<typeof useStyles>
@@ -102,7 +102,10 @@ export default function CartTotals(props: CartTotalsProps) {
         )}
 
         {prices?.discounts?.map((discount) => (
-          <AnimatedRow className={clsx(classes.costsRow, classes.costsDiscountSub)} key='discount'>
+          <AnimatedRow
+            className={clsx(classes.costsRow, classes.costsDiscountSub)}
+            key={discount?.label}
+          >
             <div>{discount?.label}</div>
             <div>
               {discount?.amount && (

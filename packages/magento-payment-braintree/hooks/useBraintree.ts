@@ -1,6 +1,6 @@
-import { useMutation } from '@apollo/client'
+import { ApolloClient, useApolloClient } from '@apollo/client'
 import braintree, { Client } from 'braintree-web'
-import { useEffect, useState } from 'react'
+import { useRef } from 'react'
 import { UseBraintreeDocument } from './UseBraintree.gql'
 
 export type StartPaymentOptions = {
@@ -28,34 +28,33 @@ export type StartPaymentOptions = {
   onPaymentStart?(paymentData: { paymentId: string }, continueCallback: () => void): void
 }
 
-export default function useBraintree() {
-  const [execute, { called, data, error }] = useMutation(UseBraintreeDocument)
-  const [client, setClient] = useState<Client>()
-  const authorization = data?.createBraintreeClientToken
+let clientPromise: Promise<Client> | undefined
+function getClientPromise(apolloClient: ApolloClient<unknown>) {
+  if (!clientPromise) {
+    clientPromise = new Promise((resolve, reject) => {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      ;(async () => {
+        const res = await apolloClient.mutate({ mutation: UseBraintreeDocument })
 
-  // Log errors if they are there
-  useEffect(() => error && console.error(error), [error])
+        const authorization = res.data?.createBraintreeClientToken
+        if (!authorization || res.errors?.[0]) {
+          reject(res.errors?.[0])
+          return
+        }
 
-  // Create a token, maybe store it somewhere?
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    if (!called) execute()
-  }, [called, execute])
+        try {
+          const clientInstance = await braintree.client.create({ authorization })
+          resolve(clientInstance)
+        } catch (e) {
+          reject(e)
+        }
+      })()
+    })
+  }
+  return clientPromise
+}
 
-  useEffect(() => {
-    if (!authorization) return // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    ;(async () => {
-      try {
-        setClient(await braintree.client.create({ authorization }))
-
-        // // @ts-expect-error https://github.com/braintree/braintree-web/issues/552
-        // const res = await braintree.localPayment.create({ client, debug: true })
-        // setLocalPayment(res)
-      } catch (e) {
-        console.error(e)
-      }
-    })()
-  }, [authorization])
-
-  return client
+export function useBraintreeClient(): Promise<Client> {
+  const apolloClient = useApolloClient()
+  return useRef<Promise<Client>>(getClientPromise(apolloClient)).current
 }

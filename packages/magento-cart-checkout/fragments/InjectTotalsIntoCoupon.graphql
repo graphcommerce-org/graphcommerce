@@ -1,0 +1,4 @@
+# When the coupon changes we need to update the cart totals
+fragment InjectTotalsIntoCoupon on Cart @inject(into: ["Coupon"]) {
+  ...CartTotals
+}

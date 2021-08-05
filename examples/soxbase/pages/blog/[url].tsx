@@ -1,13 +1,17 @@
+import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
-import { GetStaticProps } from '@reachdigital/next-ui'
+import { GetStaticProps, Row } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import BlogList from '../../components/Blog'
+import BlogAuthor from '../../components/Blog/BlogAuthor'
 import BlogHeader from '../../components/Blog/BlogHeader'
 import { BlogListDocument, BlogListQuery } from '../../components/Blog/BlogList.gql'
 import { BlogPostPathsDocument } from '../../components/Blog/BlogPostPaths.gql'
+import BlogTags from '../../components/Blog/BlogTags'
+import BlogTitle from '../../components/Blog/BlogTitle'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
 import apolloClient from '../../lib/apolloClient'
@@ -26,9 +30,14 @@ function BlogPage(props: Props) {
   const title = page.title ?? ''
   return (
     <>
-      <PageMeta title={title} metaDescription={title} canonical={page.url} />
-      <BlogHeader asset={page.asset} />
-      <PageContent {...page} />
+      <Row>
+        <PageMeta title={title} metaDescription={title} canonical={page.url} />
+        <BlogTitle title={page.title} />
+        {page.author ? <BlogAuthor author={page.author} date={page.date} /> : null}
+        {page.asset ? <BlogHeader asset={page.asset} /> : null}
+        <PageContent {...page} />
+        <BlogTags relatedPages={page.relatedPages} />
+      </Row>
       <BlogList blogPosts={blogPosts} />
     </>
   )

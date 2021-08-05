@@ -1,11 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import {
-  AccountDashboardReviewsDocument,
-  AccountReviews,
-  ApolloCustomerErrorFullPage,
-} from '@reachdigital/magento-customer'
+import { ApolloCustomerErrorFullPage } from '@reachdigital/magento-customer'
+import { AccountDashboardReviewsDocument, AccountReviews } from '@reachdigital/magento-review'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   FullPageMessage,

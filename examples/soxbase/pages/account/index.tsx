@@ -2,14 +2,16 @@ import { useQuery } from '@apollo/client'
 import { Container, NoSsr, Switch } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
-  AccountDashboardDocument,
-  AccountMenu,
-  AccountMenuItem,
   AddressSingleLine,
   ApolloCustomerErrorFullPage,
-  OrderStateLabelInline,
   SignOutForm,
 } from '@reachdigital/magento-customer'
+import {
+  AccountDashboardDocument,
+  AccountMenuItem,
+  AccountMenu,
+} from '@reachdigital/magento-customer-account'
+import { OrderStateLabelInline } from '@reachdigital/magento-customer-order'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   GetStaticProps,
@@ -178,7 +180,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const page = staticClient.query({
     query: DefaultPageDocument,
     variables: {
-      url: '/account',
+      url: 'account',
       rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
     },
   })

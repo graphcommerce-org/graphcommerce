@@ -21,7 +21,7 @@ export default function PaymentMethodButton(props: PaymentMethodButtonProps) {
               <Button
                 {...props}
                 onClick={submit}
-                loading={buttonState.isSubmitting || buttonState.isSubmitSuccessful}
+                loading={buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)}
               >
                 {children}
                 {selectedMethod?.title && (
@@ -37,7 +37,7 @@ export default function PaymentMethodButton(props: PaymentMethodButtonProps) {
                 buttonProps={{
                   ...props,
                   onClick: submit,
-                  loading: buttonState.isSubmitting || buttonState.isSubmitSuccessful,
+                  loading: buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error),
                 }}
               />
             )}

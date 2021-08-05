@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.102.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/framer-utils@2.102.1...@reachdigital/framer-utils@2.102.2) (2021-08-04)
+
+
+### Bug Fixes
+
+* bottom sheet is not properly sized when scrolled ([93a1dc4](https://github.com/ho-nl/m2-pwa/commit/93a1dc40c37de74a8223657add77c51d51a24d92))
+
+
+
+
+
+# [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/framer-utils@2.101.1...@reachdigital/framer-utils@2.102.0) (2021-07-26)
+
+
+### Features
+
+* **playwright:** added new playwright package to enable browser testing ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
+
+
+
+
+
 # [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/framer-utils@2.100.10...@reachdigital/framer-utils@2.101.0) (2021-07-20)
 
 
