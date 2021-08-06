@@ -47,7 +47,6 @@ export default function ProductReviewChip(props: ProductReviewSummaryProps) {
       color='default'
       label={`${rating}/5`}
       {...chipProps}
-      classes={classes}
     />
   )
 

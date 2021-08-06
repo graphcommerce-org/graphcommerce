@@ -1,12 +1,12 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { Image, ObjectImage } from '@reachdigital/image'
+import { Image, ImageProps } from '@reachdigital/image'
 import React from 'react'
 import { UseStyles } from '../Styles'
 
 // TODO: fix hot reloading issues when modifying implementations of this component
 export type SvgImageSize = 'small' | 'medium' | 'large' | 'extralarge'
 
-export type SvgImageProps = ObjectImage & {
+export type SvgImageProps = ImageProps & {
   size?: SvgImageSize | number
   mobileSize?: SvgImageSize | number
   shade?: SvgImageShade

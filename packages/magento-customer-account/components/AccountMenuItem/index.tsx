@@ -6,7 +6,7 @@ import {
   Theme,
   Typography,
 } from '@material-ui/core'
-import { ObjectImage } from '@reachdigital/image'
+import { ImageProps } from '@reachdigital/image'
 import {
   Button,
   ButtonProps,
@@ -70,7 +70,7 @@ const useStyles = makeStyles(
 )
 
 export type AccountMenuItemProps = {
-  iconSrc: ObjectImage['src']
+  iconSrc: ImageProps['src']
   title: React.ReactNode
   subtitle?: React.ReactNode
   endIcon?: React.ReactNode
