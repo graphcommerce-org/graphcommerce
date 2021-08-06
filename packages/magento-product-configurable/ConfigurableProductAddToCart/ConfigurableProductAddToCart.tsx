@@ -1,8 +1,6 @@
-import { useQuery } from '@apollo/client'
-import { Divider, makeStyles, Theme } from '@material-ui/core'
+import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
-import { CustomerTokenDocument } from '@reachdigital/magento-customer'
 import { Money } from '@reachdigital/magento-store'
 import {
   AnimatedRow,
@@ -42,15 +40,13 @@ const useStyles = makeStyles(
       width: '100%',
     },
     finalPrice: {
-      ...theme.typography.h4,
-      fontWeight: theme.typography.fontWeightBold,
       marginTop: theme.spacings.sm,
     },
     quantity: {
       marginTop: theme.spacings.sm,
     },
     divider: {
-      margin: '20px 0 5px 0',
+      margin: `${theme.spacings.sm} 0`,
     },
     messageIcon: {
       marginBottom: '-2px',
@@ -76,16 +72,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
   const { handleSubmit, formState, muiRegister, required, control, error, data } = form
   const submitHandler = handleSubmit(() => {})
 
-  const { data: tokenQuery } = useQuery(CustomerTokenDocument)
-  const requireAuth = Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid)
-
-  return requireAuth ? (
-    <PageLink href='/account/signin' passHref>
-      <Button color='primary' variant='contained' {...buttonProps}>
-        Add to Cart
-      </Button>
-    </PageLink>
-  ) : (
+  return (
     <form onSubmit={submitHandler} noValidate className={classes.form}>
       <Divider className={classes.divider} />
       <ConfigurableOptionsInput
@@ -107,12 +94,12 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         size='small'
         className={classes.quantity}
       />
-      <div className={classes.finalPrice}>
+      <Typography component='div' variant='h3' className={classes.finalPrice}>
         <Money
           {...cheapestVariant(getVariants(selection))?.product?.price_range.minimum_price
             .final_price}
         />
-      </div>
+      </Typography>
       {children}
       <Button
         type='submit'

@@ -50,18 +50,12 @@ const useStyles = makeStyles(
     prevNextFab: {
       boxShadow: 'none',
     },
-    sectionHeader: {
-      // textTransform: 'none',
-      // textWeight: theme.typography.fontWeightBold,
-      // color: theme.palette.common.black,
-    },
     costContainer: {
       background: theme.palette.common.white,
       padding: 0,
       marginTop: 0,
     },
     sectionHeaderWrapper: {
-      alignItems: 'center',
       paddingBottom: 10,
     },
     downloadLink: {
@@ -93,17 +87,12 @@ export default function CartItemSummary(props: OrderSummaryProps) {
           labelRight: classes.downloadLink,
           sectionHeaderWrapper: classes.sectionHeaderWrapper,
         }}
-        labelLeft={
-          <Typography variant='h6' className={classes.sectionHeader}>
-            Order summary
-          </Typography>
-        }
-        labelRight={
-          // todo: create link to actual download
-          <PageLink key='download-invoice' href='/download'>
-            Download invoice
-          </PageLink>
-        }
+        labelLeft='Order summary'
+        // labelRight={
+        // <PageLink key='download-invoice' href='/download'>
+        //   Download invoice
+        // </PageLink>
+        // }
       />
       <SliderContext scrollSnapAlign='start'>
         <SliderContainer classes={{ container: classes.sliderContainer }}>

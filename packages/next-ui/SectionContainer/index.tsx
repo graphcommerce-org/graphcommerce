@@ -7,10 +7,14 @@ import { UseStyles } from '../Styles'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     sectionContainer: {},
-    sectionHeader: {
+    sectionHeaderSidePadding: {},
+    sectionHeaderWrapper: {
+      borderBottom: `1px solid ${theme.palette.divider}`,
+      paddingBottom: theme.spacings.xxs,
       marginBottom: theme.spacings.xxs,
     },
-    sectionHeaderWrapper: {},
+    labelLeft: {},
+    labelRight: {},
     borderBottom: {
       borderBottom: `1px solid ${theme.palette.divider}`,
     },

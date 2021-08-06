@@ -2,7 +2,6 @@ import { makeStyles, Theme, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
-import responsiveVal from '../Styles/responsiveVal'
 import SvgImage, { SvgImageProps } from '../SvgImage'
 
 const useStyles = makeStyles(
@@ -17,21 +16,14 @@ const useStyles = makeStyles(
         flexFlow: 'column',
       },
     },
-    typography: {
-      ...theme.typography.h3,
-      fontSize: responsiveVal(28, 32),
-      fontWeight: 700,
-      [theme.breakpoints.up('md')]: {
-        ...theme.typography.h2,
-      },
-    },
+    typography: {},
     icon: {
       [theme.breakpoints.down('sm')]: {
         width: 48,
         height: 48,
       },
     },
-    inline: {
+    small: {
       flexFlow: 'unset',
     },
   }),
@@ -47,13 +39,13 @@ export type TitleProps = {
   component?: React.ElementType
 } & UseStyles<typeof useStyles>
 
-export default function Title(props: TitleProps) {
+const Title = React.forwardRef<HTMLDivElement, TitleProps>((props, ref) => {
   const { children, icon, size = 'medium', component } = props
   const classes = useStyles(props)
   const small = size === 'small'
 
   return (
-    <div className={clsx(classes.container, small && classes.inline)}>
+    <div className={clsx(classes.container, small && classes.small)}>
       {icon && (
         <SvgImage
           src={icon}
@@ -64,7 +56,8 @@ export default function Title(props: TitleProps) {
         />
       )}
       <Typography
-        variant={small ? 'h5' : 'h2'}
+        ref={ref}
+        variant={small ? 'h6' : 'h3'}
         component={component ?? 'h1'}
         className={small ? undefined : classes.typography}
       >
@@ -72,4 +65,6 @@ export default function Title(props: TitleProps) {
       </Typography>
     </div>
   )
-}
+})
+
+export default Title

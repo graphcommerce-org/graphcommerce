@@ -1,4 +1,5 @@
 import RichText from '@reachdigital/graphcms-ui/RichText'
+import { Image } from '@reachdigital/image'
 import { UspList, UspListItem } from '@reachdigital/next-ui'
 import React from 'react'
 import Asset from '../Asset'
@@ -20,7 +21,7 @@ export default function ProductUsps(props: ProductUspsProps) {
         <UspListItem
           key={usp.title}
           text={usp.description && <RichText raw={usp.description?.raw} />}
-          icon={usp.asset && <Asset asset={usp.asset} sizes='30px' />}
+          icon={usp.asset && <Image src={usp.asset.url} layout='fill' sizes='30px' />}
           size={size}
         />
       ))}

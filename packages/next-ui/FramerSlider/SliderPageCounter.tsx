@@ -7,7 +7,7 @@ import { useSliderContext } from './SliderContext'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     pageCounter: {
-      ...theme.typography.h4,
+      ...theme.typography.h3,
       fontWeight: 500,
     },
   }),

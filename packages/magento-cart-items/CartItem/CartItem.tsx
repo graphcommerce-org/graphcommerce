@@ -1,4 +1,4 @@
-import { Badge, makeStyles, Theme } from '@material-ui/core'
+import { Badge, makeStyles, Theme, Link } from '@material-ui/core'
 import { Image } from '@reachdigital/image'
 import { useProductLink } from '@reachdigital/magento-product'
 import { Money } from '@reachdigital/magento-store'
@@ -97,8 +97,8 @@ const useStyles = makeStyles(
       marginTop: '-5%',
     },
     itemName: {
-      ...theme.typography.h5,
-      fontWeight: 500,
+      // ...theme.typography.h5,
+      // fontWeight: 500,
       gridArea: 'itemName',
       color: theme.palette.text.primary,
       textDecoration: 'none',
@@ -165,10 +165,13 @@ export default function CartItem(props: CartItemProps) {
       </Badge>
 
       <PageLink href={productLink}>
-        <a className={clsx(classes.itemName, withOptions && classes.itemNameWithOptions)}>
+        <Link
+          variant='h6'
+          className={clsx(classes.itemName, withOptions && classes.itemNameWithOptions)}
+        >
           {name}
           <DeliveryLabel />
-        </a>
+        </Link>
       </PageLink>
 
       <div className={classes.itemPrice}>

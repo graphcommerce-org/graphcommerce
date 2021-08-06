@@ -3,7 +3,8 @@ import { Image, ImageProps } from '@reachdigital/image'
 import { UseStyles, responsiveVal } from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import PageLink from 'next/link'
-import React, { PropsWithChildren } from 'react'
+import { useRouter } from 'next/router'
+import React, { PropsWithChildren, useCallback } from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { useProductLink } from '../../hooks/useProductLink'
 import ProductListPrice from '../ProductListPrice'
@@ -12,12 +13,9 @@ export const useProductListItemStyles = makeStyles(
   (theme: Theme) => ({
     item: {
       position: 'relative',
-      ...theme.typography.h6,
-      fontWeight: 'inherit',
       height: '100%',
     },
     title: {
-      ...theme.typography.h6,
       display: 'inline',
       color: theme.palette.text.primary,
       overflowWrap: 'break-word',
@@ -25,22 +23,21 @@ export const useProductListItemStyles = makeStyles(
       maxWidth: '100%',
       marginRight: responsiveVal(3, 5),
       gridArea: 'title',
+      fontWeight: theme.typography.fontWeightBold,
     },
     itemTitleContainer: {
       display: 'grid',
       gridTemplateColumns: 'unset',
-      gap: responsiveVal(3, 6),
-      margin: `${responsiveVal(6, 16)} 0`,
-      marginBottom: responsiveVal(4, 8),
+      alignItems: 'baseline',
+      marginTop: theme.spacings.xs,
+      columnGap: 4,
       gridTemplateAreas: `
         "title title"
         "subtitle price"
       `,
       justifyContent: 'space-between',
       [theme.breakpoints.up('md')]: {
-        gridTemplateAreas: `
-        "title subtitle price"
-      `,
+        gridTemplateAreas: `"title subtitle price"`,
         gridTemplateColumns: 'auto auto 1fr',
       },
     },
@@ -49,15 +46,16 @@ export const useProductListItemStyles = makeStyles(
     },
     price: {
       gridArea: 'price',
+      textAlign: 'right',
       [theme.breakpoints.up('sm')]: {
         justifySelf: 'flex-end',
       },
     },
-    imageContainerOverlayGrid: {
+    overlayItems: {
       display: 'grid',
       gridTemplateAreas: `
-          "topLeft topRight"
-          "bottomLeft bottomRight"
+        "topLeft topRight"
+        "bottomLeft bottomRight"
       `,
       position: 'absolute',
       top: 0,
@@ -77,10 +75,8 @@ export const useProductListItemStyles = makeStyles(
     },
     overlayItem: {
       '& div': {
-        margin: `${responsiveVal(3, 5)} 0`,
         gap: 0,
-        whiteSpace: 'nowrap',
-        fontSize: 12,
+        // whiteSpace: 'nowrap',
       },
     },
     imageContainer: ({ aspectRatio = [4, 3] }: BaseProps) => ({
@@ -111,12 +107,13 @@ export const useProductListItemStyles = makeStyles(
       textDecoration: 'underline',
     },
     discount: {
+      ...theme.typography.caption,
       background: theme.palette.text.primary,
-      padding: '5px 6px 4px 6px',
+      fontWeight: theme.typography.fontWeightBold,
+      padding: '0px 6px',
       color: '#fff',
-      display: 'inline',
+      display: 'inline-block',
       borderRadius: 2,
-      ...theme.typography.h6,
     },
   }),
   { name: 'ProductListItem' },
@@ -157,6 +154,13 @@ export default function ProductListItem(props: ProductListItemProps) {
   const classes = useProductListItemStyles(props)
   const productLink = useProductLink(props)
   const discount = Math.floor(price_range.minimum_price.discount?.percent_off ?? 0)
+  const { locale } = useRouter()
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const format = useCallback(
+    new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: 1 }).format,
+    [],
+  )
 
   return (
     <div className={classes.item}>
@@ -177,17 +181,23 @@ export default function ProductListItem(props: ProductListItemProps) {
               <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
             )}
 
-            <div className={classes.imageContainerOverlayGrid}>
-              <div className={classes.overlayItem}>
-                {discount > 0 && <div className={classes.discount}>{`- ${discount}%`}</div>}
-                {topLeft}
+            {!imageOnly && (
+              <div className={classes.overlayItems}>
+                <div className={classes.overlayItem}>
+                  {discount > 0 && (
+                    <div className={classes.discount}>{format(discount / -100)}</div>
+                  )}
+                  {topLeft}
+                </div>
+                <div className={clsx(classes.overlayItem, classes.cellAlignRight)}>{topRight}</div>
+                <div className={clsx(classes.overlayItem, classes.cellAlignBottom)}>
+                  {bottomLeft}
+                </div>
+                <div className={clsx(classes.cellAlignBottom, classes.cellAlignRight)}>
+                  {bottomRight}
+                </div>
               </div>
-              <div className={clsx(classes.overlayItem, classes.cellAlignRight)}>{topRight}</div>
-              <div className={clsx(classes.overlayItem, classes.cellAlignBottom)}>{bottomLeft}</div>
-              <div className={clsx(classes.cellAlignBottom, classes.cellAlignRight)}>
-                {bottomRight}
-              </div>
-            </div>
+            )}
           </div>
         </MuiLink>
       </PageLink>
@@ -196,11 +206,12 @@ export default function ProductListItem(props: ProductListItemProps) {
         <>
           <div className={classes.itemTitleContainer}>
             {/* <div> */}
-            <Typography component='h2' className={classes.title}>
+            <Typography component='h2' variant='subtitle1' className={classes.title}>
               {name}
             </Typography>
             {/* </div> */}
             <div className={classes.subtitle}>{subTitle}</div>
+
             <ProductListPrice {...price_range.minimum_price} classes={{ root: classes.price }} />
           </div>
 

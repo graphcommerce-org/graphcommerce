@@ -42,9 +42,6 @@ const useStyles = makeStyles(
       boxShadow: 'none',
     },
     link: {
-      ...theme.typography.body1,
-      fontWeight: 500,
-      textTransform: 'unset',
       whiteSpace: 'nowrap',
       color: 'black',
       '&:hover': {
@@ -62,7 +59,7 @@ const useStyles = makeStyles(
       marginTop: 6,
     },
   }),
-  { name: 'DesktopMenuTabs' },
+  { name: 'DesktopNavBar' },
 )
 
 export type MenuTabsProps = MenuProps
@@ -78,7 +75,7 @@ export default function DesktopNavBar(props: MenuTabsProps) {
         <SliderScroller classes={{ scroller: classes.scroller }}>
           {menu.map(({ href, children, ...linkProps }) => (
             <PageLink key={href.toString()} href={href} {...linkProps} passHref>
-              <Link className={classes.link}>
+              <Link className={classes.link} variant='h6'>
                 {children}
                 {router.asPath.startsWith(href.toString()) && <div className={classes.line} />}
               </Link>

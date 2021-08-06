@@ -3,30 +3,33 @@ import React, { PropsWithChildren } from 'react'
 import Row from '..'
 import { UseStyles } from '../../Styles'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    display: 'grid',
-    gap: `${theme.spacings.lg} 0`,
-    gridTemplateAreas: `"top"
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    root: {
+      display: 'grid',
+      gap: `${theme.spacings.lg} 0`,
+      gridTemplateAreas: `"top"
     "left"
     "right"`,
-    [theme.breakpoints.up('md')]: {
-      gridTemplateAreas: `"top ."
+      [theme.breakpoints.up('md')]: {
+        gridTemplateAreas: `"top ."
       "left right"`,
-      gridTemplateColumns: '1fr auto',
-      gap: `${theme.spacings.sm} ${theme.spacings.xl}`,
+        gridTemplateColumns: '1fr auto',
+        gap: `${theme.spacings.sm} ${theme.spacings.xl}`,
+      },
     },
-  },
-  top: {
-    gridArea: 'top',
-  },
-  left: {
-    gridArea: 'left',
-  },
-  right: {
-    gridArea: 'right',
-  },
-}))
+    top: {
+      gridArea: 'top',
+    },
+    left: {
+      gridArea: 'left',
+    },
+    right: {
+      gridArea: 'right',
+    },
+  }),
+  { name: 'ColumnTwoWithTop' },
+)
 
 export type ProductDescriptionProps = PropsWithChildren<
   UseStyles<typeof useStyles> & {

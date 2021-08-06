@@ -10,7 +10,7 @@ const useProductListStyles = makeStyles(
           gridColumn: 'span 2',
           gridRow: 'span 2',
           '& > a > div': {
-            paddingTop: `calc(100% + ${theme.spacings.lg} - 2px)`,
+            paddingTop: `calc(100% + ${theme.spacings.lg} - 7px)`,
           },
         },
       },

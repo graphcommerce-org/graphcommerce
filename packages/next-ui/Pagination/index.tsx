@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: 18,
+    // fontSize: 18,
     '& span': {
       padding: '0 8px 0 0',
     },

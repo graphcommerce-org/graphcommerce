@@ -6,16 +6,16 @@ import useAppShellHeaderContext from '../AppShellHeader/useAppShellHeaderContext
 
 type AppShellTitleProps = {
   children: React.ReactNode
+  bare?: boolean
 } & Pick<TitleProps, 'icon'> &
   UseStyles<typeof useStyles>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    root: {
+    container: {
       marginTop: theme.spacings.lg,
       marginBottom: theme.spacings.lg,
     },
-    container: {},
     title: {},
   }),
   {
@@ -24,22 +24,27 @@ const useStyles = makeStyles(
 )
 
 export default function AppShellTitle(props: AppShellTitleProps) {
-  const { children, icon } = props
+  const { children, icon, bare } = props
   const { titleRef } = useAppShellHeaderContext()
   const classes = useStyles(props)
 
-  return (
-    <div ref={titleRef} className={classes.root}>
-      <Container maxWidth='md' className={classes.container}>
-        <Title
-          component='h2'
-          size='medium'
-          icon={icon ?? undefined}
-          classes={{ container: classes.title }}
-        >
-          {children}
-        </Title>
-      </Container>
-    </div>
+  const title = (
+    <Title
+      ref={titleRef}
+      component='h2'
+      size='medium'
+      icon={icon ?? undefined}
+      classes={{ container: classes.title }}
+    >
+      {children}
+    </Title>
+  )
+
+  return bare ? (
+    title
+  ) : (
+    <Container maxWidth='md' className={classes.container}>
+      {title}
+    </Container>
   )
 }

@@ -1,4 +1,3 @@
-import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AddToCartButton } from '@reachdigital/magento-cart'
 import {
@@ -17,7 +16,7 @@ import {
 } from '@reachdigital/magento-product-downloadable'
 import { ProductReviewSummary, jsonLdProductReview } from '@reachdigital/magento-review'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { JsonLd, GetStaticProps, Title } from '@reachdigital/next-ui'
+import { JsonLd, GetStaticProps, Title, AppShellTitle } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { Product } from 'schema-dts'
@@ -87,7 +86,7 @@ function ProductDownloadable(props: Props) {
 
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
-        <Typography variant='h1'>{product.name ?? ''}</Typography>
+        <AppShellTitle bare>{product.name}</AppShellTitle>
         <ProductReviewSummary {...product} reviewSectionId='reviews' />
         <AddToCartButton
           mutation={ProductAddToCartDocument}
@@ -107,7 +106,6 @@ function ProductDownloadable(props: Props) {
             {sample?.title} {sample?.sample_url} {sample?.sort_order}
           </div>
         ))}
-
         <ProductUsps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
       <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />

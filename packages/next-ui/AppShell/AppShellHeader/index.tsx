@@ -100,7 +100,7 @@ const useStyles = makeStyles(
       gridColumn: 1,
       gridRow: 1,
       alignSelf: 'center',
-      ...theme.typography.h5,
+      ...theme.typography.h6,
     },
     fab: {
       [theme.breakpoints.down('sm')]: {

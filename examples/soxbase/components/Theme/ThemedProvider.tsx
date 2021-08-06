@@ -1,9 +1,19 @@
 /// <reference types="@reachdigital/next-ui/types" />
 
 import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core'
+import { TypographyStyleOptions } from '@material-ui/core/styles/createTypography'
 import { responsiveVal } from '@reachdigital/next-ui'
 import React from 'react'
 import shadows from './shadows'
+
+const debug = (name: string): TypographyStyleOptions => ({
+  '&:after': {
+    // fontSize: 8,
+    paddingLeft: 4,
+    // fontWeight: 400,
+    content: `"${name}" !important`,
+  },
+})
 
 // Create a theme instance.
 export const defaultTheme = createTheme({
@@ -36,40 +46,57 @@ export const defaultTheme = createTheme({
   },
   breakpoints: {
     values: {
-      xs: 300,
+      xs: 0,
       sm: 600,
       md: 960,
-      lg: 1500,
+      lg: 1536,
       xl: 1920,
     },
   },
   shadows,
+
   typography: {
     fontFamily:
       '-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji',
-    subtitle1: {
-      fontSize: responsiveVal(12, 14),
-      color: `rgba(0, 0, 0, 0.3)`,
-      fontWeight: 500,
-      letterSpacing: 1,
-      textTransform: 'uppercase',
-    },
-    subtitle2: {
-      textTransform: 'uppercase',
-      fontSize: responsiveVal(11, 13),
-      fontWeight: 400,
-      whiteSpace: 'nowrap',
-    },
-    fontSize: 16,
-    body1: {
-      fontSize: responsiveVal(15, 18),
-      lineHeight: 1.8,
-    },
+    /**
+     * [The Material UI `h1`-`h6` typography
+     * values](https://material-ui.com/components/typography/#component) are an implementation of
+     * the [Material Design Headline type
+     * scale](https://material.io/design/typography/the-type-system.html#type-scale).
+     *
+     * Note: The typography values are referencing styles and have nothing to do with actual
+     * `<h1/>`-`</h6/>` HTML elements (even though they are mapped 1:1 by default). One is
+     * completelt free to use different styles based on their requirements.
+     *
+     * There however are some problems with the way Material UI implementation: Material Design uses
+     * different typography headers for different breakpoints. For example, if we take a look at
+     * [Applying the type
+     * scale](https://material.io/design/typography/the-type-system.html#applying-the-type-scale) we
+     * see that the Headline 6 element is used in the `<h1/>` location. This would need to be
+     * rendered as a h1 (or h2) style on a desktop.
+     *
+     * This results in the following variant to headline mapping for each breakpoint
+     *
+     *     Variant/Breakpoint  xs         sm         md         lg         xl
+     *     h1                  headline4  headline3  headline2  headline1
+     *     h2                  headline5  headline4  headline3  headline2  headline1
+     *     h3                  headline6  headline6  headline5  headline4  headline3
+     *     h4                  X          X          headline6  headline5  headline4
+     *     h5                  X          X          X          headline6  headline5
+     *     h6                  X          X          X          X          headline6
+     *
+     * This effectively means that it's only safe to use h1 to h3 from this perspective.
+     *
+     * However, Material Design's type system offers `subtitle1` and `subtitle2` that can be used
+     * that should be used on combination with `body1` and `body2`.
+     *
+     * Since we aren't using the h4-h6 variants they can be repurposed for different usecases:
+     */
     h1: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
       fontSize: responsiveVal(36, 74),
       fontWeight: 700,
-      letterSpacing: '-0.0375em',
+      // letterSpacing: '-0.0375em',
       marginTop: '0.24em',
       marginBottom: '0.58em',
       lineHeight: 1.16,
@@ -77,36 +104,77 @@ export const defaultTheme = createTheme({
     h2: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
       fontSize: responsiveVal(28, 48),
-      fontWeight: 700,
-      letterSpacing: '-0.0375em',
+      fontWeight: 800,
+      // letterSpacing: '-0.0375em',
       lineHeight: 1.42,
     },
     h3: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-      fontSize: responsiveVal(18, 30),
-      fontWeight: 500,
+      fontSize: responsiveVal(22, 30),
+      fontWeight: 700,
       // letterSpacing: '-0.0375em',
       lineHeight: 1.55,
     },
     h4: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-      fontSize: responsiveVal(18, 25),
       fontWeight: 500,
+      fontSize: responsiveVal(18, 30),
       // letterSpacing: '-0.0375em',
+      lineHeight: 1.55,
     },
     h5: {
-      fontSize: responsiveVal(14, 22),
+      fontFamily: ['Public Sans', 'sans-serif'].join(', '),
+
       fontWeight: 700,
-      letterSpacing: '-0.0375em',
+      // letterSpacing: '-0.0375em',
+      fontSize: responsiveVal(17, 20),
       lineHeight: 1.55,
     },
     h6: {
-      fontSize: responsiveVal(13, 18),
-      fontWeight: 400,
-      letterSpacing: '-0.0375em',
-      lineHeight: 1.55,
+      fontFamily: ['Public Sans', 'sans-serif'].join(', '),
+
+      fontSize: responsiveVal(17, 20),
+      fontWeight: 600,
+      // letterSpacing: '-0.0375em',
+      lineHeight: 1.8,
     },
-    fontWeightBold: 700,
+    subtitle1: {
+      fontFamily: ['Public Sans', 'sans-serif'].join(', '),
+
+      fontSize: responsiveVal(16, 19, 1920),
+      fontWeight: 400,
+      // letterSpacing: '-0.0375em',
+      lineHeight: 1.7,
+    },
+    fontWeightBold: 600,
+    body1: {
+      // We're boosting the fontSize to be 17px at 1280
+      fontSize: responsiveVal(15, 18, 1920),
+      lineHeight: 1.7,
+    },
+    subtitle2: {
+      fontFamily: ['Public Sans', 'sans-serif'].join(', '),
+
+      fontSize: responsiveVal(14, 16),
+      fontWeight: 600,
+      lineHeight: 1.7,
+    },
+    body2: {
+      fontSize: responsiveVal(13, 15),
+      lineHeight: 1.7,
+    },
+    caption: {
+      fontSize: responsiveVal(11, 13),
+    },
+    button: {},
+    overline: {
+      fontSize: responsiveVal(12, 14),
+      color: `rgba(0, 0, 0, 0.3)`,
+      fontWeight: 500,
+      letterSpacing: 1,
+      lineHeight: 1.2,
+      textTransform: 'uppercase',
+    },
   },
   spacings: {
     xxs: responsiveVal(10, 16),
@@ -133,8 +201,8 @@ defaultTheme.overrides = {
       body: {
         overflowY: 'scroll',
       },
-      '::selection': { background: `rgba(20, 227, 173, 0.5)` },
-      '::-moz-selection': { background: `rgba(20, 227, 173, 0.5)` },
+      '::selection': { background: '#ff4a557d' },
+      '::-moz-selection': { background: '#ff4a557d' },
     },
   },
   MuiContainer: {
@@ -209,8 +277,31 @@ defaultTheme.overrides = {
     },
   },
   MuiChip: {
+    root: {
+      boxShadow: defaultTheme.shadows[5],
+      backgroundColor: defaultTheme.palette.background.paper,
+      //   ...defaultTheme.typography.body2,
+      //   '&$sizeSmall': {
+      //     ...defaultTheme.typography.caption,
+      //   },
+    },
+    // clickable: {},
+    // icon: {},
+    // label: {},
+    // labelSmall: {
+    //   paddingLeft: '10px',
+    //   paddingRight: '10px',
+    // },
+    sizeSmall: {
+      // height: 28,
+    },
     outlined: {
       borderColor: defaultTheme.palette.divider,
+      boxShadow: 'unset',
+      // '& $iconSmall': {
+      // marginLeft: '5px',
+      // marginRight: '-5px',
+      // },
     },
   },
   MuiCheckbox: {

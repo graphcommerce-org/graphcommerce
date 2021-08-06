@@ -2,23 +2,21 @@ import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
-import responsiveVal from '../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       display: 'grid',
       gridAutoFlow: 'column',
-      justifyItems: 'start',
       maxWidth: 'max-content',
       alignItems: 'center',
+      gridTemplateColumns: '30px 1fr',
     },
     gap: {
       gap: theme.spacings.xs,
     },
     smallText: {
       '& > p': {
-        fontSize: responsiveVal(12, 14),
         marginLeft: 5,
       },
     },
@@ -42,9 +40,7 @@ export default function UspListItem(props: UspListItemProps) {
   return (
     <li className={clsx(classes.root, size === 'normal' && classes.gap)}>
       <div>{icon}</div>
-      <span className={clsx(size === 'small' ? classes.smallText : classes.normalText)}>
-        {text}
-      </span>
+      <div className={classes?.[`${size}Text`]}>{text}</div>
     </li>
   )
 }
