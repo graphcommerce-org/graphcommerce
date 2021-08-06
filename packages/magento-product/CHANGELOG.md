@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product@2.101.6...@reachdigital/magento-product@2.102.0) (2021-08-06)
+
+
+### Bug Fixes
+
+* replace captionOldOld with overline ([c19bc8a](https://github.com/ho-nl/m2-pwa/commit/c19bc8aee829432a8c72d0d4bc9d266110af65ab))
+
+
+### Features
+
+* **theme:** restructured fonts and applied to home and category page ([6adf5f1](https://github.com/ho-nl/m2-pwa/commit/6adf5f11321bdfbf499125f1161c5abf5a1bfe4a))
+* **theme:** restructured typography ([6fcddae](https://github.com/ho-nl/m2-pwa/commit/6fcddae6b1b54d071475c59c80a9f8d8a36294d5))
+
+
+
+
+
 ## [2.101.5](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product@2.101.4...@reachdigital/magento-product@2.101.5) (2021-08-03)
 
 

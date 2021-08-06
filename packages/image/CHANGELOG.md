@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.101.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/image@2.101.2...@reachdigital/image@2.101.3) (2021-08-06)
+
+
+### Bug Fixes
+
+* introduced SvgImageSimple and solve issue with review chips ([931d7fd](https://github.com/ho-nl/m2-pwa/commit/931d7fdcf0faa9d2264899b72e564138215b6bd8))
+
+
+
+
+
 ## [2.101.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/image@2.101.1...@reachdigital/image@2.101.2) (2021-08-04)
 
 

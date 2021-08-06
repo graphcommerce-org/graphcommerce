@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.105.0...@reachdigital/soxbase@2.106.0) (2021-08-06)
+
+
+### Bug Fixes
+
+* introduced SvgImageSimple and solve issue with review chips ([931d7fd](https://github.com/ho-nl/m2-pwa/commit/931d7fdcf0faa9d2264899b72e564138215b6bd8))
+* replace captionOldOld with overline ([c19bc8a](https://github.com/ho-nl/m2-pwa/commit/c19bc8aee829432a8c72d0d4bc9d266110af65ab))
+* **theme:** make breakpoints more in line with default material ui, only make lg/xl larger ([a061f5e](https://github.com/ho-nl/m2-pwa/commit/a061f5eda78a581d3ea0db1a8b071becd147667d))
+
+
+### Features
+
+* **theme:** restructured fonts and applied to home and category page ([6adf5f1](https://github.com/ho-nl/m2-pwa/commit/6adf5f11321bdfbf499125f1161c5abf5a1bfe4a))
+* **theme:** restructured typography ([6fcddae](https://github.com/ho-nl/m2-pwa/commit/6fcddae6b1b54d071475c59c80a9f8d8a36294d5))
+
+
+
+
+
 # [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.104.2...@reachdigital/soxbase@2.105.0) (2021-08-04)
 
 
