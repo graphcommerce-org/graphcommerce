@@ -127,9 +127,8 @@ export const defaultTheme = createTheme({
 
       fontWeight: 700,
       // letterSpacing: '-0.0375em',
-      fontSize: responsiveVal(17, 22),
+      fontSize: responsiveVal(17, 20),
       lineHeight: 1.55,
-      ...debug('❌h5'),
     },
     h6: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
@@ -279,27 +278,30 @@ defaultTheme.overrides = {
   },
   MuiChip: {
     root: {
-      ...defaultTheme.typography.body2,
-      '&$sizeSmall': {
-        ...defaultTheme.typography.caption,
-      },
+      boxShadow: defaultTheme.shadows[5],
+      backgroundColor: defaultTheme.palette.background.paper,
+      //   ...defaultTheme.typography.body2,
+      //   '&$sizeSmall': {
+      //     ...defaultTheme.typography.caption,
+      //   },
     },
-    clickable: {},
-    icon: {},
-    label: {},
-    labelSmall: {
-      paddingLeft: '10px',
-      paddingRight: '10px',
-    },
+    // clickable: {},
+    // icon: {},
+    // label: {},
+    // labelSmall: {
+    //   paddingLeft: '10px',
+    //   paddingRight: '10px',
+    // },
     sizeSmall: {
-      height: 28,
+      // height: 28,
     },
     outlined: {
       borderColor: defaultTheme.palette.divider,
-      '& $iconSmall': {
-        marginLeft: '5px',
-        marginRight: '-5px',
-      },
+      boxShadow: 'unset',
+      // '& $iconSmall': {
+      // marginLeft: '5px',
+      // marginRight: '-5px',
+      // },
     },
   },
   MuiCheckbox: {

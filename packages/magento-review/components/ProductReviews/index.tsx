@@ -11,6 +11,7 @@ import {
 } from '@reachdigital/next-ui'
 import Link from 'next/link'
 import React, { useState } from 'react'
+import ProductReviewChip from '../ProductReviewChip'
 import { ProductReviewsFragment } from './ProductReviews.gql'
 import { ProductReviewsPageDocument } from './ProductReviewsPage.gql'
 
@@ -29,16 +30,6 @@ const useStyles = makeStyles(
       justifyContent: 'start',
       gap: theme.spacings.xs,
       alignItems: 'center',
-    },
-    icon: {
-      height: '14px',
-    },
-    chipRoot: {
-      boxShadow: theme.shadows[5],
-    },
-    label: {
-      marginBottom: '-2px',
-      ...theme.typography.subtitle2Old,
     },
     meta: {
       color: theme.palette.text.disabled,
@@ -144,26 +135,32 @@ export default function ProductReviews(props: ProductReviewsProps) {
         </Button>
       </Link>
 
-      <Pagination
-        count={total_pages ?? 1}
-        page={current_page ?? 1}
-        classes={{ root: classes.paginationRoot }}
-        renderLink={(p: number, icon: React.ReactNode) => (
-          <Button
-            onClick={() => {
-              setPage(p)
-            }}
-            className={classes.paginationButton}
-          >
-            {icon}
-          </Button>
-        )}
-      />
+      {!!total_pages && total_pages > 1 && (
+        <Pagination
+          count={total_pages ?? 1}
+          page={current_page ?? 1}
+          classes={{ root: classes.paginationRoot }}
+          renderLink={(p: number, icon: React.ReactNode) => (
+            <Button onClick={() => setPage(p)} className={classes.paginationButton}>
+              {icon}
+            </Button>
+          )}
+        />
+      )}
     </div>
   )
 
   if (reviews?.items.length === 0) {
-    return <div className={classes.container}>{actions}</div>
+    return (
+      <div className={classes.container}>
+        <div className={classes.review}>
+          <div className={classes.title}>
+            <Typography variant='subtitle1'>Be the first to write a review!</Typography>
+          </div>
+        </div>
+        {actions}
+      </div>
+    )
   }
 
   return (
@@ -172,30 +169,29 @@ export default function ProductReviews(props: ProductReviewsProps) {
         myReviews.items.map((review) => (
           <div key={review?.summary} className={classes.review}>
             <div className={classes.title}>
-              <Chip
-                label={`${Number(review?.average_rating) / 20}/5`}
-                icon={<SvgImage src={iconStarYellow} size={10} alt='review' loading='lazy' />}
-                color='default'
-                variant='outlined'
-                classes={{ root: classes.chipRoot, icon: classes.icon, label: classes.label }}
+              <ProductReviewChip
+                rating_summary={review?.average_rating ?? 0}
+                chipProps={{ size: 'medium', variant: 'default' }}
               />
               <Typography variant='h5'> {review?.summary}</Typography>
             </div>
             <Typography variant='body1'>{review?.text}</Typography>
 
-            <div className={classes.ratingRow}>
-              {review?.ratings_breakdown.map((ratingBreakdown) => (
-                <div key={`rating-${ratingBreakdown?.value}`} className={classes.rating}>
-                  <span>{ratingBreakdown?.name}</span>
-                  <StarRatingField
-                    iconSize={16}
-                    readOnly
-                    size='small'
-                    defaultValue={Number(ratingBreakdown?.value ?? 0)}
-                  />
-                </div>
-              ))}
-            </div>
+            {(review?.ratings_breakdown ?? 0) > 1 && (
+              <div className={classes.ratingRow}>
+                {review?.ratings_breakdown.map((ratingBreakdown) => (
+                  <div key={`rating-${ratingBreakdown?.value}`} className={classes.rating}>
+                    <span>{ratingBreakdown?.name}</span>
+                    <StarRatingField
+                      iconSize={16}
+                      readOnly
+                      size='small'
+                      defaultValue={Number(ratingBreakdown?.value ?? 0)}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
 
             <div className={classes.meta}>
               <div className={classes.nickname}>Written by {review?.nickname}</div>

@@ -204,12 +204,15 @@ type IntrisincImage = Omit<
   'src' | 'srcSet' | 'ref' | 'width' | 'height' | 'loading' | 'sizes' | 'width' | 'height'
 > & { loading?: LoadingValue }
 
-export type BaseImageProps = IntrisincImage & {
+export type ImageProps = IntrisincImage & {
+  src: StaticImport | string
+  blurDataURL?: string
   loader?: ImageLoader
   quality?: number
   unoptimized?: boolean
   dontReportWronglySizedImages?: boolean
-
+  width?: number
+  height?: number
   /**
    * Possible values:
    *
@@ -222,113 +225,10 @@ export type BaseImageProps = IntrisincImage & {
    */
   layout?: LayoutValue
 
+  placeholder?: PlaceholderValue
   /** Size the image is rendered on mobile */
   sizes?: SizesString | SizesRecord
 }
-
-/**
- * When `fixed`, the image dimensions will not change as the viewport changes (no responsiveness)
- * similar to the native img element.
- *
- * ```tsx
- * <img width={width} height={height} />
- * ```
- *
- * Use case: When you want to render the image at the given width/height and not change based on browser size.
- */
-type LayoutTypeNative = {
-  layout?: 'fixed'
-  /**
-   * The width and the height values are the values used to calculate the aspect ratio om the image
-   * and reserve space in the browser.
-   *
-   * With layout=fixed and no styling the image is rendered at the width and height given.
-   */
-  width: number
-  height: number
-}
-
-/**
- * When `intrinsic`, the image will scale the dimensions down for smaller viewports but maintain the
- * original dimensions (the width and height given) for larger viewports.
- *
- * ```tsx
- * <img style={{ width: '100%', height: 'auto' maxWidth: `${width}px` }}
- * ```
- *
- * Use case: When you want to render an image but don't scale it up.
- */
-type LayoutTypeIntrinsic = {
-  layout?: 'intrinsic'
-
-  width: number
-  height: number
-
-  style?: Omit<ImgElementStyle, 'width' | 'height' | 'maxWidth'>
-}
-
-/**
- * When `responsive`, the image will scale the dimensions down for smaller viewports and scale up
- * for larger viewports.
- *
- * ```tsx
- * <img style={{ width: '100%', height: 'auto' maxWidth: ${width} }}
- * ```
- *
- * Use case: When you want the image to fill it's parent container in width
- */
-type LayoutTypeResponsive = {
-  layout?: 'responsive'
-
-  width: number
-  height: number
-
-  style?: Omit<ImgElementStyle, 'width' | 'height'>
-}
-
-/**
- * When `fill`, the image will stretch both width and height to the dimensions of the parent
- * element, paired with the objectFit property.
- *
- * Since the width/height isn't required to render the page we can omit it.
- *
- * ```tsx
- * <img width={width} height={height} style={{ width: '100%', height: '100%' }}
- * ```
- *
- * Use case: When you have a predefined area set to render an image
- */
-type LayoutTypeFill = {
-  layout?: 'fill'
-
-  width?: never
-  height?: never
-
-  // objectFit: ImgElementStyle['objectFit']
-  style?: Omit<ImgElementStyle, 'width' | 'height'>
-}
-
-export type StringImageProps = {
-  src: string
-} & (LayoutTypeFill | LayoutTypeResponsive | LayoutTypeNative | LayoutTypeIntrinsic) &
-  (
-    | { placeholder?: Exclude<PlaceholderValue, 'blur'>; blurDataURL?: never }
-    | { placeholder: 'blur'; blurDataURL: string }
-  )
-
-export type ObjectImageProps = {
-  src: StaticImport
-  width?: number
-  height?: number
-  layout?: LayoutValue
-  placeholder?: PlaceholderValue
-  blurDataURL?: never
-}
-
-export type ImageProps = BaseImageProps & (StringImageProps | ObjectImageProps)
-
-export type StringImage = BaseImageProps & StringImageProps
-export type ObjectImage = BaseImageProps & ObjectImageProps
 
 const Image = React.forwardRef<HTMLImageElement, ImageProps>(
   (
