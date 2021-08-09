@@ -21,7 +21,7 @@ import {
 import { CustomerTokenDocument } from '@reachdigital/magento-customer'
 import { localeToStore, defaultLocale } from '@reachdigital/magento-store'
 import { CachePersistor, LocalStorageWrapper, PersistentStorage } from 'apollo3-cache-persist'
-import { PersistedData } from 'apollo3-cache-persist/types'
+import { PersistedData } from 'apollo3-cache-persist/lib/types'
 
 import { policies, migrations } from './typePolicies'
 
