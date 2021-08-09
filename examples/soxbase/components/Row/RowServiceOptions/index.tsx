@@ -17,9 +17,8 @@ export default function RowServiceOptions(props: RowServiceOptionsProps) {
   const { title, serviceOptions } = props
 
   return (
-    <IconBlocks
-      title={title}
-      options={serviceOptions.map((serviceOption) => {
+    <IconBlocks title={title}>
+      {serviceOptions.map((serviceOption) => {
         const iconTitle = serviceOption.title.toLowerCase()
 
         return (
@@ -43,6 +42,6 @@ export default function RowServiceOptions(props: RowServiceOptionsProps) {
           </PageLink>
         )
       })}
-    />
+    </IconBlocks>
   )
 }

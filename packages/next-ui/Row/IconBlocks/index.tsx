@@ -32,16 +32,16 @@ const useStyles = makeStyles(
       paddingTop: `${theme.spacings.lg}`,
     },
   }),
-  { name: 'IconBlocks' },
+  { name: 'ServiceOptions' },
 )
 
 export type IconBlocksProps = UseStyles<typeof useStyles> & {
   title: string
-  options: React.ReactNode
+  children: React.ReactNode
 }
 
 export default function ServiceOptions(props: IconBlocksProps) {
-  const { title, options } = props
+  const { title, children } = props
   const classes = useStyles(props)
 
   return (
@@ -50,7 +50,7 @@ export default function ServiceOptions(props: IconBlocksProps) {
         <Typography variant='h5' className={classes.title}>
           {title}
         </Typography>
-        <div className={classes.optionsWrapper}>{options}</div>
+        <div className={classes.optionsWrapper}>{children}</div>
       </div>
     </Row>
   )
