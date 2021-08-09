@@ -3,31 +3,25 @@ import { Image, ImageProps } from '@reachdigital/image'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
 
-type StyleProps = {
-  noSize?: boolean
-}
-
 const useStyles = makeStyles(
   {
-    image: ({ noSize }: StyleProps) => ({
+    image: {
       display: 'block',
       flexShrink: 0,
       userSelect: 'none',
-      fontSize: '1.5em',
-      ...(!noSize && {
-        width: '1em',
-        height: '1em',
-      }),
-    }),
+      fontSize: '1.5rem',
+      width: '1em',
+      height: '1em',
+    },
   },
   { name: 'SvgImageSimple' },
 )
 
-type SvgImageSimpleProps = Omit<ImageProps, 'fixed'> & StyleProps
+type SvgImageSimpleProps = Omit<ImageProps, 'fixed'>
 
 const SvgImageSimple = forwardRef<HTMLImageElement, SvgImageSimpleProps>((props, ref) => {
-  const { className, noSize, ...imageProps } = props
-  const { image } = useStyles({ noSize })
+  const { className, ...imageProps } = props
+  const { image } = useStyles()
 
   return (
     <Image
