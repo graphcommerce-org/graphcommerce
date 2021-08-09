@@ -34,7 +34,7 @@
     "@graphql-codegen/typescript-operations": "1.18.4",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@graphql-typed-document-node/patch-cli": "^3.0.8",
-    "@material-ui/core": "^4.12.1",
+    "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@next/bundle-analyzer": "^11.0.1",
@@ -83,7 +83,7 @@
     "@reachdigital/prettier-config-pwa": "^2.100.9",
     "@reachdigital/react-hook-form": "^2.101.3",
     "@reachdigital/typescript-config-pwa": "^2.100.10",
-    "apollo3-cache-persist": "^0.10.0",
+    "apollo3-cache-persist": "^0.11.0",
     "clsx": "^1.1.1",
     "dotenv": "^10.0.0",
     "framer-motion": "^4.1.17",
@@ -99,7 +99,7 @@
     "schema-dts": "^0.10.0",
     "sharp": "^0.28.3",
     "vercel": "^23.1.1",
-    "webpack": "^5.46.0"
+    "webpack": "^5.49.0"
   },
   "devDependencies": {
     "@types/node": "^16.4.13",
