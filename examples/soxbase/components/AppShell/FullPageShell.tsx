@@ -16,7 +16,7 @@ import {
   MenuFabSecondaryItem,
   MenuProps,
   responsiveVal,
-  SvgImage,
+  SvgImageSimple,
 } from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -98,7 +98,12 @@ function FullPageShell(props: FullPageShellProps) {
             )}
             <PageLink href='/service' passHref>
               <Fab style={{ boxShadow: 'none' }} aria-label='Account' size='large'>
-                <SvgImage src={iconCustomerService} alt='Customer Service' loading='eager' />
+                <SvgImageSimple
+                  src={iconCustomerService}
+                  alt='Customer Service'
+                  loading='eager'
+                  size='large'
+                />
               </Fab>
             </PageLink>
             <CustomerFab guestHref='/account/signin' authHref='/account' />
@@ -115,13 +120,13 @@ function FullPageShell(props: FullPageShellProps) {
           Account
         </CustomerMenuFabItem>
         <MenuFabSecondaryItem
-          icon={<SvgImage src={iconCustomerService} size='small' alt='Customer Service' />}
+          icon={<SvgImageSimple src={iconCustomerService} alt='Customer Service' />}
           href='/service'
         >
           Customer Service
         </MenuFabSecondaryItem>
         <MenuFabSecondaryItem
-          icon={<SvgImage src={iconHeart} size='small' alt='Wishlist' />}
+          icon={<SvgImageSimple src={iconHeart} alt='Wishlist' />}
           href='/wishlist'
         >
           Wishlist
