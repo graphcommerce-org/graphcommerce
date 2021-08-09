@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { join } from 'path'
 import { DocumentNode, visit, FragmentSpreadNode, FragmentDefinitionNode } from 'graphql'
 import parsePath from 'parse-filepath'

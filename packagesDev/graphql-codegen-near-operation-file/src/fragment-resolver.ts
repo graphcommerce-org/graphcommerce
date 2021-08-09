@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { Types } from '@graphql-codegen/plugin-helpers'
 import {
   BaseVisitor,
