@@ -4,6 +4,7 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
   AddressSingleLine,
   ApolloCustomerErrorFullPage,
+  CustomerNewsletterForm,
   SignOutForm,
 } from '@reachdigital/magento-customer'
 import {
@@ -142,8 +143,12 @@ function AccountIndexPage() {
             <AccountMenuItem
               iconSrc={iconNewspaper}
               title='Newsletter'
-              subtitle='Be the first to know about everything new!'
-              endIcon={<Switch color='primary' />}
+              subtitle={
+                customer?.email && customer?.is_subscribed
+                  ? customer.email
+                  : 'Be the first to know about everything new!'
+              }
+              endIcon={<CustomerNewsletterForm color='primary' {...customer} />}
             />
             <SignOutForm
               button={({ formState }) => (
