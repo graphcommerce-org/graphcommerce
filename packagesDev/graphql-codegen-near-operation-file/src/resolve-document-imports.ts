@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { resolve } from 'path'
 import { isUsingTypes, Types, DetailedError } from '@graphql-codegen/plugin-helpers'
 import {
@@ -9,7 +10,7 @@ import {
   LoadedFragment,
 } from '@graphql-codegen/visitor-plugin-common'
 import { Source } from '@graphql-tools/utils'
-import { FragmentDefinitionNode, GraphQLSchema, visit, concatAST, parse } from 'graphql'
+import { FragmentDefinitionNode, GraphQLSchema, visit } from 'graphql'
 import buildFragmentResolver, { buildFragmentRegistry } from './fragment-resolver'
 import { extractExternalFragmentsInUse } from './utils'
 

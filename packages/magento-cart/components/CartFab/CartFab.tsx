@@ -1,5 +1,10 @@
 import { Fab, FabProps, NoSsr } from '@material-ui/core'
-import { iconShoppingBag, StyledBadge, SvgImage, useFixedFabAnimation } from '@reachdigital/next-ui'
+import {
+  iconShoppingBag,
+  StyledBadge,
+  SvgImageSimple,
+  useFixedFabAnimation,
+} from '@reachdigital/next-ui'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
@@ -15,7 +20,9 @@ type CartFabContentProps = CartFabProps & CartTotalQuantityFragment
 
 function CartFabContent(props: CartFabContentProps) {
   const { total_quantity, icon, ...fabProps } = props
-  const cartIcon = icon ?? <SvgImage src={iconShoppingBag} alt='Shopping Bag' loading='eager' />
+  const cartIcon = icon ?? (
+    <SvgImageSimple src={iconShoppingBag} alt='Shopping Bag' loading='eager' size='large' />
+  )
   const { filter } = useFixedFabAnimation()
 
   return (

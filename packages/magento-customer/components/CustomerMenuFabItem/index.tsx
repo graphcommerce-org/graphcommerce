@@ -4,8 +4,8 @@ import {
   MenuFabSecondaryItem,
   StyledBadge,
   UseStyles,
-  SvgImage,
   iconPersonAlt,
+  SvgImageSimple,
 } from '@reachdigital/next-ui'
 import React from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from '../../hooks'
@@ -47,7 +47,7 @@ function CustomerMenuFabItemContent(props: CustomerMenuFabItemProps) {
           variant='dot'
           classes={{ colorError: classes.colorError, badge: classes.badge }}
         >
-          {icon ?? <SvgImage src={iconPersonAlt} size='small' alt='Account' />}
+          {icon ?? <SvgImageSimple src={iconPersonAlt} alt='Account' />}
         </StyledBadge>
       }
       href={requireAuth ? guestHref : authHref}

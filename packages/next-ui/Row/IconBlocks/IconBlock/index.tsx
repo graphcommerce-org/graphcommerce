@@ -1,5 +1,5 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
-import React from 'react'
+import React, { useRef } from 'react'
 import Button from '../../../Button'
 import { UseStyles } from '../../../Styles'
 
@@ -30,7 +30,7 @@ export type IconBlockProps = UseStyles<typeof useStyles> & {
   href?: string
 }
 
-export default function IconBlock(props: IconBlockProps) {
+const IconBlock = React.forwardRef<HTMLAnchorElement, IconBlockProps>((props, ref) => {
   const { title, children, icon, href } = props
   const classes = useStyles(props)
 
@@ -44,13 +44,13 @@ export default function IconBlock(props: IconBlockProps) {
 
   if (href) {
     return (
-      <a href={href} className={classes.link}>
-        <Button variant='text' color='primary' className={classes.block}>
-          <div>{content}</div>
-        </Button>
-      </a>
+      <Button variant='text' color='primary' className={classes.block} ref={ref}>
+        <div>{content}</div>
+      </Button>
     )
   }
 
   return <div className={classes.block}>{content}</div>
-}
+})
+
+export default IconBlock

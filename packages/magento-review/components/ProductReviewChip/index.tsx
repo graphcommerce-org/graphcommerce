@@ -32,7 +32,7 @@ export default function ProductReviewChip(props: ProductReviewChipProps) {
       variant='outlined'
       clickable={!!reviewSectionId}
       onClick={handleClick}
-      icon={<SvgImageSimple src={iconStarYellow} alt='Stars' noSize />}
+      icon={<SvgImageSimple src={iconStarYellow} alt='Stars' />}
       color='default'
       label={`${normalizedRating}/5`}
       {...chipProps}

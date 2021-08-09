@@ -142,23 +142,22 @@ export default function AccountSignInUpForm() {
 
               <ApolloCustomerErrorAlert error={error} />
 
-              {mode === 'email' ||
-                (mode === 'session-expired' && (
-                  <AnimatedRow key='submit-form'>
-                    <FormActions>
-                      <Button
-                        type='submit'
-                        loading={formState.isSubmitting}
-                        variant='contained'
-                        color='primary'
-                        size='large'
-                        text='bold'
-                      >
-                        Continue
-                      </Button>
-                    </FormActions>
-                  </AnimatedRow>
-                ))}
+              {(mode === 'email' || mode === 'session-expired') && (
+                <AnimatedRow key='submit-form'>
+                  <FormActions>
+                    <Button
+                      type='submit'
+                      loading={formState.isSubmitting}
+                      variant='contained'
+                      color='primary'
+                      size='large'
+                      text='bold'
+                    >
+                      Continue
+                    </Button>
+                  </FormActions>
+                </AnimatedRow>
+              )}
             </AnimatePresence>
           </form>
         )}
@@ -168,6 +167,7 @@ export default function AccountSignInUpForm() {
             <SignInForm email={watch('email')} />
           </AnimatedRow>
         )}
+
         {mode === 'signup' && (
           <AnimatedRow key='signup'>
             <SignUpForm email={watch('email')} />

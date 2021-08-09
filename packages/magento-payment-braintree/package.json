@@ -14,7 +14,7 @@
     }
   },
   "devDependencies": {
-    "@playwright/test": "^1.13.0",
+    "@playwright/test": "^1.13.1",
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
     "@reachdigital/eslint-config-pwa": "^2.102.0",
     "@reachdigital/magento-cart-shipping-address": "^2.101.8",
@@ -22,12 +22,12 @@
     "@reachdigital/magento-product-configurable": "^2.102.1",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
     "@reachdigital/typescript-config-pwa": "^2.100.10",
-    "@types/braintree-web": "^3.75.5"
+    "@types/braintree-web": "^3.75.6"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
     "@graphql-typed-document-node/core": "^3.1.0",
-    "@material-ui/core": "^4.12.1",
+    "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@reachdigital/graphql": "^2.101.2",
     "@reachdigital/image": "^2.101.4",
@@ -36,12 +36,12 @@
     "@reachdigital/magento-store": "^2.101.8",
     "@reachdigital/next-ui": "^2.105.1",
     "@reachdigital/react-hook-form": "^2.101.3",
-    "braintree-web": "^3.79.1",
+    "braintree-web": "^3.80.0",
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.17",
     "next": "^11.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "type-fest": "^1.2.2"
+    "type-fest": "^2.0.0"
   }
 }
