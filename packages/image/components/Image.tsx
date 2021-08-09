@@ -280,6 +280,8 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
 
         const reportedSize = img.clientWidth
 
+        if (reportedSize === 0) return
+
         let msg = ''
         const sizesEntr = sizesOrig ? sizesEntries(sizesOrig) : sizesEntries(DEFAULT_SIZES)
         const matched = sizesEntr.find(([s]) =>
@@ -454,9 +456,9 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
               sizes={sizes}
             />
             <img
-              src={srcSet1x[0]}
               ref={ref}
               {...imgProps}
+              src={src}
               loading={loading ?? 'lazy'}
               width={width}
               height={height}
