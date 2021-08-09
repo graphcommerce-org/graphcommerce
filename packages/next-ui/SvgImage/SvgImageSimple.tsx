@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core'
-import { Image, ImageProps, isStaticImport, isStaticImageData } from '@reachdigital/image'
+import { Image, ImageProps } from '@reachdigital/image'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
 

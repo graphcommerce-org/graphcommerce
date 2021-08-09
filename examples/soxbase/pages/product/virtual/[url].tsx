@@ -14,7 +14,7 @@ import {
   VirtualProductPageDocument,
   VirtualProductPageQuery,
 } from '@reachdigital/magento-product-virtual'
-import { jsonLdProductReview } from '@reachdigital/magento-review'
+import { jsonLdProductReview, ProductReviewChip } from '@reachdigital/magento-review'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { JsonLd, GetStaticProps, Title, AppShellTitle } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
@@ -84,6 +84,7 @@ function ProductVirtual(props: Props) {
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
         <AppShellTitle bare>{product.name}</AppShellTitle>
+        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
         <AddToCartButton
           mutation={ProductAddToCartDocument}
           variables={{ sku: product.sku ?? '', quantity: 1 }}

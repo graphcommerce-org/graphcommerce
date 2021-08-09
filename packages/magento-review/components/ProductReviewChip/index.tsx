@@ -1,35 +1,24 @@
-import { Chip, ChipProps, makeStyles, Theme } from '@material-ui/core'
-import { Image } from '@reachdigital/image'
-import { SvgImageSimple, iconStarYellow, iconCloseCircle } from '@reachdigital/next-ui'
-import Link from 'next/link'
+import { Chip, ChipProps } from '@material-ui/core'
+import { SvgImageSimple, iconStarYellow } from '@reachdigital/next-ui'
 import React from 'react'
-import { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'
 
-type ProductReviewSummaryProps = ProductReviewSummaryFragment & {
+export type ProductReviewChipProps = {
+  rating?: number
   reviewSectionId?: string
-  chipProps?: ChipProps
   max?: number
-}
+} & ChipProps
 
-export default function ProductReviewChip(props: ProductReviewSummaryProps) {
-  const { rating_summary, reviewSectionId = '', chipProps, max = 5 } = props
+export default function ProductReviewChip(props: ProductReviewChipProps) {
+  const { rating, reviewSectionId = '', max = 5, ...chipProps } = props
 
-  if (!rating_summary) return null
+  if (!rating) return null
 
-  const rating = Math.round(rating_summary / (10 / max)) / 10
+  const normalizedRating = Math.round(rating / (10 / max)) / 10
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
     const element = document.getElementById(reviewSectionId)
-
     e.preventDefault()
-
-    if (!element) {
-      return
-    }
-
-    element.scrollIntoView({
-      behavior: 'smooth',
-    })
+    if (!element) return
 
     window.scrollTo({
       top: element.offsetTop - 50,
@@ -45,7 +34,7 @@ export default function ProductReviewChip(props: ProductReviewSummaryProps) {
       onClick={handleClick}
       icon={<SvgImageSimple src={iconStarYellow} alt='Stars' noSize />}
       color='default'
-      label={`${rating}/5`}
+      label={`${normalizedRating}/5`}
       {...chipProps}
     />
   )
