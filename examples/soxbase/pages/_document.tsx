@@ -1,4 +1,4 @@
-import { Document } from '@reachdigital/next-ui'
+import Document from '@reachdigital/next-ui/Page/Document'
 import { Html, Head, Main, NextScript } from 'next/document'
 
 export default class ThemedDocument extends Document {
