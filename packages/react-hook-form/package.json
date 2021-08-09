@@ -24,7 +24,7 @@
     "@reachdigital/typescript-config-pwa": "^2.100.10"
   },
   "dependencies": {
-    "@apollo/client": "^3.4.6",
+    "@apollo/client": "^3.3.21",
     "@graphql-typed-document-node/core": "^3.1.0",
     "graphql": "15.5.1",
     "react": "^17.0.2",
