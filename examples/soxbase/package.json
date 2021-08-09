@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@adobe/apollo-link-mutation-queue": "^1.0.2",
-    "@apollo/client": "^3.3.21",
+    "@apollo/client": "^3.4.6",
     "@graphql-codegen/add": "^2.0.2",
     "@graphql-codegen/cli": "^1.21.7",
     "@graphql-codegen/fragment-matcher": "2.0.1",
