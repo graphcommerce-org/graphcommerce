@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.105.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.105.0...@reachdigital/next-ui@2.105.1) (2021-08-09)
+
+
+### Bug Fixes
+
+* make fonts more default ([cba1d90](https://github.com/ho-nl/m2-pwa/commit/cba1d90578db33d3458c126bf4932312eed05271))
+* **review:** make sure chip is rendered correctly ([387df34](https://github.com/ho-nl/m2-pwa/commit/387df3456973290f9ce98d47823a7c71a6d95850))
+
+
+
+
+
 # [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.104.0...@reachdigital/next-ui@2.105.0) (2021-08-06)
 
 

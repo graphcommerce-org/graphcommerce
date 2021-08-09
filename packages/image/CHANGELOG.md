@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.101.4](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/image@2.101.3...@reachdigital/image@2.101.4) (2021-08-09)
+
+
+### Bug Fixes
+
+* **image:** do not report when image isn't rendered yet ([5aa08ef](https://github.com/ho-nl/m2-pwa/commit/5aa08efc1eade69f53e1645c37fcb0632d83bc5e))
+
+
+
+
+
 ## [2.101.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/image@2.101.2...@reachdigital/image@2.101.3) (2021-08-06)
 
 

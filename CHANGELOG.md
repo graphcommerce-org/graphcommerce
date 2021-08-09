@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.108.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.108.0...@graphcommerce/graphcommerce@2.108.1) (2021-08-09)
+
+
+### Bug Fixes
+
+* **image:** do not report when image isn't rendered yet ([5aa08ef](https://github.com/ho-nl/m2-pwa/commit/5aa08efc1eade69f53e1645c37fcb0632d83bc5e))
+* **image:** RowSpecialBanner/RowSwipableGrid doesn't download the right image ([276896f](https://github.com/ho-nl/m2-pwa/commit/276896fcd747efc3f25c9eb9813fe550d942b7fb))
+* make fonts more default ([cba1d90](https://github.com/ho-nl/m2-pwa/commit/cba1d90578db33d3458c126bf4932312eed05271))
+* product image alt tag was the URL ([e02c743](https://github.com/ho-nl/m2-pwa/commit/e02c74341be195e90fa290fc6ff54a4a44c29bed))
+* **review:** make sure chip is rendered correctly ([387df34](https://github.com/ho-nl/m2-pwa/commit/387df3456973290f9ce98d47823a7c71a6d95850))
+
+
+
+
+
 # [2.108.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.107.0...@graphcommerce/graphcommerce@2.108.0) (2021-08-06)
 
 

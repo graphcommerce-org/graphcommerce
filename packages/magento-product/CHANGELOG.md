@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.102.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product@2.102.0...@reachdigital/magento-product@2.102.1) (2021-08-09)
+
+
+### Bug Fixes
+
+* product image alt tag was the URL ([e02c743](https://github.com/ho-nl/m2-pwa/commit/e02c74341be195e90fa290fc6ff54a4a44c29bed))
+
+
+
+
+
 # [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product@2.101.6...@reachdigital/magento-product@2.102.0) (2021-08-06)
 
 

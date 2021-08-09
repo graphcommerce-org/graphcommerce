@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.106.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.106.0...@reachdigital/soxbase@2.106.1) (2021-08-09)
+
+
+### Bug Fixes
+
+* **image:** RowSpecialBanner/RowSwipableGrid doesn't download the right image ([276896f](https://github.com/ho-nl/m2-pwa/commit/276896fcd747efc3f25c9eb9813fe550d942b7fb))
+* **review:** make sure chip is rendered correctly ([387df34](https://github.com/ho-nl/m2-pwa/commit/387df3456973290f9ce98d47823a7c71a6d95850))
+
+
+
+
+
 # [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.105.0...@reachdigital/soxbase@2.106.0) (2021-08-06)
 
 

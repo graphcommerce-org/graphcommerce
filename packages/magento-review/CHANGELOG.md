@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-review@2.103.0...@reachdigital/magento-review@2.103.1) (2021-08-09)
+
+
+### Bug Fixes
+
+* **review:** make sure chip is rendered correctly ([387df34](https://github.com/ho-nl/m2-pwa/commit/387df3456973290f9ce98d47823a7c71a6d95850))
+
+
+
+
+
 # [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-review@2.102.6...@reachdigital/magento-review@2.103.0) (2021-08-06)
 
 

@@ -1,7 +1,7 @@
 {
   "name": "@reachdigital/next-ui",
   "private": true,
-  "version": "2.105.0",
+  "version": "2.105.1",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -18,7 +18,7 @@
     "@reachdigital/framer-next-pages": "^2.102.3",
     "@reachdigital/framer-sheet": "^2.102.2",
     "@reachdigital/graphql": "^2.101.2",
-    "@reachdigital/image": "^2.101.3",
+    "@reachdigital/image": "^2.101.4",
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.17",
     "graphql": "15.5.1",

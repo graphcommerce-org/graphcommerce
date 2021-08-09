@@ -1,7 +1,7 @@
 {
   "name": "@reachdigital/framer-next-pages-example",
   "private": true,
-  "version": "2.100.26",
+  "version": "2.100.27",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -11,7 +11,7 @@
     "@reachdigital/framer-next-pages": "^2.102.3",
     "@reachdigital/framer-sheet": "^2.102.2",
     "@reachdigital/next-config": "^2.100.9",
-    "@reachdigital/next-ui": "^2.105.0",
+    "@reachdigital/next-ui": "^2.105.1",
     "framer-motion": "^4.1.17",
     "next": "^11.0.1",
     "react": "^17.0.2",
