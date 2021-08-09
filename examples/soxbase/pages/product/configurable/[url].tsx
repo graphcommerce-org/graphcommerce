@@ -15,7 +15,7 @@ import {
   ConfigurableProductPageDocument,
   ConfigurableProductPageQuery,
 } from '@reachdigital/magento-product-configurable'
-import { jsonLdProductReview, ProductReviewSummary } from '@reachdigital/magento-review'
+import { jsonLdProductReview, ProductReviewChip } from '@reachdigital/magento-review'
 import { Money, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps, JsonLd, AppShellTitle, Title } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
@@ -106,7 +106,7 @@ function ProductConfigurable(props: Props) {
             </Typography>
           </div>
           <AppShellTitle bare>{product.name}</AppShellTitle>
-          <ProductReviewSummary {...product} reviewSectionId='reviews' />
+          <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           <ConfigurableProductAddToCart
             variables={{ sku: product.sku ?? '', quantity: 1 }}
             name={product.name ?? ''}

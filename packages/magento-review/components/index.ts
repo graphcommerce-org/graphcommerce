@@ -2,7 +2,7 @@ export { default as AccountReviews } from './AccountReviews'
 export { default as CreateProductReviewForm } from './CreateProductReviewForm'
 export { default as CustomerReview } from './CustomerReview'
 export { default as ProductReviews } from './ProductReviews'
-export { default as ProductReviewSummary } from './ProductReviewChip'
+export { default as ProductReviewChip } from './ProductReviewChip'
 
 export * from './AccountReviews/AccountReviews.gql'
 export * from './ProductReviews'

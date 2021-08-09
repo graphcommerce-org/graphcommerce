@@ -43,7 +43,7 @@ const useStyles = makeStyles(
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      marginTop: 32,
+      marginTop: theme.spacings.sm,
     },
     paginationRoot: {
       margin: `0 -16px 0`,
@@ -170,8 +170,8 @@ export default function ProductReviews(props: ProductReviewsProps) {
           <div key={review?.summary} className={classes.review}>
             <div className={classes.title}>
               <ProductReviewChip
-                rating_summary={review?.average_rating ?? 0}
-                chipProps={{ size: 'medium', variant: 'default' }}
+                rating={review?.average_rating}
+                variant='default'
               />
               <Typography variant='h5'> {review?.summary}</Typography>
             </div>

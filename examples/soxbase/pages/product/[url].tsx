@@ -15,7 +15,7 @@ import {
   SimpleProductPageDocument,
   SimpleProductPageQuery,
 } from '@reachdigital/magento-product-simple'
-import { jsonLdProductReview, ProductReviewSummary } from '@reachdigital/magento-review'
+import { jsonLdProductReview, ProductReviewChip } from '@reachdigital/magento-review'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps, JsonLd, Title, AppShellTitle } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
@@ -85,7 +85,7 @@ function ProductSimple(props: Props) {
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
         <AppShellTitle bare>{product.name}</AppShellTitle>
-        <ProductReviewSummary {...product} reviewSectionId='reviews' />
+        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
 
         <AddToCartButton
           mutation={ProductAddToCartDocument}
