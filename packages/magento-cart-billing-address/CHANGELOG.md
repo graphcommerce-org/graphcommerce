@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.101.9](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-billing-address@2.101.8...@reachdigital/magento-cart-billing-address@2.101.9) (2021-08-09)
+
+
+### Reverts
+
+* Revert "chore: upgrade @apollo/client" ([55ff24e](https://github.com/ho-nl/m2-pwa/commit/55ff24ede0e56c85b8095edadadd1ec5e0b1b8d2))
+
+
+
+
+
 # [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-billing-address@2.100.19...@reachdigital/magento-cart-billing-address@2.101.0) (2021-07-26)
 
 

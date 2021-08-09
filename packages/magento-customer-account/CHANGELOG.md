@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.100.23](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-customer-account@2.100.22...@reachdigital/magento-customer-account@2.100.23) (2021-08-09)
+
+
+### Bug Fixes
+
+* **account:** continue button wasn't visible when loading the page ([c33fdc8](https://github.com/ho-nl/m2-pwa/commit/c33fdc8675ddf5f5fa5b57cb7ec07be3a93f0b30))
+
+
+### Reverts
+
+* Revert "chore: upgrade @apollo/client" ([55ff24e](https://github.com/ho-nl/m2-pwa/commit/55ff24ede0e56c85b8095edadadd1ec5e0b1b8d2))
+
+
+
+
+
 ## [2.100.21](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-customer-account@2.100.20...@reachdigital/magento-customer-account@2.100.21) (2021-08-06)
 
 

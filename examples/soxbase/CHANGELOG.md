@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.106.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.106.1...@reachdigital/soxbase@2.106.2) (2021-08-09)
+
+
+### Bug Fixes
+
+* forward ref not used IconBlocks ([7af4df3](https://github.com/ho-nl/m2-pwa/commit/7af4df3b03cba0a7748614e1db49d86e8157b75f))
+* page keeps reloading after each change in @reachdigital/next-ui ([45ff0f5](https://github.com/ho-nl/m2-pwa/commit/45ff0f51d87e2100faefad93d5d224a8761e6e75))
+* use SvgImageSimple for multiple areas ([bf851a6](https://github.com/ho-nl/m2-pwa/commit/bf851a6740e1956a78f457c2d90904ee2f65da2f))
+
+
+### Reverts
+
+* Revert "chore: upgrade @apollo/client" ([55ff24e](https://github.com/ho-nl/m2-pwa/commit/55ff24ede0e56c85b8095edadadd1ec5e0b1b8d2))
+
+
+
+
+
 ## [2.106.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.106.0...@reachdigital/soxbase@2.106.1) (2021-08-09)
 
 

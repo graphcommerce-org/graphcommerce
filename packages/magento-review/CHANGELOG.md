@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-review@2.103.1...@reachdigital/magento-review@2.103.2) (2021-08-09)
+
+
+### Bug Fixes
+
+* SvgSimpleImage sizing didn't use rem ([1ba07a5](https://github.com/ho-nl/m2-pwa/commit/1ba07a5694bd60ad3cee2e8102814643d2a7c79d))
+
+
+### Reverts
+
+* Revert "chore: upgrade @apollo/client" ([55ff24e](https://github.com/ho-nl/m2-pwa/commit/55ff24ede0e56c85b8095edadadd1ec5e0b1b8d2))
+
+
+
+
+
 ## [2.103.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-review@2.103.0...@reachdigital/magento-review@2.103.1) (2021-08-09)
 
 

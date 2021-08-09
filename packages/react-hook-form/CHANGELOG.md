@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.101.4](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/react-hook-form@2.101.3...@reachdigital/react-hook-form@2.101.4) (2021-08-09)
+
+
+### Reverts
+
+* Revert "chore: upgrade @apollo/client" ([55ff24e](https://github.com/ho-nl/m2-pwa/commit/55ff24ede0e56c85b8095edadadd1ec5e0b1b8d2))
+
+
+
+
+
 ## [2.101.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/react-hook-form@2.101.2...@reachdigital/react-hook-form@2.101.3) (2021-07-29)
 
 

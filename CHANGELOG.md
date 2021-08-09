@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.108.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.108.1...@graphcommerce/graphcommerce@2.108.2) (2021-08-09)
+
+
+### Bug Fixes
+
+* **account:** continue button wasn't visible when loading the page ([c33fdc8](https://github.com/ho-nl/m2-pwa/commit/c33fdc8675ddf5f5fa5b57cb7ec07be3a93f0b30))
+* fast refresh will use a browser load instead of a nextjs load ([3d018d1](https://github.com/ho-nl/m2-pwa/commit/3d018d1cfb21423419c29e7191150c0e898b6b25))
+* forward ref not used IconBlocks ([7af4df3](https://github.com/ho-nl/m2-pwa/commit/7af4df3b03cba0a7748614e1db49d86e8157b75f))
+* page keeps reloading after each change in @reachdigital/next-ui ([45ff0f5](https://github.com/ho-nl/m2-pwa/commit/45ff0f51d87e2100faefad93d5d224a8761e6e75))
+* SvgSimpleImage sizing didn't use rem ([1ba07a5](https://github.com/ho-nl/m2-pwa/commit/1ba07a5694bd60ad3cee2e8102814643d2a7c79d))
+* use semantically correct components for menufab ([0196b29](https://github.com/ho-nl/m2-pwa/commit/0196b29523b3f49294dde32d96b348d100de5fa8))
+* use SvgImageSimple for multiple areas ([bf851a6](https://github.com/ho-nl/m2-pwa/commit/bf851a6740e1956a78f457c2d90904ee2f65da2f))
+
+
+### Reverts
+
+* Revert "chore: upgrade @apollo/client" ([55ff24e](https://github.com/ho-nl/m2-pwa/commit/55ff24ede0e56c85b8095edadadd1ec5e0b1b8d2))
+
+
+
+
+
 ## [2.108.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.108.0...@graphcommerce/graphcommerce@2.108.1) (2021-08-09)
 
 
