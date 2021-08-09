@@ -23,7 +23,7 @@ export default function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
 
   return (
     <PageLink href={href} passHref>
-      <ListItem dense button selected={router.asPath.startsWith(href)}>
+      <ListItem component='a' dense button selected={router.asPath.startsWith(href)}>
         <ListItemIcon classes={{ root: classes.icon }}>{icon}</ListItemIcon>
         <ListItemText primary={children} classes={{ primary: classes.listItemText }} />
       </ListItem>

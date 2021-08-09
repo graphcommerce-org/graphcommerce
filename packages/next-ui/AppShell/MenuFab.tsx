@@ -126,7 +126,7 @@ export default function MenuFab(props: MenuFabProps) {
           ))}
         </List>
         <Divider variant='middle' />
-        <List>{children}</List>
+        <List component='div'>{children}</List>
       </Menu>
     </m.div>
   )
