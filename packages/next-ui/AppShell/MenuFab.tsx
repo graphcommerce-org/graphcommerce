@@ -16,6 +16,7 @@ import React from 'react'
 import { UseStyles } from '../Styles'
 import responsiveVal from '../Styles/responsiveVal'
 import SvgImage from '../SvgImage'
+import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconMenu } from '../icons'
 import { MenuProps } from './Menu'
 import useFabAnimation from './useFabAnimation'
@@ -83,7 +84,7 @@ export default function MenuFab(props: MenuFabProps) {
         onClick={(event) => setOpenEl(event.currentTarget)}
         className={classes.menuFab}
       >
-        <SvgImage src={iconMenu} shade='inverted' alt='menu' size='small' loading='eager' />
+        <SvgImageSimple src={iconMenu} inverted alt='menu' loading='eager' />
       </Fab>
 
       <Menu
