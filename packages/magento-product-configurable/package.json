@@ -14,7 +14,7 @@
     }
   },
   "devDependencies": {
-    "@playwright/test": "^1.13.0",
+    "@playwright/test": "^1.13.1",
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
     "@reachdigital/eslint-config-pwa": "^2.102.0",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
@@ -42,6 +42,6 @@
     "next": "^11.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "type-fest": "^1.2.2"
+    "type-fest": "^2.0.0"
   }
 }

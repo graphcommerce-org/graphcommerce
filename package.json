@@ -56,7 +56,7 @@
     }
   },
   "dependencies": {
-    "@playwright/test": "^1.13.0",
+    "@playwright/test": "^1.13.1",
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
     "@reachdigital/eslint-config-pwa": "^2.102.0",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
@@ -64,7 +64,7 @@
     "patch-package": "^6.4.3",
     "pm2": "^5.1.0",
     "postinstall-postinstall": "^2.1.0",
-    "type-fest": "^1.2.2",
+    "type-fest": "^2.0.0",
     "vercel": "^23.0.1"
   },
   "devDependencies": {
