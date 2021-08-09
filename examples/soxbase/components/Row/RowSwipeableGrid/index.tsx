@@ -43,6 +43,7 @@ export default function RowSwipeableGrid(props: RowSwipeableGridProps) {
             {...item}
             classes={{ item: classes.item }}
             imageOnly
+            sizes={responsiveVal(180, 900)}
           />
         ) : null,
       )}
