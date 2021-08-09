@@ -21,8 +21,7 @@
     "@reachdigital/magento-product": "^2.102.0",
     "@reachdigital/magento-product-configurable": "^2.102.0",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
-    "@reachdigital/typescript-config-pwa": "^2.100.10",
-    "@types/braintree-web": "^3.75.5"
+    "@reachdigital/typescript-config-pwa": "^2.100.10"
   },
   "dependencies": {
     "@apollo/client": "^3.4.6",
@@ -36,7 +35,6 @@
     "@reachdigital/magento-store": "^2.101.7",
     "@reachdigital/next-ui": "^2.105.0",
     "@reachdigital/react-hook-form": "^2.101.3",
-    "braintree-web": "^3.79.1",
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.17",
     "next": "^11.0.1",
