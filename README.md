@@ -25,11 +25,13 @@ Hosting:
 
 1. Make sure you are using node 14. (`nvm install 14 && nvm use 14`)
 2. `git clone git@github.com:ho-nl/m2-pwa.git && cd m2-pwa`
-3. `yarn install`
-4. `cp examples/soxbase-api/.env.example examples/soxbase-api/.env`
-5. `cp examples/soxbase/.env.example examples/soxbase/.env`
-6. Fill in `GRAPHCMS_BEARER` in `examples/soxbase-api/.env`, in 1Pass under
+3. `npm install --global yarn` (If you don't have Yarn installed yet)
+4. `yarn install`
+5. `cp examples/soxbase-api/.env.example examples/soxbase-api/.env`
+6. `cp examples/soxbase/.env.example examples/soxbase/.env`
+7. Fill in `GRAPHCMS_BEARER` in `examples/soxbase-api/.env`, in 1Pass under
    `soxbase-api`
+8. [Local url](http://localhost:3000)
 
 ## Customize endpoint (optional):
 
