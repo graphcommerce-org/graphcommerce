@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.secondary.main,
     textTransform: 'uppercase',
     borderRadius: 4,
-    ...theme.typography.h6,
+    ...theme.typography.body2,
+    fontWeight: 600,
     display: 'flex',
     alignItems: 'center',
     '& .MuiIconButton-root': {

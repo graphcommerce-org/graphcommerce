@@ -11,7 +11,7 @@ const useStyles = makeStyles(
     root: {
       borderRadius: 4,
       background: '#FFFADD',
-      margin: `${theme.spacings.lg} 0`,
+      margin: `${theme.spacings.sm} 0`,
     },
     detailsContainer: {
       padding: theme.spacings.sm,
@@ -21,7 +21,7 @@ const useStyles = makeStyles(
 
       [theme.breakpoints.up('sm')]: {
         gridTemplateColumns: `1fr 1fr`,
-        marginTop: theme.spacings.md,
+        marginTop: theme.spacings.xxs,
       },
     },
     orderNumberLabel: {
