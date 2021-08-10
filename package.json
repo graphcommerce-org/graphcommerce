@@ -65,7 +65,7 @@
     "pm2": "^5.1.0",
     "postinstall-postinstall": "^2.1.0",
     "type-fest": "^2.0.0",
-    "vercel": "^23.1.1"
+    "vercel": "^23.1.2"
   },
   "devDependencies": {
     "@babel/compat-data": "^7.15.0",

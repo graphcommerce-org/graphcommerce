@@ -1,4 +1,4 @@
-import { processConfig } from '@graphql-mesh/config'
+import { processConfig, validateConfig } from '@graphql-mesh/config'
 import { getMesh } from '@graphql-mesh/runtime'
 import { YamlConfig } from '@graphql-mesh/types'
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core'
@@ -11,7 +11,8 @@ import 'ts-tiny-invariant'
 import 'micro'
 import cors from 'micro-cors'
 
-function injectEnv(json: YamlConfig.Config): YamlConfig.Config {
+function injectEnv(json: YamlConfig.Config & { $schema?: string }): YamlConfig.Config {
+  delete json.$schema
   let content = JSON.stringify(json)
 
   if (typeof process === 'undefined' || 'env' in process === false) {
@@ -39,10 +40,12 @@ function injectEnv(json: YamlConfig.Config): YamlConfig.Config {
 }
 
 async function createMesh(config: YamlConfig.Config) {
+  const conf = injectEnv(config)
+  validateConfig(conf)
   return getMesh(await processConfig(injectEnv(config)))
 }
 
-export default async function createHandler(config: YamlConfig.Config, path: string) {
+export async function createHandler(config: YamlConfig.Config, path: string) {
   const mesh = await createMesh(config)
 
   /**
@@ -88,6 +91,7 @@ export default async function createHandler(config: YamlConfig.Config, path: str
       'apollographql-client-name',
     ],
   })
+
   const apolloHandler = apolloServer.createHandler({ path })
   return corsHandler((req, res) => (req.method === 'OPTIONS' ? res.end() : apolloHandler(req, res)))
 }
