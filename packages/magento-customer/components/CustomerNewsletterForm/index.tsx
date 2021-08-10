@@ -61,6 +61,7 @@ export default function CustomerNewsletterForm(props: CustomerNewsletterFormProp
         render={({ field: { onChange, value, name, ref, onBlur } }) => (
           <FormControl error={!!formState.errors.isSubscribed}>
             <FormControlLabel
+              labelPlacement='start' // prevent margin right
               label=''
               control={<Switch color='primary' {...switchProps} />}
               checked={value}
