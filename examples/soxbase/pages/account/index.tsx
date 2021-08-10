@@ -143,12 +143,8 @@ function AccountIndexPage() {
             <AccountMenuItem
               iconSrc={iconNewspaper}
               title='Newsletter'
-              subtitle={
-                customer?.email && customer?.is_subscribed
-                  ? customer.email
-                  : 'Be the first to know about everything new!'
-              }
-              endIcon={<CustomerNewsletterForm color='primary' {...customer} />}
+              subtitle='Be the first to know about everything new!'
+              endIcon={<CustomerNewsletterForm color='primary' />}
             />
             <SignOutForm
               button={({ formState }) => (

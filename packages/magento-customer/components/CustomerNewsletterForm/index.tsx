@@ -1,3 +1,4 @@
+import { useQuery } from '@apollo/client'
 import {
   FormControl,
   FormControlLabel,
@@ -7,14 +8,20 @@ import {
 } from '@material-ui/core'
 import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React, { useEffect, useMemo } from 'react'
-import { CustomerInfoFragment } from '../../CustomerInfo.gql'
 import { CustomerNewsletterFormDocument } from '../../CustomerNewsletterForm/CustomerNewsletterForm.gql'
+import { CustomerDocument } from '../../hooks'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 
-type CustomerNewsletterFormProps = SwitchProps & Pick<CustomerInfoFragment, 'is_subscribed'>
+type CustomerNewsletterFormProps = SwitchProps
 
 export default function CustomerNewsletterForm(props: CustomerNewsletterFormProps) {
-  const { is_subscribed } = props
+  const { ...switchProps } = props
+
+  const { loading, data } = useQuery(CustomerDocument, {
+    ssr: false,
+  })
+  const customer = data?.customer
+  const is_subscribed = customer && customer.is_subscribed
 
   const defaultValues = useMemo(
     () => ({
@@ -27,12 +34,7 @@ export default function CustomerNewsletterForm(props: CustomerNewsletterFormProp
     CustomerNewsletterFormDocument,
     {
       mode: 'onChange',
-      //  defaultValues,
-      onBeforeSubmit: (data) => {
-        console.log(data)
-
-        return data
-      },
+      defaultValues,
     },
     { errorPolicy: 'all' },
   )
@@ -49,16 +51,18 @@ export default function CustomerNewsletterForm(props: CustomerNewsletterFormProp
     reset(defaultValues)
   }, [defaultValues, reset])
 
+  if (loading) return null
+
   return (
-    <form onSubmit={() => {}} noValidate>
+    <form noValidate>
       <Controller
         name='isSubscribed'
         control={control}
         render={({ field: { onChange, value, name, ref, onBlur } }) => (
           <FormControl error={!!formState.errors.isSubscribed}>
             <FormControlLabel
-              label='isSubscribed'
-              control={<Switch color='primary' />}
+              label=''
+              control={<Switch color='primary' {...switchProps} />}
               checked={value}
               inputRef={ref}
               onBlur={onBlur}
