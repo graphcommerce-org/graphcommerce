@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.secondary.main,
     textTransform: 'uppercase',
     borderRadius: 4,
-    ...theme.typography.h6,
+    ...theme.typography.body1,
     display: 'flex',
     alignItems: 'center',
     '& .MuiIconButton-root': {
@@ -42,7 +42,7 @@ export default function RemoveCouponForm(props: CartCouponProps) {
     <form className={classes.inlineCoupon} onSubmit={submitHandler} noValidate>
       {applied_coupons?.[0]?.code}
       <IconButton type='submit'>
-        <SvgImageSimple src={iconClose} size='small' />
+        <SvgImageSimple src={iconClose} size='small' muted />
       </IconButton>
 
       <ApolloCartErrorAlert error={error} />
