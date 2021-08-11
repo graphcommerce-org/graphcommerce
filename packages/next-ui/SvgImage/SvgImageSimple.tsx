@@ -21,7 +21,7 @@ const useStyles = makeStyles(
     },
     /* Styles applied to the element if `size='small'`. */
     sizeSmall: {
-      fontSize: theme.typography.pxToRem(20),
+      width: 20,
     },
     /* Styles applied to the element if `size='large'`. */
     sizeLarge: {
