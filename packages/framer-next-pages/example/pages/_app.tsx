@@ -1,7 +1,7 @@
 import '../demo.css'
 import { PageComponent, FramerNextPages } from '@reachdigital/framer-next-pages'
 import { LazyMotion } from 'framer-motion'
-import { AppPropsType } from 'next/dist/next-server/lib/utils'
+import { AppPropsType } from 'next/dist/shared/lib/utils'
 import dynamic from 'next/dynamic'
 import { Router } from 'next/router'
 import React from 'react'

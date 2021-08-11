@@ -1,5 +1,5 @@
 import { AnimatePresence } from 'framer-motion'
-import type { AppPropsType } from 'next/dist/next-server/lib/utils'
+import { AppPropsType } from 'next/dist/shared/lib/utils'
 import type { NextRouter } from 'next/router'
 import React, { useRef } from 'react'
 import { pageContext } from '../context/pageContext'

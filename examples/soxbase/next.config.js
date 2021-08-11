@@ -20,7 +20,7 @@ const obs = new PerformanceObserver((entryList) => {
 })
 obs.observe({ entryTypes: ['measure'] })
 
-/** @type {import('next/dist/next-server/server/config').NextConfig} */
+/** @type {import('next/dist/server/config-shared').NextConfig} */
 const nextConfig = {
   webpackStats: process.env.ANALYZE === 'true',
   rewrites() {
