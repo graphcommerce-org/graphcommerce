@@ -2,7 +2,7 @@ import { execSync } from 'child_process'
 import { createHash } from 'crypto'
 import { readFileSync, writeFileSync } from 'fs'
 import withTranspileModules from 'next-transpile-modules'
-
+import { NextConfig } from 'next/dist/server/config-shared'
 import { PackageJson } from 'type-fest'
 
 export type WorkspaceInfo = {
@@ -13,7 +13,7 @@ export type WorkspaceInfo = {
   }
 }
 
-export function withYarn1Workspaces(modules: string[] = []) {
+export function withYarn1Workspaces(modules: string[] = []): (config: NextConfig) => NextConfig {
   const packageStr = readFileSync('package.json', 'utf-8')
   const packageJson = JSON.parse(packageStr) as PackageJson
 
@@ -39,7 +39,7 @@ export function withYarn1Workspaces(modules: string[] = []) {
     ...Object.keys(packageJson.devDependencies ?? {}),
   ]
 
-  const entries = Object.entries((workspaceInfo as unknown) as WorkspaceInfo)
+  const entries = Object.entries(workspaceInfo as unknown as WorkspaceInfo)
 
   const m = new Set<string>(modules)
   entries.forEach(([p, b]) => {

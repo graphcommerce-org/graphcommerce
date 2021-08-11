@@ -27,7 +27,7 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@reachdigital/image": "^2.101.5",
     "@reachdigital/next-ui": "^2.105.2",
-    "next": "^11.0.1",
+    "next": "^11.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "type-fest": "^2.0.0"

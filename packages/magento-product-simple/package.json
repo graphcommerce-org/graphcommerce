@@ -26,7 +26,7 @@
     "@reachdigital/graphql": "^2.101.3",
     "@reachdigital/magento-cart": "^2.103.3",
     "@reachdigital/magento-product": "^2.102.2",
-    "next": "^11.0.1",
+    "next": "^11.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }

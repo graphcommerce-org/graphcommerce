@@ -1,9 +1,4 @@
-import {
-  ImageConfig,
-  imageConfigDefault,
-  LoaderValue,
-  VALID_LOADERS,
-} from 'next/dist/next-server/server/image-config'
+import { ImageConfig, imageConfigDefault } from 'next/dist/server/image-config'
 import { ImageLoaderProps } from 'next/image'
 
 export type DefaultImageLoaderProps = ImageLoaderProps & { root: string }
