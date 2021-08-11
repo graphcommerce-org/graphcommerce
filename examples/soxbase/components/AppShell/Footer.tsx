@@ -1,10 +1,6 @@
 import { Container, IconButton, Link, makeStyles, Theme } from '@material-ui/core'
-import Facebook from '@material-ui/icons/Facebook'
-import Instagram from '@material-ui/icons/Instagram'
-import LinkedIn from '@material-ui/icons/LinkedIn'
-import Twitter from '@material-ui/icons/Twitter'
-import Youtube from '@material-ui/icons/YouTube'
 import { StoreSwitcherButton } from '@reachdigital/magento-store'
+import { SvgImageSimple } from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import Button from '../PageLink/Button'
@@ -72,11 +68,7 @@ export default function Footer(props: FooterProps) {
         {footer?.socialLinks?.map((link) => (
           <PageLink key={link.title} href={link.url} passHref>
             <IconButton color='inherit' size='small' disableRipple disableFocusRipple edge='start'>
-              {link.title.toLowerCase() === 'instagram' && <Instagram color='inherit' />}
-              {link.title.toLowerCase() === 'linkedin' && <LinkedIn color='inherit' />}
-              {link.title.toLowerCase() === 'twitter' && <Twitter color='inherit' />}
-              {link.title.toLowerCase() === 'facebook' && <Facebook color='inherit' />}
-              {link.title.toLowerCase() === 'youtube' && <Youtube color='inherit' />}
+              {link.asset ? <SvgImageSimple src={link.asset.url} width={24} /> : link.title}
             </IconButton>
           </PageLink>
         ))}

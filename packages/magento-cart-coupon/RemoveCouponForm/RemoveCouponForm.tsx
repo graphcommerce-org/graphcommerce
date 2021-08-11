@@ -1,7 +1,6 @@
 import { IconButton, makeStyles, Theme } from '@material-ui/core'
-import { Clear } from '@material-ui/icons'
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
-import { UseStyles } from '@reachdigital/next-ui'
+import { UseStyles, iconClose, SvgImageSimple } from '@reachdigital/next-ui'
 import React from 'react'
 import { CouponFragment } from '../Api/Coupon.gql'
 import { RemoveCouponFormDocument } from './RemoveCouponForm.gql'
@@ -43,7 +42,7 @@ export default function RemoveCouponForm(props: CartCouponProps) {
     <form className={classes.inlineCoupon} onSubmit={submitHandler} noValidate>
       {applied_coupons?.[0]?.code}
       <IconButton type='submit'>
-        <Clear fontSize='small' />
+        <SvgImageSimple src={iconClose} size='small' />
       </IconButton>
 
       <ApolloCartErrorAlert error={error} />
