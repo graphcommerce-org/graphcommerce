@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.109.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.108.2...@graphcommerce/graphcommerce@2.109.0) (2021-08-11)
+
+
+### Features
+
+* added Yarn install to base instruction ([b13374f](https://github.com/ho-nl/m2-pwa/commit/b13374f25602f2eee5b7996800fc2699afc23762))
+
+
+
+
+
 ## [2.108.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.108.1...@graphcommerce/graphcommerce@2.108.2) (2021-08-09)
 
 

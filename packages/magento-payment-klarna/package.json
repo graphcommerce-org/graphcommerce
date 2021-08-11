@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-payment-klarna",
-  "version": "2.101.9",
+  "version": "2.101.10",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
@@ -27,7 +27,7 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@reachdigital/graphql": "^2.101.3",
     "@reachdigital/image": "^2.101.5",
-    "@reachdigital/magento-cart": "^2.103.2",
+    "@reachdigital/magento-cart": "^2.103.3",
     "@reachdigital/magento-store": "^2.101.9",
     "@reachdigital/next-ui": "^2.105.2",
     "clsx": "^1.1.1",
