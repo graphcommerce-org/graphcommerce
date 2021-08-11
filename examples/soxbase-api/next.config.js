@@ -9,6 +9,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  experimental: { esmExternals: true },
 }
 
 module.exports = withYarn1Workspaces(nextConfig)
