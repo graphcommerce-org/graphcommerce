@@ -31,11 +31,6 @@ const useStyles = makeStyles(
       gap: responsiveVal(16, 32),
       position: 'relative',
     },
-    scroller: {
-      // gridTemplateColumns: `repeat(auto-fill, ${responsiveVal(48, 96)})`,
-      // height: responsiveVal(48, 96),
-      // columnGap: 20,
-    },
     image: {
       borderRadius: '50%',
       marginRight: theme.spacings.xs,
@@ -122,7 +117,7 @@ export default function CartItemSummary(props: OrderSummaryProps) {
               <SliderPrev />
             </div>
             <SliderContainer classes={{ container: classes.sliderContainer }}>
-              <SliderScroller classes={{ scroller: classes.scroller }}>
+              <SliderScroller>
                 {items?.map((item) => (
                   <Image
                     key={item?.uid}
