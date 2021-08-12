@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.111.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.110.0...@graphcommerce/graphcommerce@2.111.0) (2021-08-12)
+
+
+### Bug Fixes
+
+* account sizing ([ff8eb08](https://github.com/ho-nl/m2-pwa/commit/ff8eb08fb8ef0e08be00a3abac1582799ec9d553))
+* account tweaks ([26ca295](https://github.com/ho-nl/m2-pwa/commit/26ca2955fe7a3ed509aaa7df98cbb4854d636179))
+* disableMargin for minimal page shell footer ([4b72627](https://github.com/ho-nl/m2-pwa/commit/4b72627b844828e69aa8aef28d6dd67b1e107cfa))
+* grid blowout on homepage ([8c0e225](https://github.com/ho-nl/m2-pwa/commit/8c0e225a629841e4a391a1edbc0614fc30789ba6))
+* prevent re-render newsletter form ([aa180d2](https://github.com/ho-nl/m2-pwa/commit/aa180d27371e64f08d2965e27381d160fe3b3f81))
+* remove switch margin right ([5aaa609](https://github.com/ho-nl/m2-pwa/commit/5aaa609d28a679d7b5f0a746dc8f34b5f6591e39))
+
+
+### Features
+
+* sticky footer ([1547cab](https://github.com/ho-nl/m2-pwa/commit/1547cab694c0ebf7cf9acb57817a5fe5565f10fd))
+* toggle subscribe customer to newsletter ([85688e4](https://github.com/ho-nl/m2-pwa/commit/85688e47b0571c28a2f967310915336b397fc120))
+
+
+
+
+
 # [2.110.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.109.0...@graphcommerce/graphcommerce@2.110.0) (2021-08-12)
 
 

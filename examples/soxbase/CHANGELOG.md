@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.108.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.107.0...@reachdigital/soxbase@2.108.0) (2021-08-12)
+
+
+### Bug Fixes
+
+* account tweaks ([26ca295](https://github.com/ho-nl/m2-pwa/commit/26ca2955fe7a3ed509aaa7df98cbb4854d636179))
+* disableMargin for minimal page shell footer ([4b72627](https://github.com/ho-nl/m2-pwa/commit/4b72627b844828e69aa8aef28d6dd67b1e107cfa))
+* prevent re-render newsletter form ([aa180d2](https://github.com/ho-nl/m2-pwa/commit/aa180d27371e64f08d2965e27381d160fe3b3f81))
+
+
+### Features
+
+* sticky footer ([1547cab](https://github.com/ho-nl/m2-pwa/commit/1547cab694c0ebf7cf9acb57817a5fe5565f10fd))
+* toggle subscribe customer to newsletter ([85688e4](https://github.com/ho-nl/m2-pwa/commit/85688e47b0571c28a2f967310915336b397fc120))
+
+
+
+
+
 # [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.106.3...@reachdigital/soxbase@2.107.0) (2021-08-12)
 
 

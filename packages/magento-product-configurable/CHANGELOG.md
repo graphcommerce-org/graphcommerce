@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product-configurable@2.103.0...@reachdigital/magento-product-configurable@2.103.1) (2021-08-12)
+
+
+### Bug Fixes
+
+* account tweaks ([26ca295](https://github.com/ho-nl/m2-pwa/commit/26ca2955fe7a3ed509aaa7df98cbb4854d636179))
+
+
+
+
+
 # [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product-configurable@2.102.3...@reachdigital/magento-product-configurable@2.103.0) (2021-08-12)
 
 

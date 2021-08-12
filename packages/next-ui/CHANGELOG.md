@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.106.0...@reachdigital/next-ui@2.107.0) (2021-08-12)
+
+
+### Bug Fixes
+
+* account tweaks ([26ca295](https://github.com/ho-nl/m2-pwa/commit/26ca2955fe7a3ed509aaa7df98cbb4854d636179))
+* grid blowout on homepage ([8c0e225](https://github.com/ho-nl/m2-pwa/commit/8c0e225a629841e4a391a1edbc0614fc30789ba6))
+
+
+### Features
+
+* sticky footer ([1547cab](https://github.com/ho-nl/m2-pwa/commit/1547cab694c0ebf7cf9acb57817a5fe5565f10fd))
+
+
+
+
+
 # [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.105.2...@reachdigital/next-ui@2.106.0) (2021-08-12)
 
 
