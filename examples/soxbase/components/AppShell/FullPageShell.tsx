@@ -54,7 +54,10 @@ const useStyles = makeStyles(
 )
 
 export type FullPageShellProps = Omit<DefaultPageQuery, 'pages'> &
-  Omit<FullPageShellBaseProps, 'menu' | 'logo' | 'actions' | 'classes' | 'name'> & {
+  Omit<
+    FullPageShellBaseProps,
+    'menu' | 'logo' | 'actions' | 'classes' | 'name' | 'header' | 'footer'
+  > & {
     alwaysShowLogo?: boolean
   }
 
@@ -88,6 +91,7 @@ function FullPageShell(props: FullPageShellProps) {
     <FullPageShellBase
       {...uiProps}
       name={name}
+      classes={{ header: alwaysShowLogo ? classes.header : undefined }}
       header={
         <>
           <Logo classes={{ logo: alwaysShowLogo ? undefined : classes.logo }} />
@@ -113,7 +117,7 @@ function FullPageShell(props: FullPageShellProps) {
           </DesktopNavActions>
         </>
       }
-      classes={{ header: alwaysShowLogo ? classes.header : undefined }}
+      footer={<Footer footer={footer} />}
     >
       <MenuFab {...menuProps} search={<SearchButton onClick={onSearchStart} />}>
         <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>
@@ -138,8 +142,6 @@ function FullPageShell(props: FullPageShellProps) {
       </FixedFab>
 
       {children}
-
-      <Footer footer={footer} />
     </FullPageShellBase>
   )
 }

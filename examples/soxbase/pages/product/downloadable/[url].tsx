@@ -63,7 +63,7 @@ function ProductDownloadable(props: Props) {
     product?.__typename !== 'DownloadableProduct' ||
     typeProduct?.__typename !== 'DownloadableProduct'
   )
-    return <></>
+    return <div />
 
   return (
     <>

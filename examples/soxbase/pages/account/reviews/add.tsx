@@ -34,11 +34,14 @@ function AccountReviewsAddPage() {
   const customer = customerData?.customer
   const product = productData?.products?.items?.[0]
 
-  if (productLoading || loadingStoreConfig) return <></>
+  if (
+    !storeConfig?.product_reviews_enabled ||
+    productLoading ||
+    loadingStoreConfig ||
+    customerLoading
+  )
+    return <div />
 
-  if (!storeConfig?.product_reviews_enabled) return null
-
-  if (customerLoading) return <></>
   if (error && !customer && !storeConfig.allow_guests_to_write_product_reviews)
     return (
       <ApolloCustomerErrorFullPage

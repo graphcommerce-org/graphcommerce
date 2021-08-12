@@ -25,7 +25,7 @@ function AccountAddressesPage(props: Props) {
   })
   const customer = data?.customer
 
-  if (loading) return <></>
+  if (loading) return <div />
   if (error)
     return (
       <ApolloCustomerErrorFullPage
@@ -62,6 +62,7 @@ function AccountAddressesPage(props: Props) {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
+  sharedKey: () => 'account/addresses',
 }
 AccountAddressesPage.pageOptions = pageOptions
 

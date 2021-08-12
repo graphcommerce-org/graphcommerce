@@ -35,7 +35,7 @@ function EditAddressPage(props: Props) {
   const addresses = data?.customer?.addresses
   const address = addresses?.find((a) => a?.id === numAddressId)
 
-  if (loading) return <></>
+  if (loading) return <div />
   if (error)
     return (
       <ApolloCustomerErrorFullPage
@@ -91,6 +91,7 @@ function EditAddressPage(props: Props) {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
+  sharedKey: () => 'account/addresses',
 }
 EditAddressPage.pageOptions = pageOptions
 

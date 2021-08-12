@@ -1,11 +1,4 @@
-import {
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  makeStyles,
-  Theme,
-  Typography,
-} from '@material-ui/core'
+import { ListItem, ListItemIcon, ListItemText, makeStyles, Theme } from '@material-ui/core'
 import { ImageProps } from '@reachdigital/image'
 import {
   Button,
@@ -14,6 +7,7 @@ import {
   responsiveVal,
   SvgImage,
   iconChevronRight,
+  SvgImageSimple,
 } from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import PageLink from 'next/link'
@@ -39,28 +33,20 @@ const useStyles = makeStyles(
       },
     },
     icon: {
-      minWidth: `${responsiveVal(40, 56)}`,
+      paddingRight: theme.spacings.xs,
     },
     borderBottom: {
       borderBottom: `1px solid ${theme.palette.divider}`,
     },
-    heading: {
-      fontWeight: 400,
-      fontSize: theme.typography.h4.fontSize,
-      [theme.breakpoints.up('md')]: {
-        fontSize: theme.typography.h6.fontSize,
-      },
+    primary: {
+      ...theme.typography.subtitle1,
     },
-    subheading: {
-      display: 'block',
-      textOverflow: 'ellipsis',
+    secondary: {
+      // ...theme.typography.caption,
+      color: theme.palette.primary.mutedText,
       whiteSpace: 'nowrap',
       overflow: 'hidden',
-      color: theme.palette.primary.mutedText,
-      ...theme.typography.overline,
-      [theme.breakpoints.up('md')]: {
-        ...theme.typography.body2,
-      },
+      textOverflow: 'elipsis',
     },
     itemLink: {
       padding: 0,
@@ -102,15 +88,12 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
     >
       <ListItem disableGutters>
         <ListItemIcon className={classes.icon}>
-          <SvgImage src={iconSrc} alt='' size='medium' loading='eager' shade='muted' />
+          <SvgImageSimple src={iconSrc} alt='' size='large' loading='eager' muted />
         </ListItemIcon>
         <ListItemText
-          primary={
-            <Typography variant='h6' component='span' className={classes.heading}>
-              {title}
-            </Typography>
-          }
-          secondary={<span className={classes.subheading}>{subtitle}</span>}
+          classes={{ secondary: classes.secondary, primary: classes.primary }}
+          primary={title}
+          secondary={subtitle}
         />
         {endIcon ?? (
           <SvgImage src={iconChevronRight} alt='chevron right' size='small' loading='eager' />

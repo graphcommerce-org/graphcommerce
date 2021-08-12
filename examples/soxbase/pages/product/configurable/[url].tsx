@@ -74,7 +74,7 @@ function ProductConfigurable(props: Props) {
     typeProduct?.__typename !== 'ConfigurableProduct' ||
     !product.sku
   )
-    return <></>
+    return <div />
 
   return (
     <>

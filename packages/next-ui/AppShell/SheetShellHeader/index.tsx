@@ -1,6 +1,6 @@
+import useSheetContext from '@reachdigital/framer-sheet/hooks/useSheetContext'
 import { useElementScroll } from '@reachdigital/framer-utils'
 import React from 'react'
-import useSheetContext from '../../../framer-sheet/hooks/useSheetContext'
 import AppShellHeader, { AppShellHeaderProps } from '../AppShellHeader'
 import useSheetStyles from '../SheetShellBase/useSheetStyles'
 import SheetShellDragIndicator from '../SheetShellDragIndicator'

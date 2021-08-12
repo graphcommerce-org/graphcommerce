@@ -7,7 +7,6 @@ import responsiveVal from '../Styles/responsiveVal'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      minHeight: '75vh',
       marginTop: responsiveVal(50, 250),
       alignItems: 'center',
     },

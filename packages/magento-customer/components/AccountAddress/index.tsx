@@ -1,4 +1,5 @@
 import { Link, makeStyles, Theme } from '@material-ui/core'
+import PageLink from 'next/link'
 import React from 'react'
 import AddressMultiLine from '../AddressMultiLine'
 import DeleteCustomerAddressForm from '../DeleteCustomerAddressForm'
@@ -48,9 +49,9 @@ export default function AccountAddress(props: AccountAddressProps) {
         </div>
       </div>
       <div className={classes.actions}>
-        <Link color='primary' href={`/account/addresses/edit?addressId=${id}`}>
-          Edit
-        </Link>
+        <PageLink href={`/account/addresses/edit?addressId=${id}`} passHref>
+          <Link color='primary'>Edit</Link>
+        </PageLink>
         <DeleteCustomerAddressForm addressId={id ?? undefined} />
       </div>
     </div>

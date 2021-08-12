@@ -25,7 +25,7 @@ function AccountNamePage() {
   const { loading, data, error } = useQuery(CustomerDocument)
   const customer = data?.customer
 
-  if (loading) return <></>
+  if (loading) return <div />
   if (error)
     return (
       <ApolloCustomerErrorFullPage

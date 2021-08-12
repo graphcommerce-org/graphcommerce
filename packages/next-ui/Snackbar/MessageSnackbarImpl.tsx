@@ -46,6 +46,7 @@ const useStyles = makeStyles(
       color: theme.palette.primary.contrastText,
     },
     message: {
+      width: '100%',
       padding: theme.spacings.xxs,
       display: 'grid',
       alignItems: 'center',
@@ -107,7 +108,7 @@ const useStyles = makeStyles(
       position: 'sticky',
     },
   }),
-  { name: 'Impl' },
+  { name: 'MessageSnackbar' },
 )
 
 export type MessageSnackbarImplProps = Omit<

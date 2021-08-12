@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Container, NoSsr, Switch } from '@material-ui/core'
+import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
   AddressSingleLine,
@@ -8,14 +8,15 @@ import {
 } from '@reachdigital/magento-customer'
 import {
   AccountDashboardDocument,
-  AccountMenuItem,
   AccountMenu,
+  AccountMenuItem,
+  AccountNewsletter,
 } from '@reachdigital/magento-customer-account'
 import { OrderStateLabelInline } from '@reachdigital/magento-customer-order'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
+  AppShellTitle,
   GetStaticProps,
-  TimeAgo,
   iconBox,
   iconEmailOutline,
   iconHome,
@@ -25,8 +26,8 @@ import {
   iconPersonAlt,
   iconShutdown,
   iconStar,
+  TimeAgo,
   Title,
-  AppShellTitle,
 } from '@reachdigital/next-ui'
 import React from 'react'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
@@ -50,7 +51,7 @@ function AccountIndexPage() {
   const orders = customer?.orders
   const latestOrder = orders?.items?.[orders?.items?.length - 1]
 
-  if (loading) return <></>
+  if (loading) return <div />
   if (error)
     return (
       <ApolloCustomerErrorFullPage
@@ -64,19 +65,20 @@ function AccountIndexPage() {
 
   return (
     <>
+      <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
+
       <PageShellHeader backFallbackHref='/' backFallbackTitle='Home'>
         <Title component='span' size='small' icon={iconPersonAlt}>
           Account
         </Title>
       </PageShellHeader>
+
+      <AppShellTitle icon={iconPersonAlt}>
+        <Title>Account</Title>
+      </AppShellTitle>
+
       <Container maxWidth='md'>
         <NoSsr>
-          <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
-
-          <AppShellTitle icon={iconPersonAlt}>
-            <Title>Account</Title>
-          </AppShellTitle>
-
           <AccountMenu>
             <AccountMenuItem
               href='/account/name'
@@ -143,7 +145,7 @@ function AccountIndexPage() {
               iconSrc={iconNewspaper}
               title='Newsletter'
               subtitle='Be the first to know about everything new!'
-              endIcon={<Switch color='primary' />}
+              endIcon={<AccountNewsletter color='primary' />}
             />
             <SignOutForm
               button={({ formState }) => (

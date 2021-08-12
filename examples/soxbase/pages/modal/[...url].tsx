@@ -26,7 +26,7 @@ function ModalPage(props: Props) {
   const { pages } = props
   const page = pages?.[0]
 
-  if (!pages?.[0]) return <></>
+  if (!pages?.[0]) return <div />
 
   const metaRobots = page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]
 

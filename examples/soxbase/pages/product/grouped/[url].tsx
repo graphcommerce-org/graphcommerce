@@ -61,7 +61,7 @@ function ProductGrouped(props: Props) {
   const aggregations = typeProducts?.aggregations
 
   if (product?.__typename !== 'GroupedProduct' || typeProduct?.__typename !== 'GroupedProduct')
-    return <></>
+    return <div />
 
   return (
     <>

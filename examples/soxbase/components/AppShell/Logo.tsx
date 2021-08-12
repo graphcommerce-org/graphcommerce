@@ -8,12 +8,14 @@ import svgLogo from './graphcommerce.svg'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     logo: {
-      width: 136,
+      width: 'auto',
       height: 16,
       pointerEvents: 'all',
+      paddingLeft: 10,
       [theme.breakpoints.up('md')]: {
-        width: 209,
+        width: 'auto',
         height: 25,
+        paddingLeft: 0,
       },
     },
     link: {

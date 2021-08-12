@@ -22,7 +22,7 @@ const useStyles = makeStyles(
       marginBottom: theme.spacings.xs,
     },
   }),
-  { name: 'GuestOrderEmailSignIn' },
+  { name: 'AccountSignInUpForm' },
 )
 
 export default function AccountSignInUpForm() {
@@ -88,15 +88,17 @@ export default function AccountSignInUpForm() {
             .
           </Typography>
 
-          <Button
-            onClick={() => router.back()}
-            color='primary'
-            variant='contained'
-            size='large'
-            text='bold'
-          >
-            Continue shopping
-          </Button>
+          <FormActions>
+            <Button
+              onClick={() => router.back()}
+              color='primary'
+              variant='contained'
+              size='large'
+              text='bold'
+            >
+              Continue shopping
+            </Button>
+          </FormActions>
         </div>
       )}
 

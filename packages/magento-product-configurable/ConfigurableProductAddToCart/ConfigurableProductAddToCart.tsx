@@ -53,7 +53,7 @@ const useStyles = makeStyles(
       marginRight: 5,
     },
   }),
-  { name: 'ConfigurableAddToCart' },
+  { name: 'ConfigurableProductAddToCart' },
 )
 
 export default function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {

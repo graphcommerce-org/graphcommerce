@@ -60,7 +60,7 @@ function ProductVirtual(props: Props) {
   const aggregations = typeProducts?.aggregations
 
   if (product?.__typename !== 'VirtualProduct' || typeProduct?.__typename !== 'VirtualProduct')
-    return <></>
+    return <div />
 
   return (
     <>
