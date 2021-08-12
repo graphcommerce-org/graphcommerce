@@ -5,8 +5,7 @@ import React from 'react'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      marginTop: theme.spacings.md,
-      marginBottom: theme.spacings.md,
+      marginBottom: theme.spacings.lg,
     },
   }),
   { name: 'AccountMenu' },
@@ -18,5 +17,9 @@ export default function AccountMenu(props: AccountMenuProps) {
   const { children } = props
   const classes = useStyles(props)
 
-  return <List className={classes.root}>{children}</List>
+  return (
+    <List classes={classes} disablePadding>
+      {children}
+    </List>
+  )
 }
