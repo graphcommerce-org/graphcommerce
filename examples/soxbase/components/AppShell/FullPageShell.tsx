@@ -18,6 +18,7 @@ import {
   responsiveVal,
   SvgImageSimple,
 } from '@reachdigital/next-ui'
+import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'
@@ -41,6 +42,11 @@ const useStyles = makeStyles(
       [theme.breakpoints.down('sm')]: {
         marginTop: 16,
         marginBottom: 16,
+      },
+    },
+    hideOnVirtualKeyboardOpen: {
+      '@media (max-height: 530px)': {
+        display: 'none',
       },
     },
     cartFab: {
@@ -119,7 +125,11 @@ function FullPageShell(props: FullPageShellProps) {
       }
       footer={<Footer footer={footer} />}
     >
-      <MenuFab {...menuProps} search={<SearchButton onClick={onSearchStart} />}>
+      <MenuFab
+        {...menuProps}
+        search={<SearchButton onClick={onSearchStart} />}
+        classes={{ menuWrapper: classes.hideOnVirtualKeyboardOpen }}
+      >
         <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>
           Account
         </CustomerMenuFabItem>
@@ -138,7 +148,10 @@ function FullPageShell(props: FullPageShellProps) {
       </MenuFab>
 
       <FixedFab>
-        <CartFab style={{ boxShadow: 'none' }} className={classes.cartFab} />
+        <CartFab
+          style={{ boxShadow: 'none' }}
+          className={clsx(classes.cartFab, classes.hideOnVirtualKeyboardOpen)}
+        />
       </FixedFab>
 
       {children}

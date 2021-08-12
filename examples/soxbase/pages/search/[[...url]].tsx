@@ -26,6 +26,7 @@ import {
 } from '@reachdigital/magento-search'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { AppShellSticky, GetStaticProps, Title } from '@reachdigital/next-ui'
+import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -50,6 +51,16 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('md')]: {
         display: 'block',
       },
+    },
+    hideOnDesktop: {
+      display: 'block',
+      [theme.breakpoints.up('md')]: {
+        display: 'none',
+      },
+    },
+    categoryResultsMobile: {
+      marginTop: theme.spacings.xs,
+      marginBottom: theme.spacings.xs,
     },
   }),
   {
@@ -80,9 +91,6 @@ function SearchResultPage(props: Props) {
         additional={
           <Container maxWidth={false}>
             <SearchForm totalResults={totalSearchResults} search={search} />
-            {categories?.items?.map((category) => (
-              <CategorySearchResult key={category?.url_path} search={search} {...category} />
-            ))}
           </Container>
         }
         scrolled
@@ -99,6 +107,17 @@ function SearchResultPage(props: Props) {
       </Container>
 
       <SearchDivider className={classes.hideOnMobile} />
+
+      <Container
+        maxWidth='md'
+        className={clsx(classes.hideOnDesktop, classes.categoryResultsMobile)}
+      >
+        <>
+          {categories?.items?.map((category) => (
+            <CategorySearchResult key={category?.url_path} search={search} {...category} />
+          ))}
+        </>
+      </Container>
 
       {products && products.items && products?.items?.length > 0 && (
         <ProductListParamsProvider value={params}>

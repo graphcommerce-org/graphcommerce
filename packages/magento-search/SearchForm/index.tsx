@@ -11,6 +11,9 @@ const useStyles = makeStyles(
       color: theme.palette.grey[500],
       paddingRight: 7,
     },
+    searchFormRow: {
+      paddingTop: 0,
+    },
   }),
   {
     name: 'SearchIndexPage',
@@ -26,7 +29,7 @@ export type SearchFormProps = {
 
 export default function SearchForm(props: SearchFormProps) {
   const { totalResults = 0, search = '', urlHandle = 'search', autoFocus = true } = props
-  const pageClasses = useStyles(props)
+  const classes = useStyles(props)
   const router = useRouter()
 
   const form = useForm({ mode: 'onChange', defaultValues: { search } })
@@ -54,7 +57,7 @@ export default function SearchForm(props: SearchFormProps) {
   ) : (
     <>
       {totalResults > 0 && (
-        <div className={pageClasses.totalProducts}>
+        <div className={classes.totalProducts}>
           {totalResults} {totalResults > 1 ? 'results' : 'result'}
         </div>
       )}
@@ -75,7 +78,7 @@ export default function SearchForm(props: SearchFormProps) {
         }
       }}
     >
-      <FormRow>
+      <FormRow className={classes.searchFormRow}>
         <TextField
           variant='outlined'
           type='text'

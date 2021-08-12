@@ -8,14 +8,12 @@ import {
   Menu,
   Theme,
 } from '@material-ui/core'
-import clsx from 'clsx'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import { Router, useRouter } from 'next/router'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import responsiveVal from '../Styles/responsiveVal'
-import SvgImage from '../SvgImage'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconMenu } from '../icons'
 import { MenuProps } from './Menu'
@@ -76,7 +74,7 @@ export default function MenuFab(props: MenuFabProps) {
   Router.events.on('routeChangeStart', () => setOpenEl(null))
 
   return (
-    <m.div className={clsx(classes.menuWrapper)} style={{ opacity, scale, filter }}>
+    <m.div className={classes.menuWrapper} style={{ opacity, scale, filter }}>
       <Fab
         color='primary'
         aria-label='Open Menu'

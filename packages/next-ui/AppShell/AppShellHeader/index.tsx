@@ -43,7 +43,9 @@ const useStyles = makeStyles(
       },
     },
     sheetHeaderScrolled: {
-      marginTop: -60,
+      [theme.breakpoints.up('md')]: {
+        marginTop: -60,
+      },
     },
     sheetHeaderActions: {
       display: 'grid',
