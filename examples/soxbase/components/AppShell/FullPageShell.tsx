@@ -54,7 +54,10 @@ const useStyles = makeStyles(
 )
 
 export type FullPageShellProps = Omit<DefaultPageQuery, 'pages'> &
-  Omit<FullPageShellBaseProps, 'menu' | 'logo' | 'actions' | 'classes' | 'name'> & {
+  Omit<
+    FullPageShellBaseProps,
+    'menu' | 'logo' | 'actions' | 'classes' | 'name' | 'header' | 'footer'
+  > & {
     alwaysShowLogo?: boolean
   }
 

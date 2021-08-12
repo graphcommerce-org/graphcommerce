@@ -9,7 +9,10 @@ import Footer from './Footer'
 import Logo from './Logo'
 
 export type MinimalPageShellProps = Omit<DefaultPageQuery, 'pages'> &
-  Omit<FullPageShellBaseProps, 'menu' | 'logo' | 'actions' | 'classes' | 'name'>
+  Omit<
+    FullPageShellBaseProps,
+    'menu' | 'logo' | 'actions' | 'classes' | 'name' | 'header' | 'footer'
+  >
 
 const useStyles = makeStyles((theme: Theme) => ({
   logo: {
