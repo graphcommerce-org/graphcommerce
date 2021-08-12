@@ -44,6 +44,9 @@ const useStyles = makeStyles(
     secondary: {
       // ...theme.typography.caption,
       color: theme.palette.primary.mutedText,
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'elipsis',
     },
     itemLink: {
       padding: 0,

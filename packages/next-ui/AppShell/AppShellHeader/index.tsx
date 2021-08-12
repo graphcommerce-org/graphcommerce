@@ -3,7 +3,7 @@ import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
 import clsx from 'clsx'
 import { m, MotionValue, useMotionValue, useTransform } from 'framer-motion'
 import PageLink from 'next/link'
-import React, { useCallback, useEffect } from 'react'
+import React, { CSSProperties, useCallback, useEffect } from 'react'
 import Button from '../../Button'
 import { UseStyles } from '../../Styles'
 import SvgImage from '../../SvgImage'
@@ -226,12 +226,16 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     return () => ro.disconnect()
   }, [contentHeaderRef, sheetHeaderHeight])
 
-  const opacityFadeIn = useTransform(
+  const opacityTitle = useTransform(
     [scrollY, sheetHeaderHeight, titleOffset, titleHeight] as MotionValue[],
     ([scrollYV, sheetHeaderHeightV, titleOffsetV, titleHeigthV]: number[]) =>
-      (scrollYV - titleOffsetV + sheetHeaderHeightV) / titleHeigthV,
+      Math.min(
+        Math.max(0, scrolled ? 1 : (scrollYV - titleOffsetV + sheetHeaderHeightV) / titleHeigthV),
+        1,
+      ),
   )
-  const opacityFadeOut = useTransform(opacityFadeIn, [0, 1], [1, 0])
+  const pointerEvents = useTransform(opacityTitle, (o) => (o < 0.2 ? 'none' : 'all'))
+  const opacityLogo = useTransform(opacityTitle, [0, 1], [1, 0])
 
   const close =
     !hideClose &&
@@ -301,7 +305,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
       <div className={clsx(classes.logoContainer, classes.sheetHeaderActionsPadding)}>
         {logo && (
           <m.div
-            style={{ opacity: !scrolled ? opacityFadeOut : 0 }}
+            style={{ opacity: opacityLogo }}
             className={clsx(classes.subLogo, classes.innerContainerItem)}
           >
             {logo}
@@ -322,7 +326,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
         <div className={classes.innerContainer}>
           {children && (
             <m.div
-              style={{ opacity: scrolled ? 1 : opacityFadeIn }}
+              style={{ opacity: opacityTitle, pointerEvents }}
               className={clsx(classes.childs, fillMobileOnly && classes.fillMobileOnly)}
             >
               {children}
@@ -339,7 +343,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
           (divider ?? (
             <m.div
               className={clsx(classes.divider, fillMobileOnly && classes.fillMobileOnly)}
-              style={{ opacity: scrolled ? 1 : opacityFadeIn }}
+              style={{ opacity: opacityTitle }}
             />
           ))}
       </div>

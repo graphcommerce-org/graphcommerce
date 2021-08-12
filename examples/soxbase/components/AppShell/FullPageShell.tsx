@@ -88,6 +88,7 @@ function FullPageShell(props: FullPageShellProps) {
     <FullPageShellBase
       {...uiProps}
       name={name}
+      classes={{ header: alwaysShowLogo ? classes.header : undefined }}
       header={
         <>
           <Logo classes={{ logo: alwaysShowLogo ? undefined : classes.logo }} />
