@@ -91,6 +91,7 @@ function EditAddressPage(props: Props) {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
+  sharedKey: () => 'account/addresses',
 }
 EditAddressPage.pageOptions = pageOptions
 

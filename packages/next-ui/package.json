@@ -17,6 +17,7 @@
     "@material-ui/styles": "^4.11.4",
     "@reachdigital/framer-next-pages": "^2.103.0",
     "@reachdigital/framer-sheet": "^2.102.3",
+    "@reachdigital/framer-utils": "^2.102.3",
     "@reachdigital/graphql": "^2.102.0",
     "@reachdigital/image": "^2.102.0",
     "clsx": "^1.1.1",

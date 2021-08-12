@@ -63,6 +63,7 @@ function AddNewAddressPage(props: Props) {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
+  sharedKey: () => 'account/addresses',
 }
 AddNewAddressPage.pageOptions = pageOptions
 

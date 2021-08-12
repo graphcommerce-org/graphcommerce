@@ -8,6 +8,7 @@ import {
   SvgImage,
   iconHome,
 } from '@reachdigital/next-ui'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import AccountAddress from '../AccountAddress'
@@ -66,15 +67,11 @@ export default function AccountAddresses(props: AccountAddressesProps) {
             title='You have no addresses saved yet'
             icon={<SvgImage src={iconHome} size={148} alt='home' />}
             button={
-              <Button
-                size='large'
-                variant='contained'
-                color='primary'
-                text='bold'
-                href='/account/addresses/add'
-              >
-                Add new address
-              </Button>
+              <Link href='/account/addresses/add' passHref>
+                <Button size='large' variant='contained' color='primary' text='bold'>
+                  Add new address
+                </Button>
+              </Link>
             }
           />
         </>
@@ -88,15 +85,11 @@ export default function AccountAddresses(props: AccountAddressesProps) {
             ))}
           </div>
 
-          <Button
-            className={classes.button}
-            variant='contained'
-            color='primary'
-            text='bold'
-            href='/account/addresses/add'
-          >
-            Add new address
-          </Button>
+          <Link href='/account/addresses/add' passHref>
+            <Button className={classes.button} variant='contained' color='primary' text='bold'>
+              Add new address
+            </Button>
+          </Link>
 
           <MessageSnackbar sticky open={router.query.confirm_delete !== undefined}>
             <>Address was deleted</>
