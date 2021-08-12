@@ -1,16 +1,17 @@
-import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Divider, makeStyles, Theme } from '@material-ui/core'
 import { Image } from '@reachdigital/image'
 import {
+  responsiveVal,
+  SectionHeader,
   SliderContainer,
   SliderContext,
   SliderNext,
   SliderPrev,
   SliderScroller,
-  SectionHeader,
   UseStyles,
-  responsiveVal,
 } from '@reachdigital/next-ui'
 import clsx from 'clsx'
+import { AnimatePresence, m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
@@ -20,35 +21,43 @@ import { CartItemSummaryDocument } from './GetCartItemSummary.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      padding: theme.spacings.sm,
+      padding: `${theme.spacings.md} ${theme.spacings.sm}`,
       border: `2px ${theme.palette.background.highlight} solid`,
       borderRadius: 4,
-      [theme.breakpoints.up('md')]: {},
+    },
+    sliderContextContainer: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: responsiveVal(16, 32),
+      position: 'relative',
+    },
+    scroller: {
+      // gridTemplateColumns: `repeat(auto-fill, ${responsiveVal(48, 96)})`,
+      // height: responsiveVal(48, 96),
+      // columnGap: 20,
     },
     image: {
       borderRadius: '50%',
       marginRight: theme.spacings.xs,
       border: `5px ${theme.palette.common.white} solid`,
       boxShadow: `0px 0px 2px ${theme.palette.grey[700]}`,
+      width: `${responsiveVal(48, 96)} !important`,
+      height: `${responsiveVal(48, 96)} !important`,
     },
     sliderContainer: {
-      padding: `${theme.spacings.xs} 0`,
-      position: 'relative',
+      padding: 1,
     },
     prevNext: {
-      pointerEvents: 'all',
       position: 'absolute',
+      top: '50%',
+      transform: 'translateY(-50%)',
+      zIndex: 2,
     },
     prev: {
-      left: 0,
-      top: 45,
+      left: 8,
     },
     next: {
-      right: 0,
-      top: 45,
-    },
-    prevNextFab: {
-      boxShadow: 'none',
+      right: 8,
     },
     costContainer: {
       background: theme.palette.common.white,
@@ -56,7 +65,14 @@ const useStyles = makeStyles(
       marginTop: 0,
     },
     sectionHeaderWrapper: {
-      paddingBottom: 10,
+      marginTop: 0,
+      borderBottom: `1px ${theme.palette.divider} solid`,
+      paddingBottom: theme.spacings.xs,
+    },
+    sectionHeaderLabelLeft: {
+      color: 'unset',
+      textTransform: 'unset',
+      ...theme.typography.h5,
     },
     downloadLink: {
       fontSize: responsiveVal(14, 18),
@@ -64,6 +80,9 @@ const useStyles = makeStyles(
         textDecoration: 'none',
         color: theme.palette.secondary.main,
       },
+    },
+    divider: {
+      margin: '1em 0',
     },
   }),
   { name: 'CartItemSummary' },
@@ -86,39 +105,45 @@ export default function CartItemSummary(props: OrderSummaryProps) {
         classes={{
           labelRight: classes.downloadLink,
           sectionHeaderWrapper: classes.sectionHeaderWrapper,
+          labelLeft: classes.sectionHeaderLabelLeft,
         }}
         labelLeft='Order summary'
-        // labelRight={
-        // <PageLink key='download-invoice' href='/download'>
-        //   Download invoice
-        // </PageLink>
-        // }
+        labelRight={
+          <PageLink key='download-invoice' href='/download'>
+            Download invoice
+          </PageLink>
+        }
       />
-      <SliderContext scrollSnapAlign='start'>
-        <SliderContainer classes={{ container: classes.sliderContainer }}>
-          <SliderScroller>
-            {items?.map((item) => (
-              <Image
-                key={item?.uid}
-                alt={item?.product.thumbnail?.label ?? ''}
-                width={90}
-                height={90}
-                src={item?.product.thumbnail?.url ?? ''}
-                className={classes.image}
-              />
-            ))}
-          </SliderScroller>
-          <SliderPrev
-            className={clsx(classes.prevNext, classes.prev)}
-            classes={{ root: classes.prevNextFab }}
-          />
-          <SliderNext
-            className={clsx(classes.prevNext, classes.next)}
-            classes={{ root: classes.prevNextFab }}
-          />
-        </SliderContainer>
-      </SliderContext>
-      <Divider />
+
+      <AnimatePresence>
+        <m.div className={classes.sliderContextContainer}>
+          <SliderContext scrollSnapAlign='start'>
+            <div className={clsx(classes.prevNext, classes.prev)}>
+              <SliderPrev />
+            </div>
+            <SliderContainer classes={{ container: classes.sliderContainer }}>
+              <SliderScroller classes={{ scroller: classes.scroller }}>
+                {items?.map((item) => (
+                  <Image
+                    key={item?.uid}
+                    alt={item?.product?.thumbnail?.label ?? ''}
+                    width={64}
+                    height={64}
+                    layout='responsive'
+                    src={item?.product?.thumbnail?.url ?? ''}
+                    className={classes.image}
+                  />
+                ))}
+              </SliderScroller>
+            </SliderContainer>
+            <div className={clsx(classes.prevNext, classes.next)}>
+              <SliderNext />
+            </div>
+          </SliderContext>
+        </m.div>
+      </AnimatePresence>
+
+      <Divider classes={{ root: classes.divider }} />
       <CartTotals classes={{ costsContainer: classes.costContainer }} />
     </div>
   )

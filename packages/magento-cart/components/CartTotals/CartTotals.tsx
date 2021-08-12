@@ -23,6 +23,7 @@ const useStyles = makeStyles(
     costsRow: {
       display: 'flex',
       justifyContent: 'space-between',
+      padding: '2px 0',
       ...theme.typography.subtitle1,
     },
     costsGrandTotal: {

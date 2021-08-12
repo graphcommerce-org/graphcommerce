@@ -46,8 +46,9 @@ function ShippingPage() {
       <Container maxWidth='md'>
         <AppShellTitle icon={iconParty}>Thank you for your order!</AppShellTitle>
 
-        <CartSummary />
+        <CartSummary/>
         <CartItemSummary />
+
         <Box textAlign='center' m={8}>
           <PageLink href='/' passHref>
             <Button color='secondary' variant='pill' size='large' text='bold'>
