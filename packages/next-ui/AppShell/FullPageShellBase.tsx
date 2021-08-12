@@ -12,6 +12,7 @@ const useStyles = makeStyles(
       minHeight: '100vh',
       display: 'grid',
       gridTemplateRows: `auto 1fr auto`,
+      gridTemplateColumns: '100%',
     },
     header: {
       display: 'flex',
@@ -22,7 +23,6 @@ const useStyles = makeStyles(
         top: 0,
         display: 'flex',
         pointerEvents: 'none',
-        alignItems: 'start',
         justifyContent: 'left',
         width: '100%',
       },
@@ -56,8 +56,8 @@ export default function FullPageShellBase(props: FullPageShellBaseProps) {
           >
             {header}
           </m.header>
-          {children}
-          {footer}
+          <div>{children}</div>
+          <div>{footer}</div>
         </ShellBase>
       </AppShellProvider>
     </div>
