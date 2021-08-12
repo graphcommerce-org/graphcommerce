@@ -1,6 +1,7 @@
 import { Container, IconButton, Link, makeStyles, Theme } from '@material-ui/core'
 import { StoreSwitcherButton } from '@reachdigital/magento-store'
 import { SvgImageSimple, UseStyles } from '@reachdigital/next-ui'
+import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
 import Button from '../PageLink/Button'
@@ -26,6 +27,11 @@ const useStyles = makeStyles(
         gridTemplateColumns: 'auto auto',
         gridTemplateRows: 'auto',
         justifyContent: 'space-between',
+      },
+    },
+    disableMargin: {
+      [theme.breakpoints.down('sm')]: {
+        marginBottom: 0,
       },
     },
     copyright: {
@@ -59,14 +65,18 @@ const useStyles = makeStyles(
   { name: 'Footer' },
 )
 
-export type FooterProps = FooterQueryFragment & UseStyles<typeof useStyles>
+export type FooterProps = FooterQueryFragment &
+  UseStyles<typeof useStyles> & { disableMargin?: boolean }
 
 export default function Footer(props: FooterProps) {
-  const { footer } = props
+  const { footer, disableMargin } = props
   const classes = useStyles(props)
 
   return (
-    <Container maxWidth={false} className={classes.footer}>
+    <Container
+      maxWidth={false}
+      className={clsx(classes.footer, disableMargin && classes.disableMargin)}
+    >
       <div className={classes.social}>
         {footer?.socialLinks?.map((link) => (
           <PageLink key={link.title} href={link.url} passHref>
