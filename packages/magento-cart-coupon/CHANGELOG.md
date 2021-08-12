@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-coupon@2.102.3...@reachdigital/magento-cart-coupon@2.103.0) (2021-08-12)
+
+
+### Bug Fixes
+
+* remove coupon form style was too large ([30df274](https://github.com/ho-nl/m2-pwa/commit/30df274ecdffdcebd76710a5304d6fa248e81211))
+
+
+### Features
+
+* upgraded to nextjs 11 ([0053beb](https://github.com/ho-nl/m2-pwa/commit/0053beb7ef597c190add7264256a0eaec35868da))
+
+
+
+
+
 ## [2.102.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-coupon@2.102.1...@reachdigital/magento-cart-coupon@2.102.2) (2021-08-09)
 
 

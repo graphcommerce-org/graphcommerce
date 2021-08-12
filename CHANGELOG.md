@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.110.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.109.0...@graphcommerce/graphcommerce@2.110.0) (2021-08-12)
+
+
+### Bug Fixes
+
+* remove coupon form style was too large ([30df274](https://github.com/ho-nl/m2-pwa/commit/30df274ecdffdcebd76710a5304d6fa248e81211))
+* small icon size was too large ([61a4bc7](https://github.com/ho-nl/m2-pwa/commit/61a4bc72ad88a5df764d100a78ba26635c35e035))
+
+
+### Features
+
+* enable esmExternals ([c412e09](https://github.com/ho-nl/m2-pwa/commit/c412e09e74cd72f7745da9d62f6e8066c46a6336))
+* upgraded to nextjs 11 ([0053beb](https://github.com/ho-nl/m2-pwa/commit/0053beb7ef597c190add7264256a0eaec35868da))
+
+
+
+
+
 # [2.109.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.108.2...@graphcommerce/graphcommerce@2.109.0) (2021-08-11)
 
 

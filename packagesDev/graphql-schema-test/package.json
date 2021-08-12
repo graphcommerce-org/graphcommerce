@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/graphql-schema-test",
-  "version": "2.100.14",
+  "version": "2.100.15",
   "private": true,
   "sideEffects": false,
   "engines": {
@@ -20,7 +20,7 @@
     "@graphql-typed-document-node/core": "^3.1.0",
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
     "@reachdigital/eslint-config-pwa": "^2.102.1",
-    "@reachdigital/graphql": "^2.101.3",
+    "@reachdigital/graphql": "^2.102.0",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
     "@reachdigital/typescript-config-pwa": "^2.100.10"
   }

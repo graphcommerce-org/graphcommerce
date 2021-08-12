@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.105.2...@reachdigital/next-ui@2.106.0) (2021-08-12)
+
+
+### Bug Fixes
+
+* small icon size was too large ([61a4bc7](https://github.com/ho-nl/m2-pwa/commit/61a4bc72ad88a5df764d100a78ba26635c35e035))
+
+
+### Features
+
+* upgraded to nextjs 11 ([0053beb](https://github.com/ho-nl/m2-pwa/commit/0053beb7ef597c190add7264256a0eaec35868da))
+
+
+
+
+
 ## [2.105.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.105.1...@reachdigital/next-ui@2.105.2) (2021-08-09)
 
 

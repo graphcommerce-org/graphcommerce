@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase-api@2.101.2...@reachdigital/soxbase-api@2.102.0) (2021-08-12)
+
+
+### Features
+
+* enable esmExternals ([c412e09](https://github.com/ho-nl/m2-pwa/commit/c412e09e74cd72f7745da9d62f6e8066c46a6336))
+* upgraded to nextjs 11 ([0053beb](https://github.com/ho-nl/m2-pwa/commit/0053beb7ef597c190add7264256a0eaec35868da))
+
+
+
+
+
 # [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase-api@2.100.13...@reachdigital/soxbase-api@2.101.0) (2021-07-26)
 
 

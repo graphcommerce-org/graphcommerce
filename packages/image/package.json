@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/image",
-  "version": "2.101.5",
+  "version": "2.102.0",
   "private": true,
   "sideEffects": false,
   "scripts": {

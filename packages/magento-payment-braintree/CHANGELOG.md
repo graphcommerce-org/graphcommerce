@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-payment-braintree@2.102.7...@reachdigital/magento-payment-braintree@2.103.0) (2021-08-12)
+
+
+### Features
+
+* upgraded to nextjs 11 ([0053beb](https://github.com/ho-nl/m2-pwa/commit/0053beb7ef597c190add7264256a0eaec35868da))
+
+
+
+
+
 ## [2.102.6](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-payment-braintree@2.102.5...@reachdigital/magento-payment-braintree@2.102.6) (2021-08-09)
 
 
