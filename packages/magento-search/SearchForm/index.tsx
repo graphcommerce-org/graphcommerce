@@ -21,10 +21,11 @@ export type SearchFormProps = {
   totalResults?: number
   search?: string
   urlHandle?: string
+  autoFocus?: boolean
 } & UseStyles<typeof useStyles>
 
 export default function SearchForm(props: SearchFormProps) {
-  const { totalResults = 0, search = '', urlHandle = 'search' } = props
+  const { totalResults = 0, search = '', urlHandle = 'search', autoFocus = true } = props
   const pageClasses = useStyles(props)
   const router = useRouter()
 
@@ -78,7 +79,7 @@ export default function SearchForm(props: SearchFormProps) {
         <TextField
           variant='outlined'
           type='text'
-          autoFocus
+          autoFocus={autoFocus}
           placeholder='Search'
           defaultValue={search}
           error={formState.isSubmitted && !!formState.errors.search}

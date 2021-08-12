@@ -36,7 +36,7 @@ function RouteNotFoundPage() {
             We couldn&apos;t find the page you were looking for
           </Typography>
           <Box mt={4} mb={2}>
-            <SearchForm />
+            <SearchForm autoFocus={false} />
           </Box>
           Or follow these links to get you back on track!
           <Box mb={8}>
