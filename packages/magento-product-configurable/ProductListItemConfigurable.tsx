@@ -67,16 +67,6 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
     ? { ...configurableProduct, ...matchingVariants?.[0]?.product }
     : configurableProduct
 
-  // merge unused swatches with the swatches assigned to the bottom right corner
-  const usedSwatchAttrCodes = Object.values(swatchLocations).flat()
-
-  const unusedSwatchAttrCodes =
-    configurable_options
-      ?.filter((option) => !usedSwatchAttrCodes.includes(option?.attribute_code ?? ''))
-      .map((option) => option?.attribute_code ?? '') ?? []
-
-  swatchLocations.bottomRight = [...swatchLocations.bottomRight, ...unusedSwatchAttrCodes]
-
   return (
     <ProductListItem
       {...productProps}
