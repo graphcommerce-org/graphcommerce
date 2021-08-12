@@ -4,10 +4,10 @@
 /* eslint-disable jsx-a11y/alt-text */
 
 import { useForkRef } from '@material-ui/core'
-import { LoaderValue, VALID_LOADERS } from 'next/dist/next-server/server/image-config'
+import { LoaderValue, VALID_LOADERS } from 'next/dist/server/image-config'
 import Head from 'next/head'
 import type { ImageLoaderProps, ImageLoader } from 'next/image'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import {
   akamaiLoader,
   cloudinaryLoader,

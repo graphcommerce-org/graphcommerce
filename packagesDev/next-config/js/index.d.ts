@@ -1,3 +1,4 @@
+import { NextConfig } from 'next/dist/server/config-shared';
 export declare type WorkspaceInfo = {
     [name: string]: {
         location: string;
@@ -5,4 +6,4 @@ export declare type WorkspaceInfo = {
         mismatchedWorkspaceDependencies: string[];
     };
 };
-export declare function withYarn1Workspaces(modules?: string[]): (nextConfig: import("next/dist/next-server/server/config-shared").NextConfig) => import("next/dist/next-server/server/config-shared").NextConfig;
+export declare function withYarn1Workspaces(modules?: string[]): (config: NextConfig) => NextConfig;

@@ -169,10 +169,7 @@ export default function ProductReviews(props: ProductReviewsProps) {
         myReviews.items.map((review) => (
           <div key={review?.summary} className={classes.review}>
             <div className={classes.title}>
-              <ProductReviewChip
-                rating={review?.average_rating}
-                variant='default'
-              />
+              <ProductReviewChip rating={review?.average_rating} variant='default' />
               <Typography variant='h5'> {review?.summary}</Typography>
             </div>
             <Typography variant='body1'>{review?.text}</Typography>
