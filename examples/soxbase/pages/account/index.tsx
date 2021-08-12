@@ -51,7 +51,7 @@ function AccountIndexPage() {
   const orders = customer?.orders
   const latestOrder = orders?.items?.[orders?.items?.length - 1]
 
-  if (loading) return <></>
+  if (loading) return <div />
   if (error)
     return (
       <ApolloCustomerErrorFullPage
@@ -65,19 +65,20 @@ function AccountIndexPage() {
 
   return (
     <>
+      <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
+
       <PageShellHeader backFallbackHref='/' backFallbackTitle='Home'>
         <Title component='span' size='small' icon={iconPersonAlt}>
           Account
         </Title>
       </PageShellHeader>
+
+      <AppShellTitle icon={iconPersonAlt}>
+        <Title>Account</Title>
+      </AppShellTitle>
+
       <Container maxWidth='md'>
         <NoSsr>
-          <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
-
-          <AppShellTitle icon={iconPersonAlt}>
-            <Title>Account</Title>
-          </AppShellTitle>
-
           <AccountMenu>
             <AccountMenuItem
               href='/account/name'

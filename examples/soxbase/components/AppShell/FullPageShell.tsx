@@ -113,7 +113,7 @@ function FullPageShell(props: FullPageShellProps) {
           </DesktopNavActions>
         </>
       }
-      classes={{ header: alwaysShowLogo ? classes.header : undefined }}
+      footer={<Footer footer={footer} />}
     >
       <MenuFab {...menuProps} search={<SearchButton onClick={onSearchStart} />}>
         <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>
@@ -138,8 +138,6 @@ function FullPageShell(props: FullPageShellProps) {
       </FixedFab>
 
       {children}
-
-      <Footer footer={footer} />
     </FullPageShellBase>
   )
 }

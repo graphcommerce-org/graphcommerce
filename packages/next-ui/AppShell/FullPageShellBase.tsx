@@ -9,6 +9,9 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       background: '#fff',
+      minHeight: '100vh',
+      display: 'grid',
+      gridTemplateRows: `auto 1fr auto`,
     },
     header: {
       display: 'flex',
@@ -19,7 +22,7 @@ const useStyles = makeStyles(
         top: 0,
         display: 'flex',
         pointerEvents: 'none',
-        alignItems: 'left',
+        alignItems: 'start',
         justifyContent: 'left',
         width: '100%',
       },
@@ -29,7 +32,8 @@ const useStyles = makeStyles(
 )
 
 export type FullPageShellBaseProps = {
-  header?: React.ReactNode
+  header: React.ReactNode
+  footer: React.ReactNode
   children?: React.ReactNode
   backFallbackHref?: string | null
   backFallbackTitle?: string | null
@@ -37,7 +41,7 @@ export type FullPageShellBaseProps = {
   PageLayoutBaseProps
 
 export default function FullPageShellBase(props: FullPageShellBaseProps) {
-  const { children, header, name } = props
+  const { children, header, footer, name } = props
   const classes = useStyles(props)
 
   return (
@@ -53,6 +57,7 @@ export default function FullPageShellBase(props: FullPageShellBaseProps) {
             {header}
           </m.header>
           {children}
+          {footer}
         </ShellBase>
       </AppShellProvider>
     </div>

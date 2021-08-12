@@ -1,66 +1,69 @@
 import { Container, IconButton, Link, makeStyles, Theme } from '@material-ui/core'
 import { StoreSwitcherButton } from '@reachdigital/magento-store'
-import { SvgImageSimple } from '@reachdigital/next-ui'
+import { SvgImageSimple, UseStyles } from '@reachdigital/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import Button from '../PageLink/Button'
 import { FooterQueryFragment } from './FooterQueryFragment.gql'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  footer: {
-    borderTop: '1px solid rgba(0,0,0,0.08)',
-    padding: `${theme.page.vertical} ${theme.page.horizontal} ${theme.page.vertical}`,
-    display: 'grid',
-    gridAutoRows: '1fr',
-    gap: theme.spacings.xs,
-    alignItems: 'center',
-    [theme.breakpoints.down('sm')]: {
-      justifyItems: 'center',
-      marginBottom: 50,
-      '& > *': {
-        maxWidth: 'max-content',
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    footer: {
+      borderTop: '1px solid rgba(0,0,0,0.08)',
+      padding: `${theme.page.vertical} ${theme.page.horizontal} ${theme.page.vertical}`,
+      display: 'grid',
+      gridAutoRows: '1fr',
+      gap: theme.spacings.xs,
+      alignItems: 'center',
+      [theme.breakpoints.down('sm')]: {
+        justifyItems: 'center',
+        marginBottom: 50,
+        '& > *': {
+          maxWidth: 'max-content',
+        },
+      },
+      [theme.breakpoints.up('md')]: {
+        gridTemplateColumns: 'auto auto',
+        gridTemplateRows: 'auto',
+        justifyContent: 'space-between',
       },
     },
-    [theme.breakpoints.up('md')]: {
-      gridTemplateColumns: 'auto auto',
-      gridTemplateRows: 'auto',
-      justifyContent: 'space-between',
-    },
-  },
-  copyright: {
-    display: 'grid',
-    gridAutoFlow: 'column',
-    alignContent: 'center',
-    ...theme.typography.caption,
-    gap: theme.spacings.sm,
-    [theme.breakpoints.up('md')]: {
-      order: 3,
-    },
-  },
-  support: {
-    [theme.breakpoints.up('md')]: {
-      order: 4,
-    },
-  },
-  social: {
-    display: 'none',
-    justifyContent: 'start',
-    gridAutoFlow: 'column',
-    gap: `0 ${theme.spacings.xs}`,
-    [theme.breakpoints.up('md')]: {
+    copyright: {
       display: 'grid',
+      gridAutoFlow: 'column',
+      alignContent: 'center',
+      ...theme.typography.caption,
+      gap: theme.spacings.sm,
+      [theme.breakpoints.up('md')]: {
+        order: 3,
+      },
     },
-    '& > *': {
-      minWidth: 'min-content',
+    support: {
+      [theme.breakpoints.up('md')]: {
+        order: 4,
+      },
     },
-  },
-}))
+    social: {
+      display: 'none',
+      justifyContent: 'start',
+      gridAutoFlow: 'column',
+      gap: `0 ${theme.spacings.xs}`,
+      [theme.breakpoints.up('md')]: {
+        display: 'grid',
+      },
+      '& > *': {
+        minWidth: 'min-content',
+      },
+    },
+  }),
+  { name: 'Footer' },
+)
 
-export type FooterProps = FooterQueryFragment
+export type FooterProps = FooterQueryFragment & UseStyles<typeof useStyles>
 
 export default function Footer(props: FooterProps) {
   const { footer } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   return (
     <Container maxWidth={false} className={classes.footer}>

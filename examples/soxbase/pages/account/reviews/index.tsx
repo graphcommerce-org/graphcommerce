@@ -27,7 +27,7 @@ function AccountReviewsPage() {
   })
   const customer = data?.customer
 
-  if (loading) return <></>
+  if (loading) return <div />
   if (error)
     return (
       <ApolloCustomerErrorFullPage

@@ -61,7 +61,7 @@ function ProductBundle(props: Props) {
   const aggregations = typeProducts?.aggregations
 
   if (product?.__typename !== 'BundleProduct' || typeProduct?.__typename !== 'BundleProduct')
-    return <></>
+    return <div />
 
   return (
     <>

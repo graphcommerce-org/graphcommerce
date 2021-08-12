@@ -35,7 +35,7 @@ function EditAddressPage(props: Props) {
   const addresses = data?.customer?.addresses
   const address = addresses?.find((a) => a?.id === numAddressId)
 
-  if (loading) return <></>
+  if (loading) return <div />
   if (error)
     return (
       <ApolloCustomerErrorFullPage

@@ -37,7 +37,7 @@ function OrderDetailPage(props: Props) {
   const order = data?.customer?.orders?.items?.[0]
   const isLoading = orderId ? loading : true
 
-  if (loading) return <></>
+  if (loading) return <div />
   if (error)
     return (
       <ApolloCustomerErrorFullPage

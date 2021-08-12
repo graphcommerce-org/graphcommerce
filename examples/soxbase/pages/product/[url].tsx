@@ -61,7 +61,7 @@ function ProductSimple(props: Props) {
   const aggregations = typeProducts?.aggregations
 
   if (product?.__typename !== 'SimpleProduct' || typeProduct?.__typename !== 'SimpleProduct')
-    return <></>
+    return <div />
 
   return (
     <>
