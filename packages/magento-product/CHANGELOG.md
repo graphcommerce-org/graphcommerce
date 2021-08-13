@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product@2.103.1...@reachdigital/magento-product@2.104.0) (2021-08-13)
+
+
+### Features
+
+* **mesh:** use mesh with build version with increased stability/performance ([63863f3](https://github.com/ho-nl/m2-pwa/commit/63863f3a2df4d596819b85f3cf736c7f52f828c1))
+
+
+
+
+
 # [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product@2.102.2...@reachdigital/magento-product@2.103.0) (2021-08-12)
 
 

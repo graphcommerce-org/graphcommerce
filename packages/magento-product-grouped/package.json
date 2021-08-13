@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-product-grouped",
-  "version": "2.102.1",
+  "version": "2.102.2",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
@@ -24,10 +24,10 @@
   "dependencies": {
     "@graphql-typed-document-node/core": "^3.1.0",
     "@reachdigital/graphql": "^2.102.0",
-    "@reachdigital/magento-cart": "^2.104.1",
-    "@reachdigital/magento-product": "^2.103.1",
-    "@reachdigital/magento-product-simple": "^2.102.1",
-    "@reachdigital/magento-product-virtual": "^2.102.1",
+    "@reachdigital/magento-cart": "^2.104.2",
+    "@reachdigital/magento-product": "^2.104.0",
+    "@reachdigital/magento-product-simple": "^2.102.2",
+    "@reachdigital/magento-product-virtual": "^2.102.2",
     "next": "^11.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

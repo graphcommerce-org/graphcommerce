@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase-api@2.102.0...@reachdigital/soxbase-api@2.103.0) (2021-08-13)
+
+
+### Bug Fixes
+
+* **mesh:** add postinstall step to make sure the mesh is build at least once ([ff46ca8](https://github.com/ho-nl/m2-pwa/commit/ff46ca8ef481c4104823312013eb3810477bcace))
+* **mesh:** compilation errors while esmExternals is used, disable for now ([8a98b34](https://github.com/ho-nl/m2-pwa/commit/8a98b34b3fa10aaa896455c292ccc429f7f9e752))
+
+
+### Features
+
+* **mesh:** use mesh with build version with increased stability/performance ([63863f3](https://github.com/ho-nl/m2-pwa/commit/63863f3a2df4d596819b85f3cf736c7f52f828c1))
+
+
+
+
+
 # [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase-api@2.101.2...@reachdigital/soxbase-api@2.102.0) (2021-08-12)
 
 

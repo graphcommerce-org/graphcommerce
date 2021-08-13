@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.108.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.107.0...@reachdigital/next-ui@2.108.0) (2021-08-13)
+
+
+### Features
+
+* **mesh:** use mesh with build version with increased stability/performance ([63863f3](https://github.com/ho-nl/m2-pwa/commit/63863f3a2df4d596819b85f3cf736c7f52f828c1))
+
+
+
+
+
 # [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.106.0...@reachdigital/next-ui@2.107.0) (2021-08-12)
 
 
