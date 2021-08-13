@@ -31,7 +31,7 @@ Hosting:
 6. `cp examples/soxbase/.env.example examples/soxbase/.env`
 7. Fill in `GRAPHCMS_BEARER` in `examples/soxbase-api/.env`, in 1Pass under
    `soxbase-api`
-8. [Local url](http://localhost:3000)
+8. `yarn workspace @reachdigital/soxbase-api build-mesh && yarn dev:api && yarn workspace @reachdigital/soxbase codegen; yarn stop`
 
 ## Customize endpoint (optional):
 
@@ -41,6 +41,8 @@ endpoint.
 ## Commands
 
 - `yarn dev`: Start development server
+  - frontend: http://localhost:3000
+  - graphql playground: http://localhost:3001/api/graphql
 - `yarn stop`: Stop development server
 - `yarn build`: Create production build of everything
 - `yarn tsc:lint`: Lint the installation with TypeScript

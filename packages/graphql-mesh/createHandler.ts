@@ -1,5 +1,4 @@
-import { processConfig } from '@graphql-mesh/config'
-import { getMesh } from '@graphql-mesh/runtime'
+import { MeshInstance } from '@graphql-mesh/runtime'
 import { YamlConfig } from '@graphql-mesh/types'
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core'
 import { ApolloServer } from 'apollo-server-micro'
@@ -11,7 +10,8 @@ import 'ts-tiny-invariant'
 import 'micro'
 import cors from 'micro-cors'
 
-function injectEnv(json: YamlConfig.Config): YamlConfig.Config {
+export function injectEnv(json: YamlConfig.Config & { $schema?: string }): YamlConfig.Config {
+  delete json.$schema
   let content = JSON.stringify(json)
 
   if (typeof process === 'undefined' || 'env' in process === false) {
@@ -38,22 +38,9 @@ function injectEnv(json: YamlConfig.Config): YamlConfig.Config {
   return JSON.parse(content)
 }
 
-async function createMesh(config: YamlConfig.Config) {
-  return getMesh(await processConfig(injectEnv(config)))
-}
-
-export default async function createHandler(config: YamlConfig.Config, path: string) {
-  const mesh = await createMesh(config)
-
-  /**
-   * - Todo: Implement tag based caching with X-Magento-Tags
-   * - Todo: Implement tag based cache invalidation that can handle PURGE requests
-   * - Todo: Implement redis based caching solution
-   * - Todo: Disable Varnish backend cachinng and switch to POST for requests
-   */
+export async function createHandler(meshInstance: MeshInstance, path: string) {
   const apolloServer = new ApolloServer({
-    // engine: { reportSchema: true },
-    context: mesh.contextBuilder,
+    context: meshInstance.contextBuilder,
     introspection: true,
     plugins: [
       ApolloServerPluginLandingPageGraphQLPlayground({
@@ -61,7 +48,7 @@ export default async function createHandler(config: YamlConfig.Config, path: str
         shareEnabled: true,
       }),
     ],
-    ...mesh,
+    ...meshInstance,
   })
   await apolloServer.start()
 
@@ -88,6 +75,7 @@ export default async function createHandler(config: YamlConfig.Config, path: str
       'apollographql-client-name',
     ],
   })
+
   const apolloHandler = apolloServer.createHandler({ path })
   return corsHandler((req, res) => (req.method === 'OPTIONS' ? res.end() : apolloHandler(req, res)))
 }

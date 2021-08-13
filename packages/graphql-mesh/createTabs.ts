@@ -1,6 +1,6 @@
 import { DocumentNode, print } from 'graphql'
 
-export default function createTabs(queries: DocumentNode[], endpoint: string) {
+export function createTabs(queries: DocumentNode[], endpoint: string) {
   return Object.entries(queries)
     .filter(([name]) => name.endsWith('Document'))
     .map(([name, gql]) => ({
