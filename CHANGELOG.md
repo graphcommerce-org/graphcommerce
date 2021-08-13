@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.113.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.112.1...@graphcommerce/graphcommerce@2.113.0) (2021-08-13)
+
+
+### Features
+
+* coupon form on payment page ([a163961](https://github.com/ho-nl/m2-pwa/commit/a1639617be756b357177fcce255cf662c5314499))
+
+
+
+
+
 # [2.112.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.111.0...@graphcommerce/graphcommerce@2.112.0) (2021-08-13)
 
 

@@ -1,6 +1,7 @@
-import { Container, Divider, NoSsr, Typography } from '@material-ui/core'
+import { Container, Divider, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CartSummary, CartTotals } from '@reachdigital/magento-cart'
+import { CouponAccordion } from '@reachdigital/magento-cart-coupon'
 import {
   PaymentMethodButton,
   PaymentMethodContextProvider,
@@ -8,7 +9,7 @@ import {
   PaymentMethodPlaceOrder,
   PaymentMethodToggle,
 } from '@reachdigital/magento-cart-payment-method'
-import { braintree_local_payment, braintree } from '@reachdigital/magento-payment-braintree'
+import { braintree, braintree_local_payment } from '@reachdigital/magento-payment-braintree'
 import { included_methods } from '@reachdigital/magento-payment-included'
 import { mollie_methods } from '@reachdigital/magento-payment-mollie'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
@@ -90,20 +91,32 @@ function PaymentPage() {
 
                 <PaymentMethodPlaceOrder key='placeorder' step={2} />
 
+                <CartSummary editable>
+                  <Divider />
+                  <CartTotals />
+                </CartSummary>
+
+                <CouponAccordion />
+
                 <PaymentMethodButton
                   key='button'
                   type='submit'
                   color='secondary'
                   variant='pill'
                   size='large'
-                  endIcon={<SvgImage src={iconChevronRight} loading='eager' alt='chevron right' />}
+                  text='bold'
+                  endIcon={
+                    <SvgImage
+                      src={iconChevronRight}
+                      loading='eager'
+                      alt='chevron right'
+                      size='small'
+                      shade='inverted'
+                    />
+                  }
                 >
-                  Pay
+                  Place order
                 </PaymentMethodButton>
-                <CartSummary editable>
-                  <Divider />
-                  <CartTotals />
-                </CartSummary>
               </AnimatePresence>
             </NoSsr>
           </PaymentMethodContextProvider>
