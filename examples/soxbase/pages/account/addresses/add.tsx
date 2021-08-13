@@ -9,7 +9,6 @@ import {
 import { AccountDashboardAddressesQuery } from '@reachdigital/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
-  IconHeader,
   GetStaticProps,
   SectionContainer,
   iconAddresses,

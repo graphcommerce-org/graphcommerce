@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Box, Container, NoSsr, Typography } from '@material-ui/core'
+import { Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { ApolloCustomerErrorFullPage, CustomerDocument } from '@reachdigital/magento-customer'
 import {
@@ -7,7 +7,15 @@ import {
   CreateProductReviewForm,
 } from '@reachdigital/magento-review'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import { FullPageMessage, responsiveVal, SvgImage, iconBox } from '@reachdigital/next-ui'
+import {
+  FullPageMessage,
+  responsiveVal,
+  SvgImage,
+  iconBox,
+  Title,
+  SheetShellHeader,
+  AppShellTitle,
+} from '@reachdigital/next-ui'
 import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -62,24 +70,26 @@ function AccountReviewsAddPage() {
   }
 
   return (
-    <Container maxWidth='md'>
-      <PageMeta title='Add review' metaDescription='Add a review' metaRobots={['noindex']} />
-      <NoSsr>
-        <Box mb={8} mt={8} textAlign='center'>
-          <Typography variant='h3' component='h1' gutterBottom>
-            You are reviewing {product?.name}
-          </Typography>
-          <Typography variant='body1'>What do you think of this product?</Typography>
+    <>
+      <PageMeta
+        title='Add review'
+        metaDescription={`You are reviewing ${product?.name}`}
+        metaRobots={['noindex']}
+      />
 
-          <Box textAlign='center' p={2} mt={2}>
-            <CreateProductReviewForm
-              sku={(sku as string) ?? ''}
-              nickname={customer ? `${customer?.firstname} ${customer?.lastname}` : undefined}
-            />
-          </Box>
-        </Box>
-      </NoSsr>
-    </Container>
+      <SheetShellHeader>
+        <Title size='small'>You are reviewing {product?.name}</Title>
+      </SheetShellHeader>
+
+      <AppShellTitle>You are reviewing {product?.name}</AppShellTitle>
+
+      <Container maxWidth='md'>
+        <CreateProductReviewForm
+          sku={(sku as string) ?? ''}
+          nickname={customer ? `${customer?.firstname} ${customer?.lastname}` : undefined}
+        />
+      </Container>
+    </>
   )
 }
 

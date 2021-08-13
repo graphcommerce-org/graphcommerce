@@ -8,7 +8,6 @@ import {
 } from '@reachdigital/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
-  IconHeader,
   GetStaticProps,
   SectionContainer,
   iconLock,
