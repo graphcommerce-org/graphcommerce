@@ -15,7 +15,7 @@
     "node": "14.x"
   },
   "scripts": {
-    "postinstall": "patch-package && patch-typed-document-node",
+    "postinstall": "patch-package && patch-typed-document-node && yarn workspace @reachdigital/soxbase-api build-mesh",
     "dev:api": "yarn pm2 start -s --name soxbase-api \"NODE_TLS_REJECT_UNAUTHORIZED=0 yarn workspace @reachdigital/soxbase-api dev \" && sleep 5",
     "dev:codegen": "yarn pm2 start -s --name codegen \"yarn workspace @reachdigital/soxbase dev:codegen \"",
     "dev:next": "yarn pm2 start -s --name soxbase \"NODE_TLS_REJECT_UNAUTHORIZED=0 yarn workspace @reachdigital/soxbase dev\"",
