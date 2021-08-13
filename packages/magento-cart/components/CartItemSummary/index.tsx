@@ -11,7 +11,6 @@ import {
   UseStyles,
 } from '@reachdigital/next-ui'
 import clsx from 'clsx'
-import { AnimatePresence, m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
@@ -110,33 +109,31 @@ export default function CartItemSummary(props: OrderSummaryProps) {
         }
       />
 
-      <AnimatePresence>
-        <m.div className={classes.sliderContextContainer}>
-          <SliderContext scrollSnapAlign='start'>
-            <div className={clsx(classes.prevNext, classes.prev)}>
-              <SliderPrev />
-            </div>
-            <SliderContainer classes={{ container: classes.sliderContainer }}>
-              <SliderScroller>
-                {items?.map((item) => (
-                  <Image
-                    key={item?.uid}
-                    alt={item?.product?.thumbnail?.label ?? ''}
-                    width={64}
-                    height={64}
-                    layout='responsive'
-                    src={item?.product?.thumbnail?.url ?? ''}
-                    className={classes.image}
-                  />
-                ))}
-              </SliderScroller>
-            </SliderContainer>
-            <div className={clsx(classes.prevNext, classes.next)}>
-              <SliderNext />
-            </div>
-          </SliderContext>
-        </m.div>
-      </AnimatePresence>
+      <div className={classes.sliderContextContainer}>
+        <SliderContext scrollSnapAlign='start'>
+          <div className={clsx(classes.prevNext, classes.prev)}>
+            <SliderPrev />
+          </div>
+          <SliderContainer classes={{ container: classes.sliderContainer }}>
+            <SliderScroller>
+              {items?.map((item) => (
+                <Image
+                  key={item?.uid}
+                  alt={item?.product?.thumbnail?.label ?? ''}
+                  width={64}
+                  height={64}
+                  layout='responsive'
+                  src={item?.product?.thumbnail?.url ?? ''}
+                  className={classes.image}
+                />
+              ))}
+            </SliderScroller>
+          </SliderContainer>
+          <div className={clsx(classes.prevNext, classes.next)}>
+            <SliderNext />
+          </div>
+        </SliderContext>
+      </div>
 
       <Divider classes={{ root: classes.divider }} />
       <CartTotals classes={{ costsContainer: classes.costContainer }} />
