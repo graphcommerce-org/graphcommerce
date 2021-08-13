@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.102.5](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-email@2.102.4...@reachdigital/magento-cart-email@2.102.5) (2021-08-13)
+
+
+### Bug Fixes
+
+* ref couldn't be forwarded for ShippingAddressForm ([1f90f1a](https://github.com/ho-nl/m2-pwa/commit/1f90f1a30437d656fcf841026ad13bb2b45d831b))
+
+
+
+
+
 # [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-email@2.101.10...@reachdigital/magento-cart-email@2.102.0) (2021-08-12)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-product-downloadable",
-  "version": "2.102.4",
+  "version": "2.102.5",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
@@ -24,8 +24,8 @@
   "dependencies": {
     "@graphql-typed-document-node/core": "^3.1.0",
     "@reachdigital/graphql": "^2.102.1",
-    "@reachdigital/magento-cart": "^2.105.1",
-    "@reachdigital/magento-product": "^2.104.1",
+    "@reachdigital/magento-cart": "^2.105.2",
+    "@reachdigital/magento-product": "^2.104.2",
     "next": "^11.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

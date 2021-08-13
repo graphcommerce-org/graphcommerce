@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.113.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.113.1...@graphcommerce/graphcommerce@2.113.2) (2021-08-13)
+
+
+### Bug Fixes
+
+* cart didn't use the AppShellTitle ([65a58c8](https://github.com/ho-nl/m2-pwa/commit/65a58c8dc7d39cd4c9cb31c4005828376c9e7ad1))
+* ref couldn't be forwarded for ShippingAddressForm ([1f90f1a](https://github.com/ho-nl/m2-pwa/commit/1f90f1a30437d656fcf841026ad13bb2b45d831b))
+* service, reviews/add didn't use AppShellTitle ([abc5778](https://github.com/ho-nl/m2-pwa/commit/abc57783fa7281c72bb4ca94c18c81de0fbf1315))
+
+
+
+
+
 # [2.113.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.112.1...@graphcommerce/graphcommerce@2.113.0) (2021-08-13)
 
 

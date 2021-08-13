@@ -1,7 +1,7 @@
 {
   "name": "@graphcommerce/graphcommerce",
   "homepage": "https://soxbase.vercel.app",
-  "version": "2.113.1",
+  "version": "2.113.2",
   "private": true,
   "workspaces": [
     "docs",
