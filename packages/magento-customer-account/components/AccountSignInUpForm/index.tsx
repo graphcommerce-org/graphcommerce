@@ -8,7 +8,7 @@ import {
   CustomerDocument,
   CustomerTokenDocument,
 } from '@reachdigital/magento-customer'
-import { AnimatedRow, Button, Form, FormActions, FormRow } from '@reachdigital/next-ui'
+import { AnimatedRow, Button, FormDiv, FormActions, FormRow } from '@reachdigital/next-ui'
 import { emailPattern, useFormPersist } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
@@ -41,7 +41,7 @@ export default function AccountSignInUpForm() {
   useFormPersist({ form, name: 'IsEmailAvailable' })
 
   return (
-    <Form component='div'>
+    <FormDiv>
       {mode === 'email' && (
         <div className={classes.titleContainer} key='email'>
           <Typography variant='h3' align='center'>
@@ -176,6 +176,6 @@ export default function AccountSignInUpForm() {
           </AnimatedRow>
         )}
       </AnimatePresence>
-    </Form>
+    </FormDiv>
   )
 }

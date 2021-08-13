@@ -16,7 +16,7 @@ import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   AppShellTitle,
   Button,
-  Form,
+  FormDiv,
   GetStaticProps,
   iconChevronRight,
   iconId,
@@ -82,11 +82,7 @@ function PaymentPage() {
                 <PaymentMethodOptions
                   key='options'
                   step={1}
-                  Container={({ children }) => (
-                    <Form component='div' contained>
-                      {children}
-                    </Form>
-                  )}
+                  Container={({ children }) => <FormDiv contained>{children}</FormDiv>}
                 />
 
                 <PaymentMethodPlaceOrder key='placeorder' step={2} />
