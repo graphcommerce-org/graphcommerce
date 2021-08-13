@@ -2,7 +2,7 @@ import { createHandler, config } from '@reachdigital/graphql-mesh'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getBuiltMesh } from '../../.mesh'
 
-const handler = (async () => createHandler(await getBuiltMesh(), '/api/dev'))()
+const handler = (async () => createHandler(await getBuiltMesh(), '/api/graphql'))()
 
 export { config }
 
