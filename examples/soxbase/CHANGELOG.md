@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.109.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.108.1...@reachdigital/soxbase@2.109.0) (2021-08-13)
+
+
+### Features
+
+* coupon form on payment page ([a163961](https://github.com/ho-nl/m2-pwa/commit/a1639617be756b357177fcce255cf662c5314499))
+
+
+
+
+
 # [2.108.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.107.0...@reachdigital/soxbase@2.108.0) (2021-08-12)
 
 
