@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.113.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.113.2...@graphcommerce/graphcommerce@2.113.3) (2021-08-13)
+
+
+### Bug Fixes
+
+* **cart-item-summary:** remove unnecessary animate presence ([95a0750](https://github.com/ho-nl/m2-pwa/commit/95a0750a3d27fa206a7f88635cbfbcfd8034957c))
+* **cart-item-summary:** thumbnail image bottom spacing ([f761a42](https://github.com/ho-nl/m2-pwa/commit/f761a4221f65f3c8897cc36298ed973bccbd3266))
+
+
+
+
+
 ## [2.113.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.113.1...@graphcommerce/graphcommerce@2.113.2) (2021-08-13)
 
 

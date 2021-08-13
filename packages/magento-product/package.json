@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-product",
-  "version": "2.104.2",
+  "version": "2.104.3",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
@@ -27,8 +27,8 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@reachdigital/graphql": "^2.102.1",
     "@reachdigital/image": "^2.102.1",
-    "@reachdigital/magento-store": "^2.102.4",
-    "@reachdigital/next-ui": "^2.108.2",
+    "@reachdigital/magento-store": "^2.102.5",
+    "@reachdigital/next-ui": "^2.108.3",
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.17",
     "next": "^11.1.0",

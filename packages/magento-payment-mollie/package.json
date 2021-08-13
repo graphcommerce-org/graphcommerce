@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-payment-mollie",
-  "version": "2.102.5",
+  "version": "2.102.6",
   "private": true,
   "sideEffects": false,
   "engines": {
@@ -30,10 +30,10 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@reachdigital/graphql": "^2.102.1",
     "@reachdigital/image": "^2.102.1",
-    "@reachdigital/magento-cart": "^2.105.2",
-    "@reachdigital/magento-cart-payment-method": "^2.103.2",
-    "@reachdigital/magento-store": "^2.102.4",
-    "@reachdigital/next-ui": "^2.108.2",
+    "@reachdigital/magento-cart": "^2.105.3",
+    "@reachdigital/magento-cart-payment-method": "^2.103.3",
+    "@reachdigital/magento-store": "^2.102.5",
+    "@reachdigital/next-ui": "^2.108.3",
     "@reachdigital/react-hook-form": "^2.101.5",
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.17",
