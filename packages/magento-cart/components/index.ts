@@ -4,9 +4,6 @@ export { default as AddToCartButton } from './AddToCartButton/AddToCartButton'
 export * from './CartFab/CartFab'
 export { default as CartFab } from './CartFab/CartFab'
 
-export * from './CartQuickCheckout/CartQuickCheckout'
-export { default as CartQuickCheckout } from './CartQuickCheckout/CartQuickCheckout'
-
 export * from './CartStartCheckout/CartStartCheckout'
 export { default as CartStartCheckout } from './CartStartCheckout/CartStartCheckout'
 
