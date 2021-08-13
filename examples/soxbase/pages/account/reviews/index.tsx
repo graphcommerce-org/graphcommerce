@@ -6,7 +6,6 @@ import { AccountDashboardReviewsDocument, AccountReviews } from '@reachdigital/m
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   FullPageMessage,
-  IconHeader,
   SvgImage,
   iconStar,
   AppShellTitle,

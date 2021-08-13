@@ -2,7 +2,6 @@ import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
   ApolloCartErrorAlert,
-  CartQuickCheckout,
   CartStartCheckout,
   CartTotals,
   EmptyCart,
@@ -12,11 +11,13 @@ import { CartPageDocument } from '@reachdigital/magento-cart-checkout'
 import { CouponAccordion } from '@reachdigital/magento-cart-coupon'
 import { CartItem, CartItems } from '@reachdigital/magento-cart-items'
 import { ConfigurableCartItem } from '@reachdigital/magento-product-configurable'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { Money, PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   AnimatedRow,
+  AppShellTitle,
   Button,
   GetStaticProps,
+  iconShoppingBag,
   SheetShellHeader,
   Stepper,
   Title,
@@ -47,7 +48,7 @@ function CartPage() {
             hasItems ? (
               <PageLink href='/checkout' passHref>
                 <Button color='secondary' variant='pill-link'>
-                  Start Checkout
+                  Next
                 </Button>
               </PageLink>
             ) : undefined
@@ -60,8 +61,8 @@ function CartPage() {
             ) : undefined
           }
         >
-          <Title size='small' component='span'>
-            Checkout
+          <Title size='small' component='span' icon={iconShoppingBag}>
+            Cart Total: <Money {...data?.cart?.prices?.grand_total} />
           </Title>
         </SheetShellHeader>
         <Container maxWidth='md'>
@@ -69,7 +70,9 @@ function CartPage() {
             {hasItems ? (
               <>
                 <AnimatedRow key='quick-checkout'>
-                  <CartQuickCheckout {...data?.cart} />
+                  <AppShellTitle icon={iconShoppingBag}>
+                    Cart Total: <Money {...data?.cart?.prices?.grand_total} />
+                  </AppShellTitle>
                 </AnimatedRow>
                 <CartItems
                   items={data?.cart?.items}

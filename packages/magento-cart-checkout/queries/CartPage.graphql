@@ -4,7 +4,6 @@ query CartPage($cartId: String!) {
     __typename
     email
     total_quantity
-    ...CartQuickCheckout
     ...CartStartCheckout
     ...Coupon
     ...CartItems

@@ -5,10 +5,14 @@ import {
   Slider as FramerNextPagesSlider,
   GetStaticProps,
   responsiveVal,
+  Title,
+  AppShellTitle,
+  SheetShellHeader,
 } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
+import PageShellHeader from '../../components/AppShell/PageShellHeader'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import { PagesStaticPathsDocument } from '../../components/GraphQL/PagesStaticPaths.gql'
@@ -22,9 +26,10 @@ type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ServicePage({ pages }: Props) {
   const title = pages?.[0].title ?? ''
+  const asset = pages?.[0].asset
 
   return (
-    <FramerNextPagesSlider>
+    <>
       <PageMeta
         title={title}
         metaDescription={title}
@@ -32,16 +37,19 @@ function ServicePage({ pages }: Props) {
         canonical={pages?.[0]?.url ?? ''}
       />
 
-      {title && (
-        <Box pt={8} pb={4}>
-          <Typography variant='h2' component='h1' align='center'>
-            {title}
-          </Typography>
-        </Box>
-      )}
+      <SheetShellHeader>
+        <Title component='span' size='small'>
+          {title}
+        </Title>
+      </SheetShellHeader>
 
+      <AppShellTitle>
+        <Title>{title}</Title>
+      </AppShellTitle>
+      {/* <FramerNextPagesSlider> */}
       <PageContent {...pages[0]} />
-    </FramerNextPagesSlider>
+      {/* </FramerNextPagesSlider> */}
+    </>
   )
 }
 

@@ -73,9 +73,7 @@ function AccountIndexPage() {
         </Title>
       </PageShellHeader>
 
-      <AppShellTitle icon={iconPersonAlt}>
-        <Title>Account</Title>
-      </AppShellTitle>
+      <AppShellTitle icon={iconPersonAlt}>Account</AppShellTitle>
 
       <Container maxWidth='md'>
         <NoSsr>

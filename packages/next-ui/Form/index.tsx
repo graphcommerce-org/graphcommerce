@@ -25,22 +25,24 @@ export type BaseFormProps = {
   children: React.ReactNode
 } & UseStyles<typeof useStyles>
 
-export type FormFormProps = BaseFormProps & JSX.IntrinsicElements['form'] & { component?: 'form' }
+export type FormFormProps = BaseFormProps & JSX.IntrinsicElements['form']
 
-export type DivFormProps = BaseFormProps & JSX.IntrinsicElements['div'] & { component: 'div' }
-
-function isDivComponent(props: FormFormProps | DivFormProps): props is DivFormProps {
-  return props.component === 'div'
-}
-
-export default function Form(props: FormFormProps | DivFormProps) {
+export const Form = React.forwardRef<HTMLFormElement, FormFormProps>((props, ref) => {
   const classes = useStyles(props)
 
-  if (isDivComponent(props)) {
-    const { contained, ...divProps } = props
-    return <div {...divProps} className={clsx(classes.root, contained && classes.contained)} />
-  }
+  const { contained, ...formProps } = props
+  return (
+    <form ref={ref} {...formProps} className={clsx(classes.root, contained && classes.contained)} />
+  )
+})
+
+export type DivFormProps = BaseFormProps & JSX.IntrinsicElements['div']
+
+export const FormDiv = React.forwardRef<HTMLDivElement, DivFormProps>((props, ref) => {
+  const classes = useStyles(props)
 
   const { contained, ...formProps } = props
-  return <form {...formProps} className={clsx(classes.root, contained && classes.contained)} />
-}
+  return (
+    <div ref={ref} {...formProps} className={clsx(classes.root, contained && classes.contained)} />
+  )
+})

@@ -10,7 +10,7 @@ import {
   SignUpFormInline,
   useFormIsEmailAvailable,
 } from '@reachdigital/magento-customer'
-import { AnimatedRow, Button, Form, FormRow } from '@reachdigital/next-ui'
+import { AnimatedRow, Button, FormDiv, FormRow } from '@reachdigital/next-ui'
 import { emailPattern, useFormCompose, UseFormComposeOptions } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
@@ -76,7 +76,7 @@ export default function EmailForm(props: EmailFormProps) {
   if (formState.isSubmitting) endAdornment = <CircularProgress />
 
   return (
-    <Form component='div' contained>
+    <FormDiv contained>
       <AnimatePresence initial={false}>
         <AnimatedRow key='emailform'>
           <form noValidate onSubmit={submit}>
@@ -127,6 +127,6 @@ export default function EmailForm(props: EmailFormProps) {
           </AnimatedRow>
         )}
       </AnimatePresence>
-    </Form>
+    </FormDiv>
   )
 }

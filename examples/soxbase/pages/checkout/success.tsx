@@ -26,13 +26,6 @@ function ShippingPage() {
     <>
       <PageMeta title='Checkout summary' metaDescription='Ordered items' metaRobots={['noindex']} />
       <PageShellHeader
-        primary={
-          <PageLink href='/' passHref>
-            <Button color='secondary' variant='text'>
-              Back to Home
-            </Button>
-          </PageLink>
-        }
         divider={
           <Container maxWidth={false}>
             <Stepper steps={3} currentStep={3} />
@@ -45,7 +38,6 @@ function ShippingPage() {
       </PageShellHeader>
       <Container maxWidth='md'>
         <AppShellTitle icon={iconParty}>Thank you for your order!</AppShellTitle>
-
         <CartSummary />
         <CartItemSummary />
         <Box textAlign='center' m={8}>
