@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "next -p 3001",
     "build-mesh": "yarn mesh build --require dotenv/config",
-    "build": "next build",
+    "build": "yarn build-mesh && next build",
     "start": "next start",
     "start-local": "next start -p 3001"
   },
