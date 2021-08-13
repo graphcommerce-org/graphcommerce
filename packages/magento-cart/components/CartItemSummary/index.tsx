@@ -85,11 +85,11 @@ export default function CartItemSummary(props: OrderSummaryProps) {
           sectionHeaderWrapper: classes.sectionHeaderWrapper,
         }}
         labelLeft='Order summary'
-        labelRight={
-          <PageLink href='/download' passHref>
-            <Link color='secondary'>Download invoice</Link>
-          </PageLink>
-        }
+        // labelRight={
+        //   <PageLink href='/download' passHref>
+        //     <Link color='secondary'>Download invoice</Link>
+        //   </PageLink>
+        // }
         variantLeft='h6'
       >
         <div className={classes.sliderContextContainer}>
