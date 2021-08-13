@@ -33,15 +33,11 @@ const useStyles = makeStyles(
       fontWeight: theme.typography.fontWeightBold,
     },
     costsDiscountSub: {
-      // color: theme.palette.primary.mutedText,
       fontWeight: theme.typography.fontWeightBold,
     },
     costsTax: {
       color: theme.palette.primary.mutedText,
       paddingTop: 0,
-      '& > div': {
-        // paddingTop: 5,
-      },
     },
     money: {
       whiteSpace: 'nowrap',
