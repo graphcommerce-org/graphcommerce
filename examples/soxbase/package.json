@@ -36,7 +36,7 @@
     "@graphql-typed-document-node/patch-cli": "^3.0.8",
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",
-    "@next/bundle-analyzer": "^11.0.1",
+    "@next/bundle-analyzer": "^11.1.0",
     "@playwright/test": "^1.13.1",
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
     "@reachdigital/eslint-config-pwa": "^2.102.1",
@@ -98,11 +98,11 @@
     "schema-dts": "^0.10.0",
     "sharp": "^0.28.3",
     "vercel": "^23.1.2",
-    "webpack": "^5.49.0"
+    "webpack": "^5.50.0"
   },
   "devDependencies": {
-    "@types/node": "^16.4.13",
-    "@types/react": "^17.0.16",
+    "@types/node": "^16.6.1",
+    "@types/react": "^17.0.17",
     "@types/sharp": "^0.28.5",
     "type-fest": "^2.0.0",
     "typescript": "^4.3.5"

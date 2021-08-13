@@ -22,5 +22,6 @@
     "**/.DS_Store": true,
     ".yarn": true,
     "**/.next": true
-  }
+  },
+  "jest.autoRun": {}
 }
