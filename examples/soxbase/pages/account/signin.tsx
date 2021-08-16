@@ -2,7 +2,7 @@ import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { useMergeCustomerCart } from '@reachdigital/magento-cart'
 import { AccountSignInUpForm } from '@reachdigital/magento-customer-account'
-import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps, SheetShellHeader, Title } from '@reachdigital/next-ui'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
@@ -12,29 +12,32 @@ type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountSignInPage() {
   useMergeCustomerCart()
+
   return (
     <>
-      <SheetShellHeader backFallbackHref='/' backFallbackTitle='Home'>
-        <Title size='small' component='span'>
-          Sign in
-        </Title>
-      </SheetShellHeader>
-      <Container maxWidth='sm'>
-        <PageMeta
-          title='Sign in'
-          metaRobots={['noindex']}
-          metaDescription='Sign in to your account'
-        />
-        <NoSsr>
-          <AccountSignInUpForm />
-        </NoSsr>
-      </Container>
+      <PageMeta
+        title='Sign in'
+        metaRobots={['noindex']}
+        metaDescription='Sign in to your account'
+      />
+      <NoSsr>
+        <SheetShellHeader backFallbackHref='/' backFallbackTitle='Home'>
+          <Title size='small' component='span'>
+            Sign in
+          </Title>
+        </SheetShellHeader>
+        <Container maxWidth='sm'>
+          <>
+            <AccountSignInUpForm />
+          </>
+        </Container>
+      </NoSsr>
     </>
   )
 }
 
 const pageOptions: PageOptions<SheetShellProps> = {
-  overlayGroup: 'account-public',
+  overlayGroup: 'checkout',
   SharedComponent: SheetShell,
 }
 AccountSignInPage.pageOptions = pageOptions
