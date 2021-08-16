@@ -123,8 +123,7 @@ export default function AccountSignInUpForm() {
                     key='email'
                     variant='outlined'
                     type='text'
-                    autoComplete='username'
-                    autoFocus
+                    autoComplete='email'
                     error={formState.isSubmitted && !!formState.errors.email}
                     helperText={formState.isSubmitted && formState.errors.email?.message}
                     label='Email'
