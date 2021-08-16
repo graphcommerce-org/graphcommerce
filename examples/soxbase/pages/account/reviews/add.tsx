@@ -96,7 +96,6 @@ function AccountReviewsAddPage() {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'left',
   SharedComponent: SheetShell,
-  sharedProps: { variant: 'left', size: responsiveVal(320, 800) },
 }
 AccountReviewsAddPage.pageOptions = pageOptions
 
