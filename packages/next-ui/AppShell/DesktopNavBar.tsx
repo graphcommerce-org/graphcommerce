@@ -15,7 +15,7 @@ const useStyles = makeStyles(
       width: '100%',
       position: 'relative',
       pointerEvents: 'all',
-      padding: '10px 0',
+      // padding: '10px 0',
       [theme.breakpoints.down('sm')]: {
         display: 'none',
       },
