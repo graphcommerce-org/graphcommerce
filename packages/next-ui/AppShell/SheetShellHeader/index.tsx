@@ -5,7 +5,12 @@ import AppShellHeader, { AppShellHeaderProps } from '../AppShellHeader'
 import useSheetStyles from '../SheetShellBase/useSheetStyles'
 import SheetShellDragIndicator from '../SheetShellDragIndicator'
 
-export default function SheetShellHeader(props: Omit<AppShellHeaderProps, 'scrollY'>) {
+type SheetShellHeaderProps = {
+  hideDragIndicator?: boolean
+} & Omit<AppShellHeaderProps, 'scrollY'>
+
+export default function SheetShellHeader(props: SheetShellHeaderProps) {
+  const { hideDragIndicator } = props
   const { contentRef } = useSheetContext()
   const { y } = useElementScroll(contentRef)
   const sheetClasses = useSheetStyles()
@@ -14,7 +19,9 @@ export default function SheetShellHeader(props: Omit<AppShellHeaderProps, 'scrol
     <AppShellHeader
       {...props}
       scrollY={y}
-      dragIndicator={<SheetShellDragIndicator classes={sheetClasses} />}
+      dragIndicator={
+        hideDragIndicator ? undefined : <SheetShellDragIndicator classes={sheetClasses} />
+      }
     />
   )
 }

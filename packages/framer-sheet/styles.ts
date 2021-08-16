@@ -121,8 +121,14 @@ const styles: Styles<ClassKeys> = {
   contentbottom: {
     zIndex: 101,
   },
-  contentleft: {},
-  contentright: {},
+  contentleft: {
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+  },
+  contentright: {
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+  },
   back: { position: 'absolute', left: 12, top: 12 },
   forward: { position: 'absolute', right: 2, top: 12 },
 

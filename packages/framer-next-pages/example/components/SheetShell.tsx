@@ -11,6 +11,10 @@ import {
 import { useRouter } from 'next/router'
 import React from 'react'
 
+/*
+  This file is possibly deprecated.
+*/
+
 export type SheetShellProps = {
   headerBack?: React.ReactNode
   cta?: React.ReactNode
