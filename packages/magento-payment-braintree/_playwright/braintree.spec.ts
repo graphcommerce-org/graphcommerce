@@ -40,7 +40,7 @@ test('place order', async ({ page, productURL }) => {
   await expirationFrame?.fill('input[name="expiration"]', '102022')
 
   // Click button:has-text("Pay (Credit Card)")
-  await page.click('button:has-text("Pay (Credit Card)")')
+  await page.click('button[name="placeOrder"]')
 
   const result = await waitForGraphQlResponse(page, PaymentMethodPlaceOrderNoopDocument)
   expect(result.errors).toBeUndefined()

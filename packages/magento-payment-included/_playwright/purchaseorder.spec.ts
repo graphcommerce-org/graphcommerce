@@ -28,7 +28,7 @@ test('place order', async ({ page, productURL }) => {
 
   const [, , placeOrder] = await Promise.all([
     page.waitForNavigation(),
-    page.click('button:has-text("Pay (Purchase Order)")'),
+    page.click('button[name="placeOrder"]'),
     waitForGraphQlResponse(page, PaymentMethodPlaceOrderNoopDocument),
   ])
 
