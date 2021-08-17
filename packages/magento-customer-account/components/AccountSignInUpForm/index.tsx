@@ -116,50 +116,48 @@ export default function AccountSignInUpForm() {
       <AnimatePresence>
         {mode !== 'signedin' && (
           <form noValidate onSubmit={submit} key='emailform'>
-            <AnimatePresence initial={false}>
-              <AnimatedRow key='email'>
-                <FormRow>
-                  <TextField
-                    key='email'
-                    variant='outlined'
-                    type='text'
-                    autoComplete='email'
-                    error={formState.isSubmitted && !!formState.errors.email}
-                    helperText={formState.isSubmitted && formState.errors.email?.message}
-                    label='Email'
-                    required={required.email}
-                    disabled={disableFields}
-                    {...muiRegister('email', {
-                      required: required.email,
-                      pattern: { value: emailPattern, message: '' },
-                    })}
-                    InputProps={{
-                      endAdornment: formState.isSubmitting && <CircularProgress />,
-                      readOnly: !!customerQuery.data?.customer?.email,
-                    }}
-                  />
-                </FormRow>
+            <AnimatedRow key='email'>
+              <FormRow>
+                <TextField
+                  key='email'
+                  variant='outlined'
+                  type='text'
+                  autoComplete='email'
+                  error={formState.isSubmitted && !!formState.errors.email}
+                  helperText={formState.isSubmitted && formState.errors.email?.message}
+                  label='Email'
+                  required={required.email}
+                  disabled={disableFields}
+                  {...muiRegister('email', {
+                    required: required.email,
+                    pattern: { value: emailPattern, message: '' },
+                  })}
+                  InputProps={{
+                    endAdornment: formState.isSubmitting && <CircularProgress />,
+                    readOnly: !!customerQuery.data?.customer?.email,
+                  }}
+                />
+              </FormRow>
+            </AnimatedRow>
+
+            <ApolloCustomerErrorAlert error={error} />
+
+            {(mode === 'email' || mode === 'session-expired') && (
+              <AnimatedRow key='submit-form'>
+                <FormActions>
+                  <Button
+                    type='submit'
+                    loading={formState.isSubmitting}
+                    variant='contained'
+                    color='primary'
+                    size='large'
+                    text='bold'
+                  >
+                    Continue
+                  </Button>
+                </FormActions>
               </AnimatedRow>
-
-              <ApolloCustomerErrorAlert error={error} />
-
-              {(mode === 'email' || mode === 'session-expired') && (
-                <AnimatedRow key='submit-form'>
-                  <FormActions>
-                    <Button
-                      type='submit'
-                      loading={formState.isSubmitting}
-                      variant='contained'
-                      color='primary'
-                      size='large'
-                      text='bold'
-                    >
-                      Continue
-                    </Button>
-                  </FormActions>
-                </AnimatedRow>
-              )}
-            </AnimatePresence>
+            )}
           </form>
         )}
 

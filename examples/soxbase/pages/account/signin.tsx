@@ -27,9 +27,7 @@ function AccountSignInPage() {
           </Title>
         </SheetShellHeader>
         <Container maxWidth='sm'>
-          <>
-            <AccountSignInUpForm />
-          </>
+          <AccountSignInUpForm />
         </Container>
       </NoSsr>
     </>
@@ -37,7 +35,7 @@ function AccountSignInPage() {
 }
 
 const pageOptions: PageOptions<SheetShellProps> = {
-  overlayGroup: 'checkout',
+  overlayGroup: 'account-public',
   SharedComponent: SheetShell,
 }
 AccountSignInPage.pageOptions = pageOptions
