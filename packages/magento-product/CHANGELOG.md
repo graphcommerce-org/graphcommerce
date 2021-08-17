@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.104.4](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product@2.104.3...@reachdigital/magento-product@2.104.4) (2021-08-17)
+
+
+### Bug Fixes
+
+* sticky filter drop shadow on scroll ([1d84c5e](https://github.com/ho-nl/m2-pwa/commit/1d84c5e699dc3dd7e46e0f567bec18ac95b73316))
+
+
+
+
+
 # [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product@2.103.1...@reachdigital/magento-product@2.104.0) (2021-08-13)
 
 

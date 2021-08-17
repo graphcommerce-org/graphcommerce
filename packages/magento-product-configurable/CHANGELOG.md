@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.7](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product-configurable@2.103.6...@reachdigital/magento-product-configurable@2.103.7) (2021-08-17)
+
+
+### Bug Fixes
+
+* unused swatches should not show up ([86a06fb](https://github.com/ho-nl/m2-pwa/commit/86a06fb3a7e0232611b8bb4971cadbcfd94ae525))
+
+
+
+
+
 ## [2.103.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product-configurable@2.103.0...@reachdigital/magento-product-configurable@2.103.1) (2021-08-12)
 
 

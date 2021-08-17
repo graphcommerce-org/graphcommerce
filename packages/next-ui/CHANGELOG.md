@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.109.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.108.3...@reachdigital/next-ui@2.109.0) (2021-08-17)
+
+
+### Bug Fixes
+
+* **search-page:** hide menu and cart fabs when opened virtual keyboard mobile ([e728768](https://github.com/ho-nl/m2-pwa/commit/e7287680545f33079d0af47df1c6ea519b208978))
+
+
+### Features
+
+* left and sidebar drawers ([12a3b72](https://github.com/ho-nl/m2-pwa/commit/12a3b72edfad38a4b82701ec502f2f4d85c40e53))
+
+
+
+
+
 ## [2.108.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.108.1...@reachdigital/next-ui@2.108.2) (2021-08-13)
 
 

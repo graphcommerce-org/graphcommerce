@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/framer-next-pages",
-  "version": "2.103.1",
+  "version": "2.104.0",
   "private": true,
   "sideEffects": false,
   "scripts": {

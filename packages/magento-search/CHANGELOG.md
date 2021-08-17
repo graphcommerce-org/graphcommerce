@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.6](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-search@2.103.5...@reachdigital/magento-search@2.103.6) (2021-08-17)
+
+
+### Bug Fixes
+
+* **404-page:** prevent auto focus search form ([9e89ed3](https://github.com/ho-nl/m2-pwa/commit/9e89ed31ea192312641f46f01b69dc5f319331e8))
+* **search-page:** hide menu and cart fabs when opened virtual keyboard mobile ([e728768](https://github.com/ho-nl/m2-pwa/commit/e7287680545f33079d0af47df1c6ea519b208978))
+
+
+
+
+
 # [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-search@2.102.9...@reachdigital/magento-search@2.103.0) (2021-08-12)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/framer-next-pages-example@2.101.5...@reachdigital/framer-next-pages-example@2.102.0) (2021-08-17)
+
+
+### Features
+
+* left and sidebar drawers ([12a3b72](https://github.com/ho-nl/m2-pwa/commit/12a3b72edfad38a4b82701ec502f2f4d85c40e53))
+
+
+
+
+
 # [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/framer-next-pages-example@2.100.28...@reachdigital/framer-next-pages-example@2.101.0) (2021-08-12)
 
 

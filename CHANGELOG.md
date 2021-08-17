@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.114.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.113.4...@graphcommerce/graphcommerce@2.114.0) (2021-08-17)
+
+
+### Bug Fixes
+
+* **404-page:** prevent auto focus search form ([9e89ed3](https://github.com/ho-nl/m2-pwa/commit/9e89ed31ea192312641f46f01b69dc5f319331e8))
+* account drawer not animating ([8001ab5](https://github.com/ho-nl/m2-pwa/commit/8001ab5bff6b62f676cf7b821f287b20ff767a35))
+* **search-page:** hide menu and cart fabs when opened virtual keyboard mobile ([e728768](https://github.com/ho-nl/m2-pwa/commit/e7287680545f33079d0af47df1c6ea519b208978))
+* **service-page:** hide drag indicator ([49b20eb](https://github.com/ho-nl/m2-pwa/commit/49b20ebcb53cf01401c3502affe0469b22484511))
+* **sign-in-up:** form not showing up without refresh ([49782d9](https://github.com/ho-nl/m2-pwa/commit/49782d9893dc6d32e28247ebc25a2f6c7a37339e))
+* **sign-in:** page hierarchy ([cde1f7a](https://github.com/ho-nl/m2-pwa/commit/cde1f7a96ca9111c718751731abf17b5d36fca0c))
+* sticky filter drop shadow on scroll ([1d84c5e](https://github.com/ho-nl/m2-pwa/commit/1d84c5e699dc3dd7e46e0f567bec18ac95b73316))
+* **switch-stores:** use sidebar drawer ([167518e](https://github.com/ho-nl/m2-pwa/commit/167518e3eeff7670a8f55d8d53103b90dc299817))
+* unused swatches should not show up ([86a06fb](https://github.com/ho-nl/m2-pwa/commit/86a06fb3a7e0232611b8bb4971cadbcfd94ae525))
+
+
+### Features
+
+* left and sidebar drawers ([12a3b72](https://github.com/ho-nl/m2-pwa/commit/12a3b72edfad38a4b82701ec502f2f4d85c40e53))
+
+
+
+
+
 ## [2.113.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.113.3...@graphcommerce/graphcommerce@2.113.4) (2021-08-17)
 
 

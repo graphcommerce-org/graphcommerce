@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.110.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.109.4...@reachdigital/soxbase@2.110.0) (2021-08-17)
+
+
+### Bug Fixes
+
+* **404-page:** prevent auto focus search form ([9e89ed3](https://github.com/ho-nl/m2-pwa/commit/9e89ed31ea192312641f46f01b69dc5f319331e8))
+* **search-page:** hide menu and cart fabs when opened virtual keyboard mobile ([e728768](https://github.com/ho-nl/m2-pwa/commit/e7287680545f33079d0af47df1c6ea519b208978))
+* **service-page:** hide drag indicator ([49b20eb](https://github.com/ho-nl/m2-pwa/commit/49b20ebcb53cf01401c3502affe0469b22484511))
+* **sign-in-up:** form not showing up without refresh ([49782d9](https://github.com/ho-nl/m2-pwa/commit/49782d9893dc6d32e28247ebc25a2f6c7a37339e))
+* **sign-in:** page hierarchy ([cde1f7a](https://github.com/ho-nl/m2-pwa/commit/cde1f7a96ca9111c718751731abf17b5d36fca0c))
+* sticky filter drop shadow on scroll ([1d84c5e](https://github.com/ho-nl/m2-pwa/commit/1d84c5e699dc3dd7e46e0f567bec18ac95b73316))
+* **switch-stores:** use sidebar drawer ([167518e](https://github.com/ho-nl/m2-pwa/commit/167518e3eeff7670a8f55d8d53103b90dc299817))
+
+
+### Features
+
+* left and sidebar drawers ([12a3b72](https://github.com/ho-nl/m2-pwa/commit/12a3b72edfad38a4b82701ec502f2f4d85c40e53))
+
+
+
+
+
 ## [2.109.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.109.1...@reachdigital/soxbase@2.109.2) (2021-08-13)
 
 

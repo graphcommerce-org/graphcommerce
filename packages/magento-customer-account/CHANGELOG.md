@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.101.6](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-customer-account@2.101.5...@reachdigital/magento-customer-account@2.101.6) (2021-08-17)
+
+
+### Bug Fixes
+
+* account drawer not animating ([8001ab5](https://github.com/ho-nl/m2-pwa/commit/8001ab5bff6b62f676cf7b821f287b20ff767a35))
+* **sign-in-up:** form not showing up without refresh ([49782d9](https://github.com/ho-nl/m2-pwa/commit/49782d9893dc6d32e28247ebc25a2f6c7a37339e))
+
+
+
+
+
 ## [2.101.4](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-customer-account@2.101.3...@reachdigital/magento-customer-account@2.101.4) (2021-08-13)
 
 
