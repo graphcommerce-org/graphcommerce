@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client'
-import { CustomerTokenDocument } from '@reachdigital/magento-customer'
+import { CustomerTokenDocument, useExtractCustomerErrors } from '@reachdigital/magento-customer'
+import { graphqlErrorByCategory } from '@reachdigital/magento-graphql'
 import { useEffect } from 'react'
 import { CustomerCartDocument } from './CustomerCart.gql'
 import { UseMergeCustomerCartDocument } from './UseMergeCustomerCart.gql'
@@ -15,8 +16,9 @@ import { useCurrentCartId } from './useCurrentCartId'
 export function useMergeCustomerCart() {
   const sourceCartId = useCurrentCartId()
   const assignCurrentCartId = useAssignCurrentCartId()
-  const [merge] = useMutation(UseMergeCustomerCartDocument)
+  const [merge, { error }] = useMutation(UseMergeCustomerCartDocument, { errorPolicy: 'all' })
 
+  useExtractCustomerErrors({ error })
   const customerToken = useQuery(CustomerTokenDocument)?.data?.customerToken
   const destinationCartId = useQuery(CustomerCartDocument, {
     skip: !(customerToken?.token && customerToken.valid),
@@ -38,7 +40,8 @@ export function useMergeCustomerCart() {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     ;(async () => {
       const result = await merge({ variables: { sourceCartId, destinationCartId } })
-      if (!result.data?.mergeCarts.id) throw Error('Could not merge carts')
+
+      if (!result.data?.mergeCarts.id) return
 
       assignCurrentCartId(result.data?.mergeCarts.id)
     })()

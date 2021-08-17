@@ -2,7 +2,7 @@ import { Link } from '@material-ui/core'
 import { ApolloErrorAlert, ApolloErrorAlertProps } from '@reachdigital/next-ui'
 import NextLink from 'next/link'
 import React from 'react'
-import { useExtractCustomerErrors } from './useExtractCustomerErrors'
+import { useExtractCustomerErrors } from '../../hooks/useExtractCustomerErrors'
 
 type MagentoErrorAlertProps = ApolloErrorAlertProps
 
