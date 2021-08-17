@@ -25,7 +25,7 @@ test('place order', async ({ page, productURL }) => {
 
   const [braintreePopup] = await Promise.all([
     page.waitForEvent('popup'),
-    page.click('button:has-text("Pay (iDEAL)")'),
+    page.click('button[name="placeOrder"]'),
   ])
 
   await braintreePopup.click('text=Proceed with Sandbox Purchase')

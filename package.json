@@ -42,7 +42,8 @@
     "prettier:fix": "yarn prettier --ignore-path .gitignore --write '**/*.{ts,tsx,css,html,json}'",
     "tsc": "./node_modules/.bin/tsc",
     "tsc:lint": "yarn tsc --noEmit -p .",
-    "config-to-env": "yarn ts-node -O '{\"module\":\"commonjs\"}' --transpile-only packages/magento-store/config-to-env/index.ts"
+    "config-to-env": "yarn ts-node -O '{\"module\":\"commonjs\"}' --transpile-only packages/magento-store/config-to-env/index.ts",
+    "playwright": "npx playwright test --headed --project=chrome"
   },
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
