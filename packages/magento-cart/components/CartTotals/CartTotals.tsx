@@ -70,7 +70,7 @@ export default function CartTotals(props: CartTotalsProps) {
           <AnimatedRow className={classes.costsRow} key='subtotal'>
             <div>Products</div>
             <div className={classes.money}>
-              <Money {...prices.subtotal_excluding_tax} />
+              <Money {...prices.subtotal_including_tax} />
             </div>
           </AnimatedRow>
         )}

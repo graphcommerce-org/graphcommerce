@@ -97,8 +97,6 @@ const useStyles = makeStyles(
       marginTop: '-5%',
     },
     itemName: {
-      // ...theme.typography.h5,
-      // fontWeight: 500,
       gridArea: 'itemName',
       color: theme.palette.text.primary,
       textDecoration: 'none',
@@ -140,6 +138,10 @@ export default function CartItem(props: CartItemProps) {
   const classes = useStyles()
   const productLink = useProductLink(product)
 
+  // row_total_including_tax returns a value without taxes applied when no taxes are applied
+  const inclTaxes =
+    prices && (prices.row_total_including_tax?.value ?? 0) / quantity > (prices.price.value ?? 0)
+
   return (
     <div className={clsx(classes.root, !withOptions && classes.itemWithoutOptions)}>
       <Badge
@@ -175,7 +177,14 @@ export default function CartItem(props: CartItemProps) {
       </PageLink>
 
       <div className={classes.itemPrice}>
-        <Money {...prices?.price} />
+        {inclTaxes ? (
+          <Money
+            value={(prices?.row_total_including_tax?.value ?? 0) / quantity}
+            currency={prices?.price.currency}
+          />
+        ) : (
+          <Money {...prices?.price} />
+        )}
       </div>
 
       <div className={clsx(classes.quantity, withOptions && classes.quantityWithOptions)}>
