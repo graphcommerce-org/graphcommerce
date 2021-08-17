@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.113.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.113.3...@graphcommerce/graphcommerce@2.113.4) (2021-08-17)
+
+
+### Bug Fixes
+
+* **playwright:** checkout button was renamed ([09e5b79](https://github.com/ho-nl/m2-pwa/commit/09e5b79333708cfac04232d8071d1dad72968297))
+* **playwright:** set a reasonable timeout so playwright doesnt run indefinitely ([9f58d7a](https://github.com/ho-nl/m2-pwa/commit/9f58d7ae1178a57d4afe210071637a4e8bd75754))
+
+
+
+
+
 ## [2.113.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.113.2...@graphcommerce/graphcommerce@2.113.3) (2021-08-13)
 
 

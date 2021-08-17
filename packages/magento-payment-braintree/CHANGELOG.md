@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.7](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-payment-braintree@2.103.6...@reachdigital/magento-payment-braintree@2.103.7) (2021-08-17)
+
+
+### Bug Fixes
+
+* **playwright:** checkout button was renamed ([09e5b79](https://github.com/ho-nl/m2-pwa/commit/09e5b79333708cfac04232d8071d1dad72968297))
+
+
+
+
+
 # [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-payment-braintree@2.102.7...@reachdigital/magento-payment-braintree@2.103.0) (2021-08-12)
 
 
