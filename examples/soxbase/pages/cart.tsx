@@ -21,6 +21,8 @@ import {
   SheetShellHeader,
   Stepper,
   Title,
+  iconChevronRight,
+  SvgImage,
 } from '@reachdigital/next-ui'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
@@ -45,24 +47,33 @@ function CartPage() {
       <NoSsr>
         <SheetShellHeader
           primary={
-            hasItems ? (
-              <PageLink href='/checkout' passHref>
-                <Button color='secondary' variant='pill-link'>
-                  Next
-                </Button>
-              </PageLink>
-            ) : undefined
+            <PageLink href='/checkout' passHref>
+              <Button color='secondary' text='bold' variant='pill-link' disabled={!hasItems}>
+                Start Checkout{' '}
+                {hasItems ? (
+                  <>
+                    (<Money {...data?.cart?.prices?.grand_total} />)
+                  </>
+                ) : undefined}
+                <SvgImage
+                  src={iconChevronRight}
+                  alt='chevron right'
+                  shade='inverted'
+                  size='small'
+                  loading='eager'
+                />
+              </Button>
+            </PageLink>
           }
           divider={
-            hasItems ? (
-              <Container maxWidth={false}>
-                <Stepper steps={3} currentStep={1} />
-              </Container>
-            ) : undefined
+            <Container maxWidth='md'>
+              <Stepper currentStep={1} steps={3} />
+            </Container>
           }
+          scrolled
         >
-          <Title size='small' component='span' icon={iconShoppingBag}>
-            Cart Total: <Money {...data?.cart?.prices?.grand_total} />
+          <Title size='small' component='span'>
+            Checkout
           </Title>
         </SheetShellHeader>
         <Container maxWidth='md'>

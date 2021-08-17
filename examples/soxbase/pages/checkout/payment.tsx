@@ -45,23 +45,28 @@ function PaymentPage() {
       <PageShellHeader
         primary={
           <PageLink href='/checkout/payment' passHref>
-            {/* TODO: PaymentMethodButton primary action */}
-            <Button color='secondary' variant='pill-link'>
-              Place Order
+            <Button color='secondary' variant='pill-link' text='bold'>
+              Place order
+              <SvgImage
+                src={iconChevronRight}
+                loading='eager'
+                alt='chevron right'
+                size='small'
+                shade='inverted'
+              />
             </Button>
           </PageLink>
         }
         divider={
-          <Container maxWidth={false}>
+          <Container maxWidth='md'>
             <Stepper steps={3} currentStep={3} />
           </Container>
         }
         backFallbackHref='/cart'
         backFallbackTitle='Cart'
+        scrolled
       >
-        <Title size='small' icon={iconId}>
-          Payment
-        </Title>
+        <Title size='small'>Checkout</Title>
       </PageShellHeader>
       <Container maxWidth='md'>
         <ComposedForm>

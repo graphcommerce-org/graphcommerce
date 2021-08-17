@@ -43,22 +43,28 @@ function ShippingPage() {
       <PageShellHeader
         primary={
           <PageLink href='/checkout/payment' passHref>
-            <Button color='secondary' variant='pill-link'>
+            <Button color='secondary' text='bold' variant='pill-link'>
               Next
+              <SvgImage
+                src={iconChevronRight}
+                alt='chevron right'
+                shade='inverted'
+                size='small'
+                loading='eager'
+              />
             </Button>
           </PageLink>
         }
         divider={
-          <Container maxWidth={false}>
-            <Stepper steps={3} currentStep={2} />
+          <Container maxWidth='md'>
+            <Stepper currentStep={2} steps={3} />
           </Container>
         }
         backFallbackHref='/cart'
         backFallbackTitle='Cart'
+        scrolled
       >
-        <Title size='small' icon={iconBox}>
-          Shipping
-        </Title>
+        <Title size='small'>Checkout</Title>
       </PageShellHeader>
       <Container maxWidth='md'>
         <NoSsr>
@@ -86,6 +92,7 @@ function ShippingPage() {
                         color='secondary'
                         variant='pill'
                         size='large'
+                        text='bold'
                         loading={
                           buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)
                         }
@@ -96,6 +103,7 @@ function ShippingPage() {
                           src={iconChevronRight}
                           alt='chevron right'
                           shade='inverted'
+                          size='small'
                           loading='eager'
                         />
                       </Button>

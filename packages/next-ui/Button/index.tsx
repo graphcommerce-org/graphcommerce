@@ -36,7 +36,10 @@ const useStyles = makeStyles<
   (theme: Theme) => ({
     root: {},
     label: {},
-    disabled: {},
+    disabled: {
+      opacity: 0.25,
+      color: `${theme.palette.secondary.contrastText} !important`,
+    },
     withStartIcon: {
       [theme.breakpoints.down('sm')]: {
         height: 40,
