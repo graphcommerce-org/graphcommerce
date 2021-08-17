@@ -1,18 +1,15 @@
-import { Box, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
-  Slider as FramerNextPagesSlider,
+  AppShellTitle,
   GetStaticProps,
   responsiveVal,
-  Title,
-  AppShellTitle,
   SheetShellHeader,
+  Title,
 } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import PageShellHeader from '../../components/AppShell/PageShellHeader'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import { PagesStaticPathsDocument } from '../../components/GraphQL/PagesStaticPaths.gql'
@@ -37,7 +34,7 @@ function ServicePage({ pages }: Props) {
         canonical={pages?.[0]?.url ?? ''}
       />
 
-      <SheetShellHeader>
+      <SheetShellHeader hideDragIndicator>
         <Title component='span' size='small'>
           {title}
         </Title>

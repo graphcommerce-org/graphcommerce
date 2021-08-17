@@ -1,13 +1,20 @@
-import { Box, Container, Typography } from '@material-ui/core'
+import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
 import {
+  PageMeta,
   StoreConfigDocument,
   StoreSwitcherList,
   StoreSwitcherListDocument,
   StoreSwitcherListQuery,
-  PageMeta,
 } from '@reachdigital/magento-store'
-import { GetStaticProps, responsiveVal } from '@reachdigital/next-ui'
+import {
+  AppShellTitle,
+  GetStaticProps,
+  iconShoppingBag,
+  responsiveVal,
+  SheetShellHeader,
+  Title,
+} from '@reachdigital/next-ui'
 import React from 'react'
 import { FullPageShellProps } from '../components/AppShell/FullPageShell'
 import SheetShell, { SheetShellProps } from '../components/AppShell/SheetShell'
@@ -21,22 +28,26 @@ function StoresIndexPage({ availableStores }: Props) {
   const { locale } = usePageRouter()
 
   return (
-    <Container maxWidth='md'>
+    <>
       <PageMeta title='Switch stores' metaDescription='Switch stores' metaRobots={['noindex']} />
-      <Box pt={4} pb={4}>
-        <Typography variant='h2' component='h1' align='center'>
-          Country
-        </Typography>
-      </Box>
-      <StoreSwitcherList availableStores={availableStores} locale={locale} />
-    </Container>
+      <NoSsr>
+        <SheetShellHeader backFallbackHref='/' backFallbackTitle='Home' hideDragIndicator>
+          <Title size='small' component='span' icon={iconShoppingBag}>
+            Country
+          </Title>
+        </SheetShellHeader>
+        <Container maxWidth='md'>
+          <AppShellTitle icon={iconShoppingBag}>Country</AppShellTitle>
+          <StoreSwitcherList availableStores={availableStores} locale={locale} />
+        </Container>
+      </NoSsr>
+    </>
   )
 }
 
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'left',
   SharedComponent: SheetShell,
-  sharedProps: { variant: 'left', size: responsiveVal(320, 800) },
 }
 StoresIndexPage.pageOptions = pageOptions
 
@@ -52,6 +63,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await stores).data,
+      variant: 'left',
+      size: responsiveVal(320, 800),
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }
