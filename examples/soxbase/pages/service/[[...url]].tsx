@@ -37,7 +37,7 @@ function ServicePage({ pages }: Props) {
         canonical={pages?.[0]?.url ?? ''}
       />
 
-      <SheetShellHeader>
+      <SheetShellHeader hideDragIndicator>
         <Title component='span' size='small'>
           {title}
         </Title>
