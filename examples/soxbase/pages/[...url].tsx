@@ -3,30 +3,28 @@ import { Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
   CategoryChildren,
-  CategoryDescription,
   CategoryHeroNav,
+  CategoryHeroNavTitle,
   CategoryMeta,
   getCategoryStaticPaths,
-  CategoryHeroNavTitle,
 } from '@reachdigital/magento-category'
 import {
+  extractUrlQuery,
+  FilterTypes,
+  getFilterTypes,
+  parseParams,
   ProductListCount,
+  ProductListDocument,
   ProductListFilters,
   ProductListFiltersContainer,
   ProductListPagination,
-  ProductListParamsProvider,
-  ProductListSort,
-  ProductListDocument,
-  ProductListQuery,
-  FilterTypes,
   ProductListParams,
-  extractUrlQuery,
-  parseParams,
-  getFilterTypes,
+  ProductListParamsProvider,
+  ProductListQuery,
+  ProductListSort,
 } from '@reachdigital/magento-product'
-
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { AppShellSticky, AppShellTitle, GetStaticProps, Title } from '@reachdigital/next-ui'
+import { AppShellTitle, GetStaticProps, Title, AppShellSticky } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../components/AppShell/FullPageShell'

@@ -87,7 +87,8 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
       const offset = wrapperRef.current?.offsetTop ?? 0
       const elemHeigh = entry.contentRect.height
       const nextOffset =
-        (wrapperRef.current?.nextElementSibling as HTMLElement | null)?.offsetTop ?? 0
+        (wrapperRef.current?.parentElement?.nextElementSibling as HTMLElement | null)?.offsetTop ??
+        0
 
       setSpacing(nextOffset - elemHeigh - offset + 20)
       setStartPosition(offset)
