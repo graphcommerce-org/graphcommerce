@@ -9,6 +9,17 @@ fragment CartTotals on Cart @inject(into: ["CartItemCountChanged"]) {
         ...Money
       }
     }
+    # https://github.com/magento/magento2/pull/31322
+    available_shipping_methods {
+      carrier_code
+      method_code
+      price_incl_tax {
+        ...Money
+      }
+      price_excl_tax {
+        ...Money
+      }
+    }
   }
   prices {
     __typename

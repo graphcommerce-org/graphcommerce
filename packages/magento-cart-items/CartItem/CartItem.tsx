@@ -1,5 +1,6 @@
 import { Badge, makeStyles, Theme, Link } from '@material-ui/core'
 import { Image } from '@reachdigital/image'
+import { useDisplayInclTax } from '@reachdigital/magento-cart'
 import { useProductLink } from '@reachdigital/magento-product'
 import { Money } from '@reachdigital/magento-store'
 import { UseStyles, responsiveVal } from '@reachdigital/next-ui'
@@ -137,10 +138,7 @@ export default function CartItem(props: CartItemProps) {
   const { name } = product
   const classes = useStyles()
   const productLink = useProductLink(product)
-
-  // row_total_including_tax returns a value without taxes applied when no taxes are applied
-  const inclTaxes =
-    prices && (prices.row_total_including_tax?.value ?? 0) / quantity > (prices.price.value ?? 0)
+  const inclTaxes = useDisplayInclTax()
 
   return (
     <div className={clsx(classes.root, !withOptions && classes.itemWithoutOptions)}>
@@ -192,7 +190,7 @@ export default function CartItem(props: CartItemProps) {
       </div>
 
       <div className={classes.rowPrice}>
-        <Money {...prices?.row_total_including_tax} /> <br />
+        <Money {...(inclTaxes ? prices?.row_total_including_tax : prices?.row_total)} /> <br />
       </div>
 
       {children}
