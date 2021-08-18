@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.110.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.110.0...@reachdigital/soxbase@2.110.1) (2021-08-18)
+
+
+### Bug Fixes
+
+* display prices excl and incl tax ([0d41135](https://github.com/ho-nl/m2-pwa/commit/0d411350e4621928411c2800be6ea02c6125049a))
+
+
+
+
+
 # [2.110.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.109.4...@reachdigital/soxbase@2.110.0) (2021-08-17)
 
 

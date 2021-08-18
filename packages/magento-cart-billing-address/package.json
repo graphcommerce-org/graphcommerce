@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-cart-billing-address",
-  "version": "2.102.7",
+  "version": "2.102.8",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
@@ -27,8 +27,8 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@reachdigital/graphql": "^2.102.1",
     "@reachdigital/image": "^2.102.1",
-    "@reachdigital/magento-cart": "^2.105.4",
-    "@reachdigital/magento-customer": "^2.104.6",
+    "@reachdigital/magento-cart": "^2.105.5",
+    "@reachdigital/magento-customer": "^2.104.7",
     "@reachdigital/magento-store": "^2.102.6",
     "@reachdigital/next-ui": "^2.109.0",
     "@reachdigital/react-hook-form": "^2.101.5",

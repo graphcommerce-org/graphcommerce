@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.104.7](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-customer@2.104.6...@reachdigital/magento-customer@2.104.7) (2021-08-18)
+
+
+### Bug Fixes
+
+* make sure the session token gets deactivated when trying to merge carts when it cant ([2a9416b](https://github.com/ho-nl/m2-pwa/commit/2a9416b5c9efcd28a27f4183922ab419f62ea767))
+
+
+
+
+
 # [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-customer@2.103.0...@reachdigital/magento-customer@2.104.0) (2021-08-12)
 
 

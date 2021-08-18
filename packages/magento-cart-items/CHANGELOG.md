@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.8](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-items@2.103.7...@reachdigital/magento-cart-items@2.103.8) (2021-08-18)
+
+
+### Bug Fixes
+
+* **cart:** display prices with taxes for specific store views ([fd25541](https://github.com/ho-nl/m2-pwa/commit/fd25541646c41111f5ea53822d244591cb08b199))
+* display prices excl and incl tax ([0d41135](https://github.com/ho-nl/m2-pwa/commit/0d411350e4621928411c2800be6ea02c6125049a))
+
+
+
+
+
 # [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-items@2.102.3...@reachdigital/magento-cart-items@2.103.0) (2021-08-12)
 
 

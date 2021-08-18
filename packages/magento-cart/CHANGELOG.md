@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.105.5](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart@2.105.4...@reachdigital/magento-cart@2.105.5) (2021-08-18)
+
+
+### Bug Fixes
+
+* **cart:** display prices with taxes for specific store views ([fd25541](https://github.com/ho-nl/m2-pwa/commit/fd25541646c41111f5ea53822d244591cb08b199))
+* display prices excl and incl tax ([0d41135](https://github.com/ho-nl/m2-pwa/commit/0d411350e4621928411c2800be6ea02c6125049a))
+* make sure the session token gets deactivated when trying to merge carts when it cant ([2a9416b](https://github.com/ho-nl/m2-pwa/commit/2a9416b5c9efcd28a27f4183922ab419f62ea767))
+
+
+
+
+
 ## [2.105.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart@2.105.2...@reachdigital/magento-cart@2.105.3) (2021-08-13)
 
 
