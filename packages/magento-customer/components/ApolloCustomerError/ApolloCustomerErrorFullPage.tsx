@@ -8,7 +8,7 @@ import {
 import PageLink from 'next/link'
 import React from 'react'
 
-import { useExtractCustomerErrors } from './useExtractCustomerErrors'
+import { useExtractCustomerErrors } from '../../hooks/useExtractCustomerErrors'
 
 type ApolloCustomerErrorFullPageProps = {
   signInHref: string

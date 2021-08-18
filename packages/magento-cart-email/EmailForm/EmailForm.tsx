@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client'
-import { CircularProgress, makeStyles, TextField, Theme } from '@material-ui/core'
+import { CircularProgress, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 import {
   useCartQuery,
   ApolloCartErrorAlert,
@@ -95,7 +96,7 @@ export default function EmailForm(props: EmailFormProps) {
                 InputProps={{
                   autoComplete: 'email',
                   endAdornment,
-                  readOnly: mode === 'signedin',
+                  readOnly: mode === 'signedin' || mode === 'session-expired',
                 }}
               />
             </FormRow>
@@ -103,11 +104,12 @@ export default function EmailForm(props: EmailFormProps) {
           </form>
         </AnimatedRow>
 
-        {mode === 'signin' && expand && (
-          <AnimatedRow key='signin-form-inline'>
-            <SignInFormInline email={watch('email')} />
-          </AnimatedRow>
-        )}
+        {(mode === 'signin' && expand) ||
+          (mode === 'session-expired' && (
+            <AnimatedRow key='signin-form-inline'>
+              <SignInFormInline email={watch('email')} />
+            </AnimatedRow>
+          ))}
 
         {mode === 'signup' && expand && (
           <AnimatedRow key='inline-signup'>
@@ -121,7 +123,12 @@ export default function EmailForm(props: EmailFormProps) {
           </AnimatedRow>
         )}
 
-        {((mode !== 'signup' && expand) || !expand) && (
+        {mode === 'session-expired' && (
+          <FormRow>
+            <Alert severity='error'>You must sign in to continue</Alert>
+          </FormRow>
+        )}
+        {mode !== 'session-expired' && ((mode !== 'signup' && expand) || !expand) && (
           <AnimatedRow key='email-helperlist'>
             <EmailHelperList />
           </AnimatedRow>

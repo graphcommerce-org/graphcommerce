@@ -1,5 +1,6 @@
 import { Badge, makeStyles, Theme, Link } from '@material-ui/core'
 import { Image } from '@reachdigital/image'
+import { useDisplayInclTax } from '@reachdigital/magento-cart'
 import { useProductLink } from '@reachdigital/magento-product'
 import { Money } from '@reachdigital/magento-store'
 import { UseStyles, responsiveVal } from '@reachdigital/next-ui'
@@ -97,8 +98,6 @@ const useStyles = makeStyles(
       marginTop: '-5%',
     },
     itemName: {
-      // ...theme.typography.h5,
-      // fontWeight: 500,
       gridArea: 'itemName',
       color: theme.palette.text.primary,
       textDecoration: 'none',
@@ -139,6 +138,7 @@ export default function CartItem(props: CartItemProps) {
   const { name } = product
   const classes = useStyles()
   const productLink = useProductLink(product)
+  const inclTaxes = useDisplayInclTax()
 
   return (
     <div className={clsx(classes.root, !withOptions && classes.itemWithoutOptions)}>
@@ -175,7 +175,14 @@ export default function CartItem(props: CartItemProps) {
       </PageLink>
 
       <div className={classes.itemPrice}>
-        <Money {...prices?.price} />
+        {inclTaxes ? (
+          <Money
+            value={(prices?.row_total_including_tax?.value ?? 0) / quantity}
+            currency={prices?.price.currency}
+          />
+        ) : (
+          <Money {...prices?.price} />
+        )}
       </div>
 
       <div className={clsx(classes.quantity, withOptions && classes.quantityWithOptions)}>
@@ -183,7 +190,7 @@ export default function CartItem(props: CartItemProps) {
       </div>
 
       <div className={classes.rowPrice}>
-        <Money {...prices?.row_total_including_tax} /> <br />
+        <Money {...(inclTaxes ? prices?.row_total_including_tax : prices?.row_total)} /> <br />
       </div>
 
       {children}

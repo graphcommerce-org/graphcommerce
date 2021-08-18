@@ -37,7 +37,7 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
   const submitHandler = handleSubmit(() => {})
 
   return (
-    <Form onSubmit={submitHandler} noValidate>
+    <form onSubmit={submitHandler} noValidate className={classes.form}>
       <TextField
         variant='outlined'
         type='password'
@@ -63,6 +63,6 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
       <Button type='submit' loading={formState.isSubmitting} color='secondary' variant='pill'>
         Sign in
       </Button>
-    </Form>
+    </form>
   )
 }
