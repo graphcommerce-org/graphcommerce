@@ -38,22 +38,36 @@ function ShippingPage() {
   const router = useRouter()
 
   return (
-    <>
+    <ComposedForm>
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots={['noindex']} />
       <PageShellHeader
         primary={
-          <PageLink href='/checkout/payment' passHref>
-            <Button color='secondary' text='bold-desktop' variant='pill-link'>
-              Next
-              <SvgImage
-                src={iconChevronRight}
-                alt='chevron right'
-                shade='inverted'
-                size='small'
-                loading='eager'
-              />
-            </Button>
-          </PageLink>
+          <ComposedSubmit
+            onSubmitSuccessful={() => router.push('/checkout/payment')}
+            render={({ buttonState, submit, error }) => (
+              <>
+                <FormActions>
+                  <Button
+                    type='submit'
+                    color='secondary'
+                    text='bold-desktop'
+                    variant='pill-link'
+                    loading={buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)}
+                    onClick={submit}
+                  >
+                    Next
+                    <SvgImage
+                      src={iconChevronRight}
+                      alt='chevron right'
+                      shade='inverted'
+                      size='small'
+                      loading='eager'
+                    />
+                  </Button>
+                </FormActions>
+              </>
+            )}
+          />
         }
         divider={
           <Container maxWidth='md'>
@@ -73,7 +87,7 @@ function ShippingPage() {
           {!cartExists && <EmptyCart />}
 
           {cartExists && (
-            <ComposedForm>
+            <>
               <AppShellTitle icon={iconBox}>Shipping</AppShellTitle>
 
               <EmailForm step={1} />
@@ -117,11 +131,11 @@ function ShippingPage() {
                   </>
                 )}
               />
-            </ComposedForm>
+            </>
           )}
         </NoSsr>
       </Container>
-    </>
+    </ComposedForm>
   )
 }
 
