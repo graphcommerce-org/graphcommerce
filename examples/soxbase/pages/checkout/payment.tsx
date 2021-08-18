@@ -45,7 +45,7 @@ function PaymentPage() {
       <PageShellHeader
         primary={
           <PageLink href='/checkout/payment' passHref>
-            <Button color='secondary' variant='pill-link' text='bold'>
+            <Button color='secondary' variant='pill-link' text='bold-desktop'>
               Place order
               <SvgImage
                 src={iconChevronRight}
@@ -66,7 +66,9 @@ function PaymentPage() {
         backFallbackTitle='Cart'
         scrolled
       >
-        <Title size='small'>Checkout</Title>
+        <Title size='small' icon={iconId}>
+          Payment
+        </Title>
       </PageShellHeader>
       <Container maxWidth='md'>
         <ComposedForm>

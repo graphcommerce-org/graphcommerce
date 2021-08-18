@@ -43,7 +43,7 @@ function ShippingPage() {
       <PageShellHeader
         primary={
           <PageLink href='/checkout/payment' passHref>
-            <Button color='secondary' text='bold' variant='pill-link'>
+            <Button color='secondary' text='bold-desktop' variant='pill-link'>
               Next
               <SvgImage
                 src={iconChevronRight}
@@ -64,7 +64,9 @@ function ShippingPage() {
         backFallbackTitle='Cart'
         scrolled
       >
-        <Title size='small'>Checkout</Title>
+        <Title size='small' icon={iconBox}>
+          Shipping
+        </Title>
       </PageShellHeader>
       <Container maxWidth='md'>
         <NoSsr>

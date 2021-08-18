@@ -48,13 +48,13 @@ function CartPage() {
         <SheetShellHeader
           primary={
             <PageLink href='/checkout' passHref>
-              <Button color='secondary' text='bold' variant='pill-link' disabled={!hasItems}>
-                Start Checkout{' '}
-                {hasItems ? (
-                  <>
-                    (<Money {...data?.cart?.prices?.grand_total} />)
-                  </>
-                ) : undefined}
+              <Button
+                color='secondary'
+                text='bold-desktop'
+                variant='pill-link'
+                disabled={!hasItems}
+              >
+                Next
                 <SvgImage
                   src={iconChevronRight}
                   alt='chevron right'
@@ -73,7 +73,13 @@ function CartPage() {
           scrolled
         >
           <Title size='small' component='span'>
-            Checkout
+            {hasItems ? (
+              <>
+                Cart Total: (<Money {...data?.cart?.prices?.grand_total} />)
+              </>
+            ) : (
+              <>Checkout</>
+            )}
           </Title>
         </SheetShellHeader>
         <Container maxWidth='md'>

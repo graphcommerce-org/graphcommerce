@@ -27,6 +27,7 @@ const useStyles = makeStyles(
       ...theme.typography.body1,
       marginBottom: theme.spacings.lg,
       marginTop: theme.spacings.md,
+      rowGap: 6,
       [theme.breakpoints.up('sm')]: {
         gridTemplate: `
         "picture itemName itemName itemName itemName"
@@ -57,6 +58,7 @@ const useStyles = makeStyles(
       padding: responsiveVal(5, 10),
       border: `1px solid rgba(0,0,0,0.15)`,
       borderRadius: '50%',
+      alignSelf: 'center',
     },
     badge: {
       '& > button': {
@@ -97,8 +99,6 @@ const useStyles = makeStyles(
       marginTop: '-5%',
     },
     itemName: {
-      // ...theme.typography.h5,
-      // fontWeight: 500,
       gridArea: 'itemName',
       color: theme.palette.text.primary,
       textDecoration: 'none',
@@ -116,9 +116,6 @@ const useStyles = makeStyles(
     quantity: {
       gridArea: 'quantity',
       justifySelf: 'center',
-    },
-    quantityWithOptions: {
-      transform: 'translateY(-6px)',
     },
     rowPrice: {
       gridArea: 'rowPrice',
@@ -178,7 +175,7 @@ export default function CartItem(props: CartItemProps) {
         <Money {...prices?.price} />
       </div>
 
-      <div className={clsx(classes.quantity, withOptions && classes.quantityWithOptions)}>
+      <div className={classes.quantity}>
         <UpdateItemQuantity uid={uid} quantity={quantity} />
       </div>
 
