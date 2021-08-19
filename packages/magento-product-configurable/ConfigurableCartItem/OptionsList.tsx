@@ -10,6 +10,7 @@ const useStyles = makeStyles(
       gridArea: 'itemOptions',
       cursor: 'default',
       marginLeft: 0,
+      paddingBottom: 4,
     },
     option: {
       borderBottom: `1px solid ${theme.palette.grey['500']}`,

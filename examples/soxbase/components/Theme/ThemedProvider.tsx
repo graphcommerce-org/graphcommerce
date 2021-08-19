@@ -220,6 +220,9 @@ defaultTheme.overrides = {
       fontWeight: 400,
       textTransform: 'none',
     },
+    endIcon: {
+      marginLeft: 0,
+    },
     contained: {
       backgroundColor: '#fff',
       boxShadow: defaultTheme.shadows[1],

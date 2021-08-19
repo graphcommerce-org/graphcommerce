@@ -27,7 +27,6 @@ const useStyles = makeStyles(
       ...theme.typography.body1,
       marginBottom: theme.spacings.lg,
       marginTop: theme.spacings.md,
-      rowGap: 6,
       [theme.breakpoints.up('sm')]: {
         gridTemplate: `
         "picture itemName itemName itemName itemName"
@@ -112,14 +111,26 @@ const useStyles = makeStyles(
       gridArea: 'itemPrice',
       textAlign: 'left',
       color: theme.palette.primary.mutedText,
+      alignSelf: 'center',
+      [theme.breakpoints.up('sm')]: {
+        alignSelf: 'flex-start',
+      },
     },
     quantity: {
       gridArea: 'quantity',
       justifySelf: 'center',
+      transform: 'translateY(0)',
+      [theme.breakpoints.up('sm')]: {
+        transform: 'translateY(-6px)',
+      },
     },
     rowPrice: {
       gridArea: 'rowPrice',
       textAlign: 'right',
+      alignSelf: 'center',
+      [theme.breakpoints.up('sm')]: {
+        alignSelf: 'flex-start',
+      },
     },
     cellNoOptions: {
       textAlign: 'left',
