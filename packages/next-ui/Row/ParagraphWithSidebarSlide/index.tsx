@@ -7,6 +7,7 @@ import { UseStyles } from '../../Styles'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     wrapper: {
+      overflow: 'hidden',
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',
       gap: `${theme.spacings.md}`,
