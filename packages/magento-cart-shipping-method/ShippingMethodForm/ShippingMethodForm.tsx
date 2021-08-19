@@ -1,8 +1,9 @@
-import { FormControl } from '@material-ui/core'
+import { Box, FormControl } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 import {
+  ApolloCartErrorAlert,
   useCartQuery,
   useFormGqlMutationCart,
-  ApolloCartErrorAlert,
 } from '@reachdigital/magento-cart'
 import { Form, FormRow, ToggleButtonGroup } from '@reachdigital/next-ui'
 import { Controller, useFormCompose, UseFormComposeOptions } from '@reachdigital/react-hook-form'
@@ -51,7 +52,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
             control={control}
             name='carrierMethod'
             rules={{ required: 'Please select a shipping method' }}
-            render={({ field: { onChange, value, onBlur } }) => (
+            render={({ field: { onChange, value, onBlur }, fieldState: { invalid } }) => (
               <>
                 <ToggleButtonGroup
                   aria-label='Shipping Method'
@@ -83,12 +84,17 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
                     <AvailableShippingMethod
                       available={false}
                       carrier_code='none'
-                      carrier_title='No Shipping methods available'
+                      carrier_title='No shipping methods available'
                     >
                       Please fill in your address to see shipping methods
                     </AvailableShippingMethod>
                   )}
                 </ToggleButtonGroup>
+                {invalid && currentAddress?.available_shipping_methods && (
+                  <Box pt={2}>
+                    <Alert severity='error'>Please select a shipping method</Alert>
+                  </Box>
+                )}
               </>
             )}
           />
