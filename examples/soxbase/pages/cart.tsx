@@ -50,18 +50,19 @@ function CartPage() {
             <PageLink href='/checkout' passHref>
               <Button
                 color='secondary'
-                text='bold-desktop'
                 variant='pill-link'
                 disabled={!hasItems}
+                endIcon={
+                  <SvgImage
+                    src={iconChevronRight}
+                    alt='chevron right'
+                    shade='inverted'
+                    size='small'
+                    loading='eager'
+                  />
+                }
               >
                 Next
-                <SvgImage
-                  src={iconChevronRight}
-                  alt='chevron right'
-                  shade='inverted'
-                  size='small'
-                  loading='eager'
-                />
               </Button>
             </PageLink>
           }
@@ -70,7 +71,6 @@ function CartPage() {
               <Stepper currentStep={1} steps={3} />
             </Container>
           }
-          scrolled
         >
           <Title size='small' component='span'>
             {hasItems ? (
@@ -78,7 +78,7 @@ function CartPage() {
                 Cart Total: (<Money {...data?.cart?.prices?.grand_total} />)
               </>
             ) : (
-              <>Checkout</>
+              <>Cart</>
             )}
           </Title>
         </SheetShellHeader>

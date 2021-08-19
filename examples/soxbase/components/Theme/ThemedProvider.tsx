@@ -235,7 +235,6 @@ defaultTheme.overrides = {
       '& .MuiSvgIcon-root': { color: '#fff' },
     },
     containedSizeLarge: { padding: `15px ${responsiveVal(30, 60)}` },
-    endIcon: { marginLeft: 20 },
     iconSizeLarge: {
       '& > *:first-child': { fontSize: 24 },
     },

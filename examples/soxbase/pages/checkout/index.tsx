@@ -20,7 +20,6 @@ import {
   Title,
 } from '@reachdigital/next-ui'
 import { ComposedForm, ComposedSubmit } from '@reachdigital/react-hook-form'
-import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -37,35 +36,34 @@ function ShippingPage() {
   const cartExists = typeof cartData?.cart !== 'undefined'
   const router = useRouter()
 
+  const onSubmitSuccessful = () => router.push('/checkout/payment')
+
   return (
     <ComposedForm>
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots={['noindex']} />
       <PageShellHeader
         primary={
           <ComposedSubmit
-            onSubmitSuccessful={() => router.push('/checkout/payment')}
+            onSubmitSuccessful={onSubmitSuccessful}
             render={({ buttonState, submit, error }) => (
-              <>
-                <FormActions>
-                  <Button
-                    type='submit'
-                    color='secondary'
-                    text='bold-desktop'
-                    variant='pill-link'
-                    loading={buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)}
-                    onClick={submit}
-                  >
-                    Next
-                    <SvgImage
-                      src={iconChevronRight}
-                      alt='chevron right'
-                      shade='inverted'
-                      size='small'
-                      loading='eager'
-                    />
-                  </Button>
-                </FormActions>
-              </>
+              <Button
+                type='submit'
+                color='secondary'
+                variant='pill-link'
+                loading={buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)}
+                onClick={submit}
+                endIcon={
+                  <SvgImage
+                    src={iconChevronRight}
+                    alt='chevron right'
+                    shade='inverted'
+                    size='small'
+                    loading='eager'
+                  />
+                }
+              >
+                Next
+              </Button>
             )}
           />
         }
@@ -76,7 +74,6 @@ function ShippingPage() {
         }
         backFallbackHref='/cart'
         backFallbackTitle='Cart'
-        scrolled
       >
         <Title size='small' icon={iconBox}>
           Shipping
@@ -99,7 +96,7 @@ function ShippingPage() {
               <ShippingMethodForm step={3} />
 
               <ComposedSubmit
-                onSubmitSuccessful={() => router.push('/checkout/payment')}
+                onSubmitSuccessful={onSubmitSuccessful}
                 render={({ buttonState, submit, error }) => (
                   <>
                     <FormActions>
