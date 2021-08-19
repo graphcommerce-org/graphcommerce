@@ -2,13 +2,13 @@ import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
 import { useCartQuery } from '@reachdigital/magento-cart'
 import {
   AnimatedRow,
-  UseStyles,
-  SvgImage,
   iconChevronDown,
   iconChevronUp,
+  SvgImage,
+  UseStyles,
 } from '@reachdigital/next-ui'
 import clsx from 'clsx'
-import { m, AnimatePresence } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import React, { useState } from 'react'
 import ApplyCouponForm from '../ApplyCouponForm/ApplyCouponForm'
 import RemoveCouponForm from '../RemoveCouponForm/RemoveCouponForm'
