@@ -15,7 +15,6 @@ import { mollie_methods } from '@reachdigital/magento-payment-mollie'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   AppShellTitle,
-  Button,
   FormDiv,
   GetStaticProps,
   iconChevronRight,
@@ -27,7 +26,6 @@ import {
 } from '@reachdigital/next-ui'
 import { ComposedForm } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
-import PageLink from 'next/link'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import MinimalPageShell from '../../components/AppShell/MinimalPageShell'
@@ -40,13 +38,16 @@ type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function PaymentPage() {
   return (
-    <>
+    <ComposedForm>
       <PageMeta title='Payment' metaDescription='Payment' metaRobots={['noindex']} />
       <PageShellHeader
         primary={
-          <PageLink href='/checkout/payment' passHref>
-            <Button color='secondary' variant='pill-link' text='bold-desktop'>
-              Place order
+          <PaymentMethodButton
+            type='submit'
+            color='secondary'
+            variant='pill-link'
+            display='inline'
+            endIcon={
               <SvgImage
                 src={iconChevronRight}
                 loading='eager'
@@ -54,8 +55,10 @@ function PaymentPage() {
                 size='small'
                 shade='inverted'
               />
-            </Button>
-          </PageLink>
+            }
+          >
+            Pay
+          </PaymentMethodButton>
         }
         divider={
           <Container maxWidth='md'>
@@ -64,68 +67,69 @@ function PaymentPage() {
         }
         backFallbackHref='/cart'
         backFallbackTitle='Cart'
-        scrolled
       >
         <Title size='small' icon={iconId}>
           Payment
         </Title>
       </PageShellHeader>
       <Container maxWidth='md'>
-        <ComposedForm>
-          <AppShellTitle icon={iconId}>Payment</AppShellTitle>
+        <AppShellTitle icon={iconId}>Payment</AppShellTitle>
 
-          <PaymentMethodContextProvider
-            modules={{
-              braintree_local_payment,
-              braintree,
-              ...included_methods,
-              ...mollie_methods,
-            }}
-          >
-            <NoSsr>
-              <AnimatePresence initial={false}>
-                <PaymentMethodToggle key='toggle' />
+        <PaymentMethodContextProvider
+          modules={{
+            braintree_local_payment,
+            braintree,
+            ...included_methods,
+            ...mollie_methods,
+          }}
+        >
+          <NoSsr>
+            <AnimatePresence initial={false}>
+              <PaymentMethodToggle key='toggle' />
 
-                <PaymentMethodOptions
-                  key='options'
-                  step={1}
-                  Container={({ children }) => <FormDiv contained>{children}</FormDiv>}
-                />
+              <PaymentMethodOptions
+                key='options'
+                step={1}
+                Container={({ children }) => (
+                  <FormDiv componet='div' contained>
+                    {children}
+                  </FormDiv>
+                )}
+              />
 
-                <PaymentMethodPlaceOrder key='placeorder' step={2} />
+              <PaymentMethodPlaceOrder key='placeorder' step={2} />
 
-                <CartSummary editable>
-                  <Divider />
-                  <CartTotals />
-                </CartSummary>
+              <CartSummary editable>
+                <Divider />
+                <CartTotals />
+              </CartSummary>
 
-                <CouponAccordion />
+              <CouponAccordion />
 
-                <PaymentMethodButton
-                  key='button'
-                  type='submit'
-                  color='secondary'
-                  variant='pill'
-                  size='large'
-                  text='bold'
-                  endIcon={
-                    <SvgImage
-                      src={iconChevronRight}
-                      loading='eager'
-                      alt='chevron right'
-                      size='small'
-                      shade='inverted'
-                    />
-                  }
-                >
-                  Place order
-                </PaymentMethodButton>
-              </AnimatePresence>
-            </NoSsr>
-          </PaymentMethodContextProvider>
-        </ComposedForm>
+              <PaymentMethodButton
+                key='button'
+                type='submit'
+                color='secondary'
+                variant='pill'
+                size='large'
+                text='bold'
+                endIcon={
+                  <SvgImage
+                    src={iconChevronRight}
+                    loading='eager'
+                    alt='chevron right'
+                    size='small'
+                    shade='inverted'
+                  />
+                }
+              >
+                Place order
+              </PaymentMethodButton>
+            </AnimatePresence>
+          </NoSsr>
+        </PaymentMethodContextProvider>
       </Container>
-    </>
+    </ComposedForm>
   )
 }
 
