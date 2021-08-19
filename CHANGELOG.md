@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.114.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.114.1...@graphcommerce/graphcommerce@2.114.2) (2021-08-19)
+
+
+### Bug Fixes
+
+* app shell sticky overlapping buttons on scroll ([7548b30](https://github.com/ho-nl/m2-pwa/commit/7548b30718290d976f4839f0096fea432f9a6b45))
+* white space after footer on category page ([0fe13a4](https://github.com/ho-nl/m2-pwa/commit/0fe13a4daa284546487dfafcfa93daa8cbcd827b))
+
+
+
+
+
 ## [2.114.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.114.0...@graphcommerce/graphcommerce@2.114.1) (2021-08-18)
 
 
