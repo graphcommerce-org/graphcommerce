@@ -10,7 +10,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       position: 'sticky',
-      zIndex: 100,
+      zIndex: 96,
     },
     fillMobileOnly: {
       [theme.breakpoints.up('md')]: {
