@@ -1,11 +1,11 @@
-import { Box, FormControl } from '@material-ui/core'
+import { FormControl, makeStyles, Theme } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import {
   ApolloCartErrorAlert,
   useCartQuery,
   useFormGqlMutationCart,
 } from '@reachdigital/magento-cart'
-import { Form, FormRow, ToggleButtonGroup } from '@reachdigital/next-ui'
+import { Form, FormRow, ToggleButtonGroup, UseStyles } from '@reachdigital/next-ui'
 import { Controller, useFormCompose, UseFormComposeOptions } from '@reachdigital/react-hook-form'
 import React from 'react'
 import AvailableShippingMethod from '../AvailableShippingMethod/AvailableShippingMethod'
@@ -16,11 +16,22 @@ import {
   ShippingMethodFormMutationVariables,
 } from './ShippingMethodForm.gql'
 
-export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'>
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    alert: {
+      marginTop: theme.spacings.xxs,
+    },
+  }),
+  { name: 'ShippingMethodForm' },
+)
+
+export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'> &
+  UseStyles<typeof useStyles>
 
 export default function ShippingMethodForm(props: ShippingMethodFormProps) {
   const { step } = props
   const { data: cartQuery } = useCartQuery(GetShippingMethodsDocument)
+  const classes = useStyles(props)
 
   const currentAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const available = currentAddress?.available_shipping_methods
@@ -91,9 +102,9 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
                   )}
                 </ToggleButtonGroup>
                 {invalid && currentAddress?.available_shipping_methods && (
-                  <Box pt={2}>
-                    <Alert severity='error'>Please select a shipping method</Alert>
-                  </Box>
+                  <Alert classes={{ root: classes.alert }} severity='error'>
+                    Please select a shipping method
+                  </Alert>
                 )}
               </>
             )}
