@@ -19,6 +19,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@reachdigital/framer-utils": "^2.102.4",
+    "@reachdigital/image": "^2.102.1",
     "popmotion": "9.3.6"
   },
   "devDependencies": {

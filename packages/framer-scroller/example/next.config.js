@@ -2,4 +2,11 @@
 
 const withGraphCommerce = require('@reachdigital/next-config').withYarn1Workspaces()
 
-module.exports = withGraphCommerce()
+/** @type {import('next/dist/server/config-shared').NextConfig} */
+const nextConfig = {
+  images: {
+    domains: ['backend.reachdigital.dev'],
+  },
+}
+
+module.exports = withGraphCommerce(nextConfig)

@@ -8,14 +8,6 @@ function unique<T>(iterable: Iterable<T>): T[] {
   return Array.from(new Set(iterable))
 }
 
-function getAllDescendants(parent: HTMLElement): HTMLElement[] {
-  let children: HTMLElement[] = []
-  for (const child of parent.children) {
-    children = children.concat(child as HTMLElement, getAllDescendants(child as HTMLElement))
-  }
-  return children
-}
-
 function domRectIntersects(a: DOMRect, b: DOMRect, axis: Axis | 'both' = 'both'): boolean {
   return (
     (axis === 'x' && a.right >= b.left && a.left <= b.right) ||
@@ -48,7 +40,7 @@ export function getSnapPositions(
     },
   }
 
-  const descendants = getAllDescendants(parent)
+  const descendants = [...parent.children]
 
   for (const axis of ['x', 'y'] as Axis[]) {
     const orthogonalAxis = axis === 'x' ? 'y' : 'x'
@@ -167,7 +159,7 @@ export function getScrollSnapPositions(
 }
 
 export function getSnapPosition(
-  element: HTMLElement,
+  parent: HTMLElement,
   direction: 'left' | 'right' | 'up' | 'down',
   scrollSnapAlign: ScrollSnapAlign,
 ): Point2D {
@@ -176,12 +168,12 @@ export function getSnapPosition(
 
   const maxScroll =
     axis === 'x'
-      ? element.scrollWidth - element.offsetWidth
-      : element.scrollHeight - element.offsetHeight
+      ? parent.scrollWidth - parent.offsetWidth
+      : parent.scrollHeight - parent.offsetHeight
 
-  const available = getScrollSnapPositions(element, scrollSnapAlign)[axis]
+  const available = getScrollSnapPositions(parent, scrollSnapAlign)[axis]
 
-  const current = element[axis === 'x' ? 'scrollLeft' : 'scrollTop'] + (sign === '+' ? 2 : -2)
+  const current = parent[axis === 'x' ? 'scrollLeft' : 'scrollTop'] + (sign === '+' ? 2 : -2)
 
   const next = available
     .filter((pos) => (sign === '+' ? pos > current : pos < current))

@@ -3,21 +3,20 @@ import { useConstant, useElementScroll } from '@reachdigital/framer-utils'
 import clsx from 'clsx'
 import {
   HTMLMotionProps,
-  motion,
   PanInfo,
   motionValue,
   useDomEvent,
   PanHandlers,
   useVelocity,
+  m,
 } from 'framer-motion'
 import { inertia, InertiaOptions, animate } from 'popmotion'
 import React, { forwardRef, useState, useEffect } from 'react'
-import { getScrollSnapPositions, getSnapPosition } from '../context/api'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 import { ScrollSnapProps } from '../types'
 
 const useStyles = makeStyles({
-  root: ({ scrollSnapAlign = 'center', scrollSnapStop = 'normal' }: ScrollSnapProps) => ({
+  root: ({ scrollSnapAlign, scrollSnapStop }: ScrollSnapProps) => ({
     display: `grid`,
     gridAutoFlow: `column`,
     // gap: 10,
@@ -30,7 +29,7 @@ const useStyles = makeStyles({
       scrollSnapStop,
     },
   }),
-  snap: ({ scrollSnapType = 'inline proximity' }: ScrollSnapProps) => ({
+  snap: ({ scrollSnapType }: ScrollSnapProps) => ({
     scrollSnapType,
   }),
 })
@@ -46,15 +45,16 @@ const closest = (counts: number[], target: number) =>
 const useSnapTo = (
   ref: React.RefObject<HTMLElement> | React.MutableRefObject<HTMLElement | undefined>,
 ) => {
-  const { scrollSnap, stop, register } = useScrollerContext()
+  const { scrollSnap, disableSnap, register, getSnapPosition, getScrollSnapPositions } =
+    useScrollerContext()
 
   const inertiaOptions: InertiaOptions = {
     power: 1,
     bounceDamping: 50,
-    bounceStiffness: 200,
-    timeConstant: 750,
-    restDelta: 0.5,
-    restSpeed: 1,
+    // bounceStiffness: 200,
+    // timeConstant: 750,
+    // restDelta: 0.5,
+    // restSpeed: 1,
   }
 
   const animatePan = (info: PanInfo, onComplete?: () => void) => {
@@ -62,11 +62,10 @@ const useSnapTo = (
     if (!el) throw Error(`Can't find html element`)
 
     const { scrollLeft, scrollTop } = el
-    stop()
+    disableSnap()
 
     const targetX = clamp(info, 'x') * -1 + scrollLeft
-    const closestX =
-      closest(getScrollSnapPositions(el, scrollSnap.scrollSnapAlign).x, targetX) - scrollLeft
+    const closestX = closest(getScrollSnapPositions().x, targetX) - scrollLeft
     const cancelX = inertia({
       velocity: info.velocity.x * -1,
       max: closestX,
@@ -80,8 +79,7 @@ const useSnapTo = (
     register(cancelX)
 
     const targetY = clamp(info, 'y') * -1 + scrollTop
-    const closestY =
-      closest(getScrollSnapPositions(el, scrollSnap.scrollSnapAlign).y, targetY) - scrollTop
+    const closestY = closest(getScrollSnapPositions().y, targetY) - scrollTop
     const cancelY = inertia({
       velocity: info.velocity.y * -1,
       max: closestY,
@@ -108,10 +106,19 @@ function isHTMLMousePointerEvent(
   )
 }
 
-type ScrollableProps = HTMLMotionProps<'div'>
+export type ScrollableProps = HTMLMotionProps<'div'>
 
 const Scrollable = forwardRef<HTMLDivElement, ScrollableProps>((props, forwardedRef) => {
-  const { scrollSnap, scrollerRef, register, stop, items } = useScrollerContext()
+  const {
+    scrollSnap,
+    scrollerRef,
+    enableSnap,
+    disableSnap,
+    register,
+    snap,
+    items,
+    getSnapPosition,
+  } = useScrollerContext()
 
   const { ...divProps } = props
 
@@ -129,22 +136,14 @@ const Scrollable = forwardRef<HTMLDivElement, ScrollableProps>((props, forwarded
   )
 
   const animatePan = useSnapTo(scrollerRef)
-  const [snap, setSnap] = useState(true)
   const [isPanning, setPanning] = useState(false)
 
   const scrollStart = useConstant(() => ({ x: motionValue(0), y: motionValue(0) }))
   const startPan: PanHandlers['onPanStart'] = () => {
     scrollStart.x.set(scroll.x.get())
     scrollStart.y.set(scroll.y.get())
-    setSnap(false)
+    disableSnap()
     setPanning(true)
-  }
-
-  const enableSnap = () => {
-    if (!scrollerRef.current) return
-    const p = scrollerRef.current.scrollLeft
-    setSnap(true)
-    scrollerRef.current.scrollLeft = p
   }
 
   useDomEvent(scrollerRef, 'wheel', (e) => {
@@ -157,7 +156,6 @@ const Scrollable = forwardRef<HTMLDivElement, ScrollableProps>((props, forwarded
      * at all time, we now are lazy :)
      */
     if (!snap && !isPanning && e instanceof WheelEvent) {
-      stop()
       enableSnap()
     }
   })
@@ -186,10 +184,8 @@ const Scrollable = forwardRef<HTMLDivElement, ScrollableProps>((props, forwarded
         onClick={() => {
           const el = scrollerRef.current
           if (!el) return
-          console.log(scroll.x.get(), scroll.x.getVelocity())
-          stop()
-          setSnap(false)
-          const pos = getSnapPosition(el, 'left', scrollSnap.scrollSnapAlign)
+          disableSnap()
+          const pos = getSnapPosition('left')
           register(
             animate({
               from: el.scrollLeft,
@@ -210,13 +206,11 @@ const Scrollable = forwardRef<HTMLDivElement, ScrollableProps>((props, forwarded
         onClick={() => {
           const el = scrollerRef.current
           if (!el) return
-          const pos = getSnapPosition(el, 'right', scrollSnap.scrollSnapAlign)
+          const pos = getSnapPosition('right')
 
           const visible = items.filter((item) => item.visibility.get() < 0.9)
 
-          console.log(visible)
-          stop()
-          setSnap(false)
+          disableSnap()
           register(
             animate({
               from: el.scrollLeft,
@@ -232,17 +226,17 @@ const Scrollable = forwardRef<HTMLDivElement, ScrollableProps>((props, forwarded
       >
         next
       </button>
-      <motion.div
+      <m.div
         ref={(el) => {
           scrollerRef.current = el ?? undefined
           if (typeof forwardedRef === 'function') forwardedRef(el)
           else if (forwardedRef) forwardedRef.current = el
         }}
-        className={clsx(classes.root, snap && classes.snap)}
         onPanStart={startPan}
         onPanEnd={endPan}
         onPan={handlePan}
         {...divProps}
+        className={clsx(classes.root, snap && classes.snap, divProps.className)}
       />
     </>
   )

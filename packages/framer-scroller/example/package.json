@@ -8,10 +8,13 @@
     "start": "next start"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
     "@reachdigital/framer-scroller": "^0.0.0",
     "@reachdigital/next-config": "^2.101.0",
     "@reachdigital/next-ui": "^2.108.2",
+    "@reachdigital/image": "^2.102.1",
     "framer-motion": "^4.1.17",
+    "clsx": "^1.1.1",
     "next": "^11.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
