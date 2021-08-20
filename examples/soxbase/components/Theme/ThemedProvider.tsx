@@ -191,6 +191,9 @@ export const defaultTheme = createTheme({
     headerInnerHeight: {
       xs: responsiveVal(21, 33),
       sm: `56px`,
+      // 56px = height of logo
+      // + 2 x theme.spacings.xxs (top+bottom padding)
+      md: `calc(56px + (${responsiveVal(10, 16)} * 2))`,
     },
   },
 })

@@ -1,3 +1,4 @@
+import { useTheme } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { SheetShellHeader } from '@reachdigital/next-ui'
 import React from 'react'

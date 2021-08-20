@@ -17,7 +17,7 @@ const useStyles = makeStyles(
       },
       [theme.breakpoints.up('md')]: {
         pointerEvents: 'all',
-        top: theme.page.vertical,
+        top: theme.spacings.xxs,
         right: theme.page.horizontal,
         bottom: 'unset',
         boxShadow: 'unset',

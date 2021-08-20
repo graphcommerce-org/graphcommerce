@@ -3,7 +3,7 @@ import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
 import clsx from 'clsx'
 import { m, MotionValue, useMotionValue, useTransform } from 'framer-motion'
 import PageLink from 'next/link'
-import React, { CSSProperties, useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import Button from '../../Button'
 import { UseStyles } from '../../Styles'
 import SvgImage from '../../SvgImage'
@@ -25,22 +25,31 @@ export type AppShellHeaderProps = {
   backFallbackHref?: string | null
   backFallbackTitle?: string | null
   fill?: 'both' | 'mobile-only'
+  sheet?: boolean
 } & UseStyles<typeof useStyles>
+
+// minHeight: 38
+// = reserve space for back & primary buttons,
+//   even when there is no app shell header on scroll (e.g. on full page shell)
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     divider: {
       borderBottom: `1px solid ${theme.palette.divider}`,
+      minHeight: 2,
+    },
+    dividerSpacer: {
+      minHeight: 2,
     },
     sheetHeader: {
       position: 'sticky',
       top: 0,
       background: theme.palette.background.default,
       zIndex: 98,
-      [theme.breakpoints.up('md')]: {
-        marginBottom: 16,
-        marginTop: 16,
-      },
+      minHeight: 38,
+    },
+    sheetHeaderPadding: {
+      paddingTop: `calc(${theme.page.headerInnerHeight.md} * 0.33)`,
     },
     sheetHeaderScrolled: {
       [theme.breakpoints.up('md')]: {
@@ -53,6 +62,8 @@ const useStyles = makeStyles(
       gridAutoFlow: 'column',
       alignItems: 'center',
       justifyContent: 'space-between',
+      minHeight: 'inherit',
+      // padding: `8px ${theme.page.horizontal} 8px`,
       [theme.breakpoints.down('sm')]: {
         minHeight: 56,
         '& > div > .MuiFab-sizeSmall': {
@@ -67,15 +78,15 @@ const useStyles = makeStyles(
       },
     },
     sheetHeaderActionsPadding: {
-      padding: `8px ${theme.page.horizontal} 8px`,
-      [theme.breakpoints.up('md')]: {
-        padding: `12px ${theme.page.horizontal} 12px`,
-      },
+      // padding: `8px ${theme.page.horizontal} 8px`,
+      // [theme.breakpoints.up('md')]: {
+      //   padding: `0 ${theme.page.horizontal} ${theme.spacings.xs}`,
+      // },
     },
     sheetHeaderActionsNoTitle: {
-      [theme.breakpoints.up('md')]: {
-        padding: `${theme.page.vertical} ${theme.page.horizontal} ${theme.page.vertical}`,
-      },
+      // [theme.breakpoints.up('md')]: {
+      //   // padding: `${theme.page.vertical} ${theme.page.horizontal} ${theme.page.vertical}`,
+      // },
     },
     sheetHeaderActionRight: {
       justifySelf: 'flex-end',
@@ -83,9 +94,9 @@ const useStyles = makeStyles(
     sheetHeaderNoTitle: {
       pointerEvents: 'none',
       background: 'transparent',
-      [theme.breakpoints.up('md')]: {
-        top: 98,
-      },
+      // [theme.breakpoints.up('md')]: {
+      //   // top: 98,
+      // },
     },
     sheetHeaderNoTitleFillMobileOnly: {
       [theme.breakpoints.up('md')]: {
@@ -123,10 +134,10 @@ const useStyles = makeStyles(
     },
     logoContainer: {
       position: 'absolute',
-      top: 12,
+      top: 0,
       left: 0,
       right: 0,
-      minHeight: 32,
+      minHeight: 'inherit',
     },
     subLogo: {
       [theme.breakpoints.up('md')]: {
@@ -145,7 +156,7 @@ const useStyles = makeStyles(
       top: 'unset',
       boxShadow: theme.shadows[4],
       [theme.breakpoints.up('md')]: {
-        top: -24,
+        // top: -24,
       },
     },
   }),
@@ -298,6 +309,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     <div
       className={clsx(
         classes?.sheetHeader,
+        sheet && classes.sheetHeaderPadding,
         scrolled && classes?.sheetHeaderScrolled,
         noChildren && classes.sheetHeaderNoTitle,
         fillMobileOnly && classes.sheetHeaderNoTitleFillMobileOnly,
@@ -340,15 +352,15 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
       <div className={clsx(fillMobileOnly && classes.fillMobileOnly)}>
         {additional && <>{additional}</>}
       </div>
-      <div>
-        {children &&
-          (divider ?? (
-            <m.div
-              className={clsx(classes.divider, fillMobileOnly && classes.fillMobileOnly)}
-              style={{ opacity: opacityTitle }}
-            />
-          ))}
-      </div>
+
+      {children &&
+        (divider ?? (
+          <m.div
+            className={clsx(classes.divider, fillMobileOnly && classes.fillMobileOnly)}
+            style={{ opacity: opacityTitle }}
+          />
+        ))}
+      {!children && <div className={classes.dividerSpacer} />}
     </div>
   )
 }

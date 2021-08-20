@@ -36,6 +36,7 @@ declare module '@material-ui/core/styles/createTheme' {
       headerInnerHeight: {
         xs: string
         sm: string
+        md: string
       }
     }
   }
@@ -55,6 +56,7 @@ declare module '@material-ui/core/styles/createTheme' {
       headerInnerHeight: {
         xs: string
         sm: string
+        md: string
       }
     }
   }

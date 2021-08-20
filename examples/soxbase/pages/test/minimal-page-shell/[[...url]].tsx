@@ -1,4 +1,4 @@
-import { Container, Divider, List, ListItem, NoSsr, Typography } from '@material-ui/core'
+import { Container, Divider, List, ListItem, NoSsr, Typography, useTheme } from '@material-ui/core'
 import { PageOptions, usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
 import { Button, AppShellTitle, iconPersonAlt, Stepper, Title } from '@reachdigital/next-ui'
 import { m } from 'framer-motion'
@@ -34,8 +34,8 @@ export function AppShellDemo(props: AppShellDemoProps) {
 
   const isSidebarDrawer = urlParts.includes('left') || urlParts.includes('right')
   const isSheet = queryParams.includes('sheet') || urlParts.includes('sheet')
-  const isMinimal = urlParts.includes('minimal')
-  const isFullPage = !isSheet && !isMinimal
+  const isMinimal = queryParams.includes('minimal-page-shell')
+  const isFullPage = queryParams.includes('full-page-shell')
 
   let primaryAction: React.ReactNode
   if (withPrimary)
@@ -78,7 +78,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
           divider={withStepper ? <Stepper steps={3} currentStep={step} /> : undefined}
           hideDragIndicator={isSidebarDrawer}
         >
-          {!isFullPage ? titleComponent : undefined}
+          {isMinimal || isSheet ? titleComponent : undefined}
         </Header>
 
         <Container maxWidth='md'>
@@ -177,7 +177,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
               <ListItem
                 button
                 component='a'
-                disabled={urlParts.includes('minimal')}
+                disabled={isMinimal}
                 style={{ paddingLeft: 0, paddingRight: 0 }}
               >
                 Minimal Page Shell
@@ -187,7 +187,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
               <ListItem
                 button
                 component='a'
-                disabled={!(urlParts.includes('minimal') || urlParts.includes('full'))}
+                disabled={isFullPage}
                 style={{ paddingLeft: 0, paddingRight: 0 }}
               >
                 Full Page Shell
