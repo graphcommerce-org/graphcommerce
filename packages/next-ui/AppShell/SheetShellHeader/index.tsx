@@ -22,6 +22,7 @@ export default function SheetShellHeader(props: SheetShellHeaderProps) {
       dragIndicator={
         hideDragIndicator ? undefined : <SheetShellDragIndicator classes={sheetClasses} />
       }
+      sheet
     />
   )
 }

@@ -178,6 +178,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     backFallbackHref,
     backFallbackTitle,
     fill = 'both',
+    sheet,
   } = props
   const router = usePageRouter()
   const { closeSteps, backSteps } = usePageContext()
