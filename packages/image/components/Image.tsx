@@ -2,7 +2,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
-
 import { useForkRef } from '@material-ui/core'
 import { LoaderValue, VALID_LOADERS } from 'next/dist/server/image-config'
 import Head from 'next/head'
@@ -213,6 +212,7 @@ export type ImageProps = IntrisincImage & {
   dontReportWronglySizedImages?: boolean
   width?: number
   height?: number
+  pictureProps?: JSX.IntrinsicElements['picture']
   /**
    * Possible values:
    *
@@ -246,6 +246,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       placeholder = 'empty',
       blurDataURL,
       dontReportWronglySizedImages,
+      pictureProps,
       ...imgProps
     },
     forwardedRef,
@@ -447,7 +448,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
             style={style}
           />
         ) : (
-          <picture>
+          <picture {...pictureProps}>
             <source media='(-webkit-min-device-pixel-ratio: 2.5)' srcSet={srcSet3x} sizes={sizes} />
             <source media='(-webkit-min-device-pixel-ratio: 1.5)' srcSet={srcSet2x} sizes={sizes} />
             <source
@@ -456,7 +457,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
               sizes={sizes}
             />
             <img
-              ref={ref}
+              ref={combinedRef}
               {...imgProps}
               src={src}
               loading={loading ?? 'lazy'}
