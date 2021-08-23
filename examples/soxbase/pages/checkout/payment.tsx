@@ -90,11 +90,7 @@ function PaymentPage() {
               <PaymentMethodOptions
                 key='options'
                 step={1}
-                Container={({ children }) => (
-                  <FormDiv componet='div' contained>
-                    {children}
-                  </FormDiv>
-                )}
+                Container={({ children }) => <FormDiv contained>{children}</FormDiv>}
               />
 
               <PaymentMethodPlaceOrder key='placeorder' step={2} />

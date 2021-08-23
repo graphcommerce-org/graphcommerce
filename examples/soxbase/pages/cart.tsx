@@ -72,7 +72,7 @@ function CartPage() {
             </Container>
           }
         >
-          <Title size='small' component='span' icon={iconShoppingBag}>
+          <Title size='small' component='span' icon={hasItems ? iconShoppingBag : undefined}>
             {hasItems ? (
               <>
                 Cart Total: <Money {...data?.cart?.prices?.grand_total} />
