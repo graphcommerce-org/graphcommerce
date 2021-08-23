@@ -41,15 +41,24 @@ const useStyles = makeStyles(
     dividerSpacer: {
       minHeight: 2,
     },
-    sheetHeader: {
+    sheetHeaderContainer: {
       position: 'sticky',
       top: 0,
-      background: theme.palette.background.default,
       zIndex: 98,
-      minHeight: 38,
     },
-    sheetHeaderPadding: {
-      paddingTop: `calc(${theme.page.headerInnerHeight.md} * 0.33)`,
+    sheetHeader: {
+      background: theme.palette.background.default,
+      minHeight: 38,
+      paddingTop: 8,
+      paddingBottom: 8,
+    },
+    sheetHeaderSheetShell: {
+      paddingTop: `calc((${theme.page.headerInnerHeight.md} * 0.33) + 9px)`,
+      paddingBottom: `calc((${theme.page.headerInnerHeight.md} * 0.33) + 8px)`,
+      [theme.breakpoints.down('sm')]: {
+        paddingTop: `calc(${theme.page.headerInnerHeight.md} * 0.1)`,
+        paddingBottom: `calc(${theme.page.headerInnerHeight.md} * 0.1)`,
+      },
     },
     sheetHeaderScrolled: {
       [theme.breakpoints.up('md')]: {
@@ -63,9 +72,8 @@ const useStyles = makeStyles(
       alignItems: 'center',
       justifyContent: 'space-between',
       minHeight: 'inherit',
-      // padding: `8px ${theme.page.horizontal} 8px`,
+      padding: `0 ${theme.page.horizontal} 0`,
       [theme.breakpoints.down('sm')]: {
-        minHeight: 56,
         '& > div > .MuiFab-sizeSmall': {
           marginLeft: -12,
           marginRight: -12,
@@ -77,26 +85,12 @@ const useStyles = makeStyles(
         },
       },
     },
-    sheetHeaderActionsPadding: {
-      // padding: `8px ${theme.page.horizontal} 8px`,
-      // [theme.breakpoints.up('md')]: {
-      //   padding: `0 ${theme.page.horizontal} ${theme.spacings.xs}`,
-      // },
-    },
-    sheetHeaderActionsNoTitle: {
-      // [theme.breakpoints.up('md')]: {
-      //   // padding: `${theme.page.vertical} ${theme.page.horizontal} ${theme.page.vertical}`,
-      // },
-    },
     sheetHeaderActionRight: {
       justifySelf: 'flex-end',
     },
     sheetHeaderNoTitle: {
       pointerEvents: 'none',
       background: 'transparent',
-      // [theme.breakpoints.up('md')]: {
-      //   // top: 98,
-      // },
     },
     sheetHeaderNoTitleFillMobileOnly: {
       [theme.breakpoints.up('md')]: {
@@ -108,12 +102,6 @@ const useStyles = makeStyles(
     innerContainer: {
       display: 'grid',
       textAlign: 'center',
-    },
-    innerContainerItem: {
-      gridColumn: 1,
-      gridRow: 1,
-      alignSelf: 'center',
-      ...theme.typography.h6,
     },
     fab: {
       [theme.breakpoints.down('sm')]: {
@@ -137,9 +125,13 @@ const useStyles = makeStyles(
       top: 0,
       left: 0,
       right: 0,
-      minHeight: 'inherit',
+      paddingTop: 8,
+      paddingBottom: 8,
     },
-    subLogo: {
+    logoInnerContainer: {
+      minHeight: 38,
+      display: 'flex',
+      alignItems: 'center',
       [theme.breakpoints.up('md')]: {
         display: 'none',
       },
@@ -152,11 +144,11 @@ const useStyles = makeStyles(
         background: theme.palette.background.highlight,
       },
     },
-    backButtonTransparentHeader: {
-      top: 'unset',
-      boxShadow: theme.shadows[4],
-      [theme.breakpoints.up('md')]: {
-        // top: -24,
+    backButtonContainer: {
+      position: 'relative',
+      top: 0,
+      [theme.breakpoints.down('sm')]: {
+        transform: 'translateY(0) !important',
       },
     },
   }),
@@ -251,6 +243,9 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   const pointerEvents = useTransform(opacityTitle, (o) => (o < 0.2 ? 'none' : 'all'))
   const opacityLogo = useTransform(opacityTitle, [0, 1], [1, 0])
 
+  // why janky?
+  const backButtonTop = useTransform(scrollY, [0, 88], [0, 88])
+
   const close =
     !hideClose &&
     (closeSteps > 0 ? (
@@ -274,30 +269,40 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     <SvgImage src={iconChevronLeft} alt='chevron back' loading='eager' size={26} mobileSize={30} />
   )
   let back = backSteps > 0 && (
-    <Button
-      onClick={() => router.back()}
-      variant='pill-link'
-      className={clsx(classes.backButton, {
-        [classes.backButtonTransparentHeader]: noChildren,
-      })}
-      startIcon={backIcon}
+    <m.div
+      style={{ translateY: noChildren && backButtonTop }}
+      className={classes.backButtonContainer}
     >
-      Back
-    </Button>
+      <Button
+        onClick={() => router.back()}
+        variant='pill-link'
+        className={clsx(classes.backButton, {
+          // [classes.backButtonTransparentHeader]: noChildren,
+        })}
+        startIcon={backIcon}
+      >
+        Back
+      </Button>
+    </m.div>
   )
   if (!back && backFallbackHref) {
     back = (
-      <PageLink href={backFallbackHref} passHref>
-        <Button
-          variant='pill-link'
-          className={clsx(classes.backButton, {
-            [classes.backButtonTransparentHeader]: noChildren,
-          })}
-          startIcon={backIcon}
-        >
-          {backFallbackTitle ?? 'Back'}
-        </Button>
-      </PageLink>
+      <m.div
+        style={{ translateY: noChildren && backButtonTop }}
+        className={classes.backButtonContainer}
+      >
+        <PageLink href={backFallbackHref} passHref>
+          <Button
+            variant='pill-link'
+            className={clsx(classes.backButton, {
+              // [classes.backButtonTransparentHeader]: noChildren,
+            })}
+            startIcon={backIcon}
+          >
+            {backFallbackTitle ?? 'Back'}
+          </Button>
+        </PageLink>
+      </m.div>
     )
   }
 
@@ -307,53 +312,47 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   if (!leftAction) leftAction = <div />
 
   return (
-    <div
-      className={clsx(
-        classes?.sheetHeader,
-        sheet && classes.sheetHeaderPadding,
-        scrolled && classes?.sheetHeaderScrolled,
-        noChildren && classes.sheetHeaderNoTitle,
-        fillMobileOnly && classes.sheetHeaderNoTitleFillMobileOnly,
-      )}
-      ref={contentHeaderRef}
-    >
-      <div className={clsx(classes.logoContainer, classes.sheetHeaderActionsPadding)}>
-        {logo && (
-          <m.div
-            style={{ opacity: opacityLogo }}
-            className={clsx(classes.subLogo, classes.innerContainerItem)}
-          >
-            {logo}
-          </m.div>
-        )}
-      </div>
-
-      {dragIndicator}
-
+    <div className={classes.sheetHeaderContainer}>
       <div
         className={clsx(
-          classes.sheetHeaderActions,
-          classes.sheetHeaderActionsPadding,
-          noChildren && classes.sheetHeaderActionsNoTitle,
+          classes?.sheetHeader,
+          sheet && classes.sheetHeaderSheetShell,
+          scrolled && classes?.sheetHeaderScrolled,
+          noChildren && classes.sheetHeaderNoTitle,
+          fillMobileOnly && classes.sheetHeaderNoTitleFillMobileOnly,
         )}
+        ref={contentHeaderRef}
       >
-        {leftAction && <div>{leftAction}</div>}
-        <div className={classes.innerContainer}>
-          {children && (
-            <m.div
-              style={{ opacity: opacityTitle, pointerEvents }}
-              className={clsx(classes.childs, fillMobileOnly && classes.fillMobileOnly)}
-            >
-              {children}
+        <div className={classes.logoContainer}>
+          {logo && (
+            <m.div style={{ opacity: opacityLogo }} className={classes.logoInnerContainer}>
+              {logo}
             </m.div>
           )}
         </div>
-        <div className={classes?.sheetHeaderActionRight}>{rightAction}</div>
-      </div>
-      <div className={clsx(fillMobileOnly && classes.fillMobileOnly)}>
-        {additional && <>{additional}</>}
-      </div>
 
+        {dragIndicator}
+
+        <div className={classes.sheetHeaderActions}>
+          {leftAction && <div>{leftAction}</div>}
+          <div className={classes.innerContainer}>
+            {children && (
+              <m.div
+                style={{ opacity: opacityTitle, pointerEvents }}
+                className={clsx(classes.childs, fillMobileOnly && classes.fillMobileOnly)}
+              >
+                {children}
+              </m.div>
+            )}
+          </div>
+          <div className={classes?.sheetHeaderActionRight}>{rightAction}</div>
+        </div>
+        {additional && (
+          <div className={clsx(fillMobileOnly && classes.fillMobileOnly)}>
+            <>{additional}</>
+          </div>
+        )}
+      </div>
       {children &&
         (divider ?? (
           <m.div

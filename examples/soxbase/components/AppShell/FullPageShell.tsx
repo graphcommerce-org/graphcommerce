@@ -45,8 +45,10 @@ const useStyles = makeStyles(
       },
     },
     hideOnVirtualKeyboardOpen: {
-      '@media (max-height: 530px)': {
-        display: 'none',
+      [theme.breakpoints.down('sm')]: {
+        '@media (max-height: 530px)': {
+          display: 'none',
+        },
       },
     },
     cartFab: {
