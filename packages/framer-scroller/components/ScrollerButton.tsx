@@ -1,11 +1,12 @@
+import { Fab, FabProps } from '@material-ui/core'
 import { useScrollerButtonClick } from '../hooks/useScrollerButtonClick'
 import { SnapPositionDirection } from '../types'
 
-export type ScrollerButtonProps = JSX.IntrinsicElements['button'] & {
+export type ScrollerButtonProps = FabProps & {
   direction: SnapPositionDirection
 }
 
-export default function ScrollerButton({ direction, ...buttonProps }: ScrollerButtonProps) {
+export default function ScrollerFab({ direction, ...buttonProps }: ScrollerButtonProps) {
   const onClick = useScrollerButtonClick(direction)
-  return <button type='button' {...buttonProps} onClick={onClick} />
+  return <Fab type='button' {...buttonProps} onClick={onClick} />
 }

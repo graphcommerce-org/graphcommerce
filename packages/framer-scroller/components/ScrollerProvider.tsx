@@ -1,4 +1,4 @@
-import { motionValue, Point2D } from 'framer-motion'
+import { motionValue, Point2D, useMotionValue } from 'framer-motion'
 import { PlaybackControls } from 'popmotion'
 import React, { useEffect, useRef, useState, useMemo, useCallback } from 'react'
 import { scrollerContext } from '../context/scrollerContext'
@@ -26,6 +26,16 @@ function assertScrollerRef(
   if (!scrollerRef.current) throw Error('scrollerRef must be defined')
 }
 
+function scaleBetween(
+  unscaledNum: number,
+  minAllowed: number,
+  maxAllowed: number,
+  min: number,
+  max: number,
+) {
+  return ((maxAllowed - minAllowed) * (unscaledNum - min)) / (max - min) + minAllowed
+}
+
 function useObserveItems(
   scrollerRef: React.RefObject<HTMLElement>,
   setItems: React.Dispatch<React.SetStateAction<ItemState[]>>,
@@ -48,12 +58,17 @@ function useObserveItems(
       }),
     )
     const io = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => find(entry)?.visibility.set(entry.intersectionRatio)),
+      (entries) =>
+        entries.forEach((entry) => {
+          const item = find(entry)
+          item?.visibility.set(entry.intersectionRatio)
+          item?.opacity.set(scaleBetween(entry.intersectionRatio, 0.2, 1, 0, 1))
+        }),
       { root: scrollerRef.current, threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] },
     )
 
     itemsArr = htmlEls.map((el) => {
-      const item: ItemState = { el, visibility: motionValue(0) }
+      const item: ItemState = { el, visibility: motionValue(0), opacity: motionValue(0) }
       ro.observe(el)
       io.observe(el)
       return item
@@ -82,7 +97,7 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
     [scrollSnapAlign, scrollSnapStop, scrollSnapType],
   )
 
-  const [snap, setSnap] = useState(true)
+  const snap = useMotionValue(true)
 
   // Monitor the visbility of all elements and store them for later use.
   const [items, setItems] = useState<ItemState[]>([])
@@ -100,16 +115,16 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
 
   const disableSnap = useCallback(() => {
     stop()
-    setSnap(false)
-  }, [stop])
+    snap.set(false)
+  }, [snap, stop])
 
   const enableSnap = useCallback(() => {
     assertScrollerRef(scrollerRef)
     stop()
     const p = scrollerRef.current.scrollLeft
-    setSnap(true)
+    snap.set(true)
     scrollerRef.current.scrollLeft = p
-  }, [stop])
+  }, [snap, stop])
 
   useObserveItems(scrollerRef, setItems, enableSnap)
 
@@ -136,16 +151,8 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
     const parentRect = parent.getBoundingClientRect()
 
     const positions: Record<Axis, SnapPositionList> = {
-      x: {
-        start: [],
-        center: [],
-        end: [],
-      },
-      y: {
-        start: [],
-        center: [],
-        end: [],
-      },
+      x: { start: [], center: [], end: [] },
+      y: { start: [], center: [], end: [] },
     }
 
     const descendants = [...parent.children]

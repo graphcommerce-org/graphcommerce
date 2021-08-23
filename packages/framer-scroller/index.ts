@@ -3,8 +3,8 @@ export * from './types'
 export * from './components/MotionImageAspect'
 export { default as MotionImageAspect } from './components/MotionImageAspect'
 
-export * from './components/Scrollable'
-export { default as Scrollable } from './components/Scrollable'
+export * from './components/Scroller'
+export { default as Scroller } from './components/Scroller'
 
 export * from './components/ScrollerButton'
 export { default as ScrollerButton } from './components/ScrollerButton'

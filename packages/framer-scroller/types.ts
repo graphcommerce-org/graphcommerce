@@ -3,7 +3,11 @@ import { PlaybackControls } from 'popmotion'
 import { Point2D } from 'popmotion/lib/types'
 import React from 'react'
 
-export type ItemState = { el: HTMLElement; visibility: MotionValue<number> }
+export type ItemState = {
+  el: HTMLElement
+  visibility: MotionValue<number>
+  opacity: MotionValue<number>
+}
 
 export type ScrollSnapProps = {
   scrollSnapType: ScrollSnapType
@@ -17,7 +21,7 @@ export type ScrollerContext = {
   scrollSnap: ScrollSnapProps
   scrollerRef: React.RefObject<HTMLDivElement>
   items: ItemState[]
-  snap: boolean
+  snap: MotionValue<boolean>
 
   register(controls: PlaybackControls): void
   stop(): void
