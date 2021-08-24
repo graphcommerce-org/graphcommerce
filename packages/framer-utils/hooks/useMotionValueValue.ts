@@ -4,7 +4,7 @@ import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 
 /** Get the MotionValue's value and return the value as a state update. */
 export function useMotionValueValue<T, R>(motionValue: MotionValue<T>, effect: (v: T) => R) {
-  const [result, setResult] = useState<R>()
+  const [result, setResult] = useState<R>(effect(motionValue.get()))
 
   useIsomorphicLayoutEffect(() => {
     const set = (v: T) => setResult(effect(v))
