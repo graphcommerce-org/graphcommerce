@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.114.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.114.2...@graphcommerce/graphcommerce@2.114.3) (2021-08-24)
+
+
+### Bug Fixes
+
+* error message when no shipping method chosen ([f948ce1](https://github.com/ho-nl/m2-pwa/commit/f948ce19cbf46db8fd7e8115c93f4f7549ad4e64))
+
+
+
+
+
 ## [2.114.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.114.1...@graphcommerce/graphcommerce@2.114.2) (2021-08-19)
 
 

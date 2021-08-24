@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.102.10](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-shipping-method@2.102.9...@reachdigital/magento-cart-shipping-method@2.102.10) (2021-08-24)
+
+
+### Bug Fixes
+
+* error message when no shipping method chosen ([f948ce1](https://github.com/ho-nl/m2-pwa/commit/f948ce19cbf46db8fd7e8115c93f4f7549ad4e64))
+
+
+
+
+
 # [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-shipping-method@2.101.10...@reachdigital/magento-cart-shipping-method@2.102.0) (2021-08-12)
 
 
