@@ -1,4 +1,5 @@
 import { Fab, makeStyles, Theme } from '@material-ui/core'
+import { useMotionValueValue } from '@reachdigital/framer-utils'
 import { m } from 'framer-motion'
 import React from 'react'
 import { useScrollerContext } from '../hooks/useScrollerContext'
@@ -34,15 +35,11 @@ const useStyles = makeStyles(
 export default function ScrollerDots(props: DotsProps) {
   const classes = useStyles(props)
   const { items } = useScrollerContext()
+  const itemsArr = useMotionValueValue(items, (v) => v)
 
   return (
     <m.div layout className={classes.dots}>
-      {!items.length && (
-        <Fab>
-          <m.div className={classes.circle} style={{ opacity: 0.2 }} />
-        </Fab>
-      )}
-      {items.map((item, idx) => (
+      {itemsArr.map((item, idx) => (
         <Fab
           color='inherit'
           // eslint-disable-next-line react/no-array-index-key

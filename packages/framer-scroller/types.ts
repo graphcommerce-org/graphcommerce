@@ -4,7 +4,7 @@ import { Point2D } from 'popmotion/lib/types'
 import React from 'react'
 
 export type ItemState = {
-  el: HTMLElement
+  el?: HTMLElement
   visibility: MotionValue<number>
   opacity: MotionValue<number>
 }
@@ -20,7 +20,7 @@ export type SnapPositionDirection = 'left' | 'right' | 'up' | 'down'
 export type ScrollerContext = {
   scrollSnap: ScrollSnapProps
   scrollerRef: React.RefObject<HTMLDivElement>
-  items: ItemState[]
+  items: MotionValue<ItemState[]>
   snap: MotionValue<boolean>
 
   register(controls: PlaybackControls): void
@@ -29,6 +29,8 @@ export type ScrollerContext = {
   disableSnap(): void
   getSnapPosition(direction: SnapPositionDirection): Point2D
   getScrollSnapPositions(): Record<Axis, number[]>
+  /** @private */
+  registerChildren(children: React.ReactNode): void
 }
 
 export type ScrollSnapType =

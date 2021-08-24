@@ -40,7 +40,10 @@ const useStyles = makeStyles(
 export type ScrollableProps = HTMLMotionProps<'div'>
 
 const Scroller = forwardRef<HTMLDivElement, ScrollableProps>((props, forwardedRef) => {
-  const { scrollSnap, scrollerRef, enableSnap, disableSnap, snap } = useScrollerContext()
+  const { scrollSnap, scrollerRef, enableSnap, disableSnap, snap, registerChildren } =
+    useScrollerContext()
+
+  registerChildren(props.children)
 
   const isSnap = useMotionValueValue(snap, (v) => v)
 

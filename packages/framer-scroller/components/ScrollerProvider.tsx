@@ -1,6 +1,6 @@
-import { motionValue, Point2D, useMotionValue } from 'framer-motion'
+import { MotionValue, motionValue, Point2D, useMotionValue } from 'framer-motion'
 import { PlaybackControls } from 'popmotion'
-import React, { useEffect, useRef, useState, useMemo, useCallback } from 'react'
+import React, { useEffect, useRef, useState, useMemo, useCallback, ReactNode } from 'react'
 import { scrollerContext } from '../context/scrollerContext'
 import {
   Axis,
@@ -38,48 +38,52 @@ function scaleBetween(
 
 function useObserveItems(
   scrollerRef: React.RefObject<HTMLElement>,
-  setItems: React.Dispatch<React.SetStateAction<ItemState[]>>,
+  items: MotionValue<ItemState[]>,
   enableSnap: ScrollerContext['enableSnap'],
 ) {
-  useEffect(() => {
-    assertScrollerRef(scrollerRef)
+  const observe = useCallback(
+    (itemsArr: ItemState[]) => {
+      assertScrollerRef(scrollerRef)
 
-    let itemsArr: ItemState[]
-    const find = ({ target }: { target: Element }) => itemsArr.find((i) => i.el === target)
+      const find = ({ target }: { target: Element }) => itemsArr.find((i) => i.el === target)
 
-    const htmlEls = [...scrollerRef.current.children].filter(
-      (el): el is HTMLElement => el instanceof HTMLElement,
-    )
-
-    const ro = new ResizeObserver((entries) =>
-      entries.forEach((entry) => {
+      const resizeCallback = (entry: ResizeObserverEntry) => {
         enableSnap()
         find(entry)
-      }),
-    )
-    const io = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((entry) => {
-          const item = find(entry)
-          item?.visibility.set(entry.intersectionRatio)
-          item?.opacity.set(scaleBetween(entry.intersectionRatio, 0.2, 1, 0, 1))
-        }),
-      { root: scrollerRef.current, threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] },
-    )
+      }
+      const intersectionCallback = (entry: IntersectionObserverEntry) => {
+        const item = find(entry)
+        item?.visibility.set(entry.intersectionRatio)
+        item?.opacity.set(scaleBetween(entry.intersectionRatio, 0.2, 1, 0, 1))
+      }
+      const ro = new ResizeObserver((entries) => entries.forEach(resizeCallback))
+      const io = new IntersectionObserver((entries) => entries.forEach(intersectionCallback), {
+        root: scrollerRef.current,
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+      })
 
-    itemsArr = htmlEls.map((el) => {
-      const item: ItemState = { el, visibility: motionValue(0), opacity: motionValue(0) }
-      ro.observe(el)
-      io.observe(el)
-      return item
-    })
-    setItems(itemsArr)
+      const htmlEls = [...scrollerRef.current.children].filter(
+        (el): el is HTMLElement => el instanceof HTMLElement,
+      )
+      itemsArr.forEach((value, idx) => {
+        if (!value.el) value.el = htmlEls[idx]
 
-    return () => {
-      ro.disconnect()
-      io.disconnect()
-    }
-  }, [scrollerRef, setItems, enableSnap])
+        ro.observe(value.el)
+        io.observe(value.el)
+      })
+
+      return () => {
+        ro.disconnect()
+        io.disconnect()
+      }
+    },
+    [enableSnap, scrollerRef],
+  )
+
+  useEffect(() => {
+    observe(items.get())
+    return items.onChange(observe)
+  }, [items, observe])
 }
 
 export default function ScrollerProvider(props: ScrollerProviderProps) {
@@ -100,7 +104,7 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
   const snap = useMotionValue(true)
 
   // Monitor the visbility of all elements and store them for later use.
-  const [items, setItems] = useState<ItemState[]>([])
+  const items = useMotionValue<ItemState[]>([])
 
   // Cancel any running animations to prevent onComplete to be ran
   const stop = useCallback(() => {
@@ -126,7 +130,26 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
     scrollerRef.current.scrollLeft = p
   }, [snap, stop])
 
-  useObserveItems(scrollerRef, setItems, enableSnap)
+  useObserveItems(scrollerRef, items, enableSnap)
+
+  const registerChildren = useCallback(
+    (children: React.ReactNode) => {
+      const count = React.Children.count(children)
+      if (!count) throw Error('Can not measure the children')
+      if (count === items.get().length) return
+
+      const itemsArr: unknown[] = items.get().slice()
+      itemsArr.length = count
+
+      items.set(
+        itemsArr.fill(undefined).map<ItemState>(() => ({
+          visibility: motionValue(0),
+          opacity: motionValue(0),
+        })),
+      )
+    },
+    [items],
+  )
 
   function unique<T>(iterable: Iterable<T>): T[] {
     return Array.from(new Set(iterable))
@@ -229,14 +252,8 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
     }
 
     return {
-      x: {
-        before: convert(xBeforeRaw, rect.width),
-        after: convert(xAfterRaw, rect.width),
-      },
-      y: {
-        before: convert(yBeforeRaw, rect.height),
-        after: convert(yAfterRaw, rect.height),
-      },
+      x: { before: convert(xBeforeRaw, rect.width), after: convert(xAfterRaw, rect.width) },
+      y: { before: convert(yBeforeRaw, rect.height), after: convert(yAfterRaw, rect.height) },
     }
   }
 
@@ -315,6 +332,7 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
     disableSnap,
     getSnapPosition,
     getScrollSnapPositions,
+    registerChildren,
   }
 
   return <scrollerContext.Provider value={value} {...providerProps} />
