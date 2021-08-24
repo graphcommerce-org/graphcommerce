@@ -33,7 +33,7 @@ const useStyles = makeStyles(
     },
     containerbottom: {
       ...styles.containerbottom,
-      paddingTop: `calc(${theme.page.headerInnerHeight.md} * 0.66)`,
+      paddingTop: `calc(${theme.page.headerInnerHeight.md} * 0.85)`,
     },
     containerleft: {
       ...styles.containerleft,

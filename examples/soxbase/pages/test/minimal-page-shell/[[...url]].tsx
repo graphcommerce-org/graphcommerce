@@ -75,7 +75,13 @@ export function AppShellDemo(props: AppShellDemoProps) {
       <NoSsr>
         <Header
           primary={primaryAction}
-          divider={withStepper ? <Stepper steps={3} currentStep={step} /> : undefined}
+          divider={
+            withStepper ? (
+              <Container maxWidth={false}>
+                <Stepper steps={3} currentStep={step} />
+              </Container>
+            ) : undefined
+          }
           hideDragIndicator={isSidebarDrawer}
         >
           {isMinimal || isSheet ? titleComponent : undefined}

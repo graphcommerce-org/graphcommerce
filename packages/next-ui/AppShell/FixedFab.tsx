@@ -17,7 +17,7 @@ const useStyles = makeStyles(
       },
       [theme.breakpoints.up('md')]: {
         pointerEvents: 'all',
-        top: theme.spacings.xxs,
+        top: `calc(${theme.spacings.xxs} - 5px)`,
         right: theme.page.horizontal,
         bottom: 'unset',
         boxShadow: 'unset',

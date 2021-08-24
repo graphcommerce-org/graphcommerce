@@ -19,7 +19,7 @@ const useStyles = makeStyles(
       alignItems: 'center',
       justifyContent: 'center',
       [theme.breakpoints.up('md')]: {
-        padding: `${theme.spacings.xxs} ${theme.page.horizontal}`,
+        padding: `${theme.spacings.xxs} ${theme.page.horizontal} 0`,
         top: 0,
         display: 'flex',
         pointerEvents: 'none',

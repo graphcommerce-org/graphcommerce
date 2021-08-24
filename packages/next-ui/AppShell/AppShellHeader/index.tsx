@@ -6,6 +6,7 @@ import PageLink from 'next/link'
 import React, { useCallback, useEffect } from 'react'
 import Button from '../../Button'
 import { UseStyles } from '../../Styles'
+import responsiveVal from '../../Styles/responsiveVal'
 import SvgImage from '../../SvgImage'
 import { iconChevronLeft, iconClose } from '../../icons'
 import useAppShellHeaderContext from './useAppShellHeaderContext'
@@ -51,10 +52,14 @@ const useStyles = makeStyles(
       minHeight: 38,
       paddingTop: 8,
       paddingBottom: 8,
+      [theme.breakpoints.up('md')]: {
+        paddingTop: responsiveVal(8, 24),
+        paddingBottom: responsiveVal(8, 24),
+      },
     },
     sheetHeaderSheetShell: {
-      paddingTop: `calc((${theme.page.headerInnerHeight.md} * 0.33) + 9px)`,
-      paddingBottom: `calc((${theme.page.headerInnerHeight.md} * 0.33) + 8px)`,
+      paddingTop: `calc((${theme.page.headerInnerHeight.md} * 0.15) + ${responsiveVal(8, 24)})`,
+      paddingBottom: `calc((${theme.page.headerInnerHeight.md} * 0.15) + ${responsiveVal(8, 24)})`,
       [theme.breakpoints.down('sm')]: {
         paddingTop: `calc(${theme.page.headerInnerHeight.md} * 0.1)`,
         paddingBottom: `calc(${theme.page.headerInnerHeight.md} * 0.1)`,
@@ -74,14 +79,14 @@ const useStyles = makeStyles(
       minHeight: 'inherit',
       padding: `0 ${theme.page.horizontal} 0`,
       [theme.breakpoints.down('sm')]: {
-        '& > div > .MuiFab-sizeSmall': {
+        '& div > .MuiFab-sizeSmall': {
           marginLeft: -12,
           marginRight: -12,
         },
-        '& > div > .MuiButtonBase-root': {
+        '& div > .MuiButtonBase-root': {
           minWidth: 'unset',
-          marginRight: -8,
-          marginLeft: -8,
+          marginRight: -12,
+          marginLeft: -12,
         },
       },
     },
@@ -144,11 +149,10 @@ const useStyles = makeStyles(
         background: theme.palette.background.highlight,
       },
     },
-    backButtonContainer: {
-      position: 'relative',
-      top: 0,
-      [theme.breakpoints.down('sm')]: {
-        transform: 'translateY(0) !important',
+    backButtonFullPage: {
+      [theme.breakpoints.up('md')]: {
+        position: 'fixed',
+        top: `calc(${theme.page.headerInnerHeight.md} + ${responsiveVal(8, 24)})`,
       },
     },
   }),
@@ -269,40 +273,30 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     <SvgImage src={iconChevronLeft} alt='chevron back' loading='eager' size={26} mobileSize={30} />
   )
   let back = backSteps > 0 && (
-    <m.div
-      style={{ translateY: noChildren && backButtonTop }}
-      className={classes.backButtonContainer}
+    <Button
+      onClick={() => router.back()}
+      variant='pill-link'
+      className={clsx(classes.backButton, {
+        [classes.backButtonFullPage]: noChildren,
+      })}
+      startIcon={backIcon}
     >
-      <Button
-        onClick={() => router.back()}
-        variant='pill-link'
-        className={clsx(classes.backButton, {
-          // [classes.backButtonTransparentHeader]: noChildren,
-        })}
-        startIcon={backIcon}
-      >
-        Back
-      </Button>
-    </m.div>
+      Back
+    </Button>
   )
   if (!back && backFallbackHref) {
     back = (
-      <m.div
-        style={{ translateY: noChildren && backButtonTop }}
-        className={classes.backButtonContainer}
-      >
-        <PageLink href={backFallbackHref} passHref>
-          <Button
-            variant='pill-link'
-            className={clsx(classes.backButton, {
-              // [classes.backButtonTransparentHeader]: noChildren,
-            })}
-            startIcon={backIcon}
-          >
-            {backFallbackTitle ?? 'Back'}
-          </Button>
-        </PageLink>
-      </m.div>
+      <PageLink href={backFallbackHref} passHref>
+        <Button
+          variant='pill-link'
+          className={clsx(classes.backButton, {
+            [classes.backButtonFullPage]: noChildren,
+          })}
+          startIcon={backIcon}
+        >
+          {backFallbackTitle ?? 'Back'}
+        </Button>
+      </PageLink>
     )
   }
 
