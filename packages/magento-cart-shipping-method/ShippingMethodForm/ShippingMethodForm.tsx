@@ -1,10 +1,11 @@
-import { FormControl } from '@material-ui/core'
+import { FormControl, makeStyles, Theme } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 import {
+  ApolloCartErrorAlert,
   useCartQuery,
   useFormGqlMutationCart,
-  ApolloCartErrorAlert,
 } from '@reachdigital/magento-cart'
-import { Form, FormRow, ToggleButtonGroup } from '@reachdigital/next-ui'
+import { Form, FormRow, ToggleButtonGroup, UseStyles } from '@reachdigital/next-ui'
 import { Controller, useFormCompose, UseFormComposeOptions } from '@reachdigital/react-hook-form'
 import React from 'react'
 import AvailableShippingMethod from '../AvailableShippingMethod/AvailableShippingMethod'
@@ -15,11 +16,22 @@ import {
   ShippingMethodFormMutationVariables,
 } from './ShippingMethodForm.gql'
 
-export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'>
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    alert: {
+      marginTop: theme.spacings.xxs,
+    },
+  }),
+  { name: 'ShippingMethodForm' },
+)
+
+export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'> &
+  UseStyles<typeof useStyles>
 
 export default function ShippingMethodForm(props: ShippingMethodFormProps) {
   const { step } = props
   const { data: cartQuery } = useCartQuery(GetShippingMethodsDocument)
+  const classes = useStyles(props)
 
   const currentAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const available = currentAddress?.available_shipping_methods
@@ -51,7 +63,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
             control={control}
             name='carrierMethod'
             rules={{ required: 'Please select a shipping method' }}
-            render={({ field: { onChange, value, onBlur } }) => (
+            render={({ field: { onChange, value, onBlur }, fieldState: { invalid } }) => (
               <>
                 <ToggleButtonGroup
                   aria-label='Shipping Method'
@@ -83,12 +95,17 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
                     <AvailableShippingMethod
                       available={false}
                       carrier_code='none'
-                      carrier_title='No Shipping methods available'
+                      carrier_title='No shipping methods available'
                     >
                       Please fill in your address to see shipping methods
                     </AvailableShippingMethod>
                   )}
                 </ToggleButtonGroup>
+                {invalid && currentAddress?.available_shipping_methods && (
+                  <Alert classes={{ root: classes.alert }} severity='error'>
+                    Please select a shipping method
+                  </Alert>
+                )}
               </>
             )}
           />
