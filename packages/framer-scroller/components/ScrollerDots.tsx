@@ -2,6 +2,7 @@ import { Fab, makeStyles, Theme } from '@material-ui/core'
 import { useMotionValueValue } from '@reachdigital/framer-utils'
 import { m } from 'framer-motion'
 import React from 'react'
+import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 
 export type DotsProps = Record<string, never> & {
@@ -34,8 +35,10 @@ const useStyles = makeStyles(
 
 export default function ScrollerDots(props: DotsProps) {
   const classes = useStyles(props)
-  const { items } = useScrollerContext()
+  const { items, getScrollSnapPositions } = useScrollerContext()
   const itemsArr = useMotionValueValue(items, (v) => v)
+
+  const scrollTo = useScrollTo()
 
   return (
     <m.div layout className={classes.dots}>
@@ -46,7 +49,10 @@ export default function ScrollerDots(props: DotsProps) {
           key={idx}
           className={classes.dot}
           size='small'
-          // onClick={() => dispatch({ type: 'NAVIGATE', to: idx })}
+          onClick={() => {
+            const positions = getScrollSnapPositions()
+            scrollTo({ x: positions.x[idx] ?? 0, y: positions.y[idx] ?? 0 })
+          }}
         >
           <m.div className={classes.circle} style={{ opacity: item.opacity }} />
         </Fab>
