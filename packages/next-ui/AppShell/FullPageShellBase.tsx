@@ -49,14 +49,7 @@ export default function FullPageShellBase(props: FullPageShellBaseProps) {
     <div className={classes.root}>
       <AppShellProvider>
         <ShellBase name={name}>
-          <m.header
-            className={classes.header}
-            layoutId='header'
-            transition={{ type: 'tween' }}
-            layout='position'
-          >
-            {header}
-          </m.header>
+          <header className={classes.header}>{header}</header>
           <div>{children}</div>
           <div>{footer}</div>
         </ShellBase>

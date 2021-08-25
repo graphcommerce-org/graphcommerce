@@ -22,10 +22,13 @@ import PageLink from 'next/link'
 import React from 'react'
 import MinimalPageShell, {
   MinimalPageShellProps,
-} from '../../../components/AppShell/MinimalPageShell'
-import PageShellHeader from '../../../components/AppShell/PageShellHeader'
-import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
-import apolloClient from '../../../lib/apolloClient'
+} from '../../../../components/AppShell/MinimalPageShell'
+import PageShellHeader from '../../../../components/AppShell/PageShellHeader'
+import {
+  DefaultPageDocument,
+  DefaultPageQuery,
+} from '../../../../components/GraphQL/DefaultPage.gql'
+import apolloClient from '../../../../lib/apolloClient'
 
 type Props = DefaultPageQuery &
   SearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
@@ -33,7 +36,7 @@ type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<MinimalPageShellProps, Props, RouteProps>
 
-// TODO: throw away. for testing only
+// for testing only
 const useStyles = makeStyles((theme: Theme) => ({
   longContent: {
     height: 2000,

@@ -1,12 +1,13 @@
-import { PageOptions } from '@reachdigital/framer-next-pages'
+import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps, PageShellHeader } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
+import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
-import { AppShellDemo } from './minimal-page-shell/[[...url]]'
+import { AppShellDemo } from './index/minimal-page-shell/[[...url]]'
 
 type Props = { url: string } & DefaultPageQuery
 type RouteProps = { url: string[] }
@@ -14,7 +15,15 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function AppShellTestIndex() {
-  return <AppShellDemo baseUrl='/test/index' Header={PageShellHeader} />
+  const queryParams = usePageRouter().asPath.split('/')
+  const urlParts = queryParams.pop()?.split('-') ?? []
+
+  return (
+    <AppShellDemo
+      baseUrl='/test/index'
+      Header={urlParts.includes('full') ? FullPageShellHeader : PageShellHeader}
+    />
+  )
 }
 
 AppShellTestIndex.pageOptions = {

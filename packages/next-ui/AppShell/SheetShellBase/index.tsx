@@ -24,26 +24,31 @@ export type SheetShellBaseProps = {
   PageLayoutBaseProps
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
-    container: {
-      ...styles.container,
-    },
-    containertop: {
-      ...styles.containertop,
-    },
-    containerbottom: {
-      ...styles.containerbottom,
-      paddingTop: `calc(${theme.page.headerInnerHeight.md} * 0.85)`,
-    },
-    containerleft: {
-      ...styles.containerleft,
-      paddingRight: responsiveVal(26, 48),
-    },
-    containerright: {
-      ...styles.containerright,
-      paddingLeft: responsiveVal(26, 48),
-    },
-  }),
+  (theme: Theme) => {
+    console.log(theme.page.headerInnerHeight.md)
+
+    return {
+      container: {
+        ...styles.container,
+      },
+      containertop: {
+        ...styles.containertop,
+      },
+      containerbottom: {
+        ...styles.containerbottom,
+        // offset top is x% of the header height, so it slightly overlaps the logo
+        paddingTop: `calc(${theme.page.headerInnerHeight.md} * 0.85)`,
+      },
+      containerleft: {
+        ...styles.containerleft,
+        paddingRight: responsiveVal(26, 48),
+      },
+      containerright: {
+        ...styles.containerright,
+        paddingLeft: responsiveVal(26, 48),
+      },
+    }
+  },
   { name: 'SheetShellBase' },
 )
 
