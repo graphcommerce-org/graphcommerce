@@ -33,17 +33,24 @@ const useStyles = makeStyles(
         pointerEvents: 'none',
       },
     },
+    hideScrollabr: {
+      scrollbarWidth: 'none',
+      '&::-webkit-scrollbar': {
+        display: 'none',
+      },
+    },
   },
   { name: 'Scrollable' },
 )
 
-export type ScrollableProps = HTMLMotionProps<'div'>
+export type ScrollableProps = HTMLMotionProps<'div'> & { hideScrollbar: boolean }
 
 const Scroller = forwardRef<HTMLDivElement, ScrollableProps>((props, forwardedRef) => {
   const { scrollSnap, scrollerRef, enableSnap, disableSnap, snap, registerChildren } =
     useScrollerContext()
 
-  registerChildren(props.children)
+  const { hideScrollbar, children, ...divProps } = props
+  registerChildren(children)
 
   const isSnap = useMotionValueValue(snap, (v) => v)
 
@@ -104,14 +111,17 @@ const Scroller = forwardRef<HTMLDivElement, ScrollableProps>((props, forwardedRe
       onPanStart={startPan}
       onPanEnd={endPan}
       onPan={handlePan}
-      {...props}
+      {...divProps}
       className={clsx(
         classes.root,
         isSnap && classes.snap,
         isPanning && classes.panning,
         props.className,
+        hideScrollbar && classes.hideScrollabr,
       )}
-    />
+    >
+      {children}
+    </m.div>
   )
 })
 Scroller.displayName = 'Scroller'

@@ -72,7 +72,10 @@ function Index() {
             <ScrollerButton direction='right'>→</ScrollerButton>
           </m.div>
 
-          <Scroller className={clsx(classes.scroller, expand && classes.scrollerResized)}>
+          <Scroller
+            className={clsx(classes.scroller, expand && classes.scrollerResized)}
+            hideScrollbar
+          >
             <div key='img' className={classes.slide}>
               <MotionImageAspect
                 key='str'
