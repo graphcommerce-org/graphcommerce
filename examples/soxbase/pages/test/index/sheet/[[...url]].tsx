@@ -5,6 +5,7 @@ import SheetShell, { SheetShellProps } from '../../../../components/AppShell/She
 import { AppShellDemo } from '../minimal-page-shell/[[...url]]'
 
 function SheetDemo() {
+  console.log('Header used: SheetShellHeader')
   return <AppShellDemo baseUrl='/test/index' Header={SheetShellHeader} />
 }
 

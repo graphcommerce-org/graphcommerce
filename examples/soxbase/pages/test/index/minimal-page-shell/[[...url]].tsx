@@ -31,6 +31,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
   const withStepper = urlParts.includes('stepper')
   const step = Number(urlParts[urlParts.length - 1])
   const withIcon = urlParts.includes('icon')
+  const withTitle = urlParts.includes('title')
 
   const isLeftSidebarDrawer = urlParts.includes('left') || queryParams.includes('left')
   const isSidebarDrawer =
@@ -89,7 +90,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
           }
           hideDragIndicator={isSidebarDrawer}
         >
-          {isMinimal || isSheet ? titleComponent : undefined}
+          {isMinimal || isSheet || withTitle ? titleComponent : undefined}
         </Header>
 
         <Container maxWidth='md'>
@@ -204,7 +205,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
                 Minimal Page Shell
               </ListItem>
             </PageLink>
-            <PageLink href={`${baseUrl}/full-page-shell`} passHref>
+            <PageLink href={baseUrl} passHref>
               <ListItem
                 button
                 component='a'
@@ -212,6 +213,16 @@ export function AppShellDemo(props: AppShellDemoProps) {
                 style={{ paddingLeft: 0, paddingRight: 0 }}
               >
                 Full Page Shell
+              </ListItem>
+            </PageLink>
+            <PageLink href={`${createBaseUrl()}/with-title`} passHref>
+              <ListItem
+                button
+                component='a'
+                disabled={withTitle}
+                style={{ paddingLeft: 0, paddingRight: 0 }}
+              >
+                Full Page Shell + Title
               </ListItem>
             </PageLink>
             <ListItem
@@ -238,6 +249,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
 }
 
 function MinimalPageShellDemo() {
+  console.log('Header used: PageShellHeader')
   return <AppShellDemo baseUrl='/test/index' Header={PageShellHeader} />
 }
 

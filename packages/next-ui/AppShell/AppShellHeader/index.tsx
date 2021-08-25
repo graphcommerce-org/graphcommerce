@@ -38,7 +38,7 @@ const useStyles = makeStyles(
     divider: {
       borderBottom: `1px solid ${theme.palette.divider}`,
       minHeight: 2,
-      // marginTop: -2,
+      marginTop: -2,
     },
     dividerSpacer: {
       minHeight: 2,
@@ -82,7 +82,7 @@ const useStyles = makeStyles(
       gridAutoFlow: 'column',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: `0 ${theme.page.horizontal} 0`,
+      padding: `0 calc(${theme.page.horizontal} + 2px) 0`,
       width: '100%',
       [theme.breakpoints.down('sm')]: {
         '& div > .MuiFab-sizeSmall': {
@@ -194,7 +194,9 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
 
   const { titleRef, contentHeaderRef } = useAppShellHeaderContext()
 
+  // is there any title given? (maybe rename is needed..)
   const noChildren = typeof children === 'undefined' || !children
+
   const fillMobileOnly = fill === 'mobile-only'
 
   const sheetHeaderHeight = useMotionValue<number>(0)
@@ -257,7 +259,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
       ),
   )
   const pointerEvents = useTransform(opacityTitle, (o) => (o < 0.2 ? 'none' : 'all'))
-  const opacityLogo = useTransform(opacityTitle, [0, 1], [1, 0])
+  const opacityLogo = useTransform(opacityTitle, [0, 1], [1, fillMobileOnly && primary ? 1 : 0])
 
   const close =
     !hideClose &&
@@ -307,13 +309,18 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   if (!leftAction) leftAction = <div />
 
   return (
-    <div className={clsx(classes.sheetHeaderContainer, noChildren && classes.sheetHeaderNoTitle)}>
+    <div
+      className={clsx(
+        classes.sheetHeaderContainer,
+        noChildren && !primary && classes.sheetHeaderNoTitle,
+      )}
+    >
       <div
         className={clsx(
           classes?.sheetHeader,
           sheet && classes.sheetHeaderSheetShell,
           scrolled && classes?.sheetHeaderScrolled,
-          noChildren && classes.sheetHeaderNoTitle,
+          noChildren && !primary && classes.sheetHeaderNoTitle,
           fillMobileOnly && classes.sheetHeaderNoTitleFillMobileOnly,
         )}
         ref={contentHeaderRef}
@@ -331,7 +338,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
         <div
           className={clsx(
             classes.sheetHeaderActions,
-            noChildren && classes.sheetShellActionsFullPage,
+            (noChildren || fillMobileOnly) && classes.sheetShellActionsFullPage,
           )}
         >
           {leftAction && <div>{leftAction}</div>}

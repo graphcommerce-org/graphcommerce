@@ -16,14 +16,20 @@ type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function AppShellTestIndex() {
   const queryParams = usePageRouter().asPath.split('/')
-  const urlParts = queryParams.pop()?.split('-') ?? []
 
-  return (
-    <AppShellDemo
-      baseUrl='/test/index'
-      Header={urlParts.includes('full') ? FullPageShellHeader : PageShellHeader}
-    />
+  const header =
+    queryParams.includes('minimal') || queryParams.includes('sheet')
+      ? PageShellHeader
+      : FullPageShellHeader
+
+  console.log(
+    'Header used: ',
+    queryParams.includes('minimal') || queryParams.includes('sheet')
+      ? 'PageShellHeader'
+      : 'FullPageShellHeader',
   )
+
+  return <AppShellDemo baseUrl='/test/index' Header={header} />
 }
 
 AppShellTestIndex.pageOptions = {
