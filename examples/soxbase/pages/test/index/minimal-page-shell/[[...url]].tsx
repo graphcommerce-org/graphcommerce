@@ -215,7 +215,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
                 Full Page Shell
               </ListItem>
             </PageLink>
-            <PageLink href={`${createBaseUrl()}/with-title`} passHref>
+            <PageLink href={`${baseUrl}/with-title`} passHref>
               <ListItem
                 button
                 component='a'
