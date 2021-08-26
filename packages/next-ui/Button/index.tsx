@@ -36,7 +36,13 @@ const useStyles = makeStyles<
   (theme: Theme) => ({
     root: {},
     label: {},
-    disabled: {},
+    disabled: {
+      opacity: 0.25,
+      color: `${theme.palette.primary.contrastText} !important`,
+      [theme.breakpoints.up('md')]: {
+        color: `${theme.palette.secondary.contrastText} !important`,
+      },
+    },
     withStartIcon: {
       [theme.breakpoints.down('sm')]: {
         height: 40,
@@ -59,6 +65,7 @@ const useStyles = makeStyles<
         boxShadow: theme.shadows[2],
         borderRadius: 25,
         padding: '6px 16px',
+        fontWeight: theme.typography.fontWeightBold,
         '&:hover': {
           background: theme.palette.secondary.dark,
         },

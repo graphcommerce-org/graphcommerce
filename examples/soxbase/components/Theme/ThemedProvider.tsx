@@ -220,6 +220,9 @@ defaultTheme.overrides = {
       fontWeight: 400,
       textTransform: 'none',
     },
+    endIcon: {
+      marginLeft: 0,
+    },
     contained: {
       backgroundColor: '#fff',
       boxShadow: defaultTheme.shadows[1],
@@ -235,7 +238,6 @@ defaultTheme.overrides = {
       '& .MuiSvgIcon-root': { color: '#fff' },
     },
     containedSizeLarge: { padding: `15px ${responsiveVal(30, 60)}` },
-    endIcon: { marginLeft: 20 },
     iconSizeLarge: {
       '& > *:first-child': { fontSize: 24 },
     },

@@ -20,7 +20,6 @@ import {
   Title,
 } from '@reachdigital/next-ui'
 import { ComposedForm, ComposedSubmit } from '@reachdigital/react-hook-form'
-import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -37,20 +36,40 @@ function ShippingPage() {
   const cartExists = typeof cartData?.cart !== 'undefined'
   const router = useRouter()
 
+  const onSubmitSuccessful = () => router.push('/checkout/payment')
+
   return (
-    <>
+    <ComposedForm>
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots={['noindex']} />
       <PageShellHeader
         primary={
-          <PageLink href='/checkout/payment' passHref>
-            <Button color='secondary' variant='pill-link'>
-              Next
-            </Button>
-          </PageLink>
+          <ComposedSubmit
+            onSubmitSuccessful={onSubmitSuccessful}
+            render={({ buttonState, submit, error }) => (
+              <Button
+                type='submit'
+                color='secondary'
+                variant='pill-link'
+                loading={buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)}
+                onClick={submit}
+                endIcon={
+                  <SvgImage
+                    src={iconChevronRight}
+                    alt='chevron right'
+                    shade='inverted'
+                    size='small'
+                    loading='eager'
+                  />
+                }
+              >
+                Next
+              </Button>
+            )}
+          />
         }
         divider={
-          <Container maxWidth={false}>
-            <Stepper steps={3} currentStep={2} />
+          <Container maxWidth='md'>
+            <Stepper currentStep={2} steps={3} />
           </Container>
         }
         backFallbackHref='/cart'
@@ -65,7 +84,7 @@ function ShippingPage() {
           {!cartExists && <EmptyCart />}
 
           {cartExists && (
-            <ComposedForm>
+            <>
               <AppShellTitle icon={iconBox}>Shipping</AppShellTitle>
 
               <EmailForm step={1} />
@@ -77,7 +96,7 @@ function ShippingPage() {
               <ShippingMethodForm step={3} />
 
               <ComposedSubmit
-                onSubmitSuccessful={() => router.push('/checkout/payment')}
+                onSubmitSuccessful={onSubmitSuccessful}
                 render={({ buttonState, submit, error }) => (
                   <>
                     <FormActions>
@@ -86,6 +105,7 @@ function ShippingPage() {
                         color='secondary'
                         variant='pill'
                         size='large'
+                        text='bold'
                         loading={
                           buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)
                         }
@@ -96,6 +116,7 @@ function ShippingPage() {
                           src={iconChevronRight}
                           alt='chevron right'
                           shade='inverted'
+                          size='small'
                           loading='eager'
                         />
                       </Button>
@@ -107,11 +128,11 @@ function ShippingPage() {
                   </>
                 )}
               />
-            </ComposedForm>
+            </>
           )}
         </NoSsr>
       </Container>
-    </>
+    </ComposedForm>
   )
 }
 
