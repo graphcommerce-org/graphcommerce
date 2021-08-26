@@ -32,7 +32,7 @@ export type AppShellHeaderProps = {
 // minHeight: x
 // to reserve space for back & primary buttons,
 // even when there is no app shell header on scroll (e.g. on full page shell)
-
+const minHeight = 40
 const useStyles = makeStyles(
   (theme: Theme) => ({
     divider: {
@@ -47,14 +47,16 @@ const useStyles = makeStyles(
       position: 'sticky',
       top: 0,
       zIndex: 98,
+      // reserve space in the container even without any buttons added
+      minHeight: 58,
     },
     sheetHeader: {
       background: theme.palette.background.default,
       paddingTop: 8,
       paddingBottom: 8,
-      minHeight: 38,
+      minHeight,
       [theme.breakpoints.up('md')]: {
-        minHeight: `calc(38px + ${theme.spacings.xxs} * 2)`,
+        minHeight: `calc(${minHeight}px + ${theme.spacings.xxs} * 2)`,
         paddingTop: theme.spacings.xxs,
         paddingBottom: theme.spacings.xxs,
       },
@@ -122,6 +124,8 @@ const useStyles = makeStyles(
       pointerEvents: 'all',
     },
     fab: {
+      maxWidth: 38,
+      maxHeight: 38,
       [theme.breakpoints.down('sm')]: {
         boxShadow: 'none',
       },
@@ -147,7 +151,7 @@ const useStyles = makeStyles(
       paddingBottom: 8,
     },
     logoInnerContainer: {
-      minHeight: 38,
+      minHeight,
       display: 'flex',
       alignItems: 'center',
       [theme.breakpoints.up('md')]: {
@@ -237,6 +241,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
 
     const ro = new ResizeObserver(([entry]) => {
       const { offsetTop, offsetParent, clientHeight } = entry.target as HTMLDivElement
+
       setOffset(offsetTop, offsetParent, clientHeight)
     })
 
@@ -253,6 +258,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     )
 
     ro.observe(contentHeaderRef.current)
+
     return () => ro.disconnect()
   }, [contentHeaderRef, sheetHeaderHeight])
 
@@ -260,12 +266,19 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     [scrollY, sheetHeaderHeight, titleOffset, titleHeight] as MotionValue[],
     ([scrollYV, sheetHeaderHeightV, titleOffsetV, titleHeigthV]: number[]) =>
       Math.min(
-        Math.max(0, scrolled ? 1 : (scrollYV - titleOffsetV + sheetHeaderHeightV) / titleHeigthV),
+        Math.max(
+          0,
+          scrolled
+            ? 1
+            : (scrollYV - Math.max(titleOffsetV, 80) + sheetHeaderHeightV) / titleHeigthV,
+        ),
         1,
       ),
   )
+
   const pointerEvents = useTransform(opacityTitle, (o) => (o < 0.2 ? 'none' : 'all'))
   const opacityLogo = useTransform(opacityTitle, [0, 1], [1, fillMobileOnly && primary ? 1 : 0])
+  const pointerEventsLogo = useTransform(opacityLogo, (o) => (o < 0.2 ? 'none' : 'all'))
 
   const close =
     !hideClose &&
@@ -337,7 +350,13 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
       >
         <div className={classes.logoContainer}>
           {logo && (
-            <m.div style={{ opacity: opacityLogo }} className={classes.logoInnerContainer}>
+            <m.div
+              style={{
+                opacity: opacityLogo,
+                pointerEvents: pointerEventsLogo,
+              }}
+              className={classes.logoInnerContainer}
+            >
               {logo}
             </m.div>
           )}
