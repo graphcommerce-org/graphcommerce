@@ -110,6 +110,12 @@ const useStyles = makeStyles(
         top: 98,
       },
     },
+    sheetHeaderWithSubheaderFillMobileOnly: {
+      [theme.breakpoints.up('md')]: {
+        pointerEvents: 'none',
+        background: 'transparent',
+      },
+    },
     innerContainer: {
       display: 'grid',
       textAlign: 'center',
@@ -212,12 +218,6 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   const setOffset = useCallback(
     (offsetTop: number, offsetParent: Element | null, clientHeight: number) => {
       titleHeight.set(clientHeight)
-
-      // let offsetParentTop = 0
-      // if (offsetParent && offsetParent instanceof HTMLElement) {
-      //   offsetParentTop = offsetParent.offsetTop
-      // }
-
       titleOffset.set(offsetTop)
     },
     [titleHeight, titleOffset],
@@ -330,6 +330,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
           scrolled && classes?.sheetHeaderScrolled,
           noChildren && !primary && classes.sheetHeaderNoTitle,
           fillMobileOnly && noChildren && classes.sheetHeaderNoTitleFillMobileOnly,
+          additional && fillMobileOnly && classes.sheetHeaderWithSubheaderFillMobileOnly,
         )}
         ref={contentHeaderRef}
       >
