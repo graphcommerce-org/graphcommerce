@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.10](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-items@2.103.9...@reachdigital/magento-cart-items@2.103.10) (2021-08-26)
+
+
+### Bug Fixes
+
+* **cart:** mobile styles ([aa601af](https://github.com/ho-nl/m2-pwa/commit/aa601af28ca7190ad90c33cc180fe63a28682519))
+
+
+
+
+
 ## [2.103.8](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-items@2.103.7...@reachdigital/magento-cart-items@2.103.8) (2021-08-18)
 
 

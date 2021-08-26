@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.109.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.109.1...@reachdigital/next-ui@2.109.2) (2021-08-26)
+
+
+### Bug Fixes
+
+* **button:** pill link not visible on mobile ([c4474f5](https://github.com/ho-nl/m2-pwa/commit/c4474f5cfe4dbb6b9aa795d7d175dbce053720d8))
+* cart styling ([56feeee](https://github.com/ho-nl/m2-pwa/commit/56feeeeb85657d8abfec1e9613f12bf9d54686b5))
+
+
+
+
+
 ## [2.109.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.109.0...@reachdigital/next-ui@2.109.1) (2021-08-19)
 
 

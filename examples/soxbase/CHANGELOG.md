@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.111.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.110.3...@reachdigital/soxbase@2.111.0) (2021-08-26)
+
+
+### Bug Fixes
+
+* cart styling ([56feeee](https://github.com/ho-nl/m2-pwa/commit/56feeeeb85657d8abfec1e9613f12bf9d54686b5))
+* **cart:** mobile styles ([aa601af](https://github.com/ho-nl/m2-pwa/commit/aa601af28ca7190ad90c33cc180fe63a28682519))
+* empty cart title ([24ef4c1](https://github.com/ho-nl/m2-pwa/commit/24ef4c10bee208280c76563a78961b4305cbcf0c))
+* use endicon for end icons ([9cfde76](https://github.com/ho-nl/m2-pwa/commit/9cfde76bbf8b189d9f777ae9cbf95b290bb760bf))
+
+
+### Features
+
+* **cart:** submit address from header ([6ae2a8d](https://github.com/ho-nl/m2-pwa/commit/6ae2a8d0f311ad8bae0198efafab5ae9d99040b6))
+
+
+
+
+
 ## [2.110.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.110.0...@reachdigital/soxbase@2.110.1) (2021-08-18)
 
 
