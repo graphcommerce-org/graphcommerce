@@ -20,24 +20,18 @@ export type ScrollerProviderProps = {
   scrollSnapStop?: ScrollSnapStop
 }
 
-function assertScrollerRef(
-  scrollerRef: React.RefObject<HTMLElement>,
-): asserts scrollerRef is React.MutableRefObject<HTMLElement> {
-  if (!scrollerRef.current) throw Error('scrollerRef must be defined')
-}
+type ReactHtmlRefObject =
+  | React.RefObject<HTMLElement>
+  | React.MutableRefObject<HTMLElement | undefined>
 
-function scaleBetween(
-  unscaledNum: number,
-  minAllowed: number,
-  maxAllowed: number,
-  min: number,
-  max: number,
-) {
-  return ((maxAllowed - minAllowed) * (unscaledNum - min)) / (max - min) + minAllowed
+export function assertScrollerRef(
+  scrollerRef: ReactHtmlRefObject,
+): asserts scrollerRef is React.MutableRefObject<HTMLElement> {
+  if (!scrollerRef.current) throw Error('scrollerRef.current, forgot to pass into an HTMLElement?')
 }
 
 function useObserveItems(
-  scrollerRef: React.RefObject<HTMLElement>,
+  scrollerRef: ReactHtmlRefObject,
   items: MotionValue<ItemState[]>,
   enableSnap: ScrollerContext['enableSnap'],
 ) {
@@ -54,7 +48,10 @@ function useObserveItems(
       const intersectionCallback = (entry: IntersectionObserverEntry) => {
         const item = find(entry)
         item?.visibility.set(entry.intersectionRatio)
-        item?.opacity.set(scaleBetween(entry.intersectionRatio, 0.2, 1, 0, 1))
+
+        // Scale between 0.2 and 1
+        const scaled = (1 - 0.2) * entry.intersectionRatio + 0.2
+        item?.opacity.set(scaled)
       }
       const ro = new ResizeObserver((entries) => entries.forEach(resizeCallback))
       const io = new IntersectionObserver((entries) => entries.forEach(intersectionCallback), {
@@ -87,7 +84,7 @@ function useObserveItems(
 }
 
 export default function ScrollerProvider(props: ScrollerProviderProps) {
-  const scrollerRef = useRef<HTMLDivElement>(null)
+  const scrollerRef = useRef<HTMLDivElement>()
   const cancels = useRef<PlaybackControls[]>([])
 
   const {

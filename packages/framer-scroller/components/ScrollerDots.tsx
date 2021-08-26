@@ -37,7 +37,6 @@ export default function ScrollerDots(props: DotsProps) {
   const classes = useStyles(props)
   const { items, getScrollSnapPositions } = useScrollerContext()
   const itemsArr = useMotionValueValue(items, (v) => v)
-
   const scrollTo = useScrollTo()
 
   return (
