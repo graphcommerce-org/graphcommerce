@@ -7,7 +7,7 @@ import FullPageShell, { FullPageShellProps } from '../../components/AppShell/Ful
 import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
-import { AppShellDemo } from './index/minimal-page-shell/[[...url]]'
+import { AppShellDemo } from './minimal-page-shell/[[...url]]'
 
 type Props = { url: string } & DefaultPageQuery
 type RouteProps = { url: string[] }
@@ -29,7 +29,7 @@ function AppShellTestIndex() {
       : 'FullPageShellHeader',
   )
 
-  return <AppShellDemo baseUrl='/test/index' Header={header} />
+  return <AppShellDemo baseUrl='/test' Header={header} />
 }
 
 AppShellTestIndex.pageOptions = {
@@ -52,7 +52,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const url = params?.url.join('/') ?? ''
+  const url = (params?.url ?? ['index']).join('/') ?? ''
 
   const client = apolloClient(locale, true)
   const staticClient = apolloClient(locale)

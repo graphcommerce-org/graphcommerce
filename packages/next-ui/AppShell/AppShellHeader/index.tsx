@@ -167,6 +167,13 @@ const useStyles = makeStyles(
         top: `calc(${theme.page.headerInnerHeight.md} + ${theme.spacings.xxs})`,
       },
     },
+    sheetShellActionsNoButtonShadow: {
+      [theme.breakpoints.down('sm')]: {
+        '& * > button': {
+          boxShadow: 'none',
+        },
+      },
+    },
   }),
   { name: 'AppShellHeader' },
 )
@@ -194,7 +201,6 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
 
   const { titleRef, contentHeaderRef } = useAppShellHeaderContext()
 
-  // is there any title given? (maybe rename is needed..)
   const noChildren = typeof children === 'undefined' || !children
 
   const fillMobileOnly = fill === 'mobile-only'
@@ -308,6 +314,8 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   if (rightAction !== close && !leftAction) leftAction = close
   if (!leftAction) leftAction = <div />
 
+  const showDivider = children || (fillMobileOnly && primary)
+
   return (
     <div
       className={clsx(
@@ -321,7 +329,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
           sheet && classes.sheetHeaderSheetShell,
           scrolled && classes?.sheetHeaderScrolled,
           noChildren && !primary && classes.sheetHeaderNoTitle,
-          fillMobileOnly && classes.sheetHeaderNoTitleFillMobileOnly,
+          fillMobileOnly && noChildren && classes.sheetHeaderNoTitleFillMobileOnly,
         )}
         ref={contentHeaderRef}
       >
@@ -339,6 +347,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
           className={clsx(
             classes.sheetHeaderActions,
             (noChildren || fillMobileOnly) && classes.sheetShellActionsFullPage,
+            fillMobileOnly && showDivider && classes.sheetShellActionsNoButtonShadow,
           )}
         >
           {leftAction && <div>{leftAction}</div>}
@@ -360,14 +369,14 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
           </div>
         )}
       </div>
-      {children &&
+      {showDivider &&
         (divider ?? (
           <m.div
             className={clsx(classes.divider, fillMobileOnly && classes.fillMobileOnly)}
             style={{ opacity: opacityTitle }}
           />
         ))}
-      {!children && <div className={classes.dividerSpacer} />}
+      {!showDivider && <div className={classes.dividerSpacer} />}
     </div>
   )
 }

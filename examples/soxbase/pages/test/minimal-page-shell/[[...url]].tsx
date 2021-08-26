@@ -6,8 +6,8 @@ import PageLink from 'next/link'
 import React, { useState } from 'react'
 import MinimalPageShell, {
   MinimalPageShellProps,
-} from '../../../../components/AppShell/MinimalPageShell'
-import PageShellHeader from '../../../../components/AppShell/PageShellHeader'
+} from '../../../components/AppShell/MinimalPageShell'
+import PageShellHeader from '../../../components/AppShell/PageShellHeader'
 
 type AppShellDemoProps = {
   baseUrl: string
@@ -23,6 +23,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
 
   const queryParams = usePageRouter().asPath.split('/')
   const urlParts = queryParams.pop()?.split('-') ?? []
+
   const title = urlParts.map((s) => `${s?.charAt(0).toUpperCase() + s?.slice(1)}`).join(' ')
   const [scroll, setScroll] = useState<boolean>(true)
   const { backSteps } = usePageContext()
@@ -37,8 +38,10 @@ export function AppShellDemo(props: AppShellDemoProps) {
   const isSidebarDrawer =
     isLeftSidebarDrawer || urlParts.includes('right') || queryParams.includes('right')
   const isSheet = queryParams.includes('sheet')
-  const isMinimal = urlParts.includes('minimal')
-  const isFullPage = urlParts.includes('full')
+  const isMinimal = urlParts.includes('minimal') || queryParams.includes('minimal-page-shell')
+  const isFullPage = !isSheet && !isMinimal
+
+  console.log(queryParams, urlParts)
 
   let primaryAction: React.ReactNode
 
@@ -73,8 +76,6 @@ export function AppShellDemo(props: AppShellDemoProps) {
         {title}
       </Title>
     )
-
-  const createBaseUrl = () => (queryParams.includes('sheet') ? `${baseUrl}/sheet` : baseUrl)
 
   return (
     <>
@@ -126,14 +127,14 @@ export function AppShellDemo(props: AppShellDemoProps) {
           <List>
             {!!primaryAction ||
               (backSteps === 0 && (
-                <PageLink href={`${createBaseUrl()}/navigated`} passHref>
+                <PageLink href={`${baseUrl}/navigated`} passHref>
                   <ListItem button component='a' style={{ paddingLeft: 0, paddingRight: 0 }}>
                     Navigate
                   </ListItem>
                 </PageLink>
               ))}
 
-            <PageLink href={`${createBaseUrl()}/with-primary`} passHref>
+            <PageLink href={`${baseUrl}/with-primary`} passHref>
               <ListItem
                 button
                 component='a'
@@ -144,7 +145,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
               </ListItem>
             </PageLink>
 
-            <PageLink href={`${createBaseUrl()}/with-stepper-1`} passHref>
+            <PageLink href={`${baseUrl}/with-stepper-1`} passHref>
               <ListItem
                 button
                 component='a'
@@ -155,7 +156,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
               </ListItem>
             </PageLink>
 
-            <PageLink href={`${createBaseUrl()}/with-icon`} passHref>
+            <PageLink href={`${baseUrl}/with-icon`} passHref>
               <ListItem
                 button
                 component='a'
@@ -165,7 +166,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
                 With icon
               </ListItem>
             </PageLink>
-            <PageLink href={`${baseUrl}/sheet/bottom`} passHref>
+            <PageLink href='/test/sheet/bottom' passHref>
               <ListItem
                 button
                 component='a'
@@ -175,7 +176,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
                 Bottom sheet
               </ListItem>
             </PageLink>
-            <PageLink href={`${baseUrl}/sheet/left`} passHref>
+            <PageLink href='/test/sheet/left' passHref>
               <ListItem
                 button
                 component='a'
@@ -185,7 +186,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
                 Left side sheet
               </ListItem>
             </PageLink>
-            <PageLink href={`${baseUrl}/sheet/right`} passHref>
+            <PageLink href='/test/sheet/right' passHref>
               <ListItem
                 button
                 component='a'
@@ -195,7 +196,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
                 Right side sheet
               </ListItem>
             </PageLink>
-            <PageLink href={`${baseUrl}/minimal-page-shell`} passHref>
+            <PageLink href='/test/minimal-page-shell' passHref>
               <ListItem
                 button
                 component='a'
@@ -205,7 +206,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
                 Minimal Page Shell
               </ListItem>
             </PageLink>
-            <PageLink href={baseUrl} passHref>
+            <PageLink href='/test' passHref>
               <ListItem
                 button
                 component='a'
@@ -215,7 +216,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
                 Full Page Shell
               </ListItem>
             </PageLink>
-            <PageLink href={`${baseUrl}/with-title`} passHref>
+            <PageLink href='/test/with-title' passHref>
               <ListItem
                 button
                 component='a'
@@ -250,7 +251,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
 
 function MinimalPageShellDemo() {
   console.log('Header used: PageShellHeader')
-  return <AppShellDemo baseUrl='/test/index' Header={PageShellHeader} />
+  return <AppShellDemo baseUrl='/test/minimal-page-shell' Header={PageShellHeader} />
 }
 
 const pageOptions: PageOptions<MinimalPageShellProps> = {
