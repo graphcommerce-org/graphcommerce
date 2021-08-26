@@ -15,21 +15,24 @@ const useStyles = makeStyles(
     container: {
       position: 'relative',
       background: '#ededed',
-      width: 'min-content',
+      width: '100%',
+      height: 400,
+    },
+    containerResizes: {
+      width: 600,
+      height: 800,
     },
     scroller: {
-      width: 600,
-      height: 300,
+      width: '100%',
+      height: '100%',
+      display: `grid`,
+      gridAutoFlow: `column`,
       gridTemplateColumns: `repeat(100, 100%)`,
       gridTemplateRows: `100%`,
       '& *': {
         userSelect: 'none',
-        'user-drag': 'none',
+        userDrag: 'none',
       },
-    },
-    scrollerResized: {
-      width: 800,
-      height: 1000,
     },
     slide: {
       display: 'flex',
@@ -44,21 +47,69 @@ function Index() {
   const classes = useStyles()
   const [expand, setExpand] = useState(true)
 
-  const items = []
-
   return (
     <>
       <Typography variant='h4' component='h2'>
-        Full Image Slider
+        Basic slider
+      </Typography>
+
+      <div style={{ position: 'relative' }}>
+        <ScrollerProvider scrollSnapStop='always'>
+          <Scroller
+            style={{
+              display: `grid`,
+              gridAutoFlow: `column`,
+              gridTemplateColumns: `repeat(100, 30%)`,
+              gridTemplateRows: `100%`,
+              marginBottom: 20,
+              rowGap: 20,
+              columnGap: 20,
+              height: 400,
+            }}
+          >
+            <div style={{ background: '#eee', userSelect: 'none' }}>item1</div>
+            <div style={{ background: '#eee', userSelect: 'none' }}>item2</div>
+            <div style={{ background: '#eee', userSelect: 'none' }}>item3</div>
+            <div style={{ background: '#eee', userSelect: 'none' }}>item4</div>
+            <div style={{ background: '#eee', userSelect: 'none' }}>item5</div>
+            <div style={{ background: '#eee', userSelect: 'none' }}>item6</div>
+            <div style={{ background: '#eee', userSelect: 'none' }}>item7</div>
+          </Scroller>
+
+          <ScrollerButton
+            direction='left'
+            style={{ position: 'absolute', left: 10, top: 'calc(50% - 28px)', zIndex: 2 }}
+          >
+            ←
+          </ScrollerButton>
+
+          <ScrollerButton
+            direction='right'
+            style={{ position: 'absolute', right: 10, top: 'calc(50% - 28px)', zIndex: 2 }}
+          >
+            →
+          </ScrollerButton>
+          <ScrollerDots
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              zIndex: 2,
+              display: 'flex',
+              width: '100%',
+              justifyContent: 'center',
+            }}
+          />
+        </ScrollerProvider>
+      </div>
+
+      <Typography variant='h4' component='h2'>
+        Expandable Image Slider{' '}
+        <button type='button' onClick={() => setExpand(!expand)}>
+          {expand ? 'collapse' : 'expand'}
+        </button>
       </Typography>
       <ScrollerProvider>
-        <m.div layout className={classes.container}>
-          <m.div layout style={{ position: 'absolute', left: 0, top: 0, zIndex: 2 }}>
-            <button type='button' onClick={() => setExpand(!expand)}>
-              {expand ? 'collapse' : 'expand'}
-            </button>
-          </m.div>
-
+        <m.div layout className={clsx(classes.container, expand && classes.containerResizes)}>
           <m.div
             layout
             style={{ position: 'absolute', left: 0, top: 'calc(50% - 28px)', zIndex: 2 }}
@@ -72,10 +123,7 @@ function Index() {
             <ScrollerButton direction='right'>→</ScrollerButton>
           </m.div>
 
-          <Scroller
-            className={clsx(classes.scroller, expand && classes.scrollerResized)}
-            hideScrollbar
-          >
+          <Scroller hideScrollbar className={classes.scroller}>
             <div key='img' className={classes.slide}>
               <MotionImageAspect
                 key='str'
@@ -118,10 +166,6 @@ function Index() {
           </m.div>
         </m.div>
       </ScrollerProvider>
-
-      <Typography variant='h4' component='h2'>
-        Multi item slider
-      </Typography>
     </>
   )
 }

@@ -1,10 +1,11 @@
 import { MotionValue, motionValue, Point2D, useMotionValue } from 'framer-motion'
 import { PlaybackControls } from 'popmotion'
-import React, { useEffect, useRef, useState, useMemo, useCallback, ReactNode } from 'react'
+import React, { useEffect, useRef, useMemo, useCallback } from 'react'
 import { scrollerContext } from '../context/scrollerContext'
 import {
   Axis,
   ItemState,
+  ReactHtmlRefObject,
   ScrollerContext,
   ScrollSnapAlign,
   ScrollSnapAlignAxis,
@@ -19,10 +20,6 @@ export type ScrollerProviderProps = {
   scrollSnapAlign?: ScrollSnapAlign
   scrollSnapStop?: ScrollSnapStop
 }
-
-type ReactHtmlRefObject =
-  | React.RefObject<HTMLElement>
-  | React.MutableRefObject<HTMLElement | undefined>
 
 export function assertScrollerRef(
   scrollerRef: ReactHtmlRefObject,
@@ -148,10 +145,6 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
     [items],
   )
 
-  function unique<T>(iterable: Iterable<T>): T[] {
-    return Array.from(new Set(iterable))
-  }
-
   function domRectIntersects(a: DOMRect, b: DOMRect, axis: Axis | 'both' = 'both'): boolean {
     return (
       (axis === 'x' && a.right >= b.left && a.left <= b.right) ||
@@ -270,20 +263,17 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
       Math.max(min, Math.min(max, value))
 
     return {
-      x: unique(
-        [
-          ...snapPositions.x.start.map((v) => v - scrollPadding.x.before),
-          ...snapPositions.x.center.map((v) => v - rect.width / 2),
-          ...snapPositions.x.end.map((v) => v - rect.width + scrollPadding.x.after),
-        ].map(clamp(0, maxScroll.x)),
-      ),
-      y: unique(
-        [
-          ...snapPositions.y.start.map((v) => v - scrollPadding.y.before),
-          ...snapPositions.y.center.map((v) => v - rect.height / 2),
-          ...snapPositions.y.end.map((v) => v - rect.height + scrollPadding.y.after),
-        ].map(clamp(0, maxScroll.y)),
-      ),
+      x: [
+        ...snapPositions.x.start.map((v) => v - scrollPadding.x.before),
+        ...snapPositions.x.center.map((v) => v - rect.width / 2),
+        ...snapPositions.x.end.map((v) => v - rect.width + scrollPadding.x.after),
+      ].map(clamp(0, maxScroll.x)),
+
+      y: [
+        ...snapPositions.y.start.map((v) => v - scrollPadding.y.before),
+        ...snapPositions.y.center.map((v) => v - rect.height / 2),
+        ...snapPositions.y.end.map((v) => v - rect.height + scrollPadding.y.after),
+      ].map(clamp(0, maxScroll.y)),
     }
   }
 

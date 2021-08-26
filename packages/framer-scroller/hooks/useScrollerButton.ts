@@ -4,6 +4,8 @@ import { useScrollerContext } from './useScrollerContext'
 
 export type UseScrollerButton = SnapPositionDirection
 
+export type UseScrollerButtonReturn = { onClick: () => void }
+
 /**
  * Usage:
  *
@@ -14,7 +16,7 @@ export type UseScrollerButton = SnapPositionDirection
  * }
  * ```
  */
-export function useScrollerButton(direction: UseScrollerButton) {
+export function useScrollerButton(direction: UseScrollerButton): UseScrollerButtonReturn {
   const { getSnapPosition } = useScrollerContext()
   const scrollTo = useScrollTo()
   return { onClick: () => scrollTo(getSnapPosition(direction)) }

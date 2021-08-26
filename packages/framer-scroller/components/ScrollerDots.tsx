@@ -1,13 +1,15 @@
-import { Fab, makeStyles, Theme } from '@material-ui/core'
+import { Fab, FabProps, makeStyles, Theme } from '@material-ui/core'
 import { useMotionValueValue } from '@reachdigital/framer-utils'
-import { m } from 'framer-motion'
+import clsx from 'clsx'
+import { HTMLMotionProps, m } from 'framer-motion'
 import React from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 
-export type DotsProps = Record<string, never> & {
-  classes?: Record<'dots' | 'dot' | 'circle' | 'cicleActive', string>
-}
+export type DotsProps = {
+  classes?: Record<'dots' | 'dot' | 'circle', string>
+  fabProps?: Omit<FabProps, 'onClick' | 'children'>
+} & HTMLMotionProps<'div'>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -28,32 +30,34 @@ const useStyles = makeStyles(
       height: 10,
       background: theme.palette.text.primary,
     },
-    circleActive: {},
   }),
   { name: 'ScrollerDots' },
 )
 
 export default function ScrollerDots(props: DotsProps) {
-  const classes = useStyles(props)
+  const { fabProps, ...containerProps } = props
+  const { dots, dot, circle, ...classes } = useStyles(props)
   const { items, getScrollSnapPositions } = useScrollerContext()
   const itemsArr = useMotionValueValue(items, (v) => v)
   const scrollTo = useScrollTo()
 
   return (
-    <m.div layout className={classes.dots}>
+    <m.div layout {...containerProps} className={clsx(dots, containerProps?.className)}>
       {itemsArr.map((item, idx) => (
         <Fab
-          color='inherit'
           // eslint-disable-next-line react/no-array-index-key
           key={idx}
-          className={classes.dot}
+          color='inherit'
           size='small'
+          {...fabProps}
           onClick={() => {
             const positions = getScrollSnapPositions()
             scrollTo({ x: positions.x[idx] ?? 0, y: positions.y[idx] ?? 0 })
           }}
+          className={clsx(dot, props.className)}
+          classes={classes}
         >
-          <m.div className={classes.circle} style={{ opacity: item.opacity }} />
+          <m.div className={circle} style={{ opacity: item.opacity }} />
         </Fab>
       ))}
     </m.div>

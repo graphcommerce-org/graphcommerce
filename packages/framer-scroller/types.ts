@@ -15,19 +15,29 @@ export type ScrollSnapProps = {
   scrollSnapStop: ScrollSnapStop
 }
 
+export type ReactHtmlRefObject =
+  | React.RefObject<HTMLElement>
+  | React.MutableRefObject<HTMLElement | undefined>
+
 export type SnapPositionDirection = 'left' | 'right' | 'up' | 'down'
 
 export type ScrollerContext = {
   scrollSnap: ScrollSnapProps
-  scrollerRef: React.RefObject<HTMLDivElement>
+  scrollerRef: ReactHtmlRefObject
   items: MotionValue<ItemState[]>
   snap: MotionValue<boolean>
 
-  register(controls: PlaybackControls): void
-  stop(): void
+  /** @private */
   enableSnap(): void
+  /** @private */
   disableSnap(): void
+  /** @private */
+  register(controls: PlaybackControls): void
+  /** @private */
+  stop(): void
+  /** @private */
   getSnapPosition(direction: SnapPositionDirection): Point2D
+  /** @private */
   getScrollSnapPositions(): Record<Axis, number[]>
   /** @private */
   registerChildren(children: React.ReactNode): void
