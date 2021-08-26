@@ -39,9 +39,9 @@ export function AppShellDemo(props: AppShellDemoProps) {
     isLeftSidebarDrawer || urlParts.includes('right') || queryParams.includes('right')
   const isSheet = queryParams.includes('sheet')
   const isMinimal = urlParts.includes('minimal') || queryParams.includes('minimal-page-shell')
-  const isFullPage = !isSheet && !isMinimal
-
-  console.log(queryParams, urlParts)
+  const isMinimalPageShellSubheader =
+    urlParts.includes('subheader') || queryParams.includes('minimal-page-shell-subheader')
+  const isFullPage = !isSheet && !isMinimal && !isMinimalPageShellSubheader
 
   let primaryAction: React.ReactNode
 
@@ -226,6 +226,18 @@ export function AppShellDemo(props: AppShellDemoProps) {
                 Full Page Shell + Title
               </ListItem>
             </PageLink>
+
+            <PageLink href='/test/minimal-page-shell-subheader' passHref>
+              <ListItem
+                button
+                component='a'
+                disabled={isMinimalPageShellSubheader}
+                style={{ paddingLeft: 0, paddingRight: 0 }}
+              >
+                Minimal Page Shell + Subheader
+              </ListItem>
+            </PageLink>
+
             <ListItem
               button
               onClick={() => setScroll(!scroll)}

@@ -44,7 +44,9 @@ export default function AppShellSticky(props: AppShellStickyProps) {
   useEffect(() => {
     if (!contentHeaderRef?.current) return () => {}
 
-    const ro = new ResizeObserver(([entry]) => offsetTop.set(entry.contentRect.height))
+    const ro = new ResizeObserver(([entry]) =>
+      offsetTop.set(contentHeaderRef?.current?.clientHeight ?? 0),
+    )
 
     ro.observe(contentHeaderRef.current)
     return () => ro.disconnect()

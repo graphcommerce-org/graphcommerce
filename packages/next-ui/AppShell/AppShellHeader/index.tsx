@@ -213,12 +213,12 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     (offsetTop: number, offsetParent: Element | null, clientHeight: number) => {
       titleHeight.set(clientHeight)
 
-      let offsetParentTop = 0
-      if (offsetParent && offsetParent instanceof HTMLElement) {
-        offsetParentTop = offsetParent.offsetTop
-      }
+      // let offsetParentTop = 0
+      // if (offsetParent && offsetParent instanceof HTMLElement) {
+      //   offsetParentTop = offsetParent.offsetTop
+      // }
 
-      titleOffset.set(offsetTop + offsetParentTop)
+      titleOffset.set(offsetTop)
     },
     [titleHeight, titleOffset],
   )
