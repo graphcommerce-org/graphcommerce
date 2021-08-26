@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme, TypographyProps } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../../Styles'
@@ -8,6 +8,7 @@ import useAppShellHeaderContext from '../AppShellHeader/useAppShellHeaderContext
 type AppShellTitleProps = {
   children: React.ReactNode
   bare?: boolean
+  variant?: TypographyProps['variant']
 } & Pick<TitleProps, 'icon'> &
   UseStyles<typeof useStyles>
 
@@ -25,7 +26,7 @@ const useStyles = makeStyles(
 )
 
 export default function AppShellTitle(props: AppShellTitleProps) {
-  const { children, icon, bare } = props
+  const { children, icon, bare, variant } = props
   const { titleRef } = useAppShellHeaderContext()
   const classes = useStyles(props)
 
@@ -34,6 +35,7 @@ export default function AppShellTitle(props: AppShellTitleProps) {
       ref={titleRef}
       component='h2'
       size='medium'
+      variant={variant}
       icon={icon ?? undefined}
       classes={{ container: clsx(classes.title, !bare && classes.margin) }}
     >

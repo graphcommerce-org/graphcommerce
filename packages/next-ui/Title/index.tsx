@@ -1,4 +1,4 @@
-import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { makeStyles, Theme, Typography, TypographyProps } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
@@ -36,11 +36,12 @@ export type TitleProps = {
   children: React.ReactNode
   icon?: SvgImageProps['src']
   size?: 'small' | 'medium'
+  variant?: TypographyProps['variant']
   component?: React.ElementType
 } & UseStyles<typeof useStyles>
 
 const Title = React.forwardRef<HTMLDivElement, TitleProps>((props, ref) => {
-  const { children, icon, size = 'medium', component } = props
+  const { children, icon, size = 'medium', component, variant } = props
   const classes = useStyles(props)
   const small = size === 'small'
 
@@ -57,7 +58,7 @@ const Title = React.forwardRef<HTMLDivElement, TitleProps>((props, ref) => {
       )}
       <Typography
         ref={ref}
-        variant={small ? 'h6' : 'h3'}
+        variant={variant || (small ? 'h6' : 'h3')}
         component={component ?? 'h1'}
         className={small ? undefined : classes.typography}
       >
