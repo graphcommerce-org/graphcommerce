@@ -13,6 +13,9 @@ const useStyles = makeStyles(
     },
     searchFormRow: {
       paddingTop: 0,
+      [theme.breakpoints.up('md')]: {
+        paddingTop: theme.spacings.md,
+      },
     },
   }),
   {

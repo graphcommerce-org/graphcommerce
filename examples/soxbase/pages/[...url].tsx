@@ -77,6 +77,7 @@ function CategoryPage(props: Props) {
       <FullPageShellHeader
         backFallbackHref={backFallbackHref}
         backFallbackTitle={backFallbackTitle}
+        scrolled
       >
         <Title size='small'>{category?.name}</Title>
       </FullPageShellHeader>

@@ -24,7 +24,7 @@ const useStyles = makeStyles(
     wrapper: {
       marginTop: 'initial',
       [theme.breakpoints.up('md')]: {
-        marginTop: -96,
+        marginTop: -60,
       },
     },
   }),

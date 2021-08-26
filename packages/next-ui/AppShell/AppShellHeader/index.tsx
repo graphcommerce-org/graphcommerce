@@ -110,7 +110,7 @@ const useStyles = makeStyles(
         top: 98,
       },
     },
-    sheetHeaderWithSubheaderFillMobileOnly: {
+    sheetHeaderFillMobileOnly: {
       [theme.breakpoints.up('md')]: {
         pointerEvents: 'none',
         background: 'transparent',
@@ -321,6 +321,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
       className={clsx(
         classes.sheetHeaderContainer,
         noChildren && !primary && classes.sheetHeaderNoTitle,
+        fillMobileOnly && classes.sheetHeaderFillMobileOnly,
       )}
     >
       <div
@@ -330,7 +331,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
           scrolled && classes?.sheetHeaderScrolled,
           noChildren && !primary && classes.sheetHeaderNoTitle,
           fillMobileOnly && noChildren && classes.sheetHeaderNoTitleFillMobileOnly,
-          additional && fillMobileOnly && classes.sheetHeaderWithSubheaderFillMobileOnly,
+          fillMobileOnly && classes.sheetHeaderFillMobileOnly,
         )}
         ref={contentHeaderRef}
       >
