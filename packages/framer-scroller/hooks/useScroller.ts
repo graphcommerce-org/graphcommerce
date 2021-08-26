@@ -1,15 +1,7 @@
 import { makeStyles } from '@material-ui/core'
-import { useConstant, useElementScroll } from '@reachdigital/framer-utils'
+import { useConstant, useElementScroll, useMotionValueValue } from '@reachdigital/framer-utils'
 import clsx from 'clsx'
-import {
-  HTMLMotionProps,
-  PanInfo,
-  motionValue,
-  useDomEvent,
-  PanHandlers,
-  MotionStyle,
-  useTransform,
-} from 'framer-motion'
+import { HTMLMotionProps, PanInfo, motionValue, useDomEvent, PanHandlers, m } from 'framer-motion'
 import React, { ReactHTML, useState } from 'react'
 import { assertScrollerRef } from '../components/ScrollerProvider'
 import { ScrollSnapProps } from '../types'
@@ -61,6 +53,8 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
 
   const { hideScrollbar, children, ...divProps } = props
   registerChildren(children)
+
+  const isSnap = useMotionValueValue(snap, (v) => v)
 
   const classes = useStyles(scrollSnap)
 
@@ -117,13 +111,11 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
 
   const className = clsx(
     classes.root,
+    isSnap && classes.snap,
     isPanning && classes.panning,
     hideScrollbar && classes.hideScrollbar,
     props.className,
   )
 
-  const scrollSnapType = useTransform(snap, (s) => (s ? scrollSnap.scrollSnapType : 'none'))
-  const style: MotionStyle = { ...props.style, scrollSnapType }
-
-  return { ...divProps, ref, onPanStart, onPan, onPanEnd, className, children, style }
+  return { ...divProps, ref, onPanStart, onPan, onPanEnd, className, children }
 }
