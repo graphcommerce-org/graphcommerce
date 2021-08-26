@@ -175,6 +175,9 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('md')]: {
         position: 'fixed',
         top: `calc(${theme.page.headerInnerHeight.md} + ${theme.spacings.xxs})`,
+        '& * > a, & * > button': {
+          height: 40,
+        },
       },
     },
     sheetShellActionsNoButtonShadow: {
