@@ -21,7 +21,7 @@ import {
   iconExpandVertical,
 } from '../../icons'
 
-export type StyleProps = {
+type StyleProps = {
   aspectRatio?: [number, number]
 }
 
@@ -137,7 +137,7 @@ const useStyles = makeStyles(
   { name: 'SidebarGallery' },
 )
 
-type SidebarGalleryProps = {
+export type SidebarGalleryProps = {
   sidebar: React.ReactNode
   images: MotionImageAspectProps[]
 } & StyleProps &
