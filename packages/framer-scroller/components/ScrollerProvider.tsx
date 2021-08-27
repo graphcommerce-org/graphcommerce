@@ -21,10 +21,10 @@ export type ScrollerProviderProps = {
   scrollSnapStop?: ScrollSnapStop
 }
 
-export function assertScrollerRef(
+export function isScrollerRef(
   scrollerRef: ReactHtmlRefObject,
-): asserts scrollerRef is React.MutableRefObject<HTMLElement> {
-  if (!scrollerRef.current) throw Error('scrollerRef.current, forgot to pass into an HTMLElement?')
+): scrollerRef is React.MutableRefObject<HTMLElement> {
+  return !!scrollerRef.current
 }
 
 function useObserveItems(
@@ -34,7 +34,7 @@ function useObserveItems(
 ) {
   const observe = useCallback(
     (itemsArr: ItemState[]) => {
-      assertScrollerRef(scrollerRef)
+      if (!isScrollerRef(scrollerRef)) return
 
       const find = ({ target }: { target: Element }) => itemsArr.find((i) => i.el === target)
 
@@ -117,7 +117,7 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
   }, [snap, stop])
 
   const enableSnap = useCallback(() => {
-    assertScrollerRef(scrollerRef)
+    if (!isScrollerRef(scrollerRef)) return
     stop()
     const p = scrollerRef.current.scrollLeft
     snap.set(true)
@@ -129,7 +129,7 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
   const registerChildren = useCallback(
     (children: React.ReactNode) => {
       const count = React.Children.count(children)
-      if (!count) throw Error('Can not measure the children')
+      if (!count) throw Error('[@reachdigital/framer-scroller]: Can not find children')
       if (count === items.get().length) return
 
       const itemsArr: unknown[] = items.get().slice()
@@ -248,7 +248,7 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
   }
 
   function getScrollSnapPositions(): Record<Axis, number[]> {
-    assertScrollerRef(scrollerRef)
+    if (!isScrollerRef(scrollerRef)) return { x: [], y: [] }
     const rect = scrollerRef.current.getBoundingClientRect()
 
     const scrollPadding = getScrollPadding(scrollerRef.current)
@@ -278,7 +278,7 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
   }
 
   function getSnapPosition(direction: 'left' | 'right' | 'up' | 'down'): Point2D {
-    assertScrollerRef(scrollerRef)
+    isScrollerRef(scrollerRef)
     const axis: Axis = direction === 'up' || direction === 'down' ? 'y' : 'x'
     const sign = direction === 'right' || direction === 'down' ? '+' : '-'
 

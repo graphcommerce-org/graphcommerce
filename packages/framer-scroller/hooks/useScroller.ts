@@ -3,7 +3,7 @@ import { useConstant, useElementScroll, useMotionValueValue } from '@reachdigita
 import clsx from 'clsx'
 import { HTMLMotionProps, PanInfo, motionValue, useDomEvent, PanHandlers, m } from 'framer-motion'
 import React, { ReactHTML, useState } from 'react'
-import { assertScrollerRef } from '../components/ScrollerProvider'
+import { isScrollerRef } from '../components/ScrollerProvider'
 import { ScrollSnapProps } from '../types'
 import { isHTMLMousePointerEvent } from '../utils/isHTMLMousePointerEvent'
 import { useScrollerContext } from './useScrollerContext'
@@ -63,7 +63,7 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
   const animatePan = useVelocitySnapTo(scrollerRef)
   const [isPanning, setPanning] = useState(false)
 
-  useDomEvent(scrollerRef, 'wheel', (e) => {
+  useDomEvent(scrollerRef as React.RefObject<EventTarget>, 'wheel', (e) => {
     /**
      * Todo: this is actually incorrect because when enabling the snap points, the area jumps to the
      * nearest point a snap.
@@ -86,7 +86,7 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
   }
 
   const onPan: PanHandlers['onPan'] = (event, info: PanInfo) => {
-    assertScrollerRef(scrollerRef)
+    if (!isScrollerRef(scrollerRef)) return
 
     // If we're not dealing with the mouse we don't need to do anything
     if (!isHTMLMousePointerEvent(event)) return
