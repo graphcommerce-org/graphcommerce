@@ -152,7 +152,7 @@ const useStyles = makeStyles(
     },
     dividerFillMobileOnly: {
       [theme.breakpoints.up('md')]: {
-        visibility: 'none',
+        visibility: 'hidden',
       },
     },
     logoContainer: {
