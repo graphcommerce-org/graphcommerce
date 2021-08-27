@@ -1,19 +1,26 @@
 import { Link } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
+import useBackLink from '@reachdigital/framer-next-pages/hooks/useBackLink'
 import PageLink from 'next/link'
 import React from 'react'
-import useBackLink from '../../../../../packages/framer-next-pages/hooks/useBackLink'
 import MinimalPageShell, {
   MinimalPageShellProps,
 } from '../../../components/AppShell/MinimalPageShell'
 
 function useBackLinkDemo() {
-  const pageLink = useBackLink({ href: '/test/usebacklink' })
+  const { href, onClick } = useBackLink({ href: '/test/usebacklink' })
 
   return (
-    <PageLink {...pageLink} passHref>
-      <Link color='primary'>Link</Link>
-    </PageLink>
+    <>
+      <PageLink href={href} passHref>
+        <Link onClick={onClick} color='primary'>
+          Link
+        </Link>
+      </PageLink>
+      <PageLink href='/test/usebacklink/navigated' passHref>
+        <Link color='primary'>Navigate</Link>
+      </PageLink>
+    </>
   )
 }
 

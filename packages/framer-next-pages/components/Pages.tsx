@@ -1,7 +1,7 @@
 import { AnimatePresence } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
-import type { NextRouter } from 'next/router'
-import React, { useRef } from 'react'
+import { NextRouter } from 'next/router'
+import React, { useEffect, useRef, useState } from 'react'
 import { pageContext } from '../context/pageContext'
 import { createRouterProxy, pageRouterContext } from '../context/pageRouterContext'
 import type { PageComponent, PageItem } from '../types'
@@ -99,6 +99,14 @@ export default function FramerNextPages(props: PagesProps) {
     })
     .reverse()
 
+  const [history, setHistory] = useState<string[]>([])
+
+  /* Update history every time router.asPath changes */
+  useEffect(() => {
+    if (history.length > 1 && history[history.length - 1] === router.asPath) return
+    setHistory([...history, router.asPath])
+  }, [history, router.asPath])
+
   return (
     <AnimatePresence initial={false}>
       {renderItems.map((item, itemIdx) => {
@@ -121,7 +129,14 @@ export default function FramerNextPages(props: PagesProps) {
         return (
           <pageContext.Provider
             key={sharedKey}
-            value={{ depth, active, direction, closeSteps, backSteps }}
+            value={{
+              depth,
+              active,
+              direction,
+              closeSteps,
+              backSteps,
+              history,
+            }}
           >
             <Page active={active} historyIdx={historyIdx}>
               <pageRouterContext.Provider value={routerProxy}>
