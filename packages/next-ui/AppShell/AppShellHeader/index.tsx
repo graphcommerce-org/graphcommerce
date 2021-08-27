@@ -39,7 +39,9 @@ const useStyles = makeStyles(
     },
     dividerSpacer: {
       minHeight: 2,
-      marginBottom: -2,
+    },
+    dividerSheetShell: {
+      marginTop: `calc((${theme.page.headerInnerHeight.md} * 0.15))`,
     },
     sheetHeaderContainer: {
       position: 'sticky',
@@ -47,6 +49,9 @@ const useStyles = makeStyles(
       zIndex: 98,
       // reserve space in the container even without any buttons added
       minHeight: 58,
+    },
+    sheetHeaderContainerSheetShell: {
+      marginBottom: `calc((${theme.page.headerInnerHeight.md} * 0.15) * -1)`,
     },
     sheetHeader: {
       background: theme.palette.background.default,
@@ -65,7 +70,6 @@ const useStyles = makeStyles(
       // to keep consistency between app shell buttons.
       paddingTop: `calc(${theme.spacings.xxs} + (${theme.page.headerInnerHeight.md} * 0.15))`,
       paddingBottom: `calc(${theme.spacings.xxs} + (${theme.page.headerInnerHeight.md} * 0.15))`,
-      marginBottom: `calc((${theme.page.headerInnerHeight.md} * 0.15) * -1)`,
       [theme.breakpoints.down('sm')]: {
         paddingTop: theme.spacings.xxs,
         paddingBottom: theme.spacings.xxs,
@@ -344,6 +348,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
         classes.sheetHeaderContainer,
         noChildren && !primary && classes.sheetHeaderNoTitle,
         fillMobileOnly && classes.sheetHeaderFillMobileOnly,
+        sheet && classes.sheetHeaderContainerSheetShell,
       )}
     >
       <div
