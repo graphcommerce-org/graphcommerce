@@ -71,8 +71,8 @@ const useStyles = makeStyles(
       paddingTop: `calc(${theme.spacings.xxs} + (${theme.page.headerInnerHeight.md} * 0.15))`,
       paddingBottom: `calc(${theme.spacings.xxs} + (${theme.page.headerInnerHeight.md} * 0.15))`,
       [theme.breakpoints.down('sm')]: {
-        paddingTop: theme.spacings.xxs,
-        paddingBottom: theme.spacings.xxs,
+        paddingTop: 8,
+        paddingBottom: 8,
       },
     },
     sheetHeaderScrolled: {
