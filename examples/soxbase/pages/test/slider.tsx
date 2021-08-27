@@ -1,14 +1,12 @@
 import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { CenterSlide, MotionImageAspect } from '@reachdigital/framer-scroller'
-import { ProductListDocument, ProductListQuery, productLink } from '@reachdigital/magento-product'
+import { ProductListDocument, ProductListQuery } from '@reachdigital/magento-product'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { AppShellTitle, GetStaticProps, Title } from '@reachdigital/next-ui'
+import { GetStaticProps } from '@reachdigital/next-ui'
 import useAppShellHeaderContext from '@reachdigital/next-ui/AppShell/AppShellHeader/useAppShellHeaderContext'
 import SidebarGallery from '@reachdigital/next-ui/FramerScroller/components/SidebarGallery'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = ProductListQuery
@@ -18,9 +16,9 @@ function TestSlider({ products }: Props) {
   const { titleRef } = useAppShellHeaderContext()
   return (
     <>
-      <FullPageShellHeader>
+      {/* <FullPageShellHeader>
         <Title size='small'>Product title</Title>
-      </FullPageShellHeader>
+      </FullPageShellHeader> */}
       {/* <Container>
       <Typography variant='h1' style={{ textAlign: 'center' }}>
         Framer Slider
@@ -58,22 +56,7 @@ function TestSlider({ products }: Props) {
             src: item?.small_image?.url ?? '',
           })) ?? []
         }
-      >
-        {products?.items?.map((item) => {
-          if (!item) return null
-          return (
-            <CenterSlide key={item.sku ?? ''}>
-              <MotionImageAspect
-                layout
-                src={item.small_image?.url ?? ''}
-                width={1532}
-                height={1678}
-                dontReportWronglySizedImages
-              />
-            </CenterSlide>
-          )
-        })}
-      </SidebarGallery>
+      />
 
       <br />
       <br />

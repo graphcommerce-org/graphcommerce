@@ -53,12 +53,14 @@ const useStyles = makeStyles(
       const maxHeight = `calc(100vh - ${headerHeight} - ${galleryMargin} - ${extraSpacing})`
       const ratio = `calc(${width} / ${height} * 100%)`
       return {
-        width: '100vw',
         height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
         position: 'relative',
         minHeight: '100%',
         paddingTop: `min(${ratio}, ${maxHeight})`,
         borderRadius: 2,
+        [theme.breakpoints.down('sm')]: {
+          width: '100vw',
+        },
       }
     },
     scrollerContainerZoomed: ({ aspectRatio: [width, height] = [1, 1] }: StyleProps) => {
@@ -137,14 +139,13 @@ const useStyles = makeStyles(
 )
 
 type SidebarGalleryProps = {
-  children: React.ReactNode
   sidebar: React.ReactNode
   images: MotionImageAspectProps[]
 } & StyleProps &
   UseStyles<typeof useStyles>
 
 export default function SidebarGallery(props: SidebarGalleryProps) {
-  const { children, sidebar, images } = props
+  const { sidebar, images } = props
   const [zoomed, setZoomed] = useState(false)
   const classes = useStyles(props)
 
@@ -166,11 +167,6 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
   return (
     <ScrollerProvider scrollSnapAlign='center'>
       <m.div layout className={clsxZoom('root')}>
-        {/* <div className={clsxZoom('wrapper')}>
-        <div className={clsxZoom('root')}>
-          <m.div className={clsxZoom('scrollerContainer')}>
-            <m.div layout className={clsxZoom('container')}> */}
-
         <m.div layout className={clsxZoom('scrollerContainer')}>
           <Scroller className={clsxZoom('scroller')} hideScrollbar>
             {images.map((image, idx) => (
