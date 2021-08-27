@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
 import {
   Sheet,
@@ -24,7 +24,7 @@ export type SheetShellBaseProps = {
   PageLayoutBaseProps
 
 const useStyles = makeStyles(
-  () => ({
+  (theme: Theme) => ({
     container: {
       ...styles.container,
     },
@@ -33,7 +33,11 @@ const useStyles = makeStyles(
     },
     containerbottom: {
       ...styles.containerbottom,
-      paddingTop: responsiveVal(26, 48),
+      paddingTop: `calc(${theme.page.headerInnerHeight.md} * 0.55)`,
+      [theme.breakpoints.up('md')]: {
+        // offset top is x% of the header height, so it slightly overlaps the logo
+        paddingTop: `calc(${theme.page.headerInnerHeight.md} * 0.85)`,
+      },
     },
     containerleft: {
       ...styles.containerleft,

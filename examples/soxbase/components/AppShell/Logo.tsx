@@ -14,7 +14,7 @@ const useStyles = makeStyles(
       paddingLeft: 10,
       [theme.breakpoints.up('md')]: {
         width: 'auto',
-        height: 25,
+        height: 32,
         paddingLeft: 0,
       },
     },

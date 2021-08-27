@@ -1,6 +1,6 @@
 import { Container, Divider, List, ListItem, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions, usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
-import { Button, AppShellTitle, iconPersonAlt, Stepper, Title } from '@reachdigital/next-ui'
+import { AppShellTitle, Button, iconPersonAlt, Stepper, Title } from '@reachdigital/next-ui'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React, { useState } from 'react'
@@ -23,6 +23,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
 
   const queryParams = usePageRouter().asPath.split('/')
   const urlParts = queryParams.pop()?.split('-') ?? []
+
   const title = urlParts.map((s) => `${s?.charAt(0).toUpperCase() + s?.slice(1)}`).join(' ')
   const [scroll, setScroll] = useState<boolean>(true)
   const { backSteps } = usePageContext()
@@ -31,13 +32,19 @@ export function AppShellDemo(props: AppShellDemoProps) {
   const withStepper = urlParts.includes('stepper')
   const step = Number(urlParts[urlParts.length - 1])
   const withIcon = urlParts.includes('icon')
+  const withTitle = urlParts.includes('title')
 
-  const isSidebarDrawer = urlParts.includes('left') || urlParts.includes('right')
-  const isSheet = queryParams.includes('sheet') || urlParts.includes('sheet')
-  const isMinimal = urlParts.includes('minimal')
-  const isFullPage = !isSheet && !isMinimal
+  const isLeftSidebarDrawer = urlParts.includes('left') || queryParams.includes('left')
+  const isSidebarDrawer =
+    isLeftSidebarDrawer || urlParts.includes('right') || queryParams.includes('right')
+  const isSheet = queryParams.includes('sheet')
+  const isMinimal = urlParts.includes('minimal') || queryParams.includes('minimal-page-shell')
+  const isMinimalPageShellSubheader =
+    urlParts.includes('subheader') || queryParams.includes('minimal-page-shell-subheader')
+  const isFullPage = !isSheet && !isMinimal && !isMinimalPageShellSubheader
 
   let primaryAction: React.ReactNode
+
   if (withPrimary)
     primaryAction = (
       <PageLink href={`${baseUrl}/with-primary-navigated`} passHref>
@@ -75,10 +82,16 @@ export function AppShellDemo(props: AppShellDemoProps) {
       <NoSsr>
         <Header
           primary={primaryAction}
-          divider={withStepper ? <Stepper steps={3} currentStep={step} /> : undefined}
+          divider={
+            withStepper ? (
+              <Container maxWidth={false}>
+                <Stepper steps={3} currentStep={step} />
+              </Container>
+            ) : undefined
+          }
           hideDragIndicator={isSidebarDrawer}
         >
-          {!isFullPage ? titleComponent : undefined}
+          {isMinimal || isSheet || withTitle ? titleComponent : undefined}
         </Header>
 
         <Container maxWidth='md'>
@@ -153,23 +166,33 @@ export function AppShellDemo(props: AppShellDemoProps) {
                 With icon
               </ListItem>
             </PageLink>
-            <PageLink href='/test/sheet/bottom-sheet' passHref>
+            <PageLink href='/test/sheet/bottom' passHref>
               <ListItem
                 button
                 component='a'
-                disabled={isSheet}
+                disabled={isSheet && !isSidebarDrawer}
                 style={{ paddingLeft: 0, paddingRight: 0 }}
               >
                 Bottom sheet
               </ListItem>
             </PageLink>
             <PageLink href='/test/sheet/left' passHref>
-              <ListItem button component='a' style={{ paddingLeft: 0, paddingRight: 0 }}>
+              <ListItem
+                button
+                component='a'
+                disabled={isLeftSidebarDrawer}
+                style={{ paddingLeft: 0, paddingRight: 0 }}
+              >
                 Left side sheet
               </ListItem>
             </PageLink>
             <PageLink href='/test/sheet/right' passHref>
-              <ListItem button component='a' style={{ paddingLeft: 0, paddingRight: 0 }}>
+              <ListItem
+                button
+                component='a'
+                disabled={isSidebarDrawer && !isLeftSidebarDrawer}
+                style={{ paddingLeft: 0, paddingRight: 0 }}
+              >
                 Right side sheet
               </ListItem>
             </PageLink>
@@ -177,22 +200,44 @@ export function AppShellDemo(props: AppShellDemoProps) {
               <ListItem
                 button
                 component='a'
-                disabled={urlParts.includes('minimal')}
+                disabled={isMinimal}
                 style={{ paddingLeft: 0, paddingRight: 0 }}
               >
                 Minimal Page Shell
               </ListItem>
             </PageLink>
-            <PageLink href='/test/minimal-page-shell' passHref>
+            <PageLink href='/test' passHref>
               <ListItem
                 button
                 component='a'
-                disabled={!(urlParts.includes('minimal') || urlParts.includes('full'))}
+                disabled={isFullPage}
                 style={{ paddingLeft: 0, paddingRight: 0 }}
               >
                 Full Page Shell
               </ListItem>
             </PageLink>
+            <PageLink href='/test/with-title' passHref>
+              <ListItem
+                button
+                component='a'
+                disabled={withTitle}
+                style={{ paddingLeft: 0, paddingRight: 0 }}
+              >
+                Full Page Shell + Title
+              </ListItem>
+            </PageLink>
+
+            <PageLink href='/test/minimal-page-shell-subheader' passHref>
+              <ListItem
+                button
+                component='a'
+                disabled={isMinimalPageShellSubheader}
+                style={{ paddingLeft: 0, paddingRight: 0 }}
+              >
+                Minimal Page Shell + Subheader
+              </ListItem>
+            </PageLink>
+
             <ListItem
               button
               onClick={() => setScroll(!scroll)}

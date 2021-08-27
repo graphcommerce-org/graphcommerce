@@ -3,7 +3,7 @@ import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
 import clsx from 'clsx'
 import { m, MotionValue, useMotionValue, useTransform } from 'framer-motion'
 import PageLink from 'next/link'
-import React, { CSSProperties, useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import Button from '../../Button'
 import { UseStyles } from '../../Styles'
 import SvgImage from '../../SvgImage'
@@ -25,21 +25,54 @@ export type AppShellHeaderProps = {
   backFallbackHref?: string | null
   backFallbackTitle?: string | null
   fill?: 'both' | 'mobile-only'
+  sheet?: boolean
 } & UseStyles<typeof useStyles>
 
+// minHeight: x
+// to reserve space for back & primary buttons,
+// even when there is no app shell header on scroll (e.g. on full page shell)
+const minHeight = 40
 const useStyles = makeStyles(
   (theme: Theme) => ({
     divider: {
       borderBottom: `1px solid ${theme.palette.divider}`,
     },
-    sheetHeader: {
+    dividerSpacer: {
+      minHeight: 2,
+    },
+    dividerSheetShell: {
+      marginTop: `calc((${theme.page.headerInnerHeight.md} * 0.15))`,
+    },
+    sheetHeaderContainer: {
       position: 'sticky',
       top: 0,
-      background: theme.palette.background.default,
       zIndex: 98,
+      // reserve space in the container even without any buttons added
+      minHeight: 58,
+    },
+    sheetHeaderContainerSheetShell: {
+      marginBottom: `calc((${theme.page.headerInnerHeight.md} * 0.15) * -1)`,
+    },
+    sheetHeader: {
+      background: theme.palette.background.default,
+      paddingTop: 8,
+      paddingBottom: 8,
+      minHeight,
       [theme.breakpoints.up('md')]: {
-        marginBottom: 16,
-        marginTop: 16,
+        minHeight: `calc(${minHeight}px + ${theme.spacings.xxs} * 2)`,
+        paddingTop: theme.spacings.xxs,
+        paddingBottom: theme.spacings.xxs,
+      },
+    },
+    sheetHeaderSheetShell: {
+      // The bottom sheets offset top is x% short compared to the page headers height,
+      // so we add x% of the header height to padding top of bottomsheet actions bar
+      // to keep consistency between app shell buttons.
+      paddingTop: `calc(${theme.spacings.xxs} + (${theme.page.headerInnerHeight.md} * 0.15))`,
+      paddingBottom: `calc(${theme.spacings.xxs} + (${theme.page.headerInnerHeight.md} * 0.15))`,
+      [theme.breakpoints.down('sm')]: {
+        paddingTop: 8,
+        paddingBottom: 8,
       },
     },
     sheetHeaderScrolled: {
@@ -53,28 +86,24 @@ const useStyles = makeStyles(
       gridAutoFlow: 'column',
       alignItems: 'center',
       justifyContent: 'space-between',
-      [theme.breakpoints.down('sm')]: {
-        minHeight: 56,
-        '& > div > .MuiFab-sizeSmall': {
-          marginLeft: -12,
-          marginRight: -12,
+      padding: `0 calc(${theme.page.horizontal} + 2px) 0`,
+      width: '100%',
+      minHeight,
+      [theme.breakpoints.up('md')]: {
+        '& * > a, & * > button': {
+          height: minHeight,
         },
-        '& > div > .MuiButtonBase-root': {
+      },
+      [theme.breakpoints.down('sm')]: {
+        '& div > .MuiFab-sizeSmall': {
+          marginLeft: -8,
+          marginRight: -8,
+        },
+        '& div > .MuiButtonBase-root': {
           minWidth: 'unset',
           marginRight: -8,
           marginLeft: -8,
         },
-      },
-    },
-    sheetHeaderActionsPadding: {
-      padding: `8px ${theme.page.horizontal} 8px`,
-      [theme.breakpoints.up('md')]: {
-        padding: `12px ${theme.page.horizontal} 12px`,
-      },
-    },
-    sheetHeaderActionsNoTitle: {
-      [theme.breakpoints.up('md')]: {
-        padding: `${theme.page.vertical} ${theme.page.horizontal} ${theme.page.vertical}`,
       },
     },
     sheetHeaderActionRight: {
@@ -83,9 +112,6 @@ const useStyles = makeStyles(
     sheetHeaderNoTitle: {
       pointerEvents: 'none',
       background: 'transparent',
-      [theme.breakpoints.up('md')]: {
-        top: 98,
-      },
     },
     sheetHeaderNoTitleFillMobileOnly: {
       [theme.breakpoints.up('md')]: {
@@ -94,17 +120,20 @@ const useStyles = makeStyles(
         top: 98,
       },
     },
+    sheetHeaderFillMobileOnly: {
+      [theme.breakpoints.up('md')]: {
+        pointerEvents: 'none',
+        background: 'transparent',
+      },
+    },
     innerContainer: {
       display: 'grid',
       textAlign: 'center',
-    },
-    innerContainerItem: {
-      gridColumn: 1,
-      gridRow: 1,
-      alignSelf: 'center',
-      ...theme.typography.h6,
+      pointerEvents: 'all',
     },
     fab: {
+      maxWidth: 38,
+      maxHeight: 38,
       [theme.breakpoints.down('sm')]: {
         boxShadow: 'none',
       },
@@ -121,31 +150,51 @@ const useStyles = makeStyles(
         display: 'none',
       },
     },
+    dividerFillMobileOnly: {
+      [theme.breakpoints.up('md')]: {
+        visibility: 'hidden',
+      },
+    },
     logoContainer: {
       position: 'absolute',
-      top: 12,
+      top: 0,
       left: 0,
       right: 0,
-      minHeight: 32,
+      paddingTop: 8,
+      paddingBottom: 8,
     },
-    subLogo: {
+    logoInnerContainer: {
+      minHeight,
+      display: 'flex',
+      alignItems: 'center',
       [theme.breakpoints.up('md')]: {
         display: 'none',
       },
     },
     backButton: {
-      pointerEvents: 'all',
       background: theme.palette.background.default,
       color: theme.palette.text.primary,
       '&:hover': {
         background: theme.palette.background.highlight,
       },
     },
-    backButtonTransparentHeader: {
-      top: 'unset',
-      boxShadow: theme.shadows[4],
+    sheetShellActionsFullPage: {
+      '& * > a, & * > button': {
+        pointerEvents: 'all',
+      },
+      '& * > button': {
+        boxShadow: theme.shadows[3],
+      },
       [theme.breakpoints.up('md')]: {
-        top: -24,
+        position: 'fixed',
+        top: `calc(${theme.page.headerInnerHeight.md} + ${theme.spacings.xxs})`,
+      },
+    },
+    sheetShellActionsNoButtonShadow: {
+      [theme.breakpoints.down('sm')]: {
+        '& * > button': {
+          boxShadow: 'none',
+        },
       },
     },
   }),
@@ -167,6 +216,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     backFallbackHref,
     backFallbackTitle,
     fill = 'both',
+    sheet,
   } = props
   const router = usePageRouter()
   const { closeSteps, backSteps } = usePageContext()
@@ -175,6 +225,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   const { titleRef, contentHeaderRef } = useAppShellHeaderContext()
 
   const noChildren = typeof children === 'undefined' || !children
+
   const fillMobileOnly = fill === 'mobile-only'
 
   const sheetHeaderHeight = useMotionValue<number>(0)
@@ -184,13 +235,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   const setOffset = useCallback(
     (offsetTop: number, offsetParent: Element | null, clientHeight: number) => {
       titleHeight.set(clientHeight)
-
-      let offsetParentTop = 0
-      if (offsetParent && offsetParent instanceof HTMLElement) {
-        offsetParentTop = offsetParent.offsetTop
-      }
-
-      titleOffset.set(offsetTop + offsetParentTop)
+      titleOffset.set(offsetTop)
     },
     [titleHeight, titleOffset],
   )
@@ -209,6 +254,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
 
     const ro = new ResizeObserver(([entry]) => {
       const { offsetTop, offsetParent, clientHeight } = entry.target as HTMLDivElement
+
       setOffset(offsetTop, offsetParent, clientHeight)
     })
 
@@ -225,6 +271,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     )
 
     ro.observe(contentHeaderRef.current)
+
     return () => ro.disconnect()
   }, [contentHeaderRef, sheetHeaderHeight])
 
@@ -232,12 +279,19 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     [scrollY, sheetHeaderHeight, titleOffset, titleHeight] as MotionValue[],
     ([scrollYV, sheetHeaderHeightV, titleOffsetV, titleHeigthV]: number[]) =>
       Math.min(
-        Math.max(0, scrolled ? 1 : (scrollYV - titleOffsetV + sheetHeaderHeightV) / titleHeigthV),
+        Math.max(
+          0,
+          scrolled
+            ? 1
+            : (scrollYV - Math.max(titleOffsetV, 80) + sheetHeaderHeightV) / titleHeigthV,
+        ),
         1,
       ),
   )
+
   const pointerEvents = useTransform(opacityTitle, (o) => (o < 0.2 ? 'none' : 'all'))
-  const opacityLogo = useTransform(opacityTitle, [0, 1], [1, 0])
+  const opacityLogo = useTransform(opacityTitle, [0, 1], [1, fillMobileOnly && primary ? 1 : 0])
+  const pointerEventsLogo = useTransform(opacityLogo, (o) => (o < 0.2 ? 'none' : 'all'))
 
   const close =
     !hideClose &&
@@ -265,9 +319,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     <Button
       onClick={() => router.back()}
       variant='pill-link'
-      className={clsx(classes.backButton, {
-        [classes.backButtonTransparentHeader]: noChildren,
-      })}
+      className={classes.backButton}
       startIcon={backIcon}
     >
       Back
@@ -276,13 +328,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   if (!back && backFallbackHref) {
     back = (
       <PageLink href={backFallbackHref} passHref>
-        <Button
-          variant='pill-link'
-          className={clsx(classes.backButton, {
-            [classes.backButtonTransparentHeader]: noChildren,
-          })}
-          startIcon={backIcon}
-        >
+        <Button variant='pill-link' className={classes.backButton} startIcon={backIcon}>
           {backFallbackTitle ?? 'Back'}
         </Button>
       </PageLink>
@@ -294,61 +340,82 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   if (rightAction !== close && !leftAction) leftAction = close
   if (!leftAction) leftAction = <div />
 
+  const showDivider = children || (fillMobileOnly && primary)
+
   return (
     <div
       className={clsx(
-        classes?.sheetHeader,
-        scrolled && classes?.sheetHeaderScrolled,
-        noChildren && classes.sheetHeaderNoTitle,
-        fillMobileOnly && classes.sheetHeaderNoTitleFillMobileOnly,
+        classes.sheetHeaderContainer,
+        noChildren && !primary && classes.sheetHeaderNoTitle,
+        fillMobileOnly && classes.sheetHeaderFillMobileOnly,
+        sheet && classes.sheetHeaderContainerSheetShell,
       )}
-      ref={contentHeaderRef}
     >
-      <div className={clsx(classes.logoContainer, classes.sheetHeaderActionsPadding)}>
-        {logo && (
-          <m.div
-            style={{ opacity: opacityLogo }}
-            className={clsx(classes.subLogo, classes.innerContainerItem)}
-          >
-            {logo}
-          </m.div>
-        )}
-      </div>
-
-      {dragIndicator}
-
       <div
         className={clsx(
-          classes.sheetHeaderActions,
-          classes.sheetHeaderActionsPadding,
-          noChildren && classes.sheetHeaderActionsNoTitle,
+          classes?.sheetHeader,
+          sheet && classes.sheetHeaderSheetShell,
+          scrolled && classes?.sheetHeaderScrolled,
+          noChildren && !primary && classes.sheetHeaderNoTitle,
+          fillMobileOnly && noChildren && classes.sheetHeaderNoTitleFillMobileOnly,
+          fillMobileOnly && classes.sheetHeaderFillMobileOnly,
         )}
+        ref={contentHeaderRef}
       >
-        {leftAction && <div>{leftAction}</div>}
-        <div className={classes.innerContainer}>
-          {children && (
+        <div className={classes.logoContainer}>
+          {logo && (
             <m.div
-              style={{ opacity: opacityTitle, pointerEvents }}
-              className={clsx(classes.childs, fillMobileOnly && classes.fillMobileOnly)}
+              style={{
+                opacity: opacityLogo,
+                pointerEvents: pointerEventsLogo,
+              }}
+              className={classes.logoInnerContainer}
             >
-              {children}
+              {logo}
             </m.div>
           )}
         </div>
-        <div className={classes?.sheetHeaderActionRight}>{rightAction}</div>
+
+        {dragIndicator}
+
+        <div
+          className={clsx(
+            classes.sheetHeaderActions,
+            (noChildren || fillMobileOnly) && classes.sheetShellActionsFullPage,
+            fillMobileOnly && showDivider && classes.sheetShellActionsNoButtonShadow,
+          )}
+        >
+          {leftAction && <div>{leftAction}</div>}
+          <div className={classes.innerContainer}>
+            {children && (
+              <m.div
+                style={{ opacity: opacityTitle, pointerEvents }}
+                className={clsx(classes.childs, fillMobileOnly && classes.fillMobileOnly)}
+              >
+                {children}
+              </m.div>
+            )}
+          </div>
+          <div className={classes?.sheetHeaderActionRight}>{rightAction}</div>
+        </div>
+        {additional && (
+          <div className={clsx(fillMobileOnly && classes.fillMobileOnly)}>
+            <>{additional}</>
+          </div>
+        )}
       </div>
-      <div className={clsx(fillMobileOnly && classes.fillMobileOnly)}>
-        {additional && <>{additional}</>}
-      </div>
-      <div>
-        {children &&
-          (divider ?? (
-            <m.div
-              className={clsx(classes.divider, fillMobileOnly && classes.fillMobileOnly)}
-              style={{ opacity: opacityTitle }}
-            />
-          ))}
-      </div>
+      {showDivider &&
+        (divider ?? (
+          <m.div
+            className={clsx(
+              classes.dividerSpacer,
+              classes.divider,
+              fillMobileOnly && classes.dividerFillMobileOnly,
+            )}
+            style={{ opacity: opacityTitle }}
+          />
+        ))}
+      {!showDivider && <div className={classes.dividerSpacer} />}
     </div>
   )
 }

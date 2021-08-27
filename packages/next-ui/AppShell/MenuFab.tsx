@@ -25,7 +25,7 @@ const useStyles = makeStyles(
       position: 'fixed',
       zIndex: 99,
       left: theme.page.horizontal,
-      top: theme.page.vertical,
+      top: `calc(${theme.spacings.xxs} - 5px)`,
       [theme.breakpoints.down('sm')]: {
         top: 'unset',
         left: 20,

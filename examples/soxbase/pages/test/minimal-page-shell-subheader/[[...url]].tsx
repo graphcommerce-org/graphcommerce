@@ -33,7 +33,7 @@ type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<MinimalPageShellProps, Props, RouteProps>
 
-// TODO: throw away. for testing only
+// for testing only
 const useStyles = makeStyles((theme: Theme) => ({
   longContent: {
     height: 2000,

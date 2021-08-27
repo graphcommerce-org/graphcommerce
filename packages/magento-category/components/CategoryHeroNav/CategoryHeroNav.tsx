@@ -1,6 +1,5 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import { ProductListLink } from '@reachdigital/magento-product'
-import { responsiveVal } from '@reachdigital/next-ui'
 import React from 'react'
 import { CategoryHeroNavFragment } from './CategoryHeroNav.gql'
 
@@ -15,9 +14,7 @@ const useStyles = makeStyles(
       marginBottom: theme.spacings.xl,
       paddingRight: 0,
       paddingBottom: theme.page.vertical,
-      marginTop: theme.spacings.lg,
       [theme.breakpoints.up('md')]: {
-        marginTop: `calc(${responsiveVal(40, 64)} * -1)`,
         rowGap: theme.spacings.md,
         width: '100%',
         paddingRight: theme.page.horizontal,

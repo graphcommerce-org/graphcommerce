@@ -13,6 +13,7 @@ import RemoveItemFromCartFab from '../RemoveItemFromCart/RemoveItemFromCartFab'
 import UpdateItemQuantity from '../UpdateItemQuantity/UpdateItemQuantity'
 
 const rowImageSize = responsiveVal(70, 125)
+
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {

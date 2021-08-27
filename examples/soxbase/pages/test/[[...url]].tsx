@@ -1,9 +1,10 @@
-import { PageOptions } from '@reachdigital/framer-next-pages'
+import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps, PageShellHeader } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
+import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
 import { AppShellDemo } from './minimal-page-shell/[[...url]]'
@@ -14,7 +15,14 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function AppShellTestIndex() {
-  return <AppShellDemo baseUrl='/test/index' Header={PageShellHeader} />
+  const queryParams = usePageRouter().asPath.split('/')
+
+  const header =
+    queryParams.includes('minimal') || queryParams.includes('sheet')
+      ? PageShellHeader
+      : FullPageShellHeader
+
+  return <AppShellDemo baseUrl='/test' Header={header} />
 }
 
 AppShellTestIndex.pageOptions = {
@@ -37,7 +45,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const url = params?.url.join('/') ?? ''
+  const url = (params?.url ?? ['index']).join('/') ?? ''
 
   const client = apolloClient(locale, true)
   const staticClient = apolloClient(locale)

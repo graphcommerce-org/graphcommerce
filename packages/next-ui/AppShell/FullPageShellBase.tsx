@@ -19,12 +19,13 @@ const useStyles = makeStyles(
       alignItems: 'center',
       justifyContent: 'center',
       [theme.breakpoints.up('md')]: {
-        padding: `${theme.page.vertical} ${theme.page.horizontal}`,
+        padding: `${theme.spacings.xxs} ${theme.page.horizontal} 0`,
         top: 0,
         display: 'flex',
         pointerEvents: 'none',
         justifyContent: 'left',
         width: '100%',
+        height: theme.page.headerInnerHeight.md,
       },
     },
   }),
@@ -48,14 +49,7 @@ export default function FullPageShellBase(props: FullPageShellBaseProps) {
     <div className={classes.root}>
       <AppShellProvider>
         <ShellBase name={name}>
-          <m.header
-            className={classes.header}
-            layoutId='header'
-            transition={{ type: 'tween' }}
-            layout='position'
-          >
-            {header}
-          </m.header>
+          <header className={classes.header}>{header}</header>
           <div>{children}</div>
           <div>{footer}</div>
         </ShellBase>
