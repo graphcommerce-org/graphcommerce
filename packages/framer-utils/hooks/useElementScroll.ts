@@ -1,4 +1,5 @@
 import { motionValue, MotionValue } from 'framer-motion'
+import sync from 'framesync'
 import { RefObject } from 'react'
 import { useConstant } from './useConstant'
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
@@ -33,14 +34,20 @@ export function useElementScroll(ref?: RefObject<HTMLElement | undefined>): Scro
     const updater = () => {
       if (!element) return
 
-      values.x.set(element.scrollLeft)
-      values.y.set(element.scrollTop)
-      values.xMax.set(element.scrollWidth - element.offsetWidth)
-      values.yMax.set(element.scrollHeight - element.offsetHeight)
+      sync.read(() => {
+        values.x.set(element.scrollLeft)
+        values.y.set(element.scrollTop)
+        values.xMax.set(element.scrollWidth - element.offsetWidth)
+        values.yMax.set(element.scrollHeight - element.offsetHeight)
 
-      // Set 0-1 progress
-      setProgress(element.scrollLeft, element.scrollWidth - element.offsetWidth, values.xProgress)
-      setProgress(element.scrollTop, element.scrollHeight - element.offsetHeight, values.yProgress)
+        // Set 0-1 progress
+        setProgress(element.scrollLeft, element.scrollWidth - element.offsetWidth, values.xProgress)
+        setProgress(
+          element.scrollTop,
+          element.scrollHeight - element.offsetHeight,
+          values.yProgress,
+        )
+      })
     }
 
     element.addEventListener('scroll', updater, { passive: true })
