@@ -11,12 +11,6 @@ const useStyles = makeStyles(
       color: theme.palette.grey[500],
       paddingRight: 7,
     },
-    searchFormRow: {
-      paddingTop: 0,
-      [theme.breakpoints.up('md')]: {
-        paddingTop: theme.spacings.md,
-      },
-    },
   }),
   {
     name: 'SearchIndexPage',
@@ -81,7 +75,7 @@ export default function SearchForm(props: SearchFormProps) {
         }
       }}
     >
-      <FormRow className={classes.searchFormRow}>
+      <FormRow>
         <TextField
           variant='outlined'
           type='text'

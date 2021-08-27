@@ -130,8 +130,8 @@ export default function SheetPanel(props: SheetPanelProps) {
            */
           [axis]: drag,
 
-          /** There sometimes is a very small gap (<1px) between the dragHandle and the content */
-          [`margin${Variant}`]: -1,
+          // /** There sometimes is a very small gap (<1px) between the dragHandle and the content */
+          // [`margin${Variant}`]: -1,
         }}
       >
         {variant === 'bottom' && <div>{back}</div>}

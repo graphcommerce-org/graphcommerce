@@ -6,7 +6,6 @@ import PageLink from 'next/link'
 import React, { useCallback, useEffect } from 'react'
 import Button from '../../Button'
 import { UseStyles } from '../../Styles'
-import responsiveVal from '../../Styles/responsiveVal'
 import SvgImage from '../../SvgImage'
 import { iconChevronLeft, iconClose } from '../../icons'
 import useAppShellHeaderContext from './useAppShellHeaderContext'
@@ -37,11 +36,10 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     divider: {
       borderBottom: `1px solid ${theme.palette.divider}`,
-      minHeight: 2,
-      marginTop: -2,
     },
     dividerSpacer: {
       minHeight: 2,
+      marginBottom: -2,
     },
     sheetHeaderContainer: {
       position: 'sticky',
@@ -67,7 +65,7 @@ const useStyles = makeStyles(
       // to keep consistency between app shell buttons.
       paddingTop: `calc(${theme.spacings.xxs} + (${theme.page.headerInnerHeight.md} * 0.15))`,
       paddingBottom: `calc(${theme.spacings.xxs} + (${theme.page.headerInnerHeight.md} * 0.15))`,
-      marginBottom: `calc((${responsiveVal(4, 8)} + 4px - 2px) * -1)`, // indicatorRootbottom: (top padding + bottom padding - draghandle margin bottom)
+      marginBottom: `calc((${theme.page.headerInnerHeight.md} * 0.15) * -1)`,
       [theme.breakpoints.down('sm')]: {
         paddingTop: theme.spacings.xxs,
         paddingBottom: theme.spacings.xxs,
@@ -86,6 +84,12 @@ const useStyles = makeStyles(
       justifyContent: 'space-between',
       padding: `0 calc(${theme.page.horizontal} + 2px) 0`,
       width: '100%',
+      minHeight,
+      [theme.breakpoints.up('md')]: {
+        '& * > a, & * > button': {
+          height: minHeight,
+        },
+      },
       [theme.breakpoints.down('sm')]: {
         '& div > .MuiFab-sizeSmall': {
           marginLeft: -8,
@@ -142,6 +146,11 @@ const useStyles = makeStyles(
         display: 'none',
       },
     },
+    dividerFillMobileOnly: {
+      [theme.breakpoints.up('md')]: {
+        visibility: 'none',
+      },
+    },
     logoContainer: {
       position: 'absolute',
       top: 0,
@@ -170,14 +179,11 @@ const useStyles = makeStyles(
         pointerEvents: 'all',
       },
       '& * > button': {
-        boxShadow: theme.shadows[4],
+        boxShadow: theme.shadows[3],
       },
       [theme.breakpoints.up('md')]: {
         position: 'fixed',
         top: `calc(${theme.page.headerInnerHeight.md} + ${theme.spacings.xxs})`,
-        '& * > a, & * > button': {
-          height: 40,
-        },
       },
     },
     sheetShellActionsNoButtonShadow: {
@@ -396,7 +402,11 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
       {showDivider &&
         (divider ?? (
           <m.div
-            className={clsx(classes.divider, fillMobileOnly && classes.fillMobileOnly)}
+            className={clsx(
+              classes.dividerSpacer,
+              classes.divider,
+              fillMobileOnly && classes.dividerFillMobileOnly,
+            )}
             style={{ opacity: opacityTitle }}
           />
         ))}

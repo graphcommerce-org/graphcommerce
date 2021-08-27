@@ -33,8 +33,11 @@ const useStyles = makeStyles(
     },
     containerbottom: {
       ...styles.containerbottom,
-      // offset top is x% of the header height, so it slightly overlaps the logo
-      paddingTop: `calc(${theme.page.headerInnerHeight.md} * 0.85)`,
+      paddingTop: `calc(${theme.page.headerInnerHeight.md} * 0.55)`,
+      [theme.breakpoints.up('md')]: {
+        // offset top is x% of the header height, so it slightly overlaps the logo
+        paddingTop: `calc(${theme.page.headerInnerHeight.md} * 0.85)`,
+      },
     },
     containerleft: {
       ...styles.containerleft,
