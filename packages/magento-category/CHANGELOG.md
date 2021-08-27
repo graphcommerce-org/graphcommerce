@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.102.9](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-category@2.102.8...@reachdigital/magento-category@2.102.9) (2021-08-27)
+
+
+### Bug Fixes
+
+* **app-shell:** pages after app shell changes ([fb74510](https://github.com/ho-nl/m2-pwa/commit/fb74510121f6124009db72ad2ddebf6459c52a85))
+
+
+
+
+
 # [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-category@2.101.9...@reachdigital/magento-category@2.102.0) (2021-08-12)
 
 

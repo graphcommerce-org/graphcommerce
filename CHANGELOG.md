@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.116.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.115.0...@graphcommerce/graphcommerce@2.116.0) (2021-08-27)
+
+
+### Bug Fixes
+
+* adjust header height ([d22310d](https://github.com/ho-nl/m2-pwa/commit/d22310dca282208c6d7020c6c27f8ba5be980e3c))
+* app shell consistency ([e062c3d](https://github.com/ho-nl/m2-pwa/commit/e062c3d4af75c6bfe1ad7056dfb172277f1b01cb))
+* app shell consistency wip ([be995ca](https://github.com/ho-nl/m2-pwa/commit/be995ca5c3e383b89fea3759186d53af4790e99b))
+* app shell fixes ([1b13d0d](https://github.com/ho-nl/m2-pwa/commit/1b13d0d0d4b480ddc9712b4d298af2d81fb2b1d4))
+* app shell fixes ([c3bddee](https://github.com/ho-nl/m2-pwa/commit/c3bddee6b878cd9d2183c4938df0824a6eca4f36))
+* app shell header scroll spacings ([b1f5706](https://github.com/ho-nl/m2-pwa/commit/b1f570697bb0a9207129c9d24623b6069cf38ab5))
+* app shell tests ([10b58bd](https://github.com/ho-nl/m2-pwa/commit/10b58bd1a0271ef5d90a51394a9efd194b285ed0))
+* **app-shell-header:** hide divider ([34d183e](https://github.com/ho-nl/m2-pwa/commit/34d183e7ee13c3e6d76bc211d44398cb7e492d67))
+* **app-shell:** pages after app shell changes ([fb74510](https://github.com/ho-nl/m2-pwa/commit/fb74510121f6124009db72ad2ddebf6459c52a85))
+* base url not correct in app shell test ([a9624ea](https://github.com/ho-nl/m2-pwa/commit/a9624ea9fb514ab6644d4a9899794c20dc510e30))
+* primary button height ([741279e](https://github.com/ho-nl/m2-pwa/commit/741279e1c92845f067af5ad63adec04b05936fcc))
+* search page white background ([8676bfa](https://github.com/ho-nl/m2-pwa/commit/8676bfa30273b4d5f41b708b2ac45474d2e31e65))
+* **sheet-shell-header:** adjust mobile height ([c4310ff](https://github.com/ho-nl/m2-pwa/commit/c4310fff4314aa0121906aa4694af32f77ff12c8))
+* title offset ([2fef3ea](https://github.com/ho-nl/m2-pwa/commit/2fef3ea10ad98467062d4de397b40a83a86d7102))
+* white space below divider on sheet shells ([1159f20](https://github.com/ho-nl/m2-pwa/commit/1159f20452b308f6301749492765af066ab3d673))
+
+
+### Features
+
+* **app-shell-title:** support typography variants ([74ed6a4](https://github.com/ho-nl/m2-pwa/commit/74ed6a4982bf6f43aa7f6b3771f919156653336c))
+* **app-shell:** now consistent ([fb5b506](https://github.com/ho-nl/m2-pwa/commit/fb5b5062729002b508e888a4962f1b2578e5199b))
+
+
+
+
+
 # [2.115.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.114.3...@graphcommerce/graphcommerce@2.115.0) (2021-08-26)
 
 

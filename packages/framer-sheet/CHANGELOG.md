@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/framer-sheet@2.103.0...@reachdigital/framer-sheet@2.104.0) (2021-08-27)
+
+
+### Features
+
+* **app-shell:** now consistent ([fb5b506](https://github.com/ho-nl/m2-pwa/commit/fb5b5062729002b508e888a4962f1b2578e5199b))
+
+
+
+
+
 # [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/framer-sheet@2.102.4...@reachdigital/framer-sheet@2.103.0) (2021-08-17)
 
 

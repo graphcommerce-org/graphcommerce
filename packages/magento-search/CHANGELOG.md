@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-search@2.103.8...@reachdigital/magento-search@2.104.0) (2021-08-27)
+
+
+### Bug Fixes
+
+* **app-shell:** pages after app shell changes ([fb74510](https://github.com/ho-nl/m2-pwa/commit/fb74510121f6124009db72ad2ddebf6459c52a85))
+
+
+### Features
+
+* **app-shell:** now consistent ([fb5b506](https://github.com/ho-nl/m2-pwa/commit/fb5b5062729002b508e888a4962f1b2578e5199b))
+
+
+
+
+
 ## [2.103.6](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-search@2.103.5...@reachdigital/magento-search@2.103.6) (2021-08-17)
 
 

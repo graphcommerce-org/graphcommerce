@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.111.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.111.0...@reachdigital/soxbase@2.111.1) (2021-08-27)
+
+
+### Bug Fixes
+
+* adjust header height ([d22310d](https://github.com/ho-nl/m2-pwa/commit/d22310dca282208c6d7020c6c27f8ba5be980e3c))
+* app shell consistency ([e062c3d](https://github.com/ho-nl/m2-pwa/commit/e062c3d4af75c6bfe1ad7056dfb172277f1b01cb))
+* app shell consistency wip ([be995ca](https://github.com/ho-nl/m2-pwa/commit/be995ca5c3e383b89fea3759186d53af4790e99b))
+* app shell fixes ([1b13d0d](https://github.com/ho-nl/m2-pwa/commit/1b13d0d0d4b480ddc9712b4d298af2d81fb2b1d4))
+* app shell fixes ([c3bddee](https://github.com/ho-nl/m2-pwa/commit/c3bddee6b878cd9d2183c4938df0824a6eca4f36))
+* app shell header scroll spacings ([b1f5706](https://github.com/ho-nl/m2-pwa/commit/b1f570697bb0a9207129c9d24623b6069cf38ab5))
+* app shell tests ([10b58bd](https://github.com/ho-nl/m2-pwa/commit/10b58bd1a0271ef5d90a51394a9efd194b285ed0))
+* **app-shell:** pages after app shell changes ([fb74510](https://github.com/ho-nl/m2-pwa/commit/fb74510121f6124009db72ad2ddebf6459c52a85))
+* base url not correct in app shell test ([a9624ea](https://github.com/ho-nl/m2-pwa/commit/a9624ea9fb514ab6644d4a9899794c20dc510e30))
+* title offset ([2fef3ea](https://github.com/ho-nl/m2-pwa/commit/2fef3ea10ad98467062d4de397b40a83a86d7102))
+
+
+
+
+
 # [2.111.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.110.3...@reachdigital/soxbase@2.111.0) (2021-08-26)
 
 

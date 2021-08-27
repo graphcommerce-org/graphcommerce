@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.11](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-items@2.103.10...@reachdigital/magento-cart-items@2.103.11) (2021-08-27)
+
+
+### Bug Fixes
+
+* app shell consistency wip ([be995ca](https://github.com/ho-nl/m2-pwa/commit/be995ca5c3e383b89fea3759186d53af4790e99b))
+
+
+
+
+
 ## [2.103.10](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-items@2.103.9...@reachdigital/magento-cart-items@2.103.10) (2021-08-26)
 
 
