@@ -34,32 +34,38 @@ const useStyles = makeStyles(
   { name: 'ScrollerDots' },
 )
 
-export default function ScrollerDots(props: DotsProps) {
-  const { fabProps, ...containerProps } = props
-  const { dots, dot, circle, ...classes } = useStyles(props)
-  const { items, getScrollSnapPositions } = useScrollerContext()
-  const itemsArr = useMotionValueValue(items, (v) => v)
-  const scrollTo = useScrollTo()
+const ScrollerDots = m(
+  React.forwardRef<any, DotsProps>((props, ref) => {
+    const { fabProps, ...containerProps } = props
+    const { dots, dot, circle, ...classes } = useStyles(props)
+    const { items, getScrollSnapPositions } = useScrollerContext()
+    const itemsArr = useMotionValueValue(items, (v) => v)
+    const scrollTo = useScrollTo()
 
-  return (
-    <m.div layout {...containerProps} className={clsx(dots, containerProps?.className)}>
-      {itemsArr.map((item, idx) => (
-        <Fab
-          // eslint-disable-next-line react/no-array-index-key
-          key={idx}
-          color='inherit'
-          size='small'
-          {...fabProps}
-          onClick={() => {
-            const positions = getScrollSnapPositions()
-            scrollTo({ x: positions.x[idx] ?? 0, y: positions.y[idx] ?? 0 })
-          }}
-          className={clsx(dot, props.className)}
-          classes={classes}
-        >
-          <m.div className={circle} style={{ opacity: item.opacity }} />
-        </Fab>
-      ))}
-    </m.div>
-  )
-}
+    return (
+      <m.div {...containerProps} className={clsx(dots, containerProps?.className)} ref={ref}>
+        {itemsArr.map((item, idx) => (
+          <Fab
+            // eslint-disable-next-line react/no-array-index-key
+            key={idx}
+            color='inherit'
+            size='small'
+            {...fabProps}
+            onClick={() => {
+              const positions = getScrollSnapPositions()
+              scrollTo({ x: positions.x[idx] ?? 0, y: positions.y[idx] ?? 0 })
+            }}
+            className={clsx(dot, props.className)}
+            classes={classes}
+          >
+            <m.div className={circle} style={{ opacity: item.opacity }} />
+          </Fab>
+        ))}
+      </m.div>
+    )
+  }),
+)
+
+ScrollerDots.displayName = 'ScrollerDots'
+
+export default ScrollerDots

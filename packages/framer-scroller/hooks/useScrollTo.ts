@@ -1,7 +1,6 @@
 import { useElementScroll } from '@reachdigital/framer-utils'
 import { Point2D } from 'framer-motion'
 import { animate } from 'popmotion'
-import { isScrollerRef } from '../components/ScrollerProvider'
 import { useScrollerContext } from './useScrollerContext'
 
 export function useScrollTo() {
@@ -9,7 +8,7 @@ export function useScrollTo() {
   const scroll = useElementScroll(scrollerRef)
 
   return (to: Point2D) => {
-    if (!isScrollerRef(scrollerRef)) return
+    if (!scrollerRef.current) return
 
     // const notCompletelyVisible = items.filter((item) => item.visibility.get() < 0.9)
     // todo get the target element and move one right, keep the current velocity
@@ -21,6 +20,7 @@ export function useScrollTo() {
         to: to.x,
         velocity: scroll.x.getVelocity(),
         onUpdate: (v) => {
+          if (!scrollerRef.current) return
           scrollerRef.current.scrollLeft = v
         },
         onComplete: enableSnap,
@@ -33,6 +33,7 @@ export function useScrollTo() {
         to: to.y,
         velocity: scroll.y.getVelocity(),
         onUpdate: (v) => {
+          if (!scrollerRef.current) return
           scrollerRef.current.scrollTop = v
         },
         onComplete: enableSnap,

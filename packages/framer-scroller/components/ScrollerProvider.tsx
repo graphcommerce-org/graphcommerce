@@ -21,12 +21,6 @@ export type ScrollerProviderProps = {
   scrollSnapStop?: ScrollSnapStop
 }
 
-export function isScrollerRef(
-  scrollerRef: ReactHtmlRefObject,
-): scrollerRef is React.MutableRefObject<HTMLElement> {
-  return !!scrollerRef.current
-}
-
 function useObserveItems(
   scrollerRef: ReactHtmlRefObject,
   items: MotionValue<ItemState[]>,
@@ -34,7 +28,7 @@ function useObserveItems(
 ) {
   const observe = useCallback(
     (itemsArr: ItemState[]) => {
-      if (!isScrollerRef(scrollerRef)) return
+      if (!scrollerRef.current) return () => {}
 
       const find = ({ target }: { target: Element }) => itemsArr.find((i) => i.el === target)
 
@@ -117,7 +111,7 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
   }, [snap, stop])
 
   const enableSnap = useCallback(() => {
-    if (!isScrollerRef(scrollerRef)) return
+    if (!scrollerRef.current) return
     stop()
     const p = scrollerRef.current.scrollLeft
     snap.set(true)
@@ -138,7 +132,7 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
       items.set(
         itemsArr.fill(undefined).map<ItemState>(() => ({
           visibility: motionValue(0),
-          opacity: motionValue(0),
+          opacity: motionValue(0.2),
         })),
       )
     },
@@ -248,7 +242,8 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
   }
 
   function getScrollSnapPositions(): Record<Axis, number[]> {
-    if (!isScrollerRef(scrollerRef)) return { x: [], y: [] }
+    if (!scrollerRef.current) return { x: [], y: [] }
+
     const rect = scrollerRef.current.getBoundingClientRect()
 
     const scrollPadding = getScrollPadding(scrollerRef.current)
@@ -278,7 +273,8 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
   }
 
   function getSnapPosition(direction: 'left' | 'right' | 'up' | 'down'): Point2D {
-    isScrollerRef(scrollerRef)
+    if (!scrollerRef.current) return { x: 0, y: 0 }
+
     const axis: Axis = direction === 'up' || direction === 'down' ? 'y' : 'x'
     const sign = direction === 'right' || direction === 'down' ? '+' : '-'
 

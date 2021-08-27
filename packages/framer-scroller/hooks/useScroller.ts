@@ -19,6 +19,10 @@ const useStyles = makeStyles(
         scrollSnapAlign,
         scrollSnapStop,
       },
+      '& *': {
+        userSelect: 'none',
+        userDrag: 'none',
+      },
     }),
     snap: ({ scrollSnapType }: ScrollSnapProps) => ({
       scrollSnapType,
@@ -86,7 +90,7 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
   }
 
   const onPan: PanHandlers['onPan'] = (event, info: PanInfo) => {
-    if (!isScrollerRef(scrollerRef)) return
+    if (!scrollerRef.current) return
 
     // If we're not dealing with the mouse we don't need to do anything
     if (!isHTMLMousePointerEvent(event)) return

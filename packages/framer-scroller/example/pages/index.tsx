@@ -126,7 +126,6 @@ function Index() {
           <Scroller hideScrollbar className={classes.scroller}>
             <div key='img' className={classes.slide}>
               <MotionImageAspect
-                key='str'
                 layout
                 src='https://backend.reachdigital.dev/media/catalog/product/cache/63405d393cd2d0278e3cc8b45744d4a7/1/0/1042_1_3.jpg'
                 width={1532}

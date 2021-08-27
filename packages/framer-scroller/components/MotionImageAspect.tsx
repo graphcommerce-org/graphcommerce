@@ -54,7 +54,7 @@ const MotionImageAspect = m(
         className={clsx(classes.image, props.className)}
         pictureProps={{
           className: clsx(classes.picture, props.pictureProps?.className),
-          style: { aspectRatio: `${props.width} / ${props.height}` },
+          style: { ...props.style, aspectRatio: `${props.width} / ${props.height}` },
         }}
       />
     )
