@@ -3,7 +3,6 @@ import { useConstant, useElementScroll, useMotionValueValue } from '@reachdigita
 import clsx from 'clsx'
 import { HTMLMotionProps, PanInfo, motionValue, useDomEvent, PanHandlers, m } from 'framer-motion'
 import React, { ReactHTML, useState } from 'react'
-import { isScrollerRef } from '../components/ScrollerProvider'
 import { ScrollSnapProps } from '../types'
 import { isHTMLMousePointerEvent } from '../utils/isHTMLMousePointerEvent'
 import { useScrollerContext } from './useScrollerContext'

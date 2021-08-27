@@ -1,4 +1,4 @@
-import Image from '@reachdigital/image'
+import { Image } from '@reachdigital/image'
 import React from 'react'
 import image from '../components/image.jpg'
 

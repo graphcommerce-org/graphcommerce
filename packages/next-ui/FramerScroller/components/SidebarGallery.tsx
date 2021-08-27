@@ -1,4 +1,4 @@
-import { ContainerProps, Fab, makeStyles, Theme, useTheme } from '@material-ui/core'
+import { Fab, makeStyles, Theme, useTheme } from '@material-ui/core'
 import {
   ScrollerButton,
   ScrollerDots,
@@ -8,9 +8,8 @@ import {
   CenterSlide,
   MotionImageAspect,
 } from '@reachdigital/framer-scroller'
-import { clientSize } from '@reachdigital/framer-utils'
 import clsx from 'clsx'
-import { m, MotionValue, useTransform } from 'framer-motion'
+import { m } from 'framer-motion'
 import React, { useState } from 'react'
 import { UseStyles } from '../../Styles'
 import SvgImage from '../../SvgImage'
