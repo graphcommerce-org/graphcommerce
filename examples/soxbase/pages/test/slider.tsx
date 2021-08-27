@@ -1,51 +1,51 @@
-import { Container, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { Image } from '@reachdigital/image'
-import { ProductListDocument, ProductListQuery } from '@reachdigital/magento-product'
+import { CenterSlide, MotionImageAspect } from '@reachdigital/framer-scroller'
+import { ProductListDocument, ProductListQuery, productLink } from '@reachdigital/magento-product'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import {
-  SliderImage,
-  Images,
-  Multi,
-  Single,
-  SidebarGallery,
-  GetStaticProps,
-} from '@reachdigital/next-ui'
-import { m } from 'framer-motion'
+import { AppShellTitle, GetStaticProps, Title } from '@reachdigital/next-ui'
+import useAppShellHeaderContext from '@reachdigital/next-ui/AppShell/AppShellHeader/useAppShellHeaderContext'
+import SidebarGallery from '@reachdigital/next-ui/FramerScroller/components/SidebarGallery'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
+import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = ProductListQuery
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function TestSlider({ products }: Props) {
-  const images = products?.items?.map((item) => item?.small_image?.url ?? '') ?? []
+  const { titleRef } = useAppShellHeaderContext()
   return (
     <>
-      <Container>
-        <Typography variant='h1' style={{ textAlign: 'center' }}>
-          Framer Slider
+      <FullPageShellHeader>
+        <Title size='small'>Product title</Title>
+      </FullPageShellHeader>
+      {/* <Container>
+      <Typography variant='h1' style={{ textAlign: 'center' }}>
+        Framer Slider
+      </Typography>
+
+      <m.div layout>
+        <Typography variant='h2' style={{ textAlign: 'center' }}>
+          Expandable Image Gallery
         </Typography>
+      </m.div>
+      <Images urls={images} />
 
-        <m.div layout>
-          <Typography variant='h2' style={{ textAlign: 'center' }}>
-            Expandable Image Gallery
-          </Typography>
-        </m.div>
-        <Images urls={images} />
-
-        <m.div layout>
-          <Typography variant='h2' style={{ textAlign: 'center' }}>
-            Sidebar image gallery
-          </Typography>
-        </m.div>
-      </Container>
+      <m.div layout>
+        <Typography variant='h2' style={{ textAlign: 'center' }}>
+          Sidebar image gallery
+        </Typography>
+      </m.div>
+    </Container> */}
 
       <SidebarGallery
         sidebar={
           <>
-            <h1>Title</h1>
+            <Typography variant='h2' component='h1' ref={titleRef}>
+              Product Title
+            </Typography>
             <ul>
               <li>Some product details</li>
               <li>Or other information</li>
@@ -53,29 +53,61 @@ function TestSlider({ products }: Props) {
             </ul>
           </>
         }
+        images={
+          products?.items?.map((item) => ({
+            src: item?.small_image?.url ?? '',
+          })) ?? []
+        }
       >
-        {images.map((image) => (
-          <SliderImage key={image} width={1532} height={1678}>
-            <Image src={image} width={1532} height={1678} alt='img' />
-          </SliderImage>
-        ))}
+        {products?.items?.map((item) => {
+          if (!item) return null
+          return (
+            <CenterSlide key={item.sku ?? ''}>
+              <MotionImageAspect
+                layout
+                src={item.small_image?.url ?? ''}
+                width={1532}
+                height={1678}
+                dontReportWronglySizedImages
+              />
+            </CenterSlide>
+          )
+        })}
       </SidebarGallery>
 
-      <Container>
-        <m.div layout>
-          <Typography variant='h2' style={{ textAlign: 'center' }}>
-            Multi item slider
-          </Typography>
-        </m.div>
-        <Multi />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
 
-        <m.div layout>
-          <Typography variant='h2' style={{ textAlign: 'center' }}>
-            Single item Slider
-          </Typography>
-        </m.div>
-        <Single />
-      </Container>
+      {/* <Container>
+      <m.div layout>
+        <Typography variant='h2' style={{ textAlign: 'center' }}>
+          Multi item slider
+        </Typography>
+      </m.div>
+      <Multi />
+
+      <m.div layout>
+        <Typography variant='h2' style={{ textAlign: 'center' }}>
+          Single item Slider
+        </Typography>
+      </m.div>
+      <Single />
+    </Container> */}
     </>
   )
 }
@@ -95,7 +127,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const categoryUid = String((await conf).data.storeConfig?.root_category_uid ?? '')
   const productList = staticClient.query({
     query: ProductListDocument,
-    variables: { categoryUid, pageSize: 8, filters: { category_uid: { eq: 'NQ==' } } },
+    variables: { categoryUid, pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
   })
 
   return {
