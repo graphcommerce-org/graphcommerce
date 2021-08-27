@@ -41,16 +41,13 @@ export default function ProductPageGallery(props: ProductPageGalleryProps) {
     <SidebarGallery
       sidebar={children}
       aspectRatio={[1678, 1532]}
-      classes={{ wrapper: classes.wrapper }}
-    >
-      {media_gallery?.map((item) => {
-        if (!item?.position) return null
-        return (
-          <SliderImage key={item.position} width={1532} height={1678}>
-            <RenderType renderer={renderers} {...item} />
-          </SliderImage>
-        )
-      })}
-    </SidebarGallery>
+      images={
+        media_gallery?.map((item) => {
+          if (item?.__typename === 'ProductImage')
+            return { src: item.url ?? '', alt: item.label || undefined }
+          return { src: '', alt: `{${item?.__typename} not yet supported}` }
+        }) ?? []
+      }
+    />
   )
 }
