@@ -262,7 +262,6 @@ export function AppShellDemo(props: AppShellDemoProps) {
 }
 
 function MinimalPageShellDemo() {
-  console.log('Header used: PageShellHeader')
   return <AppShellDemo baseUrl='/test/minimal-page-shell' Header={PageShellHeader} />
 }
 

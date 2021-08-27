@@ -22,13 +22,6 @@ function AppShellTestIndex() {
       ? PageShellHeader
       : FullPageShellHeader
 
-  console.log(
-    'Header used: ',
-    queryParams.includes('minimal') || queryParams.includes('sheet')
-      ? 'PageShellHeader'
-      : 'FullPageShellHeader',
-  )
-
   return <AppShellDemo baseUrl='/test' Header={header} />
 }
 
