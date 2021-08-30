@@ -150,8 +150,8 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
 
   const toggle = () => {
     setZoomed(!zoomed)
-    document.body.style.overflow = !zoomed ? 'hidden' : ''
     if (!zoomed) {
+      document.body.style.overflow = 'hidden'
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
@@ -166,7 +166,13 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
   return (
     <ScrollerProvider scrollSnapAlign='center'>
       <m.div layout className={clsxZoom('root')}>
-        <m.div layout className={clsxZoom('scrollerContainer')}>
+        <m.div
+          layout
+          className={clsxZoom('scrollerContainer')}
+          onLayoutAnimationComplete={() => {
+            if (!zoomed) document.body.style.overflow = ''
+          }}
+        >
           <Scroller className={clsxZoom('scroller')} hideScrollbar>
             {images.map((image, idx) => (
               <CenterSlide key={typeof image.src === 'string' ? image.src : idx}>
