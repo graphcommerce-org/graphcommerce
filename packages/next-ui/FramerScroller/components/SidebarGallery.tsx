@@ -8,6 +8,7 @@ import {
   CenterSlide,
   MotionImageAspect,
 } from '@reachdigital/framer-scroller'
+import { clientSize, useMotionValueValue } from '@reachdigital/framer-utils'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'
@@ -22,7 +23,8 @@ import {
 } from '../../icons'
 
 type StyleProps = {
-  aspectRatio?: [number, number]
+  aspectRatio: [number, number]
+  clientHeight: number
 }
 
 const useStyles = makeStyles(
@@ -44,7 +46,7 @@ const useStyles = makeStyles(
       },
       paddingRight: 0,
     },
-    scrollerContainer: ({ aspectRatio: [width, height] = [1, 1] }: StyleProps) => {
+    scrollerContainer: ({ aspectRatio: [width, height] }: StyleProps) => {
       const headerHeight = `${theme.page.headerInnerHeight.sm} - ${theme.spacings.sm} * 2`
       const galleryMargin = theme.spacings.lg
       const extraSpacing = theme.spacings.md
@@ -62,14 +64,9 @@ const useStyles = makeStyles(
         },
       }
     },
-    scrollerContainerZoomed: ({ aspectRatio: [width, height] = [1, 1] }: StyleProps) => {
-      const headerHeight = `${theme.page.headerInnerHeight.sm} - ${theme.spacings.sm} * 2`
-      const maxHeight = `calc(100vh - ${headerHeight})`
-      const ratio = `calc(${width} / ${height} * 100%)`
-      return {
-        paddingTop: '100vh', // `min(${ratio}, ${maxHeight})`,
-      }
-    },
+    scrollerContainerZoomed: ({ clientHeight }: StyleProps) => ({
+      paddingTop: clientHeight,
+    }),
     scroller: {
       position: 'absolute',
       top: 0,
@@ -91,10 +88,8 @@ const useStyles = makeStyles(
     },
     sidebarWrapperZoomed: {
       [theme.breakpoints.up('md')]: {
-        // paddingLeft: theme.spacings.lg,
         marginLeft: `calc((400px + ${theme.page.horizontal} * 2) * -1)`,
         left: `calc(400px + ${theme.page.horizontal} * 2)`,
-        // width: 400,
       },
     },
     sidebar: {
@@ -159,9 +154,11 @@ export type SidebarGalleryProps = {
   UseStyles<typeof useStyles>
 
 export default function SidebarGallery(props: SidebarGalleryProps) {
-  const { sidebar, images } = props
+  const { sidebar, images, aspectRatio = [1, 1] } = props
   const [zoomed, setZoomed] = useState(false)
-  const classes = useStyles(props)
+
+  const clientHeight = useMotionValueValue(clientSize.y, (y) => y)
+  const classes = useStyles({ clientHeight, aspectRatio })
 
   const toggle = () => {
     setZoomed(!zoomed)
@@ -170,9 +167,6 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
-  // const height = useTransform([clientSize.y] as MotionValue[], ([y]: number[]) => {
-  //   console.log(y)
-  // })
 
   const clsxZoom = (key: string) => clsx(classes?.[key], zoomed && classes?.[`${key}Zoomed`])
 

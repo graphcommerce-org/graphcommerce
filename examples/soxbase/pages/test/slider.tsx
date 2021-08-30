@@ -1,49 +1,31 @@
-import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { ProductListDocument, ProductListQuery } from '@reachdigital/magento-product'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { GetStaticProps } from '@reachdigital/next-ui'
-import useAppShellHeaderContext from '@reachdigital/next-ui/AppShell/AppShellHeader/useAppShellHeaderContext'
+import { AppShellTitle, GetStaticProps, Title } from '@reachdigital/next-ui'
 import SidebarGallery from '@reachdigital/next-ui/FramerScroller/components/SidebarGallery'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
+import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = ProductListQuery
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function TestSlider({ products }: Props) {
-  const { titleRef } = useAppShellHeaderContext()
   return (
     <>
-      {/* <FullPageShellHeader>
-        <Title size='small'>Product title</Title>
-      </FullPageShellHeader> */}
-      {/* <Container>
-      <Typography variant='h1' style={{ textAlign: 'center' }}>
-        Framer Slider
-      </Typography>
-
-      <m.div layout>
-        <Typography variant='h2' style={{ textAlign: 'center' }}>
-          Expandable Image Gallery
-        </Typography>
-      </m.div>
-      <Images urls={images} />
-
-      <m.div layout>
-        <Typography variant='h2' style={{ textAlign: 'center' }}>
-          Sidebar image gallery
-        </Typography>
-      </m.div>
-    </Container> */}
+      <FullPageShellHeader>
+        <Title size='small' component='span'>
+          Product title
+        </Title>
+      </FullPageShellHeader>
 
       <SidebarGallery
         sidebar={
           <>
-            <Typography variant='h2' component='h1' ref={titleRef}>
+            <AppShellTitle variant='h2' bare>
               Product Title
-            </Typography>
+            </AppShellTitle>
             <ul>
               <li>Some product details</li>
               <li>Or other information</li>
