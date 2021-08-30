@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.110.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.110.0...@reachdigital/next-ui@2.110.1) (2021-08-30)
+
+
+### Bug Fixes
+
+* **app-shell-header:** show fallbacktitle instead of back on back button when applicable ([27d7d7d](https://github.com/ho-nl/m2-pwa/commit/27d7d7d716265c856cd64d3f485f0227f99c5cd0))
+
+
+
+
+
 # [2.110.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.109.2...@reachdigital/next-ui@2.110.0) (2021-08-27)
 
 

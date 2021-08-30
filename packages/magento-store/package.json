@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-store",
-  "version": "2.102.9",
+  "version": "2.102.10",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
@@ -27,7 +27,7 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@reachdigital/graphql": "^2.102.1",
     "@reachdigital/image": "^2.102.1",
-    "@reachdigital/next-ui": "^2.110.0",
+    "@reachdigital/next-ui": "^2.110.1",
     "next": "^11.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

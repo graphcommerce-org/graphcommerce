@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/framer-next-pages@2.104.0...@reachdigital/framer-next-pages@2.105.0) (2021-08-30)
+
+
+### Bug Fixes
+
+* **use-back-link:** pop history after going back ([20d69ef](https://github.com/ho-nl/m2-pwa/commit/20d69eff868d53d07084e5d1f78819939a5f429c))
+
+
+### Features
+
+* **pageContext:** history prop ([9094551](https://github.com/ho-nl/m2-pwa/commit/909455146d159a839fa72046c15332fc763f315f))
+* **use-back-link:** go back in history when links are identical ([9be8a05](https://github.com/ho-nl/m2-pwa/commit/9be8a050d418d2ef24bb6894c5946a1268883aba))
+
+
+
+
+
 # [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/framer-next-pages@2.103.1...@reachdigital/framer-next-pages@2.104.0) (2021-08-17)
 
 

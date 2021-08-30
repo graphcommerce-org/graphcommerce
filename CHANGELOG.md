@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.117.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.116.0...@graphcommerce/graphcommerce@2.117.0) (2021-08-30)
+
+
+### Bug Fixes
+
+* **app-shell-header:** show fallbacktitle instead of back on back button when applicable ([27d7d7d](https://github.com/ho-nl/m2-pwa/commit/27d7d7d716265c856cd64d3f485f0227f99c5cd0))
+* **use-back-link:** pop history after going back ([20d69ef](https://github.com/ho-nl/m2-pwa/commit/20d69eff868d53d07084e5d1f78819939a5f429c))
+
+
+### Features
+
+* **pageContext:** history prop ([9094551](https://github.com/ho-nl/m2-pwa/commit/909455146d159a839fa72046c15332fc763f315f))
+* **use-back-link:** go back in history when links are identical ([9be8a05](https://github.com/ho-nl/m2-pwa/commit/9be8a050d418d2ef24bb6894c5946a1268883aba))
+
+
+
+
+
 # [2.116.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.115.0...@graphcommerce/graphcommerce@2.116.0) (2021-08-27)
 
 
