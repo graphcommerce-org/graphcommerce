@@ -1,7 +1,7 @@
 import { AnimatePresence } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
-import type { NextRouter } from 'next/router'
-import React, { useRef } from 'react'
+import { NextRouter } from 'next/router'
+import React, { useEffect, useRef, useState } from 'react'
 import { pageContext } from '../context/pageContext'
 import { createRouterProxy, pageRouterContext } from '../context/pageRouterContext'
 import type { PageComponent, PageItem } from '../types'
@@ -118,13 +118,21 @@ export default function FramerNextPages(props: PagesProps) {
 
         const backSteps = historyIdx - closeIdx - 1
 
+        const prevRouter = items.current[historyIdx - 1]?.routerProxy
+
         return (
           <pageContext.Provider
             key={sharedKey}
-            value={{ depth, active, direction, closeSteps, backSteps }}
+            value={{
+              depth,
+              active,
+              direction,
+              closeSteps,
+              backSteps,
+            }}
           >
             <Page active={active} historyIdx={historyIdx}>
-              <pageRouterContext.Provider value={routerProxy}>
+              <pageRouterContext.Provider value={{ router: routerProxy, prevRouter }}>
                 <SharedComponent {...sharedPageProps} {...sharedProps}>
                   {children}
                 </SharedComponent>

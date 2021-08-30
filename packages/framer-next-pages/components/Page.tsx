@@ -1,6 +1,8 @@
 import { useClientSize } from '@reachdigital/framer-utils'
 import { m, useIsPresent } from 'framer-motion'
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useEffect } from 'react'
+import { usePageContext } from '../hooks/usePageContext'
 import type { PageItem } from '../types'
 
 export type PageProps = Pick<PageItem, 'historyIdx'> & {

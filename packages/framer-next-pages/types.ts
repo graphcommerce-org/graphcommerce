@@ -1,7 +1,7 @@
 import { NextComponentType, NextPageContext } from 'next'
 import { NextRouter } from 'next/router'
 import React from 'react'
-import { PageRouterContext } from './context/pageRouterContext'
+import { RouterProxy } from './context/pageRouterContext'
 
 /**
  * Default (no overlay):
@@ -127,7 +127,7 @@ export type PageComponent<T = Record<string, unknown>> = NextComponentType<NextP
  * @private
  */
 export type PageItem = {
-  routerProxy: PageRouterContext
+  routerProxy: RouterProxy
   children: React.ReactNode
   historyIdx: number
   sharedKey: string
