@@ -1,11 +1,16 @@
 import { NextRouter } from 'next/router'
 import { createContext } from 'react'
 
-export type PageRouterContext = NextRouter & { go(delta: number): void }
+export type RouterProxy = NextRouter & { go(delta: number): void }
+
+export type PageRouterContext = {
+  router: RouterProxy
+  prevRouter?: RouterProxy
+}
 
 export const pageRouterContext = createContext(undefined as unknown as PageRouterContext)
 
-export function createRouterProxy(router: NextRouter): PageRouterContext {
+export function createRouterProxy(router: NextRouter): RouterProxy {
   function go(delta: number) {
     if (delta >= 0) {
       console.error(`Called .go(${delta}), only negative numbers are allowed. Redirecting to home`)
@@ -29,7 +34,7 @@ export function createRouterProxy(router: NextRouter): PageRouterContext {
     go,
   }
 
-  return new Proxy<PageRouterContext>(router as PageRouterContext, {
+  return new Proxy<RouterProxy>(router as RouterProxy, {
     get: (target, prop: string, receiver) =>
       overrideProps[prop] ?? Reflect.get(target, prop, receiver),
   })

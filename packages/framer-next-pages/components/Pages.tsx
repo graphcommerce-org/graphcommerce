@@ -99,14 +99,6 @@ export default function FramerNextPages(props: PagesProps) {
     })
     .reverse()
 
-  const [history, setHistory] = useState<string[]>([])
-
-  /* Update history every time router.asPath changes */
-  useEffect(() => {
-    if (history.length > 1 && history[history.length - 1] === router.asPath) return
-    setHistory([...history, router.asPath])
-  }, [history, router.asPath])
-
   return (
     <AnimatePresence initial={false}>
       {renderItems.map((item, itemIdx) => {
@@ -126,6 +118,8 @@ export default function FramerNextPages(props: PagesProps) {
 
         const backSteps = historyIdx - closeIdx - 1
 
+        const prevRouter = items.current[historyIdx - 1]?.routerProxy
+
         return (
           <pageContext.Provider
             key={sharedKey}
@@ -135,11 +129,10 @@ export default function FramerNextPages(props: PagesProps) {
               direction,
               closeSteps,
               backSteps,
-              history,
             }}
           >
             <Page active={active} historyIdx={historyIdx}>
-              <pageRouterContext.Provider value={routerProxy}>
+              <pageRouterContext.Provider value={{ router: routerProxy, prevRouter }}>
                 <SharedComponent {...sharedPageProps} {...sharedProps}>
                   {children}
                 </SharedComponent>

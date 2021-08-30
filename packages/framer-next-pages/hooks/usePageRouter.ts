@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { PageRouterContext, pageRouterContext } from '../context/pageRouterContext'
+import { pageRouterContext, RouterProxy } from '../context/pageRouterContext'
 
 /**
  * The pageRouter maintains state for the old page.
@@ -18,6 +18,6 @@ import { PageRouterContext, pageRouterContext } from '../context/pageRouterConte
  *
  * Adds an additional method: usePageRouter().go(-1)
  */
-export function usePageRouter(): PageRouterContext {
-  return useContext(pageRouterContext)
+export function usePageRouter(): RouterProxy {
+  return useContext(pageRouterContext).router
 }

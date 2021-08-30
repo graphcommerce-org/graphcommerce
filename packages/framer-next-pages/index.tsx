@@ -6,4 +6,4 @@ export type { PageOptions, PageComponent } from './types'
 
 export * from './hooks/usePageContext'
 export * from './hooks/usePageRouter'
-export * from './hooks/useBackLink'
+export * from './hooks/useHistoryLink'

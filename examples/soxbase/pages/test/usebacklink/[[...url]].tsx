@@ -1,21 +1,20 @@
 import { Link } from '@material-ui/core'
-import { PageOptions } from '@reachdigital/framer-next-pages'
-import useBackLink from '@reachdigital/framer-next-pages/hooks/useBackLink'
+import { PageOptions, useHistoryLink } from '@reachdigital/framer-next-pages'
 import PageLink from 'next/link'
 import React from 'react'
 import MinimalPageShell, {
   MinimalPageShellProps,
 } from '../../../components/AppShell/MinimalPageShell'
 
-function useBackLinkDemo() {
-  const { href: hrefa, onClick: onClickA } = useBackLink({ href: '/test/usebacklink/cart' })
-  const { href: hrefb, onClick: onClickB } = useBackLink({ href: '/test/usebacklink/shipping' })
+function BackLinkDemo() {
+  const { href, onClick } = useHistoryLink({ href: '/test/usebacklink/cart' })
+  const { href: hrefb, onClick: onClickB } = useHistoryLink({ href: '/test/usebacklink/shipping' })
 
   return (
     <>
       <div>
-        <PageLink href={hrefa} passHref>
-          <Link onClick={onClickA} color='primary'>
+        <PageLink href={href} passHref>
+          <Link onClick={onClick} color='primary'>
             Cart
           </Link>
         </PageLink>
@@ -34,6 +33,6 @@ function useBackLinkDemo() {
 const pageOptions: PageOptions<MinimalPageShellProps> = {
   SharedComponent: MinimalPageShell,
 }
-useBackLinkDemo.pageOptions = pageOptions
+BackLinkDemo.pageOptions = pageOptions
 
-export default useBackLinkDemo
+export default BackLinkDemo
