@@ -108,7 +108,7 @@ const useStyles = makeStyles(
       gridAutoFlow: 'column',
       gap: theme.spacings.xxs,
       position: 'absolute',
-      bottom: theme.spacings.sm,
+      bottom: theme.spacings.xxs,
       justifyContent: 'center',
       width: '100%',
       pointerEvents: 'none',
@@ -132,6 +132,21 @@ const useStyles = makeStyles(
       gap: theme.spacings.xxs,
       position: 'absolute',
       right: theme.spacings.sm,
+    },
+    centerLeft: {
+      display: 'grid',
+      gridAutoFlow: 'row',
+      gap: theme.spacings.xxs,
+      position: 'absolute',
+      left: theme.spacings.sm,
+      top: `calc(50% - 28px)`,
+    },
+    centerRight: {
+      display: 'grid',
+      gap: theme.spacings.xxs,
+      position: 'absolute',
+      right: theme.spacings.sm,
+      top: `calc(50% - 28px)`,
     },
   }),
   { name: 'SidebarGallery' },
@@ -199,14 +214,19 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
               )}
             </Fab>
           </m.div>
-          <div className={classes.bottomCenter}>
+          <div className={classes.centerLeft}>
             <ScrollerButton layout direction='left' size='small' className={classes.sliderButtons}>
               <SvgImageSimple src={iconChevronLeft} />
             </ScrollerButton>
-            <ScrollerDots layout />
+          </div>
+          <div className={classes.centerRight}>
             <ScrollerButton layout direction='right' size='small' className={classes.sliderButtons}>
               <SvgImageSimple src={iconChevronRight} />
             </ScrollerButton>
+          </div>
+
+          <div className={classes.bottomCenter}>
+            <ScrollerDots layout />
           </div>
         </m.div>
         <div className={clsxZoom('sidebarWrapper')}>

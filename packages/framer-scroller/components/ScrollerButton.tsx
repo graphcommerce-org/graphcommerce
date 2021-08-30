@@ -1,5 +1,5 @@
 import { Fab, FabProps, makeStyles, Theme } from '@material-ui/core'
-import { m, MotionValue, useMotionValue, useSpring } from 'framer-motion'
+import { m, useMotionValue, useSpring } from 'framer-motion'
 import React, { useEffect } from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
