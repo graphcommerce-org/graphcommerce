@@ -23,7 +23,7 @@ export const useVelocitySnapTo = (
     power: 1,
     bounceDamping: 50,
     // bounceStiffness: 200,
-    timeConstant: 200,
+    // timeConstant: 200,
     // restDelta: 0.5,
     // restSpeed: 1,
   }
@@ -37,10 +37,11 @@ export const useVelocitySnapTo = (
 
     const targetX = clamp(info, 'x') * -1 + scrollLeft
     const closestX = closest(getScrollSnapPositions().x, targetX)
+
     const cancelX = inertia({
       velocity: info.velocity.x * -1,
-      max: closestX ? closestX - scrollLeft : undefined,
-      min: closestX ? closestX - scrollLeft : undefined,
+      max: typeof closestX !== 'undefined' ? closestX - scrollLeft : undefined,
+      min: typeof closestX !== 'undefined' ? closestX - scrollLeft : undefined,
       ...inertiaOptions,
       onUpdate: (v: number) => {
         el.scrollLeft = Math.round(v + scrollLeft)
@@ -53,8 +54,8 @@ export const useVelocitySnapTo = (
     const closestY = closest(getScrollSnapPositions().y, targetY)
     const cancelY = inertia({
       velocity: info.velocity.y * -1,
-      max: closestY ? closestY - scrollTop : undefined,
-      min: closestY ? closestY - scrollTop : undefined,
+      max: typeof closestY !== 'undefined' ? closestY - scrollTop : undefined,
+      min: typeof closestY !== 'undefined' ? closestY - scrollTop : undefined,
       ...inertiaOptions,
       onUpdate: (v: number) => {
         el.scrollTop = v + scrollTop
