@@ -1,5 +1,5 @@
 import { Fab, makeStyles, Theme } from '@material-ui/core'
-import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
+import { useHistoryLink, usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
 import clsx from 'clsx'
 import { m, MotionValue, useMotionValue, useTransform } from 'framer-motion'
 import PageLink from 'next/link'
@@ -181,6 +181,10 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   const titleOffset = useMotionValue<number>(100)
   const titleHeight = useMotionValue<number>(100)
 
+  const { href: historyHref, onClick: historyOnClick } = useHistoryLink({
+    href: backFallbackHref ?? '',
+  })
+
   const setOffset = useCallback(
     (offsetTop: number, offsetParent: Element | null, clientHeight: number) => {
       titleHeight.set(clientHeight)
@@ -270,7 +274,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
       })}
       startIcon={backIcon}
     >
-      Back
+      {historyOnClick ? backFallbackTitle : 'Back'}
     </Button>
   )
   if (!back && backFallbackHref) {
