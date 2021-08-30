@@ -26,6 +26,7 @@ export default function useBackLink(props: useBackLinkProps): useBackLinkOutput 
     href: sameHref ? '' : href,
     ...(sameHref && {
       onClick: () => {
+        pageContext.history.pop()
         router.back()
       },
     }),

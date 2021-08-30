@@ -8,18 +8,25 @@ import MinimalPageShell, {
 } from '../../../components/AppShell/MinimalPageShell'
 
 function useBackLinkDemo() {
-  const { href, onClick } = useBackLink({ href: '/test/usebacklink' })
+  const { href: hrefa, onClick: onClickA } = useBackLink({ href: '/test/usebacklink/cart' })
+  const { href: hrefb, onClick: onClickB } = useBackLink({ href: '/test/usebacklink/shipping' })
 
   return (
     <>
-      <PageLink href={href} passHref>
-        <Link onClick={onClick} color='primary'>
-          Link
-        </Link>
-      </PageLink>
-      <PageLink href='/test/usebacklink/navigated' passHref>
-        <Link color='primary'>Navigate</Link>
-      </PageLink>
+      <div>
+        <PageLink href={hrefa} passHref>
+          <Link onClick={onClickA} color='primary'>
+            Cart
+          </Link>
+        </PageLink>
+      </div>
+      <div>
+        <PageLink href={hrefb} passHref>
+          <Link color='primary' onClick={onClickB}>
+            Shipping
+          </Link>
+        </PageLink>
+      </div>
     </>
   )
 }
