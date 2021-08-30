@@ -54,7 +54,7 @@ function Index() {
       </Typography>
 
       <div style={{ position: 'relative' }}>
-        <ScrollerProvider scrollSnapStop='always'>
+        <ScrollerProvider>
           <Scroller
             style={{
               display: `grid`,
@@ -76,19 +76,12 @@ function Index() {
             <div style={{ background: '#eee', userSelect: 'none' }}>item7</div>
           </Scroller>
 
-          <ScrollerButton
-            direction='left'
-            style={{ position: 'absolute', left: 10, top: 'calc(50% - 28px)', zIndex: 2 }}
-          >
-            ←
-          </ScrollerButton>
-
-          <ScrollerButton
-            direction='right'
-            style={{ position: 'absolute', right: 10, top: 'calc(50% - 28px)', zIndex: 2 }}
-          >
-            →
-          </ScrollerButton>
+          <m.div style={{ position: 'absolute', left: 10, top: 'calc(50% - 28px)', zIndex: 2 }}>
+            <ScrollerButton direction='left'>←</ScrollerButton>
+          </m.div>
+          <m.div style={{ position: 'absolute', right: 10, top: 'calc(50% - 28px)', zIndex: 2 }}>
+            <ScrollerButton direction='right'>→</ScrollerButton>
+          </m.div>
           <ScrollerDots
             style={{
               position: 'absolute',
@@ -112,13 +105,13 @@ function Index() {
         <m.div layout className={clsx(classes.container, expand && classes.containerResizes)}>
           <m.div
             layout
-            style={{ position: 'absolute', left: 0, top: 'calc(50% - 28px)', zIndex: 2 }}
+            style={{ position: 'absolute', left: 10, top: 'calc(50% - 28px)', zIndex: 2 }}
           >
             <ScrollerButton direction='left'>←</ScrollerButton>
           </m.div>
           <m.div
             layout
-            style={{ position: 'absolute', right: 0, top: 'calc(50% - 28px)', zIndex: 2 }}
+            style={{ position: 'absolute', right: 10, top: 'calc(50% - 28px)', zIndex: 2 }}
           >
             <ScrollerButton direction='right'>→</ScrollerButton>
           </m.div>
@@ -161,7 +154,7 @@ function Index() {
               justifyContent: 'center',
             }}
           >
-            <ScrollerDots />
+            <ScrollerDots layout />
           </m.div>
         </m.div>
       </ScrollerProvider>

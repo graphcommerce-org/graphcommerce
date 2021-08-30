@@ -8,18 +8,22 @@ const clamp = ({ velocity, offset }: PanInfo, axis: 'x' | 'y') =>
     : Math.min(velocity[axis], Math.abs(offset[axis] * 3))
 
 const closest = (counts: number[], target: number) =>
-  counts.reduce((prev, curr) => (Math.abs(curr - target) < Math.abs(prev - target) ? curr : prev))
+  counts.length
+    ? counts.reduce((prev, curr) =>
+        Math.abs(curr - target) < Math.abs(prev - target) ? curr : prev,
+      )
+    : undefined
 
 export const useVelocitySnapTo = (
   ref: React.RefObject<HTMLElement> | React.MutableRefObject<HTMLElement | undefined>,
 ) => {
-  const { disableSnap, register, getScrollSnapPositions } = useScrollerContext()
+  const { disableSnap, register, getScrollSnapPositions, scrollSnap } = useScrollerContext()
 
   const inertiaOptions: InertiaOptions = {
     power: 1,
     bounceDamping: 50,
     // bounceStiffness: 200,
-    // timeConstant: 750,
+    timeConstant: 200,
     // restDelta: 0.5,
     // restSpeed: 1,
   }
@@ -32,11 +36,11 @@ export const useVelocitySnapTo = (
     disableSnap()
 
     const targetX = clamp(info, 'x') * -1 + scrollLeft
-    const closestX = closest(getScrollSnapPositions().x, targetX) - scrollLeft
+    const closestX = closest(getScrollSnapPositions().x, targetX)
     const cancelX = inertia({
       velocity: info.velocity.x * -1,
-      max: closestX,
-      min: closestX,
+      max: closestX ? closestX - scrollLeft : undefined,
+      min: closestX ? closestX - scrollLeft : undefined,
       ...inertiaOptions,
       onUpdate: (v: number) => {
         el.scrollLeft = Math.round(v + scrollLeft)
@@ -46,11 +50,11 @@ export const useVelocitySnapTo = (
     register(cancelX)
 
     const targetY = clamp(info, 'y') * -1 + scrollTop
-    const closestY = closest(getScrollSnapPositions().y, targetY) - scrollTop
+    const closestY = closest(getScrollSnapPositions().y, targetY)
     const cancelY = inertia({
       velocity: info.velocity.y * -1,
-      max: closestY,
-      min: closestY,
+      max: closestY ? closestY - scrollTop : undefined,
+      min: closestY ? closestY - scrollTop : undefined,
       ...inertiaOptions,
       onUpdate: (v: number) => {
         el.scrollTop = v + scrollTop
