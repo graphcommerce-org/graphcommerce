@@ -28,7 +28,7 @@ const ScrollerFab = m(
     const scrollTo = useScrollTo()
     const handleClick = () => scrollTo(getSnapPosition(direction))
 
-    const visibility = useMotionValue(end ? 1 : 0)
+    const visibility = useMotionValue(0)
 
     useEffect(() => {
       const watched: (() => void)[] = []
