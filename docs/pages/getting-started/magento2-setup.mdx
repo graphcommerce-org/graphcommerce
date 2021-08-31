@@ -1,13 +1,23 @@
 # Magento 2 configuration
 
-## Links generated from Magento 2 backend
+As GraphCommerce is designed to work out-of-the-box with a standard Magento 2
+installation as much as possible, very little configuration is required on the
+Magento 2 end. As long as your Magento 2 installation's GraphQL endpoint is
+available under `https://{{base_url}}/graphql`, almost all standard Magento 2
+functionality should just work.
 
-In order to have things such as transactional e-mails (that are generated from the Magento 2 backend) correctly link to
-the PWA for functionality such as password reset, the _Base Link URL_ configuration setting must be set to point to the
-PWA store URL.
+Below is a summary of a few configuration changes that may be required in your
+particular setup.
 
-When using different URLs for multiple stores (for example https://graphcommerce.vercel.app/nl/,
-https://graphcommerce.vercel.app/be/), be sure to configure this setting at the store scope level.
+## Correct generation of URLs in transactional e-mails
 
-The setting can be found under **Stores > Configuration > General > Web > Base URLs** and
-**Stores > Configuration > General > Web > Base URLs (Secure)**
+In order to have transactional e-mails (that are generated from the Magento 2
+backend) correctly link to the PWA for functionality such as password reset, the
+_Base Link URL_ configuration setting must be set to point to the PWA store URL.
+
+When using different URLs for multiple stores (for example
+https://graphcommerce.vercel.app/nl/, https://graphcommerce.vercel.app/be/), be
+sure to configure this setting at the store scope level.
+
+The setting can be found under **Stores > Configuration > General > Web > Base URLs**
+and **Stores > Configuration > General > Web > Base URLs (Secure)**
