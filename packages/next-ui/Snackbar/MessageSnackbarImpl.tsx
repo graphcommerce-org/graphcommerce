@@ -1,4 +1,5 @@
 import {
+  Button,
   Fab,
   makeStyles,
   PropTypes,
@@ -72,6 +73,9 @@ const useStyles = makeStyles(
     },
     actionButton: {
       gridArea: 'action',
+      '&:hover, &:focus': {
+        backgroundColor: 'transparent',
+      },
       '& .MuiPillButton-pill': {
         width: '100%',
         padding: theme.spacings.xxs,
@@ -125,7 +129,7 @@ export type MessageSnackbarImplProps = Omit<
 }
 
 export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
-  const [showSnackbar, setSnackbar] = useState<boolean>(false)
+  const [showSnackbar, setShowSnackbar] = useState<boolean>(false)
 
   const {
     variant = 'contained',
@@ -143,7 +147,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
   const classes = useStyles(props)
 
   useEffect(() => {
-    setSnackbar(!!open)
+    setShowSnackbar(!!open)
   }, [open])
 
   const clsxBonus = (base: string) => {
@@ -180,9 +184,17 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
         message={
           <>
             <div className={classes.children}>{children}</div>
-            {action && <div className={classes.actionButton}>{action}</div>}
+            {action && (
+              <Button
+                className={classes.actionButton}
+                type='button'
+                onClick={() => setShowSnackbar(false)}
+              >
+                {action}
+              </Button>
+            )}
             <div className={classes.closeButton}>
-              <Fab aria-label='Close snackbar' size='medium' onClick={() => setSnackbar(false)}>
+              <Fab aria-label='Close snackbar' size='medium' onClick={() => setShowSnackbar(false)}>
                 <SvgImage src={iconClose} size='small' alt='close' />
               </Fab>
             </div>
