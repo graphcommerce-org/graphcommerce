@@ -15,14 +15,17 @@ const useStyles = makeStyles(
     },
     detailsContainer: {
       padding: theme.spacings.sm,
-      gridColumnGap: theme.spacings.lg,
-      gridRowGap: theme.spacings.md,
+      gridColumnGap: theme.spacings.xl,
+      gridRowGap: theme.spacings.sm,
       display: `grid`,
-
       [theme.breakpoints.up('sm')]: {
         gridTemplateColumns: `1fr 1fr`,
         marginTop: theme.spacings.xxs,
       },
+    },
+    sectionHeaderWrapper: {
+      marginTop: 0,
+      paddingBottom: 8,
     },
     orderNumberLabel: {
       display: 'grid',
@@ -54,6 +57,7 @@ export default function CartSummary(props: CartSummaryProps) {
           <SectionContainer
             variantLeft='h5'
             labelLeft='Confirmation + Track & trace'
+            classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
             labelRight={
               editable ? (
                 <PageLink href='/checkout/edit' passHref>
@@ -70,6 +74,7 @@ export default function CartSummary(props: CartSummaryProps) {
           <SectionContainer
             variantLeft='h5'
             labelLeft='Shipping method'
+            classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
             labelRight={
               editable ? (
                 <PageLink href='/checkout/edit/shipping' passHref>
@@ -91,6 +96,7 @@ export default function CartSummary(props: CartSummaryProps) {
               <SectionContainer
                 variantLeft='h5'
                 labelLeft='Shipping address'
+                classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
                 labelRight={
                   editable ? (
                     <PageLink href='/checkout/edit/shipping_address' passHref>
@@ -107,6 +113,7 @@ export default function CartSummary(props: CartSummaryProps) {
               <SectionContainer
                 variantLeft='h5'
                 labelLeft='Billing Address'
+                classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
                 labelRight={
                   editable ? (
                     <PageLink href='/checkout/edit/billing_address' passHref>
