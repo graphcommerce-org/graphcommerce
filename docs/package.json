@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/pwa-docs",
-  "version": "2.102.2",
+  "version": "2.102.3",
   "private": true,
   "main": "index.js",
   "license": "MIT",
