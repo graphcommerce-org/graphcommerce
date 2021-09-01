@@ -12,17 +12,19 @@ export function PaymentMethodButtonRenderer(
   const { buttonProps, error, buttonState, submit } = props
   const { selectedMethod, selectedModule } = usePaymentMethodContext()
 
+  const btnProps = { ...buttonProps, name: 'placeOrder' }
+
   const PaymentButton = selectedModule?.PaymentButton
 
   return (
     <>
       {!PaymentButton || !selectedMethod?.code ? (
         <Button
-          {...buttonProps}
+          {...btnProps}
           onClick={submit}
           loading={buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)}
         >
-          {buttonProps.children}
+          {btnProps.children}
           {selectedMethod?.title && (
             <>
               {' '}
@@ -34,7 +36,7 @@ export function PaymentMethodButtonRenderer(
         <PaymentButton
           {...selectedMethod}
           buttonProps={{
-            ...buttonProps,
+            ...btnProps,
             onClick: submit,
             loading: buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error),
           }}
