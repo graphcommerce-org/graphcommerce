@@ -1,18 +1,18 @@
 {
   "name": "@reachdigital/pwa-docs",
-  "version": "2.102.4",
+  "version": "2.102.5",
   "private": true,
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
     "@playwright/test": "^1.14.1",
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
-    "@reachdigital/eslint-config-pwa": "^2.102.2",
+    "@reachdigital/eslint-config-pwa": "^2.102.3",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
-    "@reachdigital/typescript-config-pwa": "^2.100.10"
+    "@reachdigital/typescript-config-pwa": "^2.100.11"
   },
   "dependencies": {
-    "@reachdigital/next-config": "^2.101.1",
+    "@reachdigital/next-config": "^2.101.2",
     "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

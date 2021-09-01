@@ -1,7 +1,7 @@
 {
   "name": "@reachdigital/graphql-mesh",
   "private": true,
-  "version": "2.102.2",
+  "version": "2.102.3",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -29,9 +29,9 @@
   "devDependencies": {
     "@playwright/test": "^1.14.1",
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
-    "@reachdigital/eslint-config-pwa": "^2.102.2",
+    "@reachdigital/eslint-config-pwa": "^2.102.3",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
-    "@reachdigital/typescript-config-pwa": "^2.100.10",
+    "@reachdigital/typescript-config-pwa": "^2.100.11",
     "@types/micro-cors": "^0.1.2",
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9",
