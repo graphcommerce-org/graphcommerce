@@ -1,4 +1,5 @@
 fragment ProductListSort on Products {
+  total_count
   sort_fields {
     default
     options {

@@ -96,7 +96,10 @@ function CategoryPage(props: Props) {
 
             <AppShellSticky headerFill='mobile-only'>
               <ProductListFiltersContainer>
-                <ProductListSort sort_fields={products?.sort_fields} />
+                <ProductListSort
+                  sort_fields={products?.sort_fields}
+                  total_count={products?.total_count}
+                />
                 <ProductListFilters
                   aggregations={filters?.aggregations}
                   filterTypes={filterTypes}

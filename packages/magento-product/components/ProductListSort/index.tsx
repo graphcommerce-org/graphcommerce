@@ -12,7 +12,8 @@ import { ProductListSortFragment } from './ProductListSort.gql'
 export type ProductListSortProps = ProductListSortFragment &
   Omit<ChipMenuProps, 'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete'>
 
-export default function ProductListSort({ sort_fields, ...filterMenuProps }: ProductListSortProps) {
+export default function ProductListSort(props: ProductListSortProps) {
+  const { sort_fields, total_count, ...filterMenuProps } = props
   const { params } = useProductListParamsContext()
   const pushRoute = useProductListLinkPush()
   const { data: storeConfigQuery } = useQuery(StoreConfigDocument)
@@ -28,6 +29,8 @@ export default function ProductListSort({ sort_fields, ...filterMenuProps }: Pro
     linkParams.sort = {}
     pushRoute(linkParams)
   }
+
+  if (!total_count) return null
 
   return (
     <ChipMenu
