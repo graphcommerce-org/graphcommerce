@@ -18,10 +18,10 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-export type AccountNewsletterProps = SwitchProps
+export type AccountNewsletterProps = SwitchProps & { hideErrors?: boolean }
 
 export default function AccountNewsletter(props: AccountNewsletterProps) {
-  const { ...switchProps } = props
+  const { hideErrors = false, ...switchProps } = props
   const classes = useStyles(props)
 
   const { loading, data } = useQuery(CustomerDocument, {
@@ -31,7 +31,6 @@ export default function AccountNewsletter(props: AccountNewsletterProps) {
   const is_subscribed = customer && customer.is_subscribed
 
   const defaultValues = useMemo(
-    // todo: useMemo weg
     () => ({
       isSubscribed: is_subscribed ?? false,
     }),
@@ -59,7 +58,7 @@ export default function AccountNewsletter(props: AccountNewsletterProps) {
     reset(defaultValues)
   }, [defaultValues, reset])
 
-  if (loading) return null
+  if (loading) return <Switch disabled color='primary' {...switchProps} />
 
   return (
     <form noValidate>
@@ -78,15 +77,13 @@ export default function AccountNewsletter(props: AccountNewsletterProps) {
               name={name}
               onChange={(e) => onChange((e as React.ChangeEvent<HTMLInputElement>).target.checked)}
             />
-
             {formState.errors.isSubscribed?.message && (
               <FormHelperText>{formState.errors.isSubscribed?.message}</FormHelperText>
             )}
           </FormControl>
         )}
       />
-
-      <ApolloCustomerErrorAlert error={error} />
+      {!hideErrors && <ApolloCustomerErrorAlert error={error} />}
     </form>
   )
 }
