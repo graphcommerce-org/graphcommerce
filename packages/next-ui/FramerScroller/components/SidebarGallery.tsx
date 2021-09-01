@@ -13,6 +13,7 @@ import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'
 import { UseStyles } from '../../Styles'
+import responsiveVal from '../../Styles/responsiveVal'
 import SvgImage from '../../SvgImage'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import {
@@ -86,13 +87,19 @@ const useStyles = makeStyles(
       alignContent: 'center',
       position: 'relative',
       [theme.breakpoints.up('md')]: {
-        width: `calc(400px + ${theme.page.horizontal} * 2)`,
+        width: `calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
+          theme.page.horizontal
+        } * 2)`,
       },
     },
     sidebarWrapperZoomed: {
       [theme.breakpoints.up('md')]: {
-        marginLeft: `calc((400px + ${theme.page.horizontal} * 2) * -1)`,
-        left: `calc(400px + ${theme.page.horizontal} * 2)`,
+        marginLeft: `calc((${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
+          theme.page.horizontal
+        } * 2) * -1)`,
+        left: `calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
+          theme.page.horizontal
+        } * 2)`,
       },
     },
     sidebar: {
