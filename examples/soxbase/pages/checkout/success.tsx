@@ -1,9 +1,9 @@
 import { useQuery } from '@apollo/client'
-import { Box, Container, makeStyles, Theme } from '@material-ui/core'
+import { Box, Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CartItemSummary, CartSummary } from '@reachdigital/magento-cart'
 import { CustomerDocument } from '@reachdigital/magento-customer'
-import { AccountNewsletter } from '@reachdigital/magento-customer-account'
+import { SignupNewsletter } from '@reachdigital/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   AppShellTitle,
@@ -23,60 +23,6 @@ import apolloClient from '../../lib/apolloClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
-
-// TODO: new component 'OrderSuccessSignupNewsletter'
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    signup: {
-      background: theme.palette.background.highlight,
-      display: 'grid',
-      alignItems: 'center',
-      gridAutoFlow: 'column',
-      columnGap: theme.spacings.xxs,
-      padding: theme.spacings.sm,
-      ...theme.typography.body1,
-      marginTop: theme.spacings.sm,
-      borderRadius: 4,
-      gridTemplateColumns: '1fr 1fr',
-      gridTemplateAreas: `
-        "a a a"
-        "b c c"
-      `,
-      [theme.breakpoints.up('sm')]: {
-        gridTemplateAreas: `"a b c"`,
-        gridTemplateColumns: '4fr 1fr',
-      },
-    },
-    signupForm: {
-      display: 'flex',
-      gap: 8,
-      justifyContent: 'flex-end',
-      alignItems: 'center',
-    },
-  }),
-  {
-    name: 'SignUpNewsletterOrderSuccess',
-  },
-)
-
-type SignupNewsletterProps = {
-  email: string
-}
-
-export function SignupNewsletter(props: SignupNewsletterProps) {
-  const { email } = props
-  const classes = useStyles()
-
-  return (
-    <div className={classes.signup}>
-      <b>Sign up for our newsletter and stay updated</b>
-      <div className={classes.signupForm}>
-        <AccountNewsletter color='primary' hideErrors />
-        {email ?? 'unknown@undefined.nl'}
-      </div>
-    </div>
-  )
-}
 
 function ShippingPage() {
   const { data: customerQuery } = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })

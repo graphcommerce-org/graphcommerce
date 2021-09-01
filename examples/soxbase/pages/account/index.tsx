@@ -10,9 +10,9 @@ import {
   AccountDashboardDocument,
   AccountMenu,
   AccountMenuItem,
-  AccountNewsletter,
 } from '@reachdigital/magento-customer-account'
 import { OrderStateLabelInline } from '@reachdigital/magento-customer-order'
+import { NewsletterToggle } from '@reachdigital/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   AppShellTitle,
@@ -143,7 +143,7 @@ function AccountIndexPage() {
               iconSrc={iconNewspaper}
               title='Newsletter'
               subtitle='Be the first to know about everything new!'
-              endIcon={<AccountNewsletter color='primary' />}
+              endIcon={<NewsletterToggle color='primary' />}
             />
             <SignOutForm
               button={({ formState }) => (

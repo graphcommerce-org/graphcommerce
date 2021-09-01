@@ -10,7 +10,7 @@ import {
 import { ApolloCustomerErrorAlert, CustomerDocument } from '@reachdigital/magento-customer'
 import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React, { useEffect, useMemo } from 'react'
-import { UpdateNewsletterSubscriptionDocument } from './UpdateNewsletterSubscription.gql'
+import { UpdateNewsletterSubscriptionDocument } from '../../api/UpdateNewsletterSubscription.gql'
 
 const useStyles = makeStyles(() => ({
   labelRoot: {
@@ -18,9 +18,9 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-export type AccountNewsletterProps = SwitchProps & { hideErrors?: boolean }
+export type NewsletterToggleProps = SwitchProps & { hideErrors?: boolean }
 
-export default function AccountNewsletter(props: AccountNewsletterProps) {
+export default function NewsletterToggle(props: NewsletterToggleProps) {
   const { hideErrors = false, ...switchProps } = props
   const classes = useStyles(props)
 
