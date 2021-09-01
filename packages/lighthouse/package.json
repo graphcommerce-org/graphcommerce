@@ -14,7 +14,7 @@
     }
   },
   "devDependencies": {
-    "@playwright/test": "^1.13.1",
+    "@playwright/test": "^1.14.1",
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
     "@reachdigital/eslint-config-pwa": "^2.102.2",
     "@reachdigital/prettier-config-pwa": "^2.100.9",

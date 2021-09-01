@@ -14,7 +14,7 @@
     }
   },
   "devDependencies": {
-    "@playwright/test": "^1.13.1",
+    "@playwright/test": "^1.14.1",
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
     "@reachdigital/eslint-config-pwa": "^2.102.2",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
@@ -27,9 +27,9 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@reachdigital/image": "^2.103.0",
     "@reachdigital/next-ui": "^2.112.0",
-    "next": "^11.1.0",
+    "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "type-fest": "^2.0.0"
+    "type-fest": "^2.1.0"
   }
 }

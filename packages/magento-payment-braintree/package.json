@@ -14,7 +14,7 @@
     }
   },
   "devDependencies": {
-    "@playwright/test": "^1.13.1",
+    "@playwright/test": "^1.14.1",
     "@reachdigital/browserslist-config-pwa": "^2.100.9",
     "@reachdigital/eslint-config-pwa": "^2.102.2",
     "@reachdigital/magento-cart-shipping-address": "^2.102.14",
@@ -36,12 +36,12 @@
     "@reachdigital/magento-store": "^2.102.12",
     "@reachdigital/next-ui": "^2.112.0",
     "@reachdigital/react-hook-form": "^2.101.5",
-    "braintree-web": "^3.80.0",
+    "braintree-web": "^3.81.0",
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.17",
-    "next": "^11.1.0",
+    "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "type-fest": "^2.0.0"
+    "type-fest": "^2.1.0"
   }
 }
