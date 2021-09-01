@@ -117,7 +117,6 @@ const useStyles = makeStyles(
       },
     },
     sliderButtons: {
-      boxShadow: theme.shadows[2],
       [theme.breakpoints.down('sm')]: {
         display: 'none',
       },
