@@ -1,6 +1,7 @@
 import { Fab, FabProps, makeStyles, Theme } from '@material-ui/core'
 import { m, useMotionValue, useSpring } from 'framer-motion'
 import React, { useEffect } from 'react'
+import { useWatchItems } from '..'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 import { ItemState, SnapPositionDirection } from '../types'
@@ -24,27 +25,21 @@ const ScrollerFab = m(
 
     const end = direction === 'right' || direction === 'down'
 
-    const { getSnapPosition, items } = useScrollerContext()
+    const { getSnapPosition } = useScrollerContext()
     const scrollTo = useScrollTo()
     const handleClick = () => scrollTo(getSnapPosition(direction))
 
     const visibility = useMotionValue(0)
 
-    useEffect(() => {
-      const watched: (() => void)[] = []
-      const onChangeItems = (itemArr: ItemState[]) => {
-        const watch = end ? itemArr[itemArr.length - 1].visibility : itemArr[0].visibility
-        watched.push(
-          watch.onChange((v: number) =>
-            // If we're half way past the first/last item we show/hide the button
-            visibility.set((!end && v > 0.5) || (end && v > 0.5) ? 0 : 1),
-          ),
-        )
-      }
-      watched.push(items.onChange(onChangeItems))
-      onChangeItems(items.get())
-      return () => watched.forEach((d) => d())
-    }, [end, items, visibility])
+    useWatchItems((_, itemArr) => {
+      const itemVisbility = end
+        ? itemArr[itemArr.length - 1].visibility.get()
+        : itemArr[0].visibility.get()
+
+      // If we're half way past the first/last item we show/hide the button
+      const value = (!end && itemVisbility > 0.5) || (end && itemVisbility > 0.5) ? 0 : 1
+      if (visibility.get() !== value) visibility.set(value)
+    })
 
     const scale = useSpring(visibility)
 

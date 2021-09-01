@@ -54,10 +54,11 @@ function useObserveItems(
         (el): el is HTMLElement => el instanceof HTMLElement,
       )
       itemsArr.forEach((value, idx) => {
-        if (!value.el) value.el = htmlEls[idx]
-
-        ro.observe(value.el)
-        io.observe(value.el)
+        if (!value.el) value.el = htmlEls?.[idx]
+        if (value.el) {
+          ro.observe(value.el)
+          io.observe(value.el)
+        }
       })
 
       return () => {
