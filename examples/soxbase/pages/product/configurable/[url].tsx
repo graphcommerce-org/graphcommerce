@@ -17,7 +17,7 @@ import {
 } from '@reachdigital/magento-product-configurable'
 import { jsonLdProductReview, ProductReviewChip } from '@reachdigital/magento-review'
 import { Money, StoreConfigDocument } from '@reachdigital/magento-store'
-import { GetStaticProps, JsonLd, AppShellTitle, Title } from '@reachdigital/next-ui'
+import { GetStaticProps, JsonLd, Title } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
