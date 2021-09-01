@@ -17,7 +17,7 @@ import {
 } from '@reachdigital/magento-product-configurable'
 import { jsonLdProductReview, ProductReviewChip } from '@reachdigital/magento-review'
 import { Money, StoreConfigDocument } from '@reachdigital/magento-store'
-import { GetStaticProps, JsonLd, AppShellTitle, Title } from '@reachdigital/next-ui'
+import { GetStaticProps, JsonLd, Title } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
@@ -105,7 +105,9 @@ function ProductConfigurable(props: Props) {
               <Money {...product.price_range.minimum_price.regular_price} />
             </Typography>
           </div>
-          <AppShellTitle bare>{product.name}</AppShellTitle>
+          <Typography variant='h3' component='div'>
+            {product.name}
+          </Typography>
           <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           <ConfigurableProductAddToCart
             variables={{ sku: product.sku ?? '', quantity: 1 }}

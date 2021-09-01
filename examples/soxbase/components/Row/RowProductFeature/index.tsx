@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core'
+import { Typography, useTheme } from '@material-ui/core'
 import RichText from '@reachdigital/graphcms-ui/RichText'
 import { Image } from '@reachdigital/image'
 import { RowImageText } from '@reachdigital/next-ui'
@@ -12,13 +12,25 @@ export default function RowProductFeature(props: ProductFeatureProps) {
   const { copy, topic, media_gallery } = props
   const item = media_gallery?.[2] ?? media_gallery?.[0]
 
+  const theme = useTheme()
   if (!item) return null
 
   return (
     <RowImageText
       item={
         item.__typename === 'ProductImage' &&
-        item.url && <Image alt={item.label ?? ''} width={328} height={328} src={item.url} />
+        item.url && (
+          <Image
+            alt={item.label ?? ''}
+            width={328}
+            height={328}
+            src={item.url}
+            sizes={{
+              0: '100vw',
+              [theme.breakpoints.values.md]: '50vw',
+            }}
+          />
+        )
       }
     >
       {topic && <Typography variant='overline'>{topic}</Typography>}

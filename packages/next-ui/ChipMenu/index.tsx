@@ -13,7 +13,6 @@ export const useChipMenuStyles = makeStyles(
       otherwise you'll get: ".MuiChip-deletable.MuiChip-outlined:hover" which is prone to changes and thereby a fragile selector
     */
     chip: {
-      paddingTop: 1,
       background: theme.palette.background.default,
       '& .MuiChip-label': {
         wordWrap: 'break-word',

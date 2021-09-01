@@ -1,28 +1,29 @@
 import { Link, makeStyles, Theme } from '@material-ui/core'
+import { Scroller, ScrollerButton, ScrollerProvider } from '@reachdigital/framer-scroller'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
-import SliderContainer from '../FramerSlider/SliderContainer'
-import SliderContext from '../FramerSlider/SliderContext'
-import SliderNext from '../FramerSlider/SliderNext'
-import SliderPrev from '../FramerSlider/SliderPrev'
-import SliderScroller from '../FramerSlider/SliderScroller'
+import React from 'react'
+import SvgImageSimple from '../SvgImage/SvgImageSimple'
+import { iconChevronLeft, iconChevronRight } from '../icons'
 import { MenuProps } from './Menu'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
-      width: '100%',
+      minWidth: 200,
+      flex: 1,
       position: 'relative',
       pointerEvents: 'all',
-      padding: '10px 0',
       [theme.breakpoints.down('sm')]: {
         display: 'none',
       },
     },
     scroller: {
+      display: 'flex',
       columnGap: 40,
       padding: '0 40px',
+      minHeight: 40,
     },
     prevNext: {
       pointerEvents: 'all',
@@ -30,6 +31,7 @@ const useStyles = makeStyles(
       background: theme.palette.background.default,
       top: 5,
       [theme.breakpoints.down('sm')]: { display: 'none' },
+      boxShadow: 'none',
     },
     prev: {
       left: 0,
@@ -37,15 +39,13 @@ const useStyles = makeStyles(
     next: {
       right: 0,
     },
-    prevNextFab: {
-      boxShadow: 'none',
-    },
     link: {
       whiteSpace: 'nowrap',
       color: 'black',
       '&:hover': {
         textDecoration: 'none',
       },
+      paddingTop: 6,
     },
     line: {
       maxWidth: 40,
@@ -56,6 +56,10 @@ const useStyles = makeStyles(
       background: theme.palette.primary.main,
       margin: '0 auto',
       marginTop: 6,
+      opacity: 0,
+    },
+    lineShow: {
+      opacity: 1,
     },
   }),
   { name: 'DesktopNavBar' },
@@ -69,27 +73,38 @@ export default function DesktopNavBar(props: MenuTabsProps) {
   const router = useRouter()
 
   return (
-    <SliderContext scrollSnapAlign={false}>
-      <SliderContainer classes={{ container: classes.container }}>
-        <SliderScroller classes={{ scroller: classes.scroller }}>
+    <ScrollerProvider scrollSnapAlign='none'>
+      <div className={classes.container}>
+        <Scroller className={classes.scroller} hideScrollbar>
           {menu.map(({ href, children, ...linkProps }) => (
             <PageLink key={href.toString()} href={href} {...linkProps} passHref>
               <Link className={classes.link} variant='h6'>
                 {children}
-                {router.asPath.startsWith(href.toString()) && <div className={classes.line} />}
+                <div
+                  className={clsx(
+                    classes.line,
+                    router.asPath.startsWith(href.toString()) && classes.lineShow,
+                  )}
+                />
               </Link>
             </PageLink>
           ))}
-        </SliderScroller>
-        <SliderPrev
-          className={clsx(classes.prevNext, classes.prev)}
-          classes={{ root: classes.prevNextFab }}
-        />
-        <SliderNext
-          className={clsx(classes.prevNext, classes.next)}
-          classes={{ root: classes.prevNextFab }}
-        />
-      </SliderContainer>
-    </SliderContext>
+          <ScrollerButton
+            direction='left'
+            size='small'
+            className={clsx(classes.prevNext, classes.prev)}
+          >
+            <SvgImageSimple src={iconChevronLeft} />
+          </ScrollerButton>
+          <ScrollerButton
+            direction='right'
+            size='small'
+            className={clsx(classes.prevNext, classes.next)}
+          >
+            <SvgImageSimple src={iconChevronRight} />
+          </ScrollerButton>
+        </Scroller>
+      </div>
+    </ScrollerProvider>
   )
 }

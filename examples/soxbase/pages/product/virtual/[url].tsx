@@ -1,3 +1,4 @@
+import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AddToCartButton } from '@reachdigital/magento-cart'
 import {
@@ -16,7 +17,7 @@ import {
 } from '@reachdigital/magento-product-virtual'
 import { jsonLdProductReview, ProductReviewChip } from '@reachdigital/magento-review'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { JsonLd, GetStaticProps, Title, AppShellTitle } from '@reachdigital/next-ui'
+import { JsonLd, GetStaticProps, Title } from '@reachdigital/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { Product } from 'schema-dts'
@@ -83,7 +84,9 @@ function ProductVirtual(props: Props) {
 
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
-        <AppShellTitle bare>{product.name}</AppShellTitle>
+        <Typography variant='h3' component='div'>
+          {product.name}
+        </Typography>
         <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
         <AddToCartButton
           mutation={ProductAddToCartDocument}

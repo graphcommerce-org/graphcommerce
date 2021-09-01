@@ -14,11 +14,11 @@ type AppShellTitleProps = {
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
+    title: {},
     margin: {
       marginTop: theme.spacings.md,
       marginBottom: theme.spacings.lg,
     },
-    title: {},
   }),
   {
     name: 'AppShellTitle',

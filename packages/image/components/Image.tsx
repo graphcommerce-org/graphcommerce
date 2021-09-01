@@ -2,7 +2,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
-
 import { useForkRef } from '@material-ui/core'
 import { LoaderValue, VALID_LOADERS } from 'next/dist/server/image-config'
 import Head from 'next/head'
@@ -213,6 +212,7 @@ export type ImageProps = IntrisincImage & {
   dontReportWronglySizedImages?: boolean
   width?: number
   height?: number
+  pictureProps?: JSX.IntrinsicElements['picture']
   /**
    * Possible values:
    *
@@ -246,6 +246,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       placeholder = 'empty',
       blurDataURL,
       dontReportWronglySizedImages,
+      pictureProps,
       ...imgProps
     },
     forwardedRef,
@@ -423,7 +424,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     }
 
     // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
-    if (src && src.startsWith('data:')) unoptimized = true
+    if (src?.startsWith('data:') || src?.startsWith('blob:')) unoptimized = true
 
     const srcSet3x = generateSrcSet({ src, layout, loader, quality, sizes, width, scale: 1.5 })
     const srcSet2x = generateSrcSet({ src, layout, loader, quality, sizes, width, scale: 1 })
@@ -444,10 +445,11 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
             src={src}
             width={width}
             height={height}
+            data-nimg
             style={style}
           />
         ) : (
-          <picture>
+          <picture {...pictureProps}>
             <source media='(-webkit-min-device-pixel-ratio: 2.5)' srcSet={srcSet3x} sizes={sizes} />
             <source media='(-webkit-min-device-pixel-ratio: 1.5)' srcSet={srcSet2x} sizes={sizes} />
             <source
@@ -456,7 +458,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
               sizes={sizes}
             />
             <img
-              ref={ref}
+              ref={combinedRef}
               {...imgProps}
               src={src}
               loading={loading ?? 'lazy'}
@@ -464,6 +466,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
               height={height}
               style={style}
               sizes={sizes}
+              data-nimg
               decoding='async'
             />
           </picture>
@@ -479,7 +482,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
                   rel='preload'
                   as='image'
                   media='(-webkit-min-device-pixel-ratio: 2.5)'
-                  // @ts-expect-error imagesrcset is not yet in the link element type
+                  // @ts-expect-error imagesrcset/imagesizes is not yet in the link element type.
                   imagesrcset={srcSet3x}
                   imagesizes={sizes}
                 />
@@ -488,7 +491,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
                   rel='preload'
                   as='image'
                   media='(-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 2.49)'
-                  // @ts-expect-error imagesrcset is not yet in the link element type
+                  // @ts-expect-error imagesrcset/imagesizes is not yet in the link element type.
                   imagesrcset={srcSet2x}
                   imagesizes={sizes}
                 />
@@ -497,7 +500,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
                   rel='preload'
                   as='image'
                   media='(-webkit-max-device-pixel-ratio: 1.49)'
-                  // @ts-expect-error imagesrcset is not yet in the link element type
+                  // @ts-expect-error imagesrcset/imagesizes is not yet in the link element type.
                   imagesrcset={srcSet1x}
                   imagesizes={sizes}
                 />

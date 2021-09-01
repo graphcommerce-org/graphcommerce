@@ -37,7 +37,7 @@
     "@reachdigital/eslint-config-pwa": "^2.102.2",
     "@reachdigital/prettier-config-pwa": "^2.100.9",
     "@reachdigital/typescript-config-pwa": "^2.100.10",
-    "typescript": "^4.3.5"
+    "typescript": "^4.4.2"
   },
   "prettier": "@reachdigital/prettier-config-pwa",
   "browserslist": [

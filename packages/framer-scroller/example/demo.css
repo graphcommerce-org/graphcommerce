@@ -1,0 +1,15 @@
+:root {
+  --sm-space: 1rem;
+  --md-space: 2rem;
+}
+
+html {
+  block-size: 100%;
+}
+
+body {
+  min-block-size: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}

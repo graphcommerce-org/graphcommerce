@@ -155,14 +155,15 @@ export function resolveDocumentImports<T>(
         externalFragments,
       }
     } catch (e) {
-      throw new DetailedError(
-        `Unable to validate GraphQL document!`,
-        `
-      File ${documentFile.location} caused error:
-        ${e.message || e.toString()}
-            `,
-        documentFile.location,
-      )
+      if (e instanceof Error) {
+        throw new DetailedError(
+          `Unable to validate GraphQL document!`,
+          `File ${documentFile.location} caused error: ${e.message || e.toString()}`,
+          documentFile.location,
+        )
+      } else {
+        throw e
+      }
     }
   })
 

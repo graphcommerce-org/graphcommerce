@@ -1,19 +1,9 @@
 /// <reference types="@reachdigital/next-ui/types" />
 
 import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core'
-import { TypographyStyleOptions } from '@material-ui/core/styles/createTypography'
 import { responsiveVal } from '@reachdigital/next-ui'
 import React from 'react'
 import shadows from './shadows'
-
-const debug = (name: string): TypographyStyleOptions => ({
-  '&:after': {
-    // fontSize: 8,
-    paddingLeft: 4,
-    // fontWeight: 400,
-    content: `"${name}" !important`,
-  },
-})
 
 // Create a theme instance.
 export const defaultTheme = createTheme({

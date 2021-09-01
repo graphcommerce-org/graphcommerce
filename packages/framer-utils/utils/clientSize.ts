@@ -1,4 +1,5 @@
 import { motionValue, MotionValue } from 'framer-motion'
+import sync from 'framesync'
 
 export type ClientSize = {
   x: MotionValue<number>
@@ -15,7 +16,9 @@ export const clientSize: ClientSize = {
 
 if (typeof window !== 'undefined') {
   window.addEventListener('resize', () => {
-    clientSize.x.set(x())
-    clientSize.y.set(y())
+    sync.read(() => {
+      clientSize.x.set(x())
+      clientSize.y.set(y())
+    })
   })
 }

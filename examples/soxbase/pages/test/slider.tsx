@@ -1,51 +1,31 @@
-import { Container, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { Image } from '@reachdigital/image'
 import { ProductListDocument, ProductListQuery } from '@reachdigital/magento-product'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import {
-  SliderImage,
-  Images,
-  Multi,
-  Single,
-  SidebarGallery,
-  GetStaticProps,
-} from '@reachdigital/next-ui'
-import { m } from 'framer-motion'
+import { AppShellTitle, GetStaticProps, Title } from '@reachdigital/next-ui'
+import SidebarGallery from '@reachdigital/next-ui/FramerScroller/components/SidebarGallery'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
+import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = ProductListQuery
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function TestSlider({ products }: Props) {
-  const images = products?.items?.map((item) => item?.small_image?.url ?? '') ?? []
   return (
     <>
-      <Container>
-        <Typography variant='h1' style={{ textAlign: 'center' }}>
-          Framer Slider
-        </Typography>
-
-        <m.div layout>
-          <Typography variant='h2' style={{ textAlign: 'center' }}>
-            Expandable Image Gallery
-          </Typography>
-        </m.div>
-        <Images urls={images} />
-
-        <m.div layout>
-          <Typography variant='h2' style={{ textAlign: 'center' }}>
-            Sidebar image gallery
-          </Typography>
-        </m.div>
-      </Container>
+      <FullPageShellHeader>
+        <Title size='small' component='span'>
+          Product title
+        </Title>
+      </FullPageShellHeader>
 
       <SidebarGallery
         sidebar={
           <>
-            <h1>Title</h1>
+            <AppShellTitle variant='h2' bare>
+              Product Title
+            </AppShellTitle>
             <ul>
               <li>Some product details</li>
               <li>Or other information</li>
@@ -53,29 +33,48 @@ function TestSlider({ products }: Props) {
             </ul>
           </>
         }
-      >
-        {images.map((image) => (
-          <SliderImage key={image} width={1532} height={1678}>
-            <Image src={image} width={1532} height={1678} alt='img' />
-          </SliderImage>
-        ))}
-      </SidebarGallery>
+        images={
+          products?.items?.map((item) => ({
+            src: item?.small_image?.url ?? '',
+            width: 1532,
+            height: 1678,
+          })) ?? []
+        }
+      />
 
-      <Container>
-        <m.div layout>
-          <Typography variant='h2' style={{ textAlign: 'center' }}>
-            Multi item slider
-          </Typography>
-        </m.div>
-        <Multi />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
 
-        <m.div layout>
-          <Typography variant='h2' style={{ textAlign: 'center' }}>
-            Single item Slider
-          </Typography>
-        </m.div>
-        <Single />
-      </Container>
+      {/* <Container>
+      <m.div layout>
+        <Typography variant='h2' style={{ textAlign: 'center' }}>
+          Multi item slider
+        </Typography>
+      </m.div>
+      <Multi />
+
+      <m.div layout>
+        <Typography variant='h2' style={{ textAlign: 'center' }}>
+          Single item Slider
+        </Typography>
+      </m.div>
+      <Single />
+    </Container> */}
     </>
   )
 }
@@ -95,7 +94,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const categoryUid = String((await conf).data.storeConfig?.root_category_uid ?? '')
   const productList = staticClient.query({
     query: ProductListDocument,
-    variables: { categoryUid, pageSize: 8, filters: { category_uid: { eq: 'NQ==' } } },
+    variables: { categoryUid, pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
   })
 
   return {

@@ -61,5 +61,6 @@ const SvgImageSimple = forwardRef<HTMLImageElement, SvgImageSimpleProps>((props,
     />
   )
 })
+SvgImageSimple.displayName = 'SvgImageSimple'
 
 export default SvgImageSimple
