@@ -17,16 +17,18 @@
     "graphql": "14.x.x || 15.x.x"
   },
   "dependencies": {
-    "@graphql-codegen/plugin-helpers": "2.0.0",
+    "@graphql-codegen/plugin-helpers": "2.1.1",
     "relay-compiler": "11.0.2"
   },
   "devDependencies": {
     "@graphql-codegen/testing": "1.17.7",
+    "@reachdigital/eslint-config-pwa": "^2.102.2",
+    "@reachdigital/prettier-config-pwa": "^2.100.9",
     "@types/jest": "27.0.1",
     "@types/relay-compiler": "8.0.1",
-    "graphql": "15.5.1",
-    "jest": "27.0.6",
-    "ts-jest": "27.0.4",
+    "graphql": "^15.5.2",
+    "jest": "27.1.0",
+    "ts-jest": "27.0.5",
     "typescript": "^4.4.2"
   },
   "scripts": {
@@ -35,6 +37,19 @@
     "build:module": "tsc --target es2017 --outDir dist/module",
     "build:main": "tsc --target es5 --outDir dist/main",
     "build": "yarn build:module && yarn build:main"
+  },
+  "prettier": "@reachdigital/prettier-config-pwa",
+  "browserslist": [
+    "extends @reachdigital/browserslist-config-pwa"
+  ],
+  "eslint": {
+    "extends": "@reachdigital/eslint-config-pwa"
+  },
+  "eslintConfig": {
+    "extends": "@reachdigital/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
   },
   "files": [
     "dist/**/*",
