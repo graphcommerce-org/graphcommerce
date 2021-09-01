@@ -104,12 +104,11 @@ export default function EmailForm(props: EmailFormProps) {
           </form>
         </AnimatedRow>
 
-        {(mode === 'signin' && expand) ||
-          (mode === 'session-expired' && (
-            <AnimatedRow key='signin-form-inline'>
-              <SignInFormInline email={watch('email')} />
-            </AnimatedRow>
-          ))}
+        {((mode === 'signin' && expand) || mode === 'session-expired') && (
+          <AnimatedRow key='signin-form-inline'>
+            <SignInFormInline email={watch('email')} />
+          </AnimatedRow>
+        )}
 
         {mode === 'signup' && expand && (
           <AnimatedRow key='inline-signup'>

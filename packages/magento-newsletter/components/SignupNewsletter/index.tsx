@@ -1,4 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import { UseStyles } from '@reachdigital/next-ui'
 import React from 'react'
 import NewsletterToggle from '../NewsletterToggle'
 
@@ -38,11 +39,11 @@ const useStyles = makeStyles(
 
 type SignupNewsletterProps = {
   email: string
-}
+} & UseStyles<typeof useStyles>
 
 export default function SignupNewsletter(props: SignupNewsletterProps) {
   const { email } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   return (
     <div className={classes.signup}>

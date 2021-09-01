@@ -101,14 +101,20 @@ export default function CartItemSummary(props: OrderSummaryProps) {
             <SliderContainer classes={{ container: classes.sliderContainer }}>
               <SliderScroller>
                 {items?.map((item) => (
-                  <Image
-                    key={item?.uid}
-                    alt={item?.product?.thumbnail?.label ?? ''}
-                    src={item?.product?.thumbnail?.url ?? ''}
-                    className={classes.image}
-                    layout='fill'
-                    sizes={responsiveVal(48, 96)}
-                  />
+                  <React.Fragment key={item?.uid}>
+                    {item?.product?.thumbnail?.url ? (
+                      <Image
+                        key={item?.uid}
+                        alt={item?.product?.thumbnail?.label ?? ''}
+                        src={item?.product?.thumbnail?.url ?? ''}
+                        className={classes.image}
+                        layout='fill'
+                        sizes={responsiveVal(48, 96)}
+                      />
+                    ) : (
+                      <div />
+                    )}
+                  </React.Fragment>
                 ))}
               </SliderScroller>
             </SliderContainer>
