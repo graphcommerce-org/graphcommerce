@@ -1,45 +1,35 @@
-import { makeStyles, Theme } from '@material-ui/core'
-import { SidebarGallery, TypeRenderer, UseStyles } from '@reachdigital/next-ui'
+import { SidebarGallery, SidebarGalleryProps, TypeRenderer } from '@reachdigital/next-ui'
 import React, { PropsWithChildren } from 'react'
-import ProductImage from './ProductImage'
 import { ProductPageGalleryFragment } from './ProductPageGallery.gql'
-import ProductVideo from './ProductVideo'
 
 export type ProductPageGalleryRenderers = TypeRenderer<
   NonNullable<NonNullable<ProductPageGalleryFragment['media_gallery']>[0]>
 >
-const renderers: ProductPageGalleryRenderers = { ProductImage, ProductVideo }
 
 type ProductPageGalleryProps = PropsWithChildren<ProductPageGalleryFragment> &
-  UseStyles<typeof useStyles>
-
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    wrapper: {
-      marginTop: 'initial',
-      [theme.breakpoints.up('md')]: {
-        marginTop: -60,
-      },
-    },
-  }),
-  {
-    name: 'ProductPageGallery',
-  },
-)
+  Omit<SidebarGalleryProps, 'sidebar' | 'images'>
 
 export default function ProductPageGallery(props: ProductPageGalleryProps) {
-  const { media_gallery, children } = props
-  const classes = useStyles(props)
+  const {
+    media_gallery,
+    children,
+    aspectRatio: [width, height] = [1532, 1678],
+    ...sidebarProps
+  } = props
 
   return (
     <SidebarGallery
+      {...sidebarProps}
       sidebar={children}
-      aspectRatio={[1678, 1532]}
+      aspectRatio={[width, height]}
       images={
         media_gallery?.map((item) => {
           if (item?.__typename === 'ProductImage')
-            return { src: item.url ?? '', alt: item.label || undefined }
-          return { src: '', alt: `{${item?.__typename} not yet supported}` }
+            return { src: item.url ?? '', alt: item.label || undefined, width, height }
+          return {
+            src: '',
+            alt: `{${item?.__typename} not yet supported}`,
+          }
         }) ?? []
       }
     />

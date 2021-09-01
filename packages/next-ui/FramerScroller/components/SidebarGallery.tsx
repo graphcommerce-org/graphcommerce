@@ -36,6 +36,7 @@ const useStyles = makeStyles(
       },
       background: theme.palette.background.highlight,
       paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
+      marginBottom: theme.spacings.lg,
     },
     rootZoomed: {
       position: 'relative',
@@ -52,7 +53,7 @@ const useStyles = makeStyles(
       const extraSpacing = theme.spacings.md
 
       const maxHeight = `calc(100vh - ${headerHeight} - ${galleryMargin} - ${extraSpacing})`
-      const ratio = `calc(${width} / ${height} * 100%)`
+      const ratio = `calc(${height} / ${width} * 100%)`
       return {
         height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
         position: 'relative',
@@ -84,7 +85,9 @@ const useStyles = makeStyles(
       justifyItems: 'start',
       alignContent: 'center',
       position: 'relative',
-      width: `calc(400px + ${theme.page.horizontal} * 2)`,
+      [theme.breakpoints.up('md')]: {
+        width: `calc(400px + ${theme.page.horizontal} * 2)`,
+      },
     },
     sidebarWrapperZoomed: {
       [theme.breakpoints.up('md')]: {
@@ -93,6 +96,8 @@ const useStyles = makeStyles(
       },
     },
     sidebar: {
+      boxSizing: 'border-box',
+      width: '100%',
       padding: `${theme.spacings.md} ${theme.page.horizontal}`,
       [theme.breakpoints.up('md')]: {
         paddingLeft: theme.spacings.lg,

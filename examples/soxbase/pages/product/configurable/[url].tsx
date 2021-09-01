@@ -105,7 +105,9 @@ function ProductConfigurable(props: Props) {
               <Money {...product.price_range.minimum_price.regular_price} />
             </Typography>
           </div>
-          <AppShellTitle bare>{product.name}</AppShellTitle>
+          <Typography variant='h3' component='div'>
+            {product.name}
+          </Typography>
           <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           <ConfigurableProductAddToCart
             variables={{ sku: product.sku ?? '', quantity: 1 }}
