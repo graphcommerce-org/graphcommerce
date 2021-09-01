@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.111.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.110.1...@reachdigital/next-ui@2.111.0) (2021-09-01)
+
+
+### Bug Fixes
+
+* chipmenu styling ([dcdbbcc](https://github.com/ho-nl/m2-pwa/commit/dcdbbccceb2226de5067b14414f3d4ff5e016a5b))
+* **framer-scroller:** center the prev/next buttons on the gallery ([234dc37](https://github.com/ho-nl/m2-pwa/commit/234dc37fc46f723410e9a844bbcb33cfe5d8a588))
+* make sure we remove the scrollbar only when the animation completes ([aa629e0](https://github.com/ho-nl/m2-pwa/commit/aa629e06b7b13e4cd85332cd6dcfbe8ae973a7f5))
+
+
+### Features
+
+* **framer-scroller:** added the new slider to the product page ([3c6b726](https://github.com/ho-nl/m2-pwa/commit/3c6b7262fb6418798f828f4517ed097fd9734e96))
+* **framer-scroller:** implemented the scroller on all pages ([73fb518](https://github.com/ho-nl/m2-pwa/commit/73fb518eff74edb2b3212e892b3d8cc2b088011b))
+* **framer-scroller:** package to implement scroll-snap handling with JS ([b3a279f](https://github.com/ho-nl/m2-pwa/commit/b3a279f8b4acb2b9de99004efe0459c534786bdd))
+
+
+
+
+
 ## [2.110.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.110.0...@reachdigital/next-ui@2.110.1) (2021-08-30)
 
 

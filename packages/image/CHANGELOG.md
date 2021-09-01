@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/image@2.102.1...@reachdigital/image@2.103.0) (2021-09-01)
+
+
+### Features
+
+* **image:** allow passing props to the picture component ([3425664](https://github.com/ho-nl/m2-pwa/commit/3425664f197974d2e9db048fc94d447b2d34c280))
+
+
+
+
+
 # [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/image@2.101.5...@reachdigital/image@2.102.0) (2021-08-12)
 
 

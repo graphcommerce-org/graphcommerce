@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.113.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.112.0...@reachdigital/soxbase@2.113.0) (2021-09-01)
+
+
+### Features
+
+* **framer-scroller:** implemented the scroller on all pages ([73fb518](https://github.com/ho-nl/m2-pwa/commit/73fb518eff74edb2b3212e892b3d8cc2b088011b))
+
+
+
+
+
 # [2.112.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.111.1...@reachdigital/soxbase@2.112.0) (2021-08-30)
 
 

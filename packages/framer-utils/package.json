@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/framer-utils",
-  "version": "2.102.4",
+  "version": "2.102.5",
   "private": true,
   "sideEffects": false,
   "scripts": {

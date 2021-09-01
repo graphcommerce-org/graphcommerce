@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.102.5](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/framer-utils@2.102.4...@reachdigital/framer-utils@2.102.5) (2021-09-01)
+
+
+### Bug Fixes
+
+* **framer-utils:** reading of values didn't happen at the right moment, causing unnessary layout reflows ([b119262](https://github.com/ho-nl/m2-pwa/commit/b119262ffb2907a215f9f37f12ef6cf6f62fadcd))
+* **framer-utils:** state wasn't directly set when initializing useMotionValueValue ([3560456](https://github.com/ho-nl/m2-pwa/commit/35604562a4a39fef3b5dc4c0305ce0753608d9e8))
+
+
+
+
+
 ## [2.102.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/framer-utils@2.102.1...@reachdigital/framer-utils@2.102.2) (2021-08-04)
 
 

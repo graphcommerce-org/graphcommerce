@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product@2.104.8...@reachdigital/magento-product@2.105.0) (2021-09-01)
+
+
+### Features
+
+* **framer-scroller:** added the new slider to the product page ([3c6b726](https://github.com/ho-nl/m2-pwa/commit/3c6b7262fb6418798f828f4517ed097fd9734e96))
+* **framer-scroller:** implemented the scroller on all pages ([73fb518](https://github.com/ho-nl/m2-pwa/commit/73fb518eff74edb2b3212e892b3d8cc2b088011b))
+
+
+
+
+
 ## [2.104.7](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product@2.104.6...@reachdigital/magento-product@2.104.7) (2021-08-27)
 
 

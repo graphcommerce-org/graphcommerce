@@ -1,7 +1,7 @@
 {
   "name": "@reachdigital/soxbase-api",
   "homepage": "https://soxbase-api.vercel.app/api/graphql",
-  "version": "2.103.1",
+  "version": "2.103.2",
   "private": true,
   "sideEffects": false,
   "engines": {
@@ -24,7 +24,7 @@
     "@graphql-mesh/transform-federation": "^0.5.21",
     "@graphql-mesh/transform-filter-schema": "^0.10.23",
     "@graphql-mesh/types": "^0.45.0",
-    "@reachdigital/graphql-mesh": "^2.102.1",
+    "@reachdigital/graphql-mesh": "^2.102.2",
     "@reachdigital/next-config": "^2.101.0",
     "dotenv": "^10.0.0",
     "next": "^11.1.0",

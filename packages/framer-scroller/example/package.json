@@ -1,7 +1,7 @@
 {
   "name": "@reachdigital/framer-scroller-example",
   "private": true,
-  "version": "2.101.4",
+  "version": "2.102.0",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -9,12 +9,12 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
-    "@reachdigital/framer-scroller": "^0.0.0",
+    "@reachdigital/framer-scroller": "^0.1.0",
+    "@reachdigital/image": "^2.103.0",
     "@reachdigital/next-config": "^2.101.0",
-    "@reachdigital/next-ui": "^2.108.2",
-    "@reachdigital/image": "^2.102.1",
-    "framer-motion": "^4.1.17",
+    "@reachdigital/next-ui": "^2.111.0",
     "clsx": "^1.1.1",
+    "framer-motion": "^4.1.17",
     "next": "^11.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
