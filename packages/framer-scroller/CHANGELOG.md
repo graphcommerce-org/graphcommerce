@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/framer-scroller@0.1.0...@reachdigital/framer-scroller@0.1.1) (2021-09-01)
+
+
+### Bug Fixes
+
+* **framer-slider:** prev/next buttons don't always show up correctly ([ba2510e](https://github.com/ho-nl/m2-pwa/commit/ba2510ea659344a2d71957eed396f4e5ce536a8c))
+* make sure we can actually observe items ([4767b2a](https://github.com/ho-nl/m2-pwa/commit/4767b2a1bb23fc6d2e445c10c96da0a666212c55))
+
+
+
+
+
 # 0.1.0 (2021-09-01)
 
 

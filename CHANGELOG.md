@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.119.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.118.0...@graphcommerce/graphcommerce@2.119.0) (2021-09-01)
+
+
+### Bug Fixes
+
+* **framer-slider:** prev/next buttons don't always show up correctly ([ba2510e](https://github.com/ho-nl/m2-pwa/commit/ba2510ea659344a2d71957eed396f4e5ce536a8c))
+* **magento-product:** hide sorting options when there are no products ([c5e37d7](https://github.com/ho-nl/m2-pwa/commit/c5e37d709c570596994beafe5a6afccfa5704548))
+* make sure we can actually observe items ([4767b2a](https://github.com/ho-nl/m2-pwa/commit/4767b2a1bb23fc6d2e445c10c96da0a666212c55))
+* playwright can't find the place order button ([b1fda5b](https://github.com/ho-nl/m2-pwa/commit/b1fda5b3e403dad621aba8ed895427f2166bc985))
+* sidebar gallery width ([7185850](https://github.com/ho-nl/m2-pwa/commit/71858500d5b62e1d2130d236247fc06fd80649f9))
+
+
+### Features
+
+* **framer-scroller:** add prev/next buttons to SidebarSlider ([00472e5](https://github.com/ho-nl/m2-pwa/commit/00472e5fe3c3c5408db358c0c78a3559cea902ca))
+
+
+
+
+
 # [2.118.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.117.1...@graphcommerce/graphcommerce@2.118.0) (2021-09-01)
 
 

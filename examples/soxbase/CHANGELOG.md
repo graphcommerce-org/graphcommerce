@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.113.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.113.0...@reachdigital/soxbase@2.113.1) (2021-09-01)
+
+
+### Bug Fixes
+
+* **magento-product:** hide sorting options when there are no products ([c5e37d7](https://github.com/ho-nl/m2-pwa/commit/c5e37d709c570596994beafe5a6afccfa5704548))
+
+
+
+
+
 # [2.113.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.112.0...@reachdigital/soxbase@2.113.0) (2021-09-01)
 
 

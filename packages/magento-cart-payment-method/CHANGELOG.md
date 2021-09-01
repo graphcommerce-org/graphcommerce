@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.12](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-payment-method@2.103.11...@reachdigital/magento-cart-payment-method@2.103.12) (2021-09-01)
+
+
+### Bug Fixes
+
+* playwright can't find the place order button ([b1fda5b](https://github.com/ho-nl/m2-pwa/commit/b1fda5b3e403dad621aba8ed895427f2166bc985))
+
+
+
+
+
 ## [2.103.4](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-payment-method@2.103.3...@reachdigital/magento-cart-payment-method@2.103.4) (2021-08-17)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/pwa-docs",
-  "version": "2.102.3",
+  "version": "2.102.4",
   "private": true,
   "main": "index.js",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "@reachdigital/typescript-config-pwa": "^2.100.10"
   },
   "dependencies": {
-    "@reachdigital/next-config": "^2.101.0",
+    "@reachdigital/next-config": "^2.101.1",
     "next": "^11.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

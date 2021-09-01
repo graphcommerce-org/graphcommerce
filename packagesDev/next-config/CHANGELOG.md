@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.101.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-config@2.101.0...@reachdigital/next-config@2.101.1) (2021-09-01)
+
+
+### Bug Fixes
+
+* playwright can't find the place order button ([b1fda5b](https://github.com/ho-nl/m2-pwa/commit/b1fda5b3e403dad621aba8ed895427f2166bc985))
+
+
+
+
+
 # [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-config@2.100.10...@reachdigital/next-config@2.101.0) (2021-08-12)
 
 

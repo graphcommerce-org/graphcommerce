@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.112.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.111.0...@reachdigital/next-ui@2.112.0) (2021-09-01)
+
+
+### Bug Fixes
+
+* **framer-slider:** prev/next buttons don't always show up correctly ([ba2510e](https://github.com/ho-nl/m2-pwa/commit/ba2510ea659344a2d71957eed396f4e5ce536a8c))
+* sidebar gallery width ([7185850](https://github.com/ho-nl/m2-pwa/commit/71858500d5b62e1d2130d236247fc06fd80649f9))
+
+
+### Features
+
+* **framer-scroller:** add prev/next buttons to SidebarSlider ([00472e5](https://github.com/ho-nl/m2-pwa/commit/00472e5fe3c3c5408db358c0c78a3559cea902ca))
+
+
+
+
+
 # [2.111.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.110.1...@reachdigital/next-ui@2.111.0) (2021-09-01)
 
 
