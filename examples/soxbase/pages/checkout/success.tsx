@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client'
 import { Box, Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CartItemSummary, CartSummary } from '@reachdigital/magento-cart'
-import { CustomerDocument } from '@reachdigital/magento-customer'
+import { InlineAccount, CustomerDocument } from '@reachdigital/magento-customer'
 import { SignupNewsletter } from '@reachdigital/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
@@ -49,6 +49,8 @@ function ShippingPage() {
         {customerQuery?.customer?.email && (
           <SignupNewsletter email={customerQuery.customer.email} />
         )}
+
+        {!customerQuery?.customer?.email && <InlineAccount accountHref='/account' />}
 
         <Box textAlign='center' m={8}>
           <PageLink href='/' passHref>
