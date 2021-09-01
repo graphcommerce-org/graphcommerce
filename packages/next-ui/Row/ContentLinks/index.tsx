@@ -1,13 +1,12 @@
 import { Container, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Scroller, ScrollerProvider } from '@reachdigital/framer-scroller'
 import React from 'react'
-import MultiItemSlider from '../../FramerSlider/variants/MultiItemSlider'
 import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {},
     scroller: {
-      padding: `0 ${theme.page.horizontal}px`,
       marginBottom: `${theme.spacings.lg}`,
       display: 'grid',
       gridAutoFlow: 'column',
@@ -36,12 +35,14 @@ export default function ContentLinks(props: ContentLinksProps) {
 
   return (
     <Container className={classes.root} maxWidth={false}>
-      <MultiItemSlider classes={{ scroller: classes.scroller }} scrollSnapAlign={false}>
-        <Typography variant='body1' component='h4' className={classes.title}>
-          {title}
-        </Typography>
-        {children}
-      </MultiItemSlider>
+      <ScrollerProvider scrollSnapAlign='none'>
+        <Scroller className={classes.scroller} hideScrollbar>
+          <Typography variant='body1' component='h4' className={classes.title}>
+            {title}
+          </Typography>
+          {children}
+        </Scroller>
+      </ScrollerProvider>
     </Container>
   )
 }

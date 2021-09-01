@@ -1,12 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import {
-  SliderContainer,
-  SliderContext,
-  SliderNext,
-  SliderPrev,
-  SliderScroller,
-  UseStyles,
-} from '@reachdigital/next-ui'
+import { Scroller, ScrollerButton, ScrollerProvider } from '@reachdigital/framer-scroller'
+import { iconChevronLeft, iconChevronRight, SvgImageSimple, UseStyles } from '@reachdigital/next-ui'
 import clsx from 'clsx'
 import { m, useMotionTemplate, useTransform, useViewportScroll } from 'framer-motion'
 import React, { PropsWithChildren, useEffect, useRef, useState } from 'react'
@@ -33,6 +27,7 @@ const useStyles = makeStyles(
       },
     },
     container: {
+      maxWidth: '100%',
       padding: 6,
       [theme.breakpoints.up('md')]: {
         background: '#fff',
@@ -42,11 +37,9 @@ const useStyles = makeStyles(
     },
     containerSticky: {},
     scroller: {
+      display: 'grid',
+      gridAutoFlow: 'column',
       borderRadius: 22,
-      [theme.breakpoints.up('md')]: {
-        // padding: 6,
-      },
-
       columnGap: 6,
     },
     scrollerSticky: {},
@@ -118,21 +111,25 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
 
   return (
     <m.div className={classes.wrapper} ref={wrapperRef}>
-      <SliderContext scrollSnapAlign={false}>
-        <SliderPrev className={classes.sliderPrev} />
-        <SliderContainer
-          classes={{ container: clsx(classes.container, isSticky && classes.containerSticky) }}
+      <ScrollerProvider scrollSnapAlign='none'>
+        <ScrollerButton direction='left' className={classes.sliderPrev}>
+          <SvgImageSimple src={iconChevronLeft} />
+        </ScrollerButton>
+        <m.div
+          className={clsx(classes.container, isSticky && classes.containerSticky)}
           style={{ filter }}
         >
-          <SliderScroller
-            classes={{ scroller: clsx(classes.scroller, isSticky && classes.scrollerSticky) }}
-            // animate={{ paddingLeft: isSticky ? 80 : 0 }}
+          <Scroller
+            className={clsx(classes.scroller, isSticky && classes.scrollerSticky)}
+            hideScrollbar
           >
             {children}
-          </SliderScroller>
-        </SliderContainer>
-        <SliderNext className={classes.sliderNext} />
-      </SliderContext>
+          </Scroller>
+        </m.div>
+        <ScrollerButton direction='right' className={classes.sliderNext}>
+          <SvgImageSimple src={iconChevronRight} />
+        </ScrollerButton>
+      </ScrollerProvider>
     </m.div>
   )
 }

@@ -1,11 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import {
-  RenderType,
-  SidebarGallery,
-  SliderImage,
-  TypeRenderer,
-  UseStyles,
-} from '@reachdigital/next-ui'
+import { SidebarGallery, TypeRenderer, UseStyles } from '@reachdigital/next-ui'
 import React, { PropsWithChildren } from 'react'
 import ProductImage from './ProductImage'
 import { ProductPageGalleryFragment } from './ProductPageGallery.gql'

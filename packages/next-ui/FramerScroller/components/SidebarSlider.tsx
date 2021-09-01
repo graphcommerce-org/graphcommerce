@@ -1,12 +1,9 @@
 import { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
+import { Scroller, ScrollerPageCounter, ScrollerProvider } from '@reachdigital/framer-scroller'
 import React, { ReactNode } from 'react'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
-import SliderContainer from '../SliderContainer'
-import SliderContext from '../SliderContext'
-import SliderPageCounter from '../SliderPageCounter'
-import SliderScroller from '../SliderScroller'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -22,10 +19,13 @@ const useStyles = makeStyles(
       padding: `0 ${theme.spacings.lg} 0 ${theme.page.horizontal}`,
     },
     scroller: {
+      display: 'grid',
+      gridAutoFlow: 'column',
       gridColumnGap: theme.spacings.md,
       gridRowGap: theme.spacings.lg,
       alignContent: 'space-around',
       paddingRight: theme.page.horizontal,
+      minWidth: 1,
       '& > *': {
         minWidth: responsiveVal(200, 400),
       },
@@ -40,20 +40,20 @@ export type SidebarSliderProps = { children: ReactNode; sidebar: ReactNode } & U
 
 export default function SidebarSlider(props: SidebarSliderProps) {
   const { children, sidebar } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   return (
-    <SliderContext scrollSnapAlign='start'>
+    <ScrollerProvider scrollSnapAlign='start'>
       <div className={classes.root}>
         <div className={classes.sidebar}>
           <div>{sidebar}</div>
-          <SliderPageCounter count={React.Children.count(children)} />
+          <ScrollerPageCounter />
         </div>
 
-        <SliderContainer>
-          <SliderScroller classes={{ scroller: classes.scroller }}>{children}</SliderScroller>
-        </SliderContainer>
+        <Scroller className={classes.scroller} hideScrollbar>
+          {children}
+        </Scroller>
       </div>
-    </SliderContext>
+    </ScrollerProvider>
   )
 }

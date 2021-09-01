@@ -1,17 +1,15 @@
-import { Divider, Link, makeStyles, Theme } from '@material-ui/core'
+import { Divider, makeStyles, Theme } from '@material-ui/core'
+import { Scroller, ScrollerButton, ScrollerProvider } from '@reachdigital/framer-scroller'
 import { Image } from '@reachdigital/image'
 import {
+  iconChevronLeft,
+  iconChevronRight,
   responsiveVal,
   SectionContainer,
-  SliderContainer,
-  SliderContext,
-  SliderNext,
-  SliderPrev,
-  SliderScroller,
+  SvgImageSimple,
   UseStyles,
 } from '@reachdigital/next-ui'
 import clsx from 'clsx'
-import PageLink from 'next/link'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
 import CartTotals from '../CartTotals/CartTotals'
@@ -24,7 +22,7 @@ const useStyles = makeStyles(
       border: `1px ${theme.palette.divider} solid`,
       borderRadius: 4,
     },
-    sliderContextContainer: {
+    imageScrollerContainer: {
       display: 'flex',
       alignItems: 'center',
       gap: theme.spacings.sm,
@@ -39,8 +37,12 @@ const useStyles = makeStyles(
       height: `${responsiveVal(48, 96)} !important`,
       display: 'block',
     },
-    sliderContainer: {
+    scrollerContainer: {
       padding: 1,
+    },
+    scroller: {
+      display: 'grid',
+      gridAutoFlow: 'column',
     },
     prevNext: {
       position: 'absolute',
@@ -93,13 +95,13 @@ export default function CartItemSummary(props: OrderSummaryProps) {
         // }
         variantLeft='h6'
       >
-        <div className={classes.sliderContextContainer}>
-          <SliderContext scrollSnapAlign='start'>
-            <div className={clsx(classes.prevNext, classes.prev)}>
-              <SliderPrev />
-            </div>
-            <SliderContainer classes={{ container: classes.sliderContainer }}>
-              <SliderScroller>
+        <div className={classes.imageScrollerContainer}>
+          <ScrollerProvider scrollSnapAlign='start'>
+            <ScrollerButton direction='left' className={clsx(classes.prevNext, classes.prev)}>
+              <SvgImageSimple src={iconChevronLeft} />
+            </ScrollerButton>
+            <div className={classes.scrollerContainer}>
+              <Scroller className={classes.scroller}>
                 {items?.map((item) => (
                   <Image
                     key={item?.uid}
@@ -110,12 +112,12 @@ export default function CartItemSummary(props: OrderSummaryProps) {
                     sizes={responsiveVal(48, 96)}
                   />
                 ))}
-              </SliderScroller>
-            </SliderContainer>
-            <div className={clsx(classes.prevNext, classes.next)}>
-              <SliderNext />
+              </Scroller>
             </div>
-          </SliderContext>
+            <ScrollerButton direction='right' className={clsx(classes.prevNext, classes.next)}>
+              <SvgImageSimple src={iconChevronRight} />
+            </ScrollerButton>
+          </ScrollerProvider>
         </div>
         <Divider classes={{ root: classes.divider }} />
         <CartTotals classes={{ costsContainer: classes.costContainer }} />

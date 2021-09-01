@@ -12,8 +12,10 @@ const useStyles = makeStyles(
     title: {
       textTransform: 'uppercase',
     },
-    item: {
-      minWidth: responsiveVal(180, 900),
+    scroller: {
+      '& > *': {
+        minWidth: responsiveVal(180, 900),
+      },
     },
   }),
   {
@@ -29,6 +31,7 @@ export default function RowSwipeableGrid(props: RowSwipeableGridProps) {
 
   return (
     <SidebarSlider
+      classes={{ scroller: classes.scroller }}
       sidebar={
         <Typography variant='h3' className={classes.title}>
           {title}
@@ -41,7 +44,6 @@ export default function RowSwipeableGrid(props: RowSwipeableGridProps) {
             key={item.uid ?? ''}
             renderer={renderers}
             {...item}
-            classes={{ item: classes.item }}
             imageOnly
             sizes={responsiveVal(180, 900)}
           />

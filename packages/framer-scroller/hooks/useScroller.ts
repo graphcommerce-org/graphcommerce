@@ -1,7 +1,16 @@
 import { makeStyles } from '@material-ui/core'
 import { useConstant, useElementScroll, useMotionValueValue } from '@reachdigital/framer-utils'
 import clsx from 'clsx'
-import { HTMLMotionProps, PanInfo, motionValue, useDomEvent, PanHandlers, m } from 'framer-motion'
+import {
+  HTMLMotionProps,
+  PanInfo,
+  motionValue,
+  useDomEvent,
+  PanHandlers,
+  m,
+  useTransform,
+  MotionValue,
+} from 'framer-motion'
 import React, { ReactHTML, useState } from 'react'
 import { ScrollSnapProps } from '../types'
 import { isHTMLMousePointerEvent } from '../utils/isHTMLMousePointerEvent'
@@ -11,7 +20,6 @@ import { useVelocitySnapTo } from './useVelocitySnapTo'
 const useStyles = makeStyles(
   {
     root: ({ scrollSnapAlign, scrollSnapStop }: ScrollSnapProps) => ({
-      cursor: 'grab',
       overflow: `auto`,
       overscrollBehaviorInline: `contain`,
       '& > *': {
@@ -23,6 +31,9 @@ const useStyles = makeStyles(
         userDrag: 'none',
       },
     }),
+    canGrab: {
+      cursor: 'grab',
+    },
     snap: ({ scrollSnapType }: ScrollSnapProps) => ({
       scrollSnapType,
     }),
@@ -57,11 +68,19 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
   const { hideScrollbar, children, ...divProps } = props
   registerChildren(children)
 
+  const scroll = useElementScroll(scrollerRef)
+
+  const canGrab = useMotionValueValue(
+    useTransform(
+      [scroll.xMax, scroll.yMax] as MotionValue[],
+      ([xMax, yMax]: number[]) => xMax || yMax,
+    ),
+    (v) => v,
+  )
+
   const isSnap = useMotionValueValue(snap, (v) => v)
 
   const classes = useStyles(scrollSnap)
-
-  const scroll = useElementScroll(scrollerRef)
 
   const animatePan = useVelocitySnapTo(scrollerRef)
   const [isPanning, setPanning] = useState(false)
@@ -117,6 +136,7 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
     isSnap && classes.snap,
     isPanning && classes.panning,
     hideScrollbar && classes.hideScrollbar,
+    canGrab && classes.canGrab,
     props.className,
   )
 

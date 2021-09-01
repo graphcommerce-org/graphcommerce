@@ -1,7 +1,8 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { makeStyles, Theme } from '@material-ui/core'
+import { Scroller, ScrollerProvider } from '@reachdigital/framer-scroller'
 import { ProductListLink, ProductListParams } from '@reachdigital/magento-product'
-import { SliderContainer, SliderContext, SliderScroller, UseStyles } from '@reachdigital/next-ui'
+import { UseStyles } from '@reachdigital/next-ui'
 import React from 'react'
 import { CategoryChildrenFragment } from './CategoryChildren.gql'
 
@@ -12,7 +13,10 @@ const useStyles = makeStyles(
       justifyContent: 'center',
       marginBottom: theme.spacings.sm,
     },
-    scroller: {},
+    scroller: {
+      display: 'grid',
+      gridAutoFlow: 'column',
+    },
     link: {
       whiteSpace: 'nowrap',
       display: 'block',
@@ -58,9 +62,9 @@ export default function CategoryChildren(props: CategoryChildrenProps) {
   if (!children || children.length === 0) return null
 
   return (
-    <SliderContext scrollSnapAlign='start'>
-      <SliderContainer classes={{ container: classes.container }}>
-        <SliderScroller classes={{ scroller: classes.scroller }}>
+    <ScrollerProvider scrollSnapAlign='none'>
+      <div className={classes.container}>
+        <Scroller className={classes.scroller}>
           {children.map((cat) => {
             if (!cat?.url_path || !cat.name) return null
 
@@ -80,8 +84,8 @@ export default function CategoryChildren(props: CategoryChildrenProps) {
               </ProductListLink>
             )
           })}
-        </SliderScroller>
-      </SliderContainer>
-    </SliderContext>
+        </Scroller>
+      </div>
+    </ScrollerProvider>
   )
 }

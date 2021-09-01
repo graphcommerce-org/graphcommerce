@@ -150,8 +150,8 @@ const useStyles = makeStyles(
 export type SidebarGalleryProps = {
   sidebar: React.ReactNode
   images: MotionImageAspectProps[]
-} & StyleProps &
-  UseStyles<typeof useStyles>
+  aspectRatio?: [number, number]
+} & UseStyles<typeof useStyles>
 
 export default function SidebarGallery(props: SidebarGalleryProps) {
   const { sidebar, images, aspectRatio = [1, 1] } = props
@@ -188,8 +188,9 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
                 <MotionImageAspect
                   layout
                   src={image.src}
-                  width={1532}
-                  height={1678}
+                  width={image.width}
+                  height={image.height}
+                  loading={idx === 0 ? 'eager' : 'lazy'}
                   sizes={{
                     0: '100vw',
                     [theme.breakpoints.values.md]: zoomed ? '100vw' : '60vw',

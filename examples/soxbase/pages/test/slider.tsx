@@ -36,6 +36,8 @@ function TestSlider({ products }: Props) {
         images={
           products?.items?.map((item) => ({
             src: item?.small_image?.url ?? '',
+            width: 1532,
+            height: 1678,
           })) ?? []
         }
       />
