@@ -1,10 +1,11 @@
 fragment CustomerAddress on CustomerAddress {
+  id
+
   prefix
   firstname
   middlename
   lastname
   suffix
-
   city
   company
   country_code

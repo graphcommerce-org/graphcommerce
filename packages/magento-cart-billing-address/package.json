@@ -30,6 +30,7 @@
     "@reachdigital/magento-cart": "^2.105.9",
     "@reachdigital/magento-customer": "^2.104.11",
     "@reachdigital/magento-store": "^2.102.10",
+    "@reachdigital/magento-cart-shipping-address": "^2.102.12",
     "@reachdigital/next-ui": "^2.110.1",
     "@reachdigital/react-hook-form": "^2.101.5",
     "clsx": "^1.1.1",
