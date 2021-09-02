@@ -17,7 +17,7 @@
     "soxbase-api": "yarn workspace @reachdigital/soxbase-api build && yarn start:soxbase-api",
     "build": "yarn build:next-config && yarn build:near-operation && yarn build:relay-optimizer && yarn codegen && next build && yarn next-sitemap",
     "start": "next start",
-    "postinstall": "patch-package && patch-typed-document-node"
+    "postinstall": "patch-typed-document-node && cd ../.. && yarn postinstall"
   },
   "dependencies": {
     "@adobe/apollo-link-mutation-queue": "^1.0.2",
