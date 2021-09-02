@@ -50,7 +50,7 @@ function ShippingPage() {
           <SignupNewsletter email={customerQuery.customer.email} />
         )}
 
-        {!customerQuery?.customer?.email && <InlineAccount accountHref='/account' />}
+        <InlineAccount accountHref='/account' />
 
         <Box textAlign='center' m={8}>
           <PageLink href='/' passHref>
