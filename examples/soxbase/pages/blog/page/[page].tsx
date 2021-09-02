@@ -13,8 +13,6 @@ import { DefaultPageDocument, DefaultPageQuery } from '../../../components/Graph
 import PageContent from '../../../components/PageContent'
 import apolloClient from '../../../lib/apolloClient'
 
-export const config = { unstable_JsPreload: false }
-
 type Props = DefaultPageQuery & BlogListQuery & BlogPathsQuery
 type RouteProps = { page: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>

@@ -36,8 +36,6 @@ import RowProductSpecs from '../../components/Row/RowProductSpecs'
 import RowProductUpsells from '../../components/Row/RowProductUpsells'
 import apolloClient from '../../lib/apolloClient'
 
-export const config = { unstable_JsPreload: false }
-
 type Props = ProductPageQuery &
   SimpleProductPageQuery &
   Pick<FullPageShellProps, 'backFallbackTitle' | 'backFallbackHref'>

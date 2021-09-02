@@ -15,8 +15,6 @@ import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/
 import PageContent from '../../components/PageContent'
 import apolloClient from '../../lib/apolloClient'
 
-export const config = { unstable_JsPreload: false }
-
 type Props = DefaultPageQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
