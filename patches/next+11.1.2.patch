@@ -1,0 +1,13 @@
+diff --git a/node_modules/next/dist/client/link.js b/node_modules/next/dist/client/link.js
+index 5ca55cf..750b477 100644
+--- a/node_modules/next/dist/client/link.js
++++ b/node_modules/next/dist/client/link.js
+@@ -175,7 +175,7 @@ function Link(props) {
+         setIntersectionRef
+     ]);
+     _react.default.useEffect(()=>{
+-        const shouldPrefetch = isVisible && p && (0, _router).isLocalURL(href);
++        const shouldPrefetch = false;//isVisible && p && (0, _router).isLocalURL(href);
+         const curLocale = typeof locale !== 'undefined' ? locale : router && router.locale;
+         const isPrefetched = prefetched[href + '%' + as + (curLocale ? '%' + curLocale : '')];
+         if (shouldPrefetch && !isPrefetched) {
