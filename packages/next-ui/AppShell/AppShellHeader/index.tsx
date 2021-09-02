@@ -108,6 +108,13 @@ const useStyles = makeStyles(
     },
     sheetHeaderActionRight: {
       justifySelf: 'flex-end',
+      '& > .Mui-disabled': {
+        opacity: 0.25,
+        color: `${theme.palette.primary.contrastText} !important`,
+        [theme.breakpoints.up('md')]: {
+          color: `${theme.palette.secondary.contrastText} !important`,
+        },
+      },
     },
     sheetHeaderNoTitle: {
       pointerEvents: 'none',
