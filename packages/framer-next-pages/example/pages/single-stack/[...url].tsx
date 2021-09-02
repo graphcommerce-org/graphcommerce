@@ -18,33 +18,6 @@ function MultiStack() {
 
   return (
     <>
-      {/* <SheetHeader
-        styles={styles}
-        back={
-          backSteps > 1 && (
-            <button type='button' onClick={() => router.back()}>
-              Back
-            </button>
-          )
-        }
-        close={
-          backSteps > 0 ? (
-            <button type='button' onClick={() => router.go(backSteps * -1)}>
-              Close
-            </button>
-          ) : (
-            <Link href='/'>
-              <a>fallback close</a>
-            </Link>
-          )
-        }
-        primary={
-          <Link href={`/single-stack/${variant}/${page + 1}`}>
-            <a>{page + 1}</a>
-          </Link>
-        }
-      /> */}
-
       <button type='button' onClick={() => setExpanded(!expanded)}>
         {expanded ? 'collapse' : 'expand'}
       </button>

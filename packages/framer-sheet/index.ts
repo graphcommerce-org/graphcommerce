@@ -10,9 +10,6 @@ export { default as SheetContainer } from './components/SheetContainer'
 export * from './components/SheetDragIndicator'
 export { default as SheetDragIndicator } from './components/SheetDragIndicator'
 
-export * from './components/SheetHeader'
-export { default as SheetHeader } from './components/SheetHeader'
-
 export * from './components/SheetPanel'
 export { default as SheetPanel } from './components/SheetPanel'
 

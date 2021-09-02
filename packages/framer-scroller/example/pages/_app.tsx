@@ -22,8 +22,8 @@ const theme = createTheme({
     vertical: responsiveVal(10, 30),
     headerInnerHeight: {
       xs: responsiveVal(21, 33),
-      sm: `56px`,
-      // 32px = height of logo
+      sm: `56px`, // use headerInnerHeight.md
+      // 40px = height of logo
       // + 2 x theme.spacings.xxs (top+bottom padding)
       md: `calc(40px + (${responsiveVal(10, 16)} * 2))`,
     },
