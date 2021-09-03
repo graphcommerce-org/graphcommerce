@@ -1,6 +1,7 @@
 import { Container, Divider, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { CartSummary, CartTotals } from '@reachdigital/magento-cart'
+import { CartSummary, CartTotals, useCartQuery } from '@reachdigital/magento-cart'
+import { CartPageDocument } from '@reachdigital/magento-cart-checkout'
 import { CouponAccordion } from '@reachdigital/magento-cart-coupon'
 import {
   PaymentMethodButton,
@@ -42,23 +43,24 @@ function PaymentPage() {
       <PageMeta title='Payment' metaDescription='Payment' metaRobots={['noindex']} />
       <PageShellHeader
         primary={
-          <PaymentMethodButton
-            type='submit'
-            color='secondary'
-            variant='pill-link'
-            display='inline'
-            endIcon={
-              <SvgImage
-                src={iconChevronRight}
-                loading='eager'
-                alt='chevron right'
-                size='small'
-                shade='inverted'
-              />
-            }
-          >
-            Pay
-          </PaymentMethodButton>
+          <></>
+          // <PaymentMethodButton
+          //   type='submit'
+          //   color='secondary'
+          //   variant='pill-link'
+          //   display='inline'
+          //   endIcon={
+          //     <SvgImage
+          //       src={iconChevronRight}
+          //       loading='eager'
+          //       alt='chevron right'
+          //       size='small'
+          //       shade='inverted'
+          //     />
+          //   }
+          // >
+          //   Pay
+          // </PaymentMethodButton>
         }
         divider={
           <Container maxWidth='md'>
@@ -75,32 +77,32 @@ function PaymentPage() {
       <Container maxWidth='md'>
         <AppShellTitle icon={iconId}>Payment</AppShellTitle>
 
-        <PaymentMethodContextProvider
+        {/* <PaymentMethodContextProvider
           modules={{
             braintree_local_payment,
             braintree,
             ...included_methods,
             ...mollie_methods,
           }}
-        >
-          <NoSsr>
-            <AnimatePresence initial={false}>
-              <PaymentMethodToggle key='toggle' />
+        > */}
+        <NoSsr>
+          <AnimatePresence initial={false}>
+            {/* <PaymentMethodToggle key='toggle' /> */}
 
-              <PaymentMethodOptions
+            {/* <PaymentMethodOptions
                 key='options'
                 step={1}
                 Container={({ children }) => <FormDiv contained>{children}</FormDiv>}
               />
 
-              <PaymentMethodPlaceOrder key='placeorder' step={2} />
+              <PaymentMethodPlaceOrder key='placeorder' step={2} /> */}
 
-              <CartSummary editable key='cart-summary'>
-                <Divider />
-                <CartTotals />
-              </CartSummary>
+            <CartSummary editable key='cart-summary'>
+              <Divider />
+              <CartTotals />
+            </CartSummary>
 
-              <CouponAccordion key='coupon' />
+            {/* <CouponAccordion key='coupon' />
 
               <PaymentMethodButton
                 key='button'
@@ -120,10 +122,10 @@ function PaymentPage() {
                 }
               >
                 Place order
-              </PaymentMethodButton>
-            </AnimatePresence>
-          </NoSsr>
-        </PaymentMethodContextProvider>
+              </PaymentMethodButton> */}
+          </AnimatePresence>
+        </NoSsr>
+        {/* </PaymentMethodContextProvider> */}
       </Container>
     </ComposedForm>
   )

@@ -1,11 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { makeStyles, TextField } from '@material-ui/core'
-import {
-  AddressFields,
-  ApolloCustomerErrorAlert,
-  CustomerDocument,
-  NameFields,
-} from '@reachdigital/magento-customer'
+import { AddressFields, ApolloCustomerErrorAlert, NameFields } from '@reachdigital/magento-customer'
 import { CountryRegionsDocument } from '@reachdigital/magento-store'
 import {
   Button,
@@ -37,17 +32,12 @@ export default function EditBillingAddressForm(props: EditBillingAddressFormProp
   const classes = useStyles()
   const router = useRouter()
 
-  const { data: customerQuery } = useQuery(CustomerDocument)
-
-  console.log(customerQuery)
-
   // TODO: const {region} = useRegion(formData..)
 
   const form = useFormGqlMutation(
     SetBillingAddressOnCartDocument,
     {
       defaultValues: {
-        addressId: 73,
         cartId: cartId ?? '',
         firstname: address?.firstname,
         lastname: address?.lastname,
@@ -62,11 +52,11 @@ export default function EditBillingAddressForm(props: EditBillingAddressFormProp
         addition: address?.street?.[2],
       },
       onBeforeSubmit: (formData) => {
-        // const region = countries
-        //   ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)
-        //   ?.available_regions?.find((r) => r?.id === formData?.region)
+        console.log(formData)
 
-        const a = 'b'
+        const region = countries
+          ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)
+          ?.available_regions?.find((r) => r?.id === formData?.region)
 
         // const regionData = {
         //   region:
@@ -78,9 +68,16 @@ export default function EditBillingAddressForm(props: EditBillingAddressFormProp
         //     null,
         // }
 
+        // console.log({
+        //   ...formData,
+        //   ...regionData,
+        //   regionId: (region && region.id) ?? null,
+        // })
+
         return {
           ...formData,
           // ...regionData,
+          // regionId: (region && region?.id) ?? null,
         }
       },
       onComplete: () => {
@@ -92,9 +89,9 @@ export default function EditBillingAddressForm(props: EditBillingAddressFormProp
   )
 
   const { handleSubmit, formState, required, error, muiRegister, valid } = form
-  const submitHandler = handleSubmit(() => {})
-
-  console.log(error)
+  const submitHandler = handleSubmit(() => {
+    //
+  })
 
   return (
     <>

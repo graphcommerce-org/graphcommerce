@@ -1,4 +1,4 @@
-import { Container } from '@material-ui/core'
+import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { useCartQuery } from '@reachdigital/magento-cart'
 import { EditBillingAddressForm } from '@reachdigital/magento-cart-billing-address'
@@ -14,14 +14,18 @@ import {
 } from '@reachdigital/next-ui'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import { DefaultPageDocument } from '../../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<SheetShellProps>
+type Props = Record<string, unknown>
+type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function EditBillingAddress() {
-  const { data, error, loading } = useCartQuery(CartPageDocument, { returnPartialData: true })
+  const { data, loading } = useCartQuery(CartPageDocument, {
+    fetchPolicy: 'network-only',
+  })
 
-  console.log(data)
+  if (loading) return <></>
 
   return (
     <>
@@ -36,11 +40,12 @@ function EditBillingAddress() {
       <AppShellTitle>
         <Title>Billing address</Title>
       </AppShellTitle>
-      <>
-        <Container maxWidth='md'>
+
+      <Container maxWidth='md'>
+        <NoSsr>
           <EditBillingAddressForm cartId={data?.cart?.id} address={data?.cart?.billing_address} />
-        </Container>
-      </>
+        </NoSsr>
+      </Container>
     </>
   )
 }
@@ -57,13 +62,23 @@ export default EditBillingAddress
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
   const conf = client.query({ query: StoreConfigDocument })
+  const staticClient = apolloClient(locale)
+
+  const page = staticClient.query({
+    query: DefaultPageDocument,
+    variables: {
+      url: `checkout`,
+      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+    },
+  })
 
   return {
     props: {
-      apolloState: await conf.then(() => client.cache.extract()),
+      ...(await page).data,
       backFallbackHref: '/checkout/payment',
       backFallbackTitle: 'Payment',
       variant: 'left',
+      apolloState: await conf.then(() => client.cache.extract()),
     },
   }
 }

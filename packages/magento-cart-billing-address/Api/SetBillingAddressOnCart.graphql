@@ -6,6 +6,7 @@ mutation SetBillingAddressOnCart(
   $city: String!
   $countryCode: String!
   $regionId: Int
+  $region: String
   $street: String!
   $houseNumber: String!
   $addition: String
@@ -21,6 +22,7 @@ mutation SetBillingAddressOnCart(
           postcode: $postcode
           city: $city
           country_code: $countryCode
+          region: $region
           region_id: $regionId
           street: [$street, $houseNumber, $addition]
           telephone: $telephone

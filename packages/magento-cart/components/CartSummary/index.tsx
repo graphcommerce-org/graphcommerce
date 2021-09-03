@@ -44,7 +44,10 @@ export default function CartSummary(props: CartSummaryProps) {
   const classes = useStyles(props)
   const { children, editable } = props
 
-  const { data } = useCartQuery(GetCartSummaryDocument, { allowUrl: true })
+  const { data } = useCartQuery(GetCartSummaryDocument, {
+    // allowUrl: true,
+    fetchPolicy: 'network-only',
+  })
 
   if (!data?.cart) return null
 
