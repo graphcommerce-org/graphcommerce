@@ -39,6 +39,7 @@ fragment OrderDetails on CustomerOrder {
     country_code
     region_id
   }
+  carrier
   total {
     subtotal {
       ...Money
