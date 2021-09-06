@@ -84,6 +84,7 @@ export default function OrderDetails(props: OrderDetailsProps) {
     billing_address,
     payment_methods,
     shipments,
+    shipping_method,
     total,
     invoices,
     loading,
@@ -200,11 +201,7 @@ export default function OrderDetails(props: OrderDetailsProps) {
         <div>
           <span className={classes.orderDetailTitle}>Shipping method</span>
           <div>
-            {carrier && (
-              <div>
-                <i>{carrier}</i>
-              </div>
-            )}
+            <div>{shipping_method ?? ''}</div>
 
             {shipments && shipments.length > 0 && (
               <>

@@ -5,6 +5,7 @@ fragment OrderDetails on CustomerOrder {
     id
     number
   }
+  shipping_method
   shipments {
     id
     tracking {
