@@ -10,6 +10,7 @@ import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import OrderStateLabel from '../OrderStateLabel'
 import TrackingLink from '../TrackingLink'
 import { OrderCardFragment } from './OrderCard.gql'
+import { responsiveVal } from '@reachdigital/next-ui'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -40,6 +41,8 @@ const useStyles = makeStyles(
       gridAutoFlow: 'column',
       gap: theme.spacings.xxs,
       padding: theme.spacings.xxs,
+      width: responsiveVal(75, 125),
+      height: responsiveVal(75, 125),
     },
     placeholder: {
       display: 'flex',
