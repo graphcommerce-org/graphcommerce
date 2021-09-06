@@ -26,10 +26,11 @@ const useStyles = makeStyles(
     },
     orderRow: {
       margin: `0 auto calc(${theme.spacings.xxs} * .5) auto`,
+      display: 'flex',
+      gap: theme.spacings.xxs,
     },
     orderMoney: {
       fontWeight: 'bold',
-      marginRight: theme.spacings.xxs,
     },
     orderProducts: {
       display: 'flex',
@@ -120,6 +121,7 @@ export default function OrderCard(props: OrderCardProps) {
               <Money {...total?.grand_total} />
             </span>
             <span>{dateFormatter.format(new Date(order_date ?? ''))}</span>
+            <span>#{number}</span>
           </div>
           <div className={classes.orderRow}>
             <OrderStateLabel
