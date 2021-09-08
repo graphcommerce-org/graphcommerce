@@ -12,6 +12,8 @@ import PageContent from '../../components/PageContent'
 import RowProductBackstory from '../../components/Row/RowProductBackstory'
 import RowProductGrid from '../../components/Row/RowProductGrid'
 import RowSwipeableGrid from '../../components/Row/RowSwipeableGrid'
+import RowHeroAnimation from '../../components/RowHeroAnimation'
+import RowWireframeAnimation from '../../components/RowWireframeAnimaton'
 import apolloClient from '../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -32,18 +34,8 @@ function CmsPage(props: Props) {
         metaDescription={cmsPage?.meta_description ?? ''}
       />
 
-      {pages?.[0] ? (
-        <PageContent
-          renderer={{
-            RowProductBackstory: (p) => <RowProductBackstory {...p} items={products?.items} />,
-            RowProductGrid: (p) => <RowProductGrid {...p} items={products?.items} />,
-            RowSwipeableGrid: (p) => <RowSwipeableGrid {...p} items={products?.items} />,
-          }}
-          content={pages?.[0].content}
-        />
-      ) : (
-        <CmsPageContent {...cmsPage} />
-      )}
+      <RowHeroAnimation />
+      <RowWireframeAnimation />
     </>
   )
 }
