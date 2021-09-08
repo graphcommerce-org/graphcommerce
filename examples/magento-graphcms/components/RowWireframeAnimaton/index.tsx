@@ -7,7 +7,7 @@ import Hint from './Hint'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    rowWrapper: {
+    container: {
       background: '#001727',
     },
     pagebuilder: {
@@ -27,7 +27,7 @@ const useStyles = makeStyles(
         width: '600px',
       },
       margin: responsiveVal(60, 120),
-      marginBottom: responsiveVal(100, 250),
+      marginBottom: responsiveVal(100, 220),
       color: '#ffffff',
       '& h2': {
         ...theme.typography.h1,
@@ -41,6 +41,7 @@ const useStyles = makeStyles(
       },
     },
     interactive: {
+      transition: 'transform 0.2s ease-out',
       backfaceVisibility: 'visible',
       position: 'relative',
       width: '80vw',
@@ -92,7 +93,7 @@ const useStyles = makeStyles(
     // },
     secondRow: {
       background: '#fff',
-      height: '40vw',
+      height: '10vw',
     },
   }),
   { name: 'WireframeAnimation' },
@@ -139,7 +140,7 @@ export default function RowWireframeAnimation() {
 
   return (
     <Container maxWidth={false}>
-      <div className={classes.rowWrapper} onMouseMove={handleMouse}>
+      <div className={classes.container} onMouseMove={handleMouse}>
         <div className={classes.pagebuilder}>
           <div className={classes.copy}>
             <Typography component='h2'>Build rich content pages</Typography>
@@ -187,10 +188,10 @@ export default function RowWireframeAnimation() {
               setLines={setLines}
             />
             <Hint
-              content='...'
+              content='Add as many components as you like.'
               hintLeft='90%'
               hintTop='64%'
-              offsetLeft='-100'
+              offsetLeft='100'
               offsetTop='50'
               lines={lines}
               setLines={setLines}
