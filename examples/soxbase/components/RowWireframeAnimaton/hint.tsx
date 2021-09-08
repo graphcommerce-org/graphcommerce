@@ -1,21 +1,31 @@
-import { setMaxListeners } from 'process'
 import { makeStyles, Theme, Popper, Fab } from '@material-ui/core'
-import { LineStyleOutlined } from '@material-ui/icons'
-import { useMotionValue } from 'framer-motion'
 import React, { useRef, useState } from 'react'
+import { responsiveVal } from '../../../../packages/next-ui'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    indicator: {
+    hintPos: {
       position: 'absolute',
       top: '10%',
       left: '1%',
       padding: 0,
-      background: 'transparent',
+      zIndex: 10,
+      transform: `translateZ(1px)`,
+      [theme.breakpoints.up('sm')]: {
+        transform: `translateZ(20px)`,
+      },
+      'transform-style': 'preserve-3d',
+      backfaceVisibility: 'visible',
+    },
+    hint: {
+      background: 'none',
+      '&:hover': {
+        background: 'none',
+      },
     },
     disc: {
-      height: 14,
-      width: 14,
+      height: responsiveVal(6, 12),
+      width: responsiveVal(6, 12),
       background: '#ffffff',
       borderRadius: '999em',
       animation: `$pulse 2s infinite`,
@@ -30,6 +40,7 @@ const useStyles = makeStyles(
     },
     popper: {
       zIndex: 1,
+      pointerEvents: 'none',
     },
     popperContent: {
       maxWidth: 300,
@@ -37,7 +48,6 @@ const useStyles = makeStyles(
       borderRadius: 8,
       padding: theme.spacings.xs,
       backgroundColor: theme.palette.background.paper,
-      // boxShadow: '0 6px 60px -3px #00080D',
       fontSize: '15px',
       lineHeight: '24px',
     },
@@ -46,64 +56,39 @@ const useStyles = makeStyles(
 )
 
 export default function Hint(props) {
-  const { content, hintLeft, hintTop, offsetLeft, offsetTop, lines, setLines } = props
+  const { content, hintLeft, hintTop, offsetLeft, offsetTop } = props
   const classes = useStyles()
-
+  const popper = useRef(null)
   const [anchorEl, setAnchorEl] = useState(null)
 
   const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget)
-
-    const newLine = {
-      id: event.currentTarget,
-      hintPosX: event.currentTarget.getBoundingClientRect().x,
-      hintPosY: event.currentTarget.getBoundingClientRect().y,
-      hint: event.currentTarget,
-    }
-    if (!lines.some((line) => line.id === event.currentTarget)) {
-      setLines([...lines, newLine])
-    }
+    // const newLine = {
+    //   id: event.currentTarget,
+    //   hint: event.currentTarget,
+    //   popper,
+    // }
+    // if (!lines.some((line) => line.id === event.currentTarget)) {
+    //   setLines([...lines, newLine])
+    // }
   }
 
   const open = Boolean(anchorEl)
   const id = open ? 'transitions-popper' : undefined
 
-  // const indicatorX = useMotionValue(0)
-  // const indicatorY = useMotionValue(0)
-  // const hintX = useMotionValue(0)
-  // const hintY = useMotionValue(0)
-
-  // const indicator = useRef<HTMLDivElement>(null)
-  // const hint = useRef<HTMLDivElement>(null)
-
-  // function handleMouse(event) {
-  //   const rect = event.currentTarget.getBoundingClientRect()
-
-  //   setMaxX(event.view.innerWidth)
-  //   setMaxY(event.view.innerHeight)
-
-  //   x.set(event.clientX - rect.left)
-  //   y.set(event.clientY)
-
-  //   const parentRect = parent.current?.getBoundingClientRect()
-  //   const indicatorRect = indicator.current?.getBoundingClientRect()
-  //   const hintRect = hint.current?.getBoundingClientRect()
-
-  //   indicatorX.set(indicatorRect.x - parentRect.x + indicatorRect.width / 2)
-  //   indicatorY.set(indicatorRect.y - parentRect.y + indicatorRect.height / 2)
-  //   hintX.set(hintRect.x + hintRect.width / 2 - parentRect.x)
-  //   hintY.set(hintRect.y + hintRect.height - parentRect.y - 2)
-  // }
-
   return (
-    <div>
+    <div
+      className={classes.hintPos}
+      style={{ left: `calc(${hintLeft} - 21.5px)`, top: `calc(${hintTop} - 21.5px)` }}
+    >
       <Fab
         size='small'
         aria-label='add'
         aria-describedby={id}
         onClick={handleClick}
-        className={classes.indicator}
-        style={{ left: `${hintLeft}`, top: `${hintTop}` }}
+        disableRipple
+        disableFocusRipple
+        className={classes.hint}
       >
         <div className={classes.disc} />
       </Fab>
@@ -114,6 +99,7 @@ export default function Hint(props) {
         id={id}
         open={open}
         keepMounted
+        ref={popper}
         modifiers={{
           flip: {
             enabled: false,

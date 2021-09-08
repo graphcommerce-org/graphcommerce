@@ -1,42 +1,95 @@
-import { makeStyles, Container, Theme, useTheme, Popper, Fab } from '@material-ui/core'
+import { makeStyles, Container, Theme, useTheme, Typography } from '@material-ui/core'
 import { m, useMotionValue, useTransform } from 'framer-motion'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
+import { responsiveVal } from '../../../../packages/next-ui'
 import Asset from '../Asset'
-import Hint from './hint'
+import Hint from './Hint'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     rowWrapper: {
       background: '#001727',
-      paddingTop: '30vh',
-      '& > div': {
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-        perspective: 100,
-        width: '100%',
-        paddingTop: '200px',
-      },
-      '& > div > div': {
-        // is interactive
-      },
-      '& img': {
-        marginBottom: '-5%',
-        width: '70vw !important',
-      },
     },
-    svg: {
-      border: '1px solid yellow',
-      background: 'none',
+    pagebuilder: {
+      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      perspective: 1000,
       width: '100%',
-      height: '100%',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      zIndex: 3,
-      pointerEvents: 'none',
+      overflow: 'hidden',
     },
+    copy: {
+      maxWidth: '70%',
+      fontSize: responsiveVal(14, 26),
+      [theme.breakpoints.up('sm')]: {
+        width: '600px',
+      },
+      margin: responsiveVal(60, 120),
+      marginBottom: responsiveVal(100, 250),
+      color: '#ffffff',
+      '& h2': {
+        ...theme.typography.h1,
+        margin: `${theme.spacings.xs} 0`,
+      },
+      '& p': {
+        fontSize: responsiveVal(21, 24),
+        lineHeight: responsiveVal(28, 37),
+        fontWeight: 600,
+        opacity: 0.7,
+      },
+    },
+    interactive: {
+      backfaceVisibility: 'visible',
+      position: 'relative',
+      width: '80vw',
+      [theme.breakpoints.up('md')]: {
+        width: '60vw',
+        maxWidth: '1458px',
+      },
+      // marginBottom: `calc(${responsiveVal(10, 40)} * -1)`,
+      marginBottom: responsiveVal(20, 60),
+      'transform-style': 'preserve-3d',
+      '& picture': {
+        position: 'relative',
+        '& img': {
+          'transform-style': 'preserve-3d',
+          transform: 'translateZ(-150px)',
+        },
+      },
+      '& picture:nth-of-type(2)': {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        '& img': {
+          'transform-style': 'preserve-3d',
+          transform: 'translateZ(-50px)',
+        },
+      },
+      '& picture:nth-of-type(3)': {
+        position: 'absolute',
+        top: 'calc(50% + 10px)',
+        left: 0,
+        width: '100%',
+        height: '100%',
+        '& img': {
+          transform: 'rotateX(87deg) translateY(calc(50% - 150px))',
+        },
+      },
+    },
+    // svg: {
+    //   background: 'none',
+    //   width: '100%',
+    //   height: '100%',
+    //   position: 'absolute',
+    //   top: 0,
+    //   left: 0,
+    //   zIndex: 3,
+    //   pointerEvents: 'none',
+    // },
     secondRow: {
       background: '#fff',
       height: '40vw',
@@ -48,10 +101,22 @@ const useStyles = makeStyles(
 export default function RowWireframeAnimation() {
   const classes = useStyles()
   const theme = useTheme()
-  const asset = {
-    url: '/wireframe.svg',
-    width: 300,
-    height: 400,
+  const layer1 = {
+    url: '/shape.svg',
+    width: 1458,
+    height: 984,
+    mimeType: 'image/jpeg',
+  }
+  const layer2 = {
+    url: '/shapecontent.svg',
+    width: 1458,
+    height: 984,
+    mimeType: 'image/jpeg',
+  }
+  const layer3 = {
+    url: '/keyboard.svg',
+    width: 1458,
+    height: 984,
     mimeType: 'image/jpeg',
   }
 
@@ -60,52 +125,44 @@ export default function RowWireframeAnimation() {
   const [maxY, setMaxY] = useState(0)
   const x = useMotionValue(0)
   const y = useMotionValue(0)
-  const rotateX = useTransform(y, [0, maxY], [1, -1])
-  const rotateY = useTransform(x, [0, maxX], [-1, 1])
-  const parent = useRef<HTMLDivElement>(null)
+  const rotateX = useTransform(y, [0, maxY], [20, -20])
+  const rotateY = useTransform(x, [0, maxX], [-20, 20])
+  const scale = useMotionValue(1.2)
 
   function handleMouse(event) {
     const rect = event.currentTarget.getBoundingClientRect()
-
     setMaxX(event.view.innerWidth)
     setMaxY(event.view.innerHeight)
-
     x.set(event.clientX - rect.left)
     y.set(event.clientY)
-
-    if (parent) {
-      console.log(parent.current?.getBoundingClientRect().y)
-    }
   }
 
   return (
     <Container maxWidth={false}>
       <div className={classes.rowWrapper} onMouseMove={handleMouse}>
-        <div ref={parent}>
-          {lines.map((line) => (
-            <svg key={line.id} className={classes.svg}>
-              <m.line
-                x1='0'
-                y1='0'
-                x2={line.hintPosX}
-                y2={line.hintPosY}
-                stroke='white'
-                strokeWidth='2.4'
-                fill='none'
-              />
-            </svg>
-          ))}
+        <div className={classes.pagebuilder}>
+          <div className={classes.copy}>
+            <Typography component='h2'>Build rich content pages</Typography>
+            <Typography variant='body2'>
+              GraphCMS (a headless CMS integrated by default), is used for storing static content.
+              Pages can be composed directly in the admin interface, without the help of a
+              developer. A variety of content components offer creative ways to display text, video
+              and images.
+            </Typography>
+          </div>
 
           <m.div
             style={{
               rotateX,
               rotateY,
+              scale,
             }}
+            className={classes.interactive}
           >
             <Hint
               content='Adding components to any page can be done directly from the GraphCMS admin interface.'
-              hintLeft='80%'
-              hintTop='20%'
+              hintLeft='85%'
+              hintTop='21%'
               offsetLeft='100'
               offsetTop='50'
               lines={lines}
@@ -113,14 +170,35 @@ export default function RowWireframeAnimation() {
             />
             <Hint
               content='Navigaton is generated automatically, based on Magento categories'
-              hintLeft='10%'
-              hintTop='5%'
+              hintLeft='31%'
+              hintTop='8.7%'
               offsetLeft='-100'
               offsetTop='50'
               lines={lines}
               setLines={setLines}
             />
-            <Asset asset={asset} sizes={{ 0: '50vw', [theme.breakpoints.values.md]: '72vw' }} />
+            <Hint
+              content='Some components fetch data from Magento, others store (static) data in GraphCMS. Both can be added from GraphCMS.'
+              hintLeft='40%'
+              hintTop='44%'
+              offsetLeft='-100'
+              offsetTop='50'
+              lines={lines}
+              setLines={setLines}
+            />
+            <Hint
+              content='...'
+              hintLeft='90%'
+              hintTop='64%'
+              offsetLeft='-100'
+              offsetTop='50'
+              lines={lines}
+              setLines={setLines}
+            />
+
+            <Asset asset={layer1} sizes={{ 0: '50vw', [theme.breakpoints.values.md]: '72vw' }} />
+            <Asset asset={layer2} sizes={{ 0: '50vw', [theme.breakpoints.values.md]: '72vw' }} />
+            <Asset asset={layer3} sizes={{ 0: '50vw', [theme.breakpoints.values.md]: '72vw' }} />
           </m.div>
         </div>
       </div>
