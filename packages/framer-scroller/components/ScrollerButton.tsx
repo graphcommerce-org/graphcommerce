@@ -1,14 +1,11 @@
 import { Fab, FabProps, makeStyles, Theme } from '@material-ui/core'
 import { m, useMotionValue, useSpring } from 'framer-motion'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useWatchItems } from '..'
-import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
-import { ItemState, SnapPositionDirection } from '../types'
-
-export type ScrollerButtonProps = {
-  direction: SnapPositionDirection
-} & FabProps
+import { useScrollTo } from '../hooks/useScrollTo'
+import { SnapPositionDirection } from '../types'
+import { UseStyles } from '@reachdigital/next-ui'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -17,6 +14,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
 }))
+
+export type ScrollerButtonProps = {
+  direction: SnapPositionDirection
+} & FabProps &
+  UseStyles<typeof useStyles>
 
 const ScrollerFab = m(
   React.forwardRef<HTMLDivElement, ScrollerButtonProps>((props, ref) => {

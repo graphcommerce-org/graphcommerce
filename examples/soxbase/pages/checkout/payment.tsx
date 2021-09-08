@@ -95,7 +95,7 @@ function PaymentPage() {
 
               <PaymentMethodPlaceOrder key='placeorder' step={2} />
 
-              <CartSummary editable>
+              <CartSummary editable key='cart-summary'>
                 <Divider />
                 <CartTotals />
               </CartSummary>
