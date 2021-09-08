@@ -1,7 +1,8 @@
-import { Container, makeStyles, useTheme, Typography } from '@material-ui/core'
+import { Container, makeStyles, Theme, Typography } from '@material-ui/core'
+import { responsiveVal } from '@reachdigital/next-ui'
 import React, { useState, useRef, useEffect } from 'react'
+import { Float } from 'schema-dts'
 import SimplexNoise from 'simplex-noise'
-import { responsiveVal } from '../../../../packages/next-ui'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -56,7 +57,6 @@ const useStyles = makeStyles(
 
 export default function RowHeroAnimation() {
   const classes = useStyles()
-  const theme = useTheme()
   const parent = useRef<HTMLDivElement>(null)
   const canvasRefA = useRef<HTMLCanvasElement>(null)
   const simplex = useRef(new SimplexNoise())
@@ -79,16 +79,32 @@ export default function RowHeroAnimation() {
   const xOff = 0.0015
   const yOff = 0.0015
   const zOff = 0.0015
-
-  const center = []
-  let tick = 0
+  const center: number[] = []
   const rayProps = new Float32Array(rayPropsLength)
+  let tick = 0
 
   const { abs, round, random } = Math
   const rand = (n) => n * random()
   const fadeInOut = (t, m) => {
     const hm = 0.5 * m
-    return abs(((t + hm) % m) - hm) / hm
+    return abs(((+t + +hm) % m) - hm) / hm
+  }
+
+  const initRay = (i) => {
+    const length = baseLength + rand(rangeLength)
+    const x = rand(canvasRefA?.current?.width ?? 0)
+    let y1 = center[1] + noiseStrength
+    let y2 = center[1] + noiseStrength - length
+    const n = simplex.current.noise3D(x * xOff, y1 * yOff, tick * zOff) * noiseStrength
+    y1 += n
+    y2 += n
+    const life = 0
+    const ttl = baseTTL + rand(rangeTTL)
+    const width = baseWidth + rand(rangeWidth)
+    const speed = baseSpeed + rand(rangeSpeed) * (round(rand(1)) ? 1 : -1)
+    const hue = baseHue + rand(rangeHue)
+
+    rayProps.set([x, y1, y2, life, ttl, width, speed, hue], i)
   }
 
   const initRays = () => {
@@ -97,59 +113,23 @@ export default function RowHeroAnimation() {
     }
   }
 
-  const initRay = (i) => {
-    let length
-    let x
-    let y1
-    let y2
-    let n
-    let life
-    let ttl
-    let width
-    let speed
-    let hue
-
-    length = baseLength + rand(rangeLength)
-    x = rand(canvasRefA?.current?.width ?? 0)
-    y1 = center[1] + noiseStrength
-    y2 = center[1] + noiseStrength - length
-    n = simplex.current.noise3D(x * xOff, y1 * yOff, tick * zOff) * noiseStrength
-    y1 += n
-    y2 += n
-    life = 0
-    ttl = baseTTL + rand(rangeTTL)
-    width = baseWidth + rand(rangeWidth)
-    speed = baseSpeed + rand(rangeSpeed) * (round(rand(1)) ? 1 : -1)
-    hue = baseHue + rand(rangeHue)
-
-    rayProps.set([x, y1, y2, life, ttl, width, speed, hue], i)
-  }
-
   const updateRay = (i, ctxA) => {
-    const i2 = 1 + i
-    const i3 = 2 + i
-    const i4 = 3 + i
-    const i5 = 4 + i
-    const i6 = 5 + i
-    const i7 = 6 + i
-    const i8 = 7 + i
-    let x
-    let y1
-    let y2
-    let life
-    let ttl
-    let width
-    let speed
-    let hue
+    const i2 = 1 + +i
+    const i3 = 2 + +i
+    const i4 = 3 + +i
+    const i5 = 4 + +i
+    const i6 = 5 + +i
+    const i7 = 6 + +i
+    const i8 = 7 + +i
 
-    x = rayProps[i]
-    y1 = rayProps[i2]
-    y2 = rayProps[i3]
-    life = rayProps[i4]
-    ttl = rayProps[i5]
-    width = rayProps[i6]
-    speed = rayProps[i7]
-    hue = rayProps[i8]
+    let x = rayProps[i]
+    const y1 = rayProps[i2]
+    const y2 = rayProps[i3]
+    let life = rayProps[i4]
+    const ttl = rayProps[i5]
+    const width = rayProps[i6]
+    const speed = rayProps[i7]
+    const hue = rayProps[i8]
 
     drawRay(x, y1, y2, life, ttl, width, hue, ctxA)
 
@@ -158,6 +138,13 @@ export default function RowHeroAnimation() {
 
     rayProps[i] = x
     rayProps[i4] = life
+
+    const checkBounds = (x) => {
+      if (canvasRefA.current) {
+        return x < 0 || x > canvasRefA.current.width
+      }
+      return false
+    }
 
     if (checkBounds(x) || life > ttl) {
       initRay(i)
@@ -187,18 +174,12 @@ export default function RowHeroAnimation() {
     ctxA.restore()
   }
 
-  const checkBounds = (x) => {
-    if (canvasRefA.current) {
-      return x < 0 || x > canvasRefA.current.width
-    }
-  }
-
   const handleResize = () => {
     setDimensions([parent.current?.clientWidth ?? 0, parent.current?.clientHeight ?? 0])
 
     if (parent.current) {
-      center[0] = 0.5 * parent.current?.clientWidth
-      center[1] = 0.5 * parent.current?.clientHeight
+      center[0] = Math.round(0.5 * parent.current?.clientWidth)
+      center[1] = Math.round(0.5 * parent.current?.clientHeight)
     }
   }
 

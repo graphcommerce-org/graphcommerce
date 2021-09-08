@@ -1,7 +1,7 @@
 import { makeStyles, Container, Theme, useTheme, Typography } from '@material-ui/core'
+import { responsiveVal } from '@reachdigital/next-ui'
 import { m, useMotionValue, useTransform } from 'framer-motion'
 import React, { useState } from 'react'
-import { responsiveVal } from '../../../../packages/next-ui'
 import Asset from '../Asset'
 import Hint from './Hint'
 
@@ -31,7 +31,6 @@ const useStyles = makeStyles(
       color: '#ffffff',
       '& h2': {
         ...theme.typography.h1,
-        margin: `${theme.spacings.xs} 0`,
       },
       '& p': {
         fontSize: responsiveVal(21, 24),

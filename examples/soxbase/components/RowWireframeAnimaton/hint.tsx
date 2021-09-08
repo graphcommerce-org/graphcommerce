@@ -1,6 +1,6 @@
 import { makeStyles, Theme, Popper, Fab } from '@material-ui/core'
+import { responsiveVal } from '@reachdigital/next-ui'
 import React, { useRef, useState } from 'react'
-import { responsiveVal } from '../../../../packages/next-ui'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
