@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 1458 984" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>shape</title>
+<defs>
+<rect id="c" x="51" y="110" width="1357" height="211" rx="5"/>
+<mask id="f" x="0" y="0" width="1357" height="211" fill="white">
+<use xlink:href="#c"/>
+</mask>
+<rect id="b" x="51" y="655" width="1357" height="46" rx="5"/>
+<mask id="e" x="0" y="0" width="1357" height="46" fill="white">
+<use xlink:href="#b"/>
+</mask>
+<rect id="a" x="51" y="738" width="1357" height="46" rx="5"/>
+<mask id="d" x="0" y="0" width="1357" height="46" fill="white">
+<use xlink:href="#a"/>
+</mask>
+</defs>
+<g fill="none" fill-rule="evenodd">
+<g transform="translate(-265 -7325)" stroke="#BEF7B2">
+<g transform="translate(265 7325)">
+<path d="m1415 2c11.322 0 21.572 4.5891 28.991 12.009 7.4195 7.4195 12.009 17.67 12.009 28.991v939h-1454v-939c0-11.322 4.5891-21.572 12.009-28.991 7.4195-7.4195 17.67-12.009 28.991-12.009z" stroke-width="4"/>
+<rect x="19" y="44" width="1421" height="920" rx="5" stroke-width="2"/>
+<use mask="url(#f)" stroke-dasharray="4,4" stroke-width="2" xlink:href="#c"/>
+<use mask="url(#e)" stroke-dasharray="4,4" stroke-width="2" xlink:href="#b"/>
+<use mask="url(#d)" stroke-dasharray="4,4" stroke-width="2" xlink:href="#a"/>
+</g>
+</g>
+</g>
+</svg>
