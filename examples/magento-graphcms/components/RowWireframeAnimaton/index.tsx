@@ -3,7 +3,7 @@ import { responsiveVal } from '@reachdigital/next-ui'
 import { m, useMotionValue, useTransform } from 'framer-motion'
 import React, { useState } from 'react'
 import Asset from '../Asset'
-import Hint from './Hint'
+import Hint from './hint'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
