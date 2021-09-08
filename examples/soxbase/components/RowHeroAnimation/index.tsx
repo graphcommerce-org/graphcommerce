@@ -1,18 +1,19 @@
-import { Container, makeStyles, Typography } from '@material-ui/core'
+import { Container, makeStyles, useTheme, Typography } from '@material-ui/core'
 import React, { useState, useRef, useEffect } from 'react'
 import SimplexNoise from 'simplex-noise'
 import { responsiveVal } from '../../../../packages/next-ui'
 
 const useStyles = makeStyles(
-  () => ({
+  (theme: Theme) => ({
     hero: {
+      background: '#001727',
       position: 'relative',
       '& > *': {
         position: 'relative',
       },
     },
     copy: {
-      padding: `${responsiveVal(60, 300)} 0`,
+      padding: `${responsiveVal(20, 40)} 0 ${responsiveVal(60, 300)} 0`,
       left: 0,
       zIndex: 1,
       color: '#fff',
@@ -24,12 +25,15 @@ const useStyles = makeStyles(
       },
     },
     title: {
-      fontSize: responsiveVal(60, 110),
-      lineHeight: responsiveVal(40, 120),
+      width: '80%',
+      fontSize: responsiveVal(30, 140),
+      lineHeight: responsiveVal(40, 160),
     },
     body: {
-      width: '50%',
-      marginLeft: '50%',
+      paddingLeft: '20%',
+      [theme.breakpoints.up('md')]: {
+        paddingLeft: '50%',
+      },
     },
     parent: {
       height: '100%',
@@ -37,13 +41,14 @@ const useStyles = makeStyles(
       position: 'absolute',
       top: 0,
       left: 0,
+      // overflow: 'hidden',
     },
-    visibleCanvas: {
-      // filter: 'blur(30px)',
-      // position: 'absolute',
-    },
-    hiddenCanvas: {
-      display: 'none',
+    canvas: {
+      opacity: 0.8,
+      filter: 'blur(7px)',
+      [theme.breakpoints.up('md')]: {
+        opacity: 1,
+      },
     },
   }),
   { name: 'RowHeroAnimation' },
@@ -51,20 +56,20 @@ const useStyles = makeStyles(
 
 export default function RowHeroAnimation() {
   const classes = useStyles()
+  const theme = useTheme()
   const parent = useRef<HTMLDivElement>(null)
   const canvasRefA = useRef<HTMLCanvasElement>(null)
-  const canvasRefB = useRef<HTMLCanvasElement>(null)
   const simplex = useRef(new SimplexNoise())
-  const [dimensions, setDimensions] = useState([2000, 2000])
+  const [dimensions, setDimensions] = useState([2000, 1000])
 
-  const rayCount = 300
+  const rayCount = 250
   const rayPropCount = 8
   const rayPropsLength = rayCount * rayPropCount
   const baseLength = 200
   const rangeLength = 300
   const baseSpeed = 0.05
   const rangeSpeed = 0.1
-  const baseWidth = 10
+  const baseWidth = 15
   const rangeWidth = 20
   const baseHue = 120
   const rangeHue = 60
@@ -74,9 +79,8 @@ export default function RowHeroAnimation() {
   const xOff = 0.0015
   const yOff = 0.0015
   const zOff = 0.0015
-  const backgroundColor = 'rgb(0,23,39)'
 
-  let center = new Array()
+  const center = []
   let tick = 0
   const rayProps = new Float32Array(rayPropsLength)
 
@@ -198,29 +202,21 @@ export default function RowHeroAnimation() {
     }
   }
 
-  function draw(ctxA, ctxB) {
+  function draw(ctxA) {
     tick++
     ctxA.clearRect(0, 0, canvasRefA.current?.width, canvasRefA.current?.height)
     drawRays(ctxA)
     ctxA.globalCompositeOperation = 'lighter'
 
-    ctxB.fillStyle = backgroundColor
-    ctxB.fillRect(0, 0, canvasRefB.current?.width, canvasRefB.current?.height)
-    ctxB.save()
-    ctxB.filter = 'blur(12px)'
-    ctxB.drawImage(canvasRefA.current, 0, 0)
-    ctxB.restore()
-
-    requestAnimationFrame(() => draw(ctxA, ctxB))
+    requestAnimationFrame(() => draw(ctxA))
   }
 
   useEffect(() => {
     const ctxA = canvasRefA?.current?.getContext('2d')
-    const ctxB = canvasRefB?.current?.getContext('2d')
 
     handleResize()
     initRays()
-    requestAnimationFrame(() => draw(ctxA, ctxB))
+    requestAnimationFrame(() => draw(ctxA))
 
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
@@ -247,13 +243,7 @@ export default function RowHeroAnimation() {
             ref={canvasRefA}
             width={dimensions[0]}
             height={dimensions[1]}
-            className={classes.hiddenCanvas}
-          />
-          <canvas
-            ref={canvasRefB}
-            width={dimensions[0]}
-            height={dimensions[1]}
-            className={classes.visibleCanvas}
+            className={classes.canvas}
           />
         </div>
       </div>
