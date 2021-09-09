@@ -1,4 +1,4 @@
-import { FormControl, Typography } from '@material-ui/core'
+import { FormControl, FormHelperText } from '@material-ui/core'
 import { Form, FormRow, ToggleButton, ToggleButtonGroup } from '@reachdigital/next-ui'
 import { Controller, useForm, useFormPersist } from '@reachdigital/react-hook-form'
 import React, { useEffect } from 'react'
@@ -52,30 +52,41 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
             control={control}
             name='paymentMethod'
             rules={{ required: 'Please select a payment method' }}
-            render={({ field: { onChange, value, name, ref, onBlur } }) => (
-              <ToggleButtonGroup
-                onChange={(_, val: string) => {
-                  onChange(val)
-                  setValue('code', val?.split('___')[0])
-                }}
-                defaultValue=''
-                aria-label='Payment Method'
-                onBlur={onBlur}
-                value={value}
-                required
-                exclusive
-              >
-                {methods?.map((pm) => (
-                  <ToggleButton
-                    key={`${pm.code}___${pm.child}`}
-                    value={`${pm.code}___${pm.child}`}
-                    color='secondary'
-                    disabled={!modules?.[pm.code]}
-                  >
-                    {!modules?.[pm.code] ? <>{pm.code} not implemented</> : <Content {...pm} />}
-                  </ToggleButton>
-                ))}
-              </ToggleButtonGroup>
+            render={({ field: { onChange, value, name, ref, onBlur }, fieldState: { error } }) => (
+              <>
+                <ToggleButtonGroup
+                  onChange={(_, val: string) => {
+                    onChange(val)
+                    setValue('code', val?.split('___')[0])
+                  }}
+                  defaultValue=''
+                  aria-label='Payment Method'
+                  onBlur={onBlur}
+                  value={value}
+                  required
+                  exclusive
+                >
+                  {methods?.map((pm) => (
+                    <ToggleButton
+                      key={`${pm.code}___${pm.child}`}
+                      value={`${pm.code}___${pm.child}`}
+                      color='secondary'
+                      disabled={!modules?.[pm.code]}
+                    >
+                      {!modules?.[pm.code] ? <>{pm.code} not implemented</> : <Content {...pm} />}
+                    </ToggleButton>
+                  ))}
+                </ToggleButtonGroup>
+                {error && (
+                  <>
+                    {error.message ? (
+                      <FormHelperText>{error.message}</FormHelperText>
+                    ) : (
+                      <FormHelperText>Required</FormHelperText>
+                    )}
+                  </>
+                )}
+              </>
             )}
           />
         </FormControl>

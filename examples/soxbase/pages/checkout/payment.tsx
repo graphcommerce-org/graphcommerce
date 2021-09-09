@@ -1,7 +1,7 @@
-import { useQuery } from '@apollo/client'
-import { Checkbox, Container, Divider, FormControlLabel, NoSsr } from '@material-ui/core'
+import { Container, Divider, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CartSummary, CartTotals } from '@reachdigital/magento-cart'
+import { PaymentAgreementsForm } from '@reachdigital/magento-cart-checkout'
 import { CouponAccordion } from '@reachdigital/magento-cart-coupon'
 import {
   PaymentMethodButton,
@@ -33,16 +33,11 @@ import MinimalPageShell from '../../components/AppShell/MinimalPageShell'
 import { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
-import { CheckoutAgreementsDocument } from '@reachdigital/magento-cart-checkout'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function PaymentPage() {
-  const { loading, data } = useQuery(CheckoutAgreementsDocument)
-
-  console.log(data)
-
   return (
     <ComposedForm>
       <PageMeta title='Payment' metaDescription='Payment' metaRobots={['noindex']} />
@@ -108,22 +103,7 @@ function PaymentPage() {
 
               <CouponAccordion />
 
-              <FormControlLabel
-                key='terms-and-conditions'
-                control={
-                  <Checkbox
-                    checked={false}
-                    onChange={() => {}}
-                    name='termsAndConditions'
-                    color='primary'
-                    required={true}
-                  />
-                }
-                label={
-                  data?.checkoutAgreements?.[0]?.checkbox_text ??
-                  'I agree with the terms and conditions'
-                }
-              />
+              <PaymentAgreementsForm step={2} key='payment-agreements' />
 
               <PaymentMethodButton
                 key='button'
