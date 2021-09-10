@@ -10,7 +10,7 @@ import {
 import { ApolloCustomerErrorAlert, CustomerDocument } from '@reachdigital/magento-customer'
 import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React, { useEffect, useMemo } from 'react'
-import { UpdateNewsletterSubscriptionDocument } from '../../api/UpdateNewsletterSubscription.gql'
+import { UpdateNewsletterSubscriptionDocument } from './UpdateNewsletterSubscription.gql'
 
 const useStyles = makeStyles(() => ({
   labelRoot: {
@@ -37,6 +37,8 @@ export default function NewsletterToggle(props: NewsletterToggleProps) {
     [is_subscribed],
   )
 
+  // TODO: use subscribeEmailToNewsletter when customer is not signed in
+  // retrieve email from cart..
   const form = useFormGqlMutation(
     UpdateNewsletterSubscriptionDocument,
     {
@@ -58,6 +60,7 @@ export default function NewsletterToggle(props: NewsletterToggleProps) {
     reset(defaultValues)
   }, [defaultValues, reset])
 
+  // TODO: disable button when guest signs in, because there is no unsubscribeGuestEmailToNewsletter
   if (loading) return <Switch disabled color='primary' {...switchProps} />
 
   return (

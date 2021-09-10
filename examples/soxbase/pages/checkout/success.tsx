@@ -1,8 +1,8 @@
-import { useQuery } from '@apollo/client'
 import { Box, Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { CartItemSummary, CartSummary } from '@reachdigital/magento-cart'
-import { InlineAccount, CustomerDocument } from '@reachdigital/magento-customer'
+import { CartItemSummary, CartSummary, useCartQuery } from '@reachdigital/magento-cart'
+import { CartPageDocument } from '@reachdigital/magento-cart-checkout'
+import { InlineAccount } from '@reachdigital/magento-customer'
 import { SignupNewsletter } from '@reachdigital/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
@@ -24,8 +24,8 @@ import apolloClient from '../../lib/apolloClient'
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
-function ShippingPage() {
-  const { data: customerQuery } = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
+function OrderSuccessPage() {
+  const { data } = useCartQuery(CartPageDocument, { returnPartialData: true })
 
   return (
     <>
@@ -46,9 +46,7 @@ function ShippingPage() {
         <CartSummary />
         <CartItemSummary />
 
-        {customerQuery?.customer?.email && (
-          <SignupNewsletter email={customerQuery.customer.email} />
-        )}
+        {data?.cart?.email && <SignupNewsletter email={data.cart?.email} />}
 
         <InlineAccount accountHref='/account' />
 
@@ -69,9 +67,9 @@ const pageOptions: PageOptions<MinimalPageShellProps> = {
   SharedComponent: MinimalPageShell,
   sharedKey: () => 'checkout',
 }
-ShippingPage.pageOptions = pageOptions
+OrderSuccessPage.pageOptions = pageOptions
 
-export default ShippingPage
+export default OrderSuccessPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)

@@ -185,13 +185,9 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
           <>
             <div className={classes.children}>{children}</div>
             {action && (
-              <Button
-                className={classes.actionButton}
-                type='button'
-                onClick={() => setShowSnackbar(false)}
-              >
+              <div className={classes.actionButton} onClick={() => setShowSnackbar(false)}>
                 {action}
-              </Button>
+              </div>
             )}
             <div className={classes.closeButton}>
               <Fab aria-label='Close snackbar' size='medium' onClick={() => setShowSnackbar(false)}>
