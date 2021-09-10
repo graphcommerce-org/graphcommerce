@@ -1,4 +1,4 @@
-import { TextField } from '@material-ui/core'
+import { TextField, Typography } from '@material-ui/core'
 import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import { PaymentOptionsProps } from '@reachdigital/magento-cart-payment-method'
 import { FormRow, InputCheckmark } from '@reachdigital/next-ui'
@@ -7,7 +7,7 @@ import React from 'react'
 import { PurchaseOrderOptionsDocument } from './PurchaseOrderOptions.gql'
 
 function PurchaseOrderOptions(props: PaymentOptionsProps) {
-  const { code, step, selected, Container } = props
+  const { code, step, selected, Container, title } = props
   const poNumber = selected?.purchase_order_number ?? undefined
 
   const form = useFormGqlMutationCart(PurchaseOrderOptionsDocument, {
@@ -22,6 +22,9 @@ function PurchaseOrderOptions(props: PaymentOptionsProps) {
 
   return (
     <Container>
+      <Typography variant='h5' component='span'>
+        Pay with {title}
+      </Typography>
       <form onSubmit={submit} noValidate>
         <FormRow>
           <TextField

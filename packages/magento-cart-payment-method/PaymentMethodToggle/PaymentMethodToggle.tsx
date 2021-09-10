@@ -8,23 +8,21 @@ import {
   responsiveVal,
   SvgImage,
   ToggleButton,
-  ToggleButtonGroup,
 } from '@reachdigital/next-ui'
 import { Controller, useForm, useFormPersist } from '@reachdigital/react-hook-form'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
-import React, { useEffect, useRef } from 'react'
-import { PaymentMethod, PaymentToggleProps } from '../Api/PaymentMethod'
+import React, { useEffect } from 'react'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
 export type PaymentMethodToggleProps = Record<string, unknown>
 
-function Content(props: PaymentMethod) {
-  const { code } = props
-  const { modules } = usePaymentMethodContext()
-  const Component = modules[code]?.PaymentToggle ?? ((p: PaymentToggleProps) => <>{p.title}</>)
-  return <Component {...props} />
-}
+// function Content(props: PaymentMethod) {
+//   const { code } = props
+//   const { modules } = usePaymentMethodContext()
+//   const Component = modules[code]?.PaymentToggle ?? ((p: PaymentToggleProps) => <>{p.title}</>)
+//   return <Component {...props} />
+// }
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -51,12 +49,12 @@ const useStyles = makeStyles(
       },
     },
     leftButtonRoot: {
-      borderTopLeftRadius: 6,
-      borderBottomLeftRadius: 6,
+      borderTopLeftRadius: 4,
+      borderBottomLeftRadius: 4,
     },
     rightButtonRoot: {
-      borderTopRightRadius: 6,
-      borderBottomRightRadius: 6,
+      borderTopRightRadius: 4,
+      borderBottomRightRadius: 4,
     },
     scrollerRoot: {
       display: `grid`,
@@ -69,9 +67,23 @@ const useStyles = makeStyles(
     },
     toggleButton: {
       border: '1px solid #eee',
-      borderRadius: 6,
+      borderRadius: 4,
       boxShadow: 'none',
+      transition: 'color .25s ease',
       ...theme.typography.h5,
+    },
+    toggleButtonSelected: {
+      border: `1px solid ${theme.palette.secondary.main}`,
+      background: `${theme.palette.secondary.main}`,
+      color: `${theme.palette.secondary.contrastText}`,
+      '&:hover': {
+        background: `${theme.palette.secondary.main}`,
+      },
+    },
+    toggleButtonFormControl: {
+      // prevent ToggleButton overflow below ScrollerButton caused by border radius
+      paddingLeft: 4,
+      paddingRight: 4,
     },
     buttonContainer: {
       position: 'absolute',
@@ -100,7 +112,7 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
   })
   useFormPersist({ form, name: 'PaymentMethodToggle' })
 
-  const { control, handleSubmit, watch, register, setValue } = form
+  const { control, handleSubmit, watch, register, setValue, getValues } = form
   const submitHandler = handleSubmit(() => {})
 
   const paymentMethod = watch('paymentMethod')
@@ -117,8 +129,6 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
     setSelectedMethod(foundMethod)
     setSelectedModule(modules?.[foundMethod?.code ?? ''])
   }, [methods, modules, paymentMethod, selectedMethod?.code, setSelectedMethod, setSelectedModule])
-
-  const groupRef = useRef<HTMLDivElement>(null)
 
   if (!methods || methods.length < 1) return <></>
 
@@ -138,41 +148,40 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
             </ScrollerButton>
           </m.div>
 
-          <FormControl>
+          <FormControl classes={{ root: classes.toggleButtonFormControl }}>
             <Controller
               defaultValue=''
               control={control}
               name='paymentMethod'
               rules={{ required: 'Please select a payment method' }}
               render={({ field: { onChange, value, name, ref, onBlur } }) => (
-                <ToggleButtonGroup
-                  onChange={(_, val: string) => {
-                    onChange(val)
-                    setValue('code', val?.split('___')[0])
-                  }}
-                  defaultValue=''
-                  aria-label='Payment Method'
-                  onBlur={onBlur}
-                  value={value}
-                  required
-                  exclusive
-                  ref={groupRef}
-                  className={classes.toggleGroup}
-                >
-                  <Scroller className={classes.scrollerRoot} hideScrollbar>
-                    {methods?.map((pm) => (
-                      <ToggleButton
-                        key={`${pm.code}___${pm.child}`}
-                        value={`${pm.code}___${pm.child}`}
-                        color='secondary'
-                        disabled={!modules?.[pm.code]}
-                        className={classes.toggleButton}
-                      >
-                        {!modules?.[pm.code] ? <>{pm.code} not implemented</> : <Content {...pm} />}
-                      </ToggleButton>
-                    ))}
-                  </Scroller>
-                </ToggleButtonGroup>
+                <Scroller className={classes.scrollerRoot} hideScrollbar>
+                  {methods?.map((pm) => (
+                    <ToggleButton
+                      aria-label={`payment_method_${pm.code}___${pm.child}`}
+                      key={`${pm.code}___${pm.child}`}
+                      value={`${pm.code}___${pm.child}`}
+                      color='secondary'
+                      disabled={!modules?.[pm.code]}
+                      classes={{
+                        root: classes.toggleButton,
+                        selected: classes.toggleButtonSelected,
+                      }}
+                      onChange={(_, val: string) => {
+                        onChange(val)
+                        setValue('code', val?.split('___')[0])
+                      }}
+                      onBlur={onBlur}
+                      selected={getValues().code === pm.code}
+                    >
+                      {!modules?.[pm.code] ? (
+                        <>{pm.code} not implemented</>
+                      ) : (
+                        /* <Content {...pm} />*/ <>{pm.title}</>
+                      )}
+                    </ToggleButton>
+                  ))}
+                </Scroller>
               )}
             />
           </FormControl>
