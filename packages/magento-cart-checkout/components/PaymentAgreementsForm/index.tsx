@@ -1,5 +1,12 @@
 import { useQuery } from '@apollo/client'
-import { Checkbox, FormControl, FormControlLabel, FormHelperText } from '@material-ui/core'
+import {
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  makeStyles,
+  Theme,
+} from '@material-ui/core'
 import { FormDiv, FormRow } from '@reachdigital/next-ui'
 import {
   Controller,
@@ -12,14 +19,28 @@ import { CheckoutAgreementsDocument } from '../../queries/CheckoutAgreements.gql
 
 type PaymentAgreementsFormProps = Pick<UseFormComposeOptions, 'step'>
 
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    formInner: {
+      display: 'grid',
+      gap: theme.spacings.sm,
+      gridTemplateColumns: 'repeat(2, 1fr)',
+    },
+  }),
+  {
+    name: 'PaymentAgreementsForm',
+  },
+)
+
 export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps) {
   const { step } = props
   const { loading, data } = useQuery(CheckoutAgreementsDocument)
+  const classes = useStyles()
 
   // sort conditions so checkboxes will be placed on top
   const sortedAgreements = data?.checkoutAgreements
     ? [...data.checkoutAgreements].sort((a, b) => {
-        return a.mode === 'MANUAL' ? -1 : b.mode === 'MANUAL' ? 1 : 0
+        return a?.mode === 'MANUAL' ? -1 : b?.mode === 'MANUAL' ? 1 : 0
       })
     : []
 
@@ -42,12 +63,12 @@ export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps)
   return (
     <FormDiv>
       <form noValidate onSubmit={submit}>
-        <>
+        <div className={classes.formInner}>
           {data?.checkoutAgreements &&
             sortedAgreements?.map(
               (agreement) =>
                 agreement && (
-                  <FormRow key={'agreement-' + String(agreement.agreement_id)}>
+                  <>
                     {agreement.mode === 'MANUAL' ? (
                       <>
                         <Controller
@@ -88,10 +109,10 @@ export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps)
                     ) : (
                       <i>{agreement.checkbox_text ?? ''}</i>
                     )}
-                  </FormRow>
+                  </>
                 ),
             )}
-        </>
+        </div>
       </form>
     </FormDiv>
   )

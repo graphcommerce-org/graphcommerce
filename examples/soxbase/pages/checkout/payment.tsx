@@ -96,14 +96,14 @@ function PaymentPage() {
 
               <PaymentMethodPlaceOrder key='placeorder' step={2} />
 
+              <PaymentAgreementsForm step={2} key='payment-agreements' />
+
               <CartSummary editable key='cart-summary'>
                 <Divider />
                 <CartTotals />
               </CartSummary>
 
               <CouponAccordion />
-
-              <PaymentAgreementsForm step={2} key='payment-agreements' />
 
               <PaymentMethodButton
                 key='button'
