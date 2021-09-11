@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.113.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.113.2...@reachdigital/soxbase@2.113.3) (2021-09-11)
+
+
+### Bug Fixes
+
+* make sure we dont load all the category data into the apollo client cache ([ffc4e15](https://github.com/ho-nl/m2-pwa/commit/ffc4e15755741900b247a17e6606dc9eddc2aa0b))
+
+
+
+
+
 ## [2.113.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.113.0...@reachdigital/soxbase@2.113.1) (2021-09-01)
 
 
