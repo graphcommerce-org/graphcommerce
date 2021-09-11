@@ -190,14 +190,14 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const products =
     search && search.length > 2
-      ? client.query({
+      ? staticClient.query({
           query: SearchDocument,
           variables: mergeDeep(productListParams, {
             categoryUid: rootCategory,
             search,
           }),
         })
-      : client.query({
+      : staticClient.query({
           query: ProductListDocument,
           variables: mergeDeep(productListParams, {
             categoryUid: rootCategory,
