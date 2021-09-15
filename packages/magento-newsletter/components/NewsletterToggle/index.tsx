@@ -1,4 +1,3 @@
-import { useQuery } from '@apollo/client'
 import {
   FormControl,
   FormControlLabel,
@@ -7,10 +6,9 @@ import {
   Switch,
   SwitchProps,
 } from '@material-ui/core'
-import { ApolloCustomerErrorAlert, CustomerDocument } from '@reachdigital/magento-customer'
-import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@reachdigital/react-hook-form'
-import React, { useEffect, useMemo } from 'react'
-import { UpdateNewsletterSubscriptionDocument } from './UpdateNewsletterSubscription.gql'
+import { ApolloCustomerErrorAlert } from '@reachdigital/magento-customer'
+import { Controller } from '@reachdigital/react-hook-form'
+import React from 'react'
 
 const useStyles = makeStyles(() => ({
   labelRoot: {
@@ -18,58 +16,38 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-export type NewsletterToggleProps = SwitchProps & { hideErrors?: boolean }
+// TODO: correct form value type...
+
+// export type NewsletterToggleProps<
+//   Q extends Record<string, any> = Record<string, any>,
+//   V extends Record<string, any> = Record<string, any>,
+// > = SwitchProps & {
+//   name: string
+//   form: Pick<UseFormGqlMutationReturn<Q, V>, 'control' | 'formState' | 'error'>
+//   loading?: boolean
+// }
+
+export type NewsletterToggleProps = SwitchProps & {
+  name: string
+  form: any
+  loading?: boolean
+  disabled?: boolean
+}
 
 export default function NewsletterToggle(props: NewsletterToggleProps) {
-  const { hideErrors = false, ...switchProps } = props
+  const { name, form, disabled, loading, ...switchProps } = props
+  const { control, formState, error } = form
   const classes = useStyles(props)
 
-  const { loading, data } = useQuery(CustomerDocument, {
-    ssr: false,
-  })
-  const customer = data?.customer
-  const is_subscribed = customer && customer.is_subscribed
-
-  const defaultValues = useMemo(
-    () => ({
-      isSubscribed: is_subscribed ?? false,
-    }),
-    [is_subscribed],
-  )
-
-  // TODO: use subscribeEmailToNewsletter when customer is not signed in
-  // retrieve email from cart..
-  const form = useFormGqlMutation(
-    UpdateNewsletterSubscriptionDocument,
-    {
-      mode: 'onChange',
-      defaultValues,
-    },
-    { errorPolicy: 'all' },
-  )
-
-  const { handleSubmit, control, error, reset, formState } = form
-
-  const submit = handleSubmit(() => {
-    //
-  })
-
-  useFormAutoSubmit({ form, submit })
-
-  useEffect(() => {
-    reset(defaultValues)
-  }, [defaultValues, reset])
-
-  // TODO: disable button when guest signs in, because there is no unsubscribeGuestEmailToNewsletter
-  if (loading) return <Switch disabled color='primary' {...switchProps} />
+  if (disabled || loading) return <Switch disabled color='primary' {...switchProps} />
 
   return (
     <form noValidate>
       <Controller
-        name='isSubscribed'
+        name={name}
         control={control}
-        render={({ field: { onChange, value, name, ref, onBlur } }) => (
-          <FormControl error={!!formState.errors.isSubscribed}>
+        render={({ field: { onChange, value, name: controlName, ref, onBlur } }) => (
+          <FormControl error={!!formState.errors[name]}>
             <FormControlLabel
               classes={{ root: classes.labelRoot }}
               label=''
@@ -77,16 +55,17 @@ export default function NewsletterToggle(props: NewsletterToggleProps) {
               checked={value}
               inputRef={ref}
               onBlur={onBlur}
-              name={name}
+              name={controlName}
               onChange={(e) => onChange((e as React.ChangeEvent<HTMLInputElement>).target.checked)}
             />
-            {formState.errors.isSubscribed?.message && (
-              <FormHelperText>{formState.errors.isSubscribed?.message}</FormHelperText>
+            {formState.errors[name]?.message && (
+              <FormHelperText>{formState.errors[name]?.message}</FormHelperText>
             )}
           </FormControl>
         )}
       />
-      {!hideErrors && <ApolloCustomerErrorAlert error={error} />}
+
+      <ApolloCustomerErrorAlert error={error} />
     </form>
   )
 }

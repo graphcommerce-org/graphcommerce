@@ -143,7 +143,7 @@ function AccountIndexPage() {
               iconSrc={iconNewspaper}
               title='Newsletter'
               subtitle='Be the first to know about everything new!'
-              endIcon={<NewsletterToggle color='primary' />}
+              endIcon={<CustomerNewsletterToggle color='primary' />}
             />
             <SignOutForm
               button={({ formState }) => (

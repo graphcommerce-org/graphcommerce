@@ -1,7 +1,6 @@
 import { Box, Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CartItemSummary, CartSummary, useCartQuery } from '@reachdigital/magento-cart'
-import { CartPageDocument } from '@reachdigital/magento-cart-checkout'
 import { InlineAccount } from '@reachdigital/magento-customer'
 import { SignupNewsletter } from '@reachdigital/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
@@ -25,8 +24,6 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function OrderSuccessPage() {
-  const { data } = useCartQuery(CartPageDocument, { returnPartialData: true })
-
   return (
     <>
       <PageMeta title='Checkout summary' metaDescription='Ordered items' metaRobots={['noindex']} />
@@ -46,7 +43,7 @@ function OrderSuccessPage() {
         <CartSummary />
         <CartItemSummary />
 
-        {data?.cart?.email && <SignupNewsletter email={data.cart?.email} />}
+        <SignupNewsletter />
 
         <InlineAccount accountHref='/account' />
 
