@@ -1,10 +1,10 @@
 import { Chip, ChipProps, makeStyles, Menu, Theme } from '@material-ui/core'
 import clsx from 'clsx'
-import React, { PropsWithChildren, useState } from 'react'
+import React, { PropsWithChildren, useRef, useState } from 'react'
+import { iconChevronDown, iconChevronUp, iconCloseCircle } from '../icons'
 import SectionHeader from '../SectionHeader'
 import responsiveVal from '../Styles/responsiveVal'
 import SvgImage from '../SvgImage'
-import { iconChevronDown, iconChevronUp, iconCloseCircle } from '../icons'
 
 export const useChipMenuStyles = makeStyles(
   (theme: Theme) => ({
@@ -41,6 +41,9 @@ export const useChipMenuStyles = makeStyles(
       maxWidth: 560,
       marginTop: theme.spacings.xxs,
       padding: `${theme.spacings.xs} ${theme.spacings.xs}`,
+      maxHeight: 'none',
+      top: '32px !important',
+      left: '0 !important',
       [theme.breakpoints.down('xs')]: {
         minWidth: 0,
         width: '100%',
@@ -107,20 +110,19 @@ export default function ChipMenu(props: ChipMenuProps) {
           selectedAndMenuHidden && classes.chipSelected,
         )}
       />
+
       <Menu
         anchorEl={openEl}
         open={!!openEl}
         disableScrollLock
+        disablePortal // this is NOT documented in material ui docs but it works!
         onClose={() => {
           if (onClose) onClose()
-
           setOpenEl(null)
         }}
         getContentAnchorEl={null} // https://github.com/mui-org/material-ui/issues/7961#issuecomment-326116559
-        // variant='selectedMenu'
-        anchorPosition={{ top: 6, left: 0 }}
-        anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-        classes={{ paper: classes.menuPaper, list: classes.menuList }}
+        anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+        classes={{ paper: classes.menuPaper }}
       >
         <SectionHeader labelLeft={label ?? ''} labelRight={labelRight ?? ''} usePadding />
         {children}
