@@ -55,8 +55,8 @@ export const FormDiv = React.forwardRef<HTMLDivElement, DivFormProps>((props, re
       className={clsx(
         classes.root,
         contained && classes.contained,
-        background === 'secondary' && classes.secondary,
-        background === 'default' && classes.default,
+        background === 'secondary' && contained && classes.secondary,
+        background === 'default' && contained && classes.default,
       )}
     />
   )
