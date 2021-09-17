@@ -8,6 +8,7 @@ import {
   responsiveVal,
   SvgImage,
   ToggleButton,
+  ToggleButtonGroup,
 } from '@reachdigital/next-ui'
 import { Controller, useForm, useFormPersist } from '@reachdigital/react-hook-form'
 import clsx from 'clsx'
@@ -157,29 +158,35 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
               render={({ field: { onChange, value, name, ref, onBlur } }) => (
                 <Scroller className={classes.scrollerRoot} hideScrollbar>
                   {methods?.map((pm) => (
-                    <ToggleButton
-                      aria-label={`payment_method_${pm.code}___${pm.child}`}
-                      key={`${pm.code}___${pm.child}`}
-                      value={`${pm.code}___${pm.child}`}
-                      color='secondary'
-                      disabled={!modules?.[pm.code]}
-                      classes={{
-                        root: classes.toggleButton,
-                        selected: classes.toggleButtonSelected,
+                    <ToggleButtonGroup
+                      key={`tbg___${pm.code}___${pm.child}`}
+                      onChange={(_, val: string[]) => {
+                        const v = val[0]
+
+                        onChange(v)
+                        setValue('code', v?.split('___')[0])
                       }}
-                      onChange={(_, val: string) => {
-                        onChange(val)
-                        setValue('code', val?.split('___')[0])
-                      }}
-                      onBlur={onBlur}
-                      selected={getValues().code === pm.code}
                     >
-                      {!modules?.[pm.code] ? (
-                        <>{pm.code} not implemented</>
-                      ) : (
-                        /* <Content {...pm} />*/ <>{pm.title}</>
-                      )}
-                    </ToggleButton>
+                      <ToggleButton
+                        aria-label={`payment_method_${pm.code}___${pm.child}`}
+                        key={`${pm.code}___${pm.child}`}
+                        value={`${pm.code}___${pm.child}`}
+                        color='secondary'
+                        disabled={!modules?.[pm.code]}
+                        classes={{
+                          root: classes.toggleButton,
+                          selected: classes.toggleButtonSelected,
+                        }}
+                        onBlur={onBlur}
+                        selected={getValues().code === pm.code}
+                      >
+                        {!modules?.[pm.code] ? (
+                          <>{pm.code} not implemented</>
+                        ) : (
+                          /* <Content {...pm} />*/ <>{pm.title}</>
+                        )}
+                      </ToggleButton>
+                    </ToggleButtonGroup>
                   ))}
                 </Scroller>
               )}
