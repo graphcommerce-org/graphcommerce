@@ -124,7 +124,7 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('md')]: {
         pointerEvents: 'none',
         background: 'transparent',
-        marginBottom: `calc(-72px + ${theme.spacings.xxs} * 2)`,
+        marginBottom: `calc((${theme.page.headerInnerHeight.md} * -1) + ${theme.spacings.xxs} * 2)`,
       },
     },
     innerContainer: {
