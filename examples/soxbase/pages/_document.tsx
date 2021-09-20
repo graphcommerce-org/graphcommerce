@@ -1,4 +1,4 @@
-import { GoogleTagManagerNoScript } from '@reachdigital/graphcommerce-gtm'
+import { GoogleTagManagerNoScript } from '@reachdigital/googletagmanager'
 import Document from '@reachdigital/next-ui/Page/Document'
 import { Head, Html, Main, NextScript } from 'next/document'
 

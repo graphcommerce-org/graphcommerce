@@ -46,7 +46,7 @@
     "@reachdigital/graphql": "^2.102.2",
     "@reachdigital/graphql-codegen-near-operation-file": "^2.101.5",
     "@reachdigital/graphql-codegen-relay-optimizer-plugin": "^2.100.15",
-    "@reachdigital/graphcommerce-gtm": "0.0.0",
+    "@reachdigital/googletagmanager": "0.0.0",
     "@reachdigital/image": "^2.103.1",
     "@reachdigital/magento-cart": "^2.106.2",
     "@reachdigital/magento-cart-address": "^2.102.14",

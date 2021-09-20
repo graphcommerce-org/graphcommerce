@@ -1,5 +1,5 @@
 import { ApolloProvider } from '@apollo/client'
-import { GoogleTagManagerScript, useGTMPageViewEvent } from '@reachdigital/graphcommerce-gtm'
+import { GoogleTagManagerScript, useGTMPageViewEvent } from '@reachdigital/googletagmanager'
 import { App, AppProps } from '@reachdigital/next-ui'
 import { useRouter } from 'next/router'
 import React from 'react'
