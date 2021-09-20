@@ -1,5 +1,6 @@
+import { GoogleTagManagerNoScript } from '@reachdigital/graphcommerce-gtm'
 import Document from '@reachdigital/next-ui/Page/Document'
-import { Html, Head, Main, NextScript } from 'next/document'
+import { Head, Html, Main, NextScript } from 'next/document'
 
 export default class ThemedDocument extends Document {
   render() {
@@ -14,6 +15,7 @@ export default class ThemedDocument extends Document {
           />
         </Head>
         <body>
+          <GoogleTagManagerNoScript id={process.env.NEXT_PUBLIC_GTM_ID ?? ''} />
           <Main />
           <NextScript />
         </body>
