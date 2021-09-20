@@ -11,10 +11,10 @@ const useStyles = makeStyles(
       padding: `${theme.spacings.xxs} 0`,
     },
     secondary: {
-      background: `${theme.palette.secondary.main}12`,
+      background: theme.palette.secondary.light,
     },
     default: {
-      background: '#f7f7f7',
+      background: theme.palette.background.highlight,
     },
     contained: {
       padding: theme.spacings.sm,
@@ -55,8 +55,7 @@ export const FormDiv = React.forwardRef<HTMLDivElement, DivFormProps>((props, re
       className={clsx(
         classes.root,
         contained && classes.contained,
-        background === 'secondary' && contained && classes.secondary,
-        background === 'default' && contained && classes.default,
+        contained && classes[background],
       )}
     />
   )

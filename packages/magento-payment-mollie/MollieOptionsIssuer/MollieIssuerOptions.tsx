@@ -13,6 +13,7 @@ const useStyles = makeStyles(
     root: {
       ...theme.typography.body2,
       paddingLeft: theme.spacings.xs,
+      margin: 0,
     },
   }),
   { name: 'MollieIssuerOptions' },
@@ -49,7 +50,7 @@ export default function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
             SelectProps={{ native: true, displayEmpty: true }}
             error={formState.isSubmitted && !!formState.errors.issuer}
             helperText={formState.isSubmitted && formState.errors.issuer?.message}
-            label={label ?? 'Bank'}
+            label={label}
             required={required.issuer}
             {...muiRegister('issuer', { required: required.issuer })}
             InputProps={{

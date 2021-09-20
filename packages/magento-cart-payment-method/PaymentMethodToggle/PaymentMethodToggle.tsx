@@ -65,6 +65,7 @@ const useStyles = makeStyles(
       rowGap: 10,
       columnGap: 10,
       height: responsiveVal(60, 85),
+      borderRadius: 5,
     },
     toggleButton: {
       border: '1px solid #eee',
@@ -80,11 +81,6 @@ const useStyles = makeStyles(
       '&:hover': {
         background: `${theme.palette.secondary.main}`,
       },
-    },
-    toggleButtonFormControl: {
-      // prevent ToggleButton overflow below ScrollerButton caused by border radius
-      paddingLeft: 4,
-      paddingRight: 4,
     },
     buttonContainer: {
       position: 'absolute',
@@ -149,7 +145,7 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
             </ScrollerButton>
           </m.div>
 
-          <FormControl classes={{ root: classes.toggleButtonFormControl }}>
+          <FormControl>
             <Controller
               defaultValue=''
               control={control}
