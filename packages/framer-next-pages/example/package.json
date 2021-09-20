@@ -1,17 +1,17 @@
 {
   "name": "@reachdigital/framer-next-pages-example",
   "private": true,
-  "version": "2.102.7",
+  "version": "2.102.8",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "@reachdigital/framer-next-pages": "^2.105.2",
-    "@reachdigital/framer-sheet": "^2.104.2",
+    "@reachdigital/framer-next-pages": "^2.105.3",
+    "@reachdigital/framer-sheet": "^2.104.3",
     "@reachdigital/next-config": "^2.101.2",
-    "@reachdigital/next-ui": "^2.112.1",
+    "@reachdigital/next-ui": "^2.112.2",
     "framer-motion": "^4.1.17",
     "next": "^11.1.2",
     "react": "^17.0.2",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.113.4](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.113.3...@reachdigital/soxbase@2.113.4) (2021-09-20)
+
+
+### Bug Fixes
+
+* header app shell margin bottom in some circumstances ([6030ba7](https://github.com/ho-nl/m2-pwa/commit/6030ba7d07619d0b877a9f557c3e14676c326c7a))
+
+
+
+
+
 ## [2.113.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.113.2...@reachdigital/soxbase@2.113.3) (2021-09-11)
 
 

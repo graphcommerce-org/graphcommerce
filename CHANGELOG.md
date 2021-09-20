@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.119.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.119.2...@graphcommerce/graphcommerce@2.119.3) (2021-09-20)
+
+
+### Bug Fixes
+
+* header app shell margin bottom in some circumstances ([6030ba7](https://github.com/ho-nl/m2-pwa/commit/6030ba7d07619d0b877a9f557c3e14676c326c7a))
+
+
+
+
+
 ## [2.119.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.119.1...@graphcommerce/graphcommerce@2.119.2) (2021-09-11)
 
 

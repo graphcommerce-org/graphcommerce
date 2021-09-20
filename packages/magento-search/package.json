@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-search",
-  "version": "2.104.4",
+  "version": "2.104.5",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
@@ -25,7 +25,7 @@
     "@material-ui/core": "^4.12.3",
     "@reachdigital/graphql": "^2.102.2",
     "@reachdigital/image": "^2.103.1",
-    "@reachdigital/next-ui": "^2.112.1",
+    "@reachdigital/next-ui": "^2.112.2",
     "@reachdigital/react-hook-form": "^2.101.6",
     "next": "^11.1.2",
     "react": "^17.0.2",

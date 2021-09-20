@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/framer-sheet",
-  "version": "2.104.2",
+  "version": "2.104.3",
   "private": true,
   "sideEffects": false,
   "scripts": {

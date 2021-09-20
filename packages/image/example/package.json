@@ -1,7 +1,7 @@
 {
   "name": "@reachdigital/image-example",
   "private": true,
-  "version": "2.101.4",
+  "version": "2.101.5",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -10,7 +10,7 @@
   "dependencies": {
     "@reachdigital/image": "^2.103.1",
     "@reachdigital/next-config": "^2.101.2",
-    "@reachdigital/next-ui": "^2.112.1",
+    "@reachdigital/next-ui": "^2.112.2",
     "framer-motion": "^4.1.17",
     "next": "^11.1.2",
     "react": "^17.0.2",
