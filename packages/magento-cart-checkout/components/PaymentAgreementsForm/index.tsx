@@ -6,6 +6,7 @@ import {
   FormHelperText,
   makeStyles,
   Theme,
+  Typography,
 } from '@material-ui/core'
 import { FormDiv, FormRow } from '@reachdigital/next-ui'
 import {
@@ -107,7 +108,9 @@ export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps)
                         />
                       </>
                     ) : (
-                      <i>{agreement.checkbox_text ?? ''}</i>
+                      <Typography component='i' variant='body1'>
+                        {agreement.checkbox_text ?? ''}
+                      </Typography>
                     )}
                   </>
                 ),
