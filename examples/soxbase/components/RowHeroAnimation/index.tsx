@@ -8,9 +8,6 @@ const useStyles = makeStyles(
     hero: {
       background: '#001727',
       position: 'relative',
-      '& *': {
-        // border: '1px solid red',
-      },
     },
     copy: {
       padding: `${responsiveVal(20, 100)} 0 ${responsiveVal(60, 300)} 0`,
@@ -33,16 +30,25 @@ const useStyles = makeStyles(
       },
       fontWeight: 700,
       fontSize: responsiveVal(20, 130),
-      lineHeight: responsiveVal(40, 160),
+      lineHeight: responsiveVal(40, 140),
     },
     body: {
       fontWeight: 600,
       marginBottom: responsiveVal(10, 50),
     },
     main: {
-      paddingLeft: '20%',
+      float: 'right',
+      width: '80%',
       [theme.breakpoints.up('md')]: {
-        paddingLeft: '50%',
+        width: 700,
+      },
+    },
+    buttonGroup: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: responsiveVal(20, 40),
+      '& > *': {
+        minWidth: 'max-content',
       },
     },
     styledButton: {
@@ -64,7 +70,7 @@ const useStyles = makeStyles(
         height: 'calc(100% + 8px)',
         zIndex: '-1',
         borderRadius: '16px',
-        animation: `$glow 40s linear infinite`,
+        animation: `$glow 25s linear infinite`,
       },
     },
     '@keyframes glow': {
@@ -82,7 +88,6 @@ const useStyles = makeStyles(
       fontFamily: 'Menlo,ui-monospace,SFMono-Regular,monospace',
       borderColor: 'rgba(255,255,255,0.4)',
       background: 'rgba(255,255,255,0.1)',
-      margin: '0 0 0 40px',
     },
   }),
   { name: 'RowHeroAnimation' },
@@ -92,7 +97,7 @@ export default function RowHeroAnimation() {
   const classes = useStyles()
 
   return (
-    <Container maxWidth={false}>
+    <Container maxWidth={false} disableGutters>
       <div className={classes.hero}>
         <Animation />
         <div className={classes.copy}>
@@ -106,18 +111,20 @@ export default function RowHeroAnimation() {
                 GraphCommerce® is an open source, headless e-commerce storefront build with GraphQL,
                 React, Typescript and Next.js.
               </Typography>
-              <Button href='/' variant='contained' size='large' className={classes.styledButton}>
-                View live demo
-              </Button>
-              <Button
-                href='/'
-                variant='outlined'
-                size='large'
-                color='inherit'
-                className={classes.copyButton}
-              >
-                $ npm install graphcommerce
-              </Button>
+              <div className={classes.buttonGroup}>
+                <Button href='/' variant='contained' size='large' className={classes.styledButton}>
+                  View live demo
+                </Button>
+                <Button
+                  href='/'
+                  variant='outlined'
+                  size='large'
+                  color='inherit'
+                  className={classes.copyButton}
+                >
+                  $ npm install graphcommerce
+                </Button>
+              </div>
             </div>
           </Container>
         </div>
