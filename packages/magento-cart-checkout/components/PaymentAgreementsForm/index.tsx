@@ -38,7 +38,7 @@ export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps)
   const { loading, data } = useQuery(CheckoutAgreementsDocument)
   const classes = useStyles()
 
-  // sort conditions so checkboxes will be placed on top
+  // sort conditions so checkboxes will be placed first
   const sortedAgreements = data?.checkoutAgreements
     ? [...data.checkoutAgreements].sort((a, b) => {
         return a?.mode === 'MANUAL' ? -1 : b?.mode === 'MANUAL' ? 1 : 0
@@ -48,7 +48,6 @@ export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps)
   const form = useForm({
     mode: 'onSubmit',
     defaultValues: Object.fromEntries(
-      //   data?.checkoutAgreements
       sortedAgreements
         ?.filter((am) => am?.mode === 'MANUAL')
         .map((am) => [String(am?.agreement_id), false]) ?? [],
@@ -108,7 +107,7 @@ export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps)
                         />
                       </>
                     ) : (
-                      <Typography component='i' variant='body1'>
+                      <Typography component='spanw' variant='body1'>
                         {agreement.checkbox_text ?? ''}
                       </Typography>
                     )}
