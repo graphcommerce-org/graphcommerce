@@ -7,7 +7,6 @@ import {
   Link,
   makeStyles,
   Theme,
-  Typography,
 } from '@material-ui/core'
 import { FormDiv } from '@reachdigital/next-ui'
 import {
@@ -25,7 +24,14 @@ type PaymentAgreementsFormProps = Pick<UseFormComposeOptions, 'step'>
 const useStyles = makeStyles(
   (theme: Theme) => ({
     formInner: {
-      display: 'grid',
+      ...theme.typography.body1,
+      display: 'inline-block',
+    },
+    formControlRoot: {
+      display: 'block',
+    },
+    manualCheck: {
+      padding: `9px 0`,
     },
   }),
   {
@@ -79,21 +85,21 @@ export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps)
                             field: { onChange, value, name, ref, onBlur },
                             fieldState: { error },
                           }) => (
-                            <FormControl error={!!formState.errors[String(agreement.agreement_id)]}>
+                            <FormControl
+                              error={!!formState.errors[String(agreement.agreement_id)]}
+                              classes={{ root: classes.formControlRoot }}
+                            >
                               <FormControlLabel
                                 control={<Checkbox color='secondary' required={true} />}
                                 label={
-                                  <>
-                                    {agreement.checkbox_text}{' '}
-                                    <PageLink
-                                      href={`/legal/view/${agreement.name
-                                        ?.toLowerCase()
-                                        .replaceAll(' ', '-')}`}
-                                      passHref
-                                    >
-                                      <Link color='secondary'>(open)</Link>
-                                    </PageLink>
-                                  </>
+                                  <PageLink
+                                    href={`/legal/view/${agreement.name
+                                      ?.toLowerCase()
+                                      .replaceAll(' ', '-')}`}
+                                    passHref
+                                  >
+                                    <Link color='secondary'>{agreement.checkbox_text}</Link>
+                                  </PageLink>
                                 }
                                 checked={value}
                                 inputRef={ref}
@@ -119,15 +125,14 @@ export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps)
                         />
                       </>
                     ) : (
-                      <Typography component='span' variant='body1'>
-                        {agreement.checkbox_text ?? ''}{' '}
+                      <div className={classes.manualCheck}>
                         <PageLink
                           href={`/legal/view/${agreement.name?.toLowerCase().replaceAll(' ', '-')}`}
                           passHref
                         >
-                          <Link color='secondary'>(open)</Link>
+                          <Link color='secondary'>{agreement.checkbox_text}</Link>
                         </PageLink>
-                      </Typography>
+                      </div>
                     )}
                   </>
                 ),
