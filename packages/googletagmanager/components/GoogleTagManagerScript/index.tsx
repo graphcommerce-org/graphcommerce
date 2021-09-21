@@ -1,12 +1,8 @@
 import Script from 'next/script'
 import React from 'react'
 
-type GoogleTagManagerScriptProps = {
-  id: string
-}
-
-export default function GoogleTagManagerScript(props: GoogleTagManagerScriptProps) {
-  const { id } = props
+export default function GoogleTagManagerScript() {
+  const id = process.env.NEXT_PUBLIC_GTM_ID
 
   return (
     <Script
