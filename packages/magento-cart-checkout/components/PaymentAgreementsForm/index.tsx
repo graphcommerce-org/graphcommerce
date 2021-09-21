@@ -4,6 +4,7 @@ import {
   FormControl,
   FormControlLabel,
   FormHelperText,
+  Link,
   makeStyles,
   Theme,
   Typography,
@@ -17,6 +18,7 @@ import {
 } from '@reachdigital/react-hook-form'
 import React from 'react'
 import { CheckoutAgreementsDocument } from '../../queries/CheckoutAgreements.gql'
+import PageLink from 'next/link'
 
 type PaymentAgreementsFormProps = Pick<UseFormComposeOptions, 'step'>
 
@@ -35,7 +37,7 @@ const useStyles = makeStyles(
 
 export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps) {
   const { step } = props
-  const { loading, data } = useQuery(CheckoutAgreementsDocument)
+  const { data } = useQuery(CheckoutAgreementsDocument)
   const classes = useStyles()
 
   // sort conditions so checkboxes will be placed first
@@ -82,7 +84,19 @@ export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps)
                             <FormControl error={!!formState.errors[String(agreement.agreement_id)]}>
                               <FormControlLabel
                                 control={<Checkbox color='primary' required={true} />}
-                                label={agreement.checkbox_text}
+                                label={
+                                  <>
+                                    {agreement.checkbox_text}{' '}
+                                    <PageLink
+                                      href={`/legal/view/${agreement.name
+                                        ?.toLowerCase()
+                                        .replaceAll(' ', '-')}`}
+                                      passHref
+                                    >
+                                      <Link color='secondary'>(open)</Link>
+                                    </PageLink>
+                                  </>
+                                }
                                 checked={value}
                                 inputRef={ref}
                                 onBlur={onBlur}
@@ -107,8 +121,14 @@ export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps)
                         />
                       </>
                     ) : (
-                      <Typography component='spanw' variant='body1'>
-                        {agreement.checkbox_text ?? ''}
+                      <Typography component='span' variant='body1'>
+                        {agreement.checkbox_text ?? ''}{' '}
+                        <PageLink
+                          href={`/legal/view/${agreement.name?.toLowerCase().replaceAll(' ', '-')}`}
+                          passHref
+                        >
+                          <Link color='secondary'>(open)</Link>
+                        </PageLink>
                       </Typography>
                     )}
                   </>
