@@ -2,9 +2,11 @@
 
 import { capitalize, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
-import React from 'react'
+import React, { FormEvent } from 'react'
 import Button, { ButtonProps } from '../Button'
 import { UseStyles } from '../Styles'
+
+type StyleProps = { selected?: boolean; color?: ButtonProps['color'] }
 
 export const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -22,7 +24,7 @@ export const useStyles = makeStyles(
       '&$selected': {},
     },
     disabled: {},
-    selected: ({ color = 'default' }: ButtonProps) => ({
+    selected: ({ color = 'default' }: StyleProps) => ({
       border: `2px solid ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
       boxShadow: `unset`,
     }),
@@ -36,10 +38,10 @@ export const useStyles = makeStyles(
   { name: 'ToggleButton' },
 )
 
-export type ToggleButtonProps = ButtonProps & {
+export type ToggleButtonProps = Omit<ButtonProps, 'onClick' | 'onChange'> & {
   selected?: boolean
-  onClick?: (e: React.MouseEvent, v: any) => void
-  onChange?: (e: React.MouseEvent, v: any) => void
+  onClick?: (e: FormEvent<HTMLButtonElement>, v: any) => void
+  onChange?: (e: FormEvent<HTMLButtonElement>, v: any) => void
 } & UseStyles<typeof useStyles>
 
 const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
@@ -57,12 +59,14 @@ const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
     ...other
   } = props
 
-  const handleClick = (event) => {
+  const handleChange = (event: FormEvent<HTMLButtonElement>) => onChange?.(event, value)
+
+  const handleClick = (event: FormEvent<HTMLButtonElement>) => {
     if (onClick) {
       onClick(event, value)
       if (event.isDefaultPrevented()) return
     }
-    if (onChange) onChange(event, value)
+    handleChange(event)
   }
 
   return (
@@ -81,12 +85,12 @@ const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
       disabled={disabled}
       ref={ref}
       onClick={handleClick}
-      onChange={onChange}
+      onChange={handleChange}
       value={value}
       aria-pressed={selected}
       size={size}
       {...other}
-      // classes={classes}
+      classes={classes}
     >
       {children}
     </Button>
