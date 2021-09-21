@@ -9,16 +9,16 @@ import {
   Theme,
   Typography,
 } from '@material-ui/core'
-import { FormDiv, FormRow } from '@reachdigital/next-ui'
+import { FormDiv } from '@reachdigital/next-ui'
 import {
   Controller,
   useForm,
   useFormCompose,
   UseFormComposeOptions,
 } from '@reachdigital/react-hook-form'
+import PageLink from 'next/link'
 import React from 'react'
 import { CheckoutAgreementsDocument } from '../../queries/CheckoutAgreements.gql'
-import PageLink from 'next/link'
 
 type PaymentAgreementsFormProps = Pick<UseFormComposeOptions, 'step'>
 
@@ -26,8 +26,6 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     formInner: {
       display: 'grid',
-      gap: theme.spacings.sm,
-      gridTemplateColumns: 'repeat(2, 1fr)',
     },
   }),
   {
@@ -83,7 +81,7 @@ export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps)
                           }) => (
                             <FormControl error={!!formState.errors[String(agreement.agreement_id)]}>
                               <FormControlLabel
-                                control={<Checkbox color='primary' required={true} />}
+                                control={<Checkbox color='secondary' required={true} />}
                                 label={
                                   <>
                                     {agreement.checkbox_text}{' '}
