@@ -15,7 +15,7 @@ export default class ThemedDocument extends Document {
           />
         </Head>
         <body>
-          <GoogleTagManagerNoScript id={process.env.NEXT_PUBLIC_GTM_ID ?? ''} />
+          <GoogleTagManagerNoScript />
           <Main />
           <NextScript />
         </body>

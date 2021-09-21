@@ -14,7 +14,7 @@ export default function ThemedApp(props: AppProps) {
 
   return (
     <>
-      <GoogleTagManagerScript id={process.env.NEXT_PUBLIC_GTM_ID ?? ''} />
+      <GoogleTagManagerScript />
       <ApolloProvider client={apolloClient(locale, true, pageProps.apolloState)}>
         <ThemedProvider>
           <App {...props} />
