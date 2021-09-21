@@ -1,4 +1,4 @@
 // export * from './BillingAddressForm/BillingAddressForm'
 // export { default as BillingAddressForm } from './BillingAddressForm/BillingAddressForm'
 
-export * from './api/CartBillingAddress.gql'
+export * from './Api/CartBillingAddress.gql'
