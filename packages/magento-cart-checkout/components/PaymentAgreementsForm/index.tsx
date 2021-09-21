@@ -23,6 +23,9 @@ type PaymentAgreementsFormProps = Pick<UseFormComposeOptions, 'step'>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
+    formDiv: {
+      paddingTop: theme.spacings.sm,
+    },
     formInner: {
       ...theme.typography.body1,
       display: 'inline-block',
@@ -67,7 +70,7 @@ export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps)
   useFormCompose({ form, step, submit, key: 'PaymentAgreementsForm' })
 
   return (
-    <FormDiv>
+    <FormDiv classes={{ root: classes.formDiv }}>
       <form noValidate onSubmit={submit}>
         <div className={classes.formInner}>
           {data?.checkoutAgreements &&
