@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.114.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.113.4...@reachdigital/soxbase@2.114.0) (2021-09-22)
+
+
+### Bug Fixes
+
+* use gtm id directly from process.env ([1682834](https://github.com/ho-nl/m2-pwa/commit/16828342b0f432da5c7051b1b9834fdad1c58ec8))
+
+
+### Features
+
+* google tag manager integration ([6697639](https://github.com/ho-nl/m2-pwa/commit/6697639b479bd1f9efecf609db1e606a540fc24c))
+
+
+
+
+
 ## [2.113.4](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.113.3...@reachdigital/soxbase@2.113.4) (2021-09-20)
 
 
