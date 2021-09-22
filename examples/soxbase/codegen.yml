@@ -6,6 +6,7 @@ generates:
       - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
       - '**/*.graphqls'
       - '../../packages/magento-*/**/*.graphqls'
+      - '../../packages/mollie-magento-payment/**/*.graphqls'
       - '../../packagesDev/**/*.graphqls'
       # todo: This is triggering on any file changed: https://d.pr/v/9Rnxo2
       # - '../../node_modules/@reachdigital/**/*.graphqls'
@@ -22,6 +23,7 @@ generates:
       - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
       - '**/*.graphqls'
       - '../../packages/magento-*/**/*.graphqls'
+      - '../../packages/mollie-magento-payment/**/*.graphqls'
       - '../../packagesDev/**/*.graphqls'
     plugins:
       - typescript
@@ -36,6 +38,7 @@ generates:
       - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
       - '**/*.graphqls'
       - '../../packages/magento-*/**/*.graphqls'
+      - '../../packages/mollie-magento-payment/**/*.graphqls'
       - '../../packagesDev/**/*.graphqls'
     plugins:
       - fragment-matcher
@@ -47,6 +50,7 @@ generates:
       - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
       - '**/*.graphqls'
       - '../../packages/magento-*/**/*.graphqls'
+      - '../../packages/mollie-magento-payment/**/*.graphqls'
       - '../../packagesDev/**/*.graphqls'
     documents:
       - '**/*.graphql'
