@@ -58,18 +58,25 @@ const useStyles = makeStyles(
       borderBottomRightRadius: 4,
     },
     scrollerRoot: {
-      display: `flex`,
-      columnGap: 10,
+      display: `grid`,
+      gridAutoFlow: `column`,
+      gridTemplateColumns: `repeat(30, max-content)`,
+      gridTemplateRows: `100%`,
+      gap: responsiveVal(4, 8),
       height: responsiveVal(60, 85),
       borderRadius: 5,
     },
     toggleButton: {
+      ...theme.typography.h5,
       border: '1px solid #eee',
       borderRadius: 4,
       boxShadow: 'none',
-      transition: 'color .25s ease',
+      transition: 'color .15s ease',
       whiteSpace: 'nowrap',
-      ...theme.typography.h5,
+      fontSize: responsiveVal(14, 20),
+      [theme.breakpoints.up('sm')]: {
+        fontSize: responsiveVal(17, 20),
+      },
     },
     toggleButtonSelected: {
       border: `1px solid ${theme.palette.secondary.main}`,
@@ -172,7 +179,13 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
                         onBlur={onBlur}
                         selected={value === buttonValue}
                       >
-                        {!modules?.[pm.code] ? <>{pm.code} not implemented</> : <Content {...pm} />}
+                        {
+                          !modules?.[pm.code] ? (
+                            <>{pm.code}</>
+                          ) : (
+                            <>{pm.title}</>
+                          ) /* <Content {...pm} />*/
+                        }
                       </ToggleButton>
                     )
                   })}
