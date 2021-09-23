@@ -57,6 +57,11 @@ const useStyles = makeStyles(
         height: responsiveVal(42, 56),
       },
     },
+    placeholderCartFab: {
+      boxShadow: 'none',
+      background: 'none',
+      pointerEvents: 'none',
+    },
   }),
   { name: 'FullPageShell' },
 )
@@ -119,7 +124,7 @@ function FullPageShell(props: FullPageShellProps) {
               </Fab>
             </PageLink>
             <CustomerFab guestHref='/account/signin' authHref='/account' />
-            <Fab style={{ boxShadow: 'none' }} size='large'>
+            <Fab className={classes.placeholderCartFab} size='large'>
               <></>
             </Fab>
           </DesktopNavActions>
