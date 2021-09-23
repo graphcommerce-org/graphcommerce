@@ -1,13 +1,5 @@
 {
-  "packages": [
-    ".",
-    "docs",
-    "packagesDev/*",
-    "packages/*",
-    "packages/*/example",
-    "packages/*/examples/*",
-    "examples/*"
-  ],
+  "packages": ["packagesDev/*"],
   "version": "independent",
   "command": {
     "publish": {
