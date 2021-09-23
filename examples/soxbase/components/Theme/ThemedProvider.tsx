@@ -196,6 +196,9 @@ defaultTheme.overrides = {
       },
       '::selection': { background: '#ff4a557d' },
       '::-moz-selection': { background: '#ff4a557d' },
+      '#__next': {
+        position: 'relative',
+      },
     },
   },
   MuiContainer: {
