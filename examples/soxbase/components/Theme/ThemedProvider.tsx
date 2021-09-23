@@ -16,6 +16,7 @@ export const defaultTheme = createTheme({
     },
     secondary: {
       main: '#006BFF',
+      light: '#006BFF12',
       contrastText: '#FFF',
       mutedText: `rgba(0,0,0,0.4)`,
     },

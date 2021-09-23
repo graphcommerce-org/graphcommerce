@@ -101,7 +101,7 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
     cancels.current = []
   }, [])
 
-  // Register any runnin ganimations so they become cancelable
+  // Register any running animations so they become cancelable
   const register = useCallback((controls: PlaybackControls) => {
     cancels.current.push(controls)
   }, [])

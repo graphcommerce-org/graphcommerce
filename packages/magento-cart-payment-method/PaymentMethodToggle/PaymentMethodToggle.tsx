@@ -1,6 +1,17 @@
-import { FormControl, Typography } from '@material-ui/core'
-import { Form, FormRow, ToggleButton, ToggleButtonGroup } from '@reachdigital/next-ui'
+import { FormControl, makeStyles, Theme } from '@material-ui/core'
+import { Scroller, ScrollerButton, ScrollerProvider } from '@reachdigital/framer-scroller'
+import {
+  Form,
+  FormRow,
+  iconChevronLeft,
+  iconChevronRight,
+  responsiveVal,
+  SvgImage,
+  ToggleButton,
+} from '@reachdigital/next-ui'
 import { Controller, useForm, useFormPersist } from '@reachdigital/react-hook-form'
+import clsx from 'clsx'
+import { m } from 'framer-motion'
 import React, { useEffect } from 'react'
 import { PaymentMethod, PaymentToggleProps } from '../Api/PaymentMethod'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
@@ -14,9 +25,87 @@ function Content(props: PaymentMethod) {
   return <Component {...props} />
 }
 
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    formRoot: {
+      padding: '5px 0',
+    },
+    root: {
+      position: 'relative',
+      padding: 0,
+    },
+    toggleGroup: {
+      display: 'inline-flex',
+      gap: 10,
+    },
+    buttonRoot: {
+      background: theme.palette.background.default,
+      borderRadius: 0,
+      width: 30,
+      height: responsiveVal(60, 85),
+      boxShadow: 'none',
+      border: '1px solid #eee',
+      '&:focus': {
+        boxShadow: 'none',
+      },
+    },
+    leftButtonRoot: {
+      borderTopLeftRadius: 4,
+      borderBottomLeftRadius: 4,
+    },
+    rightButtonRoot: {
+      borderTopRightRadius: 4,
+      borderBottomRightRadius: 4,
+    },
+    scrollerRoot: {
+      display: `grid`,
+      gridAutoFlow: `column`,
+      gridTemplateColumns: `repeat(30, max-content)`,
+      gridTemplateRows: `100%`,
+      gap: responsiveVal(4, 8),
+      height: responsiveVal(60, 85),
+      borderRadius: 5,
+    },
+    toggleButton: {
+      ...theme.typography.h5,
+      border: '1px solid #eee',
+      borderRadius: 4,
+      boxShadow: 'none',
+      transition: 'color .15s ease',
+      whiteSpace: 'nowrap',
+      fontSize: responsiveVal(14, 20),
+      [theme.breakpoints.up('sm')]: {
+        fontSize: responsiveVal(17, 20),
+      },
+    },
+    toggleButtonSelected: {
+      border: `1px solid ${theme.palette.secondary.main}`,
+      background: `${theme.palette.secondary.main}`,
+      color: `${theme.palette.secondary.contrastText}`,
+      '&:hover': {
+        background: `${theme.palette.secondary.main}`,
+      },
+    },
+    buttonContainer: {
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      zIndex: 2,
+      height: '100%',
+    },
+    buttonContainerRight: {
+      left: 'unset',
+      right: 0,
+    },
+  }),
+  { name: 'PaymentMethodToggle' },
+)
+
 export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
   const { methods, selectedMethod, setSelectedMethod, setSelectedModule, modules } =
     usePaymentMethodContext()
+
+  const classes = useStyles()
 
   const form = useForm<{ code: string; paymentMethod?: string }>({
     mode: 'onChange',
@@ -42,43 +131,80 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
     setSelectedModule(modules?.[foundMethod?.code ?? ''])
   }, [methods, modules, paymentMethod, selectedMethod?.code, setSelectedMethod, setSelectedModule])
 
+  if (!methods || methods.length < 1) return <></>
+
   return (
-    <Form onSubmit={submitHandler} noValidate>
+    <Form onSubmit={submitHandler} noValidate classes={{ root: classes.formRoot }}>
       <input type='hidden' {...register('code', { required: true })} required />
-      <FormRow>
-        <FormControl>
-          <Controller
-            defaultValue=''
-            control={control}
-            name='paymentMethod'
-            rules={{ required: 'Please select a payment method' }}
-            render={({ field: { onChange, value, name, ref, onBlur } }) => (
-              <ToggleButtonGroup
-                onChange={(_, val: string) => {
-                  onChange(val)
-                  setValue('code', val?.split('___')[0])
-                }}
-                defaultValue=''
-                aria-label='Payment Method'
-                onBlur={onBlur}
-                value={value}
-                required
-                exclusive
-              >
-                {methods?.map((pm) => (
-                  <ToggleButton
-                    key={`${pm.code}___${pm.child}`}
-                    value={`${pm.code}___${pm.child}`}
-                    color='secondary'
-                    disabled={!modules?.[pm.code]}
-                  >
-                    {!modules?.[pm.code] ? <>{pm.code} not implemented</> : <Content {...pm} />}
-                  </ToggleButton>
-                ))}
-              </ToggleButtonGroup>
-            )}
-          />
-        </FormControl>
+      <FormRow className={classes.root}>
+        <ScrollerProvider scrollSnapType='none'>
+          <m.div className={classes.buttonContainer}>
+            <ScrollerButton
+              direction='left'
+              classes={{
+                root: clsx(classes.buttonRoot, classes.leftButtonRoot),
+              }}
+            >
+              <SvgImage src={iconChevronLeft} alt='chevron left' size='small' loading='eager' />
+            </ScrollerButton>
+          </m.div>
+
+          <FormControl>
+            <Controller
+              defaultValue=''
+              control={control}
+              name='paymentMethod'
+              rules={{ required: 'Please select a payment method' }}
+              render={({ field: { onChange, value, name, ref, onBlur } }) => (
+                <Scroller className={classes.scrollerRoot} hideScrollbar>
+                  {methods?.map((pm) => {
+                    const buttonValue = `${pm.code}___${pm.child}`
+
+                    return (
+                      <ToggleButton
+                        name={name}
+                        aria-label={`payment_method_${pm.code}___${pm.child}`}
+                        key={buttonValue}
+                        value={buttonValue}
+                        color='secondary'
+                        disabled={!modules?.[pm.code]}
+                        classes={{
+                          root: classes.toggleButton,
+                          selected: classes.toggleButtonSelected,
+                        }}
+                        onChange={(_, v: string) => {
+                          onChange(v)
+                          setValue('code', v)
+                        }}
+                        onBlur={onBlur}
+                        selected={value === buttonValue}
+                      >
+                        {
+                          !modules?.[pm.code] ? (
+                            <>{pm.code}</>
+                          ) : (
+                            <>{pm.title}</>
+                          ) /* <Content {...pm} />*/
+                        }
+                      </ToggleButton>
+                    )
+                  })}
+                </Scroller>
+              )}
+            />
+          </FormControl>
+
+          <m.div className={clsx(classes.buttonContainer, classes.buttonContainerRight)}>
+            <ScrollerButton
+              direction='right'
+              classes={{
+                root: clsx(classes.buttonRoot, classes.rightButtonRoot),
+              }}
+            >
+              <SvgImage src={iconChevronRight} alt='chevron right' size='small' loading='eager' />
+            </ScrollerButton>
+          </m.div>
+        </ScrollerProvider>
       </FormRow>
     </Form>
   )

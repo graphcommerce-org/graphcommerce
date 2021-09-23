@@ -11,9 +11,10 @@ import { Mollie } from '../Mollie'
 import MollieField from './MollieField'
 import { SetMolliePaymentMethodTokenOnCartDocument } from './SetMolliePaymentMethodTokenOnCart.gql'
 import { mollieContext, MollieContext } from './mollieContext'
+import { Typography } from '@material-ui/core'
 
 export default function MollieCreditCardOptions(props: PaymentOptionsProps) {
-  const { code, step, Container } = props
+  const { code, step, Container, title } = props
   const [loaded, setLoaded] = useState<boolean>(false)
   const [mollie, setMollie] = useState<MollieContext>(undefined)
   const conf = useQuery(StoreConfigDocument)
@@ -61,6 +62,9 @@ export default function MollieCreditCardOptions(props: PaymentOptionsProps) {
     <Container>
       <Script src='https://js.mollie.com/v1/mollie.js' onLoad={() => setLoaded(true)} />
       <mollieContext.Provider value={mollie}>
+        <Typography variant='h5' component='span'>
+          Pay with {title}
+        </Typography>
         <form onSubmit={submit} noValidate>
           <FormRow>
             <MollieField

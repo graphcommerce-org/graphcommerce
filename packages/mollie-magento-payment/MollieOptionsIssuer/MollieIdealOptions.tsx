@@ -3,5 +3,5 @@ import { PaymentOptionsProps } from '@reachdigital/magento-cart-payment-method'
 import MollieIssuerOptions from './MollieIssuerOptions'
 
 export default function MollieIdealOptions(props: PaymentOptionsProps) {
-  return <MollieIssuerOptions label='Bank' {...props} />
+  return <MollieIssuerOptions label='Choose your bank' {...props} />
 }
