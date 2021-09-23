@@ -19,9 +19,8 @@ jobs:
       - uses: bahmutov/npm-install@v1
         with:
           useRollingCache: true
-      - run: yarn lerna version --conventional-commits --create-release github --yes
+      - run: yarn lerna publish --conventional-commits --create-release github --yes
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_PWA }}
