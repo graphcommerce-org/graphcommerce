@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.112.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.112.2...@reachdigital/next-ui@2.112.3) (2021-09-23)
+
+
+### Bug Fixes
+
+* do not use ToggleButtonGroup, only use the ToggleButton ([5172f70](https://github.com/ho-nl/m2-pwa/commit/5172f709ee26122b0a8700afb4325f23cb9ba9b9))
+* **Form:** forms always have background ([1f3fa1e](https://github.com/ho-nl/m2-pwa/commit/1f3fa1e53a997b88512335dc344bff3fa24f6bc6))
+
+
+
+
+
 ## [2.112.2](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.112.1...@reachdigital/next-ui@2.112.2) (2021-09-20)
 
 

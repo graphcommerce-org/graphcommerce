@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.15](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-payment-method@2.103.14...@reachdigital/magento-cart-payment-method@2.103.15) (2021-09-23)
+
+
+### Bug Fixes
+
+* do not use ToggleButtonGroup, only use the ToggleButton ([5172f70](https://github.com/ho-nl/m2-pwa/commit/5172f709ee26122b0a8700afb4325f23cb9ba9b9))
+
+
+
+
+
 ## [2.103.12](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-payment-method@2.103.11...@reachdigital/magento-cart-payment-method@2.103.12) (2021-09-01)
 
 
