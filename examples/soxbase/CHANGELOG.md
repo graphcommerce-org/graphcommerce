@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.114.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.114.0...@reachdigital/soxbase@2.114.1) (2021-09-23)
+
+
+### Bug Fixes
+
+* make sure mollie only gets build optionally ([e5e2347](https://github.com/ho-nl/m2-pwa/commit/e5e23475e170dc2fc0c13103dfb8fbdb9009715f))
+
+
+
+
+
 # [2.114.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.113.4...@reachdigital/soxbase@2.114.0) (2021-09-22)
 
 
