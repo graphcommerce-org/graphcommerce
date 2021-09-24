@@ -1,0 +1,6 @@
+query GetCartEmail($cartId: String!) {
+  cart(cart_id: $cartId) {
+    id
+    email
+  }
+}

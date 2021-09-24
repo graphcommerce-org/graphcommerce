@@ -104,7 +104,7 @@ function PaymentPage() {
                 <CartTotals />
               </CartSummary>
 
-              <CouponAccordion />
+              <CouponAccordion key='coupon' />
 
               <PaymentMethodButton
                 key='button'

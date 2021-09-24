@@ -1,11 +1,12 @@
+import { usePageRouter } from '..'
 import { usePrevPageRouter } from './usePrevPageRouter'
 
-export type UseBackLinkProps = { href: string }
+export type UseHistoryLink = { href: string }
 
 type ClickEvent = { preventDefault: () => void }
 
-export function useHistoryLink(props: UseBackLinkProps) {
-  const { href } = props
+export function useHistoryLink(options: UseHistoryLink) {
+  const { href } = options
   const prevRouter = usePrevPageRouter()
 
   const onClick =
@@ -17,4 +18,15 @@ export function useHistoryLink(props: UseBackLinkProps) {
       : undefined
 
   return { onClick, href }
+}
+
+export function useHistoryGo(options: UseHistoryLink) {
+  const { onClick, href } = useHistoryLink(options)
+  const router = usePageRouter()
+
+  return () => {
+    if (onClick) onClick({ preventDefault: () => {} })
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    else router.push(href)
+  }
 }

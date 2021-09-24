@@ -12,6 +12,5 @@ query AccountDashboard {
       }
     }
     ...AccountAddresses
-    ...AccountNewsletter
   }
 }

@@ -1,6 +1,8 @@
 import { Box, Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { CartItemSummary, CartSummary } from '@reachdigital/magento-cart'
+import { CartItemSummary, CartSummary, useCartQuery } from '@reachdigital/magento-cart'
+import { InlineAccount } from '@reachdigital/magento-customer'
+import { SignupNewsletter } from '@reachdigital/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   AppShellTitle,
@@ -21,7 +23,7 @@ import apolloClient from '../../lib/apolloClient'
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
-function ShippingPage() {
+function OrderSuccessPage() {
   return (
     <>
       <PageMeta title='Checkout summary' metaDescription='Ordered items' metaRobots={['noindex']} />
@@ -40,6 +42,11 @@ function ShippingPage() {
         <AppShellTitle icon={iconParty}>Thank you for your order!</AppShellTitle>
         <CartSummary />
         <CartItemSummary />
+
+        <SignupNewsletter />
+
+        <InlineAccount accountHref='/account' />
+
         <Box textAlign='center' m={8}>
           <PageLink href='/' passHref>
             <Button color='secondary' variant='pill' size='large' text='bold'>
@@ -57,9 +64,9 @@ const pageOptions: PageOptions<MinimalPageShellProps> = {
   SharedComponent: MinimalPageShell,
   sharedKey: () => 'checkout',
 }
-ShippingPage.pageOptions = pageOptions
+OrderSuccessPage.pageOptions = pageOptions
 
-export default ShippingPage
+export default OrderSuccessPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)

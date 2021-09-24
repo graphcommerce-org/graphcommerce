@@ -1,9 +1,9 @@
 import { useMutation } from '@apollo/client'
-import { CircularProgress, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
+import { CircularProgress, makeStyles, TextField } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import {
-  useCartQuery,
   ApolloCartErrorAlert,
+  useCartQuery,
   useMergeCustomerCart,
 } from '@reachdigital/magento-cart'
 import {
@@ -20,7 +20,7 @@ import { CartEmailDocument } from './CartEmail.gql'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  () => ({
     helperList: {
       marginBottom: 0,
     },
@@ -104,12 +104,11 @@ export default function EmailForm(props: EmailFormProps) {
           </form>
         </AnimatedRow>
 
-        {(mode === 'signin' && expand) ||
-          (mode === 'session-expired' && (
-            <AnimatedRow key='signin-form-inline'>
-              <SignInFormInline email={watch('email')} />
-            </AnimatedRow>
-          ))}
+        {((mode === 'signin' && expand) || mode === 'session-expired') && (
+          <AnimatedRow key='signin-form-inline'>
+            <SignInFormInline email={watch('email')} />
+          </AnimatedRow>
+        )}
 
         {mode === 'signup' && expand && (
           <AnimatedRow key='inline-signup'>

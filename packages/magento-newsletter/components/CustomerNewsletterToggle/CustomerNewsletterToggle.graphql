@@ -1,0 +1,4 @@
+fragment CustomerNewsletterToggle on Customer @inject(into: ["AccountDashboardCustomer"]) {
+  is_subscribed
+  email
+}

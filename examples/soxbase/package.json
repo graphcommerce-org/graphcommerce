@@ -65,6 +65,7 @@
     "@reachdigital/magento-customer-account": "^2.101.18",
     "@reachdigital/magento-customer-order": "^2.101.17",
     "@reachdigital/magento-graphql": "^2.102.3",
+    "@reachdigital/magento-newsletter": "0.0.0",
     "@reachdigital/magento-payment-braintree": "^2.103.20",
     "@reachdigital/magento-payment-included": "^2.102.20",
     "@reachdigital/magento-payment-klarna": "^2.102.19",

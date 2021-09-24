@@ -18,7 +18,7 @@ import apolloClient from '../../../lib/apolloClient'
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
-function AccountAddressesPage(props: Props) {
+function AccountAddressesPage() {
   const { data, loading, error } = useQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'network-only',
     ssr: false,

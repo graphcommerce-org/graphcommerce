@@ -7,10 +7,13 @@ import {
   Switch,
   SwitchProps,
 } from '@material-ui/core'
-import { ApolloCustomerErrorAlert, CustomerDocument } from '@reachdigital/magento-customer'
+import { ApolloCustomerErrorAlert } from '@reachdigital/magento-customer'
 import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@reachdigital/react-hook-form'
-import React, { useEffect, useMemo } from 'react'
+import React from 'react'
+import { GetCustomerNewsletterToggleDocument } from './GetCustomerNewsLetterToggle.gql'
 import { UpdateNewsletterSubscriptionDocument } from './UpdateNewsletterSubscription.gql'
+
+export type CustomerNewsletterToggleProps = SwitchProps
 
 const useStyles = makeStyles(() => ({
   labelRoot: {
@@ -18,55 +21,30 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-export type AccountNewsletterProps = SwitchProps
-
-export default function AccountNewsletter(props: AccountNewsletterProps) {
-  const { ...switchProps } = props
+export default function CustomerNewsletterToggle(props: CustomerNewsletterToggleProps) {
+  const { disabled, ...switchProps } = props
   const classes = useStyles(props)
 
-  const { loading, data } = useQuery(CustomerDocument, {
-    ssr: false,
-  })
-  const customer = data?.customer
-  const is_subscribed = customer && customer.is_subscribed
-
-  const defaultValues = useMemo(
-    // todo: useMemo weg
-    () => ({
-      isSubscribed: is_subscribed ?? false,
-    }),
-    [is_subscribed],
-  )
-
-  const form = useFormGqlMutation(
-    UpdateNewsletterSubscriptionDocument,
-    {
-      mode: 'onChange',
-      defaultValues,
+  const { loading, data } = useQuery(GetCustomerNewsletterToggleDocument, { ssr: false })
+  const form = useFormGqlMutation(UpdateNewsletterSubscriptionDocument, {
+    mode: 'onChange',
+    defaultValues: {
+      isSubscribed: data?.customer?.is_subscribed ?? false,
     },
-    { errorPolicy: 'all' },
-  )
-
-  const { handleSubmit, control, error, reset, formState } = form
-
-  const submit = handleSubmit(() => {
-    //
   })
 
+  const { handleSubmit, control, formState, error } = form
+  const submit = handleSubmit(() => {})
   useFormAutoSubmit({ form, submit })
 
-  useEffect(() => {
-    reset(defaultValues)
-  }, [defaultValues, reset])
-
-  if (loading) return null
+  if (disabled || loading) return <Switch disabled color='primary' {...switchProps} />
 
   return (
     <form noValidate>
       <Controller
         name='isSubscribed'
         control={control}
-        render={({ field: { onChange, value, name, ref, onBlur } }) => (
+        render={({ field: { onChange, value, name: controlName, ref, onBlur } }) => (
           <FormControl error={!!formState.errors.isSubscribed}>
             <FormControlLabel
               classes={{ root: classes.labelRoot }}
@@ -75,10 +53,9 @@ export default function AccountNewsletter(props: AccountNewsletterProps) {
               checked={value}
               inputRef={ref}
               onBlur={onBlur}
-              name={name}
+              name={controlName}
               onChange={(e) => onChange((e as React.ChangeEvent<HTMLInputElement>).target.checked)}
             />
-
             {formState.errors.isSubscribed?.message && (
               <FormHelperText>{formState.errors.isSubscribed?.message}</FormHelperText>
             )}
