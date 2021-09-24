@@ -12,7 +12,7 @@ import {
   AccountMenuItem,
 } from '@reachdigital/magento-customer-account'
 import { OrderStateLabelInline } from '@reachdigital/magento-customer-order'
-import { NewsletterToggle } from '@reachdigital/magento-newsletter'
+import { CustomerNewsletterToggle } from '@reachdigital/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   AppShellTitle,

@@ -1,12 +1,12 @@
 import { useQuery } from '@apollo/client'
 import { makeStyles, Theme } from '@material-ui/core'
 import { useCartQuery } from '@reachdigital/magento-cart'
-import { CartPageDocument } from '@reachdigital/magento-cart-checkout'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer'
 import { UseStyles } from '@reachdigital/next-ui'
 import React from 'react'
 import CustomerNewsletterToggle from '../CustomerNewsletterToggle'
 import GuestNewsletterToggle from '../GuestNewsletterToggle'
+import { GetCartEmailDocument } from './GetCartEmail.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -48,25 +48,20 @@ type SignupNewsletterProps = {
 
 export default function SignupNewsletter(props: SignupNewsletterProps) {
   const classes = useStyles(props)
-  const { data: cartData } = useCartQuery(CartPageDocument, { returnPartialData: true })
+  const { data: cartData } = useCartQuery(GetCartEmailDocument, { allowUrl: true })
   const { data: customerTokenData } = useQuery(CustomerTokenDocument)
-  const customerSignedIn = Boolean(
-    customerTokenData?.customerToken && customerTokenData?.customerToken.valid,
-  )
-  const email = cartData?.cart?.email ?? ''
-
-  if (!customerSignedIn && !email) return <></>
+  const isCustomer = Boolean(customerTokenData?.customerToken)
 
   return (
     <div className={classes.signup}>
       <b>Sign up for our newsletter and stay updated</b>
       <div className={classes.signupForm}>
-        {customerSignedIn ? (
+        {isCustomer ? (
           <CustomerNewsletterToggle color='primary' />
         ) : (
-          <GuestNewsletterToggle color='primary' email={email} />
+          <GuestNewsletterToggle color='primary' />
         )}
-        {email}
+        {cartData?.cart?.email}
       </div>
     </div>
   )

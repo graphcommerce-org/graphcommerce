@@ -1,4 +1,4 @@
-mutation SubscribeEmailToNewsletter($email: String!) {
+mutation GuestNewsletterToggle($email: String!) {
   subscribeEmailToNewsletter(email: $email) {
     status
   }
