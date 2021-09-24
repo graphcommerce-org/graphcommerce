@@ -1,10 +1,12 @@
 {
-  "packages": ["packagesDev/*", "packages/*"],
+  "packages": ["packagesDev/*", "packages/*", "examples/*"],
   "version": "independent",
   "command": {
     "publish": {
+      "conventionalCommits": true,
       "ignoreChanges": ["*.md"],
-      "message": "chore: release"
+      "message": "chore: release",
+      "allowBranch": "master"
     }
   }
 }
