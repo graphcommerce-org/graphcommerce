@@ -1,6 +1,6 @@
 import { Theme, Typography, makeStyles } from '@material-ui/core'
-import { UpsellProductsFragment } from '@reachdigital/magento-product'
-import { SidebarSlider, RenderType, responsiveVal } from '@reachdigital/next-ui'
+import { UpsellProductsFragment } from '@graphcommerce/magento-product'
+import { SidebarSlider, RenderType, responsiveVal } from '@graphcommerce/next-ui'
 import React from 'react'
 import renderers from '../../ProductListItems/renderers'
 import { RowProductUpsellsFragment } from './RowProductUpsells.gql'

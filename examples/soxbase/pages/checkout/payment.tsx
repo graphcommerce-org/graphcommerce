@@ -1,18 +1,18 @@
 import { Container, Divider, NoSsr } from '@material-ui/core'
-import { PageOptions } from '@reachdigital/framer-next-pages'
-import { CartSummary, CartTotals } from '@reachdigital/magento-cart'
-import { CouponAccordion } from '@reachdigital/magento-cart-coupon'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { CartSummary, CartTotals } from '@graphcommerce/magento-cart'
+import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
 import {
   PaymentMethodButton,
   PaymentMethodContextProvider,
   PaymentMethodOptions,
   PaymentMethodPlaceOrder,
   PaymentMethodToggle,
-} from '@reachdigital/magento-cart-payment-method'
-import { braintree, braintree_local_payment } from '@reachdigital/magento-payment-braintree'
-import { included_methods } from '@reachdigital/magento-payment-included'
-import { mollie_methods } from '@reachdigital/magento-payment-mollie'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+} from '@graphcommerce/magento-cart-payment-method'
+import { braintree, braintree_local_payment } from '@graphcommerce/magento-payment-braintree'
+import { included_methods } from '@graphcommerce/magento-payment-included'
+import { mollie_methods } from '@graphcommerce/magento-payment-mollie'
+import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AppShellTitle,
   FormDiv,
@@ -23,8 +23,8 @@ import {
   Stepper,
   SvgImage,
   Title,
-} from '@reachdigital/next-ui'
-import { ComposedForm } from '@reachdigital/react-hook-form'
+} from '@graphcommerce/next-ui'
+import { ComposedForm } from '@graphcommerce/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'

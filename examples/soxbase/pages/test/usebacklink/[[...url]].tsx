@@ -1,5 +1,5 @@
 import { Link } from '@material-ui/core'
-import { PageOptions, useHistoryLink } from '@reachdigital/framer-next-pages'
+import { PageOptions, useHistoryLink } from '@graphcommerce/framer-next-pages'
 import PageLink from 'next/link'
 import React from 'react'
 import MinimalPageShell, {

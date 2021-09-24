@@ -1,4 +1,4 @@
-import { Image } from '@reachdigital/image'
+import { Image } from '@graphcommerce/image'
 import React from 'react'
 import image from '../components/image.jpg'
 
@@ -8,7 +8,7 @@ const imgHeight = image.height
 function Index() {
   return (
     <>
-      <h1>@reachdigital/image</h1>
+      <h1>@graphcommerce/image</h1>
 
       <p>The layout should never have a layout shift when loading the page</p>
       <p>The layout should never have a layout shift when expanding a section</p>

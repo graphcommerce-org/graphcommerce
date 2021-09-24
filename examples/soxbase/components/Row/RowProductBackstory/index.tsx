@@ -1,6 +1,6 @@
 import { useTheme } from '@material-ui/core'
-import RichTextParagraphStrongStroked from '@reachdigital/graphcms-ui/RichText/RichTextParagraphStrongStroked'
-import { ParagraphWithSidebarSlide, RenderType } from '@reachdigital/next-ui'
+import RichTextParagraphStrongStroked from '@graphcommerce/graphcms-ui/RichText/RichTextParagraphStrongStroked'
+import { ParagraphWithSidebarSlide, RenderType } from '@graphcommerce/next-ui'
 import React from 'react'
 import Asset from '../../Asset'
 import { ProductListItemsProps } from '../../ProductListItems/ProductListItems'

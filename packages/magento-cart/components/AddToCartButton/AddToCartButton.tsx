@@ -1,8 +1,8 @@
 import { TypedDocumentNode, useQuery } from '@apollo/client'
 import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
-import { ProductInterface } from '@reachdigital/graphql'
-import { CustomerTokenDocument } from '@reachdigital/magento-customer'
-import { Money, MoneyProps } from '@reachdigital/magento-store'
+import { ProductInterface } from '@graphcommerce/graphql'
+import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
+import { Money, MoneyProps } from '@graphcommerce/magento-store'
 import {
   Button,
   ButtonProps,
@@ -11,8 +11,8 @@ import {
   TextInputNumber,
   iconCheckmark,
   iconChevronRight,
-} from '@reachdigital/next-ui'
-import { DeepPartial, UnpackNestedValue, Path } from '@reachdigital/react-hook-form'
+} from '@graphcommerce/next-ui'
+import { DeepPartial, UnpackNestedValue, Path } from '@graphcommerce/react-hook-form'
 import PageLink from 'next/link'
 import React from 'react'
 import { useFormGqlMutationCart } from '../../hooks/useFormGqlMutationCart'

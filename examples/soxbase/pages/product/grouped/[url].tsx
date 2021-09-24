@@ -1,6 +1,6 @@
 import { Typography } from '@material-ui/core'
-import { PageOptions } from '@reachdigital/framer-next-pages'
-import { AddToCartButton } from '@reachdigital/magento-cart'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { AddToCartButton } from '@graphcommerce/magento-cart'
 import {
   ProductWeight,
   getProductStaticPaths,
@@ -11,14 +11,14 @@ import {
   jsonLdProduct,
   jsonLdProductOffer,
   ProductSidebarDelivery,
-} from '@reachdigital/magento-product'
+} from '@graphcommerce/magento-product'
 import {
   GroupedProductPageDocument,
   GroupedProductPageQuery,
-} from '@reachdigital/magento-product-grouped'
-import { jsonLdProductReview, ProductReviewChip } from '@reachdigital/magento-review'
-import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { JsonLd, GetStaticProps, Title } from '@reachdigital/next-ui'
+} from '@graphcommerce/magento-product-grouped'
+import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { JsonLd, GetStaticProps, Title } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { Product } from 'schema-dts'

@@ -4,7 +4,7 @@ import React from 'react'
 export default function GoogleTagManagerScript() {
   const id = process.env.NEXT_PUBLIC_GTM_ID
 
-  if (!id) console.warn('[@reachdigital/googletagmanager]', 'NEXT_PUBLIC_GTM_ID not found')
+  if (!id) console.warn('[@graphcommerce/googletagmanager]', 'NEXT_PUBLIC_GTM_ID not found')
 
   return (
     <Script

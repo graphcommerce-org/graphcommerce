@@ -1,4 +1,4 @@
-import { BlogTitle as NextBlogTitle } from '@reachdigital/next-ui'
+import { BlogTitle as NextBlogTitle } from '@graphcommerce/next-ui'
 
 export default function BlogHeader(props) {
   const { title } = props

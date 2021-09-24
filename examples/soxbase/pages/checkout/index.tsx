@@ -1,11 +1,11 @@
 import { Container, NoSsr } from '@material-ui/core'
-import { PageOptions } from '@reachdigital/framer-next-pages'
-import { ApolloCartErrorAlert, EmptyCart, useCartQuery } from '@reachdigital/magento-cart'
-import { ShippingPageDocument } from '@reachdigital/magento-cart-checkout'
-import { EmailForm } from '@reachdigital/magento-cart-email'
-import { ShippingAddressForm } from '@reachdigital/magento-cart-shipping-address'
-import { ShippingMethodForm } from '@reachdigital/magento-cart-shipping-method'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { ApolloCartErrorAlert, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
+import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
+import { EmailForm } from '@graphcommerce/magento-cart-email'
+import { ShippingAddressForm } from '@graphcommerce/magento-cart-shipping-address'
+import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
+import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AppShellTitle,
   Button,
@@ -18,8 +18,8 @@ import {
   Stepper,
   SvgImage,
   Title,
-} from '@reachdigital/next-ui'
-import { ComposedForm, ComposedSubmit } from '@reachdigital/react-hook-form'
+} from '@graphcommerce/next-ui'
+import { ComposedForm, ComposedSubmit } from '@graphcommerce/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'

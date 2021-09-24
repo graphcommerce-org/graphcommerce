@@ -1,7 +1,7 @@
 import {
   PaymentModule,
   PaymentMethodPlaceOrderNoop,
-} from '@reachdigital/magento-cart-payment-method'
+} from '@graphcommerce/magento-cart-payment-method'
 import PurchaseOrderOptions from './PurchaseOrderOptions'
 
 export const purchaseorder: PaymentModule = {

@@ -1,5 +1,5 @@
-import { GoogleTagManagerNoScript } from '@reachdigital/googletagmanager'
-import Document from '@reachdigital/next-ui/Page/Document'
+import { GoogleTagManagerNoScript } from '@graphcommerce/googletagmanager'
+import Document from '@graphcommerce/next-ui/Page/Document'
 import { Head, Html, Main, NextScript } from 'next/document'
 
 export default class ThemedDocument extends Document {

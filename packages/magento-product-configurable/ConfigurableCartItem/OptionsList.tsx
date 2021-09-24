@@ -1,6 +1,6 @@
 import { makeStyles, Menu, Theme } from '@material-ui/core'
-import { CartItemOptionDropdown } from '@reachdigital/magento-cart-items'
-import { Button, responsiveVal } from '@reachdigital/next-ui'
+import { CartItemOptionDropdown } from '@graphcommerce/magento-cart-items'
+import { Button, responsiveVal } from '@graphcommerce/next-ui'
 import React, { useState } from 'react'
 import { ConfigurableCartItemFragment } from './ConfigurableCartItem.gql'
 

@@ -31,7 +31,7 @@ Hosting:
 6. `cp examples/soxbase/.env.example examples/soxbase/.env`
 7. Fill in `GRAPHCMS_BEARER` in `examples/soxbase-api/.env`, in 1Pass under
    `soxbase-api`
-8. `yarn workspace @reachdigital/soxbase-api build-mesh && yarn dev:api && yarn workspace @reachdigital/soxbase codegen; yarn stop`
+8. `yarn workspace @graphcommerce/soxbase-api build-mesh && yarn dev:api && yarn workspace @graphcommerce/soxbase codegen; yarn stop`
 
 ## Customize endpoint (optional):
 

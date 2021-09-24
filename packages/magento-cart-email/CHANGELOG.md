@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.102.8](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-email@2.102.7...@reachdigital/magento-cart-email@2.102.8) (2021-08-18)
+## [2.102.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-email@2.102.7...@graphcommerce/magento-cart-email@2.102.8) (2021-08-18)
 
 
 ### Bug Fixes
@@ -14,7 +14,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [2.102.5](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-email@2.102.4...@reachdigital/magento-cart-email@2.102.5) (2021-08-13)
+## [2.102.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-email@2.102.4...@graphcommerce/magento-cart-email@2.102.5) (2021-08-13)
 
 
 ### Bug Fixes
@@ -25,7 +25,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-email@2.101.10...@reachdigital/magento-cart-email@2.102.0) (2021-08-12)
+# [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-email@2.101.10...@graphcommerce/magento-cart-email@2.102.0) (2021-08-12)
 
 
 ### Features
@@ -36,7 +36,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [2.101.9](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-email@2.101.8...@reachdigital/magento-cart-email@2.101.9) (2021-08-09)
+## [2.101.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-email@2.101.8...@graphcommerce/magento-cart-email@2.101.9) (2021-08-09)
 
 
 ### Reverts
@@ -47,7 +47,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-email@2.100.19...@reachdigital/magento-cart-email@2.101.0) (2021-07-26)
+# [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-email@2.100.19...@graphcommerce/magento-cart-email@2.101.0) (2021-07-26)
 
 
 ### Features
@@ -58,7 +58,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [2.100.17](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-email@2.100.16...@reachdigital/magento-cart-email@2.100.17) (2021-07-23)
+## [2.100.17](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-email@2.100.16...@graphcommerce/magento-cart-email@2.100.17) (2021-07-23)
 
 
 ### Bug Fixes
@@ -69,7 +69,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [2.100.11](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-email@2.100.10...@reachdigital/magento-cart-email@2.100.11) (2021-07-20)
+## [2.100.11](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-email@2.100.10...@graphcommerce/magento-cart-email@2.100.11) (2021-07-20)
 
 
 ### Bug Fixes

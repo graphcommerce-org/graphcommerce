@@ -22,7 +22,7 @@ Below is a full typescript example:
 
 ```tsx
 import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
-import { UseStyles } from '@reachdigital/next-ui'
+import { UseStyles } from '@graphcommerce/next-ui'
 
 const useStyles = makeStyles((theme: Theme) => ({
   myComponentRoot: {

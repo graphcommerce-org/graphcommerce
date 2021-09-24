@@ -1,5 +1,5 @@
 import { PaginationProps } from '@material-ui/lab'
-import { Pagination } from '@reachdigital/next-ui'
+import { Pagination } from '@graphcommerce/next-ui'
 import React from 'react'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import ProductListLink from '../ProductListLink/ProductListLink'

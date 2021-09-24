@@ -1,5 +1,5 @@
-import RichTextHero from '@reachdigital/graphcms-ui/RichText/RichTextHero'
-import { HeroBanner } from '@reachdigital/next-ui'
+import RichTextHero from '@graphcommerce/graphcms-ui/RichText/RichTextHero'
+import { HeroBanner } from '@graphcommerce/next-ui'
 import React from 'react'
 import Button from '../../PageLink/Button'
 import { RowHeroBannerFragment } from './RowHeroBanner.gql'

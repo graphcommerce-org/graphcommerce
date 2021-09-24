@@ -8,7 +8,7 @@ import {
   responsiveVal,
   StarRatingField,
   SvgImage,
-} from '@reachdigital/next-ui'
+} from '@graphcommerce/next-ui'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import ProductReviewChip from '../ProductReviewChip'

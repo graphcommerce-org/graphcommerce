@@ -1,5 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { useMotionValueValue } from '@reachdigital/framer-utils'
+import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import clsx from 'clsx'
 import { m, MotionProps } from 'framer-motion'
 import React, { useState } from 'react'

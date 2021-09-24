@@ -1,5 +1,5 @@
-import RichTextQuote from '@reachdigital/graphcms-ui/RichText/RichTextQuote'
-import { Quote } from '@reachdigital/next-ui'
+import RichTextQuote from '@graphcommerce/graphcms-ui/RichText/RichTextQuote'
+import { Quote } from '@graphcommerce/next-ui'
 import React from 'react'
 import { RowQuoteFragment } from './RowQuote.gql'
 

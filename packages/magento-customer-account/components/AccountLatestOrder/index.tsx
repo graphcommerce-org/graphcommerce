@@ -2,9 +2,9 @@ import {
   NoOrdersFound,
   OrderCard,
   useOrderCardItemImages,
-} from '@reachdigital/magento-customer-order'
+} from '@graphcommerce/magento-customer-order'
 
-import { SectionContainer } from '@reachdigital/next-ui'
+import { SectionContainer } from '@graphcommerce/next-ui'
 import React from 'react'
 import { AccountOrdersFragment } from '../AccountOrders/AccountOrders.gql'
 

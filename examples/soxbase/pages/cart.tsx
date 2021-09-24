@@ -1,17 +1,17 @@
 import { Container, NoSsr } from '@material-ui/core'
-import { PageOptions } from '@reachdigital/framer-next-pages'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   ApolloCartErrorAlert,
   CartStartCheckout,
   CartTotals,
   EmptyCart,
   useCartQuery,
-} from '@reachdigital/magento-cart'
-import { CartPageDocument } from '@reachdigital/magento-cart-checkout'
-import { CouponAccordion } from '@reachdigital/magento-cart-coupon'
-import { CartItem, CartItems } from '@reachdigital/magento-cart-items'
-import { ConfigurableCartItem } from '@reachdigital/magento-product-configurable'
-import { Money, PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+} from '@graphcommerce/magento-cart'
+import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
+import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
+import { CartItem, CartItems } from '@graphcommerce/magento-cart-items'
+import { ConfigurableCartItem } from '@graphcommerce/magento-product-configurable'
+import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AnimatedRow,
   AppShellTitle,
@@ -23,7 +23,7 @@ import {
   Title,
   iconChevronRight,
   SvgImage,
-} from '@reachdigital/next-ui'
+} from '@graphcommerce/next-ui'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'

@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Button, makeStyles, Theme } from '@material-ui/core'
 import Skeleton from '@material-ui/lab/Skeleton'
-import { StoreConfigDocument, Money } from '@reachdigital/magento-store'
+import { StoreConfigDocument, Money } from '@graphcommerce/magento-store'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'

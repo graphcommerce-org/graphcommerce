@@ -1,10 +1,10 @@
 import { MutationHookOptions, TypedDocumentNode } from '@apollo/client'
-import { graphqlErrorByCategory } from '@reachdigital/magento-graphql'
+import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import {
   useFormGqlMutation,
   UseFormGqlMutationReturn,
   UseFormGraphQlOptions,
-} from '@reachdigital/react-hook-form'
+} from '@graphcommerce/react-hook-form'
 import { useCartIdCreate } from './useCartIdCreate'
 
 export function useFormGqlMutationCart<Q, V extends { cartId: string; [index: string]: unknown }>(

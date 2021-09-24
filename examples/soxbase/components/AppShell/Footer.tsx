@@ -1,6 +1,6 @@
 import { Container, IconButton, Link, makeStyles, Theme } from '@material-ui/core'
-import { StoreSwitcherButton } from '@reachdigital/magento-store'
-import { SvgImageSimple, UseStyles } from '@reachdigital/next-ui'
+import { StoreSwitcherButton } from '@graphcommerce/magento-store'
+import { SvgImageSimple, UseStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'

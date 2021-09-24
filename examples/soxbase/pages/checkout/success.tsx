@@ -1,7 +1,7 @@
 import { Box, Container } from '@material-ui/core'
-import { PageOptions } from '@reachdigital/framer-next-pages'
-import { CartItemSummary, CartSummary } from '@reachdigital/magento-cart'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { CartItemSummary, CartSummary } from '@graphcommerce/magento-cart'
+import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AppShellTitle,
   Button,
@@ -10,7 +10,7 @@ import {
   PageShellHeader,
   Stepper,
   Title,
-} from '@reachdigital/next-ui'
+} from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'

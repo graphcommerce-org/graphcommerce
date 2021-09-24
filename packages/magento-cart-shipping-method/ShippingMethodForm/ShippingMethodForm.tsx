@@ -4,9 +4,9 @@ import {
   ApolloCartErrorAlert,
   useCartQuery,
   useFormGqlMutationCart,
-} from '@reachdigital/magento-cart'
-import { Form, FormRow, ToggleButtonGroup, UseStyles } from '@reachdigital/next-ui'
-import { Controller, useFormCompose, UseFormComposeOptions } from '@reachdigital/react-hook-form'
+} from '@graphcommerce/magento-cart'
+import { Form, FormRow, ToggleButtonGroup, UseStyles } from '@graphcommerce/next-ui'
+import { Controller, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import React from 'react'
 import AvailableShippingMethod from '../AvailableShippingMethod/AvailableShippingMethod'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'

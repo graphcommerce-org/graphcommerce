@@ -1,4 +1,4 @@
-import { SidebarGallery, SidebarGalleryProps, TypeRenderer } from '@reachdigital/next-ui'
+import { SidebarGallery, SidebarGalleryProps, TypeRenderer } from '@graphcommerce/next-ui'
 import React, { PropsWithChildren } from 'react'
 import { ProductPageGalleryFragment } from './ProductPageGallery.gql'
 

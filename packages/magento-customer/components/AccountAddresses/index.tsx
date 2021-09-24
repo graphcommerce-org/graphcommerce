@@ -7,7 +7,7 @@ import {
   MessageSnackbar,
   SvgImage,
   iconHome,
-} from '@reachdigital/next-ui'
+} from '@graphcommerce/next-ui'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'

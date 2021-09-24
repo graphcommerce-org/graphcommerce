@@ -1,4 +1,4 @@
-import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
+import { usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
 import {
   Sheet,
   SheetBackdrop,
@@ -7,7 +7,7 @@ import {
   SheetPanel,
   SheetProps,
   styles,
-} from '@reachdigital/framer-sheet'
+} from '@graphcommerce/framer-sheet'
 import { useRouter } from 'next/router'
 import React from 'react'
 

@@ -1,14 +1,14 @@
 import { Box, Container, Link, NoSsr } from '@material-ui/core'
-import { PageOptions } from '@reachdigital/framer-next-pages'
-import { ResetPasswordForm } from '@reachdigital/magento-customer'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { ResetPasswordForm } from '@graphcommerce/magento-customer'
+import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AppShellTitle,
   Button,
   GetStaticProps,
   SheetShellHeader,
   Title,
-} from '@reachdigital/next-ui'
+} from '@graphcommerce/next-ui'
 import router, { useRouter } from 'next/router'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../../components/AppShell/SheetShell'

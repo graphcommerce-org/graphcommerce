@@ -1,4 +1,4 @@
-import { usePageRouter } from '@reachdigital/framer-next-pages'
+import { usePageRouter } from '@graphcommerce/framer-next-pages'
 import Link from 'next/link'
 import styles from './styles.module.css'
 

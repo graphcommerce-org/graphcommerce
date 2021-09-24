@@ -1,4 +1,4 @@
-import RichText from '@reachdigital/graphcms-ui/RichText'
+import RichText from '@graphcommerce/graphcms-ui/RichText'
 import {
   iconChat,
   iconEmail,
@@ -6,7 +6,7 @@ import {
   IconBlocks,
   IconBlock,
   SvgImage,
-} from '@reachdigital/next-ui'
+} from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import { RowServiceOptionsFragment } from './RowServiceOptions.gql'

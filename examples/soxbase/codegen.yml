@@ -1,7 +1,7 @@
-# todo: make `../../node_modules/@reachdigital` some env variable or resolve dynamically'
+# todo: make `../../node_modules/@graphcommerce` some env variable or resolve dynamically'
 generates:
   # Generate a schema file
-  ../../node_modules/@reachdigital/graphql/generated/schema.graphqls:
+  ../../node_modules/@graphcommerce/graphql/generated/schema.graphqls:
     schema:
       - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
       - '**/*.graphqls'
@@ -9,7 +9,7 @@ generates:
       - '../../packages/mollie-magento-payment/**/*.graphqls'
       - '../../packagesDev/**/*.graphqls'
       # todo: This is triggering on any file changed: https://d.pr/v/9Rnxo2
-      # - '../../node_modules/@reachdigital/**/*.graphqls'
+      # - '../../node_modules/@graphcommerce/**/*.graphqls'
     plugins:
       - schema-ast
       - add
@@ -18,7 +18,7 @@ generates:
       commentDescriptions: false
       content: '#'
   # Generate a types file
-  ../../node_modules/@reachdigital/graphql/generated/types.ts:
+  ../../node_modules/@graphcommerce/graphql/generated/types.ts:
     schema:
       - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
       - '**/*.graphqls'
@@ -33,7 +33,7 @@ generates:
       enumsAsTypes: true
       content: '/* eslint-disable */'
   # Generate a fragments.json
-  ../../node_modules/@reachdigital/graphql/generated/fragments.json:
+  ../../node_modules/@graphcommerce/graphql/generated/fragments.json:
     schema:
       - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
       - '**/*.graphqls'
@@ -57,14 +57,14 @@ generates:
       - '../../packages/**/*.graphql'
       # - '../../packagesDev/**/*.graphql'
     plugins:
-      - '@reachdigital/graphql-codegen-relay-optimizer-plugin'
+      - '@graphcommerce/graphql-codegen-relay-optimizer-plugin'
       - typed-document-node
       - typescript-operations
       - add
-    preset: '@reachdigital/graphql-codegen-near-operation-file'
+    preset: '@graphcommerce/graphql-codegen-near-operation-file'
     presetConfig:
       extension: .gql.ts
-      baseTypesPath: ~@reachdigital/graphql
+      baseTypesPath: ~@graphcommerce/graphql
       injectables: true
     config:
       skipTypename: true

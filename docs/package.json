@@ -1,18 +1,18 @@
 {
-  "name": "@reachdigital/pwa-docs",
+  "name": "@graphcommerce/pwa-docs",
   "version": "2.102.5",
   "private": true,
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
     "@playwright/test": "^1.14.1",
-    "@reachdigital/browserslist-config-pwa": "^2.100.9",
-    "@reachdigital/eslint-config-pwa": "^2.102.3",
-    "@reachdigital/prettier-config-pwa": "^2.100.9",
-    "@reachdigital/typescript-config-pwa": "^2.100.11"
+    "@graphcommerce/browserslist-config-pwa": "^2.100.9",
+    "@graphcommerce/eslint-config-pwa": "^2.102.3",
+    "@graphcommerce/prettier-config-pwa": "^2.100.9",
+    "@graphcommerce/typescript-config-pwa": "^2.100.11"
   },
   "dependencies": {
-    "@reachdigital/next-config": "^2.101.2",
+    "@graphcommerce/next-config": "^2.101.2",
     "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
@@ -22,12 +22,12 @@
     "build": "next build",
     "start": "next start"
   },
-  "prettier": "@reachdigital/prettier-config-pwa",
+  "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
-    "extends @reachdigital/browserslist-config-pwa"
+    "extends @graphcommerce/browserslist-config-pwa"
   ],
   "eslintConfig": {
-    "extends": "@reachdigital/eslint-config-pwa",
+    "extends": "@graphcommerce/eslint-config-pwa",
     "parserOptions": {
       "project": "./tsconfig.json"
     }

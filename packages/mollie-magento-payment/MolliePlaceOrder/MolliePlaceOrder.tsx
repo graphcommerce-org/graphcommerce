@@ -2,9 +2,9 @@ import {
   useClearCurrentCartId,
   useCurrentCartId,
   useFormGqlMutationCart,
-} from '@reachdigital/magento-cart'
-import { PaymentPlaceOrderProps } from '@reachdigital/magento-cart-payment-method'
-import { useFormCompose } from '@reachdigital/react-hook-form'
+} from '@graphcommerce/magento-cart'
+import { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
+import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { MolliePlaceOrderDocument } from './MolliePlaceOrder.gql'

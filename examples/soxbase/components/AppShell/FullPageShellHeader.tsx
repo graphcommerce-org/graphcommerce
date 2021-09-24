@@ -1,7 +1,7 @@
 import {
   PageShellHeader as PageShellHeaderBase,
   PageShellHeaderProps as PageShellHeaderPropsBase,
-} from '@reachdigital/next-ui'
+} from '@graphcommerce/next-ui'
 import React from 'react'
 import Logo from './Logo'
 

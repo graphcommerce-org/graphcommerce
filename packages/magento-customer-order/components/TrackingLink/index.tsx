@@ -1,5 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { SvgImage, iconLocationRed } from '@reachdigital/next-ui'
+import { SvgImage, iconLocationRed } from '@graphcommerce/next-ui'
 import React from 'react'
 import { TrackingLinkFragment } from './TrackingLink.gql'
 

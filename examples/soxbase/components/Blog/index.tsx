@@ -1,4 +1,4 @@
-import { BlogList as NextBlogList } from '@reachdigital/next-ui'
+import { BlogList as NextBlogList } from '@graphcommerce/next-ui'
 import BlogItem from './BlogItem'
 import { BlogListQuery } from './BlogList.gql'
 

@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.100.11](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/graphql-codegen-relay-optimizer-plugin@2.100.10...@reachdigital/graphql-codegen-relay-optimizer-plugin@2.100.11) (2021-07-26)
+## [2.100.11](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-codegen-relay-optimizer-plugin@2.100.10...@graphcommerce/graphql-codegen-relay-optimizer-plugin@2.100.11) (2021-07-26)
 
 
 ### Bug Fixes

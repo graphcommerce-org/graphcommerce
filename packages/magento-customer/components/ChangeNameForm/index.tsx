@@ -6,8 +6,8 @@ import {
   MessageSnackbar,
   SvgImage,
   iconCheckmark,
-} from '@reachdigital/next-ui'
-import { useFormGqlMutation } from '@reachdigital/react-hook-form'
+} from '@graphcommerce/next-ui'
+import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import React from 'react'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import NameFields from '../NameFields'

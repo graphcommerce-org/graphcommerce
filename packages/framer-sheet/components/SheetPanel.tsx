@@ -4,7 +4,7 @@ import {
   useMotionValueValue,
   Styled,
   clientSize,
-} from '@reachdigital/framer-utils'
+} from '@graphcommerce/framer-utils'
 import clsx from 'clsx'
 import { m, MotionValue, PanInfo, useMotionValue, useTransform } from 'framer-motion'
 import React, { useRef } from 'react'

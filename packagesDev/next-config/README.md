@@ -3,7 +3,7 @@
 ## Usage
 
 ```
-const withConf = require('@reachdigital/next-config')
+const withConf = require('@graphcommerce/next-config')
 
 module.exports = withConfig({
   ...yourNextConfig

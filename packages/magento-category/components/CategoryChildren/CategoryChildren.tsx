@@ -1,8 +1,8 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { makeStyles, Theme } from '@material-ui/core'
-import { Scroller, ScrollerProvider } from '@reachdigital/framer-scroller'
-import { ProductListLink, ProductListParams } from '@reachdigital/magento-product'
-import { UseStyles } from '@reachdigital/next-ui'
+import { Scroller, ScrollerProvider } from '@graphcommerce/framer-scroller'
+import { ProductListLink, ProductListParams } from '@graphcommerce/magento-product'
+import { UseStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { CategoryChildrenFragment } from './CategoryChildren.gql'
 

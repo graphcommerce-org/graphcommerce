@@ -1,16 +1,16 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
-import { PageOptions } from '@reachdigital/framer-next-pages'
-import { AccountAddresses, ApolloCustomerErrorFullPage } from '@reachdigital/magento-customer'
-import { AccountDashboardAddressesDocument } from '@reachdigital/magento-customer-account'
-import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { AccountAddresses, ApolloCustomerErrorFullPage } from '@graphcommerce/magento-customer'
+import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
+import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AppShellTitle,
   GetStaticProps,
   iconAddresses,
   SheetShellHeader,
   Title,
-} from '@reachdigital/next-ui'
+} from '@graphcommerce/next-ui'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'

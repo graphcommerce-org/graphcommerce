@@ -1,4 +1,4 @@
-import { PageMeta } from '@reachdigital/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import React from 'react'
 import { CmsPageMetaFragment } from './CmsPageMeta.gql'
 

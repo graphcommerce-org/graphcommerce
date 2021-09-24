@@ -1,40 +1,40 @@
 {
-  "name": "@reachdigital/magento-payment-mollie",
+  "name": "@graphcommerce/magento-payment-mollie",
   "version": "2.102.20",
   "private": true,
   "sideEffects": false,
   "engines": {
     "node": "14.x"
   },
-  "prettier": "@reachdigital/prettier-config-pwa",
+  "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
-    "extends @reachdigital/browserslist-config-pwa"
+    "extends @graphcommerce/browserslist-config-pwa"
   ],
   "eslintConfig": {
-    "extends": "@reachdigital/eslint-config-pwa",
+    "extends": "@graphcommerce/eslint-config-pwa",
     "parserOptions": {
       "project": "./tsconfig.json"
     }
   },
   "devDependencies": {
     "@playwright/test": "^1.14.1",
-    "@reachdigital/browserslist-config-pwa": "^2.100.10",
-    "@reachdigital/eslint-config-pwa": "^2.102.4",
-    "@reachdigital/prettier-config-pwa": "^2.100.10",
-    "@reachdigital/typescript-config-pwa": "^2.100.12"
+    "@graphcommerce/browserslist-config-pwa": "^2.100.10",
+    "@graphcommerce/eslint-config-pwa": "^2.102.4",
+    "@graphcommerce/prettier-config-pwa": "^2.100.10",
+    "@graphcommerce/typescript-config-pwa": "^2.100.12"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",
-    "@reachdigital/graphql": "^2.102.3",
-    "@reachdigital/image": "^2.103.2",
-    "@reachdigital/magento-cart": "^2.106.5",
-    "@reachdigital/magento-cart-payment-method": "^2.103.16",
-    "@reachdigital/magento-store": "^2.102.16",
-    "@reachdigital/next-ui": "^2.112.4",
-    "@reachdigital/react-hook-form": "^2.101.7",
+    "@graphcommerce/graphql": "^2.102.3",
+    "@graphcommerce/image": "^2.103.2",
+    "@graphcommerce/magento-cart": "^2.106.5",
+    "@graphcommerce/magento-cart-payment-method": "^2.103.16",
+    "@graphcommerce/magento-store": "^2.102.16",
+    "@graphcommerce/next-ui": "^2.112.4",
+    "@graphcommerce/react-hook-form": "^2.101.7",
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.17",
     "next": "^11.1.2",

@@ -1,9 +1,9 @@
 import { useQuery } from '@apollo/client'
 import { Fab, makeStyles, Theme } from '@material-ui/core'
-import { CartFab } from '@reachdigital/magento-cart'
-import { CustomerFab, CustomerMenuFabItem } from '@reachdigital/magento-customer'
-import { SearchButton } from '@reachdigital/magento-search'
-import { StoreConfigDocument } from '@reachdigital/magento-store'
+import { CartFab } from '@graphcommerce/magento-cart'
+import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
+import { SearchButton } from '@graphcommerce/magento-search'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   DesktopNavActions,
   DesktopNavBar,
@@ -17,7 +17,7 @@ import {
   MenuProps,
   responsiveVal,
   SvgImageSimple,
-} from '@reachdigital/next-ui'
+} from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'

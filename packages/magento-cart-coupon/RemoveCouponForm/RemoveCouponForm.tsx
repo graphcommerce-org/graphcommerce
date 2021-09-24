@@ -1,6 +1,6 @@
 import { IconButton, makeStyles, Theme } from '@material-ui/core'
-import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
-import { UseStyles, iconClose, SvgImageSimple } from '@reachdigital/next-ui'
+import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
+import { UseStyles, iconClose, SvgImageSimple } from '@graphcommerce/next-ui'
 import React from 'react'
 import { CouponFragment } from '../Api/Coupon.gql'
 import { RemoveCouponFormDocument } from './RemoveCouponForm.gql'

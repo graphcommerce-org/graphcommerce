@@ -1,5 +1,5 @@
 import { ApolloError, useApolloClient } from '@apollo/client'
-import { graphqlErrorByCategory } from '@reachdigital/magento-graphql'
+import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { useEffect } from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 

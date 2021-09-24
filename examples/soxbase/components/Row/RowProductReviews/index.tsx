@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
-import { ProductReviews, ProductReviewsProps } from '@reachdigital/magento-review'
-import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { Row, SectionContainer } from '@reachdigital/next-ui'
+import { ProductReviews, ProductReviewsProps } from '@graphcommerce/magento-review'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { Row, SectionContainer } from '@graphcommerce/next-ui'
 import React from 'react'
 import { RowProductReviewsFragment } from './RowProductReviews.gql'
 

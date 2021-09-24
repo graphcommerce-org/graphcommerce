@@ -1,14 +1,14 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
-import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
-import { ApolloCustomerErrorFullPage } from '@reachdigital/magento-customer'
+import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
+import { ApolloCustomerErrorFullPage } from '@graphcommerce/magento-customer'
 import {
   useOrderCardItemImages,
   OrderDetails,
   OrderItems,
   OrderDetailPageDocument,
-} from '@reachdigital/magento-customer-order'
-import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+} from '@graphcommerce/magento-customer-order'
+import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   IconHeader,
   GetStaticProps,
@@ -16,7 +16,7 @@ import {
   SheetShellHeader,
   Title,
   AppShellTitle,
-} from '@reachdigital/next-ui'
+} from '@graphcommerce/next-ui'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'

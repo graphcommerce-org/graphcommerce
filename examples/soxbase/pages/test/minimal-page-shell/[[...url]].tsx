@@ -1,6 +1,6 @@
 import { Container, Divider, List, ListItem, NoSsr, Typography } from '@material-ui/core'
-import { PageOptions, usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
-import { AppShellTitle, Button, iconPersonAlt, Stepper, Title } from '@reachdigital/next-ui'
+import { PageOptions, usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
+import { AppShellTitle, Button, iconPersonAlt, Stepper, Title } from '@graphcommerce/next-ui'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React, { useState } from 'react'

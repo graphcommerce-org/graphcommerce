@@ -1,4 +1,4 @@
-import { useFindCountry } from '@reachdigital/magento-store'
+import { useFindCountry } from '@graphcommerce/magento-store'
 import { CustomerAddressFragment } from '../CreateCustomerAddressForm/CustomerAddress.gql'
 
 export default function AddressSingleLine(props: CustomerAddressFragment) {

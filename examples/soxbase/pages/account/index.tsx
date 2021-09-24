@@ -1,19 +1,19 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
-import { PageOptions } from '@reachdigital/framer-next-pages'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   AddressSingleLine,
   ApolloCustomerErrorFullPage,
   SignOutForm,
-} from '@reachdigital/magento-customer'
+} from '@graphcommerce/magento-customer'
 import {
   AccountDashboardDocument,
   AccountMenu,
   AccountMenuItem,
   AccountNewsletter,
-} from '@reachdigital/magento-customer-account'
-import { OrderStateLabelInline } from '@reachdigital/magento-customer-order'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+} from '@graphcommerce/magento-customer-account'
+import { OrderStateLabelInline } from '@graphcommerce/magento-customer-order'
+import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AppShellTitle,
   GetStaticProps,
@@ -28,7 +28,7 @@ import {
   iconStar,
   TimeAgo,
   Title,
-} from '@reachdigital/next-ui'
+} from '@graphcommerce/next-ui'
 import React from 'react'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
 import PageShellHeader from '../../components/AppShell/PageShellHeader'

@@ -1,5 +1,5 @@
-import RichTextSpread from '@reachdigital/graphcms-ui/RichText/RichTextSpread'
-import { ColumnOne } from '@reachdigital/next-ui'
+import RichTextSpread from '@graphcommerce/graphcms-ui/RichText/RichTextSpread'
+import { ColumnOne } from '@graphcommerce/next-ui'
 import React from 'react'
 import { RowColumnOneFragment } from './RowColumnOne.gql'
 

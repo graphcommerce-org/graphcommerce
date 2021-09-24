@@ -5,7 +5,7 @@ import {
   Mutation,
   Query,
   TypedTypePolicies,
-} from '@reachdigital/graphql'
+} from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from './hooks/CustomerToken.gql'
 import { IsEmailAvailableDocument } from './hooks/IsEmailAvailable.gql'
 

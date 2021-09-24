@@ -1,4 +1,4 @@
-import { Image, ImageProps } from '@reachdigital/image'
+import { Image, ImageProps } from '@graphcommerce/image'
 import React from 'react'
 import { AssetFragment } from './Asset.gql'
 

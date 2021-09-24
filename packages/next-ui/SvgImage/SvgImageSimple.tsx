@@ -1,5 +1,5 @@
 import { makeStyles, capitalize, Theme } from '@material-ui/core'
-import { Image, ImageProps } from '@reachdigital/image'
+import { Image, ImageProps } from '@graphcommerce/image'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
 import responsiveVal from '../Styles/responsiveVal'

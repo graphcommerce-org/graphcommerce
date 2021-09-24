@@ -8,7 +8,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 require('dotenv').config()
 
-const withYarn1Workspaces = require('@reachdigital/next-config').withYarn1Workspaces()
+const withYarn1Workspaces = require('@graphcommerce/next-config').withYarn1Workspaces()
 
 const withPWA = require('next-pwa')
 

@@ -1,5 +1,5 @@
 {
-  "name": "@reachdigital/image-example",
+  "name": "@graphcommerce/image-example",
   "private": true,
   "version": "2.101.5",
   "scripts": {
@@ -8,9 +8,9 @@
     "start": "next start"
   },
   "dependencies": {
-    "@reachdigital/image": "^2.103.1",
-    "@reachdigital/next-config": "^2.101.2",
-    "@reachdigital/next-ui": "^2.112.2",
+    "@graphcommerce/image": "^2.103.1",
+    "@graphcommerce/next-config": "^2.101.2",
+    "@graphcommerce/next-ui": "^2.112.2",
     "framer-motion": "^4.1.17",
     "next": "^11.1.2",
     "react": "^17.0.2",

@@ -1,6 +1,6 @@
 import { Theme, Typography, makeStyles } from '@material-ui/core'
-import { ProductListItemsFragment } from '@reachdigital/magento-product'
-import { SidebarSlider, RenderType, responsiveVal } from '@reachdigital/next-ui'
+import { ProductListItemsFragment } from '@graphcommerce/magento-product'
+import { SidebarSlider, RenderType, responsiveVal } from '@graphcommerce/next-ui'
 import React from 'react'
 import renderers from '../../ProductListItems/renderers'
 import { RowSwipeableGridFragment } from './RowSwipeableGrid.gql'

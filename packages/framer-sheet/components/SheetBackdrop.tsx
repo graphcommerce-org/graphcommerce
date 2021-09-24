@@ -1,4 +1,4 @@
-import { Styled } from '@reachdigital/framer-utils'
+import { Styled } from '@graphcommerce/framer-utils'
 import { m, MotionProps, MotionValue, useSpring, useTransform } from 'framer-motion'
 import { SPRING_ANIM } from '../animation'
 import useSheetContext from '../hooks/useSheetContext'

@@ -1,4 +1,4 @@
-# @reachdigital/image
+# @graphcommerce/image
 
 Since we're using a ton of images on the website we wanted to optimize the
 images further than what `next/image` has to offer.

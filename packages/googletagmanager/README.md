@@ -1,4 +1,4 @@
-# @reachdigital/googletagmanager
+# @graphcommerce/googletagmanager
 
 This package makes it easy to add Google Tag Manager to your GraphCommerce
 webshop.

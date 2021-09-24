@@ -14,7 +14,7 @@ implementor.
 Create a `pages/_app.ts` file:
 
 ```tsx
-import { FramerNextPages } from '@reachdigital/framer-next-pages'
+import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 import { AppPropsType } from 'next/dist/next-server/lib/utils'
 
 export default function App({ router, Component, pageProps }: AppPropsType) {
@@ -50,7 +50,7 @@ Example routes:
 - `pages/overlay/[overlayId].tsx`
 
 ```tsx
-import { PageOptions } from '@reachdigital/framer-next-pages'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
 
 export default function Overlay() {
   return <MyOverlay>blabla</MyOverlay>
@@ -71,7 +71,7 @@ Example route:
 - `pages/overlay/[overlayId]`
 
 ```tsx
-import { PageOptions } from '@reachdigital/framer-next-pages'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
 
 Overlay.pageOptions = {
   overlayGroup: 'left',
@@ -90,7 +90,7 @@ Example routes:
 - `pages/account/orders/[orderId].tsx`
 
 ```tsx
-import { PageOptions } from '@reachdigital/framer-next-pages'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
 
 Overlay.pageOptions = {
   overlayGroup: 'left',

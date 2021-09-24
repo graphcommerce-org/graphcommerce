@@ -30,7 +30,7 @@ import {
   PaymentMethodOptionsNoop,
   PaymentMethodPlaceOrderNoop,
   PaymentModule,
-} from '@reachdigital/magento-cart-payment-method'
+} from '@graphcommerce/magento-cart-payment-method'
 
 // This is the internal code of the payment method provided by Magento
 export const braintree_local_payment = {

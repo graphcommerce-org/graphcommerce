@@ -1,4 +1,4 @@
-import { UseFormComposeOptions } from '@reachdigital/react-hook-form'
+import { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
 export type PaymentMethodPlaceOrderProps = Pick<UseFormComposeOptions, 'step'>

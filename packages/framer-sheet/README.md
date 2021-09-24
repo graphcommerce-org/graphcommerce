@@ -10,7 +10,7 @@ Component
 
 ## Installation
 
-`yarn add @reachdigital/framer-sheet`
+`yarn add @graphcommerce/framer-sheet`
 
 It uses framer motion's `m` component instead of the `motion` component. Make
 sure you have set up
@@ -27,8 +27,8 @@ import {
   SheetContainer,
   SheetDragIndicator,
   SheetPanel,
-} from '@reachdigital/framer-sheet'
-import styles from '@reachdigital/framer-sheet/styles'
+} from '@graphcommerce/framer-sheet'
+import styles from '@graphcommerce/framer-sheet/styles'
 import React from 'react'
 
 type Props = { children: React.ReactNode }
@@ -63,8 +63,8 @@ import {
   SheetContainer,
   SheetDragIndicator,
   SheetPanel,
-} from '@reachdigital/framer-sheet'
-import styles, { ClassKeys } from '@reachdigital/framer-sheet/styles'
+} from '@graphcommerce/framer-sheet'
+import styles, { ClassKeys } from '@graphcommerce/framer-sheet/styles'
 import React from 'react'
 
 const useSheetStyles = makeStyles<Theme, never, ClassKeys>(

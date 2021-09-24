@@ -1,5 +1,5 @@
-import { PageOptions } from '@reachdigital/framer-next-pages'
-import { SheetShellHeader } from '@reachdigital/next-ui'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { SheetShellHeader } from '@graphcommerce/next-ui'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import { AppShellDemo } from '../minimal-page-shell/[[...url]]'

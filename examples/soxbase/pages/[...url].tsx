@@ -1,13 +1,13 @@
 import { mergeDeep } from '@apollo/client/utilities'
 import { Container } from '@material-ui/core'
-import { PageOptions } from '@reachdigital/framer-next-pages'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   CategoryChildren,
   CategoryHeroNav,
   CategoryHeroNavTitle,
   CategoryMeta,
   getCategoryStaticPaths,
-} from '@reachdigital/magento-category'
+} from '@graphcommerce/magento-category'
 import {
   extractUrlQuery,
   FilterTypes,
@@ -22,9 +22,9 @@ import {
   ProductListParamsProvider,
   ProductListQuery,
   ProductListSort,
-} from '@reachdigital/magento-product'
-import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { AppShellTitle, GetStaticProps, Title, AppShellSticky } from '@reachdigital/next-ui'
+} from '@graphcommerce/magento-product'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { AppShellTitle, GetStaticProps, Title, AppShellSticky } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../components/AppShell/FullPageShell'

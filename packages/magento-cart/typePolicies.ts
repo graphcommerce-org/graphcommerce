@@ -1,6 +1,6 @@
 import { ApolloCache, NormalizedCacheObject } from '@apollo/client'
-import type { QueryCartArgs, ShippingCartAddress, TypedTypePolicies } from '@reachdigital/graphql'
-import { CartPrices } from '@reachdigital/graphql/generated/types'
+import type { QueryCartArgs, ShippingCartAddress, TypedTypePolicies } from '@graphcommerce/graphql'
+import { CartPrices } from '@graphcommerce/graphql/generated/types'
 import { CartFabDocument } from './components/CartFab/CartFab.gql'
 import { CurrentCartIdDocument } from './hooks/CurrentCartId.gql'
 

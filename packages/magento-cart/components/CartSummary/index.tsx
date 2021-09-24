@@ -1,6 +1,6 @@
 import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
-import { CartAddressMultiLine } from '@reachdigital/magento-cart-address'
-import { SectionContainer, UseStyles } from '@reachdigital/next-ui'
+import { CartAddressMultiLine } from '@graphcommerce/magento-cart-address'
+import { SectionContainer, UseStyles } from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import { useCartQuery } from '../../hooks'

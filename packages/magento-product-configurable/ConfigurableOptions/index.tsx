@@ -5,8 +5,8 @@ import {
   SectionHeader,
   ToggleButton,
   ToggleButtonGroup,
-} from '@reachdigital/next-ui'
-import { Controller, FieldErrors, UseControllerProps } from '@reachdigital/react-hook-form'
+} from '@graphcommerce/next-ui'
+import { Controller, FieldErrors, UseControllerProps } from '@graphcommerce/react-hook-form'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import { SwatchTypeRenderer, SwatchSize } from '../Swatches'

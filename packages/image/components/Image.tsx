@@ -158,7 +158,7 @@ function defaultImageLoader(loaderProps: ImageLoaderProps) {
     return load({ root: configPath, ...loaderProps })
   }
   throw new Error(
-    `[@reachdigital/image]: Unknown "loader" found in "next.config.js". Expected: ${VALID_LOADERS.join(
+    `[@graphcommerce/image]: Unknown "loader" found in "next.config.js". Expected: ${VALID_LOADERS.join(
       ', ',
     )}. Received: ${configLoader}`,
   )
@@ -307,14 +307,14 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
         const round = (nr: number) => Math.round(nr * 100) / 100
         if (!isSmall && ratio > 2) {
           console.warn(
-            `[@reachdigital/image]: ${msg} Currently downloading an image that has ${round(
+            `[@graphcommerce/image]: ${msg} Currently downloading an image that has ${round(
               ratio,
             )}x too many pixels`,
             img,
           )
         } else if (!isSmall && 1 / ratio > 2) {
           console.warn(
-            `[@reachdigital/image]: ${msg} Currently downloading an image that has ${round(
+            `[@graphcommerce/image]: ${msg} Currently downloading an image that has ${round(
               1 / ratio,
             )}x too few pixels`,
             img,
@@ -338,7 +338,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       const staticImageData = isStaticRequire(src) ? src.default : src
       if (!staticImageData.src) {
         throw new Error(
-          `[@reachdigital/image]: An object should only be passed to the image component src parameter if it comes from a static image import. It must include src. Received ${JSON.stringify(
+          `[@graphcommerce/image]: An object should only be passed to the image component src parameter if it comes from a static image import. It must include src. Received ${JSON.stringify(
             staticImageData,
           )}`,
         )
@@ -350,7 +350,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
         width = width || staticImageData.width
         if (!staticImageData.height || !staticImageData.width) {
           throw new Error(
-            `[@reachdigital/image]: An object should only be passed to the image component src parameter if it comes from a static image import. It must include height and width. Received ${JSON.stringify(
+            `[@graphcommerce/image]: An object should only be passed to the image component src parameter if it comes from a static image import. It must include height and width. Received ${JSON.stringify(
               staticImageData,
             )}`,
           )
@@ -362,14 +362,14 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     if (process.env.NODE_ENV !== 'production') {
       if (!src) {
         throw new Error(
-          `[@reachdigital/image]: Image is missing required "src" property. Make sure you pass "src" in props to the \`@reachdigital/image\` component. Received: ${JSON.stringify(
+          `[@graphcommerce/image]: Image is missing required "src" property. Make sure you pass "src" in props to the \`@graphcommerce/image\` component. Received: ${JSON.stringify(
             { width, height, quality },
           )}`,
         )
       }
       if (!VALID_LAYOUT_VALUES.includes(layout)) {
         throw new Error(
-          `[@reachdigital/image]: Image with src "${src}" has invalid "layout" property. Provided "${layout}" should be one of ${VALID_LAYOUT_VALUES.map(
+          `[@graphcommerce/image]: Image with src "${src}" has invalid "layout" property. Provided "${layout}" should be one of ${VALID_LAYOUT_VALUES.map(
             String,
           ).join(',')}.`,
         )
@@ -379,12 +379,12 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
         (typeof height !== 'undefined' && Number.isNaN(height))
       ) {
         throw new Error(
-          `[@reachdigital/image]: Image with src "${src}" has invalid "width" or "height" property. These should be numeric values.`,
+          `[@graphcommerce/image]: Image with src "${src}" has invalid "width" or "height" property. These should be numeric values.`,
         )
       }
       if (!VALID_LOADING_VALUES.includes(loading)) {
         throw new Error(
-          `[@reachdigital/image]: Image with src "${src}" has invalid "loading" property. Provided "${loading}" should be one of ${VALID_LOADING_VALUES.map(
+          `[@graphcommerce/image]: Image with src "${src}" has invalid "loading" property. Provided "${loading}" should be one of ${VALID_LOADING_VALUES.map(
             String,
           ).join(',')}.`,
         )
@@ -392,14 +392,14 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       if (placeholder === 'blur') {
         if (layout !== 'fill' && (width || 0) * (height || 0) < 1600) {
           console.warn(
-            `[@reachdigital/image]: Image with src "${src}" is smaller than 40x40. Consider removing the "placeholder='blur'" property to improve performance.`,
+            `[@graphcommerce/image]: Image with src "${src}" is smaller than 40x40. Consider removing the "placeholder='blur'" property to improve performance.`,
           )
         }
         if (!blurDataURL) {
           const VALID_BLUR_EXT = ['jpeg', 'png', 'webp'] // should match next-image-loader
 
           throw new Error(
-            `[@reachdigital/image]: Image with src "${src}" has "placeholder='blur'" property but is missing the "blurDataURL" property.
+            `[@graphcommerce/image]: Image with src "${src}" has "placeholder='blur'" property but is missing the "blurDataURL" property.
           Possible solutions:
             - Add a "blurDataURL" property, the contents should be a small Data URL to represent the image
             - Change the "src" property to a static import with one of the supported file types: ${VALID_BLUR_EXT.join(
@@ -418,7 +418,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       } else if (process.env.NODE_ENV !== 'production') {
         // <Image src="i.png" />
         throw new Error(
-          `[@reachdigital/image]: Image with src "${src}" must use "width" and "height" properties or "layout='fill'" property.`,
+          `[@graphcommerce/image]: Image with src "${src}" must use "width" and "height" properties or "layout='fill'" property.`,
         )
       }
     }

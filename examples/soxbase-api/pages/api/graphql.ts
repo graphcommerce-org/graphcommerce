@@ -1,4 +1,4 @@
-import { createHandler, config } from '@reachdigital/graphql-mesh'
+import { createHandler, config } from '@graphcommerce/graphql-mesh'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getBuiltMesh } from '../../.mesh'
 

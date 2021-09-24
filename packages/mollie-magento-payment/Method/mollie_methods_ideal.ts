@@ -1,4 +1,4 @@
-import { PaymentModule } from '@reachdigital/magento-cart-payment-method'
+import { PaymentModule } from '@graphcommerce/magento-cart-payment-method'
 import MollieIdealOptions from '../MollieOptionsIssuer/MollieIdealOptions'
 import MollieToggle from '../MolliePaymentToggle/MolliePaymentToggle'
 import MolliePlaceOrder from '../MolliePlaceOrder/MolliePlaceOrder'

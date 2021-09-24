@@ -1,5 +1,5 @@
 import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
-import { PageOptions } from '@reachdigital/framer-next-pages'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   getProductStaticPaths,
   jsonLdProduct,
@@ -8,16 +8,16 @@ import {
   ProductPageGallery,
   ProductPageMeta,
   ProductSidebarDelivery,
-} from '@reachdigital/magento-product'
+} from '@graphcommerce/magento-product'
 import {
   ConfigurableContextProvider,
   ConfigurableProductAddToCart,
   ConfigurableProductPageDocument,
   ConfigurableProductPageQuery,
-} from '@reachdigital/magento-product-configurable'
-import { jsonLdProductReview, ProductReviewChip } from '@reachdigital/magento-review'
-import { Money, StoreConfigDocument } from '@reachdigital/magento-store'
-import { GetStaticProps, JsonLd, Title } from '@reachdigital/next-ui'
+} from '@graphcommerce/magento-product-configurable'
+import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
+import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { GetStaticProps, JsonLd, Title } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'

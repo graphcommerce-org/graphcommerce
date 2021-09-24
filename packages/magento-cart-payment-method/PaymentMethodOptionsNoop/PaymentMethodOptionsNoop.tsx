@@ -1,5 +1,5 @@
-import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
-import { useFormCompose } from '@reachdigital/react-hook-form'
+import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
+import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { PaymentOptionsProps } from '../Api/PaymentMethod'
 import { PaymentMethodOptionsNoopDocument } from './PaymentMethodOptionsNoop.gql'
 

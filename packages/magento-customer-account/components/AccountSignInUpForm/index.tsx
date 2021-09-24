@@ -7,9 +7,9 @@ import {
   useFormIsEmailAvailable,
   CustomerDocument,
   CustomerTokenDocument,
-} from '@reachdigital/magento-customer'
-import { AnimatedRow, Button, FormDiv, FormActions, FormRow } from '@reachdigital/next-ui'
-import { emailPattern, useFormPersist } from '@reachdigital/react-hook-form'
+} from '@graphcommerce/magento-customer'
+import { AnimatedRow, Button, FormDiv, FormActions, FormRow } from '@graphcommerce/next-ui'
+import { emailPattern, useFormPersist } from '@graphcommerce/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import router from 'next/router'

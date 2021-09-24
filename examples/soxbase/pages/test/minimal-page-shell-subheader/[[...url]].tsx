@@ -1,6 +1,6 @@
 import { mergeDeep } from '@apollo/client/utilities'
 import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core'
-import { PageOptions } from '@reachdigital/framer-next-pages'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   extractUrlQuery,
   FilterTypes,
@@ -12,11 +12,11 @@ import {
   ProductListParams,
   ProductListParamsProvider,
   ProductListSort,
-} from '@reachdigital/magento-product'
-import { SearchDocument, SearchForm, SearchQuery } from '@reachdigital/magento-search'
-import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { AppShellSticky, AppShellTitle, Button } from '@reachdigital/next-ui'
-import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+} from '@graphcommerce/magento-product'
+import { SearchDocument, SearchForm, SearchQuery } from '@graphcommerce/magento-search'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { AppShellSticky, AppShellTitle, Button } from '@graphcommerce/next-ui'
+import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'

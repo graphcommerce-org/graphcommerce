@@ -1,5 +1,5 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
-import { UseStyles } from '@reachdigital/next-ui'
+import { UseStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { CategoryDescriptionFragment } from './CategoryDescription.gql'
 

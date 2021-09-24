@@ -1,6 +1,6 @@
-import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
-import { TextInputNumber } from '@reachdigital/next-ui'
-import { useFormAutoSubmit } from '@reachdigital/react-hook-form'
+import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
+import { TextInputNumber } from '@graphcommerce/next-ui'
+import { useFormAutoSubmit } from '@graphcommerce/react-hook-form'
 import React from 'react'
 import {
   UpdateItemQuantityDocument,

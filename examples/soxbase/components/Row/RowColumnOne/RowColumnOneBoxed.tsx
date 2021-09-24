@@ -1,5 +1,5 @@
-import RichText from '@reachdigital/graphcms-ui/RichText'
-import { ColumnOneBoxed } from '@reachdigital/next-ui'
+import RichText from '@graphcommerce/graphcms-ui/RichText'
+import { ColumnOneBoxed } from '@graphcommerce/next-ui'
 import { RowColumnOneProps } from '.'
 
 function RowColumnOneBoxed(props: RowColumnOneProps) {

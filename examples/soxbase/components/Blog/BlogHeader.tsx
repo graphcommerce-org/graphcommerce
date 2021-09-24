@@ -1,4 +1,4 @@
-import { BlogHeader as NextBlogHeader } from '@reachdigital/next-ui'
+import { BlogHeader as NextBlogHeader } from '@graphcommerce/next-ui'
 import Asset from '../Asset'
 
 export default function BlogHeader(props) {

@@ -1,4 +1,4 @@
-import { ProductListItemsBase, ProductItemsGridProps } from '@reachdigital/magento-product'
+import { ProductListItemsBase, ProductItemsGridProps } from '@graphcommerce/magento-product'
 import renderers from './renderers'
 
 export type ProductListItemsProps = Omit<ProductItemsGridProps, 'renderers'>

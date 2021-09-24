@@ -3,7 +3,7 @@ import {
   FilterMatchTypeInput,
   FilterRangeTypeInput,
   SortEnum,
-} from '@reachdigital/graphql'
+} from '@graphcommerce/graphql'
 import { FilterTypes, ProductListParams } from './filterTypes'
 
 export function parseParams(

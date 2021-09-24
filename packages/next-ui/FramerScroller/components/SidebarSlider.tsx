@@ -6,7 +6,7 @@ import {
   ScrollerButton,
   ScrollerPageCounter,
   ScrollerProvider,
-} from '@reachdigital/framer-scroller'
+} from '@graphcommerce/framer-scroller'
 import React, { ReactNode } from 'react'
 import { SvgImageSimple, iconChevronLeft, iconChevronRight } from '../..'
 import { UseStyles } from '../../Styles'

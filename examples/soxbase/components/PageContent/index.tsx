@@ -1,4 +1,4 @@
-import { RenderType, TypeRenderer } from '@reachdigital/next-ui'
+import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import RowBlogContent from '../Blog/RowBlogContent'
 import RowButtonLinkList from '../Row/RowButtonLinkList'
 import RowColumnOne from '../Row/RowColumnOne'

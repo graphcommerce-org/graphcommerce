@@ -7,8 +7,8 @@ import {
   Switch,
   SwitchProps,
 } from '@material-ui/core'
-import { ApolloCustomerErrorAlert, CustomerDocument } from '@reachdigital/magento-customer'
-import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@reachdigital/react-hook-form'
+import { ApolloCustomerErrorAlert, CustomerDocument } from '@graphcommerce/magento-customer'
+import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import React, { useEffect, useMemo } from 'react'
 import { UpdateNewsletterSubscriptionDocument } from './UpdateNewsletterSubscription.gql'
 

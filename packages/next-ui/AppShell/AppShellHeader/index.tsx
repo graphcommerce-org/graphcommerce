@@ -1,5 +1,5 @@
 import { Fab, makeStyles, Theme } from '@material-ui/core'
-import { useHistoryLink, usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
+import { useHistoryLink, usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
 import clsx from 'clsx'
 import { m, MotionValue, useMotionValue, useTransform } from 'framer-motion'
 import PageLink from 'next/link'

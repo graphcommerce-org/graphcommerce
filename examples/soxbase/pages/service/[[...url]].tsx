@@ -1,12 +1,12 @@
-import { PageOptions } from '@reachdigital/framer-next-pages'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AppShellTitle,
   GetStaticProps,
   responsiveVal,
   SheetShellHeader,
   Title,
-} from '@reachdigital/next-ui'
+} from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'

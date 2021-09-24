@@ -1,5 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { IconHeader, iconBox } from '@reachdigital/next-ui'
+import { IconHeader, iconBox } from '@graphcommerce/next-ui'
 import React from 'react'
 
 const useStyles = makeStyles(

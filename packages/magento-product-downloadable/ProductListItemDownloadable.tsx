@@ -1,4 +1,4 @@
-import { ProductListItem, ProductListItemProps } from '@reachdigital/magento-product'
+import { ProductListItem, ProductListItemProps } from '@graphcommerce/magento-product'
 import React from 'react'
 import { ProductListItemDownloadableFragment } from './ProductListItemDownloadable.gql'
 

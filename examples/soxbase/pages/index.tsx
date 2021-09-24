@@ -1,4 +1,4 @@
-import { StoreConfigDocument } from '@reachdigital/magento-store'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import apolloClient from '../lib/apolloClient'
 import CmsPage, { getStaticProps as getCmsPageStaticProps } from './page/[url]'
 

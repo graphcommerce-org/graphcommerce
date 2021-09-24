@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const withYarn1Workspaces = require('@reachdigital/next-config').withYarn1Workspaces()
+const withYarn1Workspaces = require('@graphcommerce/next-config').withYarn1Workspaces()
 
 /** @type {import('next/dist/next-server/server/config').NextConfig} */
 const nextConfig = {

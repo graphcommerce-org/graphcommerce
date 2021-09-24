@@ -1,6 +1,6 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { Chip, ChipProps } from '@material-ui/core'
-import { useChipMenuStyles, SvgImage, iconCloseCircle } from '@reachdigital/next-ui'
+import { useChipMenuStyles, SvgImage, iconCloseCircle } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { useProductListLinkPush } from '../../hooks/useProductListLinkPush'

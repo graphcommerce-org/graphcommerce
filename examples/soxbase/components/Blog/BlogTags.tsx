@@ -1,4 +1,4 @@
-import { BlogTags as NextBlogTags } from '@reachdigital/next-ui'
+import { BlogTags as NextBlogTags } from '@graphcommerce/next-ui'
 import { BlogTagsFragment } from './BlogTags.gql'
 
 type BlogTagsProps = BlogTagsFragment

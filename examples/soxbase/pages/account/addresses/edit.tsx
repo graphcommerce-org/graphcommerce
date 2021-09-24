@@ -1,10 +1,10 @@
 import { useQuery } from '@apollo/client'
 import { Box, Container, NoSsr } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
-import { PageOptions } from '@reachdigital/framer-next-pages'
-import { ApolloCustomerErrorFullPage, EditAddressForm } from '@reachdigital/magento-customer'
-import { AccountDashboardAddressesDocument } from '@reachdigital/magento-customer-account'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { ApolloCustomerErrorFullPage, EditAddressForm } from '@graphcommerce/magento-customer'
+import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
+import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AppShellTitle,
   GetStaticProps,
@@ -13,7 +13,7 @@ import {
   SectionContainer,
   SheetShellHeader,
   Title,
-} from '@reachdigital/next-ui'
+} from '@graphcommerce/next-ui'
 import { useRouter } from 'next/router'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'

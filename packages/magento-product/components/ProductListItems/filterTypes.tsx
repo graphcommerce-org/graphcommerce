@@ -7,7 +7,7 @@ import {
   FilterEqualTypeInput,
   FilterMatchTypeInput,
   FilterRangeTypeInput,
-} from '@reachdigital/graphql'
+} from '@graphcommerce/graphql'
 
 /** This is mainly based on ProductListQueryVariables */
 export type ProductListParams = Exact<{

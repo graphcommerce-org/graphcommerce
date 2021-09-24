@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
-import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { SheetShellBase, SheetShellBaseProps } from '@reachdigital/next-ui'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { SheetShellBase, SheetShellBaseProps } from '@graphcommerce/next-ui'
 import React from 'react'
 import Logo from './Logo'
 

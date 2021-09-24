@@ -1,4 +1,4 @@
-import { usePageRouter } from '@reachdigital/framer-next-pages'
+import { usePageRouter } from '@graphcommerce/framer-next-pages'
 import React, { useState } from 'react'
 import PageDepthDebug from './PageDepthDebug'
 import useRenderCount from './useRenderCount'

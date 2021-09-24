@@ -1,4 +1,4 @@
-import { usePageContext } from '@reachdigital/framer-next-pages'
+import { usePageContext } from '@graphcommerce/framer-next-pages'
 import { motion } from 'framer-motion'
 import { PropsWithChildren } from 'react'
 

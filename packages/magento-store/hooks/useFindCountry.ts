@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Country, Maybe } from '@reachdigital/graphql'
+import { Country, Maybe } from '@graphcommerce/graphql'
 import { CountryRegionsDocument } from '../queries/CountryRegions.gql'
 
 export function useFindCountry(countryCode?: Maybe<string>): Maybe<Country> | undefined {

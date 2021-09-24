@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client'
-import { CustomerTokenDocument, useExtractCustomerErrors } from '@reachdigital/magento-customer'
-import { graphqlErrorByCategory } from '@reachdigital/magento-graphql'
+import { CustomerTokenDocument, useExtractCustomerErrors } from '@graphcommerce/magento-customer'
+import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { useEffect } from 'react'
 import { CustomerCartDocument } from './CustomerCart.gql'
 import { UseMergeCustomerCartDocument } from './UseMergeCustomerCart.gql'

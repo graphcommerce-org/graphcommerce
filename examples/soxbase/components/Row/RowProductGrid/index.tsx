@@ -1,5 +1,5 @@
 import { Link } from '@material-ui/core'
-import { ContainerWithHeader } from '@reachdigital/next-ui'
+import { ContainerWithHeader } from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import ProductListItems, { ProductListItemsProps } from '../../ProductListItems/ProductListItems'

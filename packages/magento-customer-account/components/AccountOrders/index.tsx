@@ -3,8 +3,8 @@ import {
   NoOrdersFound,
   OrderCard,
   useOrderCardItemImages,
-} from '@reachdigital/magento-customer-order'
-import { Pagination, SectionContainer } from '@reachdigital/next-ui'
+} from '@graphcommerce/magento-customer-order'
+import { Pagination, SectionContainer } from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import { AccountOrdersFragment } from './AccountOrders.gql'

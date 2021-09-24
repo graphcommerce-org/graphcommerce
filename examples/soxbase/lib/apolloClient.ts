@@ -17,9 +17,9 @@ import {
   mergeTypePolicies,
   getTypePoliciesVersion,
   migrateCacheHandler,
-} from '@reachdigital/graphql'
-import { CustomerTokenDocument } from '@reachdigital/magento-customer'
-import { localeToStore, defaultLocale } from '@reachdigital/magento-store'
+} from '@graphcommerce/graphql'
+import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
+import { localeToStore, defaultLocale } from '@graphcommerce/magento-store'
 import { CachePersistor, LocalStorageWrapper } from 'apollo3-cache-persist'
 
 import { policies, migrations } from './typePolicies'

@@ -1,7 +1,7 @@
 import { mergeDeep } from '@apollo/client/utilities'
 import { Container, makeStyles, Theme } from '@material-ui/core'
-import { PageOptions } from '@reachdigital/framer-next-pages'
-import { CategoryDescription } from '@reachdigital/magento-category'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { CategoryDescription } from '@graphcommerce/magento-category'
 import {
   ProductListCount,
   ProductListFilters,
@@ -15,7 +15,7 @@ import {
   FilterTypes,
   ProductListParams,
   getFilterTypes,
-} from '@reachdigital/magento-product'
+} from '@graphcommerce/magento-product'
 import {
   CategorySearchResult,
   NoSearchResults,
@@ -23,9 +23,9 @@ import {
   SearchDocument,
   SearchForm,
   SearchQuery,
-} from '@reachdigital/magento-search'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import { AppShellSticky, GetStaticProps, Title } from '@reachdigital/next-ui'
+} from '@graphcommerce/magento-search'
+import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { AppShellSticky, GetStaticProps, Title } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
 import React from 'react'

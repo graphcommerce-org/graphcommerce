@@ -1,4 +1,4 @@
-import { RenderType, TypeRenderer } from '@reachdigital/next-ui'
+import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import RowColumnOne from '../Row/RowColumnOne'
 import RowColumnThree from '../Row/RowColumnThree'
 import RowColumnTwo from '../Row/RowColumnTwo'

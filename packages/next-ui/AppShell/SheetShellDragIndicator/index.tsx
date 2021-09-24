@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core'
-import { SheetDragIndicator, SheetDragIndicatorProps, styles } from '@reachdigital/framer-sheet'
+import { SheetDragIndicator, SheetDragIndicatorProps, styles } from '@graphcommerce/framer-sheet'
 import React from 'react'
 import responsiveVal from '../../Styles/responsiveVal'
 

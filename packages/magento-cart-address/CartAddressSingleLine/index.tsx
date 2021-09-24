@@ -1,5 +1,5 @@
-import { CountryCodeEnum } from '@reachdigital/graphql'
-import { AddressSingleLine } from '@reachdigital/magento-customer'
+import { CountryCodeEnum } from '@graphcommerce/graphql'
+import { AddressSingleLine } from '@graphcommerce/magento-customer'
 import React from 'react'
 import { CartAddressFragment } from '../CartAddress/CartAddress.gql'
 

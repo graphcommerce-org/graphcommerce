@@ -1,6 +1,6 @@
 import { Typography } from '@material-ui/core'
-import { ProductPageDescription, ProductPageDescriptionProps } from '@reachdigital/magento-product'
-import { ColumnTwoWithTop } from '@reachdigital/next-ui'
+import { ProductPageDescription, ProductPageDescriptionProps } from '@graphcommerce/magento-product'
+import { ColumnTwoWithTop } from '@graphcommerce/next-ui'
 import React from 'react'
 
 type RowProductDescriptionProps = ProductPageDescriptionProps & {
