@@ -9,14 +9,15 @@ type UseProductLinkPushProps = {
   scroll?: boolean
 }
 
-export function useProductListLinkPush(props?: UseProductLinkPushProps) {
+export function useProductListLinkReplace(props?: UseProductLinkPushProps) {
   const { setParams } = useProductListParamsContext()
 
   return (params: ProductListParams) => {
     setParams(params)
 
     const path = createProductListLink(params)
+
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    Router.push(path, path, props)
+    Router.replace(path, path, props)
   }
 }

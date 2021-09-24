@@ -4,7 +4,7 @@ import { ListItem, ListItemText } from '@material-ui/core'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { ChipMenu, ChipMenuProps } from '@reachdigital/next-ui'
 import React from 'react'
-import { useProductListLinkPush } from '../../hooks/useProductListLinkPush'
+import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import ProductListLink from '../ProductListLink/ProductListLink'
 import { ProductListSortFragment } from './ProductListSort.gql'
@@ -15,7 +15,7 @@ export type ProductListSortProps = ProductListSortFragment &
 export default function ProductListSort(props: ProductListSortProps) {
   const { sort_fields, total_count, ...filterMenuProps } = props
   const { params } = useProductListParamsContext()
-  const pushRoute = useProductListLinkPush()
+  const replaceRoute = useProductListLinkReplace()
   const { data: storeConfigQuery } = useQuery(StoreConfigDocument)
   const defaultSort = storeConfigQuery?.storeConfig?.catalog_default_sort_by
 
@@ -27,7 +27,7 @@ export default function ProductListSort(props: ProductListSortProps) {
   const removeFilter = () => {
     const linkParams = cloneDeep(params)
     linkParams.sort = {}
-    pushRoute(linkParams)
+    replaceRoute(linkParams)
   }
 
   if (!total_count) return null
@@ -59,7 +59,7 @@ export default function ProductListSort(props: ProductListSortProps) {
                 {...linkParams}
                 color='inherit'
                 underline='none'
-                link={{ scroll: false }}
+                link={{ scroll: false, replace: true }}
               />
             )}
           >
