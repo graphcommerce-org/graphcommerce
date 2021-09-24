@@ -10,6 +10,7 @@ import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import OrderStateLabel from '../OrderStateLabel'
 import TrackingLink from '../TrackingLink'
 import { OrderCardFragment } from './OrderCard.gql'
+import { responsiveVal } from '@reachdigital/next-ui'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -25,10 +26,11 @@ const useStyles = makeStyles(
     },
     orderRow: {
       margin: `0 auto calc(${theme.spacings.xxs} * .5) auto`,
+      display: 'flex',
+      gap: theme.spacings.xxs,
     },
     orderMoney: {
       fontWeight: 'bold',
-      marginRight: theme.spacings.xxs,
     },
     orderProducts: {
       display: 'flex',
@@ -40,6 +42,8 @@ const useStyles = makeStyles(
       gridAutoFlow: 'column',
       gap: theme.spacings.xxs,
       padding: theme.spacings.xxs,
+      width: responsiveVal(75, 125),
+      height: responsiveVal(75, 125),
     },
     placeholder: {
       display: 'flex',
@@ -117,6 +121,7 @@ export default function OrderCard(props: OrderCardProps) {
               <Money {...total?.grand_total} />
             </span>
             <span>{dateFormatter.format(new Date(order_date ?? ''))}</span>
+            <span>#{number}</span>
           </div>
           <div className={classes.orderRow}>
             <OrderStateLabel
