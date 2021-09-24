@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-payment-braintree",
-  "version": "2.103.21",
+  "version": "2.103.22",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
@@ -32,7 +32,7 @@
     "@reachdigital/graphql": "^2.102.3",
     "@reachdigital/image": "^2.103.2",
     "@reachdigital/magento-cart": "^2.107.0",
-    "@reachdigital/magento-cart-payment-method": "^2.103.18",
+    "@reachdigital/magento-cart-payment-method": "^2.104.0",
     "@reachdigital/magento-store": "^2.102.18",
     "@reachdigital/next-ui": "^2.112.6",
     "@reachdigital/react-hook-form": "^2.101.7",

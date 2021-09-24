@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.116.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.115.0...@reachdigital/soxbase@2.116.0) (2021-09-24)
+
+
+### Bug Fixes
+
+* agreements positioning ([89c2dee](https://github.com/ho-nl/m2-pwa/commit/89c2dee1debeb84c8b2cd9abaac85f03759604c8))
+
+
+### Features
+
+* **checkout:** checkout agreements checkboxes in checkout ([a8b4ddb](https://github.com/ho-nl/m2-pwa/commit/a8b4ddb3a9750c2b7ff86cd460e0ff7fc4cc0ad1))
+* **payment-agreements-form:** checkout agreements checkboxes ([13c8164](https://github.com/ho-nl/m2-pwa/commit/13c816499d220a2ce940672a95beca508b78ddc9))
+* read checkout policies in sidebar sheet ([3fb765e](https://github.com/ho-nl/m2-pwa/commit/3fb765e14a8cfaf0bb27acd8368926ac27ed6a4c))
+
+
+
+
+
 # [2.115.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.114.3...@reachdigital/soxbase@2.115.0) (2021-09-24)
 
 
