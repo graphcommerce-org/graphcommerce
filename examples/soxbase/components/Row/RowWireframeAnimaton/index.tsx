@@ -25,7 +25,7 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('sm')]: {
         width: '500px',
       },
-      margin: responsiveVal(60, 120),
+      margin: responsiveVal(60, 200),
       marginBottom: responsiveVal(100, 220),
     },
     interactive: {
@@ -67,10 +67,6 @@ const useStyles = makeStyles(
           transform: 'rotateX(87deg) translateY(calc(50% - 150px))',
         },
       },
-    },
-    secondRow: {
-      background: '#fff',
-      height: '10vw',
     },
   }),
   { name: 'WireframeAnimation' },
@@ -183,7 +179,6 @@ export default function RowWireframeAnimation() {
           </m.div>
         </div>
       </div>
-      <div className={classes.secondRow} />
     </Container>
   )
 }
