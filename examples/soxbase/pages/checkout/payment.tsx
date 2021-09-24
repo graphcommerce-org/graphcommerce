@@ -1,6 +1,7 @@
 import { Container, Divider, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CartSummary, CartTotals } from '@reachdigital/magento-cart'
+import { PaymentAgreementsForm } from '@reachdigital/magento-cart-checkout'
 import { CouponAccordion } from '@reachdigital/magento-cart-coupon'
 import {
   PaymentMethodButton,
@@ -105,6 +106,8 @@ function PaymentPage() {
               </CartSummary>
 
               <CouponAccordion key='coupon' />
+
+              <PaymentAgreementsForm step={2} key='payment-agreements' />
 
               <PaymentMethodButton
                 key='button'

@@ -179,13 +179,7 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
                         onBlur={onBlur}
                         selected={value === buttonValue}
                       >
-                        {
-                          !modules?.[pm.code] ? (
-                            <>{pm.code}</>
-                          ) : (
-                            <>{pm.title}</>
-                          ) /* <Content {...pm} />*/
-                        }
+                        {!modules?.[pm.code] ? <>{pm.code}</> : <>{pm.title}</>}
                       </ToggleButton>
                     )
                   })}
