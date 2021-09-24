@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.105.5](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/framer-next-pages@2.105.4...@reachdigital/framer-next-pages@2.105.5) (2021-09-24)
+
+
+### Bug Fixes
+
+* edit billing address updating state ([ecd9f48](https://github.com/ho-nl/m2-pwa/commit/ecd9f48ce313d8e7a698c06ff29b88231dc50168))
+
+
+
+
+
 # [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/framer-next-pages@2.104.0...@reachdigital/framer-next-pages@2.105.0) (2021-08-30)
 
 

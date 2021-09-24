@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-email@2.102.19...@reachdigital/magento-cart-email@2.103.0) (2021-09-24)
+
+
+### Features
+
+* **inline-account:** re-added the component ([c508d34](https://github.com/ho-nl/m2-pwa/commit/c508d341ca34daa26a6db13ead72f7f4bdc72160))
+
+
+
+
+
 ## [2.102.8](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart-email@2.102.7...@reachdigital/magento-cart-email@2.102.8) (2021-08-18)
 
 

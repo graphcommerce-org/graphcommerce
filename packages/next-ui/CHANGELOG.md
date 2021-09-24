@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.112.6](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.112.5...@reachdigital/next-ui@2.112.6) (2021-09-24)
+
+
+### Bug Fixes
+
+* all disabled buttons have white text ([358114d](https://github.com/ho-nl/m2-pwa/commit/358114ddff5d7ffa51c30f6a6e7787e88d5e4c5c))
+* **message-snackbar:** close on action click ([146c232](https://github.com/ho-nl/m2-pwa/commit/146c232a3a0e78b2be68631b0461e7b4699b99e1))
+
+
+
+
+
 ## [2.112.5](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.112.4...@reachdigital/next-ui@2.112.5) (2021-09-24)
 
 

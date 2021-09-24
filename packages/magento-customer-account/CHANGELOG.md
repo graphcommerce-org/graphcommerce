@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-customer-account@2.101.18...@reachdigital/magento-customer-account@2.102.0) (2021-09-24)
+
+
+### Features
+
+* added magento-newsletter package ([9b48b1b](https://github.com/ho-nl/m2-pwa/commit/9b48b1b4dc29f9ea3271f4a6370abba15dd8999c))
+* signup newsletter component ([7ee961d](https://github.com/ho-nl/m2-pwa/commit/7ee961ded34e9fe012faa7041e96b35fb44b1f35))
+
+
+
+
+
 ## [2.101.6](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-customer-account@2.101.5...@reachdigital/magento-customer-account@2.101.6) (2021-08-17)
 
 

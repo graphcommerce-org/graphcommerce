@@ -1,6 +1,6 @@
 {
   "name": "@reachdigital/magento-customer-order",
-  "version": "2.101.17",
+  "version": "2.101.18",
   "private": true,
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
@@ -28,8 +28,8 @@
     "@reachdigital/graphql": "^2.102.3",
     "@reachdigital/image": "^2.103.2",
     "@reachdigital/magento-graphql": "^2.102.3",
-    "@reachdigital/magento-store": "^2.102.17",
-    "@reachdigital/next-ui": "^2.112.5",
+    "@reachdigital/magento-store": "^2.102.18",
+    "@reachdigital/next-ui": "^2.112.6",
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.17",
     "next": "^11.1.2",

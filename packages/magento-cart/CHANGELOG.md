@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart@2.106.6...@reachdigital/magento-cart@2.107.0) (2021-09-24)
+
+
+### Bug Fixes
+
+* cart cache not up-to-date ([aae4d30](https://github.com/ho-nl/m2-pwa/commit/aae4d302e320475d28a356ec304ea6afb64c3080))
+* **cart-summary:** spacings ([73b7379](https://github.com/ho-nl/m2-pwa/commit/73b7379731bd1fe21c27d9b12f29b518efe73dce))
+
+
+### Features
+
+* edit billing address on checkout payment step ([96a5719](https://github.com/ho-nl/m2-pwa/commit/96a5719437616006efb2588c3516d3f2608c1fb8))
+
+
+
+
+
 # [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-cart@2.105.9...@reachdigital/magento-cart@2.106.0) (2021-09-01)
 
 
