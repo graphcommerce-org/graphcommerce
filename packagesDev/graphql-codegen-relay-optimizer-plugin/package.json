@@ -1,7 +1,7 @@
 {
   "name": "@reachdigital/graphql-codegen-relay-optimizer-plugin",
   "private": true,
-  "version": "2.100.15",
+  "version": "2.100.16",
   "description": "GraphQL Code Generator plugin for optimizing your GraphQL queries relay style.",
   "license": "MIT",
   "main": "dist/main/index.js",
@@ -22,8 +22,8 @@
   },
   "devDependencies": {
     "@graphql-codegen/testing": "1.17.7",
-    "@reachdigital/eslint-config-pwa": "^2.102.3",
-    "@reachdigital/prettier-config-pwa": "^2.100.9",
+    "@reachdigital/eslint-config-pwa": "^2.102.4",
+    "@reachdigital/prettier-config-pwa": "^2.100.10",
     "@types/jest": "27.0.1",
     "@types/relay-compiler": "8.0.1",
     "graphql": "^15.5.2",
