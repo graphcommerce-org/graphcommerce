@@ -1,6 +1,6 @@
 {
-  "name": "@graphcommerce/soxbase-api",
-  "homepage": "https://soxbase-api.vercel.app/api/graphql",
+  "name": "@graphcommerce/magento-graphcms-api",
+  "homepage": "https://magento-graphcms-api.vercel.app/api/graphql",
   "version": "2.103.5",
   "private": true,
   "sideEffects": false,

@@ -6,19 +6,20 @@ customization and theming.
 To keep technical debt to a minimum we only allow certain dependencies to be
 included for each package.
 
-## `examples/soxbase`:
+## `examples/magento-graphcms`:
 
 This folder forms the basis for _each_ new GraphCommerce based website.
 
 ### Minimal code
 
 This folder _will_ be copied to a project and modified by developers to create
-the their website. Since this is a copy of the `examples/soxbase` folder it
-loses simple `git pull / yarn upgrade` automatic-upgrade possibilities when a
-new release of GraphCommerce is made.
+the their website. Since this is a copy of the `examples/magento-graphcms`
+folder it loses simple `git pull / yarn upgrade` automatic-upgrade possibilities
+when a new release of GraphCommerce is made.
 
-This means that when changes get made to the `examples/soxbase` folder, the
-release notes **must** contain upgrade instructions how to upgrade this folder.
+This means that when changes get made to the `examples/magento-graphcms` folder,
+the release notes **must** contain upgrade instructions how to upgrade this
+folder.
 
 To minimize this, we want as little code as possible in this folder.
 
@@ -47,9 +48,9 @@ The methods are not allowed and should be integrated in components (see
 - `useRouter().push` / `usePageRouter()`
 - custom hooks, depending on the hook
 
-### Working with the `examples/soxbase` folder
+### Working with the `examples/magento-graphcms` folder
 
-Wat gaat dan wel in de soxbase folder?
+Wat gaat dan wel in de magento-graphcms folder?
 
 - Alles wat niet in één van de `packages/*` past (zie omschrijvingen van
   packages.) zal uiteindelijk hier terecht moeten komen.
@@ -60,15 +61,15 @@ Wat gaat dan wel in de soxbase folder?
     project-specifiek, er bestaat behalve een paar Model geen vaste structuur in
     GraphCMS.
 
-Let op: Beslissen om een bestand aan te maken in soxbase/components betekent dat
-de maintenance van dat component vermenigvuldigd wordt met het aantal
-installaties dat er zijn. Bijvoorbeeld:
+Let op: Beslissen om een bestand aan te maken in magento-graphcms/components
+betekent dat de maintenance van dat component vermenigvuldigd wordt met het
+aantal installaties dat er zijn. Bijvoorbeeld:
 `100 installaties * 4 uur om te upgraden = 400 uur`
 
 - Pagina's moeten zo assembleerbaar mogelijk zijn. De 'blokken' welkje op de
   pagina ziet, zou je gemakkelijk moeten kunnen terug vinden in je pages-file.
 - Maak geen 'Assemblage'-components welke zelf niks doen en alleen een simpele
-  renderer heeft. Dat hoort in de `pages/*` van soxbase.
+  renderer heeft. Dat hoort in de `pages/*` van magento-graphcms.
 
 ### `packages/magento-*`
 

@@ -24,7 +24,7 @@ jobs:
       - name: Build graphql-codegen-relay-optimizer-plugin
         run: yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin build
       - name: Run graphql-codegen
-        run: yarn workspace @graphcommerce/soxbase codegen
+        run: yarn workspace @graphcommerce/magento-graphcms codegen
         env:
           NEXT_PUBLIC_GRAPHQL_ENDPOINT: ${{ secrets.NEXT_PUBLIC_GRAPHQL_ENDPOINT }}
       - id: deployment

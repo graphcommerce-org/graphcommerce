@@ -15,14 +15,14 @@ jobs:
           path: old
           ref: master
       - run: yarn --frozen-lockfile --cwd ./new
-      - run: yarn --cwd ./new/examples/soxbase build > new.txt
+      - run: yarn --cwd ./new/examples/magento-graphcms build > new.txt
         env:
           NEXT_PUBLIC_GRAPHQL_ENDPOINT: ${{ secrets.NEXT_PUBLIC_GRAPHQL_ENDPOINT }}
           NEXT_PUBLIC_LOCALE_STORES: ${{ secrets.NEXT_PUBLIC_LOCALE_STORES }}
           VERCEL_ENV: development
       - run: cat new.txt
       - run: yarn --frozen-lockfile --cwd ./old
-      - run: yarn --cwd ./old/examples/soxbase build > old.txt
+      - run: yarn --cwd ./old/examples/magento-graphcms build > old.txt
         env:
           NEXT_PUBLIC_GRAPHQL_ENDPOINT: ${{ secrets.NEXT_PUBLIC_GRAPHQL_ENDPOINT }}
           NEXT_PUBLIC_LOCALE_STORES: ${{ secrets.NEXT_PUBLIC_LOCALE_STORES }}

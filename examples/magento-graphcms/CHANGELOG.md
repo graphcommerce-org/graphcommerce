@@ -3,14 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.114.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.114.0...@graphcommerce/soxbase@2.114.1) (2021-09-23)
+## [2.114.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.114.0...@graphcommerce/magento-graphcms@2.114.1) (2021-09-23)
 
 ### Bug Fixes
 
 - make sure mollie only gets build optionally
   ([e5e2347](https://github.com/ho-nl/m2-pwa/commit/e5e23475e170dc2fc0c13103dfb8fbdb9009715f))
 
-# [2.114.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.113.4...@graphcommerce/soxbase@2.114.0) (2021-09-22)
+# [2.114.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.113.4...@graphcommerce/magento-graphcms@2.114.0) (2021-09-22)
 
 ### Bug Fixes
 
@@ -22,35 +22,35 @@ All notable changes to this project will be documented in this file. See
 - google tag manager integration
   ([6697639](https://github.com/ho-nl/m2-pwa/commit/6697639b479bd1f9efecf609db1e606a540fc24c))
 
-## [2.113.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.113.3...@graphcommerce/soxbase@2.113.4) (2021-09-20)
+## [2.113.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.113.3...@graphcommerce/magento-graphcms@2.113.4) (2021-09-20)
 
 ### Bug Fixes
 
 - header app shell margin bottom in some circumstances
   ([6030ba7](https://github.com/ho-nl/m2-pwa/commit/6030ba7d07619d0b877a9f557c3e14676c326c7a))
 
-## [2.113.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.113.2...@graphcommerce/soxbase@2.113.3) (2021-09-11)
+## [2.113.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.113.2...@graphcommerce/magento-graphcms@2.113.3) (2021-09-11)
 
 ### Bug Fixes
 
 - make sure we dont load all the category data into the apollo client cache
   ([ffc4e15](https://github.com/ho-nl/m2-pwa/commit/ffc4e15755741900b247a17e6606dc9eddc2aa0b))
 
-## [2.113.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.113.0...@graphcommerce/soxbase@2.113.1) (2021-09-01)
+## [2.113.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.113.0...@graphcommerce/magento-graphcms@2.113.1) (2021-09-01)
 
 ### Bug Fixes
 
 - **magento-product:** hide sorting options when there are no products
   ([c5e37d7](https://github.com/ho-nl/m2-pwa/commit/c5e37d709c570596994beafe5a6afccfa5704548))
 
-# [2.113.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.112.0...@graphcommerce/soxbase@2.113.0) (2021-09-01)
+# [2.113.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.112.0...@graphcommerce/magento-graphcms@2.113.0) (2021-09-01)
 
 ### Features
 
 - **framer-scroller:** implemented the scroller on all pages
   ([73fb518](https://github.com/ho-nl/m2-pwa/commit/73fb518eff74edb2b3212e892b3d8cc2b088011b))
 
-# [2.112.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.111.1...@graphcommerce/soxbase@2.112.0) (2021-08-30)
+# [2.112.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.111.1...@graphcommerce/magento-graphcms@2.112.0) (2021-08-30)
 
 ### Bug Fixes
 
@@ -64,7 +64,7 @@ All notable changes to this project will be documented in this file. See
 - **use-back-link:** go back in history when links are identical
   ([9be8a05](https://github.com/ho-nl/m2-pwa/commit/9be8a050d418d2ef24bb6894c5946a1268883aba))
 
-## [2.111.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.111.0...@graphcommerce/soxbase@2.111.1) (2021-08-27)
+## [2.111.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.111.0...@graphcommerce/magento-graphcms@2.111.1) (2021-08-27)
 
 ### Bug Fixes
 
@@ -89,7 +89,7 @@ All notable changes to this project will be documented in this file. See
 - title offset
   ([2fef3ea](https://github.com/ho-nl/m2-pwa/commit/2fef3ea10ad98467062d4de397b40a83a86d7102))
 
-# [2.111.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.110.3...@graphcommerce/soxbase@2.111.0) (2021-08-26)
+# [2.111.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.110.3...@graphcommerce/magento-graphcms@2.111.0) (2021-08-26)
 
 ### Bug Fixes
 
@@ -107,14 +107,14 @@ All notable changes to this project will be documented in this file. See
 - **cart:** submit address from header
   ([6ae2a8d](https://github.com/ho-nl/m2-pwa/commit/6ae2a8d0f311ad8bae0198efafab5ae9d99040b6))
 
-## [2.110.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.110.0...@graphcommerce/soxbase@2.110.1) (2021-08-18)
+## [2.110.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.110.0...@graphcommerce/magento-graphcms@2.110.1) (2021-08-18)
 
 ### Bug Fixes
 
 - display prices excl and incl tax
   ([0d41135](https://github.com/ho-nl/m2-pwa/commit/0d411350e4621928411c2800be6ea02c6125049a))
 
-# [2.110.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.109.4...@graphcommerce/soxbase@2.110.0) (2021-08-17)
+# [2.110.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.109.4...@graphcommerce/magento-graphcms@2.110.0) (2021-08-17)
 
 ### Bug Fixes
 
@@ -138,7 +138,7 @@ All notable changes to this project will be documented in this file. See
 - left and sidebar drawers
   ([12a3b72](https://github.com/ho-nl/m2-pwa/commit/12a3b72edfad38a4b82701ec502f2f4d85c40e53))
 
-## [2.109.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.109.1...@graphcommerce/soxbase@2.109.2) (2021-08-13)
+## [2.109.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.109.1...@graphcommerce/magento-graphcms@2.109.2) (2021-08-13)
 
 ### Bug Fixes
 
@@ -149,14 +149,14 @@ All notable changes to this project will be documented in this file. See
 - service, reviews/add didn't use AppShellTitle
   ([abc5778](https://github.com/ho-nl/m2-pwa/commit/abc57783fa7281c72bb4ca94c18c81de0fbf1315))
 
-# [2.109.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.108.1...@graphcommerce/soxbase@2.109.0) (2021-08-13)
+# [2.109.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.108.1...@graphcommerce/magento-graphcms@2.109.0) (2021-08-13)
 
 ### Features
 
 - coupon form on payment page
   ([a163961](https://github.com/ho-nl/m2-pwa/commit/a1639617be756b357177fcce255cf662c5314499))
 
-# [2.108.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.107.0...@graphcommerce/soxbase@2.108.0) (2021-08-12)
+# [2.108.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.107.0...@graphcommerce/magento-graphcms@2.108.0) (2021-08-12)
 
 ### Bug Fixes
 
@@ -174,7 +174,7 @@ All notable changes to this project will be documented in this file. See
 - toggle subscribe customer to newsletter
   ([85688e4](https://github.com/ho-nl/m2-pwa/commit/85688e47b0571c28a2f967310915336b397fc120))
 
-# [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.106.3...@graphcommerce/soxbase@2.107.0) (2021-08-12)
+# [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.106.3...@graphcommerce/magento-graphcms@2.107.0) (2021-08-12)
 
 ### Features
 
@@ -183,7 +183,7 @@ All notable changes to this project will be documented in this file. See
 - upgraded to nextjs 11
   ([0053beb](https://github.com/ho-nl/m2-pwa/commit/0053beb7ef597c190add7264256a0eaec35868da))
 
-## [2.106.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.106.1...@graphcommerce/soxbase@2.106.2) (2021-08-09)
+## [2.106.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.106.1...@graphcommerce/magento-graphcms@2.106.2) (2021-08-09)
 
 ### Bug Fixes
 
@@ -199,7 +199,7 @@ All notable changes to this project will be documented in this file. See
 - Revert "chore: upgrade @apollo/client"
   ([55ff24e](https://github.com/ho-nl/m2-pwa/commit/55ff24ede0e56c85b8095edadadd1ec5e0b1b8d2))
 
-## [2.106.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.106.0...@graphcommerce/soxbase@2.106.1) (2021-08-09)
+## [2.106.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.106.0...@graphcommerce/magento-graphcms@2.106.1) (2021-08-09)
 
 ### Bug Fixes
 
@@ -208,7 +208,7 @@ All notable changes to this project will be documented in this file. See
 - **review:** make sure chip is rendered correctly
   ([387df34](https://github.com/ho-nl/m2-pwa/commit/387df3456973290f9ce98d47823a7c71a6d95850))
 
-# [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.105.0...@graphcommerce/soxbase@2.106.0) (2021-08-06)
+# [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.105.0...@graphcommerce/magento-graphcms@2.106.0) (2021-08-06)
 
 ### Bug Fixes
 
@@ -227,7 +227,7 @@ All notable changes to this project will be documented in this file. See
 - **theme:** restructured typography
   ([6fcddae](https://github.com/ho-nl/m2-pwa/commit/6fcddae6b1b54d071475c59c80a9f8d8a36294d5))
 
-# [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.104.2...@graphcommerce/soxbase@2.105.0) (2021-08-04)
+# [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.104.2...@graphcommerce/magento-graphcms@2.105.0) (2021-08-04)
 
 ### Bug Fixes
 
@@ -267,7 +267,7 @@ All notable changes to this project will be documented in this file. See
 - view list of blogposts tagged
   ([9efe088](https://github.com/ho-nl/m2-pwa/commit/9efe0884d43e0dc63e614f625b81e6f8b3f1dc50))
 
-## [2.104.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.104.1...@graphcommerce/soxbase@2.104.2) (2021-08-03)
+## [2.104.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.104.1...@graphcommerce/magento-graphcms@2.104.2) (2021-08-03)
 
 ### Bug Fixes
 
@@ -275,7 +275,7 @@ All notable changes to this project will be documented in this file. See
   dependency
   ([7379e6e](https://github.com/ho-nl/m2-pwa/commit/7379e6ede4829392b35008c17743181d9cac0636))
 
-# [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.103.2...@graphcommerce/soxbase@2.104.0) (2021-07-29)
+# [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.103.2...@graphcommerce/magento-graphcms@2.104.0) (2021-07-29)
 
 ### Bug Fixes
 
@@ -289,14 +289,14 @@ All notable changes to this project will be documented in this file. See
 - **braintree:** very basic implementation of credit card
   ([bb24f7e](https://github.com/ho-nl/m2-pwa/commit/bb24f7ec0577d018f0aff9b50de14f219e7504c5))
 
-# [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.102.4...@graphcommerce/soxbase@2.103.0) (2021-07-26)
+# [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.102.4...@graphcommerce/magento-graphcms@2.103.0) (2021-07-26)
 
 ### Features
 
 - **playwright:** added new playwright package to enable browser testing
   ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
 
-## [2.102.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.102.2...@graphcommerce/soxbase@2.102.3) (2021-07-23)
+## [2.102.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.102.2...@graphcommerce/magento-graphcms@2.102.3) (2021-07-23)
 
 ### Bug Fixes
 
@@ -307,7 +307,7 @@ All notable changes to this project will be documented in this file. See
 - top sheets to bottom sheets
   ([ae18115](https://github.com/ho-nl/m2-pwa/commit/ae1811590ca3c7b7eba6569f11129ce1c1d593f1))
 
-## [2.102.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.102.1...@graphcommerce/soxbase@2.102.2) (2021-07-23)
+## [2.102.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.102.1...@graphcommerce/magento-graphcms@2.102.2) (2021-07-23)
 
 ### Bug Fixes
 
@@ -320,14 +320,14 @@ All notable changes to this project will be documented in this file. See
 - wrong export for accountmenuitem
   ([5c6c21f](https://github.com/ho-nl/m2-pwa/commit/5c6c21f7759799b2725bff3d943d94fd9aef6820))
 
-# [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.101.3...@graphcommerce/soxbase@2.102.0) (2021-07-21)
+# [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.101.3...@graphcommerce/magento-graphcms@2.102.0) (2021-07-21)
 
 ### Features
 
 - **reviews:** no reviews written message
   ([8ade3db](https://github.com/ho-nl/m2-pwa/commit/8ade3dbe830f5a59af09c002dfa38fa5349a4b61))
 
-## [2.101.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.101.2...@graphcommerce/soxbase@2.101.3) (2021-07-21)
+## [2.101.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.101.2...@graphcommerce/magento-graphcms@2.101.3) (2021-07-21)
 
 ### Bug Fixes
 
@@ -338,7 +338,7 @@ All notable changes to this project will be documented in this file. See
 - shared key usage
   ([5664886](https://github.com/ho-nl/m2-pwa/commit/56648860f7b77cabc1f294f6cf41f9621b9ee94b))
 
-# [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.100.11...@graphcommerce/soxbase@2.101.0) (2021-07-20)
+# [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.100.11...@graphcommerce/magento-graphcms@2.101.0) (2021-07-20)
 
 ### Bug Fixes
 
@@ -384,7 +384,7 @@ All notable changes to this project will be documented in this file. See
 - new app shell components
   ([2db3b7a](https://github.com/ho-nl/m2-pwa/commit/2db3b7a646f45ac273679770715d23e3472e9d2c))
 
-## [2.100.11](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/soxbase@2.100.10...@graphcommerce/soxbase@2.100.11) (2021-07-20)
+## [2.100.11](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.100.10...@graphcommerce/magento-graphcms@2.100.11) (2021-07-20)
 
 ### Bug Fixes
 

@@ -26,7 +26,7 @@ const renderers: ProductListItemRenderer = {
     return (
       <ProductListItemSimple
         {...props}
-        subTitle={<Subtitle>BY SOXBASE</Subtitle>}
+        subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
         bottomRight={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
       />
@@ -39,7 +39,7 @@ const renderers: ProductListItemRenderer = {
     return (
       <ProductListItemConfigurable
         {...props}
-        subTitle={<Subtitle>BY SOXBASE</Subtitle>}
+        subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
         swatchLocations={{
           topLeft: [],
@@ -58,7 +58,7 @@ const renderers: ProductListItemRenderer = {
     return (
       <ProductListItemBundle
         {...props}
-        subTitle={<Subtitle>By Soxbase</Subtitle>}
+        subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
         bottomRight={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
       />
@@ -71,7 +71,7 @@ const renderers: ProductListItemRenderer = {
     return (
       <ProductListItemVirtual
         {...props}
-        subTitle={<Subtitle>BY SOXBASE</Subtitle>}
+        subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
         bottomRight={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
       />
@@ -84,7 +84,7 @@ const renderers: ProductListItemRenderer = {
     return (
       <ProductListItemDownloadable
         {...props}
-        subTitle={<Subtitle>BY SOXBASE</Subtitle>}
+        subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
         bottomRight={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
       />
@@ -97,7 +97,7 @@ const renderers: ProductListItemRenderer = {
     return (
       <ProductListItemGrouped
         {...props}
-        subTitle={<Subtitle>BY SOXBASE</Subtitle>}
+        subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
         bottomRight={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
       />
@@ -106,7 +106,7 @@ const renderers: ProductListItemRenderer = {
   // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // // @ts-ignore GiftCardProduct is only available in Commerce
   // GiftCardProduct: (props) => (
-  //   <ProductListItem {...props} subTitle={<Subtitle>By Soxbase</Subtitle>} aspectRatio={[1, 1]} />
+  //   <ProductListItem {...props} subTitle={<Subtitle>BY GC</Subtitle>} aspectRatio={[1, 1]} />
   // ),
 }
 

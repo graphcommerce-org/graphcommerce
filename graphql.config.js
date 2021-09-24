@@ -11,9 +11,9 @@
  */
 module.exports = {
   projects: {
-    soxbase: {
+    MagentoGraphCms: {
       schema: ['packages/graphql/generated/schema.graphqls'],
-      documents: ['examples/**/*.graphql'],
+      documents: ['examples/magento-graphcms/*.graphql'],
       extensions: {
         languageService: {
           useSchemaFileDefinitions: true,
