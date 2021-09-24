@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.19](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product-configurable@2.103.18...@reachdigital/magento-product-configurable@2.103.19) (2021-09-24)
+
+
+### Bug Fixes
+
+* remove popover from configurable cart items ([90866a0](https://github.com/ho-nl/m2-pwa/commit/90866a07d43fae8fac1c633f123fb4c4d910a2a9))
+
+
+
+
+
 ## [2.103.7](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-product-configurable@2.103.6...@reachdigital/magento-product-configurable@2.103.7) (2021-08-17)
 
 

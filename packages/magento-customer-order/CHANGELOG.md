@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.101.17](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-customer-order@2.101.16...@reachdigital/magento-customer-order@2.101.17) (2021-09-24)
+
+
+### Bug Fixes
+
+* **my-account-order:** show carrier in order details ([45f2a1e](https://github.com/ho-nl/m2-pwa/commit/45f2a1e265e8dbe4e1e76fe8dbedb3b40ba693fa))
+* **my-account-orders:** order item row image too large ([dfc7611](https://github.com/ho-nl/m2-pwa/commit/dfc76111e6bd7c33c616881892adcd29c18f907d))
+* **order-details:** show shipping method ([36964a8](https://github.com/ho-nl/m2-pwa/commit/36964a85efa358cb4987f881b72598e48a2278f4))
+* **orders:** show order number ([b2d9f27](https://github.com/ho-nl/m2-pwa/commit/b2d9f2758cb29966965964eca58d91896654e68b))
+
+
+
+
+
 # [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/magento-customer-order@2.100.23...@reachdigital/magento-customer-order@2.101.0) (2021-08-12)
 
 

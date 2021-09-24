@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.112.5](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.112.4...@reachdigital/next-ui@2.112.5) (2021-09-24)
+
+
+### Bug Fixes
+
+* **chip-menu:** layout shift on open ([c65cf5b](https://github.com/ho-nl/m2-pwa/commit/c65cf5bc18864b5180aba3f2361399bd85967952))
+
+
+
+
+
 ## [2.112.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-ui@2.112.2...@reachdigital/next-ui@2.112.3) (2021-09-23)
 
 

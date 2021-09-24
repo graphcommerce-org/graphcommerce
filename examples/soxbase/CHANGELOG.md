@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.114.3](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.114.2...@reachdigital/soxbase@2.114.3) (2021-09-24)
+
+
+### Bug Fixes
+
+* **chip-menu:** layout shift on open ([c65cf5b](https://github.com/ho-nl/m2-pwa/commit/c65cf5bc18864b5180aba3f2361399bd85967952))
+* placeholder cart fab is visible on hover ([00a7186](https://github.com/ho-nl/m2-pwa/commit/00a7186197b3e558c0afb40fa900c5951c4b9ba8))
+* **product-description:** remove typography component ([b92a028](https://github.com/ho-nl/m2-pwa/commit/b92a0285fda09ae4ffe48d91150337438d08f3eb))
+* show short description on product page ([f51d39c](https://github.com/ho-nl/m2-pwa/commit/f51d39c3122e4e1523cfc066d5c0ca8a210879e4))
+* **test:** no children found ([2ba74d8](https://github.com/ho-nl/m2-pwa/commit/2ba74d8364c9eb24418871b3cc62a4f509c403e8))
+
+
+
+
+
 ## [2.114.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/soxbase@2.114.0...@reachdigital/soxbase@2.114.1) (2021-09-23)
 
 
