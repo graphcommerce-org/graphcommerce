@@ -12,6 +12,7 @@ type Props = ProductListQuery
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function TestSlider({ products }: Props) {
+  if (!products?.items?.length) return <></>
   return (
     <>
       <FullPageShellHeader>
