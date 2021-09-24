@@ -33,7 +33,7 @@ mutation SetBillingAddressOnCart(
     }
   ) {
     cart {
-      id
+      ...CartBillingAddress
     }
   }
 }

@@ -1,8 +1,6 @@
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { useCartQuery } from '@reachdigital/magento-cart'
 import { EditBillingAddressForm } from '@reachdigital/magento-cart-billing-address'
-import { CartPageDocument } from '@reachdigital/magento-cart-checkout'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   AppShellTitle,
@@ -21,12 +19,6 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function EditBillingAddress() {
-  const { data, loading } = useCartQuery(CartPageDocument, {
-    fetchPolicy: 'network-only',
-  })
-
-  if (loading) return <></>
-
   return (
     <>
       <PageMeta title='Edit billing address' metaRobots={['noindex', 'nofollow']} />
@@ -43,7 +35,7 @@ function EditBillingAddress() {
 
       <Container maxWidth='md'>
         <NoSsr>
-          <EditBillingAddressForm cartId={data?.cart?.id} address={data?.cart?.billing_address} />
+          <EditBillingAddressForm />
         </NoSsr>
       </Container>
     </>

@@ -1,7 +1,9 @@
 import { useQuery } from '@apollo/client'
 import { makeStyles, TextField } from '@material-ui/core'
+import { useHistoryGo } from '@reachdigital/framer-next-pages'
+import { useCartQuery, useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import { AddressFields, ApolloCustomerErrorAlert, NameFields } from '@reachdigital/magento-customer'
-import { CountryRegionsDocument } from '@reachdigital/magento-store'
+import { CountryRegionsDocument, useFindRegion } from '@reachdigital/magento-store'
 import {
   Button,
   Form,
@@ -9,11 +11,13 @@ import {
   FormDivider,
   FormRow,
   InputCheckmark,
+  UseStyles,
 } from '@reachdigital/next-ui'
 import { phonePattern, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { SetBillingAddressOnCartDocument } from '../../api/SetBillingAddressOnCart.gql'
+import { GetBillingAddressDocument } from './GetBillingAddress.gql'
+import { SetBillingAddressOnCartDocument } from './SetBillingAddressOnCart.gql'
 
 const useStyles = makeStyles(
   () => ({
@@ -24,74 +28,42 @@ const useStyles = makeStyles(
   { name: 'EditBillingAddressForm' },
 )
 
-type EditBillingAddressFormProps = { cartId: any; address: any } // TODO.. BillingAddressFragment?
+type EditBillingAddressFormProps = UseStyles<typeof useStyles>
 
 export default function EditBillingAddressForm(props: EditBillingAddressFormProps) {
-  const countries = useQuery(CountryRegionsDocument).data?.countries
-  const { cartId, address } = props
-  const classes = useStyles()
-  const router = useRouter()
+  const countriesData = useQuery(CountryRegionsDocument).data
+  const address = useCartQuery(GetBillingAddressDocument)?.data?.cart?.billing_address
+  const classes = useStyles(props)
+  const goToCheckout = useHistoryGo({ href: '/checkout/payment' })
 
-  // TODO: const {region} = useRegion(formData..)
-
-  const form = useFormGqlMutation(
-    SetBillingAddressOnCartDocument,
-    {
-      defaultValues: {
-        cartId: cartId ?? '',
-        firstname: address?.firstname,
-        lastname: address?.lastname,
-        postcode: address?.postcode,
-        city: address?.city,
-        countryCode: address?.country.code,
-        street: address?.street?.[0] ?? undefined,
-        telephone: address?.telephone,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        houseNumber: address?.street?.[1],
-        addition: address?.street?.[2],
-      },
-      onBeforeSubmit: (formData) => {
-        console.log(formData)
-
-        const region = countries
-          ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)
-          ?.available_regions?.find((r) => r?.id === formData?.region)
-
-        // const regionData = {
-        //   region:
-        //     (region && {
-        //       region: region.name,
-        //       region_code: region.code,
-        //       region_id: region.id,
-        //     }) ??
-        //     null,
-        // }
-
-        // console.log({
-        //   ...formData,
-        //   ...regionData,
-        //   regionId: (region && region.id) ?? null,
-        // })
-
-        return {
-          ...formData,
-          // ...regionData,
-          // regionId: (region && region?.id) ?? null,
-        }
-      },
-      onComplete: () => {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        router.push('/checkout/payment')
-      },
+  const form = useFormGqlMutationCart(SetBillingAddressOnCartDocument, {
+    defaultValues: {
+      firstname: address?.firstname,
+      lastname: address?.lastname,
+      postcode: address?.postcode ?? undefined,
+      city: address?.city,
+      countryCode: address?.country.code,
+      street: address?.street?.[0] ?? undefined,
+      telephone: address?.telephone,
+      houseNumber: address?.street?.[1] ?? undefined,
+      addition: address?.street?.[2] ?? undefined,
     },
-    { errorPolicy: 'all' },
-  )
+    onBeforeSubmit: (variables) => {
+      const regionId = countriesData?.countries
+        ?.find((country) => country?.two_letter_abbreviation === variables.countryCode)
+        ?.available_regions?.find((region) => region?.id === variables.regionId)?.id
+
+      return {
+        ...variables,
+        telephone: variables.telephone || '000 - 000 0000',
+        regionId,
+      }
+    },
+    onComplete: goToCheckout,
+  })
 
   const { handleSubmit, formState, required, error, muiRegister, valid } = form
-  const submitHandler = handleSubmit(() => {
-    //
-  })
+  const submitHandler = handleSubmit(() => {})
 
   return (
     <>
