@@ -84,9 +84,11 @@ export default function OrderDetails(props: OrderDetailsProps) {
     billing_address,
     payment_methods,
     shipments,
+    shipping_method,
     total,
     invoices,
     loading,
+    carrier,
   } = props
   const classes = useStyles()
 
@@ -199,11 +201,7 @@ export default function OrderDetails(props: OrderDetailsProps) {
         <div>
           <span className={classes.orderDetailTitle}>Shipping method</span>
           <div>
-            {!shipments?.length && (
-              <div>
-                <i>No shipments yet</i>
-              </div>
-            )}
+            <div>{shipping_method ?? ''}</div>
 
             {shipments && shipments.length > 0 && (
               <>
@@ -306,6 +304,7 @@ export default function OrderDetails(props: OrderDetailsProps) {
           <div>
             <Money {...total?.total_shipping} />
           </div>
+          <div>{carrier}</div>
         </div>
 
         <div className={classes.totalsDivider} />

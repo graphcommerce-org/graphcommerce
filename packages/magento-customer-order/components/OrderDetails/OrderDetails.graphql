@@ -5,6 +5,7 @@ fragment OrderDetails on CustomerOrder {
     id
     number
   }
+  shipping_method
   shipments {
     id
     tracking {
@@ -39,6 +40,7 @@ fragment OrderDetails on CustomerOrder {
     country_code
     region_id
   }
+  carrier
   total {
     subtotal {
       ...Money

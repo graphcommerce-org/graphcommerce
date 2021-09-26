@@ -32,7 +32,9 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function ShippingPage() {
-  const { data: cartData } = useCartQuery(ShippingPageDocument, { returnPartialData: true })
+  const { data: cartData } = useCartQuery(ShippingPageDocument, {
+    returnPartialData: true,
+  })
   const cartExists = typeof cartData?.cart !== 'undefined'
   const router = useRouter()
 

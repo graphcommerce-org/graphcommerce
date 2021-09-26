@@ -1,7 +1,6 @@
-import { makeStyles, Menu, Theme } from '@material-ui/core'
-import { CartItemOptionDropdown } from '@graphcommerce/magento-cart-items'
-import { Button, responsiveVal } from '@graphcommerce/next-ui'
-import React, { useState } from 'react'
+import { makeStyles, Theme } from '@material-ui/core'
+import { responsiveVal } from '@graphcommerce/next-ui'
+import React from 'react'
 import { ConfigurableCartItemFragment } from './ConfigurableCartItem.gql'
 
 const useStyles = makeStyles(
@@ -64,23 +63,23 @@ type CartItemOptionsListProps = ConfigurableCartItemFragment
 export default function OptionsList(props: CartItemOptionsListProps) {
   const { configurable_options } = props
   const classes = useStyles()
-  const [anchorEl, setAnchorEl] = useState<HTMLDivElement>()
+  // const [anchorEl, setAnchorEl] = useState<HTMLDivElement>()
 
-  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    setAnchorEl(event.currentTarget)
-  }
+  // const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  //   setAnchorEl(event.currentTarget)
+  // }
 
-  const handleClose = () => {
-    setAnchorEl(undefined)
-  }
+  // const handleClose = () => {
+  //   setAnchorEl(undefined)
+  // }
 
-  const handleChange = () => {
-    //
-  }
+  // const handleChange = () => {
+  //   //
+  // }
 
   return (
     <>
-      <div className={classes.optionsList} onClick={handleClick}>
+      <div className={classes.optionsList} /* onClick={handleClick}*/>
         {configurable_options &&
           configurable_options.map((option) => (
             <div key={option?.configurable_product_option_uid} className={classes.option}>
@@ -89,7 +88,7 @@ export default function OptionsList(props: CartItemOptionsListProps) {
           ))}
       </div>
 
-      <Menu
+      {/* <Menu
         anchorEl={anchorEl}
         open={!!anchorEl}
         onClose={handleClose}
@@ -109,7 +108,7 @@ export default function OptionsList(props: CartItemOptionsListProps) {
             </Button>
           </div>
         </div>
-      </Menu>
+      </Menu> */}
     </>
   )
 }

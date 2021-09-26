@@ -10,8 +10,8 @@ import {
   AccountDashboardDocument,
   AccountMenu,
   AccountMenuItem,
-  AccountNewsletter,
 } from '@graphcommerce/magento-customer-account'
+import { CustomerNewsletterToggle } from '@graphcommerce/magento-newsletter'
 import { OrderStateLabelInline } from '@graphcommerce/magento-customer-order'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -143,7 +143,7 @@ function AccountIndexPage() {
               iconSrc={iconNewspaper}
               title='Newsletter'
               subtitle='Be the first to know about everything new!'
-              endIcon={<AccountNewsletter color='primary' />}
+              endIcon={<CustomerNewsletterToggle color='primary' />}
             />
             <SignOutForm
               button={({ formState }) => (

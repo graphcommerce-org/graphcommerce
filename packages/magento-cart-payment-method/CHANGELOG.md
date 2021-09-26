@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.103.18...@graphcommerce/magento-cart-payment-method@2.104.0) (2021-09-24)
+
+### Features
+
+- **payment-agreements-form:** checkout agreements checkboxes
+  ([13c8164](https://github.com/ho-nl/m2-pwa/commit/13c816499d220a2ce940672a95beca508b78ddc9))
+
+## [2.103.15](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.103.14...@graphcommerce/magento-cart-payment-method@2.103.15) (2021-09-23)
+
 ## [2.103.15](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.103.14...@graphcommerce/magento-cart-payment-method@2.103.15) (2021-09-23)
 
 ### Bug Fixes

@@ -25,8 +25,8 @@ import { Product } from 'schema-dts'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import FullPageShellHeader from '../../../components/AppShell/FullPageShellHeader'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
-import ProductUsps from '../../../components/ProductUsps'
 import ProductpagesContent from '../../../components/ProductpagesContent'
+import ProductUsps from '../../../components/ProductUsps'
 import RowProductDescription from '../../../components/Row/RowProductDescription'
 import RowProductFeature from '../../../components/Row/RowProductFeature'
 import RowProductFeatureBoxed from '../../../components/Row/RowProductFeatureBoxed'
@@ -108,6 +108,9 @@ function ProductConfigurable(props: Props) {
           <Typography variant='h3' component='div'>
             {product.name}
           </Typography>
+
+          <div dangerouslySetInnerHTML={{ __html: product?.short_description?.html }} />
+
           <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           <ConfigurableProductAddToCart
             variables={{ sku: product.sku ?? '', quantity: 1 }}

@@ -15,14 +15,17 @@ const useStyles = makeStyles(
     },
     detailsContainer: {
       padding: theme.spacings.sm,
-      gridColumnGap: theme.spacings.lg,
-      gridRowGap: theme.spacings.md,
+      gridColumnGap: theme.spacings.xl,
+      gridRowGap: theme.spacings.sm,
       display: `grid`,
-
       [theme.breakpoints.up('sm')]: {
         gridTemplateColumns: `1fr 1fr`,
         marginTop: theme.spacings.xxs,
       },
+    },
+    sectionHeaderWrapper: {
+      marginTop: 0,
+      paddingBottom: 8,
     },
     orderNumberLabel: {
       display: 'grid',
@@ -41,7 +44,10 @@ export default function CartSummary(props: CartSummaryProps) {
   const classes = useStyles(props)
   const { children, editable } = props
 
-  const { data } = useCartQuery(GetCartSummaryDocument, { allowUrl: true })
+  const { data } = useCartQuery(GetCartSummaryDocument, {
+    // allowUrl: true,
+    fetchPolicy: 'network-only',
+  })
 
   if (!data?.cart) return null
 
@@ -54,15 +60,16 @@ export default function CartSummary(props: CartSummaryProps) {
           <SectionContainer
             variantLeft='h5'
             labelLeft='Confirmation + Track & trace'
-            labelRight={
-              editable ? (
-                <PageLink href='/checkout/edit' passHref>
-                  <Link color='secondary' variant='body2'>
-                    Edit
-                  </Link>
-                </PageLink>
-              ) : undefined
-            }
+            classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
+            // labelRight={
+            //   editable ? (
+            //     <PageLink href='/checkout/edit' passHref>
+            //       <Link color='secondary' variant='body2'>
+            //         Edit
+            //       </Link>
+            //     </PageLink>
+            //   ) : undefined
+            // }
           />
           <Typography variant='body1'>{email || ''}</Typography>
         </div>
@@ -70,15 +77,16 @@ export default function CartSummary(props: CartSummaryProps) {
           <SectionContainer
             variantLeft='h5'
             labelLeft='Shipping method'
-            labelRight={
-              editable ? (
-                <PageLink href='/checkout/edit/shipping' passHref>
-                  <Link color='secondary' variant='body2'>
-                    Edit
-                  </Link>
-                </PageLink>
-              ) : undefined
-            }
+            classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
+            // labelRight={
+            //   editable ? (
+            //     <PageLink href='/checkout/edit/shipping' passHref>
+            //       <Link color='secondary' variant='body2'>
+            //         Edit
+            //       </Link>
+            //     </PageLink>
+            //   ) : undefined
+            // }
           />
           <Typography variant='body1'>
             {shipping_addresses?.[0]?.selected_shipping_method?.carrier_title}
@@ -91,15 +99,16 @@ export default function CartSummary(props: CartSummaryProps) {
               <SectionContainer
                 variantLeft='h5'
                 labelLeft='Shipping address'
-                labelRight={
-                  editable ? (
-                    <PageLink href='/checkout/edit/shipping_address' passHref>
-                      <Link color='secondary' variant='body2'>
-                        Edit
-                      </Link>
-                    </PageLink>
-                  ) : undefined
-                }
+                classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
+                // labelRight={
+                //   editable ? (
+                //     <PageLink href='/checkout/edit/shipping_address' passHref>
+                //       <Link color='secondary' variant='body2'>
+                //         Edit
+                //       </Link>
+                //     </PageLink>
+                //   ) : undefined
+                // }
               />
               <CartAddressMultiLine {...shipping_addresses[0]} />
             </div>
@@ -107,9 +116,10 @@ export default function CartSummary(props: CartSummaryProps) {
               <SectionContainer
                 variantLeft='h5'
                 labelLeft='Billing Address'
+                classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
                 labelRight={
                   editable ? (
-                    <PageLink href='/checkout/edit/billing_address' passHref>
+                    <PageLink href='/checkout/edit/billing-address' passHref>
                       <Link color='secondary' variant='body2'>
                         Edit
                       </Link>

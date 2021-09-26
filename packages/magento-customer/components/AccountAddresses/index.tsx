@@ -77,7 +77,7 @@ export default function AccountAddresses(props: AccountAddressesProps) {
         </>
       )}
 
-      {addresses && addresses.length > 1 && (
+      {addresses && addresses.length >= 1 && (
         <SectionContainer labelLeft='Shipping addresses'>
           <div className={classes.root}>
             {addresses?.map((address) => (

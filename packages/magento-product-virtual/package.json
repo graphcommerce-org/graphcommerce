@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-product-virtual",
-  "version": "2.102.18",
+  "version": "2.102.20",
   "private": true,
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -23,8 +23,8 @@
   "dependencies": {
     "@graphql-typed-document-node/core": "^3.1.0",
     "@graphcommerce/graphql": "^2.102.3",
-    "@graphcommerce/magento-cart": "^2.106.5",
-    "@graphcommerce/magento-product": "^2.105.5",
+    "@graphcommerce/magento-cart": "^2.107.0",
+    "@graphcommerce/magento-product": "^2.105.7",
     "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

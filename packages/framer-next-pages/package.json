@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/framer-next-pages",
-  "version": "2.105.4",
+  "version": "2.105.5",
   "private": true,
   "sideEffects": false,
   "scripts": {

@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.116.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.115.0...@graphcommerce/magento-graphcms@2.116.0) (2021-09-24)
+
+### Bug Fixes
+
+- agreements positioning
+  ([89c2dee](https://github.com/ho-nl/m2-pwa/commit/89c2dee1debeb84c8b2cd9abaac85f03759604c8))
+
+### Features
+
+- **checkout:** checkout agreements checkboxes in checkout
+  ([a8b4ddb](https://github.com/ho-nl/m2-pwa/commit/a8b4ddb3a9750c2b7ff86cd460e0ff7fc4cc0ad1))
+- **payment-agreements-form:** checkout agreements checkboxes
+  ([13c8164](https://github.com/ho-nl/m2-pwa/commit/13c816499d220a2ce940672a95beca508b78ddc9))
+- read checkout policies in sidebar sheet
+  ([3fb765e](https://github.com/ho-nl/m2-pwa/commit/3fb765e14a8cfaf0bb27acd8368926ac27ed6a4c))
+
+# [2.115.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.114.3...@graphcommerce/magento-graphcms@2.115.0) (2021-09-24)
+
+### Bug Fixes
+
+- **account-addresses:** single address not shown
+  ([798bb9c](https://github.com/ho-nl/m2-pwa/commit/798bb9ce2ae7347f161d1a7285e21a3aad0f835f))
+- cart cache not up-to-date
+  ([aae4d30](https://github.com/ho-nl/m2-pwa/commit/aae4d302e320475d28a356ec304ea6afb64c3080))
+- edit billing address updating state
+  ([ecd9f48](https://github.com/ho-nl/m2-pwa/commit/ecd9f48ce313d8e7a698c06ff29b88231dc50168))
+
+### Features
+
+- added magento-newsletter package
+  ([9b48b1b](https://github.com/ho-nl/m2-pwa/commit/9b48b1b4dc29f9ea3271f4a6370abba15dd8999c))
+- edit billing address on checkout payment step
+  ([96a5719](https://github.com/ho-nl/m2-pwa/commit/96a5719437616006efb2588c3516d3f2608c1fb8))
+- guest newsletter toggle
+  ([c747aed](https://github.com/ho-nl/m2-pwa/commit/c747aed081b2c5c134e2be1bc4c32de2a5e6e220))
+- **inline-account:** re-added the component
+  ([c508d34](https://github.com/ho-nl/m2-pwa/commit/c508d341ca34daa26a6db13ead72f7f4bdc72160))
+- signup newsletter component
+  ([7ee961d](https://github.com/ho-nl/m2-pwa/commit/7ee961ded34e9fe012faa7041e96b35fb44b1f35))
+
+## [2.114.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.114.2...@graphcommerce/magento-graphcms@2.114.3) (2021-09-24)
+
+### Bug Fixes
+
+- **chip-menu:** layout shift on open
+  ([c65cf5b](https://github.com/ho-nl/m2-pwa/commit/c65cf5bc18864b5180aba3f2361399bd85967952))
+- placeholder cart fab is visible on hover
+  ([00a7186](https://github.com/ho-nl/m2-pwa/commit/00a7186197b3e558c0afb40fa900c5951c4b9ba8))
+- **product-description:** remove typography component
+  ([b92a028](https://github.com/ho-nl/m2-pwa/commit/b92a0285fda09ae4ffe48d91150337438d08f3eb))
+- show short description on product page
+  ([f51d39c](https://github.com/ho-nl/m2-pwa/commit/f51d39c3122e4e1523cfc066d5c0ca8a210879e4))
+- **test:** no children found
+  ([2ba74d8](https://github.com/ho-nl/m2-pwa/commit/2ba74d8364c9eb24418871b3cc62a4f509c403e8))
+
 ## [2.114.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.114.0...@graphcommerce/magento-graphcms@2.114.1) (2021-09-23)
 
 ### Bug Fixes

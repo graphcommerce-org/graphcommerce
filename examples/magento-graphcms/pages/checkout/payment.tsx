@@ -1,6 +1,7 @@
 import { Container, Divider, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { CartSummary, CartTotals } from '@graphcommerce/magento-cart'
+import { PaymentAgreementsForm } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
 import {
   PaymentMethodButton,
@@ -104,7 +105,9 @@ function PaymentPage() {
                 <CartTotals />
               </CartSummary>
 
-              <CouponAccordion />
+              <CouponAccordion key='coupon' />
+
+              <PaymentAgreementsForm step={2} key='payment-agreements' />
 
               <PaymentMethodButton
                 key='button'

@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-store",
-  "version": "2.102.16",
+  "version": "2.102.18",
   "private": true,
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -27,7 +27,7 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@graphcommerce/graphql": "^2.102.3",
     "@graphcommerce/image": "^2.103.2",
-    "@graphcommerce/next-ui": "^2.112.4",
+    "@graphcommerce/next-ui": "^2.112.6",
     "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

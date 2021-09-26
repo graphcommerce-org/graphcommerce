@@ -1,4 +1,3 @@
-import { useQuery } from '@apollo/client'
 import {
   FormControl,
   FormControlLabel,
@@ -7,10 +6,18 @@ import {
   Switch,
   SwitchProps,
 } from '@material-ui/core'
-import { ApolloCustomerErrorAlert, CustomerDocument } from '@graphcommerce/magento-customer'
+import { useCartQuery } from '@graphcommerce/magento-cart'
+import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
 import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import React, { useEffect, useMemo } from 'react'
-import { UpdateNewsletterSubscriptionDocument } from './UpdateNewsletterSubscription.gql'
+import React from 'react'
+import { GetCartEmailDocument } from '../SignupNewsletter/GetCartEmail.gql'
+import {
+  GuestNewsletterToggleDocument,
+  GuestNewsletterToggleMutation,
+  GuestNewsletterToggleMutationVariables,
+} from './GuestNewsletterToggle.gql'
+
+export type GuestNewsletterToggleProps = SwitchProps
 
 const useStyles = makeStyles(() => ({
   labelRoot: {
@@ -18,55 +25,30 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-export type AccountNewsletterProps = SwitchProps
-
-export default function AccountNewsletter(props: AccountNewsletterProps) {
+export default function GuestNewsletterToggle(props: GuestNewsletterToggleProps) {
   const { ...switchProps } = props
   const classes = useStyles(props)
 
-  const { loading, data } = useQuery(CustomerDocument, {
-    ssr: false,
-  })
-  const customer = data?.customer
-  const is_subscribed = customer && customer.is_subscribed
+  const email =
+    useCartQuery(GetCartEmailDocument, { allowUrl: true }).data?.cart?.email ?? undefined
+  const form = useFormGqlMutation<
+    GuestNewsletterToggleMutation,
+    GuestNewsletterToggleMutationVariables & { isSubscribed?: boolean }
+  >(GuestNewsletterToggleDocument, { mode: 'onChange' })
 
-  const defaultValues = useMemo(
-    // todo: useMemo weg
-    () => ({
-      isSubscribed: is_subscribed ?? false,
-    }),
-    [is_subscribed],
-  )
-
-  const form = useFormGqlMutation(
-    UpdateNewsletterSubscriptionDocument,
-    {
-      mode: 'onChange',
-      defaultValues,
-    },
-    { errorPolicy: 'all' },
-  )
-
-  const { handleSubmit, control, error, reset, formState } = form
-
-  const submit = handleSubmit(() => {
-    //
-  })
-
+  const { handleSubmit, control, formState, error, register } = form
+  const submit = handleSubmit(() => {})
   useFormAutoSubmit({ form, submit })
 
-  useEffect(() => {
-    reset(defaultValues)
-  }, [defaultValues, reset])
-
-  if (loading) return null
+  if (formState.isSubmitted) return <Switch color='primary' {...switchProps} checked disabled />
 
   return (
     <form noValidate>
+      <input type='hidden' {...register('email')} value={email} />
       <Controller
         name='isSubscribed'
         control={control}
-        render={({ field: { onChange, value, name, ref, onBlur } }) => (
+        render={({ field: { onChange, value, name: controlName, ref, onBlur } }) => (
           <FormControl error={!!formState.errors.isSubscribed}>
             <FormControlLabel
               classes={{ root: classes.labelRoot }}
@@ -75,10 +57,9 @@ export default function AccountNewsletter(props: AccountNewsletterProps) {
               checked={value}
               inputRef={ref}
               onBlur={onBlur}
-              name={name}
+              name={controlName}
               onChange={(e) => onChange((e as React.ChangeEvent<HTMLInputElement>).target.checked)}
             />
-
             {formState.errors.isSubscribed?.message && (
               <FormHelperText>{formState.errors.isSubscribed?.message}</FormHelperText>
             )}

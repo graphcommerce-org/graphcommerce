@@ -1,10 +1,10 @@
 import { Chip, ChipProps, makeStyles, Menu, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React, { PropsWithChildren, useState } from 'react'
+import { iconChevronDown, iconChevronUp, iconCloseCircle } from '../icons'
 import SectionHeader from '../SectionHeader'
 import responsiveVal from '../Styles/responsiveVal'
 import SvgImage from '../SvgImage'
-import { iconChevronDown, iconChevronUp, iconCloseCircle } from '../icons'
 
 export const useChipMenuStyles = makeStyles(
   (theme: Theme) => ({
@@ -97,7 +97,9 @@ export default function ChipMenu(props: ChipMenuProps) {
         color={selected || openEl ? 'primary' : 'default'}
         clickable
         onDelete={onDelete || ((event) => setOpenEl(event.currentTarget.parentElement))}
-        onClick={(event) => setOpenEl(event.currentTarget)}
+        onClick={(event) => {
+          setOpenEl(event.currentTarget)
+        }}
         deleteIcon={deleteIcon}
         {...chipProps}
         label={selectedLabel ?? label}
@@ -107,17 +109,15 @@ export default function ChipMenu(props: ChipMenuProps) {
           selectedAndMenuHidden && classes.chipSelected,
         )}
       />
+
       <Menu
         anchorEl={openEl}
         open={!!openEl}
-        disableScrollLock
         onClose={() => {
           if (onClose) onClose()
-
           setOpenEl(null)
         }}
         getContentAnchorEl={null} // https://github.com/mui-org/material-ui/issues/7961#issuecomment-326116559
-        // variant='selectedMenu'
         anchorPosition={{ top: 6, left: 0 }}
         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
         classes={{ paper: classes.menuPaper, list: classes.menuList }}

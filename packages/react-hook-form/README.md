@@ -139,3 +139,19 @@ export default function MyAutoSubmitForm() {
   )
 }
 ```
+
+## FAQ
+
+### `Why is my useForm hook not submitting anything?`
+
+```tsx
+const form = useForm() // INCORRECT
+
+const form useForm({ // CORRECT
+  mode: 'onSubmit',
+  defaultValues: {
+   yourFieldName: 'default value',
+  },
+})
+
+```
