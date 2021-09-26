@@ -7,6 +7,7 @@ import { UseStyles } from '@graphcommerce/next-ui/Styles'
 import React, { useState } from 'react'
 import { CustomerTokenDocument, IsEmailAvailableDocument } from '../../hooks'
 import { InlineAccountDocument } from './InlineAccount.gql'
+import SignUpFormInline from '../SignUpForm/SignUpFormInline'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
