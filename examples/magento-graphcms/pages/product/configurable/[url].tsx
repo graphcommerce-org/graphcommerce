@@ -109,7 +109,11 @@ function ProductConfigurable(props: Props) {
             {product.name}
           </Typography>
 
-          <div dangerouslySetInnerHTML={{ __html: product?.short_description?.html }} />
+          <Typography
+            variant='body1'
+            component='div'
+            dangerouslySetInnerHTML={{ __html: product?.short_description?.html ?? '' }}
+          />
 
           <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           <ConfigurableProductAddToCart

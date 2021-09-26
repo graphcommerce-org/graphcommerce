@@ -87,6 +87,13 @@ function ProductVirtual(props: Props) {
         <Typography variant='h3' component='div'>
           {product.name}
         </Typography>
+
+        <Typography
+          variant='body1'
+          component='div'
+          dangerouslySetInnerHTML={{ __html: product?.short_description?.html ?? '' }}
+        />
+
         <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
         <AddToCartButton
           mutation={ProductAddToCartDocument}
