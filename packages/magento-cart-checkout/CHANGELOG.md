@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.104.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-checkout@2.104.0...@graphcommerce/magento-cart-checkout@2.104.1) (2021-09-27)
+
+**Note:** Version bump only for package @graphcommerce/magento-cart-checkout
+
+
+
+
+
 # 2.104.0 (2021-09-27)
 
 

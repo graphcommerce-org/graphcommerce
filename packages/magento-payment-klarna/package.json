@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-payment-klarna",
-  "version": "2.103.0",
+  "version": "2.103.1",
   "private": true,
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -14,19 +14,19 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/browserslist-config-pwa": "^3.0.0",
-    "@graphcommerce/eslint-config-pwa": "^3.0.0",
-    "@graphcommerce/prettier-config-pwa": "^3.0.0",
-    "@graphcommerce/typescript-config-pwa": "^3.0.0",
+    "@graphcommerce/browserslist-config-pwa": "^3.0.1",
+    "@graphcommerce/eslint-config-pwa": "^3.0.1",
+    "@graphcommerce/prettier-config-pwa": "^3.0.1",
+    "@graphcommerce/typescript-config-pwa": "^3.0.1",
     "@playwright/test": "^1.14.1"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
-    "@graphcommerce/graphql": "^2.103.0",
-    "@graphcommerce/image": "^2.104.0",
-    "@graphcommerce/magento-cart": "^3.0.0",
-    "@graphcommerce/magento-store": "^3.0.0",
-    "@graphcommerce/next-ui": "^3.0.0",
+    "@graphcommerce/graphql": "^2.103.1",
+    "@graphcommerce/image": "^2.104.1",
+    "@graphcommerce/magento-cart": "^3.0.1",
+    "@graphcommerce/magento-store": "^3.0.1",
+    "@graphcommerce/next-ui": "^3.0.1",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",

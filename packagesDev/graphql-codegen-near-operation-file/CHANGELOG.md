@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.102.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-codegen-near-operation-file@2.102.0...@graphcommerce/graphql-codegen-near-operation-file@2.102.1) (2021-09-27)
+
+**Note:** Version bump only for package @graphcommerce/graphql-codegen-near-operation-file
+
+
+
+
+
 # 2.102.0 (2021-09-27)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/lighthouse",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "private": true,
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -14,10 +14,10 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/browserslist-config-pwa": "^3.0.0",
-    "@graphcommerce/eslint-config-pwa": "^3.0.0",
-    "@graphcommerce/prettier-config-pwa": "^3.0.0",
-    "@graphcommerce/typescript-config-pwa": "^3.0.0",
+    "@graphcommerce/browserslist-config-pwa": "^3.0.1",
+    "@graphcommerce/eslint-config-pwa": "^3.0.1",
+    "@graphcommerce/prettier-config-pwa": "^3.0.1",
+    "@graphcommerce/typescript-config-pwa": "^3.0.1",
     "@playwright/test": "^1.14.1"
   }
 }
