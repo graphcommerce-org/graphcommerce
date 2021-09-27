@@ -1,6 +1,6 @@
 import { Theme, makeStyles } from '@material-ui/core'
-import { Maybe } from '@reachdigital/graphql'
-import { RenderType, UseStyles, responsiveVal } from '@reachdigital/next-ui'
+import { Maybe } from '@graphcommerce/graphql'
+import { RenderType, UseStyles, responsiveVal } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { expect } from '@playwright/test'
-import { waitForGraphQlResponse } from '@reachdigital/graphql/_playwright/apolloClient.fixture'
-import { PaymentMethodPlaceOrderNoopDocument } from '@reachdigital/magento-cart-payment-method/PaymentMethodPlaceOrderNoop/PaymentMethodPlaceOrderNoop.gql'
-import { fillShippingAddressForm } from '@reachdigital/magento-cart-shipping-address/_playwright/fillShippingAddressForm'
-import { addConfigurableProductToCart } from '@reachdigital/magento-product-configurable/_playwright/addConfigurableProductToCart'
-import { test } from '@reachdigital/magento-product/_playwright/productURL.fixture'
+import { waitForGraphQlResponse } from '@graphcommerce/graphql/_playwright/apolloClient.fixture'
+import { PaymentMethodPlaceOrderNoopDocument } from '@graphcommerce/magento-cart-payment-method/PaymentMethodPlaceOrderNoop/PaymentMethodPlaceOrderNoop.gql'
+import { fillShippingAddressForm } from '@graphcommerce/magento-cart-shipping-address/_playwright/fillShippingAddressForm'
+import { addConfigurableProductToCart } from '@graphcommerce/magento-product-configurable/_playwright/addConfigurableProductToCart'
+import { test } from '@graphcommerce/magento-product/_playwright/productURL.fixture'
 
 test('place order', async ({ page, productURL }) => {
   await addConfigurableProductToCart(page, productURL.ConfigurableProduct)

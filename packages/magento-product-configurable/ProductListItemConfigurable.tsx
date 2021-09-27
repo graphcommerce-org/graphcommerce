@@ -5,7 +5,7 @@ import {
   ProductListItemProps,
   isFilterTypeEqual,
   useProductListParamsContext,
-} from '@reachdigital/magento-product'
+} from '@graphcommerce/magento-product'
 import React, { useState } from 'react'
 import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
 import SwatchList from './SwatchList'

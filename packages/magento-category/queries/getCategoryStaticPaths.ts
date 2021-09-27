@@ -1,5 +1,5 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
-import { StoreConfigDocument } from '@reachdigital/magento-store'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticPathsResult } from 'next'
 import {
   GetCategoryStaticPathsDocument,

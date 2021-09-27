@@ -1,4 +1,4 @@
-import { Maybe } from '@reachdigital/graphql'
+import { Maybe } from '@graphcommerce/graphql'
 import { CartAddressFragment } from '../CartAddress/CartAddress.gql'
 import { CustomerFieldsFragment } from './CustomerFields.gql'
 

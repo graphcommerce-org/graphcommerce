@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/require-await */
-import { PageOptions, usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
-import { SheetVariant, SPRING_ANIM } from '@reachdigital/framer-sheet'
+import { PageOptions, usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
+import { SheetVariant, SPRING_ANIM } from '@graphcommerce/framer-sheet'
 import { motion } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticProps } from 'next'
 import Link from 'next/link'

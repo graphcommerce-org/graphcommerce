@@ -7,8 +7,8 @@ import {
   makeStyles,
   Theme,
 } from '@material-ui/core'
-import { FilterEqualTypeInput } from '@reachdigital/graphql'
-import { ChipMenu, ChipMenuProps, responsiveVal } from '@reachdigital/next-ui'
+import { FilterEqualTypeInput } from '@graphcommerce/graphql'
+import { ChipMenu, ChipMenuProps, responsiveVal } from '@graphcommerce/next-ui'
 import React from 'react'
 import { SetRequired } from 'type-fest'
 import { useProductListLinkPush } from '../../hooks/useProductListLinkPush'

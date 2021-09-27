@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core'
-import { useConstant, useElementScroll, useMotionValueValue } from '@reachdigital/framer-utils'
+import { useConstant, useElementScroll, useMotionValueValue } from '@graphcommerce/framer-utils'
 import clsx from 'clsx'
 import {
   HTMLMotionProps,

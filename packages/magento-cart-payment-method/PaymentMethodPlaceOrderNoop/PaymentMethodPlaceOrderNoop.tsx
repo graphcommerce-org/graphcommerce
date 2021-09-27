@@ -2,8 +2,8 @@ import {
   useFormGqlMutationCart,
   useCurrentCartId,
   useClearCurrentCartId,
-} from '@reachdigital/magento-cart'
-import { useFormCompose } from '@reachdigital/react-hook-form'
+} from '@graphcommerce/magento-cart'
+import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { PaymentPlaceOrderProps } from '../Api/PaymentMethod'

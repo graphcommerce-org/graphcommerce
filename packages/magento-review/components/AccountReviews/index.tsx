@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
-import { SectionContainer } from '@reachdigital/next-ui'
+import { SectionContainer } from '@graphcommerce/next-ui'
 import React from 'react'
 import CustomerReview from '../CustomerReview'
 import { AccountReviewsFragment } from './AccountReviews.gql'

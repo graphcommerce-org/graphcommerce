@@ -1,5 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { Button, Highlight, iconChevronRight, SvgImage, UseStyles } from '@reachdigital/next-ui'
+import { Button, Highlight, iconChevronRight, SvgImage, UseStyles } from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import { CategorySearchResultFragment } from './CategorySearchResult.gql'

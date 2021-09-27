@@ -1,5 +1,8 @@
 import { useQuery } from '@apollo/client'
-import { PageMeta as NextPageMeta, PageMetaProps as NextPageMetaProps } from '@reachdigital/next-ui'
+import {
+  PageMeta as NextPageMeta,
+  PageMetaProps as NextPageMetaProps,
+} from '@graphcommerce/next-ui'
 import { StoreConfigDocument } from './StoreConfig.gql'
 
 type PageMetaProps = Pick<NextPageMetaProps, 'title' | 'metaDescription' | 'metaRobots'> & {

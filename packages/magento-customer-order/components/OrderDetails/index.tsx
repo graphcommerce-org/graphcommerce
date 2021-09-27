@@ -6,8 +6,8 @@ import {
   Money,
   useFindCountry,
   useFindRegion,
-} from '@reachdigital/magento-store'
-import { SectionContainer, responsiveVal, SvgImage, iconInvoiceRed } from '@reachdigital/next-ui'
+} from '@graphcommerce/magento-store'
+import { SectionContainer, responsiveVal, SvgImage, iconInvoiceRed } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import TrackingLink from '../TrackingLink'

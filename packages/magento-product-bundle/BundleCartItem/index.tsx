@@ -1,4 +1,4 @@
-import { CartItem, CartItemProps } from '@reachdigital/magento-cart-items'
+import { CartItem, CartItemProps } from '@graphcommerce/magento-cart-items'
 import { BundleCartItemFragment } from './BundleCartItem.gql'
 
 export default function BundleCartItem(props: BundleCartItemFragment & CartItemProps) {

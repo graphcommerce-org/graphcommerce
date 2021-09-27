@@ -1,5 +1,5 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
-import { ProductListLink } from '@reachdigital/magento-product'
+import { ProductListLink } from '@graphcommerce/magento-product'
 import React from 'react'
 import { CategoryHeroNavFragment } from './CategoryHeroNav.gql'
 

@@ -27,16 +27,16 @@ Hosting:
 2. `git clone git@github.com:ho-nl/m2-pwa.git && cd m2-pwa`
 3. `npm install --global yarn` (If you don't have Yarn installed yet)
 4. `yarn install`
-5. `cp examples/soxbase-api/.env.example examples/soxbase-api/.env`
-6. `cp examples/soxbase/.env.example examples/soxbase/.env`
-7. Fill in `GRAPHCMS_BEARER` in `examples/soxbase-api/.env`, in 1Pass under
-   `soxbase-api`
-8. `yarn workspace @reachdigital/soxbase-api build-mesh && yarn dev:api && yarn workspace @reachdigital/soxbase codegen; yarn stop`
+5. `cp examples/magento-graphcms-api/.env.example examples/magento-graphcms-api/.env`
+6. `cp examples/magento-graphcms/.env.example examples/magento-graphcms/.env`
+7. Fill in `GRAPHCMS_BEARER` in `examples/magento-graphcms-api/.env`, in 1Pass
+   under `magento-graphcms-api`
+8. `yarn workspace @graphcommerce/magento-graphcms-api build-mesh && yarn dev:api && yarn workspace @graphcommerce/magento-graphcms codegen; yarn stop`
 
 ## Customize endpoint (optional):
 
-Replace MAGENTO_ENDPOINT in `.env` and `examples/soxbase-api/.env` with your own
-endpoint.
+Replace MAGENTO_ENDPOINT in `.env` and `examples/magento-graphcms-api/.env` with
+your own endpoint.
 
 ## Commands
 

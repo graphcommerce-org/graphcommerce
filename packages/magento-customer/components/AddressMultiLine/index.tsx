@@ -1,6 +1,6 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
-import { useFindCountry } from '@reachdigital/magento-store'
-import { UseStyles } from '@reachdigital/next-ui'
+import { useFindCountry } from '@graphcommerce/magento-store'
+import { UseStyles } from '@graphcommerce/next-ui'
 import { CustomerAddressFragment } from '../CreateCustomerAddressForm/CustomerAddress.gql'
 
 // exports.getEuMembers = function()

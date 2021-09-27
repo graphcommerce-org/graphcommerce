@@ -6,8 +6,8 @@ import {
   FormRow,
   MessageSnackbar,
   FormDivider,
-} from '@reachdigital/next-ui'
-import { useFormGqlMutation } from '@reachdigital/react-hook-form'
+} from '@graphcommerce/next-ui'
+import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import React from 'react'
 
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
@@ -18,11 +18,10 @@ import {
 } from './ChangePassword.gql'
 
 export default function ChangePasswordForm() {
-  const form =
-    useFormGqlMutation<
-      ChangePasswordMutation,
-      ChangePasswordMutationVariables & { confirmPassword?: string }
-    >(ChangePasswordDocument)
+  const form = useFormGqlMutation<
+    ChangePasswordMutation,
+    ChangePasswordMutationVariables & { confirmPassword?: string }
+  >(ChangePasswordDocument)
   const { muiRegister, handleSubmit, required, watch, data, formState, error } = form
   const submitHandler = handleSubmit(() => {})
   const pass = watch('newPassword')

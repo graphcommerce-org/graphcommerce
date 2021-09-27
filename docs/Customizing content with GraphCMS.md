@@ -47,11 +47,11 @@ Now everything should be hooked up and you are able to add content in GraphCMS.
 
 In the GraphQL explorer (http://localhost:3001/api/graphql) create a fragment
 for your data `ComponentName.graphql`. e.g.:
-[`RowColumnThree.graphql`](../examples/soxbase/components/Row/RowColumnThree/RowColumnThree.graphql)
+[`RowColumnThree.graphql`](../examples/magento-graphcms/components/Row/RowColumnThree/RowColumnThree.graphql)
 
 If the development environment is up and running it will create a
 `ComponentName.gql.ts` with a `ComponentNameFragment` type. e.g.:
-[`RowColumnThree.gql.ts`](../examples/soxbase/components/Row/RowColumnThree/RowColumnThree.gql.ts)
+[`RowColumnThree.gql.ts`](../examples/magento-graphcms/components/Row/RowColumnThree/RowColumnThree.gql.ts)
 
 ### 5. Create a component which renders the retrieved data
 
@@ -68,7 +68,7 @@ function ComponentName(props: ComponentNameFragment) {
 ```
 
 Example:
-[`RowColumnThree`](../examples/soxbase/components/Row/RowColumnThree/index.tsx)
+[`RowColumnThree`](../examples/magento-graphcms/components/Row/RowColumnThree/index.tsx)
 
 Restart your dev environment
 
@@ -79,7 +79,7 @@ Different types are rendered with the
 
 For example, to add a new renderer to the Page model, add it to the `renderer`
 object in the
-[`<Page/>` component](../examples/soxbase/components/Page/index.tsx).
+[`<Page/>` component](../examples/magento-graphcms/components/Page/index.tsx).
 
 If you've followed the previous steps, the `renderer` entity should already have
 an error that it is missing a renderer for your new Model:
@@ -90,13 +90,14 @@ an error that it is missing a renderer for your new Model:
 To actually fetch data, add your created fragment to a query.
 
 For example, to add a new renderer to the Page model, add your fragment here:
-[`Page.graphql`](../examples/soxbase/components/Page/Page.graphql).
+[`Page.graphql`](../examples/magento-graphcms/components/Page/Page.graphql).
 
 ## Replacing components per page
 
 todo: expand topic
 
-Provide renderer to [`<Page/>`](../examples/soxbase/components/Page/index.tsx)
+Provide renderer to
+[`<Page/>`](../examples/magento-graphcms/components/Page/index.tsx)
 
 ## Add your own union fields to models
 
@@ -115,4 +116,5 @@ We're using GraphQL Mesh's possibility to add additional resolves to the mesh.
 https://graphql-mesh.com/docs/getting-started/multiple-apis#stitching-schemas-using-declarative-api-without-javascript-code-file
 
 Example implementation can be found here, look for `additionalTypeDefs` and
-`additionalResolvers` [.meshrc.json](../examples/soxbase-api/.meshrc.json)
+`additionalResolvers`
+[.meshrc.json](../examples/magento-graphcms-api/.meshrc.json)

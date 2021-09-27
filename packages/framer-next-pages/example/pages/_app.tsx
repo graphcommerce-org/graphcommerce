@@ -1,5 +1,5 @@
 import '../demo.css'
-import { PageComponent, FramerNextPages } from '@reachdigital/framer-next-pages'
+import { PageComponent, FramerNextPages } from '@graphcommerce/framer-next-pages'
 import { LazyMotion } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import dynamic from 'next/dynamic'

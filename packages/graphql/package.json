@@ -1,25 +1,25 @@
 {
-  "name": "@reachdigital/graphql",
+  "name": "@graphcommerce/graphql",
   "version": "2.102.3",
   "private": true,
   "sideEffects": false,
   "main": "index.ts",
-  "prettier": "@reachdigital/prettier-config-pwa",
+  "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
-    "extends @reachdigital/browserslist-config-pwa"
+    "extends @graphcommerce/browserslist-config-pwa"
   ],
   "eslintConfig": {
-    "extends": "@reachdigital/eslint-config-pwa",
+    "extends": "@graphcommerce/eslint-config-pwa",
     "parserOptions": {
       "project": "./tsconfig.json"
     }
   },
   "devDependencies": {
     "@playwright/test": "^1.14.1",
-    "@reachdigital/browserslist-config-pwa": "^2.100.10",
-    "@reachdigital/eslint-config-pwa": "^2.102.4",
-    "@reachdigital/prettier-config-pwa": "^2.100.10",
-    "@reachdigital/typescript-config-pwa": "^2.100.12"
+    "@graphcommerce/browserslist-config-pwa": "^2.100.10",
+    "@graphcommerce/eslint-config-pwa": "^2.102.4",
+    "@graphcommerce/prettier-config-pwa": "^2.100.10",
+    "@graphcommerce/typescript-config-pwa": "^2.100.12"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",

@@ -1,5 +1,5 @@
 import { ListItem, ListItemIcon, ListItemText, makeStyles, Theme } from '@material-ui/core'
-import { ImageProps } from '@reachdigital/image'
+import { ImageProps } from '@graphcommerce/image'
 import {
   Button,
   ButtonProps,
@@ -8,7 +8,7 @@ import {
   SvgImage,
   iconChevronRight,
   SvgImageSimple,
-} from '@reachdigital/next-ui'
+} from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'

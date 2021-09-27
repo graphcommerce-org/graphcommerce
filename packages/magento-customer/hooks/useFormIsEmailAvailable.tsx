@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { useFormAutoSubmit, useFormGqlQuery, useFormPersist } from '@reachdigital/react-hook-form'
+import { useFormAutoSubmit, useFormGqlQuery, useFormPersist } from '@graphcommerce/react-hook-form'
 import { useEffect, useState } from 'react'
 import { CustomerDocument } from './Customer.gql'
 import { CustomerTokenDocument } from './CustomerToken.gql'

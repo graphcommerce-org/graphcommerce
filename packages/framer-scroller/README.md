@@ -32,7 +32,7 @@ import {
   ScrollerProvider,
   ScrollerDots,
   ScrollerButton,
-} from '@reachdigital/framer-scroller'
+} from '@graphcommerce/framer-scroller'
 
 function MyScroller() {
   return (

@@ -1,4 +1,4 @@
-import { Maybe, Region } from '@reachdigital/graphql'
+import { Maybe, Region } from '@graphcommerce/graphql'
 import { useFindCountry } from './useFindCountry'
 
 export function useFindRegion(

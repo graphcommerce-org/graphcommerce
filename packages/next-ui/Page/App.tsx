@@ -1,4 +1,4 @@
-import { FramerNextPages } from '@reachdigital/framer-next-pages'
+import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 import { LazyMotion } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import React, { useEffect } from 'react'

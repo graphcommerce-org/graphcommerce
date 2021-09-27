@@ -1,5 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { AnimatedRow } from '@reachdigital/next-ui'
+import { AnimatedRow } from '@graphcommerce/next-ui'
 import { AnimatePresence } from 'framer-motion'
 import { PaymentMethodOptionsProps } from '../Api/PaymentMethod'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'

@@ -1,0 +1,72 @@
+# todo: make `../../node_modules/@graphcommerce` some env variable or resolve dynamically'
+generates:
+  # Generate a schema file
+  ../../node_modules/@graphcommerce/graphql/generated/schema.graphqls:
+    schema:
+      - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
+      - '**/*.graphqls'
+      - '../../packages/magento-*/**/*.graphqls'
+      - '../../packages/mollie-magento-payment/**/*.graphqls'
+      - '../../packagesDev/**/*.graphqls'
+      # todo: This is triggering on any file changed: https://d.pr/v/9Rnxo2
+      # - '../../node_modules/@graphcommerce/**/*.graphqls'
+    plugins:
+      - schema-ast
+      - add
+    config:
+      includeDirectives: true
+      commentDescriptions: false
+      content: '#'
+  # Generate a types file
+  ../../node_modules/@graphcommerce/graphql/generated/types.ts:
+    schema:
+      - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
+      - '**/*.graphqls'
+      - '../../packages/magento-*/**/*.graphqls'
+      - '../../packages/mollie-magento-payment/**/*.graphqls'
+      - '../../packagesDev/**/*.graphqls'
+    plugins:
+      - typescript
+      - typescript-apollo-client-helpers
+      - add
+    config:
+      enumsAsTypes: true
+      content: '/* eslint-disable */'
+  # Generate a fragments.json
+  ../../node_modules/@graphcommerce/graphql/generated/fragments.json:
+    schema:
+      - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
+      - '**/*.graphqls'
+      - '../../packages/magento-*/**/*.graphqls'
+      - '../../packages/mollie-magento-payment/**/*.graphqls'
+      - '../../packagesDev/**/*.graphqls'
+    plugins:
+      - fragment-matcher
+    config:
+      apolloClientVersion: 3
+  # Generate .gql.ts files for each GraphQL file
+  ../../:
+    schema:
+      - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
+      - '**/*.graphqls'
+      - '../../packages/magento-*/**/*.graphqls'
+      - '../../packages/mollie-magento-payment/**/*.graphqls'
+      - '../../packagesDev/**/*.graphqls'
+    documents:
+      - '**/*.graphql'
+      - '../../packages/**/*.graphql'
+      # - '../../packagesDev/**/*.graphql'
+    plugins:
+      - '@graphcommerce/graphql-codegen-relay-optimizer-plugin'
+      - typed-document-node
+      - typescript-operations
+      - add
+    preset: '@graphcommerce/graphql-codegen-near-operation-file'
+    presetConfig:
+      extension: .gql.ts
+      baseTypesPath: ~@graphcommerce/graphql
+      injectables: true
+    config:
+      skipTypename: true
+      dedupeOperationSuffix: true
+      content: '/* eslint-disable */'

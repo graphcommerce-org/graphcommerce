@@ -1,5 +1,5 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
-import { SvgImage, responsiveVal, iconBox } from '@reachdigital/next-ui'
+import { SvgImage, responsiveVal, iconBox } from '@graphcommerce/next-ui'
 import React from 'react'
 
 const useStyles = makeStyles(

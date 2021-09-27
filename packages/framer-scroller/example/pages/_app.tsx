@@ -1,7 +1,7 @@
-/// <reference types="@reachdigital/next-ui/types" />
+/// <reference types="@graphcommerce/next-ui/types" />
 
 import { createTheme, CssBaseline, MuiThemeProvider } from '@material-ui/core'
-import { responsiveVal } from '@reachdigital/next-ui'
+import { responsiveVal } from '@graphcommerce/next-ui'
 import { LazyMotion, domMax } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import { Router } from 'next/router'

@@ -4,7 +4,7 @@ import {
   StyledBadge,
   SvgImageSimple,
   useFixedFabAnimation,
-} from '@reachdigital/next-ui'
+} from '@graphcommerce/next-ui'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'

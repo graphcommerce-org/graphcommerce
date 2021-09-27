@@ -8,13 +8,13 @@ import {
   makeStyles,
   Theme,
 } from '@material-ui/core'
-import { FormDiv } from '@reachdigital/next-ui'
+import { FormDiv } from '@graphcommerce/next-ui'
 import {
   Controller,
   useForm,
   useFormCompose,
   UseFormComposeOptions,
-} from '@reachdigital/react-hook-form'
+} from '@graphcommerce/react-hook-form'
 import PageLink from 'next/link'
 import React from 'react'
 import { CheckoutAgreementsDocument } from '../../queries/CheckoutAgreements.gql'

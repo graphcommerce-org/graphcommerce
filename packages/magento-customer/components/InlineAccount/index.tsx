@@ -1,12 +1,13 @@
 import { useQuery } from '@apollo/client'
 import { makeStyles, TextField, Theme, Typography } from '@material-ui/core'
-import { useCartQuery } from '@reachdigital/magento-cart'
-import Button from '@reachdigital/next-ui/Button'
-import FormRow from '@reachdigital/next-ui/Form/FormRow'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
+import { useCartQuery } from '@graphcommerce/magento-cart'
+import Button from '@graphcommerce/next-ui/Button'
+import FormRow from '@graphcommerce/next-ui/Form/FormRow'
+import { UseStyles } from '@graphcommerce/next-ui/Styles'
 import React, { useState } from 'react'
 import { CustomerTokenDocument, IsEmailAvailableDocument } from '../../hooks'
 import { InlineAccountDocument } from './InlineAccount.gql'
+import SignUpFormInline from '../SignUpForm/SignUpFormInline'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

@@ -1,7 +1,7 @@
 {
   "exclude": ["**/node_modules", "tests", "**/.*/"],
   "include": ["**/*.ts", "**/*.tsx"],
-  "extends": "@reachdigital/typescript-config-pwa/node.json",
+  "extends": "@graphcommerce/typescript-config-pwa/node.json",
   "compilerOptions": {
     "noEmit": false,
     "outDir": "dist"

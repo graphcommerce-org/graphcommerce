@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { TextField } from '@material-ui/core'
-import { CountryRegionsDocument } from '@reachdigital/magento-store'
+import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import {
   Button,
   Form,
@@ -8,8 +8,8 @@ import {
   FormDivider,
   FormRow,
   InputCheckmark,
-} from '@reachdigital/next-ui'
-import { phonePattern, useFormGqlMutation } from '@reachdigital/react-hook-form'
+} from '@graphcommerce/next-ui'
+import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
 import AddressFields from '../AddressFields'

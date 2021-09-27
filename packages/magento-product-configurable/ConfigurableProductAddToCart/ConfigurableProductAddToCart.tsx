@@ -1,7 +1,7 @@
 import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
-import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@reachdigital/magento-cart'
-import { Money } from '@reachdigital/magento-store'
+import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
+import { Money } from '@graphcommerce/magento-store'
 import {
   AnimatedRow,
   Button,
@@ -10,7 +10,7 @@ import {
   TextInputNumber,
   iconCheckmark,
   iconChevronRight,
-} from '@reachdigital/next-ui'
+} from '@graphcommerce/next-ui'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'

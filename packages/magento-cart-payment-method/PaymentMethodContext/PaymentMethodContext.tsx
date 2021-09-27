@@ -1,4 +1,4 @@
-import { useCartQuery } from '@reachdigital/magento-cart'
+import { useCartQuery } from '@graphcommerce/magento-cart'
 import React, { PropsWithChildren, useContext, useEffect, useState } from 'react'
 import { PaymentMethod, PaymentMethodModules, PaymentModule } from '../Api/PaymentMethod'
 import { GetPaymentMethodContextDocument } from './GetPaymentMethodContext.gql'

@@ -1,8 +1,8 @@
 import { TextField, Typography } from '@material-ui/core'
-import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
-import { PaymentOptionsProps } from '@reachdigital/magento-cart-payment-method'
-import { FormRow, InputCheckmark } from '@reachdigital/next-ui'
-import { useFormCompose, useFormValidFields } from '@reachdigital/react-hook-form'
+import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
+import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
+import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
+import { useFormCompose, useFormValidFields } from '@graphcommerce/react-hook-form'
 import React from 'react'
 import { PurchaseOrderOptionsDocument } from './PurchaseOrderOptions.gql'
 

@@ -1,4 +1,4 @@
-import { Styled } from '@reachdigital/framer-utils'
+import { Styled } from '@graphcommerce/framer-utils'
 import clsx from 'clsx'
 import { m, MotionValue, useSpring, useTransform, useVelocity } from 'framer-motion'
 import { SPRING_ANIM } from '../animation'

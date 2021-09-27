@@ -1,6 +1,11 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { Scroller, ScrollerButton, ScrollerProvider } from '@reachdigital/framer-scroller'
-import { iconChevronLeft, iconChevronRight, SvgImageSimple, UseStyles } from '@reachdigital/next-ui'
+import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
+import {
+  iconChevronLeft,
+  iconChevronRight,
+  SvgImageSimple,
+  UseStyles,
+} from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { m, useMotionTemplate, useTransform, useViewportScroll } from 'framer-motion'
 import React, { PropsWithChildren, useEffect, useRef, useState } from 'react'

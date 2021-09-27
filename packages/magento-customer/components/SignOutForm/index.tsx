@@ -1,4 +1,4 @@
-import { FormState, useFormGqlMutation } from '@reachdigital/react-hook-form'
+import { FormState, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'

@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Button, makeStyles, Theme } from '@material-ui/core'
 import Skeleton from '@material-ui/lab/Skeleton'
-import { StoreConfigDocument, Money } from '@reachdigital/magento-store'
+import { StoreConfigDocument, Money } from '@graphcommerce/magento-store'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
@@ -10,7 +10,7 @@ import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import OrderStateLabel from '../OrderStateLabel'
 import TrackingLink from '../TrackingLink'
 import { OrderCardFragment } from './OrderCard.gql'
-import { responsiveVal } from '@reachdigital/next-ui'
+import { responsiveVal } from '@graphcommerce/next-ui'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/eslint-config-pwa@2.101.0...@reachdigital/eslint-config-pwa@2.102.0) (2021-07-28)
+# [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/eslint-config-pwa@2.101.0...@graphcommerce/eslint-config-pwa@2.102.0) (2021-07-28)
 
 
 ### Features
@@ -14,7 +14,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/eslint-config-pwa@2.100.10...@reachdigital/eslint-config-pwa@2.101.0) (2021-07-26)
+# [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/eslint-config-pwa@2.100.10...@graphcommerce/eslint-config-pwa@2.101.0) (2021-07-26)
 
 
 ### Bug Fixes

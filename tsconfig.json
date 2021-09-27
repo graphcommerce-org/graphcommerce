@@ -1,5 +1,5 @@
 {
-  "extends": "@reachdigital/typescript-config-pwa/nextjs.json",
+  "extends": "@graphcommerce/typescript-config-pwa/nextjs.json",
   "exclude": ["**/node_modules", "**/.*/"],
   "include": [
     "**/*.ts",
@@ -8,7 +8,7 @@
     "**/apollo.config.js",
     "**/index.js",
     "cssTransform.js",
-    "examples/soxbase/next-sitemap.js",
+    "examples/graphcommerce/next-sitemap.js",
     "graphql.config.js",
     "**/*.d.ts"
   ]

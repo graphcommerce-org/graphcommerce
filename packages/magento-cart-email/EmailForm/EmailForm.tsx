@@ -5,14 +5,14 @@ import {
   ApolloCartErrorAlert,
   useCartQuery,
   useMergeCustomerCart,
-} from '@reachdigital/magento-cart'
+} from '@graphcommerce/magento-cart'
 import {
   SignInFormInline,
   SignUpFormInline,
   useFormIsEmailAvailable,
-} from '@reachdigital/magento-customer'
-import { AnimatedRow, Button, FormDiv, FormRow } from '@reachdigital/next-ui'
-import { emailPattern, useFormCompose, UseFormComposeOptions } from '@reachdigital/react-hook-form'
+} from '@graphcommerce/magento-customer'
+import { AnimatedRow, Button, FormDiv, FormRow } from '@graphcommerce/next-ui'
+import { emailPattern, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import EmailHelperList from '../EmailHelperList'

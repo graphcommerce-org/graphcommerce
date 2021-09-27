@@ -1,4 +1,4 @@
-import { PaymentToggleProps } from '@reachdigital/magento-cart-payment-method'
+import { PaymentToggleProps } from '@graphcommerce/magento-cart-payment-method'
 
 export default function MollieToggle(props: PaymentToggleProps) {
   const { mollie_meta, title } = props

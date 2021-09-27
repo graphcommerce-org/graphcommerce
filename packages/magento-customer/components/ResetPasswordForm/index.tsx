@@ -1,6 +1,6 @@
 import { TextField } from '@material-ui/core'
-import { Button, Form, FormActions, FormRow } from '@reachdigital/next-ui'
-import { useFormGqlMutation } from '@reachdigital/react-hook-form'
+import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
+import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'

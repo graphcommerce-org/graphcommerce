@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Box, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
-import { ProductReviewRatingInput } from '@reachdigital/graphql'
+import { ProductReviewRatingInput } from '@graphcommerce/graphql'
 import {
   Button,
   Form,
@@ -10,8 +10,8 @@ import {
   FormActions,
   FormRow,
   StarRatingField,
-} from '@reachdigital/next-ui'
-import { useFormGqlMutation } from '@reachdigital/react-hook-form'
+} from '@graphcommerce/next-ui'
+import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import ApolloCustomerErrorAlert from '../../../magento-customer/components/ApolloCustomerError/ApolloCustomerErrorAlert'

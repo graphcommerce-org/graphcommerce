@@ -1,4 +1,4 @@
-import { Styles } from '@reachdigital/framer-utils'
+import { Styles } from '@graphcommerce/framer-utils'
 import { SheetBackdropClassKeys } from './components/SheetBackdrop'
 import { SheetContainerClassKeys } from './components/SheetContainer'
 import { SheetDragIndicatorClassKeys } from './components/SheetDragIndicator'

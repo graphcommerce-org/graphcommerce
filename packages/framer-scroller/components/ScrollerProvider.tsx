@@ -124,7 +124,7 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
   const registerChildren = useCallback(
     (children: React.ReactNode) => {
       const count = React.Children.count(children)
-      if (!count) throw Error('[@reachdigital/framer-scroller]: Can not find children')
+      if (!count) throw Error('[@graphcommerce/framer-scroller]: Can not find children')
       if (count === items.get().length) return
 
       const itemsArr: unknown[] = items.get().slice()

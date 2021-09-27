@@ -1,4 +1,4 @@
-import { useElementScroll } from '@reachdigital/framer-utils'
+import { useElementScroll } from '@graphcommerce/framer-utils'
 import { Point2D } from 'framer-motion'
 import { animate } from 'popmotion'
 import { useScrollerContext } from './useScrollerContext'

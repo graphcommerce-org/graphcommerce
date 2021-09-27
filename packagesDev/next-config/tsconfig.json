@@ -1,7 +1,7 @@
 {
   "exclude": ["**/node_modules", "example", "js", "**/.*/"],
   "include": ["**/*.ts", "**/*.tsx"],
-  "extends": "@reachdigital/typescript-config-pwa/node.json",
+  "extends": "@graphcommerce/typescript-config-pwa/node.json",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "js",

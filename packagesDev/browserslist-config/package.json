@@ -1,5 +1,5 @@
 {
-  "name": "@reachdigital/browserslist-config-pwa",
+  "name": "@graphcommerce/browserslist-config-pwa",
   "version": "2.100.10",
   "main": "index.js",
   "private": true,

@@ -1,35 +1,35 @@
 {
-  "name": "@reachdigital/magento-newsletter",
+  "name": "@graphcommerce/magento-newsletter",
   "version": "0.1.0",
   "private": true,
   "sideEffects": false,
-  "prettier": "@reachdigital/prettier-config-pwa",
+  "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
-    "extends @reachdigital/browserslist-config-pwa"
+    "extends @graphcommerce/browserslist-config-pwa"
   ],
   "eslintConfig": {
-    "extends": "@reachdigital/eslint-config-pwa",
+    "extends": "@graphcommerce/eslint-config-pwa",
     "parserOptions": {
       "project": "./tsconfig.json"
     }
   },
   "devDependencies": {
     "@playwright/test": "^1.13.1",
-    "@reachdigital/browserslist-config-pwa": "^2.100.9",
-    "@reachdigital/eslint-config-pwa": "^2.102.2",
-    "@reachdigital/prettier-config-pwa": "^2.100.9",
-    "@reachdigital/typescript-config-pwa": "^2.100.10"
+    "@graphcommerce/browserslist-config-pwa": "^2.100.9",
+    "@graphcommerce/eslint-config-pwa": "^2.102.2",
+    "@graphcommerce/prettier-config-pwa": "^2.100.9",
+    "@graphcommerce/typescript-config-pwa": "^2.100.10"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",
-    "@reachdigital/graphql": "^2.102.1",
-    "@reachdigital/magento-cart": "^2.107.0",
-    "@reachdigital/magento-customer": "^2.105.0",
-    "@reachdigital/next-ui": "^2.112.6",
-    "@reachdigital/react-hook-form": "^2.101.5",
+    "@graphcommerce/graphql": "^2.102.1",
+    "@graphcommerce/magento-cart": "^2.107.0",
+    "@graphcommerce/magento-customer": "^2.105.0",
+    "@graphcommerce/next-ui": "^2.112.6",
+    "@graphcommerce/react-hook-form": "^2.101.5",
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.17",
     "next": "^11.1.0",

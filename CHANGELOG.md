@@ -354,7 +354,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **account:** continue button wasn't visible when loading the page ([c33fdc8](https://github.com/ho-nl/m2-pwa/commit/c33fdc8675ddf5f5fa5b57cb7ec07be3a93f0b30))
 * fast refresh will use a browser load instead of a nextjs load ([3d018d1](https://github.com/ho-nl/m2-pwa/commit/3d018d1cfb21423419c29e7191150c0e898b6b25))
 * forward ref not used IconBlocks ([7af4df3](https://github.com/ho-nl/m2-pwa/commit/7af4df3b03cba0a7748614e1db49d86e8157b75f))
-* page keeps reloading after each change in @reachdigital/next-ui ([45ff0f5](https://github.com/ho-nl/m2-pwa/commit/45ff0f51d87e2100faefad93d5d224a8761e6e75))
+* page keeps reloading after each change in @graphcommerce/next-ui ([45ff0f5](https://github.com/ho-nl/m2-pwa/commit/45ff0f51d87e2100faefad93d5d224a8761e6e75))
 * SvgSimpleImage sizing didn't use rem ([1ba07a5](https://github.com/ho-nl/m2-pwa/commit/1ba07a5694bd60ad3cee2e8102814643d2a7c79d))
 * use semantically correct components for menufab ([0196b29](https://github.com/ho-nl/m2-pwa/commit/0196b29523b3f49294dde32d96b348d100de5fa8))
 * use SvgImageSimple for multiple areas ([bf851a6](https://github.com/ho-nl/m2-pwa/commit/bf851a6740e1956a78f457c2d90904ee2f65da2f))
@@ -572,7 +572,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * missing NoOrdersFound export ([81e1177](https://github.com/ho-nl/m2-pwa/commit/81e1177dfa6347b310ec5cf4a7085edec7c86497))
 * move trackinglink to order package ([1ddf923](https://github.com/ho-nl/m2-pwa/commit/1ddf9235a9ee0e5cda8f657de2ebb559836278ec))
 * simplify xl grid items ([af1e851](https://github.com/ho-nl/m2-pwa/commit/af1e85133f8c6681c97cd0d4f066844589dade38))
-* versions of @reachdigital/magento-order package ([28c41a6](https://github.com/ho-nl/m2-pwa/commit/28c41a626c8131ef46be275778872e2a19f6c7b9))
+* versions of @graphcommerce/magento-order package ([28c41a6](https://github.com/ho-nl/m2-pwa/commit/28c41a626c8131ef46be275778872e2a19f6c7b9))
 * wrong export for accountmenuitem ([5c6c21f](https://github.com/ho-nl/m2-pwa/commit/5c6c21f7759799b2725bff3d943d94fd9aef6820))
 
 

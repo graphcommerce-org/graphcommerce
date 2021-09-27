@@ -1,6 +1,6 @@
 import { Divider, makeStyles, Theme } from '@material-ui/core'
-import { Scroller, ScrollerButton, ScrollerProvider } from '@reachdigital/framer-scroller'
-import { Image } from '@reachdigital/image'
+import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
+import { Image } from '@graphcommerce/image'
 import {
   iconChevronLeft,
   iconChevronRight,
@@ -8,7 +8,7 @@ import {
   SectionContainer,
   SvgImageSimple,
   UseStyles,
-} from '@reachdigital/next-ui'
+} from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { useCartQuery } from '../../hooks'

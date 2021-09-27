@@ -1,4 +1,4 @@
-import { TypedTypePolicies } from '@reachdigital/graphql'
+import { TypedTypePolicies } from '@graphcommerce/graphql'
 
 /**
  * By default we don't need to do anything for types with an `id` or without anything to identify.

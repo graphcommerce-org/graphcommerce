@@ -1,4 +1,4 @@
-import { useClientSize } from '@reachdigital/framer-utils'
+import { useClientSize } from '@graphcommerce/framer-utils'
 import { m, useIsPresent } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'

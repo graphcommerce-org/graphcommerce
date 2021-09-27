@@ -1,7 +1,7 @@
 import { makeStyles, TextField, Theme } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
-import { Button, Form, FormActions, FormRow } from '@reachdigital/next-ui'
-import { emailPattern, useFormGqlMutation } from '@reachdigital/react-hook-form'
+import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
+import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import React from 'react'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
@@ -22,10 +22,9 @@ const useStyles = makeStyles(
 
 export default function ForgotPasswordForm() {
   const classes = useStyles()
-  const form =
-    useFormGqlMutation<ForgotPasswordMutation, ForgotPasswordMutationVariables>(
-      ForgotPasswordDocument,
-    )
+  const form = useFormGqlMutation<ForgotPasswordMutation, ForgotPasswordMutationVariables>(
+    ForgotPasswordDocument,
+  )
   const { muiRegister, handleSubmit, required, data, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 

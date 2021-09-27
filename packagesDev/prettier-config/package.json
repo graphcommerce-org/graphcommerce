@@ -1,5 +1,5 @@
 {
-  "name": "@reachdigital/prettier-config-pwa",
+  "name": "@graphcommerce/prettier-config-pwa",
   "version": "2.100.10",
   "private": true,
   "dependencies": {

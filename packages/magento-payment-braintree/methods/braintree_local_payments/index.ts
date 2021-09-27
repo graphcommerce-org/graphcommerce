@@ -1,7 +1,7 @@
 import {
   PaymentMethodPlaceOrderNoop,
   PaymentModule,
-} from '@reachdigital/magento-cart-payment-method'
+} from '@graphcommerce/magento-cart-payment-method'
 import PaymentMethodOptions from './PaymentMethodOptions'
 import { expandMethods } from './expandMethods'
 

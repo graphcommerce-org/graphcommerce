@@ -7,8 +7,8 @@ import {
   MotionImageAspectProps,
   CenterSlide,
   MotionImageAspect,
-} from '@reachdigital/framer-scroller'
-import { clientSize, useMotionValueValue } from '@reachdigital/framer-utils'
+} from '@graphcommerce/framer-scroller'
+import { clientSize, useMotionValueValue } from '@graphcommerce/framer-utils'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'

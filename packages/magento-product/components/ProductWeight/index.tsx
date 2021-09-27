@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { StoreConfigDocument } from '@reachdigital/magento-store'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { useMemo } from 'react'
 import { ProductWeightFragment } from './ProductWeight.gql'
 

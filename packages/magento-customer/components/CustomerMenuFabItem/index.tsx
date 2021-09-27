@@ -6,7 +6,7 @@ import {
   UseStyles,
   iconPersonAlt,
   SvgImageSimple,
-} from '@reachdigital/next-ui'
+} from '@graphcommerce/next-ui'
 import React from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from '../../hooks'
 

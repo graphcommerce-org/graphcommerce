@@ -5,7 +5,7 @@ import {
   Scroller,
   ScrollerProvider,
   ScrollerButton,
-} from '@reachdigital/framer-scroller'
+} from '@graphcommerce/framer-scroller'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'

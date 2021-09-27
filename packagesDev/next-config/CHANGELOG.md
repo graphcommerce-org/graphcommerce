@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.101.1](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-config@2.101.0...@reachdigital/next-config@2.101.1) (2021-09-01)
+## [2.101.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-config@2.101.0...@graphcommerce/next-config@2.101.1) (2021-09-01)
 
 
 ### Bug Fixes
@@ -14,7 +14,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-config@2.100.10...@reachdigital/next-config@2.101.0) (2021-08-12)
+# [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-config@2.100.10...@graphcommerce/next-config@2.101.0) (2021-08-12)
 
 
 ### Features
@@ -25,7 +25,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [2.100.10](https://github.com/ho-nl/m2-pwa/compare/@reachdigital/next-config@2.100.9...@reachdigital/next-config@2.100.10) (2021-08-09)
+## [2.100.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-config@2.100.9...@graphcommerce/next-config@2.100.10) (2021-08-09)
 
 
 ### Bug Fixes

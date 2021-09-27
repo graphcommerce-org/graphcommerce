@@ -1,5 +1,5 @@
 import { Link, Typography } from '@material-ui/core'
-import { Image } from '@reachdigital/image'
+import { Image } from '@graphcommerce/image'
 import PageLink from 'next/link'
 import React from 'react'
 import useRichTextStyles, { UseRichTextStyles } from './useRichTextStyles'

@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core'
-import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
-import { SPRING_ANIM } from '@reachdigital/framer-sheet'
+import { usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
+import { SPRING_ANIM } from '@graphcommerce/framer-sheet'
 import { m, motionValue, useElementScroll } from 'framer-motion'
 import React, { useEffect, useRef } from 'react'
 import { ScrollPositions } from './types'

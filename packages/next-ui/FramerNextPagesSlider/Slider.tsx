@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/styles'
-import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
+import { usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { AnimatePresence } from 'framer-motion'
 import React, { useRef } from 'react'
 import RouterSlide from './Slide'

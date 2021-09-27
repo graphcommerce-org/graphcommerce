@@ -1,4 +1,4 @@
-import { Image } from '@reachdigital/image'
+import { Image } from '@graphcommerce/image'
 import { ProductImageFragment } from './ProductImage.gql'
 
 export default function ProductImage(props: ProductImageFragment) {

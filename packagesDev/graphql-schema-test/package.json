@@ -1,27 +1,27 @@
 {
-  "name": "@reachdigital/graphql-schema-test",
+  "name": "@graphcommerce/graphql-schema-test",
   "version": "2.100.18",
   "private": true,
   "sideEffects": false,
   "engines": {
     "node": "14.x"
   },
-  "prettier": "@reachdigital/prettier-config-pwa",
+  "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
-    "extends @reachdigital/browserslist-config-pwa"
+    "extends @graphcommerce/browserslist-config-pwa"
   ],
   "eslintConfig": {
-    "extends": "@reachdigital/eslint-config-pwa",
+    "extends": "@graphcommerce/eslint-config-pwa",
     "parserOptions": {
       "project": "./tsconfig.json"
     }
   },
   "dependencies": {
     "@graphql-typed-document-node/core": "^3.1.0",
-    "@reachdigital/browserslist-config-pwa": "^2.100.10",
-    "@reachdigital/eslint-config-pwa": "^2.102.4",
-    "@reachdigital/graphql": "^2.102.3",
-    "@reachdigital/prettier-config-pwa": "^2.100.10",
-    "@reachdigital/typescript-config-pwa": "^2.100.12"
+    "@graphcommerce/browserslist-config-pwa": "^2.100.10",
+    "@graphcommerce/eslint-config-pwa": "^2.102.4",
+    "@graphcommerce/graphql": "^2.102.3",
+    "@graphcommerce/prettier-config-pwa": "^2.100.10",
+    "@graphcommerce/typescript-config-pwa": "^2.100.12"
   }
 }

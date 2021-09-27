@@ -5,7 +5,7 @@ import { useWatchItems } from '..'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { SnapPositionDirection } from '../types'
-import { UseStyles } from '@reachdigital/next-ui'
+import { UseStyles } from '@graphcommerce/next-ui'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {

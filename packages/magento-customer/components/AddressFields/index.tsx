@@ -1,12 +1,12 @@
 import { useQuery } from '@apollo/client'
 import { TextField } from '@material-ui/core'
-import { CountryRegionsDocument } from '@reachdigital/magento-store'
-import { FormRow, InputCheckmark } from '@reachdigital/next-ui'
+import { CountryRegionsDocument } from '@graphcommerce/magento-store'
+import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import {
   assertFormGqlOperation,
   houseNumberPattern,
   UseFormReturn,
-} from '@reachdigital/react-hook-form'
+} from '@graphcommerce/react-hook-form'
 import React, { useMemo } from 'react'
 
 type AddressFieldValues = {

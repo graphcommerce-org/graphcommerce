@@ -1,5 +1,5 @@
-import { Maybe } from '@reachdigital/graphql'
-import { RenderType } from '@reachdigital/next-ui'
+import { Maybe } from '@graphcommerce/graphql'
+import { RenderType } from '@graphcommerce/next-ui'
 import React from 'react'
 import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
 import { SwatchSize, SwatchTypeRenderer } from './Swatches'

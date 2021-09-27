@@ -1,4 +1,4 @@
-import { useIsomorphicLayoutEffect, Styled, clientSize } from '@reachdigital/framer-utils'
+import { useIsomorphicLayoutEffect, Styled, clientSize } from '@graphcommerce/framer-utils'
 import clsx from 'clsx'
 import React, { useCallback } from 'react'
 import useSheetContext from '../hooks/useSheetContext'

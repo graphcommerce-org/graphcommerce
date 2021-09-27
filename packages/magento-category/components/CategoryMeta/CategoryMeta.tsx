@@ -1,6 +1,6 @@
-import { ProductListParams } from '@reachdigital/magento-product'
-import { PageMeta } from '@reachdigital/magento-store'
-import { PageMetaProps } from '@reachdigital/next-ui'
+import { ProductListParams } from '@graphcommerce/magento-product'
+import { PageMeta } from '@graphcommerce/magento-store'
+import { PageMetaProps } from '@graphcommerce/next-ui'
 import React from 'react'
 import { CategoryMetaFragment } from './CategoryMeta.gql'
 

@@ -1,5 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { usePageContext, usePageRouter } from '@reachdigital/framer-next-pages'
+import { usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
 import {
   Sheet,
   SheetBackdrop,
@@ -8,7 +8,7 @@ import {
   SheetProps,
   SnapPoint,
   styles,
-} from '@reachdigital/framer-sheet'
+} from '@graphcommerce/framer-sheet'
 import { useDomEvent } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useRef } from 'react'
