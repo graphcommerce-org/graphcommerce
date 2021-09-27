@@ -1,12 +1,12 @@
 {
   "name": "@graphcommerce/eslint-config-pwa",
-  "version": "2.102.4",
+  "version": "3.0.0",
   "main": "index.js",
   "private": true,
   "dependencies": {
+    "@graphcommerce/prettier-config-pwa": "^3.0.0",
+    "@graphcommerce/typescript-config-pwa": "^3.0.0",
     "@next/eslint-plugin-next": "^11.1.2",
-    "@graphcommerce/prettier-config-pwa": "^2.100.10",
-    "@graphcommerce/typescript-config-pwa": "^2.100.12",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
     "eslint": "^7.32.0",

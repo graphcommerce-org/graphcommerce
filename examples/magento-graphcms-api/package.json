@@ -1,7 +1,7 @@
 {
   "name": "@graphcommerce/magento-graphcms-api",
   "homepage": "https://magento-graphcms-api.vercel.app/api/graphql",
-  "version": "2.103.5",
+  "version": "2.104.0",
   "private": true,
   "sideEffects": false,
   "engines": {
@@ -15,6 +15,8 @@
     "start-local": "next start -p 3001"
   },
   "dependencies": {
+    "@graphcommerce/graphql-mesh": "^3.0.0",
+    "@graphcommerce/next-config": "^2.102.0",
     "@graphql-mesh/cli": "^0.38.1",
     "@graphql-mesh/config": "^0.23.1",
     "@graphql-mesh/graphql": "^0.18.10",
@@ -24,19 +26,17 @@
     "@graphql-mesh/transform-federation": "^0.6.2",
     "@graphql-mesh/transform-filter-schema": "^0.10.28",
     "@graphql-mesh/types": "^0.47.0",
-    "@graphcommerce/graphql-mesh": "^2.102.4",
-    "@graphcommerce/next-config": "^2.101.3",
     "dotenv": "^10.0.0",
     "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@graphcommerce/browserslist-config-pwa": "^3.0.0",
+    "@graphcommerce/eslint-config-pwa": "^3.0.0",
+    "@graphcommerce/prettier-config-pwa": "^3.0.0",
+    "@graphcommerce/typescript-config-pwa": "^3.0.0",
     "@playwright/test": "^1.14.1",
-    "@graphcommerce/browserslist-config-pwa": "^2.100.10",
-    "@graphcommerce/eslint-config-pwa": "^2.102.4",
-    "@graphcommerce/prettier-config-pwa": "^2.100.10",
-    "@graphcommerce/typescript-config-pwa": "^2.100.12",
     "typescript": "^4.4.2"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",

@@ -1,7 +1,7 @@
 {
   "name": "@graphcommerce/graphql-mesh",
   "private": true,
-  "version": "2.102.4",
+  "version": "3.0.0",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -27,11 +27,11 @@
     "ts-tiny-invariant": "^0.0.3"
   },
   "devDependencies": {
+    "@graphcommerce/browserslist-config-pwa": "^3.0.0",
+    "@graphcommerce/eslint-config-pwa": "^3.0.0",
+    "@graphcommerce/prettier-config-pwa": "^3.0.0",
+    "@graphcommerce/typescript-config-pwa": "^3.0.0",
     "@playwright/test": "^1.14.1",
-    "@graphcommerce/browserslist-config-pwa": "^2.100.10",
-    "@graphcommerce/eslint-config-pwa": "^2.102.4",
-    "@graphcommerce/prettier-config-pwa": "^2.100.10",
-    "@graphcommerce/typescript-config-pwa": "^2.100.12",
     "@types/micro-cors": "^0.1.2",
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9",

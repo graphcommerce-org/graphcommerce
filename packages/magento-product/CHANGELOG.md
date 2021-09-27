@@ -1,5 +1,165 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 3.0.0 (2021-09-27)
+
+
+### Bug Fixes
+
+* add missing barrel exports ([9b16913](https://github.com/ho-nl/m2-pwa/commit/9b169135af99f69fdb18f5c1efb9020f3b3928e4))
+* add more cases for single value filters ([b08c1d1](https://github.com/ho-nl/m2-pwa/commit/b08c1d125976e61280c11f008fa7f354132c1863))
+* add product components to barrel file ([110058c](https://github.com/ho-nl/m2-pwa/commit/110058c3b1b3453640be21308be827379c48db58))
+* address fragments ([96e68c3](https://github.com/ho-nl/m2-pwa/commit/96e68c3f96e40dded50ec5859909a7326b47e37b))
+* align issue pdp ([7f0a326](https://github.com/ho-nl/m2-pwa/commit/7f0a326dbd1c63ed67d8fe144b97bd262004f8a6))
+* **app-shell:** pages after app shell changes ([fb74510](https://github.com/ho-nl/m2-pwa/commit/fb74510121f6124009db72ad2ddebf6459c52a85))
+* canonical urls ([9ff8d3f](https://github.com/ho-nl/m2-pwa/commit/9ff8d3f950098fb28440f31f5dd93a835dce0bda))
+* change image width / height, will invalidate next image caches ([f90b9bc](https://github.com/ho-nl/m2-pwa/commit/f90b9bcbdd1311c541c25649a663afcab5aff6b0))
+* checkbox alignment ([42f67c9](https://github.com/ho-nl/m2-pwa/commit/42f67c94515a38ff86b3ce7fb6b14e881ca945af))
+* cleanup imports ([0e800d0](https://github.com/ho-nl/m2-pwa/commit/0e800d093914157286af2efd443d216d1c804573))
+* code consistency ([a310f0e](https://github.com/ho-nl/m2-pwa/commit/a310f0e548907c044b016b9473641ecd378b313f))
+* CSS grid for itemTitleContainer ([c36b70c](https://github.com/ho-nl/m2-pwa/commit/c36b70c0beaa0d500893ec3798c3b4895752d8a5))
+* empty grid rows still have a gap ([7ba50c7](https://github.com/ho-nl/m2-pwa/commit/7ba50c740aa7ac5133b933b3e6a22fab853b55a6))
+* filter label overflow ([9d74f4a](https://github.com/ho-nl/m2-pwa/commit/9d74f4ae43e2d53c84bd8eaf9120a39e1cc16c70))
+* filter labels fully shown ([f96d1c9](https://github.com/ho-nl/m2-pwa/commit/f96d1c92c34562474d72277e87622e4b5cd1d70d))
+* filter margin issue on mobile ([37a35c7](https://github.com/ho-nl/m2-pwa/commit/37a35c7b70874320cf9362b849e224dbf71b9ca8))
+* FilterMatchTypeInput not implemented ([957cd65](https://github.com/ho-nl/m2-pwa/commit/957cd65347eda82bd93462c53743617ca9e6aa09))
+* filters sometimes do not apply ([b8bc412](https://github.com/ho-nl/m2-pwa/commit/b8bc4122c82c6b27bdc76481dd6ece1da021266a))
+* get additional info for filters ([0bc73f3](https://github.com/ho-nl/m2-pwa/commit/0bc73f3b7a837fcef65948a2dc00d4ef6a909ae5))
+* getStaticPaths shouldn’t have the url suffix ([0fc9e1c](https://github.com/ho-nl/m2-pwa/commit/0fc9e1cec78ba653e32de042fb60a3ca88eb494d))
+* header spacings ([f00462f](https://github.com/ho-nl/m2-pwa/commit/f00462f9abb61a54552c96dbed35ef708fe05608))
+* ignore md files from triggering version updates ([4f98392](https://github.com/ho-nl/m2-pwa/commit/4f9839250b3a32d3070da5290e5efcc5e2243fba))
+* **image:** change sizing of images on grid/productpage ([0e573b6](https://github.com/ho-nl/m2-pwa/commit/0e573b69a2d405126433e7c4747c01b533858b78))
+* **image:** fix build ([b730cb6](https://github.com/ho-nl/m2-pwa/commit/b730cb6ae4e50dcf2f60e2046d6acf3047caacb3))
+* **image:** product grid sizes ([a235589](https://github.com/ho-nl/m2-pwa/commit/a2355893073bde0e84f830647ee53ea10d612adb))
+* implement next-ui barrel imports ([75bea70](https://github.com/ho-nl/m2-pwa/commit/75bea703dba898f18a2a1dfa3243ebd0a4e6f0e1))
+* incorrect wrapping sizes ([32e99c2](https://github.com/ho-nl/m2-pwa/commit/32e99c20b48ff4d9e5e9b5bfcaa3cb427e022cf5))
+* **magento-product:** hide sorting options when there are no products ([c5e37d7](https://github.com/ho-nl/m2-pwa/commit/c5e37d709c570596994beafe5a6afccfa5704548))
+* make filters sticky more reliably ([147a28b](https://github.com/ho-nl/m2-pwa/commit/147a28b23ff17749f742338ddd26b062a3dd5e56))
+* make sense of spacings for mobile navigation ([bd42c97](https://github.com/ho-nl/m2-pwa/commit/bd42c973753cd3e09ae8599bfef677979bae21f6))
+* make sure an empty cart gets initialized properly ([12df845](https://github.com/ho-nl/m2-pwa/commit/12df8456117393cc7c387ba6e072190a831b7a58))
+* make sure the bundleSize build doesn’t generate lots of pages ([7935a67](https://github.com/ho-nl/m2-pwa/commit/7935a6757119e1088067e191f4c0b6d033a5a5d8))
+* make sure the sort isn’t lowercase ([aab92f4](https://github.com/ho-nl/m2-pwa/commit/aab92f4ca1de8a51f4dfe493169c35f258ed27e8))
+* make sure there isn’t a ref error thrown ([928dcd1](https://github.com/ho-nl/m2-pwa/commit/928dcd13024edb35ec09b1e2b2eaec8810f03351))
+* make sure we’re not building too many pages ([5b85df0](https://github.com/ho-nl/m2-pwa/commit/5b85df0d79178f67ec069b3bf46ddc9dd4781c01))
+* pagination button colour ([7a3f282](https://github.com/ho-nl/m2-pwa/commit/7a3f2825c65c93b82be4e84aa4596491359419bf))
+* playwright ([57098a5](https://github.com/ho-nl/m2-pwa/commit/57098a56f50f175cc753339aeba7c577288e20d6))
+* price filter applying default values ([bb8f0f9](https://github.com/ho-nl/m2-pwa/commit/bb8f0f93ccf66e3f2fcc7ac8cefd320ebfd7d925))
+* price styling issue on mobile ([cf0f3f3](https://github.com/ho-nl/m2-pwa/commit/cf0f3f3f102b378d33ef46ed43f738234eb1f7ff))
+* product image alt tag was the URL ([e02c743](https://github.com/ho-nl/m2-pwa/commit/e02c74341be195e90fa290fc6ff54a4a44c29bed))
+* product list filters centered when sticky (wip) ([cd260a5](https://github.com/ho-nl/m2-pwa/commit/cd260a533180b86fb389550421a603d76a75db01))
+* product review date format error in safari ([57e398f](https://github.com/ho-nl/m2-pwa/commit/57e398ffa0e3adb888659217dfb6578e1656abed))
+* productListsmall sizing ([4ab9301](https://github.com/ho-nl/m2-pwa/commit/4ab9301f294cbb1e9c80d5013b3a7e9e23229087))
+* rebuild as grid ([92bb086](https://github.com/ho-nl/m2-pwa/commit/92bb08680dffd2a6505dfa01a7b381685a911dbf))
+* remove absolute positioned price ([cd3670a](https://github.com/ho-nl/m2-pwa/commit/cd3670a6a3e4ca34dd1fe9a5d948ce9578fab366))
+* remove full-page-view overlay for gallery ([34e7912](https://github.com/ho-nl/m2-pwa/commit/34e791271915a80ff013d5623c8c5a5a209221f3))
+* remove image blending mode ([5926aac](https://github.com/ho-nl/m2-pwa/commit/5926aac45ab252a5b0a3cd9c32255afc7513a191))
+* remove magento-category package from magento-product solving a circular dependency ([7379e6e](https://github.com/ho-nl/m2-pwa/commit/7379e6ede4829392b35008c17743181d9cac0636))
+* removed reset button from filter range type ([21572dd](https://github.com/ho-nl/m2-pwa/commit/21572dd0df7acee19f1500d1c417251c10d5df35))
+* replace captionOldOld with overline ([c19bc8a](https://github.com/ho-nl/m2-pwa/commit/c19bc8aee829432a8c72d0d4bc9d266110af65ab))
+* **reviews:** make sure we use injects, fix rating_summary ([a69c643](https://github.com/ho-nl/m2-pwa/commit/a69c6432a13738569b0d16b3a48c3110fdf5c156))
+* schema error ([7eb0c29](https://github.com/ho-nl/m2-pwa/commit/7eb0c29cd58bb242a9bf5d4395879d62e94a9ea4))
+* schema.org errors ([467eae0](https://github.com/ho-nl/m2-pwa/commit/467eae0121a3f575db8d0d89d465aa5e3ccc0c87))
+* schema.org errors ([31c3dc2](https://github.com/ho-nl/m2-pwa/commit/31c3dc246bdc6ea62e538a6231ba8714ba7ebaa7))
+* search page routes ([4161179](https://github.com/ho-nl/m2-pwa/commit/4161179aaf2ecbc0fde0efbba891a7b85524e283))
+* search results text ([33a496c](https://github.com/ho-nl/m2-pwa/commit/33a496c07fe6b5b0b05f3287dc86f6a32ca34b3b))
+* show product amounts per filter ([e3eaacb](https://github.com/ho-nl/m2-pwa/commit/e3eaacb6aff052a055e02ce440ca5e8a146759c3))
+* since all links are of next/link we need to add passHref for custom components ([16fb931](https://github.com/ho-nl/m2-pwa/commit/16fb93100d367203ea79bb4f93357221253f2ecd))
+* sticky filter drop shadow on scroll ([1d84c5e](https://github.com/ho-nl/m2-pwa/commit/1d84c5e699dc3dd7e46e0f567bec18ac95b73316))
+* style productdescription when <p> is missing ([38f51a8](https://github.com/ho-nl/m2-pwa/commit/38f51a8cfa75e95c75c836d539322b6e1077f557))
+* test for deploy ([b695581](https://github.com/ho-nl/m2-pwa/commit/b695581b3657fdb8c9c1e87d7d77f5349e93cd44))
+* using dynamic values in filter row & behaviour bugfixes with ‘too long filter row’ ([ffdb6ac](https://github.com/ho-nl/m2-pwa/commit/ffdb6acaa000bf455e2aff008aadbc25e1bdb12d))
+* v.match is not a function ([c84f131](https://github.com/ho-nl/m2-pwa/commit/c84f131864fec274bf7741f78eb61e575a5362a2))
+* yarn workspace packages hot reload ([d03fc9f](https://github.com/ho-nl/m2-pwa/commit/d03fc9fdda3486476761786f2b56a934cc92befc))
+
+
+### Features
+
+* add additional props to ProductListItems ([e14bb40](https://github.com/ho-nl/m2-pwa/commit/e14bb40bdb3a396116a818dd76b0511adeab36d9))
+* add barrel file for magento-category ([c5ba8c9](https://github.com/ho-nl/m2-pwa/commit/c5ba8c98cbb8192f1c1c85242ff6efa83b1fbdcc))
+* add preload to first item for ProductListItemsBase ([a4e06bc](https://github.com/ho-nl/m2-pwa/commit/a4e06bcb4192596b25d509b61669cff9d8bfdee7))
+* add product-review to renderers and products ([1a9b84b](https://github.com/ho-nl/m2-pwa/commit/1a9b84b6b7de213e82f0c86106eea4b79f38f864))
+* add ProductReviews ([d8928f1](https://github.com/ho-nl/m2-pwa/commit/d8928f1d39e1c13bef1fb1d67c44ccfb854c8c27))
+* add productreviewsummery component ([b85a36d](https://github.com/ho-nl/m2-pwa/commit/b85a36de1f7f78162beaacef3db2975068f94568))
+* add ProductSpecs core component ([e500aac](https://github.com/ho-nl/m2-pwa/commit/e500aac08b9dd95af2377a6b028f5bc743146808))
+* add review swatch to grid view ([6e22427](https://github.com/ho-nl/m2-pwa/commit/6e224276a3253f86f4da028cbd76b29e2e2f7884))
+* add sidebar usps component ([3fe7ae3](https://github.com/ho-nl/m2-pwa/commit/3fe7ae36f7af4e6ac2f292bc0323c63fbf8a8847))
+* added PaymentModule API and persistent selection of form fields ([b67f735](https://github.com/ho-nl/m2-pwa/commit/b67f7358f62edd56a8232d625ecee56af350bfb8))
+* animated filters ([846e233](https://github.com/ho-nl/m2-pwa/commit/846e233c9653821afbe9cfe7742dc42bb869a078))
+* automatic equal type filter ([711cc84](https://github.com/ho-nl/m2-pwa/commit/711cc8421b675115ac3455289a3cdb3e75c31a21))
+* automatically apply filter range type ([2f61929](https://github.com/ho-nl/m2-pwa/commit/2f6192967df83036a3648d5ada7ac781f5f45aeb))
+* better 404 handling and simplified getStaticProps ([321ace1](https://github.com/ho-nl/m2-pwa/commit/321ace1850642ee3eddfa674c37e6fca8adcdb74))
+* canonical urls using abstract page meta component ([7d52cfc](https://github.com/ho-nl/m2-pwa/commit/7d52cfc76af2766dedf883b1e3fa5a5101eca823))
+* created stable layout for category filters ([08d9351](https://github.com/ho-nl/m2-pwa/commit/08d9351dac5c9ede864ff336a60d758875d8efe4))
+* created stacked-pages package ([d86008e](https://github.com/ho-nl/m2-pwa/commit/d86008ee659ccb25b194a41d624b394a1ddbd088))
+* data agnostic animated header ([17047a6](https://github.com/ho-nl/m2-pwa/commit/17047a6d754494d9443c8f2e486cc232cf199c45))
+* do not start with shadow ([0c426f4](https://github.com/ho-nl/m2-pwa/commit/0c426f4017390cc0371ac698cad1880c871be18f))
+* Expandable ProductPage Image ([96b5a4d](https://github.com/ho-nl/m2-pwa/commit/96b5a4dd21d8667add097303646f7e70b99887e1))
+* framer slider gallery for product view ([43f5c67](https://github.com/ho-nl/m2-pwa/commit/43f5c678f5f075372d5b02c87858d858cde6ce4e))
+* **framer-scroller:** added the new slider to the product page ([3c6b726](https://github.com/ho-nl/m2-pwa/commit/3c6b7262fb6418798f828f4517ed097fd9734e96))
+* **framer-scroller:** implemented the scroller on all pages ([73fb518](https://github.com/ho-nl/m2-pwa/commit/73fb518eff74edb2b3212e892b3d8cc2b088011b))
+* **FramerSlider:** implemented in ProductListFiltersContainer ([6d2744a](https://github.com/ho-nl/m2-pwa/commit/6d2744a4d1320c12bfe8efb0ed5c506300ed4660))
+* **graphql:** introduced new graphql package that holds all generated files ([a3e7aa0](https://github.com/ho-nl/m2-pwa/commit/a3e7aa05540540533b5ced9a95f1f802ecbe499f))
+* groundwork for complete reimplementation of product pages ([b224da8](https://github.com/ho-nl/m2-pwa/commit/b224da8273eb5c8173ad30d006391b2291331623))
+* i18n routing added (/ and /fr for demo) ([bb3b339](https://github.com/ho-nl/m2-pwa/commit/bb3b339fbc9fceddd264a891ad81f00327a241ae))
+* **image:** introduced completely rewritten Image component ([e3413b3](https://github.com/ho-nl/m2-pwa/commit/e3413b3a57392d6571ea64cb8d9c8dca05ea31df))
+* introduced magento-product-types package ([1a0932b](https://github.com/ho-nl/m2-pwa/commit/1a0932b5d882608dcf8fd2e3b17ee9868f5f5776))
+* introduces framer-next-pages and framer-sheet to next-ui and soxbase package ([e04ad8a](https://github.com/ho-nl/m2-pwa/commit/e04ad8a94cd1fd5a7c5575c9db7916b6e8a88f16))
+* **magento-graphql:** added core magentoTypePolicies ([bdf15d0](https://github.com/ho-nl/m2-pwa/commit/bdf15d0d3c04e88339a8385d76f3b1ab9589fde3))
+* major performance refactor ([03f8e2f](https://github.com/ho-nl/m2-pwa/commit/03f8e2fa16ef919bd6bd6eadd36922d0245ed960))
+* **mesh:** use mesh with build version with increased stability/performance ([63863f3](https://github.com/ho-nl/m2-pwa/commit/63863f3a2df4d596819b85f3cf736c7f52f828c1))
+* next.js 11 ([7d61407](https://github.com/ho-nl/m2-pwa/commit/7d614075a778f488045034f74be4f75b93f63c43))
+* **playwright:** added new playwright package to enable browser testing ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
+* product delivery component for sidebar ([caa9809](https://github.com/ho-nl/m2-pwa/commit/caa9809d6c10570cb47e58c5e8191c40f20f1dbe))
+* reduced page shell component ([7e0b0a1](https://github.com/ho-nl/m2-pwa/commit/7e0b0a1471795f47e2f0f876b0e09cb65b053c2a))
+* reimplemented RowSwipeableGrid ([a9131de](https://github.com/ho-nl/m2-pwa/commit/a9131dea19347db2985ee3864e460dfa8a3f2182))
+* renamed all packages to use [@graphcommerce](https://github.com/graphcommerce) instead of [@reachdigital](https://github.com/reachdigital) ([491e4ce](https://github.com/ho-nl/m2-pwa/commit/491e4cec9a2686472dac36b79f999257c0811ffe))
+* restyled filters on desktop, wip mobile ([9c9dfde](https://github.com/ho-nl/m2-pwa/commit/9c9dfdea68cebd4ca1c86278575e94699e79637a))
+* schema.org data on products ([5f158a9](https://github.com/ho-nl/m2-pwa/commit/5f158a93eef2407249b881ec804e45b07b0caab9))
+* search page ([c89291b](https://github.com/ho-nl/m2-pwa/commit/c89291b7a65c93cbdb5f131f061f7232fdce3b99))
+* search result page wip ([4ecaf34](https://github.com/ho-nl/m2-pwa/commit/4ecaf34deaa0ff6d24e03d72e74fd045bb7ee269))
+* Style ProductDescription component ([e8dcd4e](https://github.com/ho-nl/m2-pwa/commit/e8dcd4ed49b1cf56ee9380b403796c742fc71bf6))
+* **theme:** restructured fonts and applied to home and category page ([6adf5f1](https://github.com/ho-nl/m2-pwa/commit/6adf5f11321bdfbf499125f1161c5abf5a1bfe4a))
+* **theme:** restructured typography ([6fcddae](https://github.com/ho-nl/m2-pwa/commit/6fcddae6b1b54d071475c59c80a9f8d8a36294d5))
+* update email form in my account ([e5b6832](https://github.com/ho-nl/m2-pwa/commit/e5b6832ca1b55083b80516ecc59b5f1d8a93763b))
+* upgrade to node 14 ([d079a75](https://github.com/ho-nl/m2-pwa/commit/d079a751e9bfd8dc7f5009d2c9f31c336a0c96ab))
+* upgraded to nextjs 11 ([0053beb](https://github.com/ho-nl/m2-pwa/commit/0053beb7ef597c190add7264256a0eaec35868da))
+* use official nextjs image endpoint ([0e76ab4](https://github.com/ho-nl/m2-pwa/commit/0e76ab4cece15d4d6f192cb938588a34abaebe8a))
+* working on EmailForm ([f16141f](https://github.com/ho-nl/m2-pwa/commit/f16141f8cc0dfeaef8dee2a3e635bda898550a51))
+
+
+### Reverts
+
+* Revert "chore: upgrade @apollo/client" ([55ff24e](https://github.com/ho-nl/m2-pwa/commit/55ff24ede0e56c85b8095edadadd1ec5e0b1b8d2))
+* Revert "feat: apply filter on deactivation of the filter menu" ([7333129](https://github.com/ho-nl/m2-pwa/commit/73331293610df665d75c8af61bdfaf947046250a))
+
+
+
+## 2.0.8 (2020-10-28)
+
+
+### Bug Fixes
+
+* make sure themes extensions are found ([5aa18db](https://github.com/ho-nl/m2-pwa/commit/5aa18db514fd2e2f50681367e39523f8e742ece0))
+
+
+### Features
+
+* added generated graphql.ts files ([3e44415](https://github.com/ho-nl/m2-pwa/commit/3e44415b018e74b502e9e98479aa5e84041f337d))
+* split into packages ([2ee7fd6](https://github.com/ho-nl/m2-pwa/commit/2ee7fd6c0056f467d114f04d92c6c0ddf622d151))
+
+
+### BREAKING CHANGES
+
+* huge folder structure refactor, please read README to reinstall
+
+
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 

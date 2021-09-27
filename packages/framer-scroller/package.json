@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/framer-scroller",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "private": true,
   "sideEffects": false,
   "scripts": {
@@ -17,17 +17,17 @@
     }
   },
   "dependencies": {
+    "@graphcommerce/framer-utils": "^2.103.0",
+    "@graphcommerce/image": "^2.104.0",
     "@material-ui/core": "^4.12.3",
-    "@graphcommerce/framer-utils": "^2.102.7",
-    "@graphcommerce/image": "^2.103.2",
     "popmotion": "9.3.6"
   },
   "devDependencies": {
-    "@playwright/test": "^1.14.1",
-    "@graphcommerce/browserslist-config-pwa": "^2.100.10",
-    "@graphcommerce/eslint-config-pwa": "^2.102.4",
-    "@graphcommerce/prettier-config-pwa": "^2.100.10",
-    "@graphcommerce/typescript-config-pwa": "^2.100.12"
+    "@graphcommerce/browserslist-config-pwa": "^3.0.0",
+    "@graphcommerce/eslint-config-pwa": "^3.0.0",
+    "@graphcommerce/prettier-config-pwa": "^3.0.0",
+    "@graphcommerce/typescript-config-pwa": "^3.0.0",
+    "@playwright/test": "^1.14.1"
   },
   "peerDependencies": {
     "clsx": "^1.1.1",

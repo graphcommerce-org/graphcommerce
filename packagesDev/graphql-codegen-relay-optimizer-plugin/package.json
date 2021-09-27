@@ -1,7 +1,7 @@
 {
   "name": "@graphcommerce/graphql-codegen-relay-optimizer-plugin",
   "private": true,
-  "version": "2.100.16",
+  "version": "2.101.0",
   "description": "GraphQL Code Generator plugin for optimizing your GraphQL queries relay style.",
   "license": "MIT",
   "main": "dist/main/index.js",
@@ -21,9 +21,9 @@
     "relay-compiler": "11.0.2"
   },
   "devDependencies": {
+    "@graphcommerce/eslint-config-pwa": "^3.0.0",
+    "@graphcommerce/prettier-config-pwa": "^3.0.0",
     "@graphql-codegen/testing": "1.17.7",
-    "@graphcommerce/eslint-config-pwa": "^2.102.4",
-    "@graphcommerce/prettier-config-pwa": "^2.100.10",
     "@types/jest": "27.0.1",
     "@types/relay-compiler": "8.0.1",
     "graphql": "^15.5.2",

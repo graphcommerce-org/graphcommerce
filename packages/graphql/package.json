@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/graphql",
-  "version": "2.102.3",
+  "version": "2.103.0",
   "private": true,
   "sideEffects": false,
   "main": "index.ts",
@@ -15,11 +15,11 @@
     }
   },
   "devDependencies": {
-    "@playwright/test": "^1.14.1",
-    "@graphcommerce/browserslist-config-pwa": "^2.100.10",
-    "@graphcommerce/eslint-config-pwa": "^2.102.4",
-    "@graphcommerce/prettier-config-pwa": "^2.100.10",
-    "@graphcommerce/typescript-config-pwa": "^2.100.12"
+    "@graphcommerce/browserslist-config-pwa": "^3.0.0",
+    "@graphcommerce/eslint-config-pwa": "^3.0.0",
+    "@graphcommerce/prettier-config-pwa": "^3.0.0",
+    "@graphcommerce/typescript-config-pwa": "^3.0.0",
+    "@playwright/test": "^1.14.1"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
