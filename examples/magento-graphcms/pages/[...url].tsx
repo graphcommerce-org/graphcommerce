@@ -1,5 +1,4 @@
 import { mergeDeep } from '@apollo/client/utilities'
-import { Container } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   CategoryChildren,
@@ -25,6 +24,7 @@ import {
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { AppShellTitle, GetStaticProps, Title, AppShellSticky } from '@graphcommerce/next-ui'
+import { Container } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../components/AppShell/FullPageShell'

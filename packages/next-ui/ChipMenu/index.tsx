@@ -1,10 +1,10 @@
 import { Chip, ChipProps, makeStyles, Menu, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React, { PropsWithChildren, useState } from 'react'
-import { iconChevronDown, iconChevronUp, iconCloseCircle } from '../icons'
 import SectionHeader from '../SectionHeader'
 import responsiveVal from '../Styles/responsiveVal'
 import SvgImage from '../SvgImage'
+import { iconChevronDown, iconChevronUp, iconCloseCircle } from '../icons'
 
 export const useChipMenuStyles = makeStyles(
   (theme: Theme) => ({

@@ -1,4 +1,3 @@
-import { makeStyles, Typography } from '@material-ui/core'
 import {
   ScrollerDots,
   MotionImageAspect,
@@ -6,6 +5,7 @@ import {
   ScrollerProvider,
   ScrollerButton,
 } from '@graphcommerce/framer-scroller'
+import { makeStyles, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'

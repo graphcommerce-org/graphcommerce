@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client'
-import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { ApolloCustomerErrorFullPage } from '@graphcommerce/magento-customer'
 import {
@@ -17,6 +16,7 @@ import {
   Title,
   AppShellTitle,
 } from '@graphcommerce/next-ui'
+import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'

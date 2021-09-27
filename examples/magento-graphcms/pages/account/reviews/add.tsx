@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client'
-import { Container } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ApolloCustomerErrorFullPage, CustomerDocument } from '@graphcommerce/magento-customer'
 import {
@@ -16,6 +15,7 @@ import {
   SheetShellHeader,
   AppShellTitle,
 } from '@graphcommerce/next-ui'
+import { Container } from '@material-ui/core'
 import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'

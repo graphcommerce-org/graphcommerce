@@ -1,6 +1,6 @@
-import { makeStyles, Theme } from '@material-ui/core'
 import { Image } from '@graphcommerce/image'
 import { UseStyles, responsiveVal } from '@graphcommerce/next-ui'
+import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
 import { ImageSwatchDataFragment } from './ImageSwatchData.gql'

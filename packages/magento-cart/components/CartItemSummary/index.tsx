@@ -1,4 +1,3 @@
-import { Divider, makeStyles, Theme } from '@material-ui/core'
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { Image } from '@graphcommerce/image'
 import {
@@ -9,6 +8,7 @@ import {
   SvgImageSimple,
   UseStyles,
 } from '@graphcommerce/next-ui'
+import { Divider, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
 import { useCartQuery } from '../../hooks'

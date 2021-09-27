@@ -1,4 +1,3 @@
-import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import {
   AnimatedRow,
@@ -7,6 +6,7 @@ import {
   SvgImage,
   UseStyles,
 } from '@graphcommerce/next-ui'
+import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import { AnimatePresence, m } from 'framer-motion'
 import React, { useState } from 'react'

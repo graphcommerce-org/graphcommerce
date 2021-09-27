@@ -1,17 +1,17 @@
 import { useQuery } from '@apollo/client'
-import { Alert } from '@material-ui/lab'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { FormRow } from '@graphcommerce/next-ui'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
+import { Typography } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 import Script from 'next/script'
 import React, { useEffect, useState } from 'react'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Mollie } from '../Mollie'
 import MollieField from './MollieField'
 import { SetMolliePaymentMethodTokenOnCartDocument } from './SetMolliePaymentMethodTokenOnCart.gql'
 import { mollieContext, MollieContext } from './mollieContext'
-import { Typography } from '@material-ui/core'
 
 export default function MollieCreditCardOptions(props: PaymentOptionsProps) {
   const { code, step, Container, title } = props

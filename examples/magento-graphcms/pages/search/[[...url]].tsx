@@ -1,5 +1,4 @@
 import { mergeDeep } from '@apollo/client/utilities'
-import { Container, makeStyles, Theme } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { CategoryDescription } from '@graphcommerce/magento-category'
 import {
@@ -26,6 +25,7 @@ import {
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { AppShellSticky, GetStaticProps, Title } from '@graphcommerce/next-ui'
+import { Container, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
 import React from 'react'

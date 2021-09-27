@@ -1,4 +1,3 @@
-import { Typography } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   getProductStaticPaths,
@@ -17,6 +16,7 @@ import {
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { JsonLd, GetStaticProps, Title } from '@graphcommerce/next-ui'
+import { Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { Product } from 'schema-dts'

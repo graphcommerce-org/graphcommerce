@@ -1,4 +1,3 @@
-import { makeStyles, Theme } from '@material-ui/core'
 import { usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
 import {
   Sheet,
@@ -9,6 +8,7 @@ import {
   SnapPoint,
   styles,
 } from '@graphcommerce/framer-sheet'
+import { makeStyles, Theme } from '@material-ui/core'
 import { useDomEvent } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useRef } from 'react'

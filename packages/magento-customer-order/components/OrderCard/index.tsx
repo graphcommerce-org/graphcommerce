@@ -1,16 +1,16 @@
 import { useQuery } from '@apollo/client'
+import { StoreConfigDocument, Money } from '@graphcommerce/magento-store'
+import { responsiveVal } from '@graphcommerce/next-ui'
 import { Button, makeStyles, Theme } from '@material-ui/core'
 import Skeleton from '@material-ui/lab/Skeleton'
-import { StoreConfigDocument, Money } from '@graphcommerce/magento-store'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
-import OrderCardItemImage from '../OrderCardItemImage'
 import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
+import OrderCardItemImage from '../OrderCardItemImage'
 import OrderStateLabel from '../OrderStateLabel'
 import TrackingLink from '../TrackingLink'
 import { OrderCardFragment } from './OrderCard.gql'
-import { responsiveVal } from '@graphcommerce/next-ui'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

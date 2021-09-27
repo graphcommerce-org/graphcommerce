@@ -1,4 +1,3 @@
-import { Fab, makeStyles, Theme, useTheme } from '@material-ui/core'
 import {
   ScrollerButton,
   ScrollerDots,
@@ -9,6 +8,7 @@ import {
   MotionImageAspect,
 } from '@graphcommerce/framer-scroller'
 import { clientSize, useMotionValueValue } from '@graphcommerce/framer-utils'
+import { Fab, makeStyles, Theme, useTheme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'

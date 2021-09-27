@@ -1,5 +1,3 @@
-import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
-import { Alert } from '@material-ui/lab'
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
 import { Money } from '@graphcommerce/magento-store'
 import {
@@ -11,6 +9,8 @@ import {
   iconCheckmark,
   iconChevronRight,
 } from '@graphcommerce/next-ui'
+import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'

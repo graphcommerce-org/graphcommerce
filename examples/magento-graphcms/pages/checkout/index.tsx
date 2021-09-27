@@ -1,4 +1,3 @@
-import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ApolloCartErrorAlert, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
 import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
@@ -20,6 +19,7 @@ import {
   Title,
 } from '@graphcommerce/next-ui'
 import { ComposedForm, ComposedSubmit } from '@graphcommerce/react-hook-form'
+import { Container, NoSsr } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'

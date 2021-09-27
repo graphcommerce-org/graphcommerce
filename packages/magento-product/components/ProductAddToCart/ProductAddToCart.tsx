@@ -1,6 +1,6 @@
 import { TypedDocumentNode, useQuery } from '@apollo/client'
-import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import { ProductInterface } from '@graphcommerce/graphql'
+import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { Money, MoneyProps } from '@graphcommerce/magento-store'
 import {
@@ -13,9 +13,9 @@ import {
   iconChevronRight,
 } from '@graphcommerce/next-ui'
 import { DeepPartial, UnpackNestedValue, Path } from '@graphcommerce/react-hook-form'
+import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
-import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
 
 const useStyles = makeStyles(

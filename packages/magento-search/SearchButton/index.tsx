@@ -1,5 +1,5 @@
-import { makeStyles, TextField, Theme } from '@material-ui/core'
 import { UseStyles, SvgImage, iconSearch } from '@graphcommerce/next-ui'
+import { makeStyles, TextField, Theme } from '@material-ui/core'
 import React from 'react'
 
 const useStyles = makeStyles(

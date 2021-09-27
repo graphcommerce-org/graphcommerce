@@ -1,6 +1,6 @@
-import { makeStyles, Theme, Typography } from '@material-ui/core'
 import { Money } from '@graphcommerce/magento-store'
 import { UseStyles } from '@graphcommerce/next-ui'
+import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 import { ProductListPriceFragment } from './ProductListPrice.gql'
 

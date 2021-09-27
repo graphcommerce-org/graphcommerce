@@ -1,12 +1,12 @@
 import { relative } from 'path/posix'
-import { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
 import {
   Scroller,
   ScrollerButton,
   ScrollerPageCounter,
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
+import { Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 import React, { ReactNode } from 'react'
 import { SvgImageSimple, iconChevronLeft, iconChevronRight } from '../..'
 import { UseStyles } from '../../Styles'

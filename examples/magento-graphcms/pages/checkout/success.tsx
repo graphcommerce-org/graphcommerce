@@ -1,4 +1,3 @@
-import { Box, Container } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { CartItemSummary, CartSummary } from '@graphcommerce/magento-cart'
 import { InlineAccount } from '@graphcommerce/magento-customer'
@@ -13,6 +12,7 @@ import {
   Stepper,
   Title,
 } from '@graphcommerce/next-ui'
+import { Box, Container } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'

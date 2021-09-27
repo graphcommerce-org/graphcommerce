@@ -1,6 +1,6 @@
-import { makeStyles, Theme } from '@material-ui/core'
 import { ProductSpecs, ProductSpecsProps } from '@graphcommerce/magento-product'
 import { Row, SectionContainer } from '@graphcommerce/next-ui'
+import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { RowProductSpecsFragment } from './RowProductSpecs.gql'
 

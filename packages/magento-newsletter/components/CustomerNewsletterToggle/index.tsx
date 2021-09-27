@@ -1,4 +1,6 @@
 import { useQuery } from '@apollo/client'
+import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
+import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import {
   FormControl,
   FormControlLabel,
@@ -7,8 +9,6 @@ import {
   Switch,
   SwitchProps,
 } from '@material-ui/core'
-import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
-import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import React from 'react'
 import { GetCustomerNewsletterToggleDocument } from './GetCustomerNewsLetterToggle.gql'
 import { UpdateNewsletterSubscriptionDocument } from './UpdateNewsletterSubscription.gql'

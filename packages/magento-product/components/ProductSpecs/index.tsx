@@ -1,5 +1,5 @@
-import { makeStyles, Theme } from '@material-ui/core'
 import { UseStyles, responsiveVal } from '@graphcommerce/next-ui'
+import { makeStyles, Theme } from '@material-ui/core'
 import { ProductSpecsFragment } from './ProductSpecs.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({

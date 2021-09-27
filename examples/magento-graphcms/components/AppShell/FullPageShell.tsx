@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client'
-import { Fab, makeStyles, Theme } from '@material-ui/core'
 import { CartFab } from '@graphcommerce/magento-cart'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { SearchButton } from '@graphcommerce/magento-search'
@@ -18,6 +17,7 @@ import {
   responsiveVal,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
+import { Fab, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'

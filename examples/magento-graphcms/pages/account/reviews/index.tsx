@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client'
-import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ApolloCustomerErrorFullPage } from '@graphcommerce/magento-customer'
 import { AccountDashboardReviewsDocument, AccountReviews } from '@graphcommerce/magento-review'
@@ -12,6 +11,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
+import { Container, NoSsr } from '@material-ui/core'
 import { GetStaticProps } from 'next'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'

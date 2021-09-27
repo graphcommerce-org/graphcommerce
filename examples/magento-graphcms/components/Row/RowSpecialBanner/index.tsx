@@ -1,6 +1,6 @@
-import { Link } from '@material-ui/core'
 import RichTextHeadingStrongStroked from '@graphcommerce/graphcms-ui/RichText/RichTextHeadingStrongStroked'
 import { SpecialBanner } from '@graphcommerce/next-ui'
+import { Link } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
 import Asset from '../../Asset'

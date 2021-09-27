@@ -1,10 +1,10 @@
-import { Fab, FabProps, NoSsr } from '@material-ui/core'
 import {
   iconShoppingBag,
   StyledBadge,
   SvgImageSimple,
   useFixedFabAnimation,
 } from '@graphcommerce/next-ui'
+import { Fab, FabProps, NoSsr } from '@material-ui/core'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'

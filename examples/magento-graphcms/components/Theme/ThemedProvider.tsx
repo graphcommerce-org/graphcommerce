@@ -1,7 +1,7 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
-import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core'
 import { responsiveVal } from '@graphcommerce/next-ui'
+import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core'
 import React from 'react'
 import shadows from './shadows'
 

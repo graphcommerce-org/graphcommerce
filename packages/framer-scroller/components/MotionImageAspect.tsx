@@ -1,5 +1,5 @@
-import { makeStyles } from '@material-ui/core'
 import { Image, ImageProps } from '@graphcommerce/image'
+import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { forwardRef } from 'react'

@@ -1,5 +1,4 @@
 import { mergeDeep } from '@apollo/client/utilities'
-import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   extractUrlQuery,
@@ -17,6 +16,7 @@ import { SearchDocument, SearchForm, SearchQuery } from '@graphcommerce/magento-
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { AppShellSticky, AppShellTitle, Button } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
+import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
