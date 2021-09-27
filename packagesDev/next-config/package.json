@@ -12,6 +12,6 @@
   "dependencies": {
     "next": "^11.1.2",
     "next-transpile-modules": "^8.0.0",
-    "type-fest": "^2.1.0"
+    "type-fest": "^2.3.4"
   }
 }
