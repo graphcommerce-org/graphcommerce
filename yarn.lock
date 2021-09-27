@@ -1764,6 +1764,75 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@graphcommerce/browserslist-config-pwa@^2.100.9":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/browserslist-config-pwa/-/browserslist-config-pwa-3.0.1.tgz#8153fb00687e941dab6d8230f906921118f091e5"
+  integrity sha512-quGmqRxrCR/pD5r8Q0Fk0REz6emQt1O+rYpwEko2CZ7Ko2cGjaKHuzg9efdURRL7N/HwI4CU4qiKeT8lweDekg==
+
+"@graphcommerce/eslint-config-pwa@^2.102.3":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/eslint-config-pwa/-/eslint-config-pwa-3.0.1.tgz#0eba820bd1fa94c06211ee3899f91c81d84dc5ce"
+  integrity sha512-EpVJy63zjuNKM8C9Sm/awY//crbGE4S3PjJA/oAhW4gmcqVfRf27XWPotR1D5Kktca3DvloL+Y04GdRFS4jzKA==
+  dependencies:
+    "@graphcommerce/prettier-config-pwa" "^3.0.1"
+    "@graphcommerce/typescript-config-pwa" "^3.0.1"
+    "@next/eslint-plugin-next" "^11.1.2"
+    "@typescript-eslint/eslint-plugin" "^4.30.0"
+    "@typescript-eslint/parser" "^4.30.0"
+    eslint "^7.32.0"
+    eslint-config-airbnb "^18.2.0"
+    eslint-config-airbnb-typescript "^14.0.0"
+    eslint-config-prettier "^8.3.0"
+    eslint-import-resolver-webpack "^0.13.1"
+    eslint-plugin-import "^2.24.2"
+    eslint-plugin-jsx-a11y "^6.3.1"
+    eslint-plugin-react "^7.25.1"
+    eslint-plugin-react-hooks "^4.2.0"
+
+"@graphcommerce/framer-scroller@^0.1.3":
+  version "0.2.1"
+  dependencies:
+    "@graphcommerce/framer-utils" "^2.103.1"
+    "@graphcommerce/image" "^2.104.1"
+    "@material-ui/core" "^4.12.3"
+    popmotion "9.3.6"
+
+"@graphcommerce/next-ui@^2.112.2":
+  version "3.0.1"
+  dependencies:
+    "@apollo/client" "^3.3.21"
+    "@graphcommerce/framer-next-pages" "^2.106.1"
+    "@graphcommerce/framer-scroller" "^0.2.1"
+    "@graphcommerce/framer-sheet" "^2.105.1"
+    "@graphcommerce/framer-utils" "^2.103.1"
+    "@graphcommerce/graphql" "^2.103.1"
+    "@graphcommerce/image" "^2.104.1"
+    "@graphql-typed-document-node/core" "^3.1.0"
+    "@material-ui/core" "^4.12.3"
+    "@material-ui/lab" "^4.0.0-alpha.60"
+    "@material-ui/styles" "^4.11.4"
+    clsx "^1.1.1"
+    framer-motion "^4.1.17"
+    graphql "^15.5.2"
+    next "^11.1.2"
+    node-fetch "^3.0.0"
+    react "^17.0.2"
+    react-dom "^17.0.2"
+    react-focus-lock "^2.5.2"
+    react-is "^17.0.2"
+    react-schemaorg "^2.0.0"
+    schema-dts "^1.0.0"
+    sharp "^0.29.0"
+    type-fest "^2.1.0"
+
+"@graphcommerce/prettier-config-pwa@^2.100.9":
+  version "3.0.1"
+  dependencies:
+    prettier-plugin-jsdoc "^0.3.23"
+
+"@graphcommerce/typescript-config-pwa@^2.100.11":
+  version "3.0.1"
+
 "@graphql-codegen/add@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/add/-/add-3.1.0.tgz#cd02fd6d80a7f62839cb27160b62e48366a237c5"
