@@ -30,17 +30,21 @@ const useStyles = makeStyles(
       '& > span': {
         display: 'block',
         ...theme.typography.h3,
+        fontSize: responsiveVal(16, 33),
+        marginBottom: '0.8em',
       },
     },
     h3: {
       fontWeight: 600,
+      fontSize: responsiveVal(16, 29),
+      lineHeight: 1.7,
       marginBottom: responsiveVal(30, 50),
     },
     main: {
       float: 'right',
       width: '80%',
       [theme.breakpoints.up('md')]: {
-        width: 700,
+        width: 650,
       },
     },
     buttonGroup: {
@@ -52,25 +56,24 @@ const useStyles = makeStyles(
       },
     },
     styledButton: {
-      borderRadius: 14,
+      borderRadius: responsiveVal(4, 14),
       background: 'linear-gradient(45deg, #85FFFC 0%, #85FFFC 10%, #CEFF99 100%)',
-      fontSize: responsiveVal(15, 21),
+      fontSize: responsiveVal(15, 20),
       lineHeight: 1.4,
       fontWeight: 600,
-      border: '1px solid #001727',
+      border: '1px solid #3D6161',
       padding: `${responsiveVal(6, 6)} ${responsiveVal(20, 35)}`,
       '&:before': {
         content: '""',
         position: 'absolute',
         left: '-4px',
         top: '-4px',
-        background:
-          'linear-gradient(45deg, #55A3A1 30%, #CEFF99 36%, #55A3A1 42%, #55A3A1 80%, #CEFF99 86%, #55A3A1 92% )',
+        background: 'linear-gradient(35deg, #55A3A1 60%, #CEFF99 86%, #55A3A1 92% )',
         backgroundSize: '400%',
         width: 'calc(100% + 8px)',
         height: 'calc(100% + 8px)',
         zIndex: '-1',
-        borderRadius: '16px',
+        borderRadius: responsiveVal(6, 16),
         animation: `$glow 25s linear infinite`,
       },
     },
@@ -83,9 +86,9 @@ const useStyles = makeStyles(
       },
     },
     copyButton: {
-      borderRadius: 15,
+      borderRadius: responsiveVal(5, 15),
       fontSize: responsiveVal(14, 17),
-      padding: `${responsiveVal(2, 12)} ${responsiveVal(20, 38)}`,
+      padding: `${responsiveVal(2, 8)} ${responsiveVal(20, 38)}`,
       fontFamily: 'Menlo,ui-monospace,SFMono-Regular,monospace',
       borderColor: 'rgba(255,255,255,0.4)',
       background: 'rgba(255,255,255,0.1)',
@@ -100,7 +103,7 @@ export default function RowHeroAnimation() {
   return (
     <Container maxWidth={false} disableGutters>
       <div className={classes.hero}>
-        {/* <Animation /> */}
+        <Animation />
         <div className={classes.copy}>
           <Container>
             <Typography variant='h1' className={classes.title} color='secondary'>
