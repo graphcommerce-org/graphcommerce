@@ -1,7 +1,6 @@
 {
   "name": "@graphcommerce/magento-cart-pickup",
   "version": "2.103.0",
-  "private": true,
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [

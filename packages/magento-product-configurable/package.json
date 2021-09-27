@@ -1,7 +1,6 @@
 {
   "name": "@graphcommerce/magento-product-configurable",
   "version": "3.0.0",
-  "private": true,
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [

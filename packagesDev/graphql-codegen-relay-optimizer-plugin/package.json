@@ -1,6 +1,5 @@
 {
   "name": "@graphcommerce/graphql-codegen-relay-optimizer-plugin",
-  "private": true,
   "version": "2.101.0",
   "description": "GraphQL Code Generator plugin for optimizing your GraphQL queries relay style.",
   "license": "MIT",

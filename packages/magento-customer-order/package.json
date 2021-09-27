@@ -1,7 +1,6 @@
 {
   "name": "@graphcommerce/magento-customer-order",
   "version": "2.102.0",
-  "private": true,
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [

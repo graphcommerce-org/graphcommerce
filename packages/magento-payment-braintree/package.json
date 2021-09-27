@@ -1,7 +1,6 @@
 {
   "name": "@graphcommerce/magento-payment-braintree",
   "version": "2.104.0",
-  "private": true,
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [

@@ -1,5 +1,5 @@
 {
-  "packages": ["packagesDev/*", "packages/*", "examples/*"],
+  "packages": [".", "packagesDev/*", "packages/*", "examples/*"],
   "version": "independent",
   "command": {
     "publish": {

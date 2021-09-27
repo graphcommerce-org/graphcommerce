@@ -1,7 +1,6 @@
 {
   "name": "@graphcommerce/image",
   "version": "2.104.0",
-  "private": true,
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
