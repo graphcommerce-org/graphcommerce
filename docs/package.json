@@ -1,18 +1,18 @@
 {
   "name": "@graphcommerce/pwa-docs",
-  "version": "2.103.0",
+  "version": "2.103.1",
   "private": true,
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.1",
-    "@graphcommerce/eslint-config-pwa": "^3.0.1",
-    "@graphcommerce/prettier-config-pwa": "^3.0.1",
+    "@graphcommerce/eslint-config-pwa": "^3.0.2",
+    "@graphcommerce/prettier-config-pwa": "^3.0.2",
     "@graphcommerce/typescript-config-pwa": "^3.0.1",
     "@playwright/test": "^1.15.0"
   },
   "dependencies": {
-    "@graphcommerce/next-config": "^2.101.2",
+    "@graphcommerce/next-config": "^2.102.2",
     "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

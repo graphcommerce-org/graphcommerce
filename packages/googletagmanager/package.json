@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/googletagmanager",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -14,14 +14,14 @@
   },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.1",
-    "@graphcommerce/eslint-config-pwa": "^3.0.1",
-    "@graphcommerce/prettier-config-pwa": "^3.0.1",
+    "@graphcommerce/eslint-config-pwa": "^3.0.2",
+    "@graphcommerce/prettier-config-pwa": "^3.0.2",
     "@graphcommerce/typescript-config-pwa": "^3.0.1",
     "@playwright/test": "^1.15.0"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
-    "@graphcommerce/graphql": "^2.103.1",
+    "@graphcommerce/graphql": "^2.103.2",
     "@graphql-typed-document-node/core": "^3.1.0",
     "clsx": "^1.1.1",
     "next": "^11.1.2",

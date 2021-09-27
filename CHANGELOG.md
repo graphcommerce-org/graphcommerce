@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.122.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.122.0...@graphcommerce/graphcommerce@2.122.1) (2021-09-27)
+
+
+### Bug Fixes
+
+* add warnings to next.config.js when .env variables are missing ([d9dffec](https://github.com/ho-nl/m2-pwa/commit/d9dffec8ebc9cb1c70ca5591cad5e42c9bbe30e6))
+
+
+
+
+
 # [2.122.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.120.1...@graphcommerce/graphcommerce@2.122.0) (2021-09-27)
 
 
