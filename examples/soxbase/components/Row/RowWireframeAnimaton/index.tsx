@@ -23,7 +23,7 @@ const useStyles = makeStyles(
     copy: {
       maxWidth: '70%',
       [theme.breakpoints.up('sm')]: {
-        width: '500px',
+        width: '650px',
       },
       margin: responsiveVal(60, 200),
       marginBottom: responsiveVal(100, 220),
@@ -137,7 +137,7 @@ export default function RowWireframeAnimation() {
             className={classes.interactive}
           >
             <Hint
-              content='Adding components to any page can be done directly from the GraphCMS admin interface.'
+              content='Add components to any page direct from the GraphCMS admin interface.'
               hintLeft='85%'
               hintTop='21%'
               offsetLeft='100'
@@ -164,7 +164,7 @@ export default function RowWireframeAnimation() {
               setLines={setLines}
             />
             <Hint
-              content='Add as many components as you like.'
+              content='You can add as many components as you like. Each component has a different layout; you choose which suits best.'
               hintLeft='90%'
               hintTop='64%'
               offsetLeft='100'
