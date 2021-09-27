@@ -15,7 +15,7 @@ const useStyles = makeStyles(
       margin: `${responsiveVal(50, 200)} auto ${responsiveVal(30, 80)} auto`,
       maxWidth: '70%',
       [theme.breakpoints.up('sm')]: {
-        width: '500px',
+        width: '700px',
       },
     },
     grid: {
@@ -31,6 +31,9 @@ const useStyles = makeStyles(
         gridTemplateRows: `auto auto 1fr`,
       },
     },
+    overline: {
+      filter: 'brightness(0.9)',
+    },
   }),
   { name: 'RowFeatureGrid' },
 )
@@ -42,7 +45,9 @@ export default function RowFeatureGrid() {
     <Container maxWidth={false}>
       <Container>
         <div className={classes.copy}>
-          <Typography variant='overline'>Every project a head start</Typography>
+          <Typography variant='overline' className={classes.overline}>
+            Every project a head start
+          </Typography>
           <Typography variant='h2'>Plug-and-play features</Typography>
           <Typography paragraph variant='h3' color='textSecondary'>
             GraphCommerce® is built for developers and agencies with the highest quality demands. It
