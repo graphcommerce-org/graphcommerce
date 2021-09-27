@@ -1,7 +1,6 @@
 {
   "name": "@graphcommerce/framer-utils",
   "version": "2.103.0",
-  "private": true,
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"

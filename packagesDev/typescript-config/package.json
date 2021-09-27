@@ -1,6 +1,5 @@
 {
   "name": "@graphcommerce/typescript-config-pwa",
-  "private": true,
   "version": "3.0.0",
   "license": "MIT",
   "sideEffects": false,

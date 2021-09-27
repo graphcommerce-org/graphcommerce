@@ -1,7 +1,6 @@
 {
   "name": "@graphcommerce/magento-graphql",
   "version": "2.103.0",
-  "private": true,
   "sideEffects": false,
   "main": "index.ts",
   "prettier": "@graphcommerce/prettier-config-pwa",

@@ -2,6 +2,5 @@
   "name": "@graphcommerce/browserslist-config-pwa",
   "version": "3.0.0",
   "main": "index.js",
-  "private": true,
   "sideEffects": false
 }

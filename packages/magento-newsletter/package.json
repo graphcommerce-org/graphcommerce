@@ -1,7 +1,6 @@
 {
   "name": "@graphcommerce/magento-newsletter",
   "version": "0.2.0",
-  "private": true,
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [

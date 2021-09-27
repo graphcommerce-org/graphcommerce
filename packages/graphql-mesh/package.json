@@ -1,6 +1,5 @@
 {
   "name": "@graphcommerce/graphql-mesh",
-  "private": true,
   "version": "3.0.0",
   "author": "",
   "license": "MIT",

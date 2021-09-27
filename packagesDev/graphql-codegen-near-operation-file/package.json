@@ -1,7 +1,6 @@
 {
   "name": "@graphcommerce/graphql-codegen-near-operation-file",
   "version": "2.102.0",
-  "private": true,
   "sideEffects": false,
   "main": "dist/index.js",
   "engines": {
