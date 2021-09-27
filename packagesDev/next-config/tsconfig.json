@@ -1,10 +1,10 @@
 {
-  "exclude": ["**/node_modules", "example", "js", "**/.*/"],
+  "exclude": ["**/node_modules", "example", "dist", "**/.*/"],
   "include": ["**/*.ts", "**/*.tsx"],
   "extends": "@graphcommerce/typescript-config-pwa/node.json",
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "js",
+    "outDir": "dist",
     "noLib": false,
     "noEmit": false,
     "sourceMap": false,

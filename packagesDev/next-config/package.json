@@ -7,11 +7,15 @@
   "scripts": {
     "dev": "tsc -W --preserveWatchOutput",
     "generate": "node dist/generate.js",
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "yarn build"
   },
   "dependencies": {
     "next": "^11.1.2",
     "next-transpile-modules": "^8.0.0",
     "type-fest": "^2.3.4"
-  }
+  },
+  "files": [
+    "js"
+  ]
 }

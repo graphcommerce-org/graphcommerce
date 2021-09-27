@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "dev": "tsc --preserveWatchOutput --watch --sourceMap --outDir dist",
-    "build": "tsc --target es5 --outDir dist"
+    "build": "tsc --target es5 --outDir dist",
+    "prepare": "yarn build"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
