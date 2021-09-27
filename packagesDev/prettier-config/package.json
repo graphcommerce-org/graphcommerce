@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/prettier-config-pwa",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "dependencies": {
     "prettier-plugin-jsdoc": "^0.3.23"
   }

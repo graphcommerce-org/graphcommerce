@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.101.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-schema-test@2.101.0...@graphcommerce/graphql-schema-test@2.101.1) (2021-09-27)
+
+**Note:** Version bump only for package @graphcommerce/graphql-schema-test
+
+
+
+
+
 # 2.101.0 (2021-09-27)
 
 

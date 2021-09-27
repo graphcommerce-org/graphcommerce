@@ -1,7 +1,7 @@
 {
   "name": "@graphcommerce/graphcommerce",
   "homepage": "https://graphcommerce.vercel.app/",
-  "version": "2.120.1",
+  "version": "2.121.0",
   "private": true,
   "workspaces": [
     "docs",
@@ -57,10 +57,10 @@
     }
   },
   "dependencies": {
-    "@playwright/test": "^1.14.1",
     "@graphcommerce/browserslist-config-pwa": "^2.100.9",
     "@graphcommerce/eslint-config-pwa": "^2.102.3",
     "@graphcommerce/prettier-config-pwa": "^2.100.9",
+    "@playwright/test": "^1.14.1",
     "lerna": "^4.0.0",
     "patch-package": "^6.4.3",
     "pm2": "^5.1.1",

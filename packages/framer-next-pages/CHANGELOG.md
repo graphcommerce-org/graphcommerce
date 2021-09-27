@@ -1,5 +1,18 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.106.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.106.0...@graphcommerce/framer-next-pages@2.106.1) (2021-09-27)
+
+**Note:** Version bump only for package @graphcommerce/framer-next-pages
+
+
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 

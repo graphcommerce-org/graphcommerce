@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.121.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.120.1...@graphcommerce/graphcommerce@2.121.0) (2021-09-27)
+
+
+### Bug Fixes
+
+* added product description to all product types ([7c0fcf5](https://github.com/ho-nl/m2-pwa/commit/7c0fcf5))
+* also release the root package ([daa720c](https://github.com/ho-nl/m2-pwa/commit/daa720c))
+* edit billing address updating state ([ecd9f48](https://github.com/ho-nl/m2-pwa/commit/ecd9f48))
+* **account-addresses:** single address not shown ([798bb9c](https://github.com/ho-nl/m2-pwa/commit/798bb9c))
+* **cart-summary:** spacings ([73b7379](https://github.com/ho-nl/m2-pwa/commit/73b7379))
+* **chip-menu:** layout shift on open ([c65cf5b](https://github.com/ho-nl/m2-pwa/commit/c65cf5b))
+* **Form:** forms always have background ([1f3fa1e](https://github.com/ho-nl/m2-pwa/commit/1f3fa1e))
+* **message-snackbar:** close on action click ([146c232](https://github.com/ho-nl/m2-pwa/commit/146c232))
+* **my-account-order:** show carrier in order details ([45f2a1e](https://github.com/ho-nl/m2-pwa/commit/45f2a1e))
+* **my-account-orders:** order item row image too large ([dfc7611](https://github.com/ho-nl/m2-pwa/commit/dfc7611))
+* **order-details:** show shipping method ([36964a8](https://github.com/ho-nl/m2-pwa/commit/36964a8))
+* **orders:** show order number ([b2d9f27](https://github.com/ho-nl/m2-pwa/commit/b2d9f27))
+* **product-description:** remove typography component ([b92a028](https://github.com/ho-nl/m2-pwa/commit/b92a028))
+* **release:** authentication for lerna ([714a89d](https://github.com/ho-nl/m2-pwa/commit/714a89d))
+* **test:** no children found ([2ba74d8](https://github.com/ho-nl/m2-pwa/commit/2ba74d8))
+* agreements positioning ([89c2dee](https://github.com/ho-nl/m2-pwa/commit/89c2dee))
+* all disabled buttons have white text ([358114d](https://github.com/ho-nl/m2-pwa/commit/358114d))
+* cart cache not up-to-date ([aae4d30](https://github.com/ho-nl/m2-pwa/commit/aae4d30))
+* do not use ToggleButtonGroup, only use the ToggleButton ([5172f70](https://github.com/ho-nl/m2-pwa/commit/5172f70))
+* full text link ([1186248](https://github.com/ho-nl/m2-pwa/commit/1186248))
+* placeholder cart fab is visible on hover ([00a7186](https://github.com/ho-nl/m2-pwa/commit/00a7186))
+* remove popover from configurable cart items ([90866a0](https://github.com/ho-nl/m2-pwa/commit/90866a0))
+* show short description on product page ([f51d39c](https://github.com/ho-nl/m2-pwa/commit/f51d39c))
+* top spacing ([486fdb0](https://github.com/ho-nl/m2-pwa/commit/486fdb0))
+
+
+### Features
+
+* added magento-newsletter package ([9b48b1b](https://github.com/ho-nl/m2-pwa/commit/9b48b1b))
+* edit billing address on checkout payment step ([96a5719](https://github.com/ho-nl/m2-pwa/commit/96a5719))
+* guest newsletter toggle ([c747aed](https://github.com/ho-nl/m2-pwa/commit/c747aed))
+* read checkout policies in sidebar sheet ([3fb765e](https://github.com/ho-nl/m2-pwa/commit/3fb765e))
+* rename soxbase to magento-graphcms ([e363435](https://github.com/ho-nl/m2-pwa/commit/e363435))
+* renamed all packages to use [@graphcommerce](https://github.com/graphcommerce) instead of [@reachdigital](https://github.com/reachdigital) ([491e4ce](https://github.com/ho-nl/m2-pwa/commit/491e4ce))
+* **checkout:** checkout agreements checkboxes in checkout ([a8b4ddb](https://github.com/ho-nl/m2-pwa/commit/a8b4ddb))
+* **inline-account:** re-added the component ([c508d34](https://github.com/ho-nl/m2-pwa/commit/c508d34))
+* **payment-agreements-form:** checkout agreements checkboxes ([13c8164](https://github.com/ho-nl/m2-pwa/commit/13c8164))
+* **react-hook-form:** updated readme ([aede77a](https://github.com/ho-nl/m2-pwa/commit/aede77a))
+* signup newsletter component ([7ee961d](https://github.com/ho-nl/m2-pwa/commit/7ee961d))
+
+
+
+
+
 ## [2.120.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.120.0...@graphcommerce/graphcommerce@2.120.1) (2021-09-23)
 
 
