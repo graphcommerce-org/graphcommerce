@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.106.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.106.0...@graphcommerce/framer-next-pages@2.106.2) (2021-09-27)
+
+
+### Bug Fixes
+
+* ignore example directories when publishing ([620cbb2](https://github.com/ho-nl/m2-pwa/commit/620cbb2d8e68b727b8593e2e45702c4d12276d92))
+* versions ([b8b306c](https://github.com/ho-nl/m2-pwa/commit/b8b306c8f3a13415e441d0593c638ae2a3731cd6))
+
+
+
+
+
 ## [2.106.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.106.0...@graphcommerce/framer-next-pages@2.106.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/framer-next-pages

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.104.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/image@2.104.0...@graphcommerce/image@2.104.2) (2021-09-27)
+
+
+### Bug Fixes
+
+* versions ([b8b306c](https://github.com/ho-nl/m2-pwa/commit/b8b306c8f3a13415e441d0593c638ae2a3731cd6))
+
+
+
+
+
 ## [2.104.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/image@2.104.0...@graphcommerce/image@2.104.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/image

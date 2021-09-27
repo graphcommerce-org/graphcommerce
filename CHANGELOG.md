@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.122.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.120.1...@graphcommerce/graphcommerce@2.122.0) (2021-09-27)
+
+
+### Bug Fixes
+
+* **account-addresses:** single address not shown ([798bb9c](https://github.com/ho-nl/m2-pwa/commit/798bb9ce2ae7347f161d1a7285e21a3aad0f835f))
+* added product description to all product types ([7c0fcf5](https://github.com/ho-nl/m2-pwa/commit/7c0fcf552f8a937e54fde209f0a351d6e342274b))
+* agreements positioning ([89c2dee](https://github.com/ho-nl/m2-pwa/commit/89c2dee1debeb84c8b2cd9abaac85f03759604c8))
+* all disabled buttons have white text ([358114d](https://github.com/ho-nl/m2-pwa/commit/358114ddff5d7ffa51c30f6a6e7787e88d5e4c5c))
+* also release the root package ([daa720c](https://github.com/ho-nl/m2-pwa/commit/daa720c393c5027ff25fa5c2d26e6852b7f5c34b))
+* cart cache not up-to-date ([aae4d30](https://github.com/ho-nl/m2-pwa/commit/aae4d302e320475d28a356ec304ea6afb64c3080))
+* **cart-summary:** spacings ([73b7379](https://github.com/ho-nl/m2-pwa/commit/73b7379731bd1fe21c27d9b12f29b518efe73dce))
+* **chip-menu:** layout shift on open ([c65cf5b](https://github.com/ho-nl/m2-pwa/commit/c65cf5bc18864b5180aba3f2361399bd85967952))
+* do not use ToggleButtonGroup, only use the ToggleButton ([5172f70](https://github.com/ho-nl/m2-pwa/commit/5172f709ee26122b0a8700afb4325f23cb9ba9b9))
+* edit billing address updating state ([ecd9f48](https://github.com/ho-nl/m2-pwa/commit/ecd9f48ce313d8e7a698c06ff29b88231dc50168))
+* **Form:** forms always have background ([1f3fa1e](https://github.com/ho-nl/m2-pwa/commit/1f3fa1e53a997b88512335dc344bff3fa24f6bc6))
+* full text link ([1186248](https://github.com/ho-nl/m2-pwa/commit/1186248d47898649b2f06c63a78cf254396c7f60))
+* ignore example directories when publishing ([620cbb2](https://github.com/ho-nl/m2-pwa/commit/620cbb2d8e68b727b8593e2e45702c4d12276d92))
+* **message-snackbar:** close on action click ([146c232](https://github.com/ho-nl/m2-pwa/commit/146c232a3a0e78b2be68631b0461e7b4699b99e1))
+* **my-account-order:** show carrier in order details ([45f2a1e](https://github.com/ho-nl/m2-pwa/commit/45f2a1e265e8dbe4e1e76fe8dbedb3b40ba693fa))
+* **my-account-orders:** order item row image too large ([dfc7611](https://github.com/ho-nl/m2-pwa/commit/dfc76111e6bd7c33c616881892adcd29c18f907d))
+* **order-details:** show shipping method ([36964a8](https://github.com/ho-nl/m2-pwa/commit/36964a85efa358cb4987f881b72598e48a2278f4))
+* **orders:** show order number ([b2d9f27](https://github.com/ho-nl/m2-pwa/commit/b2d9f2758cb29966965964eca58d91896654e68b))
+* placeholder cart fab is visible on hover ([00a7186](https://github.com/ho-nl/m2-pwa/commit/00a7186197b3e558c0afb40fa900c5951c4b9ba8))
+* **product-description:** remove typography component ([b92a028](https://github.com/ho-nl/m2-pwa/commit/b92a0285fda09ae4ffe48d91150337438d08f3eb))
+* **release:** authentication for lerna ([714a89d](https://github.com/ho-nl/m2-pwa/commit/714a89d0090032d29c36442de98ea963ecf00c2e))
+* remove popover from configurable cart items ([90866a0](https://github.com/ho-nl/m2-pwa/commit/90866a07d43fae8fac1c633f123fb4c4d910a2a9))
+* show short description on product page ([f51d39c](https://github.com/ho-nl/m2-pwa/commit/f51d39c3122e4e1523cfc066d5c0ca8a210879e4))
+* **test:** no children found ([2ba74d8](https://github.com/ho-nl/m2-pwa/commit/2ba74d8364c9eb24418871b3cc62a4f509c403e8))
+* top spacing ([486fdb0](https://github.com/ho-nl/m2-pwa/commit/486fdb0536e5f6b08f293ea442661d7ad7541717))
+* versions ([b8b306c](https://github.com/ho-nl/m2-pwa/commit/b8b306c8f3a13415e441d0593c638ae2a3731cd6))
+
+
+### Features
+
+* added magento-newsletter package ([9b48b1b](https://github.com/ho-nl/m2-pwa/commit/9b48b1b4dc29f9ea3271f4a6370abba15dd8999c))
+* **checkout:** checkout agreements checkboxes in checkout ([a8b4ddb](https://github.com/ho-nl/m2-pwa/commit/a8b4ddb3a9750c2b7ff86cd460e0ff7fc4cc0ad1))
+* edit billing address on checkout payment step ([96a5719](https://github.com/ho-nl/m2-pwa/commit/96a5719437616006efb2588c3516d3f2608c1fb8))
+* guest newsletter toggle ([c747aed](https://github.com/ho-nl/m2-pwa/commit/c747aed081b2c5c134e2be1bc4c32de2a5e6e220))
+* **inline-account:** re-added the component ([c508d34](https://github.com/ho-nl/m2-pwa/commit/c508d341ca34daa26a6db13ead72f7f4bdc72160))
+* **payment-agreements-form:** checkout agreements checkboxes ([13c8164](https://github.com/ho-nl/m2-pwa/commit/13c816499d220a2ce940672a95beca508b78ddc9))
+* **react-hook-form:** updated readme ([aede77a](https://github.com/ho-nl/m2-pwa/commit/aede77ab6d30fe5ca47b9d08bbdadca9b371713c))
+* read checkout policies in sidebar sheet ([3fb765e](https://github.com/ho-nl/m2-pwa/commit/3fb765e14a8cfaf0bb27acd8368926ac27ed6a4c))
+* rename soxbase to magento-graphcms ([e363435](https://github.com/ho-nl/m2-pwa/commit/e3634350bffec27221f9b3d016789b2e5eda298d))
+* renamed all packages to use [@graphcommerce](https://github.com/graphcommerce) instead of [@reachdigital](https://github.com/reachdigital) ([491e4ce](https://github.com/ho-nl/m2-pwa/commit/491e4cec9a2686472dac36b79f999257c0811ffe))
+* signup newsletter component ([7ee961d](https://github.com/ho-nl/m2-pwa/commit/7ee961ded34e9fe012faa7041e96b35fb44b1f35))
+
+
+
+
+
 # [2.121.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.120.1...@graphcommerce/graphcommerce@2.121.0) (2021-09-27)
 
 
