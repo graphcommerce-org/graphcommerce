@@ -39,7 +39,6 @@
     "@graphcommerce/prettier-config-pwa": "^3.0.2",
     "@graphcommerce/typescript-config-pwa": "^3.0.1",
     "@playwright/test": "^1.15.0",
-    "@testing-library/react": "^12.1.0",
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
     "@types/react-is": "^17.0.2",
