@@ -9,18 +9,18 @@ const crypto_1 = require("crypto");
 const fs_1 = require("fs");
 const next_transpile_modules_1 = __importDefault(require("next-transpile-modules"));
 function withYarn1Workspaces(modules = []) {
-    const packageStr = (0, fs_1.readFileSync)('package.json', 'utf-8');
+    const packageStr = fs_1.readFileSync('package.json', 'utf-8');
     const packageJson = JSON.parse(packageStr);
-    const hashSum = (0, crypto_1.createHash)('sha256').update(packageStr, 'utf-8').digest('hex').slice(0, 10);
+    const hashSum = crypto_1.createHash('sha256').update(packageStr, 'utf-8').digest('hex').slice(0, 10);
     let infoJson;
     const cacheKey = `.next/cache/withYarn1Workspaces.${hashSum}.json`;
     try {
-        infoJson = (0, fs_1.readFileSync)(cacheKey, 'utf-8');
+        infoJson = fs_1.readFileSync(cacheKey, 'utf-8');
     }
     catch (e) {
-        infoJson = (0, child_process_1.execSync)('yarn workspaces info --json', { encoding: 'utf-8' });
+        infoJson = child_process_1.execSync('yarn workspaces info --json', { encoding: 'utf-8' });
         try {
-            (0, fs_1.writeFileSync)(cacheKey, infoJson);
+            fs_1.writeFileSync(cacheKey, infoJson);
         }
         catch (er) {
             // do nothing
@@ -39,6 +39,6 @@ function withYarn1Workspaces(modules = []) {
             b.workspaceDependencies.forEach((wp) => m.add(wp));
         }
     });
-    return (0, next_transpile_modules_1.default)([...m.values()]);
+    return next_transpile_modules_1.default([...m.values()]);
 }
 exports.withYarn1Workspaces = withYarn1Workspaces;

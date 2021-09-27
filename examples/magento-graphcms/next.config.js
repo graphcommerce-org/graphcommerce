@@ -20,6 +20,17 @@ const obs = new PerformanceObserver((entryList) => {
 })
 obs.observe({ entryTypes: ['measure'] })
 
+if (
+  !process.env.NEXT_PUBLIC_LOCALE_STORES ||
+  !Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES)).length > 0
+) {
+  throw Error('Please specificy NEXT_PUBLIC_LOCALE_STORES in your .env')
+}
+
+if (!process.env.IMAGE_DOMAINS) {
+  throw Error('Please specificy IMAGE_DOMAINS in your .env')
+}
+
 /** @type {import('next/dist/server/config-shared').NextConfig} */
 const nextConfig = {
   webpackStats: process.env.ANALYZE === 'true',
