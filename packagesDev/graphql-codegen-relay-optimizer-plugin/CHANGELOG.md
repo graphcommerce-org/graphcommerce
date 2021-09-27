@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.101.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-codegen-relay-optimizer-plugin@2.101.2...@graphcommerce/graphql-codegen-relay-optimizer-plugin@2.101.3) (2021-09-27)
+
+
+### Bug Fixes
+
+* build packages before releasing ([c4761cf](https://github.com/ho-nl/m2-pwa/commit/c4761cf6d1810c140fd56f6eac8fca922f8c0edc))
+
+
+
+
+
 ## [2.101.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-codegen-relay-optimizer-plugin@2.101.0...@graphcommerce/graphql-codegen-relay-optimizer-plugin@2.101.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/graphql-codegen-relay-optimizer-plugin
