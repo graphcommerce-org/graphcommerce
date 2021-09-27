@@ -1,12 +1,11 @@
 import { Typography } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { AddToCartButton } from '@graphcommerce/magento-cart'
 import {
   getProductStaticPaths,
   ProductPageMeta,
   ProductPageGallery,
   productPageCategory,
-  ProductAddToCartDocument,
+  ProductAddToCart,
   jsonLdProduct,
   jsonLdProductOffer,
   ProductSidebarDelivery,
@@ -95,14 +94,13 @@ function ProductVirtual(props: Props) {
         />
 
         <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
-        <AddToCartButton
-          mutation={ProductAddToCartDocument}
+        <ProductAddToCart
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
           price={product.price_range.minimum_price.regular_price}
         >
           <ProductSidebarDelivery />
-        </AddToCartButton>
+        </ProductAddToCart>
         <ProductUsps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
       <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />

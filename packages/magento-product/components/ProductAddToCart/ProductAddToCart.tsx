@@ -15,8 +15,8 @@ import {
 import { DeepPartial, UnpackNestedValue, Path } from '@graphcommerce/react-hook-form'
 import PageLink from 'next/link'
 import React from 'react'
-import { useFormGqlMutationCart } from '../../hooks/useFormGqlMutationCart'
-import ApolloCartErrorAlert from '../ApolloCartError/ApolloCartErrorAlert'
+import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
+import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -41,19 +41,18 @@ const useStyles = makeStyles(
 
 export type AddToCartProps = React.ComponentProps<typeof AddToCartButton>
 
-export default function AddToCartButton<Q, V extends { cartId: string; [index: string]: unknown }>(
+export default function AddToCartButton(
   props: Pick<ProductInterface, 'name'> & {
-    mutation: TypedDocumentNode<Q, V>
-    variables: Omit<V, 'cartId'>
+    variables: Omit<ProductAddToCartMutationVariables, 'cartId'>
     name: string
     price: MoneyProps
     children?: React.ReactNode
   } & Omit<ButtonProps, 'type' | 'name'>,
 ) {
-  const { name, children, mutation, variables, price, ...buttonProps } = props
+  const { name, children, variables, price, ...buttonProps } = props
 
-  const form = useFormGqlMutationCart<Q, V>(mutation, {
-    defaultValues: variables as UnpackNestedValue<DeepPartial<V>>,
+  const form = useFormGqlMutationCart(ProductAddToCartDocument, {
+    defaultValues: variables,
   })
 
   const { handleSubmit, formState, error, muiRegister, required } = form

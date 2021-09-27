@@ -1,13 +1,12 @@
 import { Typography } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { AddToCartButton } from '@graphcommerce/magento-cart'
 import {
   ProductWeight,
   getProductStaticPaths,
   ProductPageMeta,
   ProductPageGallery,
   productPageCategory,
-  ProductAddToCartDocument,
+  ProductAddToCart,
   jsonLdProduct,
   jsonLdProductOffer,
   ProductSidebarDelivery,
@@ -103,14 +102,13 @@ function ProductGrouped(props: Props) {
                 <li key={item?.product?.name}>
                   <div>{item?.product?.name}</div>
                   <div>
-                    <AddToCartButton
-                      mutation={ProductAddToCartDocument}
+                    <ProductAddToCart
                       variables={{ sku: item.product.sku ?? '', quantity: item.qty || 1 }}
                       name={product.name ?? ''}
                       price={product.price_range.minimum_price.regular_price}
                     >
                       <ProductSidebarDelivery />
-                    </AddToCartButton>
+                    </ProductAddToCart>
                   </div>
                 </li>
               ),

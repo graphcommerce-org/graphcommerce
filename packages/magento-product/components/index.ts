@@ -1,5 +1,7 @@
 export * from './JsonLdProduct'
-export * from './ProductAddToCart/ProductAddToCart.gql'
+
+export * from './ProductAddToCart/ProductAddToCart'
+export { default as ProductAddToCart } from './ProductAddToCart/ProductAddToCart'
 
 export * from './ProductList/ProductList.gql'
 

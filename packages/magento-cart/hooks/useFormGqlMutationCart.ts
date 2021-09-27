@@ -1,5 +1,4 @@
 import { MutationHookOptions, TypedDocumentNode } from '@apollo/client'
-import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import {
   useFormGqlMutation,
   UseFormGqlMutationReturn,
