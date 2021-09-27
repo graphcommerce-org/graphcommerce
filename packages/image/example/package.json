@@ -10,7 +10,7 @@
   "dependencies": {
     "@graphcommerce/image": "^2.103.1",
     "@graphcommerce/next-config": "^2.101.2",
-    "@graphcommerce/next-ui": "^2.112.2",
+    "@graphcommerce/next-ui": "^3.0.1",
     "framer-motion": "^4.1.17",
     "next": "^11.1.2",
     "react": "^17.0.2",
