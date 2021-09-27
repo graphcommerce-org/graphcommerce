@@ -2,13 +2,12 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { PerformanceObserver, performance } = require('perf_hooks')
+const withYarn1Workspaces = require('@graphcommerce/next-config').withYarn1Workspaces()
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
 require('dotenv').config()
-
-const withYarn1Workspaces = require('@graphcommerce/next-config').withYarn1Workspaces()
 
 const withPWA = require('next-pwa')
 

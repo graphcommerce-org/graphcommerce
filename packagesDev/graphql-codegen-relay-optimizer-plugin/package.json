@@ -23,7 +23,7 @@
     "@graphcommerce/eslint-config-pwa": "^3.0.2",
     "@graphcommerce/prettier-config-pwa": "^3.0.2",
     "@graphql-codegen/testing": "1.17.7",
-    "@types/jest": "27.0.1",
+    "@types/jest": "27.0.2",
     "@types/relay-compiler": "8.0.1",
     "graphql": "^15.6.0",
     "jest": "27.2.2",
