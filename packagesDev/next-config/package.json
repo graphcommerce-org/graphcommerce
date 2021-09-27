@@ -8,7 +8,8 @@
     "dev": "tsc -W --preserveWatchOutput",
     "generate": "node dist/generate.js",
     "build": "tsc",
-    "prepare": "yarn build"
+    "prepack": "yarn build",
+    "postinstall": "yarn build"
   },
   "dependencies": {
     "next": "^11.1.2",
@@ -16,6 +17,7 @@
     "type-fest": "^2.3.4"
   },
   "files": [
-    "js"
+    "dist",
+    "src"
   ]
 }

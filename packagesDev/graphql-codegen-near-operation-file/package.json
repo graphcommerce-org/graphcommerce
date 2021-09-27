@@ -7,12 +7,14 @@
     "node": "14.x"
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "dev": "tsc --preserveWatchOutput --watch --sourceMap --outDir dist",
     "build": "tsc --target es5 --outDir dist",
-    "prepare": "yarn build"
+    "prepack": "yarn build",
+    "postinstall": "yarn build"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
