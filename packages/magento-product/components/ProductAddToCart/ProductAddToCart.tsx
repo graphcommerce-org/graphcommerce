@@ -1,7 +1,5 @@
-import { TypedDocumentNode, useQuery } from '@apollo/client'
 import { ProductInterface } from '@graphcommerce/graphql'
-import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
+import { ApolloCartErrorAlert, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { Money, MoneyProps } from '@graphcommerce/magento-store'
 import {
   Button,
@@ -12,7 +10,6 @@ import {
   iconCheckmark,
   iconChevronRight,
 } from '@graphcommerce/next-ui'
-import { DeepPartial, UnpackNestedValue, Path } from '@graphcommerce/react-hook-form'
 import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
@@ -39,9 +36,9 @@ const useStyles = makeStyles(
   { name: 'AddToCart' },
 )
 
-export type AddToCartProps = React.ComponentProps<typeof AddToCartButton>
+export type AddToCartProps = React.ComponentProps<typeof ProductAddToCart>
 
-export default function AddToCartButton(
+export default function ProductAddToCart(
   props: Pick<ProductInterface, 'name'> & {
     variables: Omit<ProductAddToCartMutationVariables, 'cartId'>
     name: string
@@ -59,8 +56,6 @@ export default function AddToCartButton(
   const submitHandler = handleSubmit(() => {})
   const classes = useStyles()
 
-  const { data: tokenQuery } = useQuery(CustomerTokenDocument)
-
   return (
     <form onSubmit={submitHandler} noValidate>
       <Divider className={classes.divider} />
@@ -74,7 +69,7 @@ export default function AddToCartButton(
         error={formState.isSubmitted && !!formState.errors.quantity}
         required={required.quantity}
         inputProps={{ min: 1 }}
-        {...muiRegister('quantity' as Path<V>, { required: required.quantity })}
+        {...muiRegister('quantity', { required: required.quantity })}
         helperText={formState.isSubmitted && formState.errors.quantity}
         disabled={formState.isSubmitting}
         size='small'

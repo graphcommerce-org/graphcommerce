@@ -19,5 +19,8 @@
   "files": [
     "dist",
     "src"
-  ]
+  ],
+  "devDependencies": {
+    "typescript": "^4.4.3"
+  }
 }
