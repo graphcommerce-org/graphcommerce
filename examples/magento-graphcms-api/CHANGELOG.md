@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.104.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms-api@2.104.0...@graphcommerce/magento-graphcms-api@2.104.3) (2021-09-27)
+
+
+### Bug Fixes
+
+* add warnings to next.config.js when .env variables are missing ([d9dffec](https://github.com/ho-nl/m2-pwa/commit/d9dffec8ebc9cb1c70ca5591cad5e42c9bbe30e6))
+
+
+
+
+
 ## [2.104.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms-api@2.104.0...@graphcommerce/magento-graphcms-api@2.104.2) (2021-09-27)
 
 
