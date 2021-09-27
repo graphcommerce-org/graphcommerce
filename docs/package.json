@@ -9,7 +9,7 @@
     "@graphcommerce/browserslist-config-pwa": "^3.0.1",
     "@graphcommerce/eslint-config-pwa": "^3.0.1",
     "@graphcommerce/prettier-config-pwa": "^3.0.1",
-    "@graphcommerce/typescript-config-pwa": "^^3.0.1"
+    "@graphcommerce/typescript-config-pwa": "^3.0.1"
   },
   "dependencies": {
     "@graphcommerce/next-config": "^2.101.2",
