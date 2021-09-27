@@ -65,6 +65,7 @@
     "@graphcommerce/magento-customer-account": "^2.101.17",
     "@graphcommerce/magento-customer-order": "^2.101.16",
     "@graphcommerce/magento-graphql": "^2.102.3",
+    "@graphcommerce/magento-newsletter": "^0.1.0",
     "@graphcommerce/magento-payment-braintree": "^2.103.19",
     "@graphcommerce/magento-payment-included": "^2.102.19",
     "@graphcommerce/magento-payment-klarna": "^2.102.18",
