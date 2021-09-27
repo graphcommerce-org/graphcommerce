@@ -2,8 +2,8 @@
   "name": "@graphcommerce/next-config",
   "version": "2.102.2",
   "type": "commonjs",
-  "main": "js/index.js",
-  "typings": "js/index.d.ts",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "dev": "tsc -W --preserveWatchOutput",
     "generate": "node dist/generate.js",
