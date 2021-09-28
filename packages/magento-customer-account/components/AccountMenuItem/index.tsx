@@ -1,4 +1,3 @@
-import { ListItem, ListItemIcon, ListItemText, makeStyles, Theme } from '@material-ui/core'
 import { ImageProps } from '@graphcommerce/image'
 import {
   Button,
@@ -9,6 +8,7 @@ import {
   iconChevronRight,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
+import { ListItem, ListItemIcon, ListItemText, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'

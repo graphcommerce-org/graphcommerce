@@ -1,6 +1,4 @@
 import { useQuery } from '@apollo/client'
-import { Box, Container, NoSsr } from '@material-ui/core'
-import { Skeleton } from '@material-ui/lab'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ApolloCustomerErrorFullPage, EditAddressForm } from '@graphcommerce/magento-customer'
 import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
@@ -14,6 +12,8 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
+import { Box, Container, NoSsr } from '@material-ui/core'
+import { Skeleton } from '@material-ui/lab'
 import { useRouter } from 'next/router'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'

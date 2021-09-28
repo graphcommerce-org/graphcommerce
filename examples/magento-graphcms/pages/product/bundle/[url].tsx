@@ -1,11 +1,9 @@
-import { Typography } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { AddToCartButton } from '@graphcommerce/magento-cart'
 import {
   getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
-  ProductAddToCartDocument,
+  ProductAddToCart,
   productPageCategory,
   ProductPageGallery,
   ProductPageMeta,
@@ -19,6 +17,7 @@ import {
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, JsonLd, Title } from '@graphcommerce/next-ui'
+import { Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { Product } from 'schema-dts'
@@ -88,14 +87,13 @@ function ProductBundle(props: Props) {
           {product.name}
         </Typography>
         <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
-        <AddToCartButton
-          mutation={ProductAddToCartDocument}
+        <ProductAddToCart
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
           price={product.price_range.minimum_price.regular_price}
         >
           <ProductSidebarDelivery />
-        </AddToCartButton>
+        </ProductAddToCart>
         <BundleItemsForm {...typeProduct} />
         <ProductUsps usps={sidebarUsps} size='small' />
       </ProductPageGallery>

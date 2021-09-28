@@ -1,6 +1,6 @@
-import { Divider, makeStyles, Theme } from '@material-ui/core'
 import { Money, MoneyProps } from '@graphcommerce/magento-store'
 import { AnimatedRow, UseStyles } from '@graphcommerce/next-ui'
+import { Divider, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'

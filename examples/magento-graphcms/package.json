@@ -98,7 +98,7 @@
     "webpack": "^5.54.0"
   },
   "devDependencies": {
-    "@types/node": "^16.7.10",
+    "@types/node": "^16.10.1",
     "@types/react": "^17.0.24",
     "@types/sharp": "^0.29.2",
     "type-fest": "^2.3.4",

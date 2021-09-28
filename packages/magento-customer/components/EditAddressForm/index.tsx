@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client'
-import { makeStyles, TextField } from '@material-ui/core'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import {
   Button,
@@ -10,6 +9,7 @@ import {
   InputCheckmark,
 } from '@graphcommerce/next-ui'
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { makeStyles, TextField } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'

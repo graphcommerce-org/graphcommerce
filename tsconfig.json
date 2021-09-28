@@ -5,7 +5,6 @@
     "**/*.ts",
     "**/*.tsx",
     "**/next.config.js",
-    "**/apollo.config.js",
     "**/index.js",
     "cssTransform.js",
     "examples/graphcommerce/next-sitemap.js",

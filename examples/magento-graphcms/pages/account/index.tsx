@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client'
-import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   AddressSingleLine,
@@ -11,8 +10,8 @@ import {
   AccountMenu,
   AccountMenuItem,
 } from '@graphcommerce/magento-customer-account'
-import { CustomerNewsletterToggle } from '@graphcommerce/magento-newsletter'
 import { OrderStateLabelInline } from '@graphcommerce/magento-customer-order'
+import { CustomerNewsletterToggle } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AppShellTitle,
@@ -29,6 +28,7 @@ import {
   TimeAgo,
   Title,
 } from '@graphcommerce/next-ui'
+import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
 import PageShellHeader from '../../components/AppShell/PageShellHeader'

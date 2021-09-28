@@ -1,4 +1,6 @@
 import { cloneDeep } from '@apollo/client/utilities'
+import { FilterEqualTypeInput } from '@graphcommerce/graphql'
+import { ChipMenu, ChipMenuProps, responsiveVal } from '@graphcommerce/next-ui'
 import {
   Checkbox,
   ListItem,
@@ -7,8 +9,6 @@ import {
   makeStyles,
   Theme,
 } from '@material-ui/core'
-import { FilterEqualTypeInput } from '@graphcommerce/graphql'
-import { ChipMenu, ChipMenuProps, responsiveVal } from '@graphcommerce/next-ui'
 import React from 'react'
 import { SetRequired } from 'type-fest'
 import { useProductListLinkPush } from '../../hooks/useProductListLinkPush'

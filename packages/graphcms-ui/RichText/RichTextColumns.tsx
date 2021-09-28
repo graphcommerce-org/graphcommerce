@@ -1,5 +1,5 @@
-import { makeStyles, Theme } from '@material-ui/core'
 import { UseStyles } from '@graphcommerce/next-ui'
+import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import RichText, { RichTextProps } from '.'
 

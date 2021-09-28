@@ -2,13 +2,12 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { PerformanceObserver, performance } = require('perf_hooks')
+const withYarn1Workspaces = require('@graphcommerce/next-config').withYarn1Workspaces()
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
 require('dotenv').config()
-
-const withYarn1Workspaces = require('@graphcommerce/next-config').withYarn1Workspaces()
 
 const withPWA = require('next-pwa')
 
@@ -27,8 +26,8 @@ if (
   throw Error('Please specificy NEXT_PUBLIC_LOCALE_STORES in your .env')
 }
 
-if (!process.env.IMAGE_DOMAINS) {
-  throw Error('Please specificy IMAGE_DOMAINS in your .env')
+if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
+  throw Error('Please specificy NEXT_PUBLIC_GRAPHQL_ENDPOINT in your .env')
 }
 
 /** @type {import('next/dist/server/config-shared').NextConfig} */

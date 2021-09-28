@@ -1,4 +1,11 @@
 import { useQuery } from '@apollo/client'
+import { FormDiv } from '@graphcommerce/next-ui'
+import {
+  Controller,
+  useForm,
+  useFormCompose,
+  UseFormComposeOptions,
+} from '@graphcommerce/react-hook-form'
 import {
   Checkbox,
   FormControl,
@@ -8,13 +15,6 @@ import {
   makeStyles,
   Theme,
 } from '@material-ui/core'
-import { FormDiv } from '@graphcommerce/next-ui'
-import {
-  Controller,
-  useForm,
-  useFormCompose,
-  UseFormComposeOptions,
-} from '@graphcommerce/react-hook-form'
 import PageLink from 'next/link'
 import React from 'react'
 import { CheckoutAgreementsDocument } from '../../queries/CheckoutAgreements.gql'

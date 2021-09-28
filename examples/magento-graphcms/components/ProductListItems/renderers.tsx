@@ -1,4 +1,3 @@
-import { makeStyles, Theme, Typography, TypographyProps } from '@material-ui/core'
 import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { ProductListItemBundle } from '@graphcommerce/magento-product-bundle'
 import { ProductListItemConfigurable } from '@graphcommerce/magento-product-configurable'
@@ -7,6 +6,7 @@ import { ProductListItemGrouped } from '@graphcommerce/magento-product-grouped'
 import { ProductListItemSimple } from '@graphcommerce/magento-product-simple'
 import { ProductListItemVirtual } from '@graphcommerce/magento-product-virtual'
 import { ProductReviewChip } from '@graphcommerce/magento-review'
+import { makeStyles, Theme, Typography, TypographyProps } from '@material-ui/core'
 import React from 'react'
 
 const Subtitle = (props: TypographyProps) => (

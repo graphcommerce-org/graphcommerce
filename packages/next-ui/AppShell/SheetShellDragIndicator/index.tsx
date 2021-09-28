@@ -1,7 +1,14 @@
-import { makeStyles } from '@material-ui/core'
-import { SheetDragIndicator, SheetDragIndicatorProps, styles } from '@graphcommerce/framer-sheet'
+import {
+  SheetDragIndicator,
+  SheetDragIndicatorProps,
+  styles as sheetStyles,
+  ClassKeys,
+} from '@graphcommerce/framer-sheet'
+import { makeStyles, StyleRules } from '@material-ui/core'
 import React from 'react'
 import responsiveVal from '../../Styles/responsiveVal'
+
+const styles = sheetStyles as StyleRules<ClassKeys>
 
 const useStyles = makeStyles(
   () => ({

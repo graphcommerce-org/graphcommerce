@@ -1,5 +1,5 @@
 declare module 'next-transpile-modules' {
-  import type { NextConfig } from 'next/dist/next-server/server/config'
+  import type { NextConfig } from 'next/dist/server/config'
 
   export default function (
     modules: string[],

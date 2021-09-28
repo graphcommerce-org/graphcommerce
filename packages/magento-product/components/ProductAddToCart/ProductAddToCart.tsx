@@ -1,7 +1,5 @@
-import { TypedDocumentNode, useQuery } from '@apollo/client'
-import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import { ProductInterface } from '@graphcommerce/graphql'
-import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
+import { ApolloCartErrorAlert, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { Money, MoneyProps } from '@graphcommerce/magento-store'
 import {
   Button,
@@ -12,11 +10,10 @@ import {
   iconCheckmark,
   iconChevronRight,
 } from '@graphcommerce/next-ui'
-import { DeepPartial, UnpackNestedValue, Path } from '@graphcommerce/react-hook-form'
+import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
-import { useFormGqlMutationCart } from '../../hooks/useFormGqlMutationCart'
-import ApolloCartErrorAlert from '../ApolloCartError/ApolloCartErrorAlert'
+import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -39,28 +36,25 @@ const useStyles = makeStyles(
   { name: 'AddToCart' },
 )
 
-export type AddToCartProps = React.ComponentProps<typeof AddToCartButton>
+export type AddToCartProps = React.ComponentProps<typeof ProductAddToCart>
 
-export default function AddToCartButton<Q, V extends { cartId: string; [index: string]: unknown }>(
+export default function ProductAddToCart(
   props: Pick<ProductInterface, 'name'> & {
-    mutation: TypedDocumentNode<Q, V>
-    variables: Omit<V, 'cartId'>
+    variables: Omit<ProductAddToCartMutationVariables, 'cartId'>
     name: string
     price: MoneyProps
     children?: React.ReactNode
   } & Omit<ButtonProps, 'type' | 'name'>,
 ) {
-  const { name, children, mutation, variables, price, ...buttonProps } = props
+  const { name, children, variables, price, ...buttonProps } = props
 
-  const form = useFormGqlMutationCart<Q, V>(mutation, {
-    defaultValues: variables as UnpackNestedValue<DeepPartial<V>>,
+  const form = useFormGqlMutationCart(ProductAddToCartDocument, {
+    defaultValues: variables,
   })
 
   const { handleSubmit, formState, error, muiRegister, required } = form
   const submitHandler = handleSubmit(() => {})
   const classes = useStyles()
-
-  const { data: tokenQuery } = useQuery(CustomerTokenDocument)
 
   return (
     <form onSubmit={submitHandler} noValidate>
@@ -75,7 +69,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
         error={formState.isSubmitted && !!formState.errors.quantity}
         required={required.quantity}
         inputProps={{ min: 1 }}
-        {...muiRegister('quantity' as Path<V>, { required: required.quantity })}
+        {...muiRegister('quantity', { required: required.quantity })}
         helperText={formState.isSubmitted && formState.errors.quantity}
         disabled={formState.isSubmitting}
         size='small'

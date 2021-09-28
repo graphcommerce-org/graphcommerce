@@ -1,4 +1,3 @@
-import { Container, Divider, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { CartSummary, CartTotals } from '@graphcommerce/magento-cart'
 import { PaymentAgreementsForm } from '@graphcommerce/magento-cart-checkout'
@@ -26,6 +25,7 @@ import {
   Title,
 } from '@graphcommerce/next-ui'
 import { ComposedForm } from '@graphcommerce/react-hook-form'
+import { Container, Divider, NoSsr } from '@material-ui/core'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'

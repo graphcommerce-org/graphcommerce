@@ -1,7 +1,7 @@
-import { Typography, useTheme } from '@material-ui/core'
 import RichText from '@graphcommerce/graphcms-ui/RichText'
 import { Image } from '@graphcommerce/image'
 import { RowImageText } from '@graphcommerce/next-ui'
+import { Typography, useTheme } from '@material-ui/core'
 import React from 'react'
 import { ProductFeatureMediaFragment } from './ProductFeatureMedia.gql'
 import { RowProductFeatureFragment } from './RowProductFeature.gql'

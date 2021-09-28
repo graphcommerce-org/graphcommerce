@@ -1,6 +1,4 @@
 import { useQuery } from '@apollo/client'
-import { makeStyles, Theme } from '@material-ui/core'
-import { Skeleton } from '@material-ui/lab'
 import {
   StoreConfigDocument,
   Money,
@@ -8,6 +6,8 @@ import {
   useFindRegion,
 } from '@graphcommerce/magento-store'
 import { SectionContainer, responsiveVal, SvgImage, iconInvoiceRed } from '@graphcommerce/next-ui'
+import { makeStyles, Theme } from '@material-ui/core'
+import { Skeleton } from '@material-ui/lab'
 import clsx from 'clsx'
 import React from 'react'
 import TrackingLink from '../TrackingLink'

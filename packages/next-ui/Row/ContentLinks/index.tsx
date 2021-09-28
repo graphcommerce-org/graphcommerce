@@ -1,5 +1,5 @@
-import { Container, makeStyles, Theme, Typography } from '@material-ui/core'
 import { Scroller, ScrollerProvider } from '@graphcommerce/framer-scroller'
+import { Container, makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 

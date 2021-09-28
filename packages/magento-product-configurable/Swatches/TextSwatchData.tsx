@@ -1,6 +1,6 @@
-import { makeStyles, Theme, Typography } from '@material-ui/core'
 import { Money } from '@graphcommerce/magento-store'
 import { UseStyles } from '@graphcommerce/next-ui'
+import { makeStyles, Theme, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
 import { TextSwatchDataFragment } from './TextSwatchData.gql'

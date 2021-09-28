@@ -32,3 +32,4 @@ dist
 build
 
 *.gql.ts
+*.tsbuildinfo

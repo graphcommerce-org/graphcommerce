@@ -1,4 +1,3 @@
-import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   getProductStaticPaths,
@@ -18,6 +17,7 @@ import {
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, JsonLd, Title } from '@graphcommerce/next-ui'
+import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
@@ -25,8 +25,8 @@ import { Product } from 'schema-dts'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import FullPageShellHeader from '../../../components/AppShell/FullPageShellHeader'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
-import ProductpagesContent from '../../../components/ProductpagesContent'
 import ProductUsps from '../../../components/ProductUsps'
+import ProductpagesContent from '../../../components/ProductpagesContent'
 import RowProductDescription from '../../../components/Row/RowProductDescription'
 import RowProductFeature from '../../../components/Row/RowProductFeature'
 import RowProductFeatureBoxed from '../../../components/Row/RowProductFeatureBoxed'

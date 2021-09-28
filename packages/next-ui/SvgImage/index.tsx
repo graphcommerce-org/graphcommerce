@@ -1,5 +1,5 @@
-import { makeStyles, Theme } from '@material-ui/core'
 import { Image, ImageProps } from '@graphcommerce/image'
+import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { UseStyles } from '../Styles'
 

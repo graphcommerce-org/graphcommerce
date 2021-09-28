@@ -1,5 +1,5 @@
-import { Theme, withStyles } from '@material-ui/core'
 import { responsiveVal } from '@graphcommerce/next-ui'
+import { Theme, withStyles } from '@material-ui/core'
 import RichText from '.'
 
 const RichTextHero = withStyles((theme: Theme) => ({

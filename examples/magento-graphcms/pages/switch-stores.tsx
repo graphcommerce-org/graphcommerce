@@ -1,4 +1,3 @@
-import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import {
   PageMeta,
@@ -15,6 +14,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
+import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import { FullPageShellProps } from '../components/AppShell/FullPageShell'
 import SheetShell, { SheetShellProps } from '../components/AppShell/SheetShell'

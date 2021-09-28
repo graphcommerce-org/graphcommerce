@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client'
-import { TextField } from '@material-ui/core'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import {
@@ -7,6 +6,7 @@ import {
   houseNumberPattern,
   UseFormReturn,
 } from '@graphcommerce/react-hook-form'
+import { TextField } from '@material-ui/core'
 import React, { useMemo } from 'react'
 
 type AddressFieldValues = {

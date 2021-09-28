@@ -1,14 +1,15 @@
-import { makeStyles, Theme } from '@material-ui/core'
 import { usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
 import {
+  ClassKeys,
   Sheet,
   SheetBackdrop,
   SheetContainer,
   SheetPanel,
   SheetProps,
   SnapPoint,
-  styles,
+  styles as sheetStyles,
 } from '@graphcommerce/framer-sheet'
+import { makeStyles, StyleRules, Theme } from '@material-ui/core'
 import { useDomEvent } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useRef } from 'react'
@@ -22,6 +23,8 @@ export type SheetShellBaseProps = {
   children?: React.ReactNode
 } & Pick<SheetProps, 'size' | 'variant'> &
   PageLayoutBaseProps
+
+const styles = sheetStyles as StyleRules<ClassKeys>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

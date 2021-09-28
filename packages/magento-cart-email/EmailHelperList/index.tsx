@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
-import { makeStyles, Theme } from '@material-ui/core'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { UseStyles } from '@graphcommerce/next-ui'
+import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 
 const useStyles = makeStyles(

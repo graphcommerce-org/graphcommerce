@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client'
-import { Container, Typography } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { CheckoutAgreementsDocument } from '@graphcommerce/magento-cart-checkout'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -11,6 +10,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
+import { Container, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'

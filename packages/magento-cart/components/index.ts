@@ -1,6 +1,3 @@
-export * from './AddToCartButton/AddToCartButton'
-export { default as AddToCartButton } from './AddToCartButton/AddToCartButton'
-
 export * from './CartFab/CartFab'
 export { default as CartFab } from './CartFab/CartFab'
 

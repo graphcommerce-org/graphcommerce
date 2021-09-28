@@ -1,4 +1,3 @@
-import { Typography, Box } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument, PageMeta } from '@graphcommerce/magento-store'
 import {
@@ -8,6 +7,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
+import { Typography, Box } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'

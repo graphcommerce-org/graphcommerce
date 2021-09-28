@@ -1,4 +1,3 @@
-import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   ApolloCartErrorAlert,
@@ -24,6 +23,7 @@ import {
   iconChevronRight,
   SvgImage,
 } from '@graphcommerce/next-ui'
+import { Container, NoSsr } from '@material-ui/core'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'

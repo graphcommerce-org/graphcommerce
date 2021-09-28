@@ -1,6 +1,6 @@
-import { makeStyles, Theme } from '@material-ui/core'
 import { Image } from '@graphcommerce/image'
 import { UseStyles } from '@graphcommerce/next-ui/Styles'
+import { makeStyles, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
 import svgLogo from './graphcommerce.svg'

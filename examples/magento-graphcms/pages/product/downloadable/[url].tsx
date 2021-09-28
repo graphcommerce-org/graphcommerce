@@ -1,6 +1,4 @@
-import { Typography } from '@material-ui/core'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { AddToCartButton } from '@graphcommerce/magento-cart'
 import {
   getProductStaticPaths,
   ProductPageMeta,
@@ -8,7 +6,7 @@ import {
   productPageCategory,
   jsonLdProduct,
   jsonLdProductOffer,
-  ProductAddToCartDocument,
+  ProductAddToCart,
   ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
 import {
@@ -18,6 +16,7 @@ import {
 import { ProductReviewChip, jsonLdProductReview } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { JsonLd, GetStaticProps, Title } from '@graphcommerce/next-ui'
+import { Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { Product } from 'schema-dts'
@@ -98,14 +97,13 @@ function ProductDownloadable(props: Props) {
         />
 
         <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
-        <AddToCartButton
-          mutation={ProductAddToCartDocument}
+        <ProductAddToCart
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
           price={product.price_range.minimum_price.regular_price}
         >
           <ProductSidebarDelivery />
-        </AddToCartButton>
+        </ProductAddToCart>
         {typeProduct.downloadable_product_links?.map((option) => (
           <div key={option?.title}>
             {option?.title} + {option?.price}

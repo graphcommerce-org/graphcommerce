@@ -1,4 +1,3 @@
-import { TextField } from '@material-ui/core'
 import {
   Button,
   Form,
@@ -8,6 +7,7 @@ import {
   FormDivider,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { TextField } from '@material-ui/core'
 import React from 'react'
 
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'

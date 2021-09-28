@@ -1,5 +1,3 @@
-import { makeStyles, Theme } from '@material-ui/core'
-import { Skeleton } from '@material-ui/lab'
 import {
   Button,
   FullPageMessage,
@@ -8,6 +6,8 @@ import {
   SvgImage,
   iconHome,
 } from '@graphcommerce/next-ui'
+import { makeStyles, Theme } from '@material-ui/core'
+import { Skeleton } from '@material-ui/lab'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'

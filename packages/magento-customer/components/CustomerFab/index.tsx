@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client'
-import { Fab, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import {
   iconPersonAlt,
   StyledBadge,
@@ -7,6 +6,7 @@ import {
   SvgImageSimple,
   UseStyles,
 } from '@graphcommerce/next-ui'
+import { Fab, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from '../../hooks'

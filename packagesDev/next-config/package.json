@@ -2,13 +2,14 @@
   "name": "@graphcommerce/next-config",
   "version": "2.102.3",
   "type": "commonjs",
-  "main": "js/index.js",
-  "typings": "js/index.d.ts",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "dev": "tsc -W --preserveWatchOutput",
     "generate": "node dist/generate.js",
     "build": "tsc",
-    "prepare": "yarn build"
+    "prepack": "yarn build",
+    "postinstall": "yarn build"
   },
   "dependencies": {
     "next": "^11.1.2",
@@ -16,6 +17,10 @@
     "type-fest": "^2.3.4"
   },
   "files": [
-    "js"
-  ]
+    "dist",
+    "src"
+  ],
+  "devDependencies": {
+    "typescript": "^4.4.3"
+  }
 }
