@@ -13,8 +13,7 @@
   "scripts": {
     "dev": "tsc --preserveWatchOutput --watch --sourceMap --outDir dist",
     "build": "tsc --target es5 --outDir dist",
-    "prepack": "yarn build",
-    "postinstall": "yarn build"
+    "prepack": "yarn build"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [

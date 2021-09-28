@@ -36,8 +36,7 @@
     "build:module": "tsc --target es2017 --outDir dist/module",
     "build:main": "tsc --target es5 --outDir dist/main",
     "build": "yarn build:module && yarn build:main",
-    "prepack": "yarn build",
-    "postinstall": "yarn build"
+    "prepack": "yarn build"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
