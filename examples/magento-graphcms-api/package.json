@@ -1,7 +1,8 @@
 {
   "name": "@graphcommerce/magento-graphcms-api",
-  "homepage": "https://magento-graphcms-api.vercel.app/api/graphql",
+  "homepage": "https://graphcommerce-api.vercel.app/api/graphql",
   "version": "2.104.4",
+  "private": true,
   "sideEffects": false,
   "engines": {
     "node": "14.x"

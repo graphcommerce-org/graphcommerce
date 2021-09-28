@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const withYarn1Workspaces = require('@graphcommerce/next-config').withYarn1Workspaces()
+const withYarn1Workspaces = require('@graphcommerce/next-config').withYarn1Scopes()
 
 if (!process.env.GRAPHCMS_URL || !process.env.GRAPHCMS_BEARER || !process.env.MAGENTO_ENDPOINT) {
   throw Error('Please specificy GRAPHCMS_URL, GRAPHCMS_BEARER and MAGENTO_ENDPOINT in your .env')

@@ -13,6 +13,64 @@ export type WorkspaceInfo = {
   }
 }
 
+type TreeNode = {
+  name: string
+  children?: TreeNode[]
+  hint: null
+  depth: number
+  color?: string
+  shadow?: boolean
+}
+
+export type ListInfo = {
+  type: 'tree'
+  data: {
+    type: 'list'
+    trees: TreeNode[]
+  }
+}
+
+export function withYarn1Scopes(
+  scopes: string[] = ['@graphcommerce'],
+): (config: NextConfig) => NextConfig {
+  const packageStr = readFileSync('package.json', 'utf-8')
+
+  const hashSum = createHash('sha256').update(packageStr, 'utf-8').digest('hex').slice(0, 10)
+
+  const cacheKey = `.next/cache/withYarn1Scopes.${hashSum}.json`
+  let modules: string[]
+  try {
+    modules = JSON.parse(readFileSync(cacheKey, 'utf-8')) as string[]
+  } catch (e) {
+    const infoJson: string = execSync('yarn list --json', { encoding: 'utf-8' })
+
+    const workspaceInfo = JSON.parse(infoJson) as ListInfo
+
+    const list: Set<string> = new Set()
+    const walk = (node: TreeNode) => {
+      let packageName: string
+      if (node.name.includes('/')) {
+        const [scope, nameWithVersion] = node.name.split('/')
+        const [name] = nameWithVersion.split('@')
+        packageName = `${scope}/${name}`
+      } else {
+        const [name] = node.name.split('@')
+        packageName = `${name}`
+      }
+
+      const found = scopes.find((scope) => packageName.startsWith(scope))
+      if (found) list.add(packageName)
+
+      node.children?.forEach(walk)
+    }
+    workspaceInfo.data.trees.map(walk)
+
+    modules = [...list.values()]
+  }
+
+  return withTranspileModules(modules)
+}
+
 export function withYarn1Workspaces(modules: string[] = []): (config: NextConfig) => NextConfig {
   const packageStr = readFileSync('package.json', 'utf-8')
   const packageJson = JSON.parse(packageStr) as PackageJson
@@ -24,7 +82,7 @@ export function withYarn1Workspaces(modules: string[] = []): (config: NextConfig
   try {
     infoJson = readFileSync(cacheKey, 'utf-8')
   } catch (e) {
-    infoJson = execSync('yarn workspaces info --json', { encoding: 'utf-8' })
+    infoJson = execSync('yarn list info --json', { encoding: 'utf-8' })
     try {
       writeFileSync(cacheKey, infoJson)
     } catch (er) {
