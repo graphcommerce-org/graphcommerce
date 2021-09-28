@@ -1,7 +1,7 @@
 {
   "name": "@graphcommerce/magento-graphcms",
   "homepage": "https://magento-graphcms.vercel.app/",
-  "version": "2.119.0",
+  "version": "2.119.1",
   "private": true,
   "sideEffects": false,
   "engines": {
@@ -25,8 +25,8 @@
     "@graphcommerce/googletagmanager": "^0.2.3",
     "@graphcommerce/graphcms-ui": "^2.103.5",
     "@graphcommerce/graphql": "^2.103.3",
-    "@graphcommerce/graphql-codegen-near-operation-file": "^2.103.0",
-    "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "^2.102.0",
+    "@graphcommerce/graphql-codegen-near-operation-file": "^2.103.1",
+    "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "^2.102.1",
     "@graphcommerce/image": "^2.104.4",
     "@graphcommerce/magento-cart": "^3.0.5",
     "@graphcommerce/magento-cart-address": "^2.103.5",
@@ -59,7 +59,7 @@
     "@graphcommerce/magento-review": "^2.105.5",
     "@graphcommerce/magento-search": "^3.0.5",
     "@graphcommerce/magento-store": "^3.0.5",
-    "@graphcommerce/next-config": "^2.104.0",
+    "@graphcommerce/next-config": "^2.104.1",
     "@graphcommerce/next-ui": "^3.0.5",
     "@graphcommerce/prettier-config-pwa": "^3.0.2",
     "@graphcommerce/react-hook-form": "^2.102.3",
