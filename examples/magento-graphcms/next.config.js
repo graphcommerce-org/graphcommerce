@@ -26,10 +26,6 @@ if (
   throw Error('Please specificy NEXT_PUBLIC_LOCALE_STORES in your .env')
 }
 
-if (!process.env.IMAGE_DOMAINS) {
-  throw Error('Please specificy IMAGE_DOMAINS in your .env')
-}
-
 /** @type {import('next/dist/server/config-shared').NextConfig} */
 const nextConfig = {
   webpackStats: process.env.ANALYZE === 'true',
