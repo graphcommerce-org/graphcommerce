@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms-api@2.104.4...@graphcommerce/magento-graphcms-api@2.105.0) (2021-09-28)
+
+
+### Features
+
+* created withYarn1Scopes functionality so we don't rely on actual workspaces ([7e491ca](https://github.com/ho-nl/m2-pwa/commit/7e491ca2276028a8587f6cd88b98ee451755c3d0))
+
+
+
+
+
 ## [2.104.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms-api@2.104.0...@graphcommerce/magento-graphcms-api@2.104.3) (2021-09-27)
 
 
