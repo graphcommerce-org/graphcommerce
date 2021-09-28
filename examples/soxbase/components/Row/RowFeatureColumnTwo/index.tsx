@@ -1,5 +1,7 @@
-import { Button, Container, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Box, Button, Container, makeStyles, Tab, Tabs, Theme, Typography } from '@material-ui/core'
+import { TabContext, TabList, TabPanel } from '@material-ui/lab'
 import { SvgImage, responsiveVal } from '@reachdigital/next-ui'
+import React from 'react'
 import {
   iconLogoFormium,
   iconLogoAdobe,
@@ -22,12 +24,12 @@ const useStyles = makeStyles(
     `,
       gridTemplateColumns: '80%',
       justifyContent: 'center',
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('lg')]: {
         gridTemplateAreas: `
       "copy graphic"
       "services services"
     `,
-        gridTemplateColumns: 'minmax(400px, 700px) minmax(200px, 700px)',
+        gridTemplateColumns: 'minmax(400px, 650px) minmax(200px, 650px)',
         justifyContent: 'space-between',
       },
       columnGap: theme.spacings.md,
@@ -35,15 +37,6 @@ const useStyles = makeStyles(
     },
     copy: {
       gridArea: 'copy',
-    },
-    phone: {
-      width: '100%',
-      aspectRatio: '5/4',
-      background: '#021F34',
-      gridArea: 'graphic',
-      justifySelf: 'end',
-      borderRadius: 10,
-      margin: `0`,
     },
     services: {
       gridArea: 'services',
@@ -65,12 +58,117 @@ const useStyles = makeStyles(
         margin: '0 !important',
       },
     },
+    query: {
+      color: theme.palette.secondary.main,
+      width: '100%',
+      aspectRatio: '5/4',
+      background: '#021F34',
+      gridArea: 'graphic',
+      justifySelf: 'end',
+      borderRadius: 10,
+      margin: `0`,
+    },
+    box: {
+      height: '100%',
+    },
+    panel: {
+      height: 'calc(100% - 48px)',
+      overflowY: 'scroll',
+      overflowX: 'hidden',
+      '&::-webkit-scrollbar': {
+        width: 7,
+        height: 7,
+      },
+      '&::-webkit-scrollbar-track': {
+        boxShadow: 'none',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        backgroundColor: '#ffffff40',
+        borderRadius: '1em',
+        outline: 'none',
+      },
+      '& .hl-products, .hl-items, .hl-url_key, .hl-pages, .hl-title': {
+        color: '#ACE7A1',
+      },
+      '& .hl-query, .hl-data, .hl-3': {
+        // color: '#999999',
+      },
+    },
+    label: {
+      background: 'none',
+      paddingLeft: responsiveVal(2, 8),
+      paddingRight: responsiveVal(2, 8),
+      '& > span:first-of-type': {
+        padding: `${responsiveVal(2, 4)} ${responsiveVal(8, 2)}`,
+        background: '#ffffff20',
+        borderRadius: 6,
+      },
+      '& > span:last-of-type': {
+        display: 'none',
+      },
+    },
+    scrollert: {
+      '& > div > span': {
+        display: 'none',
+      },
+    },
   }),
   { name: 'RowFeatureColumnTwo' },
 )
 
 export default function RowFeatureColumnTwo() {
   const classes = useStyles()
+
+  const [value, setValue] = React.useState('1')
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue)
+  }
+  const query = `query {
+  products(search: "sock", pageSize: 3) {
+    items {
+      url_key
+      }
+  }
+  pages(last: 3) {
+    title
+  }
+}`
+
+  const result = `{
+  "data": {
+    "products": {
+      "items": [
+        {
+          "url_key": "giftcard-bundle-gc-29"
+        },
+        {
+          "url_key": "giftcard-bundle-gc-190"
+        },
+        {
+          "url_key": "giftcard-bundle-gc-444"
+        }
+      ]
+    },
+    "pages": [
+      {
+        "title": "Collaboration"
+      },
+      {
+        "title": "Preview"
+      },
+      {
+        "title": "Tips & tricks"
+      }
+    ]
+  }
+}`
+
+  const styleCode = (snippet) => {
+    const words = ['products', 'items', 'url_key', 'pages', 'title', 'query', 'data', '3']
+    const regexp = new RegExp('(' + words.join('|') + ')', 'ig')
+    return snippet.replace(regexp, '<span class="hl-$&">$&</span>')
+  }
 
   return (
     <Container maxWidth={false} className={classes.root}>
@@ -90,7 +188,28 @@ export default function RowFeatureColumnTwo() {
           </Button>
         </div>
 
-        <div className={classes.phone}></div>
+        <div className={classes.query}>
+          <Box className={classes.box}>
+            <TabContext value={value}>
+              <Box>
+                <TabList
+                  onChange={handleChange}
+                  aria-label='lab API tabs example'
+                  className={classes.scrollert}
+                >
+                  <Tab label='Query' value='1' className={classes.label} />
+                  <Tab label='Result' value='2' className={classes.label} />
+                </TabList>
+              </Box>
+              <TabPanel value='1' className={classes.panel}>
+                <pre dangerouslySetInnerHTML={{ __html: styleCode(query) }}></pre>
+              </TabPanel>
+              <TabPanel value='2' className={classes.panel}>
+                <pre dangerouslySetInnerHTML={{ __html: styleCode(result) }}></pre>
+              </TabPanel>
+            </TabContext>
+          </Box>
+        </div>
 
         <div className={classes.services}>
           <Typography paragraph variant='h5' color='secondary'>
