@@ -16,4 +16,5 @@ export { default as SheetPanel } from './components/SheetPanel'
 export * from './types'
 export * from './animation'
 
+export * from './styles'
 export { default as styles } from './styles'
