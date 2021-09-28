@@ -26,6 +26,10 @@ if (
   throw Error('Please specificy NEXT_PUBLIC_LOCALE_STORES in your .env')
 }
 
+if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
+  throw Error('Please specificy NEXT_PUBLIC_GRAPHQL_ENDPOINT in your .env')
+}
+
 /** @type {import('next/dist/server/config-shared').NextConfig} */
 const nextConfig = {
   webpackStats: process.env.ANALYZE === 'true',
