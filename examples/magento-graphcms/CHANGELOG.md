@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.118.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.117.4...@graphcommerce/magento-graphcms@2.118.0) (2021-09-28)
+
+
+### Bug Fixes
+
+* add to cart button ([8a69454](https://github.com/ho-nl/m2-pwa/commit/8a69454b1372a563020e1ef1b7c50363b8d29717))
+
+
+### Features
+
+* check if NEXT_PUBLIC_GRAPHQL_ENDPOINT exists ([71460bd](https://github.com/ho-nl/m2-pwa/commit/71460bdc2abb524c24fed0a6d5d3651643ef9956))
+
+
+
+
+
 ## [2.117.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.117.3...@graphcommerce/magento-graphcms@2.117.4) (2021-09-27)
 
 

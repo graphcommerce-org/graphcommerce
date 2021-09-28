@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/image",
-  "version": "2.104.3",
+  "version": "2.104.4",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
@@ -16,13 +16,13 @@
     }
   },
   "dependencies": {
-    "@graphcommerce/framer-utils": "^2.103.2"
+    "@graphcommerce/framer-utils": "^2.103.3"
   },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.1",
-    "@graphcommerce/eslint-config-pwa": "^3.0.2",
+    "@graphcommerce/eslint-config-pwa": "^3.0.3",
     "@graphcommerce/prettier-config-pwa": "^3.0.2",
-    "@graphcommerce/typescript-config-pwa": "^3.0.1",
+    "@graphcommerce/typescript-config-pwa": "^3.1.0",
     "@playwright/test": "^1.15.0"
   },
   "peerDependencies": {

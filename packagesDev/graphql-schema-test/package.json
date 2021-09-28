@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/graphql-schema-test",
-  "version": "2.101.2",
+  "version": "2.101.3",
   "private": true,
   "sideEffects": false,
   "engines": {
@@ -18,10 +18,10 @@
   },
   "dependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.1",
-    "@graphcommerce/eslint-config-pwa": "^3.0.2",
-    "@graphcommerce/graphql": "^2.103.2",
+    "@graphcommerce/eslint-config-pwa": "^3.0.3",
+    "@graphcommerce/graphql": "^2.103.3",
     "@graphcommerce/prettier-config-pwa": "^3.0.2",
-    "@graphcommerce/typescript-config-pwa": "^3.0.1",
+    "@graphcommerce/typescript-config-pwa": "^3.1.0",
     "@graphql-typed-document-node/core": "^3.1.0"
   }
 }

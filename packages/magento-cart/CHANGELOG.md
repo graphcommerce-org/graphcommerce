@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.0.4...@graphcommerce/magento-cart@3.0.5) (2021-09-28)
+
+
+### Bug Fixes
+
+* add to cart button ([8a69454](https://github.com/ho-nl/m2-pwa/commit/8a69454b1372a563020e1ef1b7c50363b8d29717))
+
+
+
+
+
 ## [3.0.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.0.0...@graphcommerce/magento-cart@3.0.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/magento-cart

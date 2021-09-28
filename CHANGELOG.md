@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.123.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.122.2...@graphcommerce/graphcommerce@2.123.0) (2021-09-28)
+
+
+### Bug Fixes
+
+* add to cart button ([8a69454](https://github.com/ho-nl/m2-pwa/commit/8a69454b1372a563020e1ef1b7c50363b8d29717))
+* eslint not working ([68c76b3](https://github.com/ho-nl/m2-pwa/commit/68c76b3f4bc1f7dbf490b331e72f0d91afc634bf))
+* withYarn1Workspaces is not a function ([a095bc9](https://github.com/ho-nl/m2-pwa/commit/a095bc9f0011fbe9180d0e1718f1b41e89a5f6d9))
+
+
+### Features
+
+* add postinstall commands to run properly on deploy ([d512ee3](https://github.com/ho-nl/m2-pwa/commit/d512ee3ba5c3a9573651ec5333595fe2f1aa141c))
+* add typescript incremental builds ([948a9d9](https://github.com/ho-nl/m2-pwa/commit/948a9d92092aa0fa4466ca420cf32e59ce325828))
+* check if NEXT_PUBLIC_GRAPHQL_ENDPOINT exists ([71460bd](https://github.com/ho-nl/m2-pwa/commit/71460bdc2abb524c24fed0a6d5d3651643ef9956))
+
+
+
+
+
 ## [2.122.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.122.1...@graphcommerce/graphcommerce@2.122.2) (2021-09-27)
 
 
