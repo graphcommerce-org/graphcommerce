@@ -126,7 +126,7 @@ const useStyles = makeStyles(
 export default function RowListColumnTwo() {
   const classes = useStyles()
   const theme = useTheme()
-  const layer1 = {
+  const screenshot = {
     url: '/screenshot.png',
     width: 3248,
     height: 2100,
@@ -153,7 +153,7 @@ export default function RowListColumnTwo() {
         </div>
 
         <div className={classes.img}>
-          <Asset asset={layer1} sizes={{ 0: '50vw', [theme.breakpoints.values.md]: '72vw' }} />
+          <Asset asset={screenshot} sizes={{ 0: '50vw', [theme.breakpoints.values.md]: '72vw' }} />
         </div>
 
         <ul className={classes.grid}>
