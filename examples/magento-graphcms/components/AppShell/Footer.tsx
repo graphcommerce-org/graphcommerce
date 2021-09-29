@@ -1,10 +1,9 @@
 import { StoreSwitcherButton } from '@graphcommerce/magento-store'
-import { SvgImageSimple, UseStyles } from '@graphcommerce/next-ui'
+import { Button, SvgImageSimple, UseStyles } from '@graphcommerce/next-ui'
 import { Container, IconButton, Link, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
-import Button from '../PageLink/Button'
 import { FooterQueryFragment } from './FooterQueryFragment.gql'
 
 const useStyles = makeStyles(
@@ -87,13 +86,11 @@ export default function Footer(props: FooterProps) {
         ))}
       </div>
       <StoreSwitcherButton />
-      <Button
-        url='/service'
-        title='Customer Service'
-        variant='pill'
-        color='inherit'
-        className={classes.support}
-      />
+      <PageLink href='/service' passHref>
+        <Button variant='pill' color='inherit' className={classes.support}>
+          Customer Service
+        </Button>
+      </PageLink>
       <div className={classes.copyright}>
         <span>{footer?.copyright}</span>
         {footer?.legalLinks?.map((link) => (

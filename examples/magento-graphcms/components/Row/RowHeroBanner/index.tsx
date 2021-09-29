@@ -1,7 +1,7 @@
 import RichTextHero from '@graphcommerce/graphcms-ui/RichText/RichTextHero'
-import { HeroBanner } from '@graphcommerce/next-ui'
+import { Button, HeroBanner } from '@graphcommerce/next-ui'
+import PageLink from 'next/link'
 import React from 'react'
-import Button from '../../PageLink/Button'
 import { RowHeroBannerFragment } from './RowHeroBanner.gql'
 
 export default function RowHeroBanner(props: RowHeroBannerFragment) {
@@ -10,7 +10,11 @@ export default function RowHeroBanner(props: RowHeroBannerFragment) {
   return (
     <HeroBanner
       pageLinks={pageLinks.map((pageLink) => (
-        <Button key={pageLink.url} {...pageLink} variant='outlined' size='large' color='inherit' />
+        <PageLink key={pageLink.url} href={pageLink.url} passHref>
+          <Button variant='outlined' size='large' color='inherit'>
+            {pageLink.title}
+          </Button>
+        </PageLink>
       ))}
       videoSrc={asset.url}
     >
