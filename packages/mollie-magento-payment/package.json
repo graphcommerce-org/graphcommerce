@@ -1,5 +1,5 @@
 {
-  "name": "@graphcommerce/magento-payment-mollie",
+  "name": "@graphcommerce/mollie-magento-payment",
   "version": "2.103.5",
   "sideEffects": false,
   "engines": {
