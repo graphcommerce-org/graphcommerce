@@ -1,6 +1,9 @@
-import { Button, Container, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Button, Container, makeStyles, Theme, Typography, useTheme } from '@material-ui/core'
 import { SvgImage, responsiveVal } from '@reachdigital/next-ui'
+import { useEffect, useRef, useState } from 'react'
+import Asset from '../../Asset'
 import { iconUspCheck } from '../../Theme/icons/icons'
+import Timer from './Timer'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -17,6 +20,7 @@ const useStyles = makeStyles(
     `,
       gridTemplateColumns: '80%',
       justifyContent: 'center',
+      rowGap: responsiveVal(40, 80),
       [theme.breakpoints.up('md')]: {
         gridTemplateAreas: `
       "copy graphic"
@@ -29,7 +33,6 @@ const useStyles = makeStyles(
     },
     copy: {
       gridArea: 'copy',
-      margin: `0 0 ${responsiveVal(30, 70)} 0`,
     },
     grid: {
       display: 'grid',
@@ -48,16 +51,15 @@ const useStyles = makeStyles(
       fontSize: responsiveVal(14, 20),
     },
     phone: {
+      position: 'relative',
       margin: '0 auto',
       width: '50%',
       [theme.breakpoints.up('md')]: {
         width: '100%',
       },
-      aspectRatio: '450/900',
-      border: '1px solid #bbb',
+      aspectRatio: '436/883',
       gridArea: 'graphic',
       justifySelf: 'end',
-      borderRadius: 60,
     },
     overline: {
       backgroundImage: 'none',
@@ -66,12 +68,24 @@ const useStyles = makeStyles(
       '-webkit-text-fill-color': 'initial',
       '-moz-text-fill-color': 'initial',
     },
+    timers: {
+      display: 'grid',
+    },
   }),
   { name: 'RowFeatureGridColumnTwo' },
 )
 
 export default function RowFeatureGridColumnTwo() {
   const classes = useStyles()
+  const [reset, setReset] = useState(0)
+  const theme = useTheme()
+
+  const phone = {
+    url: '/phone.svg',
+    width: 436,
+    height: 883,
+    mimeType: 'image/jpeg',
+  }
 
   return (
     <Container maxWidth={false} className={classes.root}>
@@ -89,7 +103,26 @@ export default function RowFeatureGridColumnTwo() {
           </Typography>
         </div>
 
-        <div className={classes.phone}></div>
+        <div className={classes.phone}>
+          <Asset asset={phone} sizes={{ 0: '50vw', [theme.breakpoints.values.md]: '72vw' }} />
+          <div className={classes.timers}>
+            <Typography variant='overline' className={classes.overline}>
+              Website
+            </Typography>
+            <Typography variant='overline' className={classes.overline}>
+              PWA
+            </Typography>
+            <Timer maxSeconds={1} maxMilliseconds={19} reset={reset} />
+            <Timer maxSeconds={2} maxMilliseconds={34} reset={reset} />
+            <button
+              onClick={() => {
+                setReset(1)
+              }}
+            >
+              Play
+            </button>
+          </div>
+        </div>
 
         <div className={classes.grid}>
           <div>
