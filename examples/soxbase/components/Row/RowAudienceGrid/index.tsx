@@ -97,7 +97,7 @@ export default function RowAudienceGrid() {
               </Typography>
             </div>
             <Typography variant='h4'>Consolidate your resources</Typography>
-            <Typography variant='body1'>
+            <Typography variant='body1' color='textSecondary'>
               Let users install your shop on their home screen or taskbar. GraphCommerce® offers a
               reliable browsing experience even if the data signal is flaky.
             </Typography>
@@ -109,7 +109,7 @@ export default function RowAudienceGrid() {
               </Typography>
             </div>
             <Typography variant='h4'>Serverless hosting architecture</Typography>
-            <Typography variant='body1'>
+            <Typography variant='body1' color='textSecondary'>
               The GraphCommerce® PWA is lightweight and doesn’t need much in terms of hosting. We
               deploy it on top of (zero config) serverless hosting platform Vercel.
             </Typography>
@@ -121,7 +121,7 @@ export default function RowAudienceGrid() {
               </Typography>
             </div>
             <Typography variant='h4'>API first</Typography>
-            <Typography variant='body1'>
+            <Typography variant='body1' color='textSecondary'>
               GraphCommerce allows for API-first development. Every frontend feature can be built
               with mockup API data and therefore frontend developers can work independently from
               their backend colleagues.
@@ -134,7 +134,7 @@ export default function RowAudienceGrid() {
               </Typography>
             </div>
             <Typography variant='h4'>Every feature a testable URL</Typography>
-            <Typography variant='body1'>
+            <Typography variant='body1' color='textSecondary'>
               Every git branch is deployed on a unique URL. You can preview and test features while
               building. Builds are killed when merging to the master branch.
             </Typography>
@@ -146,7 +146,7 @@ export default function RowAudienceGrid() {
               </Typography>
             </div>
             <Typography variant='h4'>Designers, be free</Typography>
-            <Typography variant='body1'>
+            <Typography variant='body1' color='textSecondary'>
               E-commerce has a way of forcing very recognizable design choices. With GraphCommerce®,
               designers have complete freedom in creating the ultimate user experience.
             </Typography>
@@ -158,7 +158,7 @@ export default function RowAudienceGrid() {
               </Typography>
             </div>
             <Typography variant='h4'>No vendor lock-in</Typography>
-            <Typography variant='body1'>
+            <Typography variant='body1' color='textSecondary'>
               GraphCommerce® is built on open-source industry standards. All the commercial backend
               services that have been implemented offer a free plan to set up shop with ease.
             </Typography>

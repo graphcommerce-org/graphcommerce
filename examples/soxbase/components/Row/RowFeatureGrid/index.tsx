@@ -59,7 +59,7 @@ export default function RowFeatureGrid() {
           <div>
             <SvgImage src={iconContentPages} alt='box' loading='eager' size='extralarge' />
             <Typography variant='h4'>Rich content pages</Typography>
-            <Typography variant='body1'>
+            <Typography variant='body1' color='textSecondary'>
               Tell your brand’s story with rich content product pages and category landing pages.
               You can easily put pages together using content components.
             </Typography>
@@ -67,7 +67,7 @@ export default function RowFeatureGrid() {
           <div>
             <SvgImage src={iconAppFeatures} alt='box' loading='eager' size='extralarge' />
             <Typography variant='h4'>App features</Typography>
-            <Typography variant='body1'>
+            <Typography variant='body1' color='textSecondary'>
               Let users install your shop on their home screen or taskbar. GraphCommerce® offers a
               reliable browsing experience even if the data signal is flaky.
             </Typography>
@@ -75,7 +75,7 @@ export default function RowFeatureGrid() {
           <div>
             <SvgImage src={iconPwa} alt='box' loading='eager' size='extralarge' />
             <Typography variant='h4'>Progressive Web App</Typography>
-            <Typography variant='body1'>
+            <Typography variant='body1' color='textSecondary'>
               Be amongst the first to qualify as a PWA, Google’s newly set (ranking) standard for
               bringing a native app-like experience to the web.
             </Typography>
@@ -83,7 +83,7 @@ export default function RowFeatureGrid() {
           <div>
             <SvgImage src={iconOptimizedPerformance} alt='box' loading='eager' size='extralarge' />
             <Typography variant='h4'>Optimized performance</Typography>
-            <Typography variant='body1'>
+            <Typography variant='body1' color='textSecondary'>
               GraphCommerce® helps you score green Core Web Vitals with little to no effort, thanks
               to built-in features like static generation, bundled JS, viewport URL prefetching and
               more.
@@ -92,7 +92,7 @@ export default function RowFeatureGrid() {
           <div>
             <SvgImage src={iconSeo} alt='box' loading='eager' size='extralarge' />
             <Typography variant='h4'>Search engine friendly</Typography>
-            <Typography variant='body1'>
+            <Typography variant='body1' color='textSecondary'>
               Every shop built with GraphCommerce® can be effortlessly optimized for SEO, featuring
               best practices for canonicals, schema.org, meta data, sitemap.xml and more.
             </Typography>
@@ -100,7 +100,7 @@ export default function RowFeatureGrid() {
           <div>
             <SvgImage src={iconJumpstart} alt='box' loading='eager' size='extralarge' />
             <Typography variant='h4'>Jumpstart every project</Typography>
-            <Typography variant='body1'>
+            <Typography variant='body1' color='textSecondary'>
               Start every project with a framework that feels like an app. You build on top of
               production-quality defaults for drawer interfaces, floatable buttons, on-page mega
               menus and more.
