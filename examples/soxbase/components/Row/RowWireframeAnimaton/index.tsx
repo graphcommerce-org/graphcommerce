@@ -40,6 +40,7 @@ const useStyles = makeStyles(
       marginBottom: responsiveVal(20, 60),
       'transform-style': 'preserve-3d',
       '& picture': {
+        'transform-style': 'preserve-3d',
         position: 'relative',
         '& img': {
           'transform-style': 'preserve-3d',
