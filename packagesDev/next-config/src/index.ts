@@ -66,6 +66,7 @@ export function withYarn1Scopes(
     workspaceInfo.data.trees.map(walk)
 
     modules = [...list.values()]
+    writeFileSync(cacheKey, JSON.stringify(modules))
   }
 
   return withTranspileModules(modules)
