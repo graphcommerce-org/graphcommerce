@@ -3,7 +3,7 @@ import { useChipMenuStyles, SvgImage, iconCloseCircle } from '@graphcommerce/nex
 import { Chip, ChipProps } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
-import { useProductListLinkPush } from '../../hooks/useProductListLinkPush'
+import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import ProductListLink from '../ProductListLink/ProductListLink'
 import { FilterIn } from './FilterEqualType'
@@ -19,7 +19,7 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const { params } = useProductListParamsContext()
   const classes = useChipMenuStyles(props)
   const currentFilter = params.filters[attribute_code]
-  const pushRoute = useProductListLinkPush({ scroll: false })
+  const replaceRoute = useProductListLinkReplace({ scroll: false })
 
   if (!options?.[0]) return null
 
@@ -34,7 +34,7 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
       filters={{ ...params.filters, [attribute_code]: filter }}
       currentPage={undefined}
       noLink
-      link={{ scroll: false }}
+      link={{ scroll: false, replace: true }}
     >
       <Chip
         variant='outlined'
@@ -47,7 +47,7 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
                 delete linkParams.currentPage
                 delete linkParams.filters[attribute_code]
 
-                pushRoute(linkParams)
+                replaceRoute(linkParams)
               }
             : undefined
         }

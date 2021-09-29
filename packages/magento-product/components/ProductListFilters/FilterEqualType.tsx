@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core'
 import React from 'react'
 import { SetRequired } from 'type-fest'
-import { useProductListLinkPush } from '../../hooks/useProductListLinkPush'
+import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import ProductListLink from '../ProductListLink/ProductListLink'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
@@ -86,7 +86,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props
   const { params } = useProductListParamsContext()
   const classes = useFilterEqualStyles()
-  const pushRoute = useProductListLinkPush({ scroll: false })
+  const replaceRoute = useProductListLinkReplace({ scroll: false })
 
   const currentFilter: FilterEqualTypeInput = cloneDeep(params.filters[attribute_code]) ?? {
     in: [],
@@ -101,7 +101,8 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
     const linkParams = cloneDeep(params)
     delete linkParams.filters[attribute_code]
     delete linkParams.currentPage
-    pushRoute(linkParams)
+
+    replaceRoute(linkParams)
   }
 
   return (
@@ -138,6 +139,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
               currentPage={undefined}
               key={option?.value}
               color='inherit'
+              link={{ replace: true }}
             >
               <ListItem dense className={classes.listItem}>
                 <div className={classes.listItemInnerContainer}>
