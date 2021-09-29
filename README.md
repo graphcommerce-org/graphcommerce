@@ -1,4 +1,4 @@
-# Reach Digital
+# GraphCommerce
 
 Stack:
 

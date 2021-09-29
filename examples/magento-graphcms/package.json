@@ -51,7 +51,7 @@
     "@graphcommerce/magento-newsletter": "^0.2.5",
     "@graphcommerce/magento-payment-braintree": "^2.104.5",
     "@graphcommerce/magento-payment-included": "^2.103.5",
-    "@graphcommerce/magento-payment-mollie": "^2.103.5",
+    "@graphcommerce/mollie-magento-payment": "^2.103.5",
     "@graphcommerce/magento-product": "^3.0.5",
     "@graphcommerce/magento-product-bundle": "^3.0.5",
     "@graphcommerce/magento-product-configurable": "^3.0.5",
