@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.119.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.1...@graphcommerce/magento-graphcms@2.119.2) (2021-09-29)
+
+
+### Bug Fixes
+
+* when deploying from inside the monorepo we need to build the other packages as well ([93b2491](https://github.com/ho-nl/m2-pwa/commit/93b2491d8b17bdd03962db532def4a91b35019f6))
+
+
+
+
+
 # [2.119.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.118.0...@graphcommerce/magento-graphcms@2.119.0) (2021-09-28)
 
 

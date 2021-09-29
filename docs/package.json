@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/pwa-docs",
-  "version": "2.103.5",
+  "version": "2.103.6",
   "private": true,
   "main": "index.js",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "@playwright/test": "^1.15.0"
   },
   "dependencies": {
-    "@graphcommerce/next-config": "^2.104.1",
+    "@graphcommerce/next-config": "^2.104.2",
     "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

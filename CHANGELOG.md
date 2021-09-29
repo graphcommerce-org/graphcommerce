@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.124.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.124.1...@graphcommerce/graphcommerce@2.124.2) (2021-09-29)
+
+
+### Bug Fixes
+
+* cache dependencylist ([257da86](https://github.com/ho-nl/m2-pwa/commit/257da860c22a7134896e99e2fcf9f67c0ce99363))
+* when deploying from inside the monorepo we need to build the other packages as well ([93b2491](https://github.com/ho-nl/m2-pwa/commit/93b2491d8b17bdd03962db532def4a91b35019f6))
+
+
+
+
+
 ## [2.124.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.124.0...@graphcommerce/graphcommerce@2.124.1) (2021-09-28)
 
 
