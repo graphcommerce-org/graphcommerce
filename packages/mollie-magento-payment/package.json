@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/mollie-magento-payment",
-  "version": "2.103.5",
+  "version": "2.104.0",
   "sideEffects": false,
   "engines": {
     "node": "14.x"

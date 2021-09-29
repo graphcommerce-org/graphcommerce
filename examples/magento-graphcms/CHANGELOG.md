@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.119.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.2...@graphcommerce/magento-graphcms@2.119.3) (2021-09-29)
+
+
+### Bug Fixes
+
+* make sure the mollie module doesn't start with magento- to prevent building from node moduels ([ed406b9](https://github.com/ho-nl/m2-pwa/commit/ed406b9f56bd8cb5df0463cc50e4b1e9a728d4ca))
+
+
+
+
+
 ## [2.119.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.1...@graphcommerce/magento-graphcms@2.119.2) (2021-09-29)
 
 

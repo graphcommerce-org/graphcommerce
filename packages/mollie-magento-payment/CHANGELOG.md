@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.104.0 (2021-09-29)
+
+
+### Bug Fixes
+
+* make sure mollie only gets build optionally ([e5e2347](https://github.com/ho-nl/m2-pwa/commit/e5e23475e170dc2fc0c13103dfb8fbdb9009715f))
+* make sure the mollie module doesn't start with magento- to prevent building from node moduels ([ed406b9](https://github.com/ho-nl/m2-pwa/commit/ed406b9f56bd8cb5df0463cc50e4b1e9a728d4ca))
+
+
+### Features
+
+* renamed all packages to use [@graphcommerce](https://github.com/graphcommerce) instead of [@reachdigital](https://github.com/reachdigital) ([491e4ce](https://github.com/ho-nl/m2-pwa/commit/491e4cec9a2686472dac36b79f999257c0811ffe))
+
+
+
+
+
 ## [2.103.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-payment-mollie@2.103.0...@graphcommerce/magento-payment-mollie@2.103.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/magento-payment-mollie
