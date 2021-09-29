@@ -14,8 +14,7 @@
     "build:next-config": "yarn workspace @graphcommerce/next-config build",
     "build:near-operation": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file build",
     "build:relay-optimizer": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin build",
-    "magento-graphcms-api": "yarn workspace @graphcommerce/magento-graphcms-api build && yarn start:magento-graphcms-api",
-    "build": "yarn codegen && next build && yarn next-sitemap",
+    "build": "yarn build:next-config && yarn build:near-operation && yarn build:relay-optimizer && yarn codegen && next build && yarn next-sitemap",
     "start": "next start",
     "postinstall": "patch-package && patch-typed-document-node"
   },
