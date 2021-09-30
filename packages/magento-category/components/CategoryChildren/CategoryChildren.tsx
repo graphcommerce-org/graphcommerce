@@ -16,6 +16,7 @@ const useStyles = makeStyles(
     scroller: {
       display: 'grid',
       gridAutoFlow: 'column',
+      overflow: 'hidden',
     },
     link: {
       whiteSpace: 'nowrap',
