@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.124.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.124.4...@graphcommerce/graphcommerce@2.124.5) (2021-09-30)
+
+
+### Bug Fixes
+
+* braintree typescript warning ([8bb6a8a](https://github.com/ho-nl/m2-pwa/commit/8bb6a8a7bdd4d90cb1486d88263971143a571fa1))
+
+
+
+
+
 ## [2.124.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.124.2...@graphcommerce/graphcommerce@2.124.3) (2021-09-29)
 
 
