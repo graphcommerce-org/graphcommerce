@@ -3,7 +3,7 @@ import { FilterRangeTypeInput } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps } from '@graphcommerce/next-ui'
 import { makeStyles, Mark, Slider, Theme } from '@material-ui/core'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
@@ -79,6 +79,10 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
   const [value, setValue] = React.useState<[number, number]>(
     paramValues ? [Number(paramValues.from), Number(paramValues.to)] : [min, max],
   )
+
+  useEffect(() => {
+    if (!paramValues) setValue([min, max])
+  }, [max, min, paramValues])
 
   const priceFilterUrl = cloneDeep(params)
   delete priceFilterUrl.currentPage
@@ -156,8 +160,6 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
           }}
           onChangeCommitted={(e, newValue) => {
             if (newValue[0] > min || newValue[1] < max) {
-              // TODO: replaceRoute
-
               replaceRoute({ ...priceFilterUrl })
             } else {
               resetFilter()
