@@ -1,7 +1,7 @@
 {
   "name": "@graphcommerce/magento-graphcms-api",
   "homepage": "https://graphcommerce-api.vercel.app/api/graphql",
-  "version": "2.105.2",
+  "version": "2.105.3",
   "private": true,
   "sideEffects": false,
   "engines": {
@@ -15,7 +15,7 @@
     "start-local": "next start -p 3001"
   },
   "dependencies": {
-    "@graphcommerce/graphql-mesh": "^3.0.3",
+    "@graphcommerce/graphql-mesh": "^3.0.4",
     "@graphcommerce/next-config": "^2.104.2",
     "@graphql-mesh/cli": "^0.40.0",
     "@graphql-mesh/config": "^0.23.5",
@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.1",
-    "@graphcommerce/eslint-config-pwa": "^3.0.3",
+    "@graphcommerce/eslint-config-pwa": "^3.0.4",
     "@graphcommerce/prettier-config-pwa": "^3.0.2",
     "@graphcommerce/typescript-config-pwa": "^3.1.0",
     "@playwright/test": "^1.15.0",

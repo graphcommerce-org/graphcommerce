@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/next-ui",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -10,12 +10,12 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
-    "@graphcommerce/framer-next-pages": "^2.106.4",
-    "@graphcommerce/framer-scroller": "^0.2.4",
-    "@graphcommerce/framer-sheet": "^2.105.3",
-    "@graphcommerce/framer-utils": "^2.103.3",
-    "@graphcommerce/graphql": "^2.103.3",
-    "@graphcommerce/image": "^2.104.4",
+    "@graphcommerce/framer-next-pages": "^2.106.5",
+    "@graphcommerce/framer-scroller": "^0.2.5",
+    "@graphcommerce/framer-sheet": "^2.105.4",
+    "@graphcommerce/framer-utils": "^2.103.4",
+    "@graphcommerce/graphql": "^2.103.4",
+    "@graphcommerce/image": "^2.104.5",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.1",
-    "@graphcommerce/eslint-config-pwa": "^3.0.3",
+    "@graphcommerce/eslint-config-pwa": "^3.0.4",
     "@graphcommerce/prettier-config-pwa": "^3.0.2",
     "@graphcommerce/typescript-config-pwa": "^3.1.0",
     "@playwright/test": "^1.15.0",

@@ -1,12 +1,12 @@
 {
   "name": "@graphcommerce/pwa-docs",
-  "version": "2.103.6",
+  "version": "2.103.7",
   "private": true,
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.1",
-    "@graphcommerce/eslint-config-pwa": "^3.0.3",
+    "@graphcommerce/eslint-config-pwa": "^3.0.4",
     "@graphcommerce/prettier-config-pwa": "^3.0.2",
     "@graphcommerce/typescript-config-pwa": "^3.1.0",
     "@playwright/test": "^1.15.0"
