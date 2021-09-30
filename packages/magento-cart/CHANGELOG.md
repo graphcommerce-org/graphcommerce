@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.0.8...@graphcommerce/magento-cart@3.0.9) (2021-09-30)
+
+
+### Bug Fixes
+
+* dependency cycle issues causes release version issues ([f9d82e3](https://github.com/ho-nl/m2-pwa/commit/f9d82e3bf152acaf90f9d5328bc3d020ca1c53d8))
+
+
+
+
+
 ## [3.0.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.0.4...@graphcommerce/magento-cart@3.0.5) (2021-09-28)
 
 

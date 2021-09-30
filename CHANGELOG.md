@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.124.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.124.9...@graphcommerce/graphcommerce@2.124.10) (2021-09-30)
+
+
+### Bug Fixes
+
+* dependency cycle issues causes release version issues ([f9d82e3](https://github.com/ho-nl/m2-pwa/commit/f9d82e3bf152acaf90f9d5328bc3d020ca1c53d8))
+
+
+
+
+
 ## [2.124.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.124.7...@graphcommerce/graphcommerce@2.124.8) (2021-09-30)
 
 
