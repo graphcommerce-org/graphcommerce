@@ -73,7 +73,7 @@
     "@babel/core": "^7.15.5",
     "@graphql-typed-document-node/patch-cli": "^3.0.8",
     "@types/node": "^16.10.2",
-    "@types/react": "^17.0.25",
+    "@types/react": "^17.0.26",
     "@types/sharp": "^0.29.2",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",

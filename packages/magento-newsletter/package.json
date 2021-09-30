@@ -20,7 +20,7 @@
     "@playwright/test": "^1.13.1"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.21",
+    "@apollo/client": "^3.4.15",
     "@graphcommerce/graphql": "^2.103.4",
     "@graphcommerce/magento-cart": "^3.0.9",
     "@graphcommerce/magento-customer": "^3.0.9",
