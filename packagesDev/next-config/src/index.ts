@@ -1,6 +1,6 @@
 import { execSync } from 'child_process'
 import { createHash } from 'crypto'
-import { readFileSync, writeFileSync } from 'fs'
+import { readFileSync, writeFileSync, mkdirSync } from 'fs'
 import withTranspileModules from 'next-transpile-modules'
 import { NextConfig } from 'next/dist/server/config-shared'
 import { PackageJson } from 'type-fest'
@@ -66,6 +66,8 @@ export function withYarn1Scopes(
     workspaceInfo.data.trees.map(walk)
 
     modules = [...list.values()]
+
+    mkdirSync('.next/cache/', { recursive: true })
     writeFileSync(cacheKey, JSON.stringify(modules))
   }
 
@@ -85,6 +87,7 @@ export function withYarn1Workspaces(modules: string[] = []): (config: NextConfig
   } catch (e) {
     infoJson = execSync('yarn list info --json', { encoding: 'utf-8' })
     try {
+      mkdirSync('.next/cache/', { recursive: true })
       writeFileSync(cacheKey, infoJson)
     } catch (er) {
       // do nothing
