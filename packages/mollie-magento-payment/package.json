@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/mollie-magento-payment",
-  "version": "2.104.1",
+  "version": "2.104.2",
   "sideEffects": false,
   "engines": {
     "node": "14.x"
@@ -26,9 +26,9 @@
     "@apollo/client": "^3.3.21",
     "@graphcommerce/graphql": "^2.103.4",
     "@graphcommerce/image": "^2.104.5",
-    "@graphcommerce/magento-cart": "^3.0.6",
-    "@graphcommerce/magento-cart-payment-method": "^2.105.6",
-    "@graphcommerce/magento-store": "^3.0.6",
+    "@graphcommerce/magento-cart": "^3.0.7",
+    "@graphcommerce/magento-cart-payment-method": "^2.105.7",
+    "@graphcommerce/magento-store": "^3.0.7",
     "@graphcommerce/next-ui": "^3.0.6",
     "@graphcommerce/react-hook-form": "^2.102.4",
     "@graphql-typed-document-node/core": "^3.1.0",

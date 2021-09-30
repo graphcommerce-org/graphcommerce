@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-store",
-  "version": "3.0.6",
+  "version": "3.0.7",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [

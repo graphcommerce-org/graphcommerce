@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.0.6...@graphcommerce/magento-product@3.0.7) (2021-09-30)
+
+
+### Bug Fixes
+
+* with the latest version of graphql codegen the preresovled types inlined Maybe, make sure we reflect that ([7cb27b0](https://github.com/ho-nl/m2-pwa/commit/7cb27b04cbe31bee5ef4000d408f08bc9ac505c5))
+
+
+
+
+
 ## [3.0.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.0.4...@graphcommerce/magento-product@3.0.5) (2021-09-28)
 
 
