@@ -1,12 +1,11 @@
 import { useQuery } from '@apollo/client'
-import { Maybe } from '@graphcommerce/graphql'
 import { OrderCardItemImageFragment } from './OrderCardItemImage.gql'
 import { OrderCardItemImagesDocument } from './OrderCardItemImages.gql'
 import { UseOrderCardItemImagesFragment } from './UseOrderCardItemImages.gql'
 
 type UseOrderCardItemImagesProps = UseOrderCardItemImagesFragment | null
 
-export type UseOrderCardItemImages = Record<string, Maybe<OrderCardItemImageFragment>>
+export type UseOrderCardItemImages = Record<string, OrderCardItemImageFragment | null | undefined>
 
 export default function useOrderCardItemImages(
   orders?: UseOrderCardItemImagesProps,

@@ -23,7 +23,10 @@ export const useStyles = makeStyles(
 )
 
 export type ProductItemsGridProps = {
-  items?: Maybe<Array<Maybe<ProductListItemFragment & ProductListItemProps>>>
+  items?:
+    | Array<(ProductListItemFragment & ProductListItemProps) | null | undefined>
+    | null
+    | undefined
   renderers: ProductListItemRenderer
   loadingEager?: number
   size?: 'normal' | 'small'
