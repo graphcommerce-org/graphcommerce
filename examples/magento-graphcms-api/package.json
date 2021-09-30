@@ -1,7 +1,7 @@
 {
   "name": "@graphcommerce/magento-graphcms-api",
   "homepage": "https://graphcommerce-api.vercel.app/api/graphql",
-  "version": "2.105.3",
+  "version": "2.105.4",
   "private": true,
   "sideEffects": false,
   "engines": {
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@graphcommerce/graphql-mesh": "^3.0.4",
-    "@graphcommerce/next-config": "^2.104.2",
+    "@graphcommerce/next-config": "^2.104.3",
     "@graphql-mesh/cli": "^0.40.0",
     "@graphql-mesh/config": "^0.23.5",
     "@graphql-mesh/graphql": "^0.18.13",
