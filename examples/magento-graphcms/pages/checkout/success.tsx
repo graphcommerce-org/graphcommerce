@@ -1,6 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { CartItemSummary, CartSummary } from '@graphcommerce/magento-cart'
-import { InlineAccount } from '@graphcommerce/magento-customer'
+import { CartItemSummary, CartSummary, InlineAccount } from '@graphcommerce/magento-cart'
 import { SignupNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {

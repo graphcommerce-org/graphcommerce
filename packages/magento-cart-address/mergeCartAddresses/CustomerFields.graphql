@@ -1,7 +1,0 @@
-fragment CustomerFields on Customer {
-  prefix
-  firstname
-  middlename
-  lastname
-  suffix
-}

@@ -1,0 +1,3 @@
+# Magento cart address
+
+!deprecated
