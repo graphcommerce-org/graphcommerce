@@ -92,6 +92,8 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
     in: [],
   }
 
+  const anyFilterActive = Object.keys(params?.filters ?? {}).length >= 1
+
   const currentLabels =
     options
       ?.filter((option) => option && currentFilter.in?.includes(option.value))
@@ -139,7 +141,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
               currentPage={undefined}
               key={option?.value}
               color='inherit'
-              link={{ replace: true }}
+              link={{ replace: anyFilterActive }}
             >
               <ListItem dense className={classes.listItem}>
                 <div className={classes.listItemInnerContainer}>

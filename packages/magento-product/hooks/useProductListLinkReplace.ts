@@ -13,13 +13,15 @@ export function useProductListLinkReplace(props?: UseProductLinkPushProps) {
   const { setParams } = useProductListParamsContext()
 
   return (params: ProductListParams) => {
+    const queryUrl = Router.query.url ?? []
+    const comingFromURLWithoutFilters = !queryUrl.includes('q')
+
     setParams(params)
 
     const path = createProductListLink(params)
-    const singleFilterActive = Object.keys(params?.filters ?? {}).length <= 1
 
-    // push the first filter, so the new route will be e.g. /women/fruit instead of /women
-    if (singleFilterActive) {
+    // push the first filter, so the new route (on browser back) will be e.g. /women/fruit instead of /women
+    if (comingFromURLWithoutFilters) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       Router.push(path, path, props)
     } else {
