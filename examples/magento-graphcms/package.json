@@ -32,7 +32,6 @@
     "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "^2.102.2",
     "@graphcommerce/image": "^2.104.5",
     "@graphcommerce/magento-cart": "^3.0.8",
-    "@graphcommerce/magento-cart-address": "^2.103.8",
     "@graphcommerce/magento-cart-billing-address": "^2.104.8",
     "@graphcommerce/magento-cart-checkout": "^2.104.8",
     "@graphcommerce/magento-cart-coupon": "^2.105.7",

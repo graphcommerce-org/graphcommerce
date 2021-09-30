@@ -1,12 +1,15 @@
 import { useQuery } from '@apollo/client'
-import { useCartQuery } from '@graphcommerce/magento-cart'
+import { SignUpFormInline } from '@graphcommerce/magento-customer'
+import {
+  CustomerTokenDocument,
+  IsEmailAvailableDocument,
+} from '@graphcommerce/magento-customer/hooks'
 import Button from '@graphcommerce/next-ui/Button'
 import FormRow from '@graphcommerce/next-ui/Form/FormRow'
 import { UseStyles } from '@graphcommerce/next-ui/Styles'
 import { makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
-import { CustomerTokenDocument, IsEmailAvailableDocument } from '../../hooks'
-import SignUpFormInline from '../SignUpForm/SignUpFormInline'
+import { useCartQuery } from '../../hooks/useCartQuery'
 import { InlineAccountDocument } from './InlineAccount.gql'
 
 const useStyles = makeStyles(
@@ -41,7 +44,7 @@ const useStyles = makeStyles(
   { name: 'InlineAccount' },
 )
 
-type InlineAccountProps = {
+export type InlineAccountProps = {
   title?: React.ReactNode
   description?: React.ReactNode
   accountHref: string
