@@ -1,4 +1,4 @@
-import Router from 'next/router'
+import { default as Router } from 'next/router'
 import { ProductListParams } from '../components/ProductListItems/filterTypes'
 import { createProductListLink } from './useProductListLink'
 import { useProductListParamsContext } from './useProductListParamsContext'
@@ -16,8 +16,15 @@ export function useProductListLinkReplace(props?: UseProductLinkPushProps) {
     setParams(params)
 
     const path = createProductListLink(params)
+    const singleFilterActive = Object.keys(params?.filters ?? {}).length <= 1
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    Router.replace(path, path, props)
+    // push the first filter, so the new route will be e.g. /women/fruit instead of /women
+    if (singleFilterActive) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      Router.push(path, path, props)
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      Router.replace(path, path, props)
+    }
   }
 }
