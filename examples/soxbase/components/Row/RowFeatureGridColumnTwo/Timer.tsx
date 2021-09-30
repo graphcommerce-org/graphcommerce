@@ -27,10 +27,8 @@ export default function Timer(props: any) {
   })
 
   return (
-    <div>
-      <span>
-        {('00' + `${seconds}`).slice(-2)}:{('00' + `${milliseconds}`).slice(-2)}
-      </span>
-    </div>
+    <pre>
+      {('00' + `${seconds}`).slice(-2)}:{('00' + `${milliseconds}`).slice(-2)}
+    </pre>
   )
 }

@@ -2,7 +2,7 @@ import { Button, Container, makeStyles, Theme, Typography, useTheme } from '@mat
 import { SvgImage, responsiveVal } from '@reachdigital/next-ui'
 import { useEffect, useRef, useState } from 'react'
 import Asset from '../../Asset'
-import { iconUspCheck } from '../../Theme/icons/icons'
+import { iconUspCheck, iconClock } from '../../Theme/icons/icons'
 import Timer from './Timer'
 
 const useStyles = makeStyles(
@@ -27,11 +27,13 @@ const useStyles = makeStyles(
       "usps graphic"
     `,
         gridTemplateColumns: 'minmax(400px, 700px) minmax(200px, 450px)',
+        gridTemplateRows: 'auto auto',
         justifyContent: 'space-between',
       },
-      columnGap: theme.spacings.md,
+      columnGap: theme.spacings.lg,
     },
     copy: {
+      marginTop: responsiveVal(20, 60),
       gridArea: 'copy',
     },
     grid: {
@@ -52,14 +54,51 @@ const useStyles = makeStyles(
     },
     phone: {
       position: 'relative',
-      margin: '0 auto',
+      margin: '0 auto 50px auto',
       width: '50%',
       [theme.breakpoints.up('md')]: {
         width: '100%',
+        margin: '0 auto',
       },
       aspectRatio: '436/883',
       gridArea: 'graphic',
       justifySelf: 'end',
+    },
+    timers: {
+      color: '#62C7B0',
+      marginTop: '-12%',
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      columnGap: responsiveVal(20, 90),
+      '& > div': {
+        width: 'max-content',
+        '& > h4': {
+          textTransform: 'uppercase',
+          fontSize: responsiveVal(12, 18),
+          fontWeight: 600,
+          letterSpacing: 1,
+          lineHeight: 1.2,
+          margin: `0 0 ${responsiveVal(2, 4)} 0`,
+        },
+      },
+      '& > div:first-of-type': {
+        justifySelf: 'flex-end',
+      },
+    },
+    timer: {
+      display: 'grid',
+      gridTemplateColumns: `32px auto`,
+      alignItems: 'center',
+      '& > pre': {
+        margin: 0,
+        fontWeight: 500,
+        fontSize: responsiveVal(14, 19),
+      },
+    },
+    playbutton: {
+      position: 'absolute',
+      left: '50%',
+      top: '50%',
     },
     overline: {
       backgroundImage: 'none',
@@ -68,9 +107,6 @@ const useStyles = makeStyles(
       '-webkit-text-fill-color': 'initial',
       '-moz-text-fill-color': 'initial',
     },
-    timers: {
-      display: 'grid',
-    },
   }),
   { name: 'RowFeatureGridColumnTwo' },
 )
@@ -78,10 +114,18 @@ const useStyles = makeStyles(
 export default function RowFeatureGridColumnTwo() {
   const classes = useStyles()
   const [reset, setReset] = useState(0)
+  const [play, setPlay] = useState(false)
   const theme = useTheme()
 
-  const phone = {
+  const phoneAsset = {
     url: '/phone.svg',
+    width: 436,
+    height: 883,
+    mimeType: 'image/jpeg',
+  }
+
+  const phoneAnimationAsset = {
+    url: '/phoneAnimation.svg',
     width: 436,
     height: 883,
     mimeType: 'image/jpeg',
@@ -104,24 +148,44 @@ export default function RowFeatureGridColumnTwo() {
         </div>
 
         <div className={classes.phone}>
-          <Asset asset={phone} sizes={{ 0: '50vw', [theme.breakpoints.values.md]: '72vw' }} />
+          {!play ? (
+            <Asset
+              asset={phoneAsset}
+              sizes={{ 0: '50vw', [theme.breakpoints.values.md]: '72vw' }}
+            />
+          ) : (
+            <Asset
+              asset={phoneAnimationAsset}
+              sizes={{ 0: '50vw', [theme.breakpoints.values.md]: '72vw' }}
+            />
+          )}
           <div className={classes.timers}>
-            <Typography variant='overline' className={classes.overline}>
-              Website
-            </Typography>
-            <Typography variant='overline' className={classes.overline}>
-              PWA
-            </Typography>
-            <Timer maxSeconds={1} maxMilliseconds={19} reset={reset} />
-            <Timer maxSeconds={2} maxMilliseconds={34} reset={reset} />
+            <div>
+              <Typography variant='h4'>Website</Typography>
+              <div className={classes.timer}>
+                <SvgImage src={iconClock} alt='box' loading='eager' size='small' />
+                <Timer maxSeconds={3} maxMilliseconds={4} reset={reset} />
+              </div>
+            </div>
+            <div>
+              <Typography variant='h4'>PWA</Typography>
+              <div className={classes.timer}>
+                <SvgImage src={iconClock} alt='box' loading='eager' size='small' />
+                <Timer maxSeconds={1} maxMilliseconds={19} reset={reset} />
+              </div>
+            </div>
+          </div>
+          {!play ? (
             <button
+              className={classes.playbutton}
               onClick={() => {
                 setReset(1)
+                setPlay(true)
               }}
             >
               Play
             </button>
-          </div>
+          ) : null}
         </div>
 
         <div className={classes.grid}>
