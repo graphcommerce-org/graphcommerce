@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-review",
-  "version": "2.105.7",
+  "version": "2.105.8",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -23,7 +23,7 @@
     "@apollo/client": "^3.3.21",
     "@graphcommerce/graphql": "^2.103.4",
     "@graphcommerce/image": "^2.104.5",
-    "@graphcommerce/magento-product": "^3.0.7",
+    "@graphcommerce/magento-product": "^3.0.8",
     "@graphcommerce/magento-store": "^3.0.7",
     "@graphcommerce/next-ui": "^3.0.6",
     "@graphql-typed-document-node/core": "^3.1.0",

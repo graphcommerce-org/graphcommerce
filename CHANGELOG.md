@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.124.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.124.7...@graphcommerce/graphcommerce@2.124.8) (2021-09-30)
+
+
+### Bug Fixes
+
+* **filter-range-type:** invalid filter value after browser back ([b1e0a78](https://github.com/ho-nl/m2-pwa/commit/b1e0a78bb92719fb0f23eef53053e825e78d7ed1))
+* **filters:** only push first filter to the history ([bbe1ac5](https://github.com/ho-nl/m2-pwa/commit/bbe1ac5b629f8ed7798094d64a413d0c27519854))
+
+
+
+
+
 ## [2.124.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.124.6...@graphcommerce/graphcommerce@2.124.7) (2021-09-30)
 
 

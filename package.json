@@ -1,7 +1,7 @@
 {
   "name": "@graphcommerce/graphcommerce",
   "homepage": "https://graphcommerce.vercel.app/",
-  "version": "2.124.7",
+  "version": "2.124.8",
   "private": true,
   "workspaces": [
     "docs",
