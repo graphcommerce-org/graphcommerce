@@ -1,43 +1,43 @@
-name: playwright
-on: [pull_request]
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 14
-      - uses: bahmutov/npm-install@v1
-        with:
-          useRollingCache: true
-      - name: Install operating system dependencies
-        run: npx playwright install-deps
-      - name: Install webkit
-        run: npx playwright install webkit
-      - name: Install chromium
-        run: npx playwright install chromium
-      - name: Build graphql-codegen-near-operation-file
-        run: yarn workspace @graphcommerce/graphql-codegen-near-operation-file build
-      - name: Build graphql-codegen-relay-optimizer-plugin
-        run: yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin build
-      - name: Run graphql-codegen
-        run: yarn workspace @graphcommerce/magento-graphcms codegen
-        env:
-          NEXT_PUBLIC_GRAPHQL_ENDPOINT: ${{ secrets.NEXT_PUBLIC_GRAPHQL_ENDPOINT }}
-      - id: deployment
-        uses: paales/get-deployment-url@feature/match
-        timeout-minutes: 20
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          retryInterval: 2000
-          pattern: https://graphcommerce-?????????-reachdigital.vercel.app
-      - run: npx playwright test
-        timeout-minutes: 10
-        env:
-          URL: ${{ steps.deployment.outputs.deployment }}
-          NEXT_PUBLIC_GRAPHQL_ENDPOINT: ${{ secrets.NEXT_PUBLIC_GRAPHQL_ENDPOINT }}
-          NEXT_PUBLIC_LOCALE_STORES: ${{ secrets.NEXT_PUBLIC_LOCALE_STORES }}
-          VERCEL_ENV: development
+# name: playwright
+# on: [pull_request]
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#         with:
+#           ref: ${{ github.event.pull_request.head.sha }}
+#       - uses: actions/setup-node@v1
+#         with:
+#           node-version: 14
+#       - uses: bahmutov/npm-install@v1
+#         with:
+#           useRollingCache: true
+#       - name: Install operating system dependencies
+#         run: npx playwright install-deps
+#       - name: Install webkit
+#         run: npx playwright install webkit
+#       - name: Install chromium
+#         run: npx playwright install chromium
+#       - name: Build graphql-codegen-near-operation-file
+#         run: yarn workspace @graphcommerce/graphql-codegen-near-operation-file build
+#       - name: Build graphql-codegen-relay-optimizer-plugin
+#         run: yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin build
+#       - name: Run graphql-codegen
+#         run: yarn workspace @graphcommerce/magento-graphcms codegen
+#         env:
+#           NEXT_PUBLIC_GRAPHQL_ENDPOINT: ${{ secrets.NEXT_PUBLIC_GRAPHQL_ENDPOINT }}
+#       - id: deployment
+#         uses: paales/get-deployment-url@feature/match
+#         timeout-minutes: 20
+#         with:
+#           token: ${{ secrets.GITHUB_TOKEN }}
+#           retryInterval: 2000
+#           pattern: https://graphcommerce-?????????-reachdigital.vercel.app
+#       - run: npx playwright test
+#         timeout-minutes: 10
+#         env:
+#           URL: ${{ steps.deployment.outputs.deployment }}
+#           NEXT_PUBLIC_GRAPHQL_ENDPOINT: ${{ secrets.NEXT_PUBLIC_GRAPHQL_ENDPOINT }}
+#           NEXT_PUBLIC_LOCALE_STORES: ${{ secrets.NEXT_PUBLIC_LOCALE_STORES }}
+#           VERCEL_ENV: development
