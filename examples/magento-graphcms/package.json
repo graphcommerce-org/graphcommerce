@@ -76,7 +76,7 @@
     "@graphql-codegen/typescript": "^2.2.2",
     "@graphql-codegen/typescript-apollo-client-helpers": "^2.1.4",
     "@graphql-codegen/typescript-document-nodes": "2.1.4",
-    "@graphql-codegen/typescript-operations": "2.1.4",
+    "@graphql-codegen/typescript-operations": "2.1.5",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@graphql-typed-document-node/patch-cli": "^3.0.8",
     "@material-ui/core": "^4.12.3",
@@ -91,7 +91,7 @@
     "graphql-tag": "^2.12.5",
     "next": "^11.1.2",
     "next-pwa": "^5.3.1",
-    "next-sitemap": "^1.6.168",
+    "next-sitemap": "^1.6.173",
     "node-fetch": "^3.0.0",
     "postinstall-postinstall": "^2.1.0",
     "react": "^17.0.2",
@@ -99,11 +99,11 @@
     "schema-dts": "^1.0.0",
     "sharp": "^0.29.1",
     "vercel": "^23.1.2",
-    "webpack": "^5.54.0"
+    "webpack": "^5.55.1"
   },
   "devDependencies": {
-    "@types/node": "^16.10.1",
-    "@types/react": "^17.0.24",
+    "@types/node": "^16.10.2",
+    "@types/react": "^17.0.25",
     "@types/sharp": "^0.29.2",
     "type-fest": "^2.3.4",
     "typescript": "^4.4.3"

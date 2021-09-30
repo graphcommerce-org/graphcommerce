@@ -35,7 +35,7 @@
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",
-    "braintree-web": "^3.81.1",
+    "braintree-web": "^3.82.0",
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.17",
     "next": "^11.1.2",
