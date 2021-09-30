@@ -1,17 +1,17 @@
 import {
+  CenterSlide,
+  MotionImageAspect,
+  MotionImageAspectProps,
+  Scroller,
   ScrollerButton,
   ScrollerDots,
   ScrollerProvider,
-  Scroller,
-  MotionImageAspectProps,
-  CenterSlide,
-  MotionImageAspect,
 } from '@graphcommerce/framer-scroller'
 import { clientSize, useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Fab, makeStyles, Theme, useTheme } from '@material-ui/core'
 import clsx from 'clsx'
-import { m } from 'framer-motion'
-import React, { useState } from 'react'
+import { m, useDomEvent } from 'framer-motion'
+import React, { useRef, useState } from 'react'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
 import SvgImage from '../../SvgImage'
@@ -182,6 +182,18 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
   const clsxZoom = (key: string) => clsx(classes?.[key], zoomed && classes?.[`${key}Zoomed`])
 
   const theme = useTheme()
+
+  const windowRef = useRef(typeof window !== 'undefined' ? window : null)
+
+  const handleEscapeKey = (e: KeyboardEvent | Event) => {
+    if (zoomed) {
+      if ((e as KeyboardEvent)?.key === 'Escape') {
+        toggle()
+      }
+    }
+  }
+
+  useDomEvent(windowRef, 'keyup', handleEscapeKey, { passive: true })
 
   return (
     <ScrollerProvider scrollSnapAlign='center'>
