@@ -31,7 +31,8 @@ function getLocalPaymentPromise(braintreePromise: ReturnType<typeof useBraintree
         try {
           const client = await braintreePromise
 
-          // @ts-expect-error https://github.com/braintree/braintree-web/issues/552
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore https://github.com/braintree/braintree-web/issues/552
           resolve(await braintree.localPayment.create({ client, debug: true }))
         } catch (e) {
           reject(e)
