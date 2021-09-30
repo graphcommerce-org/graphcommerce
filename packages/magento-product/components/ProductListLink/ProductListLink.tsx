@@ -7,7 +7,10 @@ import { ProductListParams } from '../ProductListItems/filterTypes'
 
 export type ProductListLinkProps = PropsWithChildren<
   LinkProps &
-    ProductListParams & { noLink?: boolean; link?: Omit<PageLinkProps, 'href' | 'passHref'> }
+    ProductListParams & {
+      noLink?: boolean
+      link?: Omit<PageLinkProps, 'href' | 'passHref'>
+    }
 >
 
 const ProductListLink = React.forwardRef<HTMLAnchorElement, ProductListLinkProps>((props, ref) => {

@@ -3,8 +3,8 @@ import { FilterRangeTypeInput } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps } from '@graphcommerce/next-ui'
 import { makeStyles, Mark, Slider, Theme } from '@material-ui/core'
-import React from 'react'
-import { useProductListLinkPush } from '../../hooks/useProductListLinkPush'
+import React, { useEffect } from 'react'
+import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
@@ -51,7 +51,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
   const { attribute_code, label, options, ...chipProps } = props
   const classes = useFilterRangeType(props)
   const { params } = useProductListParamsContext()
-  const pushRoute = useProductListLinkPush({ scroll: false })
+  const replaceRoute = useProductListLinkReplace({ scroll: false })
 
   // eslint-disable-next-line no-case-declarations
   const marks: { [index: number]: Mark } = {}
@@ -80,6 +80,10 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
     paramValues ? [Number(paramValues.from), Number(paramValues.to)] : [min, max],
   )
 
+  useEffect(() => {
+    if (!paramValues) setValue([min, max])
+  }, [max, min, paramValues])
+
   const priceFilterUrl = cloneDeep(params)
   delete priceFilterUrl.currentPage
   priceFilterUrl.filters[attribute_code] = {
@@ -94,7 +98,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
     delete linkParams.filters[attribute_code]
 
     setValue([min, max])
-    pushRoute(linkParams)
+    replaceRoute(linkParams)
   }
 
   const currentFilter = params.filters[attribute_code] as FilterRangeTypeInput | undefined
@@ -156,7 +160,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
           }}
           onChangeCommitted={(e, newValue) => {
             if (newValue[0] > min || newValue[1] < max) {
-              pushRoute({ ...priceFilterUrl })
+              replaceRoute({ ...priceFilterUrl })
             } else {
               resetFilter()
             }
