@@ -12,15 +12,11 @@ const useStyles = makeStyles(
     copy: {
       padding: `${responsiveVal(20, 100)} 0 ${responsiveVal(60, 300)} 0`,
       margin: '0 auto',
-      color: '#fff',
       display: 'grid',
       gridTemplateRows: 'auto auto',
       justifyItems: 'stretch',
       '& > *': {
         zIndex: 1,
-      },
-      '& > * > *': {
-        padding: `${responsiveVal(10, 20)} 0`,
       },
     },
     title: {
@@ -31,10 +27,14 @@ const useStyles = makeStyles(
       fontWeight: 700,
       fontSize: responsiveVal(20, 130),
       lineHeight: responsiveVal(40, 140),
+      '& > span': {
+        display: 'block',
+        ...theme.typography.h3,
+      },
     },
-    body: {
+    h3: {
       fontWeight: 600,
-      marginBottom: responsiveVal(10, 50),
+      marginBottom: responsiveVal(30, 50),
     },
     main: {
       float: 'right',
@@ -55,9 +55,10 @@ const useStyles = makeStyles(
       borderRadius: 14,
       background: 'linear-gradient(45deg, #85FFFC 0%, #85FFFC 10%, #CEFF99 100%)',
       fontSize: responsiveVal(15, 21),
+      lineHeight: 1.4,
       fontWeight: 600,
       border: '1px solid #001727',
-      padding: `${responsiveVal(2, 6)} ${responsiveVal(20, 35)}`,
+      padding: `${responsiveVal(6, 6)} ${responsiveVal(20, 35)}`,
       '&:before': {
         content: '""',
         position: 'absolute',
@@ -99,15 +100,15 @@ export default function RowHeroAnimation() {
   return (
     <Container maxWidth={false} disableGutters>
       <div className={classes.hero}>
-        <Animation />
+        {/* <Animation /> */}
         <div className={classes.copy}>
           <Container>
-            <Typography variant='h3'>Graphcommerce®</Typography>
-            <Typography variant='h2' className={classes.title}>
-              Where the future of e-commerce is headless.
+            <Typography variant='h1' className={classes.title} color='secondary'>
+              <span>Graphcommerce®</span>
+              The future of e-commerce is headless.
             </Typography>
             <div className={classes.main}>
-              <Typography variant='h3' className={classes.body}>
+              <Typography paragraph variant='h3' className={classes.h3} color='secondary'>
                 GraphCommerce® is an open source, headless e-commerce storefront build with GraphQL,
                 React, Typescript and Next.js.
               </Typography>
@@ -119,8 +120,8 @@ export default function RowHeroAnimation() {
                   href='/'
                   variant='outlined'
                   size='large'
-                  color='inherit'
                   className={classes.copyButton}
+                  color='secondary'
                 >
                   $ npm install graphcommerce
                 </Button>

@@ -44,7 +44,7 @@ const useStyles = makeStyles(
     },
     popperContent: {
       maxWidth: 300,
-      color: '#888DA8',
+      color: theme.palette.text.secondary,
       borderRadius: 8,
       padding: theme.spacings.xs,
       backgroundColor: theme.palette.background.paper,
