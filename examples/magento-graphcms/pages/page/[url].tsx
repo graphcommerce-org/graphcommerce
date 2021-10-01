@@ -1,5 +1,4 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { CmsPageContent } from '@graphcommerce/magento-cms'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps } from '@graphcommerce/next-ui'
@@ -8,12 +7,7 @@ import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.gql'
 import { DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import PageContent from '../../components/PageContent'
-import RowProductBackstory from '../../components/Row/RowProductBackstory'
-import RowProductGrid from '../../components/Row/RowProductGrid'
-import RowSwipeableGrid from '../../components/Row/RowSwipeableGrid'
-import RowHeroAnimation from '../../components/RowHeroAnimation'
-import RowWireframeAnimation from '../../components/RowWireframeAnimaton'
+import RowListColumnTwo from '../../components/Row/RowListColumnTwo'
 import apolloClient from '../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -34,8 +28,7 @@ function CmsPage(props: Props) {
         metaDescription={cmsPage?.meta_description ?? ''}
       />
 
-      <RowHeroAnimation />
-      <RowWireframeAnimation />
+      <RowListColumnTwo />
     </>
   )
 }
