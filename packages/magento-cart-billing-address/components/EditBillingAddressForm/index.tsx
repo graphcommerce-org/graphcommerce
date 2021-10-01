@@ -1,7 +1,11 @@
 import { useQuery } from '@apollo/client'
 import { useHistoryGo } from '@graphcommerce/framer-next-pages'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { AddressFields, ApolloCustomerErrorAlert, NameFields } from '@graphcommerce/magento-customer'
+import {
+  AddressFields,
+  ApolloCustomerErrorAlert,
+  NameFields,
+} from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import {
   Button,
@@ -13,8 +17,8 @@ import {
   UseStyles,
 } from '@graphcommerce/next-ui'
 import { phonePattern } from '@graphcommerce/react-hook-form'
-import { TextField } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { TextField } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import React from 'react'
 import { GetBillingAddressDocument } from './GetBillingAddress.gql'
 import { SetBillingAddressOnCartDocument } from './SetBillingAddressOnCart.gql'
@@ -90,7 +94,7 @@ export default function EditBillingAddressForm(props: EditBillingAddressFormProp
 
         <FormDivider />
 
-        <FormActions classes={{ root: classes.editActions }}>
+        <FormActions className={classes.editActions}>
           <Button
             type='submit'
             variant='contained'

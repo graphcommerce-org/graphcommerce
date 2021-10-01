@@ -1,7 +1,5 @@
-// @inheritedComponent ButtonBase
-
-import { capitalize, Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { capitalize, Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import clsx from 'clsx'
 import React, { FormEvent } from 'react'
 import Button, { ButtonProps } from '../Button'
@@ -25,8 +23,8 @@ export const useStyles = makeStyles(
       '&$selected': {},
     },
     disabled: {},
-    selected: ({ color = 'default' }: StyleProps) => ({
-      border: `2px solid ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
+    selected: ({ color = 'primary' }: StyleProps) => ({
+      border: `2px solid ${theme.palette[color]?.main}`,
       boxShadow: `unset`,
     }),
     /* Styles applied to the `label` wrapper element. */

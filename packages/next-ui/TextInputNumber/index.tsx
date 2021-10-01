@@ -6,8 +6,8 @@ import {
   TextFieldProps,
   Theme,
   useForkRef,
-} from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+} from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import clsx from 'clsx'
 import React, { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
 import { UseStyles } from '../Styles'
@@ -127,7 +127,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             onPointerDown={() => setDirection('down')}
             onPointerUp={stop}
             // disabled={textFieldProps.disabled || disabled === 'min'}
-            tabIndex='-1'
+            tabIndex={-1}
             color='inherit'
             className={clsx(classes.button, DownProps.className)}
             {...DownProps}
@@ -145,7 +145,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             onPointerDown={() => setDirection('up')}
             onPointerUp={() => setDirection(null)}
             // disabled={textFieldProps.disabled || disabled === 'max'}
-            tabIndex='-1'
+            tabIndex={-1}
             color='inherit'
             className={clsx(classes.button, UpProps.className)}
             {...UpProps}

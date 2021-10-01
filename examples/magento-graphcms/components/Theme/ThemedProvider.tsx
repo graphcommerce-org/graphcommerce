@@ -1,21 +1,9 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
 import { responsiveVal } from '@graphcommerce/next-ui'
-import {
-  createTheme,
-  CssBaseline,
-  ThemeProvider,
-  Theme,
-  StyledEngineProvider,
-  adaptV4Theme,
-} from '@mui/material'
+import { createTheme, CssBaseline, ThemeProvider, StyledEngineProvider } from '@mui/material'
 import React from 'react'
 import shadows from './shadows'
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
 
 // Create a theme instance.
 export const defaultTheme = createTheme({

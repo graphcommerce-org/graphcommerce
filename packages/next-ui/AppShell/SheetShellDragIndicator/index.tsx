@@ -4,12 +4,12 @@ import {
   styles as sheetStyles,
   ClassKeys,
 } from '@graphcommerce/framer-sheet'
-import { StyleRules } from '@mui/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { StyleRules } from '@mui/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import React from 'react'
 import responsiveVal from '../../Styles/responsiveVal'
 
-const styles = sheetStyles as StyleRules<ClassKeys>
+const styles = sheetStyles as StyleRules<Record<string, unknown>, ClassKeys>
 
 const useStyles = makeStyles(
   () => ({
@@ -50,7 +50,7 @@ const useStyles = makeStyles(
 type SheetShellDragIndicatorProps = SheetDragIndicatorProps
 
 export default function SheetShellDragIndicator(props: SheetShellDragIndicatorProps) {
-  const classes = useStyles()
+  const classes = useStyles({})
 
   return <SheetDragIndicator {...props} classes={classes} />
 }

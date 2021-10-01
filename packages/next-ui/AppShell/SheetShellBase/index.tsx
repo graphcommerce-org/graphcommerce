@@ -9,9 +9,9 @@ import {
   SnapPoint,
   styles as sheetStyles,
 } from '@graphcommerce/framer-sheet'
-import { Theme } from '@mui/material';
-import { StyleRules } from '@mui/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material'
+import { StyleRules } from '@mui/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { useDomEvent } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useRef } from 'react'
@@ -26,7 +26,7 @@ export type SheetShellBaseProps = {
 } & Pick<SheetProps, 'size' | 'variant'> &
   PageLayoutBaseProps
 
-const styles = sheetStyles as StyleRules<ClassKeys>
+const styles = sheetStyles as StyleRules<Record<string, unknown>, ClassKeys>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -58,7 +58,7 @@ const useStyles = makeStyles(
 
 function SheetShellBase(props: SheetShellBaseProps) {
   const { children, variant, size, name } = props
-  const sheetContainerClasses = useStyles()
+  const sheetContainerClasses = useStyles({})
   const sheetClasses = useSheetStyles(props)
   const router = useRouter()
   const pageRouter = usePageRouter()
