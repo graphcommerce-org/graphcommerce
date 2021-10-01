@@ -1,5 +1,6 @@
 import { responsiveVal } from '@graphcommerce/next-ui'
-import { Theme, withStyles } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import withStyles from '@mui/styles/withStyles';
 import RichText from '.'
 
 const RichTextQuote = withStyles((theme: Theme) => ({

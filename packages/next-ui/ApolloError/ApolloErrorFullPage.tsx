@@ -1,5 +1,5 @@
 import { ApolloError } from '@apollo/client'
-import { AlertProps } from '@material-ui/lab'
+import { AlertProps } from '@mui/lab'
 import React from 'react'
 import FullPageMessage, { FullPageMessageProps } from '../FullPageMessage'
 import ApolloErrorAlert from './ApolloErrorAlert'

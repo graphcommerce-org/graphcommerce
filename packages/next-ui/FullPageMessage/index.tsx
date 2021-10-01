@@ -1,5 +1,5 @@
-import { Container, Theme, Typography } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Container, Theme, Typography } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import React from 'react'
 import PageMeta from '../PageMeta'
 import responsiveVal from '../Styles/responsiveVal'

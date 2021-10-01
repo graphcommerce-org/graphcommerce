@@ -17,7 +17,8 @@ import {
   responsiveVal,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
-import { Fab, makeStyles, Theme } from '@material-ui/core'
+import { Fab, Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -39,20 +40,20 @@ const useStyles = makeStyles(
       },
     },
     header: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         marginTop: 16,
         marginBottom: 16,
       },
     },
     hideOnVirtualKeyboardOpen: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         '@media (max-height: 530px)': {
           display: 'none',
         },
       },
     },
     cartFab: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         width: responsiveVal(42, 56),
         height: responsiveVal(42, 56),
       },

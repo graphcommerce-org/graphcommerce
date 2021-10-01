@@ -1,4 +1,5 @@
-import { ContainerProps, makeStyles, Theme } from '@material-ui/core'
+import { ContainerProps, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import ColumnTwo from '../ColumnTwo'

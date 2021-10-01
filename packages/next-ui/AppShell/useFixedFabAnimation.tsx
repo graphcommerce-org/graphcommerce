@@ -1,9 +1,9 @@
-import { useMediaQuery, useTheme } from '@material-ui/core'
+import { useMediaQuery, useTheme } from '@mui/material'
 import { useMotionTemplate, useTransform, useViewportScroll } from 'framer-motion'
 
 export default function useFixedFabAnimation() {
   const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'))
   const { scrollY } = useViewportScroll()
   const scrollTo = isMobile ? 0 : 60
 

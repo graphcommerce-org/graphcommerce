@@ -1,12 +1,26 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
 import { responsiveVal } from '@graphcommerce/next-ui'
-import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core'
+import {
+  createTheme,
+  CssBaseline,
+  ThemeProvider,
+  Theme,
+  StyledEngineProvider,
+  adaptV4Theme,
+} from '@mui/material';
 import React from 'react'
 import shadows from './shadows'
 
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
+
 // Create a theme instance.
-export const defaultTheme = createTheme({
+export const defaultTheme = createTheme(adaptV4Theme({
   palette: {
     primary: {
       main: '#FF4A55',
@@ -187,7 +201,7 @@ export const defaultTheme = createTheme({
       md: '72px', // `calc(40px + (${responsiveVal(10, 16)} * 2))`,
     },
   },
-})
+}))
 
 defaultTheme.overrides = {
   MuiCssBaseline: {
@@ -317,9 +331,11 @@ defaultTheme.overrides = {
 }
 
 const ThemedProvider: React.FC = ({ children }) => (
-  <ThemeProvider theme={defaultTheme}>
-    <CssBaseline />
-    {children}
-  </ThemeProvider>
+  <StyledEngineProvider injectFirst>
+    <ThemeProvider theme={defaultTheme}>
+      <CssBaseline />
+      {children}
+    </ThemeProvider>
+  </StyledEngineProvider>
 )
 export default ThemedProvider

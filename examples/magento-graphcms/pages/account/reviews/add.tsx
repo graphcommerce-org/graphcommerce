@@ -15,7 +15,7 @@ import {
   SheetShellHeader,
   AppShellTitle,
 } from '@graphcommerce/next-ui'
-import { Container } from '@material-ui/core'
+import { Container } from '@mui/material'
 import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'

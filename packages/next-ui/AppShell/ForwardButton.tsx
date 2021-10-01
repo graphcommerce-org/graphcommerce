@@ -1,4 +1,5 @@
-import { ButtonProps, makeStyles, Theme } from '@material-ui/core'
+import { ButtonProps, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 import Button from '../Button'
 import { UseStyles } from '../Styles'
@@ -10,12 +11,12 @@ const useStyles = makeStyles(
     root: {
       width: 'min-content',
       pointerEvents: 'all',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         height: 40,
         minWidth: 40,
         borderRadius: 20,
       },
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('md')]: {
         boxShadow: 'unset',
         paddingLeft: `12px`,
         paddingRight: `10px`,

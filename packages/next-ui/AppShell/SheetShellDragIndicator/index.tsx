@@ -4,7 +4,8 @@ import {
   styles as sheetStyles,
   ClassKeys,
 } from '@graphcommerce/framer-sheet'
-import { makeStyles, StyleRules } from '@material-ui/core'
+import { StyleRules } from '@mui/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 import responsiveVal from '../../Styles/responsiveVal'
 

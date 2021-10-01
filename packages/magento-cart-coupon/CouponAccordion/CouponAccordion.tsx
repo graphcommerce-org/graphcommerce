@@ -6,7 +6,8 @@ import {
   SvgImage,
   UseStyles,
 } from '@graphcommerce/next-ui'
-import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Button, Theme, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import { AnimatePresence, m } from 'framer-motion'
 import React, { useState } from 'react'

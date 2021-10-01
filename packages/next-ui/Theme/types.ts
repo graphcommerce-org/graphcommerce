@@ -1,6 +1,6 @@
 export {}
 
-declare module '@material-ui/core/styles/createPalette' {
+declare module '@mui/material/styles/createPalette' {
   // interface PaletteOptions {
   //   tertiary: PaletteColorOptions
   // }
@@ -19,7 +19,7 @@ declare module '@material-ui/core/styles/createPalette' {
   }
 }
 
-declare module '@material-ui/core/styles/createTheme' {
+declare module '@mui/material/styles/createTheme' {
   interface Theme {
     spacings: {
       xxs: string
@@ -40,7 +40,7 @@ declare module '@material-ui/core/styles/createTheme' {
       }
     }
   }
-  interface ThemeOptions {
+  interface DeprecatedThemeOptions {
     spacings: {
       xxs: string
       xs: string

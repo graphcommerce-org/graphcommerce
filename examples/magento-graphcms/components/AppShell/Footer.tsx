@@ -1,6 +1,7 @@
 import { StoreSwitcherButton } from '@graphcommerce/magento-store'
 import { Button, SvgImageSimple, UseStyles } from '@graphcommerce/next-ui'
-import { Container, IconButton, Link, makeStyles, Theme } from '@material-ui/core'
+import { Container, IconButton, Link, Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
@@ -15,7 +16,7 @@ const useStyles = makeStyles(
       gridAutoRows: '1fr',
       gap: theme.spacings.xs,
       alignItems: 'center',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         justifyItems: 'center',
         marginBottom: 50,
         '& > *': {
@@ -29,7 +30,7 @@ const useStyles = makeStyles(
       },
     },
     disableMargin: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         marginBottom: 0,
       },
     },

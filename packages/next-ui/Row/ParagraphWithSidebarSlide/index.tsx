@@ -1,4 +1,5 @@
-import { ContainerProps, makeStyles, Theme } from '@material-ui/core'
+import { ContainerProps, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { m, useSpring, useTransform, useViewportScroll } from 'framer-motion'
 import React, { useEffect, useRef, useState } from 'react'
 import Row from '..'

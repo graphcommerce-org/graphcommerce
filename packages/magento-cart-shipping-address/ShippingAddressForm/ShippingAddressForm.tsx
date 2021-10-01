@@ -14,7 +14,7 @@ import {
   UseFormComposeOptions,
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
-import { TextField } from '@material-ui/core'
+import { TextField } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React, { useRef } from 'react'
 import { GetShippingAddressDocument } from './GetShippingAddress.gql'

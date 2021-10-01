@@ -1,4 +1,5 @@
-import { Chip, ChipProps, makeStyles, Menu, Theme } from '@material-ui/core'
+import { Chip, ChipProps, Menu, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import React, { PropsWithChildren, useState } from 'react'
 import SectionHeader from '../SectionHeader'
@@ -41,7 +42,7 @@ export const useChipMenuStyles = makeStyles(
       maxWidth: 560,
       marginTop: theme.spacings.xxs,
       padding: `${theme.spacings.xs} ${theme.spacings.xs}`,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('md')]: {
         minWidth: 0,
         width: '100%',
         maxWidth: `calc(100% - (${theme.page.horizontal} * 2))`,
@@ -90,41 +91,37 @@ export default function ChipMenu(props: ChipMenuProps) {
 
   const selectedAndMenuHidden = selected && !openEl && selectedLabel
 
-  return (
-    <>
-      <Chip
-        variant='default'
-        color={selected || openEl ? 'primary' : 'default'}
-        clickable
-        onDelete={onDelete || ((event) => setOpenEl(event.currentTarget.parentElement))}
-        onClick={(event) => {
-          setOpenEl(event.currentTarget)
-        }}
-        deleteIcon={deleteIcon}
-        {...chipProps}
-        label={selectedLabel ?? label}
-        className={clsx(
-          classes.chip,
-          chipProps.className,
-          selectedAndMenuHidden && classes.chipSelected,
-        )}
-      />
+  return <>
+    <Chip
+      color={selected || openEl ? 'primary' : 'default'}
+      clickable
+      onDelete={onDelete || ((event) => setOpenEl(event.currentTarget.parentElement))}
+      onClick={(event) => {
+        setOpenEl(event.currentTarget)
+      }}
+      deleteIcon={deleteIcon}
+      {...chipProps}
+      label={selectedLabel ?? label}
+      className={clsx(
+        classes.chip,
+        chipProps.className,
+        selectedAndMenuHidden && classes.chipSelected,
+      )} />
 
-      <Menu
-        anchorEl={openEl}
-        open={!!openEl}
-        onClose={() => {
-          if (onClose) onClose()
-          setOpenEl(null)
-        }}
-        getContentAnchorEl={null} // https://github.com/mui-org/material-ui/issues/7961#issuecomment-326116559
-        anchorPosition={{ top: 6, left: 0 }}
-        anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-        classes={{ paper: classes.menuPaper, list: classes.menuList }}
-      >
-        <SectionHeader labelLeft={label ?? ''} labelRight={labelRight ?? ''} usePadding />
-        {children}
-      </Menu>
-    </>
-  )
+    <Menu
+      anchorEl={openEl}
+      open={!!openEl}
+      onClose={() => {
+        if (onClose) onClose()
+        setOpenEl(null)
+      }}
+      getContentAnchorEl={null} // https://github.com/mui-org/material-ui/issues/7961#issuecomment-326116559
+      anchorPosition={{ top: 6, left: 0 }}
+      anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+      classes={{ paper: classes.menuPaper, list: classes.menuList }}
+    >
+      <SectionHeader labelLeft={label ?? ''} labelRight={labelRight ?? ''} usePadding />
+      {children}
+    </Menu>
+  </>;
 }

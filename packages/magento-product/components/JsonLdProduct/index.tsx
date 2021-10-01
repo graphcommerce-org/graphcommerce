@@ -18,7 +18,7 @@ export function jsonLdProduct(props: JsonLdProductFragment): Product {
     description: description?.html
       ? (description.html ?? '').replace(/(<([^>]+)>)/gi, '')
       : undefined,
-  }
+  };
 }
 
 export function jsonLdProductOffer(props: JsonLdProductOfferFragment): Partial<Product> {

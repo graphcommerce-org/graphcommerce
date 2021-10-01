@@ -1,5 +1,5 @@
-import { makeStyles } from '@material-ui/core'
-import { CSSProperties } from '@material-ui/styles'
+import makeStyles from '@mui/styles/makeStyles';
+import { CSSProperties } from '@mui/styles'
 import { AnimatePresence, HTMLMotionProps, m } from 'framer-motion'
 
 export type DebugSpacerProps = {

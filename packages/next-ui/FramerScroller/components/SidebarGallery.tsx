@@ -8,7 +8,8 @@ import {
   MotionImageAspect,
 } from '@graphcommerce/framer-scroller'
 import { clientSize, useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Fab, makeStyles, Theme, useTheme } from '@material-ui/core'
+import { Fab, Theme, useTheme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'
@@ -61,10 +62,10 @@ const useStyles = makeStyles(
         minHeight: '100%',
         paddingTop: `min(${ratio}, ${maxHeight})`,
         borderRadius: 2,
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('lg')]: {
           width: '100vw',
         },
-      }
+      };
     },
     scrollerContainerZoomed: ({ clientHeight }: StyleProps) => ({
       paddingTop: clientHeight,
@@ -124,7 +125,7 @@ const useStyles = makeStyles(
       },
     },
     sliderButtons: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         display: 'none',
       },
     },

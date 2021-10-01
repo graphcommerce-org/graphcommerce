@@ -1,4 +1,5 @@
-import { Chip, makeStyles, Theme } from '@material-ui/core'
+import { Chip, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import PageLink from 'next/link'
 import React from 'react'
 

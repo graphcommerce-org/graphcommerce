@@ -2,7 +2,8 @@ import { cloneDeep } from '@apollo/client/utilities'
 import { FilterRangeTypeInput } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps } from '@graphcommerce/next-ui'
-import { makeStyles, Mark, Slider, Theme } from '@material-ui/core'
+import { Mark, Slider, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, { useEffect } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'

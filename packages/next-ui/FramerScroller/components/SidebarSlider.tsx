@@ -5,8 +5,8 @@ import {
   ScrollerPageCounter,
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
-import { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Theme } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import React, { ReactNode } from 'react'
 import { SvgImageSimple, iconChevronLeft, iconChevronRight } from '../..'
 import { UseStyles } from '../../Styles'
@@ -43,7 +43,7 @@ const useStyles = makeStyles(
       },
     },
     sliderButtons: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         display: 'none',
       },
     },

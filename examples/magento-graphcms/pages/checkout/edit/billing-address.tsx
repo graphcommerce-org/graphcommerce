@@ -9,7 +9,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
-import { Container, NoSsr } from '@material-ui/core'
+import { Container, NoSsr } from '@mui/material'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import { DefaultPageDocument } from '../../../components/GraphQL/DefaultPage.gql'

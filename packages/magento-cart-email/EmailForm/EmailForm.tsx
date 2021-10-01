@@ -11,8 +11,9 @@ import {
 } from '@graphcommerce/magento-customer'
 import { AnimatedRow, Button, FormDiv, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
-import { CircularProgress, makeStyles, TextField } from '@material-ui/core'
-import { Alert } from '@material-ui/lab'
+import { CircularProgress, TextField } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { Alert } from '@mui/material';
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import EmailHelperList from '../EmailHelperList'

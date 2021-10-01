@@ -1,5 +1,6 @@
 import { SectionContainer, UseStyles } from '@graphcommerce/next-ui'
-import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Link, Theme, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import PageLink from 'next/link'
 import React from 'react'
 import { useCartQuery } from '../../hooks'

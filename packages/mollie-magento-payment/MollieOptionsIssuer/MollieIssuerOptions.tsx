@@ -2,7 +2,8 @@ import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { useFormCompose, useFormPersist, useFormValidFields } from '@graphcommerce/react-hook-form'
-import { makeStyles, TextField, Theme, Typography } from '@material-ui/core'
+import { TextField, Theme, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 import { SetMolliePaymentMethodIssuerOnCartDocument } from './SetMolliePaymentMethodIssuerOnCart.gql'
 

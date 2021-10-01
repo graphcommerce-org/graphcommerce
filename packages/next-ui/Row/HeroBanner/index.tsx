@@ -1,5 +1,5 @@
-import { ContainerProps, Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { ContainerProps, Theme } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import { m, useTransform, useViewportScroll } from 'framer-motion'
 import React from 'react'
 import Row from '..'

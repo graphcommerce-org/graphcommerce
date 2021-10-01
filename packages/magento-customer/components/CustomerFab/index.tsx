@@ -6,7 +6,8 @@ import {
   SvgImageSimple,
   UseStyles,
 } from '@graphcommerce/next-ui'
-import { Fab, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import { Fab, NoSsr, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import PageLink from 'next/link'
 import React from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from '../../hooks'

@@ -1,6 +1,7 @@
 import { Maybe } from '@graphcommerce/graphql'
 import { RenderType, UseStyles, responsiveVal } from '@graphcommerce/next-ui'
-import { Theme, makeStyles } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import React from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'

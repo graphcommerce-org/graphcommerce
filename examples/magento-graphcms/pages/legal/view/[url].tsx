@@ -10,7 +10,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
-import { Container, Typography } from '@material-ui/core'
+import { Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'

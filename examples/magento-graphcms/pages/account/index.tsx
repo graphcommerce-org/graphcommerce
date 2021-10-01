@@ -28,7 +28,7 @@ import {
   TimeAgo,
   Title,
 } from '@graphcommerce/next-ui'
-import { Container, NoSsr } from '@material-ui/core'
+import { Container, NoSsr } from '@mui/material'
 import React from 'react'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
 import PageShellHeader from '../../components/AppShell/PageShellHeader'

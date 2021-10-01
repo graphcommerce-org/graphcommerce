@@ -5,7 +5,8 @@ import {
   SvgImageSimple,
   UseStyles,
 } from '@graphcommerce/next-ui'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import { m, useMotionTemplate, useTransform, useViewportScroll } from 'framer-motion'
 import React, { PropsWithChildren, useEffect, useRef, useState } from 'react'
@@ -22,12 +23,12 @@ const useStyles = makeStyles(
       zIndex: 9,
       margin: '0 auto',
       maxWidth: `calc(100% - 96px - ${theme.spacings.sm} * 2)`,
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         textAlign: 'center',
         maxWidth: 'unset',
         margin: `0 calc(${theme.page.horizontal} * -1)`,
       },
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('md')]: {
         textAlign: 'center',
       },
     },

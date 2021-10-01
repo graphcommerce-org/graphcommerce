@@ -17,7 +17,8 @@ import {
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, JsonLd, Title } from '@graphcommerce/next-ui'
-import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Link, Theme, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'

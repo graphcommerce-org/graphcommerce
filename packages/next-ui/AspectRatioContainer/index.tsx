@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/styles'
+import { makeStyles } from '@mui/styles'
 import React from 'react'
 import { UseStyles } from '../Styles'
 

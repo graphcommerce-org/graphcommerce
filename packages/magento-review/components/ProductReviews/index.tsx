@@ -8,7 +8,8 @@ import {
   StarRatingField,
   SvgImage,
 } from '@graphcommerce/next-ui'
-import { Chip, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Chip, Theme, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import Link from 'next/link'
 import React, { useState } from 'react'
 import ProductReviewChip from '../ProductReviewChip'
@@ -74,7 +75,7 @@ const useStyles = makeStyles(
       alignItems: 'center',
     },
     writeReviewButton: {
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('md')]: {
         padding: '8px 16px 8px',
         whiteSpace: 'nowrap',
       },
@@ -201,5 +202,5 @@ export default function ProductReviews(props: ProductReviewsProps) {
         ))}
       {actions}
     </div>
-  )
+  );
 }

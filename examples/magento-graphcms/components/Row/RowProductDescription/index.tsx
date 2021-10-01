@@ -1,6 +1,6 @@
 import { ProductPageDescription, ProductPageDescriptionProps } from '@graphcommerce/magento-product'
 import { ColumnTwoWithTop } from '@graphcommerce/next-ui'
-import { Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
 import React from 'react'
 
 type RowProductDescriptionProps = ProductPageDescriptionProps & {

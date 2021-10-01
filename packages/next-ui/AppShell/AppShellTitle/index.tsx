@@ -1,4 +1,5 @@
-import { makeStyles, Theme, TypographyProps } from '@material-ui/core'
+import { Theme, TypographyProps } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../../Styles'

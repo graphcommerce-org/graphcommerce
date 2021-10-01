@@ -126,7 +126,7 @@ GraphCMS specifieke code
 
 ### `packages/next-ui`
 
-- Dependency `@material-ui/core`
+- Dependency `@mui/material`
 - Dependency `next`
 - Dependency `framer`
 - etc.
@@ -136,20 +136,20 @@ UI generieke components, maar geen eCommerce specifieke components (bijv.
 
 ### `packages/framer-next-pages`
 
-- NO Dependency `@material-ui/core`
+- NO Dependency `@mui/material`
 - Dependency `framer`
 - Dependency `next`
 
 ### `packages/framer-sheet`
 
-- NO Dependency `@material-ui/core`
+- NO Dependency `@mui/material`
 - NO Dependency `next`
 - Dependency `framer`
 
 ### `packages/react-hook-form`
 
 - NO dependency `next`
-- NO dependency `@material-ui/core`
+- NO dependency `@mui/material`
 - Dependency `react-hook-form`
 - Dependency `graphql`
 

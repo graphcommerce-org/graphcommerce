@@ -9,7 +9,9 @@ import {
   SnapPoint,
   styles as sheetStyles,
 } from '@graphcommerce/framer-sheet'
-import { makeStyles, StyleRules, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import { StyleRules } from '@mui/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import { useDomEvent } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useRef } from 'react'

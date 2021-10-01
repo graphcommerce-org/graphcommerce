@@ -1,4 +1,5 @@
-import { Avatar, Chip, makeStyles, Theme } from '@material-ui/core'
+import { Avatar, Chip, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 import Row from '../../Row'
 import { UseStyles } from '../../Styles'

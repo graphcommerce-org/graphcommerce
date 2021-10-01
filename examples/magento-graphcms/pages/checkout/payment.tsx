@@ -25,7 +25,7 @@ import {
   Title,
 } from '@graphcommerce/next-ui'
 import { ComposedForm } from '@graphcommerce/react-hook-form'
-import { Container, Divider, NoSsr } from '@material-ui/core'
+import { Container, Divider, NoSsr } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'

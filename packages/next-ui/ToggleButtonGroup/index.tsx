@@ -1,6 +1,7 @@
-import { makeStyles, Theme } from '@material-ui/core'
-import { capitalize } from '@material-ui/core/utils'
-import { ToggleButtonGroupProps } from '@material-ui/lab'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { capitalize } from '@mui/material/utils'
+import { ToggleButtonGroupProps } from '@mui/lab'
 import clsx from 'clsx'
 import React, { PropsWithoutRef } from 'react'
 import { isFragment } from 'react-is'

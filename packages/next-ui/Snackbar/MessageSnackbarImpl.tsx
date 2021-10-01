@@ -1,13 +1,5 @@
-import {
-  Button,
-  Fab,
-  makeStyles,
-  PropTypes,
-  Snackbar,
-  SnackbarContent,
-  SnackbarProps,
-  Theme,
-} from '@material-ui/core'
+import { Button, Fab, PropTypes, Snackbar, SnackbarContent, SnackbarProps, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import SvgImage from '../SvgImage'

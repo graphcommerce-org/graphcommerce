@@ -1,4 +1,5 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import PageLink from 'next/link'
 import React from 'react'
 import Button, { ButtonProps } from '../Button'

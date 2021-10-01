@@ -1,7 +1,7 @@
 import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, Pagination } from '@graphcommerce/next-ui'
-import { Link } from '@material-ui/core'
+import { Link } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'

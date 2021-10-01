@@ -1,4 +1,4 @@
-import { styled } from '@material-ui/core'
+import { styled } from '@mui/material'
 
 const FormRow = styled('div')(
   ({ theme }) => ({

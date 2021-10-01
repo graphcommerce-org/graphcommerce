@@ -1,10 +1,5 @@
-import {
-  InputBaseComponentProps,
-  makeStyles,
-  TextField,
-  TextFieldProps,
-  Theme,
-} from '@material-ui/core'
+import { InputBaseComponentProps, TextField, TextFieldProps, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, { Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from 'react'
 import { ComponentEventHandler, ComponentFieldState, MollieFieldName } from '../Mollie'
 import { useMollieContext } from './mollieContext'

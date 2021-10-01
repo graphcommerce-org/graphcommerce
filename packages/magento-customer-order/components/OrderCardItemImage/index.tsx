@@ -1,5 +1,6 @@
 import { Image } from '@graphcommerce/image'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import React from 'react'
 import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'

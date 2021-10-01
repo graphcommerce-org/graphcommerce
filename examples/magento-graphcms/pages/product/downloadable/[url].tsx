@@ -16,7 +16,7 @@ import {
 import { ProductReviewChip, jsonLdProductReview } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { JsonLd, GetStaticProps, Title } from '@graphcommerce/next-ui'
-import { Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { Product } from 'schema-dts'

@@ -1,5 +1,6 @@
-import { makeStyles, Theme } from '@material-ui/core'
-import { PaginationProps, usePagination } from '@material-ui/lab'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { PaginationProps, usePagination } from '@mui/lab'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import SvgImage from '../SvgImage'
@@ -46,7 +47,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         background: 'rgba(0, 0, 0, 0.04)',
       },
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('md')]: {
       alignItems: 'center',
     },
   },
@@ -61,7 +62,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   labelTitle: {
     display: 'inline',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'block',
     },
   },

@@ -1,5 +1,6 @@
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Button, makeStyles, Theme } from '@material-ui/core'
+import { Button, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { useRouter } from 'next/router'
 import React from 'react'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'

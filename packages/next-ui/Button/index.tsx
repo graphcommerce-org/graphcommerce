@@ -1,5 +1,5 @@
-import { Button as MuiButton, ButtonClassKey as MuiButtonClassKey, Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Button as MuiButton, ButtonClassKey as MuiButtonClassKey, Theme } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import clsx from 'clsx'
 import React from 'react'
 
@@ -38,7 +38,7 @@ const useStyles = makeStyles<
     label: {},
     disabled: {},
     withStartIcon: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         height: 40,
         width: 40,
         textAlign: 'center',

@@ -1,19 +1,20 @@
-import { LinearProgress, makeStyles, Fade } from '@material-ui/core'
-import zIndex from '@material-ui/core/styles/zIndex'
+import { LinearProgress, Fade } from '@mui/material'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 
 const useStyles = makeStyles(
-  {
+  (theme: Theme) => ({
     progress: {
       position: 'fixed',
       width: '100%',
       top: 0,
       height: 3,
       marginBottom: -3,
-      zIndex: zIndex.tooltip,
+      zIndex: theme.zIndex.tooltip,
     },
-  },
+  }),
   { name: 'PageLoadIndicator' },
 )
 

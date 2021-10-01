@@ -6,13 +6,13 @@ import { FragmentRegistry } from './fragment-resolver'
 
 export function defineFilepathSubfolder(baseFilePath: string, folder: string) {
   const parsedPath = parsePath(baseFilePath)
-  return join(parsedPath.dir, folder, parsedPath.base).replace(/\\/g, '/')
+  return join(parsedPath.dir, folder, parsedPath.base).replace(/\\/g, '/');
 }
 
 export function appendExtensionToFilePath(baseFilePath: string, extension: string) {
   const parsedPath = parsePath(baseFilePath)
 
-  return join(parsedPath.dir, parsedPath.name + extension).replace(/\\/g, '/')
+  return join(parsedPath.dir, parsedPath.name + extension).replace(/\\/g, '/');
 }
 
 export function extractExternalFragmentsInUse(

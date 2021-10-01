@@ -1,4 +1,5 @@
-import { ListItem, ListItemIcon, ListItemText, makeStyles, Theme } from '@material-ui/core'
+import { ListItem, ListItemIcon, ListItemText, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import PageLink from 'next/link'
 import router from 'next/router'
 import React from 'react'

@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { BlogListItem } from '@graphcommerce/next-ui'
-import { Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
 import Asset from '../Asset'
 import { BlogItemFragment } from './BlogItem.gql'
 

@@ -24,7 +24,7 @@ import {
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { AppShellTitle, GetStaticProps, Title, AppShellSticky } from '@graphcommerce/next-ui'
-import { Container } from '@material-ui/core'
+import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../components/AppShell/FullPageShell'

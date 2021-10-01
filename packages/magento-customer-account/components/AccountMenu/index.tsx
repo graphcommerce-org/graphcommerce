@@ -1,5 +1,6 @@
 import { UseStyles } from '@graphcommerce/next-ui'
-import { List, makeStyles, Theme } from '@material-ui/core'
+import { List, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 
 const useStyles = makeStyles(

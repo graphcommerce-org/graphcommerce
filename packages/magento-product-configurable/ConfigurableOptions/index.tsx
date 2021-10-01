@@ -6,7 +6,8 @@ import {
   ToggleButtonGroup,
 } from '@graphcommerce/next-ui'
 import { Controller, FieldErrors, UseControllerProps } from '@graphcommerce/react-hook-form'
-import { BaseTextFieldProps, FormHelperText, makeStyles, Theme } from '@material-ui/core'
+import { BaseTextFieldProps, FormHelperText, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import { SwatchTypeRenderer, SwatchSize } from '../Swatches'

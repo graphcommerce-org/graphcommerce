@@ -1,5 +1,6 @@
 import { responsiveVal, SvgImage, iconSadShoppingBag } from '@graphcommerce/next-ui'
-import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { Theme, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 
 const useStyles = makeStyles(
@@ -9,7 +10,7 @@ const useStyles = makeStyles(
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         minHeight: '70vh',
       },
       [theme.breakpoints.up('md')]: {

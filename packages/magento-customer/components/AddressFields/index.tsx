@@ -6,7 +6,7 @@ import {
   houseNumberPattern,
   UseFormReturn,
 } from '@graphcommerce/react-hook-form'
-import { TextField } from '@material-ui/core'
+import { TextField } from '@mui/material'
 import React, { useMemo } from 'react'
 
 type AddressFieldValues = {

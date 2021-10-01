@@ -1,6 +1,7 @@
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
 import { UseStyles, iconClose, SvgImageSimple } from '@graphcommerce/next-ui'
-import { IconButton, makeStyles, Theme } from '@material-ui/core'
+import { IconButton, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 import { CouponFragment } from '../Api/Coupon.gql'
 import { RemoveCouponFormDocument } from './RemoveCouponForm.gql'
@@ -44,11 +45,11 @@ export default function RemoveCouponForm(props: CartCouponProps) {
   return (
     <form className={classes.inlineCoupon} onSubmit={submitHandler} noValidate>
       {applied_coupons?.[0]?.code}
-      <IconButton type='submit'>
+      <IconButton type='submit' size="large">
         <SvgImageSimple src={iconClose} size='small' muted />
       </IconButton>
 
       <ApolloCartErrorAlert error={error} />
     </form>
-  )
+  );
 }

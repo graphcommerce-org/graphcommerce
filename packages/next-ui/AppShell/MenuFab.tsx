@@ -1,13 +1,5 @@
-import {
-  Divider,
-  Fab,
-  List,
-  ListItem,
-  ListItemText,
-  makeStyles,
-  Menu,
-  Theme,
-} from '@material-ui/core'
+import { Divider, Fab, List, ListItem, ListItemText, Menu, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import { Router, useRouter } from 'next/router'
@@ -26,7 +18,7 @@ const useStyles = makeStyles(
       zIndex: 99,
       left: theme.page.horizontal,
       top: `calc(${theme.spacings.xxs} - 5px)`,
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         top: 'unset',
         left: 20,
         bottom: 20,

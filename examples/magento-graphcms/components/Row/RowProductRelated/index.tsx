@@ -1,6 +1,7 @@
 import { RelatedProductsFragment } from '@graphcommerce/magento-product'
 import { SidebarSlider, RenderType, responsiveVal } from '@graphcommerce/next-ui'
-import { Theme, Typography, makeStyles } from '@material-ui/core'
+import { Theme, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 import renderers from '../../ProductListItems/renderers'
 import { RowProductRelatedFragment } from './RowProductRelated.gql'

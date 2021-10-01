@@ -7,7 +7,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
-import { Typography, Box } from '@material-ui/core'
+import { Typography, Box } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'

@@ -2,7 +2,8 @@ import { useQuery } from '@apollo/client'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { FullPageShellBaseProps } from '@graphcommerce/next-ui'
 import MinimalPageShellBase from '@graphcommerce/next-ui/AppShell/MinimalPageShellBase'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
 import Footer from './Footer'

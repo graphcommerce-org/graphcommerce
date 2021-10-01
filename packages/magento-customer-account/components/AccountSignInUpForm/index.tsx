@@ -9,7 +9,8 @@ import {
 } from '@graphcommerce/magento-customer'
 import { AnimatedRow, Button, FormDiv, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormPersist } from '@graphcommerce/react-hook-form'
-import { CircularProgress, Link, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
+import { CircularProgress, Link, TextField, Theme, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import router from 'next/router'

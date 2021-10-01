@@ -1,5 +1,6 @@
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
-import { Link, makeStyles, Theme } from '@material-ui/core'
+import { Link, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -15,7 +16,7 @@ const useStyles = makeStyles(
       flex: 1,
       position: 'relative',
       pointerEvents: 'all',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         display: 'none',
       },
     },
@@ -30,7 +31,7 @@ const useStyles = makeStyles(
       position: 'absolute',
       background: theme.palette.background.default,
       top: 5,
-      [theme.breakpoints.down('sm')]: { display: 'none' },
+      [theme.breakpoints.down('lg')]: { display: 'none' },
       boxShadow: 'none',
     },
     prev: {

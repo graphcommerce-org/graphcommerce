@@ -9,7 +9,8 @@ import {
   InputCheckmark,
 } from '@graphcommerce/next-ui'
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { makeStyles, TextField } from '@material-ui/core'
+import { TextField } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { useRouter } from 'next/router'
 import React from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'

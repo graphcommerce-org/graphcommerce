@@ -25,7 +25,8 @@ import {
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { AppShellSticky, GetStaticProps, Title } from '@graphcommerce/next-ui'
-import { Container, makeStyles, Theme } from '@material-ui/core'
+import { Container, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
 import React from 'react'

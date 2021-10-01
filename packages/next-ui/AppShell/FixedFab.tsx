@@ -1,4 +1,5 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { m } from 'framer-motion'
 import { UseStyles } from '../Styles'
 
@@ -12,7 +13,7 @@ const useStyles = makeStyles(
       zIndex: 100,
       boxShadow: theme.shadows[4],
       borderRadius: 99,
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         top: 'unset !important',
       },
       [theme.breakpoints.up('md')]: {

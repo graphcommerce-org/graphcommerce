@@ -1,5 +1,6 @@
 import { UseStyles } from '@graphcommerce/next-ui'
-import { Fab, FabProps, makeStyles, Theme } from '@material-ui/core'
+import { Fab, FabProps, Theme } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import { m, useMotionValue, useSpring } from 'framer-motion'
 import React from 'react'
 import { useWatchItems } from '..'

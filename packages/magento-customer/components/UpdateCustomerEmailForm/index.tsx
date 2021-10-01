@@ -7,7 +7,7 @@ import {
   MessageSnackbar,
 } from '@graphcommerce/next-ui'
 import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { TextField } from '@material-ui/core'
+import { TextField } from '@mui/material'
 import React from 'react'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {

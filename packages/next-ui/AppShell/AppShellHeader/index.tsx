@@ -1,5 +1,6 @@
 import { useHistoryLink, usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
-import { Fab, makeStyles, Theme } from '@material-ui/core'
+import { Fab, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import { m, MotionValue, useMotionValue, useTransform } from 'framer-motion'
 import PageLink from 'next/link'
@@ -70,7 +71,7 @@ const useStyles = makeStyles(
       // to keep consistency between app shell buttons.
       paddingTop: `calc(${theme.spacings.xxs} + (${theme.page.headerInnerHeight.md} * 0.15))`,
       paddingBottom: `calc(${theme.spacings.xxs} + (${theme.page.headerInnerHeight.md} * 0.15))`,
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         paddingTop: 8,
         paddingBottom: 8,
       },
@@ -94,7 +95,7 @@ const useStyles = makeStyles(
           height: minHeight,
         },
       },
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         '& div > .MuiFab-sizeSmall': {
           marginLeft: -8,
           marginRight: -8,
@@ -142,7 +143,7 @@ const useStyles = makeStyles(
     fab: {
       maxWidth: 38,
       maxHeight: 38,
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         boxShadow: 'none',
       },
     },
@@ -199,7 +200,7 @@ const useStyles = makeStyles(
       },
     },
     sheetShellActionsNoButtonShadow: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         '& * > button': {
           boxShadow: 'none',
         },

@@ -8,7 +8,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
-import { Box, Container, Link, NoSsr } from '@material-ui/core'
+import { Box, Container, Link, NoSsr } from '@mui/material'
 import router, { useRouter } from 'next/router'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../../components/AppShell/SheetShell'

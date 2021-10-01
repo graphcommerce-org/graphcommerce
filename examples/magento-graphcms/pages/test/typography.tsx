@@ -1,7 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
-import { Typography, Container } from '@material-ui/core'
+import { Typography, Container } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'

@@ -16,7 +16,8 @@ import { SearchDocument, SearchForm, SearchQuery } from '@graphcommerce/magento-
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { AppShellSticky, AppShellTitle, Button } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
-import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Box, Container, Theme, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'

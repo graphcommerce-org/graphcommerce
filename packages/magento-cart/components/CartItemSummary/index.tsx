@@ -8,7 +8,8 @@ import {
   SvgImageSimple,
   UseStyles,
 } from '@graphcommerce/next-ui'
-import { Divider, makeStyles, Theme } from '@material-ui/core'
+import { Divider, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import React from 'react'
 import { useCartQuery } from '../../hooks'

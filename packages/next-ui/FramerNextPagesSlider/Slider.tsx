@@ -1,5 +1,5 @@
 import { usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
-import { makeStyles } from '@material-ui/styles'
+import { makeStyles } from '@mui/styles'
 import { AnimatePresence } from 'framer-motion'
 import React, { useRef } from 'react'
 import RouterSlide from './Slide'

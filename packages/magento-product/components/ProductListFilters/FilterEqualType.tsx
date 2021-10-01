@@ -1,14 +1,8 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { FilterEqualTypeInput } from '@graphcommerce/graphql'
 import { ChipMenu, ChipMenuProps, responsiveVal } from '@graphcommerce/next-ui'
-import {
-  Checkbox,
-  ListItem,
-  ListItemSecondaryAction,
-  ListItemText,
-  makeStyles,
-  Theme,
-} from '@material-ui/core'
+import { Checkbox, ListItem, ListItemSecondaryAction, ListItemText, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 import { SetRequired } from 'type-fest'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
@@ -38,7 +32,7 @@ const useFilterEqualStyles = makeStyles(
       paddingBottom: theme.spacings.xxs,
       '& > div': {
         display: 'inline-block',
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('lg')]: {
           maxWidth: '72%',
         },
       },
@@ -53,7 +47,7 @@ const useFilterEqualStyles = makeStyles(
       gridTemplateColumns: 'repeat(2, 1fr)',
       columnGap: responsiveVal(2, 16),
       minWidth: 0,
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
       },
     },
