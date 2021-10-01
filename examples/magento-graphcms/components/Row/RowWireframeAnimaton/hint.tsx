@@ -1,5 +1,5 @@
+import { responsiveVal } from '@graphcommerce/next-ui'
 import { makeStyles, Theme, Popper, Fab } from '@material-ui/core'
-import { responsiveVal } from '@reachdigital/next-ui'
 import React, { useRef, useState } from 'react'
 
 const useStyles = makeStyles(

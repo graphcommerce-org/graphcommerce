@@ -1,5 +1,5 @@
+import { SvgImage, responsiveVal } from '@graphcommerce/next-ui'
 import { Button, Container, makeStyles, Theme, Typography } from '@material-ui/core'
-import { SvgImage, responsiveVal } from '@reachdigital/next-ui'
 import {
   iconPwa,
   iconSeo,

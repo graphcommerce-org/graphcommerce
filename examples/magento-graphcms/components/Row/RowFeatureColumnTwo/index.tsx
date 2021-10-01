@@ -1,6 +1,6 @@
-import { Box, Button, Container, makeStyles, Tab, Tabs, Theme, Typography } from '@material-ui/core'
+import { SvgImage, responsiveVal } from '@graphcommerce/next-ui'
+import { Box, Button, Container, makeStyles, Tab, Theme, Typography } from '@material-ui/core'
 import { TabContext, TabList, TabPanel } from '@material-ui/lab'
-import { SvgImage, responsiveVal } from '@reachdigital/next-ui'
 import React from 'react'
 import {
   iconLogoFormium,

@@ -1,5 +1,5 @@
+import { responsiveVal } from '@graphcommerce/next-ui'
 import { makeStyles, Container, Theme, useTheme, Typography } from '@material-ui/core'
-import { responsiveVal } from '@reachdigital/next-ui'
 import { m, useMotionValue, useTransform } from 'framer-motion'
 import React, { useState } from 'react'
 import Asset from '../../Asset'

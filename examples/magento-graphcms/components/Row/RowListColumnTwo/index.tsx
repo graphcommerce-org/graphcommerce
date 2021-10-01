@@ -1,5 +1,5 @@
+import { SvgImage, responsiveVal } from '@graphcommerce/next-ui'
 import { Button, Container, makeStyles, Theme, Typography, useTheme } from '@material-ui/core'
-import { SvgImage, responsiveVal } from '@reachdigital/next-ui'
 import Asset from '../../Asset'
 import {
   iconApollo,
@@ -9,7 +9,7 @@ import {
   iconNextjs,
   iconReact,
   iconTypescript,
-} from '../../Theme/icons/icons'
+} from '../../Theme/icons/icons.tsx'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

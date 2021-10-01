@@ -1,5 +1,5 @@
+import { SvgImage, responsiveVal } from '@graphcommerce/next-ui'
 import { Button, Container, makeStyles, Theme, Typography, useTheme } from '@material-ui/core'
-import { SvgImage, responsiveVal } from '@reachdigital/next-ui'
 import { useEffect, useRef, useState } from 'react'
 import Asset from '../../Asset'
 import { iconUspCheck, iconClock } from '../../Theme/icons/icons'
