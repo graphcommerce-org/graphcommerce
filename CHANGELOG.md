@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.125.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.124.10...@graphcommerce/graphcommerce@2.125.0) (2021-10-01)
+
+
+### Features
+
+* **sidebar-gallery:** close using esc key ([fd46fe1](https://github.com/ho-nl/m2-pwa/commit/fd46fe1029f436c1e0e04cbcc3b66deca4d1b0b6))
+
+
+
+
+
 ## [2.124.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.124.9...@graphcommerce/graphcommerce@2.124.10) (2021-09-30)
 
 

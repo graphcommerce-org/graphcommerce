@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.0.6...@graphcommerce/next-ui@3.1.0) (2021-10-01)
+
+
+### Features
+
+* **sidebar-gallery:** close using esc key ([fd46fe1](https://github.com/ho-nl/m2-pwa/commit/fd46fe1029f436c1e0e04cbcc3b66deca4d1b0b6))
+
+
+
+
+
 ## [3.0.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.0.0...@graphcommerce/next-ui@3.0.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/next-ui
