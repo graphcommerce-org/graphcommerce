@@ -130,8 +130,8 @@ const useStyles = makeStyles(
     sheetHeaderFillMobileOnly: {
       [theme.breakpoints.up('md')]: {
         pointerEvents: 'none',
-        background: 'transparent',
-        marginBottom: `calc((${theme.page.headerInnerHeight.md} * -1) + ${theme.spacings.xxs} * 2)`,
+        background: 'green',
+        position: 'fixed',
       },
     },
     innerContainer: {

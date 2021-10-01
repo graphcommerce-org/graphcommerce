@@ -44,7 +44,7 @@ const useStyles = makeStyles(
       zIndex: theme.zIndex.modal,
       marginTop: 0,
       [theme.breakpoints.up('md')]: {
-        marginTop: `calc(${theme.page.headerInnerHeight.md} * -1  - ${theme.spacings.sm} * 2)`,
+        marginTop: `calc(${theme.page.headerInnerHeight.md} * -1  - ${theme.spacings.sm})`,
       },
       paddingRight: 0,
     },
@@ -55,6 +55,7 @@ const useStyles = makeStyles(
 
       const maxHeight = `calc(100vh - ${headerHeight} - ${galleryMargin} - ${extraSpacing})`
       const ratio = `calc(${height} / ${width} * 100%)`
+
       return {
         height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
         position: 'relative',
