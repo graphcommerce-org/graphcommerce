@@ -8,19 +8,17 @@ import {
   Theme,
   StyledEngineProvider,
   adaptV4Theme,
-} from '@mui/material';
+} from '@mui/material'
 import React from 'react'
 import shadows from './shadows'
-
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends Theme {}
 }
 
-
 // Create a theme instance.
-export const defaultTheme = createTheme(adaptV4Theme({
+export const defaultTheme = createTheme({
   palette: {
     primary: {
       main: '#FF4A55',
@@ -201,11 +199,11 @@ export const defaultTheme = createTheme(adaptV4Theme({
       md: '72px', // `calc(40px + (${responsiveVal(10, 16)} * 2))`,
     },
   },
-}))
+})
 
-defaultTheme.overrides = {
+defaultTheme.components = {
   MuiCssBaseline: {
-    '@global': {
+    styleOverrides: {
       body: {
         overflowY: 'scroll',
       },
@@ -217,115 +215,131 @@ defaultTheme.overrides = {
     },
   },
   MuiContainer: {
-    root: {
-      paddingLeft: defaultTheme.page.horizontal,
-      paddingRight: defaultTheme.page.horizontal,
-      [defaultTheme.breakpoints.up('sm')]: {
-        paddingLeft: undefined,
-        paddingRight: undefined,
+    styleOverrides: {
+      root: {
+        paddingLeft: defaultTheme.page.horizontal,
+        paddingRight: defaultTheme.page.horizontal,
+        [defaultTheme.breakpoints.up('sm')]: {
+          paddingLeft: undefined,
+          paddingRight: undefined,
+        },
       },
     },
   },
   MuiButton: {
-    root: {
-      fontWeight: 400,
-      textTransform: 'none',
-    },
-    endIcon: {
-      marginLeft: 0,
-    },
-    contained: {
-      backgroundColor: '#fff',
-      boxShadow: defaultTheme.shadows[1],
-      '&:hover': { boxShadow: defaultTheme.shadows[1] },
-      '&:focus': { boxShadow: defaultTheme.shadows[1] },
-    },
-    containedPrimary: {
-      color: '#fff',
-      '& .MuiSvgIcon-root': { color: '#fff' },
-    },
-    containedSecondary: {
-      color: '#fff',
-      '& .MuiSvgIcon-root': { color: '#fff' },
-    },
-    containedSizeLarge: { padding: `15px ${responsiveVal(30, 60)}` },
-    iconSizeLarge: {
-      '& > *:first-child': { fontSize: 24 },
-    },
-    outlined: {
-      // todo: Button isn't rounded on all places, but should be on homepage?
-      borderRadius: 0,
+    styleOverrides: {
+      root: {
+        fontWeight: 400,
+        textTransform: 'none',
+      },
+      endIcon: {
+        marginLeft: 0,
+      },
+      contained: {
+        backgroundColor: '#fff',
+        boxShadow: defaultTheme.shadows[1],
+        '&:hover': { boxShadow: defaultTheme.shadows[1] },
+        '&:focus': { boxShadow: defaultTheme.shadows[1] },
+      },
+      containedPrimary: {
+        color: '#fff',
+        '& .MuiSvgIcon-root': { color: '#fff' },
+      },
+      containedSecondary: {
+        color: '#fff',
+        '& .MuiSvgIcon-root': { color: '#fff' },
+      },
+      containedSizeLarge: { padding: `15px ${responsiveVal(30, 60)}` },
+      iconSizeLarge: {
+        '& > *:first-child': { fontSize: 24 },
+      },
+      outlined: {
+        // todo: Button isn't rounded on all places, but should be on homepage?
+        borderRadius: 0,
+      },
     },
   },
   MuiFab: {
-    root: {
-      backgroundColor: '#fff',
-      '&:hover': { backgroundColor: '#efefef' },
-    },
-    primary: {
-      color: '#fff',
-      '& .MuiSvgIcon-root': { color: '#fff' },
-    },
-    secondary: {
-      color: '#fff',
-      '& .MuiSvgIcon-root': { color: '#fff' },
-    },
-    extended: {
-      fontWeight: 400,
-      textTransform: 'none',
+    styleOverrides: {
+      root: {
+        backgroundColor: '#fff',
+        '&:hover': { backgroundColor: '#efefef' },
+      },
+      primary: {
+        color: '#fff',
+        '& .MuiSvgIcon-root': { color: '#fff' },
+      },
+      secondary: {
+        color: '#fff',
+        '& .MuiSvgIcon-root': { color: '#fff' },
+      },
+      extended: {
+        fontWeight: 400,
+        textTransform: 'none',
+      },
     },
   },
   MuiInputLabel: {
-    root: {
-      '&$focused:not($error)': {
-        color: defaultTheme.palette.secondary.main,
+    styleOverrides: {
+      root: {
+        '&$focused:not($error)': {
+          color: defaultTheme.palette.secondary.main,
+        },
       },
     },
   },
   MuiOutlinedInput: {
-    root: {
-      '&$focused $notchedOutline': {
-        borderColor: defaultTheme.palette.secondary.main,
+    styleOverrides: {
+      root: {
+        '&$focused $notchedOutline': {
+          borderColor: defaultTheme.palette.secondary.main,
+        },
       },
     },
   },
   MuiChip: {
-    root: {
-      boxShadow: defaultTheme.shadows[5],
-      backgroundColor: defaultTheme.palette.background.paper,
-      height: responsiveVal(28, 32),
-      borderRadius: responsiveVal(28 / 2, 32 / 2),
-    },
-    outlined: {
-      borderColor: defaultTheme.palette.divider,
-      boxShadow: 'unset',
+    styleOverrides: {
+      root: {
+        boxShadow: defaultTheme.shadows[5],
+        backgroundColor: defaultTheme.palette.background.paper,
+        height: responsiveVal(28, 32),
+        borderRadius: responsiveVal(28 / 2, 32 / 2),
+      },
+      outlined: {
+        borderColor: defaultTheme.palette.divider,
+        boxShadow: 'unset',
+      },
     },
   },
   MuiCheckbox: {
-    colorPrimary: {
-      color: '#EAEAEA',
-      '&$checked': {
-        color: defaultTheme.palette.primary.main,
+    styleOverrides: {
+      colorPrimary: {
+        color: '#EAEAEA',
+        '& .MuiCheckbox-checked': {
+          color: defaultTheme.palette.primary.main,
+        },
       },
     },
   },
   MuiSwitch: {
-    root: {
-      padding: 7,
-    },
-    track: {
-      '$colorPrimary + &': {
-        backgroundColor: defaultTheme.palette.primary,
-        borderRadius: 30,
+    styleOverrides: {
+      root: {
+        padding: 7,
       },
-      '$checked$colorPrimary + &': {
-        opacity: 1,
-        backgroundColor: defaultTheme.palette.primary,
-        borderRadius: 30,
+      track: {
+        '.MuiSwitch-colorPrimary + &': {
+          backgroundColor: defaultTheme.palette.primary,
+          borderRadius: 30,
+        },
+        '$checked$colorPrimary + &': {
+          opacity: 1,
+          backgroundColor: defaultTheme.palette.primary,
+          borderRadius: 30,
+        },
       },
-    },
-    thumb: {
-      backgroundColor: '#fff',
+      thumb: {
+        backgroundColor: '#fff',
+      },
     },
   },
 }

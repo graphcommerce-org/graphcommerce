@@ -1,6 +1,7 @@
 import { ApolloProvider } from '@apollo/client'
 import { GoogleTagManagerScript, useGTMPageViewEvent } from '@graphcommerce/googletagmanager'
 import { App, AppProps } from '@graphcommerce/next-ui'
+import { StyledEngineProvider } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
 import ThemedProvider from '../components/Theme/ThemedProvider'
@@ -15,11 +16,13 @@ export default function ThemedApp(props: AppProps) {
   return (
     <>
       <GoogleTagManagerScript />
-      <ApolloProvider client={apolloClient(locale, true, pageProps.apolloState)}>
-        <ThemedProvider>
-          <App {...props} />
-        </ThemedProvider>
-      </ApolloProvider>
+      <StyledEngineProvider injectFirst>
+        <ApolloProvider client={apolloClient(locale, true, pageProps.apolloState)}>
+          <ThemedProvider>
+            <App {...props} />
+          </ThemedProvider>
+        </ApolloProvider>
+      </StyledEngineProvider>
     </>
   )
 }

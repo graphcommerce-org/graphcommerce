@@ -1,4 +1,4 @@
-import { Shadows } from '@mui/material/styles';
+import { Shadows } from '@mui/material/styles/shadows'
 
 const shadows: Shadows = [
   /*  0 */ 'none',
