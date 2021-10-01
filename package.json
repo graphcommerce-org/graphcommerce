@@ -69,8 +69,6 @@
     "vercel": "^23.1.2"
   },
   "devDependencies": {
-    "@babel/compat-data": "^7.15.0",
-    "@babel/core": "^7.15.5",
     "@graphql-typed-document-node/patch-cli": "^3.0.8",
     "@types/node": "^16.10.2",
     "@types/react": "^17.0.26",
