@@ -7,7 +7,7 @@ import {
   PaymentMethodContextProvider,
   PaymentMethodOptions,
   PaymentMethodPlaceOrder,
-  PaymentMethodToggle,
+  PaymentMethodToggle as PaymentMethodToggles,
 } from '@graphcommerce/magento-cart-payment-method'
 import { braintree, braintree_local_payment } from '@graphcommerce/magento-payment-braintree'
 import { included_methods } from '@graphcommerce/magento-payment-included'
@@ -86,7 +86,7 @@ function PaymentPage() {
         >
           <NoSsr>
             <AnimatePresence initial={false}>
-              <PaymentMethodToggle key='toggle' />
+              <PaymentMethodToggles key='toggle' />
 
               <PaymentMethodOptions
                 key='options'

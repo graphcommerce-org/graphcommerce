@@ -13,17 +13,16 @@ import { FormControl, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useEffect } from 'react'
-import { PaymentMethod, PaymentToggleProps } from '../Api/PaymentMethod'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
-export type PaymentMethodToggleProps = Record<string, unknown>
+export type PaymentMethodTogglesProps = Record<string, unknown>
 
-function Content(props: PaymentMethod) {
-  const { code } = props
-  const { modules } = usePaymentMethodContext()
-  const Component = modules[code]?.PaymentToggle ?? ((p: PaymentToggleProps) => <>{p.title}</>)
-  return <Component {...props} />
-}
+// function Content(props: PaymentMethod) {
+//   const { code } = props
+//   const { modules } = usePaymentMethodContext()
+//   const Component = modules[code]?.PaymentToggle ?? ((p: PaymentToggleProps) => <>{p.title}</>)
+//   return <Component {...props} />
+// }
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -98,10 +97,10 @@ const useStyles = makeStyles(
       right: 0,
     },
   }),
-  { name: 'PaymentMethodToggle' },
+  { name: 'PaymentMethodToggles' },
 )
 
-export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
+export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
   const { methods, selectedMethod, setSelectedMethod, setSelectedModule, modules } =
     usePaymentMethodContext()
 
