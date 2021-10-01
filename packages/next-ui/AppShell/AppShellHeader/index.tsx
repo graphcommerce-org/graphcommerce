@@ -38,7 +38,7 @@ const useStyles = makeStyles(
       borderBottom: `1px solid ${theme.palette.divider}`,
     },
     dividerSpacer: {
-      minHeight: 2,
+      minHeight: 1,
     },
     dividerSheetShell: {
       marginTop: `calc((${theme.page.headerInnerHeight.md} * 0.15))`,
