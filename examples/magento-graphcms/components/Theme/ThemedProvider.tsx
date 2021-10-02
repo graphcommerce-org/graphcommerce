@@ -9,15 +9,14 @@ import shadows from './shadows'
 export const defaultTheme = createTheme({
   palette: {
     primary: {
-      main: '#FF4A55',
-      contrastText: '#000',
+      main: '#001727',
+      contrastText: '#FF0000',
       mutedText: `rgba(0,0,0,0.4)`,
-      dark: '#f33642',
+      dark: '#FF0000',
     },
     secondary: {
-      main: '#006BFF',
-      light: '#006BFF12',
-      contrastText: '#FFF',
+      main: '#FFFFFF',
+      contrastText: '#001727',
       mutedText: `rgba(0,0,0,0.4)`,
     },
     background: {
@@ -30,8 +29,8 @@ export const defaultTheme = createTheme({
       mutedText: '#b8b8b8',
     },
     text: {
-      primary: '#000',
-      secondary: '#000',
+      primary: '#001727',
+      secondary: '#999EB5',
       disabled: 'rgba(0,0,0,0.4)',
     },
   },
@@ -40,7 +39,7 @@ export const defaultTheme = createTheme({
       xs: 0,
       sm: 600,
       md: 960,
-      lg: 1536,
+      lg: 1400,
       xl: 1920,
     },
   },
@@ -94,28 +93,33 @@ export const defaultTheme = createTheme({
     },
     h2: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-      fontSize: responsiveVal(28, 48),
-      fontWeight: 800,
+      fontSize: responsiveVal(36, 58),
+      fontWeight: 700,
+      marginTop: '0.24em',
+      marginBottom: '0.58em',
       // letterSpacing: '-0.0375em',
-      lineHeight: 1.42,
+      lineHeight: 1.22,
     },
     h3: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-      fontSize: responsiveVal(22, 30),
-      fontWeight: 700,
+      fontSize: responsiveVal(16, 24),
+      fontWeight: 600,
+      marginTop: '0.24em',
+      marginBottom: '0.58em',
       // letterSpacing: '-0.0375em',
-      lineHeight: 1.55,
+      lineHeight: 1.6,
     },
     h4: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-      fontWeight: 500,
-      fontSize: responsiveVal(18, 28),
+      fontSize: responsiveVal(16, 22),
+      fontWeight: 650,
+      marginTop: '0.24em',
+      marginBottom: '0.58em',
       // letterSpacing: '-0.0375em',
       lineHeight: 1.55,
     },
     h5: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-
       fontWeight: 700,
       // letterSpacing: '-0.0375em',
       fontSize: responsiveVal(17, 20),
@@ -123,29 +127,26 @@ export const defaultTheme = createTheme({
     },
     h6: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-
-      fontSize: responsiveVal(17, 20),
+      fontSize: responsiveVal(14, 18),
       fontWeight: 600,
       // letterSpacing: '-0.0375em',
       lineHeight: 1.8,
     },
     subtitle1: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-
-      fontSize: responsiveVal(16, 19, 1920),
-      fontWeight: 400,
+      fontSize: responsiveVal(16, 24, 1920),
       // letterSpacing: '-0.0375em',
-      lineHeight: 1.7,
+      lineHeight: 1.5,
     },
     fontWeightBold: 600,
     body1: {
       // We're boosting the fontSize to be 17px at 1280
-      fontSize: responsiveVal(15, 18, 1920),
-      lineHeight: 1.7,
+      fontSize: responsiveVal(15, 20, 1920),
+      lineHeight: 1.6,
+      fontWeight: 600,
     },
     subtitle2: {
       fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-
       fontSize: responsiveVal(14, 16),
       fontWeight: 600,
       lineHeight: 1.7,
@@ -159,12 +160,21 @@ export const defaultTheme = createTheme({
     },
     button: {},
     overline: {
-      fontSize: responsiveVal(12, 14),
-      color: `rgba(0, 0, 0, 0.3)`,
-      fontWeight: 500,
+      display: 'inline-block',
+      fontSize: responsiveVal(12, 18),
+      color: '#62C7B0',
+      marginTop: '0.24em',
+      marginBottom: '0.8em',
+      fontWeight: 600,
       letterSpacing: 1,
       lineHeight: 1.2,
       textTransform: 'uppercase',
+      backgroundImage: 'linear-gradient(45deg, #CEFF99, #85FFFD)',
+      backgroundSize: '100%',
+      '-webkit-background-clip': 'text',
+      '-moz-background-clip': 'text',
+      '-webkit-text-fill-color': 'transparent',
+      '-moz-text-fill-color': 'transparent',
     },
   },
   spacings: {
@@ -184,7 +194,7 @@ export const defaultTheme = createTheme({
       sm: `56px`,
       // 32px = height of logo
       // + 2 x theme.spacings.xxs (top+bottom padding)
-      md: '72px', // `calc(40px + (${responsiveVal(10, 16)} * 2))`,
+      md: `calc(40px + (${responsiveVal(10, 16)} * 2))`,
     },
   },
 })
@@ -195,11 +205,8 @@ defaultTheme.overrides = {
       body: {
         overflowY: 'scroll',
       },
-      '::selection': { background: '#ff4a557d' },
-      '::-moz-selection': { background: '#ff4a557d' },
-      '#__next': {
-        position: 'relative',
-      },
+      '::selection': { background: '#62C7B0' },
+      '::-moz-selection': { background: '#62C7B0' },
     },
   },
   MuiContainer: {

@@ -7,7 +7,13 @@ import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.gql'
 import { DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
+import RowAudienceGrid from '../../components/Row/RowAudienceGrid'
+import RowFeatureColumnTwo from '../../components/Row/RowFeatureColumnTwo'
+import RowFeatureGrid from '../../components/Row/RowFeatureGrid'
+import RowFeatureGridColumnTwo from '../../components/Row/RowFeatureGridColumnTwo'
+import RowHeroAnimation from '../../components/Row/RowHeroAnimation'
 import RowListColumnTwo from '../../components/Row/RowListColumnTwo'
+import RowWireframeAnimation from '../../components/Row/RowWireframeAnimaton'
 import apolloClient from '../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -28,6 +34,12 @@ function CmsPage(props: Props) {
         metaDescription={cmsPage?.meta_description ?? ''}
       />
 
+      <RowHeroAnimation />
+      <RowFeatureGrid />
+      <RowFeatureColumnTwo />
+      <RowFeatureGridColumnTwo />
+      <RowWireframeAnimation />
+      <RowAudienceGrid />
       <RowListColumnTwo />
     </>
   )
