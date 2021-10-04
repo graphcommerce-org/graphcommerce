@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.105.11...@graphcommerce/magento-cart-payment-method@2.106.0) (2021-10-04)
+
+
+### Features
+
+* sort payment methods by availability ([52f5d45](https://github.com/ho-nl/m2-pwa/commit/52f5d450a7a2fdec0c7eea9cd5d48336cb304138))
+
+
+
+
+
 ## [2.105.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.105.0...@graphcommerce/magento-cart-payment-method@2.105.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/magento-cart-payment-method

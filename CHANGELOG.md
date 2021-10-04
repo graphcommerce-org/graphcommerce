@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.126.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.125.2...@graphcommerce/graphcommerce@2.126.0) (2021-10-04)
+
+
+### Bug Fixes
+
+* **blog:** use app shell title ([987bb15](https://github.com/ho-nl/m2-pwa/commit/987bb157c4064141b1c2978935e66cf47ae24ff0))
+* **checkout-success:** go back to empty cart ([17af765](https://github.com/ho-nl/m2-pwa/commit/17af76504084e90d5a57ab42788155bcace3187d))
+* **checkout-success:** remove clear current cart id ([aa15065](https://github.com/ho-nl/m2-pwa/commit/aa150655e1ee4dc70f0330cf6a7b58e9a00d1ac0))
+* **payment:** payment button does nothing when all values are filled ([65834c9](https://github.com/ho-nl/m2-pwa/commit/65834c9de4fed71a1f6bbe1af94b2e3541b5bebc))
+
+
+### Features
+
+* sort payment methods by availability ([52f5d45](https://github.com/ho-nl/m2-pwa/commit/52f5d450a7a2fdec0c7eea9cd5d48336cb304138))
+
+
+
+
+
 ## [2.125.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.125.1...@graphcommerce/graphcommerce@2.125.2) (2021-10-04)
 
 
