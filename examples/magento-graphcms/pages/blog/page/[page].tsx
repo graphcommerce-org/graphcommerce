@@ -1,11 +1,12 @@
 import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, Pagination } from '@graphcommerce/next-ui'
-import { Link } from '@material-ui/core'
+import { AppShellTitle, GetStaticProps, Pagination, Title } from '@graphcommerce/next-ui'
+import { Container, Link } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
+import FullPageShellHeader from '../../../components/AppShell/FullPageShellHeader'
 import BlogList from '../../../components/Blog'
 import { BlogListDocument, BlogListQuery } from '../../../components/Blog/BlogList.gql'
 import { BlogPathsDocument, BlogPathsQuery } from '../../../components/Blog/BlogPaths.gql'
@@ -32,7 +33,14 @@ function BlogPage(props: Props) {
     <>
       <PageMeta title={title} metaDescription={title} canonical={page.url} />
 
-      {pages?.[0] && <PageContent content={pages?.[0].content} />}
+      <FullPageShellHeader backFallbackHref={'/'} backFallbackTitle={'Home'}>
+        <Title size='small'>{title}</Title>
+      </FullPageShellHeader>
+
+      <Container maxWidth='xl'>
+        <AppShellTitle>{title}</AppShellTitle>
+      </Container>
+
       <BlogList blogPosts={blogPosts} />
       <Pagination
         count={Math.ceil(pagesConnection.aggregate.count / pageSize)}

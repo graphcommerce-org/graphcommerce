@@ -1,5 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { CartItemSummary, CartSummary, InlineAccount } from '@graphcommerce/magento-cart'
+import {
+  CartItemSummary,
+  CartSummary,
+  InlineAccount,
+  useClearCurrentCartId,
+} from '@graphcommerce/magento-cart'
 import { SignupNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -32,6 +37,8 @@ function OrderSuccessPage() {
             <Stepper steps={3} currentStep={3} />
           </Container>
         }
+        backFallbackHref='/checkout'
+        backFallbackTitle='Shipping'
       >
         <Title size='small' icon={iconParty}>
           Thank you for your order!

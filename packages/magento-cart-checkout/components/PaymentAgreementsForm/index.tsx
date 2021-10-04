@@ -56,11 +56,6 @@ export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps)
 
   const form = useForm({
     mode: 'onSubmit',
-    defaultValues: Object.fromEntries(
-      sortedAgreements
-        ?.filter((am) => am?.mode === 'MANUAL')
-        .map((am) => [String(am?.agreement_id), false]) ?? [],
-    ),
   })
 
   const { handleSubmit, formState, control } = form
