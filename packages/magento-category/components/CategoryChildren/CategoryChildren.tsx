@@ -16,6 +16,7 @@ const useStyles = makeStyles(
     scroller: {
       display: 'grid',
       gridAutoFlow: 'column',
+      overflow: 'hidden',
     },
     link: {
       whiteSpace: 'nowrap',
@@ -31,12 +32,12 @@ const useStyles = makeStyles(
         height: 2,
         background: theme.palette.primary.main,
         position: 'absolute',
-        bottom: -8,
         left: 0,
         right: 0,
         margin: '0 auto',
         opacity: 0,
         transition: 'opacity .2s ease, bottom .2s ease',
+        bottom: 0,
       },
       '&:hover': {
         '&:before': {

@@ -44,7 +44,7 @@ const IconBlock = React.forwardRef<HTMLAnchorElement, IconBlockProps>((props, re
 
   if (href) {
     return (
-      <Button variant='text' color='primary' className={classes.block} ref={ref}>
+      <Button href={href} variant='text' color='primary' className={classes.block} ref={ref}>
         <div>{content}</div>
       </Button>
     )
