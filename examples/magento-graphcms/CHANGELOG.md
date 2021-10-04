@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.119.13](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.12...@graphcommerce/magento-graphcms@2.119.13) (2021-10-04)
+
+
+### Bug Fixes
+
+* **blog:** use app shell title ([987bb15](https://github.com/ho-nl/m2-pwa/commit/987bb157c4064141b1c2978935e66cf47ae24ff0))
+* **checkout-success:** go back to empty cart ([17af765](https://github.com/ho-nl/m2-pwa/commit/17af76504084e90d5a57ab42788155bcace3187d))
+* **checkout-success:** remove clear current cart id ([aa15065](https://github.com/ho-nl/m2-pwa/commit/aa150655e1ee4dc70f0330cf6a7b58e9a00d1ac0))
+
+
+
+
+
+## [2.119.12](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.11...@graphcommerce/magento-graphcms@2.119.12) (2021-10-04)
+
+
+### Bug Fixes
+
+* **full-page-shell:** header height consistency on mobile ([a18f7a3](https://github.com/ho-nl/m2-pwa/commit/a18f7a3f22b6b1b8e7029d17b2086827bcee48f2))
+* **sheet-shell:** mobile border bottom overlaps text ([54a50d3](https://github.com/ho-nl/m2-pwa/commit/54a50d335ade33a97d2c33ce68d62bfcc37f8f2e))
+
+
+
+
+
+## [2.119.11](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.10...@graphcommerce/magento-graphcms@2.119.11) (2021-10-04)
+
+
+### Bug Fixes
+
+* **service:** align title ([c1d749c](https://github.com/ho-nl/m2-pwa/commit/c1d749c0ed6c8600085afd2d102c61771e2afc70))
+
+
+
+
+
 ## [2.119.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.8...@graphcommerce/magento-graphcms@2.119.9) (2021-09-30)
 
 

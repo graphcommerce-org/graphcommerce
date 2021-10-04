@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-     <g transform="translate(0.25,-1.85)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<svg transform="translate(0.25, 0.25)" width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <path d="M22.7211388,13.8851398 L23.5468356,26.00354 L8.74931805,26.00354 L9.57501488,13.8851398 L22.7211388,13.8851398 Z" id="Rectangle-6" stroke="#000000" stroke-width="1.4"></path>
         <path d="M12.4444055,14.953 L12.4444055,11.4552028 C12.4444055,9.54694698 13.9458954,8 15.798077,8 C17.6502587,8 19.1517485,9.54694698 19.1517485,11.4552028 L19.1517485,14.9497766" id="Path" stroke="#000000" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="bevel"></path>
     </g>

@@ -14,5 +14,5 @@ export { default as PaymentMethodOptionsNoop } from './PaymentMethodOptionsNoop/
 export { default as PaymentMethodPlaceOrder } from './PaymentMethodPlaceOrder/PaymentMethodPlaceOrder'
 export { default as PaymentMethodPlaceOrderNoop } from './PaymentMethodPlaceOrderNoop/PaymentMethodPlaceOrderNoop'
 
-export * from './PaymentMethodToggle/PaymentMethodToggle'
-export { default as PaymentMethodToggle } from './PaymentMethodToggle/PaymentMethodToggle'
+export * from './PaymentMethodToggles/PaymentMethodToggles'
+export { default as PaymentMethodToggle } from './PaymentMethodToggles/PaymentMethodToggles'

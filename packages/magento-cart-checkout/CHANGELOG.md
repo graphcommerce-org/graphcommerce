@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.104.13](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-checkout@2.104.12...@graphcommerce/magento-cart-checkout@2.104.13) (2021-10-04)
+
+
+### Bug Fixes
+
+* **payment:** payment button does nothing when all values are filled ([65834c9](https://github.com/ho-nl/m2-pwa/commit/65834c9de4fed71a1f6bbe1af94b2e3541b5bebc))
+
+
+
+
+
 ## [2.104.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-checkout@2.104.0...@graphcommerce/magento-cart-checkout@2.104.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/magento-cart-checkout

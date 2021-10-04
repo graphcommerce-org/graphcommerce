@@ -13,17 +13,16 @@ import { FormControl, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useEffect } from 'react'
-import { PaymentMethod, PaymentToggleProps } from '../Api/PaymentMethod'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
-export type PaymentMethodToggleProps = Record<string, unknown>
+export type PaymentMethodTogglesProps = Record<string, unknown>
 
-function Content(props: PaymentMethod) {
-  const { code } = props
-  const { modules } = usePaymentMethodContext()
-  const Component = modules[code]?.PaymentToggle ?? ((p: PaymentToggleProps) => <>{p.title}</>)
-  return <Component {...props} />
-}
+// function Content(props: PaymentMethod) {
+//   const { code } = props
+//   const { modules } = usePaymentMethodContext()
+//   const Component = modules[code]?.PaymentToggle ?? ((p: PaymentToggleProps) => <>{p.title}</>)
+//   return <Component {...props} />
+// }
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -98,10 +97,10 @@ const useStyles = makeStyles(
       right: 0,
     },
   }),
-  { name: 'PaymentMethodToggle' },
+  { name: 'PaymentMethodToggles' },
 )
 
-export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
+export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
   const { methods, selectedMethod, setSelectedMethod, setSelectedModule, modules } =
     usePaymentMethodContext()
 
@@ -133,6 +132,10 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
 
   if (!methods || methods.length < 1) return <></>
 
+  const sortedMethods = [...methods].sort((a, b) =>
+    !modules?.[a?.code] ? 0 : !modules?.[b?.code] ? -1 : 1,
+  )
+
   return (
     <Form onSubmit={submitHandler} noValidate classes={{ root: classes.formRoot }}>
       <input type='hidden' {...register('code', { required: true })} required />
@@ -157,7 +160,7 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
               rules={{ required: 'Please select a payment method' }}
               render={({ field: { onChange, value, name, ref, onBlur } }) => (
                 <Scroller className={classes.scrollerRoot} hideScrollbar>
-                  {methods?.map((pm) => {
+                  {sortedMethods?.map((pm) => {
                     const buttonValue = `${pm.code}___${pm.child}`
 
                     return (

@@ -40,6 +40,10 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
   const method = selected?.method_code ?? available?.[0]?.method_code ?? undefined
   const carrierMethod = carrier && method ? `${carrier}-${method}` : undefined
 
+  const sortedAvailableShippingMethods = [
+    ...(currentAddress?.available_shipping_methods ?? []),
+  ].sort((a, b) => (a === b ? 0 : a ? -1 : 1))
+
   const form = useFormGqlMutationCart<
     ShippingMethodFormMutation,
     ShippingMethodFormMutationVariables & { carrierMethod?: string }
@@ -82,7 +86,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
                   defaultValue={carrierMethod}
                   exclusive
                 >
-                  {currentAddress?.available_shipping_methods?.map((m) => {
+                  {sortedAvailableShippingMethods.map((m) => {
                     if (!m) return null
                     const code = `${m?.carrier_code}-${m?.method_code}`
                     return (

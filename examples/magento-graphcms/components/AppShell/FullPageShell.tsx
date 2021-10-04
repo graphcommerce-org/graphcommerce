@@ -40,8 +40,8 @@ const useStyles = makeStyles(
     },
     header: {
       [theme.breakpoints.down('sm')]: {
-        marginTop: 16,
-        marginBottom: 16,
+        marginTop: 20,
+        marginBottom: 22,
       },
     },
     hideOnVirtualKeyboardOpen: {

@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.1.2...@graphcommerce/next-ui@3.1.3) (2021-10-04)
+
+
+### Bug Fixes
+
+* **blog:** use app shell title ([987bb15](https://github.com/ho-nl/m2-pwa/commit/987bb157c4064141b1c2978935e66cf47ae24ff0))
+
+
+
+
+
+## [3.1.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.1.1...@graphcommerce/next-ui@3.1.2) (2021-10-04)
+
+
+### Bug Fixes
+
+* **hero-banner:** too large top spacing ([0ad8499](https://github.com/ho-nl/m2-pwa/commit/0ad8499a1702caf8e121f38e1ccb70fba4f418db))
+* **sheet-shell:** mobile border bottom gap ([70104d8](https://github.com/ho-nl/m2-pwa/commit/70104d88994c2324f415eec1efeeba21de7872b9))
+
+
+
+
+
+## [3.1.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.1.0...@graphcommerce/next-ui@3.1.1) (2021-10-04)
+
+
+### Bug Fixes
+
+* cart icon alignment ([8b75b40](https://github.com/ho-nl/m2-pwa/commit/8b75b40bcdecf6d43579ee824677bf1a03763157))
+* **icon-block:** render href ([738fd82](https://github.com/ho-nl/m2-pwa/commit/738fd82629dd3be92fe0cdd63ed8eeaa5d4886f6))
+
+
+
+
+
+# [3.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.0.6...@graphcommerce/next-ui@3.1.0) (2021-10-01)
+
+
+### Features
+
+* **sidebar-gallery:** close using esc key ([fd46fe1](https://github.com/ho-nl/m2-pwa/commit/fd46fe1029f436c1e0e04cbcc3b66deca4d1b0b6))
+
+
+
+
+
 ## [3.0.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.0.0...@graphcommerce/next-ui@3.0.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/next-ui

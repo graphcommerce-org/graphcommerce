@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.126.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.125.2...@graphcommerce/graphcommerce@2.126.0) (2021-10-04)
+
+
+### Bug Fixes
+
+* **blog:** use app shell title ([987bb15](https://github.com/ho-nl/m2-pwa/commit/987bb157c4064141b1c2978935e66cf47ae24ff0))
+* **checkout-success:** go back to empty cart ([17af765](https://github.com/ho-nl/m2-pwa/commit/17af76504084e90d5a57ab42788155bcace3187d))
+* **checkout-success:** remove clear current cart id ([aa15065](https://github.com/ho-nl/m2-pwa/commit/aa150655e1ee4dc70f0330cf6a7b58e9a00d1ac0))
+* **payment:** payment button does nothing when all values are filled ([65834c9](https://github.com/ho-nl/m2-pwa/commit/65834c9de4fed71a1f6bbe1af94b2e3541b5bebc))
+
+
+### Features
+
+* sort payment methods by availability ([52f5d45](https://github.com/ho-nl/m2-pwa/commit/52f5d450a7a2fdec0c7eea9cd5d48336cb304138))
+
+
+
+
+
+## [2.125.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.125.1...@graphcommerce/graphcommerce@2.125.2) (2021-10-04)
+
+
+### Bug Fixes
+
+* **full-page-shell:** header height consistency on mobile ([a18f7a3](https://github.com/ho-nl/m2-pwa/commit/a18f7a3f22b6b1b8e7029d17b2086827bcee48f2))
+* **hero-banner:** too large top spacing ([0ad8499](https://github.com/ho-nl/m2-pwa/commit/0ad8499a1702caf8e121f38e1ccb70fba4f418db))
+* **sheet-shell:** mobile border bottom gap ([70104d8](https://github.com/ho-nl/m2-pwa/commit/70104d88994c2324f415eec1efeeba21de7872b9))
+* **sheet-shell:** mobile border bottom overlaps text ([54a50d3](https://github.com/ho-nl/m2-pwa/commit/54a50d335ade33a97d2c33ce68d62bfcc37f8f2e))
+
+
+
+
+
+## [2.125.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.125.0...@graphcommerce/graphcommerce@2.125.1) (2021-10-04)
+
+
+### Bug Fixes
+
+* cart icon alignment ([8b75b40](https://github.com/ho-nl/m2-pwa/commit/8b75b40bcdecf6d43579ee824677bf1a03763157))
+* **category-childeren:** scrollbar shown ([638e3ef](https://github.com/ho-nl/m2-pwa/commit/638e3efea3a537f90d23fb2f8953a62acb370288))
+* **category-children:** scrollbar shown ([3ccc78b](https://github.com/ho-nl/m2-pwa/commit/3ccc78b329fa844c57bfeb2406c593d0533039d2))
+* **icon-block:** render href ([738fd82](https://github.com/ho-nl/m2-pwa/commit/738fd82629dd3be92fe0cdd63ed8eeaa5d4886f6))
+* **service:** align title ([c1d749c](https://github.com/ho-nl/m2-pwa/commit/c1d749c0ed6c8600085afd2d102c61771e2afc70))
+* **shipping:** sort available shipping methods by availability ([27d13ab](https://github.com/ho-nl/m2-pwa/commit/27d13ab1a0d923197bb13557256307f60a243f4a))
+
+
+
+
+
+# [2.125.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.124.10...@graphcommerce/graphcommerce@2.125.0) (2021-10-01)
+
+
+### Features
+
+* **sidebar-gallery:** close using esc key ([fd46fe1](https://github.com/ho-nl/m2-pwa/commit/fd46fe1029f436c1e0e04cbcc3b66deca4d1b0b6))
+
+
+
+
+
 ## [2.124.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.124.9...@graphcommerce/graphcommerce@2.124.10) (2021-09-30)
 
 

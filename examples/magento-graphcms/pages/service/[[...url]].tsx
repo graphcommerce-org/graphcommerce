@@ -7,6 +7,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
+import { Container } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -40,9 +41,11 @@ function ServicePage({ pages }: Props) {
         </Title>
       </SheetShellHeader>
 
-      <AppShellTitle>
-        <Title>{title}</Title>
-      </AppShellTitle>
+      <Container maxWidth='md'>
+        <AppShellTitle>
+          <Title>{title}</Title>
+        </AppShellTitle>
+      </Container>
       {/* <FramerNextPagesSlider> */}
       <PageContent {...pages[0]} />
       {/* </FramerNextPagesSlider> */}

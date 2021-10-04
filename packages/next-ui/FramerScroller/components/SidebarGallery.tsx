@@ -1,17 +1,17 @@
 import {
+  CenterSlide,
+  MotionImageAspect,
+  MotionImageAspectProps,
+  Scroller,
   ScrollerButton,
   ScrollerDots,
   ScrollerProvider,
-  Scroller,
-  MotionImageAspectProps,
-  CenterSlide,
-  MotionImageAspect,
 } from '@graphcommerce/framer-scroller'
 import { clientSize, useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Fab, makeStyles, Theme, useTheme } from '@material-ui/core'
 import clsx from 'clsx'
-import { m } from 'framer-motion'
-import React, { useState } from 'react'
+import { m, useDomEvent } from 'framer-motion'
+import React, { useRef, useState } from 'react'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
 import SvgImage from '../../SvgImage'
@@ -44,7 +44,7 @@ const useStyles = makeStyles(
       zIndex: theme.zIndex.modal,
       marginTop: 0,
       [theme.breakpoints.up('md')]: {
-        marginTop: `calc(${theme.page.headerInnerHeight.md} * -1  - ${theme.spacings.sm} * 2)`,
+        marginTop: `calc(${theme.page.headerInnerHeight.md} * -1  - ${theme.spacings.sm})`,
       },
       paddingRight: 0,
     },
@@ -55,6 +55,7 @@ const useStyles = makeStyles(
 
       const maxHeight = `calc(100vh - ${headerHeight} - ${galleryMargin} - ${extraSpacing})`
       const ratio = `calc(${height} / ${width} * 100%)`
+
       return {
         height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
         position: 'relative',
@@ -182,6 +183,18 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
   const clsxZoom = (key: string) => clsx(classes?.[key], zoomed && classes?.[`${key}Zoomed`])
 
   const theme = useTheme()
+
+  const windowRef = useRef(typeof window !== 'undefined' ? window : null)
+
+  const handleEscapeKey = (e: KeyboardEvent | Event) => {
+    if (zoomed) {
+      if ((e as KeyboardEvent)?.key === 'Escape') {
+        toggle()
+      }
+    }
+  }
+
+  useDomEvent(windowRef, 'keyup', handleEscapeKey, { passive: true })
 
   return (
     <ScrollerProvider scrollSnapAlign='center'>

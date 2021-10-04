@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.11](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-category@3.0.10...@graphcommerce/magento-category@3.0.11) (2021-10-04)
+
+
+### Bug Fixes
+
+* **category-childeren:** scrollbar shown ([638e3ef](https://github.com/ho-nl/m2-pwa/commit/638e3efea3a537f90d23fb2f8953a62acb370288))
+* **category-children:** scrollbar shown ([3ccc78b](https://github.com/ho-nl/m2-pwa/commit/3ccc78b329fa844c57bfeb2406c593d0533039d2))
+
+
+
+
+
 ## [3.0.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-category@3.0.0...@graphcommerce/magento-category@3.0.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/magento-category
