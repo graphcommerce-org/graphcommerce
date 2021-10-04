@@ -1,5 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { CartItemSummary, CartSummary, InlineAccount } from '@graphcommerce/magento-cart'
+import {
+  CartItemSummary,
+  CartSummary,
+  InlineAccount,
+  useClearCurrentCartId,
+} from '@graphcommerce/magento-cart'
 import { SignupNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -23,6 +28,8 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function OrderSuccessPage() {
+  useClearCurrentCartId()
+
   return (
     <>
       <PageMeta title='Checkout summary' metaDescription='Ordered items' metaRobots={['noindex']} />
@@ -32,6 +39,8 @@ function OrderSuccessPage() {
             <Stepper steps={3} currentStep={3} />
           </Container>
         }
+        backFallbackHref='/checkout'
+        backFallbackTitle='Shipping'
       >
         <Title size='small' icon={iconParty}>
           Thank you for your order!

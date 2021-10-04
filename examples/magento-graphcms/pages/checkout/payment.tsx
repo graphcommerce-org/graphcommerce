@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { CartSummary, CartTotals } from '@graphcommerce/magento-cart'
+import { CartSummary, CartTotals, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
 import { PaymentAgreementsForm } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
 import {
@@ -31,6 +31,7 @@ import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import MinimalPageShell from '../../components/AppShell/MinimalPageShell'
 import { SheetShellProps } from '../../components/AppShell/SheetShell'
+import { CheckoutPaymentPageDocument } from '../../components/GraphQL/CheckoutPaymentPage.gql'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
 
@@ -38,6 +39,11 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function PaymentPage() {
+  const { data: cartData } = useCartQuery(CheckoutPaymentPageDocument, {
+    returnPartialData: true,
+  })
+  const cartExists = typeof cartData?.cart !== 'undefined'
+
   return (
     <ComposedForm>
       <PageMeta title='Payment' metaDescription='Payment' metaRobots={['noindex']} />
@@ -66,71 +72,76 @@ function PaymentPage() {
             <Stepper steps={3} currentStep={3} />
           </Container>
         }
-        backFallbackHref='/cart'
-        backFallbackTitle='Cart'
+        backFallbackHref='/checkout'
+        backFallbackTitle='Shipping'
       >
         <Title size='small' icon={iconId}>
           Payment
         </Title>
       </PageShellHeader>
       <Container maxWidth='md'>
-        <AppShellTitle icon={iconId}>Payment</AppShellTitle>
+        {!cartExists && <EmptyCart />}
+        {cartExists && (
+          <>
+            <AppShellTitle icon={iconId}>Payment</AppShellTitle>
 
-        <PaymentMethodContextProvider
-          modules={{
-            braintree_local_payment,
-            braintree,
-            ...included_methods,
-            ...mollie_methods,
-          }}
-        >
-          <NoSsr>
-            <AnimatePresence initial={false}>
-              <PaymentMethodToggles key='toggle' />
+            <PaymentMethodContextProvider
+              modules={{
+                braintree_local_payment,
+                braintree,
+                ...included_methods,
+                ...mollie_methods,
+              }}
+            >
+              <NoSsr>
+                <AnimatePresence initial={false}>
+                  <PaymentMethodToggles key='toggle' />
 
-              <PaymentMethodOptions
-                key='options'
-                step={1}
-                Container={({ children }) => (
-                  <FormDiv contained background='secondary'>
-                    {children}
-                  </FormDiv>
-                )}
-              />
-
-              <PaymentMethodPlaceOrder key='placeorder' step={2} />
-
-              <CartSummary editable key='cart-summary'>
-                <Divider />
-                <CartTotals />
-              </CartSummary>
-
-              <CouponAccordion key='coupon' />
-
-              <PaymentAgreementsForm step={2} key='payment-agreements' />
-
-              <PaymentMethodButton
-                key='button'
-                type='submit'
-                color='secondary'
-                variant='pill'
-                size='large'
-                text='bold'
-                endIcon={
-                  <SvgImage
-                    src={iconChevronRight}
-                    loading='eager'
-                    alt='chevron right'
-                    size='small'
-                    shade='inverted'
+                  <PaymentMethodOptions
+                    key='options'
+                    step={1}
+                    Container={({ children }) => (
+                      <FormDiv contained background='secondary'>
+                        {children}
+                      </FormDiv>
+                    )}
                   />
-                }
-              >
-                Place order
-              </PaymentMethodButton>
-            </AnimatePresence>
-          </NoSsr>
-        </PaymentMethodContextProvider>
+
+                  <PaymentMethodPlaceOrder key='placeorder' step={2} />
+
+                  <CartSummary editable key='cart-summary'>
+                    <Divider />
+                    <CartTotals />
+                  </CartSummary>
+
+                  <CouponAccordion key='coupon' />
+
+                  <PaymentAgreementsForm step={3} key='payment-agreements' />
+
+                  <PaymentMethodButton
+                    key='button'
+                    type='submit'
+                    color='secondary'
+                    variant='pill'
+                    size='large'
+                    text='bold'
+                    endIcon={
+                      <SvgImage
+                        src={iconChevronRight}
+                        loading='eager'
+                        alt='chevron right'
+                        size='small'
+                        shade='inverted'
+                      />
+                    }
+                  >
+                    Place order
+                  </PaymentMethodButton>
+                </AnimatePresence>
+              </NoSsr>
+            </PaymentMethodContextProvider>
+          </>
+        )}
       </Container>
     </ComposedForm>
   )
