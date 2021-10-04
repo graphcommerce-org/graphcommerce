@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.1.1...@graphcommerce/next-ui@3.1.2) (2021-10-04)
+
+
+### Bug Fixes
+
+* **hero-banner:** too large top spacing ([0ad8499](https://github.com/ho-nl/m2-pwa/commit/0ad8499a1702caf8e121f38e1ccb70fba4f418db))
+* **sheet-shell:** mobile border bottom gap ([70104d8](https://github.com/ho-nl/m2-pwa/commit/70104d88994c2324f415eec1efeeba21de7872b9))
+
+
+
+
+
 ## [3.1.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.1.0...@graphcommerce/next-ui@3.1.1) (2021-10-04)
 
 

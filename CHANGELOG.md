@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.125.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.125.1...@graphcommerce/graphcommerce@2.125.2) (2021-10-04)
+
+
+### Bug Fixes
+
+* **full-page-shell:** header height consistency on mobile ([a18f7a3](https://github.com/ho-nl/m2-pwa/commit/a18f7a3f22b6b1b8e7029d17b2086827bcee48f2))
+* **hero-banner:** too large top spacing ([0ad8499](https://github.com/ho-nl/m2-pwa/commit/0ad8499a1702caf8e121f38e1ccb70fba4f418db))
+* **sheet-shell:** mobile border bottom gap ([70104d8](https://github.com/ho-nl/m2-pwa/commit/70104d88994c2324f415eec1efeeba21de7872b9))
+* **sheet-shell:** mobile border bottom overlaps text ([54a50d3](https://github.com/ho-nl/m2-pwa/commit/54a50d335ade33a97d2c33ce68d62bfcc37f8f2e))
+
+
+
+
+
 ## [2.125.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.125.0...@graphcommerce/graphcommerce@2.125.1) (2021-10-04)
 
 
