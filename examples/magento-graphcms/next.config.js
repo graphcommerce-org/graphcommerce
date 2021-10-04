@@ -60,7 +60,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   webpack(config, { dev }) {
-    config.plugins.push(new webpack.DefinePlugin({ __DEV__: dev }))
+    config.plugins = [new webpack.DefinePlugin({ __DEV__: dev }), ...config.plugins]
     return config
   },
 }

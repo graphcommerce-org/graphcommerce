@@ -31,7 +31,7 @@ export type ListInfo = {
 }
 
 export function withYarn1Scopes(
-  scopes: string[] = ['@graphcommerce'],
+  scopes: string[] = ['@apollo', '@graphcommerce'],
 ): (config: NextConfig) => NextConfig {
   const packageStr = readFileSync('package.json', 'utf-8')
 
