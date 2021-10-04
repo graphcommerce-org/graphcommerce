@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.125.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.125.0...@graphcommerce/graphcommerce@2.125.1) (2021-10-04)
+
+
+### Bug Fixes
+
+* cart icon alignment ([8b75b40](https://github.com/ho-nl/m2-pwa/commit/8b75b40bcdecf6d43579ee824677bf1a03763157))
+* **category-childeren:** scrollbar shown ([638e3ef](https://github.com/ho-nl/m2-pwa/commit/638e3efea3a537f90d23fb2f8953a62acb370288))
+* **category-children:** scrollbar shown ([3ccc78b](https://github.com/ho-nl/m2-pwa/commit/3ccc78b329fa844c57bfeb2406c593d0533039d2))
+* **icon-block:** render href ([738fd82](https://github.com/ho-nl/m2-pwa/commit/738fd82629dd3be92fe0cdd63ed8eeaa5d4886f6))
+* **service:** align title ([c1d749c](https://github.com/ho-nl/m2-pwa/commit/c1d749c0ed6c8600085afd2d102c61771e2afc70))
+* **shipping:** sort available shipping methods by availability ([27d13ab](https://github.com/ho-nl/m2-pwa/commit/27d13ab1a0d923197bb13557256307f60a243f4a))
+
+
+
+
+
 # [2.125.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.124.10...@graphcommerce/graphcommerce@2.125.0) (2021-10-01)
 
 

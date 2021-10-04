@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.1.0...@graphcommerce/next-ui@3.1.1) (2021-10-04)
+
+
+### Bug Fixes
+
+* cart icon alignment ([8b75b40](https://github.com/ho-nl/m2-pwa/commit/8b75b40bcdecf6d43579ee824677bf1a03763157))
+* **icon-block:** render href ([738fd82](https://github.com/ho-nl/m2-pwa/commit/738fd82629dd3be92fe0cdd63ed8eeaa5d4886f6))
+
+
+
+
+
 # [3.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.0.6...@graphcommerce/next-ui@3.1.0) (2021-10-01)
 
 
