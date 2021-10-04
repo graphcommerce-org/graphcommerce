@@ -1,6 +1,6 @@
-import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import Row from '../../Row'
+import AppShellTitle from '../../AppShell/AppShellTitle'
 import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
@@ -23,7 +23,7 @@ export default function BlogTitle(props: BlogTitleProps) {
 
   return (
     <div className={classes.wrapper}>
-      <Typography variant='h1'>{title}</Typography>
+      <AppShellTitle variant='h2'>{title}</AppShellTitle>
     </div>
   )
 }
