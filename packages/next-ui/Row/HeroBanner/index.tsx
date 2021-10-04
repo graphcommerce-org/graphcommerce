@@ -9,9 +9,6 @@ import responsiveVal from '../../Styles/responsiveVal'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
-      [theme.breakpoints.up('md')]: {
-        paddingTop: theme.spacings.xxs,
-      },
       paddingLeft: 0,
       paddingRight: 0,
     },
