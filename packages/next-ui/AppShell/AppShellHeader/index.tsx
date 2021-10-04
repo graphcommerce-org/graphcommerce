@@ -38,7 +38,7 @@ const useStyles = makeStyles(
       borderBottom: `1px solid ${theme.palette.divider}`,
     },
     dividerSpacer: {
-      minHeight: 2,
+      minHeight: 1,
     },
     dividerSheetShell: {
       marginTop: `calc((${theme.page.headerInnerHeight.md} * 0.15))`,
@@ -130,8 +130,8 @@ const useStyles = makeStyles(
     sheetHeaderFillMobileOnly: {
       [theme.breakpoints.up('md')]: {
         pointerEvents: 'none',
-        background: 'transparent',
-        marginBottom: `calc((${theme.page.headerInnerHeight.md} * -1) + ${theme.spacings.xxs} * 2)`,
+        background: 'green',
+        position: 'fixed',
       },
     },
     innerContainer: {
