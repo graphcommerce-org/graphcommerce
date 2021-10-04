@@ -17,9 +17,9 @@ import {
 } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
-import { CheckoutAgreementsDocument } from '../../queries/CheckoutAgreements.gql'
+import { CartAgreementsDocument } from './CartAgreements.gql'
 
-type PaymentAgreementsFormProps = Pick<UseFormComposeOptions, 'step'>
+export type CartAgreementsFormProps = Pick<UseFormComposeOptions, 'step'>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -38,13 +38,13 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: 'PaymentAgreementsForm',
+    name: 'CartAgreements',
   },
 )
 
-export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps) {
+export default function CartAgreementsForm(props: CartAgreementsFormProps) {
   const { step } = props
-  const { data } = useQuery(CheckoutAgreementsDocument)
+  const { data } = useQuery(CartAgreementsDocument)
   const classes = useStyles()
 
   // sort conditions so checkboxes will be placed first

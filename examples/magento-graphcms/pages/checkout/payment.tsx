@@ -1,6 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { CartSummary, CartTotals, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
-import { PaymentAgreementsForm } from '@graphcommerce/magento-cart-checkout'
+import {
+  CartAgreementsForm,
+  CartSummary,
+  CartTotals,
+  EmptyCart,
+  useCartQuery,
+} from '@graphcommerce/magento-cart'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
 import {
   PaymentMethodButton,
@@ -116,7 +121,7 @@ function PaymentPage() {
 
                   <CouponAccordion key='coupon' />
 
-                  <PaymentAgreementsForm step={3} key='payment-agreements' />
+                  <CartAgreementsForm step={2} key='agreements' />
 
                   <PaymentMethodButton
                     key='button'

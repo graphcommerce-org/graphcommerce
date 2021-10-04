@@ -28,3 +28,6 @@ export { default as CartAddressMultiLine } from './CartAddressMultiLine'
 
 export * from './CartAddressSingleLine'
 export { default as CartAddressSingleLine } from './CartAddressSingleLine'
+
+export * from './CartAgreementsForm/CartAgreementsForm'
+export { default as CartAgreementsForm } from './CartAgreementsForm/CartAgreementsForm'
