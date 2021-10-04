@@ -28,8 +28,6 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function OrderSuccessPage() {
-  useClearCurrentCartId()
-
   return (
     <>
       <PageMeta title='Checkout summary' metaDescription='Ordered items' metaRobots={['noindex']} />
