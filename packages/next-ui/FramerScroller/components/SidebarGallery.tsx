@@ -11,6 +11,7 @@ import { clientSize, useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Fab, makeStyles, Theme, useTheme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m, useDomEvent } from 'framer-motion'
+import { useRouter } from 'next/router'
 import React, { useRef, useState } from 'react'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
@@ -162,8 +163,8 @@ export type SidebarGalleryProps = {
 
 export default function SidebarGallery(props: SidebarGalleryProps) {
   const { sidebar, images, aspectRatio = [1, 1] } = props
+  const router = useRouter()
   const [zoomed, setZoomed] = useState(false)
-
   const clientHeight = useMotionValueValue(clientSize.y, (y) => y)
   const classes = useStyles({ clientHeight, aspectRatio })
 
@@ -175,6 +176,9 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
     }
   }
 
+  if (!zoomed && router.asPath.endsWith('#gallery')) toggle()
+  if (!router.asPath.endsWith('#gallery') && zoomed) toggle()
+
   const clsxZoom = (key: string) => clsx(classes?.[key], zoomed && classes?.[`${key}Zoomed`])
 
   const theme = useTheme()
@@ -185,6 +189,8 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
     if (zoomed) {
       if ((e as KeyboardEvent)?.key === 'Escape') {
         toggle()
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        router.replace('#')
       }
     }
   }
@@ -220,7 +226,20 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
             ))}
           </Scroller>
           <m.div layout className={classes.topRight}>
-            <Fab color='inherit' size='small' className={classes.toggleIcon} onClick={toggle}>
+            <Fab
+              color='inherit'
+              size='small'
+              className={classes.toggleIcon}
+              onClick={() => {
+                if (zoomed) {
+                  // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                  router.replace('#')
+                } else {
+                  // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                  router.replace('#gallery')
+                }
+              }}
+            >
               {!zoomed ? (
                 <SvgImage src={iconFullscreen} alt='Zoom in' loading='eager' size='small' />
               ) : (
