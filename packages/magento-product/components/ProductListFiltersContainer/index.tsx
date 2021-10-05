@@ -108,11 +108,10 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
     return scrollY.onChange(onCheckStickyChange)
   }, [isSticky, scrollHalfway, scrollY])
 
-  const opacity = useTransform(scrollY, [startPosition, startPosition + spacing], [0, 0.08])
-  const opacity2 = useTransform(scrollY, [startPosition, startPosition + spacing], [0, 0.1])
-  const filter = useMotionTemplate`
-    drop-shadow(0 1px 4px rgba(0,0,0,${opacity}))
-    drop-shadow(0 4px 10px rgba(0,0,0,${opacity2}))`
+  const opacity = useTransform(scrollY, [startPosition, startPosition + spacing], [0, 0.1])
+  const boxShadow = useMotionTemplate`
+    0 4px 12px 0 rgba(0, 0, 0, ${opacity})
+    `
 
   return (
     <m.div className={classes.wrapper} ref={wrapperRef}>
@@ -122,7 +121,7 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
         </ScrollerButton>
         <m.div
           className={clsx(classes.container, isSticky && classes.containerSticky)}
-          style={{ filter }}
+          style={{ boxShadow }}
         >
           <Scroller
             className={clsx(classes.scroller, isSticky && classes.scrollerSticky)}

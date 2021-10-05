@@ -10,6 +10,7 @@ const useStyles = makeStyles(
       bottom: 20,
       right: 20,
       zIndex: 100,
+      width: 56,
       boxShadow: theme.shadows[4],
       borderRadius: 99,
       [theme.breakpoints.down('sm')]: {
