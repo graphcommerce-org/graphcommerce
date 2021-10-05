@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@apollo/client": "^3.4.15",
+    "@apollo/client": "^3.4.16",
     "@graphcommerce/framer-next-pages": "^2.106.5",
     "@graphcommerce/framer-scroller": "^0.2.5",
     "@graphcommerce/framer-sheet": "^2.105.4",

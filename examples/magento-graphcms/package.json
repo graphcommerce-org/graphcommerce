@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@adobe/apollo-link-mutation-queue": "^1.0.2",
-    "@apollo/client": "^3.4.15",
+    "@apollo/client": "^3.4.16",
     "@graphcommerce/browserslist-config-pwa": "^3.0.1",
     "@graphcommerce/eslint-config-pwa": "^3.0.4",
     "@graphcommerce/framer-next-pages": "^2.106.5",
