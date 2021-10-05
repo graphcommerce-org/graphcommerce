@@ -1,3 +1,4 @@
+import { useHistoryLink } from '@graphcommerce/framer-next-pages'
 import { SectionContainer, UseStyles } from '@graphcommerce/next-ui'
 import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import PageLink from 'next/link'
@@ -53,6 +54,10 @@ export default function CartSummary(props: CartSummaryProps) {
 
   const { email, shipping_addresses, billing_address } = data.cart
 
+  const { href: historyHref, onClick: historyOnClick } = useHistoryLink({
+    href: '/checkout',
+  })
+
   return (
     <div className={classes.root}>
       <div className={classes.detailsContainer}>
@@ -61,15 +66,6 @@ export default function CartSummary(props: CartSummaryProps) {
             variantLeft='h5'
             labelLeft='Confirmation + Track & trace'
             classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
-            // labelRight={
-            //   editable ? (
-            //     <PageLink href='/checkout/edit' passHref>
-            //       <Link color='secondary' variant='body2'>
-            //         Edit
-            //       </Link>
-            //     </PageLink>
-            //   ) : undefined
-            // }
           />
           <Typography variant='body1'>{email || ''}</Typography>
         </div>
@@ -78,15 +74,6 @@ export default function CartSummary(props: CartSummaryProps) {
             variantLeft='h5'
             labelLeft='Shipping method'
             classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
-            // labelRight={
-            //   editable ? (
-            //     <PageLink href='/checkout/edit/shipping' passHref>
-            //       <Link color='secondary' variant='body2'>
-            //         Edit
-            //       </Link>
-            //     </PageLink>
-            //   ) : undefined
-            // }
           />
           <Typography variant='body1'>
             {shipping_addresses?.[0]?.selected_shipping_method?.carrier_title}
@@ -100,15 +87,15 @@ export default function CartSummary(props: CartSummaryProps) {
                 variantLeft='h5'
                 labelLeft='Shipping address'
                 classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
-                // labelRight={
-                //   editable ? (
-                //     <PageLink href='/checkout/edit/shipping_address' passHref>
-                //       <Link color='secondary' variant='body2'>
-                //         Edit
-                //       </Link>
-                //     </PageLink>
-                //   ) : undefined
-                // }
+                labelRight={
+                  editable ? (
+                    <PageLink href={historyHref} passHref>
+                      <Link color='secondary' variant='body2' onClick={historyOnClick}>
+                        Edit
+                      </Link>
+                    </PageLink>
+                  ) : undefined
+                }
               />
               <CartAddressMultiLine {...shipping_addresses[0]} />
             </div>
