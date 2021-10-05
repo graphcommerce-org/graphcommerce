@@ -5,6 +5,7 @@ import {
   useForm,
   useFormCompose,
   UseFormComposeOptions,
+  useFormPersist,
 } from '@graphcommerce/react-hook-form'
 import {
   Checkbox,
@@ -54,19 +55,19 @@ export default function CartAgreementsForm(props: CartAgreementsFormProps) {
       })
     : []
 
-  const form = useForm({
-    mode: 'onSubmit',
-  })
+  const form = useForm({ mode: 'onSubmit' })
 
   const { handleSubmit, formState, control } = form
 
   const submit = handleSubmit(() => {})
 
+  useFormPersist({ form, name: 'PaymentAgreementsForm' })
+
   useFormCompose({ form, step, submit, key: 'PaymentAgreementsForm' })
 
   return (
     <FormDiv classes={{ root: classes.formDiv }}>
-      <form noValidate onSubmit={submit}>
+      <form noValidate onSubmit={submit} name='cartAgreements'>
         <div className={classes.formInner}>
           {data?.checkoutAgreements &&
             sortedAgreements?.map(
@@ -76,6 +77,7 @@ export default function CartAgreementsForm(props: CartAgreementsFormProps) {
                     {agreement.mode === 'MANUAL' ? (
                       <>
                         <Controller
+                          defaultValue={''}
                           name={String(agreement.agreement_id)}
                           control={control}
                           rules={{ required: 'You have to agree in order to proceed' }}
@@ -99,25 +101,13 @@ export default function CartAgreementsForm(props: CartAgreementsFormProps) {
                                     <Link color='secondary'>{agreement.checkbox_text}</Link>
                                   </PageLink>
                                 }
-                                checked={value}
+                                checked={!!value}
                                 inputRef={ref}
                                 onBlur={onBlur}
                                 name={name}
-                                onChange={(e) =>
-                                  onChange(
-                                    (e as React.ChangeEvent<HTMLInputElement>).target.checked,
-                                  )
-                                }
+                                onChange={(e) => onChange(e as React.ChangeEvent<HTMLInputElement>)}
                               />
-                              {error && (
-                                <>
-                                  {error.message ? (
-                                    <FormHelperText>{error.message}</FormHelperText>
-                                  ) : (
-                                    <FormHelperText>Required</FormHelperText>
-                                  )}
-                                </>
-                              )}
+                              {error?.message && <FormHelperText>{error.message}</FormHelperText>}
                             </FormControl>
                           )}
                         />
