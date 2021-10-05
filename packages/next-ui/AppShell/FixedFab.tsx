@@ -18,7 +18,7 @@ const useStyles = makeStyles(
       },
       [theme.breakpoints.up('md')]: {
         pointerEvents: 'all',
-        top: `calc(${theme.spacings.xxs} - 2px)`,
+        top: theme.spacings.xxs,
         // hacky way to measure page width without scrollbar width
         left: `calc((100vw - (100vw - 100%)) - ${theme.page.horizontal} - 56px)`,
         bottom: 'unset',
