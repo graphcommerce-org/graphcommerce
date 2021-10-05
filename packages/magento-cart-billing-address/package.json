@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-cart-billing-address",
-  "version": "2.104.13",
+  "version": "2.104.14",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -24,7 +24,7 @@
     "@graphcommerce/framer-next-pages": "^2.106.5",
     "@graphcommerce/graphql": "^2.103.4",
     "@graphcommerce/image": "^2.104.5",
-    "@graphcommerce/magento-cart": "^3.0.13",
+    "@graphcommerce/magento-cart": "^3.1.0",
     "@graphcommerce/magento-customer": "^3.0.13",
     "@graphcommerce/magento-store": "^3.0.11",
     "@graphcommerce/next-ui": "^3.1.3",

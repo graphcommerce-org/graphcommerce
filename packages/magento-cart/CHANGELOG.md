@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.0.13...@graphcommerce/magento-cart@3.1.0) (2021-10-05)
+
+
+### Features
+
+* **checkout-shipping:** edit shipping address link ([b598008](https://github.com/ho-nl/m2-pwa/commit/b598008ffccb499fe0109ee557e08d557cf20d6e))
+
+
+
+
+
 ## [3.0.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.0.8...@graphcommerce/magento-cart@3.0.9) (2021-09-30)
 
 
