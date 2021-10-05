@@ -1,10 +1,10 @@
 /**
- * Value between 0.1 - 2.0
+ * Value between 0.1 - 3.0
  *
  * Will be multiplied by animation values to adjust animation speed while preserving the animation feel
  */
-const inertiaAnimationSpeed = 3.0
-const springAnimationSpeed = 2.0
+const inertiaAnimationModifier = 3.0
+const springAnimationModifier = 2.0
 
 /**
  * Copy of the internal inertia animation for dragging
@@ -13,17 +13,17 @@ const springAnimationSpeed = 2.0
  */
 export const INERTIA_ANIM = {
   type: 'inertia',
-  bounceStiffness: 200 * inertiaAnimationSpeed,
-  bounceDamping: 40 * inertiaAnimationSpeed,
-  timeConstant: 750 * inertiaAnimationSpeed,
+  bounceStiffness: 200 * inertiaAnimationModifier,
+  bounceDamping: 40 * inertiaAnimationModifier,
+  timeConstant: 750 * inertiaAnimationModifier,
   restDelta: 1,
 }
 
 /** Copy of INERTIA_ANIM, but converted to `type = 'spring'` */
 export const SPRING_ANIM = {
   type: 'spring',
-  stiffness: 200 * springAnimationSpeed,
-  damping: 40 * springAnimationSpeed,
+  stiffness: 200 * springAnimationModifier,
+  damping: 40 * springAnimationModifier,
   restDelta: 1,
-  restSpeed: 10 * springAnimationSpeed,
+  restSpeed: 10 * springAnimationModifier,
 }
