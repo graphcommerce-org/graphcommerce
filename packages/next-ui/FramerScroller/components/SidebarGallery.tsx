@@ -16,12 +16,7 @@ import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
 import SvgImage from '../../SvgImage'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
-import {
-  iconChevronLeft,
-  iconChevronRight,
-  iconCollapseVertical,
-  iconExpandVertical,
-} from '../../icons'
+import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../../icons'
 
 type StyleProps = {
   aspectRatio: [number, number]
@@ -227,9 +222,9 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
           <m.div layout className={classes.topRight}>
             <Fab color='inherit' size='small' className={classes.toggleIcon} onClick={toggle}>
               {!zoomed ? (
-                <SvgImage src={iconExpandVertical} alt='Zoom in' loading='eager' />
+                <SvgImage src={iconFullscreen} alt='Zoom in' loading='eager' size='small' />
               ) : (
-                <SvgImage src={iconCollapseVertical} alt='Zoom out' loading='eager' />
+                <SvgImage src={iconFullscreenExit} alt='Zoom out' loading='eager' size='small' />
               )}
             </Fab>
           </m.div>
