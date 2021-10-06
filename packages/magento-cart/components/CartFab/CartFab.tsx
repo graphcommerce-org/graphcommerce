@@ -2,6 +2,7 @@ import {
   iconShoppingBag,
   StyledBadge,
   SvgImageSimple,
+  FixedFab,
   useFixedFabAnimation,
 } from '@graphcommerce/next-ui'
 import { Fab, FabProps, NoSsr } from '@material-ui/core'
@@ -23,12 +24,20 @@ function CartFabContent(props: CartFabContentProps) {
   const cartIcon = icon ?? (
     <SvgImageSimple src={iconShoppingBag} alt='Shopping Bag' loading='eager' size='large' />
   )
-  const { filter } = useFixedFabAnimation()
+  const { boxShadow } = useFixedFabAnimation()
 
   return (
-    <m.div style={{ filter }}>
+    <m.div style={{ boxShadow, width: 'inherit', borderRadius: 'inherit' }}>
       <PageLink href='/cart' passHref>
-        <Fab aria-label='Cart' color='inherit' size='large' {...fabProps}>
+        <Fab
+          aria-label='Cart'
+          color='inherit'
+          size='large'
+          style={{
+            boxShadow: 'none',
+          }}
+          {...fabProps}
+        >
           {total_quantity > 0 ? (
             <StyledBadge color='primary' variant='dot'>
               {cartIcon}
@@ -60,8 +69,10 @@ export default function CartFab(props: CartFabProps) {
   const qty = data?.cart?.total_quantity ?? 0
 
   return (
-    <NoSsr fallback={<CartFabContent {...props} total_quantity={0} />}>
-      <CartFabContent total_quantity={qty} {...props} />
-    </NoSsr>
+    <FixedFab>
+      <NoSsr fallback={<CartFabContent {...props} total_quantity={0} />}>
+        <CartFabContent total_quantity={qty} {...props} />
+      </NoSsr>
+    </FixedFab>
   )
 }

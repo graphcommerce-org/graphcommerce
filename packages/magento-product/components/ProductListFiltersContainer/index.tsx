@@ -68,12 +68,13 @@ export type ProductListFiltersContainerProps = PropsWithChildren<UseStyles<typeo
 
 export default function ProductListFiltersContainer(props: ProductListFiltersContainerProps) {
   const { children } = props
-
   const classes = useStyles(props)
   const { scrollY } = useViewportScroll()
+
   const [isSticky, setIsSticky] = useState<boolean>(false)
-  const [startPosition, setStartPosition] = useState(100)
-  const [spacing, setSpacing] = useState(20)
+  const [startPosition, setStartPosition] = useState<number>(100)
+  const [spacing, setSpacing] = useState<number>(20)
+
   const scrollHalfway = startPosition + spacing
 
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -87,8 +88,9 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
       const nextOffset =
         (wrapperRef.current?.parentElement?.nextElementSibling as HTMLElement | null)?.offsetTop ??
         0
+      const modifier = 5
 
-      setSpacing(nextOffset - elemHeigh - offset + 20)
+      setSpacing((nextOffset - elemHeigh - offset + 20) * modifier)
       setStartPosition(offset)
     })
     if (wrapperRef.current) observer.observe(wrapperRef.current)
@@ -108,11 +110,10 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
     return scrollY.onChange(onCheckStickyChange)
   }, [isSticky, scrollHalfway, scrollY])
 
-  const opacity = useTransform(scrollY, [startPosition, startPosition + spacing], [0, 0.08])
-  const opacity2 = useTransform(scrollY, [startPosition, startPosition + spacing], [0, 0.1])
-  const filter = useMotionTemplate`
-    drop-shadow(0 1px 4px rgba(0,0,0,${opacity}))
-    drop-shadow(0 4px 10px rgba(0,0,0,${opacity2}))`
+  const opacity = useTransform(scrollY, [startPosition, startPosition + spacing], [0, 0.1])
+  const boxShadow = useMotionTemplate`
+    0 4px 12px 0 rgba(0, 0, 0, ${opacity})
+    `
 
   return (
     <m.div className={classes.wrapper} ref={wrapperRef}>
@@ -122,7 +123,7 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
         </ScrollerButton>
         <m.div
           className={clsx(classes.container, isSticky && classes.containerSticky)}
-          style={{ filter }}
+          style={{ boxShadow }}
         >
           <Scroller
             className={clsx(classes.scroller, isSticky && classes.scrollerSticky)}
