@@ -75,8 +75,11 @@ const useStyles = makeStyles(
       gridAutoFlow: `column`,
       gridTemplateColumns: `repeat(100, 100%)`,
       gridTemplateRows: `100%`,
+      cursor: 'zoom-in',
     },
-
+    scrollerZoomed: {
+      cursor: 'zoom-out',
+    },
     sidebarWrapper: {
       boxSizing: 'content-box',
       display: 'grid',
@@ -195,6 +198,16 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
     }
   }
 
+  const onClickToggle = () => {
+    if (zoomed) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.replace('#')
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.push('#gallery')
+    }
+  }
+
   useDomEvent(windowRef, 'keyup', handleEscapeKey, { passive: true })
 
   return (
@@ -207,7 +220,7 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
             if (!zoomed) document.body.style.overflow = ''
           }}
         >
-          <Scroller className={clsxZoom('scroller')} hideScrollbar>
+          <Scroller className={clsxZoom('scroller')} hideScrollbar onClick={onClickToggle}>
             {images.map((image, idx) => (
               <CenterSlide key={typeof image.src === 'string' ? image.src : idx}>
                 <MotionImageAspect
@@ -230,15 +243,7 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
               color='inherit'
               size='small'
               className={classes.toggleIcon}
-              onClick={() => {
-                if (zoomed) {
-                  // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                  router.replace('#')
-                } else {
-                  // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                  router.replace('#gallery')
-                }
-              }}
+              onClick={onClickToggle}
             >
               {!zoomed ? (
                 <SvgImage src={iconFullscreen} alt='Zoom in' loading='eager' size='small' />
@@ -262,6 +267,7 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
             <ScrollerDots layout />
           </div>
         </m.div>
+
         <div className={clsxZoom('sidebarWrapper')}>
           <m.div layout className={clsxZoom('sidebar')}>
             {sidebar}
