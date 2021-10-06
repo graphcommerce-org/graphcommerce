@@ -68,12 +68,13 @@ export type ProductListFiltersContainerProps = PropsWithChildren<UseStyles<typeo
 
 export default function ProductListFiltersContainer(props: ProductListFiltersContainerProps) {
   const { children } = props
-
   const classes = useStyles(props)
   const { scrollY } = useViewportScroll()
+
   const [isSticky, setIsSticky] = useState<boolean>(false)
-  const [startPosition, setStartPosition] = useState(100)
-  const [spacing, setSpacing] = useState(20)
+  const [startPosition, setStartPosition] = useState<number>(100)
+  const [spacing, setSpacing] = useState<number>(20)
+
   const scrollHalfway = startPosition + spacing
 
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -87,8 +88,9 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
       const nextOffset =
         (wrapperRef.current?.parentElement?.nextElementSibling as HTMLElement | null)?.offsetTop ??
         0
+      const modifier = 5
 
-      setSpacing(nextOffset - elemHeigh - offset + 20)
+      setSpacing((nextOffset - elemHeigh - offset + 20) * modifier)
       setStartPosition(offset)
     })
     if (wrapperRef.current) observer.observe(wrapperRef.current)
