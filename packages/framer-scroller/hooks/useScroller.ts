@@ -12,7 +12,7 @@ import {
 } from 'framer-motion'
 import React, { ReactHTML, useState } from 'react'
 import { ScrollSnapProps } from '../types'
-import { isHTMLMousePointerEvent } from '../utils'
+import { isHTMLMousePointerEvent } from '../utils/isHTMLMousePointerEvent'
 import { useScrollerContext } from './useScrollerContext'
 import { useVelocitySnapTo } from './useVelocitySnapTo'
 
@@ -100,9 +100,12 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
 
   const scrollStart = useConstant(() => ({ x: motionValue(0), y: motionValue(0) }))
   const onPanStart: PanHandlers['onPanStart'] = (event) => {
+    // If we're not dealing with the mouse we don't need to do anything
+    if (!isHTMLMousePointerEvent(event)) return
+
     scrollStart.x.set(scroll.x.get())
     scrollStart.y.set(scroll.y.get())
-    if (event instanceof PointerEvent && event.pointerType !== 'touch') disableSnap()
+    disableSnap()
     setPanning(true)
   }
 
