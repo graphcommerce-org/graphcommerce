@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.119.16](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.15...@graphcommerce/magento-graphcms@2.119.16) (2021-10-06)
+
+
+### Bug Fixes
+
+* remove default orientation ([2260d03](https://github.com/ho-nl/m2-pwa/commit/2260d0312196a46171580d00d0ade4a3e7efa9e7))
+
+
+
+
+
 ## [2.119.15](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.14...@graphcommerce/magento-graphcms@2.119.15) (2021-10-06)
 
 

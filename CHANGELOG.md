@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.127.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.127.1...@graphcommerce/graphcommerce@2.127.2) (2021-10-06)
+
+
+### Bug Fixes
+
+* remove default orientation ([2260d03](https://github.com/ho-nl/m2-pwa/commit/2260d0312196a46171580d00d0ade4a3e7efa9e7))
+
+
+
+
+
 ## [2.127.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.127.0...@graphcommerce/graphcommerce@2.127.1) (2021-10-06)
 
 
