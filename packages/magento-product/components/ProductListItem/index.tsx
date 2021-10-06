@@ -204,17 +204,21 @@ export default function ProductListItem(props: ProductListItemProps) {
 
       {!imageOnly && (
         <>
-          <div className={classes.itemTitleContainer}>
-            {/* <div> */}
-            <Typography component='h2' variant='subtitle1' className={classes.title}>
-              {name}
-            </Typography>
-            {/* </div> */}
-            <div className={classes.subtitle}>{subTitle}</div>
+          <PageLink href={productLink} passHref>
+            <MuiLink underline='none' color='inherit'>
+              <div className={classes.itemTitleContainer}>
+                <Typography component='h2' variant='subtitle1' className={classes.title}>
+                  {name}
+                </Typography>
+                <div className={classes.subtitle}>{subTitle}</div>
 
-            <ProductListPrice {...price_range.minimum_price} classes={{ root: classes.price }} />
-          </div>
-
+                <ProductListPrice
+                  {...price_range.minimum_price}
+                  classes={{ root: classes.price }}
+                />
+              </div>
+            </MuiLink>
+          </PageLink>
           {children}
         </>
       )}
