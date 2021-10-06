@@ -46,7 +46,7 @@ export type DivFormProps = BaseFormProps & JSX.IntrinsicElements['div']
 
 export const FormDiv = React.forwardRef<HTMLDivElement, DivFormProps>((props, ref) => {
   const classes = useStyles(props)
-  const { contained, background = 'default', ...formProps } = props
+  const { contained, background = 'default', classes: _classes, ...formProps } = props
 
   return (
     <div
