@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.119.15](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.14...@graphcommerce/magento-graphcms@2.119.15) (2021-10-06)
+
+
+### Bug Fixes
+
+* **cart-fab:** box shadow in safari ([4eb316d](https://github.com/ho-nl/m2-pwa/commit/4eb316dd0f2ab7ee2806a3acdb306af1eb72854b))
+
+
+
+
+
 ## [2.119.13](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.12...@graphcommerce/magento-graphcms@2.119.13) (2021-10-04)
 
 

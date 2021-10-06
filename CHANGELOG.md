@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.127.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.127.0...@graphcommerce/graphcommerce@2.127.1) (2021-10-06)
+
+
+### Bug Fixes
+
+* cart fab alignment ([209ad30](https://github.com/ho-nl/m2-pwa/commit/209ad3027eff32e174c1774d21e9f33a3051a819))
+* **cart-fab:** box shadow in safari ([4eb316d](https://github.com/ho-nl/m2-pwa/commit/4eb316dd0f2ab7ee2806a3acdb306af1eb72854b))
+* **cart-fab:** positioning ([7bb31b4](https://github.com/ho-nl/m2-pwa/commit/7bb31b4bf6e663d14220aedaddf420b24d427b3a))
+* **product-list-filters-container:** drop shadow fades in too fast ([2e8f848](https://github.com/ho-nl/m2-pwa/commit/2e8f84809baa3fe6c2861f8992f46b6a07842ec6))
+
+
+
+
+
 # [2.127.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.126.0...@graphcommerce/graphcommerce@2.127.0) (2021-10-05)
 
 

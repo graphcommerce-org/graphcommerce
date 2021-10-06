@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.1.0...@graphcommerce/magento-cart@3.1.1) (2021-10-06)
+
+
+### Bug Fixes
+
+* **cart-fab:** box shadow in safari ([4eb316d](https://github.com/ho-nl/m2-pwa/commit/4eb316dd0f2ab7ee2806a3acdb306af1eb72854b))
+
+
+
+
+
 # [3.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.0.13...@graphcommerce/magento-cart@3.1.0) (2021-10-05)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.15](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.0.14...@graphcommerce/magento-product@3.0.15) (2021-10-06)
+
+
+### Bug Fixes
+
+* **cart-fab:** box shadow in safari ([4eb316d](https://github.com/ho-nl/m2-pwa/commit/4eb316dd0f2ab7ee2806a3acdb306af1eb72854b))
+* **product-list-filters-container:** drop shadow fades in too fast ([2e8f848](https://github.com/ho-nl/m2-pwa/commit/2e8f84809baa3fe6c2861f8992f46b6a07842ec6))
+
+
+
+
+
 ## [3.0.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.0.7...@graphcommerce/magento-product@3.0.8) (2021-09-30)
 
 

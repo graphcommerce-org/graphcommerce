@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.1.3...@graphcommerce/next-ui@3.1.4) (2021-10-06)
+
+
+### Bug Fixes
+
+* cart fab alignment ([209ad30](https://github.com/ho-nl/m2-pwa/commit/209ad3027eff32e174c1774d21e9f33a3051a819))
+* **cart-fab:** box shadow in safari ([4eb316d](https://github.com/ho-nl/m2-pwa/commit/4eb316dd0f2ab7ee2806a3acdb306af1eb72854b))
+* **cart-fab:** positioning ([7bb31b4](https://github.com/ho-nl/m2-pwa/commit/7bb31b4bf6e663d14220aedaddf420b24d427b3a))
+
+
+
+
+
 ## [3.1.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.1.2...@graphcommerce/next-ui@3.1.3) (2021-10-04)
 
 
