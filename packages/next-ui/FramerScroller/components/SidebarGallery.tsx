@@ -179,6 +179,16 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
     }
   }
 
+  const routeToggle = () => {
+    if (zoomed) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.replace('#')
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.push('#gallery')
+    }
+  }
+
   if (!zoomed && router.asPath.endsWith('#gallery')) toggle()
   if (!router.asPath.endsWith('#gallery') && zoomed) toggle()
 
@@ -198,13 +208,18 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
     }
   }
 
-  const onClickToggle = () => {
-    if (zoomed) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.replace('#')
-    } else {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.push('#gallery')
+  const [dragStart, setDragStart] = useState<number>(0)
+
+  const onMouseDownScroller = (e: any) => {
+    if (dragStart === e.clientX) return
+    setDragStart(e.clientX)
+  }
+
+  const onMouseUpScroller = (e: any) => {
+    const currentDragLoc = e.clientX
+
+    if (Math.abs(currentDragLoc - dragStart) < 8) {
+      routeToggle()
     }
   }
 
@@ -220,7 +235,12 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
             if (!zoomed) document.body.style.overflow = ''
           }}
         >
-          <Scroller className={clsxZoom('scroller')} hideScrollbar onClick={onClickToggle}>
+          <Scroller
+            className={clsxZoom('scroller')}
+            hideScrollbar
+            onMouseDown={onMouseDownScroller}
+            onMouseUp={onMouseUpScroller}
+          >
             {images.map((image, idx) => (
               <CenterSlide key={typeof image.src === 'string' ? image.src : idx}>
                 <MotionImageAspect
@@ -243,7 +263,7 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
               color='inherit'
               size='small'
               className={classes.toggleIcon}
-              onClick={onClickToggle}
+              onMouseUp={routeToggle}
             >
               {!zoomed ? (
                 <SvgImage src={iconFullscreen} alt='Zoom in' loading='eager' size='small' />
