@@ -85,34 +85,32 @@ function PaymentPage() {
         </Title>
       </PageShellHeader>
       <Container maxWidth='md'>
-        {!cartExists && <EmptyCart />}
-        {cartExists && (
-          <>
-            <AppShellTitle icon={iconId}>Payment</AppShellTitle>
+        <NoSsr>
+          {!cartExists && <EmptyCart />}
+          {cartExists && (
+            <>
+              <AppShellTitle icon={iconId}>Payment</AppShellTitle>
 
-            <PaymentMethodContextProvider
-              modules={{
-                braintree_local_payment,
-                braintree,
-                ...included_methods,
-                ...mollie_methods,
-              }}
-            >
-              <NoSsr>
+              <PaymentMethodContextProvider
+                modules={{
+                  braintree_local_payment,
+                  braintree,
+                  ...included_methods,
+                  ...mollie_methods,
+                }}
+              >
                 <AnimatePresence initial={false}>
-                  <PaymentMethodToggles key='toggle' />
+                  <PaymentMethodToggles key='toggle' step={1} />
 
                   <PaymentMethodOptions
                     key='options'
-                    step={1}
+                    step={2}
                     Container={({ children }) => (
                       <FormDiv contained background='secondary'>
                         {children}
                       </FormDiv>
                     )}
                   />
-
-                  <PaymentMethodPlaceOrder key='placeorder' step={2} />
 
                   <CartSummary editable key='cart-summary'>
                     <Divider />
@@ -121,7 +119,9 @@ function PaymentPage() {
 
                   <CouponAccordion key='coupon' />
 
-                  <CartAgreementsForm step={2} key='agreements' />
+                  <CartAgreementsForm step={3} key='agreements' />
+
+                  <PaymentMethodPlaceOrder key='placeorder' step={4} />
 
                   <PaymentMethodButton
                     key='button'
@@ -143,10 +143,10 @@ function PaymentPage() {
                     Place order
                   </PaymentMethodButton>
                 </AnimatePresence>
-              </NoSsr>
-            </PaymentMethodContextProvider>
-          </>
-        )}
+              </PaymentMethodContextProvider>
+            </>
+          )}
+        </NoSsr>
       </Container>
     </ComposedForm>
   )

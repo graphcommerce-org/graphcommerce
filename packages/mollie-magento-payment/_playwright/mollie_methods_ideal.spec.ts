@@ -2,6 +2,7 @@
 import { waitForGraphQlResponse } from '@graphcommerce/graphql/_playwright/apolloClient.fixture'
 import { PaymentMethodPlaceOrderNoopDocument } from '@graphcommerce/magento-cart-payment-method/PaymentMethodPlaceOrderNoop/PaymentMethodPlaceOrderNoop.gql'
 import { fillShippingAddressForm } from '@graphcommerce/magento-cart-shipping-address/_playwright/fillShippingAddressForm'
+import { fillCartAgreementsForm } from '@graphcommerce/magento-cart/_playwright/fillCartAgreementsForm'
 import { addConfigurableProductToCart } from '@graphcommerce/magento-product-configurable/_playwright/addConfigurableProductToCart'
 import { test } from '@graphcommerce/magento-product/_playwright/productURL.fixture'
 import { expect } from '@playwright/test'
@@ -21,19 +22,23 @@ test('place order failed', async ({ page, productURL }) => {
   await page.click('button[value=flatrate-flatrate]')
   await page.click('button:has-text("Next")')
 
+  // Select the iDEAL option
   await page.click('button[value=mollie_methods_ideal___]')
 
-  // Select ideal_RABONL2U
+  // Select Rabobank
   await page.selectOption('select[name="issuer"]', 'ideal_RABONL2U')
 
+  await fillCartAgreementsForm(page)
+
   await page.pause()
-  // Click button:has-text("Pay")
+
+  // Place the order and wait for the the redirect to the new page.
   await Promise.all([page.waitForNavigation(), page.click('button[name="placeOrder"]')])
 
-  // Click :nth-match(input[name="final_state"], 3)
+  // Let the order fail
   await page.click('input[name="final_state"][value=failed]')
 
-  // Click text=Ga verder ›
+  // Return to the website.
   await Promise.all([page.waitForNavigation(), page.click('.footer button')])
 
   await page.pause()
