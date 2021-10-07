@@ -166,69 +166,52 @@ export default function ProductListItem(props: ProductListItemProps) {
   )
 
   return (
-    <ButtonBase classes={{ root: classes.buttonBase }} component='div'>
-      <div className={classes.item}>
-        <PageLink href={productLink} passHref>
-          <MuiLink underline='none'>
-            <div className={classes.imageContainer}>
-              {small_image ? (
-                <Image
-                  layout='fill'
-                  sizes={sizes}
-                  dontReportWronglySizedImages={dontReportWronglySizedImages}
-                  src={small_image.url ?? ''}
-                  alt={small_image.label ?? ''}
-                  className={classes.image}
-                  loading={loading}
-                />
-              ) : (
-                <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
-              )}
+    <PageLink href={productLink} passHref>
+      <ButtonBase classes={{ root: clsx(classes.buttonBase, classes.item) }} component='a'>
+        <div className={classes.imageContainer}>
+          {small_image ? (
+            <Image
+              layout='fill'
+              sizes={sizes}
+              dontReportWronglySizedImages={dontReportWronglySizedImages}
+              src={small_image.url ?? ''}
+              alt={small_image.label ?? ''}
+              className={classes.image}
+              loading={loading}
+            />
+          ) : (
+            <div className={clsx(classes.placeholder, classes.image)}>NO IMAGE</div>
+          )}
 
-              {!imageOnly && (
-                <div className={classes.overlayItems}>
-                  <div className={classes.overlayItem}>
-                    {discount > 0 && (
-                      <div className={classes.discount}>{format(discount / -100)}</div>
-                    )}
-                    {topLeft}
-                  </div>
-                  <div className={clsx(classes.overlayItem, classes.cellAlignRight)}>
-                    {topRight}
-                  </div>
-                  <div className={clsx(classes.overlayItem, classes.cellAlignBottom)}>
-                    {bottomLeft}
-                  </div>
-                  <div className={clsx(classes.cellAlignBottom, classes.cellAlignRight)}>
-                    {bottomRight}
-                  </div>
-                </div>
-              )}
+          {!imageOnly && (
+            <div className={classes.overlayItems}>
+              <div className={classes.overlayItem}>
+                {discount > 0 && <div className={classes.discount}>{format(discount / -100)}</div>}
+                {topLeft}
+              </div>
+              <div className={clsx(classes.overlayItem, classes.cellAlignRight)}>{topRight}</div>
+              <div className={clsx(classes.overlayItem, classes.cellAlignBottom)}>{bottomLeft}</div>
+              <div className={clsx(classes.cellAlignBottom, classes.cellAlignRight)}>
+                {bottomRight}
+              </div>
             </div>
-          </MuiLink>
-        </PageLink>
+          )}
+        </div>
 
         {!imageOnly && (
           <>
-            <PageLink href={productLink} passHref>
-              <MuiLink underline='none' color='inherit'>
-                <div className={classes.itemTitleContainer}>
-                  <Typography component='h2' variant='subtitle1' className={classes.title}>
-                    {name}
-                  </Typography>
-                  <div className={classes.subtitle}>{subTitle}</div>
+            <div className={classes.itemTitleContainer}>
+              <Typography component='h2' variant='subtitle1' className={classes.title}>
+                {name}
+              </Typography>
+              <div className={classes.subtitle}>{subTitle}</div>
 
-                  <ProductListPrice
-                    {...price_range.minimum_price}
-                    classes={{ root: classes.price }}
-                  />
-                </div>
-              </MuiLink>
-            </PageLink>
+              <ProductListPrice {...price_range.minimum_price} classes={{ root: classes.price }} />
+            </div>
             {children}
           </>
         )}
-      </div>
-    </ButtonBase>
+      </ButtonBase>
+    </PageLink>
   )
 }
