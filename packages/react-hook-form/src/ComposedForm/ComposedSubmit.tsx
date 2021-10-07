@@ -49,7 +49,7 @@ export default function ComposedSubmit(props: ComposedSubmitProps) {
       ([, f]) => Object.keys(f.form?.formState.errors ?? {}).length > 0,
     )
 
-    // We have no errors or invalid forms
+    // We have no errors and no invalid forms
     if (!formsToSubmit.length) formsToSubmit = formEntries
 
     dispatch({ type: 'SUBMIT' })

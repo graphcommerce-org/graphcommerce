@@ -32,6 +32,9 @@ npx playwright test --headed --project=android
 
 # Run with debugger enabled
 PWDEBUG=1 npx playwright test --project=android
+
+# Run tests byt searched
+npx playwright test --headed --project=android --grep mything
 ```
 
 ## Writing tests

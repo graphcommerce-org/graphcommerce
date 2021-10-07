@@ -72,7 +72,7 @@ export default function CartAgreementsForm(props: CartAgreementsFormProps) {
             sortedAgreements?.map(
               (agreement) =>
                 agreement && (
-                  <>
+                  <React.Fragment key={agreement.agreement_id}>
                     {agreement.mode === 'MANUAL' ? (
                       <>
                         <Controller
@@ -132,7 +132,7 @@ export default function CartAgreementsForm(props: CartAgreementsFormProps) {
                         </PageLink>
                       </div>
                     )}
-                  </>
+                  </React.Fragment>
                 ),
             )}
         </div>
