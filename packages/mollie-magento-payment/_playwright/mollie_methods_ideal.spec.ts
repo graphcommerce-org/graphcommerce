@@ -6,6 +6,7 @@ import { fillCartAgreementsForm } from '@graphcommerce/magento-cart/_playwright/
 import { addConfigurableProductToCart } from '@graphcommerce/magento-product-configurable/_playwright/addConfigurableProductToCart'
 import { test } from '@graphcommerce/magento-product/_playwright/productURL.fixture'
 import { expect } from '@playwright/test'
+import { UseMolliePaymentTokenHandlerDocument } from '../hooks/UseMolliePaymentTokenHandler.gql'
 
 test('place order failed', async ({ page, productURL }) => {
   await addConfigurableProductToCart(page, productURL.ConfigurableProduct)
@@ -30,8 +31,6 @@ test('place order failed', async ({ page, productURL }) => {
 
   await fillCartAgreementsForm(page)
 
-  await page.pause()
-
   // Place the order and wait for the the redirect to the new page.
   await Promise.all([page.waitForNavigation(), page.click('button[name="placeOrder"]')])
 
@@ -41,9 +40,7 @@ test('place order failed', async ({ page, productURL }) => {
   // Return to the website.
   await Promise.all([page.waitForNavigation(), page.click('.footer button')])
 
-  await page.pause()
-
-  const result = await waitForGraphQlResponse(page, PaymentMethodPlaceOrderNoopDocument)
+  const result = await waitForGraphQlResponse(page, UseMolliePaymentTokenHandlerDocument)
   expect(result.errors).toBeUndefined()
-  expect(result.data?.placeOrder?.order.order_number).toBeDefined()
+  expect(result.data?.mollieProcessTransaction?.paymentStatus).toBeDefined()
 })

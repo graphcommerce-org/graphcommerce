@@ -2,7 +2,7 @@ import { ApolloCartErrorFullPage, useClearCurrentCartId } from '@graphcommerce/m
 import { Button, Dialog } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { useMolliePaymentTokenHandler } from '../..'
+import { useMolliePaymentTokenHandler } from '../../hooks/useMolliePaymentTokenHandler'
 
 export default function MolliePaymentHandler() {
   const { error } = useMolliePaymentTokenHandler()

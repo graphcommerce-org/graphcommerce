@@ -29,7 +29,7 @@ export function useMolliePaymentTokenHandler() {
   })
 
   useEffect(() => {
-    if (!paymentToken || !isMollie || res.called || res.error)
+    if (!paymentToken || res.called || res.error)
       return // eslint-disable-next-line @typescript-eslint/no-floating-promises
     ;(async () => {
       const result = await handlePaymentToken({ variables: { paymentToken } })

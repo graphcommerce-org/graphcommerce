@@ -32,7 +32,7 @@ export interface PaymentModule {
   PaymentButton?: React.VFC<PaymentButtonProps>
   PaymentToggle?: React.VFC<PaymentToggleProps>
   expandMethods?: ExpandPaymentMethods
-  PaymentHandler?: React.VFC<PaymentMethod>
+  PaymentHandler?: React.VFC
 }
 
 export type PaymentMethodModules = { [code: string]: PaymentModule }

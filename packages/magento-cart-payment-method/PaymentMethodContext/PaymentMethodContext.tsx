@@ -26,6 +26,7 @@ export default function PaymentMethodContextProvider(props: PaymentMethodContext
   const { modules, children } = props
 
   const context = useCartQuery(GetPaymentMethodContextDocument)
+
   const cartContext = context?.data?.cart
   const [methods, setMethods] = useState<PaymentMethod[]>([])
   const [selectedMethod, setSelectedMethod] = useState<PaymentMethod>()
@@ -71,12 +72,11 @@ export default function PaymentMethodContextProvider(props: PaymentMethodContext
         setSelectedModule,
       }}
     >
-      {methods?.map((pm) => {
-        const PaymentHandler = modules?.[pm.code]?.PaymentHandler
+      {Object.entries(modules).map(([method, module]) => {
+        const PaymentHandler = module.PaymentHandler
         if (!PaymentHandler) return null
-        return <PaymentHandler {...pm} key={`${pm.code}___${pm.child}`}></PaymentHandler>
+        return <PaymentHandler key={method} />
       })}
-
       {children}
     </paymentMethodContext.Provider>
   )

@@ -8,8 +8,8 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       alignItems: 'center',
-      marginTop: theme.spacings.sm,
-      marginBottom: theme.spacings.sm,
+      marginTop: theme.spacings.md,
+      marginBottom: theme.spacings.md,
     },
     rootMargin: {
       marginTop: responsiveVal(50, 250),
