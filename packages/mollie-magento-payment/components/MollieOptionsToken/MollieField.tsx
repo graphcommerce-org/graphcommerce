@@ -6,7 +6,7 @@ import {
   Theme,
 } from '@material-ui/core'
 import React, { Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from 'react'
-import { ComponentEventHandler, ComponentFieldState, MollieFieldName } from '../Mollie'
+import { ComponentEventHandler, ComponentFieldState, MollieFieldName } from '../../Mollie'
 import { useMollieContext } from './mollieContext'
 
 type MollieFieldContext = [ComponentFieldState, Dispatch<SetStateAction<ComponentFieldState>>]

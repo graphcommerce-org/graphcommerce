@@ -58,7 +58,7 @@ export default function FullPageMessage(props: FullPageMessageProps) {
             {title}
           </Typography>
           {children && (
-            <Typography component='div' variant='body1' className={classes.description}>
+            <Typography component='div' variant='body1'>
               {children}
             </Typography>
           )}
