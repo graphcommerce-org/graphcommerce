@@ -63,9 +63,10 @@ function AccountReviewsAddPage() {
     return (
       <FullPageMessage
         title='Product could not be found'
-        description='Try a different product'
-        icon={<SvgImage src={iconBox} size={148} alt='box' />}
-      />
+        icon={<SvgImage src={iconBox} size={148} alt='box'></SvgImage>}
+      >
+        Try a different product
+      </FullPageMessage>
     )
   }
 

@@ -1,4 +1,3 @@
-import { AvailablePaymentMethod } from '@graphcommerce/graphql'
 import { ButtonProps } from '@graphcommerce/next-ui/Button'
 import { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import React from 'react'
@@ -7,7 +6,7 @@ import { PaymentMethodContextFragment } from './PaymentMethodContext.gql'
 import { SelectedPaymentMethodFragment } from './SelectedPaymentMethod/SelectedPaymentMethod.gql'
 
 export type PaymentMethod = Partial<AvailablePaymentMethodFragment> &
-  Pick<AvailablePaymentMethod, 'code' | 'title'> & {
+  Pick<AvailablePaymentMethodFragment, 'code' | 'title'> & {
     child: string
     preferred?: boolean
     selected?: SelectedPaymentMethodFragment
@@ -33,6 +32,7 @@ export interface PaymentModule {
   PaymentButton?: React.VFC<PaymentButtonProps>
   PaymentToggle?: React.VFC<PaymentToggleProps>
   expandMethods?: ExpandPaymentMethods
+  PaymentHandler?: React.VFC<PaymentMethod>
 }
 
 export type PaymentMethodModules = { [code: string]: PaymentModule }

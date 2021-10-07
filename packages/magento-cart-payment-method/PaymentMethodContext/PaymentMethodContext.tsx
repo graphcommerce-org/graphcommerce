@@ -51,7 +51,12 @@ export default function PaymentMethodContextProvider(props: PaymentMethodContext
               : Promise.resolve([]),
         ) ?? []
 
-      setMethods((await Promise.all(promises)).flat(1).sort((a) => (a.preferred ? 1 : 0)))
+      const loaded = (await Promise.all(promises)).flat(1).sort((a) => (a.preferred ? 1 : 0))
+      const sortedMethods = loaded.sort((a, b) =>
+        !modules?.[a?.code] ? 0 : !modules?.[b?.code] ? -1 : 1,
+      )
+
+      setMethods(sortedMethods)
     })()
   }, [cartContext, modules])
 
@@ -66,6 +71,12 @@ export default function PaymentMethodContextProvider(props: PaymentMethodContext
         setSelectedModule,
       }}
     >
+      {methods?.map((pm) => {
+        const PaymentHandler = modules?.[pm.code]?.PaymentHandler
+        if (!PaymentHandler) return null
+        return <PaymentHandler {...pm} key={`${pm.code}___${pm.child}`}></PaymentHandler>
+      })}
+
       {children}
     </paymentMethodContext.Provider>
   )

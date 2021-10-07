@@ -142,10 +142,6 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
 
   if (!methods || methods.length < 1) return <></>
 
-  const sortedMethods = [...methods].sort((a, b) =>
-    !modules?.[a?.code] ? 0 : !modules?.[b?.code] ? -1 : 1,
-  )
-
   return (
     <Form onSubmit={submitHandler} noValidate classes={{ root: classes.formRoot }}>
       <input type='hidden' {...register('code', { required: true })} required />
@@ -170,7 +166,7 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
               rules={{ required: 'Please select a payment method' }}
               render={({ field: { onChange, value, name, ref, onBlur } }) => (
                 <Scroller className={classes.scrollerRoot} hideScrollbar tabIndex={0}>
-                  {sortedMethods?.map((pm) => {
+                  {methods?.map((pm) => {
                     const buttonValue = `${pm.code}___${pm.child}`
                     return (
                       <ToggleButton

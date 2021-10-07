@@ -53,9 +53,10 @@ function AccountReviewsPage() {
           {((customer?.reviews && customer?.reviews.items.length < 1) || !customer?.reviews) && (
             <FullPageMessage
               title={`You haven't placed any reviews yet`}
-              description='Discover our collection and write your first review!'
               icon={<SvgImage src={iconStar} size={148} alt='star' />}
-            />
+            >
+              Discover our collection and write your first review!
+            </FullPageMessage>
           )}
 
           {customer?.reviews && customer?.reviews.items.length > 1 && (

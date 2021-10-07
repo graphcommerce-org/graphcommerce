@@ -21,7 +21,7 @@ export default function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProp
 
   useEffect(() => {
     if (!data?.placeOrder?.order || error || !cartId) return
-    clearCurrentCartId?.()
+    clearCurrentCartId()
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     router.push({ pathname: '/checkout/success', query: { cartId } })
   }, [cartId, clearCurrentCartId, data?.placeOrder?.order, error, router])
