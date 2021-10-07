@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@adobe/apollo-link-mutation-queue": "^1.0.2",
-    "@apollo/client": "^3.3.21",
+    "@apollo/client": "^3.4.16",
     "@graphcommerce/browserslist-config-pwa": "^3.0.1",
     "@graphcommerce/eslint-config-pwa": "^3.0.4",
     "@graphcommerce/framer-next-pages": "^2.106.5",
@@ -101,9 +101,6 @@
     "webpack": "^5.55.1"
   },
   "devDependencies": {
-    "@types/node": "^16.10.2",
-    "@types/react": "^17.0.25",
-    "@types/sharp": "^0.29.2",
     "type-fest": "^2.3.4",
     "typescript": "^4.4.3"
   },
