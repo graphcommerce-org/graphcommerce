@@ -9,8 +9,9 @@
   },
   "scripts": {
     "dev": "next -p 3001",
-    "build-mesh": "yarn mesh build --require dotenv/config",
-    "build": "yarn build-mesh && next build",
+    "build:next-config": "yarn workspace @graphcommerce/next-config build",
+    "build:mesh": "yarn mesh build --require dotenv/config",
+    "build": "yarn build:next-config yarn build:mesh && next build",
     "start": "next start",
     "start-local": "next start -p 3001"
   },
