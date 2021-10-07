@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/framer-sheet",
-  "version": "2.105.4",
+  "version": "2.105.5",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
@@ -16,11 +16,11 @@
     }
   },
   "dependencies": {
-    "@graphcommerce/framer-utils": "^2.103.4"
+    "@graphcommerce/framer-utils": "^2.103.5"
   },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.1",
-    "@graphcommerce/eslint-config-pwa": "^3.0.4",
+    "@graphcommerce/eslint-config-pwa": "^3.0.5",
     "@graphcommerce/prettier-config-pwa": "^3.0.2",
     "@graphcommerce/typescript-config-pwa": "^3.1.0",
     "@playwright/test": "^1.15.0"

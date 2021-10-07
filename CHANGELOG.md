@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.127.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.127.2...@graphcommerce/graphcommerce@2.127.3) (2021-10-07)
+
+
+### Bug Fixes
+
+* replace __DEV__ with proper variable for optimizing the bundle size ([9b03209](https://github.com/ho-nl/m2-pwa/commit/9b032095f618846d132c00b8dc14fbb1b09c6ed8))
+* try to define the __DEV__ variable for better tree shaking ([465125d](https://github.com/ho-nl/m2-pwa/commit/465125dff36ac4d269f74ce3598d5257c3c1d801))
+
+
+
+
+
 ## [2.127.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.127.1...@graphcommerce/graphcommerce@2.127.2) (2021-10-06)
 
 
