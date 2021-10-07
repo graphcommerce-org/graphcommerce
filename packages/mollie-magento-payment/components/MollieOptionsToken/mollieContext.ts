@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ComponentHandler, MollieInstance } from '../Mollie'
+import { ComponentHandler, MollieInstance } from '../../Mollie'
 
 export type MollieContext =
   | (MollieInstance & {

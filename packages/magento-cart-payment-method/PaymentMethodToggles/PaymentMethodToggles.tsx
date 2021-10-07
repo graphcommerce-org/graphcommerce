@@ -8,14 +8,20 @@ import {
   SvgImage,
   ToggleButton,
 } from '@graphcommerce/next-ui'
-import { Controller, useForm, useFormPersist } from '@graphcommerce/react-hook-form'
-import { FormControl, makeStyles, Theme } from '@material-ui/core'
+import {
+  Controller,
+  useForm,
+  useFormCompose,
+  UseFormComposeOptions,
+  useFormPersist,
+} from '@graphcommerce/react-hook-form'
+import { FormControl, FormHelperText, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useEffect } from 'react'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
-export type PaymentMethodTogglesProps = Record<string, unknown>
+export type PaymentMethodTogglesProps = Pick<UseFormComposeOptions, 'step'>
 
 // function Content(props: PaymentMethod) {
 //   const { code } = props
@@ -101,6 +107,7 @@ const useStyles = makeStyles(
 )
 
 export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
+  const { step } = props
   const { methods, selectedMethod, setSelectedMethod, setSelectedModule, modules } =
     usePaymentMethodContext()
 
@@ -112,8 +119,11 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
   })
   useFormPersist({ form, name: 'PaymentMethodToggle' })
 
-  const { control, handleSubmit, watch, register, setValue } = form
+  const { control, handleSubmit, watch, register, setValue, formState } = form
+
   const submitHandler = handleSubmit(() => {})
+
+  useFormCompose({ form, step, submit: submitHandler, key: 'PaymentMethodToggles' })
 
   const paymentMethod = watch('paymentMethod')
   useEffect(() => {
@@ -132,15 +142,11 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
 
   if (!methods || methods.length < 1) return <></>
 
-  const sortedMethods = [...methods].sort((a, b) =>
-    !modules?.[a?.code] ? 0 : !modules?.[b?.code] ? -1 : 1,
-  )
-
   return (
     <Form onSubmit={submitHandler} noValidate classes={{ root: classes.formRoot }}>
       <input type='hidden' {...register('code', { required: true })} required />
       <FormRow className={classes.root}>
-        <ScrollerProvider scrollSnapType='none'>
+        <ScrollerProvider scrollSnapAlign='center'>
           <m.div className={classes.buttonContainer}>
             <ScrollerButton
               direction='left'
@@ -159,10 +165,9 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
               name='paymentMethod'
               rules={{ required: 'Please select a payment method' }}
               render={({ field: { onChange, value, name, ref, onBlur } }) => (
-                <Scroller className={classes.scrollerRoot} hideScrollbar>
-                  {sortedMethods?.map((pm) => {
+                <Scroller className={classes.scrollerRoot} hideScrollbar tabIndex={0}>
+                  {methods?.map((pm) => {
                     const buttonValue = `${pm.code}___${pm.child}`
-
                     return (
                       <ToggleButton
                         name={name}
@@ -189,6 +194,12 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                 </Scroller>
               )}
             />
+
+            {formState.errors.paymentMethod?.message && (
+              <FormHelperText id='my-helper-text' error>
+                {formState.errors.paymentMethod.message}
+              </FormHelperText>
+            )}
           </FormControl>
 
           <m.div className={clsx(classes.buttonContainer, classes.buttonContainerRight)}>

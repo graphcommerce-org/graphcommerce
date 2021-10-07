@@ -26,6 +26,7 @@ export default function PaymentMethodContextProvider(props: PaymentMethodContext
   const { modules, children } = props
 
   const context = useCartQuery(GetPaymentMethodContextDocument)
+
   const cartContext = context?.data?.cart
   const [methods, setMethods] = useState<PaymentMethod[]>([])
   const [selectedMethod, setSelectedMethod] = useState<PaymentMethod>()
@@ -51,7 +52,12 @@ export default function PaymentMethodContextProvider(props: PaymentMethodContext
               : Promise.resolve([]),
         ) ?? []
 
-      setMethods((await Promise.all(promises)).flat(1).sort((a) => (a.preferred ? 1 : 0)))
+      const loaded = (await Promise.all(promises)).flat(1).sort((a) => (a.preferred ? 1 : 0))
+      const sortedMethods = loaded.sort((a, b) =>
+        !modules?.[a?.code] ? 0 : !modules?.[b?.code] ? -1 : 1,
+      )
+
+      setMethods(sortedMethods)
     })()
   }, [cartContext, modules])
 
@@ -66,6 +72,11 @@ export default function PaymentMethodContextProvider(props: PaymentMethodContext
         setSelectedModule,
       }}
     >
+      {Object.entries(modules).map(([method, module]) => {
+        const PaymentHandler = module.PaymentHandler
+        if (!PaymentHandler) return null
+        return <PaymentHandler key={method} />
+      })}
       {children}
     </paymentMethodContext.Provider>
   )

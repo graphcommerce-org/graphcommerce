@@ -1,4 +1,4 @@
-query CheckoutAgreements {
+query CartAgreements {
   checkoutAgreements {
     agreement_id
     checkbox_text

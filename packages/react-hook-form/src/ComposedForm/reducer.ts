@@ -38,6 +38,22 @@ function updateFormStateIfNecessary(state: ComposedFormState): ComposedFormState
 }
 
 export const composedFormReducer: ComposedFormReducer = (state, action) => {
+  // if (
+  //   process.env.NODE_ENV !== 'production' &&
+  //   action.type !== 'ASSIGN' &&
+  //   action.type !== 'REGISTER'
+  // ) {
+  //   console.log(
+  //     `[composedFormReducer] ${action.type}`,
+  //     action,
+  //     Object.fromEntries(
+  //       Object.entries(state.forms).map(([k, v]) => {
+  //         return [k, v.form?.formState]
+  //       }),
+  //     ),
+  //   )
+  // }
+
   switch (action.type) {
     case 'REGISTER':
       return { ...state, forms: { ...state.forms, [action.key]: undefined } }

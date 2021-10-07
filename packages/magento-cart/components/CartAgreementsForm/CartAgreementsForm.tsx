@@ -5,6 +5,7 @@ import {
   useForm,
   useFormCompose,
   UseFormComposeOptions,
+  useFormPersist,
 } from '@graphcommerce/react-hook-form'
 import {
   Checkbox,
@@ -17,9 +18,9 @@ import {
 } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
-import { CheckoutAgreementsDocument } from '../../queries/CheckoutAgreements.gql'
+import { CartAgreementsDocument } from './CartAgreements.gql'
 
-type PaymentAgreementsFormProps = Pick<UseFormComposeOptions, 'step'>
+export type CartAgreementsFormProps = Pick<UseFormComposeOptions, 'step'>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -38,13 +39,13 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: 'PaymentAgreementsForm',
+    name: 'CartAgreements',
   },
 )
 
-export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps) {
+export default function CartAgreementsForm(props: CartAgreementsFormProps) {
   const { step } = props
-  const { data } = useQuery(CheckoutAgreementsDocument)
+  const { data } = useQuery(CartAgreementsDocument)
   const classes = useStyles()
 
   // sort conditions so checkboxes will be placed first
@@ -54,28 +55,29 @@ export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps)
       })
     : []
 
-  const form = useForm({
-    mode: 'onSubmit',
-  })
+  const form = useForm({ mode: 'onChange' })
 
   const { handleSubmit, formState, control } = form
 
   const submit = handleSubmit(() => {})
 
+  useFormPersist({ form, name: 'PaymentAgreementsForm' })
+
   useFormCompose({ form, step, submit, key: 'PaymentAgreementsForm' })
 
   return (
     <FormDiv classes={{ root: classes.formDiv }}>
-      <form noValidate onSubmit={submit}>
+      <form noValidate onSubmit={submit} name='cartAgreements'>
         <div className={classes.formInner}>
           {data?.checkoutAgreements &&
             sortedAgreements?.map(
               (agreement) =>
                 agreement && (
-                  <>
+                  <React.Fragment key={agreement.agreement_id}>
                     {agreement.mode === 'MANUAL' ? (
                       <>
                         <Controller
+                          defaultValue={''}
                           name={String(agreement.agreement_id)}
                           control={control}
                           rules={{ required: 'You have to agree in order to proceed' }}
@@ -99,25 +101,13 @@ export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps)
                                     <Link color='secondary'>{agreement.checkbox_text}</Link>
                                   </PageLink>
                                 }
-                                checked={value}
+                                checked={!!value}
                                 inputRef={ref}
                                 onBlur={onBlur}
                                 name={name}
-                                onChange={(e) =>
-                                  onChange(
-                                    (e as React.ChangeEvent<HTMLInputElement>).target.checked,
-                                  )
-                                }
+                                onChange={(e) => onChange(e as React.ChangeEvent<HTMLInputElement>)}
                               />
-                              {error && (
-                                <>
-                                  {error.message ? (
-                                    <FormHelperText>{error.message}</FormHelperText>
-                                  ) : (
-                                    <FormHelperText>Required</FormHelperText>
-                                  )}
-                                </>
-                              )}
+                              {error?.message && <FormHelperText>{error.message}</FormHelperText>}
                             </FormControl>
                           )}
                         />
@@ -132,7 +122,7 @@ export default function PaymentAgreementsForm(props: PaymentAgreementsFormProps)
                         </PageLink>
                       </div>
                     )}
-                  </>
+                  </React.Fragment>
                 ),
             )}
         </div>

@@ -1,21 +1,22 @@
 import { Container, Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
+import clsx from 'clsx'
 import React from 'react'
-import PageMeta from '../PageMeta'
 import responsiveVal from '../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      marginTop: responsiveVal(50, 250),
       alignItems: 'center',
+      marginTop: theme.spacings.md,
+      marginBottom: theme.spacings.md,
+    },
+    rootMargin: {
+      marginTop: responsiveVal(50, 250),
     },
     subject: {
       textAlign: 'center',
-      margin: `${theme.spacings.sm} 0`,
-    },
-    description: {
-      marginTop: 8,
+      marginTop: theme.spacings.sm,
     },
     innerContainer: {
       display: 'grid',
@@ -23,6 +24,9 @@ const useStyles = makeStyles(
       justifyItems: 'center',
     },
     button: {
+      marginTop: theme.spacings.sm,
+    },
+    altButton: {
       marginTop: 6,
     },
   }),
@@ -34,34 +38,34 @@ const useStyles = makeStyles(
 export type FullPageMessageProps = {
   icon: React.ReactNode
   title: React.ReactNode
-  description?: React.ReactNode
+  children?: React.ReactNode
   button?: React.ReactNode
   altButton?: React.ReactNode
+  disableMargin?: boolean
 }
 
 export default function FullPageMessage(props: FullPageMessageProps) {
-  const { icon, title, description, button, altButton } = props
+  const { icon, title, children, button, altButton, disableMargin = false } = props
   const classes = useStyles()
 
   return (
-    <div className={classes.root}>
+    <div className={clsx(classes.root, disableMargin || classes.rootMargin)}>
       <Container maxWidth='md' className={classes.innerContainer}>
-        <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
         {icon}
 
         <div className={classes.subject}>
-          <Typography component='h2' variant='h4'>
+          <Typography variant='h3' gutterBottom>
             {title}
           </Typography>
-          {description && (
-            <Typography component='p' variant='body1' className={classes.description}>
-              {description}
+          {children && (
+            <Typography component='div' variant='body1'>
+              {children}
             </Typography>
           )}
         </div>
 
-        <div>{button}</div>
-        <div className={classes.button}>{altButton}</div>
+        <div className={classes.button}>{button}</div>
+        <div className={classes.altButton}>{altButton}</div>
       </Container>
     </div>
   )

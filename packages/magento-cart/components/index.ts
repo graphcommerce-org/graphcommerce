@@ -12,8 +12,8 @@ export { default as EmptyCart } from './EmptyCart/EmptyCart'
 export * from './ApolloCartError/ApolloCartErrorAlert'
 export { default as ApolloCartErrorAlert } from './ApolloCartError/ApolloCartErrorAlert'
 
-// export { default as ApolloCartErrorFullPage } from './ApolloCartError/ApolloCartErrorFullPage'
-// export * from './ApolloCartError/ApolloCartErrorFullPage'
+export * from './ApolloCartError/ApolloCartErrorFullPage'
+export { default as ApolloCartErrorFullPage } from './ApolloCartError/ApolloCartErrorFullPage'
 
 export * from './CartSummary'
 export { default as CartSummary } from './CartSummary'
@@ -28,3 +28,6 @@ export { default as CartAddressMultiLine } from './CartAddressMultiLine'
 
 export * from './CartAddressSingleLine'
 export { default as CartAddressSingleLine } from './CartAddressSingleLine'
+
+export * from './CartAgreementsForm/CartAgreementsForm'
+export { default as CartAgreementsForm } from './CartAgreementsForm/CartAgreementsForm'

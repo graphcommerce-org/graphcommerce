@@ -14,51 +14,54 @@ import ApplyCouponForm from '../ApplyCouponForm/ApplyCouponForm'
 import RemoveCouponForm from '../RemoveCouponForm/RemoveCouponForm'
 import { GetCouponDocument } from './GetCoupon.gql'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  accordion: {
-    '&:before': {
-      background: 'none',
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    accordion: {
+      '&:before': {
+        background: 'none',
+      },
+      boxShadow: 'none',
+      border: '1px solid #ededed',
+      borderRadius: 8,
+      overflow: 'hidden',
     },
-    boxShadow: 'none',
-    border: '1px solid #ededed',
-    borderRadius: 8,
-    overflow: 'hidden',
-  },
-  button: {
-    padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
-    width: '100%',
+    button: {
+      padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
+      width: '100%',
 
-    '& .MuiButton-label': {
-      display: 'flex',
-      justifyContent: 'flex-start',
-      '& span:last-child': {
-        marginLeft: 'auto',
+      '& .MuiButton-label': {
+        display: 'flex',
+        justifyContent: 'flex-start',
+        '& span:last-child': {
+          marginLeft: 'auto',
+        },
+      },
+      '& > span': {
+        display: 'inline',
+        '& > h6': {
+          textAlign: 'left',
+          marginRight: theme.spacings.sm,
+        },
       },
     },
-    '& > span': {
-      display: 'inline',
-      '& > h6': {
-        textAlign: 'left',
-        marginRight: theme.spacings.sm,
+    couponFormWrap: {
+      background: 'rgba(0,0,0,0.04)',
+      padding: `0 ${theme.spacings.sm} ${theme.spacings.xs}`,
+    },
+    buttonOpen: {
+      background: 'rgba(0,0,0,0.04)',
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+    disabled: {
+      cursor: 'default',
+      '&:hover': {
+        background: 'transparent',
       },
     },
-  },
-  couponFormWrap: {
-    background: 'rgba(0,0,0,0.04)',
-    padding: `0 ${theme.spacings.sm} ${theme.spacings.xs}`,
-  },
-  buttonOpen: {
-    background: 'rgba(0,0,0,0.04)',
-    borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0,
-  },
-  disabled: {
-    cursor: 'default',
-    '&:hover': {
-      background: 'transparent',
-    },
-  },
-}))
+  }),
+  { name: 'CouponAccordion' },
+)
 
 export type CouponAccordionProps = UseStyles<typeof useStyles>
 

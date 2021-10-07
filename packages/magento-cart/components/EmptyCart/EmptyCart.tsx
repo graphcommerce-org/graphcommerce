@@ -1,5 +1,11 @@
-import { responsiveVal, SvgImage, iconSadShoppingBag } from '@graphcommerce/next-ui'
-import { makeStyles, Theme, Typography } from '@material-ui/core'
+import {
+  responsiveVal,
+  SvgImage,
+  iconSadShoppingBag,
+  FullPageMessage,
+} from '@graphcommerce/next-ui'
+import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
+import Link from 'next/link'
 import React from 'react'
 
 const useStyles = makeStyles(
@@ -30,6 +36,30 @@ type EmptyCartProps = { children?: React.ReactNode }
 export default function EmptyCart(props: EmptyCartProps) {
   const { children } = props
   const classes = useStyles()
+
+  return (
+    <FullPageMessage
+      title={'Your cart is empty'}
+      icon={
+        <SvgImage
+          src={iconSadShoppingBag}
+          alt='Empty Cart'
+          className={classes.img}
+          loading='eager'
+          size='large'
+        />
+      }
+      button={
+        <Link href='/' passHref>
+          <Button variant='contained' color='primary' size='large'>
+            Continue shopping
+          </Button>
+        </Link>
+      }
+    >
+      Discover our collection and add items to your basket!
+    </FullPageMessage>
+  )
 
   return (
     <div className={classes.root}>
