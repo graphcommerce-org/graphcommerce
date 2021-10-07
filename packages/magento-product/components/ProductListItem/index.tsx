@@ -1,6 +1,6 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import { UseStyles, responsiveVal } from '@graphcommerce/next-ui'
-import { Link as MuiLink, makeStyles, Theme, Typography } from '@material-ui/core'
+import { responsiveVal, UseStyles } from '@graphcommerce/next-ui'
+import { ButtonBase, Link as MuiLink, makeStyles, Theme, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -11,6 +11,9 @@ import ProductListPrice from '../ProductListPrice'
 
 export const useProductListItemStyles = makeStyles(
   (theme: Theme) => ({
+    buttonBase: {
+      display: 'block',
+    },
     item: {
       position: 'relative',
       height: '100%',
@@ -163,65 +166,69 @@ export default function ProductListItem(props: ProductListItemProps) {
   )
 
   return (
-    <div className={classes.item}>
-      <PageLink href={productLink} passHref>
-        <MuiLink underline='none'>
-          <div className={classes.imageContainer}>
-            {small_image ? (
-              <Image
-                layout='fill'
-                sizes={sizes}
-                dontReportWronglySizedImages={dontReportWronglySizedImages}
-                src={small_image.url ?? ''}
-                alt={small_image.label ?? ''}
-                className={classes.image}
-                loading={loading}
-              />
-            ) : (
-              <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
-            )}
-
-            {!imageOnly && (
-              <div className={classes.overlayItems}>
-                <div className={classes.overlayItem}>
-                  {discount > 0 && (
-                    <div className={classes.discount}>{format(discount / -100)}</div>
-                  )}
-                  {topLeft}
-                </div>
-                <div className={clsx(classes.overlayItem, classes.cellAlignRight)}>{topRight}</div>
-                <div className={clsx(classes.overlayItem, classes.cellAlignBottom)}>
-                  {bottomLeft}
-                </div>
-                <div className={clsx(classes.cellAlignBottom, classes.cellAlignRight)}>
-                  {bottomRight}
-                </div>
-              </div>
-            )}
-          </div>
-        </MuiLink>
-      </PageLink>
-
-      {!imageOnly && (
-        <>
-          <PageLink href={productLink} passHref>
-            <MuiLink underline='none' color='inherit'>
-              <div className={classes.itemTitleContainer}>
-                <Typography component='h2' variant='subtitle1' className={classes.title}>
-                  {name}
-                </Typography>
-                <div className={classes.subtitle}>{subTitle}</div>
-
-                <ProductListPrice
-                  {...price_range.minimum_price}
-                  classes={{ root: classes.price }}
+    <ButtonBase classes={{ root: classes.buttonBase }} component='div'>
+      <div className={classes.item}>
+        <PageLink href={productLink} passHref>
+          <MuiLink underline='none'>
+            <div className={classes.imageContainer}>
+              {small_image ? (
+                <Image
+                  layout='fill'
+                  sizes={sizes}
+                  dontReportWronglySizedImages={dontReportWronglySizedImages}
+                  src={small_image.url ?? ''}
+                  alt={small_image.label ?? ''}
+                  className={classes.image}
+                  loading={loading}
                 />
-              </div>
-            </MuiLink>
-          </PageLink>
-          {children}
-        </>
-      )}
-    </div>
+              ) : (
+                <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
+              )}
+
+              {!imageOnly && (
+                <div className={classes.overlayItems}>
+                  <div className={classes.overlayItem}>
+                    {discount > 0 && (
+                      <div className={classes.discount}>{format(discount / -100)}</div>
+                    )}
+                    {topLeft}
+                  </div>
+                  <div className={clsx(classes.overlayItem, classes.cellAlignRight)}>
+                    {topRight}
+                  </div>
+                  <div className={clsx(classes.overlayItem, classes.cellAlignBottom)}>
+                    {bottomLeft}
+                  </div>
+                  <div className={clsx(classes.cellAlignBottom, classes.cellAlignRight)}>
+                    {bottomRight}
+                  </div>
+                </div>
+              )}
+            </div>
+          </MuiLink>
+        </PageLink>
+
+        {!imageOnly && (
+          <>
+            <PageLink href={productLink} passHref>
+              <MuiLink underline='none' color='inherit'>
+                <div className={classes.itemTitleContainer}>
+                  <Typography component='h2' variant='subtitle1' className={classes.title}>
+                    {name}
+                  </Typography>
+                  <div className={classes.subtitle}>{subTitle}</div>
+
+                  <ProductListPrice
+                    {...price_range.minimum_price}
+                    classes={{ root: classes.price }}
+                  />
+                </div>
+              </MuiLink>
+            </PageLink>
+            {children}
+          </>
+        )}
+      </div>
+    </ButtonBase>
   )
 }
