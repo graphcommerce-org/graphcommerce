@@ -12,7 +12,7 @@ import { Fab, makeStyles, Theme, useTheme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m, useDomEvent } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
 import SvgImage from '../../SvgImage'
@@ -179,47 +179,44 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
     }
   }
 
-  const routeToggle = () => {
-    if (zoomed) {
+  useEffect(() => {
+    if (zoomed && !router.asPath.endsWith('#gallery')) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.replace('#gallery')
+    }
+
+    if (!zoomed && router.asPath.endsWith('#gallery')) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       router.replace('#')
-    } else {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.push('#gallery')
     }
-  }
-
-  if (!zoomed && router.asPath.endsWith('#gallery')) toggle()
-  if (!router.asPath.endsWith('#gallery') && zoomed) toggle()
+  }, [router, zoomed])
 
   const clsxZoom = (key: string) => clsx(classes?.[key], zoomed && classes?.[`${key}Zoomed`])
-
   const theme = useTheme()
-
   const windowRef = useRef(typeof window !== 'undefined' ? window : null)
 
   const handleEscapeKey = (e: KeyboardEvent | Event) => {
     if (zoomed) {
       if ((e as KeyboardEvent)?.key === 'Escape') {
         toggle()
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        router.replace('#')
+        // // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        // router.replace('#')
       }
     }
   }
 
   const [dragStart, setDragStart] = useState<number>(0)
 
-  const onMouseDownScroller = (e: any) => {
+  const onMouseDownScroller = (e: React.MouseEvent) => {
     if (dragStart === e.clientX) return
     setDragStart(e.clientX)
   }
 
-  const onMouseUpScroller = (e: any) => {
+  const onMouseUpScroller = (e: React.MouseEvent) => {
     const currentDragLoc = e.clientX
 
     if (Math.abs(currentDragLoc - dragStart) < 8) {
-      routeToggle()
+      toggle()
     }
   }
 
@@ -259,12 +256,7 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
             ))}
           </Scroller>
           <m.div layout className={classes.topRight}>
-            <Fab
-              color='inherit'
-              size='small'
-              className={classes.toggleIcon}
-              onMouseUp={routeToggle}
-            >
+            <Fab color='inherit' size='small' className={classes.toggleIcon} onMouseUp={toggle}>
               {!zoomed ? (
                 <SvgImage src={iconFullscreen} alt='Zoom in' loading='eager' size='small' />
               ) : (
