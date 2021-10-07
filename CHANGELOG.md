@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.127.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.127.3...@graphcommerce/graphcommerce@2.127.4) (2021-10-07)
+
+
+### Bug Fixes
+
+* always comment on pr when reporting bundle sizes ([86fabb0](https://github.com/ho-nl/m2-pwa/commit/86fabb0c213098c2414eb0fad367a47e47b3dc48))
+* api build ([423564e](https://github.com/ho-nl/m2-pwa/commit/423564e23769298c98305edb89b8486265beb50b))
+* **cart:** agreements didn't handle state updates properly ([4401ff9](https://github.com/ho-nl/m2-pwa/commit/4401ff96a410379805d89bb2fa711df2d8a8fad0))
+* Form component added classes attribute ([269fd46](https://github.com/ho-nl/m2-pwa/commit/269fd4629cedcaab74043604ac21a4557b4e514f))
+* make sure if no payment method is filled in we get an error shown ([a203e57](https://github.com/ho-nl/m2-pwa/commit/a203e570caad0732427a178e8e8b10b4a15d676b))
+* make sure the CartAgreementsForm validates immediately ([eceacbb](https://github.com/ho-nl/m2-pwa/commit/eceacbb4803dd6e2701bf1835aa601c06ba4d6a3))
+
+
+
+
+
 ## [2.127.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.127.2...@graphcommerce/graphcommerce@2.127.3) (2021-10-07)
 
 

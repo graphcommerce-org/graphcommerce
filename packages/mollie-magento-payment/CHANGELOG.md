@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.104.11](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/mollie-magento-payment@2.104.10...@graphcommerce/mollie-magento-payment@2.104.11) (2021-10-07)
+
+
+### Bug Fixes
+
+* make sure if no payment method is filled in we get an error shown ([a203e57](https://github.com/ho-nl/m2-pwa/commit/a203e570caad0732427a178e8e8b10b4a15d676b))
+
+
+
+
+
 # 2.104.0 (2021-09-29)
 
 

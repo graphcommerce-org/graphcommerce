@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.119.18](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.17...@graphcommerce/magento-graphcms@2.119.18) (2021-10-07)
+
+
+### Bug Fixes
+
+* make sure if no payment method is filled in we get an error shown ([a203e57](https://github.com/ho-nl/m2-pwa/commit/a203e570caad0732427a178e8e8b10b4a15d676b))
+
+
+
+
+
 ## [2.119.17](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.16...@graphcommerce/magento-graphcms@2.119.17) (2021-10-07)
 
 
