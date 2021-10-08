@@ -170,6 +170,7 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
   const [zoomed, setZoomed] = useState(false)
   const clientHeight = useMotionValueValue(clientSize.y, (y) => y)
   const classes = useStyles({ clientHeight, aspectRatio })
+  const [galleryInHistory, setGalleryInHistory] = useState<boolean>(false)
 
   const toggle = useCallback(() => {
     const newZoomed = !zoomed
@@ -177,16 +178,22 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
     setZoomed(newZoomed)
 
     if (newZoomed) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.push('#gallery')
+      if (galleryInHistory) {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        router.replace('#gallery')
+      } else {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        router.push('#gallery')
+      }
     } else {
       document.body.style.overflow = 'hidden'
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
-  }, [router, zoomed])
+  }, [galleryInHistory, router, zoomed])
 
   useEffect(() => {
     if (!zoomed && router.asPath.endsWith('#gallery')) {
+      setGalleryInHistory(true)
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       router.replace('#')
     }
@@ -219,6 +226,11 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
 
     if (Math.abs(currentDragLoc - dragStart) < 8) {
       toggle()
+
+      // if (!zoomed && router.asPath.endsWith('#gallery')) {
+      //   // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      //   router.back()
+      // }
     }
   }
 
