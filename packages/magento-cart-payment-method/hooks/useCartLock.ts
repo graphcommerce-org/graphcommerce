@@ -13,7 +13,7 @@ export function useCartLock() {
   const { cache } = useApolloClient()
   const cartId = useCurrentCartId()
 
-  const locked = useCartQuery(UseCartLockDocument).data?.cart?.locked ?? false
+  const locked = useCartQuery(UseCartLockDocument, { allowUrl: true }).data?.cart?.locked ?? false
 
   const lock = useCallback(
     (locking: boolean) => {
