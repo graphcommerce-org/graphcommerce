@@ -42,14 +42,14 @@ type SvgImageSimpleProps = Omit<ImageProps, 'fixed'> & {
 }
 
 const SvgImageSimple = forwardRef<HTMLImageElement, SvgImageSimpleProps>((props, ref) => {
-  const { className, size = 'medium', muted, inverted, ...imageProps } = props
+  const { className, size = 'medium', muted, inverted, layout = 'fixed', ...imageProps } = props
   const classes = useStyles()
 
   return (
     <Image
       {...imageProps}
       ref={ref}
-      layout='fixed'
+      layout={layout}
       className={clsx(
         className,
         classes.image,
