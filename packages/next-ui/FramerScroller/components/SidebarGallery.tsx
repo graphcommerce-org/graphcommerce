@@ -12,7 +12,7 @@ import { Fab, makeStyles, Theme, useTheme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m, useDomEvent } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
 import SvgImage from '../../SvgImage'
@@ -171,25 +171,29 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
   const clientHeight = useMotionValueValue(clientSize.y, (y) => y)
   const classes = useStyles({ clientHeight, aspectRatio })
 
-  const toggle = () => {
-    setZoomed(!zoomed)
-    if (!zoomed) {
+  const toggle = useCallback(() => {
+    const newZoomed = !zoomed
+
+    setZoomed(newZoomed)
+
+    if (newZoomed) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.push('#gallery')
+    } else {
       document.body.style.overflow = 'hidden'
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
-  }
+  }, [router, zoomed])
 
   useEffect(() => {
-    if (zoomed && !router.asPath.endsWith('#gallery')) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.replace('#gallery')
-    }
-
     if (!zoomed && router.asPath.endsWith('#gallery')) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       router.replace('#')
     }
-  }, [router, zoomed])
+    if (zoomed && !router.asPath.endsWith('#gallery')) {
+      toggle()
+    }
+  }, [router, router.asPath, toggle, zoomed])
 
   const clsxZoom = (key: string) => clsx(classes?.[key], zoomed && classes?.[`${key}Zoomed`])
   const theme = useTheme()
@@ -199,20 +203,18 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
     if (zoomed) {
       if ((e as KeyboardEvent)?.key === 'Escape') {
         toggle()
-        // // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        // router.replace('#')
       }
     }
   }
 
   const [dragStart, setDragStart] = useState<number>(0)
 
-  const onMouseDownScroller = (e: React.MouseEvent) => {
+  const onMouseDownScroller = (e: any) => {
     if (dragStart === e.clientX) return
     setDragStart(e.clientX)
   }
 
-  const onMouseUpScroller = (e: React.MouseEvent) => {
+  const onMouseUpScroller = (e: any) => {
     const currentDragLoc = e.clientX
 
     if (Math.abs(currentDragLoc - dragStart) < 8) {
