@@ -11,6 +11,11 @@ const useStyles = makeStyles(
       marginTop: theme.spacings.md,
       marginBottom: theme.spacings.md,
     },
+    innerContainer: {
+      display: 'grid',
+      alignItems: 'center',
+      justifyItems: 'center',
+    },
     rootMargin: {
       marginTop: responsiveVal(50, 250),
     },
@@ -18,21 +23,18 @@ const useStyles = makeStyles(
       textAlign: 'center',
       marginTop: theme.spacings.sm,
     },
-    innerContainer: {
-      display: 'grid',
-      alignItems: 'center',
-      justifyItems: 'center',
-    },
+
     button: {
       marginTop: theme.spacings.sm,
     },
     altButton: {
       marginTop: 6,
     },
+    icon: {
+      height: responsiveVal(120, 180),
+    },
   }),
-  {
-    name: 'FullPageMessage',
-  },
+  { name: 'FullPageMessage' },
 )
 
 export type FullPageMessageProps = {
@@ -51,7 +53,7 @@ export default function FullPageMessage(props: FullPageMessageProps) {
   return (
     <div className={clsx(classes.root, disableMargin || classes.rootMargin)}>
       <Container maxWidth='md' className={classes.innerContainer}>
-        {icon}
+        <div className={classes.icon}>{icon}</div>
 
         <div className={classes.subject}>
           <Typography variant='h3' gutterBottom>

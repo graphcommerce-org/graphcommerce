@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client'
 import { PaymentStatusEnum } from '@graphcommerce/graphql'
-import { useClearCurrentCartId } from '@graphcommerce/magento-cart'
+import { useClearCurrentCartId, useCurrentCartId } from '@graphcommerce/magento-cart'
 import { useCartLock, usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
@@ -11,6 +11,8 @@ const successStatusses: PaymentStatusEnum[] = ['AUTHORIZED', 'COMPLETED', 'PAID'
 export function useMolliePaymentTokenHandler() {
   const router = useRouter()
   const method = usePaymentMethodContext()
+  const cartId = useCurrentCartId()
+  const clear = useClearCurrentCartId()
 
   const isMollie = method.selectedMethod?.code.startsWith('mollie_methods')
 
@@ -19,14 +21,11 @@ export function useMolliePaymentTokenHandler() {
   const [handlePaymentToken, res] = useMutation(UseMolliePaymentTokenHandlerDocument, {
     errorPolicy: 'all',
   })
-  const clear = useClearCurrentCartId()
   const { lock, locked } = useCartLock()
 
   useEffect(() => {
-    if (locked && !paymentToken && isMollie) {
-      lock(false)
-    }
-  })
+    if (locked && !paymentToken && isMollie) lock(false)
+  }, [isMollie, lock, locked, paymentToken])
 
   useEffect(() => {
     if (!paymentToken || res.called || res.error)
@@ -35,21 +34,33 @@ export function useMolliePaymentTokenHandler() {
       const result = await handlePaymentToken({ variables: { paymentToken } })
 
       const paymentStatus = result.data?.mollieProcessTransaction?.paymentStatus
-      const cartId = result.data?.mollieProcessTransaction?.cart?.id
+      const returnedCartId = result.data?.mollieProcessTransaction?.cart?.id
 
-      if (result.errors || !paymentStatus || !cartId) return
+      if (result.errors || !paymentStatus) return
 
       if (successStatusses.includes(paymentStatus)) {
-        clear()
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        router.push({ pathname: '/checkout/success', query: { cartId } })
-      } else {
+        await router.push({ pathname: '/checkout/success', query: { cartId } })
+        clear()
+      } else if (returnedCartId) {
         lock(false)
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         router.replace('/checkout/payment')
+      } else {
+        throw Error('Mollie backend error occured')
       }
     })()
-  }, [clear, handlePaymentToken, isMollie, lock, paymentToken, res.called, res.error, router])
+  }, [
+    cartId,
+    clear,
+    handlePaymentToken,
+    isMollie,
+    lock,
+    paymentToken,
+    res.called,
+    res.error,
+    router,
+  ])
 
   return res
 }
