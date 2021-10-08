@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.120.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.18...@graphcommerce/magento-graphcms@2.120.0) (2021-10-08)
+
+
+### Features
+
+* **row-service-options:** show email and telephone number ([8291b25](https://github.com/ho-nl/m2-pwa/commit/8291b25b6e408c480eedbc5aa1353a99785e4df5))
+
+
+
+
+
 ## [2.119.18](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.17...@graphcommerce/magento-graphcms@2.119.18) (2021-10-07)
 
 

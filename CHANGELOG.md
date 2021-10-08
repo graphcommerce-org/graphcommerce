@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.128.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.127.4...@graphcommerce/graphcommerce@2.128.0) (2021-10-08)
+
+
+### Bug Fixes
+
+* **product-grid:** product title is not a link ([d5707f9](https://github.com/ho-nl/m2-pwa/commit/d5707f97a53a01c18db967db3420d78b1132c53c))
+* **product-list-item:** add ripple effect ([cdb2b9a](https://github.com/ho-nl/m2-pwa/commit/cdb2b9a63f65e6c1e8c819e6a20aca75c6cc286a))
+
+
+### Features
+
+* **row-service-options:** show email and telephone number ([8291b25](https://github.com/ho-nl/m2-pwa/commit/8291b25b6e408c480eedbc5aa1353a99785e4df5))
+
+
+
+
+
 ## [2.127.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.127.3...@graphcommerce/graphcommerce@2.127.4) (2021-10-07)
 
 

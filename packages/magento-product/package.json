@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-product",
-  "version": "3.0.17",
+  "version": "3.0.18",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [

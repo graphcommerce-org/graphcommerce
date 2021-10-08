@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/mollie-magento-payment",
-  "version": "2.104.11",
+  "version": "2.104.12",
   "sideEffects": false,
   "engines": {
     "node": "14.x"
@@ -19,8 +19,8 @@
     "@graphcommerce/browserslist-config-pwa": "^3.0.1",
     "@graphcommerce/eslint-config-pwa": "^3.0.5",
     "@graphcommerce/magento-cart-shipping-address": "^2.103.17",
-    "@graphcommerce/magento-product": "^3.0.17",
-    "@graphcommerce/magento-product-configurable": "^3.0.17",
+    "@graphcommerce/magento-product": "^3.0.18",
+    "@graphcommerce/magento-product-configurable": "^3.0.18",
     "@graphcommerce/prettier-config-pwa": "^3.0.2",
     "@graphcommerce/typescript-config-pwa": "^3.1.0",
     "@playwright/test": "^1.15.0"
