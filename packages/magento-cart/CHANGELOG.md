@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.1.3...@graphcommerce/magento-cart@3.1.4) (2021-10-08)
+
+
+### Bug Fixes
+
+* conditional hook in CartSummary ([780c5c1](https://github.com/ho-nl/m2-pwa/commit/780c5c140e03ea5f77ea9cf5409498ed853e772c))
+* issue where the cart shippingMethod didn't have a value defined ([a1f27d1](https://github.com/ho-nl/m2-pwa/commit/a1f27d1bff01921ff2cf783394c2bb4a65285d17))
+
+
+
+
+
 ## [3.1.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.1.2...@graphcommerce/magento-cart@3.1.3) (2021-10-07)
 
 

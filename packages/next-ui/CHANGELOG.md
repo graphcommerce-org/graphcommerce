@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.1.6...@graphcommerce/next-ui@3.1.7) (2021-10-08)
+
+
+### Bug Fixes
+
+* SvgImageSimple should pass the layout prop ([a0b5c81](https://github.com/ho-nl/m2-pwa/commit/a0b5c818f93ba24a34c6ce8aa21f8af50bd05dd2))
+
+
+
+
+
 ## [3.1.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.1.5...@graphcommerce/next-ui@3.1.6) (2021-10-07)
 
 

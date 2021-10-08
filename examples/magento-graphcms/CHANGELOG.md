@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.121.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.120.0...@graphcommerce/magento-graphcms@2.121.0) (2021-10-08)
+
+
+### Features
+
+* made empty success page when no cart is present and removed backbuttons ([1e29450](https://github.com/ho-nl/m2-pwa/commit/1e294500f9f1f2cfeab0de8bd8211ee517af5d8c))
+
+
+
+
+
 # [2.120.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.18...@graphcommerce/magento-graphcms@2.120.0) (2021-10-08)
 
 

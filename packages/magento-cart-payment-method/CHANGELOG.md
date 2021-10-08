@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.106.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.106.4...@graphcommerce/magento-cart-payment-method@2.106.5) (2021-10-08)
+
+
+### Bug Fixes
+
+*  make sure we can useCartLock on the success page ([139349a](https://github.com/ho-nl/m2-pwa/commit/139349a73836c0c58c5d8000a801c912dbe23b3b))
+
+
+
+
+
 ## [2.106.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.106.3...@graphcommerce/magento-cart-payment-method@2.106.4) (2021-10-07)
 
 

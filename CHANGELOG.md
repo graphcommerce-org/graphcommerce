@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.129.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.128.0...@graphcommerce/graphcommerce@2.129.0) (2021-10-08)
+
+
+### Bug Fixes
+
+*  make sure we can useCartLock on the success page ([139349a](https://github.com/ho-nl/m2-pwa/commit/139349a73836c0c58c5d8000a801c912dbe23b3b))
+* conditional hook in CartSummary ([780c5c1](https://github.com/ho-nl/m2-pwa/commit/780c5c140e03ea5f77ea9cf5409498ed853e772c))
+* issue where the cart shippingMethod didn't have a value defined ([a1f27d1](https://github.com/ho-nl/m2-pwa/commit/a1f27d1bff01921ff2cf783394c2bb4a65285d17))
+* **mollie:** make sure we're redirected to the success page ([316d2b2](https://github.com/ho-nl/m2-pwa/commit/316d2b2a99189f093e74db98521c27e8e7267dd4))
+* SvgImageSimple should pass the layout prop ([a0b5c81](https://github.com/ho-nl/m2-pwa/commit/a0b5c818f93ba24a34c6ce8aa21f8af50bd05dd2))
+
+
+### Features
+
+* made empty success page when no cart is present and removed backbuttons ([1e29450](https://github.com/ho-nl/m2-pwa/commit/1e294500f9f1f2cfeab0de8bd8211ee517af5d8c))
+
+
+
+
+
 # [2.128.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.127.4...@graphcommerce/graphcommerce@2.128.0) (2021-10-08)
 
 
