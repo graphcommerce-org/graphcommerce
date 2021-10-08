@@ -8,6 +8,7 @@ import {
   jsonLdProductOffer,
   ProductAddToCart,
   ProductSidebarDelivery,
+  ProductShortDescription,
 } from '@graphcommerce/magento-product'
 import {
   DownloadableProductPageDocument,
