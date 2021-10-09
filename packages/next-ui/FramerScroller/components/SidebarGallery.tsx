@@ -78,9 +78,10 @@ const useStyles = makeStyles(
       gridTemplateRows: `100%`,
       cursor: 'zoom-in',
     },
-    scrollerZoomed: {
+    scrollerZoomed: ({ clientHeight }: StyleProps) => ({
+      height: clientHeight,
       cursor: 'inherit',
-    },
+    }),
     sidebarWrapper: {
       boxSizing: 'content-box',
       display: 'grid',
