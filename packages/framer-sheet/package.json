@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/framer-sheet",
-  "version": "2.105.5",
+  "version": "2.105.6",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
@@ -16,7 +16,7 @@
     }
   },
   "dependencies": {
-    "@graphcommerce/framer-utils": "^2.103.5"
+    "@graphcommerce/framer-utils": "^2.103.6"
   },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.1",
