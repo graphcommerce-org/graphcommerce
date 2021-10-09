@@ -1,3 +1,4 @@
+import { usePrevPageRouter } from '@graphcommerce/framer-next-pages/hooks/usePrevPageRouter'
 import {
   CenterSlide,
   MotionImageAspect,
@@ -12,7 +13,7 @@ import { Fab, makeStyles, Theme, useTheme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m, useDomEvent } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
 import SvgImage from '../../SvgImage'
@@ -78,7 +79,7 @@ const useStyles = makeStyles(
       cursor: 'zoom-in',
     },
     scrollerZoomed: {
-      cursor: 'zoom-out',
+      cursor: 'inherit',
     },
     sidebarWrapper: {
       boxSizing: 'content-box',
@@ -162,45 +163,38 @@ export type SidebarGalleryProps = {
   sidebar: React.ReactNode
   images: MotionImageAspectProps[]
   aspectRatio?: [number, number]
+  routeHash?: string
 } & UseStyles<typeof useStyles>
 
 export default function SidebarGallery(props: SidebarGalleryProps) {
-  const { sidebar, images, aspectRatio = [1, 1] } = props
+  const { sidebar, images, aspectRatio = [1, 1], routeHash = 'gallery' } = props
   const router = useRouter()
-  const [zoomed, setZoomed] = useState(false)
+  const prevRoute = usePrevPageRouter()
   const clientHeight = useMotionValueValue(clientSize.y, (y) => y)
   const classes = useStyles({ clientHeight, aspectRatio })
-  const [galleryInHistory, setGalleryInHistory] = useState<boolean>(false)
 
-  const toggle = useCallback(() => {
-    const newZoomed = !zoomed
+  const route = `#${routeHash}`
+  // We're using the URL to manage the state of the gallery.
+  const zoomed = router.asPath.endsWith(route)
 
-    setZoomed(newZoomed)
+  // cleanup if someone enters the page with #gallery
+  useEffect(() => {
+    if (!prevRoute?.pathname && zoomed) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.replace(router.asPath.replace(route, ''))
+    }
+  }, [prevRoute?.pathname, route, router, zoomed])
 
-    if (newZoomed) {
-      if (galleryInHistory) {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        router.replace('#gallery')
-      } else {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        router.push('#gallery')
-      }
-    } else {
+  const toggle = () => {
+    if (!zoomed) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.push(route, undefined, { shallow: true })
       document.body.style.overflow = 'hidden'
       window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      router.back()
     }
-  }, [galleryInHistory, router, zoomed])
-
-  useEffect(() => {
-    if (!zoomed && router.asPath.endsWith('#gallery')) {
-      setGalleryInHistory(true)
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.replace('#')
-    }
-    if (zoomed && !router.asPath.endsWith('#gallery')) {
-      toggle()
-    }
-  }, [router, router.asPath, toggle, zoomed])
+  }
 
   const clsxZoom = (key: string) => clsx(classes?.[key], zoomed && classes?.[`${key}Zoomed`])
   const theme = useTheme()
@@ -211,26 +205,6 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
       if ((e as KeyboardEvent)?.key === 'Escape') {
         toggle()
       }
-    }
-  }
-
-  const [dragStart, setDragStart] = useState<number>(0)
-
-  const onMouseDownScroller = (e: any) => {
-    if (dragStart === e.clientX) return
-    setDragStart(e.clientX)
-  }
-
-  const onMouseUpScroller = (e: any) => {
-    const currentDragLoc = e.clientX
-
-    if (Math.abs(currentDragLoc - dragStart) < 8) {
-      toggle()
-
-      // if (!zoomed && router.asPath.endsWith('#gallery')) {
-      //   // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      //   router.back()
-      // }
     }
   }
 
