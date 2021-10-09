@@ -39,7 +39,7 @@ const useStyles = makeStyles(
     rootZoomed: {
       position: 'relative',
       zIndex: theme.zIndex.modal,
-      marginTop: 0,
+      marginTop: `calc(${theme.page.headerInnerHeight.sm} * -1)`,
       [theme.breakpoints.up('md')]: {
         marginTop: `calc(${theme.page.headerInnerHeight.md} * -1  - ${theme.spacings.sm})`,
       },
