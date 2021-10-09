@@ -13,7 +13,7 @@ import { Fab, makeStyles, Theme, useTheme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m, useDomEvent } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
 import SvgImage from '../../SvgImage'
@@ -206,6 +206,16 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
         toggle()
       }
     }
+  }
+
+  const [dragStart, setDragStart] = useState<number>(0)
+  const onMouseDownScroller: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    if (dragStart === e.clientX) return
+    setDragStart(e.clientX)
+  }
+  const onMouseUpScroller: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    const currentDragLoc = e.clientX
+    if (Math.abs(currentDragLoc - dragStart) < 8) toggle()
   }
 
   useDomEvent(windowRef, 'keyup', handleEscapeKey, { passive: true })
