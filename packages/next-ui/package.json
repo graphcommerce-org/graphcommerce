@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/next-ui",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -11,11 +11,11 @@
   "dependencies": {
     "@apollo/client": "^3.4.16",
     "@graphcommerce/framer-next-pages": "^2.106.7",
-    "@graphcommerce/framer-scroller": "^0.2.8",
+    "@graphcommerce/framer-scroller": "^0.2.9",
     "@graphcommerce/framer-sheet": "^2.105.6",
     "@graphcommerce/framer-utils": "^2.103.6",
     "@graphcommerce/graphql": "^2.103.5",
-    "@graphcommerce/image": "^2.104.7",
+    "@graphcommerce/image": "^2.104.8",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",

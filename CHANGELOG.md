@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.130.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.130.0...@graphcommerce/graphcommerce@2.130.1) (2021-10-11)
+
+
+### Bug Fixes
+
+* **framer-scroller:** dots should have a background ([8f2e1a1](https://github.com/ho-nl/m2-pwa/commit/8f2e1a1ffc9de3369938fe2f9e9f25f592739d8d))
+
+
+
+
+
 # [2.130.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.129.0...@graphcommerce/graphcommerce@2.130.0) (2021-10-09)
 
 

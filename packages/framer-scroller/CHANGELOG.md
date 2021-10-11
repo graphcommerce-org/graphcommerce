@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@0.2.8...@graphcommerce/framer-scroller@0.2.9) (2021-10-11)
+
+
+### Bug Fixes
+
+* **framer-scroller:** dots should have a background ([8f2e1a1](https://github.com/ho-nl/m2-pwa/commit/8f2e1a1ffc9de3369938fe2f9e9f25f592739d8d))
+
+
+
+
+
 ## [0.2.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@0.2.7...@graphcommerce/framer-scroller@0.2.8) (2021-10-09)
 
 
