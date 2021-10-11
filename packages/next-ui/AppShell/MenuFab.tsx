@@ -91,6 +91,11 @@ export default function MenuFab(props: MenuFabProps) {
         onClose={() => setOpenEl(null)}
         classes={{ paper: classes.menu }}
         disableScrollLock
+        transitionDuration={{
+          appear: 175,
+          enter: 175,
+          exit: 175,
+        }}
       >
         {search && (
           <List>
