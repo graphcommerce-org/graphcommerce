@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.2.1...@graphcommerce/next-ui@3.2.2) (2021-10-11)
+
+
+### Bug Fixes
+
+* **menu-fab:** animation duration ([5b9ece2](https://github.com/ho-nl/m2-pwa/commit/5b9ece293fb7e12663386f9f9cbc99bc4e22aaa9))
+
+
+
+
+
 ## [3.2.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.2.0...@graphcommerce/next-ui@3.2.1) (2021-10-11)
 
 

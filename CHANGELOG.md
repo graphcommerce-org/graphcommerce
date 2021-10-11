@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.130.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.130.1...@graphcommerce/graphcommerce@2.130.2) (2021-10-11)
+
+
+### Bug Fixes
+
+* adjust animation speeds ([345e60d](https://github.com/ho-nl/m2-pwa/commit/345e60d93a16b98eda404fe1547a0e1c020eb0d4))
+* **menu-fab:** animation duration ([5b9ece2](https://github.com/ho-nl/m2-pwa/commit/5b9ece293fb7e12663386f9f9cbc99bc4e22aaa9))
+
+
+
+
+
 ## [2.130.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.130.0...@graphcommerce/graphcommerce@2.130.1) (2021-10-11)
 
 

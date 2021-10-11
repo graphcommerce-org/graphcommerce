@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/next-ui",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -12,7 +12,7 @@
     "@apollo/client": "^3.4.16",
     "@graphcommerce/framer-next-pages": "^2.106.7",
     "@graphcommerce/framer-scroller": "^0.2.9",
-    "@graphcommerce/framer-sheet": "^2.105.6",
+    "@graphcommerce/framer-sheet": "^2.105.7",
     "@graphcommerce/framer-utils": "^2.103.6",
     "@graphcommerce/graphql": "^2.103.5",
     "@graphcommerce/image": "^2.104.8",
