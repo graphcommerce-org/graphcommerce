@@ -9,7 +9,7 @@ import {
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
 import { clientSize, useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Fab, makeStyles, Theme, useTheme } from '@material-ui/core'
+import { Fab, makeStyles, Theme, useTheme, alpha } from '@material-ui/core'
 import clsx from 'clsx'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
@@ -23,6 +23,7 @@ import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit }
 type StyleProps = {
   aspectRatio: [number, number]
   clientHeight: number
+  classes?: Record<string, unknown>
 }
 
 const useStyles = makeStyles(
@@ -131,7 +132,7 @@ const useStyles = makeStyles(
       },
     },
     toggleIcon: {
-      boxShadow: theme.shadows[2],
+      boxShadow: theme.shadows[6],
     },
     topRight: {
       display: 'grid',
@@ -156,6 +157,9 @@ const useStyles = makeStyles(
       right: theme.spacings.sm,
       top: `calc(50% - 28px)`,
     },
+    dots: {
+      background: alpha(theme.palette.background.highlight, 0.7),
+    },
   }),
   { name: 'SidebarGallery' },
 )
@@ -172,7 +176,7 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
   const router = useRouter()
   const prevRoute = usePrevPageRouter()
   const clientHeight = useMotionValueValue(clientSize.y, (y) => y)
-  const classes = useStyles({ clientHeight, aspectRatio })
+  const classes = useStyles({ clientHeight, aspectRatio, classes: props.classes })
 
   const route = `#${routeHash}`
   // We're using the URL to manage the state of the gallery.
@@ -275,7 +279,7 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
           </div>
 
           <div className={classes.bottomCenter}>
-            <ScrollerDots layout />
+            <ScrollerDots layout classes={{ dots: classes.dots }} />
           </div>
         </m.div>
 
