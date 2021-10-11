@@ -8,6 +8,7 @@ import {
   jsonLdProductOffer,
   ProductAddToCart,
   ProductSidebarDelivery,
+  ProductShortDescription,
 } from '@graphcommerce/magento-product'
 import {
   DownloadableProductPageDocument,
@@ -90,11 +91,7 @@ function ProductDownloadable(props: Props) {
           {product.name}
         </Typography>
 
-        <Typography
-          variant='body1'
-          component='div'
-          dangerouslySetInnerHTML={{ __html: product?.short_description?.html ?? '' }}
-        />
+        <ProductShortDescription short_description={product?.short_description} />
 
         <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
         <ProductAddToCart
