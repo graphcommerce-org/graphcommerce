@@ -126,6 +126,7 @@ export type MessageSnackbarImplProps = Omit<
   color?: PropTypes.Color
   action?: React.ReactNode
   children?: React.ReactNode
+  onClose?: () => void
 }
 
 export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
@@ -190,7 +191,14 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
               </div>
             )}
             <div className={classes.closeButton}>
-              <Fab aria-label='Close snackbar' size='medium' onClick={() => setShowSnackbar(false)}>
+              <Fab
+                aria-label='Close snackbar'
+                size='medium'
+                onClick={() => {
+                  onClose && onClose()
+                  setShowSnackbar(false)
+                }}
+              >
                 <SvgImage src={iconClose} size='small' alt='close' />
               </Fab>
             </div>

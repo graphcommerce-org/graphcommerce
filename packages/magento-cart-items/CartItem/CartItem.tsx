@@ -2,11 +2,11 @@ import { Image } from '@graphcommerce/image'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart'
 import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
-import { UseStyles, responsiveVal } from '@graphcommerce/next-ui'
+import { UseStyles, responsiveVal, MessageSnackbar } from '@graphcommerce/next-ui'
 import { Badge, makeStyles, Theme, Link } from '@material-ui/core'
 import clsx from 'clsx'
 import PageLink from 'next/link'
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren, useState } from 'react'
 import { CartItemFragment } from '../Api/CartItem.gql'
 import DeliveryLabel from '../DeliveryLabel/DeliveryLabel'
 import RemoveItemFromCartFab from '../RemoveItemFromCart/RemoveItemFromCartFab'
@@ -150,6 +150,7 @@ export default function CartItem(props: CartItemProps) {
   const classes = useStyles()
   const productLink = useProductLink(product)
   const inclTaxes = useDisplayInclTax()
+  const [error, setError] = useState<any>()
 
   return (
     <div className={clsx(classes.root, !withOptions && classes.itemWithoutOptions)}>
@@ -197,8 +198,39 @@ export default function CartItem(props: CartItemProps) {
       </div>
 
       <div className={classes.quantity}>
-        <UpdateItemQuantity uid={uid} quantity={quantity} />
+        <UpdateItemQuantity uid={uid} quantity={quantity} onError={(err) => setError(err)} />
       </div>
+
+      {error && (
+        <MessageSnackbar
+          open={Boolean(error)}
+          variant='pill'
+          color='default'
+          onClose={() => setError(null)}
+          // action={
+          //   <PageLink href='/cart'>
+          //     <Button
+          //       size='medium'
+          //       variant='pill'
+          //       color='secondary'
+          //       endIcon={<SvgImage src={iconChevronRight} shade='inverted' alt='chevron right' />}
+          //     >
+          //       View shopping cart
+          //     </Button>
+          //   </PageLink>
+          // }
+        >
+          <div>
+            {/* <SvgImage
+        src={iconCheckmark}
+        loading='eager'
+        alt='checkmark'
+        // className={classes.messageIcon}
+      /> */}
+            <strong>{error?.message}</strong>&nbsp;
+          </div>
+        </MessageSnackbar>
+      )}
 
       <div className={classes.rowPrice}>
         <Money {...(inclTaxes ? prices?.row_total_including_tax : prices?.row_total)} /> <br />
