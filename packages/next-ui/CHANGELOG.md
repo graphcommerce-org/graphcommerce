@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.2.2...@graphcommerce/next-ui@3.2.3) (2021-10-11)
+
+
+### Bug Fixes
+
+* **desktop-nav-bar:** prev/next button alignment in menu ([c7fabf0](https://github.com/ho-nl/m2-pwa/commit/c7fabf0474100aaf40a7526858fa2b01566b3250))
+* **section-heeader-filter-items:** remove large paddings ([18f4d77](https://github.com/ho-nl/m2-pwa/commit/18f4d77e4eb1b029bf2e5656b753e2f18fde90ab))
+
+
+
+
+
 ## [3.2.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.2.1...@graphcommerce/next-ui@3.2.2) (2021-10-11)
 
 

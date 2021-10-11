@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.121.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.121.3...@graphcommerce/magento-graphcms@2.121.4) (2021-10-11)
+
+
+### Bug Fixes
+
+* **downloadable-product:** import fix ([9efc08c](https://github.com/ho-nl/m2-pwa/commit/9efc08c0c38f71429388bcd42c39865135e898b4))
+* **product-pages:** remove top spacing short descriptions ([7ba7d32](https://github.com/ho-nl/m2-pwa/commit/7ba7d321d8eaf1d323047b87c6c086e9445f5263))
+
+
+
+
+
 # [2.121.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.120.0...@graphcommerce/magento-graphcms@2.121.0) (2021-10-08)
 
 

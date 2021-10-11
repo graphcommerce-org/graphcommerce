@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.130.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.130.2...@graphcommerce/graphcommerce@2.130.3) (2021-10-11)
+
+
+### Bug Fixes
+
+* **desktop-nav-bar:** prev/next button alignment in menu ([c7fabf0](https://github.com/ho-nl/m2-pwa/commit/c7fabf0474100aaf40a7526858fa2b01566b3250))
+* **downloadable-product:** import fix ([9efc08c](https://github.com/ho-nl/m2-pwa/commit/9efc08c0c38f71429388bcd42c39865135e898b4))
+* **product-pages:** remove top spacing short descriptions ([7ba7d32](https://github.com/ho-nl/m2-pwa/commit/7ba7d321d8eaf1d323047b87c6c086e9445f5263))
+* **section-heeader-filter-items:** remove large paddings ([18f4d77](https://github.com/ho-nl/m2-pwa/commit/18f4d77e4eb1b029bf2e5656b753e2f18fde90ab))
+
+
+
+
+
 ## [2.130.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.130.1...@graphcommerce/graphcommerce@2.130.2) (2021-10-11)
 
 
