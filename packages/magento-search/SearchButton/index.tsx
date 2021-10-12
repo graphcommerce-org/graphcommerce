@@ -17,10 +17,13 @@ const useStyles = makeStyles(
   { name: 'SearchButton' },
 )
 
-export type SearchButtonProps = UseStyles<typeof useStyles> & { onClick: () => void }
+export type SearchButtonProps = UseStyles<typeof useStyles> & {
+  onClick: () => void
+  placeholder?: string
+}
 
 export default function SearchButton(props: SearchButtonProps) {
-  const { onClick } = props
+  const { onClick, placeholder = '' } = props
   const classes = useStyles(props)
 
   return (
@@ -33,7 +36,7 @@ export default function SearchButton(props: SearchButtonProps) {
         endAdornment: <SvgImage src={iconSearch} alt='Search' size='small' />,
         classes: { root: classes.inputRoot },
       }}
-      placeholder=''
+      placeholder={placeholder}
       onClick={onClick}
     />
   )
