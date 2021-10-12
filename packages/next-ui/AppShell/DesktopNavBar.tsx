@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
+import { UseStyles } from '../Styles'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 import { MenuProps } from './Menu'
@@ -65,11 +66,11 @@ const useStyles = makeStyles(
   { name: 'DesktopNavBar' },
 )
 
-export type MenuTabsProps = MenuProps
+export type MenuTabsProps = MenuProps & UseStyles<typeof useStyles>
 
 export default function DesktopNavBar(props: MenuTabsProps) {
   const { menu } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
   const router = useRouter()
 
   return (
