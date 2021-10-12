@@ -150,7 +150,6 @@ export default function CartItem(props: CartItemProps) {
   const classes = useStyles()
   const productLink = useProductLink(product)
   const inclTaxes = useDisplayInclTax()
-  const [error, setError] = useState<any>()
 
   return (
     <div className={clsx(classes.root, !withOptions && classes.itemWithoutOptions)}>
@@ -198,39 +197,8 @@ export default function CartItem(props: CartItemProps) {
       </div>
 
       <div className={classes.quantity}>
-        <UpdateItemQuantity uid={uid} quantity={quantity} onError={(err) => setError(err)} />
+        <UpdateItemQuantity uid={uid} quantity={quantity} />
       </div>
-
-      {error && (
-        <MessageSnackbar
-          open={Boolean(error)}
-          variant='pill'
-          color='default'
-          onClose={() => setError(null)}
-          // action={
-          //   <PageLink href='/cart'>
-          //     <Button
-          //       size='medium'
-          //       variant='pill'
-          //       color='secondary'
-          //       endIcon={<SvgImage src={iconChevronRight} shade='inverted' alt='chevron right' />}
-          //     >
-          //       View shopping cart
-          //     </Button>
-          //   </PageLink>
-          // }
-        >
-          <div>
-            {/* <SvgImage
-        src={iconCheckmark}
-        loading='eager'
-        alt='checkmark'
-        // className={classes.messageIcon}
-      /> */}
-            <strong>{error?.message}</strong>&nbsp;
-          </div>
-        </MessageSnackbar>
-      )}
 
       <div className={classes.rowPrice}>
         <Money {...(inclTaxes ? prices?.row_total_including_tax : prices?.row_total)} /> <br />

@@ -9,6 +9,7 @@ import {
   TextInputNumber,
   iconCheckmark,
   iconChevronRight,
+  SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import PageLink from 'next/link'
@@ -20,10 +21,6 @@ const useStyles = makeStyles(
     button: {
       marginTop: theme.spacings.sm,
       width: '100%',
-    },
-    messageIcon: {
-      marginBottom: '-2px',
-      marginRight: 5,
     },
     price: {
       fontWeight: theme.typography.fontWeightBold,
@@ -92,29 +89,22 @@ export default function ProductAddToCart(
       <MessageSnackbar
         open={!formState.isSubmitting && formState.isSubmitSuccessful && !error?.message}
         variant='pill'
-        color='default'
         action={
           <PageLink href='/cart'>
             <Button
               size='medium'
               variant='pill'
               color='secondary'
-              endIcon={<SvgImage src={iconChevronRight} shade='inverted' alt='chevron right' />}
+              endIcon={<SvgImageSimple src={iconChevronRight} inverted />}
             >
               View shopping cart
             </Button>
           </PageLink>
         }
       >
-        <div>
-          <SvgImage
-            src={iconCheckmark}
-            loading='eager'
-            alt='checkmark'
-            className={classes.messageIcon}
-          />
+        <>
           <strong>{name}</strong>&nbsp;has been added to your shopping cart!
-        </div>
+        </>
       </MessageSnackbar>
     </form>
   )
