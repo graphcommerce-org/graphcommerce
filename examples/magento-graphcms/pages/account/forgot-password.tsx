@@ -12,7 +12,7 @@ type GetPageStaticProps = GetStaticProps<SheetShellProps>
 function AccountForgotPasswordPage() {
   return (
     <>
-      <SheetShellHeader backFallbackHref='/' backFallbackTitle='Home'>
+      <SheetShellHeader>
         <Title size='small' component='span'>
           Forgot your password?
         </Title>
@@ -25,10 +25,7 @@ function AccountForgotPasswordPage() {
         />
         <NoSsr>
           <Box pt={4} textAlign='center'>
-            {/* <Typography variant='h3'>Forgot your password?</Typography> */}
-
             <AppShellTitle>Forgot your password?</AppShellTitle>
-
             <p>
               No worries! Enter your email address and we will send an email with instructions to
               reset your password.

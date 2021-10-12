@@ -21,7 +21,7 @@ function AccountSignInPage() {
         metaDescription='Sign in to your account'
       />
       <NoSsr>
-        <SheetShellHeader backFallbackHref='/' backFallbackTitle='Home'>
+        <SheetShellHeader>
           <Title size='small' component='span'>
             Sign in
           </Title>
