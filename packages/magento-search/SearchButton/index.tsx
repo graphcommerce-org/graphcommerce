@@ -20,10 +20,11 @@ const useStyles = makeStyles(
 export type SearchButtonProps = UseStyles<typeof useStyles> & {
   onClick: () => void
   placeholder?: string
+  icon?: React.ReactNode
 }
 
 export default function SearchButton(props: SearchButtonProps) {
-  const { onClick, placeholder = '' } = props
+  const { onClick, placeholder = '', icon } = props
   const classes = useStyles(props)
 
   return (
@@ -33,7 +34,7 @@ export default function SearchButton(props: SearchButtonProps) {
       classes={{ root: classes.root }}
       InputProps={{
         readOnly: true,
-        endAdornment: <SvgImage src={iconSearch} alt='Search' size='small' />,
+        endAdornment: icon ?? <SvgImage src={iconSearch} alt='Search' size='small' />,
         classes: { root: classes.inputRoot },
       }}
       placeholder={placeholder}
