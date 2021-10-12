@@ -1,5 +1,6 @@
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { Link, makeStyles, Theme } from '@material-ui/core'
+import { Variant as ThemeVariant } from '@material-ui/core/styles/createTypography'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -66,10 +67,15 @@ const useStyles = makeStyles(
   { name: 'DesktopNavBar' },
 )
 
-export type MenuTabsProps = MenuProps & UseStyles<typeof useStyles>
+type Variant = ThemeVariant | 'srOnly'
+
+export type MenuTabsProps = MenuProps &
+  UseStyles<typeof useStyles> & {
+    linkVariant?: Variant | 'inherit'
+  }
 
 export default function DesktopNavBar(props: MenuTabsProps) {
-  const { menu } = props
+  const { menu, linkVariant = 'h6' } = props
   const classes = useStyles(props)
   const router = useRouter()
 
@@ -79,7 +85,7 @@ export default function DesktopNavBar(props: MenuTabsProps) {
         <Scroller className={classes.scroller} hideScrollbar>
           {menu.map(({ href, children, ...linkProps }) => (
             <PageLink key={href.toString()} href={href} {...linkProps} passHref>
-              <Link className={classes.link} variant='h6'>
+              <Link className={classes.link} variant={linkVariant}>
                 {children}
                 <div
                   className={clsx(
