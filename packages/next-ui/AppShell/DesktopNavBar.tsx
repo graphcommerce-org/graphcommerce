@@ -94,7 +94,11 @@ export default function DesktopNavBar(props: MenuTabsProps) {
         <Scroller className={classes.scroller} hideScrollbar>
           {menu.map(({ href, children, ...linkProps }) => (
             <PageLink key={href.toString()} href={href} {...linkProps} passHref>
-              <Link {...LinkProps} className={clsx(classes.link, LinkProps?.className)}>
+              <Link
+                variant='h6'
+                {...LinkProps}
+                className={clsx(classes.link, LinkProps?.className)}
+              >
                 {children}
                 <div
                   className={clsx(
