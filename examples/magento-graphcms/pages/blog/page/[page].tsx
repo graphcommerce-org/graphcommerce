@@ -33,7 +33,7 @@ function BlogPage(props: Props) {
     <>
       <PageMeta title={title} metaDescription={title} canonical={page.url} />
 
-      <FullPageShellHeader backFallbackHref={'/'} backFallbackTitle={'Home'}>
+      <FullPageShellHeader backFallbackHref='/blog' backFallbackTitle='Blog'>
         <Title size='small'>{title}</Title>
       </FullPageShellHeader>
 
@@ -108,8 +108,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       ...(await blogPaths).data,
       urlEntity: { relative_url: `blog` },
       apolloState: await conf.then(() => client.cache.extract()),
-      backFallbackHref: '/blog',
-      backFallbackTitle: 'Blog',
     },
     revalidate: 60 * 20,
   }

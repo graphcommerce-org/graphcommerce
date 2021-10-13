@@ -194,8 +194,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     props: {
       ...(await page).data,
       apolloState: await conf.then(() => client.cache.extract()),
-      backFallbackHref: '/checkout',
-      backFallbackTitle: 'Shipping',
     },
   }
 }

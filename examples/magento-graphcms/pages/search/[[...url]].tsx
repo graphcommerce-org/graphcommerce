@@ -86,8 +86,6 @@ function SearchResultPage(props: Props) {
       />
 
       <FullPageShellHeader
-        backFallbackHref='/'
-        backFallbackTitle='Home'
         additional={
           <Container maxWidth={false}>
             <SearchForm totalResults={totalSearchResults} search={search} />
