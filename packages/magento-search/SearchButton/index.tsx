@@ -1,5 +1,5 @@
-import { UseStyles, SvgImage, iconSearch } from '@graphcommerce/next-ui'
-import { makeStyles, TextField, Theme } from '@material-ui/core'
+import { UseStyles, SvgImage, iconSearch, SvgImageSimple } from '@graphcommerce/next-ui'
+import { makeStyles, TextField, TextFieldProps, Theme } from '@material-ui/core'
 import React from 'react'
 
 const useStyles = makeStyles(
@@ -17,14 +17,10 @@ const useStyles = makeStyles(
   { name: 'SearchButton' },
 )
 
-export type SearchButtonProps = UseStyles<typeof useStyles> & {
-  onClick: () => void
-  placeholder?: string
-  icon?: React.ReactNode
-}
+export type SearchButtonProps = UseStyles<typeof useStyles> & TextFieldProps
 
 export default function SearchButton(props: SearchButtonProps) {
-  const { onClick, placeholder = '', icon } = props
+  const { InputProps, ...textFieldProps } = props
   const classes = useStyles(props)
 
   return (
@@ -34,11 +30,11 @@ export default function SearchButton(props: SearchButtonProps) {
       classes={{ root: classes.root }}
       InputProps={{
         readOnly: true,
-        endAdornment: icon ?? <SvgImage src={iconSearch} alt='Search' size='small' />,
+        endAdornment: <SvgImageSimple src={iconSearch} alt='Search' size='small' />,
         classes: { root: classes.inputRoot },
+        ...InputProps,
       }}
-      placeholder={placeholder}
-      onClick={onClick}
+      {...textFieldProps}
     />
   )
 }
