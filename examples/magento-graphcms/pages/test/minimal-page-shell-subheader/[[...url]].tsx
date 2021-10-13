@@ -16,6 +16,7 @@ import { SearchDocument, SearchForm, SearchQuery } from '@graphcommerce/magento-
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { AppShellSticky, AppShellTitle, Button } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
+import { Trans } from '@lingui/macro'
 import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
@@ -51,7 +52,7 @@ function MinimalAppShellSubheader(props: Props) {
           primary={
             <PageLink href='/test/minimal-page-shell' passHref>
               <Button color='secondary' variant='pill-link'>
-                Next
+                <Trans>Next</Trans>
               </Button>
             </PageLink>
           }

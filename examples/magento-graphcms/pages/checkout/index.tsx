@@ -19,6 +19,7 @@ import {
   Title,
 } from '@graphcommerce/next-ui'
 import { ComposedForm, ComposedSubmit } from '@graphcommerce/react-hook-form'
+import { Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -64,7 +65,7 @@ function ShippingPage() {
                   />
                 }
               >
-                Next
+                <Trans>Next</Trans>
               </Button>
             )}
           />
@@ -113,7 +114,7 @@ function ShippingPage() {
                         }
                         onClick={submit}
                       >
-                        Next
+                        <Trans>Next</Trans>
                         <SvgImage
                           src={iconChevronRight}
                           alt='chevron right'
