@@ -18,6 +18,6 @@
     "@graphcommerce/eslint-config-pwa": "^3.0.6",
     "@graphcommerce/prettier-config-pwa": "^3.0.3",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
-    "@playwright/test": "^1.15.0"
+    "@playwright/test": "^1.15.2"
   }
 }

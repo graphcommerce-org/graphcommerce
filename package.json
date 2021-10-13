@@ -60,26 +60,29 @@
     "@graphcommerce/browserslist-config-pwa": "^3.0.2",
     "@graphcommerce/eslint-config-pwa": "^3.0.6",
     "@graphcommerce/prettier-config-pwa": "^3.0.3",
-    "@playwright/test": "^1.15.0",
+    "@playwright/test": "^1.15.2",
     "lerna": "^4.0.0",
     "patch-package": "^6.4.3",
     "pm2": "^5.1.2",
     "postinstall-postinstall": "^2.1.0",
-    "type-fest": "^2.3.4",
+    "type-fest": "^2.5.0",
     "vercel": "^23.1.2"
   },
   "devDependencies": {
     "@graphql-typed-document-node/patch-cli": "^3.0.8",
-    "@types/node": "^16.10.2",
-    "@types/react": "^17.0.26",
+    "@types/node": "^16.10.5",
+    "@types/react": "^17.0.29",
     "@types/sharp": "^0.29.2",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.0",
     "next": "^11.1.2",
     "prettier": "^2.4.1",
     "pretty-quick": "^3.1.1",
     "react-test-renderer": "^17.0.2",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.4"
+  },
+  "resolutions": {
+    "graphql": "15.6.1"
   }
 }
