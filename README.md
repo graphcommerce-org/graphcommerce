@@ -31,7 +31,7 @@ Hosting:
 6. `cp examples/magento-graphcms/.env.example examples/magento-graphcms/.env`
 7. Fill in `GRAPHCMS_BEARER` in `examples/magento-graphcms-api/.env`, in 1Pass
    under `magento-graphcms-api`
-8. `yarn workspace @graphcommerce/magento-graphcms-api build:mesh && yarn dev:api && yarn workspace @graphcommerce/magento-graphcms codegen; yarn stop`
+8. `yarn dev:api && yarn workspace @graphcommerce/magento-graphcms codegen; yarn stop`
 
 ## Customize endpoint (optional):
 

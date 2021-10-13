@@ -30,14 +30,14 @@
     "@graphcommerce/eslint-config-pwa": "^3.0.6",
     "@graphcommerce/prettier-config-pwa": "^3.0.3",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
-    "@playwright/test": "^1.15.0"
+    "@playwright/test": "^1.15.2"
   },
   "dependencies": {
     "@graphql-codegen/add": "^3.1.0",
     "@graphql-codegen/plugin-helpers": "^2.1.1",
     "@graphql-codegen/visitor-plugin-common": "^2.2.1",
     "@types/parse-filepath": "^1.0.0",
-    "graphql": "^15.6.0",
+    "graphql": "^15.6.1",
     "parse-filepath": "^1.0.2"
   }
 }

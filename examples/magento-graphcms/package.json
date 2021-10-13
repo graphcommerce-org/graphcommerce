@@ -75,18 +75,18 @@
     "@graphql-codegen/typescript": "^2.2.2",
     "@graphql-codegen/typescript-apollo-client-helpers": "^2.1.4",
     "@graphql-codegen/typescript-document-nodes": "2.1.4",
-    "@graphql-codegen/typescript-operations": "2.1.5",
+    "@graphql-codegen/typescript-operations": "2.1.6",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@graphql-typed-document-node/patch-cli": "^3.0.8",
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@next/bundle-analyzer": "^11.1.2",
-    "@playwright/test": "^1.15.0",
+    "@playwright/test": "^1.15.2",
     "apollo3-cache-persist": "^0.13.0",
     "clsx": "^1.1.1",
     "dotenv": "^10.0.0",
     "framer-motion": "^4.1.17",
-    "graphql": "^15.6.0",
+    "graphql": "^15.6.1",
     "graphql-tag": "^2.12.5",
     "next": "^11.1.2",
     "next-pwa": "^5.3.1",
@@ -100,8 +100,8 @@
     "vercel": "^23.1.2"
   },
   "devDependencies": {
-    "type-fest": "^2.3.4",
-    "typescript": "^4.4.3"
+    "type-fest": "^2.5.0",
+    "typescript": "^4.4.4"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
