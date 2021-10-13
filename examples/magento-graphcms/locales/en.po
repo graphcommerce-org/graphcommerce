@@ -13,18 +13,394 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: pages/cart.tsx:47
-#~ msgid "Cart"
-#~ msgstr ""
+#: pages/404.tsx:27
+#: pages/account/addresses/add.tsx:45
+#: pages/account/addresses/index.tsx:41
+#: pages/account/authentication/index.tsx:43
+#: pages/account/contact/index.tsx:43
+#: pages/account/index.tsx:70
+#: pages/account/index.tsx:77
+#: pages/account/index.tsx:82
+#: pages/account/name/index.tsx:41
+#: pages/account/orders/index.tsx:51
+#: pages/account/reviews/add.tsx:81
+#: pages/account/reviews/index.tsx:42
+msgid "Account"
+msgstr ""
+
+#: pages/account/index.tsx:71
+msgid "Account Dashboard"
+msgstr ""
+
+#: pages/account/addresses/add.tsx:53
+#: pages/account/addresses/add.tsx:60
+msgid "Add new address"
+msgstr ""
+
+#: pages/account/reviews/add.tsx:76
+msgid "Add review"
+msgstr ""
+
+#: pages/account/addresses/edit.tsx:70
+msgid "Address not found"
+msgstr ""
+
+#: pages/account/addresses/add.tsx:47
+#: pages/account/addresses/add.tsx:58
+#: pages/account/addresses/edit.tsx:51
+#: pages/account/addresses/edit.tsx:53
+#: pages/account/addresses/edit.tsx:64
+#: pages/account/addresses/index.tsx:43
+#: pages/account/addresses/index.tsx:48
+#: pages/account/addresses/index.tsx:55
+#: pages/account/index.tsx:138
+msgid "Addresses"
+msgstr ""
+
+#: pages/search/[[...url]].tsx:78
+msgid "All products"
+msgstr ""
+
+#: pages/product/configurable/[url].tsx:104
+msgid "As low as"
+msgstr ""
+
+#: pages/account/authentication/index.tsx:45
+#: pages/account/authentication/index.tsx:50
+#: pages/account/authentication/index.tsx:56
+#: pages/account/index.tsx:103
+msgid "Authentication"
+msgstr ""
+
+#: pages/checkout/success.tsx:87
+msgid "Back to home"
+msgstr ""
+
+#: pages/account/index.tsx:152
+msgid "Be the first to know about everything new!"
+msgstr ""
+
+#: pages/checkout/edit/billing-address.tsx:29
+#: pages/checkout/edit/billing-address.tsx:35
+msgid "Billing address"
+msgstr ""
+
+#: pages/blog/page/[page].tsx:37
+#: pages/blog/tagged/[url].tsx:38
+msgid "Blog"
+msgstr ""
+
+#: pages/checkout/index.tsx:79
+msgid "Cart"
+msgstr ""
 
 #: pages/cart.tsx:48
 msgid "Cart ({0})"
 msgstr ""
 
 #: pages/cart.tsx:49
+#: pages/checkout/index.tsx:46
 msgid "Cart Items"
 msgstr ""
 
+#: pages/account/authentication/index.tsx:51
+msgid "Change password"
+msgstr ""
+
+#: pages/checkout/index.tsx:46
+msgid "Checkout"
+msgstr ""
+
+#: pages/checkout/success.tsx:36
+msgid "Checkout summary"
+msgstr ""
+
+#: pages/account/contact/index.tsx:45
+#: pages/account/contact/index.tsx:51
+#: pages/account/contact/index.tsx:57
+#: pages/account/index.tsx:97
+msgid "Contact"
+msgstr ""
+
+#: pages/account/contact/index.tsx:52
+msgid "Contact information"
+msgstr ""
+
+#: pages/checkout/success.tsx:64
+#: pages/customer/account/createPassword/index.tsx:80
+msgid "Continue shopping"
+msgstr ""
+
+#: pages/switch-stores.tsx:41
+#: pages/switch-stores.tsx:46
+msgid "Country"
+msgstr ""
+
+#: pages/customer/account/createPassword/index.tsx:29
+#: pages/customer/account/createPassword/index.tsx:30
+msgid "Create new password"
+msgstr ""
+
+#: pages/service/[[...url]].tsx:45
+msgid "Customer Service"
+msgstr ""
+
+#: pages/checkout/success.tsx:69
+msgid "Discover our collection and add items to your cart!"
+msgstr ""
+
+#: pages/account/orders/index.tsx:76
+msgid "Discover our collection and place your first order!"
+msgstr ""
+
+#: pages/account/reviews/index.tsx:59
+msgid "Discover our collection and write your first review!"
+msgstr ""
+
+#: pages/account/addresses/edit.tsx:58
+#: pages/account/addresses/edit.tsx:67
+msgid "Edit address"
+msgstr ""
+
+#: pages/checkout/edit/billing-address.tsx:25
+msgid "Edit billing address"
+msgstr ""
+
+#: pages/customer/account/createPassword/index.tsx:48
+msgid "Fill in your new password, confirm it and click on the save button."
+msgstr ""
+
+#: pages/account/forgot-password.tsx:18
+#: pages/account/forgot-password.tsx:30
+msgid "Forgot your password?"
+msgstr ""
+
+#: pages/account/index.tsx:91
+#: pages/account/name/index.tsx:43
+#: pages/account/name/index.tsx:49
+#: pages/account/name/index.tsx:56
+msgid "Name"
+msgstr ""
+
+#: pages/account/index.tsx:151
+msgid "Newsletter"
+msgstr ""
+
 #: pages/cart.tsx:70
+#: pages/checkout/index.tsx:68
+#: pages/checkout/index.tsx:121
+#: pages/test/minimal-page-shell-subheader/[[...url]].tsx:55
 msgid "Next"
-msgstr "Next"
+msgstr ""
+
+#: pages/account/forgot-password.tsx:33
+msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
+msgstr ""
+
+#: pages/404.tsx:46
+msgid "Or follow these links to get you back on track!"
+msgstr ""
+
+#: pages/account/orders/view.tsx:55
+#: pages/account/orders/view.tsx:65
+msgid "Order #{orderId}"
+msgstr ""
+
+#: pages/account/orders/view.tsx:72
+msgid "Order detail page for order #{orderId}"
+msgstr ""
+
+#: pages/account/orders/view.tsx:61
+msgid "Order not found"
+msgstr ""
+
+#: pages/account/orders/view.tsx:71
+msgid "Order view #{orderId}"
+msgstr ""
+
+#: pages/checkout/success.tsx:37
+msgid "Ordered items"
+msgstr ""
+
+#: pages/account/index.tsx:109
+#: pages/account/orders/index.tsx:53
+#: pages/account/orders/index.tsx:58
+#: pages/account/orders/view.tsx:53
+#: pages/account/reviews/index.tsx:44
+msgid "Orders"
+msgstr ""
+
+#: pages/account/authentication/index.tsx:58
+#: pages/account/index.tsx:104
+msgid "Password"
+msgstr ""
+
+#: pages/checkout/payment.tsx:81
+msgid "Pay"
+msgstr ""
+
+#: pages/checkout/payment.tsx:59
+#: pages/checkout/payment.tsx:93
+#: pages/checkout/payment.tsx:109
+msgid "Payment"
+msgstr ""
+
+#: pages/checkout/payment.tsx:161
+msgid "Place order"
+msgstr ""
+
+#: pages/account/reviews/add.tsx:65
+msgid "Product could not be found"
+msgstr ""
+
+#: pages/search/[[...url]].tsx:78
+#: pages/search/[[...url]].tsx:84
+msgid "Results for '{search}'"
+msgstr ""
+
+#: pages/account/index.tsx:145
+#: pages/account/reviews/index.tsx:49
+#: pages/account/reviews/index.tsx:66
+msgid "Reviews"
+msgstr ""
+
+#: pages/search/[[...url]].tsx:84
+msgid "Search"
+msgstr ""
+
+#: pages/customer/account/createPassword/index.tsx:35
+#: pages/customer/account/createPassword/index.tsx:43
+msgid "Set your new password"
+msgstr ""
+
+#: pages/checkout/index.tsx:82
+#: pages/checkout/index.tsx:92
+msgid "Shipping"
+msgstr ""
+
+#: pages/checkout/index.tsx:100
+msgid "Shipping method"
+msgstr ""
+
+#: pages/account/forgot-password.tsx:16
+#: pages/customer/account/createPassword/index.tsx:33
+msgid "Sign In"
+msgstr ""
+
+#: pages/account/signin.tsx:20
+#: pages/account/signin.tsx:27
+msgid "Sign in"
+msgstr ""
+
+#: pages/account/signin.tsx:22
+msgid "Sign in to your account"
+msgstr ""
+
+#: pages/account/index.tsx:162
+msgid "Sign out"
+msgstr ""
+
+#: pages/404.tsx:22
+msgid "Store home"
+msgstr ""
+
+#: pages/switch-stores.tsx:34
+#: pages/switch-stores.tsx:35
+msgid "Switch stores"
+msgstr ""
+
+#: pages/checkout/success.tsx:51
+#: pages/checkout/success.tsx:75
+msgid "Thank you for your order!"
+msgstr ""
+
+#: pages/account/reviews/add.tsx:68
+msgid "Try a different product"
+msgstr ""
+
+#: pages/account/name/index.tsx:50
+msgid "Update your name"
+msgstr ""
+
+#: pages/account/addresses/index.tsx:49
+msgid "View all your addresses"
+msgstr ""
+
+#: pages/account/reviews/index.tsx:50
+msgid "View all your reviews"
+msgstr ""
+
+#: pages/404.tsx:41
+msgid "We couldn't find the page you were looking for"
+msgstr ""
+
+#: pages/checkout/payment.tsx:103
+msgid "We're processing your payment, this will take a few seconds."
+msgstr ""
+
+#: pages/product/configurable/[url].tsx:124
+msgid "Which size is right?"
+msgstr ""
+
+#: pages/404.tsx:38
+msgid "Whoops our bad..."
+msgstr ""
+
+#: pages/account/index.tsx:146
+msgid "Written {0} reviews"
+msgstr ""
+
+#: pages/account/reviews/add.tsx:77
+#: pages/account/reviews/add.tsx:83
+#: pages/account/reviews/add.tsx:88
+msgid "You are reviewing {0}"
+msgstr ""
+
+#: pages/customer/account/createPassword/index.tsx:64
+msgid "You can now<0>sign in again</0>."
+msgstr ""
+
+#: pages/account/orders/index.tsx:73
+msgid "You have no orders yet"
+msgstr ""
+
+#: pages/checkout/success.tsx:59
+msgid "You have not placed an order"
+msgstr ""
+
+#: pages/customer/account/createPassword/index.tsx:35
+#: pages/customer/account/createPassword/index.tsx:59
+msgid "You have now successfully reset your password"
+msgstr ""
+
+#: pages/account/reviews/index.tsx:56
+msgid "You haven't placed any reviews yet"
+msgstr ""
+
+#: pages/account/index.tsx:125
+msgid "canceled"
+msgstr ""
+
+#: pages/account/index.tsx:122
+msgid "invoiced"
+msgstr ""
+
+#: pages/account/index.tsx:127
+msgid "partially processed"
+msgstr ""
+
+#: pages/account/index.tsx:121
+msgid "processed"
+msgstr ""
+
+#: pages/account/index.tsx:124
+msgid "refunded"
+msgstr ""
+
+#: pages/account/index.tsx:126
+msgid "returned"
+msgstr ""
+
+#: pages/account/index.tsx:123
+msgid "shipped"
+msgstr ""

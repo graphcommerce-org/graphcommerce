@@ -66,7 +66,7 @@ function OrderSuccessPage() {
                 </Link>
               }
             >
-              <Trans>Discover our collection and add items to your basket!</Trans>
+              <Trans>Discover our collection and add items to your cart!</Trans>
             </FullPageMessage>
           )}
           {hasCartId && (
