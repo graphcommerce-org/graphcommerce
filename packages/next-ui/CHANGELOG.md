@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.3.2...@graphcommerce/next-ui@3.3.3) (2021-10-13)
+
+
+### Bug Fixes
+
+* regression in header ([4738fb7](https://github.com/ho-nl/m2-pwa/commit/4738fb7e13fb3be187f58b474219497783525d72))
+
+
+
+
+
 # [3.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.2.3...@graphcommerce/next-ui@3.3.0) (2021-10-13)
 
 

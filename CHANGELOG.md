@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.131.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.131.2...@graphcommerce/graphcommerce@2.131.3) (2021-10-13)
+
+
+### Bug Fixes
+
+* regression in header ([4738fb7](https://github.com/ho-nl/m2-pwa/commit/4738fb7e13fb3be187f58b474219497783525d72))
+
+
+
+
+
 ## [2.131.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.131.1...@graphcommerce/graphcommerce@2.131.2) (2021-10-13)
 
 
