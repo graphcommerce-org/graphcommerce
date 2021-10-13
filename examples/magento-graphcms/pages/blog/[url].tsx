@@ -30,7 +30,7 @@ function BlogPage(props: Props) {
 
   return (
     <>
-      <FullPageShellHeader backFallbackHref={'/'} backFallbackTitle={'Home'}>
+      <FullPageShellHeader>
         <Title size='small'>{title}</Title>
       </FullPageShellHeader>
       <Row>

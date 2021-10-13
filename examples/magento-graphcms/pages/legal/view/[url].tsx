@@ -80,8 +80,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
 
   return {
     props: {
-      backFallbackHref: '/checkout',
-      backFallbackTitle: 'Checkout',
       variant: 'left',
       size: responsiveVal(320, 800),
       apolloState: await conf.then(() => client.cache.extract()),

@@ -47,7 +47,7 @@ function EditAddressPage(props: Props) {
 
   return (
     <>
-      <SheetShellHeader backFallbackTitle='Account' backFallbackHref='/account'>
+      <SheetShellHeader backFallbackTitle='Addresses' backFallbackHref='/account/addresses'>
         <Title size='small' component='span' icon={iconAddresses}>
           Addresses
         </Title>
@@ -107,8 +107,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variant: 'bottom',
       size: 'max',
-      backFallbackHref: '/account/addresses',
-      backFallbackTitle: 'Addresses',
     },
   }
 }

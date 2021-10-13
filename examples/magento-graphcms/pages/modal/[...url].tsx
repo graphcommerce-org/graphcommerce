@@ -32,7 +32,7 @@ function ModalPage(props: Props) {
 
   return (
     <>
-      <SheetShellHeader backFallbackHref='/' backFallbackTitle='Home'>
+      <SheetShellHeader>
         <Title size='small' component='span'>
           {page.title}
         </Title>

@@ -78,7 +78,7 @@ function AccountReviewsAddPage() {
         metaRobots={['noindex']}
       />
 
-      <SheetShellHeader>
+      <SheetShellHeader backFallbackHref='/account' backFallbackTitle='Account'>
         <Title size='small'>You are reviewing {product?.name}</Title>
       </SheetShellHeader>
 
@@ -111,8 +111,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variant: 'bottom',
       size: 'max',
-      backFallbackHref: '/account',
-      backFallbackTitle: 'Account',
     },
   }
 }
