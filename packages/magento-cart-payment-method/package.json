@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-cart-payment-method",
-  "version": "2.106.9",
+  "version": "2.106.10",
   "sideEffects": false,
   "engines": {
     "node": "14.x"
@@ -27,9 +27,9 @@
     "@graphcommerce/framer-scroller": "^0.2.9",
     "@graphcommerce/graphql": "^2.103.5",
     "@graphcommerce/image": "^2.104.8",
-    "@graphcommerce/magento-cart": "^3.1.8",
-    "@graphcommerce/magento-store": "^3.0.19",
-    "@graphcommerce/next-ui": "^3.2.3",
+    "@graphcommerce/magento-cart": "^3.1.9",
+    "@graphcommerce/magento-store": "^3.0.20",
+    "@graphcommerce/next-ui": "^3.3.0",
     "@graphcommerce/react-hook-form": "^2.102.6",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.12.3",

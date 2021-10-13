@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.2.3...@graphcommerce/next-ui@3.3.0) (2021-10-13)
+
+
+### Features
+
+* allow styling DesktopNavBar ([12f99a6](https://github.com/ho-nl/m2-pwa/commit/12f99a603d9e9f89e28ec2452823b58abee59c4c))
+* implement extensibility for DesktopNavBar, SearchButton ([5710de8](https://github.com/ho-nl/m2-pwa/commit/5710de8936f59c7d0fcc648978183f0e7fdd26b7))
+* make DesktopNavBar Link variant customizable ([d47172f](https://github.com/ho-nl/m2-pwa/commit/d47172f3ebe0cc0b769e0d17c171ae4bb2045bbb))
+
+
+
+
+
 ## [3.2.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.2.2...@graphcommerce/next-ui@3.2.3) (2021-10-11)
 
 

@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.131.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.130.4...@graphcommerce/graphcommerce@2.131.0) (2021-10-13)
+
+
+### Features
+
+* allow adding placeholder to SearchButton ([95f601a](https://github.com/ho-nl/m2-pwa/commit/95f601ac526991130ba319142452950793661f7b))
+* allow changing SearchButton icon ([9725ab1](https://github.com/ho-nl/m2-pwa/commit/9725ab14920f585c83457f11908d7e5e408cadb8))
+* allow styling DesktopNavBar ([12f99a6](https://github.com/ho-nl/m2-pwa/commit/12f99a603d9e9f89e28ec2452823b58abee59c4c))
+* implement extensibility for DesktopNavBar, SearchButton ([5710de8](https://github.com/ho-nl/m2-pwa/commit/5710de8936f59c7d0fcc648978183f0e7fdd26b7))
+* make DesktopNavBar Link variant customizable ([d47172f](https://github.com/ho-nl/m2-pwa/commit/d47172f3ebe0cc0b769e0d17c171ae4bb2045bbb))
+
+
+
+
+
 ## [2.130.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.130.3...@graphcommerce/graphcommerce@2.130.4) (2021-10-12)
 
 
