@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.131.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.131.3...@graphcommerce/graphcommerce@2.131.4) (2021-10-13)
+
+
+### Bug Fixes
+
+* removed useless backFallbackHref declarations on pages ([5906be2](https://github.com/ho-nl/m2-pwa/commit/5906be224dcd1f7c25ec9b6f3c654944fb42b147))
+
+
+
+
+
 ## [2.131.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.131.2...@graphcommerce/graphcommerce@2.131.3) (2021-10-13)
 
 

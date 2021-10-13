@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.121.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.121.9...@graphcommerce/magento-graphcms@2.121.10) (2021-10-13)
+
+
+### Bug Fixes
+
+* removed useless backFallbackHref declarations on pages ([5906be2](https://github.com/ho-nl/m2-pwa/commit/5906be224dcd1f7c25ec9b6f3c654944fb42b147))
+
+
+
+
+
 ## [2.121.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.121.4...@graphcommerce/magento-graphcms@2.121.5) (2021-10-12)
 
 
