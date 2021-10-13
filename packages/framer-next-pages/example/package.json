@@ -1,17 +1,17 @@
 {
   "name": "@graphcommerce/framer-next-pages-example",
   "private": true,
-  "version": "2.103.21",
+  "version": "2.103.22",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "@graphcommerce/framer-next-pages": "^2.106.7",
-    "@graphcommerce/framer-sheet": "^2.105.7",
-    "@graphcommerce/next-config": "^2.104.4",
-    "@graphcommerce/next-ui": "^3.3.0",
+    "@graphcommerce/framer-next-pages": "^2.106.8",
+    "@graphcommerce/framer-sheet": "^2.105.8",
+    "@graphcommerce/next-config": "^2.104.5",
+    "@graphcommerce/next-ui": "^3.3.1",
     "framer-motion": "^4.1.17",
     "next": "^11.1.2",
     "react": "^17.0.2",
