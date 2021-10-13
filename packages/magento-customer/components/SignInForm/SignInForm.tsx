@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { FormRow, Button, FormActions } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { t, Trans } from '@lingui/macro'
 import { FormControl, Link, makeStyles, TextField, Theme } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import PageLink from 'next/link'
@@ -54,7 +55,7 @@ export default function SignInForm(props: SignInFormProps) {
           variant='outlined'
           type='password'
           error={!!formState.errors.password || !!authError}
-          label='Password'
+          label={t`Password`}
           autoFocus
           autoComplete='current-password'
           id='current-password'

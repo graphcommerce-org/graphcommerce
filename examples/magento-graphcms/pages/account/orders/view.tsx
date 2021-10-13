@@ -16,6 +16,7 @@ import {
   Title,
   AppShellTitle,
 } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
@@ -49,24 +50,26 @@ function OrderDetailPage(props: Props) {
 
   return (
     <>
-      <SheetShellHeader backFallbackTitle='Orders' backFallbackHref='/account/orders'>
+      <SheetShellHeader backFallbackTitle={t`Orders`} backFallbackHref='/account/orders'>
         <Title size='small' component='span' icon={iconBox}>
-          Order #{orderId}
+          <Trans>Order #{orderId}</Trans>
         </Title>
       </SheetShellHeader>
       <Container maxWidth='md'>
         <NoSsr>
           {(!orderId || !order) && (
-            <IconHeader src={iconBox} title='Order not found' alt='no order' size='large' />
+            <IconHeader src={iconBox} title={t`Order not found`} size='large' />
           )}
 
-          <AppShellTitle icon={iconBox}>Order #{orderId}</AppShellTitle>
+          <AppShellTitle icon={iconBox}>
+            <Trans>Order #{orderId}</Trans>
+          </AppShellTitle>
 
           {orderId && order && (
             <>
               <PageMeta
-                title={`Order view #${orderId}`}
-                metaDescription={`Order detail page for order #${orderId}`}
+                title={t`Order view #${orderId}`}
+                metaDescription={t`Order detail page for order #${orderId}`}
                 metaRobots={['noindex']}
               />
               <OrderItems {...order} loading={isLoading} images={images} />

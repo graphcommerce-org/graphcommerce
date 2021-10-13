@@ -7,6 +7,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
+import { t } from '@lingui/macro'
 import { Container } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
@@ -41,7 +42,7 @@ function ServicePage({ pages }: Props) {
       <SheetShellHeader
         hideDragIndicator
         backFallbackHref={isRoot ? undefined : '/service'}
-        backFallbackTitle={isRoot ? undefined : 'Customer Service'}
+        backFallbackTitle={isRoot ? undefined : t`Customer Service`}
       >
         <Title component='span' size='small'>
           {title}

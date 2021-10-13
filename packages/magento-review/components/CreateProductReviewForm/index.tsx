@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { ProductReviewRatingInput } from '@graphcommerce/graphql'
+import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
 import {
   Button,
   Form,
@@ -10,11 +11,11 @@ import {
   StarRatingField,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { t, Trans } from '@lingui/macro'
 import { Box, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import ApolloCustomerErrorAlert from '../../../magento-customer/components/ApolloCustomerError/ApolloCustomerErrorAlert'
 import { CreateProductReviewDocument } from './CreateProductReview.gql'
 import { ProductReviewRatingsMetadataDocument } from './ProductReviewRatingsMetadata.gql'
 
@@ -100,7 +101,7 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
     return (
       <>
         <Alert severity='success' variant='standard'>
-          Thank you! Your review was successfully submitted for approval
+          <Trans>Thank you! Your review was successfully submitted for approval</Trans>
         </Alert>
         <Box mt={6}>
           <Button
@@ -110,7 +111,7 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
             size='large'
             onClick={() => router.back()}
           >
-            Continue shopping
+            <Trans>Continue shopping</Trans>
           </Button>
         </Box>
       </>
@@ -124,7 +125,7 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
           variant='outlined'
           type='text'
           error={!!formState.errors.nickname || !!error}
-          label='Name'
+          label={t`Name`}
           required={required.nickname}
           {...muiRegister('nickname', { required: required.nickname })}
           helperText={formState.errors.nickname?.message}

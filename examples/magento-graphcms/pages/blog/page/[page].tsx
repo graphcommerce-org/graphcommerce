@@ -1,6 +1,7 @@
 import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { AppShellTitle, GetStaticProps, Pagination, Title } from '@graphcommerce/next-ui'
+import { t } from '@lingui/macro'
 import { Container, Link } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
@@ -33,7 +34,7 @@ function BlogPage(props: Props) {
     <>
       <PageMeta title={title} metaDescription={title} canonical={page.url} />
 
-      <FullPageShellHeader backFallbackHref='/blog' backFallbackTitle='Blog'>
+      <FullPageShellHeader backFallbackHref='/blog' backFallbackTitle={t`Blog`}>
         <Title size='small'>{title}</Title>
       </FullPageShellHeader>
 

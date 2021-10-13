@@ -8,6 +8,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Box, Container, Link, NoSsr } from '@material-ui/core'
 import router, { useRouter } from 'next/router'
 import React from 'react'
@@ -25,23 +26,27 @@ function CustomerAccountCreatePasswordPage() {
   return (
     <>
       <PageMeta
-        title='Create new Password'
-        metaDescription='Create new password'
+        title={t`Create new password`}
+        metaDescription={t`Create new password`}
         metaRobots={['noindex']}
       />
-      <SheetShellHeader backFallbackHref='/account/signin' backFallbackTitle='Sign In'>
+      <SheetShellHeader backFallbackHref='/account/signin' backFallbackTitle={t`Sign In`}>
         <Title size='small' component='span'>
-          {!success ? 'Set your new password' : 'You have now successfully reset your password'}
+          {!success ? t`Set your new password` : t`You have now successfully reset your password`}
         </Title>
       </SheetShellHeader>
       <NoSsr>
         <Box pt={4} pb={4}>
           {!success && (
             <Container maxWidth='sm'>
-              <AppShellTitle>Set your new password</AppShellTitle>
+              <AppShellTitle>
+                <Trans>Set your new password</Trans>
+              </AppShellTitle>
 
               <Box textAlign='center'>
-                <p>Fill in your new password, confirm it and click on the save button.</p>
+                <p>
+                  <Trans>Fill in your new password, confirm it and click on the save button.</Trans>
+                </p>
               </Box>
 
               <ResetPasswordForm token={(token as string) ?? ''} />
@@ -50,15 +55,19 @@ function CustomerAccountCreatePasswordPage() {
 
           {success && (
             <Container>
-              <AppShellTitle>You have now successfully reset your password</AppShellTitle>
+              <AppShellTitle>
+                <Trans>You have now successfully reset your password</Trans>
+              </AppShellTitle>
 
               <Box textAlign='center'>
                 <p>
-                  You can now{' '}
-                  <Link color='primary' href='/account/signin'>
-                    sign in again
-                  </Link>
-                  .
+                  <Trans>
+                    You can now
+                    <Link color='primary' href='/account/signin'>
+                      sign in again
+                    </Link>
+                    .
+                  </Trans>
                 </p>
 
                 <Button
@@ -68,7 +77,7 @@ function CustomerAccountCreatePasswordPage() {
                   size='large'
                   text='bold'
                 >
-                  Continue shopping
+                  <Trans>Continue shopping</Trans>
                 </Button>
               </Box>
             </Container>

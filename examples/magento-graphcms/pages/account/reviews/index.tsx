@@ -11,6 +11,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import { GetStaticProps } from 'next'
 import React from 'react'
@@ -38,30 +39,32 @@ function AccountReviewsPage() {
 
   return (
     <>
-      <SheetShellHeader backFallbackTitle='Account' backFallbackHref='/account'>
+      <SheetShellHeader backFallbackTitle={t`Account`} backFallbackHref='/account'>
         <Title size='small' component='span' icon={iconStar}>
-          Orders
+          <Trans>Orders</Trans>
         </Title>
       </SheetShellHeader>
       <Container maxWidth='md'>
         <PageMeta
-          title='Reviews'
-          metaDescription='View all your reviews'
+          title={t`Reviews`}
+          metaDescription={t`View all your reviews`}
           metaRobots={['noindex']}
         />
         <NoSsr>
           {((customer?.reviews && customer?.reviews.items.length < 1) || !customer?.reviews) && (
             <FullPageMessage
-              title={`You haven't placed any reviews yet`}
+              title={t`You haven't placed any reviews yet`}
               icon={<SvgImage src={iconStar} size={148} alt='star' />}
             >
-              Discover our collection and write your first review!
+              <Trans>Discover our collection and write your first review!</Trans>
             </FullPageMessage>
           )}
 
           {customer?.reviews && customer?.reviews.items.length > 1 && (
             <>
-              <AppShellTitle icon={iconStar}>Reviews</AppShellTitle>
+              <AppShellTitle icon={iconStar}>
+                <Trans>Reviews</Trans>
+              </AppShellTitle>
               {customer?.reviews && <AccountReviews {...customer?.reviews} loading={loading} />}
             </>
           )}

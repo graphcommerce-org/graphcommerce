@@ -12,6 +12,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Box, Container, NoSsr } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import { useRouter } from 'next/router'
@@ -47,25 +48,26 @@ function EditAddressPage(props: Props) {
 
   return (
     <>
-      <SheetShellHeader backFallbackTitle='Addresses' backFallbackHref='/account/addresses'>
+      <SheetShellHeader backFallbackTitle={t`Addresses`} backFallbackHref='/account/addresses'>
         <Title size='small' component='span' icon={iconAddresses}>
-          Addresses
+          <Trans>Addresses</Trans>
         </Title>
       </SheetShellHeader>
       <Container maxWidth='md'>
-        <PageMeta title='Edit address' metaDescription='Edit an address' metaRobots={['noindex']} />
+        <PageMeta
+          title={t`Edit address`}
+          metaDescription='Edit an address'
+          metaRobots={['noindex']}
+        />
         <NoSsr>
-          <AppShellTitle icon={iconAddresses}>Addresses</AppShellTitle>
+          <AppShellTitle icon={iconAddresses}>
+            <Trans>Addresses</Trans>
+          </AppShellTitle>
 
-          <SectionContainer labelLeft='Edit address'>
+          <SectionContainer labelLeft={t`Edit address`}>
             {!address && !loading && (
               <Box marginTop={3}>
-                <IconHeader
-                  src={iconAddresses}
-                  title='Address not found'
-                  alt='address'
-                  size='small'
-                />
+                <IconHeader src={iconAddresses} title={t`Address not found`} size='small' />
               </Box>
             )}
 

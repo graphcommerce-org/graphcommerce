@@ -3,6 +3,7 @@ import { useMergeCustomerCart } from '@graphcommerce/magento-cart'
 import { AccountSignInUpForm } from '@graphcommerce/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, SheetShellHeader, Title } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
@@ -16,14 +17,14 @@ function AccountSignInPage() {
   return (
     <>
       <PageMeta
-        title='Sign in'
+        title={t`Sign in`}
         metaRobots={['noindex']}
-        metaDescription='Sign in to your account'
+        metaDescription={t`Sign in to your account`}
       />
       <NoSsr>
         <SheetShellHeader>
           <Title size='small' component='span'>
-            Sign in
+            <Trans>Sign in</Trans>
           </Title>
         </SheetShellHeader>
         <Container maxWidth='sm'>

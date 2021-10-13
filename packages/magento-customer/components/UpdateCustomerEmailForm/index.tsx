@@ -7,6 +7,7 @@ import {
   MessageSnackbar,
 } from '@graphcommerce/next-ui'
 import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { t, Trans } from '@lingui/macro'
 import { TextField } from '@material-ui/core'
 import React from 'react'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
@@ -85,7 +86,7 @@ export default function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormPr
           autoFocus
           error={formState.isSubmitted && !!formState.errors.confirmEmail}
           helperText={formState.isSubmitted && formState.errors.confirmEmail?.message}
-          label='Confirm new email'
+          label={t`Confirm new email`}
           required
           {...muiRegister('confirmEmail', {
             required: true,
@@ -99,7 +100,7 @@ export default function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormPr
           variant='outlined'
           type='password'
           error={!!formState.errors.password}
-          label='Password'
+          label={t`Password`}
           autoComplete='password'
           required={required.password}
           {...muiRegister('password', {

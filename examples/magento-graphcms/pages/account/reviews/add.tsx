@@ -8,13 +8,13 @@ import {
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   FullPageMessage,
-  responsiveVal,
   SvgImage,
   iconBox,
   Title,
   SheetShellHeader,
   AppShellTitle,
 } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Container } from '@material-ui/core'
 import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
@@ -62,10 +62,10 @@ function AccountReviewsAddPage() {
   if (!product) {
     return (
       <FullPageMessage
-        title='Product could not be found'
+        title={t`Product could not be found`}
         icon={<SvgImage src={iconBox} size={148} alt='box'></SvgImage>}
       >
-        Try a different product
+        <Trans>Try a different product</Trans>
       </FullPageMessage>
     )
   }
@@ -73,16 +73,20 @@ function AccountReviewsAddPage() {
   return (
     <>
       <PageMeta
-        title='Add review'
-        metaDescription={`You are reviewing ${product?.name}`}
+        title={t`Add review`}
+        metaDescription={t`You are reviewing ${product?.name}`}
         metaRobots={['noindex']}
       />
 
-      <SheetShellHeader backFallbackHref='/account' backFallbackTitle='Account'>
-        <Title size='small'>You are reviewing {product?.name}</Title>
+      <SheetShellHeader backFallbackHref='/account' backFallbackTitle={t`Account`}>
+        <Title size='small'>
+          <Trans>You are reviewing {product?.name}</Trans>
+        </Title>
       </SheetShellHeader>
 
-      <AppShellTitle>You are reviewing {product?.name}</AppShellTitle>
+      <AppShellTitle>
+        <Trans>You are reviewing {product?.name}</Trans>
+      </AppShellTitle>
 
       <Container maxWidth='md'>
         <CreateProductReviewForm

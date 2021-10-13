@@ -14,6 +14,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
@@ -39,20 +40,22 @@ function AccountAuthenticationPage() {
 
   return (
     <>
-      <SheetShellHeader backFallbackTitle='Account' backFallbackHref='/account'>
+      <SheetShellHeader backFallbackTitle={t`Account`} backFallbackHref='/account'>
         <Title size='small' component='span' icon={iconLock}>
-          Orders
+          <Trans>Authentication</Trans>
         </Title>
       </SheetShellHeader>
       <Container maxWidth='md'>
         <PageMeta
-          title='Authentication'
-          metaDescription='Change password'
+          title={t`Authentication`}
+          metaDescription={t`Change password`}
           metaRobots={['noindex']}
         />
         <NoSsr>
-          <AppShellTitle icon={iconLock}>Authentication</AppShellTitle>
-          <SectionContainer labelLeft='Password'>
+          <AppShellTitle icon={iconLock}>
+            <Trans>Authentication</Trans>
+          </AppShellTitle>
+          <SectionContainer labelLeft={t`Password`}>
             {customer && <ChangePasswordForm />}
           </SectionContainer>
         </NoSsr>

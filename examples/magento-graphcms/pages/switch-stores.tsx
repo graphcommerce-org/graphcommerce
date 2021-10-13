@@ -14,6 +14,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import { FullPageShellProps } from '../components/AppShell/FullPageShell'
@@ -29,15 +30,21 @@ function StoresIndexPage({ availableStores }: Props) {
 
   return (
     <>
-      <PageMeta title='Switch stores' metaDescription='Switch stores' metaRobots={['noindex']} />
+      <PageMeta
+        title={t`Switch stores`}
+        metaDescription={t`Switch stores`}
+        metaRobots={['noindex']}
+      />
       <NoSsr>
         <SheetShellHeader hideDragIndicator>
           <Title size='small' component='span' icon={iconShoppingBag}>
-            Country
+            <Trans>Country</Trans>
           </Title>
         </SheetShellHeader>
         <Container maxWidth='md'>
-          <AppShellTitle icon={iconShoppingBag}>Country</AppShellTitle>
+          <AppShellTitle icon={iconShoppingBag}>
+            <Trans>Country</Trans>
+          </AppShellTitle>
           <StoreSwitcherList availableStores={availableStores} locale={locale} />
         </Container>
       </NoSsr>

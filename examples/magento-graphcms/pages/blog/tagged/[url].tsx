@@ -1,6 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument, PageMeta } from '@graphcommerce/magento-store'
 import { AppShellTitle, GetStaticProps, Row, Title } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Container } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
@@ -34,7 +35,7 @@ function BlogPage(props: Props) {
 
   return (
     <>
-      <FullPageShellHeader backFallbackHref='/blog' backFallbackTitle='Blog'>
+      <FullPageShellHeader backFallbackHref='/blog' backFallbackTitle={t`Blog`}>
         <Title size='small'>{title}</Title>
       </FullPageShellHeader>
       <Row>

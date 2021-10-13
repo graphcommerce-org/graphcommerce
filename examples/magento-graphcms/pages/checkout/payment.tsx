@@ -32,6 +32,7 @@ import {
   Title,
 } from '@graphcommerce/next-ui'
 import { ComposedForm } from '@graphcommerce/react-hook-form'
+import { t, Trans } from '@lingui/macro'
 import { CircularProgress, Container, Dialog, Divider, NoSsr } from '@material-ui/core'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
@@ -55,7 +56,7 @@ function PaymentPage() {
 
   return (
     <ComposedForm>
-      <PageMeta title='Payment' metaDescription='Payment' metaRobots={['noindex']} />
+      <PageMeta title={t`Payment`} metaDescription='Payment' metaRobots={['noindex']} />
       <NoSsr>
         {!cartExists && <EmptyCart />}
         {cartExists && (
@@ -77,7 +78,7 @@ function PaymentPage() {
                     />
                   }
                 >
-                  Pay
+                  <Trans>Pay</Trans>
                 </PaymentMethodButton>
               }
               divider={
@@ -89,7 +90,7 @@ function PaymentPage() {
               backFallbackTitle='Shipping'
             >
               <Title size='small' icon={iconId}>
-                Payment
+                <Trans>Payment</Trans>
               </Title>
             </PageShellHeader>
             <Container maxWidth='md'>
@@ -99,12 +100,14 @@ function PaymentPage() {
                   icon={<CircularProgress />}
                   title='Processing your payment'
                 >
-                  We're processing your payment, this will take a few seconds.
+                  <Trans>We're processing your payment, this will take a few seconds.</Trans>
                 </FullPageMessage>
               </Dialog>
 
               <>
-                <AppShellTitle icon={iconId}>Payment</AppShellTitle>
+                <AppShellTitle icon={iconId}>
+                  <Trans>Payment</Trans>
+                </AppShellTitle>
 
                 <PaymentMethodContextProvider
                   modules={{
@@ -155,7 +158,7 @@ function PaymentPage() {
                         />
                       }
                     >
-                      Place order
+                      <Trans>Place order</Trans>
                     </PaymentMethodButton>
                   </AnimatePresence>
                 </PaymentMethodContextProvider>
