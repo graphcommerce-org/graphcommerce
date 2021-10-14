@@ -6,6 +6,7 @@ import React from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from '../../hooks'
 
 const useStyles = makeStyles((theme: Theme) => ({
+  customerFab: {},
   colorError: {
     backgroundColor: theme.palette.grey['500'],
   },
@@ -24,7 +25,12 @@ function CustomerFabContent(props: CustomerFabContentProps) {
 
   return (
     <PageLink href={requireAuth ? guestHref : authHref} passHref>
-      <Fab style={{ boxShadow: 'none' }} aria-label='Open Menu' size='large'>
+      <Fab
+        style={{ boxShadow: 'none' }}
+        aria-label='Open Menu'
+        size='large'
+        className={classes.customerFab}
+      >
         <StyledBadge
           badgeContent={customerToken?.token ? 1 : 0}
           color={customerToken?.valid ? 'primary' : 'error'}
