@@ -7,10 +7,11 @@
     {
       "path": "locales/{locale}",
       "include": [
-        "pages",
-        "components"
+        "<rootDir>/**/*.tsx"
+      ],
+      "exclude": [
+        "**/node_modules/**"
       ]
     }
-  ],
-  "format": "po"
+  ]
 }
