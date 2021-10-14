@@ -3,12 +3,7 @@ import RowColumnOne from '../Row/RowColumnOne'
 import RowColumnThree from '../Row/RowColumnThree'
 import RowColumnTwo from '../Row/RowColumnTwo'
 import RowContentLinks from '../Row/RowContentLinks'
-import RowProductFeature from '../Row/RowProductFeature'
-import RowProductFeatureBoxed from '../Row/RowProductFeatureBoxed'
-import RowProductRelated from '../Row/RowProductRelated'
-import RowProductReviews from '../Row/RowProductReviews'
-import RowProductSpecs from '../Row/RowProductSpecs'
-import RowProductUpsells from '../Row/RowProductUpsells'
+import RowProduct from '../Row/RowProduct'
 import RowQuote from '../Row/RowQuote'
 import RowSpecialBanner from '../Row/RowSpecialBanner'
 import { ProductpagesContentQueryFragment } from './ProductpagesContentQueryFragment.gql'
@@ -23,13 +18,8 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
   RowColumnThree,
   RowSpecialBanner,
   RowContentLinks,
-  RowProductFeature,
-  RowProductFeatureBoxed,
-  RowProductReviews,
-  RowProductUpsells,
-  RowProductSpecs,
-  RowProductRelated,
   RowQuote,
+  RowProduct,
 }
 
 export type ProductProps = ProductpagesContentQueryFragment['productpages'][0] & {

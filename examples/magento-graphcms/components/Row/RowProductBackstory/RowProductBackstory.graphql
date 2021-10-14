@@ -1,6 +1,7 @@
-fragment RowProductBackstory on RowProductBackstory {
-  copy {
+fragment RowProductBackstory on RowProduct {
+  description {
     raw
+    html
   }
   asset {
     ...Asset

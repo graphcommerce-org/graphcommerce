@@ -1,3 +1,3 @@
-fragment RowProductReviews on RowProductReviews {
+fragment RowProductReviews on RowProduct {
   title
 }

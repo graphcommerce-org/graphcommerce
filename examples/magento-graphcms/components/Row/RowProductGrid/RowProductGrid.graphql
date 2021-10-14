@@ -1,9 +1,6 @@
-fragment RowProductGrid on RowProductGrid {
+fragment RowProductGrid on RowProduct {
   title
   pageLinks {
     ...PageLink
-  }
-  magentoCategory {
-    ...MagentoCategory
   }
 }

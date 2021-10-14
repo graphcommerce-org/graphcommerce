@@ -8,7 +8,7 @@ import { RowProductGridFragment } from './RowProductGrid.gql'
 type RowProductGridProps = RowProductGridFragment & ProductListItemsProps
 
 export default function RowProductGrid(props: RowProductGridProps) {
-  const { title, pageLinks, magentoCategory, ...productListItems } = props
+  const { title, pageLinks, ...productListItems } = props
 
   return (
     <ContainerWithHeader

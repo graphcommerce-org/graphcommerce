@@ -1,6 +1,7 @@
-fragment RowProductFeatureBoxed on RowProductFeatureBoxed {
-  topic
-  copy {
+fragment RowProductFeatureBoxed on RowProduct {
+  title
+  description {
     raw
+    html
   }
 }

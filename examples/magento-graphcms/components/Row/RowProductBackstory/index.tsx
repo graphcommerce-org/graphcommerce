@@ -10,7 +10,7 @@ import { RowProductBackstoryFragment } from './RowProductBackstory.gql'
 type RowProductBackstoryProps = RowProductBackstoryFragment & ProductListItemsProps
 
 export default function RowProductBackstory(props: RowProductBackstoryProps) {
-  const { copy, asset, ...productListItems } = props
+  const { description, asset, ...productListItems } = props
   const theme = useTheme()
   const singleItem = productListItems?.items?.[productListItems.items?.length - 1]
 
@@ -19,7 +19,9 @@ export default function RowProductBackstory(props: RowProductBackstoryProps) {
   return (
     <ParagraphWithSidebarSlide
       background={
-        <Asset asset={asset} sizes={{ 0: '50vw', [theme.breakpoints.values.md]: '72vw' }} />
+        asset && (
+          <Asset asset={asset} sizes={{ 0: '50vw', [theme.breakpoints.values.md]: '72vw' }} />
+        )
       }
       slidingItems={
         <RenderType
@@ -29,7 +31,7 @@ export default function RowProductBackstory(props: RowProductBackstoryProps) {
         />
       }
     >
-      <RichTextParagraphStrongStroked {...copy} />
+      <RichTextParagraphStrongStroked raw={description?.raw ?? <></>} />
     </ParagraphWithSidebarSlide>
   )
 }

@@ -1,6 +1,7 @@
-fragment RowProductFeature on RowProductFeature {
-  topic
-  copy {
+fragment RowProductFeature on RowProduct {
+  title
+  description {
     raw
+    html
   }
 }

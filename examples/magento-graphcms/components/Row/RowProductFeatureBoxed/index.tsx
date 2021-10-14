@@ -9,7 +9,7 @@ import { RowProductFeatureBoxedFragment } from './RowProductFeatureBoxed.gql'
 type RowProductFeatureBoxedProps = RowProductFeatureBoxedFragment & ProductFeatureMediaBoxedFragment
 
 export default function RowProductFeatureBoxedBoxed(props: RowProductFeatureBoxedProps) {
-  const { copy, topic, media_gallery } = props
+  const { description, title, media_gallery } = props
   const item = media_gallery?.[1] ?? media_gallery?.[0]
   const theme = useTheme()
 
@@ -33,8 +33,8 @@ export default function RowProductFeatureBoxedBoxed(props: RowProductFeatureBoxe
         )
       }
     >
-      {topic && <Typography variant='overline'>{topic}</Typography>}
-      <RichText {...copy} />
+      {title && <Typography variant='overline'>{title}</Typography>}
+      <RichText raw={description?.raw ?? <></>} />
     </RowImageTextBoxed>
   )
 }

@@ -28,9 +28,11 @@ import FullPageShellHeader from '../../../components/AppShell/FullPageShellHeade
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import ProductUsps from '../../../components/ProductUsps'
 import ProductpagesContent from '../../../components/ProductpagesContent'
+import RowProductBackstory from '../../../components/Row/RowProductBackstory'
 import RowProductDescription from '../../../components/Row/RowProductDescription'
 import RowProductFeature from '../../../components/Row/RowProductFeature'
 import RowProductFeatureBoxed from '../../../components/Row/RowProductFeatureBoxed'
+import RowProductGrid from '../../../components/Row/RowProductGrid'
 import RowProductRelated from '../../../components/Row/RowProductRelated'
 import RowProductReviews from '../../../components/Row/RowProductReviews'
 import RowProductSpecs from '../../../components/Row/RowProductSpecs'
@@ -76,8 +78,6 @@ function ProductConfigurable(props: Props) {
     !product.sku
   )
     return <div />
-
-  console.log(product.short_description)
 
   return (
     <>
@@ -134,16 +134,30 @@ function ProductConfigurable(props: Props) {
         <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
         <ProductpagesContent
           renderer={{
-            RowProductFeature: (rowProps) => <RowProductFeature {...rowProps} {...product} />,
-            RowProductFeatureBoxed: (rowProps) => (
-              <RowProductFeatureBoxed {...rowProps} {...product} />
-            ),
-            RowProductSpecs: (rowProps) => (
-              <RowProductSpecs {...rowProps} {...product} aggregations={aggregations} />
-            ),
-            RowProductReviews: (rowProps) => <RowProductReviews {...rowProps} {...product} />,
-            RowProductRelated: (rowProps) => <RowProductRelated {...rowProps} {...product} />,
-            RowProductUpsells: (rowProps) => <RowProductUpsells {...rowProps} {...product} />,
+            RowProduct: (rowProps) => {
+              const { variant } = rowProps
+
+              if (!variant) return <></>
+
+              switch (variant) {
+                case 'specs':
+                  return <RowProductSpecs {...rowProps} {...product} aggregations={aggregations} />
+                case 'backstory':
+                  return <RowProductBackstory {...rowProps} {...product} />
+                case 'feature':
+                  return <RowProductFeature {...rowProps} {...product} />
+                case 'feature_boxed':
+                  return <RowProductFeatureBoxed {...rowProps} {...product} />
+                case 'grid':
+                  return <RowProductGrid {...rowProps} {...product} />
+                case 'related':
+                  return <RowProductRelated {...rowProps} {...product} />
+                case 'reviews':
+                  return <RowProductReviews {...rowProps} {...product} />
+                case 'upsells':
+                  return <RowProductUpsells {...rowProps} {...product} />
+              }
+            },
           }}
           content={productpages?.[0].content}
         />

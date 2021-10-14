@@ -16,6 +16,7 @@ fragment ProductpagesContentQueryFragment on Query {
       ...RowProductRelated
       ...RowProductUpsells
       ...RowProductSpecs
+      ...RowProduct
       ...RowQuote
     }
   }

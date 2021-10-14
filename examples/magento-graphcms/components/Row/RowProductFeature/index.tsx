@@ -9,7 +9,7 @@ import { RowProductFeatureFragment } from './RowProductFeature.gql'
 type ProductFeatureProps = RowProductFeatureFragment & ProductFeatureMediaFragment
 
 export default function RowProductFeature(props: ProductFeatureProps) {
-  const { copy, topic, media_gallery } = props
+  const { description, title, media_gallery } = props
   const item = media_gallery?.[2] ?? media_gallery?.[0]
 
   const theme = useTheme()
@@ -33,8 +33,8 @@ export default function RowProductFeature(props: ProductFeatureProps) {
         )
       }
     >
-      {topic && <Typography variant='overline'>{topic}</Typography>}
-      <RichText {...copy} />
+      {title && <Typography variant='overline'>{title}</Typography>}
+      <RichText {...description} />
     </RowImageText>
   )
 }
