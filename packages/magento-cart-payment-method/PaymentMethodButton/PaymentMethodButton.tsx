@@ -1,6 +1,7 @@
-import { ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
-import { Button, ButtonProps, FormRow } from '@graphcommerce/next-ui'
+import { ApolloCartErrorAlert, ApolloCartErrorFullPage } from '@graphcommerce/magento-cart'
+import { ApolloErrorFullPage, Button, ButtonProps, FormRow } from '@graphcommerce/next-ui'
 import { ComposedSubmit, ComposedSubmitRenderComponentProps } from '@graphcommerce/react-hook-form'
+import { Dialog } from '@material-ui/core'
 import React from 'react'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
@@ -52,6 +53,7 @@ export default function PaymentMethodButton(props: PaymentMethodButtonProps) {
   return (
     <ComposedSubmit
       render={({ submit, buttonState, error }) => {
+        const errorVal = buttonState.isSubmitting ? undefined : error
         const button = (
           <PaymentMethodButtonRenderer
             buttonProps={buttonProps}
@@ -65,10 +67,7 @@ export default function PaymentMethodButton(props: PaymentMethodButtonProps) {
         ) : (
           <>
             <FormRow>{button}</FormRow>
-            <ApolloCartErrorAlert
-              key='error'
-              error={buttonState.isSubmitting ? undefined : error}
-            />
+            <ApolloCartErrorAlert key='error' error={errorVal} />
           </>
         )
       }}

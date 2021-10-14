@@ -44,4 +44,7 @@ export { default as ProductPageMeta } from './ProductPageMeta'
 export { getProductStaticPaths } from './ProductStaticPaths/getProductStaticPaths'
 export { default as ProductWeight } from './ProductWeight'
 
+export { default as ProductShortDescription } from './ProductShortDescription'
+export * from './ProductShortDescription/ProductShortDescription.gql'
+
 export * from './ProductUpsells/UpsellProducts.gql'

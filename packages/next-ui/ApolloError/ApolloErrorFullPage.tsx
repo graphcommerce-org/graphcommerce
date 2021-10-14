@@ -11,15 +11,22 @@ export type ApolloErrorFullPageProps = {
 } & Omit<FullPageMessageProps, 'title' | 'description'>
 
 export default function ApolloErrorFullPage(props: ApolloErrorFullPageProps) {
-  const { error, graphqlErrorAlertProps, networkErrorAlertProps, ...fullPageMessageProps } = props
+  const {
+    error,
+    graphqlErrorAlertProps,
+    networkErrorAlertProps,
+    children,
+    ...fullPageMessageProps
+  } = props
 
   const singleError = error?.graphQLErrors.length === 1
 
   return (
     <FullPageMessage
       title={singleError ? error?.graphQLErrors[0].message : 'Several errors occured'}
-      description={singleError ? undefined : <ApolloErrorAlert error={error} />}
       {...fullPageMessageProps}
-    />
+    >
+      {singleError ? children : <ApolloErrorAlert error={error} />}
+    </FullPageMessage>
   )
 }

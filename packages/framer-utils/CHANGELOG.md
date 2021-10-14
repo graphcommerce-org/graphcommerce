@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-utils@2.103.5...@graphcommerce/framer-utils@2.103.6) (2021-10-09)
+
+
+### Bug Fixes
+
+* clientSize.x was incorrect ([39d12c4](https://github.com/ho-nl/m2-pwa/commit/39d12c4b583b7806f943dbd08c31b2dd940cc74b))
+
+
+
+
+
 ## [2.103.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-utils@2.103.0...@graphcommerce/framer-utils@2.103.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/framer-utils

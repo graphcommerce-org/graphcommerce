@@ -45,18 +45,14 @@ export default function CartSummary(props: CartSummaryProps) {
   const classes = useStyles(props)
   const { children, editable } = props
 
-  const { data } = useCartQuery(GetCartSummaryDocument, {
-    // allowUrl: true,
-    fetchPolicy: 'network-only',
+  const { data } = useCartQuery(GetCartSummaryDocument, { allowUrl: true })
+  const { href: historyHref, onClick: historyOnClick } = useHistoryLink({
+    href: '/checkout',
   })
 
   if (!data?.cart) return null
 
   const { email, shipping_addresses, billing_address } = data.cart
-
-  const { href: historyHref, onClick: historyOnClick } = useHistoryLink({
-    href: '/checkout',
-  })
 
   return (
     <div className={classes.root}>

@@ -6,6 +6,7 @@ import {
   productPageCategory,
   ProductPageGallery,
   ProductPageMeta,
+  ProductShortDescription,
   ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
 import {
@@ -76,6 +77,8 @@ function ProductConfigurable(props: Props) {
   )
     return <div />
 
+  console.log(product.short_description)
+
   return (
     <>
       <FullPageShellHeader
@@ -109,11 +112,7 @@ function ProductConfigurable(props: Props) {
             {product.name}
           </Typography>
 
-          <Typography
-            variant='body1'
-            component='div'
-            dangerouslySetInnerHTML={{ __html: product?.short_description?.html ?? '' }}
-          />
+          <ProductShortDescription short_description={product?.short_description} />
 
           <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           <ConfigurableProductAddToCart

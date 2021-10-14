@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.105.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms-api@2.105.7...@graphcommerce/magento-graphcms-api@2.105.8) (2021-10-13)
+
+
+### Bug Fixes
+
+* remove the build version of the mesh as it currently isn't working properly ([f6a6931](https://github.com/ho-nl/m2-pwa/commit/f6a69316420ac3aee72b08a31ceeafc4eed765bd))
+
+
+
+
+
+## [2.105.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms-api@2.105.5...@graphcommerce/magento-graphcms-api@2.105.6) (2021-10-07)
+
+
+### Bug Fixes
+
+* api build ([423564e](https://github.com/ho-nl/m2-pwa/commit/423564e23769298c98305edb89b8486265beb50b))
+
+
+
+
+
 # [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms-api@2.104.4...@graphcommerce/magento-graphcms-api@2.105.0) (2021-09-28)
 
 

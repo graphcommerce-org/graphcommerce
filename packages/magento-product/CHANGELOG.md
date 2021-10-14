@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.23](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.0.22...@graphcommerce/magento-product@3.0.23) (2021-10-11)
+
+
+### Bug Fixes
+
+* **product-pages:** remove top spacing short descriptions ([7ba7d32](https://github.com/ho-nl/m2-pwa/commit/7ba7d321d8eaf1d323047b87c6c086e9445f5263))
+* **section-heeader-filter-items:** remove large paddings ([18f4d77](https://github.com/ho-nl/m2-pwa/commit/18f4d77e4eb1b029bf2e5656b753e2f18fde90ab))
+
+
+
+
+
+## [3.0.18](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.0.17...@graphcommerce/magento-product@3.0.18) (2021-10-08)
+
+
+### Bug Fixes
+
+* **product-grid:** product title is not a link ([d5707f9](https://github.com/ho-nl/m2-pwa/commit/d5707f97a53a01c18db967db3420d78b1132c53c))
+* **product-list-item:** add ripple effect ([cdb2b9a](https://github.com/ho-nl/m2-pwa/commit/cdb2b9a63f65e6c1e8c819e6a20aca75c6cc286a))
+
+
+
+
+
 ## [3.0.15](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.0.14...@graphcommerce/magento-product@3.0.15) (2021-10-06)
 
 

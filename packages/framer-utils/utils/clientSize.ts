@@ -6,7 +6,7 @@ export type ClientSize = {
   y: MotionValue<number>
 }
 
-const x = () => global.window?.innerHeight ?? 0
+const x = () => global.window?.innerWidth ?? 0
 const y = () => global.window?.innerHeight ?? 0
 
 export const clientSize: ClientSize = {

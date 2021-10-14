@@ -56,7 +56,7 @@ const useStyles = makeStyles<
       [theme.breakpoints.up('md')]: {
         background: theme.palette.secondary.main,
         color: theme.palette.secondary.contrastText,
-        boxShadow: theme.shadows[2],
+        boxShadow: theme.shadows[6],
         borderRadius: 25,
         padding: '6px 16px',
         fontWeight: theme.typography.fontWeightBold,

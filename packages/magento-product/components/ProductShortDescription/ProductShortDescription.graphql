@@ -1,0 +1,5 @@
+fragment ProductShortDescription on ProductInterface {
+  short_description {
+    html
+  }
+}

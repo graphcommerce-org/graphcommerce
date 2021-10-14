@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.121.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.121.9...@graphcommerce/magento-graphcms@2.121.10) (2021-10-13)
+
+
+### Bug Fixes
+
+* removed useless backFallbackHref declarations on pages ([5906be2](https://github.com/ho-nl/m2-pwa/commit/5906be224dcd1f7c25ec9b6f3c654944fb42b147))
+
+
+
+
+
+## [2.121.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.121.4...@graphcommerce/magento-graphcms@2.121.5) (2021-10-12)
+
+
+### Bug Fixes
+
+* **account-signin-page:** remove back button ([47d09b1](https://github.com/ho-nl/m2-pwa/commit/47d09b1f497320a1d1c6a9d9493a490ac2189782))
+* **forgot-password-page:** hide back button ([a64c9a4](https://github.com/ho-nl/m2-pwa/commit/a64c9a449afed033280c46d740a2ee81c89cbeef))
+
+
+
+
+
+## [2.121.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.121.3...@graphcommerce/magento-graphcms@2.121.4) (2021-10-11)
+
+
+### Bug Fixes
+
+* **downloadable-product:** import fix ([9efc08c](https://github.com/ho-nl/m2-pwa/commit/9efc08c0c38f71429388bcd42c39865135e898b4))
+* **product-pages:** remove top spacing short descriptions ([7ba7d32](https://github.com/ho-nl/m2-pwa/commit/7ba7d321d8eaf1d323047b87c6c086e9445f5263))
+
+
+
+
+
+# [2.121.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.120.0...@graphcommerce/magento-graphcms@2.121.0) (2021-10-08)
+
+
+### Features
+
+* made empty success page when no cart is present and removed backbuttons ([1e29450](https://github.com/ho-nl/m2-pwa/commit/1e294500f9f1f2cfeab0de8bd8211ee517af5d8c))
+
+
+
+
+
+# [2.120.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.18...@graphcommerce/magento-graphcms@2.120.0) (2021-10-08)
+
+
+### Features
+
+* **row-service-options:** show email and telephone number ([8291b25](https://github.com/ho-nl/m2-pwa/commit/8291b25b6e408c480eedbc5aa1353a99785e4df5))
+
+
+
+
+
+## [2.119.18](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.17...@graphcommerce/magento-graphcms@2.119.18) (2021-10-07)
+
+
+### Bug Fixes
+
+* make sure if no payment method is filled in we get an error shown ([a203e57](https://github.com/ho-nl/m2-pwa/commit/a203e570caad0732427a178e8e8b10b4a15d676b))
+
+
+
+
+
+## [2.119.17](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.16...@graphcommerce/magento-graphcms@2.119.17) (2021-10-07)
+
+
+### Bug Fixes
+
+* replace __DEV__ with proper variable for optimizing the bundle size ([9b03209](https://github.com/ho-nl/m2-pwa/commit/9b032095f618846d132c00b8dc14fbb1b09c6ed8))
+* try to define the __DEV__ variable for better tree shaking ([465125d](https://github.com/ho-nl/m2-pwa/commit/465125dff36ac4d269f74ce3598d5257c3c1d801))
+
+
+
+
+
 ## [2.119.16](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.15...@graphcommerce/magento-graphcms@2.119.16) (2021-10-06)
 
 

@@ -67,7 +67,7 @@ function AccountIndexPage() {
     <>
       <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
 
-      <PageShellHeader backFallbackHref='/' backFallbackTitle='Home'>
+      <PageShellHeader>
         <Title component='span' size='small' icon={iconPersonAlt}>
           Account
         </Title>

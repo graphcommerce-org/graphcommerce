@@ -3,6 +3,110 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.3.2...@graphcommerce/next-ui@3.3.3) (2021-10-13)
+
+
+### Bug Fixes
+
+* regression in header ([4738fb7](https://github.com/ho-nl/m2-pwa/commit/4738fb7e13fb3be187f58b474219497783525d72))
+
+
+
+
+
+# [3.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.2.3...@graphcommerce/next-ui@3.3.0) (2021-10-13)
+
+
+### Features
+
+* allow styling DesktopNavBar ([12f99a6](https://github.com/ho-nl/m2-pwa/commit/12f99a603d9e9f89e28ec2452823b58abee59c4c))
+* implement extensibility for DesktopNavBar, SearchButton ([5710de8](https://github.com/ho-nl/m2-pwa/commit/5710de8936f59c7d0fcc648978183f0e7fdd26b7))
+* make DesktopNavBar Link variant customizable ([d47172f](https://github.com/ho-nl/m2-pwa/commit/d47172f3ebe0cc0b769e0d17c171ae4bb2045bbb))
+
+
+
+
+
+## [3.2.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.2.2...@graphcommerce/next-ui@3.2.3) (2021-10-11)
+
+
+### Bug Fixes
+
+* **desktop-nav-bar:** prev/next button alignment in menu ([c7fabf0](https://github.com/ho-nl/m2-pwa/commit/c7fabf0474100aaf40a7526858fa2b01566b3250))
+* **section-heeader-filter-items:** remove large paddings ([18f4d77](https://github.com/ho-nl/m2-pwa/commit/18f4d77e4eb1b029bf2e5656b753e2f18fde90ab))
+
+
+
+
+
+## [3.2.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.2.1...@graphcommerce/next-ui@3.2.2) (2021-10-11)
+
+
+### Bug Fixes
+
+* **menu-fab:** animation duration ([5b9ece2](https://github.com/ho-nl/m2-pwa/commit/5b9ece293fb7e12663386f9f9cbc99bc4e22aaa9))
+
+
+
+
+
+## [3.2.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.2.0...@graphcommerce/next-ui@3.2.1) (2021-10-11)
+
+
+### Bug Fixes
+
+* **framer-scroller:** dots should have a background ([8f2e1a1](https://github.com/ho-nl/m2-pwa/commit/8f2e1a1ffc9de3369938fe2f9e9f25f592739d8d))
+
+
+
+
+
+# [3.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.1.7...@graphcommerce/next-ui@3.2.0) (2021-10-09)
+
+
+### Bug Fixes
+
+* **framer-scroller:** pan snap does not work on mobile ([660f242](https://github.com/ho-nl/m2-pwa/commit/660f242a38558669fa896a74e14cafdd85069d57))
+* **framer-slider:** route changes ([4cadbea](https://github.com/ho-nl/m2-pwa/commit/4cadbea3e494326377e74e2fa9370ab80f8d8c35))
+* make sure the gallery never gets higher than 100% ([1eae8c7](https://github.com/ho-nl/m2-pwa/commit/1eae8c7cfb2a9e67f03f1e4e4db5c95213d2dbe0))
+* poistioning on mobile ([bec497f](https://github.com/ho-nl/m2-pwa/commit/bec497fca426346b80b453a3871b9c66521a2161))
+* **sidebar-gallery:** differentiate drag from click ([acd408e](https://github.com/ho-nl/m2-pwa/commit/acd408e400f8285e2b3a9105b4694d5fd839dd99))
+* **sidebar-gallery:** push gallery to history one time ([2c45b64](https://github.com/ho-nl/m2-pwa/commit/2c45b64e171577f7b584662d56416eeae4a22554))
+* **sidebar-gallery:** route handling ([1c3b8b1](https://github.com/ho-nl/m2-pwa/commit/1c3b8b1687b0bf637da6c88d2d9b30a734b98d11))
+* **sidebar-gallery:** use fullscreen and fullscreen exit icons ([1328d22](https://github.com/ho-nl/m2-pwa/commit/1328d220030f766be2d4046abd87d45175e4fe38))
+* use better URL handling and remove drag temporarily ([0b99387](https://github.com/ho-nl/m2-pwa/commit/0b993876280270320eef5301130c5cc3eb339ea9))
+
+
+### Features
+
+* **sidebar-gallery:** toggle with browser back buttons ([a2f804b](https://github.com/ho-nl/m2-pwa/commit/a2f804b0cedb98df8f6a7b197aeeeeda43c6b1ba))
+
+
+
+
+
+## [3.1.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.1.6...@graphcommerce/next-ui@3.1.7) (2021-10-08)
+
+
+### Bug Fixes
+
+* SvgImageSimple should pass the layout prop ([a0b5c81](https://github.com/ho-nl/m2-pwa/commit/a0b5c818f93ba24a34c6ce8aa21f8af50bd05dd2))
+
+
+
+
+
+## [3.1.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.1.5...@graphcommerce/next-ui@3.1.6) (2021-10-07)
+
+
+### Bug Fixes
+
+* Form component added classes attribute ([269fd46](https://github.com/ho-nl/m2-pwa/commit/269fd4629cedcaab74043604ac21a4557b4e514f))
+
+
+
+
+
 ## [3.1.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.1.3...@graphcommerce/next-ui@3.1.4) (2021-10-06)
 
 

@@ -1,3 +1,4 @@
+import { usePrevPageRouter } from '@graphcommerce/framer-next-pages/hooks/usePrevPageRouter'
 import {
   CenterSlide,
   MotionImageAspect,
@@ -8,24 +9,21 @@ import {
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
 import { clientSize, useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Fab, makeStyles, Theme, useTheme } from '@material-ui/core'
+import { Fab, makeStyles, Theme, useTheme, alpha } from '@material-ui/core'
 import clsx from 'clsx'
-import { m, useDomEvent } from 'framer-motion'
-import React, { useRef, useState } from 'react'
+import { m, useDomEvent, useMotionValue } from 'framer-motion'
+import { useRouter } from 'next/router'
+import React, { useEffect, useRef } from 'react'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
 import SvgImage from '../../SvgImage'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
-import {
-  iconChevronLeft,
-  iconChevronRight,
-  iconCollapseVertical,
-  iconExpandVertical,
-} from '../../icons'
+import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../../icons'
 
 type StyleProps = {
   aspectRatio: [number, number]
   clientHeight: number
+  classes?: Record<string, unknown>
 }
 
 const useStyles = makeStyles(
@@ -42,7 +40,7 @@ const useStyles = makeStyles(
     rootZoomed: {
       position: 'relative',
       zIndex: theme.zIndex.modal,
-      marginTop: 0,
+      marginTop: `calc(${theme.page.headerInnerHeight.sm} * -1)`,
       [theme.breakpoints.up('md')]: {
         marginTop: `calc(${theme.page.headerInnerHeight.md} * -1  - ${theme.spacings.sm})`,
       },
@@ -79,8 +77,12 @@ const useStyles = makeStyles(
       gridAutoFlow: `column`,
       gridTemplateColumns: `repeat(100, 100%)`,
       gridTemplateRows: `100%`,
+      cursor: 'zoom-in',
     },
-
+    scrollerZoomed: ({ clientHeight }: StyleProps) => ({
+      height: clientHeight,
+      cursor: 'inherit',
+    }),
     sidebarWrapper: {
       boxSizing: 'content-box',
       display: 'grid',
@@ -130,7 +132,7 @@ const useStyles = makeStyles(
       },
     },
     toggleIcon: {
-      boxShadow: theme.shadows[2],
+      boxShadow: theme.shadows[6],
     },
     topRight: {
       display: 'grid',
@@ -155,6 +157,9 @@ const useStyles = makeStyles(
       right: theme.spacings.sm,
       top: `calc(50% - 28px)`,
     },
+    dots: {
+      background: alpha(theme.palette.background.highlight, 0.7),
+    },
   }),
   { name: 'SidebarGallery' },
 )
@@ -163,27 +168,41 @@ export type SidebarGalleryProps = {
   sidebar: React.ReactNode
   images: MotionImageAspectProps[]
   aspectRatio?: [number, number]
+  routeHash?: string
 } & UseStyles<typeof useStyles>
 
 export default function SidebarGallery(props: SidebarGalleryProps) {
-  const { sidebar, images, aspectRatio = [1, 1] } = props
-  const [zoomed, setZoomed] = useState(false)
-
+  const { sidebar, images, aspectRatio = [1, 1], routeHash = 'gallery' } = props
+  const router = useRouter()
+  const prevRoute = usePrevPageRouter()
   const clientHeight = useMotionValueValue(clientSize.y, (y) => y)
-  const classes = useStyles({ clientHeight, aspectRatio })
+  const classes = useStyles({ clientHeight, aspectRatio, classes: props.classes })
+
+  const route = `#${routeHash}`
+  // We're using the URL to manage the state of the gallery.
+  const zoomed = router.asPath.endsWith(route)
+
+  // cleanup if someone enters the page with #gallery
+  useEffect(() => {
+    if (!prevRoute?.pathname && zoomed) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.replace(router.asPath.replace(route, ''))
+    }
+  }, [prevRoute?.pathname, route, router, zoomed])
 
   const toggle = () => {
-    setZoomed(!zoomed)
     if (!zoomed) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.push(route, undefined, { shallow: true })
       document.body.style.overflow = 'hidden'
       window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      router.back()
     }
   }
 
   const clsxZoom = (key: string) => clsx(classes?.[key], zoomed && classes?.[`${key}Zoomed`])
-
   const theme = useTheme()
-
   const windowRef = useRef(typeof window !== 'undefined' ? window : null)
 
   const handleEscapeKey = (e: KeyboardEvent | Event) => {
@@ -192,6 +211,16 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
         toggle()
       }
     }
+  }
+
+  const dragStart = useMotionValue<number>(0)
+  const onMouseDownScroller: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    if (dragStart.get() === e.clientX) return
+    dragStart.set(e.clientX)
+  }
+  const onMouseUpScroller: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    const currentDragLoc = e.clientX
+    if (Math.abs(currentDragLoc - dragStart.get()) < 8) toggle()
   }
 
   useDomEvent(windowRef, 'keyup', handleEscapeKey, { passive: true })
@@ -206,7 +235,12 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
             if (!zoomed) document.body.style.overflow = ''
           }}
         >
-          <Scroller className={clsxZoom('scroller')} hideScrollbar>
+          <Scroller
+            className={clsxZoom('scroller')}
+            hideScrollbar
+            onMouseDown={onMouseDownScroller}
+            onMouseUp={onMouseUpScroller}
+          >
             {images.map((image, idx) => (
               <CenterSlide key={typeof image.src === 'string' ? image.src : idx}>
                 <MotionImageAspect
@@ -225,11 +259,11 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
             ))}
           </Scroller>
           <m.div layout className={classes.topRight}>
-            <Fab color='inherit' size='small' className={classes.toggleIcon} onClick={toggle}>
+            <Fab color='inherit' size='small' className={classes.toggleIcon} onMouseUp={toggle}>
               {!zoomed ? (
-                <SvgImage src={iconExpandVertical} alt='Zoom in' loading='eager' />
+                <SvgImage src={iconFullscreen} alt='Zoom in' loading='eager' size='small' />
               ) : (
-                <SvgImage src={iconCollapseVertical} alt='Zoom out' loading='eager' />
+                <SvgImage src={iconFullscreenExit} alt='Zoom out' loading='eager' size='small' />
               )}
             </Fab>
           </m.div>
@@ -245,9 +279,10 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
           </div>
 
           <div className={classes.bottomCenter}>
-            <ScrollerDots layout />
+            <ScrollerDots layout classes={{ dots: classes.dots }} />
           </div>
         </m.div>
+
         <div className={clsxZoom('sidebarWrapper')}>
           <m.div layout className={clsxZoom('sidebar')}>
             {sidebar}

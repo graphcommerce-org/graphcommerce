@@ -66,9 +66,10 @@ function AccountOrdersPage() {
             <>
               <FullPageMessage
                 title='You have no orders yet'
-                description='Discover our collection and place your first order!'
                 icon={<SvgImage src={iconBox} size={148} alt='box' />}
-              />
+              >
+                Discover our collection and place your first order!
+              </FullPageMessage>
             </>
           )}
         </NoSsr>
@@ -94,8 +95,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variant: 'bottom',
       size: 'max',
-      backFallbackHref: '/account',
-      backFallbackTitle: 'Account',
     },
   }
 }

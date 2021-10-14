@@ -3,7 +3,7 @@ import {
   useCurrentCartId,
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
-import { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
+import { PaymentPlaceOrderProps, useCartLock } from '@graphcommerce/magento-cart-payment-method'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
@@ -13,11 +13,19 @@ export default function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
   const { step, code } = props
   const router = useRouter()
   const cartId = useCurrentCartId()
-  const clearCurrentCartId = useClearCurrentCartId()
+  const clear = useClearCurrentCartId()
+  const { lock } = useCartLock()
 
   const form = useFormGqlMutationCart(MolliePlaceOrderDocument, { mode: 'onChange' })
 
-  const { handleSubmit, data, error } = form
+  const { handleSubmit, data, error, register, setValue } = form
+
+  useEffect(() => {
+    const current = new URL(window.location.href.replace(window.location.hash, ''))
+    current.searchParams.append('payment_token', 'PAYMENT_TOKEN')
+    const replaced = current.toString().replace('PAYMENT_TOKEN', '{{payment_token}}')
+    setValue('returnUrl', replaced)
+  }, [setValue])
 
   const submit = handleSubmit(() => {})
 
@@ -27,18 +35,25 @@ export default function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
     const molliePaymentToken = data?.placeOrder?.order.mollie_payment_token
 
     if (redirectUrl) {
-      clearCurrentCartId?.()
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.push(redirectUrl)
+      lock(true)
+
+      setTimeout(() => {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        router.push(redirectUrl)
+      }, 500)
     }
     if (!redirectUrl && molliePaymentToken) {
-      clearCurrentCartId?.()
+      clear()
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       router.push({ pathname: '/checkout/success', query: { cartId, molliePaymentToken } })
     }
-  }, [cartId, clearCurrentCartId, data?.placeOrder?.order, error, router])
+  }, [cartId, clear, data?.placeOrder?.order, error, lock, router])
 
   useFormCompose({ form, step, submit, key: `PaymentMethodPlaceOrder_${code}` })
 
-  return <form onSubmit={submit} />
+  return (
+    <form onSubmit={submit}>
+      <input type='hidden' {...register('returnUrl')} />
+    </form>
+  )
 }

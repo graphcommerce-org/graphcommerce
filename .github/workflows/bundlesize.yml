@@ -33,5 +33,7 @@ jobs:
       - uses: unsplash/comment-on-pr@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: steps.bundlesize.outputs.diff != ''
         with:
           msg: ${{steps.bundlesize.outputs.diff}}
+          check_for_duplicate_msg: false

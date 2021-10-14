@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/react-hook-form",
-  "version": "2.102.4",
+  "version": "2.102.8",
   "sideEffects": false,
   "engines": {
     "node": "14.x"
@@ -16,19 +16,19 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/browserslist-config-pwa": "^3.0.1",
-    "@graphcommerce/eslint-config-pwa": "^3.0.4",
-    "@graphcommerce/prettier-config-pwa": "^3.0.2",
-    "@graphcommerce/typescript-config-pwa": "^3.1.0",
-    "@playwright/test": "^1.15.0"
+    "@graphcommerce/browserslist-config-pwa": "^3.0.2",
+    "@graphcommerce/eslint-config-pwa": "^3.0.7",
+    "@graphcommerce/prettier-config-pwa": "^3.0.3",
+    "@graphcommerce/typescript-config-pwa": "^3.1.1",
+    "@playwright/test": "^1.15.2"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.21",
+    "@apollo/client": "^3.4.16",
     "@graphql-typed-document-node/core": "^3.1.0",
-    "graphql": "^15.6.0",
+    "graphql": "^15.6.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-hook-form": "^7.16.2",
-    "type-fest": "^2.3.4"
+    "react-hook-form": "7.16.2",
+    "type-fest": "^2.5.0"
   }
 }

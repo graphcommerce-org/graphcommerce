@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.1.3...@graphcommerce/magento-cart@3.1.4) (2021-10-08)
+
+
+### Bug Fixes
+
+* conditional hook in CartSummary ([780c5c1](https://github.com/ho-nl/m2-pwa/commit/780c5c140e03ea5f77ea9cf5409498ed853e772c))
+* issue where the cart shippingMethod didn't have a value defined ([a1f27d1](https://github.com/ho-nl/m2-pwa/commit/a1f27d1bff01921ff2cf783394c2bb4a65285d17))
+
+
+
+
+
+## [3.1.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.1.2...@graphcommerce/magento-cart@3.1.3) (2021-10-07)
+
+
+### Bug Fixes
+
+* **cart:** agreements didn't handle state updates properly ([4401ff9](https://github.com/ho-nl/m2-pwa/commit/4401ff96a410379805d89bb2fa711df2d8a8fad0))
+* make sure if no payment method is filled in we get an error shown ([a203e57](https://github.com/ho-nl/m2-pwa/commit/a203e570caad0732427a178e8e8b10b4a15d676b))
+* make sure the CartAgreementsForm validates immediately ([eceacbb](https://github.com/ho-nl/m2-pwa/commit/eceacbb4803dd6e2701bf1835aa601c06ba4d6a3))
+
+
+
+
+
 ## [3.1.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.1.0...@graphcommerce/magento-cart@3.1.1) (2021-10-06)
 
 

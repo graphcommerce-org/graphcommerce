@@ -1,8 +1,15 @@
-import { createHandler, config } from '@graphcommerce/graphql-mesh'
+import { cwd } from 'process'
+import { createHandler, config, injectEnv } from '@graphcommerce/graphql-mesh'
+import { processConfig } from '@graphql-mesh/config'
+import { getMesh } from '@graphql-mesh/runtime'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { getBuiltMesh } from '../../.mesh'
+import meshConfig from '../../.meshrc.json'
 
-const handler = (async () => createHandler(await getBuiltMesh(), '/api/graphql'))()
+const handler = (async () =>
+  createHandler(
+    await getMesh(await processConfig(injectEnv(meshConfig), { dir: cwd() })),
+    '/api/graphql',
+  ))()
 
 export { config }
 

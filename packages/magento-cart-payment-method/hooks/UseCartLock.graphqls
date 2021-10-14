@@ -1,0 +1,7 @@
+extend type Mutation {
+  lockCart(lock: Boolean): Boolean
+}
+
+extend type Cart {
+  locked: Boolean!
+}

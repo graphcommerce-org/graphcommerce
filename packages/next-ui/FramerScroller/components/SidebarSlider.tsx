@@ -1,4 +1,3 @@
-import { relative } from 'path/posix'
 import {
   Scroller,
   ScrollerButton,
@@ -8,9 +7,10 @@ import {
 import { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import React, { ReactNode } from 'react'
-import { SvgImageSimple, iconChevronLeft, iconChevronRight } from '../..'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
+import SvgImageSimple from '../../SvgImage/SvgImageSimple'
+import { iconChevronLeft, iconChevronRight } from '../../icons'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -37,7 +37,6 @@ const useStyles = makeStyles(
       gridRowGap: theme.spacings.lg,
       alignContent: 'space-around',
       paddingRight: theme.page.horizontal,
-
       '& > *': {
         minWidth: responsiveVal(200, 400),
       },

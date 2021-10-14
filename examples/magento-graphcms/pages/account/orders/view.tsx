@@ -49,7 +49,7 @@ function OrderDetailPage(props: Props) {
 
   return (
     <>
-      <SheetShellHeader backFallbackTitle='Account' backFallbackHref='/account'>
+      <SheetShellHeader backFallbackTitle='Orders' backFallbackHref='/account/orders'>
         <Title size='small' component='span' icon={iconBox}>
           Order #{orderId}
         </Title>
@@ -102,8 +102,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await config.then(() => client.cache.extract()),
       variant: 'bottom',
       size: 'max',
-      backFallbackHref: '/account/orders',
-      backFallbackTitle: 'Orders',
     },
   }
 }

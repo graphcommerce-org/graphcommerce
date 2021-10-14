@@ -55,6 +55,9 @@ export const useChipMenuStyles = makeStyles(
         outline: 'none',
       },
     },
+    sectionHeaderWrapper: {
+      marginTop: 10,
+    },
   }),
   { name: 'ChipMenu' },
 )
@@ -109,7 +112,6 @@ export default function ChipMenu(props: ChipMenuProps) {
           selectedAndMenuHidden && classes.chipSelected,
         )}
       />
-
       <Menu
         anchorEl={openEl}
         open={!!openEl}
@@ -122,7 +124,12 @@ export default function ChipMenu(props: ChipMenuProps) {
         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
         classes={{ paper: classes.menuPaper, list: classes.menuList }}
       >
-        <SectionHeader labelLeft={label ?? ''} labelRight={labelRight ?? ''} usePadding />
+        <SectionHeader
+          labelLeft={label ?? ''}
+          labelRight={labelRight ?? ''}
+          usePadding
+          classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
+        />
         {children}
       </Menu>
     </>

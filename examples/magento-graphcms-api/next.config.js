@@ -5,7 +5,7 @@ if (!process.env.GRAPHCMS_URL || !process.env.GRAPHCMS_BEARER || !process.env.MA
   throw Error('Please specificy GRAPHCMS_URL, GRAPHCMS_BEARER and MAGENTO_ENDPOINT in your .env')
 }
 
-/** @type {import('next/dist/next-server/server/config').NextConfig} */
+/** @type {import('next/dist/server/config-shared').NextConfig} */
 const nextConfig = {
   // https://nextjs.org/docs/api-reference/next.config.js/configuring-onDemandEntries
   onDemandEntries: {
@@ -15,6 +15,10 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   experimental: { esmExternals: false },
+  // eslint-disable-next-line @typescript-eslint/require-await
+  redirects: async () => {
+    return [{ source: '/', destination: '/api/graphql', permanent: false }]
+  },
 }
 
 module.exports = withYarn1Workspaces(nextConfig)
