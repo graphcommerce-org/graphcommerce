@@ -81,10 +81,15 @@ const useStyles = makeStyles(
   { name: 'DesktopNavBar' },
 )
 
-export type MenuTabsProps = MenuProps & UseStyles<typeof useStyles> & { LinkProps?: MuiLinkProps }
+export type MenuTabsProps = MenuProps &
+  UseStyles<typeof useStyles> & {
+    LinkProps?: MuiLinkProps
+    iconScrollerBtnLeft?: React.ReactNode
+    iconScrollerBtnRight?: React.ReactNode
+  }
 
 export default function DesktopNavBar(props: MenuTabsProps) {
-  const { menu, LinkProps } = props
+  const { menu, LinkProps, iconScrollerBtnLeft, iconScrollerBtnRight } = props
   const classes = useStyles(props)
   const router = useRouter()
 
@@ -117,7 +122,7 @@ export default function DesktopNavBar(props: MenuTabsProps) {
             size='small'
             classes={{ root: clsx(classes.prevNextBtn, classes.prevBtn) }}
           >
-            <SvgImageSimple src={iconChevronLeft} />
+            {iconScrollerBtnLeft ?? <SvgImageSimple src={iconChevronLeft} />}
           </ScrollerButton>
         </m.div>
 
@@ -127,7 +132,7 @@ export default function DesktopNavBar(props: MenuTabsProps) {
             size='small'
             classes={{ root: clsx(classes.prevNextBtn, classes.nextBtn) }}
           >
-            <SvgImageSimple src={iconChevronRight} />
+            {iconScrollerBtnRight ?? <SvgImageSimple src={iconChevronRight} />}
           </ScrollerButton>
         </m.div>
       </div>
