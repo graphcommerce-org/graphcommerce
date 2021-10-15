@@ -1,9 +1,0 @@
-fragment RowProductBackstory on RowProduct {
-  description {
-    raw
-    html
-  }
-  asset {
-    ...Asset
-  }
-}

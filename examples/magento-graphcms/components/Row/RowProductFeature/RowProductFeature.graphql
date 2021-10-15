@@ -1,7 +1,0 @@
-fragment RowProductFeature on RowProduct {
-  title
-  description {
-    raw
-    html
-  }
-}

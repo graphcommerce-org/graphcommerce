@@ -6,12 +6,9 @@ import RowColumnThree from '../Row/RowColumnThree'
 import RowColumnTwo from '../Row/RowColumnTwo'
 import RowContentLinks from '../Row/RowContentLinks'
 import RowHeroBanner from '../Row/RowHeroBanner'
-import RowProductBackstory from '../Row/RowProductBackstory'
-import RowProductGrid from '../Row/RowProductGrid'
 import RowQuote from '../Row/RowQuote'
 import RowServiceOptions from '../Row/RowServiceOptions'
 import RowSpecialBanner from '../Row/RowSpecialBanner'
-import RowSwipeableGrid from '../Row/RowSwipeableGrid'
 import { PageContentQueryFragment } from './PageContentQueryFragment.gql'
 
 type ContentTypeRenderer = TypeRenderer<PageContentQueryFragment['pages'][0]['content'][0]>
@@ -21,11 +18,8 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
   RowColumnTwo,
   RowColumnThree,
   RowHeroBanner,
-  RowProductGrid,
   RowSpecialBanner,
   RowQuote,
-  RowSwipeableGrid,
-  RowProductBackstory,
   RowBlogContent,
   RowButtonLinkList,
   RowServiceOptions,

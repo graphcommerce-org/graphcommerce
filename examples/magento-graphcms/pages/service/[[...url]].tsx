@@ -53,9 +53,7 @@ function ServicePage({ pages }: Props) {
           <Title>{title}</Title>
         </AppShellTitle>
       </Container>
-      {/* <FramerNextPagesSlider> */}
       <PageContent {...pages[0]} />
-      {/* </FramerNextPagesSlider> */}
     </>
   )
 }

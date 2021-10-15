@@ -1,11 +1,10 @@
 fragment RowProduct on RowProduct {
-  identity
   variant
   asset {
     ...Asset
   }
   title
-  description {
+  productCopy {
     raw
   }
   pageLinks {

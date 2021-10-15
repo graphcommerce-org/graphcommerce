@@ -1,6 +1,0 @@
-fragment RowProductGrid on RowProduct {
-  title
-  pageLinks {
-    ...PageLink
-  }
-}

@@ -2,10 +2,10 @@ import { RelatedProductsFragment } from '@graphcommerce/magento-product'
 import { SidebarSlider, RenderType, responsiveVal } from '@graphcommerce/next-ui'
 import { Theme, Typography, makeStyles } from '@material-ui/core'
 import React from 'react'
-import renderers from '../../ProductListItems/renderers'
-import { RowProductRelatedFragment } from './RowProductRelated.gql'
+import renderers from '../../../ProductListItems/renderers'
+import { RowProductFragment } from '../RowProduct.gql'
 
-type RowProductRelatedProps = RowProductRelatedFragment & RelatedProductsFragment
+type RelatedProps = RowProductFragment & RelatedProductsFragment
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -16,7 +16,7 @@ const useStyles = makeStyles(
   { name: 'ProductRelated' },
 )
 
-export default function RowProductRelated(props: RowProductRelatedProps) {
+export default function Related(props: RelatedProps) {
   const { title, related_products } = props
   const classes = useStyles(props)
 

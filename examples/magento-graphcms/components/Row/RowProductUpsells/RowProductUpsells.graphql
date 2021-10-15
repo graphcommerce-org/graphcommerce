@@ -1,3 +1,0 @@
-fragment RowProductUpsells on RowProductUpsells {
-  title
-}

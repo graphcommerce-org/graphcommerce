@@ -18,14 +18,12 @@ fragment PageContentQueryFragment on Query {
       ...RowColumnThree
       ...RowBlogContent
       ...RowHeroBanner
-      ...RowProductGrid
       ...RowSpecialBanner
       ...RowQuote
-      ...RowSwipeableGrid
-      ...RowProductBackstory
       ...RowButtonLinkList
       ...RowServiceOptions
       ...RowContentLinks
+      ...RowProduct
     }
     asset {
       ...Asset

@@ -1,3 +1,0 @@
-fragment RowProductSpecs on RowProduct {
-  identity
-}

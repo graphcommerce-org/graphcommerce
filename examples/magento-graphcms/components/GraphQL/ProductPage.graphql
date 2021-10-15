@@ -1,4 +1,5 @@
 query ProductPage(
+  $url: String!
   $urlKey: String!
   $rootCategory: String!
   $productUrls: [String!]!
@@ -9,6 +10,6 @@ query ProductPage(
   ...FooterQueryFragment
   ...UspsQueryFragment
   ...ProductSidebarUsps
-  ...ProductpagesContentQueryFragment
   ...ProductPageQueryFragment
+  ...PageContentQueryFragment
 }

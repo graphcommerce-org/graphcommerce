@@ -24,15 +24,19 @@ import { Product } from 'schema-dts'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import FullPageShellHeader from '../../../components/AppShell/FullPageShellHeader'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
+import PageContent from '../../../components/PageContent'
+import RowProductDescription from '../../../components/ProductDescription'
 import ProductUsps from '../../../components/ProductUsps'
-import ProductpagesContent from '../../../components/ProductpagesContent'
-import RowProductDescription from '../../../components/Row/RowProductDescription'
-import RowProductFeature from '../../../components/Row/RowProductFeature'
-import RowProductFeatureBoxed from '../../../components/Row/RowProductFeatureBoxed'
-import RowProductRelated from '../../../components/Row/RowProductRelated'
-import RowProductReviews from '../../../components/Row/RowProductReviews'
-import RowProductSpecs from '../../../components/Row/RowProductSpecs'
-import RowProductUpsells from '../../../components/Row/RowProductUpsells'
+import RowProduct from '../../../components/Row/RowProduct'
+import Backstory from '../../../components/Row/RowProduct/variant/Backstory'
+import Feature from '../../../components/Row/RowProduct/variant/Feature'
+import FeatureBoxed from '../../../components/Row/RowProduct/variant/FeatureBoxed'
+import Grid from '../../../components/Row/RowProduct/variant/Grid'
+import Related from '../../../components/Row/RowProduct/variant/Related'
+import Reviews from '../../../components/Row/RowProduct/variant/Reviews'
+import Specs from '../../../components/Row/RowProduct/variant/Specs'
+import Swipeable from '../../../components/Row/RowProduct/variant/Swipeable'
+import Upsells from '../../../components/Row/RowProduct/variant/Upsells'
 import apolloClient from '../../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -46,15 +50,8 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductVirtual(props: Props) {
-  const {
-    products,
-    usps,
-    sidebarUsps,
-    typeProducts,
-    productpages,
-    backFallbackHref,
-    backFallbackTitle,
-  } = props
+  const { products, usps, sidebarUsps, typeProducts, pages, backFallbackHref, backFallbackTitle } =
+    props
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
@@ -101,21 +98,34 @@ function ProductVirtual(props: Props) {
         <ProductUsps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
       <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
-      <ProductpagesContent
-        renderer={{
-          RowProductFeature: (rowProps) => <RowProductFeature {...rowProps} {...product} />,
-          RowProductFeatureBoxed: (rowProps) => (
-            <RowProductFeatureBoxed {...rowProps} {...product} />
-          ),
-          RowProductSpecs: (rowProps) => (
-            <RowProductSpecs {...rowProps} {...product} aggregations={aggregations} />
-          ),
-          RowProductReviews: (rowProps) => <RowProductReviews {...rowProps} {...product} />,
-          RowProductRelated: (rowProps) => <RowProductRelated {...rowProps} {...product} />,
-          RowProductUpsells: (rowProps) => <RowProductUpsells {...rowProps} {...product} />,
-        }}
-        content={productpages?.[0].content}
-      />
+
+      {pages?.[0] && (
+        <PageContent
+          renderer={{
+            RowProduct: (rowProps) => (
+              <RowProduct
+                {...rowProps}
+                renderer={{
+                  Specs: (rowProductProps) => (
+                    <Specs {...rowProductProps} {...product} aggregations={aggregations} />
+                  ),
+                  Backstory: (rowProductProps) => <Backstory {...rowProductProps} />,
+                  Feature: (rowProductProps) => <Feature {...rowProductProps} {...product} />,
+                  FeatureBoxed: (rowProductProps) => (
+                    <FeatureBoxed {...rowProductProps} {...product} />
+                  ),
+                  Grid: (rowProductProps) => <Grid {...rowProductProps} {...product} />,
+                  Related: (rowProductProps) => <Related {...rowProductProps} {...product} />,
+                  Reviews: (rowProductProps) => <Reviews {...rowProductProps} {...product} />,
+                  Upsells: (rowProductProps) => <Upsells {...rowProductProps} {...product} />,
+                  Swipeable: (rowProductProps) => <Swipeable {...rowProductProps} {...product} />,
+                }}
+              />
+            ),
+          }}
+          content={pages?.[0].content}
+        />
+      )}
     </>
   )
 }
@@ -147,6 +157,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const productPage = staticClient.query({
     query: ProductPageDocument,
     variables: {
+      url: 'product/global',
       urlKey,
       productUrls,
       rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',

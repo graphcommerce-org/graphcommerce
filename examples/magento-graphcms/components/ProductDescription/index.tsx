@@ -7,6 +7,7 @@ type RowProductDescriptionProps = ProductPageDescriptionProps & {
   right: React.ReactNode
 }
 
+// @todo alles verhuizen naar ProductPageDescription in magento-product package
 export default function RowProductPageDescription(props: RowProductDescriptionProps) {
   const { right, name, description } = props
 

@@ -2,15 +2,15 @@ import RichTextParagraphStrongStroked from '@graphcommerce/graphcms-ui/RichText/
 import { ParagraphWithSidebarSlide, RenderType } from '@graphcommerce/next-ui'
 import { useTheme } from '@material-ui/core'
 import React from 'react'
-import Asset from '../../Asset'
-import { ProductListItemsProps } from '../../ProductListItems/ProductListItems'
-import renderers from '../../ProductListItems/renderers'
-import { RowProductBackstoryFragment } from './RowProductBackstory.gql'
+import Asset from '../../../Asset'
+import { ProductListItemsProps } from '../../../ProductListItems/ProductListItems'
+import renderers from '../../../ProductListItems/renderers'
+import { RowProductFragment } from '../RowProduct.gql'
 
-type RowProductBackstoryProps = RowProductBackstoryFragment & ProductListItemsProps
+type BackstoryProps = RowProductFragment & ProductListItemsProps
 
-export default function RowProductBackstory(props: RowProductBackstoryProps) {
-  const { description, asset, ...productListItems } = props
+export default function Backstory(props: BackstoryProps) {
+  const { productCopy, asset, ...productListItems } = props
   const theme = useTheme()
   const singleItem = productListItems?.items?.[productListItems.items?.length - 1]
 
@@ -31,7 +31,7 @@ export default function RowProductBackstory(props: RowProductBackstoryProps) {
         />
       }
     >
-      <RichTextParagraphStrongStroked raw={description?.raw ?? <></>} />
+      {productCopy?.raw && <RichTextParagraphStrongStroked {...productCopy} />}
     </ParagraphWithSidebarSlide>
   )
 }

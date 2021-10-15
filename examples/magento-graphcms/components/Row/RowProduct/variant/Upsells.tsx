@@ -2,10 +2,10 @@ import { UpsellProductsFragment } from '@graphcommerce/magento-product'
 import { SidebarSlider, RenderType, responsiveVal } from '@graphcommerce/next-ui'
 import { Theme, Typography, makeStyles } from '@material-ui/core'
 import React from 'react'
-import renderers from '../../ProductListItems/renderers'
-import { RowProductUpsellsFragment } from './RowProductUpsells.gql'
+import renderers from '../../../ProductListItems/renderers'
+import { RowProductFragment } from '../RowProduct.gql'
 
-type RowProductUpsellsProps = RowProductUpsellsFragment & UpsellProductsFragment
+type UpsellsProps = RowProductFragment & UpsellProductsFragment
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -16,7 +16,7 @@ const useStyles = makeStyles(
   { name: 'ProductUpsells' },
 )
 
-export default function RowProductUpsells(props: RowProductUpsellsProps) {
+export default function Upsells(props: UpsellsProps) {
   const { title, upsell_products } = props
   const classes = useStyles(props)
 
