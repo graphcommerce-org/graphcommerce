@@ -45,24 +45,32 @@ function CmsPage(props: Props) {
       {pages?.[0] ? (
         <PageContent
           renderer={{
-            RowProduct: (rowProps) => (
-              <RowProduct
-                {...rowProps}
-                renderer={{
-                  Specs: (rowProductProps) => <Specs {...rowProductProps} {...product} />,
-                  Backstory: (rowProductProps) => <Backstory {...rowProductProps} />,
-                  Feature: (rowProductProps) => <Feature {...rowProductProps} {...product} />,
-                  FeatureBoxed: (rowProductProps) => (
-                    <FeatureBoxed {...rowProductProps} {...product} />
-                  ),
-                  Grid: (rowProductProps) => <Grid {...rowProductProps} {...product} />,
-                  Related: (rowProductProps) => <Related {...rowProductProps} {...product} />,
-                  Reviews: (rowProductProps) => <Reviews {...rowProductProps} {...product} />,
-                  Upsells: (rowProductProps) => <Upsells {...rowProductProps} {...product} />,
-                  Swipeable: (rowProductProps) => <Swipeable {...rowProductProps} {...product} />,
-                }}
-              />
-            ),
+            RowProduct: (rowProps) => {
+              return (
+                <RowProduct
+                  {...rowProps}
+                  renderer={{
+                    Specs: (rowProductProps) => <Specs {...rowProductProps} {...product} />,
+                    Backstory: (rowProductProps) => (
+                      <Backstory {...rowProductProps} items={products?.items} />
+                    ),
+                    Feature: (rowProductProps) => <Feature {...rowProductProps} {...product} />,
+                    FeatureBoxed: (rowProductProps) => (
+                      <FeatureBoxed {...rowProductProps} {...product} />
+                    ),
+                    Grid: (rowProductProps) => (
+                      <Grid {...rowProductProps} items={products?.items} />
+                    ),
+                    Related: (rowProductProps) => <Related {...rowProductProps} {...product} />,
+                    Reviews: (rowProductProps) => <Reviews {...rowProductProps} {...product} />,
+                    Upsells: (rowProductProps) => <Upsells {...rowProductProps} {...product} />,
+                    Swipeable: (rowProductProps) => (
+                      <Swipeable {...rowProductProps} items={products?.items} />
+                    ),
+                  }}
+                />
+              )
+            },
           }}
           content={pages?.[0].content}
         />

@@ -8,5 +8,11 @@ type VariantRenderer = Record<
 type RowProductProps = RowProductFragment & { renderer: VariantRenderer }
 
 export default function RowProduct(props: RowProductProps) {
-  return <>Use RowProductRenderer</>
+  const { renderer, variant, ...RowProductProps } = props
+
+  if (!variant) return <></>
+
+  const RenderType = renderer[variant]
+
+  return <RenderType {...RowProductProps} />
 }

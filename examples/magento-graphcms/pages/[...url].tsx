@@ -61,7 +61,6 @@ function CategoryPage(props: Props) {
   const {
     categories,
     products,
-
     filters,
     params,
     filterTypes,
@@ -80,7 +79,6 @@ function CategoryPage(props: Props) {
   if (isLanding && productList) productList = products?.items?.slice(0, 8)
 
   const product = products?.items?.[0]
-  const aggregations = typeProducts?.aggregations
 
   return (
     <>
@@ -145,7 +143,7 @@ function CategoryPage(props: Props) {
                   FeatureBoxed: (rowProductProps) => (
                     <FeatureBoxed {...rowProductProps} {...product} />
                   ),
-                  Grid: (rowProductProps) => <Grid {...rowProductProps} {...product} />,
+                  Grid: (rowProductProps) => <Grid {...rowProductProps} />,
                   Related: (rowProductProps) => <Related {...rowProductProps} {...product} />,
                   Reviews: (rowProductProps) => <Reviews {...rowProductProps} {...product} />,
                   Upsells: (rowProductProps) => <Upsells {...rowProductProps} {...product} />,
