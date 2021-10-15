@@ -138,16 +138,22 @@ function ProductConfigurable(props: Props) {
                     Specs: (rowProductProps) => (
                       <Specs {...rowProductProps} {...product} aggregations={aggregations} />
                     ),
-                    Backstory: (rowProductProps) => <Backstory {...rowProductProps} />,
+                    Backstory: (rowProductProps) => (
+                      <Backstory {...rowProductProps} items={products?.items} />
+                    ),
                     Feature: (rowProductProps) => <Feature {...rowProductProps} {...product} />,
                     FeatureBoxed: (rowProductProps) => (
                       <FeatureBoxed {...rowProductProps} {...product} />
                     ),
-                    Grid: (rowProductProps) => <Grid {...rowProductProps} {...product} />,
+                    Grid: (rowProductProps) => (
+                      <Grid {...rowProductProps} items={products?.items} />
+                    ),
                     Related: (rowProductProps) => <Related {...rowProductProps} {...product} />,
                     Reviews: (rowProductProps) => <Reviews {...rowProductProps} {...product} />,
                     Upsells: (rowProductProps) => <Upsells {...rowProductProps} {...product} />,
-                    Swipeable: (rowProductProps) => <Swipeable {...rowProductProps} {...product} />,
+                    Swipeable: (rowProductProps) => (
+                      <Swipeable {...rowProductProps} items={products?.items} />
+                    ),
                   }}
                 />
               ),

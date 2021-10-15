@@ -138,16 +138,20 @@ function CategoryPage(props: Props) {
                 {...rowProps}
                 renderer={{
                   Specs: (rowProductProps) => <Specs {...rowProductProps} {...product} />,
-                  Backstory: (rowProductProps) => <Backstory {...rowProductProps} />,
+                  Backstory: (rowProductProps) => (
+                    <Backstory {...rowProductProps} items={productList} />
+                  ),
                   Feature: (rowProductProps) => <Feature {...rowProductProps} {...product} />,
                   FeatureBoxed: (rowProductProps) => (
                     <FeatureBoxed {...rowProductProps} {...product} />
                   ),
-                  Grid: (rowProductProps) => <Grid {...rowProductProps} />,
+                  Grid: (rowProductProps) => <Grid {...rowProductProps} items={productList} />,
                   Related: (rowProductProps) => <Related {...rowProductProps} {...product} />,
                   Reviews: (rowProductProps) => <Reviews {...rowProductProps} {...product} />,
                   Upsells: (rowProductProps) => <Upsells {...rowProductProps} {...product} />,
-                  Swipeable: (rowProductProps) => <Swipeable {...rowProductProps} {...product} />,
+                  Swipeable: (rowProductProps) => (
+                    <Swipeable {...rowProductProps} items={productList} />
+                  ),
                 }}
               />
             ),
