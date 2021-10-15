@@ -1,8 +1,9 @@
 import { ProductListItemsFragment } from '@graphcommerce/magento-product'
-import { SidebarSlider, RenderType, responsiveVal } from '@graphcommerce/next-ui'
-import { Theme, Typography, makeStyles } from '@material-ui/core'
+import { RenderType, responsiveVal, SidebarSlider } from '@graphcommerce/next-ui'
+import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 import renderers from '../../../ProductListItems/renderers'
+import { RowProductFragment } from '../RowProduct.gql'
 
 type SwipeableProps = RowProductFragment & ProductListItemsFragment
 
