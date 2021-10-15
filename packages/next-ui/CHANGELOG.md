@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.3.3...@graphcommerce/next-ui@3.4.0) (2021-10-15)
+
+
+### Features
+
+* **DesktopNavBar:** allow custom scroller button icons ([401f457](https://github.com/ho-nl/m2-pwa/commit/401f4572ce67dbe52008dca8e1d4473e2fcbf5cf))
+
+
+
+
+
 ## [3.3.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.3.2...@graphcommerce/next-ui@3.3.3) (2021-10-13)
 
 

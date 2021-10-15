@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@3.0.25...@graphcommerce/magento-customer@3.1.0) (2021-10-15)
+
+
+### Features
+
+* **CustomerFab:** allow custom styling ([da38425](https://github.com/ho-nl/m2-pwa/commit/da384252b5e6e1025e0e90d683f7c60691366fb5))
+* **CustomerFab:** allow full customization instead of just styling ([b9f4248](https://github.com/ho-nl/m2-pwa/commit/b9f42483c157b56f7406bf51b74557278c64a597))
+
+
+
+
+
 ## [3.0.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@3.0.8...@graphcommerce/magento-customer@3.0.9) (2021-09-30)
 
 

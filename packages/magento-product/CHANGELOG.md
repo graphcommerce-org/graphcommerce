@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.28](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.0.27...@graphcommerce/magento-product@3.0.28) (2021-10-15)
+
+
+### Bug Fixes
+
+* **ProductListCount:** use theme instead of hardcoded color value ([cdfa232](https://github.com/ho-nl/m2-pwa/commit/cdfa2325c82fb94d4ff269e1d99ded1bca5e3a10))
+
+
+
+
+
 ## [3.0.23](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.0.22...@graphcommerce/magento-product@3.0.23) (2021-10-11)
 
 
