@@ -10,9 +10,9 @@ type FeatureProps = RowProductFragment & ProductFeatureMediaFragment
 
 export default function Feature(props: FeatureProps) {
   const { productCopy, title, media_gallery } = props
+  const theme = useTheme()
   const item = media_gallery?.[2] ?? media_gallery?.[0]
 
-  const theme = useTheme()
   if (!item) return null
 
   return (

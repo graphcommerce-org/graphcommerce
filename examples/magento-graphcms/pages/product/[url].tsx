@@ -27,16 +27,18 @@ import { ProductPageDocument, ProductPageQuery } from '../../components/GraphQL/
 import PageContent from '../../components/PageContent'
 import RowProductDescription from '../../components/ProductDescription'
 import ProductUsps from '../../components/ProductUsps'
-import RowProduct from '../../components/Row/RowProduct'
-import Backstory from '../../components/Row/RowProduct/variant/Backstory'
-import Feature from '../../components/Row/RowProduct/variant/Feature'
-import FeatureBoxed from '../../components/Row/RowProduct/variant/FeatureBoxed'
-import Grid from '../../components/Row/RowProduct/variant/Grid'
-import Related from '../../components/Row/RowProduct/variant/Related'
-import Reviews from '../../components/Row/RowProduct/variant/Reviews'
-import Specs from '../../components/Row/RowProduct/variant/Specs'
-import Swipeable from '../../components/Row/RowProduct/variant/Swipeable'
-import Upsells from '../../components/Row/RowProduct/variant/Upsells'
+import {
+  Backstory,
+  Feature,
+  FeatureBoxed,
+  Grid,
+  Related,
+  Reviews,
+  RowProduct,
+  Specs,
+  Swipeable,
+  Upsells,
+} from '../../components/Row'
 import apolloClient from '../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -156,7 +158,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const staticClient = apolloClient(locale)
 
   const urlKey = params?.url ?? '??'
-  const productUrls = [`product/${urlKey}`, 'product/global']
 
   const conf = client.query({ query: StoreConfigDocument })
   const productPage = staticClient.query({
@@ -164,7 +165,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     variables: {
       url: 'product/global',
       urlKey,
-      productUrls,
       rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
     },
   })
