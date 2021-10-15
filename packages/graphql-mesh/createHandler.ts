@@ -41,7 +41,7 @@ export function injectEnv(json: YamlConfig.Config & { $schema?: string }): YamlC
 
 export async function createHandler(meshInstance: MeshInstance, path: string) {
   const apolloServer = new ApolloServer({
-    context: meshInstance.contextBuilder,
+    context: ({ req }) => req,
     introspection: true,
     plugins: [
       ApolloServerPluginLandingPageGraphQLPlayground({
