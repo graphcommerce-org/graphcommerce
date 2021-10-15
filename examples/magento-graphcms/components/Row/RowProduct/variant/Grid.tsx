@@ -10,8 +10,6 @@ type GridProps = RowProductFragment & ProductListItemsProps
 export default function Grid(props: GridProps) {
   const { title, pageLinks, ...productListItems } = props
 
-  console.log(props)
-
   return (
     <ContainerWithHeader
       title={title}
