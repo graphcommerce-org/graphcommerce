@@ -1,12 +1,6 @@
 import { useQuery } from '@apollo/client'
-import {
-  iconPersonAlt,
-  StyledBadge,
-  SvgImage,
-  SvgImageSimple,
-  UseStyles,
-} from '@graphcommerce/next-ui'
-import { Fab, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import { iconPersonAlt, StyledBadge, SvgImageSimple, UseStyles } from '@graphcommerce/next-ui'
+import { Fab, FabProps as FabPropsType, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from '../../hooks'
@@ -21,16 +15,17 @@ type CustomerFabContentProps = CustomerTokenQuery & {
   icon?: React.ReactNode
   authHref: string
   guestHref: string
+  FabProps?: Omit<FabPropsType, 'children'>
 } & UseStyles<typeof useStyles>
 
 function CustomerFabContent(props: CustomerFabContentProps) {
-  const { customerToken, icon, guestHref, authHref } = props
+  const { customerToken, icon, guestHref, authHref, FabProps } = props
   const classes = useStyles(props)
   const requireAuth = Boolean(!customerToken || !customerToken.valid)
 
   return (
     <PageLink href={requireAuth ? guestHref : authHref} passHref>
-      <Fab style={{ boxShadow: 'none' }} aria-label='Open Menu' size='large'>
+      <Fab style={{ boxShadow: 'none' }} aria-label='Open Menu' size='large' {...FabProps}>
         <StyledBadge
           badgeContent={customerToken?.token ? 1 : 0}
           color={customerToken?.valid ? 'primary' : 'error'}
