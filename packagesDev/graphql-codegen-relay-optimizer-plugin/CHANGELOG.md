@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.102.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-codegen-relay-optimizer-plugin@2.102.5...@graphcommerce/graphql-codegen-relay-optimizer-plugin@2.102.6) (2021-10-18)
+
+
+### Bug Fixes
+
+* graphql-mesh missing inmemory lru ([6c71c25](https://github.com/ho-nl/m2-pwa/commit/6c71c256911072ace19037616e0ce2ab478bf070))
+
+
+
+
+
 ## [2.102.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-codegen-relay-optimizer-plugin@2.102.0...@graphcommerce/graphql-codegen-relay-optimizer-plugin@2.102.1) (2021-09-28)
 
 

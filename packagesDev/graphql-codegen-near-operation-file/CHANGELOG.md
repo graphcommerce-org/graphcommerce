@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-codegen-near-operation-file@2.103.5...@graphcommerce/graphql-codegen-near-operation-file@2.103.6) (2021-10-18)
+
+
+### Bug Fixes
+
+* graphql-mesh missing inmemory lru ([6c71c25](https://github.com/ho-nl/m2-pwa/commit/6c71c256911072ace19037616e0ce2ab478bf070))
+
+
+
+
+
 ## [2.103.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-codegen-near-operation-file@2.103.0...@graphcommerce/graphql-codegen-near-operation-file@2.103.1) (2021-09-28)
 
 

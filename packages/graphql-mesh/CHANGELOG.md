@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-mesh@3.0.8...@graphcommerce/graphql-mesh@3.0.9) (2021-10-18)
+
+
+### Bug Fixes
+
+* add cache-inmemory-lru ([2cd23a4](https://github.com/ho-nl/m2-pwa/commit/2cd23a40c8a2b02175b160aa9ce0b695c88c12f7))
+* graphql-mesh missing inmemory lru ([6c71c25](https://github.com/ho-nl/m2-pwa/commit/6c71c256911072ace19037616e0ce2ab478bf070))
+
+
+
+
+
 ## [3.0.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-mesh@3.0.0...@graphcommerce/graphql-mesh@3.0.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/graphql-mesh

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.105.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms-api@2.105.8...@graphcommerce/magento-graphcms-api@2.105.9) (2021-10-18)
+
+
+### Bug Fixes
+
+* graphql-mesh missing inmemory lru ([6c71c25](https://github.com/ho-nl/m2-pwa/commit/6c71c256911072ace19037616e0ce2ab478bf070))
+
+
+
+
+
 ## [2.105.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms-api@2.105.7...@graphcommerce/magento-graphcms-api@2.105.8) (2021-10-13)
 
 

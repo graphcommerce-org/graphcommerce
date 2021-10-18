@@ -1,7 +1,7 @@
 {
   "name": "@graphcommerce/magento-graphcms",
   "homepage": "https://magento-graphcms.vercel.app/",
-  "version": "2.122.0",
+  "version": "2.122.1",
   "private": true,
   "sideEffects": false,
   "engines": {
@@ -28,8 +28,8 @@
     "@graphcommerce/googletagmanager": "^0.2.7",
     "@graphcommerce/graphcms-ui": "^2.103.24",
     "@graphcommerce/graphql": "^2.103.7",
-    "@graphcommerce/graphql-codegen-near-operation-file": "^2.103.5",
-    "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "^2.102.5",
+    "@graphcommerce/graphql-codegen-near-operation-file": "^2.103.6",
+    "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "^2.102.6",
     "@graphcommerce/image": "^2.104.10",
     "@graphcommerce/magento-cart": "^3.1.14",
     "@graphcommerce/magento-cart-billing-address": "^2.104.28",

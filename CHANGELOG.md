@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.133.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.133.0...@graphcommerce/graphcommerce@2.133.1) (2021-10-18)
+
+
+### Bug Fixes
+
+* add cache-inmemory-lru ([2cd23a4](https://github.com/ho-nl/m2-pwa/commit/2cd23a40c8a2b02175b160aa9ce0b695c88c12f7))
+* graphql-mesh missing inmemory lru ([6c71c25](https://github.com/ho-nl/m2-pwa/commit/6c71c256911072ace19037616e0ce2ab478bf070))
+
+
+
+
+
 # [2.133.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.132.0...@graphcommerce/graphcommerce@2.133.0) (2021-10-18)
 
 
