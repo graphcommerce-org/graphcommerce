@@ -3,13 +3,13 @@ import { Image } from '@graphcommerce/image'
 import { RowImageTextBoxed } from '@graphcommerce/next-ui'
 import { Typography, useTheme } from '@material-ui/core'
 import React from 'react'
+import { RowProductFragment } from '../RowProduct.gql'
 import { ProductFeatureMediaBoxedFragment } from './ProductFeatureMediaBoxed.gql'
-import { RowProductFeatureBoxedFragment } from './RowProductFeatureBoxed.gql'
 
-type RowProductFeatureBoxedProps = RowProductFeatureBoxedFragment & ProductFeatureMediaBoxedFragment
+type FeatureBoxedProps = RowProductFragment & ProductFeatureMediaBoxedFragment
 
-export default function RowProductFeatureBoxedBoxed(props: RowProductFeatureBoxedProps) {
-  const { copy, topic, media_gallery } = props
+export default function FeatureBoxed(props: FeatureBoxedProps) {
+  const { productCopy, title, media_gallery } = props
   const item = media_gallery?.[1] ?? media_gallery?.[0]
   const theme = useTheme()
 
@@ -33,8 +33,8 @@ export default function RowProductFeatureBoxedBoxed(props: RowProductFeatureBoxe
         )
       }
     >
-      {topic && <Typography variant='overline'>{topic}</Typography>}
-      <RichText {...copy} />
+      {title && <Typography variant='overline'>{title}</Typography>}
+      {productCopy?.raw && <RichText {...productCopy} />}
     </RowImageTextBoxed>
   )
 }

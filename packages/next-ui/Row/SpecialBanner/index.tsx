@@ -78,7 +78,7 @@ const useStyles = makeStyles(
 
 export type SpecialBannerProps = UseStyles<typeof useStyles> &
   ContainerProps & {
-    asset: React.ReactNode
+    asset?: React.ReactNode
     pageLinks?: React.ReactNode
     topic: React.ReactNode
     children: React.ReactNode

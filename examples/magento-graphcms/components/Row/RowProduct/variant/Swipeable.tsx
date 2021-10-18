@@ -1,11 +1,11 @@
 import { ProductListItemsFragment } from '@graphcommerce/magento-product'
-import { SidebarSlider, RenderType, responsiveVal } from '@graphcommerce/next-ui'
-import { Theme, Typography, makeStyles } from '@material-ui/core'
+import { RenderType, responsiveVal, SidebarSlider } from '@graphcommerce/next-ui'
+import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
-import renderers from '../../ProductListItems/renderers'
-import { RowSwipeableGridFragment } from './RowSwipeableGrid.gql'
+import renderers from '../../../ProductListItems/renderers'
+import { RowProductFragment } from '../RowProduct.gql'
 
-type RowSwipeableGridProps = RowSwipeableGridFragment & ProductListItemsFragment
+type SwipeableProps = RowProductFragment & ProductListItemsFragment
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -19,11 +19,11 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: 'RowSwipeableGrid',
+    name: 'Swipeable',
   },
 )
 
-export default function RowSwipeableGrid(props: RowSwipeableGridProps) {
+export default function Swipeable(props: SwipeableProps) {
   const { title, items } = props
   const classes = useStyles(props)
 

@@ -1,5 +1,5 @@
 fragment RowHeroBanner on RowHeroBanner {
-  asset {
+  heroAsset: asset {
     ...Asset
   }
   copy {

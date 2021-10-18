@@ -9,9 +9,16 @@ import FullPageShell, { FullPageShellProps } from '../../components/AppShell/Ful
 import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.gql'
 import { DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
-import RowProductBackstory from '../../components/Row/RowProductBackstory'
-import RowProductGrid from '../../components/Row/RowProductGrid'
-import RowSwipeableGrid from '../../components/Row/RowSwipeableGrid'
+import RowProduct from '../../components/Row/RowProduct'
+import Backstory from '../../components/Row/RowProduct/variant/Backstory'
+import Feature from '../../components/Row/RowProduct/variant/Feature'
+import FeatureBoxed from '../../components/Row/RowProduct/variant/FeatureBoxed'
+import Grid from '../../components/Row/RowProduct/variant/Grid'
+import Related from '../../components/Row/RowProduct/variant/Related'
+import Reviews from '../../components/Row/RowProduct/variant/Reviews'
+import Specs from '../../components/Row/RowProduct/variant/Specs'
+import Swipeable from '../../components/Row/RowProduct/variant/Swipeable'
+import Upsells from '../../components/Row/RowProduct/variant/Upsells'
 import apolloClient from '../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -25,6 +32,8 @@ function CmsPage(props: Props) {
   const { cmsPage, pages, products } = props
   const title = cmsPage?.title ?? ''
 
+  const product = products?.items?.[0]
+
   return (
     <>
       <PageMeta
@@ -32,12 +41,36 @@ function CmsPage(props: Props) {
         metaDescription={cmsPage?.meta_description ?? ''}
       />
 
+      {/* todo: only allow rendering Grid, Swipeable and Backstory here */}
       {pages?.[0] ? (
         <PageContent
           renderer={{
-            RowProductBackstory: (p) => <RowProductBackstory {...p} items={products?.items} />,
-            RowProductGrid: (p) => <RowProductGrid {...p} items={products?.items} />,
-            RowSwipeableGrid: (p) => <RowSwipeableGrid {...p} items={products?.items} />,
+            RowProduct: (rowProps) => {
+              return (
+                <RowProduct
+                  {...rowProps}
+                  renderer={{
+                    Specs: (rowProductProps) => <Specs {...rowProductProps} {...product} />,
+                    Backstory: (rowProductProps) => (
+                      <Backstory {...rowProductProps} items={products?.items} />
+                    ),
+                    Feature: (rowProductProps) => <Feature {...rowProductProps} {...product} />,
+                    FeatureBoxed: (rowProductProps) => (
+                      <FeatureBoxed {...rowProductProps} {...product} />
+                    ),
+                    Grid: (rowProductProps) => (
+                      <Grid {...rowProductProps} items={products?.items} />
+                    ),
+                    Related: (rowProductProps) => <Related {...rowProductProps} {...product} />,
+                    Reviews: (rowProductProps) => <Reviews {...rowProductProps} {...product} />,
+                    Upsells: (rowProductProps) => <Upsells {...rowProductProps} {...product} />,
+                    Swipeable: (rowProductProps) => (
+                      <Swipeable {...rowProductProps} items={products?.items} />
+                    ),
+                  }}
+                />
+              )
+            },
           }}
           content={pages?.[0].content}
         />

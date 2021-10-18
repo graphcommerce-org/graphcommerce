@@ -2,9 +2,9 @@ import { ProductSpecs, ProductSpecsProps } from '@graphcommerce/magento-product'
 import { Row, SectionContainer } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import { RowProductSpecsFragment } from './RowProductSpecs.gql'
+import { RowProductFragment } from '../RowProduct.gql'
 
-type RowProductSpecsProps = RowProductSpecsFragment & ProductSpecsProps
+type SpecsProps = RowProductFragment & ProductSpecsProps
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -15,11 +15,11 @@ const useStyles = makeStyles(
       marginBottom: theme.spacings.md,
     },
   }),
-  { name: 'RowProductSpecs' },
+  { name: 'Specs' },
 )
 
-export default function RowProductSpecs(props: RowProductSpecsProps) {
-  const { aggregations } = props
+export default function Specs(props: SpecsProps) {
+  const { title, aggregations } = props
   const classes = useStyles()
 
   if (!aggregations) return null
@@ -27,7 +27,7 @@ export default function RowProductSpecs(props: RowProductSpecsProps) {
   return (
     <Row className={classes.root}>
       <SectionContainer
-        labelLeft='Product specifications'
+        labelLeft={title}
         classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
       >
         <ProductSpecs aggregations={aggregations} />

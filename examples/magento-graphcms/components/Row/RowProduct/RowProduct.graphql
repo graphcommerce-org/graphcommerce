@@ -1,0 +1,13 @@
+fragment RowProduct on RowProduct {
+  variant
+  asset {
+    ...Asset
+  }
+  title
+  productCopy {
+    raw
+  }
+  pageLinks {
+    ...PageLink
+  }
+}

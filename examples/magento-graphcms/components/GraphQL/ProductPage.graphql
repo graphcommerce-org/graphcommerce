@@ -1,7 +1,7 @@
 query ProductPage(
+  $url: String!
   $urlKey: String!
   $rootCategory: String!
-  $productUrls: [String!]!
   $reviewPageSize: Int = 3
   $reviewPage: Int = 1
 ) {
@@ -9,6 +9,6 @@ query ProductPage(
   ...FooterQueryFragment
   ...UspsQueryFragment
   ...ProductSidebarUsps
-  ...ProductpagesContentQueryFragment
   ...ProductPageQueryFragment
+  ...PageContentQueryFragment
 }

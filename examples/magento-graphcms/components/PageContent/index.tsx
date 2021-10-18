@@ -1,17 +1,16 @@
 import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import RowBlogContent from '../Blog/RowBlogContent'
-import RowButtonLinkList from '../Row/RowButtonLinkList'
-import RowColumnOne from '../Row/RowColumnOne'
-import RowColumnThree from '../Row/RowColumnThree'
-import RowColumnTwo from '../Row/RowColumnTwo'
-import RowContentLinks from '../Row/RowContentLinks'
-import RowHeroBanner from '../Row/RowHeroBanner'
-import RowProductBackstory from '../Row/RowProductBackstory'
-import RowProductGrid from '../Row/RowProductGrid'
-import RowQuote from '../Row/RowQuote'
-import RowServiceOptions from '../Row/RowServiceOptions'
-import RowSpecialBanner from '../Row/RowSpecialBanner'
-import RowSwipeableGrid from '../Row/RowSwipeableGrid'
+import {
+  RowButtonLinkList,
+  RowColumnOne,
+  RowColumnThree,
+  RowColumnTwo,
+  RowContentLinks,
+  RowHeroBanner,
+  RowQuote,
+  RowServiceOptions,
+  RowSpecialBanner,
+} from '../Row'
 import { PageContentQueryFragment } from './PageContentQueryFragment.gql'
 
 type ContentTypeRenderer = TypeRenderer<PageContentQueryFragment['pages'][0]['content'][0]>
@@ -21,11 +20,8 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
   RowColumnTwo,
   RowColumnThree,
   RowHeroBanner,
-  RowProductGrid,
   RowSpecialBanner,
   RowQuote,
-  RowSwipeableGrid,
-  RowProductBackstory,
   RowBlogContent,
   RowButtonLinkList,
   RowServiceOptions,

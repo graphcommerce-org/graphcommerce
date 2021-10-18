@@ -1,6 +1,0 @@
-fragment RowProductFeature on RowProductFeature {
-  topic
-  copy {
-    raw
-  }
-}

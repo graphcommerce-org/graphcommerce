@@ -3,11 +3,11 @@ import { ProductReviews, ProductReviewsProps } from '@graphcommerce/magento-revi
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Row, SectionContainer } from '@graphcommerce/next-ui'
 import React from 'react'
-import { RowProductReviewsFragment } from './RowProductReviews.gql'
+import { RowProductFragment } from '../RowProduct.gql'
 
-type RowProductReviewsProps = RowProductReviewsFragment & Partial<ProductReviewsProps>
+type ReviewsProps = RowProductFragment & Partial<ProductReviewsProps>
 
-export default function RowProductReviews(props: RowProductReviewsProps) {
+export default function Reviews(props: ReviewsProps) {
   const { title, reviews, url_key, review_count, sku } = props
 
   const { data, loading } = useQuery(StoreConfigDocument)

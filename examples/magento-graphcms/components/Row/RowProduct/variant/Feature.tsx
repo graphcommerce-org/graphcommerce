@@ -3,16 +3,16 @@ import { Image } from '@graphcommerce/image'
 import { RowImageText } from '@graphcommerce/next-ui'
 import { Typography, useTheme } from '@material-ui/core'
 import React from 'react'
+import { RowProductFragment } from '../RowProduct.gql'
 import { ProductFeatureMediaFragment } from './ProductFeatureMedia.gql'
-import { RowProductFeatureFragment } from './RowProductFeature.gql'
 
-type ProductFeatureProps = RowProductFeatureFragment & ProductFeatureMediaFragment
+type FeatureProps = RowProductFragment & ProductFeatureMediaFragment
 
-export default function RowProductFeature(props: ProductFeatureProps) {
-  const { copy, topic, media_gallery } = props
+export default function Feature(props: FeatureProps) {
+  const { productCopy, title, media_gallery } = props
+  const theme = useTheme()
   const item = media_gallery?.[2] ?? media_gallery?.[0]
 
-  const theme = useTheme()
   if (!item) return null
 
   return (
@@ -33,8 +33,8 @@ export default function RowProductFeature(props: ProductFeatureProps) {
         )
       }
     >
-      {topic && <Typography variant='overline'>{topic}</Typography>}
-      <RichText {...copy} />
+      {title && <Typography variant='overline'>{title}</Typography>}
+      {productCopy?.raw && <RichText {...productCopy} />}
     </RowImageText>
   )
 }

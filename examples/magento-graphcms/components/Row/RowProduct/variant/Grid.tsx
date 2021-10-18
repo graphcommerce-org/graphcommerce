@@ -2,13 +2,13 @@ import { ContainerWithHeader } from '@graphcommerce/next-ui'
 import { Link } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
-import ProductListItems, { ProductListItemsProps } from '../../ProductListItems/ProductListItems'
-import { RowProductGridFragment } from './RowProductGrid.gql'
+import ProductListItems, { ProductListItemsProps } from '../../../ProductListItems/ProductListItems'
+import { RowProductFragment } from '../RowProduct.gql'
 
-type RowProductGridProps = RowProductGridFragment & ProductListItemsProps
+type GridProps = RowProductFragment & ProductListItemsProps
 
-export default function RowProductGrid(props: RowProductGridProps) {
-  const { title, pageLinks, magentoCategory, ...productListItems } = props
+export default function Grid(props: GridProps) {
+  const { title, pageLinks, ...productListItems } = props
 
   return (
     <ContainerWithHeader
