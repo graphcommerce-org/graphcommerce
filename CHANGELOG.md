@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.134.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.133.1...@graphcommerce/graphcommerce@2.134.0) (2021-10-18)
+
+
+### Features
+
+* **message-snackbar:** severity props ([c7be8a5](https://github.com/ho-nl/m2-pwa/commit/c7be8a51faf7a5937b7fab5bb352df2089ae4eea))
+
+
+
+
+
 ## [2.133.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.133.0...@graphcommerce/graphcommerce@2.133.1) (2021-10-18)
 
 

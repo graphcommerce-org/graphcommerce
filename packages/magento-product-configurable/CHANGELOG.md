@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product-configurable@3.0.29...@graphcommerce/magento-product-configurable@3.1.0) (2021-10-18)
+
+
+### Features
+
+* **message-snackbar:** severity props ([c7be8a5](https://github.com/ho-nl/m2-pwa/commit/c7be8a51faf7a5937b7fab5bb352df2089ae4eea))
+
+
+
+
+
 ## [3.0.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product-configurable@3.0.0...@graphcommerce/magento-product-configurable@3.0.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/magento-product-configurable
