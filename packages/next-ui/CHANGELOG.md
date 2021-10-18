@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.4.0...@graphcommerce/next-ui@3.5.0) (2021-10-18)
+
+
+### Features
+
+* **graphcms:** combined multiple models to bypass model creation limit ([fd6dc14](https://github.com/ho-nl/m2-pwa/commit/fd6dc140cb60c5733dab2e0a43b5df2059e0c739))
+
+
+
+
+
 # [3.4.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.3.3...@graphcommerce/next-ui@3.4.0) (2021-10-15)
 
 

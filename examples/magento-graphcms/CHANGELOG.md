@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.122.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.121.11...@graphcommerce/magento-graphcms@2.122.0) (2021-10-18)
+
+
+### Bug Fixes
+
+* **row-product:** import row-product-fragment ([9baca83](https://github.com/ho-nl/m2-pwa/commit/9baca8378b1a19fab8eda98548ed498f8ea69e24))
+* **row-product:** render correct product items ([91509a7](https://github.com/ho-nl/m2-pwa/commit/91509a78de775cd059f67a256dc0107a06a765d8))
+
+
+### Features
+
+* **graphcms:** combined multiple models to bypass model creation limit ([fd6dc14](https://github.com/ho-nl/m2-pwa/commit/fd6dc140cb60c5733dab2e0a43b5df2059e0c739))
+* **row-product:** actually render something ([fba6811](https://github.com/ho-nl/m2-pwa/commit/fba6811d2880cb38196f579fbd1423dfb323654f))
+* **row-product:** allow to render row product variants ([c391c09](https://github.com/ho-nl/m2-pwa/commit/c391c093bc638d14d0630cc441bfc43aca11a51e))
+
+
+
+
+
 ## [2.121.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.121.9...@graphcommerce/magento-graphcms@2.121.10) (2021-10-13)
 
 
