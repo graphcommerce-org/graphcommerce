@@ -2,32 +2,43 @@
 
 The getting started guide is split into two separate setups:
 
-1. Development setup: improve and continue developing the framework and it's
+1. Project setup: use all the included packages as libraries
+2. Development setup: improve and continue developing the framework and it's
    examples
-2. Project setup: use all the included packages as libraries
 
-## Preparation
+Preparation:
 
-Make sure you are using node 12:
+- Make sure you are using node 14: `nvm install 14 && nvm use 14`
+- Make sure you have installed yarn: `npm install --global yarn`
 
-- Install node 12: `nvm install 12`
-- Make node 12 the default: `nvm alias default node`
-- Switch to node 12: `nvm use 12`
+## Project Setup
 
 ## Development setup
 
-1. Clone the repository locally
-
-## Install
-
 Make sure you're using Node >= 12: `nvm install 12 && nvm alias default node`
 
-1. `yarn`
-2. `cp .env.example .env`
+1. `git@github.com:ho-nl/m2-pwa.git graphcommerce && cd graphcommerce`
+2. `yarn install`
 3. `cp examples/magento-graphcms-api/.env.example examples/magento-graphcms-api/.env`
-4. Fill in `GRAPHCMS_BEARER` in `examples/magento-graphcms-api/.env`, in 1Pass
-   under `magento-graphcms-api`
-5. `cp examples/magento-graphcms/.env.example examples/magento-graphcms/.env`
+4. `cp examples/magento-graphcms/.env.example examples/magento-graphcms/.env`
+5. Fill in `GRAPHCMS_BEARER` in `src/verdouw-api/.env`, in 1Pass under
+   `magento-graphcms-api`
+6. `yarn dev:api` http://localhost:3001/api/graphql should show the GraphQL
+   Playground
+7. `yarn workspace @graphcommerce/magento-graphcms codegen` Should work without
+   any errors.
+
+Project is successfully setup, you can now start with `yarn dev`
+
+## Commands
+
+- `yarn dev:log`: Information about running processes
+- `yarn dev`: Start development server
+  - frontend: http://localhost:3000
+  - graphql playground: http://localhost:3001/api/graphql
+- `yarn stop`: Stop development server
+- `yarn build`: Create production build of everything
+- `yarn tsc:lint`: Lint the installation with TypeScript
 
 ## Customize endpoint:
 
@@ -41,7 +52,3 @@ your own endpoint.
 ## Local build
 
 - `yarn build`
-
-## Project setup
-
-Not yet supported / todo

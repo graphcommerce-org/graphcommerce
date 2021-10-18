@@ -1,5 +1,7 @@
 # GraphCommerce
 
+- [Installation instructions](docs/pages/getting-started.md)
+
 Stack:
 
 - [TypeScript](https://www.typescriptlang.org/)
@@ -20,32 +22,6 @@ Backends:
 Hosting:
 
 - [Vercel](https://vercel.com/reachdigital)
-
-## Install
-
-1. Make sure you are using node 14. (`nvm install 14 && nvm use 14`)
-2. `git clone git@github.com:ho-nl/m2-pwa.git && cd m2-pwa`
-3. `npm install --global yarn` (If you don't have Yarn installed yet)
-4. `yarn install`
-5. `cp examples/magento-graphcms-api/.env.example examples/magento-graphcms-api/.env`
-6. `cp examples/magento-graphcms/.env.example examples/magento-graphcms/.env`
-7. Fill in `GRAPHCMS_BEARER` in `examples/magento-graphcms-api/.env`, in 1Pass
-   under `magento-graphcms-api`
-8. `yarn dev:api && yarn workspace @graphcommerce/magento-graphcms codegen; yarn stop`
-
-## Customize endpoint (optional):
-
-Replace MAGENTO_ENDPOINT in `.env` and `examples/magento-graphcms-api/.env` with
-your own endpoint.
-
-## Commands
-
-- `yarn dev`: Start development server
-  - frontend: http://localhost:3000
-  - graphql playground: http://localhost:3001/api/graphql
-- `yarn stop`: Stop development server
-- `yarn build`: Create production build of everything
-- `yarn tsc:lint`: Lint the installation with TypeScript
 
 ## Commits
 
