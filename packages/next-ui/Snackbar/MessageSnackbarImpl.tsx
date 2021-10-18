@@ -1,17 +1,16 @@
 import {
-  Button,
   Fab,
   makeStyles,
-  PropTypes,
   Snackbar,
   SnackbarContent,
   SnackbarProps,
   Theme,
+  Portal,
 } from '@material-ui/core'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
-import SvgImage from '../SvgImage'
-import { iconClose } from '../icons'
+import SvgImageSimple from '../SvgImage/SvgImageSimple'
+import { iconClose, iconCheckmark, iconSadFace } from '../icons'
 
 type Size = 'normal' | 'wide'
 type Variant = 'contained' | 'pill'
@@ -42,10 +41,8 @@ const useStyles = makeStyles(
       },
     },
     rootPillLarge: {},
-    rootPillColorPrimary: {
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.primary.contrastText,
-    },
+    rootPillSeverityInfo: {},
+    rootPillSeverityError: {},
     message: {
       width: '100%',
       padding: theme.spacings.xxs,
@@ -61,8 +58,9 @@ const useStyles = makeStyles(
       },
     },
     children: {
+      // display: 'flex',
       gridArea: 'children',
-      ...theme.typography.h4,
+      ...theme.typography.h6,
       fontWeight: 400,
 
       '& .MuiSvgIcon-root': {
@@ -111,21 +109,26 @@ const useStyles = makeStyles(
     sticky: {
       position: 'sticky',
     },
+    messageIcon: {
+      display: 'inline-block',
+      marginRight: 5,
+    },
   }),
   { name: 'MessageSnackbar' },
 )
 
 export type MessageSnackbarImplProps = Omit<
   SnackbarProps,
-  'autoHideDuration' | 'onClose' | 'anchorOrigin'
+  'autoHideDuration' | 'anchorOrigin' | 'color'
 > & {
   autoHide?: boolean
   sticky?: boolean
   variant?: Variant
   size?: Size
-  color?: PropTypes.Color
+  severity?: 'success' | 'info' | 'warning' | 'error'
   action?: React.ReactNode
   children?: React.ReactNode
+  onClose?: () => void
 }
 
 export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
@@ -134,13 +137,14 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
   const {
     variant = 'contained',
     size = 'normal',
-    color = 'default',
     autoHide,
     action,
     open,
     message,
     sticky,
     children,
+    onClose,
+    severity = 'info',
     ...snackbarProps
   } = props
 
@@ -150,53 +154,77 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
     setShowSnackbar(!!open)
   }, [open])
 
+  const hideSnackbar = () => {
+    setShowSnackbar(false)
+    onClose?.()
+  }
+
   const clsxBonus = (base: string) => {
     const Size = size[0].toUpperCase() + size.slice(1)
-    const Color = color[0].toUpperCase() + color.slice(1)
+    const Severity = severity[0].toUpperCase() + severity.slice(1)
     const Variant = variant[0].toUpperCase() + variant.slice(1)
 
     return clsx(
       classes[base],
       classes[`${base}${Variant}`],
       classes[`${base}${Variant}Size${Size}`],
-      classes[`${base}${Variant}Color${Color}`],
+      classes[`${base}${Variant}Severity${Severity}`],
     )
   }
 
+  let icon = iconCheckmark
+  if (severity == 'error') icon = iconSadFace
+
   return (
-    <Snackbar
-      {...snackbarProps}
-      message={message}
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-      open={showSnackbar}
-      autoHideDuration={autoHide ? 6000 : null}
-      classes={{
-        root: classes.snackbarRoot,
-        anchorOriginBottomCenter: clsx(classes.anchorOriginBottomCenter, sticky && classes.sticky),
-      }}
-    >
-      <SnackbarContent
+    <Portal>
+      <Snackbar
+        {...snackbarProps}
+        message={message}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        open={showSnackbar}
+        autoHideDuration={autoHide ? 6000 : null}
         classes={{
-          root: clsxBonus('root'),
-          message: clsxBonus('message'),
-          action: clsxBonus('action'),
+          root: classes.snackbarRoot,
+          anchorOriginBottomCenter: clsx(
+            classes.anchorOriginBottomCenter,
+            sticky && classes.sticky,
+          ),
         }}
-        message={
-          <>
-            <div className={classes.children}>{children}</div>
-            {action && (
-              <div className={classes.actionButton} onClick={() => setShowSnackbar(false)}>
-                {action}
+        onClose={hideSnackbar}
+      >
+        <SnackbarContent
+          classes={{
+            root: clsxBonus('root'),
+            message: clsxBonus('message'),
+            action: clsxBonus('action'),
+          }}
+          message={
+            <>
+              <div className={classes.children}>
+                <div>
+                  <SvgImageSimple
+                    src={icon}
+                    alt='checkmark'
+                    size='large'
+                    className={classes.messageIcon}
+                  />
+                  {children}
+                </div>
               </div>
-            )}
-            <div className={classes.closeButton}>
-              <Fab aria-label='Close snackbar' size='medium' onClick={() => setShowSnackbar(false)}>
-                <SvgImage src={iconClose} size='small' alt='close' />
-              </Fab>
-            </div>
-          </>
-        }
-      />
-    </Snackbar>
+              {action && (
+                <div className={classes.actionButton} onClick={hideSnackbar}>
+                  {action}
+                </div>
+              )}
+              <div className={classes.closeButton}>
+                <Fab aria-label='Close snackbar' size='medium' onClick={hideSnackbar}>
+                  <SvgImageSimple src={iconClose} size='small' alt='close' />
+                </Fab>
+              </div>
+            </>
+          }
+        />
+      </Snackbar>
+    </Portal>
   )
 }
