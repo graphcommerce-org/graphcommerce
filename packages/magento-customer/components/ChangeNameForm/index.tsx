@@ -55,7 +55,7 @@ export default function ChangeNameForm(props: ChangeNameFormProps) {
         </FormActions>
         <ApolloCustomerErrorAlert error={error} />
       </Form>
-      <MessageSnackbar open={formState.isSubmitSuccessful && !error} variant='pill' color='default'>
+      <MessageSnackbar open={formState.isSubmitSuccessful && !error} variant='pill'>
         <>
           <SvgImage src={iconCheckmark} size='small' loading='eager' alt='checkmark' />
           Changes saved

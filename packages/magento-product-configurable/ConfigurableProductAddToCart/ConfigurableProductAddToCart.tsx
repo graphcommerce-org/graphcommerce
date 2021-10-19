@@ -4,9 +4,7 @@ import {
   AnimatedRow,
   Button,
   MessageSnackbar,
-  SvgImage,
   TextInputNumber,
-  iconCheckmark,
   iconChevronRight,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
