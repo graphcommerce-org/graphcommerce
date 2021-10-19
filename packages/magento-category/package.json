@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-category",
-  "version": "3.1.2",
+  "version": "3.1.3",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -14,19 +14,19 @@
   },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.2",
-    "@graphcommerce/eslint-config-pwa": "^3.0.7",
+    "@graphcommerce/eslint-config-pwa": "^3.0.8",
     "@graphcommerce/prettier-config-pwa": "^3.0.3",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
     "@playwright/test": "^1.15.2"
   },
   "dependencies": {
     "@apollo/client": "^3.4.16",
-    "@graphcommerce/framer-scroller": "^0.3.0",
-    "@graphcommerce/graphql": "^2.103.7",
-    "@graphcommerce/image": "^2.104.10",
-    "@graphcommerce/magento-product": "^3.2.1",
-    "@graphcommerce/magento-store": "^3.0.27",
-    "@graphcommerce/next-ui": "^3.7.0",
+    "@graphcommerce/framer-scroller": "^0.3.1",
+    "@graphcommerce/graphql": "^2.103.8",
+    "@graphcommerce/image": "^2.104.11",
+    "@graphcommerce/magento-product": "^3.2.2",
+    "@graphcommerce/magento-store": "^3.0.28",
+    "@graphcommerce/next-ui": "^3.7.1",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.12.3",
     "next": "^11.1.2",
