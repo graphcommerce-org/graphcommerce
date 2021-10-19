@@ -1,8 +1,8 @@
 # Creating a new project
 
 This Getting Stared guide allows you to use GraphCommerce for your own project.
-If you are looking to use GraphCommerce, take a look at the
-[Getting Stared guide](./getting-started.md)
+If you are looking to make changes to GraphCommerce, take a look at the
+[Development Setup guide](./development-setup.md)
 
 ## Preparation:
 
