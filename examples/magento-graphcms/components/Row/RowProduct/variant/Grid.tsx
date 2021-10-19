@@ -8,7 +8,7 @@ import { RowProductFragment } from '../RowProduct.gql'
 type GridProps = RowProductFragment & ProductListItemsProps
 
 export default function Grid(props: GridProps) {
-  const { title, pageLinks, ...productListItems } = props
+  const { title, pageLinks, productCopy, ...productListItems } = props
 
   return (
     <ContainerWithHeader
