@@ -71,7 +71,7 @@ export async function createHandler(meshInstance: MeshInstance, path: string) {
       'Store',
       'Preview-Version',
       'Content-Currency',
-      'X-Captcha',
+      'X-ReCaptcha',
       'x-apollo-tracing',
       'apollographql-client-name',
     ],
