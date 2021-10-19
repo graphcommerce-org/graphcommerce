@@ -20,7 +20,7 @@ const useStyles = makeStyles(
       textTransform: 'uppercase',
     },
     scroller: {
-      gridAutoColumns: responsiveVal(180, 900),
+      gridAutoColumns: `minmax(${responsiveVal(180, 800)}, 60vh)`,
     },
   }),
   {
