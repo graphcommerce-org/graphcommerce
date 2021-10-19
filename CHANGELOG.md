@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.135.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.135.4...@graphcommerce/graphcommerce@2.135.5) (2021-10-19)
+
+
+### Bug Fixes
+
+* positioning children categories ([33568ee](https://github.com/ho-nl/m2-pwa/commit/33568ee7a798f8cab149b6c23b6e044d81642f53))
+
+
+
+
+
 ## [2.135.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.135.3...@graphcommerce/graphcommerce@2.135.4) (2021-10-19)
 
 
