@@ -13,7 +13,9 @@ const useStyles = makeStyles(
       justifyContent: 'center',
       marginBottom: theme.spacings.sm,
     },
-    scroller: {},
+    scroller: {
+      gridAutoColumns: `max-content`,
+    },
     link: {
       whiteSpace: 'nowrap',
       display: 'block',
