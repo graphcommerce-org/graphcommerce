@@ -2,12 +2,18 @@
 
 Note: If you've
 
-To upgrade your project we need to upgrade all the GraphCommerce packages to the
-latest version and we need to migrate the made in the base example directories
-directories to your local project.
+To upgrade your project we need to:
+
+1. Upgrade all the GraphCommerce packages to the latest version and
+2. We need to migrate changes made in the graphcommerce example repo for your
+   usage.
+
+Instructions:
 
 1. `yarn list --pattern @graphcommerce/next-ui` to find currently installed
-   package. We need this later, write it down somewhere.
+   package. We need this later, write it down somewhere.  
+   _Note: We're using `@graphcommerce/next-ui` here, because that package is
+   almost guaranteed to be updated with every release._
 2. Find the latest version of
    (`@graphcommerce/next-ui`)[https://github.com/ho-nl/m2-pwa/blob/master/packages/next-ui/package.json#L3].
    We need this later, write it down somewhere.
@@ -21,7 +27,6 @@ directories to your local project.
    cd graphcommerce
    ```
 5. `git diff "@graphcommerce/next-ui@OLD_VERSION".."@graphcommerce/next-ui@NEW_VERSION" examples`
-
 6. Manually traverse the diff and apply changes to your project.
 
 ## Future tools
