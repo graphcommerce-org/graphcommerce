@@ -1,5 +1,4 @@
-import { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Theme, makeStyles } from '@material-ui/core'
 import React from 'react'
 import Row from '..'
 import SectionContainer from '../../SectionContainer'
