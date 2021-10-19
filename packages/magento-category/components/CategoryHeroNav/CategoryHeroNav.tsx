@@ -36,20 +36,18 @@ const useStyles = makeStyles(
         gridTemplateColumns: 'repeat(2, 1fr)',
         maxWidth: '100vw',
         width: '100%',
-        alignSelf: 'flex-start',
+        alignSelf: 'start',
       },
     },
     title: {
       gridArea: 'title',
-      position: 'relative',
       alignSelf: 'center',
       [theme.breakpoints.up('md')]: {
-        alignSelf: 'flex-end',
+        alignSelf: 'end',
       },
     },
     placeholder: {
       gridArea: 'placeholder',
-      background: '#fff',
       minHeight: '40vh',
       overflow: 'hidden',
 
