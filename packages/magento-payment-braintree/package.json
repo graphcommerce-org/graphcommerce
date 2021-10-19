@@ -21,7 +21,7 @@
     "@graphcommerce/prettier-config-pwa": "^3.0.3",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
     "@playwright/test": "^1.15.2",
-    "@types/braintree-web": "^3.75.6"
+    "@types/braintree-web": "^3.75.7"
   },
   "dependencies": {
     "@apollo/client": "^3.4.16",
@@ -41,6 +41,6 @@
     "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "type-fest": "^2.5.0"
+    "type-fest": "^2.5.1"
   }
 }

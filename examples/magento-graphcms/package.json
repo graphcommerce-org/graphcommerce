@@ -89,8 +89,8 @@
     "graphql": "^15.6.1",
     "graphql-tag": "^2.12.5",
     "next": "^11.1.2",
-    "next-pwa": "^5.3.1",
-    "next-sitemap": "^1.6.179",
+    "next-pwa": "^5.4.0",
+    "next-sitemap": "^1.6.189",
     "node-fetch": "^3.0.0",
     "postinstall-postinstall": "^2.1.0",
     "react": "^17.0.2",
@@ -100,7 +100,7 @@
     "vercel": "^23.1.2"
   },
   "devDependencies": {
-    "type-fest": "^2.5.0",
+    "type-fest": "^2.5.1",
     "typescript": "^4.4.4"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
