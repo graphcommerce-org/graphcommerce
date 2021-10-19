@@ -13,11 +13,12 @@ directories to your local project.
    We need this later, write it down somewhere.
 3. Run `yarn upgrade-interactive --latest` in the root of your project. And
    upgrade all packages to the latest version.
-4. Have a copy of the GraphCommerce repo checked out locally, we're going to use
-   that to find out what has changed in the example directories.
+4. If you haven't already, make sure you have a copy of the GraphCommerce repo
+   checked out locally, we're going to use that to find out what has changed in
+   the example directories.
    ```
    git clone git@github.com:ho-nl/m2-pwa.git graphcommerce
-   cd grapgconnerce
+   cd graphcommerce
    ```
 5. `git diff "@graphcommerce/next-ui@OLD_VERSION".."@graphcommerce/next-ui@NEW_VERSION" examples`
 
