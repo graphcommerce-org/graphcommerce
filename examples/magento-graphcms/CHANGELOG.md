@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.123.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.123.5...@graphcommerce/magento-graphcms@2.123.6) (2021-10-19)
+
+
+### Bug Fixes
+
+* **next-config:** move the @apollo/client __DEV__ env to next-config ([fb1df3f](https://github.com/ho-nl/m2-pwa/commit/fb1df3fe4edbf769afb4149c7beced70bb948be5))
+
+
+
+
+
 ## [2.123.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.123.0...@graphcommerce/magento-graphcms@2.123.1) (2021-10-19)
 
 

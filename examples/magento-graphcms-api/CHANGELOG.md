@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms-api@2.105.11...@graphcommerce/magento-graphcms-api@2.106.0) (2021-10-19)
+
+
+### Bug Fixes
+
+* **mesh:** make sure we're using an inmemory store when running the mesh ([1064c17](https://github.com/ho-nl/m2-pwa/commit/1064c17122ba4a6b0a140f805968122ef4913fc0))
+
+
+### Features
+
+* **mesh:** move to a default .meshrc.yml format instead of the json file ([d9a30a7](https://github.com/ho-nl/m2-pwa/commit/d9a30a78baed2b85b77bbd80e94a6f047e2255b6))
+
+
+
+
+
 ## [2.105.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms-api@2.105.8...@graphcommerce/magento-graphcms-api@2.105.9) (2021-10-18)
 
 
