@@ -31,7 +31,7 @@
     "react-is": "^17.0.2",
     "react-schemaorg": "^2.0.0",
     "schema-dts": "^1.0.0",
-    "type-fest": "^2.5.0"
+    "type-fest": "^2.5.1"
   },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.2",
