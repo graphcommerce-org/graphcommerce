@@ -11,26 +11,23 @@ const useStyles = makeStyles(
     footer: {
       gridTemplateColumns: '2.5fr 1.5fr',
       gridTemplateAreas: `
-              'social switcher'
-              'links support'
-            `,
+        'social switcher'
+        'links support'
+      `,
       borderTop: '1px solid rgba(0,0,0,0.08)',
       padding: `${theme.page.vertical} ${theme.page.horizontal} ${theme.page.vertical}`,
       display: 'grid',
       gap: theme.spacings.xs,
       alignItems: 'center',
-      [theme.breakpoints.down('md')]: {
-        marginBottom: responsiveVal(32, 100),
-      },
       [theme.breakpoints.down('xs')]: {
         paddingTop: theme.spacings.lg,
         justifyItems: 'center',
         gridTemplateAreas: `
-              'switcher switcher'
-              'support support'
-              'social social'
-              'links links'
-            `,
+          'switcher switcher'
+          'support support'
+          'social social'
+          'links links'
+        `,
         gap: theme.spacings.lg,
         '& > *': {
           maxWidth: 'max-content',
