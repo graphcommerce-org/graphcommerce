@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.136.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.136.0...@graphcommerce/graphcommerce@2.136.1) (2021-10-19)
+
+
+### Bug Fixes
+
+* **next-config:** make sure webpack is available ([46edb3e](https://github.com/ho-nl/m2-pwa/commit/46edb3e6fd1b716d7d9dbe59cb1530375d24c228))
+
+
+
+
+
 # [2.136.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.135.6...@graphcommerce/graphcommerce@2.136.0) (2021-10-19)
 
 
