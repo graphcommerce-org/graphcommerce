@@ -134,6 +134,18 @@ With:
 - '../../node_modules/@graphcommerce/**/*.graphqls'
 ```
 
+Replace
+
+```yml
+- '../../packages/**/*.graphql'
+```
+
+With
+
+```yml
+- '../../node_modules/@graphcommerce/**/*.graphql'
+```
+
 ### Commit everything
 
 ```bash
@@ -144,9 +156,14 @@ git commit -m "initial commit"
 
 ### Cloning
 
-### Done
+### Setting up your project
 
 Alright, we're done! 🎉 You now have a completely separate installation for your
 project.
 
 Continue with [Setting up an existing project](existing-project.md)
+
+### Customizing your project
+
+Edit the .env files you've created with your own endpoints to load data from
+different backends.
