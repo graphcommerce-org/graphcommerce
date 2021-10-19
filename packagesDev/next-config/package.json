@@ -14,7 +14,8 @@
     "js-yaml-loader": "^1.2.2",
     "next": "^11.1.2",
     "next-transpile-modules": "^8.0.0",
-    "type-fest": "^2.5.1"
+    "type-fest": "^2.5.1",
+    "webpack": "^5.59.0"
   },
   "files": [
     "dist",
