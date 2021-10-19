@@ -67,13 +67,15 @@ export async function createHandler(meshInstance: MeshInstance, path: string) {
       'X-Api-Version',
       'Access-Control-Allow-Origin',
       'X-HTTP-Method-Override',
+      'x-apollo-tracing',
+      'apollographql-client-name',
+
+      // Magento 2 related headers
       'Authorization',
       'Store',
       'Preview-Version',
       'Content-Currency',
       'X-ReCaptcha',
-      'x-apollo-tracing',
-      'apollographql-client-name',
     ],
   })
 
