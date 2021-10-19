@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.135.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.134.0...@graphcommerce/graphcommerce@2.135.0) (2021-10-19)
+
+
+### Bug Fixes
+
+* solve import issue where @material-ui/styles couldn't be found ([efb3771](https://github.com/ho-nl/m2-pwa/commit/efb3771e8c173799779691d4d52857678dab4c15))
+
+
+### Features
+
+* **framer-scroller:** better defaults so the Scroller doesn't look broken when providing no props ([b177ce9](https://github.com/ho-nl/m2-pwa/commit/b177ce9570abb9ccfd4eb5cc34e43d157bb4e81a))
+
+
+
+
+
 # [2.134.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.133.1...@graphcommerce/graphcommerce@2.134.0) (2021-10-18)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.1.15...@graphcommerce/magento-cart@3.2.0) (2021-10-19)
+
+
+### Features
+
+* **framer-scroller:** better defaults so the Scroller doesn't look broken when providing no props ([b177ce9](https://github.com/ho-nl/m2-pwa/commit/b177ce9570abb9ccfd4eb5cc34e43d157bb4e81a))
+
+
+
+
+
 ## [3.1.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.1.3...@graphcommerce/magento-cart@3.1.4) (2021-10-08)
 
 

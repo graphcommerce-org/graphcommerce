@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.123.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.122.2...@graphcommerce/magento-graphcms@2.123.0) (2021-10-19)
+
+
+### Features
+
+* **framer-scroller:** better defaults so the Scroller doesn't look broken when providing no props ([b177ce9](https://github.com/ho-nl/m2-pwa/commit/b177ce9570abb9ccfd4eb5cc34e43d157bb4e81a))
+
+
+
+
+
 ## [2.122.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.122.0...@graphcommerce/magento-graphcms@2.122.1) (2021-10-18)
 
 
