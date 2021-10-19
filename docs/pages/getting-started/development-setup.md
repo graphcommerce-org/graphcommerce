@@ -1,21 +1,13 @@
-# Getting started
+## Development setup
 
-The getting started guide is split into two separate setups:
+This Development Setup guide is to develop the GraphCommerce project it's self.
+If you are looking to use GraphCommerce, take a look at the
+[Getting Stared guide](./development-setup.md)
 
-1. Project setup: use all the included packages as libraries
-2. Development setup: improve and continue developing the framework and it's
-   examples
-
-Preparation:
+## Installation
 
 - Make sure you are using node 14: `nvm install 14 && nvm use 14`
 - Make sure you have installed yarn: `npm install --global yarn`
-
-## Project Setup
-
-## Development setup
-
-Make sure you're using Node >= 12: `nvm install 12 && nvm alias default node`
 
 1. `git@github.com:ho-nl/m2-pwa.git graphcommerce && cd graphcommerce`
 2. `yarn install`

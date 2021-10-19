@@ -1,6 +1,8 @@
 # GraphCommerce
 
-- [Installation instructions](docs/pages/getting-started.md)
+- [Creating a new project](docs/pages/getting-started/new-project.md)
+- [Setting up an existing project](docs/pages/getting-started/existing-project.md)
+- [GraphCommerce development setup](docs/pages/getting-started/development-setup.md)
 
 Stack:
 
