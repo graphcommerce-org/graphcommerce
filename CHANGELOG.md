@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.135.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.135.1...@graphcommerce/graphcommerce@2.135.2) (2021-10-19)
+
+
+### Bug Fixes
+
+* productCopy error ([95a8dbf](https://github.com/ho-nl/m2-pwa/commit/95a8dbf6fa48910ace728da4a200a3847a582899))
+
+
+
+
+
 # [2.135.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.134.0...@graphcommerce/graphcommerce@2.135.0) (2021-10-19)
 
 
