@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product-configurable@3.1.1...@graphcommerce/magento-product-configurable@3.1.2) (2021-10-19)
+
+
+### Bug Fixes
+
+* build didn't succeed because of an unknown prop on MessageSnackbar ([4def2d1](https://github.com/ho-nl/m2-pwa/commit/4def2d16ad722e9dc9ae0fc63785107df2d83eab))
+
+
+
+
+
 # [3.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product-configurable@3.0.29...@graphcommerce/magento-product-configurable@3.1.0) (2021-10-18)
 
 

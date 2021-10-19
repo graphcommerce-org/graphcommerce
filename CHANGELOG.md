@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.135.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.135.3...@graphcommerce/graphcommerce@2.135.4) (2021-10-19)
+
+
+### Bug Fixes
+
+* build didn't succeed because of an unknown prop on MessageSnackbar ([4def2d1](https://github.com/ho-nl/m2-pwa/commit/4def2d16ad722e9dc9ae0fc63785107df2d83eab))
+
+
+
+
+
 ## [2.135.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.135.1...@graphcommerce/graphcommerce@2.135.2) (2021-10-19)
 
 
