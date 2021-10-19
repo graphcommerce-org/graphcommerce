@@ -48,6 +48,7 @@ Update the `package.json` files with a the project name, start version back from
    fields)
 
    ```json
+   {
      "name": "@my-company/my-project-root",
      "version": "0.0.0",
      "workspaces": {
@@ -76,6 +77,7 @@ Update the `package.json` files with a the project name, start version back from
        "tsc:lint": "yarn tsc --noEmit -p .",
        "playwright": "npx playwright test --headed --project=chrome"
      },
+   }
    ```
 
 2. Edit `src/my-project/packages.json` and replace the following fields (keep
