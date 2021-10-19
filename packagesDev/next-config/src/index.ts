@@ -4,6 +4,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'fs'
 import withTranspileModules from 'next-transpile-modules'
 import { NextConfig } from 'next/dist/server/config-shared'
 import { PackageJson } from 'type-fest'
+import { DefinePlugin } from 'webpack'
 
 export type WorkspaceInfo = {
   [name: string]: {
@@ -30,8 +31,23 @@ export type ListInfo = {
   }
 }
 
+function extendConfig(nextConfig: NextConfig): NextConfig {
+  return {
+    ...nextConfig,
+    webpack: (config, options) => {
+      // Allow importing yml/yaml files for graphql-mesh
+      config.module.rules.push({ test: /\.ya?ml$/, use: 'js-yaml-loader' })
+
+      // To properly properly treeshake @apollo/client we need to define the __DEV__ property
+      config.plugins = [new DefinePlugin({ __DEV__: options.dev }), ...config.plugins]
+
+      return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config
+    },
+  }
+}
+
 export function withYarn1Scopes(
-  scopes: string[] = ['@apollo', '@graphcommerce', 'graphql'],
+  scopes: string[] = ['@apollo', '@graphcommerce'],
 ): (config: NextConfig) => NextConfig {
   const packageStr = readFileSync('package.json', 'utf-8')
 
@@ -71,7 +87,7 @@ export function withYarn1Scopes(
     writeFileSync(cacheKey, JSON.stringify(modules))
   }
 
-  return withTranspileModules(modules)
+  return (config) => extendConfig(withTranspileModules(modules)(config))
 }
 
 export function withYarn1Workspaces(modules: string[] = []): (config: NextConfig) => NextConfig {
@@ -111,5 +127,5 @@ export function withYarn1Workspaces(modules: string[] = []): (config: NextConfig
     }
   })
 
-  return withTranspileModules([...m.values()])
+  return (config) => extendConfig(withTranspileModules([...m.values()])(config))
 }

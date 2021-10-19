@@ -10,7 +10,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 require('dotenv').config()
 
 const withPWA = require('next-pwa')
-const webpack = require('webpack')
 
 const obs = new PerformanceObserver((entryList) => {
   entryList.getEntries().forEach((item) => {
@@ -60,7 +59,6 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   webpack(config, { dev }) {
-    config.plugins = [new webpack.DefinePlugin({ __DEV__: dev }), ...config.plugins]
     return config
   },
 }
