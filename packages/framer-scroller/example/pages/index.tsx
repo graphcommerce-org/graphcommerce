@@ -25,9 +25,7 @@ const useStyles = makeStyles(
     scroller: {
       width: '100%',
       height: '100%',
-      display: `grid`,
-      gridAutoFlow: `column`,
-      gridTemplateColumns: `repeat(100, 100%)`,
+      gridAutoColumns: `100%`,
       gridTemplateRows: `100%`,
       '& *': {
         userSelect: 'none',
@@ -57,9 +55,6 @@ function Index() {
         <ScrollerProvider>
           <Scroller
             style={{
-              display: `grid`,
-              gridAutoFlow: `column`,
-              gridTemplateColumns: `repeat(100, 30%)`,
               gridTemplateRows: `100%`,
               marginBottom: 20,
               rowGap: 20,

@@ -1,21 +1,26 @@
 import { ProductListItemsFragment } from '@graphcommerce/magento-product'
-import { RenderType, responsiveVal, SidebarSlider } from '@graphcommerce/next-ui'
+import {
+  RenderType,
+  responsiveVal,
+  SidebarSlider,
+  SidebarSliderProps,
+} from '@graphcommerce/next-ui'
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 import renderers from '../../../ProductListItems/renderers'
 import { RowProductFragment } from '../RowProduct.gql'
 
-type SwipeableProps = RowProductFragment & ProductListItemsFragment
+type SwipeableProps = RowProductFragment &
+  ProductListItemsFragment &
+  Pick<SidebarSliderProps, 'classes'>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    title: {
+    sidebarTitle: {
       textTransform: 'uppercase',
     },
     scroller: {
-      '& > *': {
-        minWidth: responsiveVal(180, 900),
-      },
+      gridAutoColumns: responsiveVal(180, 900),
     },
   }),
   {
@@ -25,15 +30,15 @@ const useStyles = makeStyles(
 
 export default function Swipeable(props: SwipeableProps) {
   const { title, items } = props
-  const classes = useStyles(props)
+  const { sidebarTitle, ...classes } = useStyles(props)
 
   if (!items || items.length === 0) return null
 
   return (
     <SidebarSlider
-      classes={{ scroller: classes.scroller }}
+      classes={classes}
       sidebar={
-        <Typography variant='h3' className={classes.title}>
+        <Typography variant='h3' className={sidebarTitle}>
           {title}
         </Typography>
       }

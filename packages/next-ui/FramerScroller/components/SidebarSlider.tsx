@@ -30,15 +30,11 @@ const useStyles = makeStyles(
     },
     scroller: {
       width: '100%',
-      display: 'grid',
-      gridAutoFlow: 'column',
       gridColumnGap: theme.spacings.md,
       gridRowGap: theme.spacings.lg,
       alignContent: 'space-around',
       paddingRight: theme.page.horizontal,
-      '& > *': {
-        minWidth: responsiveVal(200, 400),
-      },
+      gridAutoColumns: responsiveVal(200, 400),
     },
     sliderButtons: {
       [theme.breakpoints.down('sm')]: {

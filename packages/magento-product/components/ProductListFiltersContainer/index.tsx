@@ -42,10 +42,9 @@ const useStyles = makeStyles(
     },
     containerSticky: {},
     scroller: {
-      display: 'grid',
-      gridAutoFlow: 'column',
       borderRadius: 22,
       columnGap: 6,
+      gridAutoColumns: 'min-content',
     },
     scrollerSticky: {},
     sliderPrev: {

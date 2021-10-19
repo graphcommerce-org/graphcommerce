@@ -63,9 +63,7 @@ const useStyles = makeStyles(
       borderBottomRightRadius: 4,
     },
     scrollerRoot: {
-      display: `grid`,
-      gridAutoFlow: `column`,
-      gridTemplateColumns: `repeat(30, max-content)`,
+      gridAutoColumns: `max-content`,
       gridTemplateRows: `100%`,
       gap: responsiveVal(4, 8),
       height: responsiveVal(60, 85),

@@ -1,35 +1,31 @@
 import { UpsellProductsFragment } from '@graphcommerce/magento-product'
-import { SidebarSlider, RenderType, responsiveVal } from '@graphcommerce/next-ui'
-import { Theme, Typography, makeStyles } from '@material-ui/core'
+import {
+  SidebarSlider,
+  RenderType,
+  responsiveVal,
+  SidebarSliderProps,
+} from '@graphcommerce/next-ui'
+import { Typography } from '@material-ui/core'
 import React from 'react'
 import renderers from '../../../ProductListItems/renderers'
 import { RowProductFragment } from '../RowProduct.gql'
 
-type UpsellsProps = RowProductFragment & UpsellProductsFragment
-
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    item: {
-      minWidth: responsiveVal(200, 400),
-    },
-  }),
-  { name: 'ProductUpsells' },
-)
+type UpsellsProps = RowProductFragment &
+  UpsellProductsFragment &
+  Pick<SidebarSliderProps, 'classes'>
 
 export default function Upsells(props: UpsellsProps) {
-  const { title, upsell_products } = props
-  const classes = useStyles(props)
+  const { title, upsell_products, classes } = props
 
   if (!upsell_products || upsell_products.length === 0) return null
 
   return (
-    <SidebarSlider sidebar={<Typography variant='h2'>{title}</Typography>}>
+    <SidebarSlider classes={classes} sidebar={<Typography variant='h2'>{title}</Typography>}>
       {upsell_products?.map((item) =>
         item ? (
           <RenderType
             key={item.uid ?? ''}
             renderer={renderers}
-            classes={{ item: classes.item }}
             sizes={responsiveVal(200, 400)}
             {...item}
           />
