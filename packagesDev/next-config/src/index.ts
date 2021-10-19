@@ -35,6 +35,9 @@ function extendConfig(nextConfig: NextConfig): NextConfig {
   return {
     ...nextConfig,
     webpack: (config, options) => {
+      // Allow importing yml/yaml files for graphql-mesh
+      config.module.rules.push({ test: /\.ya?ml$/, use: 'js-yaml-loader' })
+
       // To properly properly treeshake @apollo/client we need to define the __DEV__ property
       config.plugins = [new DefinePlugin({ __DEV__: options.dev }), ...config.plugins]
 
