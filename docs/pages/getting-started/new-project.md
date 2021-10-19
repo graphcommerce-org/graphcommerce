@@ -50,6 +50,10 @@ Update the `package.json` files with a the project name, start version back from
    ```json
      "name": "@my-company/my-project-root",
      "version": "0.0.0",
+     "workspaces": {
+       "graphcommerce/packages/*",
+       "src/*"
+     },
      "scripts": {
        "postinstall": "patch-package && patch-typed-document-node",
        "dev:api": "yarn pm2 start -s --name my-project-api \"NODE_TLS_REJECT_UNAUTHORIZED=0 yarn workspace @my-company/my-project-api dev \" && sleep 5",
