@@ -5,13 +5,7 @@
       "name": "graphcms",
       "handler": {
         "graphql": {
-          "endpoint": "${GRAPHCMS_URL}",
-          "operationHeaders": {
-            "Authorization": "${GRAPHCMS_BEARER}"
-          },
-          "schemaHeaders": {
-            "Authorization": "${GRAPHCMS_BEARER}"
-          }
+          "endpoint": "${GRAPHCMS_URL}"
         }
       },
       "transforms": [

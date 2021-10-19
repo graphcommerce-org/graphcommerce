@@ -13,11 +13,9 @@ If you are looking to use GraphCommerce, take a look at the
 2. `yarn install`
 3. `cp examples/magento-graphcms-api/.env.example examples/magento-graphcms-api/.env`
 4. `cp examples/magento-graphcms/.env.example examples/magento-graphcms/.env`
-5. Fill in `GRAPHCMS_BEARER` in `src/verdouw-api/.env`, in 1Pass under
-   `magento-graphcms-api`
-6. `yarn dev:api` http://localhost:3001/api/graphql should show the GraphQL
+5. `yarn dev:api` http://localhost:3001/api/graphql should show the GraphQL
    Playground
-7. `yarn workspace @graphcommerce/magento-graphcms codegen` Should work without
+6. `yarn workspace @graphcommerce/magento-graphcms codegen` Should work without
    any errors.
 
 Project is successfully setup, you can now start with `yarn dev`
