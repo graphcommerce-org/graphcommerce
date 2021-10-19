@@ -40,10 +40,7 @@ const useStyles = makeStyles(
     scrollerContainer: {
       padding: 1,
     },
-    scroller: {
-      display: 'grid',
-      gridAutoFlow: 'column',
-    },
+    scroller: {},
     prevNext: {
       position: 'absolute',
       top: '50%',

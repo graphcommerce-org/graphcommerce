@@ -8,14 +8,10 @@ const useStyles = makeStyles(
     root: {},
     scroller: {
       marginBottom: `${theme.spacings.lg}`,
-      display: 'grid',
-      gridAutoFlow: 'column',
       justifyContent: 'start',
       gap: `${theme.spacings.md}`,
       alignContent: 'center',
-      '& > *': {
-        minWidth: 'max-content',
-      },
+      gridAutoColumns: `max-content`,
     },
     title: {
       fontWeight: 600,

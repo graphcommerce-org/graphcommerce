@@ -13,11 +13,7 @@ const useStyles = makeStyles(
       justifyContent: 'center',
       marginBottom: theme.spacings.sm,
     },
-    scroller: {
-      display: 'grid',
-      gridAutoFlow: 'column',
-      overflow: 'hidden',
-    },
+    scroller: {},
     link: {
       whiteSpace: 'nowrap',
       display: 'block',
@@ -65,7 +61,7 @@ export default function CategoryChildren(props: CategoryChildrenProps) {
   return (
     <ScrollerProvider scrollSnapAlign='none'>
       <div className={classes.container}>
-        <Scroller className={classes.scroller}>
+        <Scroller className={classes.scroller} hideScrollbar>
           {children.map((cat) => {
             if (!cat?.url_path || !cat.name) return null
 

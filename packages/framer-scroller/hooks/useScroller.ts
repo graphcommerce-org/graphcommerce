@@ -19,6 +19,9 @@ import { useVelocitySnapTo } from './useVelocitySnapTo'
 const useStyles = makeStyles(
   {
     root: ({ scrollSnapAlign, scrollSnapStop }: ScrollSnapProps) => ({
+      display: 'grid',
+      gridAutoFlow: 'column',
+      gridAutoColumns: `40%`,
       overflow: `auto`,
       overscrollBehaviorInline: `contain`,
       '& > *': {
@@ -49,7 +52,7 @@ const useStyles = makeStyles(
       },
     },
   },
-  { name: 'Scrollable' },
+  { name: 'Scroller' },
 )
 
 export type ScrollableProps<TagName extends keyof ReactHTML = 'div'> = HTMLMotionProps<TagName> & {
@@ -71,7 +74,7 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
 
   const canGrab = useMotionValueValue(
     useTransform(
-      [scroll.xMax, scroll.yMax] as MotionValue[],
+      [scroll.xMax, scroll.yMax] as MotionValue<string | number>[],
       ([xMax, yMax]: number[]) => xMax || yMax,
     ),
     (v) => v,

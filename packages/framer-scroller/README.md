@@ -37,22 +37,14 @@ import {
 function MyScroller() {
   return (
     <ScrollerProvider>
-      <Scroller
-        style={{
-          display: `grid`,
-          gridAutoFlow: `column`,
-          gridTemplateColumns: `repeat(100, 100%)`,
-          gridTemplateRows: `100%`,
-          height: 400,
-        }}
-      >
-        <div>item1</div>
-        <div>item2</div>
-        <div>item3</div>
-        <div>item4</div>
-        <div>item5</div>
-        <div>item6</div>
-        <div>item7</div>
+      <Scroller>
+        <div style={{ height: 400 }}>item1</div>
+        <div style={{ height: 400 }}>item2</div>
+        <div style={{ height: 400 }}>item3</div>
+        <div style={{ height: 400 }}>item4</div>
+        <div style={{ height: 400 }}>item5</div>
+        <div style={{ height: 400 }}>item6</div>
+        <div style={{ height: 400 }}>item7</div>
       </Scroller>
       <ScrollerButton>Next</ScrollerButton>
     </ScrollerProvider>
