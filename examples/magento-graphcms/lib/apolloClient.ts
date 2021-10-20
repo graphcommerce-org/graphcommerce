@@ -99,8 +99,8 @@ export function createApolloClient(
       key: APOLLO_CACHE_PERSIST,
     })
 
-    const storedState = window.localStorage[APOLLO_CACHE_PERSIST]
-    const currentVersion = window.localStorage[APOLLO_CACHE_VERSION]
+    const storedState = window.localStorage[APOLLO_CACHE_PERSIST] as string | undefined
+    const currentVersion = window.localStorage[APOLLO_CACHE_VERSION] as string | undefined
 
     if (currentVersion === typePoliciesVersion && storedState) {
       state = mergeDeep(JSON.parse(storedState), initialState)
@@ -108,7 +108,7 @@ export function createApolloClient(
       console.info('[@graphcommerce/graphql] migrating apollo cache, detected a typePolicy change')
       try {
         const oldCache = new InMemoryCache({ possibleTypes: fragments.possibleTypes, typePolicies })
-        oldCache.restore(JSON.parse(storedState))
+        oldCache.restore(JSON.parse(storedState) as NormalizedCacheObject)
 
         // Run the migration
         migrateCacheHandler(oldCache, cache, migrations)

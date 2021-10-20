@@ -15,6 +15,7 @@
     "@graphql-mesh/graphql": "^0.18.18",
     "@graphql-mesh/merger-stitching": "^0.13.1",
     "@graphql-mesh/runtime": "^0.23.1",
+    "@graphql-mesh/store": "^0.1.18",
     "@graphql-mesh/transform-cache": "^0.9.20",
     "@graphql-mesh/transform-federation": "^0.6.10",
     "@graphql-mesh/transform-filter-schema": "^0.12.1",

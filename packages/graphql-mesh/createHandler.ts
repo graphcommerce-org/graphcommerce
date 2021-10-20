@@ -1,4 +1,6 @@
-import { MeshInstance } from '@graphql-mesh/runtime'
+import { processConfig } from '@graphql-mesh/config'
+import { getMesh as getGraphQLMesh, MeshInstance } from '@graphql-mesh/runtime'
+import { MeshStore, InMemoryStoreStorageAdapter } from '@graphql-mesh/store'
 import { YamlConfig } from '@graphql-mesh/types'
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core'
 import { ApolloServer } from 'apollo-server-micro'
@@ -11,35 +13,7 @@ import 'ts-tiny-invariant'
 import 'micro'
 import cors from 'micro-cors'
 
-export function injectEnv(json: YamlConfig.Config & { $schema?: string }): YamlConfig.Config {
-  delete json.$schema
-  let content = JSON.stringify(json)
-
-  if (typeof process === 'undefined' || 'env' in process === false) {
-    throw new Error('Process process.env not available')
-  }
-
-  content = content.replace(/\$\{(.*?)\}/g, (_, variable) => {
-    let varName = variable
-    let defaultValue = ''
-
-    if (variable.includes(':')) {
-      const spl = variable.split(':')
-      varName = spl.shift()
-      defaultValue = spl.join(':')
-    }
-
-    if (!process.env[varName]) {
-      throw new Error(`Env variable ${varName} not defined`)
-    }
-
-    return process.env[varName] || defaultValue
-  })
-
-  return JSON.parse(content)
-}
-
-export async function createHandler(meshInstance: MeshInstance, path: string) {
+export async function createApolloHandlerForMesh(meshInstance: MeshInstance, path: string) {
   const apolloServer = new ApolloServer({
     context: ({ req }) => req,
     introspection: true,
@@ -52,6 +26,29 @@ export async function createHandler(meshInstance: MeshInstance, path: string) {
     ...meshInstance,
   })
   await apolloServer.start()
+
+  const apolloHandler = apolloServer.createHandler({ path })
+
+  return apolloHandler
+}
+
+export async function getMesh(config: YamlConfig.Config): Promise<MeshInstance> {
+  const store = new MeshStore('.mesh', new InMemoryStoreStorageAdapter(), {
+    validate: true,
+    readonly: false,
+  })
+  return getGraphQLMesh(await processConfig(config, { dir: process.cwd(), store }))
+}
+
+export async function createServer(config: unknown, path: string) {
+  const meshConfig = config as YamlConfig.Config
+
+  const store = new MeshStore('.mesh', new InMemoryStoreStorageAdapter(), {
+    validate: true,
+    readonly: false,
+  })
+  const mesh = await getGraphQLMesh(await processConfig(meshConfig, { dir: process.cwd(), store }))
+  const apolloHandler = await createApolloHandlerForMesh(mesh, path)
 
   const corsHandler = cors({
     allowMethods: ['GET', 'POST', 'OPTIONS'],
@@ -78,7 +75,5 @@ export async function createHandler(meshInstance: MeshInstance, path: string) {
       'X-ReCaptcha',
     ],
   })
-
-  const apolloHandler = apolloServer.createHandler({ path })
   return corsHandler((req, res) => (req.method === 'OPTIONS' ? res.end() : apolloHandler(req, res)))
 }

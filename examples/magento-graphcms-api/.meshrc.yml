@@ -3,7 +3,7 @@ sources:
   - name: graphcms
     handler:
       graphql:
-        endpoint: '${GRAPHCMS_URL}'
+        endpoint: '{env.GRAPHCMS_URL}'
     transforms:
       - filterSchema:
           mode: bare
@@ -13,7 +13,7 @@ sources:
   - name: m2
     handler:
       graphql:
-        endpoint: '${MAGENTO_ENDPOINT}'
+        endpoint: '{env.MAGENTO_ENDPOINT}'
         schemaHeaders:
           Store: '{context.req.headers.store}'
           Authorization: '{context.req.headers.authorization}'
