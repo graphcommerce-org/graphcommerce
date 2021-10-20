@@ -1,7 +1,7 @@
 {
   "name": "@graphcommerce/magento-graphcms",
   "homepage": "https://magento-graphcms.vercel.app/",
-  "version": "2.123.7",
+  "version": "2.123.8",
   "private": true,
   "sideEffects": false,
   "engines": {

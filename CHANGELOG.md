@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.136.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.136.2...@graphcommerce/graphcommerce@2.136.3) (2021-10-20)
+
+
+### Bug Fixes
+
+* spacing below the footer is not nessesary with the new layout ([ffe0ab9](https://github.com/ho-nl/m2-pwa/commit/ffe0ab98823c1f035fcb7d98d147c871cc8a5b91))
+
+
+
+
+
 ## [2.136.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.136.1...@graphcommerce/graphcommerce@2.136.2) (2021-10-20)
 
 
