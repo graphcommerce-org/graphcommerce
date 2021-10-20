@@ -1549,7 +1549,7 @@
     "@n1ru4l/graphql-live-query" "0.8.1"
     "@n1ru4l/in-memory-live-query-store" "0.7.2"
 
-"@graphql-mesh/store@0.1.18":
+"@graphql-mesh/store@0.1.18", "@graphql-mesh/store@^0.1.18":
   version "0.1.18"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/store/-/store-0.1.18.tgz#94917a6f2169f78b36cb75f6d3f561848e5f30af"
   integrity sha512-gREC+2SHqFlvL2qoc6D2nCi61TN8jP8Svj1IMrvi83iAazSn8rc4MH8VNgWRLRg8HLB8Dd9hekn4E2O7MVEG9Q==

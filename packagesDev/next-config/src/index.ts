@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'fs'
 import withTranspileModules from 'next-transpile-modules'
 import { NextConfig } from 'next/dist/server/config-shared'
 import { PackageJson } from 'type-fest'
-import { DefinePlugin } from 'webpack'
+import { DefinePlugin, Configuration } from 'webpack'
 
 export type WorkspaceInfo = {
   [name: string]: {
@@ -34,12 +34,16 @@ export type ListInfo = {
 function extendConfig(nextConfig: NextConfig): NextConfig {
   return {
     ...nextConfig,
-    webpack: (config, options) => {
+    webpack: (config: Configuration, options) => {
       // Allow importing yml/yaml files for graphql-mesh
-      config.module.rules.push({ test: /\.ya?ml$/, use: 'js-yaml-loader' })
+      config.module?.rules?.push({ test: /\.ya?ml$/, use: 'js-yaml-loader' })
 
       // To properly properly treeshake @apollo/client we need to define the __DEV__ property
-      config.plugins = [new DefinePlugin({ __DEV__: options.dev }), ...config.plugins]
+      config.plugins = [new DefinePlugin({ __DEV__: options.dev }), ...(config.plugins ?? [])]
+
+      config.experiments = {
+        topLevelAwait: true,
+      }
 
       return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config
     },
