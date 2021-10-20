@@ -1,5 +1,5 @@
 import { StoreSwitcherButton } from '@graphcommerce/magento-store'
-import { Button, SvgImageSimple, UseStyles } from '@graphcommerce/next-ui'
+import { responsiveVal, SvgImageSimple, UseStyles, Button } from '@graphcommerce/next-ui'
 import { Container, IconButton, Link, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import PageLink from 'next/link'
@@ -9,15 +9,26 @@ import { FooterQueryFragment } from './FooterQueryFragment.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     footer: {
+      gridTemplateColumns: '2.5fr 1.5fr',
+      gridTemplateAreas: `
+        'social switcher'
+        'links support'
+      `,
       borderTop: '1px solid rgba(0,0,0,0.08)',
       padding: `${theme.page.vertical} ${theme.page.horizontal} ${theme.page.vertical}`,
       display: 'grid',
-      gridAutoRows: '1fr',
       gap: theme.spacings.xs,
       alignItems: 'center',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('xs')]: {
+        paddingTop: theme.spacings.lg,
         justifyItems: 'center',
-        marginBottom: 50,
+        gridTemplateAreas: `
+          'switcher switcher'
+          'support support'
+          'social social'
+          'links links'
+        `,
+        gap: theme.spacings.lg,
         '& > *': {
           maxWidth: 'max-content',
         },
@@ -29,7 +40,7 @@ const useStyles = makeStyles(
       },
     },
     disableMargin: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('xs')]: {
         marginBottom: 0,
       },
     },
@@ -37,27 +48,45 @@ const useStyles = makeStyles(
       display: 'grid',
       gridAutoFlow: 'column',
       alignContent: 'center',
+      gridArea: 'links',
       ...theme.typography.caption,
       gap: theme.spacings.sm,
-      [theme.breakpoints.up('md')]: {
-        order: 3,
+      [theme.breakpoints.down('xs')]: {
+        gridAutoFlow: 'row',
+        textAlign: 'center',
+        gap: 0,
       },
     },
     support: {
-      [theme.breakpoints.up('md')]: {
-        order: 4,
+      gridArea: 'support',
+      justifySelf: 'flex-end',
+      [theme.breakpoints.down('xs')]: {
+        justifySelf: 'center',
       },
     },
     social: {
-      display: 'none',
+      display: 'grid',
       justifyContent: 'start',
       gridAutoFlow: 'column',
+      gridArea: 'social',
       gap: `0 ${theme.spacings.xs}`,
-      [theme.breakpoints.up('md')]: {
-        display: 'grid',
-      },
       '& > *': {
         minWidth: 'min-content',
+      },
+      [theme.breakpoints.down('xs')]: {
+        gap: `0 ${theme.spacings.sm}`,
+      },
+    },
+    storeSwitcher: {
+      gridArea: 'switcher',
+      justifySelf: 'end',
+      [theme.breakpoints.down('xs')]: {
+        justifySelf: 'center',
+      },
+    },
+    link: {
+      [theme.breakpoints.down('xs')]: {
+        textAlign: 'center',
       },
     },
   }),
@@ -85,7 +114,9 @@ export default function Footer(props: FooterProps) {
           </PageLink>
         ))}
       </div>
-      <StoreSwitcherButton />
+      <div className={classes.storeSwitcher}>
+        <StoreSwitcherButton />
+      </div>
       <PageLink href='/service' passHref>
         <Button variant='pill' color='inherit' className={classes.support}>
           Customer Service
@@ -95,7 +126,7 @@ export default function Footer(props: FooterProps) {
         <span>{footer?.copyright}</span>
         {footer?.legalLinks?.map((link) => (
           <PageLink key={link.title} href={link.url} passHref>
-            <Link color='textPrimary' underline='always'>
+            <Link color='textPrimary' underline='always' classes={{ root: classes.link }}>
               {link.title}
             </Link>
           </PageLink>
