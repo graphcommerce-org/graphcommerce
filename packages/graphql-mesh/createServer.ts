@@ -8,7 +8,7 @@ import '@graphql-mesh/transform-filter-schema'
 import '@graphql-mesh/graphql'
 import '@graphql-mesh/merger-stitching'
 import '@graphql-mesh/transform-cache'
-import '@graphql-mesh/cache-inmemory-lru'
+import InMemoryLRUCache from '@graphql-mesh/cache-inmemory-lru'
 import '@vue/compiler-sfc'
 import 'ts-tiny-invariant'
 import 'micro'
@@ -51,7 +51,12 @@ export async function createServer(config: unknown, path: string) {
     validate: true,
     readonly: false,
   })
-  const mesh = await getGraphQLMesh(await processConfig(meshConfig, { dir: process.cwd(), store }))
+  const meshOptions = await processConfig(meshConfig, { dir: process.cwd(), store })
+  if (!InMemoryLRUCache) {
+    throw Error('InMemoryLRUCache not found')
+  }
+
+  const mesh = await getGraphQLMesh(meshOptions)
   const apolloHandler = await createApolloHandlerForMesh(mesh, path)
 
   const corsHandler = cors({
