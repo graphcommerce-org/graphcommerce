@@ -86,6 +86,7 @@
     "@playwright/test": "^1.15.2",
     "apollo3-cache-persist": "^0.13.0",
     "clsx": "^1.1.1",
+    "concurrently": "^6.3.0",
     "dotenv": "^10.0.0",
     "framer-motion": "^4.1.17",
     "graphql": "^15.6.1",
