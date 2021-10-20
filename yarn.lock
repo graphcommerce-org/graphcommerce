@@ -1606,7 +1606,7 @@
     "@graphql-typed-document-node/core" "3.1.0"
     fetchache "0.1.1"
 
-"@graphql-mesh/utils@0.18.1":
+"@graphql-mesh/utils@0.18.1", "@graphql-mesh/utils@^0.18.1":
   version "0.18.1"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/utils/-/utils-0.18.1.tgz#93973466648ab977bff7882e50e0f53eee8fc937"
   integrity sha512-J3pJ9jFSVYBQkb+6dnPCYYqPy8MR6CgjjBsDPskz5LU08vtkba7UmMav3d90rAnzgJiqDGdgr7GCljK7CNw6JA==
@@ -8161,7 +8161,7 @@ fetch-blob@^3.1.2:
   dependencies:
     web-streams-polyfill "^3.0.3"
 
-fetchache@0.1.1:
+fetchache@0.1.1, fetchache@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/fetchache/-/fetchache-0.1.1.tgz#013eef193b4a219a355dea5ca02a720565d8bcdc"
   integrity sha512-ots7Jv408zPDxCaKGTeRajzuiullinmfzzLV/dA+U81BQTtbspCiy/GTHPekIIyWAkKvP/GYP0WVKzF6ljtdEg==

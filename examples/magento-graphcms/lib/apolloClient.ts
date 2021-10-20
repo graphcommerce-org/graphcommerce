@@ -1,18 +1,15 @@
 import { NormalizedCacheObject, ApolloClient } from '@apollo/client'
 import { SchemaLink } from '@apollo/client/link/schema'
 import { mergeDeep } from '@apollo/client/utilities'
-import { getMesh } from '@graphcommerce/graphql-mesh'
 import { defaultLocale } from '@graphcommerce/magento-store'
-import meshConfig from '../.meshrc.yml'
 import { createApolloClient } from './createApolloClient'
-
-export const mesh = await getMesh(meshConfig)
+import mesh from './mesh'
 
 const sharedClient: {
   [locale: string]: ApolloClient<NormalizedCacheObject>
 } = {}
 
-const schemaLink = new SchemaLink(mesh)
+const schemaLink = new SchemaLink(await mesh)
 
 export default function apolloClient(
   locale: string | undefined = defaultLocale(),

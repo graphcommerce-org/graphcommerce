@@ -20,12 +20,17 @@
     "@graphql-mesh/transform-federation": "^0.6.10",
     "@graphql-mesh/transform-filter-schema": "^0.12.1",
     "@graphql-mesh/types": "^0.53.0",
+    "@graphql-mesh/utils": "^0.18.1",
+    "@graphql-tools/utils": "^8.4.0",
     "@vue/compiler-sfc": "^3.2.20",
     "apollo-server-core": "^3.4.0",
     "apollo-server-micro": "^3.4.0",
+    "camel-case": "^4.1.2",
+    "fetchache": "^0.1.1",
     "graphql": "^15.6.1",
     "micro": "^9.3.4",
     "micro-cors": "^0.1.1",
+    "pascal-case": "^3.1.2",
     "ts-tiny-invariant": "^0.0.3"
   },
   "devDependencies": {

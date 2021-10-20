@@ -1,6 +1,5 @@
 import { processConfig } from '@graphql-mesh/config'
 import { getMesh as getGraphQLMesh, MeshInstance } from '@graphql-mesh/runtime'
-import { MeshStore, InMemoryStoreStorageAdapter } from '@graphql-mesh/store'
 import { YamlConfig } from '@graphql-mesh/types'
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core'
 import { ApolloServer } from 'apollo-server-micro'
@@ -8,13 +7,18 @@ import '@graphql-mesh/transform-filter-schema'
 import '@graphql-mesh/graphql'
 import '@graphql-mesh/merger-stitching'
 import '@graphql-mesh/transform-cache'
-import InMemoryLRUCache from '@graphql-mesh/cache-inmemory-lru'
+import '@graphql-mesh/cache-inmemory-lru'
 import '@vue/compiler-sfc'
 import 'ts-tiny-invariant'
 import 'micro'
 import cors from 'micro-cors'
 
-export async function createApolloHandlerForMesh(meshInstance: MeshInstance, path: string) {
+export async function getMesh(config: unknown): Promise<MeshInstance> {
+  return getGraphQLMesh(await processConfig(config as YamlConfig.Config, { dir: process.cwd() }))
+}
+
+export async function createServer(mesh: Promise<MeshInstance>, path: string) {
+  const meshInstance = await mesh
   const apolloServer = new ApolloServer({
     context: ({ req }) => req,
     introspection: true,
@@ -29,35 +33,6 @@ export async function createApolloHandlerForMesh(meshInstance: MeshInstance, pat
   await apolloServer.start()
 
   const apolloHandler = apolloServer.createHandler({ path })
-
-  return apolloHandler
-}
-
-export async function getMesh(config: unknown): Promise<MeshInstance> {
-  const meshConfig = config as YamlConfig.Config
-
-  const store = new MeshStore('.mesh', new InMemoryStoreStorageAdapter(), {
-    validate: true,
-    readonly: false,
-  })
-
-  return getGraphQLMesh(await processConfig(meshConfig, { dir: process.cwd(), store }))
-}
-
-export async function createServer(config: unknown, path: string) {
-  const meshConfig = config as YamlConfig.Config
-
-  const store = new MeshStore('.mesh', new InMemoryStoreStorageAdapter(), {
-    validate: true,
-    readonly: false,
-  })
-  const meshOptions = await processConfig(meshConfig, { dir: process.cwd(), store })
-  if (!InMemoryLRUCache) {
-    throw Error('InMemoryLRUCache not found')
-  }
-
-  const mesh = await getGraphQLMesh(meshOptions)
-  const apolloHandler = await createApolloHandlerForMesh(mesh, path)
 
   const corsHandler = cors({
     allowMethods: ['GET', 'POST', 'OPTIONS'],

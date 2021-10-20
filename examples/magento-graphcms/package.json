@@ -8,7 +8,8 @@
     "node": "14.x"
   },
   "scripts": {
-    "build": "yarn concurrently -k -s first 'yarn:next dev' 'yarn:codegen' && yarn next build && yarn next-sitemap",
+    "buildmesh": "yarn mesh build --require dotenv/config",
+    "build": "yarn mesh build --require dotenv/config && NEXT_PUBLIC_GRAPHQL_ENDPOINT=.mesh/schema.graphql yarn codegen && yarn next build && yarn next-sitemap",
     "dev": "yarn concurrently -k 'yarn:codegen -w' 'yarn:next dev'",
     "codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 node -r dotenv/config node_modules/.bin/graphql-codegen",
     "build:codegen": "yarn codegen:base",

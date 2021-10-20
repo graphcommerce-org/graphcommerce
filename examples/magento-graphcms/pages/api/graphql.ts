@@ -1,5 +1,5 @@
 import { createServer, config } from '@graphcommerce/graphql-mesh'
-import meshConfig from '../../.meshrc.yml'
+import mesh from '../../lib/mesh'
 
-export default await createServer(meshConfig, '/api/graphql')
+export default await createServer(mesh, '/api/graphql')
 export { config }
