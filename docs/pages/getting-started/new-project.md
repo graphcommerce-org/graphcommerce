@@ -32,7 +32,6 @@ rm -rf packagesDev
 rm -rf docs
 mkdir src
 mv examples/magento-graphcms src/my-project
-mv examples/magento-graphcms-api src/my-project-api
 rm -r examples
 rm CHANGELOG.md && touch CHANGELOG.md
 rm src/my-project/CHANGELOG.md && touch src/my-project/CHANGELOG.md
@@ -94,22 +93,6 @@ Update the `package.json` files with a the project name, start version back from
        "build": "yarn codegen && next build && yarn next-sitemap",
        "start": "next start",
        "postinstall": "patch-package && patch-typed-document-node"
-     }
-   }
-   ```
-
-3. Edit `src/my-project-api/packages.json` and replace the following fields
-   (keep the remaining fields)
-
-   ```json
-   {
-     "name": "@my-company/my-project-api",
-     "version": "0.0.0",
-     "scripts": {
-       "dev": "next -p 3001",
-       "build": "next build",
-       "start": "next start",
-       "start-local": "next start -p 3001"
      }
    }
    ```

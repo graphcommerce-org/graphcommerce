@@ -12,8 +12,8 @@ Please contact a GraphCommerce maintainer to help you.
 1. `yarn install`
 2. `cp src/my-project-api/.env.example src/my-project-api/.env`
 3. `cp src/my-project/.env.example src/my-project/.env`
-4. Run `yarn workspace @my-company/my-project-api dev`,
-   http://localhost:3001/api/graphql should show the GraphQL Playground
+4. Run `yarn workspace @my-company/my-project dev`,
+   http://localhost:3009/api/graphql should show the GraphQL Playground
 5. In a separate terminal, run `yarn workspace @my-company/my-project codegen`,
    this should work as expected.
 6. If step 5 and 6 run correctly everything should work. You can now stop the
@@ -23,7 +23,7 @@ Please contact a GraphCommerce maintainer to help you.
 
 - `yarn dev`: Start development server
   - frontend: http://localhost:3000
-  - graphql playground: http://localhost:3001/api/graphql
+  - graphql playground: http://localhost:3000/api/graphql
 - `yarn stop`: Stop development server
 - `yarn build`: Create production build of everything
 - `yarn tsc:lint`: Lint the installation with TypeScript

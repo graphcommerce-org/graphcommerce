@@ -1,4 +1,3 @@
-export * from './createHandler'
-export * from './createTabs'
+export * from './createServer'
 
 export const config = { api: { bodyParser: false } }

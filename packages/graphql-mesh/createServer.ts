@@ -9,6 +9,7 @@ import '@graphql-mesh/graphql'
 import '@graphql-mesh/merger-stitching'
 import '@graphql-mesh/transform-cache'
 import '@graphql-mesh/cache-inmemory-lru'
+import '@vue/compiler-sfc'
 import 'ts-tiny-invariant'
 import 'micro'
 import cors from 'micro-cors'
@@ -32,12 +33,15 @@ export async function createApolloHandlerForMesh(meshInstance: MeshInstance, pat
   return apolloHandler
 }
 
-export async function getMesh(config: YamlConfig.Config): Promise<MeshInstance> {
+export async function getMesh(config: unknown): Promise<MeshInstance> {
+  const meshConfig = config as YamlConfig.Config
+
   const store = new MeshStore('.mesh', new InMemoryStoreStorageAdapter(), {
     validate: true,
     readonly: false,
   })
-  return getGraphQLMesh(await processConfig(config, { dir: process.cwd(), store }))
+
+  return getGraphQLMesh(await processConfig(meshConfig, { dir: process.cwd(), store }))
 }
 
 export async function createServer(config: unknown, path: string) {

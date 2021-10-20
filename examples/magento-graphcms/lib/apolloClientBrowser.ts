@@ -1,18 +1,16 @@
-import { NormalizedCacheObject, ApolloClient } from '@apollo/client'
-import { SchemaLink } from '@apollo/client/link/schema'
+import { ApolloClient, NormalizedCacheObject, HttpLink } from '@apollo/client'
 import { mergeDeep } from '@apollo/client/utilities'
-import { getMesh } from '@graphcommerce/graphql-mesh'
 import { defaultLocale } from '@graphcommerce/magento-store'
-import meshConfig from '../.meshrc.yml'
 import { createApolloClient } from './createApolloClient'
-
-export const mesh = await getMesh(meshConfig)
 
 const sharedClient: {
   [locale: string]: ApolloClient<NormalizedCacheObject>
 } = {}
 
-const schemaLink = new SchemaLink(mesh)
+const httpLink = new HttpLink({
+  uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
+  credentials: 'same-origin',
+})
 
 export default function apolloClient(
   locale: string | undefined = defaultLocale(),
@@ -20,7 +18,7 @@ export default function apolloClient(
   state?: NormalizedCacheObject,
 ): ApolloClient<NormalizedCacheObject> {
   if (!locale) throw Error('Locale not specified to apolloClient(locale, shared, state)')
-  if (!shared) return createApolloClient(locale, state, schemaLink)
+  if (!shared) return createApolloClient(locale, state, httpLink)
 
   // Update the shared client with the new state.
   if (sharedClient[locale] && state) {
@@ -29,7 +27,7 @@ export default function apolloClient(
 
   // Create a client if it doesn't exist
   if (!sharedClient[locale]) {
-    sharedClient[locale] = createApolloClient(locale, state, schemaLink)
+    sharedClient[locale] = createApolloClient(locale, state, httpLink)
   }
 
   return sharedClient[locale]
