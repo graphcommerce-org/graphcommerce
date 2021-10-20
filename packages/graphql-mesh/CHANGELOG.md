@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-mesh@3.0.11...@graphcommerce/graphql-mesh@3.1.0) (2021-10-20)
+
+
+### Features
+
+* **graphql-mesh:** simplified the handler to use less code in the project ([f62b752](https://github.com/ho-nl/m2-pwa/commit/f62b75249492f40c5972deede529a25a17c8a617))
+
+
+
+
+
 ## [3.0.11](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-mesh@3.0.10...@graphcommerce/graphql-mesh@3.0.11) (2021-10-20)
 
 

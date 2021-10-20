@@ -1,7 +1,7 @@
 {
   "name": "@graphcommerce/magento-graphcms",
   "homepage": "https://magento-graphcms.vercel.app/",
-  "version": "2.123.8",
+  "version": "2.124.0",
   "private": true,
   "sideEffects": false,
   "engines": {
@@ -61,7 +61,7 @@
     "@graphcommerce/magento-search": "^3.1.8",
     "@graphcommerce/magento-store": "^3.0.28",
     "@graphcommerce/mollie-magento-payment": "^2.104.28",
-    "@graphcommerce/next-config": "^2.105.1",
+    "@graphcommerce/next-config": "^2.106.0",
     "@graphcommerce/next-ui": "^3.7.1",
     "@graphcommerce/prettier-config-pwa": "^3.0.3",
     "@graphcommerce/react-hook-form": "^2.102.9",

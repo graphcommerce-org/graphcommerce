@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.137.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.136.3...@graphcommerce/graphcommerce@2.137.0) (2021-10-20)
+
+
+### Features
+
+* **graphql-mesh:** simplified the handler to use less code in the project ([f62b752](https://github.com/ho-nl/m2-pwa/commit/f62b75249492f40c5972deede529a25a17c8a617))
+* **next-config:** support topLevelAwait ([3cb4f90](https://github.com/ho-nl/m2-pwa/commit/3cb4f90ac3af797f5fcba888dfd28aa2b76480b8))
+
+
+
+
+
 ## [2.136.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.136.2...@graphcommerce/graphcommerce@2.136.3) (2021-10-20)
 
 

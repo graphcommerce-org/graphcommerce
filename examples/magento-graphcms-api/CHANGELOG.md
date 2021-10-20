@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms-api@2.106.2...@graphcommerce/magento-graphcms-api@2.107.0) (2021-10-20)
+
+
+### Features
+
+* **graphql-mesh:** simplified the handler to use less code in the project ([f62b752](https://github.com/ho-nl/m2-pwa/commit/f62b75249492f40c5972deede529a25a17c8a617))
+
+
+
+
+
 # [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms-api@2.105.11...@graphcommerce/magento-graphcms-api@2.106.0) (2021-10-19)
 
 

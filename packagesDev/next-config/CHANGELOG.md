@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-config@2.105.1...@graphcommerce/next-config@2.106.0) (2021-10-20)
+
+
+### Features
+
+* **next-config:** support topLevelAwait ([3cb4f90](https://github.com/ho-nl/m2-pwa/commit/3cb4f90ac3af797f5fcba888dfd28aa2b76480b8))
+
+
+
+
+
 ## [2.105.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-config@2.105.0...@graphcommerce/next-config@2.105.1) (2021-10-19)
 
 
