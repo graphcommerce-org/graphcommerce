@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.11](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-mesh@3.0.10...@graphcommerce/graphql-mesh@3.0.11) (2021-10-20)
+
+
+### Bug Fixes
+
+* **recaptcha:** allow and forward the the X-ReCaptcha to Magento ([2f3170e](https://github.com/ho-nl/m2-pwa/commit/2f3170e0f1652d84948b69a446634ffe02f08f80))
+
+
+
+
+
 ## [3.0.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-mesh@3.0.8...@graphcommerce/graphql-mesh@3.0.9) (2021-10-18)
 
 
