@@ -15,7 +15,8 @@ const Subtitle = (props: TypographyProps) => (
 
 const useStyles = makeStyles((theme: Theme) => ({
   outlined: {
-    backgroundColor: theme.palette.background.highlight,
+    border: 'none',
+    background: 'none',
   },
 }))
 
@@ -43,11 +44,11 @@ const renderers: ProductListItemRenderer = {
         aspectRatio={[1, 1]}
         swatchLocations={{
           topLeft: [],
-          topRight: ['size'],
-          bottomLeft: ['color'],
-          bottomRight: [],
+          topRight: [], // ['size']
+          bottomLeft: [],
+          bottomRight: ['dominant_color'],
         }}
-        bottomRight={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
+        bottomLeft={<ProductReviewChip rating={rating_summary} classes={{ outlined }} shapeOnly />}
       />
     )
   },
@@ -60,7 +61,7 @@ const renderers: ProductListItemRenderer = {
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomRight={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
+        bottomLeft={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
       />
     )
   },
@@ -73,7 +74,7 @@ const renderers: ProductListItemRenderer = {
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomRight={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
+        bottomLeft={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
       />
     )
   },
@@ -86,7 +87,7 @@ const renderers: ProductListItemRenderer = {
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomRight={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
+        bottomLeft={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
       />
     )
   },
@@ -99,7 +100,7 @@ const renderers: ProductListItemRenderer = {
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomRight={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
+        bottomLeft={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
       />
     )
   },
