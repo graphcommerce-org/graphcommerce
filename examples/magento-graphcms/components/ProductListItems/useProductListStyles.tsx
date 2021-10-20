@@ -9,9 +9,6 @@ const useProductListStyles = makeStyles(
         '& > :nth-child(7n + 3)': {
           gridColumn: 'span 2',
           gridRow: 'span 2',
-          '& > a > div': {
-            paddingTop: `calc(100% + ${theme.spacings.lg} - 7px)`,
-          },
         },
       },
     },
