@@ -8,15 +8,16 @@
     "node": "14.x"
   },
   "scripts": {
-    "dev": "next",
+    "build": "yarn concurrently -k -s first 'yarn:next dev' 'yarn:codegen' && yarn next build && yarn next-sitemap",
+    "dev": "yarn concurrently -k 'yarn:codegen -w' 'yarn:next dev'",
     "codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 node -r dotenv/config node_modules/.bin/graphql-codegen",
-    "dev:codegen": "yarn codegen -w",
-    "build:next-config": "yarn workspace @graphcommerce/next-config build",
-    "build:near-operation": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file build",
-    "build:relay-optimizer": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin build",
-    "build": "yarn build:next-config && yarn build:near-operation && yarn build:relay-optimizer && yarn codegen && next build && yarn next-sitemap",
+    "build:codegen": "yarn codegen:base",
+    "prepack": "concurrently yarn:prepack:*",
+    "prepack:1": "yarn workspace @graphcommerce/next-config prepack",
+    "prepack:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack",
+    "prepack:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack",
     "start": "next start",
-    "postinstall": "patch-package && patch-typed-document-node"
+    "postinstall": "patch-package && patch-typed-document-node && yarn prepack"
   },
   "dependencies": {
     "@adobe/apollo-link-mutation-queue": "^1.0.2",
