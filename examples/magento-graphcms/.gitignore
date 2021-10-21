@@ -24,3 +24,6 @@ yarn-error.log*
 
 generated/
 *.gql.ts
+
+# application
+.mesh
