@@ -50,8 +50,8 @@ const useStyles = makeStyles(
       minWidth: responsiveVal(200, 280),
     },
     menuItemText: {
-      fontSize: '1.5em',
-      fontWeight: 500,
+      fontSize: '1.6em',
+      fontWeight: 550,
       letterSpacing: '-0.0375em',
       lineHeight: 1,
     },

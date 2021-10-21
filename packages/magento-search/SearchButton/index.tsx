@@ -7,7 +7,7 @@ const useStyles = makeStyles(
     root: {
       width: '100%',
       '& fieldset': {
-        border: `2px solid rgba(0,0,0,0.1)`,
+        border: `1px solid rgba(0,0,0,0.1)`,
       },
     },
     inputRoot: {
