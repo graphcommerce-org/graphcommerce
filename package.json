@@ -18,7 +18,7 @@
     "eslint:lint": "eslint --ignore-path .gitignore '**/{*.js,*.ts,*.tsx}'",
     "eslint:fix": "eslint --fix --ignore-path .gitignore '**/{*.js,*.ts,*.tsx}'",
     "prettier:fix": "yarn prettier --ignore-path .gitignore --write '**/*.{ts,tsx,css,html,json}'",
-    "tsc:lint": "./node_modules/.bin/tsc --noEmit -p .",
+    "tsc:lint": "yarn tsc --noEmit -p .",
     "playwright": "npx playwright test --headed --project=chrome",
     "postinstall": "patch-package && patch-typed-document-node && yarn prepack",
     "prepack": "concurrently yarn:prepack:*",
@@ -26,9 +26,9 @@
     "prepack:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack",
     "prepack:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack",
     "packages": "concurrently yarn:packages:*",
-    "packages:1": "yarn pm2 start -s --name next-config \"yarn workspace @graphcommerce/next-config dev\" ",
-    "packages:2": "yarn pm2 start -s --name near-operation \"yarn workspace @graphcommerce/graphql-codegen-near-operation-file dev\" ",
-    "packages:3": "yarn pm2 start -s --name relay-optimizer \"yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin dev\" "
+    "packages:1": "yarn workspace @graphcommerce/next-config dev",
+    "packages:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file dev",
+    "packages:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin dev"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -49,7 +49,6 @@
     "concurrently": "^6.3.0",
     "lerna": "^4.0.0",
     "patch-package": "^6.4.3",
-    "pm2": "^5.1.2",
     "postinstall-postinstall": "^2.1.0",
     "type-fest": "^2.5.1",
     "vercel": "^23.1.2"
