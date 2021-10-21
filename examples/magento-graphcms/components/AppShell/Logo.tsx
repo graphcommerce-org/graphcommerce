@@ -14,8 +14,9 @@ const useStyles = makeStyles(
       paddingLeft: 10,
       [theme.breakpoints.up('md')]: {
         width: 'auto',
-        height: 32,
+        height: 28,
         paddingLeft: 0,
+        marginTop: '-5px',
       },
     },
     link: {
