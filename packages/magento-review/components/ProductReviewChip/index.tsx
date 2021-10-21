@@ -58,7 +58,6 @@ export default function ProductReviewChip(props: ProductReviewChipProps) {
     chip = (
       <Chip
         variant='outlined'
-        size='small'
         clickable={!!reviewSectionId}
         onClick={handleClick}
         icon={<SvgImageSimple src={iconStarYellow} alt='Stars' />}
