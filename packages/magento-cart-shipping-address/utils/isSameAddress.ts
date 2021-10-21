@@ -22,7 +22,7 @@ const pluckAddress = ({
   region,
 })
 
-export function isSameAddres(
+export function isSameAddress(
   address1: CartAddressFragment | null | undefined,
   address2: CartAddressFragment | null | undefined,
 ) {

@@ -17,7 +17,7 @@ import {
 import { TextField } from '@material-ui/core'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
-import { isSameAddres } from '../../utils/isSameAddress'
+import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from './GetAddresses.gql'
 import { SetShippingAddressDocument } from './SetShippingAddress.gql'
 import { SetShippingBillingAddressDocument } from './SetShippingBillingAddress.gql'
@@ -40,7 +40,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   const shippingAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const billingAddress = cartQuery?.cart?.billing_address
 
-  const Mutation = isSameAddres(shippingAddress, billingAddress)
+  const Mutation = isSameAddress(shippingAddress, billingAddress)
     ? SetShippingBillingAddressDocument
     : SetShippingAddressDocument
 
