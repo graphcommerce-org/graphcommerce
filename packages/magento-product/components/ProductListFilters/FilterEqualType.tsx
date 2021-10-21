@@ -9,6 +9,7 @@ import {
   makeStyles,
   Theme,
 } from '@material-ui/core'
+import clsx from 'clsx'
 import React from 'react'
 import { SetRequired } from 'type-fest'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
@@ -78,6 +79,16 @@ const useFilterEqualStyles = makeStyles(
       overflow: 'hidden',
       whiteSpace: 'break-spaces',
     },
+    isColor: {
+      border: `1px solid ${theme.palette.divider}`,
+      '& > *': {
+        opacity: 0,
+      },
+    },
+    isActive: {
+      border: `1px solid ${theme.palette.primary.main}`,
+      boxShadow: `inset 0 0 0 4px #fff`,
+    },
   }),
   { name: 'FilterEqual' },
 )
@@ -121,6 +132,11 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
           if (!option?.value) return null
           const labelId = `filter-equal-${attribute_code}-${option?.value}`
           const filters = cloneDeep(params.filters)
+          let isColor = false
+
+          if (label?.toLowerCase().includes('color')) {
+            isColor = true
+          }
 
           if (currentFilter.in?.includes(option.value)) {
             filters[attribute_code] = {
@@ -155,11 +171,20 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
                       edge='start'
                       checked={currentFilter.in?.includes(option?.value ?? '')}
                       tabIndex={-1}
-                      size='small'
+                      size='medium'
                       color='primary'
                       disableRipple
                       inputProps={{ 'aria-labelledby': labelId }}
-                      className={classes.checkbox}
+                      className={clsx(
+                        classes.checkbox,
+                        isColor && classes.isColor,
+                        currentFilter.in?.includes(option?.value) ? classes.isActive : false,
+                      )}
+                      style={
+                        isColor
+                          ? { background: `${option?.label}`, color: `${option?.label}` }
+                          : undefined
+                      }
                     />
                   </ListItemSecondaryAction>
                 </div>
