@@ -1,11 +1,11 @@
 import { useQuery } from '@apollo/client'
 import {
+  ApolloCartErrorAlert,
   useCartQuery,
   useFormGqlMutationCart,
-  ApolloCartErrorAlert,
 } from '@graphcommerce/magento-cart'
 import { AddressFields, CustomerDocument, NameFields } from '@graphcommerce/magento-customer'
-import { StoreConfigDocument, CountryRegionsDocument } from '@graphcommerce/magento-store'
+import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Form, FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import {
   phonePattern,
@@ -16,16 +16,17 @@ import {
 } from '@graphcommerce/react-hook-form'
 import { TextField } from '@material-ui/core'
 import { AnimatePresence } from 'framer-motion'
-import React, { useRef } from 'react'
-import { GetShippingAddressDocument } from './GetShippingAddress.gql'
-import { ShippingAddressFormDocument } from './ShippingAddressForm.gql'
+import React from 'react'
+import { isSameAddres } from '../utils/isSameAddress'
+import { GetAddressesDocument } from './GetAddresses.gql'
+import { SetShippingAddressDocument } from './SetShippingAddress.gql'
+import { SetShippingBillingAddressDocument } from './SetShippingBillingAddress.gql'
 
 export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'>
 
 export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   const { step } = props
-  const ref = useRef<HTMLFormElement>(null)
-  const { data: cartQuery } = useCartQuery(GetShippingAddressDocument)
+  const { data: cartQuery } = useCartQuery(GetAddressesDocument)
   const { data: config } = useQuery(StoreConfigDocument)
   const { data: countriesData } = useQuery(CountryRegionsDocument)
   const { data: customerQuery } = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
@@ -36,7 +37,14 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   const currentCustomer = customerQuery?.customer
   const currentCountryCode = currentAddress?.country.code ?? shopCountry
 
-  const form = useFormGqlMutationCart(ShippingAddressFormDocument, {
+  const shippingAddress = cartQuery?.cart?.shipping_addresses?.[0]
+  const billingAddress = cartQuery?.cart?.billing_address
+
+  const Mutation = isSameAddres(shippingAddress, billingAddress)
+    ? SetShippingBillingAddressDocument
+    : SetShippingAddressDocument
+
+  const form = useFormGqlMutationCart(Mutation, {
     defaultValues: {
       // todo(paales): change to something more sustainable
       firstname: currentAddress?.firstname ?? currentCustomer?.firstname ?? '',
@@ -80,7 +88,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   const readOnly = formState.isSubmitting && !autoSubmitting
 
   return (
-    <Form onSubmit={submit} noValidate ref={ref}>
+    <Form onSubmit={submit} noValidate>
       <AnimatePresence initial={false}>
         <NameFields form={form} key='name' readOnly={readOnly} />
         <AddressFields form={form} key='addressfields' readOnly={readOnly} />
