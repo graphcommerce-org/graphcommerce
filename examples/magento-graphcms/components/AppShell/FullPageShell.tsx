@@ -145,12 +145,6 @@ function FullPageShell(props: FullPageShellProps) {
         >
           Customer Service
         </MenuFabSecondaryItem>
-        <MenuFabSecondaryItem
-          icon={<SvgImageSimple src={iconHeart} alt='Wishlist' />}
-          href='/wishlist'
-        >
-          Wishlist
-        </MenuFabSecondaryItem>
       </MenuFab>
 
       <CartFab className={clsx(classes.cartFab, classes.hideOnVirtualKeyboardOpen)} />
