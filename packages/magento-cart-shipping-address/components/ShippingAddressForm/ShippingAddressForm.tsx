@@ -17,7 +17,7 @@ import {
 import { TextField } from '@material-ui/core'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
-import { isSameAddres } from '../utils/isSameAddress'
+import { isSameAddres } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from './GetAddresses.gql'
 import { SetShippingAddressDocument } from './SetShippingAddress.gql'
 import { SetShippingBillingAddressDocument } from './SetShippingBillingAddress.gql'
