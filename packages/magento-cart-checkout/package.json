@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-cart-checkout",
-  "version": "2.104.34",
+  "version": "2.105.0",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [

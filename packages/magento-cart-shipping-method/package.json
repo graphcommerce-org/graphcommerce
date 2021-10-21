@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-cart-shipping-method",
-  "version": "2.103.32",
+  "version": "2.103.33",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -24,7 +24,7 @@
     "@graphcommerce/graphql": "^2.104.0",
     "@graphcommerce/image": "^2.104.12",
     "@graphcommerce/magento-cart": "^3.2.3",
-    "@graphcommerce/magento-cart-shipping-address": "^2.103.33",
+    "@graphcommerce/magento-cart-shipping-address": "^2.104.0",
     "@graphcommerce/magento-store": "^3.0.29",
     "@graphcommerce/next-ui": "^3.8.0",
     "@graphcommerce/react-hook-form": "^2.102.10",

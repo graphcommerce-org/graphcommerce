@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-checkout@2.104.34...@graphcommerce/magento-cart-checkout@2.105.0) (2021-10-21)
+
+
+### Features
+
+* ability to change shipping address after changing the billing address ([101f11a](https://github.com/ho-nl/m2-pwa/commit/101f11a6472cd6e72e08152cec961df47411f310))
+
+
+
+
+
 ## [2.104.13](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-checkout@2.104.12...@graphcommerce/magento-cart-checkout@2.104.13) (2021-10-04)
 
 
