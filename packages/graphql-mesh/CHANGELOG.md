@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-mesh@3.1.0...@graphcommerce/graphql-mesh@3.2.0) (2021-10-21)
+
+
+### Bug Fixes
+
+* **graphql-mesh:** use a build mesh for production environments ([cd2f318](https://github.com/ho-nl/m2-pwa/commit/cd2f3189383fa9d304bd367334e3f47ca4aa6100))
+* unable to find cache matching inmemoryLru ([520f6f3](https://github.com/ho-nl/m2-pwa/commit/520f6f329573471ecfdbdc4aa6f2e4b688b31f11))
+
+
+### Features
+
+* **graphql-mesh:** remove the api project and use a single project 🎉👩‍👩‍👦‍👦 ([ea4ad03](https://github.com/ho-nl/m2-pwa/commit/ea4ad0397d4ff289ef3b3253593fb0914c8c5246))
+
+
+
+
+
 # [3.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-mesh@3.0.11...@graphcommerce/graphql-mesh@3.1.0) (2021-10-20)
 
 

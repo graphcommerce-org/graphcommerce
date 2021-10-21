@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.138.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.137.0...@graphcommerce/graphcommerce@2.138.0) (2021-10-21)
+
+
+### Bug Fixes
+
+* compatibility with venia theme ([c0bcdd5](https://github.com/ho-nl/m2-pwa/commit/c0bcdd511de5679f185f0984816b1f0cafa449e0))
+* **graphql-mesh:** use a build mesh for production environments ([cd2f318](https://github.com/ho-nl/m2-pwa/commit/cd2f3189383fa9d304bd367334e3f47ca4aa6100))
+* unable to find cache matching inmemoryLru ([520f6f3](https://github.com/ho-nl/m2-pwa/commit/520f6f329573471ecfdbdc4aa6f2e4b688b31f11))
+
+
+### Features
+
+* **graphql-mesh:** remove the api project and use a single project 🎉👩‍👩‍👦‍👦 ([ea4ad03](https://github.com/ho-nl/m2-pwa/commit/ea4ad0397d4ff289ef3b3253593fb0914c8c5246))
+
+
+
+
+
 # [2.137.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.136.3...@graphcommerce/graphcommerce@2.137.0) (2021-10-20)
 
 

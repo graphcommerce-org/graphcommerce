@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.29](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-store@3.0.28...@graphcommerce/magento-store@3.0.29) (2021-10-21)
+
+
+### Bug Fixes
+
+* compatibility with venia theme ([c0bcdd5](https://github.com/ho-nl/m2-pwa/commit/c0bcdd511de5679f185f0984816b1f0cafa449e0))
+
+
+
+
+
 ## [3.0.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-store@3.0.6...@graphcommerce/magento-store@3.0.7) (2021-09-30)
 
 
