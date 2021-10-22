@@ -26,8 +26,8 @@ const useStyles = makeStyles(
         width: responsiveVal(100, 600),
       },
       '& img': {
-        height: '100%',
-        width: '100%',
+        height: '100% !important',
+        width: '100% !important',
         objectFit: `cover`,
       },
     },
