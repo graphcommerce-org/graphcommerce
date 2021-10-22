@@ -9,18 +9,24 @@ const useStyles = makeStyles(
       alignItems: 'center',
       gridTemplate: `
         "image title"
-        "image subtitle"
+        ". subtitle"
       `,
       gridTemplateColumns: `min-content auto`,
-      columnGap: theme.spacings.xs,
-      marginTop: theme.spacings.xs,
+      columnGap: theme.spacings.xxs,
+      marginTop: theme.spacings.xxs,
+      background: '#fff',
+      padding: theme.spacings.xxs,
+      borderRadius: responsiveVal(4, 6),
     },
     text: {},
     image: {
       gridArea: 'image',
+      width: responsiveVal(18, 24),
+      height: responsiveVal(18, 24),
     },
     title: {
       gridArea: 'title',
+      fontWeight: 600,
     },
     subtitle: {
       gridArea: 'subtitle',
@@ -35,11 +41,11 @@ export default function ProductSidebarDelivery() {
 
   return (
     <div className={classes.root}>
-      <SvgImage className={classes.image} size='medium' src={iconBox} alt='box' loading='eager' />
-      <Typography className={classes.title} variant='subtitle2' component='div'>
-        Order before 22:00 and
+      <SvgImage className={classes.image} src={iconBox} alt='box' loading='eager' />
+      <Typography className={classes.title} variant='caption' component='div'>
+        Order before 22:00
       </Typography>
-      <Typography className={classes.subtitle} variant='body2' component='div' color='error'>
+      <Typography className={classes.subtitle} variant='caption' component='div'>
         Next day delivery - Shipping free
       </Typography>
     </div>
