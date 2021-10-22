@@ -11,9 +11,10 @@ const useStyles = makeStyles(
       margin: 0,
       display: 'grid',
       alignContent: 'start',
+      rowGap: theme.spacings.xs,
     },
-    gap: {
-      gap: theme.spacings.xs,
+    small: {
+      rowGap: 3,
     },
   }),
   { name: 'UspList' },
@@ -28,5 +29,5 @@ export default function UspList(props: UspListProps) {
   const { children, size } = props
   const classes = useStyles()
 
-  return <ul className={clsx(classes.root, size !== 'small' && classes.gap)}>{children}</ul>
+  return <ul className={clsx(classes.root, size === 'small' && classes.small)}>{children}</ul>
 }
