@@ -8,20 +8,26 @@ const useStyles = makeStyles(
     root: {
       display: 'grid',
       gridAutoFlow: 'column',
-      maxWidth: 'max-content',
       alignItems: 'center',
-      gridTemplateColumns: '30px 1fr',
-    },
-    gap: {
+      gridTemplateColumns: `max-content auto`,
       gap: theme.spacings.xs,
-    },
-    smallText: {
       '& > p': {
-        marginLeft: 5,
+        ...theme.typography.body2,
       },
     },
-    normalText: {
-      ...theme.typography.body1,
+    icon: {
+      width: '100%',
+      display: 'grid',
+      justifyContent: 'center',
+      alignItems: 'center',
+      '& > * > img': {
+        display: 'block',
+      },
+    },
+    small: {
+      '& > p': {
+        ...theme.typography.caption,
+      },
     },
   }),
   { name: 'UspListItem' },
@@ -38,9 +44,9 @@ export default function UspListItem(props: UspListItemProps) {
   const classes = useStyles()
 
   return (
-    <li className={clsx(classes.root, size === 'normal' && classes.gap)}>
-      <div>{icon}</div>
-      <div className={classes?.[`${size}Text`]}>{text}</div>
+    <li className={clsx(classes.root)}>
+      <div className={classes.icon}>{icon}</div>
+      <div className={clsx(size === 'small' && classes.small)}>{text}</div>
     </li>
   )
 }
