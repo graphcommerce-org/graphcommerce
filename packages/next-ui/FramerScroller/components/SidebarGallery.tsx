@@ -14,6 +14,7 @@ import clsx from 'clsx'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
+import { Row } from '../..'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
 import SvgImage from '../../SvgImage'
@@ -35,7 +36,6 @@ const useStyles = makeStyles(
       },
       background: theme.palette.background.highlight,
       paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
-      marginBottom: theme.spacings.lg,
     },
     rootZoomed: {
       position: 'relative',
@@ -225,68 +225,80 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
 
   return (
     <ScrollerProvider scrollSnapAlign='center'>
-      <m.div layout className={clsxZoom('root')}>
-        <m.div
-          layout
-          className={clsxZoom('scrollerContainer')}
-          onLayoutAnimationComplete={() => {
-            if (!zoomed) document.body.style.overflow = ''
-          }}
-        >
-          <Scroller
-            className={clsxZoom('scroller')}
-            hideScrollbar
-            onMouseDown={onMouseDownScroller}
-            onMouseUp={onMouseUpScroller}
+      <Row maxWidth={false} disableGutters>
+        <m.div layout className={clsxZoom('root')}>
+          <m.div
+            layout
+            className={clsxZoom('scrollerContainer')}
+            onLayoutAnimationComplete={() => {
+              if (!zoomed) document.body.style.overflow = ''
+            }}
           >
-            {images.map((image, idx) => (
-              <CenterSlide key={typeof image.src === 'string' ? image.src : idx}>
-                <MotionImageAspect
-                  layout
-                  src={image.src}
-                  width={image.width}
-                  height={image.height}
-                  loading={idx === 0 ? 'eager' : 'lazy'}
-                  sizes={{
-                    0: '100vw',
-                    [theme.breakpoints.values.md]: zoomed ? '100vw' : '60vw',
-                  }}
-                  dontReportWronglySizedImages
-                />
-              </CenterSlide>
-            ))}
-          </Scroller>
-          <m.div layout className={classes.topRight}>
-            <Fab color='inherit' size='small' className={classes.toggleIcon} onMouseUp={toggle}>
-              {!zoomed ? (
-                <SvgImage src={iconFullscreen} alt='Zoom in' loading='eager' size='small' />
-              ) : (
-                <SvgImage src={iconFullscreenExit} alt='Zoom out' loading='eager' size='small' />
-              )}
-            </Fab>
-          </m.div>
-          <div className={classes.centerLeft}>
-            <ScrollerButton layout direction='left' size='small' className={classes.sliderButtons}>
-              <SvgImageSimple src={iconChevronLeft} />
-            </ScrollerButton>
-          </div>
-          <div className={classes.centerRight}>
-            <ScrollerButton layout direction='right' size='small' className={classes.sliderButtons}>
-              <SvgImageSimple src={iconChevronRight} />
-            </ScrollerButton>
-          </div>
+            <Scroller
+              className={clsxZoom('scroller')}
+              hideScrollbar
+              onMouseDown={onMouseDownScroller}
+              onMouseUp={onMouseUpScroller}
+            >
+              {images.map((image, idx) => (
+                <CenterSlide key={typeof image.src === 'string' ? image.src : idx}>
+                  <MotionImageAspect
+                    layout
+                    src={image.src}
+                    width={image.width}
+                    height={image.height}
+                    loading={idx === 0 ? 'eager' : 'lazy'}
+                    sizes={{
+                      0: '100vw',
+                      [theme.breakpoints.values.md]: zoomed ? '100vw' : '60vw',
+                    }}
+                    dontReportWronglySizedImages
+                  />
+                </CenterSlide>
+              ))}
+            </Scroller>
+            <m.div layout className={classes.topRight}>
+              <Fab color='inherit' size='small' className={classes.toggleIcon} onMouseUp={toggle}>
+                {!zoomed ? (
+                  <SvgImage src={iconFullscreen} alt='Zoom in' loading='eager' size='small' />
+                ) : (
+                  <SvgImage src={iconFullscreenExit} alt='Zoom out' loading='eager' size='small' />
+                )}
+              </Fab>
+            </m.div>
+            <div className={classes.centerLeft}>
+              <ScrollerButton
+                layout
+                direction='left'
+                size='small'
+                className={classes.sliderButtons}
+              >
+                <SvgImageSimple src={iconChevronLeft} />
+              </ScrollerButton>
+            </div>
+            <div className={classes.centerRight}>
+              <ScrollerButton
+                layout
+                direction='right'
+                size='small'
+                className={classes.sliderButtons}
+              >
+                <SvgImageSimple src={iconChevronRight} />
+              </ScrollerButton>
+            </div>
 
-          <div className={classes.bottomCenter}>
-            <ScrollerDots layout classes={{ dots: classes.dots }} />
+            <div className={classes.bottomCenter}>
+              <ScrollerDots layout classes={{ dots: classes.dots }} />
+            </div>
+          </m.div>
+
+          <div className={clsxZoom('sidebarWrapper')}>
+            <m.div layout className={clsxZoom('sidebar')}>
+              {sidebar}
+            </m.div>
           </div>
         </m.div>
-
-        <div className={clsxZoom('sidebarWrapper')}>
-          <m.div layout className={clsxZoom('sidebar')}>
-            {sidebar}
-          </m.div>
-        </div>
-      </m.div>
+      </Row>
     </ScrollerProvider>
   )
 }
