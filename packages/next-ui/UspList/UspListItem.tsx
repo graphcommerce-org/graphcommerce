@@ -1,6 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
+import { responsiveVal } from '..'
 import { UseStyles } from '../Styles'
 
 const useStyles = makeStyles(
@@ -9,25 +10,25 @@ const useStyles = makeStyles(
       display: 'grid',
       gridAutoFlow: 'column',
       alignItems: 'center',
-      gridTemplateColumns: `max-content auto`,
+      gridTemplateColumns: `${responsiveVal(22, 32)} auto`,
       gap: theme.spacings.xs,
       '& > p': {
         ...theme.typography.body2,
       },
     },
     icon: {
-      width: '100%',
-      display: 'grid',
-      justifyContent: 'center',
-      alignItems: 'center',
       '& > * > img': {
         display: 'block',
       },
     },
-    small: {
+    smallCopy: {
       '& > p': {
         ...theme.typography.caption,
       },
+    },
+    smallIcons: {
+      gridTemplateColumns: `${responsiveVal(10, 14)} auto`,
+      gap: theme.spacings.xxs,
     },
   }),
   { name: 'UspListItem' },
@@ -44,9 +45,9 @@ export default function UspListItem(props: UspListItemProps) {
   const classes = useStyles()
 
   return (
-    <li className={clsx(classes.root)}>
+    <li className={clsx(classes.root, size === 'small' && classes.smallIcons)}>
       <div className={classes.icon}>{icon}</div>
-      <div className={clsx(size === 'small' && classes.small)}>{text}</div>
+      <div className={clsx(size === 'small' && classes.smallCopy)}>{text}</div>
     </li>
   )
 }

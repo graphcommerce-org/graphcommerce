@@ -2,7 +2,6 @@ import RichText from '@graphcommerce/graphcms-ui/RichText'
 import { Image } from '@graphcommerce/image'
 import { UspList, UspListItem } from '@graphcommerce/next-ui'
 import React from 'react'
-import Asset from '../Asset'
 import { UspsQueryFragment } from './UspsQueryFragment.gql'
 
 export type ProductUspsProps = UspsQueryFragment & {
@@ -21,7 +20,18 @@ export default function ProductUsps(props: ProductUspsProps) {
         <UspListItem
           key={usp.title}
           text={usp.description && <RichText raw={usp.description?.raw} />}
-          icon={usp.asset && <Image src={usp.asset.url} layout='fill' sizes='30px' />}
+          icon={
+            usp.asset &&
+            usp.asset.width &&
+            usp.asset.height && (
+              <Image
+                src={usp.asset.url}
+                width={usp.asset.width}
+                height={usp.asset.height}
+                layout='fill'
+              />
+            )
+          }
           size={size}
         />
       ))}
