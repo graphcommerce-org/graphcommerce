@@ -57,9 +57,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: 40,
   },
   label: {
+    ...theme.typography.body1,
     textAlign: 'center',
   },
   labelTitle: {
+    ...theme.typography.body1,
     display: 'inline',
     [theme.breakpoints.down('xs')]: {
       display: 'block',
