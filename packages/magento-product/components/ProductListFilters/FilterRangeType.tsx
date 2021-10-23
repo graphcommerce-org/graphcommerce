@@ -144,7 +144,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
       labelRight={
         <>
           <Money round value={value[0]} />
-          {' — '}
+          {value[0] ? ' — ' : false}
           <Money round value={value[1]} />
         </>
       }
