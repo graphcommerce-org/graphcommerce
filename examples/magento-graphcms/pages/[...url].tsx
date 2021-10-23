@@ -2,6 +2,7 @@ import { mergeDeep } from '@apollo/client/utilities'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   CategoryChildren,
+  CategoryDescription,
   CategoryHeroNav,
   CategoryHeroNavTitle,
   CategoryMeta,
@@ -99,8 +100,8 @@ function CategoryPage(props: Props) {
       ) : (
         <ProductListParamsProvider value={params}>
           <Container maxWidth={false}>
-            <AppShellTitle>{category?.name}</AppShellTitle>
-
+            <AppShellTitle variant='h1'>{category?.name}</AppShellTitle>
+            <CategoryDescription {...category} />
             <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
             <AppShellSticky headerFill='mobile-only'>
