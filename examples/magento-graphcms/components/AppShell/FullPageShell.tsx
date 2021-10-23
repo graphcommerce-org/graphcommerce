@@ -17,7 +17,7 @@ import {
   responsiveVal,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
-import { Fab, makeStyles, Theme } from '@material-ui/core'
+import { Fab, makeStyles, Theme, useTheme } from '@material-ui/core'
 import clsx from 'clsx'
 import { useViewportScroll } from 'framer-motion'
 import PageLink from 'next/link'
@@ -77,6 +77,7 @@ export type FullPageShellProps = Omit<DefaultPageQuery, 'pages'> &
 
 function FullPageShell(props: FullPageShellProps) {
   const { footer, menu: menuData = {}, children, alwaysShowLogo, ...uiProps } = props
+  const theme = useTheme()
   const classes = useStyles()
 
   const storeConfig = useQuery(StoreConfigDocument)
@@ -89,7 +90,15 @@ function FullPageShell(props: FullPageShellProps) {
       ...(menuItemsIncludeInMenu?.map((item) => ({
         href: `/${item?.url_path}`,
         children: item?.name?.toLowerCase().includes('sale') ? (
-          <span style={{ textTransform: 'uppercase', color: 'red' }}>{item.name}</span>
+          <span
+            style={{
+              textTransform: 'uppercase',
+              letterSpacing: 0.3,
+              color: theme.palette.primary.main,
+            }}
+          >
+            {item.name}
+          </span>
         ) : (
           item?.name ?? ''
         ),
