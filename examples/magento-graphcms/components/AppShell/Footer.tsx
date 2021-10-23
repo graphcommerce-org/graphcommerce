@@ -110,11 +110,7 @@ export default function Footer(props: FooterProps) {
           <PageLink key={link.title} href={link.url} passHref>
             <IconButton color='inherit' size='small' disableRipple disableFocusRipple edge='start'>
               {link.asset ? (
-                <SvgImageSimple
-                  src={link.asset.url}
-                  width={responsiveVal(16, 20)}
-                  layout='intrinsic'
-                />
+                <SvgImageSimple src={link.asset.url} width={24} size='small' />
               ) : (
                 link.title
               )}

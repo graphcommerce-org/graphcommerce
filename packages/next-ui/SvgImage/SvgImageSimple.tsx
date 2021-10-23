@@ -21,7 +21,7 @@ const useStyles = makeStyles(
     },
     /* Styles applied to the element if `size='small'`. */
     sizeSmall: {
-      width: 20,
+      width: responsiveVal(16, 20),
     },
     /* Styles applied to the element if `size='large'`. */
     sizeLarge: {
