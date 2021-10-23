@@ -16,6 +16,7 @@ const useStyles = makeStyles(
       maxWidth: 732,
       marginTop: theme.spacings.md,
       marginBottom: theme.spacings.sm,
+      ...theme.typography.body1,
     },
   }),
   { name: 'CategoryDescription' },
@@ -27,9 +28,6 @@ export default function CategoryDescription(props: CategoryDescriptionProps) {
 
   return (
     <div {...divProps} className={classes.root}>
-      <Typography variant='h2' component='h1' align='center'>
-        {name}
-      </Typography>
       {/* todo: replace with proper content renderer */}
       {/* eslint-disable-next-line react/no-danger */}
       {description && <div dangerouslySetInnerHTML={{ __html: description }} />}
