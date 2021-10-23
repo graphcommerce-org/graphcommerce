@@ -42,9 +42,6 @@ export default function RowServiceOptions(props: RowServiceOptionsProps) {
                 </>
               }
             >
-              <Link href={serviceOption.url} underline='always' color='primary'>
-                {hrefTitle}
-              </Link>
               {serviceOption.description ? <RichText {...serviceOption.description} /> : undefined}
             </IconBlock>
           </PageLink>
