@@ -236,13 +236,6 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   const { closeSteps, backSteps } = usePageContext()
   const classes = useStyles(props)
   const up = useUp()
-  const prevUp = usePrevUp()
-
-  const prevRouter = usePageRouter()
-
-  if (router.pathname === prevUp?.href) {
-    // Break loop
-  }
 
   const { titleRef, contentHeaderRef } = useAppShellHeaderContext()
 
@@ -346,14 +339,14 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
       className={classes.backButton}
       startIcon={backIcon}
     >
-      {historyOnClick ? backFallbackTitle : 'Back'}
+      {historyOnClick ? up?.title : 'Back'}
     </Button>
   )
-  if (!back && backFallbackHref) {
+  if (!back && up?.href) {
     back = (
-      <PageLink href={backFallbackHref} passHref>
+      <PageLink href={up?.href} passHref>
         <Button variant='pill-link' className={classes.backButton} startIcon={backIcon}>
-          {backFallbackTitle ?? 'Back'}
+          {up?.title ?? 'Back'}
         </Button>
       </PageLink>
     )

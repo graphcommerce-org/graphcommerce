@@ -198,7 +198,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const up =
     category_url_path && category_name
       ? { href: `/${category_url_path}`, title: category_name }
-      : undefined
+      : { href: `/`, title: 'Home' }
 
   return {
     props: {
