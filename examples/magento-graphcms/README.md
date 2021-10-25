@@ -29,6 +29,8 @@ In all code samples below, replace the following fields:
 - `mkdir my-project`
 - `cp -R graphcommerce/examples/magento-graphcms/. my-project`
 - `cd my-project`
+- `rm CHANGELOG.md && touch CHANGELOG.md`
+- `rm -rf node_modules`
 
 ### 2) Update your package.json
 
@@ -58,8 +60,8 @@ With:
   "version": "0.0.0",
   "scripts": {
     // ...other scripts
-    "codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 node -r dotenv/config node_modules/.bin/graphql-codegenl",
-    "postinstall": "patch-package && patch-typed-document-node"
+    "codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 node -r dotenv/config node_modules/.bin/graphql-codegen",
+    "postinstall": "patch-typed-document-node"
   }
 }
 ```

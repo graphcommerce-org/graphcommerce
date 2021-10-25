@@ -15,7 +15,7 @@
     "next": "^11.1.2",
     "next-transpile-modules": "^8.0.0",
     "type-fest": "^2.5.1",
-    "webpack": "^5.59.0"
+    "webpack": "^5.59.1"
   },
   "files": [
     "dist",
