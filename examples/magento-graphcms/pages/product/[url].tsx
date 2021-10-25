@@ -93,7 +93,7 @@ function ProductSimple(props: Props) {
           dangerouslySetInnerHTML={{ __html: product?.short_description?.html ?? '' }}
         />
 
-        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
+        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' size='small' />
         <ProductAddToCart
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}

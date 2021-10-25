@@ -111,7 +111,11 @@ function ProductConfigurable(props: Props) {
 
           <ProductShortDescription short_description={product?.short_description} />
 
-          <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
+          <ProductReviewChip
+            rating={product.rating_summary}
+            reviewSectionId='reviews'
+            size='small'
+          />
           <ConfigurableProductAddToCart
             variables={{ sku: product.sku ?? '', quantity: 1 }}
             name={product.name ?? ''}

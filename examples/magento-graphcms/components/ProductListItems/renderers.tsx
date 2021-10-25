@@ -15,8 +15,7 @@ const Subtitle = (props: TypographyProps) => (
 
 const useStyles = makeStyles((theme: Theme) => ({
   outlined: {
-    border: 'none',
-    background: 'none',
+    //
   },
 }))
 

@@ -89,7 +89,7 @@ function ProductVirtual(props: Props) {
 
         <ProductShortDescription short_description={product?.short_description} />
 
-        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
+        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' size='small' />
         <ProductAddToCart
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}

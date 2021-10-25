@@ -275,14 +275,30 @@ defaultTheme.overrides = {
   },
   MuiChip: {
     root: {
-      boxShadow: defaultTheme.shadows[5],
+      boxShadow: 'unset !important',
       backgroundColor: defaultTheme.palette.background.paper,
-      height: responsiveVal(28, 32),
-      borderRadius: responsiveVal(28 / 2, 32 / 2),
+      borderRadius: '99em',
+      height: responsiveVal(32, 40),
+      paddingLeft: responsiveVal(4, 8),
+      paddingRight: responsiveVal(4, 8),
+      ...defaultTheme.typography.body2,
+    },
+    sizeSmall: {
+      height: responsiveVal(26, 30),
+      paddingLeft: responsiveVal(2, 6),
+      paddingRight: responsiveVal(2, 6),
+      ...defaultTheme.typography.caption,
     },
     outlined: {
       borderColor: defaultTheme.palette.divider,
-      boxShadow: 'unset',
+    },
+    label: {
+      paddingLeft: responsiveVal(6, 10),
+      paddingRight: responsiveVal(6, 10),
+    },
+    labelSmall: {
+      paddingLeft: responsiveVal(4, 8),
+      paddingRight: responsiveVal(4, 8),
     },
   },
   MuiCheckbox: {
