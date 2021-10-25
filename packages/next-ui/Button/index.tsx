@@ -54,7 +54,7 @@ const useStyles = makeStyles<
       },
     },
     pill: {
-      borderRadius: 40 / 2,
+      borderRadius: '99em',
     },
     pillLink: {
       [theme.breakpoints.up('md')]: {
@@ -63,7 +63,7 @@ const useStyles = makeStyles<
         boxShadow: theme.shadows[6],
         borderRadius: 25,
         padding: '6px 16px',
-        fontWeight: theme.typography.fontWeightBold,
+
         '&:hover': {
           background: theme.palette.secondary.dark,
         },
@@ -76,10 +76,10 @@ const useStyles = makeStyles<
       //
     },
     pillSizeLarge: {
-      borderRadius: 59 / 2,
+      //
     },
     pillSizeSmall: {
-      borderRadius: 33 / 2,
+      //
     },
     pillNoElevation: {
       /* disableElevation does not stop adding box shadow on active... ?! */
