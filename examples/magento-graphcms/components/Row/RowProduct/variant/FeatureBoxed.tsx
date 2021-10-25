@@ -26,8 +26,8 @@ export default function FeatureBoxed(props: FeatureBoxedProps) {
         item.url && (
           <Image
             alt={item.label ?? ''}
-            width={328}
-            height={328}
+            width={1532}
+            height={1678}
             src={item.url}
             sizes={{
               0: '100vw',

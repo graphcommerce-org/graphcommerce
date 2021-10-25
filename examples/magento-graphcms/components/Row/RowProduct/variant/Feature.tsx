@@ -26,9 +26,10 @@ export default function Feature(props: FeatureProps) {
         item.url && (
           <Image
             alt={item.label ?? ''}
-            width={328}
-            height={328}
+            width={1532}
+            height={1678}
             src={item.url}
+            layout='fill'
             sizes={{
               0: '100vw',
               [theme.breakpoints.values.md]: '50vw',
