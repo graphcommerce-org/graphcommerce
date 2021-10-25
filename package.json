@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/graphcommerce",
-  "homepage": "https://graphcommerce.vercel.app/",
+  "homepage": "https://graphcommerce.org/",
   "version": "2.139.2",
   "private": true,
   "workspaces": [
@@ -21,11 +21,11 @@
     "tsc:lint": "yarn tsc --noEmit -p .",
     "playwright": "npx playwright test --headed --project=chrome",
     "postinstall": "patch-package && patch-typed-document-node && yarn prepack",
-    "prepack": "concurrently yarn:prepack:*",
+    "prepack": "concurrently 'yarn prepack:1' 'yarn prepack:2' 'yarn prepack:2'",
     "prepack:1": "yarn workspace @graphcommerce/next-config prepack",
     "prepack:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack",
     "prepack:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack",
-    "packages": "concurrently yarn:packages:*",
+    "packages": "concurrently 'yarn packages:1' 'yarn packages:2' 'yarn packages:2'",
     "packages:1": "yarn workspace @graphcommerce/next-config dev",
     "packages:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file dev",
     "packages:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin dev"
@@ -55,12 +55,12 @@
   },
   "devDependencies": {
     "@graphql-typed-document-node/patch-cli": "^3.0.8",
-    "@types/node": "^16.11.1",
-    "@types/react": "^17.0.30",
+    "@types/node": "^16.11.4",
+    "@types/react": "^17.0.32",
     "@types/sharp": "^0.29.2",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "eslint": "^8.0.1",
+    "eslint": "^8.1.0",
     "next": "^11.1.2",
     "prettier": "^2.4.1",
     "pretty-quick": "^3.1.1",
