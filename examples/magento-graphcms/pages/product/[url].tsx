@@ -61,10 +61,7 @@ function ProductSimple(props: Props) {
 
   return (
     <>
-      <FullPageShellHeader
-        backFallbackHref={backFallbackHref}
-        backFallbackTitle={backFallbackTitle}
-      >
+      <FullPageShellHeader>
         <Title size='small' component='span'>
           {product.name}
         </Title>
