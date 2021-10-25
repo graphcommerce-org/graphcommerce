@@ -115,11 +115,16 @@ export type PageOptions<T extends Record<string, unknown> = Record<string, unkno
   SharedComponent?: React.FC<any>
   /** Pass props to the SharedComponent */
   sharedProps?: Partial<Omit<T, 'children'>>
+
+  up?: UpPage
 }
 
 export type PageComponent<T = Record<string, unknown>> = NextComponentType<NextPageContext, T> & {
   pageOptions?: PageOptions<Record<string, unknown>>
 }
+
+/** Provide the href and title of the page that is above the current page. To navigate 'up' instead of 'back' */
+export type UpPage = { href: string; title: string }
 
 /**
  * PageItem used to store information about a page
@@ -127,9 +132,10 @@ export type PageComponent<T = Record<string, unknown>> = NextComponentType<NextP
  * @private
  */
 export type PageItem = {
-  routerProxy: RouterProxy
+  currentRouter: RouterProxy
   children: React.ReactNode
   historyIdx: number
   sharedKey: string
   sharedPageProps?: Record<string, unknown>
+  up?: UpPage
 } & Omit<PageOptions<Record<string, unknown>>, 'sharedKey'>

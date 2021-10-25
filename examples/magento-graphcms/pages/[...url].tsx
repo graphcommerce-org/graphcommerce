@@ -53,22 +53,13 @@ type Props = CategoryPageQuery &
   ProductListQuery & {
     filterTypes: FilterTypes
     params: ProductListParams
-  } & Pick<FullPageShellProps, 'backFallbackHref' | 'backFallbackTitle'>
+  }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function CategoryPage(props: Props) {
-  const {
-    categories,
-    products,
-    filters,
-    params,
-    filterTypes,
-    pages,
-    backFallbackHref,
-    backFallbackTitle,
-  } = props
+  const { categories, products, filters, params, filterTypes, pages } = props
   const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
 
   const category = categories?.items?.[0]
@@ -84,10 +75,7 @@ function CategoryPage(props: Props) {
   return (
     <>
       <CategoryMeta params={params} {...category} />
-      <FullPageShellHeader
-        backFallbackHref={backFallbackHref}
-        backFallbackTitle={backFallbackTitle}
-      >
+      <FullPageShellHeader>
         <Title size='small'>{category?.name}</Title>
       </FullPageShellHeader>
 
@@ -207,8 +195,10 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const { category_name, category_url_path } =
     (await categoryPage).data.categories?.items?.[0]?.breadcrumbs?.[0] ?? {}
 
-  const backFallbackHref = category_url_path ? `/${category_url_path}` : null
-  const backFallbackTitle = category_name || null
+  const up =
+    category_url_path && category_name
+      ? { href: `/${category_url_path}`, title: category_name }
+      : undefined
 
   return {
     props: {
@@ -217,8 +207,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       filterTypes: await filterTypes,
       params: productListParams,
       apolloState: await conf.then(() => client.cache.extract()),
-      backFallbackHref,
-      backFallbackTitle,
+      up,
     },
     revalidate: 60 * 20,
   }

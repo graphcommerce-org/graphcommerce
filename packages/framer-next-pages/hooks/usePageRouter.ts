@@ -19,5 +19,5 @@ import { pageRouterContext, RouterProxy } from '../context/pageRouterContext'
  * Adds an additional method: usePageRouter().go(-1)
  */
 export function usePageRouter(): RouterProxy {
-  return useContext(pageRouterContext).router
+  return useContext(pageRouterContext).currentRouter
 }

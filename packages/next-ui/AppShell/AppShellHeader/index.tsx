@@ -1,4 +1,10 @@
-import { useHistoryLink, usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
+import {
+  useHistoryLink,
+  usePageContext,
+  usePageRouter,
+  usePrevUp,
+  useUp,
+} from '@graphcommerce/framer-next-pages'
 import { Fab, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m, MotionValue, useMotionValue, useTransform } from 'framer-motion'
@@ -222,14 +228,21 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     additional,
     dragIndicator,
     scrolled,
-    backFallbackHref,
-    backFallbackTitle,
     fill = 'both',
     sheet,
   } = props
+
   const router = usePageRouter()
   const { closeSteps, backSteps } = usePageContext()
   const classes = useStyles(props)
+  const up = useUp()
+  const prevUp = usePrevUp()
+
+  const prevRouter = usePageRouter()
+
+  if (router.pathname === prevUp?.href) {
+    // Break loop
+  }
 
   const { titleRef, contentHeaderRef } = useAppShellHeaderContext()
 
@@ -242,7 +255,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   const titleHeight = useMotionValue<number>(100)
 
   const { href: historyHref, onClick: historyOnClick } = useHistoryLink({
-    href: backFallbackHref ?? '',
+    href: up?.href ?? '',
   })
 
   const setOffset = useCallback(
@@ -289,7 +302,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   }, [contentHeaderRef, sheetHeaderHeight])
 
   const opacityTitle = useTransform(
-    [scrollY, sheetHeaderHeight, titleOffset, titleHeight] as MotionValue[],
+    [scrollY, sheetHeaderHeight, titleOffset, titleHeight] as MotionValue<number | string>[],
     ([scrollYV, sheetHeaderHeightV, titleOffsetV, titleHeigthV]: number[]) =>
       Math.min(
         Math.max(
