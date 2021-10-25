@@ -43,7 +43,7 @@ import apolloClient from '../../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
 
-type Props = ProductPageQuery & BundleProductPageQuery & Pick<FullPageShellProps>
+type Props = ProductPageQuery & BundleProductPageQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>

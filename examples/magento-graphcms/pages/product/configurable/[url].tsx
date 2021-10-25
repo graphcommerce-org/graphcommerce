@@ -43,7 +43,7 @@ import {
 } from '../../../components/Row'
 import apolloClient from '../../../lib/apolloClient'
 
-type Props = ProductPageQuery & ConfigurableProductPageQuery & Pick<FullPageShellProps>
+type Props = ProductPageQuery & ConfigurableProductPageQuery
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
