@@ -20,8 +20,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       ...theme.typography.h4,
       fontWeight: 400,
       [theme.breakpoints.up('md')]: {
-        fontSize: responsiveVal(18, 30),
-        lineHeight: 1.7,
+        ...theme.typography.h3,
         fontWeight: 400,
       },
     },
