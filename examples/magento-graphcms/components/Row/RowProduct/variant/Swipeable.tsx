@@ -38,7 +38,7 @@ export default function Swipeable(props: SwipeableProps) {
     <SidebarSlider
       classes={classes}
       sidebar={
-        <Typography variant='h3' className={sidebarTitle}>
+        <Typography variant='h2' className={sidebarTitle}>
           {title}
         </Typography>
       }

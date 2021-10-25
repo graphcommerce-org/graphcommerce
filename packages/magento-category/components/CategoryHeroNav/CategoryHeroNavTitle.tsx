@@ -29,7 +29,7 @@ export default function CategoryHeroNavTitle(props: CategoryHeroNavTitleProps) {
   const classes = useStyles()
 
   return (
-    <AppShellTitle classes={classes} variant='h2'>
+    <AppShellTitle classes={classes} variant='h1'>
       {children}
     </AppShellTitle>
   )

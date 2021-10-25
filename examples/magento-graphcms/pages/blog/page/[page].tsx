@@ -38,7 +38,7 @@ function BlogPage(props: Props) {
       </FullPageShellHeader>
 
       <Container maxWidth='xl'>
-        <AppShellTitle variant='h2'>{title}</AppShellTitle>
+        <AppShellTitle variant='h1'>{title}</AppShellTitle>
       </Container>
 
       <BlogList blogPosts={blogPosts} />
