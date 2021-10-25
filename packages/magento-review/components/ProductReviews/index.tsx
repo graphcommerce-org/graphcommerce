@@ -128,7 +128,7 @@ export default function ProductReviews(props: ProductReviewsProps) {
           variant='pill'
           color='primary'
           text='bold'
-          size='large'
+          size='medium'
           className={classes.writeReviewButton}
         >
           Write a review
