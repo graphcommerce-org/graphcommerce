@@ -214,6 +214,15 @@ defaultTheme.overrides = {
     root: {
       fontWeight: 400,
       textTransform: 'none',
+      ...defaultTheme.typography.body2,
+      padding: `${responsiveVal(6, 8)} ${responsiveVal(12, 22)}`,
+    },
+    sizeLarge: {
+      padding: `${responsiveVal(10, 15)} ${responsiveVal(30, 60)}`,
+      ...defaultTheme.typography.body1,
+    },
+    iconSizeLarge: {
+      '& > *:first-child': { fontSize: 24 },
     },
     endIcon: {
       marginLeft: 0,
@@ -232,13 +241,13 @@ defaultTheme.overrides = {
       color: '#fff',
       '& .MuiSvgIcon-root': { color: '#fff' },
     },
-    containedSizeLarge: { padding: `15px ${responsiveVal(30, 60)}` },
-    iconSizeLarge: {
-      '& > *:first-child': { fontSize: 24 },
-    },
     outlined: {
-      // todo: Button isn't rounded on all places, but should be on homepage?
       borderRadius: 0,
+    },
+  },
+  MuiIconButton: {
+    sizeSmall: {
+      //
     },
   },
   MuiFab: {
