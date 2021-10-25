@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-category",
-  "version": "3.1.5",
+  "version": "3.1.6",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -24,7 +24,7 @@
     "@graphcommerce/framer-scroller": "^0.3.2",
     "@graphcommerce/graphql": "^2.104.0",
     "@graphcommerce/image": "^2.104.12",
-    "@graphcommerce/magento-product": "^3.2.4",
+    "@graphcommerce/magento-product": "^3.2.5",
     "@graphcommerce/magento-store": "^3.0.30",
     "@graphcommerce/next-ui": "^3.8.1",
     "@graphql-typed-document-node/core": "^3.1.0",
