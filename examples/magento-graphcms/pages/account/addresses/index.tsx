@@ -37,7 +37,7 @@ function AccountAddressesPage() {
 
   return (
     <>
-      <SheetShellHeader backFallbackTitle='Account' backFallbackHref='/account'>
+      <SheetShellHeader>
         <Title size='small' component='span' icon={iconAddresses}>
           Addresses
         </Title>
@@ -83,6 +83,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variant: 'bottom',
       size: 'max',
+      up: { href: '/account', title: 'Account' },
     },
   }
 }

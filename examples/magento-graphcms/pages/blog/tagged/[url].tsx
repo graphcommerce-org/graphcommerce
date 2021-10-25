@@ -34,7 +34,7 @@ function BlogPage(props: Props) {
 
   return (
     <>
-      <FullPageShellHeader backFallbackHref='/blog' backFallbackTitle='Blog'>
+      <FullPageShellHeader>
         <Title size='small'>{title}</Title>
       </FullPageShellHeader>
       <Row>
@@ -103,6 +103,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     props: {
       ...(await page).data,
       ...(await blogPosts).data,
+      up: { href: '/blog', title: 'Blog' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

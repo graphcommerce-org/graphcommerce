@@ -148,6 +148,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       scrolled: true,
       filterTypes: await filterTypes,
       params: productListParams,
+      up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 1,

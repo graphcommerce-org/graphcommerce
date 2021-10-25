@@ -62,6 +62,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   return {
     props: {
       url,
+      up: { href: '/', title: 'Home' },
       ...(await page).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },

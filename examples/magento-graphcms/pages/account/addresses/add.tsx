@@ -23,11 +23,10 @@ import apolloClient from '../../../lib/apolloClient'
 type Props = AccountDashboardAddressesQuery
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
-function AddNewAddressPage(props: Props) {
+function AddNewAddressPage() {
   const { loading, data, error } = useQuery(CustomerDocument, {
     ssr: false,
   })
-  const customer = data?.customer
 
   if (loading) return <div />
   if (error)
@@ -41,7 +40,7 @@ function AddNewAddressPage(props: Props) {
 
   return (
     <>
-      <SheetShellHeader backFallbackTitle='Account' backFallbackHref='/account'>
+      <SheetShellHeader>
         <Title size='small' component='span' icon={iconAddresses}>
           Addresses
         </Title>
@@ -70,7 +69,6 @@ export default AddNewAddressPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale)
-  const staticClient = apolloClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
   return {
@@ -78,6 +76,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variant: 'bottom',
       size: 'max',
+      up: { href: '/account', title: 'Account' },
     },
   }
 }

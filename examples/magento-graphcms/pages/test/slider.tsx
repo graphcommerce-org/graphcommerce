@@ -101,6 +101,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await productList).data,
+      up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

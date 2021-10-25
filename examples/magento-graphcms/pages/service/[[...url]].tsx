@@ -25,10 +25,6 @@ type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ServicePage({ pages }: Props) {
   const title = pages?.[0].title ?? ''
-  const asset = pages?.[0].asset
-  const router = useRouter()
-
-  const isRoot = router.asPath === '/service'
 
   return (
     <>
@@ -40,8 +36,6 @@ function ServicePage({ pages }: Props) {
       />
       <SheetShellHeader
         hideDragIndicator
-        backFallbackHref={isRoot ? undefined : '/service'}
-        backFallbackTitle={isRoot ? undefined : 'Customer Service'}
       >
         <Title component='span' size='small'>
           {title}
@@ -99,9 +93,12 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
 
+  const isRoot = url === 'service'
+
   return {
     props: {
       ...(await page).data,
+      up: isRoot ? { href: '/', title: 'Home' } : {href: '/service' : title: 'Customer Service'},
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

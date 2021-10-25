@@ -44,17 +44,14 @@ import apolloClient from '../../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
 
-type Props = ProductPageQuery &
-  GroupedProductPageQuery &
-  Pick<FullPageShellProps, 'backFallbackHref' | 'backFallbackTitle'>
+type Props = ProductPageQuery & GroupedProductPageQuery & Pick<FullPageShellProps>
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductGrouped(props: Props) {
-  const { products, usps, sidebarUsps, typeProducts, pages, backFallbackHref, backFallbackTitle } =
-    props
+  const { products, usps, sidebarUsps, typeProducts, pages } = props
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
@@ -65,10 +62,7 @@ function ProductGrouped(props: Props) {
 
   return (
     <>
-      <FullPageShellHeader
-        backFallbackHref={backFallbackHref}
-        backFallbackTitle={backFallbackTitle}
-      >
+      <FullPageShellHeader>
         <Title size='small' component='span'>
           {product.name}
         </Title>
@@ -190,13 +184,17 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   }
 
   const category = productPageCategory((await productPage).data?.products?.items?.[0])
+  const up =
+    category?.url_path && category?.name
+      ? { href: `/${category.url_path}`, title: category.name }
+      : { href: `/`, title: 'Home' }
+
   return {
     props: {
       ...(await productPage).data,
       ...(await typeProductPage).data,
       apolloState: await conf.then(() => client.cache.extract()),
-      backFallbackHref: category?.url_path ? `/${category?.url_path}` : null,
-      backFallbackTitle: category?.name ?? null,
+      up,
     },
     revalidate: 60 * 20,
   }
