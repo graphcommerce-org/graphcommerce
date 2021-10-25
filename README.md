@@ -16,7 +16,7 @@ At the heart of GraphCommerce is our GraphQL Mesh, wich consolidates data from
 different services. To date, Magento Open Source, Adobe Commerce, GraphCMS (rich
 content) have been fully integrated.
 
-## Gettin Started
+## Getting Started
 
 Copy the the [Magento with GraphCMS example](./examples/magento-graphcms) and
 get started in minutes.
