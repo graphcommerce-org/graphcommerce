@@ -34,9 +34,7 @@ function ServicePage({ pages }: Props) {
         metaRobots={['noindex']}
         canonical={pages?.[0]?.url ?? ''}
       />
-      <SheetShellHeader
-        hideDragIndicator
-      >
+      <SheetShellHeader hideDragIndicator>
         <Title component='span' size='small'>
           {title}
         </Title>
@@ -98,7 +96,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   return {
     props: {
       ...(await page).data,
-      up: isRoot ? { href: '/', title: 'Home' } : {href: '/service' : title: 'Customer Service'},
+      up: isRoot ? { href: '/', title: 'Home' } : { href: '/service', title: 'Customer Service' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

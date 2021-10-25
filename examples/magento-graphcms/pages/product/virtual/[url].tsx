@@ -43,9 +43,7 @@ import apolloClient from '../../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
 
-type Props = ProductPageQuery &
-  VirtualProductPageQuery &
-  Pick<FullPageShellProps, 'backFallbackHref' | 'backFallbackTitle'>
+type Props = ProductPageQuery & VirtualProductPageQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
