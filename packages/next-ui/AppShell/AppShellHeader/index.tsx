@@ -29,8 +29,6 @@ export type AppShellHeaderProps = {
   scrolled?: boolean
   dragIndicator?: React.ReactNode
   additional?: React.ReactNode
-  backFallbackHref?: string | null
-  backFallbackTitle?: string | null
   fill?: 'both' | 'mobile-only'
   sheet?: boolean
 } & UseStyles<typeof useStyles>
@@ -236,6 +234,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   const { closeSteps, backSteps } = usePageContext()
   const classes = useStyles(props)
   const up = useUp()
+  const prevUp = usePrevUp()
 
   const { titleRef, contentHeaderRef } = useAppShellHeaderContext()
 
@@ -332,17 +331,21 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     ))
 
   const backIcon = <SvgImageSimple src={iconChevronLeft} />
-  let back = backSteps > 0 && (
-    <Button
-      onClick={() => router.back()}
-      variant='pill-link'
-      className={classes.backButton}
-      startIcon={backIcon}
-    >
-      {historyOnClick ? up?.title : 'Back'}
-    </Button>
+
+  const canClickBack = backSteps > 0 && router.asPath !== prevUp?.href
+  let back = canClickBack && (
+    <PageLink href={historyHref} passHref>
+      <Button
+        onClick={historyOnClick}
+        variant='pill-link'
+        className={classes.backButton}
+        startIcon={backIcon}
+      >
+        {historyOnClick ? up?.title : 'Back'}
+      </Button>
+    </PageLink>
   )
-  if (!back && up?.href) {
+  if (!canClickBack && up?.href) {
     back = (
       <PageLink href={up?.href} passHref>
         <Button variant='pill-link' className={classes.backButton} startIcon={backIcon}>
