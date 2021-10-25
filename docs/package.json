@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/pwa-docs",
-  "version": "2.104.0",
+  "version": "2.104.1",
   "private": true,
   "main": "index.js",
   "license": "MIT",
