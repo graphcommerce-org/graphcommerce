@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.126.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.125.3...@graphcommerce/magento-graphcms@2.126.0) (2021-10-25)
+
+
+### Features
+
+* prepare for yarn 3 usage (not actually migrated because vercel doesn't support yarn 3) ([41734be](https://github.com/ho-nl/m2-pwa/commit/41734beaa016bf4c3487b3fbd5a402d8024e173f))
+
+
+
+
+
 # [2.125.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.124.0...@graphcommerce/magento-graphcms@2.125.0) (2021-10-21)
 
 

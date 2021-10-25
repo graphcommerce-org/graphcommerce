@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.9.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.8.1...@graphcommerce/next-ui@3.9.0) (2021-10-25)
+
+
+### Features
+
+* prepare for yarn 3 usage (not actually migrated because vercel doesn't support yarn 3) ([41734be](https://github.com/ho-nl/m2-pwa/commit/41734beaa016bf4c3487b3fbd5a402d8024e173f))
+
+
+
+
+
 # [3.8.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.7.1...@graphcommerce/next-ui@3.8.0) (2021-10-21)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/next-config",
-  "version": "2.106.0",
+  "version": "2.106.1",
   "type": "commonjs",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",

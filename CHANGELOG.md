@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.140.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.139.2...@graphcommerce/graphcommerce@2.140.0) (2021-10-25)
+
+
+### Bug Fixes
+
+* try fix bundlesize ([e2da5be](https://github.com/ho-nl/m2-pwa/commit/e2da5be94e88f2a45e60858c002b831b48f28541))
+
+
+### Features
+
+* prepare for yarn 3 usage (not actually migrated because vercel doesn't support yarn 3) ([41734be](https://github.com/ho-nl/m2-pwa/commit/41734beaa016bf4c3487b3fbd5a402d8024e173f))
+
+
+
+
+
 # [2.139.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.138.0...@graphcommerce/graphcommerce@2.139.0) (2021-10-21)
 
 
