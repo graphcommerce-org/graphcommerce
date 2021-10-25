@@ -26,7 +26,9 @@ In all code samples below, replace the following fields:
 ### 1) Download the example.
 
 - `git clone https://github.com/ho-nl/m2-pwa graphcommerce`
-- `cp graphcommerce/examples/magento-graphcms my-project`
+- `mkdir my-project`
+- `cp -R graphcommerce/examples/magento-graphcms/. my-project`
+- `cd my-project`
 
 ### 2) Update your package.json
 
@@ -38,6 +40,7 @@ Replace
   "version": "2.124.0",
   "scripts": {
     // ...other scripts
+    "codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 node -r dotenv/config node_modules/.bin/graphql-codegen -c codegen.mono.yml",
     "prepack": "concurrently yarn:prepack:*",
     "prepack:1": "yarn workspace @graphcommerce/next-config prepack",
     "prepack:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack",
@@ -52,9 +55,10 @@ With:
 ```json
 {
   "name": "@my-company/my-project",
-  "version": "2.124.0",
+  "version": "0.0.0",
   "scripts": {
     // ...other scripts
+    "codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 node -r dotenv/config node_modules/.bin/graphql-codegenl",
     "postinstall": "patch-package && patch-typed-document-node"
   }
 }
@@ -64,47 +68,40 @@ With:
 
 The example has mollie integrated, but you probably don't have mollie installed.
 
-- Remove `- '../../packages/mollie-magento-payment/**/*.graphqls'` lines from
-  `codegen.yaml`
 - Remove `"@graphcommerce/mollie-magento-payment"` from package.json
 - Remove all mollie references from `pages/checkout/payment.tsx`
 
-### 4) Updating codegen.yml files:
-
-Replace the lines (4 times) in codegen.yaml
-
-```yml
-- '../../packages/magento-*/**/*.graphqls'
-- '../../packagesDev/**/*.graphqls'
-```
-
-With:
-
-```yml
-- 'node_modules/@graphcommerce/**/*.graphqls'
-```
-
-Replace
-
-```yml
-- '../../packages/**/*.graphql'
-```
-
-With
-
-```yml
-- 'node_modules/@graphcommerce/**/*.graphql'
-```
-
-### 5) Done
+### 4) Done
 
 Alright, we're done! 🎉 You now have a completely separate installation for your
 project.
 
+You probably want to commit your project right now:
+
+```bash
+git init && git add . && git commit -m "initial commit"
+```
+
 ## Setting up the project
 
 1. `yarn install`
-2. `cp .env.example .env`
-3. `yarn dev`
+2. `cp .env.example .env`: You can modify the GraphQL endpoints here.
+3. `yarn gen`: Converts all the GraphQl files to TypeScript files. This should
+   run without errors.
+4. `yarn dev`
    - http://localhost:3000/api/graphql should show the GraphQL Playground
    - http://localhost:3000 should show the website
+
+Alright we've got it working.
+
+You can customize the backends by modifying the `.env` file
+
+## Common issues
+
+<dl>
+  <dt>Failed to generate schema: invalid json response body at
+https://your-magento-backend.com/graphql reason: Unexpected token E in JSON at
+position 0</dt>
+  <dd>This probabaly isn't an error with GraphCommerce. The Magento backend isn't responding with a valid GraphQL response You can probably find the Magento exception in the Magneto logs.</dd>
+</dl>
+````

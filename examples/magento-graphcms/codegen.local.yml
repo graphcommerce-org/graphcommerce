@@ -1,0 +1,64 @@
+generates:
+  # Generate a schema file
+  node_modules/@graphcommerce/graphql/generated/schema.graphqls:
+    schema:
+      - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
+      - '**/*.graphqls'
+      - node_modules/@graphcommerce/**/*.graphqls
+      #- '.packages/mollie-magento-payment/**/*.graphqls'
+    plugins:
+      - schema-ast
+      - add
+    config:
+      includeDirectives: true
+      commentDescriptions: false
+      content: '#'
+  # Generate a types file
+  node_modules/@graphcommerce/graphql/generated/types.ts:
+    schema:
+      - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
+      - '**/*.graphqls'
+      - node_modules/@graphcommerce/**/*.graphqls
+      #- '.packages/mollie-magento-payment/**/*.graphqls'
+    plugins:
+      - typescript
+      - typescript-apollo-client-helpers
+      - add
+    config:
+      enumsAsTypes: true
+      content: '/* eslint-disable */'
+  # Generate a fragments.json
+  node_modules/@graphcommerce/graphql/generated/fragments.json:
+    schema:
+      - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
+      - '**/*.graphqls'
+      - node_modules/@graphcommerce/**/*.graphqls
+      #- '.packages/mollie-magento-payment/**/*.graphqls'
+    plugins:
+      - fragment-matcher
+    config:
+      apolloClientVersion: 3
+  # Generate .gql.ts files for each GraphQL file
+  .:
+    schema:
+      - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
+      - '**/*.graphqls'
+      - node_modules/@graphcommerce/**/*.graphqls
+      #- '.packages/mollie-magento-payment/**/*.graphqls'
+    documents:
+      - 'components/*.graphql'
+      - 'node_modules/@graphcommerce/**/*.graphql'
+    plugins:
+      - '@graphcommerce/graphql-codegen-relay-optimizer-plugin'
+      - typed-document-node
+      - typescript-operations
+      - add
+    preset: '@graphcommerce/graphql-codegen-near-operation-file'
+    presetConfig:
+      extension: .gql.ts
+      baseTypesPath: ~@graphcommerce/graphql
+      injectables: true
+    config:
+      skipTypename: true
+      dedupeOperationSuffix: true
+      content: '/* eslint-disable */'

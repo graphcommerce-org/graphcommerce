@@ -53,7 +53,6 @@ export type CartTotalsProps = { containerMargin?: boolean } & UseStyles<typeof u
  * the demo, but we need additional fields from the API to get this working as expected:
  *
  * @see https://github.com/magento/magento2/issues/33848
- * @see https://github.com/magento/magento2/issues?q=is%3Aopen+is%3Aissue+label%3A%22Project%3A+GraphQL%22+tax
  */
 export default function CartTotals(props: CartTotalsProps) {
   const { data } = useCartQuery(GetCartTotalsDocument, { allowUrl: true })
