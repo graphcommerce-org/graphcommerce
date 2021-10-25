@@ -1,5 +1,5 @@
 import { StoreSwitcherButton } from '@graphcommerce/magento-store'
-import { responsiveVal, SvgImageSimple, UseStyles, Button } from '@graphcommerce/next-ui'
+import { SvgImageSimple, UseStyles, Button } from '@graphcommerce/next-ui'
 import { Container, IconButton, Link, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import PageLink from 'next/link'
