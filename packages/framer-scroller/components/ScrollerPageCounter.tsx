@@ -10,6 +10,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     pageCounter: {
       ...theme.typography.h4,
+      fontWeight: 500,
     },
   }),
   { name: 'SliderPageCounter' },
