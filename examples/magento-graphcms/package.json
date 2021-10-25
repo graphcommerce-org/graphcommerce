@@ -7,17 +7,17 @@
     "node": "14.x"
   },
   "scripts": {
-    "dev": "yarn concurrently -k 'yarn:codegen -w' 'yarn:next dev'",
-    "gen": "yarn mesh build --require dotenv/config && NEXT_PUBLIC_GRAPHQL_ENDPOINT=.mesh/schema.graphql yarn codegen",
-    "build": "yarn gen && yarn next build && yarn next-sitemap",
+    "dev": "yarn concurrently -k -n codegen,next 'yarn codegen-base -w' 'yarn next dev'",
+    "codegen": "yarn mesh build --require dotenv/config && NEXT_PUBLIC_GRAPHQL_ENDPOINT=.mesh/schema.graphql yarn codegen-base",
+    "build": "yarn codegen && yarn next build && yarn next-sitemap",
     "start": "next start",
     "tsc:lint": "yarn tsc --noEmit -p .",
-    "codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 node -r dotenv/config node_modules/.bin/graphql-codegen -c codegen.mono.yml",
-    "prepack": "concurrently yarn:prepack:*",
+    "codegen-base": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 yarn graphql-codegen --require dotenv/config -c codegen.mono.yml",
+    "prepack": "concurrently 'yarn prepack:1' 'yarn prepack:2' 'yarn prepack:3'",
     "prepack:1": "yarn workspace @graphcommerce/next-config prepack",
     "prepack:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack",
     "prepack:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack",
-    "postinstall": "patch-package && patch-typed-document-node && yarn prepack"
+    "postinstall": "patch-typed-document-node && yarn prepack"
   },
   "dependencies": {
     "@adobe/apollo-link-mutation-queue": "^1.0.2",
@@ -95,7 +95,6 @@
     "next": "^11.1.2",
     "next-pwa": "^5.4.0",
     "next-sitemap": "^1.6.192",
-    "node-fetch": "^3.0.0",
     "postinstall-postinstall": "^2.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

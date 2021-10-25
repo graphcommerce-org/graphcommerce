@@ -47,7 +47,7 @@ Replace
     "prepack:1": "yarn workspace @graphcommerce/next-config prepack",
     "prepack:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack",
     "prepack:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack",
-    "postinstall": "patch-package && patch-typed-document-node && yarn prepack"
+    "postinstall": "patch-typed-document-node && yarn prepack"
   }
 }
 ```
@@ -86,10 +86,11 @@ git init && git add . && git commit -m "initial commit"
 
 ## Setting up the project
 
+0. have [yarn 3](https://yarnpkg.com/getting-started/install) installed
 1. `yarn install`
 2. `cp .env.example .env`: You can modify the GraphQL endpoints here.
-3. `yarn gen`: Converts all the GraphQl files to TypeScript files. This should
-   run without errors.
+3. `yarn codegen`: Converts all the GraphQl files to TypeScript files. This
+   should run without errors.
 4. `yarn dev`
    - http://localhost:3000/api/graphql should show the GraphQL Playground
    - http://localhost:3000 should show the website
