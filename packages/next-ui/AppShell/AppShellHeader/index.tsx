@@ -235,7 +235,6 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   const classes = useStyles(props)
   const up = useUp()
   const prevUp = usePrevUp()
-
   const { titleRef, contentHeaderRef } = useAppShellHeaderContext()
 
   const noChildren = typeof children === 'undefined' || !children
