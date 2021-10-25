@@ -13,7 +13,13 @@ const useStyles = makeStyles(
       gridArea: 'description',
       margin: '0 auto',
       textAlign: 'center',
-      maxWidth: 732,
+      maxWidth: '90%',
+      [theme.breakpoints.up('md')]: {
+        maxWidth: '50%',
+      },
+      [theme.breakpoints.up('xl')]: {
+        maxWidth: '30%',
+      },
       marginTop: theme.spacings.md,
       marginBottom: theme.spacings.sm,
       ...theme.typography.body1,
