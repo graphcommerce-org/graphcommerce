@@ -43,6 +43,7 @@ const useStyles = makeStyles(
     containerSticky: {},
     scroller: {
       borderRadius: 22,
+      paddingBottom: 1,
       columnGap: 6,
       gridAutoColumns: 'min-content',
     },
