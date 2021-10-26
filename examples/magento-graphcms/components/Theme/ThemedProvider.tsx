@@ -11,7 +11,7 @@ export const defaultTheme = createTheme({
     primary: {
       main: '#FF4A55',
       contrastText: '#000',
-      mutedText: `#999`,
+      mutedText: `#bbb`,
       dark: '#F33642',
     },
     secondary: {
@@ -32,7 +32,7 @@ export const defaultTheme = createTheme({
     text: {
       primary: '#000',
       secondary: '#000',
-      disabled: '#999',
+      disabled: '#bbb',
     },
   },
   breakpoints: {
