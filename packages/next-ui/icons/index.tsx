@@ -1,4 +1,7 @@
-// 24px
+// 20px x 20px, stroke 1.8px
+export { default as iconSearch } from './search-20.svg'
+
+// 24px x 24px, stroke 2px
 export { default as iconPerson } from './person-24.svg'
 export { default as iconChevronDown } from './chevron-down-24.svg'
 export { default as iconChevronLeft } from './chevron-left-24.svg'
@@ -9,7 +12,7 @@ export { default as iconHeart } from './favourite-24.svg'
 export { default as iconLocationRed } from './location-24.svg'
 export { default as iconInvoiceRed } from './box-alt-24.svg'
 
-// 32
+// 32px x 32px, stroke 2px
 export { default as iconCustomerService } from './chat-32.svg'
 export { default as iconShoppingBag } from './bag-32.svg'
 export { default as iconPersonAlt } from './person-32.svg'
@@ -21,18 +24,17 @@ export { default as iconEmail } from './envelope-alt-32.svg'
 export { default as iconCheckmark } from './ok-32.svg'
 export { default as iconArrowBack } from './arrow-left-32.svg'
 export { default as iconArrowForward } from './arrow-right-32.svg'
-export { default as iconMenu } from './hamburger-32.svg'
+export { default as iconMenu } from './hamburger-24.svg'
 export { default as iconMin } from './minus-32.svg'
 export { default as iconPhone } from './smartphone-32.svg'
 export { default as iconPlus } from './plus-32.svg'
 export { default as iconClose } from './close-32.svg'
 export { default as iconFullscreen } from './maximise-32.svg'
-export { default as iconSearch } from './search-32.svg'
 export { default as iconStarYellow } from './star-32.svg'
 export { default as iconStarFilledMuted } from './star-32.svg'
 export { default as iconCheckmarkGreen } from './ok-32.svg'
 
-// 48
+// 48px x 48px, stroke 3px
 export { default as iconBox } from './box-48.svg'
 export { default as iconHome } from './home-alt-48.svg'
 export { default as iconId } from './credit-card-48.svg'
@@ -44,6 +46,6 @@ export { default as iconParty } from './happy-face-48.svg'
 export { default as iconStar } from './star-48.svg'
 export { default as iconEmailOutline } from './envelope-alt-48.svg'
 
-// 152
+// 152px x 152px, stroke 4px
 export { default as iconPersonAltBig } from './person-152.svg'
 export { default as iconSadShoppingBag } from './sad-face-152.svg'
