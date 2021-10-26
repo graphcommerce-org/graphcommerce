@@ -25,10 +25,10 @@ const useStyles = makeStyles(
     },
     /* Styles applied to the element if `size='large'`. */
     sizeLarge: {
-      width: responsiveVal(28, 32),
+      width: responsiveVal(24, 28),
     },
-    muted: { filter: `invert(75%)` },
-    inverted: { filter: `invert(100%)` },
+    muted: { filter: `invert(100%) saturate(0%) contrast(50%)` },
+    inverted: { filter: `invert(100%) saturate(0%) contrast(200%)` },
   }),
   { name: 'SvgImageSimple' },
 )
