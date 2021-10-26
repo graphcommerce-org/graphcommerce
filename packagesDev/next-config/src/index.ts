@@ -42,6 +42,7 @@ function extendConfig(nextConfig: NextConfig): NextConfig {
       config.plugins = [new DefinePlugin({ __DEV__: options.dev }), ...(config.plugins ?? [])]
 
       config.experiments = {
+        layers: true,
         topLevelAwait: true,
       }
 
