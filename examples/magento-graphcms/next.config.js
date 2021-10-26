@@ -58,6 +58,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  swcMinify: true,
 }
 
 module.exports = withPWA(withYarn1Workspaces(nextConfig))
