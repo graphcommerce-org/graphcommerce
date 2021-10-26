@@ -11,6 +11,7 @@
     "prepack": "yarn build"
   },
   "dependencies": {
+    "@lingui/loader": "^3.12.1",
     "js-yaml-loader": "^1.2.2",
     "next": "^11.1.2",
     "next-transpile-modules": "^8.0.0",
