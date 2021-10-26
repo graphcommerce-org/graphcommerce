@@ -13,6 +13,8 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: components/AppShell/FullPageShell.tsx:117
+#: components/AppShell/FullPageShell.tsx:141
 #: pages/404.tsx:27
 #: pages/account/addresses/add.tsx:45
 #: pages/account/addresses/index.tsx:41
@@ -85,6 +87,7 @@ msgstr ""
 msgid "Billing address"
 msgstr ""
 
+#: components/AppShell/FullPageShell.tsx:96
 #: pages/blog/page/[page].tsx:37
 #: pages/blog/tagged/[url].tsx:38
 msgid "Blog"
@@ -141,6 +144,8 @@ msgstr ""
 msgid "Create new password"
 msgstr ""
 
+#: components/AppShell/Footer.tsx:92
+#: components/AppShell/FullPageShell.tsx:147
 #: pages/service/[[...url]].tsx:45
 msgid "Customer Service"
 msgstr ""
@@ -175,6 +180,10 @@ msgstr ""
 msgid "Forgot your password?"
 msgstr ""
 
+#: components/AppShell/FullPageShellHeader.tsx:12
+msgid "Home"
+msgstr ""
+
 #: pages/account/index.tsx:91
 #: pages/account/name/index.tsx:43
 #: pages/account/name/index.tsx:49
@@ -191,6 +200,10 @@ msgstr ""
 #: pages/checkout/index.tsx:121
 #: pages/test/minimal-page-shell-subheader/[[...url]].tsx:55
 msgid "Next"
+msgstr ""
+
+#: components/Blog/BlogItem.tsx:25
+msgid "No Image"
 msgstr ""
 
 #: pages/account/forgot-password.tsx:33
@@ -251,6 +264,10 @@ msgstr ""
 
 #: pages/account/reviews/add.tsx:65
 msgid "Product could not be found"
+msgstr ""
+
+#: components/Row/RowProductSpecs/index.tsx:31
+msgid "Product specifications"
 msgstr ""
 
 #: pages/search/[[...url]].tsx:78
@@ -344,6 +361,10 @@ msgstr ""
 
 #: pages/404.tsx:38
 msgid "Whoops our bad..."
+msgstr ""
+
+#: components/AppShell/FullPageShell.tsx:150
+msgid "Wishlist"
 msgstr ""
 
 #: pages/account/index.tsx:146

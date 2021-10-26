@@ -13,6 +13,8 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: components/AppShell/FullPageShell.tsx:117
+#: components/AppShell/FullPageShell.tsx:141
 #: pages/404.tsx:27
 #: pages/account/addresses/add.tsx:45
 #: pages/account/addresses/index.tsx:41
@@ -85,6 +87,7 @@ msgstr "Wees de eerste die op de hoogte is van alles wat er nieuw is!"
 msgid "Billing address"
 msgstr "Factuuradres"
 
+#: components/AppShell/FullPageShell.tsx:96
 #: pages/blog/page/[page].tsx:37
 #: pages/blog/tagged/[url].tsx:38
 msgid "Blog"
@@ -141,6 +144,8 @@ msgstr "Land"
 msgid "Create new password"
 msgstr "Maak een nieuw wachtwoord"
 
+#: components/AppShell/Footer.tsx:92
+#: components/AppShell/FullPageShell.tsx:147
 #: pages/service/[[...url]].tsx:45
 msgid "Customer Service"
 msgstr "Klantenservice"
@@ -175,6 +180,10 @@ msgstr "Vul nieuwe wachtwoord in, bevestig en klik op de opslaan knop."
 msgid "Forgot your password?"
 msgstr "Wachtwoord vergeten?"
 
+#: components/AppShell/FullPageShellHeader.tsx:12
+msgid "Home"
+msgstr "Home"
+
 #: pages/account/index.tsx:91
 #: pages/account/name/index.tsx:43
 #: pages/account/name/index.tsx:49
@@ -192,6 +201,10 @@ msgstr "Nieuwsbrief"
 #: pages/test/minimal-page-shell-subheader/[[...url]].tsx:55
 msgid "Next"
 msgstr "Volgende"
+
+#: components/Blog/BlogItem.tsx:25
+msgid "No Image"
+msgstr "Geen afbeelding"
 
 #: pages/account/forgot-password.tsx:33
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
@@ -252,6 +265,10 @@ msgstr "Plaats bestelling"
 #: pages/account/reviews/add.tsx:65
 msgid "Product could not be found"
 msgstr "Product kan niet worden gevonden"
+
+#: components/Row/RowProductSpecs/index.tsx:31
+msgid "Product specifications"
+msgstr "Productspecificaties"
 
 #: pages/search/[[...url]].tsx:78
 #: pages/search/[[...url]].tsx:84
@@ -345,6 +362,10 @@ msgstr "Wat is de juiste maat?"
 #: pages/404.tsx:38
 msgid "Whoops our bad..."
 msgstr "Oeps.."
+
+#: components/AppShell/FullPageShell.tsx:150
+msgid "Wishlist"
+msgstr "Verlanglijst"
 
 #: pages/account/index.tsx:146
 msgid "Written {0} reviews"

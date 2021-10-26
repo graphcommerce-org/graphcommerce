@@ -16,6 +16,7 @@ import {
   responsiveVal,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Fab, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import PageLink from 'next/link'
@@ -92,7 +93,7 @@ function FullPageShell(props: FullPageShellProps) {
           item?.name ?? ''
         ),
       })) ?? []),
-      { href: '/blog', children: 'Blog' },
+      { href: '/blog', children: t`Blog` },
     ],
   }
 
@@ -113,10 +114,10 @@ function FullPageShell(props: FullPageShellProps) {
               <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
             )}
             <PageLink href='/service' passHref>
-              <Fab style={{ boxShadow: 'none' }} aria-label='Account' size='large'>
+              <Fab style={{ boxShadow: 'none' }} aria-label={t`Account`} size='large'>
                 <SvgImageSimple
                   src={iconCustomerService}
-                  alt='Customer Service'
+                  alt={`Customer Service`}
                   loading='eager'
                   size='large'
                 />
@@ -137,19 +138,16 @@ function FullPageShell(props: FullPageShellProps) {
         classes={{ menuWrapper: classes.hideOnVirtualKeyboardOpen }}
       >
         <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>
-          Account
+          <Trans>Account</Trans>
         </CustomerMenuFabItem>
         <MenuFabSecondaryItem
-          icon={<SvgImageSimple src={iconCustomerService} alt='Customer Service' />}
+          icon={<SvgImageSimple src={iconCustomerService} alt='' />}
           href='/service'
         >
-          Customer Service
+          <Trans>Customer Service</Trans>
         </MenuFabSecondaryItem>
-        <MenuFabSecondaryItem
-          icon={<SvgImageSimple src={iconHeart} alt='Wishlist' />}
-          href='/wishlist'
-        >
-          Wishlist
+        <MenuFabSecondaryItem icon={<SvgImageSimple src={iconHeart} alt='' />} href='/wishlist'>
+          <Trans>Wishlist</Trans>
         </MenuFabSecondaryItem>
       </MenuFab>
 

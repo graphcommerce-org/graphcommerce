@@ -1,5 +1,10 @@
 import { StoreSwitcherButton } from '@graphcommerce/magento-store'
+<<<<<<< HEAD
 import { SvgImageSimple, UseStyles, Button } from '@graphcommerce/next-ui'
+=======
+import { Button, SvgImageSimple, UseStyles } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
+>>>>>>> 9a9be49d (chore: more translations added)
 import { Container, IconButton, Link, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import PageLink from 'next/link'
@@ -119,7 +124,7 @@ export default function Footer(props: FooterProps) {
       </div>
       <PageLink href='/service' passHref>
         <Button variant='pill' color='inherit' className={classes.support}>
-          Customer Service
+          <Trans>Customer Service</Trans>
         </Button>
       </PageLink>
       <div className={classes.copyright}>
