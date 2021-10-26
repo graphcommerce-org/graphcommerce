@@ -38,7 +38,7 @@ export default function ButtonLink(props: ButtonLinkProps) {
     <PageLink href={url} passHref>
       <Button {...buttonProps} className={classes.buttonLink}>
         <span>{title}</span>
-        {endIcon ?? <SvgImage src={iconChevronRight} alt='chevron right' />}
+        {endIcon ?? <SvgImage src={iconChevronRight} alt='chevron right' size='small' />}
       </Button>
     </PageLink>
   )
