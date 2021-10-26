@@ -23,6 +23,7 @@ import {
   iconChevronRight,
   SvgImage,
 } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
@@ -43,7 +44,11 @@ function CartPage() {
 
   return (
     <>
-      <PageMeta title='Cart' metaDescription='Cart Items' metaRobots={['noindex']} />
+      <PageMeta
+        title={t`Cart (${data?.cart?.total_quantity ?? 0})`}
+        metaDescription={t`Cart Items`}
+        metaRobots={['noindex']}
+      />
       <NoSsr>
         <SheetShellHeader
           primary={
@@ -62,7 +67,7 @@ function CartPage() {
                   />
                 }
               >
-                Next
+                <Trans>Next</Trans>
               </Button>
             </PageLink>
           }

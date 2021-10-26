@@ -62,9 +62,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  webpack(config, { dev }) {
-    return config
-  },
 }
 
 module.exports = withBundleAnalyzer(withPWA(withYarn1Workspaces(nextConfig)))

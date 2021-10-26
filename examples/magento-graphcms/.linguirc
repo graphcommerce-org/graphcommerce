@@ -1,0 +1,16 @@
+{
+  "locales": [
+    "en",
+    "nl"
+  ],
+  "catalogs": [
+    {
+      "path": "locales/{locale}",
+      "include": [
+        "pages",
+        "components"
+      ]
+    }
+  ],
+  "format": "po"
+}
