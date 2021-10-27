@@ -1,5 +1,5 @@
 import { StoreSwitcherButton } from '@graphcommerce/magento-store'
-import { SvgImageSimple, UseStyles, Button } from '@graphcommerce/next-ui'
+import { UseStyles, Button, SvgImage } from '@graphcommerce/next-ui'
 import { Container, IconButton, Link, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import PageLink from 'next/link'
@@ -109,11 +109,7 @@ export default function Footer(props: FooterProps) {
         {footer?.socialLinks?.map((link) => (
           <PageLink key={link.title} href={link.url} passHref>
             <IconButton color='inherit' size='small' disableRipple disableFocusRipple edge='start'>
-              {link.asset ? (
-                <SvgImageSimple src={link.asset.url} width={24} size='small' />
-              ) : (
-                link.title
-              )}
+              {link.asset ? <SvgImage src={link.asset.url} width={24} size='small' /> : link.title}
             </IconButton>
           </PageLink>
         ))}
