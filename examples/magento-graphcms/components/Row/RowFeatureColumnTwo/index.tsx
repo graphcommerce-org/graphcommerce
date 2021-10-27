@@ -1,6 +1,7 @@
 import { SvgImage, responsiveVal } from '@graphcommerce/next-ui'
 import { Box, Button, Container, makeStyles, Tab, Theme, Typography } from '@material-ui/core'
 import { TabContext, TabList, TabPanel } from '@material-ui/lab'
+import Link from 'next/link'
 import React from 'react'
 import {
   iconLogoFormium,
@@ -12,7 +13,8 @@ import {
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      background: '#001727',
+      background: theme.palette.background.default,
+      color: theme.palette.text.primary,
     },
     container: {
       padding: `${responsiveVal(50, 200)} 0`,
@@ -24,7 +26,7 @@ const useStyles = makeStyles(
     `,
       gridTemplateColumns: '80%',
       justifyContent: 'center',
-      [theme.breakpoints.up('lg')]: {
+      [theme.breakpoints.up('md')]: {
         gridTemplateAreas: `
       "copy graphic"
       "services services"
@@ -59,7 +61,7 @@ const useStyles = makeStyles(
       },
     },
     query: {
-      color: theme.palette.secondary.main,
+      // color: theme.palette.primar.main,
       width: '100%',
       aspectRatio: '5/4',
       background: '#021F34',
@@ -174,18 +176,22 @@ export default function RowFeatureColumnTwo() {
     <Container maxWidth={false} className={classes.root}>
       <Container className={classes.container}>
         <div className={classes.copy}>
-          <Typography variant='overline'>Compose your backend</Typography>
-          <Typography variant='h2' color='secondary'>
+          <Typography variant='overline' component='div' gutterBottom color='primary'>
+            Compose your backend
+          </Typography>
+          <Typography variant='h2' gutterBottom>
             Infinite services in a single endpoint
           </Typography>
-          <Typography paragraph variant='h3' color='textSecondary'>
+          <Typography paragraph variant='h5' color='textSecondary'>
             At the heart of GraphCommerce® is our GraphQL Mesh, which consolidates data from
             different services. To date, Magento Open Source, Adobe Commerce, GraphCMS (rich
             content) and Formium (form creation) have been fully integrated.
           </Typography>
-          <Button href='/' variant='text' size='large' className={classes.styledButton}>
-            Explore GraphQL Mesh →
-          </Button>
+          <Link href='https://graphcommerce.vercel.app/api/graphql' passHref>
+            <Button variant='text' size='large' className={classes.styledButton}>
+              Explore GraphQL Mesh →
+            </Button>
+          </Link>
         </div>
 
         <div className={classes.query}>
@@ -212,7 +218,7 @@ export default function RowFeatureColumnTwo() {
         </div>
 
         <div className={classes.services}>
-          <Typography paragraph variant='h5' color='secondary'>
+          <Typography paragraph variant='h5'>
             Integrated services that can be queried with a single call
           </Typography>
           <div>

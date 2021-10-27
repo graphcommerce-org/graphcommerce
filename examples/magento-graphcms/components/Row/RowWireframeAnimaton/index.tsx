@@ -23,7 +23,7 @@ const useStyles = makeStyles(
     copy: {
       maxWidth: '70%',
       [theme.breakpoints.up('sm')]: {
-        width: '650px',
+        width: '700px',
       },
       margin: responsiveVal(60, 200),
       marginBottom: responsiveVal(100, 220),
@@ -117,11 +117,13 @@ export default function RowWireframeAnimation() {
       <div className={classes.container} onMouseMove={handleMouse}>
         <div className={classes.pagebuilder}>
           <div className={classes.copy}>
-            <Typography variant='overline'>Brand Experience</Typography>
-            <Typography variant='h2' color='secondary'>
+            <Typography variant='overline' component='div' gutterBottom color='primary'>
+              Brand Experience
+            </Typography>
+            <Typography variant='h2' gutterBottom>
               Build rich content pages
             </Typography>
-            <Typography paragraph variant='h3' color='textSecondary'>
+            <Typography paragraph variant='h5' color='textSecondary'>
               GraphCMS (a headless CMS integrated by default), is used for storing static content.
               Pages can be composed directly in the admin interface, without the help of a
               developer. A variety of content components offer creative ways to display text, video
@@ -129,14 +131,7 @@ export default function RowWireframeAnimation() {
             </Typography>
           </div>
 
-          <m.div
-            style={{
-              rotateX,
-              rotateY,
-              scale,
-            }}
-            className={classes.interactive}
-          >
+          <m.div style={{ rotateX, rotateY, scale }} className={classes.interactive}>
             <Hint
               content='Add components to any page direct from the GraphCMS admin interface.'
               hintLeft='85%'

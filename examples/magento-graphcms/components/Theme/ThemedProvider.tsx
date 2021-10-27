@@ -1,7 +1,7 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
 import { responsiveVal } from '@graphcommerce/next-ui'
-import { createTheme, CssBaseline, Theme, ThemeProvider } from '@material-ui/core'
+import { createTheme, Theme, ThemeProvider } from '@material-ui/core'
 import { PaletteOptions } from '@material-ui/core/styles/createPalette'
 import { Overrides } from '@material-ui/core/styles/overrides'
 import React from 'react'
@@ -10,10 +10,10 @@ import shadows from './shadows'
 const lightPalette: PaletteOptions = {
   type: 'light',
   primary: {
-    main: '#FF4A55',
+    main: '#95e2cb',
     contrastText: '#000',
     mutedText: `#999`,
-    dark: '#F33642',
+    dark: '#66c2cc',
   },
   secondary: {
     main: '#006BFF',
@@ -22,7 +22,7 @@ const lightPalette: PaletteOptions = {
     mutedText: `#999`,
   },
   background: {
-    default: '#FFF',
+    default: '#fff',
     paper: '#fff',
     highlight: '#F8F8F8',
   },
@@ -33,7 +33,7 @@ const lightPalette: PaletteOptions = {
   },
   text: {
     primary: '#000',
-    secondary: '#000',
+    secondary: '#999EB5',
     disabled: '#999',
   },
 }
@@ -64,8 +64,9 @@ const darkPalette: PaletteOptions = {
   },
   text: {
     primary: '#fff',
-    secondary: '#fff',
+    secondary: 'rgba(255,255,255,0.8)',
     disabled: '#999',
+    hint: 'rgba(255,255,255,0.3)',
   },
 }
 
@@ -130,10 +131,10 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       },
       h2: {
         fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-        fontSize: responsiveVal(28, 48),
-        fontWeight: 800,
-        // letterSpacing: '-0.0375em',
-        lineHeight: 1.42,
+        fontSize: responsiveVal(36, 58),
+        fontWeight: 700,
+        letterSpacing: '-0.01em',
+        lineHeight: 1.22,
       },
       h3: {
         fontFamily: ['Public Sans', 'sans-serif'].join(', '),
@@ -152,9 +153,9 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       h5: {
         fontFamily: ['Public Sans', 'sans-serif'].join(', '),
 
-        fontWeight: 700,
+        fontWeight: 600,
         // letterSpacing: '-0.0375em',
-        fontSize: responsiveVal(17, 20),
+        fontSize: responsiveVal(18, 24),
         lineHeight: 1.55,
       },
       h6: {
@@ -163,7 +164,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
         fontSize: responsiveVal(17, 20),
         fontWeight: 600,
         // letterSpacing: '-0.0375em',
-        lineHeight: 1.8,
+        lineHeight: 1.55,
       },
       subtitle1: {
         fontFamily: ['Public Sans', 'sans-serif'].join(', '),
@@ -196,10 +197,10 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       button: {},
       overline: {
         fontSize: responsiveVal(12, 14),
-        color: `rgba(0, 0, 0, 0.3)`,
+        // color: palette.text?.hint,
         fontWeight: 500,
         letterSpacing: 1,
-        lineHeight: 1.2,
+        lineHeight: 1.7,
         textTransform: 'uppercase',
       },
     },

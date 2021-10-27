@@ -1,21 +1,18 @@
-import { SvgImage, responsiveVal } from '@graphcommerce/next-ui'
+import { responsiveVal } from '@graphcommerce/next-ui'
 import { Button, Container, makeStyles, Theme, Typography } from '@material-ui/core'
-import {
-  iconPwa,
-  iconSeo,
-  iconAppFeatures,
-  iconContentPages,
-  iconJumpstart,
-  iconOptimizedPerformance,
-} from '../../Theme/icons/icons'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
+    root: {
+      background: theme.palette.background.default,
+      color: theme.palette.text.primary,
+      padding: `${theme.spacings.xl} 0 1px`,
+    },
     copy: {
-      margin: `${responsiveVal(50, 200)} auto ${responsiveVal(30, 80)} auto`,
+      margin: `0 auto ${responsiveVal(30, 80)} auto`,
       maxWidth: '70%',
-      [theme.breakpoints.up('sm')]: {
-        width: '700px',
+      [theme.breakpoints.up('md')]: {
+        width: '800px',
       },
     },
     grid: {
@@ -52,7 +49,9 @@ const useStyles = makeStyles(
       padding: `${responsiveVal(0, 2)} ${responsiveVal(4, 8)}`,
       marginBottom: responsiveVal(6, 10),
       backgroundImage: 'linear-gradient(45deg, #E9FAF6, #F6FFEB)',
-      borderRadius: responsiveVal(4, 10),
+      borderRadius: 6,
+      color: theme.palette.primary.dark,
+      fontWeight: 550,
       '& > *': {
         margin: 0,
         fontSize: responsiveVal(10, 15),
@@ -63,9 +62,6 @@ const useStyles = makeStyles(
         '-moz-text-fill-color': 'initial',
       },
     },
-    overline: {
-      filter: 'brightness(0.9)',
-    },
   }),
   { name: 'RowFeatureGrid' },
 )
@@ -74,16 +70,16 @@ export default function RowAudienceGrid() {
   const classes = useStyles()
 
   return (
-    <Container maxWidth={false}>
+    <div className={classes.root}>
       <Container>
         <div className={classes.copy}>
-          <Typography variant='overline' className={classes.overline}>
+          <Typography variant='overline' component='div' gutterBottom color='primary'>
             Happy teams
           </Typography>
-          <Typography variant='h2'>
+          <Typography variant='h2' gutterBottom>
             Bringing back agility to agile e-commerce development
           </Typography>
-          <Typography paragraph variant='h3' color='textSecondary'>
+          <Typography paragraph variant='h5' color='textSecondary'>
             Building projects with GraphCommerce® offers benefits that make shop and product owners,
             designers, marketeers and management very happy.
           </Typography>
@@ -91,11 +87,7 @@ export default function RowAudienceGrid() {
 
         <div className={classes.grid}>
           <div>
-            <div className={classes.icon}>
-              <Typography variant='overline' paragraph>
-                CEO
-              </Typography>
-            </div>
+            <div className={classes.icon}>CEO</div>
             <Typography variant='h4'>Consolidate your resources</Typography>
             <Typography variant='body1' color='textSecondary'>
               Let users install your shop on their home screen or taskbar. GraphCommerce® offers a
@@ -168,17 +160,11 @@ export default function RowAudienceGrid() {
           <Typography paragraph variant='h5'>
             Want to show GraphCommerce® to your team members?
           </Typography>
-          <Button
-            href='/'
-            variant='outlined'
-            size='large'
-            className={classes.copyButton}
-            color='primary'
-          >
-            $ npm install graphcommerce
+          <Button variant='outlined' size='large' className={classes.copyButton}>
+            https://graphcommerce.vercel.app/
           </Button>
         </div>
       </Container>
-    </Container>
+    </div>
   )
 }

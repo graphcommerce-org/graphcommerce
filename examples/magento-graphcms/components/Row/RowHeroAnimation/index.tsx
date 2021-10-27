@@ -116,16 +116,16 @@ export default function RowHeroAnimation() {
                 React, Typescript and Next.js.
               </Typography>
               <div className={classes.buttonGroup}>
-                <Button href='/' variant='contained' size='large' className={classes.styledButton}>
+                <Button
+                  href='https://graphcommerce.vercel.app/'
+                  variant='contained'
+                  size='large'
+                  color='primary'
+                  className={classes.styledButton}
+                >
                   View live demo
                 </Button>
-                <Button
-                  href='/'
-                  variant='outlined'
-                  size='large'
-                  className={classes.copyButton}
-                  color='secondary'
-                >
+                <Button href='/' variant='outlined' size='large' className={classes.copyButton}>
                   $ npm install graphcommerce
                 </Button>
               </div>

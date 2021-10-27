@@ -1,6 +1,6 @@
 import { SvgImage, responsiveVal } from '@graphcommerce/next-ui'
-import { Button, Container, makeStyles, Theme, Typography, useTheme } from '@material-ui/core'
-import { useEffect, useRef, useState } from 'react'
+import { Container, makeStyles, Theme, Typography, useTheme } from '@material-ui/core'
+import { useState } from 'react'
 import Asset from '../../Asset'
 import { iconUspCheck, iconClock } from '../../Theme/icons/icons'
 import Timer from './Timer'
@@ -8,24 +8,25 @@ import Timer from './Timer'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      background: '#F3F5F7',
+      background: theme.palette.background.default,
+      color: theme.palette.text.primary,
     },
     container: {
       padding: `${responsiveVal(50, 200)} 0`,
       display: 'grid',
       gridTemplateAreas: `
-      "copy"
-      "graphic"
-      "usps"
-    `,
+        "copy"
+        "graphic"
+        "usps"
+      `,
       gridTemplateColumns: '80%',
       justifyContent: 'center',
       rowGap: responsiveVal(40, 80),
       [theme.breakpoints.up('md')]: {
         gridTemplateAreas: `
-      "copy graphic"
-      "usps graphic"
-    `,
+          "copy graphic"
+          "usps graphic"
+        `,
         gridTemplateColumns: 'minmax(400px, 700px) minmax(200px, 450px)',
         gridTemplateRows: 'auto auto',
         justifyContent: 'space-between',
@@ -135,11 +136,13 @@ export default function RowFeatureGridColumnTwo() {
     <Container maxWidth={false} className={classes.root}>
       <Container className={classes.container}>
         <div className={classes.copy}>
-          <Typography variant='overline' className={classes.overline}>
+          <Typography variant='overline' component='div' gutterBottom color='primary'>
             Every project a head start
           </Typography>
-          <Typography variant='h2'>Blazing Fast</Typography>
-          <Typography paragraph variant='h3' color='textSecondary'>
+          <Typography variant='h2' gutterBottom>
+            Blazing Fast
+          </Typography>
+          <Typography paragraph variant='h5' color='textSecondary'>
             GraphCommerce® has been designed and built as a PWA. It is optimized for Google’s Core
             Web Vitals, scoring great on all metrics: LCP, FID and CLS. Since Google and Facebook
             actively contribute to Next.js and React, GraphCommerce® is set to become even better

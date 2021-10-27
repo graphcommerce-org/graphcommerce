@@ -14,6 +14,7 @@ import RowFeatureGridColumnTwo from '../../components/Row/RowFeatureGridColumnTw
 import RowHeroAnimation from '../../components/Row/RowHeroAnimation'
 import RowListColumnTwo from '../../components/Row/RowListColumnTwo'
 import RowWireframeAnimation from '../../components/Row/RowWireframeAnimaton'
+import { LightTheme } from '../../components/Theme/ThemedProvider'
 import apolloClient from '../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -35,11 +36,17 @@ function CmsPage(props: Props) {
       />
 
       <RowHeroAnimation />
-      <RowFeatureGrid />
+      <LightTheme>
+        <RowFeatureGrid />
+      </LightTheme>
       <RowFeatureColumnTwo />
-      <RowFeatureGridColumnTwo />
+      <LightTheme>
+        <RowFeatureGridColumnTwo />
+      </LightTheme>
       <RowWireframeAnimation />
-      <RowAudienceGrid />
+      <LightTheme>
+        <RowAudienceGrid />
+      </LightTheme>
       <RowListColumnTwo />
     </>
   )

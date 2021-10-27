@@ -56,6 +56,7 @@ const useStyles = makeStyles(
         display: 'grid',
         gridTemplateColumns: `40px auto`,
         alignItems: 'center',
+        marginBottom: '0.4em',
       },
     },
     description: {
@@ -137,11 +138,13 @@ export default function RowListColumnTwo() {
     <Container maxWidth={false} className={classes.root}>
       <Container className={classes.container}>
         <div className={classes.copy}>
-          <Typography variant='overline'>Every project a head start</Typography>
-          <Typography variant='h2' color='secondary'>
+          <Typography variant='overline' component='div' gutterBottom color='primary'>
+            Developers, developers, developers
+          </Typography>
+          <Typography variant='h2' gutterBottom>
             Amazing developer experience
           </Typography>
-          <Typography paragraph variant='h3' color='secondary' className={classes.description}>
+          <Typography paragraph variant='h5' color='textSecondary' className={classes.description}>
             GraphCommerce® has been developed by developers, for developers. It is built on the best
             open-source tools for the modern web, used by millions, and subject to continuous
             innovation by the largest developer communities in the world.
@@ -159,83 +162,83 @@ export default function RowListColumnTwo() {
         <ul className={classes.grid}>
           <li>
             <Typography variant='overline'>›_</Typography>
-            <Typography variant='h6' className={classes.h6} color='secondary'>
+            <Typography variant='h6' className={classes.h6}>
               Realtime feedback in your IDE with typescript
             </Typography>
           </li>
           <li>
             <Typography variant='overline'>›_</Typography>
-            <Typography variant='h6' className={classes.h6} color='secondary'>
+            <Typography variant='h6' className={classes.h6}>
               Fast refresh provides instant feedback during development
             </Typography>
           </li>
           <li>
             <Typography variant='overline'>›_</Typography>
-            <Typography variant='h6' className={classes.h6} color='secondary'>
+            <Typography variant='h6' className={classes.h6}>
               Fully configured Webpack requires none of your time
             </Typography>
           </li>
           <li>
             <Typography variant='overline'>›_</Typography>
-            <Typography variant='h6' className={classes.h6} color='secondary'>
+            <Typography variant='h6' className={classes.h6}>
               Validate your code on build time with Typescript to prevent failing builds
             </Typography>
           </li>
           <li>
             <Typography variant='overline'>›_</Typography>
-            <Typography variant='h6' className={classes.h6} color='secondary'>
+            <Typography variant='h6' className={classes.h6}>
               Discover the GraphQL schema with GraphQL Playground
             </Typography>
           </li>
           <li>
             <Typography variant='overline'>›_</Typography>
-            <Typography variant='h6' className={classes.h6} color='secondary'>
+            <Typography variant='h6' className={classes.h6}>
               Zero-maintenance hosting via Vercel
             </Typography>
           </li>
 
           <li>
             <Typography variant='overline'>›_</Typography>
-            <Typography variant='h6' className={classes.h6} color='secondary'>
+            <Typography variant='h6' className={classes.h6}>
               Standardized advanced form handling
             </Typography>
           </li>
 
           <li>
             <Typography variant='overline'>›_</Typography>
-            <Typography variant='h6' className={classes.h6} color='secondary'>
+            <Typography variant='h6' className={classes.h6}>
               File system routing
             </Typography>
           </li>
 
           <li>
             <Typography variant='overline'>›_</Typography>
-            <Typography variant='h6' className={classes.h6} color='secondary'>
+            <Typography variant='h6' className={classes.h6}>
               Easily themable component library designed for e-commerce
             </Typography>
           </li>
           <li>
             <Typography variant='overline'>›_</Typography>
-            <Typography variant='h6' className={classes.h6} color='secondary'>
+            <Typography variant='h6' className={classes.h6}>
               Declarative, 60fps animations using Framer Motion
             </Typography>
           </li>
           <li>
             <Typography variant='overline'>›_</Typography>
-            <Typography variant='h6' className={classes.h6} color='secondary'>
+            <Typography variant='h6' className={classes.h6}>
               Auto-generated Typescript definitions from GraphQL schema queries
             </Typography>
           </li>
           <li>
             <Typography variant='overline'>›_</Typography>
-            <Typography variant='h6' className={classes.h6} color='secondary'>
+            <Typography variant='h6' className={classes.h6}>
               Query multiple backend services with Apollo Client and GraphQL Mesh
             </Typography>
           </li>
         </ul>
 
         <div className={classes.technology}>
-          <Typography paragraph variant='h5' color='secondary'>
+          <Typography paragraph variant='h5'>
             Build with the tools you already know and love
           </Typography>
           <div>
