@@ -96,7 +96,7 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
           secondary={subtitle}
         />
         {endIcon ?? (
-          <SvgImage src={iconChevronRight} alt='chevron right' size='small' loading='eager' />
+          <SvgImageSimple src={iconChevronRight} alt='chevron right' size='small' loading='eager' />
         )}
       </ListItem>
     </Button>

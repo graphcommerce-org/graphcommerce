@@ -46,7 +46,12 @@ const ForwardButton = React.forwardRef((props: ForwardButtonProps, ref) => {
   return (
     <Button variant='pill' classes={classes} {...fabProps}>
       <span className={text}>{children}</span>
-      <SvgImage src={iconChevronRight} alt='chevron right' size='small' classes={{ root: icon }} />
+      <SvgImageSimple
+        src={iconChevronRight}
+        alt='chevron right'
+        size='small'
+        classes={{ root: icon }}
+      />
     </Button>
   )
 })

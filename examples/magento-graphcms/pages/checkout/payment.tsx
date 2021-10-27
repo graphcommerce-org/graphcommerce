@@ -29,6 +29,7 @@ import {
   PageShellHeader,
   Stepper,
   SvgImage,
+  SvgImageSimple,
   Title,
 } from '@graphcommerce/next-ui'
 import { ComposedForm } from '@graphcommerce/react-hook-form'
@@ -68,12 +69,12 @@ function PaymentPage() {
                   variant='pill-link'
                   display='inline'
                   endIcon={
-                    <SvgImage
+                    <SvgImageSimple
                       src={iconChevronRight}
                       loading='eager'
                       alt='chevron right'
                       size='small'
-                      shade='inverted'
+                      inverted
                     />
                   }
                 >
@@ -146,12 +147,10 @@ function PaymentPage() {
                       size='large'
                       text='bold'
                       endIcon={
-                        <SvgImage
+                        <SvgImageSimple
                           src={iconChevronRight}
                           loading='eager'
                           alt='chevron right'
-                          size='small'
-                          shade='inverted'
                         />
                       }
                     >

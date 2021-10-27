@@ -1,4 +1,11 @@
-import { Button, Highlight, iconChevronRight, SvgImage, UseStyles } from '@graphcommerce/next-ui'
+import {
+  Button,
+  Highlight,
+  iconChevronRight,
+  SvgImage,
+  SvgImageSimple,
+  UseStyles,
+} from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
@@ -48,7 +55,7 @@ export default function CategorySearchResult(props: CategorySearchResultProps) {
         className={classes.categoryButton}
         disableElevation
         endIcon={
-          <SvgImage src={iconChevronRight} alt='chevron right' size='small' loading='eager' />
+          <SvgImageSimple src={iconChevronRight} alt='chevron right' size='small' loading='eager' />
         }
       >
         <div>
