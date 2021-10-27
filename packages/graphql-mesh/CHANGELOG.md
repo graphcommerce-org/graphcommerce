@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-mesh@3.1.0...@graphcommerce/graphql-mesh@3.2.0) (2021-10-21)
+
+
+### Bug Fixes
+
+* **graphql-mesh:** use a build mesh for production environments ([cd2f318](https://github.com/ho-nl/m2-pwa/commit/cd2f3189383fa9d304bd367334e3f47ca4aa6100))
+* unable to find cache matching inmemoryLru ([520f6f3](https://github.com/ho-nl/m2-pwa/commit/520f6f329573471ecfdbdc4aa6f2e4b688b31f11))
+
+
+### Features
+
+* **graphql-mesh:** remove the api project and use a single project 🎉👩‍👩‍👦‍👦 ([ea4ad03](https://github.com/ho-nl/m2-pwa/commit/ea4ad0397d4ff289ef3b3253593fb0914c8c5246))
+
+
+
+
+
+# [3.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-mesh@3.0.11...@graphcommerce/graphql-mesh@3.1.0) (2021-10-20)
+
+
+### Features
+
+* **graphql-mesh:** simplified the handler to use less code in the project ([f62b752](https://github.com/ho-nl/m2-pwa/commit/f62b75249492f40c5972deede529a25a17c8a617))
+
+
+
+
+
+## [3.0.11](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-mesh@3.0.10...@graphcommerce/graphql-mesh@3.0.11) (2021-10-20)
+
+
+### Bug Fixes
+
+* **recaptcha:** allow and forward the the X-ReCaptcha to Magento ([2f3170e](https://github.com/ho-nl/m2-pwa/commit/2f3170e0f1652d84948b69a446634ffe02f08f80))
+
+
+
+
+
+## [3.0.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-mesh@3.0.8...@graphcommerce/graphql-mesh@3.0.9) (2021-10-18)
+
+
+### Bug Fixes
+
+* add cache-inmemory-lru ([2cd23a4](https://github.com/ho-nl/m2-pwa/commit/2cd23a40c8a2b02175b160aa9ce0b695c88c12f7))
+* graphql-mesh missing inmemory lru ([6c71c25](https://github.com/ho-nl/m2-pwa/commit/6c71c256911072ace19037616e0ce2ab478bf070))
+
+
+
+
+
 ## [3.0.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql-mesh@3.0.0...@graphcommerce/graphql-mesh@3.0.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/graphql-mesh

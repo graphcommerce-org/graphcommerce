@@ -1,16 +1,15 @@
-import { relative } from 'path/posix'
 import {
   Scroller,
   ScrollerButton,
   ScrollerPageCounter,
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
-import { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Theme, makeStyles } from '@material-ui/core'
 import React, { ReactNode } from 'react'
-import { SvgImageSimple, iconChevronLeft, iconChevronRight } from '../..'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
+import SvgImageSimple from '../../SvgImage/SvgImageSimple'
+import { iconChevronLeft, iconChevronRight } from '../../icons'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -31,16 +30,11 @@ const useStyles = makeStyles(
     },
     scroller: {
       width: '100%',
-      display: 'grid',
-      gridAutoFlow: 'column',
       gridColumnGap: theme.spacings.md,
       gridRowGap: theme.spacings.lg,
       alignContent: 'space-around',
       paddingRight: theme.page.horizontal,
-
-      '& > *': {
-        minWidth: responsiveVal(200, 400),
-      },
+      gridAutoColumns: responsiveVal(200, 400),
     },
     sliderButtons: {
       [theme.breakpoints.down('sm')]: {

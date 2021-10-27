@@ -20,6 +20,7 @@ const useStyles = makeStyles(
       justifyContent: 'center',
       [theme.breakpoints.up('md')]: {
         padding: `${theme.spacings.xxs} ${theme.page.horizontal} 0`,
+        marginBottom: theme.spacings.xxs,
         top: 0,
         display: 'flex',
         pointerEvents: 'none',

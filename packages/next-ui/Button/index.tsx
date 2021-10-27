@@ -1,5 +1,9 @@
-import { Button as MuiButton, ButtonClassKey as MuiButtonClassKey, Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import {
+  Button as MuiButton,
+  ButtonClassKey as MuiButtonClassKey,
+  Theme,
+  makeStyles,
+} from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
 
@@ -56,7 +60,7 @@ const useStyles = makeStyles<
       [theme.breakpoints.up('md')]: {
         background: theme.palette.secondary.main,
         color: theme.palette.secondary.contrastText,
-        boxShadow: theme.shadows[2],
+        boxShadow: theme.shadows[6],
         borderRadius: 25,
         padding: '6px 16px',
         fontWeight: theme.typography.fontWeightBold,

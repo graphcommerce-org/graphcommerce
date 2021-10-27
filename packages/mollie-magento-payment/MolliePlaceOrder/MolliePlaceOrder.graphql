@@ -1,9 +1,0 @@
-mutation MolliePlaceOrder($cartId: String!) {
-  placeOrder(input: { cart_id: $cartId }) {
-    order {
-      order_number
-      mollie_payment_token
-      mollie_redirect_url
-    }
-  }
-}

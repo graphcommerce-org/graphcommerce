@@ -3,13 +3,12 @@ import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 import {
   HTMLMotionProps,
-  PanInfo,
   motionValue,
-  useDomEvent,
-  PanHandlers,
-  m,
-  useTransform,
   MotionValue,
+  PanHandlers,
+  PanInfo,
+  useDomEvent,
+  useTransform,
 } from 'framer-motion'
 import React, { ReactHTML, useState } from 'react'
 import { ScrollSnapProps } from '../types'
@@ -20,6 +19,9 @@ import { useVelocitySnapTo } from './useVelocitySnapTo'
 const useStyles = makeStyles(
   {
     root: ({ scrollSnapAlign, scrollSnapStop }: ScrollSnapProps) => ({
+      display: 'grid',
+      gridAutoFlow: 'column',
+      gridAutoColumns: `40%`,
       overflow: `auto`,
       overscrollBehaviorInline: `contain`,
       '& > *': {
@@ -50,7 +52,7 @@ const useStyles = makeStyles(
       },
     },
   },
-  { name: 'Scrollable' },
+  { name: 'Scroller' },
 )
 
 export type ScrollableProps<TagName extends keyof ReactHTML = 'div'> = HTMLMotionProps<TagName> & {
@@ -72,7 +74,7 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
 
   const canGrab = useMotionValueValue(
     useTransform(
-      [scroll.xMax, scroll.yMax] as MotionValue[],
+      [scroll.xMax, scroll.yMax] as MotionValue<string | number>[],
       ([xMax, yMax]: number[]) => xMax || yMax,
     ),
     (v) => v,
@@ -100,7 +102,10 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
   })
 
   const scrollStart = useConstant(() => ({ x: motionValue(0), y: motionValue(0) }))
-  const onPanStart: PanHandlers['onPanStart'] = () => {
+  const onPanStart: PanHandlers['onPanStart'] = (event) => {
+    // If we're not dealing with the mouse we don't need to do anything
+    if (!isHTMLMousePointerEvent(event)) return
+
     scrollStart.x.set(scroll.x.get())
     scrollStart.y.set(scroll.y.get())
     disableSnap()
@@ -120,6 +125,7 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
   const onPanEnd: PanHandlers['onPanEnd'] = (event, info) => {
     // If we're not dealing with the mouse we don't need to do anything
     if (!isHTMLMousePointerEvent(event)) return
+
     setPanning(false)
     animatePan(info, enableSnap)
   }

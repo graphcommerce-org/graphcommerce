@@ -63,9 +63,10 @@ function AccountReviewsAddPage() {
     return (
       <FullPageMessage
         title='Product could not be found'
-        description='Try a different product'
-        icon={<SvgImage src={iconBox} size={148} alt='box' />}
-      />
+        icon={<SvgImage src={iconBox} size={148} alt='box'></SvgImage>}
+      >
+        Try a different product
+      </FullPageMessage>
     )
   }
 
@@ -77,7 +78,7 @@ function AccountReviewsAddPage() {
         metaRobots={['noindex']}
       />
 
-      <SheetShellHeader>
+      <SheetShellHeader backFallbackHref='/account' backFallbackTitle='Account'>
         <Title size='small'>You are reviewing {product?.name}</Title>
       </SheetShellHeader>
 
@@ -110,8 +111,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variant: 'bottom',
       size: 'max',
-      backFallbackHref: '/account',
-      backFallbackTitle: 'Account',
     },
   }
 }

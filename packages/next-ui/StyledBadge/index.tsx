@@ -1,5 +1,4 @@
-import { Badge } from '@material-ui/core'
-import { withStyles } from '@material-ui/styles'
+import { Badge, withStyles } from '@material-ui/core'
 
 const StyledBadge = withStyles((theme) => ({
   colorError: {},

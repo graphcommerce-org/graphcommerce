@@ -45,7 +45,7 @@ Now everything should be hooked up and you are able to add content in GraphCMS.
 
 ### 4. Create data retrieval structure (graphql fragment) in codebase
 
-In the GraphQL explorer (http://localhost:3001/api/graphql) create a fragment
+In the GraphQL explorer (http://localhost:3000/api/graphql) create a fragment
 for your data `ComponentName.graphql`. e.g.:
 [`RowColumnThree.graphql`](../examples/magento-graphcms/components/Row/RowColumnThree/RowColumnThree.graphql)
 
@@ -116,5 +116,4 @@ We're using GraphQL Mesh's possibility to add additional resolves to the mesh.
 https://graphql-mesh.com/docs/getting-started/multiple-apis#stitching-schemas-using-declarative-api-without-javascript-code-file
 
 Example implementation can be found here, look for `additionalTypeDefs` and
-`additionalResolvers`
-[.meshrc.json](../examples/magento-graphcms-api/.meshrc.json)
+`additionalResolvers` [.meshrc.json](../examples/magento-graphcms/.meshrc.yml)

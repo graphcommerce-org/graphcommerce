@@ -10,6 +10,7 @@ export type ComposedSubmitProps = {
 }
 
 export function mergeErrors(errors: ApolloError[]): ApolloError | undefined {
+  if (!errors.length) return undefined
   return new ApolloError({
     errorMessage: 'Composed submit error',
     networkError: errors.find((error) => error.networkError)?.networkError,
@@ -42,14 +43,14 @@ export default function ComposedSubmit(props: ComposedSubmitProps) {
   /** Callback to submit all forms */
   const submitAll = async () => {
     /**
-     * If we have forms that are have errors, we don't need to submit anything yet. We can trigger
-     * the submission of the invalid forms and highlight those forms.
+     * If we have forms that are have errors, we don't need to actually submit anything yet. We can
+     * trigger the submission of the invalid forms and highlight the errors in those forms.
      */
-    let formsToSubmit = formEntries.filter(
-      ([, f]) => Object.keys(f.form?.formState.errors ?? {}).length > 0,
-    )
+    let formsToSubmit = formEntries.filter(([, f]) => {
+      return Object.keys(f.form?.formState.errors ?? {}).length > 0
+    })
 
-    // We have no errors or invalid forms
+    // We have no errors and no invalid forms, this means we can submit everything.
     if (!formsToSubmit.length) formsToSubmit = formEntries
 
     dispatch({ type: 'SUBMIT' })
@@ -62,12 +63,19 @@ export default function ComposedSubmit(props: ComposedSubmitProps) {
        * Todo: There might be a performance optimization by submitting multiple forms in parallel.
        */
       let canSubmit = true
-      for (const [, { submit, form }] of formsToSubmit) {
+      for (const [, { submit, form, key }] of formsToSubmit) {
         // eslint-disable-next-line no-await-in-loop
         if (canSubmit) await submit?.()
         // eslint-disable-next-line no-await-in-loop
         if (!canSubmit) await form?.trigger()
-        if (!form?.formState.isValid || (isFormGqlOperation(form) && form.error)) canSubmit = false
+        if (form && isFormGqlOperation(form) && form.error) {
+          // console.log(
+          //   key,
+          //   form?.formState.isValid,
+          //   form && (isFormGqlOperation(form) ? form.error : undefined),
+          // )
+          canSubmit = false
+        }
       }
       dispatch({ type: 'SUBMITTING' })
     } catch (error) {

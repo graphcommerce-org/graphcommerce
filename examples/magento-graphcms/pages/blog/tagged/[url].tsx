@@ -1,9 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument, PageMeta } from '@graphcommerce/magento-store'
-import { GetStaticProps, Row } from '@graphcommerce/next-ui'
+import { AppShellTitle, GetStaticProps, Row, Title } from '@graphcommerce/next-ui'
+import { Container } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
+import FullPageShellHeader from '../../../components/AppShell/FullPageShellHeader'
 import BlogList from '../../../components/Blog'
 import BlogAuthor from '../../../components/Blog/BlogAuthor'
 import BlogHeader from '../../../components/Blog/BlogHeader'
@@ -28,13 +30,18 @@ type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 function BlogPage(props: Props) {
   const { pages, blogPosts } = props
   const page = pages[0]
-
   const title = page.title ?? ''
+
   return (
     <>
+      <FullPageShellHeader backFallbackHref='/blog' backFallbackTitle='Blog'>
+        <Title size='small'>{title}</Title>
+      </FullPageShellHeader>
       <Row>
         <PageMeta title={title} metaDescription={title} canonical={page.url} />
-        <BlogTitle title={`Tagged in: ${page.title}`} />
+
+        <BlogTitle title={`Tagged in: ${title}`} />
+
         {page.author ? <BlogAuthor author={page.author} date={page.date} /> : null}
         {page.asset ? <BlogHeader asset={page.asset} /> : null}
         <PageContent {...page} />

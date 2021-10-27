@@ -27,6 +27,8 @@ function CmsPage(props: Props) {
   const { cmsPage, pages, products } = props
   const title = cmsPage?.title ?? ''
 
+  const product = products?.items?.[0]
+
   return (
     <>
       <PageMeta

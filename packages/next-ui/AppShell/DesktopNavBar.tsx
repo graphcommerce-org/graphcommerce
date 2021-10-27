@@ -1,9 +1,12 @@
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
-import { Link, makeStyles, Theme } from '@material-ui/core'
+import { Link, LinkProps as MuiLinkProps, makeStyles, Theme } from '@material-ui/core'
+import { Variant as ThemeVariant } from '@material-ui/core/styles/createTypography'
 import clsx from 'clsx'
+import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
+import { UseStyles } from '../Styles'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 import { MenuProps } from './Menu'
@@ -25,19 +28,32 @@ const useStyles = makeStyles(
       padding: '0 40px',
       minHeight: 40,
     },
-    prevNext: {
-      pointerEvents: 'all',
+    prevNextBtnWrapper: {
       position: 'absolute',
-      background: theme.palette.background.default,
-      top: 5,
-      [theme.breakpoints.down('sm')]: { display: 'none' },
-      boxShadow: 'none',
+      top: 0,
     },
-    prev: {
+    left: {
       left: 0,
     },
-    next: {
+    right: {
       right: 0,
+    },
+    prevNextBtn: {
+      pointerEvents: 'all',
+      background: theme.palette.background.default,
+      boxShadow: 'none',
+      height: 48,
+      [theme.breakpoints.down('sm')]: {
+        display: 'none',
+      },
+    },
+    prevBtn: {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+    },
+    nextBtn: {
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
     },
     link: {
       whiteSpace: 'nowrap',
@@ -65,11 +81,16 @@ const useStyles = makeStyles(
   { name: 'DesktopNavBar' },
 )
 
-export type MenuTabsProps = MenuProps
+export type MenuTabsProps = MenuProps &
+  UseStyles<typeof useStyles> & {
+    LinkProps?: MuiLinkProps
+    iconScrollerBtnLeft?: React.ReactNode
+    iconScrollerBtnRight?: React.ReactNode
+  }
 
 export default function DesktopNavBar(props: MenuTabsProps) {
-  const { menu } = props
-  const classes = useStyles()
+  const { menu, LinkProps, iconScrollerBtnLeft, iconScrollerBtnRight } = props
+  const classes = useStyles(props)
   const router = useRouter()
 
   return (
@@ -78,7 +99,11 @@ export default function DesktopNavBar(props: MenuTabsProps) {
         <Scroller className={classes.scroller} hideScrollbar>
           {menu.map(({ href, children, ...linkProps }) => (
             <PageLink key={href.toString()} href={href} {...linkProps} passHref>
-              <Link className={classes.link} variant='h6'>
+              <Link
+                variant='h6'
+                {...LinkProps}
+                className={clsx(classes.link, LinkProps?.className)}
+              >
                 {children}
                 <div
                   className={clsx(
@@ -89,22 +114,44 @@ export default function DesktopNavBar(props: MenuTabsProps) {
               </Link>
             </PageLink>
           ))}
+        </Scroller>
+
+        <m.div className={clsx(classes.prevNextBtnWrapper, classes.left)}>
           <ScrollerButton
             direction='left'
             size='small'
-            className={clsx(classes.prevNext, classes.prev)}
+            classes={{ root: clsx(classes.prevNextBtn, classes.prevBtn) }}
           >
-            <SvgImageSimple src={iconChevronLeft} />
+            {iconScrollerBtnLeft ?? <SvgImageSimple src={iconChevronLeft} />}
           </ScrollerButton>
+        </m.div>
+
+        <m.div className={clsx(classes.prevNextBtnWrapper, classes.right)}>
           <ScrollerButton
             direction='right'
             size='small'
-            className={clsx(classes.prevNext, classes.next)}
+            classes={{ root: clsx(classes.prevNextBtn, classes.nextBtn) }}
           >
-            <SvgImageSimple src={iconChevronRight} />
+            {iconScrollerBtnRight ?? <SvgImageSimple src={iconChevronRight} />}
           </ScrollerButton>
-        </Scroller>
+        </m.div>
       </div>
+
+      {/* <ScrollerButton
+          direction='left'
+          size='small'
+          className={clsx(classes.prevNext, classes.prev)}
+        >
+          <SvgImageSimple src={iconChevronLeft} />
+        </ScrollerButton>
+
+        <ScrollerButton
+          direction='right'
+          size='small'
+          className={clsx(classes.prevNext, classes.next)}
+        >
+          <SvgImageSimple src={iconChevronRight} />
+        </ScrollerButton> */}
     </ScrollerProvider>
   )
 }

@@ -3,6 +3,505 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.140.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.139.2...@graphcommerce/graphcommerce@2.140.0) (2021-10-25)
+
+
+### Bug Fixes
+
+* try fix bundlesize ([e2da5be](https://github.com/ho-nl/m2-pwa/commit/e2da5be94e88f2a45e60858c002b831b48f28541))
+
+
+### Features
+
+* prepare for yarn 3 usage (not actually migrated because vercel doesn't support yarn 3) ([41734be](https://github.com/ho-nl/m2-pwa/commit/41734beaa016bf4c3487b3fbd5a402d8024e173f))
+
+
+
+
+
+# [2.139.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.138.0...@graphcommerce/graphcommerce@2.139.0) (2021-10-21)
+
+
+### Features
+
+* ability to change shipping address after changing the billing address ([101f11a](https://github.com/ho-nl/m2-pwa/commit/101f11a6472cd6e72e08152cec961df47411f310))
+
+
+
+
+
+# [2.138.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.137.0...@graphcommerce/graphcommerce@2.138.0) (2021-10-21)
+
+
+### Bug Fixes
+
+* compatibility with venia theme ([c0bcdd5](https://github.com/ho-nl/m2-pwa/commit/c0bcdd511de5679f185f0984816b1f0cafa449e0))
+* **graphql-mesh:** use a build mesh for production environments ([cd2f318](https://github.com/ho-nl/m2-pwa/commit/cd2f3189383fa9d304bd367334e3f47ca4aa6100))
+* unable to find cache matching inmemoryLru ([520f6f3](https://github.com/ho-nl/m2-pwa/commit/520f6f329573471ecfdbdc4aa6f2e4b688b31f11))
+
+
+### Features
+
+* **graphql-mesh:** remove the api project and use a single project 🎉👩‍👩‍👦‍👦 ([ea4ad03](https://github.com/ho-nl/m2-pwa/commit/ea4ad0397d4ff289ef3b3253593fb0914c8c5246))
+
+
+
+
+
+# [2.137.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.136.3...@graphcommerce/graphcommerce@2.137.0) (2021-10-20)
+
+
+### Features
+
+* **graphql-mesh:** simplified the handler to use less code in the project ([f62b752](https://github.com/ho-nl/m2-pwa/commit/f62b75249492f40c5972deede529a25a17c8a617))
+* **next-config:** support topLevelAwait ([3cb4f90](https://github.com/ho-nl/m2-pwa/commit/3cb4f90ac3af797f5fcba888dfd28aa2b76480b8))
+
+
+
+
+
+## [2.136.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.136.2...@graphcommerce/graphcommerce@2.136.3) (2021-10-20)
+
+
+### Bug Fixes
+
+* spacing below the footer is not nessesary with the new layout ([ffe0ab9](https://github.com/ho-nl/m2-pwa/commit/ffe0ab98823c1f035fcb7d98d147c871cc8a5b91))
+
+
+
+
+
+## [2.136.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.136.1...@graphcommerce/graphcommerce@2.136.2) (2021-10-20)
+
+
+### Bug Fixes
+
+* **recaptcha:** allow and forward the the X-ReCaptcha to Magento ([2f3170e](https://github.com/ho-nl/m2-pwa/commit/2f3170e0f1652d84948b69a446634ffe02f08f80))
+
+
+
+
+
+## [2.136.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.136.0...@graphcommerce/graphcommerce@2.136.1) (2021-10-19)
+
+
+### Bug Fixes
+
+* **next-config:** make sure webpack is available ([46edb3e](https://github.com/ho-nl/m2-pwa/commit/46edb3e6fd1b716d7d9dbe59cb1530375d24c228))
+
+
+
+
+
+# [2.136.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.135.6...@graphcommerce/graphcommerce@2.136.0) (2021-10-19)
+
+
+### Bug Fixes
+
+* **mesh:** make sure we're using an inmemory store when running the mesh ([1064c17](https://github.com/ho-nl/m2-pwa/commit/1064c17122ba4a6b0a140f805968122ef4913fc0))
+* **next-config:** move the @apollo/client __DEV__ env to next-config ([fb1df3f](https://github.com/ho-nl/m2-pwa/commit/fb1df3fe4edbf769afb4149c7beced70bb948be5))
+
+
+### Features
+
+* **mesh:** move to a default .meshrc.yml format instead of the json file ([d9a30a7](https://github.com/ho-nl/m2-pwa/commit/d9a30a78baed2b85b77bbd80e94a6f047e2255b6))
+
+
+
+
+
+## [2.135.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.135.4...@graphcommerce/graphcommerce@2.135.5) (2021-10-19)
+
+
+### Bug Fixes
+
+* positioning children categories ([33568ee](https://github.com/ho-nl/m2-pwa/commit/33568ee7a798f8cab149b6c23b6e044d81642f53))
+
+
+
+
+
+## [2.135.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.135.3...@graphcommerce/graphcommerce@2.135.4) (2021-10-19)
+
+
+### Bug Fixes
+
+* build didn't succeed because of an unknown prop on MessageSnackbar ([4def2d1](https://github.com/ho-nl/m2-pwa/commit/4def2d16ad722e9dc9ae0fc63785107df2d83eab))
+
+
+
+
+
+## [2.135.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.135.1...@graphcommerce/graphcommerce@2.135.2) (2021-10-19)
+
+
+### Bug Fixes
+
+* productCopy error ([95a8dbf](https://github.com/ho-nl/m2-pwa/commit/95a8dbf6fa48910ace728da4a200a3847a582899))
+
+
+
+
+
+# [2.135.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.134.0...@graphcommerce/graphcommerce@2.135.0) (2021-10-19)
+
+
+### Bug Fixes
+
+* solve import issue where @material-ui/styles couldn't be found ([efb3771](https://github.com/ho-nl/m2-pwa/commit/efb3771e8c173799779691d4d52857678dab4c15))
+
+
+### Features
+
+* **framer-scroller:** better defaults so the Scroller doesn't look broken when providing no props ([b177ce9](https://github.com/ho-nl/m2-pwa/commit/b177ce9570abb9ccfd4eb5cc34e43d157bb4e81a))
+
+
+
+
+
+# [2.134.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.133.1...@graphcommerce/graphcommerce@2.134.0) (2021-10-18)
+
+
+### Features
+
+* **message-snackbar:** severity props ([c7be8a5](https://github.com/ho-nl/m2-pwa/commit/c7be8a51faf7a5937b7fab5bb352df2089ae4eea))
+
+
+
+
+
+## [2.133.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.133.0...@graphcommerce/graphcommerce@2.133.1) (2021-10-18)
+
+
+### Bug Fixes
+
+* add cache-inmemory-lru ([2cd23a4](https://github.com/ho-nl/m2-pwa/commit/2cd23a40c8a2b02175b160aa9ce0b695c88c12f7))
+* graphql-mesh missing inmemory lru ([6c71c25](https://github.com/ho-nl/m2-pwa/commit/6c71c256911072ace19037616e0ce2ab478bf070))
+
+
+
+
+
+# [2.133.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.132.0...@graphcommerce/graphcommerce@2.133.0) (2021-10-18)
+
+
+### Bug Fixes
+
+* **row-product:** import row-product-fragment ([9baca83](https://github.com/ho-nl/m2-pwa/commit/9baca8378b1a19fab8eda98548ed498f8ea69e24))
+* **row-product:** render correct product items ([91509a7](https://github.com/ho-nl/m2-pwa/commit/91509a78de775cd059f67a256dc0107a06a765d8))
+
+
+### Features
+
+* **graphcms:** combined multiple models to bypass model creation limit ([fd6dc14](https://github.com/ho-nl/m2-pwa/commit/fd6dc140cb60c5733dab2e0a43b5df2059e0c739))
+* **row-product:** actually render something ([fba6811](https://github.com/ho-nl/m2-pwa/commit/fba6811d2880cb38196f579fbd1423dfb323654f))
+* **row-product:** allow to render row product variants ([c391c09](https://github.com/ho-nl/m2-pwa/commit/c391c093bc638d14d0630cc441bfc43aca11a51e))
+
+
+
+
+
+# [2.132.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.131.4...@graphcommerce/graphcommerce@2.132.0) (2021-10-15)
+
+
+### Bug Fixes
+
+* **ProductListCount:** use theme instead of hardcoded color value ([cdfa232](https://github.com/ho-nl/m2-pwa/commit/cdfa2325c82fb94d4ff269e1d99ded1bca5e3a10))
+
+
+### Features
+
+* **CustomerFab:** allow custom styling ([da38425](https://github.com/ho-nl/m2-pwa/commit/da384252b5e6e1025e0e90d683f7c60691366fb5))
+* **CustomerFab:** allow full customization instead of just styling ([b9f4248](https://github.com/ho-nl/m2-pwa/commit/b9f42483c157b56f7406bf51b74557278c64a597))
+* **DesktopNavBar:** allow custom scroller button icons ([401f457](https://github.com/ho-nl/m2-pwa/commit/401f4572ce67dbe52008dca8e1d4473e2fcbf5cf))
+
+
+
+
+
+## [2.131.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.131.3...@graphcommerce/graphcommerce@2.131.4) (2021-10-13)
+
+
+### Bug Fixes
+
+* removed useless backFallbackHref declarations on pages ([5906be2](https://github.com/ho-nl/m2-pwa/commit/5906be224dcd1f7c25ec9b6f3c654944fb42b147))
+
+
+
+
+
+## [2.131.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.131.2...@graphcommerce/graphcommerce@2.131.3) (2021-10-13)
+
+
+### Bug Fixes
+
+* regression in header ([4738fb7](https://github.com/ho-nl/m2-pwa/commit/4738fb7e13fb3be187f58b474219497783525d72))
+
+
+
+
+
+## [2.131.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.131.1...@graphcommerce/graphcommerce@2.131.2) (2021-10-13)
+
+
+### Bug Fixes
+
+* remove the build version of the mesh as it currently isn't working properly ([f6a6931](https://github.com/ho-nl/m2-pwa/commit/f6a69316420ac3aee72b08a31ceeafc4eed765bd))
+
+
+
+
+
+# [2.131.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.130.4...@graphcommerce/graphcommerce@2.131.0) (2021-10-13)
+
+
+### Features
+
+* allow adding placeholder to SearchButton ([95f601a](https://github.com/ho-nl/m2-pwa/commit/95f601ac526991130ba319142452950793661f7b))
+* allow changing SearchButton icon ([9725ab1](https://github.com/ho-nl/m2-pwa/commit/9725ab14920f585c83457f11908d7e5e408cadb8))
+* allow styling DesktopNavBar ([12f99a6](https://github.com/ho-nl/m2-pwa/commit/12f99a603d9e9f89e28ec2452823b58abee59c4c))
+* implement extensibility for DesktopNavBar, SearchButton ([5710de8](https://github.com/ho-nl/m2-pwa/commit/5710de8936f59c7d0fcc648978183f0e7fdd26b7))
+* make DesktopNavBar Link variant customizable ([d47172f](https://github.com/ho-nl/m2-pwa/commit/d47172f3ebe0cc0b769e0d17c171ae4bb2045bbb))
+
+
+
+
+
+## [2.130.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.130.3...@graphcommerce/graphcommerce@2.130.4) (2021-10-12)
+
+
+### Bug Fixes
+
+* **account-signin-page:** remove back button ([47d09b1](https://github.com/ho-nl/m2-pwa/commit/47d09b1f497320a1d1c6a9d9493a490ac2189782))
+* **forgot-password-page:** hide back button ([a64c9a4](https://github.com/ho-nl/m2-pwa/commit/a64c9a449afed033280c46d740a2ee81c89cbeef))
+
+
+
+
+
+## [2.130.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.130.2...@graphcommerce/graphcommerce@2.130.3) (2021-10-11)
+
+
+### Bug Fixes
+
+* **desktop-nav-bar:** prev/next button alignment in menu ([c7fabf0](https://github.com/ho-nl/m2-pwa/commit/c7fabf0474100aaf40a7526858fa2b01566b3250))
+* **downloadable-product:** import fix ([9efc08c](https://github.com/ho-nl/m2-pwa/commit/9efc08c0c38f71429388bcd42c39865135e898b4))
+* **product-pages:** remove top spacing short descriptions ([7ba7d32](https://github.com/ho-nl/m2-pwa/commit/7ba7d321d8eaf1d323047b87c6c086e9445f5263))
+* **section-heeader-filter-items:** remove large paddings ([18f4d77](https://github.com/ho-nl/m2-pwa/commit/18f4d77e4eb1b029bf2e5656b753e2f18fde90ab))
+
+
+
+
+
+## [2.130.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.130.1...@graphcommerce/graphcommerce@2.130.2) (2021-10-11)
+
+
+### Bug Fixes
+
+* adjust animation speeds ([345e60d](https://github.com/ho-nl/m2-pwa/commit/345e60d93a16b98eda404fe1547a0e1c020eb0d4))
+* **menu-fab:** animation duration ([5b9ece2](https://github.com/ho-nl/m2-pwa/commit/5b9ece293fb7e12663386f9f9cbc99bc4e22aaa9))
+
+
+
+
+
+## [2.130.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.130.0...@graphcommerce/graphcommerce@2.130.1) (2021-10-11)
+
+
+### Bug Fixes
+
+* **framer-scroller:** dots should have a background ([8f2e1a1](https://github.com/ho-nl/m2-pwa/commit/8f2e1a1ffc9de3369938fe2f9e9f25f592739d8d))
+
+
+
+
+
+# [2.130.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.129.0...@graphcommerce/graphcommerce@2.130.0) (2021-10-09)
+
+
+### Bug Fixes
+
+* clientSize.x was incorrect ([39d12c4](https://github.com/ho-nl/m2-pwa/commit/39d12c4b583b7806f943dbd08c31b2dd940cc74b))
+* **framer-scroller:** pan snap does not work on mobile ([660f242](https://github.com/ho-nl/m2-pwa/commit/660f242a38558669fa896a74e14cafdd85069d57))
+* **framer-slider:** route changes ([4cadbea](https://github.com/ho-nl/m2-pwa/commit/4cadbea3e494326377e74e2fa9370ab80f8d8c35))
+* make sure the gallery never gets higher than 100% ([1eae8c7](https://github.com/ho-nl/m2-pwa/commit/1eae8c7cfb2a9e67f03f1e4e4db5c95213d2dbe0))
+* poistioning on mobile ([bec497f](https://github.com/ho-nl/m2-pwa/commit/bec497fca426346b80b453a3871b9c66521a2161))
+* **sidebar-gallery:** differentiate drag from click ([acd408e](https://github.com/ho-nl/m2-pwa/commit/acd408e400f8285e2b3a9105b4694d5fd839dd99))
+* **sidebar-gallery:** push gallery to history one time ([2c45b64](https://github.com/ho-nl/m2-pwa/commit/2c45b64e171577f7b584662d56416eeae4a22554))
+* **sidebar-gallery:** route handling ([1c3b8b1](https://github.com/ho-nl/m2-pwa/commit/1c3b8b1687b0bf637da6c88d2d9b30a734b98d11))
+* **sidebar-gallery:** use fullscreen and fullscreen exit icons ([1328d22](https://github.com/ho-nl/m2-pwa/commit/1328d220030f766be2d4046abd87d45175e4fe38))
+* use better URL handling and remove drag temporarily ([0b99387](https://github.com/ho-nl/m2-pwa/commit/0b993876280270320eef5301130c5cc3eb339ea9))
+
+
+### Features
+
+* **sidebar-gallery:** toggle with browser back buttons ([a2f804b](https://github.com/ho-nl/m2-pwa/commit/a2f804b0cedb98df8f6a7b197aeeeeda43c6b1ba))
+
+
+
+
+
+# [2.129.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.128.0...@graphcommerce/graphcommerce@2.129.0) (2021-10-08)
+
+
+### Bug Fixes
+
+*  make sure we can useCartLock on the success page ([139349a](https://github.com/ho-nl/m2-pwa/commit/139349a73836c0c58c5d8000a801c912dbe23b3b))
+* conditional hook in CartSummary ([780c5c1](https://github.com/ho-nl/m2-pwa/commit/780c5c140e03ea5f77ea9cf5409498ed853e772c))
+* issue where the cart shippingMethod didn't have a value defined ([a1f27d1](https://github.com/ho-nl/m2-pwa/commit/a1f27d1bff01921ff2cf783394c2bb4a65285d17))
+* **mollie:** make sure we're redirected to the success page ([316d2b2](https://github.com/ho-nl/m2-pwa/commit/316d2b2a99189f093e74db98521c27e8e7267dd4))
+* SvgImageSimple should pass the layout prop ([a0b5c81](https://github.com/ho-nl/m2-pwa/commit/a0b5c818f93ba24a34c6ce8aa21f8af50bd05dd2))
+
+
+### Features
+
+* made empty success page when no cart is present and removed backbuttons ([1e29450](https://github.com/ho-nl/m2-pwa/commit/1e294500f9f1f2cfeab0de8bd8211ee517af5d8c))
+
+
+
+
+
+# [2.128.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.127.4...@graphcommerce/graphcommerce@2.128.0) (2021-10-08)
+
+
+### Bug Fixes
+
+* **product-grid:** product title is not a link ([d5707f9](https://github.com/ho-nl/m2-pwa/commit/d5707f97a53a01c18db967db3420d78b1132c53c))
+* **product-list-item:** add ripple effect ([cdb2b9a](https://github.com/ho-nl/m2-pwa/commit/cdb2b9a63f65e6c1e8c819e6a20aca75c6cc286a))
+
+
+### Features
+
+* **row-service-options:** show email and telephone number ([8291b25](https://github.com/ho-nl/m2-pwa/commit/8291b25b6e408c480eedbc5aa1353a99785e4df5))
+
+
+
+
+
+## [2.127.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.127.3...@graphcommerce/graphcommerce@2.127.4) (2021-10-07)
+
+
+### Bug Fixes
+
+* always comment on pr when reporting bundle sizes ([86fabb0](https://github.com/ho-nl/m2-pwa/commit/86fabb0c213098c2414eb0fad367a47e47b3dc48))
+* api build ([423564e](https://github.com/ho-nl/m2-pwa/commit/423564e23769298c98305edb89b8486265beb50b))
+* **cart:** agreements didn't handle state updates properly ([4401ff9](https://github.com/ho-nl/m2-pwa/commit/4401ff96a410379805d89bb2fa711df2d8a8fad0))
+* Form component added classes attribute ([269fd46](https://github.com/ho-nl/m2-pwa/commit/269fd4629cedcaab74043604ac21a4557b4e514f))
+* make sure if no payment method is filled in we get an error shown ([a203e57](https://github.com/ho-nl/m2-pwa/commit/a203e570caad0732427a178e8e8b10b4a15d676b))
+* make sure the CartAgreementsForm validates immediately ([eceacbb](https://github.com/ho-nl/m2-pwa/commit/eceacbb4803dd6e2701bf1835aa601c06ba4d6a3))
+
+
+
+
+
+## [2.127.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.127.2...@graphcommerce/graphcommerce@2.127.3) (2021-10-07)
+
+
+### Bug Fixes
+
+* replace __DEV__ with proper variable for optimizing the bundle size ([9b03209](https://github.com/ho-nl/m2-pwa/commit/9b032095f618846d132c00b8dc14fbb1b09c6ed8))
+* try to define the __DEV__ variable for better tree shaking ([465125d](https://github.com/ho-nl/m2-pwa/commit/465125dff36ac4d269f74ce3598d5257c3c1d801))
+
+
+
+
+
+## [2.127.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.127.1...@graphcommerce/graphcommerce@2.127.2) (2021-10-06)
+
+
+### Bug Fixes
+
+* remove default orientation ([2260d03](https://github.com/ho-nl/m2-pwa/commit/2260d0312196a46171580d00d0ade4a3e7efa9e7))
+
+
+
+
+
+## [2.127.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.127.0...@graphcommerce/graphcommerce@2.127.1) (2021-10-06)
+
+
+### Bug Fixes
+
+* cart fab alignment ([209ad30](https://github.com/ho-nl/m2-pwa/commit/209ad3027eff32e174c1774d21e9f33a3051a819))
+* **cart-fab:** box shadow in safari ([4eb316d](https://github.com/ho-nl/m2-pwa/commit/4eb316dd0f2ab7ee2806a3acdb306af1eb72854b))
+* **cart-fab:** positioning ([7bb31b4](https://github.com/ho-nl/m2-pwa/commit/7bb31b4bf6e663d14220aedaddf420b24d427b3a))
+* **product-list-filters-container:** drop shadow fades in too fast ([2e8f848](https://github.com/ho-nl/m2-pwa/commit/2e8f84809baa3fe6c2861f8992f46b6a07842ec6))
+
+
+
+
+
+# [2.127.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.126.0...@graphcommerce/graphcommerce@2.127.0) (2021-10-05)
+
+
+### Features
+
+* **checkout-shipping:** edit shipping address link ([b598008](https://github.com/ho-nl/m2-pwa/commit/b598008ffccb499fe0109ee557e08d557cf20d6e))
+
+
+
+
+
+# [2.126.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.125.2...@graphcommerce/graphcommerce@2.126.0) (2021-10-04)
+
+
+### Bug Fixes
+
+* **blog:** use app shell title ([987bb15](https://github.com/ho-nl/m2-pwa/commit/987bb157c4064141b1c2978935e66cf47ae24ff0))
+* **checkout-success:** go back to empty cart ([17af765](https://github.com/ho-nl/m2-pwa/commit/17af76504084e90d5a57ab42788155bcace3187d))
+* **checkout-success:** remove clear current cart id ([aa15065](https://github.com/ho-nl/m2-pwa/commit/aa150655e1ee4dc70f0330cf6a7b58e9a00d1ac0))
+* **payment:** payment button does nothing when all values are filled ([65834c9](https://github.com/ho-nl/m2-pwa/commit/65834c9de4fed71a1f6bbe1af94b2e3541b5bebc))
+
+
+### Features
+
+* sort payment methods by availability ([52f5d45](https://github.com/ho-nl/m2-pwa/commit/52f5d450a7a2fdec0c7eea9cd5d48336cb304138))
+
+
+
+
+
+## [2.125.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.125.1...@graphcommerce/graphcommerce@2.125.2) (2021-10-04)
+
+
+### Bug Fixes
+
+* **full-page-shell:** header height consistency on mobile ([a18f7a3](https://github.com/ho-nl/m2-pwa/commit/a18f7a3f22b6b1b8e7029d17b2086827bcee48f2))
+* **hero-banner:** too large top spacing ([0ad8499](https://github.com/ho-nl/m2-pwa/commit/0ad8499a1702caf8e121f38e1ccb70fba4f418db))
+* **sheet-shell:** mobile border bottom gap ([70104d8](https://github.com/ho-nl/m2-pwa/commit/70104d88994c2324f415eec1efeeba21de7872b9))
+* **sheet-shell:** mobile border bottom overlaps text ([54a50d3](https://github.com/ho-nl/m2-pwa/commit/54a50d335ade33a97d2c33ce68d62bfcc37f8f2e))
+
+
+
+
+
+## [2.125.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.125.0...@graphcommerce/graphcommerce@2.125.1) (2021-10-04)
+
+
+### Bug Fixes
+
+* cart icon alignment ([8b75b40](https://github.com/ho-nl/m2-pwa/commit/8b75b40bcdecf6d43579ee824677bf1a03763157))
+* **category-childeren:** scrollbar shown ([638e3ef](https://github.com/ho-nl/m2-pwa/commit/638e3efea3a537f90d23fb2f8953a62acb370288))
+* **category-children:** scrollbar shown ([3ccc78b](https://github.com/ho-nl/m2-pwa/commit/3ccc78b329fa844c57bfeb2406c593d0533039d2))
+* **icon-block:** render href ([738fd82](https://github.com/ho-nl/m2-pwa/commit/738fd82629dd3be92fe0cdd63ed8eeaa5d4886f6))
+* **service:** align title ([c1d749c](https://github.com/ho-nl/m2-pwa/commit/c1d749c0ed6c8600085afd2d102c61771e2afc70))
+* **shipping:** sort available shipping methods by availability ([27d13ab](https://github.com/ho-nl/m2-pwa/commit/27d13ab1a0d923197bb13557256307f60a243f4a))
+
+
+
+
+
+# [2.125.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.124.10...@graphcommerce/graphcommerce@2.125.0) (2021-10-01)
+
+
+### Features
+
+* **sidebar-gallery:** close using esc key ([fd46fe1](https://github.com/ho-nl/m2-pwa/commit/fd46fe1029f436c1e0e04cbcc3b66deca4d1b0b6))
+
+
+
+
+
 ## [2.124.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.124.9...@graphcommerce/graphcommerce@2.124.10) (2021-09-30)
 
 

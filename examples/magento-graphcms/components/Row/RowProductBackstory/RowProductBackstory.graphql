@@ -1,8 +1,0 @@
-fragment RowProductBackstory on RowProductBackstory {
-  copy {
-    raw
-  }
-  asset {
-    ...Asset
-  }
-}

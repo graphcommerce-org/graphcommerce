@@ -18,7 +18,7 @@ const useStyles = makeStyles(
       marginBottom: theme.spacings.sm,
     },
     line: {
-      background: '#ededed',
+      background: theme.palette.divider,
       width: '100%',
       height: 1,
       lineHeight: 20,

@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.106.16...@graphcommerce/magento-cart-payment-method@2.107.0) (2021-10-19)
+
+
+### Features
+
+* **framer-scroller:** better defaults so the Scroller doesn't look broken when providing no props ([b177ce9](https://github.com/ho-nl/m2-pwa/commit/b177ce9570abb9ccfd4eb5cc34e43d157bb4e81a))
+
+
+
+
+
+## [2.106.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.106.4...@graphcommerce/magento-cart-payment-method@2.106.5) (2021-10-08)
+
+
+### Bug Fixes
+
+*  make sure we can useCartLock on the success page ([139349a](https://github.com/ho-nl/m2-pwa/commit/139349a73836c0c58c5d8000a801c912dbe23b3b))
+
+
+
+
+
+## [2.106.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.106.3...@graphcommerce/magento-cart-payment-method@2.106.4) (2021-10-07)
+
+
+### Bug Fixes
+
+* make sure if no payment method is filled in we get an error shown ([a203e57](https://github.com/ho-nl/m2-pwa/commit/a203e570caad0732427a178e8e8b10b4a15d676b))
+
+
+
+
+
+# [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.105.11...@graphcommerce/magento-cart-payment-method@2.106.0) (2021-10-04)
+
+
+### Features
+
+* sort payment methods by availability ([52f5d45](https://github.com/ho-nl/m2-pwa/commit/52f5d450a7a2fdec0c7eea9cd5d48336cb304138))
+
+
+
+
+
 ## [2.105.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.105.0...@graphcommerce/magento-cart-payment-method@2.105.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/magento-cart-payment-method

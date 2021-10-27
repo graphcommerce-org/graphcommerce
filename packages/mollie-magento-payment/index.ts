@@ -1,3 +1,4 @@
-export * as mollie_methods from './Method/mollie_methods'
+export * from './hooks'
+export * as mollie_methods from './methods'
 
-export { default as PaymentToggle } from './MolliePaymentToggle/MolliePaymentToggle'
+export { default as PaymentToggle } from './components/MolliePaymentToggle/MolliePaymentToggle'

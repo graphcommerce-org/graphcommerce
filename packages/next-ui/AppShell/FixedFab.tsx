@@ -12,13 +12,15 @@ const useStyles = makeStyles(
       zIndex: 100,
       boxShadow: theme.shadows[4],
       borderRadius: 99,
+      maxWidth: 56,
       [theme.breakpoints.down('sm')]: {
         top: 'unset !important',
       },
       [theme.breakpoints.up('md')]: {
         pointerEvents: 'all',
-        top: `calc(${theme.spacings.xxs} - 2px)`,
-        left: `calc(100vw - ${theme.page.horizontal} - 70px)`,
+        top: theme.spacings.xxs,
+        // hacky way to measure page width without scrollbar width
+        left: `calc((100vw - (100vw - 100%)) - ${theme.page.horizontal} - 56px)`,
         bottom: 'unset',
         boxShadow: 'unset',
       },

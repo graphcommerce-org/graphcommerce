@@ -20,13 +20,13 @@ export const defaultTheme = createTheme({
       mutedText: `rgba(0,0,0,0.4)`,
     },
     background: {
-      default: '#fff',
-      highlight: '#f8f8f8',
+      default: '#FFF',
+      highlight: '#F8F8F8',
     },
-    divider: 'rgba(0, 0, 0, 0.08)',
+    divider: '#EBEBEB',
     success: {
       main: '#01D26A',
-      mutedText: '#b8b8b8',
+      mutedText: '#B8B8B8',
     },
     text: {
       primary: '#001727',

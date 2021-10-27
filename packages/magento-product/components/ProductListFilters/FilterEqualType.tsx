@@ -26,7 +26,7 @@ type FilterEqualTypeProps = NonNullable<
 const useFilterEqualStyles = makeStyles(
   (theme: Theme) => ({
     listItem: {
-      padding: `${theme.spacings.xxs} ${theme.spacings.xxs} 0`,
+      padding: `0 ${theme.spacings.xxs} 0`,
       display: 'block',
       '&:not(:nth-last-of-type(-n+2)) > div': {
         borderBottom: `1px solid ${theme.palette.divider}`,
@@ -45,7 +45,7 @@ const useFilterEqualStyles = makeStyles(
     },
     checkbox: {
       padding: 0,
-      margin: '3px 0 0 8px',
+      margin: '-10px 0 0 0',
       float: 'right',
     },
     linkContainer: {

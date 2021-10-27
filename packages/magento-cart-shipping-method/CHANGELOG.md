@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.103.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-shipping-method@2.103.9...@graphcommerce/magento-cart-shipping-method@2.103.10) (2021-10-04)
+
+
+### Bug Fixes
+
+* **shipping:** sort available shipping methods by availability ([27d13ab](https://github.com/ho-nl/m2-pwa/commit/27d13ab1a0d923197bb13557256307f60a243f4a))
+
+
+
+
+
 ## [2.103.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-shipping-method@2.103.0...@graphcommerce/magento-cart-shipping-method@2.103.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/magento-cart-shipping-method

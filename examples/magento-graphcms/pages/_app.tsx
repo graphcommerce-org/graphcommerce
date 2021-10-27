@@ -4,7 +4,7 @@ import { App, AppProps } from '@graphcommerce/next-ui'
 import { useRouter } from 'next/router'
 import React from 'react'
 import ThemedProvider from '../components/Theme/ThemedProvider'
-import apolloClient from '../lib/apolloClient'
+import apolloClient from '../lib/apolloClientBrowser'
 
 export default function ThemedApp(props: AppProps) {
   const { pageProps } = props

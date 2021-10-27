@@ -4,10 +4,9 @@ import {
   AnimatedRow,
   Button,
   MessageSnackbar,
-  SvgImage,
   TextInputNumber,
-  iconCheckmark,
   iconChevronRight,
+  SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
@@ -47,10 +46,6 @@ const useStyles = makeStyles(
     },
     divider: {
       margin: `${theme.spacings.sm} 0`,
-    },
-    messageIcon: {
-      marginBottom: '-2px',
-      marginRight: 5,
     },
   }),
   { name: 'ConfigurableProductAddToCart' },
@@ -132,37 +127,22 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
           !data?.addProductsToCart?.user_errors?.length
         }
         variant='pill'
-        color='default'
         action={
           <PageLink href='/cart' passHref>
             <Button
               size='medium'
               variant='pill'
               color='secondary'
-              endIcon={
-                <SvgImage
-                  src={iconChevronRight}
-                  shade='inverted'
-                  loading='eager'
-                  alt='chevron right'
-                />
-              }
+              endIcon={<SvgImageSimple src={iconChevronRight} inverted />}
             >
               View shopping cart
             </Button>
           </PageLink>
         }
       >
-        <div>
-          <SvgImage
-            src={iconCheckmark}
-            size='small'
-            loading='eager'
-            alt='checkmark'
-            className={classes.messageIcon}
-          />
+        <>
           <strong>{name}</strong>&nbsp;has been added to your shopping cart!
-        </div>
+        </>
       </MessageSnackbar>
     </form>
   )

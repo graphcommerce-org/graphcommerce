@@ -5,14 +5,18 @@ import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AppShellTitle,
   Button,
+  FullPageMessage,
   GetStaticProps,
   iconParty,
+  iconSadShoppingBag,
   PageShellHeader,
   Stepper,
+  SvgImageSimple,
   Title,
 } from '@graphcommerce/next-ui'
-import { Box, Container } from '@material-ui/core'
-import PageLink from 'next/link'
+import { Box, Container, NoSsr } from '@material-ui/core'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
@@ -23,36 +27,63 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function OrderSuccessPage() {
+  const hasCartId = !!useRouter().query.cartId
+
   return (
     <>
       <PageMeta title='Checkout summary' metaDescription='Ordered items' metaRobots={['noindex']} />
       <PageShellHeader
         divider={
-          <Container maxWidth={false}>
-            <Stepper steps={3} currentStep={3} />
-          </Container>
+          hasCartId ? (
+            <Container maxWidth={false}>
+              <Stepper steps={3} currentStep={3} />
+            </Container>
+          ) : undefined
         }
       >
-        <Title size='small' icon={iconParty}>
-          Thank you for your order!
-        </Title>
+        {hasCartId && (
+          <Title size='small' icon={iconParty}>
+            <>Thank you for your order!</>
+          </Title>
+        )}
       </PageShellHeader>
       <Container maxWidth='md'>
-        <AppShellTitle icon={iconParty}>Thank you for your order!</AppShellTitle>
-        <CartSummary />
-        <CartItemSummary />
+        <NoSsr>
+          {!hasCartId && (
+            <FullPageMessage
+              title={'You have not placed an order'}
+              icon={<SvgImageSimple src={iconSadShoppingBag} layout='fill' />}
+              button={
+                <Link href='/' passHref>
+                  <Button variant='contained' color='primary' size='large'>
+                    Continue shopping
+                  </Button>
+                </Link>
+              }
+            >
+              Discover our collection and add items to your basket!
+            </FullPageMessage>
+          )}
+          {hasCartId && (
+            <>
+              <AppShellTitle icon={iconParty}>Thank you for your order!</AppShellTitle>
+              <CartSummary />
+              <CartItemSummary />
 
-        <SignupNewsletter />
+              <SignupNewsletter />
 
-        <InlineAccount accountHref='/account' />
+              <InlineAccount accountHref='/account' />
 
-        <Box textAlign='center' m={8}>
-          <PageLink href='/' passHref>
-            <Button color='secondary' variant='pill' size='large' text='bold'>
-              Back to home
-            </Button>
-          </PageLink>
-        </Box>
+              <Box textAlign='center' m={8}>
+                <Link href='/' passHref>
+                  <Button color='secondary' variant='pill' size='large' text='bold'>
+                    Back to home
+                  </Button>
+                </Link>
+              </Box>
+            </>
+          )}
+        </NoSsr>
       </Container>
     </>
   )

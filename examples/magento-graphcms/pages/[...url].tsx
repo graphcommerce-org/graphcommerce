@@ -23,7 +23,7 @@ import {
   ProductListSort,
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellTitle, GetStaticProps, Title, AppShellSticky } from '@graphcommerce/next-ui'
+import { AppShellSticky, AppShellTitle, GetStaticProps, Title } from '@graphcommerce/next-ui'
 import { Container } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
@@ -34,9 +34,16 @@ import { CategoryPageDocument, CategoryPageQuery } from '../components/GraphQL/C
 import PageContent from '../components/PageContent'
 import ProductListItems from '../components/ProductListItems/ProductListItems'
 import useProductListStyles from '../components/ProductListItems/useProductListStyles'
-import RowProductBackstory from '../components/Row/RowProductBackstory'
-import RowProductGrid from '../components/Row/RowProductGrid'
-import RowSwipeableGrid from '../components/Row/RowSwipeableGrid'
+import RowProduct from '../components/Row/RowProduct'
+import Backstory from '../components/Row/RowProduct/variant/Backstory'
+import Feature from '../components/Row/RowProduct/variant/Feature'
+import FeatureBoxed from '../components/Row/RowProduct/variant/FeatureBoxed'
+import Grid from '../components/Row/RowProduct/variant/Grid'
+import Related from '../components/Row/RowProduct/variant/Related'
+import Reviews from '../components/Row/RowProduct/variant/Reviews'
+import Specs from '../components/Row/RowProduct/variant/Specs'
+import Swipeable from '../components/Row/RowProduct/variant/Swipeable'
+import Upsells from '../components/Row/RowProduct/variant/Upsells'
 import apolloClient from '../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -70,6 +77,8 @@ function CategoryPage(props: Props) {
 
   let productList = products?.items
   if (isLanding && productList) productList = products?.items?.slice(0, 8)
+
+  const product = products?.items?.[0]
 
   return (
     <>
@@ -120,14 +129,34 @@ function CategoryPage(props: Props) {
         </ProductListParamsProvider>
       )}
 
+      {/* todo: only allow rendering Grid, Swipeable and Backstory here */}
       {pages?.[0] && (
         <PageContent
           renderer={{
-            RowProductBackstory: (p) => <RowProductBackstory {...p} items={productList} />,
-            RowProductGrid: (p) => <RowProductGrid {...p} items={productList} />,
-            RowSwipeableGrid: (p) => <RowSwipeableGrid {...p} items={productList} />,
+            RowProduct: (rowProps) => (
+              <RowProduct
+                {...rowProps}
+                renderer={{
+                  Specs: (rowProductProps) => <Specs {...rowProductProps} {...product} />,
+                  Backstory: (rowProductProps) => (
+                    <Backstory {...rowProductProps} items={productList} />
+                  ),
+                  Feature: (rowProductProps) => <Feature {...rowProductProps} {...product} />,
+                  FeatureBoxed: (rowProductProps) => (
+                    <FeatureBoxed {...rowProductProps} {...product} />
+                  ),
+                  Grid: (rowProductProps) => <Grid {...rowProductProps} items={productList} />,
+                  Related: (rowProductProps) => <Related {...rowProductProps} {...product} />,
+                  Reviews: (rowProductProps) => <Reviews {...rowProductProps} {...product} />,
+                  Upsells: (rowProductProps) => <Upsells {...rowProductProps} {...product} />,
+                  Swipeable: (rowProductProps) => (
+                    <Swipeable {...rowProductProps} items={productList} />
+                  ),
+                }}
+              />
+            ),
           }}
-          content={pages?.[0]?.content}
+          content={pages?.[0].content}
         />
       )}
     </>

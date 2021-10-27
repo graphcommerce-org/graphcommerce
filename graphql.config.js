@@ -20,7 +20,7 @@ module.exports = {
         },
         endpoints: {
           default: {
-            url: 'http://localhost:3001/api/graphql/',
+            url: 'http://localhost:3000/api/graphql/',
           },
         },
       },

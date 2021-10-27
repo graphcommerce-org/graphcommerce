@@ -1,7 +1,11 @@
 import { useQuery } from '@apollo/client'
 import { useHistoryGo } from '@graphcommerce/framer-next-pages'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { AddressFields, ApolloCustomerErrorAlert, NameFields } from '@graphcommerce/magento-customer'
+import {
+  AddressFields,
+  ApolloCustomerErrorAlert,
+  NameFields,
+} from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import {
   Button,

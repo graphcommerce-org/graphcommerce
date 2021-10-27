@@ -1,8 +1,6 @@
 fragment ProductPageDescription on ProductInterface {
   name
-  short_description {
-    html
-  }
+  ...ProductShortDescription
   description {
     html
   }

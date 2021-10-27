@@ -6,7 +6,6 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   DesktopNavActions,
   DesktopNavBar,
-  FixedFab,
   FullPageShellBase,
   FullPageShellBaseProps,
   iconCustomerService,
@@ -40,8 +39,8 @@ const useStyles = makeStyles(
     },
     header: {
       [theme.breakpoints.down('sm')]: {
-        marginTop: 16,
-        marginBottom: 16,
+        marginTop: 20,
+        marginBottom: 22,
       },
     },
     hideOnVirtualKeyboardOpen: {
@@ -154,12 +153,7 @@ function FullPageShell(props: FullPageShellProps) {
         </MenuFabSecondaryItem>
       </MenuFab>
 
-      <FixedFab>
-        <CartFab
-          style={{ boxShadow: 'none' }}
-          className={clsx(classes.cartFab, classes.hideOnVirtualKeyboardOpen)}
-        />
-      </FixedFab>
+      <CartFab className={clsx(classes.cartFab, classes.hideOnVirtualKeyboardOpen)} />
 
       {children}
     </FullPageShellBase>

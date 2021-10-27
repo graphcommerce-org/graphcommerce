@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-graphql",
-  "version": "2.103.4",
+  "version": "2.103.10",
   "sideEffects": false,
   "main": "index.ts",
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -14,16 +14,15 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/browserslist-config-pwa": "^3.0.1",
-    "@graphcommerce/eslint-config-pwa": "^3.0.4",
-    "@graphcommerce/prettier-config-pwa": "^3.0.2",
-    "@graphcommerce/typescript-config-pwa": "^3.1.0",
-    "@playwright/test": "^1.15.0"
+    "@graphcommerce/browserslist-config-pwa": "^3.0.2",
+    "@graphcommerce/eslint-config-pwa": "^3.1.1",
+    "@graphcommerce/prettier-config-pwa": "^3.0.3",
+    "@graphcommerce/typescript-config-pwa": "^3.1.1",
+    "@playwright/test": "^1.15.2"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.21",
-    "@graphcommerce/graphql": "^2.103.4",
-    "graphql": "^15.6.0",
+    "@apollo/client": "^3.4.16",
+    "@graphcommerce/graphql": "^2.104.1",
     "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

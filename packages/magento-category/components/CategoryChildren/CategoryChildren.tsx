@@ -14,8 +14,7 @@ const useStyles = makeStyles(
       marginBottom: theme.spacings.sm,
     },
     scroller: {
-      display: 'grid',
-      gridAutoFlow: 'column',
+      gridAutoColumns: `max-content`,
     },
     link: {
       whiteSpace: 'nowrap',
@@ -31,12 +30,12 @@ const useStyles = makeStyles(
         height: 2,
         background: theme.palette.primary.main,
         position: 'absolute',
-        bottom: -8,
         left: 0,
         right: 0,
         margin: '0 auto',
         opacity: 0,
         transition: 'opacity .2s ease, bottom .2s ease',
+        bottom: 0,
       },
       '&:hover': {
         '&:before': {
@@ -64,7 +63,7 @@ export default function CategoryChildren(props: CategoryChildrenProps) {
   return (
     <ScrollerProvider scrollSnapAlign='none'>
       <div className={classes.container}>
-        <Scroller className={classes.scroller}>
+        <Scroller className={classes.scroller} hideScrollbar>
           {children.map((cat) => {
             if (!cat?.url_path || !cat.name) return null
 

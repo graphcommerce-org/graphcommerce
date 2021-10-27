@@ -1,5 +1,4 @@
-import { ContainerProps, Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { ContainerProps, Theme, makeStyles } from '@material-ui/core'
 import { m, useTransform, useViewportScroll } from 'framer-motion'
 import React from 'react'
 import Row from '..'
@@ -9,9 +8,6 @@ import responsiveVal from '../../Styles/responsiveVal'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
-      [theme.breakpoints.up('md')]: {
-        paddingTop: theme.spacings.xxs,
-      },
       paddingLeft: 0,
       paddingRight: 0,
     },

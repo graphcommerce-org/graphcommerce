@@ -2,22 +2,24 @@ import { TestShippingAddressFormDocument } from '../__mocks__/TestShippingAddres
 import { handlerFactory } from '../src/useGqlDocumentHandler'
 
 describe('useGqlDocumentHandler', () => {
-  const { required, defaultVariables: defaults, encode } = handlerFactory(
-    TestShippingAddressFormDocument,
-  )
+  const {
+    required,
+    defaultVariables: defaults,
+    encode,
+  } = handlerFactory(TestShippingAddressFormDocument)
 
   const address = {
     cartId: '12',
     customerNote: 'hoi',
     address: {
-      firstname: 'Paul',
-      lastname: 'Hachmang',
-      company: 'Reach Digital',
+      firstname: 'Firstname',
+      lastname: 'Lastname',
+      company: 'GraphComemrce',
       country_code: 'NL',
-      street: ['Noordplein 85', '3e etage'],
-      city: 'Roelofarendsveen',
-      telephone: '0654716972',
-      postcode: '2371DJ',
+      street: ['Streetline 1', 'Streetline 2'],
+      city: 'City',
+      telephone: '0987654321',
+      postcode: '1234AB',
       save_in_address_book: 'true',
     },
   }
@@ -35,14 +37,14 @@ describe('useGqlDocumentHandler', () => {
       cartId: '12',
       customerNote: 'hoi',
       address: {
-        firstname: 'Paul',
-        lastname: 'Hachmang',
-        company: 'Reach Digital',
+        firstname: 'Firstname',
+        lastname: 'Lastname',
+        company: 'GraphComemrce',
         country_code: 'NL',
-        street: ['Noordplein 85', '3e etage'],
-        city: 'Roelofarendsveen',
-        telephone: '0654716972',
-        postcode: '2371DJ',
+        street: ['Streetline 1', 'Streetline 2'],
+        city: 'City',
+        telephone: '0987654321',
+        postcode: '1234AB',
         save_in_address_book: true,
       },
     })

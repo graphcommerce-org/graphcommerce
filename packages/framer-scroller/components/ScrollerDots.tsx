@@ -1,15 +1,11 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { UseStyles } from '@graphcommerce/next-ui'
 import { Fab, FabProps, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { HTMLMotionProps, m } from 'framer-motion'
 import React from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
-
-export type DotsProps = {
-  classes?: Record<'dots' | 'dot' | 'circle', string>
-  fabProps?: Omit<FabProps, 'onClick' | 'children'>
-} & HTMLMotionProps<'div'>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -18,6 +14,7 @@ const useStyles = makeStyles(
       display: 'grid',
       gridAutoFlow: 'column',
       padding: `0 7px`,
+      borderRadius: '20px',
     },
     dot: {
       boxShadow: 'none',
@@ -34,8 +31,13 @@ const useStyles = makeStyles(
   { name: 'ScrollerDots' },
 )
 
+export type DotsProps = {
+  fabProps?: Omit<FabProps, 'onClick' | 'children'>
+} & HTMLMotionProps<'div'> &
+  UseStyles<typeof useStyles>
+
 const ScrollerDots = m(
-  React.forwardRef<any, DotsProps>((props, ref) => {
+  React.forwardRef<HTMLDivElement, DotsProps>((props, ref) => {
     const { fabProps, ...containerProps } = props
     const { dots, dot, circle, ...classes } = useStyles(props)
     const { items, getScrollSnapPositions } = useScrollerContext()

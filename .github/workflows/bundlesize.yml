@@ -7,6 +7,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@graphcommerce'
       - uses: actions/checkout@v2
         with:
           path: new
@@ -14,24 +16,30 @@ jobs:
         with:
           path: old
           ref: master
-      - run: yarn --frozen-lockfile --cwd ./new
+      - uses: bahmutov/npm-install@v1
+        with:
+          useRollingCache: true
+          working-directory: new
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: cp ./new/examples/magento-graphcms/.env.example ./new/examples/magento-graphcms/.env
       - run: yarn --cwd ./new/examples/magento-graphcms build > new.txt
-        env:
-          NEXT_PUBLIC_GRAPHQL_ENDPOINT: ${{ secrets.NEXT_PUBLIC_GRAPHQL_ENDPOINT }}
-          NEXT_PUBLIC_LOCALE_STORES: ${{ secrets.NEXT_PUBLIC_LOCALE_STORES }}
-          VERCEL_ENV: development
       - run: cat new.txt
-      - run: yarn --frozen-lockfile --cwd ./old
-      - run: yarn --cwd ./old/examples/magento-graphcms build > old.txt
+      - uses: bahmutov/npm-install@v1
+        with:
+          useRollingCache: true
+          working-directory: old
         env:
-          NEXT_PUBLIC_GRAPHQL_ENDPOINT: ${{ secrets.NEXT_PUBLIC_GRAPHQL_ENDPOINT }}
-          NEXT_PUBLIC_LOCALE_STORES: ${{ secrets.NEXT_PUBLIC_LOCALE_STORES }}
-          VERCEL_ENV: development
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: cp ./old/examples/magento-graphcms/.env.example ./old/examples/magento-graphcms/.env
+      - run: yarn --cwd ./old/examples/magento-graphcms build > old.txt
       - run: cat old.txt
       - uses: ho-nl/next-bundlesize-action@master
         id: 'bundlesize'
       - uses: unsplash/comment-on-pr@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: steps.bundlesize.outputs.diff != ''
         with:
           msg: ${{steps.bundlesize.outputs.diff}}
+          check_for_duplicate_msg: false

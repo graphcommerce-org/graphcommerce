@@ -2,7 +2,6 @@
   "name": "GraphCommerce",
   "short_name": "GraphCommerce",
   "display": "standalone",
-  "orientation": "portrait",
   "theme_color": "#13e4ad",
   "background_color": "#FFFFFF",
   "start_url": "/",

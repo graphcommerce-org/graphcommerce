@@ -11,11 +11,8 @@ export const INERTIA_ANIM = {
   restDelta: 1,
 }
 
-/** Copy of INERTIA_ANIM, but converted to `type = 'spring'` */
 export const SPRING_ANIM = {
   type: 'spring',
-  stiffness: 200,
-  damping: 40,
-  restDelta: 1,
-  restSpeed: 10,
+  stiffness: 580,
+  damping: 75,
 }

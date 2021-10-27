@@ -5,7 +5,7 @@ import React from 'react'
 import { RowHeroBannerFragment } from './RowHeroBanner.gql'
 
 export default function RowHeroBanner(props: RowHeroBannerFragment) {
-  const { copy, asset, pageLinks } = props
+  const { copy, heroAsset, pageLinks } = props
 
   return (
     <HeroBanner
@@ -16,7 +16,7 @@ export default function RowHeroBanner(props: RowHeroBannerFragment) {
           </Button>
         </PageLink>
       ))}
-      videoSrc={asset.url}
+      videoSrc={heroAsset.url}
     >
       <RichTextHero {...copy} />
     </HeroBanner>

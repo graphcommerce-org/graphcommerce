@@ -31,7 +31,7 @@ function StoresIndexPage({ availableStores }: Props) {
     <>
       <PageMeta title='Switch stores' metaDescription='Switch stores' metaRobots={['noindex']} />
       <NoSsr>
-        <SheetShellHeader backFallbackHref='/' backFallbackTitle='Home' hideDragIndicator>
+        <SheetShellHeader hideDragIndicator>
           <Title size='small' component='span' icon={iconShoppingBag}>
             Country
           </Title>

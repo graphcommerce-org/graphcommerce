@@ -66,11 +66,9 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
 
   return {
     props: {
-      ...(await page).data,
-      backFallbackHref: '/checkout/payment',
-      backFallbackTitle: 'Payment',
-      variant: 'left',
       apolloState: await conf.then(() => client.cache.extract()),
+      ...(await page).data,
+      variant: 'left',
     },
   }
 }

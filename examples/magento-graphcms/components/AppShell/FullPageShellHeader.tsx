@@ -8,5 +8,14 @@ import Logo from './Logo'
 type FullPageShellHeaderProps = Omit<PageShellHeaderPropsBase, 'logo'>
 
 export default function FullPageShellHeader(props: FullPageShellHeaderProps) {
-  return <PageShellHeaderBase logo={<Logo />} fill='mobile-only' {...props} />
+  const { backFallbackHref = '/', backFallbackTitle = 'Home' } = props
+  return (
+    <PageShellHeaderBase
+      logo={<Logo />}
+      fill='mobile-only'
+      {...props}
+      backFallbackHref={backFallbackHref}
+      backFallbackTitle={backFallbackTitle}
+    />
+  )
 }

@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { CheckoutAgreementsDocument } from '@graphcommerce/magento-cart-checkout'
+import { CartAgreementsDocument } from '@graphcommerce/magento-cart/components/CartAgreementsForm/CartAgreements.gql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AppShellTitle,
@@ -25,9 +25,7 @@ function LegalView() {
   const router = useRouter()
   const { url } = router.query
 
-  const { data } = useQuery(CheckoutAgreementsDocument, {
-    fetchPolicy: 'network-only', // agreements should always be up-to-date
-  })
+  const { data } = useQuery(CartAgreementsDocument)
 
   const agreement = data?.checkoutAgreements?.find(
     (ca) => ca && ca.name && ca.name.toLowerCase().replaceAll(' ', '-') === url,
@@ -82,8 +80,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
 
   return {
     props: {
-      backFallbackHref: '/checkout',
-      backFallbackTitle: 'Checkout',
       variant: 'left',
       size: responsiveVal(320, 800),
       apolloState: await conf.then(() => client.cache.extract()),

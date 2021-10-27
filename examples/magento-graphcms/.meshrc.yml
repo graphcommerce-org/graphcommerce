@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://unpkg.com/@graphql-mesh/types@0.49.0/config-schema.json
+sources:
+  - name: graphcms
+    handler:
+      graphql:
+        endpoint: '{env.GRAPHCMS_URL}'
+    transforms:
+      - filterSchema:
+          mode: bare
+          filters:
+            - Query.{pages,footer,usps,productpages,pagesConnection}
+            - Mutation.none
+  - name: m2
+    handler:
+      graphql:
+        endpoint: '{env.MAGENTO_ENDPOINT}'
+        schemaHeaders:
+          Store: '{context.req.headers.store}'
+          Authorization: '{context.req.headers.authorization}'
+        operationHeaders:
+          Store: '{context.req.headers.store}'
+          Authorization: '{context.req.headers.authorization}'
+          X-ReCaptcha: '{context.req.headers.x-captcha}'
+          Preview-Version: '{context.req.headers.preview-version}'
+          Content-Currency: '{context.req.headers.content-currency}'

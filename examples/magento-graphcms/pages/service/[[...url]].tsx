@@ -7,7 +7,9 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
+import { Container } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
@@ -24,6 +26,9 @@ type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 function ServicePage({ pages }: Props) {
   const title = pages?.[0].title ?? ''
   const asset = pages?.[0].asset
+  const router = useRouter()
+
+  const isRoot = router.asPath === '/service'
 
   return (
     <>
@@ -33,19 +38,22 @@ function ServicePage({ pages }: Props) {
         metaRobots={['noindex']}
         canonical={pages?.[0]?.url ?? ''}
       />
-
-      <SheetShellHeader hideDragIndicator>
+      <SheetShellHeader
+        hideDragIndicator
+        backFallbackHref={isRoot ? undefined : '/service'}
+        backFallbackTitle={isRoot ? undefined : 'Customer Service'}
+      >
         <Title component='span' size='small'>
           {title}
         </Title>
       </SheetShellHeader>
 
-      <AppShellTitle>
-        <Title>{title}</Title>
-      </AppShellTitle>
-      {/* <FramerNextPagesSlider> */}
+      <Container maxWidth='md'>
+        <AppShellTitle>
+          <Title>{title}</Title>
+        </AppShellTitle>
+      </Container>
       <PageContent {...pages[0]} />
-      {/* </FramerNextPagesSlider> */}
     </>
   )
 }
@@ -91,19 +99,9 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
 
-  let backFallbackHref: string | null = null
-  let backFallbackTitle: string | null = null
-
-  if (typeof params?.url !== 'undefined' && params.url.length > 0) {
-    backFallbackHref = '/service'
-    backFallbackTitle = 'Help Center'
-  }
-
   return {
     props: {
       ...(await page).data,
-      backFallbackHref,
-      backFallbackTitle,
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
