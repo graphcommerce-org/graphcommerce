@@ -23,7 +23,7 @@ const useStyles = makeStyles(
     },
     smallCopy: {
       '& > p': {
-        ...theme.typography.caption,
+        ...theme.typography.body2,
       },
     },
     smallIcons: {
