@@ -1,4 +1,4 @@
-import { ImageConfig, imageConfigDefault } from 'next/dist/server/image-config'
+import { ImageConfigComplete, imageConfigDefault } from 'next/dist/server/image-config'
 import { ImageLoaderProps } from 'next/image'
 
 export type DefaultImageLoaderProps = ImageLoaderProps & { root: string }
@@ -10,7 +10,7 @@ export const {
   path: configPath,
   domains: configDomains,
   // eslint-disable-next-line no-underscore-dangle
-} = (process.env.__NEXT_IMAGE_OPTS as any as ImageConfig) || imageConfigDefault
+} = (process.env.__NEXT_IMAGE_OPTS as unknown as ImageConfigComplete) || imageConfigDefault
 
 function normalizeSrc(src: string): string {
   return src[0] === '/' ? src.slice(1) : src
