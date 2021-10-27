@@ -42,7 +42,6 @@ export default function ApplyCouponForm(props: ApplyCouponFormProps) {
           loading={formState.isSubmitting}
           color='secondary'
           variant='pill'
-          size='small'
         >
           Apply
         </Button>
