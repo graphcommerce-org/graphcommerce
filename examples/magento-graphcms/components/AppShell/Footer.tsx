@@ -28,7 +28,7 @@ const useStyles = makeStyles(
           'social social'
           'links links'
         `,
-        gap: theme.spacings.lg,
+        gap: theme.spacings.md,
         '& > *': {
           maxWidth: 'max-content',
         },
