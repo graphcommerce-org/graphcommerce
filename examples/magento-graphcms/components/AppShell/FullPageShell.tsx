@@ -21,7 +21,7 @@ import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'
-import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
+import { LightTheme } from '../Theme/ThemedProvider'
 import Footer from './Footer'
 import Logo from './Logo'
 
@@ -65,35 +65,19 @@ const useStyles = makeStyles(
   { name: 'FullPageShell' },
 )
 
-export type FullPageShellProps = Omit<DefaultPageQuery, 'pages'> &
-  Omit<
-    FullPageShellBaseProps,
-    'menu' | 'logo' | 'actions' | 'classes' | 'name' | 'header' | 'footer'
-  > & {
-    alwaysShowLogo?: boolean
-  }
+export type FullPageShellProps = Omit<
+  FullPageShellBaseProps,
+  'menu' | 'logo' | 'actions' | 'classes' | 'name' | 'header' | 'footer'
+> & {
+  alwaysShowLogo?: boolean
+}
 
 function FullPageShell(props: FullPageShellProps) {
-  const { footer, menu: menuData = {}, children, alwaysShowLogo, ...uiProps } = props
+  const { children, alwaysShowLogo } = props
   const classes = useStyles()
 
-  const storeConfig = useQuery(StoreConfigDocument)
-  const name = storeConfig.data?.storeConfig?.store_name ?? ''
-
-  const menuItemsIncludeInMenu = menuData?.items?.filter((items) => items?.include_in_menu === 1)
-
   const menuProps: MenuProps = {
-    menu: [
-      ...(menuItemsIncludeInMenu?.map((item) => ({
-        href: `/${item?.url_path}`,
-        children: item?.name?.toLowerCase().includes('sale') ? (
-          <span style={{ textTransform: 'uppercase', color: 'red' }}>{item.name}</span>
-        ) : (
-          item?.name ?? ''
-        ),
-      })) ?? []),
-      { href: '/blog', children: 'Blog' },
-    ],
+    menu: [{ href: 'yeag', children: 'Hea' }],
   }
 
   const router = useRouter()
@@ -101,8 +85,7 @@ function FullPageShell(props: FullPageShellProps) {
 
   return (
     <FullPageShellBase
-      {...uiProps}
-      name={name}
+      name='GraphCommerce®'
       classes={{ header: alwaysShowLogo ? classes.header : undefined }}
       header={
         <>
@@ -129,7 +112,11 @@ function FullPageShell(props: FullPageShellProps) {
           </DesktopNavActions>
         </>
       }
-      footer={<Footer footer={footer} />}
+      footer={
+        <LightTheme>
+          <Footer />
+        </LightTheme>
+      }
     >
       <MenuFab
         {...menuProps}

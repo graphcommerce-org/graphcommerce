@@ -1,6 +1,0 @@
-fragment RowContentLinks on RowContentLinks {
-  title
-  contentLinks {
-    ...PageLink
-  }
-}

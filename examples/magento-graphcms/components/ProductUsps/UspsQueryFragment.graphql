@@ -1,8 +1,0 @@
-fragment UspsQueryFragment on Query {
-  usps(where: { identity: "contentusps" }) {
-    uspsMultiple {
-      id
-      ...PageLink
-    }
-  }
-}

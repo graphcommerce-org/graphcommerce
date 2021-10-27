@@ -1,7 +1,0 @@
-query CategoryPage($url: String!, $rootCategory: String!) {
-  ...MenuQueryFragment
-  ...FooterQueryFragment
-  ...PageContentQueryFragment
-
-  ...CategoryQueryFragment
-}

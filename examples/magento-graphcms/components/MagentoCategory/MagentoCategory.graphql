@@ -1,3 +1,0 @@
-fragment MagentoCategory on MagentoCategory {
-  url
-}

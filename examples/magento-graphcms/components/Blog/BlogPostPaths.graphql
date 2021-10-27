@@ -1,5 +1,0 @@
-query BlogPostPaths {
-  pages(where: { url_not_starts_with: "blog/tagged/", url_starts_with: "blog/" }) {
-    url
-  }
-}
