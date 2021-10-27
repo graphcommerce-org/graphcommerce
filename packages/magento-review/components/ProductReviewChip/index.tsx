@@ -19,7 +19,6 @@ const useStyles = makeStyles({
     overflow: 'hidden',
     '& > img': {
       display: 'inline',
-      width: 18,
     },
     zIndex: 1,
   },
@@ -28,8 +27,11 @@ const useStyles = makeStyles({
     '& > img': {
       display: 'inline',
       filter: 'grayscale(100%)',
-      width: 18,
     },
+  },
+  iconStar: {
+    stroke: '#FFDA1C',
+    fill: '#FFDA1C',
   },
 })
 

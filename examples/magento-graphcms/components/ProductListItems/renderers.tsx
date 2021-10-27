@@ -47,7 +47,7 @@ const renderers: ProductListItemRenderer = {
           bottomLeft: [],
           bottomRight: ['dominant_color'],
         }}
-        bottomLeft={<ProductReviewChip rating={rating_summary} classes={{ outlined }} shapeOnly />}
+        bottomLeft={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
       />
     )
   },
