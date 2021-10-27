@@ -1,4 +1,4 @@
-import { Image, ImageProps } from '@graphcommerce/image'
+import { Image, ImageProps, isStaticImport, isStaticRequire } from '@graphcommerce/image'
 import { makeStyles, capitalize, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
@@ -9,47 +9,75 @@ export type SvgImageShade = 'muted' | 'default' | 'inverted'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     image: {
-      display: 'block',
-      flexShrink: 0,
       userSelect: 'none',
-      width: 24,
-      height: 'auto',
+      width: responsiveVal(22, 24),
+      height: responsiveVal(22, 24),
+      strokeWidth: 1.8,
+      strokeLinecap: 'square',
+      strokeLinejoin: 'miter',
+      stroke: '#000',
+      fill: 'none',
     },
-    /* Styles applied to the element if `size='inherit'`. */
     sizeInherit: {
       fontSize: 'inherit',
     },
-    /* Styles applied to the element if `size='small'`. */
     sizeSmall: {
-      width: responsiveVal(16, 20),
+      width: responsiveVal(13, 16),
+      height: responsiveVal(13, 16),
+      strokeWidth: 2.3,
     },
-    /* Styles applied to the element if `size='large'`. */
     sizeLarge: {
-      width: responsiveVal(24, 28),
+      width: responsiveVal(23, 26),
+      height: responsiveVal(23, 26),
+      strokeWidth: 1.5,
     },
-    muted: { filter: `invert(100%) saturate(0%) contrast(50%)` },
-    inverted: { filter: `invert(100%) saturate(0%) contrast(200%)` },
+    sizeXl: {
+      width: responsiveVal(38, 42),
+      height: responsiveVal(38, 42),
+      strokeWidth: 1.25,
+    },
+    sizeXxl: {
+      width: responsiveVal(96, 148),
+      height: responsiveVal(96, 148),
+      strokeWidth: 0.8,
+    },
+    muted: {
+      stroke: theme.palette.primary.mutedText,
+    },
+    inverted: {
+      stroke: theme.palette.secondary.contrastText,
+    },
   }),
   { name: 'SvgImageSimple' },
 )
 
 type SvgImageSimpleProps = Omit<ImageProps, 'fixed'> & {
   /** The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size. */
-  size?: 'default' | 'inherit' | 'large' | 'medium' | 'small'
-
+  size?: 'default' | 'inherit' | 'xxl' | 'xl' | 'large' | 'medium' | 'small'
+  fill?: boolean
   muted?: boolean
   inverted?: boolean
 }
 
 const SvgImageSimple = forwardRef<HTMLImageElement, SvgImageSimpleProps>((props, ref) => {
-  const { className, size = 'medium', muted, inverted, layout = 'fixed', ...imageProps } = props
+  const {
+    className,
+    size = 'medium',
+    muted,
+    inverted,
+    fill,
+    layout = 'fixed',
+    ...imageProps
+  } = props
   const classes = useStyles()
 
+  let src = imageProps.src
+  let staticSrc = ''
+  if (isStaticImport(src)) staticSrc = (isStaticRequire(src) ? src.default : src).src
+  src = typeof src === 'string' ? src : staticSrc
+
   return (
-    <Image
-      {...imageProps}
-      ref={ref}
-      layout={layout}
+    <svg
       className={clsx(
         className,
         classes.image,
@@ -57,8 +85,10 @@ const SvgImageSimple = forwardRef<HTMLImageElement, SvgImageSimpleProps>((props,
         muted && classes.muted,
         inverted && classes.inverted,
       )}
-      unoptimized
-    />
+      aria-hidden='true'
+    >
+      <use href={`${src}#icon`}></use>
+    </svg>
   )
 })
 SvgImageSimple.displayName = 'SvgImageSimple'
