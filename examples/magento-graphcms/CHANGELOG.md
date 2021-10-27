@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.127.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.126.0...@graphcommerce/magento-graphcms@2.127.0) (2021-10-27)
+
+
+### Bug Fixes
+
+* revert back to babel build for smaller (but slower) builds ([9a127fb](https://github.com/ho-nl/m2-pwa/commit/9a127fb3495070db28d4046e258792988be15f00))
+
+
+### Features
+
+* enable swcMinify for faster builds ([5c54f2b](https://github.com/ho-nl/m2-pwa/commit/5c54f2bc13e702be3bd24e4642299d58148f895a))
+* **graphql:** log the graphql operation and variables when an error occurs ([65a7700](https://github.com/ho-nl/m2-pwa/commit/65a77000c0f212eaaa984b2930f57234c90dfdb8))
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 # [2.126.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.125.3...@graphcommerce/magento-graphcms@2.126.0) (2021-10-25)
 
 

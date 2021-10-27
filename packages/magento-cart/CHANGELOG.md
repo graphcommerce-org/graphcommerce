@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.2.6...@graphcommerce/magento-cart@3.3.0) (2021-10-27)
+
+
+### Features
+
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 # [3.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.1.15...@graphcommerce/magento-cart@3.2.0) (2021-10-19)
 
 

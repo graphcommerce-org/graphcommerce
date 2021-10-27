@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/mollie-magento-payment@2.104.33...@graphcommerce/mollie-magento-payment@2.105.0) (2021-10-27)
+
+
+### Features
+
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 ## [2.104.13](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/mollie-magento-payment@2.104.12...@graphcommerce/mollie-magento-payment@2.104.13) (2021-10-08)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/graphql",
-  "version": "2.104.1",
+  "version": "2.105.0",
   "sideEffects": false,
   "main": "index.ts",
   "prettier": "@graphcommerce/prettier-config-pwa",
