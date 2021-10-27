@@ -38,36 +38,36 @@ const lightPalette: PaletteOptions = {
   },
 }
 
-// const darkPalette: PaletteOptions = {
-//   type: 'dark',
-//   primary: {
-//     main: '#62C7B0',
-//     contrastText: '#fff',
-//     mutedText: `#999`,
-//     dark: '#62C7B0',
-//   },
-//   secondary: {
-//     main: '#006BFF',
-//     light: '#D1E4FF',
-//     contrastText: '#FFF',
-//     mutedText: `#999`,
-//   },
-//   background: {
-//     default: '#001727',
-//     paper: 'rgb(20 43 56)',
-//     highlight: 'rgb(20 43 56)',
-//   },
-//   divider: '#EBEBEB',
-//   success: {
-//     main: '#01D26A',
-//     mutedText: '#B8B8B8',
-//   },
-//   text: {
-//     primary: '#fff',
-//     secondary: '#fff',
-//     disabled: '#999',
-//   },
-// }
+const darkPalette: PaletteOptions = {
+  type: 'dark',
+  primary: {
+    main: '#62C7B0',
+    contrastText: '#fff',
+    mutedText: `#999`,
+    dark: '#62C7B0',
+  },
+  secondary: {
+    main: '#006BFF',
+    light: '#D1E4FF',
+    contrastText: '#FFF',
+    mutedText: `#999`,
+  },
+  background: {
+    default: '#001727',
+    paper: 'rgb(20 43 56)',
+    highlight: 'rgb(20 43 56)',
+  },
+  divider: '#EBEBEB',
+  success: {
+    main: '#01D26A',
+    mutedText: '#B8B8B8',
+  },
+  text: {
+    primary: '#fff',
+    secondary: '#fff',
+    disabled: '#999',
+  },
+}
 
 const createThemeWithPallete = (palette: PaletteOptions) =>
   createTheme({
@@ -357,13 +357,15 @@ const createOverrides = (theme: Theme): Overrides => {
 const lightTheme = createThemeWithPallete(lightPalette)
 lightTheme.overrides = createOverrides(lightTheme)
 
-// const darkTheme = createThemeWithPallete(darkPalette)
-// darkTheme.overrides = createOverrides(darkTheme)
+const darkTheme = createThemeWithPallete(darkPalette)
+darkTheme.overrides = createOverrides(darkTheme)
 
-const ThemedProvider: React.FC = ({ children }) => (
-  <ThemeProvider theme={lightTheme}>
-    <CssBaseline />
-    {children}
-  </ThemeProvider>
-)
-export default ThemedProvider
+type ThemeProviderProps = { children: React.ReactNode }
+
+export function LightTheme({ children }: ThemeProviderProps) {
+  return <ThemeProvider theme={lightTheme}>{children}</ThemeProvider>
+}
+
+export function DarkTheme({ children }: ThemeProviderProps) {
+  return <ThemeProvider theme={darkTheme}>{children}</ThemeProvider>
+}

@@ -106,12 +106,12 @@ export default function RowHeroAnimation() {
         <Animation />
         <div className={classes.copy}>
           <Container>
-            <Typography variant='h1' className={classes.title} color='secondary'>
+            <Typography variant='h1' className={classes.title}>
               <span>Graphcommerce®</span>
               The future of e-commerce is headless.
             </Typography>
             <div className={classes.main}>
-              <Typography paragraph variant='h3' className={classes.h3} color='secondary'>
+              <Typography paragraph variant='h3' className={classes.h3}>
                 GraphCommerce® is an open source, headless e-commerce storefront build with GraphQL,
                 React, Typescript and Next.js.
               </Typography>

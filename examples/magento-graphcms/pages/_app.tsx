@@ -1,9 +1,10 @@
 import { ApolloProvider } from '@apollo/client'
 import { GoogleTagManagerScript, useGTMPageViewEvent } from '@graphcommerce/googletagmanager'
 import { App, AppProps } from '@graphcommerce/next-ui'
+import { CssBaseline } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
-import ThemedProvider from '../components/Theme/ThemedProvider'
+import { DarkTheme } from '../components/Theme/ThemedProvider'
 import apolloClient from '../lib/apolloClientBrowser'
 
 export default function ThemedApp(props: AppProps) {
@@ -16,9 +17,10 @@ export default function ThemedApp(props: AppProps) {
     <>
       <GoogleTagManagerScript />
       <ApolloProvider client={apolloClient(locale, true, pageProps.apolloState)}>
-        <ThemedProvider>
+        <DarkTheme>
+          <CssBaseline />
           <App {...props} />
-        </ThemedProvider>
+        </DarkTheme>
       </ApolloProvider>
     </>
   )
