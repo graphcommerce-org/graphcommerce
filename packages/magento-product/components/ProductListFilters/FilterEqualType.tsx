@@ -178,7 +178,9 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
                       className={clsx(
                         classes.checkbox,
                         isColor && classes.isColor,
-                        currentFilter.in?.includes(option?.value) ? classes.isActive : false,
+                        currentFilter.in?.includes(option?.value) && isColor
+                          ? classes.isActive
+                          : false,
                       )}
                       style={
                         isColor
