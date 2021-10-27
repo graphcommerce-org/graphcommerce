@@ -13,6 +13,7 @@ import React, { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } fro
 import { UseStyles } from '../Styles'
 import responsiveVal from '../Styles/responsiveVal'
 import SvgImage from '../SvgImage'
+import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconMin, iconPlus } from '../icons'
 
 const useStyles = makeStyles(
@@ -133,7 +134,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             {...DownProps}
           >
             {DownProps.children ?? (
-              <SvgImage src={iconMin} size='small' alt='Step down' loading='eager' />
+              <SvgImageSimple src={iconMin} size='small' alt='Step down' loading='eager' />
             )}
           </IconButton>
         ),
@@ -151,7 +152,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             {...UpProps}
           >
             {UpProps.children ?? (
-              <SvgImage src={iconPlus} size='small' alt='Step up' loading='eager' />
+              <SvgImageSimple src={iconPlus} size='small' alt='Step up' loading='eager' />
             )}
           </IconButton>
         ),

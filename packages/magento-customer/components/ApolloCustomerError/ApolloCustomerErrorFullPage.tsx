@@ -3,7 +3,8 @@ import {
   ApolloErrorAlertProps,
   Button,
   SvgImage,
-  iconPersonAltBig,
+  iconPerson,
+  SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
@@ -22,7 +23,7 @@ export default function ApolloCustomerErrorFullPage(props: ApolloCustomerErrorFu
   return (
     <ApolloErrorFullPage
       error={error}
-      icon={<SvgImage src={iconPersonAltBig} size={148} alt='person' />}
+      icon={<SvgImageSimple src={iconPerson} alt='person' size='xxl' />}
       button={
         unauthorized ? (
           <PageLink href={signInHref} passHref>

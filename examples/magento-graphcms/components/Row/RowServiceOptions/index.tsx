@@ -6,6 +6,7 @@ import {
   iconEmail,
   iconPhone,
   SvgImage,
+  SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { Link } from '@material-ui/core'
 import PageLink from 'next/link'
@@ -33,12 +34,14 @@ export default function RowServiceOptions(props: RowServiceOptionsProps) {
               icon={
                 <>
                   {iconTitle === 'e-mail' && (
-                    <SvgImage src={iconEmail} alt='phone' loading='eager' />
+                    <SvgImageSimple src={iconEmail} alt='email' loading='eager' size='xl' />
                   )}
                   {iconTitle === 'phone' && (
-                    <SvgImage src={iconPhone} alt='phone' loading='eager' />
+                    <SvgImageSimple src={iconPhone} alt='phone' loading='eager' size='xl' />
                   )}
-                  {iconTitle === 'chat' && <SvgImage src={iconChat} alt='phone' loading='eager' />}
+                  {iconTitle === 'chat' && (
+                    <SvgImageSimple src={iconChat} alt='phone' loading='eager' size='xl' />
+                  )}
                 </>
               }
             >

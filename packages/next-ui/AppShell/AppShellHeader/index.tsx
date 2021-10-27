@@ -7,6 +7,7 @@ import React, { useCallback, useEffect } from 'react'
 import Button from '../../Button'
 import { UseStyles } from '../../Styles'
 import SvgImage from '../../SvgImage'
+import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconClose } from '../../icons'
 import useAppShellHeaderContext from './useAppShellHeaderContext'
 
@@ -314,19 +315,17 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
         classes={{ root: classes.fab }}
         onClick={() => router.go(closeSteps * -1)}
       >
-        <SvgImage src={iconClose} mobileSize={20} size={20} alt='Close overlay' loading='eager' />
+        <SvgImageSimple src={iconClose} alt='Close overlay' loading='eager' />
       </Fab>
     ) : (
       <PageLink href='/' passHref>
         <Fab size='small' classes={{ root: classes.fab }}>
-          <SvgImage src={iconClose} alt='Close overlay' size={20} mobileSize={20} loading='eager' />
+          <SvgImageSimple src={iconClose} alt='Close overlay' loading='eager' />
         </Fab>
       </PageLink>
     ))
 
-  const backIcon = (
-    <SvgImage src={iconChevronLeft} alt='chevron back' loading='eager' size={26} mobileSize={30} />
-  )
+  const backIcon = <SvgImageSimple src={iconChevronLeft} alt='chevron back' loading='eager' />
   let back = backSteps > 0 && (
     <Button
       onClick={() => router.back()}

@@ -3,6 +3,7 @@ import { PaginationProps, usePagination } from '@material-ui/lab'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import SvgImage from '../SvgImage'
+import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -51,6 +52,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   icon: {
+    display: 'flex',
     borderRadius: '100%',
     padding: 6,
     height: 40,
@@ -95,20 +97,20 @@ export default function Pagination(props: PagePaginationProps) {
   const nextBtnProps = items[items.length - 1]
 
   const chevronLeft = (
-    <SvgImage
+    <SvgImageSimple
       src={iconChevronLeft}
       alt='chevron left'
-      shade={page === 1 ? 'muted' : undefined}
-      classes={{ root: classes.icon }}
+      muted={page === 1}
+      className={classes.icon}
     />
   )
 
   const chevronRight = (
-    <SvgImage
+    <SvgImageSimple
       src={iconChevronRight}
       alt='chevron right'
-      shade={page === count ? 'muted' : undefined}
-      classes={{ root: classes.icon }}
+      muted={page === count}
+      className={classes.icon}
     />
   )
 

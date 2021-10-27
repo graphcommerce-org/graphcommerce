@@ -10,6 +10,7 @@ import {
   AppShellTitle,
   SheetShellHeader,
   Title,
+  SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { Container, NoSsr } from '@material-ui/core'
 import { GetStaticProps } from 'next'
@@ -53,7 +54,7 @@ function AccountReviewsPage() {
           {((customer?.reviews && customer?.reviews.items.length < 1) || !customer?.reviews) && (
             <FullPageMessage
               title={`You haven't placed any reviews yet`}
-              icon={<SvgImage src={iconStar} size={148} alt='star' />}
+              icon={<SvgImageSimple src={iconStar} alt='star' size='xxl' />}
             >
               Discover our collection and write your first review!
             </FullPageMessage>

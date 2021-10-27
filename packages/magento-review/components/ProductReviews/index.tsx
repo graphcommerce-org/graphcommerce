@@ -1,8 +1,7 @@
 import { useQuery } from '@apollo/client'
 import {
   Button,
-  iconStarFilledMuted,
-  iconStarYellow,
+  iconStar,
   Pagination,
   responsiveVal,
   StarRatingField,

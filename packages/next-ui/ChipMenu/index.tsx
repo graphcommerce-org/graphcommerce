@@ -4,6 +4,7 @@ import React, { PropsWithChildren, useState } from 'react'
 import SectionHeader from '../SectionHeader'
 import responsiveVal from '../Styles/responsiveVal'
 import SvgImage from '../SvgImage'
+import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconChevronDown, iconChevronUp, iconCloseCircle } from '../icons'
 
 export const useChipMenuStyles = makeStyles(
@@ -76,20 +77,11 @@ export default function ChipMenu(props: ChipMenuProps) {
   const classes = useChipMenuStyles(props)
 
   let deleteIcon = selected ? (
-    <SvgImage size='medium' src={iconCloseCircle} alt='close' shade='default' />
+    <SvgImageSimple src={iconCloseCircle} alt='close' />
   ) : (
-    <SvgImage
-      size='medium'
-      src={iconChevronDown}
-      alt='chevron down'
-      loading='eager'
-      shade='muted'
-    />
+    <SvgImageSimple src={iconChevronDown} alt='chevron down' loading='eager' />
   )
-  if (openEl)
-    deleteIcon = (
-      <SvgImage size='medium' src={iconChevronUp} alt='chevron up' loading='eager' shade='muted' />
-    )
+  if (openEl) deleteIcon = <SvgImageSimple src={iconChevronUp} alt='chevron up' loading='eager' />
 
   const selectedAndMenuHidden = selected && !openEl && selectedLabel
 

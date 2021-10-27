@@ -2,7 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core'
 import { Rating, RatingProps } from '@material-ui/lab'
 import React from 'react'
 import SvgImage from '../SvgImage'
-import { iconStarFilledMuted, iconStarYellow } from '../icons'
+import { iconStar } from '../icons'
 
 export type StarRatingFieldProps = {
   id?: string
@@ -33,7 +33,7 @@ export default function StarRatingField(props: StarRatingFieldProps) {
       size='small'
       emptyIcon={
         <SvgImage
-          src={iconStarFilledMuted}
+          src={iconStar}
           size={iconSize}
           alt='star'
           loading='eager'
@@ -42,7 +42,7 @@ export default function StarRatingField(props: StarRatingFieldProps) {
       }
       icon={
         <SvgImage
-          src={iconStarYellow}
+          src={iconStar}
           size={iconSize}
           alt='star'
           loading='eager'

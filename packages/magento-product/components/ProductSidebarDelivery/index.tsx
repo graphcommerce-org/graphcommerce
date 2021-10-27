@@ -1,4 +1,4 @@
-import { SvgImage, responsiveVal, iconBox } from '@graphcommerce/next-ui'
+import { SvgImage, responsiveVal, iconBox, SvgImageSimple } from '@graphcommerce/next-ui'
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 
@@ -41,11 +41,11 @@ export default function ProductSidebarDelivery() {
 
   return (
     <div className={classes.root}>
-      <SvgImage className={classes.image} src={iconBox} alt='box' loading='eager' />
-      <Typography className={classes.title} variant='caption' component='div'>
+      <SvgImageSimple className={classes.image} src={iconBox} alt='box' loading='eager' />
+      <Typography className={classes.title} variant='body2' component='div'>
         Order before 22:00
       </Typography>
-      <Typography className={classes.subtitle} variant='caption' component='div'>
+      <Typography className={classes.subtitle} variant='body2' component='div'>
         Next day delivery - Shipping free
       </Typography>
     </div>

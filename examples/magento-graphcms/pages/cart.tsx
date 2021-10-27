@@ -22,6 +22,7 @@ import {
   Title,
   iconChevronRight,
   SvgImage,
+  SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { Container, NoSsr } from '@material-ui/core'
 import { AnimatePresence } from 'framer-motion'
@@ -53,11 +54,11 @@ function CartPage() {
                 variant='pill-link'
                 disabled={!hasItems}
                 endIcon={
-                  <SvgImage
+                  <SvgImageSimple
                     src={iconChevronRight}
                     alt='chevron right'
-                    shade='inverted'
                     size='small'
+                    inverted
                     loading='eager'
                   />
                 }
