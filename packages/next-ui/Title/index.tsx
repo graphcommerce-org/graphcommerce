@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import SvgImage, { SvgImageProps } from '../SvgImage'
+import SvgImageSimple from '../SvgImage/SvgImageSimple'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -47,15 +48,7 @@ const Title = React.forwardRef<HTMLDivElement, TitleProps>((props, ref) => {
 
   return (
     <div className={clsx(classes.container, small && classes.small)}>
-      {icon && (
-        <SvgImage
-          src={icon}
-          size={small ? 30 : 56}
-          mobileSize={small ? 20 : 56}
-          loading='eager'
-          classes={{ root: small ? undefined : classes.icon }}
-        />
-      )}
+      {icon && <SvgImageSimple src={icon} loading='eager' size='xl' />}
       <Typography
         ref={ref}
         variant={variant || (small ? 'h6' : 'h3')}

@@ -34,7 +34,7 @@ const useStyles = makeStyles(
     sizeXl: {
       width: responsiveVal(38, 42),
       height: responsiveVal(38, 42),
-      strokeWidth: 1.25,
+      strokeWidth: 1.8,
     },
     sizeXxl: {
       width: responsiveVal(96, 148),

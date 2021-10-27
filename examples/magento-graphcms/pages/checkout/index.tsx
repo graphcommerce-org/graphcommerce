@@ -16,6 +16,7 @@ import {
   PageShellHeader,
   Stepper,
   SvgImage,
+  SvgImageSimple,
   Title,
 } from '@graphcommerce/next-ui'
 import { ComposedForm, ComposedSubmit } from '@graphcommerce/react-hook-form'
@@ -114,11 +115,10 @@ function ShippingPage() {
                         onClick={submit}
                       >
                         Next
-                        <SvgImage
+                        <SvgImageSimple
                           src={iconChevronRight}
                           alt='chevron right'
-                          shade='inverted'
-                          size='small'
+                          inverted
                           loading='eager'
                         />
                       </Button>
