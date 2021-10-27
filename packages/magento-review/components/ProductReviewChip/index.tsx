@@ -54,50 +54,19 @@ export default function ProductReviewChip(props: ProductReviewChipProps) {
       behavior: 'smooth',
     })
   }
-  let chip
 
-  if (!shapeOnly) {
-    chip = (
-      <Chip
-        variant='outlined'
-        clickable={!!reviewSectionId}
-        onClick={handleClick}
-        icon={<SvgImageSimple src={iconStarYellow} alt='Stars' />}
-        color='default'
-        label={`${normalizedRating}/5`}
-        {...chipProps}
-      />
-    )
-  } else {
-    chip = (
-      <Chip
-        variant='outlined'
-        size='small'
-        clickable={!!reviewSectionId}
-        onClick={handleClick}
-        icon={
-          <div className={classes.ratingContainer}>
-            <div className={classes.rating} style={{ width: `${rating}%` }}>
-              <SvgImageSimple size='small' src={iconStarYellow} alt='Stars' />
-              <SvgImageSimple src={iconStarYellow} alt='Stars' />
-              <SvgImageSimple src={iconStarYellow} alt='Stars' />
-              <SvgImageSimple src={iconStarYellow} alt='Stars' />
-              <SvgImageSimple src={iconStarYellow} alt='Stars' />
-            </div>
-            <div className={classes.maxRating}>
-              <SvgImageSimple src={iconStarYellow} alt='Stars' />
-              <SvgImageSimple src={iconStarYellow} alt='Stars' />
-              <SvgImageSimple src={iconStarYellow} alt='Stars' />
-              <SvgImageSimple src={iconStarYellow} alt='Stars' />
-              <SvgImageSimple src={iconStarYellow} alt='Stars' />
-            </div>
-          </div>
-        }
-        color='default'
-        {...chipProps}
-      />
-    )
-  }
+  const chip = (
+    <Chip
+      variant='outlined'
+      clickable={!!reviewSectionId}
+      onClick={handleClick}
+      icon={<SvgImageSimple src={iconStar} alt='Stars' size='small' className={classes.iconStar} />}
+      color='default'
+      size='small'
+      label={`${normalizedRating}/5`}
+      {...chipProps}
+    />
+  )
 
   if (!reviewSectionId) return chip
 
