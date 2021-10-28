@@ -180,7 +180,7 @@ const useStyles = makeStyles(
       },
     },
     backButton: {
-      background: theme.palette.background.default,
+      background: theme.palette.background.paper,
       color: theme.palette.text.primary,
       '&:hover': {
         background: theme.palette.background.highlight,

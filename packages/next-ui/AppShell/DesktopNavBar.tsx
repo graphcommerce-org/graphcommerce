@@ -57,7 +57,7 @@ const useStyles = makeStyles(
     },
     link: {
       whiteSpace: 'nowrap',
-      color: 'black',
+      color: theme.palette.text.primary,
       '&:hover': {
         textDecoration: 'none',
       },

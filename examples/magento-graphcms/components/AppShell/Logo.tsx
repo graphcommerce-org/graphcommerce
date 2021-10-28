@@ -1,6 +1,7 @@
 import { Image } from '@graphcommerce/image'
 import { UseStyles } from '@graphcommerce/next-ui/Styles'
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme, useTheme } from '@material-ui/core'
+import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
 import svgLogo from './graphcommerce.svg'
@@ -17,6 +18,9 @@ const useStyles = makeStyles(
         height: 32,
         paddingLeft: 0,
       },
+    },
+    dark: {
+      filter: 'invert(100%)',
     },
     link: {
       height: '100%',
@@ -39,6 +43,7 @@ type LogoProps = UseStyles<typeof useStyles>
 
 export default function Logo(props: LogoProps) {
   const classes = useStyles(props)
+  const theme = useTheme()
 
   return (
     <PageLink href='/' passHref>
@@ -49,7 +54,7 @@ export default function Logo(props: LogoProps) {
           src={svgLogo}
           unoptimized
           loading='eager'
-          className={classes.logo}
+          className={clsx(classes.logo, theme.palette.type === 'dark' && classes.dark)}
         />
       </a>
     </PageLink>
