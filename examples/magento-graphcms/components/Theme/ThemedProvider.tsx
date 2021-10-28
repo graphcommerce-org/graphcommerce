@@ -154,14 +154,12 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       h6: {
         fontFamily: ['Public Sans', 'sans-serif'].join(', '),
 
-        fontSize: responsiveVal(15, 18),
+        fontSize: responsiveVal(17, 20),
         fontWeight: 550,
         // letterSpacing: '-0.0375em',
         lineHeight: 1.8,
       },
       subtitle1: {
-        fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-
         fontSize: responsiveVal(16, 19, 1920),
         fontWeight: 400,
         // letterSpacing: '-0.0375em',
@@ -170,12 +168,10 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       fontWeightBold: 600,
       body1: {
         // We're boosting the fontSize to be 17px at 1280
-        fontSize: responsiveVal(15, 19, 1920),
+        fontSize: responsiveVal(15, 18, 1920),
         lineHeight: 1.7,
       },
       subtitle2: {
-        fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-
         fontSize: responsiveVal(14, 16),
         fontWeight: 600,
         lineHeight: 1.7,
@@ -184,6 +180,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
         fontSize: responsiveVal(13, 15),
         lineHeight: 1.7,
       },
+      // https://web.dev/font-size/#how-the-lighthouse-font-size-audit-fails
       caption: {
         fontSize: responsiveVal(11, 13),
       },
