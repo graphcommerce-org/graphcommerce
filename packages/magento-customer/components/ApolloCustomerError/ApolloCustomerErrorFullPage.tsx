@@ -27,7 +27,7 @@ export default function ApolloCustomerErrorFullPage(props: ApolloCustomerErrorFu
       button={
         unauthorized ? (
           <PageLink href={signInHref} passHref>
-            <Button variant='contained' color='primary' text='bold' size='large'>
+            <Button variant='contained' color='primary' size='large'>
               Login
             </Button>
           </PageLink>

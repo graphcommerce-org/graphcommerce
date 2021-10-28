@@ -99,7 +99,6 @@ export default function EditBillingAddressForm(props: EditBillingAddressFormProp
             variant='contained'
             color='primary'
             size='large'
-            text='bold'
             loading={formState.isSubmitting}
           >
             Save changes

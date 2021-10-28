@@ -45,7 +45,6 @@ export default function ChangeNameForm(props: ChangeNameFormProps) {
         <FormActions>
           <Button
             type='submit'
-            text='bold'
             color='primary'
             variant='contained'
             size='large'

@@ -127,13 +127,7 @@ export default function ProductReviews(props: ProductReviewsProps) {
   const actions = (
     <div className={classes.reviewsBottomContainer}>
       <Link href={`/account/reviews/add?sku=${sku}`} passHref>
-        <Button
-          variant='pill'
-          color='primary'
-          text='bold'
-          size='medium'
-          className={classes.writeReviewButton}
-        >
+        <Button variant='pill' color='primary' size='medium' className={classes.writeReviewButton}>
           Write a review
         </Button>
       </Link>

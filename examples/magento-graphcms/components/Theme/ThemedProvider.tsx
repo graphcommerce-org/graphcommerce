@@ -242,14 +242,15 @@ const createOverrides = (theme: Theme): Overrides => {
     },
     MuiButton: {
       root: {
-        fontWeight: 400,
         textTransform: 'none',
         ...theme.typography.body2,
-        padding: `${responsiveVal(6, 8)} ${responsiveVal(12, 22)}`,
+        fontWeight: 400,
+        padding: `${responsiveVal(8, 10)} ${responsiveVal(12, 22)}`,
       },
       sizeLarge: {
         padding: `${responsiveVal(10, 15)} ${responsiveVal(30, 60)}`,
         ...theme.typography.body1,
+        fontWeight: 500,
       },
       iconSizeLarge: {
         '& > *:first-child': { fontSize: 24 },
@@ -264,10 +265,12 @@ const createOverrides = (theme: Theme): Overrides => {
         '&:focus': { boxShadow: theme.shadows[1] },
       },
       containedPrimary: {
+        fontWeight: 500,
         color: '#fff',
         '& .MuiSvgIcon-root': { color: '#fff' },
       },
       containedSecondary: {
+        fontWeight: 500,
         color: '#fff',
         '& .MuiSvgIcon-root': { color: '#fff' },
       },
