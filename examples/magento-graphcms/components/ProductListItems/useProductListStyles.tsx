@@ -1,7 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
 
-type UseProductListStylesProps = { count: number }
-
 const useProductListStyles = makeStyles(
   (theme: Theme) => ({
     [theme.breakpoints.up('xl')]: {
