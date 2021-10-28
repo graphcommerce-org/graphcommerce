@@ -74,12 +74,15 @@ const useStyles = makeStyles(
       right: 0,
     },
     scrollerRoot: {
-      gridAutoColumns: `max-content`,
+      gridTemplateColumns: ' repeat(2, 40%)',
       gridTemplateRows: `100%`,
       gap: responsiveVal(4, 8),
       borderRadius: 5,
-      padding: '2px 0',
+      padding: '2px 1px',
       height: responsiveVal(60, 85),
+    },
+    scrollerRootTwoItems: {
+      gridTemplateColumns: ' repeat(2, 50%)',
     },
   }),
   { name: 'ShippingMethodForm' },
@@ -142,7 +145,14 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
               rules={{ required: 'Please select a shipping method' }}
               render={({ field: { onChange, value, onBlur }, fieldState: { invalid } }) => (
                 <>
-                  <Scroller className={classes.scrollerRoot} hideScrollbar tabIndex={0}>
+                  <Scroller
+                    className={clsx(
+                      classes.scrollerRoot,
+                      sortedAvailableShippingMethods.length <= 2 && classes.scrollerRootTwoItems,
+                    )}
+                    hideScrollbar
+                    tabIndex={0}
+                  >
                     {sortedAvailableShippingMethods.map((shippingMethod) => {
                       if (!shippingMethod) return null
                       const code = `${shippingMethod?.carrier_code}-${shippingMethod?.method_code}`
