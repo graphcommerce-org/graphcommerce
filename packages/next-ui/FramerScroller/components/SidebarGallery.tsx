@@ -260,9 +260,9 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
             <m.div layout className={classes.topRight}>
               <Fab color='inherit' size='small' className={classes.toggleIcon} onMouseUp={toggle}>
                 {!zoomed ? (
-                  <SvgImageSimple src={iconFullscreen} alt='Zoom in' loading='eager' />
+                  <SvgImageSimple src={iconFullscreen} />
                 ) : (
-                  <SvgImageSimple src={iconFullscreenExit} alt='Zoom out' loading='eager' />
+                  <SvgImageSimple src={iconFullscreenExit} />
                 )}
               </Fab>
             </m.div>

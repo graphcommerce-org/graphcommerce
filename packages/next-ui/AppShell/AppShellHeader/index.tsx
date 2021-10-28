@@ -315,17 +315,17 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
         classes={{ root: classes.fab }}
         onClick={() => router.go(closeSteps * -1)}
       >
-        <SvgImageSimple src={iconClose} alt='Close overlay' loading='eager' />
+        <SvgImageSimple src={iconClose} />
       </Fab>
     ) : (
       <PageLink href='/' passHref>
         <Fab size='small' classes={{ root: classes.fab }}>
-          <SvgImageSimple src={iconClose} alt='Close overlay' loading='eager' />
+          <SvgImageSimple src={iconClose} />
         </Fab>
       </PageLink>
     ))
 
-  const backIcon = <SvgImageSimple src={iconChevronLeft} alt='chevron back' loading='eager' />
+  const backIcon = <SvgImageSimple src={iconChevronLeft} />
   let back = backSteps > 0 && (
     <Button
       onClick={() => router.back()}

@@ -26,5 +26,5 @@ export default function InputCheckmark(props: InputCheckmarkProps) {
   const classes = useStyles()
 
   if (!valid) return <>{children}</>
-  return <SvgImageSimple src={iconCheckmark} alt='checkmark' className={classes.iconCheckmark} />
+  return <SvgImageSimple src={iconCheckmark} className={classes.iconCheckmark} />
 }

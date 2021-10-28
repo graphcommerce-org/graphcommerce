@@ -60,7 +60,7 @@ export default function ProductReviewChip(props: ProductReviewChipProps) {
       variant='outlined'
       clickable={!!reviewSectionId}
       onClick={handleClick}
-      icon={<SvgImageSimple src={iconStar} alt='Stars' size='small' className={classes.iconStar} />}
+      icon={<SvgImageSimple src={iconStar} size='small' className={classes.iconStar} />}
       color='default'
       size='small'
       label={`${normalizedRating}/5`}

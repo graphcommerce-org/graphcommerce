@@ -67,15 +67,7 @@ function PaymentPage() {
                   color='secondary'
                   variant='pill-link'
                   display='inline'
-                  endIcon={
-                    <SvgImageSimple
-                      src={iconChevronRight}
-                      loading='eager'
-                      alt='chevron right'
-                      size='small'
-                      inverted
-                    />
-                  }
+                  endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
                 >
                   Pay
                 </PaymentMethodButton>
@@ -145,14 +137,7 @@ function PaymentPage() {
                       variant='pill'
                       size='large'
                       text='bold'
-                      endIcon={
-                        <SvgImageSimple
-                          src={iconChevronRight}
-                          loading='eager'
-                          alt='chevron right'
-                          inverted
-                        />
-                      }
+                      endIcon={<SvgImageSimple src={iconChevronRight} inverted />}
                     >
                       Place order
                     </PaymentMethodButton>

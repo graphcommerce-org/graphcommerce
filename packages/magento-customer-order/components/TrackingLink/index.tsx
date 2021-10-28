@@ -24,7 +24,7 @@ export default function TrackingLink(props: TrackingLinkProps) {
     <div className={classes.trackingLink}>
       {number && (
         <>
-          <SvgImageSimple src={iconLocation} size='small' loading='eager' alt='order tracker' />
+          <SvgImageSimple src={iconLocation} size='small' />
           Follow order
         </>
       )}

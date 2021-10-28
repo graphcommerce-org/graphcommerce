@@ -54,15 +54,7 @@ function ShippingPage() {
                 variant='pill-link'
                 loading={buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)}
                 onClick={submit}
-                endIcon={
-                  <SvgImageSimple
-                    src={iconChevronRight}
-                    alt='chevron right'
-                    inverted
-                    size='small'
-                    loading='eager'
-                  />
-                }
+                endIcon={<SvgImageSimple src={iconChevronRight} inverted size='small' />}
               >
                 Next
               </Button>
@@ -114,12 +106,7 @@ function ShippingPage() {
                         onClick={submit}
                       >
                         Next
-                        <SvgImageSimple
-                          src={iconChevronRight}
-                          alt='chevron right'
-                          inverted
-                          loading='eager'
-                        />
+                        <SvgImageSimple src={iconChevronRight} inverted />
                       </Button>
                     </FormActions>
                     <ApolloCartErrorAlert

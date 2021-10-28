@@ -21,9 +21,7 @@ type CartFabContentProps = CartFabProps & CartTotalQuantityFragment
 
 function CartFabContent(props: CartFabContentProps) {
   const { total_quantity, icon, ...fabProps } = props
-  const cartIcon = icon ?? (
-    <SvgImageSimple src={iconShoppingBag} alt='Shopping Bag' loading='eager' size='large' />
-  )
+  const cartIcon = icon ?? <SvgImageSimple src={iconShoppingBag} loading='eager' size='large' />
   const { boxShadow } = useFixedFabAnimation()
 
   return (

@@ -38,17 +38,8 @@ export default function StarRatingField(props: StarRatingFieldProps) {
       name={`star-rating-${id}`}
       max={5}
       size='small'
-      emptyIcon={
-        <SvgImageSimple
-          src={iconStar}
-          alt='star'
-          loading='eager'
-          className={classes.iconStarEmpty}
-        />
-      }
-      icon={
-        <SvgImageSimple src={iconStar} alt='star' loading='eager' className={classes.iconStar} />
-      }
+      emptyIcon={<SvgImageSimple src={iconStar} className={classes.iconStarEmpty} />}
+      icon={<SvgImageSimple src={iconStar} className={classes.iconStar} />}
       onChange={(event, value) => {
         onChange(id ?? '', value ?? 0)
       }}

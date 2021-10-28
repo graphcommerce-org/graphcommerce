@@ -41,7 +41,7 @@ export default function ProductSidebarDelivery() {
 
   return (
     <div className={classes.root}>
-      <SvgImageSimple className={classes.image} src={iconBox} alt='box' loading='eager' />
+      <SvgImageSimple className={classes.image} src={iconBox} />
       <Typography className={classes.title} variant='body2' component='div'>
         Order before 22:00
       </Typography>

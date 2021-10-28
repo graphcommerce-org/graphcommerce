@@ -58,7 +58,7 @@ export default function ChangeNameForm(props: ChangeNameFormProps) {
       </Form>
       <MessageSnackbar open={formState.isSubmitSuccessful && !error} variant='pill'>
         <>
-          <SvgImageSimple src={iconCheckmark} size='small' loading='eager' alt='checkmark' />
+          <SvgImageSimple src={iconCheckmark} size='small' />
           Changes saved
         </>
       </MessageSnackbar>

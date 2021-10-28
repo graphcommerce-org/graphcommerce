@@ -237,12 +237,7 @@ export default function OrderDetails(props: OrderDetailsProps) {
                 {invoices && invoices?.length > 0 && (
                   <div className={classes.iconContainer}>
                     <div className={classes.invoice}>
-                      <SvgImageSimple
-                        src={iconInvoice}
-                        size='small'
-                        alt='order tracker'
-                        loading='eager'
-                      />
+                      <SvgImageSimple src={iconInvoice} size='small' />
                       {invoices?.[0]?.number}
                     </div>
                   </div>

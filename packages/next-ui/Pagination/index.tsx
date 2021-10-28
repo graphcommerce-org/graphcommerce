@@ -97,21 +97,11 @@ export default function Pagination(props: PagePaginationProps) {
   const nextBtnProps = items[items.length - 1]
 
   const chevronLeft = (
-    <SvgImageSimple
-      src={iconChevronLeft}
-      alt='chevron left'
-      muted={page === 1}
-      className={classes.icon}
-    />
+    <SvgImageSimple src={iconChevronLeft} muted={page === 1} className={classes.icon} />
   )
 
   const chevronRight = (
-    <SvgImageSimple
-      src={iconChevronRight}
-      alt='chevron right'
-      muted={page === count}
-      className={classes.icon}
-    />
+    <SvgImageSimple src={iconChevronRight} muted={page === count} className={classes.icon} />
   )
 
   return (

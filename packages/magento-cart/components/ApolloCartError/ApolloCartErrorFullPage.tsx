@@ -23,7 +23,7 @@ export default function ApolloCartErrorFullPage(props: ApolloCartErrorFullPagePr
   return (
     <ApolloErrorFullPage
       error={error}
-      icon={<SvgImageSimple src={iconSadFace} alt='person' size='xxl' />}
+      icon={<SvgImageSimple src={iconSadFace} size='xxl' />}
       button={action}
       {...passedProps}
     />

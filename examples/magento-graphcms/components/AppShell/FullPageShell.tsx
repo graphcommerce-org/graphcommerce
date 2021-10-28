@@ -125,12 +125,7 @@ function FullPageShell(props: FullPageShellProps) {
             )}
             <PageLink href='/service' passHref>
               <Fab style={{ boxShadow: 'none' }} aria-label='Account' size='large'>
-                <SvgImageSimple
-                  src={iconCustomerService}
-                  alt='Customer Service'
-                  loading='eager'
-                  size='large'
-                />
+                <SvgImageSimple src={iconCustomerService} size='large' />
               </Fab>
             </PageLink>
             <CustomerFab guestHref='/account/signin' authHref='/account' />
@@ -150,10 +145,7 @@ function FullPageShell(props: FullPageShellProps) {
         <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>
           Account
         </CustomerMenuFabItem>
-        <MenuFabSecondaryItem
-          icon={<SvgImageSimple src={iconCustomerService} alt='Customer Service' />}
-          href='/service'
-        >
+        <MenuFabSecondaryItem icon={<SvgImageSimple src={iconCustomerService} />} href='/service'>
           Customer Service
         </MenuFabSecondaryItem>
       </MenuFab>

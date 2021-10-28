@@ -48,7 +48,7 @@ const Title = React.forwardRef<HTMLDivElement, TitleProps>((props, ref) => {
 
   return (
     <div className={clsx(classes.container, small && classes.small)}>
-      {icon && <SvgImageSimple src={icon} loading='eager' size='xl' />}
+      {icon && <SvgImageSimple src={icon} size='xl' />}
       <Typography
         ref={ref}
         variant={variant || (small ? 'h6' : 'h3')}

@@ -88,16 +88,14 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
     >
       <ListItem disableGutters>
         <ListItemIcon className={classes.icon}>
-          <SvgImageSimple src={iconSrc} alt='' size='large' loading='eager' muted />
+          <SvgImageSimple src={iconSrc} size='large' muted />
         </ListItemIcon>
         <ListItemText
           classes={{ secondary: classes.secondary, primary: classes.primary }}
           primary={title}
           secondary={subtitle}
         />
-        {endIcon ?? (
-          <SvgImageSimple src={iconChevronRight} alt='chevron right' size='small' loading='eager' />
-        )}
+        {endIcon ?? <SvgImageSimple src={iconChevronRight} size='small' />}
       </ListItem>
     </Button>
   )

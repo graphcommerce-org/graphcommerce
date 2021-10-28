@@ -53,15 +53,7 @@ function CartPage() {
                 color='secondary'
                 variant='pill-link'
                 disabled={!hasItems}
-                endIcon={
-                  <SvgImageSimple
-                    src={iconChevronRight}
-                    alt='chevron right'
-                    size='small'
-                    inverted
-                    loading='eager'
-                  />
-                }
+                endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
               >
                 Next
               </Button>

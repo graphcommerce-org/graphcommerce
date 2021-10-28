@@ -133,9 +133,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             className={clsx(classes.button, DownProps.className)}
             {...DownProps}
           >
-            {DownProps.children ?? (
-              <SvgImageSimple src={iconMin} size='small' alt='Step down' loading='eager' />
-            )}
+            {DownProps.children ?? <SvgImageSimple src={iconMin} size='small' />}
           </IconButton>
         ),
         endAdornment: (
@@ -151,9 +149,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             className={clsx(classes.button, UpProps.className)}
             {...UpProps}
           >
-            {UpProps.children ?? (
-              <SvgImageSimple src={iconPlus} size='small' alt='Step up' loading='eager' />
-            )}
+            {UpProps.children ?? <SvgImageSimple src={iconPlus} size='small' />}
           </IconButton>
         ),
       }}

@@ -77,11 +77,11 @@ export default function ChipMenu(props: ChipMenuProps) {
   const classes = useChipMenuStyles(props)
 
   let deleteIcon = selected ? (
-    <SvgImageSimple src={iconCloseCircle} alt='close' />
+    <SvgImageSimple src={iconCloseCircle} />
   ) : (
-    <SvgImageSimple src={iconChevronDown} alt='chevron down' loading='eager' />
+    <SvgImageSimple src={iconChevronDown} />
   )
-  if (openEl) deleteIcon = <SvgImageSimple src={iconChevronUp} alt='chevron up' loading='eager' />
+  if (openEl) deleteIcon = <SvgImageSimple src={iconChevronUp} />
 
   const selectedAndMenuHidden = selected && !openEl && selectedLabel
 

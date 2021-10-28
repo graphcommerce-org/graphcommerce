@@ -66,7 +66,7 @@ export default function AccountAddresses(props: AccountAddressesProps) {
         <>
           <FullPageMessage
             title='You have no addresses saved yet'
-            icon={<SvgImageSimple src={iconHome} size='xxl' alt='home' />}
+            icon={<SvgImageSimple src={iconHome} size='xxl' />}
             button={
               <Link href='/account/addresses/add' passHref>
                 <Button size='large' variant='contained' color='primary' text='bold'>

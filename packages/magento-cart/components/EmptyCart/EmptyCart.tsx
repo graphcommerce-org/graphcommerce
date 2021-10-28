@@ -10,7 +10,7 @@ export default function EmptyCart(props: EmptyCartProps) {
   return (
     <FullPageMessage
       title='Your cart is empty'
-      icon={<SvgImageSimple src={iconSadFace} alt='Empty Cart' size='xxl' />}
+      icon={<SvgImageSimple src={iconSadFace} size='xxl' />}
       button={
         <Link href='/' passHref>
           <Button variant='contained' color='primary' size='large'>

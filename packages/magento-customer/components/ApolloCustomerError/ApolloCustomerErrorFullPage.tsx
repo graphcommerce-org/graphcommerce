@@ -23,7 +23,7 @@ export default function ApolloCustomerErrorFullPage(props: ApolloCustomerErrorFu
   return (
     <ApolloErrorFullPage
       error={error}
-      icon={<SvgImageSimple src={iconPerson} alt='person' size='xxl' />}
+      icon={<SvgImageSimple src={iconPerson} size='xxl' />}
       button={
         unauthorized ? (
           <PageLink href={signInHref} passHref>

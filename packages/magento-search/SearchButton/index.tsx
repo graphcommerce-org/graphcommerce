@@ -30,7 +30,7 @@ export default function SearchButton(props: SearchButtonProps) {
       classes={{ root: classes.root }}
       InputProps={{
         readOnly: true,
-        endAdornment: <SvgImageSimple src={iconSearch} alt='Search' size='medium' />,
+        endAdornment: <SvgImageSimple src={iconSearch} size='medium' />,
         classes: { root: classes.inputRoot },
         ...InputProps,
       }}

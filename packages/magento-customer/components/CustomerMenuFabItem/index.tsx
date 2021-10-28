@@ -47,7 +47,7 @@ function CustomerMenuFabItemContent(props: CustomerMenuFabItemProps) {
           variant='dot'
           classes={{ colorError: classes.colorError, badge: classes.badge }}
         >
-          {icon ?? <SvgImageSimple src={iconPerson} alt='Account' />}
+          {icon ?? <SvgImageSimple src={iconPerson} />}
         </StyledBadge>
       }
       href={requireAuth ? guestHref : authHref}

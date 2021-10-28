@@ -88,7 +88,7 @@ export default function IconHeader(props: IconHeaderProps) {
   return (
     <div className={clsx(classes.container, !noMargin && classes.margin)}>
       <div className={clsx(classes.innerContainer, !stayInline && classes.breakColumnsDesktop)}>
-        <SvgImageSimple {...svgImageProps} loading='eager' />
+        <SvgImageSimple {...svgImageProps} />
         <Typography
           variant={variants[size]}
           component='h2'

@@ -32,7 +32,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
           variant='dot'
           classes={{ colorError: classes.colorError }}
         >
-          {icon ?? <SvgImageSimple src={iconPerson} alt='Account' size='large' />}
+          {icon ?? <SvgImageSimple src={iconPerson} size='large' />}
         </StyledBadge>
       </Fab>
     </PageLink>

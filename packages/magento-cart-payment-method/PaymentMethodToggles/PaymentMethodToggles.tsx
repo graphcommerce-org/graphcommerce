@@ -153,12 +153,7 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                 root: clsx(classes.buttonRoot, classes.leftButtonRoot),
               }}
             >
-              <SvgImageSimple
-                src={iconChevronLeft}
-                alt='chevron left'
-                size='small'
-                loading='eager'
-              />
+              <SvgImageSimple src={iconChevronLeft} size='small' />
             </ScrollerButton>
           </m.div>
 
@@ -213,12 +208,7 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                 root: clsx(classes.buttonRoot, classes.rightButtonRoot),
               }}
             >
-              <SvgImageSimple
-                src={iconChevronRight}
-                alt='chevron right'
-                size='small'
-                loading='eager'
-              />
+              <SvgImageSimple src={iconChevronRight} size='small' />
             </ScrollerButton>
           </m.div>
         </ScrollerProvider>

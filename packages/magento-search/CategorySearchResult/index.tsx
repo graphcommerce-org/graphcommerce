@@ -54,9 +54,7 @@ export default function CategorySearchResult(props: CategorySearchResultProps) {
         variant='contained'
         className={classes.categoryButton}
         disableElevation
-        endIcon={
-          <SvgImageSimple src={iconChevronRight} alt='chevron right' size='small' loading='eager' />
-        }
+        endIcon={<SvgImageSimple src={iconChevronRight} size='small' />}
       >
         <div>
           {catProps?.breadcrumbs?.map((breadcrumb) => (

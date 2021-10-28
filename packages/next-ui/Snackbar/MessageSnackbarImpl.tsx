@@ -202,12 +202,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
             <>
               <div className={classes.children}>
                 <div>
-                  <SvgImageSimple
-                    src={icon}
-                    alt='checkmark'
-                    size='large'
-                    className={classes.messageIcon}
-                  />
+                  <SvgImageSimple src={icon} size='large' className={classes.messageIcon} />
                   {children}
                 </div>
               </div>
@@ -218,7 +213,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
               )}
               <div className={classes.closeButton}>
                 <Fab aria-label='Close snackbar' size='medium' onClick={hideSnackbar}>
-                  <SvgImageSimple src={iconClose} size='small' alt='close' />
+                  <SvgImageSimple src={iconClose} size='small' />
                 </Fab>
               </div>
             </>
