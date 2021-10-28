@@ -150,6 +150,7 @@ function PaymentPage() {
                           src={iconChevronRight}
                           loading='eager'
                           alt='chevron right'
+                          inverted
                         />
                       }
                     >
