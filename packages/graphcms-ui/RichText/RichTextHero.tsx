@@ -8,15 +8,15 @@ const RichTextHero = withStyles((theme: Theme) => ({
     maxWidth: '70%',
     textAlign: 'center',
     fontSize: responsiveVal(42, 50),
-    marginBottom: responsiveVal(22, 32),
+    marginBottom: theme.spacings.md,
     [theme.breakpoints.up('md')]: {
       textAlign: 'left',
       fontSize: responsiveVal(18, 90),
       maxWidth: '100%',
     },
     '& strong': {
-      color: 'transparent',
-      WebkitTextStroke: '1.2px #fff',
+      WebkitTextFillColor: 'transparent',
+      WebkitTextStroke: `1.2px ${theme.palette.background.default}`,
     },
   },
 }))(RichText)
