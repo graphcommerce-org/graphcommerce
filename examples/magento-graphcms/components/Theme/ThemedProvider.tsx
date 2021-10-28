@@ -18,7 +18,7 @@ export const defaultTheme = createTheme({
       main: '#006BFF',
       light: '#D1E4FF',
       contrastText: '#FFF',
-      mutedText: `#999`,
+      mutedText: `#aaa`,
     },
     background: {
       default: '#FFF',
@@ -312,9 +312,15 @@ defaultTheme.overrides = {
   },
   MuiCheckbox: {
     colorPrimary: {
-      color: '#EAEAEA',
+      color: defaultTheme.palette.primary.mutedText,
       '&$checked': {
-        color: defaultTheme.palette.primary.main,
+        color: defaultTheme.palette.text.disabled,
+      },
+    },
+    colorSecondary: {
+      color: defaultTheme.palette.secondary.mutedText,
+      '&$checked': {
+        color: defaultTheme.palette.secondary.main,
       },
     },
   },
