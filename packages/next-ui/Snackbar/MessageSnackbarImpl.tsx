@@ -61,11 +61,11 @@ const useStyles = makeStyles(
       gridArea: 'children',
       ...theme.typography.subtitle1,
       fontWeight: 400,
-      display: 'grid',
-      alignItems: 'center',
-      justifyContent: 'start',
-      gridAutoFlow: 'column',
-      gap: 10,
+      '& .MuiSvgIcon-root': {
+        position: 'relative',
+        fontSize: '1.1em',
+        top: '0.15em',
+      },
     },
     actionButton: {
       gridArea: 'action',
