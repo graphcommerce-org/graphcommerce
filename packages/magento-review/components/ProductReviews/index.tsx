@@ -1,8 +1,7 @@
 import { useQuery } from '@apollo/client'
 import {
   Button,
-  iconStarFilledMuted,
-  iconStarYellow,
+  iconStar,
   Pagination,
   responsiveVal,
   StarRatingField,
@@ -37,8 +36,12 @@ const useStyles = makeStyles(
       gridAutoFlow: 'column',
       justifyContent: 'space-between',
     },
-    nickname: {},
-    date: {},
+    nickname: {
+      ...theme.typography.body2,
+    },
+    date: {
+      ...theme.typography.body2,
+    },
     reviewsBottomContainer: {
       display: 'flex',
       alignItems: 'center',
@@ -128,7 +131,7 @@ export default function ProductReviews(props: ProductReviewsProps) {
           variant='pill'
           color='primary'
           text='bold'
-          size='large'
+          size='medium'
           className={classes.writeReviewButton}
         >
           Write a review
@@ -169,7 +172,7 @@ export default function ProductReviews(props: ProductReviewsProps) {
         myReviews.items.map((review) => (
           <div key={review?.summary} className={classes.review}>
             <div className={classes.title}>
-              <ProductReviewChip rating={review?.average_rating} variant='default' />
+              <ProductReviewChip rating={review?.average_rating} size='small' />
               <Typography variant='h5'> {review?.summary}</Typography>
             </div>
             <Typography variant='body1'>{review?.text}</Typography>

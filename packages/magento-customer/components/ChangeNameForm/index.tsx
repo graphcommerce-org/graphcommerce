@@ -6,6 +6,7 @@ import {
   MessageSnackbar,
   SvgImage,
   iconCheckmark,
+  SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import React from 'react'
@@ -57,7 +58,7 @@ export default function ChangeNameForm(props: ChangeNameFormProps) {
       </Form>
       <MessageSnackbar open={formState.isSubmitSuccessful && !error} variant='pill'>
         <>
-          <SvgImage src={iconCheckmark} size='small' loading='eager' alt='checkmark' />
+          <SvgImageSimple src={iconCheckmark} size='small' loading='eager' alt='checkmark' />
           Changes saved
         </>
       </MessageSnackbar>

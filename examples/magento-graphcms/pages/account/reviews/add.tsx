@@ -14,6 +14,7 @@ import {
   Title,
   SheetShellHeader,
   AppShellTitle,
+  SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { Container } from '@material-ui/core'
 import { GetStaticProps } from 'next'
@@ -63,7 +64,7 @@ function AccountReviewsAddPage() {
     return (
       <FullPageMessage
         title='Product could not be found'
-        icon={<SvgImage src={iconBox} size={148} alt='box'></SvgImage>}
+        icon={<SvgImageSimple src={iconBox} alt='box' size='xxl' />}
       >
         Try a different product
       </FullPageMessage>

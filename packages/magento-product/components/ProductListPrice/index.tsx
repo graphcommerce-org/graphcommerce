@@ -9,7 +9,7 @@ const useStyles = makeStyles(
     root: {},
     discount: {
       textDecoration: 'line-through',
-      color: theme.palette.primary.mutedText,
+      color: theme.palette.text.disabled,
       display: 'inline',
       marginRight: 8,
     },

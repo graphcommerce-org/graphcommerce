@@ -3,7 +3,7 @@ import {
   MenuFabSecondaryItem,
   StyledBadge,
   UseStyles,
-  iconPersonAlt,
+  iconPerson,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { makeStyles, NoSsr, Theme } from '@material-ui/core'
@@ -47,7 +47,7 @@ function CustomerMenuFabItemContent(props: CustomerMenuFabItemProps) {
           variant='dot'
           classes={{ colorError: classes.colorError, badge: classes.badge }}
         >
-          {icon ?? <SvgImageSimple src={iconPersonAlt} alt='Account' />}
+          {icon ?? <SvgImageSimple src={iconPerson} alt='Account' />}
         </StyledBadge>
       }
       href={requireAuth ? guestHref : authHref}

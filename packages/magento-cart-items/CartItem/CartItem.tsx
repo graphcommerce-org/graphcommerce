@@ -112,7 +112,7 @@ const useStyles = makeStyles(
     itemPrice: {
       gridArea: 'itemPrice',
       textAlign: 'left',
-      color: theme.palette.primary.mutedText,
+      color: theme.palette.text.disabled,
       alignSelf: 'center',
       [theme.breakpoints.up('sm')]: {
         alignSelf: 'flex-start',

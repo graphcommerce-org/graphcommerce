@@ -90,7 +90,7 @@ function ProductGrouped(props: Props) {
 
         <ProductShortDescription short_description={product?.short_description} />
 
-        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
+        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' size='small' />
         <ul>
           {typeProduct.items?.map(
             (item) =>

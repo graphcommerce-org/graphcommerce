@@ -5,6 +5,7 @@ import {
   MessageSnackbar,
   SvgImage,
   iconHome,
+  SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
@@ -65,7 +66,7 @@ export default function AccountAddresses(props: AccountAddressesProps) {
         <>
           <FullPageMessage
             title='You have no addresses saved yet'
-            icon={<SvgImage src={iconHome} size={148} alt='home' />}
+            icon={<SvgImageSimple src={iconHome} size='xxl' alt='home' />}
             button={
               <Link href='/account/addresses/add' passHref>
                 <Button size='large' variant='contained' color='primary' text='bold'>

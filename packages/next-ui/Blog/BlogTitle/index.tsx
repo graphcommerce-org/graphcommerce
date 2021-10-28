@@ -23,7 +23,7 @@ export default function BlogTitle(props: BlogTitleProps) {
 
   return (
     <div className={classes.wrapper}>
-      <AppShellTitle variant='h2'>{title}</AppShellTitle>
+      <AppShellTitle variant='h1'>{title}</AppShellTitle>
     </div>
   )
 }

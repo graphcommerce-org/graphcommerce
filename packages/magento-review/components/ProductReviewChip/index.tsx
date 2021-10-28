@@ -1,15 +1,43 @@
-import { SvgImageSimple, iconStarYellow } from '@graphcommerce/next-ui'
-import { Chip, ChipProps } from '@material-ui/core'
+import { SvgImageSimple, iconStar } from '@graphcommerce/next-ui'
+import { Chip, ChipProps, makeStyles } from '@material-ui/core'
 import React from 'react'
 
 export type ProductReviewChipProps = {
   rating?: number
   reviewSectionId?: string
   max?: number
+  shapeOnly?: boolean
 } & ChipProps
 
+const useStyles = makeStyles({
+  ratingContainer: {
+    width: '100%',
+    position: 'relative',
+  },
+  rating: {
+    position: 'absolute',
+    overflow: 'hidden',
+    '& > img': {
+      display: 'inline',
+    },
+    zIndex: 1,
+  },
+  maxRating: {
+    opacity: 0.4,
+    '& > img': {
+      display: 'inline',
+      filter: 'grayscale(100%)',
+    },
+  },
+  iconStar: {
+    stroke: '#FFDA1C',
+    fill: '#FFDA1C',
+  },
+})
+
 export default function ProductReviewChip(props: ProductReviewChipProps) {
-  const { rating, reviewSectionId = '', max = 5, ...chipProps } = props
+  const { rating, reviewSectionId = '', shapeOnly = false, max = 5, ...chipProps } = props
+  const classes = useStyles()
 
   if (!rating) return null
 
@@ -32,8 +60,9 @@ export default function ProductReviewChip(props: ProductReviewChipProps) {
       variant='outlined'
       clickable={!!reviewSectionId}
       onClick={handleClick}
-      icon={<SvgImageSimple src={iconStarYellow} alt='Stars' />}
+      icon={<SvgImageSimple src={iconStar} alt='Stars' size='small' className={classes.iconStar} />}
       color='default'
+      size='small'
       label={`${normalizedRating}/5`}
       {...chipProps}
     />

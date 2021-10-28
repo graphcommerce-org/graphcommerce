@@ -4,6 +4,7 @@ import React from 'react'
 import Button, { ButtonProps } from '../Button'
 import { UseStyles } from '../Styles'
 import SvgImage from '../SvgImage'
+import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconChevronRight } from '../icons'
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -38,7 +39,7 @@ export default function ButtonLink(props: ButtonLinkProps) {
     <PageLink href={url} passHref>
       <Button {...buttonProps} className={classes.buttonLink}>
         <span>{title}</span>
-        {endIcon ?? <SvgImage src={iconChevronRight} alt='chevron right' />}
+        {endIcon ?? <SvgImageSimple src={iconChevronRight} alt='chevron right' />}
       </Button>
     </PageLink>
   )

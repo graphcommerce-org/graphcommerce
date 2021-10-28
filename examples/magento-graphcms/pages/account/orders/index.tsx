@@ -13,6 +13,7 @@ import {
   iconBox,
   SheetShellHeader,
   SvgImage,
+  SvgImageSimple,
   Title,
 } from '@graphcommerce/next-ui'
 import { Container, NoSsr } from '@material-ui/core'
@@ -66,7 +67,7 @@ function AccountOrdersPage() {
             <>
               <FullPageMessage
                 title='You have no orders yet'
-                icon={<SvgImage src={iconBox} size={148} alt='box' />}
+                icon={<SvgImageSimple src={iconBox} size='xxl' />}
               >
                 Discover our collection and place your first order!
               </FullPageMessage>

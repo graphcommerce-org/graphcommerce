@@ -9,7 +9,7 @@ type SpecsProps = RowProductFragment & ProductSpecsProps
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      ...theme.typography.body1,
+      ...theme.typography.subtitle1,
     },
     sectionHeaderWrapper: {
       marginBottom: theme.spacings.md,

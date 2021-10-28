@@ -5,7 +5,12 @@ import {
   useFindCountry,
   useFindRegion,
 } from '@graphcommerce/magento-store'
-import { SectionContainer, responsiveVal, SvgImage, iconInvoiceRed } from '@graphcommerce/next-ui'
+import {
+  SectionContainer,
+  responsiveVal,
+  iconInvoice,
+  SvgImageSimple,
+} from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import clsx from 'clsx'
@@ -232,8 +237,8 @@ export default function OrderDetails(props: OrderDetailsProps) {
                 {invoices && invoices?.length > 0 && (
                   <div className={classes.iconContainer}>
                     <div className={classes.invoice}>
-                      <SvgImage
-                        src={iconInvoiceRed}
+                      <SvgImageSimple
+                        src={iconInvoice}
                         size='small'
                         alt='order tracker'
                         loading='eager'

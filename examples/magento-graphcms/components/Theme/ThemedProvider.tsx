@@ -12,14 +12,12 @@ const lightPalette: PaletteOptions = {
   primary: {
     main: '#FF4A55',
     contrastText: '#000',
-    mutedText: `#999`,
     dark: '#F33642',
   },
   secondary: {
     main: '#006BFF',
     light: '#D1E4FF',
     contrastText: '#FFF',
-    mutedText: `#999`,
   },
   background: {
     default: '#FFF',
@@ -29,12 +27,11 @@ const lightPalette: PaletteOptions = {
   divider: '#EBEBEB',
   success: {
     main: '#01D26A',
-    mutedText: '#B8B8B8',
   },
   text: {
     primary: '#000',
     secondary: '#000',
-    disabled: '#999',
+    disabled: '#bbb',
   },
 }
 
@@ -43,14 +40,12 @@ const lightPalette: PaletteOptions = {
 //   primary: {
 //     main: '#62C7B0',
 //     contrastText: '#fff',
-//     mutedText: `#999`,
 //     dark: '#62C7B0',
 //   },
 //   secondary: {
 //     main: '#006BFF',
 //     light: '#D1E4FF',
 //     contrastText: '#FFF',
-//     mutedText: `#999`,
 //   },
 //   background: {
 //     default: '#001727',
@@ -60,7 +55,6 @@ const lightPalette: PaletteOptions = {
 //   divider: '#EBEBEB',
 //   success: {
 //     main: '#01D26A',
-//     mutedText: '#B8B8B8',
 //   },
 //   text: {
 //     primary: '#fff',
@@ -69,6 +63,7 @@ const lightPalette: PaletteOptions = {
 //   },
 // }
 
+// Create a theme instance.
 const createThemeWithPallete = (palette: PaletteOptions) =>
   createTheme({
     palette,
@@ -82,6 +77,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       },
     },
     shadows,
+
     typography: {
       fontFamily:
         '-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji',
@@ -121,19 +117,17 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
        */
       h1: {
         fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-        fontSize: responsiveVal(36, 74),
+        fontSize: responsiveVal(28, 64),
         fontWeight: 700,
         // letterSpacing: '-0.0375em',
-        marginTop: '0.24em',
-        marginBottom: '0.58em',
-        lineHeight: 1.16,
+        lineHeight: 1.22,
       },
       h2: {
         fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-        fontSize: responsiveVal(28, 48),
-        fontWeight: 800,
+        fontSize: responsiveVal(25, 40),
+        fontWeight: 700,
         // letterSpacing: '-0.0375em',
-        lineHeight: 1.42,
+        lineHeight: 1.35,
       },
       h3: {
         fontFamily: ['Public Sans', 'sans-serif'].join(', '),
@@ -145,7 +139,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       h4: {
         fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontWeight: 500,
-        fontSize: responsiveVal(18, 28),
+        fontSize: responsiveVal(18, 26),
         // letterSpacing: '-0.0375em',
         lineHeight: 1.55,
       },
@@ -161,13 +155,11 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
         fontFamily: ['Public Sans', 'sans-serif'].join(', '),
 
         fontSize: responsiveVal(17, 20),
-        fontWeight: 600,
+        fontWeight: 550,
         // letterSpacing: '-0.0375em',
         lineHeight: 1.8,
       },
       subtitle1: {
-        fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-
         fontSize: responsiveVal(16, 19, 1920),
         fontWeight: 400,
         // letterSpacing: '-0.0375em',
@@ -180,8 +172,6 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
         lineHeight: 1.7,
       },
       subtitle2: {
-        fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-
         fontSize: responsiveVal(14, 16),
         fontWeight: 600,
         lineHeight: 1.7,
@@ -190,6 +180,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
         fontSize: responsiveVal(13, 15),
         lineHeight: 1.7,
       },
+      // https://web.dev/font-size/#how-the-lighthouse-font-size-audit-fails
       caption: {
         fontSize: responsiveVal(11, 13),
       },
@@ -220,7 +211,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
         sm: `56px`,
         // 32px = height of logo
         // + 2 x theme.spacings.xxs (top+bottom padding)
-        md: '72px',
+        md: '72px', // `calc(40px + (${responsiveVal(10, 16)} * 2))`,
       },
     },
   })
@@ -253,6 +244,15 @@ const createOverrides = (theme: Theme): Overrides => {
       root: {
         fontWeight: 400,
         textTransform: 'none',
+        ...theme.typography.body2,
+        padding: `${responsiveVal(6, 8)} ${responsiveVal(12, 22)}`,
+      },
+      sizeLarge: {
+        padding: `${responsiveVal(10, 15)} ${responsiveVal(30, 60)}`,
+        ...theme.typography.body1,
+      },
+      iconSizeLarge: {
+        '& > *:first-child': { fontSize: 24 },
       },
       endIcon: {
         marginLeft: 0,
@@ -271,27 +271,27 @@ const createOverrides = (theme: Theme): Overrides => {
         color: '#fff',
         '& .MuiSvgIcon-root': { color: '#fff' },
       },
-      containedSizeLarge: { padding: `15px ${responsiveVal(30, 60)}` },
-      iconSizeLarge: {
-        '& > *:first-child': { fontSize: 24 },
-      },
       outlined: {
-        // todo: Button isn't rounded on all places, but should be on homepage?
         borderRadius: 0,
+      },
+    },
+    MuiIconButton: {
+      sizeSmall: {
+        //
       },
     },
     MuiFab: {
       root: {
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: theme.palette.background.paper,
         '&:hover': { backgroundColor: theme.palette.background.paper },
       },
       primary: {
-        // color: '#fff',
-        // '& .MuiSvgIcon-root': { color: '#fff' },
+        color: '#fff',
+        '& .MuiSvgIcon-root': { color: '#fff' },
       },
       secondary: {
-        // color: '#fff',
-        // '& .MuiSvgIcon-root': { color: '#fff' },
+        color: '#fff',
+        '& .MuiSvgIcon-root': { color: '#fff' },
       },
       extended: {
         fontWeight: 400,
@@ -314,21 +314,43 @@ const createOverrides = (theme: Theme): Overrides => {
     },
     MuiChip: {
       root: {
-        boxShadow: theme.shadows[5],
+        boxShadow: 'unset !important',
         backgroundColor: theme.palette.background.paper,
-        height: responsiveVal(28, 32),
-        borderRadius: responsiveVal(28 / 2, 32 / 2),
+        borderRadius: '99em',
+        height: responsiveVal(32, 40),
+        paddingLeft: responsiveVal(4, 8),
+        paddingRight: responsiveVal(4, 8),
+        ...theme.typography.body2,
+      },
+      sizeSmall: {
+        height: responsiveVal(26, 30),
+        paddingLeft: responsiveVal(2, 6),
+        paddingRight: responsiveVal(2, 6),
+        ...theme.typography.caption,
       },
       outlined: {
         borderColor: theme.palette.divider,
-        boxShadow: 'unset',
+      },
+      label: {
+        paddingLeft: responsiveVal(6, 10),
+        paddingRight: responsiveVal(6, 10),
+      },
+      labelSmall: {
+        paddingLeft: responsiveVal(4, 8),
+        paddingRight: responsiveVal(4, 8),
       },
     },
     MuiCheckbox: {
       colorPrimary: {
-        color: '#EAEAEA',
+        color: theme.palette.text.disabled,
         '&$checked': {
-          color: theme.palette.primary.main,
+          color: theme.palette.text.disabled,
+        },
+      },
+      colorSecondary: {
+        color: theme.palette.text.disabled,
+        '&$checked': {
+          color: theme.palette.secondary.main,
         },
       },
     },

@@ -36,7 +36,7 @@ const useStyles = makeStyles(
       fontWeight: theme.typography.fontWeightBold,
     },
     costsTax: {
-      color: theme.palette.primary.mutedText,
+      color: theme.palette.text.disabled,
       paddingTop: 0,
     },
     money: {

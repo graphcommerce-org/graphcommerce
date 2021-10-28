@@ -1,12 +1,17 @@
 import RichText from '@graphcommerce/graphcms-ui/RichText'
 import { Image } from '@graphcommerce/image'
 import { RowImageText } from '@graphcommerce/next-ui'
-import { Typography, useTheme } from '@material-ui/core'
+import { Typography, useTheme, withStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { RowProductFragment } from '../RowProduct.gql'
 import { ProductFeatureMediaFragment } from './ProductFeatureMedia.gql'
 
 type FeatureProps = RowProductFragment & ProductFeatureMediaFragment
+
+const RichTextFeature = withStyles((theme: Theme) => ({
+  h2: { ...theme.typography.h1 },
+  paragraph: { ...theme.typography.subtitle1 },
+}))(RichText)
 
 export default function Feature(props: FeatureProps) {
   const { productCopy, title, media_gallery } = props
@@ -22,9 +27,10 @@ export default function Feature(props: FeatureProps) {
         item.url && (
           <Image
             alt={item.label ?? ''}
-            width={328}
-            height={328}
+            width={1532}
+            height={1678}
             src={item.url}
+            layout='fill'
             sizes={{
               0: '100vw',
               [theme.breakpoints.values.md]: '50vw',
@@ -34,7 +40,7 @@ export default function Feature(props: FeatureProps) {
       }
     >
       {title && <Typography variant='overline'>{title}</Typography>}
-      {productCopy?.raw && <RichText {...productCopy} />}
+      {productCopy?.raw && <RichTextFeature {...productCopy} />}
     </RowImageText>
   )
 }

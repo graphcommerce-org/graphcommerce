@@ -13,9 +13,16 @@ const useStyles = makeStyles(
       gridArea: 'description',
       margin: '0 auto',
       textAlign: 'center',
-      maxWidth: 732,
+      maxWidth: '90%',
+      [theme.breakpoints.up('md')]: {
+        maxWidth: '50%',
+      },
+      [theme.breakpoints.up('xl')]: {
+        maxWidth: '30%',
+      },
       marginTop: theme.spacings.md,
       marginBottom: theme.spacings.sm,
+      ...theme.typography.subtitle1,
     },
   }),
   { name: 'CategoryDescription' },
@@ -27,9 +34,6 @@ export default function CategoryDescription(props: CategoryDescriptionProps) {
 
   return (
     <div {...divProps} className={classes.root}>
-      <Typography variant='h2' component='h1' align='center'>
-        {name}
-      </Typography>
       {/* todo: replace with proper content renderer */}
       {/* eslint-disable-next-line react/no-danger */}
       {description && <div dangerouslySetInnerHTML={{ __html: description }} />}

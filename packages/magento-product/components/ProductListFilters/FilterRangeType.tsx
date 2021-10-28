@@ -26,7 +26,7 @@ const useFilterRangeType = makeStyles(
       display: 'block',
       paddingBottom: 32,
       '& .MuiSlider-rail': {
-        color: theme.palette.secondary.mutedText,
+        color: theme.palette.text.disabled,
         height: 4,
         borderRadius: 10,
       },
@@ -144,7 +144,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
       labelRight={
         <>
           <Money round value={value[0]} />
-          {' — '}
+          {value[0] ? ' — ' : false}
           <Money round value={value[1]} />
         </>
       }

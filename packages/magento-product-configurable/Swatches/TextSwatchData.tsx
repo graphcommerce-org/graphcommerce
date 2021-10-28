@@ -31,7 +31,7 @@ export const useStyles = makeStyles(
     },
     delivery: {
       gridArea: 'delivery',
-      color: theme.palette.primary.mutedText,
+      color: theme.palette.text.disabled,
     },
   }),
   { name: 'TextSwatchData' },

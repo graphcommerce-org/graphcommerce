@@ -43,7 +43,7 @@ const useStyles = makeStyles(
     },
     secondary: {
       // ...theme.typography.caption,
-      color: theme.palette.primary.mutedText,
+      color: theme.palette.text.disabled,
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'elipsis',
@@ -96,7 +96,7 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
           secondary={subtitle}
         />
         {endIcon ?? (
-          <SvgImage src={iconChevronRight} alt='chevron right' size='small' loading='eager' />
+          <SvgImageSimple src={iconChevronRight} alt='chevron right' size='small' loading='eager' />
         )}
       </ListItem>
     </Button>

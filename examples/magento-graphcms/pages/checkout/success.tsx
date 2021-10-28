@@ -8,7 +8,7 @@ import {
   FullPageMessage,
   GetStaticProps,
   iconParty,
-  iconSadShoppingBag,
+  iconSadFace,
   PageShellHeader,
   Stepper,
   SvgImageSimple,
@@ -52,7 +52,7 @@ function OrderSuccessPage() {
           {!hasCartId && (
             <FullPageMessage
               title={'You have not placed an order'}
-              icon={<SvgImageSimple src={iconSadShoppingBag} layout='fill' />}
+              icon={<SvgImageSimple src={iconSadFace} layout='fill' />}
               button={
                 <Link href='/' passHref>
                   <Button variant='contained' color='primary' size='large'>

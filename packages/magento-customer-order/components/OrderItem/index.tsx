@@ -97,7 +97,7 @@ const useStyles = makeStyles(
     itemPrice: {
       gridArea: 'itemPrice',
       textAlign: 'left',
-      color: theme.palette.primary.mutedText,
+      color: theme.palette.text.disabled,
     },
     quantity: {
       gridArea: 'quantity',

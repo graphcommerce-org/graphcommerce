@@ -89,6 +89,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         size='small'
         className={classes.quantity}
       />
+      <Divider className={classes.divider} />
       <Typography component='div' variant='h3' className={classes.finalPrice}>
         <Money
           {...cheapestVariant(getVariants(selection))?.product?.price_range.minimum_price

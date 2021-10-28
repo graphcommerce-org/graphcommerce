@@ -83,7 +83,7 @@ function ProductSimple(props: Props) {
 
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
-        <Typography variant='h3' component='div'>
+        <Typography variant='h2' component='div'>
           {product.name}
         </Typography>
 
@@ -93,7 +93,7 @@ function ProductSimple(props: Props) {
           dangerouslySetInnerHTML={{ __html: product?.short_description?.html ?? '' }}
         />
 
-        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
+        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' size='small' />
         <ProductAddToCart
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}

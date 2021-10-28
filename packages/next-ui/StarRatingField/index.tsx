@@ -1,8 +1,9 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import { Rating, RatingProps } from '@material-ui/lab'
 import React from 'react'
+import { SvgImageSimple } from '..'
 import SvgImage from '../SvgImage'
-import { iconStarFilledMuted, iconStarYellow } from '../icons'
+import { iconStar } from '../icons'
 
 export type StarRatingFieldProps = {
   id?: string
@@ -12,9 +13,15 @@ export type StarRatingFieldProps = {
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    icon: {
-      marginLeft: 4,
-      marginRight: 4,
+    iconStar: {
+      fill: '#FFDA1C',
+      stroke: '#FFDA1C',
+      margin: 3,
+    },
+    iconStarEmpty: {
+      fill: theme.palette.text.disabled,
+      stroke: theme.palette.text.disabled,
+      margin: 3,
     },
   }),
   {
@@ -32,22 +39,15 @@ export default function StarRatingField(props: StarRatingFieldProps) {
       max={5}
       size='small'
       emptyIcon={
-        <SvgImage
-          src={iconStarFilledMuted}
-          size={iconSize}
+        <SvgImageSimple
+          src={iconStar}
           alt='star'
           loading='eager'
-          classes={{ root: classes.icon }}
+          className={classes.iconStarEmpty}
         />
       }
       icon={
-        <SvgImage
-          src={iconStarYellow}
-          size={iconSize}
-          alt='star'
-          loading='eager'
-          classes={{ root: classes.icon }}
-        />
+        <SvgImageSimple src={iconStar} alt='star' loading='eager' className={classes.iconStar} />
       }
       onChange={(event, value) => {
         onChange(id ?? '', value ?? 0)

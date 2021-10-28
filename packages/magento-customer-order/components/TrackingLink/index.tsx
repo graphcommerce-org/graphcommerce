@@ -1,4 +1,4 @@
-import { SvgImage, iconLocationRed } from '@graphcommerce/next-ui'
+import { SvgImageSimple, iconLocation } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { TrackingLinkFragment } from './TrackingLink.gql'
@@ -24,7 +24,7 @@ export default function TrackingLink(props: TrackingLinkProps) {
     <div className={classes.trackingLink}>
       {number && (
         <>
-          <SvgImage src={iconLocationRed} size='small' loading='eager' alt='order tracker' />
+          <SvgImageSimple src={iconLocation} size='small' loading='eager' alt='order tracker' />
           Follow order
         </>
       )}

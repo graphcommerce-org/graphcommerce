@@ -29,7 +29,7 @@ const useStyles = makeStyles(
       background: theme.palette.background.default,
       display: 'inline-block',
       padding: `0 ${theme.spacings.xs} 0 ${theme.spacings.xs}`,
-      color: theme.palette.primary.mutedText,
+      color: theme.palette.text.disabled,
       transform: 'translateY(calc(-50% - 1px))',
     },
   }),

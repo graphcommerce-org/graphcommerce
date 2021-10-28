@@ -7,7 +7,7 @@ const useStyles = makeStyles(
     root: {
       width: '100%',
       '& fieldset': {
-        border: `2px solid rgba(0,0,0,0.1)`,
+        border: `1px solid ${theme.palette.divider}`,
       },
     },
     inputRoot: {
@@ -30,7 +30,7 @@ export default function SearchButton(props: SearchButtonProps) {
       classes={{ root: classes.root }}
       InputProps={{
         readOnly: true,
-        endAdornment: <SvgImageSimple src={iconSearch} alt='Search' size='small' />,
+        endAdornment: <SvgImageSimple src={iconSearch} alt='Search' size='medium' />,
         classes: { root: classes.inputRoot },
         ...InputProps,
       }}

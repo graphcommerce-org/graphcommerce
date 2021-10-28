@@ -4,6 +4,7 @@ import {
   iconChevronDown,
   iconChevronUp,
   SvgImage,
+  SvgImageSimple,
   UseStyles,
 } from '@graphcommerce/next-ui'
 import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
@@ -87,8 +88,10 @@ export default function CouponAccordion(props: CouponAccordionProps) {
           })}
           endIcon={
             <>
-              {!coupon && open && <SvgImage src={iconChevronUp} alt='Open' loading='eager' />}
-              {!coupon && !open && <SvgImage src={iconChevronDown} alt='Close' loading='eager' />}
+              {!coupon && open && <SvgImageSimple src={iconChevronUp} alt='Open' loading='eager' />}
+              {!coupon && !open && (
+                <SvgImageSimple src={iconChevronDown} alt='Close' loading='eager' />
+              )}
             </>
           }
         >
