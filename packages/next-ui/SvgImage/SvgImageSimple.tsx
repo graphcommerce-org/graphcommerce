@@ -15,7 +15,7 @@ const useStyles = makeStyles(
       strokeWidth: 1.8,
       strokeLinecap: 'square',
       strokeLinejoin: 'miter',
-      stroke: '#000',
+      stroke: theme.palette.text.primary,
       fill: 'none',
     },
     sizeInherit: {
@@ -42,10 +42,10 @@ const useStyles = makeStyles(
       strokeWidth: 1,
     },
     muted: {
-      stroke: theme.palette.primary.mutedText,
+      stroke: theme.palette.text.disabled,
     },
     inverted: {
-      stroke: theme.palette.secondary.contrastText,
+      stroke: theme.palette.background.default,
     },
   }),
   { name: 'SvgImageSimple' },

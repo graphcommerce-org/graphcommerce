@@ -50,7 +50,7 @@ type Props = ProductPageQuery &
 const useStyles = makeStyles(
   (theme: Theme) => ({
     prePrice: {
-      color: theme.palette.primary.mutedText,
+      color: theme.palette.text.disabled,
     },
   }),
   { name: 'ProductConfigurable' },

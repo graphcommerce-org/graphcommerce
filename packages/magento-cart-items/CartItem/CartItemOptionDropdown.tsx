@@ -11,7 +11,7 @@ const useStyles = makeStyles(
       letterSpacing: 1,
       textTransform: 'uppercase',
       fontWeight: 500,
-      color: theme.palette.secondary.mutedText,
+      color: theme.palette.text.disabled,
     },
     select: {
       padding: `${theme.spacings.xxs} ${theme.spacings.xxs}`,

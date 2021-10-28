@@ -50,7 +50,7 @@ const useStyles = makeStyles(
     date: {
       gridArea: 'date',
       fontStyle: 'italic',
-      color: theme.palette.primary.mutedText,
+      color: theme.palette.text.disabled,
     },
   }),
   { name: 'CustomerReview' },

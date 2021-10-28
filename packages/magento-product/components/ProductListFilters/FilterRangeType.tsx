@@ -26,7 +26,7 @@ const useFilterRangeType = makeStyles(
       display: 'block',
       paddingBottom: 32,
       '& .MuiSlider-rail': {
-        color: theme.palette.secondary.mutedText,
+        color: theme.palette.text.disabled,
         height: 4,
         borderRadius: 10,
       },

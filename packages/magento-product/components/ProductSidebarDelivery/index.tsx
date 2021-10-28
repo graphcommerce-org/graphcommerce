@@ -30,7 +30,7 @@ const useStyles = makeStyles(
     },
     subtitle: {
       gridArea: 'subtitle',
-      color: theme.palette.primary.mutedText,
+      color: theme.palette.text.disabled,
     },
   }),
   { name: 'ProductSidebarDelivery' },

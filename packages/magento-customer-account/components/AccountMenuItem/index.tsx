@@ -43,7 +43,7 @@ const useStyles = makeStyles(
     },
     secondary: {
       // ...theme.typography.caption,
-      color: theme.palette.primary.mutedText,
+      color: theme.palette.text.disabled,
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'elipsis',

@@ -99,7 +99,7 @@ const useStyles = makeStyles<
     },
     loading: {
       '& svg': {
-        stroke: theme.palette.primary.mutedText,
+        stroke: theme.palette.text.disabled,
       },
     },
   }),

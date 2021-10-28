@@ -19,8 +19,8 @@ const useStyles = makeStyles(
       margin: 3,
     },
     iconStarEmpty: {
-      fill: theme.palette.primary.mutedText,
-      stroke: theme.palette.primary.mutedText,
+      fill: theme.palette.text.disabled,
+      stroke: theme.palette.text.disabled,
       margin: 3,
     },
   }),
