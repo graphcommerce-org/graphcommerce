@@ -1,5 +1,5 @@
 export { default as iconSearch } from './search.svg'
-export { default as iconPerson } from './person.svg'
+export { default as iconPerson } from './person-alt.svg'
 export { default as iconChevronDown } from './chevron-down.svg'
 export { default as iconChevronLeft } from './chevron-left.svg'
 export { default as iconChevronRight } from './chevron-right.svg'
