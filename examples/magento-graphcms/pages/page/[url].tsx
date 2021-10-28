@@ -2,10 +2,9 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { CmsPageContent } from '@graphcommerce/magento-cms'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, useIntersectionObserver } from '@graphcommerce/next-ui'
+import { GetStaticProps } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { useCallback } from 'react-transition-group/node_modules/@types/react'
+import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.gql'
 import { DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
@@ -35,29 +34,8 @@ function CmsPage(props: Props) {
 
   const product = products?.items?.[0]
 
-  const [counter, setCounter] = useState(0)
-  const ref = useRef(null)
-
-  const options: IntersectionObserverInit = useMemo(
-    () => ({ rootMargin: '200px', threshold: [0.1, 0.2, counter] }),
-    [counter],
-  )
-
-  useEffect(() => {
-    if (!ref.current) return
-    const io = new IntersectionObserver(ref.current, options)
-    io.observe(ref.current)
-    return () => io.disconnect()
-  }, [options])
-
-  const entry = useIntersectionObserver({ ref, threshold: [] })
-
   return (
     <>
-      <button ref={ref} onClick={() => setCounter(counter + 1)}>
-        rerender {counter}
-      </button>
-
       <PageMeta
         title={cmsPage?.meta_title ?? title ?? ''}
         metaDescription={cmsPage?.meta_description ?? ''}
