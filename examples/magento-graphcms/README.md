@@ -30,7 +30,7 @@ In all code samples below, replace the following fields:
 - `cp -R graphcommerce/examples/magento-graphcms/. my-project`
 - `cd my-project`
 - `rm CHANGELOG.md && touch CHANGELOG.md`
-- `rm -rf node_modules`
+- `rm -rf node_modules && rm -rf .next`
 
 ### 2) Update your package.json
 
