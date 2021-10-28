@@ -8,7 +8,6 @@ import {
 import {
   SectionContainer,
   responsiveVal,
-  SvgImage,
   iconInvoice,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'

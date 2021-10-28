@@ -15,7 +15,6 @@ import {
   iconChevronRight,
   PageShellHeader,
   Stepper,
-  SvgImage,
   SvgImageSimple,
   Title,
 } from '@graphcommerce/next-ui'

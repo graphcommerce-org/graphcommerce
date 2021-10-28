@@ -3,7 +3,6 @@ import React from 'react'
 import { SvgImageSimple } from '..'
 import Button from '../Button'
 import { UseStyles } from '../Styles'
-import SvgImage from '../SvgImage'
 import { iconChevronRight } from '../icons'
 
 const useStyles = makeStyles(
@@ -40,7 +39,7 @@ const useStyles = makeStyles(
 
 export type ForwardButtonProps = UseStyles<typeof useStyles> & ButtonProps & { down?: boolean }
 
-const ForwardButton = React.forwardRef((props: ForwardButtonProps, ref) => {
+const ForwardButton = React.forwardRef((props: ForwardButtonProps) => {
   const { text, icon, ...classes } = useStyles(props)
   const { children, down, ...fabProps } = props
 
@@ -51,7 +50,7 @@ const ForwardButton = React.forwardRef((props: ForwardButtonProps, ref) => {
         src={iconChevronRight}
         alt='chevron right'
         size='small'
-        classes={{ root: icon }}
+        className={classes.root}
       />
     </Button>
   )
