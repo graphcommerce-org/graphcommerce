@@ -56,10 +56,10 @@ function ShippingPage() {
                 loading={buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)}
                 onClick={submit}
                 endIcon={
-                  <SvgImage
+                  <SvgImageSimple
                     src={iconChevronRight}
                     alt='chevron right'
-                    shade='inverted'
+                    inverted
                     size='small'
                     loading='eager'
                   />
