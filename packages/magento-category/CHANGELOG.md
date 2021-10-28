@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-category@3.2.2...@graphcommerce/magento-category@3.3.0) (2021-10-28)
+
+
+### Bug Fixes
+
+* category h2 styling ([5b26f2b](https://github.com/ho-nl/m2-pwa/commit/5b26f2b92f55356c58cc207fa028d03a38a8b16a))
+* remove legacy, title from category description ([574208c](https://github.com/ho-nl/m2-pwa/commit/574208ca71e6ed387f1f355d5c4a22f5c13783ea))
+* subtitles ([9ef1d8b](https://github.com/ho-nl/m2-pwa/commit/9ef1d8b9079c50340015e482fe6f1bf577610269))
+
+
+### Features
+
+* set correct font sizes ([9317448](https://github.com/ho-nl/m2-pwa/commit/9317448c94a9fb4408dfbcaa320adccc363964d0))
+
+
+
+
+
 # [3.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-category@3.1.7...@graphcommerce/magento-category@3.2.0) (2021-10-27)
 
 

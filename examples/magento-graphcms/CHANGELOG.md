@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.128.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.127.2...@graphcommerce/magento-graphcms@2.128.0) (2021-10-28)
+
+
+### Bug Fixes
+
+* back to using SvgImage for CMS icons ([5c187f6](https://github.com/ho-nl/m2-pwa/commit/5c187f63a1b9cc06e4aa168fae245da3eced7184))
+* base icon size on responsiveVal ([3bbd2a7](https://github.com/ho-nl/m2-pwa/commit/3bbd2a7be4853b284f90603056ae8990e5d62040))
+* blog title size ([9c44d03](https://github.com/ho-nl/m2-pwa/commit/9c44d0349af28192f3f9d7f360b08b0370d3e437))
+* build ([25582a4](https://github.com/ho-nl/m2-pwa/commit/25582a496039c704e75bb969d4fa06c13ee6267d))
+* build, remove unused imports ([af6d72c](https://github.com/ho-nl/m2-pwa/commit/af6d72c6e70f670effb4d9e0c1fd883bf771f99d))
+* colorSecondary for MuiCheckbox ([13a5c5e](https://github.com/ho-nl/m2-pwa/commit/13a5c5e8b8c30eabaafc909b325692d93d65c97b))
+* Correct image sizes fixes layout shift ([30e04ba](https://github.com/ho-nl/m2-pwa/commit/30e04baec1674403be934dbae81e278af72f2382))
+* footer mobile vertical spacing ([a75028e](https://github.com/ho-nl/m2-pwa/commit/a75028e982497fdd74c6d1d51a8ca24e2e1a849c))
+* invert icon on checkout button ([169168d](https://github.com/ho-nl/m2-pwa/commit/169168d1a597ac02a97b1cb160c3c5c0fb0db12a))
+* keep original review chip for now ([9664cd9](https://github.com/ho-nl/m2-pwa/commit/9664cd90801c6776e1c694eec8f393118810a792))
+* max size Swipable ([d980711](https://github.com/ho-nl/m2-pwa/commit/d9807118b7a370f4f8662e55155fda55f420fc9a))
+* remove double icons ([1654e34](https://github.com/ho-nl/m2-pwa/commit/1654e3441911f3c7c1600357f8f8e3032f5ee729))
+* remove unused /view/ about route ([2ea8eb9](https://github.com/ho-nl/m2-pwa/commit/2ea8eb909d25840fde19470f3c5f9b0045178f2f))
+* remove wishlist from mobile menu ([ac003bf](https://github.com/ho-nl/m2-pwa/commit/ac003bf6d4630c88d5684771c2991ec70f4c7a04))
+* revert fontsizes ([0606a44](https://github.com/ho-nl/m2-pwa/commit/0606a44ecda9f1a743f9954e7bd53d20ddfe5802))
+* small design changes ([d9936e9](https://github.com/ho-nl/m2-pwa/commit/d9936e90baab3694066d73216c9ad2941fdbaaa8))
+* smaller logo ([a50196a](https://github.com/ho-nl/m2-pwa/commit/a50196a67941d92b860865740f7cee2ac10ccee9))
+* softer gray ([536fc52](https://github.com/ho-nl/m2-pwa/commit/536fc5257ecbca9db926d59164e1fa1c94627bed))
+* subtitles ([9ef1d8b](https://github.com/ho-nl/m2-pwa/commit/9ef1d8b9079c50340015e482fe6f1bf577610269))
+* SvgImage to SvgImageSimple ([e556c72](https://github.com/ho-nl/m2-pwa/commit/e556c720b299efed185c1d7c3a9b718190d90052))
+* SvgImage to SvgImageSimple ([793fac7](https://github.com/ho-nl/m2-pwa/commit/793fac769f045d283817fe47fbed77d38d282f3c))
+* typo ([b235112](https://github.com/ho-nl/m2-pwa/commit/b235112871815f3e44376eb2186dcd4cd6aef26b))
+* update SvgImage to SvgImageSimple ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
+
+
+### Features
+
+* add routing for /about pages ([6127333](https://github.com/ho-nl/m2-pwa/commit/6127333ed628a561af8b930f4ef5aa299587d0d1))
+* adjust font sizes, bring back h1 as usable style ([6ea3886](https://github.com/ho-nl/m2-pwa/commit/6ea3886f188d8a5567f20292b8ddc6f2877e1ccf))
+* Bring back descriptions ([75f372b](https://github.com/ho-nl/m2-pwa/commit/75f372b9f7c959ac60d436d6c9f469da46820693))
+* button sizes ([8a5126e](https://github.com/ho-nl/m2-pwa/commit/8a5126e05244cab49b4386948e96e260eaa39cf2))
+* cleanup grid, add visual star chip ([0571569](https://github.com/ho-nl/m2-pwa/commit/057156937f603bc399f5f8f8ac2837ff5cfaef28))
+* dynamic icons, update SvgImage uses to SvgImageSimple ([3d3cc0e](https://github.com/ho-nl/m2-pwa/commit/3d3cc0e0336fcde1cce6ba19705f82c1edf9bfc6))
+* enable use of both small and medium chips in design ([4536f96](https://github.com/ho-nl/m2-pwa/commit/4536f96b031734a71faf7c10f94aa5d5da90b9a8))
+* full width category pages ([5f5c264](https://github.com/ho-nl/m2-pwa/commit/5f5c26487e7264fdbbf38ca51c7c453c7f5b6a17))
+* responsive social icons ([aea4c9f](https://github.com/ho-nl/m2-pwa/commit/aea4c9fa245b3dd1357667d015af7f3d86fa9b6a))
+* SALE color is primary ([91ca1d8](https://github.com/ho-nl/m2-pwa/commit/91ca1d8a1d8c4c573747a19175f46953e9bcf7de))
+* set correct font sizes ([9317448](https://github.com/ho-nl/m2-pwa/commit/9317448c94a9fb4408dfbcaa320adccc363964d0))
+* typography, add heading1 styling for cms h2's ([36437f8](https://github.com/ho-nl/m2-pwa/commit/36437f860bd2cdbdbece720ae10873da9fdb02d6))
+
+
+
+
+
 # [2.127.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.126.0...@graphcommerce/magento-graphcms@2.127.0) (2021-10-27)
 
 

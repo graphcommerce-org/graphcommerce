@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product-configurable@3.2.2...@graphcommerce/magento-product-configurable@3.2.3) (2021-10-28)
+
+
+### Bug Fixes
+
+* small design changes ([d9936e9](https://github.com/ho-nl/m2-pwa/commit/d9936e90baab3694066d73216c9ad2941fdbaaa8))
+
+
+
+
+
 # [3.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product-configurable@3.1.8...@graphcommerce/magento-product-configurable@3.2.0) (2021-10-27)
 
 

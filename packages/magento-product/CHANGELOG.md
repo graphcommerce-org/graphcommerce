@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.3.2...@graphcommerce/magento-product@3.4.0) (2021-10-28)
+
+
+### Bug Fixes
+
+* bug causing filter chips missing bottom border on drag ([04f5695](https://github.com/ho-nl/m2-pwa/commit/04f56959d8cdc078c7af70fecadd9cb74ee55ebc))
+* manual styling for productpage description since unique ([7989214](https://github.com/ho-nl/m2-pwa/commit/79892147f547de67537737ca19fda002c16497a6))
+* only show active borders for color filters ([fc136ae](https://github.com/ho-nl/m2-pwa/commit/fc136aef13deae758ed2d70cf6508a2e925304d0))
+* only show dash when relevant ([77ee56f](https://github.com/ho-nl/m2-pwa/commit/77ee56f44cc39447d2e778530da11c5408e6e5b8))
+* update SvgImage to SvgImageSimple ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
+* use font from theme ([7c11eb0](https://github.com/ho-nl/m2-pwa/commit/7c11eb000aecbe3a0a12fd579011c51c9da4f4ed))
+
+
+### Features
+
+* cleaner delivery banner ([a275773](https://github.com/ho-nl/m2-pwa/commit/a275773fce305324cd20df30125d1f86ebf796f6))
+* color swatches ([886145f](https://github.com/ho-nl/m2-pwa/commit/886145fdaa14fc92e364d7e9d3a7ed019d594c86))
+* dynamic icons, update SvgImage uses to SvgImageSimple ([3d3cc0e](https://github.com/ho-nl/m2-pwa/commit/3d3cc0e0336fcde1cce6ba19705f82c1edf9bfc6))
+* enable use of both small and medium chips in design ([4536f96](https://github.com/ho-nl/m2-pwa/commit/4536f96b031734a71faf7c10f94aa5d5da90b9a8))
+* full width category pages ([5f5c264](https://github.com/ho-nl/m2-pwa/commit/5f5c26487e7264fdbbf38ca51c7c453c7f5b6a17))
+* Larger category page size for more realistic shop experience ([47f0cd5](https://github.com/ho-nl/m2-pwa/commit/47f0cd5424bec9a1b15e450bb6f7a47caaed41fc))
+
+
+
+
+
 # [3.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.2.6...@graphcommerce/magento-product@3.3.0) (2021-10-27)
 
 

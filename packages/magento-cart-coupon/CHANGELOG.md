@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.106.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-coupon@2.106.2...@graphcommerce/magento-cart-coupon@2.106.3) (2021-10-28)
+
+
+### Bug Fixes
+
+* bigger apply coupon button ([700d8ee](https://github.com/ho-nl/m2-pwa/commit/700d8ee2daedbcdffa63e8e14c9d837feeb29cbc))
+* update SvgImage to SvgImageSimple ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
+
+
+
+
+
 # [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-coupon@2.105.35...@graphcommerce/magento-cart-coupon@2.106.0) (2021-10-27)
 
 

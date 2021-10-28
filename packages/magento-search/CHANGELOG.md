@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.2.2...@graphcommerce/magento-search@3.3.0) (2021-10-28)
+
+
+### Bug Fixes
+
+* update SvgImage to SvgImageSimple ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
+
+
+### Features
+
+* dynamic icons, update SvgImage uses to SvgImageSimple ([3d3cc0e](https://github.com/ho-nl/m2-pwa/commit/3d3cc0e0336fcde1cce6ba19705f82c1edf9bfc6))
+* mobile menu styling ([3cc3085](https://github.com/ho-nl/m2-pwa/commit/3cc308585d4ded68d2ac8ebf97f96288424ee914))
+
+
+
+
+
 # [3.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.1.12...@graphcommerce/magento-search@3.2.0) (2021-10-27)
 
 

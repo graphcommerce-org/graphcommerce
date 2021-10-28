@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.108.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.108.2...@graphcommerce/magento-cart-payment-method@2.108.3) (2021-10-28)
+
+
+### Bug Fixes
+
+* update SvgImage to SvgImageSimple ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
+
+
+
+
+
 # [2.108.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.107.6...@graphcommerce/magento-cart-payment-method@2.108.0) (2021-10-27)
 
 

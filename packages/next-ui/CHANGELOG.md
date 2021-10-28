@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.11.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.10.2...@graphcommerce/next-ui@3.11.0) (2021-10-28)
+
+
+### Bug Fixes
+
+* add missing row container for consistent margins ([10869b8](https://github.com/ho-nl/m2-pwa/commit/10869b8a7ab9579306b268b22a0af47c1a2e2e25))
+* alt person icon ([d80d180](https://github.com/ho-nl/m2-pwa/commit/d80d18043a86551feaf5ce49a30752c93ee27924))
+* base icon size on responsiveVal ([3bbd2a7](https://github.com/ho-nl/m2-pwa/commit/3bbd2a7be4853b284f90603056ae8990e5d62040))
+* build ([25582a4](https://github.com/ho-nl/m2-pwa/commit/25582a496039c704e75bb969d4fa06c13ee6267d))
+* build missing import ([5850f25](https://github.com/ho-nl/m2-pwa/commit/5850f2561a2d9d72d4ebe0da5c964b6571a72b03))
+* build, remove unused imports ([af6d72c](https://github.com/ho-nl/m2-pwa/commit/af6d72c6e70f670effb4d9e0c1fd883bf771f99d))
+* consistent margin product page ([1c65ff6](https://github.com/ho-nl/m2-pwa/commit/1c65ff6b19ebb3fed70abf8326f4e593d77c70da))
+* force object-fit image ([df049f7](https://github.com/ho-nl/m2-pwa/commit/df049f727a26aa049c6c9d3aa338223ce442bffd))
+* icon size ([6063855](https://github.com/ho-nl/m2-pwa/commit/6063855d9c7360f0ea69ffdb22292de6c93e5f27))
+* loading state icon muted ([f7c3a6b](https://github.com/ho-nl/m2-pwa/commit/f7c3a6be199f2d05d1ad918043bf199544824ff6))
+* make pill buttons always completely rounded ([9d8e211](https://github.com/ho-nl/m2-pwa/commit/9d8e211303ac6cd371a834bf73fb10a6345ca13a))
+* pagination size ([7d16290](https://github.com/ho-nl/m2-pwa/commit/7d16290d8180a2eb06755859cb9dcdbd44e7d59b))
+* remove double icons ([1654e34](https://github.com/ho-nl/m2-pwa/commit/1654e3441911f3c7c1600357f8f8e3032f5ee729))
+* remove laggy animation ([3ca0922](https://github.com/ho-nl/m2-pwa/commit/3ca09221ecd6e533063c42ec9fbe11f9484099bc))
+* remove unused breakpoint ([19dc4c4](https://github.com/ho-nl/m2-pwa/commit/19dc4c4bde18bec74c8f3e13e3769b929f2e9d57))
+* small sized chevron for service page links ([1748418](https://github.com/ho-nl/m2-pwa/commit/17484186ae20e8002f38f1dcb820f942023f5bbc))
+* smaller icons for search and menu ([f8e8949](https://github.com/ho-nl/m2-pwa/commit/f8e89494f358f9d2868c75901abaca2bffe38bdc))
+* strokeWidth for xxl icons ([da131e2](https://github.com/ho-nl/m2-pwa/commit/da131e20beb5bdf94c99de6237d7563b187f20da))
+* SvgImage to SvgImageSimple ([0004269](https://github.com/ho-nl/m2-pwa/commit/00042694f89e4a5fc17a4b74a16185cada14b80a))
+* SvgImage to SvgImageSimple ([9722167](https://github.com/ho-nl/m2-pwa/commit/9722167cd3c6032b4251ef4a4921d727eb92167e))
+* SvgImage to SvgImageSimple ([793fac7](https://github.com/ho-nl/m2-pwa/commit/793fac769f045d283817fe47fbed77d38d282f3c))
+* tuning sizeLarge, adjust muted and inverted styles ([49d69ee](https://github.com/ho-nl/m2-pwa/commit/49d69ee8d9a04a87fbd9979594c5a3b445f7dd58))
+* update SvgImage to SvgImageSimple ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
+* use font from theme for menu ([74522ae](https://github.com/ho-nl/m2-pwa/commit/74522ae9bababbf204d925ae96997dc45f611bfc))
+* usp fontsize ([1164907](https://github.com/ho-nl/m2-pwa/commit/1164907be4fa7ed3a517f66b2af67a54df55a38f))
+
+
+### Features
+
+* add default iconset ([eb78d4c](https://github.com/ho-nl/m2-pwa/commit/eb78d4c081937bc56ce1c593a6632a4ff32e611e))
+* dynamic icons, update SvgImage uses to SvgImageSimple ([3d3cc0e](https://github.com/ho-nl/m2-pwa/commit/3d3cc0e0336fcde1cce6ba19705f82c1edf9bfc6))
+* icon references ([b477029](https://github.com/ho-nl/m2-pwa/commit/b47702955cf47b19fb0861c0d40751ac43e8eeab))
+* mobile menu styling ([3cc3085](https://github.com/ho-nl/m2-pwa/commit/3cc308585d4ded68d2ac8ebf97f96288424ee914))
+* more spacious row margins for mobile ([0b3e973](https://github.com/ho-nl/m2-pwa/commit/0b3e9734aa01fcc0801fa12281edd224d9600464))
+* rebuild to support svg imports ([59fbda3](https://github.com/ho-nl/m2-pwa/commit/59fbda300ce88c51a5d1c6a7ea457cb3b323b24d))
+* replace icons with icon pack ([60951d5](https://github.com/ho-nl/m2-pwa/commit/60951d57684637da8c4aed94f28e69f18129bbd0))
+* set correct font sizes ([9317448](https://github.com/ho-nl/m2-pwa/commit/9317448c94a9fb4408dfbcaa320adccc363964d0))
+* UspList styling and svg support ([70f472b](https://github.com/ho-nl/m2-pwa/commit/70f472bb143aae86879e69dc911bbbdf229b39b9))
+
+
+
+
+
 # [3.10.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.9.0...@graphcommerce/next-ui@3.10.0) (2021-10-27)
 
 

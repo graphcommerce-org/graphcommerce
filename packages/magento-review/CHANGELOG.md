@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-review@2.106.2...@graphcommerce/magento-review@2.107.0) (2021-10-28)
+
+
+### Bug Fixes
+
+* keep original review chip ([3f2f834](https://github.com/ho-nl/m2-pwa/commit/3f2f834478b7b8252f6164442815e5c081de6411))
+* keep original review chip for now ([9664cd9](https://github.com/ho-nl/m2-pwa/commit/9664cd90801c6776e1c694eec8f393118810a792))
+* review button size ([9074102](https://github.com/ho-nl/m2-pwa/commit/9074102c1866b14d0e7f1f0f3dfabe6e6c0b324d))
+* size of default ReviewChip ([e1d4969](https://github.com/ho-nl/m2-pwa/commit/e1d49699776b15fa056677f042f6c9939b6acada))
+
+
+### Features
+
+* cleanup grid, add visual star chip ([0571569](https://github.com/ho-nl/m2-pwa/commit/057156937f603bc399f5f8f8ac2837ff5cfaef28))
+* dynamic icons, update SvgImage uses to SvgImageSimple ([3d3cc0e](https://github.com/ho-nl/m2-pwa/commit/3d3cc0e0336fcde1cce6ba19705f82c1edf9bfc6))
+* enable use of both small and medium chips in design ([4536f96](https://github.com/ho-nl/m2-pwa/commit/4536f96b031734a71faf7c10f94aa5d5da90b9a8))
+
+
+
+
+
 # [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-review@2.105.37...@graphcommerce/magento-review@2.106.0) (2021-10-27)
 
 
