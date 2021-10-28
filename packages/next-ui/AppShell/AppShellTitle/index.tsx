@@ -16,7 +16,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     title: {},
     margin: {
-      marginTop: theme.spacings.md,
+      marginTop: theme.spacings.lg,
       marginBottom: theme.spacings.lg,
     },
   }),
