@@ -1,5 +1,6 @@
 import { ButtonProps, makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
+import { SvgImageSimple } from '..'
 import Button from '../Button'
 import { UseStyles } from '../Styles'
 import SvgImage from '../SvgImage'
