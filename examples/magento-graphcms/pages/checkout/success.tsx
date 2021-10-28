@@ -52,7 +52,7 @@ function OrderSuccessPage() {
           {!hasCartId && (
             <FullPageMessage
               title={'You have not placed an order'}
-              icon={<SvgImageSimple src={iconSadFace} layout='fill' />}
+              icon={<SvgImageSimple src={iconSadFace} size='xxl' />}
               button={
                 <Link href='/' passHref>
                   <Button variant='contained' color='primary' size='large'>
