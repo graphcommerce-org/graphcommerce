@@ -1,6 +1,7 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
+import { SvgImageSimple } from '..'
 import responsiveVal from '../Styles/responsiveVal'
 import SvgImage, { SvgImageProps } from '../SvgImage'
 
@@ -87,12 +88,7 @@ export default function IconHeader(props: IconHeaderProps) {
   return (
     <div className={clsx(classes.container, !noMargin && classes.margin)}>
       <div className={clsx(classes.innerContainer, !stayInline && classes.breakColumnsDesktop)}>
-        <SvgImage
-          {...svgImageProps}
-          size={iconSize ?? iconSizes[size]}
-          mobileSize={iconSizeMobile ?? iconMobileSizes[size]}
-          loading='eager'
-        />
+        <SvgImageSimple {...svgImageProps} loading='eager' />
         <Typography
           variant={variants[size]}
           component='h2'
