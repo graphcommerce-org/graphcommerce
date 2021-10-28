@@ -1,4 +1,5 @@
 import { useQuery } from '@apollo/client'
+import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { CartFab } from '@graphcommerce/magento-cart'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { SearchButton } from '@graphcommerce/magento-search'
@@ -18,6 +19,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Fab, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
+import { useViewportScroll } from 'framer-motion'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'

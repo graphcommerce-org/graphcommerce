@@ -33,9 +33,7 @@ function CartFabContent(props: CartFabContentProps) {
           aria-label='Cart'
           color='inherit'
           size='large'
-          style={{
-            boxShadow: 'none',
-          }}
+          style={{ boxShadow: 'none' }}
           {...fabProps}
         >
           {total_quantity > 0 ? (

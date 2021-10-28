@@ -20,7 +20,7 @@
     "@graphcommerce/magento-product-configurable": "^3.2.1",
     "@graphcommerce/prettier-config-pwa": "^3.0.3",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
-    "@playwright/test": "^1.15.2",
+    "@playwright/test": "^1.16.2",
     "@types/braintree-web": "^3.75.7"
   },
   "dependencies": {
@@ -38,7 +38,7 @@
     "braintree-web": "^3.82.0",
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.17",
-    "next": "^12.0.0",
+    "next": "^12.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "type-fest": "^2.5.1"

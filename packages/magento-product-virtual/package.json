@@ -17,14 +17,14 @@
     "@graphcommerce/eslint-config-pwa": "^3.1.1",
     "@graphcommerce/prettier-config-pwa": "^3.0.3",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
-    "@playwright/test": "^1.15.2"
+    "@playwright/test": "^1.16.2"
   },
   "dependencies": {
     "@graphcommerce/graphql": "^2.105.0",
     "@graphcommerce/magento-cart": "^3.3.1",
     "@graphcommerce/magento-product": "^3.3.1",
     "@graphql-typed-document-node/core": "^3.1.0",
-    "next": "^12.0.0",
+    "next": "^12.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }
