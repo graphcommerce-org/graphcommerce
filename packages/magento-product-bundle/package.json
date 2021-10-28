@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-product-bundle",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -14,19 +14,19 @@
   },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.2",
-    "@graphcommerce/eslint-config-pwa": "^3.1.1",
+    "@graphcommerce/eslint-config-pwa": "^3.1.2",
     "@graphcommerce/prettier-config-pwa": "^3.0.3",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
     "@playwright/test": "^1.16.2",
     "react": "^17.0.1"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "^2.105.0",
-    "@graphcommerce/magento-cart": "^3.3.1",
-    "@graphcommerce/magento-cart-items": "^2.106.1",
-    "@graphcommerce/magento-product": "^3.3.1",
-    "@graphcommerce/magento-product-simple": "^3.1.1",
-    "@graphcommerce/magento-product-virtual": "^3.1.1",
+    "@graphcommerce/graphql": "^2.105.1",
+    "@graphcommerce/magento-cart": "^3.3.2",
+    "@graphcommerce/magento-cart-items": "^2.106.2",
+    "@graphcommerce/magento-product": "^3.3.2",
+    "@graphcommerce/magento-product-simple": "^3.1.2",
+    "@graphcommerce/magento-product-virtual": "^3.1.2",
     "@graphql-typed-document-node/core": "^3.1.0",
     "next": "^12.0.1",
     "react": "^17.0.2",

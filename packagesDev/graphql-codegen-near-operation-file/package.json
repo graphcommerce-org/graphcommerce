@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/graphql-codegen-near-operation-file",
-  "version": "2.103.9",
+  "version": "2.103.10",
   "sideEffects": false,
   "main": "dist/index.js",
   "engines": {
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.2",
-    "@graphcommerce/eslint-config-pwa": "^3.1.1",
+    "@graphcommerce/eslint-config-pwa": "^3.1.2",
     "@graphcommerce/prettier-config-pwa": "^3.0.3",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
     "@playwright/test": "^1.16.2"
