@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-customer",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -24,8 +24,8 @@
     "@graphcommerce/graphql": "^2.105.1",
     "@graphcommerce/image": "^2.105.1",
     "@graphcommerce/magento-graphql": "^2.104.1",
-    "@graphcommerce/magento-store": "^3.1.3",
-    "@graphcommerce/next-ui": "^3.11.0",
+    "@graphcommerce/magento-store": "^3.1.4",
+    "@graphcommerce/next-ui": "^3.11.1",
     "@graphcommerce/react-hook-form": "^2.102.13",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.12.3",

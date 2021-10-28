@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.104.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-account@2.104.3...@graphcommerce/magento-customer-account@2.104.4) (2021-10-28)
+
+
+### Bug Fixes
+
+* External SVG's can't have alt tags ([1b1414a](https://github.com/ho-nl/m2-pwa/commit/1b1414a782d55d3acf7b0e6bcaa50f2ad5f18f39))
+
+
+
+
+
 ## [2.104.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-account@2.104.2...@graphcommerce/magento-customer-account@2.104.3) (2021-10-28)
 
 

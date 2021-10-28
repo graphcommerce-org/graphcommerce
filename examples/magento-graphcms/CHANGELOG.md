@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.128.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.128.0...@graphcommerce/magento-graphcms@2.128.1) (2021-10-28)
+
+
+### Bug Fixes
+
+* External SVG's can't have alt tags ([1b1414a](https://github.com/ho-nl/m2-pwa/commit/1b1414a782d55d3acf7b0e6bcaa50f2ad5f18f39))
+* sadFace size ([b75dd19](https://github.com/ho-nl/m2-pwa/commit/b75dd19dd49ff95d5f99305637b6687171ebb7d5))
+
+
+
+
+
 # [2.128.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.127.2...@graphcommerce/magento-graphcms@2.128.0) (2021-10-28)
 
 
