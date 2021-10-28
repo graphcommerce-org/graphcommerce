@@ -9,7 +9,7 @@ import {
   SectionContainer,
   responsiveVal,
   SvgImage,
-  iconInvoiceRed,
+  iconInvoice,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
@@ -239,7 +239,7 @@ export default function OrderDetails(props: OrderDetailsProps) {
                   <div className={classes.iconContainer}>
                     <div className={classes.invoice}>
                       <SvgImageSimple
-                        src={iconInvoiceRed}
+                        src={iconInvoice}
                         size='small'
                         alt='order tracker'
                         loading='eager'

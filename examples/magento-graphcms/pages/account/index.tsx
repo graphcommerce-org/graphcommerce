@@ -22,7 +22,7 @@ import {
   iconId,
   iconLock,
   iconNewspaper,
-  iconPersonAlt,
+  iconPerson,
   iconShutdown,
   iconStar,
   TimeAgo,
@@ -68,12 +68,12 @@ function AccountIndexPage() {
       <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
 
       <PageShellHeader>
-        <Title component='span' size='small' icon={iconPersonAlt}>
+        <Title component='span' size='small' icon={iconPerson}>
           Account
         </Title>
       </PageShellHeader>
 
-      <AppShellTitle icon={iconPersonAlt}>Account</AppShellTitle>
+      <AppShellTitle icon={iconPerson}>Account</AppShellTitle>
 
       <Container maxWidth='md'>
         <NoSsr>

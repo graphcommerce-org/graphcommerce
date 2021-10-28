@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { iconPersonAlt, StyledBadge, SvgImageSimple, UseStyles } from '@graphcommerce/next-ui'
+import { iconPerson, StyledBadge, SvgImageSimple, UseStyles } from '@graphcommerce/next-ui'
 import { Fab, FabProps as FabPropsType, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
@@ -32,7 +32,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
           variant='dot'
           classes={{ colorError: classes.colorError }}
         >
-          {icon ?? <SvgImageSimple src={iconPersonAlt} alt='Account' size='large' />}
+          {icon ?? <SvgImageSimple src={iconPerson} alt='Account' size='large' />}
         </StyledBadge>
       </Fab>
     </PageLink>
