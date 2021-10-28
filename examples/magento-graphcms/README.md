@@ -42,7 +42,7 @@ Replace
   "version": "2.124.0",
   "scripts": {
     // ...other scripts
-    "codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 node -r dotenv/config node_modules/.bin/graphql-codegen -c codegen.mono.yml",
+    "codegen-base": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 node -r dotenv/config node_modules/.bin/graphql-codegen -c codegen.mono.yml",
     "prepack": "concurrently yarn:prepack:*",
     "prepack:1": "yarn workspace @graphcommerce/next-config prepack",
     "prepack:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack",
@@ -60,7 +60,7 @@ With:
   "version": "0.0.0",
   "scripts": {
     // ...other scripts
-    "codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 node -r dotenv/config node_modules/.bin/graphql-codegen",
+    "codegen-base": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 node -r dotenv/config node_modules/.bin/graphql-codegen",
     "postinstall": "patch-typed-document-node"
   }
 }
@@ -86,7 +86,6 @@ git init && git add . && git commit -m "initial commit"
 
 ## Setting up the project
 
-0. have [yarn 3](https://yarnpkg.com/getting-started/install) installed
 1. `yarn install`
 2. `cp .env.example .env`: You can modify the GraphQL endpoints here.
 3. `yarn codegen`: Converts all the GraphQl files to TypeScript files. This
