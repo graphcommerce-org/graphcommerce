@@ -22,7 +22,7 @@ const useStyles = makeStyles(
       },
       marginTop: theme.spacings.md,
       marginBottom: theme.spacings.sm,
-      ...theme.typography.body1,
+      ...theme.typography.subtitle1,
     },
   }),
   { name: 'CategoryDescription' },

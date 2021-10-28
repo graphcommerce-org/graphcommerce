@@ -10,6 +10,7 @@ type FeatureBoxedProps = RowProductFragment & ProductFeatureMediaBoxedFragment
 
 const RichTextFeatureBoxed = withStyles((theme: Theme) => ({
   h2: { ...theme.typography.h1 },
+  paragraph: { ...theme.typography.subtitle1 },
 }))(RichText)
 
 export default function FeatureBoxed(props: FeatureBoxedProps) {
