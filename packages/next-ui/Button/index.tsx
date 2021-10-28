@@ -22,6 +22,7 @@ type ButtonClassKey =
   | 'textBold'
   | 'withStartIcon'
   | 'startIconText'
+  | 'loading'
 
 type ClassKeys = ButtonClassKey | MuiButtonClassKey
 type Text = 'normal' | 'bold'
@@ -96,6 +97,11 @@ const useStyles = makeStyles<
         display: 'unset',
       },
     },
+    loading: {
+      '& svg': {
+        stroke: theme.palette.primary.mutedText,
+      },
+    },
   }),
   { name: 'MuiPillButton' },
 )
@@ -156,6 +162,7 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
           [pillClasses.pillNoElevation]: buttonProps.disableElevation,
           [pillClasses.pillLink]: variant === 'pill-link',
           [pillClasses.textBold]: text === 'bold',
+          [pillClasses.loading]: loading,
           [pillClasses.withStartIcon]: withIcon,
         },
         className,
