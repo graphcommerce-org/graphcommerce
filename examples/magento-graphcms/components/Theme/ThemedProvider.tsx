@@ -340,6 +340,11 @@ const createOverrides = (theme: Theme): Overrides => {
         paddingRight: responsiveVal(4, 8),
       },
     },
+    MuiInputBase: {
+      input: {
+        fontSize: 16, // https://css-tricks.com/16px-or-larger-text-prevents-ios-form-zoom/
+      },
+    },
     MuiCheckbox: {
       colorPrimary: {
         color: theme.palette.text.disabled,
