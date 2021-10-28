@@ -39,7 +39,7 @@ const useStyles = makeStyles(
     sizeXxl: {
       width: responsiveVal(96, 148),
       height: responsiveVal(96, 148),
-      strokeWidth: 0.8,
+      strokeWidth: 1,
     },
     muted: {
       stroke: theme.palette.primary.mutedText,
