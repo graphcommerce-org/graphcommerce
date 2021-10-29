@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/next-ui",
-  "version": "3.11.1",
+  "version": "3.11.2",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -11,8 +11,8 @@
   "dependencies": {
     "@apollo/client": "^3.4.16",
     "@graphcommerce/framer-next-pages": "^2.107.1",
-    "@graphcommerce/framer-scroller": "^0.4.1",
-    "@graphcommerce/framer-sheet": "^2.105.13",
+    "@graphcommerce/framer-scroller": "^0.4.2",
+    "@graphcommerce/framer-sheet": "^2.105.14",
     "@graphcommerce/framer-utils": "^2.103.12",
     "@graphcommerce/graphql": "^2.105.1",
     "@graphcommerce/image": "^2.105.1",

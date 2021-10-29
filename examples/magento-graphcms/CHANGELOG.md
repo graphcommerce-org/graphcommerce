@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.128.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.128.1...@graphcommerce/magento-graphcms@2.128.2) (2021-10-29)
+
+
+### Bug Fixes
+
+* spacing of title on category landing on mobile ([8ed3550](https://github.com/ho-nl/m2-pwa/commit/8ed35502fd231d1d6a8e0a282f8961335d9dead3))
+
+
+
+
+
 ## [2.128.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.128.0...@graphcommerce/magento-graphcms@2.128.1) (2021-10-28)
 
 
