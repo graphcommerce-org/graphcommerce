@@ -2,7 +2,6 @@ import {
   ApolloErrorFullPage,
   ApolloErrorAlertProps,
   Button,
-  SvgImage,
   iconPerson,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'

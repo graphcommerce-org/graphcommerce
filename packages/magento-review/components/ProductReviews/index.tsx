@@ -1,13 +1,6 @@
 import { useQuery } from '@apollo/client'
-import {
-  Button,
-  iconStar,
-  Pagination,
-  responsiveVal,
-  StarRatingField,
-  SvgImage,
-} from '@graphcommerce/next-ui'
-import { Chip, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Button, Pagination, responsiveVal, StarRatingField } from '@graphcommerce/next-ui'
+import { makeStyles, Theme, Typography } from '@material-ui/core'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import ProductReviewChip from '../ProductReviewChip'

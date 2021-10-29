@@ -4,7 +4,6 @@ import {
   FormActions,
   FormDivider,
   MessageSnackbar,
-  SvgImage,
   iconCheckmark,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
