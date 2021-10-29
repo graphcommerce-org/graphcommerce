@@ -8,10 +8,10 @@ const useStyles = makeStyles(
       padding: 0,
     },
     title: {
-      margin: 0,
-      alignItems: 'center',
+      // alignItems: 'center',
       justifyContent: 'center',
       [theme.breakpoints.up('md')]: {
+        margin: 0,
         alignItems: 'start',
         justifyContent: 'end',
       },

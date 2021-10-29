@@ -27,3 +27,4 @@ generated/
 
 # application
 .mesh
+*.tsbuildinfo
