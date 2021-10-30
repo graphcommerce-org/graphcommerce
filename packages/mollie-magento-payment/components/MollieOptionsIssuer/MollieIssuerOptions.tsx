@@ -54,7 +54,7 @@ export default function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
             required={required.issuer}
             {...muiRegister('issuer', { required: required.issuer })}
             InputProps={{
-              endAdornment: <InputCheckmark show={valid.issuer} />,
+              endAdornment: <InputCheckmark show={valid.issuer} select />,
             }}
           >
             <option value='' />
