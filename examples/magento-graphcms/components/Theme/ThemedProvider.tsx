@@ -168,7 +168,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       fontWeightBold: 600,
       body1: {
         // We're boosting the fontSize to be 17px at 1280
-        fontSize: responsiveVal(15, 18, 1920),
+        fontSize: responsiveVal(16, 18, 1920),
         lineHeight: 1.7,
       },
       subtitle2: {
@@ -341,11 +341,6 @@ const createOverrides = (theme: Theme): Overrides => {
       labelSmall: {
         paddingLeft: responsiveVal(4, 8),
         paddingRight: responsiveVal(4, 8),
-      },
-    },
-    MuiInputBase: {
-      input: {
-        fontSize: 16, // https://css-tricks.com/16px-or-larger-text-prevents-ios-form-zoom/
       },
     },
     MuiCheckbox: {
