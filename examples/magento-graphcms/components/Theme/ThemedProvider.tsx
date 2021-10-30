@@ -33,7 +33,7 @@ const lightPalette: PaletteOptions = {
   },
   text: {
     primary: '#000000',
-    secondary: '#00000080',
+    secondary: '#00000050',
     disabled: '#00000030',
   },
 }

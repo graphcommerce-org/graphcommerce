@@ -11,7 +11,7 @@ export const useStyles = makeStyles(
     root: {
       height: responsiveVal(40, 80),
       width: responsiveVal(40, 80),
-      border: `3px solid ${theme.palette.grey[300]}`,
+      border: `3px solid ${divider}`,
       boxSizing: 'border-box',
       borderRadius: '50%',
       objectFit: 'cover',

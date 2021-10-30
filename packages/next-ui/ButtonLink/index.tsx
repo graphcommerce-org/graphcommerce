@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.text.primary,
     textDecoration: 'none',
     padding: `${theme.spacings.xs} 0`,
-    borderBottom: `1px solid ${theme.palette.grey[300]}`,
+    borderBottom: `1px solid ${theme.palette.divider}`,
     borderRadius: 0,
     ...theme.typography.body1,
     '& > *': {
