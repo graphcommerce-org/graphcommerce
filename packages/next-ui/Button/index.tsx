@@ -8,7 +8,7 @@ import clsx from 'clsx'
 import React from 'react'
 
 type BaseButtonProps = Omit<Parameters<typeof MuiButton>['0'], 'variant' | 'classes'> & {
-  variant?: 'text' | 'outlined' | 'contained' | 'pill' | 'pill-link'
+  variant?: 'outlined' | 'contained' | 'pill' | 'pill-link'
 }
 
 type ButtonClassKey =
