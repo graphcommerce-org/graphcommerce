@@ -93,7 +93,7 @@ const useRichTextStyles = makeStyles(
 
         '& tr': {
           '&:nth-child(odd)': {
-            background: palette.background.highlight,
+            background: palette.background.paper,
           },
         },
 

@@ -16,7 +16,7 @@ const RichTextHero = withStyles((theme: Theme) => ({
     },
     '& strong': {
       WebkitTextFillColor: 'transparent',
-      WebkitTextStroke: `1.2px ${theme.palette.background.default}`,
+      WebkitTextStroke: `1.2px #fff`,
     },
   },
 }))(RichText)

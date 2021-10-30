@@ -184,7 +184,7 @@ const useStyles = makeStyles(
       background: theme.palette.background.paper,
       color: theme.palette.text.primary,
       '&:hover': {
-        background: theme.palette.background.highlight,
+        background: theme.palette.background.paper,
       },
     },
     sheetShellActionsFullPage: {

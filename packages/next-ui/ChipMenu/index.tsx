@@ -19,7 +19,7 @@ export const useChipMenuStyles = makeStyles(
         wordWrap: 'break-word',
       },
       '&:hover': {
-        background: `${theme.palette.background.highlight} !important`,
+        background: `${theme.palette.background.paper} !important`,
       },
       '&:focus': {
         background: `${theme.palette.background.default} !important`,

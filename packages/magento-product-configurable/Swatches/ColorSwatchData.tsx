@@ -9,7 +9,7 @@ export const useStyles = makeStyles(
     root: {
       height: responsiveVal(35, 70),
       width: responsiveVal(35, 70),
-      border: `3px solid ${theme.palette.background.highlight}`,
+      border: `3px solid ${theme.palette.background.paper}`,
       boxSizing: 'border-box',
       borderRadius: '50%',
     },

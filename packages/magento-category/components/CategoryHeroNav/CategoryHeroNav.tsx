@@ -10,7 +10,7 @@ const useStyles = makeStyles(
       gridTemplateColumns: '1fr',
       gridTemplateAreas: `"title" "categories" "placeholder"`,
       gridTemplateRows: 'auto 60vw',
-      borderBottom: '1px solid rgba(0,0,0,0.15)',
+      borderBottom: `1px solid ${theme.palette.divider}`,
       marginBottom: theme.spacings.xl,
       paddingRight: 0,
       paddingBottom: theme.page.vertical,

@@ -7,61 +7,68 @@ import { Overrides } from '@material-ui/core/styles/overrides'
 import React from 'react'
 import shadows from './shadows'
 
-const lightPalette: PaletteOptions = {
-  type: 'light',
-  primary: {
-    main: '#FF4A55',
-    contrastText: '#000',
-    dark: '#F33642',
-  },
-  secondary: {
-    main: '#006BFF',
-    light: '#D1E4FF',
-    contrastText: '#FFF',
-  },
-  background: {
-    default: '#FFF',
-    paper: '#fff',
-    highlight: '#F8F8F8',
-  },
-  divider: '#EBEBEB',
-  success: {
-    main: '#01D26A',
-  },
-  text: {
-    primary: '#000',
-    secondary: '#000',
-    disabled: '#bbb',
-  },
-}
-
-// const darkPalette: PaletteOptions = {
-//   type: 'dark',
+// const lightPalette: PaletteOptions = {
+//   type: 'light',
 //   primary: {
-//     main: '#62C7B0',
-//     contrastText: '#fff',
-//     dark: '#62C7B0',
+//     main: '#FF4A55',
+//     contrastText: '#000000',
+//     dark: '#F33642',
 //   },
 //   secondary: {
 //     main: '#006BFF',
 //     light: '#D1E4FF',
-//     contrastText: '#FFF',
+//     contrastText: '#fff',
 //   },
+// grey: {
+//   300: '#ffffff', // @todo MuiButton can't be background.default in darkTheme:
+// },
 //   background: {
-//     default: '#001727',
-//     paper: 'rgb(20 43 56)',
-//     highlight: 'rgb(20 43 56)',
+//     default: '#ffffff',
+//     paper: '#F8F8F8',
+//     image: '#F8F8F8',
 //   },
 //   divider: '#EBEBEB',
 //   success: {
 //     main: '#01D26A',
 //   },
 //   text: {
-//     primary: '#fff',
-//     secondary: '#fff',
-//     disabled: '#999',
+//     primary: '#000000',
+//     secondary: '#00000080',
+//     disabled: '#00000030',
 //   },
 // }
+
+const darkPalette: PaletteOptions = {
+  type: 'dark',
+  primary: {
+    main: '#62C7B0',
+    contrastText: '#ffffff',
+    dark: '#62C7B0',
+  },
+  action: {},
+  secondary: {
+    main: '#006BFF',
+    light: '#142b38',
+    contrastText: '#ffffff',
+  },
+  grey: {
+    300: '#142b38',
+  },
+  background: {
+    default: '#001727',
+    paper: '#142b38',
+    image: '#F8F8F8',
+  },
+  divider: '#ffffff30',
+  success: {
+    main: '#01D26A',
+  },
+  text: {
+    primary: '#ffffff',
+    secondary: '#ffffff80',
+    disabled: '#ffffff30',
+  },
+}
 
 // Create a theme instance.
 const createThemeWithPallete = (palette: PaletteOptions) =>
@@ -187,7 +194,6 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       button: {},
       overline: {
         fontSize: responsiveVal(12, 14),
-        color: `rgba(0, 0, 0, 0.3)`,
         fontWeight: 500,
         letterSpacing: 1,
         lineHeight: 1.2,
@@ -222,6 +228,9 @@ const createOverrides = (theme: Theme): Overrides => {
       '@global': {
         body: {
           overflowY: 'scroll',
+          '& [class*="Sheet-content"]': {
+            background: theme.palette.background.default,
+          },
         },
         '::selection': { background: '#ff4a557d' },
         '::-moz-selection': { background: '#ff4a557d' },
@@ -259,20 +268,20 @@ const createOverrides = (theme: Theme): Overrides => {
         marginLeft: 0,
       },
       contained: {
-        backgroundColor: '#fff',
+        color: theme.palette.text.primary,
         boxShadow: theme.shadows[1],
         '&:hover': { boxShadow: theme.shadows[1] },
         '&:focus': { boxShadow: theme.shadows[1] },
       },
       containedPrimary: {
         fontWeight: 500,
-        color: '#fff',
-        '& .MuiSvgIcon-root': { color: '#fff' },
+        color: theme.palette.text.primary,
+        '& .MuiSvgIcon-root': { color: theme.palette.text.primary },
       },
       containedSecondary: {
         fontWeight: 500,
-        color: '#fff',
-        '& .MuiSvgIcon-root': { color: '#fff' },
+        color: theme.palette.text.primary,
+        '& .MuiSvgIcon-root': { color: theme.palette.text.primary },
       },
       outlined: {
         borderRadius: 0,
@@ -285,16 +294,16 @@ const createOverrides = (theme: Theme): Overrides => {
     },
     MuiFab: {
       root: {
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: theme.palette.background.default,
         '&:hover': { backgroundColor: theme.palette.background.paper },
       },
       primary: {
-        color: '#fff',
-        '& .MuiSvgIcon-root': { color: '#fff' },
+        color: theme.palette.text.primary,
+        '& .MuiSvgIcon-root': { color: theme.palette.text.primary },
       },
       secondary: {
-        color: '#fff',
-        '& .MuiSvgIcon-root': { color: '#fff' },
+        color: theme.palette.text.primary,
+        '& .MuiSvgIcon-root': { color: theme.palette.text.primary },
       },
       extended: {
         fontWeight: 400,
@@ -318,7 +327,6 @@ const createOverrides = (theme: Theme): Overrides => {
     MuiChip: {
       root: {
         boxShadow: 'unset !important',
-        backgroundColor: theme.palette.background.paper,
         borderRadius: '99em',
         height: responsiveVal(32, 40),
         paddingLeft: responsiveVal(4, 8),
@@ -333,6 +341,8 @@ const createOverrides = (theme: Theme): Overrides => {
       },
       outlined: {
         borderColor: theme.palette.divider,
+        backgroundColor: theme.palette.background.default,
+        color: theme.palette.text.secondary,
       },
       label: {
         paddingLeft: responsiveVal(6, 10),
@@ -379,14 +389,14 @@ const createOverrides = (theme: Theme): Overrides => {
   }
 }
 
-const lightTheme = createThemeWithPallete(lightPalette)
-lightTheme.overrides = createOverrides(lightTheme)
+// const lightTheme = createThemeWithPallete(lightPalette)
+// lightTheme.overrides = createOverrides(lightTheme)
 
-// const darkTheme = createThemeWithPallete(darkPalette)
-// darkTheme.overrides = createOverrides(darkTheme)
+const darkTheme = createThemeWithPallete(darkPalette)
+darkTheme.overrides = createOverrides(darkTheme)
 
 const ThemedProvider: React.FC = ({ children }) => (
-  <ThemeProvider theme={lightTheme}>
+  <ThemeProvider theme={darkTheme}>
     <CssBaseline />
     {children}
   </ThemeProvider>

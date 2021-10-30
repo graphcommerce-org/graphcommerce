@@ -34,7 +34,7 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('md')]: {
         gridTemplateColumns: '1fr auto',
       },
-      background: theme.palette.background.highlight,
+      background: theme.palette.background.paper,
       paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
     },
     rootZoomed: {
@@ -156,7 +156,7 @@ const useStyles = makeStyles(
       top: `calc(50% - 28px)`,
     },
     dots: {
-      background: alpha(theme.palette.background.highlight, 0.7),
+      background: alpha(theme.palette.background.paper, 0.7),
     },
   }),
   { name: 'SidebarGallery' },

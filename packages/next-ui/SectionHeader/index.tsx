@@ -56,11 +56,21 @@ export default function SectionHeader(props: SectionHeaderProps) {
         [classes.sectionHeaderSidePadding]: usePadding,
       })}
     >
-      <Typography className={classes.labelLeft} variant={variantLeft} component='div'>
+      <Typography
+        className={classes.labelLeft}
+        variant={variantLeft}
+        color='textSecondary'
+        component='div'
+      >
         {labelLeft}
       </Typography>
       {labelRight && (
-        <Typography className={classes.labelRight} variant={variantRight} component='div'>
+        <Typography
+          className={classes.labelRight}
+          variant={variantRight}
+          color='textSecondary'
+          component='div'
+        >
           {labelRight}
         </Typography>
       )}

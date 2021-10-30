@@ -39,7 +39,11 @@ export default function Feature(props: FeatureProps) {
         )
       }
     >
-      {title && <Typography variant='overline'>{title}</Typography>}
+      {title && (
+        <Typography variant='overline' color='textSecondary'>
+          {title}
+        </Typography>
+      )}
       {productCopy?.raw && <RichTextFeature {...productCopy} />}
     </RowImageText>
   )

@@ -14,7 +14,7 @@ const useStyles = makeStyles(
       background: theme.palette.secondary.light,
     },
     default: {
-      background: theme.palette.background.highlight,
+      background: theme.palette.background.paper,
     },
     contained: {
       padding: theme.spacings.sm,

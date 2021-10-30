@@ -27,7 +27,7 @@ const useStyles = makeStyles(
         boxShadow: 'none',
       },
       '&:hover': {
-        background: theme.palette.background.highlight,
+        background: theme.palette.background.paper,
       },
     },
     totalProducts: {

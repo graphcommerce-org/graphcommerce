@@ -11,7 +11,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       borderRadius: 4,
-      background: '#FFFADD',
+      background: '#FFE10810',
       margin: `${theme.spacings.sm} 0`,
     },
     detailsContainer: {
