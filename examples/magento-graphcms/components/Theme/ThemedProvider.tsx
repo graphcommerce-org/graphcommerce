@@ -7,68 +7,68 @@ import { Overrides } from '@material-ui/core/styles/overrides'
 import React from 'react'
 import shadows from './shadows'
 
-// const lightPalette: PaletteOptions = {
-//   type: 'light',
-//   primary: {
-//     main: '#FF4A55',
-//     contrastText: '#000000',
-//     dark: '#F33642',
-//   },
-//   secondary: {
-//     main: '#006BFF',
-//     light: '#D1E4FF',
-//     contrastText: '#fff',
-//   },
-// grey: {
-//   300: '#ffffff', // @todo MuiButton can't be background.default in darkTheme:
-// },
-//   background: {
-//     default: '#ffffff',
-//     paper: '#F8F8F8',
-//     image: '#F8F8F8',
-//   },
-//   divider: '#EBEBEB',
-//   success: {
-//     main: '#01D26A',
-//   },
-//   text: {
-//     primary: '#000000',
-//     secondary: '#00000080',
-//     disabled: '#00000030',
-//   },
-// }
-
-const darkPalette: PaletteOptions = {
-  type: 'dark',
+const lightPalette: PaletteOptions = {
+  type: 'light',
   primary: {
-    main: '#62C7B0',
-    contrastText: '#ffffff',
-    dark: '#62C7B0',
+    main: '#FF4A55',
+    contrastText: '#000000',
+    dark: '#F33642',
   },
-  action: {},
   secondary: {
     main: '#006BFF',
-    light: '#142b38',
+    light: '#D1E4FF',
     contrastText: '#ffffff',
   },
   grey: {
-    300: '#142b38',
+    300: '#ffffff', // @todo MuiButton can't be background.default in darkTheme:
   },
   background: {
-    default: '#001727',
-    paper: '#142b38',
+    default: '#ffffff',
+    paper: '#F8F8F8',
     image: '#F8F8F8',
   },
-  divider: '#ffffff30',
+  divider: '#00000015',
   success: {
     main: '#01D26A',
   },
   text: {
-    primary: '#ffffff',
-    secondary: '#ffffff80',
-    disabled: '#ffffff30',
+    primary: '#000000',
+    secondary: '#00000080',
+    disabled: '#00000030',
   },
 }
+
+// const darkPalette: PaletteOptions = {
+//   type: 'dark',
+//   primary: {
+//     main: '#62C7B0',
+//     contrastText: '#ffffff',
+//     dark: '#62C7B0',
+//   },
+//   action: {},
+//   secondary: {
+//     main: '#006BFF',
+//     light: '#142b38',
+//     contrastText: '#ffffff',
+//   },
+//   grey: {
+//     300: '#142b38',
+//   },
+//   background: {
+//     default: '#001727',
+//     paper: '#142b38',
+//     image: '#F8F8F8',
+//   },
+//   divider: '#ffffff30',
+//   success: {
+//     main: '#01D26A',
+//   },
+//   text: {
+//     primary: '#ffffff',
+//     secondary: '#ffffff80',
+//     disabled: '#ffffff30',
+//   },
+// }
 
 // Create a theme instance.
 const createThemeWithPallete = (palette: PaletteOptions) =>
@@ -280,8 +280,8 @@ const createOverrides = (theme: Theme): Overrides => {
       },
       containedSecondary: {
         fontWeight: 500,
-        color: theme.palette.text.primary,
-        '& .MuiSvgIcon-root': { color: theme.palette.text.primary },
+        color: theme.palette.secondary.contrastText,
+        '& .MuiSvgIcon-root': { color: theme.palette.secondary.contrastText },
       },
       outlined: {
         borderRadius: 0,
@@ -389,14 +389,14 @@ const createOverrides = (theme: Theme): Overrides => {
   }
 }
 
-// const lightTheme = createThemeWithPallete(lightPalette)
-// lightTheme.overrides = createOverrides(lightTheme)
+const lightTheme = createThemeWithPallete(lightPalette)
+lightTheme.overrides = createOverrides(lightTheme)
 
-const darkTheme = createThemeWithPallete(darkPalette)
-darkTheme.overrides = createOverrides(darkTheme)
+// const darkTheme = createThemeWithPallete(darkPalette)
+// darkTheme.overrides = createOverrides(darkTheme)
 
 const ThemedProvider: React.FC = ({ children }) => (
-  <ThemeProvider theme={darkTheme}>
+  <ThemeProvider theme={lightTheme}>
     <CssBaseline />
     {children}
   </ThemeProvider>
