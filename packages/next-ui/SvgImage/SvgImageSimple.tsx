@@ -45,7 +45,7 @@ const useStyles = makeStyles(
       stroke: theme.palette.text.disabled,
     },
     inverted: {
-      stroke: '#fff',
+      stroke: theme.palette.secondary.contrastText,
     },
   }),
   { name: 'SvgImageSimple' },
