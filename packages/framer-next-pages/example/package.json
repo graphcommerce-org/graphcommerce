@@ -13,7 +13,7 @@
     "@graphcommerce/next-config": "^2.107.1",
     "@graphcommerce/next-ui": "^3.11.3",
     "framer-motion": "^4.1.17",
-    "next": "^12.0.1",
+    "next": "^12.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-focus-lock": "^2.5.2"
