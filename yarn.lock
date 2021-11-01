@@ -3895,15 +3895,6 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/react@^17.0.34":
-  version "17.0.34"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.34.tgz#797b66d359b692e3f19991b6b07e4b0c706c0102"
-  integrity sha512-46FEGrMjc2+8XhHXILr+3+/sTe3OfzSPU9YGKILLrUYbQ1CLQC9Daqo1KzENGXAWwrFwiY0l4ZbF20gRvgpWTg==
-  dependencies:
-    "@types/prop-types" "*"
-    "@types/scheduler" "*"
-    csstype "^3.0.2"
-
 "@types/relay-compiler@8.0.1":
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/@types/relay-compiler/-/relay-compiler-8.0.1.tgz#eb85b503cfa571e60a1ae3eb5a4513fa9fcdb5f6"
@@ -3934,13 +3925,6 @@
   version "0.29.2"
   resolved "https://registry.yarnpkg.com/@types/sharp/-/sharp-0.29.2.tgz#b4e932e982e258d1013236c8b4bcc14f9883c9a3"
   integrity sha512-tIbMvtPa8kMyFMKNhpsPT1HO3CgXLuiCAA8bxHAGAZLyALpYvYc4hUu3pu0+3oExQA5LwvHrWp+OilgXCYVQgg==
-  dependencies:
-    "@types/node" "*"
-
-"@types/sharp@^0.29.3":
-  version "0.29.3"
-  resolved "https://registry.yarnpkg.com/@types/sharp/-/sharp-0.29.3.tgz#54ceb81b68bb99a0e62db2b52f4fb0bea84878ac"
-  integrity sha512-83Xp05eK2hvfNnmKLr2Fz0C2A0jrr2TnSLqKRbkLTYuAu+Erj6mKQLoEMGafE73Om8p3q3ryZxtHFM/7hy4Adg==
   dependencies:
     "@types/node" "*"
 
