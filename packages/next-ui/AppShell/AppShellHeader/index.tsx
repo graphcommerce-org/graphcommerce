@@ -181,10 +181,13 @@ const useStyles = makeStyles(
       },
     },
     backButton: {
-      background: theme.palette.background.paper,
+      background: theme.palette.background.default,
       color: theme.palette.text.primary,
       '&:hover': {
         background: theme.palette.background.paper,
+      },
+      '& svg': {
+        stroke: theme.palette.text.primary,
       },
     },
     sheetShellActionsFullPage: {

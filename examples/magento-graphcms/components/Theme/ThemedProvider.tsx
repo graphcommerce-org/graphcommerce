@@ -7,7 +7,7 @@ import { Overrides } from '@material-ui/core/styles/overrides'
 import React from 'react'
 import shadows from './shadows'
 
-const useTheme: 'light' | 'dark' = 'dark'
+const useTheme: 'light' | 'dark' = 'light'
 
 const lightPalette: PaletteOptions = {
   type: 'light',
@@ -409,7 +409,7 @@ const createOverrides = (theme: Theme): Overrides => {
   }
 }
 
-const currentTheme = createThemeWithPallete(useTheme === 'light' ? lightPalette : darkPalette)
+const currentTheme = createThemeWithPallete(useTheme !== 'light' ? lightPalette : darkPalette)
 currentTheme.overrides = createOverrides(currentTheme)
 
 const ThemedProvider: React.FC = ({ children }) => (

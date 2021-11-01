@@ -63,12 +63,15 @@ const useStyles = makeStyles(
     },
     badge: {
       '& > button': {
-        // background: theme.palette.text.primary,
-        // color: theme.palette.common.white,
-        // transition: 'opacity .15s ease',
+        background: theme.palette.background.paper,
+        '& svg': {
+          stroke: theme.palette.text.primary,
+        },
         '&:hover, &:active, &:visited': {
-          // background: theme.palette.text.primary,
-          // opacity: 0.75,
+          background: theme.palette.background.paper,
+          '& svg': {
+            stroke: theme.palette.text.primary,
+          },
         },
         [theme.breakpoints.down('sm')]: {
           width: 30,
