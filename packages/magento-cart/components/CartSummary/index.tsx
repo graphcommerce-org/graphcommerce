@@ -17,7 +17,7 @@ const useStyles = makeStyles(
     },
     detailsContainer: {
       borderRadius: '4px 4px 0 0',
-      background: '#FFE10820',
+      background: theme.palette.type === 'light' ? '#FFE10820' : theme.palette.background.paper,
       padding: theme.spacings.sm,
       gridColumnGap: theme.spacings.xl,
       gridRowGap: theme.spacings.sm,

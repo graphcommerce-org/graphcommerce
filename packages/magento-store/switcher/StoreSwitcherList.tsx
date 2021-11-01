@@ -17,7 +17,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     list: {},
     listItem: {
-      borderTop: '1px solid #efefef',
+      borderTop: `1px solid ${theme.palette.divider}`,
       cursor: 'pointer',
     },
     listItemIndented: {

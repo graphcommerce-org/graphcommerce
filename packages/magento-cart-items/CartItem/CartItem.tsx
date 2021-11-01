@@ -57,29 +57,23 @@ const useStyles = makeStyles(
       width: rowImageSize,
       height: rowImageSize,
       padding: responsiveVal(5, 10),
-      border: `1px solid rgba(0,0,0,0.15)`,
+      border: `1px solid ${theme.palette.divider}`,
       borderRadius: '50%',
       alignSelf: 'center',
     },
     badge: {
       '& > button': {
-        background: theme.palette.text.primary,
-        color: theme.palette.common.white,
-        transition: 'opacity .15s ease',
+        // background: theme.palette.text.primary,
+        // color: theme.palette.common.white,
+        // transition: 'opacity .15s ease',
         '&:hover, &:active, &:visited': {
-          background: theme.palette.text.primary,
-          opacity: 0.75,
-        },
-        '& .MuiSvgIcon-root': {
-          fontSize: 24,
+          // background: theme.palette.text.primary,
+          // opacity: 0.75,
         },
         [theme.breakpoints.down('sm')]: {
           width: 30,
           height: 30,
           minHeight: 'unset',
-          '& .MuiSvgIcon-root': {
-            fontSize: 20,
-          },
         },
       },
     },
@@ -112,7 +106,7 @@ const useStyles = makeStyles(
     itemPrice: {
       gridArea: 'itemPrice',
       textAlign: 'left',
-      color: theme.palette.text.disabled,
+      color: theme.palette.text.secondary,
       alignSelf: 'center',
       [theme.breakpoints.up('sm')]: {
         alignSelf: 'flex-start',

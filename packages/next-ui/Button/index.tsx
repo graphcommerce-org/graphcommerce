@@ -62,9 +62,11 @@ const useStyles = makeStyles<
         boxShadow: theme.shadows[6],
         borderRadius: 25,
         padding: '6px 16px',
-
         '&:hover': {
           background: theme.palette.secondary.dark,
+        },
+        '& svg': {
+          stroke: theme.palette.secondary.contrastText,
         },
       },
     },

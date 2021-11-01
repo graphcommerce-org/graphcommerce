@@ -52,7 +52,7 @@ const darkPalette: PaletteOptions = {
   },
   background: {
     default: '#001727',
-    paper: lighten('#001727', 0.06),
+    paper: lighten('#001727', 0.08),
     image: '#F8F8F8',
   },
   divider: '#ffffff30',
@@ -265,8 +265,8 @@ const createOverrides = (theme: Theme): Overrides => {
         marginLeft: 0,
       },
       contained: {
-        color: theme.palette.text.primary,
         backgroundColor: theme.palette.background.paper,
+        color: theme.palette.text.primary,
         boxShadow: theme.shadows[1],
         '&:hover': { boxShadow: theme.shadows[1] },
         '&:focus': { boxShadow: theme.shadows[1] },
@@ -274,12 +274,12 @@ const createOverrides = (theme: Theme): Overrides => {
       containedPrimary: {
         fontWeight: 500,
         color: theme.palette.primary.contrastText,
-        // '& svg': { stroke: theme.palette.text.primary },
+        '& svg': { stroke: theme.palette.primary.contrastText },
       },
       containedSecondary: {
         fontWeight: 500,
         color: theme.palette.secondary.contrastText,
-        // '& svg': { stroke: theme.palette.secondary.contrastText },
+        '& svg': { stroke: theme.palette.secondary.contrastText },
       },
       outlined: {
         borderRadius: 0,
@@ -369,6 +369,9 @@ const createOverrides = (theme: Theme): Overrides => {
       },
     },
     MuiCheckbox: {
+      root: {
+        stroke: 'none',
+      },
       colorPrimary: {
         color: theme.palette.text.disabled,
         '&$checked': {
@@ -382,10 +385,12 @@ const createOverrides = (theme: Theme): Overrides => {
         },
       },
     },
-    MuiSwitch: {
+    MuiSvgIcon: {
       root: {
-        padding: 7,
+        stroke: 'none',
       },
+    },
+    MuiSwitch: {
       track: {
         '$colorPrimary + &': {
           backgroundColor: theme.palette.primary,

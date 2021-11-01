@@ -65,7 +65,7 @@ const useFilterEqualStyles = makeStyles(
       textDecoration: 'none',
     },
     resetButton: {
-      background: theme.palette.grey['100'],
+      // background: theme.palette.grey['100'],
       marginRight: theme.spacings.xxs,
     },
     filterAmount: {

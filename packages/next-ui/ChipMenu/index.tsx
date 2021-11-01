@@ -15,10 +15,13 @@ export const useChipMenuStyles = makeStyles(
       color: theme.palette.text.primary,
       '&:hover': {
         background: `${theme.palette.background.default} !important`,
-        borderColor: theme.palette.grey['600'],
+        borderColor: theme.palette.divider,
       },
       '&:focus': {
-        background: `${theme.palette.grey['100']} !important`,
+        background: `${theme.palette.background.paper} !important`,
+      },
+      '& svg': {
+        stroke: theme.palette.text.primary,
       },
     },
     menuPaper: {
