@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.4.2...@graphcommerce/magento-product@3.4.3) (2021-11-01)
+
+
+### Bug Fixes
+
+* category page design fixs ([d3fccc2](https://github.com/ho-nl/m2-pwa/commit/d3fccc2a86106b854e9a1fd89040a248fe20c99a))
+
+
+
+
+
 ## [3.4.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.4.0...@graphcommerce/magento-product@3.4.1) (2021-10-28)
 
 
