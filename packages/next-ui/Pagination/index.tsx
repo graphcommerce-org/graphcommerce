@@ -2,7 +2,6 @@ import { makeStyles, Theme } from '@material-ui/core'
 import { PaginationProps, usePagination } from '@material-ui/lab'
 import React from 'react'
 import { UseStyles } from '../Styles'
-import SvgImage from '../SvgImage'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 

@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import React, { PropsWithChildren, useState } from 'react'
 import SectionHeader from '../SectionHeader'
 import responsiveVal from '../Styles/responsiveVal'
-import SvgImage from '../SvgImage'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconChevronDown, iconChevronUp, iconCloseCircle } from '../icons'
 

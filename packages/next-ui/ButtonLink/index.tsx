@@ -3,7 +3,6 @@ import PageLink from 'next/link'
 import React from 'react'
 import Button, { ButtonProps } from '../Button'
 import { UseStyles } from '../Styles'
-import SvgImage from '../SvgImage'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconChevronRight } from '../icons'
 

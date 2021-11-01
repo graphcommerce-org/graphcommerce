@@ -1,7 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
-import SvgImage from '../SvgImage'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconCheckmark } from '../icons'
 
