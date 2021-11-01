@@ -9,25 +9,9 @@ import { iconChevronDown, iconChevronUp, iconCloseCircle } from '../icons'
 
 export const useChipMenuStyles = makeStyles(
   (theme: Theme) => ({
-    /*
-      !importants: ensure background #xxxxxx on hover, focus etc regardless given props to the component 
-      otherwise you'll get: ".MuiChip-deletable.MuiChip-outlined:hover" which is prone to changes and thereby a fragile selector
-    */
-    chip: {
-      background: theme.palette.background.default,
-      '& .MuiChip-label': {
-        wordWrap: 'break-word',
-      },
-      '&:hover': {
-        background: `${theme.palette.background.paper} !important`,
-      },
-      '&:focus': {
-        background: `${theme.palette.background.default} !important`,
-      },
-    },
+    chip: {},
     chipSelected: {
-      border: `1px solid ${theme.palette.text.primary}`,
-      background: theme.palette.grey['100'],
+      borderColor: theme.palette.text.primary,
       color: theme.palette.text.primary,
       '&:hover': {
         background: `${theme.palette.background.default} !important`,

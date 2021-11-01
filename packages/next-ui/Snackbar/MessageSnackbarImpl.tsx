@@ -6,6 +6,7 @@ import {
   SnackbarProps,
   Theme,
   Portal,
+  lighten,
 } from '@material-ui/core'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
@@ -76,6 +77,9 @@ const useStyles = makeStyles(
           width: '100%',
         },
       },
+    },
+    close: {
+      backgroundColor: lighten(theme.palette.background.paper, 0.1),
     },
     sticky: {
       position: 'sticky',
@@ -176,7 +180,12 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
                   {action}
                 </div>
               )}
-              <Fab aria-label='Close snackbar' size='small' onClick={hideSnackbar}>
+              <Fab
+                className={classes.close}
+                aria-label='Close snackbar'
+                size='small'
+                onClick={hideSnackbar}
+              >
                 <SvgImageSimple src={iconClose} />
               </Fab>
             </>

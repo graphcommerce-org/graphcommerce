@@ -124,7 +124,7 @@ function FullPageShell(props: FullPageShellProps) {
               <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
             )}
             <PageLink href='/service' passHref>
-              <Fab style={{ boxShadow: 'none' }} aria-label='Account' size='large'>
+              <Fab aria-label='Account' size='large' color='inherit'>
                 <SvgImageSimple src={iconCustomerService} size='large' />
               </Fab>
             </PageLink>

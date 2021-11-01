@@ -43,6 +43,9 @@ const useStyles = makeStyles(
       '&:hover, &:focus': {
         background: theme.palette.text.primary,
       },
+      '& svg': {
+        stroke: theme.palette.background.default,
+      },
     },
     menu: {
       backgroundColor: theme.palette.background.paper,

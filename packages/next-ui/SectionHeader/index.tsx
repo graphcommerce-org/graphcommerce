@@ -22,7 +22,7 @@ const useStyles = makeStyles(
     },
     labelLeft: {},
     labelRight: {
-      color: theme.palette.primary.contrastText,
+      color: theme.palette.text.primary,
       lineHeight: 1,
     },
   }),

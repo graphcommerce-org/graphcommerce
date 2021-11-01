@@ -5,7 +5,8 @@ import {
   FixedFab,
   useFixedFabAnimation,
 } from '@graphcommerce/next-ui'
-import { Fab, FabProps, NoSsr } from '@material-ui/core'
+import { Fab, FabProps, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import clsx from 'clsx'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
@@ -19,8 +20,16 @@ export type CartFabProps = {
 
 type CartFabContentProps = CartFabProps & CartTotalQuantityFragment
 
+const useStyles = makeStyles((theme: Theme) => ({
+  fab: {
+    boxShadow: 'none',
+    background: theme.palette.background.default,
+  },
+}))
+
 function CartFabContent(props: CartFabContentProps) {
-  const { total_quantity, icon, ...fabProps } = props
+  const { total_quantity, icon, className, ...fabProps } = props
+  const classes = useStyles()
   const cartIcon = icon ?? <SvgImageSimple src={iconShoppingBag} loading='eager' size='large' />
   const { boxShadow } = useFixedFabAnimation()
 
@@ -31,7 +40,7 @@ function CartFabContent(props: CartFabContentProps) {
           aria-label='Cart'
           color='inherit'
           size='large'
-          style={{ boxShadow: 'none' }}
+          className={clsx(classes.fab, className)}
           {...fabProps}
         >
           {total_quantity > 0 ? (

@@ -38,7 +38,7 @@ const useStyles = makeStyles(
       paddingLeft: 0,
       paddingRight: 0,
       [theme.breakpoints.up('md')]: {
-        background: '#fff',
+        background: theme.palette.background.default,
         borderRadius: '99em',
       },
       [theme.breakpoints.down('sm')]: {

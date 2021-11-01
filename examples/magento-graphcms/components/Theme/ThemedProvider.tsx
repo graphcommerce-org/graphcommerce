@@ -1,19 +1,19 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
 import { responsiveVal } from '@graphcommerce/next-ui'
-import { createTheme, CssBaseline, Theme, ThemeProvider } from '@material-ui/core'
+import { createTheme, CssBaseline, Theme, ThemeProvider, lighten } from '@material-ui/core'
 import { PaletteOptions } from '@material-ui/core/styles/createPalette'
 import { Overrides } from '@material-ui/core/styles/overrides'
 import React from 'react'
 import shadows from './shadows'
 
-const useTheme = 'light'
+const useTheme: 'light' | 'dark' = 'dark'
 
 const lightPalette: PaletteOptions = {
   type: 'light',
   primary: {
     main: '#FF4A55',
-    contrastText: '#000000',
+    contrastText: '#FFFFFF',
     dark: '#F33642',
   },
   secondary: {
@@ -23,7 +23,7 @@ const lightPalette: PaletteOptions = {
   },
   background: {
     default: '#ffffff',
-    paper: '#F8F8F8',
+    paper: '#ffffff',
     image: '#F8F8F8',
   },
   divider: '#00000015',
@@ -52,7 +52,7 @@ const darkPalette: PaletteOptions = {
   },
   background: {
     default: '#001727',
-    paper: '#142b38',
+    paper: lighten('#001727', 0.06),
     image: '#F8F8F8',
   },
   divider: '#ffffff30',
@@ -227,6 +227,7 @@ const createOverrides = (theme: Theme): Overrides => {
           '& [class*="Sheet-content"]': {
             background: theme.palette.background.default,
           },
+          stroke: theme.palette.text.primary,
         },
         '::selection': { background: '#ff4a557d' },
         '::-moz-selection': { background: '#ff4a557d' },
@@ -265,43 +266,42 @@ const createOverrides = (theme: Theme): Overrides => {
       },
       contained: {
         color: theme.palette.text.primary,
-        backgroundColor:
-          useTheme === 'light' ? theme.palette.background.default : theme.palette.background.paper,
+        backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[1],
         '&:hover': { boxShadow: theme.shadows[1] },
         '&:focus': { boxShadow: theme.shadows[1] },
       },
       containedPrimary: {
         fontWeight: 500,
-        color: theme.palette.text.primary,
-        '& .MuiSvgIcon-root': { color: theme.palette.text.primary },
+        color: theme.palette.primary.contrastText,
+        // '& svg': { stroke: theme.palette.text.primary },
       },
       containedSecondary: {
         fontWeight: 500,
         color: theme.palette.secondary.contrastText,
-        '& .MuiSvgIcon-root': { color: theme.palette.secondary.contrastText },
+        // '& svg': { stroke: theme.palette.secondary.contrastText },
       },
       outlined: {
         borderRadius: 0,
       },
     },
-    MuiIconButton: {
-      sizeSmall: {
-        //
-      },
-    },
     MuiFab: {
       root: {
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: theme.palette.background.paper,
         '&:hover': { backgroundColor: theme.palette.background.paper },
+        '& svg': { stroke: theme.palette.text.primary },
+      },
+      colorInherit: {
+        backgroundColor: 'inherit',
+        boxShadow: 'none',
       },
       primary: {
         color: theme.palette.text.primary,
-        '& .MuiSvgIcon-root': { color: theme.palette.text.primary },
+        '& svg': { stroke: theme.palette.text.primary },
       },
       secondary: {
         color: theme.palette.text.primary,
-        '& .MuiSvgIcon-root': { color: theme.palette.text.primary },
+        // '& svg': { stroke: theme.palette.text.primary },
       },
       extended: {
         fontWeight: 400,
@@ -322,6 +322,11 @@ const createOverrides = (theme: Theme): Overrides => {
         },
       },
     },
+    MuiIconButton: {
+      label: {
+        stroke: theme.palette.text.primary,
+      },
+    },
     MuiChip: {
       root: {
         boxShadow: 'unset !important',
@@ -339,8 +344,8 @@ const createOverrides = (theme: Theme): Overrides => {
       },
       outlined: {
         borderColor: theme.palette.divider,
-        backgroundColor: theme.palette.background.default,
-        color: theme.palette.text.secondary,
+        // backgroundColor: theme.palette.background.default,
+        // color: theme.palette.text.primary,
       },
       label: {
         paddingLeft: responsiveVal(6, 10),
@@ -349,6 +354,18 @@ const createOverrides = (theme: Theme): Overrides => {
       labelSmall: {
         paddingLeft: responsiveVal(4, 8),
         paddingRight: responsiveVal(4, 8),
+      },
+      colorPrimary: {
+        //
+      },
+      colorSecondary: {
+        //
+      },
+      deleteIcon: {
+        stroke: theme.palette.text.primary,
+      },
+      deleteIconOutlinedColorPrimary: {
+        stroke: theme.palette.primary.main,
       },
     },
     MuiCheckbox: {
