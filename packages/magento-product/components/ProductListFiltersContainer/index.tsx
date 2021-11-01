@@ -35,6 +35,8 @@ const useStyles = makeStyles(
     container: {
       maxWidth: '100%',
       padding: 6,
+      paddingLeft: 0,
+      paddingRight: 0,
       [theme.breakpoints.up('md')]: {
         background: '#fff',
         borderRadius: '99em',
@@ -45,8 +47,12 @@ const useStyles = makeStyles(
     },
     containerSticky: {},
     scroller: {
+      paddingLeft: theme.page.horizontal,
+      paddingRight: theme.page.horizontal,
       paddingBottom: 1,
-      borderRadius: '99em',
+      [theme.breakpoints.up('md')]: {
+        borderRadius: '99em',
+      },
       columnGap: 6,
       gridAutoColumns: 'min-content',
     },

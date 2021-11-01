@@ -99,24 +99,20 @@ function CategoryPage(props: Props) {
         />
       ) : (
         <ProductListParamsProvider value={params}>
+          <AppShellTitle variant='h1'>{category?.name}</AppShellTitle>
+          <CategoryDescription description={category.description} />
+          <CategoryChildren params={params}>{category.children}</CategoryChildren>
+
+          <AppShellSticky headerFill='mobile-only'>
+            <ProductListFiltersContainer>
+              <ProductListSort
+                sort_fields={products?.sort_fields}
+                total_count={products?.total_count}
+              />
+              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
+            </ProductListFiltersContainer>
+          </AppShellSticky>
           <Container maxWidth={false}>
-            <AppShellTitle variant='h1'>{category?.name}</AppShellTitle>
-            <CategoryDescription {...category} />
-            <CategoryChildren params={params}>{category.children}</CategoryChildren>
-
-            <AppShellSticky headerFill='mobile-only'>
-              <ProductListFiltersContainer>
-                <ProductListSort
-                  sort_fields={products?.sort_fields}
-                  total_count={products?.total_count}
-                />
-                <ProductListFilters
-                  aggregations={filters?.aggregations}
-                  filterTypes={filterTypes}
-                />
-              </ProductListFiltersContainer>
-            </AppShellSticky>
-
             <ProductListCount total_count={products?.total_count} />
 
             <ProductListItems

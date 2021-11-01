@@ -4,9 +4,6 @@ import React from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    container: {
-      padding: 0,
-    },
     title: {
       // alignItems: 'center',
       justifyContent: 'center',

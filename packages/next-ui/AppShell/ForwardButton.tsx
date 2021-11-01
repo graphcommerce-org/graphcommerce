@@ -39,12 +39,12 @@ const useStyles = makeStyles(
 
 export type ForwardButtonProps = UseStyles<typeof useStyles> & ButtonProps & { down?: boolean }
 
-const ForwardButton = React.forwardRef((props: ForwardButtonProps) => {
+const ForwardButton = React.forwardRef((props: ForwardButtonProps, ref) => {
   const { text, icon, ...classes } = useStyles(props)
   const { children, down, ...fabProps } = props
 
   return (
-    <Button variant='pill' classes={classes} {...fabProps}>
+    <Button variant='pill' classes={classes} {...fabProps} ref={ref}>
       <span className={text}>{children}</span>
       <SvgImageSimple src={iconChevronRight} size='small' className={classes.root} />
     </Button>
