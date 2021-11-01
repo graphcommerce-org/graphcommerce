@@ -20,6 +20,6 @@ sources:
         operationHeaders:
           Store: '{context.req.headers.store}'
           Authorization: '{context.req.headers.authorization}'
-          X-ReCaptcha: '{context.req.headers.x-captcha}'
+          X-ReCaptcha: '{context.req.headers.x-recaptcha}'
           Preview-Version: '{context.req.headers.preview-version}'
           Content-Currency: '{context.req.headers.content-currency}'

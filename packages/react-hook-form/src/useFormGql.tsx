@@ -5,6 +5,7 @@ import {
   useApolloClient,
   MutationTuple,
   ApolloError,
+  GraphQLRequest,
 } from '@apollo/client'
 import { UseFormProps, UseFormReturn, UnpackNestedValue, DeepPartial } from 'react-hook-form'
 import diff from './diff'
@@ -40,7 +41,7 @@ export function useFormGql<Q, V>(
     form: UseFormReturn<V>
     tuple: MutationTuple<Q, V> | LazyQueryTuple<Q, V>
     defaultValues?: UseFormProps<V>['defaultValues']
-    context?: any // TODO: correct type
+    context?: GraphQLRequest['context']
   } & UseFormGraphQLCallbacks<Q, V>,
 ): UseFormGqlMethods<Q, V> {
   const { onComplete, onBeforeSubmit, document, form, tuple, defaultValues, context } = options
