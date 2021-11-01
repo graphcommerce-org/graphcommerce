@@ -1,7 +1,7 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
 import { responsiveVal } from '@graphcommerce/next-ui'
-import { createTheme, CssBaseline, Theme, ThemeProvider, lighten } from '@material-ui/core'
+import { createTheme, CssBaseline, Theme, ThemeProvider, lighten, alpha } from '@material-ui/core'
 import { PaletteOptions } from '@material-ui/core/styles/createPalette'
 import { Overrides } from '@material-ui/core/styles/overrides'
 import React from 'react'
@@ -229,8 +229,8 @@ const createOverrides = (theme: Theme): Overrides => {
           },
           stroke: theme.palette.text.primary,
         },
-        '::selection': { background: '#ff4a557d' },
-        '::-moz-selection': { background: '#ff4a557d' },
+        '::selection': { background: alpha(theme.palette.primary.main, 0.6) },
+        '::-moz-selection': { background: alpha(theme.palette.primary.main, 0.6) },
         '#__next': {
           position: 'relative',
         },
@@ -351,7 +351,7 @@ const createOverrides = (theme: Theme): Overrides => {
       },
       outlined: {
         borderColor: theme.palette.divider,
-        // backgroundColor: theme.palette.background.default,
+        backgroundColor: theme.palette.background.default,
         // color: theme.palette.text.primary,
       },
       label: {

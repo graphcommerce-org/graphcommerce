@@ -14,7 +14,7 @@ const useStyles = makeStyles(
         'social switcher'
         'links support'
       `,
-      borderTop: '1px solid rgba(0,0,0,0.08)',
+      borderTop: `1px solid ${theme.palette.divider}`,
       padding: `${theme.page.vertical} ${theme.page.horizontal} ${theme.page.vertical}`,
       display: 'grid',
       gap: theme.spacings.xs,
@@ -89,6 +89,9 @@ const useStyles = makeStyles(
         textAlign: 'center',
       },
     },
+    socialIcon: {
+      filter: theme.palette.type === 'light' ? undefined : 'brightness(1) invert(1)',
+    },
   }),
   { name: 'Footer' },
 )
@@ -109,7 +112,16 @@ export default function Footer(props: FooterProps) {
         {footer?.socialLinks?.map((link) => (
           <PageLink key={link.title} href={link.url} passHref>
             <IconButton color='inherit' size='small' disableRipple disableFocusRipple edge='start'>
-              {link.asset ? <SvgImage src={link.asset.url} width={24} size='small' /> : link.title}
+              {link.asset ? (
+                <SvgImage
+                  src={link.asset.url}
+                  width={24}
+                  size='small'
+                  className={classes.socialIcon}
+                />
+              ) : (
+                link.title
+              )}
             </IconButton>
           </PageLink>
         ))}
