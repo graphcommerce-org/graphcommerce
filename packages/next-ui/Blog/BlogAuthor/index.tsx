@@ -10,13 +10,16 @@ const useStyles = makeStyles(
       maxWidth: 800,
       margin: `0 auto`,
       marginBottom: theme.spacings.md,
-      '& > div': {
-        height: 52,
-        borderRadius: 30,
-        '& > div': {
-          width: '44px !important',
-          height: '44px !important',
-        },
+    },
+    authorChip: {
+      height: 66,
+      '& .MuiChip-label': {
+        paddingLeft: 14,
+        paddingRight: 14,
+      },
+      '& .MuiAvatar-root': {
+        width: 44,
+        height: 44,
       },
     },
     date: {
@@ -46,7 +49,9 @@ export default function BlogAuthor(props: BlogAuthorProps) {
     <div className={classes.wrapper}>
       <Chip
         variant='outlined'
+        size='medium'
         avatar={<Avatar>{author.charAt(0).toUpperCase()}</Avatar>}
+        className={classes.authorChip}
         label={
           <section>
             <div className={classes.author}>{author}</div>

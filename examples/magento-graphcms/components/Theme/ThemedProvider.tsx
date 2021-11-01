@@ -268,8 +268,14 @@ const createOverrides = (theme: Theme): Overrides => {
         backgroundColor: theme.palette.background.paper,
         color: theme.palette.text.primary,
         boxShadow: theme.shadows[1],
-        '&:hover': { boxShadow: theme.shadows[1] },
-        '&:focus': { boxShadow: theme.shadows[1] },
+        '&:hover': {
+          boxShadow: theme.shadows[1],
+          backgroundColor: lighten(theme.palette.background.default, 0.16),
+        },
+        '&:focus': {
+          boxShadow: theme.shadows[1],
+          backgroundColor: lighten(theme.palette.background.default, 0.16),
+        },
       },
       containedPrimary: {
         fontWeight: 500,
@@ -335,6 +341,7 @@ const createOverrides = (theme: Theme): Overrides => {
         paddingLeft: responsiveVal(4, 8),
         paddingRight: responsiveVal(4, 8),
         ...theme.typography.body2,
+        backgroundColor: theme.palette.background.paper,
       },
       sizeSmall: {
         height: responsiveVal(26, 30),
@@ -366,6 +373,11 @@ const createOverrides = (theme: Theme): Overrides => {
       },
       deleteIconOutlinedColorPrimary: {
         stroke: theme.palette.primary.main,
+      },
+      clickable: {
+        '&:hover, &:focus': {
+          backgroundColor: lighten(theme.palette.background.default, 0.16),
+        },
       },
     },
     MuiCheckbox: {
@@ -404,6 +416,11 @@ const createOverrides = (theme: Theme): Overrides => {
       },
       thumb: {
         backgroundColor: '#fff',
+      },
+    },
+    MuiAvatar: {
+      colorDefault: {
+        backgroundColor: theme.palette.text.disabled,
       },
     },
   }
