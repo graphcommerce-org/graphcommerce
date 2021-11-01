@@ -1,4 +1,4 @@
-import { MotionValue, motionValue, Point2D, useMotionValue } from 'framer-motion'
+import { MotionValue, motionValue, Point, useMotionValue } from 'framer-motion'
 import { PlaybackControls } from 'popmotion'
 import React, { useEffect, useRef, useMemo, useCallback } from 'react'
 import { scrollerContext } from '../context/scrollerContext'
@@ -273,7 +273,7 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
     }
   }
 
-  function getSnapPosition(direction: 'left' | 'right' | 'up' | 'down'): Point2D {
+  function getSnapPosition(direction: 'left' | 'right' | 'up' | 'down'): Point {
     if (!scrollerRef.current) return { x: 0, y: 0 }
 
     const axis: Axis = direction === 'up' || direction === 'down' ? 'y' : 'x'
