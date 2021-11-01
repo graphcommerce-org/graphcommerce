@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/graphql",
-  "version": "2.105.1",
+  "version": "2.105.2",
   "sideEffects": false,
   "main": "index.ts",
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.2",
-    "@graphcommerce/eslint-config-pwa": "^3.1.2",
+    "@graphcommerce/eslint-config-pwa": "^3.1.3",
     "@graphcommerce/prettier-config-pwa": "^3.0.3",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
     "@playwright/test": "^1.16.2"
