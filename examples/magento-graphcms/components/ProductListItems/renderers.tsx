@@ -6,18 +6,29 @@ import { ProductListItemGrouped } from '@graphcommerce/magento-product-grouped'
 import { ProductListItemSimple } from '@graphcommerce/magento-product-simple'
 import { ProductListItemVirtual } from '@graphcommerce/magento-product-virtual'
 import { ProductReviewChip } from '@graphcommerce/magento-review'
-import { makeStyles, Theme, Typography, TypographyProps } from '@material-ui/core'
+import { lighten, makeStyles, Theme, Typography, TypographyProps } from '@material-ui/core'
 import React from 'react'
 
 const Subtitle = (props: TypographyProps) => (
   <Typography component='span' variant='caption' {...props} />
 )
 
-const useStyles = makeStyles((theme: Theme) => ({
-  outlined: {
-    //
-  },
-}))
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    outlined: {
+      color:
+        theme.palette.type === 'light'
+          ? theme.palette.text.primary
+          : theme.palette.background.default,
+      borderColor:
+        theme.palette.type === 'light'
+          ? theme.palette.divider
+          : lighten(theme.palette.background.default, 0.9),
+      backgroundColor: theme.palette.background.image,
+    },
+  }),
+  { name: 'outlined' },
+)
 
 const renderers: ProductListItemRenderer = {
   SimpleProduct: (props) => {
