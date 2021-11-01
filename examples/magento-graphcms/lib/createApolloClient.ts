@@ -77,7 +77,6 @@ export function createApolloClient(
 
     // todo: Content-Currency
     // todo: Preview-Version
-    // tood: X-Captcha
     return {
       headers: {
         ...headers,

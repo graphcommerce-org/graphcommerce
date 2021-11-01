@@ -1,4 +1,5 @@
 import { MutationHookOptions, TypedDocumentNode, useMutation } from '@apollo/client'
+import { useEffect } from 'react'
 import { useForm, UseFormReturn } from 'react-hook-form'
 import { useFormGql, UseFormGqlMethods, UseFormGraphQlOptions } from './useFormGql'
 import { useFormMuiRegister, UseMuiFormRegister } from './useFormMuiRegister'
@@ -24,50 +25,47 @@ export function assertFormGqlOperation<V, Q = Record<string, unknown>>(
   }
 }
 
-// onBeforeSubmit: (formData) => {
-//   //options?.onBeforeSubmit(formData)
-
-//   // todo: detect google recaptcha v3
-//   const blabla = (window as unknown as any).grecaptcha
-//   blabla.ready(function () {
-//     blabla
-//       .execute(process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY, { action: 'submit' })
-//       .then(function (token) {
-//         console.log('google recaptcha token:', token)
-//       })
-//   })
-// },
-
 export function useFormGqlMutation<Q, V>(
   document: TypedDocumentNode<Q, V>,
   options: UseFormGraphQlOptions<Q, V> = {},
   operationOptions?: MutationHookOptions<Q, V>,
 ): UseFormGqlMutationReturn<Q, V> {
   const form = useForm<V>(options)
+
+  const formGqlOptions = {
+    ...options,
+    context: {
+      headers: {
+        'X-ReCaptcha': null,
+      },
+    },
+  }
+
+  useEffect(() => {
+    const recaptcha = (window as unknown as any).grecaptcha
+
+    if (!recaptcha) console.warn('useFormGqlMutation: could not find Google ReCaptcha V3 API')
+
+    recaptcha.ready(async () => {
+      const result = await recaptcha
+        .execute(process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY, { action: 'submit' })
+        .then((token) => {
+          formGqlOptions.context.headers['X-ReCaptcha'] = token
+        })
+
+      return result
+    })
+  })
+
   const tuple = useMutation(document, operationOptions)
   const operation = useFormGql({
     document,
     form,
     tuple,
-    ...options,
-    onBeforeSubmit: (vars: V) => {
-      // todo: properly detect google recaptcha v3
-      const blabla = (window as unknown as any).grecaptcha
-
-      blabla.ready(function () {
-        blabla
-          .execute(process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY, { action: 'submit' })
-          .then(function (token) {
-            // todo: do something with token
-          })
-      })
-
-      return vars
-    },
+    ...formGqlOptions,
   })
   const muiRegister = useFormMuiRegister(form)
   const valid = useFormValidFields(form, operation.required)
 
-  // todo: send token with the operation as X-ReCaptcha header
   return { ...form, ...operation, valid, muiRegister }
 }
