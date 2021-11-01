@@ -7,6 +7,8 @@ import { Overrides } from '@material-ui/core/styles/overrides'
 import React from 'react'
 import shadows from './shadows'
 
+const useTheme = 'light'
+
 const lightPalette: PaletteOptions = {
   type: 'light',
   primary: {
@@ -18,9 +20,6 @@ const lightPalette: PaletteOptions = {
     main: '#006BFF',
     light: '#D1E4FF',
     contrastText: '#ffffff',
-  },
-  grey: {
-    300: '#ffffff', // @todo MuiButton can't be background.default in darkTheme:
   },
   background: {
     default: '#ffffff',
@@ -38,37 +37,34 @@ const lightPalette: PaletteOptions = {
   },
 }
 
-// const darkPalette: PaletteOptions = {
-//   type: 'dark',
-//   primary: {
-//     main: '#62C7B0',
-//     contrastText: '#ffffff',
-//     dark: '#62C7B0',
-//   },
-//   action: {},
-//   secondary: {
-//     main: '#006BFF',
-//     light: '#142b38',
-//     contrastText: '#ffffff',
-//   },
-//   grey: {
-//     300: '#142b38',
-//   },
-//   background: {
-//     default: '#001727',
-//     paper: '#142b38',
-//     image: '#F8F8F8',
-//   },
-//   divider: '#ffffff30',
-//   success: {
-//     main: '#01D26A',
-//   },
-//   text: {
-//     primary: '#ffffff',
-//     secondary: '#ffffff80',
-//     disabled: '#ffffff30',
-//   },
-// }
+const darkPalette: PaletteOptions = {
+  type: 'dark',
+  primary: {
+    main: '#62C7B0',
+    contrastText: '#ffffff',
+    dark: '#62C7B0',
+  },
+  action: {},
+  secondary: {
+    main: '#006BFF',
+    light: '#142b38',
+    contrastText: '#ffffff',
+  },
+  background: {
+    default: '#001727',
+    paper: '#142b38',
+    image: '#F8F8F8',
+  },
+  divider: '#ffffff30',
+  success: {
+    main: '#01D26A',
+  },
+  text: {
+    primary: '#ffffff',
+    secondary: '#ffffff80',
+    disabled: '#ffffff30',
+  },
+}
 
 // Create a theme instance.
 const createThemeWithPallete = (palette: PaletteOptions) =>
@@ -269,6 +265,8 @@ const createOverrides = (theme: Theme): Overrides => {
       },
       contained: {
         color: theme.palette.text.primary,
+        backgroundColor:
+          useTheme === 'light' ? theme.palette.background.default : theme.palette.background.paper,
         boxShadow: theme.shadows[1],
         '&:hover': { boxShadow: theme.shadows[1] },
         '&:focus': { boxShadow: theme.shadows[1] },
@@ -389,14 +387,11 @@ const createOverrides = (theme: Theme): Overrides => {
   }
 }
 
-const lightTheme = createThemeWithPallete(lightPalette)
-lightTheme.overrides = createOverrides(lightTheme)
-
-// const darkTheme = createThemeWithPallete(darkPalette)
-// darkTheme.overrides = createOverrides(darkTheme)
+const currentTheme = createThemeWithPallete(useTheme === 'light' ? lightPalette : darkPalette)
+currentTheme.overrides = createOverrides(currentTheme)
 
 const ThemedProvider: React.FC = ({ children }) => (
-  <ThemeProvider theme={lightTheme}>
+  <ThemeProvider theme={currentTheme}>
     <CssBaseline />
     {children}
   </ThemeProvider>
