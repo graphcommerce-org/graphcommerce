@@ -3,5 +3,5 @@ import { pageRouterContext } from '../context/pageRouterContext'
 
 /** Get the upUrl of the previous page */
 export function useUp() {
-  return useContext(pageRouterContext).up
+  return useContext(pageRouterContext)?.up
 }
