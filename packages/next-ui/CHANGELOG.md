@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.12.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.12.2...@graphcommerce/next-ui@3.12.3) (2021-11-02)
+
+
+### Bug Fixes
+
+* **MenuFab:** make icon customizable ([375bafd](https://github.com/ho-nl/m2-pwa/commit/375bafd901b3c53405e02d681ea0dca3af190e35))
+
+
+
+
+
 ## [3.12.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.12.1...@graphcommerce/next-ui@3.12.2) (2021-11-02)
 
 

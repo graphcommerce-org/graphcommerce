@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.144.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.144.0...@graphcommerce/graphcommerce@2.144.1) (2021-11-02)
+
+
+### Bug Fixes
+
+* **MenuFab:** make icon customizable ([375bafd](https://github.com/ho-nl/m2-pwa/commit/375bafd901b3c53405e02d681ea0dca3af190e35))
+
+
+
+
+
 # [2.144.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.143.1...@graphcommerce/graphcommerce@2.144.0) (2021-11-02)
 
 
