@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.128.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.128.5...@graphcommerce/magento-graphcms@2.128.6) (2021-11-02)
+
+
+### Bug Fixes
+
+* break back button loop ([be2e5ae](https://github.com/ho-nl/m2-pwa/commit/be2e5aefa1e409a97c1ebf94173f4da7ea25386b))
+* **framer-next-pages:** prevent back button loop when previous page is the up page of the previous page ([cbdde83](https://github.com/ho-nl/m2-pwa/commit/cbdde83790337bdf4c5f03c907ca6e6e02792e70))
+* remove up from sheet shell pages ([9fd48e3](https://github.com/ho-nl/m2-pwa/commit/9fd48e34ade47daaff2298d3ff710119a9c6f7b2))
+* **service:** undefined cannot be serialized as json ([7a3d494](https://github.com/ho-nl/m2-pwa/commit/7a3d494a53c6126c66b314227f3894d3bdefb456))
+* typings product pages ([4ac24fc](https://github.com/ho-nl/m2-pwa/commit/4ac24fcba90f98c63181c339634e71bb91d78ebd))
+
+
+
+
+
 ## [2.128.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.128.4...@graphcommerce/magento-graphcms@2.128.5) (2021-11-02)
 
 

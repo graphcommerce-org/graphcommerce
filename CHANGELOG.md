@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.142.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.142.5...@graphcommerce/graphcommerce@2.142.6) (2021-11-02)
+
+
+### Bug Fixes
+
+* back button loop ([4d901e6](https://github.com/ho-nl/m2-pwa/commit/4d901e662579d1cfb97c823d581e60d687908b1a))
+* break back button loop ([be2e5ae](https://github.com/ho-nl/m2-pwa/commit/be2e5aefa1e409a97c1ebf94173f4da7ea25386b))
+* **framer-next-pages:** prevent back button loop when previous page is the up page of the previous page ([ec829c8](https://github.com/ho-nl/m2-pwa/commit/ec829c8eee2a3744747a7572b32299879c780d45))
+* **framer-next-pages:** prevent back button loop when previous page is the up page of the previous page ([cbdde83](https://github.com/ho-nl/m2-pwa/commit/cbdde83790337bdf4c5f03c907ca6e6e02792e70))
+* remove up from sheet shell pages ([9fd48e3](https://github.com/ho-nl/m2-pwa/commit/9fd48e34ade47daaff2298d3ff710119a9c6f7b2))
+* **service:** undefined cannot be serialized as json ([7a3d494](https://github.com/ho-nl/m2-pwa/commit/7a3d494a53c6126c66b314227f3894d3bdefb456))
+* **types:** apollo state props ‘up’ can be null ([9377d7f](https://github.com/ho-nl/m2-pwa/commit/9377d7fd9a080a8a2b8c7127961d64dc66a5729a))
+* **types:** make apollo up state optional ([eba9683](https://github.com/ho-nl/m2-pwa/commit/eba96832e372adaeaa2ed71622c88f9dc95071c5))
+* typings product pages ([4ac24fc](https://github.com/ho-nl/m2-pwa/commit/4ac24fcba90f98c63181c339634e71bb91d78ebd))
+
+
+
+
+
 ## [2.142.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.142.4...@graphcommerce/graphcommerce@2.142.5) (2021-11-02)
 
 
