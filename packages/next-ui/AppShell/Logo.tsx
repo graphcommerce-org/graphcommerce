@@ -35,7 +35,7 @@ const useStyles = makeStyles(
         justifyContent: 'left',
       },
     },
-    logoAlwaysShow: {
+    logoHideOnMobile: {
       display: 'none',
       [theme.breakpoints.up('md')]: {
         display: 'unset',
@@ -45,7 +45,7 @@ const useStyles = makeStyles(
   { name: 'Logo' },
 )
 
-type LogoProps = {
+export type LogoProps = {
   href?: `/${string}`
   image: ImageProps
   alwaysShow?: boolean
@@ -64,7 +64,7 @@ export default function Logo(props: LogoProps) {
           className={clsx(
             classes.logo,
             theme.palette.type === 'dark' && classes.dark,
-            alwaysShow && classes.logoAlwaysShow,
+            !alwaysShow && classes.logoHideOnMobile,
           )}
         />
       </a>
