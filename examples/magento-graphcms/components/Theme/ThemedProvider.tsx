@@ -299,6 +299,9 @@ const createOverrides = (theme: Theme): Overrides => {
       },
       colorInherit: {
         backgroundColor: 'inherit',
+        '&:hover, &:focus': {
+          backgroundColor: 'inherit',
+        },
         boxShadow: 'none',
       },
       primary: {
@@ -426,7 +429,7 @@ const createOverrides = (theme: Theme): Overrides => {
   }
 }
 
-const currentTheme = createThemeWithPallete(useTheme !== 'light' ? lightPalette : darkPalette)
+const currentTheme = createThemeWithPallete(useTheme === 'light' ? lightPalette : darkPalette)
 currentTheme.overrides = createOverrides(currentTheme)
 
 const ThemedProvider: React.FC = ({ children }) => (
