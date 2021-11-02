@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product-configurable@3.2.8...@graphcommerce/magento-product-configurable@3.3.0) (2021-11-02)
+
+
+### Bug Fixes
+
+* darkMode ([c7573de](https://github.com/ho-nl/m2-pwa/commit/c7573de6bb80643b26931c35ac61735539e7fbf0))
+* darkTheme ([ae017c1](https://github.com/ho-nl/m2-pwa/commit/ae017c1a1e82f86ee5eb2f67106dac8174950c45))
+* remove text='bold', make contained button text stronger by default ([cd277c9](https://github.com/ho-nl/m2-pwa/commit/cd277c9f434a4a765eac372467e5a05c822d5512))
+
+
+### Features
+
+* darkTheme ([968f4f1](https://github.com/ho-nl/m2-pwa/commit/968f4f1360417bf7daa36454c19e6bc5cf53ae90))
+* darkTheme ([3ed6647](https://github.com/ho-nl/m2-pwa/commit/3ed664714670315bc9f20542549724f66cb5052d))
+
+
+
+
+
 ## [3.2.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product-configurable@3.2.2...@graphcommerce/magento-product-configurable@3.2.3) (2021-10-28)
 
 

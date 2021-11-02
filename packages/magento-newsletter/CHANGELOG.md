@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.46](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-newsletter@0.2.45...@graphcommerce/magento-newsletter@0.2.46) (2021-11-02)
+
+
+### Bug Fixes
+
+* darkMode ([c7573de](https://github.com/ho-nl/m2-pwa/commit/c7573de6bb80643b26931c35ac61735539e7fbf0))
+
+
+
+
+
 ## [0.2.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-newsletter@0.2.0...@graphcommerce/magento-newsletter@0.2.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/magento-newsletter

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-order@2.103.8...@graphcommerce/magento-customer-order@2.104.0) (2021-11-02)
+
+
+### Features
+
+* darkTheme ([3ed6647](https://github.com/ho-nl/m2-pwa/commit/3ed664714670315bc9f20542549724f66cb5052d))
+
+
+
+
+
 ## [2.103.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-order@2.103.3...@graphcommerce/magento-customer-order@2.103.4) (2021-10-28)
 
 

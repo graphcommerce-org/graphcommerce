@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.105.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/mollie-magento-payment@2.105.8...@graphcommerce/mollie-magento-payment@2.105.9) (2021-11-02)
+
+
+### Bug Fixes
+
+* input labels ([ba46c9a](https://github.com/ho-nl/m2-pwa/commit/ba46c9a17b3b460daab5015df39ac9ae66858df4))
+* overlapping checkmark icon ([b4da61a](https://github.com/ho-nl/m2-pwa/commit/b4da61ae33ab058a56f0f32c2874a2e77d77d01d))
+
+
+
+
+
 # [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/mollie-magento-payment@2.104.33...@graphcommerce/mollie-magento-payment@2.105.0) (2021-10-27)
 
 

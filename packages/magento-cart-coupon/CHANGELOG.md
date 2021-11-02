@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-coupon@2.106.8...@graphcommerce/magento-cart-coupon@2.107.0) (2021-11-02)
+
+
+### Features
+
+* darkTheme ([968f4f1](https://github.com/ho-nl/m2-pwa/commit/968f4f1360417bf7daa36454c19e6bc5cf53ae90))
+
+
+
+
+
 ## [2.106.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-coupon@2.106.3...@graphcommerce/magento-cart-coupon@2.106.4) (2021-10-28)
 
 

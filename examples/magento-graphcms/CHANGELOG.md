@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.129.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.128.6...@graphcommerce/magento-graphcms@2.129.0) (2021-11-02)
+
+
+### Bug Fixes
+
+* darkMode ([c7573de](https://github.com/ho-nl/m2-pwa/commit/c7573de6bb80643b26931c35ac61735539e7fbf0))
+* darkTheme ([df3d326](https://github.com/ho-nl/m2-pwa/commit/df3d326126446c1b92f8e46eff0533bbbe35604f))
+* darkTheme ([a12786f](https://github.com/ho-nl/m2-pwa/commit/a12786f33cf09e974cceb8592ec98439ccbc3fad))
+* darkTheme ([d0517af](https://github.com/ho-nl/m2-pwa/commit/d0517af5a788532c48f567ee3e840986efa26a67))
+* darkTheme ([ae017c1](https://github.com/ho-nl/m2-pwa/commit/ae017c1a1e82f86ee5eb2f67106dac8174950c45))
+* darkTheme, prevent cart total color overlap ([9d4d7aa](https://github.com/ho-nl/m2-pwa/commit/9d4d7aa20ec05f13662efccce99dee10e462bf18))
+* disable google font but keep example ([6daeb07](https://github.com/ho-nl/m2-pwa/commit/6daeb07961581584d19173bc81dea60df3bb5fbf))
+* minimal fontsize > 16px to prevent ios form input zoom ([1324f34](https://github.com/ho-nl/m2-pwa/commit/1324f343b3e9bbbe87ea8b85201ac65fa157c642))
+* no more zoom on ios when focus on inputs ([d9e2dc5](https://github.com/ho-nl/m2-pwa/commit/d9e2dc5569822e106599207cb9120964df5263a0))
+* remove text='bold', make contained button text stronger by default ([cd277c9](https://github.com/ho-nl/m2-pwa/commit/cd277c9f434a4a765eac372467e5a05c822d5512))
+* ReviewChip should only differ from default MuiChip in product grid ([c22a029](https://github.com/ho-nl/m2-pwa/commit/c22a0291afbbc03099fd0487421ff9fd31caf226))
+* transparent MuiChip mobile ([a86d25f](https://github.com/ho-nl/m2-pwa/commit/a86d25ff0dab502f4e42c1a62f72b546bc7375ce))
+
+
+### Features
+
+* darkTheme ([968f4f1](https://github.com/ho-nl/m2-pwa/commit/968f4f1360417bf7daa36454c19e6bc5cf53ae90))
+* darkTheme ([3ed6647](https://github.com/ho-nl/m2-pwa/commit/3ed664714670315bc9f20542549724f66cb5052d))
+* easier theme switching and theme dependend button contained backgroundColor ([6ae8565](https://github.com/ho-nl/m2-pwa/commit/6ae856546f139b9ff36d8d9bae1ea47f58981f7c))
+* Mui true Pagination based on Fab ([572fa7b](https://github.com/ho-nl/m2-pwa/commit/572fa7b031b58b6ffdab60c4a50407a53202fa34))
+
+
+
+
+
 ## [2.128.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.128.5...@graphcommerce/magento-graphcms@2.128.6) (2021-11-02)
 
 

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.4.5...@graphcommerce/magento-product@3.5.0) (2021-11-02)
+
+
+### Bug Fixes
+
+* build ([98a0bba](https://github.com/ho-nl/m2-pwa/commit/98a0bba7d00e1c6a5ff0787183b711b1edb8b984))
+* darkMode ([c7573de](https://github.com/ho-nl/m2-pwa/commit/c7573de6bb80643b26931c35ac61735539e7fbf0))
+* darkTheme ([df3d326](https://github.com/ho-nl/m2-pwa/commit/df3d326126446c1b92f8e46eff0533bbbe35604f))
+* remove unused imports ([b832188](https://github.com/ho-nl/m2-pwa/commit/b8321887f10a4a026adc5ca39166eeef90e60669))
+
+
+### Features
+
+* darkTheme ([968f4f1](https://github.com/ho-nl/m2-pwa/commit/968f4f1360417bf7daa36454c19e6bc5cf53ae90))
+* darkTheme ([3ed6647](https://github.com/ho-nl/m2-pwa/commit/3ed664714670315bc9f20542549724f66cb5052d))
+
+
+
+
+
 ## [3.4.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.4.2...@graphcommerce/magento-product@3.4.3) (2021-11-01)
 
 

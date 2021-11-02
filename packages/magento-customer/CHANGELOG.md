@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@3.3.5...@graphcommerce/magento-customer@3.4.0) (2021-11-02)
+
+
+### Bug Fixes
+
+* move checkmark icons on select fields ([95ce54d](https://github.com/ho-nl/m2-pwa/commit/95ce54d7fd41d11120847f2fdf6b9097a2c93871))
+* remove text='bold', make contained button text stronger by default ([cd277c9](https://github.com/ho-nl/m2-pwa/commit/cd277c9f434a4a765eac372467e5a05c822d5512))
+* remove unused imports ([b832188](https://github.com/ho-nl/m2-pwa/commit/b8321887f10a4a026adc5ca39166eeef90e60669))
+
+
+### Features
+
+* darkTheme ([3ed6647](https://github.com/ho-nl/m2-pwa/commit/3ed664714670315bc9f20542549724f66cb5052d))
+
+
+
+
+
 ## [3.3.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@3.3.0...@graphcommerce/magento-customer@3.3.1) (2021-10-28)
 
 

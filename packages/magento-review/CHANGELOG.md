@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.107.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-review@2.107.5...@graphcommerce/magento-review@2.107.6) (2021-11-02)
+
+
+### Bug Fixes
+
+* remove text='bold', make contained button text stronger by default ([cd277c9](https://github.com/ho-nl/m2-pwa/commit/cd277c9f434a4a765eac372467e5a05c822d5512))
+* remove unused imports ([b832188](https://github.com/ho-nl/m2-pwa/commit/b8321887f10a4a026adc5ca39166eeef90e60669))
+* ReviewChip should only differ from default MuiChip in product grid ([c22a029](https://github.com/ho-nl/m2-pwa/commit/c22a0291afbbc03099fd0487421ff9fd31caf226))
+
+
+
+
+
 ## [2.107.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-review@2.107.0...@graphcommerce/magento-review@2.107.1) (2021-10-28)
 
 

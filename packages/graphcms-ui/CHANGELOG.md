@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.104.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcms-ui@2.104.8...@graphcommerce/graphcms-ui@2.104.9) (2021-11-02)
+
+
+### Bug Fixes
+
+* color from palette ([283cca1](https://github.com/ho-nl/m2-pwa/commit/283cca169ec00cbac8b973e14e6b77a443e26c99))
+* darkMode ([c7573de](https://github.com/ho-nl/m2-pwa/commit/c7573de6bb80643b26931c35ac61735539e7fbf0))
+
+
+
+
+
 ## [2.104.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcms-ui@2.104.2...@graphcommerce/graphcms-ui@2.104.3) (2021-10-28)
 
 

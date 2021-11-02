@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-category@3.3.5...@graphcommerce/magento-category@3.3.6) (2021-11-02)
+
+
+### Bug Fixes
+
+* darkMode ([c7573de](https://github.com/ho-nl/m2-pwa/commit/c7573de6bb80643b26931c35ac61735539e7fbf0))
+
+
+
+
+
 ## [3.3.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-category@3.3.2...@graphcommerce/magento-category@3.3.3) (2021-11-01)
 
 

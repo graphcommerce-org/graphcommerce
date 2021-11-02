@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.104.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-account@2.104.8...@graphcommerce/magento-customer-account@2.104.9) (2021-11-02)
+
+
+### Bug Fixes
+
+* darkMode ([c7573de](https://github.com/ho-nl/m2-pwa/commit/c7573de6bb80643b26931c35ac61735539e7fbf0))
+* remove text='bold', make contained button text stronger by default ([cd277c9](https://github.com/ho-nl/m2-pwa/commit/cd277c9f434a4a765eac372467e5a05c822d5512))
+
+
+
+
+
 ## [2.104.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-account@2.104.3...@graphcommerce/magento-customer-account@2.104.4) (2021-10-28)
 
 

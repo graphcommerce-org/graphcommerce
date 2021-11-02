@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.143.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.142.6...@graphcommerce/graphcommerce@2.143.0) (2021-11-02)
+
+
+### Bug Fixes
+
+* build ([2c2d317](https://github.com/ho-nl/m2-pwa/commit/2c2d317432e3a6f2b027f24c00ac2416d56847be))
+* build ([98a0bba](https://github.com/ho-nl/m2-pwa/commit/98a0bba7d00e1c6a5ff0787183b711b1edb8b984))
+* build ([5d07e8e](https://github.com/ho-nl/m2-pwa/commit/5d07e8e8dc9b70ab8e58018183c54484944e8822))
+* cancel filter icon ([8e03602](https://github.com/ho-nl/m2-pwa/commit/8e03602dd54b2dae714ad514515fad907539b594))
+* cleanup blog header styles ([b96aec1](https://github.com/ho-nl/m2-pwa/commit/b96aec13b5a0af74ec2058502c7da558eb675dbb))
+* color from palette ([283cca1](https://github.com/ho-nl/m2-pwa/commit/283cca169ec00cbac8b973e14e6b77a443e26c99))
+* darkMode ([c7573de](https://github.com/ho-nl/m2-pwa/commit/c7573de6bb80643b26931c35ac61735539e7fbf0))
+* darkTheme ([df3d326](https://github.com/ho-nl/m2-pwa/commit/df3d326126446c1b92f8e46eff0533bbbe35604f))
+* darkTheme ([a12786f](https://github.com/ho-nl/m2-pwa/commit/a12786f33cf09e974cceb8592ec98439ccbc3fad))
+* darkTheme ([d0517af](https://github.com/ho-nl/m2-pwa/commit/d0517af5a788532c48f567ee3e840986efa26a67))
+* darkTheme ([ae017c1](https://github.com/ho-nl/m2-pwa/commit/ae017c1a1e82f86ee5eb2f67106dac8174950c45))
+* darkTheme, prevent cart total color overlap ([9d4d7aa](https://github.com/ho-nl/m2-pwa/commit/9d4d7aa20ec05f13662efccce99dee10e462bf18))
+* disable google font but keep example ([6daeb07](https://github.com/ho-nl/m2-pwa/commit/6daeb07961581584d19173bc81dea60df3bb5fbf))
+* full image on blog view page ([6d14b0e](https://github.com/ho-nl/m2-pwa/commit/6d14b0ef24fa60321a442a42d5861adc20e4a5fa))
+* icon size in checkout ([d7bb962](https://github.com/ho-nl/m2-pwa/commit/d7bb962a6827b81f737f22e36f828454abef1b47))
+* input labels ([ba46c9a](https://github.com/ho-nl/m2-pwa/commit/ba46c9a17b3b460daab5015df39ac9ae66858df4))
+* minimal fontsize > 16px to prevent ios form input zoom ([1324f34](https://github.com/ho-nl/m2-pwa/commit/1324f343b3e9bbbe87ea8b85201ac65fa157c642))
+* move checkmark icons on select fields ([95ce54d](https://github.com/ho-nl/m2-pwa/commit/95ce54d7fd41d11120847f2fdf6b9097a2c93871))
+* no more zoom on ios when focus on inputs ([d9e2dc5](https://github.com/ho-nl/m2-pwa/commit/d9e2dc5569822e106599207cb9120964df5263a0))
+* overlapping checkmark icon ([b4da61a](https://github.com/ho-nl/m2-pwa/commit/b4da61ae33ab058a56f0f32c2874a2e77d77d01d))
+* remove text from inputprops ([ccc11f2](https://github.com/ho-nl/m2-pwa/commit/ccc11f267e85b8b333877afb4ce11f96dad0a3d0))
+* remove text='bold', make contained button text stronger by default ([cd277c9](https://github.com/ho-nl/m2-pwa/commit/cd277c9f434a4a765eac372467e5a05c822d5512))
+* remove unused imports ([5018763](https://github.com/ho-nl/m2-pwa/commit/5018763a8a2bbd0ba4a775979cc5885e9b17ad8d))
+* remove unused imports ([b832188](https://github.com/ho-nl/m2-pwa/commit/b8321887f10a4a026adc5ca39166eeef90e60669))
+* ReviewChip should only differ from default MuiChip in product grid ([c22a029](https://github.com/ho-nl/m2-pwa/commit/c22a0291afbbc03099fd0487421ff9fd31caf226))
+* style cleanup snackbar ([610221a](https://github.com/ho-nl/m2-pwa/commit/610221ad82f5726e9d745436cb1c08314bd342d5))
+* svg color ([095ac85](https://github.com/ho-nl/m2-pwa/commit/095ac8578409ec005fbfe449fe4759d4f63b6f79))
+* transparent MuiChip mobile ([a86d25f](https://github.com/ho-nl/m2-pwa/commit/a86d25ff0dab502f4e42c1a62f72b546bc7375ce))
+
+
+### Features
+
+* add social icons to codebase for convenience ([9e4b404](https://github.com/ho-nl/m2-pwa/commit/9e4b404aa1dbc821562529f7b15ab4761a1ab52c))
+* darkTheme ([968f4f1](https://github.com/ho-nl/m2-pwa/commit/968f4f1360417bf7daa36454c19e6bc5cf53ae90))
+* darkTheme ([3ed6647](https://github.com/ho-nl/m2-pwa/commit/3ed664714670315bc9f20542549724f66cb5052d))
+* easier theme switching and theme dependend button contained backgroundColor ([6ae8565](https://github.com/ho-nl/m2-pwa/commit/6ae856546f139b9ff36d8d9bae1ea47f58981f7c))
+* Mui true Pagination based on Fab ([572fa7b](https://github.com/ho-nl/m2-pwa/commit/572fa7b031b58b6ffdab60c4a50407a53202fa34))
+
+
+
+
+
 ## [2.142.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.142.5...@graphcommerce/graphcommerce@2.142.6) (2021-11-02)
 
 

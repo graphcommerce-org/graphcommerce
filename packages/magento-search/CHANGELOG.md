@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.3.5...@graphcommerce/magento-search@3.4.0) (2021-11-02)
+
+
+### Bug Fixes
+
+* darkMode ([c7573de](https://github.com/ho-nl/m2-pwa/commit/c7573de6bb80643b26931c35ac61735539e7fbf0))
+
+
+### Features
+
+* darkTheme ([968f4f1](https://github.com/ho-nl/m2-pwa/commit/968f4f1360417bf7daa36454c19e6bc5cf53ae90))
+
+
+
+
+
 ## [3.3.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.3.0...@graphcommerce/magento-search@3.3.1) (2021-10-28)
 
 

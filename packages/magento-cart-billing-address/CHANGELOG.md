@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.106.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-billing-address@2.106.8...@graphcommerce/magento-cart-billing-address@2.106.9) (2021-11-02)
+
+
+### Bug Fixes
+
+* remove text='bold', make contained button text stronger by default ([cd277c9](https://github.com/ho-nl/m2-pwa/commit/cd277c9f434a4a765eac372467e5a05c822d5512))
+
+
+
+
+
 # [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-billing-address@2.105.3...@graphcommerce/magento-cart-billing-address@2.106.0) (2021-10-27)
 
 
