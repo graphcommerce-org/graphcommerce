@@ -381,6 +381,11 @@ const createOverrides = (theme: Theme): Overrides => {
         '&:hover, &:focus': {
           backgroundColor: lighten(theme.palette.background.default, 0.16),
         },
+        '&.MuiChip-outlined': {
+          '&:hover, &:focus': {
+            backgroundColor: `${lighten(theme.palette.background.default, 0.16)} !important`,
+          },
+        },
       },
     },
     MuiCheckbox: {
