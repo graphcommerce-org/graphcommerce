@@ -58,14 +58,11 @@ const useStyles = makeStyles(
       },
     },
     children: {
+      display: 'flex',
+      columnGap: 10,
       gridArea: 'children',
       ...theme.typography.subtitle1,
       fontWeight: 400,
-      '& .MuiSvgIcon-root': {
-        position: 'relative',
-        fontSize: '1.1em',
-        top: '0.15em',
-      },
     },
     actionButton: {
       gridArea: 'action',
