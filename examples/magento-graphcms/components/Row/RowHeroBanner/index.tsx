@@ -16,7 +16,7 @@ export default function RowHeroBanner(props: RowHeroBannerFragment) {
           </Button>
         </PageLink>
       ))}
-      videoSrc={heroAsset.url}
+      videoSrc={'/vid.mp4'}
     >
       <RichTextHero {...copy} />
     </HeroBanner>
