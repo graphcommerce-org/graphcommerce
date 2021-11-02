@@ -36,13 +36,22 @@ const useStyles = makeStyles(
         justifyContent: 'left',
       },
     },
+    logoAlwaysShow: {
+      display: 'none',
+      [theme.breakpoints.up('md')]: {
+        display: 'unset',
+      },
+    },
   }),
   { name: 'Logo' },
 )
 
-type LogoProps = UseStyles<typeof useStyles>
+type LogoProps = UseStyles<typeof useStyles> & {
+  alwaysShow?: boolean
+}
 
 export default function Logo(props: LogoProps) {
+  const { alwaysShow } = props
   const classes = useStyles(props)
   const theme = useTheme()
 
@@ -55,7 +64,11 @@ export default function Logo(props: LogoProps) {
           src={svgLogo}
           unoptimized
           loading='eager'
-          className={clsx(classes.logo, theme.palette.type === 'dark' && classes.dark)}
+          className={clsx(
+            classes.logo,
+            theme.palette.type === 'dark' && classes.dark,
+            alwaysShow && classes.logoAlwaysShow,
+          )}
         />
       </a>
     </PageLink>
