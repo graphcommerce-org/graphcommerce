@@ -7,19 +7,10 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     header: {
       maxWidth: 800,
-      maxHeight: '30vh',
       margin: `0 auto`,
       marginBottom: theme.spacings.md,
-      backgroundColor: 'rgba(0,0,0,0.08)',
-      overflow: 'hidden',
     },
-    asset: {
-      '& img': {
-        width: '100%',
-        height: '100% !important',
-        objectFit: 'cover',
-      },
-    },
+    asset: {},
   }),
   { name: 'BlogHeader' },
 )
