@@ -83,7 +83,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       variant: 'left',
       size: responsiveVal(320, 800),
       apolloState: await conf.then(() => client.cache.extract()),
-      up: { href: '/', title: 'Home' },
     },
     revalidate: 60 * 20,
   }
