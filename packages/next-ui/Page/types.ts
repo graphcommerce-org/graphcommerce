@@ -6,7 +6,7 @@ import { AppProps as NextAppProps } from 'next/app'
 
 type AnyObj = Record<string, unknown>
 
-type ApolloStateProps = { apolloState: NormalizedCacheObject; up?: UpPage }
+type ApolloStateProps = { apolloState: NormalizedCacheObject; up?: UpPage | null }
 
 export type GetStaticProps<
   PL extends AnyObj,
