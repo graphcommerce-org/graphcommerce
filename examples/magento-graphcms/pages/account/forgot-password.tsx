@@ -12,7 +12,7 @@ type GetPageStaticProps = GetStaticProps<SheetShellProps>
 function AccountForgotPasswordPage() {
   return (
     <>
-      <SheetShellHeader backFallbackHref='/account/signin' backFallbackTitle='Sign In'>
+      <SheetShellHeader>
         <Title size='small' component='span'>
           Forgot your password?
         </Title>
@@ -55,6 +55,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variant: 'bottom',
       size: 'max',
+      up: { href: '/account-signin', title: 'Sign In' },
     },
   }
 }

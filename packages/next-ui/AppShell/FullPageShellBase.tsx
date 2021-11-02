@@ -37,8 +37,6 @@ export type FullPageShellBaseProps = {
   header: React.ReactNode
   footer: React.ReactNode
   children?: React.ReactNode
-  backFallbackHref?: string | null
-  backFallbackTitle?: string | null
 } & UseStyles<typeof useStyles> &
   PageLayoutBaseProps
 

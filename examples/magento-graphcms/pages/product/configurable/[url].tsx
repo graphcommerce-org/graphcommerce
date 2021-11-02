@@ -43,9 +43,7 @@ import {
 } from '../../../components/Row'
 import apolloClient from '../../../lib/apolloClient'
 
-type Props = ProductPageQuery &
-  ConfigurableProductPageQuery &
-  Pick<FullPageShellProps, 'backFallbackHref' | 'backFallbackTitle'>
+type Props = ProductPageQuery & ConfigurableProductPageQuery
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -61,8 +59,7 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductConfigurable(props: Props) {
-  const { products, usps, typeProducts, sidebarUsps, pages, backFallbackHref, backFallbackTitle } =
-    props
+  const { products, usps, typeProducts, sidebarUsps, pages } = props
   const classes = useStyles()
 
   const product = products?.items?.[0]
@@ -78,10 +75,7 @@ function ProductConfigurable(props: Props) {
 
   return (
     <>
-      <FullPageShellHeader
-        backFallbackHref={backFallbackHref}
-        backFallbackTitle={backFallbackTitle}
-      >
+      <FullPageShellHeader>
         <Title size='small' component='span'>
           {product.name}
         </Title>
@@ -216,13 +210,18 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   }
 
   const category = productPageCategory((await productPage).data?.products?.items?.[0])
+
+  const up =
+    category?.url_path && category?.name
+      ? { href: `/${category.url_path}`, title: category.name }
+      : { href: `/`, title: 'Home' }
+
   return {
     props: {
       ...(await productPage).data,
       ...(await typeProductPage).data,
       apolloState: await conf.then(() => client.cache.extract()),
-      backFallbackHref: category?.url_path ? `/${category?.url_path}` : null,
-      backFallbackTitle: category?.name ?? null,
+      up,
     },
     revalidate: 60 * 20,
   }

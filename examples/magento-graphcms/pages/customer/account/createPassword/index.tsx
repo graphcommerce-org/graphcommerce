@@ -29,7 +29,7 @@ function CustomerAccountCreatePasswordPage() {
         metaDescription='Create new password'
         metaRobots={['noindex']}
       />
-      <SheetShellHeader backFallbackHref='/account/signin' backFallbackTitle='Sign In'>
+      <SheetShellHeader>
         <Title size='small' component='span'>
           {!success ? 'Set your new password' : 'You have now successfully reset your password'}
         </Title>
@@ -96,6 +96,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variant: 'bottom',
       size: 'max',
+      up: { href: '/account/signin', title: 'Sign In' },
     },
   }
 }

@@ -77,8 +77,6 @@ function PaymentPage() {
                   <Stepper steps={3} currentStep={3} />
                 </Container>
               }
-              backFallbackHref='/checkout'
-              backFallbackTitle='Shipping'
             >
               <Title size='small' icon={iconId}>
                 Payment
@@ -177,6 +175,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await page).data,
+      up: { href: '/checkout', title: 'Shipping' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

@@ -125,6 +125,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       alwaysShowLogo: true,
       ...(await page).data,
       ...(await productList).data,
+      up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

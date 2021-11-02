@@ -37,7 +37,7 @@ function AccountNamePage() {
 
   return (
     <>
-      <SheetShellHeader backFallbackTitle='Account' backFallbackHref='/account'>
+      <SheetShellHeader>
         <Title size='small' component='span' icon={iconId}>
           Name
         </Title>
@@ -80,6 +80,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variant: 'bottom',
       size: 'max',
+      up: { href: '/account', title: 'Account' },
     },
   }
 }

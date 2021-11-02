@@ -66,8 +66,6 @@ function ShippingPage() {
             <Stepper currentStep={2} steps={3} />
           </Container>
         }
-        backFallbackHref='/cart'
-        backFallbackTitle='Cart'
       >
         <Title size='small' icon={iconBox}>
           Shipping
@@ -148,6 +146,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await page).data,
+      up: { href: '/cart', title: 'Cart' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }
