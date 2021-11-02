@@ -101,7 +101,6 @@ export default function SignUpFormInline({
               loading={formState.isSubmitting}
               color='secondary'
               variant='pill'
-              text='bold'
             >
               Sign up
             </Button>

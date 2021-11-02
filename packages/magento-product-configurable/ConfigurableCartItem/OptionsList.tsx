@@ -12,8 +12,8 @@ const useStyles = makeStyles(
       paddingBottom: 4,
     },
     option: {
-      borderBottom: `1px solid ${theme.palette.grey['500']}`,
-      color: theme.palette.grey['500'],
+      color: theme.palette.text.secondary,
+      textDecoration: 'underline',
       marginRight: theme.spacings.xs,
       paddingBottom: 1,
       display: 'inline',

@@ -38,7 +38,7 @@ const useStyles = makeStyles(
       paddingLeft: 0,
       paddingRight: 0,
       [theme.breakpoints.up('md')]: {
-        background: '#fff',
+        background: theme.palette.background.default,
         borderRadius: '99em',
       },
       [theme.breakpoints.down('sm')]: {
@@ -52,6 +52,8 @@ const useStyles = makeStyles(
       paddingBottom: 1,
       [theme.breakpoints.up('md')]: {
         borderRadius: '99em',
+        paddingLeft: 6,
+        paddingRight: 6,
       },
       columnGap: 6,
       gridAutoColumns: 'min-content',

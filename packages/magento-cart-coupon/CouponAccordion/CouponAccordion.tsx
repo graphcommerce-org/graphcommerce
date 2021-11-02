@@ -22,7 +22,7 @@ const useStyles = makeStyles(
         background: 'none',
       },
       boxShadow: 'none',
-      border: '1px solid #ededed',
+      border: `1px solid ${theme.palette.divider}`,
       borderRadius: 8,
       overflow: 'hidden',
     },

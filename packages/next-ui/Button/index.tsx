@@ -19,13 +19,11 @@ type ButtonClassKey =
   | 'pillSizeLarge'
   | 'pillSizeSmall'
   | 'pillNoElevation'
-  | 'textBold'
   | 'withStartIcon'
   | 'startIconText'
   | 'loading'
 
 type ClassKeys = ButtonClassKey | MuiButtonClassKey
-type Text = 'normal' | 'bold'
 
 export type ButtonProps = BaseButtonProps & {
   classes?: { [index in ClassKeys]?: string }
@@ -64,9 +62,11 @@ const useStyles = makeStyles<
         boxShadow: theme.shadows[6],
         borderRadius: 25,
         padding: '6px 16px',
-
         '&:hover': {
           background: theme.palette.secondary.dark,
+        },
+        '& svg': {
+          stroke: theme.palette.secondary.contrastText,
         },
       },
     },
@@ -87,9 +87,6 @@ const useStyles = makeStyles<
       '&:active': {
         boxShadow: 'none',
       },
-    },
-    textBold: {
-      fontWeight: theme.typography.fontWeightBold,
     },
     startIconText: {
       display: 'none',
@@ -117,7 +114,6 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
     pillSizeLarge,
     pillSizeSmall,
     pillLink,
-    textBold,
     ...buttonClasses
   } = classes
 
@@ -130,7 +126,6 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
       pillSizeLarge,
       pillSizeSmall,
       pillLink,
-      textBold,
       ...buttonClasses,
     },
   })
@@ -161,7 +156,6 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
           [pillClasses.pillSizeSmall]: variant === 'pill' && size === 'small',
           [pillClasses.pillNoElevation]: buttonProps.disableElevation,
           [pillClasses.pillLink]: variant === 'pill-link',
-          [pillClasses.textBold]: text === 'bold',
           [pillClasses.loading]: loading,
           [pillClasses.withStartIcon]: withIcon,
         },

@@ -10,11 +10,14 @@ import { GetCartSummaryDocument } from './GetCartSummary.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      borderRadius: 4,
-      background: '#FFFADD',
       margin: `${theme.spacings.sm} 0`,
+      '& div:last-child': {
+        borderRadius: '0 0 4px 4px',
+      },
     },
     detailsContainer: {
+      borderRadius: '4px 4px 0 0',
+      background: theme.palette.type === 'light' ? '#FFE10820' : theme.palette.background.paper,
       padding: theme.spacings.sm,
       gridColumnGap: theme.spacings.xl,
       gridRowGap: theme.spacings.sm,

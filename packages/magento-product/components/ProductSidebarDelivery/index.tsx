@@ -14,7 +14,8 @@ const useStyles = makeStyles(
       gridTemplateColumns: `min-content auto`,
       columnGap: theme.spacings.xxs,
       marginTop: theme.spacings.xxs,
-      background: '#fff',
+      background: theme.palette.background.paper,
+      border: `1px solid ${theme.palette.divider}`,
       padding: theme.spacings.xxs,
       borderRadius: responsiveVal(4, 6),
     },
@@ -30,7 +31,7 @@ const useStyles = makeStyles(
     },
     subtitle: {
       gridArea: 'subtitle',
-      color: theme.palette.text.disabled,
+      color: theme.palette.text.primary,
     },
   }),
   { name: 'ProductSidebarDelivery' },

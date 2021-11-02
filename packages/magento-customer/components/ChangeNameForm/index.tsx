@@ -4,7 +4,6 @@ import {
   FormActions,
   FormDivider,
   MessageSnackbar,
-  SvgImage,
   iconCheckmark,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
@@ -45,7 +44,6 @@ export default function ChangeNameForm(props: ChangeNameFormProps) {
         <FormActions>
           <Button
             type='submit'
-            text='bold'
             color='primary'
             variant='contained'
             size='large'

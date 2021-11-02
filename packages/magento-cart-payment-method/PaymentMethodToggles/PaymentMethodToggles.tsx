@@ -45,12 +45,12 @@ const useStyles = makeStyles(
       gap: 10,
     },
     buttonRoot: {
-      background: theme.palette.background.default,
+      background: theme.palette.background.paper,
       borderRadius: 0,
       width: 30,
       height: responsiveVal(60, 85),
       boxShadow: 'none',
-      border: '1px solid #eee',
+      border: `1px solid ${theme.palette.divider}`,
       '&:focus': {
         boxShadow: 'none',
       },
@@ -72,7 +72,7 @@ const useStyles = makeStyles(
     },
     toggleButton: {
       ...theme.typography.h5,
-      border: '1px solid #eee',
+      border: `1px solid ${theme.palette.divider}`,
       borderRadius: 4,
       boxShadow: 'none',
       transition: 'color .15s ease',

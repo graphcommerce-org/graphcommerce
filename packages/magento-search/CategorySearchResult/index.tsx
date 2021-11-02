@@ -14,6 +14,7 @@ import { CategorySearchResultFragment } from './CategorySearchResult.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     categoryButton: {
+      background: theme.palette.background.default,
       padding: `${theme.spacings.xs} 18px ${theme.spacings.xs} 14px`,
       display: 'flex',
       justifyContent: 'space-between',
@@ -27,7 +28,7 @@ const useStyles = makeStyles(
         boxShadow: 'none',
       },
       '&:hover': {
-        background: theme.palette.background.highlight,
+        background: theme.palette.background.paper,
       },
     },
     totalProducts: {

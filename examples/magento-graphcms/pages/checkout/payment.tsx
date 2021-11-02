@@ -134,7 +134,6 @@ function PaymentPage() {
                       color='secondary'
                       variant='pill'
                       size='large'
-                      text='bold'
                       endIcon={<SvgImageSimple src={iconChevronRight} inverted />}
                     >
                       Place order

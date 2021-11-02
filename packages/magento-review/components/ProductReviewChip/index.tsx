@@ -1,5 +1,5 @@
 import { SvgImageSimple, iconStar } from '@graphcommerce/next-ui'
-import { Chip, ChipProps, makeStyles } from '@material-ui/core'
+import { Chip, ChipProps, makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 
 export type ProductReviewChipProps = {
@@ -9,31 +9,34 @@ export type ProductReviewChipProps = {
   shapeOnly?: boolean
 } & ChipProps
 
-const useStyles = makeStyles({
-  ratingContainer: {
-    width: '100%',
-    position: 'relative',
-  },
-  rating: {
-    position: 'absolute',
-    overflow: 'hidden',
-    '& > img': {
-      display: 'inline',
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    ratingContainer: {
+      width: '100%',
+      position: 'relative',
     },
-    zIndex: 1,
-  },
-  maxRating: {
-    opacity: 0.4,
-    '& > img': {
-      display: 'inline',
-      filter: 'grayscale(100%)',
+    rating: {
+      position: 'absolute',
+      overflow: 'hidden',
+      '& > img': {
+        display: 'inline',
+      },
+      zIndex: 1,
     },
-  },
-  iconStar: {
-    stroke: '#FFDA1C',
-    fill: '#FFDA1C',
-  },
-})
+    maxRating: {
+      opacity: 0.4,
+      '& > img': {
+        display: 'inline',
+        filter: 'grayscale(100%)',
+      },
+    },
+    iconStar: {
+      stroke: '#FFDA1C',
+      fill: '#FFDA1C',
+    },
+  }),
+  { name: 'ProductListReviews' },
+)
 
 export default function ProductReviewChip(props: ProductReviewChipProps) {
   const { rating, reviewSectionId = '', shapeOnly = false, max = 5, ...chipProps } = props

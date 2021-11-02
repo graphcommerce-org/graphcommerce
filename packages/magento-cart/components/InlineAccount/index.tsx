@@ -91,7 +91,6 @@ export default function InlineAccount(props: InlineAccountProps) {
                   <Button
                     variant='pill'
                     color='secondary'
-                    text='bold'
                     loading={loading}
                     onClick={() => setToggled(!toggled)}
                     className={classes.button}
@@ -137,7 +136,6 @@ export default function InlineAccount(props: InlineAccountProps) {
               <Button
                 variant='pill'
                 color='secondary'
-                text='bold'
                 href={accountHref}
                 className={classes.button}
               >

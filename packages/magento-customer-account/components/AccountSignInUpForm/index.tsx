@@ -89,13 +89,7 @@ export default function AccountSignInUpForm() {
           </Typography>
 
           <FormActions>
-            <Button
-              onClick={() => router.back()}
-              color='primary'
-              variant='contained'
-              size='large'
-              text='bold'
-            >
+            <Button onClick={() => router.back()} color='primary' variant='contained' size='large'>
               Continue shopping
             </Button>
           </FormActions>
@@ -151,7 +145,6 @@ export default function AccountSignInUpForm() {
                     variant='contained'
                     color='primary'
                     size='large'
-                    text='bold'
                   >
                     Continue
                   </Button>

@@ -7,7 +7,10 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     wrapper: {
       display: 'grid',
-      background: 'rgba(0,0,0,0.03)',
+      background:
+        theme.palette.type === 'light'
+          ? theme.palette.background.image
+          : theme.palette.background.paper,
       justifyItems: 'center',
       columnGap: theme.spacings.lg,
       padding: `${theme.spacings.xl} 0`,
@@ -27,12 +30,14 @@ const useStyles = makeStyles(
       },
     },
     copy: {
+      marginTop: theme.spacings.lg,
       color: theme.palette.text.primary,
       maxWidth: '80%',
       display: 'grid',
       alignContent: 'center',
       [theme.breakpoints.up('md')]: {
         maxWidth: '70%',
+        marginTop: 0,
       },
       '& > *': {
         maxWidth: 'max-content',

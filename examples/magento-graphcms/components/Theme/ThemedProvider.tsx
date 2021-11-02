@@ -1,67 +1,70 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
 import { responsiveVal } from '@graphcommerce/next-ui'
-import { createTheme, CssBaseline, Theme, ThemeProvider } from '@material-ui/core'
+import { createTheme, CssBaseline, Theme, ThemeProvider, lighten, alpha } from '@material-ui/core'
 import { PaletteOptions } from '@material-ui/core/styles/createPalette'
 import { Overrides } from '@material-ui/core/styles/overrides'
 import React from 'react'
 import shadows from './shadows'
 
+const useTheme: 'light' | 'dark' = 'light'
+
 const lightPalette: PaletteOptions = {
   type: 'light',
   primary: {
     main: '#FF4A55',
-    contrastText: '#000',
+    contrastText: '#FFFFFF',
     dark: '#F33642',
   },
   secondary: {
     main: '#006BFF',
     light: '#D1E4FF',
-    contrastText: '#FFF',
+    contrastText: '#ffffff',
   },
   background: {
-    default: '#FFF',
-    paper: '#fff',
-    highlight: '#F8F8F8',
+    default: '#ffffff',
+    paper: '#ffffff',
+    image: '#F8F8F8',
   },
-  divider: '#EBEBEB',
+  divider: '#00000015',
   success: {
     main: '#01D26A',
   },
   text: {
-    primary: '#000',
-    secondary: '#000',
-    disabled: '#bbb',
+    primary: '#000000',
+    secondary: '#00000050',
+    disabled: '#00000030',
   },
 }
 
-// const darkPalette: PaletteOptions = {
-//   type: 'dark',
-//   primary: {
-//     main: '#62C7B0',
-//     contrastText: '#fff',
-//     dark: '#62C7B0',
-//   },
-//   secondary: {
-//     main: '#006BFF',
-//     light: '#D1E4FF',
-//     contrastText: '#FFF',
-//   },
-//   background: {
-//     default: '#001727',
-//     paper: 'rgb(20 43 56)',
-//     highlight: 'rgb(20 43 56)',
-//   },
-//   divider: '#EBEBEB',
-//   success: {
-//     main: '#01D26A',
-//   },
-//   text: {
-//     primary: '#fff',
-//     secondary: '#fff',
-//     disabled: '#999',
-//   },
-// }
+const darkPalette: PaletteOptions = {
+  type: 'dark',
+  primary: {
+    main: '#62C7B0',
+    contrastText: '#ffffff',
+    dark: '#62C7B0',
+  },
+  action: {},
+  secondary: {
+    main: '#006BFF',
+    light: '#142b38',
+    contrastText: '#ffffff',
+  },
+  background: {
+    default: '#001727',
+    paper: lighten('#001727', 0.08),
+    image: '#F8F8F8',
+  },
+  divider: '#ffffff30',
+  success: {
+    main: '#01D26A',
+  },
+  text: {
+    primary: '#ffffff',
+    secondary: '#ffffff80',
+    disabled: '#ffffff30',
+  },
+}
 
 // Create a theme instance.
 const createThemeWithPallete = (palette: PaletteOptions) =>
@@ -116,35 +119,35 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
        * Since we aren't using the h4-h6 variants they can be repurposed for different usecases:
        */
       h1: {
-        fontFamily: ['Public Sans', 'sans-serif'].join(', '),
+        // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontSize: responsiveVal(28, 64),
         fontWeight: 700,
         // letterSpacing: '-0.0375em',
         lineHeight: 1.22,
       },
       h2: {
-        fontFamily: ['Public Sans', 'sans-serif'].join(', '),
+        // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontSize: responsiveVal(25, 40),
         fontWeight: 700,
         // letterSpacing: '-0.0375em',
         lineHeight: 1.35,
       },
       h3: {
-        fontFamily: ['Public Sans', 'sans-serif'].join(', '),
+        // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontSize: responsiveVal(22, 30),
         fontWeight: 700,
         // letterSpacing: '-0.0375em',
         lineHeight: 1.55,
       },
       h4: {
-        fontFamily: ['Public Sans', 'sans-serif'].join(', '),
+        // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontWeight: 500,
         fontSize: responsiveVal(18, 26),
         // letterSpacing: '-0.0375em',
         lineHeight: 1.55,
       },
       h5: {
-        fontFamily: ['Public Sans', 'sans-serif'].join(', '),
+        // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
 
         fontWeight: 700,
         // letterSpacing: '-0.0375em',
@@ -152,7 +155,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
         lineHeight: 1.55,
       },
       h6: {
-        fontFamily: ['Public Sans', 'sans-serif'].join(', '),
+        // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
 
         fontSize: responsiveVal(17, 20),
         fontWeight: 550,
@@ -168,7 +171,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       fontWeightBold: 600,
       body1: {
         // We're boosting the fontSize to be 17px at 1280
-        fontSize: responsiveVal(15, 18, 1920),
+        fontSize: responsiveVal(16, 18, 1920),
         lineHeight: 1.7,
       },
       subtitle2: {
@@ -187,7 +190,6 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       button: {},
       overline: {
         fontSize: responsiveVal(12, 14),
-        color: `rgba(0, 0, 0, 0.3)`,
         fontWeight: 500,
         letterSpacing: 1,
         lineHeight: 1.2,
@@ -222,9 +224,13 @@ const createOverrides = (theme: Theme): Overrides => {
       '@global': {
         body: {
           overflowY: 'scroll',
+          '& [class*="Sheet-content"]': {
+            background: theme.palette.background.default,
+          },
+          stroke: theme.palette.text.primary,
         },
-        '::selection': { background: '#ff4a557d' },
-        '::-moz-selection': { background: '#ff4a557d' },
+        '::selection': { background: alpha(theme.palette.primary.main, 0.6) },
+        '::-moz-selection': { background: alpha(theme.palette.primary.main, 0.6) },
         '#__next': {
           position: 'relative',
         },
@@ -242,14 +248,15 @@ const createOverrides = (theme: Theme): Overrides => {
     },
     MuiButton: {
       root: {
-        fontWeight: 400,
         textTransform: 'none',
         ...theme.typography.body2,
-        padding: `${responsiveVal(6, 8)} ${responsiveVal(12, 22)}`,
+        fontWeight: 400,
+        padding: `${responsiveVal(8, 10)} ${responsiveVal(12, 22)}`,
       },
       sizeLarge: {
         padding: `${responsiveVal(10, 15)} ${responsiveVal(30, 60)}`,
         ...theme.typography.body1,
+        fontWeight: 500,
       },
       iconSizeLarge: {
         '& > *:first-child': { fontSize: 24 },
@@ -258,40 +265,52 @@ const createOverrides = (theme: Theme): Overrides => {
         marginLeft: 0,
       },
       contained: {
-        backgroundColor: '#fff',
+        backgroundColor: theme.palette.background.paper,
+        color: theme.palette.text.primary,
         boxShadow: theme.shadows[1],
-        '&:hover': { boxShadow: theme.shadows[1] },
-        '&:focus': { boxShadow: theme.shadows[1] },
+        '&:hover': {
+          boxShadow: theme.shadows[1],
+          backgroundColor: lighten(theme.palette.background.default, 0.16),
+        },
+        '&:focus': {
+          boxShadow: theme.shadows[1],
+          backgroundColor: lighten(theme.palette.background.default, 0.16),
+        },
       },
       containedPrimary: {
-        color: '#fff',
-        '& .MuiSvgIcon-root': { color: '#fff' },
+        fontWeight: 500,
+        color: theme.palette.primary.contrastText,
+        '& svg': { stroke: theme.palette.primary.contrastText },
       },
       containedSecondary: {
-        color: '#fff',
-        '& .MuiSvgIcon-root': { color: '#fff' },
+        fontWeight: 500,
+        color: theme.palette.secondary.contrastText,
+        '& svg': { stroke: theme.palette.secondary.contrastText },
       },
       outlined: {
         borderRadius: 0,
-      },
-    },
-    MuiIconButton: {
-      sizeSmall: {
-        //
       },
     },
     MuiFab: {
       root: {
         backgroundColor: theme.palette.background.paper,
         '&:hover': { backgroundColor: theme.palette.background.paper },
+        '& svg': { stroke: theme.palette.text.primary },
+      },
+      colorInherit: {
+        backgroundColor: 'inherit',
+        '&:hover, &:focus': {
+          backgroundColor: 'inherit',
+        },
+        boxShadow: 'none',
       },
       primary: {
-        color: '#fff',
-        '& .MuiSvgIcon-root': { color: '#fff' },
+        color: theme.palette.text.primary,
+        '& svg': { stroke: theme.palette.text.primary },
       },
       secondary: {
-        color: '#fff',
-        '& .MuiSvgIcon-root': { color: '#fff' },
+        color: theme.palette.text.primary,
+        // '& svg': { stroke: theme.palette.text.primary },
       },
       extended: {
         fontWeight: 400,
@@ -312,15 +331,20 @@ const createOverrides = (theme: Theme): Overrides => {
         },
       },
     },
+    MuiIconButton: {
+      label: {
+        stroke: theme.palette.text.primary,
+      },
+    },
     MuiChip: {
       root: {
         boxShadow: 'unset !important',
-        backgroundColor: theme.palette.background.paper,
         borderRadius: '99em',
         height: responsiveVal(32, 40),
         paddingLeft: responsiveVal(4, 8),
         paddingRight: responsiveVal(4, 8),
         ...theme.typography.body2,
+        backgroundColor: theme.palette.background.paper,
       },
       sizeSmall: {
         height: responsiveVal(26, 30),
@@ -330,6 +354,8 @@ const createOverrides = (theme: Theme): Overrides => {
       },
       outlined: {
         borderColor: theme.palette.divider,
+        backgroundColor: theme.palette.background.default,
+        // color: theme.palette.text.primary,
       },
       label: {
         paddingLeft: responsiveVal(6, 10),
@@ -339,8 +365,33 @@ const createOverrides = (theme: Theme): Overrides => {
         paddingLeft: responsiveVal(4, 8),
         paddingRight: responsiveVal(4, 8),
       },
+      colorPrimary: {
+        //
+      },
+      colorSecondary: {
+        //
+      },
+      deleteIcon: {
+        stroke: theme.palette.text.primary,
+      },
+      deleteIconOutlinedColorPrimary: {
+        stroke: theme.palette.primary.main,
+      },
+      clickable: {
+        '&:hover, &:focus': {
+          backgroundColor: lighten(theme.palette.background.default, 0.16),
+        },
+        '&.MuiChip-outlined': {
+          '&:hover, &:focus': {
+            backgroundColor: `${lighten(theme.palette.background.default, 0.16)} !important`,
+          },
+        },
+      },
     },
     MuiCheckbox: {
+      root: {
+        stroke: 'none',
+      },
       colorPrimary: {
         color: theme.palette.text.disabled,
         '&$checked': {
@@ -354,10 +405,12 @@ const createOverrides = (theme: Theme): Overrides => {
         },
       },
     },
-    MuiSwitch: {
+    MuiSvgIcon: {
       root: {
-        padding: 7,
+        stroke: 'none',
       },
+    },
+    MuiSwitch: {
       track: {
         '$colorPrimary + &': {
           backgroundColor: theme.palette.primary,
@@ -373,17 +426,19 @@ const createOverrides = (theme: Theme): Overrides => {
         backgroundColor: '#fff',
       },
     },
+    MuiAvatar: {
+      colorDefault: {
+        backgroundColor: theme.palette.text.disabled,
+      },
+    },
   }
 }
 
-const lightTheme = createThemeWithPallete(lightPalette)
-lightTheme.overrides = createOverrides(lightTheme)
-
-// const darkTheme = createThemeWithPallete(darkPalette)
-// darkTheme.overrides = createOverrides(darkTheme)
+const currentTheme = createThemeWithPallete(useTheme === 'light' ? lightPalette : darkPalette)
+currentTheme.overrides = createOverrides(currentTheme)
 
 const ThemedProvider: React.FC = ({ children }) => (
-  <ThemeProvider theme={lightTheme}>
+  <ThemeProvider theme={currentTheme}>
     <CssBaseline />
     {children}
   </ThemeProvider>

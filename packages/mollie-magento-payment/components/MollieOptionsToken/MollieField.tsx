@@ -98,7 +98,10 @@ type MollieFieldProps = {
 
 const useStyles = makeStyles((theme: Theme) => ({
   label: {
-    background: '#f7f7f7',
+    background:
+      theme.palette.type === 'light'
+        ? theme.palette.secondary.light
+        : theme.palette.background.paper,
   },
 }))
 

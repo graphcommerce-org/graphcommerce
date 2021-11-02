@@ -22,10 +22,10 @@ const useStyles = makeStyles(
       padding: 0,
       borderRadius: 0,
       '&:hover': {
-        background: theme.palette.background.highlight,
+        background: theme.palette.background.paper,
       },
       '&:disabled': {
-        background: theme.palette.background.highlight,
+        background: theme.palette.background.paper,
       },
       '&:focus': {
         // fix: disableElevation does not work when button is focused

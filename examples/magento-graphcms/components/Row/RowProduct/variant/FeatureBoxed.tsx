@@ -38,7 +38,11 @@ export default function FeatureBoxed(props: FeatureBoxedProps) {
         )
       }
     >
-      {title && <Typography variant='overline'>{title}</Typography>}
+      {title && (
+        <Typography variant='overline' color='textSecondary'>
+          {title}
+        </Typography>
+      )}
       {productCopy?.raw && <RichTextFeatureBoxed {...productCopy} />}
     </RowImageTextBoxed>
   )

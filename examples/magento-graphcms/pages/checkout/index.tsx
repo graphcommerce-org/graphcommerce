@@ -97,7 +97,6 @@ function ShippingPage() {
                         color='secondary'
                         variant='pill'
                         size='large'
-                        text='bold'
                         loading={
                           buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)
                         }

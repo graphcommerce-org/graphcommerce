@@ -17,7 +17,6 @@ import React, { useEffect, useRef } from 'react'
 import { Row } from '../..'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
-import SvgImage from '../../SvgImage'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../../icons'
 
@@ -34,7 +33,10 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('md')]: {
         gridTemplateColumns: '1fr auto',
       },
-      background: theme.palette.background.highlight,
+      background:
+        theme.palette.type === 'light'
+          ? theme.palette.background.image
+          : theme.palette.background.paper,
       paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
     },
     rootZoomed: {
@@ -56,6 +58,7 @@ const useStyles = makeStyles(
 
       return {
         height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
+        backgroundColor: theme.palette.background.image,
         position: 'relative',
         minHeight: '100%',
         paddingTop: `min(${ratio}, ${maxHeight})`,
@@ -156,7 +159,7 @@ const useStyles = makeStyles(
       top: `calc(50% - 28px)`,
     },
     dots: {
-      background: alpha(theme.palette.background.highlight, 0.7),
+      background: alpha(theme.palette.background.paper, 0.7),
     },
   }),
   { name: 'SidebarGallery' },
@@ -258,7 +261,7 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
               ))}
             </Scroller>
             <m.div layout className={classes.topRight}>
-              <Fab color='inherit' size='small' className={classes.toggleIcon} onMouseUp={toggle}>
+              <Fab size='small' className={classes.toggleIcon} onMouseUp={toggle}>
                 {!zoomed ? (
                   <SvgImageSimple src={iconFullscreen} />
                 ) : (

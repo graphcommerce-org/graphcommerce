@@ -66,7 +66,6 @@ function CustomerAccountCreatePasswordPage() {
                   color='primary'
                   variant='contained'
                   size='large'
-                  text='bold'
                 >
                   Continue shopping
                 </Button>

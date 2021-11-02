@@ -17,7 +17,7 @@ const useStyles = makeStyles(
     overline: {
       display: 'block',
       padding: `${theme.spacings.xs} 0`,
-      borderBottom: `1px solid ${theme.palette.grey[300]}`,
+      borderBottom: `1px solid ${theme.palette.divider}`,
     },
     links: ({ containsBigLinks }: ButtonLinkListPropsBase) => ({
       display: 'grid',

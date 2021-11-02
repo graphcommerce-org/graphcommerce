@@ -11,7 +11,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     costsContainer: {
       borderRadius: 4,
-      background: '#FFFADD',
+      background: theme.palette.type === 'light' ? '#FFE10820' : theme.palette.background.paper,
       padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
     },
     containerMarginTop: {

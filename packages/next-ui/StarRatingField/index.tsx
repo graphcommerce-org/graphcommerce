@@ -2,7 +2,6 @@ import { makeStyles, Theme } from '@material-ui/core'
 import { Rating, RatingProps } from '@material-ui/lab'
 import React from 'react'
 import { SvgImageSimple } from '..'
-import SvgImage from '../SvgImage'
 import { iconStar } from '../icons'
 
 export type StarRatingFieldProps = {

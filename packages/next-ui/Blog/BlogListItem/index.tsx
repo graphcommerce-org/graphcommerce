@@ -17,7 +17,7 @@ const useStyles = makeStyles(
     date: {
       display: 'inline-block',
       textDecoration: 'none',
-      color: 'rgb(0, 0, 0, 0.3)',
+      color: theme.palette.text.disabled,
     },
     asset: {
       display: 'grid',
@@ -32,7 +32,7 @@ const useStyles = makeStyles(
         alignSelf: 'center',
         justifySelf: 'center',
       },
-      background: 'rgb(0, 0, 0, 0.08)',
+      background: theme.palette.background.paper,
     },
     title: {
       ...theme.typography.h3,

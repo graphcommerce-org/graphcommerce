@@ -5,9 +5,7 @@ import {
   Button,
   ButtonProps,
   MessageSnackbar,
-  SvgImage,
   TextInputNumber,
-  iconCheckmark,
   iconChevronRight,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'

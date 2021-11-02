@@ -1,6 +1,7 @@
 import { makeStyles, Theme, Typography, TypographyProps } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
+import { responsiveVal } from '..'
 import { UseStyles } from '../Styles'
 import SvgImage, { SvgImageProps } from '../SvgImage'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
@@ -18,14 +19,13 @@ const useStyles = makeStyles(
       },
     },
     typography: {},
-    icon: {
-      [theme.breakpoints.down('sm')]: {
-        width: 48,
-        height: 48,
-      },
-    },
     small: {
       flexFlow: 'unset',
+      '& svg': {
+        width: responsiveVal(24, 28),
+        height: responsiveVal(24, 28),
+        strokeWidth: 1.4,
+      },
     },
   }),
   {

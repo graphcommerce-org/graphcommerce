@@ -65,7 +65,7 @@ const useFilterEqualStyles = makeStyles(
       textDecoration: 'none',
     },
     resetButton: {
-      background: theme.palette.grey['100'],
+      // background: theme.palette.grey['100'],
       marginRight: theme.spacings.xxs,
     },
     filterAmount: {
@@ -87,7 +87,7 @@ const useFilterEqualStyles = makeStyles(
     },
     isActive: {
       border: `1px solid ${theme.palette.primary.main}`,
-      boxShadow: `inset 0 0 0 4px #fff`,
+      boxShadow: `inset 0 0 0 4px ${theme.palette.background.paper}`,
     },
   }),
   { name: 'FilterEqual' },

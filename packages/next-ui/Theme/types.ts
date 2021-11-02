@@ -2,7 +2,7 @@ export {}
 
 declare module '@material-ui/core/styles/createPalette' {
   interface TypeBackground {
-    highlight: string
+    image: string
   }
 }
 
