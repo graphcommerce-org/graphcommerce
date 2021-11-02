@@ -65,8 +65,8 @@ export default function FullPageShellBase(props: FullPageShellBaseProps) {
     menuFab,
     cartFab,
     name,
-    hideFabsOnVirtualKeyboardOpen = false,
-    alwaysShowHeader = false,
+    hideFabsOnVirtualKeyboardOpen,
+    alwaysShowHeader,
   } = props
   const classes = useStyles(props)
 

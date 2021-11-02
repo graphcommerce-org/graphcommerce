@@ -36,7 +36,7 @@ const useStyles = makeStyles(
         justifyContent: 'left',
       },
     },
-    logoAlwaysShow: {
+    hideLogoOnMobile: {
       display: 'none',
       [theme.breakpoints.up('md')]: {
         display: 'unset',
@@ -67,7 +67,7 @@ export default function Logo(props: LogoProps) {
           className={clsx(
             classes.logo,
             theme.palette.type === 'dark' && classes.dark,
-            alwaysShow && classes.logoAlwaysShow,
+            !alwaysShow && classes.hideLogoOnMobile,
           )}
         />
       </a>

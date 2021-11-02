@@ -13,7 +13,7 @@ const useStyles = makeStyles(
   { name: 'FullPageShell' },
 )
 
-type PlaceholderFabProps = FabProps & UseStyles<typeof useStyles>
+type PlaceholderFabProps = Omit<FabProps, 'children'> & UseStyles<typeof useStyles>
 
 export default function PlaceholderFab(props: PlaceholderFabProps) {
   const { ...fabProps } = props
