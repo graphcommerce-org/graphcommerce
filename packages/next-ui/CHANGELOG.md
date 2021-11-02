@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.12.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.12.1...@graphcommerce/next-ui@3.12.2) (2021-11-02)
+
+
+### Bug Fixes
+
+* **message-snackbar:** children alignment ([02051df](https://github.com/ho-nl/m2-pwa/commit/02051df0f09945218117c6ba2c761e4dca3872a3))
+* **message-snackbar:** children alignment ([9b9ac09](https://github.com/ho-nl/m2-pwa/commit/9b9ac094e10ec3e57155014366f39a22f07a7f52))
+
+
+
+
+
 ## [3.12.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.12.0...@graphcommerce/next-ui@3.12.1) (2021-11-02)
 
 

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.144.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.143.1...@graphcommerce/graphcommerce@2.144.0) (2021-11-02)
+
+
+### Bug Fixes
+
+* **message-snackbar:** children alignment ([02051df](https://github.com/ho-nl/m2-pwa/commit/02051df0f09945218117c6ba2c761e4dca3872a3))
+* **message-snackbar:** children alignment ([9b9ac09](https://github.com/ho-nl/m2-pwa/commit/9b9ac094e10ec3e57155014366f39a22f07a7f52))
+* **shipping-method-form:** stretch scroller items when there are only two methods ([6c925fc](https://github.com/ho-nl/m2-pwa/commit/6c925fcd029ad89b2527e63703660e53d3f69265))
+
+
+### Features
+
+* shipping methods scroller ([3cc4413](https://github.com/ho-nl/m2-pwa/commit/3cc441320d2a3dd003c499be358a118a17e528c3))
+
+
+
+
+
 ## [2.143.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.143.0...@graphcommerce/graphcommerce@2.143.1) (2021-11-02)
 
 

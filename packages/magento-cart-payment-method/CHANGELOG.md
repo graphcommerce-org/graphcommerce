@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.110.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.109.1...@graphcommerce/magento-cart-payment-method@2.110.0) (2021-11-02)
+
+
+### Features
+
+* shipping methods scroller ([3cc4413](https://github.com/ho-nl/m2-pwa/commit/3cc441320d2a3dd003c499be358a118a17e528c3))
+
+
+
+
+
 # [2.109.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.108.8...@graphcommerce/magento-cart-payment-method@2.109.0) (2021-11-02)
 
 
