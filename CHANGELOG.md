@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.143.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.143.0...@graphcommerce/graphcommerce@2.143.1) (2021-11-02)
+
+
+### Bug Fixes
+
+* RemoveCoupon Button and fix pill-link style to match buttons ([6838812](https://github.com/ho-nl/m2-pwa/commit/68388123773fb4f79a3e4b1beb7ecca601d7748e))
+
+
+
+
+
 # [2.143.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.142.6...@graphcommerce/graphcommerce@2.143.0) (2021-11-02)
 
 
