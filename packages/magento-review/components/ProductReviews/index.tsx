@@ -160,7 +160,9 @@ export default function ProductReviews(props: ProductReviewsProps) {
           <div key={review?.summary} className={classes.review}>
             <div className={classes.title}>
               <ProductReviewChip rating={review?.average_rating} size='small' />
-              <Typography variant='h5'> {review?.summary}</Typography>
+              <Typography component='h3' variant='h5'>
+                {review?.summary}
+              </Typography>
             </div>
             <Typography variant='body1'>{review?.text}</Typography>
 

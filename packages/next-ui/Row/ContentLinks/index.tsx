@@ -33,7 +33,7 @@ export default function ContentLinks(props: ContentLinksProps) {
     <Container className={classes.root} maxWidth={false}>
       <ScrollerProvider scrollSnapAlign='none'>
         <Scroller className={classes.scroller} hideScrollbar>
-          <Typography variant='body1' component='h4' className={classes.title}>
+          <Typography variant='body1' component='h3' className={classes.title}>
             {title}
           </Typography>
           {children}
