@@ -64,7 +64,11 @@ const useStyles = makeStyles(
 )
 
 export type MenuFabProps = MenuProps &
-  UseStyles<typeof useStyles> & { children?: React.ReactNode; search?: React.ReactNode }
+  UseStyles<typeof useStyles> & {
+    children?: React.ReactNode
+    search?: React.ReactNode
+    menuIcon?: React.ReactNode
+  }
 
 export default function MenuFab(props: MenuFabProps) {
   const { menu, children, search, menuIcon } = props
