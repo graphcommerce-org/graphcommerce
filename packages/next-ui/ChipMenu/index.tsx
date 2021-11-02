@@ -4,7 +4,7 @@ import React, { PropsWithChildren, useState } from 'react'
 import SectionHeader from '../SectionHeader'
 import responsiveVal from '../Styles/responsiveVal'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
-import { iconChevronDown, iconChevronUp, iconCloseCircle } from '../icons'
+import { iconChevronDown, iconChevronUp, iconCancelAlt } from '../icons'
 
 export const useChipMenuStyles = makeStyles(
   (theme: Theme) => ({
@@ -36,6 +36,10 @@ export const useChipMenuStyles = makeStyles(
         marginTop: '8px',
       },
     },
+    iconCancel: {
+      stroke: `none !important`,
+      fill: `${theme.palette.text.primary} !important`,
+    },
     menuList: {
       padding: 0,
       '&:focus': {
@@ -63,7 +67,7 @@ export default function ChipMenu(props: ChipMenuProps) {
   const classes = useChipMenuStyles(props)
 
   let deleteIcon = selected ? (
-    <SvgImageSimple src={iconCloseCircle} />
+    <SvgImageSimple src={iconCancelAlt} className={classes.iconCancel} />
   ) : (
     <SvgImageSimple src={iconChevronDown} />
   )
