@@ -30,6 +30,9 @@ const lightPalette: PaletteOptions = {
   success: {
     main: '#01D26A',
   },
+  action: {
+    hoverOpacity: 0.16,
+  },
   text: {
     primary: '#000000',
     secondary: '#00000050',
@@ -270,11 +273,17 @@ const createOverrides = (theme: Theme): Overrides => {
         boxShadow: theme.shadows[1],
         '&:hover': {
           boxShadow: theme.shadows[1],
-          backgroundColor: lighten(theme.palette.background.default, 0.16),
+          backgroundColor: lighten(
+            theme.palette.background.default,
+            theme.palette.action.hoverOpacity,
+          ),
         },
         '&:focus': {
           boxShadow: theme.shadows[1],
-          backgroundColor: lighten(theme.palette.background.default, 0.16),
+          backgroundColor: lighten(
+            theme.palette.background.default,
+            theme.palette.action.hoverOpacity,
+          ),
         },
       },
       containedPrimary: {
@@ -289,6 +298,12 @@ const createOverrides = (theme: Theme): Overrides => {
       },
       outlined: {
         borderRadius: 0,
+      },
+      text: {
+        padding: `${responsiveVal(8, 10)} ${responsiveVal(12, 22)}`,
+      },
+      textSecondary: {
+        '& svg': { stroke: theme.palette.secondary.main },
       },
     },
     MuiFab: {
@@ -379,11 +394,17 @@ const createOverrides = (theme: Theme): Overrides => {
       },
       clickable: {
         '&:hover, &:focus': {
-          backgroundColor: lighten(theme.palette.background.default, 0.16),
+          backgroundColor: lighten(
+            theme.palette.background.default,
+            theme.palette.action.hoverOpacity,
+          ),
         },
         '&.MuiChip-outlined': {
           '&:hover, &:focus': {
-            backgroundColor: `${lighten(theme.palette.background.default, 0.16)} !important`,
+            backgroundColor: `${lighten(
+              theme.palette.background.default,
+              theme.palette.action.hoverOpacity,
+            )} !important`,
           },
         },
       },

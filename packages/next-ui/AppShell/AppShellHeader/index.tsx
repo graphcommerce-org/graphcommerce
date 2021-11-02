@@ -113,10 +113,13 @@ const useStyles = makeStyles(
     sheetHeaderActionRight: {
       justifySelf: 'flex-end',
       '& > .Mui-disabled': {
-        opacity: 0.25,
-        color: `${theme.palette.primary.contrastText} !important`,
-        [theme.breakpoints.up('md')]: {
+        // color: `${theme.palette.primary.contrastText} !important`,
+        [theme.breakpoints.up('sm')]: {
+          opacity: 0.25,
           color: `${theme.palette.secondary.contrastText} !important`,
+          '& svg': {
+            stroke: `${theme.palette.secondary.contrastText} !important`,
+          },
         },
       },
     },
@@ -339,6 +342,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
       <Button
         onClick={historyOnClick}
         variant='pill-link'
+        size='small'
         className={classes.backButton}
         startIcon={backIcon}
       >

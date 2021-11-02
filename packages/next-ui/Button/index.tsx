@@ -3,9 +3,11 @@ import {
   ButtonClassKey as MuiButtonClassKey,
   Theme,
   makeStyles,
+  lighten,
 } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
+import { responsiveVal } from '..'
 
 type BaseButtonProps = Omit<Parameters<typeof MuiButton>['0'], 'variant' | 'classes'> & {
   variant?: 'text' | 'outlined' | 'contained' | 'pill' | 'pill-link'
@@ -56,17 +58,21 @@ const useStyles = makeStyles<
       borderRadius: '99em',
     },
     pillLink: {
-      [theme.breakpoints.up('md')]: {
-        background: theme.palette.secondary.main,
-        color: theme.palette.secondary.contrastText,
-        boxShadow: theme.shadows[6],
-        borderRadius: 25,
-        padding: '6px 16px',
+      [theme.breakpoints.up('sm')]: {
+        // manually match MuiButton and containedPrimary styles
+        textTransform: 'none',
+        ...theme.typography.body2,
+        fontWeight: 400,
+        padding: `${responsiveVal(8, 10)} ${responsiveVal(12, 22)}`,
+        backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.primary.contrastText,
+        borderRadius: '99em',
+        boxShadow: theme.shadows[1],
+        '& svg': {
+          stroke: theme.palette.primary.contrastText,
+        },
         '&:hover': {
           background: theme.palette.secondary.dark,
-        },
-        '& svg': {
-          stroke: theme.palette.secondary.contrastText,
         },
       },
     },

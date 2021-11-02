@@ -50,7 +50,7 @@ function MinimalAppShellSubheader(props: Props) {
         <PageShellHeader
           primary={
             <PageLink href='/test/minimal-page-shell' passHref>
-              <Button color='secondary' variant='pill-link'>
+              <Button color='secondary' variant='pill-link' size='small'>
                 Next
               </Button>
             </PageLink>
