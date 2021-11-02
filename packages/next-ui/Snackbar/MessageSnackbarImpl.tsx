@@ -58,14 +58,11 @@ const useStyles = makeStyles(
       },
     },
     children: {
+      display: 'flex',
+      columnGap: 10,
       gridArea: 'children',
       ...theme.typography.subtitle1,
       fontWeight: 400,
-      display: 'grid',
-      alignItems: 'center',
-      justifyContent: 'start',
-      gridAutoFlow: 'column',
-      gap: 10,
     },
     actionButton: {
       gridArea: 'action',

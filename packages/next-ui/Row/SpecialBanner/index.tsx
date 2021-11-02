@@ -86,7 +86,7 @@ export type SpecialBannerProps = UseStyles<typeof useStyles> &
 
 export default function SpecialBanner(props: SpecialBannerProps) {
   const { asset, topic, pageLinks, children, ...containerProps } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   return (
     <Row maxWidth={false} {...containerProps}>

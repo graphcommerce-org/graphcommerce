@@ -1,5 +1,5 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
-import React, { useRef } from 'react'
+import React from 'react'
 import Button from '../../../Button'
 import { UseStyles } from '../../../Styles'
 
