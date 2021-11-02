@@ -9,7 +9,6 @@ import {
 } from '@graphcommerce/next-ui'
 import { Container } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
-import { useRouter } from 'next/router'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
