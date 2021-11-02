@@ -67,10 +67,14 @@ const useStyles = makeStyles(
 )
 
 export type MenuFabProps = MenuProps &
-  UseStyles<typeof useStyles> & { children?: React.ReactNode; search?: React.ReactNode }
+  UseStyles<typeof useStyles> & {
+    children?: React.ReactNode
+    search?: React.ReactNode
+    menuIcon?: React.ReactNode
+  }
 
 export default function MenuFab(props: MenuFabProps) {
-  const { menu, children, search } = props
+  const { menu, children, search, menuIcon } = props
   const classes = useStyles(props)
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
@@ -88,7 +92,7 @@ export default function MenuFab(props: MenuFabProps) {
         onClick={(event) => setOpenEl(event.currentTarget)}
         className={classes.menuFab}
       >
-        <SvgImageSimple src={iconMenu} inverted />
+        {menuIcon ?? <SvgImageSimple src={iconMenu} inverted />}
       </Fab>
 
       <Menu
