@@ -1,7 +1,7 @@
 import { Logo as NextLogo, LogoProps } from '@graphcommerce/next-ui'
 import svgLogo from './graphcommerce.svg'
 
-type ShopLogoProps = LogoProps
+type ShopLogoProps = Omit<LogoProps, 'image'>
 
 export default function Logo(props: ShopLogoProps) {
   return (
