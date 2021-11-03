@@ -28,6 +28,7 @@ export default function SearchButton(props: SearchButtonProps) {
     <TextField
       variant='outlined'
       size='small'
+      label='...'
       classes={{ root: classes.root }}
       InputProps={{
         readOnly: true,

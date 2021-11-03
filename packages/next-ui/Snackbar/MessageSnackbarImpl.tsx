@@ -177,12 +177,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
                   {action}
                 </div>
               )}
-              <Fab
-                className={classes.close}
-                aria-label='Close snackbar'
-                size='small'
-                onClick={hideSnackbar}
-              >
+              <Fab className={classes.close} aria-label='Close' size='small' onClick={hideSnackbar}>
                 <SvgImageSimple src={iconClose} />
               </Fab>
             </>

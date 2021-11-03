@@ -261,7 +261,12 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
               ))}
             </Scroller>
             <m.div layout className={classes.topRight}>
-              <Fab size='small' className={classes.toggleIcon} onMouseUp={toggle}>
+              <Fab
+                size='small'
+                className={classes.toggleIcon}
+                onMouseUp={toggle}
+                aria-label='Toggle Fullscreen'
+              >
                 {!zoomed ? (
                   <SvgImageSimple src={iconFullscreen} />
                 ) : (

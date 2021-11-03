@@ -2,7 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { CmsPageContent } from '@graphcommerce/magento-cms'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps } from '@graphcommerce/next-ui'
+import { GetStaticProps, MetaRobots } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -35,14 +35,17 @@ function CmsPage(props: Props) {
   const title = cmsPage?.title ?? ''
 
   const product = products?.items?.[0]
+  const page = pages?.[0]
+  const metaRobots = page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]
 
   return (
     <>
       <PageMeta
-        title={cmsPage?.meta_title ?? title ?? ''}
-        metaDescription={cmsPage?.meta_description ?? ''}
+        title={page?.metaTitle ?? cmsPage?.meta_title ?? title ?? ''}
+        metaDescription={page?.metaDescription ?? cmsPage?.meta_description ?? ''}
+        metaRobots={metaRobots}
+        canonical={page?.url}
       />
-
       {/* todo: only allow rendering Grid, Swipeable and Backstory here */}
       {pages?.[0] ? (
         <PageContent
