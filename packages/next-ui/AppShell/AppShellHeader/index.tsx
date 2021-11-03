@@ -346,6 +346,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
         size='small'
         className={classes.backButton}
         startIcon={backIcon}
+        aria-label='Back'
       >
         {historyOnClick ? up?.title : 'Back'}
       </Button>
@@ -354,7 +355,12 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   if (!canClickBack && up?.href) {
     back = (
       <PageLink href={up?.href} passHref>
-        <Button variant='pill-link' className={classes.backButton} startIcon={backIcon}>
+        <Button
+          variant='pill-link'
+          className={classes.backButton}
+          startIcon={backIcon}
+          aria-label='Back'
+        >
           {up?.title ?? 'Back'}
         </Button>
       </PageLink>
