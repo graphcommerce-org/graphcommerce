@@ -31,38 +31,12 @@ export function useFormGqlMutation<Q, V>(
   operationOptions?: MutationHookOptions<Q, V>,
 ): UseFormGqlMutationReturn<Q, V> {
   const form = useForm<V>(options)
-
-  const formGqlOptions = {
-    ...options,
-    context: {
-      headers: {
-        'X-ReCaptcha': null,
-      },
-    },
-  }
-
-  useEffect(() => {
-    const recaptcha = (window as unknown as any).grecaptcha
-
-    if (!recaptcha) console.warn('useFormGqlMutation: could not find Google ReCaptcha V3 API')
-
-    recaptcha.ready(async () => {
-      const result = await recaptcha
-        .execute(process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY, { action: 'submit' })
-        .then((token) => {
-          formGqlOptions.context.headers['X-ReCaptcha'] = token
-        })
-
-      return result
-    })
-  })
-
   const tuple = useMutation(document, operationOptions)
   const operation = useFormGql({
     document,
     form,
     tuple,
-    ...formGqlOptions,
+    ...options,
   })
   const muiRegister = useFormMuiRegister(form)
   const valid = useFormValidFields(form, operation.required)

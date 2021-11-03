@@ -41,7 +41,6 @@ export function useFormGql<Q, V>(
     form: UseFormReturn<V>
     tuple: MutationTuple<Q, V> | LazyQueryTuple<Q, V>
     defaultValues?: UseFormProps<V>['defaultValues']
-    context?: GraphQLRequest['context']
   } & UseFormGraphQLCallbacks<Q, V>,
 ): UseFormGqlMethods<Q, V> {
   const { onComplete, onBeforeSubmit, document, form, tuple, defaultValues, context } = options
@@ -60,7 +59,7 @@ export function useFormGql<Q, V>(
       // Wait for the onBeforeSubmit to complete
       if (onBeforeSubmit) variables = await onBeforeSubmit(variables)
 
-      const result = await execute({ variables, context })
+      const result = await execute({ variables })
       if (onComplete && result.data) await onComplete(result, client)
 
       // Reset the state of the form if it is unmodified afterwards

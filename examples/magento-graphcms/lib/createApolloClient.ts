@@ -64,27 +64,46 @@ export function createApolloClient(
     typePolicies,
   })
 
-  const authLink = setContext((_, { headers }) => {
-    let authorization = ''
-    try {
-      const query = cache.readQuery({ query: CustomerTokenDocument })
-      if (query?.customerToken?.token) {
-        authorization = `Bearer ${query?.customerToken?.token}`
-      }
-    } catch (error) {
-      // nothing to do
-    }
+  const authLink = setContext(
+    (_, { headers }) =>
+      new Promise((success, fail) => {
+        const context = {
+          headers: {
+            ...headers,
+            authorization: null,
+            'X-ReCaptcha': null,
+            store: localeToStore(locale),
+          },
+        }
 
-    // todo: Content-Currency
-    // todo: Preview-Version
-    return {
-      headers: {
-        ...headers,
-        authorization,
-        store: localeToStore(locale),
-      },
-    }
-  })
+        try {
+          const query = cache.readQuery({ query: CustomerTokenDocument })
+          if (query?.customerToken?.token) {
+            context.headers.authorization = `Bearer ${query?.customerToken?.token}`
+          }
+        } catch (error) {
+          // nothing to do
+        }
+
+        const googleRecaptcha =
+          typeof window !== 'undefined' && (window as unknown as any).grecaptcha
+
+        if (googleRecaptcha) {
+          googleRecaptcha.ready(() => {
+            googleRecaptcha
+              .execute(process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY, { action: 'submit' })
+              .then((token) => {
+                context.headers['X-ReCaptcha'] = token
+                success(context)
+              })
+          })
+        }
+
+        if (!googleRecaptcha) {
+          success(context)
+        }
+      }),
+  )
 
   const links: (ApolloLink | RequestHandler)[] = [
     measurePerformanceLink,
