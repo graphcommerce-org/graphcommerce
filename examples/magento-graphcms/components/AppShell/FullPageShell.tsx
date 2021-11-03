@@ -69,7 +69,6 @@ function FullPageShell(props: FullPageShellProps) {
       {...uiProps}
       name={name}
       alwaysShowHeader={alwaysShowLogo}
-      hideFabsOnVirtualKeyboardOpen
       header={
         <>
           <Logo alwaysShow={alwaysShowLogo} />

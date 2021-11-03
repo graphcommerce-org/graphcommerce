@@ -1,6 +1,6 @@
 import RichText from '@graphcommerce/graphcms-ui/RichText'
 import { Image } from '@graphcommerce/image'
-import { RowImageText } from '@graphcommerce/next-ui'
+import { ImageText } from '@graphcommerce/next-ui'
 import { Typography, useTheme, withStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { RowProductFragment } from '../RowProduct.gql'
@@ -21,7 +21,7 @@ export default function Feature(props: FeatureProps) {
   if (!item) return null
 
   return (
-    <RowImageText
+    <ImageText
       item={
         item.__typename === 'ProductImage' &&
         item.url && (
@@ -45,6 +45,6 @@ export default function Feature(props: FeatureProps) {
         </Typography>
       )}
       {productCopy?.raw && <RichTextFeature {...productCopy} />}
-    </RowImageText>
+    </ImageText>
   )
 }

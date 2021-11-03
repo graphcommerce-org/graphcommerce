@@ -53,21 +53,11 @@ export type FullPageShellBaseProps = {
   cartFab?: React.ReactNode
   children?: React.ReactNode
   alwaysShowHeader?: boolean
-  hideFabsOnVirtualKeyboardOpen?: boolean
 } & UseStyles<typeof useStyles> &
   PageLayoutBaseProps
 
 export default function FullPageShellBase(props: FullPageShellBaseProps) {
-  const {
-    children,
-    header,
-    footer,
-    menuFab,
-    cartFab,
-    name,
-    hideFabsOnVirtualKeyboardOpen,
-    alwaysShowHeader,
-  } = props
+  const { children, header, footer, menuFab, cartFab, name, alwaysShowHeader } = props
   const classes = useStyles(props)
 
   return (
@@ -78,11 +68,7 @@ export default function FullPageShellBase(props: FullPageShellBaseProps) {
             {header}
           </header>
           <div>
-            <div
-              className={clsx(
-                hideFabsOnVirtualKeyboardOpen && classes.hideFabsOnVirtualKeyboardOpen,
-              )}
-            >
+            <div className={classes.hideFabsOnVirtualKeyboardOpen}>
               {menuFab}
               {cartFab}
             </div>

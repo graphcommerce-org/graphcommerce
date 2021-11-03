@@ -1,6 +1,6 @@
 import RichText from '@graphcommerce/graphcms-ui/RichText'
 import { Image } from '@graphcommerce/image'
-import { RowImageTextBoxed } from '@graphcommerce/next-ui'
+import { ImageTextBoxed } from '@graphcommerce/next-ui'
 import { Typography, useTheme, withStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { RowProductFragment } from '../RowProduct.gql'
@@ -21,7 +21,7 @@ export default function FeatureBoxed(props: FeatureBoxedProps) {
   if (!item) return null
 
   return (
-    <RowImageTextBoxed
+    <ImageTextBoxed
       item={
         item.__typename === 'ProductImage' &&
         item.url && (
@@ -44,6 +44,6 @@ export default function FeatureBoxed(props: FeatureBoxedProps) {
         </Typography>
       )}
       {productCopy?.raw && <RichTextFeatureBoxed {...productCopy} />}
-    </RowImageTextBoxed>
+    </ImageTextBoxed>
   )
 }

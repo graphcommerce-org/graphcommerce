@@ -7,18 +7,7 @@ import { UseStyles } from '../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    logo: {
-      width: 'auto',
-      height: 16,
-      pointerEvents: 'all',
-      paddingLeft: 10,
-      [theme.breakpoints.up('md')]: {
-        width: 'auto',
-        height: 28,
-        paddingLeft: 0,
-        marginTop: '-5px',
-      },
-    },
+    logo: {},
     dark: {
       filter: 'invert(100%)',
     },
