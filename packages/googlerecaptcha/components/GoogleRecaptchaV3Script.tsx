@@ -4,10 +4,9 @@ import React from 'react'
 export default function GoogleRecaptchaV3Script() {
   const siteKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY
 
-  if (!siteKey && process.env.NODE_ENV !== 'development')
+  if (process.env.NODE_ENV !== 'production' && !siteKey)
     console.warn(
-      '[@graphcommerce/googlerecaptcha]',
-      'NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY not found',
+      '[@graphcommerce/googletagmanager]: NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY not found',
     )
 
   return (
