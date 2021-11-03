@@ -187,7 +187,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       },
       // https://web.dev/font-size/#how-the-lighthouse-font-size-audit-fails
       caption: {
-        fontSize: responsiveVal(11, 13),
+        fontSize: responsiveVal(12, 13),
       },
       button: {},
       overline: {
