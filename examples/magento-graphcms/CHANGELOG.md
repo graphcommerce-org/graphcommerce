@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.131.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.130.0...@graphcommerce/magento-graphcms@2.131.0) (2021-11-03)
+
+
+### Bug Fixes
+
+* **full-page-shell:** show logo on mobile ([abe2af7](https://github.com/ho-nl/m2-pwa/commit/abe2af7001ce9a31ba67a9fa326c50a07fe86135))
+* **logo:** correct props propagation ([968025b](https://github.com/ho-nl/m2-pwa/commit/968025bc0bed4843cce7d11c0ef2740edb2ea02b))
+
+
+### Features
+
+* **next-ui:** introducing footer component ([a98129b](https://github.com/ho-nl/m2-pwa/commit/a98129b935b9fd45e985f958a60a4ad6b21c880c))
+
+
+
+
+
 # [2.130.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.129.3...@graphcommerce/magento-graphcms@2.130.0) (2021-11-03)
 
 
