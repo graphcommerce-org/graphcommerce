@@ -66,13 +66,13 @@ export default function Pagination(props: PagePaginationProps) {
   const nextBtnProps = items[items.length - 1]
 
   const chevronLeft = (
-    <Fab size='medium' disabled={page === 1} color='inherit'>
+    <Fab size='medium' disabled={page === 1} color='inherit' aria-label='Previous page'>
       <SvgImageSimple src={iconChevronLeft} />
     </Fab>
   )
 
   const chevronRight = (
-    <Fab size='medium' disabled={page === count} color='inherit'>
+    <Fab size='medium' disabled={page === count} color='inherit' aria-label='Next page'>
       <SvgImageSimple src={iconChevronRight} />
     </Fab>
   )

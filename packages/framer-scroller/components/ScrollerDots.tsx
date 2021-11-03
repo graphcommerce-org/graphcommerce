@@ -59,6 +59,7 @@ const ScrollerDots = m(
             }}
             className={clsx(dot, props.className)}
             classes={classes}
+            aria-label={`img-${idx}`}
           >
             <m.div className={circle} style={{ opacity: item.opacity }} />
           </Fab>

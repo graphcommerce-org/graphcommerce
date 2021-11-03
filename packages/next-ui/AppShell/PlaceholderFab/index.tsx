@@ -20,7 +20,7 @@ export default function PlaceholderFab(props: PlaceholderFabProps) {
   const classes = useStyles(props)
 
   return (
-    <Fab className={classes.placeholderCartFab} size='large' {...fabProps}>
+    <Fab className={classes.placeholderCartFab} size='large' {...fabProps} aria-label='Placeholder'>
       <></>
     </Fab>
   )

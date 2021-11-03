@@ -323,12 +323,13 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
         type='button'
         classes={{ root: classes.fab }}
         onClick={() => router.go(closeSteps * -1)}
+        aria-label='Close'
       >
         <SvgImageSimple src={iconClose} />
       </Fab>
     ) : (
       <PageLink href='/' passHref>
-        <Fab size='small' classes={{ root: classes.fab }}>
+        <Fab size='small' classes={{ root: classes.fab }} aria-label='Close'>
           <SvgImageSimple src={iconClose} />
         </Fab>
       </PageLink>
