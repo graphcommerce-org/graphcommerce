@@ -43,7 +43,7 @@ export function useFormGql<Q, V>(
     defaultValues?: UseFormProps<V>['defaultValues']
   } & UseFormGraphQLCallbacks<Q, V>,
 ): UseFormGqlMethods<Q, V> {
-  const { onComplete, onBeforeSubmit, document, form, tuple, defaultValues, context } = options
+  const { onComplete, onBeforeSubmit, document, form, tuple, defaultValues } = options
   const { encode, type, ...gqlDocumentHandler } = useGqlDocumentHandler<Q, V>(document)
   const [execute, { data, error }] = tuple
   const client = useApolloClient()

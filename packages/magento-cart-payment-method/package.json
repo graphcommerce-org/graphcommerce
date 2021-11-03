@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.4.16",
-    "@graphcommerce/framer-scroller": "^0.4.3",
+    "@graphcommerce/framer-scroller": "^1.0.0",
     "@graphcommerce/graphql": "^2.105.2",
     "@graphcommerce/image": "^2.105.2",
     "@graphcommerce/magento-cart": "^3.5.3",

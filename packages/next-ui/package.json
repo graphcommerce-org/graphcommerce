@@ -11,7 +11,7 @@
   "dependencies": {
     "@apollo/client": "^3.4.16",
     "@graphcommerce/framer-next-pages": "^2.107.3",
-    "@graphcommerce/framer-scroller": "^0.4.3",
+    "@graphcommerce/framer-scroller": "^1.0.0",
     "@graphcommerce/framer-sheet": "^2.105.15",
     "@graphcommerce/framer-utils": "^2.103.13",
     "@graphcommerce/graphql": "^2.105.2",
