@@ -1,5 +1,6 @@
 import { Logo as NextLogo, LogoProps } from '@graphcommerce/next-ui'
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme, useTheme } from '@material-ui/core'
+import clsx from 'clsx'
 import svgLogo from './graphcommerce.svg'
 
 type ShopLogoProps = Omit<LogoProps, 'image'>
@@ -18,17 +19,21 @@ const useStyles = makeStyles(
         marginTop: '-5px',
       },
     },
+    dark: {
+      filter: 'invert(100%)',
+    },
   }),
   { name: 'Logo' },
 )
 
 export default function Logo(props: ShopLogoProps) {
   const classes = useStyles(props)
+  const inverted = useTheme().palette.type === 'dark'
 
   return (
     <NextLogo
       {...props}
-      classes={{ logo: classes.logo }}
+      classes={{ logo: clsx(classes.logo, inverted && classes.dark) }}
       image={{
         layout: 'fixed',
         alt: 'logo',

@@ -8,9 +8,6 @@ import { UseStyles } from '../Styles'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     logo: {},
-    dark: {
-      filter: 'invert(100%)',
-    },
     link: {
       height: '100%',
       width: 'max-content',
@@ -50,11 +47,7 @@ export default function Logo(props: LogoProps) {
       <a className={classes.link}>
         <Image
           {...{ ...image }}
-          className={clsx(
-            classes.logo,
-            theme.palette.type === 'dark' && classes.dark,
-            !alwaysShow && classes.logoHideOnMobile,
-          )}
+          className={clsx(classes.logo, !alwaysShow && classes.logoHideOnMobile)}
         />
       </a>
     </PageLink>
