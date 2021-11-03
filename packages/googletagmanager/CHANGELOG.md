@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/googletagmanager@0.3.2...@graphcommerce/googletagmanager@1.0.1) (2021-11-03)
+
+
+### Bug Fixes
+
+* simplified google tagmanager and create 1.0.0 ([21ac284](https://github.com/ho-nl/m2-pwa/commit/21ac28484de6c12d54f6cf73ad04e459d74892a7))
+
+
+
+
+
 # [0.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/googletagmanager@0.2.10...@graphcommerce/googletagmanager@0.3.0) (2021-10-27)
 
 

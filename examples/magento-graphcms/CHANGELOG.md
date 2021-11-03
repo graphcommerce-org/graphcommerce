@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.130.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.129.3...@graphcommerce/magento-graphcms@2.130.0) (2021-11-03)
+
+
+### Bug Fixes
+
+* add x-recaptcha header to apollo link context when using mutations ([380fe52](https://github.com/ho-nl/m2-pwa/commit/380fe52ebd283df034d8a2c6a4f6a3713955bdd3))
+* remove useless check for cartId ([3ed24ab](https://github.com/ho-nl/m2-pwa/commit/3ed24ab18c8a8be882f03111a50790e25f894053))
+* solve issue where headers weren't properly passed to the backend. ([b481630](https://github.com/ho-nl/m2-pwa/commit/b48163028b063cb2cb17870da230019e7f95c58e))
+* **use-form-gql:** context type ([f355495](https://github.com/ho-nl/m2-pwa/commit/f3554951697fe394a76dd75ecf119f038f8d9bbc))
+
+
+### Features
+
+* google recaptcha v3 integration ([a9fcc16](https://github.com/ho-nl/m2-pwa/commit/a9fcc16f93951e61378c99a2e183e2d754da1d50))
+
+
+
+
+
 ## [2.129.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.129.0...@graphcommerce/magento-graphcms@2.129.1) (2021-11-02)
 
 

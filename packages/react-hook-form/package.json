@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/react-hook-form",
-  "version": "2.102.14",
+  "version": "2.103.0",
   "sideEffects": false,
   "engines": {
     "node": "14.x"

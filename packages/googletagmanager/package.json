@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/googletagmanager",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [

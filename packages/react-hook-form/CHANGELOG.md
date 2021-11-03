@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/react-hook-form@2.102.14...@graphcommerce/react-hook-form@2.103.0) (2021-11-03)
+
+
+### Bug Fixes
+
+* add x-recaptcha header to apollo link context when using mutations ([380fe52](https://github.com/ho-nl/m2-pwa/commit/380fe52ebd283df034d8a2c6a4f6a3713955bdd3))
+* **use-form-gql:** context type ([f355495](https://github.com/ho-nl/m2-pwa/commit/f3554951697fe394a76dd75ecf119f038f8d9bbc))
+
+
+### Features
+
+* google recaptcha v3 integration ([a9fcc16](https://github.com/ho-nl/m2-pwa/commit/a9fcc16f93951e61378c99a2e183e2d754da1d50))
+
+
+
+
+
 ## [2.102.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/react-hook-form@2.102.0...@graphcommerce/react-hook-form@2.102.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/react-hook-form
