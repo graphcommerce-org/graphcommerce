@@ -3,4 +3,4 @@ export * from './hooks'
 
 export * from './typePolicies'
 
-export * from './link/authLink'
+export * from './link/createAuthLink'

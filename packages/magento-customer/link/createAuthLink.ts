@@ -2,7 +2,7 @@ import { ApolloCache, NormalizedCacheObject } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { CustomerTokenDocument } from '../hooks/CustomerToken.gql'
 
-export const createAuthLink = (locale: string, cache: ApolloCache<NormalizedCacheObject>) => {
+export const createAuthLink = (cache: ApolloCache<NormalizedCacheObject>) => {
   return setContext((_, context) => {
     if (!context.headers) context.headers = {}
     try {

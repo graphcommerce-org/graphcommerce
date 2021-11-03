@@ -12,6 +12,7 @@ import {
   errorLink,
 } from '@graphcommerce/graphql'
 import { createAuthLink } from '@graphcommerce/magento-customer'
+import { createStoreLink } from '@graphcommerce/magento-store'
 import { CachePersistor, LocalStorageWrapper } from 'apollo3-cache-persist'
 
 import { policies, migrations } from './typePolicies'
@@ -31,7 +32,8 @@ export function createApolloClient(
     new MutationQueueLink() as unknown as ApolloLink,
     new RetryLink({ attempts: { max: 2 } }),
     errorLink,
-    createAuthLink(locale, cache),
+    createStoreLink(locale),
+    createAuthLink(cache),
     recaptchaLink,
     requestLink,
   ]
