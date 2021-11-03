@@ -7,6 +7,7 @@ const isMutation = (operation: GraphQLRequest) =>
       definition.kind === 'OperationDefinition' && definition.operation === 'mutation',
   )
 
+/** Apollo link that adds the Google reCAPTCHA token to the request context. */
 export const recaptchaLink = setContext(async (operation, context) => {
   const recaptchaKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY
   if (!recaptchaKey || !globalThis.grecaptcha || !isMutation(operation)) return context
