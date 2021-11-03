@@ -26,7 +26,7 @@ export function createApolloClient(
 
   const cache = new InMemoryCache({ possibleTypes: fragments.possibleTypes, typePolicies })
 
-  const links = [
+  const links: ApolloLink[] = [
     measurePerformanceLink,
     new MutationQueueLink() as unknown as ApolloLink,
     new RetryLink({ attempts: { max: 2 } }),
