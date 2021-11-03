@@ -25,21 +25,17 @@ export default function SearchButton(props: SearchButtonProps) {
   const classes = useStyles(props)
 
   return (
-    <>
-      <label id='search'></label>
-      <TextField
-        variant='outlined'
-        size='small'
-        aria-labelledby='search'
-        classes={{ root: classes.root }}
-        InputProps={{
-          readOnly: true,
-          endAdornment: <SvgImageSimple src={iconSearch} size='medium' />,
-          classes: { root: classes.inputRoot },
-          ...InputProps,
-        }}
-        {...textFieldProps}
-      />
-    </>
+    <TextField
+      variant='outlined'
+      size='small'
+      classes={{ root: classes.root }}
+      InputProps={{
+        readOnly: true,
+        endAdornment: <SvgImageSimple src={iconSearch} size='medium' />,
+        classes: { root: classes.inputRoot },
+        ...InputProps,
+      }}
+      {...textFieldProps}
+    />
   )
 }
