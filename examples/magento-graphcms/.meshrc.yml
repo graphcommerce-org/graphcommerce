@@ -8,7 +8,6 @@ sources:
       - filterSchema:
           mode: bare
           filters:
-            - Query.{pages,footer,usps,productpages,pagesConnection}
             - Mutation.none
   - name: m2
     handler:
