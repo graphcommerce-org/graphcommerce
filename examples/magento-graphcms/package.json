@@ -48,7 +48,7 @@
     "@graphcommerce/magento-customer-account": "^2.104.12",
     "@graphcommerce/magento-customer-order": "^2.104.3",
     "@graphcommerce/magento-graphql": "^2.104.2",
-    "@graphcommerce/magento-newsletter": "^0.2.49",
+    "@graphcommerce/magento-newsletter": "^1.0.0",
     "@graphcommerce/magento-payment-braintree": "^2.105.12",
     "@graphcommerce/magento-payment-included": "^2.104.12",
     "@graphcommerce/magento-product": "^3.5.3",
