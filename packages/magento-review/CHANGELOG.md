@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.107.13](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-review@2.107.12...@graphcommerce/magento-review@2.107.13) (2021-11-03)
+
+
+### Bug Fixes
+
+* various accessibility improvements ([47481a9](https://github.com/ho-nl/m2-pwa/commit/47481a9a882ba87968de6dd797557b0b275d75fb))
+
+
+
+
+
 ## [2.107.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-review@2.107.5...@graphcommerce/magento-review@2.107.6) (2021-11-02)
 
 
