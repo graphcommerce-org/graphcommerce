@@ -24,7 +24,14 @@ import {
   ProductListSort,
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellSticky, AppShellTitle, GetStaticProps, Title } from '@graphcommerce/next-ui'
+import {
+  AppShellSticky,
+  AppShellTitle,
+  GetStaticProps,
+  MetaRobots,
+  PageMeta,
+  Title,
+} from '@graphcommerce/next-ui'
 import { Container } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
@@ -73,10 +80,22 @@ function CategoryPage(props: Props) {
   if (isLanding && productList) productList = products?.items?.slice(0, 8)
 
   const product = products?.items?.[0]
+  const page = pages?.[0]
+  const metaRobots = page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]
 
   return (
     <>
-      <CategoryMeta params={params} {...category} />
+      {page ? (
+        <PageMeta
+          title={page?.metaTitle ?? ''}
+          metaDescription={page?.metaDescription ?? ''}
+          metaRobots={metaRobots}
+          // canonical={page?.url}
+        />
+      ) : (
+        <CategoryMeta params={params} {...category} />
+      )}
+
       <FullPageShellHeader>
         <Title size='small'>{category?.name}</Title>
       </FullPageShellHeader>
