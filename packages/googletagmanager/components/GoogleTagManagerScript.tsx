@@ -1,10 +1,27 @@
+import { useRouter } from 'next/router'
 import Script from 'next/script'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 export default function GoogleTagManagerScript() {
   const id = process.env.NEXT_PUBLIC_GTM_ID
 
-  if (!id) console.warn('[@graphcommerce/googletagmanager]', 'NEXT_PUBLIC_GTM_ID not found')
+  if (process.env.NODE_ENV !== 'production' && !id)
+    console.warn('[@graphcommerce/googletagmanager]: NEXT_PUBLIC_GTM_ID not found')
+
+  const router = useRouter()
+
+  useEffect(() => {
+    const onRouteChangeComplete = (url: string) => {
+      const dataLayer = globalThis.dataLayer as Record<string, unknown>[]
+      dataLayer.push({ event: 'pageview', page: url })
+    }
+
+    router.events.on('routeChangeComplete', onRouteChangeComplete)
+
+    return () => {
+      router.events.off('routeChangeComplete', onRouteChangeComplete)
+    }
+  }, [router.events])
 
   return (
     <Script

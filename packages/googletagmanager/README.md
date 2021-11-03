@@ -6,14 +6,9 @@ webshop.
 ### Usage
 
 1. Fill `NEXT_PUBLIC_GTM_ID` in your .env file
-
-2. add `<GoogleTagManagerScript/>` to your \_app.tsx file, preferably as high as
-   you can in the component hierarchy
-
-3. add `<GoogleTagManagerNoScript/>` to your \_document.tsx file, in the body
-   section above `<Main />`
-
-### Hooks
-
-`useGTMPageViewEvent` - every time a route history change happens, pageview
-event gets triggered
+   [example](../../examples/magento-graphcms/.env.example)
+2. Add `<GoogleTagManagerScript/>` to your `pages/_app.tsx` file.
+   [example](../../examples/magento-graphcms/pages/_app.tsx)
+3. Add `<GoogleTagManagerNoScript/>` to your `pages/_document.tsx` file, in the
+   body section above `<Main />`
+   [example](../../examples/magento-graphcms/pages/_document_.tsx)
