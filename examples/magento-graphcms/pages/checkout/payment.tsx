@@ -5,6 +5,7 @@ import {
   CartTotals,
   EmptyCart,
   useCartQuery,
+  useCurrentCartId,
 } from '@graphcommerce/magento-cart'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
 import {
@@ -38,7 +39,6 @@ import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import MinimalPageShell from '../../components/AppShell/MinimalPageShell'
 import { SheetShellProps } from '../../components/AppShell/SheetShell'
-import { CheckoutPaymentPageDocument } from '../../components/GraphQL/CheckoutPaymentPage.gql'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
 
@@ -46,19 +46,15 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function PaymentPage() {
-  const { data } = useCartQuery(CheckoutPaymentPageDocument, {
-    returnPartialData: true,
-  })
-  const cartExists = typeof data?.cart !== 'undefined'
-
+  const cartId = useCurrentCartId()
   const { locked } = useCartLock()
 
   return (
     <ComposedForm>
       <PageMeta title='Payment' metaDescription='Payment' metaRobots={['noindex']} />
       <NoSsr>
-        {!cartExists && <EmptyCart />}
-        {cartExists && (
+        {!cartId && <EmptyCart />}
+        {cartId && (
           <>
             <PageShellHeader
               primary={

@@ -5,6 +5,7 @@ import {
   useApolloClient,
   MutationTuple,
   ApolloError,
+  GraphQLRequest,
 } from '@apollo/client'
 import { UseFormProps, UseFormReturn, UnpackNestedValue, DeepPartial } from 'react-hook-form'
 import diff from './diff'

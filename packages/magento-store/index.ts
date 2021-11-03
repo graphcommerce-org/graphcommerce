@@ -1,6 +1,7 @@
 export { default as PageMeta } from './PageMeta'
 export * from './StoreConfig.gql'
 export * from './localeToStore'
+export * from './link/createStoreLink'
 
 export { default as StoreSwitcherButton } from './switcher/StoreSwitcherButton'
 export * from './switcher/StoreSwitcherButton'

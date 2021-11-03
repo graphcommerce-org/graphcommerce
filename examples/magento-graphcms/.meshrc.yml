@@ -15,11 +15,11 @@ sources:
       graphql:
         endpoint: '{env.MAGENTO_ENDPOINT}'
         schemaHeaders:
-          Store: '{context.req.headers.store}'
-          Authorization: '{context.req.headers.authorization}'
+          Store: '{context.headers.store}'
+          Authorization: '{context.headers.authorization}'
         operationHeaders:
-          Store: '{context.req.headers.store}'
-          Authorization: '{context.req.headers.authorization}'
-          X-ReCaptcha: '{context.req.headers.x-captcha}'
-          Preview-Version: '{context.req.headers.preview-version}'
-          Content-Currency: '{context.req.headers.content-currency}'
+          Store: '{context.headers.store}'
+          Authorization: '{context.headers.authorization}'
+          X-ReCaptcha: "{context.headers['x-recaptcha']}"
+          Preview-Version: "{context.headers['preview-version']}"
+          Content-Currency: "{context.headers['content-currency']}"
