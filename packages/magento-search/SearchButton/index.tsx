@@ -1,11 +1,12 @@
-import { UseStyles, SvgImage, iconSearch, SvgImageSimple } from '@graphcommerce/next-ui'
+import { iconSearch, responsiveVal, SvgImageSimple, UseStyles } from '@graphcommerce/next-ui'
 import { makeStyles, TextField, TextFieldProps, Theme } from '@material-ui/core'
 import React from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      width: '100%',
+      marginRight: theme.spacings.xxs,
+      width: responsiveVal(64, 172),
       '& fieldset': {
         border: `1px solid ${theme.palette.divider}`,
       },
