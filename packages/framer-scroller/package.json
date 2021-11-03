@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/framer-scroller",
-  "version": "0.4.3",
+  "version": "1.0.0",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
