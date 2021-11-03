@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.146.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.146.0...@graphcommerce/graphcommerce@2.146.1) (2021-11-03)
+
+
+### Bug Fixes
+
+* logo shouldnt invert, because it depends on the logo if it can be inverted. ([8426b09](https://github.com/ho-nl/m2-pwa/commit/8426b09688c7c77f45f912c56684ad1f378fc263))
+
+
+
+
+
 # [2.146.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.145.0...@graphcommerce/graphcommerce@2.146.0) (2021-11-03)
 
 
