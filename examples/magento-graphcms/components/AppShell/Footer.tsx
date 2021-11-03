@@ -24,7 +24,13 @@ export default function Footer(props: FooterProps) {
                 edge='start'
               >
                 {link.asset ? (
-                  <SocialIcon src={link.asset.url} width={24} size='small' />
+                  <SocialIcon
+                    src={link.asset.url}
+                    width={24}
+                    height={24}
+                    alt={link.title}
+                    size='small'
+                  />
                 ) : (
                   link.title
                 )}
