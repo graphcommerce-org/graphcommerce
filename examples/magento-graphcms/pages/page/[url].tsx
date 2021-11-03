@@ -10,15 +10,17 @@ import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.
 import { DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
 import RowProduct from '../../components/Row/RowProduct'
-import Backstory from '../../components/Row/RowProduct/variant/Backstory'
-import Feature from '../../components/Row/RowProduct/variant/Feature'
-import FeatureBoxed from '../../components/Row/RowProduct/variant/FeatureBoxed'
-import Grid from '../../components/Row/RowProduct/variant/Grid'
-import Related from '../../components/Row/RowProduct/variant/Related'
-import Reviews from '../../components/Row/RowProduct/variant/Reviews'
-import Specs from '../../components/Row/RowProduct/variant/Specs'
-import Swipeable from '../../components/Row/RowProduct/variant/Swipeable'
-import Upsells from '../../components/Row/RowProduct/variant/Upsells'
+import {
+  Backstory,
+  Feature,
+  FeatureBoxed,
+  Grid,
+  Related,
+  Reviews,
+  Specs,
+  Swipeable,
+  Upsells,
+} from '../../components/Row/RowProduct/variant'
 import apolloClient from '../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }

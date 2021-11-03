@@ -47,7 +47,6 @@ const darkPalette: PaletteOptions = {
     contrastText: '#ffffff',
     dark: '#62C7B0',
   },
-  action: {},
   secondary: {
     main: '#006BFF',
     light: '#142b38',
