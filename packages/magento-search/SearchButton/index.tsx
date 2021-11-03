@@ -26,13 +26,12 @@ export default function SearchButton(props: SearchButtonProps) {
 
   return (
     <TextField
-      aria-labelledby='search'
       variant='outlined'
       size='small'
       classes={{ root: classes.root }}
       InputProps={{
         readOnly: true,
-        endAdornment: <SvgImageSimple id='search' src={iconSearch} size='medium' />,
+        endAdornment: <SvgImageSimple src={iconSearch} size='medium' />,
         classes: { root: classes.inputRoot },
         ...InputProps,
       }}

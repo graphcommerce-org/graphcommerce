@@ -52,13 +52,11 @@ type SvgImageSimpleProps = Omit<ImageProps, 'fixed'> & {
   fill?: boolean
   muted?: boolean
   inverted?: boolean
-  id?: string
 }
 
 const SvgImageSimple = forwardRef<HTMLImageElement, SvgImageSimpleProps>((props, ref) => {
   const {
     className,
-    id,
     size = 'medium',
     muted,
     inverted,
@@ -83,7 +81,6 @@ const SvgImageSimple = forwardRef<HTMLImageElement, SvgImageSimpleProps>((props,
         inverted && classes.inverted,
       )}
       aria-hidden='true'
-      id={id}
     >
       <use href={`${src}#icon`}></use>
     </svg>
