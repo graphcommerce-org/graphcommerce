@@ -48,6 +48,7 @@ const nextConfig = {
   images: {
     domains: (process.env.IMAGE_DOMAINS ?? '').split(',').map((s) => s.trim()),
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    formats: ['image/avif', 'image/webp'],
   },
   i18n: {
     locales: Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES)),
