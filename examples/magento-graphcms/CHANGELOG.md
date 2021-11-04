@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.131.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.131.2...@graphcommerce/magento-graphcms@2.131.3) (2021-11-04)
+
+
+### Bug Fixes
+
+* **blog-item:** image sizes ([1d15c3c](https://github.com/ho-nl/m2-pwa/commit/1d15c3cfc8002fc1b5af1c977199e70130a6bbd4))
+
+
+
+
+
 ## [2.131.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.131.1...@graphcommerce/magento-graphcms@2.131.2) (2021-11-03)
 
 

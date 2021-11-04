@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-sheet@2.105.15...@graphcommerce/framer-sheet@2.106.0) (2021-11-04)
+
+
+### Features
+
+* **sheet-shell-base:** stop animating drawer on browser back ([c6262f1](https://github.com/ho-nl/m2-pwa/commit/c6262f1c3a0d181e57bd5d4971efb469901503b1))
+
+
+
+
+
 ## [2.105.14](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-sheet@2.105.13...@graphcommerce/framer-sheet@2.105.14) (2021-10-29)
 
 

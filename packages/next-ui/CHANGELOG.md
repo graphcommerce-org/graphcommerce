@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.14.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.13.2...@graphcommerce/next-ui@3.14.0) (2021-11-04)
+
+
+### Bug Fixes
+
+* **menu-fab:** fix route change start event handling ([20dde65](https://github.com/ho-nl/m2-pwa/commit/20dde65f8e8ead449b21f4f5292d653d003e6ead))
+
+
+### Features
+
+* **sheet-shell-base:** stop animating drawer on browser back ([c6262f1](https://github.com/ho-nl/m2-pwa/commit/c6262f1c3a0d181e57bd5d4971efb469901503b1))
+
+
+
+
+
 ## [3.13.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.13.1...@graphcommerce/next-ui@3.13.2) (2021-11-03)
 
 

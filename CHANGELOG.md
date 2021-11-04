@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.147.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.146.2...@graphcommerce/graphcommerce@2.147.0) (2021-11-04)
+
+
+### Bug Fixes
+
+* **blog-item:** image sizes ([1d15c3c](https://github.com/ho-nl/m2-pwa/commit/1d15c3cfc8002fc1b5af1c977199e70130a6bbd4))
+* **menu-fab:** fix route change start event handling ([20dde65](https://github.com/ho-nl/m2-pwa/commit/20dde65f8e8ead449b21f4f5292d653d003e6ead))
+
+
+### Features
+
+* **sheet-shell-base:** stop animating drawer on browser back ([c6262f1](https://github.com/ho-nl/m2-pwa/commit/c6262f1c3a0d181e57bd5d4971efb469901503b1))
+
+
+
+
+
 ## [2.146.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.146.1...@graphcommerce/graphcommerce@2.146.2) (2021-11-03)
 
 
