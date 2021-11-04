@@ -1,5 +1,5 @@
 import { cloneDeep } from '@apollo/client/utilities'
-import { useChipMenuStyles, SvgImage, iconCloseCircle } from '@graphcommerce/next-ui'
+import { useChipMenuStyles, SvgImage, iconCancelAlt, SvgImageSimple } from '@graphcommerce/next-ui'
 import { Chip, ChipProps } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
@@ -51,11 +51,7 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
               }
             : undefined
         }
-        deleteIcon={
-          isActive ? (
-            <SvgImage src={iconCloseCircle} alt='remove' size='small' loading='eager' />
-          ) : undefined
-        }
+        deleteIcon={isActive ? <SvgImageSimple src={iconCancelAlt} size='small' /> : undefined}
         label={label}
         clickable
         {...chipProps}

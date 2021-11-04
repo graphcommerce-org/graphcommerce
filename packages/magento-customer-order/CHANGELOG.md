@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-order@2.103.8...@graphcommerce/magento-customer-order@2.104.0) (2021-11-02)
+
+
+### Features
+
+* darkTheme ([3ed6647](https://github.com/ho-nl/m2-pwa/commit/3ed664714670315bc9f20542549724f66cb5052d))
+
+
+
+
+
+## [2.103.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-order@2.103.3...@graphcommerce/magento-customer-order@2.103.4) (2021-10-28)
+
+
+### Bug Fixes
+
+* External SVG's can't have alt tags ([1b1414a](https://github.com/ho-nl/m2-pwa/commit/1b1414a782d55d3acf7b0e6bcaa50f2ad5f18f39))
+
+
+
+
+
+## [2.103.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-order@2.103.2...@graphcommerce/magento-customer-order@2.103.3) (2021-10-28)
+
+
+### Bug Fixes
+
+* build, remove unused imports ([af6d72c](https://github.com/ho-nl/m2-pwa/commit/af6d72c6e70f670effb4d9e0c1fd883bf771f99d))
+* remove double icons ([1654e34](https://github.com/ho-nl/m2-pwa/commit/1654e3441911f3c7c1600357f8f8e3032f5ee729))
+* SvgImage to SvgImageSimple ([e556c72](https://github.com/ho-nl/m2-pwa/commit/e556c720b299efed185c1d7c3a9b718190d90052))
+* update SvgImage to SvgImageSimple ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
+
+
+
+
+
+# [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-order@2.102.31...@graphcommerce/magento-customer-order@2.103.0) (2021-10-27)
+
+
+### Features
+
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 ## [2.102.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-order@2.102.6...@graphcommerce/magento-customer-order@2.102.7) (2021-09-30)
 
 

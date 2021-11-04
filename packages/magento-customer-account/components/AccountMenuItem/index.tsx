@@ -22,10 +22,10 @@ const useStyles = makeStyles(
       padding: 0,
       borderRadius: 0,
       '&:hover': {
-        background: theme.palette.background.highlight,
+        background: theme.palette.background.paper,
       },
       '&:disabled': {
-        background: theme.palette.background.highlight,
+        background: theme.palette.background.paper,
       },
       '&:focus': {
         // fix: disableElevation does not work when button is focused
@@ -43,7 +43,7 @@ const useStyles = makeStyles(
     },
     secondary: {
       // ...theme.typography.caption,
-      color: theme.palette.primary.mutedText,
+      color: theme.palette.text.disabled,
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'elipsis',
@@ -88,16 +88,14 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
     >
       <ListItem disableGutters>
         <ListItemIcon className={classes.icon}>
-          <SvgImageSimple src={iconSrc} alt='' size='large' loading='eager' muted />
+          <SvgImageSimple src={iconSrc} size='large' muted />
         </ListItemIcon>
         <ListItemText
           classes={{ secondary: classes.secondary, primary: classes.primary }}
           primary={title}
           secondary={subtitle}
         />
-        {endIcon ?? (
-          <SvgImage src={iconChevronRight} alt='chevron right' size='small' loading='eager' />
-        )}
+        {endIcon ?? <SvgImageSimple src={iconChevronRight} size='small' />}
       </ListItem>
     </Button>
   )

@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.4.5...@graphcommerce/magento-cart@3.5.0) (2021-11-02)
+
+
+### Bug Fixes
+
+* darkMode ([c7573de](https://github.com/ho-nl/m2-pwa/commit/c7573de6bb80643b26931c35ac61735539e7fbf0))
+* darkTheme, prevent cart total color overlap ([9d4d7aa](https://github.com/ho-nl/m2-pwa/commit/9d4d7aa20ec05f13662efccce99dee10e462bf18))
+* remove text='bold', make contained button text stronger by default ([cd277c9](https://github.com/ho-nl/m2-pwa/commit/cd277c9f434a4a765eac372467e5a05c822d5512))
+
+
+### Features
+
+* darkTheme ([968f4f1](https://github.com/ho-nl/m2-pwa/commit/968f4f1360417bf7daa36454c19e6bc5cf53ae90))
+* darkTheme ([3ed6647](https://github.com/ho-nl/m2-pwa/commit/3ed664714670315bc9f20542549724f66cb5052d))
+
+
+
+
+
+## [3.4.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.4.0...@graphcommerce/magento-cart@3.4.1) (2021-10-28)
+
+
+### Bug Fixes
+
+* External SVG's can't have alt tags ([1b1414a](https://github.com/ho-nl/m2-pwa/commit/1b1414a782d55d3acf7b0e6bcaa50f2ad5f18f39))
+* sadFace size ([b75dd19](https://github.com/ho-nl/m2-pwa/commit/b75dd19dd49ff95d5f99305637b6687171ebb7d5))
+
+
+
+
+
+# [3.4.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.3.2...@graphcommerce/magento-cart@3.4.0) (2021-10-28)
+
+
+### Features
+
+* dynamic icons, update SvgImage uses to SvgImageSimple ([3d3cc0e](https://github.com/ho-nl/m2-pwa/commit/3d3cc0e0336fcde1cce6ba19705f82c1edf9bfc6))
+
+
+
+
+
+# [3.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.2.6...@graphcommerce/magento-cart@3.3.0) (2021-10-27)
+
+
+### Features
+
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 # [3.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.1.15...@graphcommerce/magento-cart@3.2.0) (2021-10-19)
 
 

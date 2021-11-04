@@ -50,7 +50,7 @@ const useStyles = makeStyles(
     date: {
       gridArea: 'date',
       fontStyle: 'italic',
-      color: theme.palette.primary.mutedText,
+      color: theme.palette.text.disabled,
     },
   }),
   { name: 'CustomerReview' },
@@ -88,11 +88,7 @@ export default function CustomerReview(props: CustomerReviewProps) {
       </div>
       <div className={classes.stars}>
         {[...new Array(totalStars)].map((value, index) => (
-          <Image
-            src={index < totalFilledStars ? filledStar : outlinedStar}
-            alt='star'
-            loading='eager'
-          />
+          <Image src={index < totalFilledStars ? filledStar : outlinedStar} />
         ))}
       </div>
       <div className={classes.title}>{product?.name}</div>

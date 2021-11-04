@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.107.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.107.2...@graphcommerce/framer-next-pages@2.107.3) (2021-11-02)
+
+
+### Bug Fixes
+
+* **framer-next-pages:** prevent back button loop when previous page is the up page of the previous page ([cbdde83](https://github.com/ho-nl/m2-pwa/commit/cbdde83790337bdf4c5f03c907ca6e6e02792e70))
+
+
+
+
+
+# [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.106.12...@graphcommerce/framer-next-pages@2.107.0) (2021-10-27)
+
+
+### Features
+
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 ## [2.106.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.106.0...@graphcommerce/framer-next-pages@2.106.2) (2021-09-27)
 
 

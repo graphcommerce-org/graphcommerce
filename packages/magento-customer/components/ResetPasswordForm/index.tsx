@@ -88,7 +88,6 @@ export default function ResetPasswordForm(props: ResetPasswordFormProps) {
           color='primary'
           variant='contained'
           size='large'
-          text='bold'
         >
           Save new password
         </Button>

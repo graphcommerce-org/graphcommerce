@@ -1,5 +1,6 @@
 import { ApolloProvider } from '@apollo/client'
-import { GoogleTagManagerScript, useGTMPageViewEvent } from '@graphcommerce/googletagmanager'
+import { GoogleRecaptchaV3Script } from '@graphcommerce/googlerecaptcha'
+import { GoogleTagManagerScript } from '@graphcommerce/googletagmanager'
 import { App, AppProps } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
@@ -17,8 +18,6 @@ export default function ThemedApp(props: AppProps) {
   const { pageProps } = props
   const { locale } = useRouter()
 
-  useGTMPageViewEvent()
-
   useMemo(() => {
     import(/* webpackPreload: true */ `../locales/${locale}.po`)
       .then(({ messages }: { messages: Messages }) => {
@@ -31,6 +30,7 @@ export default function ThemedApp(props: AppProps) {
 
   return (
     <>
+      <GoogleRecaptchaV3Script />
       <GoogleTagManagerScript />
       <ApolloProvider client={apolloClient(locale, true, pageProps.apolloState)}>
         <ThemedProvider>

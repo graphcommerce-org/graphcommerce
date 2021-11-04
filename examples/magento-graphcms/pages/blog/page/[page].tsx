@@ -1,7 +1,6 @@
 import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { AppShellTitle, GetStaticProps, Pagination, Title } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
 import { Container, Link } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
@@ -12,7 +11,6 @@ import BlogList from '../../../components/Blog'
 import { BlogListDocument, BlogListQuery } from '../../../components/Blog/BlogList.gql'
 import { BlogPathsDocument, BlogPathsQuery } from '../../../components/Blog/BlogPaths.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
-import PageContent from '../../../components/PageContent'
 import apolloClient from '../../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -34,12 +32,12 @@ function BlogPage(props: Props) {
     <>
       <PageMeta title={title} metaDescription={title} canonical={page.url} />
 
-      <FullPageShellHeader backFallbackHref='/blog' backFallbackTitle={t`Blog`}>
+      <FullPageShellHeader>
         <Title size='small'>{title}</Title>
       </FullPageShellHeader>
 
       <Container maxWidth='xl'>
-        <AppShellTitle>{title}</AppShellTitle>
+        <AppShellTitle variant='h1'>{title}</AppShellTitle>
       </Container>
 
       <BlogList blogPosts={blogPosts} />
@@ -108,6 +106,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       ...(await blogPosts).data,
       ...(await blogPaths).data,
       urlEntity: { relative_url: `blog` },
+      up: { href: '/blog', title: 'Blog' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

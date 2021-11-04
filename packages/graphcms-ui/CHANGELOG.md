@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.104.16](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcms-ui@2.104.15...@graphcommerce/graphcms-ui@2.104.16) (2021-11-03)
+
+
+### Bug Fixes
+
+* various accessibility improvements ([47481a9](https://github.com/ho-nl/m2-pwa/commit/47481a9a882ba87968de6dd797557b0b275d75fb))
+
+
+
+
+
+## [2.104.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcms-ui@2.104.8...@graphcommerce/graphcms-ui@2.104.9) (2021-11-02)
+
+
+### Bug Fixes
+
+* color from palette ([283cca1](https://github.com/ho-nl/m2-pwa/commit/283cca169ec00cbac8b973e14e6b77a443e26c99))
+* darkMode ([c7573de](https://github.com/ho-nl/m2-pwa/commit/c7573de6bb80643b26931c35ac61735539e7fbf0))
+
+
+
+
+
+## [2.104.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcms-ui@2.104.2...@graphcommerce/graphcms-ui@2.104.3) (2021-10-28)
+
+
+### Bug Fixes
+
+* default heading margins for CMS content ([ac7c24f](https://github.com/ho-nl/m2-pwa/commit/ac7c24f731abf9573ad93d534d84b9f7c1b16a2b))
+
+
+
+
+
+# [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcms-ui@2.103.30...@graphcommerce/graphcms-ui@2.104.0) (2021-10-27)
+
+
+### Features
+
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 ## [2.103.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcms-ui@2.103.0...@graphcommerce/graphcms-ui@2.103.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/graphcms-ui

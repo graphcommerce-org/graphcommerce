@@ -86,7 +86,6 @@ export default function SignInForm(props: SignInFormProps) {
             color='primary'
             variant='contained'
             size='large'
-            text='bold'
           >
             Log In
           </Button>

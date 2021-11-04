@@ -1,16 +1,31 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { Fab, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PaginationProps, usePagination } from '@material-ui/lab'
+import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
-import SvgImage from '../SvgImage'
+import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 
 const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    margin: '0 auto',
+    marginTop: theme.spacings.lg,
+    marginBottom: theme.spacings.lg,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    '& .Mui-disabled': {
+      background: 'none',
+      '& svg': {
+        stroke: theme.palette.text.disabled,
+      },
+    },
+  },
   pagination: {
     gridArea: 'pagination',
     justifyContent: 'center',
     display: 'grid',
-    gap: 8,
     gridAutoFlow: 'column',
     alignItems: 'center',
     marginBottom: theme.spacings.xxl,
@@ -21,48 +36,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     '& > *': {
       whiteSpace: 'nowrap',
       boxShadow: 'none',
-    },
-  },
-  disabled: {
-    background: 'none !important',
-  },
-  root: {
-    margin: '32px auto 0 auto',
-    marginTop: theme.spacings.lg,
-    marginBottom: theme.spacings.lg,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    // fontSize: 18,
-    '& span': {
-      padding: '0 8px 0 0',
-    },
-    '& a': {
-      transition: 'background .25s ease',
-      borderRadius: '100%',
-      height: 40,
-      width: 40,
-      '&:hover': {
-        background: 'rgba(0, 0, 0, 0.04)',
-      },
-    },
-    [theme.breakpoints.down('xs')]: {
-      alignItems: 'center',
-    },
-  },
-  icon: {
-    borderRadius: '100%',
-    padding: 6,
-    height: 40,
-    width: 40,
-  },
-  label: {
-    textAlign: 'center',
-  },
-  labelTitle: {
-    display: 'inline',
-    [theme.breakpoints.down('xs')]: {
-      display: 'block',
     },
   },
 }))
@@ -93,29 +66,22 @@ export default function Pagination(props: PagePaginationProps) {
   const nextBtnProps = items[items.length - 1]
 
   const chevronLeft = (
-    <SvgImage
-      src={iconChevronLeft}
-      alt='chevron left'
-      shade={page === 1 ? 'muted' : undefined}
-      classes={{ root: classes.icon }}
-    />
+    <Fab size='medium' disabled={page === 1} color='inherit' aria-label='Previous page'>
+      <SvgImageSimple src={iconChevronLeft} />
+    </Fab>
   )
 
   const chevronRight = (
-    <SvgImage
-      src={iconChevronRight}
-      alt='chevron right'
-      shade={page === count ? 'muted' : undefined}
-      classes={{ root: classes.icon }}
-    />
+    <Fab size='medium' disabled={page === count} color='inherit' aria-label='Next page'>
+      <SvgImageSimple src={iconChevronRight} />
+    </Fab>
   )
 
   return (
     <div className={classes.root}>
       {page === 1 ? chevronLeft : renderLink(page - 1, chevronLeft, prevBtnProps)}
 
-      <span className={classes.labelTitle}>Page</span>
-      <span className={classes.label}>{`${page} of ${Math.max(1, count)}`}</span>
+      <Typography variant='body1'>Page {`${page} of ${Math.max(1, count)}`}</Typography>
 
       {page === count ? chevronRight : renderLink(page + 1, chevronRight, nextBtnProps)}
     </div>

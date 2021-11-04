@@ -5,6 +5,7 @@ import {
   CartTotals,
   EmptyCart,
   useCartQuery,
+  useCurrentCartId,
 } from '@graphcommerce/magento-cart'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
 import {
@@ -28,7 +29,7 @@ import {
   iconId,
   PageShellHeader,
   Stepper,
-  SvgImage,
+  SvgImageSimple,
   Title,
 } from '@graphcommerce/next-ui'
 import { ComposedForm } from '@graphcommerce/react-hook-form'
@@ -39,7 +40,6 @@ import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import MinimalPageShell from '../../components/AppShell/MinimalPageShell'
 import { SheetShellProps } from '../../components/AppShell/SheetShell'
-import { CheckoutPaymentPageDocument } from '../../components/GraphQL/CheckoutPaymentPage.gql'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
 
@@ -47,19 +47,15 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function PaymentPage() {
-  const { data } = useCartQuery(CheckoutPaymentPageDocument, {
-    returnPartialData: true,
-  })
-  const cartExists = typeof data?.cart !== 'undefined'
-
+  const cartId = useCurrentCartId()
   const { locked } = useCartLock()
 
   return (
     <ComposedForm>
       <PageMeta title={t`Payment`} metaDescription='Payment' metaRobots={['noindex']} />
       <NoSsr>
-        {!cartExists && <EmptyCart />}
-        {cartExists && (
+        {!cartId && <EmptyCart />}
+        {cartId && (
           <>
             <PageShellHeader
               primary={
@@ -68,15 +64,8 @@ function PaymentPage() {
                   color='secondary'
                   variant='pill-link'
                   display='inline'
-                  endIcon={
-                    <SvgImage
-                      src={iconChevronRight}
-                      loading='eager'
-                      alt='chevron right'
-                      size='small'
-                      shade='inverted'
-                    />
-                  }
+                  size='small'
+                  endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
                 >
                   <Trans>Pay</Trans>
                 </PaymentMethodButton>
@@ -86,8 +75,6 @@ function PaymentPage() {
                   <Stepper steps={3} currentStep={3} />
                 </Container>
               }
-              backFallbackHref='/checkout'
-              backFallbackTitle='Shipping'
             >
               <Title size='small' icon={iconId}>
                 <Trans>Payment</Trans>
@@ -147,16 +134,7 @@ function PaymentPage() {
                       color='secondary'
                       variant='pill'
                       size='large'
-                      text='bold'
-                      endIcon={
-                        <SvgImage
-                          src={iconChevronRight}
-                          loading='eager'
-                          alt='chevron right'
-                          size='small'
-                          shade='inverted'
-                        />
-                      }
+                      endIcon={<SvgImageSimple src={iconChevronRight} inverted />}
                     >
                       <Trans>Place order</Trans>
                     </PaymentMethodButton>
@@ -196,6 +174,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await page).data,
+      up: { href: '/checkout', title: 'Shipping' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

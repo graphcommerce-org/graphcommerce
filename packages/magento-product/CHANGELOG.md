@@ -3,6 +3,85 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.4.5...@graphcommerce/magento-product@3.5.0) (2021-11-02)
+
+
+### Bug Fixes
+
+* build ([98a0bba](https://github.com/ho-nl/m2-pwa/commit/98a0bba7d00e1c6a5ff0787183b711b1edb8b984))
+* darkMode ([c7573de](https://github.com/ho-nl/m2-pwa/commit/c7573de6bb80643b26931c35ac61735539e7fbf0))
+* darkTheme ([df3d326](https://github.com/ho-nl/m2-pwa/commit/df3d326126446c1b92f8e46eff0533bbbe35604f))
+* remove unused imports ([b832188](https://github.com/ho-nl/m2-pwa/commit/b8321887f10a4a026adc5ca39166eeef90e60669))
+
+
+### Features
+
+* darkTheme ([968f4f1](https://github.com/ho-nl/m2-pwa/commit/968f4f1360417bf7daa36454c19e6bc5cf53ae90))
+* darkTheme ([3ed6647](https://github.com/ho-nl/m2-pwa/commit/3ed664714670315bc9f20542549724f66cb5052d))
+
+
+
+
+
+## [3.4.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.4.2...@graphcommerce/magento-product@3.4.3) (2021-11-01)
+
+
+### Bug Fixes
+
+* category page design fixs ([d3fccc2](https://github.com/ho-nl/m2-pwa/commit/d3fccc2a86106b854e9a1fd89040a248fe20c99a))
+
+
+
+
+
+## [3.4.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.4.0...@graphcommerce/magento-product@3.4.1) (2021-10-28)
+
+
+### Bug Fixes
+
+* External SVG's can't have alt tags ([1b1414a](https://github.com/ho-nl/m2-pwa/commit/1b1414a782d55d3acf7b0e6bcaa50f2ad5f18f39))
+
+
+
+
+
+# [3.4.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.3.2...@graphcommerce/magento-product@3.4.0) (2021-10-28)
+
+
+### Bug Fixes
+
+* bug causing filter chips missing bottom border on drag ([04f5695](https://github.com/ho-nl/m2-pwa/commit/04f56959d8cdc078c7af70fecadd9cb74ee55ebc))
+* manual styling for productpage description since unique ([7989214](https://github.com/ho-nl/m2-pwa/commit/79892147f547de67537737ca19fda002c16497a6))
+* only show active borders for color filters ([fc136ae](https://github.com/ho-nl/m2-pwa/commit/fc136aef13deae758ed2d70cf6508a2e925304d0))
+* only show dash when relevant ([77ee56f](https://github.com/ho-nl/m2-pwa/commit/77ee56f44cc39447d2e778530da11c5408e6e5b8))
+* update SvgImage to SvgImageSimple ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
+* use font from theme ([7c11eb0](https://github.com/ho-nl/m2-pwa/commit/7c11eb000aecbe3a0a12fd579011c51c9da4f4ed))
+
+
+### Features
+
+* cleaner delivery banner ([a275773](https://github.com/ho-nl/m2-pwa/commit/a275773fce305324cd20df30125d1f86ebf796f6))
+* color swatches ([886145f](https://github.com/ho-nl/m2-pwa/commit/886145fdaa14fc92e364d7e9d3a7ed019d594c86))
+* dynamic icons, update SvgImage uses to SvgImageSimple ([3d3cc0e](https://github.com/ho-nl/m2-pwa/commit/3d3cc0e0336fcde1cce6ba19705f82c1edf9bfc6))
+* enable use of both small and medium chips in design ([4536f96](https://github.com/ho-nl/m2-pwa/commit/4536f96b031734a71faf7c10f94aa5d5da90b9a8))
+* full width category pages ([5f5c264](https://github.com/ho-nl/m2-pwa/commit/5f5c26487e7264fdbbf38ca51c7c453c7f5b6a17))
+* Larger category page size for more realistic shop experience ([47f0cd5](https://github.com/ho-nl/m2-pwa/commit/47f0cd5424bec9a1b15e450bb6f7a47caaed41fc))
+
+
+
+
+
+# [3.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.2.6...@graphcommerce/magento-product@3.3.0) (2021-10-27)
+
+
+### Features
+
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 # [3.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.1.0...@graphcommerce/magento-product@3.2.0) (2021-10-19)
 
 

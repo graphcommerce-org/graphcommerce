@@ -2,7 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { CmsPageContent } from '@graphcommerce/magento-cms'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps } from '@graphcommerce/next-ui'
+import { GetStaticProps, MetaRobots } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -10,15 +10,17 @@ import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.
 import { DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
 import RowProduct from '../../components/Row/RowProduct'
-import Backstory from '../../components/Row/RowProduct/variant/Backstory'
-import Feature from '../../components/Row/RowProduct/variant/Feature'
-import FeatureBoxed from '../../components/Row/RowProduct/variant/FeatureBoxed'
-import Grid from '../../components/Row/RowProduct/variant/Grid'
-import Related from '../../components/Row/RowProduct/variant/Related'
-import Reviews from '../../components/Row/RowProduct/variant/Reviews'
-import Specs from '../../components/Row/RowProduct/variant/Specs'
-import Swipeable from '../../components/Row/RowProduct/variant/Swipeable'
-import Upsells from '../../components/Row/RowProduct/variant/Upsells'
+import {
+  Backstory,
+  Feature,
+  FeatureBoxed,
+  Grid,
+  Related,
+  Reviews,
+  Specs,
+  Swipeable,
+  Upsells,
+} from '../../components/Row/RowProduct/variant'
 import apolloClient from '../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -33,14 +35,17 @@ function CmsPage(props: Props) {
   const title = cmsPage?.title ?? ''
 
   const product = products?.items?.[0]
+  const page = pages?.[0]
+  const metaRobots = page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]
 
   return (
     <>
       <PageMeta
-        title={cmsPage?.meta_title ?? title ?? ''}
-        metaDescription={cmsPage?.meta_description ?? ''}
+        title={page?.metaTitle ?? cmsPage?.meta_title ?? title ?? ''}
+        metaDescription={page?.metaDescription ?? cmsPage?.meta_description ?? ''}
+        metaRobots={metaRobots}
+        canonical={page?.url}
       />
-
       {/* todo: only allow rendering Grid, Swipeable and Backstory here */}
       {pages?.[0] ? (
         <PageContent
@@ -125,6 +130,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       alwaysShowLogo: true,
       ...(await page).data,
       ...(await productList).data,
+      up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

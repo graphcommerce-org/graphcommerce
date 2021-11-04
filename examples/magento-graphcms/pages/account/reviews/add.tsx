@@ -8,11 +8,11 @@ import {
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   FullPageMessage,
-  SvgImage,
   iconBox,
   Title,
   SheetShellHeader,
   AppShellTitle,
+  SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container } from '@material-ui/core'
@@ -63,7 +63,7 @@ function AccountReviewsAddPage() {
     return (
       <FullPageMessage
         title={t`Product could not be found`}
-        icon={<SvgImage src={iconBox} size={148} alt='box'></SvgImage>}
+        icon={<SvgImageSimple src={iconBox} size='xxl' />}
       >
         <Trans>Try a different product</Trans>
       </FullPageMessage>
@@ -78,7 +78,7 @@ function AccountReviewsAddPage() {
         metaRobots={['noindex']}
       />
 
-      <SheetShellHeader backFallbackHref='/account' backFallbackTitle={t`Account`}>
+      <SheetShellHeader>
         <Title size='small'>
           <Trans>You are reviewing {product?.name}</Trans>
         </Title>
@@ -115,6 +115,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variant: 'bottom',
       size: 'max',
+      up: { href: '/account', title: 'Account' },
     },
   }
 }

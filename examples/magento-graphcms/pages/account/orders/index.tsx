@@ -13,6 +13,7 @@ import {
   iconBox,
   SheetShellHeader,
   SvgImage,
+  SvgImageSimple,
   Title,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
@@ -48,7 +49,7 @@ function AccountOrdersPage() {
 
   return (
     <>
-      <SheetShellHeader backFallbackTitle={t`Account`} backFallbackHref='/account'>
+      <SheetShellHeader>
         <Title size='small' component='span' icon={iconBox}>
           <Trans>Orders</Trans>
         </Title>
@@ -71,7 +72,7 @@ function AccountOrdersPage() {
             <>
               <FullPageMessage
                 title={t`You have no orders yet`}
-                icon={<SvgImage src={iconBox} size={148} alt='box' />}
+                icon={<SvgImageSimple src={iconBox} size='xxl' />}
               >
                 <Trans>Discover our collection and place your first order!</Trans>
               </FullPageMessage>
@@ -100,6 +101,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variant: 'bottom',
       size: 'max',
+      up: { href: '/account', title: 'Account' },
     },
   }
 }

@@ -6,6 +6,7 @@ import {
   iconChevronRight,
   responsiveVal,
   SvgImage,
+  SvgImageSimple,
   ToggleButton,
 } from '@graphcommerce/next-ui'
 import {
@@ -39,17 +40,13 @@ const useStyles = makeStyles(
       position: 'relative',
       padding: 0,
     },
-    toggleGroup: {
-      display: 'inline-flex',
-      gap: 10,
-    },
     buttonRoot: {
-      background: theme.palette.background.default,
+      background: theme.palette.background.paper,
       borderRadius: 0,
       width: 30,
       height: responsiveVal(60, 85),
       boxShadow: 'none',
-      border: '1px solid #eee',
+      border: `1px solid ${theme.palette.divider}`,
       '&:focus': {
         boxShadow: 'none',
       },
@@ -71,7 +68,7 @@ const useStyles = makeStyles(
     },
     toggleButton: {
       ...theme.typography.h5,
-      border: '1px solid #eee',
+      border: `1px solid ${theme.palette.divider}`,
       borderRadius: 4,
       boxShadow: 'none',
       transition: 'color .15s ease',
@@ -152,7 +149,7 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                 root: clsx(classes.buttonRoot, classes.leftButtonRoot),
               }}
             >
-              <SvgImage src={iconChevronLeft} alt='chevron left' size='small' loading='eager' />
+              <SvgImageSimple src={iconChevronLeft} size='small' />
             </ScrollerButton>
           </m.div>
 
@@ -162,7 +159,7 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
               control={control}
               name='paymentMethod'
               rules={{ required: 'Please select a payment method' }}
-              render={({ field: { onChange, value, name, ref, onBlur } }) => (
+              render={({ field: { onChange, value, name, onBlur } }) => (
                 <Scroller className={classes.scrollerRoot} hideScrollbar tabIndex={0}>
                   {methods?.map((pm) => {
                     const buttonValue = `${pm.code}___${pm.child}`
@@ -207,7 +204,7 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                 root: clsx(classes.buttonRoot, classes.rightButtonRoot),
               }}
             >
-              <SvgImage src={iconChevronRight} alt='chevron right' size='small' loading='eager' />
+              <SvgImageSimple src={iconChevronRight} size='small' />
             </ScrollerButton>
           </m.div>
         </ScrollerProvider>

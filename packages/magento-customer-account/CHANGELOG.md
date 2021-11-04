@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.104.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-account@2.104.8...@graphcommerce/magento-customer-account@2.104.9) (2021-11-02)
+
+
+### Bug Fixes
+
+* darkMode ([c7573de](https://github.com/ho-nl/m2-pwa/commit/c7573de6bb80643b26931c35ac61735539e7fbf0))
+* remove text='bold', make contained button text stronger by default ([cd277c9](https://github.com/ho-nl/m2-pwa/commit/cd277c9f434a4a765eac372467e5a05c822d5512))
+
+
+
+
+
+## [2.104.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-account@2.104.3...@graphcommerce/magento-customer-account@2.104.4) (2021-10-28)
+
+
+### Bug Fixes
+
+* External SVG's can't have alt tags ([1b1414a](https://github.com/ho-nl/m2-pwa/commit/1b1414a782d55d3acf7b0e6bcaa50f2ad5f18f39))
+
+
+
+
+
+## [2.104.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-account@2.104.2...@graphcommerce/magento-customer-account@2.104.3) (2021-10-28)
+
+
+### Bug Fixes
+
+* update SvgImage to SvgImageSimple ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
+
+
+
+
+
+# [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-account@2.103.35...@graphcommerce/magento-customer-account@2.104.0) (2021-10-27)
+
+
+### Features
+
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 ## [2.103.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-account@2.103.0...@graphcommerce/magento-customer-account@2.103.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/magento-customer-account

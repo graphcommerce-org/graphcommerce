@@ -5,7 +5,8 @@ import {
   SvgImage,
   ApolloErrorFullPageProps,
   iconLock,
-  iconSadShoppingBag,
+  iconSadFace,
+  SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import React from 'react'
 import { useClearCurrentCartId } from '../../hooks/useClearCurrentCartId'
@@ -22,7 +23,7 @@ export default function ApolloCartErrorFullPage(props: ApolloCartErrorFullPagePr
   return (
     <ApolloErrorFullPage
       error={error}
-      icon={<SvgImage src={iconSadShoppingBag} size={148} alt='person' />}
+      icon={<SvgImageSimple src={iconSadFace} size='xxl' />}
       button={action}
       {...passedProps}
     />

@@ -89,6 +89,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         size='small'
         className={classes.quantity}
       />
+      <Divider className={classes.divider} />
       <Typography component='div' variant='h3' className={classes.finalPrice}>
         <Money
           {...cheapestVariant(getVariants(selection))?.product?.price_range.minimum_price
@@ -102,7 +103,6 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         color='primary'
         variant='pill'
         size='large'
-        text='bold'
         classes={{ root: classes.button }}
         {...buttonProps}
       >

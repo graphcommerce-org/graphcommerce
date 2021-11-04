@@ -15,7 +15,7 @@ import {
   iconChevronRight,
   PageShellHeader,
   Stepper,
-  SvgImage,
+  SvgImageSimple,
   Title,
 } from '@graphcommerce/next-ui'
 import { ComposedForm, ComposedSubmit } from '@graphcommerce/react-hook-form'
@@ -53,17 +53,10 @@ function ShippingPage() {
                 type='submit'
                 color='secondary'
                 variant='pill-link'
+                size='small'
                 loading={buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)}
                 onClick={submit}
-                endIcon={
-                  <SvgImage
-                    src={iconChevronRight}
-                    alt='chevron right'
-                    shade='inverted'
-                    size='small'
-                    loading='eager'
-                  />
-                }
+                endIcon={<SvgImageSimple src={iconChevronRight} inverted size='small' />}
               >
                 <Trans>Next</Trans>
               </Button>
@@ -75,8 +68,6 @@ function ShippingPage() {
             <Stepper currentStep={2} steps={3} />
           </Container>
         }
-        backFallbackHref='/cart'
-        backFallbackTitle={t`Cart`}
       >
         <Title size='small' icon={iconBox}>
           <Trans>Shipping</Trans>
@@ -112,20 +103,13 @@ function ShippingPage() {
                         color='secondary'
                         variant='pill'
                         size='large'
-                        text='bold'
                         loading={
                           buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)
                         }
                         onClick={submit}
                       >
                         <Trans>Next</Trans>
-                        <SvgImage
-                          src={iconChevronRight}
-                          alt=''
-                          shade='inverted'
-                          size='small'
-                          loading='eager'
-                        />
+                        <SvgImageSimple src={iconChevronRight} inverted />
                       </Button>
                     </FormActions>
                     <ApolloCartErrorAlert
@@ -167,6 +151,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await page).data,
+      up: { href: '/cart', title: 'Cart' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

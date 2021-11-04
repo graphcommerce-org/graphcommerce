@@ -6,6 +6,7 @@ import {
 } from '@graphcommerce/framer-scroller'
 import { Theme, makeStyles } from '@material-ui/core'
 import React, { ReactNode } from 'react'
+import Row from '../../Row'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
@@ -17,7 +18,6 @@ const useStyles = makeStyles(
       display: 'grid',
       gridTemplateColumns: 'minmax(150px, 25%) 1fr',
       maxWidth: '100%',
-      marginBottom: `${theme.spacings.xl}`,
     },
     sidebar: {
       display: 'grid',
@@ -69,29 +69,31 @@ export default function SidebarSlider(props: SidebarSliderProps) {
   const classes = useStyles(props)
 
   return (
-    <ScrollerProvider scrollSnapAlign='start'>
-      <div className={classes.root}>
-        <div className={classes.sidebar}>
-          <div>{sidebar}</div>
-          <ScrollerPageCounter />
-        </div>
+    <Row maxWidth={false} disableGutters>
+      <ScrollerProvider scrollSnapAlign='start'>
+        <div className={classes.root}>
+          <div className={classes.sidebar}>
+            <div>{sidebar}</div>
+            <ScrollerPageCounter />
+          </div>
 
-        <div className={classes.scrollerContainer}>
-          <Scroller className={classes.scroller} hideScrollbar>
-            {children}
-          </Scroller>
-          <div className={classes.centerLeft}>
-            <ScrollerButton layout direction='left' className={classes.sliderButtons}>
-              <SvgImageSimple src={iconChevronLeft} />
-            </ScrollerButton>
-          </div>
-          <div className={classes.centerRight}>
-            <ScrollerButton layout direction='right' className={classes.sliderButtons}>
-              <SvgImageSimple src={iconChevronRight} />
-            </ScrollerButton>
+          <div className={classes.scrollerContainer}>
+            <Scroller className={classes.scroller} hideScrollbar>
+              {children}
+            </Scroller>
+            <div className={classes.centerLeft}>
+              <ScrollerButton layout direction='left' className={classes.sliderButtons}>
+                <SvgImageSimple src={iconChevronLeft} />
+              </ScrollerButton>
+            </div>
+            <div className={classes.centerRight}>
+              <ScrollerButton layout direction='right' className={classes.sliderButtons}>
+                <SvgImageSimple src={iconChevronRight} />
+              </ScrollerButton>
+            </div>
           </div>
         </div>
-      </div>
-    </ScrollerProvider>
+      </ScrollerProvider>
+    </Row>
   )
 }

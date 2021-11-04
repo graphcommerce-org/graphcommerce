@@ -5,11 +5,11 @@ import { AccountDashboardReviewsDocument, AccountReviews } from '@graphcommerce/
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   FullPageMessage,
-  SvgImage,
   iconStar,
   AppShellTitle,
   SheetShellHeader,
   Title,
+  SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
@@ -39,7 +39,7 @@ function AccountReviewsPage() {
 
   return (
     <>
-      <SheetShellHeader backFallbackTitle={t`Account`} backFallbackHref='/account'>
+      <SheetShellHeader>
         <Title size='small' component='span' icon={iconStar}>
           <Trans>Orders</Trans>
         </Title>
@@ -54,7 +54,7 @@ function AccountReviewsPage() {
           {((customer?.reviews && customer?.reviews.items.length < 1) || !customer?.reviews) && (
             <FullPageMessage
               title={t`You haven't placed any reviews yet`}
-              icon={<SvgImage src={iconStar} size={148} alt='star' />}
+              icon={<SvgImageSimple src={iconStar} size='xxl' />}
             >
               <Trans>Discover our collection and write your first review!</Trans>
             </FullPageMessage>
@@ -91,6 +91,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variant: 'bottom',
       size: 'max',
+      up: { href: '/account', title: 'Account' },
     },
   }
 }

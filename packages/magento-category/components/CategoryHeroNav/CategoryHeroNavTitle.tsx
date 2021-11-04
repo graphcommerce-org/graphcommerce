@@ -4,19 +4,13 @@ import React from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    root: {
-      marginTop: 0,
-      marginBottom: 0,
-    },
-    container: {
-      padding: 0,
-    },
     title: {
-      alignItems: 'center',
+      // alignItems: 'center',
       justifyContent: 'center',
       [theme.breakpoints.up('md')]: {
-        alignItems: 'flex-start',
-        justifyContent: 'flex-end',
+        margin: 0,
+        alignItems: 'start',
+        justifyContent: 'end',
       },
     },
   }),
@@ -31,5 +25,9 @@ export default function CategoryHeroNavTitle(props: CategoryHeroNavTitleProps) {
   const { children } = props
   const classes = useStyles()
 
-  return <AppShellTitle classes={classes}>{children}</AppShellTitle>
+  return (
+    <AppShellTitle classes={classes} variant='h1'>
+      {children}
+    </AppShellTitle>
+  )
 }

@@ -45,6 +45,7 @@ function extendConfig(nextConfig: NextConfig): NextConfig {
       config.module?.rules?.push({ test: /\.po/, use: '@lingui/loader' })
 
       config.experiments = {
+        layers: true,
         topLevelAwait: true,
       }
 

@@ -1,4 +1,11 @@
-import { Button, Highlight, iconChevronRight, SvgImage, UseStyles } from '@graphcommerce/next-ui'
+import {
+  Button,
+  Highlight,
+  iconChevronRight,
+  SvgImage,
+  SvgImageSimple,
+  UseStyles,
+} from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
@@ -7,6 +14,7 @@ import { CategorySearchResultFragment } from './CategorySearchResult.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     categoryButton: {
+      background: theme.palette.background.default,
       padding: `${theme.spacings.xs} 18px ${theme.spacings.xs} 14px`,
       display: 'flex',
       justifyContent: 'space-between',
@@ -20,7 +28,7 @@ const useStyles = makeStyles(
         boxShadow: 'none',
       },
       '&:hover': {
-        background: theme.palette.background.highlight,
+        background: theme.palette.background.paper,
       },
     },
     totalProducts: {
@@ -47,9 +55,7 @@ export default function CategorySearchResult(props: CategorySearchResultProps) {
         variant='contained'
         className={classes.categoryButton}
         disableElevation
-        endIcon={
-          <SvgImage src={iconChevronRight} alt='chevron right' size='small' loading='eager' />
-        }
+        endIcon={<SvgImageSimple src={iconChevronRight} size='small' />}
       >
         <div>
           {catProps?.breadcrumbs?.map((breadcrumb) => (

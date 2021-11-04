@@ -3,6 +3,327 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.146.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.146.1...@graphcommerce/graphcommerce@2.146.2) (2021-11-03)
+
+
+### Bug Fixes
+
+* various accessibility improvements ([47481a9](https://github.com/ho-nl/m2-pwa/commit/47481a9a882ba87968de6dd797557b0b275d75fb))
+
+
+
+
+
+## [2.146.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.146.0...@graphcommerce/graphcommerce@2.146.1) (2021-11-03)
+
+
+### Bug Fixes
+
+* logo shouldnt invert, because it depends on the logo if it can be inverted. ([8426b09](https://github.com/ho-nl/m2-pwa/commit/8426b09688c7c77f45f912c56684ad1f378fc263))
+
+
+
+
+
+# [2.146.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.145.0...@graphcommerce/graphcommerce@2.146.0) (2021-11-03)
+
+
+### Bug Fixes
+
+* **full-page-shell:** show logo on mobile ([abe2af7](https://github.com/ho-nl/m2-pwa/commit/abe2af7001ce9a31ba67a9fa326c50a07fe86135))
+* **logo:** correct props propagation ([968025b](https://github.com/ho-nl/m2-pwa/commit/968025bc0bed4843cce7d11c0ef2740edb2ea02b))
+
+
+### Features
+
+* **next-ui:** introducing footer component ([a98129b](https://github.com/ho-nl/m2-pwa/commit/a98129b935b9fd45e985f958a60a4ad6b21c880c))
+
+
+
+
+
+# [2.145.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.144.1...@graphcommerce/graphcommerce@2.145.0) (2021-11-03)
+
+
+### Bug Fixes
+
+* add x-recaptcha header to apollo link context when using mutations ([380fe52](https://github.com/ho-nl/m2-pwa/commit/380fe52ebd283df034d8a2c6a4f6a3713955bdd3))
+* make sure we're not throwing a warning on the production env. ([7ee4499](https://github.com/ho-nl/m2-pwa/commit/7ee449959509a13e684c19e2ff707e378d6b5c35))
+* remove useless check for cartId ([3ed24ab](https://github.com/ho-nl/m2-pwa/commit/3ed24ab18c8a8be882f03111a50790e25f894053))
+* simplified google tagmanager and create 1.0.0 ([21ac284](https://github.com/ho-nl/m2-pwa/commit/21ac28484de6c12d54f6cf73ad04e459d74892a7))
+* solve issue where headers weren't properly passed to the backend. ([b481630](https://github.com/ho-nl/m2-pwa/commit/b48163028b063cb2cb17870da230019e7f95c58e))
+* **use-form-gql:** context type ([f355495](https://github.com/ho-nl/m2-pwa/commit/f3554951697fe394a76dd75ecf119f038f8d9bbc))
+
+
+### Features
+
+* google recaptcha v3 integration ([a9fcc16](https://github.com/ho-nl/m2-pwa/commit/a9fcc16f93951e61378c99a2e183e2d754da1d50))
+
+
+
+
+
+## [2.144.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.144.0...@graphcommerce/graphcommerce@2.144.1) (2021-11-02)
+
+
+### Bug Fixes
+
+* **MenuFab:** make icon customizable ([375bafd](https://github.com/ho-nl/m2-pwa/commit/375bafd901b3c53405e02d681ea0dca3af190e35))
+
+
+
+
+
+# [2.144.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.143.1...@graphcommerce/graphcommerce@2.144.0) (2021-11-02)
+
+
+### Bug Fixes
+
+* **message-snackbar:** children alignment ([02051df](https://github.com/ho-nl/m2-pwa/commit/02051df0f09945218117c6ba2c761e4dca3872a3))
+* **message-snackbar:** children alignment ([9b9ac09](https://github.com/ho-nl/m2-pwa/commit/9b9ac094e10ec3e57155014366f39a22f07a7f52))
+* **shipping-method-form:** stretch scroller items when there are only two methods ([6c925fc](https://github.com/ho-nl/m2-pwa/commit/6c925fcd029ad89b2527e63703660e53d3f69265))
+
+
+### Features
+
+* shipping methods scroller ([3cc4413](https://github.com/ho-nl/m2-pwa/commit/3cc441320d2a3dd003c499be358a118a17e528c3))
+
+
+
+
+
+## [2.143.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.143.0...@graphcommerce/graphcommerce@2.143.1) (2021-11-02)
+
+
+### Bug Fixes
+
+* RemoveCoupon Button and fix pill-link style to match buttons ([6838812](https://github.com/ho-nl/m2-pwa/commit/68388123773fb4f79a3e4b1beb7ecca601d7748e))
+
+
+
+
+
+# [2.143.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.142.6...@graphcommerce/graphcommerce@2.143.0) (2021-11-02)
+
+
+### Bug Fixes
+
+* build ([2c2d317](https://github.com/ho-nl/m2-pwa/commit/2c2d317432e3a6f2b027f24c00ac2416d56847be))
+* build ([98a0bba](https://github.com/ho-nl/m2-pwa/commit/98a0bba7d00e1c6a5ff0787183b711b1edb8b984))
+* build ([5d07e8e](https://github.com/ho-nl/m2-pwa/commit/5d07e8e8dc9b70ab8e58018183c54484944e8822))
+* cancel filter icon ([8e03602](https://github.com/ho-nl/m2-pwa/commit/8e03602dd54b2dae714ad514515fad907539b594))
+* cleanup blog header styles ([b96aec1](https://github.com/ho-nl/m2-pwa/commit/b96aec13b5a0af74ec2058502c7da558eb675dbb))
+* color from palette ([283cca1](https://github.com/ho-nl/m2-pwa/commit/283cca169ec00cbac8b973e14e6b77a443e26c99))
+* darkMode ([c7573de](https://github.com/ho-nl/m2-pwa/commit/c7573de6bb80643b26931c35ac61735539e7fbf0))
+* darkTheme ([df3d326](https://github.com/ho-nl/m2-pwa/commit/df3d326126446c1b92f8e46eff0533bbbe35604f))
+* darkTheme ([a12786f](https://github.com/ho-nl/m2-pwa/commit/a12786f33cf09e974cceb8592ec98439ccbc3fad))
+* darkTheme ([d0517af](https://github.com/ho-nl/m2-pwa/commit/d0517af5a788532c48f567ee3e840986efa26a67))
+* darkTheme ([ae017c1](https://github.com/ho-nl/m2-pwa/commit/ae017c1a1e82f86ee5eb2f67106dac8174950c45))
+* darkTheme, prevent cart total color overlap ([9d4d7aa](https://github.com/ho-nl/m2-pwa/commit/9d4d7aa20ec05f13662efccce99dee10e462bf18))
+* disable google font but keep example ([6daeb07](https://github.com/ho-nl/m2-pwa/commit/6daeb07961581584d19173bc81dea60df3bb5fbf))
+* full image on blog view page ([6d14b0e](https://github.com/ho-nl/m2-pwa/commit/6d14b0ef24fa60321a442a42d5861adc20e4a5fa))
+* icon size in checkout ([d7bb962](https://github.com/ho-nl/m2-pwa/commit/d7bb962a6827b81f737f22e36f828454abef1b47))
+* input labels ([ba46c9a](https://github.com/ho-nl/m2-pwa/commit/ba46c9a17b3b460daab5015df39ac9ae66858df4))
+* minimal fontsize > 16px to prevent ios form input zoom ([1324f34](https://github.com/ho-nl/m2-pwa/commit/1324f343b3e9bbbe87ea8b85201ac65fa157c642))
+* move checkmark icons on select fields ([95ce54d](https://github.com/ho-nl/m2-pwa/commit/95ce54d7fd41d11120847f2fdf6b9097a2c93871))
+* no more zoom on ios when focus on inputs ([d9e2dc5](https://github.com/ho-nl/m2-pwa/commit/d9e2dc5569822e106599207cb9120964df5263a0))
+* overlapping checkmark icon ([b4da61a](https://github.com/ho-nl/m2-pwa/commit/b4da61ae33ab058a56f0f32c2874a2e77d77d01d))
+* remove text from inputprops ([ccc11f2](https://github.com/ho-nl/m2-pwa/commit/ccc11f267e85b8b333877afb4ce11f96dad0a3d0))
+* remove text='bold', make contained button text stronger by default ([cd277c9](https://github.com/ho-nl/m2-pwa/commit/cd277c9f434a4a765eac372467e5a05c822d5512))
+* remove unused imports ([5018763](https://github.com/ho-nl/m2-pwa/commit/5018763a8a2bbd0ba4a775979cc5885e9b17ad8d))
+* remove unused imports ([b832188](https://github.com/ho-nl/m2-pwa/commit/b8321887f10a4a026adc5ca39166eeef90e60669))
+* ReviewChip should only differ from default MuiChip in product grid ([c22a029](https://github.com/ho-nl/m2-pwa/commit/c22a0291afbbc03099fd0487421ff9fd31caf226))
+* style cleanup snackbar ([610221a](https://github.com/ho-nl/m2-pwa/commit/610221ad82f5726e9d745436cb1c08314bd342d5))
+* svg color ([095ac85](https://github.com/ho-nl/m2-pwa/commit/095ac8578409ec005fbfe449fe4759d4f63b6f79))
+* transparent MuiChip mobile ([a86d25f](https://github.com/ho-nl/m2-pwa/commit/a86d25ff0dab502f4e42c1a62f72b546bc7375ce))
+
+
+### Features
+
+* add social icons to codebase for convenience ([9e4b404](https://github.com/ho-nl/m2-pwa/commit/9e4b404aa1dbc821562529f7b15ab4761a1ab52c))
+* darkTheme ([968f4f1](https://github.com/ho-nl/m2-pwa/commit/968f4f1360417bf7daa36454c19e6bc5cf53ae90))
+* darkTheme ([3ed6647](https://github.com/ho-nl/m2-pwa/commit/3ed664714670315bc9f20542549724f66cb5052d))
+* easier theme switching and theme dependend button contained backgroundColor ([6ae8565](https://github.com/ho-nl/m2-pwa/commit/6ae856546f139b9ff36d8d9bae1ea47f58981f7c))
+* Mui true Pagination based on Fab ([572fa7b](https://github.com/ho-nl/m2-pwa/commit/572fa7b031b58b6ffdab60c4a50407a53202fa34))
+
+
+
+
+
+## [2.142.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.142.5...@graphcommerce/graphcommerce@2.142.6) (2021-11-02)
+
+
+### Bug Fixes
+
+* back button loop ([4d901e6](https://github.com/ho-nl/m2-pwa/commit/4d901e662579d1cfb97c823d581e60d687908b1a))
+* break back button loop ([be2e5ae](https://github.com/ho-nl/m2-pwa/commit/be2e5aefa1e409a97c1ebf94173f4da7ea25386b))
+* **framer-next-pages:** prevent back button loop when previous page is the up page of the previous page ([ec829c8](https://github.com/ho-nl/m2-pwa/commit/ec829c8eee2a3744747a7572b32299879c780d45))
+* **framer-next-pages:** prevent back button loop when previous page is the up page of the previous page ([cbdde83](https://github.com/ho-nl/m2-pwa/commit/cbdde83790337bdf4c5f03c907ca6e6e02792e70))
+* remove up from sheet shell pages ([9fd48e3](https://github.com/ho-nl/m2-pwa/commit/9fd48e34ade47daaff2298d3ff710119a9c6f7b2))
+* **service:** undefined cannot be serialized as json ([7a3d494](https://github.com/ho-nl/m2-pwa/commit/7a3d494a53c6126c66b314227f3894d3bdefb456))
+* **types:** apollo state props ‘up’ can be null ([9377d7f](https://github.com/ho-nl/m2-pwa/commit/9377d7fd9a080a8a2b8c7127961d64dc66a5729a))
+* **types:** make apollo up state optional ([eba9683](https://github.com/ho-nl/m2-pwa/commit/eba96832e372adaeaa2ed71622c88f9dc95071c5))
+* typings product pages ([4ac24fc](https://github.com/ho-nl/m2-pwa/commit/4ac24fcba90f98c63181c339634e71bb91d78ebd))
+
+
+
+
+
+## [2.142.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.142.4...@graphcommerce/graphcommerce@2.142.5) (2021-11-02)
+
+
+### Bug Fixes
+
+* make sure graphql files are generated for projects ([bc1cf81](https://github.com/ho-nl/m2-pwa/commit/bc1cf8154f1f158934f42d757e26956ed738f128))
+
+
+
+
+
+## [2.142.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.142.2...@graphcommerce/graphcommerce@2.142.3) (2021-11-01)
+
+
+### Bug Fixes
+
+* category page design fixs ([d3fccc2](https://github.com/ho-nl/m2-pwa/commit/d3fccc2a86106b854e9a1fd89040a248fe20c99a))
+
+
+
+
+
+## [2.142.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.142.1...@graphcommerce/graphcommerce@2.142.2) (2021-10-29)
+
+
+### Bug Fixes
+
+* spacing of title on category landing on mobile ([8ed3550](https://github.com/ho-nl/m2-pwa/commit/8ed35502fd231d1d6a8e0a282f8961335d9dead3))
+
+
+
+
+
+## [2.142.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.142.0...@graphcommerce/graphcommerce@2.142.1) (2021-10-28)
+
+
+### Bug Fixes
+
+* External SVG's can't have alt tags ([1b1414a](https://github.com/ho-nl/m2-pwa/commit/1b1414a782d55d3acf7b0e6bcaa50f2ad5f18f39))
+* sadFace size ([b75dd19](https://github.com/ho-nl/m2-pwa/commit/b75dd19dd49ff95d5f99305637b6687171ebb7d5))
+
+
+
+
+
+# [2.142.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.141.2...@graphcommerce/graphcommerce@2.142.0) (2021-10-28)
+
+
+### Bug Fixes
+
+* add missing row container for consistent margins ([10869b8](https://github.com/ho-nl/m2-pwa/commit/10869b8a7ab9579306b268b22a0af47c1a2e2e25))
+* alt person icon ([d80d180](https://github.com/ho-nl/m2-pwa/commit/d80d18043a86551feaf5ce49a30752c93ee27924))
+* back to using SvgImage for CMS icons ([5c187f6](https://github.com/ho-nl/m2-pwa/commit/5c187f63a1b9cc06e4aa168fae245da3eced7184))
+* base icon size on responsiveVal ([3bbd2a7](https://github.com/ho-nl/m2-pwa/commit/3bbd2a7be4853b284f90603056ae8990e5d62040))
+* bigger apply coupon button ([700d8ee](https://github.com/ho-nl/m2-pwa/commit/700d8ee2daedbcdffa63e8e14c9d837feeb29cbc))
+* blog title size ([9c44d03](https://github.com/ho-nl/m2-pwa/commit/9c44d0349af28192f3f9d7f360b08b0370d3e437))
+* bug causing filter chips missing bottom border on drag ([04f5695](https://github.com/ho-nl/m2-pwa/commit/04f56959d8cdc078c7af70fecadd9cb74ee55ebc))
+* build ([25582a4](https://github.com/ho-nl/m2-pwa/commit/25582a496039c704e75bb969d4fa06c13ee6267d))
+* build missing import ([5850f25](https://github.com/ho-nl/m2-pwa/commit/5850f2561a2d9d72d4ebe0da5c964b6571a72b03))
+* build, remove unused imports ([af6d72c](https://github.com/ho-nl/m2-pwa/commit/af6d72c6e70f670effb4d9e0c1fd883bf771f99d))
+* category h2 styling ([5b26f2b](https://github.com/ho-nl/m2-pwa/commit/5b26f2b92f55356c58cc207fa028d03a38a8b16a))
+* colorSecondary for MuiCheckbox ([13a5c5e](https://github.com/ho-nl/m2-pwa/commit/13a5c5e8b8c30eabaafc909b325692d93d65c97b))
+* consistent margin product page ([1c65ff6](https://github.com/ho-nl/m2-pwa/commit/1c65ff6b19ebb3fed70abf8326f4e593d77c70da))
+* Correct image sizes fixes layout shift ([30e04ba](https://github.com/ho-nl/m2-pwa/commit/30e04baec1674403be934dbae81e278af72f2382))
+* default heading margins for CMS content ([ac7c24f](https://github.com/ho-nl/m2-pwa/commit/ac7c24f731abf9573ad93d534d84b9f7c1b16a2b))
+* footer mobile vertical spacing ([a75028e](https://github.com/ho-nl/m2-pwa/commit/a75028e982497fdd74c6d1d51a8ca24e2e1a849c))
+* force object-fit image ([df049f7](https://github.com/ho-nl/m2-pwa/commit/df049f727a26aa049c6c9d3aa338223ce442bffd))
+* icon size ([6063855](https://github.com/ho-nl/m2-pwa/commit/6063855d9c7360f0ea69ffdb22292de6c93e5f27))
+* invert icon on checkout button ([169168d](https://github.com/ho-nl/m2-pwa/commit/169168d1a597ac02a97b1cb160c3c5c0fb0db12a))
+* keep original review chip ([3f2f834](https://github.com/ho-nl/m2-pwa/commit/3f2f834478b7b8252f6164442815e5c081de6411))
+* keep original review chip for now ([9664cd9](https://github.com/ho-nl/m2-pwa/commit/9664cd90801c6776e1c694eec8f393118810a792))
+* loading state icon muted ([f7c3a6b](https://github.com/ho-nl/m2-pwa/commit/f7c3a6be199f2d05d1ad918043bf199544824ff6))
+* make pill buttons always completely rounded ([9d8e211](https://github.com/ho-nl/m2-pwa/commit/9d8e211303ac6cd371a834bf73fb10a6345ca13a))
+* manual styling for productpage description since unique ([7989214](https://github.com/ho-nl/m2-pwa/commit/79892147f547de67537737ca19fda002c16497a6))
+* max size Swipable ([d980711](https://github.com/ho-nl/m2-pwa/commit/d9807118b7a370f4f8662e55155fda55f420fc9a))
+* only show active borders for color filters ([fc136ae](https://github.com/ho-nl/m2-pwa/commit/fc136aef13deae758ed2d70cf6508a2e925304d0))
+* only show dash when relevant ([77ee56f](https://github.com/ho-nl/m2-pwa/commit/77ee56f44cc39447d2e778530da11c5408e6e5b8))
+* pagination size ([7d16290](https://github.com/ho-nl/m2-pwa/commit/7d16290d8180a2eb06755859cb9dcdbd44e7d59b))
+* remove custom fontWeight ([c92c8a0](https://github.com/ho-nl/m2-pwa/commit/c92c8a0fe2e0bfafed184abe154027fab7018500))
+* remove double icons ([1654e34](https://github.com/ho-nl/m2-pwa/commit/1654e3441911f3c7c1600357f8f8e3032f5ee729))
+* remove laggy animation ([3ca0922](https://github.com/ho-nl/m2-pwa/commit/3ca09221ecd6e533063c42ec9fbe11f9484099bc))
+* remove legacy, title from category description ([574208c](https://github.com/ho-nl/m2-pwa/commit/574208ca71e6ed387f1f355d5c4a22f5c13783ea))
+* remove unused /view/ about route ([2ea8eb9](https://github.com/ho-nl/m2-pwa/commit/2ea8eb909d25840fde19470f3c5f9b0045178f2f))
+* remove unused breakpoint ([19dc4c4](https://github.com/ho-nl/m2-pwa/commit/19dc4c4bde18bec74c8f3e13e3769b929f2e9d57))
+* remove wishlist from mobile menu ([ac003bf](https://github.com/ho-nl/m2-pwa/commit/ac003bf6d4630c88d5684771c2991ec70f4c7a04))
+* revert fontsizes ([0606a44](https://github.com/ho-nl/m2-pwa/commit/0606a44ecda9f1a743f9954e7bd53d20ddfe5802))
+* review button size ([9074102](https://github.com/ho-nl/m2-pwa/commit/9074102c1866b14d0e7f1f0f3dfabe6e6c0b324d))
+* scroller font weight ([4b1bd81](https://github.com/ho-nl/m2-pwa/commit/4b1bd8124c588405d180c21d8d568711fdb18e09))
+* size of default ReviewChip ([e1d4969](https://github.com/ho-nl/m2-pwa/commit/e1d49699776b15fa056677f042f6c9939b6acada))
+* small design changes ([d9936e9](https://github.com/ho-nl/m2-pwa/commit/d9936e90baab3694066d73216c9ad2941fdbaaa8))
+* small sized chevron for service page links ([1748418](https://github.com/ho-nl/m2-pwa/commit/17484186ae20e8002f38f1dcb820f942023f5bbc))
+* smaller icons for search and menu ([f8e8949](https://github.com/ho-nl/m2-pwa/commit/f8e89494f358f9d2868c75901abaca2bffe38bdc))
+* smaller logo ([a50196a](https://github.com/ho-nl/m2-pwa/commit/a50196a67941d92b860865740f7cee2ac10ccee9))
+* softer gray ([536fc52](https://github.com/ho-nl/m2-pwa/commit/536fc5257ecbca9db926d59164e1fa1c94627bed))
+* strokeWidth for xxl icons ([da131e2](https://github.com/ho-nl/m2-pwa/commit/da131e20beb5bdf94c99de6237d7563b187f20da))
+* subtitles ([9ef1d8b](https://github.com/ho-nl/m2-pwa/commit/9ef1d8b9079c50340015e482fe6f1bf577610269))
+* SvgImage to SvgImageSimple ([0004269](https://github.com/ho-nl/m2-pwa/commit/00042694f89e4a5fc17a4b74a16185cada14b80a))
+* SvgImage to SvgImageSimple ([e556c72](https://github.com/ho-nl/m2-pwa/commit/e556c720b299efed185c1d7c3a9b718190d90052))
+* SvgImage to SvgImageSimple ([9722167](https://github.com/ho-nl/m2-pwa/commit/9722167cd3c6032b4251ef4a4921d727eb92167e))
+* SvgImage to SvgImageSimple ([793fac7](https://github.com/ho-nl/m2-pwa/commit/793fac769f045d283817fe47fbed77d38d282f3c))
+* tuning sizeLarge, adjust muted and inverted styles ([49d69ee](https://github.com/ho-nl/m2-pwa/commit/49d69ee8d9a04a87fbd9979594c5a3b445f7dd58))
+* typo ([b235112](https://github.com/ho-nl/m2-pwa/commit/b235112871815f3e44376eb2186dcd4cd6aef26b))
+* update SvgImage to SvgImageSimple ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
+* use font from theme ([7c11eb0](https://github.com/ho-nl/m2-pwa/commit/7c11eb000aecbe3a0a12fd579011c51c9da4f4ed))
+* use font from theme for menu ([74522ae](https://github.com/ho-nl/m2-pwa/commit/74522ae9bababbf204d925ae96997dc45f611bfc))
+* usp fontsize ([1164907](https://github.com/ho-nl/m2-pwa/commit/1164907be4fa7ed3a517f66b2af67a54df55a38f))
+
+
+### Features
+
+* add default iconset ([eb78d4c](https://github.com/ho-nl/m2-pwa/commit/eb78d4c081937bc56ce1c593a6632a4ff32e611e))
+* add routing for /about pages ([6127333](https://github.com/ho-nl/m2-pwa/commit/6127333ed628a561af8b930f4ef5aa299587d0d1))
+* adjust font sizes, bring back h1 as usable style ([6ea3886](https://github.com/ho-nl/m2-pwa/commit/6ea3886f188d8a5567f20292b8ddc6f2877e1ccf))
+* Bring back descriptions ([75f372b](https://github.com/ho-nl/m2-pwa/commit/75f372b9f7c959ac60d436d6c9f469da46820693))
+* button sizes ([8a5126e](https://github.com/ho-nl/m2-pwa/commit/8a5126e05244cab49b4386948e96e260eaa39cf2))
+* cleaner delivery banner ([a275773](https://github.com/ho-nl/m2-pwa/commit/a275773fce305324cd20df30125d1f86ebf796f6))
+* cleanup grid, add visual star chip ([0571569](https://github.com/ho-nl/m2-pwa/commit/057156937f603bc399f5f8f8ac2837ff5cfaef28))
+* color swatches ([886145f](https://github.com/ho-nl/m2-pwa/commit/886145fdaa14fc92e364d7e9d3a7ed019d594c86))
+* dynamic icons, update SvgImage uses to SvgImageSimple ([3d3cc0e](https://github.com/ho-nl/m2-pwa/commit/3d3cc0e0336fcde1cce6ba19705f82c1edf9bfc6))
+* enable use of both small and medium chips in design ([4536f96](https://github.com/ho-nl/m2-pwa/commit/4536f96b031734a71faf7c10f94aa5d5da90b9a8))
+* full width category pages ([5f5c264](https://github.com/ho-nl/m2-pwa/commit/5f5c26487e7264fdbbf38ca51c7c453c7f5b6a17))
+* icon references ([b477029](https://github.com/ho-nl/m2-pwa/commit/b47702955cf47b19fb0861c0d40751ac43e8eeab))
+* Larger category page size for more realistic shop experience ([47f0cd5](https://github.com/ho-nl/m2-pwa/commit/47f0cd5424bec9a1b15e450bb6f7a47caaed41fc))
+* mobile menu styling ([3cc3085](https://github.com/ho-nl/m2-pwa/commit/3cc308585d4ded68d2ac8ebf97f96288424ee914))
+* more spacious row margins for mobile ([0b3e973](https://github.com/ho-nl/m2-pwa/commit/0b3e9734aa01fcc0801fa12281edd224d9600464))
+* rebuild to support svg imports ([59fbda3](https://github.com/ho-nl/m2-pwa/commit/59fbda300ce88c51a5d1c6a7ea457cb3b323b24d))
+* replace icons with icon pack ([60951d5](https://github.com/ho-nl/m2-pwa/commit/60951d57684637da8c4aed94f28e69f18129bbd0))
+* responsive social icons ([aea4c9f](https://github.com/ho-nl/m2-pwa/commit/aea4c9fa245b3dd1357667d015af7f3d86fa9b6a))
+* SALE color is primary ([91ca1d8](https://github.com/ho-nl/m2-pwa/commit/91ca1d8a1d8c4c573747a19175f46953e9bcf7de))
+* set correct font sizes ([9317448](https://github.com/ho-nl/m2-pwa/commit/9317448c94a9fb4408dfbcaa320adccc363964d0))
+* typography, add heading1 styling for cms h2's ([36437f8](https://github.com/ho-nl/m2-pwa/commit/36437f860bd2cdbdbece720ae10873da9fdb02d6))
+* UspList styling and svg support ([70f472b](https://github.com/ho-nl/m2-pwa/commit/70f472bb143aae86879e69dc911bbbdf229b39b9))
+
+
+
+
+
+# [2.141.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.140.0...@graphcommerce/graphcommerce@2.141.0) (2021-10-27)
+
+
+### Bug Fixes
+
+* revert back to babel build for smaller (but slower) builds ([9a127fb](https://github.com/ho-nl/m2-pwa/commit/9a127fb3495070db28d4046e258792988be15f00))
+
+
+### Features
+
+* enable swcMinify for faster builds ([5c54f2b](https://github.com/ho-nl/m2-pwa/commit/5c54f2bc13e702be3bd24e4642299d58148f895a))
+* **graphql:** log the graphql operation and variables when an error occurs ([65a7700](https://github.com/ho-nl/m2-pwa/commit/65a77000c0f212eaaa984b2930f57234c90dfdb8))
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 # [2.140.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.139.2...@graphcommerce/graphcommerce@2.140.0) (2021-10-25)
 
 

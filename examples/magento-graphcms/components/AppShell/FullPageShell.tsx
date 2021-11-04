@@ -9,62 +9,20 @@ import {
   FullPageShellBase,
   FullPageShellBaseProps,
   iconCustomerService,
-  iconHeart,
   MenuFab,
   MenuFabSecondaryItem,
   MenuProps,
-  responsiveVal,
+  PlaceholderFab,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Fab, makeStyles, Theme } from '@material-ui/core'
-import clsx from 'clsx'
+import { Fab, useTheme } from '@material-ui/core'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'
 import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
 import Footer from './Footer'
 import Logo from './Logo'
-
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    navbarSearch: {
-      marginRight: theme.spacings.xxs,
-      width: responsiveVal(64, 172),
-    },
-    logo: {
-      display: 'none',
-      [theme.breakpoints.up('md')]: {
-        display: 'unset',
-      },
-    },
-    header: {
-      [theme.breakpoints.down('sm')]: {
-        marginTop: 20,
-        marginBottom: 22,
-      },
-    },
-    hideOnVirtualKeyboardOpen: {
-      [theme.breakpoints.down('sm')]: {
-        '@media (max-height: 530px)': {
-          display: 'none',
-        },
-      },
-    },
-    cartFab: {
-      [theme.breakpoints.down('sm')]: {
-        width: responsiveVal(42, 56),
-        height: responsiveVal(42, 56),
-      },
-    },
-    placeholderCartFab: {
-      boxShadow: 'none',
-      background: 'none',
-      pointerEvents: 'none',
-    },
-  }),
-  { name: 'FullPageShell' },
-)
 
 export type FullPageShellProps = Omit<DefaultPageQuery, 'pages'> &
   Omit<
@@ -76,8 +34,7 @@ export type FullPageShellProps = Omit<DefaultPageQuery, 'pages'> &
 
 function FullPageShell(props: FullPageShellProps) {
   const { footer, menu: menuData = {}, children, alwaysShowLogo, ...uiProps } = props
-  const classes = useStyles()
-
+  const theme = useTheme()
   const storeConfig = useQuery(StoreConfigDocument)
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
 
@@ -88,7 +45,15 @@ function FullPageShell(props: FullPageShellProps) {
       ...(menuItemsIncludeInMenu?.map((item) => ({
         href: `/${item?.url_path}`,
         children: item?.name?.toLowerCase().includes('sale') ? (
-          <span style={{ textTransform: 'uppercase', color: 'red' }}>{item.name}</span>
+          <span
+            style={{
+              textTransform: 'uppercase',
+              letterSpacing: 0.3,
+              color: theme.palette.primary.main,
+            }}
+          >
+            {item.name}
+          </span>
         ) : (
           item?.name ?? ''
         ),
@@ -104,55 +69,36 @@ function FullPageShell(props: FullPageShellProps) {
     <FullPageShellBase
       {...uiProps}
       name={name}
-      classes={{ header: alwaysShowLogo ? classes.header : undefined }}
+      alwaysShowHeader={alwaysShowLogo}
       header={
         <>
-          <Logo classes={{ logo: alwaysShowLogo ? undefined : classes.logo }} />
+          <Logo alwaysShow={alwaysShowLogo} />
           <DesktopNavBar {...menuProps} />
           <DesktopNavActions>
-            {!router.pathname.startsWith('/search') && (
-              <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
-            )}
+            {!router.pathname.startsWith('/search') && <SearchButton onClick={onSearchStart} />}
             <PageLink href='/service' passHref>
-              <Fab style={{ boxShadow: 'none' }} aria-label={t`Account`} size='large'>
-                <SvgImageSimple
-                  src={iconCustomerService}
-                  alt={`Customer Service`}
-                  loading='eager'
-                  size='large'
-                />
+              <Fab aria-label={t`Account`} size='large' color='inherit'>
+                <SvgImageSimple src={iconCustomerService} size='large' />
               </Fab>
             </PageLink>
             <CustomerFab guestHref='/account/signin' authHref='/account' />
-            <Fab className={classes.placeholderCartFab} size='large'>
-              <></>
-            </Fab>
+            <PlaceholderFab />
           </DesktopNavActions>
         </>
       }
       footer={<Footer footer={footer} />}
+      cartFab={<CartFab />}
+      menuFab={
+        <MenuFab {...menuProps} search={<SearchButton onClick={onSearchStart} />}>
+          <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>
+            <Trans>Account</Trans>
+          </CustomerMenuFabItem>
+          <MenuFabSecondaryItem icon={<SvgImageSimple src={iconCustomerService} />} href='/service'>
+            <Trans>Customer Service</Trans>
+          </MenuFabSecondaryItem>
+        </MenuFab>
+      }
     >
-      <MenuFab
-        {...menuProps}
-        search={<SearchButton onClick={onSearchStart} />}
-        classes={{ menuWrapper: classes.hideOnVirtualKeyboardOpen }}
-      >
-        <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>
-          <Trans>Account</Trans>
-        </CustomerMenuFabItem>
-        <MenuFabSecondaryItem
-          icon={<SvgImageSimple src={iconCustomerService} alt='' />}
-          href='/service'
-        >
-          <Trans>Customer Service</Trans>
-        </MenuFabSecondaryItem>
-        <MenuFabSecondaryItem icon={<SvgImageSimple src={iconHeart} alt='' />} href='/wishlist'>
-          <Trans>Wishlist</Trans>
-        </MenuFabSecondaryItem>
-      </MenuFab>
-
-      <CartFab className={clsx(classes.cartFab, classes.hideOnVirtualKeyboardOpen)} />
-
       {children}
     </FullPageShellBase>
   )

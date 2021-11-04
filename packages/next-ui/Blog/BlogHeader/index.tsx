@@ -9,40 +9,8 @@ const useStyles = makeStyles(
       maxWidth: 800,
       margin: `0 auto`,
       marginBottom: theme.spacings.md,
-      position: 'relative',
-      backgroundColor: 'rgba(0,0,0,0.08)',
-      overflow: 'hidden',
     },
-    copy: {
-      color: '#fff',
-      display: 'grid',
-      justifyItems: 'end',
-      alignContent: 'end',
-      padding: `${theme.spacings.lg} ${theme.spacings.md}`,
-      minHeight: '30vh',
-      '& > *': {
-        zIndex: 0,
-        maxWidth: 'max-content',
-      },
-      [theme.breakpoints.up('lg')]: {
-        padding: `${theme.spacings.lg} ${theme.spacings.lg}`,
-      },
-    },
-    asset: {
-      position: 'absolute',
-      top: '0',
-      zIndex: 0,
-      width: '100%',
-      height: '100%',
-      '& img': {
-        width: '100%',
-        height: '100% !important',
-        objectFit: 'cover',
-      },
-      [theme.breakpoints.up('md')]: {
-        height: '100%',
-      },
-    },
+    asset: {},
   }),
   { name: 'BlogHeader' },
 )
@@ -56,9 +24,6 @@ export default function BlogHeader(props: BlogHeaderProps) {
   const classes = useStyles()
 
   return (
-    <div className={classes.header}>
-      <Typography variant='body1' className={classes.copy} />
-      {asset && <div className={classes.asset}>{asset}</div>}
-    </div>
+    <div className={classes.header}>{asset && <div className={classes.asset}>{asset}</div>}</div>
   )
 }

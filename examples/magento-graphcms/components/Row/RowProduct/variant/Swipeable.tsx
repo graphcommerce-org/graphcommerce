@@ -20,7 +20,7 @@ const useStyles = makeStyles(
       textTransform: 'uppercase',
     },
     scroller: {
-      gridAutoColumns: responsiveVal(180, 900),
+      gridAutoColumns: `minmax(${responsiveVal(180, 800)}, 60vh)`,
     },
   }),
   {
@@ -38,7 +38,7 @@ export default function Swipeable(props: SwipeableProps) {
     <SidebarSlider
       classes={classes}
       sidebar={
-        <Typography variant='h3' className={sidebarTitle}>
+        <Typography variant='h2' className={sidebarTitle}>
           {title}
         </Typography>
       }

@@ -1,4 +1,10 @@
-import { useHistoryLink, usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
+import {
+  useHistoryLink,
+  usePageContext,
+  usePageRouter,
+  usePrevUp,
+  useUp,
+} from '@graphcommerce/framer-next-pages'
 import { Fab, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m, MotionValue, useMotionValue, useTransform } from 'framer-motion'
@@ -6,7 +12,7 @@ import PageLink from 'next/link'
 import React, { useCallback, useEffect } from 'react'
 import Button from '../../Button'
 import { UseStyles } from '../../Styles'
-import SvgImage from '../../SvgImage'
+import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconClose } from '../../icons'
 import useAppShellHeaderContext from './useAppShellHeaderContext'
 
@@ -22,8 +28,6 @@ export type AppShellHeaderProps = {
   scrolled?: boolean
   dragIndicator?: React.ReactNode
   additional?: React.ReactNode
-  backFallbackHref?: string | null
-  backFallbackTitle?: string | null
   fill?: 'both' | 'mobile-only'
   sheet?: boolean
 } & UseStyles<typeof useStyles>
@@ -109,10 +113,13 @@ const useStyles = makeStyles(
     sheetHeaderActionRight: {
       justifySelf: 'flex-end',
       '& > .Mui-disabled': {
-        opacity: 0.25,
-        color: `${theme.palette.primary.contrastText} !important`,
-        [theme.breakpoints.up('md')]: {
+        // color: `${theme.palette.primary.contrastText} !important`,
+        [theme.breakpoints.up('sm')]: {
+          opacity: 0.25,
           color: `${theme.palette.secondary.contrastText} !important`,
+          '& svg': {
+            stroke: `${theme.palette.secondary.contrastText} !important`,
+          },
         },
       },
     },
@@ -180,10 +187,13 @@ const useStyles = makeStyles(
       },
     },
     backButton: {
-      background: theme.palette.background.default,
+      background: theme.palette.background.paper,
       color: theme.palette.text.primary,
       '&:hover': {
-        background: theme.palette.background.highlight,
+        background: theme.palette.background.paper,
+      },
+      '& svg': {
+        stroke: theme.palette.text.primary,
       },
     },
     sheetShellActionsFullPage: {
@@ -221,15 +231,15 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
     additional,
     dragIndicator,
     scrolled,
-    backFallbackHref,
-    backFallbackTitle,
     fill = 'both',
     sheet,
   } = props
+
   const router = usePageRouter()
   const { closeSteps, backSteps } = usePageContext()
   const classes = useStyles(props)
-
+  const up = useUp()
+  const prevUp = usePrevUp()
   const { titleRef, contentHeaderRef } = useAppShellHeaderContext()
 
   const noChildren = typeof children === 'undefined' || !children
@@ -241,7 +251,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   const titleHeight = useMotionValue<number>(100)
 
   const { href: historyHref, onClick: historyOnClick } = useHistoryLink({
-    href: backFallbackHref ?? '',
+    href: up?.href ?? '',
   })
 
   const setOffset = useCallback(
@@ -288,7 +298,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   }, [contentHeaderRef, sheetHeaderHeight])
 
   const opacityTitle = useTransform(
-    [scrollY, sheetHeaderHeight, titleOffset, titleHeight] as MotionValue[],
+    [scrollY, sheetHeaderHeight, titleOffset, titleHeight] as MotionValue<number | string>[],
     ([scrollYV, sheetHeaderHeightV, titleOffsetV, titleHeigthV]: number[]) =>
       Math.min(
         Math.max(
@@ -313,35 +323,45 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
         type='button'
         classes={{ root: classes.fab }}
         onClick={() => router.go(closeSteps * -1)}
+        aria-label='Close'
       >
-        <SvgImage src={iconClose} mobileSize={20} size={20} alt='Close overlay' loading='eager' />
+        <SvgImageSimple src={iconClose} />
       </Fab>
     ) : (
       <PageLink href='/' passHref>
-        <Fab size='small' classes={{ root: classes.fab }}>
-          <SvgImage src={iconClose} alt='Close overlay' size={20} mobileSize={20} loading='eager' />
+        <Fab size='small' classes={{ root: classes.fab }} aria-label='Close'>
+          <SvgImageSimple src={iconClose} />
         </Fab>
       </PageLink>
     ))
 
-  const backIcon = (
-    <SvgImage src={iconChevronLeft} alt='chevron back' loading='eager' size={26} mobileSize={30} />
+  const backIcon = <SvgImageSimple src={iconChevronLeft} />
+
+  const canClickBack = backSteps > 0 && router.asPath !== prevUp?.href
+  let back = canClickBack && (
+    <PageLink href={historyHref} passHref>
+      <Button
+        onClick={historyOnClick}
+        variant='pill-link'
+        size='small'
+        className={classes.backButton}
+        startIcon={backIcon}
+        aria-label='Back'
+      >
+        {historyOnClick ? up?.title : 'Back'}
+      </Button>
+    </PageLink>
   )
-  let back = backSteps > 0 && (
-    <Button
-      onClick={() => router.back()}
-      variant='pill-link'
-      className={classes.backButton}
-      startIcon={backIcon}
-    >
-      {historyOnClick ? backFallbackTitle : 'Back'}
-    </Button>
-  )
-  if (!back && backFallbackHref) {
+  if (!canClickBack && up?.href) {
     back = (
-      <PageLink href={backFallbackHref} passHref>
-        <Button variant='pill-link' className={classes.backButton} startIcon={backIcon}>
-          {backFallbackTitle ?? 'Back'}
+      <PageLink href={up?.href} passHref>
+        <Button
+          variant='pill-link'
+          className={classes.backButton}
+          startIcon={backIcon}
+          aria-label='Back'
+        >
+          {up?.title ?? 'Back'}
         </Button>
       </PageLink>
     )

@@ -10,7 +10,7 @@ const useStyles = makeStyles(
       gridTemplateColumns: '1fr',
       gridTemplateAreas: `"title" "categories" "placeholder"`,
       gridTemplateRows: 'auto 60vw',
-      borderBottom: '1px solid rgba(0,0,0,0.15)',
+      borderBottom: `1px solid ${theme.palette.divider}`,
       marginBottom: theme.spacings.xl,
       paddingRight: 0,
       paddingBottom: theme.page.vertical,
@@ -36,20 +36,18 @@ const useStyles = makeStyles(
         gridTemplateColumns: 'repeat(2, 1fr)',
         maxWidth: '100vw',
         width: '100%',
-        alignSelf: 'flex-start',
+        alignSelf: 'start',
       },
     },
     title: {
       gridArea: 'title',
-      position: 'relative',
       alignSelf: 'center',
       [theme.breakpoints.up('md')]: {
-        alignSelf: 'flex-end',
+        alignSelf: 'end',
       },
     },
     placeholder: {
       gridArea: 'placeholder',
-      background: '#fff',
       minHeight: '40vh',
       overflow: 'hidden',
 

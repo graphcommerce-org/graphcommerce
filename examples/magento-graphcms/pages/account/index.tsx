@@ -22,7 +22,7 @@ import {
   iconId,
   iconLock,
   iconNewspaper,
-  iconPersonAlt,
+  iconPerson,
   iconShutdown,
   iconStar,
   TimeAgo,
@@ -73,12 +73,12 @@ function AccountIndexPage() {
       />
 
       <PageShellHeader>
-        <Title component='span' size='small' icon={iconPersonAlt}>
+        <Title component='span' size='small' icon={iconPerson}>
           <Trans>Account</Trans>
         </Title>
       </PageShellHeader>
 
-      <AppShellTitle icon={iconPersonAlt}>
+      <AppShellTitle icon={iconPerson}>
         <Trans>Account</Trans>
       </AppShellTitle>
 
@@ -195,6 +195,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await page).data,
+      up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

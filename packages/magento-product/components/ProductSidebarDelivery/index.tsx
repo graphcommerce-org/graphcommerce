@@ -1,4 +1,4 @@
-import { SvgImage, responsiveVal, iconBox } from '@graphcommerce/next-ui'
+import { SvgImage, responsiveVal, iconBox, SvgImageSimple } from '@graphcommerce/next-ui'
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 
@@ -9,22 +9,29 @@ const useStyles = makeStyles(
       alignItems: 'center',
       gridTemplate: `
         "image title"
-        "image subtitle"
+        ". subtitle"
       `,
       gridTemplateColumns: `min-content auto`,
-      columnGap: theme.spacings.xs,
-      marginTop: theme.spacings.xs,
+      columnGap: theme.spacings.xxs,
+      marginTop: theme.spacings.xxs,
+      background: theme.palette.background.paper,
+      border: `1px solid ${theme.palette.divider}`,
+      padding: theme.spacings.xxs,
+      borderRadius: responsiveVal(4, 6),
     },
     text: {},
     image: {
       gridArea: 'image',
+      width: responsiveVal(18, 24),
+      height: responsiveVal(18, 24),
     },
     title: {
       gridArea: 'title',
+      fontWeight: 600,
     },
     subtitle: {
       gridArea: 'subtitle',
-      color: theme.palette.primary.mutedText,
+      color: theme.palette.text.primary,
     },
   }),
   { name: 'ProductSidebarDelivery' },
@@ -35,11 +42,11 @@ export default function ProductSidebarDelivery() {
 
   return (
     <div className={classes.root}>
-      <SvgImage className={classes.image} size='medium' src={iconBox} alt='box' loading='eager' />
-      <Typography className={classes.title} variant='subtitle2' component='div'>
-        Order before 22:00 and
+      <SvgImageSimple className={classes.image} src={iconBox} />
+      <Typography className={classes.title} variant='body2' component='div'>
+        Order before 22:00
       </Typography>
-      <Typography className={classes.subtitle} variant='body2' component='div' color='error'>
+      <Typography className={classes.subtitle} variant='body2' component='div'>
         Next day delivery - Shipping free
       </Typography>
     </div>

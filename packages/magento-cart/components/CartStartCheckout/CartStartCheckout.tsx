@@ -1,5 +1,11 @@
 import { Money } from '@graphcommerce/magento-store'
-import { Button, iconChevronRight, responsiveVal, SvgImage } from '@graphcommerce/next-ui'
+import {
+  Button,
+  iconChevronRight,
+  responsiveVal,
+  SvgImage,
+  SvgImageSimple,
+} from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
@@ -50,7 +56,7 @@ export default function CartStartCheckout(props: CartStartCheckoutProps) {
           variant='pill'
           color='secondary'
           className={classes.checkoutButton}
-          endIcon={<SvgImage src={iconChevronRight} shade='inverted' alt='checkout' />}
+          endIcon={<SvgImageSimple src={iconChevronRight} inverted />}
           disabled={!hasTotals}
         >
           <span className={classes.checkoutButtonLabel}>Start Checkout</span>{' '}

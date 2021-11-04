@@ -79,7 +79,6 @@ export default function ChangePasswordForm() {
           color='primary'
           variant='contained'
           size='large'
-          text='bold'
         >
           Save new password
         </Button>

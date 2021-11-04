@@ -43,6 +43,9 @@ const useStyles = makeStyles(
       '&:hover, &:focus': {
         background: theme.palette.text.primary,
       },
+      '& svg': {
+        stroke: theme.palette.background.default,
+      },
     },
     menu: {
       backgroundColor: theme.palette.background.paper,
@@ -50,10 +53,13 @@ const useStyles = makeStyles(
       minWidth: responsiveVal(200, 280),
     },
     menuItemText: {
-      fontSize: '1.5em',
-      fontWeight: 500,
-      letterSpacing: '-0.0375em',
+      ...theme.typography.h3,
+      fontWeight: 550,
       lineHeight: 1,
+      // fontSize: '1.6em',
+      // fontWeight: 550,
+      // letterSpacing: '-0.0375em',
+      // lineHeight: 1,
     },
     menuItem: {},
   }),
@@ -61,10 +67,14 @@ const useStyles = makeStyles(
 )
 
 export type MenuFabProps = MenuProps &
-  UseStyles<typeof useStyles> & { children?: React.ReactNode; search?: React.ReactNode }
+  UseStyles<typeof useStyles> & {
+    children?: React.ReactNode
+    search?: React.ReactNode
+    menuIcon?: React.ReactNode
+  }
 
 export default function MenuFab(props: MenuFabProps) {
-  const { menu, children, search } = props
+  const { menu, children, search, menuIcon } = props
   const classes = useStyles(props)
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
@@ -82,7 +92,7 @@ export default function MenuFab(props: MenuFabProps) {
         onClick={(event) => setOpenEl(event.currentTarget)}
         className={classes.menuFab}
       >
-        <SvgImageSimple src={iconMenu} inverted alt='menu' loading='eager' />
+        {menuIcon ?? <SvgImageSimple src={iconMenu} inverted />}
       </Fab>
 
       <Menu

@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.110.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.109.1...@graphcommerce/magento-cart-payment-method@2.110.0) (2021-11-02)
+
+
+### Features
+
+* shipping methods scroller ([3cc4413](https://github.com/ho-nl/m2-pwa/commit/3cc441320d2a3dd003c499be358a118a17e528c3))
+
+
+
+
+
+# [2.109.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.108.8...@graphcommerce/magento-cart-payment-method@2.109.0) (2021-11-02)
+
+
+### Features
+
+* darkTheme ([968f4f1](https://github.com/ho-nl/m2-pwa/commit/968f4f1360417bf7daa36454c19e6bc5cf53ae90))
+
+
+
+
+
+## [2.108.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.108.3...@graphcommerce/magento-cart-payment-method@2.108.4) (2021-10-28)
+
+
+### Bug Fixes
+
+* External SVG's can't have alt tags ([1b1414a](https://github.com/ho-nl/m2-pwa/commit/1b1414a782d55d3acf7b0e6bcaa50f2ad5f18f39))
+
+
+
+
+
+## [2.108.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.108.2...@graphcommerce/magento-cart-payment-method@2.108.3) (2021-10-28)
+
+
+### Bug Fixes
+
+* update SvgImage to SvgImageSimple ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
+
+
+
+
+
+# [2.108.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.107.6...@graphcommerce/magento-cart-payment-method@2.108.0) (2021-10-27)
+
+
+### Features
+
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 # [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.106.16...@graphcommerce/magento-cart-payment-method@2.107.0) (2021-10-19)
 
 

@@ -8,7 +8,7 @@ import {
   FullPageMessage,
   GetStaticProps,
   iconParty,
-  iconSadShoppingBag,
+  iconSadFace,
   PageShellHeader,
   Stepper,
   SvgImageSimple,
@@ -57,7 +57,7 @@ function OrderSuccessPage() {
           {!hasCartId && (
             <FullPageMessage
               title={t`You have not placed an order`}
-              icon={<SvgImageSimple src={iconSadShoppingBag} layout='fill' />}
+              icon={<SvgImageSimple src={iconSadFace} size='xxl' />}
               button={
                 <Link href='/' passHref>
                   <Button variant='contained' color='primary' size='large'>
@@ -83,7 +83,7 @@ function OrderSuccessPage() {
 
               <Box textAlign='center' m={8}>
                 <Link href='/' passHref>
-                  <Button color='secondary' variant='pill' size='large' text='bold'>
+                  <Button color='secondary' variant='pill' size='large'>
                     <Trans>Back to home</Trans>
                   </Button>
                 </Link>
@@ -120,6 +120,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await page).data,
+      up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

@@ -11,7 +11,7 @@ import { GetCartEmailDocument } from './GetCartEmail.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     signup: {
-      background: theme.palette.background.highlight,
+      background: theme.palette.background.paper,
       display: 'grid',
       alignItems: 'center',
       gridAutoFlow: 'column',

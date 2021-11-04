@@ -1,11 +1,14 @@
 import {
+  FixedFab,
   iconShoppingBag,
+  responsiveVal,
   StyledBadge,
   SvgImageSimple,
-  FixedFab,
   useFixedFabAnimation,
+  UseStyles,
 } from '@graphcommerce/next-ui'
-import { Fab, FabProps, NoSsr } from '@material-ui/core'
+import { Fab, FabProps, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import clsx from 'clsx'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
@@ -13,18 +16,34 @@ import { useCartQuery } from '../../hooks/useCartQuery'
 import { CartFabDocument } from './CartFab.gql'
 import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
 
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    fab: {
+      boxShadow: 'none',
+      background: theme.palette.background.default,
+      [theme.breakpoints.down('sm')]: {
+        width: responsiveVal(42, 56),
+        height: responsiveVal(42, 56),
+      },
+    },
+  }),
+  {
+    name: 'CartFab',
+  },
+)
+
 export type CartFabProps = {
   icon?: React.ReactNode
-} & Omit<FabProps, 'children' | 'aria-label'>
+} & Omit<FabProps, 'children' | 'aria-label'> &
+  UseStyles<typeof useStyles>
 
 type CartFabContentProps = CartFabProps & CartTotalQuantityFragment
 
 function CartFabContent(props: CartFabContentProps) {
   const { total_quantity, icon, ...fabProps } = props
-  const cartIcon = icon ?? (
-    <SvgImageSimple src={iconShoppingBag} alt='Shopping Bag' loading='eager' size='large' />
-  )
+  const cartIcon = icon ?? <SvgImageSimple src={iconShoppingBag} loading='eager' size='large' />
   const { boxShadow } = useFixedFabAnimation()
+  const classes = useStyles(props)
 
   return (
     <m.div style={{ boxShadow, width: 'inherit', borderRadius: 'inherit' }}>
@@ -33,9 +52,7 @@ function CartFabContent(props: CartFabContentProps) {
           aria-label='Cart'
           color='inherit'
           size='large'
-          style={{
-            boxShadow: 'none',
-          }}
+          classes={{ root: classes.fab }}
           {...fabProps}
         >
           {total_quantity > 0 ? (

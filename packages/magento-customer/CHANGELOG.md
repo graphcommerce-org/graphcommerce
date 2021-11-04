@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@3.3.5...@graphcommerce/magento-customer@3.4.0) (2021-11-02)
+
+
+### Bug Fixes
+
+* move checkmark icons on select fields ([95ce54d](https://github.com/ho-nl/m2-pwa/commit/95ce54d7fd41d11120847f2fdf6b9097a2c93871))
+* remove text='bold', make contained button text stronger by default ([cd277c9](https://github.com/ho-nl/m2-pwa/commit/cd277c9f434a4a765eac372467e5a05c822d5512))
+* remove unused imports ([b832188](https://github.com/ho-nl/m2-pwa/commit/b8321887f10a4a026adc5ca39166eeef90e60669))
+
+
+### Features
+
+* darkTheme ([3ed6647](https://github.com/ho-nl/m2-pwa/commit/3ed664714670315bc9f20542549724f66cb5052d))
+
+
+
+
+
+## [3.3.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@3.3.0...@graphcommerce/magento-customer@3.3.1) (2021-10-28)
+
+
+### Bug Fixes
+
+* External SVG's can't have alt tags ([1b1414a](https://github.com/ho-nl/m2-pwa/commit/1b1414a782d55d3acf7b0e6bcaa50f2ad5f18f39))
+
+
+
+
+
+# [3.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@3.2.2...@graphcommerce/magento-customer@3.3.0) (2021-10-28)
+
+
+### Bug Fixes
+
+* remove double icons ([1654e34](https://github.com/ho-nl/m2-pwa/commit/1654e3441911f3c7c1600357f8f8e3032f5ee729))
+* update SvgImage to SvgImageSimple ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
+
+
+### Features
+
+* dynamic icons, update SvgImage uses to SvgImageSimple ([3d3cc0e](https://github.com/ho-nl/m2-pwa/commit/3d3cc0e0336fcde1cce6ba19705f82c1edf9bfc6))
+
+
+
+
+
+# [3.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@3.1.9...@graphcommerce/magento-customer@3.2.0) (2021-10-27)
+
+
+### Features
+
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 ## [3.1.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@3.1.3...@graphcommerce/magento-customer@3.1.4) (2021-10-19)
 
 

@@ -5,6 +5,7 @@ import {
   MessageSnackbar,
   SvgImage,
   iconHome,
+  SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
@@ -52,7 +53,7 @@ export default function AccountAddresses(props: AccountAddressesProps) {
           <Skeleton height={128} />
           <Skeleton height={128} />
         </div>
-        <Button className={classes.button} variant='contained' color='primary' text='bold' disabled>
+        <Button className={classes.button} variant='contained' color='primary' disabled>
           Add new address
         </Button>
       </SectionContainer>
@@ -65,10 +66,10 @@ export default function AccountAddresses(props: AccountAddressesProps) {
         <>
           <FullPageMessage
             title='You have no addresses saved yet'
-            icon={<SvgImage src={iconHome} size={148} alt='home' />}
+            icon={<SvgImageSimple src={iconHome} size='xxl' />}
             button={
               <Link href='/account/addresses/add' passHref>
-                <Button size='large' variant='contained' color='primary' text='bold'>
+                <Button size='large' variant='contained' color='primary'>
                   Add new address
                 </Button>
               </Link>
@@ -86,7 +87,7 @@ export default function AccountAddresses(props: AccountAddressesProps) {
           </div>
 
           <Link href='/account/addresses/add' passHref>
-            <Button className={classes.button} variant='contained' color='primary' text='bold'>
+            <Button className={classes.button} variant='contained' color='primary'>
               Add new address
             </Button>
           </Link>

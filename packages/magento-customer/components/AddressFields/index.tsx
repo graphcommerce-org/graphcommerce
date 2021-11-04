@@ -139,7 +139,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           // onBlur={onBlur}
           InputProps={{
             readOnly,
-            endAdornment: <InputCheckmark show={valid.countryCode} />,
+            endAdornment: <InputCheckmark show={valid.countryCode} select />,
           }}
         >
           <option value='' />
@@ -169,7 +169,7 @@ export default function AddressFields(props: AddressFieldsProps) {
             helperText={formState.errors.regionId?.message}
             InputProps={{
               readOnly,
-              endAdornment: <InputCheckmark show={valid.regionId} />,
+              endAdornment: <InputCheckmark show={valid.regionId} select />,
             }}
           >
             <option value='' />

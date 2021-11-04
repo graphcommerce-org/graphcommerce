@@ -3,6 +3,56 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.108.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-items@2.107.5...@graphcommerce/magento-cart-items@2.108.0) (2021-11-02)
+
+
+### Bug Fixes
+
+* darkTheme ([d0517af](https://github.com/ho-nl/m2-pwa/commit/d0517af5a788532c48f567ee3e840986efa26a67))
+
+
+### Features
+
+* darkTheme ([968f4f1](https://github.com/ho-nl/m2-pwa/commit/968f4f1360417bf7daa36454c19e6bc5cf53ae90))
+* darkTheme ([3ed6647](https://github.com/ho-nl/m2-pwa/commit/3ed664714670315bc9f20542549724f66cb5052d))
+
+
+
+
+
+## [2.107.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-items@2.107.0...@graphcommerce/magento-cart-items@2.107.1) (2021-10-28)
+
+
+### Bug Fixes
+
+* External SVG's can't have alt tags ([1b1414a](https://github.com/ho-nl/m2-pwa/commit/1b1414a782d55d3acf7b0e6bcaa50f2ad5f18f39))
+
+
+
+
+
+# [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-items@2.106.2...@graphcommerce/magento-cart-items@2.107.0) (2021-10-28)
+
+
+### Features
+
+* dynamic icons, update SvgImage uses to SvgImageSimple ([3d3cc0e](https://github.com/ho-nl/m2-pwa/commit/3d3cc0e0336fcde1cce6ba19705f82c1edf9bfc6))
+
+
+
+
+
+# [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-items@2.105.7...@graphcommerce/magento-cart-items@2.106.0) (2021-10-27)
+
+
+### Features
+
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 # [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-items@2.104.29...@graphcommerce/magento-cart-items@2.105.0) (2021-10-18)
 
 

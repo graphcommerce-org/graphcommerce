@@ -115,7 +115,6 @@ export default function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormPr
       <FormActions>
         <Button
           type='submit'
-          text='bold'
           color='primary'
           variant='contained'
           size='large'

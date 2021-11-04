@@ -63,7 +63,6 @@ export default function ForgotPasswordForm() {
           color='primary'
           variant='contained'
           size='large'
-          text='bold'
         >
           Send password reset email
         </Button>

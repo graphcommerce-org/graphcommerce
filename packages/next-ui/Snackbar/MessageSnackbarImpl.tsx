@@ -6,6 +6,7 @@ import {
   SnackbarProps,
   Theme,
   Portal,
+  lighten,
 } from '@material-ui/core'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
@@ -35,9 +36,8 @@ const useStyles = makeStyles(
     rootPill: {
       backgroundColor: theme.palette.background.paper,
       color: theme.palette.text.primary,
-
       [theme.breakpoints.up('md')]: {
-        borderRadius: 50,
+        borderRadius: '99em',
       },
     },
     rootPillLarge: {},
@@ -58,60 +58,28 @@ const useStyles = makeStyles(
       },
     },
     children: {
-      // display: 'flex',
+      display: 'flex',
+      columnGap: 10,
       gridArea: 'children',
-      ...theme.typography.h6,
+      ...theme.typography.subtitle1,
       fontWeight: 400,
-
-      '& .MuiSvgIcon-root': {
-        position: 'relative',
-        fontSize: '1.1em',
-        top: '0.15em',
-      },
     },
     actionButton: {
       gridArea: 'action',
       '&:hover, &:focus': {
         backgroundColor: 'transparent',
       },
-      '& .MuiPillButton-pill': {
-        width: '100%',
-        padding: theme.spacings.xxs,
-        borderRadius: 40,
-      },
-      [theme.breakpoints.up('md')]: {
-        margin: 0,
+      [theme.breakpoints.down('md')]: {
         '& .MuiPillButton-pill': {
           width: '100%',
-          padding: '8px 16px',
         },
       },
     },
-    closeButton: {
-      gridArea: 'close',
-      '& .MuiSvgIcon-root': {
-        height: 24,
-      },
-      '& .MuiFab-sizeMedium': {
-        height: 36,
-        width: 36,
-      },
-      [theme.breakpoints.up('md')]: {
-        '& .MuiSvgIcon-root': {
-          height: 28,
-        },
-        '& .MuiFab-sizeMedium': {
-          height: 44,
-          width: 44,
-        },
-      },
+    close: {
+      backgroundColor: lighten(theme.palette.background.paper, 0.1),
     },
     sticky: {
       position: 'sticky',
-    },
-    messageIcon: {
-      display: 'inline-block',
-      marginRight: 5,
     },
   }),
   { name: 'MessageSnackbar' },
@@ -201,26 +169,17 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
           message={
             <>
               <div className={classes.children}>
-                <div>
-                  <SvgImageSimple
-                    src={icon}
-                    alt='checkmark'
-                    size='large'
-                    className={classes.messageIcon}
-                  />
-                  {children}
-                </div>
+                <SvgImageSimple src={icon} size='large' />
+                <div>{children}</div>
               </div>
               {action && (
                 <div className={classes.actionButton} onClick={hideSnackbar}>
                   {action}
                 </div>
               )}
-              <div className={classes.closeButton}>
-                <Fab aria-label='Close snackbar' size='medium' onClick={hideSnackbar}>
-                  <SvgImageSimple src={iconClose} size='small' alt='close' />
-                </Fab>
-              </div>
+              <Fab className={classes.close} aria-label='Close' size='small' onClick={hideSnackbar}>
+                <SvgImageSimple src={iconClose} />
+              </Fab>
             </>
           }
         />

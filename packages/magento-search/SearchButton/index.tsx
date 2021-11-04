@@ -1,13 +1,14 @@
-import { UseStyles, SvgImage, iconSearch, SvgImageSimple } from '@graphcommerce/next-ui'
+import { iconSearch, responsiveVal, SvgImageSimple, UseStyles } from '@graphcommerce/next-ui'
 import { makeStyles, TextField, TextFieldProps, Theme } from '@material-ui/core'
 import React from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      width: '100%',
+      marginRight: theme.spacings.xxs,
+      width: responsiveVal(64, 172),
       '& fieldset': {
-        border: `2px solid rgba(0,0,0,0.1)`,
+        border: `1px solid ${theme.palette.divider}`,
       },
     },
     inputRoot: {
@@ -27,10 +28,11 @@ export default function SearchButton(props: SearchButtonProps) {
     <TextField
       variant='outlined'
       size='small'
+      label='...'
       classes={{ root: classes.root }}
       InputProps={{
         readOnly: true,
-        endAdornment: <SvgImageSimple src={iconSearch} alt='Search' size='small' />,
+        endAdornment: <SvgImageSimple src={iconSearch} size='medium' />,
         classes: { root: classes.inputRoot },
         ...InputProps,
       }}

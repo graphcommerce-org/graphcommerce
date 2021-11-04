@@ -104,13 +104,7 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
           <Trans>Thank you! Your review was successfully submitted for approval</Trans>
         </Alert>
         <Box mt={6}>
-          <Button
-            variant='contained'
-            color='primary'
-            text='bold'
-            size='large'
-            onClick={() => router.back()}
-          >
+          <Button variant='contained' color='primary' size='large' onClick={() => router.back()}>
             <Trans>Continue shopping</Trans>
           </Button>
         </Box>
@@ -209,7 +203,6 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
         <Button
           variant='pill'
           color='primary'
-          text='bold'
           type='submit'
           size='medium'
           className={classes.submitButton}

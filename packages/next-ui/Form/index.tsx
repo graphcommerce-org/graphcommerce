@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { darken, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
@@ -14,7 +14,7 @@ const useStyles = makeStyles(
       background: theme.palette.secondary.light,
     },
     default: {
-      background: theme.palette.background.highlight,
+      background: darken(theme.palette.background.paper, 0.02),
     },
     contained: {
       padding: theme.spacings.sm,

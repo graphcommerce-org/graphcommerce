@@ -40,7 +40,7 @@ function AccountContactPage() {
 
   return (
     <>
-      <SheetShellHeader backFallbackTitle={t`Account`} backFallbackHref='/account'>
+      <SheetShellHeader>
         <Title size='small' component='span' icon={iconEmailOutline}>
           <Trans>Contact</Trans>
         </Title>
@@ -83,6 +83,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variant: 'bottom',
       size: 'max',
+      up: { href: '/account', title: 'Account' },
     },
   }
 }

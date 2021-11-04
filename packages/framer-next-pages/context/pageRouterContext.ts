@@ -1,11 +1,14 @@
 import { NextRouter } from 'next/router'
 import { createContext } from 'react'
+import { UpPage } from '../types'
 
-export type RouterProxy = NextRouter & { go(delta: number): void }
+export type RouterProxy = NextRouter & { go(delta: number): void; prevUpUrl: string }
 
 export type PageRouterContext = {
-  router: RouterProxy
+  currentRouter: RouterProxy
   prevRouter?: RouterProxy
+  up?: UpPage
+  prevUp?: UpPage
 }
 
 export const pageRouterContext = createContext(undefined as unknown as PageRouterContext)

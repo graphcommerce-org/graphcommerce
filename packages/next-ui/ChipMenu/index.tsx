@@ -3,37 +3,24 @@ import clsx from 'clsx'
 import React, { PropsWithChildren, useState } from 'react'
 import SectionHeader from '../SectionHeader'
 import responsiveVal from '../Styles/responsiveVal'
-import SvgImage from '../SvgImage'
-import { iconChevronDown, iconChevronUp, iconCloseCircle } from '../icons'
+import SvgImageSimple from '../SvgImage/SvgImageSimple'
+import { iconChevronDown, iconChevronUp, iconCancelAlt } from '../icons'
 
 export const useChipMenuStyles = makeStyles(
   (theme: Theme) => ({
-    /*
-      !importants: ensure background #xxxxxx on hover, focus etc regardless given props to the component 
-      otherwise you'll get: ".MuiChip-deletable.MuiChip-outlined:hover" which is prone to changes and thereby a fragile selector
-    */
-    chip: {
-      background: theme.palette.background.default,
-      '& .MuiChip-label': {
-        wordWrap: 'break-word',
-      },
-      '&:hover': {
-        background: `${theme.palette.background.highlight} !important`,
-      },
-      '&:focus': {
-        background: `${theme.palette.background.default} !important`,
-      },
-    },
+    chip: {},
     chipSelected: {
-      border: `1px solid ${theme.palette.text.primary}`,
-      background: theme.palette.grey['100'],
+      borderColor: theme.palette.text.primary,
       color: theme.palette.text.primary,
       '&:hover': {
         background: `${theme.palette.background.default} !important`,
-        borderColor: theme.palette.grey['600'],
+        borderColor: theme.palette.divider,
       },
       '&:focus': {
-        background: `${theme.palette.grey['100']} !important`,
+        background: `${theme.palette.background.paper} !important`,
+      },
+      '& svg': {
+        stroke: theme.palette.text.primary,
       },
     },
     menuPaper: {
@@ -48,6 +35,10 @@ export const useChipMenuStyles = makeStyles(
         margin: '0 auto',
         marginTop: '8px',
       },
+    },
+    iconCancel: {
+      stroke: `none !important`,
+      fill: `${theme.palette.text.primary} !important`,
     },
     menuList: {
       padding: 0,
@@ -76,20 +67,11 @@ export default function ChipMenu(props: ChipMenuProps) {
   const classes = useChipMenuStyles(props)
 
   let deleteIcon = selected ? (
-    <SvgImage size='medium' src={iconCloseCircle} alt='close' shade='default' />
+    <SvgImageSimple src={iconCancelAlt} className={classes.iconCancel} />
   ) : (
-    <SvgImage
-      size='medium'
-      src={iconChevronDown}
-      alt='chevron down'
-      loading='eager'
-      shade='muted'
-    />
+    <SvgImageSimple src={iconChevronDown} />
   )
-  if (openEl)
-    deleteIcon = (
-      <SvgImage size='medium' src={iconChevronUp} alt='chevron up' loading='eager' shade='muted' />
-    )
+  if (openEl) deleteIcon = <SvgImageSimple src={iconChevronUp} />
 
   const selectedAndMenuHidden = selected && !openEl && selectedLabel
 

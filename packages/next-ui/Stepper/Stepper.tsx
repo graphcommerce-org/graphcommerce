@@ -7,13 +7,14 @@ import responsiveVal from '../Styles/responsiveVal'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
+      marginTop: '-2px',
       display: 'grid',
       gridAutoFlow: 'column',
       gap: responsiveVal(8, 12),
       // padding: `0 ${theme.page.horizontal}`,
     },
     step: {
-      height: 2,
+      height: responsiveVal(2, 3),
       background: theme.palette.divider,
     },
     current: {

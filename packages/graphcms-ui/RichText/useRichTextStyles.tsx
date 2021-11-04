@@ -5,15 +5,18 @@ const useRichTextStyles = makeStyles(
   ({ spacings, breakpoints, palette, typography }: Theme) => ({
     root: { '&:empty': { display: 'none' }, '&:last-child': { marginBottom: 0 } },
     paragraph: { marginBottom: '1em', wordBreak: 'break-word' },
-    h1: { marginTop: responsiveVal(9, 0), marginBottom: responsiveVal(21, 50) },
+    h1: {
+      marginTop: '0.5em',
+      marginBottom: '0.5em',
+    },
     h2: {
-      marginTop: responsiveVal(22, 40),
-      marginBottom: responsiveVal(20, 40),
+      marginTop: '0.5em',
+      marginBottom: '0.5em',
       '&:first-child': { marginTop: 0 },
     },
     h3: {
-      marginTop: responsiveVal(22, 30),
-      marginBottom: responsiveVal(22, 30),
+      marginTop: '0.5em',
+      marginBottom: '0.5em',
       '&:first-child': { marginTop: 0 },
     },
     h4: {
@@ -90,7 +93,7 @@ const useRichTextStyles = makeStyles(
 
         '& tr': {
           '&:nth-child(odd)': {
-            background: palette.background.highlight,
+            background: palette.background.paper,
           },
         },
 

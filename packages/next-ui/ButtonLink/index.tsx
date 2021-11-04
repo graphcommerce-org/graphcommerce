@@ -3,7 +3,7 @@ import PageLink from 'next/link'
 import React from 'react'
 import Button, { ButtonProps } from '../Button'
 import { UseStyles } from '../Styles'
-import SvgImage from '../SvgImage'
+import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconChevronRight } from '../icons'
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.text.primary,
     textDecoration: 'none',
     padding: `${theme.spacings.xs} 0`,
-    borderBottom: `1px solid ${theme.palette.grey[300]}`,
+    borderBottom: `1px solid ${theme.palette.divider}`,
     borderRadius: 0,
     ...theme.typography.body1,
     '& > *': {
@@ -38,7 +38,7 @@ export default function ButtonLink(props: ButtonLinkProps) {
     <PageLink href={url} passHref>
       <Button {...buttonProps} className={classes.buttonLink}>
         <span>{title}</span>
-        {endIcon ?? <SvgImage src={iconChevronRight} alt='chevron right' />}
+        {endIcon ?? <SvgImageSimple src={iconChevronRight} />}
       </Button>
     </PageLink>
   )

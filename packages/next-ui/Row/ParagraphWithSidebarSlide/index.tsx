@@ -1,6 +1,4 @@
 import { ContainerProps, makeStyles, Theme } from '@material-ui/core'
-import { m, useSpring, useTransform, useViewportScroll } from 'framer-motion'
-import React, { useEffect, useRef, useState } from 'react'
 import Row from '..'
 import { UseStyles } from '../../Styles'
 
@@ -32,7 +30,7 @@ const useStyles = makeStyles(
       },
     },
     copy: {
-      color: '#fff',
+      color: theme.palette.secondary.contrastText,
       display: 'grid',
       zIndex: 1,
       justifyItems: 'start',
@@ -54,7 +52,9 @@ const useStyles = makeStyles(
       },
     },
     slidingItems: {
-      maxWidth: '100%',
+      '& > *': {
+        height: 'auto !important',
+      },
     },
   }),
   { name: 'ParagraphWithSidebarSlide' },
@@ -71,33 +71,6 @@ export default function ParagraphWithSidebarSlide(props: ParagraphWithSidebarSli
   const { background, slidingItems, children, ...containerProps } = props
   const classes = useStyles(props)
 
-  const [windowHeight, setHeight] = useState(0)
-  const [itemY, setItemY] = useState(0)
-  const [parentHeight, setParentHeight] = useState(0)
-  const sidebar = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (!sidebar.current) return () => {}
-    const ro = new ResizeObserver(([entry]) => {
-      if (entry.target instanceof HTMLElement) {
-        setParentHeight(entry.target.offsetHeight)
-        setHeight(window.innerHeight)
-        setItemY(entry.target.offsetTop)
-      }
-    })
-    ro.observe(sidebar.current)
-    return () => ro.disconnect()
-  }, [])
-
-  const { scrollY } = useViewportScroll()
-  const y = useSpring(
-    useTransform(
-      scrollY,
-      [itemY - windowHeight / 4, itemY + windowHeight / 2],
-      [0, parentHeight > windowHeight / 2 ? windowHeight / 2 : 0],
-    ),
-  )
-
   return (
     <Row maxWidth={false} {...containerProps}>
       <div className={classes.wrapper}>
@@ -105,9 +78,7 @@ export default function ParagraphWithSidebarSlide(props: ParagraphWithSidebarSli
           <div className={classes.copy}>{children}</div>
           {background}
         </div>
-        <m.div ref={sidebar} transition={{ ease: 'linear' }} style={{ y }}>
-          {slidingItems}
-        </m.div>
+        <div className={classes.slidingItems}>{slidingItems}</div>
       </div>
     </Row>
   )

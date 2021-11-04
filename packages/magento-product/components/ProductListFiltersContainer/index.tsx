@@ -2,6 +2,7 @@ import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/frame
 import {
   iconChevronLeft,
   iconChevronRight,
+  responsiveVal,
   SvgImageSimple,
   UseStyles,
 } from '@graphcommerce/next-ui'
@@ -15,7 +16,7 @@ const useStyles = makeStyles(
     wrapper: {
       display: 'flex',
       justifyContent: 'center',
-      height: 44,
+      height: responsiveVal(44, 52),
       marginBottom: theme.spacings.sm,
       position: 'sticky',
       top: theme.page.vertical,
@@ -34,15 +35,26 @@ const useStyles = makeStyles(
     container: {
       maxWidth: '100%',
       padding: 6,
+      paddingLeft: 0,
+      paddingRight: 0,
       [theme.breakpoints.up('md')]: {
-        background: '#fff',
-        borderRadius: 22,
-        // padding: `0 3px`,
+        background: theme.palette.background.default,
+        borderRadius: '99em',
+      },
+      [theme.breakpoints.down('sm')]: {
+        boxShadow: 'none !important',
       },
     },
     containerSticky: {},
     scroller: {
-      borderRadius: 22,
+      paddingLeft: theme.page.horizontal,
+      paddingRight: theme.page.horizontal,
+      paddingBottom: 1,
+      [theme.breakpoints.up('md')]: {
+        borderRadius: '99em',
+        paddingLeft: 6,
+        paddingRight: 6,
+      },
       columnGap: 6,
       gridAutoColumns: 'min-content',
     },

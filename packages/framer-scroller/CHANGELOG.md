@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.0.1...@graphcommerce/framer-scroller@1.0.2) (2021-11-03)
+
+
+### Bug Fixes
+
+* various accessibility improvements ([47481a9](https://github.com/ho-nl/m2-pwa/commit/47481a9a882ba87968de6dd797557b0b275d75fb))
+
+
+
+
+
+## [0.4.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@0.4.1...@graphcommerce/framer-scroller@0.4.2) (2021-10-29)
+
+
+### Bug Fixes
+
+* spacing of title on category landing on mobile ([8ed3550](https://github.com/ho-nl/m2-pwa/commit/8ed35502fd231d1d6a8e0a282f8961335d9dead3))
+
+
+
+
+
+# [0.4.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@0.3.3...@graphcommerce/framer-scroller@0.4.0) (2021-10-27)
+
+
+### Features
+
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 # [0.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@0.2.11...@graphcommerce/framer-scroller@0.3.0) (2021-10-19)
 
 

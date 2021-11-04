@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.4.6...@graphcommerce/magento-search@3.4.7) (2021-11-03)
+
+
+### Bug Fixes
+
+* various accessibility improvements ([47481a9](https://github.com/ho-nl/m2-pwa/commit/47481a9a882ba87968de6dd797557b0b275d75fb))
+
+
+
+
+
+# [3.4.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.3.5...@graphcommerce/magento-search@3.4.0) (2021-11-02)
+
+
+### Bug Fixes
+
+* darkMode ([c7573de](https://github.com/ho-nl/m2-pwa/commit/c7573de6bb80643b26931c35ac61735539e7fbf0))
+
+
+### Features
+
+* darkTheme ([968f4f1](https://github.com/ho-nl/m2-pwa/commit/968f4f1360417bf7daa36454c19e6bc5cf53ae90))
+
+
+
+
+
+## [3.3.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.3.0...@graphcommerce/magento-search@3.3.1) (2021-10-28)
+
+
+### Bug Fixes
+
+* External SVG's can't have alt tags ([1b1414a](https://github.com/ho-nl/m2-pwa/commit/1b1414a782d55d3acf7b0e6bcaa50f2ad5f18f39))
+
+
+
+
+
+# [3.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.2.2...@graphcommerce/magento-search@3.3.0) (2021-10-28)
+
+
+### Bug Fixes
+
+* update SvgImage to SvgImageSimple ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
+
+
+### Features
+
+* dynamic icons, update SvgImage uses to SvgImageSimple ([3d3cc0e](https://github.com/ho-nl/m2-pwa/commit/3d3cc0e0336fcde1cce6ba19705f82c1edf9bfc6))
+* mobile menu styling ([3cc3085](https://github.com/ho-nl/m2-pwa/commit/3cc308585d4ded68d2ac8ebf97f96288424ee914))
+
+
+
+
+
+# [3.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.1.12...@graphcommerce/magento-search@3.2.0) (2021-10-27)
+
+
+### Features
+
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 # [3.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.0.18...@graphcommerce/magento-search@3.1.0) (2021-10-13)
 
 

@@ -1,8 +1,8 @@
 import { ButtonProps, makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
+import { SvgImageSimple } from '..'
 import Button from '../Button'
 import { UseStyles } from '../Styles'
-import SvgImage from '../SvgImage'
 import { iconChevronRight } from '../icons'
 
 const useStyles = makeStyles(
@@ -44,9 +44,9 @@ const ForwardButton = React.forwardRef((props: ForwardButtonProps, ref) => {
   const { children, down, ...fabProps } = props
 
   return (
-    <Button variant='pill' classes={classes} {...fabProps}>
+    <Button variant='pill' classes={classes} {...fabProps} ref={ref}>
       <span className={text}>{children}</span>
-      <SvgImage src={iconChevronRight} alt='chevron right' size='small' classes={{ root: icon }} />
+      <SvgImageSimple src={iconChevronRight} size='small' className={classes.root} />
     </Button>
   )
 })

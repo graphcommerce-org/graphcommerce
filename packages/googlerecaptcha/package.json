@@ -1,0 +1,28 @@
+{
+  "name": "@graphcommerce/googlerecaptcha",
+  "version": "1.1.0",
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "browserslist": [
+    "extends @graphcommerce/browserslist-config-pwa"
+  ],
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "devDependencies": {
+    "@graphcommerce/browserslist-config-pwa": "^3.0.2",
+    "@graphcommerce/eslint-config-pwa": "^3.1.1",
+    "@graphcommerce/prettier-config-pwa": "^3.0.3",
+    "@graphcommerce/typescript-config-pwa": "^3.1.1",
+    "@playwright/test": "^1.15.2",
+    "@types/grecaptcha": "^3.0.3"
+  },
+  "dependencies": {
+    "next": "^12.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}

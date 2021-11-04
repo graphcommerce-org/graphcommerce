@@ -1,9 +1,9 @@
-import { Image } from '@graphcommerce/image'
-import { UseStyles } from '@graphcommerce/next-ui/Styles'
-import { makeStyles, Theme } from '@material-ui/core'
-import PageLink from 'next/link'
-import React from 'react'
+import { Logo as NextLogo, LogoProps } from '@graphcommerce/next-ui'
+import { makeStyles, Theme, useTheme } from '@material-ui/core'
+import clsx from 'clsx'
 import svgLogo from './graphcommerce.svg'
+
+type ShopLogoProps = Omit<LogoProps, 'image'>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -14,44 +14,33 @@ const useStyles = makeStyles(
       paddingLeft: 10,
       [theme.breakpoints.up('md')]: {
         width: 'auto',
-        height: 32,
+        height: 28,
         paddingLeft: 0,
+        marginTop: '-5px',
       },
     },
-    link: {
-      height: '100%',
-      width: 'max-content',
-      display: 'flex',
-      alignItems: 'center',
-      margin: '0 auto',
-      justifyContent: 'center',
-      [theme.breakpoints.up('md')]: {
-        display: 'flex',
-        margin: 'unset',
-        justifyContent: 'left',
-      },
+    dark: {
+      filter: 'invert(100%)',
     },
   }),
   { name: 'Logo' },
 )
 
-type LogoProps = UseStyles<typeof useStyles>
-
-export default function Logo(props: LogoProps) {
+export default function Logo(props: ShopLogoProps) {
   const classes = useStyles(props)
+  const inverted = useTheme().palette.type === 'dark'
 
   return (
-    <PageLink href='/' passHref>
-      <a className={classes.link}>
-        <Image
-          layout='fixed'
-          alt='logo'
-          src={svgLogo}
-          unoptimized
-          loading='eager'
-          className={classes.logo}
-        />
-      </a>
-    </PageLink>
+    <NextLogo
+      {...props}
+      classes={{ logo: clsx(classes.logo, inverted && classes.dark) }}
+      image={{
+        layout: 'fixed',
+        alt: 'logo',
+        src: svgLogo,
+        unoptimized: true,
+        loading: 'eager',
+      }}
+    />
   )
 }

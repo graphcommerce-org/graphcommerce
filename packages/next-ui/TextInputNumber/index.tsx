@@ -12,7 +12,7 @@ import clsx from 'clsx'
 import React, { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
 import { UseStyles } from '../Styles'
 import responsiveVal from '../Styles/responsiveVal'
-import SvgImage from '../SvgImage'
+import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconMin, iconPlus } from '../icons'
 
 const useStyles = makeStyles(
@@ -132,9 +132,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             className={clsx(classes.button, DownProps.className)}
             {...DownProps}
           >
-            {DownProps.children ?? (
-              <SvgImage src={iconMin} size='small' alt='Step down' loading='eager' />
-            )}
+            {DownProps.children ?? <SvgImageSimple src={iconMin} size='small' />}
           </IconButton>
         ),
         endAdornment: (
@@ -150,9 +148,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             className={clsx(classes.button, UpProps.className)}
             {...UpProps}
           >
-            {UpProps.children ?? (
-              <SvgImage src={iconPlus} size='small' alt='Step up' loading='eager' />
-            )}
+            {UpProps.children ?? <SvgImageSimple src={iconPlus} size='small' />}
           </IconButton>
         ),
       }}

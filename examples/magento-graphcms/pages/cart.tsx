@@ -22,6 +22,7 @@ import {
   Title,
   iconChevronRight,
   SvgImage,
+  SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
@@ -57,15 +58,8 @@ function CartPage() {
                 color='secondary'
                 variant='pill-link'
                 disabled={!hasItems}
-                endIcon={
-                  <SvgImage
-                    src={iconChevronRight}
-                    alt='chevron right'
-                    shade='inverted'
-                    size='small'
-                    loading='eager'
-                  />
-                }
+                size='small'
+                endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
               >
                 <Trans>Next</Trans>
               </Button>

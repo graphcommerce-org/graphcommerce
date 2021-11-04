@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.107.13](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-review@2.107.12...@graphcommerce/magento-review@2.107.13) (2021-11-03)
+
+
+### Bug Fixes
+
+* various accessibility improvements ([47481a9](https://github.com/ho-nl/m2-pwa/commit/47481a9a882ba87968de6dd797557b0b275d75fb))
+
+
+
+
+
+## [2.107.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-review@2.107.5...@graphcommerce/magento-review@2.107.6) (2021-11-02)
+
+
+### Bug Fixes
+
+* remove text='bold', make contained button text stronger by default ([cd277c9](https://github.com/ho-nl/m2-pwa/commit/cd277c9f434a4a765eac372467e5a05c822d5512))
+* remove unused imports ([b832188](https://github.com/ho-nl/m2-pwa/commit/b8321887f10a4a026adc5ca39166eeef90e60669))
+* ReviewChip should only differ from default MuiChip in product grid ([c22a029](https://github.com/ho-nl/m2-pwa/commit/c22a0291afbbc03099fd0487421ff9fd31caf226))
+
+
+
+
+
+## [2.107.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-review@2.107.0...@graphcommerce/magento-review@2.107.1) (2021-10-28)
+
+
+### Bug Fixes
+
+* External SVG's can't have alt tags ([1b1414a](https://github.com/ho-nl/m2-pwa/commit/1b1414a782d55d3acf7b0e6bcaa50f2ad5f18f39))
+
+
+
+
+
+# [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-review@2.106.2...@graphcommerce/magento-review@2.107.0) (2021-10-28)
+
+
+### Bug Fixes
+
+* keep original review chip ([3f2f834](https://github.com/ho-nl/m2-pwa/commit/3f2f834478b7b8252f6164442815e5c081de6411))
+* keep original review chip for now ([9664cd9](https://github.com/ho-nl/m2-pwa/commit/9664cd90801c6776e1c694eec8f393118810a792))
+* review button size ([9074102](https://github.com/ho-nl/m2-pwa/commit/9074102c1866b14d0e7f1f0f3dfabe6e6c0b324d))
+* size of default ReviewChip ([e1d4969](https://github.com/ho-nl/m2-pwa/commit/e1d49699776b15fa056677f042f6c9939b6acada))
+
+
+### Features
+
+* cleanup grid, add visual star chip ([0571569](https://github.com/ho-nl/m2-pwa/commit/057156937f603bc399f5f8f8ac2837ff5cfaef28))
+* dynamic icons, update SvgImage uses to SvgImageSimple ([3d3cc0e](https://github.com/ho-nl/m2-pwa/commit/3d3cc0e0336fcde1cce6ba19705f82c1edf9bfc6))
+* enable use of both small and medium chips in design ([4536f96](https://github.com/ho-nl/m2-pwa/commit/4536f96b031734a71faf7c10f94aa5d5da90b9a8))
+
+
+
+
+
+# [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-review@2.105.37...@graphcommerce/magento-review@2.106.0) (2021-10-27)
+
+
+### Features
+
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 ## [2.105.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-review@2.105.0...@graphcommerce/magento-review@2.105.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/magento-review

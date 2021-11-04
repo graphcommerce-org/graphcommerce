@@ -1,5 +1,5 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
-import React, { useRef } from 'react'
+import React from 'react'
 import Button from '../../../Button'
 import { UseStyles } from '../../../Styles'
 
@@ -10,7 +10,7 @@ const useStyles = makeStyles(
       gridAutoFlow: 'row',
       justifyItems: 'center',
       gap: `${theme.spacings.xs}`,
-      border: `1px solid ${theme.palette.grey[300]}`,
+      border: `1px solid ${theme.palette.divider}`,
       padding: `${theme.spacings.sm}`,
       borderRadius: '6px',
       textAlign: 'center',

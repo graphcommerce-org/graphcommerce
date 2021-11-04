@@ -3,9 +3,11 @@ import {
   ButtonClassKey as MuiButtonClassKey,
   Theme,
   makeStyles,
+  lighten,
 } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
+import { responsiveVal } from '..'
 
 type BaseButtonProps = Omit<Parameters<typeof MuiButton>['0'], 'variant' | 'classes'> & {
   variant?: 'text' | 'outlined' | 'contained' | 'pill' | 'pill-link'
@@ -19,12 +21,11 @@ type ButtonClassKey =
   | 'pillSizeLarge'
   | 'pillSizeSmall'
   | 'pillNoElevation'
-  | 'textBold'
   | 'withStartIcon'
   | 'startIconText'
+  | 'loading'
 
 type ClassKeys = ButtonClassKey | MuiButtonClassKey
-type Text = 'normal' | 'bold'
 
 export type ButtonProps = BaseButtonProps & {
   classes?: { [index in ClassKeys]?: string }
@@ -54,16 +55,22 @@ const useStyles = makeStyles<
       },
     },
     pill: {
-      borderRadius: 40 / 2,
+      borderRadius: '99em',
     },
     pillLink: {
-      [theme.breakpoints.up('md')]: {
-        background: theme.palette.secondary.main,
-        color: theme.palette.secondary.contrastText,
-        boxShadow: theme.shadows[6],
-        borderRadius: 25,
-        padding: '6px 16px',
-        fontWeight: theme.typography.fontWeightBold,
+      [theme.breakpoints.up('sm')]: {
+        // manually match MuiButton and containedPrimary styles
+        textTransform: 'none',
+        ...theme.typography.body2,
+        fontWeight: 400,
+        padding: `${responsiveVal(8, 10)} ${responsiveVal(12, 22)}`,
+        backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.primary.contrastText,
+        borderRadius: '99em',
+        boxShadow: theme.shadows[1],
+        '& svg': {
+          stroke: theme.palette.primary.contrastText,
+        },
         '&:hover': {
           background: theme.palette.secondary.dark,
         },
@@ -76,10 +83,10 @@ const useStyles = makeStyles<
       //
     },
     pillSizeLarge: {
-      borderRadius: 59 / 2,
+      //
     },
     pillSizeSmall: {
-      borderRadius: 33 / 2,
+      //
     },
     pillNoElevation: {
       /* disableElevation does not stop adding box shadow on active... ?! */
@@ -87,13 +94,15 @@ const useStyles = makeStyles<
         boxShadow: 'none',
       },
     },
-    textBold: {
-      fontWeight: theme.typography.fontWeightBold,
-    },
     startIconText: {
       display: 'none',
       [theme.breakpoints.up('md')]: {
         display: 'unset',
+      },
+    },
+    loading: {
+      '& svg': {
+        stroke: theme.palette.text.disabled,
       },
     },
   }),
@@ -111,7 +120,6 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
     pillSizeLarge,
     pillSizeSmall,
     pillLink,
-    textBold,
     ...buttonClasses
   } = classes
 
@@ -124,7 +132,6 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
       pillSizeLarge,
       pillSizeSmall,
       pillLink,
-      textBold,
       ...buttonClasses,
     },
   })
@@ -155,7 +162,7 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
           [pillClasses.pillSizeSmall]: variant === 'pill' && size === 'small',
           [pillClasses.pillNoElevation]: buttonProps.disableElevation,
           [pillClasses.pillLink]: variant === 'pill-link',
-          [pillClasses.textBold]: text === 'bold',
+          [pillClasses.loading]: loading,
           [pillClasses.withStartIcon]: withIcon,
         },
         className,

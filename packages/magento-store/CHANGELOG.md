@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-store@3.1.8...@graphcommerce/magento-store@3.2.0) (2021-11-02)
+
+
+### Features
+
+* darkTheme ([968f4f1](https://github.com/ho-nl/m2-pwa/commit/968f4f1360417bf7daa36454c19e6bc5cf53ae90))
+
+
+
+
+
+# [3.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-store@3.0.31...@graphcommerce/magento-store@3.1.0) (2021-10-27)
+
+
+### Features
+
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 ## [3.0.29](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-store@3.0.28...@graphcommerce/magento-store@3.0.29) (2021-10-21)
 
 

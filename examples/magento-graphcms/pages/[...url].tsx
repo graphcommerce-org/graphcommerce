@@ -2,6 +2,7 @@ import { mergeDeep } from '@apollo/client/utilities'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   CategoryChildren,
+  CategoryDescription,
   CategoryHeroNav,
   CategoryHeroNavTitle,
   CategoryMeta,
@@ -23,7 +24,14 @@ import {
   ProductListSort,
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellSticky, AppShellTitle, GetStaticProps, Title } from '@graphcommerce/next-ui'
+import {
+  AppShellSticky,
+  AppShellTitle,
+  GetStaticProps,
+  MetaRobots,
+  PageMeta,
+  Title,
+} from '@graphcommerce/next-ui'
 import { Container } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
@@ -35,15 +43,17 @@ import PageContent from '../components/PageContent'
 import ProductListItems from '../components/ProductListItems/ProductListItems'
 import useProductListStyles from '../components/ProductListItems/useProductListStyles'
 import RowProduct from '../components/Row/RowProduct'
-import Backstory from '../components/Row/RowProduct/variant/Backstory'
-import Feature from '../components/Row/RowProduct/variant/Feature'
-import FeatureBoxed from '../components/Row/RowProduct/variant/FeatureBoxed'
-import Grid from '../components/Row/RowProduct/variant/Grid'
-import Related from '../components/Row/RowProduct/variant/Related'
-import Reviews from '../components/Row/RowProduct/variant/Reviews'
-import Specs from '../components/Row/RowProduct/variant/Specs'
-import Swipeable from '../components/Row/RowProduct/variant/Swipeable'
-import Upsells from '../components/Row/RowProduct/variant/Upsells'
+import {
+  Backstory,
+  Feature,
+  FeatureBoxed,
+  Grid,
+  Related,
+  Reviews,
+  Specs,
+  Swipeable,
+  Upsells,
+} from '../components/Row/RowProduct/variant'
 import apolloClient from '../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -52,22 +62,13 @@ type Props = CategoryPageQuery &
   ProductListQuery & {
     filterTypes: FilterTypes
     params: ProductListParams
-  } & Pick<FullPageShellProps, 'backFallbackHref' | 'backFallbackTitle'>
+  }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function CategoryPage(props: Props) {
-  const {
-    categories,
-    products,
-    filters,
-    params,
-    filterTypes,
-    pages,
-    backFallbackHref,
-    backFallbackTitle,
-  } = props
+  const { categories, products, filters, params, filterTypes, pages } = props
   const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
 
   const category = categories?.items?.[0]
@@ -79,14 +80,23 @@ function CategoryPage(props: Props) {
   if (isLanding && productList) productList = products?.items?.slice(0, 8)
 
   const product = products?.items?.[0]
+  const page = pages?.[0]
+  const metaRobots = page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]
 
   return (
     <>
-      <CategoryMeta params={params} {...category} />
-      <FullPageShellHeader
-        backFallbackHref={backFallbackHref}
-        backFallbackTitle={backFallbackTitle}
-      >
+      {page ? (
+        <PageMeta
+          title={page?.metaTitle ?? ''}
+          metaDescription={page?.metaDescription ?? ''}
+          metaRobots={metaRobots}
+          // canonical={page?.url}
+        />
+      ) : (
+        <CategoryMeta params={params} {...category} />
+      )}
+
+      <FullPageShellHeader>
         <Title size='small'>{category?.name}</Title>
       </FullPageShellHeader>
 
@@ -98,24 +108,20 @@ function CategoryPage(props: Props) {
         />
       ) : (
         <ProductListParamsProvider value={params}>
-          <Container maxWidth='xl'>
-            <AppShellTitle>{category?.name}</AppShellTitle>
+          <AppShellTitle variant='h1'>{category?.name}</AppShellTitle>
+          <CategoryDescription description={category.description} />
+          <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
-            <CategoryChildren params={params}>{category.children}</CategoryChildren>
-
-            <AppShellSticky headerFill='mobile-only'>
-              <ProductListFiltersContainer>
-                <ProductListSort
-                  sort_fields={products?.sort_fields}
-                  total_count={products?.total_count}
-                />
-                <ProductListFilters
-                  aggregations={filters?.aggregations}
-                  filterTypes={filterTypes}
-                />
-              </ProductListFiltersContainer>
-            </AppShellSticky>
-
+          <AppShellSticky headerFill='mobile-only'>
+            <ProductListFiltersContainer>
+              <ProductListSort
+                sort_fields={products?.sort_fields}
+                total_count={products?.total_count}
+              />
+              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
+            </ProductListFiltersContainer>
+          </AppShellSticky>
+          <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />
 
             <ProductListItems
@@ -210,8 +216,10 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const { category_name, category_url_path } =
     (await categoryPage).data.categories?.items?.[0]?.breadcrumbs?.[0] ?? {}
 
-  const backFallbackHref = category_url_path ? `/${category_url_path}` : null
-  const backFallbackTitle = category_name || null
+  const up =
+    category_url_path && category_name
+      ? { href: `/${category_url_path}`, title: category_name }
+      : { href: `/`, title: 'Home' }
 
   return {
     props: {
@@ -220,8 +228,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       filterTypes: await filterTypes,
       params: productListParams,
       apolloState: await conf.then(() => client.cache.extract()),
-      backFallbackHref,
-      backFallbackTitle,
+      up,
     },
     revalidate: 60 * 20,
   }

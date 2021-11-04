@@ -11,11 +11,17 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       gridArea: 'description',
-      margin: '0 auto',
+      margin: `0 auto ${theme.spacings.sm}`,
+      padding: `0 ${theme.page.horizontal}`,
       textAlign: 'center',
-      maxWidth: 732,
-      marginTop: theme.spacings.md,
-      marginBottom: theme.spacings.sm,
+      [theme.breakpoints.up('md')]: {
+        maxWidth: '50%',
+      },
+      [theme.breakpoints.up('xl')]: {
+        maxWidth: '30%',
+      },
+
+      ...theme.typography.subtitle1,
     },
   }),
   { name: 'CategoryDescription' },
@@ -25,14 +31,7 @@ export default function CategoryDescription(props: CategoryDescriptionProps) {
   const { name, description, display_mode, ...divProps } = props
   const classes = useStyles(props)
 
-  return (
-    <div {...divProps} className={classes.root}>
-      <Typography variant='h2' component='h1' align='center'>
-        {name}
-      </Typography>
-      {/* todo: replace with proper content renderer */}
-      {/* eslint-disable-next-line react/no-danger */}
-      {description && <div dangerouslySetInnerHTML={{ __html: description }} />}
-    </div>
-  )
+  return description ? (
+    <div {...divProps} className={classes.root} dangerouslySetInnerHTML={{ __html: description }} />
+  ) : null
 }

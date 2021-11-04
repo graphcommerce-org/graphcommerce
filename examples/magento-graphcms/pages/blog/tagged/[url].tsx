@@ -1,8 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument, PageMeta } from '@graphcommerce/magento-store'
-import { AppShellTitle, GetStaticProps, Row, Title } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
-import { Container } from '@material-ui/core'
+import { GetStaticProps, Row, Title } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
@@ -35,7 +33,7 @@ function BlogPage(props: Props) {
 
   return (
     <>
-      <FullPageShellHeader backFallbackHref='/blog' backFallbackTitle={t`Blog`}>
+      <FullPageShellHeader>
         <Title size='small'>{title}</Title>
       </FullPageShellHeader>
       <Row>
@@ -104,6 +102,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     props: {
       ...(await page).data,
       ...(await blogPosts).data,
+      up: { href: '/blog', title: 'Blog' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

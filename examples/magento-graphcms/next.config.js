@@ -3,9 +3,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { PerformanceObserver, performance } = require('perf_hooks')
 const withYarn1Workspaces = require('@graphcommerce/next-config').withYarn1Scopes()
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
 
 require('dotenv').config()
 
@@ -36,14 +33,13 @@ if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
 
 /** @type {import('next/dist/server/config-shared').NextConfig} */
 const nextConfig = {
-  webpackStats: process.env.ANALYZE === 'true',
   rewrites() {
     return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
   },
   experimental: {
     scrollRestoration: true,
     disableOptimizedLoading: true,
-    esmExternals: true,
+    esmExternals: false,
   },
   pwa: {
     dest: 'public',
@@ -64,4 +60,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withBundleAnalyzer(withPWA(withYarn1Workspaces(nextConfig)))
+module.exports = withPWA(withYarn1Workspaces(nextConfig))

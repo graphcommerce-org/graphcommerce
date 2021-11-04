@@ -1,8 +1,15 @@
-import { UseStyles, responsiveVal } from '@graphcommerce/next-ui'
+import { responsiveVal, Row, SectionContainer, UseStyles } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
+import React from 'react'
 import { ProductSpecsFragment } from './ProductSpecs.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    ...theme.typography.subtitle1,
+  },
+  sectionHeaderWrapper: {
+    marginBottom: theme.spacings.md,
+  },
   specs: {
     display: 'grid',
     justifyContent: 'start',
@@ -21,10 +28,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-export type ProductSpecsProps = ProductSpecsFragment & UseStyles<typeof useStyles>
+export type ProductSpecsProps = ProductSpecsFragment & { title?: string } & UseStyles<
+    typeof useStyles
+  >
 
 export default function ProductSpecs(props: ProductSpecsProps) {
-  const { aggregations } = props
+  const { aggregations, title } = props
   const classes = useStyles(props)
   const filter = ['price', 'category_id', 'size', 'new', 'sale', 'color']
   const specs = aggregations?.filter(
@@ -36,17 +45,24 @@ export default function ProductSpecs(props: ProductSpecsProps) {
   }
 
   return (
-    <ul className={classes.specs}>
-      {specs?.map((aggregation) => (
-        <li key={aggregation?.attribute_code}>
-          <div>{aggregation?.label}</div>
-          <div className={classes.options}>
-            {aggregation?.options?.map((option) => (
-              <span key={option?.label}>{option?.label === '1' ? 'Yes' : option?.label}</span>
-            ))}
-          </div>
-        </li>
-      ))}
-    </ul>
+    <Row className={classes.root}>
+      <SectionContainer
+        labelLeft={title}
+        classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
+      >
+        <ul className={classes.specs}>
+          {specs?.map((aggregation) => (
+            <li key={aggregation?.attribute_code}>
+              <div>{aggregation?.label}</div>
+              <div className={classes.options}>
+                {aggregation?.options?.map((option) => (
+                  <span key={option?.label}>{option?.label === '1' ? 'Yes' : option?.label}</span>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </SectionContainer>
+    </Row>
   )
 }

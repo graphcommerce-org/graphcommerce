@@ -11,12 +11,20 @@ export const useStyles = makeStyles(
   (theme: Theme) => ({
     productList: {
       display: 'grid',
-      gridColumnGap: theme.spacings.sm,
+      gridColumnGap: theme.spacings.md,
       gridRowGap: theme.spacings.md,
-      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 360)}, 1fr))`,
     },
     productListsmall: {
       gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
+    },
+    productListnormal: {
+      gridTemplateColumns: `repeat(2, 1fr)`,
+      [theme.breakpoints.up('md')]: {
+        gridTemplateColumns: `repeat(3, 1fr)`,
+      },
+      [theme.breakpoints.up('lg')]: {
+        gridTemplateColumns: `repeat(4, 1fr)`,
+      },
     },
   }),
   { name: 'ProductList' },
@@ -34,7 +42,7 @@ export type ProductItemsGridProps = {
   JSX.IntrinsicElements['div']
 
 export default function ProductListItemsBase(props: ProductItemsGridProps) {
-  const { items, renderers, loadingEager = 0, size, ...divProps } = props
+  const { items, renderers, loadingEager = 0, size = 'normal', ...divProps } = props
   const classes = useStyles(props)
 
   return (

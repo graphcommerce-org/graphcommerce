@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/next-config",
-  "version": "2.106.1",
+  "version": "2.107.2",
   "type": "commonjs",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -13,10 +13,10 @@
   "dependencies": {
     "@lingui/loader": "^3.12.1",
     "js-yaml-loader": "^1.2.2",
-    "next": "^11.1.2",
-    "next-transpile-modules": "^8.0.0",
+    "next": "^12.0.2",
+    "next-transpile-modules": "^9.0.0",
     "type-fest": "^2.5.1",
-    "webpack": "^5.59.1"
+    "webpack": "^5.61.0"
   },
   "files": [
     "dist",

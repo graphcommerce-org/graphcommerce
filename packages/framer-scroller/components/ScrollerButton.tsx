@@ -52,6 +52,7 @@ const ScrollerFab = m(
           {...buttonProps}
           onClick={handleClick}
           classes={{ ...classes, ...buttonProps.classes }}
+          aria-label={direction}
         />
       </m.div>
     )

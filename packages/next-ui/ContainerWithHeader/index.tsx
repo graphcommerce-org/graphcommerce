@@ -36,7 +36,7 @@ export default function ContainerWithHeader(props: ContainerWithHeaderProps) {
   return (
     <Row>
       <div className={classes.head}>
-        <Typography variant='h3' component='h2' className={classes.title}>
+        <Typography variant='h5' component='h2' className={classes.title}>
           {title}
         </Typography>
         <Typography component='div' variant='subtitle1' className={classes.right}>

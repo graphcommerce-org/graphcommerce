@@ -1,18 +1,18 @@
 {
   "name": "@graphcommerce/image-example",
   "private": true,
-  "version": "2.102.35",
+  "version": "2.103.16",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "@graphcommerce/image": "^2.104.13",
-    "@graphcommerce/next-config": "^2.106.1",
-    "@graphcommerce/next-ui": "^3.9.0",
+    "@graphcommerce/image": "^2.105.2",
+    "@graphcommerce/next-config": "^2.107.2",
+    "@graphcommerce/next-ui": "^3.13.2",
     "framer-motion": "^4.1.17",
-    "next": "^11.1.2",
+    "next": "^12.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-focus-lock": "^2.5.2"

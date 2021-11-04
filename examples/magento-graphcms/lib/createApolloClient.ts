@@ -1,24 +1,18 @@
 import MutationQueueLink from '@adobe/apollo-link-mutation-queue'
-import {
-  ApolloClient,
-  ApolloLink,
-  NormalizedCacheObject,
-  InMemoryCache,
-  RequestHandler,
-} from '@apollo/client'
-import { setContext } from '@apollo/client/link/context'
-import { onError } from '@apollo/client/link/error'
+import { ApolloClient, ApolloLink, NormalizedCacheObject, InMemoryCache } from '@apollo/client'
 import { RetryLink } from '@apollo/client/link/retry'
 import { mergeDeep } from '@apollo/client/utilities'
+import { recaptchaLink } from '@graphcommerce/googlerecaptcha'
 import {
   fragments,
   measurePerformanceLink,
   mergeTypePolicies,
   getTypePoliciesVersion,
   migrateCacheHandler,
+  errorLink,
 } from '@graphcommerce/graphql'
-import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import { localeToStore } from '@graphcommerce/magento-store'
+import { createAuthLink } from '@graphcommerce/magento-customer'
+import { createStoreLink } from '@graphcommerce/magento-store'
 import { CachePersistor, LocalStorageWrapper } from 'apollo3-cache-persist'
 
 import { policies, migrations } from './typePolicies'
@@ -28,56 +22,19 @@ export function createApolloClient(
   initialState: NormalizedCacheObject = {},
   requestLink: ApolloLink,
 ): ApolloClient<NormalizedCacheObject> {
-  const errorLink = onError(({ graphQLErrors, networkError }) => {
-    if (graphQLErrors) {
-      graphQLErrors.forEach(({ message, locations, path }) =>
-        console.error(
-          `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-        ),
-      )
-    }
-    if (networkError) {
-      console.error(`[Network error]: ${networkError}`)
-    }
-  })
-
   const typePolicies = mergeTypePolicies(policies)
   const typePoliciesVersion = getTypePoliciesVersion(policies)
 
-  const cache = new InMemoryCache({
-    possibleTypes: fragments.possibleTypes,
-    typePolicies,
-  })
+  const cache = new InMemoryCache({ possibleTypes: fragments.possibleTypes, typePolicies })
 
-  const authLink = setContext((_, { headers }) => {
-    let authorization = ''
-    try {
-      const query = cache.readQuery({ query: CustomerTokenDocument })
-      if (query?.customerToken?.token) {
-        authorization = `Bearer ${query?.customerToken?.token}`
-      }
-    } catch (error) {
-      // nothing to do
-    }
-
-    // todo: Content-Currency
-    // todo: Preview-Version
-    // tood: X-Captcha
-    return {
-      headers: {
-        ...headers,
-        authorization,
-        store: localeToStore(locale),
-      },
-    }
-  })
-
-  const links: (ApolloLink | RequestHandler)[] = [
+  const links: ApolloLink[] = [
     measurePerformanceLink,
     new MutationQueueLink() as unknown as ApolloLink,
     new RetryLink({ attempts: { max: 2 } }),
     errorLink,
-    authLink,
+    createStoreLink(locale),
+    createAuthLink(cache),
+    recaptchaLink,
     requestLink,
   ]
 

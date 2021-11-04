@@ -43,17 +43,14 @@ import apolloClient from '../../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
 
-type Props = ProductPageQuery &
-  BundleProductPageQuery &
-  Pick<FullPageShellProps, 'backFallbackHref' | 'backFallbackTitle'>
+type Props = ProductPageQuery & BundleProductPageQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductBundle(props: Props) {
-  const { products, usps, typeProducts, sidebarUsps, pages, backFallbackHref, backFallbackTitle } =
-    props
+  const { products, usps, typeProducts, sidebarUsps, pages } = props
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
@@ -64,10 +61,7 @@ function ProductBundle(props: Props) {
 
   return (
     <>
-      <FullPageShellHeader
-        backFallbackHref={backFallbackHref}
-        backFallbackTitle={backFallbackTitle}
-      >
+      <FullPageShellHeader>
         <Title size='small' component='span'>
           {product.name}
         </Title>
@@ -85,7 +79,7 @@ function ProductBundle(props: Props) {
         <Typography variant='h3' component='div'>
           {product.name}
         </Typography>
-        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
+        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' size='small' />
         <ProductAddToCart
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
@@ -173,13 +167,17 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   }
 
   const category = productPageCategory((await productPage).data?.products?.items?.[0])
+  const up =
+    category?.url_path && category?.name
+      ? { href: `/${category.url_path}`, title: category.name }
+      : { href: `/`, title: 'Home' }
+
   return {
     props: {
       ...(await productPage).data,
       ...(await typeProductPage).data,
       apolloState: await conf.then(() => client.cache.extract()),
-      backFallbackHref: category?.url_path ? `/${category?.url_path}` : null,
-      backFallbackTitle: category?.name ?? null,
+      up,
     },
     revalidate: 60 * 20,
   }

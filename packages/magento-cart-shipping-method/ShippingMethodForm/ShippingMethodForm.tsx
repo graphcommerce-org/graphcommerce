@@ -1,12 +1,23 @@
+import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import {
   ApolloCartErrorAlert,
   useCartQuery,
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
-import { Form, FormRow, ToggleButtonGroup, UseStyles } from '@graphcommerce/next-ui'
+import {
+  Form,
+  FormRow,
+  iconChevronLeft,
+  iconChevronRight,
+  responsiveVal,
+  SvgImage,
+  UseStyles,
+} from '@graphcommerce/next-ui'
 import { Controller, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { FormControl, makeStyles, Theme } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
+import clsx from 'clsx'
+import { m } from 'framer-motion'
 import React from 'react'
 import AvailableShippingMethod from '../AvailableShippingMethod/AvailableShippingMethod'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
@@ -18,8 +29,60 @@ import {
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
+    root: {
+      position: 'relative',
+      padding: 0,
+    },
+    itemtest: {
+      background: 'silver',
+      width: 300,
+    },
     alert: {
       marginTop: theme.spacings.xxs,
+    },
+    toggleGroup: {
+      display: 'inline-flex',
+      gap: 10,
+    },
+    buttonRoot: {
+      background: theme.palette.background.default,
+      borderRadius: 0,
+      width: 30,
+      height: responsiveVal(60, 85),
+      boxShadow: 'none',
+      border: '1px solid #eee',
+      '&:focus': {
+        boxShadow: 'none',
+      },
+    },
+    leftButtonRoot: {
+      borderTopLeftRadius: 4,
+      borderBottomLeftRadius: 4,
+    },
+    rightButtonRoot: {
+      borderTopRightRadius: 4,
+      borderBottomRightRadius: 4,
+    },
+    buttonContainer: {
+      position: 'absolute',
+      left: 0,
+      zIndex: 2,
+      height: '100%',
+    },
+    buttonContainerRight: {
+      left: 'unset',
+      right: 0,
+    },
+    scrollerRoot: {
+      gridTemplateColumns: ' repeat(2, 40%)',
+      gridTemplateRows: `100%`,
+      gap: responsiveVal(4, 8),
+      borderRadius: 5,
+      padding: '2px 1px',
+      height: responsiveVal(60, 85),
+    },
+    scrollerRootTwoItems: {
+      gridTemplateColumns: ' repeat(2, 50%)',
     },
   }),
   { name: 'ShippingMethodForm' },
@@ -60,61 +123,94 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
     <Form onSubmit={submit} noValidate>
       <input type='hidden' {...register('carrier', { required: required.carrier })} />
       <input type='hidden' {...register('method', { required: required.method })} />
-      <FormRow>
-        <FormControl>
-          <Controller
-            defaultValue={carrierMethod}
-            control={control}
-            name='carrierMethod'
-            rules={{ required: 'Please select a shipping method' }}
-            render={({ field: { onChange, value, onBlur }, fieldState: { invalid } }) => (
-              <>
-                <ToggleButtonGroup
-                  aria-label='Shipping Method'
-                  onChange={(_, val: string) => {
-                    onChange(val)
-                    setValue('carrier', val.split('-')?.[0])
-                    setValue('method', val.split('-')?.[1])
 
-                    // todo(paales): what if there are additional options to submit, shouldn't we wait for that or will those always come back from this mutation?
-                    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                    submit()
-                  }}
-                  onBlur={onBlur}
-                  value={value}
-                  required
-                  defaultValue={carrierMethod}
-                  exclusive
-                >
-                  {sortedAvailableShippingMethods.map((m) => {
-                    if (!m) return null
-                    const code = `${m?.carrier_code}-${m?.method_code}`
-                    return (
-                      <AvailableShippingMethod key={code} value={code} {...m}>
-                        Delivery from: Mon - Sat
+      <FormRow className={classes.root}>
+        <ScrollerProvider scrollSnapAlign='center'>
+          <m.div className={classes.buttonContainer}>
+            <ScrollerButton
+              direction='left'
+              classes={{
+                root: clsx(classes.buttonRoot, classes.leftButtonRoot),
+              }}
+            >
+              <SvgImage src={iconChevronLeft} alt='chevron left' size='small' loading='eager' />
+            </ScrollerButton>
+          </m.div>
+
+          <FormControl>
+            <Controller
+              defaultValue={carrierMethod}
+              control={control}
+              name='carrierMethod'
+              rules={{ required: 'Please select a shipping method' }}
+              render={({ field: { onChange, value, onBlur }, fieldState: { invalid } }) => (
+                <>
+                  <Scroller
+                    className={clsx(
+                      classes.scrollerRoot,
+                      sortedAvailableShippingMethods.length <= 2 && classes.scrollerRootTwoItems,
+                    )}
+                    hideScrollbar
+                    tabIndex={0}
+                  >
+                    {sortedAvailableShippingMethods.map((shippingMethod) => {
+                      if (!shippingMethod) return null
+                      const code = `${shippingMethod?.carrier_code}-${shippingMethod?.method_code}`
+                      return (
+                        <AvailableShippingMethod
+                          key={code}
+                          value={code}
+                          onChange={(_, val: string) => {
+                            onChange(val)
+                            setValue('carrier', val.split('-')?.[0])
+                            setValue('method', val.split('-')?.[1])
+
+                            // todo(paales): what if there are additional options to submit, shouldn't we wait for that or will those always come back from this mutation?
+                            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                            submit()
+                          }}
+                          onBlur={onBlur}
+                          selected={value === code}
+                          {...shippingMethod}
+                        >
+                          Delivery from: Mon - Sat
+                        </AvailableShippingMethod>
+                      )
+                    })}
+                    {!currentAddress?.available_shipping_methods && (
+                      <AvailableShippingMethod
+                        available={false}
+                        carrier_code='none'
+                        carrier_title='No shipping methods available'
+                      >
+                        Please fill in your address to see shipping methods
                       </AvailableShippingMethod>
-                    )
-                  })}
-                  {!currentAddress?.available_shipping_methods && (
-                    <AvailableShippingMethod
-                      available={false}
-                      carrier_code='none'
-                      carrier_title='No shipping methods available'
-                    >
-                      Please fill in your address to see shipping methods
-                    </AvailableShippingMethod>
+                    )}
+                  </Scroller>
+
+                  {invalid && currentAddress?.available_shipping_methods && (
+                    <Alert classes={{ root: classes.alert }} severity='error'>
+                      Please select a shipping method
+                    </Alert>
                   )}
-                </ToggleButtonGroup>
-                {invalid && currentAddress?.available_shipping_methods && (
-                  <Alert classes={{ root: classes.alert }} severity='error'>
-                    Please select a shipping method
-                  </Alert>
-                )}
-              </>
-            )}
-          />
-        </FormControl>
+                </>
+              )}
+            />
+          </FormControl>
+
+          <m.div className={clsx(classes.buttonContainer, classes.buttonContainerRight)}>
+            <ScrollerButton
+              direction='right'
+              classes={{
+                root: clsx(classes.buttonRoot, classes.rightButtonRoot),
+              }}
+            >
+              <SvgImage src={iconChevronRight} alt='chevron right' size='small' loading='eager' />
+            </ScrollerButton>
+          </m.div>
+        </ScrollerProvider>
       </FormRow>
+
       <ApolloCartErrorAlert error={error} />
     </Form>
   )

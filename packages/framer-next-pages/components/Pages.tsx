@@ -1,20 +1,21 @@
 import { AnimatePresence } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import { NextRouter } from 'next/router'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { pageContext } from '../context/pageContext'
 import { createRouterProxy, pageRouterContext } from '../context/pageRouterContext'
-import type { PageComponent, PageItem } from '../types'
+import type { PageComponent, PageItem, UpPage } from '../types'
 import Page from './Page'
 
 function findPlainIdx(items: PageItem[]) {
   return items.reduce((acc, item, i) => (typeof item.overlayGroup === 'string' ? acc : i), -1)
 }
 
-type PagesProps = AppPropsType<NextRouter> & {
+type PagesProps = Omit<AppPropsType<NextRouter>, 'pageProps'> & {
   Component: PageComponent
   fallback?: React.ReactNode
   fallbackKey?: string
+  pageProps?: { up?: UpPage }
 }
 
 const NoopLayout: React.FC = ({ children }) => <>{children}</>
@@ -40,14 +41,15 @@ export default function FramerNextPages(props: PagesProps) {
     const proxy = createRouterProxy(router)
 
     activeItem = {
-      children: <Component {...pageProps} />,
-      routerProxy: proxy,
+      children: <Component {...(pageProps as Record<string, unknown>)} />,
+      currentRouter: proxy,
       SharedComponent: Component.pageOptions?.SharedComponent,
       sharedProps: Component.pageOptions?.sharedProps,
       sharedPageProps: pageProps,
       sharedKey: Component.pageOptions?.sharedKey?.(proxy) ?? proxy.pathname,
       overlayGroup: Component.pageOptions?.overlayGroup,
       historyIdx: idx,
+      up: Component.pageOptions?.up ?? pageProps?.up,
     }
     items.current[idx] = activeItem
   }
@@ -64,7 +66,7 @@ export default function FramerNextPages(props: PagesProps) {
     }
     const fbItem: PageItem = {
       children: fallback,
-      routerProxy: createRouterProxy(router),
+      currentRouter: createRouterProxy(router),
       sharedKey: fallbackKey,
       historyIdx: -1,
     }
@@ -109,7 +111,8 @@ export default function FramerNextPages(props: PagesProps) {
           SharedComponent = NoopLayout,
           sharedProps,
           sharedPageProps,
-          routerProxy,
+          currentRouter: currentRouter,
+          up,
         } = item
         const active = itemIdx === renderItems.length - 1
         const depth = itemIdx - (renderItems.length - 1)
@@ -118,7 +121,7 @@ export default function FramerNextPages(props: PagesProps) {
 
         const backSteps = historyIdx - closeIdx - 1
 
-        const prevRouter = items.current[historyIdx - 1]?.routerProxy
+        const { currentRouter: prevRouter, up: prevUp } = items.current[historyIdx - 1] ?? {}
 
         return (
           <pageContext.Provider
@@ -132,7 +135,7 @@ export default function FramerNextPages(props: PagesProps) {
             }}
           >
             <Page active={active} historyIdx={historyIdx}>
-              <pageRouterContext.Provider value={{ router: routerProxy, prevRouter }}>
+              <pageRouterContext.Provider value={{ currentRouter, prevRouter, up, prevUp }}>
                 <SharedComponent {...sharedPageProps} {...sharedProps}>
                   {children}
                 </SharedComponent>

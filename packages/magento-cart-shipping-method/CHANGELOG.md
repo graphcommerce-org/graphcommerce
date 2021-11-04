@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-shipping-method@2.104.10...@graphcommerce/magento-cart-shipping-method@2.105.0) (2021-11-02)
+
+
+### Bug Fixes
+
+* **shipping-method-form:** stretch scroller items when there are only two methods ([6c925fc](https://github.com/ho-nl/m2-pwa/commit/6c925fcd029ad89b2527e63703660e53d3f69265))
+
+
+### Features
+
+* shipping methods scroller ([3cc4413](https://github.com/ho-nl/m2-pwa/commit/3cc441320d2a3dd003c499be358a118a17e528c3))
+
+
+
+
+
+# [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-shipping-method@2.103.36...@graphcommerce/magento-cart-shipping-method@2.104.0) (2021-10-27)
+
+
+### Features
+
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 ## [2.103.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-shipping-method@2.103.9...@graphcommerce/magento-cart-shipping-method@2.103.10) (2021-10-04)
 
 

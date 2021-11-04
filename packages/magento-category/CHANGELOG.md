@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-category@3.3.5...@graphcommerce/magento-category@3.3.6) (2021-11-02)
+
+
+### Bug Fixes
+
+* darkMode ([c7573de](https://github.com/ho-nl/m2-pwa/commit/c7573de6bb80643b26931c35ac61735539e7fbf0))
+
+
+
+
+
+## [3.3.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-category@3.3.2...@graphcommerce/magento-category@3.3.3) (2021-11-01)
+
+
+### Bug Fixes
+
+* category page design fixs ([d3fccc2](https://github.com/ho-nl/m2-pwa/commit/d3fccc2a86106b854e9a1fd89040a248fe20c99a))
+
+
+
+
+
+## [3.3.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-category@3.3.1...@graphcommerce/magento-category@3.3.2) (2021-10-29)
+
+
+### Bug Fixes
+
+* spacing of title on category landing on mobile ([8ed3550](https://github.com/ho-nl/m2-pwa/commit/8ed35502fd231d1d6a8e0a282f8961335d9dead3))
+
+
+
+
+
+# [3.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-category@3.2.2...@graphcommerce/magento-category@3.3.0) (2021-10-28)
+
+
+### Bug Fixes
+
+* category h2 styling ([5b26f2b](https://github.com/ho-nl/m2-pwa/commit/5b26f2b92f55356c58cc207fa028d03a38a8b16a))
+* remove legacy, title from category description ([574208c](https://github.com/ho-nl/m2-pwa/commit/574208ca71e6ed387f1f355d5c4a22f5c13783ea))
+* subtitles ([9ef1d8b](https://github.com/ho-nl/m2-pwa/commit/9ef1d8b9079c50340015e482fe6f1bf577610269))
+
+
+### Features
+
+* set correct font sizes ([9317448](https://github.com/ho-nl/m2-pwa/commit/9317448c94a9fb4408dfbcaa320adccc363964d0))
+
+
+
+
+
+# [3.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-category@3.1.7...@graphcommerce/magento-category@3.2.0) (2021-10-27)
+
+
+### Features
+
+* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+
+
+
+
+
 ## [3.1.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-category@3.1.1...@graphcommerce/magento-category@3.1.2) (2021-10-19)
 
 
