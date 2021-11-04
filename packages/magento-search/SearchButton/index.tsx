@@ -17,22 +17,27 @@ const useStyles = makeStyles(
     inputRoot: {
       ...theme.typography.body2,
     },
+    label: {
+      display: 'none',
+    },
   }),
   { name: 'SearchButton' },
 )
 
-export type SearchButtonProps = UseStyles<typeof useStyles> & TextFieldProps
+export type SearchButtonProps = UseStyles<typeof useStyles> & TextFieldProps & { label?: string }
 
 export default function SearchButton(props: SearchButtonProps) {
-  const { InputProps, ...textFieldProps } = props
+  const { InputProps, label = 'Search...', ...textFieldProps } = props
   const classes = useStyles(props)
 
   return (
     <TextField
       variant='outlined'
       size='small'
-      label='...'
       classes={{ root: classes.root }}
+      label={label}
+      id='search-input'
+      InputLabelProps={{ shrink: false }}
       InputProps={{
         readOnly: true,
         endAdornment: <SvgImageSimple src={iconSearch} size='medium' />,
