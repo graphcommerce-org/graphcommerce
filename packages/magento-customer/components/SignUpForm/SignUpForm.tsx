@@ -18,12 +18,13 @@ export default function SignUpForm(props: SignUpFormProps) {
     SignUpMutationVariables & { confirmPassword?: string }
   >(SignUpDocument, { defaultValues: { email } })
 
-  useFormPersist({ form, name: 'SignUp', exclude: ['password', 'confirmPassword'] })
   const { muiRegister, handleSubmit, required, watch, formState, error } = form
   const [remainingError, inputError] = graphqlErrorByCategory({ category: 'graphql-input', error })
 
   const submitHandler = handleSubmit(() => {})
   const watchPassword = watch('password')
+
+  useFormPersist({ form, name: 'SignUp', exclude: ['password', 'confirmPassword'] })
 
   return (
     <form onSubmit={submitHandler} noValidate>
@@ -40,11 +41,7 @@ export default function SignUpForm(props: SignUpFormProps) {
             required: required.password,
             minLength: { value: 8, message: 'Password must have at least 8 characters' },
           })}
-          helperText={
-            formState.errors.password?.message ||
-            inputError?.message ||
-            'At least 8 characters long, must contain a symbol'
-          }
+          helperText={formState.errors.password?.message || inputError?.message}
           disabled={formState.isSubmitting}
         />
         <TextField
