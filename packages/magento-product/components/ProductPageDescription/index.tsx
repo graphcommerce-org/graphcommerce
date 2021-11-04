@@ -1,4 +1,3 @@
-import { responsiveVal } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { ProductPageDescriptionFragment } from './ProductPageDescription.gql'
@@ -6,10 +5,10 @@ import { ProductPageDescriptionFragment } from './ProductPageDescription.gql'
 const useStyles = makeStyles((theme: Theme) => ({
   /* nested styles because we don't know beforehand which elements the description contains */
   description: {
-    ...theme.typography.h4,
+    ...theme.typography.body2,
     fontWeight: 400,
     [theme.breakpoints.up('md')]: {
-      fontSize: responsiveVal(18, 30),
+      ...theme.typography.h4,
       lineHeight: 1.7,
       fontWeight: 400,
     },

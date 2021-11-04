@@ -27,9 +27,7 @@ const useStyles = makeStyles(
         appearance: 'none',
       },
     },
-    button: {
-      fontSize: 22,
-    },
+    button: {},
     adornedEnd: {
       paddingRight: responsiveVal(7, 14),
     },

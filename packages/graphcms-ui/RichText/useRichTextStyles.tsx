@@ -32,8 +32,6 @@ const useRichTextStyles = makeStyles(
     h6: { '&:first-of-type': { marginTop: 0 } },
     asset: { width: '100%', height: 'auto' },
     blockQuote: {
-      color: '#777',
-      borderLeft: '4px solid #999',
       paddingLeft: spacings.sm,
       margin: `${spacings.md} 0`,
     },
@@ -47,7 +45,6 @@ const useRichTextStyles = makeStyles(
       maxWidth: '100%',
       background: '#d8d8d8',
       padding: 5,
-      fontSize: 17,
       overflow: 'scroll',
     },
     aspectContainer: {
@@ -102,7 +99,7 @@ const useRichTextStyles = makeStyles(
             minWidth: '150px',
           },
 
-          '& p': { fontSize: responsiveVal(12, 15) },
+          '& p': {},
         },
       },
     },

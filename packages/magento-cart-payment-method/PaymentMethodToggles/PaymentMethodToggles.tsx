@@ -5,7 +5,6 @@ import {
   iconChevronLeft,
   iconChevronRight,
   responsiveVal,
-  SvgImage,
   SvgImageSimple,
   ToggleButton,
 } from '@graphcommerce/next-ui'
@@ -67,16 +66,11 @@ const useStyles = makeStyles(
       borderRadius: 5,
     },
     toggleButton: {
-      ...theme.typography.h5,
+      ...theme.typography.h6,
       border: `1px solid ${theme.palette.divider}`,
-      borderRadius: 4,
       boxShadow: 'none',
       transition: 'color .15s ease',
       whiteSpace: 'nowrap',
-      fontSize: responsiveVal(14, 20),
-      [theme.breakpoints.up('sm')]: {
-        fontSize: responsiveVal(17, 20),
-      },
     },
     toggleButtonSelected: {
       border: `1px solid ${theme.palette.secondary.main}`,

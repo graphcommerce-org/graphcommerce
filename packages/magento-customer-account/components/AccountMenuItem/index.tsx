@@ -4,7 +4,6 @@ import {
   ButtonProps,
   UseStyles,
   responsiveVal,
-  SvgImage,
   iconChevronRight,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
@@ -18,7 +17,6 @@ const useStyles = makeStyles(
     root: {
       width: '100%',
       height: responsiveVal(88, 104),
-      fontSize: theme.typography.fontSize,
       padding: 0,
       borderRadius: 0,
       '&:hover': {
