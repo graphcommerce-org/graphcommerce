@@ -6,7 +6,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       marginRight: theme.spacings.xxs,
-      width: responsiveVal(64, 172),
+      width: '100%',
       '& fieldset': {
         border: `1px solid ${theme.palette.divider}`,
       },
