@@ -60,7 +60,7 @@ function SheetShellBase(props: SheetShellBaseProps) {
   const sheetClasses = useSheetStyles(props)
   const router = useRouter()
   const pageRouter = usePageRouter()
-  const { depth, closeSteps, active } = usePageContext()
+  const { depth, closeSteps, active, direction } = usePageContext()
   const open = depth < 0 || router.asPath === pageRouter.asPath
   const initialLocale = useRef(router.locale)
 
@@ -95,7 +95,7 @@ function SheetShellBase(props: SheetShellBaseProps) {
         <Sheet open={open} onSnap={handleSnap} variant={variant} size={size}>
           <SheetBackdrop onTap={handleClose} classes={sheetClasses} />
           <SheetContainer classes={sheetContainerClasses}>
-            <SheetPanel classes={sheetClasses}>
+            <SheetPanel initial={direction === -1 ? 'snapPoint1' : 'closed'} classes={sheetClasses}>
               {/* <FocusLock returnFocus={{ preventScroll: true }} disabled={!isActive}> */}
               {children}
               {/* </FocusLock> */}

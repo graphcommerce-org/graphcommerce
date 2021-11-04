@@ -16,7 +16,7 @@ export default function SheetBackdrop(props: SheetBackdropProps) {
 
   // We animate the opacity of the Backdrop based on the position of the sheet
   const opacity = useSpring(
-    useTransform([drag, size] as MotionValue[], ([dragv, sizev]: number[]) => {
+    useTransform([drag, size] as MotionValue<string | number>[], ([dragv, sizev]: number[]) => {
       if (sizev === 0) return 0
       if (dragv === 0) return 1
       return 1 - (dragv / sizev) * sign
