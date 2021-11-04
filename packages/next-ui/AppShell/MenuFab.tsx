@@ -11,7 +11,7 @@ import {
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import { Router, useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { UseStyles } from '../Styles'
 import responsiveVal from '../Styles/responsiveVal'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
@@ -81,7 +81,11 @@ export default function MenuFab(props: MenuFabProps) {
 
   const { filter, opacity, scale } = useFabAnimation()
 
-  Router.events.on('routeChangeStart', () => setOpenEl(null))
+  useEffect(() => {
+    const clear = () => setOpenEl(null)
+    router.events.on('routeChangeStart', clear)
+    return () => router.events.off('routeChangeStart', clear)
+  }, [router])
 
   return (
     <m.div className={classes.menuWrapper} style={{ opacity, scale, filter }}>
