@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.147.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.147.0...@graphcommerce/graphcommerce@2.147.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* can't remove filters on click icon ([2528802](https://github.com/ho-nl/m2-pwa/commit/252880216994da7f8e65c1b565ff996bbab0472a))
+* Checkout button margin consistency ([9fcf7e7](https://github.com/ho-nl/m2-pwa/commit/9fcf7e7d96172448b2d2911771d6bf70ab976594))
+* mobile cart ([fcafe5d](https://github.com/ho-nl/m2-pwa/commit/fcafe5d446f14fca6579d9005dd57389040c4cd3))
+* remove hardcoded fontSize ([e4e09e1](https://github.com/ho-nl/m2-pwa/commit/e4e09e11baeb8edeff634550b8cdb88571d96911))
+* Shipping method scroller styles ([d48d248](https://github.com/ho-nl/m2-pwa/commit/d48d2486fabb9059dbb0c27a5331784ee676a201))
+
+
+
+
+
 # [2.147.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.146.2...@graphcommerce/graphcommerce@2.147.0) (2021-11-04)
 
 

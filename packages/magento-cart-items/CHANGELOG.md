@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.108.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-items@2.108.8...@graphcommerce/magento-cart-items@2.108.9) (2021-11-04)
+
+
+### Bug Fixes
+
+* mobile cart ([fcafe5d](https://github.com/ho-nl/m2-pwa/commit/fcafe5d446f14fca6579d9005dd57389040c4cd3))
+* remove hardcoded fontSize ([e4e09e1](https://github.com/ho-nl/m2-pwa/commit/e4e09e11baeb8edeff634550b8cdb88571d96911))
+
+
+
+
+
 # [2.108.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-items@2.107.5...@graphcommerce/magento-cart-items@2.108.0) (2021-11-02)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.5.8...@graphcommerce/magento-product@3.5.9) (2021-11-04)
+
+
+### Bug Fixes
+
+* remove hardcoded fontSize ([e4e09e1](https://github.com/ho-nl/m2-pwa/commit/e4e09e11baeb8edeff634550b8cdb88571d96911))
+
+
+
+
+
 # [3.5.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.4.5...@graphcommerce/magento-product@3.5.0) (2021-11-02)
 
 

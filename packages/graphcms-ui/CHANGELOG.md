@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.104.18](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcms-ui@2.104.17...@graphcommerce/graphcms-ui@2.104.18) (2021-11-04)
+
+
+### Bug Fixes
+
+* remove hardcoded fontSize ([e4e09e1](https://github.com/ho-nl/m2-pwa/commit/e4e09e11baeb8edeff634550b8cdb88571d96911))
+
+
+
+
+
 ## [2.104.16](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcms-ui@2.104.15...@graphcommerce/graphcms-ui@2.104.16) (2021-11-03)
 
 

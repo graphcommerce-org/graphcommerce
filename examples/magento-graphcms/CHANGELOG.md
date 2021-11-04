@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.131.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.131.3...@graphcommerce/magento-graphcms@2.131.4) (2021-11-04)
+
+
+### Bug Fixes
+
+* Checkout button margin consistency ([9fcf7e7](https://github.com/ho-nl/m2-pwa/commit/9fcf7e7d96172448b2d2911771d6bf70ab976594))
+
+
+
+
+
 ## [2.131.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.131.2...@graphcommerce/magento-graphcms@2.131.3) (2021-11-04)
 
 
