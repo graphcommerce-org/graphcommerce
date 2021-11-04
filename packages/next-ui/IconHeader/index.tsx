@@ -10,8 +10,8 @@ import SvgImage, { SvgImageProps } from '../SvgImage'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
+      ...theme.typography.subtitle1,
       textAlign: 'center',
-      fontSize: responsiveVal(16, 24),
     },
     innerContainer: {
       display: 'flex',

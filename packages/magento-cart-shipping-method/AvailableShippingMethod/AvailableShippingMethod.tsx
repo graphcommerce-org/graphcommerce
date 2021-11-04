@@ -14,6 +14,10 @@ const useStyles = makeStyles(
       alignItems: 'normal',
     },
     label: {
+      ...theme.typography.body2,
+      [theme.breakpoints.up('sm')]: {
+        ...theme.typography.body1,
+      },
       display: 'grid',
       gridTemplate: `
         "title      amount"
@@ -24,10 +28,19 @@ const useStyles = makeStyles(
       columnGap: theme.spacings.xxs,
     },
     methodTitle: {
-      gridArea: 'title',
+      ...theme.typography.body2,
       fontWeight: theme.typography.fontWeightBold,
+      [theme.breakpoints.up('sm')]: {
+        ...theme.typography.body1,
+        fontWeight: theme.typography.fontWeightBold,
+      },
+      gridArea: 'title',
     },
     methodAdditional: {
+      ...theme.typography.body2,
+      [theme.breakpoints.up('sm')]: {
+        ...theme.typography.body1,
+      },
       gridArea: 'additional',
     },
     errorMessage: {
