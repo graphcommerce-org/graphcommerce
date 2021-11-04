@@ -11,8 +11,8 @@ const useStyles = makeStyles(
       textAlign: 'center',
     },
     checkoutButton: {
+      marginTop: theme.spacings.md,
       marginBottom: theme.spacings.lg,
-      marginTop: theme.spacings.lg,
     },
     checkoutButtonIcon: {
       marginLeft: 0,
