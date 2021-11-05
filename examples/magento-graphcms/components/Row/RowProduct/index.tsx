@@ -16,7 +16,10 @@ type VariantRenderer = Record<
   React.VFC<RowProductFragment>
 >
 
-type RowProductProps = RowProductFragment & { renderer?: Partial<VariantRenderer> }
+type RowProductProps = RowProductFragment & { renderer?: Partial<VariantRenderer> } & {
+  aggregations?: unknown
+  items?: unknown
+}
 
 const defaultRenderer: Partial<VariantRenderer> = {
   Specs,
