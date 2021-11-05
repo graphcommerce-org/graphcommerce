@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-cart-shipping-method",
-  "version": "2.105.8",
+  "version": "2.105.9",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -24,10 +24,10 @@
     "@graphcommerce/framer-scroller": "^1.0.2",
     "@graphcommerce/graphql": "^2.105.3",
     "@graphcommerce/image": "^2.105.2",
-    "@graphcommerce/magento-cart": "^3.5.10",
-    "@graphcommerce/magento-cart-shipping-address": "^2.105.19",
-    "@graphcommerce/magento-store": "^3.2.9",
-    "@graphcommerce/next-ui": "^3.14.1",
+    "@graphcommerce/magento-cart": "^3.5.11",
+    "@graphcommerce/magento-cart-shipping-address": "^2.105.20",
+    "@graphcommerce/magento-store": "^3.2.10",
+    "@graphcommerce/next-ui": "^3.14.2",
     "@graphcommerce/react-hook-form": "^2.103.0",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.12.3",
