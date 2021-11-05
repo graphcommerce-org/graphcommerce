@@ -105,7 +105,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       apolloState: await conf.then(() => client.cache.extract()),
       headContent,
       bodyContent,
-      backgroundColor: '',
+      backgroundColor: '#E10004 !important',
     },
     revalidate: 60 * 20,
   }
