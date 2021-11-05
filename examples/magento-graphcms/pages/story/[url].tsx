@@ -31,51 +31,61 @@ const useStyles = makeStyles(
   { name: 'StoryPage' },
 )
 
-function replace(node) {
+const replace = (node: any) => {
   const attribs = node.attribs || {}
   if (node.name === `img`) {
     const { ...props } = attribs
     return (
       <div className={props.class}>
-        {/* {console.log({ ...props })} */}
         <Image src={props.src} layout='fill' quality={20} />
       </div>
     )
   }
-  if (node.name === `script`) {
+  if (
+    node.name === `script` ||
+    node.name === `meta` ||
+    node.name === `style` ||
+    node.name === `title`
+  ) {
     return <></>
+  }
+  if (node.name === `link`) {
+    const { ...props } = attribs
+    if (props.href.indexOf('.css') < 0) {
+      return <></>
+    }
   }
   if (node.name === `a`) {
     const { ...props } = attribs
     return (
       <div className={props.class}>
-        {/* {console.log({ ...props })} */}
         <PageLink key={props.href} href={props.href} passHref>
           {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-            !!node.children && !!node.children.length && domToReact(node.children, parseOptions)
+            !!node.children && !!node.children.length && domToReact(node.children, { replace })
           }
         </PageLink>
       </div>
     )
   }
+  if (node.name === `meta`) {
+    return <></>
+  }
 }
-
-const parseOptions = { replace }
 
 export default function StoryPage({ pages, bodyContent, headContent }) {
   const classes = useStyles()
   const page = pages?.[0]
   const metaRobots = page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]
 
-  const head = parseHtml(headContent as string)
-  const importCss = head.filter((rule) => {
-    if (rule.type === 'link') {
-      if (rule.props.href.indexOf('.css') >= 0) {
-        return true
-      }
-    }
-  })
+  // const head = parseHtml(headContent)
+  // const importCss = head.filter((rule) => {
+  //   if (rule.type === 'link') {
+  //     if (rule.props.href.indexOf('.css') >= 0) {
+  //       return true
+  //     }
+  //   }
+  // })
 
   // const fetchCss = async () => {
   //   return fetch(importCss[0].props.href as string)
@@ -86,8 +96,6 @@ export default function StoryPage({ pages, bodyContent, headContent }) {
   // }
 
   // fetchCss()
-
-  // eslint-disable-next-line
   return (
     <>
       <PageMeta
@@ -102,10 +110,13 @@ export default function StoryPage({ pages, bodyContent, headContent }) {
 
       <Container maxWidth={false} disableGutters>
         <div className={classes.root}>
-          <link rel='stylesheet' href={importCss[0].props.href} />
           {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-            parseHtml(bodyContent, parseOptions)
+            parseHtml(headContent, { replace })
+          }
+          {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+            parseHtml(bodyContent, { replace })
           }
         </div>
       </Container>
