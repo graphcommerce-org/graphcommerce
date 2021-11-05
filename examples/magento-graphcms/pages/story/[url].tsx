@@ -1,10 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { Image, isStaticImport, isStaticRequire } from '@graphcommerce/image'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps } from '@graphcommerce/next-ui'
 import { Container, makeStyles, Theme } from '@material-ui/core'
 import axios from 'axios'
 import cheerio from 'cheerio'
-import parseHtml from 'html-react-parser'
+import parseHtml, { domToReact } from 'html-react-parser'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -26,6 +27,25 @@ const useStyles = makeStyles(
   { name: 'StoryPage' },
 )
 
+// Replaces DOM nodes with React components
+function replace(node) {
+  const attribs = node.attribs || {}
+
+  // Replace links with Next links
+  if (node.name === `img`) {
+    const { ...props } = attribs
+
+    return (
+      <div className={props.class}>
+        {/* {console.log({ ...props })} */}
+        <Image src={props.src} layout='fill' />
+      </div>
+    )
+  }
+}
+
+const parseOptions = { replace }
+
 export default function StoryPage({ pages, bodyContent, headContent }) {
   const classes = useStyles()
   // eslint-disable-next-line
@@ -36,7 +56,10 @@ export default function StoryPage({ pages, bodyContent, headContent }) {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
           parseHtml(headContent)
         }
-        <div dangerouslySetInnerHTML={{ __html: bodyContent }} />
+        {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+          parseHtml(bodyContent, parseOptions)
+        }
       </div>
     </Container>
   )
@@ -82,6 +105,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       apolloState: await conf.then(() => client.cache.extract()),
       headContent,
       bodyContent,
+      backgroundColor: '',
     },
     revalidate: 60 * 20,
   }

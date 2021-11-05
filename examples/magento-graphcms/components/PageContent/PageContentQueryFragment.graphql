@@ -7,7 +7,6 @@ fragment PageContentQueryFragment on Query {
     url
     author
     date
-    backgroundColor
     ...BlogTags
     content {
       __typename

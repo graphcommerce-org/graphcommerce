@@ -17,9 +17,9 @@ export default function ThemedApp(props: AppProps) {
       <GoogleTagManagerScript />
       <ApolloProvider client={apolloClient(locale, true, pageProps.apolloState)}>
         <ThemedProvider
-          backgroundColor={`${
-            (pageProps as any as Record<string, any>).pages?.[0].backgroundColor
-          } !important`}
+          backgroundColor={
+            (pageProps as unknown as Record<string, unknown>).backgroundColor as string
+          }
         >
           <App {...props} />
         </ThemedProvider>
