@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.147.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.147.1...@graphcommerce/graphcommerce@2.147.2) (2021-11-05)
+
+
+### Bug Fixes
+
+* **sign-up-form:** prevent throwing sign up errors ([3c5d059](https://github.com/ho-nl/m2-pwa/commit/3c5d059b6a3e6cedb4b6eb967235f4d27075fcd4))
+* **signup-form:** fix helper text ([09025a4](https://github.com/ho-nl/m2-pwa/commit/09025a4ee6257d0be40b3b97455aebb4359ed4a7))
+
+
+
+
+
 ## [2.147.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.147.0...@graphcommerce/graphcommerce@2.147.1) (2021-11-04)
 
 
