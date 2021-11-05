@@ -25,7 +25,7 @@
     "prepack:1": "yarn workspace @graphcommerce/next-config prepack",
     "prepack:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack",
     "prepack:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack",
-    "packages": "concurrently 'yarn packages:1' 'yarn packages:2' 'yarn packages:2'",
+    "packages": "concurrently -n next-config,near-operation,relay-optimizer 'yarn packages:1' 'yarn packages:2' 'yarn packages:2'",
     "packages:1": "yarn workspace @graphcommerce/next-config dev",
     "packages:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file dev",
     "packages:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin dev"
@@ -45,7 +45,7 @@
     "@graphcommerce/browserslist-config-pwa": "^3.0.2",
     "@graphcommerce/eslint-config-pwa": "^3.1.3",
     "@graphcommerce/prettier-config-pwa": "^3.0.3",
-    "@playwright/test": "^1.16.2",
+    "@playwright/test": "^1.16.3",
     "concurrently": "^6.3.0",
     "lerna": "^4.0.0",
     "patch-package": "^6.4.3",
@@ -56,8 +56,8 @@
   "devDependencies": {
     "@graphql-typed-document-node/patch-cli": "^3.0.8",
     "@types/node": "^16.11.4",
-    "@types/react": "^17.0.32",
-    "@types/sharp": "^0.29.2",
+    "@types/react": "^17.0.34",
+    "@types/sharp": "^0.29.3",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "eslint": "^8.1.0",

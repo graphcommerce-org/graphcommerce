@@ -20,12 +20,12 @@
     "@graphcommerce/eslint-config-pwa": "^3.1.3",
     "@graphcommerce/prettier-config-pwa": "^3.0.3",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
-    "@playwright/test": "^1.16.2"
+    "@playwright/test": "^1.16.3"
   },
   "dependencies": {
     "@apollo/client": "^3.4.16",
     "@graphql-typed-document-node/core": "^3.1.0",
-    "graphql": "^15.6.1",
+    "graphql": "^16.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "7.16.2",

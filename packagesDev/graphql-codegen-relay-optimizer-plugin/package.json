@@ -13,10 +13,10 @@
     "relay"
   ],
   "peerDependencies": {
-    "graphql": "14.x.x || 15.x.x"
+    "graphql": "16.x.x"
   },
   "dependencies": {
-    "@graphql-codegen/plugin-helpers": "2.3.0",
+    "@graphql-codegen/plugin-helpers": "2.3.1",
     "relay-compiler": "12.0.0"
   },
   "devDependencies": {
@@ -25,16 +25,16 @@
     "@graphql-codegen/testing": "1.17.7",
     "@types/jest": "27.0.2",
     "@types/relay-compiler": "8.0.1",
-    "graphql": "^15.6.1",
+    "graphql": "^16.0.1",
     "jest": "27.3.1",
     "ts-jest": "27.0.7",
     "typescript": "^4.4.4"
   },
   "scripts": {
     "test": "jest",
-    "dev": "tsc --preserveWatchOutput --watch --sourceMap --outDir dist/main",
-    "build:module": "tsc --target es2017 --outDir dist/module",
-    "build:main": "tsc --target es5 --outDir dist/main",
+    "dev": "yarn tsc --preserveWatchOutput --watch --sourceMap --outDir dist/main",
+    "build:module": "yarn tsc --target es2017 --outDir dist/module",
+    "build:main": "yarn tsc --target es5 --outDir dist/main",
     "build": "yarn build:module && yarn build:main",
     "prepack": "yarn build"
   },
