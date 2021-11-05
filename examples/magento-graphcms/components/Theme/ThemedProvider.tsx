@@ -69,7 +69,7 @@ const darkPalette: PaletteOptions = {
 }
 
 // Create a theme instance.
-const createThemeWithPallete = (palette: PaletteColorOptions) =>
+const createThemeWithPallete = (palette: PaletteOptions) =>
   createTheme({
     palette,
     breakpoints: {
