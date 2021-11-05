@@ -9,7 +9,11 @@ import {
   ProductPageMeta,
   ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
-import { BundleItemsForm, BundleProductPageDocument } from '@graphcommerce/magento-product-bundle'
+import {
+  BundleItemsForm,
+  BundleProductPageDocument,
+  BundleProductPageQuery,
+} from '@graphcommerce/magento-product-bundle'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, JsonLd, Title } from '@graphcommerce/next-ui'
@@ -19,7 +23,7 @@ import React from 'react'
 import { Product } from 'schema-dts'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import FullPageShellHeader from '../../../components/AppShell/FullPageShellHeader'
-import { ProductPageDocument } from '../../../components/GraphQL/ProductPage.gql'
+import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import PageContent from '../../../components/PageContent'
 import RowProductDescription from '../../../components/ProductDescription'
 import ProductUsps from '../../../components/ProductUsps'
