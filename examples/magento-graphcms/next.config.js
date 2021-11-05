@@ -17,18 +17,18 @@ const obs = new PerformanceObserver((entryList) => {
 obs.observe({ entryTypes: ['measure'] })
 
 if (!process.env.GRAPHCMS_URL || !process.env.MAGENTO_ENDPOINT) {
-  throw Error('Please specificy GRAPHCMS_URL and MAGENTO_ENDPOINT in your .env')
+  throw Error('Please specify GRAPHCMS_URL and MAGENTO_ENDPOINT in your .env')
 }
 
 if (
   !process.env.NEXT_PUBLIC_LOCALE_STORES ||
   !Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES)).length > 0
 ) {
-  throw Error('Please specificy NEXT_PUBLIC_LOCALE_STORES in your .env')
+  throw Error('Please specify NEXT_PUBLIC_LOCALE_STORES in your .env')
 }
 
 if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
-  throw Error('Please specificy NEXT_PUBLIC_GRAPHQL_ENDPOINT in your .env')
+  throw Error('Please specify NEXT_PUBLIC_GRAPHQL_ENDPOINT in your .env')
 }
 
 /** @type {import('next/dist/server/config-shared').NextConfig} */
