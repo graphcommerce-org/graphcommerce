@@ -16,7 +16,11 @@ export default function ThemedApp(props: AppProps) {
       <GoogleRecaptchaV3Script />
       <GoogleTagManagerScript />
       <ApolloProvider client={apolloClient(locale, true, pageProps.apolloState)}>
-        <ThemedProvider>
+        <ThemedProvider
+          backgroundColor={`${
+            (pageProps as any as Record<string, any>).pages?.[0].backgroundColor
+          } !important`}
+        >
           <App {...props} />
         </ThemedProvider>
       </ApolloProvider>

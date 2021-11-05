@@ -69,7 +69,7 @@ const darkPalette: PaletteOptions = {
 }
 
 // Create a theme instance.
-const createThemeWithPallete = (palette: PaletteOptions) =>
+const createThemeWithPallete = (palette: PaletteColorOptions) =>
   createTheme({
     palette,
     breakpoints: {
@@ -220,15 +220,14 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
     },
   })
 
-const createOverrides = (theme: Theme): Overrides => {
+const createOverrides = (theme: Theme, bgcolor): Overrides => {
   return {
     MuiCssBaseline: {
       '@global': {
         body: {
+          background: bgcolor,
           overflowY: 'scroll',
-          '& [class*="Sheet-content"]': {
-            background: theme.palette.background.default,
-          },
+          '& [class*="Sheet-content"]': {},
           stroke: theme.palette.text.primary,
         },
         '::selection': { background: alpha(theme.palette.primary.main, 0.6) },
@@ -454,13 +453,14 @@ const createOverrides = (theme: Theme): Overrides => {
   }
 }
 
-const currentTheme = createThemeWithPallete(useTheme === 'light' ? lightPalette : darkPalette)
-currentTheme.overrides = createOverrides(currentTheme)
+export default function ThemedProvider({ children, backgroundColor = '' }) {
+  const currentTheme = createThemeWithPallete(useTheme === 'light' ? lightPalette : darkPalette)
+  currentTheme.overrides = createOverrides(currentTheme, backgroundColor)
 
-const ThemedProvider: React.FC = ({ children }) => (
-  <ThemeProvider theme={currentTheme}>
-    <CssBaseline />
-    {children}
-  </ThemeProvider>
-)
-export default ThemedProvider
+  return (
+    <ThemeProvider theme={currentTheme}>
+      <CssBaseline />
+      {children}
+    </ThemeProvider>
+  )
+}
