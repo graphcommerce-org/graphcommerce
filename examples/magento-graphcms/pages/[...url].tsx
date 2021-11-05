@@ -43,17 +43,6 @@ import PageContent from '../components/PageContent'
 import ProductListItems from '../components/ProductListItems/ProductListItems'
 import useProductListStyles from '../components/ProductListItems/useProductListStyles'
 import RowProduct from '../components/Row/RowProduct'
-import {
-  Backstory,
-  Feature,
-  FeatureBoxed,
-  Grid,
-  Related,
-  Reviews,
-  Specs,
-  Swipeable,
-  Upsells,
-} from '../components/Row/RowProduct/variant'
 import apolloClient from '../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -135,34 +124,12 @@ function CategoryPage(props: Props) {
         </ProductListParamsProvider>
       )}
 
-      {/* todo: only allow rendering Grid, Swipeable and Backstory here */}
       {pages?.[0] && (
         <PageContent
-          renderer={{
-            RowProduct: (rowProps) => (
-              <RowProduct
-                {...rowProps}
-                renderer={{
-                  Specs: (rowProductProps) => <Specs {...rowProductProps} {...product} />,
-                  Backstory: (rowProductProps) => (
-                    <Backstory {...rowProductProps} items={productList} />
-                  ),
-                  Feature: (rowProductProps) => <Feature {...rowProductProps} {...product} />,
-                  FeatureBoxed: (rowProductProps) => (
-                    <FeatureBoxed {...rowProductProps} {...product} />
-                  ),
-                  Grid: (rowProductProps) => <Grid {...rowProductProps} items={productList} />,
-                  Related: (rowProductProps) => <Related {...rowProductProps} {...product} />,
-                  Reviews: (rowProductProps) => <Reviews {...rowProductProps} {...product} />,
-                  Upsells: (rowProductProps) => <Upsells {...rowProductProps} {...product} />,
-                  Swipeable: (rowProductProps) => (
-                    <Swipeable {...rowProductProps} items={productList} />
-                  ),
-                }}
-              />
-            ),
-          }}
           content={pages?.[0].content}
+          renderer={{
+            RowProduct: (rowProps) => <RowProduct {...rowProps} {...product} items={productList} />,
+          }}
         />
       )}
     </>

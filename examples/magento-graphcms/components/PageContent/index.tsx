@@ -35,6 +35,7 @@ export type PageProps = Partial<PageContentQueryFragment['pages'][0]> & {
 export default function PageContent(props: PageProps) {
   const { content, renderer } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as ContentTypeRenderer
+
   return (
     <>
       {content?.map((item) => (

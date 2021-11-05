@@ -1,7 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellTitle, BlogTitle, GetStaticProps, Row, Title } from '@graphcommerce/next-ui'
-import { Container } from '@material-ui/core'
+import { BlogTitle, GetStaticProps, Row, Title } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
