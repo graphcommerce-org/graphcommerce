@@ -13,20 +13,12 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: components/AppShell/FullPageShell.tsx:117
-#: components/AppShell/FullPageShell.tsx:141
+#: components/AppShell/FullPageShell.tsx:80
+#: components/AppShell/FullPageShell.tsx:94
 #: pages/404.tsx:27
-#: pages/account/addresses/add.tsx:45
-#: pages/account/addresses/index.tsx:41
-#: pages/account/authentication/index.tsx:43
-#: pages/account/contact/index.tsx:43
 #: pages/account/index.tsx:70
 #: pages/account/index.tsx:77
 #: pages/account/index.tsx:82
-#: pages/account/name/index.tsx:41
-#: pages/account/orders/index.tsx:51
-#: pages/account/reviews/add.tsx:81
-#: pages/account/reviews/index.tsx:42
 msgid "Account"
 msgstr "Account"
 
@@ -34,8 +26,8 @@ msgstr "Account"
 msgid "Account Dashboard"
 msgstr "Account overzicht"
 
-#: pages/account/addresses/add.tsx:53
-#: pages/account/addresses/add.tsx:60
+#: pages/account/addresses/add.tsx:52
+#: pages/account/addresses/add.tsx:59
 msgid "Add new address"
 msgstr "Voeg nieuw adres toe"
 
@@ -47,9 +39,8 @@ msgstr "Voeg review toe"
 msgid "Address not found"
 msgstr "Adres niet gevonden"
 
-#: pages/account/addresses/add.tsx:47
-#: pages/account/addresses/add.tsx:58
-#: pages/account/addresses/edit.tsx:51
+#: pages/account/addresses/add.tsx:46
+#: pages/account/addresses/add.tsx:57
 #: pages/account/addresses/edit.tsx:53
 #: pages/account/addresses/edit.tsx:64
 #: pages/account/addresses/index.tsx:43
@@ -63,7 +54,7 @@ msgstr "Adressen"
 msgid "All products"
 msgstr "Alle producten"
 
-#: pages/product/configurable/[url].tsx:104
+#: pages/product/configurable/[url].tsx:97
 msgid "As low as"
 msgstr "Vanaf"
 
@@ -87,21 +78,19 @@ msgstr "Wees de eerste die op de hoogte is van alles wat er nieuw is!"
 msgid "Billing address"
 msgstr "Factuuradres"
 
-#: components/AppShell/FullPageShell.tsx:96
-#: pages/blog/page/[page].tsx:37
-#: pages/blog/tagged/[url].tsx:38
+#: components/AppShell/FullPageShell.tsx:61
 msgid "Blog"
 msgstr "Blog"
 
 #: pages/checkout/index.tsx:79
-msgid "Cart"
-msgstr "Winkelwagen"
+#~ msgid "Cart"
+#~ msgstr "Winkelwagen"
 
-#: pages/cart.tsx:48
+#: pages/cart.tsx:49
 msgid "Cart ({0})"
 msgstr "Winkelwagen ({0})"
 
-#: pages/cart.tsx:49
+#: pages/cart.tsx:50
 #: pages/checkout/index.tsx:46
 msgid "Cart Items"
 msgstr "Winkelwagen items"
@@ -130,7 +119,7 @@ msgid "Contact information"
 msgstr "Contactinformatie"
 
 #: pages/checkout/success.tsx:64
-#: pages/customer/account/createPassword/index.tsx:80
+#: pages/customer/account/createPassword/index.tsx:79
 msgid "Continue shopping"
 msgstr "Verder winkelen"
 
@@ -144,9 +133,8 @@ msgstr "Land"
 msgid "Create new password"
 msgstr "Maak een nieuw wachtwoord"
 
-#: components/AppShell/Footer.tsx:92
-#: components/AppShell/FullPageShell.tsx:147
-#: pages/service/[[...url]].tsx:45
+#: components/AppShell/Footer.tsx:47
+#: components/AppShell/FullPageShell.tsx:97
 msgid "Customer Service"
 msgstr "Klantenservice"
 
@@ -154,7 +142,7 @@ msgstr "Klantenservice"
 msgid "Discover our collection and add items to your cart!"
 msgstr "Ontdek onze collectie en voeg producten toe aan uw winkelwagen!"
 
-#: pages/account/orders/index.tsx:76
+#: pages/account/orders/index.tsx:77
 msgid "Discover our collection and place your first order!"
 msgstr "Ontdek onze collectie en plaats uw eerste bestelling!"
 
@@ -181,8 +169,8 @@ msgid "Forgot your password?"
 msgstr "Wachtwoord vergeten?"
 
 #: components/AppShell/FullPageShellHeader.tsx:12
-msgid "Home"
-msgstr "Home"
+#~ msgid "Home"
+#~ msgstr "Home"
 
 #: pages/account/index.tsx:91
 #: pages/account/name/index.tsx:43
@@ -195,10 +183,9 @@ msgstr "Naam"
 msgid "Newsletter"
 msgstr "Nieuwsbrief"
 
-#: pages/cart.tsx:70
-#: pages/checkout/index.tsx:68
-#: pages/checkout/index.tsx:121
-#: pages/test/minimal-page-shell-subheader/[[...url]].tsx:55
+#: pages/cart.tsx:64
+#: pages/checkout/index.tsx:61
+#: pages/checkout/index.tsx:111
 msgid "Next"
 msgstr "Volgende"
 
@@ -236,9 +223,8 @@ msgid "Ordered items"
 msgstr "Bestelde items"
 
 #: pages/account/index.tsx:109
-#: pages/account/orders/index.tsx:53
-#: pages/account/orders/index.tsx:58
-#: pages/account/orders/view.tsx:53
+#: pages/account/orders/index.tsx:54
+#: pages/account/orders/index.tsx:59
 #: pages/account/reviews/index.tsx:44
 msgid "Orders"
 msgstr "Bestellingen"
@@ -248,17 +234,17 @@ msgstr "Bestellingen"
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: pages/checkout/payment.tsx:81
+#: pages/checkout/payment.tsx:70
 msgid "Pay"
 msgstr "Betaal"
 
-#: pages/checkout/payment.tsx:59
-#: pages/checkout/payment.tsx:93
-#: pages/checkout/payment.tsx:109
+#: pages/checkout/payment.tsx:55
+#: pages/checkout/payment.tsx:80
+#: pages/checkout/payment.tsx:96
 msgid "Payment"
 msgstr "Betaling"
 
-#: pages/checkout/payment.tsx:161
+#: pages/checkout/payment.tsx:139
 msgid "Place order"
 msgstr "Plaats bestelling"
 
@@ -267,8 +253,8 @@ msgid "Product could not be found"
 msgstr "Product kan niet worden gevonden"
 
 #: components/Row/RowProductSpecs/index.tsx:31
-msgid "Product specifications"
-msgstr "Productspecificaties"
+#~ msgid "Product specifications"
+#~ msgstr "Productspecificaties"
 
 #: pages/search/[[...url]].tsx:78
 #: pages/search/[[...url]].tsx:84
@@ -290,17 +276,16 @@ msgstr "Zoeken"
 msgid "Set your new password"
 msgstr "Stel uw nieuwe wachtwoord in"
 
-#: pages/checkout/index.tsx:82
-#: pages/checkout/index.tsx:92
+#: pages/checkout/index.tsx:73
+#: pages/checkout/index.tsx:83
 msgid "Shipping"
 msgstr "Verzending"
 
-#: pages/checkout/index.tsx:100
+#: pages/checkout/index.tsx:91
 msgid "Shipping method"
 msgstr "Verzendmethode"
 
-#: pages/account/forgot-password.tsx:16
-#: pages/customer/account/createPassword/index.tsx:33
+#: pages/account/forgot-password.tsx:63
 msgid "Sign In"
 msgstr "Inloggen"
 
@@ -351,11 +336,11 @@ msgstr "Bekijk al je reviews"
 msgid "We couldn't find the page you were looking for"
 msgstr "We kunnen de pagina niet vinden waar u naar op zoek bent."
 
-#: pages/checkout/payment.tsx:103
+#: pages/checkout/payment.tsx:90
 msgid "We're processing your payment, this will take a few seconds."
 msgstr "Uw betaling wordt verwerkt, dit duurt een paar seconden"
 
-#: pages/product/configurable/[url].tsx:124
+#: pages/product/configurable/[url].tsx:121
 msgid "Which size is right?"
 msgstr "Wat is de juiste maat?"
 
@@ -364,8 +349,8 @@ msgid "Whoops our bad..."
 msgstr "Oeps.."
 
 #: components/AppShell/FullPageShell.tsx:150
-msgid "Wishlist"
-msgstr "Verlanglijst"
+#~ msgid "Wishlist"
+#~ msgstr "Verlanglijst"
 
 #: pages/account/index.tsx:146
 msgid "Written {0} reviews"
@@ -381,7 +366,7 @@ msgstr "U reviewt {0}"
 msgid "You can now<0>sign in again</0>."
 msgstr "U kunt nu <0>opnieuw inloggen</0>"
 
-#: pages/account/orders/index.tsx:73
+#: pages/account/orders/index.tsx:74
 msgid "You have no orders yet"
 msgstr "Je hebt nog geen bestellingen"
 
