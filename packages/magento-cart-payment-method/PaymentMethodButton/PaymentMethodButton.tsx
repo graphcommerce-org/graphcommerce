@@ -66,7 +66,7 @@ export default function PaymentMethodButton(props: PaymentMethodButtonProps) {
           button
         ) : (
           <>
-            <FormRow>{button}</FormRow>
+            <>{button}</>
             <ApolloCartErrorAlert key='error' error={errorVal} />
           </>
         )
