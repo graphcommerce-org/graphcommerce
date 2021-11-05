@@ -6,9 +6,12 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       marginRight: theme.spacings.xxs,
-      width: '100%',
+      width: responsiveVal(64, 172),
       '& fieldset': {
         border: `1px solid ${theme.palette.divider}`,
+      },
+      [theme.breakpoints.up('sm')]: {
+        width: '100%',
       },
     },
     inputRoot: {

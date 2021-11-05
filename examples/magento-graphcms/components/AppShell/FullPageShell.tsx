@@ -13,27 +13,15 @@ import {
   MenuFabSecondaryItem,
   MenuProps,
   PlaceholderFab,
-  responsiveVal,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
-import { Fab, makeStyles, useTheme } from '@material-ui/core'
+import { Fab, useTheme } from '@material-ui/core'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'
 import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
 import Footer from './Footer'
 import Logo from './Logo'
-
-const useStyles = makeStyles(
-  () => ({
-    searchButton: {
-      width: responsiveVal(64, 172),
-    },
-  }),
-  {
-    name: 'FullPageShell',
-  },
-)
 
 export type FullPageShellProps = Omit<DefaultPageQuery, 'pages'> &
   Omit<
@@ -48,7 +36,6 @@ function FullPageShell(props: FullPageShellProps) {
   const theme = useTheme()
   const storeConfig = useQuery(StoreConfigDocument)
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
-  const classes = useStyles(props)
   const menuItemsIncludeInMenu = menuData?.items?.filter((items) => items?.include_in_menu === 1)
 
   const menuProps: MenuProps = {
@@ -86,9 +73,7 @@ function FullPageShell(props: FullPageShellProps) {
           <Logo alwaysShow={alwaysShowLogo} />
           <DesktopNavBar {...menuProps} />
           <DesktopNavActions>
-            {!router.pathname.startsWith('/search') && (
-              <SearchButton classes={{ root: classes.searchButton }} onClick={onSearchStart} />
-            )}
+            {!router.pathname.startsWith('/search') && <SearchButton onClick={onSearchStart} />}
             <PageLink href='/service' passHref>
               <Fab aria-label='Account' size='large' color='inherit'>
                 <SvgImageSimple src={iconCustomerService} size='large' />
