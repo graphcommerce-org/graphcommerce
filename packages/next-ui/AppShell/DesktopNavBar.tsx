@@ -27,7 +27,7 @@ const useStyles = makeStyles(
       columnGap: 40,
       padding: '0 40px',
       minHeight: 40,
-      gridAutoColumns: 'minmax(min-content, 1fr)',
+      gridAutoColumns: 'min-content',
     },
     prevNextBtnWrapper: {
       position: 'absolute',
