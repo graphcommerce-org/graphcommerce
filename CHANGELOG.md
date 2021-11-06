@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.147.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.147.3...@graphcommerce/graphcommerce@2.147.4) (2021-11-06)
+
+
+### Bug Fixes
+
+* spacing DesktopNavBar items ([c3373b9](https://github.com/ho-nl/m2-pwa/commit/c3373b97add87864adc5809ab04cf683bc5b0498))
+
+
+
+
+
 ## [2.147.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.147.1...@graphcommerce/graphcommerce@2.147.2) (2021-11-05)
 
 
