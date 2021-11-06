@@ -227,14 +227,6 @@ const createOverrides = (theme: Theme, bgcolor): Overrides => {
         body: {
           backgroundColor: bgcolor,
           overflowY: 'scroll',
-          '& [class*="FullPageShellBase-root"]': {
-            backgroundColor: bgcolor ? bgcolor : theme.palette.background.default,
-          },
-          '& [class*="AppShellHeader-sheetHeader"]': {
-            [theme.breakpoints.down('sm')]: {
-              backgroundColor: bgcolor,
-            },
-          },
           stroke: theme.palette.text.primary,
         },
         '::selection': { background: alpha(theme.palette.primary.main, 0.6) },
