@@ -7,18 +7,17 @@ import cheerio from 'cheerio'
 import parseHtml, { domToReact, htmlToDOM } from 'html-react-parser'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
-import router from 'next/router'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import { PagesStaticPathsDocument } from '../../components/GraphQL/PagesStaticPaths.gql'
 import StoryList from '../../components/Story'
 import { StoryListDocument, StoryListQuery } from '../../components/Story/StoryList.gql'
+import { StoryPathsDocument } from '../../components/Story/StoryPaths.gql'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = DefaultPageQuery & StoryListQuery & { bodyContent: any; css: string; bgColor: string }
-type RouteProps = { url: string[] }
+type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
@@ -42,8 +41,8 @@ const replace = (node) => {
   }
   if (node.name === `img`) {
     const { ...props } = attribs
-    const width = props.rel ? props.rel.split(',')[0] : undefined
-    const height = props.rel ? props.rel.split(',')[1] : undefined
+    const width = props.rel ? props.rel.split(',')[0] / 2 : undefined
+    const height = props.rel ? props.rel.split(',')[1] / 2 : undefined
 
     return (
       <div className={props.class}>
@@ -53,6 +52,7 @@ const replace = (node) => {
           quality={width && width > 1080 ? 20 : 92}
           width={width && width}
           height={height && height}
+          sizes={width ? { 0: '100vw', 1350: `${width}px` } : undefined}
         />
       </div>
     )
@@ -113,24 +113,22 @@ StoryPage.pageOptions = {
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
+  if (process.env.VERCEL_ENV !== 'production') return { paths: [], fallback: 'blocking' }
 
-  const path = async (locale: string) => {
-    const client = apolloClient(locale)
-    const { data } = await client.query({
-      query: PagesStaticPathsDocument,
-      variables: {
-        first: process.env.VERCEL_ENV !== 'production' ? 1 : 1000,
-        urlStartsWith: 'story',
-      },
-    })
-    return data.pages.map((page) => ({ params: { url: page.url.split('/').slice(1) }, locale }))
+  const responses = locales.map(async (locale) => {
+    const staticClient = apolloClient(locale)
+    const StoryPaths = staticClient.query({ query: StoryPathsDocument })
+    const { pages } = (await StoryPaths).data
+    return (
+      pages.map((page) => ({ params: { url: `${page?.url}`.replace('story/', '') }, locale })) ?? []
+    )
+  })
+  const paths = (await Promise.all(responses)).flat(1)
+  return {
+    paths: process.env.VERCEL_ENV !== 'production' ? paths.slice(0, 1) : paths,
+    fallback: 'blocking',
   }
-  const paths = (await Promise.all(locales.map(path))).flat(1)
-
-  return { paths, fallback: 'blocking' }
 }
-
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const urlKey = params?.url ?? '??'
   const client = apolloClient(locale, true)
@@ -151,7 +149,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   })
   if (!(await page).data.pages?.[0]) return { notFound: true }
 
-  const webflow = await fetch(`https://${(urlKey as string).split('/').pop()}.webflow.io/`)
+  const webflow = await fetch(`https://${urlKey.split('/').pop()}.webflow.io/`)
 
   const $ = cheerio.load(await webflow.text())
 
