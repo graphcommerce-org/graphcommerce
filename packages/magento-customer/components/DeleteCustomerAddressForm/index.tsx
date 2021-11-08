@@ -3,7 +3,7 @@ import { Button, makeStyles, Theme } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
-import { DeleteCustomerAddressFormDocument } from './DeleteCustomerAddressForm.gql'
+import { DeleteCustomerAddressFormDocument } from './DeleteCustomerAddressForm.graphql'
 
 export type DeleteCustomerAddressFormProps = {
   addressId?: number

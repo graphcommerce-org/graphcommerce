@@ -24,7 +24,10 @@ import React from 'react'
 import { Product } from 'schema-dts'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import FullPageShellHeader from '../../../components/AppShell/FullPageShellHeader'
-import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
+import {
+  ProductPageDocument,
+  ProductPageQuery,
+} from '../../../components/GraphQL/ProductPage.graphql'
 import { RowProduct } from '../../../components/Row'
 import RowRenderer from '../../../components/Row/RowRenderer'
 import Usps from '../../../components/Usps'

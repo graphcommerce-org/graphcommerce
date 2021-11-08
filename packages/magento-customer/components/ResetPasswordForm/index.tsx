@@ -8,7 +8,7 @@ import {
   ResetPasswordDocument,
   ResetPasswordMutation,
   ResetPasswordMutationVariables,
-} from './ResetPassword.gql'
+} from './ResetPassword.graphql'
 
 type ResetPasswordFormProps = {
   token: string

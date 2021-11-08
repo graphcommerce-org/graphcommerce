@@ -5,7 +5,7 @@ import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
-import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
+import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.graphql'
 import apolloClient from '../../lib/apolloClient'
 import { AppShellDemo } from './minimal-page-shell/[[...url]]'
 

@@ -1,7 +1,7 @@
 import { UseStyles } from '@graphcommerce/next-ui'
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
-import { ProductShortDescriptionFragment } from './ProductShortDescription.gql'
+import { ProductShortDescriptionFragment } from './ProductShortDescription.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

@@ -3,7 +3,7 @@ import { ProductReviews, ProductReviewsProps } from '@graphcommerce/magento-revi
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Row, SectionContainer } from '@graphcommerce/next-ui'
 import React from 'react'
-import { RowProductFragment } from '../RowProduct.gql'
+import { RowProductFragment } from '../RowProduct.graphql'
 
 type ReviewsProps = RowProductFragment & Partial<ProductReviewsProps>
 

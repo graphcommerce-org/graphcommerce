@@ -13,4 +13,4 @@ export * from './SearchForm'
 export { default as SearchButton } from './SearchButton'
 export * from './SearchButton'
 
-export * from './Search.gql'
+export * from './Search.graphql'

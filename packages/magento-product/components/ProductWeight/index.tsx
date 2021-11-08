@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { useMemo } from 'react'
-import { ProductWeightFragment } from './ProductWeight.gql'
+import { ProductWeightFragment } from './ProductWeight.graphql'
 
 export default function ProductWeight(props: ProductWeightFragment) {
   const { weight } = props

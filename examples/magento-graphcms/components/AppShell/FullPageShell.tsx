@@ -19,7 +19,7 @@ import { Fab, useTheme } from '@material-ui/core'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'
-import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
+import { DefaultPageQuery } from '../GraphQL/DefaultPage.graphql'
 import Footer from './Footer'
 import Logo from './Logo'
 

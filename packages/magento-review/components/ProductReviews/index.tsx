@@ -4,8 +4,8 @@ import { makeStyles, Theme, Typography } from '@material-ui/core'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import ProductReviewChip from '../ProductReviewChip'
-import { ProductReviewsFragment } from './ProductReviews.gql'
-import { ProductReviewsPageDocument } from './ProductReviewsPage.gql'
+import { ProductReviewsFragment } from './ProductReviews.graphql'
+import { ProductReviewsPageDocument } from './ProductReviewsPage.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

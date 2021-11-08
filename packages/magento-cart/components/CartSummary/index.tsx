@@ -5,7 +5,7 @@ import PageLink from 'next/link'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
 import CartAddressMultiLine from '../CartAddressMultiLine'
-import { GetCartSummaryDocument } from './GetCartSummary.gql'
+import { GetCartSummaryDocument } from './GetCartSummary.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

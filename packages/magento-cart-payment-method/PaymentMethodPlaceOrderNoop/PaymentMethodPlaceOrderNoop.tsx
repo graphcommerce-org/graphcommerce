@@ -7,7 +7,7 @@ import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { PaymentPlaceOrderProps } from '../Api/PaymentMethod'
-import { PaymentMethodPlaceOrderNoopDocument } from './PaymentMethodPlaceOrderNoop.gql'
+import { PaymentMethodPlaceOrderNoopDocument } from './PaymentMethodPlaceOrderNoop.graphql'
 
 export default function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProps) {
   const { step, code } = props

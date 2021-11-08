@@ -2,8 +2,8 @@ import { useCartQuery } from '@graphcommerce/magento-cart'
 import { AnimatedRow, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
-import { CartItemsFragment } from '../Api/CartItems.gql'
-import { CartItemsQueryDocument } from './CartItemsQuery.gql'
+import { CartItemsFragment } from '../Api/CartItems.graphql'
+import { CartItemsQueryDocument } from './CartItemsQuery.graphql'
 
 export type CartItemRenderer = TypeRenderer<NonNullable<NonNullable<CartItemsFragment['items']>[0]>>
 

@@ -2,7 +2,7 @@ import RichText from '@graphcommerce/graphcms-ui/RichText'
 import { UspList, UspListItem, UspListProps } from '@graphcommerce/next-ui'
 import React from 'react'
 import Asset from '../Asset'
-import { UspsQueryFragment } from './UspsQueryFragment.gql'
+import { UspsQueryFragment } from './UspsQueryFragment.graphql'
 
 export type ProductUspsProps = UspsQueryFragment & {
   icon?: React.ReactNode

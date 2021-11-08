@@ -1,5 +1,5 @@
 import { TypeRenderer } from '@graphcommerce/next-ui'
-import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
+import { ProductListItemFragment } from '../../Api/ProductListItem.graphql'
 import ProductListItem from '../ProductListItem'
 
 export type ProductListItemRenderer = TypeRenderer<ProductListItemFragment>

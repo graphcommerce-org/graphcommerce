@@ -10,7 +10,7 @@ import Script from 'next/script'
 import React, { useEffect, useState } from 'react'
 import { Mollie } from '../../Mollie'
 import MollieField from './MollieField'
-import { SetMolliePaymentMethodTokenOnCartDocument } from './SetMolliePaymentMethodTokenOnCart.gql'
+import { SetMolliePaymentMethodTokenOnCartDocument } from './SetMolliePaymentMethodTokenOnCart.graphql'
 import { mollieContext, MollieContext } from './mollieContext'
 
 export default function MollieCreditCardOptions(props: PaymentOptionsProps) {

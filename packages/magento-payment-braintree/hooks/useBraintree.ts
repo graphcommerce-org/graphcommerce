@@ -1,7 +1,7 @@
 import { ApolloClient, useApolloClient } from '@apollo/client'
 import braintree, { Client } from 'braintree-web'
 import { useRef } from 'react'
-import { UseBraintreeDocument } from './UseBraintree.gql'
+import { UseBraintreeDocument } from './UseBraintree.graphql'
 
 export type StartPaymentOptions = {
   fallback: {

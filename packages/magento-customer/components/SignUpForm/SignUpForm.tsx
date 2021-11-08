@@ -5,7 +5,7 @@ import { FormControlLabel, Switch, TextField } from '@material-ui/core'
 import React from 'react'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import NameFields from '../NameFields'
-import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
+import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.graphql'
 
 type SignUpFormProps = {
   email?: string

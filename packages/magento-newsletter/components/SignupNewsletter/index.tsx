@@ -6,7 +6,7 @@ import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import CustomerNewsletterToggle from '../CustomerNewsletterToggle'
 import GuestNewsletterToggle from '../GuestNewsletterToggle'
-import { GetCartEmailDocument } from './GetCartEmail.gql'
+import { GetCartEmailDocument } from './GetCartEmail.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

@@ -8,7 +8,7 @@ import {
   SetStateAction,
   useMemo,
 } from 'react'
-import { ConfigurableProductFormFragment } from './ConfigurableProductForm.gql'
+import { ConfigurableProductFormFragment } from './ConfigurableProductForm.graphql'
 
 // todo: fix dependency cycle
 import cheapestVariant from './cheapestVariant'

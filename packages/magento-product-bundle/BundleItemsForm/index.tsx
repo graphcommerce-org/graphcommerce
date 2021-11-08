@@ -1,4 +1,4 @@
-import { BundleItemsFragment } from './BundleItems.gql'
+import { BundleItemsFragment } from './BundleItems.graphql'
 
 type BundleItemsFormProps = BundleItemsFragment
 

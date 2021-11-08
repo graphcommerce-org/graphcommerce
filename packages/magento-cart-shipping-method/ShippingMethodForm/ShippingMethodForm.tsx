@@ -21,12 +21,12 @@ import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React from 'react'
 import AvailableShippingMethod from '../AvailableShippingMethod/AvailableShippingMethod'
-import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
+import { GetShippingMethodsDocument } from './GetShippingMethods.graphql'
 import {
   ShippingMethodFormDocument,
   ShippingMethodFormMutation,
   ShippingMethodFormMutationVariables,
-} from './ShippingMethodForm.gql'
+} from './ShippingMethodForm.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

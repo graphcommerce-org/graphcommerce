@@ -3,7 +3,7 @@ import { UseStyles, responsiveVal } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
-import { ImageSwatchDataFragment } from './ImageSwatchData.gql'
+import { ImageSwatchDataFragment } from './ImageSwatchData.graphql'
 import { SwatchDataProps } from '.'
 
 export const useStyles = makeStyles(

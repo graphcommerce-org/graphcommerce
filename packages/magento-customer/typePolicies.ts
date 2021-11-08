@@ -6,8 +6,8 @@ import {
   Query,
   TypedTypePolicies,
 } from '@graphcommerce/graphql'
-import { CustomerTokenDocument } from './hooks/CustomerToken.gql'
-import { IsEmailAvailableDocument } from './hooks/IsEmailAvailable.gql'
+import { CustomerTokenDocument } from './hooks/CustomerToken.graphql'
+import { IsEmailAvailableDocument } from './hooks/IsEmailAvailable.graphql'
 
 const revokeCustomerToken: FieldPolicy<Mutation['revokeCustomerToken']> = {
   merge(_existing, incoming, options) {

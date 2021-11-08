@@ -1,7 +1,7 @@
 import { ProductImage } from '@graphcommerce/graphql'
 import { Product } from 'schema-dts'
-import { JsonLdProductFragment } from './JsonLdProduct.gql'
-import { JsonLdProductOfferFragment } from './JsonLdProductOffer.gql'
+import { JsonLdProductFragment } from './JsonLdProduct.graphql'
+import { JsonLdProductOfferFragment } from './JsonLdProductOffer.graphql'
 
 export function jsonLdProduct(props: JsonLdProductFragment): Product {
   const { name, sku, media_gallery, categories, description, url_key } = props

@@ -10,7 +10,7 @@ import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import OrderCardItemImage from '../OrderCardItemImage'
 import OrderStateLabel from '../OrderStateLabel'
 import TrackingLink from '../TrackingLink'
-import { OrderCardFragment } from './OrderCard.gql'
+import { OrderCardFragment } from './OrderCard.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

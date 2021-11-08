@@ -15,7 +15,7 @@ import { SetRequired } from 'type-fest'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import ProductListLink from '../ProductListLink/ProductListLink'
-import { ProductListFiltersFragment } from './ProductListFilters.gql'
+import { ProductListFiltersFragment } from './ProductListFilters.graphql'
 
 export type FilterIn = SetRequired<Omit<FilterEqualTypeInput, 'eq'>, 'in'>
 

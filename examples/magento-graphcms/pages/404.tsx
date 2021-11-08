@@ -6,7 +6,7 @@ import { Box, Container, Typography, Link } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../components/AppShell/FullPageShell'
-import { DefaultPageDocument, DefaultPageQuery } from '../components/GraphQL/DefaultPage.gql'
+import { DefaultPageDocument, DefaultPageQuery } from '../components/GraphQL/DefaultPage.graphql'
 import apolloClient from '../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }

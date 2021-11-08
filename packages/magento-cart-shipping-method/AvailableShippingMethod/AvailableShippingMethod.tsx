@@ -4,7 +4,7 @@ import { FormHelperText, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
 import { SetOptional } from 'type-fest'
-import { AvailableShippingMethodFragment } from './AvailableShippingMethod.gql'
+import { AvailableShippingMethodFragment } from './AvailableShippingMethod.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

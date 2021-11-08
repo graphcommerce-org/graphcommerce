@@ -3,7 +3,7 @@ import {
   PageMeta as NextPageMeta,
   PageMetaProps as NextPageMetaProps,
 } from '@graphcommerce/next-ui'
-import { StoreConfigDocument } from './StoreConfig.gql'
+import { StoreConfigDocument } from './StoreConfig.graphql'
 
 type PageMetaProps = Pick<NextPageMetaProps, 'title' | 'metaDescription' | 'metaRobots'> & {
   canonical?: string

@@ -15,7 +15,7 @@ import React from 'react'
 import AddressFields from '../AddressFields'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import NameFields from '../NameFields'
-import { CreateCustomerAddressDocument } from './CreateCustomerAddress.gql'
+import { CreateCustomerAddressDocument } from './CreateCustomerAddress.graphql'
 
 export default function CreateCustomerAddressForm() {
   const countries = useQuery(CountryRegionsDocument).data?.countries

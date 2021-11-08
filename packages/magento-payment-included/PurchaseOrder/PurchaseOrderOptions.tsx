@@ -4,7 +4,7 @@ import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { useFormCompose, useFormValidFields } from '@graphcommerce/react-hook-form'
 import { TextField, Typography } from '@material-ui/core'
 import React from 'react'
-import { PurchaseOrderOptionsDocument } from './PurchaseOrderOptions.gql'
+import { PurchaseOrderOptionsDocument } from './PurchaseOrderOptions.graphql'
 
 function PurchaseOrderOptions(props: PaymentOptionsProps) {
   const { code, step, selected, Container, title } = props

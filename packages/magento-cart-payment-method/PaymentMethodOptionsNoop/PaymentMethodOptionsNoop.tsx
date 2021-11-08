@@ -1,7 +1,7 @@
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { PaymentOptionsProps } from '../Api/PaymentMethod'
-import { PaymentMethodOptionsNoopDocument } from './PaymentMethodOptionsNoop.gql'
+import { PaymentMethodOptionsNoopDocument } from './PaymentMethodOptionsNoop.graphql'
 
 /** It sets the selected payment method on the cart. */
 function PaymentMethodOptionsNoop(props: PaymentOptionsProps) {

@@ -12,7 +12,10 @@ import {
 import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
-import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
+import {
+  ProductAddToCartDocument,
+  ProductAddToCartMutationVariables,
+} from './ProductAddToCart.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

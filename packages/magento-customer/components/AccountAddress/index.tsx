@@ -4,7 +4,7 @@ import React from 'react'
 import AddressMultiLine from '../AddressMultiLine'
 import DeleteCustomerAddressForm from '../DeleteCustomerAddressForm'
 import UpdateDefaultAddressForm from '../UpdateDefaultAddressForm'
-import { AccountAddressFragment } from './AccountAddress.gql'
+import { AccountAddressFragment } from './AccountAddress.graphql'
 
 export type AccountAddressProps = AccountAddressFragment
 

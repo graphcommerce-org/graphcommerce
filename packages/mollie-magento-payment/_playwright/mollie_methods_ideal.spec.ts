@@ -5,8 +5,8 @@ import { fillCartAgreementsForm } from '@graphcommerce/magento-cart/_playwright/
 import { addConfigurableProductToCart } from '@graphcommerce/magento-product-configurable/_playwright/addConfigurableProductToCart'
 import { test } from '@graphcommerce/magento-product/_playwright/productURL.fixture'
 import { expect, Page } from '@playwright/test'
-import { MolliePlaceOrderDocument } from '../components/MolliePlaceOrder/MolliePlaceOrder.gql'
-import { UseMolliePaymentTokenHandlerDocument } from '../hooks/UseMolliePaymentTokenHandler.gql'
+import { MolliePlaceOrderDocument } from '../components/MolliePlaceOrder/MolliePlaceOrder.graphql'
+import { UseMolliePaymentTokenHandlerDocument } from '../hooks/UseMolliePaymentTokenHandler.graphql'
 
 const goToPayment = async (page: Page) => {
   await page.click('a:has-text("View shopping cart")')

@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { PropsWithChildren, useCallback } from 'react'
-import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
+import { ProductListItemFragment } from '../../Api/ProductListItem.graphql'
 import { useProductLink } from '../../hooks/useProductLink'
 import ProductListPrice from '../ProductListPrice'
 

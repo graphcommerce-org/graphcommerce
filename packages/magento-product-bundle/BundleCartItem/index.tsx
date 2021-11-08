@@ -1,5 +1,5 @@
 import { CartItem, CartItemProps } from '@graphcommerce/magento-cart-items'
-import { BundleCartItemFragment } from './BundleCartItem.gql'
+import { BundleCartItemFragment } from './BundleCartItem.graphql'
 
 export default function BundleCartItem(props: BundleCartItemFragment & CartItemProps) {
   const { bundle_options, ...cartItemProps } = props

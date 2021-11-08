@@ -13,8 +13,8 @@ import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
 import { useCartQuery } from '../../hooks/useCartQuery'
-import { CartFabDocument } from './CartFab.gql'
-import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
+import { CartFabDocument } from './CartFab.graphql'
+import { CartTotalQuantityFragment } from './CartTotalQuantity.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

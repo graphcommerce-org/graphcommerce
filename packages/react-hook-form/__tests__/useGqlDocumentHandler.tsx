@@ -1,4 +1,4 @@
-import { TestShippingAddressFormDocument } from '../__mocks__/TestShippingAddressForm.gql'
+import { TestShippingAddressFormDocument } from '../__mocks__/TestShippingAddressForm.graphql'
 import { handlerFactory } from '../src/useGqlDocumentHandler'
 
 describe('useGqlDocumentHandler', () => {

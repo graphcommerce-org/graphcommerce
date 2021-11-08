@@ -3,7 +3,7 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { FullPageShellBaseProps } from '@graphcommerce/next-ui'
 import MinimalPageShellBase from '@graphcommerce/next-ui/AppShell/MinimalPageShellBase'
 import React from 'react'
-import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
+import { DefaultPageQuery } from '../GraphQL/DefaultPage.graphql'
 import Footer from './Footer'
 import Logo from './Logo'
 

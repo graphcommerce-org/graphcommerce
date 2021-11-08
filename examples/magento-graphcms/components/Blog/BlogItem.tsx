@@ -3,7 +3,7 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { BlogListItem } from '@graphcommerce/next-ui'
 import { Typography } from '@material-ui/core'
 import Asset from '../Asset'
-import { BlogItemFragment } from './BlogItem.gql'
+import { BlogItemFragment } from './BlogItem.graphql'
 
 type BlogItemProps = BlogItemFragment
 

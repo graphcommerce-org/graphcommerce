@@ -13,7 +13,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import AccountAddress from '../AccountAddress'
-import { AccountAddressesFragment } from './AccountAddresses.gql'
+import { AccountAddressesFragment } from './AccountAddresses.graphql'
 
 export type AccountAddressesProps = AccountAddressesFragment & { loading: boolean }
 

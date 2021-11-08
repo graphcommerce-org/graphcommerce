@@ -3,7 +3,7 @@ import { Button, Footer as NextFooter, SocialIcon } from '@graphcommerce/next-ui
 import { IconButton, Link } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
-import { FooterQueryFragment } from '../AppShell/FooterQueryFragment.gql'
+import { FooterQueryFragment } from '../AppShell/FooterQueryFragment.graphql'
 
 export type FooterProps = FooterQueryFragment & { disableMargin?: boolean }
 

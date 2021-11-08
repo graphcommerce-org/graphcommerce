@@ -3,7 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import React from 'react'
 import CustomerReview from '../CustomerReview'
-import { AccountReviewsFragment } from './AccountReviews.gql'
+import { AccountReviewsFragment } from './AccountReviews.graphql'
 
 type AccountReviewsProps = AccountReviewsFragment & { loading: boolean }
 

@@ -2,7 +2,7 @@ import { ProductListParams } from '@graphcommerce/magento-product'
 import { PageMeta } from '@graphcommerce/magento-store'
 import { PageMetaProps } from '@graphcommerce/next-ui'
 import React from 'react'
-import { CategoryMetaFragment } from './CategoryMeta.gql'
+import { CategoryMetaFragment } from './CategoryMeta.graphql'
 
 type CategoryMetaProps = CategoryMetaFragment &
   Omit<PageMetaProps, 'title' | 'metaDescription'> & {

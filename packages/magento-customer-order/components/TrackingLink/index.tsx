@@ -1,7 +1,7 @@
 import { SvgImageSimple, iconLocation } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import { TrackingLinkFragment } from './TrackingLink.gql'
+import { TrackingLinkFragment } from './TrackingLink.graphql'
 
 export type TrackingLinkProps = TrackingLinkFragment
 

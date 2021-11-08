@@ -3,7 +3,7 @@ export * from './JsonLdProduct'
 export * from './ProductAddToCart/ProductAddToCart'
 export { default as ProductAddToCart } from './ProductAddToCart/ProductAddToCart'
 
-export * from './ProductList/ProductList.gql'
+export * from './ProductList/ProductList.graphql'
 
 export { default as ProductListItem } from './ProductListItem'
 export * from './ProductListItem'
@@ -15,7 +15,7 @@ export { default as ProductListItemsBase } from './ProductListItems/ProductListI
 export * from './ProductListItems/ProductListItemsBase'
 export * from './ProductListItems/getFilterTypes'
 export * from './ProductListItems/renderer'
-export * from './ProductListItems/ProductListItems.gql'
+export * from './ProductListItems/ProductListItems.graphql'
 export { default as ProductListParamsProvider } from './ProductListItems/ProductListParamsProvider'
 export * from './ProductListLink/ProductListLink'
 export { default as ProductListLink } from './ProductListLink/ProductListLink'
@@ -28,7 +28,7 @@ export { default as ProductListFilters } from './ProductListFilters'
 export * from './ProductListFiltersContainer'
 export { default as ProductListFiltersContainer } from './ProductListFiltersContainer'
 
-export * from './ProductRelated/RelatedProducts.gql'
+export * from './ProductRelated/RelatedProducts.graphql'
 
 export * from './ProductListPagination'
 export { default as ProductListPagination } from './ProductListPagination'
@@ -45,6 +45,6 @@ export { getProductStaticPaths } from './ProductStaticPaths/getProductStaticPath
 export { default as ProductWeight } from './ProductWeight'
 
 export { default as ProductShortDescription } from './ProductShortDescription'
-export * from './ProductShortDescription/ProductShortDescription.gql'
+export * from './ProductShortDescription/ProductShortDescription.graphql'
 
-export * from './ProductUpsells/UpsellProducts.gql'
+export * from './ProductUpsells/UpsellProducts.graphql'

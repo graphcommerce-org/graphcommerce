@@ -1,2 +1,2 @@
 export { default as ProductListItemVirtual } from './ProductListItemVirtual'
-export * from './VirtualProductPage.gql'
+export * from './VirtualProductPage.graphql'

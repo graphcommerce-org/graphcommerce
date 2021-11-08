@@ -2,8 +2,8 @@ import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/mag
 import { UseStyles, SvgImageSimple, iconCancelAlt, Button } from '@graphcommerce/next-ui'
 import { lighten, IconButton, makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import { CouponFragment } from '../Api/Coupon.gql'
-import { RemoveCouponFormDocument } from './RemoveCouponForm.gql'
+import { CouponFragment } from '../Api/Coupon.graphql'
+import { RemoveCouponFormDocument } from './RemoveCouponForm.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

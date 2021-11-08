@@ -5,7 +5,7 @@ import React from 'react'
 import {
   UpdateItemQuantityDocument,
   UpdateItemQuantityMutationVariables,
-} from './UpdateItemQuantity.gql'
+} from './UpdateItemQuantity.graphql'
 
 export type UpdateItemQuantityProps = Omit<UpdateItemQuantityMutationVariables, 'cartId'> & {
   onError?: (err: any) => void

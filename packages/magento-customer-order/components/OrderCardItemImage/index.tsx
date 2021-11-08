@@ -2,7 +2,7 @@ import { Image } from '@graphcommerce/image'
 import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
-import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
+import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.graphql'
 
 export type OrderCardItemImageProps = Omit<OrderCardItemImageFragment, 'uid'>
 

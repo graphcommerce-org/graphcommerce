@@ -1,4 +1,4 @@
-export * from './Api/Coupon.gql'
+export * from './Api/Coupon.graphql'
 
 export * from './ApplyCouponForm/ApplyCouponForm'
 export { default as ApplyCouponForm } from './ApplyCouponForm/ApplyCouponForm'

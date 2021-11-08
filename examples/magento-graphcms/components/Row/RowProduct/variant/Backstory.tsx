@@ -5,7 +5,7 @@ import { useTheme } from '@material-ui/core'
 import React from 'react'
 import Asset from '../../../Asset'
 import renderers from '../../../ProductListItems/renderers'
-import { RowProductFragment } from '../RowProduct.gql'
+import { RowProductFragment } from '../RowProduct.graphql'
 
 type BackstoryProps = RowProductFragment & ProductListItemsFragment
 

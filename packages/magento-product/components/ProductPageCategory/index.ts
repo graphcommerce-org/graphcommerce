@@ -1,4 +1,4 @@
-import { ProductPageCategoryFragment } from './ProductPageCategory.gql'
+import { ProductPageCategoryFragment } from './ProductPageCategory.graphql'
 
 /**
  * Get the most siginifcant category a product is in.

@@ -20,7 +20,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
-import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
+import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.graphql'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = Record<string, unknown>

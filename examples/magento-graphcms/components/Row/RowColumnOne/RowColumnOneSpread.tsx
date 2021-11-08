@@ -1,7 +1,7 @@
 import RichTextSpread from '@graphcommerce/graphcms-ui/RichText/RichTextSpread'
 import { ColumnOne } from '@graphcommerce/next-ui'
 import React from 'react'
-import { RowColumnOneFragment } from './RowColumnOne.gql'
+import { RowColumnOneFragment } from './RowColumnOne.graphql'
 
 function RowColumnOneSpread(props: RowColumnOneFragment) {
   const { colOne } = props

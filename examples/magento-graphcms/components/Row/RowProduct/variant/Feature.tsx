@@ -3,8 +3,8 @@ import { Image } from '@graphcommerce/image'
 import { ImageText } from '@graphcommerce/next-ui'
 import { Typography, useTheme, withStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import { RowProductFragment } from '../RowProduct.gql'
-import { ProductFeatureMediaFragment } from './ProductFeatureMedia.gql'
+import { RowProductFragment } from '../RowProduct.graphql'
+import { ProductFeatureMediaFragment } from './ProductFeatureMedia.graphql'
 
 type FeatureProps = RowProductFragment & ProductFeatureMediaFragment
 

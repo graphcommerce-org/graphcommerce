@@ -56,7 +56,7 @@ If the development environment is up and running it will create a
 ### 5. Create a component which renders the retrieved data
 
 ```tsx
-import { ComponentNameFragment } from './ComponentName.gql'
+import { ComponentNameFragment } from './ComponentName.graphql'
 function ComponentName(props: ComponentNameFragment) {
   const { field, field2 } = props
   return (

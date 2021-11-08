@@ -1,7 +1,7 @@
 import { Maybe } from '@graphcommerce/graphql'
 import { RenderType } from '@graphcommerce/next-ui'
 import React from 'react'
-import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
+import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.graphql'
 import { SwatchSize, SwatchTypeRenderer } from './Swatches'
 import ColorSwatchData from './Swatches/ColorSwatchData'
 import ImageSwatchData from './Swatches/ImageSwatchData'

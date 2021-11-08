@@ -1,9 +1,9 @@
 import { ButtonProps } from '@graphcommerce/next-ui/Button'
 import { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import React from 'react'
-import { AvailablePaymentMethodFragment } from './AvailablePaymentMethod/AvailablePaymentMethod.gql'
-import { PaymentMethodContextFragment } from './PaymentMethodContext.gql'
-import { SelectedPaymentMethodFragment } from './SelectedPaymentMethod/SelectedPaymentMethod.gql'
+import { AvailablePaymentMethodFragment } from './AvailablePaymentMethod/AvailablePaymentMethod.graphql'
+import { PaymentMethodContextFragment } from './PaymentMethodContext.graphql'
+import { SelectedPaymentMethodFragment } from './SelectedPaymentMethod/SelectedPaymentMethod.graphql'
 
 export type PaymentMethod = Partial<AvailablePaymentMethodFragment> &
   Pick<AvailablePaymentMethodFragment, 'code' | 'title'> & {

@@ -1,2 +1,2 @@
-export * from './Api/CartBillingAddress.gql'
+export * from './Api/CartBillingAddress.graphql'
 export * from './components'

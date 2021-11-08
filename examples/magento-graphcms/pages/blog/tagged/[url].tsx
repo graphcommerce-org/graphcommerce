@@ -11,11 +11,14 @@ import BlogHeader from '../../../components/Blog/BlogHeader'
 import {
   BlogListTaggedDocument,
   BlogListTaggedQuery,
-} from '../../../components/Blog/BlogListTagged.gql'
-import { BlogPostTaggedPathsDocument } from '../../../components/Blog/BlogPostTaggedPaths.gql'
+} from '../../../components/Blog/BlogListTagged.graphql'
+import { BlogPostTaggedPathsDocument } from '../../../components/Blog/BlogPostTaggedPaths.graphql'
 import BlogTags from '../../../components/Blog/BlogTags'
 import BlogTitle from '../../../components/Blog/BlogTitle'
-import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
+import {
+  DefaultPageDocument,
+  DefaultPageQuery,
+} from '../../../components/GraphQL/DefaultPage.graphql'
 import RowRenderer from '../../../components/Row/RowRenderer'
 import apolloClient from '../../../lib/apolloClient'
 

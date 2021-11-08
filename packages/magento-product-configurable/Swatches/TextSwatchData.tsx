@@ -3,7 +3,7 @@ import { UseStyles } from '@graphcommerce/next-ui'
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
-import { TextSwatchDataFragment } from './TextSwatchData.gql'
+import { TextSwatchDataFragment } from './TextSwatchData.graphql'
 import { SwatchDataProps } from '.'
 
 export const useStyles = makeStyles(

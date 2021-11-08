@@ -24,7 +24,10 @@ import MinimalPageShell, {
   MinimalPageShellProps,
 } from '../../../components/AppShell/MinimalPageShell'
 import PageShellHeader from '../../../components/AppShell/PageShellHeader'
-import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
+import {
+  DefaultPageDocument,
+  DefaultPageQuery,
+} from '../../../components/GraphQL/DefaultPage.graphql'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = DefaultPageQuery &

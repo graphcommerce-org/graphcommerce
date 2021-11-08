@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client'
-import { CreateEmptyCartDocument } from './CreateEmptyCart.gql'
+import { CreateEmptyCartDocument } from './CreateEmptyCart.graphql'
 import { useAssignCurrentCartId } from './useAssignCurrentCartId'
 import { useCurrentCartId } from './useCurrentCartId'
 

@@ -1,7 +1,7 @@
 import { ProductImage } from '@graphcommerce/graphql'
 import React from 'react'
 import OrderCardItemImage from '../OrderCardItemImage'
-import { OrderCardItemFragment } from './OrderCardItem.gql'
+import { OrderCardItemFragment } from './OrderCardItem.graphql'
 
 export type OrderCardItemProps = OrderCardItemFragment & {
   thumbnail?: Pick<ProductImage, 'label' | 'url'>

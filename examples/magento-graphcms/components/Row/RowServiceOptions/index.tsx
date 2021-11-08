@@ -9,7 +9,7 @@ import {
 } from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
-import { RowServiceOptionsFragment } from './RowServiceOptions.gql'
+import { RowServiceOptionsFragment } from './RowServiceOptions.graphql'
 
 type RowServiceOptionsProps = RowServiceOptionsFragment
 

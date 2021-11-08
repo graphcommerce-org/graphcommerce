@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import React, { useMemo } from 'react'
-import { MoneyFragment } from './Money.gql'
-import { StoreConfigDocument } from './StoreConfig.gql'
+import { MoneyFragment } from './Money.graphql'
+import { StoreConfigDocument } from './StoreConfig.graphql'
 
 export type MoneyProps = MoneyFragment & { round?: boolean }
 

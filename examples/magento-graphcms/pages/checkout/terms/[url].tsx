@@ -2,7 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   CartAgreementsDocument,
   CartAgreementsQuery,
-} from '@graphcommerce/magento-cart/components/CartAgreementsForm/CartAgreements.gql'
+} from '@graphcommerce/magento-cart/components/CartAgreementsForm/CartAgreements.graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AppShellTitle,

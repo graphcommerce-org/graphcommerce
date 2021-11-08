@@ -1,6 +1,6 @@
 import { Image, ImageProps } from '@graphcommerce/image'
 import React from 'react'
-import { AssetFragment } from './Asset.gql'
+import { AssetFragment } from './Asset.graphql'
 
 type ImageAsset = Pick<AssetFragment, 'url' | 'alt'> & {
   width: number

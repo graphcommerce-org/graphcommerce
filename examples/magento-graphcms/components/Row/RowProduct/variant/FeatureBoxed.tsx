@@ -3,8 +3,8 @@ import { Image } from '@graphcommerce/image'
 import { ImageTextBoxed } from '@graphcommerce/next-ui'
 import { Typography, useTheme, withStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import { RowProductFragment } from '../RowProduct.gql'
-import { ProductFeatureMediaBoxedFragment } from './ProductFeatureMediaBoxed.gql'
+import { RowProductFragment } from '../RowProduct.graphql'
+import { ProductFeatureMediaBoxedFragment } from './ProductFeatureMediaBoxed.graphql'
 
 type FeatureBoxedProps = RowProductFragment & ProductFeatureMediaBoxedFragment
 

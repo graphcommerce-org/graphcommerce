@@ -10,7 +10,7 @@ import { UseStyles } from '@graphcommerce/next-ui/Styles'
 import { makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
 import { useCartQuery } from '../../hooks/useCartQuery'
-import { InlineAccountDocument } from './InlineAccount.gql'
+import { InlineAccountDocument } from './InlineAccount.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

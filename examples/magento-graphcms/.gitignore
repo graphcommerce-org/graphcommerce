@@ -22,10 +22,10 @@ yarn-error.log*
 **/public/sitemap*.xml
 **/public/robots.txt
 
-generated/
-*.gql.ts
-
-# application
+# graphql
 .mesh
-*.tsbuildinfo
+.cache
 *.graphql.d.ts
+
+# typescript
+*.tsbuildinfo

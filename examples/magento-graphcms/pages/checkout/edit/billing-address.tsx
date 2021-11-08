@@ -12,7 +12,7 @@ import {
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
-import { DefaultPageDocument } from '../../../components/GraphQL/DefaultPage.gql'
+import { DefaultPageDocument } from '../../../components/GraphQL/DefaultPage.graphql'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = Record<string, unknown>

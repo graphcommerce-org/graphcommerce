@@ -1,3 +1,3 @@
 export { default as ProductListItemBundle } from './ProductListItemBundle'
 export { default as BundleItemsForm } from './BundleItemsForm'
-export * from './BundleProductPage.gql'
+export * from './BundleProductPage.graphql'

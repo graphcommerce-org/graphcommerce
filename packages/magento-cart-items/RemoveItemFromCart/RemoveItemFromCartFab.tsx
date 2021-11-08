@@ -5,7 +5,7 @@ import React from 'react'
 import {
   RemoveItemFromCartDocument,
   RemoveItemFromCartMutationVariables,
-} from './RemoveItemFromCart.gql'
+} from './RemoveItemFromCart.graphql'
 
 export type RemoveItemFromCartProps = Omit<RemoveItemFromCartMutationVariables, 'cartId'> &
   Omit<JSX.IntrinsicElements['form'], 'onSubmit' | 'noValidate'>

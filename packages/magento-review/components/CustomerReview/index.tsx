@@ -3,7 +3,7 @@ import { Image } from '@graphcommerce/image'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { responsiveVal } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
-import { CustomerReviewFragment } from './CustomerReview.gql'
+import { CustomerReviewFragment } from './CustomerReview.graphql'
 import filledStar from './review_star_filled.svg'
 import outlinedStar from './review_star_outlined.svg'
 

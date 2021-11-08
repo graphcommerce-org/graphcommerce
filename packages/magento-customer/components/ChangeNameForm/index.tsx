@@ -11,7 +11,7 @@ import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import React from 'react'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import NameFields from '../NameFields'
-import { UpdateCustomerNameDocument } from './UpdateCustomerName.gql'
+import { UpdateCustomerNameDocument } from './UpdateCustomerName.graphql'
 
 type ChangeNameFormProps = {
   prefix?: string

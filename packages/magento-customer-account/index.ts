@@ -1,4 +1,4 @@
 export * from './components'
-export * from './queries/AccountDashboardOrders.gql'
-export * from './queries/AccountDashboardAddresses.gql'
-export * from './queries/AccountDashboard.gql'
+export * from './queries/AccountDashboardOrders.graphql'
+export * from './queries/AccountDashboardAddresses.graphql'
+export * from './queries/AccountDashboard.graphql'

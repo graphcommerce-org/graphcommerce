@@ -1,6 +1,6 @@
 import { useApolloClient } from '@apollo/client'
 import { useCallback } from 'react'
-import { CurrentCartIdDocument } from './CurrentCartId.gql'
+import { CurrentCartIdDocument } from './CurrentCartId.graphql'
 
 export function useAssignCurrentCartId() {
   const { cache } = useApolloClient()

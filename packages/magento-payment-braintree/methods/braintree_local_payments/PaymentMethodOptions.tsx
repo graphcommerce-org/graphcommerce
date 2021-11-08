@@ -1,10 +1,10 @@
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
-import { BraintreePaymentMethodOptionsDocument } from '../../BraintreePaymentMethodOptions.gql'
+import { BraintreePaymentMethodOptionsDocument } from '../../BraintreePaymentMethodOptions.graphql'
 import { StartPaymentOptions } from '../../hooks/useBraintree'
 import { useBraintreeLocalPayment } from '../../hooks/useBraintreeLocalPayment'
-import { BraintreeLocalPaymentsCartDocument } from './BraintreeLocalPaymentsCart.gql'
+import { BraintreeLocalPaymentsCartDocument } from './BraintreeLocalPaymentsCart.graphql'
 
 /** It sets the selected payment method on the cart. */
 function PaymentMethodOptions(props: PaymentOptionsProps) {

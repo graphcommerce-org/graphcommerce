@@ -5,7 +5,7 @@ import { AnimatePresence } from 'framer-motion'
 import React, { useState } from 'react'
 import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import OrderItem from '../OrderItem'
-import { OrderItemsFragment } from './OrderItems.gql'
+import { OrderItemsFragment } from './OrderItems.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

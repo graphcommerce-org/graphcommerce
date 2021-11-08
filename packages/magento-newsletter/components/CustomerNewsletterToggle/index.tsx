@@ -10,8 +10,8 @@ import {
   SwitchProps,
 } from '@material-ui/core'
 import React from 'react'
-import { GetCustomerNewsletterToggleDocument } from './GetCustomerNewsLetterToggle.gql'
-import { UpdateNewsletterSubscriptionDocument } from './UpdateNewsletterSubscription.gql'
+import { GetCustomerNewsletterToggleDocument } from './GetCustomerNewsLetterToggle.graphql'
+import { UpdateNewsletterSubscriptionDocument } from './UpdateNewsletterSubscription.graphql'
 
 export type CustomerNewsletterToggleProps = SwitchProps
 

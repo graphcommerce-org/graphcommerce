@@ -1,9 +1,9 @@
 import { useQuery } from '@apollo/client'
 import { useFormAutoSubmit, useFormGqlQuery, useFormPersist } from '@graphcommerce/react-hook-form'
 import { useEffect, useState } from 'react'
-import { CustomerDocument } from './Customer.gql'
-import { CustomerTokenDocument } from './CustomerToken.gql'
-import { IsEmailAvailableDocument } from './IsEmailAvailable.gql'
+import { CustomerDocument } from './Customer.graphql'
+import { CustomerTokenDocument } from './CustomerToken.graphql'
+import { IsEmailAvailableDocument } from './IsEmailAvailable.graphql'
 
 type useFormIsEmailAvailableProps = {
   email?: string | null

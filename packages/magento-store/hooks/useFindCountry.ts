@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { CountryRegionsDocument, CountryRegionsQuery } from '../queries/CountryRegions.gql'
+import { CountryRegionsDocument, CountryRegionsQuery } from '../queries/CountryRegions.graphql'
 
 export function useFindCountry(
   countryCode?: string | null,

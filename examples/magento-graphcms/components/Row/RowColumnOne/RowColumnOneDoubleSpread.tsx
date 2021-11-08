@@ -1,7 +1,7 @@
 import RichTextDoubleSpread from '@graphcommerce/graphcms-ui/RichText/RichTextDoubleSpread'
 import { ColumnOne } from '@graphcommerce/next-ui'
 import React from 'react'
-import { RowColumnOneFragment } from './RowColumnOne.gql'
+import { RowColumnOneFragment } from './RowColumnOne.graphql'
 
 type RowColumnOneDoubleSpreadProps = RowColumnOneFragment
 

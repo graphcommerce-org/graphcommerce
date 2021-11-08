@@ -3,7 +3,7 @@ import { RenderType, UseStyles, responsiveVal } from '@graphcommerce/next-ui'
 import { Theme, makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
-import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
+import { ProductListItemFragment } from '../../Api/ProductListItem.graphql'
 import { ProductListItemProps } from '../ProductListItem'
 import { ProductListItemRenderer } from './renderer'
 

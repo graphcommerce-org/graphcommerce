@@ -1,7 +1,7 @@
 import { UseStyles, responsiveVal } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 
-import { ProductListCountFragment } from './ProductListCount.gql'
+import { ProductListCountFragment } from './ProductListCount.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

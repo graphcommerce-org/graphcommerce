@@ -9,7 +9,7 @@ import {
 import { makeStyles, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
-import { CategorySearchResultFragment } from './CategorySearchResult.gql'
+import { CategorySearchResultFragment } from './CategorySearchResult.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

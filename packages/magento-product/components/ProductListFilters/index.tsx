@@ -4,7 +4,7 @@ import { FilterTypes } from '../ProductListItems/filterTypes'
 import FilterCheckboxType from './FilterCheckboxType'
 import FilterEqualType from './FilterEqualType'
 import FilterRangeType from './FilterRangeType'
-import { ProductListFiltersFragment } from './ProductListFilters.gql'
+import { ProductListFiltersFragment } from './ProductListFilters.graphql'
 
 export type ProductFiltersProps = ProductListFiltersFragment & {
   filterTypes: FilterTypes

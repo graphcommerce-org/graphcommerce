@@ -1,7 +1,7 @@
 import { UseStyles } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
-import { OrderStateLabelFragment } from './OrderStateLabel.gql'
+import { OrderStateLabelFragment } from './OrderStateLabel.graphql'
 
 type OrderState =
   | 'Ordered'

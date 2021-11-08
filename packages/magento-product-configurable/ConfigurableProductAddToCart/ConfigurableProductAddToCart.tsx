@@ -19,7 +19,7 @@ import ConfigurableOptionsInput from '../ConfigurableOptions'
 import {
   ConfigurableProductAddToCartDocument,
   ConfigurableProductAddToCartMutationVariables,
-} from './ConfigurableProductAddToCart.gql'
+} from './ConfigurableProductAddToCart.graphql'
 
 type ConfigurableProductAddToCartProps = {
   variables: Omit<ConfigurableProductAddToCartMutationVariables, 'cartId' | 'selectedOptions'>

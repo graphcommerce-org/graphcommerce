@@ -12,11 +12,11 @@ import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form
 import { makeStyles, TextField } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
+import { AccountAddressFragment } from '../AccountAddress/AccountAddress.graphql'
 import AddressFields from '../AddressFields'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import NameFields from '../NameFields'
-import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
+import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.graphql'
 
 const useStyles = makeStyles(
   () => ({

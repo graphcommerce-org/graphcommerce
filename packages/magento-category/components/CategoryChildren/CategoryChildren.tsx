@@ -4,7 +4,7 @@ import { ProductListLink, ProductListParams } from '@graphcommerce/magento-produ
 import { UseStyles } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import { CategoryChildrenFragment } from './CategoryChildren.gql'
+import { CategoryChildrenFragment } from './CategoryChildren.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

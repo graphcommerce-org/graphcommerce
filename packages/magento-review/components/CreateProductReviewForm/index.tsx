@@ -15,8 +15,8 @@ import { Alert } from '@material-ui/lab'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import ApolloCustomerErrorAlert from '../../../magento-customer/components/ApolloCustomerError/ApolloCustomerErrorAlert'
-import { CreateProductReviewDocument } from './CreateProductReview.gql'
-import { ProductReviewRatingsMetadataDocument } from './ProductReviewRatingsMetadata.gql'
+import { CreateProductReviewDocument } from './CreateProductReview.graphql'
+import { ProductReviewRatingsMetadataDocument } from './ProductReviewRatingsMetadata.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

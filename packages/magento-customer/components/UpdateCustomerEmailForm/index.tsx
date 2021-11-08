@@ -14,7 +14,7 @@ import {
   UpdateCustomerEmailDocument,
   UpdateCustomerEmailMutation,
   UpdateCustomerEmailMutationVariables,
-} from './UpdateCustomerEmail.gql'
+} from './UpdateCustomerEmail.graphql'
 
 type UpdateCustomerEmailFormProps = {
   email: string

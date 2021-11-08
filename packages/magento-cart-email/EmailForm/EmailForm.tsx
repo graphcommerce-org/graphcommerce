@@ -16,8 +16,8 @@ import { Alert } from '@material-ui/lab'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import EmailHelperList from '../EmailHelperList'
-import { CartEmailDocument } from './CartEmail.gql'
-import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
+import { CartEmailDocument } from './CartEmail.graphql'
+import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.graphql'
 
 const useStyles = makeStyles(
   () => ({

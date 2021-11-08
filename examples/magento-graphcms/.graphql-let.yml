@@ -20,5 +20,5 @@ config:
   skipTypename: true
   dedupeOperationSuffix: true
   content: '/* eslint-disable */'
-cacheDir: .next/cache/graphql-let
+cacheDir: .cache/graphql-let/examples/magento-graphql
 respectGitIgnore: false

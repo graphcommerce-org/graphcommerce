@@ -7,7 +7,7 @@ import { PaymentPlaceOrderProps, useCartLock } from '@graphcommerce/magento-cart
 import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { MolliePlaceOrderDocument } from './MolliePlaceOrder.gql'
+import { MolliePlaceOrderDocument } from './MolliePlaceOrder.graphql'
 
 export default function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
   const { step, code } = props

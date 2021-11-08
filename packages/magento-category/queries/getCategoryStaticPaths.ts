@@ -4,7 +4,7 @@ import { GetStaticPathsResult } from 'next'
 import {
   GetCategoryStaticPathsDocument,
   GetCategoryStaticPathsQuery,
-} from './GetCategoryStaticPaths.gql'
+} from './GetCategoryStaticPaths.graphql'
 
 type StaticPathsResult = GetStaticPathsResult<{ url: string[] }>
 

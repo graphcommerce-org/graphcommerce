@@ -8,7 +8,7 @@ import {
   ForgotPasswordDocument,
   ForgotPasswordMutation,
   ForgotPasswordMutationVariables,
-} from './ForgotPassword.gql'
+} from './ForgotPassword.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

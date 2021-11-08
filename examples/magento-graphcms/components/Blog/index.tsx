@@ -1,6 +1,6 @@
 import { BlogList as NextBlogList } from '@graphcommerce/next-ui'
 import BlogItem from './BlogItem'
-import { BlogListQuery } from './BlogList.gql'
+import { BlogListQuery } from './BlogList.graphql'
 
 type BlogListProps = BlogListQuery
 

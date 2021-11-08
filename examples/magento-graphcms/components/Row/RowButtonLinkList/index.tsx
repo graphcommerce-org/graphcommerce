@@ -1,6 +1,6 @@
 import { ButtonLink, ButtonLinkList } from '@graphcommerce/next-ui'
 import React from 'react'
-import { RowButtonLinkListFragment } from './RowButtonLinkList.gql'
+import { RowButtonLinkListFragment } from './RowButtonLinkList.graphql'
 
 export type RowButtonLinkListProps = RowButtonLinkListFragment
 

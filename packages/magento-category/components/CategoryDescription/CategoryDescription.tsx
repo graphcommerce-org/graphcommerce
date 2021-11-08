@@ -1,7 +1,7 @@
 import { UseStyles } from '@graphcommerce/next-ui'
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
-import { CategoryDescriptionFragment } from './CategoryDescription.gql'
+import { CategoryDescriptionFragment } from './CategoryDescription.graphql'
 
 type CategoryDescriptionProps = Omit<CategoryDescriptionFragment, 'uid'> &
   JSX.IntrinsicElements['div'] &

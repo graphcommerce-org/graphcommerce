@@ -58,11 +58,11 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  webpack: (config) => {
+  webpack: (config, { defaultLoaders }) => {
     config.module.rules.push({
       test: /\.graphql$/,
       exclude: /node_modules/,
-      use: [options.defaultLoaders.babel, { loader: 'graphql-let/loader' }],
+      use: [defaultLoaders.babel, { loader: 'graphql-let/loader' }],
     })
 
     config.module.rules.push({

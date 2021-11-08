@@ -18,7 +18,7 @@ import {
 } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
-import { CartAgreementsDocument } from './CartAgreements.gql'
+import { CartAgreementsDocument } from './CartAgreements.graphql'
 
 export type CartAgreementsFormProps = Pick<UseFormComposeOptions, 'step'>
 

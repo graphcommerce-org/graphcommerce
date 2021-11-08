@@ -18,9 +18,9 @@ import { TextField } from '@material-ui/core'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { isSameAddress } from '../../utils/isSameAddress'
-import { GetAddressesDocument } from './GetAddresses.gql'
-import { SetShippingAddressDocument } from './SetShippingAddress.gql'
-import { SetShippingBillingAddressDocument } from './SetShippingBillingAddress.gql'
+import { GetAddressesDocument } from './GetAddresses.graphql'
+import { SetShippingAddressDocument } from './SetShippingAddress.graphql'
+import { SetShippingBillingAddressDocument } from './SetShippingBillingAddress.graphql'
 
 export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'>
 

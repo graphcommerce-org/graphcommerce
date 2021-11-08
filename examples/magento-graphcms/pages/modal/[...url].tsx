@@ -11,7 +11,7 @@ import { Box, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
-import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
+import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.graphql'
 import RowRenderer from '../../components/Row/RowRenderer'
 import apolloClient from '../../lib/apolloClient'
 

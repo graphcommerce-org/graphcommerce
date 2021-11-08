@@ -11,7 +11,7 @@ import {
 import PageLink from 'next/link'
 import React from 'react'
 import { localeToStore, storeToLocale } from '../localeToStore'
-import { StoreSwitcherListQuery } from './StoreSwitcherList.gql'
+import { StoreSwitcherListQuery } from './StoreSwitcherList.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

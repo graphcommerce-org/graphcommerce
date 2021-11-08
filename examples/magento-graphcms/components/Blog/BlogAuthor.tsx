@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { BlogAuthor as NextBlogAuthor } from '@graphcommerce/next-ui'
-import { BlogAuthorFragment } from './BlogAuthor.gql'
+import { BlogAuthorFragment } from './BlogAuthor.graphql'
 
 type BlogAuthorProps = BlogAuthorFragment
 

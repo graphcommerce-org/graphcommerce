@@ -4,7 +4,7 @@ import { useClearCurrentCartId, useCurrentCartId } from '@graphcommerce/magento-
 import { useCartLock, usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { UseMolliePaymentTokenHandlerDocument } from './UseMolliePaymentTokenHandler.gql'
+import { UseMolliePaymentTokenHandlerDocument } from './UseMolliePaymentTokenHandler.graphql'
 
 const successStatusses: PaymentStatusEnum[] = ['AUTHORIZED', 'COMPLETED', 'PAID', 'SHIPPING']
 

@@ -4,7 +4,7 @@ import { GetStaticProps } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
+import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.graphql'
 import RowRenderer from '../../components/Row/RowRenderer'
 import apolloClient from '../../lib/apolloClient'
 

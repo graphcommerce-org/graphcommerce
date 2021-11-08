@@ -9,7 +9,7 @@ export { default as PaymentMethodButton } from './PaymentMethodButton/PaymentMet
 
 export { default as PaymentMethodOptions } from './PaymentMethodOptions/PaymentMethodOptions'
 
-export * from './PaymentMethodOptionsNoop/PaymentMethodOptionsNoop.gql'
+export * from './PaymentMethodOptionsNoop/PaymentMethodOptionsNoop.graphql'
 export { default as PaymentMethodOptionsNoop } from './PaymentMethodOptionsNoop/PaymentMethodOptionsNoop'
 
 export { default as PaymentMethodPlaceOrder } from './PaymentMethodPlaceOrder/PaymentMethodPlaceOrder'

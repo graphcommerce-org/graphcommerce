@@ -1,6 +1,6 @@
-export * from './DownloadableProductPage.gql'
+export * from './DownloadableProductPage.graphql'
 
 export { default as ProductListItemDownloadable } from './ProductListItemDownloadable'
 export * from './ProductListItemDownloadable'
 
-export * from './ProductListItemDownloadable.gql'
+export * from './ProductListItemDownloadable.graphql'

@@ -8,7 +8,7 @@ import {
 import { Typography } from '@material-ui/core'
 import React from 'react'
 import renderers from '../../../ProductListItems/renderers'
-import { RowProductFragment } from '../RowProduct.gql'
+import { RowProductFragment } from '../RowProduct.graphql'
 
 type RelatedProps = RowProductFragment &
   RelatedProductsFragment &

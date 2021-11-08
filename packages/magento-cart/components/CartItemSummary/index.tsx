@@ -13,7 +13,7 @@ import clsx from 'clsx'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
 import CartTotals from '../CartTotals/CartTotals'
-import { CartItemSummaryDocument } from './GetCartItemSummary.gql'
+import { CartItemSummaryDocument } from './GetCartItemSummary.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

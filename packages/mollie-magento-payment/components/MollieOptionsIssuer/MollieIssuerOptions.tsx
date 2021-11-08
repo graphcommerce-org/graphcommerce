@@ -4,7 +4,7 @@ import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { useFormCompose, useFormPersist, useFormValidFields } from '@graphcommerce/react-hook-form'
 import { makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import React from 'react'
-import { SetMolliePaymentMethodIssuerOnCartDocument } from './SetMolliePaymentMethodIssuerOnCart.gql'
+import { SetMolliePaymentMethodIssuerOnCartDocument } from './SetMolliePaymentMethodIssuerOnCart.graphql'
 
 type MollieIssuerOptionsProps = PaymentOptionsProps & { label: string }
 

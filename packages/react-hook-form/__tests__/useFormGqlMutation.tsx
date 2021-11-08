@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { TestShippingAddressFormDocument } from '../__mocks__/TestShippingAddressForm.gql'
+import { TestShippingAddressFormDocument } from '../__mocks__/TestShippingAddressForm.graphql'
 import { useFormGqlMutation } from '../src/useFormGqlMutation'
 
 describe('useFormGqlMutation', () => {

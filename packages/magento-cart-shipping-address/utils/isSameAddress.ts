@@ -1,4 +1,4 @@
-import { CartAddressFragment } from '@graphcommerce/magento-cart/components/CartAddress/CartAddress.gql'
+import { CartAddressFragment } from '@graphcommerce/magento-cart/components/CartAddress/CartAddress.graphql'
 
 const pluckAddress = ({
   firstname,

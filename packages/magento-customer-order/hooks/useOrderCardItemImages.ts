@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
-import { OrderCardItemImageFragment } from './OrderCardItemImage.gql'
-import { OrderCardItemImagesDocument } from './OrderCardItemImages.gql'
-import { UseOrderCardItemImagesFragment } from './UseOrderCardItemImages.gql'
+import { OrderCardItemImageFragment } from './OrderCardItemImage.graphql'
+import { OrderCardItemImagesDocument } from './OrderCardItemImages.graphql'
+import { UseOrderCardItemImagesFragment } from './UseOrderCardItemImages.graphql'
 
 type UseOrderCardItemImagesProps = UseOrderCardItemImagesFragment | null
 

@@ -15,7 +15,7 @@ import {
   ChangePasswordDocument,
   ChangePasswordMutation,
   ChangePasswordMutationVariables,
-} from './ChangePassword.gql'
+} from './ChangePassword.graphql'
 
 export default function ChangePasswordForm() {
   const form = useFormGqlMutation<

@@ -7,7 +7,7 @@ import {
   useProductListParamsContext,
 } from '@graphcommerce/magento-product'
 import React, { useState } from 'react'
-import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
+import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.graphql'
 import SwatchList from './SwatchList'
 
 export type ProductListItemConfigurableActionProps = ProductListItemConfigurableFragment & {

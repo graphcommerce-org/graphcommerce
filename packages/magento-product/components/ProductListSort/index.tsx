@@ -7,7 +7,7 @@ import React from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import ProductListLink from '../ProductListLink/ProductListLink'
-import { ProductListSortFragment } from './ProductListSort.gql'
+import { ProductListSortFragment } from './ProductListSort.graphql'
 
 export type ProductListSortProps = ProductListSortFragment &
   Omit<ChipMenuProps, 'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete'>

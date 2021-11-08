@@ -4,7 +4,7 @@ import { Link } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
 import Asset from '../../Asset'
-import { RowSpecialBannerFragment } from './RowSpecialBanner.gql'
+import { RowSpecialBannerFragment } from './RowSpecialBanner.graphql'
 
 type RowSpecialBannerProps = RowSpecialBannerFragment
 

@@ -1,7 +1,7 @@
 import { ColumnTwoWithTop, ColumnTwoWithTopProps } from '@graphcommerce/next-ui'
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
-import { ProductPageDescriptionFragment } from './ProductPageDescription.gql'
+import { ProductPageDescriptionFragment } from './ProductPageDescription.graphql'
 
 const useStyles = makeStyles((theme: Theme) => ({
   /* nested styles because we don't know beforehand which elements the description contains */

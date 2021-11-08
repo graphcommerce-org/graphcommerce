@@ -1,6 +1,6 @@
 import { ApolloCache, NormalizedCacheObject } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
-import { CustomerTokenDocument } from '../hooks/CustomerToken.gql'
+import { CustomerTokenDocument } from '../hooks/CustomerToken.graphql'
 
 export const createAuthLink = (cache: ApolloCache<NormalizedCacheObject>) => {
   return setContext((_, context) => {

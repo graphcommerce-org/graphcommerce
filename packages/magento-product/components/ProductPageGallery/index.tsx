@@ -1,6 +1,6 @@
 import { SidebarGallery, SidebarGalleryProps, TypeRenderer } from '@graphcommerce/next-ui'
 import React, { PropsWithChildren } from 'react'
-import { ProductPageGalleryFragment } from './ProductPageGallery.gql'
+import { ProductPageGalleryFragment } from './ProductPageGallery.graphql'
 
 export type ProductPageGalleryRenderers = TypeRenderer<
   NonNullable<NonNullable<ProductPageGalleryFragment['media_gallery']>[0]>

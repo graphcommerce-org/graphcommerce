@@ -16,7 +16,7 @@ import { Skeleton } from '@material-ui/lab'
 import clsx from 'clsx'
 import React from 'react'
 import TrackingLink from '../TrackingLink'
-import { OrderDetailsFragment } from './OrderDetails.gql'
+import { OrderDetailsFragment } from './OrderDetails.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

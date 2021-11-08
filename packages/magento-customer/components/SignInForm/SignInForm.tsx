@@ -8,7 +8,7 @@ import PageLink from 'next/link'
 import React from 'react'
 import { CustomerTokenDocument } from '../../hooks'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
-import { SignInDocument } from './SignIn.gql'
+import { SignInDocument } from './SignIn.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

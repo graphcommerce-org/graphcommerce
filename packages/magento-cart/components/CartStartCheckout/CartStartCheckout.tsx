@@ -3,7 +3,7 @@ import { Button, iconChevronRight, SvgImageSimple } from '@graphcommerce/next-ui
 import { makeStyles, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
-import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
+import { CartStartCheckoutFragment } from './CartStartCheckout.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

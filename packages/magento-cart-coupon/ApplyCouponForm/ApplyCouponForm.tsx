@@ -2,7 +2,7 @@ import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/mag
 import { Button, responsiveVal, UseStyles } from '@graphcommerce/next-ui'
 import { FormControl, makeStyles, TextField, Theme } from '@material-ui/core'
 import React from 'react'
-import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
+import { ApplyCouponFormDocument } from './ApplyCouponForm.graphql'
 
 const useStyles = makeStyles((theme: Theme) => ({
   couponForm: {

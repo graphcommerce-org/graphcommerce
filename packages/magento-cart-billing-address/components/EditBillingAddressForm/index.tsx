@@ -19,8 +19,8 @@ import {
 import { phonePattern } from '@graphcommerce/react-hook-form'
 import { makeStyles, TextField } from '@material-ui/core'
 import React from 'react'
-import { GetBillingAddressDocument } from './GetBillingAddress.gql'
-import { SetBillingAddressOnCartDocument } from './SetBillingAddressOnCart.gql'
+import { GetBillingAddressDocument } from './GetBillingAddress.graphql'
+import { SetBillingAddressOnCartDocument } from './SetBillingAddressOnCart.graphql'
 
 const useStyles = makeStyles(
   () => ({

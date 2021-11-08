@@ -1,5 +1,5 @@
-export * from './Api/CartItem.gql'
-export * from './Api/CartItems.gql'
+export * from './Api/CartItem.graphql'
+export * from './Api/CartItems.graphql'
 
 export * from './CartItem/CartItem'
 export { default as CartItem } from './CartItem/CartItem'

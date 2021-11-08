@@ -1,8 +1,8 @@
 import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { FormControl, FormControlLabel, FormHelperText, Switch } from '@material-ui/core'
 import React, { useEffect, useMemo } from 'react'
-import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
-import { UpdateDefaultAddressDocument } from '../AccountAddresses/UpdateDefaultAddress.gql'
+import { AccountAddressFragment } from '../AccountAddress/AccountAddress.graphql'
+import { UpdateDefaultAddressDocument } from '../AccountAddresses/UpdateDefaultAddress.graphql'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 
 export type AccountAddressProps = Pick<

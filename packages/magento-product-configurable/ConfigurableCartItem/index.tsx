@@ -1,5 +1,5 @@
 import { CartItem, CartItemProps } from '@graphcommerce/magento-cart-items'
-import { ConfigurableCartItemFragment } from './ConfigurableCartItem.gql'
+import { ConfigurableCartItemFragment } from './ConfigurableCartItem.graphql'
 import OptionsList from './OptionsList'
 
 export default function ConfigurableCartItem(props: ConfigurableCartItemFragment & CartItemProps) {

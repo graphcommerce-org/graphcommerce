@@ -1,5 +1,5 @@
 import { BlogTags as NextBlogTags } from '@graphcommerce/next-ui'
-import { BlogTagsFragment } from './BlogTags.gql'
+import { BlogTagsFragment } from './BlogTags.graphql'
 
 type BlogTagsProps = BlogTagsFragment
 

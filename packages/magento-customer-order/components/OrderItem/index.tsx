@@ -5,8 +5,8 @@ import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
-import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
-import { OrderItemFragment } from './OrderItem.gql'
+import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.graphql'
+import { OrderItemFragment } from './OrderItem.graphql'
 
 type OrderItemProps = OrderItemFragment & Omit<OrderCardItemImageFragment, 'uid'>
 

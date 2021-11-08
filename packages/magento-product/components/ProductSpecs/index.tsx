@@ -1,7 +1,7 @@
 import { responsiveVal, Row, SectionContainer, UseStyles } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import { ProductSpecsFragment } from './ProductSpecs.gql'
+import { ProductSpecsFragment } from './ProductSpecs.graphql'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {

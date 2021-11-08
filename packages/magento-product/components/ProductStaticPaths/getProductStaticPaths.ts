@@ -1,6 +1,6 @@
 import { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@apollo/client'
 import { GetStaticPathsResult } from 'next'
-import { ProductStaticPathsDocument, ProductStaticPathsQuery } from './ProductStaticPaths.gql'
+import { ProductStaticPathsDocument, ProductStaticPathsQuery } from './ProductStaticPaths.graphql'
 
 type Return = GetStaticPathsResult<{ url: string }>
 

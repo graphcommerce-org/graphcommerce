@@ -7,7 +7,7 @@ import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import ProductListLink from '../ProductListLink/ProductListLink'
 import { FilterIn } from './FilterEqualType'
-import { ProductListFiltersFragment } from './ProductListFilters.gql'
+import { ProductListFiltersFragment } from './ProductListFilters.graphql'
 
 export type FilterCheckboxTypeProps = NonNullable<
   NonNullable<ProductListFiltersFragment['aggregations']>[0]

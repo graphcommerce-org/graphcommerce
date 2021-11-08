@@ -1,6 +1,6 @@
 import { ProductListItem, ProductListItemProps } from '@graphcommerce/magento-product'
 import React from 'react'
-import { ProductListItemSimpleFragment } from './ProductListItemSimple.gql'
+import { ProductListItemSimpleFragment } from './ProductListItemSimple.graphql'
 
 export type ProductListItemSimpleProps = ProductListItemSimpleFragment & ProductListItemProps
 

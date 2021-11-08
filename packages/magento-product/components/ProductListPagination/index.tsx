@@ -3,7 +3,7 @@ import { PaginationProps } from '@material-ui/lab'
 import React from 'react'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import ProductListLink from '../ProductListLink/ProductListLink'
-import { ProductListPaginationFragment } from './ProductListPagination.gql'
+import { ProductListPaginationFragment } from './ProductListPagination.graphql'
 
 export type ProductPaginationProps = ProductListPaginationFragment &
   Omit<PaginationProps, 'count' | 'defaultPage' | 'page' | 'renderItem'>

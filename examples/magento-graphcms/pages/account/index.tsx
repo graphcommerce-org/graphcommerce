@@ -32,7 +32,7 @@ import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
 import PageShellHeader from '../../components/AppShell/PageShellHeader'
-import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
+import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.graphql'
 import apolloClient from '../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<MinimalPageShellProps>

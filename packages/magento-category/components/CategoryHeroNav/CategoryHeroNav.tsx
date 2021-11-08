@@ -1,7 +1,7 @@
 import { ProductListLink } from '@graphcommerce/magento-product'
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
-import { CategoryHeroNavFragment } from './CategoryHeroNav.gql'
+import { CategoryHeroNavFragment } from './CategoryHeroNav.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

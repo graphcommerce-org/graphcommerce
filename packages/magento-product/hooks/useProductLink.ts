@@ -1,4 +1,4 @@
-import { ProductLinkFragment } from './ProductLink.gql'
+import { ProductLinkFragment } from './ProductLink.graphql'
 
 type ProductLinkProps = Omit<ProductLinkFragment, 'uid'>
 

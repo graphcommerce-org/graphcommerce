@@ -8,9 +8,12 @@ import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import FullPageShellHeader from '../../../components/AppShell/FullPageShellHeader'
 import BlogList from '../../../components/Blog'
-import { BlogListDocument, BlogListQuery } from '../../../components/Blog/BlogList.gql'
-import { BlogPathsDocument, BlogPathsQuery } from '../../../components/Blog/BlogPaths.gql'
-import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
+import { BlogListDocument, BlogListQuery } from '../../../components/Blog/BlogList.graphql'
+import { BlogPathsDocument, BlogPathsQuery } from '../../../components/Blog/BlogPaths.graphql'
+import {
+  DefaultPageDocument,
+  DefaultPageQuery,
+} from '../../../components/GraphQL/DefaultPage.graphql'
 import RowRenderer from '../../../components/Row/RowRenderer'
 import apolloClient from '../../../lib/apolloClient'
 

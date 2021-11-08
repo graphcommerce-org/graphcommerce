@@ -1,5 +1,5 @@
 import { Product } from 'schema-dts'
-import { JsonLdProductReviewFragment } from './JsonLdProductReview.gql'
+import { JsonLdProductReviewFragment } from './JsonLdProductReview.graphql'
 
 export function jsonLdProductReview(props: JsonLdProductReviewFragment): Partial<Product> {
   const { reviews, review_count, rating_summary } = props

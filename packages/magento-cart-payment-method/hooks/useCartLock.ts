@@ -1,7 +1,7 @@
 import { useApolloClient } from '@apollo/client'
 import { useCartQuery, useCurrentCartId } from '@graphcommerce/magento-cart'
 import { useCallback } from 'react'
-import { UseCartLockDocument } from './UseCartLock.gql'
+import { UseCartLockDocument } from './UseCartLock.graphql'
 
 /**
  * Locking a cart might is usefull in the following cases: We want to disable cart modifications

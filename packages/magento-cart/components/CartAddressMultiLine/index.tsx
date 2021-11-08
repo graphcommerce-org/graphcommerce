@@ -1,7 +1,7 @@
 import { CountryCodeEnum } from '@graphcommerce/graphql'
 import { AddressMultiLine } from '@graphcommerce/magento-customer'
 import React from 'react'
-import { CartAddressFragment } from '../CartAddress/CartAddress.gql'
+import { CartAddressFragment } from '../CartAddress/CartAddress.graphql'
 
 export type CartAddressMultiLineProps = Partial<CartAddressFragment>
 

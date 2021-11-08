@@ -1,5 +1,5 @@
 import { useApolloClient } from '@apollo/client'
-import { CurrentCartIdDocument } from './CurrentCartId.gql'
+import { CurrentCartIdDocument } from './CurrentCartId.graphql'
 
 export function useClearCurrentCartId() {
   const { cache } = useApolloClient()

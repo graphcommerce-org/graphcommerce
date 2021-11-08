@@ -1,7 +1,7 @@
 import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import RowBlogContent from '../Blog/RowBlogContent'
-import { PageContentQueryFragment } from '../GraphQL/PageContentQueryFragment.gql'
-import { RowRendererFragment } from './RowRenderer.gql'
+import { PageContentQueryFragment } from '../GraphQL/PageContentQueryFragment.graphql'
+import { RowRendererFragment } from './RowRenderer.graphql'
 import {
   RowButtonLinkList,
   RowColumnOne,

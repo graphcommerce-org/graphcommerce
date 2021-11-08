@@ -268,7 +268,7 @@ And second, we can define the props of our component to use our newly created
 Fragment:
 
 ```tsx
-import { ChildrenImagesFragment } from './ChildrenImages.gql'
+import { ChildrenImagesFragment } from './ChildrenImages.graphql'
 
 export function ChildrenImages(props: ChildrenImagesFragment) {
   return (
@@ -293,7 +293,7 @@ import { Image } from '@graphcommerce/image'
 import { Box, Container } from '@material-ui/core'
 import Link from 'next/link'
 import React from 'react'
-import { ChildrenImagesFragment } from './ChildrenImages.gql'
+import { ChildrenImagesFragment } from './ChildrenImages.graphql'
 
 export function ChildrenImages(props: ChildrenImagesFragment) {
   return (

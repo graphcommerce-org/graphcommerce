@@ -1,6 +1,6 @@
 import RichText from '@graphcommerce/graphcms-ui/RichText'
 import { BlogContent } from '@graphcommerce/next-ui'
-import { RowBlogContentFragment } from './RowBlogContent.gql'
+import { RowBlogContentFragment } from './RowBlogContent.graphql'
 
 type RowBlogContentProps = RowBlogContentFragment
 

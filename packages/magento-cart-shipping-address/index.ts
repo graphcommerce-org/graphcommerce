@@ -1,5 +1,5 @@
-export * from './Api/BillingAddress.gql'
-export * from './Api/ShippingAddress.gql'
+export * from './Api/BillingAddress.graphql'
+export * from './Api/ShippingAddress.graphql'
 
 export * from './components/ShippingAddressForm/ShippingAddressForm'
 export { default as ShippingAddressForm } from './components/ShippingAddressForm/ShippingAddressForm'

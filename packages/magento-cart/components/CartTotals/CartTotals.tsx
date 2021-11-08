@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { useCartQuery, useDisplayInclTax } from '../../hooks'
-import { GetCartTotalsDocument } from './GetCartTotals.gql'
+import { GetCartTotalsDocument } from './GetCartTotals.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

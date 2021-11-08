@@ -6,7 +6,7 @@ import { makeStyles, Mark, Slider, Theme } from '@material-ui/core'
 import React, { useEffect } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
-import { ProductListFiltersFragment } from './ProductListFilters.gql'
+import { ProductListFiltersFragment } from './ProductListFilters.graphql'
 
 type FilterRangeTypeProps = NonNullable<
   NonNullable<ProductListFiltersFragment['aggregations']>[0]

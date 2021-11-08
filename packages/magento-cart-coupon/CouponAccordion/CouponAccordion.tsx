@@ -13,7 +13,7 @@ import { AnimatePresence, m } from 'framer-motion'
 import React, { useState } from 'react'
 import ApplyCouponForm from '../ApplyCouponForm/ApplyCouponForm'
 import RemoveCouponForm from '../RemoveCouponForm/RemoveCouponForm'
-import { GetCouponDocument } from './GetCoupon.gql'
+import { GetCouponDocument } from './GetCoupon.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
