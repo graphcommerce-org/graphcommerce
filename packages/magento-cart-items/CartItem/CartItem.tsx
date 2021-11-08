@@ -97,10 +97,8 @@ const useStyles = makeStyles(
       marginTop: '-5%',
     },
     itemName: {
+      ...theme.typography.subtitle1,
       fontWeight: theme.typography.fontWeightBold,
-      [theme.breakpoints.up('sm')]: {
-        ...theme.typography.h6,
-      },
       gridArea: 'itemName',
       color: theme.palette.text.primary,
       textDecoration: 'none',
@@ -108,10 +106,8 @@ const useStyles = makeStyles(
       maxWidth: 'max-content',
     },
     itemNameWithOptions: {
+      ...theme.typography.subtitle1,
       fontWeight: theme.typography.fontWeightBold,
-      [theme.breakpoints.up('sm')]: {
-        ...theme.typography.h6,
-      },
       alignSelf: 'flex-end',
     },
     itemPrice: {
