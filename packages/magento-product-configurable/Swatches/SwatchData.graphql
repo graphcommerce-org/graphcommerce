@@ -1,3 +1,7 @@
+# import TextSwatchData from './TextSwatchData.graphql'
+# import ColorSwatchData from './ColorSwatchData.graphql'
+# import ImageSwatchData from './ImageSwatchData.graphql'
+
 fragment SwatchData on SwatchDataInterface {
   __typename
   ...TextSwatchData

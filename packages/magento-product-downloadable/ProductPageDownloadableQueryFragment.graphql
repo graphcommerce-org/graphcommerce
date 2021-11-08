@@ -1,3 +1,7 @@
+# import ProductListItem from '@graphcommerce/magento-product/Api/ProductListItem.graphql'
+# import ProductSpecs from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.graphql'
+# import ProductCustomizable from '@graphcommerce/magento-product/components/ProductCustomizable/ProductCustomizable.graphql'
+
 fragment ProductPageDownloadableQueryFragment on Query {
   typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
     ...ProductSpecs

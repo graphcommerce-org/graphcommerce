@@ -1,3 +1,5 @@
+# import AccountOrders from '@graphcommerce/magento-customer-account/components/AccountOrders/AccountOrders.graphql'
+
 query AccountDashboardOrders($currentPage: Int!, $pageSize: Int!) {
   customer {
     ...AccountOrders

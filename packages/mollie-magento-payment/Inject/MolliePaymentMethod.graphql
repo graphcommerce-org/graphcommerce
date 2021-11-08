@@ -1,3 +1,5 @@
+# import AvailablePaymentMethod from '@graphcommerce/magento-cart-payment-method/Api/AvailablePaymentMethod.graphql'
+
 fragment MollieAvailablePaymentMethod on AvailablePaymentMethod
 @inject(into: ["AvailablePaymentMethod"]) {
   mollie_available_issuers {

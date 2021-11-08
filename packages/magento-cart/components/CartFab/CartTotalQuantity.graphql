@@ -1,3 +1,5 @@
+# import CartItemCountChanged from '../../Api/CartItemCountChanged.graphql'
+
 fragment CartTotalQuantity on Cart @inject(into: ["CartItemCountChanged"]) {
   total_quantity
 }

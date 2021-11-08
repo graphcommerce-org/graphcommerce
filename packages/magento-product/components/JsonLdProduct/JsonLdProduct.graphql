@@ -1,3 +1,5 @@
+# import JsonLdProductOffer from './JsonLdProductOffer.graphql'
+
 fragment JsonLdProduct on ProductInterface {
   uid
   name

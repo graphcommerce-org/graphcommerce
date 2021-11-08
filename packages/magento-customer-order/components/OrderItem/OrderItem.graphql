@@ -1,3 +1,5 @@
+# import Money from '@graphcommerce/magento-store/Money.graphql'
+
 fragment OrderItem on OrderItemInterface {
   id
   product_sku

@@ -1,3 +1,5 @@
+# import AccountReviews from '../components/AccountReviews/AccountReviews.graphql'
+
 query AccountDashboardReviews {
   customer {
     reviews {

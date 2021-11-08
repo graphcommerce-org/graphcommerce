@@ -1,3 +1,8 @@
+# import ProductSpecs from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.graphql'
+# import ProductWeight from '@graphcommerce/magento-product/components/ProductWeight/ProductWeight.graphql'
+# import ProductCustomizable from '@graphcommerce/magento-product/components/ProductCustomizable/ProductCustomizable.graphql'
+# import BundleItems from './BundleItemsForm/BundleItems.graphql'
+
 fragment ProductPageBundleQueryFragment on Query {
   typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
     ...ProductSpecs

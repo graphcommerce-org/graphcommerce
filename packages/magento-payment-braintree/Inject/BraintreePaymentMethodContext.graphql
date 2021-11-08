@@ -1,3 +1,5 @@
+# import Money from '@graphcommerce/magento-store/Money.graphql'
+
 fragment BraintreePaymentMethodContext on Cart @inject(into: ["PaymentMethodContext"]) {
   shipping_addresses {
     country {

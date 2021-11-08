@@ -1,3 +1,5 @@
+# import ProductListItem from '@graphcommerce/magento-product/Api/ProductListItem.graphql'
+
 fragment BundleItems on BundleProduct {
   ship_bundle_items
   dynamic_sku
@@ -24,8 +26,6 @@ fragment BundleItems on BundleProduct {
         uid
         __typename
         ...ProductListItem
-        ...ProductListItemSimple
-        ...ProductListItemVirtual
       }
     }
   }

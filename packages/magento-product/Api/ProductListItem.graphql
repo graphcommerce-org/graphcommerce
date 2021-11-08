@@ -1,3 +1,6 @@
+# import ProductLink from '../hooks/ProductLink.graphql'
+# import ProductListPrice from '../components/ProductListPrice/ProductListPrice.graphql'
+
 fragment ProductListItem on ProductInterface @injectable {
   uid
   ...ProductLink

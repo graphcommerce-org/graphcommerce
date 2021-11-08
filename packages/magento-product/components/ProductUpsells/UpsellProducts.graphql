@@ -1,3 +1,5 @@
+# import ProductListItem from '../../Api/ProductListItem.graphql'
+
 fragment UpsellProducts on ProductInterface {
   upsell_products {
     ...ProductListItem

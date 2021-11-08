@@ -1,3 +1,5 @@
+# import Money from '@graphcommerce/magento-store/Money.graphql'
+
 fragment AvailableShippingMethod on AvailableShippingMethod {
   amount {
     ...Money

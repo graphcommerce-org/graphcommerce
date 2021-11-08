@@ -1,3 +1,6 @@
+# import Money from '@graphcommerce/magento-store/Money.graphql'
+# import CartItemCountChanged from '../../Api/CartItemCountChanged.graphql'
+
 fragment CartTotals on Cart @inject(into: ["CartItemCountChanged"]) {
   shipping_addresses {
     selected_shipping_method {

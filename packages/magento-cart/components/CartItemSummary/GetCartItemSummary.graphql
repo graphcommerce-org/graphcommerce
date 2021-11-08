@@ -1,3 +1,6 @@
+# import CartItems from '@graphcommerce/magento-cart-items/Api/CartItems.graphql'
+# import CartTotals from '../CartTotals/CartTotals.graphql'
+
 query CartItemSummary($cartId: String!) {
   cart(cart_id: $cartId) {
     ...CartItems

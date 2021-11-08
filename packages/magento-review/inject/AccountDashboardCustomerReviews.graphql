@@ -1,3 +1,6 @@
+# import AccountDashboardCustomer from '@graphcommerce/magento-customer-account/api/AccountDashboardCustomer.graphql'
+# import AccountReviews from '../components/AccountReviews/AccountReviews.graphql'
+
 fragment AccountDashboardCustomerReviews on Customer @inject(into: ["AccountDashboardCustomer"]) {
   reviews {
     page_info {

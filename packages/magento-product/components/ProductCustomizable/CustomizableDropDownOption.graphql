@@ -1,3 +1,5 @@
+# import CustomizableOption from './CustomizableOption.graphql'
+
 fragment CustomizableDropDownOption on CustomizableDropDownOption {
   ...CustomizableOption
   dropdownValue: value {

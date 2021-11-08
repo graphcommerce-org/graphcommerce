@@ -1,3 +1,4 @@
+# import CategoryQueryFragment from './CategoryQueryFragment.graphql'
 query CategoryPage($url: String!) {
   ...CategoryQueryFragment
 }

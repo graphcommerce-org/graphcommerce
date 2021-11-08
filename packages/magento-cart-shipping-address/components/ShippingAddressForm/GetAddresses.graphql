@@ -1,3 +1,6 @@
+# import ShippingAddress from '../../Api/ShippingAddress.graphql'
+# import BillingAddress from '../../Api/BillingAddress.graphql'
+
 query GetAddresses($cartId: String!) {
   cart(cart_id: $cartId) {
     ...ShippingAddress

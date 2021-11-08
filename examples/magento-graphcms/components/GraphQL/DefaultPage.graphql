@@ -1,6 +1,6 @@
 # import MenuQueryFragment from '@graphcommerce/magento-category/queries/MenuQueryFragment.graphql'
 # import FooterQueryFragment from '../AppShell/FooterQueryFragment.graphql'
-# import PageContentQueryFragment from '../PageContent/PageContentQueryFragment.graphql'
+# import PageContentQueryFragment from './PageContentQueryFragment.graphql'
 
 query DefaultPage($url: String!, $rootCategory: String!) {
   ...MenuQueryFragment

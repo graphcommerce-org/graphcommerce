@@ -1,3 +1,5 @@
+# import ProductListItem from '@graphcommerce/magento-product/Api/ProductListItem.graphql'
+
 fragment ProductListItemDownloadable on DownloadableProduct @inject(into: ["ProductListItem"]) {
   uid
 }

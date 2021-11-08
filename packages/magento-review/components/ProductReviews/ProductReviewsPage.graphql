@@ -1,3 +1,5 @@
+# import ProductReviews from './ProductReviews.graphql'
+
 query ProductReviewsPage($urlKey: String!, $reviewPageSize: Int, $reviewPage: Int!) {
   products(filter: { url_key: { eq: $urlKey } }) {
     items {

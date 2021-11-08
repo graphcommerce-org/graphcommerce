@@ -1,3 +1,5 @@
+# import ProductListItem from '@graphcommerce/magento-product/Api/ProductListItem.graphql'
+
 fragment ConfigurableProductForm on ConfigurableProduct {
   sku
   configurable_options {
@@ -27,7 +29,6 @@ fragment ConfigurableProductForm on ConfigurableProduct {
     }
     product {
       ...ProductListItem
-      ...ProductListItemSimple
     }
   }
 }

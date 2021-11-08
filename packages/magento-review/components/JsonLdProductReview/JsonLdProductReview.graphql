@@ -1,3 +1,5 @@
+# import ProductReviews from '../ProductReviews/ProductReviews.graphql'
+
 fragment JsonLdProductReview on ProductInterface @inject(into: ["ProductPageItem"]) {
   ...ProductReviews
   review_count

@@ -1,3 +1,6 @@
+# import ProductListItem from '@graphcommerce/magento-product/Api/ProductListItem.graphql'
+# import SwatchData from './Swatches/SwatchData.graphql'
+
 fragment ProductListItemConfigurable on ConfigurableProduct @inject(into: ["ProductListItem"]) {
   __typename
   uid

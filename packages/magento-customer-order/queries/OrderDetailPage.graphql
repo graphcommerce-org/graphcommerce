@@ -1,3 +1,6 @@
+# import OrderDetails from '../components/OrderDetails/OrderDetails.graphql'
+# import OrderItems from '../components/OrderItems/OrderItems.graphql'
+
 query OrderDetailPage($orderNumber: String) {
   customer {
     orders(filter: { number: { eq: $orderNumber } }) {

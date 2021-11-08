@@ -1,3 +1,5 @@
+# import Money from '@graphcommerce/magento-store/Money.graphql'
+
 fragment OrderDetails on CustomerOrder {
   number
   order_date

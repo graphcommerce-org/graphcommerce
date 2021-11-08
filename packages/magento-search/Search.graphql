@@ -1,3 +1,7 @@
+# import CategorySearchResult from './CategorySearchResult/CategorySearchResult.graphql'
+# import ProductListQueryFragment from '@graphcommerce/magento-product/components/ProductList/ProductListQueryFragment.graphql'
+# import ProductListFilters from '@graphcommerce/magento-product/components/ProductListFilters/ProductListFilters.graphql'
+
 query Search(
   $pageSize: Int = 24
   $currentPage: Int = 1

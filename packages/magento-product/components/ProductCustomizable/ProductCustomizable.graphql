@@ -1,3 +1,12 @@
+# import CustomizableAreaOption from './CustomizableAreaOption.graphql'
+# import CustomizableCheckboxOption from './CustomizableCheckboxOption.graphql'
+# import CustomizableDateOption from './CustomizableDateOption.graphql'
+# import CustomizableDropDownOption from './CustomizableDropDownOption.graphql'
+# import CustomizableMultipleOption from './CustomizableMultipleOption.graphql'
+# import CustomizableFieldOption from './CustomizableFieldOption.graphql'
+# import CustomizableFileOption from './CustomizableFileOption.graphql'
+# import CustomizableRadioOption from './CustomizableRadioOption.graphql'
+
 fragment ProductCustomizable on CustomizableProductInterface {
   options {
     __typename

@@ -1,3 +1,4 @@
+# import CustomerInfo from './CustomerInfo.graphql'
 query Customer {
   customer {
     ...CustomerInfo

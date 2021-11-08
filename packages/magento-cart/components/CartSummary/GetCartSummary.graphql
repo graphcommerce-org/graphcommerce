@@ -1,3 +1,5 @@
+# import CartSummary from './CartSummary.graphql'
+
 query GetCartSummary($cartId: String!) {
   cart(cart_id: $cartId) {
     ...CartSummary

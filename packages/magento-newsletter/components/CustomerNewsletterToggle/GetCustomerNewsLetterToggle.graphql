@@ -1,3 +1,4 @@
+# import CustomerNewsletterToggle from './CustomerNewsletterToggle.graphql'
 query GetCustomerNewsletterToggle {
   customer {
     ...CustomerNewsletterToggle

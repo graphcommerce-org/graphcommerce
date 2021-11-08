@@ -1,3 +1,5 @@
+# import PaymentMethodContext from '../Api/PaymentMethodContext.graphql'
+
 query GetPaymentMethodContext($cartId: String!) {
   cart(cart_id: $cartId) {
     id

@@ -1,3 +1,6 @@
+# import ProductLink from '@graphcommerce/magento-product/hooks/ProductLink.graphql'
+# import Money from '@graphcommerce/magento-store/Money.graphql'
+
 fragment CartItem on CartItemInterface @injectable {
   uid
   quantity

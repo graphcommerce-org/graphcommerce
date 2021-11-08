@@ -1,3 +1,4 @@
+# import OrderItem from '../OrderItem/OrderItem.graphql'
 fragment OrderItems on CustomerOrder {
   items {
     ...OrderItem

@@ -1,3 +1,5 @@
+# import ProductPageBundleQueryFragment from './ProductPageBundleQueryFragment.graphql'
+
 query BundleProductPage($urlKey: String) {
   ...ProductPageBundleQueryFragment
 }

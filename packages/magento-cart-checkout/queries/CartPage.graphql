@@ -1,3 +1,9 @@
+# import CartStartCheckout from '@graphcommerce/magento-cart/components/CartStartCheckout/CartStartCheckout.graphql'
+# import Coupon from '@graphcommerce/magento-cart-coupon/Api/Coupon.graphql'
+# import CartItems from '@graphcommerce/magento-cart-items/Api/CartItems.graphql'
+# import CartTotals from '@graphcommerce/magento-cart/components/CartTotals/CartTotals.graphql'
+# import CartBillingAddress from '@graphcommerce/magento-cart-billing-address/Api/CartBillingAddress.graphql'
+
 query CartPage($cartId: String!) {
   cart(cart_id: $cartId) {
     id

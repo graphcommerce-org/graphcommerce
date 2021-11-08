@@ -1,3 +1,5 @@
+# import CustomerAddress from './CustomerAddress.graphql'
+
 fragment CustomerAddressEdit on CustomerAddress {
   id
   ...CustomerAddress

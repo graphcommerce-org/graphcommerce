@@ -1,3 +1,6 @@
+# import Money from '@graphcommerce/magento-store/Money.graphql'
+# import CartItemCountChanged from '@graphcommerce/magento-cart/Api/CartItemCountChanged.graphql'
+
 fragment CartStartCheckout on Cart @inject(into: ["CartItemCountChanged"]) {
   prices {
     grand_total {

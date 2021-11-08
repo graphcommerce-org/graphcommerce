@@ -1,3 +1,6 @@
+# import ProductSpecs from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.graphql'
+# import ProductCustomizable from '@graphcommerce/magento-product/components/ProductCustomizable/ProductCustomizable.graphql'
+
 fragment ProductPageVirtualQueryFragment on Query {
   typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
     ...ProductSpecs

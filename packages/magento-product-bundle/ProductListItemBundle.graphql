@@ -1,3 +1,5 @@
+# import ProductListItem from '@graphcommerce/magento-product/Api/ProductListItem.graphql'
+
 fragment ProductListItemBundle on BundleProduct @inject(into: ["ProductListItem"]) {
   __typename
   uid

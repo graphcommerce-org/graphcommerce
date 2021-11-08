@@ -1,3 +1,7 @@
+# import ProductListItem from '@graphcommerce/magento-product/Api/ProductListItem.graphql'
+# import ProductSpecs from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.graphql'
+# import ProductWeight from '@graphcommerce/magento-product/components/ProductWeight/ProductWeight.graphql'
+
 fragment ProductPageGroupedQueryFragment on Query {
   typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
     ...ProductSpecs
@@ -13,8 +17,6 @@ fragment ProductPageGroupedQueryFragment on Query {
             uid
             __typename
             ...ProductListItem
-            ...ProductListItemSimple
-            ...ProductListItemVirtual
           }
         }
       }

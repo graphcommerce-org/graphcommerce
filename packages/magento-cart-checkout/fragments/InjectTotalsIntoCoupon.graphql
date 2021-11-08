@@ -1,3 +1,5 @@
+# import CartTotals from '@graphcommerce/magento-cart/components/CartTotals/CartTotals.graphql'
+
 # When the coupon changes we need to update the cart totals
 fragment InjectTotalsIntoCoupon on Cart @inject(into: ["Coupon"]) {
   ...CartTotals

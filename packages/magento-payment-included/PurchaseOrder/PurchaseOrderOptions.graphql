@@ -1,3 +1,5 @@
+# import PaymentMethodUpdated from '@graphcommerce/magento-cart-payment-method/Api/PaymentMethodUpdated.graphql'
+
 mutation PurchaseOrderOptions($cartId: String!, $code: String!, $poNumber: String!) {
   setPaymentMethodOnCart(
     input: { cart_id: $cartId, payment_method: { code: $code, purchase_order_number: $poNumber } }

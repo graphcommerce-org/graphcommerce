@@ -1,3 +1,7 @@
+# import AccountDashboardCustomer from '../Api/AccountDashboardCustomer.graphql'
+# import OrderCard from '@graphcommerce/magento-customer-order/components/OrderCard/OrderCard.graphql'
+# import AccountAddresses from '@graphcommerce/magento-customer/components/AccountAddresses/AccountAddresses.graphql'
+
 query AccountDashboard {
   customer {
     ...AccountDashboardCustomer

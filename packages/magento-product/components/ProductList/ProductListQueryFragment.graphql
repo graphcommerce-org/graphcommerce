@@ -1,3 +1,8 @@
+# import ProductListCount from '../ProductListCount/ProductListCount.graphql'
+# import ProductListPagination from '../ProductListPagination/ProductListPagination.graphql'
+# import ProductListSort from '../ProductListSort/ProductListSort.graphql'
+# import ProductListItems from '../ProductListItems/ProductListItems.graphql'
+
 fragment ProductListQueryFragment on Query {
   products(
     pageSize: $pageSize

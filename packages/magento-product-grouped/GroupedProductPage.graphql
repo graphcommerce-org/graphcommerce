@@ -1,3 +1,4 @@
+# import ProductPageGroupedQueryFragment from './ProductPageGroupedQueryFragment.graphql'
 query GroupedProductPage($urlKey: String) {
   ...ProductPageGroupedQueryFragment
 }

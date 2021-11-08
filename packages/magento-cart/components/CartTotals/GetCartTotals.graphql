@@ -1,3 +1,5 @@
+# import CartTotals from './CartTotals.graphql'
+
 query GetCartTotals($cartId: String!) {
   cart(cart_id: $cartId) {
     ...CartTotals

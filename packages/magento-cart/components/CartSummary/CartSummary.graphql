@@ -1,3 +1,6 @@
+# import ShippingAddress from '@graphcommerce/magento-cart-shipping-address/Api/ShippingAddress.graphql'
+# import BillingAddress from '@graphcommerce/magento-cart-shipping-address/Api/BillingAddress.graphql'
+
 fragment CartSummary on Cart {
   email
 

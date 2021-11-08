@@ -1,3 +1,5 @@
+# import ShippingMethodSelected from '../Api/ShippingMethodSelected.graphql'
+
 mutation ShippingMethodForm($cartId: String!, $carrier: String!, $method: String!) {
   setShippingMethodsOnCart(
     input: {

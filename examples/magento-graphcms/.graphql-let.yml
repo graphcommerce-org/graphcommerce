@@ -1,11 +1,11 @@
 schema:
   - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
   - '**/*.graphqls'
-  - node_modules/@graphcommerce/**/*.graphqls
+  - '../../packages/**/*.graphqls'
   #- '.packages/mollie-magento-payment/**/*.graphqls'
 documents:
   - 'components/**/*.graphql'
-  - 'node_modules/@graphcommerce/**/*.graphql'
+  - '../../packages/**/*.graphql'
 plugins:
   - '@graphcommerce/graphql-codegen-relay-optimizer-plugin'
   - typed-document-node
@@ -20,3 +20,5 @@ config:
   skipTypename: true
   dedupeOperationSuffix: true
   content: '/* eslint-disable */'
+cacheDir: .next/cache/graphql-let
+respectGitIgnore: false

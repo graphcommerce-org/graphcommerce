@@ -1,3 +1,5 @@
+# import OrderCard from '@graphcommerce/magento-customer-order/components/OrderCard/OrderCard.graphql'
+
 fragment AccountOrders on Customer {
   orders(filter: {}, pageSize: $pageSize, currentPage: $currentPage) {
     items {

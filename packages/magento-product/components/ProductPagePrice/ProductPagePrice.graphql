@@ -1,3 +1,5 @@
+# import Money from '@graphcommerce/magento-store/Money.graphql'
+
 fragment ProductPagePrice on ProductInterface {
   price_range {
     maximum_price {

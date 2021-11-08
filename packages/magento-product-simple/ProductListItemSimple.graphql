@@ -1,3 +1,5 @@
+# import ProductListItem from '@graphcommerce/magento-product/Api/ProductListItem.graphql'
+
 fragment ProductListItemSimple on SimpleProduct @inject(into: ["ProductListItem"]) {
   uid
 }

@@ -1,3 +1,5 @@
+# import AccountAddresses from '@graphcommerce/magento-customer/components/AccountAddresses/AccountAddresses.graphql'
+
 query AccountDashboardAddresses {
   customer {
     ...AccountAddresses

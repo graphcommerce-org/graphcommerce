@@ -1,3 +1,5 @@
+# import ProductListItem from '@graphcommerce/magento-product/Api/ProductListItem.graphql'
+
 fragment ProductReviewSummary on ProductInterface
 @inject(into: ["ProductListItem", "ProductPageItem"]) {
   rating_summary

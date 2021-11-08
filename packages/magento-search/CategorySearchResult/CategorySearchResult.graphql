@@ -1,3 +1,5 @@
+# import CategoryBreadcrumb from '@graphcommerce/magento-category/components/CategoryBreadcrumb/CategoryBreadcrumb.graphql'
+
 fragment CategorySearchResult on CategoryTree {
   uid
   url_path

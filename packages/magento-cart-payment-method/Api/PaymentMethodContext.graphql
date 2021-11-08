@@ -1,3 +1,6 @@
+# import AvailablePaymentMethod from './AvailablePaymentMethod.graphql'
+# import SelectedPaymentMethod from './SelectedPaymentMethod.graphql'
+
 fragment PaymentMethodContext on Cart @injectable {
   available_payment_methods {
     ...AvailablePaymentMethod

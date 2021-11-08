@@ -1,3 +1,8 @@
+# import Money from '@graphcommerce/magento-store/Money.graphql'
+# import TrackingLink from '../TrackingLink/TrackingLink.graphql'
+# import OrderCardItem from '../OrderCardItem/OrderCardItem.graphql'
+# import OrderStateLabel from '../OrderStateLabel/OrderStateLabel.graphql'
+
 fragment OrderCard on CustomerOrder {
   number
   shipments {
