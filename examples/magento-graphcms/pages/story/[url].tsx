@@ -29,60 +29,61 @@ const useStyles = makeStyles(
   }),
   { name: 'StoryPage' },
 )
-const replace = (node) => {
-  const attribs = node.attribs || {}
-  if (
-    node.name === `script` ||
-    node.name === `meta` ||
-    node.name === `style` ||
-    node.name === `title`
-  ) {
-    return <></>
-  }
-  if (node.name === `img`) {
-    const { ...props } = attribs
-    const width = props.rel ? props.rel.split(',')[0] / 2 : undefined
-    const height = props.rel ? props.rel.split(',')[1] / 2 : undefined
-
-    return (
-      <div className={props.class}>
-        <Image
-          src={props.src}
-          layout='fill'
-          quality={width && width > 1080 ? 20 : 92}
-          width={width && width}
-          height={height && height}
-          sizes={width ? { 0: '100vw', 1350: `${width}px` } : undefined}
-        />
-      </div>
-    )
-  }
-  if (node.name === `link`) {
-    const { ...props } = attribs
-    if (props.href.indexOf('.css') < 0) {
-      return <></>
-    }
-  }
-  if (node.name === `a`) {
-    const { ...props } = attribs
-    return (
-      <div className={props.class}>
-        <PageLink key={props.href} href={props.href} passHref>
-          {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-            !!node.children && !!node.children.length && domToReact(node.children, { replace })
-          }
-        </PageLink>
-      </div>
-    )
-  }
-}
 
 export default function StoryPage(props: Props) {
   const { pages, bodyContent, css, storyList } = props
   const classes = useStyles(props)
   const page = pages?.[0]
   const metaRobots = page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]
+
+  const replace = (node) => {
+    const attribs = node.attribs || {}
+    if (
+      node.name === `script` ||
+      node.name === `meta` ||
+      node.name === `style` ||
+      node.name === `title`
+    ) {
+      return <></>
+    }
+    if (node.name === `img`) {
+      const { ...attr } = attribs
+      const width = attr.rel ? attr.rel.split(',')[0] : undefined
+      const height = attr.rel ? attr.rel.split(',')[1] : undefined
+
+      return (
+        <div className={attr.class}>
+          <Image
+            src={attr.src}
+            layout='fill'
+            loading={attr.loading && attr.loading}
+            width={width && width}
+            height={height && height}
+            sizes={width ? { 0: '100vw', 1350: `${width}px` } : undefined}
+          />
+        </div>
+      )
+    }
+    if (node.name === `link`) {
+      const { ...attr } = attribs
+      if (attr.href.indexOf('.css') < 0) {
+        return <></>
+      }
+    }
+    if (node.name === `a`) {
+      const { ...attr } = attribs
+      return (
+        <div className={attr.class}>
+          <PageLink key={attr.href} href={attr.href} passHref>
+            {
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+              !!node.children && !!node.children.length && domToReact(node.children, { replace })
+            }
+          </PageLink>
+        </div>
+      )
+    }
+  }
 
   return (
     <>
