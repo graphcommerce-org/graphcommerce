@@ -2,7 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Image } from '@graphcommerce/image'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, MetaRobots, PageMeta, Title } from '@graphcommerce/next-ui'
-import { Container, makeStyles } from '@material-ui/core'
+import { ButtonBase, Container, makeStyles } from '@material-ui/core'
 import cheerio from 'cheerio'
 import parseHtml, { domToReact, htmlToDOM } from 'html-react-parser'
 import { GetStaticPaths } from 'next'
@@ -25,6 +25,9 @@ const useStyles = makeStyles(
   () => ({
     root: {
       backgroundColor: (props: Props) => props.bgColor,
+    },
+    buttonBase: {
+      display: 'block',
     },
   }),
   { name: 'StoryPage' },
@@ -75,10 +78,12 @@ export default function StoryPage(props: Props) {
       return (
         <div className={attr.class}>
           <PageLink key={attr.href} href={attr.href} passHref>
-            {
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-              !!node.children && !!node.children.length && domToReact(node.children, { replace })
-            }
+            <ButtonBase className={classes.buttonBase} component='a'>
+              {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+                !!node.children && !!node.children.length && domToReact(node.children, { replace })
+              }
+            </ButtonBase>
           </PageLink>
         </div>
       )
@@ -164,7 +169,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     }
   })
 
-  const webflowCss = await fetch(cssUrl)
+  const webflowCss = await fetch(`${cssUrl}?updated=${Math.random() * 9999}`)
   const css = await webflowCss.text()
 
   return {
