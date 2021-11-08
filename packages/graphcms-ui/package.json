@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/graphcms-ui",
-  "version": "2.104.20",
+  "version": "2.104.21",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -14,15 +14,15 @@
   },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.2",
-    "@graphcommerce/eslint-config-pwa": "^3.1.3",
-    "@graphcommerce/prettier-config-pwa": "^3.0.3",
+    "@graphcommerce/eslint-config-pwa": "^3.1.4",
+    "@graphcommerce/prettier-config-pwa": "^3.0.4",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
     "@playwright/test": "^1.16.2"
   },
   "dependencies": {
     "@apollo/client": "^3.4.16",
-    "@graphcommerce/image": "^2.105.2",
-    "@graphcommerce/next-ui": "^3.14.3",
+    "@graphcommerce/image": "^2.105.3",
+    "@graphcommerce/next-ui": "^3.14.4",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",
