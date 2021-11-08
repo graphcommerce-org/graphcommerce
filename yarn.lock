@@ -8262,14 +8262,14 @@ framebus@5.1.2:
   dependencies:
     "@braintree/uuid" "^0.1.0"
 
-framer-motion@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-5.0.1.tgz#e63c504b175780ba658d7f944007ec36d9ef61c9"
-  integrity sha512-Bye1pAXTfp7uh9Ih2H4vyInbS7uXclPvy18G+h8y8DauQx1vtkblPyGSlaoDNGlrfmw6SCVsjSYWDF2SzI68YA==
+framer-motion@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-5.2.1.tgz#5cfa59984649d73e3741d7bf189918f34fd3635e"
+  integrity sha512-igeMZaa0FnaB4NkCE+/ENGSuSvhRhUVFJCwWg/FGQn+CwnLPI/XjO6Zim8m+pN+4wBNlaesBRpqOQbq/VH7mew==
   dependencies:
     framesync "6.0.1"
     hey-listen "^1.0.8"
-    popmotion "10.0.2"
+    popmotion "11.0.0"
     style-value-types "5.0.0"
     tslib "^2.1.0"
   optionalDependencies:
@@ -12647,10 +12647,10 @@ pngjs@^5.0.0:
   resolved "https://registry.yarnpkg.com/pngjs/-/pngjs-5.0.0.tgz#e79dd2b215767fd9c04561c01236df960bce7fbb"
   integrity sha512-40QW5YalBNfQo5yRYmiw7Yz6TKKVr3h6970B2YE+3fQpsWcrbj1PzJgxeJ19DRQjhMbKPIuMY8rFaXc8moolVw==
 
-popmotion@10.0.2:
-  version "10.0.2"
-  resolved "https://registry.yarnpkg.com/popmotion/-/popmotion-10.0.2.tgz#edb87efb2ba39505d07f79d3ca8cc4b1cbe101bf"
-  integrity sha512-8vgx02LL7Odk/kwSGigAnlPRLJK+Dfked571ZAHGzkxPNWThkU5mQX0xPmibIMAULZehWBV7hGN7LSCpaV3cfw==
+popmotion@11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/popmotion/-/popmotion-11.0.0.tgz#910e2e7077d9aeba520db8744d40bb5354992212"
+  integrity sha512-kJDyaG00TtcANP5JZ51od+DCqopxBm2a/Txh3Usu23L9qntjY5wumvcVf578N8qXEHR1a+jx9XCv8zOntdYalQ==
   dependencies:
     framesync "^6.0.1"
     hey-listen "^1.0.8"

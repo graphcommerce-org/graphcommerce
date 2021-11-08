@@ -26,7 +26,7 @@
     "@playwright/test": "^1.16.2"
   },
   "peerDependencies": {
-    "framer-motion": "^5.0.1",
+    "framer-motion": "^5.2.1",
     "next": "^12.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
