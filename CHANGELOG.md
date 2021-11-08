@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.147.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.147.5...@graphcommerce/graphcommerce@2.147.6) (2021-11-08)
+
+
+### Bug Fixes
+
+* error typos ([d3f5357](https://github.com/ho-nl/m2-pwa/commit/d3f5357ffd840fb236db4e40cb52a324752591fb))
+* **row-product:** additional props ([2b706a3](https://github.com/ho-nl/m2-pwa/commit/2b706a3d438b3fc227a8d2250d0996fed08475c3))
+
+
+
+
+
 ## [2.147.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.147.3...@graphcommerce/graphcommerce@2.147.4) (2021-11-06)
 
 
