@@ -23,6 +23,9 @@ const useStyles = makeStyles(
       width: responsiveVal(60, 96),
       borderRadius: '99em',
       overflow: 'hidden',
+      '& img': {
+        display: 'block',
+      },
     },
     storyTitle: {
       width: `calc(${responsiveVal(60, 96)} + 10px)`,
