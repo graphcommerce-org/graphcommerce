@@ -69,7 +69,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
     const { data } = await client.query({ query: CartAgreementsDocument })
     return (data.checkoutAgreements ?? []).map((agreement) => ({
       locale: locale,
-      params: { url: agreement?.name.toLowerCase().replaceAll(' ', '-') ?? '' },
+      params: { url: agreement?.name.toLowerCase().replace(/\s+/g, '-') ?? '' },
     }))
   }
 
