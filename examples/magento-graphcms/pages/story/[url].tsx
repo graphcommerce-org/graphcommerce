@@ -55,11 +55,12 @@ export default function StoryPage(props: Props) {
       const height = attr.rel ? attr.rel.split(',')[1] : undefined
 
       return (
-        <div className={attr.class}>
+        <div className={attr.class ?? attr.class}>
           <Image
             src={attr.src}
             layout='fill'
             loading={attr.loading && attr.loading}
+            alt={attr.alt ? attr.loading : attr.class}
             width={width && width}
             height={height && height}
             sizes={width ? { 0: '100vw', 1350: `${width}px` } : undefined}
@@ -76,9 +77,13 @@ export default function StoryPage(props: Props) {
     if (node.name === `a`) {
       const { ...attr } = attribs
       return (
-        <div className={attr.class}>
+        <div className={attr.class ?? attr.class}>
           <PageLink key={attr.href} href={attr.href} passHref>
-            <ButtonBase className={classes.buttonBase} component='a'>
+            <ButtonBase
+              className={classes.buttonBase}
+              component='a'
+              aria-label={attr.class ?? attr.class}
+            >
               {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                 !!node.children && !!node.children.length && domToReact(node.children, { replace })
