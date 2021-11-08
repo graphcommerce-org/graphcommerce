@@ -1,4 +1,5 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { ColumnTwoWithTop, ColumnTwoWithTopProps } from '@graphcommerce/next-ui'
+import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 import { ProductPageDescriptionFragment } from './ProductPageDescription.gql'
 
@@ -35,21 +36,31 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-export type ProductPageDescriptionProps = ProductPageDescriptionFragment
+export type ProductPageDescriptionProps = ProductPageDescriptionFragment &
+  Omit<ColumnTwoWithTopProps, 'top' | 'left'>
 
 export default function ProductPageDescription(props: ProductPageDescriptionProps) {
   const classes = useStyles()
-  const { description } = props
+  const { description, name, right } = props
 
   return (
     <>
-      {/* eslint-disable-next-line react/no-danger */}
-      {description && (
-        <div
-          className={classes.description}
-          dangerouslySetInnerHTML={{ __html: description.html }}
-        />
-      )}
+      <ColumnTwoWithTop
+        top={
+          <Typography variant='h1' component='h2'>
+            {name}
+          </Typography>
+        }
+        left={
+          description && (
+            <div
+              className={classes.description}
+              dangerouslySetInnerHTML={{ __html: description.html }}
+            />
+          )
+        }
+        right={right}
+      />
     </>
   )
 }

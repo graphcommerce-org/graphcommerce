@@ -22,7 +22,7 @@ const useStyles = makeStyles(
 
 export type UspListProps = UseStyles<typeof useStyles> & {
   children: React.ReactNode
-  size?: string
+  size?: 'normal' | 'small'
 }
 
 export default function UspList(props: UspListProps) {

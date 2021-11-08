@@ -1,0 +1,19 @@
+fragment RowRenderer on Page {
+  content {
+    __typename
+    ... on Node {
+      id
+    }
+    ...RowColumnOne
+    ...RowColumnTwo
+    ...RowColumnThree
+    ...RowBlogContent
+    ...RowHeroBanner
+    ...RowSpecialBanner
+    ...RowQuote
+    ...RowButtonLinkList
+    ...RowServiceOptions
+    ...RowContentLinks
+    ...RowProduct
+  }
+}

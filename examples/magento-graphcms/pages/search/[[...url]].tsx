@@ -136,7 +136,7 @@ function SearchResultPage(props: Props) {
 
             <ProductListItems
               items={products?.items}
-              className={productListClasses.productList}
+              classes={productListClasses}
               loadingEager={1}
             />
 

@@ -38,18 +38,14 @@ export type ProductItemsGridProps = {
   renderers: ProductListItemRenderer
   loadingEager?: number
   size?: 'normal' | 'small'
-} & UseStyles<typeof useStyles> &
-  JSX.IntrinsicElements['div']
+} & UseStyles<typeof useStyles>
 
 export default function ProductListItemsBase(props: ProductItemsGridProps) {
   const { items, renderers, loadingEager = 0, size = 'normal', ...divProps } = props
   const classes = useStyles(props)
 
   return (
-    <div
-      {...divProps}
-      className={clsx(classes.productList, classes[`productList${size}`], divProps.className)}
-    >
+    <div {...divProps} className={clsx(classes.productList, classes[`productList${size}`])}>
       {items?.map((item, idx) =>
         item ? (
           <RenderType

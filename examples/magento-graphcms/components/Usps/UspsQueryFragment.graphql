@@ -1,4 +1,10 @@
 fragment UspsQueryFragment on Query {
+  sidebarUsps: usps(where: { identity: "sidebarusps" }) {
+    uspsMultiple {
+      id
+      ...PageLink
+    }
+  }
   usps(where: { identity: "contentusps" }) {
     uspsMultiple {
       id

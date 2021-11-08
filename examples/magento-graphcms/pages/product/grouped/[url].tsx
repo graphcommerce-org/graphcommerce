@@ -1,15 +1,16 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
-  ProductWeight,
   getProductStaticPaths,
-  ProductPageMeta,
-  ProductPageGallery,
-  productPageCategory,
-  ProductAddToCart,
   jsonLdProduct,
   jsonLdProductOffer,
-  ProductSidebarDelivery,
+  ProductAddToCart,
+  productPageCategory,
+  ProductPageDescription,
+  ProductPageGallery,
+  ProductPageMeta,
   ProductShortDescription,
+  ProductSidebarDelivery,
+  ProductWeight,
 } from '@graphcommerce/magento-product'
 import {
   GroupedProductPageDocument,
@@ -17,7 +18,7 @@ import {
 } from '@graphcommerce/magento-product-grouped'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { JsonLd, GetStaticProps, Title } from '@graphcommerce/next-ui'
+import { GetStaticProps, JsonLd, Title } from '@graphcommerce/next-ui'
 import { Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
@@ -25,21 +26,9 @@ import { Product } from 'schema-dts'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import FullPageShellHeader from '../../../components/AppShell/FullPageShellHeader'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
-import PageContent from '../../../components/PageContent'
-import RowProductDescription from '../../../components/ProductDescription'
-import ProductUsps from '../../../components/ProductUsps'
-import {
-  RowProduct,
-  Backstory,
-  Feature,
-  FeatureBoxed,
-  Grid,
-  Related,
-  Reviews,
-  Specs,
-  Swipeable,
-  Upsells,
-} from '../../../components/Row'
+import { RowProduct } from '../../../components/Row'
+import RowRenderer from '../../../components/Row/RowRenderer'
+import Usps from '../../../components/Usps'
 import apolloClient from '../../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -105,35 +94,19 @@ function ProductGrouped(props: Props) {
           )}
         </ul>
         <ProductWeight weight={typeProduct?.weight} />
-        <ProductUsps usps={sidebarUsps} size='small' />
+        <Usps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
-      <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
+
+      <ProductPageDescription {...product} right={<Usps usps={usps} />} />
 
       {pages?.[0] && (
-        <PageContent
+        <RowRenderer
+          content={pages?.[0].content}
           renderer={{
             RowProduct: (rowProps) => (
-              <RowProduct
-                {...rowProps}
-                renderer={{
-                  Specs: (rowProductProps) => (
-                    <Specs {...rowProductProps} {...product} aggregations={aggregations} />
-                  ),
-                  Backstory: (rowProductProps) => <Backstory {...rowProductProps} />,
-                  Feature: (rowProductProps) => <Feature {...rowProductProps} {...product} />,
-                  FeatureBoxed: (rowProductProps) => (
-                    <FeatureBoxed {...rowProductProps} {...product} />
-                  ),
-                  Grid: (rowProductProps) => <Grid {...rowProductProps} {...product} />,
-                  Related: (rowProductProps) => <Related {...rowProductProps} {...product} />,
-                  Reviews: (rowProductProps) => <Reviews {...rowProductProps} {...product} />,
-                  Upsells: (rowProductProps) => <Upsells {...rowProductProps} {...product} />,
-                  Swipeable: (rowProductProps) => <Swipeable {...rowProductProps} {...product} />,
-                }}
-              />
+              <RowProduct {...rowProps} {...product} aggregations={aggregations} />
             ),
           }}
-          content={pages?.[0].content}
         />
       )}
     </>

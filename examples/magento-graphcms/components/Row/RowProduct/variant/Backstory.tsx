@@ -1,13 +1,13 @@
 import RichTextParagraphStrongStroked from '@graphcommerce/graphcms-ui/RichText/RichTextParagraphStrongStroked'
+import { ProductListItemsFragment } from '@graphcommerce/magento-product'
 import { ParagraphWithSidebarSlide, RenderType } from '@graphcommerce/next-ui'
 import { useTheme } from '@material-ui/core'
 import React from 'react'
 import Asset from '../../../Asset'
-import { ProductListItemsProps } from '../../../ProductListItems/ProductListItems'
 import renderers from '../../../ProductListItems/renderers'
 import { RowProductFragment } from '../RowProduct.gql'
 
-type BackstoryProps = RowProductFragment & ProductListItemsProps
+type BackstoryProps = RowProductFragment & ProductListItemsFragment
 
 export default function Backstory(props: BackstoryProps) {
   const { productCopy, asset, ...productListItems } = props

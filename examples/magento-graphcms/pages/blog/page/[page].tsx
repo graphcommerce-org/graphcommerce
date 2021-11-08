@@ -11,7 +11,7 @@ import BlogList from '../../../components/Blog'
 import { BlogListDocument, BlogListQuery } from '../../../components/Blog/BlogList.gql'
 import { BlogPathsDocument, BlogPathsQuery } from '../../../components/Blog/BlogPaths.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
-import PageContent from '../../../components/PageContent'
+import RowRenderer from '../../../components/Row/RowRenderer'
 import apolloClient from '../../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }

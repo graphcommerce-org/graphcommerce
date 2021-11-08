@@ -1,6 +1,8 @@
-import { useQuery } from '@apollo/client'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { CartAgreementsDocument } from '@graphcommerce/magento-cart/components/CartAgreementsForm/CartAgreements.gql'
+import {
+  CartAgreementsDocument,
+  CartAgreementsQuery,
+} from '@graphcommerce/magento-cart/components/CartAgreementsForm/CartAgreements.gql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AppShellTitle,
@@ -12,24 +14,17 @@ import {
 } from '@graphcommerce/next-ui'
 import { Container, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
-import { useRouter } from 'next/router'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
 
+type Props = { agreement: NonNullable<NonNullable<CartAgreementsQuery['checkoutAgreements']>[0]> }
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<SheetShellProps>
+type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
-function LegalView() {
-  const router = useRouter()
-  const { url } = router.query
-
-  const { data } = useQuery(CartAgreementsDocument)
-
-  const agreement = data?.checkoutAgreements?.find(
-    (ca) => ca && ca.name && ca.name.toLowerCase().replaceAll(' ', '-') === url,
-  )
+function TermsPage(props: Props) {
+  const { agreement } = props
 
   const title = agreement?.name ?? ''
 
@@ -60,28 +55,47 @@ const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'left',
   SharedComponent: SheetShell,
 }
-LegalView.pageOptions = pageOptions
+TermsPage.pageOptions = pageOptions
 
-export default LegalView
+export default TermsPage
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  const urls = ['legal/view']
-  const paths = locales.map((locale) => urls.map((url) => ({ params: { url }, locale }))).flat(1)
+  /** Call apolloClient to fetch locale specific agreements from Magento. */
+  const path = async (locale: string) => {
+    const client = apolloClient(locale)
+    const { data } = await client.query({ query: CartAgreementsDocument })
+    return (data.checkoutAgreements ?? []).map((agreement) => ({
+      locale: locale,
+      params: { url: agreement?.name.toLowerCase().replaceAll(' ', '-') ?? '' },
+    }))
+  }
+
+  const paths = (await Promise.all(locales.map(path))).flat(1).filter((v) => !!v)
 
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
+export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const client = apolloClient(locale, true)
+  const staticClient = apolloClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
+
+  const agreements = await staticClient.query({ query: CartAgreementsDocument })
+
+  const agreement = agreements.data.checkoutAgreements?.find(
+    (ca) => ca?.name?.toLowerCase().replace(/\s+/g, '-') === params?.url,
+  )
+
+  if (!agreement) return { notFound: true }
 
   return {
     props: {
       variant: 'left',
       size: responsiveVal(320, 800),
+      agreement,
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

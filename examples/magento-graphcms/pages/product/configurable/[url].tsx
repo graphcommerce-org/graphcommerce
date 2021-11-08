@@ -4,6 +4,7 @@ import {
   jsonLdProduct,
   jsonLdProductOffer,
   productPageCategory,
+  ProductPageDescription,
   ProductPageGallery,
   ProductPageMeta,
   ProductShortDescription,
@@ -26,21 +27,9 @@ import { Product } from 'schema-dts'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import FullPageShellHeader from '../../../components/AppShell/FullPageShellHeader'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
-import PageContent from '../../../components/PageContent'
-import RowProductDescription from '../../../components/ProductDescription'
-import ProductUsps from '../../../components/ProductUsps'
-import {
-  RowProduct,
-  Backstory,
-  Feature,
-  FeatureBoxed,
-  Grid,
-  Related,
-  Reviews,
-  Specs,
-  Swipeable,
-  Upsells,
-} from '../../../components/Row'
+import { RowProduct } from '../../../components/Row'
+import RowRenderer from '../../../components/Row/RowRenderer'
+import Usps from '../../../components/Usps'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = ProductPageQuery & ConfigurableProductPageQuery
@@ -123,42 +112,24 @@ function ProductConfigurable(props: Props) {
           >
             <ProductSidebarDelivery />
           </ConfigurableProductAddToCart>
-          <ProductUsps usps={sidebarUsps} size='small' />
+          <Usps usps={sidebarUsps} size='small' />
         </ProductPageGallery>
 
-        <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
+        <ProductPageDescription {...product} right={<Usps usps={usps} />} />
 
         {pages?.[0] && (
-          <PageContent
+          <RowRenderer
+            content={pages?.[0].content}
             renderer={{
               RowProduct: (rowProps) => (
                 <RowProduct
                   {...rowProps}
-                  renderer={{
-                    Specs: (rowProductProps) => (
-                      <Specs {...rowProductProps} {...product} aggregations={aggregations} />
-                    ),
-                    Backstory: (rowProductProps) => (
-                      <Backstory {...rowProductProps} items={products?.items} />
-                    ),
-                    Feature: (rowProductProps) => <Feature {...rowProductProps} {...product} />,
-                    FeatureBoxed: (rowProductProps) => (
-                      <FeatureBoxed {...rowProductProps} {...product} />
-                    ),
-                    Grid: (rowProductProps) => (
-                      <Grid {...rowProductProps} items={products?.items} />
-                    ),
-                    Related: (rowProductProps) => <Related {...rowProductProps} {...product} />,
-                    Reviews: (rowProductProps) => <Reviews {...rowProductProps} {...product} />,
-                    Upsells: (rowProductProps) => <Upsells {...rowProductProps} {...product} />,
-                    Swipeable: (rowProductProps) => (
-                      <Swipeable {...rowProductProps} items={products?.items} />
-                    ),
-                  }}
+                  {...product}
+                  items={products?.items}
+                  aggregations={aggregations}
                 />
               ),
             }}
-            content={pages?.[0].content}
           />
         )}
       </ConfigurableContextProvider>
