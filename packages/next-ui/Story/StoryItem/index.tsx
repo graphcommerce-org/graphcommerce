@@ -16,7 +16,7 @@ const useStyles = makeStyles(
       height: 'auto',
       width: 'auto',
       marginBottom: 4,
-      padding: 2,
+      padding: 3,
       boxShadow: 'unset',
     },
     asset: {
@@ -38,7 +38,7 @@ const useStyles = makeStyles(
     },
     current: {
       border: `2px solid ${theme.palette.primary.main}`,
-      padding: 1,
+      padding: 2,
     },
   }),
   { name: 'StoryListItem' },
