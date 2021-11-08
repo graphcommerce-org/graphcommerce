@@ -80,12 +80,19 @@ const useStyles = makeStyles(
     },
     scrollerRoot: {
       gridTemplateRows: `100%`,
+      gridTemplateColumns: `repeat(2, calc(50% - 20px))`,
       gap: 6,
       borderRadius: 0,
       padding: '1px 1px',
+      '&:focus': {
+        outline: 'unset',
+      },
     },
     scrollerRootTwoItems: {
-      gridTemplateColumns: `repeat(2, calc(50% - 20px))`,
+      gridTemplateColumns: `repeat(2, calc(50% - 4px))`,
+    },
+    buttonRootTwoItems: {
+      display: 'none',
     },
   }),
   { name: 'ShippingMethodForm' },
@@ -133,7 +140,11 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
             <ScrollerButton
               direction='left'
               classes={{
-                root: clsx(classes.buttonRoot, classes.leftButtonRoot),
+                root: clsx(
+                  classes.buttonRoot,
+                  classes.leftButtonRoot,
+                  sortedAvailableShippingMethods.length <= 2 && classes.buttonRootTwoItems,
+                ),
               }}
             >
               <SvgImageSimple
@@ -210,7 +221,11 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
             <ScrollerButton
               direction='right'
               classes={{
-                root: clsx(classes.buttonRoot, classes.rightButtonRoot),
+                root: clsx(
+                  classes.buttonRoot,
+                  classes.rightButtonRoot,
+                  sortedAvailableShippingMethods.length <= 2 && classes.buttonRootTwoItems,
+                ),
               }}
             >
               <SvgImageSimple
