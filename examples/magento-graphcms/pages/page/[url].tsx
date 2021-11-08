@@ -3,6 +3,7 @@ import { CmsPageContent } from '@graphcommerce/magento-cms'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, MetaRobots } from '@graphcommerce/next-ui'
+
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -11,16 +12,18 @@ import { DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import RowRenderer from '../../components/Row/RowRenderer'
 import RowProduct from '../../components/Row/RowProduct'
 import apolloClient from '../../lib/apolloClient'
+import { StoryListDocument, StoryListQuery } from '../../components/Story/StoryList.gql'
+import StoryList from '../../components/Story'
 
 export const config = { unstable_JsPreload: false }
 
-type Props = DefaultPageQuery & CmsPageQuery & ProductListQuery
+type Props = DefaultPageQuery & CmsPageQuery & ProductListQuery & StoryListQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function CmsPage(props: Props) {
-  const { cmsPage, pages, products } = props
+  const { cmsPage, pages, products, storyList } = props
   const title = cmsPage?.title ?? ''
 
   const product = products?.items?.[0]
@@ -35,6 +38,8 @@ function CmsPage(props: Props) {
         metaRobots={metaRobots}
         canonical={page?.url}
       />
+      {console.log(storyList)}
+      <StoryList storyList={storyList} current={page.url} />
       {pages?.[0] ? (
         <RowRenderer
           content={pages?.[0].content}
@@ -90,10 +95,15 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     variables: { categoryUid, pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
   })
 
+  const storyList = staticClient.query({
+    query: StoryListDocument,
+  })
+
   return {
     props: {
       alwaysShowLogo: true,
       ...(await page).data,
+      ...(await storyList).data,
       ...(await productList).data,
       up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
