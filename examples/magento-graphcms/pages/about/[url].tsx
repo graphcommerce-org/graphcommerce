@@ -5,7 +5,7 @@ import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import PageContent from '../../components/PageContent'
+import RowRenderer from '../../components/Row/RowRenderer'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = DefaultPageQuery
@@ -14,7 +14,7 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function AboutPage({ pages }) {
-  return <PageContent {...pages[0]} />
+  return <RowRenderer {...pages[0]} />
 }
 
 AboutPage.pageOptions = {

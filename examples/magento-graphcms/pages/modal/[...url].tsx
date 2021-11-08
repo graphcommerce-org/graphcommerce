@@ -12,7 +12,7 @@ import { GetStaticPaths } from 'next'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import PageContent from '../../components/PageContent'
+import RowRenderer from '../../components/Row/RowRenderer'
 import apolloClient from '../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -50,7 +50,7 @@ function ModalPage(props: Props) {
         </Typography>
       </Box>
 
-      <PageContent content={page.content} />
+      <RowRenderer content={page.content} />
     </>
   )
 }

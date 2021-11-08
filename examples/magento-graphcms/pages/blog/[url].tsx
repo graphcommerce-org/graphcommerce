@@ -12,7 +12,7 @@ import { BlogListDocument, BlogListQuery } from '../../components/Blog/BlogList.
 import { BlogPostPathsDocument } from '../../components/Blog/BlogPostPaths.gql'
 import BlogTags from '../../components/Blog/BlogTags'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import PageContent from '../../components/PageContent'
+import RowRenderer from '../../components/Row/RowRenderer'
 import apolloClient from '../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -39,7 +39,7 @@ function BlogPage(props: Props) {
 
         {page.author ? <BlogAuthor author={page.author} date={page.date} /> : null}
         {page.asset ? <BlogHeader asset={page.asset} /> : null}
-        <PageContent {...page} />
+        <RowRenderer {...page} />
         <BlogTags relatedPages={page.relatedPages} />
       </Row>
       <BlogList blogPosts={blogPosts} />

@@ -39,10 +39,10 @@ import FullPageShell, { FullPageShellProps } from '../components/AppShell/FullPa
 import FullPageShellHeader from '../components/AppShell/FullPageShellHeader'
 import Asset from '../components/Asset'
 import { CategoryPageDocument, CategoryPageQuery } from '../components/GraphQL/CategoryPage.gql'
-import PageContent from '../components/PageContent'
 import ProductListItems from '../components/ProductListItems/ProductListItems'
 import useProductListStyles from '../components/ProductListItems/useProductListStyles'
 import RowProduct from '../components/Row/RowProduct'
+import RowRenderer from '../components/Row/RowRenderer'
 import apolloClient from '../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -115,7 +115,7 @@ function CategoryPage(props: Props) {
 
             <ProductListItems
               items={products?.items}
-              className={productListClasses.productList}
+              classes={productListClasses}
               loadingEager={1}
             />
 
@@ -125,7 +125,7 @@ function CategoryPage(props: Props) {
       )}
 
       {pages?.[0] && (
-        <PageContent
+        <RowRenderer
           content={pages?.[0].content}
           renderer={{
             RowProduct: (rowProps) => <RowProduct {...rowProps} {...product} items={productList} />,

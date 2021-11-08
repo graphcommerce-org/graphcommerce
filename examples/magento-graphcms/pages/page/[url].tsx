@@ -8,7 +8,7 @@ import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.gql'
 import { DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import PageContent from '../../components/PageContent'
+import RowRenderer from '../../components/Row/RowRenderer'
 import RowProduct from '../../components/Row/RowProduct'
 import apolloClient from '../../lib/apolloClient'
 
@@ -36,7 +36,7 @@ function CmsPage(props: Props) {
         canonical={page?.url}
       />
       {pages?.[0] ? (
-        <PageContent
+        <RowRenderer
           content={pages?.[0].content}
           renderer={{
             RowProduct: (rowProps) => (

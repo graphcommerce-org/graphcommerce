@@ -5,7 +5,7 @@ import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import PageContent from '../../components/PageContent'
+import RowRenderer from '../../components/Row/RowRenderer'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = DefaultPageQuery
@@ -17,7 +17,7 @@ const BrandPage = (props: Props) => {
   const { pages } = props
   const page = pages[0]
 
-  return <PageContent {...page} />
+  return <RowRenderer {...page} />
 }
 
 BrandPage.pageOptions = {

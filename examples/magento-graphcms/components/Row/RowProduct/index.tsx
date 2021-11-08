@@ -1,3 +1,4 @@
+import { ProductSpecsFragment } from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.gql'
 import { RowProductFragment } from './RowProduct.gql'
 import {
   Backstory,
@@ -16,10 +17,11 @@ type VariantRenderer = Record<
   React.VFC<RowProductFragment>
 >
 
-type RowProductProps = RowProductFragment & { renderer?: Partial<VariantRenderer> } & {
-  aggregations?: unknown
-  items?: unknown
-}
+type RowProductProps = RowProductFragment & {
+  renderer?: Partial<VariantRenderer>
+} & ProductSpecsFragment & {
+    items?: unknown
+  }
 
 const defaultRenderer: Partial<VariantRenderer> = {
   Specs,
