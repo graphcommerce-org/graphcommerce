@@ -50,13 +50,13 @@
     "lerna": "^4.0.0",
     "patch-package": "^6.4.3",
     "postinstall-postinstall": "^2.1.0",
-    "type-fest": "^2.5.1",
+    "type-fest": "^2.5.2",
     "vercel": "^23.1.2"
   },
   "devDependencies": {
     "@graphql-typed-document-node/patch-cli": "^3.0.8",
-    "@types/node": "^16.11.4",
-    "@types/react": "^17.0.32",
+    "@types/node": "^16.11.6",
+    "@types/react": "^17.0.33",
     "@types/sharp": "^0.29.2",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
