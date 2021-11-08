@@ -16,11 +16,11 @@ const useStyles = makeStyles(
       height: 'auto',
       width: 'auto',
       marginBottom: 4,
-      padding: 3,
+      padding: 2,
       boxShadow: 'unset',
     },
     asset: {
-      width: responsiveVal(60, 96),
+      width: responsiveVal(60, 90),
       borderRadius: '99em',
       overflow: 'hidden',
       '& img': {
@@ -28,7 +28,7 @@ const useStyles = makeStyles(
       },
     },
     storyTitle: {
-      width: `calc(${responsiveVal(60, 96)} + 10px)`,
+      width: `calc(${responsiveVal(60, 90)} + 20px)`,
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
@@ -38,7 +38,7 @@ const useStyles = makeStyles(
     },
     current: {
       border: `2px solid ${theme.palette.primary.main}`,
-      padding: 2,
+      padding: 1,
     },
   }),
   { name: 'StoryListItem' },
