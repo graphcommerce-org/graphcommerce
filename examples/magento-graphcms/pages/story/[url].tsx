@@ -11,10 +11,12 @@ import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
+import StoryList from '../../components/Story'
+import { StoryListDocument, StoryListQuery } from '../../components/Story/StoryList.gql'
 import { StoryPathsDocument } from '../../components/Story/StoryPaths.gql'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = DefaultPageQuery & { bodyContent: any; css: string; bgColor: string }
+type Props = DefaultPageQuery & StoryListQuery & { bodyContent: any; css: string; bgColor: string }
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
@@ -32,7 +34,7 @@ const useStyles = makeStyles(
 )
 
 export default function StoryPage(props: Props) {
-  const { pages, bodyContent, css } = props
+  const { pages, bodyContent, css, storyList } = props
   const classes = useStyles(props)
   const page = pages?.[0]
   const metaRobots = page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]
@@ -100,6 +102,7 @@ export default function StoryPage(props: Props) {
       </FullPageShellHeader>
 
       <Container maxWidth={false} disableGutters>
+        <StoryList storyList={storyList} current={page.url} />
         <div className={classes.root}>
           <style dangerouslySetInnerHTML={{ __html: `${css}` }}></style>
 
@@ -147,6 +150,11 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   })
   if (!(await page).data.pages?.[0]) return { notFound: true }
 
+  const storyList = staticClient.query({
+    query: StoryListDocument,
+  })
+  if (!(await page).data.pages?.[0]) return { notFound: true }
+
   const webflow = await fetch(`https://${urlKey.split('/').pop()}.webflow.io/`)
 
   const $ = cheerio.load(await webflow.text())
@@ -167,6 +175,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   return {
     props: {
       ...(await page).data,
+      ...(await storyList).data,
       apolloState: await conf.then(() => client.cache.extract()),
       bodyContent,
       css,
