@@ -45,10 +45,7 @@ export default function ProductListItemsBase(props: ProductItemsGridProps) {
   const classes = useStyles(props)
 
   return (
-    <div
-      {...divProps}
-      className={clsx(classes.productList, classes[`productList${size}`], divProps.className)}
-    >
+    <div {...divProps} className={clsx(classes.productList, classes[`productList${size}`])}>
       {items?.map((item, idx) =>
         item ? (
           <RenderType

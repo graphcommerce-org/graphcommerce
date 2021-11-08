@@ -1,5 +1,5 @@
 import RichText from '@graphcommerce/graphcms-ui/RichText'
-import { UspList, UspListItem } from '@graphcommerce/next-ui'
+import { UspList, UspListItem, UspListProps } from '@graphcommerce/next-ui'
 import React from 'react'
 import Asset from '../Asset'
 import { UspsQueryFragment } from './UspsQueryFragment.gql'
