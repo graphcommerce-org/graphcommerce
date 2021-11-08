@@ -1,3 +1,5 @@
+# import PageLink from '../GraphQL/PageLink.graphql'
+
 fragment FooterQueryFragment on Query {
   footer(where: { identity: "footer" }) {
     id

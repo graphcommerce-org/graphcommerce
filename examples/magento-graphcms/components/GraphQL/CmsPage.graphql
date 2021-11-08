@@ -1,3 +1,8 @@
+# import MenuQueryFragment from '@graphcommerce/magento-category/queries/MenuQueryFragment.graphql'
+# import FooterQueryFragment from '../AppShell/FooterQueryFragment.graphql'
+# import PageContentQueryFragment from '../PageContent/PageContentQueryFragment.graphql'
+# import CmsPageQueryFragment from '@graphcommerce/magento-cms/CmsPageQueryFragment.graphql'
+
 query CmsPage($url: String!, $urlKey: String!, $rootCategory: String!) {
   ...MenuQueryFragment
   ...FooterQueryFragment

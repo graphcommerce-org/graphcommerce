@@ -1,3 +1,5 @@
+# import ProductShortDescription from '../ProductShortDescription/ProductShortDescription.graphql'
+
 fragment ProductPageDescription on ProductInterface {
   name
   ...ProductShortDescription

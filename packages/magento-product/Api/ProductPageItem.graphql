@@ -1,3 +1,11 @@
+# import ProductPageCategory from '../components/ProductPageCategory/ProductPageCategory.graphql'
+# import ProductPageDescription from '../components/ProductPageDescription/ProductPageDescription.graphql'
+# import ProductPageGallery from '../components/ProductPageGallery/ProductPageGallery.graphql'
+# import ProductPageMeta from '../components/ProductPageMeta/ProductPageMeta.graphql'
+# import ProductPagePrice from '../components/ProductPagePrice/ProductPagePrice.graphql'
+# import UpsellProducts from '../components/ProductUpsells/UpsellProducts.graphql'
+# import RelatedProducts from '../components/ProductRelated/RelatedProducts.graphql'
+
 fragment ProductPageItem on ProductInterface @injectable {
   __typename
   uid

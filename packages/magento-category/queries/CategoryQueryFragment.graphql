@@ -1,3 +1,9 @@
+# import CategoryBreadcrumb from '../components/CategoryBreadcrumb/CategoryBreadcrumb.graphql'
+# import CategoryDescription from '../components/CategoryDescription/CategoryDescription.graphql'
+# import CategoryChildren from '../components/CategoryChildren/CategoryChildren.graphql'
+# import CategoryMeta from '../components/CategoryMeta/CategoryMeta.graphql'
+# import CategoryHeroNav from '../components/CategoryHeroNav/CategoryHeroNav.graphql'
+
 fragment CategoryQueryFragment on Query {
   categories(filters: { url_path: { eq: $url } }) {
     items {

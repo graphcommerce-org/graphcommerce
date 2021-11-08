@@ -1,3 +1,5 @@
+# import BlogItem from './BlogItem.graphql'
+
 query BlogList($currentUrl: [String!]!, $first: Int = 4, $skip: Int = 0) {
   blogPosts: pages(
     where: {

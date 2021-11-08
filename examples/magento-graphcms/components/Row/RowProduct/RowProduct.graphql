@@ -1,3 +1,6 @@
+# import PageLink from '../../GraphQL/PageLink.graphql'
+# import Asset from '../../Asset/Asset.graphql'
+
 fragment RowProduct on RowProduct {
   variant
   asset {

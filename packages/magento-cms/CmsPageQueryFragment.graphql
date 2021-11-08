@@ -1,3 +1,6 @@
+# import CmsPageMeta from './CmsPageMeta.graphql'
+# import CmsPageContent from './CmsPageContent.graphql'
+
 fragment CmsPageQueryFragment on Query {
   cmsPage(identifier: $urlKey) {
     identifier

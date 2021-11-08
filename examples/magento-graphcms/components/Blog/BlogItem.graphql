@@ -1,3 +1,5 @@
+# import Asset from '../Asset/Asset.graphql'
+
 fragment BlogItem on Page {
   title
   url

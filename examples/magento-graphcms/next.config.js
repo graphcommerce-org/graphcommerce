@@ -58,6 +58,20 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.graphql$/,
+      exclude: /node_modules/,
+      use: [options.defaultLoaders.babel, { loader: 'graphql-let/loader' }],
+    })
+
+    config.module.rules.push({
+      test: /\.graphqls$/,
+      exclude: /node_modules/,
+      use: ['graphql-let/schema/loader'],
+    })
+    return config
+  },
 }
 
 module.exports = withPWA(withYarn1Workspaces(nextConfig))

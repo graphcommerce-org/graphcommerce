@@ -1,3 +1,6 @@
+# import ProductImage from './ProductImage.graphql'
+# import ProductVideo from './ProductVideo.graphql'
+
 fragment ProductPageGallery on ProductInterface {
   media_gallery {
     __typename

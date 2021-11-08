@@ -1,3 +1,6 @@
+# import ProductSpecs from '../ProductSpecs/ProductSpecs.graphql'
+# import ProductPageItem from '../../Api/ProductPageItem.graphql'
+
 fragment ProductPageQueryFragment on Query {
   products(filter: { url_key: { eq: $urlKey } }) {
     ...ProductSpecs

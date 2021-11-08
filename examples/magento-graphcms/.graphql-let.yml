@@ -1,0 +1,22 @@
+schema:
+  - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
+  - '**/*.graphqls'
+  - node_modules/@graphcommerce/**/*.graphqls
+  #- '.packages/mollie-magento-payment/**/*.graphqls'
+documents:
+  - 'components/**/*.graphql'
+  - 'node_modules/@graphcommerce/**/*.graphql'
+plugins:
+  - '@graphcommerce/graphql-codegen-relay-optimizer-plugin'
+  - typed-document-node
+  - typescript-operations
+  - add
+preset: '@graphcommerce/graphql-codegen-near-operation-file'
+presetConfig:
+  extension: .gql.ts
+  baseTypesPath: ~@graphcommerce/graphql
+  injectables: true
+config:
+  skipTypename: true
+  dedupeOperationSuffix: true
+  content: '/* eslint-disable */'
