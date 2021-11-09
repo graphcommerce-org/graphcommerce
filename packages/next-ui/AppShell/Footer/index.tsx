@@ -1,18 +1,17 @@
 import { ContainerProps, Theme, makeStyles, Container } from '@material-ui/core'
-import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     footer: {
-      gridTemplateColumns: '2.5fr 1.5fr',
+      gridTemplateColumns: '5fr 3fr',
       gridTemplateAreas: `
         'social switcher'
         'links support'
       `,
       borderTop: `1px solid ${theme.palette.divider}`,
-      padding: `${theme.page.vertical} ${theme.page.horizontal} ${theme.page.vertical}`,
+      padding: `${theme.page.vertical} ${theme.page.horizontal}`,
       display: 'grid',
       gap: theme.spacings.xs,
       alignItems: 'center',
@@ -34,11 +33,6 @@ const useStyles = makeStyles(
         gridTemplateColumns: 'auto auto',
         gridTemplateRows: 'auto',
         justifyContent: 'space-between',
-      },
-    },
-    disableMargin: {
-      [theme.breakpoints.down('xs')]: {
-        marginBottom: 0,
       },
     },
     copyright: {
@@ -86,7 +80,6 @@ const useStyles = makeStyles(
 )
 
 type FooterProps = UseStyles<typeof useStyles> & {
-  disableMargin?: boolean
   storeSwitcher?: React.ReactNode
   socialLinks?: React.ReactElement
   customerService?: React.ReactNode
@@ -94,22 +87,11 @@ type FooterProps = UseStyles<typeof useStyles> & {
 } & Omit<ContainerProps, 'children'>
 
 export default function Footer(props: FooterProps) {
-  const {
-    disableMargin,
-    socialLinks,
-    storeSwitcher,
-    customerService,
-    copyright,
-    ...containerProps
-  } = props
+  const { socialLinks, storeSwitcher, customerService, copyright, ...containerProps } = props
   const classes = useStyles(props)
 
   return (
-    <Container
-      maxWidth={false}
-      className={clsx(classes.footer, disableMargin && classes.disableMargin)}
-      {...containerProps}
-    >
+    <Container maxWidth={false} className={classes.footer} {...containerProps}>
       <div className={classes.social}>{socialLinks}</div>
       <div className={classes.storeSwitcher}>{storeSwitcher}</div>
       <div className={classes.support}>{customerService}</div>

@@ -4,7 +4,6 @@ import {
   CartSummary,
   CartTotals,
   EmptyCart,
-  useCartQuery,
   useCurrentCartId,
 } from '@graphcommerce/magento-cart'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
@@ -22,26 +21,20 @@ import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { mollie_methods } from '@graphcommerce/mollie-magento-payment'
 import {
   AppShellTitle,
+  FormActions,
   FormDiv,
   FullPageMessage,
   GetStaticProps,
   iconChevronRight,
   iconId,
   PageShellHeader,
+  Row,
   Stepper,
   SvgImageSimple,
   Title,
 } from '@graphcommerce/next-ui'
 import { ComposedForm } from '@graphcommerce/react-hook-form'
-import {
-  CircularProgress,
-  Container,
-  Dialog,
-  Divider,
-  NoSsr,
-  makeStyles,
-  Theme,
-} from '@material-ui/core'
+import { CircularProgress, Container, Dialog, Divider, NoSsr } from '@material-ui/core'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -56,17 +49,6 @@ type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 function PaymentPage() {
   const cartId = useCurrentCartId()
   const { locked } = useCartLock()
-
-  const useStyles = makeStyles(
-    (theme: Theme) => ({
-      paymentButton: {
-        marginBottom: theme.spacings.lg,
-      },
-    }),
-    { name: 'Payment' },
-  )
-
-  const classes = useStyles()
 
   return (
     <ComposedForm>
@@ -144,7 +126,7 @@ function PaymentPage() {
 
                     <PaymentMethodPlaceOrder key='placeorder' step={4} />
 
-                    <div className={classes.paymentButton}>
+                    <FormActions>
                       <PaymentMethodButton
                         key='button'
                         type='submit'
@@ -155,7 +137,7 @@ function PaymentPage() {
                       >
                         Place order
                       </PaymentMethodButton>
-                    </div>
+                    </FormActions>
                   </AnimatePresence>
                 </PaymentMethodContextProvider>
               </>
