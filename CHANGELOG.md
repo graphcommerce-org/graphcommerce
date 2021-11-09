@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.148.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.148.0...@graphcommerce/graphcommerce@2.148.1) (2021-11-09)
+
+
+### Bug Fixes
+
+* **full-page-shell-header:** always show logo ([80c760a](https://github.com/ho-nl/m2-pwa/commit/80c760ade6fde88765cd8f13181f61ee70db1081))
+
+
+
+
+
 # [2.148.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.147.8...@graphcommerce/graphcommerce@2.148.0) (2021-11-09)
 
 
