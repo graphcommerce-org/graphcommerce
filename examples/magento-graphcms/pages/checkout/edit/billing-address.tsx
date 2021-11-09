@@ -9,6 +9,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
@@ -21,16 +22,18 @@ type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 function EditBillingAddress() {
   return (
     <>
-      <PageMeta title='Edit billing address' metaRobots={['noindex', 'nofollow']} />
+      <PageMeta title={t`Edit billing address`} metaRobots={['noindex', 'nofollow']} />
 
       <SheetShellHeader hideDragIndicator>
         <Title component='span' size='small'>
-          Billing address
+          <Trans>Billing address</Trans>
         </Title>
       </SheetShellHeader>
 
       <AppShellTitle>
-        <Title>Billing address</Title>
+        <Title>
+          <Trans>Billing address</Trans>
+        </Title>
       </AppShellTitle>
 
       <Container maxWidth='md'>

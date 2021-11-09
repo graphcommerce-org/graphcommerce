@@ -1,0 +1,17 @@
+{
+  "locales": [
+    "en",
+    "nl"
+  ],
+  "catalogs": [
+    {
+      "path": "locales/{locale}",
+      "include": [
+        "<rootDir>/**/*.tsx"
+      ],
+      "exclude": [
+        "**/node_modules/**"
+      ]
+    }
+  ]
+}

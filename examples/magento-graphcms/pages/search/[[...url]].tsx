@@ -25,6 +25,7 @@ import {
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { AppShellSticky, GetStaticProps, Title } from '@graphcommerce/next-ui'
+import { t } from '@lingui/macro'
 import { Container, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
@@ -74,13 +75,13 @@ function SearchResultPage(props: Props) {
   const search = params.url.split('/')[1]
   const totalSearchResults = (categories?.items?.length ?? 0) + (products?.total_count ?? 0)
   const noSearchResults = search && (!products || (products.items && products?.items?.length <= 0))
-  const title = typeof search !== 'undefined' ? `Results for '${search}'` : 'All products'
+  const title = typeof search !== 'undefined' ? t`Results for '${search}'` : t`All products`
   const classes = useStyles()
 
   return (
     <>
       <PageMeta
-        title={search ? `Results for '${search}'` : 'Search'}
+        title={search ? t`Results for '${search}'` : t`Search`}
         metaRobots={['noindex']}
         canonical='/search'
       />

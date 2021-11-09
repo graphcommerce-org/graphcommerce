@@ -5,6 +5,7 @@ node_modules
 .next/
 out/
 .vercel
+next-env.d.ts
 
 # misc
 .DS_Store

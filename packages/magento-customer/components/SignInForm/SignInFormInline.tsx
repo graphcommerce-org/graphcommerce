@@ -1,5 +1,6 @@
 import { Button, Form } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { t, Trans } from '@lingui/macro'
 import { makeStyles, TextField, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
@@ -42,7 +43,7 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
         variant='outlined'
         type='password'
         error={!!formState.errors.password || !!error?.message}
-        label='Password'
+        label={t`Password`}
         autoFocus
         autoComplete='current-password'
         id='current-password'

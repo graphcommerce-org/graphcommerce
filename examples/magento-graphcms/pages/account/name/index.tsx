@@ -14,6 +14,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
@@ -39,16 +40,20 @@ function AccountNamePage() {
     <>
       <SheetShellHeader>
         <Title size='small' component='span' icon={iconId}>
-          Name
+          <Trans>Name</Trans>
         </Title>
       </SheetShellHeader>
       <NoSsr>
         <Container maxWidth='md'>
-          <PageMeta title='Name' metaDescription='Update your name' metaRobots={['noindex']} />
+          <PageMeta
+            title={t`Name`}
+            metaDescription={t`Update your name`}
+            metaRobots={['noindex']}
+          />
 
           <AppShellTitle icon={iconId}>Name</AppShellTitle>
 
-          <SectionContainer labelLeft='Name'>
+          <SectionContainer labelLeft={t`Name`}>
             {customer && (
               <ChangeNameForm
                 prefix={customer.prefix ?? ''}

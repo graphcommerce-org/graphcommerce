@@ -19,6 +19,7 @@ import {
   Title,
 } from '@graphcommerce/next-ui'
 import { ComposedForm, ComposedSubmit } from '@graphcommerce/react-hook-form'
+import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -42,7 +43,7 @@ function ShippingPage() {
 
   return (
     <ComposedForm>
-      <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots={['noindex']} />
+      <PageMeta title={t`Checkout`} metaDescription={t`Cart Items`} metaRobots={['noindex']} />
       <PageShellHeader
         primary={
           <ComposedSubmit
@@ -57,7 +58,7 @@ function ShippingPage() {
                 onClick={submit}
                 endIcon={<SvgImageSimple src={iconChevronRight} inverted size='small' />}
               >
-                Next
+                <Trans>Next</Trans>
               </Button>
             )}
           />
@@ -69,7 +70,7 @@ function ShippingPage() {
         }
       >
         <Title size='small' icon={iconBox}>
-          Shipping
+          <Trans>Shipping</Trans>
         </Title>
       </PageShellHeader>
       <Container maxWidth='md'>
@@ -78,13 +79,17 @@ function ShippingPage() {
 
           {cartExists && (
             <>
-              <AppShellTitle icon={iconBox}>Shipping</AppShellTitle>
+              <AppShellTitle icon={iconBox}>
+                <Trans>Shipping</Trans>
+              </AppShellTitle>
 
               <EmailForm step={1} />
 
               <ShippingAddressForm step={2} />
 
-              <FormHeader variant='h5'>Shipping method</FormHeader>
+              <FormHeader variant='h5'>
+                <Trans>Shipping method</Trans>
+              </FormHeader>
 
               <ShippingMethodForm step={3} />
 
@@ -103,7 +108,7 @@ function ShippingPage() {
                         }
                         onClick={submit}
                       >
-                        Next
+                        <Trans>Next</Trans>
                         <SvgImageSimple src={iconChevronRight} inverted />
                       </Button>
                     </FormActions>

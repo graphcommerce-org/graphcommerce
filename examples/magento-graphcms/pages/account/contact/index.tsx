@@ -14,6 +14,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
@@ -41,18 +42,20 @@ function AccountContactPage() {
     <>
       <SheetShellHeader>
         <Title size='small' component='span' icon={iconEmailOutline}>
-          Contact
+          <Trans>Contact</Trans>
         </Title>
       </SheetShellHeader>
       <NoSsr>
         <Container maxWidth='md'>
           <PageMeta
-            title='Contact'
-            metaDescription='Contact information'
+            title={t`Contact`}
+            metaDescription={t`Contact information`}
             metaRobots={['noindex']}
           />
 
-          <AppShellTitle icon={iconEmailOutline}>Contact</AppShellTitle>
+          <AppShellTitle icon={iconEmailOutline}>
+            <Trans>Contact</Trans>
+          </AppShellTitle>
 
           <SectionContainer labelLeft='Email'>
             {customer && <UpdateCustomerEmailForm email={customer.email ?? ''} />}

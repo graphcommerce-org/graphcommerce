@@ -10,6 +10,7 @@ import {
   SheetShellHeader,
   Title,
 } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
@@ -39,18 +40,20 @@ function AccountAddressesPage() {
     <>
       <SheetShellHeader>
         <Title size='small' component='span' icon={iconAddresses}>
-          Addresses
+          <Trans>Addresses</Trans>
         </Title>
       </SheetShellHeader>
       <Container maxWidth='md'>
         <PageMeta
-          title='Addresses'
-          metaDescription='View all your addresses'
+          title={t`Addresses`}
+          metaDescription={t`View all your addresses`}
           metaRobots={['noindex']}
         />
         <NoSsr>
           {((customer?.addresses && customer.addresses.length > 1) || !customer?.addresses) && (
-            <AppShellTitle icon={iconAddresses}>Addresses</AppShellTitle>
+            <AppShellTitle icon={iconAddresses}>
+              <Trans>Addresses</Trans>
+            </AppShellTitle>
           )}
           <AccountAddresses {...data} loading={!data} addresses={customer?.addresses} />
         </NoSsr>

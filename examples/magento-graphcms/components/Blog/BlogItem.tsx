@@ -1,7 +1,9 @@
 import { useQuery } from '@apollo/client'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { BlogListItem } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
 import { Typography } from '@material-ui/core'
+import React from 'react'
 import Asset from '../Asset'
 import { BlogItemFragment } from './BlogItem.gql'
 
@@ -19,7 +21,9 @@ export default function BlogItem(props: BlogItemProps) {
         asset ? (
           <Asset asset={asset} sizes={{ 0: '48vw', 711: '30vw', 1350: '22vw' }} />
         ) : (
-          <Typography variant='body2'>No Image</Typography>
+          <Typography variant='body2'>
+            <Trans>No Image</Trans>
+          </Typography>
         )
       }
       title={title ?? ''}

@@ -1,6 +1,7 @@
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation, useFormPersist } from '@graphcommerce/react-hook-form'
+import { t, Trans } from '@lingui/macro'
 import { FormControlLabel, Switch, TextField } from '@material-ui/core'
 import React from 'react'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
@@ -33,7 +34,7 @@ export default function SignUpForm(props: SignUpFormProps) {
           variant='outlined'
           type='password'
           error={!!formState.errors.password || !!inputError}
-          label='Password'
+          label={t`Password`}
           autoFocus
           autoComplete='new-password'
           required={required.password}

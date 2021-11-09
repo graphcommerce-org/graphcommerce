@@ -11,3 +11,12 @@ declare module 'react' {
     loading?: 'lazy' | 'eager' | 'auto'
   }
 }
+
+declare module '*.po' {
+  const messages: Record<
+    string,
+    string | Array<string | Array<string | (string | undefined) | Record<string, unknown>>>
+  >
+
+  export const messages
+}

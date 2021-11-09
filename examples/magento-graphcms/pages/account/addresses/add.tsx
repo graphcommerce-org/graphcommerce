@@ -15,6 +15,7 @@ import {
   Title,
   AppShellTitle,
 } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
@@ -42,14 +43,20 @@ function AddNewAddressPage() {
     <>
       <SheetShellHeader>
         <Title size='small' component='span' icon={iconAddresses}>
-          Addresses
+          <Trans>Addresses</Trans>
         </Title>
       </SheetShellHeader>
       <Container maxWidth='md'>
-        <PageMeta title='Add address' metaDescription='Add new address' metaRobots={['noindex']} />
+        <PageMeta
+          title={`Add address`}
+          metaDescription={t`Add new address`}
+          metaRobots={['noindex']}
+        />
         <NoSsr>
-          <AppShellTitle icon={iconAddresses}>Addresses</AppShellTitle>
-          <SectionContainer labelLeft='Add new address'>
+          <AppShellTitle icon={iconAddresses}>
+            <Trans>Addresses</Trans>
+          </AppShellTitle>
+          <SectionContainer labelLeft={t`Add new address`}>
             <CreateCustomerAddressForm />
           </SectionContainer>
         </NoSsr>

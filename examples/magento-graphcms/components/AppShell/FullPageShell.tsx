@@ -15,6 +15,7 @@ import {
   PlaceholderFab,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Fab, useTheme } from '@material-ui/core'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -56,7 +57,7 @@ function FullPageShell(props: FullPageShellProps) {
           item?.name ?? ''
         ),
       })) ?? []),
-      { href: '/blog', children: 'Blog' },
+      { href: '/blog', children: t`Blog` },
     ],
   }
 
@@ -75,7 +76,7 @@ function FullPageShell(props: FullPageShellProps) {
           <DesktopNavActions>
             {!router.pathname.startsWith('/search') && <SearchButton onClick={onSearchStart} />}
             <PageLink href='/service' passHref>
-              <Fab aria-label='Account' size='large' color='inherit'>
+              <Fab aria-label={t`Account`} size='large' color='inherit'>
                 <SvgImageSimple src={iconCustomerService} size='large' />
               </Fab>
             </PageLink>
@@ -89,10 +90,10 @@ function FullPageShell(props: FullPageShellProps) {
       menuFab={
         <MenuFab {...menuProps} search={<SearchButton onClick={onSearchStart} />}>
           <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>
-            Account
+            <Trans>Account</Trans>
           </CustomerMenuFabItem>
           <MenuFabSecondaryItem icon={<SvgImageSimple src={iconCustomerService} />} href='/service'>
-            Customer Service
+            <Trans>Customer Service</Trans>
           </MenuFabSecondaryItem>
         </MenuFab>
       }

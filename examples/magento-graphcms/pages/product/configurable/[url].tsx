@@ -19,6 +19,7 @@ import {
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, JsonLd, Title } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
@@ -82,7 +83,7 @@ function ProductConfigurable(props: Props) {
         <ProductPageGallery {...product}>
           <div>
             <Typography component='span' className={classes.prePrice} variant='body2'>
-              As low as &nbsp;
+              <Trans>As low as</Trans>&nbsp;
             </Typography>
             <Typography component='span' variant='h6'>
               <Money {...product.price_range.minimum_price.regular_price} />
@@ -105,7 +106,9 @@ function ProductConfigurable(props: Props) {
             optionEndLabels={{
               size: (
                 <PageLink href='/modal/product/global/size' passHref>
-                  <Link color='primary'>Which size is right?</Link>
+                  <Link color='primary'>
+                    <Trans>Which size is right?</Trans>
+                  </Link>
                 </PageLink>
               ),
             }}

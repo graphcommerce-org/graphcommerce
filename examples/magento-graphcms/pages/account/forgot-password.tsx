@@ -2,6 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ForgotPasswordForm } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { AppShellTitle, GetStaticProps, SheetShellHeader, Title } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Box, Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
@@ -14,7 +15,7 @@ function AccountForgotPasswordPage() {
     <>
       <SheetShellHeader>
         <Title size='small' component='span'>
-          Forgot your password?
+          <Trans>Forgot your password?</Trans>
         </Title>
       </SheetShellHeader>
       <Container maxWidth='sm'>
@@ -25,10 +26,14 @@ function AccountForgotPasswordPage() {
         />
         <NoSsr>
           <Box pt={4} textAlign='center'>
-            <AppShellTitle>Forgot your password?</AppShellTitle>
+            <AppShellTitle>
+              <Trans>Forgot your password?</Trans>
+            </AppShellTitle>
             <p>
-              No worries! Enter your email address and we will send an email with instructions to
-              reset your password.
+              <Trans>
+                No worries! Enter your email address and we will send an email with instructions to
+                reset your password.
+              </Trans>
             </p>
             <ForgotPasswordForm />
           </Box>
@@ -55,7 +60,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variant: 'bottom',
       size: 'max',
-      up: { href: '/account-signin', title: 'Sign In' },
+      up: { href: '/account-signin', title: t`Sign In` },
     },
   }
 }

@@ -28,6 +28,7 @@ import {
   TimeAgo,
   Title,
 } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
@@ -65,15 +66,21 @@ function AccountIndexPage() {
 
   return (
     <>
-      <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
+      <PageMeta
+        title={t`Account`}
+        metaDescription={t`Account Dashboard`}
+        metaRobots={['noindex']}
+      />
 
       <PageShellHeader>
         <Title component='span' size='small' icon={iconPerson}>
-          Account
+          <Trans>Account</Trans>
         </Title>
       </PageShellHeader>
 
-      <AppShellTitle icon={iconPerson}>Account</AppShellTitle>
+      <AppShellTitle icon={iconPerson}>
+        <Trans>Account</Trans>
+      </AppShellTitle>
 
       <Container maxWidth='md'>
         <NoSsr>
@@ -81,25 +88,25 @@ function AccountIndexPage() {
             <AccountMenuItem
               href='/account/name'
               iconSrc={iconId}
-              title='Name'
+              title={t`Name`}
               subtitle={`${customer?.firstname} ${customer?.lastname}`}
             />
             <AccountMenuItem
               href='/account/contact'
               iconSrc={iconEmailOutline}
-              title='Contact'
+              title={t`Contact`}
               subtitle={customer?.email}
             />
             <AccountMenuItem
               href='/account/authentication'
               iconSrc={iconLock}
-              title='Authentication'
-              subtitle='Password'
+              title={t`Authentication`}
+              subtitle={t`Password`}
             />
             <AccountMenuItem
               href='/account/orders'
               iconSrc={iconBox}
-              title='Orders'
+              title={t`Orders`}
               subtitle={
                 latestOrder ? (
                   <>
@@ -111,13 +118,13 @@ function AccountIndexPage() {
                       <OrderStateLabelInline
                         items={latestOrder?.items}
                         renderer={{
-                          Ordered: () => <span>processed</span>,
-                          Invoiced: () => <span>invoiced</span>,
-                          Shipped: () => <span>shipped</span>,
-                          Refunded: () => <span>refunded</span>,
-                          Canceled: () => <span>canceled</span>,
-                          Returned: () => <span>returned</span>,
-                          Partial: () => <span>partially processed</span>,
+                          Ordered: () => <Trans>processed</Trans>,
+                          Invoiced: () => <Trans>invoiced</Trans>,
+                          Shipped: () => <Trans>shipped</Trans>,
+                          Refunded: () => <Trans>refunded</Trans>,
+                          Canceled: () => <Trans>canceled</Trans>,
+                          Returned: () => <Trans>returned</Trans>,
+                          Partial: () => <Trans>partially processed</Trans>,
                         }}
                       />
                     )}
@@ -128,21 +135,21 @@ function AccountIndexPage() {
             <AccountMenuItem
               href='/account/addresses'
               iconSrc={iconHome}
-              title='Addresses'
+              title={t`Addresses`}
               subtitle={address ? <AddressSingleLine {...address} /> : undefined}
             />
             {customer?.reviews.items.length !== 0 && (
               <AccountMenuItem
                 href='/account/reviews'
                 iconSrc={iconStar}
-                title='Reviews'
-                subtitle={`Written ${customer?.reviews.items.length} reviews`}
+                title={t`Reviews`}
+                subtitle={t`Written ${customer?.reviews.items.length} reviews`}
               />
             )}
             <AccountMenuItem
               iconSrc={iconNewspaper}
-              title='Newsletter'
-              subtitle='Be the first to know about everything new!'
+              title={t`Newsletter`}
+              subtitle={t`Be the first to know about everything new!`}
               endIcon={<CustomerNewsletterToggle color='primary' />}
             />
             <SignOutForm
@@ -152,7 +159,7 @@ function AccountIndexPage() {
                   loading={formState.isSubmitting}
                   type='submit'
                   disabled={loading}
-                  title='Sign out'
+                  title={t`Sign out`}
                   noBorderBottom
                 />
               )}

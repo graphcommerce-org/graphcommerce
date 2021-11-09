@@ -1,4 +1,5 @@
 import { ServerStyleSheets } from '@material-ui/core/styles'
+// eslint-disable-next-line @next/next/no-document-import-in-page
 import NextDocument, { DocumentContext } from 'next/document'
 import React from 'react'
 

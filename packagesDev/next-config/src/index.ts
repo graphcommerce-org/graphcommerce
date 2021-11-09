@@ -41,6 +41,9 @@ function extendConfig(nextConfig: NextConfig): NextConfig {
       // To properly properly treeshake @apollo/client we need to define the __DEV__ property
       config.plugins = [new DefinePlugin({ __DEV__: options.dev }), ...(config.plugins ?? [])]
 
+      // @lingui .po file support
+      config.module?.rules?.push({ test: /\.po/, use: '@lingui/loader' })
+
       config.experiments = {
         layers: true,
         topLevelAwait: true,

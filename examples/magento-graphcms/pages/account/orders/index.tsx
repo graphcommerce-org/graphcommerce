@@ -16,6 +16,7 @@ import {
   SvgImageSimple,
   Title,
 } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
@@ -50,11 +51,15 @@ function AccountOrdersPage() {
     <>
       <SheetShellHeader>
         <Title size='small' component='span' icon={iconBox}>
-          Orders
+          <Trans>Orders</Trans>
         </Title>
       </SheetShellHeader>
       <Container maxWidth='md'>
-        <PageMeta title='Orders' metaDescription='View all your orders' metaRobots={['noindex']} />
+        <PageMeta
+          title={t`Orders`}
+          metaDescription='View all your orders'
+          metaRobots={['noindex']}
+        />
         <NoSsr>
           {customer?.orders && customer.orders.items.length > 1 && (
             <>
@@ -66,10 +71,10 @@ function AccountOrdersPage() {
           {customer?.orders && customer.orders.items.length < 1 && (
             <>
               <FullPageMessage
-                title='You have no orders yet'
+                title={t`You have no orders yet`}
                 icon={<SvgImageSimple src={iconBox} size='xxl' />}
               >
-                Discover our collection and place your first order!
+                <Trans>Discover our collection and place your first order!</Trans>
               </FullPageMessage>
             </>
           )}

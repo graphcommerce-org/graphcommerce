@@ -1,4 +1,5 @@
-import { iconSadFace, FullPageMessage, SvgImageSimple } from '@graphcommerce/next-ui'
+import { FullPageMessage, SvgImageSimple, iconSadFace } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Button } from '@material-ui/core'
 import Link from 'next/link'
 import React from 'react'
@@ -9,17 +10,17 @@ export default function EmptyCart(props: EmptyCartProps) {
 
   return (
     <FullPageMessage
-      title='Your cart is empty'
+      title={t`Your cart is empty`}
       icon={<SvgImageSimple src={iconSadFace} size='xxl' />}
       button={
         <Link href='/' passHref>
           <Button variant='contained' color='primary' size='large'>
-            Continue shopping
+            <Trans>Continue shopping</Trans>
           </Button>
         </Link>
       }
     >
-      {children ?? <>Discover our collection and add items to your basket!</>}
+      {children ?? <Trans>Discover our collection and add items to your basket!</Trans>}
     </FullPageMessage>
   )
 }
