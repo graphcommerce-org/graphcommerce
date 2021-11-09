@@ -24,7 +24,7 @@ const useStyles = makeStyles(
   { name: 'SearchButton' },
 )
 
-export type SearchButtonProps = UseStyles<typeof useStyles> & TextFieldProps & { label?: string }
+export type SearchButtonProps = UseStyles<typeof useStyles> & TextFieldProps
 
 export default function SearchButton(props: SearchButtonProps) {
   const { InputProps, label = 'Search...', ...textFieldProps } = props
