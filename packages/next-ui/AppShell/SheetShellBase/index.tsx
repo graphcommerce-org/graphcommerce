@@ -12,7 +12,7 @@ import {
 import { makeStyles, StyleRules, Theme } from '@material-ui/core'
 import { useDomEvent } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import responsiveVal from '../../Styles/responsiveVal'
 import AppShellProvider from '../AppShellProvider'
 import ShellBase, { PageLayoutBaseProps } from '../ShellBase'
@@ -63,11 +63,15 @@ function SheetShellBase(props: SheetShellBaseProps) {
   const { depth, closeSteps, active, direction } = usePageContext()
   const open = depth < 0 || router.asPath === pageRouter.asPath
   const initialLocale = useRef(router.locale)
+  const [isNavigating, setIsNavigating] = useState<boolean>(false)
 
   function handleClose() {
-    return initialLocale.current !== router.locale
-      ? pageRouter.push('/')
-      : pageRouter.go(closeSteps * -1)
+    if (!isNavigating) {
+      setIsNavigating(true)
+      return initialLocale.current !== router.locale
+        ? pageRouter.push('/')
+        : pageRouter.go(closeSteps * -1)
+    }
   }
 
   function handleSnap(snapPoint: SnapPoint) {
