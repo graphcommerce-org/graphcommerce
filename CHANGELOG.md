@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.148.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.148.1...@graphcommerce/graphcommerce@2.148.2) (2021-11-09)
+
+
+### Bug Fixes
+
+* **menu-fab:** revert h3 styling for mobile menu ([7a45b4f](https://github.com/ho-nl/m2-pwa/commit/7a45b4fb8b0165f7a072bc0658833c819c9f8082))
+* restyle menu to h4 ([642e166](https://github.com/ho-nl/m2-pwa/commit/642e16635dc06f38bed91ffd1a374922ac70439b))
+* **search-button:** add label for accessibility score ([1871e5b](https://github.com/ho-nl/m2-pwa/commit/1871e5b0b264ae4c98ebf3af1d074bb23d4dbbd8))
+
+
+
+
+
 ## [2.148.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.148.0...@graphcommerce/graphcommerce@2.148.1) (2021-11-09)
 
 

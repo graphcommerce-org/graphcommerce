@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.132.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.132.1...@graphcommerce/magento-graphcms@2.132.2) (2021-11-09)
+
+
+### Bug Fixes
+
+* **search-button:** add label for accessibility score ([1871e5b](https://github.com/ho-nl/m2-pwa/commit/1871e5b0b264ae4c98ebf3af1d074bb23d4dbbd8))
+
+
+
+
+
 ## [2.132.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.132.0...@graphcommerce/magento-graphcms@2.132.1) (2021-11-09)
 
 

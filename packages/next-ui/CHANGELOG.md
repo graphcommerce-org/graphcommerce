@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.14.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.14.7...@graphcommerce/next-ui@3.14.8) (2021-11-09)
+
+
+### Bug Fixes
+
+* **menu-fab:** revert h3 styling for mobile menu ([7a45b4f](https://github.com/ho-nl/m2-pwa/commit/7a45b4fb8b0165f7a072bc0658833c819c9f8082))
+* restyle menu to h4 ([642e166](https://github.com/ho-nl/m2-pwa/commit/642e16635dc06f38bed91ffd1a374922ac70439b))
+
+
+
+
+
 ## [3.14.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.14.6...@graphcommerce/next-ui@3.14.7) (2021-11-09)
 
 

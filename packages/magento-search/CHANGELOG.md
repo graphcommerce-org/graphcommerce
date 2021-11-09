@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.16](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.4.15...@graphcommerce/magento-search@3.4.16) (2021-11-09)
+
+
+### Bug Fixes
+
+* restyle menu to h4 ([642e166](https://github.com/ho-nl/m2-pwa/commit/642e16635dc06f38bed91ffd1a374922ac70439b))
+* **search-button:** add label for accessibility score ([1871e5b](https://github.com/ho-nl/m2-pwa/commit/1871e5b0b264ae4c98ebf3af1d074bb23d4dbbd8))
+
+
+
+
+
 ## [3.4.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.4.6...@graphcommerce/magento-search@3.4.7) (2021-11-03)
 
 
