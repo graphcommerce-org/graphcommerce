@@ -54,13 +54,20 @@ export default function StoryPage(props: Props) {
       const width = attr.rel ? attr.rel.split(',')[0] : undefined
       const height = attr.rel ? attr.rel.split(',')[1] : undefined
 
+      const alt = (attr: any) => {
+        return (
+          (attr.alt && attr.alt) ||
+          (attr.class && attr.class) ||
+          (node.parent.attribs.class && node.parent.attribs.class)
+        )
+      }
       return (
         <div className={attr.class ?? attr.class}>
           <Image
             src={attr.src}
             layout='fill'
             loading={attr.loading && attr.loading}
-            alt={attr.alt ? attr.loading : attr.class}
+            alt={alt(attr)}
             width={width && width}
             height={height && height}
             sizes={width ? { 0: '100vw', 1350: `${width}px` } : undefined}
