@@ -53,9 +53,8 @@ const useStyles = makeStyles(
       minWidth: responsiveVal(200, 280),
     },
     menuItemText: {
-      fontSize: '1.6em',
-      fontWeight: 550,
-      lineHeight: 1,
+      ...theme.typography.h4,
+      lineHeight: 1.1,
     },
     menuItem: {},
   }),

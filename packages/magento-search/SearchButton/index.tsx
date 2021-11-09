@@ -17,9 +17,6 @@ const useStyles = makeStyles(
     inputRoot: {
       ...theme.typography.body2,
     },
-    label: {
-      display: 'none',
-    },
   }),
   { name: 'SearchButton' },
 )
