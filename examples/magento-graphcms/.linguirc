@@ -1,6 +1,7 @@
 {
   "locales": [
     "en",
+    "en-gb",
     "nl"
   ],
   "catalogs": [
