@@ -8,7 +8,11 @@ const useStyles = makeStyles(
     wrapper: {
       display: 'grid',
       gridTemplateColumns: '1fr',
-      gridTemplateAreas: `"title" "categories" "placeholder"`,
+      gridTemplateAreas: `
+        "title"
+        "categories"
+        "placeholder"
+      `,
       gridTemplateRows: 'auto 60vw',
       borderBottom: `1px solid ${theme.palette.divider}`,
       marginBottom: theme.spacings.xl,
@@ -28,8 +32,13 @@ const useStyles = makeStyles(
       gridRowGap: theme.spacings.lg,
       height: 'min-content',
       alignSelf: 'center',
+      justifyItems: 'center',
       maxWidth: '80vw',
       justifySelf: 'center',
+      marginBottom: theme.spacings.lg,
+      [theme.breakpoints.up('sm')]: {
+        alignSelf: 'start',
+      },
       [theme.breakpoints.up('md')]: {
         gridColumnGap: theme.spacings.md,
         gridRowGap: theme.spacings.md,
