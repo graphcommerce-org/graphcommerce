@@ -23,10 +23,11 @@ const useStyles = makeStyles(
       },
     },
     scroller: {
-      display: 'flex',
+      display: 'grid',
       columnGap: 40,
       padding: '0 40px',
       minHeight: 40,
+      gridAutoColumns: 'min-content',
     },
     prevNextBtnWrapper: {
       position: 'absolute',

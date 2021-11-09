@@ -97,6 +97,8 @@ const useStyles = makeStyles(
       marginTop: '-5%',
     },
     itemName: {
+      ...theme.typography.subtitle1,
+      fontWeight: theme.typography.fontWeightBold,
       gridArea: 'itemName',
       color: theme.palette.text.primary,
       textDecoration: 'none',
@@ -104,6 +106,8 @@ const useStyles = makeStyles(
       maxWidth: 'max-content',
     },
     itemNameWithOptions: {
+      ...theme.typography.subtitle1,
+      fontWeight: theme.typography.fontWeightBold,
       alignSelf: 'flex-end',
     },
     itemPrice: {
@@ -117,7 +121,7 @@ const useStyles = makeStyles(
     },
     quantity: {
       gridArea: 'quantity',
-      justifySelf: 'center',
+      justifySelf: 'right',
       transform: 'translateY(0)',
       [theme.breakpoints.up('sm')]: {
         transform: 'translateY(-6px)',
@@ -156,6 +160,10 @@ export default function CartItem(props: CartItemProps) {
         component='div'
         className={classes.picture}
         overlap='circular'
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
       >
         <PageLink href={productLink}>
           <a className={classes.productLink}>
@@ -174,7 +182,7 @@ export default function CartItem(props: CartItemProps) {
 
       <PageLink href={productLink}>
         <Link
-          variant='h6'
+          variant='body1'
           className={clsx(classes.itemName, withOptions && classes.itemNameWithOptions)}
         >
           {name}

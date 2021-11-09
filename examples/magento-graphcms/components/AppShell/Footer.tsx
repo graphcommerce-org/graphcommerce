@@ -4,12 +4,12 @@ import { Trans } from '@lingui/macro'
 import { IconButton, Link } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
-import { FooterQueryFragment } from './FooterQueryFragment.gql'
+import { FooterQueryFragment } from '../AppShell/FooterQueryFragment.gql'
 
-export type FooterProps = FooterQueryFragment & { disableMargin?: boolean }
+export type FooterProps = FooterQueryFragment
 
 export default function Footer(props: FooterProps) {
-  const { footer, disableMargin } = props
+  const { footer } = props
 
   return (
     <NextFooter
@@ -60,7 +60,6 @@ export default function Footer(props: FooterProps) {
           ))}
         </>
       }
-      disableMargin={disableMargin}
     />
   )
 }

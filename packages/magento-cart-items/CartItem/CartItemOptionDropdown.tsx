@@ -7,7 +7,6 @@ const useStyles = makeStyles(
       marginRight: theme.spacings.xs,
     },
     label: {
-      fontSize: theme.typography.fontSize,
       letterSpacing: 1,
       textTransform: 'uppercase',
       fontWeight: 500,

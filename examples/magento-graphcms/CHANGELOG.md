@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.131.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.131.9...@graphcommerce/magento-graphcms@2.131.10) (2021-11-08)
+
+
+### Bug Fixes
+
+* build ([4b469a8](https://github.com/ho-nl/m2-pwa/commit/4b469a8eb9545c3bcae6f80b2b96cc18d45c2490))
+
+
+
+
+
+## [2.131.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.131.8...@graphcommerce/magento-graphcms@2.131.9) (2021-11-08)
+
+
+### Bug Fixes
+
+* error typos ([d3f5357](https://github.com/ho-nl/m2-pwa/commit/d3f5357ffd840fb236db4e40cb52a324752591fb))
+* **row-product:** additional props ([2b706a3](https://github.com/ho-nl/m2-pwa/commit/2b706a3d438b3fc227a8d2250d0996fed08475c3))
+
+
+
+
+
+## [2.131.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.131.3...@graphcommerce/magento-graphcms@2.131.4) (2021-11-04)
+
+
+### Bug Fixes
+
+* Checkout button margin consistency ([9fcf7e7](https://github.com/ho-nl/m2-pwa/commit/9fcf7e7d96172448b2d2911771d6bf70ab976594))
+
+
+
+
+
+## [2.131.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.131.2...@graphcommerce/magento-graphcms@2.131.3) (2021-11-04)
+
+
+### Bug Fixes
+
+* **blog-item:** image sizes ([1d15c3c](https://github.com/ho-nl/m2-pwa/commit/1d15c3cfc8002fc1b5af1c977199e70130a6bbd4))
+
+
+
+
+
 ## [2.131.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.131.1...@graphcommerce/magento-graphcms@2.131.2) (2021-11-03)
 
 

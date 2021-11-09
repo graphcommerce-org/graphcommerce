@@ -70,61 +70,52 @@ export default function CartAgreementsForm(props: CartAgreementsFormProps) {
       <form noValidate onSubmit={submit} name='cartAgreements'>
         <div className={classes.formInner}>
           {data?.checkoutAgreements &&
-            sortedAgreements?.map(
-              (agreement) =>
-                agreement && (
-                  <React.Fragment key={agreement.agreement_id}>
-                    {agreement.mode === 'MANUAL' ? (
-                      <>
-                        <Controller
-                          defaultValue={''}
-                          name={String(agreement.agreement_id)}
-                          control={control}
-                          rules={{ required: 'You have to agree in order to proceed' }}
-                          render={({
-                            field: { onChange, value, name, ref, onBlur },
-                            fieldState: { error },
-                          }) => (
-                            <FormControl
-                              error={!!formState.errors[String(agreement.agreement_id)]}
-                              classes={{ root: classes.formControlRoot }}
-                            >
-                              <FormControlLabel
-                                control={<Checkbox color='secondary' required={true} />}
-                                label={
-                                  <PageLink
-                                    href={`/legal/view/${agreement.name
-                                      ?.toLowerCase()
-                                      .replaceAll(' ', '-')}`}
-                                    passHref
-                                  >
-                                    <Link color='secondary'>{agreement.checkbox_text}</Link>
-                                  </PageLink>
-                                }
-                                checked={!!value}
-                                inputRef={ref}
-                                onBlur={onBlur}
-                                name={name}
-                                onChange={(e) => onChange(e as React.ChangeEvent<HTMLInputElement>)}
-                              />
-                              {error?.message && <FormHelperText>{error.message}</FormHelperText>}
-                            </FormControl>
-                          )}
-                        />
-                      </>
-                    ) : (
-                      <div className={classes.manualCheck}>
-                        <PageLink
-                          href={`/legal/view/${agreement.name?.toLowerCase().replaceAll(' ', '-')}`}
-                          passHref
+            sortedAgreements?.map((agreement) => {
+              if (!agreement) return null
+              const href = `/checkout/terms/${agreement.name?.toLowerCase().replace(/\s+/g, '-')}`
+              return (
+                <React.Fragment key={agreement.agreement_id}>
+                  {agreement.mode === 'MANUAL' ? (
+                    <Controller
+                      defaultValue={''}
+                      name={String(agreement.agreement_id)}
+                      control={control}
+                      rules={{ required: 'You have to agree in order to proceed' }}
+                      render={({
+                        field: { onChange, value, name, ref, onBlur },
+                        fieldState: { error },
+                      }) => (
+                        <FormControl
+                          error={!!formState.errors[String(agreement.agreement_id)]}
+                          classes={{ root: classes.formControlRoot }}
                         >
-                          <Link color='secondary'>{agreement.checkbox_text}</Link>
-                        </PageLink>
-                      </div>
-                    )}
-                  </React.Fragment>
-                ),
-            )}
+                          <FormControlLabel
+                            control={<Checkbox color='secondary' required={true} />}
+                            label={
+                              <PageLink href={href} passHref>
+                                <Link color='secondary'>{agreement.checkbox_text}</Link>
+                              </PageLink>
+                            }
+                            checked={!!value}
+                            inputRef={ref}
+                            onBlur={onBlur}
+                            name={name}
+                            onChange={(e) => onChange(e as React.ChangeEvent<HTMLInputElement>)}
+                          />
+                          {error?.message && <FormHelperText>{error.message}</FormHelperText>}
+                        </FormControl>
+                      )}
+                    />
+                  ) : (
+                    <div className={classes.manualCheck}>
+                      <PageLink href={href} passHref>
+                        <Link color='secondary'>{agreement.checkbox_text}</Link>
+                      </PageLink>
+                    </div>
+                  )}
+                </React.Fragment>
+              )
+            })}
         </div>
       </form>
     </FormDiv>

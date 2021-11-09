@@ -37,7 +37,6 @@ function FullPageShell(props: FullPageShellProps) {
   const theme = useTheme()
   const storeConfig = useQuery(StoreConfigDocument)
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
-
   const menuItemsIncludeInMenu = menuData?.items?.filter((items) => items?.include_in_menu === 1)
 
   const menuProps: MenuProps = {

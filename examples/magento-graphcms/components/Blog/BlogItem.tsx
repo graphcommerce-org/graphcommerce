@@ -19,7 +19,7 @@ export default function BlogItem(props: BlogItemProps) {
     <BlogListItem
       asset={
         asset ? (
-          <Asset asset={asset} sizes={{ 0: '100vw', 800: '800px' }} />
+          <Asset asset={asset} sizes={{ 0: '48vw', 711: '30vw', 1350: '22vw' }} />
         ) : (
           <Typography variant='body2'>
             <Trans>No Image</Trans>

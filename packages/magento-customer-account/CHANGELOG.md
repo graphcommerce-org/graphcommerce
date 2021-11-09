@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.104.18](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-account@2.104.17...@graphcommerce/magento-customer-account@2.104.18) (2021-11-04)
+
+
+### Bug Fixes
+
+* remove hardcoded fontSize ([e4e09e1](https://github.com/ho-nl/m2-pwa/commit/e4e09e11baeb8edeff634550b8cdb88571d96911))
+
+
+
+
+
 ## [2.104.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-account@2.104.8...@graphcommerce/magento-customer-account@2.104.9) (2021-11-02)
 
 

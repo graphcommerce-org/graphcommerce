@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.14.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.14.2...@graphcommerce/next-ui@3.14.3) (2021-11-06)
+
+
+### Bug Fixes
+
+* spacing DesktopNavBar items ([c3373b9](https://github.com/ho-nl/m2-pwa/commit/c3373b97add87864adc5809ab04cf683bc5b0498))
+
+
+
+
+
+## [3.14.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.14.0...@graphcommerce/next-ui@3.14.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* can't remove filters on click icon ([2528802](https://github.com/ho-nl/m2-pwa/commit/252880216994da7f8e65c1b565ff996bbab0472a))
+* Checkout button margin consistency ([9fcf7e7](https://github.com/ho-nl/m2-pwa/commit/9fcf7e7d96172448b2d2911771d6bf70ab976594))
+* remove hardcoded fontSize ([e4e09e1](https://github.com/ho-nl/m2-pwa/commit/e4e09e11baeb8edeff634550b8cdb88571d96911))
+
+
+
+
+
+# [3.14.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.13.2...@graphcommerce/next-ui@3.14.0) (2021-11-04)
+
+
+### Bug Fixes
+
+* **menu-fab:** fix route change start event handling ([20dde65](https://github.com/ho-nl/m2-pwa/commit/20dde65f8e8ead449b21f4f5292d653d003e6ead))
+
+
+### Features
+
+* **sheet-shell-base:** stop animating drawer on browser back ([c6262f1](https://github.com/ho-nl/m2-pwa/commit/c6262f1c3a0d181e57bd5d4971efb469901503b1))
+
+
+
+
+
 ## [3.13.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.13.1...@graphcommerce/next-ui@3.13.2) (2021-11-03)
 
 

@@ -15,7 +15,7 @@ import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import { PagesStaticPathsDocument } from '../../components/GraphQL/PagesStaticPaths.gql'
-import PageContent from '../../components/PageContent'
+import RowRenderer from '../../components/Row/RowRenderer'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = DefaultPageQuery
@@ -45,7 +45,7 @@ function ServicePage({ pages }: Props) {
           <Title>{title}</Title>
         </AppShellTitle>
       </Container>
-      <PageContent {...pages[0]} />
+      <RowRenderer {...pages[0]} />
     </>
   )
 }

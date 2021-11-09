@@ -1,9 +1,9 @@
 import {
+  clientSize,
+  Styled,
   useElementScroll,
   useIsomorphicLayoutEffect,
   useMotionValueValue,
-  Styled,
-  clientSize,
 } from '@graphcommerce/framer-utils'
 import clsx from 'clsx'
 import { m, MotionValue, PanInfo, useMotionValue, useTransform } from 'framer-motion'
@@ -46,10 +46,13 @@ export type SheetPanelProps = {
    * ```
    */
   children: React.ReactNode
+
+  /** Initial animation state */
+  initial?: string
 } & Styled<SheetPanelClasskey>
 
 export default function SheetPanel(props: SheetPanelProps) {
-  const { header, back, forward, children, styles, classes } = props
+  const { header, back, forward, children, styles, initial, classes } = props
   const {
     drag,
     size,
@@ -103,8 +106,6 @@ export default function SheetPanel(props: SheetPanelProps) {
     return () => ro.disconnect()
   }, [dragHandleRef, dragHandleHeight])
 
-  const Variant = variant[0].toUpperCase() + variant.slice(1)
-
   return (
     <>
       <m.div
@@ -117,7 +118,7 @@ export default function SheetPanel(props: SheetPanelProps) {
           closed: () => ({ [axis]: clientSize[axis].get() * sign }),
           ...useSnapPointVariants(),
         }}
-        initial='closed'
+        initial={initial ?? 'closed'}
         exit={`snapPoint${last}`}
         animate={controls}
         className={clsx(classes?.dragHandle, classes?.[`dragHandle${variant}`])}

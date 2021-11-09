@@ -4,7 +4,6 @@ import {
   CartSummary,
   CartTotals,
   EmptyCart,
-  useCartQuery,
   useCurrentCartId,
 } from '@graphcommerce/magento-cart'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
@@ -22,12 +21,14 @@ import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { mollie_methods } from '@graphcommerce/mollie-magento-payment'
 import {
   AppShellTitle,
+  FormActions,
   FormDiv,
   FullPageMessage,
   GetStaticProps,
   iconChevronRight,
   iconId,
   PageShellHeader,
+  Row,
   Stepper,
   SvgImageSimple,
   Title,
@@ -128,16 +129,18 @@ function PaymentPage() {
 
                     <PaymentMethodPlaceOrder key='placeorder' step={4} />
 
-                    <PaymentMethodButton
-                      key='button'
-                      type='submit'
-                      color='secondary'
-                      variant='pill'
-                      size='large'
-                      endIcon={<SvgImageSimple src={iconChevronRight} inverted />}
-                    >
-                      <Trans>Place order</Trans>
-                    </PaymentMethodButton>
+                    <FormActions>
+                      <PaymentMethodButton
+                        key='button'
+                        type='submit'
+                        color='secondary'
+                        variant='pill'
+                        size='large'
+                        endIcon={<SvgImageSimple src={iconChevronRight} inverted />}
+                      >
+                        <Trans>Place order</Trans>
+                      </PaymentMethodButton>
+                    </FormActions>
                   </AnimatePresence>
                 </PaymentMethodContextProvider>
               </>

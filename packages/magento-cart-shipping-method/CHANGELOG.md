@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.105.13](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-shipping-method@2.105.12...@graphcommerce/magento-cart-shipping-method@2.105.13) (2021-11-09)
+
+
+### Bug Fixes
+
+* font sizes ([1cf7d45](https://github.com/ho-nl/m2-pwa/commit/1cf7d451c3f8bdd064fdf351dffafced97387aff))
+* styling when only 2 methods available. Hide buttons. ([6a90516](https://github.com/ho-nl/m2-pwa/commit/6a90516833e4fd1ea618111b278ecbdb76c9554a))
+
+
+
+
+
+## [2.105.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-shipping-method@2.105.6...@graphcommerce/magento-cart-shipping-method@2.105.7) (2021-11-04)
+
+
+### Bug Fixes
+
+* Shipping method scroller styles ([d48d248](https://github.com/ho-nl/m2-pwa/commit/d48d2486fabb9059dbb0c27a5331784ee676a201))
+
+
+
+
+
 # [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-shipping-method@2.104.10...@graphcommerce/magento-cart-shipping-method@2.105.0) (2021-11-02)
 
 

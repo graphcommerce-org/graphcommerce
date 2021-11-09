@@ -8,19 +8,8 @@ import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.gql'
 import { DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import PageContent from '../../components/PageContent'
+import RowRenderer from '../../components/Row/RowRenderer'
 import RowProduct from '../../components/Row/RowProduct'
-import {
-  Backstory,
-  Feature,
-  FeatureBoxed,
-  Grid,
-  Related,
-  Reviews,
-  Specs,
-  Swipeable,
-  Upsells,
-} from '../../components/Row/RowProduct/variant'
 import apolloClient from '../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -46,38 +35,14 @@ function CmsPage(props: Props) {
         metaRobots={metaRobots}
         canonical={page?.url}
       />
-      {/* todo: only allow rendering Grid, Swipeable and Backstory here */}
       {pages?.[0] ? (
-        <PageContent
-          renderer={{
-            RowProduct: (rowProps) => {
-              return (
-                <RowProduct
-                  {...rowProps}
-                  renderer={{
-                    Specs: (rowProductProps) => <Specs {...rowProductProps} {...product} />,
-                    Backstory: (rowProductProps) => (
-                      <Backstory {...rowProductProps} items={products?.items} />
-                    ),
-                    Feature: (rowProductProps) => <Feature {...rowProductProps} {...product} />,
-                    FeatureBoxed: (rowProductProps) => (
-                      <FeatureBoxed {...rowProductProps} {...product} />
-                    ),
-                    Grid: (rowProductProps) => (
-                      <Grid {...rowProductProps} items={products?.items} />
-                    ),
-                    Related: (rowProductProps) => <Related {...rowProductProps} {...product} />,
-                    Reviews: (rowProductProps) => <Reviews {...rowProductProps} {...product} />,
-                    Upsells: (rowProductProps) => <Upsells {...rowProductProps} {...product} />,
-                    Swipeable: (rowProductProps) => (
-                      <Swipeable {...rowProductProps} items={products?.items} />
-                    ),
-                  }}
-                />
-              )
-            },
-          }}
+        <RowRenderer
           content={pages?.[0].content}
+          renderer={{
+            RowProduct: (rowProps) => (
+              <RowProduct {...rowProps} {...product} items={products?.items} />
+            ),
+          }}
         />
       ) : (
         <CmsPageContent {...cmsPage} />

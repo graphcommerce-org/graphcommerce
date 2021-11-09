@@ -14,6 +14,7 @@ const useStyles = makeStyles(
       alignItems: 'normal',
     },
     label: {
+      ...theme.typography.body2,
       display: 'grid',
       gridTemplate: `
         "title      amount"
@@ -24,10 +25,11 @@ const useStyles = makeStyles(
       columnGap: theme.spacings.xxs,
     },
     methodTitle: {
+      ...theme.typography.subtitle2,
       gridArea: 'title',
-      fontWeight: theme.typography.fontWeightBold,
     },
     methodAdditional: {
+      ...theme.typography.body2,
       gridArea: 'additional',
     },
     errorMessage: {

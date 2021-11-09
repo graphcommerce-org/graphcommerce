@@ -3,6 +3,96 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.147.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.147.7...@graphcommerce/graphcommerce@2.147.8) (2021-11-09)
+
+
+### Bug Fixes
+
+* font sizes ([1cf7d45](https://github.com/ho-nl/m2-pwa/commit/1cf7d451c3f8bdd064fdf351dffafced97387aff))
+* styling when only 2 methods available. Hide buttons. ([6a90516](https://github.com/ho-nl/m2-pwa/commit/6a90516833e4fd1ea618111b278ecbdb76c9554a))
+
+
+
+
+
+## [2.147.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.147.6...@graphcommerce/graphcommerce@2.147.7) (2021-11-08)
+
+
+### Bug Fixes
+
+* build ([4b469a8](https://github.com/ho-nl/m2-pwa/commit/4b469a8eb9545c3bcae6f80b2b96cc18d45c2490))
+
+
+
+
+
+## [2.147.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.147.5...@graphcommerce/graphcommerce@2.147.6) (2021-11-08)
+
+
+### Bug Fixes
+
+* error typos ([d3f5357](https://github.com/ho-nl/m2-pwa/commit/d3f5357ffd840fb236db4e40cb52a324752591fb))
+* **row-product:** additional props ([2b706a3](https://github.com/ho-nl/m2-pwa/commit/2b706a3d438b3fc227a8d2250d0996fed08475c3))
+
+
+
+
+
+## [2.147.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.147.3...@graphcommerce/graphcommerce@2.147.4) (2021-11-06)
+
+
+### Bug Fixes
+
+* spacing DesktopNavBar items ([c3373b9](https://github.com/ho-nl/m2-pwa/commit/c3373b97add87864adc5809ab04cf683bc5b0498))
+
+
+
+
+
+## [2.147.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.147.1...@graphcommerce/graphcommerce@2.147.2) (2021-11-05)
+
+
+### Bug Fixes
+
+* **sign-up-form:** prevent throwing sign up errors ([3c5d059](https://github.com/ho-nl/m2-pwa/commit/3c5d059b6a3e6cedb4b6eb967235f4d27075fcd4))
+* **signup-form:** fix helper text ([09025a4](https://github.com/ho-nl/m2-pwa/commit/09025a4ee6257d0be40b3b97455aebb4359ed4a7))
+
+
+
+
+
+## [2.147.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.147.0...@graphcommerce/graphcommerce@2.147.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* can't remove filters on click icon ([2528802](https://github.com/ho-nl/m2-pwa/commit/252880216994da7f8e65c1b565ff996bbab0472a))
+* Checkout button margin consistency ([9fcf7e7](https://github.com/ho-nl/m2-pwa/commit/9fcf7e7d96172448b2d2911771d6bf70ab976594))
+* mobile cart ([fcafe5d](https://github.com/ho-nl/m2-pwa/commit/fcafe5d446f14fca6579d9005dd57389040c4cd3))
+* remove hardcoded fontSize ([e4e09e1](https://github.com/ho-nl/m2-pwa/commit/e4e09e11baeb8edeff634550b8cdb88571d96911))
+* Shipping method scroller styles ([d48d248](https://github.com/ho-nl/m2-pwa/commit/d48d2486fabb9059dbb0c27a5331784ee676a201))
+
+
+
+
+
+# [2.147.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.146.2...@graphcommerce/graphcommerce@2.147.0) (2021-11-04)
+
+
+### Bug Fixes
+
+* **blog-item:** image sizes ([1d15c3c](https://github.com/ho-nl/m2-pwa/commit/1d15c3cfc8002fc1b5af1c977199e70130a6bbd4))
+* **menu-fab:** fix route change start event handling ([20dde65](https://github.com/ho-nl/m2-pwa/commit/20dde65f8e8ead449b21f4f5292d653d003e6ead))
+
+
+### Features
+
+* **sheet-shell-base:** stop animating drawer on browser back ([c6262f1](https://github.com/ho-nl/m2-pwa/commit/c6262f1c3a0d181e57bd5d4971efb469901503b1))
+
+
+
+
+
 ## [2.146.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.146.1...@graphcommerce/graphcommerce@2.146.2) (2021-11-03)
 
 

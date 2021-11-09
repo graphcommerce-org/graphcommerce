@@ -11,6 +11,7 @@ import {
   iconChevronRight,
   responsiveVal,
   SvgImage,
+  SvgImageSimple,
   UseStyles,
 } from '@graphcommerce/next-ui'
 import { Controller, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
@@ -30,6 +31,7 @@ import {
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
+      marginTop: theme.spacings.xs,
       position: 'relative',
       padding: 0,
     },
@@ -48,9 +50,9 @@ const useStyles = makeStyles(
       background: theme.palette.background.default,
       borderRadius: 0,
       width: 30,
-      height: responsiveVal(60, 85),
+      height: '100%',
       boxShadow: 'none',
-      border: '1px solid #eee',
+      border: `1px solid ${theme.palette.divider}`,
       '&:focus': {
         boxShadow: 'none',
       },
@@ -68,21 +70,29 @@ const useStyles = makeStyles(
       left: 0,
       zIndex: 2,
       height: '100%',
+      '& > div': {
+        height: '100%',
+      },
     },
     buttonContainerRight: {
       left: 'unset',
       right: 0,
     },
     scrollerRoot: {
-      gridTemplateColumns: ' repeat(2, 40%)',
       gridTemplateRows: `100%`,
-      gap: responsiveVal(4, 8),
-      borderRadius: 5,
-      padding: '2px 1px',
-      height: responsiveVal(60, 85),
+      gridTemplateColumns: `repeat(2, calc(50% - 20px))`,
+      gap: 6,
+      borderRadius: 0,
+      padding: '1px 1px',
+      '&:focus': {
+        outline: 'unset',
+      },
     },
     scrollerRootTwoItems: {
-      gridTemplateColumns: ' repeat(2, 50%)',
+      gridTemplateColumns: `repeat(2, calc(50% - 4px))`,
+    },
+    buttonRootTwoItems: {
+      display: 'none',
     },
   }),
   { name: 'ShippingMethodForm' },
@@ -130,10 +140,19 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
             <ScrollerButton
               direction='left'
               classes={{
-                root: clsx(classes.buttonRoot, classes.leftButtonRoot),
+                root: clsx(
+                  classes.buttonRoot,
+                  classes.leftButtonRoot,
+                  sortedAvailableShippingMethods.length <= 2 && classes.buttonRootTwoItems,
+                ),
               }}
             >
-              <SvgImage src={iconChevronLeft} alt='chevron left' size='small' loading='eager' />
+              <SvgImageSimple
+                src={iconChevronLeft}
+                alt='chevron left'
+                size='small'
+                loading='eager'
+              />
             </ScrollerButton>
           </m.div>
 
@@ -202,10 +221,19 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
             <ScrollerButton
               direction='right'
               classes={{
-                root: clsx(classes.buttonRoot, classes.rightButtonRoot),
+                root: clsx(
+                  classes.buttonRoot,
+                  classes.rightButtonRoot,
+                  sortedAvailableShippingMethods.length <= 2 && classes.buttonRootTwoItems,
+                ),
               }}
             >
-              <SvgImage src={iconChevronRight} alt='chevron right' size='small' loading='eager' />
+              <SvgImageSimple
+                src={iconChevronRight}
+                alt='chevron right'
+                size='small'
+                loading='eager'
+              />
             </ScrollerButton>
           </m.div>
         </ScrollerProvider>

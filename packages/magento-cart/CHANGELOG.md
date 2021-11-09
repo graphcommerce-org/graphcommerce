@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.5.8...@graphcommerce/magento-cart@3.5.9) (2021-11-04)
+
+
+### Bug Fixes
+
+* Checkout button margin consistency ([9fcf7e7](https://github.com/ho-nl/m2-pwa/commit/9fcf7e7d96172448b2d2911771d6bf70ab976594))
+* remove hardcoded fontSize ([e4e09e1](https://github.com/ho-nl/m2-pwa/commit/e4e09e11baeb8edeff634550b8cdb88571d96911))
+
+
+
+
+
 # [3.5.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.4.5...@graphcommerce/magento-cart@3.5.0) (2021-11-02)
 
 

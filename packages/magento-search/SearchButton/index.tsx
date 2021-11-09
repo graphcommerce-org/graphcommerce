@@ -10,6 +10,9 @@ const useStyles = makeStyles(
       '& fieldset': {
         border: `1px solid ${theme.palette.divider}`,
       },
+      [theme.breakpoints.up('sm')]: {
+        width: '100%',
+      },
     },
     inputRoot: {
       ...theme.typography.body2,

@@ -8,12 +8,16 @@ const useStyles = makeStyles(
     root: {
       display: 'grid',
       gap: `${theme.spacings.lg} 0`,
-      gridTemplateAreas: `"top"
-    "left"
-    "right"`,
+      gridTemplateAreas: `
+        "top"
+        "left"
+        "right"
+      `,
       [theme.breakpoints.up('md')]: {
-        gridTemplateAreas: `"top ."
-      "left right"`,
+        gridTemplateAreas: `
+          "top  ."
+          "left right"
+        `,
         gridTemplateColumns: '1fr auto',
         gap: `${theme.spacings.sm} ${theme.spacings.xl}`,
       },
@@ -31,15 +35,13 @@ const useStyles = makeStyles(
   { name: 'ColumnTwoWithTop' },
 )
 
-export type ProductDescriptionProps = PropsWithChildren<
-  UseStyles<typeof useStyles> & {
-    top: React.ReactNode
-    left: React.ReactNode
-    right: React.ReactNode
-  }
->
+export type ColumnTwoWithTopProps = UseStyles<typeof useStyles> & {
+  top: React.ReactNode
+  left: React.ReactNode
+  right: React.ReactNode
+}
 
-export default function ColumnTwoWithTop(props: ProductDescriptionProps) {
+export default function ColumnTwoWithTop(props: ColumnTwoWithTopProps) {
   const { top, left, right } = props
   const classes = useStyles(props)
 

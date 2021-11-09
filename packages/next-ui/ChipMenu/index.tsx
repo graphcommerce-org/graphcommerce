@@ -67,7 +67,9 @@ export default function ChipMenu(props: ChipMenuProps) {
   const classes = useChipMenuStyles(props)
 
   let deleteIcon = selected ? (
-    <SvgImageSimple src={iconCancelAlt} className={classes.iconCancel} />
+    <div>
+      <SvgImageSimple src={iconCancelAlt} className={classes.iconCancel} />
+    </div>
   ) : (
     <SvgImageSimple src={iconChevronDown} />
   )
