@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.147.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.147.7...@graphcommerce/graphcommerce@2.147.8) (2021-11-09)
+
+
+### Bug Fixes
+
+* font sizes ([1cf7d45](https://github.com/ho-nl/m2-pwa/commit/1cf7d451c3f8bdd064fdf351dffafced97387aff))
+* styling when only 2 methods available. Hide buttons. ([6a90516](https://github.com/ho-nl/m2-pwa/commit/6a90516833e4fd1ea618111b278ecbdb76c9554a))
+
+
+
+
+
 ## [2.147.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.147.6...@graphcommerce/graphcommerce@2.147.7) (2021-11-08)
 
 

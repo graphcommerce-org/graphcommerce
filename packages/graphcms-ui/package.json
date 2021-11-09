@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/graphcms-ui",
-  "version": "2.104.22",
+  "version": "2.104.23",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -22,7 +22,7 @@
   "dependencies": {
     "@apollo/client": "^3.4.16",
     "@graphcommerce/image": "^2.105.3",
-    "@graphcommerce/next-ui": "^3.14.5",
+    "@graphcommerce/next-ui": "^3.14.6",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",

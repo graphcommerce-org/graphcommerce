@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.108.15](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-items@2.108.14...@graphcommerce/magento-cart-items@2.108.15) (2021-11-09)
+
+
+### Bug Fixes
+
+* font sizes ([1cf7d45](https://github.com/ho-nl/m2-pwa/commit/1cf7d451c3f8bdd064fdf351dffafced97387aff))
+
+
+
+
+
 ## [2.108.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-items@2.108.8...@graphcommerce/magento-cart-items@2.108.9) (2021-11-04)
 
 
