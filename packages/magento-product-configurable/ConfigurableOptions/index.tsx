@@ -112,6 +112,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                         value={val.uid ?? ''}
                         name={inputName}
                         className={classes.button}
+                        disabled={!itemVariant}
                       >
                         <RenderType
                           renderer={renderer}
