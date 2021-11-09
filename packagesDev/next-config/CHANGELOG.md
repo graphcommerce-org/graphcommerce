@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.108.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-config@2.107.3...@graphcommerce/next-config@2.108.0) (2021-11-09)
+
+
+### Features
+
+* **next-config:** support for .po files to be imported ([79b64ce](https://github.com/ho-nl/m2-pwa/commit/79b64ce9b444fcf620279d9a8e5d253b8e9cfa84))
+
+
+
+
+
 # [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-config@2.106.1...@graphcommerce/next-config@2.107.0) (2021-10-27)
 
 

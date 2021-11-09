@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-review",
-  "version": "2.107.21",
+  "version": "2.108.0",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -23,10 +23,10 @@
     "@apollo/client": "^3.4.16",
     "@graphcommerce/graphql": "^2.105.4",
     "@graphcommerce/image": "^2.105.3",
-    "@graphcommerce/magento-customer": "^3.4.7",
-    "@graphcommerce/magento-product": "^3.5.15",
-    "@graphcommerce/magento-store": "^3.2.14",
-    "@graphcommerce/next-ui": "^3.14.6",
+    "@graphcommerce/magento-customer": "^3.5.0",
+    "@graphcommerce/magento-product": "^3.5.16",
+    "@graphcommerce/magento-store": "^3.2.15",
+    "@graphcommerce/next-ui": "^3.14.7",
     "@graphcommerce/react-hook-form": "^2.103.1",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@lingui/macro": "^3.12.1",

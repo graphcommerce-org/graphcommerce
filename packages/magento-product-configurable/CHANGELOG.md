@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product-configurable@3.3.15...@graphcommerce/magento-product-configurable@3.4.0) (2021-11-09)
+
+
+### Features
+
+* **configurable-product:** disable invalid product options ([018a20e](https://github.com/ho-nl/m2-pwa/commit/018a20e1259863549c033dcc5c30deaae6625af9))
+
+
+
+
+
 # [3.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product-configurable@3.2.8...@graphcommerce/magento-product-configurable@3.3.0) (2021-11-02)
 
 

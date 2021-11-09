@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@3.4.15...@graphcommerce/magento-customer@3.5.0) (2021-11-09)
+
+
+### Features
+
+* added translations to all pages ([8cf4ecd](https://github.com/ho-nl/m2-pwa/commit/8cf4ecd5db5edfec04ab205aa49f5de433d26579))
+
+
+
+
+
 ## [3.4.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@3.4.9...@graphcommerce/magento-customer@3.4.10) (2021-11-05)
 
 

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.132.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.131.11...@graphcommerce/magento-graphcms@2.132.0) (2021-11-09)
+
+
+### Bug Fixes
+
+* make sure the translations are ran ([9d77807](https://github.com/ho-nl/m2-pwa/commit/9d7780711fc1d66884a7465e18d175a6a1d40abb))
+
+
+### Features
+
+* added dutch translations ([59a4fd9](https://github.com/ho-nl/m2-pwa/commit/59a4fd9d170d9454c443b4723fdf5da0196cec7d))
+* added translations to all pages ([8cf4ecd](https://github.com/ho-nl/m2-pwa/commit/8cf4ecd5db5edfec04ab205aa49f5de433d26579))
+* string localization with [@lingui](https://github.com/lingui) ([0fa6071](https://github.com/ho-nl/m2-pwa/commit/0fa6071d8a5d37a7b81133731986c77d3c5068a0))
+
+
+
+
+
 ## [2.131.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.131.9...@graphcommerce/magento-graphcms@2.131.10) (2021-11-08)
 
 

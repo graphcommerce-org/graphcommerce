@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.148.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.147.8...@graphcommerce/graphcommerce@2.148.0) (2021-11-09)
+
+
+### Bug Fixes
+
+* make sure the translations are ran ([9d77807](https://github.com/ho-nl/m2-pwa/commit/9d7780711fc1d66884a7465e18d175a6a1d40abb))
+
+
+### Features
+
+* added dutch translations ([59a4fd9](https://github.com/ho-nl/m2-pwa/commit/59a4fd9d170d9454c443b4723fdf5da0196cec7d))
+* added translations to all pages ([8cf4ecd](https://github.com/ho-nl/m2-pwa/commit/8cf4ecd5db5edfec04ab205aa49f5de433d26579))
+* **configurable-product:** disable invalid product options ([018a20e](https://github.com/ho-nl/m2-pwa/commit/018a20e1259863549c033dcc5c30deaae6625af9))
+* **next-config:** support for .po files to be imported ([79b64ce](https://github.com/ho-nl/m2-pwa/commit/79b64ce9b444fcf620279d9a8e5d253b8e9cfa84))
+* string localization with [@lingui](https://github.com/lingui) ([0fa6071](https://github.com/ho-nl/m2-pwa/commit/0fa6071d8a5d37a7b81133731986c77d3c5068a0))
+
+
+
+
+
 ## [2.147.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.147.7...@graphcommerce/graphcommerce@2.147.8) (2021-11-09)
 
 

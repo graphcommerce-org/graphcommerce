@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.5.15...@graphcommerce/magento-cart@3.6.0) (2021-11-09)
+
+
+### Features
+
+* added dutch translations ([59a4fd9](https://github.com/ho-nl/m2-pwa/commit/59a4fd9d170d9454c443b4723fdf5da0196cec7d))
+
+
+
+
+
 ## [3.5.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.5.8...@graphcommerce/magento-cart@3.5.9) (2021-11-04)
 
 
