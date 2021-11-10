@@ -27,9 +27,9 @@ export default function RowServiceOptions(props: RowServiceOptionsProps) {
               title={serviceOption.title}
               icon={
                 <>
-                  {iconTitle === 'e-mail' && <SvgImageSimple src={iconEmail} size='xl' />}
-                  {iconTitle === 'phone' && <SvgImageSimple src={iconPhone} size='xl' />}
-                  {iconTitle === 'chat' && <SvgImageSimple src={iconChat} size='xl' />}
+                  {iconTitle === 'e-mail' && <SvgImageSimple src={iconEmail} size='large' />}
+                  {iconTitle === 'phone' && <SvgImageSimple src={iconPhone} size='large' />}
+                  {iconTitle === 'chat' && <SvgImageSimple src={iconChat} size='large' />}
                 </>
               }
             >
