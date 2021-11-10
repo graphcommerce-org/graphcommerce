@@ -61,6 +61,9 @@ const darkPalette: PaletteOptions = {
   success: {
     main: '#01D26A',
   },
+  action: {
+    hoverOpacity: 0.16,
+  },
   text: {
     primary: '#ffffff',
     secondary: '#ffffff80',
@@ -228,9 +231,6 @@ const createOverrides = (theme: Theme): Overrides => {
           overflowY: 'scroll',
           '& [class*="Sheet-content"]': {
             background: theme.palette.background.default,
-          },
-          '& .grecaptcha-badge': {
-            visibility: 'hidden', // https://developers.google.com/recaptcha/docs/faq
           },
           stroke: theme.palette.text.primary,
         },
