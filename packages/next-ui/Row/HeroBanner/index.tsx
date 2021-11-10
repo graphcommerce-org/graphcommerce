@@ -90,14 +90,9 @@ export default function HeroBanner(props: HeroBannerProps) {
           {pageLinks}
         </div>
         <div className={classes.asset}>
-          <m.video
-            src={videoSrc}
-            autoPlay
-            muted
-            loop
-            playsInline
-            style={{ width: actionsAnimWidth }}
-          />
+          <m.div style={{ width: actionsAnimWidth }}>
+            <video src={videoSrc} autoPlay muted loop playsInline disableRemotePlayback />
+          </m.div>
         </div>
       </div>
     </Row>
