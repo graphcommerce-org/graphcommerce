@@ -88,7 +88,6 @@ export const useProductListItemStyles = makeStyles(
       position: 'relative',
       paddingTop: `calc(100% / ${aspectRatio[0]} * ${aspectRatio[1]})`,
       background: theme.palette.background.image, // theme specific,
-      borderRadius: 2,
     }),
     placeholder: {
       display: 'flex',
@@ -117,7 +116,6 @@ export const useProductListItemStyles = makeStyles(
       padding: '0px 6px',
       color: theme.palette.background.default,
       display: 'inline-block',
-      borderRadius: 2,
     },
   }),
   { name: 'ProductListItem' },

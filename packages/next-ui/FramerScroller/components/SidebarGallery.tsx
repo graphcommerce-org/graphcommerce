@@ -62,7 +62,6 @@ const useStyles = makeStyles(
         position: 'relative',
         minHeight: '100%',
         paddingTop: `min(${ratio}, ${maxHeight})`,
-        borderRadius: 2,
         [theme.breakpoints.down('sm')]: {
           width: '100vw',
         },
