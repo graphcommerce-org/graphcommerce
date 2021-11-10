@@ -18,7 +18,7 @@ export default function useFixedFabAnimation() {
   const opacity1 = useTransform(
     scrollY,
     [0, scrollToBg],
-    [hex2rgb(theme.palette.background.default, 0), hex2rgb(theme.palette.background.default, 1)],
+    [hex2rgb(theme.palette.background.default, 0), hex2rgb(theme.palette.background.paper, 1)],
   )
   const boxShadow = useMotionTemplate`0 2px 10px 0 rgba(0, 0, 0, ${opacity})`
   const backgroundColor = useMotionTemplate`${opacity1}`

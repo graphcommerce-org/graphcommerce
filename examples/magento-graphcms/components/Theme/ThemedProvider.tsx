@@ -54,7 +54,7 @@ const darkPalette: PaletteOptions = {
   },
   background: {
     default: '#001727',
-    paper: lighten('#001727', 0.08),
+    paper: '#15293B',
     image: '#F8F8F8',
   },
   divider: '#ffffff30',
