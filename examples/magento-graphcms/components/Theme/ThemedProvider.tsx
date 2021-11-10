@@ -253,7 +253,7 @@ const createOverrides = (theme: Theme): Overrides => {
         textTransform: 'none',
         ...theme.typography.body2,
         fontWeight: 400,
-        padding: `${responsiveVal(8, 10)} ${responsiveVal(18, 22)}`,
+        padding: `${responsiveVal(8, 10)} ${responsiveVal(16, 20)}`,
       },
       sizeLarge: {
         padding: `${responsiveVal(10, 15)} ${responsiveVal(30, 60)}`,
@@ -362,8 +362,8 @@ const createOverrides = (theme: Theme): Overrides => {
       },
       sizeSmall: {
         height: responsiveVal(26, 30),
-        paddingLeft: responsiveVal(2, 6),
-        paddingRight: responsiveVal(2, 6),
+        paddingLeft: responsiveVal(3, 6),
+        paddingRight: responsiveVal(3, 6),
         ...theme.typography.caption,
       },
       outlined: {
@@ -376,8 +376,8 @@ const createOverrides = (theme: Theme): Overrides => {
         paddingRight: responsiveVal(6, 10),
       },
       labelSmall: {
-        paddingLeft: responsiveVal(4, 8),
-        paddingRight: responsiveVal(4, 8),
+        paddingLeft: responsiveVal(6, 8),
+        paddingRight: responsiveVal(6, 8),
       },
       colorPrimary: {
         //
