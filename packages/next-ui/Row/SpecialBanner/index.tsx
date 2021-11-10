@@ -7,7 +7,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     wrapper: {
       display: 'grid',
-      background: 'rgba(0,0,0,0.03)',
+      background: theme.palette.background.paper,
       justifyItems: 'center',
       columnGap: `${theme.spacings.lg}`,
       padding: `${theme.spacings.lg} 0`,
@@ -23,6 +23,7 @@ const useStyles = makeStyles(
     asset: {
       width: responsiveVal(200, 900),
       height: 'auto',
+      marginBottom: theme.spacings.md,
       '& img': {
         width: responsiveVal(200, 900),
         height: 'auto',
