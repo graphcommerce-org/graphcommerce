@@ -229,9 +229,6 @@ const createOverrides = (theme: Theme): Overrides => {
       '@global': {
         body: {
           overflowY: 'scroll',
-          '& [class*="Sheet-content"]': {
-            background: theme.palette.background.default,
-          },
           stroke: theme.palette.text.primary,
         },
         '::selection': { background: alpha(theme.palette.primary.main, 0.6) },
