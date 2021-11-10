@@ -229,6 +229,9 @@ const createOverrides = (theme: Theme): Overrides => {
           '& [class*="Sheet-content"]': {
             background: theme.palette.background.default,
           },
+          '& .grecaptcha-badge': {
+            visibility: 'hidden', // https://developers.google.com/recaptcha/docs/faq
+          },
           stroke: theme.palette.text.primary,
         },
         '::selection': { background: alpha(theme.palette.primary.main, 0.6) },
