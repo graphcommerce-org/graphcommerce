@@ -256,7 +256,7 @@ const createOverrides = (theme: Theme): Overrides => {
         textTransform: 'none',
         ...theme.typography.body2,
         fontWeight: 400,
-        padding: `${responsiveVal(8, 10)} ${responsiveVal(12, 22)}`,
+        padding: `${responsiveVal(8, 10)} ${responsiveVal(18, 22)}`,
       },
       sizeLarge: {
         padding: `${responsiveVal(10, 15)} ${responsiveVal(30, 60)}`,
