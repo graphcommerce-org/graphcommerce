@@ -415,7 +415,7 @@ const createOverrides = (theme: Theme): Overrides => {
       colorPrimary: {
         color: theme.palette.text.disabled,
         '&$checked': {
-          color: theme.palette.text.disabled,
+          color: theme.palette.primary.main,
         },
       },
       colorSecondary: {
