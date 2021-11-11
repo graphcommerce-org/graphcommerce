@@ -19,9 +19,6 @@ export const useChipMenuStyles = makeStyles(
       '&:focus': {
         background: `${theme.palette.background.paper} !important`,
       },
-      '& svg': {
-        stroke: theme.palette.text.primary,
-      },
     },
     menuPaper: {
       minWidth: responsiveVal(200, 560),

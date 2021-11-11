@@ -153,7 +153,6 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       },
       h5: {
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-
         fontWeight: 700,
         // letterSpacing: '-0.0375em',
         fontSize: responsiveVal(17, 20),
@@ -161,7 +160,6 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       },
       h6: {
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-
         fontSize: responsiveVal(17, 20),
         fontWeight: 550,
         // letterSpacing: '-0.0375em',
@@ -229,7 +227,6 @@ const createOverrides = (theme: Theme): Overrides => {
       '@global': {
         body: {
           overflowY: 'scroll',
-          stroke: theme.palette.text.primary,
         },
         '::selection': { background: alpha(theme.palette.primary.main, 0.6) },
         '::-moz-selection': { background: alpha(theme.palette.primary.main, 0.6) },
@@ -288,12 +285,10 @@ const createOverrides = (theme: Theme): Overrides => {
       containedPrimary: {
         fontWeight: 500,
         color: theme.palette.primary.contrastText,
-        '& svg': { stroke: theme.palette.primary.contrastText },
       },
       containedSecondary: {
         fontWeight: 500,
         color: theme.palette.secondary.contrastText,
-        '& svg': { stroke: theme.palette.secondary.contrastText },
       },
       outlined: {
         borderRadius: 0,
@@ -301,18 +296,11 @@ const createOverrides = (theme: Theme): Overrides => {
       text: {
         padding: `${responsiveVal(8, 10)} ${responsiveVal(12, 22)}`,
       },
-      textSecondary: {
-        '& svg': { stroke: theme.palette.secondary.main },
-        '&$disabled svg': {
-          stroke: theme.palette.text.disabled,
-        },
-      },
     },
     MuiFab: {
       root: {
         backgroundColor: theme.palette.background.paper,
         '&:hover': { backgroundColor: theme.palette.background.paper },
-        '& svg': { stroke: theme.palette.text.primary },
       },
       colorInherit: {
         backgroundColor: 'inherit',
@@ -323,11 +311,9 @@ const createOverrides = (theme: Theme): Overrides => {
       },
       primary: {
         color: theme.palette.text.primary,
-        '& svg': { stroke: theme.palette.text.primary },
       },
       secondary: {
         color: theme.palette.text.primary,
-        // '& svg': { stroke: theme.palette.text.primary },
       },
       extended: {
         fontWeight: 400,
@@ -348,9 +334,9 @@ const createOverrides = (theme: Theme): Overrides => {
         },
       },
     },
-    MuiIconButton: {
-      label: {
-        stroke: theme.palette.text.primary,
+    MuiListItemIcon: {
+      root: {
+        color: theme.palette.text.primary,
       },
     },
     MuiChip: {
@@ -372,7 +358,6 @@ const createOverrides = (theme: Theme): Overrides => {
       outlined: {
         borderColor: theme.palette.divider,
         backgroundColor: theme.palette.background.default,
-        // color: theme.palette.text.primary,
       },
       label: {
         paddingLeft: responsiveVal(6, 10),
@@ -389,10 +374,10 @@ const createOverrides = (theme: Theme): Overrides => {
         //
       },
       deleteIcon: {
-        stroke: theme.palette.text.primary,
+        color: theme.palette.text.primary,
       },
       deleteIconOutlinedColorPrimary: {
-        stroke: theme.palette.primary.main,
+        color: theme.palette.primary.main,
       },
       clickable: {
         '&:hover, &:focus': {
@@ -412,9 +397,6 @@ const createOverrides = (theme: Theme): Overrides => {
       },
     },
     MuiCheckbox: {
-      root: {
-        stroke: 'none',
-      },
       colorPrimary: {
         color: theme.palette.text.disabled,
         '&$checked': {
@@ -426,11 +408,6 @@ const createOverrides = (theme: Theme): Overrides => {
         '&$checked': {
           color: theme.palette.secondary.main,
         },
-      },
-    },
-    MuiSvgIcon: {
-      root: {
-        stroke: 'none',
       },
     },
     MuiSwitch: {

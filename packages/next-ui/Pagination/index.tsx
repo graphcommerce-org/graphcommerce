@@ -17,9 +17,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     gap: 6,
     '& .Mui-disabled': {
       background: 'none',
-      '& svg': {
-        stroke: theme.palette.text.disabled,
-      },
     },
   },
   pagination: {

@@ -16,6 +16,7 @@ const useStyles = makeStyles(
       strokeLinecap: 'square',
       strokeLinejoin: 'miter',
       fill: 'none',
+      stroke: 'currentColor',
     },
     sizeInherit: {
       fontSize: 'inherit',
