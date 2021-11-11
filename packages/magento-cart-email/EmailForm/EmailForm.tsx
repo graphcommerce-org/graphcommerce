@@ -24,6 +24,10 @@ const useStyles = makeStyles(
     helperList: {
       marginBottom: 0,
     },
+    formRow: {
+      paddingTop: 0,
+      paddingBottom: 0,
+    },
   }),
   { name: 'EmailForm' },
 )
@@ -81,7 +85,7 @@ export default function EmailForm(props: EmailFormProps) {
       <AnimatePresence initial={false}>
         <AnimatedRow key='emailform'>
           <form noValidate onSubmit={submit}>
-            <FormRow>
+            <FormRow className={classes.formRow}>
               <TextField
                 variant='outlined'
                 type='email'
