@@ -403,7 +403,7 @@ const createOverrides = (theme: Theme): Overrides => {
   }
 }
 
-const currentTheme = createThemeWithPallete(useTheme !== 'light' ? lightPalette : darkPalette)
+const currentTheme = createThemeWithPallete(useTheme === 'light' ? lightPalette : darkPalette)
 currentTheme.overrides = createOverrides(currentTheme)
 
 const ThemedProvider: React.FC = ({ children }) => (
