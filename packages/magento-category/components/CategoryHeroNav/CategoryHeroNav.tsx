@@ -8,8 +8,12 @@ const useStyles = makeStyles(
     wrapper: {
       display: 'grid',
       gridTemplateColumns: '1fr',
-      gridTemplateAreas: `"title" "categories" "placeholder"`,
-      gridTemplateRows: 'auto 60vw',
+      gridTemplateAreas: `
+        "title"
+        "categories"
+        "placeholder"
+      `,
+      gridTemplateRows: 'auto 1fr 1fr',
       borderBottom: `1px solid ${theme.palette.divider}`,
       marginBottom: theme.spacings.xl,
       paddingRight: 0,
@@ -24,19 +28,18 @@ const useStyles = makeStyles(
       gridArea: 'categories',
       display: 'grid',
       gridColumnGap: theme.spacings.xl,
-      gridTemplateColumns: 'repeat(2, min-content)',
       gridRowGap: theme.spacings.lg,
       height: 'min-content',
-      alignSelf: 'center',
       maxWidth: '80vw',
       justifySelf: 'center',
+      alignSelf: 'start',
+      gridTemplateColumns: '1fr 1fr',
       [theme.breakpoints.up('md')]: {
         gridColumnGap: theme.spacings.md,
         gridRowGap: theme.spacings.md,
-        gridTemplateColumns: 'repeat(2, 1fr)',
         maxWidth: '100vw',
         width: '100%',
-        alignSelf: 'start',
+        justifySelf: 'start',
       },
     },
     title: {
