@@ -12,7 +12,6 @@ const useStyles = makeStyles(
       display: 'grid',
       gridTemplateRows: `auto 1fr auto`,
       gridTemplateColumns: '100%',
-      backgroundColor: theme.palette.background.default,
     },
     hideFabsOnVirtualKeyboardOpen: {
       [theme.breakpoints.down('sm')]: {
@@ -20,6 +19,9 @@ const useStyles = makeStyles(
           display: 'none',
         },
       },
+    },
+    content: {
+      background: theme.palette.background.default,
     },
     header: {
       display: 'flex',
@@ -67,14 +69,15 @@ export default function FullPageShellBase(props: FullPageShellBaseProps) {
           <header className={clsx(classes.header, alwaysShowHeader && classes.headerAlwaysShow)}>
             {header}
           </header>
-          <div>
+          <div className={classes.content}>
             <div className={classes.hideFabsOnVirtualKeyboardOpen}>
               {menuFab}
               {cartFab}
             </div>
             {children}
+
+            <div>{footer}</div>
           </div>
-          <div>{footer}</div>
         </ShellBase>
       </AppShellProvider>
     </div>
