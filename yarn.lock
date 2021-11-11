@@ -3069,24 +3069,6 @@
     "@lingui/conf" "^3.12.1"
     mkdirp "^1.0.4"
 
-"@lingui/babel-plugin-transform-js@2.9.2":
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/@lingui/babel-plugin-transform-js/-/babel-plugin-transform-js-2.9.2.tgz#2c27e21e386ff785f2585549d6c8279a8df35dc8"
-  integrity sha512-yWoyhOfjRa9744TbVb/WN1OWxZYFLuXcWH5aVCu/sZ2b1YpsGCtfhplc5lRVWN8QcsfpjYmFiPqzU6swE5OFdQ==
-
-"@lingui/babel-plugin-transform-react@2.9.2":
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/@lingui/babel-plugin-transform-react/-/babel-plugin-transform-react-2.9.2.tgz#6503de26a2852d3074d0df6bc8acbc9599407fcf"
-  integrity sha512-bxvrepiS6J9vZqRtpRiAgBIASQscjvu7aFmPqH4Y6001TDXrYuyhhNRt1BI3k2E6C2SckHh5vRtSpsqpjEiY3A==
-
-"@lingui/babel-preset-react@^2.9.2":
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/@lingui/babel-preset-react/-/babel-preset-react-2.9.2.tgz#26bf88619b62383caee1210b8cf86965a3a7c33e"
-  integrity sha512-M+nfK/83+FnLEr63bBox5DKsSYgwPPmhfiLJAbc2BZBlmF1Nfqv/dHL+d2ynyEKNKCSVts476eDeiOFwv2MTNw==
-  dependencies:
-    "@lingui/babel-plugin-transform-js" "2.9.2"
-    "@lingui/babel-plugin-transform-react" "2.9.2"
-
 "@lingui/cli@^3.12.1":
   version "3.12.1"
   resolved "https://registry.yarnpkg.com/@lingui/cli/-/cli-3.12.1.tgz#2bfe371eaa2dd0e95bd361b776fd68f1c43a82f6"

@@ -9,6 +9,7 @@
     "cssTransform.js",
     "examples/graphcommerce/next-sitemap.js",
     "graphql.config.js",
-    "**/*.d.ts"
+    "**/*.d.ts",
+    "examples/magento-graphcms/lingui.config.js"
   ]
 }
