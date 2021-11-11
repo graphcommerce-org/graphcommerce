@@ -269,9 +269,11 @@ const createOverrides = (theme: Theme): Overrides => {
         boxShadow: theme.shadows[1],
         '&:hover': {
           boxShadow: theme.shadows[1],
+          background: undefined,
         },
         '&:focus': {
           boxShadow: theme.shadows[1],
+          background: undefined,
         },
       },
       containedPrimary: {
