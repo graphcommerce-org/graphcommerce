@@ -12,6 +12,7 @@ const useStyles = makeStyles(
       display: 'grid',
       gridTemplateRows: `auto 1fr auto`,
       gridTemplateColumns: '100%',
+      backgroundColor: theme.palette.background.default,
     },
     hideFabsOnVirtualKeyboardOpen: {
       [theme.breakpoints.down('sm')]: {

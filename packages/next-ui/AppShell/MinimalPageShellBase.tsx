@@ -9,13 +9,6 @@ const useStyles = makeStyles(
         minHeight: 60,
       },
     },
-    '@global': {
-      body: {
-        '& [class*="FullPageShellBase"] > div': {
-          backgroundColor: theme.palette.background.default,
-        },
-      },
-    },
   }),
   { name: 'MinimalPageShellBase' },
 )
