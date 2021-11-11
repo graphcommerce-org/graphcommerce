@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       boxShadow: 'none',
     },
   },
+  fab: {
+    color: theme.palette.text.primary,
+  },
 }))
 
 export type PagePaginationProps = {
@@ -63,13 +66,25 @@ export default function Pagination(props: PagePaginationProps) {
   const nextBtnProps = items[items.length - 1]
 
   const chevronLeft = (
-    <Fab size='medium' disabled={page === 1} color='inherit' aria-label='Previous page'>
+    <Fab
+      size='medium'
+      disabled={page === 1}
+      color='inherit'
+      aria-label='Previous page'
+      className={classes.fab}
+    >
       <SvgImageSimple src={iconChevronLeft} />
     </Fab>
   )
 
   const chevronRight = (
-    <Fab size='medium' disabled={page === count} color='inherit' aria-label='Next page'>
+    <Fab
+      size='medium'
+      disabled={page === count}
+      color='inherit'
+      aria-label='Next page'
+      className={classes.fab}
+    >
       <SvgImageSimple src={iconChevronRight} />
     </Fab>
   )

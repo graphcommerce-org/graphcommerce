@@ -301,6 +301,7 @@ const createOverrides = (theme: Theme): Overrides => {
       root: {
         backgroundColor: theme.palette.background.paper,
         '&:hover': { backgroundColor: theme.palette.background.paper },
+        color: theme.palette.text.primary,
       },
       colorInherit: {
         backgroundColor: 'inherit',
