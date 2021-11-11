@@ -34,7 +34,7 @@ const useStyles = makeStyles(
       },
       [theme.breakpoints.up('md')]: {
         width: '70%',
-        minHeight: `calc(100vh - 72px)`,
+        minHeight: `calc(100vh - ${theme.page.headerInnerHeight.md})`,
       },
       [theme.breakpoints.up('lg')]: {
         padding: `${theme.spacings.lg} ${theme.spacings.lg}`,
