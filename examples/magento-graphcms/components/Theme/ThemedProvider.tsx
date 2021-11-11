@@ -303,6 +303,9 @@ const createOverrides = (theme: Theme): Overrides => {
       },
       textSecondary: {
         '& svg': { stroke: theme.palette.secondary.main },
+        '&$disabled svg': {
+          stroke: theme.palette.text.disabled,
+        },
       },
     },
     MuiFab: {
