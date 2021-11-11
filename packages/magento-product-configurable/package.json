@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-product-configurable",
-  "version": "3.4.3",
+  "version": "3.4.4",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -26,7 +26,7 @@
     "@graphcommerce/image": "^2.105.3",
     "@graphcommerce/magento-cart": "^3.6.3",
     "@graphcommerce/magento-cart-items": "^2.108.19",
-    "@graphcommerce/magento-category": "^3.3.25",
+    "@graphcommerce/magento-category": "^3.3.26",
     "@graphcommerce/magento-customer": "^3.5.3",
     "@graphcommerce/magento-product": "^3.5.19",
     "@graphcommerce/magento-product-simple": "^3.1.28",

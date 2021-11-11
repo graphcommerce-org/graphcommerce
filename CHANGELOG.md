@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.149.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.149.2...@graphcommerce/graphcommerce@2.149.3) (2021-11-11)
+
+
+### Bug Fixes
+
+* **category-hero-nav:** category children mobile styles ([7928853](https://github.com/ho-nl/m2-pwa/commit/79288538bb3b99682a7beea22223d35106a5d9c2))
+* **category-hero-nav:** category positioning ([2921dde](https://github.com/ho-nl/m2-pwa/commit/2921ddec4731e19c1ccb11f941ec59826a1f908d))
+* **category-hero-nav:** spacing ([94de2cf](https://github.com/ho-nl/m2-pwa/commit/94de2cf7be9c82a6408dbe33438275051d57143d))
+
+
+
+
+
 ## [2.149.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.149.1...@graphcommerce/graphcommerce@2.149.2) (2021-11-11)
 
 

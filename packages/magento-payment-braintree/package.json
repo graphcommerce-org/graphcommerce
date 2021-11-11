@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-payment-braintree",
-  "version": "2.105.28",
+  "version": "2.105.29",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -17,7 +17,7 @@
     "@graphcommerce/eslint-config-pwa": "^3.1.4",
     "@graphcommerce/magento-cart-shipping-address": "^2.105.28",
     "@graphcommerce/magento-product": "^3.5.19",
-    "@graphcommerce/magento-product-configurable": "^3.4.3",
+    "@graphcommerce/magento-product-configurable": "^3.4.4",
     "@graphcommerce/prettier-config-pwa": "^3.0.4",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
     "@playwright/test": "^1.16.2",
