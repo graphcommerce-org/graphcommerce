@@ -22,7 +22,7 @@ const useStyles = makeStyles(
       justifyItems: 'center',
       alignContent: 'center',
       padding: `${theme.spacings.lg} ${theme.spacings.md}`,
-      minHeight: `calc(100vh - 56px)`,
+      minHeight: `calc(100vh - ${theme.page.headerInnerHeight.sm})`,
       '& > *': {
         zIndex: 1,
         maxWidth: 'max-content',
