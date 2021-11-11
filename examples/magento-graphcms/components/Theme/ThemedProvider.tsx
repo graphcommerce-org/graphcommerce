@@ -348,7 +348,6 @@ const createOverrides = (theme: Theme): Overrides => {
         paddingLeft: responsiveVal(4, 8),
         paddingRight: responsiveVal(4, 8),
         ...theme.typography.body2,
-        backgroundColor: theme.palette.background.paper,
       },
       sizeSmall: {
         height: responsiveVal(26, 30),
@@ -358,7 +357,6 @@ const createOverrides = (theme: Theme): Overrides => {
       },
       outlined: {
         borderColor: theme.palette.divider,
-        backgroundColor: theme.palette.background.default,
       },
       label: {
         paddingLeft: responsiveVal(6, 10),
