@@ -8,6 +8,7 @@ This example integrates with Magento and GraphCMS.
   - Frontend: http://localhost:3000
   - GraphQL Playground: http://localhost:3000/api/graphql
 - `yarn build`: Create production build
+- `yarn lingui:extact`: Extract all translations from the project
 - `yarn tsc:lint`: Lint the installation with TypeScript
 
 Take a look at the [package.json](./package.json) for all commands.

@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-11-11 12:38+0100\n"
+"POT-Creation-Date: 2021-11-11 12:37+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: en\n"
+"Language: fr\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: \n"
@@ -14,250 +14,250 @@ msgstr ""
 "Plural-Forms: \n"
 
 msgid "Account"
-msgstr "Account"
+msgstr ""
 
 msgid "Account Dashboard"
-msgstr "Account Dashboard"
+msgstr ""
 
 msgid "Add new address"
-msgstr "Add new address"
+msgstr ""
 
 msgid "Add review"
-msgstr "Add review"
+msgstr ""
 
 msgid "Address not found"
-msgstr "Address not found"
+msgstr ""
 
 msgid "Addresses"
-msgstr "Addresses"
+msgstr ""
 
 msgid "All products"
-msgstr "All products"
+msgstr ""
 
 msgid "As low as"
-msgstr "As low as"
+msgstr ""
 
 msgid "Authentication"
-msgstr "Authentication"
+msgstr ""
 
 msgid "Back to home"
-msgstr "Back to home"
+msgstr ""
 
 msgid "Be the first to know about everything new!"
-msgstr "Be the first to know about everything new!"
+msgstr ""
 
 msgid "Billing address"
-msgstr "Billing address"
+msgstr ""
 
 msgid "Blog"
-msgstr "Blog"
+msgstr ""
 
 msgid "Cart ({0})"
-msgstr "Cart ({0})"
+msgstr ""
 
 msgid "Cart Items"
-msgstr "Cart Items"
+msgstr ""
 
 msgid "Change password"
-msgstr "Change password"
+msgstr ""
 
 msgid "Checkout"
-msgstr "Checkout"
+msgstr ""
 
 msgid "Checkout summary"
-msgstr "Checkout summary"
+msgstr ""
 
 msgid "Contact"
-msgstr "Contact"
+msgstr ""
 
 msgid "Contact information"
-msgstr "Contact information"
+msgstr ""
 
 msgid "Continue shopping"
-msgstr "Continue shopping"
+msgstr ""
 
 msgid "Country"
-msgstr "Country"
+msgstr ""
 
 msgid "Create new password"
-msgstr "Create new password"
+msgstr ""
 
 msgid "Customer Service"
-msgstr "Customer Service"
+msgstr ""
 
 msgid "Discover our collection and add items to your cart!"
-msgstr "Discover our collection and add items to your cart!"
+msgstr ""
 
 msgid "Discover our collection and place your first order!"
-msgstr "Discover our collection and place your first order!"
+msgstr ""
 
 msgid "Discover our collection and write your first review!"
-msgstr "Discover our collection and write your first review!"
+msgstr ""
 
 msgid "Edit address"
-msgstr "Edit address"
+msgstr ""
 
 msgid "Edit billing address"
-msgstr "Edit billing address"
+msgstr ""
 
 msgid "Fill in your new password, confirm it and click on the save button."
-msgstr "Fill in your new password, confirm it and click on the save button."
+msgstr ""
 
 msgid "Forgot your password?"
-msgstr "Forgot your password?"
+msgstr ""
 
 msgid "Name"
-msgstr "Name"
+msgstr ""
 
 msgid "Newsletter"
-msgstr "Newsletter"
+msgstr ""
 
 msgid "Next"
-msgstr "Next"
+msgstr ""
 
 msgid "No Image"
-msgstr "No Image"
+msgstr ""
 
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
-msgstr "No worries! Enter your email address and we will send an email with instructions to reset your password."
+msgstr ""
 
 msgid "Or follow these links to get you back on track!"
-msgstr "Or follow these links to get you back on track!"
+msgstr ""
 
 msgid "Order #{orderId}"
-msgstr "Order #{orderId}"
+msgstr ""
 
 msgid "Order detail page for order #{orderId}"
-msgstr "Order detail page for order #{orderId}"
+msgstr ""
 
 msgid "Order not found"
-msgstr "Order not found"
+msgstr ""
 
 msgid "Order view #{orderId}"
-msgstr "Order view #{orderId}"
+msgstr ""
 
 msgid "Ordered items"
-msgstr "Ordered items"
+msgstr ""
 
 msgid "Orders"
-msgstr "Orders"
+msgstr ""
 
 msgid "Password"
-msgstr "Password"
+msgstr ""
 
 msgid "Pay"
-msgstr "Pay"
+msgstr ""
 
 msgid "Payment"
-msgstr "Payment"
+msgstr ""
 
 msgid "Place order"
-msgstr "Place order"
+msgstr ""
 
 msgid "Product could not be found"
-msgstr "Product could not be found"
+msgstr ""
 
 msgid "Results for '{search}'"
-msgstr "Results for '{search}'"
+msgstr ""
 
 msgid "Reviews"
-msgstr "Reviews"
+msgstr ""
 
 msgid "Search"
-msgstr "Search"
+msgstr ""
 
 msgid "Set your new password"
-msgstr "Set your new password"
+msgstr ""
 
 msgid "Shipping"
-msgstr "Shipping"
+msgstr ""
 
 msgid "Shipping method"
-msgstr "Shipping method"
+msgstr ""
 
 msgid "Sign In"
-msgstr "Sign In"
+msgstr ""
 
 msgid "Sign in"
-msgstr "Sign in"
+msgstr ""
 
 msgid "Sign in to your account"
-msgstr "Sign in to your account"
+msgstr ""
 
 msgid "Sign out"
-msgstr "Sign out"
+msgstr ""
 
 msgid "Store home"
-msgstr "Store home"
+msgstr ""
 
 msgid "Switch stores"
-msgstr "Switch stores"
+msgstr ""
 
 msgid "Thank you for your order!"
-msgstr "Thank you for your order!"
+msgstr ""
 
 msgid "Try a different product"
-msgstr "Try a different product"
+msgstr ""
 
 msgid "Update your name"
-msgstr "Update your name"
+msgstr ""
 
 msgid "View all your addresses"
-msgstr "View all your addresses"
+msgstr ""
 
 msgid "View all your reviews"
-msgstr "View all your reviews"
+msgstr ""
 
 msgid "We couldn't find the page you were looking for"
-msgstr "We couldn't find the page you were looking for"
+msgstr ""
 
 msgid "We're processing your payment, this will take a few seconds."
-msgstr "We're processing your payment, this will take a few seconds."
+msgstr ""
 
 msgid "Which size is right?"
-msgstr "Which size is right?"
+msgstr ""
 
 msgid "Whoops our bad..."
-msgstr "Whoops our bad..."
+msgstr ""
 
 msgid "Written {0} reviews"
-msgstr "Written {0} reviews"
+msgstr ""
 
 msgid "You are reviewing {0}"
-msgstr "You are reviewing {0}"
+msgstr ""
 
 msgid "You can now<0>sign in again</0>."
-msgstr "You can now<0>sign in again</0>."
+msgstr ""
 
 msgid "You have no orders yet"
-msgstr "You have no orders yet"
+msgstr ""
 
 msgid "You have not placed an order"
-msgstr "You have not placed an order"
+msgstr ""
 
 msgid "You have now successfully reset your password"
-msgstr "You have now successfully reset your password"
+msgstr ""
 
 msgid "You haven't placed any reviews yet"
-msgstr "You haven't placed any reviews yet"
+msgstr ""
 
 msgid "canceled"
-msgstr "canceled"
+msgstr ""
 
 msgid "invoiced"
-msgstr "invoiced"
+msgstr ""
 
 msgid "partially processed"
-msgstr "partially processed"
+msgstr ""
 
 msgid "processed"
-msgstr "processed"
+msgstr ""
 
 msgid "refunded"
-msgstr "refunded"
+msgstr ""
 
 msgid "returned"
-msgstr "returned"
+msgstr ""
 
 msgid "shipped"
-msgstr "shipped"
+msgstr ""

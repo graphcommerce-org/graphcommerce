@@ -1,10 +1,10 @@
 import { ServerStyleSheets } from '@material-ui/core/styles'
 // eslint-disable-next-line @next/next/no-document-import-in-page
-import NextDocument, { DocumentContext } from 'next/document'
+import NextDocument, { DocumentContext, DocumentInitialProps } from 'next/document'
 import React from 'react'
 
 export default class Document extends NextDocument {
-  static getInitialProps = async (ctx: DocumentContext) => {
+  static getInitialProps = async (ctx: DocumentContext): Promise<DocumentInitialProps> => {
     const sheets = new ServerStyleSheets()
     const originalRenderPage = ctx.renderPage
 
