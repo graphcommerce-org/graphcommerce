@@ -20,8 +20,6 @@ export default function EmailHelperList(props: HelperListProps) {
   const { data: tokenData } = useQuery(CustomerTokenDocument)
   const classes = useStyles(props)
 
-  if (!tokenData?.customerToken) return <></>
-
   return (
     <ul className={clsx(classes.root)}>
       <li>E-mail address of existing customers will be recognized, sign in is optional.</li>
