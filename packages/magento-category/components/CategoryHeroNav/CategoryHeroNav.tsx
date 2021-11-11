@@ -13,7 +13,7 @@ const useStyles = makeStyles(
         "categories"
         "placeholder"
       `,
-      gridTemplateRows: 'auto 1fr 1fr',
+      gridTemplateRows: 'auto auto 1fr',
       borderBottom: `1px solid ${theme.palette.divider}`,
       marginBottom: theme.spacings.xl,
       paddingRight: 0,
@@ -34,7 +34,9 @@ const useStyles = makeStyles(
       justifySelf: 'center',
       alignSelf: 'start',
       gridTemplateColumns: '1fr 1fr',
+      marginBottom: theme.spacings.lg,
       [theme.breakpoints.up('md')]: {
+        margin: 0,
         gridColumnGap: theme.spacings.md,
         gridRowGap: theme.spacings.md,
         maxWidth: '100vw',
@@ -53,7 +55,6 @@ const useStyles = makeStyles(
       gridArea: 'placeholder',
       minHeight: '40vh',
       overflow: 'hidden',
-
       '& *': {
         width: '100%',
         height: '100%',
