@@ -13,10 +13,10 @@ function isImage(asset: AssetFragment): asset is ImageAsset {
 
 type AssetProps = {
   asset: AssetFragment
-} & Pick<ImageProps, 'sizes' | 'layout' | 'loading'>
+} & Omit<ImageProps, 'src' | 'width' | 'height' | 'alt'>
 
 export default function Asset(props: AssetProps) {
-  const { asset, sizes } = props
+  const { asset, ...imgProps } = props
 
   if (isImage(asset)) {
     return (
@@ -25,7 +25,7 @@ export default function Asset(props: AssetProps) {
         height={asset.height}
         width={asset.width}
         alt={asset.alt ?? undefined}
-        sizes={sizes}
+        {...imgProps}
       />
     )
   }
@@ -34,5 +34,6 @@ export default function Asset(props: AssetProps) {
     return <video src={asset.url} autoPlay muted loop playsInline />
   }
 
-  return <div>{asset.mimeType} not supported</div>
+  if (process.env.NODE_ENV !== 'production') return <div>{asset.mimeType} not supported</div>
+  return null
 }
