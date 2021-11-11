@@ -1,10 +1,4 @@
-import {
-  useHistoryLink,
-  usePageContext,
-  usePageRouter,
-  usePrevUp,
-  useUp,
-} from '@graphcommerce/framer-next-pages'
+import { usePageContext, usePageRouter, usePrevUp, useUp } from '@graphcommerce/framer-next-pages'
 import { Fab, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m, MotionValue, useMotionValue, useTransform } from 'framer-motion'
@@ -250,10 +244,6 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
   const titleOffset = useMotionValue<number>(100)
   const titleHeight = useMotionValue<number>(100)
 
-  const { href: historyHref, onClick: historyOnClick } = useHistoryLink({
-    href: up?.href ?? '',
-  })
-
   const setOffset = useCallback(
     (offsetTop: number, offsetParent: Element | null, clientHeight: number) => {
       titleHeight.set(clientHeight)
@@ -339,18 +329,16 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
 
   const canClickBack = backSteps > 0 && router.asPath !== prevUp?.href
   let back = canClickBack && (
-    <PageLink href={historyHref} passHref>
-      <Button
-        onClick={historyOnClick}
-        variant='pill-link'
-        size='small'
-        className={classes.backButton}
-        startIcon={backIcon}
-        aria-label='Back'
-      >
-        {historyOnClick ? up?.title : 'Back'}
-      </Button>
-    </PageLink>
+    <Button
+      onClick={() => router.back()}
+      variant='pill-link'
+      size='small'
+      className={classes.backButton}
+      startIcon={backIcon}
+      aria-label='Back'
+    >
+      {up?.href === router.asPath ? up?.title : 'Back'}
+    </Button>
   )
   if (!canClickBack && up?.href) {
     back = (
