@@ -25,14 +25,12 @@ export default function GoogleRecaptchaV3Script() {
     )
 
   return (
-    <>
-      <Script
-        id={`google-recaptcha-v3-${siteKey}`}
-        strategy='lazyOnload'
-        src={`https://www.google.com/recaptcha/api.js?render=${siteKey}`}
-        async
-        defer
-      />
-    </>
+    <Script
+      id={`google-recaptcha-v3-${siteKey}`}
+      strategy='lazyOnload'
+      src={`https://www.google.com/recaptcha/api.js?render=${siteKey}`}
+      async
+      defer
+    />
   )
 }
