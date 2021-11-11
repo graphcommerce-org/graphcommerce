@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-cart-address",
-  "version": "2.104.27",
+  "version": "2.104.28",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -23,10 +23,10 @@
     "@apollo/client": "^3.4.16",
     "@graphcommerce/graphql": "^2.105.4",
     "@graphcommerce/image": "^2.105.3",
-    "@graphcommerce/magento-customer": "^3.5.2",
-    "@graphcommerce/magento-product": "^3.5.18",
-    "@graphcommerce/magento-store": "^3.2.17",
-    "@graphcommerce/next-ui": "^3.15.0",
+    "@graphcommerce/magento-customer": "^3.5.3",
+    "@graphcommerce/magento-product": "^3.5.19",
+    "@graphcommerce/magento-store": "^3.2.18",
+    "@graphcommerce/next-ui": "^3.15.1",
     "@graphcommerce/react-hook-form": "^2.103.1",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.12.3",

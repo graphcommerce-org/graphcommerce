@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.149.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.149.0...@graphcommerce/graphcommerce@2.149.1) (2021-11-11)
+
+
+### Bug Fixes
+
+* better handling to go back from product page ([ff8e72b](https://github.com/ho-nl/m2-pwa/commit/ff8e72beef81b9fb0d20cbfbd50c282f0144aed7))
+* hide categories that aren't shown in the menu ([26320df](https://github.com/ho-nl/m2-pwa/commit/26320df9bce77d976fa7ca6a69bb838555bf9e27))
+
+
+
+
+
 # [2.149.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.148.3...@graphcommerce/graphcommerce@2.149.0) (2021-11-11)
 
 

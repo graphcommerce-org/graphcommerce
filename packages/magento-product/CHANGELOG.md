@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.19](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.5.18...@graphcommerce/magento-product@3.5.19) (2021-11-11)
+
+
+### Bug Fixes
+
+* hide categories that aren't shown in the menu ([26320df](https://github.com/ho-nl/m2-pwa/commit/26320df9bce77d976fa7ca6a69bb838555bf9e27))
+
+
+
+
+
 ## [3.5.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.5.8...@graphcommerce/magento-product@3.5.9) (2021-11-04)
 
 
