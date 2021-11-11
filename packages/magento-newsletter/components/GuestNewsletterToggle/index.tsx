@@ -1,5 +1,6 @@
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
+import { Form } from '@graphcommerce/next-ui'
 import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import {
   FormControl,
@@ -43,7 +44,7 @@ export default function GuestNewsletterToggle(props: GuestNewsletterToggleProps)
   if (formState.isSubmitted) return <Switch color='primary' {...switchProps} checked disabled />
 
   return (
-    <form noValidate>
+    <Form noValidate>
       <input type='hidden' {...register('email')} value={email} />
       <Controller
         name='isSubscribed'
@@ -68,6 +69,6 @@ export default function GuestNewsletterToggle(props: GuestNewsletterToggleProps)
       />
 
       <ApolloCustomerErrorAlert error={error} />
-    </form>
+    </Form>
   )
 }
