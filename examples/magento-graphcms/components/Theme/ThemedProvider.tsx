@@ -269,17 +269,9 @@ const createOverrides = (theme: Theme): Overrides => {
         boxShadow: theme.shadows[1],
         '&:hover': {
           boxShadow: theme.shadows[1],
-          backgroundColor: lighten(
-            theme.palette.background.default,
-            theme.palette.action.hoverOpacity,
-          ),
         },
         '&:focus': {
           boxShadow: theme.shadows[1],
-          backgroundColor: lighten(
-            theme.palette.background.default,
-            theme.palette.action.hoverOpacity,
-          ),
         },
       },
       containedPrimary: {
@@ -366,33 +358,11 @@ const createOverrides = (theme: Theme): Overrides => {
         paddingLeft: responsiveVal(6, 8),
         paddingRight: responsiveVal(6, 8),
       },
-      colorPrimary: {
-        //
-      },
-      colorSecondary: {
-        //
-      },
       deleteIcon: {
         color: theme.palette.text.primary,
       },
       deleteIconOutlinedColorPrimary: {
         color: theme.palette.primary.main,
-      },
-      clickable: {
-        '&:hover, &:focus': {
-          backgroundColor: lighten(
-            theme.palette.background.default,
-            theme.palette.action.hoverOpacity,
-          ),
-        },
-        '&.MuiChip-outlined': {
-          '&:hover, &:focus': {
-            backgroundColor: `${lighten(
-              theme.palette.background.default,
-              theme.palette.action.hoverOpacity,
-            )} !important`,
-          },
-        },
       },
     },
     MuiCheckbox: {
@@ -433,7 +403,7 @@ const createOverrides = (theme: Theme): Overrides => {
   }
 }
 
-const currentTheme = createThemeWithPallete(useTheme === 'light' ? lightPalette : darkPalette)
+const currentTheme = createThemeWithPallete(useTheme !== 'light' ? lightPalette : darkPalette)
 currentTheme.overrides = createOverrides(currentTheme)
 
 const ThemedProvider: React.FC = ({ children }) => (

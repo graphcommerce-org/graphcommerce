@@ -19,7 +19,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     quantity: {
       width: responsiveVal(80, 120),
-      backgroundColor: theme.palette.background.default,
+      backgroundColor: 'inherit',
     },
     quantityInput: {
       textAlign: 'center',
