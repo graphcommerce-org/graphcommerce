@@ -19,13 +19,6 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     fab: {
       boxShadow: 'none',
-      background: theme.palette.background.default,
-      '&:focus': {
-        background: theme.palette.background.default,
-      },
-      '&:hover': {
-        background: theme.palette.grey[100],
-      },
       [theme.breakpoints.down('sm')]: {
         width: responsiveVal(42, 56),
         height: responsiveVal(42, 56),
