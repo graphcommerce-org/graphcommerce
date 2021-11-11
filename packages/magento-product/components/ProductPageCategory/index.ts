@@ -9,7 +9,7 @@ import { ProductPageCategoryFragment } from './ProductPageCategory.gql'
 export default function productPageCategory(product?: ProductPageCategoryFragment | null) {
   if (!product?.categories?.length) return undefined
   return product?.categories?.reduce((carry, value) => {
-    if (!carry?.include_in_menu && value?.include_in_menu) return value
+    if (!value?.include_in_menu) return carry
     const carryL = carry?.url_path?.split('/')?.length ?? 0
     const valueL = value?.url_path?.split('/')?.length ?? 0
     return carryL >= valueL ? carry : value
