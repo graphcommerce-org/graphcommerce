@@ -30,9 +30,6 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
       ...styles.container,
-      '& [class*="Sheet-content"]': {
-        background: theme.palette.background.default,
-      },
     },
     containertop: {
       ...styles.containertop,
