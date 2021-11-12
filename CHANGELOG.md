@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.151.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.151.0...@graphcommerce/graphcommerce@2.151.1) (2021-11-12)
+
+
+### Bug Fixes
+
+* disable CartFab animation for mobile ([ea04e67](https://github.com/ho-nl/m2-pwa/commit/ea04e678b7d5ab23e903a59a7f369053d17f9e79))
+
+
+
+
+
 # [2.151.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.150.1...@graphcommerce/graphcommerce@2.151.0) (2021-11-12)
 
 
