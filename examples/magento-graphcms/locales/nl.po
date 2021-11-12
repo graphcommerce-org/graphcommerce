@@ -193,9 +193,6 @@ msgstr "Bestellingen"
 msgid "Password"
 msgstr "Wachtwoord"
 
-msgid "Password changed"
-msgstr "Wachtwoord aangepast"
-
 msgid "Passwords don't match"
 msgstr "Wachtwoorden komen niet overeen"
 
@@ -267,6 +264,9 @@ msgstr "Afrekenen"
 
 msgid "Store home"
 msgstr "Winkel home"
+
+msgid "Successfully changed password"
+msgstr "Wachtwoord aangepast"
 
 msgid "Switch stores"
 msgstr "Verander winkel"

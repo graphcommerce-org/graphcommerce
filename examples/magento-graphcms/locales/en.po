@@ -193,9 +193,6 @@ msgstr "Orders"
 msgid "Password"
 msgstr "Password"
 
-msgid "Password changed"
-msgstr "Password changed"
-
 msgid "Passwords don't match"
 msgstr "Passwords don't match"
 
@@ -267,6 +264,9 @@ msgstr "Start Checkout"
 
 msgid "Store home"
 msgstr "Store home"
+
+msgid "Successfully changed password"
+msgstr "Successfully changed password"
 
 msgid "Switch stores"
 msgstr "Switch stores"
