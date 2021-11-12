@@ -4,6 +4,7 @@ import {
   useOrderCardItemImages,
 } from '@graphcommerce/magento-customer-order'
 import { Pagination, SectionContainer } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
 import { Link, makeStyles, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
@@ -52,7 +53,7 @@ export default function AccountOrders(props: AccountOrdersProps) {
   return (
     <div className={classes.ordersContainer}>
       {isFirstPage && (
-        <SectionContainer labelLeft='Latest orders'>
+        <SectionContainer labelLeft={<Trans>Latest orders</Trans>}>
           {latestOrders?.map(
             (order) => order && <OrderCard key={order.number} {...order} images={images} />,
           )}
@@ -63,7 +64,7 @@ export default function AccountOrders(props: AccountOrdersProps) {
       {orders?.items &&
         ((isFirstPage && orders?.items?.length >= amountLatestOrders + 1) || !isFirstPage) && (
           <SectionContainer
-            labelLeft='Older'
+            labelLeft={<Trans>Older</Trans>}
             classes={{ sectionContainer: classes.olderOrdersContainer }}
           >
             {olderOrders?.map(

@@ -86,7 +86,7 @@ export default function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormPr
           autoFocus
           error={formState.isSubmitted && !!formState.errors.confirmEmail}
           helperText={formState.isSubmitted && formState.errors.confirmEmail?.message}
-          label={t`Confirm new email`}
+          label={<Trans>Confirm new emai</Trans>}
           required
           {...muiRegister('confirmEmail', {
             required: true,
@@ -100,7 +100,7 @@ export default function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormPr
           variant='outlined'
           type='password'
           error={!!formState.errors.password}
-          label={t`Password`}
+          label={<Trans>Password</Trans>}
           autoComplete='password'
           required={required.password}
           {...muiRegister('password', {

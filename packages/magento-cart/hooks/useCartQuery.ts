@@ -27,8 +27,10 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
 
   if (usingUrl && typeof queryOptions.fetchPolicy === 'undefined')
     queryOptions.fetchPolicy = 'cache-only'
+
   if (usingUrl && typeof queryOptions.returnPartialData === 'undefined')
     queryOptions.returnPartialData = true
+
   queryOptions.variables = { cartId, ...options?.variables } as V
   queryOptions.skip = queryOptions?.skip || !cartId
   queryOptions.ssr = false

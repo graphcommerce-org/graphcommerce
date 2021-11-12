@@ -7,8 +7,8 @@ import {
   useFixedFabAnimation,
   UseStyles,
 } from '@graphcommerce/next-ui'
+import { t } from '@lingui/macro'
 import { Fab, FabProps, makeStyles, NoSsr, Theme } from '@material-ui/core'
-import clsx from 'clsx'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
@@ -56,7 +56,7 @@ function CartFabContent(props: CartFabContentProps) {
     >
       <PageLink href='/cart' passHref>
         <Fab
-          aria-label='Cart'
+          aria-label={t`Cart`}
           color='inherit'
           size='large'
           classes={{ root: classes.fab }}

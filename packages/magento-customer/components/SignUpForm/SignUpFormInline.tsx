@@ -67,7 +67,7 @@ export default function SignUpFormInline({
           variant='outlined'
           type='password'
           error={!!formState.errors.password || !!error?.message}
-          label={t`Password`}
+          label={<Trans>Password</Trans>}
           autoFocus
           autoComplete='new-password'
           id='new-password'

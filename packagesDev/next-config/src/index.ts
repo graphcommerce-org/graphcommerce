@@ -55,7 +55,7 @@ function extendConfig(nextConfig: NextConfig): NextConfig {
 }
 
 export function withYarn1Scopes(
-  scopes: string[] = ['@apollo', '@graphcommerce'],
+  scopes: string[] = ['@graphcommerce'],
 ): (config: NextConfig) => NextConfig {
   const packageStr = readFileSync('package.json', 'utf-8')
 

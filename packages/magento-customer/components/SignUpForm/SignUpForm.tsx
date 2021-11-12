@@ -34,7 +34,7 @@ export default function SignUpForm(props: SignUpFormProps) {
           variant='outlined'
           type='password'
           error={!!formState.errors.password || !!inputError}
-          label={t`Password`}
+          label={<Trans>Password</Trans>}
           autoFocus
           autoComplete='new-password'
           required={required.password}

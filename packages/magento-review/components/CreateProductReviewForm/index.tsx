@@ -119,7 +119,7 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
           variant='outlined'
           type='text'
           error={!!formState.errors.nickname || !!error}
-          label={t`Name`}
+          label={<Trans>Name</Trans>}
           required={required.nickname}
           {...muiRegister('nickname', { required: required.nickname })}
           helperText={formState.errors.nickname?.message}

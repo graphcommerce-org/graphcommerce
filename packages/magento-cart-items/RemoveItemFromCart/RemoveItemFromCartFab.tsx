@@ -1,5 +1,6 @@
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
-import { SvgImage, iconClose, SvgImageSimple } from '@graphcommerce/next-ui'
+import { iconClose, SvgImageSimple } from '@graphcommerce/next-ui'
+import { t } from '@lingui/macro'
 import { Fab } from '@material-ui/core'
 import React from 'react'
 import {
@@ -18,7 +19,12 @@ export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
 
   return (
     <form noValidate onSubmit={submitHandler} {...formProps}>
-      <Fab aria-label='Remove Product' size='small' type='submit' disabled={formState.isSubmitting}>
+      <Fab
+        aria-label={t`Remove Product`}
+        size='small'
+        type='submit'
+        disabled={formState.isSubmitting}
+      >
         <SvgImageSimple src={iconClose} inverted />
       </Fab>
       <ApolloCartErrorAlert error={error} />

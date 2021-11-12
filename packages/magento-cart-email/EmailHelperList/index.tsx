@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { UseStyles } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
 import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 
@@ -22,9 +23,15 @@ export default function EmailHelperList(props: HelperListProps) {
 
   return (
     <ul className={clsx(classes.root)}>
-      <li>E-mail address of existing customers will be recognized, sign in is optional.</li>
-      <li>Fill in password fields to create an account.</li>
-      <li>Leave passwords fields empty to order as guest.</li>
+      <li>
+        <Trans>E-mail address of existing customers will be recognized, sign in is optional.</Trans>
+      </li>
+      <li>
+        <Trans>Fill in password fields to create an account.</Trans>
+      </li>
+      <li>
+        <Trans>Leave passwords fields empty to order as guest.</Trans>
+      </li>
     </ul>
   )
 }

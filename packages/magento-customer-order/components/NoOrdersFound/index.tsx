@@ -1,4 +1,5 @@
 import { IconHeader, iconBox } from '@graphcommerce/next-ui'
+import { t } from '@lingui/macro'
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 
@@ -16,7 +17,7 @@ export default function NoOrdersFound() {
 
   return (
     <div className={classes.noOrdersContainer}>
-      <IconHeader src={iconBox} title='No orders found' alt='no order' size='small' />
+      <IconHeader src={iconBox} title={t`No orders found`} alt='no order' size='small' />
     </div>
   )
 }

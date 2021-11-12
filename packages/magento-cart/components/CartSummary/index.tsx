@@ -1,5 +1,6 @@
 import { useHistoryLink } from '@graphcommerce/framer-next-pages'
 import { SectionContainer, UseStyles } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
@@ -63,7 +64,7 @@ export default function CartSummary(props: CartSummaryProps) {
         <div>
           <SectionContainer
             variantLeft='h5'
-            labelLeft='Confirmation + Track & trace'
+            labelLeft={t`Confirmation + Track & trace`}
             classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
           />
           <Typography variant='body1'>{email || ''}</Typography>
@@ -71,7 +72,7 @@ export default function CartSummary(props: CartSummaryProps) {
         <div>
           <SectionContainer
             variantLeft='h5'
-            labelLeft='Shipping method'
+            labelLeft={t`Shipping method`}
             classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
           />
           <Typography variant='body1'>
@@ -84,13 +85,13 @@ export default function CartSummary(props: CartSummaryProps) {
             <div>
               <SectionContainer
                 variantLeft='h5'
-                labelLeft='Shipping address'
+                labelLeft={t`Shipping address`}
                 classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
                 labelRight={
                   editable ? (
                     <PageLink href={historyHref} passHref>
                       <Link color='secondary' variant='body2' onClick={historyOnClick}>
-                        Edit
+                        <Trans>Edit</Trans>
                       </Link>
                     </PageLink>
                   ) : undefined
@@ -101,13 +102,13 @@ export default function CartSummary(props: CartSummaryProps) {
             <div>
               <SectionContainer
                 variantLeft='h5'
-                labelLeft='Billing Address'
+                labelLeft={t`Billing Address`}
                 classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
                 labelRight={
                   editable ? (
                     <PageLink href='/checkout/edit/billing-address' passHref>
                       <Link color='secondary' variant='body2'>
-                        Edit
+                        <Trans>Edit</Trans>
                       </Link>
                     </PageLink>
                   ) : undefined

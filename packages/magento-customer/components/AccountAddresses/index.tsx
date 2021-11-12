@@ -3,10 +3,10 @@ import {
   FullPageMessage,
   SectionContainer,
   MessageSnackbar,
-  SvgImage,
   iconHome,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
 import { makeStyles, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import Link from 'next/link'
@@ -54,7 +54,7 @@ export default function AccountAddresses(props: AccountAddressesProps) {
           <Skeleton height={128} />
         </div>
         <Button className={classes.button} variant='contained' color='primary' disabled>
-          Add new address
+          <Trans>Add new address</Trans>
         </Button>
       </SectionContainer>
     )
@@ -65,12 +65,12 @@ export default function AccountAddresses(props: AccountAddressesProps) {
       {((addresses && addresses.length === 0) || !addresses) && (
         <>
           <FullPageMessage
-            title='You have no addresses saved yet'
+            title={<Trans>You have no addresses saved yet</Trans>}
             icon={<SvgImageSimple src={iconHome} size='xxl' />}
             button={
               <Link href='/account/addresses/add' passHref>
                 <Button size='large' variant='contained' color='primary'>
-                  Add new address
+                  <Trans>Add new address</Trans>
                 </Button>
               </Link>
             }
@@ -88,12 +88,12 @@ export default function AccountAddresses(props: AccountAddressesProps) {
 
           <Link href='/account/addresses/add' passHref>
             <Button className={classes.button} variant='contained' color='primary'>
-              Add new address
+              <Trans>Add new address</Trans>
             </Button>
           </Link>
 
           <MessageSnackbar sticky open={router.query.confirm_delete !== undefined}>
-            <>Successfully deleted address</>
+            <Trans>Successfully deleted address</Trans>
           </MessageSnackbar>
         </SectionContainer>
       )}

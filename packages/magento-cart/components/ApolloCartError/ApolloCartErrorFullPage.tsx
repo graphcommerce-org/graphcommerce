@@ -2,9 +2,7 @@ import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import {
   ApolloErrorFullPage,
   Button,
-  SvgImage,
   ApolloErrorFullPageProps,
-  iconLock,
   iconSadFace,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'

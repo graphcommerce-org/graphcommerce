@@ -44,7 +44,7 @@ export default function ResetPasswordForm(props: ResetPasswordFormProps) {
           variant='outlined'
           type='email'
           error={!!formState.errors.email}
-          label='Email'
+          label={<Trans>Email</Trans>}
           required={required.email}
           {...muiRegister('email', { required: required.email })}
           helperText={formState.errors.email?.message}

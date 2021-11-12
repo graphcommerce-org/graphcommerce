@@ -9,6 +9,7 @@ import {
   InputCheckmark,
 } from '@graphcommerce/next-ui'
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { t, Trans } from '@lingui/macro'
 import { makeStyles, TextField } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -94,10 +95,10 @@ export default function EditAddressForm(props: EditAddressFormProps) {
             type='text'
             error={!!formState.errors.telephone}
             required={required.telephone}
-            label='Telephone'
+            label={<Trans>Telephone</Trans>}
             {...muiRegister('telephone', {
               required: required.telephone,
-              pattern: { value: phonePattern, message: 'Invalid phone number' },
+              pattern: { value: phonePattern, message: t`Invalid phone number` },
             })}
             helperText={formState.isSubmitted && formState.errors.telephone?.message}
             disabled={formState.isSubmitting}
@@ -115,7 +116,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
             size='large'
             loading={formState.isSubmitting}
           >
-            Save changes
+            <Trans>Save changes</Trans>
           </Button>
         </FormActions>
       </Form>

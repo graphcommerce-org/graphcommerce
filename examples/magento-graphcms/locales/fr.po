@@ -34,6 +34,9 @@ msgstr ""
 msgid "All products"
 msgstr ""
 
+msgid "Apply"
+msgstr ""
+
 msgid "As low as"
 msgstr ""
 
@@ -52,6 +55,9 @@ msgstr ""
 msgid "Blog"
 msgstr ""
 
+msgid "Cart"
+msgstr ""
+
 msgid "Cart ({0})"
 msgstr ""
 
@@ -65,6 +71,12 @@ msgid "Checkout"
 msgstr ""
 
 msgid "Checkout summary"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Confirm Password"
 msgstr ""
 
 msgid "Contact"
@@ -82,8 +94,17 @@ msgstr ""
 msgid "Create new password"
 msgstr ""
 
+msgid "Current Password"
+msgstr ""
+
 msgid "Customer Service"
 msgstr ""
+
+msgid "Discount code"
+msgstr ""
+
+#~ msgid "Discover our collection and add items to your basket!"
+#~ msgstr ""
 
 msgid "Discover our collection and add items to your cart!"
 msgstr ""
@@ -100,13 +121,31 @@ msgstr ""
 msgid "Edit billing address"
 msgstr ""
 
+msgid "Email"
+msgstr ""
+
 msgid "Fill in your new password, confirm it and click on the save button."
 msgstr ""
 
 msgid "Forgot your password?"
 msgstr ""
 
+msgid "Grand total"
+msgstr ""
+
+msgid "Including {0}"
+msgstr ""
+
+msgid "Invalid email address"
+msgstr ""
+
+msgid "Login"
+msgstr ""
+
 msgid "Name"
+msgstr ""
+
+msgid "New Password"
 msgstr ""
 
 msgid "Newsletter"
@@ -119,6 +158,12 @@ msgid "No Image"
 msgstr ""
 
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
+msgstr ""
+
+msgid "Ok"
+msgstr ""
+
+msgid "Or create an account"
 msgstr ""
 
 msgid "Or follow these links to get you back on track!"
@@ -145,6 +190,12 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
+msgid "Password changed"
+msgstr ""
+
+msgid "Passwords don't match"
+msgstr ""
+
 msgid "Pay"
 msgstr ""
 
@@ -154,7 +205,19 @@ msgstr ""
 msgid "Place order"
 msgstr ""
 
+msgid "Please reauthenticate and try again"
+msgstr ""
+
+msgid "Please select a payment method"
+msgstr ""
+
 msgid "Product could not be found"
+msgstr ""
+
+msgid "Products"
+msgstr ""
+
+msgid "Remove Product"
 msgstr ""
 
 msgid "Results for '{search}'"
@@ -163,7 +226,13 @@ msgstr ""
 msgid "Reviews"
 msgstr ""
 
+msgid "Save new password"
+msgstr ""
+
 msgid "Search"
+msgstr ""
+
+msgid "Send password reset email"
 msgstr ""
 
 msgid "Set your new password"
@@ -172,10 +241,19 @@ msgstr ""
 msgid "Shipping"
 msgstr ""
 
+msgid "Shipping ({0} {1})"
+msgstr ""
+
 msgid "Shipping method"
 msgstr ""
 
 msgid "Sign In"
+msgstr ""
+
+msgid "Sign Up"
+msgstr ""
+
+msgid "Sign Up / Sign In"
 msgstr ""
 
 msgid "Sign in"
@@ -187,10 +265,16 @@ msgstr ""
 msgid "Sign out"
 msgstr ""
 
+msgid "Start Checkout"
+msgstr ""
+
 msgid "Store home"
 msgstr ""
 
 msgid "Switch stores"
+msgstr ""
+
+msgid "Telephone"
 msgstr ""
 
 msgid "Thank you for your order!"
@@ -212,6 +296,9 @@ msgid "We couldn't find the page you were looking for"
 msgstr ""
 
 msgid "We're processing your payment, this will take a few seconds."
+msgstr ""
+
+msgid "We've send a password reset link to your account!"
 msgstr ""
 
 msgid "Which size is right?"
@@ -238,7 +325,16 @@ msgstr ""
 msgid "You have now successfully reset your password"
 msgstr ""
 
+msgid "You have to agree in order to proceed"
+msgstr ""
+
 msgid "You haven't placed any reviews yet"
+msgstr ""
+
+msgid "You must sign in to continue"
+msgstr ""
+
+msgid "Your cart is empty"
 msgstr ""
 
 msgid "canceled"

@@ -11,6 +11,7 @@ import {
   iconInvoice,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
 import { makeStyles, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import clsx from 'clsx'
@@ -282,7 +283,9 @@ export default function OrderDetails(props: OrderDetailsProps) {
 
       <div className={classes.totalsContainer}>
         <div className={classes.totalsRow}>
-          <div>Products</div>
+          <div>
+            <Trans>Products</Trans>
+          </div>
           <div>
             <Money {...total?.subtotal} />
           </div>
@@ -300,7 +303,9 @@ export default function OrderDetails(props: OrderDetailsProps) {
         ))}
 
         <div className={classes.totalsRow}>
-          <div>Shipping</div>
+          <div>
+            <Trans>Shipping</Trans>
+          </div>
           <div>
             <Money {...total?.total_shipping} />
           </div>
@@ -310,7 +315,9 @@ export default function OrderDetails(props: OrderDetailsProps) {
         <div className={classes.totalsDivider} />
 
         <div className={clsx(classes.totalsRow, classes.totalsVat)}>
-          <div>Total (incl. VAT)</div>
+          <div>
+            <Trans>Grand Total</Trans>
+          </div>
           <div>
             <Money {...total?.grand_total} />
           </div>

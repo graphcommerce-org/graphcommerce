@@ -1,5 +1,6 @@
 import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { t, Trans } from '@lingui/macro'
 import { makeStyles, TextField, Theme } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import React from 'react'
@@ -31,7 +32,7 @@ export default function ForgotPasswordForm() {
   if (formState.isSubmitSuccessful && data) {
     return (
       <Alert severity='success' variant='standard' className={classes.alert}>
-        We&apos;ve send a password reset link to your account!
+        <Trans>We've send a password reset link to your account!</Trans>
       </Alert>
     )
   }
@@ -43,11 +44,11 @@ export default function ForgotPasswordForm() {
           variant='outlined'
           type='text'
           error={!!formState.errors.email}
-          label='Email'
+          label={<Trans>Email</Trans>}
           required={required.email}
           {...muiRegister('email', {
             required: required.email,
-            pattern: { value: emailPattern, message: 'Invalid email address' },
+            pattern: { value: emailPattern, message: t`Invalid email address` },
           })}
           helperText={formState.errors.email?.message}
           disabled={formState.isSubmitting}
@@ -64,7 +65,7 @@ export default function ForgotPasswordForm() {
           variant='contained'
           size='large'
         >
-          Send password reset email
+          <Trans>Send password reset email</Trans>
         </Button>
       </FormActions>
     </Form>

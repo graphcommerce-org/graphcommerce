@@ -1,5 +1,6 @@
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
 import { Button, responsiveVal, UseStyles } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
 import { FormControl, makeStyles, TextField, Theme } from '@material-ui/core'
 import React from 'react'
 import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
@@ -43,7 +44,7 @@ export default function ApplyCouponForm(props: ApplyCouponFormProps) {
           color='secondary'
           variant='pill'
         >
-          Apply
+          <Trans>Apply</Trans>
         </Button>
       </FormControl>
 

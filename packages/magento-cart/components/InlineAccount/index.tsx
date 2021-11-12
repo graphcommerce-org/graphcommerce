@@ -7,6 +7,7 @@ import {
 import Button from '@graphcommerce/next-ui/Button'
 import FormRow from '@graphcommerce/next-ui/Form/FormRow'
 import { UseStyles } from '@graphcommerce/next-ui/Styles'
+import { Trans } from '@lingui/macro'
 import { makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
 import { useCartQuery } from '../../hooks/useCartQuery'
@@ -82,9 +83,9 @@ export default function InlineAccount(props: InlineAccountProps) {
             <div className={classes.innerContainer}>
               <div>
                 <Typography variant='h4' className={classes.title}>
-                  {title ?? 'No account yet?'}
+                  {title ?? <Trans>No account yet?</Trans>}
                 </Typography>
-                {description ?? 'You can track your order status and much more!'}
+                {description ?? <Trans>You can track your order status and much more!</Trans>}
               </div>
               <div>
                 {!toggled && (
@@ -95,7 +96,7 @@ export default function InlineAccount(props: InlineAccountProps) {
                     onClick={() => setToggled(!toggled)}
                     className={classes.button}
                   >
-                    Create an account
+                    <Trans>Create an account</Trans>
                   </Button>
                 )}
               </div>
@@ -128,9 +129,9 @@ export default function InlineAccount(props: InlineAccountProps) {
           <div className={classes.innerContainer}>
             <div>
               <Typography variant='h4' className={classes.title}>
-                {title ?? 'Have an account?'}
+                {title ?? <Trans>Have an account?</Trans>}
               </Typography>
-              {description ?? 'You can find your order history in your account!'}
+              {description ?? <Trans>You can find your order history in your account!</Trans>}
             </div>
             <div>
               <Button
@@ -139,7 +140,7 @@ export default function InlineAccount(props: InlineAccountProps) {
                 href={accountHref}
                 className={classes.button}
               >
-                My account
+                <Trans>Account</Trans>
               </Button>
             </div>
           </div>

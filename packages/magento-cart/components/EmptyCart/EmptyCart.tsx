@@ -20,7 +20,7 @@ export default function EmptyCart(props: EmptyCartProps) {
         </Link>
       }
     >
-      {children ?? <Trans>Discover our collection and add items to your basket!</Trans>}
+      {children ?? <Trans>Discover our collection and add items to your cart!</Trans>}
     </FullPageMessage>
   )
 }

@@ -1,5 +1,6 @@
 import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { assertFormGqlOperation, Controller, UseFormReturn } from '@graphcommerce/react-hook-form'
+import { t, Trans } from '@lingui/macro'
 import { MenuItem, TextField } from '@material-ui/core'
 import React from 'react'
 
@@ -34,7 +35,7 @@ export default function NameFields(props: NameFieldProps) {
                 variant='outlined'
                 select
                 error={!!fieldState.error}
-                label='Prefix'
+                label={<Trans>Prefix</Trans>}
                 required={!!required?.prefix}
                 helperText={fieldState.error?.message}
                 onChange={(e) => onChange(e.target.value)}
@@ -45,7 +46,7 @@ export default function NameFields(props: NameFieldProps) {
                 }}
                 {...field}
               >
-                {['Dhr.', 'Mevr.'].map((option) => (
+                {[t`Mr`, t`Mrs`, t`Other`].map((option) => (
                   <MenuItem key={option} value={option}>
                     {option}
                   </MenuItem>
@@ -60,7 +61,7 @@ export default function NameFields(props: NameFieldProps) {
         <TextField
           variant='outlined'
           type='text'
-          label='First Name'
+          label={<Trans>First Name</Trans>}
           required={!!required}
           error={!!formState.errors.firstname}
           helperText={formState.isSubmitted && formState.errors.firstname?.message}
@@ -74,7 +75,7 @@ export default function NameFields(props: NameFieldProps) {
           variant='outlined'
           type='text'
           error={!!formState.errors.lastname}
-          label='Last Name'
+          label={<Trans>Last Name</Trans>}
           required={!!required?.lastname}
           helperText={formState.isSubmitted && formState.errors.lastname?.message}
           InputProps={{

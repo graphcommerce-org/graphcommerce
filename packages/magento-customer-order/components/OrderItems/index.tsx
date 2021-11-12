@@ -1,4 +1,5 @@
 import { AnimatedRow, Button, SectionContainer, responsiveVal } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
 import { makeStyles, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import { AnimatePresence } from 'framer-motion'
@@ -44,7 +45,7 @@ export default function OrderItems(props: OrderItemsProps) {
   if (loading) {
     return (
       <SectionContainer
-        labelLeft='Ordered items'
+        labelLeft={<Trans>Ordered items</Trans>}
         /* endLabel='SHIPPED'*/
         classes={{ sectionContainer: classes.sectionContainer }}
       >
@@ -65,7 +66,7 @@ export default function OrderItems(props: OrderItemsProps) {
 
   return (
     <SectionContainer
-      labelLeft='Ordered items'
+      labelLeft={<Trans>Ordered items</Trans>}
       /* endLabel='SHIPPED'*/
       classes={{ sectionContainer: classes.sectionContainer }}
     >
@@ -94,8 +95,8 @@ export default function OrderItems(props: OrderItemsProps) {
 
       {items && maxItemsAboveFold < items?.length && (
         <div className={classes.viewAllButton}>
-          <Button variant='text' color='primary' onClick={(event) => setExpanded(!expanded)}>
-            {expanded ? 'View less items' : 'View all items'}
+          <Button variant='text' color='primary' onClick={() => setExpanded(!expanded)}>
+            {expanded ? <Trans>View less items</Trans> : <Trans>View all items</Trans>}
           </Button>
         </div>
       )}

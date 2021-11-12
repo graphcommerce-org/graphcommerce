@@ -17,6 +17,7 @@ import {
   UseStyles,
 } from '@graphcommerce/next-ui'
 import { phonePattern } from '@graphcommerce/react-hook-form'
+import { t, Trans } from '@lingui/macro'
 import { makeStyles, TextField } from '@material-ui/core'
 import React from 'react'
 import { GetBillingAddressDocument } from './GetBillingAddress.gql'
@@ -80,10 +81,10 @@ export default function EditBillingAddressForm(props: EditBillingAddressFormProp
             type='text'
             error={!!formState.errors.telephone}
             required={required.telephone}
-            label='Telephone'
+            label={<Trans>Telephone</Trans>}
             {...muiRegister('telephone', {
               required: required.telephone,
-              pattern: { value: phonePattern, message: 'Invalid phone number' },
+              pattern: { value: phonePattern, message: t`Invalid phone number` },
             })}
             helperText={formState.isSubmitted && formState.errors.telephone?.message}
             disabled={formState.isSubmitting}
@@ -101,7 +102,7 @@ export default function EditBillingAddressForm(props: EditBillingAddressFormProp
             size='large'
             loading={formState.isSubmitting}
           >
-            Save changes
+            <Trans>Save changes</Trans>
           </Button>
         </FormActions>
       </Form>

@@ -7,6 +7,7 @@ import {
   FormDivider,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { Trans, t } from '@lingui/macro'
 import { TextField } from '@material-ui/core'
 import React from 'react'
 
@@ -33,7 +34,7 @@ export default function ChangePasswordForm() {
           variant='outlined'
           type='password'
           error={!!formState.errors.currentPassword}
-          label='Current Password'
+          label={<Trans>Current Password</Trans>}
           required={required.currentPassword}
           {...muiRegister('currentPassword', { required: required.currentPassword })}
           helperText={formState.errors.currentPassword?.message}
@@ -46,7 +47,7 @@ export default function ChangePasswordForm() {
           variant='outlined'
           type='password'
           error={!!formState.errors.newPassword}
-          label='New Password'
+          label={<Trans>New Password</Trans>}
           required={required.newPassword}
           {...muiRegister('newPassword', { required: required.newPassword })}
           helperText={formState.errors.newPassword?.message}
@@ -57,11 +58,11 @@ export default function ChangePasswordForm() {
           variant='outlined'
           type='password'
           error={!!formState.errors.confirmPassword}
-          label='Confirm Password'
+          label={<Trans>Confirm Password</Trans>}
           required
           {...muiRegister('confirmPassword', {
             required: true,
-            validate: (value) => value === pass || "Passwords don't match",
+            validate: (value) => value === pass || t`Passwords don't match`,
           })}
           helperText={formState.errors.confirmPassword?.message}
           disabled={formState.isSubmitting}
@@ -80,12 +81,12 @@ export default function ChangePasswordForm() {
           variant='contained'
           size='large'
         >
-          Save new password
+          <Trans>Save new password</Trans>
         </Button>
       </FormActions>
 
       <MessageSnackbar sticky open={Boolean(formState.isSubmitSuccessful && data)}>
-        <>Successfully changed password</>
+        <Trans>Successfully changed password</Trans>
       </MessageSnackbar>
     </Form>
   )

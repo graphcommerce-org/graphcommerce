@@ -4,6 +4,7 @@ import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { ApolloErrorAlert, ApolloErrorAlertProps, Button } from '@graphcommerce/next-ui'
 import Link from 'next/link'
 import React from 'react'
+import { t } from '@lingui/macro'
 import { useClearCurrentCartId } from '../../hooks/useClearCurrentCartId'
 
 export type ApolloCartErrorAlertProps = ApolloErrorAlertProps
@@ -21,7 +22,7 @@ export default function ApolloCartErrorAlert(props: ApolloCartErrorAlertProps) {
   const [, authorizationError] = graphqlErrorByCategory({
     category: 'graphql-authorization',
     error,
-    mask: token?.token ? 'Please reauthenticate and try again' : 'You must sign in to continue',
+    mask: token?.token ? t`Please reauthenticate and try again` : t`You must sign in to continue`,
   })
 
   action =

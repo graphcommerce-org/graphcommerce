@@ -1,4 +1,5 @@
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { Trans } from '@lingui/macro'
 import { Button, makeStyles, Theme } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -38,7 +39,7 @@ export default function DeleteCustomerAddressForm(props: DeleteCustomerAddressFo
   return (
     <form onSubmit={submitHandler} noValidate>
       <Button type='submit' variant='text' color='inherit' className={classes.button}>
-        Delete this address
+        <Trans>Delete this address</Trans>
       </Button>
       <ApolloCustomerErrorAlert error={error} />
     </form>
