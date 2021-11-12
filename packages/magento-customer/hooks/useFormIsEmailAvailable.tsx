@@ -44,9 +44,7 @@ export default function useFormIsEmailAvailable(props: useFormIsEmailAvailablePr
       return
     }
     if (isSubmitting) return
-    if (!isValid) {
-      return
-    }
+    if (!isValid) return
     if (!isDirty && isSubmitted && isSubmitSuccessful && isValid)
       setMode(hasAccount ? 'signin' : 'signup')
 
