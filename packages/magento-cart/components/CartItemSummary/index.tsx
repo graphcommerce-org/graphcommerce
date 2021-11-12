@@ -8,6 +8,7 @@ import {
   SvgImageSimple,
   UseStyles,
 } from '@graphcommerce/next-ui'
+import { t } from '@lingui/macro'
 import { Divider, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
@@ -84,7 +85,7 @@ export default function CartItemSummary(props: OrderSummaryProps) {
         classes={{
           sectionHeaderWrapper: classes.sectionHeaderWrapper,
         }}
-        labelLeft='Order summary'
+        labelLeft={t`Order summary`}
         // labelRight={
         //   <PageLink href='/download' passHref>
         //     <Link color='secondary'>Download invoice</Link>

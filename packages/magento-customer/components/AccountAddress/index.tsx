@@ -1,3 +1,4 @@
+import { Trans } from '@lingui/macro'
 import { Link, makeStyles, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
@@ -50,7 +51,9 @@ export default function AccountAddress(props: AccountAddressProps) {
       </div>
       <div className={classes.actions}>
         <PageLink href={`/account/addresses/edit?addressId=${id}`} passHref>
-          <Link color='primary'>Edit</Link>
+          <Link color='primary'>
+            <Trans>Edit</Trans>
+          </Link>
         </PageLink>
         <DeleteCustomerAddressForm addressId={id ?? undefined} />
       </div>

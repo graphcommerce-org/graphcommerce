@@ -43,7 +43,7 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
         variant='outlined'
         type='password'
         error={!!formState.errors.password || !!error?.message}
-        label={t`Password`}
+        label={<Trans>Password</Trans>}
         autoFocus
         autoComplete='current-password'
         id='current-password'

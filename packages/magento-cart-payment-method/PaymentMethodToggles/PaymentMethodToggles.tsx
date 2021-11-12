@@ -15,6 +15,7 @@ import {
   UseFormComposeOptions,
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
+import { t } from '@lingui/macro'
 import { FormControl, FormHelperText, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
@@ -152,7 +153,7 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
               defaultValue=''
               control={control}
               name='paymentMethod'
-              rules={{ required: 'Please select a payment method' }}
+              rules={{ required: t`Please select a payment method` }}
               render={({ field: { onChange, value, name, onBlur } }) => (
                 <Scroller className={classes.scrollerRoot} hideScrollbar tabIndex={0}>
                   {methods?.map((pm) => {
@@ -160,7 +161,7 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                     return (
                       <ToggleButton
                         name={name}
-                        aria-label={`payment_method_${pm.code}___${pm.child}`}
+                        aria-label={pm.title}
                         key={buttonValue}
                         value={buttonValue}
                         color='secondary'

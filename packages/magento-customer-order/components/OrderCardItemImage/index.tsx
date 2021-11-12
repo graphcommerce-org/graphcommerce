@@ -36,7 +36,7 @@ export default function OrderCardItemImage(props: OrderCardItemImageProps) {
           className={classes.image}
         />
       ) : (
-        <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
+        <div className={clsx(classes.placeholder, classes.image)}></div>
       )}
     </>
   )

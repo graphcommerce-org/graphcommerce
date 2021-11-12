@@ -55,7 +55,7 @@ export default function SignInForm(props: SignInFormProps) {
           variant='outlined'
           type='password'
           error={!!formState.errors.password || !!authError}
-          label={t`Password`}
+          label={<Trans>Password</Trans>}
           autoFocus
           autoComplete='current-password'
           id='current-password'

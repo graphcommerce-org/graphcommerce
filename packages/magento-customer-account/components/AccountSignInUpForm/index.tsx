@@ -9,6 +9,7 @@ import {
 } from '@graphcommerce/magento-customer'
 import { AnimatedRow, Button, FormDiv, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormPersist } from '@graphcommerce/react-hook-form'
+import { Trans } from '@lingui/macro'
 import { CircularProgress, Link, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
@@ -45,10 +46,10 @@ export default function AccountSignInUpForm() {
       {mode === 'email' && (
         <div className={classes.titleContainer} key='email'>
           <Typography variant='h3' align='center'>
-            Good day!
+            <Trans>Good day!</Trans>
           </Typography>
           <Typography variant='h6' align='center'>
-            Fill in your e-mail to login or create an account
+            <Trans>Fill in your e-mail to login or create an account</Trans>
           </Typography>
         </div>
       )}
@@ -56,10 +57,10 @@ export default function AccountSignInUpForm() {
       {mode === 'signin' && (
         <div className={classes.titleContainer} key='signin'>
           <Typography variant='h3' align='center'>
-            Welcome back!
+            <Trans>Welcome back!</Trans>
           </Typography>
           <Typography variant='h6' align='center'>
-            Fill in your password
+            <Trans>Fill in your password</Trans>
           </Typography>
         </div>
       )}
@@ -67,10 +68,10 @@ export default function AccountSignInUpForm() {
       {mode === 'signup' && (
         <div className={classes.titleContainer} key='signup'>
           <Typography variant='h3' align='center'>
-            Create account!
+            <Trans>Create account!</Trans>
           </Typography>
           <Typography variant='h6' align='center'>
-            Create a password and tell us your name
+            <Trans>Create a password and tell us your name</Trans>
           </Typography>
         </div>
       )}
@@ -78,19 +79,21 @@ export default function AccountSignInUpForm() {
       {mode === 'signedin' && (
         <div className={classes.titleContainer} key='signup'>
           <Typography variant='h3' align='center'>
-            Hi {firstname}! You&apos;re now logged in!
+            <Trans>Hi {firstname}! You're now logged in!</Trans>
           </Typography>
           <Typography variant='h6' align='center'>
-            You can view{' '}
-            <PageLink href='/account' passHref>
-              <Link>your account here</Link>
-            </PageLink>
-            .
+            <Trans>
+              You can view{' '}
+              <PageLink href='/account' passHref>
+                <Link>your account here</Link>
+              </PageLink>
+              .
+            </Trans>
           </Typography>
 
           <FormActions>
             <Button onClick={() => router.back()} color='primary' variant='contained' size='large'>
-              Continue shopping
+              <Trans>Continue shopping</Trans>
             </Button>
           </FormActions>
         </div>
@@ -99,10 +102,10 @@ export default function AccountSignInUpForm() {
       {mode === 'session-expired' && (
         <div className={classes.titleContainer} key='email'>
           <Typography variant='h3' align='center'>
-            Your session is expired
+            <Trans>Your session is expired</Trans>
           </Typography>
           <Typography variant='h6' align='center'>
-            Login to continue shopping
+            <Trans>Login to continue shopping</Trans>
           </Typography>
         </div>
       )}
@@ -119,7 +122,7 @@ export default function AccountSignInUpForm() {
                   autoComplete='email'
                   error={formState.isSubmitted && !!formState.errors.email}
                   helperText={formState.isSubmitted && formState.errors.email?.message}
-                  label='Email'
+                  label={<Trans>Email</Trans>}
                   required={required.email}
                   disabled={disableFields}
                   {...muiRegister('email', {
@@ -146,7 +149,7 @@ export default function AccountSignInUpForm() {
                     color='primary'
                     size='large'
                   >
-                    Continue
+                    <Trans>Continue</Trans>
                   </Button>
                 </FormActions>
               </AnimatedRow>

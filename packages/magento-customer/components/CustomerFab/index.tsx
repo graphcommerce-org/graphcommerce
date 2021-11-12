@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { iconPerson, StyledBadge, SvgImageSimple, UseStyles } from '@graphcommerce/next-ui'
+import { t } from '@lingui/macro'
 import { Fab, FabProps as FabPropsType, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
@@ -25,7 +26,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
 
   return (
     <PageLink href={requireAuth ? guestHref : authHref} passHref>
-      <Fab color='inherit' aria-label='Open Menu' size='large' {...FabProps}>
+      <Fab color='inherit' aria-label={t`Account`} size='large' {...FabProps}>
         <StyledBadge
           badgeContent={customerToken?.token ? 1 : 0}
           color={customerToken?.valid ? 'primary' : 'error'}

@@ -45,9 +45,7 @@ const useStyles = makeStyles(
       },
     },
   }),
-  {
-    name: 'CategoryChildren',
-  },
+  { name: 'CategoryChildren' },
 )
 
 type CategoryChildrenProps = Omit<CategoryChildrenFragment, 'uid'> & {

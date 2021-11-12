@@ -71,7 +71,7 @@ export default function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormPr
           autoFocus
           error={formState.isSubmitted && !!formState.errors.email}
           helperText={formState.isSubmitted && formState.errors.email?.message}
-          label='New email'
+          label={<Trans>New email</Trans>}
           required={required.email}
           {...muiRegister('email', {
             required: true,
@@ -86,11 +86,11 @@ export default function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormPr
           autoFocus
           error={formState.isSubmitted && !!formState.errors.confirmEmail}
           helperText={formState.isSubmitted && formState.errors.confirmEmail?.message}
-          label={t`Confirm new email`}
+          label={<Trans>Confirm new email</Trans>}
           required
           {...muiRegister('confirmEmail', {
             required: true,
-            validate: (value) => value === watchNewEmail || "Emails don't match",
+            validate: (value) => value === watchNewEmail || t`Emails don't match`,
           })}
         />
       </FormRow>
@@ -100,7 +100,7 @@ export default function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormPr
           variant='outlined'
           type='password'
           error={!!formState.errors.password}
-          label={t`Password`}
+          label={<Trans>Password</Trans>}
           autoComplete='password'
           required={required.password}
           {...muiRegister('password', {
@@ -120,13 +120,13 @@ export default function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormPr
           size='large'
           loading={formState.isSubmitting}
         >
-          Save changes
+          <Trans>Save changes</Trans>
         </Button>
       </FormActions>
       <ApolloCustomerErrorAlert error={error} />
 
       <MessageSnackbar sticky open={formState.isSubmitSuccessful && !error}>
-        <>Successfully updated email</>
+        <Trans>Successfully updated email</Trans>
       </MessageSnackbar>
     </Form>
   )

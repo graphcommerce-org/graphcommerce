@@ -3,10 +3,10 @@ import {
   AnimatedRow,
   iconChevronDown,
   iconChevronUp,
-  SvgImage,
   SvgImageSimple,
   UseStyles,
 } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
 import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import { AnimatePresence, m } from 'framer-motion'
@@ -93,7 +93,9 @@ export default function CouponAccordion(props: CouponAccordionProps) {
             </>
           }
         >
-          <Typography variant='subtitle1'>Discount code</Typography>
+          <Typography variant='subtitle1'>
+            <Trans>Discount code</Trans>
+          </Typography>
           <AnimatePresence>
             {coupon && (
               <m.div

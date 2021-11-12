@@ -2,7 +2,8 @@ import { useQuery } from '@apollo/client'
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { UseStyles } from '@graphcommerce/next-ui'
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { Trans } from '@lingui/macro'
 import clsx from 'clsx'
 import React from 'react'
 import CustomerNewsletterToggle from '../CustomerNewsletterToggle'
@@ -62,7 +63,9 @@ export default function SignupNewsletter(props: SignupNewsletterProps) {
 
   return (
     <div className={clsx(classes.signup, !isCustomer && classes.background)}>
-      <b>Sign up for our newsletter and stay updated</b>
+      <Typography variant='subtitle1'>
+        <Trans>Sign up for our newsletter and stay updated</Trans>
+      </Typography>
       <div className={classes.signupForm}>
         {isCustomer ? (
           <CustomerNewsletterToggle color='primary' />

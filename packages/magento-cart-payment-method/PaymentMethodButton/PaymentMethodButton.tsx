@@ -1,7 +1,6 @@
-import { ApolloCartErrorAlert, ApolloCartErrorFullPage } from '@graphcommerce/magento-cart'
-import { ApolloErrorFullPage, Button, ButtonProps, FormRow } from '@graphcommerce/next-ui'
+import { ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
+import { Button, ButtonProps } from '@graphcommerce/next-ui'
 import { ComposedSubmit, ComposedSubmitRenderComponentProps } from '@graphcommerce/react-hook-form'
-import { Dialog } from '@material-ui/core'
 import React from 'react'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 

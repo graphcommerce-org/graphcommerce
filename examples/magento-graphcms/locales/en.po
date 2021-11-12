@@ -34,6 +34,9 @@ msgstr "Addresses"
 msgid "All products"
 msgstr "All products"
 
+msgid "Apply"
+msgstr "Apply"
+
 msgid "As low as"
 msgstr "As low as"
 
@@ -52,6 +55,9 @@ msgstr "Billing address"
 msgid "Blog"
 msgstr "Blog"
 
+msgid "Cart"
+msgstr "Cart"
+
 msgid "Cart ({0})"
 msgstr "Cart ({0})"
 
@@ -67,6 +73,12 @@ msgstr "Checkout"
 msgid "Checkout summary"
 msgstr "Checkout summary"
 
+msgid "Close"
+msgstr "Close"
+
+msgid "Confirm Password"
+msgstr "Confirm Password"
+
 msgid "Contact"
 msgstr "Contact"
 
@@ -79,11 +91,20 @@ msgstr "Continue shopping"
 msgid "Country"
 msgstr "Country"
 
+msgid "Create Account"
+msgstr "Create Account"
+
 msgid "Create new password"
 msgstr "Create new password"
 
+msgid "Current Password"
+msgstr "Current Password"
+
 msgid "Customer Service"
 msgstr "Customer Service"
+
+msgid "Discount code"
+msgstr "Discount code"
 
 msgid "Discover our collection and add items to your cart!"
 msgstr "Discover our collection and add items to your cart!"
@@ -100,14 +121,35 @@ msgstr "Edit address"
 msgid "Edit billing address"
 msgstr "Edit billing address"
 
+msgid "Email"
+msgstr "Email"
+
 msgid "Fill in your new password, confirm it and click on the save button."
 msgstr "Fill in your new password, confirm it and click on the save button."
 
 msgid "Forgot your password?"
 msgstr "Forgot your password?"
 
+msgid "Grand total"
+msgstr "Grand total"
+
+msgid "Including {0}"
+msgstr "Including {0}"
+
+msgid "Invalid email address"
+msgstr "Invalid email address"
+
+msgid "Invalid phone number"
+msgstr "Invalid phone number"
+
+msgid "Login"
+msgstr "Login"
+
 msgid "Name"
 msgstr "Name"
+
+msgid "New Password"
+msgstr "New Password"
 
 msgid "Newsletter"
 msgstr "Newsletter"
@@ -120,6 +162,12 @@ msgstr "No Image"
 
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "No worries! Enter your email address and we will send an email with instructions to reset your password."
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Or create an account"
+msgstr "Or create an account"
 
 msgid "Or follow these links to get you back on track!"
 msgstr "Or follow these links to get you back on track!"
@@ -145,6 +193,9 @@ msgstr "Orders"
 msgid "Password"
 msgstr "Password"
 
+msgid "Passwords don't match"
+msgstr "Passwords don't match"
+
 msgid "Pay"
 msgstr "Pay"
 
@@ -154,8 +205,20 @@ msgstr "Payment"
 msgid "Place order"
 msgstr "Place order"
 
+msgid "Please reauthenticate and try again"
+msgstr "Please reauthenticate and try again"
+
+msgid "Please select a payment method"
+msgstr "Please select a payment method"
+
 msgid "Product could not be found"
 msgstr "Product could not be found"
+
+msgid "Products"
+msgstr "Products"
+
+msgid "Remove Product"
+msgstr "Remove Product"
 
 msgid "Results for '{search}'"
 msgstr "Results for '{search}'"
@@ -163,14 +226,23 @@ msgstr "Results for '{search}'"
 msgid "Reviews"
 msgstr "Reviews"
 
+msgid "Save new password"
+msgstr "Save new password"
+
 msgid "Search"
 msgstr "Search"
+
+msgid "Send password reset email"
+msgstr "Send password reset email"
 
 msgid "Set your new password"
 msgstr "Set your new password"
 
 msgid "Shipping"
 msgstr "Shipping"
+
+msgid "Shipping ({0} {1})"
+msgstr "Shipping ({0} {1})"
 
 msgid "Shipping method"
 msgstr "Shipping method"
@@ -187,11 +259,20 @@ msgstr "Sign in to your account"
 msgid "Sign out"
 msgstr "Sign out"
 
+msgid "Start Checkout"
+msgstr "Start Checkout"
+
 msgid "Store home"
 msgstr "Store home"
 
+msgid "Successfully changed password"
+msgstr "Successfully changed password"
+
 msgid "Switch stores"
 msgstr "Switch stores"
+
+msgid "Telephone"
+msgstr "Telephone"
 
 msgid "Thank you for your order!"
 msgstr "Thank you for your order!"
@@ -213,6 +294,9 @@ msgstr "We couldn't find the page you were looking for"
 
 msgid "We're processing your payment, this will take a few seconds."
 msgstr "We're processing your payment, this will take a few seconds."
+
+msgid "We've send a password reset link to your email address!"
+msgstr "We've send a password reset link to your email address!"
 
 msgid "Which size is right?"
 msgstr "Which size is right?"
@@ -238,8 +322,17 @@ msgstr "You have not placed an order"
 msgid "You have now successfully reset your password"
 msgstr "You have now successfully reset your password"
 
+msgid "You have to agree in order to proceed"
+msgstr "You have to agree in order to proceed"
+
 msgid "You haven't placed any reviews yet"
 msgstr "You haven't placed any reviews yet"
+
+msgid "You must sign in to continue"
+msgstr "You must sign in to continue"
+
+msgid "Your cart is empty"
+msgstr "Your cart is empty"
 
 msgid "canceled"
 msgstr "canceled"

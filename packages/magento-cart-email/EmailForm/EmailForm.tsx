@@ -11,6 +11,7 @@ import {
 } from '@graphcommerce/magento-customer'
 import { AnimatedRow, Button, FormDiv, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
+import { Trans } from '@lingui/macro'
 import { CircularProgress, makeStyles, TextField } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { AnimatePresence } from 'framer-motion'
@@ -67,14 +68,14 @@ export default function EmailForm(props: EmailFormProps) {
   if (mode === 'signin') {
     endAdornment = (
       <Button color='secondary' style={{ whiteSpace: 'nowrap' }} onClick={() => setExpand(!expand)}>
-        {expand ? 'Close' : 'Sign In'}
+        {expand ? <Trans>Close</Trans> : <Trans>Sign In</Trans>}
       </Button>
     )
   }
   if (mode === 'signup') {
     endAdornment = (
       <Button color='secondary' style={{ whiteSpace: 'nowrap' }} onClick={() => setExpand(!expand)}>
-        {expand ? 'Close' : 'Sign Up'}
+        {expand ? <Trans>Close</Trans> : <Trans>Create Account</Trans>}
       </Button>
     )
   }
@@ -91,7 +92,7 @@ export default function EmailForm(props: EmailFormProps) {
                 type='email'
                 error={formState.isSubmitted && !!formState.errors.email}
                 helperText={formState.isSubmitted && formState.errors.email?.message}
-                label='Email'
+                label={<Trans>Email</Trans>}
                 required={required.email}
                 {...muiRegister('email', {
                   required: required.email,
@@ -128,7 +129,9 @@ export default function EmailForm(props: EmailFormProps) {
 
         {mode === 'session-expired' && (
           <FormRow>
-            <Alert severity='error'>You must sign in to continue</Alert>
+            <Alert severity='error'>
+              <Trans>You must sign in to continue</Trans>
+            </Alert>
           </FormRow>
         )}
         {mode !== 'session-expired' && ((mode !== 'signup' && expand) || !expand) && (

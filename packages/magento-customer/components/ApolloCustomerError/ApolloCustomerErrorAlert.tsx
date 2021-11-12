@@ -1,4 +1,5 @@
 import { ApolloErrorAlert, ApolloErrorAlertProps } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
 import { Link } from '@material-ui/core'
 import NextLink from 'next/link'
 import React from 'react'
@@ -12,7 +13,9 @@ export default function ApolloCustomerErrorAlert(props: MagentoErrorAlertProps) 
   const action = unauthorized && (
     <>
       <NextLink href='/account/signin' passHref>
-        <Link>Sign Up / Sign In</Link>
+        <Link>
+          <Trans>Create Account</Trans> / <Trans>Sign In</Trans>
+        </Link>
       </NextLink>
     </>
   )

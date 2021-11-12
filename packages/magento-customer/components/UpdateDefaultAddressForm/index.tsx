@@ -1,4 +1,5 @@
 import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { Trans } from '@lingui/macro'
 import { FormControl, FormControlLabel, FormHelperText, Switch } from '@material-ui/core'
 import React, { useEffect, useMemo } from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
@@ -50,7 +51,7 @@ export default function UpdateDefaultAddressForm(props: AccountAddressProps) {
           <FormControl error={!!formState.errors.defaultShipping}>
             <FormControlLabel
               control={<Switch color='primary' />}
-              label='Shipping address'
+              label={<Trans>Shipping address</Trans>}
               checked={value}
               inputRef={ref}
               onBlur={onBlur}
@@ -71,7 +72,7 @@ export default function UpdateDefaultAddressForm(props: AccountAddressProps) {
           <FormControl error={!!formState.errors.defaultBilling}>
             <FormControlLabel
               control={<Switch color='primary' />}
-              label='Billing address'
+              label={<Trans>Billing address</Trans>}
               checked={value}
               inputRef={ref}
               onBlur={onBlur}

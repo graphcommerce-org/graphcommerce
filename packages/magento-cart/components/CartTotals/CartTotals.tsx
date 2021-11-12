@@ -1,5 +1,6 @@
-import { Money, MoneyProps } from '@graphcommerce/magento-store'
+import { Money } from '@graphcommerce/magento-store'
 import { AnimatedRow, UseStyles } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
 import { Divider, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
@@ -83,7 +84,9 @@ export default function CartTotals(props: CartTotalsProps) {
       <AnimatePresence initial={false}>
         {prices?.subtotal_including_tax && (
           <AnimatedRow className={classes.costsRow} key='subtotal'>
-            <div>Products</div>
+            <div>
+              <Trans>Products</Trans>
+            </div>
             <div className={classes.money}>
               <Money
                 {...(inclTax ? prices.subtotal_including_tax : prices.subtotal_excluding_tax)}
@@ -131,7 +134,9 @@ export default function CartTotals(props: CartTotalsProps) {
         {shippingMethod && (
           <AnimatedRow className={classes.costsRow} key='shippingMethod'>
             <div>
-              Shipping ({shippingMethod.carrier_title} {shippingMethod.method_title})
+              <Trans>
+                Shipping ({shippingMethod.carrier_title} {shippingMethod.method_title})
+              </Trans>
             </div>
             <div className={classes.money}>
               <Money
@@ -162,7 +167,9 @@ export default function CartTotals(props: CartTotalsProps) {
             className={clsx(classes.costsRow, classes.costsGrandTotal)}
             key='grand_total'
           >
-            <div>Grand total</div>
+            <div>
+              <Trans>Grand total</Trans>
+            </div>
             <div className={classes.money}>
               <Money {...prices.grand_total} />
             </div>
@@ -175,7 +182,9 @@ export default function CartTotals(props: CartTotalsProps) {
               className={clsx(classes.costsRow, classes.costsTax)}
               key={`incl${tax?.label}`}
             >
-              <div>Including {tax?.label}</div>
+              <div>
+                <Trans>Including {tax?.label}</Trans>
+              </div>
               <div className={classes.money}>
                 <Money {...tax?.amount} />
               </div>

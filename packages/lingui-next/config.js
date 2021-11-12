@@ -4,6 +4,9 @@
  * Note: We're converting the locale-country strings to locale only. This means we're losing
  * functionality to define country specific locale options. If this a feature you require, please
  * create an issue.
+ *
+ * @param {Partial<import('@lingui/conf').LinguiConfig>} config
+ * @returns {Partial<import('@lingui/conf').LinguiConfig>}
  */
 function linguiNextConfig(config) {
   const { locales, ...otherConfig } = config
@@ -13,10 +16,11 @@ function linguiNextConfig(config) {
     catalogs: [
       {
         path: 'locales/{locale}',
-        include: ['<rootDir>/**/*.tsx'],
-        exclude: ['**/node_modules/**'],
+        include: ['<rootDir>/**/*.tsx', '<rootDir>/../../packages/**/*.tsx'],
+        exclude: ['**/node_modules/!(@graphcommerce)/**'],
       },
     ],
+    extractors: [require.resolve('@lingui/cli/api/extractors/typescript')],
     sourceLocale: 'en',
     ...otherConfig,
   }

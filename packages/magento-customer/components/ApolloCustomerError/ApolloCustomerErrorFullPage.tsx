@@ -5,6 +5,7 @@ import {
   iconPerson,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
 import PageLink from 'next/link'
 import React from 'react'
 
@@ -27,7 +28,7 @@ export default function ApolloCustomerErrorFullPage(props: ApolloCustomerErrorFu
         unauthorized ? (
           <PageLink href={signInHref} passHref>
             <Button variant='contained' color='primary' size='large'>
-              Login
+              <Trans>Login</Trans>
             </Button>
           </PageLink>
         ) : undefined
@@ -36,7 +37,7 @@ export default function ApolloCustomerErrorFullPage(props: ApolloCustomerErrorFu
         unauthorized ? (
           <PageLink href={signUpHref} passHref>
             <Button variant='text' color='primary'>
-              Or create an account
+              <Trans>Or create an account</Trans>
             </Button>
           </PageLink>
         ) : undefined

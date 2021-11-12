@@ -8,6 +8,7 @@ import {
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { Trans } from '@lingui/macro'
 import React from 'react'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import NameFields from '../NameFields'
@@ -49,13 +50,13 @@ export default function ChangeNameForm(props: ChangeNameFormProps) {
             size='large'
             loading={formState.isSubmitting}
           >
-            Save changes
+            <Trans>Save changes</Trans>
           </Button>
         </FormActions>
         <ApolloCustomerErrorAlert error={error} />
       </Form>
       <MessageSnackbar open={formState.isSubmitSuccessful && !error} variant='pill'>
-        <>Successfully saved changes</>
+        <Trans>Successfully saved changes</Trans>
       </MessageSnackbar>
     </>
   )
