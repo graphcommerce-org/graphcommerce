@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.151.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.150.1...@graphcommerce/graphcommerce@2.151.0) (2021-11-12)
+
+
+### Bug Fixes
+
+* error in cli about missing plurals ([fedde70](https://github.com/ho-nl/m2-pwa/commit/fedde70012b0b5694114a0f5c3ab0f7d5c8cd276))
+* eslint doesn't start properly ([3e01cfb](https://github.com/ho-nl/m2-pwa/commit/3e01cfb89ef73de2b520399c9428b88114844b02))
+* even more translations ([1a1f988](https://github.com/ho-nl/m2-pwa/commit/1a1f98837c704b978f6b42b619d9c52f540b2d48))
+
+
+### Features
+
+* added tons of translations ([9bb0ac7](https://github.com/ho-nl/m2-pwa/commit/9bb0ac709b58df6ea6141e92e4923a5ca9ae2963))
+
+
+
+
+
 ## [2.150.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.150.0...@graphcommerce/graphcommerce@2.150.1) (2021-11-12)
 
 

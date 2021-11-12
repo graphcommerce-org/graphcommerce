@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcms-ui@2.104.29...@graphcommerce/graphcms-ui@2.105.0) (2021-11-12)
+
+
+### Features
+
+* added tons of translations ([9bb0ac7](https://github.com/ho-nl/m2-pwa/commit/9bb0ac709b58df6ea6141e92e4923a5ca9ae2963))
+
+
+
+
+
 ## [2.104.29](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcms-ui@2.104.28...@graphcommerce/graphcms-ui@2.104.29) (2021-11-12)
 
 

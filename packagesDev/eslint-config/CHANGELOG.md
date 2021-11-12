@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/eslint-config-pwa@3.1.4...@graphcommerce/eslint-config-pwa@3.1.5) (2021-11-12)
+
+
+### Bug Fixes
+
+* eslint doesn't start properly ([3e01cfb](https://github.com/ho-nl/m2-pwa/commit/3e01cfb89ef73de2b520399c9428b88114844b02))
+
+
+
+
+
 # [3.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/eslint-config-pwa@3.0.8...@graphcommerce/eslint-config-pwa@3.1.0) (2021-10-21)
 
 

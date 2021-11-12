@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-cart-payment-method",
-  "version": "2.110.20",
+  "version": "2.111.0",
   "sideEffects": false,
   "engines": {
     "node": "14.x"
@@ -17,20 +17,20 @@
   },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.2",
-    "@graphcommerce/eslint-config-pwa": "^3.1.4",
+    "@graphcommerce/eslint-config-pwa": "^3.1.5",
     "@graphcommerce/prettier-config-pwa": "^3.0.4",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
     "@playwright/test": "^1.16.2"
   },
   "dependencies": {
     "@apollo/client": "^3.4.16",
-    "@graphcommerce/framer-scroller": "^1.0.3",
-    "@graphcommerce/graphql": "^2.105.4",
-    "@graphcommerce/image": "^2.105.3",
-    "@graphcommerce/magento-cart": "^3.6.6",
-    "@graphcommerce/magento-store": "^3.2.20",
-    "@graphcommerce/next-ui": "^3.16.0",
-    "@graphcommerce/react-hook-form": "^2.103.1",
+    "@graphcommerce/framer-scroller": "^1.0.4",
+    "@graphcommerce/graphql": "^2.105.5",
+    "@graphcommerce/image": "^2.105.4",
+    "@graphcommerce/magento-cart": "^3.7.0",
+    "@graphcommerce/magento-store": "^3.3.0",
+    "@graphcommerce/next-ui": "^3.17.0",
+    "@graphcommerce/react-hook-form": "^2.104.0",
     "@lingui/macro": "^3.12.1",
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-newsletter@1.0.19...@graphcommerce/magento-newsletter@1.1.0) (2021-11-12)
+
+
+### Features
+
+* added tons of translations ([9bb0ac7](https://github.com/ho-nl/m2-pwa/commit/9bb0ac709b58df6ea6141e92e4923a5ca9ae2963))
+
+
+
+
+
 ## [1.0.17](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-newsletter@1.0.16...@graphcommerce/magento-newsletter@1.0.17) (2021-11-12)
 
 

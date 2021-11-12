@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.17.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.16.0...@graphcommerce/next-ui@3.17.0) (2021-11-12)
+
+
+### Features
+
+* added tons of translations ([9bb0ac7](https://github.com/ho-nl/m2-pwa/commit/9bb0ac709b58df6ea6141e92e4923a5ca9ae2963))
+
+
+
+
+
 # [3.16.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.15.2...@graphcommerce/next-ui@3.16.0) (2021-11-12)
 
 

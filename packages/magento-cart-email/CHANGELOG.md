@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-email@2.105.31...@graphcommerce/magento-cart-email@2.106.0) (2021-11-12)
+
+
+### Bug Fixes
+
+* even more translations ([1a1f988](https://github.com/ho-nl/m2-pwa/commit/1a1f98837c704b978f6b42b619d9c52f540b2d48))
+
+
+### Features
+
+* added tons of translations ([9bb0ac7](https://github.com/ho-nl/m2-pwa/commit/9bb0ac709b58df6ea6141e92e4923a5ca9ae2963))
+
+
+
+
+
 ## [2.105.30](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-email@2.105.29...@graphcommerce/magento-cart-email@2.105.30) (2021-11-12)
 
 
