@@ -45,7 +45,6 @@ export default function useFormIsEmailAvailable(props: useFormIsEmailAvailablePr
     }
     if (isSubmitting) return
     if (!isValid) {
-      setMode('email')
       return
     }
     if (!isDirty && isSubmitted && isSubmitSuccessful && isValid)
