@@ -10,6 +10,12 @@ type LinguiProviderProps = Omit<I18nProviderProps, 'i18n'> & {
   loader: MessageLoader
 }
 
+i18n.loadLocaleData({
+  nl: { plurals: nl },
+  fr: { plurals: fr },
+  en: { plurals: en },
+})
+
 export default function LinguiProvider(props: LinguiProviderProps) {
   const { loader, ...i18nProviderPRops } = props
 
@@ -22,11 +28,6 @@ export default function LinguiProvider(props: LinguiProviderProps) {
 
     if (data?.lang === localeOnly && data.textContent) {
       // @todo: We're not loading the plurals dynamically, but we can't because it will load the complete module.
-      i18n.loadLocaleData({
-        nl: { plurals: nl },
-        fr: { plurals: fr },
-        en: { plurals: en },
-      })
       i18n.load(localeOnly, JSON.parse(data.textContent))
       i18n.activate(localeOnly)
     } else if (i18n.locale !== locale) {
