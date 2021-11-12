@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.16.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.15.2...@graphcommerce/next-ui@3.16.0) (2021-11-12)
+
+
+### Bug Fixes
+
+* Accessibility: Tap targets are sized appropriately ([55177f0](https://github.com/ho-nl/m2-pwa/commit/55177f03e79a29a879022ed34439e6c7aebbd80e))
+* behaviour for CartFab animation including darkTheme support ([6152ef3](https://github.com/ho-nl/m2-pwa/commit/6152ef32d093e42c58ee79d4d713c5b8c2870746))
+* clean up themeProvider ([6868e71](https://github.com/ho-nl/m2-pwa/commit/6868e71b59a637be8229a2ab49791dd324e02bb9))
+* darkTheme ([b08f522](https://github.com/ho-nl/m2-pwa/commit/b08f52255c91dcba5498481ba5e9f0fa0b6c5013))
+* darkTheme proof background color for sheet ([2af3b4a](https://github.com/ho-nl/m2-pwa/commit/2af3b4a6b7115400c5bbed36a21cd48852bea122))
+* design ([a8e2888](https://github.com/ho-nl/m2-pwa/commit/a8e288856011ca7d8fdcb75d7c672629a8f8bcf4))
+* design ([2dd5f41](https://github.com/ho-nl/m2-pwa/commit/2dd5f415010d19549158d837f0f98497d350fc2d))
+* fab animation should be background paper ([b538f96](https://github.com/ho-nl/m2-pwa/commit/b538f963b6c45a3973b11abe8de7823f2864326b))
+* hex for darktheme paper value, so calculations can be made ([c93bb22](https://github.com/ho-nl/m2-pwa/commit/c93bb22ba287c85ad5c27fd5f13d82dbb9a7d16f))
+* icon style ([6b9fea9](https://github.com/ho-nl/m2-pwa/commit/6b9fea9112206bb38b419e8257ad1b2b3fad74b6))
+* pagination color not primary ([c4e6d4f](https://github.com/ho-nl/m2-pwa/commit/c4e6d4f35d2df7a93fe045bde6c015fbcc5e5089))
+* perfectly spaced video ([f1481ed](https://github.com/ho-nl/m2-pwa/commit/f1481edaf08564315a8c6f50fa1a500bbdc58fc5))
+* prevent video casting on android ([a8baf94](https://github.com/ho-nl/m2-pwa/commit/a8baf949283c854283fe32befae4a60b119e02e0))
+* remove unused wrapping div ([6ced7b9](https://github.com/ho-nl/m2-pwa/commit/6ced7b912229303a9d708db1d2621f50f431c73f))
+* replace value with headerInnerHeight ([656fedc](https://github.com/ho-nl/m2-pwa/commit/656fedc573bbdd941c34e05e4dcd9a6af49fe987))
+* replace value with headerInnerHeight ([d961720](https://github.com/ho-nl/m2-pwa/commit/d9617200d375a9db98f7f1c3b47a5927764dae71))
+* revert background changes ([7661670](https://github.com/ho-nl/m2-pwa/commit/76616703968099039d79a4ca6001b942684adda5))
+* set sheet backgroundColor to background.default ([5d3f971](https://github.com/ho-nl/m2-pwa/commit/5d3f9719b446ee9440ac8834679ef5ba14be53d4))
+* text color iconBlock and styling ([0f2b0a8](https://github.com/ho-nl/m2-pwa/commit/0f2b0a896b11eafb79ea045c44f0115649a2040e))
+* use alpha to set rgba value of theme variable ([aebee87](https://github.com/ho-nl/m2-pwa/commit/aebee87b32eb769c6454ad9ced10d5612c4d1af8))
+
+
+### Features
+
+* provide all (different type of) overlays with the default background color ([111fe71](https://github.com/ho-nl/m2-pwa/commit/111fe718fbfddbeef452829e08b574ca46d51345))
+* remove svg stroke definitions, set all to currentColor ([189814f](https://github.com/ho-nl/m2-pwa/commit/189814f822d111c8adc6be1fff65c9a4a4c50c65))
+
+
+
+
+
 ## [3.15.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.15.1...@graphcommerce/next-ui@3.15.2) (2021-11-12)
 
 

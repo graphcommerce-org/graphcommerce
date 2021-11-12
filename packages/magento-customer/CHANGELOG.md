@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@3.5.4...@graphcommerce/magento-customer@3.5.5) (2021-11-12)
+
+
+### Bug Fixes
+
+* design ([a095309](https://github.com/ho-nl/m2-pwa/commit/a095309bb3d77228985e08e30f626cd26e878f57))
+* login error message should wrap ([6b8e61f](https://github.com/ho-nl/m2-pwa/commit/6b8e61fa6523391e5faa3dfd37b9fcd648d831bb))
+* snackbar styling and consistant grammar ([3f6a4f9](https://github.com/ho-nl/m2-pwa/commit/3f6a4f9a1c8b2d5220268d59d0c8e5a11c9ce6a8))
+
+
+
+
+
 ## [3.5.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@3.5.3...@graphcommerce/magento-customer@3.5.4) (2021-11-12)
 
 

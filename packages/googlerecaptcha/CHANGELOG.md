@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/googlerecaptcha@1.1.1...@graphcommerce/googlerecaptcha@1.1.2) (2021-11-12)
+
+
+### Bug Fixes
+
+* remove fragment ([3d8a964](https://github.com/ho-nl/m2-pwa/commit/3d8a964f3009f04b3ba09d54272a31b592e7a052))
+* remove hiding recaptcha from themeProvider, add to component ([6a49f77](https://github.com/ho-nl/m2-pwa/commit/6a49f77ef9fd22ea66e7acd1322c65ac6426fd3b))
+
+
+
+
+
 # 1.1.0 (2021-11-03)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.20](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.4.19...@graphcommerce/magento-search@3.4.20) (2021-11-12)
+
+
+### Bug Fixes
+
+* searchButton styling ([846e0cd](https://github.com/ho-nl/m2-pwa/commit/846e0cdb76eec7c5baf5fbfc4c501f99ebe59bf5))
+
+
+
+
+
 ## [3.4.19](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.4.18...@graphcommerce/magento-search@3.4.19) (2021-11-12)
 
 

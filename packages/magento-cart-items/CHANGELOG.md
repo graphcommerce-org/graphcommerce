@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.109.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-items@2.108.20...@graphcommerce/magento-cart-items@2.109.0) (2021-11-12)
+
+
+### Features
+
+* remove svg stroke definitions, set all to currentColor ([189814f](https://github.com/ho-nl/m2-pwa/commit/189814f822d111c8adc6be1fff65c9a4a4c50c65))
+
+
+
+
+
 ## [2.108.20](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-items@2.108.19...@graphcommerce/magento-cart-items@2.108.20) (2021-11-12)
 
 

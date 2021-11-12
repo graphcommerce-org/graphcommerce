@@ -1,7 +1,7 @@
 {
   "name": "@graphcommerce/graphcommerce",
   "homepage": "https://graphcommerce.org/",
-  "version": "2.149.4",
+  "version": "2.150.0",
   "private": true,
   "workspaces": [
     "docs",

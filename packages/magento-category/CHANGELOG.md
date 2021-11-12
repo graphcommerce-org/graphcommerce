@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.28](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-category@3.3.27...@graphcommerce/magento-category@3.3.28) (2021-11-12)
+
+
+### Bug Fixes
+
+* fix spacing category video ([592f569](https://github.com/ho-nl/m2-pwa/commit/592f5690b28a423f10efaa4e685fdf7aaa9260dd))
+* safari video height stretch fix ([76a800b](https://github.com/ho-nl/m2-pwa/commit/76a800b80bd29fd92f55ff9d9e24bb8e1bfdf830))
+
+
+
+
+
 ## [3.3.26](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-category@3.3.25...@graphcommerce/magento-category@3.3.26) (2021-11-11)
 
 

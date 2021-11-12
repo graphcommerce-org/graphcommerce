@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.105.30](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-email@2.105.29...@graphcommerce/magento-cart-email@2.105.30) (2021-11-12)
+
+
+### Bug Fixes
+
+* always show customer login form explanation ([ef51662](https://github.com/ho-nl/m2-pwa/commit/ef51662b91ad1d3851cfcc75925f8f81b214f348))
+
+
+
+
+
 ## [2.105.29](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-email@2.105.28...@graphcommerce/magento-cart-email@2.105.29) (2021-11-12)
 
 

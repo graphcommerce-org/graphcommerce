@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.134.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.133.3...@graphcommerce/magento-graphcms@2.134.0) (2021-11-12)
+
+
+### Bug Fixes
+
+* back to light theme ([c2d71d2](https://github.com/ho-nl/m2-pwa/commit/c2d71d219680a02eb535c46e15d76af2d1aceab0))
+* checkbox primary color ([a80b097](https://github.com/ho-nl/m2-pwa/commit/a80b0973e3f058236389b69b882bce39a063e898))
+* clean up themeProvider ([6868e71](https://github.com/ho-nl/m2-pwa/commit/6868e71b59a637be8229a2ab49791dd324e02bb9))
+* design ([a095309](https://github.com/ho-nl/m2-pwa/commit/a095309bb3d77228985e08e30f626cd26e878f57))
+* design darkTheme ([9fef7d1](https://github.com/ho-nl/m2-pwa/commit/9fef7d1b12243267761a92b2d3f1ce7254932c81))
+* disable casting for category video's ([8a15770](https://github.com/ho-nl/m2-pwa/commit/8a157704cbd030def66bb15cc70d843818037cdb))
+* disabled svg color ([590e2aa](https://github.com/ho-nl/m2-pwa/commit/590e2aa558c7e6363207cfcbc71a06bde8ca686a))
+* hex for darktheme paper value, so calculations can be made ([c93bb22](https://github.com/ho-nl/m2-pwa/commit/c93bb22ba287c85ad5c27fd5f13d82dbb9a7d16f))
+* icon style ([6b9fea9](https://github.com/ho-nl/m2-pwa/commit/6b9fea9112206bb38b419e8257ad1b2b3fad74b6))
+* MuiChip defaults ([a8ca2c0](https://github.com/ho-nl/m2-pwa/commit/a8ca2c0a90298b0479e864c056958cd49977a7cf))
+* pagination color not primary ([c4e6d4f](https://github.com/ho-nl/m2-pwa/commit/c4e6d4f35d2df7a93fe045bde6c015fbcc5e5089))
+* perfect sized xl image tiles ([9421828](https://github.com/ho-nl/m2-pwa/commit/94218283b266d80dd47349a0538cec08126ed000))
+* remove hiding recaptcha from themeProvider, add to component ([6a49f77](https://github.com/ho-nl/m2-pwa/commit/6a49f77ef9fd22ea66e7acd1322c65ac6426fd3b))
+* remove review/add back button ([d5818e8](https://github.com/ho-nl/m2-pwa/commit/d5818e86268272ed1816c2621eb0def54aacc6bd))
+* searchButton styling ([846e0cd](https://github.com/ho-nl/m2-pwa/commit/846e0cdb76eec7c5baf5fbfc4c501f99ebe59bf5))
+* text color iconBlock and styling ([0f2b0a8](https://github.com/ho-nl/m2-pwa/commit/0f2b0a896b11eafb79ea045c44f0115649a2040e))
+
+
+### Features
+
+* hide recaptcha badge ([18d232d](https://github.com/ho-nl/m2-pwa/commit/18d232d7bbd42575630896fb291d57ed43a2c93d))
+* provide all (different type of) overlays with the default background color ([111fe71](https://github.com/ho-nl/m2-pwa/commit/111fe718fbfddbeef452829e08b574ca46d51345))
+* remove svg stroke definitions, set all to currentColor ([189814f](https://github.com/ho-nl/m2-pwa/commit/189814f822d111c8adc6be1fff65c9a4a4c50c65))
+
+
+
+
+
 ## [2.133.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.133.2...@graphcommerce/magento-graphcms@2.133.3) (2021-11-12)
 
 

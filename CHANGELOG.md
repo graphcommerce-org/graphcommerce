@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.150.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.149.4...@graphcommerce/graphcommerce@2.150.0) (2021-11-12)
+
+
+### Bug Fixes
+
+* Accessibility: Tap targets are sized appropriately ([55177f0](https://github.com/ho-nl/m2-pwa/commit/55177f03e79a29a879022ed34439e6c7aebbd80e))
+* always show customer login form explanation ([ef51662](https://github.com/ho-nl/m2-pwa/commit/ef51662b91ad1d3851cfcc75925f8f81b214f348))
+* back to light theme ([c2d71d2](https://github.com/ho-nl/m2-pwa/commit/c2d71d219680a02eb535c46e15d76af2d1aceab0))
+* behaviour for CartFab animation including darkTheme support ([6152ef3](https://github.com/ho-nl/m2-pwa/commit/6152ef32d093e42c58ee79d4d713c5b8c2870746))
+* checkbox primary color ([a80b097](https://github.com/ho-nl/m2-pwa/commit/a80b0973e3f058236389b69b882bce39a063e898))
+* clean up themeProvider ([6868e71](https://github.com/ho-nl/m2-pwa/commit/6868e71b59a637be8229a2ab49791dd324e02bb9))
+* darkTheme ([b08f522](https://github.com/ho-nl/m2-pwa/commit/b08f52255c91dcba5498481ba5e9f0fa0b6c5013))
+* darkTheme proof background color for sheet ([2af3b4a](https://github.com/ho-nl/m2-pwa/commit/2af3b4a6b7115400c5bbed36a21cd48852bea122))
+* design ([c9c5bfb](https://github.com/ho-nl/m2-pwa/commit/c9c5bfbfda7f123c6f4ce5582d8afb3370fe826c))
+* design ([a8e2888](https://github.com/ho-nl/m2-pwa/commit/a8e288856011ca7d8fdcb75d7c672629a8f8bcf4))
+* design ([2dd5f41](https://github.com/ho-nl/m2-pwa/commit/2dd5f415010d19549158d837f0f98497d350fc2d))
+* design ([a095309](https://github.com/ho-nl/m2-pwa/commit/a095309bb3d77228985e08e30f626cd26e878f57))
+* design darkTheme ([9fef7d1](https://github.com/ho-nl/m2-pwa/commit/9fef7d1b12243267761a92b2d3f1ce7254932c81))
+* disable casting for category video's ([8a15770](https://github.com/ho-nl/m2-pwa/commit/8a157704cbd030def66bb15cc70d843818037cdb))
+* disabled svg color ([590e2aa](https://github.com/ho-nl/m2-pwa/commit/590e2aa558c7e6363207cfcbc71a06bde8ca686a))
+* fab animation should be background paper ([b538f96](https://github.com/ho-nl/m2-pwa/commit/b538f963b6c45a3973b11abe8de7823f2864326b))
+* fix spacing category video ([592f569](https://github.com/ho-nl/m2-pwa/commit/592f5690b28a423f10efaa4e685fdf7aaa9260dd))
+* hex for darktheme paper value, so calculations can be made ([c93bb22](https://github.com/ho-nl/m2-pwa/commit/c93bb22ba287c85ad5c27fd5f13d82dbb9a7d16f))
+* icon style ([6b9fea9](https://github.com/ho-nl/m2-pwa/commit/6b9fea9112206bb38b419e8257ad1b2b3fad74b6))
+* login error message should wrap ([6b8e61f](https://github.com/ho-nl/m2-pwa/commit/6b8e61fa6523391e5faa3dfd37b9fcd648d831bb))
+* MuiChip defaults ([a8ca2c0](https://github.com/ho-nl/m2-pwa/commit/a8ca2c0a90298b0479e864c056958cd49977a7cf))
+* must have smaller sizes for mobile ([34cf81e](https://github.com/ho-nl/m2-pwa/commit/34cf81eed6c5996f70be8b2c10888e44fad4d57f))
+* pagination color not primary ([c4e6d4f](https://github.com/ho-nl/m2-pwa/commit/c4e6d4f35d2df7a93fe045bde6c015fbcc5e5089))
+* perfect sized xl image tiles ([9421828](https://github.com/ho-nl/m2-pwa/commit/94218283b266d80dd47349a0538cec08126ed000))
+* perfectly spaced video ([f1481ed](https://github.com/ho-nl/m2-pwa/commit/f1481edaf08564315a8c6f50fa1a500bbdc58fc5))
+* prevent video casting on android ([a8baf94](https://github.com/ho-nl/m2-pwa/commit/a8baf949283c854283fe32befae4a60b119e02e0))
+* remove fragment ([3d8a964](https://github.com/ho-nl/m2-pwa/commit/3d8a964f3009f04b3ba09d54272a31b592e7a052))
+* remove hiding recaptcha from themeProvider, add to component ([6a49f77](https://github.com/ho-nl/m2-pwa/commit/6a49f77ef9fd22ea66e7acd1322c65ac6426fd3b))
+* remove review/add back button ([d5818e8](https://github.com/ho-nl/m2-pwa/commit/d5818e86268272ed1816c2621eb0def54aacc6bd))
+* remove unused wrapping div ([6ced7b9](https://github.com/ho-nl/m2-pwa/commit/6ced7b912229303a9d708db1d2621f50f431c73f))
+* replace value with headerInnerHeight ([656fedc](https://github.com/ho-nl/m2-pwa/commit/656fedc573bbdd941c34e05e4dcd9a6af49fe987))
+* replace value with headerInnerHeight ([d961720](https://github.com/ho-nl/m2-pwa/commit/d9617200d375a9db98f7f1c3b47a5927764dae71))
+* revert background changes ([7661670](https://github.com/ho-nl/m2-pwa/commit/76616703968099039d79a4ca6001b942684adda5))
+* safari video height stretch fix ([76a800b](https://github.com/ho-nl/m2-pwa/commit/76a800b80bd29fd92f55ff9d9e24bb8e1bfdf830))
+* searchButton styling ([846e0cd](https://github.com/ho-nl/m2-pwa/commit/846e0cdb76eec7c5baf5fbfc4c501f99ebe59bf5))
+* set sheet backgroundColor to background.default ([5d3f971](https://github.com/ho-nl/m2-pwa/commit/5d3f9719b446ee9440ac8834679ef5ba14be53d4))
+* snackbar styling and consistant grammar ([3f6a4f9](https://github.com/ho-nl/m2-pwa/commit/3f6a4f9a1c8b2d5220268d59d0c8e5a11c9ce6a8))
+* text color iconBlock and styling ([0f2b0a8](https://github.com/ho-nl/m2-pwa/commit/0f2b0a896b11eafb79ea045c44f0115649a2040e))
+* use alpha to set rgba value of theme variable ([aebee87](https://github.com/ho-nl/m2-pwa/commit/aebee87b32eb769c6454ad9ced10d5612c4d1af8))
+
+
+### Features
+
+* hide recaptcha badge ([18d232d](https://github.com/ho-nl/m2-pwa/commit/18d232d7bbd42575630896fb291d57ed43a2c93d))
+* provide all (different type of) overlays with the default background color ([111fe71](https://github.com/ho-nl/m2-pwa/commit/111fe718fbfddbeef452829e08b574ca46d51345))
+* remove svg stroke definitions, set all to currentColor ([189814f](https://github.com/ho-nl/m2-pwa/commit/189814f822d111c8adc6be1fff65c9a4a4c50c65))
+
+
+
+
+
 ## [2.149.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.149.3...@graphcommerce/graphcommerce@2.149.4) (2021-11-12)
 
 

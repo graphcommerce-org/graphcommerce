@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.104.29](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcms-ui@2.104.28...@graphcommerce/graphcms-ui@2.104.29) (2021-11-12)
+
+
+### Bug Fixes
+
+* must have smaller sizes for mobile ([34cf81e](https://github.com/ho-nl/m2-pwa/commit/34cf81eed6c5996f70be8b2c10888e44fad4d57f))
+
+
+
+
+
 ## [2.104.18](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcms-ui@2.104.17...@graphcommerce/graphcms-ui@2.104.18) (2021-11-04)
 
 

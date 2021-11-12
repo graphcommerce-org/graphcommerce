@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.6.4...@graphcommerce/magento-cart@3.6.5) (2021-11-12)
+
+
+### Bug Fixes
+
+* behaviour for CartFab animation including darkTheme support ([6152ef3](https://github.com/ho-nl/m2-pwa/commit/6152ef32d093e42c58ee79d4d713c5b8c2870746))
+
+
+
+
+
 ## [3.6.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.6.3...@graphcommerce/magento-cart@3.6.4) (2021-11-12)
 
 

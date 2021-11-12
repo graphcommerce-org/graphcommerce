@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.21](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.5.20...@graphcommerce/magento-product@3.5.21) (2021-11-12)
+
+
+### Bug Fixes
+
+* clean up themeProvider ([6868e71](https://github.com/ho-nl/m2-pwa/commit/6868e71b59a637be8229a2ab49791dd324e02bb9))
+* darkTheme ([b08f522](https://github.com/ho-nl/m2-pwa/commit/b08f52255c91dcba5498481ba5e9f0fa0b6c5013))
+* design ([c9c5bfb](https://github.com/ho-nl/m2-pwa/commit/c9c5bfbfda7f123c6f4ce5582d8afb3370fe826c))
+
+
+
+
+
 ## [3.5.19](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.5.18...@graphcommerce/magento-product@3.5.19) (2021-11-11)
 
 
