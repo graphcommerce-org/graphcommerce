@@ -61,7 +61,7 @@ function AccountOrdersPage() {
           metaRobots={['noindex']}
         />
         <NoSsr>
-          {customer?.orders && customer.orders.items.length > 1 && (
+          {customer?.orders && customer.orders.items.length > 0 && (
             <>
               <AppShellTitle icon={iconBox}>Orders</AppShellTitle>
               <AccountOrders {...customer} />
