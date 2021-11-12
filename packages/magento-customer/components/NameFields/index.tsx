@@ -23,8 +23,8 @@ export default function NameFields(props: NameFieldProps) {
 
   return (
     <>
-      <FormRow>
-        {prefix && (
+      {prefix && (
+        <FormRow>
           <Controller
             defaultValue='Dhr.'
             control={control}
@@ -53,8 +53,8 @@ export default function NameFields(props: NameFieldProps) {
               </TextField>
             )}
           />
-        )}
-      </FormRow>
+        </FormRow>
+      )}
 
       <FormRow>
         <TextField

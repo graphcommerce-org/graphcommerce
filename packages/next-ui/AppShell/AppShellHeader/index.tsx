@@ -340,6 +340,7 @@ export default function AppShellHeader(props: AppShellHeaderProps) {
       {up?.href === router.asPath ? up?.title : 'Back'}
     </Button>
   )
+
   if (!canClickBack && up?.href) {
     back = (
       <PageLink href={up?.href} passHref>

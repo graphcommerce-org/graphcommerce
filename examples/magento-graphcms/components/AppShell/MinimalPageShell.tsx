@@ -22,7 +22,7 @@ export default function MinimalPageShell(props: MinimalPageShellProps) {
     <MinimalPageShellBase
       {...uiProps}
       name={name}
-      header={<Logo alwaysShow />}
+      header={<Logo />}
       footer={<Footer footer={footer} />}
     >
       {children}

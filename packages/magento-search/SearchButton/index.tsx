@@ -12,6 +12,7 @@ const useStyles = makeStyles(
       },
       [theme.breakpoints.up('sm')]: {
         width: '100%',
+        marginRight: 0,
       },
     },
     inputRoot: {

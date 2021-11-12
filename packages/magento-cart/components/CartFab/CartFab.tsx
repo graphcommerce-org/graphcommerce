@@ -8,7 +8,6 @@ import {
   UseStyles,
 } from '@graphcommerce/next-ui'
 import { Fab, FabProps, makeStyles, NoSsr, Theme } from '@material-ui/core'
-import clsx from 'clsx'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
@@ -20,7 +19,6 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     fab: {
       boxShadow: 'none',
-      background: theme.palette.background.default,
       [theme.breakpoints.down('sm')]: {
         width: responsiveVal(42, 56),
         height: responsiveVal(42, 56),
@@ -50,7 +48,7 @@ function CartFabContent(props: CartFabContentProps) {
       <PageLink href='/cart' passHref>
         <Fab
           aria-label='Cart'
-          color='inherit'
+          color='default'
           size='large'
           classes={{ root: classes.fab }}
           {...fabProps}

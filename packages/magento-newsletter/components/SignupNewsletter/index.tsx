@@ -3,6 +3,7 @@ import { useCartQuery } from '@graphcommerce/magento-cart'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { UseStyles } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
+import clsx from 'clsx'
 import React from 'react'
 import CustomerNewsletterToggle from '../CustomerNewsletterToggle'
 import GuestNewsletterToggle from '../GuestNewsletterToggle'
@@ -20,21 +21,28 @@ const useStyles = makeStyles(
       ...theme.typography.body1,
       marginTop: theme.spacings.sm,
       borderRadius: 4,
-      gridTemplateColumns: '1fr 1fr',
+      gridTemplateColumns: '1fr',
       gridTemplateAreas: `
-        "a a a"
-        "b c c"
+        "a"
+        "b"
       `,
+      justifyItems: 'start',
       [theme.breakpoints.up('sm')]: {
         gridTemplateAreas: `"a b c"`,
-        gridTemplateColumns: '4fr 1fr',
+        gridTemplateColumns: '2fr 1fr',
       },
+    },
+    background: {
+      background: theme.palette.background.image,
     },
     signupForm: {
       display: 'flex',
       gap: 8,
-      justifyContent: 'flex-end',
+      justifySelf: 'start',
       alignItems: 'center',
+      [theme.breakpoints.up('sm')]: {
+        justifySelf: 'end',
+      },
     },
   }),
   {
@@ -53,7 +61,7 @@ export default function SignupNewsletter(props: SignupNewsletterProps) {
   const isCustomer = Boolean(customerTokenData?.customerToken)
 
   return (
-    <div className={classes.signup}>
+    <div className={clsx(classes.signup, !isCustomer && classes.background)}>
       <b>Sign up for our newsletter and stay updated</b>
       <div className={classes.signupForm}>
         {isCustomer ? (

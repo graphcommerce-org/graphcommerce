@@ -186,7 +186,6 @@ export default function CartItem(props: CartItemProps) {
           className={clsx(classes.itemName, withOptions && classes.itemNameWithOptions)}
         >
           {name}
-          <DeliveryLabel />
         </Link>
       </PageLink>
 
