@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.15.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.15.1...@graphcommerce/next-ui@3.15.2) (2021-11-12)
+
+
+### Bug Fixes
+
+* **sheet-shell-base:** prevent sheet backdrop from navigating back multiple times ([5ca2f7e](https://github.com/ho-nl/m2-pwa/commit/5ca2f7e0d3404501a6b5763daf1d442c8080f8cb))
+
+
+
+
+
 ## [3.15.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.15.0...@graphcommerce/next-ui@3.15.1) (2021-11-11)
 
 

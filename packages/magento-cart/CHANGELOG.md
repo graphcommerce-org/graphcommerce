@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.6.3...@graphcommerce/magento-cart@3.6.4) (2021-11-12)
+
+
+### Bug Fixes
+
+* **cart-fab:** background color on focus ([f1ed4b4](https://github.com/ho-nl/m2-pwa/commit/f1ed4b4a5306d767ccd0be43bcfad1d481072029))
+
+
+
+
+
 # [3.6.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.5.15...@graphcommerce/magento-cart@3.6.0) (2021-11-09)
 
 

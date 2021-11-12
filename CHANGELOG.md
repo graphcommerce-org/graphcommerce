@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.149.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.149.3...@graphcommerce/graphcommerce@2.149.4) (2021-11-12)
+
+
+### Bug Fixes
+
+* **cart-fab:** background color on focus ([f1ed4b4](https://github.com/ho-nl/m2-pwa/commit/f1ed4b4a5306d767ccd0be43bcfad1d481072029))
+* **checkout-email-form:** spacing too large ([f54e217](https://github.com/ho-nl/m2-pwa/commit/f54e2170b5c47c1c33e74db45e3bcae3d3523c4e))
+* **minimal-page-shell:** hide logo on mobile minimal page shell ([75f743b](https://github.com/ho-nl/m2-pwa/commit/75f743bad0a0a24826e0836a8af58f5c9589d7db))
+* remove delivery label ([c799405](https://github.com/ho-nl/m2-pwa/commit/c799405e18f7fc2654df67b0c401dfcdef41fd6c))
+* **search-button:** spacings ([ccb7274](https://github.com/ho-nl/m2-pwa/commit/ccb727444a57941e22f14dff15ce20101cbc160c))
+* **sheet-shell-base:** prevent sheet backdrop from navigating back multiple times ([5ca2f7e](https://github.com/ho-nl/m2-pwa/commit/5ca2f7e0d3404501a6b5763daf1d442c8080f8cb))
+* **signup-newsletter:** mobile layout ([fcc3935](https://github.com/ho-nl/m2-pwa/commit/fcc3935c5733d087012f736ac70fafa58bff78bc))
+* **use-form-is-email-available:** invalid email resets sign in/up state ([87b3965](https://github.com/ho-nl/m2-pwa/commit/87b39656760372f2be69eca045e3db8120006137))
+
+
+
+
+
 ## [2.149.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.149.2...@graphcommerce/graphcommerce@2.149.3) (2021-11-11)
 
 

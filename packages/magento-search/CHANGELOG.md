@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.19](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.4.18...@graphcommerce/magento-search@3.4.19) (2021-11-12)
+
+
+### Bug Fixes
+
+* **search-button:** spacings ([ccb7274](https://github.com/ho-nl/m2-pwa/commit/ccb727444a57941e22f14dff15ce20101cbc160c))
+
+
+
+
+
 ## [3.4.16](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.4.15...@graphcommerce/magento-search@3.4.16) (2021-11-09)
 
 

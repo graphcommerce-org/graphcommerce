@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.133.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.133.2...@graphcommerce/magento-graphcms@2.133.3) (2021-11-12)
+
+
+### Bug Fixes
+
+* **minimal-page-shell:** hide logo on mobile minimal page shell ([75f743b](https://github.com/ho-nl/m2-pwa/commit/75f743bad0a0a24826e0836a8af58f5c9589d7db))
+
+
+
+
+
 # [2.133.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.132.3...@graphcommerce/magento-graphcms@2.133.0) (2021-11-11)
 
 

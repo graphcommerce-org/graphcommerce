@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.17](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-newsletter@1.0.16...@graphcommerce/magento-newsletter@1.0.17) (2021-11-12)
+
+
+### Bug Fixes
+
+* **signup-newsletter:** mobile layout ([fcc3935](https://github.com/ho-nl/m2-pwa/commit/fcc3935c5733d087012f736ac70fafa58bff78bc))
+
+
+
+
+
 ## [0.2.46](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-newsletter@0.2.45...@graphcommerce/magento-newsletter@0.2.46) (2021-11-02)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.105.29](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-email@2.105.28...@graphcommerce/magento-cart-email@2.105.29) (2021-11-12)
+
+
+### Bug Fixes
+
+* **checkout-email-form:** spacing too large ([f54e217](https://github.com/ho-nl/m2-pwa/commit/f54e2170b5c47c1c33e74db45e3bcae3d3523c4e))
+
+
+
+
+
 # [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-email@2.104.37...@graphcommerce/magento-cart-email@2.105.0) (2021-10-27)
 
 

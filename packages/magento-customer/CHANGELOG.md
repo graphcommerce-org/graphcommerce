@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@3.5.3...@graphcommerce/magento-customer@3.5.4) (2021-11-12)
+
+
+### Bug Fixes
+
+* **checkout-email-form:** spacing too large ([f54e217](https://github.com/ho-nl/m2-pwa/commit/f54e2170b5c47c1c33e74db45e3bcae3d3523c4e))
+* **use-form-is-email-available:** invalid email resets sign in/up state ([87b3965](https://github.com/ho-nl/m2-pwa/commit/87b39656760372f2be69eca045e3db8120006137))
+
+
+
+
+
 # [3.5.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@3.4.15...@graphcommerce/magento-customer@3.5.0) (2021-11-09)
 
 

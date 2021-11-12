@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.108.20](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-items@2.108.19...@graphcommerce/magento-cart-items@2.108.20) (2021-11-12)
+
+
+### Bug Fixes
+
+* remove delivery label ([c799405](https://github.com/ho-nl/m2-pwa/commit/c799405e18f7fc2654df67b0c401dfcdef41fd6c))
+
+
+
+
+
 ## [2.108.15](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-items@2.108.14...@graphcommerce/magento-cart-items@2.108.15) (2021-11-09)
 
 
