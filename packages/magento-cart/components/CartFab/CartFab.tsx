@@ -8,7 +8,7 @@ import {
   UseStyles,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
-import { Fab, FabProps, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import { Fab, FabProps, makeStyles, NoSsr, Theme, useMediaQuery, useTheme } from '@material-ui/core'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
@@ -20,8 +20,8 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     fab: {
       boxShadow: 'none',
-      background: 'none',
       [theme.breakpoints.down('sm')]: {
+        background: theme.palette.background.paper,
         width: responsiveVal(42, 56),
         height: responsiveVal(42, 56),
       },
@@ -43,13 +43,15 @@ function CartFabContent(props: CartFabContentProps) {
   const { total_quantity, icon, ...fabProps } = props
   const cartIcon = icon ?? <SvgImageSimple src={iconShoppingBag} loading='eager' size='large' />
   const { boxShadow, backgroundColor } = useFixedFabAnimation()
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const classes = useStyles(props)
 
   return (
     <m.div
       style={{
-        boxShadow,
-        backgroundColor,
+        boxShadow: isMobile ? undefined : boxShadow,
+        backgroundColor: isMobile ? undefined : backgroundColor,
         width: 'inherit',
         borderRadius: 'inherit',
       }}
