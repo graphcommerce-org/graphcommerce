@@ -32,7 +32,7 @@ export default function ForgotPasswordForm() {
   if (formState.isSubmitSuccessful && data) {
     return (
       <Alert severity='success' variant='standard' className={classes.alert}>
-        <Trans>We've send a password reset link to your account!</Trans>
+        <Trans>We've send a password reset link to your email address!</Trans>
       </Alert>
     )
   }

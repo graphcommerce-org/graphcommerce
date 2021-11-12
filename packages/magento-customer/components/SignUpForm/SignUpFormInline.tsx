@@ -103,7 +103,7 @@ export default function SignUpFormInline({
               color='secondary'
               variant='pill'
             >
-              Sign up
+              Create Account
             </Button>
           </div>
         </FormRow>

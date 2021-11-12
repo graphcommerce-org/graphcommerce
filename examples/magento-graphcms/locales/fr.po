@@ -91,6 +91,9 @@ msgstr ""
 msgid "Country"
 msgstr ""
 
+msgid "Create Account"
+msgstr ""
+
 msgid "Create new password"
 msgstr ""
 
@@ -102,9 +105,6 @@ msgstr ""
 
 msgid "Discount code"
 msgstr ""
-
-#~ msgid "Discover our collection and add items to your basket!"
-#~ msgstr ""
 
 msgid "Discover our collection and add items to your cart!"
 msgstr ""
@@ -137,6 +137,9 @@ msgid "Including {0}"
 msgstr ""
 
 msgid "Invalid email address"
+msgstr ""
+
+msgid "Invalid phone number"
 msgstr ""
 
 msgid "Login"
@@ -250,12 +253,6 @@ msgstr ""
 msgid "Sign In"
 msgstr ""
 
-msgid "Sign Up"
-msgstr ""
-
-msgid "Sign Up / Sign In"
-msgstr ""
-
 msgid "Sign in"
 msgstr ""
 
@@ -298,7 +295,7 @@ msgstr ""
 msgid "We're processing your payment, this will take a few seconds."
 msgstr ""
 
-msgid "We've send a password reset link to your account!"
+msgid "We've send a password reset link to your email address!"
 msgstr ""
 
 msgid "Which size is right?"

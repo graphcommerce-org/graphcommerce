@@ -14,7 +14,7 @@ import {
   UseFormComposeOptions,
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { t, Trans } from '@lingui/macro'
 import { TextField } from '@material-ui/core'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'

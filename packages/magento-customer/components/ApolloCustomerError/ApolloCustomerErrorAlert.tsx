@@ -14,7 +14,7 @@ export default function ApolloCustomerErrorAlert(props: MagentoErrorAlertProps) 
     <>
       <NextLink href='/account/signin' passHref>
         <Link>
-          <Trans>Sign Up / Sign In</Trans>
+          <Trans>Create Account</Trans> / <Trans>Sign In</Trans>
         </Link>
       </NextLink>
     </>

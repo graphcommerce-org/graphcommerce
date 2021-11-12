@@ -1,5 +1,6 @@
 import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { Trans } from '@lingui/macro'
 import { TextField } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'

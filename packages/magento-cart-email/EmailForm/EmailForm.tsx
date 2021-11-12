@@ -75,7 +75,7 @@ export default function EmailForm(props: EmailFormProps) {
   if (mode === 'signup') {
     endAdornment = (
       <Button color='secondary' style={{ whiteSpace: 'nowrap' }} onClick={() => setExpand(!expand)}>
-        {expand ? <Trans>Close</Trans> : <Trans>Sign Up</Trans>}
+        {expand ? <Trans>Close</Trans> : <Trans>Create Account</Trans>}
       </Button>
     )
   }
