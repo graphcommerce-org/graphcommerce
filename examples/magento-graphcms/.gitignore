@@ -29,5 +29,3 @@ generated/
 # application
 .mesh
 *.tsbuildinfo
-
-locales/
