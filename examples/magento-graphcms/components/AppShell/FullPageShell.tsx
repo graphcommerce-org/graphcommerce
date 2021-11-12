@@ -90,7 +90,10 @@ function FullPageShell(props: FullPageShellProps) {
       footer={<Footer footer={footer} />}
       cartFab={<CartFab />}
       menuFab={
-        <MenuFab {...menuProps} search={<SearchButton onClick={onSearchStart} />}>
+        <MenuFab
+          {...menuProps}
+          search={<SearchButton onClick={onSearchStart} label=' ' fullWidth />}
+        >
           <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>
             <Trans>Account</Trans>
           </CustomerMenuFabItem>

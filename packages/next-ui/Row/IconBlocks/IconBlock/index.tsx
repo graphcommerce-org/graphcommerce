@@ -6,18 +6,23 @@ import { UseStyles } from '../../../Styles'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     block: {
-      display: 'grid',
-      gridAutoFlow: 'row',
-      justifyItems: 'center',
-      gap: `${theme.spacings.xs}`,
       border: `1px solid ${theme.palette.divider}`,
       padding: `${theme.spacings.sm}`,
       borderRadius: '6px',
       textAlign: 'center',
-      color: theme.palette.primary.contrastText,
+      color: theme.palette.text.primary,
+      '& > * > *': {
+        display: 'grid',
+        gridAutoFlow: 'row',
+        justifyItems: 'center',
+        gap: `${theme.spacings.xxs}`,
+      },
     },
     link: {
       textDecoration: 'none',
+    },
+    title: {
+      fontWeight: theme.typography.fontWeightBold,
     },
   }),
   { name: 'IconBlock' },
@@ -37,7 +42,9 @@ const IconBlock = React.forwardRef<HTMLAnchorElement, IconBlockProps>((props, re
   const content = (
     <>
       {icon}
-      <Typography variant='h6'>{title}</Typography>
+      <Typography variant='subtitle1' className={classes.title}>
+        {title}
+      </Typography>
       {children}
     </>
   )

@@ -17,7 +17,7 @@ const useStyles = makeStyles(
     date: {
       display: 'inline-block',
       textDecoration: 'none',
-      color: theme.palette.text.disabled,
+      color: theme.palette.text.secondary,
     },
     asset: {
       display: 'grid',

@@ -8,6 +8,7 @@ import {
   UseStyles,
 } from '@graphcommerce/next-ui'
 import { Fab, FabProps, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import clsx from 'clsx'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
@@ -19,6 +20,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     fab: {
       boxShadow: 'none',
+      background: 'none',
       [theme.breakpoints.down('sm')]: {
         width: responsiveVal(42, 56),
         height: responsiveVal(42, 56),
@@ -40,15 +42,22 @@ type CartFabContentProps = CartFabProps & CartTotalQuantityFragment
 function CartFabContent(props: CartFabContentProps) {
   const { total_quantity, icon, ...fabProps } = props
   const cartIcon = icon ?? <SvgImageSimple src={iconShoppingBag} loading='eager' size='large' />
-  const { boxShadow } = useFixedFabAnimation()
+  const { boxShadow, backgroundColor } = useFixedFabAnimation()
   const classes = useStyles(props)
 
   return (
-    <m.div style={{ boxShadow, width: 'inherit', borderRadius: 'inherit' }}>
+    <m.div
+      style={{
+        boxShadow,
+        backgroundColor,
+        width: 'inherit',
+        borderRadius: 'inherit',
+      }}
+    >
       <PageLink href='/cart' passHref>
         <Fab
           aria-label='Cart'
-          color='default'
+          color='inherit'
           size='large'
           classes={{ root: classes.fab }}
           {...fabProps}

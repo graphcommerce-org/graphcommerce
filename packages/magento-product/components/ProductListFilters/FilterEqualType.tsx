@@ -3,6 +3,7 @@ import { FilterEqualTypeInput } from '@graphcommerce/graphql'
 import { ChipMenu, ChipMenuProps, responsiveVal } from '@graphcommerce/next-ui'
 import {
   Checkbox,
+  lighten,
   ListItem,
   ListItemSecondaryAction,
   ListItemText,
@@ -26,6 +27,7 @@ type FilterEqualTypeProps = NonNullable<
 
 const useFilterEqualStyles = makeStyles(
   (theme: Theme) => ({
+    root: {},
     listItem: {
       padding: `0 ${theme.spacings.xxs} 0`,
       display: 'block',
@@ -126,6 +128,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
       selected={currentLabels.length > 0}
       selectedLabel={currentLabels.length > 0 ? currentLabels.join(', ') : undefined}
       onDelete={currentLabels.length > 0 ? removeFilter : undefined}
+      className={classes.root}
     >
       <div className={classes.linkContainer}>
         {options?.map((option) => {

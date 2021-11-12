@@ -16,13 +16,14 @@ const useStyles = makeStyles(
       strokeLinecap: 'square',
       strokeLinejoin: 'miter',
       fill: 'none',
+      stroke: 'currentColor',
     },
     sizeInherit: {
       fontSize: 'inherit',
     },
     sizeSmall: {
-      width: responsiveVal(13, 16),
-      height: responsiveVal(13, 16),
+      width: responsiveVal(12, 16),
+      height: responsiveVal(12, 16),
       strokeWidth: 2.3,
     },
     sizeLarge: {

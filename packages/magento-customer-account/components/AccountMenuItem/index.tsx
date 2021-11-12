@@ -19,11 +19,12 @@ const useStyles = makeStyles(
       height: responsiveVal(88, 104),
       padding: 0,
       borderRadius: 0,
+      background: theme.palette.background.default,
       '&:hover': {
-        background: theme.palette.background.paper,
+        background: theme.palette.background.default,
       },
       '&:disabled': {
-        background: theme.palette.background.paper,
+        background: theme.palette.background.default,
       },
       '&:focus': {
         // fix: disableElevation does not work when button is focused
@@ -40,8 +41,6 @@ const useStyles = makeStyles(
       ...theme.typography.subtitle1,
     },
     secondary: {
-      // ...theme.typography.caption,
-      color: theme.palette.text.disabled,
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'elipsis',
@@ -93,7 +92,7 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
           primary={title}
           secondary={subtitle}
         />
-        {endIcon ?? <SvgImageSimple src={iconChevronRight} size='small' />}
+        {endIcon ?? <SvgImageSimple src={iconChevronRight} />}
       </ListItem>
     </Button>
   )

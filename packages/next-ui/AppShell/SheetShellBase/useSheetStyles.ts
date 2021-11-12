@@ -4,8 +4,15 @@ import { ClassNameMap } from '@material-ui/styles'
 
 type UseSheetStylesReturn = (props?: Record<string, unknown>) => ClassNameMap<ClassKeys>
 
-const useSheetStyles = makeStyles<Theme, never, ClassKeys>(styles as StyleRules<ClassKeys>, {
-  name: 'Sheet',
-}) as UseSheetStylesReturn
+const useSheetStyles = makeStyles<Theme, never, ClassKeys>(
+  (theme: Theme) => ({
+    ...(styles as StyleRules<ClassKeys>),
+    content: {
+      ...styles.content,
+      backgroundColor: theme.palette.background.default,
+    },
+  }),
+  { name: 'Sheet' },
+) as UseSheetStylesReturn
 
 export default useSheetStyles

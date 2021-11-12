@@ -41,7 +41,7 @@ export default function NameFields(props: NameFieldProps) {
                 inputRef={ref}
                 InputProps={{
                   readOnly,
-                  endAdornment: <InputCheckmark show={valid.prefix} />,
+                  endAdornment: <InputCheckmark show={valid.prefix} select />,
                 }}
                 {...field}
               >

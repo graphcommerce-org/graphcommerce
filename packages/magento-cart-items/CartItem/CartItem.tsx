@@ -64,14 +64,8 @@ const useStyles = makeStyles(
     badge: {
       '& > button': {
         background: theme.palette.background.paper,
-        '& svg': {
-          stroke: theme.palette.text.primary,
-        },
         '&:hover, &:active, &:visited': {
           background: theme.palette.background.paper,
-          '& svg': {
-            stroke: theme.palette.text.primary,
-          },
         },
         [theme.breakpoints.down('sm')]: {
           width: 30,

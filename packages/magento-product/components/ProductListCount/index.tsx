@@ -6,16 +6,17 @@ import { ProductListCountFragment } from './ProductListCount.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     productListCount: {
+      display: 'grid',
+      gridAutoFlow: 'column',
+      gridTemplateColumns: '1fr max-content 1fr',
       maxWidth: '100%',
       width: responsiveVal(280, 650),
       margin: '0 auto',
-      padding: theme.spacings.xs,
-      paddingTop: responsiveVal(24, 30),
-      paddingBottom: responsiveVal(4, 8),
-      position: 'relative',
       textAlign: 'center',
       gridArea: 'count',
-      marginBottom: theme.spacings.sm,
+      alignItems: 'center',
+      marginTop: theme.spacings.md,
+      marginBottom: theme.spacings.md,
     },
     line: {
       background: theme.palette.divider,
@@ -26,11 +27,9 @@ const useStyles = makeStyles(
     count: {
       ...theme.typography.body2,
       margin: '0 auto',
-      background: theme.palette.background.default,
       display: 'inline-block',
       padding: `0 ${theme.spacings.xs} 0 ${theme.spacings.xs}`,
       color: theme.palette.text.disabled,
-      transform: 'translateY(calc(-50% - 1px))',
     },
   }),
   {
@@ -50,6 +49,7 @@ export default function ProductListCount(props: ProductCountProps) {
       <div className={classes.count}>
         {total_count} product{(total_count ?? 0) > 1 ? 's' : ''}
       </div>
+      <div className={classes.line} />
     </div>
   )
 }

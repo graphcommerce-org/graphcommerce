@@ -85,7 +85,7 @@ export default function ChangePasswordForm() {
       </FormActions>
 
       <MessageSnackbar sticky open={Boolean(formState.isSubmitSuccessful && data)}>
-        <>Password changed</>
+        <>Successfully changed password</>
       </MessageSnackbar>
     </Form>
   )

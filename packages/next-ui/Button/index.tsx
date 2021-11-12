@@ -63,14 +63,11 @@ const useStyles = makeStyles<
         textTransform: 'none',
         ...theme.typography.body2,
         fontWeight: 400,
-        padding: `${responsiveVal(8, 10)} ${responsiveVal(12, 22)}`,
+        padding: `${responsiveVal(8, 10)} ${responsiveVal(16, 20)}`,
         backgroundColor: theme.palette.secondary.main,
         color: theme.palette.primary.contrastText,
         borderRadius: '99em',
         boxShadow: theme.shadows[1],
-        '& svg': {
-          stroke: theme.palette.primary.contrastText,
-        },
         '&:hover': {
           background: theme.palette.secondary.dark,
         },

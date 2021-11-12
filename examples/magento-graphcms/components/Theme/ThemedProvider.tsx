@@ -54,12 +54,15 @@ const darkPalette: PaletteOptions = {
   },
   background: {
     default: '#001727',
-    paper: lighten('#001727', 0.08),
+    paper: '#15293B',
     image: '#F8F8F8',
   },
   divider: '#ffffff30',
   success: {
     main: '#01D26A',
+  },
+  action: {
+    hoverOpacity: 0.16,
   },
   text: {
     primary: '#ffffff',
@@ -150,7 +153,6 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       },
       h5: {
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-
         fontWeight: 700,
         // letterSpacing: '-0.0375em',
         fontSize: responsiveVal(17, 20),
@@ -158,7 +160,6 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       },
       h6: {
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-
         fontSize: responsiveVal(17, 20),
         fontWeight: 550,
         // letterSpacing: '-0.0375em',
@@ -226,10 +227,6 @@ const createOverrides = (theme: Theme): Overrides => {
       '@global': {
         body: {
           overflowY: 'scroll',
-          '& [class*="Sheet-content"]': {
-            background: theme.palette.background.default,
-          },
-          stroke: theme.palette.text.primary,
         },
         '::selection': { background: alpha(theme.palette.primary.main, 0.6) },
         '::-moz-selection': { background: alpha(theme.palette.primary.main, 0.6) },
@@ -253,7 +250,7 @@ const createOverrides = (theme: Theme): Overrides => {
         textTransform: 'none',
         ...theme.typography.body2,
         fontWeight: 400,
-        padding: `${responsiveVal(8, 10)} ${responsiveVal(12, 22)}`,
+        padding: `${responsiveVal(8, 10)} ${responsiveVal(16, 20)}`,
       },
       sizeLarge: {
         padding: `${responsiveVal(10, 15)} ${responsiveVal(30, 60)}`,
@@ -272,28 +269,20 @@ const createOverrides = (theme: Theme): Overrides => {
         boxShadow: theme.shadows[1],
         '&:hover': {
           boxShadow: theme.shadows[1],
-          backgroundColor: lighten(
-            theme.palette.background.default,
-            theme.palette.action.hoverOpacity,
-          ),
+          background: undefined,
         },
         '&:focus': {
           boxShadow: theme.shadows[1],
-          backgroundColor: lighten(
-            theme.palette.background.default,
-            theme.palette.action.hoverOpacity,
-          ),
+          background: undefined,
         },
       },
       containedPrimary: {
         fontWeight: 500,
         color: theme.palette.primary.contrastText,
-        '& svg': { stroke: theme.palette.primary.contrastText },
       },
       containedSecondary: {
         fontWeight: 500,
         color: theme.palette.secondary.contrastText,
-        '& svg': { stroke: theme.palette.secondary.contrastText },
       },
       outlined: {
         borderRadius: 0,
@@ -301,15 +290,12 @@ const createOverrides = (theme: Theme): Overrides => {
       text: {
         padding: `${responsiveVal(8, 10)} ${responsiveVal(12, 22)}`,
       },
-      textSecondary: {
-        '& svg': { stroke: theme.palette.secondary.main },
-      },
     },
     MuiFab: {
       root: {
         backgroundColor: theme.palette.background.paper,
         '&:hover': { backgroundColor: theme.palette.background.paper },
-        '& svg': { stroke: theme.palette.text.primary },
+        color: theme.palette.text.primary,
       },
       colorInherit: {
         backgroundColor: 'inherit',
@@ -320,11 +306,9 @@ const createOverrides = (theme: Theme): Overrides => {
       },
       primary: {
         color: theme.palette.text.primary,
-        '& svg': { stroke: theme.palette.text.primary },
       },
       secondary: {
         color: theme.palette.text.primary,
-        // '& svg': { stroke: theme.palette.text.primary },
       },
       extended: {
         fontWeight: 400,
@@ -345,9 +329,9 @@ const createOverrides = (theme: Theme): Overrides => {
         },
       },
     },
-    MuiIconButton: {
-      label: {
-        stroke: theme.palette.text.primary,
+    MuiListItemIcon: {
+      root: {
+        color: theme.palette.text.primary,
       },
     },
     MuiChip: {
@@ -358,64 +342,36 @@ const createOverrides = (theme: Theme): Overrides => {
         paddingLeft: responsiveVal(4, 8),
         paddingRight: responsiveVal(4, 8),
         ...theme.typography.body2,
-        backgroundColor: theme.palette.background.paper,
       },
       sizeSmall: {
         height: responsiveVal(26, 30),
-        paddingLeft: responsiveVal(2, 6),
-        paddingRight: responsiveVal(2, 6),
+        paddingLeft: responsiveVal(3, 6),
+        paddingRight: responsiveVal(3, 6),
         ...theme.typography.caption,
       },
       outlined: {
         borderColor: theme.palette.divider,
-        backgroundColor: theme.palette.background.default,
-        // color: theme.palette.text.primary,
       },
       label: {
         paddingLeft: responsiveVal(6, 10),
         paddingRight: responsiveVal(6, 10),
       },
       labelSmall: {
-        paddingLeft: responsiveVal(4, 8),
-        paddingRight: responsiveVal(4, 8),
-      },
-      colorPrimary: {
-        //
-      },
-      colorSecondary: {
-        //
+        paddingLeft: responsiveVal(6, 8),
+        paddingRight: responsiveVal(6, 8),
       },
       deleteIcon: {
-        stroke: theme.palette.text.primary,
+        color: theme.palette.text.primary,
       },
       deleteIconOutlinedColorPrimary: {
-        stroke: theme.palette.primary.main,
-      },
-      clickable: {
-        '&:hover, &:focus': {
-          backgroundColor: lighten(
-            theme.palette.background.default,
-            theme.palette.action.hoverOpacity,
-          ),
-        },
-        '&.MuiChip-outlined': {
-          '&:hover, &:focus': {
-            backgroundColor: `${lighten(
-              theme.palette.background.default,
-              theme.palette.action.hoverOpacity,
-            )} !important`,
-          },
-        },
+        color: theme.palette.primary.main,
       },
     },
     MuiCheckbox: {
-      root: {
-        stroke: 'none',
-      },
       colorPrimary: {
         color: theme.palette.text.disabled,
         '&$checked': {
-          color: theme.palette.text.disabled,
+          color: theme.palette.primary.main,
         },
       },
       colorSecondary: {
@@ -423,11 +379,6 @@ const createOverrides = (theme: Theme): Overrides => {
         '&$checked': {
           color: theme.palette.secondary.main,
         },
-      },
-    },
-    MuiSvgIcon: {
-      root: {
-        stroke: 'none',
       },
     },
     MuiSwitch: {

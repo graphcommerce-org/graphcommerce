@@ -8,11 +8,11 @@ import ShellBase, { PageLayoutBaseProps } from './ShellBase'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      background: theme.palette.background.default,
       minHeight: '100vh',
       display: 'grid',
       gridTemplateRows: `auto 1fr auto`,
       gridTemplateColumns: '100%',
+      background: theme.palette.background.default,
     },
     hideFabsOnVirtualKeyboardOpen: {
       [theme.breakpoints.down('sm')]: {

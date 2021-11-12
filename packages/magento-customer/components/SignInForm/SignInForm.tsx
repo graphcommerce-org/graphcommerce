@@ -61,9 +61,6 @@ export default function SignInForm(props: SignInFormProps) {
           id='current-password'
           required={required.password}
           {...muiRegister('password', { required: required.password })}
-          FormHelperTextProps={{
-            className: classes.forgotPass,
-          }}
           InputProps={{
             endAdornment: (
               <PageLink href='/account/forgot-password' key='forgot-password' passHref>

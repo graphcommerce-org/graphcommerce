@@ -186,9 +186,6 @@ const useStyles = makeStyles(
       '&:hover': {
         background: theme.palette.background.paper,
       },
-      '& svg': {
-        stroke: theme.palette.text.primary,
-      },
     },
     sheetShellActionsFullPage: {
       '& * > a, & * > button': {

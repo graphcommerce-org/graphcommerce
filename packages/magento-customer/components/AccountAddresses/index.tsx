@@ -93,7 +93,7 @@ export default function AccountAddresses(props: AccountAddressesProps) {
           </Link>
 
           <MessageSnackbar sticky open={router.query.confirm_delete !== undefined}>
-            <>Address was deleted</>
+            <>Successfully deleted address</>
           </MessageSnackbar>
         </SectionContainer>
       )}

@@ -17,6 +17,7 @@ const useStyles = makeStyles(
       alignItems: 'center',
       [theme.breakpoints.down('xs')]: {
         paddingTop: theme.spacings.lg,
+        paddingBottom: theme.spacings.lg,
         justifyItems: 'center',
         gridTemplateAreas: `
           'switcher switcher'
@@ -45,7 +46,7 @@ const useStyles = makeStyles(
       [theme.breakpoints.down('xs')]: {
         gridAutoFlow: 'row',
         textAlign: 'center',
-        gap: 0,
+        gap: 4,
       },
     },
     support: {

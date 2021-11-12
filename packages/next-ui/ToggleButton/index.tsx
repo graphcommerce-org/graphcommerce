@@ -1,6 +1,6 @@
 // @inheritedComponent ButtonBase
 
-import { capitalize, makeStyles, Theme } from '@material-ui/core'
+import { capitalize, lighten, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React, { FormEvent } from 'react'
 import Button, { ButtonProps } from '../Button'
@@ -13,7 +13,10 @@ export const useStyles = makeStyles(
     /* Styles applied to the root element. */
     root: {
       border: '2px solid transparent',
-      backgroundColor: theme.palette.background.default,
+      backgroundColor:
+        theme.palette.type === 'light'
+          ? theme.palette.background.default
+          : lighten(theme.palette.background.default, theme.palette.action.hoverOpacity),
       borderRadius: 4,
       // boxShadow: theme.shadows['1'],
       boxShadow: `0px 0px 2px ${theme.palette.grey[400]}`,

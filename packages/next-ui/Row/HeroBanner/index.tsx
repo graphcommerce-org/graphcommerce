@@ -22,13 +22,19 @@ const useStyles = makeStyles(
       justifyItems: 'center',
       alignContent: 'center',
       padding: `${theme.spacings.lg} ${theme.spacings.md}`,
-      minHeight: '90vh',
+      minHeight: `calc(100vh - ${theme.page.headerInnerHeight.sm})`,
       '& > *': {
         zIndex: 1,
         maxWidth: 'max-content',
       },
+      [theme.breakpoints.down('sm')]: {
+        ['@supports (-webkit-touch-callout: none)']: {
+          minHeight: '-webkit-fill-available',
+        },
+      },
       [theme.breakpoints.up('md')]: {
         width: '70%',
+        minHeight: `calc(100vh - ${theme.page.headerInnerHeight.md})`,
       },
       [theme.breakpoints.up('lg')]: {
         padding: `${theme.spacings.lg} ${theme.spacings.lg}`,
@@ -44,6 +50,7 @@ const useStyles = makeStyles(
       display: 'grid',
       justifyItems: 'center',
       overflow: 'hidden',
+      paddingBottom: theme.spacings.md,
       '& video': {
         objectFit: 'cover',
         width: '100%',
@@ -83,14 +90,9 @@ export default function HeroBanner(props: HeroBannerProps) {
           {pageLinks}
         </div>
         <div className={classes.asset}>
-          <m.video
-            src={videoSrc}
-            autoPlay
-            muted
-            loop
-            playsInline
-            style={{ width: actionsAnimWidth }}
-          />
+          <m.div style={{ width: actionsAnimWidth }}>
+            <video src={videoSrc} autoPlay muted loop playsInline disableRemotePlayback />
+          </m.div>
         </div>
       </div>
     </Row>
