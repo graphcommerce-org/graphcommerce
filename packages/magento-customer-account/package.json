@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-customer-account",
-  "version": "2.104.30",
+  "version": "2.104.31",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -23,7 +23,7 @@
     "@apollo/client": "^3.4.16",
     "@graphcommerce/graphql": "^2.105.4",
     "@graphcommerce/image": "^2.105.3",
-    "@graphcommerce/magento-customer": "^3.5.5",
+    "@graphcommerce/magento-customer": "^3.5.6",
     "@graphcommerce/magento-customer-order": "^2.104.20",
     "@graphcommerce/magento-graphql": "^2.104.4",
     "@graphcommerce/magento-store": "^3.2.20",

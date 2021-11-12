@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-cart",
-  "version": "3.6.5",
+  "version": "3.6.6",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -24,7 +24,7 @@
     "@graphcommerce/framer-scroller": "^1.0.3",
     "@graphcommerce/graphql": "^2.105.4",
     "@graphcommerce/image": "^2.105.3",
-    "@graphcommerce/magento-customer": "^3.5.5",
+    "@graphcommerce/magento-customer": "^3.5.6",
     "@graphcommerce/magento-graphql": "^2.104.4",
     "@graphcommerce/magento-store": "^3.2.20",
     "@graphcommerce/next-ui": "^3.16.0",

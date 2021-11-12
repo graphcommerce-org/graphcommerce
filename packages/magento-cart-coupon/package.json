@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-cart-coupon",
-  "version": "2.107.21",
+  "version": "2.107.22",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -23,7 +23,7 @@
     "@apollo/client": "^3.4.16",
     "@graphcommerce/graphql": "^2.105.4",
     "@graphcommerce/image": "^2.105.3",
-    "@graphcommerce/magento-cart": "^3.6.5",
+    "@graphcommerce/magento-cart": "^3.6.6",
     "@graphcommerce/magento-store": "^3.2.20",
     "@graphcommerce/next-ui": "^3.16.0",
     "@graphcommerce/react-hook-form": "^2.103.1",

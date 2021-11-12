@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.150.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.150.0...@graphcommerce/graphcommerce@2.150.1) (2021-11-12)
+
+
+### Bug Fixes
+
+* **account-orders:** empty orders page ([196df0e](https://github.com/ho-nl/m2-pwa/commit/196df0e4ed0e1931a4e6092cc273b70fe26f62c9))
+
+
+
+
+
 # [2.150.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.149.4...@graphcommerce/graphcommerce@2.150.0) (2021-11-12)
 
 
