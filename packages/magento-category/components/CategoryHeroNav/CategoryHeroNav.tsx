@@ -55,10 +55,13 @@ const useStyles = makeStyles(
       gridArea: 'placeholder',
       minHeight: '40vh',
       overflow: 'hidden',
-      '& *': {
-        width: '100%',
-        height: '100%',
+      display: 'flex',
+      '& > div': {
+        display: 'flex',
+      },
+      '& video': {
         objectFit: 'cover',
+        width: '100%',
       },
     },
     [theme.breakpoints.up('md')]: {
@@ -114,7 +117,9 @@ export default function CategoryHeroNav({ children, title, asset }: CategoryHero
             )
           })}
         </div>
-        <div className={classes.placeholder}>{asset}</div>
+        <div className={classes.placeholder}>
+          <div>{asset}</div>
+        </div>
       </div>
     </>
   )
