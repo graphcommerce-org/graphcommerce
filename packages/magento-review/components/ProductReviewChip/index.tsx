@@ -6,30 +6,10 @@ export type ProductReviewChipProps = {
   rating?: number
   reviewSectionId?: string
   max?: number
-  shapeOnly?: boolean
 } & ChipProps
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    ratingContainer: {
-      width: '100%',
-      position: 'relative',
-    },
-    rating: {
-      position: 'absolute',
-      overflow: 'hidden',
-      '& > img': {
-        display: 'inline',
-      },
-      zIndex: 1,
-    },
-    maxRating: {
-      opacity: 0.4,
-      '& > img': {
-        display: 'inline',
-        filter: 'grayscale(100%)',
-      },
-    },
     iconStar: {
       stroke: '#FFDA1C',
       fill: '#FFDA1C',
@@ -39,7 +19,7 @@ const useStyles = makeStyles(
 )
 
 export default function ProductReviewChip(props: ProductReviewChipProps) {
-  const { rating, reviewSectionId = '', shapeOnly = false, max = 5, ...chipProps } = props
+  const { rating, reviewSectionId = '', max = 5, ...chipProps } = props
   const classes = useStyles()
 
   if (!rating) return null

@@ -4,9 +4,6 @@ import React from 'react'
 
 export type ProductReviewSummaryProps = {
   rating?: number
-  reviewSectionId?: string
-  max?: number
-  shapeOnly?: boolean
 } & ChipProps
 
 const useStyles = makeStyles(
@@ -41,24 +38,12 @@ const useStyles = makeStyles(
 )
 
 export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
-  const { rating, reviewSectionId = '', shapeOnly = false, max = 5, ...summaryProps } = props
+  const { rating, ...summaryProps } = props
   const classes = useStyles()
 
   if (!rating) return null
 
-  const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    const element = document.getElementById(reviewSectionId)
-    e.preventDefault()
-    if (!element) return
-
-    window.scrollTo({
-      top: element.offsetTop - 50,
-      left: 0,
-      behavior: 'smooth',
-    })
-  }
-
-  const summary = (
+  return (
     <div className={classes.ratingContainer}>
       <div>
         <SvgImageSimple src={iconStar} size='small' className={classes.iconStarDisabled} />
@@ -78,8 +63,4 @@ export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
       </div>
     </div>
   )
-
-  if (!reviewSectionId) return summary
-
-  return summary
 }
