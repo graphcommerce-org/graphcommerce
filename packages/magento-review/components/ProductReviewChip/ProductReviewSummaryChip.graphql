@@ -1,0 +1,4 @@
+fragment ProductReviewSummaryChip on ProductInterface
+@inject(into: ["ProductListItem", "ProductPageItem"]) {
+  rating_summary
+}

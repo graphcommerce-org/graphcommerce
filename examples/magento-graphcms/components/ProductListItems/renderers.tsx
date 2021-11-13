@@ -5,7 +5,7 @@ import { ProductListItemDownloadable } from '@graphcommerce/magento-product-down
 import { ProductListItemGrouped } from '@graphcommerce/magento-product-grouped'
 import { ProductListItemSimple } from '@graphcommerce/magento-product-simple'
 import { ProductListItemVirtual } from '@graphcommerce/magento-product-virtual'
-import { ProductReviewChip } from '@graphcommerce/magento-review'
+import { ProductReviewSummary } from '@graphcommerce/magento-review'
 import { lighten, makeStyles, Theme, Typography, TypographyProps } from '@material-ui/core'
 import React from 'react'
 
@@ -39,7 +39,7 @@ const renderers: ProductListItemRenderer = {
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomRight={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
+        bottomRight={<ProductReviewSummary rating={rating_summary} classes={{ outlined }} />}
       />
     )
   },
@@ -58,7 +58,7 @@ const renderers: ProductListItemRenderer = {
           bottomLeft: [],
           bottomRight: ['dominant_color'],
         }}
-        bottomLeft={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
+        bottomLeft={<ProductReviewSummary rating={rating_summary} classes={{ outlined }} />}
       />
     )
   },
@@ -71,7 +71,7 @@ const renderers: ProductListItemRenderer = {
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomLeft={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
+        bottomLeft={<ProductReviewSummary rating={rating_summary} classes={{ outlined }} />}
       />
     )
   },
@@ -84,7 +84,7 @@ const renderers: ProductListItemRenderer = {
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomLeft={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
+        bottomLeft={<ProductReviewSummary rating={rating_summary} classes={{ outlined }} />}
       />
     )
   },
@@ -97,7 +97,7 @@ const renderers: ProductListItemRenderer = {
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomLeft={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
+        bottomLeft={<ProductReviewSummary rating={rating_summary} classes={{ outlined }} />}
       />
     )
   },
@@ -110,7 +110,7 @@ const renderers: ProductListItemRenderer = {
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomLeft={<ProductReviewChip rating={rating_summary} classes={{ outlined }} />}
+        bottomLeft={<ProductReviewSummary rating={rating_summary} classes={{ outlined }} />}
       />
     )
   },
