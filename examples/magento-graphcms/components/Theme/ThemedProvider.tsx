@@ -235,6 +235,26 @@ const createOverrides = (theme: Theme): Overrides => {
         },
       },
     },
+    MuiRating: {
+      iconFilled: {
+        '& svg': {
+          stroke: 'none',
+          fill: '#FFDA1C',
+        },
+      },
+      iconEmpty: {
+        color: theme.palette.grey[300],
+        '& svg': {
+          stroke: 'none',
+          fill: theme.palette.grey[300],
+        },
+      },
+      sizeSmall: {
+        '& svg': {
+          width: responsiveVal(11, 14),
+        },
+      },
+    },
     MuiContainer: {
       root: {
         paddingLeft: theme.page.horizontal,

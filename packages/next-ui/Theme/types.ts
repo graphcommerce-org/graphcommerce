@@ -1,4 +1,11 @@
+import { RatingClassKey } from '@material-ui/lab/Rating'
 export {}
+
+declare module '@material-ui/core/styles/overrides' {
+  interface ComponentNameToClassKey {
+    MuiRating: RatingClassKey
+  }
+}
 
 declare module '@material-ui/core/styles/createPalette' {
   interface TypeBackground {
