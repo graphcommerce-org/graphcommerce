@@ -53,7 +53,11 @@ export default function ProductListFilters(props: ProductFiltersProps) {
               />
             )
         }
-        console.log('Filter not recognized', aggregation)
+        console.log(
+          'Filter not recognized',
+          aggregation.attribute_code,
+          filterTypes[aggregation.attribute_code],
+        )
         return null // `FilterMatchTypeInput not ${aggregation.attribute_code}`
       })}
     </>
