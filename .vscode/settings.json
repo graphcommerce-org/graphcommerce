@@ -3,7 +3,7 @@
   "editor.formatOnSave": true,
   "eslint.alwaysShowStatus": true,
   "editor.tabSize": 2,
-  "javascript.implicitProjectConfig.experimentalDecorators": true,
+  "js/ts.implicitProjectConfig.experimentalDecorators": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
