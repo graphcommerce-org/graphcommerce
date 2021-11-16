@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.136.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.135.1...@graphcommerce/magento-graphcms@2.136.0) (2021-11-16)
+
+
+### Features
+
+* legal pages should render as cms page ([8bbd195](https://github.com/ho-nl/m2-pwa/commit/8bbd195bd178c443b0f2afb8abe52503666ead36))
+
+
+
+
+
 # [2.135.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.134.1...@graphcommerce/magento-graphcms@2.135.0) (2021-11-12)
 
 

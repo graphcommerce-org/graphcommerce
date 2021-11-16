@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.152.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.151.1...@graphcommerce/graphcommerce@2.152.0) (2021-11-16)
+
+
+### Features
+
+* legal pages should render as cms page ([8bbd195](https://github.com/ho-nl/m2-pwa/commit/8bbd195bd178c443b0f2afb8abe52503666ead36))
+
+
+
+
+
 ## [2.151.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.151.0...@graphcommerce/graphcommerce@2.151.1) (2021-11-12)
 
 
