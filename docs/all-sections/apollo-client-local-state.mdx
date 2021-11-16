@@ -44,22 +44,19 @@ function MyComponent() {
 4: Define a TypePolicy to return data on the query
 
 ```ts
-/**
- * When an empty cart is created, we store the cartId separately
- */
-const createEmptyCart: FieldPolicy<
-  CreateEmptyCartMutation['createEmptyCart']
-> = {
-  merge(_existing, cartId, options) {
-    // We write the result of the above query
-    options.cache.writeQuery({
-      query: CartIdDocument,
-      data: { cartId },
-      broadcast: true,
-    })
-    return cartId
-  },
-}
+/** When an empty cart is created, we store the cartId separately */
+const createEmptyCart: FieldPolicy<CreateEmptyCartMutation['createEmptyCart']> =
+  {
+    merge(_existing, cartId, options) {
+      // We write the result of the above query
+      options.cache.writeQuery({
+        query: CartIdDocument,
+        data: { cartId },
+        broadcast: true,
+      })
+      return cartId
+    },
+  }
 
 const typePolicies: TypePolicies = {
   Mutation: { fields: { createEmptyCart } },
