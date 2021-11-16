@@ -21,7 +21,7 @@ const renderers: ProductListItemRenderer = {
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomRight={<ProductReviewSummary rating={rating_summary} />}
+        bottomLeft={<ProductReviewSummary rating={rating_summary} />}
       />
     )
   },
