@@ -6,46 +6,27 @@ import { ProductListItemGrouped } from '@graphcommerce/magento-product-grouped'
 import { ProductListItemSimple } from '@graphcommerce/magento-product-simple'
 import { ProductListItemVirtual } from '@graphcommerce/magento-product-virtual'
 import { ProductReviewSummary } from '@graphcommerce/magento-review'
-import { lighten, makeStyles, Theme, Typography, TypographyProps } from '@material-ui/core'
+import { Typography, TypographyProps } from '@material-ui/core'
 import React from 'react'
 
 const Subtitle = (props: TypographyProps) => (
   <Typography component='span' variant='caption' {...props} />
 )
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    outlined: {
-      color:
-        theme.palette.type === 'light'
-          ? theme.palette.text.primary
-          : theme.palette.background.default,
-      borderColor:
-        theme.palette.type === 'light'
-          ? theme.palette.divider
-          : lighten(theme.palette.background.default, 0.9),
-      backgroundColor: theme.palette.background.image,
-    },
-  }),
-  { name: 'outlined' },
-)
-
 const renderers: ProductListItemRenderer = {
   SimpleProduct: (props) => {
-    const { outlined } = useStyles()
     const { rating_summary } = props
     return (
       <ProductListItemSimple
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomRight={<ProductReviewSummary rating={rating_summary} classes={{ outlined }} />}
+        bottomRight={<ProductReviewSummary rating={rating_summary} />}
       />
     )
   },
   ConfigurableProduct: (props) => {
     const { rating_summary } = props
-    const { outlined } = useStyles()
 
     return (
       <ProductListItemConfigurable
@@ -58,59 +39,55 @@ const renderers: ProductListItemRenderer = {
           bottomLeft: [],
           bottomRight: ['dominant_color'],
         }}
-        bottomLeft={<ProductReviewSummary rating={rating_summary} classes={{ outlined }} />}
+        bottomLeft={<ProductReviewSummary rating={rating_summary} />}
       />
     )
   },
   BundleProduct: (props) => {
     const { rating_summary } = props
-    const { outlined } = useStyles()
 
     return (
       <ProductListItemBundle
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomLeft={<ProductReviewSummary rating={rating_summary} classes={{ outlined }} />}
+        bottomLeft={<ProductReviewSummary rating={rating_summary} />}
       />
     )
   },
   VirtualProduct: (props) => {
     const { rating_summary } = props
-    const { outlined } = useStyles()
 
     return (
       <ProductListItemVirtual
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomLeft={<ProductReviewSummary rating={rating_summary} classes={{ outlined }} />}
+        bottomLeft={<ProductReviewSummary rating={rating_summary} />}
       />
     )
   },
   DownloadableProduct: (props) => {
     const { rating_summary } = props
-    const { outlined } = useStyles()
 
     return (
       <ProductListItemDownloadable
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomLeft={<ProductReviewSummary rating={rating_summary} classes={{ outlined }} />}
+        bottomLeft={<ProductReviewSummary rating={rating_summary} />}
       />
     )
   },
   GroupedProduct: (props) => {
     const { rating_summary } = props
-    const { outlined } = useStyles()
 
     return (
       <ProductListItemGrouped
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomLeft={<ProductReviewSummary rating={rating_summary} classes={{ outlined }} />}
+        bottomLeft={<ProductReviewSummary rating={rating_summary} />}
       />
     )
   },
