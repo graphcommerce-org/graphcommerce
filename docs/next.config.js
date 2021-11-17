@@ -12,7 +12,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  pageExtensions: ['tsx', 'mdx'],
+  pageExtensions: ['tsx'],
 }
 
 module.exports = withYarn1Workspaces(withMDX(nextConfig))

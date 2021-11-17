@@ -1,12 +1,45 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { SheetShellBaseProps } from '@graphcommerce/next-ui'
-import { Container } from '@material-ui/core'
+import {
+  Button,
+  iconChevronRight,
+  SheetShellBaseProps,
+  SvgImageSimple,
+  Title,
+} from '@graphcommerce/next-ui'
+import Link from 'next/link'
 import React from 'react'
 import FullPageShell from '../components/AppShell/FullPageShell'
+import FullPageShellHeader from '../components/AppShell/FullPageShellHeader'
+import Layout, { LayoutProps } from '../components/Layout'
+import projectConfig from '../projectconfig.json'
+import { getDirectoryTree } from '../util/files'
 
-function IndexPage() {
+type PageProps = LayoutProps
+
+function IndexPage(props: PageProps) {
+  const { menuData } = props
+
   return (
-    <Container>todo: hier allemaal blokken tonen met ingangen naar de documentatie Index</Container>
+    <>
+      <FullPageShellHeader>
+        <Title size='small'>Documentation</Title>
+      </FullPageShellHeader>
+      <Layout menuData={menuData}>
+        <p>
+          Setup your <i>Progressive Web App</i> (PWA) within 5 minutes using GraphCommerce.
+        </p>
+        <Link href='/getting-started/intro' passHref>
+          <Button
+            color='secondary'
+            variant='text'
+            size='small'
+            endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
+          >
+            Start developing now
+          </Button>
+        </Link>
+      </Layout>
+    </>
   )
 }
 
@@ -17,34 +50,12 @@ IndexPage.pageOptions = pageOptions
 
 export default IndexPage
 
-// GetPageStaticProps
 export const getStaticProps = () => {
+  const documentationTree = getDirectoryTree(projectConfig.documentationDir)
+
   return {
-    props: {},
+    props: {
+      menuData: documentationTree,
+    },
   }
-
-  // readdirSync
-
-  // const postsDirectory = path.join(process.cwd(), 'posts')
-  // const filenames = await fs.readdir(postsDirectory)
-
-  // const posts = filenames.map(async (filename) => {
-  //   const filePath = path.join(postsDirectory, filename)
-  //   const fileContents = await fs.readFile(filePath, 'utf8')
-
-  //   // Generally you would parse/transform the contents
-  //   // For example you can transform markdown to HTML here
-
-  //   return {
-  //     filename,
-  //     content: fileContents,
-  //   }
-  // })
-  // // By returning { props: { posts } }, the Blog component
-  // // will receive `posts` as a prop at build time
-  // return {
-  //   props: {
-  //     posts: await Promise.all(posts),
-  //   },
-  // }
 }

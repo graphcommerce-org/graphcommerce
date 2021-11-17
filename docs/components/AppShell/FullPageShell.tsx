@@ -46,7 +46,7 @@ function FullPageShell(props: FullPageShellProps) {
           </DesktopNavActions> */}
         </>
       }
-      footer={<Container>&copy; GraphCommerce, by Reach Digital</Container>}
+      footer={<Container>&copy; GraphCommerce</Container>}
       menuFab={<MenuFab {...menuProps}></MenuFab>}
     >
       {children}
