@@ -8,13 +8,8 @@ export type ProductReviewSummaryProps = ProductReviewSummaryFragment & ChipProps
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    root: {
-      '& span': {
-        width: responsiveVal(11, 14),
-      },
-    },
     ratingContainer: {
-      lineHeight: responsiveVal(11, 14),
+      lineHeight: 0,
     },
   }),
   { name: 'ProductListReviewSummary' },
@@ -36,10 +31,8 @@ export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
         defaultValue={normalizedRating}
         precision={0.1}
         readOnly
-        getLabelText={(value) => 'test'}
         size='small'
         icon={<SvgImageSimple src={iconStar} size='small' />}
-        className={classes.root}
       />
     </div>
   )
