@@ -39,7 +39,7 @@ const useStyles = makeStyles(
       minHeight: 1,
     },
     dividerSheetShell: {
-      marginTop: `calc((${theme.page.headerInnerHeight.md} * 0.15))`,
+      marginTop: `calc((${theme.headerHeight.md} * 0.15))`,
     },
     sheetHeaderContainer: {
       position: 'sticky',
@@ -49,7 +49,7 @@ const useStyles = makeStyles(
       minHeight: 58,
     },
     sheetHeaderContainerSheetShell: {
-      marginBottom: `calc((${theme.page.headerInnerHeight.md} * 0.15) * -1)`,
+      marginBottom: `calc((${theme.headerHeight.md} * 0.15) * -1)`,
     },
     sheetHeader: {
       background: theme.palette.background.default,
@@ -66,8 +66,8 @@ const useStyles = makeStyles(
       // The bottom sheets offset top is x% short compared to the page headers height,
       // so we add x% of the header height to padding top of bottomsheet actions bar
       // to keep consistency between app shell buttons.
-      paddingTop: `calc(${theme.spacings.xxs} + (${theme.page.headerInnerHeight.md} * 0.15))`,
-      paddingBottom: `calc(${theme.spacings.xxs} + (${theme.page.headerInnerHeight.md} * 0.15))`,
+      paddingTop: theme.spacings.sm,
+      paddingBottom: theme.spacings.sm,
       [theme.breakpoints.down('sm')]: {
         paddingTop: 8,
         paddingBottom: 8,
@@ -195,7 +195,7 @@ const useStyles = makeStyles(
       },
       [theme.breakpoints.up('md')]: {
         position: 'fixed',
-        top: `calc(${theme.page.headerInnerHeight.md} + ${theme.spacings.xxs})`,
+        top: theme.headerHeight.md,
       },
     },
     sheetShellActionsNoButtonShadow: {

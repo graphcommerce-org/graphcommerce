@@ -45,10 +45,7 @@ export default function Logo(props: LogoProps) {
   return (
     <PageLink href={href ?? '/'} passHref>
       <a className={classes.link} aria-label='Logo'>
-        <Image
-          {...{ ...image }}
-          className={clsx(classes.logo, !alwaysShow && classes.logoHideOnMobile)}
-        />
+        <Image {...image} className={clsx(classes.logo, !alwaysShow && classes.logoHideOnMobile)} />
       </a>
     </PageLink>
   )

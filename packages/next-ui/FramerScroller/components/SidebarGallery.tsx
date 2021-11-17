@@ -42,14 +42,14 @@ const useStyles = makeStyles(
     rootZoomed: {
       position: 'relative',
       zIndex: theme.zIndex.modal,
-      marginTop: `calc(${theme.page.headerInnerHeight.sm} * -1)`,
+      marginTop: `calc(${theme.headerHeight.sm} * -1)`,
       [theme.breakpoints.up('md')]: {
-        marginTop: `calc(${theme.page.headerInnerHeight.md} * -1  - ${theme.spacings.sm})`,
+        marginTop: `calc(${theme.headerHeight.md} * -1  - ${theme.spacings.sm})`,
       },
       paddingRight: 0,
     },
     scrollerContainer: ({ aspectRatio: [width, height] }: StyleProps) => {
-      const headerHeight = `${theme.page.headerInnerHeight.sm} - ${theme.spacings.sm} * 2`
+      const headerHeight = `${theme.headerHeight.sm} - ${theme.spacings.sm} * 2`
       const galleryMargin = theme.spacings.lg
       const extraSpacing = theme.spacings.md
 

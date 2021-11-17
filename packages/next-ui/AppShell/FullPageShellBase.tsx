@@ -26,14 +26,13 @@ const useStyles = makeStyles(
       alignItems: 'center',
       justifyContent: 'center',
       [theme.breakpoints.up('md')]: {
-        padding: `${theme.spacings.xxs} ${theme.page.horizontal} 0`,
-        marginBottom: theme.spacings.xxs,
+        height: theme.headerHeight.md,
+        padding: `0 ${theme.page.horizontal} 0`,
         top: 0,
         display: 'flex',
         pointerEvents: 'none',
         justifyContent: 'left',
         width: '100%',
-        height: theme.page.headerInnerHeight.md,
       },
     },
     headerAlwaysShow: {

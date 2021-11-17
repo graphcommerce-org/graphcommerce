@@ -25,13 +25,15 @@ const useStyles = makeStyles(
       position: 'fixed',
       zIndex: 99,
       left: theme.page.horizontal,
-      top: `calc(${theme.spacings.xxs} - 5px)`,
       [theme.breakpoints.down('sm')]: {
         top: 'unset',
         left: 20,
         bottom: 20,
         transform: 'none !important',
         opacity: '1 !important',
+      },
+      [theme.breakpoints.up('md')]: {
+        top: `calc(${theme.headerHeight.md} / 2 - 28px)`,
       },
     },
     menuFab: {

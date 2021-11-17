@@ -22,19 +22,18 @@ const useStyles = makeStyles(
       justifyItems: 'center',
       alignContent: 'center',
       padding: `${theme.spacings.lg} ${theme.spacings.md}`,
-      minHeight: `calc(100vh - ${theme.page.headerInnerHeight.sm})`,
+      minHeight: `calc(100vh - ${theme.headerHeight.sm})`,
+      ['@supports (-webkit-touch-callout: none)']: {
+        minHeight: '-webkit-fill-available',
+      },
       '& > *': {
         zIndex: 1,
         maxWidth: 'max-content',
       },
-      [theme.breakpoints.down('sm')]: {
-        ['@supports (-webkit-touch-callout: none)']: {
-          minHeight: '-webkit-fill-available',
-        },
-      },
+
       [theme.breakpoints.up('md')]: {
         width: '70%',
-        minHeight: `calc(100vh - ${theme.page.headerInnerHeight.md})`,
+        minHeight: `calc(100vh - ${theme.headerHeight.md})`,
       },
       [theme.breakpoints.up('lg')]: {
         padding: `${theme.spacings.lg} ${theme.spacings.lg}`,
@@ -50,7 +49,7 @@ const useStyles = makeStyles(
       display: 'grid',
       justifyItems: 'center',
       overflow: 'hidden',
-      paddingBottom: theme.spacings.md,
+      paddingBottom: theme.page.horizontal,
       '& video': {
         objectFit: 'cover',
         width: '100%',

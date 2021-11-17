@@ -1,9 +1,9 @@
-import { Logo as NextLogo, LogoProps } from '@graphcommerce/next-ui'
+import { Logo as NextLogo, LogoProps as CoreLogoProps } from '@graphcommerce/next-ui'
 import { makeStyles, Theme, useTheme } from '@material-ui/core'
 import clsx from 'clsx'
 import svgLogo from './graphcommerce.svg'
 
-type ShopLogoProps = Omit<LogoProps, 'image'>
+type LogoProps = Omit<CoreLogoProps, 'image'>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -26,7 +26,7 @@ const useStyles = makeStyles(
   { name: 'Logo' },
 )
 
-export default function Logo(props: ShopLogoProps) {
+export default function Logo(props: LogoProps) {
   const classes = useStyles(props)
   const inverted = useTheme().palette.type === 'dark'
 

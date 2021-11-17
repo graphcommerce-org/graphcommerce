@@ -4,10 +4,7 @@ import { responsiveVal } from '@graphcommerce/next-ui'
 import { createTheme, CssBaseline, Theme, ThemeProvider, lighten, alpha } from '@material-ui/core'
 import { PaletteOptions } from '@material-ui/core/styles/createPalette'
 import { Overrides } from '@material-ui/core/styles/overrides'
-import React from 'react'
 import shadows from './shadows'
-
-const useTheme: 'light' | 'dark' = 'light'
 
 const lightPalette: PaletteOptions = {
   type: 'light',
@@ -19,11 +16,11 @@ const lightPalette: PaletteOptions = {
   secondary: {
     main: '#006BFF',
     light: '#D1E4FF',
-    contrastText: '#ffffff',
+    contrastText: '#FFFFFF',
   },
   background: {
-    default: '#ffffff',
-    paper: '#ffffff',
+    default: '#FFFFFF',
+    paper: '#FFFFFF',
     image: '#F8F8F8',
   },
   divider: '#00000015',
@@ -124,56 +121,42 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
        * Since we aren't using the h4-h6 variants they can be repurposed for different usecases:
        */
       h1: {
-        // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontSize: responsiveVal(28, 64),
         fontWeight: 700,
-        // letterSpacing: '-0.0375em',
         lineHeight: 1.22,
       },
       h2: {
-        // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontSize: responsiveVal(25, 40),
         fontWeight: 700,
-        // letterSpacing: '-0.0375em',
         lineHeight: 1.35,
       },
       h3: {
-        // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontSize: responsiveVal(22, 30),
         fontWeight: 700,
-        // letterSpacing: '-0.0375em',
         lineHeight: 1.55,
       },
       h4: {
-        // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontWeight: 500,
         fontSize: responsiveVal(18, 26),
-        // letterSpacing: '-0.0375em',
         lineHeight: 1.55,
       },
       h5: {
-        // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontWeight: 700,
-        // letterSpacing: '-0.0375em',
         fontSize: responsiveVal(17, 20),
         lineHeight: 1.55,
       },
       h6: {
-        // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontSize: responsiveVal(17, 20),
         fontWeight: 550,
-        // letterSpacing: '-0.0375em',
         lineHeight: 1.8,
       },
       subtitle1: {
         fontSize: responsiveVal(16, 19, 1920),
         fontWeight: 400,
-        // letterSpacing: '-0.0375em',
         lineHeight: 1.7,
       },
       fontWeightBold: 600,
       body1: {
-        // We're boosting the fontSize to be 17px at 1280
         fontSize: responsiveVal(16, 18, 1920),
         lineHeight: 1.7,
       },
@@ -186,7 +169,6 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
         fontSize: responsiveVal(13, 15),
         lineHeight: 1.7,
       },
-      // https://web.dev/font-size/#how-the-lighthouse-font-size-audit-fails
       caption: {
         fontSize: responsiveVal(12, 13),
       },
@@ -211,13 +193,10 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
     page: {
       horizontal: responsiveVal(10, 30),
       vertical: responsiveVal(10, 30),
-      headerInnerHeight: {
-        xs: responsiveVal(21, 33),
-        sm: `56px`,
-        // 32px = height of logo
-        // + 2 x theme.spacings.xxs (top+bottom padding)
-        md: '72px', // `calc(40px + (${responsiveVal(10, 16)} * 2))`,
-      },
+    },
+    headerHeight: {
+      sm: `56px`,
+      md: `120px`,
     },
   })
 
@@ -405,13 +384,8 @@ const createOverrides = (theme: Theme): Overrides => {
   }
 }
 
-const currentTheme = createThemeWithPallete(useTheme === 'light' ? lightPalette : darkPalette)
-currentTheme.overrides = createOverrides(currentTheme)
+export const lightTheme = createThemeWithPallete(lightPalette)
+lightTheme.overrides = createOverrides(lightTheme)
 
-const ThemedProvider: React.FC = ({ children }) => (
-  <ThemeProvider theme={currentTheme}>
-    <CssBaseline />
-    {children}
-  </ThemeProvider>
-)
-export default ThemedProvider
+export const darkTheme = createThemeWithPallete(darkPalette)
+darkTheme.overrides = createOverrides(darkTheme)

@@ -20,11 +20,10 @@ declare module '@material-ui/core/styles/createTheme' {
     page: {
       horizontal: string
       vertical: string
-      headerInnerHeight: {
-        xs: string
-        sm: string
-        md: string
-      }
+    }
+    headerHeight: {
+      sm: string
+      md: string
     }
   }
   interface ThemeOptions {
@@ -40,11 +39,10 @@ declare module '@material-ui/core/styles/createTheme' {
     page: {
       horizontal: string | number
       vertical: string | number
-      headerInnerHeight: {
-        xs: string
-        sm: string
-        md: string
-      }
+    }
+    headerHeight: {
+      sm: string
+      md: string
     }
   }
 }
