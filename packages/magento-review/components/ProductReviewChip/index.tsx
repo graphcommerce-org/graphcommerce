@@ -1,5 +1,6 @@
 import { SvgImageSimple, iconStar } from '@graphcommerce/next-ui'
-import { Chip, ChipProps, makeStyles, Theme } from '@material-ui/core'
+import { Chip, ChipProps } from '@material-ui/core'
+import { Rating } from '@material-ui/lab'
 import React from 'react'
 
 export type ProductReviewChipProps = {
@@ -8,19 +9,8 @@ export type ProductReviewChipProps = {
   max?: number
 } & ChipProps
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    iconStar: {
-      stroke: '#FFDA1C',
-      fill: '#FFDA1C',
-    },
-  }),
-  { name: 'ProductListReviews' },
-)
-
 export default function ProductReviewChip(props: ProductReviewChipProps) {
   const { rating, reviewSectionId = '', max = 5, ...chipProps } = props
-  const classes = useStyles()
 
   if (!rating) return null
 
@@ -43,7 +33,16 @@ export default function ProductReviewChip(props: ProductReviewChipProps) {
       variant='outlined'
       clickable={!!reviewSectionId}
       onClick={handleClick}
-      icon={<SvgImageSimple src={iconStar} size='small' className={classes.iconStar} />}
+      icon={
+        <Rating
+          name='customized-icons'
+          defaultValue={1}
+          max={1}
+          readOnly
+          size='medium'
+          icon={<SvgImageSimple src={iconStar} size='small' />}
+        />
+      }
       color='default'
       size='small'
       label={`${normalizedRating}/5`}
