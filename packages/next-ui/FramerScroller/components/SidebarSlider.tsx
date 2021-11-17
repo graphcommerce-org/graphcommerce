@@ -30,6 +30,7 @@ const useStyles = makeStyles(
     },
     scroller: {
       width: '100%',
+      boxSizing: 'border-box',
       gridColumnGap: theme.spacings.md,
       gridRowGap: theme.spacings.lg,
       alignContent: 'space-around',
