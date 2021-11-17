@@ -33,7 +33,6 @@ const useStyles = makeStyles(
         pointerEvents: 'none',
         justifyContent: 'left',
         width: '100%',
-        boxSizing: 'border-box',
       },
     },
     headerAlwaysShow: {

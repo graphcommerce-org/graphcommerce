@@ -3,7 +3,7 @@ import { GoogleRecaptchaV3Script } from '@graphcommerce/googlerecaptcha'
 import { GoogleTagManagerScript } from '@graphcommerce/googletagmanager'
 import { LinguiProvider } from '@graphcommerce/lingui-next'
 import { App, AppProps } from '@graphcommerce/next-ui'
-import { ThemeProvider } from '@material-ui/core'
+import { CssBaseline, ThemeProvider } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { lightTheme } from '../components/Theme/ThemedProvider'
@@ -19,6 +19,7 @@ export default function ThemedApp(props: AppProps) {
       <GoogleTagManagerScript />
       <ApolloProvider client={apolloClient(locale, true, pageProps.apolloState)}>
         <LinguiProvider loader={(locale) => import(`../locales/${locale}.po`)}>
+          <CssBaseline />
           <ThemeProvider theme={lightTheme}>
             <App {...props} />
           </ThemeProvider>
