@@ -21,7 +21,7 @@ const renderers: ProductListItemRenderer = {
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomLeft={<ProductReviewSummary rating={rating_summary} />}
+        bottomLeft={<ProductReviewSummary rating_summary={rating_summary} />}
       />
     )
   },
@@ -39,7 +39,7 @@ const renderers: ProductListItemRenderer = {
           bottomLeft: [],
           bottomRight: ['dominant_color'],
         }}
-        bottomLeft={<ProductReviewSummary rating={rating_summary} />}
+        bottomLeft={<ProductReviewSummary rating_summary={rating_summary} />}
       />
     )
   },
@@ -51,7 +51,7 @@ const renderers: ProductListItemRenderer = {
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomLeft={<ProductReviewSummary rating={rating_summary} />}
+        bottomLeft={<ProductReviewSummary rating_summary={rating_summary} />}
       />
     )
   },
@@ -63,7 +63,7 @@ const renderers: ProductListItemRenderer = {
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomLeft={<ProductReviewSummary rating={rating_summary} />}
+        bottomLeft={<ProductReviewSummary rating_summary={rating_summary} />}
       />
     )
   },
@@ -75,7 +75,7 @@ const renderers: ProductListItemRenderer = {
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomLeft={<ProductReviewSummary rating={rating_summary} />}
+        bottomLeft={<ProductReviewSummary rating_summary={rating_summary} />}
       />
     )
   },
@@ -87,7 +87,7 @@ const renderers: ProductListItemRenderer = {
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
-        bottomLeft={<ProductReviewSummary rating={rating_summary} />}
+        bottomLeft={<ProductReviewSummary rating_summary={rating_summary} />}
       />
     )
   },

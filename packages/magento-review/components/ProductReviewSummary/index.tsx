@@ -1,11 +1,10 @@
 import { SvgImageSimple, iconStar, responsiveVal } from '@graphcommerce/next-ui'
-import { Chip, ChipProps, makeStyles, Theme } from '@material-ui/core'
+import { ChipProps, makeStyles, Theme } from '@material-ui/core'
 import { Rating } from '@material-ui/lab'
+import { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'
 import React from 'react'
 
-export type ProductReviewSummaryProps = {
-  rating?: number
-} & ChipProps
+export type ProductReviewSummaryProps = ProductReviewSummaryFragment & ChipProps
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -22,13 +21,13 @@ const useStyles = makeStyles(
 )
 
 export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
-  const { rating, ...summaryProps } = props
+  const { rating_summary } = props
   const classes = useStyles()
 
-  if (!rating) return null
+  if (!rating_summary) return null
 
   const max = 5
-  const normalizedRating = Math.round(rating / (10 / max)) / 10
+  const normalizedRating = Math.round(rating_summary / (10 / max)) / 10
 
   return (
     <div className={classes.ratingContainer}>
