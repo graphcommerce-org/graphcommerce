@@ -236,6 +236,12 @@ const createOverrides = (theme: Theme): Overrides => {
       },
     },
     MuiRating: {
+      root: {
+        '& svg': {
+          width: responsiveVal(16, 18),
+          height: responsiveVal(16, 18),
+        },
+      },
       iconFilled: {
         '& svg': {
           stroke: 'none',
@@ -250,8 +256,15 @@ const createOverrides = (theme: Theme): Overrides => {
         },
       },
       sizeSmall: {
-        '& svg': {
-          width: responsiveVal(11, 14),
+        '& svg, span': {
+          width: responsiveVal(11, 13),
+          height: responsiveVal(11, 13),
+        },
+      },
+      sizeLarge: {
+        '& svg, span': {
+          width: responsiveVal(20, 28),
+          height: responsiveVal(20, 28),
         },
       },
     },
