@@ -32,6 +32,12 @@ export default function FramerNextPages(props: PagesProps) {
   /** We never need to render anything beyong the current idx and we can safely omit everything */
   items.current = items.current.slice(0, idx + 1)
 
+  if (process.env.NODE_ENV !== 'production' && items.current.findIndex((i) => !i) > -1) {
+    console.warn(
+      'FramerNextPages was remounted, make sure it never remounts while the app is running.',
+    )
+  }
+
   let activeItem: PageItem = items.current[idx]
 
   const mustRerender = () =>
