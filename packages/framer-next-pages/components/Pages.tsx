@@ -87,7 +87,7 @@ export default function FramerNextPages(props: PagesProps) {
   renderItems = renderItems
     .reverse()
     .filter((item) => {
-      if (seen.has(item.sharedKey)) return false
+      if (!item || seen.has(item.sharedKey)) return false
       seen.add(item.sharedKey)
 
       if (
