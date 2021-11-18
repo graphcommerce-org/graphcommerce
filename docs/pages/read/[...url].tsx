@@ -8,6 +8,7 @@ import React from 'react'
 import FullPageShell from '../../components/AppShell/FullPageShell'
 import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
 import Layout, { LayoutProps } from '../../components/Layout'
+import sanitizeDirectoryTree from '../../components/SidebarMenu/sanitizeDirectoryTree'
 import projectConfig from '../../projectconfig.json'
 import { getAbsoluteFilePath, getDirectoryTree } from '../../util/files'
 
@@ -69,7 +70,7 @@ export const getStaticProps = async ({ params }) => {
 
   return {
     props: {
-      menuData: documentationTree,
+      menuData: sanitizeDirectoryTree(documentationTree),
       compiledMdxSource: contents,
       title: url[1],
     },

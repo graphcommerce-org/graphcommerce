@@ -1,6 +1,7 @@
 import { List, ListItem, ListItemText, ListSubheader, makeStyles, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
+import { FileNameUrlKeyPair } from './sanitizeDirectoryTree'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -31,22 +32,16 @@ export default function SidebarMenu(props) {
   return (
     <div className={classes.menu}>
       <List component='nav'>
-        {Object.keys(tree).map((dirName) => (
+        {tree.map(([dirName, filenames]: [string, FileNameUrlKeyPair[]]) => (
           <React.Fragment key={dirName}>
             <ListSubheader component='div'>{dirName}</ListSubheader>
-            {tree[dirName].map((filename) => {
-              const filenameWithoutExt = filename.split('.')[0]
-
-              return (
-                <PageLink href={`/read/${dirName}/${filenameWithoutExt}`} passHref>
-                  <ListItem button key={`${dirName}/${filename}`} className={classes.listItem}>
-                    <ListItemText
-                      primary={<span className={classes.listItemText}>{filenameWithoutExt}</span>}
-                    />
-                  </ListItem>
-                </PageLink>
-              )
-            })}
+            {filenames.map(({ name, urlKey }: FileNameUrlKeyPair) => (
+              <PageLink href={`/read/${urlKey}`} key={urlKey} passHref>
+                <ListItem button className={classes.listItem}>
+                  <ListItemText primary={<span className={classes.listItemText}>{name}</span>} />
+                </ListItem>
+              </PageLink>
+            ))}
           </React.Fragment>
         ))}
       </List>

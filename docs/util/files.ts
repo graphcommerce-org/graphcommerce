@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-export type DirectoryTree = { [key: string]: string[] }
+export type DirectoryTree = [string, string[]][]
 
 export const getAbsoluteFilePath = (file: string) => {
   return path.join(process.cwd(), file)
@@ -28,15 +28,15 @@ export const getDirectoryTree = (
   const filteredFilenames = options?.includeFilesAsKeys
     ? filenames
     : filenames.filter((filename: string) => !filename.includes('.'))
-  const map = new Map()
+
+  const tree: [string, string[]][] = []
 
   filteredFilenames.forEach((dirName: string) => {
     const currentDir = path.join(process.cwd(), `${directory}/${dirName}`)
-
     const filenames = fs.readdirSync(currentDir)
-
-    map.set(dirName, filenames)
+    const dirContents: [string, string[]] = [dirName, filenames]
+    tree.push(dirContents)
   })
 
-  return Object.fromEntries(map)
+  return tree
 }

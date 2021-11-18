@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const withYarn1Workspaces = require('@graphcommerce/next-config').withYarn1Scopes()
-const withMDX = require('@next/mdx')({
-  extension: /\.mdx?$/,
-})
 
 const nextConfig = {
   // https://nextjs.org/docs/api-reference/next.config.js/configuring-onDemandEntries
@@ -15,4 +12,4 @@ const nextConfig = {
   pageExtensions: ['tsx'],
 }
 
-module.exports = withYarn1Workspaces(withMDX(nextConfig))
+module.exports = withYarn1Workspaces(nextConfig)
