@@ -2,6 +2,7 @@ import { List, ListItem, ListItemText, ListSubheader, makeStyles, Theme } from '
 import PageLink from 'next/link'
 import React from 'react'
 import { FileNameUrlKeyPair } from './sanitizeDirectoryTree'
+import { responsiveVal } from '@graphcommerce/next-ui'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -11,6 +12,7 @@ const useStyles = makeStyles(
       height: '100vh',
       overflow: 'hidden',
       borderRight: `1px solid ${theme.palette.primary.contrastText}`,
+      minWidth: responsiveVal(150, 300),
     },
     listItem: {
       paddingTop: 0,

@@ -11,6 +11,8 @@ const useStyles = makeStyles(
       display: 'grid',
       gridTemplateColumns: '1fr 4fr',
       gridColumnGap: theme.spacings.md,
+      maxWidth: '100%',
+      overflow: 'hidden',
     },
     menu: {
       position: 'sticky',
