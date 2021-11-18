@@ -1,14 +1,13 @@
-import { SvgImageSimple, iconStar, responsiveVal } from '@graphcommerce/next-ui'
+import { SvgImageSimple, iconStar, responsiveVal, UseStyles } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'
 import React from 'react'
-import clsx from 'clsx'
 
-export type ProductReviewSummaryProps = ProductReviewSummaryFragment & { className: string }
+export type ProductReviewSummaryProps = ProductReviewSummaryFragment & UseStyles<typeof useStyles>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    ratingContainer: {
+    root: {
       width: 'max-content',
       position: 'relative',
       '& > div': {
@@ -36,13 +35,13 @@ const useStyles = makeStyles(
 )
 
 export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
-  const { rating_summary, className, ...reviewProps } = props
-  const classes = useStyles()
+  const { rating_summary } = props
+  const classes = useStyles(props)
 
   if (!rating_summary) return null
 
   return (
-    <div className={clsx(classes.ratingContainer, className)}>
+    <div className={classes.root}>
       <div>
         <SvgImageSimple src={iconStar} size='xs' className={classes.iconStarDisabled} />
         <SvgImageSimple src={iconStar} size='xs' className={classes.iconStarDisabled} />
