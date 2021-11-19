@@ -18,17 +18,11 @@ function ArticlePage(props: PageProps) {
   const { menuData, compiledMdxSource, title } = props
 
   return (
-    <>
-      <FullPageShellHeader>
-        <Title size='small'>todo: article title here</Title>
-      </FullPageShellHeader>
-      <Layout menuData={menuData}>
-        <Typography variant='h6' component='h1'>
-          {title}
-        </Typography>
+    <Layout menuData={menuData}>
+      <>
         <MDXRemote {...compiledMdxSource} />
-      </Layout>
-    </>
+      </>
+    </Layout>
   )
 }
 
