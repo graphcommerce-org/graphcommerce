@@ -2,7 +2,7 @@
   "name": "@graphcommerce/pwa-docs",
   "version": "2.105.5",
   "private": true,
-  "license": "MIT",
+  "sideEffects": false,
   "main": "index.js",
   "dependencies": {
     "@graphcommerce/framer-next-pages": "^2.107.5",
@@ -21,15 +21,9 @@
     "@graphcommerce/prettier-config-pwa": "^3.0.4",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
     "@playwright/test": "^1.16.2",
-    "typescript": "^4.4.4"
-  },
-  "engines": {
-    "node": "14.x"
-  },
-  "scripts": {
-    "dev": "next dev -p 3002",
-    "build": "next build",
-    "start": "next start"
+    "typescript": "^4.4.4",
+    "eslint": "^8.2.0",
+    "type-fest": "^2.5.1"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -40,5 +34,13 @@
     "parserOptions": {
       "project": "./tsconfig.json"
     }
+  },
+  "engines": {
+    "node": "14.x"
+  },
+  "scripts": {
+    "dev": "next dev -p 3002",
+    "build": "next build",
+    "start": "next start"
   }
 }
