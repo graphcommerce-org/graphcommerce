@@ -1,0 +1,24 @@
+# App Shell
+
+`@graphcommerce/framer-next-pages` is responsible for rendering the correct app
+shell per page. Its entry is found in `_app.tsx`, where `<App/>` from this
+package is used.
+
+This package minimalizes the amount of render calls by reusing the root
+component per page. By default, React renders the whole component tree after a
+change of state, resulting in a render call for the whole component tree if the
+state change occured (nearby) the root.
+
+After every route change, this package checks whether the new app shell
+component type is the same as the currently used one If so, the current
+component will be reused and will be given new data.
+
+Per page we configure this `SharedComponent` via `PageOptions`, which is set in
+the following code:
+
+```jsx
+const pageOptions: PageOptions<FullPageShellBaseProps> = {
+  SharedComponent: FullPageShell,
+}
+MyPage.pageOptions = pageOptions
+```

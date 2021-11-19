@@ -1,0 +1,69 @@
+# Full Page Shell
+
+`Full Page Shell` is an app shell component which contains all page elements,
+like the menu bar, desktop navigation actions, back button and footer.
+
+## FullPageShellBase
+
+In the project there's an `components/AppShell` directory. This directory
+contains all project specific app shell components. Most of them require
+components to be given via props, for example in
+`components/AppShell/FullPageShell.tsx`:
+
+```jsx
+...
+footer={<Footer footer={footer} />}
+cartFab={<CartFab />}
+menuFab={
+  ...
+}
+...
+```
+
+This component renders the datasource-independent component `FullPageShellBase`
+from `@graphcommerce/next-ui`. `@graphcommerce/next-ui` contains re-usable,
+datasource-indepenent UI components. These components contain default styles
+which can be customized to your project needs.
+
+## How FullPageShell retrieves its data
+
+Look at a page component, like `pages/page/[url].tsx`. Navigate to
+`getStaticProps`. This function is Next.js specific. More about it in the
+[Next.js documentation](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation)
+
+```
+ const conf = client.query({ query: StoreConfigDocument })
+  const page = staticClient.query({
+    query: CmsPageDocument,
+    variables: {
+      url: `page/${urlKey}`,
+      urlKey,
+      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+    },
+  })
+```
+
+Let's go through this code:
+
+- staticClient is an Apollo Client
+- CmsPageDocument is the generated GraphQL query document. This is done by
+  `graphql-codegen`. The GraphQL can be found in `CmsPage.gql`
+
+The fetched data is given to the page by doing the following:
+
+```
+...
+ return {
+    props: {
+      ...
+      ...(await page).data,
+      ...
+    },
+    ...
+  }
+...
+```
+
+Next, the page is rendered via `<App/>` in `_app.tsx` from `framer-next-pages`
+using the correct app shell, in this case `FullPageShell`. Read more about
+`_app.tsx` in the [Next.js documentation](https://nextjs.org/docs).
