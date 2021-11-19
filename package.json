@@ -4,7 +4,7 @@
   "version": "2.151.1",
   "private": true,
   "workspaces": [
-    "docs",
+    "docs/*",
     "packagesDev/*",
     "packages/*",
     "packages/*/example",
