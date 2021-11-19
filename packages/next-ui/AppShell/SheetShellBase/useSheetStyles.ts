@@ -8,7 +8,7 @@ const useSheetStyles = makeStyles<Theme, never, ClassKeys>(
   (theme: Theme) => ({
     ...(styles as StyleRules<ClassKeys>),
     content: {
-      ...styles.content,
+      ...(styles.content as any),
       backgroundColor: theme.palette.background.default,
     },
   }),
