@@ -5,7 +5,9 @@ export type FileNameUrlKeyPair = {
   urlKey: string
 }
 
-export default function sanitizeDirectoryTree(menuData: DirectoryTree): any {
+export default function sanitizeDirectoryTree(
+  menuData: DirectoryTree,
+): [string, FileNameUrlKeyPair[]][] {
   return menuData.map(([dirName, filenames]: [string, string[]]) => {
     const dirNameParts = dirName.split('-')
     const chapter = dirNameParts.shift()
