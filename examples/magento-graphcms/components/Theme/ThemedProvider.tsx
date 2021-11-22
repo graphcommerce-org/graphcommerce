@@ -12,19 +12,19 @@ const useTheme: 'light' | 'dark' = 'light'
 const lightPalette: PaletteOptions = {
   type: 'light',
   primary: {
-    main: '#FF4A55',
+    main: '#EACCCE',
     contrastText: '#FFFFFF',
-    dark: '#F33642',
+    dark: '#E2B9BB',
   },
   secondary: {
-    main: '#006BFF',
-    light: '#D1E4FF',
+    main: '#4D7F71',
+    light: '#CADBD3',
     contrastText: '#ffffff',
   },
   background: {
-    default: '#ffffff',
+    default: '#FBF8F6',
     paper: '#ffffff',
-    image: '#F8F8F8',
+    image: '#ffffff',
   },
   divider: '#00000015',
   success: {
@@ -39,7 +39,6 @@ const lightPalette: PaletteOptions = {
     disabled: '#00000030',
   },
 }
-
 const darkPalette: PaletteOptions = {
   type: 'dark',
   primary: {
@@ -124,15 +123,15 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
        * Since we aren't using the h4-h6 variants they can be repurposed for different usecases:
        */
       h1: {
-        // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-        fontSize: responsiveVal(28, 64),
+        fontFamily: ['Allison', 'sans-serif'].join(', '),
+        fontSize: responsiveVal(38, 84),
         fontWeight: 700,
         // letterSpacing: '-0.0375em',
         lineHeight: 1.22,
       },
       h2: {
-        // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-        fontSize: responsiveVal(25, 40),
+        fontFamily: ['Allison', 'sans-serif'].join(', '),
+        fontSize: responsiveVal(35, 60),
         fontWeight: 700,
         // letterSpacing: '-0.0375em',
         lineHeight: 1.35,
@@ -232,6 +231,9 @@ const createOverrides = (theme: Theme): Overrides => {
         '::-moz-selection': { background: alpha(theme.palette.primary.main, 0.6) },
         '#__next': {
           position: 'relative',
+        },
+        img: {
+          filter: 'brightness(1.03)',
         },
       },
     },
