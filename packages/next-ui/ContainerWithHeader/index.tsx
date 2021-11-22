@@ -14,7 +14,6 @@ const useStyles = makeStyles(
     },
     title: {
       lineHeight: 1,
-      textTransform: 'uppercase',
     },
     right: {
       lineHeight: 1,

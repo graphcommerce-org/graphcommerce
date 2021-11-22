@@ -17,7 +17,7 @@ type SwipeableProps = RowProductFragment &
 const useStyles = makeStyles(
   (theme: Theme) => ({
     sidebarTitle: {
-      textTransform: 'uppercase',
+      //
     },
     scroller: {
       gridAutoColumns: `minmax(${responsiveVal(180, 800)}, 60vh)`,

@@ -14,10 +14,10 @@ export default class ThemedDocument extends Document {
         <Head>
           {/** We're using a variable font that supports multiple modes */}
           {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-          {/* <link
-            href='https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap'
+          <link
+            href='https://fonts.googleapis.com/css2?family=Allison&display=swap'
             rel='stylesheet'
-          /> */}
+          />
         </Head>
         <body>
           <GoogleTagManagerNoScript />
