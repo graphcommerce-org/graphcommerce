@@ -12,7 +12,6 @@ import FullPageShell from '../components/AppShell/FullPageShell'
 import FullPageShellHeader from '../components/AppShell/FullPageShellHeader'
 import Layout, { LayoutProps } from '../components/Layout'
 import sanitizeDirectoryTree from '../components/SidebarMenu/sanitizeDirectoryTree'
-import projectConfig from '../projectconfig.json'
 import { getDirectoryTree } from '../util/files'
 
 type PageProps = LayoutProps
