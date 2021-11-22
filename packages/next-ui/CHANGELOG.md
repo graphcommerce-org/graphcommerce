@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.18.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.18.0...@graphcommerce/next-ui@3.18.1) (2021-11-22)
+
+
+### Bug Fixes
+
+* green app shell header ([a0774e6](https://github.com/ho-nl/m2-pwa/commit/a0774e6da078ea1e96d7d93bccafae5b55a69792))
+
+
+
+
+
 # [3.18.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.17.1...@graphcommerce/next-ui@3.18.0) (2021-11-22)
 
 

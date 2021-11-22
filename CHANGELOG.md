@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.154.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.153.0...@graphcommerce/graphcommerce@2.154.0) (2021-11-22)
+
+
+### Bug Fixes
+
+* documentation layout ([4d75f88](https://github.com/ho-nl/m2-pwa/commit/4d75f888bf83f6e052c2717574c53529c1cbc9fd))
+* green app shell header ([a0774e6](https://github.com/ho-nl/m2-pwa/commit/a0774e6da078ea1e96d7d93bccafae5b55a69792))
+* index href ([4d8af0a](https://github.com/ho-nl/m2-pwa/commit/4d8af0a8db597853e0922381a1b65c5dc505eb7f))
+* make sure we’re using the monorepo packages ([9789da3](https://github.com/ho-nl/m2-pwa/commit/9789da3c37f8866c18d2017a4b97514aee3b3d9f))
+* overflow content ([6319d50](https://github.com/ho-nl/m2-pwa/commit/6319d50745bdc48a590ac746173d3969ef5d6911))
+* reset yarn.lock to original ([fcbf603](https://github.com/ho-nl/m2-pwa/commit/fcbf603908e273308e8b7e8b0943b41aad4d934c))
+
+
+### Features
+
+* added some documentation ([d0fb026](https://github.com/ho-nl/m2-pwa/commit/d0fb0268e3dce5d708fb41795de9657452e3f5d2))
+* documentation ([6419242](https://github.com/ho-nl/m2-pwa/commit/641924229ff35d2f09d394cca179032181903789))
+* documentation front end setup ([c3b7c31](https://github.com/ho-nl/m2-pwa/commit/c3b7c318a9735bd468821fdc44b625f878678c84))
+* sanitize menu data ([87b9998](https://github.com/ho-nl/m2-pwa/commit/87b99981228005d53a5027dc5d2c2d7108455adc))
+
+
+
+
+
 # [2.153.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.152.0...@graphcommerce/graphcommerce@2.153.0) (2021-11-22)
 
 
