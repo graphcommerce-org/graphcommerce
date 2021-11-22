@@ -1,7 +1,7 @@
 import { useIsomorphicLayoutEffect, Styled, clientSize } from '@graphcommerce/framer-utils'
 import clsx from 'clsx'
 import React, { useCallback } from 'react'
-import useSheetContext from '../hooks/useSheetContext'
+import { useSheetContext } from '../hooks/useSheetContext'
 import { SheetVariant } from '../types'
 import variantSizeCss from '../utils/variantSizeCss'
 

@@ -194,9 +194,11 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       horizontal: responsiveVal(10, 30),
       vertical: responsiveVal(10, 30),
     },
-    headerHeight: {
-      sm: `56px`,
-      md: `110px`,
+    appShell: {
+      headerHeightSm: '56px',
+      headerHeightMd: '110px',
+      appBarHeightMd: '80px',
+      appBarInnerHeightMd: '46px',
     },
   })
 

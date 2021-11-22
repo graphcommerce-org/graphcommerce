@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { SnapPoint } from '../types'
-import useSheetContext from './useSheetContext'
+import { useSheetContext } from './useSheetContext'
 
 export default function useSnapTo() {
   const { snapPoints, controls } = useSheetContext()

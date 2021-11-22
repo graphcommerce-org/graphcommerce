@@ -6,9 +6,9 @@ import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { usePageRouter, useUp, usePrevUp, usePageContext } from '@graphcommerce/framer-next-pages'
 import { Trans } from '@lingui/macro'
 
-export type BackProps = Omit<ButtonProps, 'onClick'>
+export type BackProps = Omit<ButtonProps, 'onClick' | 'children'>
 
-export default function Back() {
+export default function Back(props: BackProps) {
   const router = usePageRouter()
   const up = useUp()
   const prevUp = usePrevUp()
@@ -19,7 +19,7 @@ export default function Back() {
 
   if (canClickBack)
     return (
-      <Button onClick={() => router.back()} variant='pill-link' startIcon={backIcon}>
+      <Button onClick={() => router.back()} variant='pill-link' startIcon={backIcon} {...props}>
         {up?.href === router.asPath ? up.title : <Trans>Back</Trans>}
       </Button>
     )
@@ -27,7 +27,7 @@ export default function Back() {
   if (up?.href)
     return (
       <PageLink href={up.href} passHref>
-        <Button variant='pill-link' startIcon={backIcon}>
+        <Button variant='pill-link' startIcon={backIcon} {...props}>
           {up.title}
         </Button>
       </PageLink>

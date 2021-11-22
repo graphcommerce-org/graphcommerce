@@ -14,7 +14,7 @@ const useStyles = makeStyles(
       maxWidth: 56,
       [theme.breakpoints.up('md')]: {
         pointerEvents: 'all',
-        top: `calc(${theme.headerHeight.md} / 2 - 28px)`,
+        top: `calc(${theme.appShell.headerHeightMd} / 2 - 28px)`,
         left: `calc((100vw - (100vw - 100%)) - ${theme.page.horizontal} - 56px)`,
         bottom: 'unset',
         boxShadow: 'unset',

@@ -4,7 +4,7 @@ import { useMotionValue } from 'framer-motion'
 import React, { useEffect } from 'react'
 import { useMotionValueValue } from '../../../framer-utils'
 import { UseStyles } from '../../Styles'
-import useAppShellHeaderContext from '../AppShellHeader/useAppShellHeaderContext'
+import useAppShellHeaderContext from '../AppBar/useAppShellHeaderContext'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

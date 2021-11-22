@@ -1,9 +1,9 @@
 import { makeStyles, Theme, Typography, TypographyProps } from '@material-ui/core'
-import clsx from 'clsx'
 import React from 'react'
 import { responsiveVal } from '..'
 import { UseStyles } from '../Styles'
-import SvgImage, { SvgImageProps } from '../SvgImage'
+import { classesPicker } from '../Styles/classesPicker'
+import { SvgImageProps } from '../SvgImage'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 
 const useStyles = makeStyles(
@@ -18,8 +18,7 @@ const useStyles = makeStyles(
         flexFlow: 'column',
       },
     },
-    typography: {},
-    small: {
+    containerSizeSmall: {
       flexFlow: 'unset',
       '& svg': {
         width: responsiveVal(24, 28),
@@ -27,6 +26,7 @@ const useStyles = makeStyles(
         strokeWidth: 1.4,
       },
     },
+    typography: {},
   }),
   {
     name: 'Title',
@@ -46,9 +46,11 @@ const Title = React.forwardRef<HTMLDivElement, TitleProps>((props, ref) => {
   const classes = useStyles(props)
   const small = size === 'small'
 
+  const className = classesPicker(classes, { size })
+
   return (
-    <div className={clsx(classes.container, small && classes.small)}>
-      {icon && <SvgImageSimple src={icon} size='xl' />}
+    <div {...className('container')}>
+      {icon && <SvgImageSimple src={icon} size={small ? 'large' : 'xl'} />}
       <Typography
         ref={ref}
         variant={variant || (small ? 'h6' : 'h3')}

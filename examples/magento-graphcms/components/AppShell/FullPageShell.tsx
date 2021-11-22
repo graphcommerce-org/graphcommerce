@@ -28,12 +28,10 @@ export type FullPageShellProps = Omit<DefaultPageQuery, 'pages'> &
   Omit<
     FullPageShellBaseProps,
     'menu' | 'logo' | 'actions' | 'classes' | 'name' | 'header' | 'footer'
-  > & {
-    alwaysShowLogo?: boolean
-  }
+  >
 
 function FullPageShell(props: FullPageShellProps) {
-  const { footer, menu: menuData = {}, children, alwaysShowLogo, ...uiProps } = props
+  const { footer, menu: menuData = {}, children, ...uiProps } = props
   const theme = useTheme()
   const storeConfig = useQuery(StoreConfigDocument)
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
@@ -68,10 +66,9 @@ function FullPageShell(props: FullPageShellProps) {
     <FullPageShellBase
       {...uiProps}
       name={name}
-      alwaysShowHeader={alwaysShowLogo}
       header={
         <>
-          <Logo alwaysShow={alwaysShowLogo} />
+          <Logo />
           <DesktopNavBar {...menuProps} />
           <DesktopNavActions>
             {!router.pathname.startsWith('/search') && (

@@ -63,7 +63,6 @@ const useStyles = makeStyles<
         textTransform: 'none',
         ...theme.typography.body2,
         fontWeight: 400,
-        padding: `${responsiveVal(8, 10)} ${responsiveVal(16, 20)}`,
         borderRadius: '99em',
         boxShadow: theme.shadows[1],
       },
@@ -86,12 +85,8 @@ const useStyles = makeStyles<
         },
       },
     },
-    pillSizeLarge: {
-      //
-    },
-    pillSizeSmall: {
-      //
-    },
+    pillSizeLarge: {},
+    pillSizeSmall: {},
     pillNoElevation: {
       /* disableElevation does not stop adding box shadow on active... ?! */
       '&:active': {
@@ -160,12 +155,12 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
       className={clsx(
         {
           [pillClasses.pill]: variant?.startsWith('pill'),
+          [pillClasses.pillLink]: variant === 'pill-link',
           [pillClasses.pillPrimary]: variant?.startsWith('pill') && color === 'primary',
           [pillClasses.pillSecondary]: variant?.startsWith('pill') && color === 'secondary',
           [pillClasses.pillSizeLarge]: variant?.startsWith('pill') && size === 'large',
           [pillClasses.pillSizeSmall]: variant?.startsWith('pill') && size === 'small',
           [pillClasses.pillNoElevation]: buttonProps.disableElevation,
-          [pillClasses.pillLink]: variant === 'pill-link',
           [pillClasses.loading]: loading,
           [pillClasses.withStartIcon]: withIcon,
         },

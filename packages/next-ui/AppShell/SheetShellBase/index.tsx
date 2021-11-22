@@ -36,10 +36,10 @@ const useStyles = makeStyles(
     },
     containerbottom: {
       ...styles.containerbottom,
-      paddingTop: `calc(${theme.headerHeight.sm} / 2 + ${theme.spacings.sm})`,
+      paddingTop: `calc(${theme.appShell.headerHeightSm} / 2 + ${theme.spacings.sm})`,
       [theme.breakpoints.up('md')]: {
         // offset top is x% of the header height, so it slightly overlaps the logo
-        paddingTop: `calc(${theme.headerHeight.md} / 2 + ${theme.spacings.sm})`,
+        paddingTop: `calc(${theme.appShell.headerHeightMd} / 2 + ${theme.spacings.sm})`,
       },
     },
     containerleft: {
@@ -95,18 +95,16 @@ function SheetShellBase(props: SheetShellBaseProps) {
 
   return (
     <AppShellProvider>
-      <ShellBase name={name}>
-        <Sheet open={open} onSnap={handleSnap} variant={variant} size={size}>
-          <SheetBackdrop onTap={handleClose} classes={sheetClasses} />
-          <SheetContainer classes={sheetContainerClasses}>
-            <SheetPanel initial={direction === -1 ? 'snapPoint1' : 'closed'} classes={sheetClasses}>
-              {/* <FocusLock returnFocus={{ preventScroll: true }} disabled={!isActive}> */}
-              {children}
-              {/* </FocusLock> */}
-            </SheetPanel>
-          </SheetContainer>
-        </Sheet>
-      </ShellBase>
+      <Sheet open={open} onSnap={handleSnap} variant={variant} size={size}>
+        <SheetBackdrop onTap={handleClose} classes={sheetClasses} />
+        <SheetContainer classes={sheetContainerClasses}>
+          <SheetPanel initial={direction === -1 ? 'snapPoint1' : 'closed'} classes={sheetClasses}>
+            {/* <FocusLock returnFocus={{ preventScroll: true }} disabled={!isActive}> */}
+            {children}
+            {/* </FocusLock> */}
+          </SheetPanel>
+        </SheetContainer>
+      </Sheet>
     </AppShellProvider>
   )
 }

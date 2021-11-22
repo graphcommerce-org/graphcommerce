@@ -1,12 +1,6 @@
-import { useViewportScroll } from 'framer-motion'
-import AppShellHeader, { AppShellHeaderProps } from '../AppShellHeader/index'
+import { AppBar, AppBarProps } from '../AppBar/index'
 
-export type FullPageShellHeaderProps = Omit<
-  AppShellHeaderProps,
-  'scrollY' | 'hideClose' | 'dragIndicator'
->
+console.warn('FullPageShellheader deprecated')
+export type FullPageShellHeaderProps = AppBarProps
 
-export default function FullPageShellHeader(props: FullPageShellHeaderProps) {
-  const { scrollY } = useViewportScroll()
-  return <AppShellHeader {...props} scrollY={scrollY} hideClose floatingMd floatingSm />
-}
+export default AppBar

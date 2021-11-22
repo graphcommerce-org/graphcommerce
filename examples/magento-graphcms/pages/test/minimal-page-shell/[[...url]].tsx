@@ -1,5 +1,13 @@
 import { PageOptions, usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
-import { AppShellTitle, Button, iconPerson, Stepper, Title } from '@graphcommerce/next-ui'
+import {
+  AppBar,
+  AppShellTitle,
+  Button,
+  iconPerson,
+  SheetAppbar,
+  Stepper,
+  Title,
+} from '@graphcommerce/next-ui'
 import { Container, Divider, List, ListItem, NoSsr, Typography } from '@material-ui/core'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
@@ -7,19 +15,13 @@ import React, { useState } from 'react'
 import MinimalPageShell, {
   MinimalPageShellProps,
 } from '../../../components/AppShell/MinimalPageShell'
-import MinimalPageShellHeader from '../../../components/AppShell/MinimalPageShellHeader'
 
 type AppShellDemoProps = {
   baseUrl: string
-  Header: React.FC<{
-    primary?: React.ReactNode
-    divider?: React.ReactNode
-    hideDragIndicator?: boolean
-  }>
 }
 
 export function AppShellDemo(props: AppShellDemoProps) {
-  const { baseUrl, Header } = props
+  const { baseUrl } = props
 
   const queryParams = usePageRouter().asPath.split('/')
   const urlParts = queryParams.pop()?.split('-') ?? []
@@ -77,10 +79,12 @@ export function AppShellDemo(props: AppShellDemoProps) {
       </Title>
     )
 
+  const ShellHeader = isSheet ? SheetAppbar : AppBar
+
   return (
     <>
       <NoSsr>
-        <Header
+        <ShellHeader
           primary={primaryAction}
           divider={
             withStepper ? (
@@ -89,10 +93,11 @@ export function AppShellDemo(props: AppShellDemoProps) {
               </Container>
             ) : undefined
           }
-          hideDragIndicator={isSidebarDrawer}
+          floatingMd={isFullPage}
         >
-          {isMinimal || isSheet || withTitle ? titleComponent : undefined}
-        </Header>
+          {/* {titleComponent} */}
+          {isMinimal || isSheet || withIcon || withTitle ? titleComponent : undefined}
+        </ShellHeader>
 
         <Container maxWidth='md'>
           <AppShellTitle icon={withIcon ? iconPerson : undefined}>{title}</AppShellTitle>
@@ -125,14 +130,13 @@ export function AppShellDemo(props: AppShellDemoProps) {
           <Divider />
 
           <List>
-            {!!primaryAction ||
-              (backSteps === 0 && (
-                <PageLink href={`${baseUrl}/navigated`} passHref>
-                  <ListItem button component='a' style={{ paddingLeft: 0, paddingRight: 0 }}>
-                    Navigate
-                  </ListItem>
-                </PageLink>
-              ))}
+            {primaryAction || backSteps === 0 ? (
+              <PageLink href={`${baseUrl}/navigated`} passHref>
+                <ListItem button component='a' style={{ paddingLeft: 0, paddingRight: 0 }}>
+                  Navigate
+                </ListItem>
+              </PageLink>
+            ) : null}
 
             <PageLink href={`${baseUrl}/with-primary`} passHref>
               <ListItem
@@ -262,7 +266,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
 }
 
 function MinimalPageShellDemo() {
-  return <AppShellDemo baseUrl='/test/minimal-page-shell' Header={MinimalPageShellHeader} />
+  return <AppShellDemo baseUrl='/test/minimal-page-shell' />
 }
 
 const pageOptions: PageOptions<MinimalPageShellProps> = {

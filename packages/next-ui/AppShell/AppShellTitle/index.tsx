@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import Title, { TitleProps } from '../../Title'
-import useAppShellHeaderContext from '../AppShellHeader/useAppShellHeaderContext'
+import useAppShellHeaderContext from '../AppBar/useAppShellHeaderContext'
 
 type AppShellTitleProps = {
   children: React.ReactNode
@@ -16,13 +16,11 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     title: {},
     margin: {
-      marginTop: theme.spacings.lg,
-      marginBottom: theme.spacings.lg,
+      marginTop: theme.spacings.xl,
+      marginBottom: theme.spacings.xl,
     },
   }),
-  {
-    name: 'AppShellTitle',
-  },
+  { name: 'AppShellTitle' },
 )
 
 export default function AppShellTitle(props: AppShellTitleProps) {

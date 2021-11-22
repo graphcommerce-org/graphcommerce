@@ -1,9 +1,4 @@
-import { useViewportScroll } from 'framer-motion'
-import React from 'react'
-import AppShellHeader from '../AppShellHeader'
-import { FullPageShellHeaderProps } from '../FullPageShellHeader'
+import { AppBar } from '../AppBar'
 
-export default function MinimalPageShellHeader(props: FullPageShellHeaderProps) {
-  const { scrollY } = useViewportScroll()
-  return <AppShellHeader {...props} scrollY={scrollY} hideClose />
-}
+console.warn('MinimalPageShellHeader deprecated')
+export default AppBar

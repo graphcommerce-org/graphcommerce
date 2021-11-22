@@ -2,7 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { CmsPageContent } from '@graphcommerce/magento-cms'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, MetaRobots } from '@graphcommerce/next-ui'
+import { AppBar, GetStaticProps, MetaRobots } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -35,6 +35,9 @@ function CmsPage(props: Props) {
         metaRobots={metaRobots}
         canonical={page?.url}
       />
+
+      <AppBar />
+
       {pages?.[0] ? (
         <RowRenderer
           content={pages?.[0].content}

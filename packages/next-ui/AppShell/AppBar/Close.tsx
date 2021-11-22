@@ -1,6 +1,7 @@
 import { usePageRouter, usePageContext } from '@graphcommerce/framer-next-pages'
 import { Fab } from '@material-ui/core'
 import React from 'react'
+import Button from '../../Button'
 import { iconClose } from '../../icons'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 
@@ -11,8 +12,14 @@ export default function Close() {
 
   if (!canClose) return null
   return (
-    <Fab type='button' onClick={() => router.go(closeSteps * -1)} aria-label='Close'>
-      <SvgImageSimple src={iconClose} />
-    </Fab>
+    <Button
+      type='button'
+      onClick={() => router.go(closeSteps * -1)}
+      aria-label='Close'
+      variant='pill-link'
+      startIcon={<SvgImageSimple src={iconClose} />}
+    >
+      Close
+    </Button>
   )
 }

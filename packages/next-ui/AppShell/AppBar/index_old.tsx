@@ -41,7 +41,7 @@ const useStyles = makeStyles(
     },
 
     sheetHeaderContainerSheetShell: {
-      marginBottom: `calc((${theme.headerHeight.md} * 0.15) * -1)`,
+      marginBottom: `calc((${theme.appShell.headerHeightMd} * 0.15) * -1)`,
     },
     divider: {
       borderBottom: `1px solid ${theme.palette.divider}`,
@@ -50,7 +50,7 @@ const useStyles = makeStyles(
       minHeight: 1,
     },
     dividerSheetShell: {
-      marginTop: `calc((${theme.headerHeight.md} * 0.15))`,
+      marginTop: `calc((${theme.appShell.headerHeightMd} * 0.15))`,
     },
     sheetHeader: {
       background: theme.palette.background.default,
@@ -197,7 +197,7 @@ const useStyles = makeStyles(
       },
       [theme.breakpoints.up('md')]: {
         position: 'fixed',
-        top: theme.headerHeight.md,
+        top: theme.appShell.headerHeightMd,
       },
     },
     sheetShellActionsNoButtonShadow: {

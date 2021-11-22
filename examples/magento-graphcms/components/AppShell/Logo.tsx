@@ -9,14 +9,14 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     logo: {
       width: 'auto',
-      height: 16,
+      height: 20,
       pointerEvents: 'all',
       paddingLeft: 10,
       [theme.breakpoints.up('md')]: {
         width: 'auto',
         height: 28,
         paddingLeft: 0,
-        marginTop: '-5px',
+        marginTop: -5,
       },
     },
     dark: {

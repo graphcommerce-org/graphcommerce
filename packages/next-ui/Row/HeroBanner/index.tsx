@@ -22,7 +22,7 @@ const useStyles = makeStyles(
       justifyItems: 'center',
       alignContent: 'center',
       padding: `${theme.spacings.lg} ${theme.spacings.md}`,
-      minHeight: `calc(100vh - ${theme.headerHeight.sm})`,
+      minHeight: `calc(100vh - ${theme.appShell.headerHeightSm})`,
       ['@supports (-webkit-touch-callout: none)']: {
         minHeight: '-webkit-fill-available',
       },
@@ -33,7 +33,7 @@ const useStyles = makeStyles(
 
       [theme.breakpoints.up('md')]: {
         width: '70%',
-        minHeight: `calc(100vh - ${theme.headerHeight.md})`,
+        minHeight: `calc(100vh - ${theme.appShell.headerHeightMd})`,
       },
       [theme.breakpoints.up('lg')]: {
         padding: `${theme.spacings.lg} ${theme.spacings.lg}`,

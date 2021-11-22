@@ -1,6 +1,6 @@
 import { Variants } from 'framer-motion'
 import { snapPointToValue } from '../utils/snapPoint'
-import useSheetContext from './useSheetContext'
+import { useSheetContext } from './useSheetContext'
 
 export default function useSnapPointVariants(): Variants {
   const { snapPoints, size, variant } = useSheetContext()

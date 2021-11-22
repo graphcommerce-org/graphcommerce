@@ -25,8 +25,10 @@ import {
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
+  AppShellHeader,
   AppShellSticky,
   AppShellTitle,
+  FullPageShellHeader,
   GetStaticProps,
   MetaRobots,
   PageMeta,
@@ -36,7 +38,6 @@ import { Container } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../components/AppShell/FullPageShell'
-import FullPageShellHeader from '../components/AppShell/FullPageShellHeader'
 import Asset from '../components/Asset'
 import { CategoryPageDocument, CategoryPageQuery } from '../components/GraphQL/CategoryPage.gql'
 import ProductListItems from '../components/ProductListItems/ProductListItems'

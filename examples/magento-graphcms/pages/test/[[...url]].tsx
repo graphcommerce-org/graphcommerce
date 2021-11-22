@@ -1,10 +1,9 @@
 import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, FullPageShellHeader } from '@graphcommerce/next-ui'
+import { GetStaticProps } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import MinimalPageShellHeader from '../../components/AppShell/MinimalPageShellHeader'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
 import { AppShellDemo } from './minimal-page-shell/[[...url]]'
@@ -15,14 +14,7 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function AppShellTestIndex() {
-  const queryParams = usePageRouter().asPath.split('/')
-
-  const header =
-    queryParams.includes('minimal') || queryParams.includes('sheet')
-      ? MinimalPageShellHeader
-      : FullPageShellHeader
-
-  return <AppShellDemo baseUrl='/test' Header={header} />
+  return <AppShellDemo baseUrl='/test' />
 }
 
 AppShellTestIndex.pageOptions = {

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import sheetContext from '../context/sheetContext'
 
-export default function useSheetContext() {
+export function useSheetContext() {
   return useContext(sheetContext)
 }

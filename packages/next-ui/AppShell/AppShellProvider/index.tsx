@@ -1,7 +1,5 @@
 import { useRef } from 'react'
-import appShellHeaderContext, {
-  AppShellHeaderContext,
-} from '../AppShellHeader/appShellHeaderContext'
+import appShellHeaderContext, { AppShellHeaderContext } from '../AppBar/appShellHeaderContext'
 
 type AppShellProviderProps = {
   children: React.ReactNode

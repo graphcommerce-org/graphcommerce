@@ -1,5 +1,5 @@
-export * from './AppShellHeader'
-export { default as AppShellHeader } from './AppShellHeader/index'
+export * from './AppBar'
+
 export { default as AppShellProvider } from './AppShellProvider'
 export { default as AppShellSticky } from './AppShellSticky'
 export { default as AppShellTitle } from './AppShellTitle'

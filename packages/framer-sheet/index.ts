@@ -18,3 +18,5 @@ export * from './animation'
 
 export * from './styles'
 export { default as styles } from './styles'
+
+export * from './hooks/useSheetContext'

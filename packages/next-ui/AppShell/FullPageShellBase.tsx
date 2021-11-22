@@ -25,20 +25,19 @@ const useStyles = makeStyles(
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      height: theme.appShell.headerHeightSm,
+      [theme.breakpoints.down('sm')]: {
+        position: 'sticky',
+        top: 0,
+      },
       [theme.breakpoints.up('md')]: {
-        height: theme.headerHeight.md,
+        height: theme.appShell.headerHeightMd,
         padding: `0 ${theme.page.horizontal} 0`,
         top: 0,
         display: 'flex',
         pointerEvents: 'none',
         justifyContent: 'left',
         width: '100%',
-      },
-    },
-    headerAlwaysShow: {
-      [theme.breakpoints.down('sm')]: {
-        marginTop: 20,
-        marginBottom: 22,
       },
     },
   }),
@@ -51,30 +50,24 @@ export type FullPageShellBaseProps = {
   menuFab?: React.ReactNode
   cartFab?: React.ReactNode
   children?: React.ReactNode
-  alwaysShowHeader?: boolean
-} & UseStyles<typeof useStyles> &
-  PageLayoutBaseProps
+} & UseStyles<typeof useStyles>
 
 export default function FullPageShellBase(props: FullPageShellBaseProps) {
-  const { children, header, footer, menuFab, cartFab, name, alwaysShowHeader } = props
+  const { children, header, footer, menuFab, cartFab } = props
   const classes = useStyles(props)
 
   return (
     <div className={classes.root}>
       <AppShellProvider>
-        <ShellBase name={name}>
-          <header className={clsx(classes.header, alwaysShowHeader && classes.headerAlwaysShow)}>
-            {header}
-          </header>
-          <div>
-            <div className={classes.hideFabsOnVirtualKeyboardOpen}>
-              {menuFab}
-              {cartFab}
-            </div>
-            {children}
+        <header className={classes.header}>{header}</header>
+        <div>
+          <div className={classes.hideFabsOnVirtualKeyboardOpen}>
+            {menuFab}
+            {cartFab}
           </div>
-          <div>{footer}</div>
-        </ShellBase>
+          {children}
+        </div>
+        <div>{footer}</div>
       </AppShellProvider>
     </div>
   )

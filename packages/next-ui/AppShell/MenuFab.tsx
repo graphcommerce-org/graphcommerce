@@ -33,7 +33,7 @@ const useStyles = makeStyles(
         opacity: '1 !important',
       },
       [theme.breakpoints.up('md')]: {
-        top: `calc(${theme.headerHeight.md} / 2 - 28px)`,
+        top: `calc(${theme.appShell.headerHeightMd} / 2 - 28px)`,
       },
     },
     menuFab: {
