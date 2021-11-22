@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const withYarn1Workspaces = require('@graphcommerce/next-config').withYarn1Workspaces()
+const withYarn1Workspaces = require('@graphcommerce/next-config').withYarn1Scopes()
 
 const nextConfig = {
   // https://nextjs.org/docs/api-reference/next.config.js/configuring-onDemandEntries
@@ -9,6 +9,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  pageExtensions: ['tsx'],
 }
 
 module.exports = withYarn1Workspaces(nextConfig)

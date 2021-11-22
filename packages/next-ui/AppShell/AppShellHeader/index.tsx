@@ -131,7 +131,6 @@ const useStyles = makeStyles(
     sheetHeaderFillMobileOnly: {
       [theme.breakpoints.up('md')]: {
         pointerEvents: 'none',
-        background: 'green',
         position: 'fixed',
       },
     },

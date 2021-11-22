@@ -2,25 +2,28 @@
   "name": "@graphcommerce/pwa-docs",
   "version": "2.105.5",
   "private": true,
+  "sideEffects": false,
   "main": "index.js",
-  "license": "MIT",
+  "dependencies": {
+    "@graphcommerce/framer-next-pages": "^2.107.5",
+    "@graphcommerce/next-config": "^2.109.0",
+    "@graphcommerce/next-ui": "^3.17.1",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/lab": "^4.0.0-alpha.60",
+    "next": "^12.0.3",
+    "next-mdx-remote": "^3.0.8",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.2",
     "@graphcommerce/eslint-config-pwa": "^3.1.5",
     "@graphcommerce/prettier-config-pwa": "^3.0.4",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
-    "@playwright/test": "^1.16.2"
-  },
-  "dependencies": {
-    "@graphcommerce/next-config": "^2.109.0",
-    "next": "^12.0.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  },
-  "scripts": {
-    "dev": "next dev -p 3002",
-    "build": "next build",
-    "start": "next start"
+    "@playwright/test": "^1.16.2",
+    "typescript": "^4.4.4",
+    "eslint": "^8.2.0",
+    "type-fest": "^2.5.1"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -31,5 +34,13 @@
     "parserOptions": {
       "project": "./tsconfig.json"
     }
+  },
+  "engines": {
+    "node": "14.x"
+  },
+  "scripts": {
+    "dev": "next dev -p 3002",
+    "build": "next build",
+    "start": "next start"
   }
 }
