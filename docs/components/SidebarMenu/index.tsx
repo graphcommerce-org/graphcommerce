@@ -24,19 +24,21 @@ export default function SidebarMenu(props) {
   const classes = useStyles()
 
   return (
-    <List component='nav'>
-      {tree.map(([dirName, filenames]: [string, FileNameUrlKeyPair[]]) => (
-        <React.Fragment key={dirName}>
-          <ListSubheader component='div'>{dirName}</ListSubheader>
-          {filenames.map(({ name, urlKey }: FileNameUrlKeyPair) => (
-            <PageLink href={`/read/${urlKey}`} key={urlKey} passHref>
-              <ListItem button className={classes.listItem}>
-                <ListItemText primary={<span className={classes.listItemText}>{name}</span>} />
-              </ListItem>
-            </PageLink>
-          ))}
-        </React.Fragment>
-      ))}
-    </List>
+    <div>
+      <List component='nav'>
+        {tree.map(([dirName, filenames]: [string, FileNameUrlKeyPair[]]) => (
+          <React.Fragment key={dirName}>
+            <ListSubheader component='div'>{dirName}</ListSubheader>
+            {filenames.map(({ name, urlKey }: FileNameUrlKeyPair) => (
+              <PageLink href={`/read/${urlKey}`} key={urlKey} passHref>
+                <ListItem button className={classes.listItem}>
+                  <ListItemText primary={<span className={classes.listItemText}>{name}</span>} />
+                </ListItem>
+              </PageLink>
+            ))}
+          </React.Fragment>
+        ))}
+      </List>
+    </div>
   )
 }

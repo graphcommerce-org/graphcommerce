@@ -18,8 +18,6 @@ const useStyles = makeStyles(
       position: 'sticky',
       top: theme.page.headerInnerHeight.md,
       height: '100vh',
-      overflowX: 'hidden',
-      overflowY: 'auto',
       minWidth: responsiveVal(150, 300),
       borderRight: `1px solid ${theme.palette.divider}`,
     },
