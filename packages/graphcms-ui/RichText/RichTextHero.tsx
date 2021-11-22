@@ -4,21 +4,23 @@ import RichText from '.'
 const RichTextHero = withStyles((theme: Theme) => ({
   h1: {
     ...theme.typography.h1,
-    fontSize: `calc(${theme.typography.h1.fontSize}*1.1)`,
-    textTransform: 'uppercase',
+    fontSize: `calc(${theme.typography.h1.fontSize}*2.2)`,
+    fontWeight: 600,
+    lineHeight: 0.8,
     maxWidth: '70%',
     textAlign: 'center',
     marginBottom: theme.spacings.md,
     [theme.breakpoints.up('sm')]: {
-      fontSize: `calc(${theme.typography.h1.fontSize}*1.4)`,
+      fontSize: `calc(${theme.typography.h1.fontSize}*2.2)`,
     },
     [theme.breakpoints.up('md')]: {
       textAlign: 'left',
       maxWidth: '100%',
     },
     '& strong': {
-      WebkitTextFillColor: 'transparent',
-      WebkitTextStroke: `1.2px #fff`,
+      fontFamily: theme.typography.fontFamily,
+      textTransform: 'uppercase',
+      fontSize: `calc(${theme.typography.h1.fontSize}*1.0)`,
     },
   },
 }))(RichText)
