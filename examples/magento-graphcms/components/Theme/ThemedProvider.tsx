@@ -12,7 +12,7 @@ const useTheme: 'light' | 'dark' = 'light'
 const lightPalette: PaletteOptions = {
   type: 'light',
   primary: {
-    main: '#EACCCE',
+    main: '#CC8792',
     contrastText: '#FFFFFF',
     dark: '#E2B9BB',
   },

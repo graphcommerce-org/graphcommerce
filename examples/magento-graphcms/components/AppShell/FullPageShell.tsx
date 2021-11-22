@@ -6,7 +6,6 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   DesktopNavActions,
   DesktopNavBar,
-  FullPageShellBase,
   FullPageShellBaseProps,
   iconCustomerService,
   MenuFab,
@@ -23,6 +22,7 @@ import React, { useCallback } from 'react'
 import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
 import Footer from './Footer'
 import Logo from './Logo'
+import FullPageShellBase from './FullPageShellBase'
 
 export type FullPageShellProps = Omit<DefaultPageQuery, 'pages'> &
   Omit<
