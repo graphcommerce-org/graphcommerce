@@ -139,6 +139,7 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
             {prrvm && (
               <StarRatingField
                 id={prrvm?.id ?? ''}
+                size='large'
                 onChange={(id, value) => {
                   const productReviewRatingInputValue =
                     data.productReviewRatingsMetadata.items.find((meta) => meta?.id === id)?.values[

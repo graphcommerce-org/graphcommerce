@@ -21,6 +21,11 @@ const useStyles = makeStyles(
     sizeInherit: {
       fontSize: 'inherit',
     },
+    sizeXs: {
+      width: responsiveVal(11, 13),
+      height: responsiveVal(11, 13),
+      strokeWidth: 2.1,
+    },
     sizeSmall: {
       width: responsiveVal(12, 16),
       height: responsiveVal(12, 16),
@@ -49,7 +54,7 @@ const useStyles = makeStyles(
 
 type SvgImageSimpleProps = Omit<ImageProps, 'fixed'> & {
   /** The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size. */
-  size?: 'default' | 'inherit' | 'xxl' | 'xl' | 'large' | 'medium' | 'small'
+  size?: 'default' | 'inherit' | 'xxl' | 'xl' | 'large' | 'medium' | 'small' | 'xs'
   fill?: boolean
   muted?: boolean
   inverted?: boolean
