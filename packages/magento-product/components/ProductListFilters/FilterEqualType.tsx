@@ -95,6 +95,18 @@ const useFilterEqualStyles = makeStyles(
   { name: 'FilterEqual' },
 )
 
+const randomRadius = () => {
+  const min = 20
+  const max = 80
+  const rad1 = Math.floor(Math.random() * (max - min + 1) + min)
+  const rad2 = Math.floor(Math.random() * (max - min + 1) + min)
+  const rad3 = Math.floor(Math.random() * (max - min + 1) + min)
+  const rad4 = Math.floor(Math.random() * (max - min + 1) + min)
+  return `${rad1}% ${100 - rad1}% ${rad2}% ${100 - rad2}% / ${rad3}% ${rad4}% ${100 - rad4}% ${
+    100 - rad3
+  }%`
+}
+
 export default function FilterEqualType(props: FilterEqualTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props
   const { params } = useProductListParamsContext()
@@ -187,7 +199,11 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
                       )}
                       style={
                         isColor
-                          ? { background: `${option?.label}`, color: `${option?.label}` }
+                          ? {
+                              background: `${option?.label}`,
+                              borderRadius: randomRadius(),
+                              color: `${option?.label}`,
+                            }
                           : undefined
                       }
                     />
