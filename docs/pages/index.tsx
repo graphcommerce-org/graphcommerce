@@ -52,7 +52,7 @@ IndexPage.pageOptions = pageOptions
 export default IndexPage
 
 export const getStaticProps = () => {
-  const documentationTree = getDirectoryTree(projectConfig.documentationDir)
+  const documentationTree = getDirectoryTree('content')
 
   return {
     props: {
