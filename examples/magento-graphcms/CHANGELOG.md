@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.137.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.136.0...@graphcommerce/magento-graphcms@2.137.0) (2021-11-22)
+
+
+### Bug Fixes
+
+* consistent mapping ([0b838d0](https://github.com/ho-nl/m2-pwa/commit/0b838d084b0f85c132f49b8d5360c9ecba40054a))
+* revert to SvgImageSimple ([b247c6b](https://github.com/ho-nl/m2-pwa/commit/b247c6b96979bc313e597a8ffe1275b73f38bd6a))
+* use fragment types ([0a06309](https://github.com/ho-nl/m2-pwa/commit/0a0630916e191c59eed402904b9ace6b87831bd8))
+
+
+### Features
+
+* add ReviewSummary component ([b823669](https://github.com/ho-nl/m2-pwa/commit/b823669d32e92238d05cac181c3453a13da49601))
+* style all rating components from ThemedProvider ([bfc7b41](https://github.com/ho-nl/m2-pwa/commit/bfc7b415cb42d1cad4b61644a1c60a6772ebe6b3))
+* use Rating component ([ec54f45](https://github.com/ho-nl/m2-pwa/commit/ec54f4522adb2d330bbdecc2ce032f86f13fb7a6))
+
+
+
+
+
 # [2.136.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.135.1...@graphcommerce/magento-graphcms@2.136.0) (2021-11-16)
 
 

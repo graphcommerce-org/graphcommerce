@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.153.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.152.0...@graphcommerce/graphcommerce@2.153.0) (2021-11-22)
+
+
+### Bug Fixes
+
+* allow styling from parent ([ed1b4dc](https://github.com/ho-nl/m2-pwa/commit/ed1b4dc446fa19244cc73f87063256809b914d15))
+* cleanup ([7937ac5](https://github.com/ho-nl/m2-pwa/commit/7937ac5c6163a4ffe10d8a8d61847fcc86e82a9d))
+* consistent mapping ([0b838d0](https://github.com/ho-nl/m2-pwa/commit/0b838d084b0f85c132f49b8d5360c9ecba40054a))
+* make stylable ([54aea4c](https://github.com/ho-nl/m2-pwa/commit/54aea4c177c708de07df9ef9c590da6bff43aea8))
+* remove styles ([335c8cb](https://github.com/ho-nl/m2-pwa/commit/335c8cb663bdd4c1670cdb3ea88c8a9a42bcf745))
+* remove styles ([fabde1f](https://github.com/ho-nl/m2-pwa/commit/fabde1f1dba9f75dea60bb2c7c69d4793c6197cd))
+* rename summary chip fragment ([bb23dfc](https://github.com/ho-nl/m2-pwa/commit/bb23dfc8bb82e99832196b4080d2c4c9f269cc5d))
+* revert to SvgImageSimple ([b247c6b](https://github.com/ho-nl/m2-pwa/commit/b247c6b96979bc313e597a8ffe1275b73f38bd6a))
+* review form size large ([9f45336](https://github.com/ho-nl/m2-pwa/commit/9f45336d310b120088fe6440dd95a51944ff77cb))
+* use fragment types ([0a06309](https://github.com/ho-nl/m2-pwa/commit/0a0630916e191c59eed402904b9ace6b87831bd8))
+
+
+### Features
+
+* add ReviewSummary component ([b823669](https://github.com/ho-nl/m2-pwa/commit/b823669d32e92238d05cac181c3453a13da49601))
+* style all rating components from ThemedProvider ([bfc7b41](https://github.com/ho-nl/m2-pwa/commit/bfc7b415cb42d1cad4b61644a1c60a6772ebe6b3))
+* use Rating component ([ec54f45](https://github.com/ho-nl/m2-pwa/commit/ec54f4522adb2d330bbdecc2ce032f86f13fb7a6))
+
+
+
+
+
 # [2.152.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.151.1...@graphcommerce/graphcommerce@2.152.0) (2021-11-16)
 
 

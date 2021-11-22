@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.110.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-review@2.109.1...@graphcommerce/magento-review@2.110.0) (2021-11-22)
+
+
+### Bug Fixes
+
+* allow styling from parent ([ed1b4dc](https://github.com/ho-nl/m2-pwa/commit/ed1b4dc446fa19244cc73f87063256809b914d15))
+* cleanup ([7937ac5](https://github.com/ho-nl/m2-pwa/commit/7937ac5c6163a4ffe10d8a8d61847fcc86e82a9d))
+* make stylable ([54aea4c](https://github.com/ho-nl/m2-pwa/commit/54aea4c177c708de07df9ef9c590da6bff43aea8))
+* remove styles ([fabde1f](https://github.com/ho-nl/m2-pwa/commit/fabde1f1dba9f75dea60bb2c7c69d4793c6197cd))
+* rename summary chip fragment ([bb23dfc](https://github.com/ho-nl/m2-pwa/commit/bb23dfc8bb82e99832196b4080d2c4c9f269cc5d))
+* revert to SvgImageSimple ([b247c6b](https://github.com/ho-nl/m2-pwa/commit/b247c6b96979bc313e597a8ffe1275b73f38bd6a))
+* review form size large ([9f45336](https://github.com/ho-nl/m2-pwa/commit/9f45336d310b120088fe6440dd95a51944ff77cb))
+* use fragment types ([0a06309](https://github.com/ho-nl/m2-pwa/commit/0a0630916e191c59eed402904b9ace6b87831bd8))
+
+
+### Features
+
+* add ReviewSummary component ([b823669](https://github.com/ho-nl/m2-pwa/commit/b823669d32e92238d05cac181c3453a13da49601))
+* use Rating component ([ec54f45](https://github.com/ho-nl/m2-pwa/commit/ec54f4522adb2d330bbdecc2ce032f86f13fb7a6))
+
+
+
+
+
 # [2.109.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-review@2.108.6...@graphcommerce/magento-review@2.109.0) (2021-11-12)
 
 

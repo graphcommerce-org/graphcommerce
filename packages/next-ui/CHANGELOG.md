@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.18.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.17.1...@graphcommerce/next-ui@3.18.0) (2021-11-22)
+
+
+### Bug Fixes
+
+* remove styles ([335c8cb](https://github.com/ho-nl/m2-pwa/commit/335c8cb663bdd4c1670cdb3ea88c8a9a42bcf745))
+* revert to SvgImageSimple ([b247c6b](https://github.com/ho-nl/m2-pwa/commit/b247c6b96979bc313e597a8ffe1275b73f38bd6a))
+
+
+### Features
+
+* use Rating component ([ec54f45](https://github.com/ho-nl/m2-pwa/commit/ec54f4522adb2d330bbdecc2ce032f86f13fb7a6))
+
+
+
+
+
 ## [3.17.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.17.0...@graphcommerce/next-ui@3.17.1) (2021-11-12)
 
 
