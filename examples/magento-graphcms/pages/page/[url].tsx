@@ -2,7 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { CmsPageContent } from '@graphcommerce/magento-cms'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, MetaRobots } from '@graphcommerce/next-ui'
+import { GetStaticProps, MetaRobots, responsiveVal, SvgImageSimple } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -11,6 +11,13 @@ import { DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import RowRenderer from '../../components/Row/RowRenderer'
 import RowProduct from '../../components/Row/RowProduct'
 import apolloClient from '../../lib/apolloClient'
+import { Button, Container, makeStyles, Theme, Typography, useTheme } from '@material-ui/core'
+import HeroBanner from '../../components/Row/RowHeroBanner'
+import iconClip from '@graphcommerce/next-ui/icons/clip.svg'
+import iconContact from '@graphcommerce/next-ui/icons/contact-book.svg'
+import iconCut from '@graphcommerce/next-ui/icons/cut.svg'
+import iconExtension from '@graphcommerce/next-ui/icons/extension.svg'
+import iconFlower from '@graphcommerce/next-ui/icons/flower.svg'
 
 export const config = { unstable_JsPreload: false }
 
@@ -19,6 +26,40 @@ type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
+const randomRadius = () => {
+  const min = 20
+  const max = 80
+  const rad1 = Math.floor(Math.random() * (max - min + 1) + min)
+  const rad2 = Math.floor(Math.random() * (max - min + 1) + min)
+  const rad3 = Math.floor(Math.random() * (max - min + 1) + min)
+  const rad4 = Math.floor(Math.random() * (max - min + 1) + min)
+  return `${rad1}% ${100 - rad1}% ${rad2}% ${100 - rad2}% / ${rad3}% ${rad4}% ${100 - rad4}% ${
+    100 - rad3
+  }%`
+}
+
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    container: {
+      margin: `0 0 ${theme.spacings.xl} 0`,
+      textAlign: 'center',
+    },
+
+    contained: {
+      boxShadow: 'none',
+      padding: responsiveVal(12, 26),
+      margin: `${theme.spacings.xs}`,
+      backgroundColor: theme.palette.secondary.light,
+      '& svg': {
+        width: responsiveVal(50, 120),
+        height: responsiveVal(50, 120),
+        strokeWidth: 0.5,
+      },
+    },
+  }),
+  { name: 'Footer' },
+)
+
 function CmsPage(props: Props) {
   const { cmsPage, pages, products } = props
   const title = cmsPage?.title ?? ''
@@ -26,6 +67,9 @@ function CmsPage(props: Props) {
   const product = products?.items?.[0]
   const page = pages?.[0]
   const metaRobots = page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]
+
+  const classes = useStyles(props)
+  const theme = useTheme()
 
   return (
     <>
@@ -39,6 +83,61 @@ function CmsPage(props: Props) {
         <RowRenderer
           content={pages?.[0].content}
           renderer={{
+            RowHeroBanner: (rowProps) => {
+              return (
+                <div>
+                  <HeroBanner {...rowProps} />
+
+                  <Container className={classes.container} maxWidth={false}>
+                    <Button
+                      size='large'
+                      variant='contained'
+                      color='secondary'
+                      style={{ borderRadius: randomRadius() }}
+                      className={classes.contained}
+                    >
+                      <SvgImageSimple src={iconClip} size='xxl' />
+                    </Button>
+                    <Button
+                      size='large'
+                      variant='contained'
+                      color='secondary'
+                      style={{ borderRadius: randomRadius() }}
+                      className={classes.contained}
+                    >
+                      <SvgImageSimple src={iconExtension} size='xxl' />
+                    </Button>
+                    <Button
+                      size='large'
+                      variant='contained'
+                      color='secondary'
+                      style={{ borderRadius: randomRadius() }}
+                      className={classes.contained}
+                    >
+                      <SvgImageSimple src={iconContact} size='xxl' />
+                    </Button>
+                    <Button
+                      size='large'
+                      variant='contained'
+                      color='secondary'
+                      style={{ borderRadius: randomRadius() }}
+                      className={classes.contained}
+                    >
+                      <SvgImageSimple src={iconFlower} size='xxl' />
+                    </Button>
+                    <Button
+                      size='large'
+                      variant='contained'
+                      color='secondary'
+                      style={{ borderRadius: randomRadius() }}
+                      className={classes.contained}
+                    >
+                      <SvgImageSimple src={iconCut} size='xxl' />
+                    </Button>
+                  </Container>
+                </div>
+              )
+            },
             RowProduct: (rowProps) => (
               <RowProduct {...rowProps} {...product} items={products?.items} />
             ),
