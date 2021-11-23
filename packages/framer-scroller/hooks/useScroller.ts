@@ -1,5 +1,6 @@
 import { useConstant, useElementScroll, useMotionValueValue } from '@graphcommerce/framer-utils'
 import { makeStyles } from '@material-ui/core'
+import { CSSProperties } from '@material-ui/styles'
 import clsx from 'clsx'
 import {
   HTMLMotionProps,
@@ -8,31 +9,55 @@ import {
   PanHandlers,
   PanInfo,
   useDomEvent,
+  useMotionValue,
   useTransform,
 } from 'framer-motion'
 import React, { ReactHTML, useState } from 'react'
-import { ScrollSnapProps } from '../types'
+import { ScrollSnapProps, ScrollSnapTypeSingle } from '../types'
 import { isHTMLMousePointerEvent } from '../utils/isHTMLMousePointerEvent'
 import { useScrollerContext } from './useScrollerContext'
 import { useVelocitySnapTo } from './useVelocitySnapTo'
 
 const useStyles = makeStyles(
   {
-    root: ({ scrollSnapAlign, scrollSnapStop }: ScrollSnapProps) => ({
-      display: 'grid',
-      gridAutoFlow: 'column',
-      gridAutoColumns: `40%`,
-      overflow: `auto`,
-      overscrollBehaviorInline: `contain`,
-      '& > *': {
-        scrollSnapAlign,
-        scrollSnapStop,
-      },
-      '& *': {
-        userSelect: 'none',
-        userDrag: 'none',
-      },
-    }),
+    root: ({ scrollSnapAlign, scrollSnapStop, scrollSnapType }: ScrollSnapProps) => {
+      const snapDir = scrollSnapType.split(' ')[0] as ScrollSnapTypeSingle
+
+      let overflowProps: CSSProperties = { overflow: 'hidden', overscrollBehavior: 'auto' }
+      if (snapDir === 'block' || snapDir === 'y') {
+        overflowProps = {
+          overflowX: 'auto',
+          overscrollBehaviorBlock: 'contain',
+        }
+      }
+      if (snapDir === 'inline' || snapDir === 'x') {
+        overflowProps = {
+          display: 'grid',
+          gridAutoFlow: 'column',
+          gridAutoColumns: `40%`,
+          '& > *': {
+            scrollSnapAlign,
+            scrollSnapStop,
+          },
+          overflowY: 'auto',
+          overscrollBehaviorInline: 'contain',
+        }
+      }
+      if (snapDir === 'both') {
+        overflowProps = {
+          overflow: 'auto',
+          overscrollBehavior: 'contain',
+        }
+      }
+
+      return {
+        ...overflowProps,
+        '& *': {
+          userSelect: 'none',
+          userDrag: 'none',
+        },
+      }
+    },
     canGrab: {
       cursor: 'grab',
     },
@@ -88,18 +113,17 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
 
   const [isPanning, setPanning] = useState(false)
 
+  /** If the scroller doesn't have snap enabled and the user is not panning, enable snap */
   useDomEvent(scrollerRef as React.RefObject<EventTarget>, 'wheel', (e) => {
     /**
      * Todo: this is actually incorrect because when enabling the snap points, the area jumps to the
      * nearest point a snap.
      *
-     * What we *should* do is wait for the scroll position to be set exactly like a snappoint and
-     * then enable it. However, to do that then we need to know the position of all elements at all
-     * time, we now are lazy :)
+     * What we SHOULD do is wait for the scroll position to be set exactly on a snappoint and then
+     * enable it. However, to do that then we need to know the position of all elements at all time,
+     * we now are lazy :)
      */
-    if (!snap.get() && !isPanning && e instanceof WheelEvent) {
-      enableSnap()
-    }
+    if (!snap.get() && !isPanning && e instanceof WheelEvent) enableSnap()
   })
 
   const scrollStart = useConstant(() => ({ x: motionValue(0), y: motionValue(0) }))
