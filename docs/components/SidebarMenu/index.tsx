@@ -1,5 +1,6 @@
 import { List, ListItem, ListItemText, ListSubheader, makeStyles, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { FileNameUrlKeyPair } from './sanitizeDirectoryTree'
 
@@ -21,6 +22,7 @@ const useStyles = makeStyles(
 export default function SidebarMenu(props) {
   const { tree } = props
   const classes = useStyles()
+  const router = useRouter()
 
   return (
     <List component='nav'>
@@ -31,7 +33,11 @@ export default function SidebarMenu(props) {
           </ListSubheader>
           {filenames.map(({ name, urlKey }: FileNameUrlKeyPair) => (
             <PageLink href={`/read/${urlKey}`} key={urlKey} passHref>
-              <ListItem button className={classes.listItem}>
+              <ListItem
+                button
+                className={classes.listItem}
+                selected={router.asPath === `/read/${urlKey}`}
+              >
                 <ListItemText primary={<span className={classes.listItemText}>{name}</span>} />
               </ListItem>
             </PageLink>
