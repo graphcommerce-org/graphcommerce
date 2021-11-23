@@ -2,7 +2,6 @@ import { List, ListItem, ListItemText, ListSubheader, makeStyles, Theme } from '
 import PageLink from 'next/link'
 import React from 'react'
 import { FileNameUrlKeyPair } from './sanitizeDirectoryTree'
-import { responsiveVal } from '@graphcommerce/next-ui'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -24,21 +23,21 @@ export default function SidebarMenu(props) {
   const classes = useStyles()
 
   return (
-    <div>
-      <List component='nav'>
-        {tree.map(([dirName, filenames]: [string, FileNameUrlKeyPair[]]) => (
-          <React.Fragment key={dirName}>
-            <ListSubheader component='div'>{dirName}</ListSubheader>
-            {filenames.map(({ name, urlKey }: FileNameUrlKeyPair) => (
-              <PageLink href={`/read/${urlKey}`} key={urlKey} passHref>
-                <ListItem button className={classes.listItem}>
-                  <ListItemText primary={<span className={classes.listItemText}>{name}</span>} />
-                </ListItem>
-              </PageLink>
-            ))}
-          </React.Fragment>
-        ))}
-      </List>
-    </div>
+    <List component='nav'>
+      {tree.map(([dirName, filenames]: [string, FileNameUrlKeyPair[]]) => (
+        <React.Fragment key={dirName}>
+          <ListSubheader component='div' disableSticky>
+            {dirName}
+          </ListSubheader>
+          {filenames.map(({ name, urlKey }: FileNameUrlKeyPair) => (
+            <PageLink href={`/read/${urlKey}`} key={urlKey} passHref>
+              <ListItem button className={classes.listItem}>
+                <ListItemText primary={<span className={classes.listItemText}>{name}</span>} />
+              </ListItem>
+            </PageLink>
+          ))}
+        </React.Fragment>
+      ))}
+    </List>
   )
 }

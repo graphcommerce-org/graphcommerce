@@ -1,8 +1,9 @@
+import { responsiveVal } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import SidebarMenu from '../../components/SidebarMenu'
 import { DirectoryTree } from '../../util/files'
-import { responsiveVal } from '@graphcommerce/next-ui'
+import Logo from '../AppShell/Logo'
 
 export type LayoutProps = { menuData: DirectoryTree; children: React.ReactNode }
 
@@ -10,20 +11,22 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     grid: {
       display: 'grid',
-      gridTemplateColumns: '1fr 4fr',
-      gridColumnGap: theme.spacings.md,
+      gridTemplateColumns: `${responsiveVal(150, 300)} 4fr`,
       maxWidth: '100%',
     },
     side: {
-      position: 'sticky',
-      top: theme.page.headerInnerHeight.md,
-      height: '100vh',
-      minWidth: responsiveVal(150, 300),
+      overflowY: 'auto',
+      width: responsiveVal(150, 300),
       borderRight: `1px solid ${theme.palette.divider}`,
     },
     content: {
+      padding: theme.spacings.sm,
       '& > *': {
-        wordBreak: 'break-all',
+        wordBreak: 'break-word',
+      },
+      '& > p > img': {
+        maxWidth: '100%',
+        height: 'auto',
       },
     },
     listItemText: {
