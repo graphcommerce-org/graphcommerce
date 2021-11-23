@@ -1,17 +1,23 @@
 import { usePageContext } from '@graphcommerce/framer-next-pages'
 import { Scroller } from '@graphcommerce/framer-scroller'
-import { Box, makeStyles } from '@material-ui/core'
+import { Box, makeStyles, Theme } from '@material-ui/core'
 import { useEffect } from 'react'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: Theme) => ({
   '@global': {
     'html, body': {
       scrollSnapType: 'y mandatory',
+      overscrollBehaviorY: 'none',
     },
   },
   spacer: {
     scrollSnapAlign: 'start',
-    height: '100vh',
+    height: '400px',
+    // [theme.breakpoints.down('sm')]: {
+    //   ['@supports (-webkit-touch-callout: none)']: {
+    //     height: '-webkit-fill-available',
+    //   },
+    // },
   },
   root: {
     scrollSnapAlign: 'start',
