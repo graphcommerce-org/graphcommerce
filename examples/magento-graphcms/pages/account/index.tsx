@@ -32,7 +32,7 @@ import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
-import MinimalPageShellHeader from '../../components/AppShell/MinimalPageShellHeader'
+import { AppBar } from '@graphcommerce/next-ui'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
 
@@ -72,11 +72,11 @@ function AccountIndexPage() {
         metaRobots={['noindex']}
       />
 
-      <MinimalPageShellHeader>
+      <AppBar>
         <Title component='span' size='small' icon={iconPerson}>
           <Trans>Account</Trans>
         </Title>
-      </MinimalPageShellHeader>
+      </AppBar>
 
       <AppShellTitle icon={iconPerson}>
         <Trans>Account</Trans>

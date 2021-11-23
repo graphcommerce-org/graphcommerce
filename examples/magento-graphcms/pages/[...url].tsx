@@ -25,10 +25,9 @@ import {
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellHeader,
   AppShellSticky,
   AppShellTitle,
-  FullPageShellHeader,
+  AppBar,
   GetStaticProps,
   MetaRobots,
   PageMeta,
@@ -86,9 +85,9 @@ function CategoryPage(props: Props) {
         <CategoryMeta params={params} {...category} />
       )}
 
-      <FullPageShellHeader>
+      <AppBar floatingMd>
         <Title size='small'>{category?.name}</Title>
-      </FullPageShellHeader>
+      </AppBar>
 
       {isLanding ? (
         <CategoryHeroNav

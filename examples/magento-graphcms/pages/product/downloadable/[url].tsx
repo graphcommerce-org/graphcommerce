@@ -23,7 +23,7 @@ import { GetStaticPaths } from 'next'
 import React from 'react'
 import { Product } from 'schema-dts'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
-import FullPageShellHeader from '../../../components/AppShell/FullPageShellHeader'
+import { AppBar } from '@graphcommerce/next-ui'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import { RowProduct } from '../../../components/Row'
 import RowRenderer from '../../../components/Row/RowRenderer'
@@ -53,11 +53,11 @@ function ProductDownloadable(props: Props) {
 
   return (
     <>
-      <FullPageShellHeader>
+      <AppBar>
         <Title size='small' component='span'>
           {product.name}
         </Title>
-      </FullPageShellHeader>
+      </AppBar>
       <JsonLd<Product>
         item={{
           '@context': 'https://schema.org',

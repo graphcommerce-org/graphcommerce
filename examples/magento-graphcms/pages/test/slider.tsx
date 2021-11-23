@@ -5,7 +5,7 @@ import { AppShellTitle, GetStaticProps, Title } from '@graphcommerce/next-ui'
 import SidebarGallery from '@graphcommerce/next-ui/FramerScroller/components/SidebarGallery'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
+import { AppBar } from '@graphcommerce/next-ui'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = ProductListQuery
@@ -15,11 +15,11 @@ function TestSlider({ products }: Props) {
   if (!products?.items?.length) return <></>
   return (
     <>
-      <FullPageShellHeader>
+      <AppBar>
         <Title size='small' component='span'>
           Product title
         </Title>
-      </FullPageShellHeader>
+      </AppBar>
 
       <SidebarGallery
         sidebar={

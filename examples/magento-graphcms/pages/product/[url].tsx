@@ -23,12 +23,12 @@ import { GetStaticPaths } from 'next'
 import React from 'react'
 import { Product } from 'schema-dts'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
 import { ProductPageDocument, ProductPageQuery } from '../../components/GraphQL/ProductPage.gql'
 import { RowProduct } from '../../components/Row'
 import RowRenderer from '../../components/Row/RowRenderer'
 import Usps from '../../components/Usps'
 import apolloClient from '../../lib/apolloClient'
+import { AppBar } from '@graphcommerce/next-ui'
 
 export const config = { unstable_JsPreload: false }
 
@@ -50,11 +50,11 @@ function ProductSimple(props: Props) {
 
   return (
     <>
-      <FullPageShellHeader>
+      <AppBar>
         <Title size='small' component='span'>
           {product.name}
         </Title>
-      </FullPageShellHeader>
+      </AppBar>
       <JsonLd<Product>
         item={{
           '@context': 'https://schema.org',

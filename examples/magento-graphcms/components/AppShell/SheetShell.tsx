@@ -11,7 +11,7 @@ function SheetShell(props: SheetShellProps) {
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
 
   // size={`${responsiveVal(320, 800)}`}
-  return <SheetShellBase {...props} header={<Logo />} name={name} />
+  return <SheetShellBase {...props} header={<Logo />} />
 }
 
 export default SheetShell

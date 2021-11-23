@@ -24,7 +24,7 @@ export default function Back(props: BackProps) {
       </Button>
     )
 
-  if (up?.href)
+  if (up?.href && up.href !== router.asPath)
     return (
       <PageLink href={up.href} passHref>
         <Button variant='pill-link' startIcon={backIcon} {...props}>

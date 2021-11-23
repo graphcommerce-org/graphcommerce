@@ -22,6 +22,7 @@ const useStyles = makeStyles(
       },
     },
     header: {
+      zIndex: theme.zIndex.appBar - 1,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',

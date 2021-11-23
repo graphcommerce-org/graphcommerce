@@ -21,8 +21,7 @@ import useSheetStyles from './useSheetStyles'
 export type SheetShellBaseProps = {
   header?: React.ReactNode
   children?: React.ReactNode
-} & Pick<SheetProps, 'size' | 'variant'> &
-  PageLayoutBaseProps
+} & Pick<SheetProps, 'size' | 'variant'>
 
 const styles = sheetStyles as StyleRules<ClassKeys>
 

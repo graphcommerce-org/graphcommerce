@@ -19,12 +19,7 @@ export default function MinimalPageShell(props: MinimalPageShellProps) {
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
 
   return (
-    <MinimalPageShellBase
-      {...uiProps}
-      name={name}
-      header={<Logo />}
-      footer={<Footer footer={footer} />}
-    >
+    <MinimalPageShellBase {...uiProps} header={<Logo />} footer={<Footer footer={footer} />}>
       {children}
     </MinimalPageShellBase>
   )

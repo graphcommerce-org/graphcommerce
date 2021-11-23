@@ -27,7 +27,7 @@ import {
   GetStaticProps,
   iconChevronRight,
   iconId,
-  FullPageShellHeader,
+  AppBar,
   Row,
   Stepper,
   SvgImageSimple,
@@ -40,7 +40,7 @@ import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import MinimalPageShell from '../../components/AppShell/MinimalPageShell'
-import MinimalPageShellHeader from '../../components/AppShell/MinimalPageShellHeader'
+import { AppBar } from '@graphcommerce/next-ui'
 import { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
@@ -59,7 +59,7 @@ function PaymentPage() {
         {!cartId && <EmptyCart />}
         {cartId && (
           <>
-            <MinimalPageShellHeader
+            <AppBar
               primary={
                 <PaymentMethodButton
                   type='submit'
@@ -81,7 +81,7 @@ function PaymentPage() {
               <Title size='small' icon={iconId}>
                 <Trans>Payment</Trans>
               </Title>
-            </MinimalPageShellHeader>
+            </AppBar>
             <Container maxWidth='md'>
               <Dialog open={locked} fullWidth>
                 <FullPageMessage

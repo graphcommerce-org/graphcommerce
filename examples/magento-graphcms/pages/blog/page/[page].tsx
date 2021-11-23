@@ -6,7 +6,7 @@ import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
-import FullPageShellHeader from '../../../components/AppShell/FullPageShellHeader'
+import { AppBar } from '@graphcommerce/next-ui'
 import BlogList from '../../../components/Blog'
 import { BlogListDocument, BlogListQuery } from '../../../components/Blog/BlogList.gql'
 import { BlogPathsDocument, BlogPathsQuery } from '../../../components/Blog/BlogPaths.gql'
@@ -33,9 +33,9 @@ function BlogPage(props: Props) {
     <>
       <PageMeta title={title} metaDescription={title} canonical={page.url} />
 
-      <FullPageShellHeader>
+      <AppBar floatingMd>
         <Title size='small'>{title}</Title>
-      </FullPageShellHeader>
+      </AppBar>
 
       <Container maxWidth='xl'>
         <AppShellTitle variant='h1'>{title}</AppShellTitle>

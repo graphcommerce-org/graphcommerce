@@ -31,7 +31,7 @@ import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
+import { AppBar } from '@graphcommerce/next-ui'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import ProductListItems from '../../components/ProductListItems/ProductListItems'
 import useProductListStyles from '../../components/ProductListItems/useProductListStyles'
@@ -86,7 +86,7 @@ function SearchResultPage(props: Props) {
         canonical='/search'
       />
 
-      <FullPageShellHeader
+      <AppBar
         additional={
           <Container maxWidth={false}>
             <SearchForm totalResults={totalSearchResults} search={search} />
@@ -95,7 +95,7 @@ function SearchResultPage(props: Props) {
         scrolled
       >
         <Title size='small'>{title}</Title>
-      </FullPageShellHeader>
+      </AppBar>
 
       <Container maxWidth='sm' className={classes.hideOnMobile}>
         <SearchForm totalResults={totalSearchResults} search={search} />

@@ -33,6 +33,13 @@ const useStyles = makeStyles(
     sticky: {
       zIndex: theme.zIndex.appBar,
       position: 'sticky',
+
+      [theme.breakpoints.up('md')]: {
+        top: 0,
+        height: theme.appShell.appBarHeightMd,
+        marginTop: `calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5)`,
+        marginBottom: `calc(${theme.appShell.appBarHeightMd} * -1 - calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5))`,
+      },
     },
     stickyNoChildren: {
       zIndex: theme.zIndex.appBar - 2,
@@ -44,27 +51,12 @@ const useStyles = makeStyles(
         height: theme.appShell.headerHeightSm,
       },
     },
-    stickyVisibleMd: {
-      [theme.breakpoints.up('md')]: {
-        top: 0,
-        height: theme.appShell.appBarHeightMd,
-        marginTop: `calc(${theme.appShell.appBarInnerHeightMd} * -1)`,
-
-        // Offset height and marginTop
-        marginBottom: `calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -1)`,
-      },
-    },
     stickyFloatingSm: {
       [theme.breakpoints.down('sm')]: {},
     },
     stickyFloatingMd: {
       [theme.breakpoints.up('md')]: {
         top: `calc(${theme.appShell.headerHeightMd} + calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5))`,
-        height: theme.appShell.appBarHeightMd,
-        marginTop: `calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5)`,
-
-        // Offset height and marginTop
-        marginBottom: `calc(${theme.appShell.appBarHeightMd} * -1 - calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5))`,
       },
     },
   }),

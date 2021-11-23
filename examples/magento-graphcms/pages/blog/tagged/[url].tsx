@@ -4,7 +4,7 @@ import { GetStaticProps, Row, Title } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
-import FullPageShellHeader from '../../../components/AppShell/FullPageShellHeader'
+import { AppBar } from '@graphcommerce/next-ui'
 import BlogList from '../../../components/Blog'
 import BlogAuthor from '../../../components/Blog/BlogAuthor'
 import BlogHeader from '../../../components/Blog/BlogHeader'
@@ -33,9 +33,9 @@ function BlogPage(props: Props) {
 
   return (
     <>
-      <FullPageShellHeader>
+      <AppBar floatingMd>
         <Title size='small'>{title}</Title>
-      </FullPageShellHeader>
+      </AppBar>
       <Row>
         <PageMeta title={title} metaDescription={title} canonical={page.url} />
 

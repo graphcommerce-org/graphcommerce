@@ -17,7 +17,7 @@ const useStyles = makeStyles(
     title: {},
     margin: {
       marginTop: theme.spacings.xl,
-      marginBottom: theme.spacings.xl,
+      marginBottom: theme.spacings.lg,
     },
   }),
   { name: 'AppShellTitle' },
