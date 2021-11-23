@@ -84,7 +84,8 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
 
   const classes = useStyles(scrollSnap)
 
-  const animatePan = useVelocitySnapTo(scrollerRef)
+  const snapToVelocity = useVelocitySnapTo(scrollerRef)
+
   const [isPanning, setPanning] = useState(false)
 
   useDomEvent(scrollerRef as React.RefObject<EventTarget>, 'wheel', (e) => {
@@ -93,8 +94,8 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
      * nearest point a snap.
      *
      * What we *should* do is wait for the scroll position to be set exactly like a snappoint and
-     * then enable it. However, to lazy to do that then we need to know the position of all elements
-     * at all time, we now are lazy :)
+     * then enable it. However, to do that then we need to know the position of all elements at all
+     * time, we now are lazy :)
      */
     if (!snap.get() && !isPanning && e instanceof WheelEvent) {
       enableSnap()
@@ -127,7 +128,7 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
     if (!isHTMLMousePointerEvent(event)) return
 
     setPanning(false)
-    animatePan(info, enableSnap)
+    snapToVelocity(info).then(enableSnap)
   }
 
   const ref: React.RefCallback<HTMLElement> = (el) => {
