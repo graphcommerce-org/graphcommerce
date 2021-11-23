@@ -21,13 +21,6 @@ const useStyles = makeStyles(
     },
     content: {
       padding: theme.spacings.sm,
-      '& > *': {
-        wordBreak: 'break-word',
-      },
-      '& > p > img': {
-        maxWidth: '100%',
-        height: 'auto',
-      },
     },
     listItemText: {
       ...theme.typography.caption,
