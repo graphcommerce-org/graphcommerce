@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/styles'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
+      overflow: 'hidden',
       '& h1': {
         marginTop: 0,
       },
@@ -18,6 +19,7 @@ const useStyles = makeStyles(
         background: theme.palette.background.image,
         display: 'inline-block',
         padding: 20,
+        maxWidth: '100%',
       },
     },
   }),

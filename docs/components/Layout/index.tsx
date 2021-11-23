@@ -12,13 +12,16 @@ const useStyles = makeStyles(
       display: 'grid',
       gridTemplateColumns: `${responsiveVal(150, 300)} 4fr`,
       maxWidth: '100%',
+      overflow: 'hidden',
     },
     side: {
       overflowY: 'auto',
-      width: responsiveVal(150, 300),
+      minWidth: 'min-content',
       borderRight: `1px solid ${theme.palette.divider}`,
     },
     content: {
+      overflow: 'hidden',
+      maxWidth: '100%',
       padding: `0 ${theme.spacings.sm} ${theme.spacings.sm}`,
     },
     listItemText: {
