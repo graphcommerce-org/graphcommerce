@@ -51,6 +51,7 @@ const useStyles = makeStyles(
       }
 
       return {
+        '-webkit-overflow-scrolling': 'touch',
         ...overflowProps,
         '& *': {
           userSelect: 'none',

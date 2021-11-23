@@ -1,48 +1,74 @@
 import { usePageContext } from '@graphcommerce/framer-next-pages'
-import { Scroller } from '@graphcommerce/framer-scroller'
+import {
+  Scroller,
+  ScrollerProvider,
+  useScroller,
+  useScrollerContext,
+  useScrollTo,
+} from '@graphcommerce/framer-scroller'
 import { Box, makeStyles, Theme } from '@material-ui/core'
 import { useEffect } from 'react'
 
 const useStyles = makeStyles((theme: Theme) => ({
   '@global': {
-    'html, body': {
-      scrollSnapType: 'y mandatory',
+    body: {
+      overflowY: 'hidden',
       overscrollBehaviorY: 'none',
     },
   },
   spacer: {
+    pointerEvents: 'none',
     scrollSnapAlign: 'start',
-    height: '400px',
-    // [theme.breakpoints.down('sm')]: {
-    //   ['@supports (-webkit-touch-callout: none)']: {
-    //     height: '-webkit-fill-available',
-    //   },
-    // },
+    height: '100vh',
+    ['@supports (-webkit-touch-callout: none)']: {
+      height: '-webkit-fill-available',
+    },
   },
   root: {
+    overflowY: 'scroll',
+    // scrollSnapType: 'y mandatory',
+    height: '100vh',
+    ['@supports (-webkit-touch-callout: none)']: {
+      height: '-webkit-fill-available',
+    },
+  },
+  content: {
+    marginTop: -100,
+    paddingTop: 100,
+    // background: 'hotpink',
     scrollSnapAlign: 'start',
-    paddingTop: '100px',
     scrollSnapStop: 'always',
   },
-  end: {
-    height: '1px',
+  footer: {
     scrollSnapAlign: 'start',
   },
 }))
+
+function SheetHandler() {
+  const { getScrollSnapPositions, getSnapPosition } = useScrollerContext()
+  const scrollTo = useScrollTo()
+
+  useEffect(() => {
+    scrollTo(getSnapPosition('down'))
+  }, [getScrollSnapPositions])
+
+  return null
+}
 
 export default function SheetNew() {
   const classes = useStyles()
   const { active } = usePageContext()
 
   return (
-    <>
-      <div className={classes.spacer}></div>
-      <div className={classes.root}>
-        {active}
-
-        <Box height='4000px' display='block' bgcolor='red'></Box>
-      </div>
-      <div className={classes.end}></div>
-    </>
+    <ScrollerProvider scrollSnapAlign='start' scrollSnapType='block mandatory'>
+      <SheetHandler />
+      <Scroller className={classes.root}>
+        <div className={classes.spacer} />
+        <div className={classes.content}>
+          <Box height='4000px' display='block' bgcolor='red'></Box>
+        </div>
+        <div className={classes.footer} />
+      </Scroller>
+    </ScrollerProvider>
   )
 }
