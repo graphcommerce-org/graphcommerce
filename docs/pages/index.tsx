@@ -28,11 +28,10 @@ function IndexPage(props: PageProps) {
         <p>
           Setup your <i>Progressive Web App</i> (PWA) within 5 minutes using GraphCommerce.
         </p>
-        <Link href='/read/getting-started/apollo-client-local-state' passHref>
+        <Link href='/read/1-1/getting-started/introduction' passHref>
           <Button
             color='secondary'
             variant='text'
-            size='small'
             endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
           >
             Start developing now

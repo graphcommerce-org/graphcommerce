@@ -3,7 +3,6 @@ import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import SidebarMenu from '../../components/SidebarMenu'
 import { DirectoryTree } from '../../util/files'
-import Logo from '../AppShell/Logo'
 
 export type LayoutProps = { menuData: DirectoryTree; children: React.ReactNode }
 
@@ -20,7 +19,7 @@ const useStyles = makeStyles(
       borderRight: `1px solid ${theme.palette.divider}`,
     },
     content: {
-      padding: theme.spacings.sm,
+      padding: `0 ${theme.spacings.sm} ${theme.spacings.sm}`,
     },
     listItemText: {
       ...theme.typography.caption,

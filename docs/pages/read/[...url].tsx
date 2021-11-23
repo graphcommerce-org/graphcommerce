@@ -2,17 +2,18 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { SheetShellBaseProps } from '@graphcommerce/next-ui'
 import { Link } from '@material-ui/core'
 import fs from 'fs'
-import { MDXRemote } from 'next-mdx-remote'
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import React from 'react'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import FullPageShell from '../../components/AppShell/FullPageShell'
 import Layout, { LayoutProps } from '../../components/Layout'
 import MDXWrapper from '../../components/MDXWrapper'
+import NextPrevButtons from '../../components/NextPrevButtons'
 import { sanitizeDirectoryTree } from '../../components/SidebarMenu/sanitizeDirectoryTree'
 import { getAbsoluteFilePath, getDirectoryTree } from '../../util/files'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 
-type PageProps = LayoutProps & { compiledMdxSource: any; title: string }
+type PageProps = LayoutProps & { compiledMdxSource: MDXRemoteSerializeResult }
 
 function ArticlePage(props: PageProps) {
   const { menuData, compiledMdxSource } = props
@@ -33,6 +34,7 @@ function ArticlePage(props: PageProps) {
       <MDXWrapper>
         <MDXRemote {...compiledMdxSource} components={components} />
       </MDXWrapper>
+      <NextPrevButtons menuData={menuData} />
     </Layout>
   )
 }

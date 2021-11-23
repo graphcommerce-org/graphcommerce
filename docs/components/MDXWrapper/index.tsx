@@ -4,6 +4,9 @@ import { makeStyles } from '@material-ui/styles'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
+      '& h1': {
+        marginTop: 0,
+      },
       '& *': {
         wordBreak: 'break-word',
       },

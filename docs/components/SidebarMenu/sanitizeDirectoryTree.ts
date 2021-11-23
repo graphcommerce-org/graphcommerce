@@ -5,6 +5,8 @@ export type FileNameUrlKeyPair = {
   urlKey: string
 }
 
+export type SanitizedDirectoryTree = [string, FileNameUrlKeyPair[]][]
+
 export function sanitizeFileName(filename: string) {
   const nameParts = filename.split('-')
 
@@ -14,7 +16,7 @@ export function sanitizeFileName(filename: string) {
   }
 }
 
-export function sanitizeDirectoryTree(menuData: DirectoryTree): [string, FileNameUrlKeyPair[]][] {
+export function sanitizeDirectoryTree(menuData: DirectoryTree): SanitizedDirectoryTree {
   return menuData.map(([dirName, filenames]: [string, string[]]) => {
     const { order: dirNameOrder, name: dirNameSanitized } = sanitizeFileName(dirName)
 
@@ -28,7 +30,7 @@ export function sanitizeDirectoryTree(menuData: DirectoryTree): [string, FileNam
 
         return {
           name: fileNameSanitized,
-          urlKey: `${dirNameParts.shift()}-${fileNameParts.shift()}/${dirNameParts.join(
+          urlKey: `/read/${dirNameParts.shift()}-${fileNameParts.shift()}/${dirNameParts.join(
             '-',
           )}/${fileNameParts.join('-')}`,
         }
