@@ -114,9 +114,13 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
   const enableSnap = useCallback(() => {
     if (!scrollerRef.current) return
     stop()
-    const p = scrollerRef.current.scrollLeft
+
+    // We're setting the current scrollLeft to prevent resetting the scroll position on Safari
+    const l = scrollerRef.current.scrollLeft
+    const t = scrollerRef.current.scrollTop
     snap.set(true)
-    scrollerRef.current.scrollLeft = p
+    scrollerRef.current.scrollLeft = l
+    scrollerRef.current.scrollTop = t
   }, [snap, stop])
 
   useObserveItems(scrollerRef, items, enableSnap)
