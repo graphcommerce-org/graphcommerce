@@ -9,7 +9,7 @@ import {
   GetStaticProps,
   iconParty,
   iconSadFace,
-  PageShellHeader,
+  FullPageShellHeader,
   Stepper,
   SvgImageSimple,
   Title,
@@ -21,6 +21,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
+import MinimalPageShellHeader from '../../components/AppShell/MinimalPageShellHeader'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
 
@@ -37,7 +38,7 @@ function OrderSuccessPage() {
         metaDescription={t`Ordered items`}
         metaRobots={['noindex']}
       />
-      <PageShellHeader
+      <MinimalPageShellHeader
         divider={
           hasCartId ? (
             <Container maxWidth={false}>
@@ -51,7 +52,7 @@ function OrderSuccessPage() {
             <Trans>Thank you for your order!</Trans>
           </Title>
         )}
-      </PageShellHeader>
+      </MinimalPageShellHeader>
       <Container maxWidth='md'>
         <NoSsr>
           {!hasCartId && (

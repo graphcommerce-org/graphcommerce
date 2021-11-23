@@ -117,7 +117,7 @@ export default function FramerNextPages(props: PagesProps) {
           SharedComponent = NoopLayout,
           sharedProps,
           sharedPageProps,
-          currentRouter: currentRouter,
+          currentRouter,
           up,
         } = item
         const active = itemIdx === renderItems.length - 1

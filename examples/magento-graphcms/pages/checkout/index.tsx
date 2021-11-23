@@ -13,7 +13,7 @@ import {
   GetStaticProps,
   iconBox,
   iconChevronRight,
-  PageShellHeader,
+  FullPageShellHeader,
   Stepper,
   SvgImageSimple,
   Title,
@@ -25,6 +25,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import MinimalPageShell from '../../components/AppShell/MinimalPageShell'
+import MinimalPageShellHeader from '../../components/AppShell/MinimalPageShellHeader'
 import { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
@@ -44,7 +45,7 @@ function ShippingPage() {
   return (
     <ComposedForm>
       <PageMeta title={t`Checkout`} metaDescription={t`Cart Items`} metaRobots={['noindex']} />
-      <PageShellHeader
+      <MinimalPageShellHeader
         primary={
           <ComposedSubmit
             onSubmitSuccessful={onSubmitSuccessful}
@@ -72,7 +73,7 @@ function ShippingPage() {
         <Title size='small' icon={iconBox}>
           <Trans>Shipping</Trans>
         </Title>
-      </PageShellHeader>
+      </MinimalPageShellHeader>
       <Container maxWidth='md'>
         <NoSsr>
           {!cartExists && <EmptyCart />}

@@ -69,7 +69,7 @@ const darkPalette: PaletteOptions = {
 }
 
 // Create a theme instance.
-const createThemeWithPallete = (palette: PaletteOptions) =>
+const createThemeWithPalette = (palette: PaletteOptions) =>
   createTheme({
     palette,
     breakpoints: {
@@ -196,7 +196,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
     },
     headerHeight: {
       sm: `56px`,
-      md: `120px`,
+      md: `110px`,
     },
   })
 
@@ -384,8 +384,8 @@ const createOverrides = (theme: Theme): Overrides => {
   }
 }
 
-export const lightTheme = createThemeWithPallete(lightPalette)
+export const lightTheme = createThemeWithPalette(lightPalette)
 lightTheme.overrides = createOverrides(lightTheme)
 
-export const darkTheme = createThemeWithPallete(darkPalette)
+export const darkTheme = createThemeWithPalette(darkPalette)
 darkTheme.overrides = createOverrides(darkTheme)

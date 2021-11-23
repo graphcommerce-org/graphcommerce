@@ -64,20 +64,27 @@ const useStyles = makeStyles<
         ...theme.typography.body2,
         fontWeight: 400,
         padding: `${responsiveVal(8, 10)} ${responsiveVal(16, 20)}`,
-        backgroundColor: theme.palette.secondary.main,
-        color: theme.palette.primary.contrastText,
         borderRadius: '99em',
         boxShadow: theme.shadows[1],
+      },
+    },
+    pillPrimary: {
+      [theme.breakpoints.up('sm')]: {
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText,
+        '&:hover': {
+          background: theme.palette.primary.dark,
+        },
+      },
+    },
+    pillSecondary: {
+      [theme.breakpoints.up('sm')]: {
+        backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.secondary.contrastText,
         '&:hover': {
           background: theme.palette.secondary.dark,
         },
       },
-    },
-    pillPrimary: {
-      //
-    },
-    pillSecondary: {
-      //
     },
     pillSizeLarge: {
       //
@@ -152,11 +159,11 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
       disabled={loading || disabled}
       className={clsx(
         {
-          [pillClasses.pill]: variant === 'pill',
-          [pillClasses.pillPrimary]: variant === 'pill' && color === 'primary',
-          [pillClasses.pillSecondary]: variant === 'pill' && color === 'secondary',
-          [pillClasses.pillSizeLarge]: variant === 'pill' && size === 'large',
-          [pillClasses.pillSizeSmall]: variant === 'pill' && size === 'small',
+          [pillClasses.pill]: variant?.startsWith('pill'),
+          [pillClasses.pillPrimary]: variant?.startsWith('pill') && color === 'primary',
+          [pillClasses.pillSecondary]: variant?.startsWith('pill') && color === 'secondary',
+          [pillClasses.pillSizeLarge]: variant?.startsWith('pill') && size === 'large',
+          [pillClasses.pillSizeSmall]: variant?.startsWith('pill') && size === 'small',
           [pillClasses.pillNoElevation]: buttonProps.disableElevation,
           [pillClasses.pillLink]: variant === 'pill-link',
           [pillClasses.loading]: loading,

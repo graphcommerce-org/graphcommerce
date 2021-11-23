@@ -1,7 +1,7 @@
 import useSheetContext from '@graphcommerce/framer-sheet/hooks/useSheetContext'
 import { useElementScroll } from '@graphcommerce/framer-utils'
 import React from 'react'
-import AppShellHeader, { AppShellHeaderProps } from '../AppShellHeader'
+import AppShellHeader, { AppShellHeaderProps } from '../AppShellHeader/index'
 import useSheetStyles from '../SheetShellBase/useSheetStyles'
 import SheetShellDragIndicator from '../SheetShellDragIndicator'
 

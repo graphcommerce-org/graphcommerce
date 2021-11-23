@@ -7,7 +7,7 @@ import React, { useState } from 'react'
 import MinimalPageShell, {
   MinimalPageShellProps,
 } from '../../../components/AppShell/MinimalPageShell'
-import PageShellHeader from '../../../components/AppShell/PageShellHeader'
+import MinimalPageShellHeader from '../../../components/AppShell/MinimalPageShellHeader'
 
 type AppShellDemoProps = {
   baseUrl: string
@@ -48,7 +48,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
   if (withPrimary)
     primaryAction = (
       <PageLink href={`${baseUrl}/with-primary-navigated`} passHref>
-        <Button color='secondary' variant='pill-link'>
+        <Button variant='pill-link' color='secondary'>
           Navigate
         </Button>
       </PageLink>
@@ -57,7 +57,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
   if (withStepper && step < 3) {
     primaryAction = (
       <PageLink href={`${baseUrl}/with-stepper-${step + 1}`} passHref>
-        <Button color='secondary' variant='pill-link'>
+        <Button variant='pill-link' color='secondary'>
           Navigate
         </Button>
       </PageLink>
@@ -262,7 +262,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
 }
 
 function MinimalPageShellDemo() {
-  return <AppShellDemo baseUrl='/test/minimal-page-shell' Header={PageShellHeader} />
+  return <AppShellDemo baseUrl='/test/minimal-page-shell' Header={MinimalPageShellHeader} />
 }
 
 const pageOptions: PageOptions<MinimalPageShellProps> = {

@@ -4,11 +4,7 @@ import FullPageShellBase, { FullPageShellBaseProps } from './FullPageShellBase'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    header: {
-      [theme.breakpoints.up('md')]: {
-        minHeight: 60,
-      },
-    },
+    header: {},
   }),
   { name: 'MinimalPageShellBase' },
 )
