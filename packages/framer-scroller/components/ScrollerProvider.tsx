@@ -156,6 +156,18 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
     )
   }
 
+  /** Finds all elements with scrollSnapAlign by using getComputedStyle */
+  function recursivelyFindElementsWithScrollSnapAlign(parent: HTMLElement) {
+    const elements: HTMLElement[] = []
+    ;[...parent.children].forEach((child) => {
+      if (!(child instanceof HTMLElement)) return
+
+      if (getComputedStyle(child).scrollSnapAlign !== 'none') elements.push(child)
+      elements.push(...recursivelyFindElementsWithScrollSnapAlign(child))
+    })
+    return elements
+  }
+
   function getSnapPositions(
     parent: HTMLElement,
     excludeOffAxis = true,
@@ -167,7 +179,7 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
       y: { start: [], center: [], end: [] },
     }
 
-    const descendants = [...parent.children]
+    const descendants = recursivelyFindElementsWithScrollSnapAlign(parent)
 
     for (const axis of ['x', 'y'] as Axis[]) {
       const orthogonalAxis = axis === 'x' ? 'y' : 'x'

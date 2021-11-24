@@ -9,7 +9,6 @@ import {
   PanHandlers,
   PanInfo,
   useDomEvent,
-  useMotionValue,
   useTransform,
 } from 'framer-motion'
 import React, { ReactHTML, useState } from 'react'
