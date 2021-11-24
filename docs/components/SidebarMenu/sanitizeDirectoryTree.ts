@@ -5,20 +5,34 @@ export type FileNameUrlKeyPair = {
   urlKey: string
 }
 
-export default function sanitizeDirectoryTree(
-  menuData: DirectoryTree,
-): [string, FileNameUrlKeyPair[]][] {
+export type SanitizedDirectoryTree = [string, FileNameUrlKeyPair[]][]
+
+export function sanitizeFileName(filename: string) {
+  const nameParts = filename.split('-')
+
+  return {
+    order: nameParts.shift(),
+    name: nameParts.join(' '),
+  }
+}
+
+export function sanitizeDirectoryTree(menuData: DirectoryTree): SanitizedDirectoryTree {
   return menuData.map(([dirName, filenames]: [string, string[]]) => {
-    const dirNameParts = dirName.split('-')
-    const chapter = dirNameParts.shift()
+    const { order: dirNameOrder, name: dirNameSanitized } = sanitizeFileName(dirName)
 
     return [
-      `${chapter}. ${dirNameParts.join(' ')}`,
+      `${dirNameOrder}. ${dirNameSanitized}`,
       filenames.map((filename) => {
         const filenameNoExt = filename.split('.')[0]
+        const { name: fileNameSanitized } = sanitizeFileName(filenameNoExt)
+        const dirNameParts = dirName.split('-')
+        const fileNameParts = filenameNoExt.split('-')
+
         return {
-          name: filenameNoExt.split('-').join(' '),
-          urlKey: `${dirName}/${filenameNoExt}`,
+          name: fileNameSanitized,
+          urlKey: `/read/${dirNameParts.shift()}-${fileNameParts.shift()}/${dirNameParts.join(
+            '-',
+          )}/${fileNameParts.join('-')}`,
         }
       }),
     ]

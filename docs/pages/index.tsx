@@ -11,7 +11,7 @@ import React from 'react'
 import FullPageShell from '../components/AppShell/FullPageShell'
 import FullPageShellHeader from '../components/AppShell/FullPageShellHeader'
 import Layout, { LayoutProps } from '../components/Layout'
-import sanitizeDirectoryTree from '../components/SidebarMenu/sanitizeDirectoryTree'
+import { sanitizeDirectoryTree } from '../components/SidebarMenu/sanitizeDirectoryTree'
 import { getDirectoryTree } from '../util/files'
 
 type PageProps = LayoutProps
@@ -28,11 +28,10 @@ function IndexPage(props: PageProps) {
         <p>
           Setup your <i>Progressive Web App</i> (PWA) within 5 minutes using GraphCommerce.
         </p>
-        <Link href='/read/1-getting-started/apollo-client-local-state' passHref>
+        <Link href='/read/1-1/getting-started/introduction' passHref>
           <Button
             color='secondary'
             variant='text'
-            size='small'
             endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
           >
             Start developing now
