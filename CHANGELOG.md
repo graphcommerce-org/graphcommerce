@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.155.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.154.0...@graphcommerce/graphcommerce@2.155.0) (2021-11-24)
+
+
+### Bug Fixes
+
+* **doc:** content overflow ([508c455](https://github.com/ho-nl/m2-pwa/commit/508c4551e67d69d12d13d918048f8cc66b896eff))
+
+
+### Features
+
+* **docs:** created extra documentation chapters ([eb94169](https://github.com/ho-nl/m2-pwa/commit/eb941694f05255caf73f56d09b25ade5a1da219c))
+* **docs:** numerically order paragraphs ([e31a0c1](https://github.com/ho-nl/m2-pwa/commit/e31a0c15de06b2e1836a3a2b8ce554c5943a721a))
+* **docs:** show current page in menu ([46d162c](https://github.com/ho-nl/m2-pwa/commit/46d162c35c174e832ad237f644ec6e32c14903c3))
+* **docs:** support components in mdx files ([263a1f9](https://github.com/ho-nl/m2-pwa/commit/263a1f9484d2609fe73da51c0810d02701b0c440))
+
+
+
+
+
 # [2.154.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.153.0...@graphcommerce/graphcommerce@2.154.0) (2021-11-22)
 
 
