@@ -195,13 +195,12 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
           continue
         }
 
-        // eslint-disable-next-line prefer-const
-        let [childAlignY, childAlignX] = scrollSnap.scrollSnapAlign.split(
-          ' ',
-        ) as ScrollSnapAlignAxis[]
-        if (typeof childAlignX === 'undefined') {
-          childAlignX = childAlignY
-        }
+        const align = getComputedStyle(child).scrollSnapAlign
+        let [childAlignY, childAlignX] = align.split(' ') as [
+          ScrollSnapAlignAxis,
+          ScrollSnapAlignAxis | undefined,
+        ]
+        if (typeof childAlignX === 'undefined') childAlignX = childAlignY
 
         const childAlign = axis === 'x' ? childAlignX : childAlignY
         const childOffsetStart = childRect[axisStart] - parentRect[axisStart] + parent[axisScroll]
