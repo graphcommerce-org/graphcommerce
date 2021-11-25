@@ -8,7 +8,7 @@ import { Theme, makeStyles } from '@material-ui/core'
 import React, { ReactNode } from 'react'
 import Row from '../../Row'
 import { UseStyles } from '../../Styles'
-import responsiveVal from '../../Styles/responsiveVal'
+import { responsiveVal } from '../../Styles/responsiveVal'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconChevronRight } from '../../icons'
 

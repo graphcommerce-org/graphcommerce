@@ -2,7 +2,7 @@ import { Container, Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
 import React from 'react'
-import responsiveVal from '../Styles/responsiveVal'
+import { responsiveVal } from '../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

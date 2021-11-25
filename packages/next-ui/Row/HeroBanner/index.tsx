@@ -3,7 +3,7 @@ import { m, useTransform, useViewportScroll } from 'framer-motion'
 import React from 'react'
 import Row from '..'
 import { UseStyles } from '../../Styles'
-import responsiveVal from '../../Styles/responsiveVal'
+import { responsiveVal } from '../../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

@@ -2,7 +2,7 @@ import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
 import { UseStyles } from '../../Styles'
-import responsiveVal from '../../Styles/responsiveVal'
+import { responsiveVal } from '../../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

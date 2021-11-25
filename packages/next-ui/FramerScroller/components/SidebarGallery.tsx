@@ -16,7 +16,7 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
 import { Row } from '../..'
 import { UseStyles } from '../../Styles'
-import responsiveVal from '../../Styles/responsiveVal'
+import { responsiveVal } from '../../Styles/responsiveVal'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../../icons'
 

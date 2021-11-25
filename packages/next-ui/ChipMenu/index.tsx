@@ -2,7 +2,7 @@ import { Chip, ChipProps, lighten, makeStyles, Menu, Theme } from '@material-ui/
 import clsx from 'clsx'
 import React, { PropsWithChildren, useState } from 'react'
 import SectionHeader from '../SectionHeader'
-import responsiveVal from '../Styles/responsiveVal'
+import { responsiveVal } from '../Styles/responsiveVal'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconChevronDown, iconChevronUp, iconCancelAlt } from '../icons'
 

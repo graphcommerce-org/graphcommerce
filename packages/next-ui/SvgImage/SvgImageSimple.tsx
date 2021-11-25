@@ -2,7 +2,7 @@ import { Image, ImageProps, isStaticImport, isStaticRequire } from '@graphcommer
 import { makeStyles, capitalize, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import responsiveVal from '../Styles/responsiveVal'
+import { responsiveVal } from '../Styles/responsiveVal'
 
 export type SvgImageShade = 'muted' | 'default' | 'inverted'
 

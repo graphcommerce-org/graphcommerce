@@ -6,7 +6,7 @@ import {
 } from '@graphcommerce/framer-sheet'
 import { makeStyles, StyleRules } from '@material-ui/core'
 import React from 'react'
-import responsiveVal from '../../Styles/responsiveVal'
+import { responsiveVal } from '../../Styles/responsiveVal'
 
 const styles = sheetStyles as StyleRules<ClassKeys>
 

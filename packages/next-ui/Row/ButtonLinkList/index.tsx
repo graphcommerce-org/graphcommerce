@@ -3,7 +3,7 @@ import React from 'react'
 import Row from '..'
 import SectionContainer from '../../SectionContainer'
 import { UseStyles } from '../../Styles'
-import responsiveVal from '../../Styles/responsiveVal'
+import { responsiveVal } from '../../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

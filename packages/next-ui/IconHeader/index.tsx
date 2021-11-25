@@ -2,7 +2,7 @@ import { makeStyles, Theme, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
 import { SvgImageSimple } from '..'
-import responsiveVal from '../Styles/responsiveVal'
+import { responsiveVal } from '../Styles/responsiveVal'
 import SvgImage, { SvgImageProps } from '../SvgImage'
 
 // TODO: remove all occurrences. deprecated component

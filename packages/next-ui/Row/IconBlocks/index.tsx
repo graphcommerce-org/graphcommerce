@@ -2,7 +2,7 @@ import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 import Row from '..'
 import { UseStyles } from '../../Styles'
-import responsiveVal from '../../Styles/responsiveVal'
+import { responsiveVal } from '../../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
