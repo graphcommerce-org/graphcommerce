@@ -101,7 +101,7 @@ export default function DesktopNavBar(props: MenuTabsProps) {
           {menu.map(({ href, children, ...linkProps }) => (
             <PageLink key={href.toString()} href={href} {...linkProps} passHref>
               <Link
-                target={href.toString().startsWith('http') ? '_blank' : '_self'}
+                target={href.toString().startsWith('http') ? '_blank' : undefined}
                 variant='h6'
                 {...LinkProps}
                 className={clsx(classes.link, LinkProps?.className)}
