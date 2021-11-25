@@ -34,13 +34,7 @@ export default function Logo(props: ShopLogoProps) {
     <NextLogo
       {...props}
       classes={{ logo: clsx(classes.logo, inverted && classes.dark) }}
-      image={{
-        layout: 'fixed',
-        alt: 'logo',
-        src: svgLogo,
-        unoptimized: true,
-        loading: 'eager',
-      }}
+      image={{ layout: 'fixed', alt: 'logo', src: svgLogo, unoptimized: true, loading: 'eager' }}
     />
   )
 }

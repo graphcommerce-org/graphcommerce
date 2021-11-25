@@ -3,13 +3,13 @@ import {
   Button,
   iconChevronRight,
   SheetShellBaseProps,
+  SheetShellHeader,
   SvgImageSimple,
   Title,
 } from '@graphcommerce/next-ui'
 import Link from 'next/link'
 import React from 'react'
 import FullPageShell from '../components/AppShell/FullPageShell'
-import FullPageShellHeader from '../components/AppShell/FullPageShellHeader'
 import Layout, { LayoutProps } from '../components/Layout'
 import sanitizeDirectoryTree from '../components/SidebarMenu/sanitizeDirectoryTree'
 import { getDirectoryTree } from '../util/files'
@@ -21,9 +21,9 @@ function IndexPage(props: PageProps) {
 
   return (
     <>
-      <FullPageShellHeader>
+      <SheetShellHeader>
         <Title size='small'>Documentation</Title>
-      </FullPageShellHeader>
+      </SheetShellHeader>
       <Layout menuData={menuData}>
         <p>
           Setup your <i>Progressive Web App</i> (PWA) within 5 minutes using GraphCommerce.

@@ -25,25 +25,10 @@ function FullPageShell(props: FullPageShellProps) {
 
   return (
     <FullPageShellBase
-      name={'GraphCommerce'}
-      alwaysShowHeader={alwaysShowLogo}
       header={
         <>
-          <Logo alwaysShow={alwaysShowLogo} />
+          <Logo />
           <DesktopNavBar {...menuProps} />
-          {/* <DesktopNavActions>
-            {!router.pathname.startsWith('/search') && (
-              <SearchButton onClick={onSearchStart} label=' ' />
-            )}
-            <PageLink href='/service' passHref>
-              <Fab aria-label={t`Account`} size='large' color='inherit'>
-                <SvgImageSimple src={iconCustomerService} size='large' />
-              </Fab>
-            </PageLink>
-            <CustomerFab guestHref='/account/signin' authHref='/account' />
-
-            <PlaceholderFab />
-          </DesktopNavActions> */}
         </>
       }
       footer={<Container>&copy; GraphCommerce</Container>}

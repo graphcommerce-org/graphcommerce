@@ -24,7 +24,7 @@ function EditBillingAddress() {
     <>
       <PageMeta title={t`Edit billing address`} metaRobots={['noindex', 'nofollow']} />
 
-      <SheetShellHeader hideDragIndicator>
+      <SheetShellHeader>
         <Title component='span' size='small'>
           <Trans>Billing address</Trans>
         </Title>

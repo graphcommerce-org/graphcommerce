@@ -1,13 +1,11 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import { useViewportScroll } from 'framer-motion'
 import React from 'react'
-import Close, { useShowClose } from './Close'
+import { classesPicker } from '../../Styles/classesPicker'
 import Back, { useShowBack } from './Back'
+import Close, { useShowClose } from './Close'
 import Content, { ContentProps } from './Content'
 import { FloatingProps } from './types'
-import { classesPicker } from '../../Styles/classesPicker'
-import { useViewportScroll } from 'framer-motion'
-import { useSheetContext } from '@graphcommerce/framer-sheet'
-import { useElementScroll } from '@graphcommerce/framer-utils'
 
 type WrappedContent = Omit<ContentProps, 'leftAction' | 'rightAction'> & {
   /**
@@ -24,6 +22,8 @@ type WrappedContent = Omit<ContentProps, 'leftAction' | 'rightAction'> & {
    * - Assumes it can not float on mobile
    */
   secondary?: React.ReactNode
+
+  additional?: React.ReactNode
 }
 
 type AppBarBaseProps = FloatingProps & WrappedContent
@@ -65,7 +65,7 @@ const useStyles = makeStyles(
 )
 
 export default function AppBarBase(props: AppBarBaseProps) {
-  const { children, divider, primary, secondary, scrollY } = props
+  const { children, additional, divider, primary, secondary, scrollY } = props
   const classes = useStyles(props)
   const showClose = useShowClose()
   const showBack = useShowBack()
@@ -106,6 +106,7 @@ export default function AppBarBase(props: AppBarBaseProps) {
         floatingSm={floatingSm}
       >
         {children}
+        {additional}
       </Content>
     </div>
   )

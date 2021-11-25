@@ -32,7 +32,7 @@ function TermsPage(props: Props) {
     <>
       <PageMeta title={title} />
 
-      <SheetShellHeader hideDragIndicator>
+      <SheetShellHeader>
         <Title component='span' size='small'>
           {title}
         </Title>

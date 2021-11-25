@@ -1,8 +1,8 @@
+import { responsiveVal } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import SidebarMenu from '../../components/SidebarMenu'
 import { DirectoryTree } from '../../util/files'
-import { responsiveVal } from '@graphcommerce/next-ui'
 
 export type LayoutProps = { menuData: DirectoryTree; children: React.ReactNode }
 
@@ -16,7 +16,7 @@ const useStyles = makeStyles(
     },
     side: {
       position: 'sticky',
-      top: theme.page.headerInnerHeight.md,
+      top: theme.appShell.appBarHeightMd,
       height: '100vh',
       minWidth: responsiveVal(150, 300),
       borderRight: `1px solid ${theme.palette.divider}`,

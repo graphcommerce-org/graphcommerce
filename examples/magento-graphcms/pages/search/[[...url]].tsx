@@ -24,14 +24,13 @@ import {
   SearchQuery,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellSticky, GetStaticProps, Title } from '@graphcommerce/next-ui'
+import { AppShellSticky, GetStaticProps, Title, AppBar } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { Container, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import { AppBar } from '@graphcommerce/next-ui'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import ProductListItems from '../../components/ProductListItems/ProductListItems'
 import useProductListStyles from '../../components/ProductListItems/useProductListStyles'
@@ -92,7 +91,6 @@ function SearchResultPage(props: Props) {
             <SearchForm totalResults={totalSearchResults} search={search} />
           </Container>
         }
-        scrolled
       >
         <Title size='small'>{title}</Title>
       </AppBar>

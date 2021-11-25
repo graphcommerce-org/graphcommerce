@@ -1,8 +1,6 @@
-import { useQuery } from '@apollo/client'
 import { CartFab } from '@graphcommerce/magento-cart'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { SearchButton } from '@graphcommerce/magento-search'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   DesktopNavActions,
   DesktopNavBar,
@@ -25,16 +23,11 @@ import Footer from './Footer'
 import Logo from './Logo'
 
 export type FullPageShellProps = Omit<DefaultPageQuery, 'pages'> &
-  Omit<
-    FullPageShellBaseProps,
-    'menu' | 'logo' | 'actions' | 'classes' | 'name' | 'header' | 'footer'
-  >
+  Omit<FullPageShellBaseProps, 'classes' | 'name' | 'header' | 'footer'>
 
 function FullPageShell(props: FullPageShellProps) {
   const { footer, menu: menuData = {}, children, ...uiProps } = props
   const theme = useTheme()
-  const storeConfig = useQuery(StoreConfigDocument)
-  const name = storeConfig.data?.storeConfig?.store_name ?? ''
   const menuItemsIncludeInMenu = menuData?.items?.filter((items) => items?.include_in_menu === 1)
 
   const menuProps: MenuProps = {
@@ -65,7 +58,6 @@ function FullPageShell(props: FullPageShellProps) {
   return (
     <FullPageShellBase
       {...uiProps}
-      name={name}
       header={
         <>
           <Logo />

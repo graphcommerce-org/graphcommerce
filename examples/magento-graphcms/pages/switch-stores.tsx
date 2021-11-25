@@ -36,7 +36,7 @@ function StoresIndexPage({ availableStores }: Props) {
         metaRobots={['noindex']}
       />
       <NoSsr>
-        <SheetShellHeader hideDragIndicator>
+        <SheetShellHeader>
           <Title size='small' component='span' icon={iconShoppingBag}>
             <Trans>Country</Trans>
           </Title>

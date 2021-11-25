@@ -1,26 +1,22 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { SheetShellBaseProps, Title } from '@graphcommerce/next-ui'
-import { Typography } from '@material-ui/core'
 import fs from 'fs'
-import { MDXRemote } from 'next-mdx-remote'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { SheetShellBaseProps } from '@graphcommerce/next-ui'
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import React from 'react'
 import FullPageShell from '../../components/AppShell/FullPageShell'
-import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
 import Layout, { LayoutProps } from '../../components/Layout'
 import sanitizeDirectoryTree from '../../components/SidebarMenu/sanitizeDirectoryTree'
 import { getAbsoluteFilePath, getDirectoryTree } from '../../util/files'
 
-type PageProps = LayoutProps & { compiledMdxSource: any; title: string }
+type PageProps = LayoutProps & { compiledMdxSource: MDXRemoteSerializeResult; title: string }
 
 function ArticlePage(props: PageProps) {
   const { menuData, compiledMdxSource, title } = props
 
   return (
     <Layout menuData={menuData}>
-      <>
-        <MDXRemote {...compiledMdxSource} />
-      </>
+      <MDXRemote {...compiledMdxSource} />
     </Layout>
   )
 }

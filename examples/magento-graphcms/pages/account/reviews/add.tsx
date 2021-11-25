@@ -13,10 +13,10 @@ import {
   SheetShellHeader,
   AppShellTitle,
   SvgImageSimple,
+  GetStaticProps,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container } from '@material-ui/core'
-import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'

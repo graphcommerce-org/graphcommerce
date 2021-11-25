@@ -1,11 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { SheetShellHeader } from '@graphcommerce/next-ui'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import { AppShellDemo } from '../minimal-page-shell/[[...url]]'
 
 function SheetDemo() {
-  return <AppShellDemo baseUrl='/test/sheet' Header={SheetShellHeader} />
+  return <AppShellDemo baseUrl='/test/sheet' />
 }
 
 const pageOptions: PageOptions<SheetShellProps> = {

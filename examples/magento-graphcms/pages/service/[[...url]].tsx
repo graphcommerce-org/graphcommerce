@@ -34,7 +34,7 @@ function ServicePage({ pages }: Props) {
         metaRobots={['noindex']}
         canonical={pages?.[0]?.url ?? ''}
       />
-      <SheetShellHeader hideDragIndicator>
+      <SheetShellHeader>
         <Title component='span' size='small'>
           {title}
         </Title>

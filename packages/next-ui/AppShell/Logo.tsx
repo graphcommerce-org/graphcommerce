@@ -28,13 +28,11 @@ const useStyles = makeStyles(
 export type LogoProps = {
   href?: `/${string}`
   image: ImageProps
-  alwaysShow?: boolean
 } & UseStyles<typeof useStyles>
 
 export default function Logo(props: LogoProps) {
-  const { href, alwaysShow, image } = props
+  const { href, image } = props
   const classes = useStyles(props)
-  const theme = useTheme()
 
   return (
     <PageLink href={href ?? '/'} passHref>

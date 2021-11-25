@@ -14,7 +14,7 @@ import {
 } from '@graphcommerce/magento-product'
 import { SearchDocument, SearchForm, SearchQuery } from '@graphcommerce/magento-search'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellSticky, AppShellTitle, Button } from '@graphcommerce/next-ui'
+import { AppShellSticky, AppShellTitle, Button, AppBar } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
@@ -23,7 +23,6 @@ import React from 'react'
 import MinimalPageShell, {
   MinimalPageShellProps,
 } from '../../../components/AppShell/MinimalPageShell'
-import { AppBar } from '@graphcommerce/next-ui'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../../lib/apolloClient'
 
@@ -60,7 +59,6 @@ function MinimalAppShellSubheader(props: Props) {
               <SearchForm urlHandle='test/minimal-page-shell-subheader' />
             </Container>
           }
-          scrolled
         >
           <Typography variant='h5' component='span'>
             Minimal UI

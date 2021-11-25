@@ -20,10 +20,12 @@ const theme = createTheme({
   page: {
     horizontal: responsiveVal(10, 30),
     vertical: responsiveVal(10, 30),
-    headerHeight: {
-      sm: `56px`,
-      md: `120px`,
-    },
+  },
+  appShell: {
+    headerHeightSm: '46px',
+    headerHeightMd: '110px',
+    appBarHeightMd: '80px',
+    appBarInnerHeightMd: '46px',
   },
 })
 
