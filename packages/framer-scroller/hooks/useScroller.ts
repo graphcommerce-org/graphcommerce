@@ -1,7 +1,7 @@
 import { useConstant, useElementScroll, useMotionValueValue } from '@graphcommerce/framer-utils'
+import { UseStyles } from '@graphcommerce/next-ui'
 import { makeStyles } from '@material-ui/core'
-import { CSSProperties } from '@material-ui/styles'
-import clsx from 'clsx'
+import { classesPicker } from '@graphcommerce/next-ui'
 import {
   HTMLMotionProps,
   motionValue,
@@ -12,65 +12,69 @@ import {
   useTransform,
 } from 'framer-motion'
 import React, { ReactHTML, useState } from 'react'
-import { ScrollSnapProps, ScrollSnapTypeSingle } from '../types'
+import { ScrollSnapProps } from '../types'
 import { isHTMLMousePointerEvent } from '../utils/isHTMLMousePointerEvent'
 import { useScrollerContext } from './useScrollerContext'
 import { useVelocitySnapTo } from './useVelocitySnapTo'
 
 const useStyles = makeStyles(
   {
-    root: ({ scrollSnapAlign, scrollSnapStop, scrollSnapType }: ScrollSnapProps) => {
-      const snapDir = scrollSnapType.split(' ')[0] as ScrollSnapTypeSingle
-
-      let overflowProps: CSSProperties = { overflow: 'hidden', overscrollBehavior: 'auto' }
-      if (snapDir === 'block' || snapDir === 'y') {
-        overflowProps = {
-          overflowX: 'auto',
-          overscrollBehaviorBlock: 'contain',
-        }
-      }
-      if (snapDir === 'inline' || snapDir === 'x') {
-        overflowProps = {
-          display: 'grid',
-          gridAutoFlow: 'column',
-          gridAutoColumns: `40%`,
-          '& > *': {
-            scrollSnapAlign,
-            scrollSnapStop,
-          },
-          overflowY: 'auto',
-          overscrollBehaviorInline: 'contain',
-        }
-      }
-      if (snapDir === 'both') {
-        overflowProps = {
-          overflow: 'auto',
-          overscrollBehavior: 'contain',
-        }
-      }
-
-      return {
-        '-webkit-overflow-scrolling': 'touch',
-        ...overflowProps,
-        '& *': {
-          userSelect: 'none',
-          userDrag: 'none',
-        },
-      }
+    root: {
+      '& *': {
+        userSelect: 'none',
+        userDrag: 'none',
+      },
     },
-    canGrab: {
+    rootSnapDirNone: {
+      overflow: 'hidden',
+      overscrollBehavior: 'auto',
+    },
+    rootSnapDirBlock: {
+      overflowY: 'auto',
+      '-webkit-overflow-scrolling': 'touch',
+      overscrollBehaviorBlock: 'contain',
+    },
+    rootSnapDirInline: {
+      overflowX: 'auto',
+      '-webkit-overflow-scrolling': 'touch',
+      overscrollBehaviorInline: 'contain',
+    },
+    rootSnapDirBoth: {
+      overflow: 'auto',
+      '-webkit-overflow-scrolling': 'touch',
+      overscrollBehavior: 'contain',
+    },
+    rootGridDirBlock: ({ scrollSnapAlign, scrollSnapStop }) => ({
+      display: 'grid',
+      gridAutoFlow: 'row',
+      gridAutoColumns: `40%`,
+      '& > *': {
+        scrollSnapAlign,
+        scrollSnapStop,
+      },
+    }),
+    rootGridDirInline: ({ scrollSnapAlign, scrollSnapStop }) => ({
+      display: 'grid',
+      gridAutoFlow: 'column',
+      gridAutoRows: `40%`,
+      '& > *': {
+        scrollSnapAlign,
+        scrollSnapStop,
+      },
+    }),
+    rootCanGrab: {
       cursor: 'grab',
     },
-    snap: ({ scrollSnapType }: ScrollSnapProps) => ({
+    rootIsSnap: ({ scrollSnapType }: ScrollSnapProps) => ({
       scrollSnapType,
     }),
-    panning: {
+    rootIsPanning: {
       cursor: 'grabbing !important',
       '& > *': {
         pointerEvents: 'none',
       },
     },
-    hideScrollbar: {
+    rootHideScrollbar: {
       scrollbarWidth: 'none',
       '&::-webkit-scrollbar': {
         display: 'none',
@@ -80,19 +84,19 @@ const useStyles = makeStyles(
   { name: 'Scroller' },
 )
 
-export type ScrollableProps<TagName extends keyof ReactHTML = 'div'> = HTMLMotionProps<TagName> & {
-  hideScrollbar?: boolean
-}
+export type ScrollableProps<TagName extends keyof ReactHTML = 'div'> = UseStyles<typeof useStyles> &
+  HTMLMotionProps<TagName> & { hideScrollbar?: boolean; grid?: boolean }
 
 /** Make any HTML */
 export function useScroller<TagName extends keyof ReactHTML = 'div'>(
   props: ScrollableProps<TagName>,
   forwardedRef: React.ForwardedRef<any>,
 ) {
+  const { hideScrollbar = false, children, grid = false, ...divProps } = props
+
   const { scrollSnap, scrollerRef, enableSnap, disableSnap, snap, registerChildren } =
     useScrollerContext()
 
-  const { hideScrollbar, children, ...divProps } = props
   registerChildren(children)
 
   const scroll = useElementScroll(scrollerRef)
@@ -102,7 +106,7 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
       [scroll.xMax, scroll.yMax] as MotionValue<string | number>[],
       ([xMax, yMax]: number[]) => xMax || yMax,
     ),
-    (v) => v,
+    (v) => !!v,
   )
 
   const isSnap = useMotionValueValue(snap, (v) => v)
@@ -162,14 +166,20 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
     else if (forwardedRef) forwardedRef.current = el
   }
 
-  const className = clsx(
-    classes.root,
-    isSnap && classes.snap,
-    isPanning && classes.panning,
-    hideScrollbar && classes.hideScrollbar,
-    canGrab && classes.canGrab,
-    props.className,
-  )
+  let snapDir = scrollSnap.scrollSnapType.split(' ')[0]
+  snapDir = snapDir.replace('y', 'block')
+  snapDir = snapDir.replace('x', 'inline') as 'block' | 'inline' | 'both' | 'inline'
 
-  return { ...divProps, ref, onPanStart, onPan, onPanEnd, className, children }
+  const gridDir = grid && snapDir
+
+  const className = classesPicker(classes, {
+    snapDir,
+    gridDir,
+    isSnap,
+    isPanning,
+    hideScrollbar,
+    canGrab,
+  })('root', props.className)
+
+  return { ...divProps, ref, onPanStart, onPan, onPanEnd, children, ...className }
 }

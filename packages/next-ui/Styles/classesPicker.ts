@@ -25,7 +25,7 @@ export function classesPicker<K extends string>(
   classes: Record<string, string>,
   values: Record<string, boolean | string>,
 ) {
-  return (className: K) => {
+  return (className: K, addClassName?: string) => {
     const mapped = Object.fromEntries(
       Object.entries(values)
         .map(([key, value]) =>
@@ -36,6 +36,6 @@ export function classesPicker<K extends string>(
         .filter((v) => !!v[0] && v[1]),
     )
 
-    return { className: clsx({ [classes[className]]: true, ...mapped }) }
+    return { className: clsx({ [classes[className]]: true, ...mapped }, addClassName) }
   }
 }
