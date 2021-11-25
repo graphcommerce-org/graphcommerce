@@ -114,9 +114,13 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
   const enableSnap = useCallback(() => {
     if (!scrollerRef.current) return
     stop()
-    const p = scrollerRef.current.scrollLeft
+
+    // We're setting the current scrollLeft to prevent resetting the scroll position on Safari
+    const l = scrollerRef.current.scrollLeft
+    const t = scrollerRef.current.scrollTop
     snap.set(true)
-    scrollerRef.current.scrollLeft = p
+    scrollerRef.current.scrollLeft = l
+    scrollerRef.current.scrollTop = t
   }, [snap, stop])
 
   useObserveItems(scrollerRef, items, enableSnap)
@@ -152,6 +156,18 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
     )
   }
 
+  /** Finds all elements with scrollSnapAlign by using getComputedStyle */
+  function recursivelyFindElementsWithScrollSnapAlign(parent: HTMLElement) {
+    const elements: HTMLElement[] = []
+    ;[...parent.children].forEach((child) => {
+      if (!(child instanceof HTMLElement)) return
+
+      if (getComputedStyle(child).scrollSnapAlign !== 'none') elements.push(child)
+      elements.push(...recursivelyFindElementsWithScrollSnapAlign(child))
+    })
+    return elements
+  }
+
   function getSnapPositions(
     parent: HTMLElement,
     excludeOffAxis = true,
@@ -163,7 +179,7 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
       y: { start: [], center: [], end: [] },
     }
 
-    const descendants = [...parent.children]
+    const descendants = recursivelyFindElementsWithScrollSnapAlign(parent)
 
     for (const axis of ['x', 'y'] as Axis[]) {
       const orthogonalAxis = axis === 'x' ? 'y' : 'x'
@@ -179,13 +195,12 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
           continue
         }
 
-        // eslint-disable-next-line prefer-const
-        let [childAlignY, childAlignX] = scrollSnap.scrollSnapAlign.split(
-          ' ',
-        ) as ScrollSnapAlignAxis[]
-        if (typeof childAlignX === 'undefined') {
-          childAlignX = childAlignY
-        }
+        const align = getComputedStyle(child).scrollSnapAlign
+        let [childAlignY, childAlignX] = align.split(' ') as [
+          ScrollSnapAlignAxis,
+          ScrollSnapAlignAxis | undefined,
+        ]
+        if (typeof childAlignX === 'undefined') childAlignX = childAlignY
 
         const childAlign = axis === 'x' ? childAlignX : childAlignY
         const childOffsetStart = childRect[axisStart] - parentRect[axisStart] + parent[axisScroll]

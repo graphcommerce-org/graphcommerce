@@ -43,14 +43,12 @@ export type ScrollerContext = {
   registerChildren(children: React.ReactNode): void
 }
 
+export type ScrollSnapTypeSingle = 'none' | 'block' | 'inline' | 'x' | 'y' | 'both'
+
 export type ScrollSnapType =
-  | 'none'
-  | 'block'
-  | 'inline'
-  | 'x'
-  | 'y'
-  | 'both'
-  | `${'block' | 'inline' | 'x' | 'y' | 'both'} ${'mandatory' | 'proximity'}`
+  | ScrollSnapTypeSingle
+  | `${ScrollSnapTypeSingle} ${'mandatory' | 'proximity'}`
+
 export type ScrollSnapAlignAxis = 'none' | 'center' | 'end' | 'start'
 
 export type ScrollSnapAlign = ScrollSnapAlignAxis | `${ScrollSnapAlignAxis} ${ScrollSnapAlignAxis}`
