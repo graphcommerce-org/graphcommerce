@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import Close from './Close'
-import Back from './Back'
+import Close, { useShowClose } from './Close'
+import Back, { useShowBack } from './Back'
 import Content, { ContentProps } from './Content'
 import { FloatingProps } from './types'
 import { classesPicker } from '../../Styles/classesPicker'
@@ -33,6 +33,7 @@ const useStyles = makeStyles(
     sticky: {
       zIndex: theme.zIndex.appBar,
       position: 'sticky',
+      pointerEvents: 'none',
 
       [theme.breakpoints.up('md')]: {
         top: 0,
@@ -66,6 +67,8 @@ const useStyles = makeStyles(
 export default function AppBarBase(props: AppBarBaseProps) {
   const { children, divider, primary, secondary, scrollY } = props
   const classes = useStyles(props)
+  const showClose = useShowClose()
+  const showBack = useShowBack()
 
   const floatFallback = !children
   let { floatingSm = false, floatingMd = floatFallback } = props
@@ -77,9 +80,10 @@ export default function AppBarBase(props: AppBarBaseProps) {
 
   const close = <Close />
   const back = <Back variant={floatingSm ? 'pill' : 'pill-link'} />
-  let left: React.ReactNode = secondary ?? back
-  const right: React.ReactNode = primary ?? close
-  if (right !== close && !left) left = close
+
+  let left: React.ReactNode = secondary ?? (showBack && back)
+  const right: React.ReactNode = primary ?? (showClose && close)
+  if (right !== (showClose && close) && !left) left = close
 
   if (!left && !right && !children) return null
 
@@ -111,8 +115,4 @@ export type AppBarProps = Omit<AppBarBaseProps, 'scrollY'>
 
 export function AppBar(props: AppBarProps) {
   return <AppBarBase {...props} scrollY={useViewportScroll().scrollY} />
-}
-
-export function SheetAppbar(props: AppBarProps) {
-  return <AppBarBase {...props} scrollY={useElementScroll(useSheetContext().contentRef).y} />
 }

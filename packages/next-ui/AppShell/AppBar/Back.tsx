@@ -8,6 +8,19 @@ import { Trans } from '@lingui/macro'
 
 export type BackProps = Omit<ButtonProps, 'onClick' | 'children'>
 
+export function useShowBack() {
+  const router = usePageRouter()
+  const up = useUp()
+  const prevUp = usePrevUp()
+  const { backSteps } = usePageContext()
+
+  const canClickBack = backSteps > 0 && router.asPath !== prevUp?.href
+
+  if (canClickBack) return true
+  if (up?.href && up.href !== router.asPath) return true
+  return false
+}
+
 export default function Back(props: BackProps) {
   const router = usePageRouter()
   const up = useUp()

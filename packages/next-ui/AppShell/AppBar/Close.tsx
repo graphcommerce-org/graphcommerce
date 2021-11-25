@@ -5,12 +5,15 @@ import Button from '../../Button'
 import { iconClose } from '../../icons'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 
+export function useShowClose() {
+  const { closeSteps } = usePageContext()
+  return closeSteps > 0
+}
+
 export default function Close() {
   const router = usePageRouter()
   const { closeSteps } = usePageContext()
-  const canClose = closeSteps > 0
 
-  if (!canClose) return null
   return (
     <Button
       type='button'

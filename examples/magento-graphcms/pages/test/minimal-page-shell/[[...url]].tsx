@@ -1,13 +1,5 @@
 import { PageOptions, usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
-import {
-  AppBar,
-  AppShellTitle,
-  Button,
-  iconPerson,
-  SheetAppbar,
-  Stepper,
-  Title,
-} from '@graphcommerce/next-ui'
+import { AppBar, AppShellTitle, Button, iconPerson, Stepper, Title } from '@graphcommerce/next-ui'
 import { Container, Divider, List, ListItem, NoSsr, Typography } from '@material-ui/core'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
@@ -79,12 +71,10 @@ export function AppShellDemo(props: AppShellDemoProps) {
       </Title>
     )
 
-  const ShellHeader = isSheet ? SheetAppbar : AppBar
-
   return (
     <>
       <NoSsr>
-        <ShellHeader
+        <AppBar
           primary={primaryAction}
           divider={
             withStepper ? (
@@ -97,7 +87,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
         >
           {/* {titleComponent} */}
           {isMinimal || isSheet || withIcon || withTitle ? titleComponent : undefined}
-        </ShellHeader>
+        </AppBar>
 
         <Container maxWidth='md'>
           <AppShellTitle icon={withIcon ? iconPerson : undefined}>{title}</AppShellTitle>

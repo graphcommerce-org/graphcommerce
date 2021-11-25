@@ -58,7 +58,6 @@ const useStyles = makeStyles(
         padding: `0 ${theme.page.horizontal}`,
         background: 'none',
         pointerEvents: 'none',
-        '& > div *': { pointerEvents: 'all' },
       },
     },
     contentFloatingSm: {
@@ -66,10 +65,10 @@ const useStyles = makeStyles(
         padding: `0 ${theme.page.horizontal}`,
         background: 'none',
         pointerEvents: 'none',
-        '& > div *': { pointerEvents: 'all' },
       },
     },
     left: {
+      '& > *': { pointerEvents: 'all' },
       display: 'grid',
       gridAutoFlow: 'column',
       gap: theme.spacings.sm,
@@ -77,6 +76,7 @@ const useStyles = makeStyles(
       justifyContent: 'start',
     },
     center: {
+      '& > *': { pointerEvents: 'all' },
       display: 'grid',
       gridAutoFlow: 'column',
       gap: theme.spacings.sm,
@@ -100,6 +100,7 @@ const useStyles = makeStyles(
       },
     },
     right: {
+      '& > *': { pointerEvents: 'all' },
       display: 'grid',
       gridAutoFlow: 'column',
       gap: theme.spacings.sm,

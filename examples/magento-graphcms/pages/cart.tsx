@@ -53,22 +53,26 @@ function CartPage() {
       <NoSsr>
         <SheetShellHeader
           primary={
-            <PageLink href='/checkout' passHref>
-              <Button
-                color='secondary'
-                variant='pill-link'
-                disabled={!hasItems}
-                size='small'
-                endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
-              >
-                <Trans>Next</Trans>
-              </Button>
-            </PageLink>
+            hasItems && (
+              <PageLink href='/checkout' passHref>
+                <Button
+                  color='secondary'
+                  variant='pill-link'
+                  disabled={!hasItems}
+                  size='small'
+                  endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
+                >
+                  <Trans>Next</Trans>
+                </Button>
+              </PageLink>
+            )
           }
           divider={
-            <Container maxWidth='md'>
-              <Stepper currentStep={1} steps={3} />
-            </Container>
+            hasItems && (
+              <Container maxWidth='md'>
+                <Stepper currentStep={1} steps={3} />
+              </Container>
+            )
           }
         >
           <Title size='small' component='span' icon={hasItems ? iconShoppingBag : undefined}>

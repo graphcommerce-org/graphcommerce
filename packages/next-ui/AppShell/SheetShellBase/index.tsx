@@ -1,62 +1,17 @@
 import { usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
-import {
-  ClassKeys,
-  Sheet,
-  SheetBackdrop,
-  SheetContainer,
-  SheetPanel,
-  SheetProps,
-  SnapPoint,
-  styles as sheetStyles,
-} from '@graphcommerce/framer-sheet'
-import { makeStyles, StyleRules, Theme } from '@material-ui/core'
 import { useDomEvent } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { useEffect, useRef, useState } from 'react'
-import { responsiveVal } from '../../Styles/responsiveVal'
+import React, { useRef, useState } from 'react'
 import AppShellProvider from '../AppShellProvider'
-import ShellBase, { PageLayoutBaseProps } from '../ShellBase'
-import useSheetStyles from './useSheetStyles'
+import { Sheet } from '@graphcommerce/framer-scroller-sheet'
 
 export type SheetShellBaseProps = {
   header?: React.ReactNode
   children?: React.ReactNode
-} & Pick<SheetProps, 'size' | 'variant'>
-
-const styles = sheetStyles as StyleRules<ClassKeys>
-
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    container: {
-      ...styles.container,
-    },
-    containertop: {
-      ...styles.containertop,
-    },
-    containerbottom: {
-      ...styles.containerbottom,
-      paddingTop: `calc(${theme.appShell.headerHeightSm} / 2 + ${theme.spacings.sm})`,
-      [theme.breakpoints.up('md')]: {
-        // offset top is x% of the header height, so it slightly overlaps the logo
-        paddingTop: `calc(${theme.appShell.headerHeightMd} / 2 + ${theme.spacings.sm})`,
-      },
-    },
-    containerleft: {
-      ...styles.containerleft,
-      paddingRight: responsiveVal(26, 48),
-    },
-    containerright: {
-      ...styles.containerright,
-      paddingLeft: responsiveVal(26, 48),
-    },
-  }),
-  { name: 'SheetShellBase' },
-)
+}
 
 function SheetShellBase(props: SheetShellBaseProps) {
-  const { children, variant, size, name } = props
-  const sheetContainerClasses = useStyles()
-  const sheetClasses = useSheetStyles(props)
+  const { children } = props
   const router = useRouter()
   const pageRouter = usePageRouter()
   const { depth, closeSteps, active, direction } = usePageContext()
@@ -94,16 +49,7 @@ function SheetShellBase(props: SheetShellBaseProps) {
 
   return (
     <AppShellProvider>
-      <Sheet open={open} onSnap={handleSnap} variant={variant} size={size}>
-        <SheetBackdrop onTap={handleClose} classes={sheetClasses} />
-        <SheetContainer classes={sheetContainerClasses}>
-          <SheetPanel initial={direction === -1 ? 'snapPoint1' : 'closed'} classes={sheetClasses}>
-            {/* <FocusLock returnFocus={{ preventScroll: true }} disabled={!isActive}> */}
-            {children}
-            {/* </FocusLock> */}
-          </SheetPanel>
-        </SheetContainer>
-      </Sheet>
+      <Sheet onSnap={handleSnap}>{children}</Sheet>
     </AppShellProvider>
   )
 }
