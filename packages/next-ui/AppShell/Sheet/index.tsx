@@ -30,14 +30,6 @@ const useStyles = makeStyles(
         height: '-webkit-fill-available',
       },
     },
-    rootVariantMdLeft: {
-      [theme.breakpoints.up('md')]: {
-        gridTemplate: `"afterSheet sheet beforeSheet"`,
-        '&::-webkit-scrollbar': {
-          display: 'none',
-        },
-      },
-    },
     rootVariantSmLeft: {
       [theme.breakpoints.down('sm')]: {
         gridTemplate: `"afterSheet sheet beforeSheet"`,
@@ -46,9 +38,9 @@ const useStyles = makeStyles(
         },
       },
     },
-    rootVariantMdRight: {
+    rootVariantMdLeft: {
       [theme.breakpoints.up('md')]: {
-        gridTemplate: `"beforeSheet sheet afterSheet"`,
+        gridTemplate: `"afterSheet sheet beforeSheet"`,
         '&::-webkit-scrollbar': {
           display: 'none',
         },
@@ -62,10 +54,12 @@ const useStyles = makeStyles(
         },
       },
     },
-    rootVariantMdBottom: {
-      [theme.breakpoints.down('sm')]: {
-        gridTemplate: `"beforeSheet" "sheet" "afterSheet"`,
-        height: '100vh',
+    rootVariantMdRight: {
+      [theme.breakpoints.up('md')]: {
+        gridTemplate: `"beforeSheet sheet afterSheet"`,
+        '&::-webkit-scrollbar': {
+          display: 'none',
+        },
       },
     },
     rootVariantSmBottom: {
@@ -77,6 +71,12 @@ const useStyles = makeStyles(
         },
       },
     },
+    rootVariantMdBottom: {
+      [theme.breakpoints.up('md')]: {
+        gridTemplate: `"beforeSheet" "sheet" "afterSheet"`,
+        height: '100vh',
+      },
+    },
     beforeSheet: {
       gridArea: 'beforeSheet',
       pointerEvents: 'none',
@@ -85,12 +85,19 @@ const useStyles = makeStyles(
       display: 'grid',
       alignContent: 'end',
     },
+
+    beforeSheetVariantSmRight: {
+      [theme.breakpoints.down('sm')]: {
+        width: '100vw',
+      },
+    },
     beforeSheetVariantMdRight: {
       [theme.breakpoints.up('md')]: {
         width: '100vw',
       },
     },
-    beforeSheetVariantSmRight: {
+
+    beforeSheetVariantSmLeft: {
       [theme.breakpoints.down('sm')]: {
         width: '100vw',
       },
@@ -100,9 +107,10 @@ const useStyles = makeStyles(
         width: '100vw',
       },
     },
-    beforeSheetVariantSmLeft: {
-      [theme.breakpoints.down('sm')]: {
-        width: '100vw',
+
+    beforeSheetVariantMdBottom: {
+      [theme.breakpoints.up('md')]: {
+        height: '100vh',
       },
     },
     beforeSheetVariantSmBottom: {
@@ -115,12 +123,7 @@ const useStyles = makeStyles(
     },
     sheet: {
       gridArea: 'sheet',
-      minHeight: '100vh',
-      ['@supports (-webkit-touch-callout: none)']: {
-        minHeight: '-webkit-fill-available',
-      },
     },
-
     sheetVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
         marginTop: -100,
@@ -131,7 +134,7 @@ const useStyles = makeStyles(
       },
     },
     sheetVariantMdBottom: {
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('md')]: {
         marginTop: -100,
         paddingTop: 100,
         scrollSnapAlign: 'start',
@@ -143,6 +146,13 @@ const useStyles = makeStyles(
       backgroundColor: theme.palette.background.paper,
       boxShadow: theme.shadows[24],
       width: 'min-content',
+      minHeight: '100vh',
+      ['@supports (-webkit-touch-callout: none)']: {
+        minHeight: '-webkit-fill-available',
+      },
+      [theme.breakpoints.up('md')]: {
+        minWidth: '800px',
+      },
     },
     sheetPaneVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
@@ -152,7 +162,7 @@ const useStyles = makeStyles(
       },
     },
     sheetPaneVariantMdBottom: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.up('md')]: {
         width: '100vw',
         borderRadius: 10,
         boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.1)',
@@ -262,12 +272,12 @@ function SheetHandler(props: SheetHandlerProps) {
 export type SheetProps = SetOptional<SheetHandlerProps, 'variantSm' | 'variantMd'>
 
 export default function Sheet(props: SheetProps) {
-  const { children, variantSm = 'bottom', variantMd = 'left' } = props
+  const { children, variantSm = 'right', variantMd = 'bottom' } = props
 
   const scrollSnapTypeSm: ScrollSnapType =
-    variantSm === 'left' || variantSm === 'right' ? 'inline mandatory' : 'block proximity'
+    variantSm === 'left' || variantSm === 'right' ? 'both mandatory' : 'block proximity'
   const scrollSnapTypeMd: ScrollSnapType =
-    variantMd === 'left' || variantMd === 'right' ? 'inline mandatory' : 'block proximity'
+    variantMd === 'left' || variantMd === 'right' ? 'both mandatory' : 'block proximity'
 
   return (
     <AppShellProvider>

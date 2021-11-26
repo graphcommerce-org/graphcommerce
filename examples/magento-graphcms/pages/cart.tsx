@@ -21,7 +21,6 @@ import {
   Stepper,
   Title,
   iconChevronRight,
-  SvgImage,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
@@ -141,8 +140,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
-      variant: 'bottom',
-      size: 'max',
     },
   }
 }

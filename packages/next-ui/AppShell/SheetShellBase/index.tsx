@@ -1,4 +1,4 @@
-import { Sheet, SheetProps } from '@graphcommerce/framer-scroller-sheet'
+import Sheet, { SheetProps } from '../Sheet'
 
 export type SheetShellBaseProps = SheetProps
 

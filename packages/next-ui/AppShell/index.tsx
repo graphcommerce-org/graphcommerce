@@ -31,3 +31,6 @@ export * from './ShellBase'
 export { default as ShellBase } from './ShellBase'
 export { default as useFabAnimation } from './useFabAnimation'
 export { default as useFixedFabAnimation } from './useFixedFabAnimation'
+
+export { default as Sheet } from './Sheet'
+export * from './Sheet'

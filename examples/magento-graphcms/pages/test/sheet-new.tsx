@@ -1,5 +1,4 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { Sheet } from '@graphcommerce/framer-scroller-sheet'
 import { AppBar, AppShellTitle, Title } from '@graphcommerce/next-ui'
 import { Box, Container } from '@material-ui/core'
 import React from 'react'
