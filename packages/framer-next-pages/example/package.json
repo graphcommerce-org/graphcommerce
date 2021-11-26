@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@graphcommerce/framer-next-pages": "^2.107.5",
-    "@graphcommerce/framer-sheet": "^2.106.2",
     "@graphcommerce/next-config": "^2.109.0",
     "@graphcommerce/next-ui": "^3.18.1",
     "framer-motion": "^4.1.17",

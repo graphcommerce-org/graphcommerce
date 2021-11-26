@@ -12,7 +12,6 @@
     "@apollo/client": "^3.4.16",
     "@graphcommerce/framer-next-pages": "^2.107.5",
     "@graphcommerce/framer-scroller": "^1.0.4",
-    "@graphcommerce/framer-sheet": "^2.106.2",
     "@graphcommerce/framer-utils": "^2.103.15",
     "@graphcommerce/graphql": "^2.105.5",
     "@graphcommerce/image": "^2.105.4",
