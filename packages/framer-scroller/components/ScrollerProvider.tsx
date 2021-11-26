@@ -16,7 +16,8 @@ import {
 
 export type ScrollerProviderProps = {
   children?: React.ReactNode | undefined
-  scrollSnapType?: ScrollSnapType
+  scrollSnapTypeSm?: ScrollSnapType
+  scrollSnapTypeMd?: ScrollSnapType
   scrollSnapAlign?: ScrollSnapAlign
   scrollSnapStop?: ScrollSnapStop
 }
@@ -82,12 +83,14 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
   const {
     scrollSnapAlign = 'center center',
     scrollSnapStop = 'normal',
-    scrollSnapType = 'inline mandatory',
+    scrollSnapTypeSm = 'inline mandatory',
+    scrollSnapTypeMd = 'inline mandatory',
     ...providerProps
   } = props
+
   const scrollSnap = useMemo(
-    () => ({ scrollSnapType, scrollSnapStop, scrollSnapAlign }),
-    [scrollSnapAlign, scrollSnapStop, scrollSnapType],
+    () => ({ scrollSnapTypeMd, scrollSnapTypeSm, scrollSnapStop, scrollSnapAlign }),
+    [scrollSnapAlign, scrollSnapStop, scrollSnapTypeMd, scrollSnapTypeSm],
   )
 
   const snap = useMotionValue(true)

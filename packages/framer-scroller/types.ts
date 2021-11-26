@@ -10,7 +10,8 @@ export type ItemState = {
 }
 
 export type ScrollSnapProps = {
-  scrollSnapType: ScrollSnapType
+  scrollSnapTypeSm: ScrollSnapType
+  scrollSnapTypeMd: ScrollSnapType
   scrollSnapAlign: ScrollSnapAlign
   scrollSnapStop: ScrollSnapStop
 }
