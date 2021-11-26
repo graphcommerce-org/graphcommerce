@@ -231,20 +231,19 @@ function SheetHandler(props: SheetHandlerProps) {
     }
 
     if (item.el === sheetRef.current) {
-      sheetVisbility.set(item.visibility.get() > 0.5 ? 1 : 0.01)
+      sheetVisbility.set(item.visibility.get() > 0.2 ? 1 : 0.01)
     }
   })
 
-  const windowRef = useRef(typeof window !== 'undefined' ? window : null)
-  function handleEscapeKey(e: KeyboardEvent | Event) {
-    if (active) {
-      if ((e as KeyboardEvent)?.key === 'Escape') {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        closeOverlay()
-      }
-    }
-  }
-  useDomEvent(windowRef, 'keyup', handleEscapeKey, { passive: true })
+  // Handle esccape key
+  useDomEvent(
+    useRef(typeof window !== 'undefined' ? window : null),
+    'keyup',
+    (e: KeyboardEvent | Event) => {
+      if (active && (e as KeyboardEvent)?.key === 'Escape') closeOverlay()
+    },
+    { passive: true },
+  )
 
   return (
     <>
