@@ -105,11 +105,12 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
   useEffect(() => {
     const observer = new ResizeObserver(([entry]) => {
       if (window.scrollY > 100) return
-      const offset = wrapperRef.current?.offsetTop ?? 0
+      const offset = wrapperRef.current?.getBoundingClientRect()?.top ?? 0
       const elemHeigh = entry.contentRect.height
       const nextOffset =
-        (wrapperRef.current?.parentElement?.nextElementSibling as HTMLElement | null)?.offsetTop ??
-        0
+        (
+          wrapperRef.current?.parentElement?.nextElementSibling as HTMLElement | null
+        )?.getBoundingClientRect()?.top ?? 0
       const modifier = 5
 
       setSpacing((nextOffset - elemHeigh - offset + 20) * modifier)
