@@ -12,9 +12,9 @@ export function linguiWrapGetInitialProps(
 
     const locale = ctx.locale?.split('-')?.[0]
 
-    if (!locale) throw Error('No locales specified')
+    if (!locale) return initial
     try {
-      const messages = (await load(locale)).messages as Messages
+      const messages = (await load(locale)).messages
 
       i18n.load(locale, messages)
       i18n.activate(locale)
@@ -24,6 +24,7 @@ export function linguiWrapGetInitialProps(
         head: [
           ...(React.Children.toArray(initial.head) as Array<JSX.Element | null>),
           <script
+            key='lingui'
             type='application/json'
             id='lingui'
             lang={locale}
