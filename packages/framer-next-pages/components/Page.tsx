@@ -1,8 +1,6 @@
 import { useClientSize } from '@graphcommerce/framer-utils'
 import { m, useIsPresent } from 'framer-motion'
-import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
-import { usePageContext } from '../hooks/usePageContext'
+import React from 'react'
 import type { PageItem } from '../types'
 
 export type PageProps = Pick<PageItem, 'historyIdx'> & {
@@ -12,6 +10,7 @@ export type PageProps = Pick<PageItem, 'historyIdx'> & {
 
 function scrollPos(idx: number): { x: number; y: number } {
   const scroll = global.window?.sessionStorage[`__next_scroll_${idx}`]
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   return scroll ? JSON.parse(scroll) : { x: 0, y: 0 }
 }
 

@@ -18,6 +18,9 @@ const useStyles = makeStyles(
       position: 'sticky',
       top: theme.appShell.appBarHeightMd,
       height: '100vh',
+      ['@supports (-webkit-touch-callout: none)']: {
+        height: '-webkit-fill-available',
+      },
       minWidth: responsiveVal(150, 300),
       borderRight: `1px solid ${theme.palette.divider}`,
     },
