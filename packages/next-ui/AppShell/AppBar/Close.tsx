@@ -2,8 +2,8 @@ import { usePageRouter, usePageContext } from '@graphcommerce/framer-next-pages'
 import { Fab } from '@material-ui/core'
 import React from 'react'
 import Button from '../../Button'
-import { iconClose } from '../../icons'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
+import { iconClose } from '../../icons'
 
 export function useShowClose() {
   const { closeSteps } = usePageContext()

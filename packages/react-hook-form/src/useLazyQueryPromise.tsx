@@ -16,6 +16,7 @@ export type LazyQueryTuple<Q, V> = [
 
 /**
  * Same API as useLazyQuery, except:
+ *
  * - The execute method is a promise that will return the eventual result
  */
 export function useLazyQueryPromise<Q, V>(

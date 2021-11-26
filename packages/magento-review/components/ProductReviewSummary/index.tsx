@@ -1,7 +1,7 @@
 import { SvgImageSimple, iconStar, responsiveVal, UseStyles } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
-import { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'
 import React from 'react'
+import { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'
 
 export type ProductReviewSummaryProps = ProductReviewSummaryFragment & UseStyles<typeof useStyles>
 

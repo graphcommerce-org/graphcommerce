@@ -17,7 +17,7 @@ import {
 } from '@graphcommerce/magento-product-simple'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, JsonLd, Title } from '@graphcommerce/next-ui'
+import { GetStaticProps, JsonLd, Title, AppBar } from '@graphcommerce/next-ui'
 import { Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
@@ -28,7 +28,6 @@ import { RowProduct } from '../../components/Row'
 import RowRenderer from '../../components/Row/RowRenderer'
 import Usps from '../../components/Usps'
 import apolloClient from '../../lib/apolloClient'
-import { AppBar } from '@graphcommerce/next-ui'
 
 export const config = { unstable_JsPreload: false }
 

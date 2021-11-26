@@ -1,8 +1,8 @@
+import { i18n, Messages } from '@lingui/core'
 import { I18nProvider, I18nProviderProps } from '@lingui/react'
+import { nl, en, fr } from 'make-plural/plurals'
 import { useRouter } from 'next/router'
 import React, { useMemo } from 'react'
-import { i18n, Messages } from '@lingui/core'
-import { nl, en, fr } from 'make-plural/plurals'
 import { MessageLoader } from '../types'
 
 type LinguiProviderProps = Omit<I18nProviderProps, 'i18n'> & {
@@ -33,7 +33,7 @@ export default function LinguiProvider(props: LinguiProviderProps) {
     } else if (i18n.locale !== locale) {
       ;(async () => {
         try {
-          const messages = (await loader(localeOnly)).messages as Messages
+          const messages = (await loader(localeOnly)).messages
           i18n.load(localeOnly, messages)
           i18n.activate(localeOnly)
         } catch (e) {

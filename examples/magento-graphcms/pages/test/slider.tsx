@@ -1,11 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellTitle, GetStaticProps, Title } from '@graphcommerce/next-ui'
+import { AppShellTitle, GetStaticProps, Title, AppBar } from '@graphcommerce/next-ui'
 import SidebarGallery from '@graphcommerce/next-ui/FramerScroller/components/SidebarGallery'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import { AppBar } from '@graphcommerce/next-ui'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = ProductListQuery

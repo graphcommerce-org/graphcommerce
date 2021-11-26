@@ -1,7 +1,7 @@
 import { iconSearch, responsiveVal, SvgImageSimple, UseStyles } from '@graphcommerce/next-ui'
 import { makeStyles, TextField, TextFieldProps, Theme } from '@material-ui/core'
-import React from 'react'
 import clsx from 'clsx'
+import React from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

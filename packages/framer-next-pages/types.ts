@@ -34,13 +34,13 @@ import { RouterProxy } from './context/pageRouterContext'
  * SharedComponent between routes:
  *
  * ```tsx
- * function MySharedComponent({children}: {children:React.ReactNode}) {
- *    return <div>I'm shared {children}</div>
+ * function MySharedComponent({ children }: { children: React.ReactNode }) {
+ *   return <div>I'm shared {children}</div>
  * }
  *
  * const overlay: PageOptions = {
  *   sharedKey: ({ router }) => 'account',
- *   SharedComponent: MySharedComponent
+ *   SharedComponent: MySharedComponent,
  * }
  * ```
  */

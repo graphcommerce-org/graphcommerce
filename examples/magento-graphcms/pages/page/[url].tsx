@@ -8,8 +8,8 @@ import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.gql'
 import { DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import RowRenderer from '../../components/Row/RowRenderer'
 import RowProduct from '../../components/Row/RowProduct'
+import RowRenderer from '../../components/Row/RowRenderer'
 import apolloClient from '../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
