@@ -43,7 +43,7 @@ export default function Footer(props: FooterProps) {
       storeSwitcher={<StoreSwitcherButton />}
       customerService={
         <PageLink href='/service' passHref>
-          <Button variant='pill' color='inherit'>
+          <Button variant='pill' color='default'>
             <Trans>Customer Service</Trans>
           </Button>
         </PageLink>
