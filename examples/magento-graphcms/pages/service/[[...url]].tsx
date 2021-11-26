@@ -53,7 +53,7 @@ function ServicePage({ pages }: Props) {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'left',
   SharedComponent: SheetShell,
-  sharedProps: { variant: 'left', size: responsiveVal(320, 800) },
+  sharedProps: { variantMd: 'left' },
 }
 ServicePage.pageOptions = pageOptions
 

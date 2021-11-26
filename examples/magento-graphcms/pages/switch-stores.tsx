@@ -55,6 +55,7 @@ function StoresIndexPage({ availableStores }: Props) {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'left',
   SharedComponent: SheetShell,
+  sharedProps: { variantMd: 'left' },
 }
 StoresIndexPage.pageOptions = pageOptions
 
@@ -70,8 +71,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await stores).data,
-      variant: 'left',
-      size: responsiveVal(320, 800),
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

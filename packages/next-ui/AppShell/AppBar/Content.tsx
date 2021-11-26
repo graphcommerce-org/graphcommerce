@@ -146,7 +146,7 @@ export type ContentProps = FloatingProps &
 export default function Content(props: ContentProps) {
   const ref = useRef<HTMLDivElement>(null)
 
-  const { left, children, right, divider, floatingMd = false, floatingSm = false, scrollY } = props
+  const { left, children, right, divider, floatingMd = false, floatingSm = false } = props
   const classes = useStyles(props)
 
   const viewportY = useViewportScroll().scrollY

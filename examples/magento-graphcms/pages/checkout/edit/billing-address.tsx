@@ -48,7 +48,7 @@ function EditBillingAddress() {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'left',
   SharedComponent: SheetShell,
-  sharedProps: { variant: 'left', size: responsiveVal(320, 800) },
+  sharedProps: { variantMd: 'left' },
 }
 EditBillingAddress.pageOptions = pageOptions
 

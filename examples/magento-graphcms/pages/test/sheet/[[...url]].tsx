@@ -10,9 +10,6 @@ function SheetDemo() {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'test',
   SharedComponent: SheetShell,
-  sharedProps: {
-    size: 'max',
-  },
   sharedKey: (router) =>
     [
       router.pathname,
