@@ -12,14 +12,12 @@ export const useStyles = makeStyles(
   (theme: Theme) => ({
     /* Styles applied to the root element. */
     root: {
-      border: '2px solid transparent',
       backgroundColor:
         theme.palette.type === 'light'
           ? theme.palette.background.default
           : lighten(theme.palette.background.default, theme.palette.action.hoverOpacity),
       borderRadius: 4,
-      // boxShadow: theme.shadows['1'],
-      boxShadow: `0px 0px 2px ${theme.palette.grey[400]}`,
+      border: `1px solid ${theme.palette.divider}`,
       '&$disabled': {
         borderWidth: 2,
       },
@@ -28,8 +26,8 @@ export const useStyles = makeStyles(
     },
     disabled: {},
     selected: ({ color = 'default' }: StyleProps) => ({
-      border: `2px solid ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
-      boxShadow: `unset`,
+      border: `1px solid ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
+      boxShadow: `inset 0 0 0 1px ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
     }),
     /* Styles applied to the `label` wrapper element. */
     label: {},

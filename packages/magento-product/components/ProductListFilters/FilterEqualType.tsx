@@ -89,7 +89,7 @@ const useFilterEqualStyles = makeStyles(
     },
     isActive: {
       border: `1px solid ${theme.palette.primary.main}`,
-      boxShadow: `inset 0 0 0 4px ${theme.palette.background.paper}`,
+      boxShadow: theme.shadows[2],
     },
   }),
   { name: 'FilterEqual' },
