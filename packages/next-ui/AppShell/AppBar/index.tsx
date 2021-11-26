@@ -1,5 +1,4 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { useViewportScroll } from 'framer-motion'
 import React from 'react'
 import { classesPicker } from '../../Styles/classesPicker'
 import Back, { useShowBack } from './Back'
@@ -24,9 +23,11 @@ type WrappedContent = Omit<ContentProps, 'leftAction' | 'rightAction'> & {
   secondary?: React.ReactNode
 
   additional?: React.ReactNode
+
+  noAlign?: boolean
 }
 
-type AppBarBaseProps = FloatingProps & WrappedContent
+export type AppBarProps = FloatingProps & WrappedContent
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -60,12 +61,32 @@ const useStyles = makeStyles(
         top: `calc(${theme.appShell.headerHeightMd} + calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5))`,
       },
     },
+    stickyNoAlign: {
+      [theme.breakpoints.down('sm')]: {
+        position: 'sticky',
+        left: 0,
+        right: 0,
+        top: 0,
+        marginTop: 0,
+        height: theme.appShell.headerHeightSm,
+        marginBottom: `calc(${theme.appShell.headerHeightSm} * -1)`,
+      },
+      [theme.breakpoints.up('md')]: {
+        position: 'sticky',
+        left: 0,
+        right: 0,
+        top: 0,
+        marginTop: 0,
+        height: theme.appShell.appBarHeightMd,
+        marginBottom: `calc(${theme.appShell.appBarHeightMd} * -1)`,
+      },
+    },
   }),
   { name: 'AppBar' },
 )
 
-export default function AppBarBase(props: AppBarBaseProps) {
-  const { children, additional, divider, primary, secondary, scrollY } = props
+export function AppBar(props: AppBarProps) {
+  const { children, additional, divider, primary, secondary, noAlign } = props
   const classes = useStyles(props)
   const showClose = useShowClose()
   const showBack = useShowBack()
@@ -93,12 +114,12 @@ export default function AppBarBase(props: AppBarBaseProps) {
     visibleSm: !floatingSm,
     visibleMd: !floatingMd,
     noChildren: !children,
+    noAlign,
   })
 
   return (
-    <div {...className('sticky')}>
+    <div {...className('sticky', 'AppBar')}>
       <Content
-        scrollY={scrollY}
         left={left}
         right={right}
         divider={divider}
@@ -110,10 +131,4 @@ export default function AppBarBase(props: AppBarBaseProps) {
       </Content>
     </div>
   )
-}
-
-export type AppBarProps = Omit<AppBarBaseProps, 'scrollY'>
-
-export function AppBar(props: AppBarProps) {
-  return <AppBarBase {...props} scrollY={useViewportScroll().scrollY} />
 }

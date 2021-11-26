@@ -10,7 +10,7 @@ import {
 import { AppShellProvider, classesPicker } from '@graphcommerce/next-ui'
 import { Backdrop, makeStyles, Theme } from '@material-ui/core'
 import { m, useDomEvent, useMotionValue, useSpring } from 'framer-motion'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { SetOptional } from 'type-fest'
 
 const useStyles = makeStyles(
@@ -24,6 +24,11 @@ const useStyles = makeStyles(
     root: {
       display: 'grid',
       cursor: 'default',
+      overflow: 'auto',
+      height: '100vh',
+      ['@supports (-webkit-touch-callout: none)']: {
+        height: '-webkit-fill-available',
+      },
     },
     rootVariantMdLeft: {
       [theme.breakpoints.up('md')]: {
@@ -184,7 +189,7 @@ type SheetHandlerProps = {
 
 function SheetHandler(props: SheetHandlerProps) {
   const { children, variantSm, variantMd } = props
-  const { getScrollSnapPositions, items } = useScrollerContext()
+  const { getScrollSnapPositions } = useScrollerContext()
 
   const classes = useStyles()
   const beforeRef = useRef<HTMLDivElement>(null)
@@ -216,6 +221,7 @@ function SheetHandler(props: SheetHandlerProps) {
   }
 
   const sheetVisbility = useMotionValue(0)
+
   useWatchItems((item) => {
     // Handle closing the sheet when it isn't completely visible anymore.
     if (item.el === beforeRef.current) {
@@ -225,7 +231,7 @@ function SheetHandler(props: SheetHandlerProps) {
     }
 
     if (item.el === sheetRef.current) {
-      sheetVisbility.set(item.visibility.get() > 0.5 ? 1 : 0)
+      sheetVisbility.set(item.visibility.get() > 0.5 ? 1 : 0.01)
     }
   })
 
@@ -257,7 +263,7 @@ function SheetHandler(props: SheetHandlerProps) {
 export type SheetProps = SetOptional<SheetHandlerProps, 'variantSm' | 'variantMd'>
 
 export default function Sheet(props: SheetProps) {
-  const { children, variantSm = 'bottom', variantMd = 'right' } = props
+  const { children, variantSm = 'bottom', variantMd = 'left' } = props
 
   const scrollSnapTypeSm: ScrollSnapType =
     variantSm === 'left' || variantSm === 'right' ? 'inline mandatory' : 'block proximity'

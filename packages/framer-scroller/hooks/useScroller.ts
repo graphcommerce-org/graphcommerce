@@ -21,7 +21,6 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       '-webkit-overflow-scrolling': 'touch',
-      overflow: 'auto',
       '& *': {
         userSelect: 'none',
         userDrag: 'none',
@@ -34,44 +33,45 @@ const useStyles = makeStyles(
         overscrollBehavior: 'auto',
       },
     },
-    rootSmSnapDirBlock: {
-      [theme.breakpoints.down('sm')]: {
-        overflowX: 'hidden',
-        overscrollBehaviorBlock: 'contain',
-      },
-    },
-    rootSmSnapDirInline: {
-      [theme.breakpoints.down('sm')]: {
-        overflowY: 'hidden',
-        overscrollBehaviorInline: 'contain',
-      },
-    },
-    rootSmSnapDirBoth: {
-      [theme.breakpoints.down('sm')]: {
-        overscrollBehavior: 'contain',
-      },
-    },
-
     rootMdSnapDirNone: {
       [theme.breakpoints.up('md')]: {
         overflow: 'hidden',
         overscrollBehavior: 'auto',
       },
     },
+    rootSmSnapDirBlock: {
+      [theme.breakpoints.down('sm')]: {
+        overflowY: 'auto',
+        overscrollBehaviorBlock: 'contain',
+      },
+    },
     rootMdSnapDirBlock: {
       [theme.breakpoints.up('md')]: {
-        overflowX: 'hidden',
+        overflowY: 'auto',
         overscrollBehaviorBlock: 'contain',
+      },
+    },
+    rootSmSnapDirInline: {
+      [theme.breakpoints.down('sm')]: {
+        overflowX: 'auto',
+        overscrollBehaviorInline: 'contain',
       },
     },
     rootMdSnapDirInline: {
       [theme.breakpoints.up('md')]: {
-        overflowY: 'hidden',
+        overflowX: 'auto',
         overscrollBehaviorInline: 'contain',
+      },
+    },
+    rootSmSnapDirBoth: {
+      [theme.breakpoints.down('sm')]: {
+        overflow: 'auto',
+        overscrollBehavior: 'contain',
       },
     },
     rootMdSnapDirBoth: {
       [theme.breakpoints.up('md')]: {
+        overflow: 'auto',
         overscrollBehavior: 'contain',
       },
     },

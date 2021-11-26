@@ -23,14 +23,14 @@ import clsx from 'clsx'
  */
 export function classesPicker<K extends string>(
   classes: Record<string, string>,
-  values: Record<string, boolean | string>,
+  values: Record<string, boolean | string | undefined>,
 ) {
   return (className: K, addClassName?: string) => {
     const mapped: Record<string, string> = Object.fromEntries(
       Object.entries(values)
         .map(([key, value]) =>
-          typeof value === 'boolean'
-            ? [classes[`${className}${capitalize(key)}`], value]
+          typeof value === 'boolean' || typeof value === 'undefined'
+            ? [classes[`${className}${capitalize(key)}`], !!value]
             : [classes[`${className}${capitalize(key)}${capitalize(value)}`], true],
         )
         .filter((v) => !!v[0] && v[1]),

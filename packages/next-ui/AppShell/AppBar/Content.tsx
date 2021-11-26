@@ -1,6 +1,6 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Divider, makeStyles, Theme } from '@material-ui/core'
-import { MotionValue } from 'framer-motion'
+import { MotionValue, useViewportScroll } from 'framer-motion'
 import React, { useRef } from 'react'
 import { UseStyles } from '../..'
 import { classesPicker } from '../../Styles/classesPicker'
@@ -141,7 +141,6 @@ export type ContentProps = FloatingProps &
     left?: React.ReactNode
     right?: React.ReactNode
     divider?: React.ReactNode
-    scrollY: MotionValue<number>
   }
 
 export default function Content(props: ContentProps) {
@@ -150,7 +149,8 @@ export default function Content(props: ContentProps) {
   const { left, children, right, divider, floatingMd = false, floatingSm = false, scrollY } = props
   const classes = useStyles(props)
 
-  const scrolled = useMotionValueValue(scrollY, (y) => y > 50)
+  const viewportY = useViewportScroll().scrollY
+  const scrolled = useMotionValueValue(viewportY, (y) => y > 50)
 
   const className = classesPicker<Classes>(classes, {
     floatingSm,
