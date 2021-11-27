@@ -127,6 +127,9 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontSize: responsiveVal(28, 64),
         fontWeight: 700,
+        '@supports (font-variation-settings: normal)': {
+          fontVariationSettings: "'wght' 660",
+        },
         // letterSpacing: '-0.0375em',
         lineHeight: 1.22,
       },
@@ -134,6 +137,9 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontSize: responsiveVal(25, 40),
         fontWeight: 700,
+        '@supports (font-variation-settings: normal)': {
+          fontVariationSettings: "'wght' 630",
+        },
         // letterSpacing: '-0.0375em',
         lineHeight: 1.35,
       },
@@ -141,12 +147,18 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontSize: responsiveVal(22, 30),
         fontWeight: 700,
+        '@supports (font-variation-settings: normal)': {
+          fontVariationSettings: "'wght' 680",
+        },
         // letterSpacing: '-0.0375em',
         lineHeight: 1.55,
       },
       h4: {
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontWeight: 500,
+        '@supports (font-variation-settings: normal)': {
+          fontVariationSettings: "'wght' 520",
+        },
         fontSize: responsiveVal(18, 26),
         // letterSpacing: '-0.0375em',
         lineHeight: 1.55,
@@ -154,6 +166,9 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       h5: {
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontWeight: 700,
+        '@supports (font-variation-settings: normal)': {
+          fontVariationSettings: "'wght' 710",
+        },
         // letterSpacing: '-0.0375em',
         fontSize: responsiveVal(17, 20),
         lineHeight: 1.55,
@@ -162,6 +177,9 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontSize: responsiveVal(17, 20),
         fontWeight: 550,
+        '@supports (font-variation-settings: normal)': {
+          fontVariationSettings: "'wght' 530",
+        },
         // letterSpacing: '-0.0375em',
         lineHeight: 1.8,
       },
