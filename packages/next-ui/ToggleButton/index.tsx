@@ -3,6 +3,7 @@
 import { capitalize, lighten, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React, { FormEvent } from 'react'
+import { responsiveVal } from '..'
 import Button, { ButtonProps } from '../Button'
 import { UseStyles } from '../Styles'
 
@@ -12,11 +13,7 @@ export const useStyles = makeStyles(
   (theme: Theme) => ({
     /* Styles applied to the root element. */
     root: {
-      backgroundColor:
-        theme.palette.type === 'light'
-          ? theme.palette.background.default
-          : lighten(theme.palette.background.default, theme.palette.action.hoverOpacity),
-      borderRadius: 4,
+      borderRadius: responsiveVal(8, 12),
       border: `1px solid ${theme.palette.divider}`,
       '&$disabled': {
         borderWidth: 2,
