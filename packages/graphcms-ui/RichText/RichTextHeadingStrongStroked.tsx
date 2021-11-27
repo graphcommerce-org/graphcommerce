@@ -10,14 +10,12 @@ const RichTextHeadingStrongStroked = withStyles((theme: Theme) => ({
     [theme.breakpoints.up('sm')]: {
       fontSize: `calc(${theme.typography.h1.fontSize}*1.3)`,
     },
-    WebkitTextStroke: `0.9px ${theme.palette.text.primary}`,
     '& strong': {
-      color: 'transparent',
-      WebkitTextStroke: `0.9px ${theme.palette.text.primary}`,
+      // https://github.com/rsms/inter/issues/292#issuecomment-674993644
+      color: theme.palette.background.default,
+      textShadow: `1.2px 0 0 ${theme.palette.text.primary},0 1.2px 0 ${theme.palette.text.primary},-1.2px 0 0 ${theme.palette.text.primary},0 -1.2px 0 ${theme.palette.text.primary}`,
     },
-    [theme.breakpoints.up('md')]: {
-      WebkitTextStroke: `1.2x ${theme.palette.text.primary}`,
-    },
+    [theme.breakpoints.up('md')]: {},
   },
 }))(RichText)
 
