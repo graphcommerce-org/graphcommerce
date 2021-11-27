@@ -1,5 +1,5 @@
 import { SvgImage, responsiveVal, iconBox, SvgImageSimple } from '@graphcommerce/next-ui'
-import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { darken, lighten, makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 
 const useStyles = makeStyles(
@@ -14,10 +14,12 @@ const useStyles = makeStyles(
       gridTemplateColumns: `min-content auto`,
       columnGap: theme.spacings.xxs,
       marginTop: theme.spacings.xxs,
-      background: theme.palette.background.paper,
-      border: `1px solid ${theme.palette.divider}`,
+      background:
+        theme.palette.type === 'light'
+          ? darken(theme.palette.background.default, 0.01)
+          : lighten(theme.palette.background.default, 0.2),
       padding: theme.spacings.xxs,
-      borderRadius: responsiveVal(4, 6),
+      borderRadius: responsiveVal(12, 16),
     },
     text: {},
     image: {

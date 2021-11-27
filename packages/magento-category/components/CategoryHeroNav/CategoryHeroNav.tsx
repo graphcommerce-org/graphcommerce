@@ -1,4 +1,5 @@
 import { ProductListLink } from '@graphcommerce/magento-product'
+import { responsiveVal, Row } from '@graphcommerce/next-ui'
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 import { CategoryHeroNavFragment } from './CategoryHeroNav.gql'
@@ -16,7 +17,6 @@ const useStyles = makeStyles(
       gridTemplateRows: 'auto auto 1fr',
       borderBottom: `1px solid ${theme.palette.divider}`,
       marginBottom: theme.spacings.xl,
-      paddingRight: 0,
       paddingBottom: theme.page.vertical,
       [theme.breakpoints.up('md')]: {
         rowGap: theme.spacings.md,
@@ -62,6 +62,7 @@ const useStyles = makeStyles(
       '& video': {
         objectFit: 'cover',
         width: '100%',
+        borderRadius: responsiveVal(8, 12),
       },
     },
     [theme.breakpoints.up('md')]: {
@@ -96,7 +97,7 @@ export default function CategoryHeroNav({ children, title, asset }: CategoryHero
 
   return (
     <>
-      <div className={classes.wrapper}>
+      <Row className={classes.wrapper} maxWidth={false}>
         <div className={classes.title}>{title}</div>
         <div className={classes.categories}>
           {children?.map((category) => {
@@ -120,7 +121,7 @@ export default function CategoryHeroNav({ children, title, asset }: CategoryHero
         <div className={classes.placeholder}>
           <div>{asset}</div>
         </div>
-      </div>
+      </Row>
     </>
   )
 }

@@ -17,6 +17,8 @@ const useStyles = makeStyles(
         gridTemplateColumns: '1fr auto',
         columnGap: `${theme.spacings.lg}`,
       },
+      borderRadius: responsiveVal(8, 12),
+      overflow: 'hidden',
     },
     asset: {
       height: '100%',

@@ -82,14 +82,12 @@ function ProductConfigurable(props: Props) {
         <ProductPageMeta {...product} />
         <ProductPageGallery {...product}>
           <div>
-            <Typography component='span' className={classes.prePrice} variant='body2'>
+            <Typography component='span' variant='body2' className={classes.prePrice}>
               <Trans>As low as</Trans>&nbsp;
-            </Typography>
-            <Typography component='span' variant='h6'>
               <Money {...product.price_range.minimum_price.regular_price} />
             </Typography>
           </div>
-          <Typography variant='h3' component='div'>
+          <Typography variant='h3' component='div' gutterBottom>
             {product.name}
           </Typography>
 

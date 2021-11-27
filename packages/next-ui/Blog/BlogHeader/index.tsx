@@ -1,5 +1,6 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
+import { responsiveVal } from '../..'
 import Row from '../../Row'
 import { UseStyles } from '../../Styles'
 
@@ -10,7 +11,11 @@ const useStyles = makeStyles(
       margin: `0 auto`,
       marginBottom: theme.spacings.md,
     },
-    asset: {},
+    asset: {
+      '& img': {
+        borderRadius: responsiveVal(8, 12),
+      },
+    },
   }),
   { name: 'BlogHeader' },
 )

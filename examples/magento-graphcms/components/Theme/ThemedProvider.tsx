@@ -22,9 +22,9 @@ const lightPalette: PaletteOptions = {
     contrastText: '#ffffff',
   },
   background: {
-    default: '#ffffff',
+    default: '#fbfbfb',
     paper: '#ffffff',
-    image: '#F8F8F8',
+    image: '#ffffff',
   },
   divider: '#00000015',
   success: {
@@ -55,7 +55,7 @@ const darkPalette: PaletteOptions = {
   background: {
     default: '#001727',
     paper: '#15293B',
-    image: '#F8F8F8',
+    image: '#ffffff',
   },
   divider: '#ffffff30',
   success: {
@@ -233,6 +233,9 @@ const createOverrides = (theme: Theme): Overrides => {
         '#__next': {
           position: 'relative',
         },
+        img: {
+          filter: 'brightness(1.03)',
+        },
       },
     },
     MuiContainer: {
@@ -283,7 +286,7 @@ const createOverrides = (theme: Theme): Overrides => {
         color: theme.palette.secondary.contrastText,
       },
       outlined: {
-        borderRadius: 0,
+        borderRadius: responsiveVal(8, 12),
       },
       text: {
         padding: `${responsiveVal(8, 10)} ${responsiveVal(12, 22)}`,
@@ -322,11 +325,16 @@ const createOverrides = (theme: Theme): Overrides => {
     },
     MuiOutlinedInput: {
       root: {
+        borderRadius: responsiveVal(6, 8),
         '&$focused $notchedOutline': {
-          borderColor: theme.palette.secondary.main,
+          borderColor: theme.palette.divider,
         },
       },
+      notchedOutline: {
+        borderColor: theme.palette.divider,
+      },
     },
+
     MuiListItemIcon: {
       root: {
         color: theme.palette.text.primary,

@@ -1,4 +1,4 @@
-import { ContainerProps, Theme, makeStyles } from '@material-ui/core'
+import { ContainerProps, Theme, makeStyles, useTheme } from '@material-ui/core'
 import { m, useTransform, useViewportScroll } from 'framer-motion'
 import React from 'react'
 import Row from '..'
@@ -7,10 +7,6 @@ import responsiveVal from '../../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    container: {
-      paddingLeft: 0,
-      paddingRight: 0,
-    },
     wrapper: {
       position: 'relative',
     },
@@ -55,10 +51,17 @@ const useStyles = makeStyles(
         objectFit: 'cover',
         width: '100%',
         height: '100%',
+        ['@supports (-webkit-touch-callout: none)']: {
+          borderRadius: responsiveVal(8, 12),
+        },
       },
       [theme.breakpoints.up('md')]: {
         height: '100%',
       },
+    },
+    animated: {
+      borderRadius: responsiveVal(8, 12),
+      overflow: 'hidden',
     },
   }),
   { name: 'HeroBanner' },
@@ -74,23 +77,28 @@ export type HeroBannerProps = UseStyles<typeof useStyles> &
 export default function HeroBanner(props: HeroBannerProps) {
   const { pageLinks, videoSrc, children, ...containerProps } = props
   const classes = useStyles(props)
-
+  const theme = useTheme()
   const { scrollY } = useViewportScroll()
-  const actionsAnimWidth = useTransform(
+  const width = useTransform(
     scrollY,
     [10, 150],
-    [`calc(100% - ${responsiveVal(30, 60)})`, `calc(100% - ${responsiveVal(0, 0)})`],
+    [`calc(100% - ${responsiveVal(20, 60)}))`, `calc(100% - ${responsiveVal(0, 0)})`],
+  )
+  const borderRadius = useTransform(
+    scrollY,
+    [10, 150],
+    [`${responsiveVal(8, 12)}`, `${responsiveVal(0, 0)}`],
   )
 
   return (
-    <Row maxWidth={false} {...containerProps} className={classes.container}>
+    <Row maxWidth={false} {...containerProps} disableGutters>
       <div className={classes.wrapper}>
         <div className={classes.copy}>
           {children}
           {pageLinks}
         </div>
         <div className={classes.asset}>
-          <m.div style={{ width: actionsAnimWidth }}>
+          <m.div style={{ width, borderRadius }} className={classes.animated}>
             <video src={videoSrc} autoPlay muted loop playsInline disableRemotePlayback />
           </m.div>
         </div>

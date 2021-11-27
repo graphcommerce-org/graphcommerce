@@ -1,5 +1,6 @@
 import { ContainerProps, makeStyles, Theme } from '@material-ui/core'
 import Row from '..'
+import { responsiveVal } from '../..'
 import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
@@ -27,6 +28,7 @@ const useStyles = makeStyles(
           filter: 'brightness(100%)',
           height: '100%',
         },
+        borderRadius: responsiveVal(8, 12),
       },
     },
     copy: {
