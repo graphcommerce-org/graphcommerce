@@ -14,14 +14,15 @@ const useStyles = makeStyles(
           : theme.palette.background.paper,
       justifyItems: 'center',
       columnGap: theme.spacings.lg,
-      paddingTop: theme.spacings.xl,
-      paddingBottom: theme.spacings.xl,
+      paddingTop: theme.spacings.lg,
+      paddingBottom: theme.spacings.lg,
       [theme.breakpoints.up('md')]: {
         paddingTop: 0,
         paddingBottom: 0,
         background: 'none',
         gridTemplateColumns: '1fr 1fr',
       },
+      borderRadius: responsiveVal(8, 12),
     },
     asset: {
       height: '100%',
@@ -68,9 +69,11 @@ export default function ImageText(props: ImageTextProps) {
   const classes = useStyles(props)
 
   return (
-    <Row className={classes.wrapper}>
-      <div className={classes.asset}>{item}</div>
-      <div className={classes.copy}>{children}</div>
+    <Row maxWidth={false}>
+      <Row className={classes.wrapper}>
+        <div className={classes.asset}>{item}</div>
+        <div className={classes.copy}>{children}</div>
+      </Row>{' '}
     </Row>
   )
 }

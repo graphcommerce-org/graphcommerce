@@ -10,8 +10,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       marginTop: 0,
     },
     '& p, & li': {
-      ...theme.typography.h4,
+      ...theme.typography.body1,
       fontWeight: 400,
+
       [theme.breakpoints.up('md')]: {
         ...theme.typography.h3,
         fontWeight: 400,
