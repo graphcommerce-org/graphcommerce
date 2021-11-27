@@ -191,7 +191,7 @@ const useStyles = makeStyles(
         pointerEvents: 'all',
       },
       '& * > button': {
-        boxShadow: theme.shadows[3],
+        boxShadow: theme.shadows[6],
       },
       [theme.breakpoints.up('md')]: {
         position: 'fixed',

@@ -40,7 +40,7 @@ const useFilterRangeType = makeStyles(
         marginLeft: `-${sliderThumbWidth * 0.5}px`,
         marginTop: `-${sliderThumbWidth * 0.5}px`,
         background: theme.palette.background.default,
-        boxShadow: theme.shadows[4],
+        boxShadow: theme.shadows[6],
       },
     },
   }),

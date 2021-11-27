@@ -2,9 +2,8 @@ import { styled } from '@material-ui/core'
 
 const SearchDivider = styled('div')(
   ({ theme }) => ({
-    boxShadow: '0 5px 4px 0 rgb(3 3 3 / 3%)',
+    borderBottom: `1px solid ${theme.palette.divider}`,
     width: '100%',
-    height: 16,
     marginTop: theme.spacings.md,
     marginBottom: theme.spacings.md,
   }),

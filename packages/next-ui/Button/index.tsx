@@ -67,7 +67,7 @@ const useStyles = makeStyles<
         backgroundColor: theme.palette.secondary.main,
         color: theme.palette.primary.contrastText,
         borderRadius: '99em',
-        boxShadow: theme.shadows[1],
+        boxShadow: theme.shadows[6],
         '&:hover': {
           background: theme.palette.secondary.dark,
         },

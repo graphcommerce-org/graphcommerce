@@ -33,6 +33,7 @@ const useStyles = makeStyles(
       },
     },
     container: {
+      position: 'relative',
       maxWidth: '100%',
       padding: 6,
       paddingLeft: 0,
@@ -41,6 +42,16 @@ const useStyles = makeStyles(
         background: theme.palette.background.default,
         borderRadius: '99em',
       },
+    },
+    shadow: {
+      pointerEvents: 'none',
+      zindex: '-1',
+      borderRadius: '99em',
+      position: 'absolute',
+      height: '100%',
+      width: '100%',
+      top: 0,
+      boxShadow: theme.shadows[6],
       [theme.breakpoints.down('sm')]: {
         boxShadow: 'none !important',
       },
@@ -94,11 +105,12 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
   useEffect(() => {
     const observer = new ResizeObserver(([entry]) => {
       if (window.scrollY > 100) return
-      const offset = wrapperRef.current?.offsetTop ?? 0
+      const offset = wrapperRef.current?.getBoundingClientRect()?.top ?? 0
       const elemHeigh = entry.contentRect.height
       const nextOffset =
-        (wrapperRef.current?.parentElement?.nextElementSibling as HTMLElement | null)?.offsetTop ??
-        0
+        (
+          wrapperRef.current?.parentElement?.nextElementSibling as HTMLElement | null
+        )?.getBoundingClientRect()?.top ?? 0
       const modifier = 5
 
       setSpacing((nextOffset - elemHeigh - offset + 20) * modifier)
@@ -121,10 +133,7 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
     return scrollY.onChange(onCheckStickyChange)
   }, [isSticky, scrollHalfway, scrollY])
 
-  const opacity = useTransform(scrollY, [startPosition, startPosition + spacing], [0, 0.1])
-  const boxShadow = useMotionTemplate`
-    0 4px 12px 0 rgba(0, 0, 0, ${opacity})
-    `
+  const opacity = useTransform(scrollY, [startPosition, startPosition + spacing], [0, 1])
 
   return (
     <m.div className={classes.wrapper} ref={wrapperRef}>
@@ -132,17 +141,15 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
         <ScrollerButton direction='left' className={classes.sliderPrev}>
           <SvgImageSimple src={iconChevronLeft} />
         </ScrollerButton>
-        <m.div
-          className={clsx(classes.container, isSticky && classes.containerSticky)}
-          style={{ boxShadow }}
-        >
+        <div className={clsx(classes.container, isSticky && classes.containerSticky)}>
           <Scroller
             className={clsx(classes.scroller, isSticky && classes.scrollerSticky)}
             hideScrollbar
           >
             {children}
           </Scroller>
-        </m.div>
+          <m.div className={classes.shadow} style={{ opacity }}></m.div>
+        </div>
         <ScrollerButton direction='right' className={classes.sliderNext}>
           <SvgImageSimple src={iconChevronRight} />
         </ScrollerButton>

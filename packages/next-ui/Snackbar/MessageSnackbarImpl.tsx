@@ -161,6 +161,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
         onClose={hideSnackbar}
       >
         <SnackbarContent
+          elevation={12}
           classes={{
             root: clsxBonus('root'),
             message: clsxBonus('message'),
