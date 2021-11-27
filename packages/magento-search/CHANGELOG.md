@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.5.3...@graphcommerce/magento-search@3.5.4) (2021-11-27)
+
+
+### Bug Fixes
+
+* replace shadow with border ([56b2078](https://github.com/ho-nl/m2-pwa/commit/56b20786920c5c73faf35c8fbde425c01a88f411))
+
+
+
+
+
 # [3.5.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.4.20...@graphcommerce/magento-search@3.5.0) (2021-11-12)
 
 

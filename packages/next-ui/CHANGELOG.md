@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.18.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.18.1...@graphcommerce/next-ui@3.18.2) (2021-11-27)
+
+
+### Bug Fixes
+
+* shadow snackbar with elevation ([8d7d011](https://github.com/ho-nl/m2-pwa/commit/8d7d0119357325f5c838def4ae8dc4ae19a43a6f))
+
+
+
+
+
 ## [3.18.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.18.0...@graphcommerce/next-ui@3.18.1) (2021-11-22)
 
 

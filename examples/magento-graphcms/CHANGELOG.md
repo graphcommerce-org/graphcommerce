@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.137.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.137.1...@graphcommerce/magento-graphcms@2.137.2) (2021-11-27)
+
+
+### Bug Fixes
+
+* correct footer button color ([8cfe444](https://github.com/ho-nl/m2-pwa/commit/8cfe44434a8c37075470927b176c7dabcb9e06ab))
+* nice shadow palette ([8aee834](https://github.com/ho-nl/m2-pwa/commit/8aee8341045320389d794ec127a83c8861a17b2c))
+* reset MuiButton shadow to default ([c0d2ea7](https://github.com/ho-nl/m2-pwa/commit/c0d2ea7601cb16f3443e978b4a0076330317768a))
+* shadows ([bddd006](https://github.com/ho-nl/m2-pwa/commit/bddd0063f520f62ae5f7d1323cdf6a79ec341ac2))
+* shadows ([877f431](https://github.com/ho-nl/m2-pwa/commit/877f4312a1fd4e2fed7375ea7ef1208549c7d892))
+* softer shadows ([7b6664f](https://github.com/ho-nl/m2-pwa/commit/7b6664f8b16ada8f65113bd1f990735b91356650))
+
+
+
+
+
 # [2.137.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.136.0...@graphcommerce/magento-graphcms@2.137.0) (2021-11-22)
 
 

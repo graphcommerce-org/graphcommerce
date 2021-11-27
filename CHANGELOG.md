@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.155.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.155.0...@graphcommerce/graphcommerce@2.155.1) (2021-11-27)
+
+
+### Bug Fixes
+
+* correct footer button color ([8cfe444](https://github.com/ho-nl/m2-pwa/commit/8cfe44434a8c37075470927b176c7dabcb9e06ab))
+* incorrect usage of offsetTop ([94f1616](https://github.com/ho-nl/m2-pwa/commit/94f161638017b64d898a2ab990bf69d31dc38319))
+* nice shadow palette ([8aee834](https://github.com/ho-nl/m2-pwa/commit/8aee8341045320389d794ec127a83c8861a17b2c))
+* replace shadow with border ([56b2078](https://github.com/ho-nl/m2-pwa/commit/56b20786920c5c73faf35c8fbde425c01a88f411))
+* reset MuiButton shadow to default ([c0d2ea7](https://github.com/ho-nl/m2-pwa/commit/c0d2ea7601cb16f3443e978b4a0076330317768a))
+* shadow snackbar with elevation ([8d7d011](https://github.com/ho-nl/m2-pwa/commit/8d7d0119357325f5c838def4ae8dc4ae19a43a6f))
+* shadows ([bddd006](https://github.com/ho-nl/m2-pwa/commit/bddd0063f520f62ae5f7d1323cdf6a79ec341ac2))
+* shadows ([877f431](https://github.com/ho-nl/m2-pwa/commit/877f4312a1fd4e2fed7375ea7ef1208549c7d892))
+* shadows ([8f43f33](https://github.com/ho-nl/m2-pwa/commit/8f43f33190e429e8abea8eddc0646ffd670f2ce8))
+* softer shadows ([7b6664f](https://github.com/ho-nl/m2-pwa/commit/7b6664f8b16ada8f65113bd1f990735b91356650))
+
+
+
+
+
 # [2.155.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.154.0...@graphcommerce/graphcommerce@2.155.0) (2021-11-24)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.6.3...@graphcommerce/magento-product@3.6.4) (2021-11-27)
+
+
+### Bug Fixes
+
+* incorrect usage of offsetTop ([94f1616](https://github.com/ho-nl/m2-pwa/commit/94f161638017b64d898a2ab990bf69d31dc38319))
+* shadows ([8f43f33](https://github.com/ho-nl/m2-pwa/commit/8f43f33190e429e8abea8eddc0646ffd670f2ce8))
+
+
+
+
+
 # [3.6.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.5.22...@graphcommerce/magento-product@3.6.0) (2021-11-12)
 
 
