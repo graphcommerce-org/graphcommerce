@@ -53,7 +53,7 @@ export default function BlogAuthor(props: BlogAuthorProps) {
     <div className={classes.wrapper}>
       <Chip
         variant='outlined'
-        size='large'
+        size='medium'
         avatar={<Avatar>{author.charAt(0).toUpperCase()}</Avatar>}
         className={classes.authorChip}
         label={
