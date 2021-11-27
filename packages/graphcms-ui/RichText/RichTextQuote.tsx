@@ -5,6 +5,9 @@ const RichTextQuote = withStyles((theme: Theme) => ({
   paragraph: {
     ...theme.typography.h4,
     fontWeight: 600,
+    '@supports (font-variation-settings: normal)': {
+      fontVariationSettings: "'wght' 620",
+    },
     textTransform: 'uppercase',
     maxWidth: '60%',
     textAlign: 'center',

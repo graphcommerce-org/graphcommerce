@@ -167,7 +167,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontWeight: 700,
         '@supports (font-variation-settings: normal)': {
-          fontVariationSettings: "'wght' 710",
+          fontVariationSettings: "'wght' 680",
         },
         // letterSpacing: '-0.0375em',
         fontSize: responsiveVal(17, 20),
