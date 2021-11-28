@@ -29,7 +29,7 @@ const useStyles = makeStyles(
     sizeSmall: {
       width: responsiveVal(12, 16),
       height: responsiveVal(12, 16),
-      strokeWidth: 2.3,
+      strokeWidth: 2.1,
     },
     sizeLarge: {
       width: responsiveVal(24, 28),
