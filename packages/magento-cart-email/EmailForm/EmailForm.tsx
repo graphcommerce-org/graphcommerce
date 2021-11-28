@@ -12,7 +12,7 @@ import {
 import { AnimatedRow, Button, FormDiv, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { CircularProgress, makeStyles, TextField } from '@material-ui/core'
+import { CircularProgress, makeStyles, TextField, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
@@ -86,6 +86,11 @@ export default function EmailForm(props: EmailFormProps) {
       <AnimatePresence initial={false}>
         <AnimatedRow key='emailform'>
           <form noValidate onSubmit={submit}>
+            <FormRow>
+              <Typography variant='h5' gutterBottom>
+                <Trans>Login or create an account</Trans>
+              </Typography>
+            </FormRow>
             <FormRow className={classes.formRow}>
               <TextField
                 variant='outlined'

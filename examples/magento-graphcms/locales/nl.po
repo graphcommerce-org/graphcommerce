@@ -354,3 +354,6 @@ msgstr "terug gestuurd"
 
 msgid "shipped"
 msgstr "verzonden"
+
+msgid "Login or create an account"
+msgstr "Log in of maak een account aan"
