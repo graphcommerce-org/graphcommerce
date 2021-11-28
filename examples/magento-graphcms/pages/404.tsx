@@ -1,7 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { SearchForm } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, Separator } from '@graphcommerce/next-ui'
+import { GetStaticProps, Separator, icon404, SvgImageSimple } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Box, Container, Typography, Link } from '@material-ui/core'
 import PageLink from 'next/link'
@@ -34,7 +34,8 @@ function RouteNotFoundPage() {
       <PageMeta title='Page not found' metaRobots={['noindex']} />
       <Container maxWidth='sm'>
         <Box textAlign='center' mt={16} mb={16}>
-          <Typography variant='h3' component='h1'>
+          <SvgImageSimple src={icon404} size='xxl' />
+          <Typography variant='h3' component='h1' gutterBottom>
             <Trans>Whoops our bad...</Trans>
           </Typography>
           <Typography variant='body1'>
