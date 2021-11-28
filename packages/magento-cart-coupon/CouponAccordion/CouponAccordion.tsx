@@ -3,6 +3,7 @@ import {
   AnimatedRow,
   iconChevronDown,
   iconChevronUp,
+  responsiveVal,
   SvgImageSimple,
   UseStyles,
 } from '@graphcommerce/next-ui'
@@ -23,7 +24,7 @@ const useStyles = makeStyles(
       },
       boxShadow: 'none',
       border: `1px solid ${theme.palette.divider}`,
-      borderRadius: 8,
+      borderRadius: responsiveVal(12, 16),
       overflow: 'hidden',
     },
     button: {
