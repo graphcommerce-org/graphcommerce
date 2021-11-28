@@ -32,6 +32,9 @@ export const useStyles = makeStyles(
     button: {
       minHeight: theme.spacings.lg,
     },
+    helperText: {
+      position: 'absolute',
+    },
   }),
   { name: 'ConfigurableOptions' },
 )
@@ -126,7 +129,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                   })}
                 </ToggleButtonGroup>
                 {error && (
-                  <FormHelperText error {...FormHelperTextProps}>
+                  <FormHelperText error {...FormHelperTextProps} className={classes.helperText}>
                     {`${option.label} is ${errorHelperText?.type}`}
                   </FormHelperText>
                 )}
