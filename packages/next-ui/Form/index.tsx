@@ -1,6 +1,7 @@
-import { darken, makeStyles, Theme } from '@material-ui/core'
+import { darken, lighten, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
+import { responsiveVal } from '..'
 import { UseStyles } from '../Styles'
 
 const useStyles = makeStyles(
@@ -14,12 +15,16 @@ const useStyles = makeStyles(
       background: theme.palette.secondary.light,
     },
     default: {
-      background: darken(theme.palette.background.paper, 0.02),
+      background:
+        theme.palette.type === 'light'
+          ? darken(theme.palette.background.default, 0.03)
+          : lighten(theme.palette.background.default, 0.2),
     },
     contained: {
       padding: theme.spacings.sm,
+      // paddingTop: theme.spacings.md,
       overflow: 'hidden',
-      borderRadius: 6,
+      borderRadius: responsiveVal(12, 16),
     },
   }),
   { name: 'Form' },
