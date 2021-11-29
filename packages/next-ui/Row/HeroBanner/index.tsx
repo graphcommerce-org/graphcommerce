@@ -18,6 +18,7 @@ const useStyles = makeStyles(
       justifyItems: 'center',
       alignContent: 'center',
       padding: `${theme.spacings.lg} ${theme.spacings.md}`,
+      paddingTop: `calc(${theme.spacings.lg} - ${theme.spacings.md})`,
       minHeight: `calc(100vh - ${theme.page.headerInnerHeight.sm})`,
       '& > *': {
         zIndex: 1,
@@ -34,6 +35,7 @@ const useStyles = makeStyles(
       },
       [theme.breakpoints.up('lg')]: {
         padding: `${theme.spacings.lg} ${theme.spacings.lg}`,
+        paddingTop: `calc(${theme.spacings.lg} - ${theme.spacings.md})`,
         width: '50%',
       },
     },

@@ -8,9 +8,10 @@ const RichTextHero = withStyles((theme: Theme) => ({
     textTransform: 'uppercase',
     maxWidth: '70%',
     textAlign: 'center',
+    margin: 0,
     marginBottom: theme.spacings.md,
     [theme.breakpoints.up('sm')]: {
-      fontSize: `calc(${theme.typography.h1.fontSize}*1.4)`,
+      fontSize: `calc(${theme.typography.h1.fontSize}*1.3)`,
     },
     [theme.breakpoints.up('md')]: {
       textAlign: 'left',
