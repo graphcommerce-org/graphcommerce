@@ -22,21 +22,13 @@ export type ScrollerProviderProps = {
   scrollSnapStop?: ScrollSnapStop
 }
 
-function useObserveItems(
-  scrollerRef: ReactHtmlRefObject,
-  items: MotionValue<ItemState[]>,
-  enableSnap: ScrollerContext['enableSnap'],
-) {
+function useObserveItems(scrollerRef: ReactHtmlRefObject, items: MotionValue<ItemState[]>) {
   const observe = useCallback(
     (itemsArr: ItemState[]) => {
       if (!scrollerRef.current) return () => {}
 
       const find = ({ target }: { target: Element }) => itemsArr.find((i) => i.el === target)
 
-      const resizeCallback = (entry: ResizeObserverEntry) => {
-        enableSnap()
-        find(entry)
-      }
       const intersectionCallback = (entry: IntersectionObserverEntry) => {
         const item = find(entry)
         item?.visibility.set(entry.intersectionRatio)
@@ -45,7 +37,6 @@ function useObserveItems(
         const scaled = (1 - 0.2) * entry.intersectionRatio + 0.2
         item?.opacity.set(scaled)
       }
-      const ro = new ResizeObserver((entries) => entries.forEach(resizeCallback))
       const io = new IntersectionObserver((entries) => entries.forEach(intersectionCallback), {
         root: scrollerRef.current,
         threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
@@ -56,18 +47,14 @@ function useObserveItems(
       )
       itemsArr.forEach((value, idx) => {
         if (!value.el) value.el = htmlEls?.[idx]
-        if (value.el) {
-          ro.observe(value.el)
-          io.observe(value.el)
-        }
+        if (value.el) io.observe(value.el)
       })
 
       return () => {
-        ro.disconnect()
         io.disconnect()
       }
     },
-    [enableSnap, scrollerRef],
+    [scrollerRef],
   )
 
   useEffect(() => {
@@ -110,12 +97,14 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
   }, [])
 
   const disableSnap = useCallback(() => {
+    if (snap.get() === false) return
     stop()
     snap.set(false)
   }, [snap, stop])
 
   const enableSnap = useCallback(() => {
-    if (!scrollerRef.current) return
+    if (!scrollerRef.current || snap.get() === true) return
+
     stop()
 
     // We're setting the current scrollLeft to prevent resetting the scroll position on Safari
@@ -126,7 +115,7 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
     scrollerRef.current.scrollTop = t
   }, [snap, stop])
 
-  useObserveItems(scrollerRef, items, enableSnap)
+  useObserveItems(scrollerRef, items)
 
   const registerChildren = useCallback(
     (children: React.ReactNode) => {
