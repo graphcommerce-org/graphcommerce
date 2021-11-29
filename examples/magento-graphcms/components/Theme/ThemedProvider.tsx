@@ -1,6 +1,7 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
 import { responsiveVal } from '@graphcommerce/next-ui'
+import { responsiveTyp } from '@graphcommerce/next-ui'
 import { createTheme, CssBaseline, Theme, ThemeProvider, lighten, alpha } from '@material-ui/core'
 import { PaletteOptions } from '@material-ui/core/styles/createPalette'
 import { Overrides } from '@material-ui/core/styles/overrides'
@@ -125,7 +126,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
        */
       h1: {
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-        fontSize: responsiveVal(28, 64),
+        ...responsiveTyp(28, 64),
         fontWeight: 700,
         '@supports (font-variation-settings: normal)': {
           fontVariationSettings: "'wght' 660",
@@ -135,7 +136,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       },
       h2: {
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-        fontSize: responsiveVal(25, 40),
+        ...responsiveTyp(25, 40),
         fontWeight: 700,
         '@supports (font-variation-settings: normal)': {
           fontVariationSettings: "'wght' 630",
@@ -145,7 +146,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       },
       h3: {
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-        fontSize: responsiveVal(22, 30),
+        ...responsiveTyp(22, 30),
         fontWeight: 700,
         '@supports (font-variation-settings: normal)': {
           fontVariationSettings: "'wght' 680",
@@ -159,7 +160,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
         '@supports (font-variation-settings: normal)': {
           fontVariationSettings: "'wght' 520",
         },
-        fontSize: responsiveVal(18, 26),
+        ...responsiveTyp(18, 26),
         // letterSpacing: '-0.0375em',
         lineHeight: 1.55,
       },
@@ -170,12 +171,12 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
           fontVariationSettings: "'wght' 680",
         },
         // letterSpacing: '-0.0375em',
-        fontSize: responsiveVal(17, 20),
+        ...responsiveTyp(17, 20),
         lineHeight: 1.55,
       },
       h6: {
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-        fontSize: responsiveVal(17, 20),
+        ...responsiveTyp(17, 20),
         fontWeight: 550,
         '@supports (font-variation-settings: normal)': {
           fontVariationSettings: "'wght' 530",
@@ -184,7 +185,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
         lineHeight: 1.8,
       },
       subtitle1: {
-        fontSize: responsiveVal(16, 19, 1920),
+        ...responsiveTyp(16, 19),
         fontWeight: 400,
         // letterSpacing: '-0.0375em',
         lineHeight: 1.7,
@@ -192,25 +193,25 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       fontWeightBold: 600,
       body1: {
         // We're boosting the fontSize to be 17px at 1280
-        fontSize: responsiveVal(16, 18, 1920),
+        ...responsiveTyp(16, 18),
         lineHeight: 1.7,
       },
       subtitle2: {
-        fontSize: responsiveVal(14, 16),
+        ...responsiveTyp(14, 16),
         fontWeight: 600,
         lineHeight: 1.7,
       },
       body2: {
-        fontSize: responsiveVal(13, 15),
+        ...responsiveTyp(13, 15),
         lineHeight: 1.7,
       },
       // https://web.dev/font-size/#how-the-lighthouse-font-size-audit-fails
       caption: {
-        fontSize: responsiveVal(12, 13),
+        ...responsiveTyp(12, 13),
       },
       button: {},
       overline: {
-        fontSize: responsiveVal(12, 14),
+        ...responsiveTyp(12, 14),
         fontWeight: 500,
         letterSpacing: 1,
         lineHeight: 1.2,
@@ -332,11 +333,6 @@ const createOverrides = (theme: Theme): Overrides => {
       extended: {
         fontWeight: 400,
         textTransform: 'none',
-      },
-    },
-    MuiInputBase: {
-      root: {
-        fontSize: responsiveVal(16.5, 18, 1920),
       },
     },
     MuiInputLabel: {
