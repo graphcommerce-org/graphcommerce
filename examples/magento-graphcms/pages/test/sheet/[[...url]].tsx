@@ -1,7 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, SheetVariant } from '@graphcommerce/next-ui'
 import React from 'react'
 import { LayoutSheet, LayoutSheetProps } from '../../../components/Layout/LayoutSheet'
+import apolloClient from '../../../lib/apolloClient'
 import { AppShellDemo } from '../minimal-page-shell/[[...url]]'
 
 function SheetDemo() {
@@ -41,10 +43,19 @@ export const getStaticProps: GetStaticProps<
   const url = params?.url ?? []
   const isLeftSidebar = url?.[0] === 'left'
   const isRightSidebar = url?.[0] === 'right'
+  const client = apolloClient(locale, true)
+
+  const conf = client.query({ query: StoreConfigDocument })
 
   const variant = (((isLeftSidebar || isRightSidebar) && url?.[0]) || 'bottom') as SheetVariant
 
-  return { props: { variantSm: variant, variantMd: variant } }
+  return {
+    props: {
+      apolloState: await conf.then(() => client.cache.extract()),
+      variantSm: variant,
+      variantMd: variant,
+    },
+  }
 }
 
 export default SheetDemo

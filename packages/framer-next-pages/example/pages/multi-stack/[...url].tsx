@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/require-await */
 import { PageOptions, usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
-import { SheetVariant, SPRING_ANIM } from '@graphcommerce/framer-sheet'
+import { Sheet, SheetProps } from '@graphcommerce/next-ui'
 import { motion } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticProps } from 'next'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import Grid from '../../components/Grid'
-import LayoutSheet, { LayoutSheetProps } from '../../components/LayoutSheet'
 
 function MultiStack() {
   const [expanded, setExpanded] = useState(true)
@@ -50,31 +49,36 @@ function MultiStack() {
   )
 }
 
-const pageOptions: PageOptions = {
+const pageOptions: PageOptions<SheetProps> = {
   overlayGroup: 'bottom',
-  Layout: LayoutSheet,
+  Layout: Sheet,
   sharedKey: ({ asPath }) => asPath,
 }
 MultiStack.pageOptions = pageOptions
 
 export default MultiStack
 
-type ParsedUrlQuery = { url: [SheetVariant, string] }
+type ParsedUrlQuery = { url: [SheetProps['variantSm'], string] }
 export async function getStaticPaths(): Promise<GetStaticPathsResult<ParsedUrlQuery>> {
   return {
     paths: [
       { params: { url: ['bottom', '0'] } },
       { params: { url: ['left', '0'] } },
       { params: { url: ['right', '0'] } },
-      { params: { url: ['top', '0'] } },
+      // { params: { url: ['top', '0'] } },
     ],
     fallback: 'blocking',
   }
 }
 
-export const getStaticProps: GetStaticProps<LayoutSheetProps, ParsedUrlQuery> = async (ctx) => {
+export const getStaticProps: GetStaticProps<SheetProps, ParsedUrlQuery> = async (ctx) => {
   const variant = ctx.params?.url?.[0] ?? 'top'
   const variants = ['top', 'left', 'bottom', 'right']
 
-  return { props: { variant: variants.includes(variant) ? variant : 'top' } }
+  return {
+    props: {
+      variantMd: variants.includes(variant) ? variant : 'top',
+      variantSm: variants.includes(variant) ? variant : 'top',
+    },
+  }
 }

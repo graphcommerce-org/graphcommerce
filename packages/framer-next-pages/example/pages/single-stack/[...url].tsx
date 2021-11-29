@@ -1,12 +1,10 @@
 /* eslint-disable @typescript-eslint/require-await */
 import { PageOptions, usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
-import { SheetVariant, SPRING_ANIM } from '@graphcommerce/framer-sheet'
 import { motion } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticProps } from 'next'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import Grid from '../../components/Grid'
-import LayoutSheet, { LayoutSheetProps } from '../../components/LayoutSheet'
 
 function MultiStack() {
   const [expanded, setExpanded] = useState(true)

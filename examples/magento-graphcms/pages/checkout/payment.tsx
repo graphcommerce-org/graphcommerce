@@ -28,7 +28,6 @@ import {
   iconChevronRight,
   iconId,
   AppBar,
-  Row,
   Stepper,
   SvgImageSimple,
   Title,
@@ -39,12 +38,11 @@ import { CircularProgress, Container, Dialog, Divider, NoSsr } from '@material-u
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
-import LayoutMinimal, { LayoutFullProps } from '../../components/Layout'
-import { LayoutSheetProps } from '../../components/Layout/LayoutSheet'
+import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
 
 function PaymentPage() {
   const cartId = useCurrentCartId()
@@ -151,7 +149,7 @@ function PaymentPage() {
   )
 }
 
-const pageOptions: PageOptions<LayoutSheetProps> = {
+const pageOptions: PageOptions<LayoutMinimalProps> = {
   Layout: LayoutMinimal,
   sharedKey: () => 'checkout',
 }

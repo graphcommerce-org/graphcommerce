@@ -2,6 +2,7 @@ import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Divider, makeStyles, Theme } from '@material-ui/core'
 import React, { useRef } from 'react'
 import useAppShellHeaderContext from '../AppShell/AppShellProvider/useAppShellHeaderContext'
+import { UseStyles } from '../Styles'
 import { classesPicker } from '../Styles/classesPicker'
 import { FloatingProps } from './types'
 

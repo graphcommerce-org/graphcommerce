@@ -24,12 +24,11 @@ import { Container, NoSsr } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
-import LayoutMinimal, { LayoutFullProps } from '../../components/Layout'
-import { LayoutSheetProps } from '../../components/Layout/LayoutSheet'
+import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
 
 function ShippingPage() {
   const { data: cartData } = useCartQuery(ShippingPageDocument, {
@@ -126,7 +125,7 @@ function ShippingPage() {
   )
 }
 
-const pageOptions: PageOptions<LayoutSheetProps> = {
+const pageOptions: PageOptions<LayoutMinimalProps> = {
   Layout: LayoutMinimal,
   sharedKey: () => 'checkout',
 }
