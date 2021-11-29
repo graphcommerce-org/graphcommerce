@@ -1,6 +1,7 @@
 export * from './AppBar/AppBar'
 
 export { default as AppShellProvider } from './AppShellProvider/AppShellProvder'
+
 export { default as AppShellSticky } from './AppShellSticky'
 export { default as AppShellTitle } from './AppShellTitle'
 export { default as DesktopNavActions } from './DesktopNavActions'
@@ -20,9 +21,6 @@ export * from './MenuFabSecondaryItem'
 export { default as Footer } from './Footer'
 export { default as MenuFabSecondaryItem } from './MenuFabSecondaryItem'
 export { default as SocialIcon } from './Footer/SocialIcon'
-export * from './FullPageShellHeader'
-export { default as FullPageShellHeader } from './FullPageShellHeader'
-export { default as MinimalPageShellHeader } from './MinimalPageShellHeader'
 export { default as PlaceholderFab } from './PlaceholderFab'
 export * from './SheetShellBase'
 export { default as SheetShellBase } from './SheetShellBase'
