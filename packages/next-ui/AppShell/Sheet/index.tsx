@@ -7,11 +7,12 @@ import {
   useScrollTo,
   useWatchItems,
 } from '@graphcommerce/framer-scroller'
-import { AppShellProvider, classesPicker } from '@graphcommerce/next-ui'
-import { Backdrop, makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 import { m, useDomEvent, useMotionValue, useSpring } from 'framer-motion'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { SetOptional } from 'type-fest'
+import { classesPicker } from '../../Styles/classesPicker'
+import AppShellProvider from '../AppShellProvider'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -32,34 +33,34 @@ const useStyles = makeStyles(
     },
     rootVariantSmLeft: {
       [theme.breakpoints.down('sm')]: {
-        gridTemplate: `"afterSheet sheet beforeSheet"`,
-        '&::-webkit-scrollbar': {
-          display: 'none',
-        },
+        gridTemplate: `
+          "sheet beforeSheet"
+          "afterSheet afterSheet"
+        `,
       },
     },
     rootVariantMdLeft: {
       [theme.breakpoints.up('md')]: {
-        gridTemplate: `"afterSheet sheet beforeSheet"`,
-        '&::-webkit-scrollbar': {
-          display: 'none',
-        },
+        gridTemplate: `
+          "sheet beforeSheet"
+          "afterSheet afterSheet"
+        `,
       },
     },
     rootVariantSmRight: {
       [theme.breakpoints.down('sm')]: {
-        gridTemplate: `"beforeSheet sheet afterSheet"`,
-        '&::-webkit-scrollbar': {
-          display: 'none',
-        },
+        gridTemplate: `
+          "beforeSheet sheet"
+          "afterSheet afterSheet"
+        `,
       },
     },
     rootVariantMdRight: {
       [theme.breakpoints.up('md')]: {
-        gridTemplate: `"beforeSheet sheet afterSheet"`,
-        '&::-webkit-scrollbar': {
-          display: 'none',
-        },
+        gridTemplate: `
+          "beforeSheet sheet"
+          "afterSheet afterSheet"
+        `,
       },
     },
     rootVariantSmBottom: {
@@ -123,12 +124,12 @@ const useStyles = makeStyles(
     },
     sheet: {
       gridArea: 'sheet',
+      scrollSnapAlign: 'start',
     },
     sheetVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
         marginTop: -100,
         paddingTop: 100,
-        scrollSnapAlign: 'start',
         scrollSnapStop: 'always',
         display: 'grid',
       },
@@ -166,6 +167,26 @@ const useStyles = makeStyles(
         width: '100vw',
         borderRadius: 10,
         boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.1)',
+      },
+    },
+    sheetPaneVariantSmLeft: {
+      [theme.breakpoints.up('md')]: {
+        paddingBottom: 1,
+      },
+    },
+    sheetPaneVariantMdLeft: {
+      [theme.breakpoints.up('md')]: {
+        paddingBottom: 1,
+      },
+    },
+    sheetPaneVariantSmRight: {
+      [theme.breakpoints.up('md')]: {
+        paddingBottom: 1,
+      },
+    },
+    sheetPaneVariantMdRight: {
+      [theme.breakpoints.up('md')]: {
+        paddingBottom: 1,
       },
     },
     afterSheet: {
@@ -241,7 +262,7 @@ function SheetHandler(props: SheetHandlerProps) {
     }
 
     if (item.el === sheetRef.current) {
-      sheetVisbility.set(item.visibility.get() > 0.2 ? 1 : 0.01)
+      sheetVisbility.set(item.visibility.get() > 0.1 ? 1 : 0.01)
     }
   })
 
@@ -258,7 +279,7 @@ function SheetHandler(props: SheetHandlerProps) {
   return (
     <>
       <m.div {...className('backdrop')} style={{ opacity: useSpring(sheetVisbility) }} />
-      <Scroller {...className('root')} grid={false}>
+      <Scroller {...className('root')} grid={false} hideScrollbar>
         <div {...className('beforeSheet')} ref={beforeRef}></div>
         <div {...className('sheet')} ref={sheetRef}>
           <div {...className('sheetPane')}>{children}</div>
@@ -272,7 +293,7 @@ function SheetHandler(props: SheetHandlerProps) {
 export type SheetProps = SetOptional<SheetHandlerProps, 'variantSm' | 'variantMd'>
 
 export default function Sheet(props: SheetProps) {
-  const { children, variantSm = 'right', variantMd = 'bottom' } = props
+  const { children, variantSm = 'bottom', variantMd = 'right' } = props
 
   const scrollSnapTypeSm: ScrollSnapType =
     variantSm === 'left' || variantSm === 'right' ? 'both mandatory' : 'block proximity'

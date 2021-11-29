@@ -13,8 +13,17 @@ export default function SheetNew() {
       </AppBar>
 
       <AppShellTitle>New Sheet</AppShellTitle>
-      <Container maxWidth='md'>
-        <Box width='100%' height='2000px' bgcolor='#efefef'></Box>
+      <Container maxWidth='md' style={{ paddingBottom: 20 }}>
+        <Box
+          width='100%'
+          height='4000px'
+          style={{
+            backgroundImage:
+              'linear-gradient(45deg, #cccccc 25%, transparent 25%), linear-gradient(-45deg, #cccccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #cccccc 75%), linear-gradient(-45deg, transparent 75%, #cccccc 75%)',
+            backgroundSize: '20px 20px',
+            backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px',
+          }}
+        ></Box>
       </Container>
     </>
   )
