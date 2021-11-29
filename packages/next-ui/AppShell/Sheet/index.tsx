@@ -15,7 +15,7 @@ import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { SetOptional } from 'type-fest'
 import { classesPicker } from '../../Styles/classesPicker'
-import AppShellProvider from '../AppShellProvider'
+import AppShellProvider from '../AppShellProvider/AppShellProvder'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

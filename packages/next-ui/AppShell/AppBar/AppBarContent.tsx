@@ -4,8 +4,8 @@ import { MotionValue, useViewportScroll } from 'framer-motion'
 import React, { useRef } from 'react'
 import { UseStyles } from '../..'
 import { classesPicker } from '../../Styles/classesPicker'
+import useAppShellHeaderContext from '../AppShellProvider/useAppShellHeaderContext'
 import { FloatingProps } from './types'
-import useAppShellHeaderContext from './useAppShellHeaderContext'
 
 type Classes = 'bg' | 'content' | 'left' | 'center' | 'right' | 'divider'
 
@@ -133,7 +133,7 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'Content' },
+  { name: 'PageHeaderContent' },
 )
 
 export type ContentProps = FloatingProps &
@@ -144,7 +144,7 @@ export type ContentProps = FloatingProps &
     divider?: React.ReactNode
   }
 
-export default function Content(props: ContentProps) {
+export default function AppBarContent(props: ContentProps) {
   const ref = useRef<HTMLDivElement>(null)
   const { scroll } = useAppShellHeaderContext()
 

@@ -1,6 +1,6 @@
 import { MotionValue } from 'framer-motion'
 import { useRef } from 'react'
-import appShellHeaderContext, { AppShellHeaderContext } from '../AppBar/appShellHeaderContext'
+import appShellHeaderContext, { AppShellHeaderContext } from './appShellHeaderContext'
 
 type AppShellProviderProps = {
   children: React.ReactNode

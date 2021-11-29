@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import Title, { TitleProps } from '../../Title'
-import useAppShellHeaderContext from '../AppBar/useAppShellHeaderContext'
+import useAppShellHeaderContext from '../AppShellProvider/useAppShellHeaderContext'
 
 type AppShellTitleProps = {
   children: React.ReactNode

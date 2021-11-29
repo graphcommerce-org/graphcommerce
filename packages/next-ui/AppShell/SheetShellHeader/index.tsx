@@ -1,5 +1,5 @@
-import { AppBar, AppBarProps } from '../AppBar'
+import { AppBar, AppBarProps } from '../AppBar/AppBar'
 
-export default function SheetShellHeader(props: AppBarProps) {
+export default function SheetPageHeader(props: AppBarProps) {
   return <AppBar {...props} noAlign />
 }

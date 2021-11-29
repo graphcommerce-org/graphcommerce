@@ -1,9 +1,9 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { classesPicker } from '../../Styles/classesPicker'
-import Back, { useShowBack } from './Back'
-import Close, { useShowClose } from './Close'
-import Content, { ContentProps } from './Content'
+import AppBarBack, { useShowBack } from './AppBarBack'
+import AppBarClose, { useShowClose } from './AppBarClose'
+import AppBarContent, { ContentProps } from './AppBarContent'
 import { FloatingProps } from './types'
 
 type WrappedContent = Omit<ContentProps, 'leftAction' | 'rightAction'> & {
@@ -99,8 +99,8 @@ export function AppBar(props: AppBarProps) {
   // When the primary or secondary is set, the header can't float on mobile even if the prop is passed.
   if (divider || primary || secondary) floatingSm = false
 
-  const close = <Close />
-  const back = <Back variant={floatingSm ? 'pill' : 'pill-link'} />
+  const close = <AppBarClose />
+  const back = <AppBarBack variant={floatingSm ? 'pill' : 'pill-link'} />
 
   let left: React.ReactNode = secondary ?? (showBack && back)
   const right: React.ReactNode = primary ?? (showClose && close)
@@ -119,7 +119,7 @@ export function AppBar(props: AppBarProps) {
 
   return (
     <div {...className('sticky', 'AppBar')}>
-      <Content
+      <AppBarContent
         left={left}
         right={right}
         divider={divider}
@@ -128,7 +128,7 @@ export function AppBar(props: AppBarProps) {
       >
         {children}
         {additional}
-      </Content>
+      </AppBarContent>
     </div>
   )
 }

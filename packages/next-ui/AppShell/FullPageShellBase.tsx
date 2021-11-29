@@ -2,7 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core'
 import { useViewportScroll } from 'framer-motion'
 import React from 'react'
 import { UseStyles } from '../Styles'
-import AppShellProvider from './AppShellProvider'
+import AppShellProvider from './AppShellProvider/AppShellProvder'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

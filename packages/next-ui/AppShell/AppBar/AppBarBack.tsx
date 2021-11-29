@@ -21,7 +21,7 @@ export function useShowBack() {
   return false
 }
 
-export default function Back(props: BackProps) {
+export default function AppBarBack(props: BackProps) {
   const router = usePageRouter()
   const up = useUp()
   const prevUp = usePrevUp()
