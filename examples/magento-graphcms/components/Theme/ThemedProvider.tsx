@@ -334,6 +334,11 @@ const createOverrides = (theme: Theme): Overrides => {
         textTransform: 'none',
       },
     },
+    MuiInputBase: {
+      root: {
+        fontSize: responsiveVal(16.5, 18, 1920),
+      },
+    },
     MuiInputLabel: {
       root: {
         '&$focused:not($error)': {
@@ -346,6 +351,7 @@ const createOverrides = (theme: Theme): Overrides => {
         borderRadius: responsiveVal(6, 8),
         '&$focused $notchedOutline': {
           borderColor: theme.palette.divider,
+          borderWidth: 1,
         },
       },
       notchedOutline: {
