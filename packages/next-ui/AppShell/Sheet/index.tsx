@@ -10,7 +10,8 @@ import {
 } from '@graphcommerce/framer-scroller'
 import { useElementScroll } from '@graphcommerce/framer-utils'
 import { makeStyles, Theme } from '@material-ui/core'
-import { m, useDomEvent, useMotionValue, useSpring } from 'framer-motion'
+import { m, useDomEvent, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { SetOptional } from 'type-fest'
 import { classesPicker } from '../../Styles/classesPicker'
@@ -82,13 +83,11 @@ const useStyles = makeStyles(
     },
     beforeSheet: {
       gridArea: 'beforeSheet',
-      pointerEvents: 'none',
       scrollSnapAlign: 'start',
       scrollSnapStop: 'always',
       display: 'grid',
       alignContent: 'end',
     },
-
     beforeSheetVariantSmRight: {
       [theme.breakpoints.down('sm')]: {
         width: '100vw',
@@ -237,7 +236,7 @@ function SheetHandler(props: SheetHandlerProps) {
   useWatchItems((item) => {
     // Track the visibility of the sheet
     if (item.el === sheetRef.current) {
-      sheetVisbility.set(item.visibility.get() > 0.1 ? 1 : 0.01)
+      sheetVisbility.set(item.visibility.get() > 0.1 ? 1 : 0)
     }
   })
 
@@ -259,9 +258,7 @@ function SheetHandler(props: SheetHandlerProps) {
       }
     }
     openSheet()
-    // We want to run this exactly once.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [direction, getScrollSnapPositions, scrollTo, scrollerRef])
 
   // Open the sheet when loading the page.
   // Make sure the sheet stays open when resizing the window.
@@ -306,7 +303,7 @@ function SheetHandler(props: SheetHandlerProps) {
   )
 
   useEffect(
-    () => sheetVisbility.onChange((v) => opened.current && v < 0.1 && closeOverlay()),
+    () => sheetVisbility.onChange((v) => opened.current && v === 0 && closeOverlay()),
     [closeOverlay, sheetVisbility],
   )
 
@@ -314,7 +311,7 @@ function SheetHandler(props: SheetHandlerProps) {
     <>
       <m.div {...className('backdrop')} style={{ opacity: useSpring(sheetVisbility) }} />
       <Scroller {...className('root')} grid={false} hideScrollbar>
-        <div {...className('beforeSheet')}></div>
+        <div {...className('beforeSheet')} onClick={closeOverlay}></div>
         <div {...className('sheet')} ref={sheetRef}>
           <div {...className('sheetPane')}>{children}</div>
         </div>
