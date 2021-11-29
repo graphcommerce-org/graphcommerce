@@ -5,11 +5,13 @@ import {
   ScrollSnapType,
   useScrollerContext,
   useScrollTo,
+  useWatchItem,
   useWatchItems,
 } from '@graphcommerce/framer-scroller'
+import { useElementScroll } from '@graphcommerce/framer-utils'
 import { makeStyles, Theme } from '@material-ui/core'
 import { m, useDomEvent, useMotionValue, useSpring } from 'framer-motion'
-import React, { useRef } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 import { SetOptional } from 'type-fest'
 import { classesPicker } from '../../Styles/classesPicker'
 import AppShellProvider from '../AppShellProvider'
@@ -220,53 +222,80 @@ type SheetHandlerProps = {
 
 function SheetHandler(props: SheetHandlerProps) {
   const { children, variantSm, variantMd } = props
-  const { getScrollSnapPositions } = useScrollerContext()
+  const { getScrollSnapPositions, scrollerRef } = useScrollerContext()
+  const scrollTo = useScrollTo()
+  const { closeSteps, active, direction } = usePageContext()
+  const pageRouter = usePageRouter()
+  const opened = useRef(false)
 
   const classes = useStyles()
-  const beforeRef = useRef<HTMLDivElement>(null)
-  const sheetRef = useRef<HTMLDivElement>(null)
-
   const className = classesPicker(classes, { variantSm, variantMd })
 
-  const scrollTo = useScrollTo()
-
-  const opened = useRef(false)
-  const isNavigating = useRef(false)
-
-  const { closeSteps, active } = usePageContext()
-  const pageRouter = usePageRouter()
-
-  const closeOverlay = () => {
-    if (isNavigating.current) return
-    isNavigating.current = true
-
-    pageRouter.go(closeSteps * -1)
-  }
-
-  const openSheet = () => {
-    const positions = getScrollSnapPositions()
-    const [, open] = positions.x.map((x, i) => ({ x, y: positions.y[i] }))
-
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    scrollTo(open).then(() => (opened.current = true))
-  }
+  const sheetRef = useRef<HTMLDivElement>(null)
 
   const sheetVisbility = useMotionValue(0)
-
   useWatchItems((item) => {
-    // Handle closing the sheet when it isn't completely visible anymore.
-    if (item.el === beforeRef.current) {
-      // The beforeSheet must be at least 50% visible before closing the sheet.
-      // if (opened.current && item.visibility.get() === 1) closeOverlay()
-      if (!opened.current && item.visibility.get() > 0.99) openSheet()
-    }
-
+    // Track the visibility of the sheet
     if (item.el === sheetRef.current) {
       sheetVisbility.set(item.visibility.get() > 0.1 ? 1 : 0.01)
     }
   })
 
+  useEffect(() => {
+    const openSheet = () => {
+      const scroller = scrollerRef.current
+      if (!scroller) throw Error('Scroller not found')
+
+      const positions = getScrollSnapPositions()
+      const [, open] = positions.x.map((x, i) => ({ x, y: positions.y[i] }))
+
+      if (direction === 1) {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        scrollTo(open).then(() => (opened.current = true))
+      } else {
+        scroller.scrollLeft = open.x
+        scroller.scrollTop = open.y
+        opened.current = true
+      }
+    }
+    openSheet()
+    // We want to run this exactly once.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // Open the sheet when loading the page.
+  // Make sure the sheet stays open when resizing the window.
+  useEffect(() => {
+    const scroller = scrollerRef.current
+    if (!sheetRef.current || !scroller) return () => {}
+
+    const resize = () => {
+      const positions = getScrollSnapPositions()
+      const [, open] = positions.x.map((x, i) => ({ x, y: positions.y[i] }))
+
+      const visible = sheetVisbility.get() === 1
+
+      if (visible && (scroller.scrollLeft !== open.x || scroller.scrollTop !== open.y)) {
+        scroller.scrollLeft = open.x
+        scroller.scrollTop = open.y
+      }
+    }
+
+    window.addEventListener('resize', resize)
+    return () => window.removeEventListener('resize', resize)
+    // We're not checking for all deps, because that will cause rerenders.
+    // The scroller context shouldn't be changing, but at the moment it is.
+  }, [getScrollSnapPositions, scrollerRef, sheetVisbility])
+
   // Handle esccape key
+  const isNavigating = useRef(false)
+
+  const closeOverlay = useCallback(() => {
+    if (isNavigating.current) return
+    isNavigating.current = true
+    pageRouter.go(closeSteps * -1)
+  }, [closeSteps, pageRouter])
+
   useDomEvent(
     useRef(typeof window !== 'undefined' ? window : null),
     'keyup',
@@ -276,11 +305,16 @@ function SheetHandler(props: SheetHandlerProps) {
     { passive: true },
   )
 
+  useEffect(
+    () => sheetVisbility.onChange((v) => opened.current && v < 0.1 && closeOverlay()),
+    [closeOverlay, sheetVisbility],
+  )
+
   return (
     <>
       <m.div {...className('backdrop')} style={{ opacity: useSpring(sheetVisbility) }} />
       <Scroller {...className('root')} grid={false} hideScrollbar>
-        <div {...className('beforeSheet')} ref={beforeRef}></div>
+        <div {...className('beforeSheet')}></div>
         <div {...className('sheet')} ref={sheetRef}>
           <div {...className('sheetPane')}>{children}</div>
         </div>
