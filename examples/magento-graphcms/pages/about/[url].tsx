@@ -3,22 +3,22 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
+import { LayoutFull, LayoutFullProps } from '../../components/Layout'
 import RowRenderer from '../../components/Row/RowRenderer'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = DefaultPageQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function AboutPage({ pages }) {
   return <RowRenderer {...pages[0]} />
 }
 
 AboutPage.pageOptions = {
-  SharedComponent: FullPageShell,
+  Layout: LayoutFull,
 } as PageOptions
 
 export default AboutPage

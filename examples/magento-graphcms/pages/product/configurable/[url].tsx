@@ -25,8 +25,8 @@ import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
 import { Product } from 'schema-dts'
-import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
+import { LayoutFull, LayoutFullProps } from '../../../components/Layout'
 import { RowProduct } from '../../../components/Row'
 import RowRenderer from '../../../components/Row/RowRenderer'
 import Usps from '../../../components/Usps'
@@ -45,7 +45,7 @@ const useStyles = makeStyles(
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function ProductConfigurable(props: Props) {
   const { products, usps, typeProducts, sidebarUsps, pages } = props
@@ -140,7 +140,7 @@ function ProductConfigurable(props: Props) {
 }
 
 ProductConfigurable.pageOptions = {
-  SharedComponent: FullPageShell,
+  Layout: LayoutFull,
 } as PageOptions
 
 export default ProductConfigurable

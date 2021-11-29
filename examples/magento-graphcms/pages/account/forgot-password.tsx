@@ -1,23 +1,23 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ForgotPasswordForm } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellTitle, GetStaticProps, SheetShellHeader, Title } from '@graphcommerce/next-ui'
+import { AppShellTitle, GetStaticProps, SheetAppBar, Title } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Box, Container, NoSsr } from '@material-ui/core'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
+import { LayoutSheet, LayoutSheetProps } from '../../components/Layout/LayoutSheet'
 import apolloClient from '../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<SheetShellProps>
+type GetPageStaticProps = GetStaticProps<LayoutSheetProps>
 
 function AccountForgotPasswordPage() {
   return (
     <>
-      <SheetShellHeader>
+      <SheetAppBar>
         <Title size='small' component='span'>
           <Trans>Forgot your password?</Trans>
         </Title>
-      </SheetShellHeader>
+      </SheetAppBar>
       <Container maxWidth='sm'>
         <PageMeta
           title='Forgot Password'
@@ -43,9 +43,9 @@ function AccountForgotPasswordPage() {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutSheetProps> = {
   overlayGroup: 'account-public',
-  SharedComponent: SheetShell,
+  Layout: LayoutSheet,
 }
 AccountForgotPasswordPage.pageOptions = pageOptions
 

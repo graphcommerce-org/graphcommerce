@@ -38,14 +38,13 @@ import { t, Trans } from '@lingui/macro'
 import { CircularProgress, Container, Dialog, Divider, NoSsr } from '@material-ui/core'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
-import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import MinimalPageShell from '../../components/AppShell/MinimalPageShell'
-import { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
+import LayoutMinimal, { LayoutFullProps } from '../../components/Layout'
+import { LayoutSheetProps } from '../../components/Layout/LayoutSheet'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
 
 function PaymentPage() {
   const cartId = useCurrentCartId()
@@ -152,8 +151,8 @@ function PaymentPage() {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
-  SharedComponent: MinimalPageShell,
+const pageOptions: PageOptions<LayoutSheetProps> = {
+  Layout: LayoutMinimal,
   sharedKey: () => 'checkout',
 }
 PaymentPage.pageOptions = pageOptions

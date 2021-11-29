@@ -1,24 +1,24 @@
-import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
+import { LayoutFull, LayoutFullProps } from '../../components/Layout'
 import apolloClient from '../../lib/apolloClient'
 import { AppShellDemo } from './minimal-page-shell/[[...url]]'
 
 type Props = { url: string } & DefaultPageQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function AppShellTestIndex() {
   return <AppShellDemo baseUrl='/test' />
 }
 
 AppShellTestIndex.pageOptions = {
-  SharedComponent: FullPageShell,
+  Layout: LayoutFull,
 } as PageOptions
 
 export default AppShellTestIndex

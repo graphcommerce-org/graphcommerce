@@ -19,13 +19,12 @@ import { Box, Container, NoSsr } from '@material-ui/core'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
+import { LayoutFullProps, LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
 
 function OrderSuccessPage() {
   const hasCartId = !!useRouter().query.cartId
@@ -96,9 +95,9 @@ function OrderSuccessPage() {
   )
 }
 
-const pageOptions: PageOptions<MinimalPageShellProps> = {
+const pageOptions: PageOptions<LayoutMinimalProps> = {
   overlayGroup: 'checkout',
-  SharedComponent: MinimalPageShell,
+  Layout: LayoutMinimal,
   sharedKey: () => 'checkout',
 }
 OrderSuccessPage.pageOptions = pageOptions

@@ -15,13 +15,13 @@ import React from 'react'
   This file is possibly deprecated.
 */
 
-export type SheetShellProps = {
+export type LayoutSheetProps = {
   headerBack?: React.ReactNode
   cta?: React.ReactNode
   children?: React.ReactNode
 } & Pick<SheetProps, 'size' | 'variant'>
 
-function SheetShell(props: SheetShellProps) {
+function LayoutSheet(props: LayoutSheetProps) {
   const { children, headerBack, cta, variant, size } = props
 
   const router = useRouter()
@@ -51,4 +51,4 @@ function SheetShell(props: SheetShellProps) {
   )
 }
 
-export default SheetShell
+export default LayoutSheet

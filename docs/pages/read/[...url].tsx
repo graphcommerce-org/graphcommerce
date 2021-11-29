@@ -1,6 +1,6 @@
 import fs from 'fs'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { SheetShellBaseProps } from '@graphcommerce/next-ui'
+import { SheetProps } from '@graphcommerce/next-ui'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import React from 'react'
@@ -21,8 +21,8 @@ function ArticlePage(props: PageProps) {
   )
 }
 
-const pageOptions: PageOptions<SheetShellBaseProps> = {
-  SharedComponent: FullPageShell,
+const pageOptions: PageOptions<SheetProps> = {
+  Layout: FullPageShell,
 }
 ArticlePage.pageOptions = pageOptions
 

@@ -12,18 +12,18 @@ import {
   IconHeader,
   GetStaticProps,
   iconBox,
-  SheetShellHeader,
+  SheetAppBar,
   Title,
   AppShellTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import { LayoutSheet, LayoutSheetProps } from '../../../components/Layout/LayoutSheet'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutSheetProps, Props>
 
 function OrderDetailPage(props: Props) {
   const router = usePageRouter()
@@ -50,11 +50,11 @@ function OrderDetailPage(props: Props) {
 
   return (
     <>
-      <SheetShellHeader>
+      <SheetAppBar>
         <Title size='small' component='span' icon={iconBox}>
           <Trans>Order #{orderId}</Trans>
         </Title>
-      </SheetShellHeader>
+      </SheetAppBar>
       <Container maxWidth='md'>
         <NoSsr>
           {(!orderId || !order) && (
@@ -82,9 +82,9 @@ function OrderDetailPage(props: Props) {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutSheetProps> = {
   overlayGroup: 'account',
-  SharedComponent: SheetShell,
+  Layout: LayoutSheet,
 }
 OrderDetailPage.pageOptions = pageOptions
 

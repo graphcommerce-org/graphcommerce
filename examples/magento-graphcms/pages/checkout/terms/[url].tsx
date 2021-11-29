@@ -9,19 +9,19 @@ import {
   GetStaticProps,
   PageMeta,
   responsiveVal,
-  SheetShellHeader,
+  SheetAppBar,
   Title,
 } from '@graphcommerce/next-ui'
 import { Container, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import { LayoutSheet, LayoutSheetProps } from '../../../components/Layout/LayoutSheet'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = { agreement: NonNullable<NonNullable<CartAgreementsQuery['checkoutAgreements']>[0]> }
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutSheetProps, Props>
 
 function TermsPage(props: Props) {
   const { agreement } = props
@@ -32,11 +32,11 @@ function TermsPage(props: Props) {
     <>
       <PageMeta title={title} />
 
-      <SheetShellHeader>
+      <SheetAppBar>
         <Title component='span' size='small'>
           {title}
         </Title>
-      </SheetShellHeader>
+      </SheetAppBar>
 
       <AppShellTitle>
         <Title>{title}</Title>
@@ -51,9 +51,9 @@ function TermsPage(props: Props) {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutSheetProps> = {
   overlayGroup: 'left',
-  SharedComponent: SheetShell,
+  Layout: LayoutSheet,
 }
 TermsPage.pageOptions = pageOptions
 

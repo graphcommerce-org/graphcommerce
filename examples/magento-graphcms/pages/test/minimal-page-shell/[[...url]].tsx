@@ -4,9 +4,7 @@ import { Container, Divider, List, ListItem, NoSsr, Typography } from '@material
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React, { useState } from 'react'
-import MinimalPageShell, {
-  MinimalPageShellProps,
-} from '../../../components/AppShell/MinimalPageShell'
+import { LayoutMinimal, LayoutMinimalProps } from '../../../components/Layout'
 
 type AppShellDemoProps = {
   baseUrl: string
@@ -260,8 +258,8 @@ function MinimalPageShellDemo() {
   return <AppShellDemo baseUrl='/test/minimal-page-shell' />
 }
 
-const pageOptions: PageOptions<MinimalPageShellProps> = {
-  SharedComponent: MinimalPageShell,
+const pageOptions: PageOptions<LayoutMinimalProps> = {
+  Layout: LayoutMinimal,
 }
 MinimalPageShellDemo.pageOptions = pageOptions
 

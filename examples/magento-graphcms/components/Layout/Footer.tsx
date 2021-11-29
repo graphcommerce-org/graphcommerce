@@ -1,18 +1,18 @@
 import { StoreSwitcherButton } from '@graphcommerce/magento-store'
-import { Button, Footer as NextFooter, SocialIcon } from '@graphcommerce/next-ui'
+import { Button, Footer as FooterBase, SocialIcon } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { IconButton, Link } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
-import { FooterQueryFragment } from '../AppShell/FooterQueryFragment.gql'
+import { FooterQueryFragment } from '../GraphQL/FooterQueryFragment.gql'
 
 export type FooterProps = FooterQueryFragment
 
-export default function Footer(props: FooterProps) {
+export function Footer(props: FooterProps) {
   const { footer } = props
 
   return (
-    <NextFooter
+    <FooterBase
       socialLinks={
         <>
           {footer?.socialLinks?.map((link) => (

@@ -1,33 +1,32 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import { classesPicker } from '../../Styles/classesPicker'
+import { classesPicker } from '../Styles/classesPicker'
 import AppBarBack, { useShowBack } from './AppBarBack'
 import AppBarClose, { useShowClose } from './AppBarClose'
 import AppBarContent, { ContentProps } from './AppBarContent'
 import { FloatingProps } from './types'
 
-type WrappedContent = Omit<ContentProps, 'leftAction' | 'rightAction'> & {
-  /**
-   * Button to display on the left side of the title
-   *
-   * - Assumes it can float on desktop
-   * - Assumes it can not float on mobile
-   */
-  primary?: React.ReactNode
-  /**
-   * Button to display on the right side of the title
-   *
-   * - Assumes it can float on desktop
-   * - Assumes it can not float on mobile
-   */
-  secondary?: React.ReactNode
+export type AppBarProps = FloatingProps &
+  Omit<ContentProps, 'leftAction' | 'rightAction'> & {
+    /**
+     * Button to display on the left side of the title
+     *
+     * - Assumes it can float on desktop
+     * - Assumes it can not float on mobile
+     */
+    primary?: React.ReactNode
+    /**
+     * Button to display on the right side of the title
+     *
+     * - Assumes it can float on desktop
+     * - Assumes it can not float on mobile
+     */
+    secondary?: React.ReactNode
 
-  additional?: React.ReactNode
+    additional?: React.ReactNode
 
-  noAlign?: boolean
-}
-
-export type AppBarProps = FloatingProps & WrappedContent
+    noAlign?: boolean
+  }
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

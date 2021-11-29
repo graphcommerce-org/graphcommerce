@@ -55,7 +55,7 @@ export type FullPageShellBaseProps = {
   children?: React.ReactNode
 } & UseStyles<typeof useStyles>
 
-export default function FullPageShellBase(props: FullPageShellBaseProps) {
+export default function LayoutFullBase(props: FullPageShellBaseProps) {
   const { children, header, footer, menuFab, cartFab } = props
   const classes = useStyles(props)
 

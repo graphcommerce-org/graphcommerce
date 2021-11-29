@@ -1,6 +1,6 @@
 import { ContainerProps, Theme, makeStyles, Container } from '@material-ui/core'
 import React from 'react'
-import { UseStyles } from '../../Styles'
+import { UseStyles } from '../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -87,7 +87,7 @@ type FooterProps = UseStyles<typeof useStyles> & {
   copyright?: React.ReactElement
 } & Omit<ContainerProps, 'children'>
 
-export default function Footer(props: FooterProps) {
+export function Footer(props: FooterProps) {
   const { socialLinks, storeSwitcher, customerService, copyright, ...containerProps } = props
   const classes = useStyles(props)
 

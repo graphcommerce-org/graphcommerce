@@ -23,14 +23,13 @@ import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import MinimalPageShell from '../../components/AppShell/MinimalPageShell'
-import { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
+import LayoutMinimal, { LayoutFullProps } from '../../components/Layout'
+import { LayoutSheetProps } from '../../components/Layout/LayoutSheet'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
 
 function ShippingPage() {
   const { data: cartData } = useCartQuery(ShippingPageDocument, {
@@ -127,8 +126,8 @@ function ShippingPage() {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
-  SharedComponent: MinimalPageShell,
+const pageOptions: PageOptions<LayoutSheetProps> = {
+  Layout: LayoutMinimal,
   sharedKey: () => 'checkout',
 }
 ShippingPage.pageOptions = pageOptions

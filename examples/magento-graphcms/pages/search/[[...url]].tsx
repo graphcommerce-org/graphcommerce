@@ -30,8 +30,8 @@ import { Container, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
+import { LayoutFull, LayoutFullProps } from '../../components/Layout'
 import ProductListItems from '../../components/ProductListItems/ProductListItems'
 import useProductListStyles from '../../components/ProductListItems/useProductListStyles'
 import apolloClient from '../../lib/apolloClient'
@@ -42,7 +42,7 @@ type Props = DefaultPageQuery &
   SearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -148,7 +148,7 @@ function SearchResultPage(props: Props) {
 }
 
 SearchResultPage.pageOptions = {
-  SharedComponent: FullPageShell,
+  Layout: LayoutFull,
 } as PageOptions
 
 export default SearchResultPage

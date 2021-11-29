@@ -2,9 +2,9 @@ import { usePageRouter, useUp, usePrevUp, usePageContext } from '@graphcommerce/
 import { Trans } from '@lingui/macro'
 import PageLink from 'next/link'
 import React from 'react'
-import { iconChevronLeft } from '../..'
-import Button, { ButtonProps } from '../../Button'
-import SvgImageSimple from '../../SvgImage/SvgImageSimple'
+import Button, { ButtonProps } from '../Button'
+import SvgImageSimple from '../SvgImage/SvgImageSimple'
+import { iconChevronLeft } from '../icons'
 
 export type BackProps = Omit<ButtonProps, 'onClick' | 'children'>
 

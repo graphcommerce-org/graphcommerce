@@ -4,11 +4,11 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { AppShellTitle, GetStaticProps, Title, AppBar } from '@graphcommerce/next-ui'
 import SidebarGallery from '@graphcommerce/next-ui/FramerScroller/components/SidebarGallery'
 import React from 'react'
-import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
+import { LayoutFull, LayoutFullProps } from '../../components/Layout'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = ProductListQuery
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
 
 function TestSlider({ products }: Props) {
   if (!products?.items?.length) return <></>
@@ -80,7 +80,7 @@ function TestSlider({ products }: Props) {
 }
 
 TestSlider.pageOptions = {
-  SharedComponent: FullPageShell,
+  Layout: LayoutFull,
 } as PageOptions
 export default TestSlider
 

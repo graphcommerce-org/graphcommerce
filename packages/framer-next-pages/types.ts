@@ -106,15 +106,15 @@ export type PageOptions<T extends Record<string, unknown> = Record<string, unkno
   sharedKey?: (router: NextRouter) => string | undefined
 
   /**
-   * Create a SharedLayout to share a wrapping component between multiple routes.
+   * Create a Layout to share a wrapping component between multiple routes.
    *
    * In combination with sharedKey it is probably useful to create a SharedLayout
    *
-   * To make the `SharedLayout` component work, make sure that those pages have the same `sharedKey`
+   * To make the `Layout` component work, make sure that those pages have the same `sharedKey`
    */
-  SharedComponent?: React.FC<any>
+  Layout?: React.FC<any>
   /** Pass props to the SharedComponent */
-  sharedProps?: Partial<Omit<T, 'children'>>
+  layoutProps?: Partial<Omit<T, 'children'>>
 
   up?: UpPage
 }

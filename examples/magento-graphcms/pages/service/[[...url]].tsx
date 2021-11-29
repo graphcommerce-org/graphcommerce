@@ -4,24 +4,24 @@ import {
   AppShellTitle,
   GetStaticProps,
   responsiveVal,
-  SheetShellHeader,
+  SheetAppBar,
   Title,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { Container } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import { PagesStaticPathsDocument } from '../../components/GraphQL/PagesStaticPaths.gql'
+import { LayoutFullProps } from '../../components/Layout'
+import { LayoutSheet, LayoutSheetProps } from '../../components/Layout/LayoutSheet'
 import RowRenderer from '../../components/Row/RowRenderer'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = DefaultPageQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function ServicePage({ pages }: Props) {
   const title = pages?.[0].title ?? ''
@@ -34,11 +34,11 @@ function ServicePage({ pages }: Props) {
         metaRobots={['noindex']}
         canonical={pages?.[0]?.url ?? ''}
       />
-      <SheetShellHeader>
+      <SheetAppBar>
         <Title component='span' size='small'>
           {title}
         </Title>
-      </SheetShellHeader>
+      </SheetAppBar>
 
       <Container maxWidth='md'>
         <AppShellTitle>
@@ -50,10 +50,10 @@ function ServicePage({ pages }: Props) {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutSheetProps> = {
   overlayGroup: 'left',
-  SharedComponent: SheetShell,
-  sharedProps: { variantMd: 'left' },
+  Layout: LayoutSheet,
+  layoutProps: { variantMd: 'left' },
 }
 ServicePage.pageOptions = pageOptions
 

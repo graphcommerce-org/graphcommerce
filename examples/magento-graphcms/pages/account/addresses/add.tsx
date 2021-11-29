@@ -11,18 +11,18 @@ import {
   GetStaticProps,
   SectionContainer,
   iconAddresses,
-  SheetShellHeader,
+  SheetAppBar,
   Title,
   AppShellTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import { LayoutSheet, LayoutSheetProps } from '../../../components/Layout/LayoutSheet'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = AccountDashboardAddressesQuery
-type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutSheetProps, Props>
 
 function AddNewAddressPage() {
   const { loading, data, error } = useQuery(CustomerDocument, {
@@ -41,11 +41,11 @@ function AddNewAddressPage() {
 
   return (
     <>
-      <SheetShellHeader>
+      <SheetAppBar>
         <Title size='small' component='span' icon={iconAddresses}>
           <Trans>Addresses</Trans>
         </Title>
-      </SheetShellHeader>
+      </SheetAppBar>
       <Container maxWidth='md'>
         <PageMeta
           title={`Add address`}
@@ -65,9 +65,9 @@ function AddNewAddressPage() {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutSheetProps> = {
   overlayGroup: 'account',
-  SharedComponent: SheetShell,
+  Layout: LayoutSheet,
   sharedKey: () => 'account/addresses',
 }
 AddNewAddressPage.pageOptions = pageOptions

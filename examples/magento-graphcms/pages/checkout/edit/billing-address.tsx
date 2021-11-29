@@ -1,34 +1,27 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { EditBillingAddressForm } from '@graphcommerce/magento-cart-billing-address'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  AppShellTitle,
-  GetStaticProps,
-  PageMeta,
-  responsiveVal,
-  SheetShellHeader,
-  Title,
-} from '@graphcommerce/next-ui'
+import { AppShellTitle, GetStaticProps, PageMeta, SheetAppBar, Title } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import { DefaultPageDocument } from '../../../components/GraphQL/DefaultPage.gql'
+import { LayoutSheet, LayoutSheetProps } from '../../../components/Layout/LayoutSheet'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutSheetProps, Props>
 
 function EditBillingAddress() {
   return (
     <>
       <PageMeta title={t`Edit billing address`} metaRobots={['noindex', 'nofollow']} />
 
-      <SheetShellHeader>
+      <SheetAppBar>
         <Title component='span' size='small'>
           <Trans>Billing address</Trans>
         </Title>
-      </SheetShellHeader>
+      </SheetAppBar>
 
       <AppShellTitle>
         <Title>
@@ -45,10 +38,10 @@ function EditBillingAddress() {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutSheetProps> = {
   overlayGroup: 'left',
-  SharedComponent: SheetShell,
-  sharedProps: { variantMd: 'left' },
+  Layout: LayoutSheet,
+  layoutProps: { variantMd: 'left' },
 }
 EditBillingAddress.pageOptions = pageOptions
 

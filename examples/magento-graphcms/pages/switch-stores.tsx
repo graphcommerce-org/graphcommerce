@@ -11,19 +11,19 @@ import {
   GetStaticProps,
   iconShoppingBag,
   responsiveVal,
-  SheetShellHeader,
+  SheetAppBar,
   Title,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
-import { FullPageShellProps } from '../components/AppShell/FullPageShell'
-import SheetShell, { SheetShellProps } from '../components/AppShell/SheetShell'
+import { LayoutFullProps } from '../components/Layout'
+import { LayoutSheet, LayoutSheetProps } from '../components/Layout/LayoutSheet'
 import apolloClient from '../lib/apolloClient'
 
 type RouteProps = { country?: string[] }
 type Props = StoreSwitcherListQuery
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function StoresIndexPage({ availableStores }: Props) {
   const { locale } = usePageRouter()
@@ -36,11 +36,11 @@ function StoresIndexPage({ availableStores }: Props) {
         metaRobots={['noindex']}
       />
       <NoSsr>
-        <SheetShellHeader>
+        <SheetAppBar>
           <Title size='small' component='span' icon={iconShoppingBag}>
             <Trans>Country</Trans>
           </Title>
-        </SheetShellHeader>
+        </SheetAppBar>
         <Container maxWidth='md'>
           <AppShellTitle icon={iconShoppingBag}>
             <Trans>Country</Trans>
@@ -52,10 +52,10 @@ function StoresIndexPage({ availableStores }: Props) {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutSheetProps> = {
   overlayGroup: 'left',
-  SharedComponent: SheetShell,
-  sharedProps: { variantMd: 'left' },
+  Layout: LayoutSheet,
+  layoutProps: { variantMd: 'left' },
 }
 StoresIndexPage.pageOptions = pageOptions
 

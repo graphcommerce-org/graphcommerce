@@ -3,7 +3,6 @@ import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, Row, Title, AppBar } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import BlogList from '../../../components/Blog'
 import BlogAuthor from '../../../components/Blog/BlogAuthor'
 import BlogHeader from '../../../components/Blog/BlogHeader'
@@ -15,6 +14,7 @@ import { BlogPostTaggedPathsDocument } from '../../../components/Blog/BlogPostTa
 import BlogTags from '../../../components/Blog/BlogTags'
 import BlogTitle from '../../../components/Blog/BlogTitle'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
+import { LayoutFull, LayoutFullProps } from '../../../components/Layout'
 import RowRenderer from '../../../components/Row/RowRenderer'
 import apolloClient from '../../../lib/apolloClient'
 
@@ -23,7 +23,7 @@ export const config = { unstable_JsPreload: false }
 type Props = DefaultPageQuery & BlogListTaggedQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function BlogPage(props: Props) {
   const { pages, blogPosts } = props
@@ -51,7 +51,7 @@ function BlogPage(props: Props) {
 }
 
 BlogPage.pageOptions = {
-  SharedComponent: FullPageShell,
+  Layout: LayoutFull,
 } as PageOptions
 
 export default BlogPage

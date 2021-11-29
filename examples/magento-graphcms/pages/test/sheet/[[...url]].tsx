@@ -1,16 +1,16 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { GetStaticProps, SheetProps, SheetVariant } from '@graphcommerce/next-ui'
+import { GetStaticProps, SheetVariant } from '@graphcommerce/next-ui'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import { LayoutSheet, LayoutSheetProps } from '../../../components/Layout/LayoutSheet'
 import { AppShellDemo } from '../minimal-page-shell/[[...url]]'
 
 function SheetDemo() {
   return <AppShellDemo baseUrl='/test/sheet' />
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutSheetProps> = {
   overlayGroup: 'test',
-  SharedComponent: SheetShell,
+  Layout: LayoutSheet,
   sharedKey: (router) => {
     const key = [
       router.pathname,
@@ -34,7 +34,7 @@ export const getStaticPaths = async ({ locales = [] }) =>
   ({ paths: [], fallback: 'blocking' })
 
 export const getStaticProps: GetStaticProps<
-  SheetProps,
+  LayoutSheetProps,
   Record<string, unknown>,
   { url: string[] }
 > = async ({ params, locale }) => {

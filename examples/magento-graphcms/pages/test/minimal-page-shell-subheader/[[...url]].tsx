@@ -20,17 +20,15 @@ import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
-import MinimalPageShell, {
-  MinimalPageShellProps,
-} from '../../../components/AppShell/MinimalPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
+import { LayoutMinimal, LayoutMinimalProps } from '../../../components/Layout'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = DefaultPageQuery &
   SearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<MinimalPageShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props, RouteProps>
 
 // for testing only
 const useStyles = makeStyles((theme: Theme) => ({
@@ -86,7 +84,7 @@ function MinimalAppShellSubheader(props: Props) {
 }
 
 MinimalAppShellSubheader.pageOptions = {
-  SharedComponent: MinimalPageShell,
+  Layout: LayoutMinimal,
 } as PageOptions
 
 export default MinimalAppShellSubheader

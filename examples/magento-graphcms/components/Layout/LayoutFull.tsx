@@ -19,13 +19,13 @@ import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'
 import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
-import Footer from './Footer'
+import { Footer } from './Footer'
 import Logo from './Logo'
 
-export type FullPageShellProps = Omit<DefaultPageQuery, 'pages'> &
+export type LayoutFullProps = Omit<DefaultPageQuery, 'pages'> &
   Omit<FullPageShellBaseProps, 'classes' | 'name' | 'header' | 'footer'>
 
-function FullPageShell(props: FullPageShellProps) {
+export function LayoutFull(props: LayoutFullProps) {
   const { footer, menu: menuData = {}, children, ...uiProps } = props
   const theme = useTheme()
   const menuItemsIncludeInMenu = menuData?.items?.filter((items) => items?.include_in_menu === 1)
@@ -96,5 +96,3 @@ function FullPageShell(props: FullPageShellProps) {
     </FullPageShellBase>
   )
 }
-
-export default FullPageShell

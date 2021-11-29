@@ -6,7 +6,7 @@ import { GetStaticPathsResult, GetStaticProps } from 'next'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import Grid from '../../components/Grid'
-import SheetShell, { SheetShellProps } from '../../components/SheetShell'
+import LayoutSheet, { LayoutSheetProps } from '../../components/LayoutSheet'
 
 function MultiStack() {
   const [expanded, setExpanded] = useState(true)
@@ -52,7 +52,7 @@ function MultiStack() {
 
 const pageOptions: PageOptions = {
   overlayGroup: 'bottom',
-  SharedComponent: SheetShell,
+  Layout: LayoutSheet,
   sharedKey: ({ asPath }) => asPath,
 }
 MultiStack.pageOptions = pageOptions
@@ -72,7 +72,7 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult<ParsedUrlQu
   }
 }
 
-export const getStaticProps: GetStaticProps<SheetShellProps, ParsedUrlQuery> = async (ctx) => {
+export const getStaticProps: GetStaticProps<LayoutSheetProps, ParsedUrlQuery> = async (ctx) => {
   const variant = ctx.params?.url?.[0] ?? 'top'
   const variants = ['top', 'left', 'bottom', 'right']
 

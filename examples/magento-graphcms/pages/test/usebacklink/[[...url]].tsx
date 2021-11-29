@@ -2,9 +2,7 @@ import { PageOptions, useHistoryLink } from '@graphcommerce/framer-next-pages'
 import { Link } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
-import MinimalPageShell, {
-  MinimalPageShellProps,
-} from '../../../components/AppShell/MinimalPageShell'
+import { LayoutMinimal, LayoutMinimalProps } from '../../../components/Layout'
 
 function BackLinkDemo() {
   const { href, onClick } = useHistoryLink({ href: '/test/usebacklink/cart' })
@@ -30,8 +28,8 @@ function BackLinkDemo() {
   )
 }
 
-const pageOptions: PageOptions<MinimalPageShellProps> = {
-  SharedComponent: MinimalPageShell,
+const pageOptions: PageOptions<LayoutMinimalProps> = {
+  Layout: LayoutMinimal,
 }
 BackLinkDemo.pageOptions = pageOptions
 

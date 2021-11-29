@@ -23,8 +23,8 @@ import { Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { Product } from 'schema-dts'
-import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
+import { LayoutFull, LayoutFullProps } from '../../../components/Layout'
 import { RowProduct } from '../../../components/Row'
 import RowRenderer from '../../../components/Row/RowRenderer'
 import Usps from '../../../components/Usps'
@@ -36,7 +36,7 @@ type Props = ProductPageQuery & GroupedProductPageQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function ProductGrouped(props: Props) {
   const { products, usps, sidebarUsps, typeProducts, pages } = props
@@ -113,7 +113,7 @@ function ProductGrouped(props: Props) {
 }
 
 ProductGrouped.pageOptions = {
-  SharedComponent: FullPageShell,
+  Layout: LayoutFull,
 } as PageOptions
 
 export default ProductGrouped

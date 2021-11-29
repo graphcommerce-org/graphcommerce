@@ -1,10 +1,8 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Divider, makeStyles, Theme } from '@material-ui/core'
-import { MotionValue, useViewportScroll } from 'framer-motion'
 import React, { useRef } from 'react'
-import { UseStyles } from '../..'
-import { classesPicker } from '../../Styles/classesPicker'
-import useAppShellHeaderContext from '../AppShellProvider/useAppShellHeaderContext'
+import useAppShellHeaderContext from '../AppShell/AppShellProvider/useAppShellHeaderContext'
+import { classesPicker } from '../Styles/classesPicker'
 import { FloatingProps } from './types'
 
 type Classes = 'bg' | 'content' | 'left' | 'center' | 'right' | 'divider'

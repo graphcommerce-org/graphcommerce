@@ -32,11 +32,11 @@ import {
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
-import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
+import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
 import apolloClient from '../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<MinimalPageShellProps>
+type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
 function AccountIndexPage() {
   const { data, loading, error } = useQuery(AccountDashboardDocument, {
@@ -171,8 +171,8 @@ function AccountIndexPage() {
   )
 }
 
-const pageOptions: PageOptions<MinimalPageShellProps> = {
-  SharedComponent: MinimalPageShell,
+const pageOptions: PageOptions<LayoutMinimalProps> = {
+  Layout: LayoutMinimal,
 }
 
 AccountIndexPage.pageOptions = pageOptions

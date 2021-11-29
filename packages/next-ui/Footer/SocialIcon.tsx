@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import { UseStyles } from '../../Styles'
-import SvgImage, { SvgImageProps } from '../../SvgImage'
+import { UseStyles } from '../Styles'
+import SvgImage, { SvgImageProps } from '../SvgImage'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -16,7 +16,7 @@ const useStyles = makeStyles(
 
 type SocialIconProps = UseStyles<typeof useStyles> & SvgImageProps
 
-export default function SocialIcon(props: SocialIconProps) {
+export function SocialIcon(props: SocialIconProps) {
   const classes = useStyles(props)
 
   return <SvgImage {...props} className={classes.root} />

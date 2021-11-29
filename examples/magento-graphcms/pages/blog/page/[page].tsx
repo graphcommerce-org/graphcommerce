@@ -5,12 +5,11 @@ import { Container, Link } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
-import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import BlogList from '../../../components/Blog'
 import { BlogListDocument, BlogListQuery } from '../../../components/Blog/BlogList.gql'
 import { BlogPathsDocument, BlogPathsQuery } from '../../../components/Blog/BlogPaths.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
-import RowRenderer from '../../../components/Row/RowRenderer'
+import { LayoutFull, LayoutFullProps } from '../../../components/Layout'
 import apolloClient from '../../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -18,7 +17,7 @@ export const config = { unstable_JsPreload: false }
 type Props = DefaultPageQuery & BlogListQuery & BlogPathsQuery
 type RouteProps = { page: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 const pageSize = 16
 
@@ -55,7 +54,7 @@ function BlogPage(props: Props) {
 }
 
 BlogPage.pageOptions = {
-  SharedComponent: FullPageShell,
+  Layout: LayoutFull,
 } as PageOptions
 
 export default BlogPage

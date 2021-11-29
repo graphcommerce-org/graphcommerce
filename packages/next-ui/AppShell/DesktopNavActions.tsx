@@ -1,5 +1,4 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { m } from 'framer-motion'
 import React from 'react'
 
 const useStyles = makeStyles(
@@ -23,6 +22,5 @@ const useStyles = makeStyles(
 export default function DesktopNavActions(props: { children?: React.ReactNode }) {
   const { children } = props
   const classes = useStyles()
-
-  return <m.div className={classes.actions}>{children}</m.div>
+  return <div className={classes.actions}>{children}</div>
 }

@@ -5,17 +5,15 @@ import {
   ScrollSnapType,
   useScrollerContext,
   useScrollTo,
-  useWatchItem,
   useWatchItems,
 } from '@graphcommerce/framer-scroller'
-import { clientSize, useElementScroll } from '@graphcommerce/framer-utils'
+import { useElementScroll } from '@graphcommerce/framer-utils'
 import { makeStyles, Theme } from '@material-ui/core'
 import { m, MotionValue, useDomEvent, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { SetOptional } from 'type-fest'
-import { classesPicker } from '../../Styles/classesPicker'
-import AppShellProvider from '../AppShellProvider/AppShellProvder'
+import AppShellProvider from '../AppShell/AppShellProvider/AppShellProvder'
+import { classesPicker } from '../Styles/classesPicker'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -343,7 +341,7 @@ function SheetHandler(props: SheetHandlerProps) {
 
 export type SheetProps = SetOptional<SheetHandlerProps, 'variantSm' | 'variantMd'>
 
-export default function Sheet(props: SheetProps) {
+export function Sheet(props: SheetProps) {
   const { children, variantSm = 'bottom', variantMd = 'right' } = props
 
   const scrollSnapTypeSm: ScrollSnapType =
