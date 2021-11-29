@@ -201,7 +201,7 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
 
     setPanning(false)
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    snapToVelocity(info).then(enableSnap)
+    snapToVelocity(info)
   }
 
   const ref: React.RefCallback<HTMLElement> = (el) => {

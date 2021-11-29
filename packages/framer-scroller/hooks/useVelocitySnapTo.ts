@@ -18,7 +18,7 @@ const closest = (counts: number[], target: number) =>
 export const useVelocitySnapTo = (
   ref: React.RefObject<HTMLElement> | React.MutableRefObject<HTMLElement | undefined>,
 ) => {
-  const { disableSnap, register, getScrollSnapPositions } = useScrollerContext()
+  const { disableSnap, enableSnap, register, getScrollSnapPositions } = useScrollerContext()
 
   const inertiaOptions: InertiaOptions = {
     power: 1,
@@ -49,11 +49,15 @@ export const useVelocitySnapTo = (
           onUpdate: (v: number) => {
             el.scrollLeft = Math.round(v + scrollLeft)
           },
-          onComplete,
+          onComplete: () => {
+            onComplete()
+            enableSnap()
+          },
         })
         register(cancelX)
       } else {
         onComplete()
+        enableSnap()
       }
     })
 
@@ -70,11 +74,15 @@ export const useVelocitySnapTo = (
           onUpdate: (v: number) => {
             el.scrollTop = Math.round(v + scrollTop)
           },
-          onComplete,
+          onComplete: () => {
+            onComplete()
+            enableSnap()
+          },
         })
         register(cancelY)
       } else {
         onComplete()
+        enableSnap()
       }
     })
 
