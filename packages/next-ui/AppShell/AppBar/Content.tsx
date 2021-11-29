@@ -5,6 +5,7 @@ import React, { useRef } from 'react'
 import { UseStyles } from '../..'
 import { classesPicker } from '../../Styles/classesPicker'
 import { FloatingProps } from './types'
+import useAppShellHeaderContext from './useAppShellHeaderContext'
 
 type Classes = 'bg' | 'content' | 'left' | 'center' | 'right' | 'divider'
 
@@ -145,12 +146,12 @@ export type ContentProps = FloatingProps &
 
 export default function Content(props: ContentProps) {
   const ref = useRef<HTMLDivElement>(null)
+  const { scroll } = useAppShellHeaderContext()
 
   const { left, children, right, divider, floatingMd = false, floatingSm = false } = props
   const classes = useStyles(props)
 
-  const viewportY = useViewportScroll().scrollY
-  const scrolled = useMotionValueValue(viewportY, (y) => y > 50)
+  const scrolled = useMotionValueValue(scroll, (y) => y > 50)
 
   const className = classesPicker<Classes>(classes, {
     floatingSm,

@@ -8,9 +8,9 @@ import {
   useWatchItem,
   useWatchItems,
 } from '@graphcommerce/framer-scroller'
-import { useElementScroll } from '@graphcommerce/framer-utils'
+import { clientSize, useElementScroll } from '@graphcommerce/framer-utils'
 import { makeStyles, Theme } from '@material-ui/core'
-import { m, useDomEvent, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { m, MotionValue, useDomEvent, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { SetOptional } from 'type-fest'
@@ -211,7 +211,7 @@ const useStyles = makeStyles(
   { name: 'Sheet' },
 )
 
-type SheetVariant = 'left' | 'bottom' | 'right'
+export type SheetVariant = 'left' | 'bottom' | 'right'
 
 type SheetHandlerProps = {
   children?: React.ReactNode
@@ -231,6 +231,7 @@ function SheetHandler(props: SheetHandlerProps) {
   const className = classesPicker(classes, { variantSm, variantMd })
 
   const sheetRef = useRef<HTMLDivElement>(null)
+  const sheetPaneRef = useRef<HTMLDivElement>(null)
 
   const sheetVisbility = useMotionValue(0)
   useWatchItems((item) => {
@@ -240,25 +241,26 @@ function SheetHandler(props: SheetHandlerProps) {
     }
   })
 
+  const startY = useMotionValue(0)
   useEffect(() => {
-    const openSheet = () => {
-      const scroller = scrollerRef.current
-      if (!scroller) throw Error('Scroller not found')
+    const scroller = scrollerRef.current
+    if (!scroller) return
 
-      const positions = getScrollSnapPositions()
-      const [, open] = positions.x.map((x, i) => ({ x, y: positions.y[i] }))
+    const positions = getScrollSnapPositions()
+    const [, open] = positions.x.map((x, i) => ({ x, y: positions.y[i] }))
 
-      if (direction === 1) {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        scrollTo(open).then(() => (opened.current = true))
-      } else {
-        scroller.scrollLeft = open.x
-        scroller.scrollTop = open.y
+    startY.set(open.y)
+    if (direction === 1) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      scrollTo(open).then(() => {
         opened.current = true
-      }
+      })
+    } else {
+      scroller.scrollLeft = open.x
+      scroller.scrollTop = open.y
+      opened.current = true
     }
-    openSheet()
-  }, [direction, getScrollSnapPositions, scrollTo, scrollerRef])
+  }, [direction, getScrollSnapPositions, scrollTo, scrollerRef, startY])
 
   // Open the sheet when loading the page.
   // Make sure the sheet stays open when resizing the window.
@@ -272,6 +274,7 @@ function SheetHandler(props: SheetHandlerProps) {
 
       const visible = sheetVisbility.get() === 1
 
+      startY.set(open.y)
       if (visible && (scroller.scrollLeft !== open.x || scroller.scrollTop !== open.y)) {
         scroller.scrollLeft = open.x
         scroller.scrollTop = open.y
@@ -282,17 +285,16 @@ function SheetHandler(props: SheetHandlerProps) {
     return () => window.removeEventListener('resize', resize)
     // We're not checking for all deps, because that will cause rerenders.
     // The scroller context shouldn't be changing, but at the moment it is.
-  }, [getScrollSnapPositions, scrollerRef, sheetVisbility])
+  }, [getScrollSnapPositions, scrollerRef, sheetVisbility, startY])
 
-  // Handle esccape key
   const isNavigating = useRef(false)
-
   const closeOverlay = useCallback(() => {
     if (isNavigating.current) return
     isNavigating.current = true
     pageRouter.go(closeSteps * -1)
   }, [closeSteps, pageRouter])
 
+  // Handle escape key
   useDomEvent(
     useRef(typeof window !== 'undefined' ? window : null),
     'keyup',
@@ -302,9 +304,25 @@ function SheetHandler(props: SheetHandlerProps) {
     { passive: true },
   )
 
+  // Measure the offset of the sheet in the scroller.
+  const offsetY = useMotionValue(0)
+  useEffect(() => {
+    if (!sheetRef.current) return () => {}
+    const ro = new ResizeObserver(([entry]) => offsetY.set(entry.contentRect.top))
+    ro.observe(sheetRef.current)
+    return () => ro.disconnect()
+  })
+
+  // Handle closing the sheet when the sheet is closed by the user.
   useEffect(
     () => sheetVisbility.onChange((v) => opened.current && v === 0 && closeOverlay()),
     [closeOverlay, sheetVisbility],
+  )
+
+  // Pass the scrollOffset relative to the sheet
+  const scrollOffset = useTransform(
+    [useElementScroll(scrollerRef).y, startY, offsetY] as MotionValue<number | string>[],
+    ([y, startYv, offsetYv]: number[]) => Math.max(0, y - startYv - offsetYv),
   )
 
   return (
@@ -313,7 +331,9 @@ function SheetHandler(props: SheetHandlerProps) {
       <Scroller {...className('root')} grid={false} hideScrollbar>
         <div {...className('beforeSheet')} onClick={closeOverlay}></div>
         <div {...className('sheet')} ref={sheetRef}>
-          <div {...className('sheetPane')}>{children}</div>
+          <div {...className('sheetPane')} ref={sheetPaneRef}>
+            <AppShellProvider scroll={scrollOffset}>{children}</AppShellProvider>
+          </div>
         </div>
         <div {...className('afterSheet')} />
       </Scroller>
@@ -332,12 +352,10 @@ export default function Sheet(props: SheetProps) {
     variantMd === 'left' || variantMd === 'right' ? 'both mandatory' : 'block proximity'
 
   return (
-    <AppShellProvider>
-      <ScrollerProvider scrollSnapTypeSm={scrollSnapTypeSm} scrollSnapTypeMd={scrollSnapTypeMd}>
-        <SheetHandler variantMd={variantMd} variantSm={variantSm}>
-          {children}
-        </SheetHandler>
-      </ScrollerProvider>
-    </AppShellProvider>
+    <ScrollerProvider scrollSnapTypeSm={scrollSnapTypeSm} scrollSnapTypeMd={scrollSnapTypeMd}>
+      <SheetHandler variantMd={variantMd} variantSm={variantSm}>
+        {children}
+      </SheetHandler>
+    </ScrollerProvider>
   )
 }

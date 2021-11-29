@@ -3,7 +3,7 @@ import { GoogleRecaptchaV3Script } from '@graphcommerce/googlerecaptcha'
 import { GoogleTagManagerScript } from '@graphcommerce/googletagmanager'
 import { LinguiProvider } from '@graphcommerce/lingui-next'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { App, AppProps, ShellBase } from '@graphcommerce/next-ui'
+import { App, AppProps, GlobalHead } from '@graphcommerce/next-ui'
 import { CssBaseline, ThemeProvider } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -19,17 +19,18 @@ export default function ThemedApp(props: AppProps) {
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
 
   return (
-    <ShellBase name={name}>
+    <>
+      <GlobalHead name={name} />
       <GoogleRecaptchaV3Script />
       <GoogleTagManagerScript />
       <ApolloProvider client={client}>
         <LinguiProvider loader={(l) => import(`../locales/${l}.po`)}>
-          <CssBaseline />
           <ThemeProvider theme={lightTheme}>
+            <CssBaseline />
             <App {...props} />
           </ThemeProvider>
         </LinguiProvider>
       </ApolloProvider>
-    </ShellBase>
+    </>
   )
 }

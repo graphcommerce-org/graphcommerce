@@ -84,6 +84,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
             ) : undefined
           }
           floatingMd={isFullPage}
+          noAlign={isSheet}
         >
           {/* {titleComponent} */}
           {isMinimal || isSheet || withIcon || withTitle ? titleComponent : undefined}

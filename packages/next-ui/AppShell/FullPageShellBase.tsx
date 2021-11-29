@@ -1,9 +1,8 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import clsx from 'clsx'
+import { useViewportScroll } from 'framer-motion'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import AppShellProvider from './AppShellProvider'
-import ShellBase, { PageLayoutBaseProps } from './ShellBase'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -62,7 +61,7 @@ export default function FullPageShellBase(props: FullPageShellBaseProps) {
 
   return (
     <div className={classes.root}>
-      <AppShellProvider>
+      <AppShellProvider scroll={useViewportScroll().scrollY}>
         <header className={classes.header}>{header}</header>
         <div>
           <div className={classes.hideFabsOnVirtualKeyboardOpen}>
