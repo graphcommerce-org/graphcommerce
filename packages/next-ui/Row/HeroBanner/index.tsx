@@ -1,4 +1,4 @@
-import { ContainerProps, Theme, makeStyles, useTheme } from '@material-ui/core'
+import { ContainerProps, Theme, makeStyles, useTheme, useMediaQuery } from '@material-ui/core'
 import { m, useTransform, useViewportScroll } from 'framer-motion'
 import React from 'react'
 import Row from '..'
@@ -53,7 +53,7 @@ const useStyles = makeStyles(
         objectFit: 'cover',
         width: '100%',
         height: '100%',
-        ['@supports (-webkit-touch-callout: none)']: {
+        [theme.breakpoints.down('sm')]: {
           borderRadius: responsiveVal(8, 12),
         },
       },
@@ -86,6 +86,7 @@ export default function HeroBanner(props: HeroBannerProps) {
     [10, 150],
     [`calc(100% - ${responsiveVal(20, 60)}))`, `calc(100% - ${responsiveVal(0, 0)})`],
   )
+  const matches = useMediaQuery(theme.breakpoints.down('sm'))
   const borderRadius = useTransform(
     scrollY,
     [10, 150],
@@ -100,7 +101,7 @@ export default function HeroBanner(props: HeroBannerProps) {
           {pageLinks}
         </div>
         <div className={classes.asset}>
-          <m.div style={{ width, borderRadius }} className={classes.animated}>
+          <m.div style={{ width: !matches ? width : 0, borderRadius }} className={classes.animated}>
             <video src={videoSrc} autoPlay muted loop playsInline disableRemotePlayback />
           </m.div>
         </div>
