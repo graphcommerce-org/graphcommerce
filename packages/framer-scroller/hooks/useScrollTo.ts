@@ -8,7 +8,7 @@ export function useScrollTo() {
 
   return async (to: Point2D) => {
     const ref = scrollerRef.current
-    if (!ref) return Promise.resolve()
+    if (!ref) return
 
     const xDone = new Promise<void>((onComplete) => {
       if (ref.scrollLeft !== to.x) {
@@ -37,7 +37,7 @@ export function useScrollTo() {
             to: to.y,
             velocity: scroll.y.getVelocity(),
             onUpdate: (v) => (ref.scrollTop = v),
-            onComplete: onComplete,
+            onComplete,
             bounce: 50,
           }),
         )
@@ -49,6 +49,5 @@ export function useScrollTo() {
     await xDone
     await yDone
     enableSnap()
-    return
   }
 }

@@ -5,12 +5,20 @@ import {
   ScrollSnapType,
   useScrollerContext,
   useScrollTo,
-  useWatchItems,
 } from '@graphcommerce/framer-scroller'
-import { useElementScroll } from '@graphcommerce/framer-utils'
+import { useConstant, useElementScroll } from '@graphcommerce/framer-utils'
 import { makeStyles, Theme } from '@material-ui/core'
-import { m, MotionValue, useDomEvent, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import React, { useCallback, useEffect, useRef } from 'react'
+import {
+  m,
+  motionValue,
+  MotionValue,
+  useDomEvent,
+  useMotionValue,
+  usePresence,
+  useSpring,
+  useTransform,
+} from 'framer-motion'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { SetOptional } from 'type-fest'
 import AppShellProvider from '../AppShell/AppShellProvider/AppShellProvder'
 import { classesPicker } from '../Styles/classesPicker'
@@ -122,8 +130,14 @@ const useStyles = makeStyles(
       },
     },
     sheet: {
+      pointerEvents: 'none',
       gridArea: 'sheet',
       scrollSnapAlign: 'start',
+      width: 'min-content',
+      minHeight: '100vh',
+      ['@supports (-webkit-touch-callout: none)']: {
+        minHeight: '-webkit-fill-available',
+      },
     },
     sheetVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
@@ -143,16 +157,10 @@ const useStyles = makeStyles(
       },
     },
     sheetPane: {
+      pointerEvents: 'all',
       backgroundColor: theme.palette.background.paper,
       boxShadow: theme.shadows[24],
-      width: 'min-content',
-      minHeight: '100vh',
-      ['@supports (-webkit-touch-callout: none)']: {
-        minHeight: '-webkit-fill-available',
-      },
-      [theme.breakpoints.up('md')]: {
-        minWidth: '800px',
-      },
+      minWidth: 'min(800px, 90vw)',
     },
     sheetPaneVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
@@ -169,23 +177,39 @@ const useStyles = makeStyles(
       },
     },
     sheetPaneVariantSmLeft: {
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.down('sm')]: {
         paddingBottom: 1,
+        minHeight: '100vh',
+        ['@supports (-webkit-touch-callout: none)']: {
+          minHeight: '-webkit-fill-available',
+        },
       },
     },
     sheetPaneVariantMdLeft: {
       [theme.breakpoints.up('md')]: {
         paddingBottom: 1,
+        minHeight: '100vh',
+        ['@supports (-webkit-touch-callout: none)']: {
+          minHeight: '-webkit-fill-available',
+        },
       },
     },
     sheetPaneVariantSmRight: {
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.down('sm')]: {
         paddingBottom: 1,
+        minHeight: '100vh',
+        ['@supports (-webkit-touch-callout: none)']: {
+          minHeight: '-webkit-fill-available',
+        },
       },
     },
     sheetPaneVariantMdRight: {
       [theme.breakpoints.up('md')]: {
         paddingBottom: 1,
+        minHeight: '100vh',
+        ['@supports (-webkit-touch-callout: none)']: {
+          minHeight: '-webkit-fill-available',
+        },
       },
     },
     afterSheet: {
@@ -217,13 +241,22 @@ type SheetHandlerProps = {
   variantMd: SheetVariant
 }
 
+enum SheetPosition {
+  UNOPENED = -1,
+  OPENED = 1,
+  CLOSED = 0,
+}
+
 function SheetHandler(props: SheetHandlerProps) {
   const { children, variantSm, variantMd } = props
   const { getScrollSnapPositions, scrollerRef } = useScrollerContext()
   const scrollTo = useScrollTo()
+  const [isPresent, safeToRemove] = usePresence()
+
   const { closeSteps, active, direction } = usePageContext()
   const pageRouter = usePageRouter()
-  const opened = useRef(false)
+
+  const position = useMotionValue<SheetPosition>(SheetPosition.UNOPENED)
 
   const classes = useStyles()
   const className = classesPicker(classes, { variantSm, variantMd })
@@ -231,48 +264,53 @@ function SheetHandler(props: SheetHandlerProps) {
   const sheetRef = useRef<HTMLDivElement>(null)
   const sheetPaneRef = useRef<HTMLDivElement>(null)
 
-  const sheetVisbility = useMotionValue(0)
-  useWatchItems((item) => {
-    // Track the visibility of the sheet
-    if (item.el === sheetRef.current) {
-      sheetVisbility.set(item.visibility.get() > 0.1 ? 1 : 0)
-    }
-  })
+  // Utility function to get the current closed and opened positions of the sheet
+  const getPositions = useCallback(() => {
+    const positions = getScrollSnapPositions()
+    const [closed, open] = positions.x.map((x, i) => ({ x, y: positions.y[i] }))
+    return { closed, open }
+  }, [getScrollSnapPositions])
 
-  const startY = useMotionValue(0)
+  const start = useConstant(() => ({ x: motionValue(0), y: motionValue(0) }))
+  const scroll = useElementScroll(scrollerRef)
+
+  // Get a value between 0 and 1 for the visibility of the sheetPane
+  const sheetVisibility = useTransform(
+    [scroll.y, start.y] as MotionValue<number | string>[],
+    ([y, startY]: number[]) => {
+      if (Number.isNaN(startY) || startY === 0) return 0
+      return Math.min(1, (startY - (startY - y)) / startY)
+    },
+  )
+
   useEffect(() => {
     const scroller = scrollerRef.current
-    if (!scroller) return
+    if (!scroller || !isPresent) return
 
-    const positions = getScrollSnapPositions()
-    const [, open] = positions.x.map((x, i) => ({ x, y: positions.y[i] }))
+    const { open } = getPositions()
 
-    startY.set(open.y)
+    start.y.set(open.y)
+    start.x.set(open.x)
     if (direction === 1) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      scrollTo(open).then(() => {
-        opened.current = true
-      })
+      scrollTo(open).then(() => position.set(SheetPosition.OPENED))
     } else {
       scroller.scrollLeft = open.x
       scroller.scrollTop = open.y
-      opened.current = true
     }
-  }, [direction, getScrollSnapPositions, scrollTo, scrollerRef, startY])
+  }, [direction, getPositions, isPresent, position, scrollTo, scrollerRef, start])
 
-  // Open the sheet when loading the page.
   // Make sure the sheet stays open when resizing the window.
   useEffect(() => {
     const scroller = scrollerRef.current
     if (!sheetRef.current || !scroller) return () => {}
 
     const resize = () => {
-      const positions = getScrollSnapPositions()
-      const [, open] = positions.x.map((x, i) => ({ x, y: positions.y[i] }))
+      const { open } = getPositions()
 
-      const visible = sheetVisbility.get() === 1
+      const visible = sheetVisibility.get() === 1
 
-      startY.set(open.y)
+      start.y.set(open.y)
       if (visible && (scroller.scrollLeft !== open.x || scroller.scrollTop !== open.y)) {
         scroller.scrollLeft = open.x
         scroller.scrollTop = open.y
@@ -283,24 +321,34 @@ function SheetHandler(props: SheetHandlerProps) {
     return () => window.removeEventListener('resize', resize)
     // We're not checking for all deps, because that will cause rerenders.
     // The scroller context shouldn't be changing, but at the moment it is.
-  }, [getScrollSnapPositions, scrollerRef, sheetVisbility, startY])
+  }, [getPositions, scrollerRef, sheetVisibility, start])
 
-  const isNavigating = useRef(false)
+  useEffect(() => {
+    if (isPresent) return
+
+    const { closed } = getPositions()
+    position.set(SheetPosition.CLOSED)
+
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    scrollTo(closed).then(() => safeToRemove?.())
+  }, [getPositions, isPresent, position, safeToRemove, scrollTo])
+
+  // Only go back to a previous page if the sheet isn't closed.
   const closeOverlay = useCallback(() => {
-    if (isNavigating.current) return
-    isNavigating.current = true
+    if (position.get() !== SheetPosition.OPENED) return
+    position.set(SheetPosition.CLOSED)
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     pageRouter.go(closeSteps * -1)
-  }, [closeSteps, pageRouter])
+  }, [closeSteps, pageRouter, position])
 
   // Handle escape key
-  useDomEvent(
-    useRef(typeof window !== 'undefined' ? window : null),
-    'keyup',
-    (e: KeyboardEvent | Event) => {
-      if (active && (e as KeyboardEvent)?.key === 'Escape') closeOverlay()
-    },
-    { passive: true },
-  )
+  const windowRef = useRef(typeof window !== 'undefined' ? window : null)
+  const handleEscape = (e: KeyboardEvent | Event) => {
+    if (active && (e as KeyboardEvent)?.key === 'Escape') closeOverlay()
+  }
+  useDomEvent(windowRef, 'keyup', handleEscape, { passive: true })
+
+  // useEffect(() => opacity.onChange((o) => o === 0 && closeOverlay()))
 
   // Measure the offset of the sheet in the scroller.
   const offsetY = useMotionValue(0)
@@ -310,27 +358,20 @@ function SheetHandler(props: SheetHandlerProps) {
     ro.observe(sheetRef.current)
     return () => ro.disconnect()
   })
-
-  // Handle closing the sheet when the sheet is closed by the user.
-  useEffect(
-    () => sheetVisbility.onChange((v) => opened.current && v === 0 && closeOverlay()),
-    [closeOverlay, sheetVisbility],
-  )
-
-  // Pass the scrollOffset relative to the sheet
-  const scrollOffset = useTransform(
-    [useElementScroll(scrollerRef).y, startY, offsetY] as MotionValue<number | string>[],
-    ([y, startYv, offsetYv]: number[]) => Math.max(0, y - startYv - offsetYv),
+  // Create the exact position for the AppShellProvider which offsets the top of the sheet
+  const scrollProvider = useTransform(
+    [scroll.y, start.y, offsetY] as MotionValue<number | string>[],
+    ([y, startY, offsetYv]: number[]) => Math.max(0, y - startY - offsetYv),
   )
 
   return (
     <>
-      <m.div {...className('backdrop')} style={{ opacity: useSpring(sheetVisbility) }} />
+      <m.div {...className('backdrop')} style={{ opacity: sheetVisibility }} />
       <Scroller {...className('root')} grid={false} hideScrollbar>
         <div {...className('beforeSheet')} onClick={closeOverlay}></div>
         <div {...className('sheet')} ref={sheetRef}>
           <div {...className('sheetPane')} ref={sheetPaneRef}>
-            <AppShellProvider scroll={scrollOffset}>{children}</AppShellProvider>
+            <AppShellProvider scroll={scrollProvider}>{children}</AppShellProvider>
           </div>
         </div>
         <div {...className('afterSheet')} />

@@ -124,7 +124,7 @@ const useStyles = makeStyles(
 export type ScrollableProps<TagName extends keyof ReactHTML = 'div'> = UseStyles<typeof useStyles> &
   HTMLMotionProps<TagName> & { hideScrollbar?: boolean; grid?: boolean }
 
-function scrollSnapTypeDirection(scrollSnapType: ScrollSnapType) {
+export function scrollSnapTypeDirection(scrollSnapType: ScrollSnapType) {
   let smSnapDir = scrollSnapType.split(' ')[0]
   smSnapDir = smSnapDir.replace('y', 'block')
   smSnapDir = smSnapDir.replace('x', 'inline') as 'block' | 'inline' | 'both' | 'inline'

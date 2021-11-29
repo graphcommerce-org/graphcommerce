@@ -58,7 +58,7 @@ const useStyles = makeStyles<
       borderRadius: '99em',
     },
     pillLink: {
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('md')]: {
         // manually match MuiButton and containedPrimary styles
         textTransform: 'none',
         ...theme.typography.body2,
@@ -68,7 +68,7 @@ const useStyles = makeStyles<
       },
     },
     pillPrimary: {
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('md')]: {
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.primary.contrastText,
         '&:hover': {
@@ -77,7 +77,7 @@ const useStyles = makeStyles<
       },
     },
     pillSecondary: {
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('md')]: {
         backgroundColor: theme.palette.secondary.main,
         color: theme.palette.secondary.contrastText,
         '&:hover': {

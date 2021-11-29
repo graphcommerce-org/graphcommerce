@@ -55,6 +55,7 @@ const ScrollerDots = m(
             {...fabProps}
             onClick={() => {
               const positions = getScrollSnapPositions()
+              // eslint-disable-next-line @typescript-eslint/no-floating-promises
               scrollTo({ x: positions.x[idx] ?? 0, y: positions.y[idx] ?? 0 })
             }}
             className={clsx(dot, props.className)}
