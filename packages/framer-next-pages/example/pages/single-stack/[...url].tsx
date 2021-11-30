@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/require-await */
-import { PageOptions, usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
+import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import {
   AppBar,
   AppShellTitle,
