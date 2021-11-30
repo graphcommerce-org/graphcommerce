@@ -86,7 +86,9 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       },
     },
     shadows,
-
+    shape: {
+      borderRadius: 6,
+    },
     typography: {
       fontFamily:
         '-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji',
