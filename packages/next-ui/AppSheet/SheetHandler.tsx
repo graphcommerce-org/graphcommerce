@@ -259,7 +259,7 @@ export function SheetHandler(props: SheetHandlerProps) {
 
     const open = { x: positions.open.x.get(), y: positions.open.y.get() }
 
-    if (direction === 1) {
+    if (direction === 1 && position.get() !== SheetPosition.OPENED) {
       scroller.scrollLeft = positions.closed.x.get()
       scroller.scrollTop = positions.closed.y.get()
       // eslint-disable-next-line @typescript-eslint/no-floating-promises

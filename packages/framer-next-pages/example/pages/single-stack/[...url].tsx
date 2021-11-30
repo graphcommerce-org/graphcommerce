@@ -14,6 +14,7 @@ import { GetStaticPathsResult, GetStaticProps } from 'next'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import Grid from '../../components/Grid'
+import StackDebug from '../../components/StackedDebugger'
 
 function SingleStack() {
   const [expanded, setExpanded] = useState(true)
@@ -26,11 +27,13 @@ function SingleStack() {
     <>
       <AppBar noAlign>
         <Title size='small' component='span'>
-          Overlay {variant}
+          Overlay {variant} {page}
         </Title>
       </AppBar>
       <Container>
-        <AppShellTitle>Overlay {variant}</AppShellTitle>
+        <AppShellTitle>
+          Overlay {variant} {page}
+        </AppShellTitle>
         {page > 0 && (
           <Link href={`/single-stack/${variant}/${page - 1}`}>
             <a>{page - 1}</a>
@@ -43,6 +46,7 @@ function SingleStack() {
         <button type='button' onClick={() => setExpanded(!expanded)}>
           {expanded ? 'collapse' : 'expand'}
         </button>
+        <StackDebug />
         <motion.div
           style={{ fontFamily: 'sans-serif', overflow: 'hidden' }}
           variants={{
