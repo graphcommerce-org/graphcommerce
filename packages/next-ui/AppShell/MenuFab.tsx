@@ -95,9 +95,12 @@ export default function MenuFab(props: MenuFabProps) {
         onClick={(event) => setOpenEl(event.currentTarget)}
         className={classes.menuFab}
       >
-        {openEl
-          ? closeIcon ?? <SvgImageSimple src={iconClose} inverted />
-          : menuIcon ?? <SvgImageSimple src={iconMenu} inverted />}
+        {closeIcon ?? (
+          <SvgImageSimple src={iconClose} inverted style={{ display: openEl ? 'block' : 'none' }} />
+        )}
+        {menuIcon ?? (
+          <SvgImageSimple src={iconMenu} inverted style={{ display: openEl ? 'none' : 'block' }} />
+        )}
       </Fab>
 
       <Menu
