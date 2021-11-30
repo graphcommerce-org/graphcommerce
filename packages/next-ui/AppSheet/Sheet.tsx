@@ -6,7 +6,11 @@ import {
   useScrollerContext,
   useScrollTo,
 } from '@graphcommerce/framer-scroller'
-import { useConstant, useElementScroll } from '@graphcommerce/framer-utils'
+import {
+  useConstant,
+  useElementScroll,
+  useIsomorphicLayoutEffect,
+} from '@graphcommerce/framer-utils'
 import { makeStyles, Theme } from '@material-ui/core'
 import {
   m,
@@ -18,7 +22,7 @@ import {
   useSpring,
   useTransform,
 } from 'framer-motion'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { SetOptional } from 'type-fest'
 import AppShellProvider from '../AppShell/AppShellProvider/AppShellProvder'
 import { classesPicker } from '../Styles/classesPicker'
@@ -247,9 +251,71 @@ enum SheetPosition {
   CLOSED = 0,
 }
 
+function useSheetPosition() {
+  const { getScrollSnapPositions, scrollerRef } = useScrollerContext()
+
+  const state = useConstant(() => ({
+    open: {
+      x: motionValue(0),
+      y: motionValue(0),
+      visible: motionValue(0),
+    },
+    closed: { x: motionValue(0), y: motionValue(0) },
+  }))
+
+  const scroll = useElementScroll(scrollerRef)
+
+  useIsomorphicLayoutEffect(() => {
+    if (!scrollerRef.current) return
+
+    const measure = () => {
+      const positions = getScrollSnapPositions()
+      state.open.x.set(positions.x[1])
+      state.closed.x.set(positions.x[0])
+      state.open.y.set(positions.y[1])
+      state.closed.y.set(positions.y[0])
+    }
+    const ro = new ResizeObserver(measure)
+    measure()
+
+    ro.observe(scrollerRef.current)
+    return () => ro.disconnect()
+  })
+
+  // sets a float between 0 and 1 for the visibility of the sheet
+  useEffect(() => {
+    const calc = () => {
+      const x = scroll.x.get()
+      const y = scroll.y.get()
+
+      const yC = state.closed.y.get()
+      const yO = state.open.y.get()
+      const visY = yC === yO ? 1 : Math.max(0, Math.min(1, (y - yC) / (yO - yC)))
+
+      const xC = state.closed.x.get()
+      const xO = state.open.x.get()
+      const visX = xO === xC ? 1 : Math.max(0, Math.min(1, (x - xC) / (xO - xC)))
+
+      state.open.visible.set(visY * visX)
+    }
+
+    const cancelY = scroll.y.onChange(calc)
+    const cancelX = scroll.x.onChange(calc)
+    calc()
+
+    return () => {
+      cancelY()
+      cancelX()
+    }
+  }, [state, scroll])
+
+  return state
+}
+
 function SheetHandler(props: SheetHandlerProps) {
   const { children, variantSm, variantMd } = props
-  const { getScrollSnapPositions, scrollerRef } = useScrollerContext()
+  const { scrollerRef } = useScrollerContext()
+  const positions = useSheetPosition()
   const scrollTo = useScrollTo()
   const [isPresent, safeToRemove] = usePresence()
 
@@ -262,76 +328,53 @@ function SheetHandler(props: SheetHandlerProps) {
   const className = classesPicker(classes, { variantSm, variantMd })
 
   const sheetRef = useRef<HTMLDivElement>(null)
-  const sheetPaneRef = useRef<HTMLDivElement>(null)
 
-  // Utility function to get the current closed and opened positions of the sheet
-  const getPositions = useCallback(() => {
-    const positions = getScrollSnapPositions()
-    const [closed, open] = positions.x.map((x, i) => ({ x, y: positions.y[i] }))
-    return { closed, open }
-  }, [getScrollSnapPositions])
-
-  const start = useConstant(() => ({ x: motionValue(0), y: motionValue(0) }))
   const scroll = useElementScroll(scrollerRef)
 
-  // Get a value between 0 and 1 for the visibility of the sheetPane
-  const sheetVisibility = useTransform(
-    [scroll.y, start.y] as MotionValue<number | string>[],
-    ([y, startY]: number[]) => {
-      if (Number.isNaN(startY) || startY === 0) return 0
-      return Math.min(1, (startY - (startY - y)) / startY)
-    },
-  )
-
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const scroller = scrollerRef.current
     if (!scroller || !isPresent) return
 
-    const { open } = getPositions()
+    const open = { x: positions.open.x.get(), y: positions.open.y.get() }
 
-    start.y.set(open.y)
-    start.x.set(open.x)
     if (direction === 1) {
+      scroller.scrollLeft = positions.closed.x.get()
+      scroller.scrollTop = positions.closed.y.get()
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       scrollTo(open).then(() => position.set(SheetPosition.OPENED))
     } else {
       scroller.scrollLeft = open.x
       scroller.scrollTop = open.y
     }
-  }, [direction, getPositions, isPresent, position, scrollTo, scrollerRef, start])
+  }, [direction, isPresent, position, positions, scrollTo, scrollerRef])
 
   // Make sure the sheet stays open when resizing the window.
   useEffect(() => {
     const scroller = scrollerRef.current
-    if (!sheetRef.current || !scroller) return () => {}
+    if (!scroller) return () => {}
 
     const resize = () => {
-      const { open } = getPositions()
-
-      const visible = sheetVisibility.get() === 1
-
-      start.y.set(open.y)
-      if (visible && (scroller.scrollLeft !== open.x || scroller.scrollTop !== open.y)) {
-        scroller.scrollLeft = open.x
-        scroller.scrollTop = open.y
-      }
+      if (positions.open.visible.get() !== 1) return
+      scroller.scrollLeft = positions.open.x.get()
+      scroller.scrollTop = positions.open.y.get()
     }
 
     window.addEventListener('resize', resize)
     return () => window.removeEventListener('resize', resize)
     // We're not checking for all deps, because that will cause rerenders.
     // The scroller context shouldn't be changing, but at the moment it is.
-  }, [getPositions, scrollerRef, sheetVisibility, start])
+  }, [positions, scrollerRef])
 
   useEffect(() => {
     if (isPresent) return
 
-    const { closed } = getPositions()
     position.set(SheetPosition.CLOSED)
-
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    scrollTo(closed).then(() => safeToRemove?.())
-  }, [getPositions, isPresent, position, safeToRemove, scrollTo])
+    scrollTo({
+      x: positions.closed.x.get(),
+      y: positions.closed.y.get(),
+    }).then(() => safeToRemove?.())
+  }, [isPresent, position, positions, safeToRemove, scrollTo])
 
   // Only go back to a previous page if the sheet isn't closed.
   const closeOverlay = useCallback(() => {
@@ -348,7 +391,8 @@ function SheetHandler(props: SheetHandlerProps) {
   }
   useDomEvent(windowRef, 'keyup', handleEscape, { passive: true })
 
-  // useEffect(() => opacity.onChange((o) => o === 0 && closeOverlay()))
+  // When the sheet isn't visible anymore, we navigate back.
+  useEffect(() => positions.open.visible.onChange((o) => o === 0 && closeOverlay()))
 
   // Measure the offset of the sheet in the scroller.
   const offsetY = useMotionValue(0)
@@ -357,20 +401,21 @@ function SheetHandler(props: SheetHandlerProps) {
     const ro = new ResizeObserver(([entry]) => offsetY.set(entry.contentRect.top))
     ro.observe(sheetRef.current)
     return () => ro.disconnect()
-  })
+  }, [offsetY])
+
   // Create the exact position for the AppShellProvider which offsets the top of the sheet
   const scrollProvider = useTransform(
-    [scroll.y, start.y, offsetY] as MotionValue<number | string>[],
-    ([y, startY, offsetYv]: number[]) => Math.max(0, y - startY - offsetYv),
+    [scroll.y, positions.open.y, offsetY] as MotionValue<number | string>[],
+    ([y, openY, offsetYv]: number[]) => Math.max(0, y - openY - offsetYv),
   )
 
   return (
     <>
-      <m.div {...className('backdrop')} style={{ opacity: sheetVisibility }} />
+      <m.div {...className('backdrop')} style={{ opacity: positions.open.visible }} />
       <Scroller {...className('root')} grid={false} hideScrollbar>
         <div {...className('beforeSheet')} onClick={closeOverlay}></div>
         <div {...className('sheet')} ref={sheetRef}>
-          <div {...className('sheetPane')} ref={sheetPaneRef}>
+          <div {...className('sheetPane')}>
             <AppShellProvider scroll={scrollProvider}>{children}</AppShellProvider>
           </div>
         </div>
