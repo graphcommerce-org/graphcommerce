@@ -335,7 +335,7 @@ const createOverrides = (theme: Theme): Overrides => {
     },
     MuiOutlinedInput: {
       root: {
-        borderRadius: responsiveVal(theme.shape.borderRadius * 1, 5, theme.shape.borderRadius * 2),
+        borderRadius: responsiveVal(theme.shape.borderRadius * 1.5, theme.shape.borderRadius * 2),
         '&$focused $notchedOutline': {
           borderColor: theme.palette.divider,
           borderWidth: 1,
