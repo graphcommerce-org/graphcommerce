@@ -67,6 +67,8 @@ const useRichTextStyles = makeStyles(
       padding: 5,
       overflow: 'scroll',
     },
+    iframe: {},
+    aspectContainer: {},
     table: {
       display: 'table',
       width: '100%',
