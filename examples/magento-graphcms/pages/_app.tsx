@@ -14,8 +14,6 @@ export default function ThemedApp(props: AppProps) {
 
   return (
     <>
-      <GoogleRecaptchaV3Script />
-      <GoogleTagManagerScript />
       <ApolloProvider client={apolloClient(locale, true, pageProps.apolloState)}>
         <LinguiProvider loader={(locale) => import(`../locales/${locale}.po`)}>
           <ThemedProvider>
