@@ -13,7 +13,7 @@ const useStyles = makeStyles(
     },
     asset: {
       '& img': {
-        borderRadius: responsiveVal(8, 12),
+        borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
       },
     },
   }),

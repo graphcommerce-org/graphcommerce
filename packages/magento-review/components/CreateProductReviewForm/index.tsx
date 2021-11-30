@@ -36,7 +36,6 @@ const useStyles = makeStyles(
     submitButton: {
       width: responsiveVal(200, 250),
       height: responsiveVal(40, 50),
-      borderRadius: responsiveVal(20, 25),
     },
     cancelButton: {
       display: 'block',

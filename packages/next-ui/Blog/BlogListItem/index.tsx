@@ -24,7 +24,7 @@ const useStyles = makeStyles(
       overflow: 'hidden',
       height: '100%',
       width: '100%',
-      borderRadius: responsiveVal(8, 12),
+      borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
       '& img': {
         height: '100% !important',
         objectFit: 'cover',

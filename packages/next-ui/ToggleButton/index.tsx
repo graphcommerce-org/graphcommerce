@@ -13,7 +13,7 @@ export const useStyles = makeStyles(
   (theme: Theme) => ({
     /* Styles applied to the root element. */
     root: {
-      borderRadius: responsiveVal(8, 12),
+      borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
       border: `1px solid ${theme.palette.divider}`,
       '&$disabled': {
         borderWidth: 2,

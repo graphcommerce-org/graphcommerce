@@ -24,7 +24,7 @@ const useStyles = makeStyles(
       },
       boxShadow: 'none',
       border: `1px solid ${theme.palette.divider}`,
-      borderRadius: responsiveVal(12, 16),
+      borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
       overflow: 'hidden',
     },
     button: {

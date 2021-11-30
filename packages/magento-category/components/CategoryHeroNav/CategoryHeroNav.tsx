@@ -62,7 +62,7 @@ const useStyles = makeStyles(
       '& video': {
         objectFit: 'cover',
         width: '100%',
-        borderRadius: responsiveVal(8, 12),
+        borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
       },
     },
     [theme.breakpoints.up('md')]: {

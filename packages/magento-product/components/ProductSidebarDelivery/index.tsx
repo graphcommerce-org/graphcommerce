@@ -19,7 +19,7 @@ const useStyles = makeStyles(
           ? darken(theme.palette.background.default, 0.01)
           : lighten(theme.palette.background.default, 0.2),
       padding: theme.spacings.xxs,
-      borderRadius: responsiveVal(12, 16),
+      borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
     },
     text: {},
     image: {

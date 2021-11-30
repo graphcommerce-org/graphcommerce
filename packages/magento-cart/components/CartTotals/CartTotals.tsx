@@ -11,7 +11,7 @@ import { GetCartTotalsDocument } from './GetCartTotals.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     costsContainer: {
-      borderRadius: responsiveVal(12, 16),
+      borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
       background: theme.palette.type === 'light' ? '#FFE10820' : theme.palette.background.paper,
       padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
     },

@@ -54,7 +54,7 @@ const useStyles = makeStyles(
         width: '100%',
         height: '100%',
         [theme.breakpoints.down('sm')]: {
-          borderRadius: responsiveVal(8, 12),
+          borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
         },
       },
       [theme.breakpoints.up('md')]: {
@@ -62,7 +62,7 @@ const useStyles = makeStyles(
       },
     },
     animated: {
-      borderRadius: responsiveVal(8, 12),
+      borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
       overflow: 'hidden',
     },
   }),

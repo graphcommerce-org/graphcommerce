@@ -88,7 +88,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
     },
     shadows,
     shape: {
-      borderRadius: 6,
+      borderRadius: 4,
     },
     typography: {
       fontFamily:
@@ -296,7 +296,7 @@ const createOverrides = (theme: Theme): Overrides => {
         color: theme.palette.secondary.contrastText,
       },
       outlined: {
-        borderRadius: responsiveVal(8, 12),
+        borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
       },
       text: {
         padding: `${responsiveVal(8, 10)} ${responsiveVal(12, 22)}`,
@@ -335,7 +335,7 @@ const createOverrides = (theme: Theme): Overrides => {
     },
     MuiOutlinedInput: {
       root: {
-        borderRadius: responsiveVal(6, 8),
+        borderRadius: responsiveVal(theme.shape.borderRadius * 1, 5, theme.shape.borderRadius * 2),
         '&$focused $notchedOutline': {
           borderColor: theme.palette.divider,
           borderWidth: 1,

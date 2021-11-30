@@ -20,11 +20,3 @@ export default function breakpointVal(
     }),
   )
 }
-
-// const theme = useTheme()
-
-// const breakpointValT = (property: string, min: number, max: number, t: Theme) =>
-//   breakpointVal(property, min, max, Object.values(t.breakpoints.values))
-
-// console.log(breakpointValT('fontSize', 10, 20, theme))
-// console.log(breakpointVal('fontSize', 10, 20, [0, 500, 1000, 2000]))

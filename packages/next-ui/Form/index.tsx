@@ -24,7 +24,7 @@ const useStyles = makeStyles(
       padding: theme.spacings.sm,
       // paddingTop: theme.spacings.md,
       overflow: 'hidden',
-      borderRadius: responsiveVal(12, 16),
+      borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
     },
   }),
   { name: 'Form' },

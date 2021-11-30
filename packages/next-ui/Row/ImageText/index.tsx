@@ -22,7 +22,7 @@ const useStyles = makeStyles(
         background: 'none',
         gridTemplateColumns: '1fr 1fr',
       },
-      borderRadius: responsiveVal(8, 12),
+      borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
     },
     asset: {
       height: '100%',
@@ -31,7 +31,7 @@ const useStyles = makeStyles(
         height: '100%',
         width: '100%',
         objectFit: 'cover',
-        borderRadius: responsiveVal(8, 12),
+        borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
       },
     },
     copy: {
