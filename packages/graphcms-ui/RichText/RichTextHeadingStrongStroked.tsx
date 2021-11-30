@@ -1,4 +1,4 @@
-import { responsiveTyp } from '@graphcommerce/next-ui'
+import { breakpointVal } from '@graphcommerce/next-ui'
 import { Theme, withStyles } from '@material-ui/core'
 import RichText from '.'
 
@@ -8,7 +8,7 @@ const RichTextHeadingStrongStroked = withStyles((theme: Theme) => ({
     textTransform: 'uppercase',
     color: theme.palette.text.primary,
     [theme.breakpoints.up('sm')]: {
-      ...responsiveTyp(36, 82),
+      ...breakpointVal('fontSize', 36, 82, theme.breakpoints.values),
     },
     '& strong': {
       // https://github.com/rsms/inter/issues/292#issuecomment-674993644

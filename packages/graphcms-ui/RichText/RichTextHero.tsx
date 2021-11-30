@@ -1,4 +1,4 @@
-import { responsiveTyp } from '@graphcommerce/next-ui'
+import { breakpointVal } from '@graphcommerce/next-ui'
 import { Theme, withStyles } from '@material-ui/core'
 import RichText from '.'
 
@@ -11,7 +11,7 @@ const RichTextHero = withStyles((theme: Theme) => ({
     margin: 0,
     marginBottom: theme.spacings.md,
     [theme.breakpoints.up('sm')]: {
-      ...responsiveTyp(36, 82),
+      ...breakpointVal('fontSize', 36, 82, theme.breakpoints.values),
     },
     [theme.breakpoints.up('md')]: {
       textAlign: 'left',

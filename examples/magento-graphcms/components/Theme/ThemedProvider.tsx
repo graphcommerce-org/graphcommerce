@@ -1,7 +1,7 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
 import { responsiveVal } from '@graphcommerce/next-ui'
-import { responsiveTyp } from '@graphcommerce/next-ui'
+import { breakpointVal } from '@graphcommerce/next-ui'
 import { createTheme, CssBaseline, Theme, ThemeProvider, lighten, alpha } from '@material-ui/core'
 import { PaletteOptions } from '@material-ui/core/styles/createPalette'
 import { Overrides } from '@material-ui/core/styles/overrides'
@@ -9,6 +9,13 @@ import React from 'react'
 import shadows from './shadows'
 
 const useTheme: 'light' | 'dark' = 'light'
+const breakpoints = {
+  xs: 0,
+  sm: 600,
+  md: 960,
+  lg: 1536,
+  xl: 1920,
+}
 
 const lightPalette: PaletteOptions = {
   type: 'light',
@@ -77,13 +84,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
   createTheme({
     palette,
     breakpoints: {
-      values: {
-        xs: 0,
-        sm: 600,
-        md: 960,
-        lg: 1536,
-        xl: 1920,
-      },
+      values: breakpoints,
     },
     shadows,
     shape: {
@@ -128,7 +129,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
        */
       h1: {
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-        ...responsiveTyp(28, 64),
+        ...breakpointVal('fontSize', 28, 64, breakpoints),
         fontWeight: 700,
         fontVariationSettings: "'wght' 660",
         // letterSpacing: '-0.0375em',
@@ -136,7 +137,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       },
       h2: {
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-        ...responsiveTyp(25, 40),
+        ...breakpointVal('fontSize', 25, 40, breakpoints),
         fontWeight: 700,
         fontVariationSettings: "'wght' 630",
         // letterSpacing: '-0.0375em',
@@ -144,7 +145,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       },
       h3: {
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-        ...responsiveTyp(22, 30),
+        ...breakpointVal('fontSize', 22, 30, breakpoints),
         fontWeight: 700,
         fontVariationSettings: "'wght' 680",
         // letterSpacing: '-0.0375em',
@@ -154,7 +155,7 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
         fontWeight: 500,
         fontVariationSettings: "'wght' 520",
-        ...responsiveTyp(18, 26),
+        ...breakpointVal('fontSize', 18, 26, breakpoints),
         // letterSpacing: '-0.0375em',
         lineHeight: 1.55,
       },
@@ -163,19 +164,19 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
         fontWeight: 700,
         fontVariationSettings: "'wght' 680",
         // letterSpacing: '-0.0375em',
-        ...responsiveTyp(17, 20),
+        ...breakpointVal('fontSize', 17, 20, breakpoints),
         lineHeight: 1.55,
       },
       h6: {
         // fontFamily: ['Public Sans', 'sans-serif'].join(', '),
-        ...responsiveTyp(17, 20),
+        ...breakpointVal('fontSize', 17, 20, breakpoints),
         fontWeight: 550,
         fontVariationSettings: "'wght' 530",
         // letterSpacing: '-0.0375em',
         lineHeight: 1.8,
       },
       subtitle1: {
-        ...responsiveTyp(16, 19),
+        ...breakpointVal('fontSize', 16, 19, breakpoints),
         fontWeight: 400,
         // letterSpacing: '-0.0375em',
         lineHeight: 1.7,
@@ -183,25 +184,25 @@ const createThemeWithPallete = (palette: PaletteOptions) =>
       fontWeightBold: 600,
       body1: {
         // We're boosting the fontSize to be 17px at 1280
-        ...responsiveTyp(16, 18),
+        ...breakpointVal('fontSize', 16, 18, breakpoints),
         lineHeight: 1.7,
       },
       subtitle2: {
-        ...responsiveTyp(14, 16),
+        ...breakpointVal('fontSize', 14, 16, breakpoints),
         fontWeight: 600,
         lineHeight: 1.7,
       },
       body2: {
-        ...responsiveTyp(13, 15),
+        ...breakpointVal('fontSize', 13, 15, breakpoints),
         lineHeight: 1.7,
       },
       // https://web.dev/font-size/#how-the-lighthouse-font-size-audit-fails
       caption: {
-        ...responsiveTyp(12, 13),
+        ...breakpointVal('fontSize', 12, 13, breakpoints),
       },
       button: {},
       overline: {
-        ...responsiveTyp(12, 14),
+        ...breakpointVal('fontSize', 12, 14, breakpoints),
         fontWeight: 500,
         letterSpacing: 1,
         lineHeight: 1.2,
