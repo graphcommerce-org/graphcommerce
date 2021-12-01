@@ -1,8 +1,8 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import { useViewportScroll } from 'framer-motion'
 import React from 'react'
+import AppShellProvider from '../AppShell/AppShellProvider/AppShellProvder'
 import { UseStyles } from '../Styles'
-import AppShellProvider from './AppShellProvider/AppShellProvder'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -47,7 +47,7 @@ const useStyles = makeStyles(
   { name: 'FullPageShellBase' },
 )
 
-export type FullPageShellBaseProps = {
+export type LayoutDefaultProps = {
   header: React.ReactNode
   footer: React.ReactNode
   menuFab?: React.ReactNode
@@ -55,7 +55,7 @@ export type FullPageShellBaseProps = {
   children?: React.ReactNode
 } & UseStyles<typeof useStyles>
 
-export default function LayoutFullBase(props: FullPageShellBaseProps) {
+export function LayoutDefault(props: LayoutDefaultProps) {
   const { children, header, footer, menuFab, cartFab } = props
   const classes = useStyles(props)
 

@@ -2,14 +2,14 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useMergeCustomerCart } from '@graphcommerce/magento-cart'
 import { AccountSignInUpForm } from '@graphcommerce/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, SheetAppBar, Title } from '@graphcommerce/next-ui'
+import { GetStaticProps, OverlayAppBar, Title } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
-import { LayoutSheet, LayoutSheetProps } from '../../components/Layout/LayoutSheet'
+import { LayoutOverlay, LayoutOverlayProps } from '../../components/Layout/LayoutOverlay'
 import apolloClient from '../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<LayoutSheetProps>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountSignInPage() {
   useMergeCustomerCart()
@@ -22,11 +22,11 @@ function AccountSignInPage() {
         metaDescription={t`Sign in to your account`}
       />
       <NoSsr>
-        <SheetAppBar>
+        <OverlayAppBar>
           <Title size='small' component='span'>
             <Trans>Sign in</Trans>
           </Title>
-        </SheetAppBar>
+        </OverlayAppBar>
         <Container maxWidth='sm'>
           <AccountSignInUpForm />
         </Container>
@@ -35,9 +35,9 @@ function AccountSignInPage() {
   )
 }
 
-const pageOptions: PageOptions<LayoutSheetProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account-public',
-  Layout: LayoutSheet,
+  Layout: LayoutOverlay,
 }
 AccountSignInPage.pageOptions = pageOptions
 

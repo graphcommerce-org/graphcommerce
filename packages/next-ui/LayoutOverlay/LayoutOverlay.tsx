@@ -1,12 +1,12 @@
 import { ScrollerProvider, ScrollSnapType } from '@graphcommerce/framer-scroller'
 import React from 'react'
 import { SetOptional } from 'type-fest'
-import { SheetHandler, SheetHandlerProps } from './SheetHandler'
-export type { SheetVariant } from './SheetHandler'
+import { LayoutOverlayBase, LayoutOverlayBaseProps } from './LayoutOverlayBase'
+export type { OverlayVariant } from './LayoutOverlayBase'
 
-export type SheetProps = SetOptional<SheetHandlerProps, 'variantSm' | 'variantMd'>
+export type LayoutOverlayProps = SetOptional<LayoutOverlayBaseProps, 'variantSm' | 'variantMd'>
 
-export function Sheet(props: SheetProps) {
+export function LayoutOverlay(props: LayoutOverlayProps) {
   const { children, variantSm = 'bottom', variantMd = 'right', classes } = props
 
   const scrollSnapTypeSm: ScrollSnapType =
@@ -16,9 +16,9 @@ export function Sheet(props: SheetProps) {
 
   return (
     <ScrollerProvider scrollSnapTypeSm={scrollSnapTypeSm} scrollSnapTypeMd={scrollSnapTypeMd}>
-      <SheetHandler variantMd={variantMd} variantSm={variantSm} classes={classes}>
+      <LayoutOverlayBase variantMd={variantMd} variantSm={variantSm} classes={classes}>
         {children}
-      </SheetHandler>
+      </LayoutOverlayBase>
     </ScrollerProvider>
   )
 }

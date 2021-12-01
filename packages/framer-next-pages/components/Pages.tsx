@@ -114,7 +114,7 @@ export default function FramerNextPages(props: PagesProps) {
           children,
           historyIdx,
           sharedKey,
-          Layout: SharedComponent = NoopLayout,
+          Layout = NoopLayout,
           layoutProps: sharedProps,
           sharedPageProps,
           currentRouter,
@@ -132,19 +132,13 @@ export default function FramerNextPages(props: PagesProps) {
         return (
           <pageContext.Provider
             key={sharedKey}
-            value={{
-              depth,
-              active,
-              direction,
-              closeSteps,
-              backSteps,
-            }}
+            value={{ depth, active, direction, closeSteps, backSteps }}
           >
             <Page active={active} historyIdx={historyIdx}>
               <pageRouterContext.Provider value={{ currentRouter, prevRouter, up, prevUp }}>
-                <SharedComponent {...sharedPageProps} {...sharedProps}>
+                <Layout {...sharedPageProps} {...sharedProps}>
                   {children}
-                </SharedComponent>
+                </Layout>
               </pageRouterContext.Provider>
             </Page>
           </pageContext.Provider>

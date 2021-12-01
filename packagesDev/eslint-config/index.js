@@ -5,9 +5,9 @@ module.exports = {
     node: true,
   },
   extends: [
+    'airbnb',
     'airbnb-typescript',
     'airbnb/hooks',
-    'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:@next/eslint-plugin-next/recommended',
@@ -96,6 +96,9 @@ module.exports = {
     '@typescript-eslint/unbound-method': 'off',
 
     'import/no-relative-packages': 'error',
+
+    // Remove when fixed: https://github.com/airbnb/javascript/pull/2501/files
+    'react/function-component-definition': 'off',
   },
   overrides: [
     {

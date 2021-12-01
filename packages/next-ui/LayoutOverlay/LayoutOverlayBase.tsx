@@ -14,7 +14,7 @@ import React, { useCallback, useEffect, useRef } from 'react'
 import { UseStyles } from '..'
 import AppShellProvider from '../AppShell/AppShellProvider/AppShellProvder'
 import { classesPicker } from '../Styles/classesPicker'
-import { useSheetPosition } from './useSheetPosition'
+import { useOverlayPosition } from './useOverlayPosition'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -30,38 +30,38 @@ const useStyles = makeStyles(
     rootVariantSmLeft: {
       [theme.breakpoints.down('sm')]: {
         gridTemplate: `
-          "sheet beforeSheet"
-          "afterSheet afterSheet"
+          "overlay beforeOverlay"
+          "afterOverlay afterOverlay"
         `,
       },
     },
     rootVariantMdLeft: {
       [theme.breakpoints.up('md')]: {
         gridTemplate: `
-          "sheet beforeSheet"
-          "afterSheet afterSheet"
+          "overlay beforeOverlay"
+          "afterOverlay afterOverlay"
         `,
       },
     },
     rootVariantSmRight: {
       [theme.breakpoints.down('sm')]: {
         gridTemplate: `
-          "beforeSheet sheet"
-          "afterSheet afterSheet"
+          "beforeOverlay overlay"
+          "afterOverlay afterOverlay"
         `,
       },
     },
     rootVariantMdRight: {
       [theme.breakpoints.up('md')]: {
         gridTemplate: `
-          "beforeSheet sheet"
-          "afterSheet afterSheet"
+          "beforeOverlay overlay"
+          "afterOverlay afterOverlay"
         `,
       },
     },
     rootVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
-        gridTemplate: `"beforeSheet" "sheet" "afterSheet"`,
+        gridTemplate: `"beforeOverlay" "overlay" "afterOverlay"`,
         height: '100vh',
         ['@supports (-webkit-touch-callout: none)']: {
           height: '-webkit-fill-available',
@@ -70,45 +70,45 @@ const useStyles = makeStyles(
     },
     rootVariantMdBottom: {
       [theme.breakpoints.up('md')]: {
-        gridTemplate: `"beforeSheet" "sheet" "afterSheet"`,
+        gridTemplate: `"beforeOverlay" "overlay" "afterOverlay"`,
         height: '100vh',
       },
     },
-    beforeSheet: {
-      gridArea: 'beforeSheet',
+    beforeOverlay: {
+      gridArea: 'beforeOverlay',
       scrollSnapAlign: 'start',
       scrollSnapStop: 'always',
       display: 'grid',
       alignContent: 'end',
     },
-    beforeSheetVariantSmRight: {
+    beforeOverlayVariantSmRight: {
       [theme.breakpoints.down('sm')]: {
         width: '100vw',
       },
     },
-    beforeSheetVariantMdRight: {
+    beforeOverlayVariantMdRight: {
       [theme.breakpoints.up('md')]: {
         width: '100vw',
       },
     },
 
-    beforeSheetVariantSmLeft: {
+    beforeOverlayVariantSmLeft: {
       [theme.breakpoints.down('sm')]: {
         width: '100vw',
       },
     },
-    beforeSheetVariantMdLeft: {
+    beforeOverlayVariantMdLeft: {
       [theme.breakpoints.up('md')]: {
         width: '100vw',
       },
     },
 
-    beforeSheetVariantMdBottom: {
+    beforeOverlayVariantMdBottom: {
       [theme.breakpoints.up('md')]: {
         height: '100vh',
       },
     },
-    beforeSheetVariantSmBottom: {
+    beforeOverlayVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
         height: '100vh',
         ['@supports (-webkit-touch-callout: none)']: {
@@ -116,9 +116,9 @@ const useStyles = makeStyles(
         },
       },
     },
-    sheet: {
+    overlay: {
       pointerEvents: 'none',
-      gridArea: 'sheet',
+      gridArea: 'overlay',
       scrollSnapAlign: 'start',
       width: 'min-content',
       minHeight: '100vh',
@@ -126,7 +126,7 @@ const useStyles = makeStyles(
         minHeight: '-webkit-fill-available',
       },
     },
-    sheetVariantSmBottom: {
+    overlayVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
         marginTop: -100,
         paddingTop: 100,
@@ -134,7 +134,7 @@ const useStyles = makeStyles(
         display: 'grid',
       },
     },
-    sheetVariantMdBottom: {
+    overlayVariantMdBottom: {
       [theme.breakpoints.up('md')]: {
         marginTop: -100,
         paddingTop: 100,
@@ -143,27 +143,27 @@ const useStyles = makeStyles(
         display: 'grid',
       },
     },
-    sheetPane: {
+    overlayPane: {
       pointerEvents: 'all',
       backgroundColor: theme.palette.background.paper,
       boxShadow: theme.shadows[24],
       minWidth: 'min(800px, 90vw)',
     },
-    sheetPaneVariantSmBottom: {
+    overlayPaneVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
         width: '100vw',
         borderRadius: 10,
         boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.1)',
       },
     },
-    sheetPaneVariantMdBottom: {
+    overlayPaneVariantMdBottom: {
       [theme.breakpoints.up('md')]: {
         width: '100vw',
         borderRadius: 10,
         boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.1)',
       },
     },
-    sheetPaneVariantSmLeft: {
+    overlayPaneVariantSmLeft: {
       [theme.breakpoints.down('sm')]: {
         paddingBottom: 1,
         minHeight: '100vh',
@@ -172,7 +172,7 @@ const useStyles = makeStyles(
         },
       },
     },
-    sheetPaneVariantMdLeft: {
+    overlayPaneVariantMdLeft: {
       [theme.breakpoints.up('md')]: {
         paddingBottom: 1,
         minHeight: '100vh',
@@ -181,7 +181,7 @@ const useStyles = makeStyles(
         },
       },
     },
-    sheetPaneVariantSmRight: {
+    overlayPaneVariantSmRight: {
       [theme.breakpoints.down('sm')]: {
         paddingBottom: 1,
         minHeight: '100vh',
@@ -190,7 +190,7 @@ const useStyles = makeStyles(
         },
       },
     },
-    sheetPaneVariantMdRight: {
+    overlayPaneVariantMdRight: {
       [theme.breakpoints.up('md')]: {
         paddingBottom: 1,
         minHeight: '100vh',
@@ -199,8 +199,8 @@ const useStyles = makeStyles(
         },
       },
     },
-    afterSheet: {
-      gridArea: 'afterSheet',
+    afterOverlay: {
+      gridArea: 'afterOverlay',
       scrollSnapAlign: 'start',
     },
     backdrop: {
@@ -217,39 +217,39 @@ const useStyles = makeStyles(
       WebkitTapHighlightColor: 'transparent',
     },
   }),
-  { name: 'Sheet' },
+  { name: 'Overlay' },
 )
 
-export type SheetVariant = 'left' | 'bottom' | 'right'
+export type OverlayVariant = 'left' | 'bottom' | 'right'
 
-export type SheetHandlerProps = {
+export type LayoutOverlayBaseProps = {
   children?: React.ReactNode
-  variantSm: SheetVariant
-  variantMd: SheetVariant
+  variantSm: OverlayVariant
+  variantMd: OverlayVariant
 } & UseStyles<typeof useStyles>
 
-export enum SheetPosition {
+export enum OverlayPosition {
   UNOPENED = -1,
   OPENED = 1,
   CLOSED = 0,
 }
 
-export function SheetHandler(props: SheetHandlerProps) {
+export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
   const { children, variantSm, variantMd } = props
   const { scrollerRef } = useScrollerContext()
-  const positions = useSheetPosition()
+  const positions = useOverlayPosition()
   const scrollTo = useScrollTo()
   const [isPresent, safeToRemove] = usePresence()
 
   const { closeSteps, active, direction } = usePageContext()
   const pageRouter = usePageRouter()
 
-  const position = useMotionValue<SheetPosition>(SheetPosition.UNOPENED)
+  const position = useMotionValue<OverlayPosition>(OverlayPosition.UNOPENED)
 
   const classes = useStyles(props)
   const className = classesPicker(classes, { variantSm, variantMd })
 
-  const sheetRef = useRef<HTMLDivElement>(null)
+  const overlayRef = useRef<HTMLDivElement>(null)
 
   const scroll = useElementScroll(scrollerRef)
 
@@ -259,18 +259,18 @@ export function SheetHandler(props: SheetHandlerProps) {
 
     const open = { x: positions.open.x.get(), y: positions.open.y.get() }
 
-    if (direction === 1 && position.get() !== SheetPosition.OPENED) {
+    if (direction === 1 && position.get() !== OverlayPosition.OPENED) {
       scroller.scrollLeft = positions.closed.x.get()
       scroller.scrollTop = positions.closed.y.get()
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      scrollTo(open).then(() => position.set(SheetPosition.OPENED))
+      scrollTo(open).then(() => position.set(OverlayPosition.OPENED))
     } else {
       scroller.scrollLeft = open.x
       scroller.scrollTop = open.y
     }
   }, [direction, isPresent, position, positions, scrollTo, scrollerRef])
 
-  // Make sure the sheet stays open when resizing the window.
+  // Make sure the overlay stays open when resizing the window.
   useEffect(() => {
     const scroller = scrollerRef.current
     if (!scroller) return () => {}
@@ -290,7 +290,7 @@ export function SheetHandler(props: SheetHandlerProps) {
   useEffect(() => {
     if (isPresent) return
 
-    position.set(SheetPosition.CLOSED)
+    position.set(OverlayPosition.CLOSED)
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     scrollTo({
       x: positions.closed.x.get(),
@@ -298,10 +298,10 @@ export function SheetHandler(props: SheetHandlerProps) {
     }).then(() => safeToRemove?.())
   }, [isPresent, position, positions, safeToRemove, scrollTo])
 
-  // Only go back to a previous page if the sheet isn't closed.
+  // Only go back to a previous page if the overlay isn't closed.
   const closeOverlay = useCallback(() => {
-    if (position.get() !== SheetPosition.OPENED) return
-    position.set(SheetPosition.CLOSED)
+    if (position.get() !== OverlayPosition.OPENED) return
+    position.set(OverlayPosition.CLOSED)
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     pageRouter.go(closeSteps * -1)
   }, [closeSteps, pageRouter, position])
@@ -313,19 +313,19 @@ export function SheetHandler(props: SheetHandlerProps) {
   }
   useDomEvent(windowRef, 'keyup', handleEscape, { passive: true })
 
-  // When the sheet isn't visible anymore, we navigate back.
+  // When the overlay isn't visible anymore, we navigate back.
   useEffect(() => positions.open.visible.onChange((o) => o === 0 && closeOverlay()))
 
-  // Measure the offset of the sheet in the scroller.
+  // Measure the offset of the overlay in the scroller.
   const offsetY = useMotionValue(0)
   useEffect(() => {
-    if (!sheetRef.current) return () => {}
+    if (!overlayRef.current) return () => {}
     const ro = new ResizeObserver(([entry]) => offsetY.set(entry.contentRect.top))
-    ro.observe(sheetRef.current)
+    ro.observe(overlayRef.current)
     return () => ro.disconnect()
   }, [offsetY])
 
-  // Create the exact position for the AppShellProvider which offsets the top of the sheet
+  // Create the exact position for the AppShellProvider which offsets the top of the overlay
   const scrollProvider = useTransform(
     [scroll.y, positions.open.y, offsetY] as MotionValue<number | string>[],
     ([y, openY, offsetYv]: number[]) => Math.max(0, y - openY - offsetYv),
@@ -335,13 +335,13 @@ export function SheetHandler(props: SheetHandlerProps) {
     <>
       <m.div {...className('backdrop')} style={{ opacity: positions.open.visible }} />
       <Scroller {...className('root')} grid={false} hideScrollbar>
-        <div {...className('beforeSheet')} onClick={closeOverlay}></div>
-        <div {...className('sheet')} ref={sheetRef}>
-          <div {...className('sheetPane')}>
+        <div {...className('beforeOverlay')} onClick={closeOverlay}></div>
+        <div {...className('overlay')} ref={overlayRef}>
+          <div {...className('overlayPane')}>
             <AppShellProvider scroll={scrollProvider}>{children}</AppShellProvider>
           </div>
         </div>
-        <div {...className('afterSheet')} />
+        <div {...className('afterOverlay')} />
       </Scroller>
     </>
   )

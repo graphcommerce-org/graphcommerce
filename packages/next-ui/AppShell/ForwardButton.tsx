@@ -37,11 +37,11 @@ const useStyles = makeStyles(
   { name: 'ForwardButton' },
 )
 
-export type ForwardButtonProps = UseStyles<typeof useStyles> & ButtonProps & { down?: boolean }
+export type ForwardButtonProps = UseStyles<typeof useStyles> & ButtonProps
 
 const ForwardButton = React.forwardRef((props: ForwardButtonProps, ref) => {
   const { text, icon, ...classes } = useStyles(props)
-  const { children, down, ...fabProps } = props
+  const { children, ...fabProps } = props
 
   return (
     <Button variant='pill' classes={classes} {...fabProps} ref={ref}>

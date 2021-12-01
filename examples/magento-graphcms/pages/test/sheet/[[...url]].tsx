@@ -2,7 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, SheetVariant } from '@graphcommerce/next-ui'
 import React from 'react'
-import { LayoutSheet, LayoutSheetProps } from '../../../components/Layout/LayoutSheet'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
 import { AppShellDemo } from '../minimal-page-shell/[[...url]]'
 
@@ -10,9 +10,9 @@ function SheetDemo() {
   return <AppShellDemo baseUrl='/test/sheet' />
 }
 
-const pageOptions: PageOptions<LayoutSheetProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'test',
-  Layout: LayoutSheet,
+  Layout: LayoutOverlay,
   sharedKey: (router) => {
     const key = [
       router.pathname,
@@ -36,7 +36,7 @@ export const getStaticPaths = async ({ locales = [] }) =>
   ({ paths: [], fallback: 'blocking' })
 
 export const getStaticProps: GetStaticProps<
-  LayoutSheetProps,
+  LayoutOverlayProps,
   Record<string, unknown>,
   { url: string[] }
 > = async ({ params, locale }) => {

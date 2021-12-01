@@ -3,7 +3,7 @@ import {
   Button,
   iconChevronRight,
   SheetProps,
-  SheetAppBar,
+  OverlayAppBar,
   SvgImageSimple,
   Title,
 } from '@graphcommerce/next-ui'
@@ -21,9 +21,9 @@ function IndexPage(props: PageProps) {
 
   return (
     <>
-      <SheetAppBar>
+      <OverlayAppBar>
         <Title size='small'>Documentation</Title>
-      </SheetAppBar>
+      </OverlayAppBar>
       <Layout menuData={menuData}>
         <p>
           Setup your <i>Progressive Web App</i> (PWA) within 5 minutes using GraphCommerce.

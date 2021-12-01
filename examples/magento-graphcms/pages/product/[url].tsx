@@ -49,7 +49,7 @@ function ProductSimple(props: Props) {
 
   return (
     <>
-      <AppBar>
+      <AppBar floatingMd>
         <Title size='small' component='span'>
           {product.name}
         </Title>

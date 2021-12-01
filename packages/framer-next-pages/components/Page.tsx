@@ -31,22 +31,12 @@ export default function Page(props: PageProps) {
    */
   if (!isPresent) top = scrollPos(historyIdx).y
 
-  const activePresent = active && isPresent
-  const position = activePresent ? 'absolute' : 'fixed'
-  const pointerEvents = activePresent ? undefined : 'none'
+  const position = active && isPresent ? 'absolute' : 'fixed'
+  const pointerEvents = active && isPresent ? undefined : 'none'
+  const zIndex = active ? 1 : undefined
 
   return (
-    <m.div
-      style={{
-        position,
-        top,
-        left: 0,
-        right: 0,
-        pointerEvents,
-        minHeight: y,
-        zIndex: active ? 1 : undefined,
-      }}
-    >
+    <m.div style={{ position, top, left: 0, right: 0, pointerEvents, minHeight: y, zIndex }}>
       {children}
     </m.div>
   )

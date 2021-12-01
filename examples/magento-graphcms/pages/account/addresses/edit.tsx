@@ -9,7 +9,7 @@ import {
   iconAddresses,
   IconHeader,
   SectionContainer,
-  SheetAppBar,
+  OverlayAppBar,
   Title,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
@@ -17,11 +17,11 @@ import { Box, Container, NoSsr } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { LayoutSheet, LayoutSheetProps } from '../../../components/Layout/LayoutSheet'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutSheetProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function EditAddressPage(props: Props) {
   const router = useRouter()
@@ -48,11 +48,11 @@ function EditAddressPage(props: Props) {
 
   return (
     <>
-      <SheetAppBar>
+      <OverlayAppBar>
         <Title size='small' component='span' icon={iconAddresses}>
           <Trans>Addresses</Trans>
         </Title>
-      </SheetAppBar>
+      </OverlayAppBar>
       <Container maxWidth='md'>
         <PageMeta
           title={t`Edit address`}
@@ -90,9 +90,9 @@ function EditAddressPage(props: Props) {
   )
 }
 
-const pageOptions: PageOptions<LayoutSheetProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
-  Layout: LayoutSheet,
+  Layout: LayoutOverlay,
   sharedKey: () => 'account/addresses',
 }
 EditAddressPage.pageOptions = pageOptions

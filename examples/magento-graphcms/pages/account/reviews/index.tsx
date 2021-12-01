@@ -7,7 +7,7 @@ import {
   FullPageMessage,
   iconStar,
   AppShellTitle,
-  SheetAppBar,
+  OverlayAppBar,
   Title,
   SvgImageSimple,
   GetStaticProps,
@@ -15,10 +15,10 @@ import {
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
-import { LayoutSheet, LayoutSheetProps } from '../../../components/Layout/LayoutSheet'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<LayoutSheetProps>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountReviewsPage() {
   const { data, loading, error } = useQuery(AccountDashboardReviewsDocument, {
@@ -39,11 +39,11 @@ function AccountReviewsPage() {
 
   return (
     <>
-      <SheetAppBar>
+      <OverlayAppBar>
         <Title size='small' component='span' icon={iconStar}>
           <Trans>Orders</Trans>
         </Title>
-      </SheetAppBar>
+      </OverlayAppBar>
       <Container maxWidth='md'>
         <PageMeta
           title={t`Reviews`}
@@ -74,9 +74,9 @@ function AccountReviewsPage() {
   )
 }
 
-const pageOptions: PageOptions<LayoutSheetProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
-  Layout: LayoutSheet,
+  Layout: LayoutOverlay,
 }
 AccountReviewsPage.pageOptions = pageOptions
 

@@ -17,22 +17,22 @@ import {
   Button,
   GetStaticProps,
   iconShoppingBag,
-  SheetAppBar,
   Stepper,
   Title,
   iconChevronRight,
   SvgImageSimple,
+  OverlayAppBar,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
-import { LayoutSheet, LayoutSheetProps } from '../components/Layout'
+import { LayoutOverlay, LayoutOverlayProps } from '../components/Layout'
 import apolloClient from '../lib/apolloClient'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutSheetProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function CartPage() {
   const { data, error, loading } = useCartQuery(CartPageDocument, { returnPartialData: true })
@@ -50,7 +50,7 @@ function CartPage() {
         metaRobots={['noindex']}
       />
       <NoSsr>
-        <SheetAppBar
+        <OverlayAppBar
           primary={
             hasItems && (
               <PageLink href='/checkout' passHref>
@@ -83,7 +83,7 @@ function CartPage() {
               <>Cart</>
             )}
           </Title>
-        </SheetAppBar>
+        </OverlayAppBar>
         <Container maxWidth='md'>
           <AnimatePresence initial={false}>
             {hasItems ? (
@@ -125,9 +125,10 @@ function CartPage() {
   )
 }
 
-const pageOptions: PageOptions<LayoutSheetProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'checkout',
-  Layout: LayoutSheet,
+  Layout: LayoutOverlay,
+  layoutProps: { variantMd: 'bottom', variantSm: 'bottom' },
 }
 CartPage.pageOptions = pageOptions
 

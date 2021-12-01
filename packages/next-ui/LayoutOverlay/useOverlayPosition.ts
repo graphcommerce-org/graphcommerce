@@ -7,7 +7,7 @@ import {
 import { motionValue } from 'framer-motion'
 import { useEffect } from 'react'
 
-export function useSheetPosition() {
+export function useOverlayPosition() {
   const { getScrollSnapPositions, scrollerRef } = useScrollerContext()
 
   const state = useConstant(() => ({
@@ -38,7 +38,7 @@ export function useSheetPosition() {
     return () => ro.disconnect()
   })
 
-  // sets a float between 0 and 1 for the visibility of the sheet
+  // sets a float between 0 and 1 for the visibility of the overlay
   useEffect(() => {
     const calc = () => {
       const x = scroll.x.get()

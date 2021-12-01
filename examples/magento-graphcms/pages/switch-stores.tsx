@@ -11,14 +11,14 @@ import {
   GetStaticProps,
   iconShoppingBag,
   responsiveVal,
-  SheetAppBar,
+  OverlayAppBar,
   Title,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import { LayoutFullProps } from '../components/Layout'
-import { LayoutSheet, LayoutSheetProps } from '../components/Layout/LayoutSheet'
+import { LayoutOverlay, LayoutOverlayProps } from '../components/Layout/LayoutOverlay'
 import apolloClient from '../lib/apolloClient'
 
 type RouteProps = { country?: string[] }
@@ -36,11 +36,11 @@ function StoresIndexPage({ availableStores }: Props) {
         metaRobots={['noindex']}
       />
       <NoSsr>
-        <SheetAppBar>
+        <OverlayAppBar>
           <Title size='small' component='span' icon={iconShoppingBag}>
             <Trans>Country</Trans>
           </Title>
-        </SheetAppBar>
+        </OverlayAppBar>
         <Container maxWidth='md'>
           <AppShellTitle icon={iconShoppingBag}>
             <Trans>Country</Trans>
@@ -52,9 +52,9 @@ function StoresIndexPage({ availableStores }: Props) {
   )
 }
 
-const pageOptions: PageOptions<LayoutSheetProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'left',
-  Layout: LayoutSheet,
+  Layout: LayoutOverlay,
   layoutProps: { variantMd: 'left' },
 }
 StoresIndexPage.pageOptions = pageOptions

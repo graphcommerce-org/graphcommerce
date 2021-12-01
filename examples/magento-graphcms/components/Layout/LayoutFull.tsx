@@ -4,8 +4,8 @@ import { SearchButton } from '@graphcommerce/magento-search'
 import {
   DesktopNavActions,
   DesktopNavBar,
-  FullPageShellBase,
-  FullPageShellBaseProps,
+  LayoutDefault,
+  LayoutDefaultProps,
   iconCustomerService,
   MenuFab,
   MenuFabSecondaryItem,
@@ -22,13 +22,15 @@ import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
 import { Footer } from './Footer'
 import Logo from './Logo'
 
-export type LayoutFullProps = Omit<DefaultPageQuery, 'pages'> &
-  Omit<FullPageShellBaseProps, 'classes' | 'name' | 'header' | 'footer'>
+export type LayoutFullProps = Omit<
+  DefaultPageQuery & LayoutDefaultProps,
+  'pages' | 'classes' | 'header' | 'cartFab' | 'menuFab'
+>
 
 export function LayoutFull(props: LayoutFullProps) {
-  const { footer, menu: menuData = {}, children, ...uiProps } = props
+  const { footer, menu = {}, children, ...uiProps } = props
   const theme = useTheme()
-  const menuItemsIncludeInMenu = menuData?.items?.filter((items) => items?.include_in_menu === 1)
+  const menuItemsIncludeInMenu = menu?.items?.filter((items) => items?.include_in_menu === 1)
 
   const menuProps: MenuProps = {
     menu: [
@@ -56,7 +58,7 @@ export function LayoutFull(props: LayoutFullProps) {
   const onSearchStart = useCallback(() => router.push('/search'), [router])
 
   return (
-    <FullPageShellBase
+    <LayoutDefault
       {...uiProps}
       header={
         <>
@@ -93,6 +95,6 @@ export function LayoutFull(props: LayoutFullProps) {
       }
     >
       {children}
-    </FullPageShellBase>
+    </LayoutDefault>
   )
 }

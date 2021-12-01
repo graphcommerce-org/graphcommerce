@@ -4,14 +4,14 @@ import {
   AppShellTitle,
   GetStaticProps,
   MetaRobots,
-  SheetAppBar,
+  OverlayAppBar,
   Title,
 } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import { LayoutSheet, LayoutSheetProps } from '../../components/Layout/LayoutSheet'
+import { LayoutOverlay, LayoutOverlayProps } from '../../components/Layout/LayoutOverlay'
 import RowRenderer from '../../components/Row/RowRenderer'
 import apolloClient from '../../lib/apolloClient'
 
@@ -20,7 +20,7 @@ export const config = { unstable_JsPreload: false }
 type Props = DefaultPageQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutSheetProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props, RouteProps>
 
 function ModalPage(props: Props) {
   const { pages } = props
@@ -32,11 +32,11 @@ function ModalPage(props: Props) {
 
   return (
     <>
-      <SheetAppBar>
+      <OverlayAppBar>
         <Title size='small' component='span'>
           {page.title}
         </Title>
-      </SheetAppBar>
+      </OverlayAppBar>
       <PageMeta
         title={page.metaTitle ?? ''}
         metaDescription={page.metaDescription}
@@ -56,7 +56,7 @@ function ModalPage(props: Props) {
 }
 
 ModalPage.pageOptions = {
-  Layout: LayoutSheet,
+  Layout: LayoutOverlay,
   overlayGroup: 'modal',
 } as PageOptions
 

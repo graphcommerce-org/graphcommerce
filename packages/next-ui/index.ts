@@ -1,7 +1,9 @@
 export * from './AppShell'
 export * from './AppBar'
-export * from './AppSheet'
+export * from './LayoutOverlay'
 export * from './Footer'
+
+export * from './LayoutDefault'
 
 export * from './AnimatedRow'
 export { default as AnimatedRow } from './AnimatedRow'

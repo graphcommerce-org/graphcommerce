@@ -4,7 +4,7 @@ import {
   AppShellTitle,
   GetStaticProps,
   responsiveVal,
-  SheetAppBar,
+  OverlayAppBar,
   Title,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
@@ -14,7 +14,7 @@ import React from 'react'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import { PagesStaticPathsDocument } from '../../components/GraphQL/PagesStaticPaths.gql'
 import { LayoutFullProps } from '../../components/Layout'
-import { LayoutSheet, LayoutSheetProps } from '../../components/Layout/LayoutSheet'
+import { LayoutOverlay, LayoutOverlayProps } from '../../components/Layout/LayoutOverlay'
 import RowRenderer from '../../components/Row/RowRenderer'
 import apolloClient from '../../lib/apolloClient'
 
@@ -34,11 +34,11 @@ function ServicePage({ pages }: Props) {
         metaRobots={['noindex']}
         canonical={pages?.[0]?.url ?? ''}
       />
-      <SheetAppBar>
+      <OverlayAppBar>
         <Title component='span' size='small'>
           {title}
         </Title>
-      </SheetAppBar>
+      </OverlayAppBar>
 
       <Container maxWidth='md'>
         <AppShellTitle>
@@ -50,9 +50,9 @@ function ServicePage({ pages }: Props) {
   )
 }
 
-const pageOptions: PageOptions<LayoutSheetProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'left',
-  Layout: LayoutSheet,
+  Layout: LayoutOverlay,
   layoutProps: { variantMd: 'left' },
 }
 ServicePage.pageOptions = pageOptions

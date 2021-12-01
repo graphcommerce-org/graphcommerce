@@ -1,5 +1,5 @@
 import { AppBar, AppBarProps } from '../AppBar'
 
-export function SheetAppBar(props: AppBarProps) {
+export function OverlayAppBar(props: AppBarProps) {
   return <AppBar {...props} noAlign />
 }

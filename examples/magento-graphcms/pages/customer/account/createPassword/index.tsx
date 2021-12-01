@@ -1,15 +1,15 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ResetPasswordForm } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellTitle, Button, GetStaticProps, SheetAppBar, Title } from '@graphcommerce/next-ui'
+import { AppShellTitle, Button, GetStaticProps, OverlayAppBar, Title } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Box, Container, Link, NoSsr } from '@material-ui/core'
 import router, { useRouter } from 'next/router'
 import React from 'react'
-import { LayoutSheet, LayoutSheetProps } from '../../../../components/Layout/LayoutSheet'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<LayoutSheetProps>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function CustomerAccountCreatePasswordPage() {
   const { query } = useRouter()
@@ -24,11 +24,11 @@ function CustomerAccountCreatePasswordPage() {
         metaDescription={t`Create new password`}
         metaRobots={['noindex']}
       />
-      <SheetAppBar>
+      <OverlayAppBar>
         <Title size='small' component='span'>
           {!success ? t`Set your new password` : t`You have now successfully reset your password`}
         </Title>
-      </SheetAppBar>
+      </OverlayAppBar>
       <NoSsr>
         <Box pt={4} pb={4}>
           {!success && (
@@ -81,9 +81,9 @@ function CustomerAccountCreatePasswordPage() {
   )
 }
 
-const pageOptions: PageOptions<LayoutSheetProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account-public',
-  Layout: LayoutSheet,
+  Layout: LayoutOverlay,
 }
 CustomerAccountCreatePasswordPage.pageOptions = pageOptions
 

@@ -2,15 +2,16 @@ export { default as AppShellProvider } from './AppShellProvider/AppShellProvder'
 export { default as AppShellSticky } from './AppShellSticky'
 export { default as AppShellTitle } from './AppShellTitle'
 export { default as DesktopNavActions } from './DesktopNavActions'
+
 export * from './DesktopNavBar'
 export { default as DesktopNavBar } from './DesktopNavBar'
 export { default as FixedFab } from './FixedFab'
+
 export * from './ForwardButton'
 export { default as ForwardButton } from './ForwardButton'
-export * from './LayoutFullBase'
+
 export { default as Logo } from './Logo'
 export * from './Logo'
-export { default as FullPageShellBase } from './LayoutFullBase'
 export * from './Menu'
 export * from './MenuFab'
 export { default as MenuFab } from './MenuFab'

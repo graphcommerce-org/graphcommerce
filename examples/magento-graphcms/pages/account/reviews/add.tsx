@@ -10,7 +10,7 @@ import {
   FullPageMessage,
   iconBox,
   Title,
-  SheetAppBar,
+  OverlayAppBar,
   AppShellTitle,
   SvgImageSimple,
   GetStaticProps,
@@ -19,10 +19,10 @@ import { t, Trans } from '@lingui/macro'
 import { Container } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { LayoutSheet, LayoutSheetProps } from '../../../components/Layout/LayoutSheet'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<LayoutSheetProps>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountReviewsAddPage() {
   const router = useRouter()
@@ -78,11 +78,11 @@ function AccountReviewsAddPage() {
         metaRobots={['noindex']}
       />
 
-      <SheetAppBar>
+      <OverlayAppBar>
         <Title size='small'>
           <Trans>You are reviewing {product?.name}</Trans>
         </Title>
-      </SheetAppBar>
+      </OverlayAppBar>
 
       <AppShellTitle>
         <Trans>You are reviewing {product?.name}</Trans>
@@ -98,9 +98,9 @@ function AccountReviewsAddPage() {
   )
 }
 
-const pageOptions: PageOptions<LayoutSheetProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'left',
-  Layout: LayoutSheet,
+  Layout: LayoutOverlay,
 }
 AccountReviewsAddPage.pageOptions = pageOptions
 

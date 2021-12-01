@@ -11,16 +11,16 @@ import {
   GetStaticProps,
   iconId,
   SectionContainer,
-  SheetAppBar,
+  OverlayAppBar,
   Title,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
-import { LayoutSheet, LayoutSheetProps } from '../../../components/Layout/LayoutSheet'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<LayoutSheetProps>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountNamePage() {
   const { loading, data, error } = useQuery(CustomerDocument)
@@ -38,11 +38,11 @@ function AccountNamePage() {
 
   return (
     <>
-      <SheetAppBar>
+      <OverlayAppBar>
         <Title size='small' component='span' icon={iconId}>
           <Trans>Name</Trans>
         </Title>
-      </SheetAppBar>
+      </OverlayAppBar>
       <NoSsr>
         <Container maxWidth='md'>
           <PageMeta
@@ -68,9 +68,9 @@ function AccountNamePage() {
   )
 }
 
-const pageOptions: PageOptions<LayoutSheetProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
-  Layout: LayoutSheet,
+  Layout: LayoutOverlay,
 }
 AccountNamePage.pageOptions = pageOptions
 
