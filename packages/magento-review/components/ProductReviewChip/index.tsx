@@ -1,5 +1,5 @@
 import { SvgImageSimple, iconStar } from '@graphcommerce/next-ui'
-import { Chip, ChipProps, makeStyles, Theme } from '@material-ui/core'
+import { Chip, ChipProps, makeStyles } from '@material-ui/core'
 import React from 'react'
 
 export type ProductReviewChipProps = {
@@ -9,12 +9,12 @@ export type ProductReviewChipProps = {
 } & ChipProps
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  {
     iconStar: {
       stroke: '#FFDA1C',
       fill: '#FFDA1C',
     },
-  }),
+  },
   { name: 'ProductListReviews' },
 )
 

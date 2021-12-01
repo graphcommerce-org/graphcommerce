@@ -28,9 +28,10 @@ export default function LinguiProvider(props: LinguiProviderProps) {
 
     if (data?.lang === localeOnly && data.textContent) {
       // @todo: We're not loading the plurals dynamically, but we can't because it will load the complete module.
-      i18n.load(localeOnly, JSON.parse(data.textContent))
+      i18n.load(localeOnly, JSON.parse(data.textContent) as Messages)
       i18n.activate(localeOnly)
     } else if (i18n.locale !== locale) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       ;(async () => {
         try {
           const { messages } = await loader(localeOnly)

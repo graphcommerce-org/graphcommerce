@@ -62,9 +62,7 @@ export default function InlineAccount(props: InlineAccountProps) {
 
   const { data: customerTokenData } = useQuery(CustomerTokenDocument)
   const { data: isEmailAvailableData } = useQuery(IsEmailAvailableDocument, {
-    variables: {
-      email: cart?.email ?? '',
-    },
+    variables: { email: cart?.email ?? '' },
   })
 
   const { firstname, lastname } = cart?.shipping_addresses?.[0] ?? {}
@@ -73,7 +71,7 @@ export default function InlineAccount(props: InlineAccountProps) {
   )
   const canSignUp = isEmailAvailableData?.isEmailAvailable?.is_email_available === true
 
-  if (!canSignUp) return <></>
+  if (!canSignUp) return null
 
   return (
     <div>

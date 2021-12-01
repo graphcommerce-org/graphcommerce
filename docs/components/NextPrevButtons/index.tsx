@@ -1,8 +1,8 @@
 import { Button } from '@graphcommerce/next-ui'
-import { makeStyles } from '@material-ui/styles'
+import { makeStyles } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { LayoutProps } from '../Layout'
+import { LayoutProps } from '../Layout/PageLayout'
 import { SanitizedDirectoryTree } from '../SidebarMenu/sanitizeDirectoryTree'
 
 const useStyles = makeStyles(

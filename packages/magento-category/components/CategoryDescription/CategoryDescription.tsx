@@ -1,5 +1,5 @@
 import { UseStyles } from '@graphcommerce/next-ui'
-import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { CategoryDescriptionFragment } from './CategoryDescription.gql'
 
@@ -20,7 +20,6 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('xl')]: {
         maxWidth: '30%',
       },
-
       ...theme.typography.subtitle1,
     },
   }),
@@ -32,6 +31,7 @@ export default function CategoryDescription(props: CategoryDescriptionProps) {
   const classes = useStyles(props)
 
   return description ? (
+    // eslint-disable-next-line react/no-danger
     <div {...divProps} className={classes.root} dangerouslySetInnerHTML={{ __html: description }} />
   ) : null
 }

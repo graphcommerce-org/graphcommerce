@@ -1,9 +1,8 @@
-import { GetStaticPaths, GetStaticProps } from 'next'
+import { GetStaticProps } from 'next'
 import Grid from '../components/Grid'
 import StackDebug from '../components/StackedDebugger'
 
 type IndexProps = { title: string }
-type RouteProps = { url: string[] }
 
 function Index(props: IndexProps) {
   const { title } = props
@@ -19,8 +18,9 @@ function Index(props: IndexProps) {
 
 export default Index
 
-export const getStaticProps: GetStaticProps<IndexProps> = async () => ({
-  props: {
-    title: 'Index Page',
-  },
-})
+export const getStaticProps: GetStaticProps<IndexProps> = async () =>
+  Promise.resolve({
+    props: {
+      title: 'Index Page',
+    },
+  })

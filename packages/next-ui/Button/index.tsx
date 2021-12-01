@@ -3,11 +3,9 @@ import {
   ButtonClassKey as MuiButtonClassKey,
   Theme,
   makeStyles,
-  lighten,
 } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
-import { responsiveVal } from '..'
 
 type BaseButtonProps = Omit<Parameters<typeof MuiButton>['0'], 'variant' | 'classes'> & {
   variant?: 'text' | 'outlined' | 'contained' | 'pill' | 'pill-link'

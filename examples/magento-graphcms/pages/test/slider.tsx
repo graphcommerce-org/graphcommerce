@@ -11,7 +11,7 @@ type Props = ProductListQuery
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
 
 function TestSlider({ products }: Props) {
-  if (!products?.items?.length) return <></>
+  if (!products?.items?.length) return null
   return (
     <>
       <LayoutHeader>

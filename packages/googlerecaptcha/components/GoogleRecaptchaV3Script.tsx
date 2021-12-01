@@ -1,9 +1,9 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 import Script from 'next/script'
 import React from 'react'
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  {
     '@global': {
       body: {
         '& .grecaptcha-badge': {
@@ -11,7 +11,7 @@ const useStyles = makeStyles(
         },
       },
     },
-  }),
+  },
   { name: 'IconBlock' },
 )
 

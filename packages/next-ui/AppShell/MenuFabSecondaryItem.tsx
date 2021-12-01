@@ -1,13 +1,13 @@
-import { ListItem, ListItemIcon, ListItemText, makeStyles, Theme } from '@material-ui/core'
+import { ListItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core'
 import PageLink from 'next/link'
 import router from 'next/router'
 import React from 'react'
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  {
     listItemText: {},
     icon: { minWidth: 30 },
-  }),
+  },
   { name: 'FabMenuSecondaryItem' },
 )
 

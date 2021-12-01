@@ -8,7 +8,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
-import { m, useMotionTemplate, useTransform, useViewportScroll } from 'framer-motion'
+import { m, useTransform, useViewportScroll } from 'framer-motion'
 import React, { PropsWithChildren, useEffect, useRef, useState } from 'react'
 
 const useStyles = makeStyles(

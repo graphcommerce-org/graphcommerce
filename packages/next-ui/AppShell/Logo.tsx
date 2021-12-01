@@ -1,6 +1,5 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import { makeStyles, Theme, useTheme } from '@material-ui/core'
-import clsx from 'clsx'
+import { makeStyles, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
 import { UseStyles } from '../Styles'

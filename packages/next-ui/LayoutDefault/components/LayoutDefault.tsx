@@ -1,5 +1,4 @@
-import { usePageContext, useScrollOffset } from '@graphcommerce/framer-next-pages'
-import { scrollPos } from '@graphcommerce/framer-next-pages/components/Page'
+import { useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { makeStyles, Theme } from '@material-ui/core'
 import { useTransform, useViewportScroll } from 'framer-motion'
 import React from 'react'

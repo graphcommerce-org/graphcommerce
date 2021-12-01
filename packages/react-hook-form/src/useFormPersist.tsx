@@ -42,7 +42,7 @@ export function useFormPersist<V>(options: UseFormPersistOptions<V>) {
   useEffect(() => {
     try {
       if (typeof window === 'undefined') return
-      const storedFormStr = window[storage][name]
+      const storedFormStr = window[storage][name] as string
       if (!storedFormStr) return
 
       const storedValues = JSON.parse(storedFormStr) as FieldValues

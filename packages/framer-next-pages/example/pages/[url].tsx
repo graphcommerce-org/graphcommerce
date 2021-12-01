@@ -19,11 +19,13 @@ function Index(props: IndexProps) {
 
 export default Index
 
-export const getStaticPaths: GetStaticPaths<RouteProps> = async () => ({
-  paths: [{ params: { url: 'second' } }, { params: { url: 'third' } }],
-  fallback: 'blocking',
-})
+export const getStaticPaths: GetStaticPaths<RouteProps> = async () =>
+  Promise.resolve({
+    paths: [{ params: { url: 'second' } }, { params: { url: 'third' } }],
+    fallback: 'blocking',
+  })
 
-export const getStaticProps: GetStaticProps<IndexProps, RouteProps> = async ({ params }) => ({
-  props: { title: `Page ${params?.url}` },
-})
+export const getStaticProps: GetStaticProps<IndexProps, RouteProps> = async ({ params }) =>
+  Promise.resolve({
+    props: { title: `Page ${params?.url}` },
+  })

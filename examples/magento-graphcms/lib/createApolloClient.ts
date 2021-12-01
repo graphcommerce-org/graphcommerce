@@ -19,8 +19,8 @@ import { policies, migrations } from './typePolicies'
 
 export function createApolloClient(
   locale: string,
-  initialState: NormalizedCacheObject = {},
   requestLink: ApolloLink,
+  initialState: NormalizedCacheObject = {},
 ): ApolloClient<NormalizedCacheObject> {
   const typePolicies = mergeTypePolicies(policies)
   const typePoliciesVersion = getTypePoliciesVersion(policies)

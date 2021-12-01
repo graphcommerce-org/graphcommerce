@@ -130,7 +130,7 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
     setSelectedModule(modules?.[foundMethod?.code ?? ''])
   }, [methods, modules, paymentMethod, selectedMethod?.code, setSelectedMethod, setSelectedModule])
 
-  if (!methods || methods.length < 1) return <></>
+  if (!methods || methods.length < 1) return null
 
   return (
     <Form onSubmit={submitHandler} noValidate classes={{ root: classes.formRoot }}>

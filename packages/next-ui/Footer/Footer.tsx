@@ -80,7 +80,7 @@ const useStyles = makeStyles(
   { name: 'Footer' },
 )
 
-type FooterProps = UseStyles<typeof useStyles> & {
+export type FooterProps = UseStyles<typeof useStyles> & {
   storeSwitcher?: React.ReactNode
   socialLinks?: React.ReactElement
   customerService?: React.ReactNode

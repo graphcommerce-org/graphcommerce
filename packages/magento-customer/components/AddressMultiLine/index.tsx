@@ -1,6 +1,6 @@
 import { useFindCountry } from '@graphcommerce/magento-store'
 import { UseStyles } from '@graphcommerce/next-ui'
-import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { makeStyles, Typography } from '@material-ui/core'
 import { CustomerAddressFragment } from '../CreateCustomerAddressForm/CustomerAddress.gql'
 
 // exports.getEuMembers = function()
@@ -12,17 +12,7 @@ import { CustomerAddressFragment } from '../CreateCustomerAddressForm/CustomerAd
 // 	return exports.getEuMembers().indexOf(code.toUpperCase()) != -1;
 // };
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    title: {
-      // fontWeight: 'bold',
-      // paddingBottom: theme.spacings.xxs,
-    },
-  }),
-  {
-    name: 'AddressMultiLine',
-  },
-)
+const useStyles = makeStyles({ title: {} }, { name: 'AddressMultiLine' })
 
 type AddressMultiLineProps = CustomerAddressFragment & UseStyles<typeof useStyles>
 

@@ -2,9 +2,9 @@ import { UseStyles } from '@graphcommerce/next-ui'
 import { Fab, FabProps, makeStyles, Theme } from '@material-ui/core'
 import { m, useMotionValue, useSpring } from 'framer-motion'
 import React from 'react'
-import { useWatchItems } from '..'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
+import { useWatchItems } from '../hooks/useWatchItems'
 import { SnapPositionDirection } from '../types'
 
 const useStyles = makeStyles((theme: Theme) => ({

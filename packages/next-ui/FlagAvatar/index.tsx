@@ -1,10 +1,10 @@
-import { makeStyles, Theme, Avatar, AvatarProps } from '@material-ui/core'
+import { makeStyles, Avatar, AvatarProps } from '@material-ui/core'
 import React from 'react'
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  {
     root: {},
-  }),
+  },
   { name: 'FlagAvatar' },
 )
 

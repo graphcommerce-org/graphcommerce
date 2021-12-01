@@ -12,7 +12,7 @@ type BackstoryProps = RowProductFragment & ProductListItemsFragment
 export default function Backstory(props: BackstoryProps) {
   const { productCopy, asset, ...productListItems } = props
   const theme = useTheme()
-  const singleItem = productListItems?.items?.[productListItems.items?.length - 1]
+  const singleItem = productListItems?.items?.[(productListItems.items?.length ?? 1) - 1]
 
   if (!singleItem) return null
 

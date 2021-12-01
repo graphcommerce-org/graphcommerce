@@ -16,7 +16,7 @@ import { SearchDocument, SearchForm, SearchQuery } from '@graphcommerce/magento-
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { AppShellSticky, LayoutTitle, Button, LayoutHeader } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
-import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Box, Container, makeStyles, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
@@ -31,11 +31,11 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props, RouteProps>
 
 // for testing only
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles({
   longContent: {
     height: 2000,
   },
-}))
+})
 
 function MinimalAppShellSubheader(props: Props) {
   const { params, products, filters, filterTypes } = props
@@ -87,14 +87,14 @@ MinimalAppShellSubheader.pageOptions = {
 
 export default MinimalAppShellSubheader
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+export const getStaticPaths: GetPageStaticPaths = async () => {
   // Disable getStaticPaths while in development mode
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  return {
+  return Promise.resolve({
     paths: [{ params: { url: [] } }],
     fallback: 'blocking',
-  }
+  })
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {

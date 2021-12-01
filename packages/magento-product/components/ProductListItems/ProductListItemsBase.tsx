@@ -1,4 +1,3 @@
-import { Maybe } from '@graphcommerce/graphql'
 import { RenderType, UseStyles, responsiveVal } from '@graphcommerce/next-ui'
 import { Theme, makeStyles } from '@material-ui/core'
 import clsx from 'clsx'

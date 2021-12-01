@@ -14,7 +14,7 @@ import clsx from 'clsx'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
-import { Row } from '../..'
+import Row from '../../Row'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
@@ -172,11 +172,18 @@ export type SidebarGalleryProps = {
 } & UseStyles<typeof useStyles>
 
 export default function SidebarGallery(props: SidebarGalleryProps) {
-  const { sidebar, images, aspectRatio = [1, 1], routeHash = 'gallery' } = props
+  const {
+    sidebar,
+    images,
+    aspectRatio = [1, 1],
+    routeHash = 'gallery',
+    classes: classesBase,
+  } = props
+
   const router = useRouter()
   const prevRoute = usePrevPageRouter()
   const clientHeight = useMotionValueValue(clientSize.y, (y) => y)
-  const classes = useStyles({ clientHeight, aspectRatio, classes: props.classes })
+  const classes = useStyles({ clientHeight, aspectRatio, classes: classesBase })
 
   const route = `#${routeHash}`
   // We're using the URL to manage the state of the gallery.

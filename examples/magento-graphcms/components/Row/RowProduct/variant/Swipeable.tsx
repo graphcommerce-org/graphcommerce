@@ -5,7 +5,7 @@ import {
   SidebarSlider,
   SidebarSliderProps,
 } from '@graphcommerce/next-ui'
-import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { makeStyles, Typography } from '@material-ui/core'
 import React from 'react'
 import renderers from '../../../ProductListItems/renderers'
 import { RowProductFragment } from '../RowProduct.gql'
@@ -15,17 +15,15 @@ type SwipeableProps = RowProductFragment &
   Pick<SidebarSliderProps, 'classes'>
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  {
     sidebarTitle: {
       textTransform: 'uppercase',
     },
     scroller: {
       gridAutoColumns: `minmax(${responsiveVal(180, 800)}, 60vh)`,
     },
-  }),
-  {
-    name: 'Swipeable',
   },
+  { name: 'Swipeable' },
 )
 
 export default function Swipeable(props: SwipeableProps) {

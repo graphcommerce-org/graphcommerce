@@ -35,9 +35,9 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
 }
 SheetDemo.pageOptions = pageOptions
 
-export const getStaticPaths = async ({ locales = [] }) =>
+export const getStaticPaths = async () =>
   // Disable getStaticPaths for test pages
-  ({ paths: [], fallback: 'blocking' })
+  Promise.resolve({ paths: [], fallback: 'blocking' })
 
 export const getStaticProps: GetStaticProps<
   LayoutOverlayProps,

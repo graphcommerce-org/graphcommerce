@@ -1,11 +1,4 @@
-import {
-  FormRow,
-  UseStyles,
-  SvgImage,
-  iconClose,
-  iconSearch,
-  SvgImageSimple,
-} from '@graphcommerce/next-ui'
+import { FormRow, UseStyles, iconClose, iconSearch, SvgImageSimple } from '@graphcommerce/next-ui'
 import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@graphcommerce/react-hook-form'
 import { IconButton, makeStyles, TextField, Theme } from '@material-ui/core'
 import { useRouter } from 'next/router'

@@ -16,7 +16,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
   const queryParams = usePageRouter().asPath.split('/')
   const urlParts = queryParams.pop()?.split('-') ?? []
 
-  const title = urlParts.map((s) => `${s?.charAt(0).toUpperCase() + s?.slice(1)}`).join(' ')
+  const title = urlParts.map((s = '') => `${s.charAt(0).toUpperCase() + s.slice(1)}`).join(' ')
   const [scroll, setScroll] = useState<boolean>(true)
   const { backSteps } = usePageContext()
 

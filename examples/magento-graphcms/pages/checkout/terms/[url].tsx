@@ -43,6 +43,7 @@ function TermsPage(props: Props) {
 
       <Container maxWidth='md'>
         <Typography component='div' variant='body1'>
+          {/* eslint-disable-next-line react/no-danger */}
           <div dangerouslySetInnerHTML={{ __html: agreement?.content ?? '' }} />
         </Typography>
       </Container>

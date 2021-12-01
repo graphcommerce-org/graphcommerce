@@ -1,4 +1,4 @@
-import { PropsWithChildren, useState, useEffect } from 'react'
+import { PropsWithChildren, useState, useEffect, useMemo } from 'react'
 import { productListParamsContext } from '../../context/productListParamsContext'
 import { ProductListParams } from './filterTypes'
 
@@ -8,13 +8,11 @@ export default function ProductListParamsProvider({
 }: PropsWithChildren<{ value: ProductListParams }>) {
   const [params, setParams] = useState<ProductListParams>(value)
 
-  useEffect(() => {
-    setParams(value)
-  }, [value])
+  useEffect(() => setParams(value), [value])
+
+  const prov = useMemo(() => ({ params, setParams }), [params])
 
   return (
-    <productListParamsContext.Provider value={{ params, setParams }}>
-      {children}
-    </productListParamsContext.Provider>
+    <productListParamsContext.Provider value={prov}>{children}</productListParamsContext.Provider>
   )
 }

@@ -2,8 +2,8 @@ import { useQuery } from '@apollo/client'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { FormRow, Button, FormActions } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
-import { FormControl, Link, makeStyles, TextField, Theme } from '@material-ui/core'
+import { Trans } from '@lingui/macro'
+import { FormControl, Link, makeStyles, TextField } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import PageLink from 'next/link'
 import React from 'react'
@@ -12,11 +12,11 @@ import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerError
 import { SignInDocument } from './SignIn.gql'
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  {
     forgotPass: {
       whiteSpace: 'nowrap',
     },
-  }),
+  },
   { name: 'SignIn' },
 )
 

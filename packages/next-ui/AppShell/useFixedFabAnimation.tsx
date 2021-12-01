@@ -1,5 +1,5 @@
 import { alpha, useTheme } from '@material-ui/core'
-import { useMotionTemplate, useMotionValue, useTransform, useViewportScroll } from 'framer-motion'
+import { useMotionTemplate, useTransform, useViewportScroll } from 'framer-motion'
 
 export default function useFixedFabAnimation() {
   const theme = useTheme()

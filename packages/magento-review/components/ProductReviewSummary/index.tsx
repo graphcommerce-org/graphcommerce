@@ -1,4 +1,4 @@
-import { SvgImageSimple, iconStar, responsiveVal, UseStyles } from '@graphcommerce/next-ui'
+import { SvgImageSimple, iconStar, UseStyles } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'

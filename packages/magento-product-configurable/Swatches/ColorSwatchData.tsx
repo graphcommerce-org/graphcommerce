@@ -1,11 +1,11 @@
 import { UseStyles, responsiveVal } from '@graphcommerce/next-ui'
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 import { ColorSwatchDataFragment } from './ColorSwatchData.gql'
 import { SwatchDataProps } from '.'
 
 export const useStyles = makeStyles(
-  (theme: Theme) => ({
+  {
     root: {
       margin: '0 auto',
       height: responsiveVal(22, 30),
@@ -17,7 +17,7 @@ export const useStyles = makeStyles(
       width: responsiveVal(8, 12),
       marginTop: responsiveVal(2, 4),
     },
-  }),
+  },
   { name: 'ColorSwatchData' },
 )
 

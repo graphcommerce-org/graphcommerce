@@ -1,13 +1,11 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
-import { responsiveVal , breakpointVal } from '@graphcommerce/next-ui'
-import { createTheme, CssBaseline, Theme, ThemeProvider, lighten, alpha } from '@material-ui/core'
+import { responsiveVal, breakpointVal } from '@graphcommerce/next-ui'
+import { createTheme, Theme, alpha } from '@material-ui/core'
 import { PaletteOptions } from '@material-ui/core/styles/createPalette'
 import { Overrides } from '@material-ui/core/styles/overrides'
-import React from 'react'
 import shadows from './shadows'
 
-const useTheme: 'light' | 'dark' = 'light'
 const breakpoints = {
   xs: 0,
   sm: 600,

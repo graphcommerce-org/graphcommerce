@@ -1,5 +1,5 @@
 import { cloneDeep } from '@apollo/client/utilities'
-import { useChipMenuStyles, SvgImage, iconCancelAlt, SvgImageSimple } from '@graphcommerce/next-ui'
+import { useChipMenuStyles, iconCancelAlt, SvgImageSimple } from '@graphcommerce/next-ui'
 import { Chip, ChipProps } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'

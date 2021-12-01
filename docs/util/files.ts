@@ -5,12 +5,12 @@ export type DirectoryTree = [string, string[]][]
 
 export const getAbsoluteFilePath = (file: string) => path.join(process.cwd(), file)
 
-export const getFilesInDir = (dir: string): any => {
+export const getFilesInDir = (dir: string): string[] => {
   const dirPath = getAbsoluteFilePath(dir)
 
   if (!fs.existsSync(dirPath)) {
     console.error(`[files.getFilesInDir]: dir "${dirPath}" not found`)
-    return null
+    return []
   }
 
   const filenames = fs.readdirSync(dirPath)
@@ -31,11 +31,11 @@ export const getDirectoryTree = (
 
   filteredFilenames.forEach((dirName: string) => {
     const currentDir = path.join(process.cwd(), `${directory}/${dirName}`)
-    const filenames = fs.readdirSync(currentDir)
+    const files = fs.readdirSync(currentDir)
 
     const dirContents: [string, string[]] = [
       dirName,
-      filenames.sort((a, b) => a.localeCompare(b, 'nl', { numeric: true })),
+      files.sort((a, b) => a.localeCompare(b, 'nl', { numeric: true })),
     ]
     tree.push(dirContents)
   })

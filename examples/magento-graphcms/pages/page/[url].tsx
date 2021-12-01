@@ -17,7 +17,7 @@ export const config = { unstable_JsPreload: false }
 type Props = DefaultPageQuery & CmsPageQuery & ProductListQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
+export type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function CmsPage(props: Props) {
   const { cmsPage, pages, products } = props

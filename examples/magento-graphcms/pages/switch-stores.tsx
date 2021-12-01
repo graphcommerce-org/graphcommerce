@@ -9,7 +9,6 @@ import {
 import {
   GetStaticProps,
   iconShoppingBag,
-  responsiveVal,
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'

@@ -1,5 +1,5 @@
-import { Container, makeStyles, Theme } from '@material-ui/core'
-import React, { PropsWithChildren } from 'react'
+import { makeStyles, Theme } from '@material-ui/core'
+import React from 'react'
 import Row from '..'
 import { UseStyles } from '../../Styles'
 

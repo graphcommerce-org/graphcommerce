@@ -1,4 +1,3 @@
-import { cloneDeep } from '@apollo/client/utilities'
 import {
   ProductListItem,
   OverlayAreaKeys,
@@ -6,7 +5,7 @@ import {
   isFilterTypeEqual,
   useProductListParamsContext,
 } from '@graphcommerce/magento-product'
-import React, { useState } from 'react'
+import React from 'react'
 import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
 import SwatchList from './SwatchList'
 
@@ -34,7 +33,6 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
     ...configurableProduct
   } = props
   const { params } = useProductListParamsContext()
-  const [selectedState, setSelected] = useState<{ [index: string]: string[] }>({})
 
   const options: [string, string[]][] =
     configurable_options
@@ -48,7 +46,7 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
         return [option?.attribute_code ?? '', (filter?.in as string[]) ?? []]
       }) ?? []
 
-  const selected = cloneDeep(selectedState)
+  const selected = {}
 
   options.forEach(([attr, values]) => {
     if (!selected[attr]) selected[attr] = values

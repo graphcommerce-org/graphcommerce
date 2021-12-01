@@ -1,4 +1,4 @@
-import { default as Router } from 'next/router'
+import { useRouter } from 'next/router'
 import { ProductListParams } from '../components/ProductListItems/filterTypes'
 import { createProductListLink } from './useProductListLink'
 import { useProductListParamsContext } from './useProductListParamsContext'
@@ -11,9 +11,10 @@ type UseProductLinkPushProps = {
 
 export function useProductListLinkReplace(props?: UseProductLinkPushProps) {
   const { setParams } = useProductListParamsContext()
+  const router = useRouter()
 
   return (params: ProductListParams) => {
-    const queryUrl = Router.query.url ?? []
+    const queryUrl = router.query.url ?? []
     const comingFromURLWithoutFilters = !queryUrl.includes('q')
 
     setParams(params)
@@ -23,10 +24,10 @@ export function useProductListLinkReplace(props?: UseProductLinkPushProps) {
     // push the first filter, so the new route (on browser back) will be e.g. /women/fruit instead of /women
     if (comingFromURLWithoutFilters) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      Router.push(path, path, props)
+      router.push(path, path, props)
     } else {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      Router.replace(path, path, props)
+      router.replace(path, path, props)
     }
   }
 }

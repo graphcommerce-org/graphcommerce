@@ -21,10 +21,9 @@ import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
 
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
-function OrderDetailPage(props: Props) {
+function OrderDetailPage() {
   const router = usePageRouter()
   const { orderId } = router.query
 

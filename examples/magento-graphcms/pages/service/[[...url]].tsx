@@ -1,12 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  GetStaticProps,
-  responsiveVal,
-  LayoutOverlayHeader,
-  LayoutTitle,
-} from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
+import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { Container } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'

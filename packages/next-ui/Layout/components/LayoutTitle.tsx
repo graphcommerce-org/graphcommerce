@@ -1,8 +1,8 @@
 import { makeStyles, Theme, Typography, TypographyProps } from '@material-ui/core'
 import React from 'react'
-import { responsiveVal } from '../..'
 import { UseStyles } from '../../Styles'
 import { classesPicker } from '../../Styles/classesPicker'
+import { responsiveVal } from '../../Styles/responsiveVal'
 import { SvgImageProps } from '../../SvgImage'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 

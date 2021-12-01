@@ -12,7 +12,7 @@ export type ProductUspsProps = UspsQueryFragment & {
 export default function Usps(props: ProductUspsProps) {
   const { usps, size } = props
 
-  if (!usps?.uspsMultiple) return <></>
+  if (!usps?.uspsMultiple) return null
 
   return (
     <UspList size={size}>

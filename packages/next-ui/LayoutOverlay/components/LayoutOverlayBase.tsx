@@ -1,5 +1,4 @@
 import { usePageContext, usePageRouter, useScrollOffset } from '@graphcommerce/framer-next-pages'
-import { scrollPos } from '@graphcommerce/framer-next-pages/components/Page'
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
 import { useElementScroll, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 import { makeStyles, Theme } from '@material-ui/core'
@@ -242,7 +241,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
   const scrollTo = useScrollTo()
   const [isPresent, safeToRemove] = usePresence()
 
-  const { closeSteps, active, historyIdx, direction } = usePageContext()
+  const { closeSteps, active, direction } = usePageContext()
   const pageRouter = usePageRouter()
 
   const position = useMotionValue<OverlayPosition>(OverlayPosition.UNOPENED)

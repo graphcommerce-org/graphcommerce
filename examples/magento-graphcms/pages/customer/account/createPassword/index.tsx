@@ -12,10 +12,9 @@ import apolloClient from '../../../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function CustomerAccountCreatePasswordPage() {
-  const { query } = useRouter()
-  const { token, success } = query
+  const { token, success } = useRouter().query
 
-  if (typeof token !== 'undefined' && success === 'undefined') return <></>
+  if (typeof token !== 'undefined' && success === 'undefined') return null
 
   return (
     <>

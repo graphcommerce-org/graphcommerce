@@ -1,4 +1,5 @@
-import { i18n, Messages } from '@lingui/core'
+import { i18n } from '@lingui/core'
+// eslint-disable-next-line @next/next/no-document-import-in-page
 import { DocumentContext, DocumentInitialProps } from 'next/document'
 import React from 'react'
 import { MessageLoader } from '../types'
@@ -28,6 +29,7 @@ export function linguiWrapGetInitialProps(
             type='application/json'
             id='lingui'
             lang={locale}
+            // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: JSON.stringify(messages) }}
           />,
         ],

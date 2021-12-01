@@ -11,8 +11,7 @@ import {
   useTransform,
 } from 'framer-motion'
 import React, { ReactHTML, useState } from 'react'
-import { ScrollSnapType } from '..'
-import { ScrollSnapProps } from '../types'
+import { ScrollSnapProps, ScrollSnapType } from '../types'
 import { isHTMLMousePointerEvent } from '../utils/isHTMLMousePointerEvent'
 import { useScrollerContext } from './useScrollerContext'
 import { useVelocitySnapTo } from './useVelocitySnapTo'

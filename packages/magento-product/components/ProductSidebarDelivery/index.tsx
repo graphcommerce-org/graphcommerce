@@ -1,4 +1,4 @@
-import { SvgImage, responsiveVal, iconOrderBefore, SvgImageSimple } from '@graphcommerce/next-ui'
+import { responsiveVal, iconOrderBefore, SvgImageSimple } from '@graphcommerce/next-ui'
 import { darken, lighten, makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 

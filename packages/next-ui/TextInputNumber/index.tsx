@@ -5,7 +5,6 @@ import {
   OutlinedTextFieldProps,
   TextField,
   TextFieldProps,
-  Theme,
   useForkRef,
 } from '@material-ui/core'
 import clsx from 'clsx'
@@ -16,7 +15,7 @@ import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconMin, iconPlus } from '../icons'
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  {
     quantity: {
       width: responsiveVal(80, 120),
       backgroundColor: 'inherit',
@@ -34,7 +33,7 @@ const useStyles = makeStyles(
     adornedStart: {
       paddingLeft: responsiveVal(7, 14),
     },
-  }),
+  },
   { name: 'TextInputNumber' },
 )
 

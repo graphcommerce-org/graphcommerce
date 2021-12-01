@@ -19,7 +19,7 @@ import {
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, JsonLd, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { Trans } from '@lingui/macro'
 import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'

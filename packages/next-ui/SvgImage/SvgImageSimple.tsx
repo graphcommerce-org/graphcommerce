@@ -1,5 +1,5 @@
-import { Image, ImageProps, isStaticImport, isStaticRequire } from '@graphcommerce/image'
-import { makeStyles, capitalize, Theme } from '@material-ui/core'
+import { ImageProps, isStaticImport, isStaticRequire } from '@graphcommerce/image'
+import { makeStyles, capitalize } from '@material-ui/core'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
 import { responsiveVal } from '../Styles/responsiveVal'
@@ -7,7 +7,7 @@ import { responsiveVal } from '../Styles/responsiveVal'
 export type SvgImageShade = 'muted' | 'default' | 'inverted'
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  {
     image: {
       userSelect: 'none',
       width: responsiveVal(22, 24),
@@ -48,7 +48,7 @@ const useStyles = makeStyles(
     },
     muted: {},
     inverted: {},
-  }),
+  },
   { name: 'SvgImageSimple' },
 )
 
@@ -80,6 +80,7 @@ const SvgImageSimple = forwardRef<HTMLImageElement, SvgImageSimpleProps>((props,
 
   return (
     <svg
+      ref={ref}
       className={clsx(
         className,
         classes.image,

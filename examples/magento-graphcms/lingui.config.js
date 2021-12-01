@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 const linguiNextConfig = require('@graphcommerce/lingui-next/config')
 
 require('dotenv').config()

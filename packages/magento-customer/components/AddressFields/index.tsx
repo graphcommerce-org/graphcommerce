@@ -173,6 +173,7 @@ export default function AddressFields(props: AddressFieldsProps) {
               endAdornment: <InputCheckmark show={valid.regionId} select />,
             }}
           >
+            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
             <option value='' />
             {regionList.map((r) => {
               if (!r?.id) return null

@@ -19,7 +19,9 @@ export function useScrollTo() {
             from: ref.scrollLeft,
             to: to.x,
             velocity: scroll.x.getVelocity(),
-            onUpdate: (v) => (ref.scrollLeft = v),
+            onUpdate: (v) => {
+              ref.scrollLeft = v
+            },
             onComplete,
             bounce: 50,
           }),
@@ -37,7 +39,9 @@ export function useScrollTo() {
             from: ref.scrollTop,
             to: to.y,
             velocity: scroll.y.getVelocity(),
-            onUpdate: (v) => (ref.scrollTop = v),
+            onUpdate: (v) => {
+              ref.scrollTop = v
+            },
             onComplete,
             bounce: 50,
           }),

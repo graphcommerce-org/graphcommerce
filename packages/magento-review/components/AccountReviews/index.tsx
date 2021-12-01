@@ -55,7 +55,7 @@ export default function AccountReviews(props: AccountReviewsProps) {
           classes={{ sectionContainer: classes.olderReviewsContainer }}
         >
           {olderReviews?.map(
-            (review, i) => review && <CustomerReview key={review.created_at} {...review} />,
+            (review) => review && <CustomerReview key={review.created_at} {...review} />,
           )}
         </SectionContainer>
       )}

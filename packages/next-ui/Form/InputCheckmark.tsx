@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
@@ -6,14 +6,14 @@ import { iconCheckmark } from '../icons'
 
 export type InputCheckmarkProps = PropsWithChildren<{ show?: boolean; select?: boolean }>
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  {
     iconCheckmark: {
       stroke: '#01D26A',
     },
     select: {
       marginRight: 15,
     },
-  }),
+  },
   { name: 'InputCheckmark' },
 )
 

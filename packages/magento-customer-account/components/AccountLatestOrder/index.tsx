@@ -14,7 +14,7 @@ type AccountLatestOrderProps = AccountOrdersFragment & {
 
 export default function AccountLatestOrder(props: AccountLatestOrderProps) {
   const { orders, loading } = props
-  const latestOrderCard = orders?.items?.[orders?.items?.length - 1]
+  const latestOrderCard = orders?.items?.[(orders?.items?.length ?? 1) - 1]
   const images = useOrderCardItemImages(orders)
 
   // TODO: when Magento fixes their API sorting

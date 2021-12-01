@@ -3,7 +3,6 @@ import { FilterEqualTypeInput } from '@graphcommerce/graphql'
 import { ChipMenu, ChipMenuProps, responsiveVal } from '@graphcommerce/next-ui'
 import {
   Checkbox,
-  lighten,
   ListItem,
   ListItemSecondaryAction,
   ListItemText,

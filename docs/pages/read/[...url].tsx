@@ -14,17 +14,17 @@ import { getAbsoluteFilePath, getDirectoryTree } from '../../util/files'
 
 type PageProps = LayoutProps & { compiledMdxSource: MDXRemoteSerializeResult }
 
+const components = {
+  a: Link,
+  pre: ({ children }) => (
+    <SyntaxHighlighter language={children.props.className?.split('-')[1] ?? 'tsx'}>
+      {children.props.children}
+    </SyntaxHighlighter>
+  ),
+}
+
 function ArticlePage(props: PageProps) {
   const { menuData, compiledMdxSource } = props
-
-  const components = {
-    a: Link,
-    pre: ({ children }) => (
-        <SyntaxHighlighter language={children.props.className?.split('-')[1] ?? 'tsx'}>
-          {children.props.children}
-        </SyntaxHighlighter>
-      ),
-  }
 
   return (
     <PageLayout menuData={menuData}>
@@ -43,13 +43,12 @@ ArticlePage.pageOptions = pageOptions
 
 export default ArticlePage
 
-export const getStaticPaths = () => 
+export const getStaticPaths = () =>
   // todo
-   ({
+  ({
     paths: [{ params: { url: ['/1-1/getting-started/intro'] } }],
     fallback: 'blocking',
   })
-
 
 export const getStaticProps = async ({ params }) => {
   const { url } = params

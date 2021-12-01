@@ -19,7 +19,7 @@ const renderers: ProductListItemRenderer = {
       {...props}
       subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
-      bottomLeft={<ProductReviewSummary rating_summary={props.rating_summary} />}
+      bottomLeft={<ProductReviewSummary {...props} />}
     />
   ),
   ConfigurableProduct: (props) => (
@@ -33,7 +33,7 @@ const renderers: ProductListItemRenderer = {
         bottomLeft: [],
         bottomRight: ['dominant_color'],
       }}
-      bottomLeft={<ProductReviewSummary rating_summary={props.rating_summary} />}
+      bottomLeft={<ProductReviewSummary {...props} />}
     />
   ),
   BundleProduct: (props) => (
@@ -41,7 +41,7 @@ const renderers: ProductListItemRenderer = {
       {...props}
       subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
-      bottomLeft={<ProductReviewSummary rating_summary={props.rating_summary} />}
+      bottomLeft={<ProductReviewSummary {...props} />}
     />
   ),
   VirtualProduct: (props) => (
@@ -49,7 +49,7 @@ const renderers: ProductListItemRenderer = {
       {...props}
       subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
-      bottomLeft={<ProductReviewSummary rating_summary={props.rating_summary} />}
+      bottomLeft={<ProductReviewSummary {...props} />}
     />
   ),
   DownloadableProduct: (props) => (
@@ -57,7 +57,7 @@ const renderers: ProductListItemRenderer = {
       {...props}
       subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
-      bottomLeft={<ProductReviewSummary rating_summary={props.rating_summary} />}
+      bottomLeft={<ProductReviewSummary {...props} />}
     />
   ),
   GroupedProduct: (props) => (
@@ -65,7 +65,7 @@ const renderers: ProductListItemRenderer = {
       {...props}
       subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
-      bottomLeft={<ProductReviewSummary rating_summary={props.rating_summary} />}
+      bottomLeft={<ProductReviewSummary {...props} />}
     />
   ),
   // // eslint-disable-next-line @typescript-eslint/ban-ts-comment

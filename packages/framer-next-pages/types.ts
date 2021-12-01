@@ -1,7 +1,15 @@
 import { NextComponentType, NextPageContext } from 'next'
 import { NextRouter } from 'next/router'
 import React from 'react'
-import { RouterProxy } from './context/pageRouterContext'
+
+export type RouterProxy = NextRouter & { go(delta: number): void; prevUpUrl: string }
+
+export type PageRouterContext = {
+  currentRouter: RouterProxy
+  prevRouter?: RouterProxy
+  up?: UpPage
+  prevUp?: UpPage
+}
 
 /**
  * Default (no overlay):
@@ -112,7 +120,7 @@ export type PageOptions<T extends Record<string, unknown> = Record<string, unkno
    *
    * To make the `Layout` component work, make sure that those pages have the same `sharedKey`
    */
-  Layout?: React.FC<any>
+  Layout?: React.FC<Partial<Omit<T, 'children'>>>
   /** Pass props to the SharedComponent */
   layoutProps?: Partial<Omit<T, 'children'>>
 

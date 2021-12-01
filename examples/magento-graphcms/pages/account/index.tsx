@@ -49,7 +49,7 @@ function AccountIndexPage() {
   const address =
     customer?.addresses?.filter((a) => a?.default_shipping)?.[0] || customer?.addresses?.[0]
   const orders = customer?.orders
-  const latestOrder = orders?.items?.[orders?.items?.length - 1]
+  const latestOrder = orders?.items?.[(orders?.items?.length ?? 1) - 1]
 
   if (loading) return <div />
   if (error)
@@ -152,7 +152,7 @@ function AccountIndexPage() {
               endIcon={<CustomerNewsletterToggle color='primary' />}
             />
             <SignOutForm
-              button={({ formState }) => (
+              button={React.memo(({ formState }) => (
                 <AccountMenuItem
                   iconSrc={iconShutdown}
                   loading={formState.isSubmitting}
@@ -161,7 +161,7 @@ function AccountIndexPage() {
                   title={t`Sign out`}
                   noBorderBottom
                 />
-              )}
+              ))}
             />
           </AccountMenu>
         </NoSsr>

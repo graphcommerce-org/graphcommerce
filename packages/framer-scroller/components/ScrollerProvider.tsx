@@ -50,9 +50,7 @@ function useObserveItems(scrollerRef: ReactHtmlRefObject, items: MotionValue<Ite
         if (value.el) io.observe(value.el)
       })
 
-      return () => {
-        io.disconnect()
-      }
+      return () => io.disconnect()
     },
     [scrollerRef],
   )
@@ -184,6 +182,7 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
 
         // Skip child if it doesn't intersect the parent's opposite axis (it can never be in view)
         if (excludeOffAxis && !domRectIntersects(parentRect, childRect, orthogonalAxis)) {
+          // eslint-disable-next-line no-continue
           continue
         }
 

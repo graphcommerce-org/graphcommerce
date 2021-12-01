@@ -1,4 +1,4 @@
-import { usePageRouter } from '..'
+import { usePageRouter } from './usePageRouter'
 import { usePrevPageRouter } from './usePrevPageRouter'
 
 export type UseHistoryLink = { href: string }

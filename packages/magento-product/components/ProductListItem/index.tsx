@@ -1,6 +1,6 @@
 import { Image, ImageProps } from '@graphcommerce/image'
 import { responsiveVal, UseStyles } from '@graphcommerce/next-ui'
-import { ButtonBase, Link as MuiLink, makeStyles, Theme, Typography } from '@material-ui/core'
+import { ButtonBase, makeStyles, Theme, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'

@@ -1,10 +1,4 @@
-import {
-  RenderType,
-  SectionContainer,
-  SectionHeader,
-  ToggleButton,
-  ToggleButtonGroup,
-} from '@graphcommerce/next-ui'
+import { RenderType, SectionHeader, ToggleButton, ToggleButtonGroup } from '@graphcommerce/next-ui'
 import { Controller, FieldErrors, UseControllerProps } from '@graphcommerce/react-hook-form'
 import { BaseTextFieldProps, FormHelperText, makeStyles, Theme } from '@material-ui/core'
 import React from 'react'

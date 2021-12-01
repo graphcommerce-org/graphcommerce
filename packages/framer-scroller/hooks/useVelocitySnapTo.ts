@@ -1,6 +1,5 @@
 import { PanInfo } from 'framer-motion'
 import { inertia, InertiaOptions } from 'popmotion'
-import { useScrollTo } from './useScrollTo'
 import { useScrollerContext } from './useScrollerContext'
 
 const clamp = ({ velocity, offset }: PanInfo, axis: 'x' | 'y') =>

@@ -14,7 +14,7 @@ export default function Reviews(props: ReviewsProps) {
 
   if (!reviews || loading) return null
 
-  if (!data?.storeConfig?.product_reviews_enabled) return <></>
+  if (!data?.storeConfig?.product_reviews_enabled) return null
 
   return (
     <Row maxWidth='md' id='reviews'>

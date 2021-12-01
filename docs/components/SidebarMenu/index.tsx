@@ -1,4 +1,3 @@
-import { responsiveVal } from '@graphcommerce/next-ui'
 import { List, ListItem, ListItemText, ListSubheader, makeStyles, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'

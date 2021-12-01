@@ -1,6 +1,5 @@
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { Link, LinkProps as MuiLinkProps, makeStyles, Theme } from '@material-ui/core'
-import { Variant as ThemeVariant } from '@material-ui/core/styles/createTypography'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'

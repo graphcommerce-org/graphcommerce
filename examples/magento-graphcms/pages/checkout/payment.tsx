@@ -40,8 +40,7 @@ import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
 function PaymentPage() {
   const cartId = useCurrentCartId()
@@ -107,11 +106,11 @@ function PaymentPage() {
                     <PaymentMethodOptions
                       key='options'
                       step={2}
-                      Container={({ children }) => (
+                      Container={React.memo(({ children }) => (
                         <FormDiv contained background='secondary'>
                           {children}
                         </FormDiv>
-                      )}
+                      ))}
                     />
 
                     <CartSummary editable key='cart-summary'>

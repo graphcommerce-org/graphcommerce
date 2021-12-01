@@ -77,7 +77,7 @@ export default function CartItemSummary(props: OrderSummaryProps) {
 
   if (!data?.cart) return null
 
-  const { items } = data?.cart
+  const items = data?.cart.items
 
   return (
     <div className={classes.root}>

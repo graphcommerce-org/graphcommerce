@@ -153,14 +153,14 @@ SearchResultPage.pageOptions = {
 
 export default SearchResultPage
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+export const getStaticPaths: GetPageStaticPaths = async () => {
   // Disable getStaticPaths while in development mode
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  return {
+  return Promise.resolve({
     paths: [{ params: { url: [] } }],
     fallback: 'blocking',
-  }
+  })
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
