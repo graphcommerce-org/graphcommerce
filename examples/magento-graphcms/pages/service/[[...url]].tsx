@@ -1,11 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   GetStaticProps,
   responsiveVal,
-  OverlayAppBar,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { Container } from '@material-ui/core'
@@ -34,16 +33,14 @@ function ServicePage({ pages }: Props) {
         metaRobots={['noindex']}
         canonical={pages?.[0]?.url ?? ''}
       />
-      <OverlayAppBar>
-        <Title component='span' size='small'>
+      <LayoutOverlayHeader>
+        <LayoutTitle component='span' size='small'>
           {title}
-        </Title>
-      </OverlayAppBar>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
 
       <Container maxWidth='md'>
-        <AppShellTitle>
-          <Title>{title}</Title>
-        </AppShellTitle>
+        <LayoutTitle>{title}</LayoutTitle>
       </Container>
       <RowRenderer {...pages[0]} />
     </>

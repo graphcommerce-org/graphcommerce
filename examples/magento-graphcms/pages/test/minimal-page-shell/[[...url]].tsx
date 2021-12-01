@@ -1,5 +1,5 @@
 import { PageOptions, usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
-import { AppBar, AppShellTitle, Button, iconPerson, Stepper, Title } from '@graphcommerce/next-ui'
+import { LayoutHeader, Button, iconPerson, Stepper, LayoutTitle } from '@graphcommerce/next-ui'
 import { Container, Divider, List, ListItem, NoSsr, Typography } from '@material-ui/core'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
@@ -57,21 +57,21 @@ export function AppShellDemo(props: AppShellDemoProps) {
   }
 
   let titleComponent = (
-    <Title size='small' component='span'>
+    <LayoutTitle size='small' component='span'>
       {title}
-    </Title>
+    </LayoutTitle>
   )
 
   if (withIcon)
     titleComponent = (
-      <Title icon={iconPerson} size='small' component='span'>
+      <LayoutTitle icon={iconPerson} size='small' component='span'>
         {title}
-      </Title>
+      </LayoutTitle>
     )
 
   return (
     <NoSsr>
-      <AppBar
+      <LayoutHeader
         primary={primaryAction}
         divider={
           withStepper ? (
@@ -85,10 +85,10 @@ export function AppShellDemo(props: AppShellDemoProps) {
       >
         {/* {titleComponent} */}
         {isMinimal || isSheet || withIcon || withTitle ? titleComponent : undefined}
-      </AppBar>
+      </LayoutHeader>
 
       <Container maxWidth='md'>
-        <AppShellTitle icon={withIcon ? iconPerson : undefined}>{title}</AppShellTitle>
+        <LayoutTitle icon={withIcon ? iconPerson : undefined}>{title}</LayoutTitle>
 
         {isSheet && !primaryAction && (
           <Typography variant='body1' gutterBottom>

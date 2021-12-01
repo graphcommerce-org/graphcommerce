@@ -1,7 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellTitle, GetStaticProps, Title, AppBar } from '@graphcommerce/next-ui'
+import { GetStaticProps, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import SidebarGallery from '@graphcommerce/next-ui/FramerScroller/components/SidebarGallery'
 import React from 'react'
 import { LayoutFull, LayoutFullProps } from '../../components/Layout'
@@ -14,18 +14,18 @@ function TestSlider({ products }: Props) {
   if (!products?.items?.length) return <></>
   return (
     <>
-      <AppBar>
-        <Title size='small' component='span'>
+      <LayoutHeader>
+        <LayoutTitle size='small' component='span'>
           Product title
-        </Title>
-      </AppBar>
+        </LayoutTitle>
+      </LayoutHeader>
 
       <SidebarGallery
         sidebar={
           <>
-            <AppShellTitle variant='h2' bare>
+            <LayoutTitle variant='h2' bare>
               Product Title
-            </AppShellTitle>
+            </LayoutTitle>
             <ul>
               <li>Some product details</li>
               <li>Or other information</li>

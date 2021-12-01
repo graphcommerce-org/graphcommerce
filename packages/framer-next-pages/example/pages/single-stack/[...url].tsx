@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/require-await */
 import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import {
-  AppBar,
-  AppShellTitle,
-  Title,
+  LayoutHeader,
+  LayoutTitle,
   LayoutOverlay,
   LayoutOverlayProps,
   LayoutOverlayVariant,
@@ -25,15 +24,15 @@ function SingleStack() {
 
   return (
     <>
-      <AppBar noAlign>
-        <Title size='small' component='span'>
+      <LayoutHeader noAlign>
+        <LayoutTitle size='small' component='span'>
           Overlay {variant} {page}
-        </Title>
-      </AppBar>
+        </LayoutTitle>
+      </LayoutHeader>
       <Container>
-        <AppShellTitle>
+        <LayoutTitle>
           Overlay {variant} {page}
-        </AppShellTitle>
+        </LayoutTitle>
         {page > 0 && (
           <Link href={`/single-stack/${variant}/${page - 1}`}>
             <a>{page - 1}</a>

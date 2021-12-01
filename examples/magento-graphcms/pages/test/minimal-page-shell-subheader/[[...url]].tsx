@@ -14,7 +14,7 @@ import {
 } from '@graphcommerce/magento-product'
 import { SearchDocument, SearchForm, SearchQuery } from '@graphcommerce/magento-search'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellSticky, AppShellTitle, Button, AppBar } from '@graphcommerce/next-ui'
+import { AppShellSticky, LayoutTitle, Button, LayoutHeader } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
@@ -43,7 +43,7 @@ function MinimalAppShellSubheader(props: Props) {
 
   return (
     <ProductListParamsProvider value={params}>
-      <AppBar
+      <LayoutHeader
         primary={
           <PageLink href='/test/minimal-page-shell' passHref>
             <Button color='secondary' variant='pill-link' size='small'>
@@ -60,15 +60,15 @@ function MinimalAppShellSubheader(props: Props) {
         <Typography variant='h5' component='span'>
           Minimal UI
         </Typography>
-      </AppBar>
+      </LayoutHeader>
       <Container maxWidth='md' className={classes.longContent}>
-        <AppShellTitle>
+        <LayoutTitle>
           <Box textAlign='center' mb={3}>
             <Typography variant='h2' component='h2'>
               Minimal UI
             </Typography>
           </Box>
-        </AppShellTitle>
+        </LayoutTitle>
 
         <AppShellSticky>
           <ProductListFiltersContainer>

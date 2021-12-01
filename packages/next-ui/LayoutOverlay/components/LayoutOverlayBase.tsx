@@ -1,4 +1,5 @@
-import { usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
+import { usePageContext, usePageRouter, useScrollOffset } from '@graphcommerce/framer-next-pages'
+import { scrollPos } from '@graphcommerce/framer-next-pages/components/Page'
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
 import { useElementScroll, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 import { makeStyles, Theme } from '@material-ui/core'
@@ -11,10 +12,10 @@ import {
   useTransform,
 } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
-import { UseStyles } from '..'
-import AppShellProvider from '../AppShell/AppShellProvider/AppShellProvder'
-import { classesPicker } from '../Styles/classesPicker'
-import { useOverlayPosition } from './useOverlayPosition'
+import LayoutProvider from '../../Layout/components/LayoutProvider'
+import { UseStyles } from '../../Styles'
+import { classesPicker } from '../../Styles/classesPicker'
+import { useOverlayPosition } from '../hooks/useOverlayPosition'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -241,7 +242,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
   const scrollTo = useScrollTo()
   const [isPresent, safeToRemove] = usePresence()
 
-  const { closeSteps, active, direction } = usePageContext()
+  const { closeSteps, active, historyIdx, direction } = usePageContext()
   const pageRouter = usePageRouter()
 
   const position = useMotionValue<OverlayPosition>(OverlayPosition.UNOPENED)
@@ -317,6 +318,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
   useEffect(() => positions.open.visible.onChange((o) => o === 0 && closeOverlay()))
 
   // Measure the offset of the overlay in the scroller.
+
   const offsetY = useMotionValue(0)
   useEffect(() => {
     if (!overlayRef.current) return () => {}
@@ -325,10 +327,11 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
     return () => ro.disconnect()
   }, [offsetY])
 
-  // Create the exact position for the AppShellProvider which offsets the top of the overlay
-  const scrollProvider = useTransform(
+  // Create the exact position for the LayoutProvider which offsets the top of the overlay
+  const offsetPageY = useScrollOffset().y
+  const scrollWithoffset = useTransform(
     [scroll.y, positions.open.y, offsetY] as MotionValue<number | string>[],
-    ([y, openY, offsetYv]: number[]) => Math.max(0, y - openY - offsetYv),
+    ([y, openY, offsetYv]: number[]) => Math.max(0, y - openY - offsetYv + offsetPageY),
   )
 
   return (
@@ -338,7 +341,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
         <div {...className('beforeOverlay')} onClick={closeOverlay} />
         <div {...className('overlay')} ref={overlayRef}>
           <div {...className('overlayPane')}>
-            <AppShellProvider scroll={scrollProvider}>{children}</AppShellProvider>
+            <LayoutProvider scroll={scrollWithoffset}>{children}</LayoutProvider>
           </div>
         </div>
         <div {...className('afterOverlay')} />

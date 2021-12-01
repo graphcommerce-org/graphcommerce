@@ -1,15 +1,14 @@
 /* eslint-disable @typescript-eslint/require-await */
 import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import {
-  AppBar,
-  AppShellTitle,
+  LayoutHeader,
   Button,
   iconChevronRight,
   LayoutOverlay,
   LayoutOverlayProps,
   LayoutOverlayVariant,
   SvgImageSimple,
-  Title,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { Container } from '@material-ui/core'
 import { motion } from 'framer-motion'
@@ -28,7 +27,7 @@ function MultiStack() {
 
   return (
     <>
-      <AppBar
+      <LayoutHeader
         noAlign
         primary={
           <Link href={`/multi-stack/${variant}/${page + 1}`} passHref>
@@ -38,14 +37,14 @@ function MultiStack() {
           </Link>
         }
       >
-        <Title size='small' component='span'>
+        <LayoutTitle size='small' component='span'>
           Overlay {variant} {page}
-        </Title>
-      </AppBar>
+        </LayoutTitle>
+      </LayoutHeader>
       <Container>
-        <AppShellTitle>
+        <LayoutTitle>
           Overlay {variant} {page}
-        </AppShellTitle>
+        </LayoutTitle>
         {page > 0 && (
           <Link href={`/multi-stack/${variant}/${page - 1}`}>
             <a>{page - 1}</a>

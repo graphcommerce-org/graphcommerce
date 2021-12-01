@@ -5,12 +5,11 @@ import {
 } from '@graphcommerce/magento-cart/components/CartAgreementsForm/CartAgreements.gql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   GetStaticProps,
   PageMeta,
   responsiveVal,
-  OverlayAppBar,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { Container, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
@@ -32,15 +31,15 @@ function TermsPage(props: Props) {
     <>
       <PageMeta title={title} />
 
-      <OverlayAppBar>
-        <Title component='span' size='small'>
+      <LayoutOverlayHeader>
+        <LayoutTitle component='span' size='small'>
           {title}
-        </Title>
-      </OverlayAppBar>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
 
-      <AppShellTitle>
-        <Title>{title}</Title>
-      </AppShellTitle>
+      <LayoutTitle>
+        <LayoutTitle>{title}</LayoutTitle>
+      </LayoutTitle>
 
       <Container maxWidth='md'>
         <Typography component='div' variant='body1'>

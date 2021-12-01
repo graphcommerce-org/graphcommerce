@@ -10,9 +10,8 @@ import {
   GetStaticProps,
   SectionContainer,
   iconLock,
-  AppShellTitle,
-  OverlayAppBar,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
@@ -40,11 +39,11 @@ function AccountAuthenticationPage() {
 
   return (
     <>
-      <OverlayAppBar>
-        <Title size='small' component='span' icon={iconLock}>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span' icon={iconLock}>
           <Trans>Authentication</Trans>
-        </Title>
-      </OverlayAppBar>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta
           title={t`Authentication`}
@@ -52,9 +51,9 @@ function AccountAuthenticationPage() {
           metaRobots={['noindex']}
         />
         <NoSsr>
-          <AppShellTitle icon={iconLock}>
+          <LayoutTitle icon={iconLock}>
             <Trans>Authentication</Trans>
-          </AppShellTitle>
+          </LayoutTitle>
           <SectionContainer labelLeft={t`Password`}>
             {customer && <ChangePasswordForm />}
           </SectionContainer>

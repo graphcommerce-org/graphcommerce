@@ -7,12 +7,11 @@ import {
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   GetStaticProps,
   iconEmailOutline,
   SectionContainer,
-  OverlayAppBar,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
@@ -40,11 +39,11 @@ function AccountContactPage() {
 
   return (
     <>
-      <OverlayAppBar>
-        <Title size='small' component='span' icon={iconEmailOutline}>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span' icon={iconEmailOutline}>
           <Trans>Contact</Trans>
-        </Title>
-      </OverlayAppBar>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <NoSsr>
         <Container maxWidth='md'>
           <PageMeta
@@ -53,9 +52,9 @@ function AccountContactPage() {
             metaRobots={['noindex']}
           />
 
-          <AppShellTitle icon={iconEmailOutline}>
+          <LayoutTitle icon={iconEmailOutline}>
             <Trans>Contact</Trans>
-          </AppShellTitle>
+          </LayoutTitle>
 
           <SectionContainer labelLeft='Email'>
             {customer && <UpdateCustomerEmailForm email={customer.email ?? ''} />}

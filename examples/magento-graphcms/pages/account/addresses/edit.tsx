@@ -4,13 +4,12 @@ import { ApolloCustomerErrorFullPage, EditAddressForm } from '@graphcommerce/mag
 import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   GetStaticProps,
   iconAddresses,
   IconHeader,
   SectionContainer,
-  OverlayAppBar,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Box, Container, NoSsr } from '@material-ui/core'
@@ -48,11 +47,11 @@ function EditAddressPage(props: Props) {
 
   return (
     <>
-      <OverlayAppBar>
-        <Title size='small' component='span' icon={iconAddresses}>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span' icon={iconAddresses}>
           <Trans>Addresses</Trans>
-        </Title>
-      </OverlayAppBar>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta
           title={t`Edit address`}
@@ -60,9 +59,9 @@ function EditAddressPage(props: Props) {
           metaRobots={['noindex']}
         />
         <NoSsr>
-          <AppShellTitle icon={iconAddresses}>
+          <LayoutTitle icon={iconAddresses}>
             <Trans>Addresses</Trans>
-          </AppShellTitle>
+          </LayoutTitle>
 
           <SectionContainer labelLeft={t`Edit address`}>
             {!address && !loading && (

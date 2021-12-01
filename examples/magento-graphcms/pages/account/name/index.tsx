@@ -7,12 +7,11 @@ import {
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   GetStaticProps,
   iconId,
   SectionContainer,
-  OverlayAppBar,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
@@ -38,11 +37,11 @@ function AccountNamePage() {
 
   return (
     <>
-      <OverlayAppBar>
-        <Title size='small' component='span' icon={iconId}>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span' icon={iconId}>
           <Trans>Name</Trans>
-        </Title>
-      </OverlayAppBar>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <NoSsr>
         <Container maxWidth='md'>
           <PageMeta
@@ -51,7 +50,7 @@ function AccountNamePage() {
             metaRobots={['noindex']}
           />
 
-          <AppShellTitle icon={iconId}>Name</AppShellTitle>
+          <LayoutTitle icon={iconId}>Name</LayoutTitle>
 
           <SectionContainer labelLeft={t`Name`}>
             {customer && (

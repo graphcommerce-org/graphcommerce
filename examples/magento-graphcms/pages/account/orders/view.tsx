@@ -12,9 +12,8 @@ import {
   IconHeader,
   GetStaticProps,
   iconBox,
-  OverlayAppBar,
-  Title,
-  AppShellTitle,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
@@ -50,20 +49,20 @@ function OrderDetailPage(props: Props) {
 
   return (
     <>
-      <OverlayAppBar>
-        <Title size='small' component='span' icon={iconBox}>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span' icon={iconBox}>
           <Trans>Order #{orderId}</Trans>
-        </Title>
-      </OverlayAppBar>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <NoSsr>
           {(!orderId || !order) && (
             <IconHeader src={iconBox} title={t`Order not found`} size='large' />
           )}
 
-          <AppShellTitle icon={iconBox}>
+          <LayoutTitle icon={iconBox}>
             <Trans>Order #{orderId}</Trans>
-          </AppShellTitle>
+          </LayoutTitle>
 
           {orderId && order && (
             <>

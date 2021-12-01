@@ -20,17 +20,16 @@ import { included_methods } from '@graphcommerce/magento-payment-included'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { mollie_methods } from '@graphcommerce/mollie-magento-payment'
 import {
-  AppShellTitle,
   FormActions,
   FormDiv,
   FullPageMessage,
   GetStaticProps,
   iconChevronRight,
   iconId,
-  AppBar,
+  LayoutHeader,
   Stepper,
   SvgImageSimple,
-  Title,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { ComposedForm } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
@@ -55,7 +54,7 @@ function PaymentPage() {
         {!cartId && <EmptyCart />}
         {cartId && (
           <>
-            <AppBar
+            <LayoutHeader
               primary={
                 <PaymentMethodButton
                   type='submit'
@@ -74,10 +73,10 @@ function PaymentPage() {
                 </Container>
               }
             >
-              <Title size='small' icon={iconId}>
+              <LayoutTitle size='small' icon={iconId}>
                 <Trans>Payment</Trans>
-              </Title>
-            </AppBar>
+              </LayoutTitle>
+            </LayoutHeader>
             <Container maxWidth='md'>
               <Dialog open={locked} fullWidth>
                 <FullPageMessage
@@ -90,9 +89,9 @@ function PaymentPage() {
               </Dialog>
 
               <>
-                <AppShellTitle icon={iconId}>
+                <LayoutTitle icon={iconId}>
                   <Trans>Payment</Trans>
-                </AppShellTitle>
+                </LayoutTitle>
 
                 <PaymentMethodContextProvider
                   modules={{

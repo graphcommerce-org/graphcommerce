@@ -26,12 +26,11 @@ import {
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AppShellSticky,
-  AppShellTitle,
-  AppBar,
+  LayoutTitle,
+  LayoutHeader,
   GetStaticProps,
   MetaRobots,
   PageMeta,
-  Title,
 } from '@graphcommerce/next-ui'
 import { Container } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
@@ -85,9 +84,11 @@ function CategoryPage(props: Props) {
         <CategoryMeta params={params} {...category} />
       )}
 
-      <AppBar floatingMd>
-        <Title size='small'>{category?.name}</Title>
-      </AppBar>
+      <LayoutHeader floatingMd>
+        <LayoutTitle size='small' component='span'>
+          {category?.name}
+        </LayoutTitle>
+      </LayoutHeader>
 
       {isLanding ? (
         <CategoryHeroNav
@@ -97,7 +98,9 @@ function CategoryPage(props: Props) {
         />
       ) : (
         <ProductListParamsProvider value={params}>
-          <AppShellTitle variant='h1'>{category?.name}</AppShellTitle>
+          <LayoutTitle variant='h1' gutterTop>
+            {category?.name}
+          </LayoutTitle>
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
 

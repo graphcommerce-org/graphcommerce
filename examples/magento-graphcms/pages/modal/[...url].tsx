@@ -1,11 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   GetStaticProps,
   MetaRobots,
-  OverlayAppBar,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
@@ -32,11 +31,11 @@ function ModalPage(props: Props) {
 
   return (
     <>
-      <OverlayAppBar>
-        <Title size='small' component='span'>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span'>
           {page.title}
-        </Title>
-      </OverlayAppBar>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <PageMeta
         title={page.metaTitle ?? ''}
         metaDescription={page.metaDescription}
@@ -44,7 +43,7 @@ function ModalPage(props: Props) {
         canonical={page.url}
       />
       <Box pt={4}>
-        <AppShellTitle>{page.title}</AppShellTitle>
+        <LayoutTitle>{page.title}</LayoutTitle>
         <Typography variant='body1' align='center'>
           {page.metaDescription ?? ''}
         </Typography>

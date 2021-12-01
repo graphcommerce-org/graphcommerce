@@ -18,7 +18,7 @@ import {
 } from '@graphcommerce/magento-product-configurable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, JsonLd, Title, AppBar } from '@graphcommerce/next-ui'
+import { GetStaticProps, JsonLd, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
@@ -64,11 +64,11 @@ function ProductConfigurable(props: Props) {
 
   return (
     <>
-      <AppBar floatingMd>
-        <Title size='small' component='span'>
+      <LayoutHeader floatingMd>
+        <LayoutTitle size='small' component='span'>
           {product.name}
-        </Title>
-      </AppBar>
+        </LayoutTitle>
+      </LayoutHeader>
       <JsonLd<Product>
         item={{
           '@context': 'https://schema.org',

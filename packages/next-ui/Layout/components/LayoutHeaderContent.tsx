@@ -1,10 +1,10 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Divider, makeStyles, Theme } from '@material-ui/core'
 import React, { useRef } from 'react'
-import useAppShellHeaderContext from '../AppShell/AppShellProvider/useAppShellHeaderContext'
-import { UseStyles } from '../Styles'
-import { classesPicker } from '../Styles/classesPicker'
-import { FloatingProps } from './types'
+import useLayoutContext from '../../Layout/hooks/useLayoutContext'
+import { UseStyles } from '../../Styles'
+import { classesPicker } from '../../Styles/classesPicker'
+import { FloatingProps } from '../types'
 
 type Classes = 'bg' | 'content' | 'left' | 'center' | 'right' | 'divider'
 
@@ -132,7 +132,7 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'PageHeaderContent' },
+  { name: 'LayoutHeaderContent' },
 )
 
 export type ContentProps = FloatingProps &
@@ -143,9 +143,9 @@ export type ContentProps = FloatingProps &
     divider?: React.ReactNode
   }
 
-export default function AppBarContent(props: ContentProps) {
+export default function LayoutHeaderContent(props: ContentProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const { scroll } = useAppShellHeaderContext()
+  const { scroll } = useLayoutContext()
 
   const { left, children, right, divider, floatingMd = false, floatingSm = false } = props
   const classes = useStyles(props)

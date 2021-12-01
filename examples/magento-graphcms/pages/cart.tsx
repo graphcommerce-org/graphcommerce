@@ -13,15 +13,14 @@ import { ConfigurableCartItem } from '@graphcommerce/magento-product-configurabl
 import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AnimatedRow,
-  AppShellTitle,
   Button,
   GetStaticProps,
   iconShoppingBag,
   Stepper,
-  Title,
+  LayoutTitle,
   iconChevronRight,
   SvgImageSimple,
-  OverlayAppBar,
+  LayoutOverlayHeader,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
@@ -50,7 +49,7 @@ function CartPage() {
         metaRobots={['noindex']}
       />
       <NoSsr>
-        <OverlayAppBar
+        <LayoutOverlayHeader
           primary={
             hasItems && (
               <PageLink href='/checkout' passHref>
@@ -74,7 +73,7 @@ function CartPage() {
             )
           }
         >
-          <Title size='small' component='span' icon={hasItems ? iconShoppingBag : undefined}>
+          <LayoutTitle size='small' component='span' icon={hasItems ? iconShoppingBag : undefined}>
             {hasItems ? (
               <>
                 Cart Total: <Money {...data?.cart?.prices?.grand_total} />
@@ -82,16 +81,16 @@ function CartPage() {
             ) : (
               <>Cart</>
             )}
-          </Title>
-        </OverlayAppBar>
+          </LayoutTitle>
+        </LayoutOverlayHeader>
         <Container maxWidth='md'>
           <AnimatePresence initial={false}>
             {hasItems ? (
               <>
                 <AnimatedRow key='quick-checkout'>
-                  <AppShellTitle icon={iconShoppingBag}>
+                  <LayoutTitle icon={iconShoppingBag}>
                     Cart Total: <Money {...data?.cart?.prices?.grand_total} />
-                  </AppShellTitle>
+                  </LayoutTitle>
                 </AnimatedRow>
                 <CartItems
                   items={data?.cart?.items}

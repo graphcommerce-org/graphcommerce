@@ -1,5 +1,4 @@
 import { AnimatePresence } from 'framer-motion'
-import PageLoader from 'next/dist/client/page-loader'
 import { PrivateRouteInfo } from 'next/dist/shared/lib/router/router'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import type { NextRouter, Router } from 'next/router'
@@ -27,7 +26,7 @@ export default function FramerNextPages(props: PagesProps) {
   const items = useRef<PageItem[]>([])
   const idx = Number(global.window?.history.state?.idx ?? 0)
   const prevHistory = useRef<number>(-1)
-  const [fb, setFallbackRouteInfo] = useState<PrivateRouteInfo | undefined>()
+  const [fb, setFallback] = useState<PrivateRouteInfo | undefined>()
   const direction = idx > prevHistory.current ? 1 : -1
   prevHistory.current = idx
 
@@ -63,7 +62,15 @@ export default function FramerNextPages(props: PagesProps) {
 
   /** If we don't have a plain component we add a fallback to the beginning of an item */
   if (plainIdx === -1 && typeof window !== 'undefined') {
-    if (fb) {
+    if (!fb) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      ;(async () => {
+        const info = await (router as Router).getRouteInfo('/', '/', {}, '/', '/', {
+          shallow: false,
+        })
+        return setFallback(info)
+      })()
+    } else {
       const proxy = createRouterProxy(router, { asPath: '/', pathname: '/', query: {} })
 
       const Fallback = fb.Component as PageComponent
@@ -80,14 +87,6 @@ export default function FramerNextPages(props: PagesProps) {
         up: Fallback.pageOptions?.up ?? fb.props?.pageProps?.up,
       }
       renderItems = [fbItem, ...renderItems]
-    } else {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      ;(async () =>
-        setFallbackRouteInfo(
-          await (router as Router).getRouteInfo('/', '/', {}, '/', '/', {
-            shallow: false,
-          }),
-        ))()
     }
   }
 
@@ -139,6 +138,7 @@ export default function FramerNextPages(props: PagesProps) {
         } = item
         const active = itemIdx === renderItems.length - 1
         const depth = itemIdx - (renderItems.length - 1)
+
         const closeIdx = renderItems[itemIdx - 1]?.historyIdx ?? -1
         const closeSteps = closeIdx > -1 ? historyIdx - closeIdx : 0
 
@@ -151,7 +151,7 @@ export default function FramerNextPages(props: PagesProps) {
             key={sharedKey}
             // Since we very carefully prevent rerenders of this component we can safely ignore the eslint error
             // eslint-disable-next-line react/jsx-no-constructed-context-values
-            value={{ depth, active, direction, closeSteps, backSteps }}
+            value={{ depth, active, direction, closeSteps, backSteps, historyIdx }}
           >
             <Page active={active} historyIdx={historyIdx}>
               <pageRouterContext.Provider

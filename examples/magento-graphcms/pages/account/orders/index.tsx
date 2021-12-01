@@ -7,13 +7,12 @@ import {
 } from '@graphcommerce/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   FullPageMessage,
   GetStaticProps,
   iconBox,
-  OverlayAppBar,
+  LayoutOverlayHeader,
   SvgImageSimple,
-  Title,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
@@ -48,11 +47,11 @@ function AccountOrdersPage() {
 
   return (
     <>
-      <OverlayAppBar>
-        <Title size='small' component='span' icon={iconBox}>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span' icon={iconBox}>
           <Trans>Orders</Trans>
-        </Title>
-      </OverlayAppBar>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta
           title={t`Orders`}
@@ -62,7 +61,7 @@ function AccountOrdersPage() {
         <NoSsr>
           {customer?.orders && customer.orders.items.length > 0 && (
             <>
-              <AppShellTitle icon={iconBox}>Orders</AppShellTitle>
+              <LayoutTitle icon={iconBox}>Orders</LayoutTitle>
               <AccountOrders {...customer} />
             </>
           )}

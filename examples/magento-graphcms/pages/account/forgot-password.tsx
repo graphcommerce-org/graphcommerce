@@ -1,7 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ForgotPasswordForm } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellTitle, GetStaticProps, OverlayAppBar, Title } from '@graphcommerce/next-ui'
+import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Box, Container, NoSsr } from '@material-ui/core'
 import React from 'react'
@@ -13,11 +13,11 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 function AccountForgotPasswordPage() {
   return (
     <>
-      <OverlayAppBar>
-        <Title size='small' component='span'>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span'>
           <Trans>Forgot your password?</Trans>
-        </Title>
-      </OverlayAppBar>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <Container maxWidth='sm'>
         <PageMeta
           title='Forgot Password'
@@ -26,9 +26,9 @@ function AccountForgotPasswordPage() {
         />
         <NoSsr>
           <Box pt={4} textAlign='center'>
-            <AppShellTitle>
+            <LayoutTitle>
               <Trans>Forgot your password?</Trans>
-            </AppShellTitle>
+            </LayoutTitle>
             <p>
               <Trans>
                 No worries! Enter your email address and we will send an email with instructions to

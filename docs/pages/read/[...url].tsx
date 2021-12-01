@@ -1,11 +1,10 @@
 import fs from 'fs'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { SheetProps } from '@graphcommerce/next-ui'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import React from 'react'
-import FullPageShell from '../../components/AppShell/FullPageShell'
-import Layout, { LayoutProps } from '../../components/Layout'
+import { LayoutFull, LayoutFullProps } from '../../components/Layout/LayoutFull'
+import PageLayout, { LayoutProps } from '../../components/Layout/PageLayout'
 import sanitizeDirectoryTree from '../../components/SidebarMenu/sanitizeDirectoryTree'
 import { getAbsoluteFilePath, getDirectoryTree } from '../../util/files'
 
@@ -15,14 +14,14 @@ function ArticlePage(props: PageProps) {
   const { menuData, compiledMdxSource, title } = props
 
   return (
-    <Layout menuData={menuData}>
+    <PageLayout menuData={menuData}>
       <MDXRemote {...compiledMdxSource} />
-    </Layout>
+    </PageLayout>
   )
 }
 
-const pageOptions: PageOptions<SheetProps> = {
-  Layout: FullPageShell,
+const pageOptions: PageOptions<LayoutFullProps> = {
+  Layout: LayoutFull,
 }
 ArticlePage.pageOptions = pageOptions
 

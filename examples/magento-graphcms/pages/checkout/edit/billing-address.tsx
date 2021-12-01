@@ -1,13 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { EditBillingAddressForm } from '@graphcommerce/magento-cart-billing-address'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  AppShellTitle,
-  GetStaticProps,
-  PageMeta,
-  OverlayAppBar,
-  Title,
-} from '@graphcommerce/next-ui'
+import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
@@ -23,17 +17,17 @@ function EditBillingAddress() {
     <>
       <PageMeta title={t`Edit billing address`} metaRobots={['noindex', 'nofollow']} />
 
-      <OverlayAppBar>
-        <Title component='span' size='small'>
+      <LayoutOverlayHeader>
+        <LayoutTitle component='span' size='small'>
           <Trans>Billing address</Trans>
-        </Title>
-      </OverlayAppBar>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
 
-      <AppShellTitle>
-        <Title>
+      <LayoutTitle>
+        <LayoutTitle>
           <Trans>Billing address</Trans>
-        </Title>
-      </AppShellTitle>
+        </LayoutTitle>
+      </LayoutTitle>
 
       <Container maxWidth='md'>
         <NoSsr>

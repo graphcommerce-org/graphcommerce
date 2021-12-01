@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import AppShellTitle from '../../AppShell/AppShellTitle'
+import { LayoutTitle } from '../../Layout'
 import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
@@ -23,7 +23,7 @@ export default function BlogTitle(props: BlogTitleProps) {
 
   return (
     <div className={classes.wrapper}>
-      <AppShellTitle variant='h1'>{title}</AppShellTitle>
+      <LayoutTitle variant='h1'>{title}</LayoutTitle>
     </div>
   )
 }

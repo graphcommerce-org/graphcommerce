@@ -8,7 +8,7 @@ export type PageProps = Pick<PageItem, 'historyIdx'> & {
   children: React.ReactNode
 }
 
-function scrollPos(idx: number): { x: number; y: number } {
+export function scrollPos(idx: number): { x: number; y: number } {
   const scroll = global.window?.sessionStorage[`__next_scroll_${idx}`]
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   return scroll ? JSON.parse(scroll) : { x: 0, y: 0 }

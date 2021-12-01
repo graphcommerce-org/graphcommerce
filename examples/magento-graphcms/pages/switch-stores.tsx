@@ -7,12 +7,11 @@ import {
   StoreSwitcherListQuery,
 } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   GetStaticProps,
   iconShoppingBag,
   responsiveVal,
-  OverlayAppBar,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
@@ -36,15 +35,15 @@ function StoresIndexPage({ availableStores }: Props) {
         metaRobots={['noindex']}
       />
       <NoSsr>
-        <OverlayAppBar>
-          <Title size='small' component='span' icon={iconShoppingBag}>
+        <LayoutOverlayHeader>
+          <LayoutTitle size='small' component='span' icon={iconShoppingBag}>
             <Trans>Country</Trans>
-          </Title>
-        </OverlayAppBar>
+          </LayoutTitle>
+        </LayoutOverlayHeader>
         <Container maxWidth='md'>
-          <AppShellTitle icon={iconShoppingBag}>
+          <LayoutTitle icon={iconShoppingBag}>
             <Trans>Country</Trans>
-          </AppShellTitle>
+          </LayoutTitle>
           <StoreSwitcherList availableStores={availableStores} locale={locale} />
         </Container>
       </NoSsr>

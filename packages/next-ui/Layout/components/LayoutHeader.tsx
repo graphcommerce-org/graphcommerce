@@ -1,12 +1,12 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import { classesPicker } from '../Styles/classesPicker'
-import AppBarBack, { useShowBack } from './AppBarBack'
-import AppBarClose from './AppBarClose'
-import AppBarContent, { ContentProps } from './AppBarContent'
-import { FloatingProps } from './types'
+import { classesPicker } from '../../Styles/classesPicker'
+import LayoutHeaderBack, { useShowBack } from './LayoutHeaderBack'
+import LayoutHeaderClose from './LayoutHeaderClose'
+import LayoutHeaderContent, { ContentProps } from './LayoutHeaderContent'
+import { FloatingProps } from './LayoutHeadertypes'
 
-export type AppBarProps = FloatingProps &
+export type LayoutHeaderProps = FloatingProps &
   Omit<ContentProps, 'leftAction' | 'rightAction'> & {
     /**
      * Button to display on the left side of the title
@@ -81,10 +81,10 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'AppBar' },
+  { name: 'LayoutHeader' },
 )
 
-export function AppBar(props: AppBarProps) {
+export function LayoutHeader(props: LayoutHeaderProps) {
   const { children, additional, divider, primary, secondary, noAlign } = props
   const classes = useStyles(props)
   const showBack = useShowBack()
@@ -97,8 +97,8 @@ export function AppBar(props: AppBarProps) {
   // When the primary or secondary is set, the header can't float on mobile even if the prop is passed.
   if (divider || primary || secondary) floatingSm = false
 
-  const close = <AppBarClose />
-  const back = showBack && <AppBarBack variant={floatingSm ? 'pill' : 'pill-link'} />
+  const close = <LayoutHeaderClose />
+  const back = showBack && <LayoutHeaderBack variant={floatingSm ? 'pill' : 'pill-link'} />
 
   let left = secondary
   let right = primary
@@ -121,7 +121,7 @@ export function AppBar(props: AppBarProps) {
 
   return (
     <div {...className('sticky')}>
-      <AppBarContent
+      <LayoutHeaderContent
         left={left}
         right={right}
         divider={divider}
@@ -130,7 +130,7 @@ export function AppBar(props: AppBarProps) {
       >
         {children}
         {additional}
-      </AppBarContent>
+      </LayoutHeaderContent>
     </div>
   )
 }

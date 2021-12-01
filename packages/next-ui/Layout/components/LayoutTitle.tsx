@@ -1,10 +1,10 @@
 import { makeStyles, Theme, Typography, TypographyProps } from '@material-ui/core'
 import React from 'react'
-import { responsiveVal } from '..'
-import { UseStyles } from '../Styles'
-import { classesPicker } from '../Styles/classesPicker'
-import { SvgImageProps } from '../SvgImage'
-import SvgImageSimple from '../SvgImage/SvgImageSimple'
+import { responsiveVal } from '../..'
+import { UseStyles } from '../../Styles'
+import { classesPicker } from '../../Styles/classesPicker'
+import { SvgImageProps } from '../../SvgImage'
+import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -26,11 +26,15 @@ const useStyles = makeStyles(
         strokeWidth: 1.4,
       },
     },
+    containerGutterBottom: {
+      marginBottom: theme.spacings.lg,
+    },
+    containerGutterTop: {
+      marginTop: theme.spacings.xl,
+    },
     typography: {},
   }),
-  {
-    name: 'Title',
-  },
+  { name: 'Title' },
 )
 
 export type TitleProps = {
@@ -38,15 +42,17 @@ export type TitleProps = {
   icon?: SvgImageProps['src']
   size?: 'small' | 'medium'
   variant?: TypographyProps['variant']
+  gutterTop?: boolean
+  gutterBottom?: boolean
   component?: React.ElementType
 } & UseStyles<typeof useStyles>
 
-const Title = React.forwardRef<HTMLDivElement, TitleProps>((props, ref) => {
-  const { children, icon, size = 'medium', component, variant } = props
+export const LayoutTitle = React.forwardRef<HTMLDivElement, TitleProps>((props, ref) => {
+  const { children, gutterBottom, gutterTop, icon, size = 'medium', component, variant } = props
   const classes = useStyles(props)
   const small = size === 'small'
 
-  const className = classesPicker(classes, { size })
+  const className = classesPicker(classes, { size, gutterBottom, gutterTop })
 
   return (
     <div {...className('container')}>
@@ -62,5 +68,3 @@ const Title = React.forwardRef<HTMLDivElement, TitleProps>((props, ref) => {
     </div>
   )
 })
-
-export default Title

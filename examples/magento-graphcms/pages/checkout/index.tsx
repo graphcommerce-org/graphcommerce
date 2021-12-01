@@ -6,17 +6,16 @@ import { ShippingAddressForm } from '@graphcommerce/magento-cart-shipping-addres
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   Button,
   FormActions,
   FormHeader,
   GetStaticProps,
   iconBox,
   iconChevronRight,
-  AppBar,
+  LayoutHeader,
   Stepper,
   SvgImageSimple,
-  Title,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { ComposedForm, ComposedSubmit } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
@@ -42,7 +41,7 @@ function ShippingPage() {
   return (
     <ComposedForm>
       <PageMeta title={t`Checkout`} metaDescription={t`Cart Items`} metaRobots={['noindex']} />
-      <AppBar
+      <LayoutHeader
         primary={
           <ComposedSubmit
             onSubmitSuccessful={onSubmitSuccessful}
@@ -67,19 +66,19 @@ function ShippingPage() {
           </Container>
         }
       >
-        <Title size='small' icon={iconBox}>
+        <LayoutTitle size='small' icon={iconBox}>
           <Trans>Shipping</Trans>
-        </Title>
-      </AppBar>
+        </LayoutTitle>
+      </LayoutHeader>
       <Container maxWidth='md'>
         <NoSsr>
           {!cartExists && <EmptyCart />}
 
           {cartExists && (
             <>
-              <AppShellTitle icon={iconBox}>
+              <LayoutTitle icon={iconBox}>
                 <Trans>Shipping</Trans>
-              </AppShellTitle>
+              </LayoutTitle>
 
               <EmailForm step={1} />
 

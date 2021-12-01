@@ -1,6 +1,4 @@
-export { default as AppShellProvider } from './AppShellProvider/AppShellProvder'
 export { default as AppShellSticky } from './AppShellSticky'
-export { default as AppShellTitle } from './AppShellTitle'
 export { default as DesktopNavActions } from './DesktopNavActions'
 
 export * from './DesktopNavBar'

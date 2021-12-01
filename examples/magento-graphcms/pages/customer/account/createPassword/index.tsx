@@ -1,7 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ResetPasswordForm } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellTitle, Button, GetStaticProps, OverlayAppBar, Title } from '@graphcommerce/next-ui'
+import { Button, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Box, Container, Link, NoSsr } from '@material-ui/core'
 import router, { useRouter } from 'next/router'
@@ -24,18 +24,18 @@ function CustomerAccountCreatePasswordPage() {
         metaDescription={t`Create new password`}
         metaRobots={['noindex']}
       />
-      <OverlayAppBar>
-        <Title size='small' component='span'>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span'>
           {!success ? t`Set your new password` : t`You have now successfully reset your password`}
-        </Title>
-      </OverlayAppBar>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <NoSsr>
         <Box pt={4} pb={4}>
           {!success && (
             <Container maxWidth='sm'>
-              <AppShellTitle>
+              <LayoutTitle>
                 <Trans>Set your new password</Trans>
-              </AppShellTitle>
+              </LayoutTitle>
 
               <Box textAlign='center'>
                 <p>
@@ -49,9 +49,9 @@ function CustomerAccountCreatePasswordPage() {
 
           {success && (
             <Container>
-              <AppShellTitle>
+              <LayoutTitle>
                 <Trans>You have now successfully reset your password</Trans>
-              </AppShellTitle>
+              </LayoutTitle>
 
               <Box textAlign='center'>
                 <p>

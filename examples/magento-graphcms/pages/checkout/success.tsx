@@ -3,16 +3,15 @@ import { CartItemSummary, CartSummary, InlineAccount } from '@graphcommerce/mage
 import { SignupNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   Button,
   FullPageMessage,
   GetStaticProps,
   iconParty,
   iconSadFace,
-  AppBar,
+  LayoutHeader,
   Stepper,
   SvgImageSimple,
-  Title,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Box, Container, NoSsr } from '@material-ui/core'
@@ -36,7 +35,7 @@ function OrderSuccessPage() {
         metaDescription={t`Ordered items`}
         metaRobots={['noindex']}
       />
-      <AppBar
+      <LayoutHeader
         divider={
           hasCartId ? (
             <Container maxWidth={false}>
@@ -46,11 +45,11 @@ function OrderSuccessPage() {
         }
       >
         {hasCartId && (
-          <Title size='small' icon={iconParty}>
+          <LayoutTitle size='small' icon={iconParty}>
             <Trans>Thank you for your order!</Trans>
-          </Title>
+          </LayoutTitle>
         )}
-      </AppBar>
+      </LayoutHeader>
       <Container maxWidth='md'>
         <NoSsr>
           {!hasCartId && (
@@ -70,9 +69,9 @@ function OrderSuccessPage() {
           )}
           {hasCartId && (
             <>
-              <AppShellTitle icon={iconParty}>
+              <LayoutTitle icon={iconParty}>
                 <Trans>Thank you for your order!</Trans>
-              </AppShellTitle>
+              </LayoutTitle>
               <CartSummary />
               <CartItemSummary />
 

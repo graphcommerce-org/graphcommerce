@@ -24,7 +24,7 @@ import {
   SearchQuery,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellSticky, GetStaticProps, Title, AppBar } from '@graphcommerce/next-ui'
+import { AppShellSticky, GetStaticProps, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { Container, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
@@ -85,15 +85,15 @@ function SearchResultPage(props: Props) {
         canonical='/search'
       />
 
-      <AppBar
+      <LayoutHeader
         additional={
           <Container maxWidth={false}>
             <SearchForm totalResults={totalSearchResults} search={search} />
           </Container>
         }
       >
-        <Title size='small'>{title}</Title>
-      </AppBar>
+        <LayoutTitle size='small'>{title}</LayoutTitle>
+      </LayoutHeader>
 
       <Container maxWidth='sm' className={classes.hideOnMobile}>
         <SearchForm totalResults={totalSearchResults} search={search} />

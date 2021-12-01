@@ -2,9 +2,9 @@ import { usePageRouter, useUp, usePrevUp, usePageContext } from '@graphcommerce/
 import { Trans } from '@lingui/macro'
 import PageLink from 'next/link'
 import React from 'react'
-import Button, { ButtonProps } from '../Button'
-import SvgImageSimple from '../SvgImage/SvgImageSimple'
-import { iconChevronLeft } from '../icons'
+import Button, { ButtonProps } from '../../Button'
+import SvgImageSimple from '../../SvgImage/SvgImageSimple'
+import { iconChevronLeft } from '../../icons'
 
 export type BackProps = Omit<ButtonProps, 'onClick' | 'children'>
 
@@ -21,7 +21,7 @@ export function useShowBack() {
   return false
 }
 
-export default function AppBarBack(props: BackProps) {
+export default function LayoutHeaderBack(props: BackProps) {
   const router = usePageRouter()
   const up = useUp()
   const prevUp = usePrevUp()

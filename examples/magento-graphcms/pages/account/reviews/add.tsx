@@ -9,9 +9,8 @@ import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   FullPageMessage,
   iconBox,
-  Title,
-  OverlayAppBar,
-  AppShellTitle,
+  LayoutOverlayHeader,
+  LayoutTitle,
   SvgImageSimple,
   GetStaticProps,
 } from '@graphcommerce/next-ui'
@@ -78,15 +77,15 @@ function AccountReviewsAddPage() {
         metaRobots={['noindex']}
       />
 
-      <OverlayAppBar>
-        <Title size='small'>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small'>
           <Trans>You are reviewing {product?.name}</Trans>
-        </Title>
-      </OverlayAppBar>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
 
-      <AppShellTitle>
+      <LayoutTitle>
         <Trans>You are reviewing {product?.name}</Trans>
-      </AppShellTitle>
+      </LayoutTitle>
 
       <Container maxWidth='md'>
         <CreateProductReviewForm

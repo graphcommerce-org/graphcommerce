@@ -22,7 +22,7 @@ export function useOverlayPosition() {
   const scroll = useElementScroll(scrollerRef)
 
   useIsomorphicLayoutEffect(() => {
-    if (!scrollerRef.current) return
+    if (!scrollerRef.current) return () => {}
 
     const measure = () => {
       const positions = getScrollSnapPositions()
@@ -52,6 +52,7 @@ export function useOverlayPosition() {
       const xO = state.open.x.get()
       const visX = xO === xC ? 1 : Math.max(0, Math.min(1, (x - xC) / (xO - xC)))
 
+      // todo: visibility sometimes flickers
       state.open.visible.set(visY * visX)
     }
 

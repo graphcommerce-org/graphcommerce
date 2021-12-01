@@ -2,7 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { CmsPageContent } from '@graphcommerce/magento-cms'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppBar, GetStaticProps, MetaRobots } from '@graphcommerce/next-ui'
+import { LayoutHeader, GetStaticProps, MetaRobots } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.gql'
@@ -36,7 +36,7 @@ function CmsPage(props: Props) {
         canonical={page?.url}
       />
 
-      <AppBar />
+      <LayoutHeader />
 
       {pages?.[0] ? (
         <RowRenderer

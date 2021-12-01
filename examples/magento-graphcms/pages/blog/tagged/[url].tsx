@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, Row, Title, AppBar } from '@graphcommerce/next-ui'
+import { GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import BlogList from '../../../components/Blog'
@@ -32,9 +32,9 @@ function BlogPage(props: Props) {
 
   return (
     <>
-      <AppBar floatingMd>
-        <Title size='small'>{title}</Title>
-      </AppBar>
+      <LayoutHeader floatingMd>
+        <LayoutTitle size='small'>{title}</LayoutTitle>
+      </LayoutHeader>
       <Row>
         <PageMeta title={title} metaDescription={title} canonical={page.url} />
 

@@ -14,7 +14,6 @@ import { OrderStateLabelInline } from '@graphcommerce/magento-customer-order'
 import { CustomerNewsletterToggle } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   GetStaticProps,
   iconBox,
   iconEmailOutline,
@@ -26,8 +25,8 @@ import {
   iconShutdown,
   iconStar,
   TimeAgo,
-  Title,
-  AppBar,
+  LayoutTitle,
+  LayoutHeader,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
@@ -72,15 +71,15 @@ function AccountIndexPage() {
         metaRobots={['noindex']}
       />
 
-      <AppBar>
-        <Title component='span' size='small' icon={iconPerson}>
+      <LayoutHeader>
+        <LayoutTitle component='span' size='small' icon={iconPerson}>
           <Trans>Account</Trans>
-        </Title>
-      </AppBar>
+        </LayoutTitle>
+      </LayoutHeader>
 
-      <AppShellTitle icon={iconPerson}>
+      <LayoutTitle icon={iconPerson}>
         <Trans>Account</Trans>
-      </AppShellTitle>
+      </LayoutTitle>
 
       <Container maxWidth='md'>
         <NoSsr>

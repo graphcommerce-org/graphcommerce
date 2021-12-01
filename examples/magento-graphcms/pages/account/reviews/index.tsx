@@ -6,9 +6,8 @@ import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   FullPageMessage,
   iconStar,
-  AppShellTitle,
-  OverlayAppBar,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
   SvgImageSimple,
   GetStaticProps,
 } from '@graphcommerce/next-ui'
@@ -39,11 +38,11 @@ function AccountReviewsPage() {
 
   return (
     <>
-      <OverlayAppBar>
-        <Title size='small' component='span' icon={iconStar}>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span' icon={iconStar}>
           <Trans>Orders</Trans>
-        </Title>
-      </OverlayAppBar>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta
           title={t`Reviews`}
@@ -62,9 +61,9 @@ function AccountReviewsPage() {
 
           {customer?.reviews && customer?.reviews.items.length > 1 && (
             <>
-              <AppShellTitle icon={iconStar}>
+              <LayoutTitle icon={iconStar}>
                 <Trans>Reviews</Trans>
-              </AppShellTitle>
+              </LayoutTitle>
               {customer?.reviews && <AccountReviews {...customer?.reviews} loading={loading} />}
             </>
           )}

@@ -1,8 +1,10 @@
+import { usePageContext, useScrollOffset } from '@graphcommerce/framer-next-pages'
+import { scrollPos } from '@graphcommerce/framer-next-pages/components/Page'
 import { makeStyles, Theme } from '@material-ui/core'
-import { useViewportScroll } from 'framer-motion'
+import { useTransform, useViewportScroll } from 'framer-motion'
 import React from 'react'
-import AppShellProvider from '../AppShell/AppShellProvider/AppShellProvder'
-import { UseStyles } from '../Styles'
+import LayoutProvider from '../../Layout/components/LayoutProvider'
+import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -59,9 +61,12 @@ export function LayoutDefault(props: LayoutDefaultProps) {
   const { children, header, footer, menuFab, cartFab } = props
   const classes = useStyles(props)
 
+  const offset = useScrollOffset().y
+  const scrollWithOffset = useTransform(useViewportScroll().scrollY, (y) => y + offset)
+
   return (
     <div className={classes.root}>
-      <AppShellProvider scroll={useViewportScroll().scrollY}>
+      <LayoutProvider scroll={scrollWithOffset}>
         <header className={classes.header}>{header}</header>
         <div>
           <div className={classes.hideFabsOnVirtualKeyboardOpen}>
@@ -71,7 +76,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
           {children}
         </div>
         <div>{footer}</div>
-      </AppShellProvider>
+      </LayoutProvider>
     </div>
   )
 }

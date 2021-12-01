@@ -38,7 +38,7 @@ const useStyles = makeStyles(
   },
 )
 
-export default function Layout(props: LayoutProps) {
+export default function PageLayout(props: LayoutProps) {
   const { menuData, children } = props
   const classes = useStyles()
 

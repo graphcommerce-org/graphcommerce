@@ -4,11 +4,10 @@ import { AccountAddresses, ApolloCustomerErrorFullPage } from '@graphcommerce/ma
 import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   GetStaticProps,
   iconAddresses,
-  OverlayAppBar,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
@@ -38,11 +37,11 @@ function AccountAddressesPage() {
 
   return (
     <>
-      <OverlayAppBar>
-        <Title size='small' component='span' icon={iconAddresses}>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span' icon={iconAddresses}>
           <Trans>Addresses</Trans>
-        </Title>
-      </OverlayAppBar>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta
           title={t`Addresses`}
@@ -51,9 +50,9 @@ function AccountAddressesPage() {
         />
         <NoSsr>
           {((customer?.addresses && customer.addresses.length > 1) || !customer?.addresses) && (
-            <AppShellTitle icon={iconAddresses}>
+            <LayoutTitle icon={iconAddresses}>
               <Trans>Addresses</Trans>
-            </AppShellTitle>
+            </LayoutTitle>
           )}
           <AccountAddresses {...data} loading={!data} addresses={customer?.addresses} />
         </NoSsr>
