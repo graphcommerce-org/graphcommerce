@@ -57,6 +57,7 @@ export default function StoryPage(props: Props) {
             alt={alt(attr)}
             width={width && width}
             height={height && height}
+            style={{ filter: 'none' }}
             sizes={width ? { 0: '100vw', 1350: `${width}px` } : undefined}
           />
         </div>
