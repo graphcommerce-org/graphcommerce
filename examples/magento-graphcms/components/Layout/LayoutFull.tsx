@@ -23,7 +23,7 @@ import { Footer } from './Footer'
 import Logo from './Logo'
 
 export type LayoutFullProps = Omit<
-  DefaultPageQuery & LayoutDefaultProps,
+  DefaultPageQuery & Omit<LayoutDefaultProps, 'footer'>,
   'pages' | 'classes' | 'header' | 'cartFab' | 'menuFab'
 >
 

@@ -4,7 +4,7 @@ import React, { useRef } from 'react'
 import useLayoutContext from '../../Layout/hooks/useLayoutContext'
 import { UseStyles } from '../../Styles'
 import { classesPicker } from '../../Styles/classesPicker'
-import { FloatingProps } from '../types'
+import { FloatingProps } from '../components/LayoutHeadertypes'
 
 type Classes = 'bg' | 'content' | 'left' | 'center' | 'right' | 'divider'
 

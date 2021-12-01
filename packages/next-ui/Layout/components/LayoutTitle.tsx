@@ -30,7 +30,7 @@ const useStyles = makeStyles(
       marginBottom: theme.spacings.lg,
     },
     containerGutterTop: {
-      marginTop: theme.spacings.xl,
+      marginTop: theme.spacings.lg,
     },
     typography: {},
   }),
@@ -48,7 +48,15 @@ export type TitleProps = {
 } & UseStyles<typeof useStyles>
 
 export const LayoutTitle = React.forwardRef<HTMLDivElement, TitleProps>((props, ref) => {
-  const { children, gutterBottom, gutterTop, icon, size = 'medium', component, variant } = props
+  const {
+    children,
+    gutterBottom = true,
+    gutterTop = true,
+    icon,
+    size = 'medium',
+    component,
+    variant,
+  } = props
   const classes = useStyles(props)
   const small = size === 'small'
 

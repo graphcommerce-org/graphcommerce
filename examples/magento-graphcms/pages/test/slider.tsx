@@ -23,7 +23,7 @@ function TestSlider({ products }: Props) {
       <SidebarGallery
         sidebar={
           <>
-            <LayoutTitle variant='h2' bare>
+            <LayoutTitle variant='h2' gutterTop={false}>
               Product Title
             </LayoutTitle>
             <ul>

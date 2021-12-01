@@ -1,8 +1,12 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, SheetVariant } from '@graphcommerce/next-ui'
+import {
+  GetStaticProps,
+  LayoutOverlay,
+  LayoutOverlayProps,
+  LayoutOverlayVariant,
+} from '@graphcommerce/next-ui'
 import React from 'react'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
 import { AppShellDemo } from '../minimal-page-shell/[[...url]]'
 
@@ -47,7 +51,8 @@ export const getStaticProps: GetStaticProps<
 
   const conf = client.query({ query: StoreConfigDocument })
 
-  const variant = (((isLeftSidebar || isRightSidebar) && url?.[0]) || 'bottom') as SheetVariant
+  const variant = (((isLeftSidebar || isRightSidebar) && url?.[0]) ||
+    'bottom') as LayoutOverlayVariant
 
   return {
     props: {
