@@ -1,3 +1,4 @@
+import { usePageContext } from '@graphcommerce/framer-next-pages'
 import Head from 'next/head'
 
 // https://developers.google.com/search/docs/advanced/robots/robots_meta_tag#directives
@@ -22,11 +23,13 @@ export type PageMetaProps = {
 }
 
 export default function PageMeta(props: PageMetaProps) {
+  const { active } = usePageContext()
   const { title, canonical, metaDescription, metaRobots = ['all'] } = props
 
   if (!(canonical ?? 'http').startsWith('http'))
     throw new Error(`canonical must start with http:// or https://, '${canonical}' given`)
 
+  if (!active) return null
   return (
     <Head>
       <title>{title.trim()}</title>
