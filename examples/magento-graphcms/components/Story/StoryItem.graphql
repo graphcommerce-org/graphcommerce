@@ -1,0 +1,7 @@
+fragment StoryItem on Page {
+  title
+  url
+  asset {
+    ...Asset
+  }
+}
