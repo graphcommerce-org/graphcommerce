@@ -1,10 +1,10 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Divider, makeStyles, Theme } from '@material-ui/core'
 import React, { useRef } from 'react'
-import useLayoutContext from '../../Layout/hooks/useLayoutContext'
 import { UseStyles } from '../../Styles'
 import { classesPicker } from '../../Styles/classesPicker'
-import { FloatingProps } from '../components/LayoutHeadertypes'
+import useLayoutContext from "../hooks/useLayoutContext"
+import { FloatingProps } from "./LayoutHeadertypes"
 
 type Classes = 'bg' | 'content' | 'left' | 'center' | 'right' | 'divider'
 

@@ -1,6 +1,6 @@
+import fs from 'fs'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Link } from '@material-ui/core'
-import fs from 'fs'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import React from 'react'
@@ -19,13 +19,11 @@ function ArticlePage(props: PageProps) {
 
   const components = {
     a: Link,
-    pre: ({ children }) => {
-      return (
+    pre: ({ children }) => (
         <SyntaxHighlighter language={children.props.className?.split('-')[1] ?? 'tsx'}>
           {children.props.children}
         </SyntaxHighlighter>
-      )
-    },
+      ),
   }
 
   return (
@@ -45,13 +43,13 @@ ArticlePage.pageOptions = pageOptions
 
 export default ArticlePage
 
-export const getStaticPaths = () => {
+export const getStaticPaths = () => 
   // todo
-  return {
+   ({
     paths: [{ params: { url: ['/1-1/getting-started/intro'] } }],
     fallback: 'blocking',
-  }
-}
+  })
+
 
 export const getStaticProps = async ({ params }) => {
   const { url } = params

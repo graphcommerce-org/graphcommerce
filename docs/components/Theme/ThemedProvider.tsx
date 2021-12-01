@@ -1,7 +1,6 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
-import { responsiveVal } from '@graphcommerce/next-ui'
-import { breakpointVal } from '@graphcommerce/next-ui'
+import { responsiveVal , breakpointVal } from '@graphcommerce/next-ui'
 import { createTheme, CssBaseline, Theme, ThemeProvider, lighten, alpha } from '@material-ui/core'
 import { PaletteOptions } from '@material-ui/core/styles/createPalette'
 import { Overrides } from '@material-ui/core/styles/overrides'

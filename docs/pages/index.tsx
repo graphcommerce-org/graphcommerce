@@ -9,9 +9,9 @@ import {
 import Link from 'next/link'
 import React from 'react'
 import { LayoutFull, LayoutFullProps } from '../components/Layout/LayoutFull'
+import PageLayout, { LayoutProps } from '../components/Layout/PageLayout'
 import { sanitizeDirectoryTree } from '../components/SidebarMenu/sanitizeDirectoryTree'
 import { getDirectoryTree } from '../util/files'
-import PageLayout, { LayoutProps } from '../components/Layout/PageLayout'
 
 type PageProps = LayoutProps
 

@@ -148,7 +148,7 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
           >
             {children}
           </Scroller>
-          <m.div className={classes.shadow} style={{ opacity }}></m.div>
+          <m.div className={classes.shadow} style={{ opacity }} />
         </div>
         <ScrollerButton direction='right' className={classes.sliderNext}>
           <SvgImageSimple src={iconChevronRight} />

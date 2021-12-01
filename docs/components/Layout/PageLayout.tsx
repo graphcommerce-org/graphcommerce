@@ -1,8 +1,8 @@
 import { responsiveVal } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import SidebarMenu from '../../components/SidebarMenu'
 import { DirectoryTree } from '../../util/files'
+import SidebarMenu from "../SidebarMenu"
 
 export type LayoutProps = { menuData: DirectoryTree; children: React.ReactNode }
 
