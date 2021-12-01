@@ -32,7 +32,7 @@ function FullPageShell(props: FullPageShellProps) {
         </>
       }
       footer={<Container>&copy; GraphCommerce</Container>}
-      menuFab={<MenuFab {...menuProps}></MenuFab>}
+      menuFab={<MenuFab {...menuProps} />}
     >
       {children}
     </FullPageShellBase>

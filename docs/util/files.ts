@@ -3,9 +3,7 @@ import path from 'path'
 
 export type DirectoryTree = [string, string[]][]
 
-export const getAbsoluteFilePath = (file: string) => {
-  return path.join(process.cwd(), file)
-}
+export const getAbsoluteFilePath = (file: string) => path.join(process.cwd(), file)
 
 export const getFilesInDir = (dir: string): any => {
   const dirPath = getAbsoluteFilePath(dir)

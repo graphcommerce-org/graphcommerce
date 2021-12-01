@@ -202,189 +202,187 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
     },
   })
 
-const createOverrides = (theme: Theme): Overrides => {
-  return {
-    MuiCssBaseline: {
-      '@global': {
-        body: {
-          overflowY: 'scroll',
-        },
-        '::selection': { background: alpha(theme.palette.primary.main, 0.6) },
-        '::-moz-selection': { background: alpha(theme.palette.primary.main, 0.6) },
-        '#__next': {
-          position: 'relative',
-        },
+const createOverrides = (theme: Theme): Overrides => ({
+  MuiCssBaseline: {
+    '@global': {
+      body: {
+        overflowY: 'scroll',
+      },
+      '::selection': { background: alpha(theme.palette.primary.main, 0.6) },
+      '::-moz-selection': { background: alpha(theme.palette.primary.main, 0.6) },
+      '#__next': {
+        position: 'relative',
       },
     },
-    MuiContainer: {
-      root: {
-        paddingLeft: theme.page.horizontal,
-        paddingRight: theme.page.horizontal,
-        [theme.breakpoints.up('sm')]: {
-          paddingLeft: undefined,
-          paddingRight: undefined,
-        },
+  },
+  MuiContainer: {
+    root: {
+      paddingLeft: theme.page.horizontal,
+      paddingRight: theme.page.horizontal,
+      [theme.breakpoints.up('sm')]: {
+        paddingLeft: undefined,
+        paddingRight: undefined,
       },
     },
-    MuiButton: {
-      root: {
-        textTransform: 'none',
-        ...theme.typography.body2,
-        fontWeight: 400,
-        padding: `${responsiveVal(8, 10)} ${responsiveVal(16, 20)}`,
-      },
-      sizeLarge: {
-        padding: `${responsiveVal(10, 15)} ${responsiveVal(30, 60)}`,
-        ...theme.typography.body1,
-        fontWeight: 500,
-      },
-      iconSizeLarge: {
-        '& > *:first-child': { fontSize: 24 },
-      },
-      endIcon: {
-        marginLeft: 0,
-      },
-      contained: {
-        backgroundColor: theme.palette.background.paper,
-        color: theme.palette.text.primary,
+  },
+  MuiButton: {
+    root: {
+      textTransform: 'none',
+      ...theme.typography.body2,
+      fontWeight: 400,
+      padding: `${responsiveVal(8, 10)} ${responsiveVal(16, 20)}`,
+    },
+    sizeLarge: {
+      padding: `${responsiveVal(10, 15)} ${responsiveVal(30, 60)}`,
+      ...theme.typography.body1,
+      fontWeight: 500,
+    },
+    iconSizeLarge: {
+      '& > *:first-child': { fontSize: 24 },
+    },
+    endIcon: {
+      marginLeft: 0,
+    },
+    contained: {
+      backgroundColor: theme.palette.background.paper,
+      color: theme.palette.text.primary,
+      boxShadow: theme.shadows[1],
+      '&:hover': {
         boxShadow: theme.shadows[1],
-        '&:hover': {
-          boxShadow: theme.shadows[1],
-          background: undefined,
-        },
-        '&:focus': {
-          boxShadow: theme.shadows[1],
-          background: undefined,
-        },
+        background: undefined,
       },
-      containedPrimary: {
-        fontWeight: 500,
-        color: theme.palette.primary.contrastText,
-      },
-      containedSecondary: {
-        fontWeight: 500,
-        color: theme.palette.secondary.contrastText,
-      },
-      outlined: {
-        borderRadius: 0,
-      },
-      text: {
-        padding: `${responsiveVal(8, 10)} ${responsiveVal(12, 22)}`,
+      '&:focus': {
+        boxShadow: theme.shadows[1],
+        background: undefined,
       },
     },
-    MuiFab: {
-      root: {
-        backgroundColor: theme.palette.background.paper,
-        '&:hover': { backgroundColor: theme.palette.background.paper },
-        color: theme.palette.text.primary,
-      },
-      colorInherit: {
+    containedPrimary: {
+      fontWeight: 500,
+      color: theme.palette.primary.contrastText,
+    },
+    containedSecondary: {
+      fontWeight: 500,
+      color: theme.palette.secondary.contrastText,
+    },
+    outlined: {
+      borderRadius: 0,
+    },
+    text: {
+      padding: `${responsiveVal(8, 10)} ${responsiveVal(12, 22)}`,
+    },
+  },
+  MuiFab: {
+    root: {
+      backgroundColor: theme.palette.background.paper,
+      '&:hover': { backgroundColor: theme.palette.background.paper },
+      color: theme.palette.text.primary,
+    },
+    colorInherit: {
+      backgroundColor: 'inherit',
+      '&:hover, &:focus': {
         backgroundColor: 'inherit',
-        '&:hover, &:focus': {
-          backgroundColor: 'inherit',
-        },
-        boxShadow: 'none',
       },
-      primary: {
-        color: theme.palette.text.primary,
-      },
-      secondary: {
-        color: theme.palette.text.primary,
-      },
-      extended: {
-        fontWeight: 400,
-        textTransform: 'none',
+      boxShadow: 'none',
+    },
+    primary: {
+      color: theme.palette.text.primary,
+    },
+    secondary: {
+      color: theme.palette.text.primary,
+    },
+    extended: {
+      fontWeight: 400,
+      textTransform: 'none',
+    },
+  },
+  MuiInputLabel: {
+    root: {
+      '&$focused:not($error)': {
+        color: theme.palette.secondary.main,
       },
     },
-    MuiInputLabel: {
-      root: {
-        '&$focused:not($error)': {
-          color: theme.palette.secondary.main,
-        },
+  },
+  MuiOutlinedInput: {
+    root: {
+      '&$focused $notchedOutline': {
+        borderColor: theme.palette.secondary.main,
       },
     },
-    MuiOutlinedInput: {
-      root: {
-        '&$focused $notchedOutline': {
-          borderColor: theme.palette.secondary.main,
-        },
-      },
+  },
+  MuiListItemIcon: {
+    root: {
+      color: theme.palette.text.primary,
     },
-    MuiListItemIcon: {
-      root: {
-        color: theme.palette.text.primary,
-      },
+  },
+  MuiChip: {
+    root: {
+      boxShadow: 'unset !important',
+      borderRadius: '99em',
+      height: responsiveVal(32, 40),
+      paddingLeft: responsiveVal(4, 8),
+      paddingRight: responsiveVal(4, 8),
+      ...theme.typography.body2,
     },
-    MuiChip: {
-      root: {
-        boxShadow: 'unset !important',
-        borderRadius: '99em',
-        height: responsiveVal(32, 40),
-        paddingLeft: responsiveVal(4, 8),
-        paddingRight: responsiveVal(4, 8),
-        ...theme.typography.body2,
-      },
-      sizeSmall: {
-        height: responsiveVal(26, 30),
-        paddingLeft: responsiveVal(3, 6),
-        paddingRight: responsiveVal(3, 6),
-        ...theme.typography.caption,
-      },
-      outlined: {
-        borderColor: theme.palette.divider,
-      },
-      label: {
-        paddingLeft: responsiveVal(6, 10),
-        paddingRight: responsiveVal(6, 10),
-      },
-      labelSmall: {
-        paddingLeft: responsiveVal(6, 8),
-        paddingRight: responsiveVal(6, 8),
-      },
-      deleteIcon: {
-        color: theme.palette.text.primary,
-      },
-      deleteIconOutlinedColorPrimary: {
+    sizeSmall: {
+      height: responsiveVal(26, 30),
+      paddingLeft: responsiveVal(3, 6),
+      paddingRight: responsiveVal(3, 6),
+      ...theme.typography.caption,
+    },
+    outlined: {
+      borderColor: theme.palette.divider,
+    },
+    label: {
+      paddingLeft: responsiveVal(6, 10),
+      paddingRight: responsiveVal(6, 10),
+    },
+    labelSmall: {
+      paddingLeft: responsiveVal(6, 8),
+      paddingRight: responsiveVal(6, 8),
+    },
+    deleteIcon: {
+      color: theme.palette.text.primary,
+    },
+    deleteIconOutlinedColorPrimary: {
+      color: theme.palette.primary.main,
+    },
+  },
+  MuiCheckbox: {
+    colorPrimary: {
+      color: theme.palette.text.disabled,
+      '&$checked': {
         color: theme.palette.primary.main,
       },
     },
-    MuiCheckbox: {
-      colorPrimary: {
-        color: theme.palette.text.disabled,
-        '&$checked': {
-          color: theme.palette.primary.main,
-        },
-      },
-      colorSecondary: {
-        color: theme.palette.text.disabled,
-        '&$checked': {
-          color: theme.palette.secondary.main,
-        },
+    colorSecondary: {
+      color: theme.palette.text.disabled,
+      '&$checked': {
+        color: theme.palette.secondary.main,
       },
     },
-    MuiSwitch: {
-      track: {
-        '$colorPrimary + &': {
-          backgroundColor: theme.palette.primary,
-          borderRadius: 30,
-        },
-        '$checked$colorPrimary + &': {
-          opacity: 1,
-          backgroundColor: theme.palette.primary,
-          borderRadius: 30,
-        },
+  },
+  MuiSwitch: {
+    track: {
+      '$colorPrimary + &': {
+        backgroundColor: theme.palette.primary,
+        borderRadius: 30,
       },
-      thumb: {
-        backgroundColor: '#fff',
+      '$checked$colorPrimary + &': {
+        opacity: 1,
+        backgroundColor: theme.palette.primary,
+        borderRadius: 30,
       },
     },
-    MuiAvatar: {
-      colorDefault: {
-        backgroundColor: theme.palette.text.disabled,
-      },
+    thumb: {
+      backgroundColor: '#fff',
     },
-  }
-}
+  },
+  MuiAvatar: {
+    colorDefault: {
+      backgroundColor: theme.palette.text.disabled,
+    },
+  },
+})
 
 export const lightTheme = createThemeWithPalette(lightPalette)
 lightTheme.overrides = createOverrides(lightTheme)

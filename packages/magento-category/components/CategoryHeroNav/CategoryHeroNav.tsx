@@ -95,32 +95,30 @@ export default function CategoryHeroNav({ children, title, asset }: CategoryHero
   const classes = useStyles()
 
   return (
-    <>
-      <div className={classes.wrapper}>
-        <div className={classes.title}>{title}</div>
-        <div className={classes.categories}>
-          {children?.map((category) => {
-            if (!category?.url_path || !category.uid || !category.name) return null
-            return (
-              <ProductListLink
-                underline='none'
-                color='textPrimary'
-                url={category.url_path}
-                filters={{}}
-                sort={{}}
-                key={category.uid}
-              >
-                <Typography variant='h4' component='span'>
-                  {category.name}
-                </Typography>
-              </ProductListLink>
-            )
-          })}
-        </div>
-        <div className={classes.placeholder}>
-          <div>{asset}</div>
-        </div>
+    <div className={classes.wrapper}>
+      <div className={classes.title}>{title}</div>
+      <div className={classes.categories}>
+        {children?.map((category) => {
+          if (!category?.url_path || !category.uid || !category.name) return null
+          return (
+            <ProductListLink
+              underline='none'
+              color='textPrimary'
+              url={category.url_path}
+              filters={{}}
+              sort={{}}
+              key={category.uid}
+            >
+              <Typography variant='h4' component='span'>
+                {category.name}
+              </Typography>
+            </ProductListLink>
+          )
+        })}
       </div>
-    </>
+      <div className={classes.placeholder}>
+        <div>{asset}</div>
+      </div>
+    </div>
   )
 }

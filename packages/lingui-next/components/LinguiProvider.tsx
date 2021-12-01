@@ -33,7 +33,7 @@ export default function LinguiProvider(props: LinguiProviderProps) {
     } else if (i18n.locale !== locale) {
       ;(async () => {
         try {
-          const messages = (await loader(localeOnly)).messages
+          const { messages } = await loader(localeOnly)
           i18n.load(localeOnly, messages)
           i18n.activate(localeOnly)
         } catch (e) {

@@ -23,7 +23,7 @@ const useStyles = makeStyles(
       alignContent: 'center',
       padding: `${theme.spacings.lg} ${theme.spacings.md}`,
       minHeight: `calc(100vh - ${theme.appShell.headerHeightSm})`,
-      ['@supports (-webkit-touch-callout: none)']: {
+      '@supports (-webkit-touch-callout: none)': {
         minHeight: '-webkit-fill-available',
       },
       '& > *': {

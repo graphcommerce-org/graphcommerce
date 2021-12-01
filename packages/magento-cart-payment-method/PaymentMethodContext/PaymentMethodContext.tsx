@@ -73,7 +73,7 @@ export default function PaymentMethodContextProvider(props: PaymentMethodContext
       }}
     >
       {Object.entries(modules).map(([method, module]) => {
-        const PaymentHandler = module.PaymentHandler
+        const { PaymentHandler } = module
         if (!PaymentHandler) return null
         return <PaymentHandler key={method} />
       })}

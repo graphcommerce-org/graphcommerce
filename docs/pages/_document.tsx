@@ -5,7 +5,7 @@ export default class ThemedDocument extends Document {
   render() {
     return (
       <Html>
-        <Head></Head>
+        <Head />
         <body>
           <Main />
           <NextScript />

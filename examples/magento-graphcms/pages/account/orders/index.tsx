@@ -68,14 +68,12 @@ function AccountOrdersPage() {
           )}
 
           {customer?.orders && customer.orders.items.length < 1 && (
-            <>
-              <FullPageMessage
-                title={t`You have no orders yet`}
-                icon={<SvgImageSimple src={iconBox} size='xxl' />}
-              >
-                <Trans>Discover our collection and place your first order!</Trans>
-              </FullPageMessage>
-            </>
+            <FullPageMessage
+              title={t`You have no orders yet`}
+              icon={<SvgImageSimple src={iconBox} size='xxl' />}
+            >
+              <Trans>Discover our collection and place your first order!</Trans>
+            </FullPageMessage>
           )}
         </NoSsr>
       </Container>

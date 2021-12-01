@@ -72,7 +72,7 @@ const SvgImageSimple = forwardRef<HTMLImageElement, SvgImageSimpleProps>((props,
   } = props
   const classes = useStyles()
 
-  let src = imageProps.src
+  let { src } = imageProps
   let staticSrc = ''
   if (isStaticImport(src)) staticSrc = (isStaticRequire(src) ? src.default : src).src
   src = typeof src === 'string' ? src : staticSrc
@@ -88,7 +88,7 @@ const SvgImageSimple = forwardRef<HTMLImageElement, SvgImageSimpleProps>((props,
       )}
       aria-hidden='true'
     >
-      <use href={`${src}#icon`}></use>
+      <use href={`${src}#icon`} />
     </svg>
   )
 })

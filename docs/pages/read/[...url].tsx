@@ -28,13 +28,12 @@ ArticlePage.pageOptions = pageOptions
 
 export default ArticlePage
 
-export const getStaticPaths = () => {
+export const getStaticPaths = () =>
   // todo
-  return {
+  ({
     paths: [{ params: { url: ['/'] } }],
     fallback: 'blocking',
-  }
-}
+  })
 
 export const getStaticProps = async ({ params }) => {
   const { url } = params
@@ -54,7 +53,6 @@ export const getStaticProps = async ({ params }) => {
         title: url[1],
       },
     }
-  } else {
-    return { notFound: true }
   }
+  return { notFound: true }
 }

@@ -44,23 +44,21 @@ export default function ProductPageDescription(props: ProductPageDescriptionProp
   const { description, name, right } = props
 
   return (
-    <>
-      <ColumnTwoWithTop
-        top={
-          <Typography variant='h1' component='h2'>
-            {name}
-          </Typography>
-        }
-        left={
-          description && (
-            <div
-              className={classes.description}
-              dangerouslySetInnerHTML={{ __html: description.html }}
-            />
-          )
-        }
-        right={right}
-      />
-    </>
+    <ColumnTwoWithTop
+      top={
+        <Typography variant='h1' component='h2'>
+          {name}
+        </Typography>
+      }
+      left={
+        description && (
+          <div
+            className={classes.description}
+            dangerouslySetInnerHTML={{ __html: description.html }}
+          />
+        )
+      }
+      right={right}
+    />
   )
 }

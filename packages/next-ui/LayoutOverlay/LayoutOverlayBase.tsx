@@ -23,7 +23,7 @@ const useStyles = makeStyles(
       cursor: 'default',
       overflow: 'auto',
       height: '100vh',
-      ['@supports (-webkit-touch-callout: none)']: {
+      '@supports (-webkit-touch-callout: none)': {
         height: '-webkit-fill-available',
       },
     },
@@ -63,7 +63,7 @@ const useStyles = makeStyles(
       [theme.breakpoints.down('sm')]: {
         gridTemplate: `"beforeOverlay" "overlay" "afterOverlay"`,
         height: '100vh',
-        ['@supports (-webkit-touch-callout: none)']: {
+        '@supports (-webkit-touch-callout: none)': {
           height: '-webkit-fill-available',
         },
       },
@@ -111,7 +111,7 @@ const useStyles = makeStyles(
     beforeOverlayVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
         height: '100vh',
-        ['@supports (-webkit-touch-callout: none)']: {
+        '@supports (-webkit-touch-callout: none)': {
           height: '-webkit-fill-available',
         },
       },
@@ -122,7 +122,7 @@ const useStyles = makeStyles(
       scrollSnapAlign: 'start',
       width: 'min-content',
       minHeight: '100vh',
-      ['@supports (-webkit-touch-callout: none)']: {
+      '@supports (-webkit-touch-callout: none)': {
         minHeight: '-webkit-fill-available',
       },
     },
@@ -167,7 +167,7 @@ const useStyles = makeStyles(
       [theme.breakpoints.down('sm')]: {
         paddingBottom: 1,
         minHeight: '100vh',
-        ['@supports (-webkit-touch-callout: none)']: {
+        '@supports (-webkit-touch-callout: none)': {
           minHeight: '-webkit-fill-available',
         },
       },
@@ -176,7 +176,7 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('md')]: {
         paddingBottom: 1,
         minHeight: '100vh',
-        ['@supports (-webkit-touch-callout: none)']: {
+        '@supports (-webkit-touch-callout: none)': {
           minHeight: '-webkit-fill-available',
         },
       },
@@ -185,7 +185,7 @@ const useStyles = makeStyles(
       [theme.breakpoints.down('sm')]: {
         paddingBottom: 1,
         minHeight: '100vh',
-        ['@supports (-webkit-touch-callout: none)']: {
+        '@supports (-webkit-touch-callout: none)': {
           minHeight: '-webkit-fill-available',
         },
       },
@@ -194,7 +194,7 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('md')]: {
         paddingBottom: 1,
         minHeight: '100vh',
-        ['@supports (-webkit-touch-callout: none)']: {
+        '@supports (-webkit-touch-callout: none)': {
           minHeight: '-webkit-fill-available',
         },
       },
@@ -335,7 +335,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
     <>
       <m.div {...className('backdrop')} style={{ opacity: positions.open.visible }} />
       <Scroller {...className('root')} grid={false} hideScrollbar>
-        <div {...className('beforeOverlay')} onClick={closeOverlay}></div>
+        <div {...className('beforeOverlay')} onClick={closeOverlay} />
         <div {...className('overlay')} ref={overlayRef}>
           <div {...className('overlayPane')}>
             <AppShellProvider scroll={scrollProvider}>{children}</AppShellProvider>

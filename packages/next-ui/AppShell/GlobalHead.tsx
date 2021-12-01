@@ -28,7 +28,7 @@ const GlobalHead = (props: { name: string }) => {
       <meta name='mobile-web-app-capable' content='yes' key='mobile-web-app-capable' />
       <link rel='apple-touch-icon' href='/manifest/icon-512-512.png' key='apple-touch-icon' />
       <link rel='manifest' href='/manifest.webmanifest' key='manifest' />
-      <link rel='shortcut icon' href='/manifest/favicon.ico' key='shortcut icon' />
+      <link rel='icon' href='/manifest/favicon.ico' key='icon' />
     </Head>
   )
 }

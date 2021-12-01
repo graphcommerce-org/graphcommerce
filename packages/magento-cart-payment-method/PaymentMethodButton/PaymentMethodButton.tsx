@@ -65,7 +65,7 @@ export default function PaymentMethodButton(props: PaymentMethodButtonProps) {
           button
         ) : (
           <>
-            <>{button}</>
+            {button}
             <ApolloCartErrorAlert key='error' error={errorVal} />
           </>
         )

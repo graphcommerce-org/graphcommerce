@@ -68,7 +68,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
     const client = apolloClient(locale)
     const { data } = await client.query({ query: CartAgreementsDocument })
     return (data.checkoutAgreements ?? []).map((agreement) => ({
-      locale: locale,
+      locale,
       params: { url: agreement?.name.toLowerCase().replace(/\s+/g, '-') ?? '' },
     }))
   }

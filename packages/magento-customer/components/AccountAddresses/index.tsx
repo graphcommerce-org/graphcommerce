@@ -63,19 +63,17 @@ export default function AccountAddresses(props: AccountAddressesProps) {
   return (
     <>
       {((addresses && addresses.length === 0) || !addresses) && (
-        <>
-          <FullPageMessage
-            title={<Trans>You have no addresses saved yet</Trans>}
-            icon={<SvgImageSimple src={iconHome} size='xxl' />}
-            button={
-              <Link href='/account/addresses/add' passHref>
-                <Button size='large' variant='contained' color='primary'>
-                  <Trans>Add new address</Trans>
-                </Button>
-              </Link>
-            }
-          />
-        </>
+        <FullPageMessage
+          title={<Trans>You have no addresses saved yet</Trans>}
+          icon={<SvgImageSimple src={iconHome} size='xxl' />}
+          button={
+            <Link href='/account/addresses/add' passHref>
+              <Button size='large' variant='contained' color='primary'>
+                <Trans>Add new address</Trans>
+              </Button>
+            </Link>
+          }
+        />
       )}
 
       {addresses && addresses.length >= 1 && (

@@ -8,7 +8,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       minHeight: '100vh',
-      ['@supports (-webkit-touch-callout: none)']: {
+      '@supports (-webkit-touch-callout: none)': {
         minHeight: '-webkit-fill-available',
       },
       display: 'grid',

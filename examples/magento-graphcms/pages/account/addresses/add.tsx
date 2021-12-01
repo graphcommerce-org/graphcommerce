@@ -48,7 +48,7 @@ function AddNewAddressPage() {
       </OverlayAppBar>
       <Container maxWidth='md'>
         <PageMeta
-          title={`Add address`}
+          title='Add address'
           metaDescription={t`Add new address`}
           metaRobots={['noindex']}
         />

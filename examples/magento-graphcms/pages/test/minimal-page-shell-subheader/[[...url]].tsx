@@ -42,44 +42,42 @@ function MinimalAppShellSubheader(props: Props) {
   const classes = useStyles()
 
   return (
-    <>
-      <ProductListParamsProvider value={params}>
-        <AppBar
-          primary={
-            <PageLink href='/test/minimal-page-shell' passHref>
-              <Button color='secondary' variant='pill-link' size='small'>
-                Next
-              </Button>
-            </PageLink>
-          }
-          additional={
-            <Container maxWidth='sm'>
-              <SearchForm urlHandle='test/minimal-page-shell-subheader' />
-            </Container>
-          }
-        >
-          <Typography variant='h5' component='span'>
-            Minimal UI
-          </Typography>
-        </AppBar>
-        <Container maxWidth='md' className={classes.longContent}>
-          <AppShellTitle>
-            <Box textAlign='center' mb={3}>
-              <Typography variant='h2' component='h2'>
-                Minimal UI
-              </Typography>
-            </Box>
-          </AppShellTitle>
+    <ProductListParamsProvider value={params}>
+      <AppBar
+        primary={
+          <PageLink href='/test/minimal-page-shell' passHref>
+            <Button color='secondary' variant='pill-link' size='small'>
+              Next
+            </Button>
+          </PageLink>
+        }
+        additional={
+          <Container maxWidth='sm'>
+            <SearchForm urlHandle='test/minimal-page-shell-subheader' />
+          </Container>
+        }
+      >
+        <Typography variant='h5' component='span'>
+          Minimal UI
+        </Typography>
+      </AppBar>
+      <Container maxWidth='md' className={classes.longContent}>
+        <AppShellTitle>
+          <Box textAlign='center' mb={3}>
+            <Typography variant='h2' component='h2'>
+              Minimal UI
+            </Typography>
+          </Box>
+        </AppShellTitle>
 
-          <AppShellSticky>
-            <ProductListFiltersContainer>
-              <ProductListSort sort_fields={products?.sort_fields} />
-              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-            </ProductListFiltersContainer>
-          </AppShellSticky>
-        </Container>
-      </ProductListParamsProvider>
-    </>
+        <AppShellSticky>
+          <ProductListFiltersContainer>
+            <ProductListSort sort_fields={products?.sort_fields} />
+            <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
+          </ProductListFiltersContainer>
+        </AppShellSticky>
+      </Container>
+    </ProductListParamsProvider>
   )
 }
 

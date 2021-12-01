@@ -2,6 +2,7 @@ import { useElementScroll } from '@graphcommerce/framer-utils'
 import { Point2D } from 'framer-motion'
 import { animate } from 'popmotion'
 import { useScrollerContext } from './useScrollerContext'
+
 export function useScrollTo() {
   const { scrollerRef, register, disableSnap, enableSnap } = useScrollerContext()
   const scroll = useElementScroll(scrollerRef)

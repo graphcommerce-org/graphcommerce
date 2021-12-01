@@ -14,7 +14,7 @@ export function linguiWrapGetInitialProps(
 
     if (!locale) return initial
     try {
-      const messages = (await load(locale)).messages
+      const { messages } = await load(locale)
 
       i18n.load(locale, messages)
       i18n.activate(locale)
@@ -29,7 +29,7 @@ export function linguiWrapGetInitialProps(
             id='lingui'
             lang={locale}
             dangerouslySetInnerHTML={{ __html: JSON.stringify(messages) }}
-          ></script>,
+          />,
         ],
       }
     } catch (e) {

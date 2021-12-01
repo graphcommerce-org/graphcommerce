@@ -1,8 +1,8 @@
 import { responsiveVal } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import SidebarMenu from '../../components/SidebarMenu'
 import { DirectoryTree } from '../../util/files'
+import SidebarMenu from '../SidebarMenu'
 
 export type LayoutProps = { menuData: DirectoryTree; children: React.ReactNode }
 
@@ -18,7 +18,7 @@ const useStyles = makeStyles(
       position: 'sticky',
       top: theme.appShell.appBarHeightMd,
       height: '100vh',
-      ['@supports (-webkit-touch-callout: none)']: {
+      '@supports (-webkit-touch-callout: none)': {
         height: '-webkit-fill-available',
       },
       minWidth: responsiveVal(150, 300),

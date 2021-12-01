@@ -2,6 +2,7 @@ import { ScrollerProvider, ScrollSnapType } from '@graphcommerce/framer-scroller
 import React from 'react'
 import { SetOptional } from 'type-fest'
 import { LayoutOverlayBase, LayoutOverlayBaseProps } from './LayoutOverlayBase'
+
 export type { OverlayVariant } from './LayoutOverlayBase'
 
 export type LayoutOverlayProps = SetOptional<LayoutOverlayBaseProps, 'variantSm' | 'variantMd'>

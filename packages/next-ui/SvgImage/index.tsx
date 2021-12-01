@@ -61,16 +61,14 @@ export default function SvgImage(props: SvgImageProps) {
   })
 
   return (
-    <>
-      <Image
-        layout='fixed'
-        unoptimized
-        src={src}
-        className={classes.root}
-        // height={24}
-        // width={24}
-        {...imageProps}
-      />
-    </>
+    <Image
+      layout='fixed'
+      unoptimized
+      src={src}
+      className={classes.root}
+      // height={24}
+      // width={24}
+      {...imageProps}
+    />
   )
 }
