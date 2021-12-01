@@ -2,7 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { classesPicker } from '../Styles/classesPicker'
 import AppBarBack, { useShowBack } from './AppBarBack'
-import AppBarClose, { useShowClose } from './AppBarClose'
+import AppBarClose from './AppBarClose'
 import AppBarContent, { ContentProps } from './AppBarContent'
 import { FloatingProps } from './types'
 
@@ -87,7 +87,6 @@ const useStyles = makeStyles(
 export function AppBar(props: AppBarProps) {
   const { children, additional, divider, primary, secondary, noAlign } = props
   const classes = useStyles(props)
-  const showClose = useShowClose()
   const showBack = useShowBack()
 
   const floatFallback = !children
@@ -99,11 +98,15 @@ export function AppBar(props: AppBarProps) {
   if (divider || primary || secondary) floatingSm = false
 
   const close = <AppBarClose />
-  const back = <AppBarBack variant={floatingSm ? 'pill' : 'pill-link'} />
+  const back = showBack && <AppBarBack variant={floatingSm ? 'pill' : 'pill-link'} />
 
-  let left: React.ReactNode = secondary ?? (showBack && back)
-  const right: React.ReactNode = primary ?? (showClose && close)
-  if (right !== (showClose && close) && !left) left = close
+  let left = secondary
+  let right = primary
+
+  if (back) left = back
+
+  if (!left) left = close
+  else if (!right) right = close
 
   if (!left && !right && !children) return null
 

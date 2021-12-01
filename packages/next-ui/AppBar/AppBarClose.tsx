@@ -4,11 +4,6 @@ import Button from '../Button'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconClose } from '../icons'
 
-export function useShowClose() {
-  const { closeSteps } = usePageContext()
-  return closeSteps > 0
-}
-
 export default function AppBarClose() {
   const router = usePageRouter()
   const { closeSteps } = usePageContext()
