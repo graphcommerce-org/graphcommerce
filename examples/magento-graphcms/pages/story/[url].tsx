@@ -16,16 +16,13 @@ import { StoryListDocument, StoryListQuery } from '../../components/Story/StoryL
 import { StoryPathsDocument } from '../../components/Story/StoryPaths.gql'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = DefaultPageQuery & StoryListQuery & { bodyContent: any; css: string; bgColor: string }
+type Props = DefaultPageQuery & StoryListQuery & { bodyContent: string | null; css: string }
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 const useStyles = makeStyles(
   () => ({
-    root: {
-      backgroundColor: (props: Props) => props.bgColor,
-    },
     buttonBase: {
       display: 'block',
     },
@@ -91,10 +88,7 @@ export default function StoryPage(props: Props) {
               component='a'
               aria-label={attr.class ?? attr.class}
             >
-              {
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                !!node.children && !!node.children.length && domToReact(node.children, { replace })
-              }
+              {!!node.children && !!node.children.length && domToReact(node.children, { replace })}
             </ButtonBase>
           </PageLink>
         </div>
@@ -174,13 +168,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const bodyContent = $(`body`).html()
   const headContent = $(`head`).html()
 
-  let cssUrl = ''
-  htmlToDOM(headContent as string).filter((tag: any) => {
-    if (tag.type === 'tag' && tag.attribs.href && tag.attribs.href.indexOf('.css') >= 0) {
-      cssUrl = tag.attribs.href
-    }
-  })
-
+  const cssUrl = headContent?.match('(?<=href=")[^"]+.css')?.[0]
   const webflowCss = await fetch(`${cssUrl}?updated=${Math.random() * 9999}`)
   const css = await webflowCss.text()
 
@@ -191,7 +179,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       apolloState: await conf.then(() => client.cache.extract()),
       bodyContent,
       css,
-      bgColor: '#ffffff',
     },
     revalidate: 60 * 20,
   }
