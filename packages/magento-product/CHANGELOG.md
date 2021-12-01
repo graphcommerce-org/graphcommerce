@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.7.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.6.4...@graphcommerce/magento-product@3.7.0) (2021-12-01)
+
+
+### Bug Fixes
+
+* borderRadius ([b9cffcc](https://github.com/ho-nl/m2-pwa/commit/b9cffccf444cb2ff8d6257ef3a64c0ea18e30477))
+* icon OrderBefore ([25a2390](https://github.com/ho-nl/m2-pwa/commit/25a2390321c7047c5191a15a9352020b8161ff7a))
+
+
+### Features
+
+* borderRadius based on theme.shape.borderRadius ([7c34937](https://github.com/ho-nl/m2-pwa/commit/7c349376cd41a131c628324c299106fdb7e60484))
+* introduce borderRadius ([183afbc](https://github.com/ho-nl/m2-pwa/commit/183afbc8ee269f6694c372b06afdf41302f86c09))
+* variable font weights ([bfd8142](https://github.com/ho-nl/m2-pwa/commit/bfd8142b96742efd1208556e3c48de382d8d8ceb))
+
+
+
+
+
 ## [3.6.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.6.3...@graphcommerce/magento-product@3.6.4) (2021-11-27)
 
 

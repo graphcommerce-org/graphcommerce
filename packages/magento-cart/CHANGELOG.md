@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.8.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.7.4...@graphcommerce/magento-cart@3.8.0) (2021-12-01)
+
+
+### Bug Fixes
+
+* borderRadius ([0999901](https://github.com/ho-nl/m2-pwa/commit/0999901f6a3265f40fef18e72702d80158d8c4a9))
+
+
+### Features
+
+* borderRadius based on theme.shape.borderRadius ([7c34937](https://github.com/ho-nl/m2-pwa/commit/7c349376cd41a131c628324c299106fdb7e60484))
+
+
+
+
+
 ## [3.7.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.7.3...@graphcommerce/magento-cart@3.7.4) (2021-11-27)
 
 

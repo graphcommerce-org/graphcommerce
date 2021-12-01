@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-category@3.4.4...@graphcommerce/magento-category@3.5.0) (2021-12-01)
+
+
+### Features
+
+* borderRadius based on theme.shape.borderRadius ([7c34937](https://github.com/ho-nl/m2-pwa/commit/7c349376cd41a131c628324c299106fdb7e60484))
+* introduce borderRadius ([183afbc](https://github.com/ho-nl/m2-pwa/commit/183afbc8ee269f6694c372b06afdf41302f86c09))
+
+
+
+
+
 # [3.4.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-category@3.3.29...@graphcommerce/magento-category@3.4.0) (2021-11-12)
 
 

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcms-ui@2.105.4...@graphcommerce/graphcms-ui@2.106.0) (2021-12-01)
+
+
+### Bug Fixes
+
+* build ([72d9353](https://github.com/ho-nl/m2-pwa/commit/72d935376a1967cc976c20b984ef15a862e5d0f4))
+* fontWeights ([7172527](https://github.com/ho-nl/m2-pwa/commit/71725272fe9f0b854d918ae357a668f641bfe8e5))
+* hero text spacing ([79dd6aa](https://github.com/ho-nl/m2-pwa/commit/79dd6aa2fe576104ebbbdd092f6b415d319dec48))
+* render bug stroke variable fonts ([582de18](https://github.com/ho-nl/m2-pwa/commit/582de187800ee9c53718bf43a39ca77398d21b91)), closes [/github.com/rsms/inter/issues/292#issuecomment-674993644](https://github.com//github.com/rsms/inter/issues/292/issues/issuecomment-674993644)
+
+
+### Features
+
+* breakpointVal ([0294503](https://github.com/ho-nl/m2-pwa/commit/029450343051cf6995babad9f9b42c7e6ad1094e))
+* responsiveTyp ([6108b61](https://github.com/ho-nl/m2-pwa/commit/6108b6148e76ddbbe2db1614f10aaf88423db5ca))
+
+
+
+
+
 # [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcms-ui@2.104.29...@graphcommerce/graphcms-ui@2.105.0) (2021-11-12)
 
 

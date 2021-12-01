@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.19.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.18.2...@graphcommerce/next-ui@3.19.0) (2021-12-01)
+
+
+### Bug Fixes
+
+* borderRadius ([0999901](https://github.com/ho-nl/m2-pwa/commit/0999901f6a3265f40fef18e72702d80158d8c4a9))
+* borderRadius ([b9cffcc](https://github.com/ho-nl/m2-pwa/commit/b9cffccf444cb2ff8d6257ef3a64c0ea18e30477))
+* borderRadius toggleButton ([4a97800](https://github.com/ho-nl/m2-pwa/commit/4a97800150bbfe03692a66d7fbde5705a32b9cd7))
+* build ([ba97378](https://github.com/ho-nl/m2-pwa/commit/ba97378d40d70b3f47c4c252600c669a53568c27))
+* build ([b6cb704](https://github.com/ho-nl/m2-pwa/commit/b6cb7048c1208648687621000ab0d6789032d480))
+* finetune svg stroke width ([d788d72](https://github.com/ho-nl/m2-pwa/commit/d788d72c88d5b924a14e9fdde1a52f62be7c274c))
+* flicker on menu icon ([04d9633](https://github.com/ho-nl/m2-pwa/commit/04d96331cfdd4678a56a4eb9170141800c03a6a1))
+* hero text spacing ([79dd6aa](https://github.com/ho-nl/m2-pwa/commit/79dd6aa2fe576104ebbbdd092f6b415d319dec48))
+* icon OrderBefore ([25a2390](https://github.com/ho-nl/m2-pwa/commit/25a2390321c7047c5191a15a9352020b8161ff7a))
+* icons ([c561e20](https://github.com/ho-nl/m2-pwa/commit/c561e20a247fef5ea33ac10dbecf55d1e5500dec))
+* prevent scaling of video on mobile ([168b5b9](https://github.com/ho-nl/m2-pwa/commit/168b5b9451dbe373703ebc76c44516d1c0eb316f))
+* Tap targets are not sized appropriately ([b3b3339](https://github.com/ho-nl/m2-pwa/commit/b3b33398c26cfe775f2e9fc4dacd8eaad2e02725))
+
+
+### Features
+
+* borderRadius based on theme.shape.borderRadius ([7c34937](https://github.com/ho-nl/m2-pwa/commit/7c349376cd41a131c628324c299106fdb7e60484))
+* breakpointVal ([0294503](https://github.com/ho-nl/m2-pwa/commit/029450343051cf6995babad9f9b42c7e6ad1094e))
+* closeable menu ([5f94bb5](https://github.com/ho-nl/m2-pwa/commit/5f94bb5644ce1058ec705a8acced71ba2ba95e04))
+* icon for 404 ([ff32915](https://github.com/ho-nl/m2-pwa/commit/ff3291578719cb7105d1045d68a78952b27da7fe))
+* introduce borderRadius ([183afbc](https://github.com/ho-nl/m2-pwa/commit/183afbc8ee269f6694c372b06afdf41302f86c09))
+* responsiveTyp ([6108b61](https://github.com/ho-nl/m2-pwa/commit/6108b6148e76ddbbe2db1614f10aaf88423db5ca))
+
+
+
+
+
 ## [3.18.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.18.1...@graphcommerce/next-ui@3.18.2) (2021-11-27)
 
 

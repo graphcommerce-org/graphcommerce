@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.5.4...@graphcommerce/magento-search@3.5.5) (2021-12-01)
+
+
+### Bug Fixes
+
+* ios zoom bug when using search. Fontsize should always be > 16 ([22abcd4](https://github.com/ho-nl/m2-pwa/commit/22abcd499b152448b3c38f84325debe07d2b9a68))
+
+
+
+
+
 ## [3.5.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.5.3...@graphcommerce/magento-search@3.5.4) (2021-11-27)
 
 

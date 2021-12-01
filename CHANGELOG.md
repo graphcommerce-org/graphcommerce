@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.156.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.155.1...@graphcommerce/graphcommerce@2.156.0) (2021-12-01)
+
+
+### Bug Fixes
+
+* borderRadius ([ea38c8a](https://github.com/ho-nl/m2-pwa/commit/ea38c8a0d55e3cb8d975082952ad174721fab888))
+* borderRadius ([0999901](https://github.com/ho-nl/m2-pwa/commit/0999901f6a3265f40fef18e72702d80158d8c4a9))
+* borderRadius ([b9cffcc](https://github.com/ho-nl/m2-pwa/commit/b9cffccf444cb2ff8d6257ef3a64c0ea18e30477))
+* borderRadius toggleButton ([4a97800](https://github.com/ho-nl/m2-pwa/commit/4a97800150bbfe03692a66d7fbde5705a32b9cd7))
+* build ([72d9353](https://github.com/ho-nl/m2-pwa/commit/72d935376a1967cc976c20b984ef15a862e5d0f4))
+* build ([ba97378](https://github.com/ho-nl/m2-pwa/commit/ba97378d40d70b3f47c4c252600c669a53568c27))
+* build ([b6cb704](https://github.com/ho-nl/m2-pwa/commit/b6cb7048c1208648687621000ab0d6789032d480))
+* color swatch styling ([8cc1e2c](https://github.com/ho-nl/m2-pwa/commit/8cc1e2c1dcf58227d50cebca8794e3ca96c4c469))
+* comma ([a8c2db8](https://github.com/ho-nl/m2-pwa/commit/a8c2db887c9da5bb9a81bc97003f64ef097fb4d4))
+* default borderRadius ([f816d7a](https://github.com/ho-nl/m2-pwa/commit/f816d7a4d4a7c76254b21bf129652d8a7c42ca4f))
+* finetune svg stroke width ([d788d72](https://github.com/ho-nl/m2-pwa/commit/d788d72c88d5b924a14e9fdde1a52f62be7c274c))
+* flicker on menu icon ([04d9633](https://github.com/ho-nl/m2-pwa/commit/04d96331cfdd4678a56a4eb9170141800c03a6a1))
+* fontWeights ([7172527](https://github.com/ho-nl/m2-pwa/commit/71725272fe9f0b854d918ae357a668f641bfe8e5))
+* hero text spacing ([79dd6aa](https://github.com/ho-nl/m2-pwa/commit/79dd6aa2fe576104ebbbdd092f6b415d319dec48))
+* icon OrderBefore ([25a2390](https://github.com/ho-nl/m2-pwa/commit/25a2390321c7047c5191a15a9352020b8161ff7a))
+* icons ([c561e20](https://github.com/ho-nl/m2-pwa/commit/c561e20a247fef5ea33ac10dbecf55d1e5500dec))
+* ios zoom bug when using search. Fontsize should always be > 16 ([22abcd4](https://github.com/ho-nl/m2-pwa/commit/22abcd499b152448b3c38f84325debe07d2b9a68))
+* prevent layout shift helperText ([8ed0ad9](https://github.com/ho-nl/m2-pwa/commit/8ed0ad9589b742e456decb9b194091caf60e5db9))
+* prevent scaling of video on mobile ([168b5b9](https://github.com/ho-nl/m2-pwa/commit/168b5b9451dbe373703ebc76c44516d1c0eb316f))
+* remove Tagmanager, add Recaptcha back ([db1518d](https://github.com/ho-nl/m2-pwa/commit/db1518d8a97ffd2f1f826b85f1162036812762f2))
+* render bug stroke variable fonts ([582de18](https://github.com/ho-nl/m2-pwa/commit/582de187800ee9c53718bf43a39ca77398d21b91)), closes [/github.com/rsms/inter/issues/292#issuecomment-674993644](https://github.com//github.com/rsms/inter/issues/292/issues/issuecomment-674993644)
+* slightly darker bg ([bd210b0](https://github.com/ho-nl/m2-pwa/commit/bd210b0f4a89149c2e912d4e4ce96f3500c22be6))
+* Tap targets are not sized appropriately ([b3b3339](https://github.com/ho-nl/m2-pwa/commit/b3b33398c26cfe775f2e9fc4dacd8eaad2e02725))
+
+
+### Features
+
+* add title to login form ([563157b](https://github.com/ho-nl/m2-pwa/commit/563157bc7059d0b10d8e93c71b918b816ca45943))
+* borderRadius based on theme.shape.borderRadius ([7c34937](https://github.com/ho-nl/m2-pwa/commit/7c349376cd41a131c628324c299106fdb7e60484))
+* breakpointVal ([0294503](https://github.com/ho-nl/m2-pwa/commit/029450343051cf6995babad9f9b42c7e6ad1094e))
+* closeable menu ([5f94bb5](https://github.com/ho-nl/m2-pwa/commit/5f94bb5644ce1058ec705a8acced71ba2ba95e04))
+* icon for 404 ([ff32915](https://github.com/ho-nl/m2-pwa/commit/ff3291578719cb7105d1045d68a78952b27da7fe))
+* introduce borderRadius ([183afbc](https://github.com/ho-nl/m2-pwa/commit/183afbc8ee269f6694c372b06afdf41302f86c09))
+* responsiveTyp ([6108b61](https://github.com/ho-nl/m2-pwa/commit/6108b6148e76ddbbe2db1614f10aaf88423db5ca))
+* variable font weights ([bfd8142](https://github.com/ho-nl/m2-pwa/commit/bfd8142b96742efd1208556e3c48de382d8d8ceb))
+
+
+
+
+
 ## [2.155.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.155.0...@graphcommerce/graphcommerce@2.155.1) (2021-11-27)
 
 
