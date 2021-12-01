@@ -5,9 +5,9 @@ import {
   AppShellTitle,
   Button,
   iconChevronRight,
-  Sheet,
-  SheetProps,
-  SheetVariant,
+  LayoutOverlay,
+  LayoutOverlayProps,
+  LayoutOverlayVariant,
   SvgImageSimple,
   Title,
 } from '@graphcommerce/next-ui'
@@ -78,14 +78,14 @@ function MultiStack() {
 
 const pageOptions: PageOptions = {
   overlayGroup: 'bottom',
-  Layout: Sheet,
+  Layout: LayoutOverlay,
   sharedKey: ({ asPath }) => asPath,
 }
 MultiStack.pageOptions = pageOptions
 
 export default MultiStack
 
-type ParsedUrlQuery = { url: [SheetVariant, string] }
+type ParsedUrlQuery = { url: [LayoutOverlayVariant, string] }
 export async function getStaticPaths(): Promise<GetStaticPathsResult<ParsedUrlQuery>> {
   return {
     paths: [
@@ -97,8 +97,8 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult<ParsedUrlQu
   }
 }
 
-export const getStaticProps: GetStaticProps<SheetProps, ParsedUrlQuery> = async (ctx) => {
-  const variant: SheetVariant = ctx.params?.url?.[0] ?? 'bottom'
+export const getStaticProps: GetStaticProps<LayoutOverlayProps, ParsedUrlQuery> = async (ctx) => {
+  const variant: LayoutOverlayVariant = ctx.params?.url?.[0] ?? 'bottom'
 
   return {
     props: {

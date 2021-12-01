@@ -3,7 +3,7 @@ import React from 'react'
 import { SetOptional } from 'type-fest'
 import { LayoutOverlayBase, LayoutOverlayBaseProps } from './LayoutOverlayBase'
 
-export type { OverlayVariant } from './LayoutOverlayBase'
+export type { LayoutOverlayVariant } from './LayoutOverlayBase'
 
 export type LayoutOverlayProps = SetOptional<LayoutOverlayBaseProps, 'variantSm' | 'variantMd'>
 

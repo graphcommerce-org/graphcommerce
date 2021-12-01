@@ -220,12 +220,12 @@ const useStyles = makeStyles(
   { name: 'Overlay' },
 )
 
-export type OverlayVariant = 'left' | 'bottom' | 'right'
+export type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
 
 export type LayoutOverlayBaseProps = {
   children?: React.ReactNode
-  variantSm: OverlayVariant
-  variantMd: OverlayVariant
+  variantSm: LayoutOverlayVariant
+  variantMd: LayoutOverlayVariant
 } & UseStyles<typeof useStyles>
 
 export enum OverlayPosition {

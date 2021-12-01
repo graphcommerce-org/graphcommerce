@@ -42,7 +42,7 @@ export default function MyApp(props: AppPropsType<Router> & { Component: PageCom
       <LazyMotion features={async () => (await import('../components/lazyMotion')).default}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <FramerNextPages {...props} fallback={<Fallback title='' />} fallbackKey='/' />
+          <FramerNextPages {...props} />
         </ThemeProvider>
       </LazyMotion>
     </LinguiProvider>

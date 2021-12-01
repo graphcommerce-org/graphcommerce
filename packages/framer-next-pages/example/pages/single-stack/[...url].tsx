@@ -3,10 +3,10 @@ import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import {
   AppBar,
   AppShellTitle,
-  Sheet,
-  SheetProps,
-  SheetVariant,
   Title,
+  LayoutOverlay,
+  LayoutOverlayProps,
+  LayoutOverlayVariant,
 } from '@graphcommerce/next-ui'
 import { Container } from '@material-ui/core'
 import { motion } from 'framer-motion'
@@ -66,13 +66,13 @@ function SingleStack() {
 
 const pageOptions: PageOptions = {
   overlayGroup: 'bottom',
-  Layout: Sheet,
+  Layout: LayoutOverlay,
 }
 SingleStack.pageOptions = pageOptions
 
 export default SingleStack
 
-type ParsedUrlQuery = { url: [SheetVariant, string] }
+type ParsedUrlQuery = { url: [LayoutOverlayVariant, string] }
 export async function getStaticPaths(): Promise<GetStaticPathsResult<ParsedUrlQuery>> {
   return {
     paths: [
@@ -84,8 +84,8 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult<ParsedUrlQu
   }
 }
 
-export const getStaticProps: GetStaticProps<SheetProps, ParsedUrlQuery> = async (ctx) => {
-  const variant: SheetVariant = ctx.params?.url?.[0] ?? 'bottom'
+export const getStaticProps: GetStaticProps<LayoutOverlayProps, ParsedUrlQuery> = async (ctx) => {
+  const variant: LayoutOverlayVariant = ctx.params?.url?.[0] ?? 'bottom'
 
   return {
     props: {

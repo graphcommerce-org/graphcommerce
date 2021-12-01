@@ -120,7 +120,7 @@ export function AppBar(props: AppBarProps) {
   })
 
   return (
-    <div {...className('sticky', 'AppBar')}>
+    <div {...className('sticky')}>
       <AppBarContent
         left={left}
         right={right}
