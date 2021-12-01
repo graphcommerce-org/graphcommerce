@@ -1,6 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import Row from '..'
+import { responsiveVal } from '../..'
 import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
@@ -13,12 +14,15 @@ const useStyles = makeStyles(
           : theme.palette.background.paper,
       justifyItems: 'center',
       columnGap: theme.spacings.lg,
-      padding: `${theme.spacings.xl} 0`,
+      paddingTop: theme.spacings.lg,
+      paddingBottom: theme.spacings.lg,
       [theme.breakpoints.up('md')]: {
-        padding: 0,
+        paddingTop: 0,
+        paddingBottom: 0,
         background: 'none',
         gridTemplateColumns: '1fr 1fr',
       },
+      borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
     },
     asset: {
       height: '100%',
@@ -27,6 +31,7 @@ const useStyles = makeStyles(
         height: '100%',
         width: '100%',
         objectFit: 'cover',
+        borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
       },
     },
     copy: {
@@ -64,9 +69,11 @@ export default function ImageText(props: ImageTextProps) {
   const classes = useStyles(props)
 
   return (
-    <Row className={classes.wrapper}>
-      <div className={classes.asset}>{item}</div>
-      <div className={classes.copy}>{children}</div>
+    <Row maxWidth={false}>
+      <Row className={classes.wrapper}>
+        <div className={classes.asset}>{item}</div>
+        <div className={classes.copy}>{children}</div>
+      </Row>{' '}
     </Row>
   )
 }

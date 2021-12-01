@@ -29,7 +29,7 @@ const useStyles = makeStyles(
     sizeSmall: {
       width: responsiveVal(12, 16),
       height: responsiveVal(12, 16),
-      strokeWidth: 2.3,
+      strokeWidth: 2.1,
     },
     sizeLarge: {
       width: responsiveVal(24, 28),
@@ -39,12 +39,12 @@ const useStyles = makeStyles(
     sizeXl: {
       width: responsiveVal(38, 62),
       height: responsiveVal(38, 62),
-      strokeWidth: 1.5,
+      strokeWidth: 1.4,
     },
     sizeXxl: {
       width: responsiveVal(96, 148),
       height: responsiveVal(96, 148),
-      strokeWidth: 1,
+      strokeWidth: 0.8,
     },
     muted: {},
     inverted: {},
@@ -62,6 +62,7 @@ type SvgImageSimpleProps = Omit<ImageProps, 'fixed'> & {
 
 const SvgImageSimple = forwardRef<HTMLImageElement, SvgImageSimpleProps>((props, ref) => {
   const {
+    style,
     className,
     size = 'medium',
     muted,
@@ -87,6 +88,7 @@ const SvgImageSimple = forwardRef<HTMLImageElement, SvgImageSimpleProps>((props,
         inverted && classes.inverted,
       )}
       aria-hidden='true'
+      style={style}
     >
       <use href={`${src}#icon`}></use>
     </svg>

@@ -201,6 +201,7 @@ const useStyles = makeStyles(
     sheetShellActionsNoButtonShadow: {
       [theme.breakpoints.down('sm')]: {
         '& * > button': {
+          backgroundColor: 'unset',
           boxShadow: 'none',
         },
       },

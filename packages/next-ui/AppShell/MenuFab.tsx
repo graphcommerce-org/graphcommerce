@@ -15,7 +15,7 @@ import React, { useEffect } from 'react'
 import { UseStyles } from '../Styles'
 import responsiveVal from '../Styles/responsiveVal'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
-import { iconMenu } from '../icons'
+import { iconMenu, iconClose } from '../icons'
 import { MenuProps } from './Menu'
 import useFabAnimation from './useFabAnimation'
 
@@ -43,13 +43,17 @@ const useStyles = makeStyles(
         background: theme.palette.text.primary,
       },
       '& svg': {
-        stroke: theme.palette.background.default,
+        color: theme.palette.background.paper,
       },
     },
     menu: {
       backgroundColor: theme.palette.background.paper,
       color: theme.palette.text.primary,
       minWidth: responsiveVal(200, 280),
+      marginTop: `calc(${responsiveVal(42, 56)} + 3px)`,
+      [theme.breakpoints.down('sm')]: {
+        marginTop: `calc((${responsiveVal(42, 56)} + 12px) * -1)`,
+      },
     },
     menuItemText: {
       ...theme.typography.h4,
@@ -65,10 +69,11 @@ export type MenuFabProps = MenuProps &
     children?: React.ReactNode
     search?: React.ReactNode
     menuIcon?: React.ReactNode
+    closeIcon?: React.ReactNode
   }
 
 export default function MenuFab(props: MenuFabProps) {
-  const { menu, children, search, menuIcon } = props
+  const { menu, children, search, menuIcon, closeIcon } = props
   const classes = useStyles(props)
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
@@ -90,7 +95,12 @@ export default function MenuFab(props: MenuFabProps) {
         onClick={(event) => setOpenEl(event.currentTarget)}
         className={classes.menuFab}
       >
-        {menuIcon ?? <SvgImageSimple src={iconMenu} inverted />}
+        {closeIcon ?? (
+          <SvgImageSimple src={iconClose} inverted style={{ display: openEl ? 'block' : 'none' }} />
+        )}
+        {menuIcon ?? (
+          <SvgImageSimple src={iconMenu} inverted style={{ display: openEl ? 'none' : 'block' }} />
+        )}
       </Fab>
 
       <Menu

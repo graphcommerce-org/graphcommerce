@@ -7,15 +7,15 @@ import { SwatchDataProps } from '.'
 export const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      height: responsiveVal(35, 70),
-      width: responsiveVal(35, 70),
-      border: `3px solid ${theme.palette.divider}`,
-      boxSizing: 'border-box',
+      margin: '0 auto',
+      height: responsiveVal(22, 30),
+      width: responsiveVal(22, 30),
       borderRadius: '50%',
     },
     sizeSmall: {
-      height: responsiveVal(15, 20),
-      width: responsiveVal(15, 20),
+      height: responsiveVal(8, 12),
+      width: responsiveVal(8, 12),
+      marginTop: responsiveVal(2, 4),
     },
   }),
   { name: 'ColorSwatchData' },

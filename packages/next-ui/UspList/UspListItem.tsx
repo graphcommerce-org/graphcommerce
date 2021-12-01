@@ -10,13 +10,15 @@ const useStyles = makeStyles(
       display: 'grid',
       gridAutoFlow: 'column',
       alignItems: 'center',
-      gridTemplateColumns: `${responsiveVal(22, 32)} auto`,
+      gridTemplateColumns: `${responsiveVal(32, 38)} auto`,
       gap: theme.spacings.xs,
       '& > p': {
         ...theme.typography.body2,
       },
     },
     icon: {
+      display: 'flex',
+
       '& > * > img': {
         display: 'block',
       },

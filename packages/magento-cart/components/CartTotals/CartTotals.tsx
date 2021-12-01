@@ -1,5 +1,5 @@
 import { Money } from '@graphcommerce/magento-store'
-import { AnimatedRow, UseStyles } from '@graphcommerce/next-ui'
+import { AnimatedRow, responsiveVal, UseStyles } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Divider, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
@@ -11,7 +11,7 @@ import { GetCartTotalsDocument } from './GetCartTotals.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     costsContainer: {
-      borderRadius: 4,
+      borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
       background: theme.palette.type === 'light' ? '#FFE10820' : theme.palette.background.paper,
       padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
     },
