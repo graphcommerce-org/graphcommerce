@@ -60,7 +60,7 @@ type SvgImageSimpleProps = Omit<ImageProps, 'fixed'> & {
   inverted?: boolean
 }
 
-const SvgImageSimple = forwardRef<HTMLImageElement, SvgImageSimpleProps>((props, ref) => {
+const SvgImageSimple = forwardRef<SVGSVGElement, SvgImageSimpleProps>((props, ref) => {
   const {
     style,
     className,

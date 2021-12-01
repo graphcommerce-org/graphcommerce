@@ -1,5 +1,6 @@
-import useLayoutContext from './useLayoutContext'
+import { useContext } from 'react'
+import layoutContext from '../context/layoutContext'
 
 export function useScrollY() {
-  return useLayoutContext().scroll
+  return useContext(layoutContext).scroll
 }

@@ -3,8 +3,8 @@ import { Divider, makeStyles, Theme } from '@material-ui/core'
 import React, { useRef } from 'react'
 import { UseStyles } from '../../Styles'
 import { classesPicker } from '../../Styles/classesPicker'
-import useLayoutContext from "../hooks/useLayoutContext"
-import { FloatingProps } from "./LayoutHeadertypes"
+import { useScrollY } from '../hooks/useScrollY'
+import { FloatingProps } from './LayoutHeadertypes'
 
 type Classes = 'bg' | 'content' | 'left' | 'center' | 'right' | 'divider'
 
@@ -145,7 +145,7 @@ export type ContentProps = FloatingProps &
 
 export default function LayoutHeaderContent(props: ContentProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const { scroll } = useLayoutContext()
+  const scroll = useScrollY()
 
   const { left, children, right, divider, floatingMd = false, floatingSm = false } = props
   const classes = useStyles(props)

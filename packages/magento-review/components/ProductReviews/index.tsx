@@ -172,7 +172,6 @@ export default function ProductReviews(props: ProductReviewsProps) {
                   <div key={`rating-${ratingBreakdown?.value}`} className={classes.rating}>
                     <span>{ratingBreakdown?.name}</span>
                     <StarRatingField
-                      iconSize={16}
                       readOnly
                       size='small'
                       defaultValue={Number(ratingBreakdown?.value ?? 0)}

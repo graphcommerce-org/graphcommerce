@@ -5,8 +5,8 @@ import { useFormMuiRegister, UseMuiFormRegister } from './useFormMuiRegister'
 import { useFormValidFields, UseFormValidReturn } from './useFormValidFields'
 
 export type UseFormGqlMutationReturn<
-  Q extends Record<string, unknown> = Record<string, unknown>,
-  V extends Record<string, unknown> = Record<string, unknown>,
+  Q extends Record<string, any> = Record<string, any>,
+  V extends Record<string, any> = Record<string, any>,
 > = UseFormGqlMethods<Q, V> &
   UseFormReturn<V> & { muiRegister: UseMuiFormRegister<V>; valid: UseFormValidReturn<V> }
 
