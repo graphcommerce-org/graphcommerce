@@ -2,9 +2,19 @@ import { UseStyles, responsiveVal } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 
 const useRichTextStyles = makeStyles(
-  ({ spacings, breakpoints, palette, typography }: Theme) => ({
-    root: { '&:empty': { display: 'none' }, '&:last-child': { marginBottom: 0 } },
-    paragraph: { marginBottom: '1em', wordBreak: 'break-word' },
+  (theme: Theme) => ({
+    root: {
+      '&:empty': {
+        display: 'none',
+      },
+      '&:last-child': {
+        marginBottom: 0,
+      },
+    },
+    paragraph: {
+      marginBottom: '1em',
+      wordBreak: 'break-word',
+    },
     h1: {
       marginTop: '0.5em',
       marginBottom: '0.5em',
@@ -29,56 +39,53 @@ const useRichTextStyles = makeStyles(
       marginBottom: responsiveVal(7, 20),
       '&:first-child': { marginTop: 0 },
     },
-    h6: { '&:first-of-type': { marginTop: 0 } },
-    asset: { width: '100%', height: 'auto' },
-    blockQuote: {
-      paddingLeft: spacings.sm,
-      margin: `${spacings.md} 0`,
+    h6: {
+      '&:first-of-type': {
+        marginTop: 0,
+      },
     },
-    ol: { marginBottom: '1em' },
-    ul: { marginBottom: '1em' },
+    asset: {
+      width: '100%',
+      height: 'auto',
+    },
+    blockQuote: {
+      paddingLeft: theme.spacings.sm,
+      margin: `${theme.spacings.md} 0`,
+    },
+    ol: {
+      marginBottom: '1em',
+    },
+    ul: {
+      marginBottom: '1em',
+    },
     strong: {},
     italic: {},
     underlined: {},
     code: {
       width: 'fit-content',
       maxWidth: '100%',
-      background: '#d8d8d8',
       padding: 5,
       overflow: 'scroll',
     },
-    aspectContainer: {
-      position: 'relative',
-      paddingTop: 'calc(100% / 16 * 9)',
-      marginBottom: spacings.md,
-      '& > *': {
-        width: '100%',
-        height: '100%',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-      },
-    },
     iframe: {},
+    aspectContainer: {},
     table: {
       display: 'table',
       width: '100%',
       borderSpacing: '2px',
       borderCollapse: 'collapse',
-      marginTop: spacings.md,
-      marginBottom: spacings.sm,
-
+      marginTop: theme.spacings.md,
+      marginBottom: theme.spacings.sm,
       '& thead, tbody': {
         '& td': {
           padding: '10px 20px',
         },
       },
-
       '& thead': {
         '& tr': {
           '& td': {
             '& p': {
-              fontWeight: typography.fontWeightBold,
+              fontWeight: theme.typography.fontWeightBold,
             },
           },
         },
@@ -87,23 +94,22 @@ const useRichTextStyles = makeStyles(
         display: 'table-row-group',
         verticalAlign: 'center',
         borderColor: 'inherit',
-
         '& tr': {
           '&:nth-child(odd)': {
-            background: palette.background.paper,
+            background: theme.palette.background.paper,
           },
         },
-
         '& td': {
-          [breakpoints.up('sm')]: {
+          [theme.breakpoints.up('sm')]: {
             minWidth: '150px',
           },
-
           '& p': {},
         },
       },
     },
-    link: { wordBreak: 'break-word' },
+    link: {
+      wordBreak: 'break-word',
+    },
   }),
   { name: 'RichText' },
 )

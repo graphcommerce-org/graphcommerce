@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.138.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.137.2...@graphcommerce/magento-graphcms@2.138.0) (2021-12-01)
+
+
+### Bug Fixes
+
+* comma ([a8c2db8](https://github.com/ho-nl/m2-pwa/commit/a8c2db887c9da5bb9a81bc97003f64ef097fb4d4))
+* default borderRadius ([f816d7a](https://github.com/ho-nl/m2-pwa/commit/f816d7a4d4a7c76254b21bf129652d8a7c42ca4f))
+* fontWeights ([7172527](https://github.com/ho-nl/m2-pwa/commit/71725272fe9f0b854d918ae357a668f641bfe8e5))
+* ios zoom bug when using search. Fontsize should always be > 16 ([22abcd4](https://github.com/ho-nl/m2-pwa/commit/22abcd499b152448b3c38f84325debe07d2b9a68))
+* remove Tagmanager, add Recaptcha back ([db1518d](https://github.com/ho-nl/m2-pwa/commit/db1518d8a97ffd2f1f826b85f1162036812762f2))
+* slightly darker bg ([bd210b0](https://github.com/ho-nl/m2-pwa/commit/bd210b0f4a89149c2e912d4e4ce96f3500c22be6))
+
+
+### Features
+
+* add title to login form ([563157b](https://github.com/ho-nl/m2-pwa/commit/563157bc7059d0b10d8e93c71b918b816ca45943))
+* borderRadius based on theme.shape.borderRadius ([7c34937](https://github.com/ho-nl/m2-pwa/commit/7c349376cd41a131c628324c299106fdb7e60484))
+* breakpointVal ([0294503](https://github.com/ho-nl/m2-pwa/commit/029450343051cf6995babad9f9b42c7e6ad1094e))
+* closeable menu ([5f94bb5](https://github.com/ho-nl/m2-pwa/commit/5f94bb5644ce1058ec705a8acced71ba2ba95e04))
+* icon for 404 ([ff32915](https://github.com/ho-nl/m2-pwa/commit/ff3291578719cb7105d1045d68a78952b27da7fe))
+* introduce borderRadius ([183afbc](https://github.com/ho-nl/m2-pwa/commit/183afbc8ee269f6694c372b06afdf41302f86c09))
+* responsiveTyp ([6108b61](https://github.com/ho-nl/m2-pwa/commit/6108b6148e76ddbbe2db1614f10aaf88423db5ca))
+* variable font weights ([bfd8142](https://github.com/ho-nl/m2-pwa/commit/bfd8142b96742efd1208556e3c48de382d8d8ceb))
+
+
+
+
+
+## [2.137.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.137.1...@graphcommerce/magento-graphcms@2.137.2) (2021-11-27)
+
+
+### Bug Fixes
+
+* correct footer button color ([8cfe444](https://github.com/ho-nl/m2-pwa/commit/8cfe44434a8c37075470927b176c7dabcb9e06ab))
+* nice shadow palette ([8aee834](https://github.com/ho-nl/m2-pwa/commit/8aee8341045320389d794ec127a83c8861a17b2c))
+* reset MuiButton shadow to default ([c0d2ea7](https://github.com/ho-nl/m2-pwa/commit/c0d2ea7601cb16f3443e978b4a0076330317768a))
+* shadows ([bddd006](https://github.com/ho-nl/m2-pwa/commit/bddd0063f520f62ae5f7d1323cdf6a79ec341ac2))
+* shadows ([877f431](https://github.com/ho-nl/m2-pwa/commit/877f4312a1fd4e2fed7375ea7ef1208549c7d892))
+* softer shadows ([7b6664f](https://github.com/ho-nl/m2-pwa/commit/7b6664f8b16ada8f65113bd1f990735b91356650))
+
+
+
+
+
 # [2.137.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.136.0...@graphcommerce/magento-graphcms@2.137.0) (2021-11-22)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-category",
-  "version": "3.4.3",
+  "version": "3.5.1",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -24,9 +24,9 @@
     "@graphcommerce/framer-scroller": "^1.0.4",
     "@graphcommerce/graphql": "^2.105.5",
     "@graphcommerce/image": "^2.105.4",
-    "@graphcommerce/magento-product": "^3.6.3",
-    "@graphcommerce/magento-store": "^3.3.3",
-    "@graphcommerce/next-ui": "^3.18.1",
+    "@graphcommerce/magento-product": "^3.7.1",
+    "@graphcommerce/magento-store": "^3.3.6",
+    "@graphcommerce/next-ui": "^3.19.1",
     "@lingui/macro": "^3.12.1",
     "@material-ui/core": "^4.12.3",
     "next": "^12.0.3",

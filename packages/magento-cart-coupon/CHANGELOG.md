@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.109.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-coupon@2.108.4...@graphcommerce/magento-cart-coupon@2.109.0) (2021-12-01)
+
+
+### Bug Fixes
+
+* borderRadius ([ea38c8a](https://github.com/ho-nl/m2-pwa/commit/ea38c8a0d55e3cb8d975082952ad174721fab888))
+
+
+### Features
+
+* borderRadius based on theme.shape.borderRadius ([7c34937](https://github.com/ho-nl/m2-pwa/commit/7c349376cd41a131c628324c299106fdb7e60484))
+
+
+
+
+
 # [2.108.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-coupon@2.107.22...@graphcommerce/magento-cart-coupon@2.108.0) (2021-11-12)
 
 

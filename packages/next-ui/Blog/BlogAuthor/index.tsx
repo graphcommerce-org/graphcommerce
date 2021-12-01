@@ -1,5 +1,6 @@
 import { Avatar, Chip, makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
+import { responsiveVal } from '../..'
 import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
@@ -12,20 +13,23 @@ const useStyles = makeStyles(
       marginBottom: theme.spacings.md,
     },
     authorChip: {
-      height: 66,
+      height: responsiveVal(44, 66),
       '& .MuiChip-label': {
-        paddingLeft: 14,
-        paddingRight: 14,
+        paddingLeft: responsiveVal(10, 14),
+        paddingRight: responsiveVal(14, 18),
       },
       '& .MuiAvatar-root': {
-        width: 44,
-        height: 44,
+        width: responsiveVal(28, 44),
+        height: responsiveVal(28, 44),
       },
     },
     date: {
+      lineHeight: 1.4,
       color: theme.palette.text.disabled,
     },
-    author: {},
+    author: {
+      lineHeight: 1.4,
+    },
   }),
   { name: 'BlogAuthor' },
 )

@@ -11,14 +11,16 @@ const useStyles = makeStyles(
       background: theme.palette.background.paper,
       justifyItems: 'center',
       columnGap: `${theme.spacings.lg}`,
-      padding: `${theme.spacings.lg} 0`,
+      paddingTop: theme.spacings.lg,
+      paddingBottom: theme.spacings.lg,
       justifySelf: 'start',
+      borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
       [theme.breakpoints.up('md')]: {
         padding: 0,
         background: 'none',
         justifySelf: 'center',
         gridTemplateColumns: '1fr 1fr',
-        columnGap: `${theme.spacings.md}`,
+        columnGap: `${theme.spacings.lg}`,
       },
     },
     asset: {
@@ -29,6 +31,7 @@ const useStyles = makeStyles(
         width: responsiveVal(200, 900),
         height: 'auto',
         objectFit: 'cover',
+        borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
       },
       [theme.breakpoints.up('lg')]: {
         width: responsiveVal(250, 900),
@@ -92,7 +95,7 @@ export default function SpecialBanner(props: SpecialBannerProps) {
 
   return (
     <Row maxWidth={false} {...containerProps} classes={{ root }}>
-      <div className={classes.wrapper}>
+      <Row maxWidth={false} className={classes.wrapper} disableGutters>
         <div className={classes.asset}>{asset}</div>
         <div className={classes.copy}>
           {topic && (
@@ -103,7 +106,7 @@ export default function SpecialBanner(props: SpecialBannerProps) {
           <div className={classes.textContainer}>{children}</div>
           <div className={classes.links}>{pageLinks}</div>
         </div>
-      </div>
+      </Row>
     </Row>
   )
 }

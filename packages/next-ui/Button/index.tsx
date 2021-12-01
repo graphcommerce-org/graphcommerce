@@ -64,7 +64,10 @@ const useStyles = makeStyles<
         ...theme.typography.body2,
         fontWeight: 400,
         borderRadius: '99em',
-        boxShadow: theme.shadows[1],
+        boxShadow: theme.shadows[6],
+        '&:hover': {
+          background: theme.palette.secondary.dark,
+        },
       },
     },
     pillPrimary: {

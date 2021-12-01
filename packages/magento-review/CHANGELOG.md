@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.111.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-review@2.110.2...@graphcommerce/magento-review@2.111.0) (2021-12-01)
+
+
+### Features
+
+* borderRadius based on theme.shape.borderRadius ([7c34937](https://github.com/ho-nl/m2-pwa/commit/7c349376cd41a131c628324c299106fdb7e60484))
+
+
+
+
+
 # [2.110.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-review@2.109.1...@graphcommerce/magento-review@2.110.0) (2021-11-22)
 
 

@@ -9,9 +9,9 @@ import {
 import Link from 'next/link'
 import React from 'react'
 import { LayoutFull, LayoutFullProps } from '../components/Layout/LayoutFull'
-import PageLayout, { LayoutProps } from '../components/Layout/PageLayout'
-import sanitizeDirectoryTree from '../components/SidebarMenu/sanitizeDirectoryTree'
+import { sanitizeDirectoryTree } from '../components/SidebarMenu/sanitizeDirectoryTree'
 import { getDirectoryTree } from '../util/files'
+import PageLayout, { LayoutProps } from '../components/Layout/PageLayout'
 
 type PageProps = LayoutProps
 
@@ -27,11 +27,10 @@ function IndexPage(props: PageProps) {
         <p>
           Setup your <i>Progressive Web App</i> (PWA) within 5 minutes using GraphCommerce.
         </p>
-        <Link href='/read/1-getting-started/apollo-client-local-state' passHref>
+        <Link href='/read/1-1/getting-started/introduction' passHref>
           <Button
             color='secondary'
             variant='text'
-            size='small'
             endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
           >
             Start developing now

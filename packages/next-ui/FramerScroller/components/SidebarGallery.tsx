@@ -108,7 +108,7 @@ const useStyles = makeStyles(
     sidebar: {
       boxSizing: 'border-box',
       width: '100%',
-      padding: `${theme.spacings.md} ${theme.page.horizontal}`,
+      padding: `${theme.spacings.lg} ${theme.page.horizontal}`,
       [theme.breakpoints.up('md')]: {
         paddingLeft: theme.spacings.lg,
       },

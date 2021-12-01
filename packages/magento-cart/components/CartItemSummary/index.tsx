@@ -32,8 +32,8 @@ const useStyles = makeStyles(
     image: {
       borderRadius: '50%',
       marginRight: theme.spacings.xs,
-      border: `5px ${theme.palette.common.white} solid`,
-      boxShadow: `0px 0px 2px ${theme.palette.grey[700]}`,
+      border: `1px solid ${theme.palette.divider}`,
+      padding: responsiveVal(5, 10),
       width: `${responsiveVal(48, 96)} !important`,
       height: `${responsiveVal(48, 96)} !important`,
       display: 'block',

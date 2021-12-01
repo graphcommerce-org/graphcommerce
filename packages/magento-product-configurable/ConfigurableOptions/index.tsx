@@ -27,10 +27,13 @@ export const useStyles = makeStyles(
     toggleButtonGroup: {
       display: 'grid',
       gridTemplateColumns: 'repeat(2, 1fr)',
-      gap: theme.spacings.xxs,
+      gap: theme.spacings.xs,
     },
     button: {
       minHeight: theme.spacings.lg,
+    },
+    helperText: {
+      position: 'absolute',
     },
   }),
   { name: 'ConfigurableOptions' },
@@ -126,7 +129,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                   })}
                 </ToggleButtonGroup>
                 {error && (
-                  <FormHelperText error {...FormHelperTextProps}>
+                  <FormHelperText error {...FormHelperTextProps} className={classes.helperText}>
                     {`${option.label} is ${errorHelperText?.type}`}
                   </FormHelperText>
                 )}

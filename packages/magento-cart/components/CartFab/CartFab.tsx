@@ -26,6 +26,18 @@ const useStyles = makeStyles(
         height: responsiveVal(42, 56),
       },
     },
+    fabWrapper: {
+      position: 'relative',
+    },
+    shadow: {
+      pointerEvents: 'none',
+      borderRadius: '99em',
+      position: 'absolute',
+      height: '100%',
+      width: '100%',
+      boxShadow: theme.shadows[6],
+      top: 0,
+    },
   }),
   {
     name: 'CartFab',
@@ -42,7 +54,7 @@ type CartFabContentProps = CartFabProps & CartTotalQuantityFragment
 function CartFabContent(props: CartFabContentProps) {
   const { total_quantity, icon, ...fabProps } = props
   const cartIcon = icon ?? <SvgImageSimple src={iconShoppingBag} loading='eager' size='large' />
-  const { boxShadow, backgroundColor } = useFixedFabAnimation()
+  const { opacity, backgroundColor } = useFixedFabAnimation()
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const classes = useStyles(props)
@@ -50,11 +62,11 @@ function CartFabContent(props: CartFabContentProps) {
   return (
     <m.div
       style={{
-        boxShadow: isMobile ? undefined : boxShadow,
         backgroundColor: isMobile ? undefined : backgroundColor,
         width: 'inherit',
         borderRadius: 'inherit',
       }}
+      className={classes.fabWrapper}
     >
       <PageLink href='/cart' passHref>
         <Fab
@@ -73,6 +85,12 @@ function CartFabContent(props: CartFabContentProps) {
           )}
         </Fab>
       </PageLink>
+      <m.div
+        className={classes.shadow}
+        style={{
+          opacity: isMobile ? undefined : opacity,
+        }}
+      ></m.div>
     </m.div>
   )
 }

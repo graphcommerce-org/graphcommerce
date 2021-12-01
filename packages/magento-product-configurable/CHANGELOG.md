@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product-configurable@3.5.4...@graphcommerce/magento-product-configurable@3.6.0) (2021-12-01)
+
+
+### Bug Fixes
+
+* color swatch styling ([8cc1e2c](https://github.com/ho-nl/m2-pwa/commit/8cc1e2c1dcf58227d50cebca8794e3ca96c4c469))
+* prevent layout shift helperText ([8ed0ad9](https://github.com/ho-nl/m2-pwa/commit/8ed0ad9589b742e456decb9b194091caf60e5db9))
+
+
+### Features
+
+* introduce borderRadius ([183afbc](https://github.com/ho-nl/m2-pwa/commit/183afbc8ee269f6694c372b06afdf41302f86c09))
+
+
+
+
+
 # [3.5.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product-configurable@3.4.7...@graphcommerce/magento-product-configurable@3.5.0) (2021-11-12)
 
 

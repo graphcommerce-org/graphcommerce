@@ -46,7 +46,7 @@ const useStyles = makeStyles(
       [theme.breakpoints.down('xs')]: {
         gridAutoFlow: 'row',
         textAlign: 'center',
-        gap: 4,
+        gap: 8,
       },
     },
     support: {

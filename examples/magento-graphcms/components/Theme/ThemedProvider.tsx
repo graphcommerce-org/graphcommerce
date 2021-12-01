@@ -1,10 +1,21 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
 import { responsiveVal } from '@graphcommerce/next-ui'
+import { breakpointVal } from '@graphcommerce/next-ui'
 import { createTheme, CssBaseline, Theme, ThemeProvider, lighten, alpha } from '@material-ui/core'
 import { PaletteOptions } from '@material-ui/core/styles/createPalette'
 import { Overrides } from '@material-ui/core/styles/overrides'
+import React from 'react'
 import shadows from './shadows'
+
+const useTheme: 'light' | 'dark' = 'light'
+const breakpoints = {
+  xs: 0,
+  sm: 600,
+  md: 960,
+  lg: 1536,
+  xl: 1920,
+}
 
 const lightPalette: PaletteOptions = {
   type: 'light',
@@ -16,12 +27,12 @@ const lightPalette: PaletteOptions = {
   secondary: {
     main: '#006BFF',
     light: '#D1E4FF',
-    contrastText: '#FFFFFF',
+    contrastText: '#ffffff',
   },
   background: {
-    default: '#FFFFFF',
-    paper: '#FFFFFF',
-    image: '#F8F8F8',
+    default: '#f9f9f9',
+    paper: '#ffffff',
+    image: '#ffffff',
   },
   divider: '#00000015',
   success: {
@@ -52,7 +63,7 @@ const darkPalette: PaletteOptions = {
   background: {
     default: '#001727',
     paper: '#15293B',
-    image: '#F8F8F8',
+    image: '#ffffff',
   },
   divider: '#ffffff30',
   success: {
@@ -73,16 +84,12 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
   createTheme({
     palette,
     breakpoints: {
-      values: {
-        xs: 0,
-        sm: 600,
-        md: 960,
-        lg: 1536,
-        xl: 1920,
-      },
+      values: breakpoints,
     },
     shadows,
-
+    shape: {
+      borderRadius: 4,
+    },
     typography: {
       fontFamily:
         '-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji',
@@ -121,60 +128,67 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
        * Since we aren't using the h4-h6 variants they can be repurposed for different usecases:
        */
       h1: {
-        fontSize: responsiveVal(28, 64),
+        ...breakpointVal('fontSize', 28, 64, breakpoints),
         fontWeight: 700,
+        fontVariationSettings: "'wght' 660",
         lineHeight: 1.22,
       },
       h2: {
-        fontSize: responsiveVal(25, 40),
+        ...breakpointVal('fontSize', 25, 40, breakpoints),
         fontWeight: 700,
+        fontVariationSettings: "'wght' 630",
         lineHeight: 1.35,
       },
       h3: {
-        fontSize: responsiveVal(22, 30),
+        ...breakpointVal('fontSize', 22, 30, breakpoints),
         fontWeight: 700,
+        fontVariationSettings: "'wght' 680",
         lineHeight: 1.55,
       },
       h4: {
+        ...breakpointVal('fontSize', 18, 26, breakpoints),
         fontWeight: 500,
-        fontSize: responsiveVal(18, 26),
+        fontVariationSettings: "'wght' 520",
         lineHeight: 1.55,
       },
       h5: {
+        ...breakpointVal('fontSize', 17, 20, breakpoints),
         fontWeight: 700,
-        fontSize: responsiveVal(17, 20),
+        fontVariationSettings: "'wght' 680",
         lineHeight: 1.55,
       },
       h6: {
-        fontSize: responsiveVal(17, 20),
+        ...breakpointVal('fontSize', 17, 20, breakpoints),
         fontWeight: 550,
+        fontVariationSettings: "'wght' 530",
         lineHeight: 1.8,
       },
       subtitle1: {
-        fontSize: responsiveVal(16, 19, 1920),
+        ...breakpointVal('fontSize', 16, 19, breakpoints),
         fontWeight: 400,
         lineHeight: 1.7,
       },
       fontWeightBold: 600,
       body1: {
-        fontSize: responsiveVal(16, 18, 1920),
+        ...breakpointVal('fontSize', 16, 18, breakpoints),
         lineHeight: 1.7,
       },
       subtitle2: {
-        fontSize: responsiveVal(14, 16),
+        ...breakpointVal('fontSize', 14, 16, breakpoints),
         fontWeight: 600,
         lineHeight: 1.7,
       },
       body2: {
-        fontSize: responsiveVal(13, 15),
+        ...breakpointVal('fontSize', 13, 15, breakpoints),
         lineHeight: 1.7,
       },
+      // https://web.dev/font-size/#how-the-lighthouse-font-size-audit-fails
       caption: {
-        fontSize: responsiveVal(12, 13),
+        ...breakpointVal('fontSize', 12, 13, breakpoints),
       },
       button: {},
       overline: {
-        fontSize: responsiveVal(12, 14),
+        ...breakpointVal('fontSize', 12, 14, breakpoints),
         fontWeight: 500,
         letterSpacing: 1,
         lineHeight: 1.2,
@@ -213,8 +227,12 @@ const createOverrides = (theme: Theme): Overrides => ({
       '#__next': {
         position: 'relative',
       },
+      img: {
+        filter: 'brightness(1.03)',
+      },
     },
   },
+
   MuiContainer: {
     root: {
       paddingLeft: theme.page.horizontal,
@@ -225,6 +243,7 @@ const createOverrides = (theme: Theme): Overrides => ({
       },
     },
   },
+
   MuiButton: {
     root: {
       textTransform: 'none',
@@ -246,13 +265,11 @@ const createOverrides = (theme: Theme): Overrides => ({
     contained: {
       backgroundColor: theme.palette.background.paper,
       color: theme.palette.text.primary,
-      boxShadow: theme.shadows[1],
+
       '&:hover': {
-        boxShadow: theme.shadows[1],
         background: undefined,
       },
       '&:focus': {
-        boxShadow: theme.shadows[1],
         background: undefined,
       },
     },
@@ -265,12 +282,13 @@ const createOverrides = (theme: Theme): Overrides => ({
       color: theme.palette.secondary.contrastText,
     },
     outlined: {
-      borderRadius: 0,
+      borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
     },
     text: {
       padding: `${responsiveVal(8, 10)} ${responsiveVal(12, 22)}`,
     },
   },
+
   MuiFab: {
     root: {
       backgroundColor: theme.palette.background.paper,
@@ -295,6 +313,7 @@ const createOverrides = (theme: Theme): Overrides => ({
       textTransform: 'none',
     },
   },
+
   MuiInputLabel: {
     root: {
       '&$focused:not($error)': {
@@ -302,18 +321,26 @@ const createOverrides = (theme: Theme): Overrides => ({
       },
     },
   },
+
   MuiOutlinedInput: {
     root: {
+      borderRadius: responsiveVal(theme.shape.borderRadius * 1.5, theme.shape.borderRadius * 2),
       '&$focused $notchedOutline': {
-        borderColor: theme.palette.secondary.main,
+        borderColor: theme.palette.divider,
+        borderWidth: 1,
       },
     },
+    notchedOutline: {
+      borderColor: theme.palette.divider,
+    },
   },
+
   MuiListItemIcon: {
     root: {
       color: theme.palette.text.primary,
     },
   },
+
   MuiChip: {
     root: {
       boxShadow: 'unset !important',
@@ -347,6 +374,7 @@ const createOverrides = (theme: Theme): Overrides => ({
       color: theme.palette.primary.main,
     },
   },
+
   MuiCheckbox: {
     colorPrimary: {
       color: theme.palette.text.disabled,
@@ -361,6 +389,7 @@ const createOverrides = (theme: Theme): Overrides => ({
       },
     },
   },
+
   MuiSwitch: {
     track: {
       '$colorPrimary + &': {
@@ -377,6 +406,7 @@ const createOverrides = (theme: Theme): Overrides => ({
       backgroundColor: '#fff',
     },
   },
+
   MuiAvatar: {
     colorDefault: {
       backgroundColor: theme.palette.text.disabled,

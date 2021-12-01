@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-email@2.106.4...@graphcommerce/magento-cart-email@2.107.0) (2021-12-01)
+
+
+### Features
+
+* add title to login form ([563157b](https://github.com/ho-nl/m2-pwa/commit/563157bc7059d0b10d8e93c71b918b816ca45943))
+
+
+
+
+
 # [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-email@2.105.31...@graphcommerce/magento-cart-email@2.106.0) (2021-11-12)
 
 

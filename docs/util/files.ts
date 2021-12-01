@@ -32,7 +32,11 @@ export const getDirectoryTree = (
   filteredFilenames.forEach((dirName: string) => {
     const currentDir = path.join(process.cwd(), `${directory}/${dirName}`)
     const filenames = fs.readdirSync(currentDir)
-    const dirContents: [string, string[]] = [dirName, filenames]
+
+    const dirContents: [string, string[]] = [
+      dirName,
+      filenames.sort((a, b) => a.localeCompare(b, 'nl', { numeric: true })),
+    ]
     tree.push(dirContents)
   })
 

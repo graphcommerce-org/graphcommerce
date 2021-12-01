@@ -16,9 +16,7 @@ const useStyles = makeStyles(
         marginRight: 0,
       },
     },
-    inputRoot: {
-      ...theme.typography.body2,
-    },
+    inputRoot: {},
     fullWidth: {
       width: '100%',
       marginRight: 0,
