@@ -2,9 +2,9 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Image } from '@graphcommerce/image'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, MetaRobots, PageMeta, Title } from '@graphcommerce/next-ui'
-import { ButtonBase, Container, makeStyles } from '@material-ui/core'
+import { ButtonBase, Container } from '@material-ui/core'
 import cheerio from 'cheerio'
-import parseHtml, { domToReact, htmlToDOM } from 'html-react-parser'
+import parseHtml, { domToReact } from 'html-react-parser'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
@@ -21,18 +21,8 @@ type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
-const useStyles = makeStyles(
-  () => ({
-    buttonBase: {
-      display: 'block',
-    },
-  }),
-  { name: 'StoryPage' },
-)
-
 export default function StoryPage(props: Props) {
   const { pages, bodyContent, css, storyList } = props
-  const classes = useStyles(props)
   const page = pages?.[0]
   const metaRobots = page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]
 
@@ -84,9 +74,9 @@ export default function StoryPage(props: Props) {
         <div className={attr.class ?? attr.class}>
           <PageLink key={attr.href} href={attr.href} passHref>
             <ButtonBase
-              className={classes.buttonBase}
               component='a'
               aria-label={attr.class ?? attr.class}
+              style={{ display: 'block' }}
             >
               {!!node.children && !!node.children.length && domToReact(node.children, { replace })}
             </ButtonBase>
@@ -109,9 +99,8 @@ export default function StoryPage(props: Props) {
 
       <Container maxWidth={false} disableGutters>
         <StoryList storyList={storyList} current={page.url} />
-        <div className={classes.root}>
+        <div>
           <style dangerouslySetInnerHTML={{ __html: `${css}` }}></style>
-
           {parseHtml(bodyContent as string, { replace })}
         </div>
       </Container>
