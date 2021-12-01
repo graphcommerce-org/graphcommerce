@@ -13,7 +13,9 @@ export type PageRouterContext = {
 
 export const pageRouterContext = createContext(undefined as unknown as PageRouterContext)
 
-export function createRouterProxy(router: NextRouter): RouterProxy {
+type OverrideProps = Partial<Pick<NextRouter, 'asPath' | 'pathname' | 'query' | 'locale'>>
+
+export function createRouterProxy(router: NextRouter, override?: OverrideProps): RouterProxy {
   function go(delta: number) {
     if (delta >= 0) {
       console.error(`Called .go(${delta}), only negative numbers are allowed. Redirecting to home`)
@@ -35,6 +37,7 @@ export function createRouterProxy(router: NextRouter): RouterProxy {
     query: router.query,
     locale: router.locale,
     go,
+    ...override,
   }
 
   return new Proxy<RouterProxy>(router as RouterProxy, {

@@ -136,6 +136,6 @@ export type PageItem = {
   children: React.ReactNode
   historyIdx: number
   sharedKey: string
-  sharedPageProps?: Record<string, unknown>
+  actualPageProps?: Record<string, unknown>
   up?: UpPage
 } & Omit<PageOptions<Record<string, unknown>>, 'sharedKey'>
