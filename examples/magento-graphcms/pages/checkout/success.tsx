@@ -1,4 +1,4 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { CartItemSummary, CartSummary, InlineAccount } from '@graphcommerce/magento-cart'
 import { SignupNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -16,7 +16,6 @@ import {
 import { t, Trans } from '@lingui/macro'
 import { Box, Container, NoSsr } from '@material-ui/core'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import React from 'react'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import { LayoutFullProps, LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
@@ -26,7 +25,7 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
 
 function OrderSuccessPage() {
-  const hasCartId = !!useRouter().query.cartId
+  const hasCartId = !!usePageRouter().query.cartId
 
   return (
     <>

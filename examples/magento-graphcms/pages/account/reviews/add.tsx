@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { ApolloCustomerErrorFullPage, CustomerDocument } from '@graphcommerce/magento-customer'
 import {
   ProductReviewProductNameDocument,
@@ -16,7 +16,6 @@ import {
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container } from '@material-ui/core'
-import { useRouter } from 'next/router'
 import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
@@ -24,7 +23,7 @@ import apolloClient from '../../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountReviewsAddPage() {
-  const router = useRouter()
+  const router = usePageRouter()
   const { data: customerData, loading: customerLoading, error } = useQuery(CustomerDocument)
   const { sku } = router.query
   const { data: productData, loading: productLoading } = useQuery(

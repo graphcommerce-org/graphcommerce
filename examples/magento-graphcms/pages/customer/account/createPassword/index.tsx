@@ -1,10 +1,10 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { ResetPasswordForm } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Box, Container, Link, NoSsr } from '@material-ui/core'
-import router, { useRouter } from 'next/router'
+import router from 'next/router'
 import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../../lib/apolloClient'
@@ -12,7 +12,7 @@ import apolloClient from '../../../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function CustomerAccountCreatePasswordPage() {
-  const { token, success } = useRouter().query
+  const { token, success } = usePageRouter().query
 
   if (typeof token !== 'undefined' && success === 'undefined') return null
 

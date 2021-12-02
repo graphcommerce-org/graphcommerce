@@ -1,3 +1,4 @@
+import { usePageRouter } from '@graphcommerce/framer-next-pages'
 import { CartFab } from '@graphcommerce/magento-cart'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { SearchButton } from '@graphcommerce/magento-search'
@@ -16,7 +17,6 @@ import {
 import { t, Trans } from '@lingui/macro'
 import { Fab, useTheme } from '@material-ui/core'
 import PageLink from 'next/link'
-import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'
 import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
 import { Footer } from './Footer'
@@ -54,7 +54,7 @@ export function LayoutFull(props: LayoutFullProps) {
     ],
   }
 
-  const router = useRouter()
+  const router = usePageRouter()
   const onSearchStart = useCallback(() => router.push('/search'), [router])
 
   return (

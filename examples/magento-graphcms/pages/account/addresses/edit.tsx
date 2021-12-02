@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { ApolloCustomerErrorFullPage, EditAddressForm } from '@graphcommerce/magento-customer'
 import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -14,7 +14,6 @@ import {
 import { t, Trans } from '@lingui/macro'
 import { Box, Container, NoSsr } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
-import { useRouter } from 'next/router'
 import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
@@ -22,7 +21,7 @@ import apolloClient from '../../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function EditAddressPage() {
-  const router = useRouter()
+  const router = usePageRouter()
   const { addressId } = router.query
 
   const { data, loading, error } = useQuery(AccountDashboardAddressesDocument, {

@@ -1,9 +1,9 @@
+import { usePageRouter } from '@graphcommerce/framer-next-pages'
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { Link, LinkProps as MuiLinkProps, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
-import { useRouter } from 'next/router'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
@@ -92,7 +92,7 @@ export type MenuTabsProps = MenuProps &
 export default function DesktopNavBar(props: MenuTabsProps) {
   const { menu, LinkProps, iconScrollerBtnLeft, iconScrollerBtnRight } = props
   const classes = useStyles(props)
-  const router = useRouter()
+  const router = usePageRouter()
 
   return (
     <ScrollerProvider scrollSnapAlign='none'>

@@ -1,4 +1,4 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { ApolloCartErrorAlert, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
 import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { EmailForm } from '@graphcommerce/magento-cart-email'
@@ -34,7 +34,7 @@ function ShippingPage() {
     returnPartialData: true,
   })
   const cartExists = typeof cartData?.cart !== 'undefined'
-  const router = useRouter()
+  const router = usePageRouter()
 
   const onSubmitSuccessful = () => router.push('/checkout/payment')
 
