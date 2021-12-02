@@ -1,8 +1,9 @@
 import { AnimatePresence } from 'framer-motion'
+import { requestIdleCallback, cancelIdleCallback } from 'next/dist/client/request-idle-callback'
 import { PrivateRouteInfo } from 'next/dist/shared/lib/router/router'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import type { NextRouter, Router } from 'next/router'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { pageContext } from '../context/pageContext'
 import { createRouterProxy, pageRouterContext } from '../context/pageRouterContext'
 import type { PageComponent, PageItem, UpPage } from '../types'
@@ -26,7 +27,7 @@ export default function FramerNextPages(props: PagesProps) {
   const items = useRef<PageItem[]>([])
   const idx = Number(global.window?.history.state?.idx ?? 0)
   const prevHistory = useRef<number>(-1)
-  const [fb, setFallback] = useState<PrivateRouteInfo | undefined>()
+  const [fb, setFallback] = useState<PageItem>()
   const direction = idx > prevHistory.current ? 1 : -1
   prevHistory.current = idx
 
@@ -60,39 +61,47 @@ export default function FramerNextPages(props: PagesProps) {
   /** We need to render back to the last item that isn't an overlay. */
   const plainIdx = findPlainIdx(items.current)
 
-  /** If we don't have a plain component we add a fallback to the beginning of an item */
-  if (plainIdx === -1 && typeof window !== 'undefined') {
-    if (!fb) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      ;(async () => {
-        try {
-          const info = await (router as Router).getRouteInfo('/', '/', {}, '/', '/', {
-            shallow: false,
-          })
-          setFallback(info)
-        } catch (e) {
-          // Loading failed, we do nothing.
-        }
-      })()
-    } else {
+  const shouldLoadFb = plainIdx === -1 && typeof window !== 'undefined' && !fb
+
+  useEffect(() => {
+    if (!shouldLoadFb) return () => {}
+
+    let cancel: number
+    async function loadFallback() {
+      const info = await (router as Router).getRouteInfo('/', '/', {}, '/', '/', {
+        shallow: false,
+      })
       const proxy = createRouterProxy(router, { asPath: '/', pathname: '/', query: {} })
-
-      const Fallback = fb.Component as PageComponent
-
+      const Fallback = info.Component as PageComponent
       const fbItem: PageItem = {
-        children: <Fallback {...(fb.props?.pageProps as Record<string, unknown>)} />,
+        children: <Fallback {...(info.props?.pageProps as Record<string, unknown>)} />,
         currentRouter: proxy,
         Layout: Fallback.pageOptions?.Layout,
         layoutProps: Fallback.pageOptions?.layoutProps,
-        actualPageProps: fb.props?.pageProps,
+        actualPageProps: info.props?.pageProps,
         sharedKey: Fallback.pageOptions?.sharedKey?.(proxy) ?? proxy.pathname,
         overlayGroup: Fallback.pageOptions?.overlayGroup,
         historyIdx: -1,
-        up: Fallback.pageOptions?.up ?? fb.props?.pageProps?.up,
+        up: Fallback.pageOptions?.up ?? info.props?.pageProps?.up,
       }
-      renderItems = [fbItem, ...renderItems]
+
+      cancel = requestIdleCallback(() => setFallback(fbItem))
     }
-  }
+
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      loadFallback()
+    } catch (e) {
+      // Loading failed, we do nothing.
+    }
+
+    return () => {
+      if (cancel) cancelIdleCallback(cancel)
+    }
+  }, [shouldLoadFb, router])
+
+  // Add the fallback if it is available
+  if (fb && plainIdx === -1) renderItems = [fb, ...renderItems]
 
   if (plainIdx > -1) renderItems = items.current.slice(plainIdx)
 
