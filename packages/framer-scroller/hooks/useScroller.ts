@@ -19,7 +19,6 @@ import { useVelocitySnapTo } from './useVelocitySnapTo'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      '-webkit-overflow-scrolling': 'touch',
       '& *': {
         userSelect: 'none',
         userDrag: 'none',

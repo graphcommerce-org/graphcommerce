@@ -1,4 +1,5 @@
 import { useClientSize } from '@graphcommerce/framer-utils'
+import { makeStyles } from '@material-ui/core'
 import { m, useIsPresent } from 'framer-motion'
 import React from 'react'
 import type { PageItem } from '../types'
@@ -14,10 +15,22 @@ export function scrollPos(idx: number): { x: number; y: number } {
   return scroll ? JSON.parse(scroll) : { x: 0, y: 0 }
 }
 
+const useStyles = makeStyles({
+  page: {
+    left: 0,
+    right: 0,
+    minHeight: '100vh',
+    '@supports (-webkit-touch-callout: none)': {
+      height: '-webkit-fill-available',
+    },
+  },
+})
+
 export default function Page(props: PageProps) {
   const { active, historyIdx, children } = props
   const isPresent = useIsPresent()
   const { y } = useClientSize({ y: '100vh' })
+  const classes = useStyles()
 
   /** The active Page doesn't get any special treatment */
   let top = 0
@@ -36,7 +49,7 @@ export default function Page(props: PageProps) {
   const zIndex = active ? 1 : undefined
 
   return (
-    <m.div style={{ position, top, left: 0, right: 0, pointerEvents, minHeight: y, zIndex }}>
+    <m.div className={classes.page} style={{ position, top, pointerEvents, zIndex }}>
       {children}
     </m.div>
   )
