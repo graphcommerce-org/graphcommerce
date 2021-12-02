@@ -6,11 +6,12 @@ const useStyles = makeStyles(
     actions: {
       display: 'none',
       [theme.breakpoints.up('md')]: {
+        display: 'grid',
+        pointerEvents: 'none !important',
         '& > *': {
           pointerEvents: 'all',
         },
         alignItems: 'center',
-        display: 'grid',
         gridAutoFlow: 'column',
         columnGap: 6,
       },

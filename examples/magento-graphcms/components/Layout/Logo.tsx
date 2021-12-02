@@ -13,7 +13,6 @@ const useStyles = makeStyles(
       pointerEvents: 'all',
       paddingLeft: 10,
       [theme.breakpoints.up('md')]: {
-        width: 'auto',
         height: 28,
         paddingLeft: 0,
         marginTop: -5,
@@ -34,13 +33,7 @@ export default function Logo(props: LogoProps) {
     <NextLogo
       {...props}
       classes={{ logo: clsx(classes.logo, inverted && classes.dark) }}
-      image={{
-        layout: 'fixed',
-        alt: 'logo',
-        src: svgLogo,
-        unoptimized: true,
-        loading: 'eager',
-      }}
+      image={{ alt: 'logo', src: svgLogo, unoptimized: true }}
     />
   )
 }

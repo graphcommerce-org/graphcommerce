@@ -134,6 +134,7 @@ export default function FramerNextPages(props: PagesProps) {
           layoutProps,
           actualPageProps,
           currentRouter,
+          overlayGroup,
           up,
         } = item
         const active = itemIdx === renderItems.length - 1
@@ -151,7 +152,7 @@ export default function FramerNextPages(props: PagesProps) {
             key={sharedKey}
             // Since we very carefully prevent rerenders of this component we can safely ignore the eslint error
             // eslint-disable-next-line react/jsx-no-constructed-context-values
-            value={{ depth, active, direction, closeSteps, backSteps, historyIdx }}
+            value={{ depth, active, direction, closeSteps, backSteps, historyIdx, overlayGroup }}
           >
             <Page active={active} historyIdx={historyIdx}>
               <pageRouterContext.Provider

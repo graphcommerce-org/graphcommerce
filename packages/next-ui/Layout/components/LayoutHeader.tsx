@@ -1,8 +1,9 @@
+import { usePageContext } from '@graphcommerce/framer-next-pages'
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { classesPicker } from '../../Styles/classesPicker'
 import LayoutHeaderBack, { useShowBack } from './LayoutHeaderBack'
-import LayoutHeaderClose from './LayoutHeaderClose'
+import LayoutHeaderClose, { useShowClose } from './LayoutHeaderClose'
 import LayoutHeaderContent, { ContentProps } from './LayoutHeaderContent'
 import { FloatingProps } from './LayoutHeadertypes'
 
@@ -53,7 +54,11 @@ const useStyles = makeStyles(
       },
     },
     stickyFloatingSm: {
-      [theme.breakpoints.down('sm')]: {},
+      [theme.breakpoints.down('sm')]: {
+        top: 0,
+        marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
+        height: theme.appShell.headerHeightSm,
+      },
     },
     stickyFloatingMd: {
       [theme.breakpoints.up('md')]: {
@@ -88,6 +93,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
   const { children, additional, divider, primary, secondary, noAlign } = props
   const classes = useStyles(props)
   const showBack = useShowBack()
+  const showClose = useShowClose()
 
   const floatFallback = !children
   let { floatingSm = false, floatingMd = floatFallback } = props
@@ -97,7 +103,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
   // When the primary or secondary is set, the header can't float on mobile even if the prop is passed.
   if (divider || primary || secondary) floatingSm = false
 
-  const close = <LayoutHeaderClose />
+  const close = showClose && <LayoutHeaderClose />
   const back = showBack && <LayoutHeaderBack variant={floatingSm ? 'pill' : 'pill-link'} />
 
   let left = secondary

@@ -4,6 +4,11 @@ import Button from '../../Button'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconClose } from '../../icons'
 
+export function useShowClose() {
+  const { overlayGroup } = usePageContext()
+  return !!overlayGroup
+}
+
 export default function LayoutHeaderClose() {
   const router = usePageRouter()
   const { closeSteps } = usePageContext()

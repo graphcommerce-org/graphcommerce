@@ -44,7 +44,7 @@ const useStyles = makeStyles(
       zIndex: theme.zIndex.modal,
       marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
       [theme.breakpoints.up('md')]: {
-        marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.sm})`,
+        marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
       },
       paddingRight: 0,
     },

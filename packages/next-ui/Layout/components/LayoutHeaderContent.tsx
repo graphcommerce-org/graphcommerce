@@ -26,7 +26,7 @@ const useStyles = makeStyles(
       },
     },
     bgFloatingSm: {
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         display: 'none',
       },
     },
@@ -76,7 +76,6 @@ const useStyles = makeStyles(
       justifyContent: 'start',
     },
     center: {
-      '& > *': { pointerEvents: 'all' },
       display: 'grid',
       gridAutoFlow: 'column',
       gap: theme.spacings.sm,
@@ -88,6 +87,7 @@ const useStyles = makeStyles(
     },
     centerScrolled: {
       opacity: 1,
+      '& > *': { pointerEvents: 'all' },
     },
     centerFloatingSm: {
       [theme.breakpoints.down('sm')]: {

@@ -1,3 +1,4 @@
+import { usePageRouter } from '@graphcommerce/framer-next-pages'
 import { Image, ImageProps } from '@graphcommerce/image'
 import { makeStyles, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
@@ -24,19 +25,21 @@ const useStyles = makeStyles(
   { name: 'Logo' },
 )
 
-export type LogoProps = {
-  href?: `/${string}`
-  image: ImageProps
-} & UseStyles<typeof useStyles>
+export type LogoProps = { href?: `/${string}`; image: ImageProps } & UseStyles<typeof useStyles>
 
 export default function Logo(props: LogoProps) {
   const { href, image } = props
+  const router = usePageRouter()
   const classes = useStyles(props)
 
-  return (
+  return router.asPath === '/' ? (
+    <div className={classes.logo}>
+      <Image layout='fixed' loading='eager' {...image} className={classes.logo} />
+    </div>
+  ) : (
     <PageLink href={href ?? '/'} passHref>
       <a className={classes.link} aria-label='Logo'>
-        <Image {...image} className={classes.logo} />
+        <Image layout='fixed' loading='eager' {...image} className={classes.logo} />
       </a>
     </PageLink>
   )

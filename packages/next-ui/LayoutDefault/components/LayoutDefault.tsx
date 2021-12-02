@@ -1,5 +1,6 @@
-import { useScrollOffset } from '@graphcommerce/framer-next-pages'
+import { usePageRouter, useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { makeStyles, Theme } from '@material-ui/core'
+import clsx from 'clsx'
 import { useTransform, useViewportScroll } from 'framer-motion'
 import React from 'react'
 import LayoutProvider from '../../Layout/components/LayoutProvider'
@@ -30,22 +31,27 @@ const useStyles = makeStyles(
       alignItems: 'center',
       justifyContent: 'center',
       height: theme.appShell.headerHeightSm,
-      [theme.breakpoints.down('sm')]: {
-        position: 'sticky',
-        top: 0,
+      pointerEvents: 'none',
+      '& > *': {
+        pointerEvents: 'all',
       },
       [theme.breakpoints.up('md')]: {
         height: theme.appShell.headerHeightMd,
         padding: `0 ${theme.page.horizontal} 0`,
         top: 0,
         display: 'flex',
-        pointerEvents: 'none',
         justifyContent: 'left',
         width: '100%',
       },
     },
+    headerSticky: {
+      [theme.breakpoints.down('sm')]: {
+        position: 'sticky',
+        top: 0,
+      },
+    },
   }),
-  { name: 'FullPageShellBase' },
+  { name: 'LayoutDefault' },
 )
 
 export type LayoutDefaultProps = {
@@ -54,10 +60,11 @@ export type LayoutDefaultProps = {
   menuFab?: React.ReactNode
   cartFab?: React.ReactNode
   children?: React.ReactNode
+  noSticky?: boolean
 } & UseStyles<typeof useStyles>
 
 export function LayoutDefault(props: LayoutDefaultProps) {
-  const { children, header, footer, menuFab, cartFab } = props
+  const { children, header, footer, menuFab, cartFab, noSticky } = props
   const classes = useStyles(props)
 
   const offset = useScrollOffset().y
@@ -66,7 +73,9 @@ export function LayoutDefault(props: LayoutDefaultProps) {
   return (
     <div className={classes.root}>
       <LayoutProvider scroll={scrollWithOffset}>
-        <header className={classes.header}>{header}</header>
+        <header className={clsx(classes.header, !noSticky && classes.headerSticky)}>
+          {header}
+        </header>
         <div>
           <div className={classes.hideFabsOnVirtualKeyboardOpen}>
             {menuFab}

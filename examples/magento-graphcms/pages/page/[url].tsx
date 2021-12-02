@@ -1,4 +1,4 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { CmsPageContent } from '@graphcommerce/magento-cms'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -20,6 +20,7 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 export type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function CmsPage(props: Props) {
+  const router = usePageRouter()
   const { cmsPage, pages, products } = props
   const title = cmsPage?.title ?? ''
 
@@ -36,7 +37,9 @@ function CmsPage(props: Props) {
         canonical={page?.url}
       />
 
-      <LayoutHeader />
+      <LayoutHeader floatingMd floatingSm>
+        {router.asPath !== '/' && title}
+      </LayoutHeader>
 
       {pages?.[0] ? (
         <RowRenderer

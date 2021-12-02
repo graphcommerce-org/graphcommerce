@@ -29,6 +29,9 @@ export type LayoutFullProps = Omit<
 
 export function LayoutFull(props: LayoutFullProps) {
   const { footer, menu = {}, children, ...uiProps } = props
+
+  const router = usePageRouter()
+  const onSearchStart = useCallback(() => router.push('/search'), [router])
   const theme = useTheme()
   const menuItemsIncludeInMenu = menu?.items?.filter((items) => items?.include_in_menu === 1)
 
@@ -54,12 +57,10 @@ export function LayoutFull(props: LayoutFullProps) {
     ],
   }
 
-  const router = usePageRouter()
-  const onSearchStart = useCallback(() => router.push('/search'), [router])
-
   return (
     <LayoutDefault
       {...uiProps}
+      noSticky={router.asPath === '/'}
       header={
         <>
           <Logo />
