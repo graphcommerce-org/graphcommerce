@@ -23,12 +23,11 @@ export function useScrollTo() {
               ref.scrollLeft = v
             },
             onComplete,
+            onStop: onComplete,
             bounce: 50,
           }),
         )
-      } else {
-        onComplete()
-      }
+      } else onComplete()
     })
 
     const yDone = new Promise<void>((onComplete) => {
@@ -43,12 +42,11 @@ export function useScrollTo() {
               ref.scrollTop = v
             },
             onComplete,
+            onStop: onComplete,
             bounce: 50,
           }),
         )
-      } else {
-        onComplete()
-      }
+      } else onComplete()
     })
 
     await xDone

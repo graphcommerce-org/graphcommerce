@@ -263,7 +263,11 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
       scroller.scrollLeft = positions.closed.x.get()
       scroller.scrollTop = positions.closed.y.get()
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      scrollTo(open).then(() => position.set(OverlayPosition.OPENED))
+      scrollTo(open).then(() => {
+        scroller.scrollLeft = positions.open.x.get()
+        scroller.scrollTop = positions.open.y.get()
+        position.set(OverlayPosition.OPENED)
+      })
     } else {
       scroller.scrollLeft = open.x
       scroller.scrollTop = open.y

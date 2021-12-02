@@ -65,10 +65,14 @@ export default function FramerNextPages(props: PagesProps) {
     if (!fb) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       ;(async () => {
-        const info = await (router as Router).getRouteInfo('/', '/', {}, '/', '/', {
-          shallow: false,
-        })
-        return setFallback(info)
+        try {
+          const info = await (router as Router).getRouteInfo('/', '/', {}, '/', '/', {
+            shallow: false,
+          })
+          setFallback(info)
+        } catch (e) {
+          // Loading failed, we do nothing.
+        }
       })()
     } else {
       const proxy = createRouterProxy(router, { asPath: '/', pathname: '/', query: {} })
