@@ -60,7 +60,6 @@ function PaymentPage() {
                   color='secondary'
                   variant='pill-link'
                   display='inline'
-                  size='small'
                   endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
                 >
                   <Trans>Pay</Trans>

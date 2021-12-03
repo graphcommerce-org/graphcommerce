@@ -50,7 +50,6 @@ function ShippingPage() {
                 type='submit'
                 color='secondary'
                 variant='pill-link'
-                size='small'
                 loading={buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)}
                 onClick={submit}
                 endIcon={<SvgImageSimple src={iconChevronRight} inverted size='small' />}

@@ -63,8 +63,10 @@ const useStyles = makeStyles<
         fontWeight: 400,
         borderRadius: '99em',
         boxShadow: theme.shadows[6],
+        backgroundColor: theme.palette.background.paper,
+        color: theme.palette.text.primary,
         '&:hover': {
-          background: theme.palette.secondary.dark,
+          background: theme.palette.background.paper,
         },
       },
     },
