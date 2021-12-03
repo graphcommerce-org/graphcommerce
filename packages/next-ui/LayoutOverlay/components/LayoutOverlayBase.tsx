@@ -153,14 +153,12 @@ const useStyles = makeStyles(
       [theme.breakpoints.down('sm')]: {
         width: '100vw',
         borderRadius: 10,
-        boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.1)',
       },
     },
     overlayPaneVariantMdBottom: {
       [theme.breakpoints.up('md')]: {
         width: '100vw',
         borderRadius: 10,
-        boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.1)',
       },
     },
     overlayPaneVariantSmLeft: {
