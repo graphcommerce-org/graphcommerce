@@ -87,6 +87,7 @@ const useStyles = makeStyles(
       display: 'grid',
       gridAutoFlow: 'column',
       gridAutoRows: `40%`,
+      gridTemplateRows: 'auto',
       '& > *': {
         scrollSnapAlign,
         scrollSnapStop,
