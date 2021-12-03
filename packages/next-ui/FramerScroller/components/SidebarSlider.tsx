@@ -76,7 +76,9 @@ export default function SidebarSlider(props: SidebarSliderProps) {
           </div>
 
           <div className={classes.scrollerContainer}>
-            <Scroller className={classes.scroller}>{children}</Scroller>
+            <Scroller className={classes.scroller} hideScrollbar>
+              {children}
+            </Scroller>
             <div className={classes.centerLeft}>
               <ScrollerButton layout direction='left' className={classes.sliderButtons}>
                 <SvgImageSimple src={iconChevronLeft} />
