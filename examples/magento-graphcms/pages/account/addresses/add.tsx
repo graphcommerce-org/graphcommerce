@@ -11,23 +11,20 @@ import {
   GetStaticProps,
   SectionContainer,
   iconAddresses,
-  SheetShellHeader,
-  Title,
-  AppShellTitle,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = AccountDashboardAddressesQuery
-type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function AddNewAddressPage() {
-  const { loading, data, error } = useQuery(CustomerDocument, {
-    ssr: false,
-  })
+  const { loading, error } = useQuery(CustomerDocument, { ssr: false })
 
   if (loading) return <div />
   if (error)
@@ -41,21 +38,21 @@ function AddNewAddressPage() {
 
   return (
     <>
-      <SheetShellHeader>
-        <Title size='small' component='span' icon={iconAddresses}>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span' icon={iconAddresses}>
           <Trans>Addresses</Trans>
-        </Title>
-      </SheetShellHeader>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta
-          title={`Add address`}
+          title='Add address'
           metaDescription={t`Add new address`}
           metaRobots={['noindex']}
         />
         <NoSsr>
-          <AppShellTitle icon={iconAddresses}>
+          <LayoutTitle icon={iconAddresses}>
             <Trans>Addresses</Trans>
-          </AppShellTitle>
+          </LayoutTitle>
           <SectionContainer labelLeft={t`Add new address`}>
             <CreateCustomerAddressForm />
           </SectionContainer>
@@ -65,9 +62,9 @@ function AddNewAddressPage() {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
-  SharedComponent: SheetShell,
+  Layout: LayoutOverlay,
   sharedKey: () => 'account/addresses',
 }
 AddNewAddressPage.pageOptions = pageOptions

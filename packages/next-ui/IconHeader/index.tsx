@@ -1,9 +1,8 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
-import { SvgImageSimple } from '..'
-import responsiveVal from '../Styles/responsiveVal'
-import SvgImage, { SvgImageProps } from '../SvgImage'
+import { SvgImageProps } from '../SvgImage'
+import SvgImageSimple from '../SvgImage/SvgImageSimple'
 
 // TODO: remove all occurrences. deprecated component
 
@@ -71,18 +70,6 @@ export default function IconHeader(props: IconHeaderProps) {
     small: 'h5',
     medium: 'h4',
     large: 'h2',
-  }
-
-  const iconSizes = {
-    small: 32,
-    medium: 48,
-    large: 64,
-  }
-
-  const iconMobileSizes = {
-    small: 24,
-    medium: 32,
-    large: 40,
   }
 
   return (

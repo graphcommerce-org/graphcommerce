@@ -1,34 +1,31 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { CartItemSummary, CartSummary, InlineAccount } from '@graphcommerce/magento-cart'
 import { SignupNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   Button,
   FullPageMessage,
   GetStaticProps,
   iconParty,
   iconSadFace,
-  PageShellHeader,
+  LayoutHeader,
   Stepper,
   SvgImageSimple,
-  Title,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Box, Container, NoSsr } from '@material-ui/core'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import React from 'react'
-import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
+import { LayoutFullProps, LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
 
 function OrderSuccessPage() {
-  const hasCartId = !!useRouter().query.cartId
+  const hasCartId = !!usePageRouter().query.cartId
 
   return (
     <>
@@ -37,7 +34,7 @@ function OrderSuccessPage() {
         metaDescription={t`Ordered items`}
         metaRobots={['noindex']}
       />
-      <PageShellHeader
+      <LayoutHeader
         divider={
           hasCartId ? (
             <Container maxWidth={false}>
@@ -47,11 +44,11 @@ function OrderSuccessPage() {
         }
       >
         {hasCartId && (
-          <Title size='small' icon={iconParty}>
+          <LayoutTitle size='small' icon={iconParty}>
             <Trans>Thank you for your order!</Trans>
-          </Title>
+          </LayoutTitle>
         )}
-      </PageShellHeader>
+      </LayoutHeader>
       <Container maxWidth='md'>
         <NoSsr>
           {!hasCartId && (
@@ -71,9 +68,9 @@ function OrderSuccessPage() {
           )}
           {hasCartId && (
             <>
-              <AppShellTitle icon={iconParty}>
+              <LayoutTitle icon={iconParty}>
                 <Trans>Thank you for your order!</Trans>
-              </AppShellTitle>
+              </LayoutTitle>
               <CartSummary />
               <CartItemSummary />
 
@@ -96,9 +93,9 @@ function OrderSuccessPage() {
   )
 }
 
-const pageOptions: PageOptions<MinimalPageShellProps> = {
+const pageOptions: PageOptions<LayoutMinimalProps> = {
   overlayGroup: 'checkout',
-  SharedComponent: MinimalPageShell,
+  Layout: LayoutMinimal,
   sharedKey: () => 'checkout',
 }
 OrderSuccessPage.pageOptions = pageOptions

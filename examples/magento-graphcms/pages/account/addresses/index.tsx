@@ -4,20 +4,19 @@ import { AccountAddresses, ApolloCustomerErrorFullPage } from '@graphcommerce/ma
 import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   GetStaticProps,
   iconAddresses,
-  SheetShellHeader,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function AccountAddressesPage() {
   const { data, loading, error } = useQuery(AccountDashboardAddressesDocument, {
@@ -38,11 +37,11 @@ function AccountAddressesPage() {
 
   return (
     <>
-      <SheetShellHeader>
-        <Title size='small' component='span' icon={iconAddresses}>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span' icon={iconAddresses}>
           <Trans>Addresses</Trans>
-        </Title>
-      </SheetShellHeader>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta
           title={t`Addresses`}
@@ -51,9 +50,9 @@ function AccountAddressesPage() {
         />
         <NoSsr>
           {((customer?.addresses && customer.addresses.length > 1) || !customer?.addresses) && (
-            <AppShellTitle icon={iconAddresses}>
+            <LayoutTitle icon={iconAddresses}>
               <Trans>Addresses</Trans>
-            </AppShellTitle>
+            </LayoutTitle>
           )}
           <AccountAddresses {...data} loading={!data} addresses={customer?.addresses} />
         </NoSsr>
@@ -62,9 +61,9 @@ function AccountAddressesPage() {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
-  SharedComponent: SheetShell,
+  Layout: LayoutOverlay,
   sharedKey: () => 'account/addresses',
 }
 AccountAddressesPage.pageOptions = pageOptions

@@ -1,40 +1,33 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { EditBillingAddressForm } from '@graphcommerce/magento-cart-billing-address'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  AppShellTitle,
-  GetStaticProps,
-  PageMeta,
-  responsiveVal,
-  SheetShellHeader,
-  Title,
-} from '@graphcommerce/next-ui'
+import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import { DefaultPageDocument } from '../../../components/GraphQL/DefaultPage.gql'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function EditBillingAddress() {
   return (
     <>
       <PageMeta title={t`Edit billing address`} metaRobots={['noindex', 'nofollow']} />
 
-      <SheetShellHeader hideDragIndicator>
-        <Title component='span' size='small'>
+      <LayoutOverlayHeader>
+        <LayoutTitle component='span' size='small'>
           <Trans>Billing address</Trans>
-        </Title>
-      </SheetShellHeader>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
 
-      <AppShellTitle>
-        <Title>
+      <LayoutTitle>
+        <LayoutTitle>
           <Trans>Billing address</Trans>
-        </Title>
-      </AppShellTitle>
+        </LayoutTitle>
+      </LayoutTitle>
 
       <Container maxWidth='md'>
         <NoSsr>
@@ -45,10 +38,10 @@ function EditBillingAddress() {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'left',
-  SharedComponent: SheetShell,
-  sharedProps: { variant: 'left', size: responsiveVal(320, 800) },
+  Layout: LayoutOverlay,
+  layoutProps: { variantMd: 'left' },
 }
 EditBillingAddress.pageOptions = pageOptions
 

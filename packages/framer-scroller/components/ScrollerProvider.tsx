@@ -16,26 +16,19 @@ import {
 
 export type ScrollerProviderProps = {
   children?: React.ReactNode | undefined
-  scrollSnapType?: ScrollSnapType
+  scrollSnapTypeSm?: ScrollSnapType
+  scrollSnapTypeMd?: ScrollSnapType
   scrollSnapAlign?: ScrollSnapAlign
   scrollSnapStop?: ScrollSnapStop
 }
 
-function useObserveItems(
-  scrollerRef: ReactHtmlRefObject,
-  items: MotionValue<ItemState[]>,
-  enableSnap: ScrollerContext['enableSnap'],
-) {
+function useObserveItems(scrollerRef: ReactHtmlRefObject, items: MotionValue<ItemState[]>) {
   const observe = useCallback(
     (itemsArr: ItemState[]) => {
       if (!scrollerRef.current) return () => {}
 
       const find = ({ target }: { target: Element }) => itemsArr.find((i) => i.el === target)
 
-      const resizeCallback = (entry: ResizeObserverEntry) => {
-        enableSnap()
-        find(entry)
-      }
       const intersectionCallback = (entry: IntersectionObserverEntry) => {
         const item = find(entry)
         item?.visibility.set(entry.intersectionRatio)
@@ -44,7 +37,6 @@ function useObserveItems(
         const scaled = (1 - 0.2) * entry.intersectionRatio + 0.2
         item?.opacity.set(scaled)
       }
-      const ro = new ResizeObserver((entries) => entries.forEach(resizeCallback))
       const io = new IntersectionObserver((entries) => entries.forEach(intersectionCallback), {
         root: scrollerRef.current,
         threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
@@ -55,18 +47,12 @@ function useObserveItems(
       )
       itemsArr.forEach((value, idx) => {
         if (!value.el) value.el = htmlEls?.[idx]
-        if (value.el) {
-          ro.observe(value.el)
-          io.observe(value.el)
-        }
+        if (value.el) io.observe(value.el)
       })
 
-      return () => {
-        ro.disconnect()
-        io.disconnect()
-      }
+      return () => io.disconnect()
     },
-    [enableSnap, scrollerRef],
+    [scrollerRef],
   )
 
   useEffect(() => {
@@ -82,12 +68,14 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
   const {
     scrollSnapAlign = 'center center',
     scrollSnapStop = 'normal',
-    scrollSnapType = 'inline mandatory',
+    scrollSnapTypeSm = 'inline mandatory',
+    scrollSnapTypeMd = 'inline mandatory',
     ...providerProps
   } = props
+
   const scrollSnap = useMemo(
-    () => ({ scrollSnapType, scrollSnapStop, scrollSnapAlign }),
-    [scrollSnapAlign, scrollSnapStop, scrollSnapType],
+    () => ({ scrollSnapTypeMd, scrollSnapTypeSm, scrollSnapStop, scrollSnapAlign }),
+    [scrollSnapAlign, scrollSnapStop, scrollSnapTypeMd, scrollSnapTypeSm],
   )
 
   const snap = useMotionValue(true)
@@ -107,19 +95,25 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
   }, [])
 
   const disableSnap = useCallback(() => {
+    if (snap.get() === false) return
     stop()
     snap.set(false)
   }, [snap, stop])
 
   const enableSnap = useCallback(() => {
-    if (!scrollerRef.current) return
+    if (!scrollerRef.current || snap.get() === true) return
+
     stop()
-    const p = scrollerRef.current.scrollLeft
+
+    // We're setting the current scrollLeft to prevent resetting the scroll position on Safari
+    const l = scrollerRef.current.scrollLeft
+    const t = scrollerRef.current.scrollTop
     snap.set(true)
-    scrollerRef.current.scrollLeft = p
+    scrollerRef.current.scrollLeft = l
+    scrollerRef.current.scrollTop = t
   }, [snap, stop])
 
-  useObserveItems(scrollerRef, items, enableSnap)
+  useObserveItems(scrollerRef, items)
 
   const registerChildren = useCallback(
     (children: React.ReactNode) => {
@@ -152,6 +146,18 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
     )
   }
 
+  /** Finds all elements with scrollSnapAlign by using getComputedStyle */
+  function recursivelyFindElementsWithScrollSnapAlign(parent: HTMLElement) {
+    const elements: HTMLElement[] = []
+    ;[...parent.children].forEach((child) => {
+      if (!(child instanceof HTMLElement)) return
+
+      if (getComputedStyle(child).scrollSnapAlign !== 'none') elements.push(child)
+      elements.push(...recursivelyFindElementsWithScrollSnapAlign(child))
+    })
+    return elements
+  }
+
   function getSnapPositions(
     parent: HTMLElement,
     excludeOffAxis = true,
@@ -163,7 +169,7 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
       y: { start: [], center: [], end: [] },
     }
 
-    const descendants = [...parent.children]
+    const descendants = recursivelyFindElementsWithScrollSnapAlign(parent)
 
     for (const axis of ['x', 'y'] as Axis[]) {
       const orthogonalAxis = axis === 'x' ? 'y' : 'x'
@@ -176,16 +182,16 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
 
         // Skip child if it doesn't intersect the parent's opposite axis (it can never be in view)
         if (excludeOffAxis && !domRectIntersects(parentRect, childRect, orthogonalAxis)) {
+          // eslint-disable-next-line no-continue
           continue
         }
 
-        // eslint-disable-next-line prefer-const
-        let [childAlignY, childAlignX] = scrollSnap.scrollSnapAlign.split(
-          ' ',
-        ) as ScrollSnapAlignAxis[]
-        if (typeof childAlignX === 'undefined') {
-          childAlignX = childAlignY
-        }
+        const align = getComputedStyle(child).scrollSnapAlign
+        let [childAlignY, childAlignX] = align.split(' ') as [
+          ScrollSnapAlignAxis,
+          ScrollSnapAlignAxis | undefined,
+        ]
+        if (typeof childAlignX === 'undefined') childAlignX = childAlignY
 
         const childAlign = axis === 'x' ? childAlignX : childAlignY
         const childOffsetStart = childRect[axisStart] - parentRect[axisStart] + parent[axisScroll]

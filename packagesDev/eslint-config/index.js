@@ -5,9 +5,9 @@ module.exports = {
     node: true,
   },
   extends: [
+    'airbnb',
     'airbnb-typescript',
     'airbnb/hooks',
-    'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:@next/eslint-plugin-next/recommended',
@@ -37,6 +37,7 @@ module.exports = {
       },
     ],
     'import/order': ['warn', { alphabetize: { order: 'asc' } }],
+    'import/prefer-default-export': 'off',
     'no-param-reassign': ['error', { props: false }],
     'jsx-a11y/anchor-is-valid': 'off',
     'default-case': 'off',
@@ -45,7 +46,9 @@ module.exports = {
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/react-in-jsx-scope': 'off',
+    'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
     'react-hooks/exhaustive-deps': ['error', { additionalHooks: '(useIsomorphicLayoutEffect)' }],
+    'react/no-unescaped-entities': 'off',
     'no-console': [1, { allow: ['warn', 'error', 'info'] }],
     '@typescript-eslint/semi': 'off',
     'spaced-comment': [
@@ -96,6 +99,9 @@ module.exports = {
     '@typescript-eslint/unbound-method': 'off',
 
     'import/no-relative-packages': 'error',
+
+    // Remove when fixed: https://github.com/airbnb/javascript/pull/2501/files
+    'react/function-component-definition': 'off',
   },
   overrides: [
     {

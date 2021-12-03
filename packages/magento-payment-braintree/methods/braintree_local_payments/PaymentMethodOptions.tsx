@@ -10,7 +10,7 @@ import { BraintreeLocalPaymentsCartDocument } from './BraintreeLocalPaymentsCart
 function PaymentMethodOptions(props: PaymentOptionsProps) {
   const localPaymentPromise = useBraintreeLocalPayment()
 
-  const { code, step, child, title, preferred } = props
+  const { code, step, child } = props
   const paymentType = child as StartPaymentOptions['paymentType']
   const { data: cartData } = useCartQuery(BraintreeLocalPaymentsCartDocument)
 

@@ -1,27 +1,20 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  AppShellTitle,
-  GetStaticProps,
-  responsiveVal,
-  SheetShellHeader,
-  Title,
-} from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
+import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { Container } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import { PagesStaticPathsDocument } from '../../components/GraphQL/PagesStaticPaths.gql'
+import { LayoutFullProps } from '../../components/Layout'
+import { LayoutOverlay, LayoutOverlayProps } from '../../components/Layout/LayoutOverlay'
 import RowRenderer from '../../components/Row/RowRenderer'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = DefaultPageQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function ServicePage({ pages }: Props) {
   const title = pages?.[0].title ?? ''
@@ -34,26 +27,24 @@ function ServicePage({ pages }: Props) {
         metaRobots={['noindex']}
         canonical={pages?.[0]?.url ?? ''}
       />
-      <SheetShellHeader hideDragIndicator>
-        <Title component='span' size='small'>
+      <LayoutOverlayHeader>
+        <LayoutTitle component='span' size='small'>
           {title}
-        </Title>
-      </SheetShellHeader>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
 
       <Container maxWidth='md'>
-        <AppShellTitle>
-          <Title>{title}</Title>
-        </AppShellTitle>
+        <LayoutTitle>{title}</LayoutTitle>
       </Container>
       <RowRenderer {...pages[0]} />
     </>
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'left',
-  SharedComponent: SheetShell,
-  sharedProps: { variant: 'left', size: responsiveVal(320, 800) },
+  Layout: LayoutOverlay,
+  layoutProps: { variantMd: 'left' },
 }
 ServicePage.pageOptions = pageOptions
 

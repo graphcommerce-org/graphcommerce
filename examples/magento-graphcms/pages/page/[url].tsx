@@ -1,15 +1,15 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { CmsPageContent } from '@graphcommerce/magento-cms'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, MetaRobots } from '@graphcommerce/next-ui'
+import { LayoutHeader, GetStaticProps, MetaRobots } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.gql'
 import { DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import RowRenderer from '../../components/Row/RowRenderer'
+import { LayoutFull, LayoutFullProps } from '../../components/Layout'
 import RowProduct from '../../components/Row/RowProduct'
+import RowRenderer from '../../components/Row/RowRenderer'
 import apolloClient from '../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -17,9 +17,10 @@ export const config = { unstable_JsPreload: false }
 type Props = DefaultPageQuery & CmsPageQuery & ProductListQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
+export type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function CmsPage(props: Props) {
+  const router = usePageRouter()
   const { cmsPage, pages, products } = props
   const title = cmsPage?.title ?? ''
 
@@ -35,6 +36,11 @@ function CmsPage(props: Props) {
         metaRobots={metaRobots}
         canonical={page?.url}
       />
+
+      <LayoutHeader floatingMd floatingSm>
+        {router.asPath !== '/' && title}
+      </LayoutHeader>
+
       {pages?.[0] ? (
         <RowRenderer
           content={pages?.[0].content}
@@ -52,7 +58,7 @@ function CmsPage(props: Props) {
 }
 
 CmsPage.pageOptions = {
-  SharedComponent: FullPageShell,
+  Layout: LayoutFull,
 } as PageOptions
 
 export default CmsPage

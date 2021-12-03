@@ -5,7 +5,15 @@ import {
   TextFieldProps,
   Theme,
 } from '@material-ui/core'
-import React, { Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from 'react'
+import React, {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { ComponentEventHandler, ComponentFieldState, MollieFieldName } from '../../Mollie'
 import { useMollieContext } from './mollieContext'
 
@@ -117,7 +125,7 @@ export default function MollieField(props: MollieFieldProps) {
   })
 
   return (
-    <mollieFieldContext.Provider value={[state, setState]}>
+    <mollieFieldContext.Provider value={useMemo(() => [state, setState], [state])}>
       <TextField
         {...fieldProps}
         label={label}

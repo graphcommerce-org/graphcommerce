@@ -8,7 +8,7 @@ import { Theme, makeStyles } from '@material-ui/core'
 import React, { ReactNode } from 'react'
 import Row from '../../Row'
 import { UseStyles } from '../../Styles'
-import responsiveVal from '../../Styles/responsiveVal'
+import { responsiveVal } from '../../Styles/responsiveVal'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconChevronRight } from '../../icons'
 
@@ -29,10 +29,8 @@ const useStyles = makeStyles(
       minWidth: 1,
     },
     scroller: {
-      width: '100%',
       gridColumnGap: theme.spacings.md,
       gridRowGap: theme.spacings.lg,
-      alignContent: 'space-around',
       paddingRight: theme.page.horizontal,
       gridAutoColumns: responsiveVal(200, 400),
     },
@@ -78,9 +76,7 @@ export default function SidebarSlider(props: SidebarSliderProps) {
           </div>
 
           <div className={classes.scrollerContainer}>
-            <Scroller className={classes.scroller} hideScrollbar>
-              {children}
-            </Scroller>
+            <Scroller className={classes.scroller}>{children}</Scroller>
             <div className={classes.centerLeft}>
               <ScrollerButton layout direction='left' className={classes.sliderButtons}>
                 <SvgImageSimple src={iconChevronLeft} />

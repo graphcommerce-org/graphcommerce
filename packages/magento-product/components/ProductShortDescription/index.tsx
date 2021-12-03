@@ -1,19 +1,17 @@
 import { UseStyles } from '@graphcommerce/next-ui'
-import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { makeStyles, Typography } from '@material-ui/core'
 import React from 'react'
 import { ProductShortDescriptionFragment } from './ProductShortDescription.gql'
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  {
     root: {
       '& > p': {
         marginTop: 0,
       },
     },
-  }),
-  {
-    name: 'ProductShortDescription',
   },
+  { name: 'ProductShortDescription' },
 )
 
 type ProductShortDescriptionProps = ProductShortDescriptionFragment & UseStyles<typeof useStyles>

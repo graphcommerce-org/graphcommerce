@@ -10,7 +10,6 @@ function usePostcardClass(asPath: string) {
 }
 
 export default function PostCardGrid() {
-  const pageRouter = usePageRouter()
   return (
     <div className={styles.postCardGridWrapper}>
       <div className={styles.postCardGrid}>

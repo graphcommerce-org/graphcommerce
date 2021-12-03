@@ -26,19 +26,18 @@ import {
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AppShellSticky,
-  AppShellTitle,
+  LayoutTitle,
+  LayoutHeader,
   GetStaticProps,
   MetaRobots,
   PageMeta,
-  Title,
 } from '@graphcommerce/next-ui'
 import { Container } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import FullPageShell, { FullPageShellProps } from '../components/AppShell/FullPageShell'
-import FullPageShellHeader from '../components/AppShell/FullPageShellHeader'
 import Asset from '../components/Asset'
 import { CategoryPageDocument, CategoryPageQuery } from '../components/GraphQL/CategoryPage.gql'
+import { LayoutFull, LayoutFullProps } from '../components/Layout'
 import ProductListItems from '../components/ProductListItems/ProductListItems'
 import useProductListStyles from '../components/ProductListItems/useProductListStyles'
 import RowProduct from '../components/Row/RowProduct'
@@ -54,7 +53,7 @@ type Props = CategoryPageQuery &
   }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function CategoryPage(props: Props) {
   const { categories, products, filters, params, filterTypes, pages } = props
@@ -85,9 +84,11 @@ function CategoryPage(props: Props) {
         <CategoryMeta params={params} {...category} />
       )}
 
-      <FullPageShellHeader>
-        <Title size='small'>{category?.name}</Title>
-      </FullPageShellHeader>
+      <LayoutHeader floatingMd>
+        <LayoutTitle size='small' component='span'>
+          {category?.name}
+        </LayoutTitle>
+      </LayoutHeader>
 
       {isLanding ? (
         <CategoryHeroNav
@@ -97,7 +98,9 @@ function CategoryPage(props: Props) {
         />
       ) : (
         <ProductListParamsProvider value={params}>
-          <AppShellTitle variant='h1'>{category?.name}</AppShellTitle>
+          <LayoutTitle variant='h1' gutterTop gutterBottom={false}>
+            {category?.name}
+          </LayoutTitle>
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
@@ -137,7 +140,7 @@ function CategoryPage(props: Props) {
 }
 
 CategoryPage.pageOptions = {
-  SharedComponent: FullPageShell,
+  Layout: LayoutFull,
 } as PageOptions
 
 export default CategoryPage

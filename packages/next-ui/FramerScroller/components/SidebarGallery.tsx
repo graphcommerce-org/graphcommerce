@@ -1,3 +1,4 @@
+import { usePageRouter } from '@graphcommerce/framer-next-pages'
 import { usePrevPageRouter } from '@graphcommerce/framer-next-pages/hooks/usePrevPageRouter'
 import {
   CenterSlide,
@@ -12,11 +13,11 @@ import { clientSize, useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Fab, makeStyles, Theme, useTheme, alpha } from '@material-ui/core'
 import clsx from 'clsx'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
-import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
-import { Row } from '../..'
+import { classesPicker } from '../..'
+import Row from '../../Row'
 import { UseStyles } from '../../Styles'
-import responsiveVal from '../../Styles/responsiveVal'
+import { responsiveVal } from '../../Styles/responsiveVal'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../../icons'
 
@@ -42,14 +43,14 @@ const useStyles = makeStyles(
     rootZoomed: {
       position: 'relative',
       zIndex: theme.zIndex.modal,
-      marginTop: `calc(${theme.page.headerInnerHeight.sm} * -1)`,
+      marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
       [theme.breakpoints.up('md')]: {
-        marginTop: `calc(${theme.page.headerInnerHeight.md} * -1  - ${theme.spacings.sm})`,
+        marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
       },
       paddingRight: 0,
     },
     scrollerContainer: ({ aspectRatio: [width, height] }: StyleProps) => {
-      const headerHeight = `${theme.page.headerInnerHeight.sm} - ${theme.spacings.sm} * 2`
+      const headerHeight = `${theme.appShell.headerHeightSm} - ${theme.spacings.sm} * 2`
       const galleryMargin = theme.spacings.lg
       const extraSpacing = theme.spacings.md
 
@@ -172,11 +173,18 @@ export type SidebarGalleryProps = {
 } & UseStyles<typeof useStyles>
 
 export default function SidebarGallery(props: SidebarGalleryProps) {
-  const { sidebar, images, aspectRatio = [1, 1], routeHash = 'gallery' } = props
-  const router = useRouter()
+  const {
+    sidebar,
+    images,
+    aspectRatio = [1, 1],
+    routeHash = 'gallery',
+    classes: classesBase,
+  } = props
+
+  const router = usePageRouter()
   const prevRoute = usePrevPageRouter()
   const clientHeight = useMotionValueValue(clientSize.y, (y) => y)
-  const classes = useStyles({ clientHeight, aspectRatio, classes: props.classes })
+  const classes = useStyles({ clientHeight, aspectRatio, classes: classesBase })
 
   const route = `#${routeHash}`
   // We're using the URL to manage the state of the gallery.
@@ -201,16 +209,12 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
     }
   }
 
-  const clsxZoom = (key: string) => clsx(classes?.[key], zoomed && classes?.[`${key}Zoomed`])
+  const className = classesPicker(classes, { zoomed })
   const theme = useTheme()
   const windowRef = useRef(typeof window !== 'undefined' ? window : null)
 
   const handleEscapeKey = (e: KeyboardEvent | Event) => {
-    if (zoomed) {
-      if ((e as KeyboardEvent)?.key === 'Escape') {
-        toggle()
-      }
-    }
+    if (zoomed && (e as KeyboardEvent)?.key === 'Escape') toggle()
   }
 
   const dragStart = useMotionValue<number>(0)
@@ -228,16 +232,16 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
   return (
     <ScrollerProvider scrollSnapAlign='center'>
       <Row maxWidth={false} disableGutters>
-        <m.div layout className={clsxZoom('root')}>
+        <m.div layout {...className('root')}>
           <m.div
             layout
-            className={clsxZoom('scrollerContainer')}
+            {...className('scrollerContainer')}
             onLayoutAnimationComplete={() => {
               if (!zoomed) document.body.style.overflow = ''
             }}
           >
             <Scroller
-              className={clsxZoom('scroller')}
+              {...className('scroller')}
               hideScrollbar
               onMouseDown={onMouseDownScroller}
               onMouseUp={onMouseUpScroller}
@@ -299,8 +303,8 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
             </div>
           </m.div>
 
-          <div className={clsxZoom('sidebarWrapper')}>
-            <m.div layout className={clsxZoom('sidebar')}>
+          <div {...className('sidebarWrapper')}>
+            <m.div layout {...className('sidebar')}>
               {sidebar}
             </m.div>
           </div>

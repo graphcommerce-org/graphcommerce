@@ -9,9 +9,6 @@ import {
   VariableNode,
   VariableDefinitionNode,
   TypeNode,
-  ListTypeNode,
-  NamedTypeNode,
-  NonNullTypeNode,
   OperationTypeNode,
 } from 'graphql'
 import { useMemo } from 'react'

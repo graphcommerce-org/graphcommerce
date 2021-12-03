@@ -1,17 +1,16 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   GetStaticProps,
   MetaRobots,
-  SheetShellHeader,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
+import { LayoutOverlay, LayoutOverlayProps } from '../../components/Layout/LayoutOverlay'
 import RowRenderer from '../../components/Row/RowRenderer'
 import apolloClient from '../../lib/apolloClient'
 
@@ -20,7 +19,7 @@ export const config = { unstable_JsPreload: false }
 type Props = DefaultPageQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<SheetShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props, RouteProps>
 
 function ModalPage(props: Props) {
   const { pages } = props
@@ -32,11 +31,11 @@ function ModalPage(props: Props) {
 
   return (
     <>
-      <SheetShellHeader>
-        <Title size='small' component='span'>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span'>
           {page.title}
-        </Title>
-      </SheetShellHeader>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <PageMeta
         title={page.metaTitle ?? ''}
         metaDescription={page.metaDescription}
@@ -44,7 +43,7 @@ function ModalPage(props: Props) {
         canonical={page.url}
       />
       <Box pt={4}>
-        <AppShellTitle>{page.title}</AppShellTitle>
+        <LayoutTitle>{page.title}</LayoutTitle>
         <Typography variant='body1' align='center'>
           {page.metaDescription ?? ''}
         </Typography>
@@ -56,7 +55,7 @@ function ModalPage(props: Props) {
 }
 
 ModalPage.pageOptions = {
-  SharedComponent: SheetShell,
+  Layout: LayoutOverlay,
   overlayGroup: 'modal',
 } as PageOptions
 

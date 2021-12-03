@@ -450,9 +450,13 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
           />
         ) : (
           <picture {...pictureProps}>
-            <source media='(-webkit-min-device-pixel-ratio: 2.5)' srcSet={srcSet3x} />
-            <source media='(-webkit-min-device-pixel-ratio: 1.5)' srcSet={srcSet2x} />
-            <source media='(-webkit-max-device-pixel-ratio: 1.49)' srcSet={srcSet1x} />
+            <source media='(-webkit-min-device-pixel-ratio: 2.5)' srcSet={srcSet3x} sizes={sizes} />
+            <source media='(-webkit-min-device-pixel-ratio: 1.5)' srcSet={srcSet2x} sizes={sizes} />
+            <source
+              media='(-webkit-max-device-pixel-ratio: 1.49)'
+              srcSet={srcSet1x}
+              sizes={sizes}
+            />
             <img
               ref={combinedRef}
               {...imgProps}

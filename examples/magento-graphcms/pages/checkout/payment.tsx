@@ -20,32 +20,27 @@ import { included_methods } from '@graphcommerce/magento-payment-included'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { mollie_methods } from '@graphcommerce/mollie-magento-payment'
 import {
-  AppShellTitle,
   FormActions,
   FormDiv,
   FullPageMessage,
   GetStaticProps,
   iconChevronRight,
   iconId,
-  PageShellHeader,
-  Row,
+  LayoutHeader,
   Stepper,
   SvgImageSimple,
-  Title,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { ComposedForm } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
 import { CircularProgress, Container, Dialog, Divider, NoSsr } from '@material-ui/core'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
-import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import MinimalPageShell from '../../components/AppShell/MinimalPageShell'
-import { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
+import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
 function PaymentPage() {
   const cartId = useCurrentCartId()
@@ -58,14 +53,13 @@ function PaymentPage() {
         {!cartId && <EmptyCart />}
         {cartId && (
           <>
-            <PageShellHeader
+            <LayoutHeader
               primary={
                 <PaymentMethodButton
                   type='submit'
                   color='secondary'
                   variant='pill-link'
                   display='inline'
-                  size='small'
                   endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
                 >
                   <Trans>Pay</Trans>
@@ -77,10 +71,10 @@ function PaymentPage() {
                 </Container>
               }
             >
-              <Title size='small' icon={iconId}>
+              <LayoutTitle size='small' icon={iconId}>
                 <Trans>Payment</Trans>
-              </Title>
-            </PageShellHeader>
+              </LayoutTitle>
+            </LayoutHeader>
             <Container maxWidth='md'>
               <Dialog open={locked} fullWidth>
                 <FullPageMessage
@@ -93,9 +87,9 @@ function PaymentPage() {
               </Dialog>
 
               <>
-                <AppShellTitle icon={iconId}>
+                <LayoutTitle icon={iconId}>
                   <Trans>Payment</Trans>
-                </AppShellTitle>
+                </LayoutTitle>
 
                 <PaymentMethodContextProvider
                   modules={{
@@ -111,11 +105,11 @@ function PaymentPage() {
                     <PaymentMethodOptions
                       key='options'
                       step={2}
-                      Container={({ children }) => (
+                      Container={React.memo(({ children }) => (
                         <FormDiv contained background='secondary'>
                           {children}
                         </FormDiv>
-                      )}
+                      ))}
                     />
 
                     <CartSummary editable key='cart-summary'>
@@ -152,8 +146,8 @@ function PaymentPage() {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
-  SharedComponent: MinimalPageShell,
+const pageOptions: PageOptions<LayoutMinimalProps> = {
+  Layout: LayoutMinimal,
   sharedKey: () => 'checkout',
 }
 PaymentPage.pageOptions = pageOptions

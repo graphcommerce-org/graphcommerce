@@ -1,9 +1,9 @@
+import { usePageRouter } from '@graphcommerce/framer-next-pages'
 import { Image, ImageProps } from '@graphcommerce/image'
 import { responsiveVal, UseStyles } from '@graphcommerce/next-ui'
-import { ButtonBase, Link as MuiLink, makeStyles, Theme, Typography } from '@material-ui/core'
+import { ButtonBase, makeStyles, Theme, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import PageLink from 'next/link'
-import { useRouter } from 'next/router'
 import React, { PropsWithChildren, useCallback } from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { useProductLink } from '../../hooks/useProductLink'
@@ -157,7 +157,7 @@ export default function ProductListItem(props: ProductListItemProps) {
   const classes = useProductListItemStyles(props)
   const productLink = useProductLink(props)
   const discount = Math.floor(price_range.minimum_price.discount?.percent_off ?? 0)
-  const { locale } = useRouter()
+  const { locale } = usePageRouter()
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const format = useCallback(

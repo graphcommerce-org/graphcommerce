@@ -1,10 +1,8 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { BlogTitle, GetStaticProps, Row, Title } from '@graphcommerce/next-ui'
+import { BlogTitle, GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
 import BlogList from '../../components/Blog'
 import BlogAuthor from '../../components/Blog/BlogAuthor'
 import BlogHeader from '../../components/Blog/BlogHeader'
@@ -12,6 +10,7 @@ import { BlogListDocument, BlogListQuery } from '../../components/Blog/BlogList.
 import { BlogPostPathsDocument } from '../../components/Blog/BlogPostPaths.gql'
 import BlogTags from '../../components/Blog/BlogTags'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
+import { LayoutFull, LayoutFullProps } from '../../components/Layout'
 import RowRenderer from '../../components/Row/RowRenderer'
 import apolloClient from '../../lib/apolloClient'
 
@@ -20,7 +19,7 @@ export const config = { unstable_JsPreload: false }
 type Props = DefaultPageQuery & BlogListQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function BlogPage(props: Props) {
   const { pages, blogPosts } = props
@@ -29,9 +28,9 @@ function BlogPage(props: Props) {
 
   return (
     <>
-      <FullPageShellHeader>
-        <Title size='small'>{title}</Title>
-      </FullPageShellHeader>
+      <LayoutHeader floatingMd>
+        <LayoutTitle size='small'>{title}</LayoutTitle>
+      </LayoutHeader>
       <Row>
         <PageMeta title={title} metaDescription={title} canonical={page.url} />
 
@@ -48,7 +47,7 @@ function BlogPage(props: Props) {
 }
 
 BlogPage.pageOptions = {
-  SharedComponent: FullPageShell,
+  Layout: LayoutFull,
 } as PageOptions
 
 export default BlogPage

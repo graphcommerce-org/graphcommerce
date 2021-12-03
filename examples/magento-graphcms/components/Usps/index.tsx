@@ -12,7 +12,7 @@ export type ProductUspsProps = UspsQueryFragment & {
 export default function Usps(props: ProductUspsProps) {
   const { usps, size } = props
 
-  if (!usps?.uspsMultiple) return <></>
+  if (!usps?.uspsMultiple) return null
 
   return (
     <UspList size={size}>
@@ -22,7 +22,7 @@ export default function Usps(props: ProductUspsProps) {
           <UspListItem
             key={usp.title}
             text={<RichText raw={usp.description?.raw} />}
-            icon={<Asset asset={usp.asset} layout='fill' sizes={'50px'} unoptimized />}
+            icon={<Asset asset={usp.asset} layout='fill' sizes='50px' unoptimized />}
             size={size}
           />
         )

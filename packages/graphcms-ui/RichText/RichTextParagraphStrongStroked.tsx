@@ -1,4 +1,3 @@
-import { responsiveVal } from '@graphcommerce/next-ui'
 import { Theme, withStyles } from '@material-ui/core'
 import RichText from '.'
 

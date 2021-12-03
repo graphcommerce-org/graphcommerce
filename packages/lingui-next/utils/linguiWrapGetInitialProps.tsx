@@ -1,4 +1,5 @@
-import { i18n, Messages } from '@lingui/core'
+import { i18n } from '@lingui/core'
+// eslint-disable-next-line @next/next/no-document-import-in-page
 import { DocumentContext, DocumentInitialProps } from 'next/document'
 import React from 'react'
 import { MessageLoader } from '../types'
@@ -12,9 +13,9 @@ export function linguiWrapGetInitialProps(
 
     const locale = ctx.locale?.split('-')?.[0]
 
-    if (!locale) throw Error('No locales specified')
+    if (!locale) return initial
     try {
-      const messages = (await load(locale)).messages as Messages
+      const { messages } = await load(locale)
 
       i18n.load(locale, messages)
       i18n.activate(locale)
@@ -24,11 +25,13 @@ export function linguiWrapGetInitialProps(
         head: [
           ...(React.Children.toArray(initial.head) as Array<JSX.Element | null>),
           <script
+            key='lingui'
             type='application/json'
             id='lingui'
             lang={locale}
+            // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: JSON.stringify(messages) }}
-          ></script>,
+          />,
         ],
       }
     } catch (e) {

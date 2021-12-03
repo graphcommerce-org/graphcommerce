@@ -92,7 +92,7 @@ export default function AccountSignInUpForm() {
           </Typography>
 
           <FormActions>
-            <Button onClick={() => router.back()} color='primary' variant='contained' size='large'>
+            <Button onClick={() => router.back()} color='primary' variant='pill' size='large'>
               <Trans>Continue shopping</Trans>
             </Button>
           </FormActions>

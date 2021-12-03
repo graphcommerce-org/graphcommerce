@@ -1,5 +1,5 @@
 import { Image } from '@graphcommerce/image'
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
 import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
@@ -7,7 +7,7 @@ import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
 export type OrderCardItemImageProps = Omit<OrderCardItemImageFragment, 'uid'>
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  {
     image: {
       width: 88,
       height: 88,
@@ -17,7 +17,7 @@ const useStyles = makeStyles(
       justifyContent: 'center',
       alignItems: 'center',
     },
-  }),
+  },
   { name: 'OrderCardItemImage' },
 )
 
@@ -36,7 +36,7 @@ export default function OrderCardItemImage(props: OrderCardItemImageProps) {
           className={classes.image}
         />
       ) : (
-        <div className={clsx(classes.placeholder, classes.image)}></div>
+        <div className={clsx(classes.placeholder, classes.image)} />
       )}
     </>
   )

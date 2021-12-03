@@ -141,7 +141,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
   }
 
   let icon = iconCheckmark
-  if (severity == 'error') icon = iconSadFace
+  if (severity === 'error') icon = iconSadFace
 
   return (
     <Portal>

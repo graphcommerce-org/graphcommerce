@@ -90,7 +90,7 @@ function CartFabContent(props: CartFabContentProps) {
         style={{
           opacity: isMobile ? undefined : opacity,
         }}
-      ></m.div>
+       />
     </m.div>
   )
 }

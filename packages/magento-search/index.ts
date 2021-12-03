@@ -1,5 +1,4 @@
 export { default as SearchDivider } from './SearchDivider'
-export * from './SearchDivider'
 
 export { default as NoSearchResults } from './NoSearchResults'
 export * from './NoSearchResults'

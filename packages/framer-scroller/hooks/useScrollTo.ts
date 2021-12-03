@@ -7,38 +7,50 @@ export function useScrollTo() {
   const { scrollerRef, register, disableSnap, enableSnap } = useScrollerContext()
   const scroll = useElementScroll(scrollerRef)
 
-  return (to: Point2D) => {
-    if (!scrollerRef.current) return
+  return async (to: Point2D) => {
+    const ref = scrollerRef.current
+    if (!ref) return
 
-    // const notCompletelyVisible = items.filter((item) => item.visibility.get() < 0.9)
-    // todo get the target element and move one right, keep the current velocity
+    const xDone = new Promise<void>((onComplete) => {
+      if (ref.scrollLeft !== to.x) {
+        disableSnap()
+        register(
+          animate({
+            from: ref.scrollLeft,
+            to: to.x,
+            velocity: scroll.x.getVelocity(),
+            onUpdate: (v) => {
+              ref.scrollLeft = v
+            },
+            onComplete,
+            onStop: onComplete,
+            bounce: 50,
+          }),
+        )
+      } else onComplete()
+    })
 
-    disableSnap()
-    register(
-      animate({
-        from: scrollerRef.current.scrollLeft,
-        to: to.x,
-        velocity: scroll.x.getVelocity(),
-        onUpdate: (v) => {
-          if (!scrollerRef.current) return
-          scrollerRef.current.scrollLeft = v
-        },
-        onComplete: enableSnap,
-        bounce: 50,
-      }),
-    )
-    register(
-      animate({
-        from: scrollerRef.current.scrollTop,
-        to: to.y,
-        velocity: scroll.y.getVelocity(),
-        onUpdate: (v) => {
-          if (!scrollerRef.current) return
-          scrollerRef.current.scrollTop = v
-        },
-        onComplete: enableSnap,
-        bounce: 50,
-      }),
-    )
+    const yDone = new Promise<void>((onComplete) => {
+      if (ref.scrollTop !== to.y) {
+        disableSnap()
+        register(
+          animate({
+            from: ref.scrollTop,
+            to: to.y,
+            velocity: scroll.y.getVelocity(),
+            onUpdate: (v) => {
+              ref.scrollTop = v
+            },
+            onComplete,
+            onStop: onComplete,
+            bounce: 50,
+          }),
+        )
+      } else onComplete()
+    })
+
+    await xDone
+    await yDone
+    enableSnap()
   }
 }

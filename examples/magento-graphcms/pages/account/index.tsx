@@ -14,7 +14,6 @@ import { OrderStateLabelInline } from '@graphcommerce/magento-customer-order'
 import { CustomerNewsletterToggle } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   GetStaticProps,
   iconBox,
   iconEmailOutline,
@@ -26,17 +25,17 @@ import {
   iconShutdown,
   iconStar,
   TimeAgo,
-  Title,
+  LayoutTitle,
+  LayoutHeader,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
-import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
-import PageShellHeader from '../../components/AppShell/PageShellHeader'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
+import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
 import apolloClient from '../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<MinimalPageShellProps>
+type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
 function AccountIndexPage() {
   const { data, loading, error } = useQuery(AccountDashboardDocument, {
@@ -50,7 +49,7 @@ function AccountIndexPage() {
   const address =
     customer?.addresses?.filter((a) => a?.default_shipping)?.[0] || customer?.addresses?.[0]
   const orders = customer?.orders
-  const latestOrder = orders?.items?.[orders?.items?.length - 1]
+  const latestOrder = orders?.items?.[(orders?.items?.length ?? 1) - 1]
 
   if (loading) return <div />
   if (error)
@@ -72,15 +71,15 @@ function AccountIndexPage() {
         metaRobots={['noindex']}
       />
 
-      <PageShellHeader>
-        <Title component='span' size='small' icon={iconPerson}>
+      <LayoutHeader>
+        <LayoutTitle component='span' size='small' icon={iconPerson}>
           <Trans>Account</Trans>
-        </Title>
-      </PageShellHeader>
+        </LayoutTitle>
+      </LayoutHeader>
 
-      <AppShellTitle icon={iconPerson}>
+      <LayoutTitle icon={iconPerson}>
         <Trans>Account</Trans>
-      </AppShellTitle>
+      </LayoutTitle>
 
       <Container maxWidth='md'>
         <NoSsr>
@@ -153,7 +152,7 @@ function AccountIndexPage() {
               endIcon={<CustomerNewsletterToggle color='primary' />}
             />
             <SignOutForm
-              button={({ formState }) => (
+              button={React.memo(({ formState }) => (
                 <AccountMenuItem
                   iconSrc={iconShutdown}
                   loading={formState.isSubmitting}
@@ -162,7 +161,7 @@ function AccountIndexPage() {
                   title={t`Sign out`}
                   noBorderBottom
                 />
-              )}
+              ))}
             />
           </AccountMenu>
         </NoSsr>
@@ -171,8 +170,8 @@ function AccountIndexPage() {
   )
 }
 
-const pageOptions: PageOptions<MinimalPageShellProps> = {
-  SharedComponent: MinimalPageShell,
+const pageOptions: PageOptions<LayoutMinimalProps> = {
+  Layout: LayoutMinimal,
 }
 
 AccountIndexPage.pageOptions = pageOptions

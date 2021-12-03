@@ -1,10 +1,7 @@
 import { Container, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
-import { useMotionValue } from 'framer-motion'
-import React, { useEffect } from 'react'
-import { useMotionValueValue } from '../../../framer-utils'
+import React from 'react'
 import { UseStyles } from '../../Styles'
-import useAppShellHeaderContext from '../AppShellHeader/useAppShellHeaderContext'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -38,21 +35,8 @@ export default function AppShellSticky(props: AppShellStickyProps) {
   const { children, headerFill = 'both' } = props
   const classes = useStyles(props)
 
-  const { contentHeaderRef } = useAppShellHeaderContext()
-  const offsetTop = useMotionValue<number>(0)
-
-  useEffect(() => {
-    if (!contentHeaderRef?.current) return () => {}
-
-    const ro = new ResizeObserver(([entry]) =>
-      offsetTop.set(contentHeaderRef?.current?.clientHeight ?? 0),
-    )
-
-    ro.observe(contentHeaderRef.current)
-    return () => ro.disconnect()
-  }, [contentHeaderRef, offsetTop])
-
-  const top = useMotionValueValue(offsetTop, (v) => v)
+  // todo
+  const top = 0
 
   return (
     <Container

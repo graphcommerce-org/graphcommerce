@@ -1,5 +1,6 @@
 import { useContext } from 'react'
-import { pageRouterContext, RouterProxy } from '../context/pageRouterContext'
+import { pageRouterContext } from '../context/pageRouterContext'
+import { RouterProxy } from '../types'
 
 /**
  * The pageRouter maintains state for the old page.

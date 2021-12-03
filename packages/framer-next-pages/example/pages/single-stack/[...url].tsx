@@ -1,29 +1,38 @@
 /* eslint-disable @typescript-eslint/require-await */
-import { PageOptions, usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
-import { SheetVariant, SPRING_ANIM } from '@graphcommerce/framer-sheet'
+import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
+import {
+  LayoutHeader,
+  LayoutTitle,
+  LayoutOverlay,
+  LayoutOverlayProps,
+  LayoutOverlayVariant,
+} from '@graphcommerce/next-ui'
+import { Container } from '@material-ui/core'
 import { motion } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticProps } from 'next'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import Grid from '../../components/Grid'
-import SheetShell, { SheetShellProps } from '../../components/SheetShell'
+import StackDebug from '../../components/StackedDebugger'
 
-function MultiStack() {
+function SingleStack() {
   const [expanded, setExpanded] = useState(true)
   const router = usePageRouter()
-  const { backSteps } = usePageContext()
 
   const [variant] = router.query.url as string[]
   const page = Number.isNaN(Number(router.query.url?.[1])) ? 0 : Number(router.query.url?.[1])
 
   return (
     <>
-      <button type='button' onClick={() => setExpanded(!expanded)}>
-        {expanded ? 'collapse' : 'expand'}
-      </button>
-
-      <h1>
-        Overlay{' '}
+      <LayoutHeader noAlign>
+        <LayoutTitle size='small' component='span'>
+          Overlay {variant} {page}
+        </LayoutTitle>
+      </LayoutHeader>
+      <Container>
+        <LayoutTitle>
+          Overlay {variant} {page}
+        </LayoutTitle>
         {page > 0 && (
           <Link href={`/single-stack/${variant}/${page - 1}`}>
             <a>{page - 1}</a>
@@ -33,48 +42,54 @@ function MultiStack() {
         <Link href={`/single-stack/${variant}/${page + 1}`}>
           <a>{page + 1}</a>
         </Link>
-      </h1>
-
-      <motion.div
-        style={{ fontFamily: 'sans-serif', overflow: 'hidden' }}
-        variants={{
-          collapsed: { height: 60 },
-          expanded: { height: 'auto' },
-        }}
-        initial='expanded'
-        animate={expanded ? 'expanded' : 'collapsed'}
-        transition={SPRING_ANIM}
-      >
-        <Grid />
-      </motion.div>
+        <button type='button' onClick={() => setExpanded(!expanded)}>
+          {expanded ? 'collapse' : 'expand'}
+        </button>
+        <StackDebug />
+        <motion.div
+          style={{ fontFamily: 'sans-serif', overflow: 'hidden' }}
+          variants={{
+            collapsed: { height: 60 },
+            expanded: { height: 'auto' },
+          }}
+          initial='expanded'
+          animate={expanded ? 'expanded' : 'collapsed'}
+        >
+          <Grid />
+        </motion.div>
+        <div style={{ height: 2000 }}>hoi</div>
+      </Container>
     </>
   )
 }
 
 const pageOptions: PageOptions = {
   overlayGroup: 'bottom',
-  SharedComponent: SheetShell,
+  Layout: LayoutOverlay,
 }
-MultiStack.pageOptions = pageOptions
+SingleStack.pageOptions = pageOptions
 
-export default MultiStack
+export default SingleStack
 
-type ParsedUrlQuery = { url: [SheetVariant, string] }
+type ParsedUrlQuery = { url: [LayoutOverlayVariant, string] }
 export async function getStaticPaths(): Promise<GetStaticPathsResult<ParsedUrlQuery>> {
   return {
     paths: [
       { params: { url: ['bottom', '0'] } },
       { params: { url: ['left', '0'] } },
       { params: { url: ['right', '0'] } },
-      { params: { url: ['top', '0'] } },
     ],
     fallback: 'blocking',
   }
 }
 
-export const getStaticProps: GetStaticProps<SheetShellProps, ParsedUrlQuery> = async (ctx) => {
-  const variant = ctx.params?.url?.[0] ?? 'top'
-  const variants = ['top', 'left', 'bottom', 'right']
+export const getStaticProps: GetStaticProps<LayoutOverlayProps, ParsedUrlQuery> = async (ctx) => {
+  const variant: LayoutOverlayVariant = ctx.params?.url?.[0] ?? 'bottom'
 
-  return { props: { variant: variants.includes(variant) ? variant : 'top' } }
+  return {
+    props: {
+      variantMd: variant,
+      variantSm: variant,
+    },
+  }
 }

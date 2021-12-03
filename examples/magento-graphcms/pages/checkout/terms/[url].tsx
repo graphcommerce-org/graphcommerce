@@ -5,23 +5,22 @@ import {
 } from '@graphcommerce/magento-cart/components/CartAgreementsForm/CartAgreements.gql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   GetStaticProps,
   PageMeta,
   responsiveVal,
-  SheetShellHeader,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { Container, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = { agreement: NonNullable<NonNullable<CartAgreementsQuery['checkoutAgreements']>[0]> }
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function TermsPage(props: Props) {
   const { agreement } = props
@@ -32,18 +31,19 @@ function TermsPage(props: Props) {
     <>
       <PageMeta title={title} />
 
-      <SheetShellHeader hideDragIndicator>
-        <Title component='span' size='small'>
+      <LayoutOverlayHeader>
+        <LayoutTitle component='span' size='small'>
           {title}
-        </Title>
-      </SheetShellHeader>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
 
-      <AppShellTitle>
-        <Title>{title}</Title>
-      </AppShellTitle>
+      <LayoutTitle>
+        <LayoutTitle>{title}</LayoutTitle>
+      </LayoutTitle>
 
       <Container maxWidth='md'>
         <Typography component='div' variant='body1'>
+          {/* eslint-disable-next-line react/no-danger */}
           <div dangerouslySetInnerHTML={{ __html: agreement?.content ?? '' }} />
         </Typography>
       </Container>
@@ -51,9 +51,9 @@ function TermsPage(props: Props) {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'left',
-  SharedComponent: SheetShell,
+  Layout: LayoutOverlay,
 }
 TermsPage.pageOptions = pageOptions
 
@@ -68,7 +68,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
     const client = apolloClient(locale)
     const { data } = await client.query({ query: CartAgreementsDocument })
     return (data.checkoutAgreements ?? []).map((agreement) => ({
-      locale: locale,
+      locale,
       params: { url: agreement?.name.toLowerCase().replace(/\s+/g, '-') ?? '' },
     }))
   }

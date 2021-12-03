@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { useMemo, useReducer } from 'react'
 import { composedFormContext } from './context'
 import { composedFormReducer } from './reducer'
 
@@ -25,7 +25,7 @@ export default function ComposedForm(props: ComposedFormProps) {
   })
 
   return (
-    <composedFormContext.Provider value={[state, dispatch]}>
+    <composedFormContext.Provider value={useMemo(() => [state, dispatch], [state])}>
       {children}
     </composedFormContext.Provider>
   )

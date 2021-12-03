@@ -1,8 +1,8 @@
+import { usePageRouter } from '@graphcommerce/framer-next-pages'
 import { Button } from '@graphcommerce/next-ui'
-import { makeStyles } from '@material-ui/styles'
-import { useRouter } from 'next/router'
+import { makeStyles } from '@material-ui/core'
 import React from 'react'
-import { LayoutProps } from '../Layout'
+import { LayoutProps } from '../Layout/PageLayout'
 import { SanitizedDirectoryTree } from '../SidebarMenu/sanitizeDirectoryTree'
 
 const useStyles = makeStyles(
@@ -21,7 +21,7 @@ const useStyles = makeStyles(
 type NextPrevButtonProps = Pick<LayoutProps, 'menuData'>
 
 export default function NextPrevButtons({ menuData }: NextPrevButtonProps) {
-  const router = useRouter()
+  const router = usePageRouter()
   const classes = useStyles()
   const flatMenuData = (menuData as unknown as SanitizedDirectoryTree)
     .map((data) => data[1])

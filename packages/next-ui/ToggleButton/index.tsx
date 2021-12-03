@@ -1,11 +1,9 @@
-// @inheritedComponent ButtonBase
-
-import { capitalize, lighten, makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React, { FormEvent } from 'react'
-import { responsiveVal } from '..'
 import Button, { ButtonProps } from '../Button'
 import { UseStyles } from '../Styles'
+import { responsiveVal } from '../Styles/responsiveVal'
 
 type StyleProps = { selected?: boolean; color?: ButtonProps['color'] }
 

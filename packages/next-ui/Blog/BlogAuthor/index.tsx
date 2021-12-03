@@ -1,7 +1,7 @@
 import { Avatar, Chip, makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import { responsiveVal } from '../..'
 import { UseStyles } from '../../Styles'
+import { responsiveVal } from '../../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

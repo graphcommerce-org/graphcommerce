@@ -24,15 +24,14 @@ import {
   SearchQuery,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellSticky, GetStaticProps, Title } from '@graphcommerce/next-ui'
+import { AppShellSticky, GetStaticProps, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { Container, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
+import { LayoutFull, LayoutFullProps } from '../../components/Layout'
 import ProductListItems from '../../components/ProductListItems/ProductListItems'
 import useProductListStyles from '../../components/ProductListItems/useProductListStyles'
 import apolloClient from '../../lib/apolloClient'
@@ -43,7 +42,7 @@ type Props = DefaultPageQuery &
   SearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -86,16 +85,15 @@ function SearchResultPage(props: Props) {
         canonical='/search'
       />
 
-      <FullPageShellHeader
+      <LayoutHeader
         additional={
           <Container maxWidth={false}>
             <SearchForm totalResults={totalSearchResults} search={search} />
           </Container>
         }
-        scrolled
       >
-        <Title size='small'>{title}</Title>
-      </FullPageShellHeader>
+        <LayoutTitle size='small'>{title}</LayoutTitle>
+      </LayoutHeader>
 
       <Container maxWidth='sm' className={classes.hideOnMobile}>
         <SearchForm totalResults={totalSearchResults} search={search} />
@@ -150,19 +148,19 @@ function SearchResultPage(props: Props) {
 }
 
 SearchResultPage.pageOptions = {
-  SharedComponent: FullPageShell,
+  Layout: LayoutFull,
 } as PageOptions
 
 export default SearchResultPage
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+export const getStaticPaths: GetPageStaticPaths = async () => {
   // Disable getStaticPaths while in development mode
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  return {
+  return Promise.resolve({
     paths: [{ params: { url: [] } }],
     fallback: 'blocking',
-  }
+  })
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {

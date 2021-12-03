@@ -32,7 +32,7 @@ const useStyles = makeStyles(
   { name: 'EditBillingAddressForm' },
 )
 
-type EditBillingAddressFormProps = UseStyles<typeof useStyles>
+export type EditBillingAddressFormProps = UseStyles<typeof useStyles>
 
 export default function EditBillingAddressForm(props: EditBillingAddressFormProps) {
   const countriesData = useQuery(CountryRegionsDocument).data

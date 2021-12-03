@@ -7,7 +7,7 @@ import {
 } from 'react-hook-form'
 
 export type UseMuiFormRegister<TFieldValues extends FieldValues> = <
-  TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(
   name: TFieldName,
   options?: RegisterOptions<TFieldValues, TFieldName>,

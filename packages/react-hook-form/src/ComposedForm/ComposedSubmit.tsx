@@ -46,9 +46,9 @@ export default function ComposedSubmit(props: ComposedSubmitProps) {
      * If we have forms that are have errors, we don't need to actually submit anything yet. We can
      * trigger the submission of the invalid forms and highlight the errors in those forms.
      */
-    let formsToSubmit = formEntries.filter(([, f]) => {
-      return Object.keys(f.form?.formState.errors ?? {}).length > 0
-    })
+    let formsToSubmit = formEntries.filter(
+      ([, f]) => Object.keys(f.form?.formState.errors ?? {}).length > 0,
+    )
 
     // We have no errors and no invalid forms, this means we can submit everything.
     if (!formsToSubmit.length) formsToSubmit = formEntries

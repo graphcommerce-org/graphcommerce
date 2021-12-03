@@ -1,13 +1,13 @@
-import { Image, ImageProps, isStaticImport, isStaticRequire } from '@graphcommerce/image'
-import { makeStyles, capitalize, Theme } from '@material-ui/core'
+import { ImageProps, isStaticImport, isStaticRequire } from '@graphcommerce/image'
+import { makeStyles, capitalize } from '@material-ui/core'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import responsiveVal from '../Styles/responsiveVal'
+import { responsiveVal } from '../Styles/responsiveVal'
 
 export type SvgImageShade = 'muted' | 'default' | 'inverted'
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  {
     image: {
       userSelect: 'none',
       width: responsiveVal(22, 24),
@@ -48,7 +48,7 @@ const useStyles = makeStyles(
     },
     muted: {},
     inverted: {},
-  }),
+  },
   { name: 'SvgImageSimple' },
 )
 
@@ -60,7 +60,7 @@ type SvgImageSimpleProps = Omit<ImageProps, 'fixed'> & {
   inverted?: boolean
 }
 
-const SvgImageSimple = forwardRef<HTMLImageElement, SvgImageSimpleProps>((props, ref) => {
+const SvgImageSimple = forwardRef<SVGSVGElement, SvgImageSimpleProps>((props, ref) => {
   const {
     style,
     className,
@@ -73,13 +73,14 @@ const SvgImageSimple = forwardRef<HTMLImageElement, SvgImageSimpleProps>((props,
   } = props
   const classes = useStyles()
 
-  let src = imageProps.src
+  let { src } = imageProps
   let staticSrc = ''
   if (isStaticImport(src)) staticSrc = (isStaticRequire(src) ? src.default : src).src
   src = typeof src === 'string' ? src : staticSrc
 
   return (
     <svg
+      ref={ref}
       className={clsx(
         className,
         classes.image,
@@ -90,7 +91,7 @@ const SvgImageSimple = forwardRef<HTMLImageElement, SvgImageSimpleProps>((props,
       aria-hidden='true'
       style={style}
     >
-      <use href={`${src}#icon`}></use>
+      <use href={`${src}#icon`} />
     </svg>
   )
 })

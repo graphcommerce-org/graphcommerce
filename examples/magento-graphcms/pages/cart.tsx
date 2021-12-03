@@ -13,27 +13,25 @@ import { ConfigurableCartItem } from '@graphcommerce/magento-product-configurabl
 import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AnimatedRow,
-  AppShellTitle,
   Button,
   GetStaticProps,
   iconShoppingBag,
-  SheetShellHeader,
   Stepper,
-  Title,
+  LayoutTitle,
   iconChevronRight,
-  SvgImage,
   SvgImageSimple,
+  LayoutOverlayHeader,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../components/AppShell/SheetShell'
+import { LayoutOverlay, LayoutOverlayProps } from '../components/Layout'
 import apolloClient from '../lib/apolloClient'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function CartPage() {
   const { data, error, loading } = useCartQuery(CartPageDocument, { returnPartialData: true })
@@ -51,27 +49,30 @@ function CartPage() {
         metaRobots={['noindex']}
       />
       <NoSsr>
-        <SheetShellHeader
+        <LayoutOverlayHeader
           primary={
-            <PageLink href='/checkout' passHref>
-              <Button
-                color='secondary'
-                variant='pill-link'
-                disabled={!hasItems}
-                size='small'
-                endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
-              >
-                <Trans>Next</Trans>
-              </Button>
-            </PageLink>
+            hasItems && (
+              <PageLink href='/checkout' passHref>
+                <Button
+                  color='secondary'
+                  variant='pill-link'
+                  disabled={!hasItems}
+                  endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
+                >
+                  <Trans>Next</Trans>
+                </Button>
+              </PageLink>
+            )
           }
           divider={
-            <Container maxWidth='md'>
-              <Stepper currentStep={1} steps={3} />
-            </Container>
+            hasItems && (
+              <Container maxWidth='md'>
+                <Stepper currentStep={1} steps={3} />
+              </Container>
+            )
           }
         >
-          <Title size='small' component='span' icon={hasItems ? iconShoppingBag : undefined}>
+          <LayoutTitle size='small' component='span' icon={hasItems ? iconShoppingBag : undefined}>
             {hasItems ? (
               <>
                 Cart Total: <Money {...data?.cart?.prices?.grand_total} />
@@ -79,16 +80,16 @@ function CartPage() {
             ) : (
               <>Cart</>
             )}
-          </Title>
-        </SheetShellHeader>
+          </LayoutTitle>
+        </LayoutOverlayHeader>
         <Container maxWidth='md'>
           <AnimatePresence initial={false}>
             {hasItems ? (
               <>
                 <AnimatedRow key='quick-checkout'>
-                  <AppShellTitle icon={iconShoppingBag}>
+                  <LayoutTitle icon={iconShoppingBag}>
                     Cart Total: <Money {...data?.cart?.prices?.grand_total} />
-                  </AppShellTitle>
+                  </LayoutTitle>
                 </AnimatedRow>
                 <CartItems
                   items={data?.cart?.items}
@@ -122,9 +123,10 @@ function CartPage() {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'checkout',
-  SharedComponent: SheetShell,
+  Layout: LayoutOverlay,
+  layoutProps: { variantMd: 'bottom', variantSm: 'bottom' },
 }
 CartPage.pageOptions = pageOptions
 
@@ -137,8 +139,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
-      variant: 'bottom',
-      size: 'max',
     },
   }
 }

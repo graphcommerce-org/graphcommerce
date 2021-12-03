@@ -7,23 +7,21 @@ import {
   StoreSwitcherListQuery,
 } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   GetStaticProps,
   iconShoppingBag,
-  responsiveVal,
-  SheetShellHeader,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
-import { FullPageShellProps } from '../components/AppShell/FullPageShell'
-import SheetShell, { SheetShellProps } from '../components/AppShell/SheetShell'
+import { LayoutFullProps } from '../components/Layout'
+import { LayoutOverlay, LayoutOverlayProps } from '../components/Layout/LayoutOverlay'
 import apolloClient from '../lib/apolloClient'
 
 type RouteProps = { country?: string[] }
 type Props = StoreSwitcherListQuery
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function StoresIndexPage({ availableStores }: Props) {
   const { locale } = usePageRouter()
@@ -36,15 +34,15 @@ function StoresIndexPage({ availableStores }: Props) {
         metaRobots={['noindex']}
       />
       <NoSsr>
-        <SheetShellHeader hideDragIndicator>
-          <Title size='small' component='span' icon={iconShoppingBag}>
+        <LayoutOverlayHeader>
+          <LayoutTitle size='small' component='span' icon={iconShoppingBag}>
             <Trans>Country</Trans>
-          </Title>
-        </SheetShellHeader>
+          </LayoutTitle>
+        </LayoutOverlayHeader>
         <Container maxWidth='md'>
-          <AppShellTitle icon={iconShoppingBag}>
+          <LayoutTitle icon={iconShoppingBag}>
             <Trans>Country</Trans>
-          </AppShellTitle>
+          </LayoutTitle>
           <StoreSwitcherList availableStores={availableStores} locale={locale} />
         </Container>
       </NoSsr>
@@ -52,9 +50,10 @@ function StoresIndexPage({ availableStores }: Props) {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'left',
-  SharedComponent: SheetShell,
+  Layout: LayoutOverlay,
+  layoutProps: { variantMd: 'left' },
 }
 StoresIndexPage.pageOptions = pageOptions
 
@@ -70,8 +69,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await stores).data,
-      variant: 'left',
-      size: responsiveVal(320, 800),
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

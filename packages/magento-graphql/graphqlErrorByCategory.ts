@@ -1,5 +1,5 @@
 import { ApolloError } from '@apollo/client'
-import { GraphQLError } from 'graphql'
+import type { GraphQLError } from 'graphql'
 
 export type ErrorCategory =
   | 'internal'

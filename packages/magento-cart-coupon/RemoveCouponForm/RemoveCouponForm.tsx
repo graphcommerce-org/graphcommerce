@@ -1,6 +1,6 @@
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
 import { UseStyles, SvgImageSimple, iconCancelAlt, Button } from '@graphcommerce/next-ui'
-import { lighten, IconButton, makeStyles, Theme } from '@material-ui/core'
+import { lighten, makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { CouponFragment } from '../Api/Coupon.gql'
 import { RemoveCouponFormDocument } from './RemoveCouponForm.gql'

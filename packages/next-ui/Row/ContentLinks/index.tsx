@@ -5,12 +5,12 @@ import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    root: {},
-    scroller: {
+    root: {
       marginBottom: `${theme.spacings.lg}`,
+    },
+    scroller: {
       justifyContent: 'start',
       gap: `${theme.spacings.md}`,
-      alignContent: 'center',
       gridAutoColumns: `max-content`,
     },
     title: {

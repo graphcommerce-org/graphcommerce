@@ -43,11 +43,11 @@ export default function AccountOrders(props: AccountOrdersProps) {
   // because we want to render the latest order first,
   // but the API returns the orders in ASC order...
   const latestOrders = orders?.items
-    .slice(Math.max(orders?.items?.length - 2, 0), orders?.items?.length)
+    .slice(Math.max((orders?.items?.length ?? 0) - 2, 0), orders?.items?.length)
     .reverse()
 
   const olderOrders = isFirstPage
-    ? orders?.items.slice(0, Math.max(orders?.items?.length - 2, 0)).reverse()
+    ? orders?.items.slice(0, Math.max((orders?.items?.length ?? 0) - 2, 0)).reverse()
     : orders?.items
 
   return (

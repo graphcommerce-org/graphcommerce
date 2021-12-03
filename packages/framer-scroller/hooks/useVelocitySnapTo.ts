@@ -17,7 +17,7 @@ const closest = (counts: number[], target: number) =>
 export const useVelocitySnapTo = (
   ref: React.RefObject<HTMLElement> | React.MutableRefObject<HTMLElement | undefined>,
 ) => {
-  const { disableSnap, register, getScrollSnapPositions, scrollSnap } = useScrollerContext()
+  const { disableSnap, enableSnap, register, getScrollSnapPositions } = useScrollerContext()
 
   const inertiaOptions: InertiaOptions = {
     power: 1,
@@ -28,42 +28,58 @@ export const useVelocitySnapTo = (
     // restSpeed: 1,
   }
 
-  const animatePan = (info: PanInfo, onComplete?: () => void) => {
+  const animatePan = async (info: PanInfo) => {
     const el = ref.current
     if (!el) throw Error(`Can't find html element`)
 
     const { scrollLeft, scrollTop } = el
-    disableSnap()
 
-    const targetX = clamp(info, 'x') * -1 + scrollLeft
-    const closestX = closest(getScrollSnapPositions().x, targetX)
+    const xDone = new Promise<void>((onComplete) => {
+      const targetX = clamp(info, 'x') * -1 + scrollLeft
+      const closestX = closest(getScrollSnapPositions().x, targetX)
 
-    const cancelX = inertia({
-      velocity: info.velocity.x * -1,
-      max: typeof closestX !== 'undefined' ? closestX - scrollLeft : undefined,
-      min: typeof closestX !== 'undefined' ? closestX - scrollLeft : undefined,
-      ...inertiaOptions,
-      onUpdate: (v: number) => {
-        el.scrollLeft = Math.round(v + scrollLeft)
-      },
-      onComplete,
+      if (closestX !== scrollLeft) {
+        disableSnap()
+        register(
+          inertia({
+            velocity: info.velocity.x * -1,
+            max: typeof closestX !== 'undefined' ? closestX - scrollLeft : undefined,
+            min: typeof closestX !== 'undefined' ? closestX - scrollLeft : undefined,
+            ...inertiaOptions,
+            onUpdate: (v: number) => (el.scrollLeft = Math.round(v + scrollLeft)),
+            onComplete,
+          }),
+        )
+      } else {
+        onComplete()
+      }
     })
-    register(cancelX)
 
-    const targetY = clamp(info, 'y') * -1 + scrollTop
-    const closestY = closest(getScrollSnapPositions().y, targetY)
-    const cancelY = inertia({
-      velocity: info.velocity.y * -1,
-      max: typeof closestY !== 'undefined' ? closestY - scrollTop : undefined,
-      min: typeof closestY !== 'undefined' ? closestY - scrollTop : undefined,
-      ...inertiaOptions,
-      onUpdate: (v: number) => {
-        el.scrollTop = v + scrollTop
-      },
+    const yDone = new Promise<void>((onComplete) => {
+      const targetY = clamp(info, 'y') * -1 + scrollTop
+      const closestY = closest(getScrollSnapPositions().y, targetY)
+
+      if (closestY !== scrollTop) {
+        disableSnap()
+        register(
+          inertia({
+            velocity: info.velocity.y * -1,
+            max: typeof closestY !== 'undefined' ? closestY - scrollTop : undefined,
+            min: typeof closestY !== 'undefined' ? closestY - scrollTop : undefined,
+            ...inertiaOptions,
+            onUpdate: (v: number) => (el.scrollTop = Math.round(v + scrollTop)),
+            onComplete,
+          }),
+        )
+      } else {
+        onComplete()
+      }
     })
-    register(cancelY)
 
-    return () => {}
+    await xDone
+    await yDone
+    enableSnap()
   }
+
   return animatePan
 }

@@ -10,10 +10,10 @@ import {
 } from '@material-ui/core'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
-import { Router, useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import { UseStyles } from '../Styles'
-import responsiveVal from '../Styles/responsiveVal'
+import { responsiveVal } from '../Styles/responsiveVal'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconMenu, iconClose } from '../icons'
 import { MenuProps } from './Menu'
@@ -25,13 +25,15 @@ const useStyles = makeStyles(
       position: 'fixed',
       zIndex: 99,
       left: theme.page.horizontal,
-      top: `calc(${theme.spacings.xxs} - 5px)`,
       [theme.breakpoints.down('sm')]: {
         top: 'unset',
         left: 20,
         bottom: 20,
         transform: 'none !important',
         opacity: '1 !important',
+      },
+      [theme.breakpoints.up('md')]: {
+        top: `calc(${theme.appShell.headerHeightMd} / 2 - 28px)`,
       },
     },
     menuFab: {

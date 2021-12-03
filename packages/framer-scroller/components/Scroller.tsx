@@ -3,7 +3,7 @@ import { forwardRef } from 'react'
 import { ScrollableProps, useScroller } from '../hooks/useScroller'
 
 const Scroller = forwardRef<HTMLDivElement, ScrollableProps>((props, forwardedRef) => {
-  const scroller = useScroller<'div'>(props, forwardedRef)
+  const scroller = useScroller<'div'>({ grid: true, ...props }, forwardedRef)
   return <m.div {...scroller} />
 })
 Scroller.displayName = 'Scroller'

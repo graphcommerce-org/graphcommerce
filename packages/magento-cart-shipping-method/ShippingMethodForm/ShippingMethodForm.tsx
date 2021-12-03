@@ -9,8 +9,6 @@ import {
   FormRow,
   iconChevronLeft,
   iconChevronRight,
-  responsiveVal,
-  SvgImage,
   SvgImageSimple,
   UseStyles,
 } from '@graphcommerce/next-ui'

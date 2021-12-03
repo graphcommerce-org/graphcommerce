@@ -1,30 +1,27 @@
 import { useQuery } from '@apollo/client'
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { ApolloCustomerErrorFullPage, EditAddressForm } from '@graphcommerce/magento-customer'
 import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   GetStaticProps,
   iconAddresses,
   IconHeader,
   SectionContainer,
-  SheetShellHeader,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Box, Container, NoSsr } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
-import { useRouter } from 'next/router'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
 
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
-function EditAddressPage(props: Props) {
-  const router = useRouter()
+function EditAddressPage() {
+  const router = usePageRouter()
   const { addressId } = router.query
 
   const { data, loading, error } = useQuery(AccountDashboardAddressesDocument, {
@@ -48,11 +45,11 @@ function EditAddressPage(props: Props) {
 
   return (
     <>
-      <SheetShellHeader>
-        <Title size='small' component='span' icon={iconAddresses}>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span' icon={iconAddresses}>
           <Trans>Addresses</Trans>
-        </Title>
-      </SheetShellHeader>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta
           title={t`Edit address`}
@@ -60,9 +57,9 @@ function EditAddressPage(props: Props) {
           metaRobots={['noindex']}
         />
         <NoSsr>
-          <AppShellTitle icon={iconAddresses}>
+          <LayoutTitle icon={iconAddresses}>
             <Trans>Addresses</Trans>
-          </AppShellTitle>
+          </LayoutTitle>
 
           <SectionContainer labelLeft={t`Edit address`}>
             {!address && !loading && (
@@ -90,9 +87,9 @@ function EditAddressPage(props: Props) {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
-  SharedComponent: SheetShell,
+  Layout: LayoutOverlay,
   sharedKey: () => 'account/addresses',
 }
 EditAddressPage.pageOptions = pageOptions

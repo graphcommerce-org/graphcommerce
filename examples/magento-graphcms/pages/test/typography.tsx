@@ -3,12 +3,12 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { Typography, Container } from '@material-ui/core'
 import React, { useEffect, useRef, useState } from 'react'
-import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
+import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<MinimalPageShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
 
 function useRenderedSize() {
   const [size, setSize] = useState<string>()
@@ -134,7 +134,7 @@ function TypographyOverview() {
 }
 
 TypographyOverview.pageOptions = {
-  SharedComponent: MinimalPageShell,
+  Layout: LayoutMinimal,
   sharedKey: () => 'page',
 } as PageOptions
 

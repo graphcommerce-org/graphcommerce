@@ -1,15 +1,15 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 import React from 'react'
-import AppShellTitle from '../../AppShell/AppShellTitle'
+import { LayoutTitle } from '../../Layout'
 import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  {
     wrapper: {
       maxWidth: 800,
       margin: `0 auto`,
     },
-  }),
+  },
   { name: 'BlogTitle' },
 )
 
@@ -23,7 +23,7 @@ export default function BlogTitle(props: BlogTitleProps) {
 
   return (
     <div className={classes.wrapper}>
-      <AppShellTitle variant='h1'>{title}</AppShellTitle>
+      <LayoutTitle variant='h1'>{title}</LayoutTitle>
     </div>
   )
 }

@@ -1,6 +1,6 @@
+import { usePageRouter } from '@graphcommerce/framer-next-pages'
 import { Image, ImageProps } from '@graphcommerce/image'
-import { makeStyles, Theme, useTheme } from '@material-ui/core'
-import clsx from 'clsx'
+import { makeStyles, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
 import { UseStyles } from '../Styles'
@@ -21,34 +21,25 @@ const useStyles = makeStyles(
         justifyContent: 'left',
       },
     },
-    logoHideOnMobile: {
-      display: 'none',
-      [theme.breakpoints.up('md')]: {
-        display: 'unset',
-      },
-    },
   }),
   { name: 'Logo' },
 )
 
-export type LogoProps = {
-  href?: `/${string}`
-  image: ImageProps
-  alwaysShow?: boolean
-} & UseStyles<typeof useStyles>
+export type LogoProps = { href?: `/${string}`; image: ImageProps } & UseStyles<typeof useStyles>
 
 export default function Logo(props: LogoProps) {
-  const { href, alwaysShow, image } = props
+  const { href, image } = props
+  const router = usePageRouter()
   const classes = useStyles(props)
-  const theme = useTheme()
 
-  return (
+  return router.asPath === '/' ? (
+    <div className={classes.logo}>
+      <Image layout='fixed' loading='eager' {...image} className={classes.logo} />
+    </div>
+  ) : (
     <PageLink href={href ?? '/'} passHref>
       <a className={classes.link} aria-label='Logo'>
-        <Image
-          {...{ ...image }}
-          className={clsx(classes.logo, !alwaysShow && classes.logoHideOnMobile)}
-        />
+        <Image layout='fixed' loading='eager' {...image} className={classes.logo} />
       </a>
     </PageLink>
   )

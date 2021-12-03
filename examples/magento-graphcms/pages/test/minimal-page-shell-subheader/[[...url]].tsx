@@ -14,93 +14,87 @@ import {
 } from '@graphcommerce/magento-product'
 import { SearchDocument, SearchForm, SearchQuery } from '@graphcommerce/magento-search'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellSticky, AppShellTitle, Button } from '@graphcommerce/next-ui'
+import { AppShellSticky, LayoutTitle, Button, LayoutHeader } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
-import { Box, Container, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Box, Container, makeStyles, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
-import MinimalPageShell, {
-  MinimalPageShellProps,
-} from '../../../components/AppShell/MinimalPageShell'
-import PageShellHeader from '../../../components/AppShell/PageShellHeader'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
+import { LayoutMinimal, LayoutMinimalProps } from '../../../components/Layout'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = DefaultPageQuery &
   SearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<MinimalPageShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props, RouteProps>
 
 // for testing only
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles({
   longContent: {
     height: 2000,
   },
-}))
+})
 
 function MinimalAppShellSubheader(props: Props) {
   const { params, products, filters, filterTypes } = props
   const classes = useStyles()
 
   return (
-    <>
-      <ProductListParamsProvider value={params}>
-        <PageShellHeader
-          primary={
-            <PageLink href='/test/minimal-page-shell' passHref>
-              <Button color='secondary' variant='pill-link' size='small'>
-                Next
-              </Button>
-            </PageLink>
-          }
-          additional={
-            <Container maxWidth='sm'>
-              <SearchForm urlHandle='test/minimal-page-shell-subheader' />
-            </Container>
-          }
-          scrolled
-        >
-          <Typography variant='h5' component='span'>
-            Minimal UI
-          </Typography>
-        </PageShellHeader>
-        <Container maxWidth='md' className={classes.longContent}>
-          <AppShellTitle>
-            <Box textAlign='center' mb={3}>
-              <Typography variant='h2' component='h2'>
-                Minimal UI
-              </Typography>
-            </Box>
-          </AppShellTitle>
+    <ProductListParamsProvider value={params}>
+      <LayoutHeader
+        primary={
+          <PageLink href='/test/minimal-page-shell' passHref>
+            <Button color='secondary' variant='pill-link' size='small'>
+              Next
+            </Button>
+          </PageLink>
+        }
+        additional={
+          <Container maxWidth='sm'>
+            <SearchForm urlHandle='test/minimal-page-shell-subheader' />
+          </Container>
+        }
+      >
+        <Typography variant='h5' component='span'>
+          Minimal UI
+        </Typography>
+      </LayoutHeader>
+      <Container maxWidth='md' className={classes.longContent}>
+        <LayoutTitle>
+          <Box textAlign='center' mb={3}>
+            <Typography variant='h2' component='h2'>
+              Minimal UI
+            </Typography>
+          </Box>
+        </LayoutTitle>
 
-          <AppShellSticky>
-            <ProductListFiltersContainer>
-              <ProductListSort sort_fields={products?.sort_fields} />
-              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-            </ProductListFiltersContainer>
-          </AppShellSticky>
-        </Container>
-      </ProductListParamsProvider>
-    </>
+        <AppShellSticky>
+          <ProductListFiltersContainer>
+            <ProductListSort sort_fields={products?.sort_fields} />
+            <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
+          </ProductListFiltersContainer>
+        </AppShellSticky>
+      </Container>
+    </ProductListParamsProvider>
   )
 }
 
 MinimalAppShellSubheader.pageOptions = {
-  SharedComponent: MinimalPageShell,
+  Layout: LayoutMinimal,
 } as PageOptions
 
 export default MinimalAppShellSubheader
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+export const getStaticPaths: GetPageStaticPaths = async () => {
   // Disable getStaticPaths while in development mode
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  return {
+  return Promise.resolve({
     paths: [{ params: { url: [] } }],
     fallback: 'blocking',
-  }
+  })
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {

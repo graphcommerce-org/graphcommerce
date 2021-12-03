@@ -7,20 +7,19 @@ import {
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   GetStaticProps,
   iconEmailOutline,
   SectionContainer,
-  SheetShellHeader,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<SheetShellProps>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountContactPage() {
   const { loading, data, error } = useQuery(CustomerDocument, {
@@ -40,11 +39,11 @@ function AccountContactPage() {
 
   return (
     <>
-      <SheetShellHeader>
-        <Title size='small' component='span' icon={iconEmailOutline}>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span' icon={iconEmailOutline}>
           <Trans>Contact</Trans>
-        </Title>
-      </SheetShellHeader>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <NoSsr>
         <Container maxWidth='md'>
           <PageMeta
@@ -53,9 +52,9 @@ function AccountContactPage() {
             metaRobots={['noindex']}
           />
 
-          <AppShellTitle icon={iconEmailOutline}>
+          <LayoutTitle icon={iconEmailOutline}>
             <Trans>Contact</Trans>
-          </AppShellTitle>
+          </LayoutTitle>
 
           <SectionContainer labelLeft='Email'>
             {customer && <UpdateCustomerEmailForm email={customer.email ?? ''} />}
@@ -66,9 +65,9 @@ function AccountContactPage() {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
-  SharedComponent: SheetShell,
+  Layout: LayoutOverlay,
 }
 AccountContactPage.pageOptions = pageOptions
 

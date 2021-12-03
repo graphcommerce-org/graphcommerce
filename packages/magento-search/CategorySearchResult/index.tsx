@@ -2,7 +2,6 @@ import {
   Button,
   Highlight,
   iconChevronRight,
-  SvgImage,
   SvgImageSimple,
   UseStyles,
 } from '@graphcommerce/next-ui'

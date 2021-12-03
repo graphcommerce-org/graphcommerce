@@ -51,9 +51,9 @@ export default function CartAgreementsForm(props: CartAgreementsFormProps) {
 
   // sort conditions so checkboxes will be placed first
   const sortedAgreements = data?.checkoutAgreements
-    ? [...data.checkoutAgreements].sort((a, b) => {
-        return a?.mode === 'MANUAL' ? -1 : b?.mode === 'MANUAL' ? 1 : 0
-      })
+    ? [...data.checkoutAgreements].sort((a, b) =>
+        a?.mode === 'MANUAL' ? -1 : b?.mode === 'MANUAL' ? 1 : 0,
+      )
     : []
 
   const form = useForm({ mode: 'onChange' })
@@ -78,7 +78,7 @@ export default function CartAgreementsForm(props: CartAgreementsFormProps) {
                 <React.Fragment key={agreement.agreement_id}>
                   {agreement.mode === 'MANUAL' ? (
                     <Controller
-                      defaultValue={''}
+                      defaultValue=''
                       name={String(agreement.agreement_id)}
                       control={control}
                       rules={{ required: t`You have to agree in order to proceed` }}
@@ -91,7 +91,7 @@ export default function CartAgreementsForm(props: CartAgreementsFormProps) {
                           classes={{ root: classes.formControlRoot }}
                         >
                           <FormControlLabel
-                            control={<Checkbox color='secondary' required={true} />}
+                            control={<Checkbox color='secondary' required />}
                             label={
                               <PageLink href={href} passHref>
                                 <Link color='secondary'>{agreement.checkbox_text}</Link>

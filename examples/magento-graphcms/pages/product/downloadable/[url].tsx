@@ -17,14 +17,13 @@ import {
 } from '@graphcommerce/magento-product-downloadable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, JsonLd, Title } from '@graphcommerce/next-ui'
+import { GetStaticProps, JsonLd, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { Product } from 'schema-dts'
-import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
-import FullPageShellHeader from '../../../components/AppShell/FullPageShellHeader'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
+import { LayoutFull, LayoutFullProps } from '../../../components/Layout'
 import { RowProduct } from '../../../components/Row'
 import RowRenderer from '../../../components/Row/RowRenderer'
 import Usps from '../../../components/Usps'
@@ -36,7 +35,7 @@ type Props = ProductPageQuery & DownloadableProductPageQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function ProductDownloadable(props: Props) {
   const { products, usps, typeProducts, sidebarUsps, pages } = props
@@ -53,11 +52,11 @@ function ProductDownloadable(props: Props) {
 
   return (
     <>
-      <FullPageShellHeader>
-        <Title size='small' component='span'>
+      <LayoutHeader floatingMd>
+        <LayoutTitle size='small' component='span'>
           {product.name}
-        </Title>
-      </FullPageShellHeader>
+        </LayoutTitle>
+      </LayoutHeader>
       <JsonLd<Product>
         item={{
           '@context': 'https://schema.org',
@@ -112,7 +111,7 @@ function ProductDownloadable(props: Props) {
 }
 
 ProductDownloadable.pageOptions = {
-  SharedComponent: FullPageShell,
+  Layout: LayoutFull,
 } as PageOptions
 
 export default ProductDownloadable

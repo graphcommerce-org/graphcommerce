@@ -1,11 +1,10 @@
-import { AppShellTitle } from '@graphcommerce/next-ui'
+import { LayoutTitle } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    title: {
-      // alignItems: 'center',
+    container: {
       justifyContent: 'center',
       [theme.breakpoints.up('md')]: {
         margin: 0,
@@ -26,8 +25,8 @@ export default function CategoryHeroNavTitle(props: CategoryHeroNavTitleProps) {
   const classes = useStyles()
 
   return (
-    <AppShellTitle classes={classes} variant='h1'>
+    <LayoutTitle classes={classes} variant='h1'>
       {children}
-    </AppShellTitle>
+    </LayoutTitle>
   )
 }

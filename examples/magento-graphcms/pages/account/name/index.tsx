@@ -7,20 +7,19 @@ import {
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   GetStaticProps,
   iconId,
   SectionContainer,
-  SheetShellHeader,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<SheetShellProps>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountNamePage() {
   const { loading, data, error } = useQuery(CustomerDocument)
@@ -38,11 +37,11 @@ function AccountNamePage() {
 
   return (
     <>
-      <SheetShellHeader>
-        <Title size='small' component='span' icon={iconId}>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span' icon={iconId}>
           <Trans>Name</Trans>
-        </Title>
-      </SheetShellHeader>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <NoSsr>
         <Container maxWidth='md'>
           <PageMeta
@@ -51,7 +50,7 @@ function AccountNamePage() {
             metaRobots={['noindex']}
           />
 
-          <AppShellTitle icon={iconId}>Name</AppShellTitle>
+          <LayoutTitle icon={iconId}>Name</LayoutTitle>
 
           <SectionContainer labelLeft={t`Name`}>
             {customer && (
@@ -68,9 +67,9 @@ function AccountNamePage() {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
-  SharedComponent: SheetShell,
+  Layout: LayoutOverlay,
 }
 AccountNamePage.pageOptions = pageOptions
 

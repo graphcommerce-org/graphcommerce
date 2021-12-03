@@ -1,8 +1,8 @@
-import { IconButton, makeStyles, Popover, Theme } from '@material-ui/core'
+import { IconButton, makeStyles, Popover } from '@material-ui/core'
 import React from 'react'
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  {
     root: {
       display: 'inline-block',
     },
@@ -20,7 +20,7 @@ const useStyles = makeStyles(
         padding: 6,
       },
     },
-  }),
+  },
   { name: 'DeliveryLabel' },
 )
 

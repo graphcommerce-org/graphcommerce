@@ -109,12 +109,7 @@ export default function OrderCard(props: OrderCardProps) {
 
   return (
     <PageLink href={`/account/orders/view?orderId=${number}`} passHref>
-      <Button
-        variant='contained'
-        classes={{
-          root: classes.buttonRoot,
-        }}
-      >
+      <Button variant='contained' classes={{ root: classes.buttonRoot }}>
         <div className={classes.orderContainer}>
           <div className={classes.orderRow}>
             <span className={classes.orderMoney}>

@@ -3,11 +3,9 @@ import {
   ButtonClassKey as MuiButtonClassKey,
   Theme,
   makeStyles,
-  lighten,
 } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
-import { responsiveVal } from '..'
 
 type BaseButtonProps = Omit<Parameters<typeof MuiButton>['0'], 'variant' | 'classes'> & {
   variant?: 'text' | 'outlined' | 'contained' | 'pill' | 'pill-link'
@@ -58,33 +56,40 @@ const useStyles = makeStyles<
       borderRadius: '99em',
     },
     pillLink: {
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('md')]: {
         // manually match MuiButton and containedPrimary styles
         textTransform: 'none',
         ...theme.typography.body2,
         fontWeight: 400,
-        padding: `${responsiveVal(8, 10)} ${responsiveVal(16, 20)}`,
-        backgroundColor: theme.palette.secondary.main,
-        color: theme.palette.primary.contrastText,
         borderRadius: '99em',
         boxShadow: theme.shadows[6],
+        backgroundColor: theme.palette.background.paper,
+        color: theme.palette.text.primary,
+        '&:hover': {
+          background: theme.palette.background.paper,
+        },
+      },
+    },
+    pillPrimary: {
+      [theme.breakpoints.up('md')]: {
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText,
+        '&:hover': {
+          background: theme.palette.primary.dark,
+        },
+      },
+    },
+    pillSecondary: {
+      [theme.breakpoints.up('md')]: {
+        backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.secondary.contrastText,
         '&:hover': {
           background: theme.palette.secondary.dark,
         },
       },
     },
-    pillPrimary: {
-      //
-    },
-    pillSecondary: {
-      //
-    },
-    pillSizeLarge: {
-      //
-    },
-    pillSizeSmall: {
-      //
-    },
+    pillSizeLarge: {},
+    pillSizeSmall: {},
     pillNoElevation: {
       /* disableElevation does not stop adding box shadow on active... ?! */
       '&:active': {
@@ -152,13 +157,13 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
       disabled={loading || disabled}
       className={clsx(
         {
-          [pillClasses.pill]: variant === 'pill',
-          [pillClasses.pillPrimary]: variant === 'pill' && color === 'primary',
-          [pillClasses.pillSecondary]: variant === 'pill' && color === 'secondary',
-          [pillClasses.pillSizeLarge]: variant === 'pill' && size === 'large',
-          [pillClasses.pillSizeSmall]: variant === 'pill' && size === 'small',
-          [pillClasses.pillNoElevation]: buttonProps.disableElevation,
+          [pillClasses.pill]: variant?.startsWith('pill'),
           [pillClasses.pillLink]: variant === 'pill-link',
+          [pillClasses.pillPrimary]: variant?.startsWith('pill') && color === 'primary',
+          [pillClasses.pillSecondary]: variant?.startsWith('pill') && color === 'secondary',
+          [pillClasses.pillSizeLarge]: variant?.startsWith('pill') && size === 'large',
+          [pillClasses.pillSizeSmall]: variant?.startsWith('pill') && size === 'small',
+          [pillClasses.pillNoElevation]: buttonProps.disableElevation,
           [pillClasses.loading]: loading,
           [pillClasses.withStartIcon]: withIcon,
         },

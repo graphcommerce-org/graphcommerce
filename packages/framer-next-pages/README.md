@@ -109,7 +109,7 @@ Example route:
 
 ```ts
 CmsPage.pageOptions = {
-  SharedComponent: SheetShell,
+  SharedComponent: LayoutSheet,
 } as PageOptions
 ```
 
@@ -117,7 +117,7 @@ CmsPage.pageOptions = {
 
 ```ts
 CmsPage.pageOptions = {
-  SharedComponent: SheetShell,
+  SharedComponent: LayoutSheet,
   sharedProps: { variant: 'bottom' },
 } as PageOptions
 ```
@@ -135,16 +135,16 @@ export function getStaticProps() {
 ### Create a SharedComponent between multiple routes
 
 ```ts
-const pageOptions: PageOptions<SheetShellProps> = {
-  SharedComponent: SheetShell,
+const pageOptions: PageOptions<LayoutSheetProps> = {
+  SharedComponent: LayoutSheet,
   sharedKey: () => 'page',
 }
 ```
 
 ```ts
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutSheetProps> = {
   overlayGroup: 'account',
-  SharedComponent: SheetShell,
+  SharedComponent: LayoutSheet,
   sharedKey: () => 'account',
 }
 ```

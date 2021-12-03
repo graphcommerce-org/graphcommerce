@@ -1,5 +1,3 @@
-import { useQuery } from '@apollo/client'
-import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { UseStyles } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { makeStyles, Theme } from '@material-ui/core'
@@ -18,7 +16,6 @@ const useStyles = makeStyles(
 type HelperListProps = UseStyles<typeof useStyles>
 
 export default function EmailHelperList(props: HelperListProps) {
-  const { data: tokenData } = useQuery(CustomerTokenDocument)
   const classes = useStyles(props)
 
   return (

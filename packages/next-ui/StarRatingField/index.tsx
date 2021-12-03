@@ -1,13 +1,12 @@
+import { makeStyles, Theme } from '@material-ui/core'
 import { Rating, RatingProps } from '@material-ui/lab'
 import React from 'react'
-import { SvgImageSimple } from '..'
+import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconStar } from '../icons'
-import { makeStyles, Theme } from '@material-ui/core'
 
 export type StarRatingFieldProps = {
   id?: string
   onChange?: (id: string, value: number) => void
-  iconSize?: number
 } & Omit<RatingProps, 'id' | 'onChange'>
 
 const useStyles = makeStyles(
@@ -29,7 +28,7 @@ const useStyles = makeStyles(
 )
 
 export default function StarRatingField(props: StarRatingFieldProps) {
-  const { id, onChange = () => {}, iconSize = 20, ...ratingProps } = props
+  const { id, onChange = () => {}, ...ratingProps } = props
   const classes = useStyles(props)
 
   return (

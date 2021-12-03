@@ -1,32 +1,31 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellTitle, GetStaticProps, Title } from '@graphcommerce/next-ui'
+import { GetStaticProps, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import SidebarGallery from '@graphcommerce/next-ui/FramerScroller/components/SidebarGallery'
 import React from 'react'
-import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import FullPageShellHeader from '../../components/AppShell/FullPageShellHeader'
+import { LayoutFull, LayoutFullProps } from '../../components/Layout'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = ProductListQuery
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
 
 function TestSlider({ products }: Props) {
-  if (!products?.items?.length) return <></>
+  if (!products?.items?.length) return null
   return (
     <>
-      <FullPageShellHeader>
-        <Title size='small' component='span'>
+      <LayoutHeader>
+        <LayoutTitle size='small' component='span'>
           Product title
-        </Title>
-      </FullPageShellHeader>
+        </LayoutTitle>
+      </LayoutHeader>
 
       <SidebarGallery
         sidebar={
           <>
-            <AppShellTitle variant='h2' bare>
+            <LayoutTitle variant='h2' gutterTop={false}>
               Product Title
-            </AppShellTitle>
+            </LayoutTitle>
             <ul>
               <li>Some product details</li>
               <li>Or other information</li>
@@ -81,7 +80,7 @@ function TestSlider({ products }: Props) {
 }
 
 TestSlider.pageOptions = {
-  SharedComponent: FullPageShell,
+  Layout: LayoutFull,
 } as PageOptions
 export default TestSlider
 

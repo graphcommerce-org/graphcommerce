@@ -39,7 +39,7 @@ export default function RowProduct(props: RowProductProps) {
   const { renderer, variant, ...RowProductProps } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as VariantRenderer
 
-  if (!variant) return <></>
+  if (!variant) return null
 
   const RenderType = mergedRenderer[variant]
 

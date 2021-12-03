@@ -2,15 +2,14 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   Button,
   iconChevronRight,
-  SheetShellBaseProps,
+  LayoutHeader,
   SvgImageSimple,
-  Title,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import Link from 'next/link'
 import React from 'react'
-import FullPageShell from '../components/AppShell/FullPageShell'
-import FullPageShellHeader from '../components/AppShell/FullPageShellHeader'
-import Layout, { LayoutProps } from '../components/Layout'
+import { LayoutFull, LayoutFullProps } from '../components/Layout/LayoutFull'
+import PageLayout, { LayoutProps } from '../components/Layout/PageLayout'
 import { sanitizeDirectoryTree } from '../components/SidebarMenu/sanitizeDirectoryTree'
 import { getDirectoryTree } from '../util/files'
 
@@ -21,10 +20,10 @@ function IndexPage(props: PageProps) {
 
   return (
     <>
-      <FullPageShellHeader>
-        <Title size='small'>Documentation</Title>
-      </FullPageShellHeader>
-      <Layout menuData={menuData}>
+      <LayoutHeader>
+        <LayoutTitle>Documentation</LayoutTitle>
+      </LayoutHeader>
+      <PageLayout menuData={menuData}>
         <p>
           Setup your <i>Progressive Web App</i> (PWA) within 5 minutes using GraphCommerce.
         </p>
@@ -37,13 +36,13 @@ function IndexPage(props: PageProps) {
             Start developing now
           </Button>
         </Link>
-      </Layout>
+      </PageLayout>
     </>
   )
 }
 
-const pageOptions: PageOptions<SheetShellBaseProps> = {
-  SharedComponent: FullPageShell,
+const pageOptions: PageOptions<LayoutFullProps> = {
+  Layout: LayoutFull,
 }
 IndexPage.pageOptions = pageOptions
 

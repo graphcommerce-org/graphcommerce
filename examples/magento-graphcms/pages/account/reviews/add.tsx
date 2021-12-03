@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { ApolloCustomerErrorFullPage, CustomerDocument } from '@graphcommerce/magento-customer'
 import {
   ProductReviewProductNameDocument,
@@ -9,23 +9,21 @@ import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   FullPageMessage,
   iconBox,
-  Title,
-  SheetShellHeader,
-  AppShellTitle,
+  LayoutOverlayHeader,
+  LayoutTitle,
   SvgImageSimple,
+  GetStaticProps,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container } from '@material-ui/core'
-import { GetStaticProps } from 'next'
-import { useRouter } from 'next/router'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<SheetShellProps>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountReviewsAddPage() {
-  const router = useRouter()
+  const router = usePageRouter()
   const { data: customerData, loading: customerLoading, error } = useQuery(CustomerDocument)
   const { sku } = router.query
   const { data: productData, loading: productLoading } = useQuery(
@@ -78,15 +76,15 @@ function AccountReviewsAddPage() {
         metaRobots={['noindex']}
       />
 
-      <SheetShellHeader>
-        <Title size='small'>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small'>
           <Trans>You are reviewing {product?.name}</Trans>
-        </Title>
-      </SheetShellHeader>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
 
-      <AppShellTitle>
+      <LayoutTitle>
         <Trans>You are reviewing {product?.name}</Trans>
-      </AppShellTitle>
+      </LayoutTitle>
 
       <Container maxWidth='md'>
         <CreateProductReviewForm
@@ -98,9 +96,9 @@ function AccountReviewsAddPage() {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'left',
-  SharedComponent: SheetShell,
+  Layout: LayoutOverlay,
 }
 AccountReviewsAddPage.pageOptions = pageOptions
 

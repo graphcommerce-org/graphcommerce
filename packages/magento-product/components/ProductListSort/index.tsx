@@ -53,7 +53,7 @@ export default function ProductListSort(props: ProductListSortProps) {
             key={option?.value ?? ''}
             dense
             selected={option?.value === currentSort}
-            component={(chipProps) => (
+            component={React.memo((chipProps) => (
               <ProductListLink
                 {...chipProps}
                 {...linkParams}
@@ -61,7 +61,7 @@ export default function ProductListSort(props: ProductListSortProps) {
                 underline='none'
                 link={{ scroll: false, replace: true }}
               />
-            )}
+            ))}
           >
             <ListItemText secondary>{option?.label}</ListItemText>
           </ListItem>

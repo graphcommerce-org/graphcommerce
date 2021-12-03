@@ -8,7 +8,6 @@ import clsx from 'clsx'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
 import { CartItemFragment } from '../Api/CartItem.gql'
-import DeliveryLabel from '../DeliveryLabel/DeliveryLabel'
 import RemoveItemFromCartFab from '../RemoveItemFromCart/RemoveItemFromCartFab'
 import UpdateItemQuantity from '../UpdateItemQuantity/UpdateItemQuantity'
 

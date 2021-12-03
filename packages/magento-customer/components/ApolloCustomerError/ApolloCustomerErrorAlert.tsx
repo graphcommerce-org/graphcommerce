@@ -11,13 +11,11 @@ export default function ApolloCustomerErrorAlert(props: MagentoErrorAlertProps) 
   const { error, unauthorized } = useExtractCustomerErrors(props)
 
   const action = unauthorized && (
-    <>
-      <NextLink href='/account/signin' passHref>
-        <Link>
-          <Trans>Create Account</Trans> / <Trans>Sign In</Trans>
-        </Link>
-      </NextLink>
-    </>
+    <NextLink href='/account/signin' passHref>
+      <Link>
+        <Trans>Create Account</Trans> / <Trans>Sign In</Trans>
+      </Link>
+    </NextLink>
   )
 
   return <ApolloErrorAlert error={error} graphqlErrorAlertProps={{ action }} />

@@ -6,19 +6,18 @@ import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   FullPageMessage,
   iconStar,
-  AppShellTitle,
-  SheetShellHeader,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
   SvgImageSimple,
+  GetStaticProps,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
-import { GetStaticProps } from 'next'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<SheetShellProps>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountReviewsPage() {
   const { data, loading, error } = useQuery(AccountDashboardReviewsDocument, {
@@ -39,11 +38,11 @@ function AccountReviewsPage() {
 
   return (
     <>
-      <SheetShellHeader>
-        <Title size='small' component='span' icon={iconStar}>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span' icon={iconStar}>
           <Trans>Orders</Trans>
-        </Title>
-      </SheetShellHeader>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta
           title={t`Reviews`}
@@ -62,9 +61,9 @@ function AccountReviewsPage() {
 
           {customer?.reviews && customer?.reviews.items.length > 1 && (
             <>
-              <AppShellTitle icon={iconStar}>
+              <LayoutTitle icon={iconStar}>
                 <Trans>Reviews</Trans>
-              </AppShellTitle>
+              </LayoutTitle>
               {customer?.reviews && <AccountReviews {...customer?.reviews} loading={loading} />}
             </>
           )}
@@ -74,9 +73,9 @@ function AccountReviewsPage() {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
-  SharedComponent: SheetShell,
+  Layout: LayoutOverlay,
 }
 AccountReviewsPage.pageOptions = pageOptions
 
@@ -89,8 +88,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
-      variant: 'bottom',
-      size: 'max',
       up: { href: '/account', title: 'Account' },
     },
   }

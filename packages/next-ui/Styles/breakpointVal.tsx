@@ -1,8 +1,8 @@
-export default function breakpointVal(
+export function breakpointVal(
   property: string,
   min: number,
   max: number,
-  breakpointsObject: object,
+  breakpointsObject: Record<string, number>,
 ) {
   const minSize = 320
   const breakpoints = Object.values(breakpointsObject)

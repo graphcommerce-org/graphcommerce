@@ -18,7 +18,7 @@ export default function apolloClient(
   state?: NormalizedCacheObject,
 ): ApolloClient<NormalizedCacheObject> {
   if (!locale) throw Error('Locale not specified to apolloClient(locale, shared, state)')
-  if (!shared) return createApolloClient(locale, state, httpLink)
+  if (!shared) return createApolloClient(locale, httpLink, state)
 
   // Update the shared client with the new state.
   if (sharedClient[locale] && state) {
@@ -27,7 +27,7 @@ export default function apolloClient(
 
   // Create a client if it doesn't exist
   if (!sharedClient[locale]) {
-    sharedClient[locale] = createApolloClient(locale, state, httpLink)
+    sharedClient[locale] = createApolloClient(locale, httpLink, state)
   }
 
   return sharedClient[locale]

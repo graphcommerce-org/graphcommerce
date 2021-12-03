@@ -2,18 +2,18 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { SearchForm } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, Separator, icon404, SvgImageSimple } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { Trans } from '@lingui/macro'
 import { Box, Container, Typography, Link } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
-import FullPageShell, { FullPageShellProps } from '../components/AppShell/FullPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../components/GraphQL/DefaultPage.gql'
+import { LayoutFull, LayoutFullProps } from '../components/Layout'
 import apolloClient from '../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
 
 type Props = DefaultPageQuery
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
 
 function RouteNotFoundPage() {
   const links = [
@@ -61,7 +61,7 @@ function RouteNotFoundPage() {
 }
 
 RouteNotFoundPage.pageOptions = {
-  SharedComponent: FullPageShell,
+  Layout: LayoutFull,
 } as PageOptions
 
 export default RouteNotFoundPage

@@ -88,7 +88,8 @@ export default function CustomerReview(props: CustomerReviewProps) {
       </div>
       <div className={classes.stars}>
         {[...new Array(totalStars)].map((value, index) => (
-          <Image src={index < totalFilledStars ? filledStar : outlinedStar} />
+          // eslint-disable-next-line react/no-array-index-key
+          <Image key={index} src={index < totalFilledStars ? filledStar : outlinedStar} />
         ))}
       </div>
       <div className={classes.title}>{product?.name}</div>

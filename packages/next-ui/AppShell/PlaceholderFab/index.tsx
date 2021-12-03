@@ -1,27 +1,8 @@
-import { Fab, FabProps, makeStyles } from '@material-ui/core'
-import React from 'react'
-import { UseStyles } from '../../Styles'
+import { Fab, FabProps, styled } from '@material-ui/core'
 
-const useStyles = makeStyles(
-  () => ({
-    placeholderCartFab: {
-      boxShadow: 'none',
-      background: 'none',
-      pointerEvents: 'none',
-    },
-  }),
-  { name: 'FullPageShell' },
-)
-
-type PlaceholderFabProps = Omit<FabProps, 'children'> & UseStyles<typeof useStyles>
-
-export default function PlaceholderFab(props: PlaceholderFabProps) {
-  const { ...fabProps } = props
-  const classes = useStyles(props)
-
-  return (
-    <Fab className={classes.placeholderCartFab} size='large' {...fabProps} aria-label='Placeholder'>
-      <></>
-    </Fab>
-  )
-}
+export const PlaceholderFab = styled((props: Omit<FabProps, 'children'>) => (
+  <Fab {...props}>
+    {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
+    <></>
+  </Fab>
+))({ visibility: 'hidden', pointerEvents: 'none' })

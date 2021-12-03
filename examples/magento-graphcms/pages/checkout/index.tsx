@@ -1,4 +1,4 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { ApolloCartErrorAlert, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
 import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { EmailForm } from '@graphcommerce/magento-cart-email'
@@ -6,45 +6,42 @@ import { ShippingAddressForm } from '@graphcommerce/magento-cart-shipping-addres
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   Button,
   FormActions,
   FormHeader,
   GetStaticProps,
   iconBox,
   iconChevronRight,
-  PageShellHeader,
+  LayoutHeader,
   Stepper,
   SvgImageSimple,
-  Title,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { ComposedForm, ComposedSubmit } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import MinimalPageShell from '../../components/AppShell/MinimalPageShell'
-import { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
+import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
+type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
 
 function ShippingPage() {
   const { data: cartData } = useCartQuery(ShippingPageDocument, {
     returnPartialData: true,
   })
   const cartExists = typeof cartData?.cart !== 'undefined'
-  const router = useRouter()
+  const router = usePageRouter()
 
   const onSubmitSuccessful = () => router.push('/checkout/payment')
 
   return (
     <ComposedForm>
       <PageMeta title={t`Checkout`} metaDescription={t`Cart Items`} metaRobots={['noindex']} />
-      <PageShellHeader
+      <LayoutHeader
         primary={
           <ComposedSubmit
             onSubmitSuccessful={onSubmitSuccessful}
@@ -53,7 +50,6 @@ function ShippingPage() {
                 type='submit'
                 color='secondary'
                 variant='pill-link'
-                size='small'
                 loading={buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)}
                 onClick={submit}
                 endIcon={<SvgImageSimple src={iconChevronRight} inverted size='small' />}
@@ -69,19 +65,19 @@ function ShippingPage() {
           </Container>
         }
       >
-        <Title size='small' icon={iconBox}>
+        <LayoutTitle size='small' icon={iconBox}>
           <Trans>Shipping</Trans>
-        </Title>
-      </PageShellHeader>
+        </LayoutTitle>
+      </LayoutHeader>
       <Container maxWidth='md'>
         <NoSsr>
           {!cartExists && <EmptyCart />}
 
           {cartExists && (
             <>
-              <AppShellTitle icon={iconBox}>
+              <LayoutTitle icon={iconBox}>
                 <Trans>Shipping</Trans>
-              </AppShellTitle>
+              </LayoutTitle>
 
               <EmailForm step={1} />
 
@@ -127,8 +123,8 @@ function ShippingPage() {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
-  SharedComponent: MinimalPageShell,
+const pageOptions: PageOptions<LayoutMinimalProps> = {
+  Layout: LayoutMinimal,
   sharedKey: () => 'checkout',
 }
 ShippingPage.pageOptions = pageOptions

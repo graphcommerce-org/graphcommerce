@@ -10,17 +10,16 @@ import {
   GetStaticProps,
   SectionContainer,
   iconLock,
-  AppShellTitle,
-  SheetShellHeader,
-  Title,
+  LayoutOverlayHeader,
+  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<SheetShellProps>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountAuthenticationPage() {
   const { loading, data, error } = useQuery(CustomerDocument, {
@@ -40,11 +39,11 @@ function AccountAuthenticationPage() {
 
   return (
     <>
-      <SheetShellHeader>
-        <Title size='small' component='span' icon={iconLock}>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span' icon={iconLock}>
           <Trans>Authentication</Trans>
-        </Title>
-      </SheetShellHeader>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta
           title={t`Authentication`}
@@ -52,9 +51,9 @@ function AccountAuthenticationPage() {
           metaRobots={['noindex']}
         />
         <NoSsr>
-          <AppShellTitle icon={iconLock}>
+          <LayoutTitle icon={iconLock}>
             <Trans>Authentication</Trans>
-          </AppShellTitle>
+          </LayoutTitle>
           <SectionContainer labelLeft={t`Password`}>
             {customer && <ChangePasswordForm />}
           </SectionContainer>
@@ -64,9 +63,9 @@ function AccountAuthenticationPage() {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
-  SharedComponent: SheetShell,
+  Layout: LayoutOverlay,
 }
 AccountAuthenticationPage.pageOptions = pageOptions
 

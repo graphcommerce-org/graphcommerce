@@ -20,7 +20,7 @@ const useStyles = makeStyles(
       borderRadius: '4px 4px 0 0',
       background: theme.palette.type === 'light' ? '#FFE10820' : theme.palette.background.paper,
       padding: theme.spacings.sm,
-      gridColumnGap: theme.spacings.xl,
+      gridColumnGap: theme.spacings.xxl,
       gridRowGap: theme.spacings.sm,
       display: `grid`,
       [theme.breakpoints.up('sm')]: {

@@ -2,14 +2,14 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useMergeCustomerCart } from '@graphcommerce/magento-cart'
 import { AccountSignInUpForm } from '@graphcommerce/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, SheetShellHeader, Title } from '@graphcommerce/next-ui'
+import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
+import { LayoutOverlay, LayoutOverlayProps } from '../../components/Layout/LayoutOverlay'
 import apolloClient from '../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<SheetShellProps>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountSignInPage() {
   useMergeCustomerCart()
@@ -22,11 +22,11 @@ function AccountSignInPage() {
         metaDescription={t`Sign in to your account`}
       />
       <NoSsr>
-        <SheetShellHeader>
-          <Title size='small' component='span'>
+        <LayoutOverlayHeader>
+          <LayoutTitle size='small' component='span'>
             <Trans>Sign in</Trans>
-          </Title>
-        </SheetShellHeader>
+          </LayoutTitle>
+        </LayoutOverlayHeader>
         <Container maxWidth='sm'>
           <AccountSignInUpForm />
         </Container>
@@ -35,9 +35,9 @@ function AccountSignInPage() {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account-public',
-  SharedComponent: SheetShell,
+  Layout: LayoutOverlay,
 }
 AccountSignInPage.pageOptions = pageOptions
 

@@ -1,10 +1,11 @@
 import { ContainerProps, makeStyles, Theme, Typography } from '@material-ui/core'
 import Row from '..'
 import { UseStyles } from '../../Styles'
-import responsiveVal from '../../Styles/responsiveVal'
+import { responsiveVal } from '../../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
+    root: {},
     wrapper: {
       display: 'grid',
       background: theme.palette.background.paper,
@@ -90,10 +91,10 @@ export type SpecialBannerProps = UseStyles<typeof useStyles> &
 
 export default function SpecialBanner(props: SpecialBannerProps) {
   const { asset, topic, pageLinks, children, ...containerProps } = props
-  const classes = useStyles(props)
+  const { root, ...classes } = useStyles(props)
 
   return (
-    <Row maxWidth={false} {...containerProps}>
+    <Row maxWidth={false} {...containerProps} classes={{ root }}>
       <Row maxWidth={false} className={classes.wrapper} disableGutters>
         <div className={classes.asset}>{asset}</div>
         <div className={classes.copy}>

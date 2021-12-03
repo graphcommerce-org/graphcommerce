@@ -7,7 +7,7 @@ declare module '@material-ui/core/styles/createPalette' {
 }
 
 declare module '@material-ui/core/styles/createTheme' {
-  interface Theme {
+  interface ThemeOptions {
     spacings: {
       xxs: string
       xs: string
@@ -20,14 +20,15 @@ declare module '@material-ui/core/styles/createTheme' {
     page: {
       horizontal: string
       vertical: string
-      headerInnerHeight: {
-        xs: string
-        sm: string
-        md: string
-      }
+    }
+    appShell: {
+      headerHeightSm: string
+      headerHeightMd: string
+      appBarHeightMd: string
+      appBarInnerHeightMd: string
     }
   }
-  interface ThemeOptions {
+  interface Theme {
     spacings: {
       xxs: string
       xs: string
@@ -40,11 +41,12 @@ declare module '@material-ui/core/styles/createTheme' {
     page: {
       horizontal: string | number
       vertical: string | number
-      headerInnerHeight: {
-        xs: string
-        sm: string
-        md: string
-      }
+    }
+    appShell: {
+      headerHeightSm: string
+      headerHeightMd: string
+      appBarHeightMd: string
+      appBarInnerHeightMd: string
     }
   }
 }

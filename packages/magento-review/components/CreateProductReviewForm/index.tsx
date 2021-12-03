@@ -11,7 +11,7 @@ import {
   StarRatingField,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
+import { Trans } from '@lingui/macro'
 import { Box, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { useRouter } from 'next/router'
@@ -94,7 +94,7 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
     }
   }, [loading, data, ratings.length])
 
-  if (!data) return <></>
+  if (!data) return null
 
   if (formState.isSubmitSuccessful && data) {
     return (

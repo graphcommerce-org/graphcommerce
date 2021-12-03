@@ -1,24 +1,34 @@
-import { ApolloProvider } from '@apollo/client'
+import { ApolloProvider, useQuery } from '@apollo/client'
 import { GoogleRecaptchaV3Script } from '@graphcommerce/googlerecaptcha'
+import { GoogleTagManagerScript } from '@graphcommerce/googletagmanager'
 import { LinguiProvider } from '@graphcommerce/lingui-next'
-import { App, AppProps } from '@graphcommerce/next-ui'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { App, AppProps, GlobalHead } from '@graphcommerce/next-ui'
+import { CssBaseline, ThemeProvider } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
-import ThemedProvider from '../components/Theme/ThemedProvider'
+import { lightTheme } from '../components/Theme/ThemedProvider'
 import apolloClient from '../lib/apolloClientBrowser'
 
 export default function ThemedApp(props: AppProps) {
   const { pageProps } = props
   const { locale } = useRouter()
 
+  const client = apolloClient(locale, true, pageProps.apolloState)
+  const storeConfig = useQuery(StoreConfigDocument, { client })
+  const name = storeConfig.data?.storeConfig?.store_name ?? ''
+
   return (
     <>
+      <GlobalHead name={name} />
       <GoogleRecaptchaV3Script />
-      <ApolloProvider client={apolloClient(locale, true, pageProps.apolloState)}>
-        <LinguiProvider loader={(locale) => import(`../locales/${locale}.po`)}>
-          <ThemedProvider>
+      <GoogleTagManagerScript />
+      <ApolloProvider client={client}>
+        <LinguiProvider loader={(l) => import(`../locales/${l}.po`)}>
+          <ThemeProvider theme={lightTheme}>
+            <CssBaseline />
             <App {...props} />
-          </ThemedProvider>
+          </ThemeProvider>
         </LinguiProvider>
       </ApolloProvider>
     </>

@@ -1,19 +1,12 @@
 import { NextRouter } from 'next/router'
 import { createContext } from 'react'
-import { UpPage } from '../types'
-
-export type RouterProxy = NextRouter & { go(delta: number): void; prevUpUrl: string }
-
-export type PageRouterContext = {
-  currentRouter: RouterProxy
-  prevRouter?: RouterProxy
-  up?: UpPage
-  prevUp?: UpPage
-}
+import { PageRouterContext, RouterProxy } from '../types'
 
 export const pageRouterContext = createContext(undefined as unknown as PageRouterContext)
 
-export function createRouterProxy(router: NextRouter): RouterProxy {
+type OverrideProps = Partial<Pick<NextRouter, 'asPath' | 'pathname' | 'query' | 'locale'>>
+
+export function createRouterProxy(router: NextRouter, override?: OverrideProps): RouterProxy {
   function go(delta: number) {
     if (delta >= 0) {
       console.error(`Called .go(${delta}), only negative numbers are allowed. Redirecting to home`)
@@ -35,6 +28,7 @@ export function createRouterProxy(router: NextRouter): RouterProxy {
     query: router.query,
     locale: router.locale,
     go,
+    ...override,
   }
 
   return new Proxy<RouterProxy>(router as RouterProxy, {

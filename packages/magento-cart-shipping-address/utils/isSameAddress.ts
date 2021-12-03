@@ -27,6 +27,7 @@ export function isSameAddress(
   address2: CartAddressFragment | null | undefined,
 ) {
   // check if both are undefined/null
+  // eslint-disable-next-line eqeqeq
   if (address1 == address2) return true
 
   // one of the thow is undefined/null the other is defined.

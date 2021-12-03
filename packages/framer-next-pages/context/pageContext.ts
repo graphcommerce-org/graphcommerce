@@ -34,6 +34,12 @@ export type PageContext = {
   direction: Direction
   /** Indicator whether the current page is the active page */
   active: boolean
+
+  /** The overlayGroup passes to PageOptions */
+  overlayGroup?: string
+
+  /** @private */
+  historyIdx: number
 }
 
 export const pageContext = createContext(undefined as unknown as PageContext)
