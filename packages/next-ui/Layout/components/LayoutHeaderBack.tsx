@@ -1,5 +1,5 @@
 import { usePageRouter, useUp, usePrevUp, usePageContext } from '@graphcommerce/framer-next-pages'
-import { Trans } from '@lingui/macro'
+import { t } from '@lingui/macro'
 import PageLink from 'next/link'
 import React from 'react'
 import Button, { ButtonProps } from '../../Button'
@@ -30,17 +30,25 @@ export default function LayoutHeaderBack(props: BackProps) {
   const backIcon = <SvgImageSimple src={iconChevronLeft} />
   const canClickBack = backSteps > 0 && router.asPath !== prevUp?.href
 
-  if (canClickBack)
+  if (canClickBack) {
+    const label = up?.href === router.asPath ? up.title : t`Back`
     return (
-      <Button onClick={() => router.back()} variant='pill-link' startIcon={backIcon} {...props}>
-        {up?.href === router.asPath ? up.title : <Trans>Back</Trans>}
+      <Button
+        onClick={() => router.back()}
+        variant='pill-link'
+        startIcon={backIcon}
+        aria-label={label}
+        {...props}
+      >
+        {label}
       </Button>
     )
+  }
 
   if (up?.href && up.href !== router.asPath)
     return (
       <PageLink href={up.href} passHref>
-        <Button variant='pill-link' startIcon={backIcon} {...props}>
+        <Button variant='pill-link' startIcon={backIcon} aria-label={up.title} {...props}>
           {up.title}
         </Button>
       </PageLink>
