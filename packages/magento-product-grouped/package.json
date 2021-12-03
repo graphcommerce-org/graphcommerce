@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-product-grouped",
-  "version": "2.105.9",
+  "version": "2.105.10",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -22,10 +22,10 @@
   },
   "dependencies": {
     "@graphcommerce/graphql": "^2.105.6",
-    "@graphcommerce/magento-cart": "^3.8.4",
-    "@graphcommerce/magento-product": "^3.7.4",
-    "@graphcommerce/magento-product-simple": "^3.2.9",
-    "@graphcommerce/magento-product-virtual": "^3.2.9",
+    "@graphcommerce/magento-cart": "^3.8.5",
+    "@graphcommerce/magento-product": "^3.7.5",
+    "@graphcommerce/magento-product-simple": "^3.2.10",
+    "@graphcommerce/magento-product-virtual": "^3.2.10",
     "@lingui/macro": "^3.12.1",
     "next": "^12.0.3",
     "react": "^17.0.2",
