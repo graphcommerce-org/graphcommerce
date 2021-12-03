@@ -26,9 +26,9 @@ export function useOverlayPosition() {
 
     const measure = () => {
       const positions = getScrollSnapPositions()
-      state.open.x.set(positions.x[1])
+      state.open.x.set(positions.x[1] ?? 0)
       state.closed.x.set(positions.x[0])
-      state.open.y.set(positions.y[1])
+      state.open.y.set(positions.y[1] ?? 0)
       state.closed.y.set(positions.y[0])
     }
     const ro = new ResizeObserver(measure)
