@@ -1,6 +1,7 @@
 import { FormRow, UseStyles, iconClose, iconSearch, SvgImageSimple } from '@graphcommerce/next-ui'
 import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@graphcommerce/react-hook-form'
-import { IconButton, makeStyles, TextField, Theme } from '@material-ui/core'
+import { t, Plural } from '@lingui/macro'
+import { IconButton, makeStyles, TextField, TextFieldProps, Theme } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
 
@@ -22,10 +23,11 @@ export type SearchFormProps = {
   search?: string
   urlHandle?: string
   autoFocus?: boolean
+  textFieldProps?: TextFieldProps
 } & UseStyles<typeof useStyles>
 
 export default function SearchForm(props: SearchFormProps) {
-  const { totalResults = 0, search = '', urlHandle = 'search', autoFocus = true } = props
+  const { totalResults = 0, search = '', urlHandle = 'search', textFieldProps } = props
   const classes = useStyles(props)
   const router = useRouter()
 
@@ -55,7 +57,7 @@ export default function SearchForm(props: SearchFormProps) {
     <>
       {totalResults > 0 && (
         <div className={classes.totalProducts}>
-          {totalResults} {totalResults > 1 ? 'results' : 'result'}
+          <Plural value={totalResults} zero='' one='# result' other='# results' />
         </div>
       )}
       <IconButton onClick={handleReset} size='small'>
@@ -79,13 +81,13 @@ export default function SearchForm(props: SearchFormProps) {
         <TextField
           variant='outlined'
           type='text'
-          autoFocus={autoFocus}
-          placeholder='Search'
+          placeholder={t`Search`}
           defaultValue={search}
           error={formState.isSubmitted && !!formState.errors.search}
           helperText={formState.isSubmitted && formState.errors.search?.message}
           {...muiRegister('search', { required: true, minLength: 2 })}
           InputProps={{ endAdornment }}
+          {...textFieldProps}
         />
       </FormRow>
     </form>

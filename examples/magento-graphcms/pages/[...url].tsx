@@ -115,13 +115,11 @@ function CategoryPage(props: Props) {
           </AppShellSticky>
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />
-
             <ProductListItems
               items={products?.items}
               classes={productListClasses}
               loadingEager={1}
             />
-
             <ProductListPagination page_info={products?.page_info} />
           </Container>
         </ProductListParamsProvider>

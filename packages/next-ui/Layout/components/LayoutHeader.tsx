@@ -1,4 +1,3 @@
-import { usePageContext } from '@graphcommerce/framer-next-pages'
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { classesPicker } from '../../Styles/classesPicker'
@@ -8,7 +7,7 @@ import LayoutHeaderContent, { ContentProps } from './LayoutHeaderContent'
 import { FloatingProps } from './LayoutHeadertypes'
 
 export type LayoutHeaderProps = FloatingProps &
-  Omit<ContentProps, 'leftAction' | 'rightAction'> & {
+  Omit<ContentProps, 'left' | 'right'> & {
     /**
      * Button to display on the left side of the title
      *
@@ -98,7 +97,7 @@ const useStyles = makeStyles(
 )
 
 export function LayoutHeader(props: LayoutHeaderProps) {
-  const { children, additional, divider, primary, secondary, noAlign } = props
+  const { children, additional, divider, primary, secondary, noAlign, switchPoint } = props
   const classes = useStyles(props)
   const showBack = useShowBack()
   const showClose = useShowClose()
@@ -142,6 +141,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
         divider={divider}
         floatingMd={floatingMd}
         floatingSm={floatingSm}
+        switchPoint={switchPoint}
       >
         {children}
         {additional}

@@ -141,16 +141,25 @@ export type ContentProps = FloatingProps &
     left?: React.ReactNode
     right?: React.ReactNode
     divider?: React.ReactNode
+    switchPoint?: number
   }
 
 export default function LayoutHeaderContent(props: ContentProps) {
   const ref = useRef<HTMLDivElement>(null)
   const scroll = useScrollY()
 
-  const { left, children, right, divider, floatingMd = false, floatingSm = false } = props
+  const {
+    left,
+    children,
+    right,
+    divider,
+    floatingMd = false,
+    floatingSm = false,
+    switchPoint = 50,
+  } = props
   const classes = useStyles(props)
 
-  const scrolled = useMotionValueValue(scroll, (y) => y > 50)
+  const scrolled = useMotionValueValue(scroll, (y) => y >= switchPoint)
 
   const className = classesPicker<Classes>(classes, {
     floatingSm,
