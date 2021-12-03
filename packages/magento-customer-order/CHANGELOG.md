@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.105.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-order@2.105.6...@graphcommerce/magento-customer-order@2.105.7) (2021-12-03)
+
+
+### Bug Fixes
+
+* make sure that pill link buttons get the right background color etc. ([c142b31](https://github.com/ho-nl/m2-pwa/commit/c142b31552417d2296341785994e2f7b35462793))
+* spacing of LayoutTItle ([7afcd31](https://github.com/ho-nl/m2-pwa/commit/7afcd3163d16e902cf2ff7917f56ee6a8798f55b))
+
+
+
+
+
 # [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-order@2.104.20...@graphcommerce/magento-customer-order@2.105.0) (2021-11-12)
 
 

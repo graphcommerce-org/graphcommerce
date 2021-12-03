@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.108.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.107.5...@graphcommerce/framer-next-pages@2.108.0) (2021-12-03)
+
+
+### Bug Fixes
+
+* **framer-next-pages:** do no throw error when framer next pages is recreated ([6c4665b](https://github.com/ho-nl/m2-pwa/commit/6c4665b4a00adb1c1d770c458a590f4360be83d8))
+* make sure the fallback loads during idle timing to prevent jank ([dd888e2](https://github.com/ho-nl/m2-pwa/commit/dd888e27b94091233d74ddba1023310b09910f0f))
+* make sure the overlay becomes visible, even if the overlay is scrolled ([1738c98](https://github.com/ho-nl/m2-pwa/commit/1738c982ea84ec2b93daa824c4b8c86ab2a3f5ed))
+* make sure the overlays are rendered correctly on mobile ([48f7050](https://github.com/ho-nl/m2-pwa/commit/48f705060e99b997f5b1db03ccc49f1051a1ed8f))
+* minHeight of page on iOS is sometimes less high than expected ([8a0bc23](https://github.com/ho-nl/m2-pwa/commit/8a0bc234d153d974ac415369483ddabfb5e7fb0c))
+* spacing of LayoutTItle ([7afcd31](https://github.com/ho-nl/m2-pwa/commit/7afcd3163d16e902cf2ff7917f56ee6a8798f55b))
+
+
+### Features
+
+* **framer-next-pages:** automatically create a fallback page when there is no page to render. ([f18a804](https://github.com/ho-nl/m2-pwa/commit/f18a804a228901431f848927844dd9cd324170c1))
+
+
+
+
+
 ## [2.107.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.107.2...@graphcommerce/framer-next-pages@2.107.3) (2021-11-02)
 
 

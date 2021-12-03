@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.157.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.156.1...@graphcommerce/graphcommerce@2.157.0) (2021-12-03)
+
+
+### Bug Fixes
+
+* classesPicker would sometimes return 'undefined' as a class ([baa51f1](https://github.com/ho-nl/m2-pwa/commit/baa51f1ac6d47460bfc713bd2c10ae14f1f6ecbf))
+* close button should always be present ([32d4173](https://github.com/ho-nl/m2-pwa/commit/32d4173e44c6e77815cf483590c1f703d48a386b))
+* eslint not working in monorepo ([66056e2](https://github.com/ho-nl/m2-pwa/commit/66056e29d7ca2ff6a691e146c583f4537528a3c0))
+* eslint not working in monorepo ([965f586](https://github.com/ho-nl/m2-pwa/commit/965f5860e7f58fbf6362203d84057f30b96e8be6))
+* **framer-next-pages:** do no throw error when framer next pages is recreated ([6c4665b](https://github.com/ho-nl/m2-pwa/commit/6c4665b4a00adb1c1d770c458a590f4360be83d8))
+* **framer-scroller:** do not scroll in the direction that is not being scrolled when dragging and thus delaying the reset to snap ([3198eed](https://github.com/ho-nl/m2-pwa/commit/3198eed7977039f712784ee6c17031d7efb20c25))
+* **framer-scroller:** recursively find snapPoints for deeply nested children ([2203f00](https://github.com/ho-nl/m2-pwa/commit/2203f00a97bb4e4b381acad1d86b177105874d1f))
+* **framer-scroller:** set the scrollTop when switching snap ([8bd35a2](https://github.com/ho-nl/m2-pwa/commit/8bd35a2ebf5d10b44d04048c6360c7ac770221cf))
+* horizontal scroll on page ([d025a16](https://github.com/ho-nl/m2-pwa/commit/d025a16a02b43756fc58b0b764faa404eb06da6c))
+* make sure elements that use scroll positioning are using the right hook ([80ee33f](https://github.com/ho-nl/m2-pwa/commit/80ee33f68ecc223147d63fc37e5b9ba94df4564e))
+* make sure galleries are scrollable properly ([8653316](https://github.com/ho-nl/m2-pwa/commit/86533167891f0ae197fdf096b84fdda8e89a0f6e))
+* make sure it doesn't error when trying to override root ([99a69a3](https://github.com/ho-nl/m2-pwa/commit/99a69a36579b4c934f3b1be187130983bdf133bf))
+* make sure that pill link buttons get the right background color etc. ([c142b31](https://github.com/ho-nl/m2-pwa/commit/c142b31552417d2296341785994e2f7b35462793))
+* make sure the fallback loads during idle timing to prevent jank ([dd888e2](https://github.com/ho-nl/m2-pwa/commit/dd888e27b94091233d74ddba1023310b09910f0f))
+* make sure the overlay becomes visible, even if the overlay is scrolled ([1738c98](https://github.com/ho-nl/m2-pwa/commit/1738c982ea84ec2b93daa824c4b8c86ab2a3f5ed))
+* make sure the overlays are rendered correctly on mobile ([48f7050](https://github.com/ho-nl/m2-pwa/commit/48f705060e99b997f5b1db03ccc49f1051a1ed8f))
+* make sure we're not throwing a generic 'No locales specified' when there is a generic error ([fd3dd23](https://github.com/ho-nl/m2-pwa/commit/fd3dd233fb293f6afc08636316a34d2a2db4bbc3))
+* make the headerHeight properly configurable ([c39c942](https://github.com/ho-nl/m2-pwa/commit/c39c942a62a9bb9687ea553be28e37fb49a6b065))
+* minHeight of page on iOS is sometimes less high than expected ([8a0bc23](https://github.com/ho-nl/m2-pwa/commit/8a0bc234d153d974ac415369483ddabfb5e7fb0c))
+* missing CssBaseline ([d2a7126](https://github.com/ho-nl/m2-pwa/commit/d2a7126295b99b0446dc31b0cf7c60671a18f976))
+* only apply page meta when the current page is active ([f099a51](https://github.com/ho-nl/m2-pwa/commit/f099a519d169dcc9e2653db8353ce93d7b0a138e))
+* spacing of LayoutTItle ([7afcd31](https://github.com/ho-nl/m2-pwa/commit/7afcd3163d16e902cf2ff7917f56ee6a8798f55b))
+
+
+### Features
+
+* **framer-next-pages:** automatically create a fallback page when there is no page to render. ([f18a804](https://github.com/ho-nl/m2-pwa/commit/f18a804a228901431f848927844dd9cd324170c1))
+* **framer-scroller-sheet:** created package replacing the framer-sheet package ([f9f2e91](https://github.com/ho-nl/m2-pwa/commit/f9f2e9101191f5cb5c4514ceb9534ddeb2476763))
+* **framer-scroller:** find the direction of the scroller and set proper values ([631e24c](https://github.com/ho-nl/m2-pwa/commit/631e24c5c7ff67b49f83390789e8dadcb07eca04))
+* **framer-scroller:** get the scrollSnapAlign from the element instead of the body ([ec8c24e](https://github.com/ho-nl/m2-pwa/commit/ec8c24e6d457a3ed1c055b27d7b94be5ed4b6f2c))
+* **framer-scroller:** provide promise with scrollTo ([cbe59d9](https://github.com/ho-nl/m2-pwa/commit/cbe59d9e753cc2ab76b2de048139e0319f08d035))
+* **framer-scroller:** split the grid functionality from the scroller ([81307ea](https://github.com/ho-nl/m2-pwa/commit/81307ea2652bf31a1f94e8db72af4ee161bdca2e))
+* refactor page shell ([594bdb3](https://github.com/ho-nl/m2-pwa/commit/594bdb32927b797208b2a295bc0db9f9ceb94676))
+* test for scroll snap on body ([12870f6](https://github.com/ho-nl/m2-pwa/commit/12870f60089792f31a1394237079c4fbda86d33c))
+
+
+
+
+
 # [2.156.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.155.1...@graphcommerce/graphcommerce@2.156.0) (2021-12-01)
 
 

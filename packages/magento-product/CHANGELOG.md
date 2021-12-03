@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.7.1...@graphcommerce/magento-product@3.7.2) (2021-12-03)
+
+
+### Bug Fixes
+
+* make sure elements that use scroll positioning are using the right hook ([80ee33f](https://github.com/ho-nl/m2-pwa/commit/80ee33f68ecc223147d63fc37e5b9ba94df4564e))
+
+
+
+
+
 # [3.7.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.6.4...@graphcommerce/magento-product@3.7.0) (2021-12-01)
 
 

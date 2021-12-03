@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.105.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-account@2.105.6...@graphcommerce/magento-customer-account@2.105.7) (2021-12-03)
+
+
+### Bug Fixes
+
+* make sure that pill link buttons get the right background color etc. ([c142b31](https://github.com/ho-nl/m2-pwa/commit/c142b31552417d2296341785994e2f7b35462793))
+
+
+
+
+
 # [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-account@2.104.31...@graphcommerce/magento-customer-account@2.105.0) (2021-11-12)
 
 

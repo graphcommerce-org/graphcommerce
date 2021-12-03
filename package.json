@@ -1,7 +1,7 @@
 {
   "name": "@graphcommerce/graphcommerce",
   "homepage": "https://graphcommerce.org/",
-  "version": "2.156.1",
+  "version": "2.157.0",
   "private": true,
   "workspaces": [
     "docs",
@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.2",
-    "@graphcommerce/eslint-config-pwa": "^3.1.5",
+    "@graphcommerce/eslint-config-pwa": "^3.1.6",
     "@graphcommerce/prettier-config-pwa": "^3.0.4",
     "@playwright/test": "^1.16.2",
     "concurrently": "^6.3.0",

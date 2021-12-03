@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-category@3.5.1...@graphcommerce/magento-category@3.5.2) (2021-12-03)
+
+
+### Bug Fixes
+
+* spacing of LayoutTItle ([7afcd31](https://github.com/ho-nl/m2-pwa/commit/7afcd3163d16e902cf2ff7917f56ee6a8798f55b))
+
+
+
+
+
 # [3.5.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-category@3.4.4...@graphcommerce/magento-category@3.5.0) (2021-12-01)
 
 

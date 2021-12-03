@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.139.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.138.1...@graphcommerce/magento-graphcms@2.139.0) (2021-12-03)
+
+
+### Bug Fixes
+
+* make sure that pill link buttons get the right background color etc. ([c142b31](https://github.com/ho-nl/m2-pwa/commit/c142b31552417d2296341785994e2f7b35462793))
+* make the headerHeight properly configurable ([c39c942](https://github.com/ho-nl/m2-pwa/commit/c39c942a62a9bb9687ea553be28e37fb49a6b065))
+* missing CssBaseline ([d2a7126](https://github.com/ho-nl/m2-pwa/commit/d2a7126295b99b0446dc31b0cf7c60671a18f976))
+* spacing of LayoutTItle ([7afcd31](https://github.com/ho-nl/m2-pwa/commit/7afcd3163d16e902cf2ff7917f56ee6a8798f55b))
+
+
+### Features
+
+* **framer-scroller-sheet:** created package replacing the framer-sheet package ([f9f2e91](https://github.com/ho-nl/m2-pwa/commit/f9f2e9101191f5cb5c4514ceb9534ddeb2476763))
+* **framer-scroller:** get the scrollSnapAlign from the element instead of the body ([ec8c24e](https://github.com/ho-nl/m2-pwa/commit/ec8c24e6d457a3ed1c055b27d7b94be5ed4b6f2c))
+* refactor page shell ([594bdb3](https://github.com/ho-nl/m2-pwa/commit/594bdb32927b797208b2a295bc0db9f9ceb94676))
+* test for scroll snap on body ([12870f6](https://github.com/ho-nl/m2-pwa/commit/12870f60089792f31a1394237079c4fbda86d33c))
+
+
+
+
+
 # [2.138.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.137.2...@graphcommerce/magento-graphcms@2.138.0) (2021-12-01)
 
 

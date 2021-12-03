@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.8.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.8.1...@graphcommerce/magento-cart@3.8.2) (2021-12-03)
+
+
+### Bug Fixes
+
+* spacing of LayoutTItle ([7afcd31](https://github.com/ho-nl/m2-pwa/commit/7afcd3163d16e902cf2ff7917f56ee6a8798f55b))
+
+
+
+
+
 # [3.8.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.7.4...@graphcommerce/magento-cart@3.8.0) (2021-12-01)
 
 

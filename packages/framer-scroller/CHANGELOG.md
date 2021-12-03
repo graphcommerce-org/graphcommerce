@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.0.4...@graphcommerce/framer-scroller@1.1.0) (2021-12-03)
+
+
+### Bug Fixes
+
+* **framer-scroller:** do not scroll in the direction that is not being scrolled when dragging and thus delaying the reset to snap ([3198eed](https://github.com/ho-nl/m2-pwa/commit/3198eed7977039f712784ee6c17031d7efb20c25))
+* **framer-scroller:** recursively find snapPoints for deeply nested children ([2203f00](https://github.com/ho-nl/m2-pwa/commit/2203f00a97bb4e4b381acad1d86b177105874d1f))
+* **framer-scroller:** set the scrollTop when switching snap ([8bd35a2](https://github.com/ho-nl/m2-pwa/commit/8bd35a2ebf5d10b44d04048c6360c7ac770221cf))
+* make sure the overlay becomes visible, even if the overlay is scrolled ([1738c98](https://github.com/ho-nl/m2-pwa/commit/1738c982ea84ec2b93daa824c4b8c86ab2a3f5ed))
+* make sure the overlays are rendered correctly on mobile ([48f7050](https://github.com/ho-nl/m2-pwa/commit/48f705060e99b997f5b1db03ccc49f1051a1ed8f))
+* make the headerHeight properly configurable ([c39c942](https://github.com/ho-nl/m2-pwa/commit/c39c942a62a9bb9687ea553be28e37fb49a6b065))
+
+
+### Features
+
+* **framer-scroller-sheet:** created package replacing the framer-sheet package ([f9f2e91](https://github.com/ho-nl/m2-pwa/commit/f9f2e9101191f5cb5c4514ceb9534ddeb2476763))
+* **framer-scroller:** find the direction of the scroller and set proper values ([631e24c](https://github.com/ho-nl/m2-pwa/commit/631e24c5c7ff67b49f83390789e8dadcb07eca04))
+* **framer-scroller:** get the scrollSnapAlign from the element instead of the body ([ec8c24e](https://github.com/ho-nl/m2-pwa/commit/ec8c24e6d457a3ed1c055b27d7b94be5ed4b6f2c))
+* **framer-scroller:** provide promise with scrollTo ([cbe59d9](https://github.com/ho-nl/m2-pwa/commit/cbe59d9e753cc2ab76b2de048139e0319f08d035))
+* **framer-scroller:** split the grid functionality from the scroller ([81307ea](https://github.com/ho-nl/m2-pwa/commit/81307ea2652bf31a1f94e8db72af4ee161bdca2e))
+
+
+
+
+
 ## [1.0.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.0.1...@graphcommerce/framer-scroller@1.0.2) (2021-11-03)
 
 

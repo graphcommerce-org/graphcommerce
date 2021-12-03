@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/lingui-next@1.2.0...@graphcommerce/lingui-next@1.2.1) (2021-12-03)
+
+
+### Bug Fixes
+
+* make sure we're not throwing a generic 'No locales specified' when there is a generic error ([fd3dd23](https://github.com/ho-nl/m2-pwa/commit/fd3dd233fb293f6afc08636316a34d2a2db4bbc3))
+
+
+
+
+
 # [1.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/lingui-next@1.1.0...@graphcommerce/lingui-next@1.2.0) (2021-11-12)
 
 

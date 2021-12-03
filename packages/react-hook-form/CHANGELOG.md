@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.104.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/react-hook-form@2.104.0...@graphcommerce/react-hook-form@2.104.1) (2021-12-03)
+
+
+### Bug Fixes
+
+* make the headerHeight properly configurable ([c39c942](https://github.com/ho-nl/m2-pwa/commit/c39c942a62a9bb9687ea553be28e37fb49a6b065))
+
+
+
+
+
 # [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/react-hook-form@2.103.1...@graphcommerce/react-hook-form@2.104.0) (2021-11-12)
 
 
