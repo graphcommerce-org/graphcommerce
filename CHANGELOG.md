@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.157.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.157.1...@graphcommerce/graphcommerce@2.157.2) (2021-12-03)
+
+
+### Bug Fixes
+
+* aria-labels missing ([16570d1](https://github.com/ho-nl/m2-pwa/commit/16570d11efcb264eba6c620c5508c9616c2d0a2a))
+* height of scroller isn't correct ([8d847ad](https://github.com/ho-nl/m2-pwa/commit/8d847ad210cfe00bf88386912d97233402e16b81))
+* make sure the overlay can be clicked away ([5b43e2f](https://github.com/ho-nl/m2-pwa/commit/5b43e2f0568c2587be63b74271409123fc0a44e2))
+
+
+
+
+
 ## [2.157.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.157.0...@graphcommerce/graphcommerce@2.157.1) (2021-12-03)
 
 

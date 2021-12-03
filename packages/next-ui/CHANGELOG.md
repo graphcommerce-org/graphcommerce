@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.20.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.20.1...@graphcommerce/next-ui@3.20.2) (2021-12-03)
+
+
+### Bug Fixes
+
+* aria-labels missing ([16570d1](https://github.com/ho-nl/m2-pwa/commit/16570d11efcb264eba6c620c5508c9616c2d0a2a))
+* make sure the overlay can be clicked away ([5b43e2f](https://github.com/ho-nl/m2-pwa/commit/5b43e2f0568c2587be63b74271409123fc0a44e2))
+
+
+
+
+
 ## [3.20.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.20.0...@graphcommerce/next-ui@3.20.1) (2021-12-03)
 
 

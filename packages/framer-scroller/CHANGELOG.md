@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.1...@graphcommerce/framer-scroller@1.1.2) (2021-12-03)
+
+
+### Bug Fixes
+
+* height of scroller isn't correct ([8d847ad](https://github.com/ho-nl/m2-pwa/commit/8d847ad210cfe00bf88386912d97233402e16b81))
+
+
+
+
+
 # [1.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.0.4...@graphcommerce/framer-scroller@1.1.0) (2021-12-03)
 
 
