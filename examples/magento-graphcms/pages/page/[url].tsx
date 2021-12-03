@@ -71,7 +71,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
   const paths = locales.map((locale) => urls.map((url) => ({ params: { url }, locale }))).flat(1)
 
-  return { paths, fallback: 'blocking' }
+  return { paths: paths.slice(0, 10), fallback: 'blocking' }
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
