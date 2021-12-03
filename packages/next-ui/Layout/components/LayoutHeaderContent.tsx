@@ -17,6 +17,7 @@ const useStyles = makeStyles(
       left: 0,
       width: '100%',
       backgroundColor: theme.palette.background.default,
+      boxShadow: theme.shadows[2],
       opacity: 0,
       transition: `opacity ${time}`,
 
@@ -24,6 +25,9 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('md')]: {
         height: theme.appShell.appBarHeightMd,
       },
+    },
+    bgDivider: {
+      boxShadow: 'unset',
     },
     bgFloatingSm: {
       [theme.breakpoints.down('sm')]: {
@@ -112,14 +116,6 @@ const useStyles = makeStyles(
       bottom: 0,
       left: 0,
       right: 0,
-      transition: `opacity ${time}`,
-      opacity: 0,
-    },
-    dividerCustomDivider: {
-      opacity: 1,
-    },
-    dividerScrolled: {
-      opacity: 1,
     },
     dividerFloatingSm: {
       [theme.breakpoints.down('sm')]: {
@@ -165,7 +161,7 @@ export default function LayoutHeaderContent(props: ContentProps) {
     floatingSm,
     floatingMd,
     scrolled,
-    customDivider: !!divider,
+    divider: !!divider,
   })
 
   return (
@@ -175,7 +171,7 @@ export default function LayoutHeaderContent(props: ContentProps) {
         <div {...className('left')}>{left}</div>
         <div {...className('center')}>{children}</div>
         <div {...className('right')}>{right}</div>
-        <div {...className('divider')}>{divider ?? <Divider />}</div>
+        {divider && <div {...className('divider')}>{divider}</div>}
       </div>
     </>
   )

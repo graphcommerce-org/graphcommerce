@@ -26,6 +26,14 @@ const useStyles = makeStyles(
       '@supports (-webkit-touch-callout: none)': {
         height: '-webkit-fill-available',
       },
+      [theme.breakpoints.down('sm')]: {
+        width: '100vw',
+        borderRadius: theme.shape.borderRadius * 3,
+      },
+      [theme.breakpoints.up('md')]: {
+        width: '100vw',
+        borderRadius: theme.shape.borderRadius * 4,
+      },
     },
     rootVariantSmLeft: {
       [theme.breakpoints.down('sm')]: {
@@ -152,13 +160,13 @@ const useStyles = makeStyles(
     overlayPaneVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
         width: '100vw',
-        borderRadius: 10,
+        borderRadius: theme.shape.borderRadius * 3,
       },
     },
     overlayPaneVariantMdBottom: {
       [theme.breakpoints.up('md')]: {
         width: '100vw',
-        borderRadius: 10,
+        borderRadius: theme.shape.borderRadius * 4,
       },
     },
     overlayPaneVariantSmLeft: {
