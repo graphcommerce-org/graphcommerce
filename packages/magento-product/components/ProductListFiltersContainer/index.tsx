@@ -4,11 +4,12 @@ import {
   iconChevronRight,
   responsiveVal,
   SvgImageSimple,
+  useScrollY,
   UseStyles,
 } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
-import { m, useTransform, useViewportScroll } from 'framer-motion'
+import { m, useTransform } from 'framer-motion'
 import React, { PropsWithChildren, useEffect, useRef, useState } from 'react'
 
 const useStyles = makeStyles(
@@ -91,7 +92,7 @@ export type ProductListFiltersContainerProps = PropsWithChildren<UseStyles<typeo
 export default function ProductListFiltersContainer(props: ProductListFiltersContainerProps) {
   const { children } = props
   const classes = useStyles(props)
-  const { scrollY } = useViewportScroll()
+  const scrollY = useScrollY()
 
   const [isSticky, setIsSticky] = useState<boolean>(false)
   const [startPosition, setStartPosition] = useState<number>(100)

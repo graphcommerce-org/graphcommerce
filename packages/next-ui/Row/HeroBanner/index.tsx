@@ -1,7 +1,8 @@
 import { ContainerProps, Theme, makeStyles, useTheme, useMediaQuery } from '@material-ui/core'
-import { m, useTransform, useViewportScroll } from 'framer-motion'
+import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import Row from '..'
+import { useScrollY } from '../../Layout/hooks/useScrollY'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
@@ -75,7 +76,7 @@ export default function HeroBanner(props: HeroBannerProps) {
   const { pageLinks, videoSrc, children, ...containerProps } = props
   const classes = useStyles(props)
   const theme = useTheme()
-  const { scrollY } = useViewportScroll()
+  const scrollY = useScrollY()
   const width = useTransform(
     scrollY,
     [10, 150],
