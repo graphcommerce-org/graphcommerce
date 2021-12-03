@@ -33,6 +33,7 @@ import React from 'react'
 import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
+import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 
 type Props = ProductPageQuery & ConfigurableProductPageQuery
 
@@ -72,6 +73,7 @@ function ProductConfigurable(props: Props) {
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
         <ProductPageMeta {...product} />
         <ProductPageGallery {...product}>
+          <ProductWishlistChip sku={product.sku} />
           <div>
             <Typography component='span' variant='body2' color='text.disabled'>
               <Trans>As low as</Trans>&nbsp;

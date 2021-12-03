@@ -31,6 +31,7 @@ import React from 'react'
 import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 
 export const config = { unstable_JsPreload: false }
 
@@ -68,6 +69,7 @@ function ProductGrouped(props: Props) {
 
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
+        <ProductWishlistChip sku={product.sku} />
         <Typography variant='h3' component='div'>
           {product.name}
         </Typography>
