@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.5.7...@graphcommerce/magento-search@3.5.8) (2021-12-03)
+
+
+### Bug Fixes
+
+* search page ([85cf721](https://github.com/ho-nl/m2-pwa/commit/85cf72130bce4c3d2c392a3745adf05bca8618b1))
+
+
+
+
+
 ## [3.5.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.5.4...@graphcommerce/magento-search@3.5.5) (2021-12-01)
 
 

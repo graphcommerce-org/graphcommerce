@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.139.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.139.0...@graphcommerce/magento-graphcms@2.139.1) (2021-12-03)
+
+
+### Bug Fixes
+
+* search page ([85cf721](https://github.com/ho-nl/m2-pwa/commit/85cf72130bce4c3d2c392a3745adf05bca8618b1))
+
+
+
+
+
 # [2.139.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.138.1...@graphcommerce/magento-graphcms@2.139.0) (2021-12-03)
 
 

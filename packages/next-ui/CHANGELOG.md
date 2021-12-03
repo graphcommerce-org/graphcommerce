@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.20.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.20.0...@graphcommerce/next-ui@3.20.1) (2021-12-03)
+
+
+### Bug Fixes
+
+* overlay didn't initialize ([f3b4ad9](https://github.com/ho-nl/m2-pwa/commit/f3b4ad9d96656b965865008f315ffcbdd24842de))
+* search page ([85cf721](https://github.com/ho-nl/m2-pwa/commit/85cf72130bce4c3d2c392a3745adf05bca8618b1))
+* sidebar gallery hideScrollbar ([da68544](https://github.com/ho-nl/m2-pwa/commit/da68544c7d99b23db8cb0b96c8ae96ede32abc62))
+* use standard shadows in overlay ([5383aa2](https://github.com/ho-nl/m2-pwa/commit/5383aa2ae69363ebcff1ebec7c120137a83653d0))
+
+
+
+
+
 # [3.20.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.19.1...@graphcommerce/next-ui@3.20.0) (2021-12-03)
 
 
