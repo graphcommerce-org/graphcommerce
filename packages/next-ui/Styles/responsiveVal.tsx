@@ -3,9 +3,6 @@
  *
  * E.g.: `responsiveVal(16, 22)` -> Will render 16px at 320px window width, 22 ad 1280 window width
  */
-export function responsiveVal(
-  min: number,
-  max: number,
-): `max(${number}px, min(${string}, ${number}px))` {
+export function responsiveVal(min: number, max: number): string {
   return `max(${min}px, min(${min}, ${max}px))`
 }
