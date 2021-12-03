@@ -15,7 +15,7 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('md')]: {
         height: 28,
         paddingLeft: 0,
-        marginTop: -5,
+        marginTop: -2,
       },
     },
     dark: {

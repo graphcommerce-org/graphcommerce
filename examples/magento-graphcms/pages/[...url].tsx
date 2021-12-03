@@ -98,7 +98,7 @@ function CategoryPage(props: Props) {
         />
       ) : (
         <ProductListParamsProvider value={params}>
-          <LayoutTitle variant='h1' gutterTop>
+          <LayoutTitle variant='h1' gutterTop gutterBottom={false}>
             {category?.name}
           </LayoutTitle>
           <CategoryDescription description={category.description} />

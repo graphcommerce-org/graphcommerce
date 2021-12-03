@@ -5,9 +5,6 @@ export * from './DesktopNavBar'
 export { default as DesktopNavBar } from './DesktopNavBar'
 export { default as FixedFab } from './FixedFab'
 
-export * from './ForwardButton'
-export { default as ForwardButton } from './ForwardButton'
-
 export { default as Logo } from './Logo'
 export * from './Logo'
 export * from './Menu'

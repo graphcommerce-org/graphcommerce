@@ -85,6 +85,14 @@ const useStyles = makeStyles(
         marginBottom: `calc(${theme.appShell.appBarHeightMd} * -1)`,
       },
     },
+    stickyDivider: {
+      [theme.breakpoints.down('sm')]: {
+        marginBottom: 0,
+      },
+      [theme.breakpoints.up('md')]: {
+        marginBottom: 0,
+      },
+    },
   }),
   { name: 'LayoutHeader' },
 )
@@ -123,6 +131,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
     visibleMd: !floatingMd,
     noChildren: !children,
     noAlign,
+    divider: !!divider,
   })
 
   return (

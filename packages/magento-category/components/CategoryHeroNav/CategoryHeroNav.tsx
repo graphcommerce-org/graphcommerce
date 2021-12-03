@@ -16,7 +16,7 @@ const useStyles = makeStyles(
       `,
       gridTemplateRows: 'auto auto 1fr',
       borderBottom: `1px solid ${theme.palette.divider}`,
-      marginBottom: theme.spacings.xl,
+      marginBottom: theme.spacings.xxl,
       paddingBottom: theme.page.vertical,
       [theme.breakpoints.up('md')]: {
         rowGap: theme.spacings.md,
@@ -27,7 +27,7 @@ const useStyles = makeStyles(
     categories: {
       gridArea: 'categories',
       display: 'grid',
-      gridColumnGap: theme.spacings.xl,
+      gridColumnGap: theme.spacings.xxl,
       gridRowGap: theme.spacings.lg,
       height: 'min-content',
       maxWidth: '80vw',

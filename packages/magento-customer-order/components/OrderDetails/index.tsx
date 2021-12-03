@@ -32,7 +32,7 @@ const useStyles = makeStyles(
       padding: `${theme.spacings.md} 0`,
       borderBottom: `1px solid ${theme.palette.divider}`,
       [theme.breakpoints.up('sm')]: {
-        gridColumnGap: theme.spacings.xl,
+        gridColumnGap: theme.spacings.xxl,
         gridRowGap: theme.spacings.md,
         gridTemplateColumns: 'repeat(2, 1fr)',
       },

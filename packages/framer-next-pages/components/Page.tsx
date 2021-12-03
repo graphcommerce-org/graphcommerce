@@ -15,16 +15,19 @@ export function scrollPos(idx: number): { x: number; y: number } {
   return scroll ? JSON.parse(scroll) : { x: 0, y: 0 }
 }
 
-const useStyles = makeStyles({
-  page: {
-    left: 0,
-    right: 0,
-    minHeight: '100vh',
-    '@supports (-webkit-touch-callout: none)': {
-      height: '-webkit-fill-available',
+const useStyles = makeStyles(
+  {
+    page: {
+      left: 0,
+      right: 0,
+      minHeight: '100vh',
+      '@supports (-webkit-touch-callout: none)': {
+        height: '-webkit-fill-available',
+      },
     },
   },
-})
+  { name: 'FramerNextPage' },
+)
 
 export default function Page(props: PageProps) {
   const { active, historyIdx, children } = props

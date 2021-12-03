@@ -128,16 +128,16 @@ const useStyles = makeStyles(
     },
     overlayVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
-        marginTop: -100,
-        paddingTop: 100,
+        marginTop: `calc(${theme.appShell.headerHeightSm} * 0.5 * -1)`,
+        paddingTop: `calc(${theme.appShell.headerHeightSm} * 0.5)`,
         scrollSnapStop: 'always',
         display: 'grid',
       },
     },
     overlayVariantMdBottom: {
       [theme.breakpoints.up('md')]: {
-        marginTop: -100,
-        paddingTop: 100,
+        marginTop: `calc(${theme.appShell.headerHeightMd} + (${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * 0.5)`,
+        paddingTop: `calc(${theme.appShell.headerHeightMd} + (${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5)`,
         scrollSnapAlign: 'start',
         scrollSnapStop: 'always',
         display: 'grid',

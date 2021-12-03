@@ -19,7 +19,7 @@ const useStyles = makeStyles(
           "left right"
         `,
         gridTemplateColumns: '1fr auto',
-        gap: `${theme.spacings.sm} ${theme.spacings.xl}`,
+        gap: `${theme.spacings.sm} ${theme.spacings.xxl}`,
       },
     },
     top: {
