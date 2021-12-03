@@ -1,7 +1,7 @@
 import { usePageContext, usePageRouter, useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
 import { useElementScroll, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme, ClickAwayListener } from '@material-ui/core'
 import {
   m,
   MotionValue,
@@ -339,11 +339,13 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
     <>
       <m.div {...className('backdrop')} style={{ opacity: positions.open.visible }} />
       <Scroller {...className('root')} grid={false} hideScrollbar>
-        <div {...className('beforeOverlay')} onClick={closeOverlay} />
+        <div {...className('beforeOverlay')} />
         <div {...className('overlay')} ref={overlayRef}>
-          <div {...className('overlayPane')}>
-            <LayoutProvider scroll={scrollWithoffset}>{children}</LayoutProvider>
-          </div>
+          <ClickAwayListener onClickAway={closeOverlay}>
+            <div {...className('overlayPane')}>
+              <LayoutProvider scroll={scrollWithoffset}>{children}</LayoutProvider>
+            </div>
+          </ClickAwayListener>
         </div>
         <div {...className('afterOverlay')} />
       </Scroller>
