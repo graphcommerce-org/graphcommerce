@@ -29,10 +29,8 @@ const useStyles = makeStyles(
       minWidth: 1,
     },
     scroller: {
-      width: '100%',
       gridColumnGap: theme.spacings.md,
       gridRowGap: theme.spacings.lg,
-      alignContent: 'space-around',
       paddingRight: theme.page.horizontal,
       gridAutoColumns: responsiveVal(200, 400),
     },

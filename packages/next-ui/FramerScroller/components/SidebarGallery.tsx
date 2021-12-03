@@ -14,6 +14,7 @@ import { Fab, makeStyles, Theme, useTheme, alpha } from '@material-ui/core'
 import clsx from 'clsx'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import React, { useEffect, useRef } from 'react'
+import { classesPicker } from '../..'
 import Row from '../../Row'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
@@ -208,16 +209,12 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
     }
   }
 
-  const clsxZoom = (key: string) => clsx(classes?.[key], zoomed && classes?.[`${key}Zoomed`])
+  const className = classesPicker(classes, { zoomed })
   const theme = useTheme()
   const windowRef = useRef(typeof window !== 'undefined' ? window : null)
 
   const handleEscapeKey = (e: KeyboardEvent | Event) => {
-    if (zoomed) {
-      if ((e as KeyboardEvent)?.key === 'Escape') {
-        toggle()
-      }
-    }
+    if (zoomed && (e as KeyboardEvent)?.key === 'Escape') toggle()
   }
 
   const dragStart = useMotionValue<number>(0)
@@ -235,16 +232,16 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
   return (
     <ScrollerProvider scrollSnapAlign='center'>
       <Row maxWidth={false} disableGutters>
-        <m.div layout className={clsxZoom('root')}>
+        <m.div layout {...className('root')}>
           <m.div
             layout
-            className={clsxZoom('scrollerContainer')}
+            {...className('scrollerContainer')}
             onLayoutAnimationComplete={() => {
               if (!zoomed) document.body.style.overflow = ''
             }}
           >
             <Scroller
-              className={clsxZoom('scroller')}
+              {...className('scroller')}
               hideScrollbar
               onMouseDown={onMouseDownScroller}
               onMouseUp={onMouseUpScroller}
@@ -306,8 +303,8 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
             </div>
           </m.div>
 
-          <div className={clsxZoom('sidebarWrapper')}>
-            <m.div layout className={clsxZoom('sidebar')}>
+          <div {...className('sidebarWrapper')}>
+            <m.div layout {...className('sidebar')}>
               {sidebar}
             </m.div>
           </div>
