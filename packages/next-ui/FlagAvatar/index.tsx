@@ -20,7 +20,7 @@ export default function FlagAvatar(props: FlagAvatarProps) {
       classes={classes}
       imgProps={{ loading: 'lazy' }}
       alt={country}
-      src={`https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${country}.svg`}
+      src={`https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/${country}.svg`}
     >
       {country.toLocaleUpperCase()}
     </Avatar>

@@ -20,7 +20,7 @@ export type StoreSwitcherButtonProps = UseStyles<typeof useStyles>
 
 export default function StoreSwitcherButton(props) {
   const config = useQuery(StoreConfigDocument)
-  const country = config.data?.storeConfig?.store_code?.split('_')?.[1]?.toLowerCase() ?? ''
+  const country = config.data?.storeConfig?.locale?.split('_')?.[1]?.toLowerCase() ?? ''
 
   const classes = useStyles(props)
   return (
