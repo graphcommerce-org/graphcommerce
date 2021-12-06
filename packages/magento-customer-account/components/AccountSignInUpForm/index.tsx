@@ -82,13 +82,11 @@ export default function AccountSignInUpForm() {
             <Trans>Hi {firstname}! You're now logged in!</Trans>
           </Typography>
           <Typography variant='h6' align='center'>
-            <Trans>
-              You can view{' '}
-              <PageLink href='/account' passHref>
-                <Link>your account here</Link>
-              </PageLink>
-              .
-            </Trans>
+            <Trans>You can view</Trans>{' '}
+            <PageLink href='/account' passHref>
+              <Link>your account here</Link>
+            </PageLink>
+            .
           </Typography>
 
           <FormActions>

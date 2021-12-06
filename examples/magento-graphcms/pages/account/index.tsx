@@ -152,7 +152,8 @@ function AccountIndexPage() {
               endIcon={<CustomerNewsletterToggle color='primary' />}
             />
             <SignOutForm
-              button={React.memo(({ formState }) => (
+              // eslint-disable-next-line react/no-unstable-nested-components
+              button={({ formState }) => (
                 <AccountMenuItem
                   iconSrc={iconShutdown}
                   loading={formState.isSubmitting}
@@ -161,7 +162,7 @@ function AccountIndexPage() {
                   title={t`Sign out`}
                   noBorderBottom
                 />
-              ))}
+              )}
             />
           </AccountMenu>
         </NoSsr>
