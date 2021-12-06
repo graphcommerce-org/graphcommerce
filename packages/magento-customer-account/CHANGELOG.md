@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.105.12](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-account@2.105.11...@graphcommerce/magento-customer-account@2.105.12) (2021-12-06)
+
+
+### Bug Fixes
+
+* bugs ([f7fac90](https://github.com/ho-nl/m2-pwa/commit/f7fac906b4563559ed382165983cde4271f65d01))
+
+
+
+
+
 ## [2.105.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-account@2.105.6...@graphcommerce/magento-customer-account@2.105.7) (2021-12-03)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.20.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.20.4...@graphcommerce/next-ui@3.20.5) (2021-12-06)
+
+
+### Bug Fixes
+
+* Accessibility, SEO ([a258837](https://github.com/ho-nl/m2-pwa/commit/a258837476d94d20d33e13a4c4f950fff57f7dca))
+
+
+
+
+
 ## [3.20.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.20.3...@graphcommerce/next-ui@3.20.4) (2021-12-06)
 
 

@@ -1,7 +1,7 @@
 {
   "name": "@graphcommerce/framer-next-pages-example",
   "private": true,
-  "version": "2.104.41",
+  "version": "2.104.42",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -10,7 +10,7 @@
   "dependencies": {
     "@graphcommerce/framer-next-pages": "^2.108.0",
     "@graphcommerce/next-config": "^2.109.0",
-    "@graphcommerce/next-ui": "^3.20.4",
+    "@graphcommerce/next-ui": "^3.20.5",
     "framer-motion": "^4.1.17",
     "next": "^12.0.3",
     "react": "^17.0.2",
