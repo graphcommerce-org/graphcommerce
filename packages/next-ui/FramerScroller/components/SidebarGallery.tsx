@@ -159,7 +159,8 @@ const useStyles = makeStyles(
       top: `calc(50% - 28px)`,
     },
     dots: {
-      background: alpha(theme.palette.background.paper, 0.7),
+      background: alpha(theme.palette.background.paper, 1),
+      boxShadow: theme.shadows[6],
     },
   }),
   { name: 'SidebarGallery' },
@@ -258,6 +259,7 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
                       0: '100vw',
                       [theme.breakpoints.values.md]: zoomed ? '100vw' : '60vw',
                     }}
+                    alt={image.alt || `Product Image ${idx}` || undefined}
                     dontReportWronglySizedImages
                   />
                 </CenterSlide>

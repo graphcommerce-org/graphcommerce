@@ -10,7 +10,7 @@ export default function ProductPageMeta(props: ProductPageMetaFragment) {
   return (
     <PageMeta
       title={meta_title ?? name ?? ''}
-      metaDescription={meta_description ?? ''}
+      metaDescription={meta_description ?? name ?? ''}
       canonical={productLink}
     />
   )

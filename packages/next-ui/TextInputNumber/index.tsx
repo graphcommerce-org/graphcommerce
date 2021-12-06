@@ -114,12 +114,15 @@ export default function TextInputNumber(props: TextInputNumberProps) {
       inputRef={forkRef}
       className={clsx(textFieldProps.className, classes.quantity)}
       autoComplete='off'
+      label={' '}
+      id='quantity-input'
+      InputLabelProps={{ shrink: false }}
       InputProps={{
         ...textFieldProps.InputProps,
         startAdornment: (
           <IconButton
             aria-label='step down'
-            size='small'
+            size='medium'
             edge='start'
             onPointerDown={() => setDirection('down')}
             onPointerUp={stop}
@@ -135,7 +138,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
         endAdornment: (
           <IconButton
             aria-label='step up'
-            size='small'
+            size='medium'
             edge='end'
             onPointerDown={() => setDirection('up')}
             onPointerUp={() => setDirection(null)}
