@@ -1,4 +1,3 @@
-import { GoogleTagManagerNoScript } from '@graphcommerce/googletagmanager'
 import { linguiWrapGetInitialProps, MessageLoader } from '@graphcommerce/lingui-next'
 import Document from '@graphcommerce/next-ui/Page/Document'
 import { Head, Html, Main, NextScript } from 'next/document'
@@ -20,7 +19,6 @@ export default class ThemedDocument extends Document {
           /> */}
         </Head>
         <body>
-          <GoogleTagManagerNoScript />
           <Main />
           <NextScript />
         </body>
