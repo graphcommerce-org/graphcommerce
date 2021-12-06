@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.11](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-store@3.3.10...@graphcommerce/magento-store@3.3.11) (2021-12-06)
+
+
+### Bug Fixes
+
+* use Locale to set storeSwitcher icons ([65ea397](https://github.com/ho-nl/m2-pwa/commit/65ea397ec53aa27f545b43feda8e35227e119ebe))
+
+
+
+
+
 # [3.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-store@3.2.20...@graphcommerce/magento-store@3.3.0) (2021-11-12)
 
 

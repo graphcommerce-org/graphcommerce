@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.20.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.20.3...@graphcommerce/next-ui@3.20.4) (2021-12-06)
+
+
+### Bug Fixes
+
+* use Locale to set storeSwitcher icons ([65ea397](https://github.com/ho-nl/m2-pwa/commit/65ea397ec53aa27f545b43feda8e35227e119ebe))
+
+
+
+
+
 ## [3.20.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.20.1...@graphcommerce/next-ui@3.20.2) (2021-12-03)
 
 
