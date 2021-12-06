@@ -51,7 +51,7 @@ export default function StoreSwitcherList(props: StoreSwitcherListProps) {
     (availableStores ?? []).reduce<{
       [group: string]: { name: Store['store_group_name']; stores: Store[] }
     }>((storesGrouped, store) => {
-      const code = store?.store_group_code
+      const code = store?.locale?.split('_')[1].toLowerCase()
       if (!store?.store_group_code || !code) return storesGrouped
 
       if (!storesGrouped[code]) storesGrouped[code] = { name: store.store_group_name, stores: [] }
@@ -66,9 +66,9 @@ export default function StoreSwitcherList(props: StoreSwitcherListProps) {
       {groupedStores.map(([code, group]) => (
         <React.Fragment key={code}>
           <PageLink
-            key={group.stores[0].store_code}
+            key={group.stores[0].locale}
             href='/switch-stores'
-            locale={storeToLocale(group.stores[0].store_code)}
+            locale={storeToLocale(group.stores[0].locale)}
             replace
             passHref
           >
@@ -76,7 +76,7 @@ export default function StoreSwitcherList(props: StoreSwitcherListProps) {
               button
               component='a'
               selected={
-                group.stores.length <= 1 && localeToStore(locale) === group.stores[0].store_code
+                group.stores.length <= 1 && localeToStore(locale) === group.stores[0].locale
               }
               color='inherit'
               className={classes.listItem}
@@ -94,16 +94,16 @@ export default function StoreSwitcherList(props: StoreSwitcherListProps) {
             <Collapse in timeout='auto'>
               {group.stores.map((store) => (
                 <PageLink
-                  key={store.store_code}
+                  key={store.locale}
                   href='/switch-stores'
-                  locale={storeToLocale(store.store_code)}
+                  locale={storeToLocale(store.locale)}
                   replace
                   passHref
                 >
                   <ListItem
                     button
                     component='a'
-                    selected={localeToStore(locale) === store.store_code}
+                    selected={localeToStore(locale) === store.locale}
                     color='inherit'
                     className={classes.listItemIndented}
                   >
