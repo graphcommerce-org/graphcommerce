@@ -21,7 +21,7 @@ import useProductListStyles from "../../components/ProductListItems/useProductLi
 type Props = any;
 type GetPageStaticProps = GetStaticProps<MinimalPageShellProps>
 
-function WishlistPage({ pages }: Props) {
+function WishlistPage(props: Props) {
   const { data, loading, error } = useQuery(WishlistProductsDocument, {
     fetchPolicy: 'cache-and-network',
     ssr: false,
@@ -78,20 +78,11 @@ WishlistPage.pageOptions = pageOptions
 export default WishlistPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const staticClient = apolloClient(locale)
   const client = apolloClient(locale, true)
   const conf = client.query({ query: StoreConfigDocument })
 
-  const page = staticClient.query({
-    query: WishlistProductsDocument,
-    variables: {
-      filters: { sku: { eq: "GC-1087-SOCK"} },
-    },
-  })
-
   return {
     props: {
-      ...(await page).data,
       up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
