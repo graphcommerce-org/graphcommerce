@@ -1,0 +1,19 @@
+query WishlistProducts (
+    $pageSize: Int = 33
+    $currentPage: Int = 1
+    $filters: ProductAttributeFilterInput = {}
+    $sort: ProductAttributeSortInput = {}
+) {
+    products(
+        pageSize: $pageSize
+        currentPage: $currentPage
+        filter: $filters
+        sort: $sort
+    ) {
+        items {
+            __typename
+            uid
+            ...ProductListItem
+        }
+    }
+}
