@@ -9,7 +9,7 @@ import {
   iconHeart,
   Title,
 } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
+import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
@@ -44,19 +44,19 @@ function WishlistPage(props: Props) {
   return (
     <>
       <PageMeta
-        title={`Wishlist`}
-        metaDescription={`Wishlist`}
+        title={t`Wishlist`}
+        metaDescription={t`Wishlist`}
         metaRobots={['noindex']}
       />
 
       <PageShellHeader>
         <Title component='span' size='small' icon={iconHeart}>
-          Wishlist ({totalWishlistProducts})
+          <Trans>Wishlist</Trans> ({totalWishlistProducts})
         </Title>
       </PageShellHeader>
 
       <AppShellTitle icon={iconHeart}>
-        Wishlist ({totalWishlistProducts})
+        <Trans>Wishlist</Trans> ({totalWishlistProducts})
       </AppShellTitle>
 
       <Container maxWidth='md'>
