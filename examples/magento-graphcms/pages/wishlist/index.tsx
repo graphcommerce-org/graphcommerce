@@ -22,11 +22,14 @@ type Props = any;
 type GetPageStaticProps = GetStaticProps<MinimalPageShellProps>
 
 function WishlistPage(props: Props) {
+  let guestWishlistItems = process.browser ? localStorage?.wishlist : '[]';
+  guestWishlistItems = JSON.parse(guestWishlistItems);
+
   const { data, loading, error } = useQuery(WishlistProductsDocument, {
     fetchPolicy: 'cache-and-network',
     ssr: false,
     variables: {
-      filters: { sku: { eq: "GC-1087-SOCK"} },
+      filters: { sku: { in: guestWishlistItems} },
     },
   })
   const productListClasses = useProductListStyles({ count: data?.products?.items?.length ?? 0 })
