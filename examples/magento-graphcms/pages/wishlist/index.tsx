@@ -15,6 +15,8 @@ import React from 'react'
 import MinimalPageShell, { MinimalPageShellProps } from '../../components/AppShell/MinimalPageShell'
 import PageShellHeader from '../../components/AppShell/PageShellHeader'
 import apolloClient from '../../lib/apolloClient'
+import ProductListItems from "../../components/ProductListItems/ProductListItems";
+import useProductListStyles from "../../components/ProductListItems/useProductListStyles";
 
 type Props = any;
 type GetPageStaticProps = GetStaticProps<MinimalPageShellProps>
@@ -27,14 +29,14 @@ function WishlistPage({ pages }: Props) {
       filters: { sku: { eq: "GC-1087-SOCK"} },
     },
   })
+  const productListClasses = useProductListStyles({ count: data?.products?.items?.length ?? 0 })
+  const totalWishlistProducts = data?.products?.items?.length ?? 0
 
   if (loading) return <div />
   if (error)
     return (
       <div>oops</div>
     )
-
-  console.log(data);
 
   return (
     <>
@@ -46,17 +48,21 @@ function WishlistPage({ pages }: Props) {
 
       <PageShellHeader>
         <Title component='span' size='small' icon={iconHeart}>
-          Wishlist
+          Wishlist ({totalWishlistProducts})
         </Title>
       </PageShellHeader>
 
       <AppShellTitle icon={iconHeart}>
-        Wishlist
+        Wishlist ({totalWishlistProducts})
       </AppShellTitle>
 
       <Container maxWidth='md'>
         <NoSsr>
-
+          <ProductListItems
+            items={data?.products?.items}
+            classes={productListClasses}
+            loadingEager={1}
+          />
         </NoSsr>
       </Container>
     </>
