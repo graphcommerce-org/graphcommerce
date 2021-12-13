@@ -57,13 +57,14 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
   const classes = useStyles()
 
   const form = useFormGqlMutationCart(ConfigurableProductAddToCartDocument, {
-    defaultValues: variables,
+    defaultValues: { ...variables },
     onBeforeSubmit: ({ selectedOptions, ...vars }) => ({
       ...vars,
       // todo: selectedOptions should contain the correct values directly
       selectedOptions: getUids(selectedOptions?.[0] as unknown as Selected),
     }),
   })
+
   const { handleSubmit, formState, muiRegister, required, control, error, data } = form
   const submitHandler = handleSubmit(() => {})
 
