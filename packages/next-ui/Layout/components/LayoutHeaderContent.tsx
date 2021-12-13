@@ -16,8 +16,8 @@ const useStyles = makeStyles(
       position: 'absolute',
       left: 0,
       width: '100%',
-      backgroundColor: theme.palette.background.default,
-      boxShadow: theme.shadows[2],
+      backgroundColor: theme.palette.background.paper,
+      boxShadow: theme.shadows[1],
       opacity: 0,
       transition: `opacity ${time}`,
 

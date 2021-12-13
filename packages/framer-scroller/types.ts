@@ -1,6 +1,5 @@
-import { MotionValue } from 'framer-motion'
+import { MotionValue, Point } from 'framer-motion'
 import { PlaybackControls } from 'popmotion'
-import { Point2D } from 'popmotion/lib/types'
 import React from 'react'
 
 export type ItemState = {
@@ -37,7 +36,7 @@ export type ScrollerContext = {
   /** @private */
   stop(): void
   /** @private */
-  getSnapPosition(direction: SnapPositionDirection): Point2D
+  getSnapPosition(direction: SnapPositionDirection): Point
   /** @private */
   getScrollSnapPositions(): Record<Axis, number[]>
   /** @private */

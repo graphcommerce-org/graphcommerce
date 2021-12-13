@@ -37,39 +37,35 @@ const useStyles = makeStyles(
     },
     rootVariantSmLeft: {
       [theme.breakpoints.down('sm')]: {
-        gridTemplate: `
-          "overlay beforeOverlay"
-          "afterOverlay afterOverlay"
-        `,
+        gridTemplate: `"overlay beforeOverlay"`,
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
       },
     },
     rootVariantMdLeft: {
       [theme.breakpoints.up('md')]: {
-        gridTemplate: `
-          "overlay beforeOverlay"
-          "afterOverlay afterOverlay"
-        `,
+        gridTemplate: `"overlay beforeOverlay"`,
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
       },
     },
     rootVariantSmRight: {
       [theme.breakpoints.down('sm')]: {
-        gridTemplate: `
-          "beforeOverlay overlay"
-          "afterOverlay afterOverlay"
-        `,
+        gridTemplate: `"beforeOverlay overlay"`,
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0,
       },
     },
     rootVariantMdRight: {
       [theme.breakpoints.up('md')]: {
-        gridTemplate: `
-          "beforeOverlay overlay"
-          "afterOverlay afterOverlay"
-        `,
+        gridTemplate: `"beforeOverlay overlay"`,
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0,
       },
     },
     rootVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
-        gridTemplate: `"beforeOverlay" "overlay" "afterOverlay"`,
+        gridTemplate: `"beforeOverlay" "overlay"`,
         height: '100vh',
         '@supports (-webkit-touch-callout: none)': {
           height: '-webkit-fill-available',
@@ -78,7 +74,7 @@ const useStyles = makeStyles(
     },
     rootVariantMdBottom: {
       [theme.breakpoints.up('md')]: {
-        gridTemplate: `"beforeOverlay" "overlay" "afterOverlay"`,
+        gridTemplate: `"beforeOverlay" "overlay"`,
         height: '100vh',
       },
     },
@@ -200,14 +196,11 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('md')]: {
         paddingBottom: 1,
         minHeight: '100vh',
+        scrollSnapAlign: 'end',
         '@supports (-webkit-touch-callout: none)': {
           minHeight: '-webkit-fill-available',
         },
       },
-    },
-    afterOverlay: {
-      gridArea: 'afterOverlay',
-      scrollSnapAlign: 'start',
     },
     backdrop: {
       zIndex: -1,
@@ -343,19 +336,26 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
     ([y, openY, offsetYv]: number[]) => Math.max(0, y - openY - offsetYv + offsetPageY),
   )
 
+  const onClickAway = useCallback(
+    (event: React.MouseEvent<Document>) => {
+      if (event.target === document.body && event.type === 'click') return
+      closeOverlay()
+    },
+    [closeOverlay],
+  )
+
   return (
     <>
       <m.div {...className('backdrop')} style={{ opacity: positions.open.visible }} />
       <Scroller {...className('root')} grid={false} hideScrollbar>
         <div {...className('beforeOverlay')} />
         <div {...className('overlay')} ref={overlayRef}>
-          <ClickAwayListener onClickAway={closeOverlay}>
+          <ClickAwayListener onClickAway={onClickAway}>
             <div {...className('overlayPane')}>
               <LayoutProvider scroll={scrollWithoffset}>{children}</LayoutProvider>
             </div>
           </ClickAwayListener>
         </div>
-        <div {...className('afterOverlay')} />
       </Scroller>
     </>
   )
