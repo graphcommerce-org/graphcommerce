@@ -21,14 +21,16 @@ export default function AddressSingleLine(props: CustomerAddressFragment) {
   // todo: detect correct format by locale
   // for now, US format will be returned by default
 
-  let address = `$company ${prefix}, ${firstname}, $middlename ${lastname}, $suffix ${
-    street?.[0]
-  }, ${street?.slice(1).join(' ')}, ${postcode}, ${city}, ${regionName} $countryName`
+  const addressLine = [
+    company,
+    `${prefix} ${firstname} ${middlename} ${lastname} ${suffix}`,
+    `${street?.[0]} ${street?.[1]}`,
+    ...(street?.slice(2) ?? []),
+    `${postcode} ${city}`,
+    `${regionName} ${countryName}`,
+  ]
+    .map((v) => (v ?? '').replaceAll('null', '').replace(/\s\s+/g, ' ').trim())
+    .filter(Boolean)
 
-  address = address.replace('$company', company ? `${company},` : '')
-  address = address.replace('$middlename', middlename ? `${middlename},` : '')
-  address = address.replace('$suffix', suffix ? `${suffix},` : '')
-  address = address.replace('$countryName', countryName ? `${countryName},` : '')
-
-  return <>{address}</>
+  return <>{addressLine.join(', ')}</>
 }
