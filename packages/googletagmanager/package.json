@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/googletagmanager",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.2",
-    "@graphcommerce/eslint-config-pwa": "^3.1.6",
+    "@graphcommerce/eslint-config-pwa": "^3.1.7",
     "@graphcommerce/prettier-config-pwa": "^3.0.4",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
     "@playwright/test": "^1.17.1",
