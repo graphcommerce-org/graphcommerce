@@ -4,13 +4,7 @@ import {
   CartAgreementsQuery,
 } from '@graphcommerce/magento-cart/components/CartAgreementsForm/CartAgreements.gql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  GetStaticProps,
-  PageMeta,
-  responsiveVal,
-  LayoutOverlayHeader,
-  LayoutTitle,
-} from '@graphcommerce/next-ui'
+import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { Container, Typography } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import React from 'react'
@@ -93,8 +87,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
 
   return {
     props: {
-      variant: 'left',
-      size: responsiveVal(320, 800),
+      variantMd: 'left',
       agreement,
       apolloState: await conf.then(() => client.cache.extract()),
     },

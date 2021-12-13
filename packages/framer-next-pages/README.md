@@ -127,7 +127,7 @@ CmsPage.pageOptions = {
 ```ts
 export function getStaticProps() {
   return {
-    variant: 'bottom',
+    variantMd: 'bottom',
   }
 }
 ```
