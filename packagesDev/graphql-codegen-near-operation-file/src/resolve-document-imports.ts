@@ -10,7 +10,7 @@ import {
   LoadedFragment,
 } from '@graphql-codegen/visitor-plugin-common'
 import { Source } from '@graphql-tools/utils'
-import { FragmentDefinitionNode, GraphQLSchema, visit } from 'graphql'
+import { DocumentNode, FragmentDefinitionNode, GraphQLSchema, visit } from 'graphql'
 import buildFragmentResolver, { buildFragmentRegistry } from './fragment-resolver'
 import { extractExternalFragmentsInUse } from './utils'
 
@@ -45,13 +45,14 @@ interface ResolveDocumentImportResult {
 
 function getFragmentName(documentFile: Types.DocumentFile) {
   let name: string | undefined
-  visit(documentFile.document!, {
-    enter: {
-      FragmentDefinition: (node: FragmentDefinitionNode) => {
-        name = node.name.value
-      },
+  if (!documentFile.document) return name
+
+  visit<DocumentNode>(documentFile.document, {
+    FragmentDefinition(node) {
+      name = node.name.value
     },
   })
+
   return name
 }
 

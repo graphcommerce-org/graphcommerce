@@ -20,14 +20,14 @@
     "@graphcommerce/image": "^2.105.5",
     "@graphcommerce/next-ui": "^3.20.5",
     "@material-ui/core": "^4.12.3",
-    "popmotion": "9.3.6"
+    "popmotion": "11.0.3"
   },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.2",
     "@graphcommerce/eslint-config-pwa": "^3.1.6",
     "@graphcommerce/prettier-config-pwa": "^3.0.4",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
-    "@playwright/test": "^1.16.2"
+    "@playwright/test": "^1.17.1"
   },
   "peerDependencies": {
     "clsx": "^1.1.1",
