@@ -50,7 +50,7 @@
     "lerna": "^4.0.0",
     "patch-package": "^6.4.3",
     "postinstall-postinstall": "^2.1.0",
-    "type-fest": "^2.5.1",
+    "type-fest": "^2.8.0",
     "vercel": "^23.1.2"
   },
   "devDependencies": {
