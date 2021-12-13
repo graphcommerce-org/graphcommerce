@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/framer-next-pages",
-  "version": "2.108.1",
+  "version": "2.108.2",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
@@ -16,7 +16,7 @@
     }
   },
   "dependencies": {
-    "@graphcommerce/framer-utils": "^2.103.17"
+    "@graphcommerce/framer-utils": "^2.103.18"
   },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.2",

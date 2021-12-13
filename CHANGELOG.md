@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.157.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.157.7...@graphcommerce/graphcommerce@2.157.8) (2021-12-13)
+
+
+### Bug Fixes
+
+* header style color ([ea373be](https://github.com/ho-nl/m2-pwa/commit/ea373be9dbf609e0a719b000d27ad79d2be45f65))
+* make sure we're allowed to scroll all the way down ([16ee45d](https://github.com/ho-nl/m2-pwa/commit/16ee45d8bea8072388dc1508e48704be5a84c4ec))
+* make sure we're using the correct variant ([7fff606](https://github.com/ho-nl/m2-pwa/commit/7fff606390bc63c14cd8c033fbe5138226517869))
+* overlay didn't handle portals correctly and closed the overlay ([3cef4e7](https://github.com/ho-nl/m2-pwa/commit/3cef4e73042fd836fc776dad17abcc39d7403eee))
+
+
+
+
+
 ## [2.157.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.157.5...@graphcommerce/graphcommerce@2.157.6) (2021-12-06)
 
 
