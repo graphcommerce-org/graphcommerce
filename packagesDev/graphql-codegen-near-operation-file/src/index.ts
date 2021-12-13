@@ -145,12 +145,11 @@ export type FragmentNameToFile = {
 
 function isFragment(documentFile: Types.DocumentFile) {
   let name = false
+  if (!documentFile.document) return name
 
-  visit(documentFile.document!, {
-    enter: {
-      FragmentDefinition: () => {
-        name = true
-      },
+  visit(documentFile.document, {
+    FragmentDefinition: () => {
+      name = true
     },
   })
   return name

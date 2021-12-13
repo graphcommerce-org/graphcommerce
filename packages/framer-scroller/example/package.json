@@ -15,10 +15,10 @@
     "@material-ui/core": "^4.12.3",
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.17",
-    "next": "^12.0.3",
+    "next": "^12.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-focus-lock": "^2.5.2"
+    "react-focus-lock": "^2.7.0"
   },
   "license": "MIT",
   "devDependencies": {

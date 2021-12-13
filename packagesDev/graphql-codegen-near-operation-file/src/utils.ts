@@ -25,35 +25,31 @@ export function extractExternalFragmentsInUse(
 
   // First, take all fragments definition from the current file, and mark them as ignored
   visit(documentNode, {
-    enter: {
-      FragmentDefinition: (node: FragmentDefinitionNode) => {
-        ignoreList.add(node.name.value)
-      },
+    FragmentDefinition: (node: FragmentDefinitionNode) => {
+      ignoreList.add(node.name.value)
     },
   })
 
   // Then, look for all used fragments in this document
   visit(documentNode, {
-    enter: {
-      FragmentSpread: (node: FragmentSpreadNode) => {
-        if (!ignoreList.has(node.name.value)) {
-          if (
-            result[node.name.value] === undefined ||
-            (result[node.name.value] !== undefined && level < result[node.name.value])
-          ) {
-            result[node.name.value] = level
+    FragmentSpread: (node: FragmentSpreadNode) => {
+      if (!ignoreList.has(node.name.value)) {
+        if (
+          result[node.name.value] === undefined ||
+          (result[node.name.value] !== undefined && level < result[node.name.value])
+        ) {
+          result[node.name.value] = level
 
-            if (fragmentNameToFile[node.name.value]) {
-              extractExternalFragmentsInUse(
-                fragmentNameToFile[node.name.value].node,
-                fragmentNameToFile,
-                result,
-                level + 1,
-              )
-            }
+          if (fragmentNameToFile[node.name.value]) {
+            extractExternalFragmentsInUse(
+              fragmentNameToFile[node.name.value].node,
+              fragmentNameToFile,
+              result,
+              level + 1,
+            )
           }
         }
-      },
+      }
     },
   })
 

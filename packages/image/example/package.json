@@ -12,10 +12,10 @@
     "@graphcommerce/next-config": "^2.109.0",
     "@graphcommerce/next-ui": "^3.20.5",
     "framer-motion": "^4.1.17",
-    "next": "^12.0.3",
+    "next": "^12.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-focus-lock": "^2.5.2"
+    "react-focus-lock": "^2.7.0"
   },
   "license": "MIT",
   "devDependencies": {

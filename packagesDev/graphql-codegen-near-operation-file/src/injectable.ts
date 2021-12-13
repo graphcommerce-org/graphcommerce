@@ -1,6 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import { Types } from '@graphql-codegen/plugin-helpers'
-import { visit, DocumentNode, FragmentSpreadNode, FragmentDefinitionNode } from 'graphql'
+import { visit, DocumentNode, FragmentSpreadNode, FragmentDefinitionNode, Kind } from 'graphql'
 
 function isFragment(document: DocumentNode) {
   let is = false
@@ -95,8 +95,8 @@ function injectInjectable(injectables: DocumentNode[], injector: DocumentNode) {
             found = true
 
             const spread: FragmentSpreadNode = {
-              kind: 'FragmentSpread',
-              name: { kind: 'Name', value: fragment.name.value },
+              kind: Kind.FRAGMENT_SPREAD,
+              name: { kind: Kind.NAME, value: fragment.name.value },
             }
             frag.selectionSet.selections = [...frag.selectionSet.selections, spread]
           }
