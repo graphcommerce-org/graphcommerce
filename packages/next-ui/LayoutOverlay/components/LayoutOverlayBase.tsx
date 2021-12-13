@@ -336,13 +336,21 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
     ([y, openY, offsetYv]: number[]) => Math.max(0, y - openY - offsetYv + offsetPageY),
   )
 
+  const onClickAway = useCallback(
+    (event: React.MouseEvent<Document>) => {
+      if (event.target === document.body && event.type === 'click') return
+      closeOverlay()
+    },
+    [closeOverlay],
+  )
+
   return (
     <>
       <m.div {...className('backdrop')} style={{ opacity: positions.open.visible }} />
       <Scroller {...className('root')} grid={false} hideScrollbar>
         <div {...className('beforeOverlay')} />
         <div {...className('overlay')} ref={overlayRef}>
-          <ClickAwayListener onClickAway={closeOverlay}>
+          <ClickAwayListener onClickAway={onClickAway}>
             <div {...className('overlayPane')}>
               <LayoutProvider scroll={scrollWithoffset}>{children}</LayoutProvider>
             </div>
