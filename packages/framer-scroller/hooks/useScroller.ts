@@ -13,6 +13,7 @@ import {
 import React, { ReactHTML, useState } from 'react'
 import { ScrollSnapProps, ScrollSnapType } from '../types'
 import { isHTMLMousePointerEvent } from '../utils/isHTMLMousePointerEvent'
+import { scrollSnapTypeDirection } from '../utils/scrollSnapTypeDirection'
 import { useScrollerContext } from './useScrollerContext'
 import { useVelocitySnapTo } from './useVelocitySnapTo'
 
@@ -122,13 +123,6 @@ const useStyles = makeStyles(
 
 export type ScrollableProps<TagName extends keyof ReactHTML = 'div'> = UseStyles<typeof useStyles> &
   HTMLMotionProps<TagName> & { hideScrollbar?: boolean; grid?: boolean }
-
-export function scrollSnapTypeDirection(scrollSnapType: ScrollSnapType) {
-  let smSnapDir = scrollSnapType.split(' ')[0]
-  smSnapDir = smSnapDir.replace('y', 'block')
-  smSnapDir = smSnapDir.replace('x', 'inline') as 'block' | 'inline' | 'both' | 'inline'
-  return smSnapDir
-}
 
 /** Make any HTML */
 export function useScroller<TagName extends keyof ReactHTML = 'div'>(
