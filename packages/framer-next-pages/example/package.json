@@ -11,15 +11,15 @@
     "@graphcommerce/framer-next-pages": "^2.108.2",
     "@graphcommerce/next-config": "^2.109.2",
     "@graphcommerce/next-ui": "^3.20.7",
-    "framer-motion": "^5.4.5",
+    "framer-motion": "^5.5.1",
     "next": "^12.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-focus-lock": "^2.7.0"
+    "react-focus-lock": "^2.7.1"
   },
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^4.5.3"
+    "typescript": "^4.5.4"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
