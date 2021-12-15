@@ -19,7 +19,7 @@ const useStyles = makeStyles(
       },
     },
     dark: {
-      filter: 'invert(100%)',
+      filter: 'invert(50%) brightness(200%)',
     },
   }),
   { name: 'Logo' },
