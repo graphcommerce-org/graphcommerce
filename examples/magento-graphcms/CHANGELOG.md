@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.139.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.139.8...@graphcommerce/magento-graphcms@2.139.9) (2021-12-15)
+
+
+### Bug Fixes
+
+* issue where multiple versions of graphql-typed-document-node were used causing build errors ([bd61212](https://github.com/ho-nl/m2-pwa/commit/bd61212d321290239e79ba5e2691c061b21dd422))
+* removed unused postinstall-postinstall package ([365cb32](https://github.com/ho-nl/m2-pwa/commit/365cb32077e7e2e22c1fc0a89eaf3a8ed9d75581))
+
+
+
+
+
 ## [2.139.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.139.7...@graphcommerce/magento-graphcms@2.139.8) (2021-12-13)
 
 

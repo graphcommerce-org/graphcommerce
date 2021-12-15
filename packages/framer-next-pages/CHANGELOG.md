@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.108.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.108.2...@graphcommerce/framer-next-pages@2.108.3) (2021-12-15)
+
+
+### Bug Fixes
+
+* **framer-next-pages:** make sure the cancellation of loading the fallback doesn't show an error ([3470461](https://github.com/ho-nl/m2-pwa/commit/34704612c7b19a61a8309967b982e5f04c0fe8b2))
+
+
+
+
+
 ## [2.108.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.108.1...@graphcommerce/framer-next-pages@2.108.2) (2021-12-13)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.7...@graphcommerce/framer-scroller@1.1.8) (2021-12-15)
+
+
+### Bug Fixes
+
+* scroller should not snap to off-axis while dragging and direction isn't set to both ([9118bfc](https://github.com/ho-nl/m2-pwa/commit/9118bfcb1eb9ade5f144167e47e0c26724ce832f))
+
+
+
+
+
 ## [1.1.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.4...@graphcommerce/framer-scroller@1.1.5) (2021-12-06)
 
 

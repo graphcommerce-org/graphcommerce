@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.20.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.20.7...@graphcommerce/next-ui@3.20.8) (2021-12-15)
+
+
+### Bug Fixes
+
+* could not scroll to the bottom of a left/right sheet ([b84c86e](https://github.com/ho-nl/m2-pwa/commit/b84c86efa090657fc4cd480547f576bf6d9e0709))
+* scroller should not snap to off-axis while dragging and direction isn't set to both ([9118bfc](https://github.com/ho-nl/m2-pwa/commit/9118bfcb1eb9ade5f144167e47e0c26724ce832f))
+
+
+
+
+
 ## [3.20.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.20.6...@graphcommerce/next-ui@3.20.7) (2021-12-13)
 
 

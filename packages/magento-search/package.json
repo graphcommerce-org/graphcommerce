@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-search",
-  "version": "3.5.14",
+  "version": "3.5.15",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -14,16 +14,16 @@
   },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.2",
-    "@graphcommerce/eslint-config-pwa": "^3.1.7",
+    "@graphcommerce/eslint-config-pwa": "^3.1.8",
     "@graphcommerce/prettier-config-pwa": "^3.0.4",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
     "@playwright/test": "^1.17.1"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "^2.105.7",
-    "@graphcommerce/image": "^2.105.7",
-    "@graphcommerce/next-ui": "^3.20.7",
-    "@graphcommerce/react-hook-form": "^2.104.3",
+    "@graphcommerce/graphql": "^2.105.8",
+    "@graphcommerce/image": "^2.105.8",
+    "@graphcommerce/next-ui": "^3.20.8",
+    "@graphcommerce/react-hook-form": "^2.104.4",
     "@lingui/macro": "^3.13.0",
     "@material-ui/core": "^4.12.3",
     "clsx": "^1.1.1",

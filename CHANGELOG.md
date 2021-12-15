@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.157.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.157.8...@graphcommerce/graphcommerce@2.157.9) (2021-12-15)
+
+
+### Bug Fixes
+
+* could not scroll to the bottom of a left/right sheet ([b84c86e](https://github.com/ho-nl/m2-pwa/commit/b84c86efa090657fc4cd480547f576bf6d9e0709))
+* **framer-next-pages:** make sure the cancellation of loading the fallback doesn't show an error ([3470461](https://github.com/ho-nl/m2-pwa/commit/34704612c7b19a61a8309967b982e5f04c0fe8b2))
+* issue where multiple versions of graphql-typed-document-node were used causing build errors ([bd61212](https://github.com/ho-nl/m2-pwa/commit/bd61212d321290239e79ba5e2691c061b21dd422))
+* removed unused postinstall-postinstall package ([365cb32](https://github.com/ho-nl/m2-pwa/commit/365cb32077e7e2e22c1fc0a89eaf3a8ed9d75581))
+* scroller should not snap to off-axis while dragging and direction isn't set to both ([9118bfc](https://github.com/ho-nl/m2-pwa/commit/9118bfcb1eb9ade5f144167e47e0c26724ce832f))
+
+
+
+
+
 ## [2.157.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.157.7...@graphcommerce/graphcommerce@2.157.8) (2021-12-13)
 
 
