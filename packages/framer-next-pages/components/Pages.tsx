@@ -68,32 +68,32 @@ export default function FramerNextPages(props: PagesProps) {
 
     let cancel: number
     async function loadFallback() {
-      const info = await (router as Router).getRouteInfo('/', '/', {}, '/', '/', {
-        shallow: false,
-      })
-      const proxy = createRouterProxy(router, { asPath: '/', pathname: '/', query: {} })
-      const Fallback = info.Component as PageComponent
-      const fbItem: PageItem = {
-        children: <Fallback {...(info.props?.pageProps as Record<string, unknown>)} />,
-        currentRouter: proxy,
-        Layout: Fallback.pageOptions?.Layout,
-        layoutProps: Fallback.pageOptions?.layoutProps,
-        actualPageProps: info.props?.pageProps,
-        sharedKey: Fallback.pageOptions?.sharedKey?.(proxy) ?? proxy.pathname,
-        overlayGroup: Fallback.pageOptions?.overlayGroup,
-        historyIdx: -1,
-        up: Fallback.pageOptions?.up ?? info.props?.pageProps?.up,
+      try {
+        const info = await (router as Router).getRouteInfo('/', '/', {}, '/', '/', {
+          shallow: false,
+        })
+        const proxy = createRouterProxy(router, { asPath: '/', pathname: '/', query: {} })
+        const Fallback = info.Component as PageComponent
+        const fbItem: PageItem = {
+          children: <Fallback {...(info.props?.pageProps as Record<string, unknown>)} />,
+          currentRouter: proxy,
+          Layout: Fallback.pageOptions?.Layout,
+          layoutProps: Fallback.pageOptions?.layoutProps,
+          actualPageProps: info.props?.pageProps,
+          sharedKey: Fallback.pageOptions?.sharedKey?.(proxy) ?? proxy.pathname,
+          overlayGroup: Fallback.pageOptions?.overlayGroup,
+          historyIdx: -1,
+          up: Fallback.pageOptions?.up ?? info.props?.pageProps?.up,
+        }
+
+        cancel = requestIdleCallback(() => setFallback(fbItem))
+      } catch (e) {
+        // Loading failed, we do nothing.
       }
-
-      cancel = requestIdleCallback(() => setFallback(fbItem))
     }
 
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      loadFallback()
-    } catch (e) {
-      // Loading failed, we do nothing.
-    }
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    loadFallback()
 
     return () => {
       if (cancel) cancelIdleCallback(cancel)

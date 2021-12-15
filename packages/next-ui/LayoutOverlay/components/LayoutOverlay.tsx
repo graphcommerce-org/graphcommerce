@@ -11,9 +11,9 @@ export function LayoutOverlay(props: LayoutOverlayProps) {
   const { children, variantSm = 'bottom', variantMd = 'right', classes } = props
 
   const scrollSnapTypeSm: ScrollSnapType =
-    variantSm === 'left' || variantSm === 'right' ? 'both mandatory' : 'block proximity'
+    variantSm === 'left' || variantSm === 'right' ? 'inline mandatory' : 'block proximity'
   const scrollSnapTypeMd: ScrollSnapType =
-    variantMd === 'left' || variantMd === 'right' ? 'both mandatory' : 'block proximity'
+    variantMd === 'left' || variantMd === 'right' ? 'inline mandatory' : 'block proximity'
 
   return (
     <ScrollerProvider scrollSnapTypeSm={scrollSnapTypeSm} scrollSnapTypeMd={scrollSnapTypeMd}>

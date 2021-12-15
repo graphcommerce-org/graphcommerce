@@ -28,43 +28,43 @@ const useStyles = makeStyles(
       },
       [theme.breakpoints.down('sm')]: {
         width: '100vw',
-        borderRadius: theme.shape.borderRadius * 3,
       },
       [theme.breakpoints.up('md')]: {
         width: '100vw',
-        borderRadius: theme.shape.borderRadius * 4,
       },
     },
     rootVariantSmLeft: {
       [theme.breakpoints.down('sm')]: {
         gridTemplate: `"overlay beforeOverlay"`,
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0,
+        borderTopRightRadius: theme.shape.borderRadius * 3,
+        borderBottomRightRadius: theme.shape.borderRadius * 3,
       },
     },
     rootVariantMdLeft: {
       [theme.breakpoints.up('md')]: {
         gridTemplate: `"overlay beforeOverlay"`,
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0,
+        borderTopRightRadius: theme.shape.borderRadius * 4,
+        borderBottomRightRadius: theme.shape.borderRadius * 4,
       },
     },
     rootVariantSmRight: {
       [theme.breakpoints.down('sm')]: {
         gridTemplate: `"beforeOverlay overlay"`,
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0,
+        borderTopLeftRadius: theme.shape.borderRadius * 3,
+        borderBottomLeftRadius: theme.shape.borderRadius * 3,
       },
     },
     rootVariantMdRight: {
       [theme.breakpoints.up('md')]: {
         gridTemplate: `"beforeOverlay overlay"`,
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0,
+        borderTopLeftRadius: theme.shape.borderRadius * 4,
+        borderBottomLeftRadius: theme.shape.borderRadius * 4,
       },
     },
     rootVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
+        borderTopLeftRadius: theme.shape.borderRadius * 3,
+        borderTopRightRadius: theme.shape.borderRadius * 3,
         gridTemplate: `"beforeOverlay" "overlay"`,
         height: '100vh',
         '@supports (-webkit-touch-callout: none)': {
@@ -73,6 +73,8 @@ const useStyles = makeStyles(
       },
     },
     rootVariantMdBottom: {
+      borderTopLeftRadius: theme.shape.borderRadius * 4,
+      borderTopRightRadius: theme.shape.borderRadius * 4,
       [theme.breakpoints.up('md')]: {
         gridTemplate: `"beforeOverlay" "overlay"`,
         height: '100vh',
@@ -81,7 +83,6 @@ const useStyles = makeStyles(
     beforeOverlay: {
       gridArea: 'beforeOverlay',
       scrollSnapAlign: 'start',
-      scrollSnapStop: 'always',
       display: 'grid',
       alignContent: 'end',
     },
@@ -134,7 +135,6 @@ const useStyles = makeStyles(
       [theme.breakpoints.down('sm')]: {
         marginTop: `calc(${theme.appShell.headerHeightSm} * 0.5 * -1)`,
         paddingTop: `calc(${theme.appShell.headerHeightSm} * 0.5)`,
-        scrollSnapStop: 'always',
         display: 'grid',
       },
     },
@@ -142,8 +142,6 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('md')]: {
         marginTop: `calc(${theme.appShell.headerHeightMd} + (${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * 0.5)`,
         paddingTop: `calc(${theme.appShell.headerHeightMd} + (${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5)`,
-        scrollSnapAlign: 'start',
-        scrollSnapStop: 'always',
         display: 'grid',
       },
     },
@@ -152,17 +150,20 @@ const useStyles = makeStyles(
       backgroundColor: theme.palette.background.paper,
       boxShadow: theme.shadows[24],
       minWidth: 'min(800px, 90vw)',
+      scrollSnapAlign: 'end',
     },
     overlayPaneVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
         width: '100vw',
-        borderRadius: theme.shape.borderRadius * 3,
+        borderTopLeftRadius: theme.shape.borderRadius * 3,
+        borderTopRightRadius: theme.shape.borderRadius * 3,
       },
     },
     overlayPaneVariantMdBottom: {
       [theme.breakpoints.up('md')]: {
         width: '100vw',
-        borderRadius: theme.shape.borderRadius * 4,
+        borderTopLeftRadius: theme.shape.borderRadius * 3,
+        borderTopRightRadius: theme.shape.borderRadius * 3,
       },
     },
     overlayPaneVariantSmLeft: {
