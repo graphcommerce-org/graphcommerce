@@ -18,7 +18,7 @@
     "prepack:1": "yarn workspace @graphcommerce/next-config prepack",
     "prepack:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack",
     "prepack:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack",
-    "postinstall": "patch-typed-document-node && yarn prepack"
+    "postinstall": "yarn prepack"
   },
   "dependencies": {
     "@adobe/apollo-link-mutation-queue": "^1.0.2",
@@ -80,8 +80,6 @@
     "@graphql-codegen/typescript-document-nodes": "2.2.1",
     "@graphql-codegen/typescript-operations": "2.2.1",
     "@graphql-mesh/cli": "^0.44.5",
-    "@graphql-typed-document-node/core": "^3.1.1",
-    "@graphql-typed-document-node/patch-cli": "^3.0.9",
     "@lingui/macro": "^3.13.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",

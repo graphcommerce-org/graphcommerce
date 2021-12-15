@@ -42,13 +42,13 @@ Replace
   "name": "@graphcommerce/magento-graphcms",
   "version": "2.124.0",
   "scripts": {
-    // ...other scripts
-    "codegen-base": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 node -r dotenv/config node_modules/.bin/graphql-codegen -c codegen.mono.yml",
-    "prepack": "concurrently yarn:prepack:*",
+    // ...other scripts, keep these
+    "codegen-base": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 yarn graphql-codegen --require dotenv/config -c codegen.mono.yml",
+    "prepack": "concurrently 'yarn prepack:1' 'yarn prepack:2' 'yarn prepack:3'",
     "prepack:1": "yarn workspace @graphcommerce/next-config prepack",
     "prepack:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack",
     "prepack:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack",
-    "postinstall": "patch-typed-document-node && yarn prepack"
+    "postinstall": "yarn prepack"
   }
 }
 ```
@@ -60,9 +60,8 @@ With:
   "name": "@my-company/my-project",
   "version": "0.0.0",
   "scripts": {
-    // ...other scripts
-    "codegen-base": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 node -r dotenv/config node_modules/.bin/graphql-codegen",
-    "postinstall": "patch-typed-document-node"
+    // ...other scripts, keep these
+    "codegen-base": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 node -r dotenv/config node_modules/.bin/graphql-codegen"
   }
 }
 ```

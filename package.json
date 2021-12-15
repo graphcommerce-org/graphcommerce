@@ -20,7 +20,7 @@
     "prettier:fix": "yarn prettier --ignore-path .gitignore --write '**/*.{ts,tsx,css,html,json}'",
     "tsc:lint": "yarn tsc --noEmit -p .",
     "playwright": "npx playwright test --headed --project=chrome",
-    "postinstall": "patch-package && patch-typed-document-node && yarn prepack",
+    "postinstall": "patch-package && yarn prepack",
     "prepack": "concurrently 'yarn prepack:1' 'yarn prepack:2' 'yarn prepack:2'",
     "prepack:1": "yarn workspace @graphcommerce/next-config prepack",
     "prepack:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack",
@@ -54,7 +54,6 @@
     "vercel": "^23.1.2"
   },
   "devDependencies": {
-    "@graphql-typed-document-node/patch-cli": "^3.0.9",
     "@types/node": "^16.11.13",
     "@types/react": "^17.0.37",
     "@types/sharp": "^0.29.4",
