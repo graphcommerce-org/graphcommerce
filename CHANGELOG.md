@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.158.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.157.9...@graphcommerce/graphcommerce@2.158.0) (2021-12-15)
+
+
+### Bug Fixes
+
+* logo invert ([2c56128](https://github.com/ho-nl/m2-pwa/commit/2c561280e41149ad986fae31df2da8d9f2846962))
+
+
+### Features
+
+* darkTheme set ([2513bba](https://github.com/ho-nl/m2-pwa/commit/2513bba71dddb9664c135eafd9f3d7b8c5ae0681))
+
+
+
+
+
 ## [2.157.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.157.8...@graphcommerce/graphcommerce@2.157.9) (2021-12-15)
 
 
