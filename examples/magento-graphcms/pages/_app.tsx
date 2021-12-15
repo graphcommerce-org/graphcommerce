@@ -4,13 +4,20 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { App, AppProps, GlobalHead } from '@graphcommerce/next-ui'
 import { CssBaseline, ThemeProvider } from '@material-ui/core'
 import { useRouter } from 'next/router'
-import React from 'react'
-import { lightTheme } from '../components/Theme/ThemedProvider'
+import React, { useEffect, useState } from 'react'
+import { lightTheme, darkTheme } from '../components/Theme/ThemedProvider'
 import apolloClient from '../lib/apolloClientBrowser'
 
 export default function ThemedApp(props: AppProps) {
   const { pageProps } = props
-  const { locale } = useRouter()
+  const { locale, asPath } = useRouter()
+  const [mode, setMode] = useState('light')
+
+  useEffect(() => {
+    if (asPath.includes('dark')) {
+      setMode('dark')
+    }
+  }, [asPath])
 
   const client = apolloClient(locale, true, pageProps.apolloState)
   const storeConfig = useQuery(StoreConfigDocument, { client })
@@ -21,7 +28,7 @@ export default function ThemedApp(props: AppProps) {
       <GlobalHead name={name} />
       <ApolloProvider client={client}>
         <LinguiProvider loader={(l) => import(`../locales/${l}.po`)}>
-          <ThemeProvider theme={lightTheme}>
+          <ThemeProvider theme={mode === 'light' ? lightTheme : darkTheme}>
             <CssBaseline />
             <App {...props} />
           </ThemeProvider>
