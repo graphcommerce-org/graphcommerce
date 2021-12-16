@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/framer-scroller",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
@@ -18,7 +18,7 @@
   "dependencies": {
     "@graphcommerce/framer-utils": "^2.103.19",
     "@graphcommerce/image": "^2.105.8",
-    "@graphcommerce/next-ui": "^3.20.8",
+    "@graphcommerce/next-ui": "^3.20.9",
     "@material-ui/core": "^4.12.3",
     "popmotion": "11.0.3"
   },

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.20.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.20.8...@graphcommerce/next-ui@3.20.9) (2021-12-16)
+
+
+### Bug Fixes
+
+* simplify ButtonLinkList and made  more flexible ([e01cc82](https://github.com/ho-nl/m2-pwa/commit/e01cc825b87abf81d1cb8f9dc976f674b9e8e6d3))
+
+
+
+
+
 ## [3.20.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.20.7...@graphcommerce/next-ui@3.20.8) (2021-12-15)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.158.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.158.0...@graphcommerce/graphcommerce@2.158.1) (2021-12-16)
+
+
+### Bug Fixes
+
+* simplify ButtonLinkList and made  more flexible ([e01cc82](https://github.com/ho-nl/m2-pwa/commit/e01cc825b87abf81d1cb8f9dc976f674b9e8e6d3))
+
+
+
+
+
 # [2.158.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.157.9...@graphcommerce/graphcommerce@2.158.0) (2021-12-15)
 
 
