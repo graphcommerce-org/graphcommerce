@@ -1,10 +1,11 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
-import Button, { ButtonProps } from '../Button'
-import { UseStyles } from '../Styles'
-import SvgImageSimple from '../SvgImage/SvgImageSimple'
-import { iconChevronRight } from '../icons'
+import Button, { ButtonProps } from '../../Button'
+import { UseStyles } from '../../Styles'
+import SvgImageSimple from '../../SvgImage/SvgImageSimple'
+import { iconChevronRight } from '../../icons'
 
 const useStyles = makeStyles((theme: Theme) => ({
   buttonLink: {
@@ -24,20 +25,20 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 export type ButtonLinkProps = {
-  title: string | React.ReactNode
+  children: React.ReactNode
   url: string
   endIcon?: React.ReactNode
 } & ButtonProps &
   UseStyles<typeof useStyles>
 
-export default function ButtonLink(props: ButtonLinkProps) {
-  const { title, url, endIcon, ...buttonProps } = props
+export function ButtonLinkListItem(props: ButtonLinkProps) {
+  const { children, url, endIcon, className, ...buttonProps } = props
   const classes = useStyles(props)
 
   return (
     <PageLink href={url} passHref>
-      <Button {...buttonProps} className={classes.buttonLink}>
-        <span>{title}</span>
+      <Button {...buttonProps} className={clsx(classes.buttonLink, className)}>
+        <span>{children}</span>
         {endIcon ?? <SvgImageSimple src={iconChevronRight} />}
       </Button>
     </PageLink>

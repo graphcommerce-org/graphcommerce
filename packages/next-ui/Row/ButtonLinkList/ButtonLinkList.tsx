@@ -32,20 +32,20 @@ const useStyles = makeStyles(
 
 type ButtonLinkListPropsBase = {
   title: string
-  links: React.ReactNode
+  children: React.ReactNode
   containsBigLinks: boolean
 }
 
 export type ButtonLinkListProps = UseStyles<typeof useStyles> & ButtonLinkListPropsBase
 
-export default function ButtonLinkList(props: ButtonLinkListProps) {
-  const { title, links } = props
+export function ButtonLinkList(props: ButtonLinkListProps) {
+  const { title, children } = props
   const classes = useStyles(props)
 
   return (
     <Row maxWidth='md' className={classes.container}>
       <SectionContainer labelLeft={title}>
-        <div className={classes.links}>{links}</div>
+        <div className={classes.links}>{children}</div>
       </SectionContainer>
     </Row>
   )
