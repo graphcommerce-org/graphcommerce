@@ -1,5 +1,5 @@
 import { ApolloProvider, useQuery } from '@apollo/client'
-import { GoogleAnalyticsScript } from '@graphcommerce/googleanalytics'
+// import { GoogleAnalyticsScript } from '@graphcommerce/googleanalytics'
 // import { GoogleRecaptchaV3Script } from '@graphcommerce/googlerecaptcha'
 // import { GoogleTagManagerScript } from '@graphcommerce/googletagmanager'
 import { LinguiProvider } from '@graphcommerce/lingui-next'
@@ -23,7 +23,7 @@ export default function ThemedApp(props: AppProps) {
   return (
     <>
       <GlobalHead name={name} />
-      <GoogleAnalyticsScript />
+      {/* <GoogleAnalyticsScript /> */}
       {/* <GoogleRecaptchaV3Script /> */}
       {/* <GoogleTagManagerScript /> */}
       <ApolloProvider client={client}>
