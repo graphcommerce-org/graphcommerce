@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.159.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.159.1...@graphcommerce/graphcommerce@2.159.2) (2021-12-17)
+
+
+### Bug Fixes
+
+* **googleanalytics:** make sure ga is defined ([787dd9f](https://github.com/ho-nl/m2-pwa/commit/787dd9f6945469e36ebf627213fdb5eefb8146cd))
+
+
+
+
+
 ## [2.159.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.159.0...@graphcommerce/graphcommerce@2.159.1) (2021-12-17)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/googleanalytics",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
