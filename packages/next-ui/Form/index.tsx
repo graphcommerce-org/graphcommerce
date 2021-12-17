@@ -21,7 +21,7 @@ const useStyles = makeStyles(
           : lighten(theme.palette.background.default, 0.2),
     },
     contained: {
-      padding: theme.spacings.sm,
+      padding: `${theme.spacings.xxs} ${theme.spacings.sm}`,
       // paddingTop: theme.spacings.md,
       overflow: 'hidden',
       borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
