@@ -1,22 +1,5 @@
 # todo: make `../../node_modules/@graphcommerce` some env variable or resolve dynamically'
 generates:
-  # Generate a schema file
-  ../../node_modules/@graphcommerce/graphql/generated/schema.graphqls:
-    schema:
-      - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
-      - '**/*.graphqls'
-      - '../../packages/magento-*/**/*.graphqls'
-      - '../../packages/mollie-magento-payment/**/*.graphqls'
-      - '../../packagesDev/**/*.graphqls'
-      # todo: This is triggering on any file changed: https://d.pr/v/9Rnxo2
-      # - '../../node_modules/@graphcommerce/**/*.graphqls'
-    plugins:
-      - schema-ast
-      - add
-    config:
-      includeDirectives: true
-      commentDescriptions: false
-      content: '#'
   # Generate a types file
   ../../node_modules/@graphcommerce/graphql/generated/types.ts:
     schema:
