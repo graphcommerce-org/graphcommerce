@@ -4,7 +4,7 @@ import React from 'react'
 
 export type GlobalHeadProps = { name: string }
 
-const GlobalHead = (props: { name: string }) => {
+export function GlobalHead(props: GlobalHeadProps) {
   const { name } = props
   const theme = useTheme()
 
@@ -32,5 +32,3 @@ const GlobalHead = (props: { name: string }) => {
     </Head>
   )
 }
-
-export default GlobalHead
