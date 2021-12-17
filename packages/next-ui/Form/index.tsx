@@ -18,7 +18,7 @@ const useStyles = makeStyles(
       background:
         theme.palette.type === 'light'
           ? darken(theme.palette.background.default, 0.03)
-          : lighten(theme.palette.background.default, 0.2),
+          : lighten(theme.palette.background.default, 0.1),
     },
     contained: {
       padding: `${theme.spacings.xxs} ${theme.spacings.sm}`,

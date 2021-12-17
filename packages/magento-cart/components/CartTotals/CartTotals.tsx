@@ -1,7 +1,7 @@
 import { Money } from '@graphcommerce/magento-store'
 import { AnimatedRow, responsiveVal, UseStyles } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Divider, makeStyles, Theme } from '@material-ui/core'
+import { Divider, lighten, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
@@ -12,7 +12,10 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     costsContainer: {
       borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
-      background: theme.palette.type === 'light' ? '#FFE10820' : theme.palette.background.paper,
+      background:
+        theme.palette.type === 'light'
+          ? '#FFE10820'
+          : lighten(theme.palette.background.default, 0.1),
       padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
     },
     containerMarginTop: {

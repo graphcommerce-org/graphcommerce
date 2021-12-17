@@ -53,8 +53,8 @@ const darkPalette: PaletteOptions = {
     dark: '#62C7B0',
   },
   secondary: {
-    main: '#006BFF',
-    light: '#142b38',
+    main: '#62C7B0',
+    light: '#62C7B0',
     contrastText: '#ffffff',
   },
   background: {
