@@ -15,7 +15,7 @@ const useStyles = makeStyles(
       background:
         theme.palette.type === 'light'
           ? '#FFE10820'
-          : lighten(theme.palette.background.default, 0.1),
+          : lighten(theme.palette.background.default, 0.15),
       padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
     },
     containerMarginTop: {
