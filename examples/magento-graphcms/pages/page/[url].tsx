@@ -2,7 +2,7 @@ import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
 import { CmsPageContent } from '@graphcommerce/magento-cms'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { LayoutHeader, GetStaticProps, MetaRobots } from '@graphcommerce/next-ui'
+import { LayoutHeader, GetStaticProps, MetaRobots, LayoutTitle } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.gql'
@@ -22,10 +22,11 @@ export type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RoutePro
 function CmsPage(props: Props) {
   const router = usePageRouter()
   const { cmsPage, pages, products } = props
-  const title = cmsPage?.title ?? ''
+  const page = pages?.[0]
+
+  const title = page.title ?? cmsPage?.title ?? ''
 
   const product = products?.items?.[0]
-  const page = pages?.[0]
   const metaRobots = page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]
 
   return (
@@ -37,9 +38,15 @@ function CmsPage(props: Props) {
         canonical={page?.url}
       />
 
-      <LayoutHeader floatingMd floatingSm>
-        {router.asPath !== '/' && title}
+      <LayoutHeader floatingMd>
+        {router.pathname !== '/' && (
+          <LayoutTitle component='span' size='small'>
+            {title}
+          </LayoutTitle>
+        )}
       </LayoutHeader>
+
+      {router.pathname !== '/' && <LayoutTitle variant='h1'>{title}</LayoutTitle>}
 
       {pages?.[0] ? (
         <RowRenderer
@@ -98,7 +105,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
 
   return {
     props: {
-      alwaysShowLogo: true,
       ...(await page).data,
       ...(await productList).data,
       up: { href: '/', title: 'Home' },

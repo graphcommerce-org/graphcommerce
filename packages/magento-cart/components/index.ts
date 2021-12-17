@@ -9,11 +9,7 @@ export { default as CartTotals } from './CartTotals/CartTotals'
 
 export { default as EmptyCart } from './EmptyCart/EmptyCart'
 
-export * from './ApolloCartError/ApolloCartErrorAlert'
-export { default as ApolloCartErrorAlert } from './ApolloCartError/ApolloCartErrorAlert'
-
-export * from './ApolloCartError/ApolloCartErrorFullPage'
-export { default as ApolloCartErrorFullPage } from './ApolloCartError/ApolloCartErrorFullPage'
+export * from './ApolloCartError'
 
 export * from './CartSummary'
 export { default as CartSummary } from './CartSummary'

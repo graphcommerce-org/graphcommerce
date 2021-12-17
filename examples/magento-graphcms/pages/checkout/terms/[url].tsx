@@ -31,9 +31,7 @@ function TermsPage(props: Props) {
         </LayoutTitle>
       </LayoutOverlayHeader>
 
-      <LayoutTitle>
-        <LayoutTitle>{title}</LayoutTitle>
-      </LayoutTitle>
+      <LayoutTitle variant='h1'>{title}</LayoutTitle>
 
       <Container maxWidth='md'>
         <Typography component='div' variant='body1'>

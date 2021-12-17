@@ -7,7 +7,14 @@ import {
   CustomerDocument,
   CustomerTokenDocument,
 } from '@graphcommerce/magento-customer'
-import { AnimatedRow, Button, FormDiv, FormActions, FormRow } from '@graphcommerce/next-ui'
+import {
+  AnimatedRow,
+  Button,
+  FormDiv,
+  FormActions,
+  FormRow,
+  LayoutTitle,
+} from '@graphcommerce/next-ui'
 import { emailPattern, useFormPersist } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
 import { CircularProgress, Link, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
@@ -45,9 +52,9 @@ export default function AccountSignInUpForm() {
     <FormDiv>
       {mode === 'email' && (
         <div className={classes.titleContainer} key='email'>
-          <Typography variant='h3' align='center'>
-            <Trans>Good day!</Trans>
-          </Typography>
+          <LayoutTitle variant='h2' gutterBottom={false}>
+            <Trans>Sign in or create an account!</Trans>
+          </LayoutTitle>
           <Typography variant='h6' align='center'>
             <Trans>Fill in your e-mail to login or create an account</Trans>
           </Typography>
@@ -56,9 +63,9 @@ export default function AccountSignInUpForm() {
 
       {mode === 'signin' && (
         <div className={classes.titleContainer} key='signin'>
-          <Typography variant='h3' align='center'>
+          <LayoutTitle variant='h2' gutterBottom={false}>
             <Trans>Welcome back!</Trans>
-          </Typography>
+          </LayoutTitle>
           <Typography variant='h6' align='center'>
             <Trans>Fill in your password</Trans>
           </Typography>
@@ -67,9 +74,9 @@ export default function AccountSignInUpForm() {
 
       {mode === 'signup' && (
         <div className={classes.titleContainer} key='signup'>
-          <Typography variant='h3' align='center'>
+          <LayoutTitle variant='h2' gutterBottom={false}>
             <Trans>Create account!</Trans>
-          </Typography>
+          </LayoutTitle>
           <Typography variant='h6' align='center'>
             <Trans>Create a password and tell us your name</Trans>
           </Typography>
@@ -78,9 +85,9 @@ export default function AccountSignInUpForm() {
 
       {mode === 'signedin' && (
         <div className={classes.titleContainer} key='signup'>
-          <Typography variant='h3' align='center'>
+          <LayoutTitle variant='h2' gutterBottom={false}>
             <Trans>Hi {firstname}! You're now logged in!</Trans>
-          </Typography>
+          </LayoutTitle>
           <Typography variant='h6' align='center'>
             <Trans>You can view</Trans>{' '}
             <PageLink href='/account' passHref>
@@ -90,7 +97,7 @@ export default function AccountSignInUpForm() {
           </Typography>
 
           <FormActions>
-            <Button onClick={() => router.back()} color='primary' variant='pill' size='large'>
+            <Button onClick={() => router.back()} variant='pill' color='secondary' size='large'>
               <Trans>Continue shopping</Trans>
             </Button>
           </FormActions>
@@ -99,9 +106,9 @@ export default function AccountSignInUpForm() {
 
       {mode === 'session-expired' && (
         <div className={classes.titleContainer} key='email'>
-          <Typography variant='h3' align='center'>
+          <LayoutTitle variant='h2' gutterBottom={false}>
             <Trans>Your session is expired</Trans>
-          </Typography>
+          </LayoutTitle>
           <Typography variant='h6' align='center'>
             <Trans>Login to continue shopping</Trans>
           </Typography>

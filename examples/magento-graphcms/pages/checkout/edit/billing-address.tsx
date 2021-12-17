@@ -23,10 +23,8 @@ function EditBillingAddress() {
         </LayoutTitle>
       </LayoutOverlayHeader>
 
-      <LayoutTitle>
-        <LayoutTitle>
-          <Trans>Billing address</Trans>
-        </LayoutTitle>
+      <LayoutTitle variant='h1'>
+        <Trans>Billing address</Trans>
       </LayoutTitle>
 
       <Container maxWidth='md'>

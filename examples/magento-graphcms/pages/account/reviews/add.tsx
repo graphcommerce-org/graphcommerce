@@ -82,7 +82,7 @@ function AccountReviewsAddPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
 
-      <LayoutTitle>
+      <LayoutTitle variant='h1'>
         <Trans>You are reviewing {product?.name}</Trans>
       </LayoutTitle>
 

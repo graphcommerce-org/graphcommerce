@@ -25,7 +25,6 @@ type SignInFormProps = { email: string }
 export default function SignInForm(props: SignInFormProps) {
   const { email } = props
   const classes = useStyles()
-  const { data } = useQuery(CustomerTokenDocument)
   const form = useFormGqlMutation(
     SignInDocument,
     { defaultValues: { email } },
@@ -39,16 +38,8 @@ export default function SignInForm(props: SignInFormProps) {
   })
   const submitHandler = handleSubmit(() => {})
 
-  const requireAuth = Boolean(data?.customerToken && !data?.customerToken.valid)
-
   return (
     <form onSubmit={submitHandler} noValidate>
-      {requireAuth && (
-        <Alert severity='error' variant='standard'>
-          Your session has expired, please reauthenticate
-        </Alert>
-      )}
-
       <FormRow>
         <TextField
           key='password'
@@ -86,7 +77,7 @@ export default function SignInForm(props: SignInFormProps) {
             variant='contained'
             size='large'
           >
-            Log In
+            <Trans>Log In</Trans>
           </Button>
         </FormControl>
       </FormActions>
