@@ -14,7 +14,7 @@ type NameFieldProps = {
   form: UseFormReturn<any>
   readOnly?: boolean
   prefix?: boolean
-  prefixes: string[]
+  prefixes?: string[]
 }
 
 export default function NameFields(props: NameFieldProps) {
