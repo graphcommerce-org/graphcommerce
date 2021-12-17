@@ -12,8 +12,8 @@
 module.exports = {
   projects: {
     MagentoGraphCms: {
-      schema: ['packages/graphql/generated/schema.graphqls'],
-      documents: ['examples/magento-graphcms/*.graphql'],
+      schema: ['examples/magento-graphcms/.mesh/schema.graphql'],
+      documents: ['examples/magento-graphcms/components/**/*.graphql', 'packages/**/*.graphql'],
       extensions: {
         languageService: {
           useSchemaFileDefinitions: true,
