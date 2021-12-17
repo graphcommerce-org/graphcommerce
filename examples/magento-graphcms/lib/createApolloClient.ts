@@ -1,4 +1,3 @@
-import MutationQueueLink from '@adobe/apollo-link-mutation-queue'
 import { ApolloClient, ApolloLink, NormalizedCacheObject, InMemoryCache } from '@apollo/client'
 import { RetryLink } from '@apollo/client/link/retry'
 import { mergeDeep } from '@apollo/client/utilities'
@@ -29,7 +28,6 @@ export function createApolloClient(
 
   const links: ApolloLink[] = [
     measurePerformanceLink,
-    new MutationQueueLink() as unknown as ApolloLink,
     new RetryLink({ attempts: { max: 2 } }),
     errorLink,
     createStoreLink(locale),

@@ -21,7 +21,6 @@
     "postinstall": "yarn prepack"
   },
   "dependencies": {
-    "@adobe/apollo-link-mutation-queue": "^1.0.2",
     "@apollo/client": "^3.5.6",
     "@graphcommerce/browserslist-config-pwa": "^3.0.2",
     "@graphcommerce/eslint-config-pwa": "^3.1.8",
