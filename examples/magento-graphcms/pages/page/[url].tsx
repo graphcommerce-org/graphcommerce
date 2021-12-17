@@ -24,7 +24,7 @@ function CmsPage(props: Props) {
   const { cmsPage, pages, products } = props
   const page = pages?.[0]
 
-  const title = page.title ?? cmsPage?.title ?? ''
+  const title = page?.title ?? cmsPage?.title ?? ''
 
   const product = products?.items?.[0]
   const metaRobots = page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]
