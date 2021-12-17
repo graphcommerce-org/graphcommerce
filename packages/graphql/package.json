@@ -33,6 +33,6 @@
     "@graphql-codegen/typescript-apollo-client-helpers": "^2.1.8",
     "@graphql-codegen/typescript-document-nodes": "2.2.1",
     "@graphql-codegen/typescript-operations": "2.2.1",
-    "graphql": "^16.1.0"
+    "graphql": "^16.2.0"
   }
 }
