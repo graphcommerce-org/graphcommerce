@@ -27,7 +27,7 @@
     "apollo-server-micro": "^3.5.0",
     "camel-case": "^4.1.2",
     "fetchache": "^0.1.1",
-    "graphql": "^16.1.0",
+    "graphql": "^16.2.0",
     "micro": "^9.3.4",
     "micro-cors": "^0.1.1",
     "pascal-case": "^3.1.2",
