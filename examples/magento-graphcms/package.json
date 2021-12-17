@@ -74,7 +74,7 @@
     "@playwright/test": "^1.17.1",
     "apollo3-cache-persist": "^0.13.0",
     "clsx": "^1.1.1",
-    "concurrently": "^6.4.0",
+    "concurrently": "^6.5.0",
     "dotenv": "^10.0.0",
     "framer-motion": "^5.5.1",
     "graphql": "^16.1.0",
@@ -85,13 +85,11 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "schema-dts": "^1.0.0",
-    "sharp": "^0.29.3",
-    "vercel": "^23.1.2"
+    "sharp": "^0.29.3"
   },
   "devDependencies": {
     "@lingui/cli": "^3.13.0",
     "eslint": "^8.4.1",
-    "type-fest": "^2.8.0",
     "typescript": "^4.5.4"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
