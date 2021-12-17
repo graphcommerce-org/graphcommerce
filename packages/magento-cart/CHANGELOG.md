@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.8.12](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.8.11...@graphcommerce/magento-cart@3.8.12) (2021-12-17)
+
+
+### Bug Fixes
+
+* added various translations ([66c089d](https://github.com/ho-nl/m2-pwa/commit/66c089dc458e2d7b9f0318b2e14d88cb0e6effc8))
+* make sure we're using something  more uplifting for the cadt ([811120c](https://github.com/ho-nl/m2-pwa/commit/811120c49c4a9d3cba78c5f8c8fda56c9cd81e5d))
+
+
+
+
+
 ## [3.8.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.8.1...@graphcommerce/magento-cart@3.8.2) (2021-12-03)
 
 

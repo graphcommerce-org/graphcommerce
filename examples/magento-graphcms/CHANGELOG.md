@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.141.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.140.1...@graphcommerce/magento-graphcms@2.141.0) (2021-12-17)
+
+
+### Bug Fixes
+
+* added various translations ([66c089d](https://github.com/ho-nl/m2-pwa/commit/66c089dc458e2d7b9f0318b2e14d88cb0e6effc8))
+* darkmode handling ([e1c8cf9](https://github.com/ho-nl/m2-pwa/commit/e1c8cf9561d4bd96bec8ca8bb2696e0e12406795))
+* make sure the orders overview and view are shared ([b8b2347](https://github.com/ho-nl/m2-pwa/commit/b8b2347ebd1c42e8a804ddcab255c41ce5deb819))
+
+
+### Features
+
+* **googleanalytics:** created pacakge to support Google Analytics ([308b6df](https://github.com/ho-nl/m2-pwa/commit/308b6df1f216d2bc726c770a9ead039bd114a995))
+
+
+
+
+
 ## [2.140.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.140.0...@graphcommerce/magento-graphcms@2.140.1) (2021-12-16)
 
 

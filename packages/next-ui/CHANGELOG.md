@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.21.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.20.9...@graphcommerce/next-ui@3.21.0) (2021-12-17)
+
+
+### Bug Fixes
+
+* Form contained should be less spacious ([7d9557e](https://github.com/ho-nl/m2-pwa/commit/7d9557e9a75622a3dc40a3c7aab86da152d2e399))
+* make sure the snackbar message is formatted correctly ([b9e1e26](https://github.com/ho-nl/m2-pwa/commit/b9e1e2623ec2aff6b623603aa38fe8d71ff59e1c))
+
+
+### Features
+
+* added ApolloErrorSnackbar ([96bc92e](https://github.com/ho-nl/m2-pwa/commit/96bc92e24bac735b28f5f32e1154f715ddf8cd6c))
+
+
+
+
+
 ## [3.20.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.20.8...@graphcommerce/next-ui@3.20.9) (2021-12-16)
 
 

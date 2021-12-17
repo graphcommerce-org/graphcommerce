@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.106.12](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcms-ui@2.106.11...@graphcommerce/graphcms-ui@2.106.12) (2021-12-17)
+
+
+### Bug Fixes
+
+* make sure we're able to render table_header_cell and do not throw when rendering unknown elements in production ([f7b7972](https://github.com/ho-nl/m2-pwa/commit/f7b797272f5765801c3f2e217fa9905f65dbe6d6))
+
+
+
+
+
 # [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcms-ui@2.105.4...@graphcommerce/graphcms-ui@2.106.0) (2021-12-01)
 
 

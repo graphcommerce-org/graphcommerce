@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.9...@graphcommerce/framer-scroller@1.1.10) (2021-12-17)
+
+
+### Bug Fixes
+
+* **framer-scroller:** make sure we're not throwing only warning when there are no children ([001c7d9](https://github.com/ho-nl/m2-pwa/commit/001c7d9a00e447d44134c00bd77505e52cf0f9d4))
+
+
+
+
+
 ## [1.1.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.7...@graphcommerce/framer-scroller@1.1.8) (2021-12-15)
 
 

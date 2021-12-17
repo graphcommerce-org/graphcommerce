@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/framer-next-pages",
-  "version": "2.108.3",
+  "version": "2.108.4",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"

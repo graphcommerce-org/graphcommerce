@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.159.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.158.1...@graphcommerce/graphcommerce@2.159.0) (2021-12-17)
+
+
+### Bug Fixes
+
+* added various translations ([66c089d](https://github.com/ho-nl/m2-pwa/commit/66c089dc458e2d7b9f0318b2e14d88cb0e6effc8))
+* darkmode handling ([e1c8cf9](https://github.com/ho-nl/m2-pwa/commit/e1c8cf9561d4bd96bec8ca8bb2696e0e12406795))
+* Form contained should be less spacious ([7d9557e](https://github.com/ho-nl/m2-pwa/commit/7d9557e9a75622a3dc40a3c7aab86da152d2e399))
+* **framer-scroller:** make sure we're not throwing only warning when there are no children ([001c7d9](https://github.com/ho-nl/m2-pwa/commit/001c7d9a00e447d44134c00bd77505e52cf0f9d4))
+* make sure the graphql vscode plugin works as expected ([99673ed](https://github.com/ho-nl/m2-pwa/commit/99673edab4923d9c5b7090b38e5a022171fca8b6))
+* make sure the orders overview and view are shared ([b8b2347](https://github.com/ho-nl/m2-pwa/commit/b8b2347ebd1c42e8a804ddcab255c41ce5deb819))
+* make sure the snackbar message is formatted correctly ([b9e1e26](https://github.com/ho-nl/m2-pwa/commit/b9e1e2623ec2aff6b623603aa38fe8d71ff59e1c))
+* make sure we're able to render table_header_cell and do not throw when rendering unknown elements in production ([f7b7972](https://github.com/ho-nl/m2-pwa/commit/f7b797272f5765801c3f2e217fa9905f65dbe6d6))
+* make sure we're using something  more uplifting for the cadt ([811120c](https://github.com/ho-nl/m2-pwa/commit/811120c49c4a9d3cba78c5f8c8fda56c9cd81e5d))
+
+
+### Features
+
+* added ApolloErrorSnackbar ([96bc92e](https://github.com/ho-nl/m2-pwa/commit/96bc92e24bac735b28f5f32e1154f715ddf8cd6c))
+* **googleanalytics:** created pacakge to support Google Analytics ([308b6df](https://github.com/ho-nl/m2-pwa/commit/308b6df1f216d2bc726c770a9ead039bd114a995))
+
+
+
+
+
 ## [2.158.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.158.0...@graphcommerce/graphcommerce@2.158.1) (2021-12-16)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.17](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@3.6.16...@graphcommerce/magento-customer@3.6.17) (2021-12-17)
+
+
+### Bug Fixes
+
+* added various translations ([66c089d](https://github.com/ho-nl/m2-pwa/commit/66c089dc458e2d7b9f0318b2e14d88cb0e6effc8))
+
+
+
+
+
 # [3.6.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@3.5.6...@graphcommerce/magento-customer@3.6.0) (2021-11-12)
 
 
