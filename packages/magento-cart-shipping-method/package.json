@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-cart-shipping-method",
-  "version": "2.106.18",
+  "version": "2.106.19",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -13,22 +13,22 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/browserslist-config-pwa": "^3.0.2",
-    "@graphcommerce/eslint-config-pwa": "^3.1.8",
-    "@graphcommerce/prettier-config-pwa": "^3.0.4",
-    "@graphcommerce/typescript-config-pwa": "^3.1.1",
+    "@graphcommerce/browserslist-config-pwa": "^3.0.3",
+    "@graphcommerce/eslint-config-pwa": "^3.1.9",
+    "@graphcommerce/prettier-config-pwa": "^3.0.5",
+    "@graphcommerce/typescript-config-pwa": "^3.1.2",
     "@playwright/test": "^1.17.1"
   },
   "dependencies": {
     "@apollo/client": "^3.5.6",
-    "@graphcommerce/framer-scroller": "^1.1.11",
-    "@graphcommerce/graphql": "^2.105.9",
-    "@graphcommerce/image": "^2.105.8",
-    "@graphcommerce/magento-cart": "^3.8.13",
-    "@graphcommerce/magento-cart-shipping-address": "^2.106.18",
-    "@graphcommerce/magento-store": "^3.3.18",
-    "@graphcommerce/next-ui": "^3.21.1",
-    "@graphcommerce/react-hook-form": "^2.104.4",
+    "@graphcommerce/framer-scroller": "^1.1.12",
+    "@graphcommerce/graphql": "^2.105.10",
+    "@graphcommerce/image": "^2.105.9",
+    "@graphcommerce/magento-cart": "^3.8.14",
+    "@graphcommerce/magento-cart-shipping-address": "^2.106.19",
+    "@graphcommerce/magento-store": "^3.3.19",
+    "@graphcommerce/next-ui": "^3.21.2",
+    "@graphcommerce/react-hook-form": "^2.104.5",
     "@lingui/macro": "^3.13.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",

@@ -1,7 +1,7 @@
 {
   "name": "@graphcommerce/graphcommerce",
   "homepage": "https://graphcommerce.org/",
-  "version": "2.159.3",
+  "version": "2.159.4",
   "private": true,
   "workspaces": [
     "docs",
@@ -42,9 +42,9 @@
     }
   },
   "dependencies": {
-    "@graphcommerce/browserslist-config-pwa": "^3.0.2",
-    "@graphcommerce/eslint-config-pwa": "^3.1.8",
-    "@graphcommerce/prettier-config-pwa": "^3.0.4",
+    "@graphcommerce/browserslist-config-pwa": "^3.0.3",
+    "@graphcommerce/eslint-config-pwa": "^3.1.9",
+    "@graphcommerce/prettier-config-pwa": "^3.0.5",
     "@playwright/test": "^1.17.1",
     "concurrently": "^6.5.0",
     "lerna": "^4.0.0",
