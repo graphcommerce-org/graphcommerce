@@ -27,7 +27,6 @@ export default function UpdateItemQuantity(props: UpdateItemQuantityProps) {
         variant='outlined'
         inputProps={{ min: 1 }}
         error={!!formState.errors.quantity}
-        required={required.quantity}
         {...muiRegister('quantity', { required: required.quantity })}
         helperText={formState.errors.quantity?.message}
       />
