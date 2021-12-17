@@ -25,6 +25,7 @@
     "@graphcommerce/browserslist-config-pwa": "^3.0.2",
     "@graphcommerce/eslint-config-pwa": "^3.1.8",
     "@graphcommerce/framer-next-pages": "^2.108.3",
+    "@graphcommerce/googleanalytics": "^1.0.0",
     "@graphcommerce/googlerecaptcha": "^1.1.6",
     "@graphcommerce/googletagmanager": "^1.0.6",
     "@graphcommerce/graphcms-ui": "^2.106.11",
