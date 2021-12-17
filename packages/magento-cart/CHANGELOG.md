@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.8.13](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.8.12...@graphcommerce/magento-cart@3.8.13) (2021-12-17)
+
+
+### Bug Fixes
+
+* darkMode fixes ([7d33d45](https://github.com/ho-nl/m2-pwa/commit/7d33d452ec801632565839b2fdfef0bc4959c14a))
+* lighten ([8aa1d8e](https://github.com/ho-nl/m2-pwa/commit/8aa1d8e61ae122f63f2f8d164566bde9282e3354))
+
+
+
+
+
 ## [3.8.12](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.8.11...@graphcommerce/magento-cart@3.8.12) (2021-12-17)
 
 

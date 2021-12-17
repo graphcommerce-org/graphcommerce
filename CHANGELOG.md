@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.159.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.159.0...@graphcommerce/graphcommerce@2.159.1) (2021-12-17)
+
+
+### Bug Fixes
+
+* darkMode fixes ([7d33d45](https://github.com/ho-nl/m2-pwa/commit/7d33d452ec801632565839b2fdfef0bc4959c14a))
+* lighten ([8aa1d8e](https://github.com/ho-nl/m2-pwa/commit/8aa1d8e61ae122f63f2f8d164566bde9282e3354))
+* remove prop required in cart ([f22ba07](https://github.com/ho-nl/m2-pwa/commit/f22ba07960afa44422df1df3b80da687bbc8c5e8))
+
+
+
+
+
 # [2.159.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.158.1...@graphcommerce/graphcommerce@2.159.0) (2021-12-17)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.110.18](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-items@2.110.17...@graphcommerce/magento-cart-items@2.110.18) (2021-12-17)
+
+
+### Bug Fixes
+
+* remove prop required in cart ([f22ba07](https://github.com/ho-nl/m2-pwa/commit/f22ba07960afa44422df1df3b80da687bbc8c5e8))
+
+
+
+
+
 # [2.110.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-items@2.109.1...@graphcommerce/magento-cart-items@2.110.0) (2021-11-12)
 
 

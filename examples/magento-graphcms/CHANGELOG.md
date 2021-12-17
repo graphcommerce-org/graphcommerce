@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.141.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.141.0...@graphcommerce/magento-graphcms@2.141.1) (2021-12-17)
+
+
+### Bug Fixes
+
+* darkMode fixes ([7d33d45](https://github.com/ho-nl/m2-pwa/commit/7d33d452ec801632565839b2fdfef0bc4959c14a))
+
+
+
+
+
 # [2.141.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.140.1...@graphcommerce/magento-graphcms@2.141.0) (2021-12-17)
 
 

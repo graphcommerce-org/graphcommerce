@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.21.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.0...@graphcommerce/next-ui@3.21.1) (2021-12-17)
+
+
+### Bug Fixes
+
+* darkMode fixes ([7d33d45](https://github.com/ho-nl/m2-pwa/commit/7d33d452ec801632565839b2fdfef0bc4959c14a))
+
+
+
+
+
 # [3.21.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.20.9...@graphcommerce/next-ui@3.21.0) (2021-12-17)
 
 
