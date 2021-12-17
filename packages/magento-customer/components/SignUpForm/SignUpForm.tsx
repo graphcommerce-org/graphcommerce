@@ -1,7 +1,7 @@
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation, useFormPersist } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { t, Trans } from '@lingui/macro'
 import { FormControlLabel, Switch, TextField } from '@material-ui/core'
 import React from 'react'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
@@ -40,7 +40,7 @@ export default function SignUpForm(props: SignUpFormProps) {
           required={required.password}
           {...muiRegister('password', {
             required: required.password,
-            minLength: { value: 8, message: 'Password must have at least 8 characters' },
+            minLength: { value: 8, message: t`Password must have at least 8 characters` },
           })}
           helperText={formState.errors.password?.message || inputError?.message}
           disabled={formState.isSubmitting}
@@ -49,12 +49,12 @@ export default function SignUpForm(props: SignUpFormProps) {
           variant='outlined'
           type='password'
           error={!!formState.errors.confirmPassword}
-          label='Confirm Password'
+          label={<Trans>Confirm Password</Trans>}
           autoComplete='new-password'
           required
           {...muiRegister('confirmPassword', {
             required: true,
-            validate: (value) => value === watchPassword || "Passwords don't match",
+            validate: (value) => value === watchPassword || t`Passwords don't match`,
           })}
           helperText={formState.errors.confirmPassword?.message}
           disabled={formState.isSubmitting}
@@ -67,7 +67,7 @@ export default function SignUpForm(props: SignUpFormProps) {
         control={<Switch color='primary' />}
         {...muiRegister('isSubscribed', { required: required.isSubscribed })}
         disabled={formState.isSubmitting}
-        label='Subscribe to newsletter'
+        label={<Trans>Subscribe to newsletter</Trans>}
       />
 
       <ApolloCustomerErrorAlert error={remainingError} />
@@ -75,12 +75,13 @@ export default function SignUpForm(props: SignUpFormProps) {
       <FormActions>
         <Button
           type='submit'
+          data-test-id='create-account'
           variant='contained'
           color='primary'
           size='large'
           loading={formState.isSubmitting}
         >
-          Create Account
+          <Trans>Create Account</Trans>
         </Button>
       </FormActions>
     </form>

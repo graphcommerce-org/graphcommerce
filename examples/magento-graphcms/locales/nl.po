@@ -43,6 +43,9 @@ msgstr "Vanaf"
 msgid "Authentication"
 msgstr "Authenticatie"
 
+msgid "Back"
+msgstr "Terug"
+
 msgid "Back to home"
 msgstr "Terug naar home"
 
@@ -127,6 +130,9 @@ msgstr "E-mail"
 msgid "Fill in your new password, confirm it and click on the save button."
 msgstr "Vul nieuwe wachtwoord in, bevestig en klik op de opslaan knop."
 
+msgid "Forgot password?"
+msgstr "Wachtwoord vergeten?"
+
 msgid "Forgot your password?"
 msgstr "Wachtwoord vergeten?"
 
@@ -142,8 +148,14 @@ msgstr "Ongeldig e-mailadres"
 msgid "Invalid phone number"
 msgstr "Ongeldig telefoonnummer"
 
+msgid "Log In"
+msgstr "Inloggen"
+
 msgid "Login"
 msgstr "Inloggen"
+
+msgid "Login or create an account"
+msgstr "Log in of maak een account aan"
 
 msgid "Name"
 msgstr "Naam"
@@ -192,6 +204,9 @@ msgstr "Bestellingen"
 
 msgid "Password"
 msgstr "Wachtwoord"
+
+msgid "Password must have at least 8 characters"
+msgstr "Wachtwoord moet minimaal 8 tekens bevatten"
 
 msgid "Passwords don't match"
 msgstr "Wachtwoorden komen niet overeen"
@@ -264,6 +279,9 @@ msgstr "Afrekenen"
 
 msgid "Store home"
 msgstr "Winkel home"
+
+msgid "Subscribe to newsletter"
+msgstr "Abonneer op de nieuwsbrief"
 
 msgid "Successfully changed password"
 msgstr "Wachtwoord aangepast"
@@ -354,6 +372,3 @@ msgstr "terug gestuurd"
 
 msgid "shipped"
 msgstr "verzonden"
-
-msgid "Login or create an account"
-msgstr "Log in of maak een account aan"

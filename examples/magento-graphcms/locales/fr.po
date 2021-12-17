@@ -43,6 +43,9 @@ msgstr ""
 msgid "Authentication"
 msgstr ""
 
+msgid "Back"
+msgstr ""
+
 msgid "Back to home"
 msgstr ""
 
@@ -127,6 +130,9 @@ msgstr ""
 msgid "Fill in your new password, confirm it and click on the save button."
 msgstr ""
 
+msgid "Forgot password?"
+msgstr ""
+
 msgid "Forgot your password?"
 msgstr ""
 
@@ -142,7 +148,13 @@ msgstr ""
 msgid "Invalid phone number"
 msgstr ""
 
+msgid "Log In"
+msgstr ""
+
 msgid "Login"
+msgstr ""
+
+msgid "Login or create an account"
 msgstr ""
 
 msgid "Name"
@@ -191,6 +203,9 @@ msgid "Orders"
 msgstr ""
 
 msgid "Password"
+msgstr ""
+
+msgid "Password must have at least 8 characters"
 msgstr ""
 
 msgid "Passwords don't match"
@@ -263,6 +278,9 @@ msgid "Start Checkout"
 msgstr ""
 
 msgid "Store home"
+msgstr ""
+
+msgid "Subscribe to newsletter"
 msgstr ""
 
 msgid "Successfully changed password"

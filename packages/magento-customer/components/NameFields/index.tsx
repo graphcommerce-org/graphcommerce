@@ -14,10 +14,11 @@ type NameFieldProps = {
   form: UseFormReturn<any>
   readOnly?: boolean
   prefix?: boolean
+  prefixes: string[]
 }
 
 export default function NameFields(props: NameFieldProps) {
-  const { prefix, form, readOnly } = props
+  const { prefix, form, readOnly, prefixes = [t`Mr`, t`Mrs`, t`Other`] } = props
   assertFormGqlOperation<NameFieldValues>(form)
 
   const { control, formState, muiRegister, required, valid } = form
@@ -27,7 +28,7 @@ export default function NameFields(props: NameFieldProps) {
       {prefix && (
         <FormRow>
           <Controller
-            defaultValue='Dhr.'
+            defaultValue={prefixes[0]}
             control={control}
             name='prefix'
             render={({ field: { ref, onChange, ...field }, fieldState }) => (
@@ -46,7 +47,7 @@ export default function NameFields(props: NameFieldProps) {
                 }}
                 {...field}
               >
-                {[t`Mr`, t`Mrs`, t`Other`].map((option) => (
+                {prefixes.map((option) => (
                   <MenuItem key={option} value={option}>
                     {option}
                   </MenuItem>
