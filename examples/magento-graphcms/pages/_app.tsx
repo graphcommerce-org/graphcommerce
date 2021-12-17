@@ -22,7 +22,7 @@ export default function ThemedApp(props: AppProps) {
       <GlobalHead name={name} />
       <ApolloProvider client={client}>
         <LinguiProvider loader={(l) => import(`../locales/${l}.po`)}>
-          <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+          <ThemeProvider theme={darkMode.current ? darkTheme : lightTheme}>
             <CssBaseline />
             <App {...props} />
           </ThemeProvider>
