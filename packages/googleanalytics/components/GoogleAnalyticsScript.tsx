@@ -11,7 +11,7 @@ export default function GoogleAnalyticsScript() {
   const router = useRouter()
 
   useEffect(() => {
-    const onRouteChangeComplete = (url: string) => ga('send', '', url)
+    const onRouteChangeComplete = (url: string) => globalThis.ga?.('send', '', url)
     router.events.on('routeChangeComplete', onRouteChangeComplete)
     return () => router.events.off('routeChangeComplete', onRouteChangeComplete)
   }, [router.events])
