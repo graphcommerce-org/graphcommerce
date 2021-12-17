@@ -11,7 +11,7 @@ import { useClearCurrentCartId } from '../../hooks/useClearCurrentCartId'
 
 export type ApolloCartErrorFullPageProps = Omit<ApolloErrorFullPageProps, 'icon'>
 
-export default function ApolloCartErrorFullPage(props: ApolloCartErrorFullPageProps) {
+export function ApolloCartErrorFullPage(props: ApolloCartErrorFullPageProps) {
   const { error, ...passedProps } = props
   const clear = useClearCurrentCartId()
 

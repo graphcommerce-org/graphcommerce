@@ -291,6 +291,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
     // The scroller context shouldn't be changing, but at the moment it is.
   }, [positions, scrollerRef])
 
+  // When the overlay is closed by navigating away, we're closing the overlay.
   useEffect(() => {
     if (isPresent) return
 

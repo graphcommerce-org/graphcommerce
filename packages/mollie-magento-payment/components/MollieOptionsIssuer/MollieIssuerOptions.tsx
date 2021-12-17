@@ -2,6 +2,7 @@ import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { useFormCompose, useFormPersist, useFormValidFields } from '@graphcommerce/react-hook-form'
+import { Trans } from '@lingui/macro'
 import { makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 import { SetMolliePaymentMethodIssuerOnCartDocument } from './SetMolliePaymentMethodIssuerOnCart.gql'
@@ -79,10 +80,16 @@ export default function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
           </TextField>
         </FormRow>
         <ul className={classes.root}>
-          <li>Choose your bank, fill in your details and click "Continue".</li>
-          <li>Complete the payment on your bank's website.</li>
           <li>
-            As soon as the payment is completed, you will automatically return to the webshop.
+            <Trans>Choose your bank, and place your order.</Trans>
+          </li>
+          <li>
+            <Trans>Complete the payment on your bank's website.</Trans>
+          </li>
+          <li>
+            <Trans>
+              As soon as the payment is completed, you will automatically return to the webshop.
+            </Trans>
           </li>
         </ul>
       </form>

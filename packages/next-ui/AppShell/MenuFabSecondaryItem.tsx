@@ -17,7 +17,7 @@ export type FabMenuSecondaryItemProps = {
   icon: React.ReactNode
 }
 
-export default function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
+export function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
   const { href, children, icon } = props
   const classes = useStyles()
 

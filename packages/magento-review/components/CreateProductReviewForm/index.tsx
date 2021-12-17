@@ -103,7 +103,7 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
           <Trans>Thank you! Your review was successfully submitted for approval</Trans>
         </Alert>
         <Box mt={6}>
-          <Button variant='contained' color='primary' size='large' onClick={() => router.back()}>
+          <Button variant='pill' color='secondary' size='large' onClick={() => router.back()}>
             <Trans>Continue shopping</Trans>
           </Button>
         </Box>

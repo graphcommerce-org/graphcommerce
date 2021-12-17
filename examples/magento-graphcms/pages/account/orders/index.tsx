@@ -82,6 +82,7 @@ function AccountOrdersPage() {
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
+  sharedKey: () => 'account/orders',
   Layout: LayoutOverlay,
 }
 AccountOrdersPage.pageOptions = pageOptions

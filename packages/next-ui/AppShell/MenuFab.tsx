@@ -17,7 +17,7 @@ import { responsiveVal } from '../Styles/responsiveVal'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconMenu, iconClose } from '../icons'
 import { MenuProps } from './Menu'
-import useFabAnimation from './useFabAnimation'
+import { useFabAnimation } from './useFabAnimation'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

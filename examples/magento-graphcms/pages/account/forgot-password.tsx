@@ -3,7 +3,7 @@ import { ForgotPasswordForm } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Box, Container, NoSsr } from '@material-ui/core'
+import { Container, NoSsr, Typography } from '@material-ui/core'
 import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components/Layout/LayoutOverlay'
 import apolloClient from '../../lib/apolloClient'
@@ -25,18 +25,16 @@ function AccountForgotPasswordPage() {
           metaRobots={['noindex']}
         />
         <NoSsr>
-          <Box pt={4} textAlign='center'>
-            <LayoutTitle>
-              <Trans>Forgot your password?</Trans>
-            </LayoutTitle>
-            <p>
-              <Trans>
-                No worries! Enter your email address and we will send an email with instructions to
-                reset your password.
-              </Trans>
-            </p>
-            <ForgotPasswordForm />
-          </Box>
+          <LayoutTitle size='medium'>
+            <Trans>Forgot your password?</Trans>
+          </LayoutTitle>
+          <Typography variant='subtitle1'>
+            <Trans>
+              No worries! Enter your email address and we will send an email with instructions to
+              reset your password.
+            </Trans>
+          </Typography>
+          <ForgotPasswordForm />
         </NoSsr>
       </Container>
     </>

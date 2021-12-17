@@ -1,10 +1,7 @@
 {
-  "name": "@graphcommerce/framer-next-pages",
-  "version": "2.108.3",
+  "name": "@graphcommerce/googleanalytics",
+  "version": "1.0.0",
   "sideEffects": false,
-  "scripts": {
-    "dev": "tsc -W"
-  },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
     "extends @graphcommerce/browserslist-config-pwa"
@@ -15,18 +12,14 @@
       "project": "./tsconfig.json"
     }
   },
-  "dependencies": {
-    "@graphcommerce/framer-utils": "^2.103.19"
-  },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.2",
     "@graphcommerce/eslint-config-pwa": "^3.1.8",
     "@graphcommerce/prettier-config-pwa": "^3.0.4",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
-    "@playwright/test": "^1.17.1"
+    "@types/google.analytics": "^0.0.42"
   },
-  "peerDependencies": {
-    "framer-motion": "^5.5.1",
+  "dependencies": {
     "next": "^12.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

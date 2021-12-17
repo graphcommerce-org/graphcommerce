@@ -2,7 +2,7 @@ import { useMediaQuery, useTheme } from '@material-ui/core'
 import { useMotionTemplate, useTransform } from 'framer-motion'
 import { useScrollY } from '../Layout/hooks/useScrollY'
 
-export default function useFabAnimation() {
+export function useFabAnimation() {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const scrollY = useScrollY()

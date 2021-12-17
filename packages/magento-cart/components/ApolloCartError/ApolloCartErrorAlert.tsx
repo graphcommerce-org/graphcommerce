@@ -9,7 +9,7 @@ import { useClearCurrentCartId } from '../../hooks/useClearCurrentCartId'
 
 export type ApolloCartErrorAlertProps = ApolloErrorAlertProps
 
-export default function ApolloCartErrorAlert(props: ApolloCartErrorAlertProps) {
+export function ApolloCartErrorAlert(props: ApolloCartErrorAlertProps) {
   const { error } = props
   const clear = useClearCurrentCartId()
   const token = useQuery(CustomerTokenDocument).data?.customerToken

@@ -1,4 +1,4 @@
-import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
+import { ApolloCartErrorSnackbar, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { iconClose, SvgImageSimple } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { Fab } from '@material-ui/core'
@@ -27,7 +27,7 @@ export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
       >
         <SvgImageSimple src={iconClose} inverted />
       </Fab>
-      <ApolloCartErrorAlert error={error} />
+      <ApolloCartErrorSnackbar error={error} />
     </form>
   )
 }

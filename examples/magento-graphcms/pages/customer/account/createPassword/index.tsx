@@ -63,12 +63,7 @@ function CustomerAccountCreatePasswordPage() {
                   </Trans>
                 </p>
 
-                <Button
-                  onClick={() => router.back()}
-                  color='primary'
-                  variant='contained'
-                  size='large'
-                >
+                <Button onClick={() => router.back()} variant='pill' color='secondary' size='large'>
                   <Trans>Continue shopping</Trans>
                 </Button>
               </Box>

@@ -22,6 +22,7 @@ export interface Element {
     | 'list-item-child'
     | 'table'
     | 'table_head'
+    | 'table_header_cell'
     | 'table_body'
     | 'table_row'
     | 'table_cell'
@@ -283,6 +284,12 @@ function RenderElement({ classes, ...element }: ElementNode & Required<UseRichTe
           <RenderChildren {...element} classes={classes} />
         </thead>
       )
+    case 'table_header_cell':
+      return (
+        <th>
+          <RenderChildren {...element} classes={classes} />
+        </th>
+      )
     case 'table_body':
       return (
         <tbody>
@@ -302,8 +309,11 @@ function RenderElement({ classes, ...element }: ElementNode & Required<UseRichTe
         </td>
       )
     default:
-      console.error(element)
-      throw Error(`RichText: Unknown Element: ${element.type}`)
+      if (process.env.NODE_ENV !== 'production') {
+        console.error(element)
+        throw Error(`RichText: Unknown Element: ${element.type}`)
+      }
+      return <RenderChildren {...element} classes={classes} />
   }
 }
 

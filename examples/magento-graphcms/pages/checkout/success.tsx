@@ -57,7 +57,7 @@ function OrderSuccessPage() {
               icon={<SvgImageSimple src={iconSadFace} size='xxl' />}
               button={
                 <Link href='/' passHref>
-                  <Button variant='contained' color='primary' size='large'>
+                  <Button variant='pill' color='secondary' size='large'>
                     <Trans>Continue shopping</Trans>
                   </Button>
                 </Link>

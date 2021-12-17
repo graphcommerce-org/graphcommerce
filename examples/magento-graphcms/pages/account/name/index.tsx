@@ -50,7 +50,9 @@ function AccountNamePage() {
             metaRobots={['noindex']}
           />
 
-          <LayoutTitle icon={iconId}>Name</LayoutTitle>
+          <LayoutTitle icon={iconId}>
+            <Trans>Name</Trans>
+          </LayoutTitle>
 
           <SectionContainer labelLeft={t`Name`}>
             {customer && (

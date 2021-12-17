@@ -51,10 +51,12 @@ const useStyles = makeStyles(
       gap: theme.spacings.xs,
       gridTemplate: `
         "children close"
-        "action action"
+        "action   action"
       `,
+      gridTemplateColumns: '1fr auto',
       [theme.breakpoints.up('md')]: {
         gridTemplate: `"children action close"`,
+        gridTemplateColumns: 'auto auto auto',
       },
     },
     children: {

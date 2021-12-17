@@ -21,7 +21,7 @@ function IndexPage(props: PageProps) {
   return (
     <>
       <LayoutHeader>
-        <LayoutTitle>Documentation</LayoutTitle>
+        <LayoutTitle size='small'>Documentation</LayoutTitle>
       </LayoutHeader>
       <PageLayout menuData={menuData}>
         <p>

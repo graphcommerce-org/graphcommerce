@@ -89,10 +89,6 @@ export default function AccountAddresses(props: AccountAddressesProps) {
               <Trans>Add new address</Trans>
             </Button>
           </Link>
-
-          <MessageSnackbar sticky open={router.query.confirm_delete !== undefined}>
-            <Trans>Successfully deleted address</Trans>
-          </MessageSnackbar>
         </SectionContainer>
       )}
     </>

@@ -26,7 +26,13 @@ function CustomerFabContent(props: CustomerFabContentProps) {
 
   return (
     <PageLink href={requireAuth ? guestHref : authHref} passHref>
-      <Fab color='inherit' aria-label={t`Account`} size='large' {...FabProps}>
+      <Fab
+        color='inherit'
+        data-test-id='customer-fab'
+        aria-label={t`Account`}
+        size='large'
+        {...FabProps}
+      >
         <StyledBadge
           badgeContent={customerToken?.token ? 1 : 0}
           color={customerToken?.valid ? 'primary' : 'error'}
