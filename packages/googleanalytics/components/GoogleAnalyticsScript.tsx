@@ -11,7 +11,7 @@ export default function GoogleAnalyticsScript() {
   const router = useRouter()
 
   useEffect(() => {
-    const onRouteChangeComplete = (url: string) => globalThis.ga?.('send', '', url)
+    const onRouteChangeComplete = (url: string) => globalThis.ga?.('send', 'pageview', url)
     router.events.on('routeChangeComplete', onRouteChangeComplete)
     return () => router.events.off('routeChangeComplete', onRouteChangeComplete)
   }, [router.events])
@@ -22,6 +22,7 @@ export default function GoogleAnalyticsScript() {
       <Script id='gtag-init' strategy='afterInteractive'>{`
         window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
         ga('create', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', 'auto');
+        ga('send', 'pageview');
       `}</Script>
     </>
   )
