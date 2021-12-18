@@ -30,15 +30,10 @@ const useStyles = makeStyles(
       ...theme.typography.subtitle1,
     },
     costsGrandTotal: {
-      fontWeight: theme.typography.fontWeightBold,
       color: theme.palette.primary.main,
     },
-    costsDiscount: {
-      fontWeight: theme.typography.fontWeightBold,
-    },
-    costsDiscountSub: {
-      fontWeight: theme.typography.fontWeightBold,
-    },
+    costsDiscount: {},
+    costsDiscountSub: {},
     costsTax: {
       color: theme.palette.text.disabled,
       paddingTop: 0,
