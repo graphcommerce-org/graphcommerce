@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-cart",
-  "version": "3.8.15",
+  "version": "3.8.16",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [

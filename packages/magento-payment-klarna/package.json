@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-payment-klarna",
-  "version": "2.105.20",
+  "version": "2.105.21",
   "private": true,
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -24,7 +24,7 @@
     "@apollo/client": "^3.5.6",
     "@graphcommerce/graphql": "^2.105.11",
     "@graphcommerce/image": "^2.105.10",
-    "@graphcommerce/magento-cart": "^3.8.15",
+    "@graphcommerce/magento-cart": "^3.8.16",
     "@graphcommerce/magento-store": "^3.3.20",
     "@graphcommerce/next-ui": "^3.21.3",
     "@lingui/macro": "^3.13.0",
