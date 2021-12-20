@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { BlogListItem } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Typography } from '@material-ui/core'
+import { Typography, useTheme } from '@material-ui/core'
 import React from 'react'
 import Asset from '../Asset'
 import { BlogItemFragment } from './BlogItem.gql'
@@ -15,11 +15,16 @@ export default function BlogItem(props: BlogItemProps) {
   const { data: config } = useQuery(StoreConfigDocument)
   const locale = config?.storeConfig?.locale?.replace('_', '-')
 
+  const theme = useTheme()
+
   return (
     <BlogListItem
       asset={
         asset ? (
-          <Asset asset={asset} sizes={{ 0: '48vw', 711: '30vw', 1350: '22vw' }} />
+          <Asset
+            asset={asset}
+            sizes={{ 0: '48vw', 711: '30vw', [theme.breakpoints.values.lg]: '330px' }}
+          />
         ) : (
           <Typography variant='body2'>
             <Trans>No Image</Trans>

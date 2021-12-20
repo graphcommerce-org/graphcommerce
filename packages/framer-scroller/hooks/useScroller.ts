@@ -11,7 +11,7 @@ import {
   useTransform,
 } from 'framer-motion'
 import React, { ReactHTML, useState } from 'react'
-import { ScrollSnapProps, ScrollSnapType } from '../types'
+import { ScrollSnapProps } from '../types'
 import { isHTMLMousePointerEvent } from '../utils/isHTMLMousePointerEvent'
 import { scrollSnapTypeDirection } from '../utils/scrollSnapTypeDirection'
 import { useScrollerContext } from './useScrollerContext'
@@ -20,6 +20,7 @@ import { useVelocitySnapTo } from './useVelocitySnapTo'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
+      willChange: 'scroll-position',
       '& *': {
         userSelect: 'none',
         userDrag: 'none',

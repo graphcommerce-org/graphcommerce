@@ -215,6 +215,7 @@ const useStyles = makeStyles(
       left: 0,
       backgroundColor: 'rgba(0, 0, 0, 0.5)',
       WebkitTapHighlightColor: 'transparent',
+      willChange: 'opacity',
     },
   }),
   { name: 'Overlay' },
