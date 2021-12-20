@@ -99,6 +99,9 @@ function AccountReviewsAddPage() {
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'left',
   Layout: LayoutOverlay,
+  layoutProps: {
+    variantMd: 'right',
+  },
 }
 AccountReviewsAddPage.pageOptions = pageOptions
 
@@ -111,8 +114,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
-      variantMd: 'bottom',
-      size: 'max',
     },
   }
 }
