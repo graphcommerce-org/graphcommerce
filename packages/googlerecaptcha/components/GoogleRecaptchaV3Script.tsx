@@ -24,13 +24,12 @@ export default function GoogleRecaptchaV3Script() {
       '[@graphcommerce/googletagmanager]: NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY not found',
     )
 
+  if (!siteKey) return null
+
   return (
     <Script
-      id={`google-recaptcha-v3-${siteKey}`}
       strategy='lazyOnload'
       src={`https://www.google.com/recaptcha/api.js?render=${siteKey}`}
-      async
-      defer
     />
   )
 }

@@ -1,6 +1,8 @@
 import React from 'react'
 
 export default function GoogleTagManagerNoScript() {
+  if (!process.env.NEXT_PUBLIC_GTM_ID) return null
+
   return (
     <noscript>
       {/* eslint-disable-next-line jsx-a11y/iframe-has-title */}

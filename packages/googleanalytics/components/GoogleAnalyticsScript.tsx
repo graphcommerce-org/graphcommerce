@@ -16,12 +16,14 @@ export default function GoogleAnalyticsScript() {
     return () => router.events.off('routeChangeComplete', onRouteChangeComplete)
   }, [router.events])
 
+  if (!id) return null
+
   return (
     <>
       <Script strategy='afterInteractive' src='https://www.google-analytics.com/analytics.js' />
       <Script id='google-analytics-init' strategy='afterInteractive'>{`
         window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-        ga('create', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', 'auto');
+        ga('create', '${id}', 'auto');
       `}</Script>
     </>
   )
