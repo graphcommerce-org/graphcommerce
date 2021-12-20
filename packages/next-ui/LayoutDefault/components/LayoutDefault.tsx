@@ -1,4 +1,4 @@
-import { usePageRouter, useScrollOffset } from '@graphcommerce/framer-next-pages'
+import { useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { useTransform, useViewportScroll } from 'framer-motion'

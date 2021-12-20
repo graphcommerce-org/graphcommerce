@@ -2,14 +2,7 @@ import { usePageContext, usePageRouter, useScrollOffset } from '@graphcommerce/f
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
 import { useElementScroll, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 import { makeStyles, Theme, ClickAwayListener } from '@material-ui/core'
-import {
-  m,
-  MotionValue,
-  useDomEvent,
-  useMotionValue,
-  usePresence,
-  useTransform,
-} from 'framer-motion'
+import { m, useDomEvent, useMotionValue, usePresence, useTransform } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
 import LayoutProvider from '../../Layout/components/LayoutProvider'
 import { UseStyles } from '../../Styles'
@@ -335,7 +328,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
   // Create the exact position for the LayoutProvider which offsets the top of the overlay
   const offsetPageY = useScrollOffset().y
   const scrollWithoffset = useTransform(
-    [scroll.y, positions.open.y, offsetY] as MotionValue<number | string>[],
+    [scroll.y, positions.open.y, offsetY],
     ([y, openY, offsetYv]: number[]) => Math.max(0, y - openY - offsetYv + offsetPageY),
   )
 

@@ -80,12 +80,12 @@ export default function SidebarSlider(props: SidebarSliderProps) {
               {children}
             </Scroller>
             <div className={classes.centerLeft}>
-              <ScrollerButton layout direction='left' className={classes.sliderButtons}>
+              <ScrollerButton direction='left' className={classes.sliderButtons}>
                 <SvgImageSimple src={iconChevronLeft} />
               </ScrollerButton>
             </div>
             <div className={classes.centerRight}>
-              <ScrollerButton layout direction='right' className={classes.sliderButtons}>
+              <ScrollerButton direction='right' className={classes.sliderButtons}>
                 <SvgImageSimple src={iconChevronRight} />
               </ScrollerButton>
             </div>
