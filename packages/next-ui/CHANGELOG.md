@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.21.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.4...@graphcommerce/next-ui@3.21.5) (2021-12-20)
+
+
+### Bug Fixes
+
+* animations would run on background page, make sure animations are not running when page is not active ([2fcf4b8](https://github.com/ho-nl/m2-pwa/commit/2fcf4b8a853108147477e3a67c7ea202abb2842f))
+
+
+
+
+
 ## [3.21.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.3...@graphcommerce/next-ui@3.21.4) (2021-12-20)
 
 

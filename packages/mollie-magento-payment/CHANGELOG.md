@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.106.24](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/mollie-magento-payment@2.106.23...@graphcommerce/mollie-magento-payment@2.106.24) (2021-12-20)
+
+
+### Bug Fixes
+
+* animations would run on background page, make sure animations are not running when page is not active ([2fcf4b8](https://github.com/ho-nl/m2-pwa/commit/2fcf4b8a853108147477e3a67c7ea202abb2842f))
+
+
+
+
+
 # [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/mollie-magento-payment@2.105.32...@graphcommerce/mollie-magento-payment@2.106.0) (2021-11-12)
 
 

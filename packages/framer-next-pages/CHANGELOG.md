@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.108.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.108.6...@graphcommerce/framer-next-pages@2.108.7) (2021-12-20)
+
+
+### Bug Fixes
+
+* animations would run on background page, make sure animations are not running when page is not active ([2fcf4b8](https://github.com/ho-nl/m2-pwa/commit/2fcf4b8a853108147477e3a67c7ea202abb2842f))
+
+
+
+
+
 ## [2.108.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.108.2...@graphcommerce/framer-next-pages@2.108.3) (2021-12-15)
 
 

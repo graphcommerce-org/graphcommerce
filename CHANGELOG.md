@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.159.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.159.9...@graphcommerce/graphcommerce@2.159.10) (2021-12-20)
+
+
+### Bug Fixes
+
+* animations would run on background page, make sure animations are not running when page is not active ([2fcf4b8](https://github.com/ho-nl/m2-pwa/commit/2fcf4b8a853108147477e3a67c7ea202abb2842f))
+* positioning of product review overlay should be left ([0c43bb1](https://github.com/ho-nl/m2-pwa/commit/0c43bb1b585bb05f2d717420735c9cccb433dc5b))
+
+
+
+
+
 ## [2.159.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.159.8...@graphcommerce/graphcommerce@2.159.9) (2021-12-20)
 
 

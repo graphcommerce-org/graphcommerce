@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.141.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.141.9...@graphcommerce/magento-graphcms@2.141.10) (2021-12-20)
+
+
+### Bug Fixes
+
+* positioning of product review overlay should be left ([0c43bb1](https://github.com/ho-nl/m2-pwa/commit/0c43bb1b585bb05f2d717420735c9cccb433dc5b))
+
+
+
+
+
 ## [2.141.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.141.8...@graphcommerce/magento-graphcms@2.141.9) (2021-12-20)
 
 
