@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.21.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.3...@graphcommerce/next-ui@3.21.4) (2021-12-20)
+
+
+### Bug Fixes
+
+* **framer-scroller:** remove jank from scroller when opening ([c618bf2](https://github.com/ho-nl/m2-pwa/commit/c618bf290bd580fe5eb45663c44843dd751e00ed))
+
+
+
+
+
 ## [3.21.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.0...@graphcommerce/next-ui@3.21.1) (2021-12-17)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.159.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.159.8...@graphcommerce/graphcommerce@2.159.9) (2021-12-20)
+
+
+### Bug Fixes
+
+* blog images were to large ([c832b2b](https://github.com/ho-nl/m2-pwa/commit/c832b2b921f41fbb9a4767fa786200a57e1fcb59))
+* **framer-scroller:** remove jank from scroller when opening ([c618bf2](https://github.com/ho-nl/m2-pwa/commit/c618bf290bd580fe5eb45663c44843dd751e00ed))
+
+
+
+
+
 ## [2.159.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.159.7...@graphcommerce/graphcommerce@2.159.8) (2021-12-20)
 
 

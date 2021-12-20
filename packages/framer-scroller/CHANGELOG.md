@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.14](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.13...@graphcommerce/framer-scroller@1.1.14) (2021-12-20)
+
+
+### Bug Fixes
+
+* **framer-scroller:** remove jank from scroller when opening ([c618bf2](https://github.com/ho-nl/m2-pwa/commit/c618bf290bd580fe5eb45663c44843dd751e00ed))
+
+
+
+
+
 ## [1.1.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.9...@graphcommerce/framer-scroller@1.1.10) (2021-12-17)
 
 
