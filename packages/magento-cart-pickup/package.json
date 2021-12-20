@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-cart-pickup",
-  "version": "2.105.21",
+  "version": "2.105.22",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -23,7 +23,7 @@
     "@apollo/client": "^3.5.6",
     "@graphcommerce/graphql": "^2.105.11",
     "@graphcommerce/image": "^2.105.10",
-    "@graphcommerce/magento-cart-shipping-method": "^2.106.21",
+    "@graphcommerce/magento-cart-shipping-method": "^2.106.22",
     "@graphcommerce/magento-store": "^3.3.20",
     "@graphcommerce/next-ui": "^3.21.3",
     "@graphcommerce/react-hook-form": "^2.104.6",

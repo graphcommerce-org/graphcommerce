@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.159.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.159.6...@graphcommerce/graphcommerce@2.159.7) (2021-12-20)
+
+
+### Reverts
+
+* Revert "fix: build" ([71df800](https://github.com/ho-nl/m2-pwa/commit/71df8009744e606b0753cb4c5e7fe3c3c11d3416))
+
+
+
+
+
 ## [2.159.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.159.5...@graphcommerce/graphcommerce@2.159.6) (2021-12-18)
 
 
