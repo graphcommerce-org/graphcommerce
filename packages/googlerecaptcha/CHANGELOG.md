@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/googlerecaptcha@1.1.7...@graphcommerce/googlerecaptcha@1.1.8) (2021-12-20)
+
+
+### Bug Fixes
+
+* make sure we're not loading gogole properties when keys are not given ([8636715](https://github.com/ho-nl/m2-pwa/commit/8636715d61985e0919208ffb64354c3ebb43ed01))
+
+
+
+
+
 ## [1.1.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/googlerecaptcha@1.1.1...@graphcommerce/googlerecaptcha@1.1.2) (2021-11-12)
 
 

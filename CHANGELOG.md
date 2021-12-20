@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.159.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.159.7...@graphcommerce/graphcommerce@2.159.8) (2021-12-20)
+
+
+### Bug Fixes
+
+* make sure analytics only tracks once on page load ([94def43](https://github.com/ho-nl/m2-pwa/commit/94def43db7075b6b039696612547c6b6ff7c7c6e))
+* make sure we're not loading gogole properties when keys are not given ([8636715](https://github.com/ho-nl/m2-pwa/commit/8636715d61985e0919208ffb64354c3ebb43ed01))
+
+
+
+
+
 ## [2.159.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.159.6...@graphcommerce/graphcommerce@2.159.7) (2021-12-20)
 
 

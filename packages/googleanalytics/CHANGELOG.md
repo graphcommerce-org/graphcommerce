@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/googleanalytics@1.1.3...@graphcommerce/googleanalytics@1.1.4) (2021-12-20)
+
+
+### Bug Fixes
+
+* make sure analytics only tracks once on page load ([94def43](https://github.com/ho-nl/m2-pwa/commit/94def43db7075b6b039696612547c6b6ff7c7c6e))
+* make sure we're not loading gogole properties when keys are not given ([8636715](https://github.com/ho-nl/m2-pwa/commit/8636715d61985e0919208ffb64354c3ebb43ed01))
+
+
+
+
+
 ## [1.1.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/googleanalytics@1.1.1...@graphcommerce/googleanalytics@1.1.2) (2021-12-17)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/googletagmanager@1.0.7...@graphcommerce/googletagmanager@1.0.8) (2021-12-20)
+
+
+### Bug Fixes
+
+* make sure we're not loading gogole properties when keys are not given ([8636715](https://github.com/ho-nl/m2-pwa/commit/8636715d61985e0919208ffb64354c3ebb43ed01))
+
+
+
+
+
 ## [1.0.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/googletagmanager@0.3.2...@graphcommerce/googletagmanager@1.0.1) (2021-11-03)
 
 
