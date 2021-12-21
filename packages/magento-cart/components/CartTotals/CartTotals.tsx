@@ -128,7 +128,7 @@ export default function CartTotals(props: CartTotalsProps) {
             >
               <div>{discount?.label}</div>
               <div className={classes.money}>
-                {discount?.amount && <Money {...discount} value={value} />}
+                {discount?.amount && <Money {...discount.amount} value={value} />}
               </div>
             </AnimatedRow>
           )

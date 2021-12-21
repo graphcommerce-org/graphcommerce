@@ -1,6 +1,5 @@
-import { useClientSize } from '@graphcommerce/framer-utils'
 import { makeStyles } from '@material-ui/core'
-import { m, MotionConfig, useIsPresent } from 'framer-motion'
+import { m, useIsPresent } from 'framer-motion'
 import React from 'react'
 import type { PageItem } from '../types'
 
@@ -32,7 +31,6 @@ const useStyles = makeStyles(
 export default function Page(props: PageProps) {
   const { active, historyIdx, children } = props
   const isPresent = useIsPresent()
-  const { y } = useClientSize({ y: '100vh' })
   const classes = useStyles()
 
   /** The active Page doesn't get any special treatment */
@@ -52,10 +50,8 @@ export default function Page(props: PageProps) {
   const zIndex = active ? 1 : undefined
 
   return (
-    <MotionConfig transition={{ duration: 0 }}>
-      <m.div className={classes.page} style={{ position, top, pointerEvents, zIndex }}>
-        {children}
-      </m.div>
-    </MotionConfig>
+    <m.div className={classes.page} style={{ position, top, pointerEvents, zIndex }}>
+      {children}
+    </m.div>
   )
 }
