@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-graphcms",
-  "version": "2.141.10",
+  "version": "2.141.11",
   "private": true,
   "sideEffects": false,
   "engines": {
@@ -25,7 +25,7 @@
     "@graphcommerce/browserslist-config-pwa": "^3.0.3",
     "@graphcommerce/eslint-config-pwa": "^3.1.9",
     "@graphcommerce/framer-next-pages": "^2.108.7",
-    "@graphcommerce/googleanalytics": "^1.1.4",
+    "@graphcommerce/googleanalytics": "^1.2.0",
     "@graphcommerce/googlerecaptcha": "^1.1.8",
     "@graphcommerce/googletagmanager": "^1.0.8",
     "@graphcommerce/graphcms-ui": "^2.106.17",

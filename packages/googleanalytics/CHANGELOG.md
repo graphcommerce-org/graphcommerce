@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/googleanalytics@1.1.4...@graphcommerce/googleanalytics@1.2.0) (2021-12-21)
+
+
+### Features
+
+* **googleanalytics:** moved to gtag ([c586a8f](https://github.com/ho-nl/m2-pwa/commit/c586a8f66547cf7c332113e991a257181ce8d338))
+
+
+
+
+
 ## [1.1.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/googleanalytics@1.1.3...@graphcommerce/googleanalytics@1.1.4) (2021-12-20)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.160.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.159.10...@graphcommerce/graphcommerce@2.160.0) (2021-12-21)
+
+
+### Features
+
+* **googleanalytics:** moved to gtag ([c586a8f](https://github.com/ho-nl/m2-pwa/commit/c586a8f66547cf7c332113e991a257181ce8d338))
+
+
+
+
+
 ## [2.159.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.159.9...@graphcommerce/graphcommerce@2.159.10) (2021-12-20)
 
 
