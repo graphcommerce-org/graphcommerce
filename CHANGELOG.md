@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.160.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.160.2...@graphcommerce/graphcommerce@2.160.3) (2021-12-21)
+
+
+### Bug Fixes
+
+* logo invert darkmode and consistent logo spacing ([2a80603](https://github.com/ho-nl/m2-pwa/commit/2a80603fd3255544f78d9da28aad17fb3fca0c9c))
+* menuFab, cartFab shadows, darkTheme color and opacity bug ([6c7afa7](https://github.com/ho-nl/m2-pwa/commit/6c7afa7d3b584b455476aa26d95041c4cf6c1d0c))
+
+
+
+
+
 ## [2.160.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.160.1...@graphcommerce/graphcommerce@2.160.2) (2021-12-21)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.21.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.7...@graphcommerce/next-ui@3.21.8) (2021-12-21)
+
+
+### Bug Fixes
+
+* logo invert darkmode and consistent logo spacing ([2a80603](https://github.com/ho-nl/m2-pwa/commit/2a80603fd3255544f78d9da28aad17fb3fca0c9c))
+* menuFab, cartFab shadows, darkTheme color and opacity bug ([6c7afa7](https://github.com/ho-nl/m2-pwa/commit/6c7afa7d3b584b455476aa26d95041c4cf6c1d0c))
+
+
+
+
+
 ## [3.21.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.4...@graphcommerce/next-ui@3.21.5) (2021-12-20)
 
 
