@@ -37,15 +37,27 @@ const useStyles = makeStyles(
       },
     },
     menuFab: {
+      boxShadow: 'none',
+      '&:hover, &:focus': {
+        boxShadow: 'none',
+        background: theme.palette.text.primary,
+      },
       background: theme.palette.text.primary,
       width: responsiveVal(42, 56),
       height: responsiveVal(42, 56),
       pointerEvents: 'all',
-      '&:hover, &:focus': {
-        background: theme.palette.text.primary,
-      },
-      '& svg': {
-        color: theme.palette.background.paper,
+      color: theme.palette.background.paper,
+    },
+    shadow: {
+      pointerEvents: 'none',
+      borderRadius: '99em',
+      position: 'absolute',
+      height: '100%',
+      width: '100%',
+      boxShadow: theme.shadows[6],
+      top: 0,
+      [theme.breakpoints.down('sm')]: {
+        opacity: '1 !important',
       },
     },
     menu: {
@@ -80,7 +92,7 @@ export default function MenuFab(props: MenuFabProps) {
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
-  const { filter, opacity, scale } = useFabAnimation()
+  const { opacity, scale, shadowOpacity } = useFabAnimation()
 
   useEffect(() => {
     const clear = () => setOpenEl(null)
@@ -89,9 +101,9 @@ export default function MenuFab(props: MenuFabProps) {
   }, [router])
 
   return (
-    <m.div className={classes.menuWrapper} style={{ opacity, scale, filter }}>
+    <m.div className={classes.menuWrapper} style={{ scale, opacity }}>
       <Fab
-        color='primary'
+        color='inherit'
         aria-label='Open Menu'
         size='medium'
         onClick={(event) => setOpenEl(event.currentTarget)}
@@ -104,6 +116,7 @@ export default function MenuFab(props: MenuFabProps) {
           <SvgImageSimple src={iconMenu} inverted style={{ display: openEl ? 'none' : 'block' }} />
         )}
       </Fab>
+      <m.div className={classes.shadow} style={{ opacity: shadowOpacity }} />
 
       <Menu
         anchorEl={openEl}

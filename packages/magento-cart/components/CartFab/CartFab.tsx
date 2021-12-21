@@ -8,7 +8,7 @@ import {
   UseStyles,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
-import { Fab, FabProps, makeStyles, NoSsr, Theme, useMediaQuery, useTheme } from '@material-ui/core'
+import { darken, Fab, FabProps, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
@@ -19,15 +19,22 @@ import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     fab: {
+      color:
+        theme.palette.type === 'light'
+          ? theme.palette.text.primary
+          : darken(theme.palette.text.primary, 1),
       boxShadow: 'none',
-      [theme.breakpoints.down('sm')]: {
-        background: theme.palette.background.paper,
-        width: responsiveVal(42, 56),
-        height: responsiveVal(42, 56),
+      '&:hover, &:focus': {
+        boxShadow: 'none',
       },
+      width: responsiveVal(42, 56),
+      height: responsiveVal(42, 56),
     },
     fabWrapper: {
       position: 'relative',
+      [theme.breakpoints.down('sm')]: {
+        backgroundColor: '#fff !important',
+      },
     },
     shadow: {
       pointerEvents: 'none',
@@ -37,6 +44,9 @@ const useStyles = makeStyles(
       width: '100%',
       boxShadow: theme.shadows[6],
       top: 0,
+      [theme.breakpoints.down('sm')]: {
+        opacity: '1 !important',
+      },
     },
   }),
   {
@@ -55,19 +65,10 @@ function CartFabContent(props: CartFabContentProps) {
   const { total_quantity, icon, ...fabProps } = props
   const cartIcon = icon ?? <SvgImageSimple src={iconShoppingBag} loading='eager' size='large' />
   const { opacity, backgroundColor } = useFixedFabAnimation()
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const classes = useStyles(props)
 
   return (
-    <m.div
-      style={{
-        backgroundColor: isMobile ? undefined : backgroundColor,
-        width: 'inherit',
-        borderRadius: 'inherit',
-      }}
-      className={classes.fabWrapper}
-    >
+    <m.div className={classes.fabWrapper} style={{ backgroundColor, borderRadius: 'inherit' }}>
       <PageLink href='/cart' passHref>
         <Fab
           aria-label={t`Cart`}
@@ -85,12 +86,7 @@ function CartFabContent(props: CartFabContentProps) {
           )}
         </Fab>
       </PageLink>
-      <m.div
-        className={classes.shadow}
-        style={{
-          opacity: isMobile ? undefined : opacity,
-        }}
-       />
+      <m.div className={classes.shadow} style={{ opacity }} />
     </m.div>
   )
 }

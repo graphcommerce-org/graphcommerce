@@ -9,7 +9,6 @@ const useStyles = makeStyles(
       bottom: 20,
       right: 20,
       zIndex: 100,
-      boxShadow: theme.shadows[4],
       borderRadius: 99,
       maxWidth: 56,
       [theme.breakpoints.up('md')]: {
@@ -17,7 +16,6 @@ const useStyles = makeStyles(
         top: `calc(${theme.appShell.headerHeightMd} / 2 - 28px)`,
         left: `calc((100vw - (100vw - 100%)) - ${theme.page.horizontal} - 56px)`,
         bottom: 'unset',
-        boxShadow: 'unset',
       },
     },
   }),
