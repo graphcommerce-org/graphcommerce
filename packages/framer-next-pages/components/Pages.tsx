@@ -104,12 +104,6 @@ export default function FramerNextPages(props: PagesProps) {
 
   if (plainIdx > -1) renderItems = items.current.slice(plainIdx)
 
-  if (process.env.NODE_ENV !== 'production' && items.current.findIndex((i) => !i) > -1) {
-    console.warn(
-      'FramerNextPages was remounted, make sure it never remounts while the app is running.',
-    )
-  }
-
   /**
    * Cleanup the `renderItems`:
    *
