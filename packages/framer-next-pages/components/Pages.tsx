@@ -1,6 +1,5 @@
 import { AnimatePresence } from 'framer-motion'
 import { requestIdleCallback, cancelIdleCallback } from 'next/dist/client/request-idle-callback'
-import { PrivateRouteInfo } from 'next/dist/shared/lib/router/router'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import type { NextRouter, Router } from 'next/router'
 import React, { useEffect, useRef, useState } from 'react'

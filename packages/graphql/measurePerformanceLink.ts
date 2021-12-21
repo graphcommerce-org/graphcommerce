@@ -21,6 +21,10 @@ interface TracingFormat {
   }
 }
 
+/**
+ * This doesn't work with the current implementation of the Apollo client. We're using SchemaLink
+ * which doesn't support additional links.
+ */
 export const measurePerformanceLink = new ApolloLink((operation, forward) => {
   if (typeof global.window !== 'undefined') {
     return forward(operation)
