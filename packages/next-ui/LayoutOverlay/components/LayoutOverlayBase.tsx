@@ -19,12 +19,6 @@ const useStyles = makeStyles(
       '@supports (-webkit-touch-callout: none)': {
         height: '-webkit-fill-available',
       },
-      [theme.breakpoints.down('sm')]: {
-        width: '100vw',
-      },
-      [theme.breakpoints.up('md')]: {
-        width: '100vw',
-      },
     },
     rootVariantSmLeft: {
       [theme.breakpoints.down('sm')]: {
@@ -118,7 +112,6 @@ const useStyles = makeStyles(
       pointerEvents: 'none',
       gridArea: 'overlay',
       scrollSnapAlign: 'start',
-      width: 'min-content',
       minHeight: '100vh',
       '@supports (-webkit-touch-callout: none)': {
         minHeight: '-webkit-fill-available',
@@ -154,14 +147,12 @@ const useStyles = makeStyles(
     },
     overlayPaneVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
-        width: '100vw',
         borderTopLeftRadius: theme.shape.borderRadius * 3,
         borderTopRightRadius: theme.shape.borderRadius * 3,
       },
     },
     overlayPaneVariantMdBottom: {
       [theme.breakpoints.up('md')]: {
-        width: '100vw',
         borderTopLeftRadius: theme.shape.borderRadius * 3,
         borderTopRightRadius: theme.shape.borderRadius * 3,
       },
