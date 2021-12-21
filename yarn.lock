@@ -3854,11 +3854,6 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/google.analytics@^0.0.42":
-  version "0.0.42"
-  resolved "https://registry.yarnpkg.com/@types/google.analytics/-/google.analytics-0.0.42.tgz#efe6ef9251a22ec8208dbb09f221a48a1863d720"
-  integrity sha512-w0ZFj3SHznQXSq99kFCuO8tkN6w4T14znjrF2alLCSDnHOXEnpzneyNwxLvekcsDBInr8b5mXmzYh03GArqEyw==
-
 "@types/googlepay@*":
   version "0.6.3"
   resolved "https://registry.yarnpkg.com/@types/googlepay/-/googlepay-0.6.3.tgz#4e716556b904c9af5263255bf872b81ee4073d4d"
@@ -3875,6 +3870,11 @@
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/grecaptcha/-/grecaptcha-3.0.3.tgz#9b487b1d20f7813ea382e8cf7a4b621ae61782c4"
   integrity sha512-osLqWRzsRsDtCfiCl1lbtUY8ANGCQsG/hhht3E7g1pVT7fD5SXgAg53S2grKjjSkXcm0fvMDbhUeL9NyAJvzGQ==
+
+"@types/gtag.js@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@types/gtag.js/-/gtag.js-0.0.8.tgz#43035ab23a06b3bd0b23968c5c4ef000c597ad8a"
+  integrity sha512-xKDygydxruSUNkVbZWjiEbMijz9+xZCLb2yiTiQT88pm5EhIAUhaCo05IZF1HcQc90u4W7cp+7OZNpcJxpyL5g==
 
 "@types/hast@^2.0.0":
   version "2.3.4"
