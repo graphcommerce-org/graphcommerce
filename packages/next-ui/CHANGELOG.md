@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.21.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.8...@graphcommerce/next-ui@3.21.9) (2021-12-21)
+
+
+### Bug Fixes
+
+* layout overlay sometimes have a horizontal scrollbar ([a1cfe72](https://github.com/ho-nl/m2-pwa/commit/a1cfe72d207dcdf07948080b605b64e7f73939bf))
+* make sure the bottomsheet has enough space on android ([02d3e63](https://github.com/ho-nl/m2-pwa/commit/02d3e639388446423149461ae52d0ed12a962f5e))
+
+
+
+
+
 ## [3.21.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.7...@graphcommerce/next-ui@3.21.8) (2021-12-21)
 
 

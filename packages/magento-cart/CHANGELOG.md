@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.8.23](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.8.22...@graphcommerce/magento-cart@3.8.23) (2021-12-21)
+
+
+### Bug Fixes
+
+* make sure the cart renders the correct currency ([cc43c8a](https://github.com/ho-nl/m2-pwa/commit/cc43c8acdce339a2f9c99fd7f7e79d6277c8603f))
+
+
+
+
+
 ## [3.8.22](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.8.21...@graphcommerce/magento-cart@3.8.22) (2021-12-21)
 
 
