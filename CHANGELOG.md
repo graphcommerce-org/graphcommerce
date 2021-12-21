@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.160.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.160.1...@graphcommerce/graphcommerce@2.160.2) (2021-12-21)
+
+
+### Bug Fixes
+
+* **framer-scroller:** apply will change only when animating ([77fee92](https://github.com/ho-nl/m2-pwa/commit/77fee92c0eb70691b699e1f6ba378ec16c534975))
+* **graphql:** make sure we're passing the correct store code to the schema endpoint ([39753f2](https://github.com/ho-nl/m2-pwa/commit/39753f2117ce7ba79dab035c4134e642829e7f18))
+* make sure bundlesize action can run ([64c9f68](https://github.com/ho-nl/m2-pwa/commit/64c9f68f82a573fa704d929d4132e320cb361ffa))
+* make sure the homepage doesn't have a topbar when navigating from overlay to home ([f71f151](https://github.com/ho-nl/m2-pwa/commit/f71f151ae7a0129ae9d9f3f6a106453d79c1a4bb))
+* make sure we're remounting when the store changes ([10756e3](https://github.com/ho-nl/m2-pwa/commit/10756e3eb252f8a91d84534ae024edb382a4ea0d))
+
+
+
+
+
 # [2.160.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.159.10...@graphcommerce/graphcommerce@2.160.0) (2021-12-21)
 
 

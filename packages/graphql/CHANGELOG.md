@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.105.12](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql@2.105.11...@graphcommerce/graphql@2.105.12) (2021-12-21)
+
+
+### Bug Fixes
+
+* **graphql:** make sure we're passing the correct store code to the schema endpoint ([39753f2](https://github.com/ho-nl/m2-pwa/commit/39753f2117ce7ba79dab035c4134e642829e7f18))
+
+
+
+
+
 ## [2.105.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphql@2.105.5...@graphcommerce/graphql@2.105.6) (2021-12-03)
 
 

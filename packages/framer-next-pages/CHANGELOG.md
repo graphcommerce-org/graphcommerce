@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.108.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.108.7...@graphcommerce/framer-next-pages@2.108.8) (2021-12-21)
+
+
+### Bug Fixes
+
+* **graphql:** make sure we're passing the correct store code to the schema endpoint ([39753f2](https://github.com/ho-nl/m2-pwa/commit/39753f2117ce7ba79dab035c4134e642829e7f18))
+* make sure we're remounting when the store changes ([10756e3](https://github.com/ho-nl/m2-pwa/commit/10756e3eb252f8a91d84534ae024edb382a4ea0d))
+
+
+
+
+
 ## [2.108.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.108.6...@graphcommerce/framer-next-pages@2.108.7) (2021-12-20)
 
 

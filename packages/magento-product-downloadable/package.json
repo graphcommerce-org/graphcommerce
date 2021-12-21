@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-product-downloadable",
-  "version": "3.2.25",
+  "version": "3.2.26",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -21,9 +21,9 @@
     "react": "^17.0.1"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "^2.105.11",
-    "@graphcommerce/magento-cart": "^3.8.20",
-    "@graphcommerce/magento-product": "^3.7.20",
+    "@graphcommerce/graphql": "^2.105.12",
+    "@graphcommerce/magento-cart": "^3.8.21",
+    "@graphcommerce/magento-product": "^3.7.21",
     "@lingui/macro": "^3.13.0",
     "next": "^12.0.7",
     "react": "^17.0.2",

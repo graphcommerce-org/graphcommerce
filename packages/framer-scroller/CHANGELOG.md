@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.17](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.16...@graphcommerce/framer-scroller@1.1.17) (2021-12-21)
+
+
+### Bug Fixes
+
+* **framer-scroller:** apply will change only when animating ([77fee92](https://github.com/ho-nl/m2-pwa/commit/77fee92c0eb70691b699e1f6ba378ec16c534975))
+
+
+
+
+
 ## [1.1.14](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.13...@graphcommerce/framer-scroller@1.1.14) (2021-12-20)
 
 
