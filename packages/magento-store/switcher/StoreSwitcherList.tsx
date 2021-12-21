@@ -73,6 +73,7 @@ export default function StoreSwitcherList(props: StoreSwitcherListProps) {
             passHref
           >
             <ListItem
+              disabled={!storeToLocale(group.stores[0].locale)}
               button
               component='a'
               selected={
@@ -87,6 +88,11 @@ export default function StoreSwitcherList(props: StoreSwitcherListProps) {
               <ListItemText>
                 {group.name}
                 {group.stores.length <= 1 && ` — ${group.stores[0].store_name}`}
+
+                {process.env.NODE_ENV !== 'production' &&
+                  !storeToLocale(group.stores[0].locale) && (
+                    <> 🚨 Could not find configuration in .env</>
+                  )}
               </ListItemText>
             </ListItem>
           </PageLink>
@@ -101,13 +107,20 @@ export default function StoreSwitcherList(props: StoreSwitcherListProps) {
                   passHref
                 >
                   <ListItem
+                    disabled={!localeToStore(locale)}
                     button
                     component='a'
                     selected={localeToStore(locale) === store.locale}
                     color='inherit'
                     className={classes.listItemIndented}
                   >
-                    <ListItemText inset>{store.store_name}</ListItemText>
+                    <ListItemText inset>
+                      {store.store_name}
+
+                      {process.env.NODE_ENV !== 'production' && !localeToStore(locale) && (
+                        <> 🚨 Could not find configuration in .env</>
+                      )}
+                    </ListItemText>
                   </ListItem>
                 </PageLink>
               ))}

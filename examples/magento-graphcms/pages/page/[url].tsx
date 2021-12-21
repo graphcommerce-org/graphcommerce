@@ -38,7 +38,7 @@ function CmsPage(props: Props) {
         canonical={page?.url}
       />
 
-      <LayoutHeader floatingMd>
+      <LayoutHeader floatingMd floatingSm>
         {router.pathname !== '/' && (
           <LayoutTitle component='span' size='small'>
             {title}

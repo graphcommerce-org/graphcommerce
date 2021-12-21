@@ -30,7 +30,7 @@ export default function ThemedApp(props: AppProps) {
         <LinguiProvider loader={(l) => import(`../locales/${l}.po`)}>
           <ThemeProvider theme={darkMode.current ? darkTheme : lightTheme}>
             <CssBaseline />
-            <App {...props} />
+            <App {...props} key={locale} />
           </ThemeProvider>
         </LinguiProvider>
       </ApolloProvider>

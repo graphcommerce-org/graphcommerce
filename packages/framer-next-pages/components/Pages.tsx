@@ -1,6 +1,5 @@
 import { AnimatePresence } from 'framer-motion'
 import { requestIdleCallback, cancelIdleCallback } from 'next/dist/client/request-idle-callback'
-import { PrivateRouteInfo } from 'next/dist/shared/lib/router/router'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import type { NextRouter, Router } from 'next/router'
 import React, { useEffect, useRef, useState } from 'react'
@@ -104,12 +103,6 @@ export default function FramerNextPages(props: PagesProps) {
   if (fb && plainIdx === -1) renderItems = [fb, ...renderItems]
 
   if (plainIdx > -1) renderItems = items.current.slice(plainIdx)
-
-  if (process.env.NODE_ENV !== 'production' && items.current.findIndex((i) => !i) > -1) {
-    console.warn(
-      'FramerNextPages was remounted, make sure it never remounts while the app is running.',
-    )
-  }
 
   /**
    * Cleanup the `renderItems`:
