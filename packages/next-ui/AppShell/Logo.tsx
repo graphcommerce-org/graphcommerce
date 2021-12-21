@@ -8,7 +8,7 @@ import { UseStyles } from '../Styles'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     logo: {},
-    link: {
+    parent: {
       height: '100%',
       width: 'max-content',
       display: 'flex',
@@ -33,12 +33,12 @@ export default function Logo(props: LogoProps) {
   const classes = useStyles(props)
 
   return router.asPath === '/' ? (
-    <div className={classes.logo}>
+    <div className={classes.parent}>
       <Image layout='fixed' loading='eager' {...image} className={classes.logo} />
     </div>
   ) : (
     <PageLink href={href ?? '/'} passHref>
-      <a className={classes.link} aria-label='Logo'>
+      <a className={classes.parent} aria-label='Logo'>
         <Image layout='fixed' loading='eager' {...image} className={classes.logo} />
       </a>
     </PageLink>
