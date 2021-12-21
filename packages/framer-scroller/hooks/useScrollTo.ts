@@ -1,6 +1,6 @@
 import { useElementScroll } from '@graphcommerce/framer-utils'
 import { Point } from 'framer-motion'
-import { animate, easeOut } from 'popmotion'
+import { animate } from 'popmotion'
 import { useScrollerContext } from './useScrollerContext'
 
 export function useScrollTo() {

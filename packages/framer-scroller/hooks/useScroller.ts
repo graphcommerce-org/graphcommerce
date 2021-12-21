@@ -20,13 +20,11 @@ import { useVelocitySnapTo } from './useVelocitySnapTo'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      willChange: 'scroll-position',
       '& *': {
         userSelect: 'none',
         userDrag: 'none',
       },
     },
-
     rootSmSnapDirNone: {
       [theme.breakpoints.down('sm')]: {
         overflow: 'hidden',
@@ -106,6 +104,9 @@ const useStyles = makeStyles(
         scrollSnapType: scrollSnapTypeMd,
       },
     }),
+    rootNoSnap: {
+      willChange: 'scroll-position',
+    },
     rootIsPanning: {
       cursor: 'grabbing !important',
       '& > *': {
@@ -217,6 +218,7 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
     mdSnapDir,
     mdGridDir,
     isSnap,
+    noSnap: !isSnap,
     isPanning,
     hideScrollbar,
     canGrab,
