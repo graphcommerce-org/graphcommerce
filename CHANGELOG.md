@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.160.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.160.6...@graphcommerce/graphcommerce@2.160.7) (2021-12-22)
+
+
+### Bug Fixes
+
+* **framer-scroller:** make sure the first gallery dot is selected initially ([a2ed37b](https://github.com/ho-nl/m2-pwa/commit/a2ed37bd2c17eef46c0ee4cf8219a141b2e054b4))
+
+
+
+
+
 ## [2.160.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.160.5...@graphcommerce/graphcommerce@2.160.6) (2021-12-22)
 
 

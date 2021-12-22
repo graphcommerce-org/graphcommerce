@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.22](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.21...@graphcommerce/framer-scroller@1.1.22) (2021-12-22)
+
+
+### Bug Fixes
+
+* **framer-scroller:** make sure the first gallery dot is selected initially ([a2ed37b](https://github.com/ho-nl/m2-pwa/commit/a2ed37bd2c17eef46c0ee4cf8219a141b2e054b4))
+
+
+
+
+
 ## [1.1.21](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.20...@graphcommerce/framer-scroller@1.1.21) (2021-12-22)
 
 
