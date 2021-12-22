@@ -37,7 +37,7 @@ export type DotsProps = {
 
 const ScrollerDots = m(
   React.forwardRef<HTMLDivElement, DotsProps>((props, ref) => {
-    const { fabProps, ...containerProps } = props
+    const { fabProps, classes: _classes, ...containerProps } = props
     const { dots, dot, circle, ...classes } = useStyles(props)
     const { items, getScrollSnapPositions } = useScrollerContext()
     const itemsArr = useMotionValueValue(items, (v) => v)
