@@ -11,6 +11,11 @@ import { useOverlayPosition } from '../hooks/useOverlayPosition'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
+    '@global': {
+      body: {
+        overflow: 'hidden',
+      },
+    },
     root: {
       display: 'grid',
       cursor: 'default',
@@ -138,12 +143,7 @@ const useStyles = makeStyles(
       minWidth: 'min(800px, 90vw)',
       scrollSnapAlign: 'end',
 
-      // The top bar on Google Chrome is about 56 pixels high. If we do not provide this padding we'll run into the issue that the user can't scroll to the bottom.
-      // We can't change this value with JS as that causes much jank
-      [`@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) and (max-width:${theme.breakpoints.values.sm}px)`]:
-        {
-          paddingBottom: 56,
-        },
+      paddingBottom: 56,
     },
     overlayPaneVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
