@@ -13,7 +13,7 @@ const useStyles = makeStyles(
       display: 'block',
       '@supports (aspect-ratio: 1 / 1)': {
         maxWidth: '99.6%',
-        maxHeight: '99.6%',
+        maxHeight: '100%',
         width: 'auto',
         height: 'auto',
 
