@@ -60,6 +60,7 @@ const useStyles = makeStyles(
     animated: {
       borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
       overflow: 'hidden',
+      transform: 'translateZ(0)',
     },
   }),
   { name: 'HeroBanner' },
