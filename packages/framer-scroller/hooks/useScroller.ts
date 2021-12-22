@@ -40,24 +40,28 @@ const useStyles = makeStyles(
     rootSmSnapDirBlock: {
       [theme.breakpoints.down('sm')]: {
         overflowY: 'auto',
+        overflowX: 'hidden',
         overscrollBehaviorBlock: 'contain',
       },
     },
     rootMdSnapDirBlock: {
       [theme.breakpoints.up('md')]: {
         overflowY: 'auto',
+        overflowX: 'hidden',
         overscrollBehaviorBlock: 'contain',
       },
     },
     rootSmSnapDirInline: {
       [theme.breakpoints.down('sm')]: {
         overflowX: 'auto',
+        overflowY: 'hidden',
         overscrollBehaviorInline: 'contain',
       },
     },
     rootMdSnapDirInline: {
       [theme.breakpoints.up('md')]: {
         overflowX: 'auto',
+        overflowY: 'hidden',
         overscrollBehaviorInline: 'contain',
       },
     },
