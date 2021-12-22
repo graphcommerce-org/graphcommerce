@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.21](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.20...@graphcommerce/framer-scroller@1.1.21) (2021-12-22)
+
+
+### Bug Fixes
+
+* **framer-scroller:** height of the gallery item isn't high enough ([0e84ba3](https://github.com/ho-nl/m2-pwa/commit/0e84ba3ecb8928870fdc0459a1c6c30fde372d91))
+* **framer-scroller:** make sure the actual image will scale instead of the container ([8d55630](https://github.com/ho-nl/m2-pwa/commit/8d55630a93cff91ac37e426bbe9f1b25b001556c))
+* **framer-scroller:** would throw ssr warning ([a3db078](https://github.com/ho-nl/m2-pwa/commit/a3db0781d2433809c0bd4cb6ba37af79b611f3c4))
+
+
+
+
+
 ## [1.1.20](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.19...@graphcommerce/framer-scroller@1.1.20) (2021-12-22)
 
 

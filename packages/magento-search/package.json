@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-search",
-  "version": "3.5.27",
+  "version": "3.5.28",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -22,7 +22,7 @@
   "dependencies": {
     "@graphcommerce/graphql": "^2.105.12",
     "@graphcommerce/image": "^2.105.11",
-    "@graphcommerce/next-ui": "^3.21.10",
+    "@graphcommerce/next-ui": "^3.21.11",
     "@graphcommerce/react-hook-form": "^2.104.6",
     "@lingui/macro": "^3.13.0",
     "@material-ui/core": "^4.12.3",

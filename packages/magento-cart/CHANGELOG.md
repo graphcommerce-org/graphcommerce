@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.8.25](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.8.24...@graphcommerce/magento-cart@3.8.25) (2021-12-22)
+
+
+### Bug Fixes
+
+* cart fab wouldnt properly switch to darkmode ([2f4fe1e](https://github.com/ho-nl/m2-pwa/commit/2f4fe1ed28ab3b63440f40d1455f06bc02e44ce7))
+
+
+
+
+
 ## [3.8.23](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.8.22...@graphcommerce/magento-cart@3.8.23) (2021-12-21)
 
 

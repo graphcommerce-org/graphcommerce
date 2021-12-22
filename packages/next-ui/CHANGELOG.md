@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.21.11](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.10...@graphcommerce/next-ui@3.21.11) (2021-12-22)
+
+
+### Bug Fixes
+
+* cart fab wouldnt properly switch to darkmode ([2f4fe1e](https://github.com/ho-nl/m2-pwa/commit/2f4fe1ed28ab3b63440f40d1455f06bc02e44ce7))
+
+
+
+
+
 ## [3.21.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.9...@graphcommerce/next-ui@3.21.10) (2021-12-22)
 
 

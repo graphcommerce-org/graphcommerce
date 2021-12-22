@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.160.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.160.5...@graphcommerce/graphcommerce@2.160.6) (2021-12-22)
+
+
+### Bug Fixes
+
+* cart fab wouldnt properly switch to darkmode ([2f4fe1e](https://github.com/ho-nl/m2-pwa/commit/2f4fe1ed28ab3b63440f40d1455f06bc02e44ce7))
+* darkmode would not initialize properly ([2aef061](https://github.com/ho-nl/m2-pwa/commit/2aef0618eedda4302cf83eca23092ed4c1d22bca))
+* **framer-scroller:** height of the gallery item isn't high enough ([0e84ba3](https://github.com/ho-nl/m2-pwa/commit/0e84ba3ecb8928870fdc0459a1c6c30fde372d91))
+* **framer-scroller:** make sure the actual image will scale instead of the container ([8d55630](https://github.com/ho-nl/m2-pwa/commit/8d55630a93cff91ac37e426bbe9f1b25b001556c))
+* **framer-scroller:** would throw ssr warning ([a3db078](https://github.com/ho-nl/m2-pwa/commit/a3db0781d2433809c0bd4cb6ba37af79b611f3c4))
+
+
+
+
+
 ## [2.160.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.160.4...@graphcommerce/graphcommerce@2.160.5) (2021-12-22)
 
 
