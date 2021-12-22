@@ -4,12 +4,12 @@ import {
   responsiveVal,
   StyledBadge,
   SvgImageSimple,
-  useFixedFabAnimation,
+  useScrollY,
   UseStyles,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
-import { darken, Fab, FabProps, makeStyles, NoSsr, Theme } from '@material-ui/core'
-import { m } from 'framer-motion'
+import { alpha, darken, Fab, FabProps, makeStyles, NoSsr, Theme, useTheme } from '@material-ui/core'
+import { m, useTransform } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
 import { useCartQuery } from '../../hooks/useCartQuery'
@@ -19,21 +19,10 @@ import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     fab: {
-      color:
-        theme.palette.type === 'light'
-          ? theme.palette.text.primary
-          : darken(theme.palette.text.primary, 1),
-      boxShadow: 'none',
-      '&:hover, &:focus': {
-        boxShadow: 'none',
-      },
       width: responsiveVal(42, 56),
       height: responsiveVal(42, 56),
-    },
-    fabWrapper: {
-      position: 'relative',
       [theme.breakpoints.down('sm')]: {
-        backgroundColor: '#fff !important',
+        backgroundColor: `${theme.palette.background.paper} !important`,
       },
     },
     shadow: {
@@ -49,33 +38,44 @@ const useStyles = makeStyles(
       },
     },
   }),
-  {
-    name: 'CartFab',
-  },
+  { name: 'CartFab' },
 )
 
 export type CartFabProps = {
   icon?: React.ReactNode
-} & Omit<FabProps, 'children' | 'aria-label'> &
-  UseStyles<typeof useStyles>
+} & UseStyles<typeof useStyles>
 
 type CartFabContentProps = CartFabProps & CartTotalQuantityFragment
 
+const MotionFab = m(
+  React.forwardRef<any, Omit<FabProps, 'style' | 'onDrag'>>((props, ref) => (
+    <Fab {...props} ref={ref} />
+  )),
+)
+
 function CartFabContent(props: CartFabContentProps) {
   const { total_quantity, icon, ...fabProps } = props
-  const cartIcon = icon ?? <SvgImageSimple src={iconShoppingBag} loading='eager' size='large' />
-  const { opacity, backgroundColor } = useFixedFabAnimation()
   const classes = useStyles(props)
 
+  const theme = useTheme()
+  const scrollY = useScrollY()
+  const opacity = useTransform(scrollY, [50, 60], [0, 1])
+
+  const paper0 = alpha(theme.palette.background.paper, 0)
+  const paper1 = alpha(theme.palette.background.paper, 1)
+  const backgroundColor = useTransform(scrollY, [0, 10], [paper0, paper1])
+
+  const cartIcon = icon ?? <SvgImageSimple src={iconShoppingBag} loading='eager' size='large' />
   return (
-    <m.div className={classes.fabWrapper} style={{ backgroundColor, borderRadius: 'inherit' }}>
+    <>
       <PageLink href='/cart' passHref>
-        <Fab
+        <MotionFab
+          {...fabProps}
           aria-label={t`Cart`}
           color='inherit'
           size='large'
           classes={{ root: classes.fab }}
-          {...fabProps}
+          style={{ backgroundColor }}
         >
           {total_quantity > 0 ? (
             <StyledBadge color='primary' variant='dot'>
@@ -84,10 +84,10 @@ function CartFabContent(props: CartFabContentProps) {
           ) : (
             cartIcon
           )}
-        </Fab>
+        </MotionFab>
       </PageLink>
       <m.div className={classes.shadow} style={{ opacity }} />
-    </m.div>
+    </>
   )
 }
 

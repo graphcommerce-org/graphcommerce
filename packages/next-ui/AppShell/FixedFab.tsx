@@ -19,9 +19,7 @@ const useStyles = makeStyles(
       },
     },
   }),
-  {
-    name: 'FixedFab',
-  },
+  { name: 'FixedFab' },
 )
 
 type FixedFabProps = {
