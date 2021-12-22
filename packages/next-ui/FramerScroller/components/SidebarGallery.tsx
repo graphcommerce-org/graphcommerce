@@ -1,7 +1,6 @@
 import { usePageRouter } from '@graphcommerce/framer-next-pages'
 import { usePrevPageRouter } from '@graphcommerce/framer-next-pages/hooks/usePrevPageRouter'
 import {
-  CenterSlide,
   MotionImageAspect,
   MotionImageAspectProps,
   Scroller,
@@ -29,6 +28,7 @@ type StyleProps = {
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
+      willChange: 'transform',
       display: 'grid',
       [theme.breakpoints.up('md')]: {
         gridTemplateColumns: '1fr auto',
@@ -57,6 +57,7 @@ const useStyles = makeStyles(
       const ratio = `calc(${height} / ${width} * 100%)`
 
       return {
+        willChange: 'transform',
         height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
         backgroundColor: theme.palette.background.image,
         position: 'relative',
@@ -71,6 +72,7 @@ const useStyles = makeStyles(
       paddingTop: clientHeight,
     }),
     scroller: {
+      willChange: 'transform',
       position: 'absolute',
       top: 0,
       width: '100%',
@@ -247,21 +249,20 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
               onMouseUp={onMouseUpScroller}
             >
               {images.map((image, idx) => (
-                <CenterSlide key={typeof image.src === 'string' ? image.src : idx}>
-                  <MotionImageAspect
-                    layout
-                    src={image.src}
-                    width={image.width}
-                    height={image.height}
-                    loading={idx === 0 ? 'eager' : 'lazy'}
-                    sizes={{
-                      0: '100vw',
-                      [theme.breakpoints.values.md]: zoomed ? '100vw' : '60vw',
-                    }}
-                    alt={image.alt || `Product Image ${idx}` || undefined}
-                    dontReportWronglySizedImages
-                  />
-                </CenterSlide>
+                <MotionImageAspect
+                  key={typeof image.src === 'string' ? image.src : idx}
+                  layout
+                  src={image.src}
+                  width={image.width}
+                  height={image.height}
+                  loading={idx === 0 ? 'eager' : 'lazy'}
+                  sizes={{
+                    0: '100vw',
+                    [theme.breakpoints.values.md]: zoomed ? '100vw' : '60vw',
+                  }}
+                  alt={image.alt || `Product Image ${idx}` || undefined}
+                  dontReportWronglySizedImages
+                />
               ))}
             </Scroller>
             <m.div layout className={classes.topRight}>

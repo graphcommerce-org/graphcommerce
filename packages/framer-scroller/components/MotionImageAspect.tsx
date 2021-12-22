@@ -6,13 +6,22 @@ import React, { forwardRef } from 'react'
 
 const useStyles = makeStyles(
   {
+    root: {
+      position: 'relative',
+    },
     picture: {
       display: 'block',
       '@supports (aspect-ratio: 1 / 1)': {
-        maxWidth: '100%',
-        maxHeight: '100%',
-        width: 'auto !important',
-        height: 'auto !important',
+        maxWidth: '99.6%',
+        maxHeight: '99.6%',
+        width: 'auto',
+        height: 'auto',
+
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+
         '&:after': {
           display: 'block',
           content: '""',
@@ -40,23 +49,24 @@ export type MotionImageAspectProps = Omit<ImageProps, 'layout' | 'unoptimized'>
  * - Renders an image with the given aspect ratio
  * - Supports framer motion layout transitions
  *
- * Note: We have a fallback for Safari which doesn't yet support aspect-ratio, this causes a problem
- * when the layout is animated. Should be fixed in Safari 15
+ * Note: We have a fallback for Safari 14 which doesn't yet support aspect-ratio, this causes a
+ * problem when the layout is animated. Should be fixed in Safari 15
  */
 const MotionImageAspect = m(
   forwardRef<HTMLImageElement, MotionImageAspectProps>((props, ref) => {
     const classes = useStyles()
     return (
-      <Image
-        {...props}
-        layout='fill'
-        ref={ref}
-        className={clsx(classes.image, props.className)}
-        pictureProps={{
-          className: clsx(classes.picture, props.pictureProps?.className),
-          style: { ...props.style, aspectRatio: `${props.width} / ${props.height}` },
-        }}
-      />
+      <div className={classes.root} ref={ref}>
+        <Image
+          {...props}
+          layout='fill'
+          className={clsx(classes.image, props.className)}
+          pictureProps={{
+            className: clsx(classes.picture, props.pictureProps?.className),
+            style: { ...props.style, aspectRatio: `${props.width} / ${props.height}` },
+          }}
+        />
+      </div>
     )
   }),
 )
