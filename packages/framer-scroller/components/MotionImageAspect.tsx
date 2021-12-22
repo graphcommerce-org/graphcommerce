@@ -56,10 +56,11 @@ const MotionImageAspect = m(
   forwardRef<HTMLImageElement, MotionImageAspectProps>((props, ref) => {
     const classes = useStyles()
     return (
-      <div className={classes.root} ref={ref}>
+      <div className={classes.root}>
         <Image
           {...props}
           layout='fill'
+          ref={ref}
           className={clsx(classes.image, props.className)}
           pictureProps={{
             className: clsx(classes.picture, props.pictureProps?.className),
