@@ -126,9 +126,9 @@ export default function ScrollerProvider(props: ScrollerProviderProps) {
       itemsArr.length = count
 
       items.set(
-        itemsArr.fill(undefined).map<ItemState>(() => ({
-          visibility: motionValue(0),
-          opacity: motionValue(0.2),
+        itemsArr.fill(undefined).map<ItemState>((_, i) => ({
+          visibility: motionValue(i === 0 ? 1 : 0),
+          opacity: motionValue(i === 0 ? 1 : 0.2),
         })),
       )
     },
