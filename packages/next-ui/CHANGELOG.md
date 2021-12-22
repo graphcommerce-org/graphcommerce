@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.21.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.9...@graphcommerce/next-ui@3.21.10) (2021-12-22)
+
+
+### Bug Fixes
+
+* **framer-scroller:** gallery didn't align images in the center ([0cf6066](https://github.com/ho-nl/m2-pwa/commit/0cf60669b2547d2c421eb07c1ba23d7718df74aa))
+* safari hero banner didn't animate border radius ([7301bec](https://github.com/ho-nl/m2-pwa/commit/7301becf33a60f977546be1bcabc68e018f6c5cd))
+
+
+
+
+
 ## [3.21.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.8...@graphcommerce/next-ui@3.21.9) (2021-12-21)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.20](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.19...@graphcommerce/framer-scroller@1.1.20) (2021-12-22)
+
+
+### Bug Fixes
+
+* **framer-scroller:** gallery didn't align images in the center ([0cf6066](https://github.com/ho-nl/m2-pwa/commit/0cf60669b2547d2c421eb07c1ba23d7718df74aa))
+* **framer-scroller:** offaxis scroll was allowed on safari ([4ece409](https://github.com/ho-nl/m2-pwa/commit/4ece409fabad7e686d491cc6bc1682c4507f2d3b))
+
+
+
+
+
 ## [1.1.17](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.16...@graphcommerce/framer-scroller@1.1.17) (2021-12-21)
 
 

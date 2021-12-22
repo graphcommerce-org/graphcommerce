@@ -1,17 +1,17 @@
 {
   "name": "@graphcommerce/framer-scroller-example",
   "private": true,
-  "version": "2.105.56",
+  "version": "2.105.57",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "@graphcommerce/framer-scroller": "^1.1.19",
+    "@graphcommerce/framer-scroller": "^1.1.20",
     "@graphcommerce/image": "^2.105.11",
     "@graphcommerce/next-config": "^2.109.4",
-    "@graphcommerce/next-ui": "^3.21.9",
+    "@graphcommerce/next-ui": "^3.21.10",
     "@material-ui/core": "^4.12.3",
     "clsx": "^1.1.1",
     "framer-motion": "^5.5.5",

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.160.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.160.4...@graphcommerce/graphcommerce@2.160.5) (2021-12-22)
+
+
+### Bug Fixes
+
+* **framer-scroller:** gallery didn't align images in the center ([0cf6066](https://github.com/ho-nl/m2-pwa/commit/0cf60669b2547d2c421eb07c1ba23d7718df74aa))
+* **framer-scroller:** offaxis scroll was allowed on safari ([4ece409](https://github.com/ho-nl/m2-pwa/commit/4ece409fabad7e686d491cc6bc1682c4507f2d3b))
+* safari hero banner didn't animate border radius ([7301bec](https://github.com/ho-nl/m2-pwa/commit/7301becf33a60f977546be1bcabc68e018f6c5cd))
+
+
+
+
+
 ## [2.160.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.160.3...@graphcommerce/graphcommerce@2.160.4) (2021-12-21)
 
 
