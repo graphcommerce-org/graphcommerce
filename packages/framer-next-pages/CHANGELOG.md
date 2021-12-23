@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.108.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.108.9...@graphcommerce/framer-next-pages@2.108.10) (2021-12-23)
+
+
+### Bug Fixes
+
+* **framer-next-pages:** closing is janky, caused by setting pointer-events to none, trying without resetting the pointerevents ([9247fa3](https://github.com/ho-nl/m2-pwa/commit/9247fa312926416802abd68ea04b1e6b52531f2c))
+
+
+
+
+
 ## [2.108.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.108.7...@graphcommerce/framer-next-pages@2.108.8) (2021-12-21)
 
 

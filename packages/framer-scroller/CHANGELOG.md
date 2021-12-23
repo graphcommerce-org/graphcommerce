@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.24](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.23...@graphcommerce/framer-scroller@1.1.24) (2021-12-23)
+
+
+### Bug Fixes
+
+* **framer-next-pages:** closing is janky, caused by setting pointer-events to none, trying without resetting the pointerevents ([9247fa3](https://github.com/ho-nl/m2-pwa/commit/9247fa312926416802abd68ea04b1e6b52531f2c))
+
+
+
+
+
 ## [1.1.22](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.21...@graphcommerce/framer-scroller@1.1.22) (2021-12-22)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-customer-order",
-  "version": "2.105.29",
+  "version": "2.105.30",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -24,8 +24,8 @@
     "@graphcommerce/graphql": "^2.105.12",
     "@graphcommerce/image": "^2.105.11",
     "@graphcommerce/magento-graphql": "^2.104.12",
-    "@graphcommerce/magento-store": "^3.3.29",
-    "@graphcommerce/next-ui": "^3.21.13",
+    "@graphcommerce/magento-store": "^3.3.30",
+    "@graphcommerce/next-ui": "^3.21.14",
     "@lingui/macro": "^3.13.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",
