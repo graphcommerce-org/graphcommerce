@@ -70,7 +70,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
     )
 
   return (
-    <NoSsr>
+    <>
       <LayoutHeader
         primary={primaryAction}
         divider={
@@ -243,12 +243,13 @@ export function AppShellDemo(props: AppShellDemoProps) {
         <div>
           <m.div
             animate={{ height: scroll ? 2000 : 1 }}
+            initial={false}
             transition={{ type: 'tween' }}
             style={{ width: '20px', background: '#dedede' }}
           />
         </div>
       </Container>
-    </NoSsr>
+    </>
   )
 }
 

@@ -14,6 +14,10 @@ export function useScrollTo() {
     // In the future we want to move to browser native scrolling behavior, but since it is too slow we're not moving to that yet.
     // if ('scrollBehavior' in document.documentElement.style) {
     //   scrollerRef.current.scrollTo({ left: to.x, top: to.y, behavior: 'smooth' })
+    //   await new Promise((onComplete) => {
+    //     setTimeout(onComplete, 2000)
+    //   })
+    //   return
     // }
 
     const xDone = new Promise<void>((onComplete) => {

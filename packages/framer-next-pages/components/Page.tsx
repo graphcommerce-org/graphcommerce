@@ -34,7 +34,7 @@ export default function Page(props: PageProps) {
   const classes = useStyles()
 
   /** The active Page doesn't get any special treatment */
-  let top = 0
+  let top: number | undefined
 
   /** If the Page isn't active, we offset the page */
   if (!active) top = scrollPos(historyIdx).y * -1
@@ -46,11 +46,10 @@ export default function Page(props: PageProps) {
   if (!isPresent) top = scrollPos(historyIdx).y
 
   const position = active && isPresent ? 'absolute' : 'fixed'
-  const pointerEvents = active && isPresent ? undefined : 'none'
   const zIndex = active ? 1 : undefined
 
   return (
-    <m.div className={classes.page} style={{ position, top, pointerEvents, zIndex }}>
+    <m.div className={classes.page} style={{ position, top, zIndex }}>
       {children}
     </m.div>
   )
