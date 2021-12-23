@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.21.13](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.12...@graphcommerce/next-ui@3.21.13) (2021-12-23)
+
+
+### Bug Fixes
+
+* **framer-next-pages:** make sure we dont have a double scroll while a bottomsheet is opened ([2887aba](https://github.com/ho-nl/m2-pwa/commit/2887abae0c0c553bdc6343fd2f431e4daeabefb5))
+
+
+
+
+
 ## [3.21.11](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.10...@graphcommerce/next-ui@3.21.11) (2021-12-22)
 
 
