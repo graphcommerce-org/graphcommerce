@@ -40,6 +40,9 @@ msgstr "Toepassen"
 msgid "As low as"
 msgstr "Vanaf"
 
+msgid "As soon as the payment is completed, you will automatically return to the webshop."
+msgstr "Als de betaling is voltooid, keert u automatisch terug naar de webshop."
+
 msgid "Authentication"
 msgstr "Authenticatie"
 
@@ -76,8 +79,14 @@ msgstr "Afrekenen"
 msgid "Checkout summary"
 msgstr "Samenvatting"
 
+msgid "Choose your bank, and place your order."
+msgstr "Kies uw bank en plaats uw bestelling."
+
 msgid "Close"
 msgstr "Sluiten"
+
+msgid "Complete the payment on your bank's website."
+msgstr "Voltooi de betaling op uw bank's website."
 
 msgid "Confirm Password"
 msgstr "Bevestig wachtwoord"
@@ -235,8 +244,8 @@ msgstr "Producten"
 msgid "Remove Product"
 msgstr "Verwijder product"
 
-msgid "Results for '{search}'"
-msgstr "Resultaten voor '{search}'"
+msgid "Results for ‘{search}’"
+msgstr "Resultaten voor ‘{search}’"
 
 msgid "Reviews"
 msgstr "Reviews"

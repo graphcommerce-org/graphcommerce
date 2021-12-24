@@ -52,7 +52,7 @@ function SearchResultPage(props: Props) {
   return (
     <>
       <PageMeta
-        title={search ? t`Results for '${search}'` : t`Search`}
+        title={search ? t`Results for ‘${search}’` : t`Search`}
         metaRobots={['noindex']}
         canonical='/search'
       />
@@ -68,7 +68,7 @@ function SearchResultPage(props: Props) {
 
       <Hidden implementation='css' smDown>
         <LayoutTitle gutterBottom={false} gutterTop={false}>
-          {search ? <Trans>Results for '{search}'</Trans> : <Trans>All products</Trans>}
+          {search ? <Trans>Results for &lsquo;{search}&rsquo;</Trans> : <Trans>All products</Trans>}
         </LayoutTitle>
 
         <Container maxWidth='sm'>
@@ -88,7 +88,7 @@ function SearchResultPage(props: Props) {
       {noSearchResults && <NoSearchResults search={search} />}
       {products && products.items && products?.items?.length > 0 && (
         <ProductListParamsProvider value={params}>
-          <AppShellSticky headerFill='mobile-only'>
+          <AppShellSticky>
             <ProductListFiltersContainer>
               <ProductListSort sort_fields={products?.sort_fields} />
               <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />

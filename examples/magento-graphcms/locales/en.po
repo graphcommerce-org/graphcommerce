@@ -40,6 +40,9 @@ msgstr "Apply"
 msgid "As low as"
 msgstr "As low as"
 
+msgid "As soon as the payment is completed, you will automatically return to the webshop."
+msgstr "As soon as the payment is completed, you will automatically return to the webshop."
+
 msgid "Authentication"
 msgstr "Authentication"
 
@@ -76,8 +79,14 @@ msgstr "Checkout"
 msgid "Checkout summary"
 msgstr "Checkout summary"
 
+msgid "Choose your bank, and place your order."
+msgstr "Choose your bank, and place your order."
+
 msgid "Close"
 msgstr "Close"
+
+msgid "Complete the payment on your bank's website."
+msgstr "Complete the payment on your bank's website."
 
 msgid "Confirm Password"
 msgstr "Confirm Password"
@@ -235,8 +244,8 @@ msgstr "Products"
 msgid "Remove Product"
 msgstr "Remove Product"
 
-msgid "Results for '{search}'"
-msgstr "Results for '{search}'"
+msgid "Results for ‘{search}’"
+msgstr "Results for ‘{search}’"
 
 msgid "Reviews"
 msgstr "Reviews"
