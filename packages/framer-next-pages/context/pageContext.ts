@@ -43,3 +43,4 @@ export type PageContext = {
 }
 
 export const pageContext = createContext(undefined as unknown as PageContext)
+pageContext.displayName = 'PageContext'

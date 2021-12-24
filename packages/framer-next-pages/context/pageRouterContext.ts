@@ -3,6 +3,7 @@ import { createContext } from 'react'
 import { PageRouterContext, RouterProxy } from '../types'
 
 export const pageRouterContext = createContext(undefined as unknown as PageRouterContext)
+pageRouterContext.displayName = 'PageRouterContext'
 
 type OverrideProps = Partial<Pick<NextRouter, 'asPath' | 'pathname' | 'query' | 'locale'>>
 
