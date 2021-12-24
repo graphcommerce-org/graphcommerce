@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.160.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.160.9...@graphcommerce/graphcommerce@2.160.10) (2021-12-24)
+
+
+### Bug Fixes
+
+* make sure the filters are aligned properly on mobile ([4bfe978](https://github.com/ho-nl/m2-pwa/commit/4bfe978f095c1b9867608c138eccf3227b18d4e9))
+* make sure the search results have the proper translation ([dc32280](https://github.com/ho-nl/m2-pwa/commit/dc32280daec17f15b42289f5ecd237b5ca5e5eed))
+
+
+
+
+
 ## [2.160.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.160.8...@graphcommerce/graphcommerce@2.160.9) (2021-12-23)
 
 

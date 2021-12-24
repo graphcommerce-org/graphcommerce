@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.141.21](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.141.20...@graphcommerce/magento-graphcms@2.141.21) (2021-12-24)
+
+
+### Bug Fixes
+
+* make sure the filters are aligned properly on mobile ([4bfe978](https://github.com/ho-nl/m2-pwa/commit/4bfe978f095c1b9867608c138eccf3227b18d4e9))
+* make sure the search results have the proper translation ([dc32280](https://github.com/ho-nl/m2-pwa/commit/dc32280daec17f15b42289f5ecd237b5ca5e5eed))
+
+
+
+
+
 ## [2.141.20](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.141.19...@graphcommerce/magento-graphcms@2.141.20) (2021-12-23)
 
 

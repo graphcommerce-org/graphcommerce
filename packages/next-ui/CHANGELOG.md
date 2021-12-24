@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.21.15](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.14...@graphcommerce/next-ui@3.21.15) (2021-12-24)
+
+
+### Bug Fixes
+
+* make sure the filters are aligned properly on mobile ([4bfe978](https://github.com/ho-nl/m2-pwa/commit/4bfe978f095c1b9867608c138eccf3227b18d4e9))
+
+
+
+
+
 ## [3.21.13](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.12...@graphcommerce/next-ui@3.21.13) (2021-12-23)
 
 
