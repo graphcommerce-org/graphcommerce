@@ -1,5 +1,4 @@
 import { Container, makeStyles, Theme } from '@material-ui/core'
-import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 
@@ -7,22 +6,18 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       position: 'sticky',
+      top: theme.appShell.headerHeightSm,
       zIndex: 96,
-    },
-    fillMobileOnly: {
       [theme.breakpoints.up('md')]: {
         top: `${theme.page.vertical} !important`,
       },
     },
   }),
-  {
-    name: 'AppShellSticky',
-  },
+  { name: 'AppShellSticky' },
 )
 
 type AppShellStickyBaseProps = {
   children: React.ReactNode
-  headerFill?: 'mobile-only' | 'both'
 }
 
 type AppShellStickyProps = AppShellStickyBaseProps & UseStyles<typeof useStyles>
@@ -32,18 +27,11 @@ type AppShellStickyProps = AppShellStickyBaseProps & UseStyles<typeof useStyles>
  - determines top offset based on header height dynamically
 */
 export default function AppShellSticky(props: AppShellStickyProps) {
-  const { children, headerFill = 'both' } = props
+  const { children } = props
   const classes = useStyles(props)
 
-  // todo
-  const top = 0
-
   return (
-    <Container
-      maxWidth={false}
-      className={clsx(classes.root, headerFill === 'mobile-only' && classes.fillMobileOnly)}
-      style={{ top }}
-    >
+    <Container maxWidth={false} className={classes.root}>
       <>{children}</>
     </Container>
   )

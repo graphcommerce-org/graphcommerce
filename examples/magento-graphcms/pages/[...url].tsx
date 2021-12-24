@@ -104,7 +104,7 @@ function CategoryPage(props: Props) {
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
-          <AppShellSticky headerFill='mobile-only'>
+          <AppShellSticky>
             <ProductListFiltersContainer>
               <ProductListSort
                 sort_fields={products?.sort_fields}
