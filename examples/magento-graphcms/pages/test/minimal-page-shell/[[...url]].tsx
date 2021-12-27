@@ -17,7 +17,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
   const urlParts = queryParams.pop()?.split('-') ?? []
 
   const title = urlParts.map((s = '') => `${s.charAt(0).toUpperCase() + s.slice(1)}`).join(' ')
-  const [scroll, setScroll] = useState<boolean>(true)
+  const [scroll, setScroll] = useState<boolean>(false)
   const { backSteps } = usePageContext()
 
   const withPrimary = urlParts.includes('primary')
@@ -82,15 +82,15 @@ export function AppShellDemo(props: AppShellDemoProps) {
         }
         floatingMd={isFullPage}
         noAlign={isSheet}
+        switchPoint={0}
       >
-        {/* {titleComponent} */}
         {isMinimal || isSheet || withIcon || withTitle ? titleComponent : undefined}
       </LayoutHeader>
 
-      <Container maxWidth='md'>
-        <LayoutTitle icon={withIcon ? iconPerson : undefined}>{title}</LayoutTitle>
+      <Container maxWidth='md' style={{ paddingTop: 50 }}>
+        {/* <LayoutTitle icon={withIcon ? iconPerson : undefined}>{title}</LayoutTitle> */}
 
-        {isSheet && !primaryAction && (
+        {/* {isSheet && !primaryAction && (
           <Typography variant='body1' gutterBottom>
             When opening a sheet a close icon is shown at the top right.
           </Typography>
@@ -113,7 +113,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
             With a primary action and back button, there is no room for the close button. The close
             button gets ommited
           </Typography>
-        )}
+        )} */}
 
         <Divider />
 

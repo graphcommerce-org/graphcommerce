@@ -1,66 +1,97 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import {
-  GetStaticProps,
-  LayoutOverlay,
-  LayoutOverlayProps,
-  LayoutOverlayVariant,
-} from '@graphcommerce/next-ui'
+  LayoutOverlayDemo,
+  LayoutOverlayState,
+  useLayoutOverlayDemoContext,
+} from '@graphcommerce/next-ui/LayoutOverlay/test/LayoutOverlayDemo'
+import { useForm, useFormAutoSubmit } from '@graphcommerce/react-hook-form'
+import { capitalize, Container, Hidden, Typography } from '@material-ui/core'
 import React from 'react'
-import apolloClient from '../../../lib/apolloClient'
-import { AppShellDemo } from '../minimal-page-shell/[[...url]]'
+
+type Size = 'Sm' | 'Md'
+
+const sizes: Size[] = ['Sm', 'Md']
 
 function SheetDemo() {
-  return <AppShellDemo baseUrl='/test/sheet' />
+  const [layout, setLayout] = useLayoutOverlayDemoContext()
+
+  const form = useForm<LayoutOverlayState>({ defaultValues: layout })
+  const { register } = form
+  const { variantMd, variantSm, justifyMd, justifySm, sizeMd, sizeSm } = layout
+
+  const submit = form.handleSubmit(setLayout)
+  useFormAutoSubmit({ form, submit, wait: 0 })
+
+  return (
+    <>
+      <LayoutOverlayHeader switchPoint={0}>
+        <LayoutTitle size='small'>
+          <Hidden smDown>
+            Overlay Md {variantMd} {justifyMd} {sizeMd}
+          </Hidden>
+          <Hidden smUp>
+            Overlay Sm {variantSm} {justifySm} {sizeSm}
+          </Hidden>
+        </LayoutTitle>
+      </LayoutOverlayHeader>
+      <Container maxWidth={false}>
+        <form style={{ paddingTop: 100 }} onSubmit={submit}>
+          {sizes.map((size) => (
+            <div key={size}>
+              <Typography variant='subtitle1'>{size}</Typography>
+              <div>
+                Variant:
+                {(['floating', 'full'] as const).map((value) => {
+                  const name: `size${Size}` = `size${size}`
+                  const id = `${name}-${value}`
+                  return (
+                    <label key={id} htmlFor={id}>
+                      <input {...register(name)} id={id} type='radio' value={value} />
+                      {capitalize(value)}
+                    </label>
+                  )
+                })}
+              </div>
+
+              <div>
+                Variant:
+                {(['left', 'bottom', 'right'] as const).map((value) => {
+                  const name: `variant${Size}` = `variant${size}`
+                  const id = `${name}-${value}`
+                  return (
+                    <label key={id} htmlFor={id}>
+                      <input {...register(name)} id={id} type='radio' value={value} />
+                      {capitalize(value)}
+                    </label>
+                  )
+                })}
+              </div>
+
+              <div>
+                Justify:
+                {(['start', 'end', 'center', 'stretch'] as const).map((value) => {
+                  const name: `justify${Size}` = `justify${size}`
+                  const id = `${name}-${value}`
+                  return (
+                    <label key={id} htmlFor={id}>
+                      <input {...register(name)} id={id} type='radio' value={value} />
+                      {capitalize(value)}
+                    </label>
+                  )
+                })}
+              </div>
+            </div>
+          ))}
+        </form>
+      </Container>
+    </>
+  )
 }
 
-const pageOptions: PageOptions<LayoutOverlayProps> = {
+const pageOptions: PageOptions = {
   overlayGroup: 'test',
-  Layout: LayoutOverlay,
-  sharedKey: (router) => {
-    const key = [
-      router.pathname,
-      router.asPath.includes('left') ? 'left' : false,
-      router.asPath.includes('right') ? 'right' : false,
-      router.asPath.includes('bottom') ? 'bottom' : false,
-      router.asPath.includes('primary') ? 'primary' : false,
-      router.asPath.includes('stepper') ? 'stepper' : false,
-      router.asPath.includes('icon') ? 'icon' : false,
-    ]
-      .filter(Boolean)
-      .join('-')
-
-    return key
-  },
+  Layout: LayoutOverlayDemo,
 }
 SheetDemo.pageOptions = pageOptions
-
-export const getStaticPaths = async () =>
-  // Disable getStaticPaths for test pages
-  Promise.resolve({ paths: [], fallback: 'blocking' })
-
-export const getStaticProps: GetStaticProps<
-  LayoutOverlayProps,
-  Record<string, unknown>,
-  { url: string[] }
-> = async ({ params, locale }) => {
-  const url = params?.url ?? []
-  const isLeftSidebar = url?.[0] === 'left'
-  const isRightSidebar = url?.[0] === 'right'
-  const client = apolloClient(locale, true)
-
-  const conf = client.query({ query: StoreConfigDocument })
-
-  const variant = (((isLeftSidebar || isRightSidebar) && url?.[0]) ||
-    'bottom') as LayoutOverlayVariant
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-      variantSm: variant,
-      variantMd: variant,
-    },
-  }
-}
-
 export default SheetDemo

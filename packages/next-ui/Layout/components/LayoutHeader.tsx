@@ -23,8 +23,6 @@ export type LayoutHeaderProps = FloatingProps &
      */
     secondary?: React.ReactNode
 
-    additional?: React.ReactNode
-
     noAlign?: boolean
   }
 
@@ -97,7 +95,7 @@ const useStyles = makeStyles(
 )
 
 export function LayoutHeader(props: LayoutHeaderProps) {
-  const { children, additional, divider, primary, secondary, noAlign, switchPoint } = props
+  const { children, divider, primary, secondary, noAlign, switchPoint } = props
   const classes = useStyles(props)
   const showBack = useShowBack()
   const showClose = useShowClose()
@@ -118,8 +116,8 @@ export function LayoutHeader(props: LayoutHeaderProps) {
 
   if (back) left = back
 
-  if (!left) left = close
-  else if (!right) right = close
+  if (!right) right = close
+  else if (!left) right = close
 
   if (!left && !right && !children) return null
 
@@ -144,7 +142,6 @@ export function LayoutHeader(props: LayoutHeaderProps) {
         switchPoint={switchPoint}
       >
         {children}
-        {additional}
       </LayoutHeaderContent>
     </div>
   )

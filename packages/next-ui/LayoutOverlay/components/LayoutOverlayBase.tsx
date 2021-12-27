@@ -1,7 +1,7 @@
 import { usePageContext, usePageRouter, useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
 import { useElementScroll, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
-import { makeStyles, Theme, ClickAwayListener } from '@material-ui/core'
+import { makeStyles, Theme, ClickAwayListener, capitalize, styled } from '@material-ui/core'
 import { m, useDomEvent, useMotionValue, usePresence, useTransform } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
 import LayoutProvider from '../../Layout/components/LayoutProvider'
@@ -113,37 +113,19 @@ const useStyles = makeStyles(
         },
       },
     },
-    overlay: {
-      pointerEvents: 'none',
-      gridArea: 'overlay',
-      scrollSnapAlign: 'start',
-      minHeight: '100vh',
-      '@supports (-webkit-touch-callout: none)': {
-        minHeight: '-webkit-fill-available',
-      },
-    },
-    overlayVariantSmBottom: {
-      [theme.breakpoints.down('sm')]: {
-        marginTop: `calc(${theme.appShell.headerHeightSm} * 0.5 * -1)`,
-        paddingTop: `calc(${theme.appShell.headerHeightSm} * 0.5)`,
-        display: 'grid',
-      },
-    },
-    overlayVariantMdBottom: {
-      [theme.breakpoints.up('md')]: {
-        marginTop: `calc(${theme.appShell.headerHeightMd} + (${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * 0.5)`,
-        paddingTop: `calc(${theme.appShell.headerHeightMd} + (${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5)`,
-        display: 'grid',
-      },
-    },
-    overlayPane: {
-      pointerEvents: 'all',
-      backgroundColor: theme.palette.background.paper,
-      boxShadow: theme.shadows[24],
-      minWidth: 'min(800px, 90vw)',
-      scrollSnapAlign: 'end',
 
-      paddingBottom: 56,
+    // Overlay pane styles
+    overlayPane: {},
+
+    overlaySizeSmFloating: {
+      [theme.breakpoints.down('sm')]: {
+        padding: `${theme.page.vertical} ${theme.page.horizontal}`,
+      },
+    },
+    overlaySizeMdFloating: {
+      [theme.breakpoints.up('md')]: {
+        padding: `${theme.page.vertical} ${theme.page.horizontal}`,
+      },
     },
     overlayPaneVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
@@ -157,7 +139,17 @@ const useStyles = makeStyles(
         borderTopRightRadius: theme.shape.borderRadius * 3,
       },
     },
-    overlayPaneVariantSmLeft: {
+    overlayPaneSizeSmFloating: {
+      [theme.breakpoints.down('sm')]: {
+        borderRadius: theme.shape.borderRadius * 3,
+      },
+    },
+    overlayPaneSizeMdFloating: {
+      [theme.breakpoints.up('md')]: {
+        borderRadius: theme.shape.borderRadius * 3,
+      },
+    },
+    overlayPaneSmVariantSizeLeftFull: {
       [theme.breakpoints.down('sm')]: {
         paddingBottom: 1,
         minHeight: '100vh',
@@ -166,7 +158,7 @@ const useStyles = makeStyles(
         },
       },
     },
-    overlayPaneVariantMdLeft: {
+    overlayPaneMdVariantSizeLeftFull: {
       [theme.breakpoints.up('md')]: {
         paddingBottom: 1,
         minHeight: '100vh',
@@ -175,7 +167,7 @@ const useStyles = makeStyles(
         },
       },
     },
-    overlayPaneVariantSmRight: {
+    overlayPaneSmVariantSizeRightFull: {
       [theme.breakpoints.down('sm')]: {
         paddingBottom: 1,
         minHeight: '100vh',
@@ -184,7 +176,7 @@ const useStyles = makeStyles(
         },
       },
     },
-    overlayPaneVariantMdRight: {
+    overlayPaneMdVariantSizeRightFull: {
       [theme.breakpoints.up('md')]: {
         paddingBottom: 1,
         minHeight: '100vh',
@@ -213,12 +205,42 @@ const useStyles = makeStyles(
 )
 
 export type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
+export type LayoutOverlaySize = 'floating' | 'full'
+export type LayoutOverlayAlign = 'start' | 'end' | 'center' | 'stretch'
+
+type Positioning =
+  | 'left'
+  | 'left-float'
+  | 'left-top'
+  | 'left-bottom'
+  | 'bottom'
+  | 'bottom-float'
+  | 'bottom-left'
+  | 'bottom-right'
+  | 'right'
+  | 'right-float'
+  | 'right-top'
+  | 'right-bottom'
+// | 'top'
+// | 'top-float'
+// | 'top-left'
+// | 'top-right'
+
+type Sizing = 'content' | 'full'
+
+type StyleProps = {
+  variantSm: LayoutOverlayVariant
+  variantMd: LayoutOverlayVariant
+  sizeSm?: LayoutOverlaySize
+  sizeMd?: LayoutOverlaySize
+  justifySm?: LayoutOverlayAlign
+  justifyMd?: LayoutOverlayAlign
+}
 
 export type LayoutOverlayBaseProps = {
   children?: React.ReactNode
-  variantSm: LayoutOverlayVariant
-  variantMd: LayoutOverlayVariant
-} & UseStyles<typeof useStyles>
+} & StyleProps &
+  UseStyles<typeof useStyles>
 
 export enum OverlayPosition {
   UNOPENED = -1,
@@ -227,7 +249,17 @@ export enum OverlayPosition {
 }
 
 export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
-  const { children, variantSm, variantMd } = props
+  const {
+    children,
+    variantSm,
+    variantMd,
+    classes: _classes,
+    sizeSm = 'floating',
+    sizeMd = 'floating',
+    justifySm = 'start',
+    justifyMd = 'start',
+  } = props
+
   const { scrollerRef } = useScrollerContext()
   const positions = useOverlayPosition()
   const scrollTo = useScrollTo()
@@ -238,8 +270,15 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
 
   const position = useMotionValue<OverlayPosition>(OverlayPosition.UNOPENED)
 
-  const classes = useStyles(props)
-  const className = classesPicker(classes, { variantSm, variantMd })
+  const classes = useStyles({ classes: _classes, sizeSm, sizeMd, justifySm, justifyMd })
+  const className = classesPicker(classes, {
+    variantSm,
+    variantMd,
+    sizeSm,
+    sizeMd,
+    smVariantSize: `${variantSm}${capitalize(sizeSm)}`,
+    mdVariantSize: `${variantMd}${capitalize(sizeMd)}`,
+  })
 
   const overlayRef = useRef<HTMLDivElement>(null)
 
@@ -333,9 +372,60 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
   const onClickAway = useCallback(
     (event: React.MouseEvent<Document>) => {
       if (event.target === document.body && event.type === 'click') return
+
       closeOverlay()
     },
     [closeOverlay],
+  )
+
+  const Overlay = styled('div')(
+    ({ theme }) => ({
+      display: 'grid',
+      pointerEvents: 'none',
+      gridArea: 'overlay',
+      scrollSnapAlign: 'start',
+
+      [theme.breakpoints.down('sm')]: {
+        justifyContent: justifySm,
+        alignItems: justifySm,
+
+        ...(variantSm === 'bottom' && {
+          marginTop: `calc(${theme.appShell.headerHeightSm} * 0.5 * -1)`,
+          paddingTop: `calc(${theme.appShell.headerHeightSm} * 0.5)`,
+        }),
+      },
+      [theme.breakpoints.up('md')]: {
+        justifyContent: justifyMd,
+        alignItems: justifyMd,
+
+        ...(variantMd === 'bottom' && {
+          marginTop: `calc(${theme.appShell.headerHeightMd} + (${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * 0.5)`,
+          paddingTop: `calc(${theme.appShell.headerHeightMd} + (${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5)`,
+          display: 'grid',
+        }),
+      },
+    }),
+    { name: 'Overlay' },
+  )
+
+  const OverlayPane = styled('div')(
+    ({ theme }) => ({
+      pointerEvents: 'all',
+      backgroundColor: theme.palette.background.paper,
+      boxShadow: theme.shadows[24],
+      // scrollSnapAlign: 'end',
+
+      [theme.breakpoints.down('sm')]: {
+        minWidth: '80vw',
+        ...(sizeSm === 'full' && {
+          paddingBottom: 56,
+        }),
+      },
+      [theme.breakpoints.up('md')]: {
+        minWidth: '400px',
+      },
+    }),
+    { name: 'OverlayPane' },
   )
 
   return (
@@ -343,13 +433,13 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
       <m.div {...className('backdrop')} style={{ opacity: positions.open.visible }} />
       <Scroller {...className('root')} grid={false} hideScrollbar>
         <div {...className('beforeOverlay')} />
-        <div {...className('overlay')} ref={overlayRef}>
-          <ClickAwayListener onClickAway={onClickAway}>
-            <div {...className('overlayPane')}>
-              <LayoutProvider scroll={scrollWithoffset}>{children}</LayoutProvider>
-            </div>
-          </ClickAwayListener>
-        </div>
+        <Overlay {...className('overlay')} ref={overlayRef}>
+          {/* <ClickAwayListener onClickAway={onClickAway}> */}
+          <OverlayPane {...className('overlayPane')}>
+            <LayoutProvider scroll={scrollWithoffset}>{children}</LayoutProvider>
+          </OverlayPane>
+          {/* </ClickAwayListener> */}
+        </Overlay>
       </Scroller>
     </>
   )

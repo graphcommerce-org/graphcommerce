@@ -51,11 +51,6 @@ function MinimalAppShellSubheader(props: Props) {
             </Button>
           </PageLink>
         }
-        additional={
-          <Container maxWidth='sm'>
-            <SearchForm urlHandle='test/minimal-page-shell-subheader' />
-          </Container>
-        }
       >
         <Typography variant='h5' component='span'>
           Minimal UI

@@ -25,6 +25,8 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('md')]: {
         height: theme.appShell.appBarHeightMd,
       },
+      borderTopLeftRadius: theme.shape.borderRadius * 3,
+      borderTopRightRadius: theme.shape.borderRadius * 3,
     },
     bgDivider: {
       boxShadow: 'unset',
@@ -50,6 +52,7 @@ const useStyles = makeStyles(
       gridTemplateAreas: `"left center right"`,
       gridTemplateColumns: '1fr auto 1fr',
       alignItems: 'center',
+      // columnGap: theme.spacings.xs,
 
       height: theme.appShell.headerHeightSm,
       [theme.breakpoints.up('md')]: {
@@ -104,7 +107,10 @@ const useStyles = makeStyles(
       },
     },
     right: {
-      '& > *': { pointerEvents: 'all' },
+      '& > *': {
+        pointerEvents: 'all',
+        width: 'min-content',
+      },
       display: 'grid',
       gridAutoFlow: 'column',
       gap: theme.spacings.sm,
@@ -168,7 +174,7 @@ export default function LayoutHeaderContent(props: ContentProps) {
     <>
       <div {...className('bg')} />
       <div {...className('content')} ref={ref}>
-        <div {...className('left')}>{left}</div>
+        {left && <div {...className('left')}>{left}</div>}
         <div {...className('center')}>{children}</div>
         <div {...className('right')}>{right}</div>
         {divider && <div {...className('divider')}>{divider}</div>}

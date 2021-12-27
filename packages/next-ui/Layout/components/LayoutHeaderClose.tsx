@@ -18,7 +18,7 @@ export default function LayoutHeaderClose() {
       type='button'
       onClick={() => router.go(closeSteps * -1)}
       aria-label='Close'
-      variant='pill-link'
+      variant='text'
       startIcon={<SvgImageSimple src={iconClose} />}
     >
       Close
