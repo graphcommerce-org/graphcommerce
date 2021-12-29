@@ -2,11 +2,9 @@ import { NextComponentType, NextPageContext } from 'next'
 import { NextRouter } from 'next/router'
 import React from 'react'
 
-export type RouterProxy = NextRouter & { go(delta: number): void; prevUpUrl: string }
-
 export type PageRouterContext = {
-  currentRouter: RouterProxy
-  prevRouter?: RouterProxy
+  currentRouter: NextRouter
+  prevRouter?: NextRouter
   up?: UpPage
   prevUp?: UpPage
 }
@@ -124,7 +122,7 @@ export type PageOptions<T extends Record<string, unknown> = Record<string, unkno
   /** Pass props to the SharedComponent */
   layoutProps?: Partial<Omit<T, 'children'>>
 
-  up?: UpPage
+  up?: UpPage | null
 }
 
 export type PageComponent<T = Record<string, unknown>> = NextComponentType<NextPageContext, T> & {
@@ -140,10 +138,9 @@ export type UpPage = { href: string; title: string }
  * @private
  */
 export type PageItem = {
-  currentRouter: RouterProxy
-  children: React.ReactNode
+  PageComponent: PageComponent
   historyIdx: number
   sharedKey: string
   actualPageProps?: Record<string, unknown>
-  up?: UpPage
-} & Omit<PageOptions<Record<string, unknown>>, 'sharedKey'>
+  routerContext: PageRouterContext
+} & Omit<PageOptions<Record<string, unknown>>, 'sharedKey' | 'up'>

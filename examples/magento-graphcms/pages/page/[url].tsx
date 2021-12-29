@@ -1,9 +1,10 @@
-import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { CmsPageContent } from '@graphcommerce/magento-cms'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { LayoutHeader, GetStaticProps, MetaRobots, LayoutTitle } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.gql'
 import { DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
@@ -20,7 +21,7 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 export type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function CmsPage(props: Props) {
-  const router = usePageRouter()
+  const router = useRouter()
   const { cmsPage, pages, products } = props
   const page = pages?.[0]
 

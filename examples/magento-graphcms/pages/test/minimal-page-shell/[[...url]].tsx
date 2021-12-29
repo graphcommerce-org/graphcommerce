@@ -1,8 +1,9 @@
-import { PageOptions, usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
+import { PageOptions, usePageContext } from '@graphcommerce/framer-next-pages'
 import { LayoutHeader, Button, iconPerson, Stepper, LayoutTitle } from '@graphcommerce/next-ui'
-import { Container, Divider, List, ListItem, NoSsr, Typography } from '@material-ui/core'
+import { Container, Divider, List, ListItem } from '@material-ui/core'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../../components/Layout'
 
@@ -13,7 +14,7 @@ type AppShellDemoProps = {
 export function AppShellDemo(props: AppShellDemoProps) {
   const { baseUrl } = props
 
-  const queryParams = usePageRouter().asPath.split('/')
+  const queryParams = useRouter().asPath.split('/')
   const urlParts = queryParams.pop()?.split('-') ?? []
 
   const title = urlParts.map((s = '') => `${s.charAt(0).toUpperCase() + s.slice(1)}`).join(' ')
@@ -158,7 +159,10 @@ export function AppShellDemo(props: AppShellDemoProps) {
               With icon
             </ListItem>
           </PageLink>
-          <PageLink href='/test/sheet/bottom' passHref>
+          <PageLink
+            href='/test/sheet?sizeMd=full&variantMd=bottom&justifyMd=stretch&sizeSm=floating&variantSm=bottom&justifySm=stretch'
+            passHref
+          >
             <ListItem
               button
               component='a'

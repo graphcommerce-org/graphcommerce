@@ -8,6 +8,7 @@ import { MessageLoader } from '../types'
 type LinguiProviderProps = Omit<I18nProviderProps, 'i18n'> & {
   children: React.ReactNode
   loader: MessageLoader
+  locale?: string
 }
 
 i18n.loadLocaleData({
@@ -17,9 +18,8 @@ i18n.loadLocaleData({
 })
 
 export default function LinguiProvider(props: LinguiProviderProps) {
-  const { loader, ...i18nProviderPRops } = props
+  const { loader, locale = 'en', ...i18nProviderPRops } = props
 
-  const { locale = 'en' } = useRouter()
   useMemo(() => {
     const localeOnly = locale?.split('-')?.[0]
 

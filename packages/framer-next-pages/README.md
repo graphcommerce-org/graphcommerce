@@ -156,22 +156,8 @@ We have multiple hooks available to animate based on certain states, etc.
 ```tsx
 export default function MyComponent() {
   const { level, depth, direction } = usePageContext()
-  const pageRouter = usePageRouter()
 }
 ```
-
-### usePageRouter
-
-The pageRouter maintains state for the old page.
-
-E.g.:
-
-- `/my-regular-page`:
-  - `useRouter().asPath === '/overlay'`
-  - `usePageRouter().asPath === '/my-regular-page'` We maintain the state here!
-- `/overlay`:
-  - `useRouter().asPath === '/overlay'`
-  - `usePageRouter().asPath === '/overlay'`
 
 ### usePageContext().level
 
@@ -226,7 +212,7 @@ count that shows us if we can go back
 ```tsx
 function MyComponent {
   const { backSteps } = usePageContext();
-  const router = usePageRouter();
+  const router = useRouter();
   return <button onClick={backSteps > 0 && () => router.back()}>back</button>
 }
 ```
@@ -239,8 +225,8 @@ close the overlay. So we give the times it needs to go back.
 ```tsx
 function MyComponent {
   const { closeSteps } = usePageContext();
-  const router = usePageRouter();
-  return <button onClick={closeSteps > 0 && () => router.go(closeSteps * -1)}>close</button>
+  const go = useGo();
+  return <button onClick={closeSteps > 0 && () => go(closeSteps * -1)}>close</button>
 }
 ```
 

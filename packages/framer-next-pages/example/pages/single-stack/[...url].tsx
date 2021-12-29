@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/require-await */
-import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   LayoutHeader,
   LayoutTitle,
@@ -11,13 +11,14 @@ import { Container } from '@material-ui/core'
 import { motion } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticProps } from 'next'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import Grid from '../../components/Grid'
 import StackDebug from '../../components/StackedDebugger'
 
 function SingleStack() {
   const [expanded, setExpanded] = useState(true)
-  const router = usePageRouter()
+  const router = useRouter()
 
   const [variant] = router.query.url as string[]
   const page = Number.isNaN(Number(router.query.url?.[1])) ? 0 : Number(router.query.url?.[1])

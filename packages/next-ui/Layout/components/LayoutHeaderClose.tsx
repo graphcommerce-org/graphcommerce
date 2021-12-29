@@ -1,4 +1,4 @@
-import { usePageRouter, usePageContext } from '@graphcommerce/framer-next-pages'
+import { useGo, usePageContext } from '@graphcommerce/framer-next-pages'
 import React from 'react'
 import Button from '../../Button'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
@@ -10,13 +10,13 @@ export function useShowClose() {
 }
 
 export default function LayoutHeaderClose() {
-  const router = usePageRouter()
   const { closeSteps } = usePageContext()
+  const onClick = useGo(closeSteps * -1)
 
   return (
     <Button
       type='button'
-      onClick={() => router.go(closeSteps * -1)}
+      onClick={onClick}
       aria-label='Close'
       variant='text'
       startIcon={<SvgImageSimple src={iconClose} />}

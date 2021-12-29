@@ -1,9 +1,10 @@
-import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, Pagination, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { Container, Link } from '@material-ui/core'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
+import { useRouter } from 'next/router'
 import React from 'react'
 import BlogList from '../../../components/Blog'
 import { BlogListDocument, BlogListQuery } from '../../../components/Blog/BlogList.gql'
@@ -23,7 +24,7 @@ const pageSize = 16
 
 function BlogPage(props: Props) {
   const { pages, blogPosts, pagesConnection } = props
-  const router = usePageRouter()
+  const router = useRouter()
   const page = pages[0]
   const title = page.title ?? ''
 

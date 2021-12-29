@@ -3,22 +3,21 @@ import { requestIdleCallback, cancelIdleCallback } from 'next/dist/client/reques
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import type { NextRouter, Router } from 'next/router'
 import React, { useEffect, useRef, useState } from 'react'
+import {} from 'react-dom'
 import { pageContext } from '../context/pageContext'
-import { createRouterProxy, pageRouterContext } from '../context/pageRouterContext'
 import type { PageComponent, PageItem, UpPage } from '../types'
+import { createRouterProxy } from '../utils/createRouterProxy'
 import Page from './Page'
+import { PageRenderer } from './PageRenderer'
 
 function findPlainIdx(items: PageItem[]) {
   return items.reduce((acc, item, i) => (typeof item.overlayGroup === 'string' ? acc : i), -1)
 }
 
-type PagesProps = Omit<AppPropsType<NextRouter>, 'pageProps'> & {
+type PagesProps = Omit<AppPropsType<NextRouter>, 'pageProps' | 'Component'> & {
   Component: PageComponent
-  pageProps?: { up?: UpPage }
+  pageProps?: { up?: UpPage | null }
 }
-
-// eslint-disable-next-line react/jsx-no-useless-fragment
-const NoopLayout: React.FC = ({ children }) => <>{children}</>
 
 export default function FramerNextPages(props: PagesProps) {
   const { router, Component, pageProps } = props
@@ -42,15 +41,19 @@ export default function FramerNextPages(props: PagesProps) {
     const proxy = createRouterProxy(router)
 
     activeItem = {
-      children: <Component {...(pageProps as Record<string, unknown>)} />,
-      currentRouter: proxy,
+      PageComponent: Component,
       Layout: Component.pageOptions?.Layout,
-      layoutProps: Component.pageOptions?.layoutProps,
+      layoutProps: { ...Component.pageOptions?.layoutProps, ...pageProps },
       actualPageProps: pageProps,
       sharedKey: Component.pageOptions?.sharedKey?.(proxy) ?? proxy.pathname,
       overlayGroup: Component.pageOptions?.overlayGroup,
       historyIdx: idx,
-      up: Component.pageOptions?.up ?? pageProps?.up,
+      routerContext: {
+        currentRouter: proxy,
+        prevRouter: items.current[idx - 1]?.routerContext.currentRouter,
+        prevUp: items.current[idx - 1]?.routerContext.up,
+        up: Component.pageOptions?.up ?? pageProps?.up ?? undefined,
+      },
     }
     items.current[idx] = activeItem
   }
@@ -74,15 +77,17 @@ export default function FramerNextPages(props: PagesProps) {
         const proxy = createRouterProxy(router, { asPath: '/', pathname: '/', query: {} })
         const Fallback = info.Component as PageComponent
         const fbItem: PageItem = {
-          children: <Fallback {...(info.props?.pageProps as Record<string, unknown>)} />,
-          currentRouter: proxy,
+          PageComponent: Fallback,
           Layout: Fallback.pageOptions?.Layout,
-          layoutProps: Fallback.pageOptions?.layoutProps,
+          layoutProps: { ...Fallback.pageOptions?.layoutProps, ...info.props?.pageProps },
           actualPageProps: info.props?.pageProps,
           sharedKey: Fallback.pageOptions?.sharedKey?.(proxy) ?? proxy.pathname,
           overlayGroup: Fallback.pageOptions?.overlayGroup,
           historyIdx: -1,
-          up: Fallback.pageOptions?.up ?? info.props?.pageProps?.up,
+          routerContext: {
+            currentRouter: proxy,
+            up: Fallback.pageOptions?.up ?? info.props?.pageProps?.up,
+          },
         }
 
         cancel = requestIdleCallback(() => setFallback(fbItem))
@@ -118,57 +123,33 @@ export default function FramerNextPages(props: PagesProps) {
       if (!item || seen.has(item.sharedKey)) return false
       seen.add(item.sharedKey)
 
-      if (
+      return !(
         typeof activeItem.overlayGroup === 'string' &&
         typeof item.overlayGroup === 'string' &&
         activeItem.overlayGroup !== item.overlayGroup
-      ) {
-        return false
-      }
-      return true
+      )
     })
     .reverse()
 
   return (
     <AnimatePresence initial={false}>
       {renderItems.map((item, itemIdx) => {
-        const {
-          children,
-          historyIdx,
-          sharedKey,
-          Layout = NoopLayout,
-          layoutProps,
-          actualPageProps,
-          currentRouter,
-          overlayGroup,
-          up,
-        } = item
+        const { historyIdx, sharedKey, overlayGroup } = item
         const active = itemIdx === renderItems.length - 1
         const depth = itemIdx - (renderItems.length - 1)
-
         const closeIdx = renderItems[itemIdx - 1]?.historyIdx ?? -1
         const closeSteps = closeIdx > -1 ? historyIdx - closeIdx : 0
-
         const backSteps = historyIdx - closeIdx - 1
-
-        const { currentRouter: prevRouter, up: prevUp } = items.current[historyIdx - 1] ?? {}
 
         return (
           <pageContext.Provider
             key={sharedKey}
-            // Since we very carefully prevent rerenders of this component we can safely ignore the eslint error
+            // We're actually rerendering here but since the PageRenderer is memoized we can safely do this
             // eslint-disable-next-line react/jsx-no-constructed-context-values
             value={{ depth, active, direction, closeSteps, backSteps, historyIdx, overlayGroup }}
           >
             <Page active={active} historyIdx={historyIdx}>
-              <pageRouterContext.Provider
-                // eslint-disable-next-line react/jsx-no-constructed-context-values
-                value={{ currentRouter, prevRouter, up, prevUp }}
-              >
-                <Layout {...actualPageProps} {...layoutProps}>
-                  {children}
-                </Layout>
-              </pageRouterContext.Provider>
+              <PageRenderer {...item} />
             </Page>
           </pageContext.Provider>
         )

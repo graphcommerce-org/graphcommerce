@@ -72,4 +72,6 @@ const MotionImageAspect = m(
   }),
 )
 
+MotionImageAspect.displayName = 'MotionImageAspect'
+
 export default MotionImageAspect

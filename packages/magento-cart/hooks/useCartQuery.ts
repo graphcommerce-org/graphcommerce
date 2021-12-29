@@ -1,5 +1,5 @@
 import { useQuery, TypedDocumentNode, QueryHookOptions } from '@apollo/client'
-import { usePageRouter } from '@graphcommerce/framer-next-pages'
+import { useRouter } from 'next/router'
 import { useCurrentCartId } from './useCurrentCartId'
 
 /**
@@ -18,7 +18,7 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
 ) {
   const { allowUrl = false, ...queryOptions } = options
 
-  const router = usePageRouter()
+  const router = useRouter()
   const currentCartId = useCurrentCartId()
   const urlCartId = router.query.cartId
   const usingUrl = allowUrl && typeof urlCartId === 'string'
