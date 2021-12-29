@@ -3,7 +3,7 @@ import { LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import {
   LayoutOverlayDemo,
   LayoutOverlayState,
-  useLayoutOverlayDemoContext,
+  useLayoutState,
 } from '@graphcommerce/next-ui/LayoutOverlay/test/LayoutOverlayDemo'
 import { useForm, useFormAutoSubmit } from '@graphcommerce/react-hook-form'
 import { capitalize, Container, Hidden, Typography } from '@material-ui/core'
@@ -14,7 +14,7 @@ type Size = 'Sm' | 'Md'
 const sizes: Size[] = ['Sm', 'Md']
 
 function SheetDemo() {
-  const [layout, setLayout] = useLayoutOverlayDemoContext()
+  const [layout, setLayout] = useLayoutState()
 
   const form = useForm<LayoutOverlayState>({ defaultValues: layout })
   const { register } = form
@@ -40,10 +40,11 @@ function SheetDemo() {
           {sizes.map((size) => (
             <div key={size}>
               <Typography variant='subtitle1'>{size}</Typography>
+
               <div>
                 Variant:
-                {(['floating', 'full'] as const).map((value) => {
-                  const name: `size${Size}` = `size${size}`
+                {(['left', 'bottom', 'right'] as const).map((value) => {
+                  const name: `variant${Size}` = `variant${size}`
                   const id = `${name}-${value}`
                   return (
                     <label key={id} htmlFor={id}>
@@ -55,9 +56,9 @@ function SheetDemo() {
               </div>
 
               <div>
-                Variant:
-                {(['left', 'bottom', 'right'] as const).map((value) => {
-                  const name: `variant${Size}` = `variant${size}`
+                Size:
+                {(['floating', 'full'] as const).map((value) => {
+                  const name: `size${Size}` = `size${size}`
                   const id = `${name}-${value}`
                   return (
                     <label key={id} htmlFor={id}>
