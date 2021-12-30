@@ -1,10 +1,12 @@
 import { SvgImageSimple, iconHeart } from '@graphcommerce/next-ui'
 import { Chip, ChipProps, makeStyles, Theme } from '@material-ui/core'
 import React, { useState, useEffect } from 'react'
+import { useQuery, useMutation } from "@apollo/client";
+import {CustomerDocument, CustomerTokenDocument, useFormIsEmailAvailable} from "@graphcommerce/magento-customer";
+import { AddProductToWishlistDocument } from "@graphcommerce/magento-wishlist"
 
 export type ProductWishlistChipProps = {
-  active?: boolean,
-  sku?: string
+  sku: string
 } & ChipProps
 
 const useStyles = makeStyles(
@@ -22,7 +24,7 @@ const useStyles = makeStyles(
 )
 
 export default function ProductWishlistChip(props: ProductWishlistChipProps) {
-  const { active = false, sku, ...chipProps } = props
+  const { sku, ...chipProps } = props
   const classes = useStyles()
 
   const [inWishlist, setInWishlist] = useState(false);
@@ -34,20 +36,41 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
     }
   })
 
+  /**
+   * @todo this cant be good for performance, refetching data for each component
+   */
+  const customerToken = useQuery(CustomerTokenDocument)
+  const customerQuery = useQuery(CustomerDocument, {
+    ssr: false,
+    skip: typeof customerToken.data === 'undefined',
+  })
+
+  const { email } = customerQuery.data?.customer ?? {}
+  const { mode } = useFormIsEmailAvailable({ email })
+
+  const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
+
   const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    e.preventDefault()
+
     let wishlist = getWishlistStorage()
 
+    // Add or remove wishlist icon depending on current wishlist state
     if (wishlist.includes(sku)) {
       wishlist = wishlist.filter(itemSku => itemSku !== sku )
       setInWishlist(false)
     }
     else {
+      if (mode === 'signedin') {
+        // Persist to db storage when user session is available
+        addWishlistItem({variables: {sku: sku}})
+      }
+
       wishlist.push(sku)
       setInWishlist(true)
     }
 
     localStorage.wishlist = JSON.stringify(wishlist)
-    e.preventDefault()
   }
 
   const getWishlistStorage = () => {

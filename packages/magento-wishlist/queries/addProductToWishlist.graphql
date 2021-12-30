@@ -1,0 +1,16 @@
+mutation addProductToWishlist($sku: String!) {
+    addProductsToWishlist(
+        wishlistId: 0
+        wishlistItems: [
+            {
+                sku: $sku
+                quantity: 1
+            }
+        ]
+    ) {
+        wishlist {
+            id
+            items_count
+        }
+    }
+}
