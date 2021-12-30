@@ -1,0 +1,16 @@
+fragment CustomerWishlist on Customer @inject(into: ["CustomerInfo"]) {
+    wishlists {
+        items_count
+        items_v2 {
+            items {
+                id
+                quantity
+                product {
+                    uid
+                    sku
+                    name
+                }
+            }
+        }
+    }
+}
