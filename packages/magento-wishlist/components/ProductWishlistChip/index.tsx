@@ -3,7 +3,7 @@ import { Chip, ChipProps, makeStyles, Theme } from '@material-ui/core'
 import React, { useState, useEffect } from 'react'
 import { useQuery, useMutation } from "@apollo/client";
 import {CustomerDocument, CustomerTokenDocument, useFormIsEmailAvailable} from "@graphcommerce/magento-customer";
-import { AddProductToWishlistDocument } from "@graphcommerce/magento-wishlist"
+import { AddProductToWishlistDocument, RemoveProductFromWishlistDocument } from "@graphcommerce/magento-wishlist"
 
 export type ProductWishlistChipProps = {
   sku: string
@@ -49,6 +49,7 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
   const { mode } = useFormIsEmailAvailable({ email })
 
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
+  const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
     e.preventDefault()
@@ -57,6 +58,16 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
 
     // Add or remove wishlist icon depending on current wishlist state
     if (wishlist.includes(sku)) {
+      if (mode === 'signedin') {
+        // Persist to db storage when user session is available
+        let wishlistItemsInSession = customerQuery.data?.customer?.wishlists[0]?.items_v2?.items || []
+        let item = wishlistItemsInSession.find(element => element?.product?.sku == sku)
+
+        if (item?.id) {
+          removeWishlistItem({variables: {wishlistItemId: item.id}})
+        }
+      }
+
       wishlist = wishlist.filter(itemSku => itemSku !== sku )
       setInWishlist(false)
     }
