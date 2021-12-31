@@ -14,6 +14,7 @@ import { AppProps } from 'next/app'
 import { lightTheme, darkTheme } from '../components/theme'
 import { GraphQLProvider } from '../lib/graphql/GraphQLProvider'
 import { I18nProvider } from '../lib/i18n/I18nProvider'
+import { CustomerProvider } from '@graphcommerce/magento-customer'
 
 export default function ThemedApp(props: AppProps) {
   const { router } = props
@@ -30,7 +31,9 @@ export default function ThemedApp(props: AppProps) {
             <CssBaseline />
             <PageLoadIndicator />
             <GoogleRecaptchaProvider>
-              <FramerNextPages {...props} />
+              <CustomerProvider>
+                <FramerNextPages {...props} />
+              </CustomerProvider>
             </GoogleRecaptchaProvider>
           </DarkLightModeThemeProvider>
         </GraphQLProvider>
