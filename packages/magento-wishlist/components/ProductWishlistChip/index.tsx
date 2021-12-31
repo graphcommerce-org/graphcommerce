@@ -5,8 +5,9 @@ import { useQuery, useMutation } from "@apollo/client";
 import { AddProductToWishlistDocument, RemoveProductFromWishlistDocument } from "@graphcommerce/magento-wishlist"
 import { CustomerContext } from "@graphcommerce/magento-customer";
 
+// sku is optional in Magento schema
 export type ProductWishlistChipProps = {
-  sku: string
+  sku: string|null|undefined
 } & ChipProps
 
 const useStyles = makeStyles(
