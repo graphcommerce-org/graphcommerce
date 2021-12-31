@@ -63,7 +63,7 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
       setInWishlist(false)
     }
     else {
-      if (customer.loggedIn) {
+      if (customer.loggedIn && sku) {
         // Persist to db storage when user session is available
         addWishlistItem({variables: {sku: sku}})
       }
