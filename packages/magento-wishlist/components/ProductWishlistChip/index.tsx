@@ -1,9 +1,9 @@
 import { SvgImageSimple, iconHeart } from '@graphcommerce/next-ui'
 import { Chip, ChipProps, makeStyles, Theme } from '@material-ui/core'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useQuery, useMutation } from "@apollo/client";
-import {CustomerDocument, CustomerTokenDocument, useFormIsEmailAvailable} from "@graphcommerce/magento-customer";
 import { AddProductToWishlistDocument, RemoveProductFromWishlistDocument } from "@graphcommerce/magento-wishlist"
+import { CustomerContext } from "@graphcommerce/magento-customer";
 
 export type ProductWishlistChipProps = {
   sku: string
@@ -36,17 +36,7 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
     }
   })
 
-  /**
-   * @todo this cant be good for performance, refetching data for each component
-   */
-  const customerToken = useQuery(CustomerTokenDocument)
-  const customerQuery = useQuery(CustomerDocument, {
-    ssr: false,
-    skip: typeof customerToken.data === 'undefined',
-  })
-
-  const { email } = customerQuery.data?.customer ?? {}
-  const { mode } = useFormIsEmailAvailable({ email })
+  const customer = useContext(CustomerContext);
 
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
@@ -58,9 +48,9 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
 
     // Add or remove wishlist icon depending on current wishlist state
     if (wishlist.includes(sku)) {
-      if (mode === 'signedin') {
+      if (customer.loggedIn) {
         // Persist to db storage when user session is available
-        let wishlistItemsInSession = customerQuery.data?.customer?.wishlists[0]?.items_v2?.items || []
+        let wishlistItemsInSession = customer.customer.wishlists[0]?.items_v2?.items || []
         let item = wishlistItemsInSession.find(element => element?.product?.sku == sku)
 
         if (item?.id) {
@@ -72,7 +62,7 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
       setInWishlist(false)
     }
     else {
-      if (mode === 'signedin') {
+      if (customer.loggedIn) {
         // Persist to db storage when user session is available
         addWishlistItem({variables: {sku: sku}})
       }
