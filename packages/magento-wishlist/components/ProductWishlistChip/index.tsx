@@ -20,7 +20,7 @@ const useStyles = makeStyles(
       fill: '#AC2E2E',
     },
   }),
-  { name: 'ProductListReviews' },
+  { name: 'ProductWishlistChip' },
 )
 
 export default function ProductWishlistChip(props: ProductWishlistChipProps) {
