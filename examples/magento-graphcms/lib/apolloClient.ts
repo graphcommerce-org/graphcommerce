@@ -15,8 +15,8 @@ const fastDev =
 const mesh = fastDev ? undefined : await (await import('./mesh')).default
 
 // We're using the HttpLink for development environments so it doesn't have to reload the mesh on every dev change.
-function builder(locale: string) {
-  if (!(mesh && fastDev)) throw Error('Mesh not available')
+function client(locale: string) {
+  if (!mesh) throw Error('Mesh not available')
   return createApolloClient(
     locale,
     new SchemaLink({ ...mesh, context: { headers: { store: localeToStore(locale) } } }),
@@ -29,11 +29,11 @@ export default function apolloClient(
 ): ApolloClient<NormalizedCacheObject> {
   if (fastDev) return apolloClientBrowser(locale, shared)
 
-  if (!shared) return builder(locale)
+  if (!shared) return client(locale)
 
   // Create a client if it doesn't exist
   if (!sharedClient[locale]) {
-    sharedClient[locale] = builder(locale)
+    sharedClient[locale] = client(locale)
   }
 
   return sharedClient[locale]
