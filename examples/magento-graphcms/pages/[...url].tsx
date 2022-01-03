@@ -69,7 +69,6 @@ function CategoryPage(props: Props) {
 
   const product = products?.items?.[0]
   const page = pages?.[0]
-  const metaRobots = page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]
 
   return (
     <>
@@ -77,7 +76,7 @@ function CategoryPage(props: Props) {
         <PageMeta
           title={page?.metaTitle ?? ''}
           metaDescription={page?.metaDescription ?? ''}
-          metaRobots={metaRobots}
+          metaRobots={page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]}
           // canonical={page?.url}
         />
       ) : (
@@ -98,7 +97,11 @@ function CategoryPage(props: Props) {
         />
       ) : (
         <ProductListParamsProvider value={params}>
-          <LayoutTitle variant='h1' gutterTop gutterBottom={false}>
+          <LayoutTitle
+            variant='h1'
+            gutterTop
+            gutterBottom={!category.description && category.children?.length === 0}
+          >
             {category?.name}
           </LayoutTitle>
           <CategoryDescription description={category.description} />
@@ -125,9 +128,9 @@ function CategoryPage(props: Props) {
         </ProductListParamsProvider>
       )}
 
-      {pages?.[0] && (
+      {page && (
         <RowRenderer
-          content={pages?.[0].content}
+          content={page.content}
           renderer={{
             RowProduct: (rowProps) => <RowProduct {...rowProps} {...product} items={productList} />,
           }}
