@@ -359,15 +359,15 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
         ...(variantSm === 'bottom' && sizeSm === 'full' && { height: 'calc(100vh - 56px)' }),
       },
       [theme.breakpoints.up('md')]: {
-        minWidth: '400px',
         ...(variantMd === 'bottom' && sizeMd === 'full' && { height: '100vh' }),
+
+        ...(sizeMd === 'full' && {
+          minWidth: 'max(600px, 50vw)',
+        }),
       },
     }),
     { name: 'OverlayPane' },
   )
-
-  const isHorizontal = variantSm === 'left' || variantSm === 'right'
-  const isVertical = !isHorizontal
 
   const BeforeOverlay = styled('div')(
     ({ theme }) => ({
@@ -377,8 +377,8 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
       alignContent: 'end',
 
       [theme.breakpoints.down('sm')]: {
-        ...(isHorizontal && { width: '100vw' }),
-        ...(isVertical && {
+        ...((variantSm === 'left' || variantSm === 'right') && { width: '100vw' }),
+        ...(variantSm === 'bottom' && {
           height: '100vh',
           '@supports (-webkit-touch-callout: none)': {
             height: '-webkit-fill-available',
@@ -386,8 +386,8 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
         }),
       },
       [theme.breakpoints.up('md')]: {
-        ...(isHorizontal && { width: '100vw' }),
-        ...(isVertical && { height: '100vh' }),
+        ...((variantMd === 'left' || variantMd === 'right') && { width: '100vw' }),
+        ...(variantSm === 'bottom' && { height: '100vh' }),
       },
     }),
     { name: 'BeforeOverlay' },
