@@ -160,7 +160,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
             </ListItem>
           </PageLink>
           <PageLink
-            href='/test/sheet?sizeMd=full&variantMd=bottom&justifyMd=stretch&sizeSm=floating&variantSm=bottom&justifySm=stretch'
+            href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=stretch&justifySm=stretch&variantMd=bottom&variantSm=bottom'
             passHref
           >
             <ListItem
@@ -172,7 +172,10 @@ export function AppShellDemo(props: AppShellDemoProps) {
               Bottom sheet
             </ListItem>
           </PageLink>
-          <PageLink href='/test/sheet/left' passHref>
+          <PageLink
+            href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=start&justifySm=start&variantMd=left&variantSm=left'
+            passHref
+          >
             <ListItem
               button
               component='a'
@@ -182,7 +185,10 @@ export function AppShellDemo(props: AppShellDemoProps) {
               Left side sheet
             </ListItem>
           </PageLink>
-          <PageLink href='/test/sheet/right' passHref>
+          <PageLink
+            href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=start&justifySm=start&variantMd=right&variantSm=right'
+            passHref
+          >
             <ListItem
               button
               component='a'
