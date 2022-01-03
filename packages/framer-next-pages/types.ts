@@ -2,9 +2,11 @@ import { NextComponentType, NextPageContext } from 'next'
 import { NextRouter } from 'next/router'
 import React from 'react'
 
-export type PageRouterContext = {
-  currentRouter: NextRouter
-  prevRouter?: NextRouter
+type PageInfo = Pick<NextRouter, 'asPath' | 'query' | 'locale' | 'pathname'>
+
+export type PageContext = {
+  pageInfo: PageInfo
+  prevPage?: PageContext
   up?: UpPage
   prevUp?: UpPage
 }
@@ -109,7 +111,7 @@ export type PageOptions<T extends Record<string, unknown> = Record<string, unkno
    * }
    * ```
    */
-  sharedKey?: (router: NextRouter) => string | undefined
+  sharedKey?: (pageInfo: PageInfo) => string | undefined
 
   /**
    * Create a Layout to share a wrapping component between multiple routes.
@@ -138,9 +140,10 @@ export type UpPage = { href: string; title: string }
  * @private
  */
 export type PageItem = {
+  routerOverride?: Partial<NextRouter>
   PageComponent: PageComponent
   historyIdx: number
   sharedKey: string
   actualPageProps?: Record<string, unknown>
-  routerContext: PageRouterContext
+  routerContext: PageContext
 } & Omit<PageOptions<Record<string, unknown>>, 'sharedKey' | 'up'>

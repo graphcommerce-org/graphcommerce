@@ -19,6 +19,11 @@ type PagesProps = Omit<AppPropsType<NextRouter>, 'pageProps' | 'Component'> & {
   pageProps?: { up?: UpPage | null }
 }
 
+function getPageInfo(router: NextRouter) {
+  const { asPath, pathname, query, locale } = router
+  return { asPath, pathname, query, locale }
+}
+
 export default function FramerNextPages(props: PagesProps) {
   const { router, Component, pageProps } = props
 
@@ -34,23 +39,28 @@ export default function FramerNextPages(props: PagesProps) {
 
   let activeItem: PageItem = items.current[idx]
 
-  const mustRerender = () =>
-    JSON.stringify(pageProps) !== JSON.stringify(items.current[idx]?.actualPageProps)
+  const currentItem = items.current[idx]
+  const mustRerender = () => {
+    const sameRouter =
+      JSON.stringify(currentItem.routerContext.pageInfo) === JSON.stringify(getPageInfo(router))
+    const sameProps = JSON.stringify(pageProps) !== JSON.stringify(currentItem?.actualPageProps)
+    return !sameRouter || !sameProps
+  }
 
   if (!activeItem || mustRerender()) {
-    const proxy = createRouterProxy(router)
+    const pageInfo = getPageInfo(router)
 
     activeItem = {
       PageComponent: Component,
       Layout: Component.pageOptions?.Layout,
       layoutProps: { ...Component.pageOptions?.layoutProps, ...pageProps },
       actualPageProps: pageProps,
-      sharedKey: Component.pageOptions?.sharedKey?.(proxy) ?? proxy.pathname,
+      sharedKey: Component.pageOptions?.sharedKey?.(pageInfo) ?? pageInfo.pathname,
       overlayGroup: Component.pageOptions?.overlayGroup,
       historyIdx: idx,
       routerContext: {
-        currentRouter: proxy,
-        prevRouter: items.current[idx - 1]?.routerContext.currentRouter,
+        pageInfo,
+        prevPage: items.current[idx - 1]?.routerContext,
         prevUp: items.current[idx - 1]?.routerContext.up,
         up: Component.pageOptions?.up ?? pageProps?.up ?? undefined,
       },
@@ -71,21 +81,21 @@ export default function FramerNextPages(props: PagesProps) {
     let cancel: number
     async function loadFallback() {
       try {
-        const info = await (router as Router).getRouteInfo('/', '/', {}, '/', '/', {
-          shallow: false,
-        })
-        const proxy = createRouterProxy(router, { asPath: '/', pathname: '/', query: {} })
+        const up = items.current[0].PageComponent.pageOptions?.up?.href ?? '/'
+        const info = await (router as Router).getRouteInfo(up, up, {}, up, up, { shallow: false })
+
+        const pageInfo = { asPath: up, pathname: up, locale: router.locale, query: {} }
         const Fallback = info.Component as PageComponent
         const fbItem: PageItem = {
           PageComponent: Fallback,
           Layout: Fallback.pageOptions?.Layout,
           layoutProps: { ...Fallback.pageOptions?.layoutProps, ...info.props?.pageProps },
           actualPageProps: info.props?.pageProps,
-          sharedKey: Fallback.pageOptions?.sharedKey?.(proxy) ?? proxy.pathname,
+          sharedKey: Fallback.pageOptions?.sharedKey?.(pageInfo) ?? pageInfo.pathname,
           overlayGroup: Fallback.pageOptions?.overlayGroup,
           historyIdx: -1,
           routerContext: {
-            currentRouter: proxy,
+            pageInfo,
             up: Fallback.pageOptions?.up ?? info.props?.pageProps?.up,
           },
         }
@@ -144,7 +154,7 @@ export default function FramerNextPages(props: PagesProps) {
         return (
           <pageContext.Provider
             key={sharedKey}
-            // We're actually rerendering here but since the PageRenderer is memoized we can safely do this
+            // We're actually rerendering here but since the actual page renderer is memoized we can safely do this
             // eslint-disable-next-line react/jsx-no-constructed-context-values
             value={{ depth, active, direction, closeSteps, backSteps, historyIdx, overlayGroup }}
           >

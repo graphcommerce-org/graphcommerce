@@ -1,6 +1,8 @@
+import { useConstant } from '@graphcommerce/framer-utils'
 import { RouterContext } from 'next/dist/shared/lib/router-context'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
-import React from 'react'
+import { NextRouter, useRouter } from 'next/router'
+import React, { useMemo } from 'react'
 import { pageRouterContext } from '../context/pageRouterContext'
 import { PageItem } from '../types'
 
@@ -12,16 +14,37 @@ export type PageRendererProps = Omit<AppPropsType, 'router'> & {
   layoutProps: AppPropsType
 }
 
-export const PageRenderer = React.memo((props: PageItem) => {
-  const { PageComponent, routerContext, Layout = NoLayout, layoutProps, actualPageProps } = props
+const PageRendererLayout = React.memo((props: PageItem) => {
+  const { PageComponent, Layout = NoLayout, layoutProps, actualPageProps, routerContext } = props
   return (
-    <RouterContext.Provider value={routerContext.currentRouter}>
-      <pageRouterContext.Provider value={routerContext}>
-        <Layout {...layoutProps}>
-          <PageComponent {...actualPageProps} />
-        </Layout>
-      </pageRouterContext.Provider>
-    </RouterContext.Provider>
+    <pageRouterContext.Provider value={routerContext}>
+      <Layout {...layoutProps}>
+        <PageComponent {...actualPageProps} />
+      </Layout>
+    </pageRouterContext.Provider>
   )
 })
-PageRenderer.displayName = 'PageRenderer'
+
+export function PageRenderer(props: PageItem) {
+  const { routerContext } = props
+  const router = useRouter()
+
+  const { asPath, pathname, locale, query } = routerContext.pageInfo
+
+  const pageRouter = useMemo(() => {
+    const overrideProps = { asPath, pathname, locale, query }
+    return new Proxy<NextRouter>(router, {
+      get: (target, prop: string, receiver) =>
+        overrideProps[prop] ?? Reflect.get(target, prop, receiver),
+    })
+
+    // We don't want to re-render when the router changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [asPath, locale, pathname, query])
+
+  return (
+    <RouterContext.Provider value={pageRouter}>
+      <PageRendererLayout {...props} />
+    </RouterContext.Provider>
+  )
+}

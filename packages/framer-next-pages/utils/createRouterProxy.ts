@@ -1,6 +1,6 @@
 import { NextRouter } from 'next/router'
 
-type OverrideProps = Partial<Pick<NextRouter, 'asPath' | 'pathname' | 'query' | 'locale'>>
+export type OverrideProps = Partial<Pick<NextRouter, 'asPath' | 'pathname' | 'query' | 'locale'>>
 
 export function createRouterProxy(router: NextRouter, override?: OverrideProps): NextRouter {
   // We create an object with the current stale properties
