@@ -56,19 +56,19 @@ const useStyles = makeStyles<
       borderRadius: '99em',
     },
     pillLink: {
-      // [theme.breakpoints.up('md')]: {
-      //   // manually match MuiButton and containedPrimary styles
-      //   textTransform: 'none',
-      //   ...theme.typography.body2,
-      //   fontWeight: 400,
-      //   borderRadius: '99em',
-      //   boxShadow: theme.shadows[6],
-      //   backgroundColor: theme.palette.background.paper,
-      //   color: theme.palette.text.primary,
-      //   '&:hover': {
-      //     background: theme.palette.background.paper,
-      //   },
-      // },
+      [theme.breakpoints.up('md')]: {
+        // manually match MuiButton and containedPrimary styles
+        textTransform: 'none',
+        ...theme.typography.body2,
+        fontWeight: 400,
+        borderRadius: '99em',
+        boxShadow: theme.shadows[6],
+        backgroundColor: theme.palette.background.paper,
+        color: theme.palette.text.primary,
+        '&:hover': {
+          background: theme.palette.background.paper,
+        },
+      },
     },
     pillPrimary: {
       [theme.breakpoints.up('md')]: {
