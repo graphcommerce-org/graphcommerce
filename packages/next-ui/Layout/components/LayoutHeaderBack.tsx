@@ -6,6 +6,7 @@ import React from 'react'
 import Button, { ButtonProps } from '../../Button'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconChevronLeft } from '../../icons'
+import { usePrevPageRouter } from '@graphcommerce/framer-next-pages/hooks/usePrevPageRouter'
 
 export type BackProps = Omit<ButtonProps, 'onClick' | 'children'>
 
@@ -25,6 +26,7 @@ export function useShowBack() {
 export default function LayoutHeaderBack(props: BackProps) {
   const router = useRouter()
   const up = useUp()
+  const prevRouter = usePrevPageRouter()
   const prevUp = usePrevUp()
   const { backSteps } = usePageContext()
 
@@ -32,7 +34,7 @@ export default function LayoutHeaderBack(props: BackProps) {
   const canClickBack = backSteps > 0 && router.asPath !== prevUp?.href
 
   if (canClickBack) {
-    const label = up?.href === router.asPath ? up.title : t`Back`
+    const label = up?.href === prevRouter?.asPath ? up?.title : t`Back`
     return (
       <Button
         onClick={() => router.back()}
