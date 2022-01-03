@@ -1,7 +1,7 @@
 import { useGo, usePageContext, useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
 import { useElementScroll, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
-import { makeStyles, Theme, ClickAwayListener, capitalize, styled } from '@material-ui/core'
+import { makeStyles, Theme, capitalize, styled } from '@material-ui/core'
 import { m, useDomEvent, useMotionValue, usePresence, useTransform } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
 import LayoutProvider from '../../Layout/components/LayoutProvider'
@@ -199,10 +199,11 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
     justifyMd = 'start',
   } = props
 
-  const { scrollerRef } = useScrollerContext()
+  const { scrollerRef, snap } = useScrollerContext()
   const positions = useOverlayPosition()
   const scrollTo = useScrollTo()
   const [isPresent, safeToRemove] = usePresence()
+  const beforeRef = useRef<HTMLDivElement>(null)
 
   const { closeSteps, active, direction } = usePageContext()
   const close = useGo(closeSteps * -1)
@@ -307,12 +308,11 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
   )
 
   const onClickAway = useCallback(
-    (event: React.MouseEvent<Document>) => {
-      if (event.target === document.body && event.type === 'click') return
-
-      closeOverlay()
+    (event: React.MouseEvent<HTMLDivElement>) => {
+      const isTarget = event.target === scrollerRef.current || event.target === beforeRef.current
+      if (isTarget && snap.get()) closeOverlay()
     },
-    [closeOverlay],
+    [closeOverlay, scrollerRef, snap],
   )
 
   const Overlay = styled('div')(
@@ -395,14 +395,12 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
   return (
     <>
       <m.div {...className('backdrop')} style={{ opacity: positions.open.visible }} />
-      <Scroller {...className('root')} grid={false} hideScrollbar>
-        <BeforeOverlay />
+      <Scroller {...className('root')} grid={false} hideScrollbar onClick={onClickAway}>
+        <BeforeOverlay onClick={onClickAway} ref={beforeRef} />
         <Overlay {...className('overlay')} ref={overlayRef}>
-          {/* <ClickAwayListener onClickAway={onClickAway}> */}
           <OverlayPane {...className('overlayPane')}>
             <LayoutProvider scroll={scrollWithoffset}>{children}</LayoutProvider>
           </OverlayPane>
-          {/* </ClickAwayListener> */}
         </Overlay>
       </Scroller>
     </>
