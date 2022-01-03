@@ -164,7 +164,7 @@ const useStyles = makeStyles(
 )
 
 export type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
-export type LayoutOverlaySize = 'floating' | 'full'
+export type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
 export type LayoutOverlayAlign = 'start' | 'end' | 'center' | 'stretch'
 
 type StyleProps = {
@@ -193,10 +193,10 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
     variantSm,
     variantMd,
     classes: _classes,
-    sizeSm = 'floating',
-    sizeMd = 'floating',
-    justifySm = 'start',
-    justifyMd = 'start',
+    sizeSm = 'full',
+    sizeMd = 'full',
+    justifySm = 'stretch',
+    justifyMd = 'stretch',
   } = props
 
   const { scrollerRef, snap } = useScrollerContext()
@@ -351,15 +351,16 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
       backgroundColor: theme.palette.background.paper,
       boxShadow: theme.shadows[24],
       // scrollSnapAlign: 'end',
-
       [theme.breakpoints.down('sm')]: {
         minWidth: '80vw',
-        ...(sizeSm === 'full' && {
+        ...((sizeSm === 'full' || sizeSm === 'minimal') && {
           paddingBottom: 56,
         }),
+        ...(variantSm === 'bottom' && sizeSm === 'full' && { height: 'calc(100vh - 56px)' }),
       },
       [theme.breakpoints.up('md')]: {
         minWidth: '400px',
+        ...(variantMd === 'bottom' && sizeMd === 'full' && { height: '100vh' }),
       },
     }),
     { name: 'OverlayPane' },

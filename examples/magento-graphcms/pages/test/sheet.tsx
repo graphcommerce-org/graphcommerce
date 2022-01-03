@@ -57,7 +57,7 @@ function SheetDemo() {
 
               <div>
                 Size:
-                {(['floating', 'full'] as const).map((value) => {
+                {(['floating', 'minimal', 'full'] as const).map((value) => {
                   const name: `size${Size}` = `size${size}`
                   const id = `${name}-${value}`
                   return (
