@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/graphql-mesh",
-  "version": "3.2.10",
+  "version": "3.2.11",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.3",
-    "@graphcommerce/eslint-config-pwa": "^3.1.9",
+    "@graphcommerce/eslint-config-pwa": "^3.1.10",
     "@graphcommerce/prettier-config-pwa": "^3.0.5",
     "@graphcommerce/typescript-config-pwa": "^3.1.2",
     "@playwright/test": "^1.17.1",

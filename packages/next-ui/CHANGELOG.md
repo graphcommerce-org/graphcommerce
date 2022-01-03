@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.22.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.15...@graphcommerce/next-ui@3.22.0) (2022-01-03)
+
+
+### Bug Fixes
+
+* backbutton had wrong label ([c6d0b27](https://github.com/ho-nl/m2-pwa/commit/c6d0b2738e5de734af40bc632177dcc867e8e556))
+* make sure we're able to close the overlay ([8d19fde](https://github.com/ho-nl/m2-pwa/commit/8d19fde07d51493acfdfaa97a19f61246d04d42a))
+
+
+### Features
+
+* add support for minimal overlay size ([96e508a](https://github.com/ho-nl/m2-pwa/commit/96e508a94e23fe5b3ec523cddeb19b7b70f50034))
+* added support for more positioning options for the overlay ([79eae9e](https://github.com/ho-nl/m2-pwa/commit/79eae9eb39513f5611103c4c745c3db99b11f15a))
+* **framer-next-pages:** reduce rerenders when navigating to a new page ([5cf3301](https://github.com/ho-nl/m2-pwa/commit/5cf330130bb3527057da015e3c4a6fa295d7262e))
+
+
+
+
+
 ## [3.21.15](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.14...@graphcommerce/next-ui@3.21.15) (2021-12-24)
 
 

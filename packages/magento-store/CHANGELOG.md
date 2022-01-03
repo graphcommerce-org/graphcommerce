@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-store@3.3.31...@graphcommerce/magento-store@3.4.0) (2022-01-03)
+
+
+### Features
+
+* **framer-next-pages:** reduce rerenders when navigating to a new page ([5cf3301](https://github.com/ho-nl/m2-pwa/commit/5cf330130bb3527057da015e3c4a6fa295d7262e))
+
+
+
+
+
 ## [3.3.11](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-store@3.3.10...@graphcommerce/magento-store@3.3.11) (2021-12-06)
 
 

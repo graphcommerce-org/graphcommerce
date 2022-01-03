@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/lingui-next@1.2.4...@graphcommerce/lingui-next@1.3.0) (2022-01-03)
+
+
+### Features
+
+* **framer-next-pages:** reduce rerenders when navigating to a new page ([5cf3301](https://github.com/ho-nl/m2-pwa/commit/5cf330130bb3527057da015e3c4a6fa295d7262e))
+
+
+
+
+
 ## [1.2.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/lingui-next@1.2.0...@graphcommerce/lingui-next@1.2.1) (2021-12-03)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.25...@graphcommerce/framer-scroller@1.2.0) (2022-01-03)
+
+
+### Bug Fixes
+
+* make sure the useVelocitySnapTo resolves completely ([9d13fcb](https://github.com/ho-nl/m2-pwa/commit/9d13fcbf63ef8c0a964b9bd81accb6259a693c5c))
+
+
+### Features
+
+* **framer-next-pages:** reduce rerenders when navigating to a new page ([5cf3301](https://github.com/ho-nl/m2-pwa/commit/5cf330130bb3527057da015e3c4a6fa295d7262e))
+
+
+
+
+
 ## [1.1.24](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.23...@graphcommerce/framer-scroller@1.1.24) (2021-12-23)
 
 

@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.161.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.160.10...@graphcommerce/graphcommerce@2.161.0) (2022-01-03)
+
+
+### Bug Fixes
+
+* backbutton had wrong label ([c6d0b27](https://github.com/ho-nl/m2-pwa/commit/c6d0b2738e5de734af40bc632177dcc867e8e556))
+* make sure spacing of category is only collapsed when there are no child categories or description ([7b6b313](https://github.com/ho-nl/m2-pwa/commit/7b6b3139e9b9db6f7cb96d32a8e9f6ad8ec10612))
+* make sure the useVelocitySnapTo resolves completely ([9d13fcb](https://github.com/ho-nl/m2-pwa/commit/9d13fcbf63ef8c0a964b9bd81accb6259a693c5c))
+* make sure we're able to close the overlay ([8d19fde](https://github.com/ho-nl/m2-pwa/commit/8d19fde07d51493acfdfaa97a19f61246d04d42a))
+
+
+### Features
+
+* add support for minimal overlay size ([96e508a](https://github.com/ho-nl/m2-pwa/commit/96e508a94e23fe5b3ec523cddeb19b7b70f50034))
+* added support for more positioning options for the overlay ([79eae9e](https://github.com/ho-nl/m2-pwa/commit/79eae9eb39513f5611103c4c745c3db99b11f15a))
+* faster development api, doesn't continuously restart by using a loopback and assuming the graphql API is available over http ([28fbb0f](https://github.com/ho-nl/m2-pwa/commit/28fbb0f38efc5fd52da8536c9a798d39fa9ceec2))
+* **framer-next-pages:** reduce rerenders when navigating to a new page ([5cf3301](https://github.com/ho-nl/m2-pwa/commit/5cf330130bb3527057da015e3c4a6fa295d7262e))
+* when cloning a new project make sure we also have a settings.json ([49644c9](https://github.com/ho-nl/m2-pwa/commit/49644c907f891849fcdd3c1fa37e7c9727168bf3))
+
+
+
+
+
 ## [2.160.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.160.9...@graphcommerce/graphcommerce@2.160.10) (2021-12-24)
 
 
