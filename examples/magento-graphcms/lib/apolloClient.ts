@@ -1,21 +1,24 @@
-import { NormalizedCacheObject, ApolloClient } from '@apollo/client'
+import { NormalizedCacheObject, ApolloClient, HttpLink } from '@apollo/client'
 import { SchemaLink } from '@apollo/client/link/schema'
 import { mergeDeep } from '@apollo/client/utilities'
 import { defaultLocale, localeToStore } from '@graphcommerce/magento-store'
 import { createApolloClient } from './createApolloClient'
-import mesh from './mesh'
 
 const sharedClient: {
   [locale: string]: ApolloClient<NormalizedCacheObject>
 } = {}
 
-const resolvedMesh = await mesh
+const fastDev =
+  process.env.NODE_ENV !== 'production' &&
+  process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT?.includes('localhost')
 
+const mesh = fastDev ? undefined : await (await import('./mesh')).default
+
+// We're using the HttpLink for development environments so it doesn't have to reload the mesh on every dev change.
 function schemaLink(locale: string) {
-  return new SchemaLink({
-    ...resolvedMesh,
-    context: { headers: { store: localeToStore(locale) } },
-  })
+  return mesh
+    ? new SchemaLink({ ...mesh, context: { headers: { store: localeToStore(locale) } } })
+    : new HttpLink({ uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT })
 }
 
 export default function apolloClient(
