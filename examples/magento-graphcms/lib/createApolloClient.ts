@@ -7,6 +7,7 @@ import {
   mergeTypePolicies,
   getTypePoliciesVersion,
   migrateCacheHandler,
+  measurePerformanceLink,
 } from '@graphcommerce/graphql'
 import { createAuthLink } from '@graphcommerce/magento-customer'
 import { createStoreLink } from '@graphcommerce/magento-store'
@@ -25,6 +26,7 @@ export function createApolloClient(
   const cache = new InMemoryCache({ possibleTypes: fragments.possibleTypes, typePolicies })
 
   const links: ApolloLink[] = [
+    measurePerformanceLink,
     new RetryLink({ attempts: { max: 2 } }),
     createStoreLink(locale),
     createAuthLink(cache),
