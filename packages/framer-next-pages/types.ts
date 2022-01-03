@@ -144,6 +144,6 @@ export type PageItem = {
   PageComponent: PageComponent
   historyIdx: number
   sharedKey: string
-  actualPageProps?: Record<string, unknown>
+  pageProps?: Record<string, unknown>
   routerContext: PageContext
 } & Omit<PageOptions<Record<string, unknown>>, 'sharedKey' | 'up'>

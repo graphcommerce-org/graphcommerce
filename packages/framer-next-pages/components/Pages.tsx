@@ -1,12 +1,11 @@
 import { AnimatePresence } from 'framer-motion'
 import { requestIdleCallback, cancelIdleCallback } from 'next/dist/client/request-idle-callback'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
-import type { NextRouter, Router } from 'next/router'
+import { NextRouter, Router, useRouter } from 'next/router'
 import React, { useEffect, useRef, useState } from 'react'
 import {} from 'react-dom'
 import { pageContext } from '../context/pageContext'
 import type { PageComponent, PageItem, UpPage } from '../types'
-import { createRouterProxy } from '../utils/createRouterProxy'
 import Page from './Page'
 import { PageRenderer } from './PageRenderer'
 
@@ -24,8 +23,20 @@ function getPageInfo(router: NextRouter) {
   return { asPath, pathname, query, locale }
 }
 
+// function useEarlyRerender() {
+//   const router = useRouter()
+//   const [url, set] = useState<string>()
+
+//   useEffect(() => {
+//     router.events.on('routeChangeStart', set)
+//     return () => router.events.off('routeChangeStart', set)
+//   }, [router.events])
+
+//   return url
+// }
+
 export default function FramerNextPages(props: PagesProps) {
-  const { router, Component, pageProps } = props
+  const { router, Component, pageProps: incomingProps } = props
 
   const items = useRef<PageItem[]>([])
   const idx = Number(global.window?.history.state?.idx ?? 0)
@@ -40,11 +51,12 @@ export default function FramerNextPages(props: PagesProps) {
   let activeItem: PageItem = items.current[idx]
 
   const currentItem = items.current[idx]
+
   const mustRerender = () => {
-    const sameRouter =
-      JSON.stringify(currentItem.routerContext.pageInfo) === JSON.stringify(getPageInfo(router))
-    const sameProps = JSON.stringify(pageProps) !== JSON.stringify(currentItem?.actualPageProps)
-    return !sameRouter || !sameProps
+    const differentRouter =
+      JSON.stringify(currentItem?.routerContext.pageInfo) !== JSON.stringify(getPageInfo(router))
+    const differentProps = JSON.stringify(incomingProps) !== JSON.stringify(currentItem?.pageProps)
+    return differentRouter || differentProps
   }
 
   if (!activeItem || mustRerender()) {
@@ -52,9 +64,8 @@ export default function FramerNextPages(props: PagesProps) {
 
     activeItem = {
       PageComponent: Component,
-      Layout: Component.pageOptions?.Layout,
-      layoutProps: { ...Component.pageOptions?.layoutProps, ...pageProps },
-      actualPageProps: pageProps,
+      layoutProps: { ...Component.pageOptions?.layoutProps, ...incomingProps },
+      pageProps: incomingProps,
       sharedKey: Component.pageOptions?.sharedKey?.(pageInfo) ?? pageInfo.pathname,
       overlayGroup: Component.pageOptions?.overlayGroup,
       historyIdx: idx,
@@ -62,7 +73,7 @@ export default function FramerNextPages(props: PagesProps) {
         pageInfo,
         prevPage: items.current[idx - 1]?.routerContext,
         prevUp: items.current[idx - 1]?.routerContext.up,
-        up: Component.pageOptions?.up ?? pageProps?.up ?? undefined,
+        up: Component.pageOptions?.up ?? incomingProps?.up ?? undefined,
       },
     }
     items.current[idx] = activeItem
@@ -81,16 +92,17 @@ export default function FramerNextPages(props: PagesProps) {
     let cancel: number
     async function loadFallback() {
       try {
-        const up = items.current[0].PageComponent.pageOptions?.up?.href ?? '/'
+        // todo: implement fallback loading for up property
+        // const up = items.current[0].PageComponent.pageOptions?.up?.href ?? '/'
+        const up = '/'
         const info = await (router as Router).getRouteInfo(up, up, {}, up, up, { shallow: false })
 
         const pageInfo = { asPath: up, pathname: up, locale: router.locale, query: {} }
         const Fallback = info.Component as PageComponent
         const fbItem: PageItem = {
           PageComponent: Fallback,
-          Layout: Fallback.pageOptions?.Layout,
           layoutProps: { ...Fallback.pageOptions?.layoutProps, ...info.props?.pageProps },
-          actualPageProps: info.props?.pageProps,
+          pageProps: info.props?.pageProps,
           sharedKey: Fallback.pageOptions?.sharedKey?.(pageInfo) ?? pageInfo.pathname,
           overlayGroup: Fallback.pageOptions?.overlayGroup,
           historyIdx: -1,

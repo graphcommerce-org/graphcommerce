@@ -1,4 +1,3 @@
-import { useConstant } from '@graphcommerce/framer-utils'
 import { RouterContext } from 'next/dist/shared/lib/router-context'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import { NextRouter, useRouter } from 'next/router'
@@ -15,11 +14,14 @@ export type PageRendererProps = Omit<AppPropsType, 'router'> & {
 }
 
 const PageRendererLayout = React.memo((props: PageItem) => {
-  const { PageComponent, Layout = NoLayout, layoutProps, actualPageProps, routerContext } = props
+  const { PageComponent, layoutProps, pageProps, routerContext } = props
+
+  const Layout = PageComponent.pageOptions?.Layout ?? NoLayout
+
   return (
     <pageRouterContext.Provider value={routerContext}>
       <Layout {...layoutProps}>
-        <PageComponent {...actualPageProps} />
+        <PageComponent {...pageProps} />
       </Layout>
     </pageRouterContext.Provider>
   )
