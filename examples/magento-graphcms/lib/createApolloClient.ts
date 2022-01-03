@@ -4,11 +4,9 @@ import { mergeDeep } from '@apollo/client/utilities'
 import { recaptchaLink } from '@graphcommerce/googlerecaptcha'
 import {
   fragments,
-  measurePerformanceLink,
   mergeTypePolicies,
   getTypePoliciesVersion,
   migrateCacheHandler,
-  errorLink,
 } from '@graphcommerce/graphql'
 import { createAuthLink } from '@graphcommerce/magento-customer'
 import { createStoreLink } from '@graphcommerce/magento-store'
