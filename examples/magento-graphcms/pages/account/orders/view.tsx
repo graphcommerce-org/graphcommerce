@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ApolloCustomerErrorFullPage } from '@graphcommerce/magento-customer'
 import {
   useOrderCardItemImages,
@@ -17,6 +17,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
 import apolloClient from '../../../lib/apolloClient'
@@ -24,7 +25,7 @@ import apolloClient from '../../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function OrderDetailPage() {
-  const router = usePageRouter()
+  const router = useRouter()
   const { orderId } = router.query
 
   const { data, loading, error } = useQuery(OrderDetailPageDocument, {

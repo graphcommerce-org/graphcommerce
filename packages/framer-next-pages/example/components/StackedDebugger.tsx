@@ -1,10 +1,10 @@
-import { usePageRouter } from '@graphcommerce/framer-next-pages'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import PageDepthDebug from './PageDepthDebug'
 import useRenderCount from './useRenderCount'
 
 export default function StackDebug() {
-  const pageRouter = usePageRouter()
+  const pageRouter = useRouter()
   const [color] = useState<string>(Math.floor(Math.random() * 16777215).toString(16))
   const renderCounter = useRenderCount()
 

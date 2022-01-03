@@ -1,7 +1,7 @@
-import { usePageRouter } from '@graphcommerce/framer-next-pages'
 import { Image, ImageProps } from '@graphcommerce/image'
 import { makeStyles, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { UseStyles } from '../Styles'
 
@@ -29,7 +29,7 @@ export type LogoProps = { href?: `/${string}`; image: ImageProps } & UseStyles<t
 
 export default function Logo(props: LogoProps) {
   const { href, image } = props
-  const router = usePageRouter()
+  const router = useRouter()
   const classes = useStyles(props)
 
   return router.asPath === '/' ? (

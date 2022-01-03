@@ -45,7 +45,7 @@ export const useVelocitySnapTo = (
       const closestX =
         direction !== 'block' ? closest(getScrollSnapPositions().x, targetX) : undefined
 
-      if (closestX !== scrollLeft) {
+      if ((closestX ?? 0) !== scrollLeft) {
         disableSnap()
         register(
           inertia({
@@ -69,7 +69,7 @@ export const useVelocitySnapTo = (
       const closestY =
         direction !== 'inline' ? closest(getScrollSnapPositions().y, targetY) : undefined
 
-      if (closestY !== scrollTop) {
+      if ((closestY ?? 0) !== scrollTop) {
         disableSnap()
         register(
           inertia({

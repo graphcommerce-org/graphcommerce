@@ -1,4 +1,4 @@
-import { PageOptions, usePageRouter } from '@graphcommerce/framer-next-pages'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   PageMeta,
   StoreConfigDocument,
@@ -14,6 +14,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { LayoutFullProps } from '../components/Layout'
 import { LayoutOverlay, LayoutOverlayProps } from '../components/Layout/LayoutOverlay'
@@ -24,7 +25,7 @@ type Props = StoreSwitcherListQuery
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function StoresIndexPage({ availableStores }: Props) {
-  const { locale } = usePageRouter()
+  const { locale } = useRouter()
 
   return (
     <>

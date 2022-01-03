@@ -1,4 +1,3 @@
-import { usePageRouter } from '@graphcommerce/framer-next-pages'
 import { usePrevPageRouter } from '@graphcommerce/framer-next-pages/hooks/usePrevPageRouter'
 import {
   MotionImageAspect,
@@ -11,6 +10,7 @@ import {
 import { clientSize, useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Fab, makeStyles, Theme, useTheme, alpha } from '@material-ui/core'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
+import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
 import Row from '../../Row'
 import { UseStyles } from '../../Styles'
@@ -183,7 +183,7 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
     classes: classesBase,
   } = props
 
-  const router = usePageRouter()
+  const router = useRouter()
   const prevRoute = usePrevPageRouter()
   const clientHeight = useMotionValueValue(clientSize.y, (y) => y)
   const classes = useStyles({ clientHeight, aspectRatio, classes: classesBase })

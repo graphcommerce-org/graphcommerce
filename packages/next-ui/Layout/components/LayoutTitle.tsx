@@ -20,10 +20,16 @@ const useStyles = makeStyles(
     },
     containerSizeSmall: {
       flexFlow: 'unset',
+      overflow: 'hidden',
       '& svg': {
         width: responsiveVal(24, 28),
         height: responsiveVal(24, 28),
         strokeWidth: 1.4,
+      },
+      '& > *': {
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
       },
     },
     containerGutterTop: {

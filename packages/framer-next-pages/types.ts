@@ -2,11 +2,11 @@ import { NextComponentType, NextPageContext } from 'next'
 import { NextRouter } from 'next/router'
 import React from 'react'
 
-export type RouterProxy = NextRouter & { go(delta: number): void; prevUpUrl: string }
+type PageInfo = Pick<NextRouter, 'asPath' | 'query' | 'locale' | 'pathname'>
 
-export type PageRouterContext = {
-  currentRouter: RouterProxy
-  prevRouter?: RouterProxy
+export type PageContext = {
+  pageInfo: PageInfo
+  prevPage?: PageContext
   up?: UpPage
   prevUp?: UpPage
 }
@@ -111,7 +111,7 @@ export type PageOptions<T extends Record<string, unknown> = Record<string, unkno
    * }
    * ```
    */
-  sharedKey?: (router: NextRouter) => string | undefined
+  sharedKey?: (pageInfo: PageInfo) => string | undefined
 
   /**
    * Create a Layout to share a wrapping component between multiple routes.
@@ -124,7 +124,7 @@ export type PageOptions<T extends Record<string, unknown> = Record<string, unkno
   /** Pass props to the SharedComponent */
   layoutProps?: Partial<Omit<T, 'children'>>
 
-  up?: UpPage
+  up?: UpPage | null
 }
 
 export type PageComponent<T = Record<string, unknown>> = NextComponentType<NextPageContext, T> & {
@@ -140,10 +140,10 @@ export type UpPage = { href: string; title: string }
  * @private
  */
 export type PageItem = {
-  currentRouter: RouterProxy
-  children: React.ReactNode
+  routerOverride?: Partial<NextRouter>
+  PageComponent: PageComponent
   historyIdx: number
   sharedKey: string
-  actualPageProps?: Record<string, unknown>
-  up?: UpPage
-} & Omit<PageOptions<Record<string, unknown>>, 'sharedKey'>
+  pageProps?: Record<string, unknown>
+  routerContext: PageContext
+} & Omit<PageOptions<Record<string, unknown>>, 'sharedKey' | 'up'>

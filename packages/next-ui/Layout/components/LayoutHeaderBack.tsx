@@ -1,6 +1,7 @@
-import { usePageRouter, useUp, usePrevUp, usePageContext } from '@graphcommerce/framer-next-pages'
+import { useUp, usePrevUp, usePageContext } from '@graphcommerce/framer-next-pages'
 import { t } from '@lingui/macro'
 import PageLink from 'next/link'
+import { useRouter } from 'next/router'
 import React from 'react'
 import Button, { ButtonProps } from '../../Button'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
@@ -9,7 +10,7 @@ import { iconChevronLeft } from '../../icons'
 export type BackProps = Omit<ButtonProps, 'onClick' | 'children'>
 
 export function useShowBack() {
-  const router = usePageRouter()
+  const router = useRouter()
   const up = useUp()
   const prevUp = usePrevUp()
   const { backSteps } = usePageContext()
@@ -22,7 +23,7 @@ export function useShowBack() {
 }
 
 export default function LayoutHeaderBack(props: BackProps) {
-  const router = usePageRouter()
+  const router = useRouter()
   const up = useUp()
   const prevUp = usePrevUp()
   const { backSteps } = usePageContext()

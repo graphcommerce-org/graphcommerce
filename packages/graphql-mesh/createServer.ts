@@ -11,6 +11,7 @@ import '@graphql-mesh/cache-inmemory-lru'
 import '@vue/compiler-sfc'
 import 'ts-tiny-invariant'
 import 'micro'
+import { plugin as apolloTracingPlugin } from 'apollo-tracing'
 import cors from 'micro-cors'
 
 export async function getMesh(config: unknown): Promise<MeshInstance> {
@@ -27,6 +28,8 @@ export async function createServer(mesh: Promise<MeshInstance>, path: string) {
         // @ts-expect-error https://github.com/graphql/graphql-playground/issues/1289
         shareEnabled: true,
       }),
+      // @ts-expect-error apolloTracingPlugin is not officially supported anymore
+      apolloTracingPlugin(),
     ],
     ...meshInstance,
   })

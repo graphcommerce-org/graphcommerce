@@ -1,7 +1,7 @@
-import { usePageContext, usePageRouter, useScrollOffset } from '@graphcommerce/framer-next-pages'
+import { useGo, usePageContext, useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
 import { useElementScroll, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
-import { makeStyles, Theme, ClickAwayListener } from '@material-ui/core'
+import { makeStyles, Theme, capitalize, styled } from '@material-ui/core'
 import { m, useDomEvent, useMotionValue, usePresence, useTransform } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
 import LayoutProvider from '../../Layout/components/LayoutProvider'
@@ -72,78 +72,19 @@ const useStyles = makeStyles(
         height: '100vh',
       },
     },
-    beforeOverlay: {
-      gridArea: 'beforeOverlay',
-      scrollSnapAlign: 'start',
-      display: 'grid',
-      alignContent: 'end',
-    },
-    beforeOverlayVariantSmRight: {
-      [theme.breakpoints.down('sm')]: {
-        width: '100vw',
-      },
-    },
-    beforeOverlayVariantMdRight: {
-      [theme.breakpoints.up('md')]: {
-        width: '100vw',
-      },
-    },
 
-    beforeOverlayVariantSmLeft: {
-      [theme.breakpoints.down('sm')]: {
-        width: '100vw',
-      },
-    },
-    beforeOverlayVariantMdLeft: {
-      [theme.breakpoints.up('md')]: {
-        width: '100vw',
-      },
-    },
+    // Overlay pane styles
+    overlayPane: {},
 
-    beforeOverlayVariantMdBottom: {
-      [theme.breakpoints.up('md')]: {
-        height: '100vh',
-      },
-    },
-    beforeOverlayVariantSmBottom: {
+    overlaySizeSmFloating: {
       [theme.breakpoints.down('sm')]: {
-        height: '100vh',
-        '@supports (-webkit-touch-callout: none)': {
-          height: '-webkit-fill-available',
-        },
+        padding: `${theme.page.vertical} ${theme.page.horizontal}`,
       },
     },
-    overlay: {
-      pointerEvents: 'none',
-      gridArea: 'overlay',
-      scrollSnapAlign: 'start',
-      minHeight: '100vh',
-      '@supports (-webkit-touch-callout: none)': {
-        minHeight: '-webkit-fill-available',
-      },
-    },
-    overlayVariantSmBottom: {
-      [theme.breakpoints.down('sm')]: {
-        marginTop: `calc(${theme.appShell.headerHeightSm} * 0.5 * -1)`,
-        paddingTop: `calc(${theme.appShell.headerHeightSm} * 0.5)`,
-        display: 'grid',
-      },
-    },
-    overlayVariantMdBottom: {
+    overlaySizeMdFloating: {
       [theme.breakpoints.up('md')]: {
-        marginTop: `calc(${theme.appShell.headerHeightMd} + (${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * 0.5)`,
-        paddingTop: `calc(${theme.appShell.headerHeightMd} + (${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5)`,
-        display: 'grid',
+        padding: `${theme.page.vertical} ${theme.page.horizontal}`,
       },
-    },
-    overlayPane: {
-      pointerEvents: 'all',
-      backgroundColor: theme.palette.background.paper,
-      boxShadow: theme.shadows[24],
-      minWidth: 'min(800px, 90vw)',
-      scrollSnapAlign: 'end',
-
-      paddingBottom: 56,
     },
     overlayPaneVariantSmBottom: {
       [theme.breakpoints.down('sm')]: {
@@ -157,7 +98,17 @@ const useStyles = makeStyles(
         borderTopRightRadius: theme.shape.borderRadius * 3,
       },
     },
-    overlayPaneVariantSmLeft: {
+    overlayPaneSizeSmFloating: {
+      [theme.breakpoints.down('sm')]: {
+        borderRadius: theme.shape.borderRadius * 3,
+      },
+    },
+    overlayPaneSizeMdFloating: {
+      [theme.breakpoints.up('md')]: {
+        borderRadius: theme.shape.borderRadius * 3,
+      },
+    },
+    overlayPaneSmVariantSizeLeftFull: {
       [theme.breakpoints.down('sm')]: {
         paddingBottom: 1,
         minHeight: '100vh',
@@ -166,7 +117,7 @@ const useStyles = makeStyles(
         },
       },
     },
-    overlayPaneVariantMdLeft: {
+    overlayPaneMdVariantSizeLeftFull: {
       [theme.breakpoints.up('md')]: {
         paddingBottom: 1,
         minHeight: '100vh',
@@ -175,7 +126,7 @@ const useStyles = makeStyles(
         },
       },
     },
-    overlayPaneVariantSmRight: {
+    overlayPaneSmVariantSizeRightFull: {
       [theme.breakpoints.down('sm')]: {
         paddingBottom: 1,
         minHeight: '100vh',
@@ -184,7 +135,7 @@ const useStyles = makeStyles(
         },
       },
     },
-    overlayPaneVariantMdRight: {
+    overlayPaneMdVariantSizeRightFull: {
       [theme.breakpoints.up('md')]: {
         paddingBottom: 1,
         minHeight: '100vh',
@@ -213,33 +164,61 @@ const useStyles = makeStyles(
 )
 
 export type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
+export type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
+export type LayoutOverlayAlign = 'start' | 'end' | 'center' | 'stretch'
+
+type StyleProps = {
+  variantSm: LayoutOverlayVariant
+  variantMd: LayoutOverlayVariant
+  sizeSm?: LayoutOverlaySize
+  sizeMd?: LayoutOverlaySize
+  justifySm?: LayoutOverlayAlign
+  justifyMd?: LayoutOverlayAlign
+}
 
 export type LayoutOverlayBaseProps = {
   children?: React.ReactNode
-  variantSm: LayoutOverlayVariant
-  variantMd: LayoutOverlayVariant
-} & UseStyles<typeof useStyles>
+} & StyleProps &
+  UseStyles<typeof useStyles>
 
-export enum OverlayPosition {
+enum OverlayPosition {
   UNOPENED = -1,
   OPENED = 1,
   CLOSED = 0,
 }
 
 export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
-  const { children, variantSm, variantMd } = props
-  const { scrollerRef } = useScrollerContext()
+  const {
+    children,
+    variantSm,
+    variantMd,
+    classes: _classes,
+    sizeSm = 'full',
+    sizeMd = 'full',
+    justifySm = 'stretch',
+    justifyMd = 'stretch',
+  } = props
+
+  const { scrollerRef, snap } = useScrollerContext()
   const positions = useOverlayPosition()
   const scrollTo = useScrollTo()
   const [isPresent, safeToRemove] = usePresence()
+  const beforeRef = useRef<HTMLDivElement>(null)
 
   const { closeSteps, active, direction } = usePageContext()
-  const pageRouter = usePageRouter()
+  const close = useGo(closeSteps * -1)
 
   const position = useMotionValue<OverlayPosition>(OverlayPosition.UNOPENED)
 
-  const classes = useStyles(props)
-  const className = classesPicker(classes, { variantSm, variantMd })
+  const classes = useStyles({ classes: _classes, sizeSm, sizeMd, justifySm, justifyMd })
+  const className = classesPicker(classes, {
+    variantSm,
+    variantMd,
+    sizeSm,
+    sizeMd,
+    smVariantSize: `${variantSm}${capitalize(sizeSm)}`,
+    mdVariantSize: `${variantMd}${capitalize(sizeMd)}`,
+  })
 
   const overlayRef = useRef<HTMLDivElement>(null)
 
@@ -286,7 +265,6 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
   // When the overlay is closed by navigating away, we're closing the overlay.
   useEffect(() => {
     if (isPresent) return
-
     position.set(OverlayPosition.CLOSED)
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     scrollTo({
@@ -299,9 +277,8 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
   const closeOverlay = useCallback(() => {
     if (position.get() !== OverlayPosition.OPENED) return
     position.set(OverlayPosition.CLOSED)
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    pageRouter.go(closeSteps * -1)
-  }, [closeSteps, pageRouter, position])
+    close()
+  }, [close, position])
 
   // Handle escape key
   const windowRef = useRef(typeof window !== 'undefined' ? window : null)
@@ -331,25 +308,101 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
   )
 
   const onClickAway = useCallback(
-    (event: React.MouseEvent<Document>) => {
-      if (event.target === document.body && event.type === 'click') return
-      closeOverlay()
+    (event: React.MouseEvent<HTMLDivElement>) => {
+      const isTarget = event.target === scrollerRef.current || event.target === beforeRef.current
+      if (isTarget && snap.get()) closeOverlay()
     },
-    [closeOverlay],
+    [closeOverlay, scrollerRef, snap],
+  )
+
+  const Overlay = styled('div')(
+    ({ theme }) => ({
+      display: 'grid',
+      pointerEvents: 'none',
+      gridArea: 'overlay',
+      scrollSnapAlign: 'start',
+
+      [theme.breakpoints.down('sm')]: {
+        justifyContent: justifySm,
+        alignItems: justifySm,
+
+        ...(variantSm === 'bottom' && {
+          marginTop: `calc(${theme.appShell.headerHeightSm} * 0.5 * -1)`,
+          paddingTop: `calc(${theme.appShell.headerHeightSm} * 0.5)`,
+        }),
+      },
+      [theme.breakpoints.up('md')]: {
+        justifyContent: justifyMd,
+        alignItems: justifyMd,
+
+        ...(variantMd === 'bottom' && {
+          marginTop: `calc(${theme.appShell.headerHeightMd} + (${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * 0.5)`,
+          paddingTop: `calc(${theme.appShell.headerHeightMd} + (${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5)`,
+          display: 'grid',
+        }),
+      },
+    }),
+    { name: 'Overlay' },
+  )
+
+  const OverlayPane = styled('div')(
+    ({ theme }) => ({
+      pointerEvents: 'all',
+      backgroundColor: theme.palette.background.paper,
+      boxShadow: theme.shadows[24],
+      // scrollSnapAlign: 'end',
+      [theme.breakpoints.down('sm')]: {
+        minWidth: '80vw',
+        ...((sizeSm === 'full' || sizeSm === 'minimal') && {
+          paddingBottom: 56,
+        }),
+        ...(variantSm === 'bottom' && sizeSm === 'full' && { height: 'calc(100vh - 56px)' }),
+      },
+      [theme.breakpoints.up('md')]: {
+        ...(variantMd === 'bottom' && sizeMd === 'full' && { height: '100vh' }),
+
+        ...(sizeMd === 'full' && {
+          minWidth: 'max(600px, 50vw)',
+        }),
+      },
+    }),
+    { name: 'OverlayPane' },
+  )
+
+  const BeforeOverlay = styled('div')(
+    ({ theme }) => ({
+      gridArea: 'beforeOverlay',
+      scrollSnapAlign: 'start',
+      display: 'grid',
+      alignContent: 'end',
+
+      [theme.breakpoints.down('sm')]: {
+        ...((variantSm === 'left' || variantSm === 'right') && { width: '100vw' }),
+        ...(variantSm === 'bottom' && {
+          height: '100vh',
+          '@supports (-webkit-touch-callout: none)': {
+            height: '-webkit-fill-available',
+          },
+        }),
+      },
+      [theme.breakpoints.up('md')]: {
+        ...((variantMd === 'left' || variantMd === 'right') && { width: '100vw' }),
+        ...(variantSm === 'bottom' && { height: '100vh' }),
+      },
+    }),
+    { name: 'BeforeOverlay' },
   )
 
   return (
     <>
       <m.div {...className('backdrop')} style={{ opacity: positions.open.visible }} />
-      <Scroller {...className('root')} grid={false} hideScrollbar>
-        <div {...className('beforeOverlay')} />
-        <div {...className('overlay')} ref={overlayRef}>
-          <ClickAwayListener onClickAway={onClickAway}>
-            <div {...className('overlayPane')}>
-              <LayoutProvider scroll={scrollWithoffset}>{children}</LayoutProvider>
-            </div>
-          </ClickAwayListener>
-        </div>
+      <Scroller {...className('root')} grid={false} hideScrollbar onClick={onClickAway}>
+        <BeforeOverlay onClick={onClickAway} ref={beforeRef} />
+        <Overlay {...className('overlay')} ref={overlayRef}>
+          <OverlayPane {...className('overlayPane')}>
+            <LayoutProvider scroll={scrollWithoffset}>{children}</LayoutProvider>
+          </OverlayPane>
+        </Overlay>
       </Scroller>
     </>
   )

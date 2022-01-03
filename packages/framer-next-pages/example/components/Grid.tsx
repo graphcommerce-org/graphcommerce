@@ -1,11 +1,11 @@
-import { usePageRouter } from '@graphcommerce/framer-next-pages'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import styles from './styles.module.css'
 
 export const data = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 function usePostcardClass(asPath: string) {
-  const router = usePageRouter()
+  const router = useRouter()
   return `${styles.postCard} ${asPath === router.asPath && styles.postCardActive}`
 }
 

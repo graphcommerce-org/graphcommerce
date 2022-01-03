@@ -38,7 +38,7 @@ export const measurePerformanceLink = new ApolloLink((operation, forward) => {
     let vars =
       Object.keys(operation.variables).length > 0 ? `(${JSON.stringify(operation.variables)})` : ''
     if (vars.length > 100) {
-      vars = `${vars.substr(0, 100)}…`
+      vars = `${vars.substring(0, 100)}…`
     }
 
     if (data.extensions?.tracing && time > slowOperationThreshold) {
@@ -46,7 +46,7 @@ export const measurePerformanceLink = new ApolloLink((operation, forward) => {
 
       const duration = Math.round(tracing.duration / (1000 * 1000))
 
-      console.group(`[slow] ${operation.operationName}${vars}`)
+      console.group(`GraphQL slow query/mutation '${operation.operationName}'${vars}`)
       console.info(`operations ${duration}ms, mesh: ${time - duration}ms`)
 
       tracing.execution.resolvers

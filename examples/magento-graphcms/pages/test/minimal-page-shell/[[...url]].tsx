@@ -1,8 +1,9 @@
-import { PageOptions, usePageContext, usePageRouter } from '@graphcommerce/framer-next-pages'
+import { PageOptions, usePageContext } from '@graphcommerce/framer-next-pages'
 import { LayoutHeader, Button, iconPerson, Stepper, LayoutTitle } from '@graphcommerce/next-ui'
-import { Container, Divider, List, ListItem, NoSsr, Typography } from '@material-ui/core'
+import { Container, Divider, List, ListItem } from '@material-ui/core'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../../components/Layout'
 
@@ -13,11 +14,11 @@ type AppShellDemoProps = {
 export function AppShellDemo(props: AppShellDemoProps) {
   const { baseUrl } = props
 
-  const queryParams = usePageRouter().asPath.split('/')
+  const queryParams = useRouter().asPath.split('/')
   const urlParts = queryParams.pop()?.split('-') ?? []
 
   const title = urlParts.map((s = '') => `${s.charAt(0).toUpperCase() + s.slice(1)}`).join(' ')
-  const [scroll, setScroll] = useState<boolean>(true)
+  const [scroll, setScroll] = useState<boolean>(false)
   const { backSteps } = usePageContext()
 
   const withPrimary = urlParts.includes('primary')
@@ -82,15 +83,15 @@ export function AppShellDemo(props: AppShellDemoProps) {
         }
         floatingMd={isFullPage}
         noAlign={isSheet}
+        switchPoint={0}
       >
-        {/* {titleComponent} */}
         {isMinimal || isSheet || withIcon || withTitle ? titleComponent : undefined}
       </LayoutHeader>
 
-      <Container maxWidth='md'>
-        <LayoutTitle icon={withIcon ? iconPerson : undefined}>{title}</LayoutTitle>
+      <Container maxWidth='md' style={{ paddingTop: 50 }}>
+        {/* <LayoutTitle icon={withIcon ? iconPerson : undefined}>{title}</LayoutTitle> */}
 
-        {isSheet && !primaryAction && (
+        {/* {isSheet && !primaryAction && (
           <Typography variant='body1' gutterBottom>
             When opening a sheet a close icon is shown at the top right.
           </Typography>
@@ -113,7 +114,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
             With a primary action and back button, there is no room for the close button. The close
             button gets ommited
           </Typography>
-        )}
+        )} */}
 
         <Divider />
 
@@ -158,7 +159,10 @@ export function AppShellDemo(props: AppShellDemoProps) {
               With icon
             </ListItem>
           </PageLink>
-          <PageLink href='/test/sheet/bottom' passHref>
+          <PageLink
+            href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=stretch&justifySm=stretch&variantMd=bottom&variantSm=bottom'
+            passHref
+          >
             <ListItem
               button
               component='a'
@@ -168,7 +172,10 @@ export function AppShellDemo(props: AppShellDemoProps) {
               Bottom sheet
             </ListItem>
           </PageLink>
-          <PageLink href='/test/sheet/left' passHref>
+          <PageLink
+            href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=start&justifySm=start&variantMd=left&variantSm=left'
+            passHref
+          >
             <ListItem
               button
               component='a'
@@ -178,7 +185,10 @@ export function AppShellDemo(props: AppShellDemoProps) {
               Left side sheet
             </ListItem>
           </PageLink>
-          <PageLink href='/test/sheet/right' passHref>
+          <PageLink
+            href='/test/sheet?sizeMd=full&sizeSm=full&justifyMd=start&justifySm=start&variantMd=right&variantSm=right'
+            passHref
+          >
             <ListItem
               button
               component='a'

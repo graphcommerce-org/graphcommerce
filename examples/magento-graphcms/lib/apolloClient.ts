@@ -1,40 +1,39 @@
 import { NormalizedCacheObject, ApolloClient } from '@apollo/client'
 import { SchemaLink } from '@apollo/client/link/schema'
-import { mergeDeep } from '@apollo/client/utilities'
 import { defaultLocale, localeToStore } from '@graphcommerce/magento-store'
+import apolloClientBrowser from './apolloClientBrowser'
 import { createApolloClient } from './createApolloClient'
-import mesh from './mesh'
 
 const sharedClient: {
   [locale: string]: ApolloClient<NormalizedCacheObject>
 } = {}
 
-const resolvedMesh = await mesh
+const fastDev =
+  process.env.NODE_ENV !== 'production' &&
+  process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT?.includes('localhost')
 
-function schemaLink(locale: string) {
-  return new SchemaLink({
-    ...resolvedMesh,
-    context: { headers: { store: localeToStore(locale) } },
-  })
+const mesh = fastDev ? undefined : await (await import('./mesh')).default
+
+// We're using the HttpLink for development environments so it doesn't have to reload the mesh on every dev change.
+function client(locale: string) {
+  if (!mesh) throw Error('Mesh not available')
+  return createApolloClient(
+    locale,
+    new SchemaLink({ ...mesh, context: { headers: { store: localeToStore(locale) } } }),
+  )
 }
 
 export default function apolloClient(
   locale: string | undefined = defaultLocale(),
   shared = typeof window !== 'undefined',
-  state?: NormalizedCacheObject,
 ): ApolloClient<NormalizedCacheObject> {
-  if (!shared) {
-    return createApolloClient(locale, schemaLink(locale), state)
-  }
+  if (fastDev) return apolloClientBrowser(locale, shared)
 
-  // Update the shared client with the new state.
-  if (sharedClient[locale] && state && Object.keys(state).length > 0) {
-    sharedClient[locale].cache.restore(mergeDeep(sharedClient[locale].cache.extract(), state))
-  }
+  if (!shared) return client(locale)
 
   // Create a client if it doesn't exist
   if (!sharedClient[locale]) {
-    sharedClient[locale] = createApolloClient(locale, schemaLink(locale), state)
+    sharedClient[locale] = client(locale)
   }
 
   return sharedClient[locale]

@@ -4,6 +4,7 @@ export * from './context/pageContext'
 export * from './context/pageRouterContext'
 export type { PageOptions, PageComponent } from './types'
 
+export * from './hooks/useGo'
 export * from './hooks/usePageContext'
 export * from './hooks/usePageRouter'
 export * from './hooks/useHistoryLink'
