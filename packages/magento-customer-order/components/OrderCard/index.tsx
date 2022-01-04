@@ -1,8 +1,9 @@
 import { useQuery } from '@apollo/client'
 import { StoreConfigDocument, Money } from '@graphcommerce/magento-store'
 import { responsiveVal } from '@graphcommerce/next-ui'
-import { Button, makeStyles, Theme } from '@material-ui/core'
-import Skeleton from '@material-ui/lab/Skeleton'
+import { Button, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import Skeleton from '@mui/material/Skeleton'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
@@ -98,13 +99,13 @@ export default function OrderCard(props: OrderCardProps) {
           <Skeleton variant='text' width={280} />
         </div>
         <div className={clsx(classes.orderProducts, classes.orderRow)}>
-          <Skeleton variant='rect' width={88} height={88} />
+          <Skeleton variant="rectangular" width={88} height={88} />
         </div>
         <div className={classes.orderRow}>
           <Skeleton variant='text' width={228} />
         </div>
       </div>
-    )
+    );
   }
 
   return (

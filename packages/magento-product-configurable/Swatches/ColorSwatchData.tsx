@@ -1,5 +1,5 @@
 import { UseStyles, responsiveVal } from '@graphcommerce/next-ui'
-import { makeStyles } from '@material-ui/core'
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import { ColorSwatchDataFragment } from './ColorSwatchData.gql'
 import { SwatchDataProps } from '.'

@@ -1,5 +1,6 @@
 import { iconSearch, responsiveVal, SvgImageSimple, UseStyles } from '@graphcommerce/next-ui'
-import { makeStyles, TextField, TextFieldProps, Theme } from '@material-ui/core'
+import { TextField, TextFieldProps, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import React from 'react'
 
@@ -11,7 +12,7 @@ const useStyles = makeStyles(
       '& fieldset': {
         border: `1px solid ${theme.palette.divider}`,
       },
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         width: '100%',
         marginRight: 0,
       },

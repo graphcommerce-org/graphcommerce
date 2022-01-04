@@ -1,6 +1,6 @@
 import fs from 'fs'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { Link } from '@material-ui/core'
+import { Link } from '@mui/material'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import React from 'react'

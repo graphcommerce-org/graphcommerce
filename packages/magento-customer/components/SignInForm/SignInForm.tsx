@@ -3,8 +3,9 @@ import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { FormRow, Button, FormActions } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { FormControl, Link, makeStyles, TextField } from '@material-ui/core'
-import { Alert } from '@material-ui/lab'
+import { FormControl, Link, TextField } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { Alert } from '@mui/material';
 import PageLink from 'next/link'
 import React from 'react'
 import { CustomerTokenDocument } from '../../hooks'

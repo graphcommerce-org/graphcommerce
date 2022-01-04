@@ -1,6 +1,7 @@
 import { useConstant, useElementScroll, useMotionValueValue } from '@graphcommerce/framer-utils'
 import { UseStyles, classesPicker } from '@graphcommerce/next-ui'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import {
   HTMLMotionProps,
   motionValue,
@@ -26,7 +27,7 @@ const useStyles = makeStyles(
       },
     },
     rootSmSnapDirNone: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         overflow: 'hidden',
         overscrollBehavior: 'auto',
       },
@@ -38,7 +39,7 @@ const useStyles = makeStyles(
       },
     },
     rootSmSnapDirBlock: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         overflowY: 'auto',
         overflowX: 'hidden',
         overscrollBehaviorBlock: 'contain',
@@ -52,7 +53,7 @@ const useStyles = makeStyles(
       },
     },
     rootSmSnapDirInline: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         overflowX: 'auto',
         overflowY: 'hidden',
         overscrollBehaviorInline: 'contain',
@@ -66,7 +67,7 @@ const useStyles = makeStyles(
       },
     },
     rootSmSnapDirBoth: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         overflow: 'auto',
         overscrollBehavior: 'contain',
       },
@@ -101,7 +102,7 @@ const useStyles = makeStyles(
       cursor: 'grab',
     },
     rootIsSnap: ({ scrollSnapTypeSm, scrollSnapTypeMd }: ScrollSnapProps) => ({
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         scrollSnapType: scrollSnapTypeSm,
       },
       [theme.breakpoints.up('md')]: {

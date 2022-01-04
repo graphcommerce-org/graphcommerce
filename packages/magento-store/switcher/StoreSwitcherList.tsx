@@ -1,13 +1,6 @@
 import { FlagAvatar, UseStyles } from '@graphcommerce/next-ui'
-import {
-  List,
-  ListItem,
-  ListItemText,
-  makeStyles,
-  Theme,
-  Collapse,
-  ListItemAvatar,
-} from '@material-ui/core'
+import { List, ListItem, ListItemText, Theme, Collapse, ListItemAvatar } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import PageLink from 'next/link'
 import React from 'react'
 import { localeToStore, storeToLocale } from '../localeToStore'

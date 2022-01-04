@@ -6,12 +6,19 @@ import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 import { LinguiProvider } from '@graphcommerce/lingui-next'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { AppProps, GlobalHead, PageLoadIndicator } from '@graphcommerce/next-ui'
-import { CssBaseline, ThemeProvider } from '@material-ui/core'
+import { CssBaseline, ThemeProvider, Theme, StyledEngineProvider } from '@mui/material';
 import { LazyMotion } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import React, { useEffect, useState } from 'react'
 import { lightTheme, darkTheme } from '../components/Theme/ThemedProvider'
 import apolloClient from '../lib/apolloClientBrowser'
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
 
 export type PageRendererProps = Omit<AppPropsType, 'router'> & {
   Layout: React.ComponentType<AppPropsType>
@@ -54,14 +61,16 @@ export default function ThemedApp(props: Omit<AppPropsType, 'pageProps'> & AppPr
         }
       >
         <ApolloProvider client={client}>
-          <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-            <Head />
-            <CssBaseline />
-            <PageLoadIndicator />
-            <FramerNextPages {...props} />
-          </ThemeProvider>
+          <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+              <Head />
+              <CssBaseline />
+              <PageLoadIndicator />
+              <FramerNextPages {...props} />
+            </ThemeProvider>
+          </StyledEngineProvider>
         </ApolloProvider>
       </LinguiProvider>
     </LazyMotion>
-  )
+  );
 }

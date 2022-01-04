@@ -1,4 +1,5 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 import Row from '..'
 import { UseStyles } from '../../Styles'
@@ -9,7 +10,7 @@ const useStyles = makeStyles(
     wrapper: {
       display: 'grid',
       background:
-        theme.palette.type === 'light'
+        theme.palette.mode === 'light'
           ? theme.palette.background.image
           : theme.palette.background.paper,
       justifyItems: 'center',

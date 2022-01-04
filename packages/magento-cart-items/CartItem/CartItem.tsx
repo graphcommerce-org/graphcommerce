@@ -3,7 +3,8 @@ import { useDisplayInclTax } from '@graphcommerce/magento-cart'
 import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import { UseStyles, responsiveVal } from '@graphcommerce/next-ui'
-import { Badge, makeStyles, Theme, Link } from '@material-ui/core'
+import { Badge, Theme, Link } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
@@ -66,7 +67,7 @@ const useStyles = makeStyles(
         '&:hover, &:active, &:visited': {
           background: theme.palette.background.paper,
         },
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('md')]: {
           width: 30,
           height: 30,
           minHeight: 'unset',

@@ -7,7 +7,7 @@ import {
   UseFormReturn,
 } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
-import { TextField } from '@material-ui/core'
+import { TextField } from '@mui/material'
 import React, { useMemo } from 'react'
 
 type AddressFieldValues = {

@@ -1,4 +1,5 @@
-import { IconButton, makeStyles, Popover } from '@material-ui/core'
+import { IconButton, Popover } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 
 const useStyles = makeStyles(
@@ -42,7 +43,11 @@ export default function DeliveryLabel(props: DeliveryLabelProps) {
 
   return (
     <div className={classes.root}>
-      <IconButton component='button' className={classes.labelContainer} onClick={handleClick}>
+      <IconButton
+        component='button'
+        className={classes.labelContainer}
+        onClick={handleClick}
+        size="large">
         <div className={classes.label} />
       </IconButton>
       <Popover
@@ -63,5 +68,5 @@ export default function DeliveryLabel(props: DeliveryLabelProps) {
         Ordered before <b>23:00</b>, delivery <b>tomorrow</b>
       </Popover>
     </div>
-  )
+  );
 }

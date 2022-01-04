@@ -1,5 +1,6 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Divider, makeStyles, Theme } from '@material-ui/core'
+import { Divider, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, { useRef } from 'react'
 import { UseStyles } from '../../Styles'
 import { classesPicker } from '../../Styles/classesPicker'
@@ -32,7 +33,7 @@ const useStyles = makeStyles(
       boxShadow: 'unset',
     },
     bgFloatingSm: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         display: 'none',
       },
     },
@@ -68,7 +69,7 @@ const useStyles = makeStyles(
       },
     },
     contentFloatingSm: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         padding: `0 ${theme.page.horizontal}`,
         background: 'none',
         pointerEvents: 'none',
@@ -97,7 +98,7 @@ const useStyles = makeStyles(
       '& > *': { pointerEvents: 'all' },
     },
     centerFloatingSm: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         display: 'none',
       },
     },
@@ -124,7 +125,7 @@ const useStyles = makeStyles(
       right: 0,
     },
     dividerFloatingSm: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         display: 'none',
       },
     },

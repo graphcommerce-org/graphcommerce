@@ -1,7 +1,8 @@
 import { Image } from '@graphcommerce/image'
 import { Money } from '@graphcommerce/magento-store'
 import { responsiveVal } from '@graphcommerce/next-ui'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'

@@ -18,7 +18,8 @@ import {
 } from '@graphcommerce/next-ui'
 import { phonePattern } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
-import { makeStyles, TextField } from '@material-ui/core'
+import { TextField } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 import { GetBillingAddressDocument } from './GetBillingAddress.gql'
 import { SetBillingAddressOnCartDocument } from './SetBillingAddressOnCart.gql'

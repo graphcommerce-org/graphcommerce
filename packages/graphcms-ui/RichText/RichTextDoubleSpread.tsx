@@ -1,4 +1,5 @@
-import { withStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import withStyles from '@mui/styles/withStyles';
 import RichText from '.'
 
 const RichTextDoubleSpread = withStyles((theme: Theme) => ({

@@ -8,7 +8,8 @@ import {
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
 import { clientSize, useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Fab, makeStyles, Theme, useTheme, alpha } from '@material-ui/core'
+import { Fab, Theme, useTheme, alpha } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
@@ -34,7 +35,7 @@ const useStyles = makeStyles(
         gridTemplateColumns: '1fr auto',
       },
       background:
-        theme.palette.type === 'light'
+        theme.palette.mode === 'light'
           ? theme.palette.background.image
           : theme.palette.background.paper,
       paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
@@ -63,10 +64,10 @@ const useStyles = makeStyles(
         position: 'relative',
         minHeight: '100%',
         paddingTop: `min(${ratio}, ${maxHeight})`,
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('lg')]: {
           width: '100vw',
         },
-      }
+      };
     },
     scrollerContainerZoomed: ({ clientHeight }: StyleProps) => ({
       paddingTop: clientHeight,
@@ -129,7 +130,7 @@ const useStyles = makeStyles(
       },
     },
     sliderButtons: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         display: 'none',
       },
     },

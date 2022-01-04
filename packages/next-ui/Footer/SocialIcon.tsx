@@ -1,4 +1,5 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 import { UseStyles } from '../Styles'
 import SvgImage, { SvgImageProps } from '../SvgImage'
@@ -6,7 +7,7 @@ import SvgImage, { SvgImageProps } from '../SvgImage'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      filter: theme.palette.type === 'light' ? undefined : 'brightness(1) invert(1)',
+      filter: theme.palette.mode === 'light' ? undefined : 'brightness(1) invert(1)',
     },
   }),
   {

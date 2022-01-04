@@ -1,13 +1,5 @@
-import {
-  Fab,
-  makeStyles,
-  Snackbar,
-  SnackbarContent,
-  SnackbarProps,
-  Theme,
-  Portal,
-  lighten,
-} from '@material-ui/core'
+import { Fab, Snackbar, SnackbarContent, SnackbarProps, Theme, Portal, lighten } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
@@ -71,7 +63,7 @@ const useStyles = makeStyles(
       '&:hover, &:focus': {
         backgroundColor: 'transparent',
       },
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('xl')]: {
         '& .MuiPillButton-pill': {
           width: '100%',
         },

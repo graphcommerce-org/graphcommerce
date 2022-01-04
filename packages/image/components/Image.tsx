@@ -2,7 +2,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
-import { useForkRef } from '@material-ui/core'
+import { useForkRef } from '@mui/material'
 import { LoaderValue, VALID_LOADERS } from 'next/dist/server/image-config'
 import Head from 'next/head'
 import type { ImageLoaderProps, ImageLoader } from 'next/image'

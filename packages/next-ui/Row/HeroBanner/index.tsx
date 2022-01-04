@@ -1,4 +1,5 @@
-import { ContainerProps, Theme, makeStyles, useTheme, useMediaQuery } from '@material-ui/core'
+import { ContainerProps, Theme, useTheme, useMediaQuery } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import Row from '..'
@@ -49,7 +50,7 @@ const useStyles = makeStyles(
         objectFit: 'cover',
         width: '100%',
         height: '100%',
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('lg')]: {
           borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
         },
       },
@@ -83,7 +84,7 @@ export default function HeroBanner(props: HeroBannerProps) {
     [10, 150],
     [`calc(100% - ${responsiveVal(20, 60)}))`, `calc(100% - ${responsiveVal(0, 0)})`],
   )
-  const matches = useMediaQuery(theme.breakpoints.down('sm'))
+  const matches = useMediaQuery(theme.breakpoints.down('lg'))
   const borderRadius = useTransform(
     scrollY,
     [10, 150],

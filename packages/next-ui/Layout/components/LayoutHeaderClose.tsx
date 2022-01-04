@@ -3,7 +3,8 @@ import React from 'react'
 import Button from '../../Button'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconClose } from '../../icons'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { Trans } from '@lingui/macro'
 

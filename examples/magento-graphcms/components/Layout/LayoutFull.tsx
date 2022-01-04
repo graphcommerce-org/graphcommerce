@@ -14,7 +14,7 @@ import {
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Fab, useTheme } from '@material-ui/core'
+import { Fab, useTheme } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'

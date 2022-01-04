@@ -1,5 +1,6 @@
 import { responsiveVal, iconOrderBefore, SvgImageSimple } from '@graphcommerce/next-ui'
-import { darken, lighten, makeStyles, Theme, Typography } from '@material-ui/core'
+import { darken, lighten, Theme, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 
 const useStyles = makeStyles(
@@ -15,7 +16,7 @@ const useStyles = makeStyles(
       columnGap: theme.spacings.xxs,
       marginTop: theme.spacings.xxs,
       background:
-        theme.palette.type === 'light'
+        theme.palette.mode === 'light'
           ? darken(theme.palette.background.default, 0.01)
           : lighten(theme.palette.background.default, 0.2),
       padding: theme.spacings.xxs,

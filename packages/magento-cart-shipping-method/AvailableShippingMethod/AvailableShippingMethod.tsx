@@ -1,6 +1,7 @@
 import { Money } from '@graphcommerce/magento-store'
 import { UseStyles, ToggleButton, ToggleButtonProps } from '@graphcommerce/next-ui'
-import { FormHelperText, makeStyles, Theme } from '@material-ui/core'
+import { FormHelperText, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import React from 'react'
 import { SetOptional } from 'type-fest'

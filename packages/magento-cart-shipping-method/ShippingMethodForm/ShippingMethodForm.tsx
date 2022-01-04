@@ -13,8 +13,9 @@ import {
   UseStyles,
 } from '@graphcommerce/next-ui'
 import { Controller, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
-import { FormControl, makeStyles, Theme } from '@material-ui/core'
-import { Alert } from '@material-ui/lab'
+import { FormControl, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { Alert } from '@mui/material';
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React from 'react'

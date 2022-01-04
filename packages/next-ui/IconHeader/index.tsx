@@ -1,4 +1,5 @@
-import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { Theme, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import React from 'react'
 import { SvgImageProps } from '../SvgImage'

@@ -1,4 +1,5 @@
-import { ContainerProps, makeStyles, Theme } from '@material-ui/core'
+import { ContainerProps, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import Row from '..'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'

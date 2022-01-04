@@ -1,5 +1,5 @@
 import { ContainerWithHeader } from '@graphcommerce/next-ui'
-import { Link } from '@material-ui/core'
+import { Link } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import ProductListItems, { ProductListItemsProps } from '../../../ProductListItems/ProductListItems'

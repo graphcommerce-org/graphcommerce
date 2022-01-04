@@ -1,13 +1,20 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
 import { responsiveVal } from '@graphcommerce/next-ui'
-import { createTheme, CssBaseline, MuiThemeProvider } from '@material-ui/core'
+import {
+  createTheme,
+  CssBaseline,
+  ThemeProvider,
+  Theme,
+  StyledEngineProvider,
+  adaptV4Theme,
+} from '@mui/material';
 import { LazyMotion, domMax } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import { Router } from 'next/router'
 import React, { useEffect } from 'react'
 
-const theme = createTheme({
+const theme = createTheme(adaptV4Theme({
   spacings: {
     xxs: responsiveVal(10, 16),
     xs: responsiveVal(12, 20),
@@ -27,16 +34,18 @@ const theme = createTheme({
     appBarHeightMd: '80px',
     appBarInnerHeightMd: '46px',
   },
-})
+}))
 
 export default function MyApp({ Component, pageProps }: AppPropsType<Router>) {
   useEffect(() => document.getElementById('jss-server-side')?.remove())
   return (
     <LazyMotion features={domMax} strict>
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </MuiThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </StyledEngineProvider>
     </LazyMotion>
-  )
+  );
 }

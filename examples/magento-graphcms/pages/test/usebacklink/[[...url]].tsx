@@ -1,5 +1,5 @@
 import { PageOptions, useHistoryLink } from '@graphcommerce/framer-next-pages'
-import { Link } from '@material-ui/core'
+import { Link } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../../components/Layout'

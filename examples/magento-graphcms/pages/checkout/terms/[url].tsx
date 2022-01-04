@@ -5,7 +5,7 @@ import {
 } from '@graphcommerce/magento-cart/components/CartAgreementsForm/CartAgreements.gql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { Container, Typography } from '@material-ui/core'
+import { Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
@@ -62,7 +62,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
     return (data.checkoutAgreements ?? []).map((agreement) => ({
       locale,
       params: { url: agreement?.name.toLowerCase().replace(/\s+/g, '-') ?? '' },
-    }))
+    }));
   }
 
   const paths = (await Promise.all(locales.map(path))).flat(1).filter((v) => !!v)

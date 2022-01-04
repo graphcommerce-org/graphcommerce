@@ -1,5 +1,6 @@
-import { LinearProgress, makeStyles, Fade } from '@material-ui/core'
-import zIndex from '@material-ui/core/styles/zIndex'
+import { LinearProgress, Fade } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { zIndex } from '@mui/material/styles';
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 

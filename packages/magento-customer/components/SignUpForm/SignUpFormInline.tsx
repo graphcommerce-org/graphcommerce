@@ -1,7 +1,8 @@
 import { Button, Form, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { makeStyles, TextField, Theme } from '@material-ui/core'
+import { TextField, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, { PropsWithChildren } from 'react'
 import { SignUpMutationVariables, SignUpMutation, SignUpDocument } from './SignUp.gql'
 

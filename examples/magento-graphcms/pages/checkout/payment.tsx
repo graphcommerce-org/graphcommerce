@@ -33,7 +33,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { ComposedForm } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
-import { CircularProgress, Container, Dialog, Divider, NoSsr } from '@material-ui/core'
+import { CircularProgress, Container, Dialog, Divider, NoSsr } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'

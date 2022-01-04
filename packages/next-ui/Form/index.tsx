@@ -1,4 +1,5 @@
-import { darken, lighten, makeStyles, Theme } from '@material-ui/core'
+import { darken, lighten, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
@@ -16,7 +17,7 @@ const useStyles = makeStyles(
     },
     default: {
       background:
-        theme.palette.type === 'light'
+        theme.palette.mode === 'light'
           ? darken(theme.palette.background.default, 0.03)
           : lighten(theme.palette.background.default, 0.1),
     },

@@ -1,7 +1,7 @@
 import RichTextParagraphStrongStroked from '@graphcommerce/graphcms-ui/RichText/RichTextParagraphStrongStroked'
 import { ProductListItemsFragment } from '@graphcommerce/magento-product'
 import { ParagraphWithSidebarSlide, RenderType } from '@graphcommerce/next-ui'
-import { useTheme } from '@material-ui/core'
+import { useTheme } from '@mui/material'
 import React from 'react'
 import Asset from '../../../Asset'
 import renderers from '../../../ProductListItems/renderers'

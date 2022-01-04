@@ -4,16 +4,30 @@ import '../demo.css'
 import { PageComponent, FramerNextPages } from '@graphcommerce/framer-next-pages'
 import { LinguiProvider } from '@graphcommerce/lingui-next'
 import { responsiveVal } from '@graphcommerce/next-ui'
-import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core'
+import {
+  createTheme,
+  CssBaseline,
+  ThemeProvider,
+  Theme,
+  StyledEngineProvider,
+  adaptV4Theme,
+} from '@mui/material';
 import { LazyMotion } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import dynamic from 'next/dynamic'
 import { Router } from 'next/router'
 import React from 'react'
 
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
+
 const Fallback = dynamic(() => import('./[url]'), { ssr: false })
 
-const theme = createTheme({
+const theme = createTheme(adaptV4Theme({
   spacings: {
     xxs: responsiveVal(10, 16),
     xs: responsiveVal(12, 20),
@@ -33,17 +47,19 @@ const theme = createTheme({
     appBarHeightMd: '80px',
     appBarInnerHeightMd: '46px',
   },
-})
+}))
 
 export default function MyApp(props: AppPropsType<Router> & { Component: PageComponent }) {
   return (
     <LinguiProvider loader={async () => ({ messages: {} })}>
       <LazyMotion features={async () => (await import('../components/lazyMotion')).default}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <FramerNextPages {...props} />
-        </ThemeProvider>
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <FramerNextPages {...props} />
+          </ThemeProvider>
+        </StyledEngineProvider>
       </LazyMotion>
     </LinguiProvider>
-  )
+  );
 }

@@ -1,4 +1,5 @@
-import { ContainerProps, makeStyles, Theme, Typography } from '@material-ui/core'
+import { ContainerProps, Theme, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import Row from '..'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
@@ -42,7 +43,7 @@ const useStyles = makeStyles(
           objectFit: 'cover',
         },
       },
-      [theme.breakpoints.between('md', 'lg')]: {
+      [theme.breakpoints.between('md', 'xl')]: {
         width: '100%',
         '& img': {
           width: '100%',

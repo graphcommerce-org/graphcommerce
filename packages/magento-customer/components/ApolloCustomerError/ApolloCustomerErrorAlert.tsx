@@ -1,6 +1,6 @@
 import { ApolloErrorAlert, ApolloErrorAlertProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Link } from '@material-ui/core'
+import { Link } from '@mui/material'
 import NextLink from 'next/link'
 import React from 'react'
 import { useExtractCustomerErrors } from '../../hooks/useExtractCustomerErrors'

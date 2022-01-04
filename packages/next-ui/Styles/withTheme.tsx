@@ -1,4 +1,21 @@
-import { makeStyles, Theme, ThemeProvider } from '@material-ui/core'
+import { Theme, ThemeProvider, StyledEngineProvider } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
+
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
 
 const useStyles = makeStyles(
   {
@@ -43,9 +60,11 @@ export function withTheme<P extends { className?: string }>(Component: React.FC<
     const classes = useStyles(theme)
 
     return (
-      <ThemeProvider theme={theme}>
-        <Component {...props} className={classes.root} />
-      </ThemeProvider>
-    )
-  }
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <Component {...props} className={classes.root} />
+        </ThemeProvider>
+      </StyledEngineProvider>
+    );
+  };
 }

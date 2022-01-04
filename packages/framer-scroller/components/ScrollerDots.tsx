@@ -1,6 +1,7 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { UseStyles } from '@graphcommerce/next-ui'
-import { Fab, FabProps, makeStyles, Theme } from '@material-ui/core'
+import { Fab, FabProps, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import { HTMLMotionProps, m } from 'framer-motion'
 import React from 'react'

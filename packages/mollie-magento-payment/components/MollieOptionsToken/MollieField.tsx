@@ -1,10 +1,5 @@
-import {
-  InputBaseComponentProps,
-  makeStyles,
-  TextField,
-  TextFieldProps,
-  Theme,
-} from '@material-ui/core'
+import { InputBaseComponentProps, TextField, TextFieldProps, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, {
   Dispatch,
   SetStateAction,
@@ -107,7 +102,7 @@ type MollieFieldProps = {
 const useStyles = makeStyles((theme: Theme) => ({
   label: {
     background:
-      theme.palette.type === 'light'
+      theme.palette.mode === 'light'
         ? theme.palette.secondary.light
         : theme.palette.background.paper,
   },

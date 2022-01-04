@@ -8,15 +8,8 @@ import {
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/macro'
-import {
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  Link,
-  makeStyles,
-  Theme,
-} from '@material-ui/core'
+import { Checkbox, FormControl, FormControlLabel, FormHelperText, Link, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import PageLink from 'next/link'
 import React from 'react'
 import { CartAgreementsDocument } from './CartAgreements.gql'
@@ -120,5 +113,5 @@ export default function CartAgreementsForm(props: CartAgreementsFormProps) {
         </div>
       </form>
     </FormDiv>
-  )
+  );
 }

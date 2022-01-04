@@ -1,9 +1,8 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
 import { responsiveVal, breakpointVal } from '@graphcommerce/next-ui'
-import { createTheme, Theme, alpha } from '@material-ui/core'
-import { PaletteOptions } from '@material-ui/core/styles/createPalette'
-import { Overrides } from '@material-ui/core/styles/overrides'
+import { createTheme, Theme, alpha, adaptV4Theme } from '@mui/material';
+import { PaletteOptions, Overrides } from '@mui/material/styles';
 import shadows from './shadows'
 
 const breakpoints = {
@@ -78,7 +77,7 @@ const darkPalette: PaletteOptions = {
 
 // Create a theme instance.
 const createThemeWithPalette = (palette: PaletteOptions) =>
-  createTheme({
+  createTheme(adaptV4Theme({
     palette,
     breakpoints: {
       values: breakpoints,
@@ -211,7 +210,7 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       appBarHeightMd: '80px',
       appBarInnerHeightMd: '46px',
     },
-  })
+  }))
 
 const createOverrides = (theme: Theme): Overrides => ({
   MuiCssBaseline: {

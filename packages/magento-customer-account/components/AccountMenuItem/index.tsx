@@ -7,7 +7,8 @@ import {
   iconChevronRight,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
-import { ListItem, ListItemIcon, ListItemText, makeStyles, Theme } from '@material-ui/core'
+import { ListItem, ListItemIcon, ListItemText, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'

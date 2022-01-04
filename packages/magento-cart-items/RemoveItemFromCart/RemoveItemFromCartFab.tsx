@@ -1,7 +1,7 @@
 import { ApolloCartErrorSnackbar, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { iconClose, SvgImageSimple } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
-import { Fab } from '@material-ui/core'
+import { Fab } from '@mui/material'
 import React from 'react'
 import {
   RemoveItemFromCartDocument,

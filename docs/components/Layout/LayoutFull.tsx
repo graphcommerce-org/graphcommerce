@@ -5,7 +5,7 @@ import {
   MenuFab,
   MenuProps,
 } from '@graphcommerce/next-ui'
-import { Container } from '@material-ui/core'
+import { Container } from '@mui/material'
 import React from 'react'
 import Logo from '../AppShell/Logo'
 

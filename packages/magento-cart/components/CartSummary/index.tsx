@@ -1,7 +1,8 @@
 import { useHistoryLink } from '@graphcommerce/framer-next-pages'
 import { SectionContainer, UseStyles } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Link, Theme, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import PageLink from 'next/link'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
@@ -18,7 +19,7 @@ const useStyles = makeStyles(
     },
     detailsContainer: {
       borderRadius: '4px 4px 0 0',
-      background: theme.palette.type === 'light' ? '#FFE10820' : theme.palette.background.paper,
+      background: theme.palette.mode === 'light' ? '#FFE10820' : theme.palette.background.paper,
       padding: theme.spacings.sm,
       gridColumnGap: theme.spacings.xxl,
       gridRowGap: theme.spacings.sm,

@@ -15,7 +15,7 @@ import {
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
-import { TextField } from '@material-ui/core'
+import { TextField } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { isSameAddress } from '../../utils/isSameAddress'

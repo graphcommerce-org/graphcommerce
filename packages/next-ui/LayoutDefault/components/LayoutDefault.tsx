@@ -1,5 +1,6 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx'
 import { useTransform, useViewportScroll } from 'framer-motion'
 import React from 'react'
@@ -19,7 +20,7 @@ const useStyles = makeStyles(
       background: theme.palette.background.default,
     },
     hideFabsOnVirtualKeyboardOpen: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         '@media (max-height: 530px)': {
           display: 'none',
         },
@@ -45,7 +46,7 @@ const useStyles = makeStyles(
       },
     },
     headerSticky: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         position: 'sticky',
         top: 0,
       },

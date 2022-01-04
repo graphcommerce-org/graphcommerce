@@ -1,5 +1,6 @@
 import { responsiveVal } from '@graphcommerce/next-ui'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 import { DirectoryTree } from '../../util/files'
 import SidebarMenu from "../SidebarMenu"

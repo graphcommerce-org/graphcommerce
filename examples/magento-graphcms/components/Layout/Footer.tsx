@@ -1,7 +1,7 @@
 import { StoreSwitcherButton } from '@graphcommerce/magento-store'
 import { Button, Footer as FooterBase, SocialIcon } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { IconButton, Link } from '@material-ui/core'
+import { IconButton, Link } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { FooterQueryFragment } from '../GraphQL/FooterQueryFragment.gql'
@@ -43,7 +43,7 @@ export function Footer(props: FooterProps) {
       storeSwitcher={<StoreSwitcherButton />}
       customerService={
         <PageLink href='/service' passHref>
-          <Button variant='pill' color='default'>
+          <Button variant='pill'>
             <Trans>Customer Service</Trans>
           </Button>
         </PageLink>
@@ -61,5 +61,5 @@ export function Footer(props: FooterProps) {
         </>
       }
     />
-  )
+  );
 }

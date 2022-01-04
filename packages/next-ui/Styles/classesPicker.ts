@@ -1,4 +1,4 @@
-import { capitalize } from '@material-ui/core'
+import { capitalize } from '@mui/material'
 import clsx from 'clsx'
 
 /**

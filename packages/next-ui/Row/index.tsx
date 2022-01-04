@@ -1,4 +1,4 @@
-import { Container, styled } from '@material-ui/core'
+import { Container, styled } from '@mui/material'
 
 const Row = styled(Container)(
   ({ theme }) => ({

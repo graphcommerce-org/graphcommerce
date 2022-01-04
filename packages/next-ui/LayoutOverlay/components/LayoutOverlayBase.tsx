@@ -1,7 +1,8 @@
 import { useGo, usePageContext, useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
 import { useElementScroll, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
-import { makeStyles, Theme, capitalize, styled } from '@material-ui/core'
+import { Theme, capitalize, styled } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { m, useDomEvent, useMotionValue, usePresence, useTransform } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
 import LayoutProvider from '../../Layout/components/LayoutProvider'
@@ -26,7 +27,7 @@ const useStyles = makeStyles(
       },
     },
     rootVariantSmLeft: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         gridTemplate: `"overlay beforeOverlay"`,
         borderTopRightRadius: theme.shape.borderRadius * 3,
         borderBottomRightRadius: theme.shape.borderRadius * 3,
@@ -40,7 +41,7 @@ const useStyles = makeStyles(
       },
     },
     rootVariantSmRight: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         gridTemplate: `"beforeOverlay overlay"`,
         borderTopLeftRadius: theme.shape.borderRadius * 3,
         borderBottomLeftRadius: theme.shape.borderRadius * 3,
@@ -54,7 +55,7 @@ const useStyles = makeStyles(
       },
     },
     rootVariantSmBottom: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         borderTopLeftRadius: theme.shape.borderRadius * 3,
         borderTopRightRadius: theme.shape.borderRadius * 3,
         gridTemplate: `"beforeOverlay" "overlay"`,
@@ -77,7 +78,7 @@ const useStyles = makeStyles(
     overlayPane: {},
 
     overlaySizeSmFloating: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         padding: `${theme.page.vertical} ${theme.page.horizontal}`,
       },
     },
@@ -87,7 +88,7 @@ const useStyles = makeStyles(
       },
     },
     overlayPaneVariantSmBottom: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         borderTopLeftRadius: theme.shape.borderRadius * 3,
         borderTopRightRadius: theme.shape.borderRadius * 3,
       },
@@ -99,7 +100,7 @@ const useStyles = makeStyles(
       },
     },
     overlayPaneSizeSmFloating: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         borderRadius: theme.shape.borderRadius * 3,
       },
     },
@@ -109,7 +110,7 @@ const useStyles = makeStyles(
       },
     },
     overlayPaneSmVariantSizeLeftFull: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         paddingBottom: 1,
         minHeight: '100vh',
         '@supports (-webkit-touch-callout: none)': {
@@ -127,7 +128,7 @@ const useStyles = makeStyles(
       },
     },
     overlayPaneSmVariantSizeRightFull: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         paddingBottom: 1,
         minHeight: '100vh',
         '@supports (-webkit-touch-callout: none)': {
@@ -324,7 +325,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
       gridArea: 'overlay',
       scrollSnapAlign: 'start',
 
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         justifyContent: justifySm,
         alignItems: justifySm,
 
@@ -353,7 +354,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
       backgroundColor: theme.palette.background.paper,
       boxShadow: theme.shadows[24],
       // scrollSnapAlign: 'end',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         minWidth: '80vw',
         ...((sizeSm === 'full' || sizeSm === 'minimal') && { paddingBottom: 56 }),
         ...(variantSm === 'bottom' && sizeSm === 'full' && { minHeight: 'calc(100vh - 56px)' }),
@@ -373,7 +374,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
       display: 'grid',
       alignContent: 'end',
 
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         ...((variantSm === 'left' || variantSm === 'right') && { width: '100vw' }),
         ...(variantSm === 'bottom' && {
           height: '100vh',

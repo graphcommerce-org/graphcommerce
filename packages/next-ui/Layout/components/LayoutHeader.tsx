@@ -1,4 +1,5 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 import { classesPicker } from '../../Styles/classesPicker'
 import LayoutHeaderBack, { useShowBack } from './LayoutHeaderBack'
@@ -44,14 +45,14 @@ const useStyles = makeStyles(
       zIndex: theme.zIndex.appBar - 2,
     },
     stickyVisibleSm: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         top: 0,
         marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
         height: theme.appShell.headerHeightSm,
       },
     },
     stickyFloatingSm: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         top: 0,
         marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
         height: theme.appShell.headerHeightSm,
@@ -63,7 +64,7 @@ const useStyles = makeStyles(
       },
     },
     stickyNoAlign: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         position: 'sticky',
         left: 0,
         right: 0,
@@ -83,7 +84,7 @@ const useStyles = makeStyles(
       },
     },
     stickyDivider: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('lg')]: {
         marginBottom: 0,
       },
       [theme.breakpoints.up('md')]: {

@@ -1,13 +1,13 @@
 export {}
 
-declare module '@material-ui/core/styles/createPalette' {
+declare module '@mui/material/styles/createPalette' {
   interface TypeBackground {
     image: string
   }
 }
 
-declare module '@material-ui/core/styles/createTheme' {
-  interface ThemeOptions {
+declare module '@mui/material/styles/createTheme' {
+  interface DeprecatedThemeOptions {
     spacings: {
       xxs: string
       xs: string

@@ -1,5 +1,6 @@
-import { Fab, makeStyles, Theme, Typography } from '@material-ui/core'
-import { PaginationProps, usePagination } from '@material-ui/lab'
+import { Fab, Theme, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { PaginationProps, usePagination } from '@mui/lab'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'

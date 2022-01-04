@@ -1,4 +1,4 @@
-import { Fab, FabProps, styled } from '@material-ui/core'
+import { Fab, FabProps, styled } from '@mui/material'
 
 export const PlaceholderFab = styled((props: Omit<FabProps, 'children'>) => (
   <Fab {...props}>

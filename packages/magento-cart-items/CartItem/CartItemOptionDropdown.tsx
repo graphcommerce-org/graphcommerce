@@ -1,4 +1,5 @@
-import { makeStyles, MenuItem, Select, SelectProps, Theme } from '@material-ui/core'
+import { MenuItem, Select, SelectProps, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 
 const useStyles = makeStyles(

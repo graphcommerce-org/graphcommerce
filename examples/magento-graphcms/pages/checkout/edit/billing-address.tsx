@@ -3,7 +3,7 @@ import { EditBillingAddressForm } from '@graphcommerce/magento-cart-billing-addr
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Container, NoSsr } from '@material-ui/core'
+import { Container, NoSsr } from '@mui/material'
 import React from 'react'
 import { DefaultPageDocument } from '../../../components/GraphQL/DefaultPage.gql'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'

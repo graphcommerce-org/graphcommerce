@@ -8,7 +8,8 @@ import {
   UseStyles,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
-import { alpha, darken, Fab, FabProps, makeStyles, NoSsr, Theme, useTheme } from '@material-ui/core'
+import { alpha, darken, Fab, FabProps, NoSsr, Theme, useTheme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { m, useTransform } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
@@ -21,7 +22,7 @@ const useStyles = makeStyles(
     fab: {
       width: responsiveVal(42, 56),
       height: responsiveVal(42, 56),
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         backgroundColor: `${theme.palette.background.paper} !important`,
       },
     },
@@ -33,7 +34,7 @@ const useStyles = makeStyles(
       width: '100%',
       boxShadow: theme.shadows[6],
       top: 0,
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         opacity: '1 !important',
       },
     },

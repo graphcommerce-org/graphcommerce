@@ -1,4 +1,4 @@
-import { ContainerProps, styled } from '@material-ui/core'
+import { ContainerProps, styled } from '@mui/material'
 import React from 'react'
 import ColumnOne from '../ColumnOne'
 

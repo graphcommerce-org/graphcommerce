@@ -1,4 +1,5 @@
-import { ContainerProps, Theme, makeStyles, Container } from '@material-ui/core'
+import { ContainerProps, Theme, Container } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 import { UseStyles } from '../Styles'
 
@@ -15,7 +16,7 @@ const useStyles = makeStyles(
       display: 'grid',
       gap: theme.spacings.xs,
       alignItems: 'center',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('md')]: {
         paddingTop: theme.spacings.lg,
         paddingBottom: theme.spacings.lg,
         justifyItems: 'center',
@@ -43,7 +44,7 @@ const useStyles = makeStyles(
       gridArea: 'links',
       ...theme.typography.body2,
       gap: theme.spacings.sm,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('md')]: {
         gridAutoFlow: 'row',
         textAlign: 'center',
         gap: 8,
@@ -52,7 +53,7 @@ const useStyles = makeStyles(
     support: {
       gridArea: 'support',
       justifySelf: 'flex-end',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('md')]: {
         justifySelf: 'center',
       },
     },
@@ -65,14 +66,14 @@ const useStyles = makeStyles(
       '& > *': {
         minWidth: 'min-content',
       },
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('md')]: {
         gap: `0 ${theme.spacings.sm}`,
       },
     },
     storeSwitcher: {
       gridArea: 'switcher',
       justifySelf: 'end',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('md')]: {
         justifySelf: 'center',
       },
     },

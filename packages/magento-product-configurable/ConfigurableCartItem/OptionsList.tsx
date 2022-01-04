@@ -1,5 +1,6 @@
 import { responsiveVal } from '@graphcommerce/next-ui'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 import { ConfigurableCartItemFragment } from './ConfigurableCartItem.gql'
 
@@ -23,7 +24,7 @@ const useStyles = makeStyles(
       maxWidth: 560,
       marginTop: -8,
       padding: `${theme.spacings.xs} ${theme.spacings.xs}`,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         minWidth: 0,
         width: '100%',
         maxWidth: `calc(100% - (${theme.page.horizontal}px * 2))`,
