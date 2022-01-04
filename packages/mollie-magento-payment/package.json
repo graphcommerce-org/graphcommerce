@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/mollie-magento-payment",
-  "version": "2.106.35",
+  "version": "2.106.36",
   "sideEffects": false,
   "engines": {
     "node": "14.x"
@@ -18,9 +18,9 @@
   "devDependencies": {
     "@graphcommerce/browserslist-config-pwa": "^3.0.3",
     "@graphcommerce/eslint-config-pwa": "^3.1.10",
-    "@graphcommerce/magento-cart-shipping-address": "^2.106.35",
-    "@graphcommerce/magento-product": "^3.8.0",
-    "@graphcommerce/magento-product-configurable": "^3.6.30",
+    "@graphcommerce/magento-cart-shipping-address": "^2.106.36",
+    "@graphcommerce/magento-product": "^3.8.1",
+    "@graphcommerce/magento-product-configurable": "^3.6.31",
     "@graphcommerce/prettier-config-pwa": "^3.0.5",
     "@graphcommerce/typescript-config-pwa": "^3.1.2",
     "@playwright/test": "^1.17.1"
@@ -28,11 +28,11 @@
   "dependencies": {
     "@apollo/client": "^3.5.6",
     "@graphcommerce/graphql": "^2.105.13",
-    "@graphcommerce/image": "^2.105.12",
-    "@graphcommerce/magento-cart": "^3.9.0",
-    "@graphcommerce/magento-cart-payment-method": "^2.111.35",
-    "@graphcommerce/magento-store": "^3.4.0",
-    "@graphcommerce/next-ui": "^3.22.0",
+    "@graphcommerce/image": "^2.105.13",
+    "@graphcommerce/magento-cart": "^3.9.1",
+    "@graphcommerce/magento-cart-payment-method": "^2.111.36",
+    "@graphcommerce/magento-store": "^3.4.1",
+    "@graphcommerce/next-ui": "^3.22.1",
     "@graphcommerce/react-hook-form": "^2.104.7",
     "@lingui/macro": "^3.13.0",
     "@material-ui/core": "^4.12.3",

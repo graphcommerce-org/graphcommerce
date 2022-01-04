@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.161.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.161.0...@graphcommerce/graphcommerce@2.161.1) (2022-01-04)
+
+
+### Bug Fixes
+
+* overlay would have a height instead of minHeight ([07dba4b](https://github.com/ho-nl/m2-pwa/commit/07dba4b875a37beac2ab6a8afe50e6b7a7ba1bf9))
+
+
+
+
+
 # [2.161.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.160.10...@graphcommerce/graphcommerce@2.161.0) (2022-01-03)
 
 

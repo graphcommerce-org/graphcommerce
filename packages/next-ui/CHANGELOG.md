@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.22.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.22.0...@graphcommerce/next-ui@3.22.1) (2022-01-04)
+
+
+### Bug Fixes
+
+* overlay would have a height instead of minHeight ([07dba4b](https://github.com/ho-nl/m2-pwa/commit/07dba4b875a37beac2ab6a8afe50e6b7a7ba1bf9))
+
+
+
+
+
 # [3.22.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.21.15...@graphcommerce/next-ui@3.22.0) (2022-01-03)
 
 
