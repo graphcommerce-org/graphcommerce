@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.109.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.109.1...@graphcommerce/framer-next-pages@2.109.2) (2022-01-04)
+
+
+### Bug Fixes
+
+* regression where close button didn't work ([5bf57b4](https://github.com/ho-nl/m2-pwa/commit/5bf57b470ab7c013fbe0a896792fcb316a454aa4))
+
+
+
+
+
 # [2.109.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.108.11...@graphcommerce/framer-next-pages@2.109.0) (2022-01-03)
 
 

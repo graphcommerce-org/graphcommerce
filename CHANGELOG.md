@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.161.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.161.1...@graphcommerce/graphcommerce@2.161.2) (2022-01-04)
+
+
+### Bug Fixes
+
+* broder radius of drawer was too small on desktop ([f8b3962](https://github.com/ho-nl/m2-pwa/commit/f8b3962825972e6bc232387e0a2e801289fcc492))
+* close button of bottom sheet spacing ([be33c20](https://github.com/ho-nl/m2-pwa/commit/be33c20fc8f41ad85d90bff15842738bc370b81e))
+* regression where close button didn't work ([5bf57b4](https://github.com/ho-nl/m2-pwa/commit/5bf57b470ab7c013fbe0a896792fcb316a454aa4))
+* regression where primary action wasn't visible ([66f8ed2](https://github.com/ho-nl/m2-pwa/commit/66f8ed20ea0728881be81994d49bd6c399f2e914))
+
+
+
+
+
 ## [2.161.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.161.0...@graphcommerce/graphcommerce@2.161.1) (2022-01-04)
 
 
