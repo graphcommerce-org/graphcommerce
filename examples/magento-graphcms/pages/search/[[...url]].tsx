@@ -49,62 +49,64 @@ function SearchResultPage(props: Props) {
   const totalSearchResults = (categories?.items?.length ?? 0) + (products?.total_count ?? 0)
   const noSearchResults = search && (!products || (products.items && products?.items?.length <= 0))
 
-  return <>
-    <PageMeta
-      title={search ? t`Results for ‘${search}’` : t`Search`}
-      metaRobots={['noindex']}
-      canonical='/search'
-    />
-    <LayoutHeader floatingMd switchPoint={0}>
-      <LayoutTitle size='small'>
-        <SearchForm
-          totalResults={totalSearchResults}
-          search={search}
-          textFieldProps={{ variant: 'standard' }}
-        />
-      </LayoutTitle>
-    </LayoutHeader>
-
-    <Hidden implementation='css' mdDown>
-      <LayoutTitle gutterBottom={false} gutterTop={false}>
-        {search ? <Trans>Results for &lsquo;{search}&rsquo;</Trans> : <Trans>All products</Trans>}
-      </LayoutTitle>
-
-      <Container maxWidth='sm'>
-        <SearchForm
-          totalResults={totalSearchResults}
-          search={search}
-          textFieldProps={{ autoFocus: true }}
-        />
-
-        {categories?.items?.map((category) => (
-          <CategorySearchResult key={category?.url_path} search={search} {...category} />
-        ))}
-      </Container>
-      <SearchDivider />
-    </Hidden>
-
-    {noSearchResults && <NoSearchResults search={search} />}
-    {products && products.items && products?.items?.length > 0 && (
-      <ProductListParamsProvider value={params}>
-        <AppShellSticky>
-          <ProductListFiltersContainer>
-            <ProductListSort sort_fields={products?.sort_fields} />
-            <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-          </ProductListFiltersContainer>
-        </AppShellSticky>
-        <Container maxWidth={false}>
-          <ProductListCount total_count={products?.total_count} />
-          <ProductListItems
-            items={products?.items}
-            classes={productListClasses}
-            loadingEager={1}
+  return (
+    <>
+      <PageMeta
+        title={search ? t`Results for ‘${search}’` : t`Search`}
+        metaRobots={['noindex']}
+        canonical='/search'
+      />
+      <LayoutHeader floatingMd switchPoint={0}>
+        <LayoutTitle size='small'>
+          <SearchForm
+            totalResults={totalSearchResults}
+            search={search}
+            textFieldProps={{ variant: 'standard' }}
           />
-          <ProductListPagination page_info={products?.page_info} />
+        </LayoutTitle>
+      </LayoutHeader>
+
+      <Hidden implementation='css' mdDown>
+        <LayoutTitle gutterBottom={false} gutterTop={false}>
+          {search ? <Trans>Results for &lsquo;{search}&rsquo;</Trans> : <Trans>All products</Trans>}
+        </LayoutTitle>
+
+        <Container maxWidth='sm'>
+          <SearchForm
+            totalResults={totalSearchResults}
+            search={search}
+            textFieldProps={{ autoFocus: true }}
+          />
+
+          {categories?.items?.map((category) => (
+            <CategorySearchResult key={category?.url_path} search={search} {...category} />
+          ))}
         </Container>
-      </ProductListParamsProvider>
-    )}
-  </>;
+        <SearchDivider />
+      </Hidden>
+
+      {noSearchResults && <NoSearchResults search={search} />}
+      {products && products.items && products?.items?.length > 0 && (
+        <ProductListParamsProvider value={params}>
+          <AppShellSticky>
+            <ProductListFiltersContainer>
+              <ProductListSort sort_fields={products?.sort_fields} />
+              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
+            </ProductListFiltersContainer>
+          </AppShellSticky>
+          <Container maxWidth={false}>
+            <ProductListCount total_count={products?.total_count} />
+            <ProductListItems
+              items={products?.items}
+              classes={productListClasses}
+              loadingEager={1}
+            />
+            <ProductListPagination page_info={products?.page_info} />
+          </Container>
+        </ProductListParamsProvider>
+      )}
+    </>
+  )
 }
 
 SearchResultPage.pageOptions = {

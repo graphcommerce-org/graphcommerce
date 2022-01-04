@@ -267,11 +267,11 @@ function RenderElement({ classes, ...element }: ElementNode & Required<UseRichTe
       const linkElement = element as LinkElement
       return (
         <PageLink href={linkElement.href} passHref>
-          <Link classes={{ root: link }} underline="hover">
+          <Link classes={{ root: link }} underline='hover'>
             <RenderChildren {...element} classes={classes} />
           </Link>
         </PageLink>
-      );
+      )
     case 'table':
       return (
         <table className={table}>

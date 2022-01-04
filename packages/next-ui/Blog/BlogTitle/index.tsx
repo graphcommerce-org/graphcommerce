@@ -1,4 +1,4 @@
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from '@mui/styles/makeStyles'
 import React from 'react'
 import { LayoutTitle } from '../../Layout'
 import { UseStyles } from '../../Styles'

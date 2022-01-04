@@ -1,21 +1,16 @@
-import { Theme, ThemeProvider, StyledEngineProvider } from '@mui/material';
+import { Theme, ThemeProvider, StyledEngineProvider } from '@mui/material'
 
-import makeStyles from '@mui/styles/makeStyles';
-
-
+import makeStyles from '@mui/styles/makeStyles'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends Theme {}
 }
 
-
-
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends Theme {}
 }
-
 
 const useStyles = makeStyles(
   {
@@ -65,6 +60,6 @@ export function withTheme<P extends { className?: string }>(Component: React.FC<
           <Component {...props} className={classes.root} />
         </ThemeProvider>
       </StyledEngineProvider>
-    );
-  };
+    )
+  }
 }

@@ -62,7 +62,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
     return (data.checkoutAgreements ?? []).map((agreement) => ({
       locale,
       params: { url: agreement?.name.toLowerCase().replace(/\s+/g, '-') ?? '' },
-    }));
+    }))
   }
 
   const paths = (await Promise.all(locales.map(path))).flat(1).filter((v) => !!v)

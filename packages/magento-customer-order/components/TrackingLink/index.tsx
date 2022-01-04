@@ -1,7 +1,7 @@
 import { SvgImageSimple, iconLocation } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import React from 'react'
 import { TrackingLinkFragment } from './TrackingLink.gql'
 

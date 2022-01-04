@@ -1,6 +1,6 @@
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
-import { Link, LinkProps as MuiLinkProps, Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Link, LinkProps as MuiLinkProps, Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
@@ -105,7 +105,8 @@ export default function DesktopNavBar(props: MenuTabsProps) {
                 variant='subtitle1'
                 {...LinkProps}
                 className={clsx(classes.link, LinkProps?.className)}
-                underline="hover">
+                underline='hover'
+              >
                 {children}
                 <div
                   className={clsx(
@@ -155,5 +156,5 @@ export default function DesktopNavBar(props: MenuTabsProps) {
           <SvgImageSimple src={iconChevronRight} />
         </ScrollerButton> */}
     </ScrollerProvider>
-  );
+  )
 }

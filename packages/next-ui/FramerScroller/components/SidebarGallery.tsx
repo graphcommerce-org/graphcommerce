@@ -8,8 +8,8 @@ import {
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
 import { clientSize, useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Fab, Theme, useTheme, alpha } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Fab, Theme, useTheme, alpha } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
@@ -67,7 +67,7 @@ const useStyles = makeStyles(
         [theme.breakpoints.down('lg')]: {
           width: '100vw',
         },
-      };
+      }
     },
     scrollerContainerZoomed: ({ clientHeight }: StyleProps) => ({
       paddingTop: clientHeight,

@@ -16,61 +16,63 @@ function CustomerAccountCreatePasswordPage() {
 
   if (typeof token !== 'undefined' && success === 'undefined') return null
 
-  return <>
-    <PageMeta
-      title={t`Create new password`}
-      metaDescription={t`Create new password`}
-      metaRobots={['noindex']}
-    />
-    <LayoutOverlayHeader>
-      <LayoutTitle size='small' component='span'>
-        {!success ? t`Set your new password` : t`You have now successfully reset your password`}
-      </LayoutTitle>
-    </LayoutOverlayHeader>
-    <NoSsr>
-      <Box pt={4} pb={4}>
-        {!success && (
-          <Container maxWidth='sm'>
-            <LayoutTitle>
-              <Trans>Set your new password</Trans>
-            </LayoutTitle>
+  return (
+    <>
+      <PageMeta
+        title={t`Create new password`}
+        metaDescription={t`Create new password`}
+        metaRobots={['noindex']}
+      />
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span'>
+          {!success ? t`Set your new password` : t`You have now successfully reset your password`}
+        </LayoutTitle>
+      </LayoutOverlayHeader>
+      <NoSsr>
+        <Box pt={4} pb={4}>
+          {!success && (
+            <Container maxWidth='sm'>
+              <LayoutTitle>
+                <Trans>Set your new password</Trans>
+              </LayoutTitle>
 
-            <Box textAlign='center'>
-              <p>
-                <Trans>Fill in your new password, confirm it and click on the save button.</Trans>
-              </p>
-            </Box>
+              <Box textAlign='center'>
+                <p>
+                  <Trans>Fill in your new password, confirm it and click on the save button.</Trans>
+                </p>
+              </Box>
 
-            <ResetPasswordForm token={(token as string) ?? ''} />
-          </Container>
-        )}
+              <ResetPasswordForm token={(token as string) ?? ''} />
+            </Container>
+          )}
 
-        {success && (
-          <Container>
-            <LayoutTitle>
-              <Trans>You have now successfully reset your password</Trans>
-            </LayoutTitle>
+          {success && (
+            <Container>
+              <LayoutTitle>
+                <Trans>You have now successfully reset your password</Trans>
+              </LayoutTitle>
 
-            <Box textAlign='center'>
-              <p>
-                <Trans>
-                  You can now
-                  <Link color='primary' href='/account/signin' underline="hover">
-                    sign in again
-                  </Link>
-                  .
-                </Trans>
-              </p>
+              <Box textAlign='center'>
+                <p>
+                  <Trans>
+                    You can now
+                    <Link color='primary' href='/account/signin' underline='hover'>
+                      sign in again
+                    </Link>
+                    .
+                  </Trans>
+                </p>
 
-              <Button onClick={() => router.back()} variant='pill' color='secondary' size='large'>
-                <Trans>Continue shopping</Trans>
-              </Button>
-            </Box>
-          </Container>
-        )}
-      </Box>
-    </NoSsr>
-  </>;
+                <Button onClick={() => router.back()} variant='pill' color='secondary' size='large'>
+                  <Trans>Continue shopping</Trans>
+                </Button>
+              </Box>
+            </Container>
+          )}
+        </Box>
+      </NoSsr>
+    </>
+  )
 }
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {

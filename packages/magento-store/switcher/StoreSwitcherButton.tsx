@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { FlagAvatar, UseStyles } from '@graphcommerce/next-ui'
-import { Button } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Button } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import PageLink from 'next/link'
 import React from 'react'
 import { StoreConfigDocument } from '../StoreConfig.gql'

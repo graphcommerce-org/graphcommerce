@@ -7,9 +7,9 @@ import {
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { Skeleton } from '@mui/material';
+import { Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import { Skeleton } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'

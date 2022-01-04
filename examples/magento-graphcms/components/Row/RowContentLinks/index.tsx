@@ -16,11 +16,12 @@ export default function RowContentLinks(props: RowContentLinksFragment) {
             href={contentLink.url}
             variant='body1'
             color='inherit'
-            underline="hover">
+            underline='hover'
+          >
             {contentLink.title}
           </Link>
         </PageLink>
       ))}
     </ContentLinks>
-  );
+  )
 }

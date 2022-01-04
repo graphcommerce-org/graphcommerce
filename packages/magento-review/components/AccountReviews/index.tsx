@@ -1,7 +1,7 @@
 import { SectionContainer } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { Skeleton } from '@mui/material';
+import { Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import { Skeleton } from '@mui/material'
 import React from 'react'
 import CustomerReview from '../CustomerReview'
 import { AccountReviewsFragment } from './AccountReviews.gql'

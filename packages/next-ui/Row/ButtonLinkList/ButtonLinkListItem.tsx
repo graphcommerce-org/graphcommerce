@@ -1,5 +1,5 @@
-import { Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'

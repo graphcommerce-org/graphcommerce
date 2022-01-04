@@ -61,5 +61,5 @@ export function Footer(props: FooterProps) {
         </>
       }
     />
-  );
+  )
 }

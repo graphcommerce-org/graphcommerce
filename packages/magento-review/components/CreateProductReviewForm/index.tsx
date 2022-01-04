@@ -12,9 +12,9 @@ import {
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { Box, TextField, Theme, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { Alert } from '@mui/material';
+import { Box, TextField, Theme, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import { Alert } from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { CreateProductReviewDocument } from './CreateProductReview.gql'
@@ -222,5 +222,5 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
 
       <ApolloCustomerErrorAlert error={error} />
     </Form>
-  );
+  )
 }

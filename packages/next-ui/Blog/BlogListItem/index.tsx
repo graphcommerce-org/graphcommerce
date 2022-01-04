@@ -1,5 +1,5 @@
-import { Link, Theme, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Link, Theme, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import PageLink from 'next/link'
 import React from 'react'
 import { UseStyles } from '../../Styles'
@@ -64,7 +64,7 @@ export default function BlogListItem(props: BlogListItemProps) {
   return (
     <div className={classes.item}>
       <PageLink href={`/${url}`} passHref>
-        <Link color='inherit' underline="hover">
+        <Link color='inherit' underline='hover'>
           <div className={classes.asset}>{asset}</div>
         </Link>
       </PageLink>
@@ -74,16 +74,12 @@ export default function BlogListItem(props: BlogListItemProps) {
       </time>
 
       <PageLink href={`/${url}`} passHref>
-        <Link
-          href={`/${url}`}
-          className={classes.title}
-          color='inherit'
-          underline="hover">
+        <Link href={`/${url}`} className={classes.title} color='inherit' underline='hover'>
           <Typography component='h2' variant='h4' color='inherit'>
             {title}
           </Typography>
         </Link>
       </PageLink>
     </div>
-  );
+  )
 }

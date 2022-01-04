@@ -3,8 +3,8 @@ import { useDisplayInclTax } from '@graphcommerce/magento-cart'
 import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import { UseStyles, responsiveVal } from '@graphcommerce/next-ui'
-import { Badge, Theme, Link } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Badge, Theme, Link } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
@@ -178,7 +178,8 @@ export default function CartItem(props: CartItemProps) {
         <Link
           variant='body1'
           className={clsx(classes.itemName, withOptions && classes.itemNameWithOptions)}
-          underline="hover">
+          underline='hover'
+        >
           {name}
         </Link>
       </PageLink>
@@ -204,5 +205,5 @@ export default function CartItem(props: CartItemProps) {
 
       {children}
     </div>
-  );
+  )
 }

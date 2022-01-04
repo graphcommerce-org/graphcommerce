@@ -1,8 +1,8 @@
 import { Money } from '@graphcommerce/magento-store'
 import { AnimatedRow, responsiveVal, UseStyles } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Divider, lighten, Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Divider, lighten, Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'

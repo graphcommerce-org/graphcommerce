@@ -10,8 +10,8 @@ import {
 } from '@graphcommerce/next-ui'
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
-import { TextField } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { TextField } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'

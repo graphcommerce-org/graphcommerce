@@ -1,6 +1,6 @@
-import { Theme } from '@mui/material';
+import { Theme } from '@mui/material'
 
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from '@mui/styles/makeStyles'
 
 const useProductListStyles = makeStyles(
   (theme: Theme) => ({

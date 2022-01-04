@@ -11,43 +11,43 @@ import {
   Theme,
   StyledEngineProvider,
   adaptV4Theme,
-} from '@mui/material';
+} from '@mui/material'
 import { LazyMotion } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import dynamic from 'next/dynamic'
 import { Router } from 'next/router'
 import React from 'react'
 
-
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends Theme {}
 }
 
-
 const Fallback = dynamic(() => import('./[url]'), { ssr: false })
 
-const theme = createTheme(adaptV4Theme({
-  spacings: {
-    xxs: responsiveVal(10, 16),
-    xs: responsiveVal(12, 20),
-    sm: responsiveVal(14, 30),
-    md: responsiveVal(16, 50),
-    lg: responsiveVal(24, 80),
-    xl: responsiveVal(80, 160),
-    xxl: responsiveVal(100, 220),
-  },
-  page: {
-    horizontal: responsiveVal(10, 30),
-    vertical: responsiveVal(10, 30),
-  },
-  appShell: {
-    headerHeightSm: '46px',
-    headerHeightMd: '110px',
-    appBarHeightMd: '80px',
-    appBarInnerHeightMd: '46px',
-  },
-}))
+const theme = createTheme(
+  adaptV4Theme({
+    spacings: {
+      xxs: responsiveVal(10, 16),
+      xs: responsiveVal(12, 20),
+      sm: responsiveVal(14, 30),
+      md: responsiveVal(16, 50),
+      lg: responsiveVal(24, 80),
+      xl: responsiveVal(80, 160),
+      xxl: responsiveVal(100, 220),
+    },
+    page: {
+      horizontal: responsiveVal(10, 30),
+      vertical: responsiveVal(10, 30),
+    },
+    appShell: {
+      headerHeightSm: '46px',
+      headerHeightMd: '110px',
+      appBarHeightMd: '80px',
+      appBarInnerHeightMd: '46px',
+    },
+  }),
+)
 
 export default function MyApp(props: AppPropsType<Router> & { Component: PageComponent }) {
   return (
@@ -61,5 +61,5 @@ export default function MyApp(props: AppPropsType<Router> & { Component: PageCom
         </StyledEngineProvider>
       </LazyMotion>
     </LinguiProvider>
-  );
+  )
 }

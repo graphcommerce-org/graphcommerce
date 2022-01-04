@@ -1,6 +1,6 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import clsx from 'clsx'
 import { m, MotionProps } from 'framer-motion'
 import React, { useState } from 'react'

@@ -8,8 +8,8 @@ import {
   UseStyles,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Button, Theme, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Button, Theme, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import clsx from 'clsx'
 import { AnimatePresence, m } from 'framer-motion'
 import React, { useState } from 'react'

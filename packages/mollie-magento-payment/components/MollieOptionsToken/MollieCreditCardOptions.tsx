@@ -5,7 +5,7 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { FormRow } from '@graphcommerce/next-ui'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { Typography } from '@mui/material'
-import { Alert } from '@mui/material';
+import { Alert } from '@mui/material'
 import Script from 'next/script'
 import React, { useEffect, useState } from 'react'
 import { Mollie } from '../../Mollie'

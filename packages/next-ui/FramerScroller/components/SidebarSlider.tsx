@@ -4,8 +4,8 @@ import {
   ScrollerPageCounter,
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
-import { Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import React, { ReactNode } from 'react'
 import Row from '../../Row'
 import { UseStyles } from '../../Styles'

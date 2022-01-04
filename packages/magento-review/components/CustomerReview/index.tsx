@@ -2,8 +2,8 @@ import { useQuery } from '@apollo/client'
 import { Image } from '@graphcommerce/image'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { responsiveVal } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import { CustomerReviewFragment } from './CustomerReview.gql'
 import filledStar from './review_star_filled.svg'
 import outlinedStar from './review_star_outlined.svg'

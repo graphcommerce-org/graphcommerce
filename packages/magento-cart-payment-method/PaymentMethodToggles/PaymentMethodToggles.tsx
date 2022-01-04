@@ -16,8 +16,8 @@ import {
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/macro'
-import { FormControl, FormHelperText, Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { FormControl, FormHelperText, Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useEffect } from 'react'

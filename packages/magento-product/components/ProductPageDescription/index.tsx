@@ -1,6 +1,6 @@
 import { ColumnTwoWithTop, ColumnTwoWithTopProps } from '@graphcommerce/next-ui'
-import { Theme, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import React from 'react'
 import { ProductPageDescriptionFragment } from './ProductPageDescription.gql'
 

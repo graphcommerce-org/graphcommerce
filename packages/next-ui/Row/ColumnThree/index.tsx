@@ -1,5 +1,5 @@
-import { ContainerProps, Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { ContainerProps, Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import React from 'react'
 import Row from '..'
 import { UseStyles } from '../../Styles'

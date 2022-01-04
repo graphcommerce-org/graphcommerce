@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro'
-import { Link, Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Link, Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import PageLink from 'next/link'
 import React from 'react'
 import AddressMultiLine from '../AddressMultiLine'
@@ -52,12 +52,12 @@ export default function AccountAddress(props: AccountAddressProps) {
       </div>
       <div className={classes.actions}>
         <PageLink href={`/account/addresses/edit?addressId=${id}`} passHref>
-          <Link color='primary' underline="hover">
+          <Link color='primary' underline='hover'>
             <Trans>Edit</Trans>
           </Link>
         </PageLink>
         <DeleteCustomerAddressForm addressId={id ?? undefined} />
       </div>
     </div>
-  );
+  )
 }

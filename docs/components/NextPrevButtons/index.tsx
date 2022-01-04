@@ -1,5 +1,5 @@
 import { Button } from '@graphcommerce/next-ui'
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from '@mui/styles/makeStyles'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { LayoutProps } from '../Layout/PageLayout'

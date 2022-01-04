@@ -8,9 +8,9 @@ import {
   SvgImageSimple,
   TextInputNumber,
 } from '@graphcommerce/next-ui'
-import { Divider, Theme, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { Alert } from '@mui/material';
+import { Divider, Theme, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import { Alert } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'

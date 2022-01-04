@@ -3,8 +3,8 @@ import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { useFormCompose, useFormPersist, useFormValidFields } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { TextField, Theme, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { TextField, Theme, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import React from 'react'
 import { SetMolliePaymentMethodIssuerOnCartDocument } from './SetMolliePaymentMethodIssuerOnCart.gql'
 

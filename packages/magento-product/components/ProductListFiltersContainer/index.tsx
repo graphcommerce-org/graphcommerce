@@ -7,8 +7,8 @@ import {
   useScrollY,
   UseStyles,
 } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import clsx from 'clsx'
 import { m, useTransform } from 'framer-motion'
 import React, { PropsWithChildren, useEffect, useRef, useState } from 'react'

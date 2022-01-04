@@ -1,5 +1,5 @@
-import { Theme } from '@mui/material';
-import withStyles from '@mui/styles/withStyles';
+import { Theme } from '@mui/material'
+import withStyles from '@mui/styles/withStyles'
 import RichText from '.'
 
 const RichTextParagraphStrongStroked = withStyles((theme: Theme) => ({

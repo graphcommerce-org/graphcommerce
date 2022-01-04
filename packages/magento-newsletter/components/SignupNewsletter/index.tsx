@@ -3,8 +3,8 @@ import { useCartQuery } from '@graphcommerce/magento-cart'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { UseStyles } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Theme, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import clsx from 'clsx'
 import React from 'react'
 import CustomerNewsletterToggle from '../CustomerNewsletterToggle'

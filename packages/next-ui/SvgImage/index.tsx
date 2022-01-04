@@ -1,6 +1,6 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import { Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import React from 'react'
 import { UseStyles } from '../Styles'
 

@@ -3,9 +3,9 @@ import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { FormRow, Button, FormActions } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { FormControl, Link, TextField } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { Alert } from '@mui/material';
+import { FormControl, Link, TextField } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import { Alert } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { CustomerTokenDocument } from '../../hooks'
@@ -56,7 +56,7 @@ export default function SignInForm(props: SignInFormProps) {
           InputProps={{
             endAdornment: (
               <PageLink href='/account/forgot-password' key='forgot-password' passHref>
-                <Link className={classes.forgotPass} underline="hover">
+                <Link className={classes.forgotPass} underline='hover'>
                   <Trans>Forgot password?</Trans>
                 </Link>
               </PageLink>
@@ -83,5 +83,5 @@ export default function SignInForm(props: SignInFormProps) {
         </FormControl>
       </FormActions>
     </form>
-  );
+  )
 }

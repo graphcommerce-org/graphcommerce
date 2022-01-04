@@ -1,8 +1,8 @@
 import { useHistoryLink } from '@graphcommerce/framer-next-pages'
 import { SectionContainer, UseStyles } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Link, Theme, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Link, Theme, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import PageLink from 'next/link'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
@@ -95,7 +95,8 @@ export default function CartSummary(props: CartSummaryProps) {
                         color='secondary'
                         variant='body2'
                         onClick={historyOnClick}
-                        underline="hover">
+                        underline='hover'
+                      >
                         <Trans>Edit</Trans>
                       </Link>
                     </PageLink>
@@ -112,7 +113,7 @@ export default function CartSummary(props: CartSummaryProps) {
                 labelRight={
                   editable ? (
                     <PageLink href='/checkout/edit/billing-address' passHref>
-                      <Link color='secondary' variant='body2' underline="hover">
+                      <Link color='secondary' variant='body2' underline='hover'>
                         <Trans>Edit</Trans>
                       </Link>
                     </PageLink>
@@ -127,5 +128,5 @@ export default function CartSummary(props: CartSummaryProps) {
       </div>
       {children}
     </div>
-  );
+  )
 }

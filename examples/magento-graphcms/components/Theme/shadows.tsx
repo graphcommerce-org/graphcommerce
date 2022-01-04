@@ -1,4 +1,4 @@
-import { Shadows } from '@mui/material/styles';
+import { Shadows } from '@mui/material/styles'
 
 // https://material.io/design/environment/elevation.html#default-elevations
 

@@ -1,6 +1,6 @@
 import { UseStyles } from '@graphcommerce/next-ui'
-import { Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import React from 'react'
 import { ProductShortDescriptionFragment } from './ProductShortDescription.gql'
 

@@ -1,5 +1,5 @@
-import { Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import React from 'react'
 import Row from '../../Row'
 import { UseStyles } from '../../Styles'

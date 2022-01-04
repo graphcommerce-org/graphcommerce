@@ -20,8 +20,8 @@ import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-r
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, JsonLd, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Link, Theme, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Link, Theme, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
@@ -63,77 +63,79 @@ function ProductConfigurable(props: Props) {
   )
     return <div />
 
-  return <>
-    <LayoutHeader floatingMd>
-      <LayoutTitle size='small' component='span'>
-        {product.name}
-      </LayoutTitle>
-    </LayoutHeader>
-    <JsonLd<Product>
-      item={{
-        '@context': 'https://schema.org',
-        ...jsonLdProduct(product),
-        ...jsonLdProductOffer(product),
-        ...jsonLdProductReview(product),
-      }}
-    />
-    <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
-      <ProductPageMeta {...product} />
-      <ProductPageGallery {...product}>
-        <div>
-          <Typography component='span' variant='body2' className={classes.prePrice}>
-            <Trans>As low as</Trans>&nbsp;
-            <Money {...product.price_range.minimum_price.regular_price} />
-          </Typography>
-        </div>
-        <Typography variant='h3' component='div' gutterBottom>
+  return (
+    <>
+      <LayoutHeader floatingMd>
+        <LayoutTitle size='small' component='span'>
           {product.name}
-        </Typography>
+        </LayoutTitle>
+      </LayoutHeader>
+      <JsonLd<Product>
+        item={{
+          '@context': 'https://schema.org',
+          ...jsonLdProduct(product),
+          ...jsonLdProductOffer(product),
+          ...jsonLdProductReview(product),
+        }}
+      />
+      <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
+        <ProductPageMeta {...product} />
+        <ProductPageGallery {...product}>
+          <div>
+            <Typography component='span' variant='body2' className={classes.prePrice}>
+              <Trans>As low as</Trans>&nbsp;
+              <Money {...product.price_range.minimum_price.regular_price} />
+            </Typography>
+          </div>
+          <Typography variant='h3' component='div' gutterBottom>
+            {product.name}
+          </Typography>
 
-        <ProductShortDescription short_description={product?.short_description} />
+          <ProductShortDescription short_description={product?.short_description} />
 
-        <ProductReviewChip
-          rating={product.rating_summary}
-          reviewSectionId='reviews'
-          size='small'
-        />
-        <ConfigurableProductAddToCart
-          variables={{ sku: product.sku ?? '', quantity: 1 }}
-          name={product.name ?? ''}
-          optionEndLabels={{
-            size: (
-              <PageLink href='/modal/product/global/size' passHref>
-                <Link color='primary' underline="hover">
-                  <Trans>Which size is right?</Trans>
-                </Link>
-              </PageLink>
-            ),
-          }}
-        >
-          <ProductSidebarDelivery />
-        </ConfigurableProductAddToCart>
-        <Usps usps={sidebarUsps} size='small' />
-      </ProductPageGallery>
+          <ProductReviewChip
+            rating={product.rating_summary}
+            reviewSectionId='reviews'
+            size='small'
+          />
+          <ConfigurableProductAddToCart
+            variables={{ sku: product.sku ?? '', quantity: 1 }}
+            name={product.name ?? ''}
+            optionEndLabels={{
+              size: (
+                <PageLink href='/modal/product/global/size' passHref>
+                  <Link color='primary' underline='hover'>
+                    <Trans>Which size is right?</Trans>
+                  </Link>
+                </PageLink>
+              ),
+            }}
+          >
+            <ProductSidebarDelivery />
+          </ConfigurableProductAddToCart>
+          <Usps usps={sidebarUsps} size='small' />
+        </ProductPageGallery>
 
-      <ProductPageDescription {...product} right={<Usps usps={usps} />} />
+        <ProductPageDescription {...product} right={<Usps usps={usps} />} />
 
-      {pages?.[0] && (
-        <RowRenderer
-          content={pages?.[0].content}
-          renderer={{
-            RowProduct: (rowProps) => (
-              <RowProduct
-                {...rowProps}
-                {...product}
-                items={products?.items}
-                aggregations={aggregations}
-              />
-            ),
-          }}
-        />
-      )}
-    </ConfigurableContextProvider>
-  </>;
+        {pages?.[0] && (
+          <RowRenderer
+            content={pages?.[0].content}
+            renderer={{
+              RowProduct: (rowProps) => (
+                <RowProduct
+                  {...rowProps}
+                  {...product}
+                  items={products?.items}
+                  aggregations={aggregations}
+                />
+              ),
+            }}
+          />
+        )}
+      </ConfigurableContextProvider>
+    </>
+  )
 }
 
 ProductConfigurable.pageOptions = {

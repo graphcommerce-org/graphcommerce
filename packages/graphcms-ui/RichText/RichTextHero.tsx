@@ -1,6 +1,6 @@
 import { breakpointVal } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material';
-import withStyles from '@mui/styles/withStyles';
+import { Theme } from '@mui/material'
+import withStyles from '@mui/styles/withStyles'
 import RichText from '.'
 
 const RichTextHero = withStyles((theme: Theme) => ({

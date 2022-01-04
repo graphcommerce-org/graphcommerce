@@ -1,6 +1,6 @@
 import { responsiveVal, iconOrderBefore, SvgImageSimple } from '@graphcommerce/next-ui'
-import { darken, lighten, Theme, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { darken, lighten, Theme, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import React from 'react'
 
 const useStyles = makeStyles(

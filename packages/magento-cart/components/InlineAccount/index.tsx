@@ -8,8 +8,8 @@ import Button from '@graphcommerce/next-ui/Button'
 import FormRow from '@graphcommerce/next-ui/Form/FormRow'
 import { UseStyles } from '@graphcommerce/next-ui/Styles'
 import { Trans } from '@lingui/macro'
-import { TextField, Theme, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { TextField, Theme, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import React, { useState } from 'react'
 import { useCartQuery } from '../../hooks/useCartQuery'
 import { InlineAccountDocument } from './InlineAccount.gql'

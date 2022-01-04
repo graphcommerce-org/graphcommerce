@@ -1,6 +1,6 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
-import { Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import clsx from 'clsx'
 import { useTransform, useViewportScroll } from 'framer-motion'
 import React from 'react'

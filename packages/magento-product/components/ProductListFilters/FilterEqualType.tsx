@@ -1,8 +1,8 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { FilterEqualTypeInput } from '@graphcommerce/graphql'
 import { ChipMenu, ChipMenuProps, responsiveVal } from '@graphcommerce/next-ui'
-import { Checkbox, ListItem, ListItemSecondaryAction, ListItemText, Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Checkbox, ListItem, ListItemSecondaryAction, ListItemText, Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import clsx from 'clsx'
 import React from 'react'
 import { SetRequired } from 'type-fest'

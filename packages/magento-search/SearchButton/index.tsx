@@ -1,6 +1,6 @@
 import { iconSearch, responsiveVal, SvgImageSimple, UseStyles } from '@graphcommerce/next-ui'
-import { TextField, TextFieldProps, Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { TextField, TextFieldProps, Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import clsx from 'clsx'
 import React from 'react'
 

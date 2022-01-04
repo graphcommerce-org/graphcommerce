@@ -12,9 +12,9 @@ import {
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { Skeleton } from '@mui/material';
+import { Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import { Skeleton } from '@mui/material'
 import clsx from 'clsx'
 import React from 'react'
 import TrackingLink from '../TrackingLink'

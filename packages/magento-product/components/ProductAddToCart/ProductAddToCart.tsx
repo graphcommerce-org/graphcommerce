@@ -9,8 +9,8 @@ import {
   iconChevronRight,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
-import { Divider, Theme, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Divider, Theme, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import PageLink from 'next/link'
 import React from 'react'
 import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'

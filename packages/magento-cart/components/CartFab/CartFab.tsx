@@ -8,8 +8,8 @@ import {
   UseStyles,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
-import { alpha, darken, Fab, FabProps, NoSsr, Theme, useTheme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { alpha, darken, Fab, FabProps, NoSsr, Theme, useTheme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import { m, useTransform } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'

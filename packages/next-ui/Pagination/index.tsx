@@ -1,5 +1,5 @@
-import { Fab, Theme, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Fab, Theme, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import { PaginationProps, usePagination } from '@mui/lab'
 import React from 'react'
 import { UseStyles } from '../Styles'

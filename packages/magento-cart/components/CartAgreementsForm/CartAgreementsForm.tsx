@@ -8,8 +8,8 @@ import {
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/macro'
-import { Checkbox, FormControl, FormControlLabel, FormHelperText, Link, Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Checkbox, FormControl, FormControlLabel, FormHelperText, Link, Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import PageLink from 'next/link'
 import React from 'react'
 import { CartAgreementsDocument } from './CartAgreements.gql'
@@ -87,7 +87,9 @@ export default function CartAgreementsForm(props: CartAgreementsFormProps) {
                             control={<Checkbox color='secondary' required />}
                             label={
                               <PageLink href={href} passHref>
-                                <Link color='secondary' underline="hover">{agreement.checkbox_text}</Link>
+                                <Link color='secondary' underline='hover'>
+                                  {agreement.checkbox_text}
+                                </Link>
                               </PageLink>
                             }
                             checked={!!value}
@@ -103,15 +105,17 @@ export default function CartAgreementsForm(props: CartAgreementsFormProps) {
                   ) : (
                     <div className={classes.manualCheck}>
                       <PageLink href={href} passHref>
-                        <Link color='secondary' underline="hover">{agreement.checkbox_text}</Link>
+                        <Link color='secondary' underline='hover'>
+                          {agreement.checkbox_text}
+                        </Link>
                       </PageLink>
                     </div>
                   )}
                 </React.Fragment>
-              );
+              )
             })}
         </div>
       </form>
     </FormDiv>
-  );
+  )
 }

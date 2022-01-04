@@ -1,7 +1,7 @@
-import { Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { Rating } from '@mui/material';
-import { RatingProps } from '@mui/lab';
+import { Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import { Rating } from '@mui/material'
+import { RatingProps } from '@mui/lab'
 import React from 'react'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconStar } from '../icons'

@@ -1,7 +1,7 @@
 import { Money } from '@graphcommerce/magento-store'
 import { UseStyles } from '@graphcommerce/next-ui'
-import { Theme, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import React from 'react'
 import { ProductListPriceFragment } from './ProductListPrice.gql'
 

@@ -1,6 +1,6 @@
-import { Badge } from '@mui/material';
+import { Badge } from '@mui/material'
 
-import withStyles from '@mui/styles/withStyles';
+import withStyles from '@mui/styles/withStyles'
 
 const StyledBadge = withStyles((theme) => ({
   colorError: {},

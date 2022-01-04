@@ -1,5 +1,5 @@
-import { Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import { capitalize } from '@mui/material/utils'
 import { ToggleButtonGroupProps } from '@mui/lab'
 import clsx from 'clsx'

@@ -1,5 +1,5 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from '@mui/styles/makeStyles'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { forwardRef } from 'react'

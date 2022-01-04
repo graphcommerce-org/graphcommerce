@@ -1,7 +1,7 @@
 import { UseStyles, responsiveVal } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material';
+import { Theme } from '@mui/material'
 
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from '@mui/styles/makeStyles'
 
 const useRichTextStyles = makeStyles(
   (theme: Theme) => ({

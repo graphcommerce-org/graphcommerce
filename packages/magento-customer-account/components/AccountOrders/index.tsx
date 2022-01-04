@@ -5,8 +5,8 @@ import {
 } from '@graphcommerce/magento-customer-order'
 import { Pagination, SectionContainer } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Link, Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Link, Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import PageLink from 'next/link'
 import React from 'react'
 import { AccountOrdersFragment } from './AccountOrders.gql'
@@ -79,10 +79,12 @@ export default function AccountOrders(props: AccountOrdersProps) {
         page={pageInfo?.current_page ?? 1}
         renderLink={(p: number, icon: React.ReactNode) => (
           <PageLink href={p === 1 ? '/account/orders' : `/account/orders?page=${p}`} passHref>
-            <Link color='primary' underline="hover">{icon}</Link>
+            <Link color='primary' underline='hover'>
+              {icon}
+            </Link>
           </PageLink>
         )}
       />
     </div>
-  );
+  )
 }

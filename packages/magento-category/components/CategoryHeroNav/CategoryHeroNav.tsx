@@ -1,7 +1,7 @@
 import { ProductListLink } from '@graphcommerce/magento-product'
 import { responsiveVal, Row } from '@graphcommerce/next-ui'
-import { Theme, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import React from 'react'
 import { CategoryHeroNavFragment } from './CategoryHeroNav.gql'
 

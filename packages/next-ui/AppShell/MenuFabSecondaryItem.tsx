@@ -1,5 +1,5 @@
-import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { ListItem, ListItemIcon, ListItemText } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import PageLink from 'next/link'
 import router from 'next/router'
 import React from 'react'

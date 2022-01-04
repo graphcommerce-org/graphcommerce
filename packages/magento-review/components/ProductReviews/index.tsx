@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Button, Pagination, responsiveVal, StarRatingField } from '@graphcommerce/next-ui'
-import { Theme, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import ProductReviewChip from '../ProductReviewChip'
@@ -193,5 +193,5 @@ export default function ProductReviews(props: ProductReviewsProps) {
         ))}
       {actions}
     </div>
-  );
+  )
 }

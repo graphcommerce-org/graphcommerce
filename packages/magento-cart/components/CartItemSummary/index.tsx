@@ -9,8 +9,8 @@ import {
   UseStyles,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
-import { Divider, Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Divider, Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import clsx from 'clsx'
 import React from 'react'
 import { useCartQuery } from '../../hooks'

@@ -12,9 +12,9 @@ import {
 import { AnimatedRow, Button, FormDiv, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { CircularProgress, TextField, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { Alert } from '@mui/material';
+import { CircularProgress, TextField, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import { Alert } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import EmailHelperList from '../EmailHelperList'

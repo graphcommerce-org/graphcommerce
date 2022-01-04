@@ -6,8 +6,8 @@ import {
   iconPerson,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
-import { NoSsr, Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { NoSsr, Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import React from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from '../../hooks'
 
