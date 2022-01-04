@@ -5,6 +5,7 @@ import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconClose } from '../../icons'
 import { makeStyles, Theme } from '@material-ui/core'
 import { responsiveVal } from '../../Styles/responsiveVal'
+import { Trans } from '@lingui/macro'
 
 export function useShowClose() {
   const { overlayGroup } = usePageContext()
@@ -32,7 +33,7 @@ export default function LayoutHeaderClose() {
       startIcon={<SvgImageSimple src={iconClose} />}
       className={classes.close}
     >
-      Close
+      <Trans>Close</Trans>
     </Button>
   )
 }

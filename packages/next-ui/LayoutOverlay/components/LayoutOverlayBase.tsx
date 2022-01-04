@@ -178,6 +178,7 @@ type StyleProps = {
 
 export type LayoutOverlayBaseProps = {
   children?: React.ReactNode
+  className?: string
 } & StyleProps &
   UseStyles<typeof useStyles>
 
@@ -193,6 +194,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
     variantSm,
     variantMd,
     classes: _classes,
+    className,
     sizeSm = 'full',
     sizeMd = 'full',
     justifySm = 'stretch',
@@ -211,7 +213,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
   const position = useMotionValue<OverlayPosition>(OverlayPosition.UNOPENED)
 
   const classes = useStyles({ classes: _classes, sizeSm, sizeMd, justifySm, justifyMd })
-  const className = classesPicker(classes, {
+  const clsName = classesPicker(classes, {
     variantSm,
     variantMd,
     sizeSm,
@@ -390,11 +392,11 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
 
   return (
     <>
-      <m.div {...className('backdrop')} style={{ opacity: positions.open.visible }} />
-      <Scroller {...className('root')} grid={false} hideScrollbar onClick={onClickAway}>
+      <m.div {...clsName('backdrop')} style={{ opacity: positions.open.visible }} />
+      <Scroller {...clsName('root')} grid={false} hideScrollbar onClick={onClickAway}>
         <BeforeOverlay onClick={onClickAway} ref={beforeRef} />
-        <Overlay {...className('overlay')} ref={overlayRef}>
-          <OverlayPane {...className('overlayPane')}>
+        <Overlay {...clsName('overlay')} ref={overlayRef}>
+          <OverlayPane {...clsName('overlayPane', className)}>
             <LayoutProvider scroll={scrollWithoffset}>{children}</LayoutProvider>
           </OverlayPane>
         </Overlay>
