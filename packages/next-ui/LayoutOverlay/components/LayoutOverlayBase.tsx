@@ -94,8 +94,8 @@ const useStyles = makeStyles(
     },
     overlayPaneVariantMdBottom: {
       [theme.breakpoints.up('md')]: {
-        borderTopLeftRadius: theme.shape.borderRadius * 3,
-        borderTopRightRadius: theme.shape.borderRadius * 3,
+        borderTopLeftRadius: theme.shape.borderRadius * 4,
+        borderTopRightRadius: theme.shape.borderRadius * 4,
       },
     },
     overlayPaneSizeSmFloating: {
@@ -105,7 +105,7 @@ const useStyles = makeStyles(
     },
     overlayPaneSizeMdFloating: {
       [theme.breakpoints.up('md')]: {
-        borderRadius: theme.shape.borderRadius * 3,
+        borderRadius: theme.shape.borderRadius * 4,
       },
     },
     overlayPaneSmVariantSizeLeftFull: {
