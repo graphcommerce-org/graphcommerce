@@ -117,7 +117,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
   if (back) left = back
 
   if (!right) right = close
-  else if (!left) right = close
+  else if (!left) left = close
 
   if (!left && !right && !children) return null
 
