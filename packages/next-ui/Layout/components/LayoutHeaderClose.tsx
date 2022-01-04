@@ -14,8 +14,10 @@ export function useShowClose() {
 
 const useStyles = makeStyles((theme: Theme) => ({
   close: {
-    marginLeft: `calc(${responsiveVal(12, 22)} * -1)`,
-    marginRight: `calc(${responsiveVal(12, 22)} * -1)`,
+    [theme.breakpoints.up('md')]: {
+      marginLeft: `calc(${responsiveVal(12, 22)} * -1)`,
+      marginRight: `calc(${responsiveVal(12, 22)} * -1)`,
+    },
   },
 }))
 
