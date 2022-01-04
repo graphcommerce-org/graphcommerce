@@ -24,7 +24,7 @@ import Logo from './Logo'
 
 export type LayoutFullProps = Omit<
   DefaultPageQuery & Omit<LayoutDefaultProps, 'footer'>,
-  'pages' | 'classes' | 'header' | 'cartFab' | 'menuFab'
+  'pages' | 'header' | 'cartFab' | 'menuFab'
 >
 
 export function LayoutFull(props: LayoutFullProps) {
