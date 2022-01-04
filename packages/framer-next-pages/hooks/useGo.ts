@@ -4,9 +4,9 @@ export function useGo(delta: number) {
   const { push, back } = useRouter()
   return () => {
     if (delta >= 0) {
-      // console.error(`Called .go(${delta}), only negative numbers are allowed. Redirecting to home`)
+      console.error(`Called .go(${delta}), only negative numbers are allowed. Redirecting to home`)
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      // push('/', '/')
+      push('/', '/')
       return
     }
 
