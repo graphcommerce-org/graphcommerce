@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.162.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.162.0...@graphcommerce/graphcommerce@2.162.1) (2022-01-04)
+
+
+### Bug Fixes
+
+* close button on mobile ([a0c6c07](https://github.com/ho-nl/m2-pwa/commit/a0c6c075a1ee2541c864a561cd5318ed5fb5760c))
+
+
+
+
+
 # [2.162.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.161.2...@graphcommerce/graphcommerce@2.162.0) (2022-01-04)
 
 
