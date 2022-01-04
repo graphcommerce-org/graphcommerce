@@ -45,7 +45,12 @@ export default function ThemedApp(props: Omit<AppPropsType, 'pageProps'> & AppPr
       {/* <GoogleAnalyticsScript /> */}
       {/* <GoogleRecaptchaV3Script /> */}
       {/* <GoogleTagManagerScript /> */}
-      <LinguiProvider locale={locale} loader={(l) => import(`../locales/${l}.po`)}>
+      <LinguiProvider
+        key={locale}
+        locale={locale}
+        loader={(l) => import(`../locales/${l}.po`)}
+        ssrLoader={(l) => require(`../locales/${l}.po`)}
+      >
         <ApolloProvider client={client}>
           <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
             <Head />
