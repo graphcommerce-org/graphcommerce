@@ -1,5 +1,4 @@
-import { Container, Theme, Typography } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Container, Theme, Typography, makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
 import { responsiveVal } from '../Styles/responsiveVal'
