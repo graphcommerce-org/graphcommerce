@@ -353,17 +353,12 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
       // scrollSnapAlign: 'end',
       [theme.breakpoints.down('sm')]: {
         minWidth: '80vw',
-        ...((sizeSm === 'full' || sizeSm === 'minimal') && {
-          paddingBottom: 56,
-        }),
-        ...(variantSm === 'bottom' && sizeSm === 'full' && { height: 'calc(100vh - 56px)' }),
+        ...((sizeSm === 'full' || sizeSm === 'minimal') && { paddingBottom: 56 }),
+        ...(variantSm === 'bottom' && sizeSm === 'full' && { minHeight: 'calc(100vh - 56px)' }),
       },
       [theme.breakpoints.up('md')]: {
-        ...(variantMd === 'bottom' && sizeMd === 'full' && { height: '100vh' }),
-
-        ...(sizeMd === 'full' && {
-          minWidth: 'max(600px, 50vw)',
-        }),
+        ...(variantMd === 'bottom' && sizeMd === 'full' && { minHeight: '100vh' }),
+        ...(sizeMd === 'full' && { minWidth: 'max(600px, 50vw)' }),
       },
     }),
     { name: 'OverlayPane' },
