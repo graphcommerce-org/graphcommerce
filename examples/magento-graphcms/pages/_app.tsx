@@ -49,7 +49,9 @@ export default function ThemedApp(props: Omit<AppPropsType, 'pageProps'> & AppPr
         key={locale}
         locale={locale}
         loader={(l) => import(`../locales/${l}.po`)}
-        ssrLoader={(l) => require(`../locales/${l}.po`)}
+        ssrLoader={(l) =>
+          typeof window === 'undefined' ? require(`../locales/${l}.po`) : { messages: {} }
+        }
       >
         <ApolloProvider client={client}>
           <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
