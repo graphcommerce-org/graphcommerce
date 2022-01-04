@@ -1,5 +1,5 @@
 import { ContainerProps, Theme, Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../../Styles/tssReact'
 import Row from '..'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'

@@ -9,7 +9,7 @@ import {
 } from '@graphcommerce/framer-scroller'
 import { clientSize, useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Fab, Theme, useTheme, alpha } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../../Styles/tssReact'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
@@ -26,147 +26,144 @@ type StyleProps = {
   classes?: Record<string, unknown>
 }
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    root: {
-      willChange: 'transform',
-      display: 'grid',
-      [theme.breakpoints.up('md')]: {
-        gridTemplateColumns: '1fr auto',
-      },
-      background:
-        theme.palette.mode === 'light'
-          ? theme.palette.background.image
-          : theme.palette.background.paper,
-      paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
+const useStyles = makeStyles({ name: 'SidebarGallery' })((theme: Theme) => ({
+  root: {
+    willChange: 'transform',
+    display: 'grid',
+    [theme.breakpoints.up('md')]: {
+      gridTemplateColumns: '1fr auto',
     },
-    rootZoomed: {
-      position: 'relative',
-      zIndex: theme.zIndex.modal,
-      marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
-      [theme.breakpoints.up('md')]: {
-        marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
-      },
-      paddingRight: 0,
+    background:
+      theme.palette.mode === 'light'
+        ? theme.palette.background.image
+        : theme.palette.background.paper,
+    paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
+  },
+  rootZoomed: {
+    position: 'relative',
+    zIndex: theme.zIndex.modal,
+    marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
+    [theme.breakpoints.up('md')]: {
+      marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
     },
-    scrollerContainer: ({ aspectRatio: [width, height] }: StyleProps) => {
-      const headerHeight = `${theme.appShell.headerHeightSm} - ${theme.spacings.sm} * 2`
-      const galleryMargin = theme.spacings.lg
-      const extraSpacing = theme.spacings.md
+    paddingRight: 0,
+  },
+  scrollerContainer: ({ aspectRatio: [width, height] }: StyleProps) => {
+    const headerHeight = `${theme.appShell.headerHeightSm} - ${theme.spacings.sm} * 2`
+    const galleryMargin = theme.spacings.lg
+    const extraSpacing = theme.spacings.md
 
-      const maxHeight = `calc(100vh - ${headerHeight} - ${galleryMargin} - ${extraSpacing})`
-      const ratio = `calc(${height} / ${width} * 100%)`
+    const maxHeight = `calc(100vh - ${headerHeight} - ${galleryMargin} - ${extraSpacing})`
+    const ratio = `calc(${height} / ${width} * 100%)`
 
-      return {
-        willChange: 'transform',
-        height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
-        backgroundColor: theme.palette.background.image,
-        position: 'relative',
-        minHeight: '100%',
-        paddingTop: `min(${ratio}, ${maxHeight})`,
-        [theme.breakpoints.down('lg')]: {
-          width: '100vw',
-        },
-      }
-    },
-    scrollerContainerZoomed: ({ clientHeight }: StyleProps) => ({
-      paddingTop: clientHeight,
-    }),
-    scroller: {
+    return {
       willChange: 'transform',
-      position: 'absolute',
-      top: 0,
-      width: '100%',
-      height: '100%',
-      gridAutoColumns: `100%`,
-      gridTemplateRows: `100%`,
-      cursor: 'zoom-in',
-    },
-    scrollerZoomed: ({ clientHeight }: StyleProps) => ({
-      height: clientHeight,
-      cursor: 'inherit',
-    }),
-    sidebarWrapper: {
-      boxSizing: 'content-box',
-      display: 'grid',
-      justifyItems: 'start',
-      alignContent: 'center',
+      height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
+      backgroundColor: theme.palette.background.image,
       position: 'relative',
-      [theme.breakpoints.up('md')]: {
-        width: `calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
-          theme.page.horizontal
-        } * 2)`,
-      },
-    },
-    sidebarWrapperZoomed: {
-      [theme.breakpoints.up('md')]: {
-        marginLeft: `calc((${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
-          theme.page.horizontal
-        } * 2) * -1)`,
-        left: `calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
-          theme.page.horizontal
-        } * 2)`,
-      },
-    },
-    sidebar: {
-      boxSizing: 'border-box',
-      width: '100%',
-      padding: `${theme.spacings.lg} ${theme.page.horizontal}`,
-      [theme.breakpoints.up('md')]: {
-        paddingLeft: theme.spacings.lg,
-      },
-    },
-    bottomCenter: {
-      display: 'grid',
-      gridAutoFlow: 'column',
-      gap: theme.spacings.xxs,
-      position: 'absolute',
-      bottom: theme.spacings.xxs,
-      justifyContent: 'center',
-      width: '100%',
-      pointerEvents: 'none',
-      '& > *': {
-        pointerEvents: 'all',
-      },
-    },
-    sliderButtons: {
+      minHeight: '100%',
+      paddingTop: `min(${ratio}, ${maxHeight})`,
       [theme.breakpoints.down('lg')]: {
-        display: 'none',
+        width: '100vw',
       },
-    },
-    toggleIcon: {
-      boxShadow: theme.shadows[6],
-    },
-    topRight: {
-      display: 'grid',
-      gridAutoFlow: 'column',
-      top: theme.spacings.sm,
-      gap: theme.spacings.xxs,
-      position: 'absolute',
-      right: theme.spacings.sm,
-    },
-    centerLeft: {
-      display: 'grid',
-      gridAutoFlow: 'row',
-      gap: theme.spacings.xxs,
-      position: 'absolute',
-      left: theme.spacings.sm,
-      top: `calc(50% - 28px)`,
-    },
-    centerRight: {
-      display: 'grid',
-      gap: theme.spacings.xxs,
-      position: 'absolute',
-      right: theme.spacings.sm,
-      top: `calc(50% - 28px)`,
-    },
-    dots: {
-      background: alpha(theme.palette.background.paper, 1),
-      boxShadow: theme.shadows[6],
-    },
+    }
+  },
+  scrollerContainerZoomed: ({ clientHeight }: StyleProps) => ({
+    paddingTop: clientHeight,
   }),
-  { name: 'SidebarGallery' },
-)
+  scroller: {
+    willChange: 'transform',
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+    height: '100%',
+    gridAutoColumns: `100%`,
+    gridTemplateRows: `100%`,
+    cursor: 'zoom-in',
+  },
+  scrollerZoomed: ({ clientHeight }: StyleProps) => ({
+    height: clientHeight,
+    cursor: 'inherit',
+  }),
+  sidebarWrapper: {
+    boxSizing: 'content-box',
+    display: 'grid',
+    justifyItems: 'start',
+    alignContent: 'center',
+    position: 'relative',
+    [theme.breakpoints.up('md')]: {
+      width: `calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
+        theme.page.horizontal
+      } * 2)`,
+    },
+  },
+  sidebarWrapperZoomed: {
+    [theme.breakpoints.up('md')]: {
+      marginLeft: `calc((${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
+        theme.page.horizontal
+      } * 2) * -1)`,
+      left: `calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
+        theme.page.horizontal
+      } * 2)`,
+    },
+  },
+  sidebar: {
+    boxSizing: 'border-box',
+    width: '100%',
+    padding: `${theme.spacings.lg} ${theme.page.horizontal}`,
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: theme.spacings.lg,
+    },
+  },
+  bottomCenter: {
+    display: 'grid',
+    gridAutoFlow: 'column',
+    gap: theme.spacings.xxs,
+    position: 'absolute',
+    bottom: theme.spacings.xxs,
+    justifyContent: 'center',
+    width: '100%',
+    pointerEvents: 'none',
+    '& > *': {
+      pointerEvents: 'all',
+    },
+  },
+  sliderButtons: {
+    [theme.breakpoints.down('lg')]: {
+      display: 'none',
+    },
+  },
+  toggleIcon: {
+    boxShadow: theme.shadows[6],
+  },
+  topRight: {
+    display: 'grid',
+    gridAutoFlow: 'column',
+    top: theme.spacings.sm,
+    gap: theme.spacings.xxs,
+    position: 'absolute',
+    right: theme.spacings.sm,
+  },
+  centerLeft: {
+    display: 'grid',
+    gridAutoFlow: 'row',
+    gap: theme.spacings.xxs,
+    position: 'absolute',
+    left: theme.spacings.sm,
+    top: `calc(50% - 28px)`,
+  },
+  centerRight: {
+    display: 'grid',
+    gap: theme.spacings.xxs,
+    position: 'absolute',
+    right: theme.spacings.sm,
+    top: `calc(50% - 28px)`,
+  },
+  dots: {
+    background: alpha(theme.palette.background.paper, 1),
+    boxShadow: theme.shadows[6],
+  },
+}))
 
 export type SidebarGalleryProps = {
   sidebar: React.ReactNode

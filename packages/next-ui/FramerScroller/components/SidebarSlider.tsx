@@ -5,7 +5,7 @@ import {
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
 import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../../Styles/tssReact'
 import React, { ReactNode } from 'react'
 import Row from '../../Row'
 import { UseStyles } from '../../Styles'

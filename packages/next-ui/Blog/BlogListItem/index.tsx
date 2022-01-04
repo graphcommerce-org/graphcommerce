@@ -1,47 +1,44 @@
 import { Link, Theme, Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../../Styles/tssReact'
 import PageLink from 'next/link'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    item: {
-      display: 'grid',
-      gridTemplateRows: `${responsiveVal(140, 220)} auto auto`,
-      alignContent: 'start',
-      color: theme.palette.text.primary,
-      gap: theme.spacings.sm,
-      marginBottom: theme.spacings.sm,
+const useStyles = makeStyles({ name: 'BlogListItem' })((theme: Theme) => ({
+  item: {
+    display: 'grid',
+    gridTemplateRows: `${responsiveVal(140, 220)} auto auto`,
+    alignContent: 'start',
+    color: theme.palette.text.primary,
+    gap: theme.spacings.sm,
+    marginBottom: theme.spacings.sm,
+  },
+  date: {
+    display: 'inline-block',
+    textDecoration: 'none',
+    color: theme.palette.text.secondary,
+  },
+  asset: {
+    display: 'grid',
+    overflow: 'hidden',
+    height: '100%',
+    width: '100%',
+    borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+    '& img': {
+      height: '100% !important',
+      objectFit: 'cover',
     },
-    date: {
-      display: 'inline-block',
-      textDecoration: 'none',
-      color: theme.palette.text.secondary,
+    '& p': {
+      alignSelf: 'center',
+      justifySelf: 'center',
     },
-    asset: {
-      display: 'grid',
-      overflow: 'hidden',
-      height: '100%',
-      width: '100%',
-      borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
-      '& img': {
-        height: '100% !important',
-        objectFit: 'cover',
-      },
-      '& p': {
-        alignSelf: 'center',
-        justifySelf: 'center',
-      },
-      background: theme.palette.background.paper,
-    },
-    title: {
-      ...theme.typography.h3,
-    },
-  }),
-  { name: 'BlogListItem' },
-)
+    background: theme.palette.background.paper,
+  },
+  title: {
+    ...theme.typography.h3,
+  },
+}))
 
 export type BlogListItemProps = UseStyles<typeof useStyles> & {
   asset: React.ReactNode

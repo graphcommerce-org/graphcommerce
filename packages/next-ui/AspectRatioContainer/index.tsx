@@ -1,4 +1,4 @@
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../Styles/tssReact'
 import React from 'react'
 import { UseStyles } from '../Styles'
 

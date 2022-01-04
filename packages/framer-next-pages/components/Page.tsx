@@ -1,4 +1,4 @@
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '@graphcommerce/next-ui/Styles'
 import { m, useIsPresent } from 'framer-motion'
 import React from 'react'
 import type { PageItem } from '../types'

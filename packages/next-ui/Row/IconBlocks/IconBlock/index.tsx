@@ -1,5 +1,5 @@
 import { Theme, Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../../../Styles/tssReact'
 import React from 'react'
 import Button from '../../../Button'
 import { UseStyles } from '../../../Styles'

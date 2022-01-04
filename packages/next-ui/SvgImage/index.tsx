@@ -1,6 +1,6 @@
 import { Image, ImageProps } from '@graphcommerce/image'
 import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../Styles/tssReact'
 import React from 'react'
 import { UseStyles } from '../Styles'
 

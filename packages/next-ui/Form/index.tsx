@@ -1,5 +1,5 @@
 import { darken, lighten, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../Styles/tssReact'
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'

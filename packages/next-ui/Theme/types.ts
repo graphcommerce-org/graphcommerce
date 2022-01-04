@@ -7,7 +7,7 @@ declare module '@mui/material/styles/createPalette' {
 }
 
 declare module '@mui/material/styles/createTheme' {
-  interface DeprecatedThemeOptions {
+  interface ThemeOptions {
     spacings: {
       xxs: string
       xs: string

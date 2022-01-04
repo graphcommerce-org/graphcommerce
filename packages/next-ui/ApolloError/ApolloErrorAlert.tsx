@@ -1,13 +1,13 @@
 import { ApolloError } from '@apollo/client'
 import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import { Alert } from '@mui/material'
 import { AlertProps } from '@mui/lab'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import AnimatedRow from '../AnimatedRow'
+import { makeStyles } from '../Styles/tssReact'
 
-export const useStyles = makeStyles({ name: 'ApolloErrorAlert' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'ApolloErrorAlert' })((theme: Theme) => ({
   alerts: {},
   alert: {
     paddingTop: `calc(${theme.spacings.xxs} / 2)`,

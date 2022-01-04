@@ -1,5 +1,5 @@
 import { ContainerProps, Theme, useTheme, useMediaQuery } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../../Styles/tssReact'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import Row from '..'

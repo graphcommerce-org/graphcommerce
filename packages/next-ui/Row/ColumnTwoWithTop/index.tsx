@@ -1,5 +1,5 @@
 import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../../Styles/tssReact'
 import React from 'react'
 import Row from '..'
 import { UseStyles } from '../../Styles'

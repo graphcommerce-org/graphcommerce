@@ -1,23 +1,20 @@
 import { Chip, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../../Styles/tssReact'
 import PageLink from 'next/link'
 import React from 'react'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    wrapper: {
-      maxWidth: 800,
-      margin: `0 auto`,
-      marginBottom: theme.spacings.sm,
-    },
-    tag: {
-      marginRight: 8,
-      borderRadius: 4,
-      fontSize: 14,
-    },
-  }),
-  { name: 'BlogTitle' },
-)
+const useStyles = makeStyles({ name: 'BlogTitle' })((theme: Theme) => ({
+  wrapper: {
+    maxWidth: 800,
+    margin: `0 auto`,
+    marginBottom: theme.spacings.sm,
+  },
+  tag: {
+    marginRight: 8,
+    borderRadius: 4,
+    fontSize: 14,
+  },
+}))
 
 export default function BlogTitle(props) {
   const { relatedPages } = props

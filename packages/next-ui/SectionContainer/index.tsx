@@ -1,5 +1,5 @@
 import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../Styles/tssReact'
 import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
 import SectionHeader, { SectionHeaderProps } from '../SectionHeader'

@@ -39,7 +39,6 @@ const theme = createTheme(
 )
 
 export default function MyApp({ Component, pageProps }: AppPropsType<Router>) {
-  useEffect(() => document.getElementById('jss-server-side')?.remove())
   return (
     <LazyMotion features={domMax} strict>
       <StyledEngineProvider injectFirst>

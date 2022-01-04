@@ -1,17 +1,14 @@
 import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../../Styles/tssReact'
 import React from 'react'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    wrapper: {
-      maxWidth: 800,
-      margin: '0 auto',
-      marginBottom: theme.spacings.sm,
-    },
-  }),
-  { name: 'BlogContent' },
-)
+const useStyles = makeStyles({ name: 'BlogContent' })((theme: Theme) => ({
+  wrapper: {
+    maxWidth: 800,
+    margin: '0 auto',
+    marginBottom: theme.spacings.sm,
+  },
+}))
 
 export type BlogContentProps = {
   content: React.ReactElement

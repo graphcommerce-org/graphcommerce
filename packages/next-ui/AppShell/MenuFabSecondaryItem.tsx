@@ -1,16 +1,13 @@
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../Styles/tssReact'
 import PageLink from 'next/link'
 import router from 'next/router'
 import React from 'react'
 
-const useStyles = makeStyles()(
-  {
-    listItemText: {},
-    icon: { minWidth: 30 },
-  },
-  { name: 'FabMenuSecondaryItem' },
-)
+const useStyles = makeStyles({ name: 'FabMenuSecondaryItem' })({
+  listItemText: {},
+  icon: { minWidth: 30 },
+})
 
 export type FabMenuSecondaryItemProps = {
   href: string

@@ -1,6 +1,6 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Divider, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../../Styles/tssReact'
 import React, { useRef } from 'react'
 import { UseStyles } from '../../Styles'
 import { classesPicker } from '../../Styles/classesPicker'

@@ -1,17 +1,14 @@
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../../Styles/tssReact'
 import React from 'react'
 import { LayoutTitle } from '../../Layout'
 import { UseStyles } from '../../Styles'
 
-const useStyles = makeStyles()(
-  {
-    wrapper: {
-      maxWidth: 800,
-      margin: `0 auto`,
-    },
+const useStyles = makeStyles({ name: 'BlogTitle' })({
+  wrapper: {
+    maxWidth: 800,
+    margin: `0 auto`,
   },
-  { name: 'BlogTitle' },
-)
+})
 
 export type BlogTitleProps = UseStyles<typeof useStyles> & {
   title: string

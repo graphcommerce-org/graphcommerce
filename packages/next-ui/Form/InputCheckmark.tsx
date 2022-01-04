@@ -1,4 +1,4 @@
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../Styles/tssReact'
 import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'

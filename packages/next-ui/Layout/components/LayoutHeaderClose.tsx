@@ -4,7 +4,7 @@ import Button from '../../Button'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconClose } from '../../icons'
 import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../../Styles/tssReact'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { Trans } from '@lingui/macro'
 

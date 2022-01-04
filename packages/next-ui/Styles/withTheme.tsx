@@ -1,15 +1,5 @@
-import { makeStyles } from '@graphcommerce/next-ui'
 import { Theme, ThemeProvider, StyledEngineProvider } from '@mui/material'
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
+import { makeStyles } from './tssReact'
 
 const useStyles = makeStyles({ name: 'Theme' })({
   // These theme specific styles are copied from

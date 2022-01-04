@@ -1,6 +1,6 @@
 import { Scroller, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { Container, Theme, Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../../Styles/tssReact'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 

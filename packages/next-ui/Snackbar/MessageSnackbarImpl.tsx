@@ -7,7 +7,7 @@ import {
   Portal,
   lighten,
 } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../Styles/tssReact'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'

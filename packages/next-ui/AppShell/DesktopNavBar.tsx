@@ -1,6 +1,5 @@
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { Link, LinkProps as MuiLinkProps, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
@@ -10,6 +9,7 @@ import { UseStyles } from '../Styles'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 import { MenuProps } from './Menu'
+import { makeStyles } from '../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'DesktopNavBar' })((theme: Theme) => ({
   container: {

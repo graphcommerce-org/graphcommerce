@@ -1,5 +1,5 @@
 import { Theme, Typography, TypographyProps } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../../Styles/tssReact'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import { classesPicker } from '../../Styles/classesPicker'

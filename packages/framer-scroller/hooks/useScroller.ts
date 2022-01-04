@@ -1,5 +1,5 @@
 import { useConstant, useElementScroll, useMotionValueValue } from '@graphcommerce/framer-utils'
-import { UseStyles, classesPicker, makeStyles } from '@graphcommerce/next-ui'
+import { UseStyles, classesPicker, makeStyles } from '@graphcommerce/next-ui/Styles'
 import { Theme } from '@mui/material'
 import {
   HTMLMotionProps,

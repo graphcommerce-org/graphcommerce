@@ -1,6 +1,6 @@
 import { UseStyles } from '@graphcommerce/next-ui'
 import { Fab, FabProps, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '@graphcommerce/next-ui/Styles/tssReact'
 import { m, useMotionValue, useSpring } from 'framer-motion'
 import React from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'

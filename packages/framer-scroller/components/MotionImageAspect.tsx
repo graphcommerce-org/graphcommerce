@@ -1,5 +1,5 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '@graphcommerce/next-ui/Styles/tssReact'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { forwardRef } from 'react'

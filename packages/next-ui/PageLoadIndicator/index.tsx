@@ -1,22 +1,18 @@
 import { LinearProgress, Fade } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
-import { zIndex } from '@mui/material/styles'
+import { makeStyles } from '../Styles/tssReact'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 
-const useStyles = makeStyles()(
-  {
-    progress: {
-      position: 'fixed',
-      width: '100%',
-      top: 0,
-      height: 3,
-      marginBottom: -3,
-      zIndex: zIndex.tooltip,
-    },
+const useStyles = makeStyles({ name: 'PageLoadIndicator' })((theme) => ({
+  progress: {
+    position: 'fixed',
+    width: '100%',
+    top: 0,
+    height: 3,
+    marginBottom: -3,
+    zIndex: theme.zIndex.tooltip,
   },
-  { name: 'PageLoadIndicator' },
-)
+}))
 
 function PageLoadIndicator() {
   const router = useRouter()

@@ -1,5 +1,5 @@
 import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../../Styles/tssReact'
 import React from 'react'
 import { classesPicker } from '../../Styles/classesPicker'
 import LayoutHeaderBack, { useShowBack } from './LayoutHeaderBack'

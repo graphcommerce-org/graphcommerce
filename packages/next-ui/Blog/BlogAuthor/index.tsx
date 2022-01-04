@@ -1,39 +1,36 @@
 import { Avatar, Chip, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles } from '../../Styles/tssReact'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    wrapper: {
-      display: 'flex',
-      justifyContent: 'left',
-      maxWidth: 800,
-      margin: `0 auto`,
-      marginBottom: theme.spacings.md,
+const useStyles = makeStyles({ name: 'BlogAuthor' })((theme: Theme) => ({
+  wrapper: {
+    display: 'flex',
+    justifyContent: 'left',
+    maxWidth: 800,
+    margin: `0 auto`,
+    marginBottom: theme.spacings.md,
+  },
+  authorChip: {
+    height: responsiveVal(44, 66),
+    '& .MuiChip-label': {
+      paddingLeft: responsiveVal(10, 14),
+      paddingRight: responsiveVal(14, 18),
     },
-    authorChip: {
-      height: responsiveVal(44, 66),
-      '& .MuiChip-label': {
-        paddingLeft: responsiveVal(10, 14),
-        paddingRight: responsiveVal(14, 18),
-      },
-      '& .MuiAvatar-root': {
-        width: responsiveVal(28, 44),
-        height: responsiveVal(28, 44),
-      },
+    '& .MuiAvatar-root': {
+      width: responsiveVal(28, 44),
+      height: responsiveVal(28, 44),
     },
-    date: {
-      lineHeight: 1.4,
-      color: theme.palette.text.disabled,
-    },
-    author: {
-      lineHeight: 1.4,
-    },
-  }),
-  { name: 'BlogAuthor' },
-)
+  },
+  date: {
+    lineHeight: 1.4,
+    color: theme.palette.text.disabled,
+  },
+  author: {
+    lineHeight: 1.4,
+  },
+}))
 
 export type BlogAuthorProps = UseStyles<typeof useStyles> & {
   author: string

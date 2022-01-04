@@ -21,7 +21,7 @@ function useRenderedSize() {
     })
     ro.observe(ref.current.parentElement)
     return () => ro.disconnect()
-  })
+  }, [])
 
   return <span ref={ref}>{size}</span>
 }
