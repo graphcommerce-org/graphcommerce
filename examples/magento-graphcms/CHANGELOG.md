@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.143.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.142.2...@graphcommerce/magento-graphcms@2.143.0) (2022-01-04)
+
+
+### Bug Fixes
+
+* pages would be blank because the locale couldn't properly be loaded ([5fe9ecd](https://github.com/ho-nl/m2-pwa/commit/5fe9ecd204c3f9efddcf95d54464b1b931ef682e))
+
+
+### Features
+
+* introduced a withTheme hoc to allow theming per route ([55e3fc1](https://github.com/ho-nl/m2-pwa/commit/55e3fc178b385d0ccdc19a5c09a7887be5db14dc))
+
+
+
+
+
 # [2.142.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.141.21...@graphcommerce/magento-graphcms@2.142.0) (2022-01-03)
 
 

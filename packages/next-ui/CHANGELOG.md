@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.23.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.22.2...@graphcommerce/next-ui@3.23.0) (2022-01-04)
+
+
+### Bug Fixes
+
+* backbutton wasn't translated ([5f841c0](https://github.com/ho-nl/m2-pwa/commit/5f841c052b454c0d565a68829f78492c5a3b6dab))
+
+
+### Features
+
+* introduced a withTheme hoc to allow theming per route ([55e3fc1](https://github.com/ho-nl/m2-pwa/commit/55e3fc178b385d0ccdc19a5c09a7887be5db14dc))
+
+
+
+
+
 ## [3.22.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.22.1...@graphcommerce/next-ui@3.22.2) (2022-01-04)
 
 

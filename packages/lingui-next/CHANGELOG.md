@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/lingui-next@1.3.0...@graphcommerce/lingui-next@1.3.1) (2022-01-04)
+
+
+### Bug Fixes
+
+* pages would be blank because the locale couldn't properly be loaded ([5fe9ecd](https://github.com/ho-nl/m2-pwa/commit/5fe9ecd204c3f9efddcf95d54464b1b931ef682e))
+
+
+
+
+
 # [1.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/lingui-next@1.2.4...@graphcommerce/lingui-next@1.3.0) (2022-01-03)
 
 
