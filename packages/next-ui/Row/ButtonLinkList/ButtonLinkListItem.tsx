@@ -1,5 +1,5 @@
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
@@ -8,7 +8,7 @@ import { UseStyles } from '../../Styles'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconChevronRight } from '../../icons'
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles()((theme: Theme) => ({
   buttonLink: {
     color: theme.palette.text.primary,
     textDecoration: 'none',
@@ -34,7 +34,7 @@ export type ButtonLinkProps = {
 
 export function ButtonLinkListItem(props: ButtonLinkProps) {
   const { children, url, endIcon, className, ...buttonProps } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <PageLink href={url} passHref>

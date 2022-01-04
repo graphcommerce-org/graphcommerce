@@ -1,9 +1,9 @@
 import { Chip, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     wrapper: {
       maxWidth: 800,
@@ -21,7 +21,7 @@ const useStyles = makeStyles(
 
 export default function BlogTitle(props) {
   const { relatedPages } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   return (
     <div className={classes.wrapper}>

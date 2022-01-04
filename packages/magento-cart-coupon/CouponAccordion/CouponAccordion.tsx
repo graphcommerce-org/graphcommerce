@@ -9,7 +9,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Button, Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { AnimatePresence, m } from 'framer-motion'
 import React, { useState } from 'react'
@@ -17,59 +17,56 @@ import ApplyCouponForm from '../ApplyCouponForm/ApplyCouponForm'
 import RemoveCouponForm from '../RemoveCouponForm/RemoveCouponForm'
 import { GetCouponDocument } from './GetCoupon.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    accordion: {
-      '&:before': {
-        background: 'none',
-      },
-      boxShadow: 'none',
-      border: `1px solid ${theme.palette.divider}`,
-      borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
-      overflow: 'hidden',
+const useStyles = makeStyles({ name: 'CouponAccordion' })((theme: Theme) => ({
+  accordion: {
+    '&:before': {
+      background: 'none',
     },
-    button: {
-      padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
-      width: '100%',
+    boxShadow: 'none',
+    border: `1px solid ${theme.palette.divider}`,
+    borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
+    overflow: 'hidden',
+  },
+  button: {
+    padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
+    width: '100%',
 
-      '& .MuiButton-label': {
-        display: 'flex',
-        justifyContent: 'flex-start',
-        '& span:last-child': {
-          marginLeft: 'auto',
-        },
-      },
-      '& > span': {
-        display: 'inline',
-        '& > h6': {
-          textAlign: 'left',
-          marginRight: theme.spacings.sm,
-        },
+    '& .MuiButton-label': {
+      display: 'flex',
+      justifyContent: 'flex-start',
+      '& span:last-child': {
+        marginLeft: 'auto',
       },
     },
-    couponFormWrap: {
-      background: 'rgba(0,0,0,0.04)',
-      padding: `0 ${theme.spacings.sm} ${theme.spacings.xs}`,
-    },
-    buttonOpen: {
-      background: 'rgba(0,0,0,0.04)',
-      borderBottomLeftRadius: 0,
-      borderBottomRightRadius: 0,
-    },
-    disabled: {
-      cursor: 'default',
-      '&:hover': {
-        background: 'transparent',
+    '& > span': {
+      display: 'inline',
+      '& > h6': {
+        textAlign: 'left',
+        marginRight: theme.spacings.sm,
       },
     },
-  }),
-  { name: 'CouponAccordion' },
-)
+  },
+  couponFormWrap: {
+    background: 'rgba(0,0,0,0.04)',
+    padding: `0 ${theme.spacings.sm} ${theme.spacings.xs}`,
+  },
+  buttonOpen: {
+    background: 'rgba(0,0,0,0.04)',
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0,
+  },
+  disabled: {
+    cursor: 'default',
+    '&:hover': {
+      background: 'transparent',
+    },
+  },
+}))
 
 export type CouponAccordionProps = UseStyles<typeof useStyles>
 
 export default function CouponAccordion(props: CouponAccordionProps) {
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const { data } = useCartQuery(GetCouponDocument)
   const [open, setOpen] = useState<boolean>(false)
 

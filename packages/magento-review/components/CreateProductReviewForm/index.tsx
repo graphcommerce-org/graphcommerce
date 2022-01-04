@@ -13,46 +13,41 @@ import {
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
 import { Box, TextField, Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { Alert } from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { CreateProductReviewDocument } from './CreateProductReview.gql'
 import { ProductReviewRatingsMetadataDocument } from './ProductReviewRatingsMetadata.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    ratingContainer: {
-      marginBottom: theme.spacings.xxs,
-    },
-    rating: {
-      paddingBottom: 'unset',
-      gridTemplateColumns: `minmax(${responsiveVal(60, 80)}, 0.1fr) max-content`,
-      alignItems: 'center',
-    },
-    ratingLabel: {
-      fontWeight: 'normal',
-      justifySelf: 'left',
-    },
-    submitButton: {
-      width: responsiveVal(200, 250),
-      height: responsiveVal(40, 50),
-    },
-    cancelButton: {
-      display: 'block',
-      maxWidth: 'max-content',
-      margin: '0 auto',
-    },
-    formActions: {
-      gridAutoFlow: 'row',
-      gap: 8,
-      marginTop: theme.spacings.xxs,
-    },
-  }),
-  {
-    name: 'CreateProductReviewForm',
+const useStyles = makeStyles({ name: 'CreateProductReviewForm' })((theme: Theme) => ({
+  ratingContainer: {
+    marginBottom: theme.spacings.xxs,
   },
-)
+  rating: {
+    paddingBottom: 'unset',
+    gridTemplateColumns: `minmax(${responsiveVal(60, 80)}, 0.1fr) max-content`,
+    alignItems: 'center',
+  },
+  ratingLabel: {
+    fontWeight: 'normal',
+    justifySelf: 'left',
+  },
+  submitButton: {
+    width: responsiveVal(200, 250),
+    height: responsiveVal(40, 50),
+  },
+  cancelButton: {
+    display: 'block',
+    maxWidth: 'max-content',
+    margin: '0 auto',
+  },
+  formActions: {
+    gridAutoFlow: 'row',
+    gap: 8,
+    marginTop: theme.spacings.xxs,
+  },
+}))
 
 type CreateProductReviewFormProps = {
   sku: string
@@ -61,7 +56,7 @@ type CreateProductReviewFormProps = {
 
 export default function CreateProductReviewForm(props: CreateProductReviewFormProps) {
   const { sku, nickname } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const router = useRouter()
   const [ratings, setRatings] = useState<ProductReviewRatingInput[]>([])
 

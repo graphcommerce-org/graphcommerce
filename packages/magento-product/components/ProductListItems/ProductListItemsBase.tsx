@@ -1,34 +1,31 @@
 import { RenderType, UseStyles, responsiveVal } from '@graphcommerce/next-ui'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { ProductListItemProps } from '../ProductListItem'
 import { ProductListItemRenderer } from './renderer'
 
-export const useStyles = makeStyles(
-  (theme: Theme) => ({
-    productList: {
-      display: 'grid',
-      gridColumnGap: theme.spacings.md,
-      gridRowGap: theme.spacings.md,
+export const useStyles = makeStyles({ name: 'ProductList' })((theme: Theme) => ({
+  productList: {
+    display: 'grid',
+    gridColumnGap: theme.spacings.md,
+    gridRowGap: theme.spacings.md,
+  },
+  productListsmall: {
+    gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
+  },
+  productListnormal: {
+    gridTemplateColumns: `repeat(2, 1fr)`,
+    [theme.breakpoints.up('md')]: {
+      gridTemplateColumns: `repeat(3, 1fr)`,
     },
-    productListsmall: {
-      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
+    [theme.breakpoints.up('lg')]: {
+      gridTemplateColumns: `repeat(4, 1fr)`,
     },
-    productListnormal: {
-      gridTemplateColumns: `repeat(2, 1fr)`,
-      [theme.breakpoints.up('md')]: {
-        gridTemplateColumns: `repeat(3, 1fr)`,
-      },
-      [theme.breakpoints.up('lg')]: {
-        gridTemplateColumns: `repeat(4, 1fr)`,
-      },
-    },
-  }),
-  { name: 'ProductList' },
-)
+  },
+}))
 
 export type ProductItemsGridProps = {
   items?:
@@ -42,7 +39,7 @@ export type ProductItemsGridProps = {
 
 export default function ProductListItemsBase(props: ProductItemsGridProps) {
   const { items, renderers, loadingEager = 0, size = 'normal', ...divProps } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <div {...divProps} className={clsx(classes.productList, classes[`productList${size}`])}>

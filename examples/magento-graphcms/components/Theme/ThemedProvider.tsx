@@ -1,8 +1,8 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
 import { responsiveVal, breakpointVal } from '@graphcommerce/next-ui'
-import { createTheme, Theme, alpha, adaptV4Theme } from '@mui/material';
-import { PaletteOptions, Overrides } from '@mui/material/styles';
+import { createTheme, Theme, alpha, adaptV4Theme } from '@mui/material'
+import { PaletteOptions } from '@mui/material/styles'
 import shadows from './shadows'
 
 const breakpoints = {
@@ -14,7 +14,7 @@ const breakpoints = {
 }
 
 const lightPalette: PaletteOptions = {
-  type: 'light',
+  mode: 'light',
   primary: {
     main: '#FF4A55',
     contrastText: '#FFFFFF',
@@ -45,7 +45,7 @@ const lightPalette: PaletteOptions = {
 }
 
 const darkPalette: PaletteOptions = {
-  type: 'dark',
+  mode: 'dark',
   primary: {
     main: '#62C7B0',
     contrastText: '#ffffff',
@@ -77,140 +77,142 @@ const darkPalette: PaletteOptions = {
 
 // Create a theme instance.
 const createThemeWithPalette = (palette: PaletteOptions) =>
-  createTheme(adaptV4Theme({
-    palette,
-    breakpoints: {
-      values: breakpoints,
-    },
-    shadows,
-    shape: {
-      borderRadius: 4,
-    },
-    typography: {
-      fontFamily:
-        '-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji',
-      /**
-       * [The Material UI `h1`-`h6` typography
-       * values](https://material-ui.com/components/typography/#component) are an implementation of
-       * the [Material Design Headline type
-       * scale](https://material.io/design/typography/the-type-system.html#type-scale).
-       *
-       * Note: The typography values are referencing styles and have nothing to do with actual
-       * `<h1/>`-`</h6/>` HTML elements (even though they are mapped 1:1 by default). One is
-       * completelt free to use different styles based on their requirements.
-       *
-       * There however are some problems with the way Material UI implementation: Material Design
-       * uses different typography headers for different breakpoints. For example, if we take a look
-       * at [Applying the type
-       * scale](https://material.io/design/typography/the-type-system.html#applying-the-type-scale)
-       * we see that the Headline 6 element is used in the `<h1/>` location. This would need to be
-       * rendered as a h1 (or h2) style on a desktop.
-       *
-       * This results in the following variant to headline mapping for each breakpoint
-       *
-       *     Variant/Breakpoint  xs         sm         md         lg         xl
-       *     h1                  headline4  headline3  headline2  headline1
-       *     h2                  headline5  headline4  headline3  headline2  headline1
-       *     h3                  headline6  headline6  headline5  headline4  headline3
-       *     h4                  X          X          headline6  headline5  headline4
-       *     h5                  X          X          X          headline6  headline5
-       *     h6                  X          X          X          X          headline6
-       *
-       * This effectively means that it's only safe to use h1 to h3 from this perspective.
-       *
-       * However, Material Design's type system offers `subtitle1` and `subtitle2` that can be used
-       * that should be used on combination with `body1` and `body2`.
-       *
-       * Since we aren't using the h4-h6 variants they can be repurposed for different usecases:
-       */
-      h1: {
-        ...breakpointVal('fontSize', 28, 64, breakpoints),
-        fontWeight: 700,
-        fontVariationSettings: "'wght' 660",
-        lineHeight: 1.22,
+  createTheme(
+    adaptV4Theme({
+      palette,
+      breakpoints: {
+        values: breakpoints,
       },
-      h2: {
-        ...breakpointVal('fontSize', 25, 40, breakpoints),
-        fontWeight: 700,
-        fontVariationSettings: "'wght' 630",
-        lineHeight: 1.35,
+      shadows,
+      shape: {
+        borderRadius: 4,
       },
-      h3: {
-        ...breakpointVal('fontSize', 22, 30, breakpoints),
-        fontWeight: 700,
-        fontVariationSettings: "'wght' 680",
-        lineHeight: 1.55,
+      typography: {
+        fontFamily:
+          '-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji',
+        /**
+         * [The Material UI `h1`-`h6` typography
+         * values](https://material-ui.com/components/typography/#component) are an implementation
+         * of the [Material Design Headline type
+         * scale](https://material.io/design/typography/the-type-system.html#type-scale).
+         *
+         * Note: The typography values are referencing styles and have nothing to do with actual
+         * `<h1/>`-`</h6/>` HTML elements (even though they are mapped 1:1 by default). One is
+         * completelt free to use different styles based on their requirements.
+         *
+         * There however are some problems with the way Material UI implementation: Material Design
+         * uses different typography headers for different breakpoints. For example, if we take a
+         * look at [Applying the type
+         * scale](https://material.io/design/typography/the-type-system.html#applying-the-type-scale)
+         * we see that the Headline 6 element is used in the `<h1/>` location. This would need to be
+         * rendered as a h1 (or h2) style on a desktop.
+         *
+         * This results in the following variant to headline mapping for each breakpoint
+         *
+         *     Variant/Breakpoint  xs         sm         md         lg         xl
+         *     h1                  headline4  headline3  headline2  headline1
+         *     h2                  headline5  headline4  headline3  headline2  headline1
+         *     h3                  headline6  headline6  headline5  headline4  headline3
+         *     h4                  X          X          headline6  headline5  headline4
+         *     h5                  X          X          X          headline6  headline5
+         *     h6                  X          X          X          X          headline6
+         *
+         * This effectively means that it's only safe to use h1 to h3 from this perspective.
+         *
+         * However, Material Design's type system offers `subtitle1` and `subtitle2` that can be
+         * used that should be used on combination with `body1` and `body2`.
+         *
+         * Since we aren't using the h4-h6 variants they can be repurposed for different usecases:
+         */
+        h1: {
+          ...breakpointVal('fontSize', 28, 64, breakpoints),
+          fontWeight: 700,
+          fontVariationSettings: "'wght' 660",
+          lineHeight: 1.22,
+        },
+        h2: {
+          ...breakpointVal('fontSize', 25, 40, breakpoints),
+          fontWeight: 700,
+          fontVariationSettings: "'wght' 630",
+          lineHeight: 1.35,
+        },
+        h3: {
+          ...breakpointVal('fontSize', 22, 30, breakpoints),
+          fontWeight: 700,
+          fontVariationSettings: "'wght' 680",
+          lineHeight: 1.55,
+        },
+        h4: {
+          ...breakpointVal('fontSize', 18, 26, breakpoints),
+          fontWeight: 500,
+          fontVariationSettings: "'wght' 520",
+          lineHeight: 1.55,
+        },
+        h5: {
+          ...breakpointVal('fontSize', 17, 20, breakpoints),
+          fontWeight: 700,
+          fontVariationSettings: "'wght' 680",
+          lineHeight: 1.55,
+        },
+        h6: {
+          ...breakpointVal('fontSize', 17, 20, breakpoints),
+          fontWeight: 550,
+          fontVariationSettings: "'wght' 530",
+          lineHeight: 1.8,
+        },
+        subtitle1: {
+          ...breakpointVal('fontSize', 16, 19, breakpoints),
+          fontWeight: 400,
+          lineHeight: 1.7,
+        },
+        fontWeightBold: 600,
+        body1: {
+          ...breakpointVal('fontSize', 16, 18, breakpoints),
+          lineHeight: 1.7,
+        },
+        subtitle2: {
+          ...breakpointVal('fontSize', 14, 16, breakpoints),
+          fontWeight: 600,
+          lineHeight: 1.7,
+        },
+        body2: {
+          ...breakpointVal('fontSize', 13, 15, breakpoints),
+          lineHeight: 1.7,
+        },
+        // https://web.dev/font-size/#how-the-lighthouse-font-size-audit-fails
+        caption: {
+          ...breakpointVal('fontSize', 12, 13, breakpoints),
+        },
+        button: {},
+        overline: {
+          ...breakpointVal('fontSize', 12, 14, breakpoints),
+          fontWeight: 500,
+          letterSpacing: 1,
+          lineHeight: 1.2,
+          textTransform: 'uppercase',
+        },
       },
-      h4: {
-        ...breakpointVal('fontSize', 18, 26, breakpoints),
-        fontWeight: 500,
-        fontVariationSettings: "'wght' 520",
-        lineHeight: 1.55,
+      spacings: {
+        xxs: responsiveVal(10, 16),
+        xs: responsiveVal(12, 20),
+        sm: responsiveVal(14, 30),
+        md: responsiveVal(16, 50),
+        lg: responsiveVal(24, 80),
+        xl: responsiveVal(40, 100),
+        xxl: responsiveVal(80, 160),
       },
-      h5: {
-        ...breakpointVal('fontSize', 17, 20, breakpoints),
-        fontWeight: 700,
-        fontVariationSettings: "'wght' 680",
-        lineHeight: 1.55,
+      page: {
+        horizontal: responsiveVal(10, 30),
+        vertical: responsiveVal(10, 30),
       },
-      h6: {
-        ...breakpointVal('fontSize', 17, 20, breakpoints),
-        fontWeight: 550,
-        fontVariationSettings: "'wght' 530",
-        lineHeight: 1.8,
+      appShell: {
+        headerHeightSm: '46px',
+        headerHeightMd: '110px',
+        appBarHeightMd: '80px',
+        appBarInnerHeightMd: '46px',
       },
-      subtitle1: {
-        ...breakpointVal('fontSize', 16, 19, breakpoints),
-        fontWeight: 400,
-        lineHeight: 1.7,
-      },
-      fontWeightBold: 600,
-      body1: {
-        ...breakpointVal('fontSize', 16, 18, breakpoints),
-        lineHeight: 1.7,
-      },
-      subtitle2: {
-        ...breakpointVal('fontSize', 14, 16, breakpoints),
-        fontWeight: 600,
-        lineHeight: 1.7,
-      },
-      body2: {
-        ...breakpointVal('fontSize', 13, 15, breakpoints),
-        lineHeight: 1.7,
-      },
-      // https://web.dev/font-size/#how-the-lighthouse-font-size-audit-fails
-      caption: {
-        ...breakpointVal('fontSize', 12, 13, breakpoints),
-      },
-      button: {},
-      overline: {
-        ...breakpointVal('fontSize', 12, 14, breakpoints),
-        fontWeight: 500,
-        letterSpacing: 1,
-        lineHeight: 1.2,
-        textTransform: 'uppercase',
-      },
-    },
-    spacings: {
-      xxs: responsiveVal(10, 16),
-      xs: responsiveVal(12, 20),
-      sm: responsiveVal(14, 30),
-      md: responsiveVal(16, 50),
-      lg: responsiveVal(24, 80),
-      xl: responsiveVal(40, 100),
-      xxl: responsiveVal(80, 160),
-    },
-    page: {
-      horizontal: responsiveVal(10, 30),
-      vertical: responsiveVal(10, 30),
-    },
-    appShell: {
-      headerHeightSm: '46px',
-      headerHeightMd: '110px',
-      appBarHeightMd: '80px',
-      appBarInnerHeightMd: '46px',
-    },
-  }))
+    }),
+  )
 
 const createOverrides = (theme: Theme): Overrides => ({
   MuiCssBaseline: {

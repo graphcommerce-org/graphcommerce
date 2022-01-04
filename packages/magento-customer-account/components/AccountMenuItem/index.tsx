@@ -8,50 +8,47 @@ import {
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { ListItem, ListItemIcon, ListItemText, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      width: '100%',
-      height: responsiveVal(88, 104),
-      padding: 0,
-      borderRadius: 0,
+const useStyles = makeStyles({ name: 'AccountMenuItem' })((theme: Theme) => ({
+  root: {
+    width: '100%',
+    height: responsiveVal(88, 104),
+    padding: 0,
+    borderRadius: 0,
+    background: theme.palette.background.default,
+    '&:hover': {
       background: theme.palette.background.default,
-      '&:hover': {
-        background: theme.palette.background.default,
-      },
-      '&:disabled': {
-        background: theme.palette.background.default,
-      },
-      '&:focus': {
-        // fix: disableElevation does not work when button is focused
-        boxShadow: 'none',
-      },
     },
-    icon: {
-      paddingRight: theme.spacings.xs,
+    '&:disabled': {
+      background: theme.palette.background.default,
     },
-    borderBottom: {
-      borderBottom: `1px solid ${theme.palette.divider}`,
+    '&:focus': {
+      // fix: disableElevation does not work when button is focused
+      boxShadow: 'none',
     },
-    primary: {
-      ...theme.typography.subtitle1,
-    },
-    secondary: {
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      textOverflow: 'elipsis',
-    },
-    itemLink: {
-      padding: 0,
-    },
-  }),
-  { name: 'AccountMenuItem' },
-)
+  },
+  icon: {
+    paddingRight: theme.spacings.xs,
+  },
+  borderBottom: {
+    borderBottom: `1px solid ${theme.palette.divider}`,
+  },
+  primary: {
+    ...theme.typography.subtitle1,
+  },
+  secondary: {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'elipsis',
+  },
+  itemLink: {
+    padding: 0,
+  },
+}))
 
 export type AccountMenuItemProps = {
   iconSrc: ImageProps['src']
@@ -73,7 +70,7 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
     noBorderBottom = false,
     ...buttonProps
   } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   const button = (
     <Button

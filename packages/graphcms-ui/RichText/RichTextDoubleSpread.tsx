@@ -1,8 +1,8 @@
+import { withStyles } from '@graphcommerce/next-ui'
 import { Theme } from '@mui/material'
-import withStyles from '@mui/styles/withStyles'
 import RichText from '.'
 
-const RichTextDoubleSpread = withStyles((theme: Theme) => ({
+const RichTextDoubleSpread = withStyles(RichText, (theme: Theme) => ({
   h2: theme.typography.h4,
   paragraph: {
     [theme.breakpoints.up('sm')]: {
@@ -14,6 +14,6 @@ const RichTextDoubleSpread = withStyles((theme: Theme) => ({
       columnGap: theme.spacings.md,
     },
   },
-}))(RichText)
+}))
 
 export default RichTextDoubleSpread

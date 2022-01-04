@@ -1,12 +1,12 @@
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import Row from '..'
 import SectionContainer from '../../SectionContainer'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     container: {
       maxWidth: 820,
@@ -41,7 +41,7 @@ export type ButtonLinkListProps = UseStyles<typeof useStyles> & ButtonLinkListPr
 
 export function ButtonLinkList(props: ButtonLinkListProps) {
   const { title, children } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <Row maxWidth='md' className={classes.container}>

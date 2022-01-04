@@ -1,5 +1,5 @@
 import { Theme, Typography, TypographyProps } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import { classesPicker } from '../../Styles/classesPicker'
@@ -7,7 +7,7 @@ import { responsiveVal } from '../../Styles/responsiveVal'
 import { SvgImageProps } from '../../SvgImage'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     container: {
       display: 'flex',
@@ -56,7 +56,7 @@ export type TitleProps = {
 
 export const LayoutTitle = React.forwardRef<HTMLDivElement, TitleProps>((props, ref) => {
   const { children, icon, size = 'medium', component, variant } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const small = size === 'small'
 
   const gutterTop = !!(props.gutterTop ?? size !== 'small')

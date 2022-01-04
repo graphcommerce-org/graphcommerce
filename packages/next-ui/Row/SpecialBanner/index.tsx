@@ -1,10 +1,10 @@
 import { ContainerProps, Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import Row from '..'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     root: {},
     wrapper: {

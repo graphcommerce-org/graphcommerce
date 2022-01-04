@@ -2,12 +2,12 @@ import { useQuery } from '@apollo/client'
 import { iconPerson, StyledBadge, SvgImageSimple, UseStyles } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { Fab, FabProps as FabPropsType, NoSsr, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from '../../hooks'
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles()((theme: Theme) => ({
   colorError: {
     backgroundColor: theme.palette.grey['500'],
   },
@@ -22,7 +22,7 @@ type CustomerFabContentProps = CustomerTokenQuery & {
 
 function CustomerFabContent(props: CustomerFabContentProps) {
   const { customerToken, icon, guestHref, authHref, FabProps } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const requireAuth = Boolean(!customerToken || !customerToken.valid)
 
   return (

@@ -1,19 +1,16 @@
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import Script from 'next/script'
 import React from 'react'
 
-const useStyles = makeStyles(
-  {
-    '@global': {
-      body: {
-        '& .grecaptcha-badge': {
-          visibility: 'hidden', // https://developers.google.com/recaptcha/docs/faq
-        },
+const useStyles = makeStyles({ name: 'IconBlock' })({
+  '@global': {
+    body: {
+      '& .grecaptcha-badge': {
+        visibility: 'hidden', // https://developers.google.com/recaptcha/docs/faq
       },
     },
   },
-  { name: 'IconBlock' },
-)
+})
 
 export default function GoogleRecaptchaV3Script() {
   const siteKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY

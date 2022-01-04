@@ -1,51 +1,48 @@
 import { Money } from '@graphcommerce/magento-store'
 import { UseStyles, ToggleButton, ToggleButtonProps } from '@graphcommerce/next-ui'
 import { FormHelperText, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { SetOptional } from 'type-fest'
 import { AvailableShippingMethodFragment } from './AvailableShippingMethod.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      textAlign: 'left',
-      justifyContent: 'space-between',
-      alignItems: 'normal',
-    },
-    label: {
-      ...theme.typography.body2,
-      display: 'grid',
-      gridTemplate: `
-        "title      amount"
-        "additional additional"
-        "error      error"
-      `,
-      gridTemplateColumns: 'auto min-content',
-      columnGap: theme.spacings.xxs,
-    },
-    methodTitle: {
-      ...theme.typography.subtitle2,
-      gridArea: 'title',
-    },
-    methodAdditional: {
-      ...theme.typography.body2,
-      gridArea: 'additional',
-    },
-    errorMessage: {
-      gridArea: 'error',
-    },
-    amountLabel: {
-      gridArea: 'amount',
-      fontWeight: theme.typography.fontWeightBold,
-    },
-    amountLabelFree: {
-      color: theme.palette.success.main,
-    },
-  }),
-  { name: 'ShippingMethodToggleButton' },
-)
+const useStyles = makeStyles({ name: 'AvailableShippingMethod' })((theme: Theme) => ({
+  root: {
+    textAlign: 'left',
+    justifyContent: 'space-between',
+    alignItems: 'normal',
+  },
+  label: {
+    ...theme.typography.body2,
+    display: 'grid',
+    gridTemplate: `
+      "title      amount"
+      "additional additional"
+      "error      error"
+    `,
+    gridTemplateColumns: 'auto min-content',
+    columnGap: theme.spacings.xxs,
+  },
+  methodTitle: {
+    ...theme.typography.subtitle2,
+    gridArea: 'title',
+  },
+  methodAdditional: {
+    ...theme.typography.body2,
+    gridArea: 'additional',
+  },
+  errorMessage: {
+    gridArea: 'error',
+  },
+  amountLabel: {
+    gridArea: 'amount',
+    fontWeight: theme.typography.fontWeightBold,
+  },
+  amountLabelFree: {
+    color: theme.palette.success.main,
+  },
+}))
 
 export type AvailableShippingMethodProps = SetOptional<AvailableShippingMethodFragment, 'amount'> &
   Omit<ToggleButtonProps, 'size'> &
@@ -66,12 +63,14 @@ const AvailableShippingMethod = React.forwardRef<any, AvailableShippingMethodPro
       ...toggleProps
     } = props
     const {
-      amountLabel,
-      amountLabelFree,
-      methodTitle,
-      methodAdditional,
-      errorMessage,
-      ...classes
+      classes: {
+        amountLabel,
+        amountLabelFree,
+        methodTitle,
+        methodAdditional,
+        errorMessage,
+        ...classes
+      },
     } = useStyles(props)
 
     return (

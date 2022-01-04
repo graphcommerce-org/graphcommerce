@@ -9,7 +9,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { alpha, darken, Fab, FabProps, NoSsr, Theme, useTheme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { m, useTransform } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
@@ -17,30 +17,27 @@ import { useCartQuery } from '../../hooks/useCartQuery'
 import { CartFabDocument } from './CartFab.gql'
 import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    fab: {
-      width: responsiveVal(42, 56),
-      height: responsiveVal(42, 56),
-      [theme.breakpoints.down('md')]: {
-        backgroundColor: `${theme.palette.background.paper} !important`,
-      },
+const useStyles = makeStyles({ name: 'CartFab' })((theme: Theme) => ({
+  fab: {
+    width: responsiveVal(42, 56),
+    height: responsiveVal(42, 56),
+    [theme.breakpoints.down('md')]: {
+      backgroundColor: `${theme.palette.background.paper} !important`,
     },
-    shadow: {
-      pointerEvents: 'none',
-      borderRadius: '99em',
-      position: 'absolute',
-      height: '100%',
-      width: '100%',
-      boxShadow: theme.shadows[6],
-      top: 0,
-      [theme.breakpoints.down('md')]: {
-        opacity: '1 !important',
-      },
+  },
+  shadow: {
+    pointerEvents: 'none',
+    borderRadius: '99em',
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    boxShadow: theme.shadows[6],
+    top: 0,
+    [theme.breakpoints.down('md')]: {
+      opacity: '1 !important',
     },
-  }),
-  { name: 'CartFab' },
-)
+  },
+}))
 
 export type CartFabProps = {
   icon?: React.ReactNode
@@ -56,7 +53,7 @@ const MotionFab = m(
 
 function CartFabContent(props: CartFabContentProps) {
   const { total_quantity, icon, ...fabProps } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   const theme = useTheme()
   const scrollY = useScrollY()

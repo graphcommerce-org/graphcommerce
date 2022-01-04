@@ -10,27 +10,24 @@ import {
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { Divider, Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    button: {
-      marginTop: theme.spacings.sm,
-      width: '100%',
-    },
-    price: {
-      fontWeight: theme.typography.fontWeightBold,
-      margin: `${theme.spacings.sm} 0`,
-    },
-    divider: {
-      margin: `${theme.spacings.xs} 0`,
-    },
-  }),
-  { name: 'AddToCart' },
-)
+const useStyles = makeStyles({ name: 'AddToCart' })((theme: Theme) => ({
+  button: {
+    marginTop: theme.spacings.sm,
+    width: '100%',
+  },
+  price: {
+    fontWeight: theme.typography.fontWeightBold,
+    margin: `${theme.spacings.sm} 0`,
+  },
+  divider: {
+    margin: `${theme.spacings.xs} 0`,
+  },
+}))
 
 export type AddToCartProps = React.ComponentProps<typeof ProductAddToCart>
 
@@ -50,7 +47,7 @@ export default function ProductAddToCart(
 
   const { handleSubmit, formState, error, muiRegister, required } = form
   const submitHandler = handleSubmit(() => {})
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   return (
     <form onSubmit={submitHandler} noValidate>

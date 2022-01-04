@@ -1,30 +1,27 @@
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
 import { UseStyles, SvgImageSimple, iconCancelAlt, Button } from '@graphcommerce/next-ui'
 import { lighten, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { CouponFragment } from '../Api/Coupon.gql'
 import { RemoveCouponFormDocument } from './RemoveCouponForm.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    inlineCoupon: {
-      fontWeight: 600,
-      background: lighten(theme.palette.secondary.light, theme.palette.action.hoverOpacity),
-      '& svg': {
-        stroke: 'transparent',
-        fill: theme.palette.secondary.main,
-      },
+const useStyles = makeStyles({ name: 'RemoveCouponForm' })((theme: Theme) => ({
+  inlineCoupon: {
+    fontWeight: 600,
+    background: lighten(theme.palette.secondary.light, theme.palette.action.hoverOpacity),
+    '& svg': {
+      stroke: 'transparent',
+      fill: theme.palette.secondary.main,
     },
-  }),
-  { name: 'RemoveCouponForm' },
-)
+  },
+}))
 
 export type CartCouponProps = CouponFragment & UseStyles<typeof useStyles>
 
 export default function RemoveCouponForm(props: CartCouponProps) {
   const { applied_coupons } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const form = useFormGqlMutationCart(RemoveCouponFormDocument)
 
   const { handleSubmit, error } = form

@@ -1,7 +1,7 @@
 import { Image, ImageProps } from '@graphcommerce/image'
 import { responsiveVal, UseStyles } from '@graphcommerce/next-ui'
 import { ButtonBase, Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -10,8 +10,8 @@ import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { useProductLink } from '../../hooks/useProductLink'
 import ProductListPrice from '../ProductListPrice'
 
-export const useProductListItemStyles = makeStyles(
-  (theme: Theme) => ({
+const useStyles = makeStyles<BaseProps>({ name: 'ProductListItem' })(
+  (theme: Theme, { aspectRatio = [4, 3] }) => ({
     buttonBase: {
       display: 'block',
     },
@@ -83,14 +83,14 @@ export const useProductListItemStyles = makeStyles(
         // whiteSpace: 'nowrap',
       },
     },
-    imageContainer: ({ aspectRatio = [4, 3] }: BaseProps) => ({
+    imageContainer: {
       display: 'block',
       height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
       position: 'relative',
       paddingTop: `calc(100% / ${aspectRatio[0]} * ${aspectRatio[1]})`,
       background: theme.palette.background.image, // theme specific,
       borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
-    }),
+    },
     placeholder: {
       display: 'flex',
       textAlign: 'center',
@@ -120,7 +120,6 @@ export const useProductListItemStyles = makeStyles(
       display: 'inline-block',
     },
   }),
-  { name: 'ProductListItem' },
 )
 
 export type OverlayAreaKeys = 'topLeft' | 'bottomLeft' | 'topRight' | 'bottomRight'
@@ -137,7 +136,7 @@ type BaseProps = PropsWithChildren<
     Pick<ImageProps, 'loading' | 'sizes' | 'dontReportWronglySizedImages'>
 >
 
-export type ProductListItemProps = BaseProps & UseStyles<typeof useProductListItemStyles>
+export type ProductListItemProps = BaseProps & UseStyles<typeof useStyles>
 
 export default function ProductListItem(props: ProductListItemProps) {
   const {
@@ -155,7 +154,7 @@ export default function ProductListItem(props: ProductListItemProps) {
     sizes,
     dontReportWronglySizedImages,
   } = props
-  const classes = useProductListItemStyles(props)
+  const { classes } = useStyles(props)
   const productLink = useProductLink(props)
   const discount = Math.floor(price_range.minimum_price.discount?.percent_off ?? 0)
   const { locale } = useRouter()

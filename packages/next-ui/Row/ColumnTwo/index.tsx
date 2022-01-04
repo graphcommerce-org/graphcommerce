@@ -1,10 +1,10 @@
 import { ContainerProps, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import Row from '..'
 import { UseStyles } from '../../Styles'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     root: {
       gridColumnGap: theme.spacings.md,
@@ -34,7 +34,7 @@ export type ColumnTwoProps = UseStyles<typeof useStyles> &
 
 export default function ColumnTwo(props: ColumnTwoProps) {
   const { colOneContent, colTwoContent, ...containerProps } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <Row maxWidth='lg' {...containerProps} className={classes.root}>

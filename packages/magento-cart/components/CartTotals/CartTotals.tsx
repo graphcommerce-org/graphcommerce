@@ -2,54 +2,51 @@ import { Money } from '@graphcommerce/magento-store'
 import { AnimatedRow, responsiveVal, UseStyles } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Divider, lighten, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { useCartQuery, useDisplayInclTax } from '../../hooks'
 import { GetCartTotalsDocument } from './GetCartTotals.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    costsContainer: {
-      borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
-      background:
-        theme.palette.mode === 'light'
-          ? '#FFE10820'
-          : lighten(theme.palette.background.default, 0.15),
-      padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
-    },
-    containerMarginTop: {
-      marginTop: theme.spacings.md,
-    },
-    costsDivider: {
-      margin: `1em 0`,
-    },
-    costsRow: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      ...theme.typography.subtitle1,
-    },
-    costsGrandTotal: {
-      fontWeight: theme.typography.fontWeightBold,
-      color: theme.palette.primary.main,
-    },
-    costsDiscount: {
-      fontWeight: theme.typography.fontWeightBold,
-    },
-    costsDiscountSub: {
-      fontWeight: theme.typography.fontWeightBold,
-    },
-    costsTax: {
-      color: theme.palette.text.disabled,
-      paddingTop: 0,
-    },
-    money: {
-      whiteSpace: 'nowrap',
-    },
-  }),
-  { name: 'CartTotals' },
-)
+const useStyles = makeStyles({ name: 'CartTotals' })((theme: Theme) => ({
+  costsContainer: {
+    borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
+    background:
+      theme.palette.mode === 'light'
+        ? '#FFE10820'
+        : lighten(theme.palette.background.default, 0.15),
+    padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
+  },
+  containerMarginTop: {
+    marginTop: theme.spacings.md,
+  },
+  costsDivider: {
+    margin: `1em 0`,
+  },
+  costsRow: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    ...theme.typography.subtitle1,
+  },
+  costsGrandTotal: {
+    fontWeight: theme.typography.fontWeightBold,
+    color: theme.palette.primary.main,
+  },
+  costsDiscount: {
+    fontWeight: theme.typography.fontWeightBold,
+  },
+  costsDiscountSub: {
+    fontWeight: theme.typography.fontWeightBold,
+  },
+  costsTax: {
+    color: theme.palette.text.disabled,
+    paddingTop: 0,
+  },
+  money: {
+    whiteSpace: 'nowrap',
+  },
+}))
 
 export type CartTotalsProps = { containerMargin?: boolean } & UseStyles<typeof useStyles>
 
@@ -61,7 +58,7 @@ export type CartTotalsProps = { containerMargin?: boolean } & UseStyles<typeof u
  */
 export default function CartTotals(props: CartTotalsProps) {
   const { data } = useCartQuery(GetCartTotalsDocument, { allowUrl: true })
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const inclTax = useDisplayInclTax()
 
   if (!data?.cart) return null

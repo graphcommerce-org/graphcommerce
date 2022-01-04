@@ -1,30 +1,27 @@
 import { UseStyles, responsiveVal } from '@graphcommerce/next-ui'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { ColorSwatchDataFragment } from './ColorSwatchData.gql'
 import { SwatchDataProps } from '.'
 
-export const useStyles = makeStyles(
-  {
-    root: {
-      margin: '0 auto',
-      height: responsiveVal(22, 30),
-      width: responsiveVal(22, 30),
-      borderRadius: '50%',
-    },
-    sizeSmall: {
-      height: responsiveVal(8, 12),
-      width: responsiveVal(8, 12),
-      marginTop: responsiveVal(2, 4),
-    },
+export const useStyles = makeStyles({ name: 'ColorSwatchData' })({
+  root: {
+    margin: '0 auto',
+    height: responsiveVal(22, 30),
+    width: responsiveVal(22, 30),
+    borderRadius: '50%',
   },
-  { name: 'ColorSwatchData' },
-)
+  sizeSmall: {
+    height: responsiveVal(8, 12),
+    width: responsiveVal(8, 12),
+    marginTop: responsiveVal(2, 4),
+  },
+})
 
 type ColorSwatchDataProps = ColorSwatchDataFragment & SwatchDataProps & UseStyles<typeof useStyles>
 
 export default function ColorSwatchData(props: ColorSwatchDataProps) {
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const { value, store_label, size } = props
 
   return (

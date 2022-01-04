@@ -2,11 +2,11 @@ import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/mag
 import { Button, responsiveVal, UseStyles } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { FormControl, TextField, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles()((theme: Theme) => ({
   couponForm: {
     display: 'grid',
     alignItems: 'center',
@@ -24,7 +24,7 @@ export default function ApplyCouponForm(props: ApplyCouponFormProps) {
   const form = useFormGqlMutationCart(ApplyCouponFormDocument)
   const { handleSubmit, muiRegister, formState, required, error } = form
   const submitHandler = handleSubmit(() => {})
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <form onSubmit={submitHandler} noValidate className={classes.couponForm}>

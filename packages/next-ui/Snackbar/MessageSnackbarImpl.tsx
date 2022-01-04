@@ -7,7 +7,7 @@ import {
   Portal,
   lighten,
 } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
@@ -16,7 +16,7 @@ import { iconClose, iconCheckmark, iconSadFace } from '../icons'
 type Size = 'normal' | 'wide'
 type Variant = 'contained' | 'pill'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     snackbarRoot: {},
     anchorOriginBottomCenter: {
@@ -118,7 +118,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
     ...snackbarProps
   } = props
 
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   useEffect(() => {
     setShowSnackbar(!!open)

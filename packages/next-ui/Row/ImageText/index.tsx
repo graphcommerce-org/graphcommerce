@@ -1,11 +1,11 @@
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import Row from '..'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     wrapper: {
       display: 'grid',
@@ -67,7 +67,7 @@ export type ImageTextProps = UseStyles<typeof useStyles> & {
 
 export default function ImageText(props: ImageTextProps) {
   const { item, children } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <Row maxWidth={false}>

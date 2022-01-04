@@ -1,13 +1,13 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { useTransform, useViewportScroll } from 'framer-motion'
 import React from 'react'
 import LayoutProvider from '../../Layout/components/LayoutProvider'
 import { UseStyles } from '../../Styles'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     root: {
       minHeight: '100vh',
@@ -67,7 +67,7 @@ export type LayoutDefaultProps = {
 
 export function LayoutDefault(props: LayoutDefaultProps) {
   const { children, header, footer, menuFab, cartFab, noSticky, className } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   const offset = useScrollOffset().y
   const scrollWithOffset = useTransform(useViewportScroll().scrollY, (y) => y + offset)

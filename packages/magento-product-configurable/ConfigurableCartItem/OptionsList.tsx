@@ -1,69 +1,66 @@
 import { responsiveVal } from '@graphcommerce/next-ui'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { ConfigurableCartItemFragment } from './ConfigurableCartItem.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    optionsList: {
-      gridArea: 'itemOptions',
-      cursor: 'default',
-      marginLeft: 0,
-      paddingBottom: 4,
+const useStyles = makeStyles({ name: 'CartItemOptionsList' })((theme: Theme) => ({
+  optionsList: {
+    gridArea: 'itemOptions',
+    cursor: 'default',
+    marginLeft: 0,
+    paddingBottom: 4,
+  },
+  option: {
+    color: theme.palette.text.secondary,
+    textDecoration: 'underline',
+    marginRight: theme.spacings.xs,
+    paddingBottom: 1,
+    display: 'inline',
+  },
+  menuPaper: {
+    minWidth: responsiveVal(200, 560),
+    maxWidth: 560,
+    marginTop: -8,
+    padding: `${theme.spacings.xs} ${theme.spacings.xs}`,
+    [theme.breakpoints.down('sm')]: {
+      minWidth: 0,
+      width: '100%',
+      maxWidth: `calc(100% - (${theme.page.horizontal}px * 2))`,
+      margin: '0 auto',
+      marginTop: '8px',
     },
-    option: {
-      color: theme.palette.text.secondary,
-      textDecoration: 'underline',
-      marginRight: theme.spacings.xs,
-      paddingBottom: 1,
-      display: 'inline',
+  },
+  menuList: {
+    padding: 0,
+    '&:focus': {
+      outline: 'none',
     },
-    menuPaper: {
-      minWidth: responsiveVal(200, 560),
-      maxWidth: 560,
-      marginTop: -8,
-      padding: `${theme.spacings.xs} ${theme.spacings.xs}`,
-      [theme.breakpoints.down('sm')]: {
-        minWidth: 0,
-        width: '100%',
-        maxWidth: `calc(100% - (${theme.page.horizontal}px * 2))`,
-        margin: '0 auto',
-        marginTop: '8px',
-      },
-    },
-    menuList: {
-      padding: 0,
-      '&:focus': {
-        outline: 'none',
-      },
-    },
-    menuTitle: {
-      ...theme.typography.h5,
-      paddingBottom: theme.spacings.xxs,
-      marginBottom: theme.spacings.xxs,
-      borderBottom: `1px solid ${theme.palette.divider}`,
-    },
-    menuContent: {
-      display: 'flex',
-    },
-    saveChangesWrap: {
-      alignSelf: 'center',
-    },
-    saveChangesButton: {
-      padding: '10px 20px',
-      fontWeight: theme.typography.fontWeightBold,
-      boxShadow: theme.shadows[3],
-    },
-  }),
-  { name: 'CartItemOptionsList' },
-)
+  },
+  menuTitle: {
+    ...theme.typography.h5,
+    paddingBottom: theme.spacings.xxs,
+    marginBottom: theme.spacings.xxs,
+    borderBottom: `1px solid ${theme.palette.divider}`,
+  },
+  menuContent: {
+    display: 'flex',
+  },
+  saveChangesWrap: {
+    alignSelf: 'center',
+  },
+  saveChangesButton: {
+    padding: '10px 20px',
+    fontWeight: theme.typography.fontWeightBold,
+    boxShadow: theme.shadows[3],
+  },
+}))
 
 type CartItemOptionsListProps = ConfigurableCartItemFragment
 
 export default function OptionsList(props: CartItemOptionsListProps) {
   const { configurable_options } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
   // const [anchorEl, setAnchorEl] = useState<HTMLDivElement>()
 
   // const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {

@@ -2,14 +2,14 @@ import { useQuery } from '@apollo/client'
 import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
 import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { FormControl, FormControlLabel, FormHelperText, Switch, SwitchProps } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { GetCustomerNewsletterToggleDocument } from './GetCustomerNewsLetterToggle.gql'
 import { UpdateNewsletterSubscriptionDocument } from './UpdateNewsletterSubscription.gql'
 
 export type CustomerNewsletterToggleProps = SwitchProps
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles()(() => ({
   labelRoot: {
     marginRight: 0,
   },
@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
 
 export default function CustomerNewsletterToggle(props: CustomerNewsletterToggleProps) {
   const { disabled, ...switchProps } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   const { loading, data } = useQuery(GetCustomerNewsletterToggleDocument, { ssr: false })
   const form = useFormGqlMutation(UpdateNewsletterSubscriptionDocument, {

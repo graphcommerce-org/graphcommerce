@@ -1,4 +1,5 @@
 import { ApolloProvider, useQuery } from '@apollo/client'
+import { CacheProvider, EmotionCache } from '@emotion/react'
 import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 // import { GoogleAnalyticsScript } from '@graphcommerce/googleanalytics'
 // import { GoogleRecaptchaV3Script } from '@graphcommerce/googlerecaptcha'
@@ -12,6 +13,7 @@ import { AppPropsType } from 'next/dist/shared/lib/utils'
 import React, { useEffect, useState } from 'react'
 import { lightTheme, darkTheme } from '../components/Theme/ThemedProvider'
 import apolloClient from '../lib/apolloClientBrowser'
+import createCache from '@emotion/cache'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -26,6 +28,9 @@ export type PageRendererProps = Omit<AppPropsType, 'router'> & {
 const Head = () => (
   <GlobalHead name={useQuery(StoreConfigDocument).data?.storeConfig?.website_name ?? ''} />
 )
+
+let muiCache: EmotionCache | undefined = undefined
+export const createMuiCache = () => (muiCache = createCache({ key: 'css', prepend: true }))
 
 export default function ThemedApp(props: Omit<AppPropsType, 'pageProps'> & AppProps) {
   const { pageProps, router } = props
@@ -59,14 +64,14 @@ export default function ThemedApp(props: Omit<AppPropsType, 'pageProps'> & AppPr
         }
       >
         <ApolloProvider client={client}>
-          <StyledEngineProvider injectFirst>
+          <CacheProvider value={muiCache || createMuiCache()}>
             <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
               <Head />
               <CssBaseline />
               <PageLoadIndicator />
               <FramerNextPages {...props} />
             </ThemeProvider>
-          </StyledEngineProvider>
+          </CacheProvider>
         </ApolloProvider>
       </LinguiProvider>
     </LazyMotion>

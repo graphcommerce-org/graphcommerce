@@ -1,47 +1,44 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { forwardRef } from 'react'
 
-const useStyles = makeStyles(
-  {
-    root: {
-      position: 'relative',
-    },
-    picture: {
-      display: 'block',
-      '@supports (aspect-ratio: 1 / 1)': {
-        maxWidth: '99.6%',
-        maxHeight: '100%',
-        width: 'auto',
-        height: 'auto',
+const useStyles = makeStyles({ name: 'MotionImageAspect' })({
+  root: {
+    position: 'relative',
+  },
+  picture: {
+    display: 'block',
+    '@supports (aspect-ratio: 1 / 1)': {
+      maxWidth: '99.6%',
+      maxHeight: '100%',
+      width: 'auto',
+      height: 'auto',
 
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
 
-        '&:after': {
-          display: 'block',
-          content: '""',
-          minWidth: '100vw',
-        },
-      },
-      '@supports not (aspect-ratio: 1 / 1)': {
-        width: '100% !important',
-        height: '100% !important',
+      '&:after': {
+        display: 'block',
+        content: '""',
+        minWidth: '100vw',
       },
     },
-    image: {
-      display: 'block',
-      '@supports not (aspect-ratio: 1 / 1)': {
-        objectFit: 'contain',
-      },
+    '@supports not (aspect-ratio: 1 / 1)': {
+      width: '100% !important',
+      height: '100% !important',
     },
   },
-  { name: 'MotionImageAspect' },
-)
+  image: {
+    display: 'block',
+    '@supports not (aspect-ratio: 1 / 1)': {
+      objectFit: 'contain',
+    },
+  },
+})
 
 export type MotionImageAspectProps = Omit<ImageProps, 'layout' | 'unoptimized'>
 
@@ -54,7 +51,7 @@ export type MotionImageAspectProps = Omit<ImageProps, 'layout' | 'unoptimized'>
  */
 const MotionImageAspect = m(
   forwardRef<HTMLImageElement, MotionImageAspectProps>((props, ref) => {
-    const classes = useStyles()
+    const { classes } = useStyles()
     return (
       <div className={classes.root}>
         <Image

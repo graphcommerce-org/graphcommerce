@@ -1,11 +1,11 @@
 import { Button } from '@graphcommerce/next-ui'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { LayoutProps } from '../Layout/PageLayout'
 import { SanitizedDirectoryTree } from '../SidebarMenu/sanitizeDirectoryTree'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   () => ({
     root: {
       display: 'flex',
@@ -22,7 +22,7 @@ type NextPrevButtonProps = Pick<LayoutProps, 'menuData'>
 
 export default function NextPrevButtons({ menuData }: NextPrevButtonProps) {
   const router = useRouter()
-  const classes = useStyles()
+  const { classes } = useStyles()
   const flatMenuData = (menuData as unknown as SanitizedDirectoryTree)
     .map((data) => data[1])
     .flat(1)

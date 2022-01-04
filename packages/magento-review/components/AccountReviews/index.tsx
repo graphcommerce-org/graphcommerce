@@ -1,6 +1,6 @@
 import { SectionContainer } from '@graphcommerce/next-ui'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { Skeleton } from '@mui/material'
 import React from 'react'
 import CustomerReview from '../CustomerReview'
@@ -8,26 +8,23 @@ import { AccountReviewsFragment } from './AccountReviews.gql'
 
 type AccountReviewsProps = AccountReviewsFragment & { loading: boolean }
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    reviewsContainer: {
-      marginBottom: theme.spacings.md,
+const useStyles = makeStyles({ name: 'AccountReviews' })((theme: Theme) => ({
+  reviewsContainer: {
+    marginBottom: theme.spacings.md,
+  },
+  olderReviewsContainer: {
+    [theme.breakpoints.up('md')]: {
+      marginTop: theme.spacings.lg,
+      marginBottom: theme.spacings.lg,
     },
-    olderReviewsContainer: {
-      [theme.breakpoints.up('md')]: {
-        marginTop: theme.spacings.lg,
-        marginBottom: theme.spacings.lg,
-      },
-      marginTop: theme.spacings.md,
-      marginBottom: theme.spacings.md,
-    },
-  }),
-  { name: 'AccountReviews' },
-)
+    marginTop: theme.spacings.md,
+    marginBottom: theme.spacings.md,
+  },
+}))
 
 export default function AccountReviews(props: AccountReviewsProps) {
   const { items, loading } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
   const showLatestReviews = 2
   const latestReviews = items?.slice(0, Math.min(items?.length, showLatestReviews))
   const olderReviews = items?.slice(Math.min(items?.length, showLatestReviews), items?.length)

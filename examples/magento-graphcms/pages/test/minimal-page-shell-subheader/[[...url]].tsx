@@ -17,7 +17,7 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { AppShellSticky, LayoutTitle, Button, LayoutHeader } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { Box, Container, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
@@ -32,7 +32,7 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props, RouteProps>
 
 // for testing only
-const useStyles = makeStyles({
+const useStyles = makeStyles()({
   longContent: {
     height: 2000,
   },
@@ -40,7 +40,7 @@ const useStyles = makeStyles({
 
 function MinimalAppShellSubheader(props: Props) {
   const { params, products, filters, filterTypes } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   return (
     <ProductListParamsProvider value={params}>

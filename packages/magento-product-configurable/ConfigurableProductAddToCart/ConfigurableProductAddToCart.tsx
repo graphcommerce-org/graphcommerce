@@ -9,7 +9,7 @@ import {
   TextInputNumber,
 } from '@graphcommerce/next-ui'
 import { Divider, Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { Alert } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
@@ -29,33 +29,30 @@ type ConfigurableProductAddToCartProps = {
   children?: React.ReactNode
 }
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    form: {
-      width: '100%',
-    },
-    button: {
-      marginTop: theme.spacings.sm,
-      marginBottom: theme.spacings.sm,
-      width: '100%',
-    },
-    finalPrice: {
-      marginTop: theme.spacings.sm,
-    },
-    quantity: {
-      marginTop: theme.spacings.sm,
-    },
-    divider: {
-      margin: `${theme.spacings.sm} 0`,
-    },
-  }),
-  { name: 'ConfigurableProductAddToCart' },
-)
+const useStyles = makeStyles({ name: 'ConfigurableProductAddToCart' })((theme: Theme) => ({
+  form: {
+    width: '100%',
+  },
+  button: {
+    marginTop: theme.spacings.sm,
+    marginBottom: theme.spacings.sm,
+    width: '100%',
+  },
+  finalPrice: {
+    marginTop: theme.spacings.sm,
+  },
+  quantity: {
+    marginTop: theme.spacings.sm,
+  },
+  divider: {
+    margin: `${theme.spacings.sm} 0`,
+  },
+}))
 
 export default function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
   const { name, children, variables, optionEndLabels, ...buttonProps } = props
   const { getUids, getVariants, selection } = useConfigurableContext(variables.sku)
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   const form = useFormGqlMutationCart(ConfigurableProductAddToCartDocument, {
     defaultValues: { ...variables },

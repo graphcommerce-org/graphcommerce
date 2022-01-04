@@ -1,10 +1,10 @@
 import { Container, Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { responsiveVal } from '../Styles/responsiveVal'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     root: {
       alignItems: 'center',
@@ -44,7 +44,7 @@ export type FullPageMessageProps = {
 
 export default function FullPageMessage(props: FullPageMessageProps) {
   const { icon, title, children, button, altButton, disableMargin = false } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   return (
     <div className={clsx(classes.root, disableMargin || classes.rootMargin)}>

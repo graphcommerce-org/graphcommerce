@@ -1,11 +1,11 @@
 import { Link, Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     item: {
       display: 'grid',
@@ -53,7 +53,7 @@ export type BlogListItemProps = UseStyles<typeof useStyles> & {
 
 export default function BlogListItem(props: BlogListItemProps) {
   const { asset, url, date, locale, title } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   const formatter = new Intl.DateTimeFormat(locale, {
     year: 'numeric',

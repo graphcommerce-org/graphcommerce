@@ -1,6 +1,6 @@
 import { UseStyles } from '@graphcommerce/next-ui'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { OrderStateLabelFragment } from './OrderStateLabel.gql'
 
@@ -24,42 +24,39 @@ export type OrderStateLabelProps = {
 } & OrderStateLabelPropsBase &
   UseStyles<typeof useStyles>
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    orderStatus: {
-      fontStyle: 'italic',
-      fontWeight: 'normal',
-    },
-    orderStateOrdered: {
-      color: theme.palette.secondary.main,
-    },
-    orderStateInvoiced: {
-      color: theme.palette.secondary.main,
-    },
-    orderStateRefunded: {
-      color: theme.palette.primary.main,
-    },
-    orderStateShipped: {
-      color: theme.palette.success.main,
-      fontStyle: 'normal',
-      fontWeight: 600,
-    },
-    orderStateCanceled: {
-      color: theme.palette.primary.main,
-    },
-    orderStateReturned: {
-      color: theme.palette.secondary.main,
-    },
-    orderStatePartial: {
-      color: theme.palette.secondary.main,
-    },
-  }),
-  { name: 'OrderStateLabel' },
-)
+const useStyles = makeStyles({ name: 'OrderStateLabel' })((theme: Theme) => ({
+  orderStatus: {
+    fontStyle: 'italic',
+    fontWeight: 'normal',
+  },
+  orderStateOrdered: {
+    color: theme.palette.secondary.main,
+  },
+  orderStateInvoiced: {
+    color: theme.palette.secondary.main,
+  },
+  orderStateRefunded: {
+    color: theme.palette.primary.main,
+  },
+  orderStateShipped: {
+    color: theme.palette.success.main,
+    fontStyle: 'normal',
+    fontWeight: 600,
+  },
+  orderStateCanceled: {
+    color: theme.palette.primary.main,
+  },
+  orderStateReturned: {
+    color: theme.palette.secondary.main,
+  },
+  orderStatePartial: {
+    color: theme.palette.secondary.main,
+  },
+}))
 
 export default function OrderStateLabel(props: OrderStateLabelProps) {
   const { items, renderer, ...orderProps } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   let orderState: OrderState = 'Partial'
   if (items?.every((item) => item?.quantity_ordered === item?.quantity_invoiced))

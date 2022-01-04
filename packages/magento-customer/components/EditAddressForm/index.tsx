@@ -11,7 +11,7 @@ import {
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
 import { TextField } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
@@ -20,21 +20,18 @@ import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerError
 import NameFields from '../NameFields'
 import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
 
-const useStyles = makeStyles(
-  () => ({
-    editActions: {
-      paddingBottom: 0,
-    },
-  }),
-  { name: 'EditAddressForm' },
-)
+const useStyles = makeStyles({ name: 'EditAddressForm' })(() => ({
+  editActions: {
+    paddingBottom: 0,
+  },
+}))
 
 type EditAddressFormProps = { address?: AccountAddressFragment }
 
 export default function EditAddressForm(props: EditAddressFormProps) {
   const countries = useQuery(CountryRegionsDocument).data?.countries
   const { address } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
   const router = useRouter()
 
   const form = useFormGqlMutation(

@@ -1,5 +1,5 @@
 import { Button as MuiButton, ButtonClassKey as MuiButtonClassKey, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 

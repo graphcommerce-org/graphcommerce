@@ -1,10 +1,10 @@
 import { ContainerProps, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import Row from '..'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     wrapper: {
       overflow: 'hidden',
@@ -72,7 +72,7 @@ export type ParagraphWithSidebarSlideProps = UseStyles<typeof useStyles> &
 
 export default function ParagraphWithSidebarSlide(props: ParagraphWithSidebarSlideProps) {
   const { background, slidingItems, children, ...containerProps } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <Row maxWidth={false} {...containerProps}>

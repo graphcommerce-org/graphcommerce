@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client'
 import { StoreConfigDocument, Money } from '@graphcommerce/magento-store'
 import { responsiveVal } from '@graphcommerce/next-ui'
 import { Button, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import Skeleton from '@mui/material/Skeleton'
 import clsx from 'clsx'
 import PageLink from 'next/link'
@@ -13,61 +13,58 @@ import OrderStateLabel from '../OrderStateLabel'
 import TrackingLink from '../TrackingLink'
 import { OrderCardFragment } from './OrderCard.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    orderContainer: {
-      [theme.breakpoints.up('sm')]: {
-        padding: theme.spacings.md,
-      },
-      display: 'grid',
-      justifyContent: 'center',
-      paddingTop: theme.spacings.lg,
-      paddingBottom: theme.spacings.lg,
-      width: '100%',
+const useStyles = makeStyles({ name: 'OrderCard' })((theme: Theme) => ({
+  orderContainer: {
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacings.md,
     },
-    orderRow: {
-      margin: `0 auto calc(${theme.spacings.xxs} * .5) auto`,
-      display: 'flex',
-      gap: theme.spacings.xxs,
+    display: 'grid',
+    justifyContent: 'center',
+    paddingTop: theme.spacings.lg,
+    paddingBottom: theme.spacings.lg,
+    width: '100%',
+  },
+  orderRow: {
+    margin: `0 auto calc(${theme.spacings.xxs} * .5) auto`,
+    display: 'flex',
+    gap: theme.spacings.xxs,
+  },
+  orderMoney: {
+    fontWeight: 'bold',
+  },
+  orderProducts: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+  },
+  images: {
+    display: 'grid',
+    gridAutoFlow: 'column',
+    gap: theme.spacings.xxs,
+    padding: theme.spacings.xxs,
+    width: responsiveVal(75, 125),
+    height: responsiveVal(75, 125),
+  },
+  placeholder: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 88,
+    height: 88,
+  },
+  buttonRoot: {
+    width: '100%',
+    boxShadow: 'none',
+    marginTop: theme.spacings.xxs,
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    '&:hover': {
+      background: 'none',
     },
-    orderMoney: {
-      fontWeight: 'bold',
-    },
-    orderProducts: {
-      display: 'flex',
-      justifyContent: 'center',
-      flexWrap: 'wrap',
-    },
-    images: {
-      display: 'grid',
-      gridAutoFlow: 'column',
-      gap: theme.spacings.xxs,
-      padding: theme.spacings.xxs,
-      width: responsiveVal(75, 125),
-      height: responsiveVal(75, 125),
-    },
-    placeholder: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: 88,
-      height: 88,
-    },
-    buttonRoot: {
-      width: '100%',
-      boxShadow: 'none',
-      marginTop: theme.spacings.xxs,
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      '&:hover': {
-        background: 'none',
-      },
-    },
-    tracking: {
-      textAlign: 'center',
-    },
-  }),
-  { name: 'OrderCard' },
-)
+  },
+  tracking: {
+    textAlign: 'center',
+  },
+}))
 
 type OrderCardProps = Partial<OrderCardFragment> & {
   loading?: boolean
@@ -75,7 +72,7 @@ type OrderCardProps = Partial<OrderCardFragment> & {
 
 export default function OrderCard(props: OrderCardProps) {
   const { number, shipments, total, items, order_date, images, loading } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   const { data: config } = useQuery(StoreConfigDocument)
   const locale = config?.storeConfig?.locale?.replace('_', '-')

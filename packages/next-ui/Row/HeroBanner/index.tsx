@@ -1,5 +1,5 @@
 import { ContainerProps, Theme, useTheme, useMediaQuery } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import Row from '..'
@@ -7,7 +7,7 @@ import { useScrollY } from '../../Layout/hooks/useScrollY'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     wrapper: {
       position: 'relative',
@@ -76,7 +76,7 @@ export type HeroBannerProps = UseStyles<typeof useStyles> &
 
 export default function HeroBanner(props: HeroBannerProps) {
   const { pageLinks, videoSrc, children, ...containerProps } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const theme = useTheme()
   const scrollY = useScrollY()
   const width = useTransform(

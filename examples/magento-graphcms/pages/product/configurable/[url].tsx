@@ -21,7 +21,7 @@ import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, JsonLd, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Link, Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
@@ -35,14 +35,11 @@ import apolloClient from '../../../lib/apolloClient'
 
 type Props = ProductPageQuery & ConfigurableProductPageQuery
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    prePrice: {
-      color: theme.palette.text.disabled,
-    },
-  }),
-  { name: 'ProductConfigurable' },
-)
+const useStyles = makeStyles({ name: 'ProductConfigurable' })((theme: Theme) => ({
+  prePrice: {
+    color: theme.palette.text.disabled,
+  },
+}))
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
@@ -50,7 +47,7 @@ type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function ProductConfigurable(props: Props) {
   const { products, usps, typeProducts, sidebarUsps, pages } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]

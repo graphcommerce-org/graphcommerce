@@ -1,36 +1,33 @@
 import { MenuItem, Select, SelectProps, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      marginRight: theme.spacings.xs,
+const useStyles = makeStyles({ name: 'CartItemOptionDropdown' })((theme: Theme) => ({
+  root: {
+    marginRight: theme.spacings.xs,
+  },
+  label: {
+    letterSpacing: 1,
+    textTransform: 'uppercase',
+    fontWeight: 500,
+    color: theme.palette.text.disabled,
+  },
+  select: {
+    padding: `${theme.spacings.xxs} ${theme.spacings.xxs}`,
+    border: `1px solid ${theme.palette.divider}`,
+    borderRadius: 8,
+    minWidth: 120,
+    '&:before': {
+      borderBottom: 'none',
     },
-    label: {
-      letterSpacing: 1,
-      textTransform: 'uppercase',
-      fontWeight: 500,
-      color: theme.palette.text.disabled,
-    },
-    select: {
-      padding: `${theme.spacings.xxs} ${theme.spacings.xxs}`,
-      border: `1px solid ${theme.palette.divider}`,
-      borderRadius: 8,
-      minWidth: 120,
+    '&:hover, &:active, &:focus': {
       '&:before': {
         borderBottom: 'none',
       },
-      '&:hover, &:active, &:focus': {
-        '&:before': {
-          borderBottom: 'none',
-        },
-        background: theme.palette.grey['100'],
-      },
+      background: theme.palette.grey['100'],
     },
-  }),
-  { name: 'CartItemOptionDropdown' },
-)
+  },
+}))
 
 export type CartItemOptionDropdownProps = {
   label: string
@@ -38,7 +35,7 @@ export type CartItemOptionDropdownProps = {
 
 export default function CartItemOptionDropdown(props: CartItemOptionDropdownProps) {
   const { onChange, label } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   return (
     <div className={classes.root}>

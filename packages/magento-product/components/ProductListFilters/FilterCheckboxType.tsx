@@ -17,7 +17,7 @@ export type FilterCheckboxTypeProps = NonNullable<
 export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props
   const { params } = useProductListParamsContext()
-  const classes = useChipMenuStyles(props)
+  const { classes } = useChipMenuStyles(props)
   const currentFilter = params.filters[attribute_code]
   const replaceRoute = useProductListLinkReplace({ scroll: false })
 

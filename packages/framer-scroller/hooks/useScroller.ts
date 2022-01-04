@@ -1,7 +1,6 @@
 import { useConstant, useElementScroll, useMotionValueValue } from '@graphcommerce/framer-utils'
-import { UseStyles, classesPicker } from '@graphcommerce/next-ui'
+import { UseStyles, classesPicker, makeStyles } from '@graphcommerce/next-ui'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
 import {
   HTMLMotionProps,
   motionValue,
@@ -18,8 +17,8 @@ import { scrollSnapTypeDirection } from '../utils/scrollSnapTypeDirection'
 import { useScrollerContext } from './useScrollerContext'
 import { useVelocitySnapTo } from './useVelocitySnapTo'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
+const useStyles = makeStyles<ScrollSnapProps>({ name: 'Scroller' })(
+  (theme: Theme, { scrollSnapAlign, scrollSnapStop, scrollSnapTypeMd, scrollSnapTypeSm }) => ({
     root: {
       '& *': {
         userSelect: 'none',
@@ -79,7 +78,7 @@ const useStyles = makeStyles(
       },
     },
 
-    rootSmGridDirBlock: ({ scrollSnapAlign, scrollSnapStop }) => ({
+    rootSmGridDirBlock: {
       display: 'grid',
       gridAutoFlow: 'row',
       gridAutoColumns: `40%`,
@@ -87,8 +86,8 @@ const useStyles = makeStyles(
         scrollSnapAlign,
         scrollSnapStop,
       },
-    }),
-    rootSmGridDirInline: ({ scrollSnapAlign, scrollSnapStop }) => ({
+    },
+    rootSmGridDirInline: {
       display: 'grid',
       gridAutoFlow: 'column',
       gridAutoRows: `40%`,
@@ -97,18 +96,18 @@ const useStyles = makeStyles(
         scrollSnapAlign,
         scrollSnapStop,
       },
-    }),
+    },
     rootCanGrab: {
       cursor: 'grab',
     },
-    rootIsSnap: ({ scrollSnapTypeSm, scrollSnapTypeMd }: ScrollSnapProps) => ({
+    rootIsSnap: {
       [theme.breakpoints.down('md')]: {
         scrollSnapType: scrollSnapTypeSm,
       },
       [theme.breakpoints.up('md')]: {
         scrollSnapType: scrollSnapTypeMd,
       },
-    }),
+    },
     rootNoSnap: {
       willChange: 'scroll-position',
     },
@@ -125,7 +124,6 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'Scroller' },
 )
 
 export type ScrollableProps<TagName extends keyof ReactHTML = 'div'> = UseStyles<typeof useStyles> &

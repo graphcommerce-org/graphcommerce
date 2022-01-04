@@ -4,7 +4,7 @@ import { FormRow, Button, FormActions } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
 import { FormControl, Link, TextField } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { Alert } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
@@ -12,20 +12,17 @@ import { CustomerTokenDocument } from '../../hooks'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { SignInDocument } from './SignIn.gql'
 
-const useStyles = makeStyles(
-  {
-    forgotPass: {
-      whiteSpace: 'nowrap',
-    },
+const useStyles = makeStyles({ name: 'SignIn' })({
+  forgotPass: {
+    whiteSpace: 'nowrap',
   },
-  { name: 'SignIn' },
-)
+})
 
 type SignInFormProps = { email: string }
 
 export default function SignInForm(props: SignInFormProps) {
   const { email } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
   const form = useFormGqlMutation(
     SignInDocument,
     { defaultValues: { email } },

@@ -1,11 +1,11 @@
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
 import SectionHeader, { SectionHeaderProps } from '../SectionHeader'
 import { UseStyles } from '../Styles'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     sectionContainer: {},
     sectionHeaderSidePadding: {},

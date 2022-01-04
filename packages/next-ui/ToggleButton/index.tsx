@@ -1,5 +1,5 @@
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React, { FormEvent } from 'react'
 import Button, { ButtonProps } from '../Button'
@@ -8,7 +8,7 @@ import { responsiveVal } from '../Styles/responsiveVal'
 
 type StyleProps = { selected?: boolean; color?: ButtonProps['color'] }
 
-export const useStyles = makeStyles(
+export const useStyles = makeStyles()(
   (theme: Theme) => ({
     /* Styles applied to the root element. */
     root: {

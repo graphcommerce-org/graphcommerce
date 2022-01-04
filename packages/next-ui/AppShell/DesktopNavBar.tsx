@@ -1,6 +1,6 @@
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { Link, LinkProps as MuiLinkProps, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
@@ -11,77 +11,74 @@ import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 import { MenuProps } from './Menu'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    container: {
-      minWidth: 200,
-      flex: 1,
-      position: 'relative',
-      pointerEvents: 'all',
-      [theme.breakpoints.down('lg')]: {
-        display: 'none',
-      },
+const useStyles = makeStyles({ name: 'DesktopNavBar' })((theme: Theme) => ({
+  container: {
+    minWidth: 200,
+    flex: 1,
+    position: 'relative',
+    pointerEvents: 'all',
+    [theme.breakpoints.down('lg')]: {
+      display: 'none',
     },
-    scroller: {
-      display: 'grid',
-      columnGap: 40,
-      padding: '0 40px',
-      minHeight: 40,
-      gridAutoColumns: 'min-content',
+  },
+  scroller: {
+    display: 'grid',
+    columnGap: 40,
+    padding: '0 40px',
+    minHeight: 40,
+    gridAutoColumns: 'min-content',
+  },
+  prevNextBtnWrapper: {
+    position: 'absolute',
+    top: 0,
+  },
+  left: {
+    left: 0,
+  },
+  right: {
+    right: 0,
+  },
+  prevNextBtn: {
+    pointerEvents: 'all',
+    background: theme.palette.background.default,
+    boxShadow: 'none',
+    height: 48,
+    [theme.breakpoints.down('lg')]: {
+      display: 'none',
     },
-    prevNextBtnWrapper: {
-      position: 'absolute',
-      top: 0,
+  },
+  prevBtn: {
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
+  },
+  nextBtn: {
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+  },
+  link: {
+    whiteSpace: 'nowrap',
+    color: theme.palette.text.primary,
+    '&:hover': {
+      textDecoration: 'none',
     },
-    left: {
-      left: 0,
-    },
-    right: {
-      right: 0,
-    },
-    prevNextBtn: {
-      pointerEvents: 'all',
-      background: theme.palette.background.default,
-      boxShadow: 'none',
-      height: 48,
-      [theme.breakpoints.down('lg')]: {
-        display: 'none',
-      },
-    },
-    prevBtn: {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-    },
-    nextBtn: {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
-    },
-    link: {
-      whiteSpace: 'nowrap',
-      color: theme.palette.text.primary,
-      '&:hover': {
-        textDecoration: 'none',
-      },
-      fontWeight: theme.typography.fontWeightBold,
-      paddingTop: 6,
-    },
-    line: {
-      maxWidth: 40,
-      width: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-      height: 2,
-      background: theme.palette.primary.main,
-      margin: '0 auto',
-      marginTop: 6,
-      opacity: 0,
-    },
-    lineShow: {
-      opacity: 1,
-    },
-  }),
-  { name: 'DesktopNavBar' },
-)
+    fontWeight: theme.typography.fontWeightBold,
+    paddingTop: 6,
+  },
+  line: {
+    maxWidth: 40,
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    height: 2,
+    background: theme.palette.primary.main,
+    margin: '0 auto',
+    marginTop: 6,
+    opacity: 0,
+  },
+  lineShow: {
+    opacity: 1,
+  },
+}))
 
 export type MenuTabsProps = MenuProps &
   UseStyles<typeof useStyles> & {
@@ -92,7 +89,7 @@ export type MenuTabsProps = MenuProps &
 
 export default function DesktopNavBar(props: MenuTabsProps) {
   const { menu, LinkProps, iconScrollerBtnLeft, iconScrollerBtnRight } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const router = useRouter()
 
   return (

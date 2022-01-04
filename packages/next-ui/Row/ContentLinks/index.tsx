@@ -1,10 +1,10 @@
 import { Scroller, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { Container, Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     root: {
       marginBottom: `${theme.spacings.lg}`,
@@ -28,7 +28,7 @@ export type ContentLinksProps = UseStyles<typeof useStyles> & {
 
 export default function ContentLinks(props: ContentLinksProps) {
   const { title, children } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <Container className={classes.root} maxWidth={false}>

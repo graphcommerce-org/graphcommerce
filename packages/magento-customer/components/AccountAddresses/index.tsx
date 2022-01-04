@@ -8,7 +8,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { Skeleton } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -18,32 +18,29 @@ import { AccountAddressesFragment } from './AccountAddresses.gql'
 
 export type AccountAddressesProps = AccountAddressesFragment & { loading: boolean }
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      '& > div': {
-        borderBottom: `1px solid ${theme.palette.divider}`,
-      },
+const useStyles = makeStyles({ name: 'AccountAddresses' })((theme: Theme) => ({
+  root: {
+    '& > div': {
+      borderBottom: `1px solid ${theme.palette.divider}`,
     },
-    sectionContainer: {
-      position: 'absolute',
-    },
-    button: {
-      display: 'block',
-      maxWidth: 'max-content',
-      margin: `${theme.spacings.md} auto`,
-      padding: `${theme.spacings.xxs} ${theme.spacings.md}`,
-    },
-    link: {
-      textDecoration: 'none',
-    },
-  }),
-  { name: 'AccountAddresses' },
-)
+  },
+  sectionContainer: {
+    position: 'absolute',
+  },
+  button: {
+    display: 'block',
+    maxWidth: 'max-content',
+    margin: `${theme.spacings.md} auto`,
+    padding: `${theme.spacings.xxs} ${theme.spacings.md}`,
+  },
+  link: {
+    textDecoration: 'none',
+  },
+}))
 
 export default function AccountAddresses(props: AccountAddressesProps) {
   const { addresses, loading } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
   const router = useRouter()
 
   if (loading) {

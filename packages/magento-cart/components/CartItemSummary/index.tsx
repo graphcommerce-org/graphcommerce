@@ -10,69 +10,66 @@ import {
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { Divider, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
 import CartTotals from '../CartTotals/CartTotals'
 import { CartItemSummaryDocument } from './GetCartItemSummary.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      padding: `${theme.spacings.sm} ${theme.spacings.sm}`,
-      border: `1px ${theme.palette.divider} solid`,
-      borderRadius: 4,
-    },
-    imageScrollerContainer: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: theme.spacings.sm,
-      position: 'relative',
-    },
-    image: {
-      borderRadius: '50%',
-      marginRight: theme.spacings.xs,
-      border: `1px solid ${theme.palette.divider}`,
-      padding: responsiveVal(5, 10),
-      width: `${responsiveVal(48, 96)} !important`,
-      height: `${responsiveVal(48, 96)} !important`,
-      display: 'block',
-    },
-    scrollerContainer: {
-      padding: 1,
-    },
-    scroller: {},
-    prevNext: {
-      position: 'absolute',
-      top: '50%',
-      transform: 'translateY(-50%)',
-      zIndex: 2,
-    },
-    prev: {
-      left: 8,
-    },
-    next: {
-      right: 8,
-    },
-    costContainer: {
-      background: theme.palette.background.default,
-      padding: 0,
-    },
-    sectionHeaderWrapper: {
-      marginTop: 0,
-    },
-    divider: {
-      margin: `${theme.spacings.xs} 0 ${theme.spacings.xs} 0`,
-    },
-  }),
-  { name: 'CartItemSummary' },
-)
+const useStyles = makeStyles({ name: 'CartItemSummary' })((theme: Theme) => ({
+  root: {
+    padding: `${theme.spacings.sm} ${theme.spacings.sm}`,
+    border: `1px ${theme.palette.divider} solid`,
+    borderRadius: 4,
+  },
+  imageScrollerContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: theme.spacings.sm,
+    position: 'relative',
+  },
+  image: {
+    borderRadius: '50%',
+    marginRight: theme.spacings.xs,
+    border: `1px solid ${theme.palette.divider}`,
+    padding: responsiveVal(5, 10),
+    width: `${responsiveVal(48, 96)} !important`,
+    height: `${responsiveVal(48, 96)} !important`,
+    display: 'block',
+  },
+  scrollerContainer: {
+    padding: 1,
+  },
+  scroller: {},
+  prevNext: {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    zIndex: 2,
+  },
+  prev: {
+    left: 8,
+  },
+  next: {
+    right: 8,
+  },
+  costContainer: {
+    background: theme.palette.background.default,
+    padding: 0,
+  },
+  sectionHeaderWrapper: {
+    marginTop: 0,
+  },
+  divider: {
+    margin: `${theme.spacings.xs} 0 ${theme.spacings.xs} 0`,
+  },
+}))
 
 type OrderSummaryProps = UseStyles<typeof useStyles>
 
 export default function CartItemSummary(props: OrderSummaryProps) {
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   const { data } = useCartQuery(CartItemSummaryDocument, { allowUrl: true })
 

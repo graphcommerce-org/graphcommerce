@@ -1,9 +1,9 @@
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { UseStyles } from '../Styles'
 
-const useStyles = makeStyles({
-  root: ({ width, height }: Props) => ({
+const useStyles = makeStyles<Props>()((_theme, { width, height }) => ({
+  root: {
     position: `relative`,
     paddingTop: `calc(100% / ${width} * ${height})`,
     '& img, & video': {
@@ -13,14 +13,14 @@ const useStyles = makeStyles({
       width: `100%`,
       height: `auto`,
     },
-  }),
-})
+  },
+}))
 
 export type Props = { width: number; height: number }
 export type AspectRatioContainerProps = Props & UseStyles<typeof useStyles>
 
 const AspectRatioContainer: React.FC<AspectRatioContainerProps> = ({ children, ...styleProps }) => {
-  const classes = useStyles(styleProps)
+  const { classes } = useStyles(styleProps)
   return <div className={classes.root}>{children}</div>
 }
 

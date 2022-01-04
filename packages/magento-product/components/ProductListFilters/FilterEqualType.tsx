@@ -2,7 +2,7 @@ import { cloneDeep } from '@apollo/client/utilities'
 import { FilterEqualTypeInput } from '@graphcommerce/graphql'
 import { ChipMenu, ChipMenuProps, responsiveVal } from '@graphcommerce/next-ui'
 import { Checkbox, ListItem, ListItemSecondaryAction, ListItemText, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { SetRequired } from 'type-fest'
@@ -18,80 +18,77 @@ type FilterEqualTypeProps = NonNullable<
 > &
   Omit<ChipMenuProps, 'selected'>
 
-const useFilterEqualStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {},
-    listItem: {
-      padding: `0 ${theme.spacings.xxs} 0`,
-      display: 'block',
-      '&:not(:nth-last-of-type(-n+2)) > div': {
-        borderBottom: `1px solid ${theme.palette.divider}`,
-      },
+const useStyles = makeStyles({ name: 'FilterEqual' })((theme: Theme) => ({
+  root: {},
+  listItem: {
+    padding: `0 ${theme.spacings.xxs} 0`,
+    display: 'block',
+    '&:not(:nth-last-of-type(-n+2)) > div': {
+      borderBottom: `1px solid ${theme.palette.divider}`,
     },
-    listItemInnerContainer: {
-      width: '100%',
-      paddingTop: responsiveVal(0, 3),
-      paddingBottom: theme.spacings.xxs,
-      '& > div': {
-        display: 'inline-block',
-        [theme.breakpoints.down('md')]: {
-          maxWidth: '72%',
-        },
-      },
-    },
-    checkbox: {
-      padding: 0,
-      margin: '-10px 0 0 0',
-      float: 'right',
-    },
-    linkContainer: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      columnGap: responsiveVal(2, 16),
-      minWidth: 0,
+  },
+  listItemInnerContainer: {
+    width: '100%',
+    paddingTop: responsiveVal(0, 3),
+    paddingBottom: theme.spacings.xxs,
+    '& > div': {
+      display: 'inline-block',
       [theme.breakpoints.down('md')]: {
-        gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+        maxWidth: '72%',
       },
     },
-    button: {
-      float: 'right',
-      marginTop: theme.spacings.xxs,
-      marginRight: theme.spacings.xxs,
-      textDecoration: 'none',
+  },
+  checkbox: {
+    padding: 0,
+    margin: '-10px 0 0 0',
+    float: 'right',
+  },
+  linkContainer: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    columnGap: responsiveVal(2, 16),
+    minWidth: 0,
+    [theme.breakpoints.down('md')]: {
+      gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
     },
-    resetButton: {
-      // background: theme.palette.grey['100'],
-      marginRight: theme.spacings.xxs,
+  },
+  button: {
+    float: 'right',
+    marginTop: theme.spacings.xxs,
+    marginRight: theme.spacings.xxs,
+    textDecoration: 'none',
+  },
+  resetButton: {
+    // background: theme.palette.grey['100'],
+    marginRight: theme.spacings.xxs,
+  },
+  filterAmount: {
+    color: theme.palette.grey[500],
+    marginLeft: 4,
+    fontSize: theme.typography.pxToRem(11),
+    display: 'inline',
+  },
+  filterLabel: {
+    display: 'inline',
+    overflow: 'hidden',
+    whiteSpace: 'break-spaces',
+  },
+  isColor: {
+    border: `1px solid ${theme.palette.divider}`,
+    '& > *': {
+      opacity: 0,
     },
-    filterAmount: {
-      color: theme.palette.grey[500],
-      marginLeft: 4,
-      fontSize: theme.typography.pxToRem(11),
-      display: 'inline',
-    },
-    filterLabel: {
-      display: 'inline',
-      overflow: 'hidden',
-      whiteSpace: 'break-spaces',
-    },
-    isColor: {
-      border: `1px solid ${theme.palette.divider}`,
-      '& > *': {
-        opacity: 0,
-      },
-    },
-    isActive: {
-      border: `1px solid ${theme.palette.primary.main}`,
-      boxShadow: `inset 0 0 0 4px ${theme.palette.background.paper}`,
-    },
-  }),
-  { name: 'FilterEqual' },
-)
+  },
+  isActive: {
+    border: `1px solid ${theme.palette.primary.main}`,
+    boxShadow: `inset 0 0 0 4px ${theme.palette.background.paper}`,
+  },
+}))
 
 export default function FilterEqualType(props: FilterEqualTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props
   const { params } = useProductListParamsContext()
-  const classes = useFilterEqualStyles()
+  const { classes } = useStyles()
   const replaceRoute = useProductListLinkReplace({ scroll: false })
 
   const currentFilter: FilterEqualTypeInput = cloneDeep(params.filters[attribute_code]) ?? {

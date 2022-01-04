@@ -1,13 +1,13 @@
 import { ImageProps, isStaticImport, isStaticRequire } from '@graphcommerce/image'
 import { capitalize } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
 import { responsiveVal } from '../Styles/responsiveVal'
 
 export type SvgImageShade = 'muted' | 'default' | 'inverted'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   {
     image: {
       userSelect: 'none',
@@ -72,7 +72,7 @@ const SvgImageSimple = forwardRef<SVGSVGElement, SvgImageSimpleProps>((props, re
     layout = 'fixed',
     ...imageProps
   } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   let { src } = imageProps
   let staticSrc = ''

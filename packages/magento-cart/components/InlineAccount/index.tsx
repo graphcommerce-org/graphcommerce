@@ -9,42 +9,39 @@ import FormRow from '@graphcommerce/next-ui/Form/FormRow'
 import { UseStyles } from '@graphcommerce/next-ui/Styles'
 import { Trans } from '@lingui/macro'
 import { TextField, Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React, { useState } from 'react'
 import { useCartQuery } from '../../hooks/useCartQuery'
 import { InlineAccountDocument } from './InlineAccount.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      borderRadius: 4,
-      border: `1px solid ${theme.palette.divider}`,
-      padding: theme.spacings.md,
+const useStyles = makeStyles({ name: 'InlineAccount' })((theme: Theme) => ({
+  root: {
+    borderRadius: 4,
+    border: `1px solid ${theme.palette.divider}`,
+    padding: theme.spacings.md,
+  },
+  innerContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: 32,
+    [theme.breakpoints.up('sm')]: {
+      alignItems: 'flex-end',
+      flexDirection: 'unset',
+      gap: 0,
     },
-    innerContainer: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      flexDirection: 'column',
-      alignItems: 'flex-start',
-      gap: 32,
-      [theme.breakpoints.up('sm')]: {
-        alignItems: 'flex-end',
-        flexDirection: 'unset',
-        gap: 0,
-      },
-    },
-    form: {
-      marginTop: theme.spacings.sm,
-    },
-    button: {
-      minWidth: 160,
-    },
-    title: {
-      paddingBottom: 8,
-    },
-  }),
-  { name: 'InlineAccount' },
-)
+  },
+  form: {
+    marginTop: theme.spacings.sm,
+  },
+  button: {
+    minWidth: 160,
+  },
+  title: {
+    paddingBottom: 8,
+  },
+}))
 
 export type InlineAccountProps = {
   title?: React.ReactNode
@@ -54,7 +51,7 @@ export type InlineAccountProps = {
 
 export default function InlineAccount(props: InlineAccountProps) {
   const { title, description, accountHref } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   const [toggled, setToggled] = useState<boolean>(false)
 

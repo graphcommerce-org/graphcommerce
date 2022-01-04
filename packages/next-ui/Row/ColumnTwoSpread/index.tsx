@@ -1,10 +1,10 @@
 import { ContainerProps, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import ColumnTwo from '../ColumnTwo'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   ({ breakpoints }: Theme) => ({
     root: {
       [breakpoints.up('md')]: {
@@ -36,7 +36,7 @@ export type ColumnTwoSpreadProps = Omit<ContainerProps, 'children'> &
   }
 
 export default function ColumnTwoSpread(props: ColumnTwoSpreadProps) {
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return <ColumnTwo {...props} classes={classes} />
 }

@@ -9,38 +9,33 @@ import {
 } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/macro'
 import { Checkbox, FormControl, FormControlLabel, FormHelperText, Link, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import { CartAgreementsDocument } from './CartAgreements.gql'
 
 export type CartAgreementsFormProps = Pick<UseFormComposeOptions, 'step'>
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    formDiv: {
-      paddingTop: theme.spacings.sm,
-    },
-    formInner: {
-      ...theme.typography.body1,
-      display: 'inline-block',
-    },
-    formControlRoot: {
-      display: 'block',
-    },
-    manualCheck: {
-      padding: `9px 0`,
-    },
-  }),
-  {
-    name: 'CartAgreements',
+const useStyles = makeStyles({ name: 'CartAgreements' })((theme: Theme) => ({
+  formDiv: {
+    paddingTop: theme.spacings.sm,
   },
-)
+  formInner: {
+    ...theme.typography.body1,
+    display: 'inline-block',
+  },
+  formControlRoot: {
+    display: 'block',
+  },
+  manualCheck: {
+    padding: `9px 0`,
+  },
+}))
 
 export default function CartAgreementsForm(props: CartAgreementsFormProps) {
   const { step } = props
   const { data } = useQuery(CartAgreementsDocument)
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   // sort conditions so checkboxes will be placed first
   const sortedAgreements = data?.checkoutAgreements

@@ -4,7 +4,7 @@ import Button from '../../Button'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconClose } from '../../icons'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { Trans } from '@lingui/macro'
 
@@ -13,7 +13,7 @@ export function useShowClose() {
   return !!overlayGroup
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles()((theme: Theme) => ({
   close: {
     [theme.breakpoints.up('md')]: {
       marginLeft: `calc(${responsiveVal(12, 22)} * -1)`,
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 export default function LayoutHeaderClose() {
   const { closeSteps } = usePageContext()
   const onClick = useGo(closeSteps * -1)
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   return (
     <Button

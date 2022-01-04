@@ -13,71 +13,68 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { Skeleton } from '@mui/material'
 import clsx from 'clsx'
 import React from 'react'
 import TrackingLink from '../TrackingLink'
 import { OrderDetailsFragment } from './OrderDetails.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    sectionContainer: {
-      marginTop: theme.spacings.sm,
-      marginBottom: theme.spacings.sm,
+const useStyles = makeStyles({ name: 'OrderDetails' })((theme: Theme) => ({
+  sectionContainer: {
+    marginTop: theme.spacings.sm,
+    marginBottom: theme.spacings.sm,
+  },
+  orderDetailsInnerContainer: {
+    display: 'grid',
+    gridColumnGap: theme.spacings.sm,
+    gridRowGap: theme.spacings.lg,
+    padding: `${theme.spacings.md} 0`,
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    [theme.breakpoints.up('sm')]: {
+      gridColumnGap: theme.spacings.xxl,
+      gridRowGap: theme.spacings.md,
+      gridTemplateColumns: 'repeat(2, 1fr)',
     },
-    orderDetailsInnerContainer: {
-      display: 'grid',
-      gridColumnGap: theme.spacings.sm,
-      gridRowGap: theme.spacings.lg,
-      padding: `${theme.spacings.md} 0`,
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      [theme.breakpoints.up('sm')]: {
-        gridColumnGap: theme.spacings.xxl,
-        gridRowGap: theme.spacings.md,
-        gridTemplateColumns: 'repeat(2, 1fr)',
-      },
-    },
-    orderDetailTitle: {
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      fontWeight: 'bold',
-      display: 'block',
-      width: '100%',
-      paddingBottom: responsiveVal(2, 8),
-      marginBottom: theme.spacings.xs,
-    },
-    totalsContainer: {
-      padding: `${theme.spacings.xxs} 0`,
-    },
-    totalsRow: {
-      display: 'flex',
-      justifyContent: 'space-between',
+  },
+  orderDetailTitle: {
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    fontWeight: 'bold',
+    display: 'block',
+    width: '100%',
+    paddingBottom: responsiveVal(2, 8),
+    marginBottom: theme.spacings.xs,
+  },
+  totalsContainer: {
+    padding: `${theme.spacings.xxs} 0`,
+  },
+  totalsRow: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: '4px 0',
+  },
+  totalsDivider: {
+    height: 1,
+    width: '100%',
+    background: theme.palette.divider,
+    margin: `${theme.spacings.xxs} 0`,
+  },
+  totalsVat: {
+    fontWeight: 'bold',
+    padding: `${theme.spacings.xxs} 0`,
+  },
+  iconContainer: {
+    marginLeft: '-6px',
+    '& > div': {
       padding: '4px 0',
     },
-    totalsDivider: {
-      height: 1,
-      width: '100%',
-      background: theme.palette.divider,
-      margin: `${theme.spacings.xxs} 0`,
-    },
-    totalsVat: {
-      fontWeight: 'bold',
-      padding: `${theme.spacings.xxs} 0`,
-    },
-    iconContainer: {
-      marginLeft: '-6px',
-      '& > div': {
-        padding: '4px 0',
-      },
-    },
-    invoice: {
-      display: 'flex',
-      alignItems: 'center',
-      color: theme.palette.primary.main,
-    },
-  }),
-  { name: 'OrderDetails' },
-)
+  },
+  invoice: {
+    display: 'flex',
+    alignItems: 'center',
+    color: theme.palette.primary.main,
+  },
+}))
 
 export type OrderDetailsProps = Partial<OrderDetailsFragment> & {
   loading?: boolean
@@ -97,7 +94,7 @@ export default function OrderDetails(props: OrderDetailsProps) {
     loading,
     carrier,
   } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   const { data: config } = useQuery(StoreConfigDocument)
   const locale = config?.storeConfig?.locale?.replace('_', '-')

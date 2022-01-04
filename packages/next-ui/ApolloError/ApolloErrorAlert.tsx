@@ -1,22 +1,19 @@
 import { ApolloError } from '@apollo/client'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { Alert } from '@mui/material'
 import { AlertProps } from '@mui/lab'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import AnimatedRow from '../AnimatedRow'
 
-export const useStyles = makeStyles(
-  (theme: Theme) => ({
-    alerts: {},
-    alert: {
-      paddingTop: `calc(${theme.spacings.xxs} / 2)`,
-      paddingBottom: `calc(${theme.spacings.xxs} / 2)`,
-    },
-  }),
-  { name: 'ApolloErrorAlert' },
-)
+export const useStyles = makeStyles({ name: 'ApolloErrorAlert' })((theme: Theme) => ({
+  alerts: {},
+  alert: {
+    paddingTop: `calc(${theme.spacings.xxs} / 2)`,
+    paddingBottom: `calc(${theme.spacings.xxs} / 2)`,
+  },
+}))
 
 export type ApolloErrorAlertProps = {
   error?: ApolloError
@@ -24,7 +21,7 @@ export type ApolloErrorAlertProps = {
   networkErrorAlertProps?: Omit<AlertProps, 'severity'>
 }
 export default function ApolloErrorAlert(props: ApolloErrorAlertProps) {
-  const classes = useStyles()
+  const { classes } = useStyles()
   const { error, graphqlErrorAlertProps, networkErrorAlertProps } = props
 
   return (

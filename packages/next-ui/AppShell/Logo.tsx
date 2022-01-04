@@ -1,12 +1,12 @@
 import { Image, ImageProps } from '@graphcommerce/image'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { UseStyles } from '../Styles'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     logo: {},
     parent: {
@@ -31,7 +31,7 @@ export type LogoProps = { href?: `/${string}`; image: ImageProps } & UseStyles<t
 export default function Logo(props: LogoProps) {
   const { href, image } = props
   const router = useRouter()
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return router.asPath === '/' ? (
     <div className={classes.parent}>

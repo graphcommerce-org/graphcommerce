@@ -7,11 +7,11 @@ import {
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { NoSsr, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from '../../hooks'
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles()((theme: Theme) => ({
   colorError: {
     backgroundColor: theme.palette.grey['500'],
   },
@@ -36,7 +36,7 @@ type CustomerMenuFabItemProps = CustomerTokenQuery & {
 
 function CustomerMenuFabItemContent(props: CustomerMenuFabItemProps) {
   const { customerToken, icon, children, guestHref, authHref } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const requireAuth = Boolean(!customerToken || !customerToken.valid)
 
   return (

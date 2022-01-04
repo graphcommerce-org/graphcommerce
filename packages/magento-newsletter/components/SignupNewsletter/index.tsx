@@ -4,60 +4,55 @@ import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { UseStyles } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import CustomerNewsletterToggle from '../CustomerNewsletterToggle'
 import GuestNewsletterToggle from '../GuestNewsletterToggle'
 import { GetCartEmailDocument } from './GetCartEmail.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    signup: {
-      background: theme.palette.background.paper,
-      display: 'grid',
-      alignItems: 'center',
-      gridAutoFlow: 'column',
-      columnGap: theme.spacings.xxs,
-      padding: theme.spacings.sm,
-      ...theme.typography.body1,
-      marginTop: theme.spacings.sm,
-      borderRadius: 4,
-      gridTemplateColumns: '1fr',
-      gridTemplateAreas: `
+const useStyles = makeStyles({ name: 'SignupNewsletter' })((theme: Theme) => ({
+  signup: {
+    background: theme.palette.background.paper,
+    display: 'grid',
+    alignItems: 'center',
+    gridAutoFlow: 'column',
+    columnGap: theme.spacings.xxs,
+    padding: theme.spacings.sm,
+    ...theme.typography.body1,
+    marginTop: theme.spacings.sm,
+    borderRadius: 4,
+    gridTemplateColumns: '1fr',
+    gridTemplateAreas: `
         "a"
         "b"
       `,
-      justifyItems: 'start',
-      [theme.breakpoints.up('sm')]: {
-        gridTemplateAreas: `"a b c"`,
-        gridTemplateColumns: '2fr 1fr',
-      },
+    justifyItems: 'start',
+    [theme.breakpoints.up('sm')]: {
+      gridTemplateAreas: `"a b c"`,
+      gridTemplateColumns: '2fr 1fr',
     },
-    background: {
-      background: theme.palette.background.image,
-    },
-    signupForm: {
-      display: 'flex',
-      gap: 8,
-      justifySelf: 'start',
-      alignItems: 'center',
-      [theme.breakpoints.up('sm')]: {
-        justifySelf: 'end',
-      },
-    },
-  }),
-  {
-    name: 'SignupNewsletter',
   },
-)
+  background: {
+    background: theme.palette.background.image,
+  },
+  signupForm: {
+    display: 'flex',
+    gap: 8,
+    justifySelf: 'start',
+    alignItems: 'center',
+    [theme.breakpoints.up('sm')]: {
+      justifySelf: 'end',
+    },
+  },
+}))
 
 type SignupNewsletterProps = {
   //
 } & UseStyles<typeof useStyles>
 
 export default function SignupNewsletter(props: SignupNewsletterProps) {
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const { data: cartData } = useCartQuery(GetCartEmailDocument, { allowUrl: true })
   const { data: customerTokenData } = useQuery(CustomerTokenDocument)
   const isCustomer = Boolean(customerTokenData?.customerToken)

@@ -1,6 +1,6 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Divider, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React, { useRef } from 'react'
 import { UseStyles } from '../../Styles'
 import { classesPicker } from '../../Styles/classesPicker'
@@ -11,7 +11,7 @@ type Classes = 'bg' | 'content' | 'left' | 'center' | 'right' | 'divider'
 
 const time = '150ms'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     bg: {
       position: 'absolute',
@@ -160,7 +160,7 @@ export default function LayoutHeaderContent(props: ContentProps) {
     floatingSm = false,
     switchPoint = 50,
   } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   const scrolled = useMotionValueValue(scroll, (y) => y >= switchPoint)
 

@@ -3,7 +3,7 @@ import { FilterRangeTypeInput } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps } from '@graphcommerce/next-ui'
 import { Mark, Slider, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React, { useEffect } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
@@ -15,42 +15,39 @@ type FilterRangeTypeProps = NonNullable<
   Omit<ChipMenuProps, 'selected'>
 
 const sliderThumbWidth = 28
-const useFilterRangeType = makeStyles(
-  (theme: Theme) => ({
-    container: {
-      padding: `${theme.spacings.xxs} ${theme.spacings.xxs} !important`,
-      width: '100%',
+const useStyles = makeStyles({ name: 'FilterRangeType' })((theme: Theme) => ({
+  container: {
+    padding: `${theme.spacings.xxs} ${theme.spacings.xxs} !important`,
+    width: '100%',
+  },
+  slider: {
+    maxWidth: `calc(100% - ${sliderThumbWidth}px)`,
+    margin: `${theme.spacings.xxs} auto`,
+    display: 'block',
+    paddingBottom: 32,
+    '& .MuiSlider-rail': {
+      color: theme.palette.text.disabled,
+      height: 4,
+      borderRadius: 10,
     },
-    slider: {
-      maxWidth: `calc(100% - ${sliderThumbWidth}px)`,
-      margin: `${theme.spacings.xxs} auto`,
-      display: 'block',
-      paddingBottom: 32,
-      '& .MuiSlider-rail': {
-        color: theme.palette.text.disabled,
-        height: 4,
-        borderRadius: 10,
-      },
-      '& .MuiSlider-track': {
-        color: theme.palette.primary.main,
-        height: 4,
-      },
-      '& .MuiSlider-thumb': {
-        width: sliderThumbWidth,
-        height: sliderThumbWidth,
-        marginLeft: `-${sliderThumbWidth * 0.5}px`,
-        marginTop: `-${sliderThumbWidth * 0.5}px`,
-        background: theme.palette.background.default,
-        boxShadow: theme.shadows[6],
-      },
+    '& .MuiSlider-track': {
+      color: theme.palette.primary.main,
+      height: 4,
     },
-  }),
-  { name: 'FilterRangeType' },
-)
+    '& .MuiSlider-thumb': {
+      width: sliderThumbWidth,
+      height: sliderThumbWidth,
+      marginLeft: `-${sliderThumbWidth * 0.5}px`,
+      marginTop: `-${sliderThumbWidth * 0.5}px`,
+      background: theme.palette.background.default,
+      boxShadow: theme.shadows[6],
+    },
+  },
+}))
 
 export default function FilterRangeType(props: FilterRangeTypeProps) {
   const { attribute_code, label, options, ...chipProps } = props
-  const classes = useFilterRangeType(props)
+  const { classes } = useStyles(props)
   const { params } = useProductListParamsContext()
   const replaceRoute = useProductListLinkReplace({ scroll: false })
 

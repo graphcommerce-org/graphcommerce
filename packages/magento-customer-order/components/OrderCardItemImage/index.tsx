@@ -1,29 +1,26 @@
 import { Image } from '@graphcommerce/image'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
 
 export type OrderCardItemImageProps = Omit<OrderCardItemImageFragment, 'uid'>
 
-const useStyles = makeStyles(
-  {
-    image: {
-      width: 88,
-      height: 88,
-    },
-    placeholder: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
+const useStyles = makeStyles({ name: 'OrderCardItemImage' })({
+  image: {
+    width: 88,
+    height: 88,
   },
-  { name: 'OrderCardItemImage' },
-)
+  placeholder: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+})
 
 export default function OrderCardItemImage(props: OrderCardItemImageProps) {
   const { thumbnail } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   return (
     <>

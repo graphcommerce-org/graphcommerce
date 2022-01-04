@@ -8,91 +8,88 @@ import {
   UseStyles,
 } from '@graphcommerce/next-ui'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { m, useTransform } from 'framer-motion'
 import React, { PropsWithChildren, useEffect, useRef, useState } from 'react'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    wrapper: {
-      display: 'flex',
-      justifyContent: 'center',
-      height: responsiveVal(44, 52),
-      marginBottom: theme.spacings.sm,
-      position: 'sticky',
-      top: theme.page.vertical,
-      zIndex: 9,
-      margin: '0 auto',
-      maxWidth: `calc(100% - 96px - ${theme.spacings.sm} * 2)`,
-      [theme.breakpoints.down('md')]: {
-        textAlign: 'center',
-        maxWidth: 'unset',
-        margin: `0 calc(${theme.page.horizontal} * -1)`,
-      },
-      [theme.breakpoints.down('sm')]: {
-        textAlign: 'center',
-      },
+const useStyles = makeStyles({ name: 'ProductListFiltersContainer' })((theme: Theme) => ({
+  wrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    height: responsiveVal(44, 52),
+    marginBottom: theme.spacings.sm,
+    position: 'sticky',
+    top: theme.page.vertical,
+    zIndex: 9,
+    margin: '0 auto',
+    maxWidth: `calc(100% - 96px - ${theme.spacings.sm} * 2)`,
+    [theme.breakpoints.down('md')]: {
+      textAlign: 'center',
+      maxWidth: 'unset',
+      margin: `0 calc(${theme.page.horizontal} * -1)`,
     },
-    container: {
-      position: 'relative',
-      maxWidth: '100%',
-      padding: 6,
-      paddingLeft: 0,
-      paddingRight: 0,
-      [theme.breakpoints.up('md')]: {
-        background: theme.palette.background.default,
-        borderRadius: '99em',
-      },
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
     },
-    shadow: {
-      pointerEvents: 'none',
-      zindex: '-1',
+  },
+  container: {
+    position: 'relative',
+    maxWidth: '100%',
+    padding: 6,
+    paddingLeft: 0,
+    paddingRight: 0,
+    [theme.breakpoints.up('md')]: {
+      background: theme.palette.background.default,
       borderRadius: '99em',
-      position: 'absolute',
-      height: '100%',
-      width: '100%',
-      top: 0,
-      boxShadow: theme.shadows[6],
-      [theme.breakpoints.down('md')]: {
-        boxShadow: 'none !important',
-      },
     },
-    containerSticky: {},
-    scroller: {
-      paddingLeft: theme.page.horizontal,
-      paddingRight: theme.page.horizontal,
-      paddingBottom: 1,
-      [theme.breakpoints.up('md')]: {
-        borderRadius: '99em',
-        paddingLeft: 6,
-        paddingRight: 6,
-      },
-      columnGap: 6,
-      gridAutoColumns: 'min-content',
+  },
+  shadow: {
+    pointerEvents: 'none',
+    zindex: '-1',
+    borderRadius: '99em',
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    top: 0,
+    boxShadow: theme.shadows[6],
+    [theme.breakpoints.down('md')]: {
+      boxShadow: 'none !important',
     },
-    scrollerSticky: {},
-    sliderPrev: {
-      position: 'absolute',
-      top: 2,
-      left: 2,
-      zIndex: 10,
+  },
+  containerSticky: {},
+  scroller: {
+    paddingLeft: theme.page.horizontal,
+    paddingRight: theme.page.horizontal,
+    paddingBottom: 1,
+    [theme.breakpoints.up('md')]: {
+      borderRadius: '99em',
+      paddingLeft: 6,
+      paddingRight: 6,
     },
-    sliderNext: {
-      position: 'absolute',
-      top: 2,
-      right: 2,
-      zIndex: 10,
-    },
-  }),
-  { name: 'ProductListFiltersContainer' },
-)
+    columnGap: 6,
+    gridAutoColumns: 'min-content',
+  },
+  scrollerSticky: {},
+  sliderPrev: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    zIndex: 10,
+  },
+  sliderNext: {
+    position: 'absolute',
+    top: 2,
+    right: 2,
+    zIndex: 10,
+  },
+}))
 
 export type ProductListFiltersContainerProps = PropsWithChildren<UseStyles<typeof useStyles>>
 
 export default function ProductListFiltersContainer(props: ProductListFiltersContainerProps) {
   const { children } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const scrollY = useScrollY()
 
   const [isSticky, setIsSticky] = useState<boolean>(false)

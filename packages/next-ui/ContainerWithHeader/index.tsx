@@ -1,10 +1,10 @@
 import { Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import Row from '../Row'
 import { UseStyles } from '../Styles'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     head: {
       display: 'grid',
@@ -32,7 +32,7 @@ export type ContainerWithHeaderProps = {
 
 export default function ContainerWithHeader(props: ContainerWithHeaderProps) {
   const { title, rightArea, children } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <Row>

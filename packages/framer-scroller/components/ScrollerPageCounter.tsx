@@ -1,20 +1,17 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { m, MotionProps } from 'framer-motion'
 import React, { useState } from 'react'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 import { useWatchItems } from '../hooks/useWatchItems'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    pageCounter: {
-      ...theme.typography.h4,
-    },
-  }),
-  { name: 'SliderPageCounter' },
-)
+const useStyles = makeStyles({ name: 'SliderPageCounter' })((theme: Theme) => ({
+  pageCounter: {
+    ...theme.typography.h4,
+  },
+}))
 
 export type SliderPageCounterProps = MotionProps &
   React.PropsWithoutRef<React.HTMLProps<HTMLDivElement>>
@@ -22,7 +19,7 @@ export type SliderPageCounterProps = MotionProps &
 const ScrollerPageCounter = React.forwardRef<HTMLDivElement, SliderPageCounterProps>(
   (props, ref) => {
     const { className, ...divProps } = props
-    const classes = useStyles(props)
+    const { classes } = useStyles(props)
     const { items } = useScrollerContext()
 
     const [current, setCurrent] = useState(1)

@@ -18,21 +18,18 @@ import {
 import { emailPattern, useFormPersist } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
 import { CircularProgress, Link, TextField, Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import router from 'next/router'
 import React from 'react'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    titleContainer: {
-      ...theme.typography.body1,
-      marginBottom: theme.spacings.xs,
-    },
-  }),
-  { name: 'AccountSignInUpForm' },
-)
+const useStyles = makeStyles({ name: 'AccountSignInUpForm' })((theme: Theme) => ({
+  titleContainer: {
+    ...theme.typography.body1,
+    marginBottom: theme.spacings.xs,
+  },
+}))
 
 export default function AccountSignInUpForm() {
   const customerToken = useQuery(CustomerTokenDocument)
@@ -45,7 +42,7 @@ export default function AccountSignInUpForm() {
   const { mode, form, autoSubmitting, submit } = useFormIsEmailAvailable({ email })
   const { formState, muiRegister, required, watch, error } = form
   const disableFields = formState.isSubmitting && !autoSubmitting
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   useFormPersist({ form, name: 'IsEmailAvailable' })
 

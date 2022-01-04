@@ -1,34 +1,31 @@
 import { IconButton, Popover } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 
-const useStyles = makeStyles(
-  {
-    root: {
-      display: 'inline-block',
-    },
-    labelContainer: {
-      padding: 5,
-    },
-    label: {
-      borderRadius: '100%',
-      width: 10,
-      height: 10,
-      background: '#01D26A', // TODO (yvo): order statuses. green, yellow, red
-    },
-    popover: {
-      '& > .MuiPaper-root': {
-        padding: 6,
-      },
+const useStyles = makeStyles({ name: 'DeliveryLabel' })({
+  root: {
+    display: 'inline-block',
+  },
+  labelContainer: {
+    padding: 5,
+  },
+  label: {
+    borderRadius: '100%',
+    width: 10,
+    height: 10,
+    background: '#01D26A', // TODO (yvo): order statuses. green, yellow, red
+  },
+  popover: {
+    '& > .MuiPaper-root': {
+      padding: 6,
     },
   },
-  { name: 'DeliveryLabel' },
-)
+})
 
 export type DeliveryLabelProps = Record<string, unknown>
 
 export default function DeliveryLabel(props: DeliveryLabelProps) {
-  const classes = useStyles()
+  const { classes } = useStyles()
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {

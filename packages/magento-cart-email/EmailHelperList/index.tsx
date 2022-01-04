@@ -1,23 +1,20 @@
 import { UseStyles } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      ...theme.typography.body2,
-      paddingLeft: theme.spacings.xs,
-    },
-  }),
-  { name: 'EmailHelperList' },
-)
+const useStyles = makeStyles({ name: 'EmailHelperList' })((theme: Theme) => ({
+  root: {
+    ...theme.typography.body2,
+    paddingLeft: theme.spacings.xs,
+  },
+}))
 
 type HelperListProps = UseStyles<typeof useStyles>
 
 export default function EmailHelperList(props: HelperListProps) {
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <ul className={clsx(classes.root)}>

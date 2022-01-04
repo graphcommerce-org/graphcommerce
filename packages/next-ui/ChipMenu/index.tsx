@@ -1,5 +1,5 @@
 import { Chip, ChipProps, Menu, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React, { PropsWithChildren, useState } from 'react'
 import SectionHeader from '../SectionHeader'
@@ -7,7 +7,7 @@ import { responsiveVal } from '../Styles/responsiveVal'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconChevronDown, iconChevronUp, iconCancelAlt } from '../icons'
 
-export const useChipMenuStyles = makeStyles(
+export const useChipMenuStyles = makeStyles()(
   (theme: Theme) => ({
     chip: {
       background: `${theme.palette.background.default} !important`,

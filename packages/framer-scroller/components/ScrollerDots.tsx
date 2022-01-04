@@ -1,35 +1,32 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { UseStyles } from '@graphcommerce/next-ui'
 import { Fab, FabProps, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { HTMLMotionProps, m } from 'framer-motion'
 import React from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    dots: {
-      width: 'fit-content',
-      display: 'grid',
-      gridAutoFlow: 'column',
-      padding: `0 6px`,
-      borderRadius: '99em',
-    },
-    dot: {
-      boxShadow: 'none',
-      background: 'transparent',
-    },
-    circle: {
-      borderRadius: '99em',
-      width: 10,
-      height: 10,
-      background: theme.palette.text.primary,
-    },
-  }),
-  { name: 'ScrollerDots' },
-)
+const useStyles = makeStyles({ name: 'ScrollerDots' })((theme: Theme) => ({
+  dots: {
+    width: 'fit-content',
+    display: 'grid',
+    gridAutoFlow: 'column',
+    padding: `0 6px`,
+    borderRadius: '99em',
+  },
+  dot: {
+    boxShadow: 'none',
+    background: 'transparent',
+  },
+  circle: {
+    borderRadius: '99em',
+    width: 10,
+    height: 10,
+    background: theme.palette.text.primary,
+  },
+}))
 
 export type DotsProps = {
   fabProps?: Omit<FabProps, 'onClick' | 'children'>
@@ -39,7 +36,9 @@ export type DotsProps = {
 const ScrollerDots = m(
   React.forwardRef<HTMLDivElement, DotsProps>((props, ref) => {
     const { fabProps, classes: _classes, ...containerProps } = props
-    const { dots, dot, circle, ...classes } = useStyles(props)
+    const {
+      classes: { dots, dot, circle, ...classes },
+    } = useStyles(props)
     const { items, getScrollSnapPositions } = useScrollerContext()
     const itemsArr = useMotionValueValue(items, (v) => v)
     const scrollTo = useScrollTo()

@@ -1,5 +1,5 @@
 import { Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { SvgImageProps } from '../SvgImage'
@@ -7,7 +7,7 @@ import SvgImageSimple from '../SvgImage/SvgImageSimple'
 
 // TODO: remove all occurrences. deprecated component
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     container: {
       ...theme.typography.subtitle1,
@@ -65,7 +65,7 @@ export default function IconHeader(props: IconHeaderProps) {
     iconSizeMobile,
     ...svgImageProps
   } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   const variants: Record<IconHeaderSize, IconHeaderHeadings> = {
     small: 'h5',

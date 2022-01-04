@@ -1,10 +1,10 @@
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     root: {
       listStyleType: 'none',
@@ -28,7 +28,7 @@ export type UspListProps = UseStyles<typeof useStyles> & {
 
 export default function UspList(props: UspListProps) {
   const { children, size } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   return <ul className={clsx(classes.root, size === 'small' && classes.small)}>{children}</ul>
 }

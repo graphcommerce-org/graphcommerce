@@ -1,8 +1,8 @@
 import { Theme } from '@mui/material'
 
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     root: {
       overflow: 'hidden',
@@ -30,6 +30,6 @@ const useStyles = makeStyles(
 )
 
 export default function MDXWrapper({ children }) {
-  const classes = useStyles()
+  const { classes } = useStyles()
   return <div className={classes.root}>{children}</div>
 }

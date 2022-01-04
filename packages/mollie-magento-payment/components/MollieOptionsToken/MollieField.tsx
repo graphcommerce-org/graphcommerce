@@ -1,5 +1,5 @@
 import { InputBaseComponentProps, TextField, TextFieldProps, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React, {
   Dispatch,
   SetStateAction,
@@ -99,7 +99,7 @@ type MollieFieldProps = {
   isSubmitted?: boolean
 } & TextFieldProps
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles()((theme: Theme) => ({
   label: {
     background:
       theme.palette.mode === 'light'
@@ -111,7 +111,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 export default function MollieField(props: MollieFieldProps) {
   const { isSubmitted = false, label, ...fieldProps } = props
 
-  const classes = useStyles()
+  const { classes } = useStyles()
   const [state, setState] = useState<ComponentFieldState>({
     dirty: false,
     touched: false,

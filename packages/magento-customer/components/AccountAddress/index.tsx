@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro'
 import { Link, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import AddressMultiLine from '../AddressMultiLine'
@@ -10,36 +10,33 @@ import { AccountAddressFragment } from './AccountAddress.gql'
 
 export type AccountAddressProps = AccountAddressFragment
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      paddingTop: theme.spacings.md,
-      paddingBottom: theme.spacings.md,
-      ...theme.typography.body2,
+const useStyles = makeStyles({ name: 'AccountAddress' })((theme: Theme) => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    paddingTop: theme.spacings.md,
+    paddingBottom: theme.spacings.md,
+    ...theme.typography.body2,
+  },
+  address: {
+    '& > span': {
+      display: 'block',
     },
-    address: {
-      '& > span': {
-        display: 'block',
-      },
-    },
-    switches: {
-      paddingTop: theme.spacings.xxs,
-    },
-    actions: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      flexDirection: 'column',
-      textAlign: 'right',
-    },
-  }),
-  { name: 'AccountAddress' },
-)
+  },
+  switches: {
+    paddingTop: theme.spacings.xxs,
+  },
+  actions: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+    textAlign: 'right',
+  },
+}))
 
 export default function AccountAddress(props: AccountAddressProps) {
   const { id } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   return (
     <div className={classes.root}>

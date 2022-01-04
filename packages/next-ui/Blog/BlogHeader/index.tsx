@@ -1,10 +1,10 @@
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     header: {
       maxWidth: 800,
@@ -26,7 +26,7 @@ export type BlogHeaderProps = UseStyles<typeof useStyles> & {
 
 export default function BlogHeader(props: BlogHeaderProps) {
   const { asset } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   return (
     <div className={classes.header}>{asset && <div className={classes.asset}>{asset}</div>}</div>

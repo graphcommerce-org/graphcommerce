@@ -1,10 +1,10 @@
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import router from 'next/router'
 import React from 'react'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   {
     listItemText: {},
     icon: { minWidth: 30 },
@@ -20,7 +20,7 @@ export type FabMenuSecondaryItemProps = {
 
 export function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
   const { href, children, icon } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   return (
     <PageLink href={href} passHref>

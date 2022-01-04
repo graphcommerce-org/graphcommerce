@@ -17,7 +17,7 @@ import {
 } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/macro'
 import { FormControl, FormHelperText, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useEffect } from 'react'
@@ -32,77 +32,74 @@ export type PaymentMethodTogglesProps = Pick<UseFormComposeOptions, 'step'>
 //   return <Component {...props} />
 // }
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    formRoot: {
-      padding: '5px 0',
-    },
-    root: {
-      position: 'relative',
-      padding: 0,
-    },
-    buttonRoot: {
-      background: theme.palette.background.paper,
-      borderRadius: 0,
-      width: 30,
-      height: responsiveVal(60, 85),
+const useStyles = makeStyles({ name: 'PaymentMethodToggles' })((theme: Theme) => ({
+  formRoot: {
+    padding: '5px 0',
+  },
+  root: {
+    position: 'relative',
+    padding: 0,
+  },
+  buttonRoot: {
+    background: theme.palette.background.paper,
+    borderRadius: 0,
+    width: 30,
+    height: responsiveVal(60, 85),
+    boxShadow: 'none',
+    border: `1px solid ${theme.palette.divider}`,
+    '&:focus': {
       boxShadow: 'none',
-      border: `1px solid ${theme.palette.divider}`,
-      '&:focus': {
-        boxShadow: 'none',
-      },
     },
-    leftButtonRoot: {
-      borderTopLeftRadius: 4,
-      borderBottomLeftRadius: 4,
-    },
-    rightButtonRoot: {
-      borderTopRightRadius: 4,
-      borderBottomRightRadius: 4,
-    },
-    scrollerRoot: {
-      gridAutoColumns: `max-content`,
-      gridTemplateRows: `100%`,
-      gap: responsiveVal(4, 8),
-      height: responsiveVal(60, 85),
-      borderRadius: 5,
-    },
-    toggleButton: {
-      ...theme.typography.h6,
-      border: `1px solid ${theme.palette.divider}`,
-      boxShadow: 'none',
-      transition: 'color .15s ease',
-      whiteSpace: 'nowrap',
-    },
-    toggleButtonSelected: {
-      border: `1px solid ${theme.palette.secondary.main}`,
+  },
+  leftButtonRoot: {
+    borderTopLeftRadius: 4,
+    borderBottomLeftRadius: 4,
+  },
+  rightButtonRoot: {
+    borderTopRightRadius: 4,
+    borderBottomRightRadius: 4,
+  },
+  scrollerRoot: {
+    gridAutoColumns: `max-content`,
+    gridTemplateRows: `100%`,
+    gap: responsiveVal(4, 8),
+    height: responsiveVal(60, 85),
+    borderRadius: 5,
+  },
+  toggleButton: {
+    ...theme.typography.h6,
+    border: `1px solid ${theme.palette.divider}`,
+    boxShadow: 'none',
+    transition: 'color .15s ease',
+    whiteSpace: 'nowrap',
+  },
+  toggleButtonSelected: {
+    border: `1px solid ${theme.palette.secondary.main}`,
+    background: `${theme.palette.secondary.main}`,
+    color: `${theme.palette.secondary.contrastText}`,
+    '&:hover': {
       background: `${theme.palette.secondary.main}`,
-      color: `${theme.palette.secondary.contrastText}`,
-      '&:hover': {
-        background: `${theme.palette.secondary.main}`,
-      },
     },
-    buttonContainer: {
-      position: 'absolute',
-      left: 0,
-      top: 0,
-      zIndex: 2,
-      height: '100%',
-    },
-    buttonContainerRight: {
-      left: 'unset',
-      right: 0,
-    },
-  }),
-  { name: 'PaymentMethodToggles' },
-)
+  },
+  buttonContainer: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    zIndex: 2,
+    height: '100%',
+  },
+  buttonContainerRight: {
+    left: 'unset',
+    right: 0,
+  },
+}))
 
 export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
   const { step } = props
   const { methods, selectedMethod, setSelectedMethod, setSelectedModule, modules } =
     usePaymentMethodContext()
 
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   const form = useForm<{ code: string; paymentMethod?: string }>({
     mode: 'onChange',

@@ -1,5 +1,5 @@
 import { Theme, Typography, TypographyProps } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { UseStyles } from '../Styles'
 
@@ -8,7 +8,7 @@ export type DividedLinksProps = {
 } & Pick<TypographyProps, 'color'> &
   UseStyles<typeof useStyles>
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     root: {
       display: 'inline',
@@ -20,7 +20,7 @@ const useStyles = makeStyles(
 
 export default function Separator(props: DividedLinksProps) {
   const { color, icon } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <div className={classes.root}>

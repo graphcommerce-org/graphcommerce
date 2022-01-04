@@ -1,18 +1,17 @@
 import RichText from '@graphcommerce/graphcms-ui/RichText'
 import { Image } from '@graphcommerce/image'
-import { ImageText } from '@graphcommerce/next-ui'
+import { ImageText, withStyles } from '@graphcommerce/next-ui'
 import { Typography, useTheme, Theme } from '@mui/material'
-import withStyles from '@mui/styles/withStyles'
 import React from 'react'
 import { RowProductFragment } from '../RowProduct.gql'
 import { ProductFeatureMediaFragment } from './ProductFeatureMedia.gql'
 
 type FeatureProps = RowProductFragment & ProductFeatureMediaFragment
 
-const RichTextFeature = withStyles((theme: Theme) => ({
+const RichTextFeature = withStyles(RichText, (theme: Theme) => ({
   h2: { ...theme.typography.h1 },
   paragraph: { ...theme.typography.subtitle1 },
-}))(RichText)
+}))
 
 export default function Feature(props: FeatureProps) {
   const { productCopy, title, media_gallery } = props

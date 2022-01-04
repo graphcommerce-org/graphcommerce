@@ -6,7 +6,7 @@ import {
   TextFieldProps,
   useForkRef,
 } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React, { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
 import { UseStyles } from '../Styles'
@@ -14,7 +14,7 @@ import { responsiveVal } from '../Styles/responsiveVal'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconMin, iconPlus } from '../icons'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   {
     quantity: {
       width: responsiveVal(80, 120),
@@ -53,7 +53,7 @@ function isOutlined(props: TextFieldProps): props is OutlinedTextFieldProps {
 
 export default function TextInputNumber(props: TextInputNumberProps) {
   const { DownProps = {}, UpProps = {}, inputProps = {}, inputRef, ...textFieldProps } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const ref = useRef<HTMLInputElement>(null)
   const forkRef = useForkRef<HTMLInputElement>(ref, inputRef as Ref<HTMLInputElement>)
 

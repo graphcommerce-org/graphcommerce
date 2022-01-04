@@ -1,10 +1,10 @@
 import { Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import Button from '../../../Button'
 import { UseStyles } from '../../../Styles'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     block: {
       border: `1px solid ${theme.palette.divider}`,
@@ -38,7 +38,7 @@ export type IconBlockProps = UseStyles<typeof useStyles> & {
 
 const IconBlock = React.forwardRef<HTMLAnchorElement, IconBlockProps>((props, ref) => {
   const { title, children, icon, href } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   const content = (
     <>

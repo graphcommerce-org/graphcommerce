@@ -3,51 +3,48 @@ import { Scroller, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { ProductListLink, ProductListParams } from '@graphcommerce/magento-product'
 import { UseStyles } from '@graphcommerce/next-ui'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { CategoryChildrenFragment } from './CategoryChildren.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    container: {
-      display: 'flex',
-      justifyContent: 'center',
-      marginBottom: theme.spacings.sm,
+const useStyles = makeStyles({ name: 'CategoryChildren' })((theme: Theme) => ({
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: theme.spacings.sm,
+  },
+  scroller: {
+    gridAutoColumns: `max-content`,
+  },
+  link: {
+    whiteSpace: 'nowrap',
+    display: 'block',
+    marginRight: `${theme.spacings.xxs}`,
+    marginLeft: `${theme.spacings.xxs}`,
+    ...theme.typography.h6,
+    position: 'relative',
+    paddingBottom: 8,
+    '&:before': {
+      content: '""',
+      width: 40,
+      height: 2,
+      background: theme.palette.primary.main,
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      margin: '0 auto',
+      opacity: 0,
+      transition: 'opacity .2s ease, bottom .2s ease',
+      bottom: 0,
     },
-    scroller: {
-      gridAutoColumns: `max-content`,
-    },
-    link: {
-      whiteSpace: 'nowrap',
-      display: 'block',
-      marginRight: `${theme.spacings.xxs}`,
-      marginLeft: `${theme.spacings.xxs}`,
-      ...theme.typography.h6,
-      position: 'relative',
-      paddingBottom: 8,
+    '&:hover': {
       '&:before': {
-        content: '""',
-        width: 40,
-        height: 2,
-        background: theme.palette.primary.main,
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        margin: '0 auto',
-        opacity: 0,
-        transition: 'opacity .2s ease, bottom .2s ease',
-        bottom: 0,
-      },
-      '&:hover': {
-        '&:before': {
-          opacity: 1,
-          bottom: 5,
-        },
+        opacity: 1,
+        bottom: 5,
       },
     },
-  }),
-  { name: 'CategoryChildren' },
-)
+  },
+}))
 
 type CategoryChildrenProps = Omit<CategoryChildrenFragment, 'uid'> & {
   params: ProductListParams
@@ -55,7 +52,7 @@ type CategoryChildrenProps = Omit<CategoryChildrenFragment, 'uid'> & {
 
 export default function CategoryChildren(props: CategoryChildrenProps) {
   const { children, params } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   if (!children || children.length === 0) return null
 

@@ -2,33 +2,30 @@ import { Button, Form, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
 import { TextField, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React, { PropsWithChildren } from 'react'
 import { SignUpMutationVariables, SignUpMutation, SignUpDocument } from './SignUp.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    buttonFormRow: {
-      padding: 0,
-      [theme.breakpoints.up('sm')]: {
-        gridTemplateColumns: 'minmax(200px, 3.5fr) 1fr',
-      },
+const useStyles = makeStyles({ name: 'SignUpFormInline' })((theme: Theme) => ({
+  buttonFormRow: {
+    padding: 0,
+    [theme.breakpoints.up('sm')]: {
+      gridTemplateColumns: 'minmax(200px, 3.5fr) 1fr',
     },
-    form: {
-      padding: 0,
-    },
-    row: {
-      padding: 0,
-    },
-    button: {
-      minWidth: 'max-content',
-    },
-    buttonContainer: {
-      alignSelf: 'center',
-    },
-  }),
-  { name: 'SignUpFormInline' },
-)
+  },
+  form: {
+    padding: 0,
+  },
+  row: {
+    padding: 0,
+  },
+  button: {
+    minWidth: 'max-content',
+  },
+  buttonContainer: {
+    alignSelf: 'center',
+  },
+}))
 
 type SignUpFormInlineProps = Pick<SignUpMutationVariables, 'email'> & {
   helperList?: React.ReactNode
@@ -44,7 +41,7 @@ export default function SignUpFormInline({
   lastname,
   onSubmitted = () => {},
 }: PropsWithChildren<SignUpFormInlineProps>) {
-  const classes = useStyles()
+  const { classes } = useStyles()
   const form = useFormGqlMutation<
     SignUpMutation,
     SignUpMutationVariables & { confirmPassword?: string }

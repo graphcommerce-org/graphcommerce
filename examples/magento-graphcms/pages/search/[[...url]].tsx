@@ -44,7 +44,6 @@ type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function SearchResultPage(props: Props) {
   const { products, categories, params, filters, filterTypes } = props
-  const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
   const search = params.url.split('/')[1]
   const totalSearchResults = (categories?.items?.length ?? 0) + (products?.total_count ?? 0)
   const noSearchResults = search && (!products || (products.items && products?.items?.length <= 0))
@@ -96,11 +95,7 @@ function SearchResultPage(props: Props) {
           </AppShellSticky>
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />
-            <ProductListItems
-              items={products?.items}
-              classes={productListClasses}
-              loadingEager={1}
-            />
+            <ProductListItems items={products?.items} loadingEager={1} />
             <ProductListPagination page_info={products?.page_info} />
           </Container>
         </ProductListParamsProvider>

@@ -1,11 +1,11 @@
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     root: {
       marginTop: '-2px',
@@ -32,7 +32,7 @@ export type StepperProps = {
 
 export default function Stepper(props: StepperProps) {
   const { steps, currentStep } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <div className={classes.root}>

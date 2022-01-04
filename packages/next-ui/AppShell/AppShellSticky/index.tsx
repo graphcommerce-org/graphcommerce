@@ -1,21 +1,17 @@
 import { Container, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
 import React from 'react'
-import { UseStyles } from '../../Styles'
+import { makeStyles, UseStyles } from '../../Styles'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      position: 'sticky',
-      top: theme.appShell.headerHeightSm,
-      zIndex: 96,
-      [theme.breakpoints.up('md')]: {
-        top: `${theme.page.vertical} !important`,
-      },
+const useStyles = makeStyles({ name: 'AppShellSticky' })((theme: Theme) => ({
+  root: {
+    position: 'sticky',
+    top: theme.appShell.headerHeightSm,
+    zIndex: 96,
+    [theme.breakpoints.up('md')]: {
+      top: `${theme.page.vertical} !important`,
     },
-  }),
-  { name: 'AppShellSticky' },
-)
+  },
+}))
 
 type AppShellStickyBaseProps = {
   children: React.ReactNode
@@ -29,7 +25,7 @@ type AppShellStickyProps = AppShellStickyBaseProps & UseStyles<typeof useStyles>
 */
 export default function AppShellSticky(props: AppShellStickyProps) {
   const { children } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <Container maxWidth={false} className={classes.root}>

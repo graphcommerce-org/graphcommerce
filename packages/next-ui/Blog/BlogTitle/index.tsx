@@ -1,9 +1,9 @@
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { LayoutTitle } from '../../Layout'
 import { UseStyles } from '../../Styles'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   {
     wrapper: {
       maxWidth: 800,
@@ -19,7 +19,7 @@ export type BlogTitleProps = UseStyles<typeof useStyles> & {
 
 export default function BlogTitle(props: BlogTitleProps) {
   const { title } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   return (
     <div className={classes.wrapper}>

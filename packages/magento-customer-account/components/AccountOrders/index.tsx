@@ -6,34 +6,31 @@ import {
 import { Pagination, SectionContainer } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Link, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import { AccountOrdersFragment } from './AccountOrders.gql'
 
 export type AccountOrdersProps = AccountOrdersFragment
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    ordersContainer: {
-      ...theme.typography.body2,
-      marginBottom: theme.spacings.md,
+const useStyles = makeStyles({ name: 'AccountOrders' })((theme: Theme) => ({
+  ordersContainer: {
+    ...theme.typography.body2,
+    marginBottom: theme.spacings.md,
+  },
+  olderOrdersContainer: {
+    [theme.breakpoints.up('md')]: {
+      marginTop: theme.spacings.lg,
+      marginBottom: theme.spacings.lg,
     },
-    olderOrdersContainer: {
-      [theme.breakpoints.up('md')]: {
-        marginTop: theme.spacings.lg,
-        marginBottom: theme.spacings.lg,
-      },
-      marginTop: theme.spacings.md,
-      marginBottom: theme.spacings.md,
-    },
-  }),
-  { name: 'AccountOrders' },
-)
+    marginTop: theme.spacings.md,
+    marginBottom: theme.spacings.md,
+  },
+}))
 
 export default function AccountOrders(props: AccountOrdersProps) {
   const { orders } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
   const amountLatestOrders = 2
   const images = useOrderCardItemImages(orders)
 

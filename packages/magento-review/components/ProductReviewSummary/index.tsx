@@ -1,43 +1,40 @@
 import { SvgImageSimple, iconStar, UseStyles } from '@graphcommerce/next-ui'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'
 
 export type ProductReviewSummaryProps = ProductReviewSummaryFragment & UseStyles<typeof useStyles>
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      width: 'max-content',
-      position: 'relative',
-      '& > div': {
-        lineHeight: 0,
-      },
+const useStyles = makeStyles({ name: 'ProductListReviewSummary' })((theme: Theme) => ({
+  root: {
+    width: 'max-content',
+    position: 'relative',
+    '& > div': {
+      lineHeight: 0,
     },
-    rating: {
-      position: 'absolute',
-      top: 0,
-      overflow: 'hidden',
-      '& > div': {
-        whiteSpace: 'nowrap',
-      },
+  },
+  rating: {
+    position: 'absolute',
+    top: 0,
+    overflow: 'hidden',
+    '& > div': {
+      whiteSpace: 'nowrap',
     },
-    iconStar: {
-      stroke: 'none',
-      fill: '#FFDA1C',
-    },
-    iconStarDisabled: {
-      stroke: 'none',
-      fill: theme.palette.grey[300],
-    },
-  }),
-  { name: 'ProductListReviewSummary' },
-)
+  },
+  iconStar: {
+    stroke: 'none',
+    fill: '#FFDA1C',
+  },
+  iconStarDisabled: {
+    stroke: 'none',
+    fill: theme.palette.grey[300],
+  },
+}))
 
 export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
   const { rating_summary } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   if (!rating_summary) return null
 

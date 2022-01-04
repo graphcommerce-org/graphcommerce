@@ -14,7 +14,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Controller, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { FormControl, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { Alert } from '@mui/material'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
@@ -27,75 +27,72 @@ import {
   ShippingMethodFormMutationVariables,
 } from './ShippingMethodForm.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      marginTop: theme.spacings.xs,
-      position: 'relative',
-      padding: 0,
-    },
-    itemtest: {
-      background: 'silver',
-      width: 300,
-    },
-    alert: {
-      marginTop: theme.spacings.xxs,
-    },
-    toggleGroup: {
-      display: 'inline-flex',
-      gap: 10,
-    },
-    buttonRoot: {
-      background: theme.palette.background.default,
-      borderRadius: 0,
-      width: 30,
-      height: '100%',
+const useStyles = makeStyles({ name: 'ShippingMethodForm' })((theme: Theme) => ({
+  root: {
+    marginTop: theme.spacings.xs,
+    position: 'relative',
+    padding: 0,
+  },
+  itemtest: {
+    background: 'silver',
+    width: 300,
+  },
+  alert: {
+    marginTop: theme.spacings.xxs,
+  },
+  toggleGroup: {
+    display: 'inline-flex',
+    gap: 10,
+  },
+  buttonRoot: {
+    background: theme.palette.background.default,
+    borderRadius: 0,
+    width: 30,
+    height: '100%',
+    boxShadow: 'none',
+    border: `1px solid ${theme.palette.divider}`,
+    '&:focus': {
       boxShadow: 'none',
-      border: `1px solid ${theme.palette.divider}`,
-      '&:focus': {
-        boxShadow: 'none',
-      },
     },
-    leftButtonRoot: {
-      borderTopLeftRadius: 4,
-      borderBottomLeftRadius: 4,
-    },
-    rightButtonRoot: {
-      borderTopRightRadius: 4,
-      borderBottomRightRadius: 4,
-    },
-    buttonContainer: {
-      position: 'absolute',
-      left: 0,
-      zIndex: 2,
+  },
+  leftButtonRoot: {
+    borderTopLeftRadius: 4,
+    borderBottomLeftRadius: 4,
+  },
+  rightButtonRoot: {
+    borderTopRightRadius: 4,
+    borderBottomRightRadius: 4,
+  },
+  buttonContainer: {
+    position: 'absolute',
+    left: 0,
+    zIndex: 2,
+    height: '100%',
+    '& > div': {
       height: '100%',
-      '& > div': {
-        height: '100%',
-      },
     },
-    buttonContainerRight: {
-      left: 'unset',
-      right: 0,
+  },
+  buttonContainerRight: {
+    left: 'unset',
+    right: 0,
+  },
+  scrollerRoot: {
+    gridTemplateRows: `100%`,
+    gridTemplateColumns: `repeat(2, calc(50% - 20px))`,
+    gap: 6,
+    borderRadius: 0,
+    padding: '1px 1px',
+    '&:focus': {
+      outline: 'unset',
     },
-    scrollerRoot: {
-      gridTemplateRows: `100%`,
-      gridTemplateColumns: `repeat(2, calc(50% - 20px))`,
-      gap: 6,
-      borderRadius: 0,
-      padding: '1px 1px',
-      '&:focus': {
-        outline: 'unset',
-      },
-    },
-    scrollerRootTwoItems: {
-      gridTemplateColumns: `repeat(2, calc(50% - 4px))`,
-    },
-    buttonRootTwoItems: {
-      display: 'none',
-    },
-  }),
-  { name: 'ShippingMethodForm' },
-)
+  },
+  scrollerRootTwoItems: {
+    gridTemplateColumns: `repeat(2, calc(50% - 4px))`,
+  },
+  buttonRootTwoItems: {
+    display: 'none',
+  },
+}))
 
 export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'> &
   UseStyles<typeof useStyles>
@@ -103,7 +100,7 @@ export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'> &
 export default function ShippingMethodForm(props: ShippingMethodFormProps) {
   const { step } = props
   const { data: cartQuery } = useCartQuery(GetShippingMethodsDocument)
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   const currentAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const available = currentAddress?.available_shipping_methods

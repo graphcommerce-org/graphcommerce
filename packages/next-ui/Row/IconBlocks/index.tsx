@@ -1,11 +1,11 @@
 import { Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import Row from '..'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     container: {
       maxWidth: 820,
@@ -43,7 +43,7 @@ export type IconBlocksProps = UseStyles<typeof useStyles> & {
 
 export default function ServiceOptions(props: IconBlocksProps) {
   const { title, children } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <Row className={classes.container}>

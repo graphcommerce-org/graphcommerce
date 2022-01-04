@@ -3,63 +3,60 @@ import { Image } from '@graphcommerce/image'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { responsiveVal } from '@graphcommerce/next-ui'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { CustomerReviewFragment } from './CustomerReview.gql'
 import filledStar from './review_star_filled.svg'
 import outlinedStar from './review_star_outlined.svg'
 
 type CustomerReviewProps = CustomerReviewFragment
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    container: {
-      padding: `${theme.spacings.md} 0 ${theme.spacings.md} 0`,
-      display: 'grid',
-      gridTemplateAreas: `
+const useStyles = makeStyles({ name: 'CustomerReview' })((theme: Theme) => ({
+  container: {
+    padding: `${theme.spacings.md} 0 ${theme.spacings.md} 0`,
+    display: 'grid',
+    gridTemplateAreas: `
       'image stars'
       'image title'
       'image text'
       'image date'`,
-      gridTemplateColumns: `${responsiveVal(96, 196)} 1fr`,
-      gridColumnGap: theme.spacings.md,
-      gridRowGap: theme.spacings.sm,
-      alignItems: 'start',
-      ...theme.typography.body1,
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      [theme.breakpoints.up('sm')]: {
-        gridRowGap: theme.spacings.xxs,
-      },
+    gridTemplateColumns: `${responsiveVal(96, 196)} 1fr`,
+    gridColumnGap: theme.spacings.md,
+    gridRowGap: theme.spacings.sm,
+    alignItems: 'start',
+    ...theme.typography.body1,
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    [theme.breakpoints.up('sm')]: {
+      gridRowGap: theme.spacings.xxs,
     },
-    image: {
-      gridArea: 'image',
-      '& img': {
-        width: '100%',
-        height: 'auto',
-      },
+  },
+  image: {
+    gridArea: 'image',
+    '& img': {
+      width: '100%',
+      height: 'auto',
     },
-    stars: {
-      gridArea: 'stars',
-      margin: '-6px 0 -6px -6px',
-    },
-    title: {
-      gridArea: 'title',
-      fontWeight: theme.typography.fontWeightBold,
-    },
-    text: {
-      gridArea: 'text',
-    },
-    date: {
-      gridArea: 'date',
-      fontStyle: 'italic',
-      color: theme.palette.text.disabled,
-    },
-  }),
-  { name: 'CustomerReview' },
-)
+  },
+  stars: {
+    gridArea: 'stars',
+    margin: '-6px 0 -6px -6px',
+  },
+  title: {
+    gridArea: 'title',
+    fontWeight: theme.typography.fontWeightBold,
+  },
+  text: {
+    gridArea: 'text',
+  },
+  date: {
+    gridArea: 'date',
+    fontStyle: 'italic',
+    color: theme.palette.text.disabled,
+  },
+}))
 
 export default function CustomerReview(props: CustomerReviewProps) {
   const { product, text, average_rating, created_at } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   const maxAverageRating = 100
   const totalStars = 5

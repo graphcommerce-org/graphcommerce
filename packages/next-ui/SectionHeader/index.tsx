@@ -1,10 +1,10 @@
 import { Theme, Typography, TypographyProps } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     sectionHeaderSidePadding: {
       paddingLeft: theme.spacings.xxs,
@@ -48,7 +48,7 @@ export default function SectionHeader(props: SectionHeaderProps) {
     variantLeft = 'overline',
     variantRight = 'body2',
   } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <div

@@ -1,6 +1,6 @@
 import { UseStyles } from '@graphcommerce/next-ui'
 import { Fab, FabProps, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { m, useMotionValue, useSpring } from 'framer-motion'
 import React from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'
@@ -8,7 +8,7 @@ import { useScrollerContext } from '../hooks/useScrollerContext'
 import { useWatchItems } from '../hooks/useWatchItems'
 import { SnapPositionDirection } from '../types'
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles()((theme) => ({
   root: {
     [theme.breakpoints.down('xs')]: {
       display: 'none',
@@ -24,7 +24,7 @@ export type ScrollerButtonProps = {
 const ScrollerFab = m(
   React.forwardRef<HTMLDivElement, ScrollerButtonProps>((props, ref) => {
     const { direction, ...buttonProps } = props
-    const classes = useStyles(buttonProps)
+    const { classes } = useStyles(buttonProps)
 
     const end = direction === 'right' || direction === 'down'
 

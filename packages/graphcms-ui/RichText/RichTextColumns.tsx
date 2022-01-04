@@ -1,16 +1,15 @@
 import { UseStyles } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import RichText, { RichTextProps } from '.'
 
 type StyleProps = { columnCount: number }
 
-const useStyles = makeStyles(({ spacings, breakpoints }: Theme) => ({
+const useStyles = makeStyles<StyleProps>()((theme, { columnCount }) => ({
   paragraph: {
-    [breakpoints.up('md')]: {
-      columnCount: ({ columnCount }: StyleProps) => columnCount,
-      columnGap: spacings.md,
+    [theme.breakpoints.up('md')]: {
+      columnCount: columnCount,
+      columnGap: theme.spacings.md,
     },
   },
 }))
@@ -18,6 +17,6 @@ const useStyles = makeStyles(({ spacings, breakpoints }: Theme) => ({
 type RichTextColumnsProps = UseStyles<typeof useStyles> & StyleProps & RichTextProps
 
 export default function RichTextColumns(props: RichTextColumnsProps) {
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   return <RichText classes={classes} {...props} />
 }

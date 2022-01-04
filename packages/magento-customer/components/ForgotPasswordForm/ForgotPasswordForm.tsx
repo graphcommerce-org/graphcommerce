@@ -2,7 +2,7 @@ import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
 import { TextField, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { Alert } from '@mui/material'
 import React from 'react'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
@@ -12,18 +12,15 @@ import {
   ForgotPasswordMutationVariables,
 } from './ForgotPassword.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    alert: {
-      marginTop: theme.spacings.md,
-      marginBottom: theme.spacings.sm,
-    },
-  }),
-  { name: 'ForgotPasswordForm' },
-)
+const useStyles = makeStyles({ name: 'ForgotPasswordForm' })((theme: Theme) => ({
+  alert: {
+    marginTop: theme.spacings.md,
+    marginBottom: theme.spacings.sm,
+  },
+}))
 
 export default function ForgotPasswordForm() {
-  const classes = useStyles()
+  const { classes } = useStyles()
   const form = useFormGqlMutation<ForgotPasswordMutation, ForgotPasswordMutationVariables>(
     ForgotPasswordDocument,
   )

@@ -1,5 +1,5 @@
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { Rating } from '@mui/material'
 import { RatingProps } from '@mui/lab'
 import React from 'react'
@@ -11,7 +11,7 @@ export type StarRatingFieldProps = {
   onChange?: (id: string, value: number) => void
 } & Omit<RatingProps, 'id' | 'onChange'>
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     iconStar: {
       fill: '#FFDA1C',
@@ -31,7 +31,7 @@ const useStyles = makeStyles(
 
 export default function StarRatingField(props: StarRatingFieldProps) {
   const { id, onChange = () => {}, ...ratingProps } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <Rating

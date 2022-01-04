@@ -1,9 +1,9 @@
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { m } from 'framer-motion'
 import { UseStyles } from '../Styles'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     root: {
       position: 'fixed',
@@ -29,7 +29,7 @@ type FixedFabProps = {
 
 export default function FixedFab(props: FixedFabProps) {
   const { children } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return <m.div className={classes.root}>{children}</m.div>
 }

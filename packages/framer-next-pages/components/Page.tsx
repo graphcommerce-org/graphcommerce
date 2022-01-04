@@ -1,4 +1,4 @@
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { m, useIsPresent } from 'framer-motion'
 import React from 'react'
 import type { PageItem } from '../types'
@@ -14,24 +14,21 @@ export function scrollPos(idx: number): { x: number; y: number } {
   return scroll ? JSON.parse(scroll) : { x: 0, y: 0 }
 }
 
-const useStyles = makeStyles(
-  {
-    page: {
-      left: 0,
-      right: 0,
-      minHeight: '100vh',
-      '@supports (-webkit-touch-callout: none)': {
-        height: '-webkit-fill-available',
-      },
+const useStyles = makeStyles({ name: 'FramerNextPage' })({
+  page: {
+    left: 0,
+    right: 0,
+    minHeight: '100vh',
+    '@supports (-webkit-touch-callout: none)': {
+      height: '-webkit-fill-available',
     },
   },
-  { name: 'FramerNextPage' },
-)
+})
 
 export default function Page(props: PageProps) {
   const { active, historyIdx, children } = props
   const isPresent = useIsPresent()
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   /** The active Page doesn't get any special treatment */
   let top: number | undefined

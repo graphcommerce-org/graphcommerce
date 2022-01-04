@@ -1,7 +1,7 @@
 import { RenderType, SectionHeader, ToggleButton, ToggleButtonGroup } from '@graphcommerce/next-ui'
 import { Controller, FieldErrors, UseControllerProps } from '@graphcommerce/react-hook-form'
 import { BaseTextFieldProps, FormHelperText, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import { SwatchTypeRenderer, SwatchSize } from '../Swatches'
@@ -17,22 +17,19 @@ export type ConfigurableOptionsProps = {
     optionEndLabels?: Record<string, React.ReactNode>
   }
 
-export const useStyles = makeStyles(
-  (theme: Theme) => ({
-    toggleButtonGroup: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gap: theme.spacings.xs,
-    },
-    button: {
-      minHeight: theme.spacings.lg,
-    },
-    helperText: {
-      position: 'absolute',
-    },
-  }),
-  { name: 'ConfigurableOptions' },
-)
+export const useStyles = makeStyles({ name: 'ConfigurableOptions' })((theme: Theme) => ({
+  toggleButtonGroup: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    gap: theme.spacings.xs,
+  },
+  button: {
+    minHeight: theme.spacings.lg,
+  },
+  helperText: {
+    position: 'absolute',
+  },
+}))
 
 const renderer: SwatchTypeRenderer = { TextSwatchData, ImageSwatchData, ColorSwatchData }
 
@@ -49,7 +46,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
   } = props
 
   const { options, selection, select, getVariants } = useConfigurableContext(sku)
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   return (
     <>

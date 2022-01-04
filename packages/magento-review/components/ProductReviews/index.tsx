@@ -1,93 +1,90 @@
 import { useQuery } from '@apollo/client'
 import { Button, Pagination, responsiveVal, StarRatingField } from '@graphcommerce/next-ui'
 import { Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import ProductReviewChip from '../ProductReviewChip'
 import { ProductReviewsFragment } from './ProductReviews.gql'
 import { ProductReviewsPageDocument } from './ProductReviewsPage.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    review: {
-      display: 'grid',
-      gap: theme.spacings.sm,
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      padding: `${theme.spacings.md} 0`,
-      ...theme.typography.body1,
-    },
-    title: {
-      display: 'grid',
-      gridAutoFlow: 'column',
-      justifyContent: 'start',
-      gap: theme.spacings.xs,
-      alignItems: 'center',
-    },
-    meta: {
-      color: theme.palette.text.disabled,
-      display: 'grid',
-      gridAutoFlow: 'column',
-      justifyContent: 'space-between',
-    },
-    nickname: {
-      ...theme.typography.body2,
-    },
-    date: {
-      ...theme.typography.body2,
-    },
-    reviewsBottomContainer: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      marginTop: theme.spacings.sm,
-    },
-    paginationRoot: {
-      margin: `0 -16px 0`,
-    },
-    paginationButton: {
+const useStyles = makeStyles({ name: 'ProductReviews' })((theme: Theme) => ({
+  review: {
+    display: 'grid',
+    gap: theme.spacings.sm,
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    padding: `${theme.spacings.md} 0`,
+    ...theme.typography.body1,
+  },
+  title: {
+    display: 'grid',
+    gridAutoFlow: 'column',
+    justifyContent: 'start',
+    gap: theme.spacings.xs,
+    alignItems: 'center',
+  },
+  meta: {
+    color: theme.palette.text.disabled,
+    display: 'grid',
+    gridAutoFlow: 'column',
+    justifyContent: 'space-between',
+  },
+  nickname: {
+    ...theme.typography.body2,
+  },
+  date: {
+    ...theme.typography.body2,
+  },
+  reviewsBottomContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: theme.spacings.sm,
+  },
+  paginationRoot: {
+    margin: `0 -16px 0`,
+  },
+  paginationButton: {
+    padding: 0,
+    minWidth: 'unset',
+    borderRadius: '100%',
+    '& > .MuiButton-label': {
       padding: 0,
-      minWidth: 'unset',
-      borderRadius: '100%',
-      '& > .MuiButton-label': {
-        padding: 0,
-      },
     },
-    ratingRow: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      gap: theme.spacings.sm,
-      color: theme.palette.text.disabled,
-      ...theme.typography.body2,
+  },
+  ratingRow: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: theme.spacings.sm,
+    color: theme.palette.text.disabled,
+    ...theme.typography.body2,
+  },
+  rating: {
+    display: 'grid',
+    gridAutoFlow: 'column',
+    gridTemplateColumns: '0.4fr 0.6fr',
+    justifyContent: 'space-between',
+    marginRight: theme.spacings.xxs,
+    rowGap: responsiveVal(8, 16),
+    gap: 8,
+    alignItems: 'center',
+  },
+  writeReviewButton: {
+    [theme.breakpoints.down('sm')]: {
+      padding: '8px 16px 8px',
+      whiteSpace: 'nowrap',
     },
-    rating: {
-      display: 'grid',
-      gridAutoFlow: 'column',
-      gridTemplateColumns: '0.4fr 0.6fr',
-      justifyContent: 'space-between',
-      marginRight: theme.spacings.xxs,
-      rowGap: responsiveVal(8, 16),
-      gap: 8,
-      alignItems: 'center',
-    },
-    writeReviewButton: {
-      [theme.breakpoints.down('sm')]: {
-        padding: '8px 16px 8px',
-        whiteSpace: 'nowrap',
-      },
-    },
-    container: {
-      marginTop: `calc(${theme.spacings.xxs} * -1)`,
-    },
-  }),
-  { name: 'ProductReviews' },
-)
+  },
+  container: {
+    marginTop: `calc(${theme.spacings.xxs} * -1)`,
+  },
+}))
 
 export type ProductReviewsProps = ProductReviewsFragment
 
 export default function ProductReviews(props: ProductReviewsProps) {
   const { reviews, url_key, sku } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
   const config = 'en_US'
   const locale = config.replace('_', '-')
 

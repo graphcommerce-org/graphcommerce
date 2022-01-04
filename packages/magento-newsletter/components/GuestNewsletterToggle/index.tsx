@@ -3,7 +3,7 @@ import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
 import { Form } from '@graphcommerce/next-ui'
 import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { FormControl, FormControlLabel, FormHelperText, Switch, SwitchProps } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { GetCartEmailDocument } from '../SignupNewsletter/GetCartEmail.gql'
 import {
@@ -14,7 +14,7 @@ import {
 
 export type GuestNewsletterToggleProps = SwitchProps
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles()(() => ({
   labelRoot: {
     marginRight: 0,
   },
@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
 
 export default function GuestNewsletterToggle(props: GuestNewsletterToggleProps) {
   const { ...switchProps } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   const email =
     useCartQuery(GetCartEmailDocument, { allowUrl: true }).data?.cart?.email ?? undefined

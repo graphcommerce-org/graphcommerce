@@ -1,11 +1,11 @@
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     root: {
       display: 'grid',
@@ -45,7 +45,7 @@ export type UspListItemProps = UseStyles<typeof useStyles> & {
 
 export default function UspListItem(props: UspListItemProps) {
   const { text, icon, size = 'normal' } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   return (
     <li className={clsx(classes.root, size === 'small' && classes.smallIcons)}>

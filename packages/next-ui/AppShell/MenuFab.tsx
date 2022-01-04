@@ -1,5 +1,5 @@
 import { Divider, Fab, List, ListItem, ListItemText, Menu, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -11,7 +11,7 @@ import { iconMenu, iconClose } from '../icons'
 import { MenuProps } from './Menu'
 import { useFabAnimation } from './useFabAnimation'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     menuWrapper: {
       position: 'fixed',
@@ -80,7 +80,7 @@ export type MenuFabProps = MenuProps &
 
 export default function MenuFab(props: MenuFabProps) {
   const { menu, children, search, menuIcon, closeIcon } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 

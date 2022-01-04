@@ -1,22 +1,19 @@
 import { AnimatedRow } from '@graphcommerce/next-ui'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { AnimatePresence } from 'framer-motion'
 import { PaymentMethodOptionsProps } from '../Api/PaymentMethod'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      marginBottom: theme.spacings.sm,
-    },
-  }),
-  { name: 'PaymentMethodOptions' },
-)
+const useStyles = makeStyles({ name: 'PaymentMethodOptions' })((theme: Theme) => ({
+  root: {
+    marginBottom: theme.spacings.sm,
+  },
+}))
 
 export default function PaymentMethodOptions(props: PaymentMethodOptionsProps) {
   const { selectedMethod, selectedModule } = usePaymentMethodContext()
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   return (
     <div className={classes.root}>

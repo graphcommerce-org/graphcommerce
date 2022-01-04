@@ -1,4 +1,3 @@
-import ServerStyleSheets from '@mui/styles/ServerStyleSheets'
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import NextDocument, { DocumentContext, DocumentInitialProps } from 'next/document'
 import React from 'react'

@@ -6,12 +6,12 @@ import {
   ScrollerButton,
 } from '@graphcommerce/framer-scroller'
 import { Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   () => ({
     container: {
       position: 'relative',
@@ -43,7 +43,7 @@ const useStyles = makeStyles(
 )
 
 function Index() {
-  const classes = useStyles()
+  const { classes } = useStyles()
   const [expand, setExpand] = useState(true)
 
   return (

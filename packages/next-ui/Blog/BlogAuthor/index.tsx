@@ -1,10 +1,10 @@
 import { Avatar, Chip, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     wrapper: {
       display: 'flex',
@@ -43,7 +43,7 @@ export type BlogAuthorProps = UseStyles<typeof useStyles> & {
 
 export default function BlogAuthor(props: BlogAuthorProps) {
   const { author, date, locale } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   const formatter = new Intl.DateTimeFormat(locale, {
     month: 'long',

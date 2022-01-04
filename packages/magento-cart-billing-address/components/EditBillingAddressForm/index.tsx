@@ -19,26 +19,23 @@ import {
 import { phonePattern } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
 import { TextField } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { GetBillingAddressDocument } from './GetBillingAddress.gql'
 import { SetBillingAddressOnCartDocument } from './SetBillingAddressOnCart.gql'
 
-const useStyles = makeStyles(
-  () => ({
-    editActions: {
-      paddingBottom: 0,
-    },
-  }),
-  { name: 'EditBillingAddressForm' },
-)
+const useStyles = makeStyles({ name: 'EditBillingAddressForm' })({
+  editActions: {
+    paddingBottom: 0,
+  },
+})
 
 export type EditBillingAddressFormProps = UseStyles<typeof useStyles>
 
 export default function EditBillingAddressForm(props: EditBillingAddressFormProps) {
   const countriesData = useQuery(CountryRegionsDocument).data
   const address = useCartQuery(GetBillingAddressDocument)?.data?.cart?.billing_address
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const goToCheckout = useHistoryGo({ href: '/checkout/payment' })
 
   const form = useFormGqlMutationCart(SetBillingAddressOnCartDocument, {
@@ -95,7 +92,7 @@ export default function EditBillingAddressForm(props: EditBillingAddressFormProp
 
         <FormDivider />
 
-        <FormActions classes={{ root: classes.editActions }}>
+        <FormActions className={classes.editActions}>
           <Button
             type='submit'
             variant='contained'

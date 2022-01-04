@@ -5,7 +5,7 @@ import {
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React, { ReactNode } from 'react'
 import Row from '../../Row'
 import { UseStyles } from '../../Styles'
@@ -13,7 +13,7 @@ import { responsiveVal } from '../../Styles/responsiveVal'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconChevronRight } from '../../icons'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     root: {
       display: 'grid',
@@ -65,7 +65,7 @@ export type SidebarSliderProps = { children: ReactNode; sidebar: ReactNode } & U
 
 export default function SidebarSlider(props: SidebarSliderProps) {
   const { children, sidebar } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <Row maxWidth={false} disableGutters>

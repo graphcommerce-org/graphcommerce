@@ -1,10 +1,10 @@
 import { responsiveVal, Row, SectionContainer, UseStyles } from '@graphcommerce/next-ui'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { ProductSpecsFragment } from './ProductSpecs.gql'
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles()((theme: Theme) => ({
   root: {
     ...theme.typography.subtitle1,
   },
@@ -35,7 +35,7 @@ export type ProductSpecsProps = ProductSpecsFragment & { title?: string } & UseS
 
 export default function ProductSpecs(props: ProductSpecsProps) {
   const { aggregations, title } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const filter = ['price', 'category_id', 'size', 'new', 'sale', 'color']
   const specs = aggregations?.filter(
     (attr) => !filter.includes(attr?.attribute_code ?? '') && attr?.options?.[0]?.value !== '0',

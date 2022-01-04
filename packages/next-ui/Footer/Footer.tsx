@@ -1,9 +1,9 @@
 import { ContainerProps, Theme, Container } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { UseStyles } from '../Styles'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     footer: {
       gridTemplateColumns: '5fr 3fr',
@@ -90,7 +90,7 @@ export type FooterProps = UseStyles<typeof useStyles> & {
 
 export function Footer(props: FooterProps) {
   const { socialLinks, storeSwitcher, customerService, copyright, ...containerProps } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <Container maxWidth={false} className={classes.footer} {...containerProps}>

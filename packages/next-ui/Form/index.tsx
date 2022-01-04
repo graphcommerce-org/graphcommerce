@@ -1,11 +1,11 @@
 import { darken, lighten, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     root: {
       display: 'grid',
@@ -40,7 +40,7 @@ export type BaseFormProps = {
 export type FormFormProps = BaseFormProps & JSX.IntrinsicElements['form']
 
 export const Form = React.forwardRef<HTMLFormElement, FormFormProps>((props, ref) => {
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const { contained, background, ...formProps } = props
 
   return (
@@ -51,7 +51,7 @@ export const Form = React.forwardRef<HTMLFormElement, FormFormProps>((props, ref
 export type DivFormProps = BaseFormProps & JSX.IntrinsicElements['div']
 
 export const FormDiv = React.forwardRef<HTMLDivElement, DivFormProps>((props, ref) => {
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const { contained, background = 'default', classes: _classes, ...formProps } = props
 
   return (

@@ -9,7 +9,7 @@ import {
 } from '@graphcommerce/framer-scroller'
 import { clientSize, useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Fab, Theme, useTheme, alpha } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
@@ -26,7 +26,7 @@ type StyleProps = {
   classes?: Record<string, unknown>
 }
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     root: {
       willChange: 'transform',
@@ -187,7 +187,7 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
   const router = useRouter()
   const prevRoute = usePrevPageRouter()
   const clientHeight = useMotionValueValue(clientSize.y, (y) => y)
-  const classes = useStyles({ clientHeight, aspectRatio, classes: classesBase })
+  const { classes } = useStyles({ clientHeight, aspectRatio, classes: classesBase })
 
   const route = `#${routeHash}`
   // We're using the URL to manage the state of the gallery.

@@ -1,11 +1,11 @@
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconCheckmark } from '../icons'
 
 export type InputCheckmarkProps = PropsWithChildren<{ show?: boolean; select?: boolean }>
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   {
     iconCheckmark: {
       stroke: '#01D26A',
@@ -26,7 +26,7 @@ const useStyles = makeStyles(
  */
 export default function InputCheckmark(props: InputCheckmarkProps) {
   const { show: valid, children, select = false } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   if (!valid) return <>{children}</>
   return (

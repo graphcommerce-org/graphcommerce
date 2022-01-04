@@ -2,7 +2,7 @@ import { useGo, usePageContext, useScrollOffset } from '@graphcommerce/framer-ne
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
 import { useElementScroll, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 import { Theme, capitalize, styled } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { m, useDomEvent, useMotionValue, usePresence, useTransform } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
 import LayoutProvider from '../../Layout/components/LayoutProvider'
@@ -10,7 +10,7 @@ import { UseStyles } from '../../Styles'
 import { classesPicker } from '../../Styles/classesPicker'
 import { useOverlayPosition } from '../hooks/useOverlayPosition'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     '@global': {
       body: {
@@ -213,7 +213,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
 
   const position = useMotionValue<OverlayPosition>(OverlayPosition.UNOPENED)
 
-  const classes = useStyles({ classes: _classes, sizeSm, sizeMd, justifySm, justifyMd })
+  const { classes } = useStyles({ classes: _classes, sizeSm, sizeMd, justifySm, justifyMd })
   const clsName = classesPicker(classes, {
     variantSm,
     variantMd,

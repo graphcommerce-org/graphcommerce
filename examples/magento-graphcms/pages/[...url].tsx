@@ -57,7 +57,7 @@ type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function CategoryPage(props: Props) {
   const { categories, products, filters, params, filterTypes, pages } = props
-  const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
+  const { classes: productListClasses } = useProductListStyles()
 
   const category = categories?.items?.[0]
   if (!category || !products || !params || !filters || !filterTypes) return null

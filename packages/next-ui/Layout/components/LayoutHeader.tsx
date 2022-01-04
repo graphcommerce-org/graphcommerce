@@ -1,5 +1,5 @@
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { classesPicker } from '../../Styles/classesPicker'
 import LayoutHeaderBack, { useShowBack } from './LayoutHeaderBack'
@@ -27,7 +27,7 @@ export type LayoutHeaderProps = FloatingProps &
     noAlign?: boolean
   }
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     sticky: {
       zIndex: theme.zIndex.appBar,
@@ -97,7 +97,7 @@ const useStyles = makeStyles(
 
 export function LayoutHeader(props: LayoutHeaderProps) {
   const { children, divider, primary, secondary, noAlign, switchPoint } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const showBack = useShowBack()
   const showClose = useShowClose()
 

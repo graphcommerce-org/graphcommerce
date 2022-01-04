@@ -1,8 +1,8 @@
+import { withStyles } from '@graphcommerce/next-ui'
 import { Theme } from '@mui/material'
-import withStyles from '@mui/styles/withStyles'
 import RichText from '.'
 
-const RichTextQuote = withStyles((theme: Theme) => ({
+const RichTextQuote = withStyles(RichText, (theme: Theme) => ({
   paragraph: {
     ...theme.typography.h4,
     fontWeight: 600,
@@ -17,6 +17,6 @@ const RichTextQuote = withStyles((theme: Theme) => ({
       maxWidth: '80%',
     },
   },
-}))(RichText)
+}))
 
 export default RichTextQuote

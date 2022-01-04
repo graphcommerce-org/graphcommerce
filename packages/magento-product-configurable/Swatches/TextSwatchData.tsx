@@ -1,47 +1,44 @@
 import { Money } from '@graphcommerce/magento-store'
 import { UseStyles } from '@graphcommerce/next-ui'
 import { Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { TextSwatchDataFragment } from './TextSwatchData.gql'
 import { SwatchDataProps } from '.'
 
-export const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      display: 'grid',
-      width: '100%',
-      textAlign: 'start',
-      gridColumnGap: theme.spacings.sm,
-      gridTemplateAreas: `
+export const useStyles = makeStyles({ name: 'TextSwatchData' })((theme: Theme) => ({
+  root: {
+    display: 'grid',
+    width: '100%',
+    textAlign: 'start',
+    gridColumnGap: theme.spacings.sm,
+    gridTemplateAreas: `
         "label value"
         "delivery delivery"
       `,
-    },
-    sizesmall: {},
-    storeLabel: {
-      gridArea: 'label',
-      // fontWeight: theme.typography.fontWeightMedium,
-    },
-    value: {
-      gridArea: 'value',
-      justifySelf: 'end',
-      // ...theme.typography.body1,
-      margin: 'auto 0',
-    },
-    delivery: {
-      gridArea: 'delivery',
-      color: theme.palette.text.disabled,
-    },
-  }),
-  { name: 'TextSwatchData' },
-)
+  },
+  sizesmall: {},
+  storeLabel: {
+    gridArea: 'label',
+    // fontWeight: theme.typography.fontWeightMedium,
+  },
+  value: {
+    gridArea: 'value',
+    justifySelf: 'end',
+    // ...theme.typography.body1,
+    margin: 'auto 0',
+  },
+  delivery: {
+    gridArea: 'delivery',
+    color: theme.palette.text.disabled,
+  },
+}))
 
 type TextSwatchDataProps = TextSwatchDataFragment & SwatchDataProps & UseStyles<typeof useStyles>
 
 export default function TextSwatchData(props: TextSwatchDataProps) {
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const { store_label, size, price, value } = props
 
   return (

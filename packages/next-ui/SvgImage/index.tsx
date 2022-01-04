@@ -1,6 +1,6 @@
 import { Image, ImageProps } from '@graphcommerce/image'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { UseStyles } from '../Styles'
 
@@ -23,7 +23,7 @@ export const SvgImageShades: Record<SvgImageShade, number> = {
 
 export type UseStylesProps = { shade: number; baseSize: number; mobileSize: number }
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     root: ({ shade, baseSize, mobileSize }: UseStylesProps) => ({
       filter: shade > 0 ? `invert(${shade}%)` : undefined,
@@ -54,7 +54,7 @@ export default function SvgImage(props: SvgImageProps) {
     extralarge: 64,
   }
 
-  const classes = useStyles({
+  const { classes } = useStyles({
     ...props,
     mobileSize: baseSizes[mobileSize ?? ''] ?? mobileSize,
     baseSize: baseSizes[size ?? ''] ?? size,

@@ -1,5 +1,5 @@
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { capitalize } from '@mui/material/utils'
 import { ToggleButtonGroupProps } from '@mui/lab'
 import clsx from 'clsx'
@@ -18,7 +18,7 @@ export type ToggleButtonPropsBase = Omit<PropsWithoutRef<ToggleButtonGroupProps>
   minWidth?: number
 }
 
-export const useStyles = makeStyles(
+export const useStyles = makeStyles()(
   (theme: Theme) => ({
     root: ({ minWidth = 200 }: ToggleButtonPropsBase) => ({
       display: 'grid',
@@ -38,7 +38,7 @@ export const useStyles = makeStyles(
 export type ToggleButtonProps = ToggleButtonPropsBase & UseStyles<typeof useStyles>
 
 const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonProps>((props, ref) => {
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const {
     children,
     className,

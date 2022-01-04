@@ -1,19 +1,16 @@
 import { Avatar, AvatarProps } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 
-const useStyles = makeStyles(
-  {
-    root: {},
-  },
-  { name: 'FlagAvatar' },
-)
+const useStyles = makeStyles({ name: 'FlagAvatar' })({
+  root: {},
+})
 
 export type FlagAvatarProps = { country: string } & Omit<AvatarProps, 'src'>
 
 export default function FlagAvatar(props: FlagAvatarProps) {
   const { country, ...avatarProps } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <Avatar

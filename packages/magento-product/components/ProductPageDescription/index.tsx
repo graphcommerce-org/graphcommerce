@@ -1,10 +1,10 @@
 import { ColumnTwoWithTop, ColumnTwoWithTopProps } from '@graphcommerce/next-ui'
 import { Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { ProductPageDescriptionFragment } from './ProductPageDescription.gql'
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles()((theme: Theme) => ({
   /* nested styles because we don't know beforehand which elements the description contains */
   description: {
     '& p:first-of-type': {
@@ -38,7 +38,7 @@ export type ProductPageDescriptionProps = ProductPageDescriptionFragment &
   Omit<ColumnTwoWithTopProps, 'top' | 'left'>
 
 export default function ProductPageDescription(props: ProductPageDescriptionProps) {
-  const classes = useStyles()
+  const { classes } = useStyles()
   const { description, name, right } = props
 
   return (

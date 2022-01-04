@@ -1,6 +1,6 @@
 import { UseStyles } from '@graphcommerce/next-ui'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { CategoryDescriptionFragment } from './CategoryDescription.gql'
 
@@ -8,7 +8,7 @@ type CategoryDescriptionProps = Omit<CategoryDescriptionFragment, 'uid'> &
   JSX.IntrinsicElements['div'] &
   UseStyles<typeof useStyles>
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     root: {
       gridArea: 'description',
@@ -29,7 +29,7 @@ const useStyles = makeStyles(
 
 export default function CategoryDescription(props: CategoryDescriptionProps) {
   const { name, description, display_mode, ...divProps } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return description ? (
     // eslint-disable-next-line react/no-danger

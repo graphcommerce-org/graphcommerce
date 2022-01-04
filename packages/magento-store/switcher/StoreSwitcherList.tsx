@@ -1,35 +1,32 @@
 import { FlagAvatar, UseStyles } from '@graphcommerce/next-ui'
 import { List, ListItem, ListItemText, Theme, Collapse, ListItemAvatar } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import { localeToStore, storeToLocale } from '../localeToStore'
 import { StoreSwitcherListQuery } from './StoreSwitcherList.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    list: {},
-    listItem: {
-      borderTop: `1px solid ${theme.palette.divider}`,
-      cursor: 'pointer',
-    },
-    listItemIndented: {
-      paddingLeft: 30,
-      cursor: 'pointer',
-    },
-    groupIcon: {
-      fontSize: 29,
-      lineHeight: 1,
-      minWidth: 40,
-      color: theme.palette.text.primary,
-    },
-    avatar: {
-      width: 30,
-      height: 30,
-    },
-  }),
-  { name: 'StoreSwitcherList' },
-)
+const useStyles = makeStyles({ name: 'StoreSwitcherList' })((theme: Theme) => ({
+  list: {},
+  listItem: {
+    borderTop: `1px solid ${theme.palette.divider}`,
+    cursor: 'pointer',
+  },
+  listItemIndented: {
+    paddingLeft: 30,
+    cursor: 'pointer',
+  },
+  groupIcon: {
+    fontSize: 29,
+    lineHeight: 1,
+    minWidth: 40,
+    color: theme.palette.text.primary,
+  },
+  avatar: {
+    width: 30,
+    height: 30,
+  },
+}))
 
 type Store = NonNullable<NonNullable<StoreSwitcherListQuery['availableStores']>[0]>
 
@@ -38,7 +35,7 @@ export type StoreSwitcherListProps = { locale: string | undefined } & StoreSwitc
 
 export default function StoreSwitcherList(props: StoreSwitcherListProps) {
   const { availableStores, locale } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   const groupedStores = Object.entries(
     (availableStores ?? []).reduce<{

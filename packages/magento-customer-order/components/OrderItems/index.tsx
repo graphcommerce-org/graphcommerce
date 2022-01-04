@@ -1,7 +1,7 @@
 import { AnimatedRow, Button, SectionContainer, responsiveVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { Skeleton } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React, { useState } from 'react'
@@ -9,29 +9,26 @@ import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import OrderItem from '../OrderItem'
 import { OrderItemsFragment } from './OrderItems.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    sectionContainer: {
-      marginTop: theme.spacings.md,
-      marginBottom: theme.spacings.md,
+const useStyles = makeStyles({ name: 'OrderItems' })((theme: Theme) => ({
+  sectionContainer: {
+    marginTop: theme.spacings.md,
+    marginBottom: theme.spacings.md,
+  },
+  orderItemsInnerContainer: {
+    borderBottom: `1px solid ${theme.palette.divider}`,
+  },
+  skeletonOrderItem: {
+    marginTop: theme.spacings.xxs,
+    marginBottom: theme.spacings.xxs,
+  },
+  viewAllButton: {
+    margin: `${theme.spacings.xs} auto 0 auto`,
+    textAlign: 'center',
+    '& a': {
+      padding: 8,
     },
-    orderItemsInnerContainer: {
-      borderBottom: `1px solid ${theme.palette.divider}`,
-    },
-    skeletonOrderItem: {
-      marginTop: theme.spacings.xxs,
-      marginBottom: theme.spacings.xxs,
-    },
-    viewAllButton: {
-      margin: `${theme.spacings.xs} auto 0 auto`,
-      textAlign: 'center',
-      '& a': {
-        padding: 8,
-      },
-    },
-  }),
-  { name: 'OrderItems' },
-)
+  },
+}))
 
 export type OrderItemsProps = OrderItemsFragment & { loading?: boolean } & {
   images?: UseOrderCardItemImages
@@ -39,7 +36,7 @@ export type OrderItemsProps = OrderItemsFragment & { loading?: boolean } & {
 
 export default function OrderItems(props: OrderItemsProps) {
   const { images, items, loading } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
   const [expanded, setExpanded] = useState<boolean>(false)
   const maxItemsAboveFold = 4
 

@@ -2,22 +2,17 @@ import { FormRow, UseStyles, iconClose, iconSearch, SvgImageSimple } from '@grap
 import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@graphcommerce/react-hook-form'
 import { t, Plural } from '@lingui/macro'
 import { IconButton, TextField, TextFieldProps, Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import { useRouter } from 'next/router'
 import React from 'react'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    totalProducts: {
-      minWidth: 'max-content',
-      color: theme.palette.grey[500],
-      paddingRight: 7,
-    },
-  }),
-  {
-    name: 'SearchIndexPage',
+const useStyles = makeStyles({ name: 'SearchIndexPage' })((theme: Theme) => ({
+  totalProducts: {
+    minWidth: 'max-content',
+    color: theme.palette.grey[500],
+    paddingRight: 7,
   },
-)
+}))
 
 export type SearchFormProps = {
   totalResults?: number
@@ -29,7 +24,7 @@ export type SearchFormProps = {
 
 export default function SearchForm(props: SearchFormProps) {
   const { totalResults = 0, search = '', urlHandle = 'search', textFieldProps } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
   const router = useRouter()
 
   const form = useForm({ mode: 'onChange', defaultValues: { search } })

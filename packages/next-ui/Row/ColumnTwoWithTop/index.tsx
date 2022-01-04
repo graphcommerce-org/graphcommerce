@@ -1,10 +1,10 @@
 import { Theme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import Row from '..'
 import { UseStyles } from '../../Styles'
 
-const useStyles = makeStyles(
+const useStyles = makeStyles()(
   (theme: Theme) => ({
     root: {
       display: 'grid',
@@ -44,7 +44,7 @@ export type ColumnTwoWithTopProps = UseStyles<typeof useStyles> & {
 
 export default function ColumnTwoWithTop(props: ColumnTwoWithTopProps) {
   const { top, left, right } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles(props)
 
   return (
     <Row className={classes.root}>

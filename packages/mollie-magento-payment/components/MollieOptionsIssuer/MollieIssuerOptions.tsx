@@ -4,27 +4,24 @@ import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { useFormCompose, useFormPersist, useFormValidFields } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
 import { TextField, Theme, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { SetMolliePaymentMethodIssuerOnCartDocument } from './SetMolliePaymentMethodIssuerOnCart.gql'
 
 type MollieIssuerOptionsProps = PaymentOptionsProps & { label: string }
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      ...theme.typography.body2,
-      paddingLeft: theme.spacings.xs,
-      margin: 0,
-    },
-  }),
-  { name: 'MollieIssuerOptions' },
-)
+const useStyles = makeStyles({ name: 'MollieIssuerOptions' })((theme: Theme) => ({
+  root: {
+    ...theme.typography.body2,
+    paddingLeft: theme.spacings.xs,
+    margin: 0,
+  },
+}))
 
 export default function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
   const { mollie_available_issuers = [] } = props
   const { code, step, Container, label, title } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   const form = useFormGqlMutationCart(SetMolliePaymentMethodIssuerOnCartDocument, {
     mode: 'onChange',
