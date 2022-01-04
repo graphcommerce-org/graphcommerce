@@ -12,7 +12,7 @@ export default function ApolloCustomerErrorAlert(props: MagentoErrorAlertProps) 
 
   const action = unauthorized && (
     <NextLink href='/account/signin' passHref>
-      <Link>
+      <Link underline="hover">
         <Trans>Create Account</Trans> / <Trans>Sign In</Trans>
       </Link>
     </NextLink>

@@ -87,7 +87,7 @@ export default function CartAgreementsForm(props: CartAgreementsFormProps) {
                             control={<Checkbox color='secondary' required />}
                             label={
                               <PageLink href={href} passHref>
-                                <Link color='secondary'>{agreement.checkbox_text}</Link>
+                                <Link color='secondary' underline="hover">{agreement.checkbox_text}</Link>
                               </PageLink>
                             }
                             checked={!!value}
@@ -103,12 +103,12 @@ export default function CartAgreementsForm(props: CartAgreementsFormProps) {
                   ) : (
                     <div className={classes.manualCheck}>
                       <PageLink href={href} passHref>
-                        <Link color='secondary'>{agreement.checkbox_text}</Link>
+                        <Link color='secondary' underline="hover">{agreement.checkbox_text}</Link>
                       </PageLink>
                     </div>
                   )}
                 </React.Fragment>
-              )
+              );
             })}
         </div>
       </form>

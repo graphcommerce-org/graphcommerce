@@ -56,7 +56,7 @@ export default function SignInForm(props: SignInFormProps) {
           InputProps={{
             endAdornment: (
               <PageLink href='/account/forgot-password' key='forgot-password' passHref>
-                <Link className={classes.forgotPass}>
+                <Link className={classes.forgotPass} underline="hover">
                   <Trans>Forgot password?</Trans>
                 </Link>
               </PageLink>
@@ -83,5 +83,5 @@ export default function SignInForm(props: SignInFormProps) {
         </FormControl>
       </FormActions>
     </form>
-  )
+  );
 }

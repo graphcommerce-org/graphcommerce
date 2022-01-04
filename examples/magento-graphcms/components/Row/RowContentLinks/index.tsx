@@ -11,11 +11,16 @@ export default function RowContentLinks(props: RowContentLinksFragment) {
     <ContentLinks title={title}>
       {contentLinks.map((contentLink) => (
         <PageLink href={contentLink.url} key={contentLink.url} passHref>
-          <Link key={contentLink.url} href={contentLink.url} variant='body1' color='inherit'>
+          <Link
+            key={contentLink.url}
+            href={contentLink.url}
+            variant='body1'
+            color='inherit'
+            underline="hover">
             {contentLink.title}
           </Link>
         </PageLink>
       ))}
     </ContentLinks>
-  )
+  );
 }

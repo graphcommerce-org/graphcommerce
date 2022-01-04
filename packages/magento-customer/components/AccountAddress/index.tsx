@@ -52,12 +52,12 @@ export default function AccountAddress(props: AccountAddressProps) {
       </div>
       <div className={classes.actions}>
         <PageLink href={`/account/addresses/edit?addressId=${id}`} passHref>
-          <Link color='primary'>
+          <Link color='primary' underline="hover">
             <Trans>Edit</Trans>
           </Link>
         </PageLink>
         <DeleteCustomerAddressForm addressId={id ?? undefined} />
       </div>
     </div>
-  )
+  );
 }

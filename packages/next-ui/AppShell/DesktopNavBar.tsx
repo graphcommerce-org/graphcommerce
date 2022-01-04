@@ -105,7 +105,7 @@ export default function DesktopNavBar(props: MenuTabsProps) {
                 variant='subtitle1'
                 {...LinkProps}
                 className={clsx(classes.link, LinkProps?.className)}
-              >
+                underline="hover">
                 {children}
                 <div
                   className={clsx(
@@ -155,5 +155,5 @@ export default function DesktopNavBar(props: MenuTabsProps) {
           <SvgImageSimple src={iconChevronRight} />
         </ScrollerButton> */}
     </ScrollerProvider>
-  )
+  );
 }

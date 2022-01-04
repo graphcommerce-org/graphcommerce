@@ -92,7 +92,7 @@ export default function AccountSignInUpForm() {
           <Typography variant='h6' align='center'>
             <Trans>You can view</Trans>{' '}
             <PageLink href='/account' passHref>
-              <Link>your account here</Link>
+              <Link underline="hover">your account here</Link>
             </PageLink>
             .
           </Typography>
@@ -176,5 +176,5 @@ export default function AccountSignInUpForm() {
         )}
       </AnimatePresence>
     </FormDiv>
-  )
+  );
 }

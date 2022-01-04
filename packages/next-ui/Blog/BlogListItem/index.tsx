@@ -64,7 +64,7 @@ export default function BlogListItem(props: BlogListItemProps) {
   return (
     <div className={classes.item}>
       <PageLink href={`/${url}`} passHref>
-        <Link color='inherit'>
+        <Link color='inherit' underline="hover">
           <div className={classes.asset}>{asset}</div>
         </Link>
       </PageLink>
@@ -74,12 +74,16 @@ export default function BlogListItem(props: BlogListItemProps) {
       </time>
 
       <PageLink href={`/${url}`} passHref>
-        <Link href={`/${url}`} className={classes.title} color='inherit'>
+        <Link
+          href={`/${url}`}
+          className={classes.title}
+          color='inherit'
+          underline="hover">
           <Typography component='h2' variant='h4' color='inherit'>
             {title}
           </Typography>
         </Link>
       </PageLink>
     </div>
-  )
+  );
 }

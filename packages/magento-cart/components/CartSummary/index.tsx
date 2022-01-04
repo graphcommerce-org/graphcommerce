@@ -91,7 +91,11 @@ export default function CartSummary(props: CartSummaryProps) {
                 labelRight={
                   editable ? (
                     <PageLink href={historyHref} passHref>
-                      <Link color='secondary' variant='body2' onClick={historyOnClick}>
+                      <Link
+                        color='secondary'
+                        variant='body2'
+                        onClick={historyOnClick}
+                        underline="hover">
                         <Trans>Edit</Trans>
                       </Link>
                     </PageLink>
@@ -108,7 +112,7 @@ export default function CartSummary(props: CartSummaryProps) {
                 labelRight={
                   editable ? (
                     <PageLink href='/checkout/edit/billing-address' passHref>
-                      <Link color='secondary' variant='body2'>
+                      <Link color='secondary' variant='body2' underline="hover">
                         <Trans>Edit</Trans>
                       </Link>
                     </PageLink>
@@ -123,5 +127,5 @@ export default function CartSummary(props: CartSummaryProps) {
       </div>
       {children}
     </div>
-  )
+  );
 }

@@ -28,30 +28,28 @@ function BlogPage(props: Props) {
   const page = pages[0]
   const title = page.title ?? ''
 
-  return (
-    <>
-      <PageMeta title={title} metaDescription={title} canonical={page.url} />
+  return <>
+    <PageMeta title={title} metaDescription={title} canonical={page.url} />
 
-      <LayoutHeader floatingMd>
-        <LayoutTitle size='small'>{title}</LayoutTitle>
-      </LayoutHeader>
+    <LayoutHeader floatingMd>
+      <LayoutTitle size='small'>{title}</LayoutTitle>
+    </LayoutHeader>
 
-      <Container maxWidth='xl'>
-        <LayoutTitle variant='h1'>{title}</LayoutTitle>
-      </Container>
+    <Container maxWidth='xl'>
+      <LayoutTitle variant='h1'>{title}</LayoutTitle>
+    </Container>
 
-      <BlogList blogPosts={blogPosts} />
-      <Pagination
-        count={Math.ceil(pagesConnection.aggregate.count / pageSize)}
-        page={Number(router.query.page ? router.query.page : 1)}
-        renderLink={(p: number, icon: React.ReactNode) => (
-          <PageLink href={p === 1 ? '/blog' : `/blog/page/${p}`} passHref>
-            <Link color='primary'>{icon}</Link>
-          </PageLink>
-        )}
-      />
-    </>
-  )
+    <BlogList blogPosts={blogPosts} />
+    <Pagination
+      count={Math.ceil(pagesConnection.aggregate.count / pageSize)}
+      page={Number(router.query.page ? router.query.page : 1)}
+      renderLink={(p: number, icon: React.ReactNode) => (
+        <PageLink href={p === 1 ? '/blog' : `/blog/page/${p}`} passHref>
+          <Link color='primary' underline="hover">{icon}</Link>
+        </PageLink>
+      )}
+    />
+  </>;
 }
 
 BlogPage.pageOptions = {

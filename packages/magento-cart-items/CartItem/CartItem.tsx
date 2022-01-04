@@ -178,7 +178,7 @@ export default function CartItem(props: CartItemProps) {
         <Link
           variant='body1'
           className={clsx(classes.itemName, withOptions && classes.itemNameWithOptions)}
-        >
+          underline="hover">
           {name}
         </Link>
       </PageLink>
@@ -204,5 +204,5 @@ export default function CartItem(props: CartItemProps) {
 
       {children}
     </div>
-  )
+  );
 }
