@@ -1,5 +1,4 @@
-import { Button } from '@graphcommerce/next-ui'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { Button , makeStyles } from '@graphcommerce/next-ui'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { LayoutProps } from '../Layout/PageLayout'

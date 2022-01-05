@@ -1,4 +1,3 @@
-import { Theme } from '@mui/material'
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'

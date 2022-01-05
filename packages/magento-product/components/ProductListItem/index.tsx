@@ -1,6 +1,6 @@
 import { Image, ImageProps } from '@graphcommerce/image'
 import { makeStyles, responsiveVal, UseStyles } from '@graphcommerce/next-ui'
-import { ButtonBase, Theme, Typography } from '@mui/material'
+import { ButtonBase, Typography } from '@mui/material'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -10,7 +10,7 @@ import { useProductLink } from '../../hooks/useProductLink'
 import ProductListPrice from '../ProductListPrice'
 
 const useStyles = makeStyles<BaseProps>({ name: 'ProductListItem' })(
-  (theme: Theme, { aspectRatio = [4, 3] }) => ({
+  (theme, { aspectRatio = [4, 3] }) => ({
     buttonBase: {
       display: 'block',
     },

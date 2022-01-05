@@ -14,11 +14,11 @@ import {
   FormActions,
   FormRow,
   LayoutTitle,
+  makeStyles,
 } from '@graphcommerce/next-ui'
 import { emailPattern, useFormPersist } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { CircularProgress, Link, TextField, Theme, Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { CircularProgress, Link, TextField, Typography } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import router from 'next/router'

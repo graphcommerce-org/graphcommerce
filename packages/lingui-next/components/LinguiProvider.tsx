@@ -1,7 +1,6 @@
 import { i18n, Messages } from '@lingui/core'
 import { I18nProvider, I18nProviderProps } from '@lingui/react'
 import { nl, en, fr } from 'make-plural/plurals'
-import { useRouter } from 'next/router'
 import React, { useMemo } from 'react'
 import { MessageLoader, SyncMessageLoader } from '../types'
 
@@ -53,7 +52,9 @@ export default function LinguiProvider(props: LinguiProviderProps) {
         })()
       }
     }
-  }, [locale, loader])
+    // We dont want to call this when the loader/ssrLoader changes, because it will cause a re-render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locale])
 
   return <I18nProvider i18n={i18n} {...i18nProviderPRops} />
 }

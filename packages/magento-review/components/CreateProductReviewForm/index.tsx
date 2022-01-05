@@ -14,7 +14,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { Box, TextField, Theme, Typography, Alert } from '@mui/material'
+import { Box, TextField, Typography, Alert } from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { CreateProductReviewDocument } from './CreateProductReview.gql'

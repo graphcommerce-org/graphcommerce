@@ -1,6 +1,5 @@
-import { Theme } from '@mui/material'
-import { makeStyles } from '../../Styles/tssReact'
 import React from 'react'
+import { makeStyles } from '../../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'BlogContent' })((theme) => ({
   wrapper: {

@@ -1,8 +1,8 @@
-import { Avatar, Chip, Theme } from '@mui/material'
-import { makeStyles } from '../../Styles/tssReact'
+import { Avatar, Chip } from '@mui/material'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
+import { makeStyles } from '../../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'BlogAuthor' })((theme) => ({
   wrapper: {

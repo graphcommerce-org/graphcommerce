@@ -1,4 +1,4 @@
-import { ContainerProps, Theme, useTheme, useMediaQuery } from '@mui/material'
+import { ContainerProps, useTheme, useMediaQuery } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import Row from '..'

@@ -1,6 +1,4 @@
-import { SectionContainer } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { SectionContainer, makeStyles } from '@graphcommerce/next-ui'
 import { Skeleton } from '@mui/material'
 import React from 'react'
 import CustomerReview from '../CustomerReview'

@@ -5,8 +5,8 @@ import {
   ScrollerProvider,
   ScrollerButton,
 } from '@graphcommerce/framer-scroller'
-import { Typography } from '@mui/material'
 import { makeStyles } from '@graphcommerce/next-ui'
+import { Typography } from '@mui/material'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'

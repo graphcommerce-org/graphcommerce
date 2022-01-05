@@ -1,15 +1,14 @@
-import { Theme } from '@mui/material'
-import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 import clsx from 'clsx'
 import React, { FormEvent } from 'react'
 import Button, { ButtonProps } from '../Button'
 import { UseStyles } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 
 type StyleProps = { selected?: boolean; color?: ButtonProps['color'] }
 
 export const useStyles = makeStyles<StyleProps>({ name: 'ToggleButton' })(
-  (theme: Theme, { color = 'default' }) => ({
+  (theme, { color = 'default' }) => ({
     /* Styles applied to the root element. */
     root: {
       borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),

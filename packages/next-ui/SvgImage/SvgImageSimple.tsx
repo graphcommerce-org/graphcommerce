@@ -1,9 +1,9 @@
 import { ImageProps, isStaticImport, isStaticRequire } from '@graphcommerce/image'
 import { capitalize } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
 import { responsiveVal } from '../Styles/responsiveVal'
+import { makeStyles } from '../Styles/tssReact'
 
 export type SvgImageShade = 'muted' | 'default' | 'inverted'
 

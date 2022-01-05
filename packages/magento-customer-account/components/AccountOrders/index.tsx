@@ -3,10 +3,9 @@ import {
   OrderCard,
   useOrderCardItemImages,
 } from '@graphcommerce/magento-customer-order'
-import { Pagination, SectionContainer } from '@graphcommerce/next-ui'
+import { Pagination, SectionContainer, makeStyles } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Link, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { Link } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { AccountOrdersFragment } from './AccountOrders.gql'

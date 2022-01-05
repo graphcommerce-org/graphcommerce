@@ -1,5 +1,4 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import { Theme } from '@mui/material'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import { makeStyles, useMergedClasses } from '../Styles/tssReact'
@@ -24,7 +23,7 @@ export const SvgImageShades: Record<SvgImageShade, number> = {
 export type UseStylesProps = { shade: number; baseSize: number; mobileSize: number }
 
 const useStyles = makeStyles<UseStylesProps>({ name: 'SvgImage' })(
-  (theme: Theme, { shade, baseSize, mobileSize }) => ({
+  (theme, { shade, baseSize, mobileSize }) => ({
     root: {
       filter: shade > 0 ? `invert(${shade}%)` : undefined,
       objectFit: 'contain',

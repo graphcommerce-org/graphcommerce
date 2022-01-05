@@ -1,6 +1,4 @@
-import { LayoutTitle } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { LayoutTitle, makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 
 const useStyles = makeStyles({ name: 'CategoryHeroNavTitle' })((theme) => ({

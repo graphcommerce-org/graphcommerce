@@ -1,9 +1,8 @@
-import { Theme } from '@mui/material'
 import { m } from 'framer-motion'
 import { UseStyles } from '../Styles'
 import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 
-const useStyles = makeStyles({ name: 'FixedFab' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'FixedFab' })((theme) => ({
   root: {
     position: 'fixed',
     bottom: 20,

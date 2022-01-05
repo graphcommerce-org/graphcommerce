@@ -1,7 +1,7 @@
-import { Chip, Theme } from '@mui/material'
-import { makeStyles } from '../../Styles/tssReact'
+import { Chip } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
+import { makeStyles } from '../../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'BlogTitle' })((theme) => ({
   wrapper: {

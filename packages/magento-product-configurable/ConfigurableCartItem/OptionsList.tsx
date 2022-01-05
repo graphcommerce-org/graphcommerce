@@ -1,6 +1,4 @@
-import { responsiveVal } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { responsiveVal, makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { ConfigurableCartItemFragment } from './ConfigurableCartItem.gql'
 

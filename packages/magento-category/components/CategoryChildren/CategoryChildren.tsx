@@ -2,7 +2,6 @@ import { cloneDeep } from '@apollo/client/utilities'
 import { Scroller, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { ProductListLink, ProductListParams } from '@graphcommerce/magento-product'
 import { UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material'
 import React from 'react'
 import { CategoryChildrenFragment } from './CategoryChildren.gql'
 

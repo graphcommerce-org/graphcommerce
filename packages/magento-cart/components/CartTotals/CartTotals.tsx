@@ -7,7 +7,7 @@ import {
   useMergedClasses,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Divider, lighten, Theme } from '@mui/material'
+import { Divider, lighten } from '@mui/material'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'

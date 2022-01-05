@@ -1,4 +1,4 @@
-import { Button as MuiButton, ButtonClassKey as MuiButtonClassKey, Theme } from '@mui/material'
+import { Button as MuiButton, ButtonClassKey as MuiButtonClassKey } from '@mui/material'
 import clsx from 'clsx'
 import React from 'react'
 import { makeStyles, useMergedClasses } from '../Styles/tssReact'

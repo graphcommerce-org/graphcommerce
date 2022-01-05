@@ -1,11 +1,11 @@
-import { Container, Theme, Typography } from '@mui/material'
+import { Container, Typography } from '@mui/material'
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 
-const useStyles = makeStyles({ name: 'FullPageMessage' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'FullPageMessage' })((theme) => ({
   root: {
     alignItems: 'center',
     marginTop: theme.spacings.md,

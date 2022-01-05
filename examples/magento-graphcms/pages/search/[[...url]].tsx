@@ -31,7 +31,6 @@ import React from 'react'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import { LayoutFull, LayoutFullProps } from '../../components/Layout'
 import ProductListItems from '../../components/ProductListItems/ProductListItems'
-import useProductListStyles from '../../components/ProductListItems/useProductListStyles'
 import apolloClient from '../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }

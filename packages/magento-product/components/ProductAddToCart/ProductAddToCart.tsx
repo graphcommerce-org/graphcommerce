@@ -8,9 +8,9 @@ import {
   TextInputNumber,
   iconChevronRight,
   SvgImageSimple,
+  makeStyles,
 } from '@graphcommerce/next-ui'
-import { Divider, Theme, Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { Divider, Typography } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'

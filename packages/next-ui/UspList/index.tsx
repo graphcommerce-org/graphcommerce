@@ -1,8 +1,7 @@
-import { Theme } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
+import { makeStyles } from '../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'UspList' })((theme) => ({
   root: {

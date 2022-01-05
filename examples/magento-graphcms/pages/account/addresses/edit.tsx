@@ -12,8 +12,7 @@ import {
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Box, Container, NoSsr } from '@mui/material'
-import { Skeleton } from '@mui/material'
+import { Box, Container, NoSsr , Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'

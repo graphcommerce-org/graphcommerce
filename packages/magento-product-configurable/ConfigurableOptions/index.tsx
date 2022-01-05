@@ -1,7 +1,12 @@
-import { RenderType, SectionHeader, ToggleButton, ToggleButtonGroup } from '@graphcommerce/next-ui'
+import {
+  RenderType,
+  SectionHeader,
+  ToggleButton,
+  ToggleButtonGroup,
+  makeStyles,
+} from '@graphcommerce/next-ui'
 import { Controller, FieldErrors, UseControllerProps } from '@graphcommerce/react-hook-form'
-import { BaseTextFieldProps, FormHelperText, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { BaseTextFieldProps, FormHelperText } from '@mui/material'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import { SwatchTypeRenderer, SwatchSize } from '../Swatches'

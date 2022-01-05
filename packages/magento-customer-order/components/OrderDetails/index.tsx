@@ -10,10 +10,9 @@ import {
   responsiveVal,
   iconInvoice,
   SvgImageSimple,
+  makeStyles,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import { Skeleton } from '@mui/material'
 import clsx from 'clsx'
 import React from 'react'

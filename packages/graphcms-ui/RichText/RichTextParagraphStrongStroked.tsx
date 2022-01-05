@@ -1,8 +1,7 @@
 import { withStyles } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material'
 import RichText from '.'
 
-const RichTextParagraphStrongStroked = withStyles(RichText, (theme: Theme) => ({
+const RichTextParagraphStrongStroked = withStyles(RichText, (theme) => ({
   paragraph: {
     ...theme.typography.body2,
     textTransform: 'uppercase',

@@ -1,6 +1,6 @@
-import { makeStyles } from '../Styles/tssReact'
 import React from 'react'
 import { UseStyles } from '../Styles'
+import { makeStyles } from '../Styles/tssReact'
 
 const useStyles = makeStyles<Props>()((_theme, { width, height }) => ({
   root: {

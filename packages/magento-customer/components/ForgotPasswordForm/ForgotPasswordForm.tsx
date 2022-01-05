@@ -1,9 +1,7 @@
-import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
+import { Button, Form, FormActions, FormRow, makeStyles } from '@graphcommerce/next-ui'
 import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
-import { TextField, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
-import { Alert } from '@mui/material'
+import { TextField, Alert } from '@mui/material'
 import React from 'react'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {

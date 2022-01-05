@@ -7,6 +7,7 @@ import {
   responsiveVal,
   SvgImageSimple,
   ToggleButton,
+  makeStyles,
 } from '@graphcommerce/next-ui'
 import {
   Controller,
@@ -16,8 +17,7 @@ import {
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/macro'
-import { FormControl, FormHelperText, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { FormControl, FormHelperText } from '@mui/material'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useEffect } from 'react'

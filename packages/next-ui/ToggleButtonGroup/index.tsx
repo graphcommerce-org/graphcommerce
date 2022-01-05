@@ -1,11 +1,10 @@
-import { Theme } from '@mui/material'
-import { makeStyles, useMergedClasses } from '../Styles/tssReact'
-import { capitalize } from '@mui/material/utils'
 import { ToggleButtonGroupProps } from '@mui/lab'
+import { capitalize } from '@mui/material/utils'
 import clsx from 'clsx'
 import React, { PropsWithoutRef } from 'react'
 import { isFragment } from 'react-is'
 import { UseStyles } from '../Styles'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 
 function isValueSelected(value: string, candidate: string | string[]) {
   if (candidate === undefined || value === undefined) return false
@@ -19,7 +18,7 @@ export type ToggleButtonPropsBase = Omit<PropsWithoutRef<ToggleButtonGroupProps>
 }
 
 export const useStyles = makeStyles<ToggleButtonPropsBase>({ name: 'ToggleButtonGroup' })(
-  (theme: Theme, { minWidth = 200 }) => ({
+  (theme, { minWidth = 200 }) => ({
     root: {
       display: 'grid',
       gridTemplateColumns: `repeat(auto-fit, minmax(${minWidth}px, 1fr))`,

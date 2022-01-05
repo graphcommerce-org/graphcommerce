@@ -1,6 +1,5 @@
-import { Logo as NextLogo, LogoProps } from '@graphcommerce/next-ui'
-import { Theme, useTheme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { Logo as NextLogo, LogoProps, makeStyles } from '@graphcommerce/next-ui'
+import { useTheme } from '@mui/material'
 import clsx from 'clsx'
 import svgLogo from './graphcommerce.svg'
 

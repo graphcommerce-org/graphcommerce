@@ -1,7 +1,7 @@
-import { makeStyles } from '../../Styles/tssReact'
 import React from 'react'
 import { LayoutTitle } from '../../Layout'
 import { UseStyles } from '../../Styles'
+import { makeStyles } from '../../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'BlogTitle' })({
   wrapper: {

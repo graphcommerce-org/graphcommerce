@@ -43,8 +43,6 @@ type LayoutValue = 'fill' | 'fixed' | 'intrinsic' | 'responsive' | undefined
 
 type PlaceholderValue = 'blur' | 'empty'
 
-type ImgElementStyle = NonNullable<JSX.IntrinsicElements['img']['style']>
-
 interface StaticImageData {
   src: string
   height: number

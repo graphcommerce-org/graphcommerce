@@ -2,13 +2,11 @@ import {
   Button,
   FullPageMessage,
   SectionContainer,
-  MessageSnackbar,
   iconHome,
   SvgImageSimple,
+  makeStyles,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import { Skeleton } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'

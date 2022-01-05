@@ -1,6 +1,5 @@
-import { responsiveVal, iconOrderBefore, SvgImageSimple } from '@graphcommerce/next-ui'
-import { darken, lighten, Theme, Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { responsiveVal, iconOrderBefore, SvgImageSimple, makeStyles } from '@graphcommerce/next-ui'
+import { darken, lighten, Typography } from '@mui/material'
 import React from 'react'
 
 const useStyles = makeStyles({ name: 'ProductSidebarDelivery' })((theme) => ({

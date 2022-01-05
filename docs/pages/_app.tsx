@@ -1,5 +1,5 @@
 import { App, AppProps } from '@graphcommerce/next-ui'
-import { ThemeProvider, Theme, StyledEngineProvider } from '@mui/material'
+import { ThemeProvider } from '@mui/material'
 import React from 'react'
 import { lightTheme } from '../components/Theme/ThemedProvider'
 

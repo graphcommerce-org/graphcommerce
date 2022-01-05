@@ -1,7 +1,7 @@
 import { AnimatePresence } from 'framer-motion'
 import { requestIdleCallback, cancelIdleCallback } from 'next/dist/client/request-idle-callback'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
-import { NextRouter, Router, useRouter } from 'next/router'
+import { NextRouter, Router } from 'next/router'
 import React, { useEffect, useRef, useState } from 'react'
 import {} from 'react-dom'
 import { pageContext } from '../context/pageContext'

@@ -1,5 +1,4 @@
 import { UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material'
 import React from 'react'
 import { CategoryDescriptionFragment } from './CategoryDescription.gql'
 
@@ -7,7 +6,7 @@ type CategoryDescriptionProps = Omit<CategoryDescriptionFragment, 'uid'> &
   JSX.IntrinsicElements['div'] &
   UseStyles<typeof useStyles>
 
-const useStyles = makeStyles({ name: 'CategoryDescription' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'CategoryDescription' })((theme) => ({
   root: {
     gridArea: 'description',
     margin: `0 auto ${theme.spacings.sm}`,

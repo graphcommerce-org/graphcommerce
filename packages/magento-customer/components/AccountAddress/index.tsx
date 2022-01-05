@@ -1,6 +1,6 @@
-import { Trans } from '@lingui/macro'
-import { Link, Theme } from '@mui/material'
 import { makeStyles } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
+import { Link } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import AddressMultiLine from '../AddressMultiLine'

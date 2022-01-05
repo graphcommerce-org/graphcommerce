@@ -1,7 +1,7 @@
 import { LinearProgress, Fade } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
+import { makeStyles } from '../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'PageLoadIndicator' })((theme) => ({
   progress: {

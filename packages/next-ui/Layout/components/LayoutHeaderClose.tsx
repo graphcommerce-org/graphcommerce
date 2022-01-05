@@ -1,12 +1,11 @@
 import { useGo, usePageContext } from '@graphcommerce/framer-next-pages'
+import { Trans } from '@lingui/macro'
 import React from 'react'
 import Button from '../../Button'
+import { responsiveVal } from '../../Styles/responsiveVal'
+import { makeStyles } from '../../Styles/tssReact'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconClose } from '../../icons'
-import { Theme } from '@mui/material'
-import { makeStyles } from '../../Styles/tssReact'
-import { responsiveVal } from '../../Styles/responsiveVal'
-import { Trans } from '@lingui/macro'
 
 export function useShowClose() {
   const { overlayGroup } = usePageContext()

@@ -1,8 +1,7 @@
 import { breakpointVal, withStyles } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material'
 import RichText from '.'
 
-const RichTextHeadingStrongStroked = withStyles(RichText, (theme: Theme) => ({
+const RichTextHeadingStrongStroked = withStyles(RichText, (theme) => ({
   h2: {
     ...theme.typography.h1,
     textTransform: 'uppercase',

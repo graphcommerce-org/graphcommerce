@@ -103,6 +103,8 @@ module.exports = {
 
     // Remove when fixed: https://github.com/airbnb/javascript/pull/2501/files
     'react/function-component-definition': 'off',
+
+    'prefer-const': ['error', { destructuring: 'all' }],
   },
   overrides: [
     {

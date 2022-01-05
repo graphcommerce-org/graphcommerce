@@ -4,9 +4,8 @@ import {
   responsiveVal,
   SidebarSlider,
   SidebarSliderProps,
-} from '@graphcommerce/next-ui'
+ makeStyles } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import renderers from '../../../ProductListItems/renderers'
 import { RowProductFragment } from '../RowProduct.gql'

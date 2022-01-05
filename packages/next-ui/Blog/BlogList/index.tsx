@@ -1,9 +1,8 @@
-import { Theme } from '@mui/material'
-import { makeStyles } from '../../Styles/tssReact'
 import React from 'react'
 import Row from '../../Row'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
+import { makeStyles } from '../../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'BlogList' })((theme) => ({
   root: {

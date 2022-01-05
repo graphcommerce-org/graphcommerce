@@ -5,7 +5,6 @@ import {
   makeStyles,
   useMergedClasses,
 } from '@graphcommerce/next-ui/Styles'
-import { Theme } from '@mui/material'
 import {
   HTMLMotionProps,
   motionValue,
@@ -23,7 +22,7 @@ import { useScrollerContext } from './useScrollerContext'
 import { useVelocitySnapTo } from './useVelocitySnapTo'
 
 const useStyles = makeStyles<ScrollSnapProps>({ name: 'Scroller' })(
-  (theme: Theme, { scrollSnapAlign, scrollSnapStop, scrollSnapTypeMd, scrollSnapTypeSm }) => ({
+  (theme, { scrollSnapAlign, scrollSnapStop, scrollSnapTypeMd, scrollSnapTypeSm }) => ({
     root: {
       '& *': {
         userSelect: 'none',

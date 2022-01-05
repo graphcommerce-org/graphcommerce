@@ -1,4 +1,4 @@
-import { Theme, ThemeProvider } from '@mui/material'
+import { ThemeProvider } from '@mui/material'
 import React from 'react'
 import { makeStyles } from './tssReact'
 
@@ -45,7 +45,7 @@ function RenderComponent(
  * export default withTheme(MyPage, darkTheme)
  * ```
  */
-export function withTheme<P extends { className?: string }>(Component: React.FC<P>, theme: Theme) {
+export function withTheme<P extends { className?: string }>(Component: React.FC<P>, theme) {
   return (props: P) => (
     <ThemeProvider theme={theme}>
       <RenderComponent Component={Component} {...props} />

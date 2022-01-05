@@ -1,5 +1,5 @@
-import { InputBaseComponentProps, TextField, TextFieldProps, Theme } from '@mui/material'
 import { makeStyles } from '@graphcommerce/next-ui'
+import { InputBaseComponentProps, TextField, TextFieldProps } from '@mui/material'
 import React, {
   Dispatch,
   SetStateAction,

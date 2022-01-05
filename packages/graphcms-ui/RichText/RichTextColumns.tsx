@@ -1,5 +1,4 @@
-import { UseStyles } from '@graphcommerce/next-ui'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { UseStyles , makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import RichText, { RichTextProps } from '.'
 
@@ -8,7 +7,7 @@ type StyleProps = { columnCount: number }
 const useStyles = makeStyles<StyleProps>()((theme, { columnCount }) => ({
   paragraph: {
     [theme.breakpoints.up('md')]: {
-      columnCount: columnCount,
+      columnCount,
       columnGap: theme.spacings.md,
     },
   },

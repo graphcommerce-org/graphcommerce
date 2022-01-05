@@ -1,5 +1,5 @@
 import { RatingProps } from '@mui/lab'
-import { Theme, Rating } from '@mui/material'
+import { Rating } from '@mui/material'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import { makeStyles, useMergedClasses } from '../Styles/tssReact'

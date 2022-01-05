@@ -1,6 +1,6 @@
 import { ApolloProvider, useQuery } from '@apollo/client'
 import createCache from '@emotion/cache'
-import { CacheProvider, EmotionCache } from '@emotion/react'
+import { CacheProvider } from '@emotion/react'
 import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 // import { GoogleAnalyticsScript } from '@graphcommerce/googleanalytics'
 // import { GoogleRecaptchaV3Script } from '@graphcommerce/googlerecaptcha'

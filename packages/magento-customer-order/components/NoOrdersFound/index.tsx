@@ -1,7 +1,5 @@
-import { IconHeader, iconBox } from '@graphcommerce/next-ui'
+import { IconHeader, iconBox, makeStyles } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
-import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 
 const useStyles = makeStyles({ name: 'AccountLatestOrder' })((theme) => ({

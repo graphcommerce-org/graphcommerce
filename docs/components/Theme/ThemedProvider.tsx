@@ -1,7 +1,7 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
 import { responsiveVal, breakpointVal } from '@graphcommerce/next-ui'
-import { createTheme, Theme, alpha, adaptV4Theme } from '@mui/material'
+import { createTheme, Theme, alpha } from '@mui/material'
 import { Components, PaletteOptions } from '@mui/material/styles'
 import shadows from './shadows'
 
@@ -439,7 +439,7 @@ const createOverrides = (theme: Theme): Components => ({
 })
 
 export const lightTheme = createThemeWithPalette(lightPalette)
-lightTheme.components = lightTheme.overrides = createOverrides(lightTheme)
+lightTheme.components = createOverrides(lightTheme)
 
 export const darkTheme = createThemeWithPalette(darkPalette)
-darkTheme.overrides = createOverrides(darkTheme)
+darkTheme.components = createOverrides(darkTheme)

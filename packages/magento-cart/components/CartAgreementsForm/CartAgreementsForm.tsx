@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { FormDiv } from '@graphcommerce/next-ui'
+import { FormDiv, makeStyles } from '@graphcommerce/next-ui'
 import {
   Controller,
   useForm,
@@ -8,8 +8,7 @@ import {
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/macro'
-import { Checkbox, FormControl, FormControlLabel, FormHelperText, Link, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { Checkbox, FormControl, FormControlLabel, FormHelperText, Link } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { CartAgreementsDocument } from './CartAgreements.gql'
