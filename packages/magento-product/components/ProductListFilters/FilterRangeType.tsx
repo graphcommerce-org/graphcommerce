@@ -43,8 +43,6 @@ const useStyles = makeStyles({ name: 'FilterRangeType' })((theme) => ({
     '& .MuiSlider-thumb': {
       width: sliderThumbWidth,
       height: sliderThumbWidth,
-      marginLeft: `-${sliderThumbWidth * 0.5}px`,
-      marginTop: `-${sliderThumbWidth * 0.5}px`,
       background: theme.palette.background.default,
       boxShadow: theme.shadows[6],
     },
