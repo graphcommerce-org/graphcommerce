@@ -8,9 +8,9 @@ const RichTextQuote = withStyles(RichText, (theme) => ({
     '@supports (font-variation-settings: normal)': {
       fontVariationSettings: "'wght' 620",
     },
-    textTransform: 'uppercase',
+    textTransform: 'uppercase' as const,
     maxWidth: '60%',
-    textAlign: 'center',
+    textAlign: 'center' as const,
     margin: '0 auto',
     [theme.breakpoints.up('lg')]: {
       maxWidth: '80%',

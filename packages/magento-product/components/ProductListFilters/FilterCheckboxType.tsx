@@ -4,6 +4,7 @@ import {
   iconCancelAlt,
   SvgImageSimple,
   useMergedClasses,
+  UseStyles,
 } from '@graphcommerce/next-ui'
 import { Chip, ChipProps } from '@mui/material'
 import clsx from 'clsx'
@@ -17,7 +18,8 @@ import { ProductListFiltersFragment } from './ProductListFilters.gql'
 export type FilterCheckboxTypeProps = NonNullable<
   NonNullable<ProductListFiltersFragment['aggregations']>[0]
 > &
-  Omit<ChipProps, 'selected'>
+  Omit<ChipProps, 'selected'> &
+  UseStyles<typeof useChipMenuStyles>
 
 export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props

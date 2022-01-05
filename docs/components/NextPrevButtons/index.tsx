@@ -1,27 +1,15 @@
-import { Button , makeStyles } from '@graphcommerce/next-ui'
+import { Button, makeStyles } from '@graphcommerce/next-ui'
+import { Box } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { LayoutProps } from '../Layout/PageLayout'
 import { SanitizedDirectoryTree } from '../SidebarMenu/sanitizeDirectoryTree'
 
-const useStyles = makeStyles()(
-  () => ({
-    root: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'flex-end',
-    },
-  }),
-  {
-    name: 'NextPrevButtons',
-  },
-)
-
 type NextPrevButtonProps = Pick<LayoutProps, 'menuData'>
 
 export default function NextPrevButtons({ menuData }: NextPrevButtonProps) {
   const router = useRouter()
-  const { classes } = useStyles()
+
   const flatMenuData = (menuData as unknown as SanitizedDirectoryTree)
     .map((data) => data[1])
     .flat(1)
@@ -31,7 +19,10 @@ export default function NextPrevButtons({ menuData }: NextPrevButtonProps) {
   const nextPage = flatMenuData?.[currentPageIndex + 1]
 
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}
+      className={classes.root}
+    >
       <div>
         {prevPage && (
           <Button href={prevPage?.urlKey} color='secondary' variant='text'>
@@ -46,6 +37,6 @@ export default function NextPrevButtons({ menuData }: NextPrevButtonProps) {
           </Button>
         )}
       </div>
-    </div>
+    </Box>
   )
 }

@@ -1,4 +1,4 @@
-import { ToggleButtonGroupProps } from '@mui/material'
+import { ToggleButtonGroupProps as ToggleButtonGroupPropsBase } from '@mui/material'
 import { capitalize } from '@mui/material/utils'
 import clsx from 'clsx'
 import React, { PropsWithoutRef } from 'react'
@@ -14,7 +14,7 @@ function isValueSelected(value: string, candidate: string | string[]) {
 
 type StyleProps = { minWidth?: number }
 
-export const useStyles = makeStyles<StyleProps>({ name: 'ToggleButtonGroup' })(
+const useStyles = makeStyles<StyleProps>({ name: 'ToggleButtonGroup' })(
   (theme, { minWidth = 200 }) => ({
     root: {
       display: 'grid',
@@ -30,12 +30,12 @@ export const useStyles = makeStyles<StyleProps>({ name: 'ToggleButtonGroup' })(
   }),
 )
 
-export type ToggleButtonProps = Omit<PropsWithoutRef<ToggleButtonGroupProps>, 'size'> & {
+export type ToggleButtonGroupProps = Omit<PropsWithoutRef<ToggleButtonGroupPropsBase>, 'size'> & {
   required?: boolean
 } & StyleProps &
   UseStyles<typeof useStyles>
 
-const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonProps>((props, ref) => {
+const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGroupProps>((props, ref) => {
   const {
     children,
     className,
@@ -109,4 +109,4 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonProps>((p
   )
 })
 
-export default ToggleButtonGroup
+export { ToggleButtonGroup }

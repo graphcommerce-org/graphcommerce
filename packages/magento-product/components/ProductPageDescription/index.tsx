@@ -3,6 +3,7 @@ import {
   ColumnTwoWithTopProps,
   makeStyles,
   useMergedClasses,
+  UseStyles,
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import React from 'react'
@@ -39,7 +40,8 @@ const useStyles = makeStyles({ name: 'ProductPageDescription' })((theme) => ({
 }))
 
 export type ProductPageDescriptionProps = ProductPageDescriptionFragment &
-  Omit<ColumnTwoWithTopProps, 'top' | 'left'>
+  Omit<ColumnTwoWithTopProps, 'top' | 'left'> &
+  UseStyles<typeof useStyles>
 
 export default function ProductPageDescription(props: ProductPageDescriptionProps) {
   const classes = useMergedClasses(useStyles().classes, props.classes)

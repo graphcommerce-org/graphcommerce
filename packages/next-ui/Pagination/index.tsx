@@ -1,4 +1,5 @@
-import { PaginationProps, usePagination, Fab, Typography } from '@mui/material'
+import { PaginationProps, Fab, Typography } from '@mui/material'
+import usePagination from '@mui/material/usePagination'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import { makeStyles, useMergedClasses } from '../Styles/tssReact'

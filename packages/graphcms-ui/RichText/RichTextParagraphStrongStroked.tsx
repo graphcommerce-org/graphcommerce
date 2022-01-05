@@ -4,10 +4,10 @@ import RichText from '.'
 const RichTextParagraphStrongStroked = withStyles(RichText, (theme) => ({
   paragraph: {
     ...theme.typography.body2,
-    textTransform: 'uppercase',
+    textTransform: 'uppercase' as const,
     maxWidth: '100%',
     fontWeight: 600,
-    textAlign: 'left',
+    textAlign: 'left' as const,
     [theme.breakpoints.up('md')]: {
       ...theme.typography.h3,
       fontWeight: 600,

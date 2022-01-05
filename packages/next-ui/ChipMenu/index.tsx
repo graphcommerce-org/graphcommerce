@@ -1,6 +1,7 @@
 import { Chip, ChipProps, Menu } from '@mui/material'
 import clsx from 'clsx'
 import React, { PropsWithChildren, useState } from 'react'
+import { UseStyles } from '..'
 import SectionHeader from '../SectionHeader'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { makeStyles, useMergedClasses } from '../Styles/tssReact'
@@ -55,7 +56,7 @@ export type ChipMenuProps = PropsWithChildren<Omit<ChipProps, 'children'>> & {
   selected: boolean
   onClose?: () => void
   labelRight?: React.ReactNode
-}
+} & UseStyles<typeof useChipMenuStyles>
 
 export default function ChipMenu(props: ChipMenuProps) {
   const { children, selected, onDelete, label, labelRight, onClose, selectedLabel, ...chipProps } =
@@ -100,7 +101,6 @@ export default function ChipMenu(props: ChipMenuProps) {
           if (onClose) onClose()
           setOpenEl(null)
         }}
-        getContentAnchorEl={null} // https://github.com/mui-org/material-ui/issues/7961#issuecomment-326116559
         anchorPosition={{ top: 6, left: 0 }}
         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
         classes={{ paper: classes.menuPaper, list: classes.menuList }}

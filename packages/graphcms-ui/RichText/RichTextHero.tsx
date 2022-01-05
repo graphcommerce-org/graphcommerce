@@ -4,14 +4,12 @@ import RichText from '.'
 const RichTextHero = withStyles(RichText, (theme) => ({
   h1: {
     ...theme.typography.h1,
-    textTransform: 'uppercase',
+    textTransform: 'uppercase' as const,
     maxWidth: '70%',
-    textAlign: 'center',
+    textAlign: 'center' as const,
     margin: 0,
     marginBottom: theme.spacings.md,
-    [theme.breakpoints.up('sm')]: {
-      ...breakpointVal('fontSize', 36, 82, theme.breakpoints.values),
-    },
+    ...breakpointVal('fontSize', 36, 82, theme.breakpoints.values),
     [theme.breakpoints.up('md')]: {
       textAlign: 'left',
       maxWidth: '100%',

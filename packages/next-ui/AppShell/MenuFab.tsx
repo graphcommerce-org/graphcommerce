@@ -55,7 +55,7 @@ const useStyles = makeStyles({ name: 'Menu' })((theme) => ({
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.text.primary,
     minWidth: responsiveVal(200, 280),
-    marginTop: `calc(${responsiveVal(42, 56)} + 3px)`,
+    marginTop: 12,
     [theme.breakpoints.down('md')]: {
       marginTop: `calc((${responsiveVal(42, 56)} + 12px) * -1)`,
     },
@@ -113,11 +113,7 @@ export default function MenuFab(props: MenuFabProps) {
         onClose={() => setOpenEl(null)}
         classes={{ paper: classes.menu }}
         disableScrollLock
-        transitionDuration={{
-          appear: 175,
-          enter: 175,
-          exit: 175,
-        }}
+        transitionDuration={{ appear: 175, enter: 175, exit: 175 }}
       >
         {search && (
           <List>
