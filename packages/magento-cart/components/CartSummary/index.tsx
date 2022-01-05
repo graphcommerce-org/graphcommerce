@@ -11,7 +11,7 @@ import { GetCartSummaryDocument } from './GetCartSummary.gql'
 const useStyles = makeStyles({ name: 'OrderDetails' })((theme) => ({
   root: {
     margin: `${theme.spacings.sm} 0`,
-    '& div:last-child': {
+    '& div:last-of-type': {
       borderRadius: '0 0 4px 4px',
     },
   },

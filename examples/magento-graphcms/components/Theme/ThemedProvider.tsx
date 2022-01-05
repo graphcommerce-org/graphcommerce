@@ -258,7 +258,7 @@ const createOverrides = (theme: Theme): Components => ({
         fontWeight: 500,
       },
       iconSizeLarge: {
-        '& > *:first-child': { fontSize: 24 },
+        '& > :first-of-type': { fontSize: 24 },
       },
       endIcon: {
         marginLeft: 0,

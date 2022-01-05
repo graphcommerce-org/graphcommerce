@@ -35,7 +35,7 @@ const useStyles = makeStyles({ name: 'CouponAccordion' })((theme) => ({
     '& .MuiButton-label': {
       display: 'flex',
       justifyContent: 'flex-start',
-      '& span:last-child': {
+      '& span:last-of-type': {
         marginLeft: 'auto',
       },
     },

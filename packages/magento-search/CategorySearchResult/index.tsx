@@ -20,7 +20,7 @@ const useStyles = makeStyles({ name: 'CategorySearchResult' })((theme) => ({
     minWidth: '100%',
     maxWidth: 'unset',
     borderRadius: '0',
-    '&:not(&:last-child)': {
+    '&:not(&:last-of-type)': {
       borderBottom: `1px solid ${theme.palette.divider}`,
     },
     '&:focus': {

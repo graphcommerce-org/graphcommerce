@@ -5,9 +5,7 @@ const useRichTextStyles = makeStyles({ name: 'RichText' })((theme) => ({
     '&:empty': {
       display: 'none',
     },
-    '&:last-child': {
-      marginBottom: 0,
-    },
+    '&:last-of-type': { marginBottom: 0 },
   },
   paragraph: {
     marginBottom: '1em',
@@ -20,27 +18,25 @@ const useRichTextStyles = makeStyles({ name: 'RichText' })((theme) => ({
   h2: {
     marginTop: '0.5em',
     marginBottom: '0.5em',
-    '&:first-child': { marginTop: 0 },
+    '&:first-of-type': { marginTop: 0 },
   },
   h3: {
     marginTop: '0.5em',
     marginBottom: '0.5em',
-    '&:first-child': { marginTop: 0 },
+    '&:first-of-type': { marginTop: 0 },
   },
   h4: {
     marginTop: responsiveVal(11, 30),
     marginBottom: responsiveVal(11, 30),
-    '&:first-child': { marginTop: 0 },
+    '&:first-of-type': { marginTop: 0 },
   },
   h5: {
     marginTop: responsiveVal(7, 20),
     marginBottom: responsiveVal(7, 20),
-    '&:first-child': { marginTop: 0 },
+    '&:first-of-type': { marginTop: 0 },
   },
   h6: {
-    '&:first-of-type': {
-      marginTop: 0,
-    },
+    '&:first-of-type': { marginTop: 0 },
   },
   asset: {
     width: '100%',
@@ -93,7 +89,7 @@ const useRichTextStyles = makeStyles({ name: 'RichText' })((theme) => ({
       verticalAlign: 'center',
       borderColor: 'inherit',
       '& tr': {
-        '&:nth-child(odd)': {
+        '&:nth-of-type(odd)': {
           background: theme.palette.background.paper,
         },
       },
