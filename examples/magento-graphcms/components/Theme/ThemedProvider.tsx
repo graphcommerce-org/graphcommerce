@@ -245,6 +245,9 @@ const createOverrides = (theme: Theme): Components => ({
     ],
   },
   MuiButton: {
+    defaultProps: {
+      color: 'inherit',
+    },
     styleOverrides: {
       root: {
         textTransform: 'none',
