@@ -11,36 +11,34 @@ import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'
 
-const useStyles = makeStyles()(
-  () => ({
-    container: {
-      position: 'relative',
-      background: '#ededed',
-      width: '100%',
-      height: 400,
+const useStyles = makeStyles({ name: 'Index' })({
+  container: {
+    position: 'relative',
+    background: '#ededed',
+    width: '100%',
+    height: 400,
+  },
+  containerResizes: {
+    width: 600,
+    height: 800,
+  },
+  scroller: {
+    width: '100%',
+    height: '100%',
+    gridAutoColumns: `100%`,
+    gridTemplateRows: `100%`,
+    '& *': {
+      userSelect: 'none',
+      userDrag: 'none',
+      WebkitUserDrag: 'none',
     },
-    containerResizes: {
-      width: 600,
-      height: 800,
-    },
-    scroller: {
-      width: '100%',
-      height: '100%',
-      gridAutoColumns: `100%`,
-      gridTemplateRows: `100%`,
-      '& *': {
-        userSelect: 'none',
-        userDrag: 'none',
-      },
-    },
-    slide: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  }),
-  { name: 'Index' },
-)
+  },
+  slide: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+})
 
 function Index() {
   const { classes } = useStyles()

@@ -27,6 +27,7 @@ const useStyles = makeStyles<ScrollSnapProps>({ name: 'Scroller' })(
       '& *': {
         userSelect: 'none',
         userDrag: 'none',
+        WebkitUserDrag: 'none',
       },
     },
     rootSmSnapDirNone: {
