@@ -1,0 +1,11 @@
+diff --git a/node_modules/tss-react/tools/types/CSSObject.d.ts b/node_modules/tss-react/tools/types/CSSObject.d.ts
+index 2502fa3..ac1623f 100644
+--- a/node_modules/tss-react/tools/types/CSSObject.d.ts
++++ b/node_modules/tss-react/tools/types/CSSObject.d.ts
+@@ -35,5 +35,5 @@ export interface SerializedStyles {
+ export declare type InterpolationPrimitive = null | undefined | boolean | number | string | ComponentSelector | Keyframes | SerializedStyles | CSSObject;
+ export declare type CSSInterpolation = InterpolationPrimitive | ArrayCSSInterpolation;
+ export interface CSSOthersObject {
+-    [propertiesName: string]: CSSInterpolation;
++    [propertiesName: string]: unknown | CSSInterpolation;
+ }
