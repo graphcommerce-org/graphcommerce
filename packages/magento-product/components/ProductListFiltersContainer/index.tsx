@@ -137,7 +137,7 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
   return (
     <m.div className={classes.wrapper} ref={wrapperRef}>
       <ScrollerProvider scrollSnapAlign='none'>
-        <ScrollerButton direction='left' className={classes.sliderPrev}>
+        <ScrollerButton direction='left' className={classes.sliderPrev} size='small'>
           <SvgImageSimple src={iconChevronLeft} />
         </ScrollerButton>
         <div className={clsx(classes.container, isSticky && classes.containerSticky)}>
@@ -149,7 +149,7 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
           </Scroller>
           <m.div className={classes.shadow} style={{ opacity }} />
         </div>
-        <ScrollerButton direction='right' className={classes.sliderNext}>
+        <ScrollerButton direction='right' className={classes.sliderNext} size='small'>
           <SvgImageSimple src={iconChevronRight} />
         </ScrollerButton>
       </ScrollerProvider>
