@@ -7,7 +7,7 @@ export type JsonLdProps<T extends Thing> = {
   item: WithContext<T>
 }
 
-export default function JsonLd<T extends Thing>(props: JsonLdProps<T>) {
+export function JsonLd<T extends Thing>(props: JsonLdProps<T>) {
   const { item } = props
 
   return (

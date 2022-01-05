@@ -1,9 +1,8 @@
-import { CacheProvider } from '@emotion/react'
 import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 // import { GoogleAnalyticsScript } from '@graphcommerce/googleanalytics'
 // import { GoogleRecaptchaV3Script } from '@graphcommerce/googlerecaptcha'
 // import { GoogleTagManagerScript } from '@graphcommerce/googletagmanager'
-import { AppProps, emotionCache, GlobalHead, PageLoadIndicator } from '@graphcommerce/next-ui'
+import { AppProps, EmotionProvider, GlobalHead, PageLoadIndicator } from '@graphcommerce/next-ui'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { LazyMotion } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
@@ -19,14 +18,14 @@ export default function ThemedApp(props: Omit<AppPropsType, 'pageProps'> & AppPr
       {/* <GoogleAnalyticsScript /> */}
       {/* <GoogleRecaptchaV3Script /> */}
       {/* <GoogleTagManagerScript /> */}
-      <CacheProvider value={emotionCache()}>
+      <EmotionProvider>
         <ThemeProvider theme={darkTheme}>
           <GlobalHead name='GraphCommerce docs' />
           <CssBaseline />
           <PageLoadIndicator />
           <FramerNextPages {...props} />
         </ThemeProvider>
-      </CacheProvider>
+      </EmotionProvider>
     </LazyMotion>
   )
 }

@@ -14,7 +14,7 @@ const useStyles = makeStyles({ name: 'PageLoadIndicator' })((theme) => ({
   },
 }))
 
-function PageLoadIndicator() {
+export function PageLoadIndicator() {
   const router = useRouter()
   const { classes } = useStyles()
   const [loading, setLoading] = useState<boolean>(false)
@@ -39,5 +39,3 @@ function PageLoadIndicator() {
     </Fade>
   )
 }
-
-export default PageLoadIndicator

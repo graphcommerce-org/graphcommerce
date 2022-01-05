@@ -1,12 +1,11 @@
 import { ApolloProvider, useQuery } from '@apollo/client'
-import { CacheProvider } from '@emotion/react'
 import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 // import { GoogleAnalyticsScript } from '@graphcommerce/googleanalytics'
 // import { GoogleRecaptchaV3Script } from '@graphcommerce/googlerecaptcha'
 // import { GoogleTagManagerScript } from '@graphcommerce/googletagmanager'
 import { LinguiProvider } from '@graphcommerce/lingui-next'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppProps, emotionCache, GlobalHead, PageLoadIndicator } from '@graphcommerce/next-ui'
+import { AppProps, EmotionProvider, GlobalHead, PageLoadIndicator } from '@graphcommerce/next-ui'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { LazyMotion } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
@@ -34,19 +33,19 @@ export default function ThemedApp(props: Omit<AppPropsType, 'pageProps'> & AppPr
       features={async () => (await import('@graphcommerce/next-ui/Page/framerFeatures')).default}
       strict
     >
-      {/* <GoogleAnalyticsScript /> */}
-      {/* <GoogleRecaptchaV3Script /> */}
-      {/* <GoogleTagManagerScript /> */}
-      <LinguiProvider
-        key={locale}
-        locale={locale}
-        loader={(l) => import(`../locales/${l}.po`)}
-        ssrLoader={(l) =>
-          // eslint-disable-next-line global-require, import/no-dynamic-require
-          typeof window === 'undefined' ? require(`../locales/${l}.po`) : { messages: {} }
-        }
-      >
-        <CacheProvider value={emotionCache()}>
+      <EmotionProvider>
+        {/* <GoogleAnalyticsScript /> */}
+        {/* <GoogleRecaptchaV3Script /> */}
+        {/* <GoogleTagManagerScript /> */}
+        <LinguiProvider
+          key={locale}
+          locale={locale}
+          loader={(l) => import(`../locales/${l}.po`)}
+          ssrLoader={(l) =>
+            // eslint-disable-next-line global-require, import/no-dynamic-require
+            typeof window === 'undefined' ? require(`../locales/${l}.po`) : { messages: {} }
+          }
+        >
           <ApolloProvider client={apolloClient(locale, true, pageProps.apolloState)}>
             <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
               <Head />
@@ -55,8 +54,8 @@ export default function ThemedApp(props: Omit<AppPropsType, 'pageProps'> & AppPr
               <FramerNextPages {...props} />
             </ThemeProvider>
           </ApolloProvider>
-        </CacheProvider>
-      </LinguiProvider>
+        </LinguiProvider>
+      </EmotionProvider>
     </LazyMotion>
   )
 }

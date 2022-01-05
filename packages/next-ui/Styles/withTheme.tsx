@@ -1,24 +1,4 @@
-import { ThemeProvider } from '@mui/material'
-import React from 'react'
-import { makeStyles } from './tssReact'
-
-const useStyles = makeStyles({ name: 'Theme' })((theme) => ({
-  // These theme specific styles are copied from
-  // https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/CssBaseline/CssBaseline.js#L18-L20
-  root: {
-    color: theme.palette.text.primary,
-    ...theme.typography.body1,
-    backgroundColor: theme.palette.background.default,
-  },
-}))
-
-function RenderComponent(
-  props: { Component: React.FC<Record<string, unknown>> } & Record<string, unknown>,
-) {
-  const { Component, ...componentProps } = props
-  const { classes } = useStyles()
-  return <Component {...componentProps} className={classes.root} />
-}
+import { css, Theme, ThemeProvider } from '@mui/material'
 
 /**
  * It will provide a theme for the underlying tree and will set the color/font and backgroundColor
@@ -45,10 +25,17 @@ function RenderComponent(
  * export default withTheme(MyPage, darkTheme)
  * ```
  */
-export function withTheme<P extends { className?: string }>(Component: React.FC<P>, theme) {
-  return (props: P) => (
+export function withTheme(Component: React.FC<{ className?: string }>, theme: Theme) {
+  return (props: Record<string, unknown>) => (
     <ThemeProvider theme={theme}>
-      <RenderComponent Component={Component} {...props} />
+      <Component
+        {...props}
+        css={css({
+          color: theme.palette.text.primary,
+          ...theme.typography.body1,
+          backgroundColor: theme.palette.background.default,
+        })}
+      />
     </ThemeProvider>
   )
 }

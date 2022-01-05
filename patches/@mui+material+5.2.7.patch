@@ -1,0 +1,13 @@
+diff --git a/node_modules/@mui/material/styles/createTypography.d.ts b/node_modules/@mui/material/styles/createTypography.d.ts
+index d45b25a..1c09948 100644
+--- a/node_modules/@mui/material/styles/createTypography.d.ts
++++ b/node_modules/@mui/material/styles/createTypography.d.ts
+@@ -35,7 +35,7 @@ export type Fontface = CSS.AtRule.FontFace & { fallbacks?: CSS.AtRule.FontFace[]
+  * Allows the user to augment the properties available
+  */
+ export interface BaseCSSProperties extends NormalCssProperties {
+-  '@font-face'?: Fontface | Fontface[];
++  // '@font-face'?: Fontface | Fontface[];
+ }
+ 
+ export interface CSSProperties extends BaseCSSProperties {

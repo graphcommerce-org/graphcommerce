@@ -1,4 +1,4 @@
-import { Button, makeStyles } from '@graphcommerce/next-ui'
+import { Button } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -19,10 +19,7 @@ export default function NextPrevButtons({ menuData }: NextPrevButtonProps) {
   const nextPage = flatMenuData?.[currentPageIndex + 1]
 
   return (
-    <Box
-      sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}
-      className={classes.root}
-    >
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
       <div>
         {prevPage && (
           <Button href={prevPage?.urlKey} color='secondary' variant='text'>
