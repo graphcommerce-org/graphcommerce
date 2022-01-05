@@ -1,6 +1,6 @@
 // import { GoogleTagManagerNoScript } from '@graphcommerce/googletagmanager'
 import { linguiWrapGetInitialProps, MessageLoader } from '@graphcommerce/lingui-next'
-import { withEmotion } from '@graphcommerce/next-ui'
+import { documentWithEmotion } from '@graphcommerce/next-ui/Styles/documentWithEmotion'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 
 const loader: MessageLoader = (locale) => import(`../locales/${locale}.po`)
@@ -22,4 +22,4 @@ class ThemedDocument extends Document {
   }
 }
 
-export default withEmotion(ThemedDocument)
+export default documentWithEmotion(ThemedDocument)
