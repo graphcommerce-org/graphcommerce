@@ -4,7 +4,7 @@ import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { ProductSpecsFragment } from './ProductSpecs.gql'
 
-const useStyles = makeStyles()((theme: Theme) => ({
+const useStyles = makeStyles()((theme) => ({
   root: {
     ...theme.typography.subtitle1,
   },

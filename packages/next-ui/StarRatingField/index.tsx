@@ -1,37 +1,34 @@
-import { Theme } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
-import { Rating } from '@mui/material'
 import { RatingProps } from '@mui/lab'
+import { Theme, Rating } from '@mui/material'
 import React from 'react'
+import { UseStyles } from '../Styles'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconStar } from '../icons'
 
 export type StarRatingFieldProps = {
   id?: string
   onChange?: (id: string, value: number) => void
-} & Omit<RatingProps, 'id' | 'onChange'>
+} & Omit<RatingProps, 'id' | 'onChange'> &
+  UseStyles<typeof useStyles>
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    iconStar: {
-      fill: '#FFDA1C',
-      stroke: 'none',
-      margin: '0 3px',
-    },
-    iconStarEmpty: {
-      fill: theme.palette.grey[300],
-      stroke: 'none',
-      margin: '0 3px',
-    },
-  }),
-  {
-    name: 'StarRatingField',
+const useStyles = makeStyles({ name: 'StarRatingField' })((theme) => ({
+  iconStar: {
+    fill: '#FFDA1C',
+    stroke: 'none',
+    margin: '0 3px',
   },
-)
+  iconStarEmpty: {
+    fill: theme.palette.grey[300],
+    stroke: 'none',
+    margin: '0 3px',
+  },
+}))
 
 export default function StarRatingField(props: StarRatingFieldProps) {
   const { id, onChange = () => {}, ...ratingProps } = props
-  const { classes } = useStyles(props)
+  let { classes } = useStyles()
+  classes = useMergedClasses(classes, props.classes)
 
   return (
     <Rating

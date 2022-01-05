@@ -2,7 +2,7 @@ import { Theme } from '@mui/material'
 import { makeStyles } from '../../Styles/tssReact'
 import React from 'react'
 
-const useStyles = makeStyles({ name: 'BlogContent' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'BlogContent' })((theme) => ({
   wrapper: {
     maxWidth: 800,
     margin: '0 auto',

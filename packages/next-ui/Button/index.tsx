@@ -1,7 +1,7 @@
 import { Button as MuiButton, ButtonClassKey as MuiButtonClassKey, Theme } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
 import clsx from 'clsx'
 import React from 'react'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 
 type BaseButtonProps = Omit<Parameters<typeof MuiButton>['0'], 'variant' | 'classes'> & {
   variant?: 'text' | 'outlined' | 'contained' | 'pill' | 'pill-link'
@@ -27,85 +27,78 @@ export type ButtonProps = BaseButtonProps & {
   text?: Text
 }
 
-const useStyles = makeStyles<
-  Theme,
-  BaseButtonProps & { classes?: { [index in ButtonClassKey]?: string } },
-  ButtonClassKey
->(
-  (theme: Theme) => ({
-    root: {},
-    label: {},
-    disabled: {},
-    withStartIcon: {
-      [theme.breakpoints.down('lg')]: {
-        height: 40,
-        width: 40,
-        textAlign: 'center',
-        minWidth: 'unset',
-        borderRadius: 99,
-        '& > span > .MuiButton-startIcon': {
-          margin: 'unset',
-        },
+const useStyles = makeStyles({ name: 'MuiPillButton' })((theme) => ({
+  root: {},
+  label: {},
+  disabled: {},
+  withStartIcon: {
+    [theme.breakpoints.down('lg')]: {
+      height: 40,
+      width: 40,
+      textAlign: 'center',
+      minWidth: 'unset',
+      borderRadius: 99,
+      '& > span > .MuiButton-startIcon': {
+        margin: 'unset',
       },
     },
-    pill: {
+  },
+  pill: {
+    borderRadius: '99em',
+  },
+  pillLink: {
+    [theme.breakpoints.up('md')]: {
+      // manually match MuiButton and containedPrimary styles
+      textTransform: 'none',
+      ...theme.typography.body2,
+      fontWeight: 400,
       borderRadius: '99em',
-    },
-    pillLink: {
-      [theme.breakpoints.up('md')]: {
-        // manually match MuiButton and containedPrimary styles
-        textTransform: 'none',
-        ...theme.typography.body2,
-        fontWeight: 400,
-        borderRadius: '99em',
-        boxShadow: theme.shadows[6],
-        backgroundColor: theme.palette.background.paper,
-        color: theme.palette.text.primary,
-        '&:hover': {
-          background: theme.palette.background.paper,
-        },
+      boxShadow: theme.shadows[6],
+      backgroundColor: theme.palette.background.paper,
+      color: theme.palette.text.primary,
+      '&:hover': {
+        background: theme.palette.background.paper,
       },
     },
-    pillPrimary: {
-      [theme.breakpoints.up('md')]: {
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.primary.contrastText,
-        '&:hover': {
-          background: theme.palette.primary.dark,
-        },
+  },
+  pillPrimary: {
+    [theme.breakpoints.up('md')]: {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.primary.contrastText,
+      '&:hover': {
+        background: theme.palette.primary.dark,
       },
     },
-    pillSecondary: {
-      [theme.breakpoints.up('md')]: {
-        backgroundColor: theme.palette.secondary.main,
-        color: theme.palette.secondary.contrastText,
-        '&:hover': {
-          background: theme.palette.secondary.dark,
-        },
+  },
+  pillSecondary: {
+    [theme.breakpoints.up('md')]: {
+      backgroundColor: theme.palette.secondary.main,
+      color: theme.palette.secondary.contrastText,
+      '&:hover': {
+        background: theme.palette.secondary.dark,
       },
     },
-    pillSizeLarge: {},
-    pillSizeSmall: {},
-    pillNoElevation: {
-      /* disableElevation does not stop adding box shadow on active... ?! */
-      '&:active': {
-        boxShadow: 'none',
-      },
+  },
+  pillSizeLarge: {},
+  pillSizeSmall: {},
+  pillNoElevation: {
+    /* disableElevation does not stop adding box shadow on active... ?! */
+    '&:active': {
+      boxShadow: 'none',
     },
-    startIconText: {
-      display: 'none',
-      [theme.breakpoints.up('md')]: {
-        display: 'unset',
-      },
+  },
+  startIconText: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'unset',
     },
-    loading: {
-      '& svg': {
-        stroke: theme.palette.text.disabled,
-      },
+  },
+  loading: {
+    '& svg': {
+      stroke: theme.palette.text.disabled,
     },
-  }),
-  { name: 'MuiPillButton' },
-)
+  },
+}))
 
 export default React.forwardRef<any, ButtonProps>((props, ref) => {
   const { classes = {}, ...baseProps } = props
@@ -121,18 +114,7 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
     ...buttonClasses
   } = classes
 
-  const pillClasses = useStyles({
-    ...baseProps,
-    classes: {
-      pill,
-      pillPrimary,
-      pillSecondary,
-      pillSizeLarge,
-      pillSizeSmall,
-      pillLink,
-      ...buttonClasses,
-    },
-  })
+  const pillClasses = useMergedClasses(useStyles().classes, props.classes)
 
   const variantMap = {
     pill: 'contained',

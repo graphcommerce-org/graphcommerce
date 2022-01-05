@@ -7,7 +7,7 @@ import { TrackingLinkFragment } from './TrackingLink.gql'
 
 export type TrackingLinkProps = TrackingLinkFragment
 
-const useStyles = makeStyles({ name: 'TrackingLink' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'TrackingLink' })((theme) => ({
   trackingLink: {
     display: 'flex',
     alignItems: 'center',

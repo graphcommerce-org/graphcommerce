@@ -6,7 +6,7 @@ import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
 
-const useStyles = makeStyles()((theme: Theme) => ({
+const useStyles = makeStyles()((theme) => ({
   couponForm: {
     display: 'grid',
     alignItems: 'center',

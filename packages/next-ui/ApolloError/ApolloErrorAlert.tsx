@@ -7,7 +7,7 @@ import React from 'react'
 import AnimatedRow from '../AnimatedRow'
 import { makeStyles } from '../Styles/tssReact'
 
-const useStyles = makeStyles({ name: 'ApolloErrorAlert' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'ApolloErrorAlert' })((theme) => ({
   alerts: {},
   alert: {
     paddingTop: `calc(${theme.spacings.xxs} / 2)`,

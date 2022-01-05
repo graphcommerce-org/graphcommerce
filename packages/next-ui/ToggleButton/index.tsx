@@ -1,5 +1,5 @@
 import { Theme } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 import clsx from 'clsx'
 import React, { FormEvent } from 'react'
 import Button, { ButtonProps } from '../Button'
@@ -8,8 +8,8 @@ import { responsiveVal } from '../Styles/responsiveVal'
 
 type StyleProps = { selected?: boolean; color?: ButtonProps['color'] }
 
-export const useStyles = makeStyles()(
-  (theme: Theme) => ({
+export const useStyles = makeStyles<StyleProps>({ name: 'ToggleButton' })(
+  (theme: Theme, { color = 'default' }) => ({
     /* Styles applied to the root element. */
     root: {
       borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
@@ -21,10 +21,10 @@ export const useStyles = makeStyles()(
       '&$selected': {},
     },
     disabled: {},
-    selected: ({ color = 'default' }: StyleProps) => ({
+    selected: {
       border: `1px solid ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
       boxShadow: `inset 0 0 0 1px ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
-    }),
+    },
     /* Styles applied to the `label` wrapper element. */
     label: {},
     sizeSmall: {},
@@ -32,7 +32,6 @@ export const useStyles = makeStyles()(
       padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
     },
   }),
-  { name: 'ToggleButton' },
 )
 
 export type ToggleButtonProps = Omit<ButtonProps, 'onClick' | 'onChange'> & {
@@ -42,7 +41,6 @@ export type ToggleButtonProps = Omit<ButtonProps, 'onClick' | 'onChange'> & {
 } & UseStyles<typeof useStyles>
 
 const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
-  const { root, selected: selectedClass, sizeLarge, sizeSmall, ...classes } = useStyles(props)
   const {
     children,
     className,
@@ -55,6 +53,8 @@ const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
     color,
     ...other
   } = props
+  let { classes } = useStyles({ color, selected })
+  classes = useMergedClasses(classes, props.classes)
 
   const handleChange = (event: FormEvent<HTMLButtonElement>) => onChange?.(event, value)
 
@@ -69,12 +69,12 @@ const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
   return (
     <Button
       className={clsx(
-        root,
+        classes.root,
         {
           [classes.disabled]: disabled,
-          [selectedClass]: selected,
-          [sizeLarge]: size === 'large',
-          [sizeSmall]: size === 'small',
+          [classes.selected]: selected,
+          [classes.sizeLarge]: size === 'large',
+          [classes.sizeSmall]: size === 'small',
         },
         className,
       )}

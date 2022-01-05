@@ -4,22 +4,19 @@ import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    root: {
-      listStyleType: 'none',
-      padding: 0,
-      margin: 0,
-      display: 'grid',
-      alignContent: 'start',
-      rowGap: theme.spacings.xs,
-    },
-    small: {
-      rowGap: 3,
-    },
-  }),
-  { name: 'UspList' },
-)
+const useStyles = makeStyles({ name: 'UspList' })((theme) => ({
+  root: {
+    listStyleType: 'none',
+    padding: 0,
+    margin: 0,
+    display: 'grid',
+    alignContent: 'start',
+    rowGap: theme.spacings.xs,
+  },
+  small: {
+    rowGap: 3,
+  },
+}))
 
 export type UspListProps = UseStyles<typeof useStyles> & {
   children: React.ReactNode

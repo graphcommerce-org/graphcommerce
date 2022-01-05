@@ -2,7 +2,7 @@ import { Theme } from '@mui/material'
 import React from 'react'
 import { makeStyles } from '../Styles/tssReact'
 
-const useStyles = makeStyles({ name: 'DesktopNavActions' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'DesktopNavActions' })((theme) => ({
   actions: {
     display: 'none',
     [theme.breakpoints.up('md')]: {

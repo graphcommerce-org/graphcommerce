@@ -4,7 +4,7 @@ import { Theme } from '@mui/material'
 import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 
-const useStyles = makeStyles({ name: 'AccountLatestOrder' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'AccountLatestOrder' })((theme) => ({
   noOrdersContainer: {
     marginTop: theme.spacings.sm,
   },

@@ -4,7 +4,7 @@ import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 
-const useStyles = makeStyles({ name: 'SearchButton' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'SearchButton' })((theme) => ({
   root: {
     marginRight: theme.spacings.xxs,
     width: responsiveVal(64, 172),

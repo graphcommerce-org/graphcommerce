@@ -1,14 +1,13 @@
-import { Theme } from '@mui/material'
-import { makeStyles } from '../../Styles/tssReact'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
 import Button, { ButtonProps } from '../../Button'
 import { UseStyles } from '../../Styles'
+import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconChevronRight } from '../../icons'
 
-const useStyles = makeStyles()((theme: Theme) => ({
+const useStyles = makeStyles()((theme) => ({
   buttonLink: {
     color: theme.palette.text.primary,
     textDecoration: 'none',
@@ -34,7 +33,7 @@ export type ButtonLinkProps = {
 
 export function ButtonLinkListItem(props: ButtonLinkProps) {
   const { children, url, endIcon, className, ...buttonProps } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
     <PageLink href={url} passHref>

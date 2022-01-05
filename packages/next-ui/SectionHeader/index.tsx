@@ -1,34 +1,31 @@
-import { Theme, Typography, TypographyProps } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
+import { Typography, TypographyProps } from '@mui/material'
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    sectionHeaderSidePadding: {
-      paddingLeft: theme.spacings.xxs,
-      paddingRight: theme.spacings.xxs,
+const useStyles = makeStyles({ name: 'SectionHeader' })((theme) => ({
+  sectionHeaderSidePadding: {
+    paddingLeft: theme.spacings.xxs,
+    paddingRight: theme.spacings.xxs,
+  },
+  sectionHeaderWrapper: {
+    position: 'relative',
+    '&:focus': {
+      outline: 'none',
     },
-    sectionHeaderWrapper: {
-      position: 'relative',
-      '&:focus': {
-        outline: 'none',
-      },
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginTop: theme.spacings.sm,
-      marginBottom: theme.spacings.xxs,
-    },
-    labelLeft: {},
-    labelRight: {
-      color: theme.palette.text.primary,
-      lineHeight: 1,
-    },
-  }),
-  { name: 'SectionHeader' },
-)
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: theme.spacings.sm,
+    marginBottom: theme.spacings.xxs,
+  },
+  labelLeft: {},
+  labelRight: {
+    color: theme.palette.text.primary,
+    lineHeight: 1,
+  },
+}))
 
 export type SectionHeaderProps = {
   variantLeft?: TypographyProps['variant']
@@ -48,7 +45,8 @@ export default function SectionHeader(props: SectionHeaderProps) {
     variantLeft = 'overline',
     variantRight = 'body2',
   } = props
-  const { classes } = useStyles(props)
+  let { classes } = useStyles()
+  classes = useMergedClasses(classes, props.classes)
 
   return (
     <div

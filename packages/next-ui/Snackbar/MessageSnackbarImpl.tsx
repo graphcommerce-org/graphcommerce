@@ -1,91 +1,80 @@
-import {
-  Fab,
-  Snackbar,
-  SnackbarContent,
-  SnackbarProps,
-  Theme,
-  Portal,
-  lighten,
-} from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
+import { Fab, Snackbar, SnackbarContent, SnackbarProps, Portal, lighten } from '@mui/material'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconClose, iconCheckmark, iconSadFace } from '../icons'
 
 type Size = 'normal' | 'wide'
 type Variant = 'contained' | 'pill'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    snackbarRoot: {},
-    anchorOriginBottomCenter: {
-      left: 0,
-      right: 0,
-      transform: 'unset',
-      bottom: 0,
-      pointerEvents: 'none',
-      [theme.breakpoints.up('md')]: {
-        padding: `${theme.page.vertical} ${theme.page.horizontal}`,
-      },
+const useStyles = makeStyles({ name: 'MessageSnackbar' })((theme) => ({
+  snackbarRoot: {},
+  anchorOriginBottomCenter: {
+    left: 0,
+    right: 0,
+    transform: 'unset',
+    bottom: 0,
+    pointerEvents: 'none',
+    [theme.breakpoints.up('md')]: {
+      padding: `${theme.page.vertical} ${theme.page.horizontal}`,
     },
-    root: {
-      pointerEvents: 'all',
-      padding: `16px ${theme.page.horizontal}px max(16px, env(safe-area-inset-bottom))`,
+  },
+  root: {
+    pointerEvents: 'all',
+    padding: `16px ${theme.page.horizontal}px max(16px, env(safe-area-inset-bottom))`,
+  },
+  rootPill: {
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.text.primary,
+    [theme.breakpoints.up('md')]: {
+      borderRadius: '99em',
     },
-    rootPill: {
-      backgroundColor: theme.palette.background.paper,
-      color: theme.palette.text.primary,
-      [theme.breakpoints.up('md')]: {
-        borderRadius: '99em',
-      },
-    },
-    rootPillLarge: {},
-    rootPillSeverityInfo: {},
-    rootPillSeverityError: {},
-    message: {
-      width: '100%',
-      padding: theme.spacings.xxs,
-      display: 'grid',
-      alignItems: 'center',
-      gap: theme.spacings.xs,
-      gridTemplate: `
+  },
+  rootPillLarge: {},
+  rootPillSeverityInfo: {},
+  rootPillSeverityError: {},
+  message: {
+    width: '100%',
+    padding: theme.spacings.xxs,
+    display: 'grid',
+    alignItems: 'center',
+    gap: theme.spacings.xs,
+    gridTemplate: `
         "children close"
         "action   action"
       `,
-      gridTemplateColumns: '1fr auto',
-      [theme.breakpoints.up('md')]: {
-        gridTemplate: `"children action close"`,
-        gridTemplateColumns: 'auto auto auto',
+    gridTemplateColumns: '1fr auto',
+    [theme.breakpoints.up('md')]: {
+      gridTemplate: `"children action close"`,
+      gridTemplateColumns: 'auto auto auto',
+    },
+  },
+  children: {
+    display: 'flex',
+    columnGap: 10,
+    gridArea: 'children',
+    ...theme.typography.subtitle1,
+    fontWeight: 400,
+  },
+  actionButton: {
+    gridArea: 'action',
+    '&:hover, &:focus': {
+      backgroundColor: 'transparent',
+    },
+    [theme.breakpoints.down('xl')]: {
+      '& .MuiPillButton-pill': {
+        width: '100%',
       },
     },
-    children: {
-      display: 'flex',
-      columnGap: 10,
-      gridArea: 'children',
-      ...theme.typography.subtitle1,
-      fontWeight: 400,
-    },
-    actionButton: {
-      gridArea: 'action',
-      '&:hover, &:focus': {
-        backgroundColor: 'transparent',
-      },
-      [theme.breakpoints.down('xl')]: {
-        '& .MuiPillButton-pill': {
-          width: '100%',
-        },
-      },
-    },
-    close: {
-      backgroundColor: lighten(theme.palette.background.paper, 0.1),
-    },
-    sticky: {
-      position: 'sticky',
-    },
-  }),
-  { name: 'MessageSnackbar' },
-)
+  },
+  close: {
+    backgroundColor: lighten(theme.palette.background.paper, 0.1),
+  },
+  sticky: {
+    position: 'sticky',
+  },
+}))
 
 export type MessageSnackbarImplProps = Omit<
   SnackbarProps,
@@ -118,7 +107,8 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
     ...snackbarProps
   } = props
 
-  const { classes } = useStyles(props)
+  let { classes } = useStyles()
+  classes = useMergedClasses(classes, props.classes)
 
   useEffect(() => {
     setShowSnackbar(!!open)

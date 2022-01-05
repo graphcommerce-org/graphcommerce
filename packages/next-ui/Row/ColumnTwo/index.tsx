@@ -1,30 +1,27 @@
-import { ContainerProps, Theme } from '@mui/material'
-import { makeStyles } from '../../Styles/tssReact'
+import { ContainerProps } from '@mui/material'
 import React from 'react'
 import Row from '..'
 import { UseStyles } from '../../Styles'
+import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    root: {
-      gridColumnGap: theme.spacings.md,
-      gridRowGap: theme.spacings.lg,
-      display: `grid`,
-      gridTemplateColumns: `1fr`,
-      gridTemplateAreas: `"one" "two"`,
-      '& h2, & h3': {
-        ...theme.typography.h4,
-      },
-      [theme.breakpoints.up('sm')]: {
-        gridTemplateColumns: `1fr 1fr`,
-        gridTemplateAreas: `"one two"`,
-      },
+const useStyles = makeStyles({ name: 'ColumnTwo' })((theme) => ({
+  root: {
+    gridColumnGap: theme.spacings.md,
+    gridRowGap: theme.spacings.lg,
+    display: `grid`,
+    gridTemplateColumns: `1fr`,
+    gridTemplateAreas: `"one" "two"`,
+    '& h2, & h3': {
+      ...theme.typography.h4,
     },
-    colOne: { gridArea: 'one' },
-    colTwo: { gridArea: 'two' },
-  }),
-  { name: 'ColumnTwo' },
-)
+    [theme.breakpoints.up('sm')]: {
+      gridTemplateColumns: `1fr 1fr`,
+      gridTemplateAreas: `"one two"`,
+    },
+  },
+  colOne: { gridArea: 'one' },
+  colTwo: { gridArea: 'two' },
+}))
 
 export type ColumnTwoProps = UseStyles<typeof useStyles> &
   Omit<ContainerProps, 'children'> & {
@@ -34,7 +31,7 @@ export type ColumnTwoProps = UseStyles<typeof useStyles> &
 
 export default function ColumnTwo(props: ColumnTwoProps) {
   const { colOneContent, colTwoContent, ...containerProps } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
     <Row maxWidth='lg' {...containerProps} className={classes.root}>

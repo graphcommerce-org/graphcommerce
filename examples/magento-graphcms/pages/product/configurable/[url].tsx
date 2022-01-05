@@ -35,7 +35,7 @@ import apolloClient from '../../../lib/apolloClient'
 
 type Props = ProductPageQuery & ConfigurableProductPageQuery
 
-const useStyles = makeStyles({ name: 'ProductConfigurable' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'ProductConfigurable' })((theme) => ({
   prePrice: {
     color: theme.palette.text.disabled,
   },

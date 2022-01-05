@@ -6,7 +6,7 @@ import React from 'react'
 import { localeToStore, storeToLocale } from '../localeToStore'
 import { StoreSwitcherListQuery } from './StoreSwitcherList.gql'
 
-const useStyles = makeStyles({ name: 'StoreSwitcherList' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'StoreSwitcherList' })((theme) => ({
   list: {},
   listItem: {
     borderTop: `1px solid ${theme.palette.divider}`,

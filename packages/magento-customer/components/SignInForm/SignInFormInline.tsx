@@ -7,7 +7,7 @@ import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
 import { SignInDocument, SignInMutationVariables } from './SignIn.gql'
 
-const useStyles = makeStyles({ name: 'SignInFormInline' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'SignInFormInline' })((theme) => ({
   form: {
     display: 'grid',
     alignItems: 'center',

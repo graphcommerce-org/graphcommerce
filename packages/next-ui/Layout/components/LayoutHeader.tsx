@@ -1,7 +1,7 @@
-import { Theme } from '@mui/material'
-import { makeStyles } from '../../Styles/tssReact'
 import React from 'react'
+import { UseStyles } from '../../Styles'
 import { classesPicker } from '../../Styles/classesPicker'
+import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
 import LayoutHeaderBack, { useShowBack } from './LayoutHeaderBack'
 import LayoutHeaderClose, { useShowClose } from './LayoutHeaderClose'
 import LayoutHeaderContent, { ContentProps } from './LayoutHeaderContent'
@@ -25,79 +25,76 @@ export type LayoutHeaderProps = FloatingProps &
     secondary?: React.ReactNode
 
     noAlign?: boolean
-  }
+  } & UseStyles<typeof useStyles>
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    sticky: {
-      zIndex: theme.zIndex.appBar,
+const useStyles = makeStyles({ name: 'LayoutHeader' })((theme) => ({
+  sticky: {
+    zIndex: theme.zIndex.appBar,
+    position: 'sticky',
+    pointerEvents: 'none',
+
+    [theme.breakpoints.up('md')]: {
+      top: 0,
+      height: theme.appShell.appBarHeightMd,
+      marginTop: `calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5)`,
+      marginBottom: `calc(${theme.appShell.appBarHeightMd} * -1 - calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5))`,
+    },
+  },
+  stickyNoChildren: {
+    zIndex: theme.zIndex.appBar - 2,
+  },
+  stickyVisibleSm: {
+    [theme.breakpoints.down('lg')]: {
+      top: 0,
+      marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
+      height: theme.appShell.headerHeightSm,
+    },
+  },
+  stickyFloatingSm: {
+    [theme.breakpoints.down('lg')]: {
+      top: 0,
+      marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
+      height: theme.appShell.headerHeightSm,
+    },
+  },
+  stickyFloatingMd: {
+    [theme.breakpoints.up('md')]: {
+      top: `calc(${theme.appShell.headerHeightMd} + calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5))`,
+    },
+  },
+  stickyNoAlign: {
+    [theme.breakpoints.down('lg')]: {
       position: 'sticky',
-      pointerEvents: 'none',
-
-      [theme.breakpoints.up('md')]: {
-        top: 0,
-        height: theme.appShell.appBarHeightMd,
-        marginTop: `calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5)`,
-        marginBottom: `calc(${theme.appShell.appBarHeightMd} * -1 - calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5))`,
-      },
+      left: 0,
+      right: 0,
+      top: 0,
+      marginTop: 0,
+      height: theme.appShell.headerHeightSm,
+      marginBottom: `calc(${theme.appShell.headerHeightSm} * -1)`,
     },
-    stickyNoChildren: {
-      zIndex: theme.zIndex.appBar - 2,
+    [theme.breakpoints.up('md')]: {
+      position: 'sticky',
+      left: 0,
+      right: 0,
+      top: 0,
+      marginTop: 0,
+      height: theme.appShell.appBarHeightMd,
+      marginBottom: `calc(${theme.appShell.appBarHeightMd} * -1)`,
     },
-    stickyVisibleSm: {
-      [theme.breakpoints.down('lg')]: {
-        top: 0,
-        marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
-        height: theme.appShell.headerHeightSm,
-      },
+  },
+  stickyDivider: {
+    [theme.breakpoints.down('lg')]: {
+      marginBottom: 0,
     },
-    stickyFloatingSm: {
-      [theme.breakpoints.down('lg')]: {
-        top: 0,
-        marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
-        height: theme.appShell.headerHeightSm,
-      },
+    [theme.breakpoints.up('md')]: {
+      marginBottom: 0,
     },
-    stickyFloatingMd: {
-      [theme.breakpoints.up('md')]: {
-        top: `calc(${theme.appShell.headerHeightMd} + calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5))`,
-      },
-    },
-    stickyNoAlign: {
-      [theme.breakpoints.down('lg')]: {
-        position: 'sticky',
-        left: 0,
-        right: 0,
-        top: 0,
-        marginTop: 0,
-        height: theme.appShell.headerHeightSm,
-        marginBottom: `calc(${theme.appShell.headerHeightSm} * -1)`,
-      },
-      [theme.breakpoints.up('md')]: {
-        position: 'sticky',
-        left: 0,
-        right: 0,
-        top: 0,
-        marginTop: 0,
-        height: theme.appShell.appBarHeightMd,
-        marginBottom: `calc(${theme.appShell.appBarHeightMd} * -1)`,
-      },
-    },
-    stickyDivider: {
-      [theme.breakpoints.down('lg')]: {
-        marginBottom: 0,
-      },
-      [theme.breakpoints.up('md')]: {
-        marginBottom: 0,
-      },
-    },
-  }),
-  { name: 'LayoutHeader' },
-)
+  },
+}))
 
 export function LayoutHeader(props: LayoutHeaderProps) {
   const { children, divider, primary, secondary, noAlign, switchPoint } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
   const showBack = useShowBack()
   const showClose = useShowClose()
 

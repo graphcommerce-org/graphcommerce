@@ -6,14 +6,14 @@ import {
   responsiveVal,
   iconChevronRight,
   SvgImageSimple,
+  makeStyles,
 } from '@graphcommerce/next-ui'
 import { ListItem, ListItemIcon, ListItemText, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
 
-const useStyles = makeStyles({ name: 'AccountMenuItem' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'AccountMenuItem' })((theme) => ({
   root: {
     width: '100%',
     height: responsiveVal(88, 104),

@@ -8,7 +8,7 @@ import React from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 
-const useStyles = makeStyles({ name: 'ScrollerDots' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'ScrollerDots' })((theme) => ({
   dots: {
     width: 'fit-content',
     display: 'grid',

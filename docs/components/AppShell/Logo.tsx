@@ -6,7 +6,7 @@ import svgLogo from './graphcommerce.svg'
 
 type ShopLogoProps = Omit<LogoProps, 'image'>
 
-const useStyles = makeStyles({ name: 'Logo' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'Logo' })((theme) => ({
   logo: {
     width: 'auto',
     height: 16,

@@ -3,7 +3,7 @@ import { Theme, Typography } from '@mui/material'
 import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 
-const useStyles = makeStyles({ name: 'NoSearchResults' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'NoSearchResults' })((theme) => ({
   container: {
     marginTop: theme.spacings.md,
     marginBottom: theme.spacings.sm,

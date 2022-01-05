@@ -1,11 +1,11 @@
-import { Link, Theme, Typography } from '@mui/material'
-import { makeStyles } from '../../Styles/tssReact'
+import { Link, Typography } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
+import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
 
-const useStyles = makeStyles({ name: 'BlogListItem' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'BlogListItem' })((theme) => ({
   item: {
     display: 'grid',
     gridTemplateRows: `${responsiveVal(140, 220)} auto auto`,
@@ -50,7 +50,7 @@ export type BlogListItemProps = UseStyles<typeof useStyles> & {
 
 export default function BlogListItem(props: BlogListItemProps) {
   const { asset, url, date, locale, title } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   const formatter = new Intl.DateTimeFormat(locale, {
     year: 'numeric',

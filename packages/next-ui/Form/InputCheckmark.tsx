@@ -1,21 +1,18 @@
-import { makeStyles } from '../Styles/tssReact'
 import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
+import { makeStyles } from '../Styles/tssReact'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconCheckmark } from '../icons'
 
 export type InputCheckmarkProps = PropsWithChildren<{ show?: boolean; select?: boolean }>
-const useStyles = makeStyles()(
-  {
-    iconCheckmark: {
-      stroke: '#01D26A',
-    },
-    select: {
-      marginRight: 15,
-    },
+const useStyles = makeStyles({ name: 'InputCheckmark' })({
+  iconCheckmark: {
+    stroke: '#01D26A',
   },
-  { name: 'InputCheckmark' },
-)
+  select: {
+    marginRight: 15,
+  },
+})
 
 /**
  * When the `valid` prop is passed it will render a CheckIcon, else it will render children.

@@ -5,7 +5,7 @@ import { AnimatePresence } from 'framer-motion'
 import { PaymentMethodOptionsProps } from '../Api/PaymentMethod'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
-const useStyles = makeStyles({ name: 'PaymentMethodOptions' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'PaymentMethodOptions' })((theme) => ({
   root: {
     marginBottom: theme.spacings.sm,
   },

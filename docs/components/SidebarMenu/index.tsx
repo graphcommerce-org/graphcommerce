@@ -1,24 +1,19 @@
-import { List, ListItem, ListItemText, ListSubheader, Theme } from '@mui/material'
 import { makeStyles } from '@graphcommerce/next-ui'
+import { List, ListItem, ListItemText, ListSubheader } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { FileNameUrlKeyPair } from './sanitizeDirectoryTree'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    listItem: {
-      paddingTop: 0,
-      paddingBottom: 0,
-    },
-    listItemText: {
-      ...theme.typography.caption,
-    },
-  }),
-  {
-    name: 'SidebarMenu',
+const useStyles = makeStyles({ name: 'SidebarMenu' })((theme) => ({
+  listItem: {
+    paddingTop: 0,
+    paddingBottom: 0,
   },
-)
+  listItemText: {
+    ...theme.typography.caption,
+  },
+}))
 
 export default function SidebarMenu(props) {
   const { tree } = props

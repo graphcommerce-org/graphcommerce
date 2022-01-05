@@ -4,7 +4,7 @@ import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { ConfigurableCartItemFragment } from './ConfigurableCartItem.gql'
 
-const useStyles = makeStyles({ name: 'CartItemOptionsList' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'CartItemOptionsList' })((theme) => ({
   optionsList: {
     gridArea: 'itemOptions',
     cursor: 'default',

@@ -13,7 +13,7 @@ import clsx from 'clsx'
 import { m, useTransform } from 'framer-motion'
 import React, { PropsWithChildren, useEffect, useRef, useState } from 'react'
 
-const useStyles = makeStyles({ name: 'ProductListFiltersContainer' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'ProductListFiltersContainer' })((theme) => ({
   wrapper: {
     display: 'flex',
     justifyContent: 'center',

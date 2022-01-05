@@ -6,7 +6,7 @@ import { makeStyles } from '@graphcommerce/next-ui'
 import React, { PropsWithChildren } from 'react'
 import { SignUpMutationVariables, SignUpMutation, SignUpDocument } from './SignUp.gql'
 
-const useStyles = makeStyles({ name: 'SignUpFormInline' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'SignUpFormInline' })((theme) => ({
   buttonFormRow: {
     padding: 0,
     [theme.breakpoints.up('sm')]: {

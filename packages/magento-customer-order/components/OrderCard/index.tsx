@@ -13,7 +13,7 @@ import OrderStateLabel from '../OrderStateLabel'
 import TrackingLink from '../TrackingLink'
 import { OrderCardFragment } from './OrderCard.gql'
 
-const useStyles = makeStyles({ name: 'OrderCard' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'OrderCard' })((theme) => ({
   orderContainer: {
     [theme.breakpoints.up('sm')]: {
       padding: theme.spacings.md,

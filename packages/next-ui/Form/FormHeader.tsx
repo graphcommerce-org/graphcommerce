@@ -1,24 +1,21 @@
-import { Theme, Typography, TypographyProps } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
+import { Typography, TypographyProps } from '@mui/material'
 import React from 'react'
 import { UseStyles } from '../Styles'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    heading: {
-      marginBottom: `calc(${theme.spacings.xxs} * -1)`,
-      marginTop: theme.spacings.xxs,
-    },
-  }),
-  { name: 'FormHeader' },
-)
+const useStyles = makeStyles({ name: 'FormHeader' })((theme) => ({
+  heading: {
+    marginBottom: `calc(${theme.spacings.xxs} * -1)`,
+    marginTop: theme.spacings.xxs,
+  },
+}))
 
 export type FormHeaderProps = TypographyProps &
   UseStyles<typeof useStyles> & { children: React.ReactNode }
 
 export default function FormHeader(props: FormHeaderProps) {
   const { children, ...typographyProps } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
     <Typography {...typographyProps} className={classes.heading}>

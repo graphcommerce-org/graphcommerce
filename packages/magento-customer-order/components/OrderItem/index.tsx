@@ -12,7 +12,7 @@ import { OrderItemFragment } from './OrderItem.gql'
 type OrderItemProps = OrderItemFragment & Omit<OrderCardItemImageFragment, 'uid'>
 
 const rowImageSize = responsiveVal(70, 125)
-const useStyles = makeStyles({ name: 'OrderItem' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'OrderItem' })((theme) => ({
   root: {
     display: 'grid',
     gridTemplate: `

@@ -3,7 +3,7 @@ import { Theme } from '@mui/material'
 import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 
-const useStyles = makeStyles({ name: 'CategoryHeroNavTitle' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'CategoryHeroNavTitle' })((theme) => ({
   container: {
     justifyContent: 'center',
     [theme.breakpoints.up('md')]: {

@@ -7,7 +7,7 @@ import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { ProductListItemProps } from '../ProductListItem'
 import { ProductListItemRenderer } from './renderer'
 
-export const useStyles = makeStyles({ name: 'ProductList' })((theme: Theme) => ({
+export const useStyles = makeStyles({ name: 'ProductList' })((theme) => ({
   productList: {
     display: 'grid',
     gridColumnGap: theme.spacings.md,

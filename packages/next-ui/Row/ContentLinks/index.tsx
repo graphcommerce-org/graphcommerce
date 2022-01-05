@@ -1,25 +1,22 @@
 import { Scroller, ScrollerProvider } from '@graphcommerce/framer-scroller'
-import { Container, Theme, Typography } from '@mui/material'
-import { makeStyles } from '../../Styles/tssReact'
+import { Container, Typography } from '@mui/material'
 import React from 'react'
 import { UseStyles } from '../../Styles'
+import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    root: {
-      marginBottom: `${theme.spacings.lg}`,
-    },
-    scroller: {
-      justifyContent: 'start',
-      gap: `${theme.spacings.md}`,
-      gridAutoColumns: `max-content`,
-    },
-    title: {
-      fontWeight: 600,
-    },
-  }),
-  { name: 'ContentLinks' },
-)
+const useStyles = makeStyles({ name: 'ContentLinks' })((theme) => ({
+  root: {
+    marginBottom: `${theme.spacings.lg}`,
+  },
+  scroller: {
+    justifyContent: 'start',
+    gap: `${theme.spacings.md}`,
+    gridAutoColumns: `max-content`,
+  },
+  title: {
+    fontWeight: 600,
+  },
+}))
 
 export type ContentLinksProps = UseStyles<typeof useStyles> & {
   title: string
@@ -28,7 +25,7 @@ export type ContentLinksProps = UseStyles<typeof useStyles> & {
 
 export default function ContentLinks(props: ContentLinksProps) {
   const { title, children } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
     <Container className={classes.root} maxWidth={false}>

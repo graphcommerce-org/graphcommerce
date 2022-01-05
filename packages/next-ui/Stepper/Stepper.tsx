@@ -1,29 +1,26 @@
 import { Theme } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    root: {
-      marginTop: '-2px',
-      display: 'grid',
-      gridAutoFlow: 'column',
-      gap: responsiveVal(8, 12),
-      // padding: `0 ${theme.page.horizontal}`,
-    },
-    step: {
-      height: responsiveVal(2, 3),
-      background: theme.palette.divider,
-    },
-    current: {
-      background: theme.palette.secondary.main,
-    },
-  }),
-  { name: 'Stepper' },
-)
+const useStyles = makeStyles({ name: 'Stepper' })((theme) => ({
+  root: {
+    marginTop: '-2px',
+    display: 'grid',
+    gridAutoFlow: 'column',
+    gap: responsiveVal(8, 12),
+    // padding: `0 ${theme.page.horizontal}`,
+  },
+  step: {
+    height: responsiveVal(2, 3),
+    background: theme.palette.divider,
+  },
+  current: {
+    background: theme.palette.secondary.main,
+  },
+}))
 
 export type StepperProps = {
   steps: number
@@ -32,7 +29,8 @@ export type StepperProps = {
 
 export default function Stepper(props: StepperProps) {
   const { steps, currentStep } = props
-  const { classes } = useStyles(props)
+  let { classes } = useStyles()
+  classes = useMergedClasses(classes, props.classes)
 
   return (
     <div className={classes.root}>

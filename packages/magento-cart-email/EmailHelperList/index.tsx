@@ -4,7 +4,7 @@ import { Theme } from '@mui/material'
 import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 
-const useStyles = makeStyles({ name: 'EmailHelperList' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'EmailHelperList' })((theme) => ({
   root: {
     ...theme.typography.body2,
     paddingLeft: theme.spacings.xs,

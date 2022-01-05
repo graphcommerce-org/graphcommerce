@@ -1,9 +1,8 @@
-import { UseStyles } from '@graphcommerce/next-ui'
+import { UseStyles, makeStyles } from '@graphcommerce/next-ui'
 import { List, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 
-const useStyles = makeStyles({ name: 'AccountMenu' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'AccountMenu' })((theme) => ({
   root: {
     marginBottom: theme.spacings.lg,
   },

@@ -1,5 +1,5 @@
 import { Theme } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 import { capitalize } from '@mui/material/utils'
 import { ToggleButtonGroupProps } from '@mui/lab'
 import clsx from 'clsx'
@@ -18,13 +18,13 @@ export type ToggleButtonPropsBase = Omit<PropsWithoutRef<ToggleButtonGroupProps>
   minWidth?: number
 }
 
-export const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    root: ({ minWidth = 200 }: ToggleButtonPropsBase) => ({
+export const useStyles = makeStyles<ToggleButtonPropsBase>({ name: 'ToggleButtonGroup' })(
+  (theme: Theme, { minWidth = 200 }) => ({
+    root: {
       display: 'grid',
       gridTemplateColumns: `repeat(auto-fit, minmax(${minWidth}px, 1fr))`,
       gap: `calc(${theme.spacings.xxs} * 2)`,
-    }),
+    },
     vertical: {
       gridAutoFlow: 'column',
     },
@@ -32,13 +32,14 @@ export const useStyles = makeStyles()(
     groupedHorizontal: {},
     groupedVertical: {},
   }),
-  { name: 'ToggleButtonGroup' },
 )
 
 export type ToggleButtonProps = ToggleButtonPropsBase & UseStyles<typeof useStyles>
 
 const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonProps>((props, ref) => {
-  const { classes } = useStyles(props)
+  let { classes } = useStyles(props)
+  classes = useMergedClasses(classes, props.classes)
+
   const {
     children,
     className,

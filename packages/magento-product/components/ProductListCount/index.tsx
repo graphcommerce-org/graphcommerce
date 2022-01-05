@@ -5,7 +5,7 @@ import { makeStyles } from '@graphcommerce/next-ui'
 
 import { ProductListCountFragment } from './ProductListCount.gql'
 
-const useStyles = makeStyles({ name: 'ProductListCount' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'ProductListCount' })((theme) => ({
   productListCount: {
     display: 'grid',
     gridAutoFlow: 'column',

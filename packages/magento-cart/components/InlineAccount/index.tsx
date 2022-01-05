@@ -14,7 +14,7 @@ import React, { useState } from 'react'
 import { useCartQuery } from '../../hooks/useCartQuery'
 import { InlineAccountDocument } from './InlineAccount.gql'
 
-const useStyles = makeStyles({ name: 'InlineAccount' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'InlineAccount' })((theme) => ({
   root: {
     borderRadius: 4,
     border: `1px solid ${theme.palette.divider}`,

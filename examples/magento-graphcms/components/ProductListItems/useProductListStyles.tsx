@@ -2,7 +2,7 @@ import { Theme } from '@mui/material'
 
 import { makeStyles } from '@graphcommerce/next-ui'
 
-const useProductListStyles = makeStyles({ name: 'ProductList' })((theme: Theme) => ({
+const useProductListStyles = makeStyles({ name: 'ProductList' })((theme) => ({
   productList: {
     [theme.breakpoints.up('xl')]: {
       '& > :nth-child(7n + 3)': {

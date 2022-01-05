@@ -23,9 +23,9 @@ export const SvgImageShades: Record<SvgImageShade, number> = {
 
 export type UseStylesProps = { shade: number; baseSize: number; mobileSize: number }
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    root: ({ shade, baseSize, mobileSize }: UseStylesProps) => ({
+const useStyles = makeStyles<UseStylesProps>({ name: 'SvgImage' })(
+  (theme: Theme, { shade, baseSize, mobileSize }) => ({
+    root: {
       filter: shade > 0 ? `invert(${shade}%)` : undefined,
       objectFit: 'contain',
       width: mobileSize ?? Math.round(baseSize * 0.75),
@@ -34,9 +34,8 @@ const useStyles = makeStyles()(
         width: baseSize,
         height: baseSize,
       },
-    }),
+    },
   }),
-  { name: 'SvgImage' },
 )
 
 export default function SvgImage(props: SvgImageProps) {
@@ -54,12 +53,12 @@ export default function SvgImage(props: SvgImageProps) {
     extralarge: 64,
   }
 
-  const { classes } = useStyles({
-    ...props,
+  let { classes } = useStyles({
     mobileSize: baseSizes[mobileSize ?? ''] ?? mobileSize,
     baseSize: baseSizes[size ?? ''] ?? size,
     shade: SvgImageShades[shade],
   })
+  classes = useMergedClasses(classes, props.classes)
 
   return (
     <Image

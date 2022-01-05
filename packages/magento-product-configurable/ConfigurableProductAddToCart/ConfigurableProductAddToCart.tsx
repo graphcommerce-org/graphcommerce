@@ -29,7 +29,7 @@ type ConfigurableProductAddToCartProps = {
   children?: React.ReactNode
 }
 
-const useStyles = makeStyles({ name: 'ConfigurableProductAddToCart' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'ConfigurableProductAddToCart' })((theme) => ({
   form: {
     width: '100%',
   },

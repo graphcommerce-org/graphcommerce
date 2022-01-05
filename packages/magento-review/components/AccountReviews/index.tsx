@@ -8,7 +8,7 @@ import { AccountReviewsFragment } from './AccountReviews.gql'
 
 type AccountReviewsProps = AccountReviewsFragment & { loading: boolean }
 
-const useStyles = makeStyles({ name: 'AccountReviews' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'AccountReviews' })((theme) => ({
   reviewsContainer: {
     marginBottom: theme.spacings.md,
   },

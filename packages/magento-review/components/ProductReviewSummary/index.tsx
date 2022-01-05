@@ -6,7 +6,7 @@ import { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'
 
 export type ProductReviewSummaryProps = ProductReviewSummaryFragment & UseStyles<typeof useStyles>
 
-const useStyles = makeStyles({ name: 'ProductListReviewSummary' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'ProductListReviewSummary' })((theme) => ({
   root: {
     width: 'max-content',
     position: 'relative',

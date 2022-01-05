@@ -4,60 +4,56 @@ import {
   ScrollerPageCounter,
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
-import { Theme } from '@mui/material'
-import { makeStyles } from '../../Styles/tssReact'
 import React, { ReactNode } from 'react'
 import Row from '../../Row'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
+import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconChevronRight } from '../../icons'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    root: {
-      display: 'grid',
-      gridTemplateColumns: 'minmax(150px, 25%) 1fr',
-      maxWidth: '100%',
+const useStyles = makeStyles({ name: 'SidebarSlider' })((theme) => ({
+  root: {
+    display: 'grid',
+    gridTemplateColumns: 'minmax(150px, 25%) 1fr',
+    maxWidth: '100%',
+  },
+  sidebar: {
+    display: 'grid',
+    alignContent: 'space-between',
+    padding: `0 ${theme.spacings.lg} 0 ${theme.page.horizontal}`,
+  },
+  scrollerContainer: {
+    position: 'relative',
+    minWidth: 1,
+  },
+  scroller: {
+    gridColumnGap: theme.spacings.md,
+    gridRowGap: theme.spacings.lg,
+    paddingRight: theme.page.horizontal,
+    gridAutoColumns: responsiveVal(200, 400),
+  },
+  sliderButtons: {
+    [theme.breakpoints.down('lg')]: {
+      display: 'none',
     },
-    sidebar: {
-      display: 'grid',
-      alignContent: 'space-between',
-      padding: `0 ${theme.spacings.lg} 0 ${theme.page.horizontal}`,
-    },
-    scrollerContainer: {
-      position: 'relative',
-      minWidth: 1,
-    },
-    scroller: {
-      gridColumnGap: theme.spacings.md,
-      gridRowGap: theme.spacings.lg,
-      paddingRight: theme.page.horizontal,
-      gridAutoColumns: responsiveVal(200, 400),
-    },
-    sliderButtons: {
-      [theme.breakpoints.down('lg')]: {
-        display: 'none',
-      },
-    },
-    centerLeft: {
-      display: 'grid',
-      gridAutoFlow: 'row',
-      gap: theme.spacings.xxs,
-      position: 'absolute',
-      left: theme.spacings.sm,
-      top: `calc(50% - 28px)`,
-    },
-    centerRight: {
-      display: 'grid',
-      gap: theme.spacings.xxs,
-      position: 'absolute',
-      right: theme.spacings.sm,
-      top: `calc(50% - 28px)`,
-    },
-  }),
-  { name: 'SidebarSlider' },
-)
+  },
+  centerLeft: {
+    display: 'grid',
+    gridAutoFlow: 'row',
+    gap: theme.spacings.xxs,
+    position: 'absolute',
+    left: theme.spacings.sm,
+    top: `calc(50% - 28px)`,
+  },
+  centerRight: {
+    display: 'grid',
+    gap: theme.spacings.xxs,
+    position: 'absolute',
+    right: theme.spacings.sm,
+    top: `calc(50% - 28px)`,
+  },
+}))
 
 export type SidebarSliderProps = { children: ReactNode; sidebar: ReactNode } & UseStyles<
   typeof useStyles
@@ -65,7 +61,7 @@ export type SidebarSliderProps = { children: ReactNode; sidebar: ReactNode } & U
 
 export default function SidebarSlider(props: SidebarSliderProps) {
   const { children, sidebar } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
     <Row maxWidth={false} disableGutters>

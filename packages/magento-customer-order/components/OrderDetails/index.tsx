@@ -20,7 +20,7 @@ import React from 'react'
 import TrackingLink from '../TrackingLink'
 import { OrderDetailsFragment } from './OrderDetails.gql'
 
-const useStyles = makeStyles({ name: 'OrderDetails' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'OrderDetails' })((theme) => ({
   sectionContainer: {
     marginTop: theme.spacings.sm,
     marginBottom: theme.spacings.sm,

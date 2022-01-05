@@ -11,7 +11,7 @@ import CustomerNewsletterToggle from '../CustomerNewsletterToggle'
 import GuestNewsletterToggle from '../GuestNewsletterToggle'
 import { GetCartEmailDocument } from './GetCartEmail.gql'
 
-const useStyles = makeStyles({ name: 'SignupNewsletter' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'SignupNewsletter' })((theme) => ({
   signup: {
     background: theme.palette.background.paper,
     display: 'grid',

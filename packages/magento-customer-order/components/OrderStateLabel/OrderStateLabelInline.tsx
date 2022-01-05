@@ -5,7 +5,7 @@ import OrderStateLabel, { OrderStateLabelProps } from '.'
 
 type OrderStateLabelInlineProps = OrderStateLabelProps
 
-const useStyles = makeStyles({ name: 'OrderStateLabelInline' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'OrderStateLabelInline' })((theme) => ({
   orderStatus: {
     fontStyle: 'normal',
     display: 'inline-block',

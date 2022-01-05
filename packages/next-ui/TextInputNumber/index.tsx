@@ -6,7 +6,7 @@ import {
   TextFieldProps,
   useForkRef,
 } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 import clsx from 'clsx'
 import React, { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
 import { UseStyles } from '../Styles'
@@ -14,28 +14,25 @@ import { responsiveVal } from '../Styles/responsiveVal'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconMin, iconPlus } from '../icons'
 
-const useStyles = makeStyles()(
-  {
-    quantity: {
-      width: responsiveVal(80, 120),
-      backgroundColor: 'inherit',
-    },
-    quantityInput: {
-      textAlign: 'center',
-      '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
-        appearance: 'none',
-      },
-    },
-    button: {},
-    adornedEnd: {
-      paddingRight: responsiveVal(7, 14),
-    },
-    adornedStart: {
-      paddingLeft: responsiveVal(7, 14),
+const useStyles = makeStyles({ name: 'TextInputNumber' })({
+  quantity: {
+    width: responsiveVal(80, 120),
+    backgroundColor: 'inherit',
+  },
+  quantityInput: {
+    textAlign: 'center',
+    '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
+      appearance: 'none',
     },
   },
-  { name: 'TextInputNumber' },
-)
+  button: {},
+  adornedEnd: {
+    paddingRight: responsiveVal(7, 14),
+  },
+  adornedStart: {
+    paddingLeft: responsiveVal(7, 14),
+  },
+})
 
 export type IconButtonPropsOmit = Omit<
   IconButtonProps,
@@ -53,7 +50,9 @@ function isOutlined(props: TextFieldProps): props is OutlinedTextFieldProps {
 
 export default function TextInputNumber(props: TextInputNumberProps) {
   const { DownProps = {}, UpProps = {}, inputProps = {}, inputRef, ...textFieldProps } = props
-  const { classes } = useStyles(props)
+  let { classes } = useStyles()
+  classes = useMergedClasses(classes, props.classes)
+
   const ref = useRef<HTMLInputElement>(null)
   const forkRef = useForkRef<HTMLInputElement>(ref, inputRef as Ref<HTMLInputElement>)
 
@@ -127,7 +126,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             onPointerDown={() => setDirection('down')}
             onPointerUp={stop}
             // disabled={textFieldProps.disabled || disabled === 'min'}
-            tabIndex='-1'
+            tabIndex={-1}
             color='inherit'
             className={clsx(classes.button, DownProps.className)}
             {...DownProps}
@@ -143,7 +142,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             onPointerDown={() => setDirection('up')}
             onPointerUp={() => setDirection(null)}
             // disabled={textFieldProps.disabled || disabled === 'max'}
-            tabIndex='-1'
+            tabIndex={-1}
             color='inherit'
             className={clsx(classes.button, UpProps.className)}
             {...UpProps}

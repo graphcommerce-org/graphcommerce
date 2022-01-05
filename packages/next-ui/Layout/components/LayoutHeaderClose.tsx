@@ -13,7 +13,7 @@ export function useShowClose() {
   return !!overlayGroup
 }
 
-const useStyles = makeStyles()((theme: Theme) => ({
+const useStyles = makeStyles()((theme) => ({
   close: {
     [theme.breakpoints.up('md')]: {
       marginLeft: `calc(${responsiveVal(12, 22)} * -1)`,

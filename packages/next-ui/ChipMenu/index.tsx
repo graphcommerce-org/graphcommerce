@@ -1,57 +1,54 @@
-import { Chip, ChipProps, Menu, Theme } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
+import { Chip, ChipProps, Menu } from '@mui/material'
 import clsx from 'clsx'
 import React, { PropsWithChildren, useState } from 'react'
 import SectionHeader from '../SectionHeader'
 import { responsiveVal } from '../Styles/responsiveVal'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconChevronDown, iconChevronUp, iconCancelAlt } from '../icons'
 
-export const useChipMenuStyles = makeStyles()(
-  (theme: Theme) => ({
-    chip: {
+export const useChipMenuStyles = makeStyles({ name: 'ChipMenu' })((theme) => ({
+  chip: {
+    background: `${theme.palette.background.default} !important`,
+  },
+  chipSelected: {
+    borderColor: theme.palette.text.primary,
+    color: theme.palette.text.primary,
+    '&:hover': {
       background: `${theme.palette.background.default} !important`,
+      borderColor: theme.palette.divider,
     },
-    chipSelected: {
-      borderColor: theme.palette.text.primary,
-      color: theme.palette.text.primary,
-      '&:hover': {
-        background: `${theme.palette.background.default} !important`,
-        borderColor: theme.palette.divider,
-      },
-      '&:focus': {
-        background: `${theme.palette.background.paper} !important`,
-      },
+    '&:focus': {
+      background: `${theme.palette.background.paper} !important`,
     },
-    menuPaper: {
-      minWidth: responsiveVal(200, 560),
-      maxWidth: 560,
-      marginTop: theme.spacings.xxs,
-      padding: `${theme.spacings.xs} ${theme.spacings.xs}`,
-      [theme.breakpoints.down('md')]: {
-        minWidth: 0,
-        width: '100%',
-        maxWidth: `calc(100% - (${theme.page.horizontal} * 2))`,
-        margin: '0 auto',
-        marginTop: '8px',
-      },
+  },
+  menuPaper: {
+    minWidth: responsiveVal(200, 560),
+    maxWidth: 560,
+    marginTop: theme.spacings.xxs,
+    padding: `${theme.spacings.xs} ${theme.spacings.xs}`,
+    [theme.breakpoints.down('md')]: {
+      minWidth: 0,
+      width: '100%',
+      maxWidth: `calc(100% - (${theme.page.horizontal} * 2))`,
+      margin: '0 auto',
+      marginTop: '8px',
     },
-    iconCancel: {
-      stroke: `none !important`,
-      fill: `${theme.palette.text.primary} !important`,
+  },
+  iconCancel: {
+    stroke: `none !important`,
+    fill: `${theme.palette.text.primary} !important`,
+  },
+  menuList: {
+    padding: 0,
+    '&:focus': {
+      outline: 'none',
     },
-    menuList: {
-      padding: 0,
-      '&:focus': {
-        outline: 'none',
-      },
-    },
-    sectionHeaderWrapper: {
-      marginTop: 10,
-    },
-  }),
-  { name: 'ChipMenu' },
-)
+  },
+  sectionHeaderWrapper: {
+    marginTop: 10,
+  },
+}))
 
 export type ChipMenuProps = PropsWithChildren<Omit<ChipProps, 'children'>> & {
   selectedLabel?: React.ReactNode
@@ -63,8 +60,9 @@ export type ChipMenuProps = PropsWithChildren<Omit<ChipProps, 'children'>> & {
 export default function ChipMenu(props: ChipMenuProps) {
   const { children, selected, onDelete, label, labelRight, onClose, selectedLabel, ...chipProps } =
     props
+
   const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
-  const classes = useChipMenuStyles(props)
+  const classes = useMergedClasses(useChipMenuStyles().classes, props.classes)
 
   let deleteIcon = selected ? (
     <div>

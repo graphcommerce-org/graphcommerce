@@ -1,12 +1,12 @@
-import { Fab, Theme, Typography } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
 import { PaginationProps, usePagination } from '@mui/lab'
+import { Fab, Typography } from '@mui/material'
 import React from 'react'
 import { UseStyles } from '../Styles'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 
-const useStyles = makeStyles()((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'Pagination' })((theme) => ({
   root: {
     margin: '0 auto',
     marginTop: theme.spacings.lg,
@@ -54,7 +54,8 @@ export type PagePaginationProps = {
  */
 export default function Pagination(props: PagePaginationProps) {
   const { count, page, renderLink, classes: styles, ...paginationProps } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
+
   const { items } = usePagination({
     count,
     defaultPage: 1,

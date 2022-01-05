@@ -1,8 +1,8 @@
-import { MenuItem, Select, SelectProps, Theme } from '@mui/material'
 import { makeStyles } from '@graphcommerce/next-ui'
+import { MenuItem, Select, SelectProps, Theme } from '@mui/material'
 import React from 'react'
 
-const useStyles = makeStyles({ name: 'CartItemOptionDropdown' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'CartItemOptionDropdown' })((theme) => ({
   root: {
     marginRight: theme.spacings.xs,
   },

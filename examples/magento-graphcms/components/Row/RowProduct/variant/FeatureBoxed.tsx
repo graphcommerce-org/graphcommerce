@@ -1,14 +1,14 @@
 import RichText from '@graphcommerce/graphcms-ui/RichText'
 import { Image } from '@graphcommerce/image'
 import { ImageTextBoxed, withStyles } from '@graphcommerce/next-ui'
-import { Typography, useTheme, Theme } from '@mui/material'
+import { Typography, useTheme } from '@mui/material'
 import React from 'react'
 import { RowProductFragment } from '../RowProduct.gql'
 import { ProductFeatureMediaBoxedFragment } from './ProductFeatureMediaBoxed.gql'
 
 type FeatureBoxedProps = RowProductFragment & ProductFeatureMediaBoxedFragment
 
-const RichTextFeatureBoxed = withStyles(RichText, (theme: Theme) => ({
+const RichTextFeatureBoxed = withStyles(RichText, (theme) => ({
   h2: { ...theme.typography.h1 },
   paragraph: { ...theme.typography.subtitle1 },
 }))

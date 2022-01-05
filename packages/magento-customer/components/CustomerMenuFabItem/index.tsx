@@ -11,7 +11,7 @@ import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from '../../hooks'
 
-const useStyles = makeStyles()((theme: Theme) => ({
+const useStyles = makeStyles()((theme) => ({
   colorError: {
     backgroundColor: theme.palette.grey['500'],
   },

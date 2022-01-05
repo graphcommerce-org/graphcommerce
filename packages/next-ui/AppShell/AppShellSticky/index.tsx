@@ -2,7 +2,7 @@ import { Container, Theme } from '@mui/material'
 import React from 'react'
 import { makeStyles, UseStyles } from '../../Styles'
 
-const useStyles = makeStyles({ name: 'AppShellSticky' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'AppShellSticky' })((theme) => ({
   root: {
     position: 'sticky',
     top: theme.appShell.headerHeightSm,

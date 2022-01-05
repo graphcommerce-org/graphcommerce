@@ -24,7 +24,7 @@ export type OrderStateLabelProps = {
 } & OrderStateLabelPropsBase &
   UseStyles<typeof useStyles>
 
-const useStyles = makeStyles({ name: 'OrderStateLabel' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'OrderStateLabel' })((theme) => ({
   orderStatus: {
     fontStyle: 'italic',
     fontWeight: 'normal',

@@ -9,7 +9,7 @@ import React from 'react'
 import { useCartQuery, useDisplayInclTax } from '../../hooks'
 import { GetCartTotalsDocument } from './GetCartTotals.gql'
 
-const useStyles = makeStyles({ name: 'CartTotals' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'CartTotals' })((theme) => ({
   costsContainer: {
     borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
     background:

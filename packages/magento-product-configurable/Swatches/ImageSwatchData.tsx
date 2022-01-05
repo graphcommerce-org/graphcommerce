@@ -7,7 +7,7 @@ import React from 'react'
 import { ImageSwatchDataFragment } from './ImageSwatchData.gql'
 import { SwatchDataProps } from '.'
 
-export const useStyles = makeStyles({ name: 'ImageSwatchData' })((theme: Theme) => ({
+export const useStyles = makeStyles({ name: 'ImageSwatchData' })((theme) => ({
   root: {
     height: responsiveVal(40, 80),
     width: responsiveVal(40, 80),

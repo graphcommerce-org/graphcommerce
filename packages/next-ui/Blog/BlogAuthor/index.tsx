@@ -4,7 +4,7 @@ import React from 'react'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
-const useStyles = makeStyles({ name: 'BlogAuthor' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'BlogAuthor' })((theme) => ({
   wrapper: {
     display: 'flex',
     justifyContent: 'left',

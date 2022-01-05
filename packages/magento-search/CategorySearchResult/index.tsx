@@ -11,7 +11,7 @@ import PageLink from 'next/link'
 import React from 'react'
 import { CategorySearchResultFragment } from './CategorySearchResult.gql'
 
-const useStyles = makeStyles({ name: 'CategorySearchResult' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'CategorySearchResult' })((theme) => ({
   categoryButton: {
     background: theme.palette.background.default,
     padding: `${theme.spacings.xs} 18px ${theme.spacings.xs} 14px`,

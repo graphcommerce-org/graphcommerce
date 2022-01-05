@@ -4,7 +4,7 @@ import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { ProductPageDescriptionFragment } from './ProductPageDescription.gql'
 
-const useStyles = makeStyles()((theme: Theme) => ({
+const useStyles = makeStyles()((theme) => ({
   /* nested styles because we don't know beforehand which elements the description contains */
   description: {
     '& p:first-of-type': {

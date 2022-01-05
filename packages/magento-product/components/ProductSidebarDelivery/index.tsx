@@ -3,7 +3,7 @@ import { darken, lighten, Theme, Typography } from '@mui/material'
 import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 
-const useStyles = makeStyles({ name: 'ProductSidebarDelivery' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'ProductSidebarDelivery' })((theme) => ({
   root: {
     display: 'grid',
     alignItems: 'center',

@@ -10,7 +10,7 @@ import { SetMolliePaymentMethodIssuerOnCartDocument } from './SetMolliePaymentMe
 
 type MollieIssuerOptionsProps = PaymentOptionsProps & { label: string }
 
-const useStyles = makeStyles({ name: 'MollieIssuerOptions' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'MollieIssuerOptions' })((theme) => ({
   root: {
     ...theme.typography.body2,
     paddingLeft: theme.spacings.xs,

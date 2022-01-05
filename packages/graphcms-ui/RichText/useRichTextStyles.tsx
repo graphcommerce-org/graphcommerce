@@ -3,7 +3,7 @@ import { Theme } from '@mui/material'
 
 import { makeStyles } from '@graphcommerce/next-ui'
 
-const useRichTextStyles = makeStyles({ name: 'RichText' })((theme: Theme) => ({
+const useRichTextStyles = makeStyles({ name: 'RichText' })((theme) => ({
   root: {
     '&:empty': {
       display: 'none',

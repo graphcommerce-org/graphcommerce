@@ -1,28 +1,25 @@
-import { Theme, Typography } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
+import { Typography } from '@mui/material'
 import React from 'react'
 import Row from '../Row'
 import { UseStyles } from '../Styles'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    head: {
-      display: 'grid',
-      justifyContent: 'space-between',
-      gridTemplateColumns: 'auto auto',
-      alignItems: 'end',
-      marginBottom: theme.spacings.md,
-    },
-    title: {
-      lineHeight: 1,
-      textTransform: 'uppercase',
-    },
-    right: {
-      lineHeight: 1,
-    },
-  }),
-  { name: 'ContainerWithHeader' },
-)
+const useStyles = makeStyles({ name: 'ContainerWithHeader' })((theme) => ({
+  head: {
+    display: 'grid',
+    justifyContent: 'space-between',
+    gridTemplateColumns: 'auto auto',
+    alignItems: 'end',
+    marginBottom: theme.spacings.md,
+  },
+  title: {
+    lineHeight: 1,
+    textTransform: 'uppercase',
+  },
+  right: {
+    lineHeight: 1,
+  },
+}))
 
 export type ContainerWithHeaderProps = {
   title: string
@@ -32,7 +29,7 @@ export type ContainerWithHeaderProps = {
 
 export default function ContainerWithHeader(props: ContainerWithHeaderProps) {
   const { title, rightArea, children } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
     <Row>

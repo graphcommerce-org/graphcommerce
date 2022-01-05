@@ -99,7 +99,7 @@ type MollieFieldProps = {
   isSubmitted?: boolean
 } & TextFieldProps
 
-const useStyles = makeStyles()((theme: Theme) => ({
+const useStyles = makeStyles()((theme) => ({
   label: {
     background:
       theme.palette.mode === 'light'

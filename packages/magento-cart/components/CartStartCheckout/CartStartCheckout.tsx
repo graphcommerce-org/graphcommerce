@@ -7,7 +7,7 @@ import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 
-const useStyles = makeStyles({ name: 'Cart' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'Cart' })((theme) => ({
   checkoutButtonContainer: {
     textAlign: 'center',
   },

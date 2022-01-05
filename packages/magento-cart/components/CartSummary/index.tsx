@@ -9,7 +9,7 @@ import { useCartQuery } from '../../hooks'
 import CartAddressMultiLine from '../CartAddressMultiLine'
 import { GetCartSummaryDocument } from './GetCartSummary.gql'
 
-const useStyles = makeStyles({ name: 'OrderDetails' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'OrderDetails' })((theme) => ({
   root: {
     margin: `${theme.spacings.sm} 0`,
     '& div:last-child': {

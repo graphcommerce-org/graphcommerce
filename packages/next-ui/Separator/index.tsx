@@ -1,26 +1,24 @@
-import { Theme, Typography, TypographyProps } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
+import { Typography, TypographyProps } from '@mui/material'
 import React from 'react'
 import { UseStyles } from '../Styles'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 
 export type DividedLinksProps = {
   icon?: React.ReactNode
 } & Pick<TypographyProps, 'color'> &
   UseStyles<typeof useStyles>
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    root: {
-      display: 'inline',
-      padding: `0 ${theme.spacings.xxs} 0 ${theme.spacings.xxs}`,
-    },
-  }),
-  { name: 'Separator' },
-)
+const useStyles = makeStyles({ name: 'Separator' })((theme) => ({
+  root: {
+    display: 'inline',
+    padding: `0 ${theme.spacings.xxs} 0 ${theme.spacings.xxs}`,
+  },
+}))
 
 export default function Separator(props: DividedLinksProps) {
   const { color, icon } = props
-  const { classes } = useStyles(props)
+  let { classes } = useStyles()
+  classes = useMergedClasses(classes, props.classes)
 
   return (
     <div className={classes.root}>

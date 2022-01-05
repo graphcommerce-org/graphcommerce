@@ -7,7 +7,7 @@ import React from 'react'
 import { SetOptional } from 'type-fest'
 import { AvailableShippingMethodFragment } from './AvailableShippingMethod.gql'
 
-const useStyles = makeStyles({ name: 'AvailableShippingMethod' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'AvailableShippingMethod' })((theme) => ({
   root: {
     textAlign: 'left',
     justifyContent: 'space-between',

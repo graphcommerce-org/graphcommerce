@@ -16,7 +16,7 @@ import { CartAgreementsDocument } from './CartAgreements.gql'
 
 export type CartAgreementsFormProps = Pick<UseFormComposeOptions, 'step'>
 
-const useStyles = makeStyles({ name: 'CartAgreements' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'CartAgreements' })((theme) => ({
   formDiv: {
     paddingTop: theme.spacings.sm,
   },

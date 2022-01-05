@@ -11,7 +11,7 @@ import { iconChevronLeft, iconChevronRight } from '../icons'
 import { MenuProps } from './Menu'
 import { makeStyles } from '../Styles/tssReact'
 
-const useStyles = makeStyles({ name: 'DesktopNavBar' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'DesktopNavBar' })((theme) => ({
   container: {
     minWidth: 200,
     flex: 1,

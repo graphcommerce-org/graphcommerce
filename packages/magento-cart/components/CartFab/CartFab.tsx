@@ -17,7 +17,7 @@ import { useCartQuery } from '../../hooks/useCartQuery'
 import { CartFabDocument } from './CartFab.gql'
 import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
 
-const useStyles = makeStyles({ name: 'CartFab' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'CartFab' })((theme) => ({
   fab: {
     width: responsiveVal(42, 56),
     height: responsiveVal(42, 56),

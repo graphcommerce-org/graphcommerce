@@ -27,7 +27,7 @@ import {
   ShippingMethodFormMutationVariables,
 } from './ShippingMethodForm.gql'
 
-const useStyles = makeStyles({ name: 'ShippingMethodForm' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'ShippingMethodForm' })((theme) => ({
   root: {
     marginTop: theme.spacings.xs,
     position: 'relative',

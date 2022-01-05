@@ -6,7 +6,7 @@ import React from 'react'
 import { CouponFragment } from '../Api/Coupon.gql'
 import { RemoveCouponFormDocument } from './RemoveCouponForm.gql'
 
-const useStyles = makeStyles({ name: 'RemoveCouponForm' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'RemoveCouponForm' })((theme) => ({
   inlineCoupon: {
     fontWeight: 600,
     background: lighten(theme.palette.secondary.light, theme.palette.action.hoverOpacity),

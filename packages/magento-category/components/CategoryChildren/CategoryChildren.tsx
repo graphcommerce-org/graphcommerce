@@ -7,7 +7,7 @@ import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { CategoryChildrenFragment } from './CategoryChildren.gql'
 
-const useStyles = makeStyles({ name: 'CategoryChildren' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'CategoryChildren' })((theme) => ({
   container: {
     display: 'flex',
     justifyContent: 'center',

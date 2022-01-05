@@ -20,7 +20,7 @@ import React, { useEffect, useState } from 'react'
 import { CreateProductReviewDocument } from './CreateProductReview.gql'
 import { ProductReviewRatingsMetadataDocument } from './ProductReviewRatingsMetadata.gql'
 
-const useStyles = makeStyles({ name: 'CreateProductReviewForm' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'CreateProductReviewForm' })((theme) => ({
   ratingContainer: {
     marginBottom: theme.spacings.xxs,
   },

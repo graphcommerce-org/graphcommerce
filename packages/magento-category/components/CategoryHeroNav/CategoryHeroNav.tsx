@@ -5,7 +5,7 @@ import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { CategoryHeroNavFragment } from './CategoryHeroNav.gql'
 
-const useStyles = makeStyles({ name: 'CategoryHeroNav' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'CategoryHeroNav' })((theme) => ({
   wrapper: {
     display: 'grid',
     gridTemplateColumns: '1fr',

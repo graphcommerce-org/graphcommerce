@@ -8,8 +8,7 @@ import {
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
 import { clientSize, useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Fab, Theme, useTheme, alpha } from '@mui/material'
-import { makeStyles } from '../../Styles/tssReact'
+import { Fab, useTheme, alpha } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
@@ -17,38 +16,17 @@ import Row from '../../Row'
 import { UseStyles } from '../../Styles'
 import { classesPicker } from '../../Styles/classesPicker'
 import { responsiveVal } from '../../Styles/responsiveVal'
+import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../../icons'
 
 type StyleProps = {
   aspectRatio: [number, number]
   clientHeight: number
-  classes?: Record<string, unknown>
 }
 
-const useStyles = makeStyles({ name: 'SidebarGallery' })((theme: Theme) => ({
-  root: {
-    willChange: 'transform',
-    display: 'grid',
-    [theme.breakpoints.up('md')]: {
-      gridTemplateColumns: '1fr auto',
-    },
-    background:
-      theme.palette.mode === 'light'
-        ? theme.palette.background.image
-        : theme.palette.background.paper,
-    paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
-  },
-  rootZoomed: {
-    position: 'relative',
-    zIndex: theme.zIndex.modal,
-    marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
-    [theme.breakpoints.up('md')]: {
-      marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
-    },
-    paddingRight: 0,
-  },
-  scrollerContainer: ({ aspectRatio: [width, height] }: StyleProps) => {
+const useStyles = makeStyles<StyleProps>({ name: 'SidebarGallery' })(
+  (theme, { aspectRatio: [width, height], clientHeight }) => {
     const headerHeight = `${theme.appShell.headerHeightSm} - ${theme.spacings.sm} * 2`
     const galleryMargin = theme.spacings.lg
     const extraSpacing = theme.spacings.md
@@ -57,113 +35,136 @@ const useStyles = makeStyles({ name: 'SidebarGallery' })((theme: Theme) => ({
     const ratio = `calc(${height} / ${width} * 100%)`
 
     return {
-      willChange: 'transform',
-      height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
-      backgroundColor: theme.palette.background.image,
-      position: 'relative',
-      minHeight: '100%',
-      paddingTop: `min(${ratio}, ${maxHeight})`,
-      [theme.breakpoints.down('lg')]: {
-        width: '100vw',
+      root: {
+        willChange: 'transform',
+        display: 'grid',
+        [theme.breakpoints.up('md')]: {
+          gridTemplateColumns: '1fr auto',
+        },
+        background:
+          theme.palette.mode === 'light'
+            ? theme.palette.background.image
+            : theme.palette.background.paper,
+        paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
+      },
+      rootZoomed: {
+        position: 'relative',
+        zIndex: theme.zIndex.modal,
+        marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
+        [theme.breakpoints.up('md')]: {
+          marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
+        },
+        paddingRight: 0,
+      },
+      scrollerContainer: {
+        willChange: 'transform',
+        height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
+        backgroundColor: theme.palette.background.image,
+        position: 'relative',
+        minHeight: '100%',
+        paddingTop: `min(${ratio}, ${maxHeight})`,
+        [theme.breakpoints.down('lg')]: {
+          width: '100vw',
+        },
+      },
+      scrollerContainerZoomed: {
+        paddingTop: clientHeight,
+      },
+      scroller: {
+        willChange: 'transform',
+        position: 'absolute',
+        top: 0,
+        width: '100%',
+        height: '100%',
+        gridAutoColumns: `100%`,
+        gridTemplateRows: `100%`,
+        cursor: 'zoom-in',
+      },
+      scrollerZoomed: {
+        height: clientHeight,
+        cursor: 'inherit',
+      },
+      sidebarWrapper: {
+        boxSizing: 'content-box',
+        display: 'grid',
+        justifyItems: 'start',
+        alignContent: 'center',
+        position: 'relative',
+        [theme.breakpoints.up('md')]: {
+          width: `calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
+            theme.page.horizontal
+          } * 2)`,
+        },
+      },
+      sidebarWrapperZoomed: {
+        [theme.breakpoints.up('md')]: {
+          marginLeft: `calc((${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
+            theme.page.horizontal
+          } * 2) * -1)`,
+          left: `calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
+            theme.page.horizontal
+          } * 2)`,
+        },
+      },
+      sidebar: {
+        boxSizing: 'border-box',
+        width: '100%',
+        padding: `${theme.spacings.lg} ${theme.page.horizontal}`,
+        [theme.breakpoints.up('md')]: {
+          paddingLeft: theme.spacings.lg,
+        },
+      },
+      bottomCenter: {
+        display: 'grid',
+        gridAutoFlow: 'column',
+        gap: theme.spacings.xxs,
+        position: 'absolute',
+        bottom: theme.spacings.xxs,
+        justifyContent: 'center',
+        width: '100%',
+        pointerEvents: 'none',
+        '& > *': {
+          pointerEvents: 'all',
+        },
+      },
+      sliderButtons: {
+        [theme.breakpoints.down('lg')]: {
+          display: 'none',
+        },
+      },
+      toggleIcon: {
+        boxShadow: theme.shadows[6],
+      },
+      topRight: {
+        display: 'grid',
+        gridAutoFlow: 'column',
+        top: theme.spacings.sm,
+        gap: theme.spacings.xxs,
+        position: 'absolute',
+        right: theme.spacings.sm,
+      },
+      centerLeft: {
+        display: 'grid',
+        gridAutoFlow: 'row',
+        gap: theme.spacings.xxs,
+        position: 'absolute',
+        left: theme.spacings.sm,
+        top: `calc(50% - 28px)`,
+      },
+      centerRight: {
+        display: 'grid',
+        gap: theme.spacings.xxs,
+        position: 'absolute',
+        right: theme.spacings.sm,
+        top: `calc(50% - 28px)`,
+      },
+      dots: {
+        background: alpha(theme.palette.background.paper, 1),
+        boxShadow: theme.shadows[6],
       },
     }
   },
-  scrollerContainerZoomed: ({ clientHeight }: StyleProps) => ({
-    paddingTop: clientHeight,
-  }),
-  scroller: {
-    willChange: 'transform',
-    position: 'absolute',
-    top: 0,
-    width: '100%',
-    height: '100%',
-    gridAutoColumns: `100%`,
-    gridTemplateRows: `100%`,
-    cursor: 'zoom-in',
-  },
-  scrollerZoomed: ({ clientHeight }: StyleProps) => ({
-    height: clientHeight,
-    cursor: 'inherit',
-  }),
-  sidebarWrapper: {
-    boxSizing: 'content-box',
-    display: 'grid',
-    justifyItems: 'start',
-    alignContent: 'center',
-    position: 'relative',
-    [theme.breakpoints.up('md')]: {
-      width: `calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
-        theme.page.horizontal
-      } * 2)`,
-    },
-  },
-  sidebarWrapperZoomed: {
-    [theme.breakpoints.up('md')]: {
-      marginLeft: `calc((${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
-        theme.page.horizontal
-      } * 2) * -1)`,
-      left: `calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
-        theme.page.horizontal
-      } * 2)`,
-    },
-  },
-  sidebar: {
-    boxSizing: 'border-box',
-    width: '100%',
-    padding: `${theme.spacings.lg} ${theme.page.horizontal}`,
-    [theme.breakpoints.up('md')]: {
-      paddingLeft: theme.spacings.lg,
-    },
-  },
-  bottomCenter: {
-    display: 'grid',
-    gridAutoFlow: 'column',
-    gap: theme.spacings.xxs,
-    position: 'absolute',
-    bottom: theme.spacings.xxs,
-    justifyContent: 'center',
-    width: '100%',
-    pointerEvents: 'none',
-    '& > *': {
-      pointerEvents: 'all',
-    },
-  },
-  sliderButtons: {
-    [theme.breakpoints.down('lg')]: {
-      display: 'none',
-    },
-  },
-  toggleIcon: {
-    boxShadow: theme.shadows[6],
-  },
-  topRight: {
-    display: 'grid',
-    gridAutoFlow: 'column',
-    top: theme.spacings.sm,
-    gap: theme.spacings.xxs,
-    position: 'absolute',
-    right: theme.spacings.sm,
-  },
-  centerLeft: {
-    display: 'grid',
-    gridAutoFlow: 'row',
-    gap: theme.spacings.xxs,
-    position: 'absolute',
-    left: theme.spacings.sm,
-    top: `calc(50% - 28px)`,
-  },
-  centerRight: {
-    display: 'grid',
-    gap: theme.spacings.xxs,
-    position: 'absolute',
-    right: theme.spacings.sm,
-    top: `calc(50% - 28px)`,
-  },
-  dots: {
-    background: alpha(theme.palette.background.paper, 1),
-    boxShadow: theme.shadows[6],
-  },
-}))
+)
 
 export type SidebarGalleryProps = {
   sidebar: React.ReactNode
@@ -173,18 +174,12 @@ export type SidebarGalleryProps = {
 } & UseStyles<typeof useStyles>
 
 export default function SidebarGallery(props: SidebarGalleryProps) {
-  const {
-    sidebar,
-    images,
-    aspectRatio = [1, 1],
-    routeHash = 'gallery',
-    classes: classesBase,
-  } = props
+  const { sidebar, images, aspectRatio = [1, 1], routeHash = 'gallery' } = props
 
   const router = useRouter()
   const prevRoute = usePrevPageRouter()
   const clientHeight = useMotionValueValue(clientSize.y, (y) => y)
-  const { classes } = useStyles({ clientHeight, aspectRatio, classes: classesBase })
+  const classes = useMergedClasses(useStyles({ clientHeight, aspectRatio }).classes, props.classes)
 
   const route = `#${routeHash}`
   // We're using the URL to manage the state of the gallery.

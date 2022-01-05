@@ -18,7 +18,7 @@ type FilterEqualTypeProps = NonNullable<
 > &
   Omit<ChipMenuProps, 'selected'>
 
-const useStyles = makeStyles({ name: 'FilterEqual' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'FilterEqual' })((theme) => ({
   root: {},
   listItem: {
     padding: `0 ${theme.spacings.xxs} 0`,

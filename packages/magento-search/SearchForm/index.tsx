@@ -6,7 +6,7 @@ import { makeStyles } from '@graphcommerce/next-ui'
 import { useRouter } from 'next/router'
 import React from 'react'
 
-const useStyles = makeStyles({ name: 'SearchIndexPage' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'SearchIndexPage' })((theme) => ({
   totalProducts: {
     minWidth: 'max-content',
     color: theme.palette.grey[500],

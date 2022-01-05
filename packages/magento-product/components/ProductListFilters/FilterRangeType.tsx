@@ -15,7 +15,7 @@ type FilterRangeTypeProps = NonNullable<
   Omit<ChipMenuProps, 'selected'>
 
 const sliderThumbWidth = 28
-const useStyles = makeStyles({ name: 'FilterRangeType' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'FilterRangeType' })((theme) => ({
   container: {
     padding: `${theme.spacings.xxs} ${theme.spacings.xxs} !important`,
     width: '100%',

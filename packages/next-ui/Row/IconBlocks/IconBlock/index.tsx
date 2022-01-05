@@ -1,33 +1,30 @@
-import { Theme, Typography } from '@mui/material'
-import { makeStyles } from '../../../Styles/tssReact'
+import { Typography } from '@mui/material'
 import React from 'react'
 import Button from '../../../Button'
 import { UseStyles } from '../../../Styles'
+import { makeStyles, useMergedClasses } from '../../../Styles/tssReact'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    block: {
-      border: `1px solid ${theme.palette.divider}`,
-      padding: `${theme.spacings.sm}`,
-      borderRadius: '6px',
-      textAlign: 'center',
-      color: theme.palette.text.primary,
-      '& > * > *': {
-        display: 'grid',
-        gridAutoFlow: 'row',
-        justifyItems: 'center',
-        gap: `${theme.spacings.xxs}`,
-      },
+const useStyles = makeStyles({ name: 'IconBlock' })((theme) => ({
+  block: {
+    border: `1px solid ${theme.palette.divider}`,
+    padding: `${theme.spacings.sm}`,
+    borderRadius: '6px',
+    textAlign: 'center',
+    color: theme.palette.text.primary,
+    '& > * > *': {
+      display: 'grid',
+      gridAutoFlow: 'row',
+      justifyItems: 'center',
+      gap: `${theme.spacings.xxs}`,
     },
-    link: {
-      textDecoration: 'none',
-    },
-    title: {
-      fontWeight: theme.typography.fontWeightBold,
-    },
-  }),
-  { name: 'IconBlock' },
-)
+  },
+  link: {
+    textDecoration: 'none',
+  },
+  title: {
+    fontWeight: theme.typography.fontWeightBold,
+  },
+}))
 
 export type IconBlockProps = UseStyles<typeof useStyles> & {
   title: string
@@ -38,7 +35,7 @@ export type IconBlockProps = UseStyles<typeof useStyles> & {
 
 const IconBlock = React.forwardRef<HTMLAnchorElement, IconBlockProps>((props, ref) => {
   const { title, children, icon, href } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   const content = (
     <>

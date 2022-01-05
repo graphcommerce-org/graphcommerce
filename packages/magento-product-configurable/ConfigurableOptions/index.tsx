@@ -17,7 +17,7 @@ export type ConfigurableOptionsProps = {
     optionEndLabels?: Record<string, React.ReactNode>
   }
 
-export const useStyles = makeStyles({ name: 'ConfigurableOptions' })((theme: Theme) => ({
+export const useStyles = makeStyles({ name: 'ConfigurableOptions' })((theme) => ({
   toggleButtonGroup: {
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 1fr)',

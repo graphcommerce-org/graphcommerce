@@ -24,7 +24,7 @@ import PageLink from 'next/link'
 import router from 'next/router'
 import React from 'react'
 
-const useStyles = makeStyles({ name: 'AccountSignInUpForm' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'AccountSignInUpForm' })((theme) => ({
   titleContainer: {
     ...theme.typography.body1,
     marginBottom: theme.spacings.xs,

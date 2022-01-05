@@ -10,7 +10,7 @@ import outlinedStar from './review_star_outlined.svg'
 
 type CustomerReviewProps = CustomerReviewFragment
 
-const useStyles = makeStyles({ name: 'CustomerReview' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'CustomerReview' })((theme) => ({
   container: {
     padding: `${theme.spacings.md} 0 ${theme.spacings.md} 0`,
     display: 'grid',

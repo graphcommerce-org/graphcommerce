@@ -7,51 +7,48 @@ import { responsiveVal } from '../Styles/responsiveVal'
 
 export type SvgImageShade = 'muted' | 'default' | 'inverted'
 
-const useStyles = makeStyles()(
-  {
-    image: {
-      userSelect: 'none',
-      width: responsiveVal(22, 24),
-      height: responsiveVal(22, 24),
-      strokeWidth: 1.8,
-      strokeLinecap: 'square',
-      strokeLinejoin: 'miter',
-      fill: 'none',
-      stroke: 'currentColor',
-    },
-    sizeInherit: {
-      fontSize: 'inherit',
-    },
-    sizeXs: {
-      width: responsiveVal(11, 13),
-      height: responsiveVal(11, 13),
-      strokeWidth: 2.1,
-    },
-    sizeSmall: {
-      width: responsiveVal(12, 16),
-      height: responsiveVal(12, 16),
-      strokeWidth: 2.1,
-    },
-    sizeLarge: {
-      width: responsiveVal(24, 28),
-      height: responsiveVal(24, 28),
-      strokeWidth: 1.4,
-    },
-    sizeXl: {
-      width: responsiveVal(38, 62),
-      height: responsiveVal(38, 62),
-      strokeWidth: 1.4,
-    },
-    sizeXxl: {
-      width: responsiveVal(96, 148),
-      height: responsiveVal(96, 148),
-      strokeWidth: 0.8,
-    },
-    muted: {},
-    inverted: {},
+const useStyles = makeStyles({ name: 'SvgImageSimple' })({
+  image: {
+    userSelect: 'none',
+    width: responsiveVal(22, 24),
+    height: responsiveVal(22, 24),
+    strokeWidth: 1.8,
+    strokeLinecap: 'square',
+    strokeLinejoin: 'miter',
+    fill: 'none',
+    stroke: 'currentColor',
   },
-  { name: 'SvgImageSimple' },
-)
+  sizeInherit: {
+    fontSize: 'inherit',
+  },
+  sizeXs: {
+    width: responsiveVal(11, 13),
+    height: responsiveVal(11, 13),
+    strokeWidth: 2.1,
+  },
+  sizeSmall: {
+    width: responsiveVal(12, 16),
+    height: responsiveVal(12, 16),
+    strokeWidth: 2.1,
+  },
+  sizeLarge: {
+    width: responsiveVal(24, 28),
+    height: responsiveVal(24, 28),
+    strokeWidth: 1.4,
+  },
+  sizeXl: {
+    width: responsiveVal(38, 62),
+    height: responsiveVal(38, 62),
+    strokeWidth: 1.4,
+  },
+  sizeXxl: {
+    width: responsiveVal(96, 148),
+    height: responsiveVal(96, 148),
+    strokeWidth: 0.8,
+  },
+  muted: {},
+  inverted: {},
+})
 
 type SvgImageSimpleProps = Omit<ImageProps, 'fixed'> & {
   /** The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size. */

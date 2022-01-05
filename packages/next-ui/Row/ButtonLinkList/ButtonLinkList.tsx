@@ -1,13 +1,12 @@
-import { Theme } from '@mui/material'
-import { makeStyles } from '../../Styles/tssReact'
 import React from 'react'
 import Row from '..'
 import SectionContainer from '../../SectionContainer'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
+import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
+const useStyles = makeStyles<StyleProps>({ name: 'ButtonLinkList' })(
+  (theme, { containsBigLinks }) => ({
     container: {
       maxWidth: 820,
     },
@@ -20,28 +19,28 @@ const useStyles = makeStyles()(
       padding: `${theme.spacings.xs} 0`,
       borderBottom: `1px solid ${theme.palette.divider}`,
     },
-    links: ({ containsBigLinks }: ButtonLinkListPropsBase) => ({
+    links: {
       display: 'grid',
       gridTemplateColumns: containsBigLinks
         ? undefined
         : `repeat(auto-fill, minmax(${responsiveVal(210, 350)}, 1fr))`,
       columnGap: theme.spacings.sm,
-    }),
+    },
   }),
-  { name: 'ButtonLinkList' },
 )
 
-type ButtonLinkListPropsBase = {
-  title: string
-  children: React.ReactNode
+type StyleProps = {
   containsBigLinks: boolean
 }
 
-export type ButtonLinkListProps = UseStyles<typeof useStyles> & ButtonLinkListPropsBase
+export type ButtonLinkListProps = UseStyles<typeof useStyles> & {
+  title: string
+  children: React.ReactNode
+} & StyleProps
 
 export function ButtonLinkList(props: ButtonLinkListProps) {
-  const { title, children } = props
-  const { classes } = useStyles(props)
+  const { title, children, containsBigLinks } = props
+  const classes = useMergedClasses(useStyles({ containsBigLinks }).classes, props.classes)
 
   return (
     <Row maxWidth='md' className={classes.container}>

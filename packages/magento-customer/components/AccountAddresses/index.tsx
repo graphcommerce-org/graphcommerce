@@ -18,7 +18,7 @@ import { AccountAddressesFragment } from './AccountAddresses.gql'
 
 export type AccountAddressesProps = AccountAddressesFragment & { loading: boolean }
 
-const useStyles = makeStyles({ name: 'AccountAddresses' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'AccountAddresses' })((theme) => ({
   root: {
     '& > div': {
       borderBottom: `1px solid ${theme.palette.divider}`,

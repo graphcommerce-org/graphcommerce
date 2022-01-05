@@ -1,44 +1,42 @@
-import { Theme, Typography } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
+import { Typography } from '@mui/material'
 import clsx from 'clsx'
 import React from 'react'
+import { UseStyles } from '../Styles'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 import { SvgImageProps } from '../SvgImage'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 
 // TODO: remove all occurrences. deprecated component
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    container: {
-      ...theme.typography.subtitle1,
-      textAlign: 'center',
+const useStyles = makeStyles({ name: 'IconHeader' })((theme) => ({
+  container: {
+    ...theme.typography.subtitle1,
+    textAlign: 'center',
+  },
+  innerContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 4,
+  },
+  breakColumnsDesktop: {
+    [theme.breakpoints.up('md')]: {
+      display: 'unset',
     },
-    innerContainer: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: 4,
-    },
-    breakColumnsDesktop: {
-      [theme.breakpoints.up('md')]: {
-        display: 'unset',
-      },
-    },
-    margin: {
-      marginTop: theme.spacings.sm,
-      marginBottom: theme.spacings.sm,
-    },
-    ellipsis: {
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-    },
-    mediumFontWeight: {
-      fontWeight: 700,
-    },
-  }),
-  { name: 'IconHeader' },
-)
+  },
+  margin: {
+    marginTop: theme.spacings.sm,
+    marginBottom: theme.spacings.sm,
+  },
+  ellipsis: {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+  mediumFontWeight: {
+    fontWeight: 700,
+  },
+}))
 
 export type IconHeaderSize = 'small' | 'medium' | 'large'
 
@@ -50,7 +48,8 @@ type IconHeaderProps = {
   noMargin?: boolean
   stayInline?: boolean
   ellipsis?: boolean
-} & Pick<SvgImageProps, 'src' | 'alt'>
+} & Pick<SvgImageProps, 'src' | 'alt'> &
+  UseStyles<typeof useStyles>
 
 type IconHeaderHeadings = 'h2' | 'h4' | 'h5'
 
@@ -65,7 +64,7 @@ export default function IconHeader(props: IconHeaderProps) {
     iconSizeMobile,
     ...svgImageProps
   } = props
-  const { classes } = useStyles()
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   const variants: Record<IconHeaderSize, IconHeaderHeadings> = {
     small: 'h5',

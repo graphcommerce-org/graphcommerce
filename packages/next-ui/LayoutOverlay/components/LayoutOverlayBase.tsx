@@ -1,168 +1,165 @@
 import { useGo, usePageContext, useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
 import { useElementScroll, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
-import { Theme, capitalize, styled } from '@mui/material'
-import { makeStyles } from '../../Styles/tssReact'
+import { capitalize, styled } from '@mui/material'
 import { m, useDomEvent, useMotionValue, usePresence, useTransform } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
 import LayoutProvider from '../../Layout/components/LayoutProvider'
 import { UseStyles } from '../../Styles'
 import { classesPicker } from '../../Styles/classesPicker'
+import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
 import { useOverlayPosition } from '../hooks/useOverlayPosition'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    '@global': {
-      body: {
-        overflow: 'hidden',
-      },
+const useStyles = makeStyles({ name: 'LayoutOverlay' })((theme) => ({
+  '@global': {
+    body: {
+      overflow: 'hidden',
     },
-    root: {
-      display: 'grid',
-      cursor: 'default',
-      overflow: 'auto',
+  },
+  root: {
+    display: 'grid',
+    cursor: 'default',
+    overflow: 'auto',
+    height: '100vh',
+    '@supports (-webkit-touch-callout: none)': {
+      height: '-webkit-fill-available',
+    },
+  },
+  rootVariantSmLeft: {
+    [theme.breakpoints.down('lg')]: {
+      gridTemplate: `"overlay beforeOverlay"`,
+      borderTopRightRadius: theme.shape.borderRadius * 3,
+      borderBottomRightRadius: theme.shape.borderRadius * 3,
+    },
+  },
+  rootVariantMdLeft: {
+    [theme.breakpoints.up('md')]: {
+      gridTemplate: `"overlay beforeOverlay"`,
+      borderTopRightRadius: theme.shape.borderRadius * 4,
+      borderBottomRightRadius: theme.shape.borderRadius * 4,
+    },
+  },
+  rootVariantSmRight: {
+    [theme.breakpoints.down('lg')]: {
+      gridTemplate: `"beforeOverlay overlay"`,
+      borderTopLeftRadius: theme.shape.borderRadius * 3,
+      borderBottomLeftRadius: theme.shape.borderRadius * 3,
+    },
+  },
+  rootVariantMdRight: {
+    [theme.breakpoints.up('md')]: {
+      gridTemplate: `"beforeOverlay overlay"`,
+      borderTopLeftRadius: theme.shape.borderRadius * 4,
+      borderBottomLeftRadius: theme.shape.borderRadius * 4,
+    },
+  },
+  rootVariantSmBottom: {
+    [theme.breakpoints.down('lg')]: {
+      borderTopLeftRadius: theme.shape.borderRadius * 3,
+      borderTopRightRadius: theme.shape.borderRadius * 3,
+      gridTemplate: `"beforeOverlay" "overlay"`,
       height: '100vh',
       '@supports (-webkit-touch-callout: none)': {
         height: '-webkit-fill-available',
       },
     },
-    rootVariantSmLeft: {
-      [theme.breakpoints.down('lg')]: {
-        gridTemplate: `"overlay beforeOverlay"`,
-        borderTopRightRadius: theme.shape.borderRadius * 3,
-        borderBottomRightRadius: theme.shape.borderRadius * 3,
-      },
+  },
+  rootVariantMdBottom: {
+    borderTopLeftRadius: theme.shape.borderRadius * 4,
+    borderTopRightRadius: theme.shape.borderRadius * 4,
+    [theme.breakpoints.up('md')]: {
+      gridTemplate: `"beforeOverlay" "overlay"`,
+      height: '100vh',
     },
-    rootVariantMdLeft: {
-      [theme.breakpoints.up('md')]: {
-        gridTemplate: `"overlay beforeOverlay"`,
-        borderTopRightRadius: theme.shape.borderRadius * 4,
-        borderBottomRightRadius: theme.shape.borderRadius * 4,
-      },
+  },
+
+  // Overlay pane styles
+  overlayPane: {},
+
+  overlaySizeSmFloating: {
+    [theme.breakpoints.down('lg')]: {
+      padding: `${theme.page.vertical} ${theme.page.horizontal}`,
     },
-    rootVariantSmRight: {
-      [theme.breakpoints.down('lg')]: {
-        gridTemplate: `"beforeOverlay overlay"`,
-        borderTopLeftRadius: theme.shape.borderRadius * 3,
-        borderBottomLeftRadius: theme.shape.borderRadius * 3,
-      },
+  },
+  overlaySizeMdFloating: {
+    [theme.breakpoints.up('md')]: {
+      padding: `${theme.page.vertical} ${theme.page.horizontal}`,
     },
-    rootVariantMdRight: {
-      [theme.breakpoints.up('md')]: {
-        gridTemplate: `"beforeOverlay overlay"`,
-        borderTopLeftRadius: theme.shape.borderRadius * 4,
-        borderBottomLeftRadius: theme.shape.borderRadius * 4,
-      },
+  },
+  overlayPaneVariantSmBottom: {
+    [theme.breakpoints.down('lg')]: {
+      borderTopLeftRadius: theme.shape.borderRadius * 3,
+      borderTopRightRadius: theme.shape.borderRadius * 3,
     },
-    rootVariantSmBottom: {
-      [theme.breakpoints.down('lg')]: {
-        borderTopLeftRadius: theme.shape.borderRadius * 3,
-        borderTopRightRadius: theme.shape.borderRadius * 3,
-        gridTemplate: `"beforeOverlay" "overlay"`,
-        height: '100vh',
-        '@supports (-webkit-touch-callout: none)': {
-          height: '-webkit-fill-available',
-        },
-      },
-    },
-    rootVariantMdBottom: {
+  },
+  overlayPaneVariantMdBottom: {
+    [theme.breakpoints.up('md')]: {
       borderTopLeftRadius: theme.shape.borderRadius * 4,
       borderTopRightRadius: theme.shape.borderRadius * 4,
-      [theme.breakpoints.up('md')]: {
-        gridTemplate: `"beforeOverlay" "overlay"`,
-        height: '100vh',
+    },
+  },
+  overlayPaneSizeSmFloating: {
+    [theme.breakpoints.down('lg')]: {
+      borderRadius: theme.shape.borderRadius * 3,
+    },
+  },
+  overlayPaneSizeMdFloating: {
+    [theme.breakpoints.up('md')]: {
+      borderRadius: theme.shape.borderRadius * 4,
+    },
+  },
+  overlayPaneSmVariantSizeLeftFull: {
+    [theme.breakpoints.down('lg')]: {
+      paddingBottom: 1,
+      minHeight: '100vh',
+      '@supports (-webkit-touch-callout: none)': {
+        minHeight: '-webkit-fill-available',
       },
     },
-
-    // Overlay pane styles
-    overlayPane: {},
-
-    overlaySizeSmFloating: {
-      [theme.breakpoints.down('lg')]: {
-        padding: `${theme.page.vertical} ${theme.page.horizontal}`,
+  },
+  overlayPaneMdVariantSizeLeftFull: {
+    [theme.breakpoints.up('md')]: {
+      paddingBottom: 1,
+      minHeight: '100vh',
+      '@supports (-webkit-touch-callout: none)': {
+        minHeight: '-webkit-fill-available',
       },
     },
-    overlaySizeMdFloating: {
-      [theme.breakpoints.up('md')]: {
-        padding: `${theme.page.vertical} ${theme.page.horizontal}`,
+  },
+  overlayPaneSmVariantSizeRightFull: {
+    [theme.breakpoints.down('lg')]: {
+      paddingBottom: 1,
+      minHeight: '100vh',
+      '@supports (-webkit-touch-callout: none)': {
+        minHeight: '-webkit-fill-available',
       },
     },
-    overlayPaneVariantSmBottom: {
-      [theme.breakpoints.down('lg')]: {
-        borderTopLeftRadius: theme.shape.borderRadius * 3,
-        borderTopRightRadius: theme.shape.borderRadius * 3,
+  },
+  overlayPaneMdVariantSizeRightFull: {
+    [theme.breakpoints.up('md')]: {
+      paddingBottom: 1,
+      minHeight: '100vh',
+      scrollSnapAlign: 'end',
+      '@supports (-webkit-touch-callout: none)': {
+        minHeight: '-webkit-fill-available',
       },
     },
-    overlayPaneVariantMdBottom: {
-      [theme.breakpoints.up('md')]: {
-        borderTopLeftRadius: theme.shape.borderRadius * 4,
-        borderTopRightRadius: theme.shape.borderRadius * 4,
-      },
-    },
-    overlayPaneSizeSmFloating: {
-      [theme.breakpoints.down('lg')]: {
-        borderRadius: theme.shape.borderRadius * 3,
-      },
-    },
-    overlayPaneSizeMdFloating: {
-      [theme.breakpoints.up('md')]: {
-        borderRadius: theme.shape.borderRadius * 4,
-      },
-    },
-    overlayPaneSmVariantSizeLeftFull: {
-      [theme.breakpoints.down('lg')]: {
-        paddingBottom: 1,
-        minHeight: '100vh',
-        '@supports (-webkit-touch-callout: none)': {
-          minHeight: '-webkit-fill-available',
-        },
-      },
-    },
-    overlayPaneMdVariantSizeLeftFull: {
-      [theme.breakpoints.up('md')]: {
-        paddingBottom: 1,
-        minHeight: '100vh',
-        '@supports (-webkit-touch-callout: none)': {
-          minHeight: '-webkit-fill-available',
-        },
-      },
-    },
-    overlayPaneSmVariantSizeRightFull: {
-      [theme.breakpoints.down('lg')]: {
-        paddingBottom: 1,
-        minHeight: '100vh',
-        '@supports (-webkit-touch-callout: none)': {
-          minHeight: '-webkit-fill-available',
-        },
-      },
-    },
-    overlayPaneMdVariantSizeRightFull: {
-      [theme.breakpoints.up('md')]: {
-        paddingBottom: 1,
-        minHeight: '100vh',
-        scrollSnapAlign: 'end',
-        '@supports (-webkit-touch-callout: none)': {
-          minHeight: '-webkit-fill-available',
-        },
-      },
-    },
-    backdrop: {
-      zIndex: -1,
-      position: 'fixed',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      right: 0,
-      bottom: 0,
-      top: 0,
-      left: 0,
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      WebkitTapHighlightColor: 'transparent',
-      willChange: 'opacity',
-    },
-  }),
-  { name: 'Overlay' },
-)
+  },
+  backdrop: {
+    zIndex: -1,
+    position: 'fixed',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 0,
+    bottom: 0,
+    top: 0,
+    left: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    WebkitTapHighlightColor: 'transparent',
+    willChange: 'opacity',
+  },
+}))
 
 export type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
 export type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
@@ -194,7 +191,6 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
     children,
     variantSm,
     variantMd,
-    classes: _classes,
     className,
     sizeSm = 'full',
     sizeMd = 'full',
@@ -213,7 +209,8 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
 
   const position = useMotionValue<OverlayPosition>(OverlayPosition.UNOPENED)
 
-  const { classes } = useStyles({ classes: _classes, sizeSm, sizeMd, justifySm, justifyMd })
+  const classes = useMergedClasses(useStyles().classes, props.classes)
+
   const clsName = classesPicker(classes, {
     variantSm,
     variantMd,

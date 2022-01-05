@@ -3,7 +3,7 @@ import { makeStyles } from '../../Styles/tssReact'
 import PageLink from 'next/link'
 import React from 'react'
 
-const useStyles = makeStyles({ name: 'BlogTitle' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'BlogTitle' })((theme) => ({
   wrapper: {
     maxWidth: 800,
     margin: `0 auto`,

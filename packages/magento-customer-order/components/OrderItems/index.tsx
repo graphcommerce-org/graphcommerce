@@ -9,7 +9,7 @@ import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import OrderItem from '../OrderItem'
 import { OrderItemsFragment } from './OrderItems.gql'
 
-const useStyles = makeStyles({ name: 'OrderItems' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'OrderItems' })((theme) => ({
   sectionContainer: {
     marginTop: theme.spacings.md,
     marginBottom: theme.spacings.md,

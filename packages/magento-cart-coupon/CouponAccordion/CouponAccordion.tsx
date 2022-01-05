@@ -17,7 +17,7 @@ import ApplyCouponForm from '../ApplyCouponForm/ApplyCouponForm'
 import RemoveCouponForm from '../RemoveCouponForm/RemoveCouponForm'
 import { GetCouponDocument } from './GetCoupon.gql'
 
-const useStyles = makeStyles({ name: 'CouponAccordion' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'CouponAccordion' })((theme) => ({
   accordion: {
     '&:before': {
       background: 'none',

@@ -13,7 +13,7 @@ import { AccountOrdersFragment } from './AccountOrders.gql'
 
 export type AccountOrdersProps = AccountOrdersFragment
 
-const useStyles = makeStyles({ name: 'AccountOrders' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'AccountOrders' })((theme) => ({
   ordersContainer: {
     ...theme.typography.body2,
     marginBottom: theme.spacings.md,

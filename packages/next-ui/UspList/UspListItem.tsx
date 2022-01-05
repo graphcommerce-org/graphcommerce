@@ -5,37 +5,34 @@ import React from 'react'
 import { UseStyles } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    root: {
-      display: 'grid',
-      gridAutoFlow: 'column',
-      alignItems: 'center',
-      gridTemplateColumns: `${responsiveVal(32, 38)} auto`,
-      gap: theme.spacings.xs,
-      '& > p': {
-        ...theme.typography.body2,
-      },
+const useStyles = makeStyles({ name: 'UspListItem' })((theme) => ({
+  root: {
+    display: 'grid',
+    gridAutoFlow: 'column',
+    alignItems: 'center',
+    gridTemplateColumns: `${responsiveVal(32, 38)} auto`,
+    gap: theme.spacings.xs,
+    '& > p': {
+      ...theme.typography.body2,
     },
-    icon: {
-      display: 'flex',
+  },
+  icon: {
+    display: 'flex',
 
-      '& > * > img': {
-        display: 'block',
-      },
+    '& > * > img': {
+      display: 'block',
     },
-    smallCopy: {
-      '& > p': {
-        ...theme.typography.body2,
-      },
+  },
+  smallCopy: {
+    '& > p': {
+      ...theme.typography.body2,
     },
-    smallIcons: {
-      gridTemplateColumns: `${responsiveVal(10, 14)} auto`,
-      gap: theme.spacings.xxs,
-    },
-  }),
-  { name: 'UspListItem' },
-)
+  },
+  smallIcons: {
+    gridTemplateColumns: `${responsiveVal(10, 14)} auto`,
+    gap: theme.spacings.xxs,
+  },
+}))
 
 export type UspListItemProps = UseStyles<typeof useStyles> & {
   text: React.ReactNode

@@ -12,7 +12,7 @@ import {
   ForgotPasswordMutationVariables,
 } from './ForgotPassword.gql'
 
-const useStyles = makeStyles({ name: 'ForgotPasswordForm' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'ForgotPasswordForm' })((theme) => ({
   alert: {
     marginTop: theme.spacings.md,
     marginBottom: theme.spacings.sm,

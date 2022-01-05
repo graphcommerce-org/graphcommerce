@@ -8,7 +8,7 @@ import ProductReviewChip from '../ProductReviewChip'
 import { ProductReviewsFragment } from './ProductReviews.gql'
 import { ProductReviewsPageDocument } from './ProductReviewsPage.gql'
 
-const useStyles = makeStyles({ name: 'ProductReviews' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'ProductReviews' })((theme) => ({
   review: {
     display: 'grid',
     gap: theme.spacings.sm,

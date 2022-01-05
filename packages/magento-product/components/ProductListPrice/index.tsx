@@ -5,7 +5,7 @@ import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { ProductListPriceFragment } from './ProductListPrice.gql'
 
-const useStyles = makeStyles({ name: 'ProductListPrice' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'ProductListPrice' })((theme) => ({
   root: {},
   discount: {
     textDecoration: 'line-through',

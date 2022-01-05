@@ -5,7 +5,7 @@ import Row from '../../Row'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
-const useStyles = makeStyles({ name: 'BlogList' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'BlogList' })((theme) => ({
   root: {
     display: 'grid',
     gap: theme.spacings.md,

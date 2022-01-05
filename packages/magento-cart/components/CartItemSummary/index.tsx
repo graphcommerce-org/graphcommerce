@@ -17,7 +17,7 @@ import { useCartQuery } from '../../hooks'
 import CartTotals from '../CartTotals/CartTotals'
 import { CartItemSummaryDocument } from './GetCartItemSummary.gql'
 
-const useStyles = makeStyles({ name: 'CartItemSummary' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'CartItemSummary' })((theme) => ({
   root: {
     padding: `${theme.spacings.sm} ${theme.spacings.sm}`,
     border: `1px ${theme.palette.divider} solid`,

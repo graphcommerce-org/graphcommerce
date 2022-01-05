@@ -32,7 +32,7 @@ export type PaymentMethodTogglesProps = Pick<UseFormComposeOptions, 'step'>
 //   return <Component {...props} />
 // }
 
-const useStyles = makeStyles({ name: 'PaymentMethodToggles' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'PaymentMethodToggles' })((theme) => ({
   formRoot: {
     padding: '5px 0',
   },

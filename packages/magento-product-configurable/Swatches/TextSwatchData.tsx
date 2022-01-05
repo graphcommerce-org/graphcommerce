@@ -7,7 +7,7 @@ import React from 'react'
 import { TextSwatchDataFragment } from './TextSwatchData.gql'
 import { SwatchDataProps } from '.'
 
-export const useStyles = makeStyles({ name: 'TextSwatchData' })((theme: Theme) => ({
+export const useStyles = makeStyles({ name: 'TextSwatchData' })((theme) => ({
   root: {
     display: 'grid',
     width: '100%',

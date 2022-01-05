@@ -10,7 +10,7 @@ import { AccountAddressFragment } from './AccountAddress.gql'
 
 export type AccountAddressProps = AccountAddressFragment
 
-const useStyles = makeStyles({ name: 'AccountAddress' })((theme: Theme) => ({
+const useStyles = makeStyles({ name: 'AccountAddress' })((theme) => ({
   root: {
     display: 'flex',
     justifyContent: 'space-between',
