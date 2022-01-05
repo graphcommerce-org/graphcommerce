@@ -27,6 +27,9 @@ declare module '@mui/material/styles/createTheme' {
       appBarHeightMd: string
       appBarInnerHeightMd: string
     }
+
+    // todo: should be cleaned up to be compatible with the default mui-styles
+    shape: { borderRadius: number }
   }
   interface Theme {
     spacings: {
@@ -48,5 +51,8 @@ declare module '@mui/material/styles/createTheme' {
       appBarHeightMd: string
       appBarInnerHeightMd: string
     }
+
+    // todo: should be cleaned up to be compatible with the default mui-styles
+    shape: { borderRadius: number }
   }
 }
