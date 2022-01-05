@@ -11,7 +11,7 @@ import { AppProps, GlobalHead, PageLoadIndicator } from '@graphcommerce/next-ui'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { LazyMotion } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { lightTheme, darkTheme } from '../components/Theme/ThemedProvider'
 import apolloClient from '../lib/apolloClientBrowser'
 
@@ -24,12 +24,11 @@ const Head = () => (
   <GlobalHead name={useQuery(StoreConfigDocument).data?.storeConfig?.website_name ?? ''} />
 )
 
-let muiCache: EmotionCache | undefined
-export const createMuiCache = () => (muiCache = createCache({ key: 'css', prepend: true }))
-
 export default function ThemedApp(props: Omit<AppPropsType, 'pageProps'> & AppProps) {
   const { pageProps, router } = props
   const { locale, asPath } = router
+
+  const cache = useMemo(() => createCache({ key: 'css', prepend: true }), [])
 
   useEffect(() => document.getElementById('jss-server-side')?.remove(), [])
 
@@ -55,19 +54,20 @@ export default function ThemedApp(props: Omit<AppPropsType, 'pageProps'> & AppPr
         locale={locale}
         loader={(l) => import(`../locales/${l}.po`)}
         ssrLoader={(l) =>
+          // eslint-disable-next-line global-require, import/no-dynamic-require
           typeof window === 'undefined' ? require(`../locales/${l}.po`) : { messages: {} }
         }
       >
-        <ApolloProvider client={client}>
-          <CacheProvider value={muiCache || createMuiCache()}>
+        <CacheProvider value={cache}>
+          <ApolloProvider client={client}>
             <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
               <Head />
               <CssBaseline />
               <PageLoadIndicator />
               <FramerNextPages {...props} />
             </ThemeProvider>
-          </CacheProvider>
-        </ApolloProvider>
+          </ApolloProvider>
+        </CacheProvider>
       </LinguiProvider>
     </LazyMotion>
   )

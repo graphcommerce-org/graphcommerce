@@ -75,7 +75,6 @@
     "@lingui/macro": "^3.13.0",
     "@mui/lab": "^5.0.0-alpha.63",
     "@mui/material": "^5.2.7",
-    "@mui/styles": "^5.2.3",
     "@playwright/test": "^1.17.1",
     "apollo3-cache-persist": "^0.13.0",
     "clsx": "^1.1.1",

@@ -4,61 +4,48 @@ import '../demo.css'
 import { PageComponent, FramerNextPages } from '@graphcommerce/framer-next-pages'
 import { LinguiProvider } from '@graphcommerce/lingui-next'
 import { responsiveVal } from '@graphcommerce/next-ui'
-import {
-  createTheme,
-  CssBaseline,
-  ThemeProvider,
-  Theme,
-  StyledEngineProvider,
-  adaptV4Theme,
-} from '@mui/material'
+import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
 import { LazyMotion } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
-import dynamic from 'next/dynamic'
 import { Router } from 'next/router'
 import React from 'react'
 
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-const Fallback = dynamic(() => import('./[url]'), { ssr: false })
-
-const theme = createTheme(
-  adaptV4Theme({
-    spacings: {
-      xxs: responsiveVal(10, 16),
-      xs: responsiveVal(12, 20),
-      sm: responsiveVal(14, 30),
-      md: responsiveVal(16, 50),
-      lg: responsiveVal(24, 80),
-      xl: responsiveVal(80, 160),
-      xxl: responsiveVal(100, 220),
-    },
-    page: {
-      horizontal: responsiveVal(10, 30),
-      vertical: responsiveVal(10, 30),
-    },
-    appShell: {
-      headerHeightSm: '46px',
-      headerHeightMd: '110px',
-      appBarHeightMd: '80px',
-      appBarInnerHeightMd: '46px',
-    },
-  }),
-)
+const theme = createTheme({
+  shape: {
+    borderRadius: 4,
+  },
+  spacings: {
+    xxs: responsiveVal(10, 16),
+    xs: responsiveVal(12, 20),
+    sm: responsiveVal(14, 30),
+    md: responsiveVal(16, 50),
+    lg: responsiveVal(24, 80),
+    xl: responsiveVal(80, 160),
+    xxl: responsiveVal(100, 220),
+  },
+  page: {
+    horizontal: responsiveVal(10, 30),
+    vertical: responsiveVal(10, 30),
+  },
+  appShell: {
+    headerHeightSm: '46px',
+    headerHeightMd: '110px',
+    appBarHeightMd: '80px',
+    appBarInnerHeightMd: '46px',
+  },
+})
 
 export default function MyApp(props: AppPropsType<Router> & { Component: PageComponent }) {
   return (
-    <LinguiProvider loader={async () => ({ messages: {} })}>
+    <LinguiProvider
+      loader={async () => Promise.resolve({ messages: {} })}
+      ssrLoader={() => ({ messages: {} })}
+    >
       <LazyMotion features={async () => (await import('../components/lazyMotion')).default}>
-        <StyledEngineProvider injectFirst>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <FramerNextPages {...props} />
-          </ThemeProvider>
-        </StyledEngineProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <FramerNextPages {...props} />
+        </ThemeProvider>
       </LazyMotion>
     </LinguiProvider>
   )
