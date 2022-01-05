@@ -215,35 +215,35 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
 const createOverrides = (theme: Theme): Components => ({
   MuiCssBaseline: {
     styleOverrides: {
-      '@global': {
-        body: {
-          overflowY: 'scroll',
-        },
-        '::selection': { background: alpha(theme.palette.primary.main, 0.6) },
-        '::-moz-selection': { background: alpha(theme.palette.primary.main, 0.6) },
-        '#__next': {
-          position: 'relative',
-        },
-        img: {
-          filter: 'brightness(1.03)',
-        },
+      body: {
+        overflowY: 'scroll',
+      },
+      '::selection': { background: alpha(theme.palette.primary.main, 0.6) },
+      '::-moz-selection': { background: alpha(theme.palette.primary.main, 0.6) },
+      '#__next': {
+        position: 'relative',
+      },
+      img: {
+        filter: 'brightness(1.03)',
       },
     },
   },
 
   MuiContainer: {
-    styleOverrides: {
-      root: {
-        paddingLeft: theme.page.horizontal,
-        paddingRight: theme.page.horizontal,
-        [theme.breakpoints.up('sm')]: {
-          paddingLeft: undefined,
-          paddingRight: undefined,
+    variants: [
+      {
+        props: { disableGutters: false },
+        style: {
+          paddingLeft: theme.page.horizontal,
+          paddingRight: theme.page.horizontal,
+          [theme.breakpoints.up('sm')]: {
+            paddingLeft: theme.page.horizontal,
+            paddingRight: theme.page.horizontal,
+          },
         },
       },
-    },
+    ],
   },
-
   MuiButton: {
     styleOverrides: {
       root: {

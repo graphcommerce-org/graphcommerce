@@ -42,11 +42,11 @@ export type ProductItemsGridProps = {
 } & UseStyles<typeof useStyles>
 
 export default function ProductListItemsBase(props: ProductItemsGridProps) {
-  const { items, renderers, loadingEager = 0, size = 'normal', ...divProps } = props
+  const { items, renderers, loadingEager = 0, size = 'normal' } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
-    <div {...divProps} className={clsx(classes.productList, classes[`productList${size}`])}>
+    <div className={clsx(classes.productList, classes[`productList${size}`])}>
       {items?.map((item, idx) =>
         item ? (
           <RenderType
