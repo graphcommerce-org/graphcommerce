@@ -18,7 +18,7 @@
     "prepack:1": "yarn workspace @graphcommerce/next-config prepack",
     "prepack:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack",
     "prepack:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack",
-    "postinstall": "yarn prepack"
+    "postinstall": "yarn prepack && yarn patch-package"
   },
   "dependencies": {
     "@apollo/client": "^3.5.6",
