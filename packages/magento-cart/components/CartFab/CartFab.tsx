@@ -20,8 +20,6 @@ import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
 
 const useStyles = makeStyles({ name: 'CartFab' })((theme) => ({
   fab: {
-    width: responsiveVal(42, 56),
-    height: responsiveVal(42, 56),
     [theme.breakpoints.down('md')]: {
       backgroundColor: `${theme.palette.background.paper} !important`,
     },
@@ -30,10 +28,13 @@ const useStyles = makeStyles({ name: 'CartFab' })((theme) => ({
     pointerEvents: 'none',
     borderRadius: '99em',
     position: 'absolute',
-    height: '100%',
-    width: '100%',
+    // height: '100%',
+    // width: '100%',
     boxShadow: theme.shadows[6],
     top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     [theme.breakpoints.down('md')]: {
       opacity: '1 !important',
     },
@@ -58,11 +59,11 @@ function CartFabContent(props: CartFabContentProps) {
 
   const theme = useTheme()
   const scrollY = useScrollY()
-  const opacity = useTransform(scrollY, [50, 60], [0, 1])
+  const opacity = useTransform(scrollY, [0, 60], [0, 1])
 
   const paper0 = alpha(theme.palette.background.paper, 0)
   const paper1 = alpha(theme.palette.background.paper, 1)
-  const backgroundColor = useTransform(scrollY, [0, 10], [paper0, paper1])
+  const backgroundColor = useTransform(scrollY, [0, 60], [paper0, paper1])
 
   const cartIcon = icon ?? <SvgImageSimple src={iconShoppingBag} loading='eager' size='large' />
   return (
@@ -77,7 +78,7 @@ function CartFabContent(props: CartFabContentProps) {
           style={{ backgroundColor }}
         >
           {total_quantity > 0 ? (
-            <StyledBadge color='primary' variant='dot'>
+            <StyledBadge color='primary' variant='dot' badgeContent={total_quantity}>
               {cartIcon}
             </StyledBadge>
           ) : (
