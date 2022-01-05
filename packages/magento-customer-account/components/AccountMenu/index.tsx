@@ -1,5 +1,5 @@
-import { UseStyles, makeStyles } from '@graphcommerce/next-ui'
-import { List, Theme } from '@mui/material'
+import { UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
+import { List } from '@mui/material'
 import React from 'react'
 
 const useStyles = makeStyles({ name: 'AccountMenu' })((theme) => ({
@@ -12,7 +12,7 @@ type AccountMenuProps = UseStyles<typeof useStyles> & { children: React.ReactNod
 
 export default function AccountMenu(props: AccountMenuProps) {
   const { children } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
     <List classes={classes} disablePadding>

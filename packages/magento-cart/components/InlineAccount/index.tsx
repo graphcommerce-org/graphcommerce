@@ -4,12 +4,12 @@ import {
   CustomerTokenDocument,
   IsEmailAvailableDocument,
 } from '@graphcommerce/magento-customer/hooks'
+import { makeStyles } from '@graphcommerce/next-ui'
 import Button from '@graphcommerce/next-ui/Button'
 import FormRow from '@graphcommerce/next-ui/Form/FormRow'
-import { UseStyles } from '@graphcommerce/next-ui/Styles'
+import { useMergedClasses, UseStyles } from '@graphcommerce/next-ui/Styles'
 import { Trans } from '@lingui/macro'
 import { TextField, Theme, Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import React, { useState } from 'react'
 import { useCartQuery } from '../../hooks/useCartQuery'
 import { InlineAccountDocument } from './InlineAccount.gql'
@@ -51,7 +51,7 @@ export type InlineAccountProps = {
 
 export default function InlineAccount(props: InlineAccountProps) {
   const { title, description, accountHref } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   const [toggled, setToggled] = useState<boolean>(false)
 

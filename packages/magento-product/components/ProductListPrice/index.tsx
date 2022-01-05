@@ -1,7 +1,6 @@
 import { Money } from '@graphcommerce/magento-store'
-import { UseStyles } from '@graphcommerce/next-ui'
-import { Theme, Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
+import { Typography } from '@mui/material'
 import React from 'react'
 import { ProductListPriceFragment } from './ProductListPrice.gql'
 
@@ -19,7 +18,7 @@ type ProductListPriceProps = ProductListPriceFragment & UseStyles<typeof useStyl
 
 export default function ProductListPrice(props: ProductListPriceProps) {
   const { regular_price, final_price } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
     <Typography component='div' variant='body1' className={classes.root}>

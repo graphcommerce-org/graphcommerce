@@ -1,7 +1,6 @@
 import { useFindCountry } from '@graphcommerce/magento-store'
-import { UseStyles } from '@graphcommerce/next-ui'
+import { UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import { CustomerAddressFragment } from '../CreateCustomerAddressForm/CustomerAddress.gql'
 
 // exports.getEuMembers = function()
@@ -34,7 +33,7 @@ export default function AddressMultiLine(props: AddressMultiLineProps) {
   const countryName = useFindCountry(country_code)?.full_name_locale ?? country_code
 
   const regionName = typeof region === 'string' ? region : region?.region
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
     <Typography variant='body1' component='div'>

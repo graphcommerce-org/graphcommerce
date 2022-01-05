@@ -1,9 +1,14 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { FilterRangeTypeInput } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
-import { ChipMenu, ChipMenuProps } from '@graphcommerce/next-ui'
-import { Mark, Slider, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import {
+  ChipMenu,
+  ChipMenuProps,
+  makeStyles,
+  useMergedClasses,
+  UseStyles,
+} from '@graphcommerce/next-ui'
+import { Mark, Slider } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
@@ -12,7 +17,8 @@ import { ProductListFiltersFragment } from './ProductListFilters.gql'
 type FilterRangeTypeProps = NonNullable<
   NonNullable<ProductListFiltersFragment['aggregations']>[0]
 > &
-  Omit<ChipMenuProps, 'selected'>
+  Omit<ChipMenuProps, 'selected'> &
+  UseStyles<typeof useStyles>
 
 const sliderThumbWidth = 28
 const useStyles = makeStyles({ name: 'FilterRangeType' })((theme) => ({
@@ -47,7 +53,7 @@ const useStyles = makeStyles({ name: 'FilterRangeType' })((theme) => ({
 
 export default function FilterRangeType(props: FilterRangeTypeProps) {
   const { attribute_code, label, options, ...chipProps } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
   const { params } = useProductListParamsContext()
   const replaceRoute = useProductListLinkReplace({ scroll: false })
 

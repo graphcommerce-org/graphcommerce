@@ -1,6 +1,11 @@
-import { responsiveVal, Row, SectionContainer, UseStyles } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import {
+  responsiveVal,
+  Row,
+  SectionContainer,
+  UseStyles,
+  makeStyles,
+  useMergedClasses,
+} from '@graphcommerce/next-ui'
 import React from 'react'
 import { ProductSpecsFragment } from './ProductSpecs.gql'
 
@@ -29,21 +34,18 @@ const useStyles = makeStyles()((theme) => ({
   },
 }))
 
-export type ProductSpecsProps = ProductSpecsFragment & { title?: string } & UseStyles<
-    typeof useStyles
-  >
+export type ProductSpecsProps = UseStyles<typeof useStyles> &
+  ProductSpecsFragment & { title?: string }
 
 export default function ProductSpecs(props: ProductSpecsProps) {
   const { aggregations, title } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
   const filter = ['price', 'category_id', 'size', 'new', 'sale', 'color']
   const specs = aggregations?.filter(
     (attr) => !filter.includes(attr?.attribute_code ?? '') && attr?.options?.[0]?.value !== '0',
   )
 
-  if (specs?.length === 0) {
-    return null
-  }
+  if (specs?.length === 0) return null
 
   return (
     <Row className={classes.root}>

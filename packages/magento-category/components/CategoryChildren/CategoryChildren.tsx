@@ -1,9 +1,8 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { Scroller, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { ProductListLink, ProductListParams } from '@graphcommerce/magento-product'
-import { UseStyles } from '@graphcommerce/next-ui'
+import { UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
 import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { CategoryChildrenFragment } from './CategoryChildren.gql'
 
@@ -52,7 +51,7 @@ type CategoryChildrenProps = Omit<CategoryChildrenFragment, 'uid'> & {
 
 export default function CategoryChildren(props: CategoryChildrenProps) {
   const { children, params } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   if (!children || children.length === 0) return null
 

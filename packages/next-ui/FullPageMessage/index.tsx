@@ -1,37 +1,35 @@
 import { Container, Theme, Typography } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
 import clsx from 'clsx'
 import React from 'react'
+import { UseStyles } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    root: {
-      alignItems: 'center',
-      marginTop: theme.spacings.md,
-      marginBottom: theme.spacings.md,
-    },
-    innerContainer: {
-      display: 'grid',
-      alignItems: 'center',
-      justifyItems: 'center',
-    },
-    rootMargin: {
-      marginTop: responsiveVal(50, 250),
-    },
-    subject: {
-      textAlign: 'center',
-      marginTop: theme.spacings.sm,
-    },
-    button: {
-      marginTop: theme.spacings.sm,
-    },
-    altButton: {
-      marginTop: 6,
-    },
-  }),
-  { name: 'FullPageMessage' },
-)
+const useStyles = makeStyles({ name: 'FullPageMessage' })((theme: Theme) => ({
+  root: {
+    alignItems: 'center',
+    marginTop: theme.spacings.md,
+    marginBottom: theme.spacings.md,
+  },
+  innerContainer: {
+    display: 'grid',
+    alignItems: 'center',
+    justifyItems: 'center',
+  },
+  rootMargin: {
+    marginTop: responsiveVal(50, 250),
+  },
+  subject: {
+    textAlign: 'center',
+    marginTop: theme.spacings.sm,
+  },
+  button: {
+    marginTop: theme.spacings.sm,
+  },
+  altButton: {
+    marginTop: 6,
+  },
+}))
 
 export type FullPageMessageProps = {
   icon: React.ReactNode
@@ -40,11 +38,11 @@ export type FullPageMessageProps = {
   button?: React.ReactNode
   altButton?: React.ReactNode
   disableMargin?: boolean
-}
+} & UseStyles<typeof useStyles>
 
 export default function FullPageMessage(props: FullPageMessageProps) {
   const { icon, title, children, button, altButton, disableMargin = false } = props
-  const { classes } = useStyles()
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
     <div className={clsx(classes.root, disableMargin || classes.rootMargin)}>

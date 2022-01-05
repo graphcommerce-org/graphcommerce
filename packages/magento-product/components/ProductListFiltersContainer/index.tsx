@@ -4,11 +4,11 @@ import {
   iconChevronRight,
   responsiveVal,
   SvgImageSimple,
+  useMergedClasses,
   useScrollY,
   UseStyles,
+  makeStyles,
 } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { m, useTransform } from 'framer-motion'
 import React, { PropsWithChildren, useEffect, useRef, useState } from 'react'
@@ -89,7 +89,7 @@ export type ProductListFiltersContainerProps = PropsWithChildren<UseStyles<typeo
 
 export default function ProductListFiltersContainer(props: ProductListFiltersContainerProps) {
   const { children } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
   const scrollY = useScrollY()
 
   const [isSticky, setIsSticky] = useState<boolean>(false)

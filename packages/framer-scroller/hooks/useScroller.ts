@@ -1,5 +1,10 @@
 import { useConstant, useElementScroll, useMotionValueValue } from '@graphcommerce/framer-utils'
-import { UseStyles, classesPicker, makeStyles } from '@graphcommerce/next-ui/Styles'
+import {
+  UseStyles,
+  classesPicker,
+  makeStyles,
+  useMergedClasses,
+} from '@graphcommerce/next-ui/Styles'
 import { Theme } from '@mui/material'
 import {
   HTMLMotionProps,
@@ -153,7 +158,7 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
 
   const isSnap = useMotionValueValue(snap, (v) => v)
 
-  const classes = useStyles(scrollSnap)
+  const classes = useMergedClasses(useStyles(scrollSnap).classes, props.classes)
 
   const snapToVelocity = useVelocitySnapTo(scrollerRef)
 

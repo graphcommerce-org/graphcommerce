@@ -1,8 +1,8 @@
 import { Image, ImageProps } from '@graphcommerce/image'
 import { Theme } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
 import React from 'react'
 import { UseStyles } from '../Styles'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 
 // TODO: fix hot reloading issues when modifying implementations of this component
 export type SvgImageSize = 'small' | 'medium' | 'large' | 'extralarge'
@@ -53,12 +53,12 @@ export default function SvgImage(props: SvgImageProps) {
     extralarge: 64,
   }
 
-  let { classes } = useStyles({
+  const styleProps = {
     mobileSize: baseSizes[mobileSize ?? ''] ?? mobileSize,
     baseSize: baseSizes[size ?? ''] ?? size,
     shade: SvgImageShades[shade],
-  })
-  classes = useMergedClasses(classes, props.classes)
+  }
+  const classes = useMergedClasses(useStyles(styleProps).classes, props.classes)
 
   return (
     <Image

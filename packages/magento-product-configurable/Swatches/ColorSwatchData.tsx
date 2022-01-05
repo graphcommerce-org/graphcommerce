@@ -1,5 +1,4 @@
-import { UseStyles, responsiveVal } from '@graphcommerce/next-ui'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { UseStyles, responsiveVal, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { ColorSwatchDataFragment } from './ColorSwatchData.gql'
 import { SwatchDataProps } from '.'
@@ -21,7 +20,7 @@ export const useStyles = makeStyles({ name: 'ColorSwatchData' })({
 type ColorSwatchDataProps = ColorSwatchDataFragment & SwatchDataProps & UseStyles<typeof useStyles>
 
 export default function ColorSwatchData(props: ColorSwatchDataProps) {
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
   const { value, store_label, size } = props
 
   return (

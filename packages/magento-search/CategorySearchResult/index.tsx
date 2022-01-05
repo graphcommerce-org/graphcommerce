@@ -4,9 +4,9 @@ import {
   iconChevronRight,
   SvgImageSimple,
   UseStyles,
+  makeStyles,
+  useMergedClasses,
 } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import React from 'react'
 import { CategorySearchResultFragment } from './CategorySearchResult.gql'
@@ -41,7 +41,7 @@ export type CategorySearchResultProps = Omit<CategorySearchResultFragment, 'uid'
 
 export default function CategorySearchResult(props: CategorySearchResultProps) {
   const { search = '', ...catProps } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
     <PageLink href={`/${catProps?.url_path ?? ''}`}>

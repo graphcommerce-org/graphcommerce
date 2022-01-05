@@ -11,11 +11,11 @@ import {
   iconChevronRight,
   SvgImageSimple,
   UseStyles,
+  makeStyles,
+  useMergedClasses,
 } from '@graphcommerce/next-ui'
 import { Controller, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
-import { FormControl, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
-import { Alert } from '@mui/material'
+import { FormControl, Alert } from '@mui/material'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React from 'react'
@@ -100,7 +100,7 @@ export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'> &
 export default function ShippingMethodForm(props: ShippingMethodFormProps) {
   const { step } = props
   const { data: cartQuery } = useCartQuery(GetShippingMethodsDocument)
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   const currentAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const available = currentAddress?.available_shipping_methods

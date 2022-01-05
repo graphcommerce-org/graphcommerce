@@ -1,10 +1,9 @@
 import { useQuery } from '@apollo/client'
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import { UseStyles } from '@graphcommerce/next-ui'
+import { UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Theme, Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { Typography } from '@mui/material'
 import clsx from 'clsx'
 import React from 'react'
 import CustomerNewsletterToggle from '../CustomerNewsletterToggle'
@@ -47,12 +46,10 @@ const useStyles = makeStyles({ name: 'SignupNewsletter' })((theme) => ({
   },
 }))
 
-type SignupNewsletterProps = {
-  //
-} & UseStyles<typeof useStyles>
+type SignupNewsletterProps = UseStyles<typeof useStyles>
 
 export default function SignupNewsletter(props: SignupNewsletterProps) {
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
   const { data: cartData } = useCartQuery(GetCartEmailDocument, { allowUrl: true })
   const { data: customerTokenData } = useQuery(CustomerTokenDocument)
   const isCustomer = Boolean(customerTokenData?.customerToken)

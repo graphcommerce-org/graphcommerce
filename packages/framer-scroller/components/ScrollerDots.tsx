@@ -1,7 +1,7 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { UseStyles } from '@graphcommerce/next-ui'
-import { Fab, FabProps, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui/Styles'
+import { makeStyles, useMergedClasses } from '@graphcommerce/next-ui/Styles'
+import { Fab, FabProps } from '@mui/material'
 import clsx from 'clsx'
 import { HTMLMotionProps, m } from 'framer-motion'
 import React from 'react'
@@ -36,9 +36,8 @@ export type DotsProps = {
 const ScrollerDots = m(
   React.forwardRef<HTMLDivElement, DotsProps>((props, ref) => {
     const { fabProps, classes: _classes, ...containerProps } = props
-    const {
-      classes: { dots, dot, circle, ...classes },
-    } = useStyles(props)
+    const { dots, dot, circle, ...classes } = useMergedClasses(useStyles().classes, props.classes)
+
     const { items, getScrollSnapPositions } = useScrollerContext()
     const itemsArr = useMotionValueValue(items, (v) => v)
     const scrollTo = useScrollTo()

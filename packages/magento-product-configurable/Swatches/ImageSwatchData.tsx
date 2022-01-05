@@ -1,7 +1,6 @@
 import { Image } from '@graphcommerce/image'
-import { UseStyles, responsiveVal } from '@graphcommerce/next-ui'
+import { UseStyles, responsiveVal, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
 import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { ImageSwatchDataFragment } from './ImageSwatchData.gql'
@@ -25,7 +24,7 @@ export const useStyles = makeStyles({ name: 'ImageSwatchData' })((theme) => ({
 type ImageSwatchDataProps = ImageSwatchDataFragment & SwatchDataProps & UseStyles<typeof useStyles>
 
 export default function ImageSwatchData(props: ImageSwatchDataProps) {
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
   const { value, thumbnail, store_label, size } = props
 
   return (

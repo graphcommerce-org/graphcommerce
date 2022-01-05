@@ -1,8 +1,7 @@
-import { Button, Form, FormRow } from '@graphcommerce/next-ui'
+import { Button, Form, FormRow, makeStyles } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { TextField, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { TextField } from '@mui/material'
 import React, { PropsWithChildren } from 'react'
 import { SignUpMutationVariables, SignUpMutation, SignUpDocument } from './SignUp.gql'
 
@@ -60,7 +59,7 @@ export default function SignUpFormInline({
 
   return (
     <Form onSubmit={submitHandler} noValidate classes={{ root: classes.form }}>
-      <FormRow key='inline-signup' classes={{ root: classes.row }}>
+      <FormRow key='inline-signup' className={classes.row}>
         <TextField
           variant='outlined'
           type='password'
@@ -91,7 +90,7 @@ export default function SignUpFormInline({
       </FormRow>
 
       <FormRow key='signup-submit'>
-        <FormRow classes={{ root: classes.buttonFormRow }}>
+        <FormRow className={classes.buttonFormRow}>
           <div>{helperList}</div>
           <div className={classes.buttonContainer}>
             <Button

@@ -6,10 +6,11 @@ import {
   SvgImageSimple,
   useScrollY,
   UseStyles,
+  makeStyles,
+  useMergedClasses,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
-import { alpha, darken, Fab, FabProps, NoSsr, Theme, useTheme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { alpha, Fab, FabProps, NoSsr, useTheme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
@@ -53,7 +54,7 @@ const MotionFab = m(
 
 function CartFabContent(props: CartFabContentProps) {
   const { total_quantity, icon, ...fabProps } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   const theme = useTheme()
   const scrollY = useScrollY()

@@ -1,5 +1,10 @@
 import { cloneDeep } from '@apollo/client/utilities'
-import { useChipMenuStyles, iconCancelAlt, SvgImageSimple } from '@graphcommerce/next-ui'
+import {
+  useChipMenuStyles,
+  iconCancelAlt,
+  SvgImageSimple,
+  useMergedClasses,
+} from '@graphcommerce/next-ui'
 import { Chip, ChipProps } from '@mui/material'
 import clsx from 'clsx'
 import React from 'react'
@@ -17,7 +22,7 @@ export type FilterCheckboxTypeProps = NonNullable<
 export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props
   const { params } = useProductListParamsContext()
-  const { classes } = useChipMenuStyles(props)
+  const classes = useMergedClasses(useChipMenuStyles().classes, props.classes)
   const currentFilter = params.filters[attribute_code]
   const replaceRoute = useProductListLinkReplace({ scroll: false })
 

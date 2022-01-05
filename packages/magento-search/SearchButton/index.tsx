@@ -1,6 +1,12 @@
-import { iconSearch, responsiveVal, SvgImageSimple, UseStyles } from '@graphcommerce/next-ui'
-import { TextField, TextFieldProps, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import {
+  iconSearch,
+  responsiveVal,
+  SvgImageSimple,
+  UseStyles,
+  makeStyles,
+  useMergedClasses,
+} from '@graphcommerce/next-ui'
+import { TextField, TextFieldProps } from '@mui/material'
 import clsx from 'clsx'
 import React from 'react'
 
@@ -27,7 +33,7 @@ export type SearchButtonProps = UseStyles<typeof useStyles> & TextFieldProps
 
 export default function SearchButton(props: SearchButtonProps) {
   const { InputProps, label = 'Search...', fullWidth = false, ...textFieldProps } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
     <TextField

@@ -7,8 +7,9 @@ import {
   iconChevronRight,
   SvgImageSimple,
   makeStyles,
+  useMergedClasses,
 } from '@graphcommerce/next-ui'
-import { ListItem, ListItemIcon, ListItemText, Theme } from '@mui/material'
+import { ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
@@ -70,7 +71,7 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
     noBorderBottom = false,
     ...buttonProps
   } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   const button = (
     <Button

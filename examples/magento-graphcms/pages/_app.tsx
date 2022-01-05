@@ -1,4 +1,5 @@
 import { ApolloProvider, useQuery } from '@apollo/client'
+import createCache from '@emotion/cache'
 import { CacheProvider, EmotionCache } from '@emotion/react'
 import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 // import { GoogleAnalyticsScript } from '@graphcommerce/googleanalytics'
@@ -7,18 +8,12 @@ import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 import { LinguiProvider } from '@graphcommerce/lingui-next'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { AppProps, GlobalHead, PageLoadIndicator } from '@graphcommerce/next-ui'
-import { CssBaseline, ThemeProvider, Theme, StyledEngineProvider } from '@mui/material'
+import { CssBaseline, ThemeProvider } from '@mui/material'
 import { LazyMotion } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import React, { useEffect, useState } from 'react'
 import { lightTheme, darkTheme } from '../components/Theme/ThemedProvider'
 import apolloClient from '../lib/apolloClientBrowser'
-import createCache from '@emotion/cache'
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
 
 export type PageRendererProps = Omit<AppPropsType, 'router'> & {
   Layout: React.ComponentType<AppPropsType>
@@ -29,7 +24,7 @@ const Head = () => (
   <GlobalHead name={useQuery(StoreConfigDocument).data?.storeConfig?.website_name ?? ''} />
 )
 
-let muiCache: EmotionCache | undefined = undefined
+let muiCache: EmotionCache | undefined
 export const createMuiCache = () => (muiCache = createCache({ key: 'css', prepend: true }))
 
 export default function ThemedApp(props: Omit<AppPropsType, 'pageProps'> & AppProps) {

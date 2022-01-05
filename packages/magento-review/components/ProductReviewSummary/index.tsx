@@ -1,6 +1,10 @@
-import { SvgImageSimple, iconStar, UseStyles } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import {
+  SvgImageSimple,
+  iconStar,
+  UseStyles,
+  makeStyles,
+  useMergedClasses,
+} from '@graphcommerce/next-ui'
 import React from 'react'
 import { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'
 
@@ -34,7 +38,7 @@ const useStyles = makeStyles({ name: 'ProductListReviewSummary' })((theme) => ({
 
 export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
   const { rating_summary } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   if (!rating_summary) return null
 

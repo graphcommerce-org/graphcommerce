@@ -7,10 +7,11 @@ import {
   SectionContainer,
   SvgImageSimple,
   UseStyles,
+  makeStyles,
+  useMergedClasses,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
-import { Divider, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { Divider } from '@mui/material'
 import clsx from 'clsx'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
@@ -69,7 +70,7 @@ const useStyles = makeStyles({ name: 'CartItemSummary' })((theme) => ({
 type OrderSummaryProps = UseStyles<typeof useStyles>
 
 export default function CartItemSummary(props: OrderSummaryProps) {
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   const { data } = useCartQuery(CartItemSummaryDocument, { allowUrl: true })
 

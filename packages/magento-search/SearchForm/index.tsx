@@ -1,8 +1,15 @@
-import { FormRow, UseStyles, iconClose, iconSearch, SvgImageSimple } from '@graphcommerce/next-ui'
+import {
+  FormRow,
+  UseStyles,
+  iconClose,
+  iconSearch,
+  SvgImageSimple,
+  makeStyles,
+  useMergedClasses,
+} from '@graphcommerce/next-ui'
 import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@graphcommerce/react-hook-form'
 import { t, Plural } from '@lingui/macro'
-import { IconButton, TextField, TextFieldProps, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { IconButton, TextField, TextFieldProps } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
 
@@ -24,7 +31,7 @@ export type SearchFormProps = {
 
 export default function SearchForm(props: SearchFormProps) {
   const { totalResults = 0, search = '', urlHandle = 'search', textFieldProps } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
   const router = useRouter()
 
   const form = useForm({ mode: 'onChange', defaultValues: { search } })

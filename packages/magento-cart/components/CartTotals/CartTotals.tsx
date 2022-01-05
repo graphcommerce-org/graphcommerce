@@ -1,8 +1,13 @@
 import { Money } from '@graphcommerce/magento-store'
-import { AnimatedRow, responsiveVal, UseStyles } from '@graphcommerce/next-ui'
+import {
+  AnimatedRow,
+  responsiveVal,
+  UseStyles,
+  makeStyles,
+  useMergedClasses,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Divider, lighten, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
@@ -58,7 +63,9 @@ export type CartTotalsProps = { containerMargin?: boolean } & UseStyles<typeof u
  */
 export default function CartTotals(props: CartTotalsProps) {
   const { data } = useCartQuery(GetCartTotalsDocument, { allowUrl: true })
-  const { classes } = useStyles(props)
+
+  let { classes, cx } = useStyles()
+  classes = useMergedClasses(classes, props.classes)
   const inclTax = useDisplayInclTax()
 
   if (!data?.cart) return null

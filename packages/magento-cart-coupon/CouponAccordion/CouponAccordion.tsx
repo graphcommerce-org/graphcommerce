@@ -6,10 +6,11 @@ import {
   responsiveVal,
   SvgImageSimple,
   UseStyles,
+  makeStyles,
+  useMergedClasses,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Button, Theme, Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { Button, Typography } from '@mui/material'
 import clsx from 'clsx'
 import { AnimatePresence, m } from 'framer-motion'
 import React, { useState } from 'react'
@@ -66,7 +67,7 @@ const useStyles = makeStyles({ name: 'CouponAccordion' })((theme) => ({
 export type CouponAccordionProps = UseStyles<typeof useStyles>
 
 export default function CouponAccordion(props: CouponAccordionProps) {
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
   const { data } = useCartQuery(GetCouponDocument)
   const [open, setOpen] = useState<boolean>(false)
 

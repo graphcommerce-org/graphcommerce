@@ -1,4 +1,5 @@
 import { Image } from '@graphcommerce/image'
+import { useMergedClasses } from '@graphcommerce/next-ui/Styles/tssReact'
 import { Link, Typography } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
@@ -320,6 +321,6 @@ function RenderElement({ classes, ...element }: ElementNode & Required<UseRichTe
 export type RichTextProps = { raw: ElementNode } & UseRichTextStyles
 
 export default function RichText({ raw, ...props }: RichTextProps) {
-  const classes = useRichTextStyles(props)
+  const classes = useMergedClasses(useRichTextStyles().classes, props.classes)
   return <RenderChildren classes={classes} {...raw} />
 }

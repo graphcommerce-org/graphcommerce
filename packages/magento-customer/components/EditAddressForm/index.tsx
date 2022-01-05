@@ -7,11 +7,11 @@ import {
   FormDivider,
   FormRow,
   InputCheckmark,
+  makeStyles,
 } from '@graphcommerce/next-ui'
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
 import { TextField } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
@@ -106,7 +106,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
 
         <FormDivider />
 
-        <FormActions classes={{ root: classes.editActions }}>
+        <FormActions className={classes.editActions}>
           <Button
             type='submit'
             variant='contained'

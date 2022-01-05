@@ -1,6 +1,10 @@
-import { RenderType, UseStyles, responsiveVal } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import {
+  RenderType,
+  UseStyles,
+  responsiveVal,
+  makeStyles,
+  useMergedClasses,
+} from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
@@ -39,7 +43,7 @@ export type ProductItemsGridProps = {
 
 export default function ProductListItemsBase(props: ProductItemsGridProps) {
   const { items, renderers, loadingEager = 0, size = 'normal', ...divProps } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
     <div {...divProps} className={clsx(classes.productList, classes[`productList${size}`])}>

@@ -1,5 +1,4 @@
-import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
 import React from 'react'
 import OrderStateLabel, { OrderStateLabelProps } from '.'
 
@@ -30,7 +29,6 @@ const useStyles = makeStyles({ name: 'OrderStateLabelInline' })((theme) => ({
 }))
 
 export default function OrderStateLabelInline(props: OrderStateLabelInlineProps) {
-  const { classes } = useStyles(props)
-
+  const classes = useMergedClasses(useStyles().classes, props.classes)
   return <OrderStateLabel classes={classes} {...props} />
 }

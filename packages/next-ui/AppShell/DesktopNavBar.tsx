@@ -1,15 +1,15 @@
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
-import { Link, LinkProps as MuiLinkProps, Theme } from '@mui/material'
+import { Link, LinkProps as MuiLinkProps } from '@mui/material'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { UseStyles } from '../Styles'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 import { MenuProps } from './Menu'
-import { makeStyles } from '../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'DesktopNavBar' })((theme) => ({
   container: {
@@ -89,7 +89,7 @@ export type MenuTabsProps = MenuProps &
 
 export default function DesktopNavBar(props: MenuTabsProps) {
   const { menu, LinkProps, iconScrollerBtnLeft, iconScrollerBtnRight } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
   const router = useRouter()
 
   return (

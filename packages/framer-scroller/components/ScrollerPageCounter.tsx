@@ -1,6 +1,6 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui/Styles/tssReact'
+import { UseStyles } from '@graphcommerce/next-ui/Styles'
+import { makeStyles, useMergedClasses } from '@graphcommerce/next-ui/Styles/tssReact'
 import clsx from 'clsx'
 import { m, MotionProps } from 'framer-motion'
 import React, { useState } from 'react'
@@ -14,12 +14,14 @@ const useStyles = makeStyles({ name: 'SliderPageCounter' })((theme) => ({
 }))
 
 export type SliderPageCounterProps = MotionProps &
-  React.PropsWithoutRef<React.HTMLProps<HTMLDivElement>>
+  React.PropsWithoutRef<React.HTMLProps<HTMLDivElement>> &
+  UseStyles<typeof useStyles>
 
 const ScrollerPageCounter = React.forwardRef<HTMLDivElement, SliderPageCounterProps>(
   (props, ref) => {
     const { className, ...divProps } = props
-    const { classes } = useStyles(props)
+    const classes = useMergedClasses(useStyles().classes, props.classes)
+
     const { items } = useScrollerContext()
 
     const [current, setCurrent] = useState(1)

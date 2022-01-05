@@ -1,6 +1,6 @@
 import { UseStyles } from '@graphcommerce/next-ui'
-import { Fab, FabProps, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui/Styles/tssReact'
+import { makeStyles, useMergedClasses } from '@graphcommerce/next-ui/Styles/tssReact'
+import { Fab, FabProps } from '@mui/material'
 import { m, useMotionValue, useSpring } from 'framer-motion'
 import React from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'
@@ -24,7 +24,7 @@ export type ScrollerButtonProps = {
 const ScrollerFab = m(
   React.forwardRef<HTMLDivElement, ScrollerButtonProps>((props, ref) => {
     const { direction, ...buttonProps } = props
-    const { classes } = useStyles(buttonProps)
+    const classes = useMergedClasses(useStyles().classes, props.classes)
 
     const end = direction === 'right' || direction === 'down'
 

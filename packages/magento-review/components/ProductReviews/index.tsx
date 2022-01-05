@@ -1,7 +1,14 @@
 import { useQuery } from '@apollo/client'
-import { Button, Pagination, responsiveVal, StarRatingField } from '@graphcommerce/next-ui'
-import { Theme, Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import {
+  Button,
+  Pagination,
+  responsiveVal,
+  StarRatingField,
+  makeStyles,
+  UseStyles,
+  useMergedClasses,
+} from '@graphcommerce/next-ui'
+import { Typography } from '@mui/material'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import ProductReviewChip from '../ProductReviewChip'
@@ -80,11 +87,11 @@ const useStyles = makeStyles({ name: 'ProductReviews' })((theme) => ({
   },
 }))
 
-export type ProductReviewsProps = ProductReviewsFragment
+export type ProductReviewsProps = ProductReviewsFragment & UseStyles<typeof useStyles>
 
 export default function ProductReviews(props: ProductReviewsProps) {
   const { reviews, url_key, sku } = props
-  const { classes } = useStyles()
+  const classes = useMergedClasses(useStyles().classes, props.classes)
   const config = 'en_US'
   const locale = config.replace('_', '-')
 

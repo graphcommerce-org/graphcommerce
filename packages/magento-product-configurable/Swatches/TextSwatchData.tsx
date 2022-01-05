@@ -1,7 +1,6 @@
 import { Money } from '@graphcommerce/magento-store'
-import { UseStyles } from '@graphcommerce/next-ui'
+import { UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
 import { Theme, Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import React from 'react'
 import { TextSwatchDataFragment } from './TextSwatchData.gql'
@@ -38,7 +37,7 @@ export const useStyles = makeStyles({ name: 'TextSwatchData' })((theme) => ({
 type TextSwatchDataProps = TextSwatchDataFragment & SwatchDataProps & UseStyles<typeof useStyles>
 
 export default function TextSwatchData(props: TextSwatchDataProps) {
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
   const { store_label, size, price, value } = props
 
   return (

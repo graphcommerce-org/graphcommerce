@@ -9,12 +9,12 @@ import {
   FormActions,
   FormRow,
   StarRatingField,
+  makeStyles,
+  useMergedClasses,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { Box, TextField, Theme, Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
-import { Alert } from '@mui/material'
+import { Box, TextField, Theme, Typography, Alert } from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { CreateProductReviewDocument } from './CreateProductReview.gql'
@@ -56,7 +56,7 @@ type CreateProductReviewFormProps = {
 
 export default function CreateProductReviewForm(props: CreateProductReviewFormProps) {
   const { sku, nickname } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
   const router = useRouter()
   const [ratings, setRatings] = useState<ProductReviewRatingInput[]>([])
 

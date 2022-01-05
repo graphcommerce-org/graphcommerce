@@ -1,27 +1,24 @@
 import { Theme } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
 import { m } from 'framer-motion'
 import { UseStyles } from '../Styles'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 
-const useStyles = makeStyles()(
-  (theme: Theme) => ({
-    root: {
-      position: 'fixed',
-      bottom: 20,
-      right: 20,
-      zIndex: 100,
-      borderRadius: 99,
-      maxWidth: 56,
-      [theme.breakpoints.up('md')]: {
-        pointerEvents: 'all',
-        top: `calc(${theme.appShell.headerHeightMd} / 2 - 28px)`,
-        left: `calc((100vw - (100vw - 100%)) - ${theme.page.horizontal} - 56px)`,
-        bottom: 'unset',
-      },
+const useStyles = makeStyles({ name: 'FixedFab' })((theme: Theme) => ({
+  root: {
+    position: 'fixed',
+    bottom: 20,
+    right: 20,
+    zIndex: 100,
+    borderRadius: 99,
+    maxWidth: 56,
+    [theme.breakpoints.up('md')]: {
+      pointerEvents: 'all',
+      top: `calc(${theme.appShell.headerHeightMd} / 2 - 28px)`,
+      left: `calc((100vw - (100vw - 100%)) - ${theme.page.horizontal} - 56px)`,
+      bottom: 'unset',
     },
-  }),
-  { name: 'FixedFab' },
-)
+  },
+}))
 
 type FixedFabProps = {
   children: React.ReactNode
@@ -29,7 +26,7 @@ type FixedFabProps = {
 
 export default function FixedFab(props: FixedFabProps) {
   const { children } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return <m.div className={classes.root}>{children}</m.div>
 }

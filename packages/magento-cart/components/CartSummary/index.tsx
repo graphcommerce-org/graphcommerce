@@ -1,8 +1,7 @@
 import { useHistoryLink } from '@graphcommerce/framer-next-pages'
-import { SectionContainer, UseStyles } from '@graphcommerce/next-ui'
+import { SectionContainer, UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Link, Theme, Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { Link, Typography } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
@@ -44,8 +43,8 @@ export type CartSummaryProps = {
 } & UseStyles<typeof useStyles>
 
 export default function CartSummary(props: CartSummaryProps) {
-  const { classes } = useStyles(props)
   const { children, editable } = props
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   const { data } = useCartQuery(GetCartSummaryDocument, { allowUrl: true })
   const { href: historyHref, onClick: historyOnClick } = useHistoryLink({

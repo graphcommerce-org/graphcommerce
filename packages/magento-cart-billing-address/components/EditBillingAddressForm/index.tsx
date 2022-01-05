@@ -15,11 +15,12 @@ import {
   FormRow,
   InputCheckmark,
   UseStyles,
+  makeStyles,
+  useMergedClasses,
 } from '@graphcommerce/next-ui'
 import { phonePattern } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
 import { TextField } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { GetBillingAddressDocument } from './GetBillingAddress.gql'
 import { SetBillingAddressOnCartDocument } from './SetBillingAddressOnCart.gql'
@@ -35,7 +36,8 @@ export type EditBillingAddressFormProps = UseStyles<typeof useStyles>
 export default function EditBillingAddressForm(props: EditBillingAddressFormProps) {
   const countriesData = useQuery(CountryRegionsDocument).data
   const address = useCartQuery(GetBillingAddressDocument)?.data?.cart?.billing_address
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
+
   const goToCheckout = useHistoryGo({ href: '/checkout/payment' })
 
   const form = useFormGqlMutationCart(SetBillingAddressOnCartDocument, {

@@ -5,9 +5,10 @@ import {
   UseStyles,
   iconPerson,
   SvgImageSimple,
+  makeStyles,
+  useMergedClasses,
 } from '@graphcommerce/next-ui'
-import { NoSsr, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { NoSsr } from '@mui/material'
 import React from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from '../../hooks'
 
@@ -36,7 +37,7 @@ type CustomerMenuFabItemProps = CustomerTokenQuery & {
 
 function CustomerMenuFabItemContent(props: CustomerMenuFabItemProps) {
   const { customerToken, icon, children, guestHref, authHref } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
   const requireAuth = Boolean(!customerToken || !customerToken.valid)
 
   return (

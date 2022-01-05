@@ -1,7 +1,12 @@
 import { Money } from '@graphcommerce/magento-store'
-import { UseStyles, ToggleButton, ToggleButtonProps } from '@graphcommerce/next-ui'
-import { FormHelperText, Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import {
+  UseStyles,
+  ToggleButton,
+  ToggleButtonProps,
+  makeStyles,
+  useMergedClasses,
+} from '@graphcommerce/next-ui'
+import { FormHelperText } from '@mui/material'
 import clsx from 'clsx'
 import React from 'react'
 import { SetOptional } from 'type-fest'
@@ -63,15 +68,13 @@ const AvailableShippingMethod = React.forwardRef<any, AvailableShippingMethodPro
       ...toggleProps
     } = props
     const {
-      classes: {
-        amountLabel,
-        amountLabelFree,
-        methodTitle,
-        methodAdditional,
-        errorMessage,
-        ...classes
-      },
-    } = useStyles(props)
+      amountLabel,
+      amountLabelFree,
+      methodTitle,
+      methodAdditional,
+      errorMessage,
+      ...classes
+    } = useMergedClasses(useStyles().classes, props.classes)
 
     return (
       <ToggleButton

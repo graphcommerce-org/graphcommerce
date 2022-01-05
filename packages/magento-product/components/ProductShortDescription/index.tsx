@@ -1,6 +1,5 @@
-import { UseStyles } from '@graphcommerce/next-ui'
+import { UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
 import React from 'react'
 import { ProductShortDescriptionFragment } from './ProductShortDescription.gql'
 
@@ -16,7 +15,7 @@ type ProductShortDescriptionProps = ProductShortDescriptionFragment & UseStyles<
 
 export default function ProductShortDescription(props: ProductShortDescriptionProps) {
   const { short_description } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
     <Typography

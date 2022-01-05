@@ -1,6 +1,6 @@
-import { Container, Theme } from '@mui/material'
+import { Container } from '@mui/material'
 import React from 'react'
-import { makeStyles, UseStyles } from '../../Styles'
+import { makeStyles, useMergedClasses, UseStyles } from '../../Styles'
 
 const useStyles = makeStyles({ name: 'AppShellSticky' })((theme) => ({
   root: {
@@ -25,7 +25,7 @@ type AppShellStickyProps = AppShellStickyBaseProps & UseStyles<typeof useStyles>
 */
 export default function AppShellSticky(props: AppShellStickyProps) {
   const { children } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
     <Container maxWidth={false} className={classes.root}>

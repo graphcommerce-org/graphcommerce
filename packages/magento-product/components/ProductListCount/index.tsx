@@ -1,8 +1,4 @@
-import { UseStyles, responsiveVal } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material'
-
-import { makeStyles } from '@graphcommerce/next-ui'
-
+import { UseStyles, responsiveVal, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
 import { ProductListCountFragment } from './ProductListCount.gql'
 
 const useStyles = makeStyles({ name: 'ProductListCount' })((theme) => ({
@@ -38,7 +34,7 @@ export type ProductCountProps = ProductListCountFragment & UseStyles<typeof useS
 
 export default function ProductListCount(props: ProductCountProps) {
   const { total_count } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
     <div className={classes.productListCount}>

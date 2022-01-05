@@ -1,6 +1,5 @@
-import { UseStyles } from '@graphcommerce/next-ui'
-import { Theme, Typography } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
+import { Typography } from '@mui/material'
 import React from 'react'
 
 const useStyles = makeStyles({ name: 'NoSearchResults' })((theme) => ({
@@ -15,7 +14,7 @@ export type NoSearchResultsProps = { search: string } & UseStyles<typeof useStyl
 
 export default function NoSearchResults(props: NoSearchResultsProps) {
   const { search } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
     <div className={classes.container}>

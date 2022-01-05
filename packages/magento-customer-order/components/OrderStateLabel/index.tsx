@@ -1,6 +1,4 @@
-import { UseStyles } from '@graphcommerce/next-ui'
-import { Theme } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import { OrderStateLabelFragment } from './OrderStateLabel.gql'
 
@@ -56,7 +54,7 @@ const useStyles = makeStyles({ name: 'OrderStateLabel' })((theme) => ({
 
 export default function OrderStateLabel(props: OrderStateLabelProps) {
   const { items, renderer, ...orderProps } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   let orderState: OrderState = 'Partial'
   if (items?.every((item) => item?.quantity_ordered === item?.quantity_invoiced))

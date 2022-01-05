@@ -1,9 +1,8 @@
-import { Theme } from '@mui/material'
-import { makeStyles } from '../Styles/tssReact'
 import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
+import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'UspListItem' })((theme) => ({
   root: {
@@ -42,7 +41,7 @@ export type UspListItemProps = UseStyles<typeof useStyles> & {
 
 export default function UspListItem(props: UspListItemProps) {
   const { text, icon, size = 'normal' } = props
-  const { classes } = useStyles()
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
     <li className={clsx(classes.root, size === 'small' && classes.smallIcons)}>

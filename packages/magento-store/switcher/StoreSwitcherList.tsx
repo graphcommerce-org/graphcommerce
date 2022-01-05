@@ -1,6 +1,5 @@
-import { FlagAvatar, UseStyles } from '@graphcommerce/next-ui'
-import { List, ListItem, ListItemText, Theme, Collapse, ListItemAvatar } from '@mui/material'
-import { makeStyles } from '@graphcommerce/next-ui'
+import { FlagAvatar, UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
+import { List, ListItem, ListItemText, Collapse, ListItemAvatar } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { localeToStore, storeToLocale } from '../localeToStore'
@@ -35,7 +34,7 @@ export type StoreSwitcherListProps = { locale: string | undefined } & StoreSwitc
 
 export default function StoreSwitcherList(props: StoreSwitcherListProps) {
   const { availableStores, locale } = props
-  const { classes } = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   const groupedStores = Object.entries(
     (availableStores ?? []).reduce<{
