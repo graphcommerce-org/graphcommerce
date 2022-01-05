@@ -16,7 +16,7 @@ const useStyles = makeStyles({ name: 'Menu' })((theme) => ({
     position: 'fixed',
     zIndex: 99,
     left: theme.page.horizontal,
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       top: 'unset',
       left: 20,
       bottom: 20,
@@ -47,7 +47,7 @@ const useStyles = makeStyles({ name: 'Menu' })((theme) => ({
     width: '100%',
     boxShadow: theme.shadows[6],
     top: 0,
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       opacity: '1 !important',
     },
   },
@@ -56,7 +56,7 @@ const useStyles = makeStyles({ name: 'Menu' })((theme) => ({
     color: theme.palette.text.primary,
     minWidth: responsiveVal(200, 280),
     marginTop: `calc(${responsiveVal(42, 56)} + 3px)`,
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       marginTop: `calc((${responsiveVal(42, 56)} + 12px) * -1)`,
     },
   },

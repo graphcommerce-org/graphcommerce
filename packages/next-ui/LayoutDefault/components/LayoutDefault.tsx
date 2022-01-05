@@ -18,7 +18,7 @@ const useStyles = makeStyles({ name: 'LayoutDefault' })((theme) => ({
     background: theme.palette.background.default,
   },
   hideFabsOnVirtualKeyboardOpen: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       '@media (max-height: 530px)': {
         display: 'none',
       },
@@ -44,7 +44,7 @@ const useStyles = makeStyles({ name: 'LayoutDefault' })((theme) => ({
     },
   },
   headerSticky: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       position: 'sticky',
       top: 0,
     },

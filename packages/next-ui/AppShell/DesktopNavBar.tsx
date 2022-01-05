@@ -17,7 +17,7 @@ const useStyles = makeStyles({ name: 'DesktopNavBar' })((theme) => ({
     flex: 1,
     position: 'relative',
     pointerEvents: 'all',
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'none',
     },
   },
@@ -43,7 +43,7 @@ const useStyles = makeStyles({ name: 'DesktopNavBar' })((theme) => ({
     background: theme.palette.background.default,
     boxShadow: 'none',
     height: 48,
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'none',
     },
   },

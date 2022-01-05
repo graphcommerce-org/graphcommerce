@@ -62,7 +62,7 @@ const useStyles = makeStyles({ name: 'MessageSnackbar' })((theme) => ({
     '&:hover, &:focus': {
       backgroundColor: 'transparent',
     },
-    [theme.breakpoints.down('xl')]: {
+    [theme.breakpoints.down('md')]: {
       '& .MuiPillButton-pill': {
         width: '100%',
       },

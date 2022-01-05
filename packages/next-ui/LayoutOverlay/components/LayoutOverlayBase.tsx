@@ -26,7 +26,7 @@ const useStyles = makeStyles({ name: 'LayoutOverlay' })((theme) => ({
     },
   },
   rootVariantSmLeft: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       gridTemplate: `"overlay beforeOverlay"`,
       borderTopRightRadius: theme.shape.borderRadius * 3,
       borderBottomRightRadius: theme.shape.borderRadius * 3,
@@ -40,7 +40,7 @@ const useStyles = makeStyles({ name: 'LayoutOverlay' })((theme) => ({
     },
   },
   rootVariantSmRight: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       gridTemplate: `"beforeOverlay overlay"`,
       borderTopLeftRadius: theme.shape.borderRadius * 3,
       borderBottomLeftRadius: theme.shape.borderRadius * 3,
@@ -54,7 +54,7 @@ const useStyles = makeStyles({ name: 'LayoutOverlay' })((theme) => ({
     },
   },
   rootVariantSmBottom: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       borderTopLeftRadius: theme.shape.borderRadius * 3,
       borderTopRightRadius: theme.shape.borderRadius * 3,
       gridTemplate: `"beforeOverlay" "overlay"`,
@@ -77,7 +77,7 @@ const useStyles = makeStyles({ name: 'LayoutOverlay' })((theme) => ({
   overlayPane: {},
 
   overlaySizeSmFloating: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       padding: `${theme.page.vertical} ${theme.page.horizontal}`,
     },
   },
@@ -87,7 +87,7 @@ const useStyles = makeStyles({ name: 'LayoutOverlay' })((theme) => ({
     },
   },
   overlayPaneVariantSmBottom: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       borderTopLeftRadius: theme.shape.borderRadius * 3,
       borderTopRightRadius: theme.shape.borderRadius * 3,
     },
@@ -99,7 +99,7 @@ const useStyles = makeStyles({ name: 'LayoutOverlay' })((theme) => ({
     },
   },
   overlayPaneSizeSmFloating: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       borderRadius: theme.shape.borderRadius * 3,
     },
   },
@@ -109,7 +109,7 @@ const useStyles = makeStyles({ name: 'LayoutOverlay' })((theme) => ({
     },
   },
   overlayPaneSmVariantSizeLeftFull: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       paddingBottom: 1,
       minHeight: '100vh',
       '@supports (-webkit-touch-callout: none)': {
@@ -127,7 +127,7 @@ const useStyles = makeStyles({ name: 'LayoutOverlay' })((theme) => ({
     },
   },
   overlayPaneSmVariantSizeRightFull: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       paddingBottom: 1,
       minHeight: '100vh',
       '@supports (-webkit-touch-callout: none)': {
@@ -322,7 +322,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
       gridArea: 'overlay',
       scrollSnapAlign: 'start',
 
-      [theme.breakpoints.down('lg')]: {
+      [theme.breakpoints.down('md')]: {
         justifyContent: justifySm,
         alignItems: justifySm,
 
@@ -351,7 +351,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
       backgroundColor: theme.palette.background.paper,
       boxShadow: theme.shadows[24],
       // scrollSnapAlign: 'end',
-      [theme.breakpoints.down('lg')]: {
+      [theme.breakpoints.down('md')]: {
         minWidth: '80vw',
         ...((sizeSm === 'full' || sizeSm === 'minimal') && { paddingBottom: 56 }),
         ...(variantSm === 'bottom' && sizeSm === 'full' && { minHeight: 'calc(100vh - 56px)' }),
@@ -371,7 +371,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
       display: 'grid',
       alignContent: 'end',
 
-      [theme.breakpoints.down('lg')]: {
+      [theme.breakpoints.down('md')]: {
         ...((variantSm === 'left' || variantSm === 'right') && { width: '100vw' }),
         ...(variantSm === 'bottom' && {
           height: '100vh',

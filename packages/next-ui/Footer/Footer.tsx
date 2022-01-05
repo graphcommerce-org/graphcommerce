@@ -15,7 +15,7 @@ const useStyles = makeStyles({ name: 'Footer' })((theme) => ({
     display: 'grid',
     gap: theme.spacings.xs,
     alignItems: 'center',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       paddingTop: theme.spacings.lg,
       paddingBottom: theme.spacings.lg,
       justifyItems: 'center',
@@ -30,7 +30,7 @@ const useStyles = makeStyles({ name: 'Footer' })((theme) => ({
         maxWidth: 'max-content',
       },
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       gridTemplateColumns: 'auto auto',
       gridTemplateRows: 'auto',
       justifyContent: 'space-between',
@@ -43,7 +43,7 @@ const useStyles = makeStyles({ name: 'Footer' })((theme) => ({
     gridArea: 'links',
     ...theme.typography.body2,
     gap: theme.spacings.sm,
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       gridAutoFlow: 'row',
       textAlign: 'center',
       gap: 8,
@@ -52,7 +52,7 @@ const useStyles = makeStyles({ name: 'Footer' })((theme) => ({
   support: {
     gridArea: 'support',
     justifySelf: 'flex-end',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       justifySelf: 'center',
     },
   },
@@ -65,14 +65,14 @@ const useStyles = makeStyles({ name: 'Footer' })((theme) => ({
     '& > *': {
       minWidth: 'min-content',
     },
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       gap: `0 ${theme.spacings.sm}`,
     },
   },
   storeSwitcher: {
     gridArea: 'switcher',
     justifySelf: 'end',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       justifySelf: 'center',
     },
   },

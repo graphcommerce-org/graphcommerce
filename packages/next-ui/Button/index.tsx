@@ -32,7 +32,7 @@ const useStyles = makeStyles({ name: 'MuiPillButton' })((theme) => ({
   label: {},
   disabled: {},
   withStartIcon: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       height: 40,
       width: 40,
       textAlign: 'center',

@@ -63,7 +63,7 @@ const useStyles = makeStyles<StyleProps>({ name: 'SidebarGallery' })(
         position: 'relative',
         minHeight: '100%',
         paddingTop: `min(${ratio}, ${maxHeight})`,
-        [theme.breakpoints.down('lg')]: {
+        [theme.breakpoints.down('md')]: {
           width: '100vw',
         },
       },
@@ -128,7 +128,7 @@ const useStyles = makeStyles<StyleProps>({ name: 'SidebarGallery' })(
         },
       },
       sliderButtons: {
-        [theme.breakpoints.down('lg')]: {
+        [theme.breakpoints.down('md')]: {
           display: 'none',
         },
       },

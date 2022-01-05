@@ -44,14 +44,14 @@ const useStyles = makeStyles({ name: 'LayoutHeader' })((theme) => ({
     zIndex: theme.zIndex.appBar - 2,
   },
   stickyVisibleSm: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       top: 0,
       marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
       height: theme.appShell.headerHeightSm,
     },
   },
   stickyFloatingSm: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       top: 0,
       marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
       height: theme.appShell.headerHeightSm,
@@ -63,7 +63,7 @@ const useStyles = makeStyles({ name: 'LayoutHeader' })((theme) => ({
     },
   },
   stickyNoAlign: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       position: 'sticky',
       left: 0,
       right: 0,
@@ -83,7 +83,7 @@ const useStyles = makeStyles({ name: 'LayoutHeader' })((theme) => ({
     },
   },
   stickyDivider: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       marginBottom: 0,
     },
     [theme.breakpoints.up('md')]: {

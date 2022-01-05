@@ -27,7 +27,7 @@ export const useChipMenuStyles = makeStyles({ name: 'ChipMenu' })((theme) => ({
     maxWidth: 560,
     marginTop: theme.spacings.xxs,
     padding: `${theme.spacings.xs} ${theme.spacings.xs}`,
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       minWidth: 0,
       width: '100%',
       maxWidth: `calc(100% - (${theme.page.horizontal} * 2))`,

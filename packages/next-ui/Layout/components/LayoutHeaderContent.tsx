@@ -31,7 +31,7 @@ const useStyles = makeStyles({ name: 'LayoutHeaderContent' })((theme) => ({
     boxShadow: 'unset',
   },
   bgFloatingSm: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'none',
     },
   },
@@ -67,7 +67,7 @@ const useStyles = makeStyles({ name: 'LayoutHeaderContent' })((theme) => ({
     },
   },
   contentFloatingSm: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       padding: `0 ${theme.page.horizontal}`,
       background: 'none',
       pointerEvents: 'none',
@@ -96,7 +96,7 @@ const useStyles = makeStyles({ name: 'LayoutHeaderContent' })((theme) => ({
     '& > *': { pointerEvents: 'all' },
   },
   centerFloatingSm: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'none',
     },
   },
@@ -123,7 +123,7 @@ const useStyles = makeStyles({ name: 'LayoutHeaderContent' })((theme) => ({
     right: 0,
   },
   dividerFloatingSm: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'none',
     },
   },

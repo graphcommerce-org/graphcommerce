@@ -34,7 +34,7 @@ const useStyles = makeStyles({ name: 'SidebarSlider' })((theme) => ({
     gridAutoColumns: responsiveVal(200, 400),
   },
   sliderButtons: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'none',
     },
   },

@@ -49,7 +49,7 @@ const useStyles = makeStyles({ name: 'HeroBanner' })((theme) => ({
       objectFit: 'cover',
       width: '100%',
       height: '100%',
-      [theme.breakpoints.down('lg')]: {
+      [theme.breakpoints.down('md')]: {
         borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
       },
     },
@@ -81,7 +81,7 @@ export default function HeroBanner(props: HeroBannerProps) {
     [10, 150],
     [`calc(100% - ${responsiveVal(20, 60)}))`, `calc(100% - ${responsiveVal(0, 0)})`],
   )
-  const matches = useMediaQuery(theme.breakpoints.down('lg'))
+  const matches = useMediaQuery(theme.breakpoints.down('md'))
   const borderRadius = useTransform(
     scrollY,
     [10, 150],
