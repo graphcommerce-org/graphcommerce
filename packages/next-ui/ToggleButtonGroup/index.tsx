@@ -1,4 +1,4 @@
-import { ToggleButtonGroupProps } from '@mui/lab'
+import { ToggleButtonGroupProps } from '@mui/material'
 import { capitalize } from '@mui/material/utils'
 import clsx from 'clsx'
 import React, { PropsWithoutRef } from 'react'

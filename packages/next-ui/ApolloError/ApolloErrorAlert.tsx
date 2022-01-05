@@ -1,6 +1,5 @@
 import { ApolloError } from '@apollo/client'
-import { AlertProps } from '@mui/lab'
-import { Alert } from '@mui/material'
+import { AlertProps, Alert } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import AnimatedRow from '../AnimatedRow'

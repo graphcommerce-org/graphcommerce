@@ -22,9 +22,6 @@
   },
   "dependencies": {
     "@apollo/client": "^3.5.6",
-    "@emotion/react": "^11.7.1",
-    "@emotion/server": "^11.4.0",
-    "@emotion/styled": "^11.6.0",
     "@graphcommerce/browserslist-config-pwa": "^3.0.3",
     "@graphcommerce/eslint-config-pwa": "^3.1.10",
     "@graphcommerce/framer-next-pages": "^2.109.2",
@@ -73,7 +70,6 @@
     "@graphql-codegen/cli": "^2.3.1",
     "@graphql-mesh/cli": "^0.44.5",
     "@lingui/macro": "^3.13.0",
-    "@mui/lab": "^5.0.0-alpha.63",
     "@mui/material": "^5.2.7",
     "@playwright/test": "^1.17.1",
     "apollo3-cache-persist": "^0.13.0",
