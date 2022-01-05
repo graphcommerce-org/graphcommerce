@@ -1,6 +1,6 @@
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
-import { Form , makeStyles } from '@graphcommerce/next-ui'
+import { Form, makeStyles } from '@graphcommerce/next-ui'
 import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { FormControl, FormControlLabel, FormHelperText, Switch, SwitchProps } from '@mui/material'
 import React from 'react'
@@ -21,7 +21,7 @@ const useStyles = makeStyles()(() => ({
 
 export default function GuestNewsletterToggle(props: GuestNewsletterToggleProps) {
   const { ...switchProps } = props
-  const { classes } = useStyles(props)
+  const { classes } = useStyles()
 
   const email =
     useCartQuery(GetCartEmailDocument, { allowUrl: true }).data?.cart?.email ?? undefined

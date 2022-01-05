@@ -9,10 +9,10 @@ const useStyles = makeStyles({ name: 'CategoryHeroNav' })((theme) => ({
     display: 'grid',
     gridTemplateColumns: '1fr',
     gridTemplateAreas: `
-        "title"
-        "categories"
-        "placeholder"
-      `,
+      "title"
+      "categories"
+      "placeholder"
+    `,
     gridTemplateRows: 'auto auto 1fr',
     borderBottom: `1px solid ${theme.palette.divider}`,
     marginBottom: theme.spacings.xxl,
@@ -21,6 +21,15 @@ const useStyles = makeStyles({ name: 'CategoryHeroNav' })((theme) => ({
       rowGap: theme.spacings.md,
       width: '100%',
       paddingRight: theme.page.horizontal,
+      paddingTop: 0,
+      gridColumnGap: 0,
+      display: 'grid',
+      gridTemplateAreas: `
+        ". title . placeholder"
+        ". categories . placeholder"
+      `,
+      gridTemplateColumns: '1fr 4.6fr 0.4fr 8fr',
+      gridTemplateRows: '0.3fr 0.7fr',
     },
   },
   categories: {
@@ -63,21 +72,8 @@ const useStyles = makeStyles({ name: 'CategoryHeroNav' })((theme) => ({
       width: '100%',
       borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
     },
-  },
-  [theme.breakpoints.up('md')]: {
-    placeholder: {
+    [theme.breakpoints.up('md')]: {
       minHeight: '80vh',
-    },
-    wrapper: {
-      paddingTop: 0,
-      gridColumnGap: 0,
-      display: 'grid',
-      gridTemplateAreas: `
-         ". title . placeholder"
-         ". categories . placeholder"
-        `,
-      gridTemplateColumns: '1fr 4.6fr 0.4fr 8fr',
-      gridTemplateRows: '0.3fr 0.7fr',
     },
   },
 }))

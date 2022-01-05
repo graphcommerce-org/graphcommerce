@@ -1,4 +1,4 @@
-import { UseStyles , makeStyles } from '@graphcommerce/next-ui'
+import { UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
 import React from 'react'
 import RichText, { RichTextProps } from '.'
 
@@ -16,6 +16,7 @@ const useStyles = makeStyles<StyleProps>()((theme, { columnCount }) => ({
 type RichTextColumnsProps = UseStyles<typeof useStyles> & StyleProps & RichTextProps
 
 export default function RichTextColumns(props: RichTextColumnsProps) {
-  const { classes } = useStyles(props)
-  return <RichText classes={classes} {...props} />
+  const { columnCount, ...richtTextProps } = props
+  const classes = useMergedClasses(useStyles({ columnCount }).classes, props.classes)
+  return <RichText classes={classes} {...richtTextProps} />
 }

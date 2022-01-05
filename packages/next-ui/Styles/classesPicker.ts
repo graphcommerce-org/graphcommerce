@@ -14,7 +14,7 @@ import clsx from 'clsx'
  * })
  *
  * function MyComponent() {
- *   const classes = useStyles(props)
+ *   const classes = useStyles()
  *   const classNames = pickClasses(classes, { color: 'red', floating: true })
  *
  *   return <div {...className('root')}>Hello</div>

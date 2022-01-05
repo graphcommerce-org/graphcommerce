@@ -12,12 +12,9 @@ function isValueSelected(value: string, candidate: string | string[]) {
   return value === candidate
 }
 
-export type ToggleButtonPropsBase = Omit<PropsWithoutRef<ToggleButtonGroupProps>, 'size'> & {
-  required?: boolean
-  minWidth?: number
-}
+type StyleProps = { minWidth?: number }
 
-export const useStyles = makeStyles<ToggleButtonPropsBase>({ name: 'ToggleButtonGroup' })(
+export const useStyles = makeStyles<StyleProps>({ name: 'ToggleButtonGroup' })(
   (theme, { minWidth = 200 }) => ({
     root: {
       display: 'grid',
@@ -33,12 +30,12 @@ export const useStyles = makeStyles<ToggleButtonPropsBase>({ name: 'ToggleButton
   }),
 )
 
-export type ToggleButtonProps = ToggleButtonPropsBase & UseStyles<typeof useStyles>
+export type ToggleButtonProps = Omit<PropsWithoutRef<ToggleButtonGroupProps>, 'size'> & {
+  required?: boolean
+} & StyleProps &
+  UseStyles<typeof useStyles>
 
 const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonProps>((props, ref) => {
-  let { classes } = useStyles(props)
-  classes = useMergedClasses(classes, props.classes)
-
   const {
     children,
     className,
@@ -50,6 +47,8 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonProps>((p
     value,
     ...other
   } = props
+
+  const classes = useMergedClasses(useStyles({ minWidth }).classes, props.classes)
 
   const handleChange = (event, buttonValue) => {
     if (!onChange) return

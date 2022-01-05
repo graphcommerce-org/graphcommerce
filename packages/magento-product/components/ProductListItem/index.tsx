@@ -1,5 +1,5 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import { makeStyles, responsiveVal, UseStyles } from '@graphcommerce/next-ui'
+import { makeStyles, responsiveVal, useMergedClasses, UseStyles } from '@graphcommerce/next-ui'
 import { ButtonBase, Typography } from '@mui/material'
 import clsx from 'clsx'
 import PageLink from 'next/link'
@@ -9,7 +9,7 @@ import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { useProductLink } from '../../hooks/useProductLink'
 import ProductListPrice from '../ProductListPrice'
 
-const useStyles = makeStyles<BaseProps>({ name: 'ProductListItem' })(
+const useStyles = makeStyles<StyleProps>({ name: 'ProductListItem' })(
   (theme, { aspectRatio = [4, 3] }) => ({
     buttonBase: {
       display: 'block',
@@ -125,12 +125,14 @@ export type OverlayAreaKeys = 'topLeft' | 'bottomLeft' | 'topRight' | 'bottomRig
 
 export type OverlayAreas = Partial<Record<OverlayAreaKeys, React.ReactNode>>
 
+type StyleProps = {
+  aspectRatio?: [number, number]
+  imageOnly?: boolean
+}
+
 type BaseProps = PropsWithChildren<
-  {
-    subTitle?: React.ReactNode
-    aspectRatio?: [number, number]
-    imageOnly?: boolean
-  } & OverlayAreas &
+  { subTitle?: React.ReactNode } & StyleProps &
+    OverlayAreas &
     ProductListItemFragment &
     Pick<ImageProps, 'loading' | 'sizes' | 'dontReportWronglySizedImages'>
 >
@@ -152,8 +154,11 @@ export default function ProductListItem(props: ProductListItemProps) {
     loading,
     sizes,
     dontReportWronglySizedImages,
+    aspectRatio,
   } = props
-  const { classes } = useStyles(props)
+
+  const classes = useMergedClasses(useStyles({ aspectRatio, imageOnly }).classes, props.classes)
+
   const productLink = useProductLink(props)
   const discount = Math.floor(price_range.minimum_price.discount?.percent_off ?? 0)
   const { locale } = useRouter()
