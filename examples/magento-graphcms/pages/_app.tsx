@@ -7,11 +7,11 @@ import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 // import { GoogleTagManagerScript } from '@graphcommerce/googletagmanager'
 import { LinguiProvider } from '@graphcommerce/lingui-next'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppProps, GlobalHead, PageLoadIndicator } from '@graphcommerce/next-ui'
+import { AppProps, emotionCache, GlobalHead, PageLoadIndicator } from '@graphcommerce/next-ui'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { LazyMotion } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState } from 'react'
 import { lightTheme, darkTheme } from '../components/Theme/ThemedProvider'
 import apolloClient from '../lib/apolloClientBrowser'
 
@@ -27,8 +27,6 @@ const Head = () => (
 export default function ThemedApp(props: Omit<AppPropsType, 'pageProps'> & AppProps) {
   const { pageProps, router } = props
   const { locale, asPath } = router
-
-  const cache = useMemo(() => createCache({ key: 'css', prepend: true }), [])
 
   useEffect(() => document.getElementById('jss-server-side')?.remove(), [])
 
@@ -58,7 +56,7 @@ export default function ThemedApp(props: Omit<AppPropsType, 'pageProps'> & AppPr
           typeof window === 'undefined' ? require(`../locales/${l}.po`) : { messages: {} }
         }
       >
-        <CacheProvider value={cache}>
+        <CacheProvider value={emotionCache()}>
           <ApolloProvider client={client}>
             <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
               <Head />
