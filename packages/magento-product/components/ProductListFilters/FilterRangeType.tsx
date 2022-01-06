@@ -32,19 +32,15 @@ const useStyles = makeStyles({ name: 'FilterRangeType' })((theme) => ({
     display: 'block',
     paddingBottom: 32,
     '& .MuiSlider-rail': {
-      color: theme.palette.text.disabled,
       height: 4,
       borderRadius: 10,
     },
     '& .MuiSlider-track': {
-      color: theme.palette.primary.main,
       height: 4,
     },
     '& .MuiSlider-thumb': {
       width: sliderThumbWidth,
       height: sliderThumbWidth,
-      background: theme.palette.background.default,
-      boxShadow: theme.shadows[6],
     },
   },
 }))

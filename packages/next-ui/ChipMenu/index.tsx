@@ -1,8 +1,8 @@
 import { Chip, ChipProps, Menu } from '@mui/material'
 import clsx from 'clsx'
 import React, { PropsWithChildren, useState } from 'react'
-import { UseStyles } from '..'
 import SectionHeader from '../SectionHeader'
+import { UseStyles } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
@@ -58,7 +58,7 @@ export type ChipMenuProps = PropsWithChildren<Omit<ChipProps, 'children'>> & {
   labelRight?: React.ReactNode
 } & UseStyles<typeof useChipMenuStyles>
 
-export default function ChipMenu(props: ChipMenuProps) {
+export function ChipMenu(props: ChipMenuProps) {
   const { children, selected, onDelete, label, labelRight, onClose, selectedLabel, ...chipProps } =
     props
 

@@ -3,7 +3,6 @@ import { Button, Footer as FooterBase, SocialIcon } from '@graphcommerce/next-ui
 import { Trans } from '@lingui/macro'
 import { IconButton, Link } from '@mui/material'
 import PageLink from 'next/link'
-import React from 'react'
 import { FooterQueryFragment } from '../GraphQL/FooterQueryFragment.gql'
 
 export type FooterProps = FooterQueryFragment

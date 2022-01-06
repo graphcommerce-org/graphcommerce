@@ -212,6 +212,7 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
     },
   })
 
+// todo: move most of the styles to the graphcommerce library while still allowing for extensibility.
 const createOverrides = (theme: Theme): Components => ({
   MuiCssBaseline: {
     styleOverrides: {
@@ -298,7 +299,9 @@ const createOverrides = (theme: Theme): Components => ({
     styleOverrides: {
       root: {
         backgroundColor: theme.palette.background.paper,
-        '&:hover': { backgroundColor: theme.palette.background.paper },
+        '&:hover': {
+          backgroundColor: theme.palette.background.paper,
+        },
         color: theme.palette.text.primary,
       },
       colorInherit: {
@@ -430,6 +433,18 @@ const createOverrides = (theme: Theme): Components => ({
     styleOverrides: {
       colorDefault: {
         backgroundColor: theme.palette.text.disabled,
+      },
+    },
+  },
+
+  MuiSlider: {
+    styleOverrides: {
+      rail: {
+        color: theme.palette.text.disabled,
+      },
+      thumb: {
+        background: theme.palette.background.default,
+        boxShadow: theme.shadows[6],
       },
     },
   },

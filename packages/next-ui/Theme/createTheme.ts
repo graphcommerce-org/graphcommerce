@@ -1,5 +1,3 @@
-import { Variant } from '@mui/material/styles/createTypography'
-
 export {}
 
 declare module '@mui/material/styles/createPalette' {
@@ -58,3 +56,5 @@ declare module '@mui/material/styles/createTheme' {
     shape: { borderRadius: number }
   }
 }
+
+function createGraphCommerceTheme() {}
