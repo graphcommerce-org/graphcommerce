@@ -15,6 +15,7 @@ import {
   FormRow,
   LayoutTitle,
   makeStyles,
+  typography,
 } from '@graphcommerce/next-ui'
 import { emailPattern, useFormPersist } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
@@ -26,7 +27,7 @@ import React from 'react'
 
 const useStyles = makeStyles({ name: 'AccountSignInUpForm' })((theme) => ({
   titleContainer: {
-    ...theme.typography.body1,
+    ...typography(theme, 'body1'),
     marginBottom: theme.spacings.xs,
   },
 }))

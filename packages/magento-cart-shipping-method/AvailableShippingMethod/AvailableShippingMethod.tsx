@@ -5,6 +5,7 @@ import {
   ToggleButtonProps,
   makeStyles,
   useMergedClasses,
+  typography,
 } from '@graphcommerce/next-ui'
 import { FormHelperText } from '@mui/material'
 import clsx from 'clsx'
@@ -19,7 +20,7 @@ const useStyles = makeStyles({ name: 'AvailableShippingMethod' })((theme) => ({
     alignItems: 'normal',
   },
   label: {
-    ...theme.typography.body2,
+    ...typography(theme, 'body2'),
     display: 'grid',
     gridTemplate: `
       "title      amount"
@@ -30,11 +31,11 @@ const useStyles = makeStyles({ name: 'AvailableShippingMethod' })((theme) => ({
     columnGap: theme.spacings.xxs,
   },
   methodTitle: {
-    ...theme.typography.subtitle2,
+    ...typography(theme, 'subtitle2'),
     gridArea: 'title',
   },
   methodAdditional: {
-    ...theme.typography.body2,
+    ...typography(theme, 'body2'),
     gridArea: 'additional',
   },
   errorMessage: {

@@ -1,8 +1,7 @@
 import { Typography } from '@mui/material'
 import clsx from 'clsx'
-import React from 'react'
 import { UseStyles } from '../Styles'
-import { makeStyles, useMergedClasses } from '../Styles/tssReact'
+import { makeStyles, typography, useMergedClasses } from '../Styles/tssReact'
 import { SvgImageProps } from '../SvgImage'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 
@@ -10,7 +9,7 @@ import SvgImageSimple from '../SvgImage/SvgImageSimple'
 
 const useStyles = makeStyles({ name: 'IconHeader' })((theme) => ({
   container: {
-    ...theme.typography.subtitle1,
+    ...typography(theme, 'subtitle1'),
     textAlign: 'center',
   },
   innerContainer: {

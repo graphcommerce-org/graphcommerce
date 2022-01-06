@@ -8,6 +8,7 @@ import {
   SvgImageSimple,
   makeStyles,
   useMergedClasses,
+  typography,
 } from '@graphcommerce/next-ui'
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import clsx from 'clsx'
@@ -39,7 +40,7 @@ const useStyles = makeStyles({ name: 'AccountMenuItem' })((theme) => ({
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
   primary: {
-    ...theme.typography.subtitle1,
+    ...typography(theme, 'subtitle1'),
   },
   secondary: {
     whiteSpace: 'nowrap',

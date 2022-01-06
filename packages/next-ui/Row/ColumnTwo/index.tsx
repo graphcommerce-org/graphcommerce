@@ -2,7 +2,7 @@ import { ContainerProps } from '@mui/material'
 import React from 'react'
 import Row from '..'
 import { UseStyles } from '../../Styles'
-import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
+import { makeStyles, typography, useMergedClasses } from '../../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'ColumnTwo' })((theme) => ({
   root: {
@@ -12,7 +12,7 @@ const useStyles = makeStyles({ name: 'ColumnTwo' })((theme) => ({
     gridTemplateColumns: `1fr`,
     gridTemplateAreas: `"one" "two"`,
     '& h2, & h3': {
-      ...theme.typography.h4,
+      ...typography(theme, 'h4'),
     },
     [theme.breakpoints.up('sm')]: {
       gridTemplateColumns: `1fr 1fr`,

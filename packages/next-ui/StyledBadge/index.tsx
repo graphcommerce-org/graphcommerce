@@ -1,11 +1,11 @@
 import { Badge } from '@mui/material'
-import { withStyles } from '../Styles/tssReact'
+import { typography, withStyles } from '../Styles/tssReact'
 
 const StyledBadge = withStyles(Badge, (theme) => ({
   colorError: {},
 
   badge: {
-    ...theme.typography.caption,
+    ...typography(theme, 'caption'),
     right: 6,
     top: 6,
     padding: 3,

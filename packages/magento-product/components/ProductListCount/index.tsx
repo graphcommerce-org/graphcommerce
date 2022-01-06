@@ -1,4 +1,10 @@
-import { UseStyles, responsiveVal, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
+import {
+  UseStyles,
+  responsiveVal,
+  makeStyles,
+  useMergedClasses,
+  typography,
+} from '@graphcommerce/next-ui'
 import { ProductListCountFragment } from './ProductListCount.gql'
 
 const useStyles = makeStyles({ name: 'ProductListCount' })((theme) => ({
@@ -22,7 +28,7 @@ const useStyles = makeStyles({ name: 'ProductListCount' })((theme) => ({
     lineHeight: 20,
   },
   count: {
-    ...theme.typography.body2,
+    ...typography(theme, 'body2'),
     margin: '0 auto',
     display: 'inline-block',
     padding: `0 ${theme.spacings.xs} 0 ${theme.spacings.xs}`,

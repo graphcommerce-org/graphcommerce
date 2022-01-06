@@ -2,7 +2,7 @@ import { ContainerProps } from '@mui/material'
 import React from 'react'
 import Row from '..'
 import { UseStyles } from '../../Styles'
-import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
+import { makeStyles, typography, useMergedClasses } from '../../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'ColumnThree' })((theme) => ({
   root: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles({ name: 'ColumnThree' })((theme) => ({
       "three"
     `,
     '& h2, & h3': {
-      ...theme.typography.h4,
+      ...typography(theme, 'h4'),
       [theme.breakpoints.up('md')]: {
         marginBottom: '-25px',
       },

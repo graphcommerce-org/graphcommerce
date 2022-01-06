@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Image } from '@graphcommerce/image'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { responsiveVal, makeStyles } from '@graphcommerce/next-ui'
+import { responsiveVal, makeStyles, typography } from '@graphcommerce/next-ui'
 import { CustomerReviewFragment } from './CustomerReview.gql'
 import filledStar from './review_star_filled.svg'
 import outlinedStar from './review_star_outlined.svg'
@@ -21,7 +21,7 @@ const useStyles = makeStyles({ name: 'CustomerReview' })((theme) => ({
     gridColumnGap: theme.spacings.md,
     gridRowGap: theme.spacings.sm,
     alignItems: 'start',
-    ...theme.typography.body1,
+    ...typography(theme, 'body1'),
     borderBottom: `1px solid ${theme.palette.divider}`,
     [theme.breakpoints.up('sm')]: {
       gridRowGap: theme.spacings.xxs,

@@ -67,7 +67,7 @@ const useStyles = makeStyles({ name: 'PaymentMethodToggles' })((theme) => ({
     borderRadius: 5,
   },
   toggleButton: {
-    ...theme.typography.h6,
+    ...typography(theme, 'h6'),
     border: `1px solid ${theme.palette.divider}`,
     boxShadow: 'none',
     transition: 'color .15s ease',

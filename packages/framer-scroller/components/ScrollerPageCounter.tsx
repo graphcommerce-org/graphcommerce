@@ -9,7 +9,7 @@ import { useWatchItems } from '../hooks/useWatchItems'
 
 const useStyles = makeStyles({ name: 'SliderPageCounter' })((theme) => ({
   pageCounter: {
-    ...theme.typography.h4,
+    ...typography(theme, 'h4'),
   },
 }))
 

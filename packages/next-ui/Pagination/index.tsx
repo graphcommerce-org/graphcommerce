@@ -2,7 +2,7 @@ import { PaginationProps, Fab, Typography } from '@mui/material'
 import usePagination from '@mui/material/usePagination'
 import React from 'react'
 import { UseStyles } from '../Styles'
-import { makeStyles, useMergedClasses } from '../Styles/tssReact'
+import { makeStyles, typography, useMergedClasses } from '../Styles/tssReact'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 
@@ -29,7 +29,7 @@ const useStyles = makeStyles({ name: 'Pagination' })((theme) => ({
     [theme.breakpoints.up('md')]: {
       marginBottom: theme.spacings.lg,
     },
-    ...theme.typography.body1,
+    ...typography(theme, 'body1'),
     '& > *': {
       whiteSpace: 'nowrap',
       boxShadow: 'none',

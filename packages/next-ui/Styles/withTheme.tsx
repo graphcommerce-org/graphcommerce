@@ -1,4 +1,6 @@
 import { css, Theme, ThemeProvider } from '@mui/material'
+import { CSSObject } from 'tss-react'
+import { typography } from './tssReact'
 
 /**
  * It will provide a theme for the underlying tree and will set the color/font and backgroundColor
@@ -32,8 +34,8 @@ export function withTheme(Component: React.FC<{ className?: string }>, theme: Th
         {...props}
         css={css({
           color: theme.palette.text.primary,
-          ...theme.typography.body1,
           backgroundColor: theme.palette.background.default,
+          ...typography(theme, 'body1'),
         })}
       />
     </ThemeProvider>

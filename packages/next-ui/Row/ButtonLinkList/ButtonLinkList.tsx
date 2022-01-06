@@ -3,7 +3,7 @@ import Row from '..'
 import SectionContainer from '../../SectionContainer'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
-import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
+import { makeStyles, typography, useMergedClasses } from '../../Styles/tssReact'
 
 const useStyles = makeStyles<StyleProps>({ name: 'ButtonLinkList' })(
   (theme, { containsBigLinks }) => ({
@@ -12,7 +12,7 @@ const useStyles = makeStyles<StyleProps>({ name: 'ButtonLinkList' })(
     },
     h1: {
       textAlign: 'center',
-      ...theme.typography.h2,
+      ...typography(theme, 'h2'),
     },
     overline: {
       display: 'block',

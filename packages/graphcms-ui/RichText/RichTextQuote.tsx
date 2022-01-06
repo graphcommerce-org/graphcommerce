@@ -1,9 +1,9 @@
-import { withStyles } from '@graphcommerce/next-ui'
+import { typography, withStyles } from '@graphcommerce/next-ui'
 import RichText from '.'
 
 const RichTextQuote = withStyles(RichText, (theme) => ({
   paragraph: {
-    ...theme.typography.h4,
+    ...typography(theme, 'h4'),
     fontWeight: 600,
     '@supports (font-variation-settings: normal)': {
       fontVariationSettings: "'wght' 620",

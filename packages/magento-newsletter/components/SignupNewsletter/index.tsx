@@ -18,7 +18,7 @@ const useStyles = makeStyles({ name: 'SignupNewsletter' })((theme) => ({
     gridAutoFlow: 'column',
     columnGap: theme.spacings.xxs,
     padding: theme.spacings.sm,
-    ...theme.typography.body1,
+    ...typography(theme, 'body1'),
     marginTop: theme.spacings.sm,
     borderRadius: 4,
     gridTemplateColumns: '1fr',

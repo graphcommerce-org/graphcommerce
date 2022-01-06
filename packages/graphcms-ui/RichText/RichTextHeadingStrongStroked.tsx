@@ -1,9 +1,9 @@
-import { breakpointVal, withStyles } from '@graphcommerce/next-ui'
+import { breakpointVal, typography, withStyles } from '@graphcommerce/next-ui'
 import RichText from '.'
 
 const RichTextHeadingStrongStroked = withStyles(RichText, (theme) => ({
   h2: {
-    ...theme.typography.h1,
+    ...typography(theme, 'h1'),
     textTransform: 'uppercase' as const,
     color: theme.palette.text.primary,
     ...breakpointVal('fontSize', 36, 82, theme.breakpoints.values),

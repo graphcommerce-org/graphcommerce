@@ -1,9 +1,9 @@
-import { UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
+import { UseStyles, makeStyles, useMergedClasses, typography } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 
 const useStyles = makeStyles({ name: 'EmailHelperList' })((theme) => ({
   root: {
-    ...theme.typography.body2,
+    ...typography(theme, 'body2'),
     paddingLeft: theme.spacings.xs,
   },
 }))

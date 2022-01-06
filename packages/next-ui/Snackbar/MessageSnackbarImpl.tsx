@@ -1,7 +1,7 @@
 import { Fab, Snackbar, SnackbarContent, SnackbarProps, Portal, lighten } from '@mui/material'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
-import { makeStyles, useMergedClasses } from '../Styles/tssReact'
+import { makeStyles, typography, useMergedClasses } from '../Styles/tssReact'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconClose, iconCheckmark, iconSadFace } from '../icons'
 
@@ -54,7 +54,7 @@ const useStyles = makeStyles({ name: 'MessageSnackbar' })((theme) => ({
     display: 'flex',
     columnGap: 10,
     gridArea: 'children',
-    ...theme.typography.subtitle1,
+    ...typography(theme, 'subtitle1'),
     fontWeight: 400,
   },
   actionButton: {

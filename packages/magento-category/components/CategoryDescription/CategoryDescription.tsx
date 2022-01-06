@@ -1,5 +1,4 @@
-import { UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
-import React from 'react'
+import { UseStyles, makeStyles, useMergedClasses, typography } from '@graphcommerce/next-ui'
 import { CategoryDescriptionFragment } from './CategoryDescription.gql'
 
 type CategoryDescriptionProps = Omit<CategoryDescriptionFragment, 'uid'> &
@@ -18,7 +17,7 @@ const useStyles = makeStyles({ name: 'CategoryDescription' })((theme) => ({
     [theme.breakpoints.up('xl')]: {
       maxWidth: '30%',
     },
-    ...theme.typography.subtitle1,
+    ...typography(theme, 'subtitle1'),
   },
 }))
 

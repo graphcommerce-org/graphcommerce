@@ -2,7 +2,7 @@ import React from 'react'
 import Row from '..'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
-import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
+import { makeStyles, typography, useMergedClasses } from '../../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'ImageTextBoxed' })((theme) => ({
   wrapper: {
@@ -46,9 +46,9 @@ const useStyles = makeStyles({ name: 'ImageTextBoxed' })((theme) => ({
     },
   },
   url: {
-    ...theme.typography.body2,
+    ...typography(theme, 'body2'),
     [theme.breakpoints.up('md')]: {
-      ...theme.typography.h4,
+      ...typography(theme, 'h4'),
     },
     color: theme.palette.text.primary,
   },

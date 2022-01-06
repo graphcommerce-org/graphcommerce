@@ -1,5 +1,4 @@
-import { responsiveVal, makeStyles } from '@graphcommerce/next-ui'
-import React from 'react'
+import { responsiveVal, makeStyles, typography } from '@graphcommerce/next-ui'
 import { ConfigurableCartItemFragment } from './ConfigurableCartItem.gql'
 
 const useStyles = makeStyles({ name: 'CartItemOptionsList' })((theme) => ({
@@ -36,7 +35,7 @@ const useStyles = makeStyles({ name: 'CartItemOptionsList' })((theme) => ({
     },
   },
   menuTitle: {
-    ...theme.typography.h5,
+    ...typography(theme, 'h5'),
     paddingBottom: theme.spacings.xxs,
     marginBottom: theme.spacings.xxs,
     borderBottom: `1px solid ${theme.palette.divider}`,

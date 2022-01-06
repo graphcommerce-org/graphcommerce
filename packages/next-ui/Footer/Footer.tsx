@@ -1,7 +1,7 @@
 import { ContainerProps, Container } from '@mui/material'
 import React from 'react'
 import { UseStyles } from '../Styles'
-import { makeStyles, useMergedClasses } from '../Styles/tssReact'
+import { makeStyles, typography, useMergedClasses } from '../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'Footer' })((theme) => ({
   footer: {
@@ -41,7 +41,7 @@ const useStyles = makeStyles({ name: 'Footer' })((theme) => ({
     gridAutoFlow: 'column',
     alignContent: 'center',
     gridArea: 'links',
-    ...theme.typography.body2,
+    ...typography(theme, 'body2'),
     gap: theme.spacings.sm,
     [theme.breakpoints.down('sm')]: {
       gridAutoFlow: 'row',

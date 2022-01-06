@@ -1,4 +1,4 @@
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles, typography } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Link } from '@mui/material'
 import PageLink from 'next/link'
@@ -16,7 +16,7 @@ const useStyles = makeStyles({ name: 'AccountAddress' })((theme) => ({
     justifyContent: 'space-between',
     paddingTop: theme.spacings.md,
     paddingBottom: theme.spacings.md,
-    ...theme.typography.body2,
+    ...typography(theme, 'body2'),
   },
   address: {
     '& > span': {

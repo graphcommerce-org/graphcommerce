@@ -28,8 +28,6 @@ const useStyles = makeStyles({ name: 'CartFab' })((theme) => ({
     pointerEvents: 'none',
     borderRadius: '99em',
     position: 'absolute',
-    // height: '100%',
-    // width: '100%',
     boxShadow: theme.shadows[6],
     top: 0,
     left: 0,

@@ -1,5 +1,11 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import { makeStyles, responsiveVal, useMergedClasses, UseStyles } from '@graphcommerce/next-ui'
+import {
+  makeStyles,
+  responsiveVal,
+  typography,
+  useMergedClasses,
+  UseStyles,
+} from '@graphcommerce/next-ui'
 import { ButtonBase, Typography } from '@mui/material'
 import clsx from 'clsx'
 import PageLink from 'next/link'
@@ -110,7 +116,7 @@ const useStyles = makeStyles<StyleProps>({ name: 'ProductListItem' })(
       textDecoration: 'underline',
     },
     discount: {
-      ...theme.typography.caption,
+      ...typography(theme, 'caption'),
       background: theme.palette.text.primary,
       fontWeight: theme.typography.fontWeightBold,
       border: `1px solid ${theme.palette.divider}`,

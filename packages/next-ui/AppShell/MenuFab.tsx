@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import { UseStyles } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { makeStyles, useMergedClasses } from '../Styles/tssReact'
+import { makeStyles, typography, useMergedClasses } from '../Styles/tssReact'
 import SvgImageSimple from '../SvgImage/SvgImageSimple'
 import { iconMenu, iconClose } from '../icons'
 import { MenuProps } from './Menu'
@@ -61,7 +61,7 @@ const useStyles = makeStyles({ name: 'Menu' })((theme) => ({
     },
   },
   menuItemText: {
-    ...theme.typography.h4,
+    ...typography(theme, 'h4'),
     lineHeight: 1.1,
   },
   menuItem: {},

@@ -1,4 +1,4 @@
-import { makeStyles } from '@graphcommerce/next-ui'
+import { makeStyles, typography } from '@graphcommerce/next-ui'
 import { List, ListItem, ListItemText, ListSubheader } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -11,7 +11,7 @@ const useStyles = makeStyles({ name: 'SidebarMenu' })((theme) => ({
     paddingBottom: 0,
   },
   listItemText: {
-    ...theme.typography.caption,
+    ...typography(theme, 'caption'),
   },
 }))
 

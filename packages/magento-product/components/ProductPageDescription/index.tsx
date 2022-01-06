@@ -4,6 +4,7 @@ import {
   makeStyles,
   useMergedClasses,
   UseStyles,
+  typography,
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import React from 'react'
@@ -16,11 +17,11 @@ const useStyles = makeStyles({ name: 'ProductPageDescription' })((theme) => ({
       marginTop: 0,
     },
     '& p, & li': {
-      ...theme.typography.body1,
+      ...typography(theme, 'body1'),
       fontWeight: 400,
 
       [theme.breakpoints.up('md')]: {
-        ...theme.typography.h3,
+        ...typography(theme, 'h3'),
         fontWeight: 400,
         '@supports (font-variation-settings: normal)': {
           fontVariationSettings: "'wght' 420",

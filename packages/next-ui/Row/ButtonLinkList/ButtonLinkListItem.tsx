@@ -3,7 +3,7 @@ import PageLink from 'next/link'
 import React from 'react'
 import Button, { ButtonProps } from '../../Button'
 import { UseStyles } from '../../Styles'
-import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
+import { makeStyles, typography, useMergedClasses } from '../../Styles/tssReact'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconChevronRight } from '../../icons'
 
@@ -14,7 +14,7 @@ const useStyles = makeStyles()((theme) => ({
     padding: `${theme.spacings.xs} 0`,
     borderBottom: `1px solid ${theme.palette.divider}`,
     borderRadius: 0,
-    ...theme.typography.body1,
+    ...typography(theme, 'body1'),
     '& > *': {
       display: 'grid',
       gridAutoFlow: 'column',

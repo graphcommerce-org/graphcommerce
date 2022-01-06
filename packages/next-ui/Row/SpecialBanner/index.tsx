@@ -2,7 +2,7 @@ import { ContainerProps, Typography } from '@mui/material'
 import Row from '..'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
-import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
+import { makeStyles, typography, useMergedClasses } from '../../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'SpecialBanner' })((theme) => ({
   root: {},
@@ -60,12 +60,12 @@ const useStyles = makeStyles({ name: 'SpecialBanner' })((theme) => ({
     },
   },
   topic: {
-    ...theme.typography.overline,
+    ...typography(theme, 'overline'),
   },
   links: {
-    ...theme.typography.body2,
+    ...typography(theme, 'body2'),
     [theme.breakpoints.up('md')]: {
-      ...theme.typography.h4,
+      ...typography(theme, 'h4'),
     },
     '& > *': {
       color: theme.palette.text.primary,

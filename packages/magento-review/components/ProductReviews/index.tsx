@@ -7,6 +7,7 @@ import {
   makeStyles,
   UseStyles,
   useMergedClasses,
+  typography,
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import Link from 'next/link'
@@ -21,7 +22,7 @@ const useStyles = makeStyles({ name: 'ProductReviews' })((theme) => ({
     gap: theme.spacings.sm,
     borderBottom: `1px solid ${theme.palette.divider}`,
     padding: `${theme.spacings.md} 0`,
-    ...theme.typography.body1,
+    ...typography(theme, 'body1'),
   },
   title: {
     display: 'grid',
@@ -37,10 +38,10 @@ const useStyles = makeStyles({ name: 'ProductReviews' })((theme) => ({
     justifyContent: 'space-between',
   },
   nickname: {
-    ...theme.typography.body2,
+    ...typography(theme, 'body2'),
   },
   date: {
-    ...theme.typography.body2,
+    ...typography(theme, 'body2'),
   },
   reviewsBottomContainer: {
     display: 'flex',
@@ -64,7 +65,7 @@ const useStyles = makeStyles({ name: 'ProductReviews' })((theme) => ({
     flexWrap: 'wrap',
     gap: theme.spacings.sm,
     color: theme.palette.text.disabled,
-    ...theme.typography.body2,
+    ...typography(theme, 'body2'),
   },
   rating: {
     display: 'grid',

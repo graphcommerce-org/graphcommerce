@@ -1,4 +1,4 @@
-import { responsiveVal, makeStyles } from '@graphcommerce/next-ui'
+import { responsiveVal, makeStyles, typography } from '@graphcommerce/next-ui'
 import React from 'react'
 import { DirectoryTree } from '../../util/files'
 import SidebarMenu from '../SidebarMenu'
@@ -23,7 +23,7 @@ const useStyles = makeStyles()((theme) => ({
     padding: `0 ${theme.spacings.sm} ${theme.spacings.sm}`,
   },
   listItemText: {
-    ...theme.typography.caption,
+    ...typography(theme, 'caption'),
   },
 }))
 

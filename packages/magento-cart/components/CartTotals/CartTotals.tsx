@@ -1,10 +1,11 @@
 import { Money } from '@graphcommerce/magento-store'
 import {
   AnimatedRow,
-  responsiveVal,
-  UseStyles,
   makeStyles,
+  responsiveVal,
+  typography,
   useMergedClasses,
+  UseStyles,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Divider, lighten } from '@mui/material'
@@ -32,7 +33,7 @@ const useStyles = makeStyles({ name: 'CartTotals' })((theme) => ({
   costsRow: {
     display: 'flex',
     justifyContent: 'space-between',
-    ...theme.typography.subtitle1,
+    ...typography(theme, 'subtitle1'),
   },
   costsGrandTotal: {
     fontWeight: theme.typography.fontWeightBold,

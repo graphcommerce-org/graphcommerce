@@ -3,7 +3,7 @@ import {
   OrderCard,
   useOrderCardItemImages,
 } from '@graphcommerce/magento-customer-order'
-import { Pagination, SectionContainer, makeStyles } from '@graphcommerce/next-ui'
+import { Pagination, SectionContainer, makeStyles, typography } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Link } from '@mui/material'
 import PageLink from 'next/link'
@@ -14,7 +14,7 @@ export type AccountOrdersProps = AccountOrdersFragment
 
 const useStyles = makeStyles({ name: 'AccountOrders' })((theme) => ({
   ordersContainer: {
-    ...theme.typography.body2,
+    ...typography(theme, 'body2'),
     marginBottom: theme.spacings.md,
   },
   olderOrdersContainer: {

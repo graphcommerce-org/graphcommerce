@@ -2,7 +2,7 @@ import { Image } from '@graphcommerce/image'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart'
 import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
-import { UseStyles, responsiveVal, makeStyles } from '@graphcommerce/next-ui'
+import { UseStyles, responsiveVal, makeStyles, typography } from '@graphcommerce/next-ui'
 import { Badge, Link } from '@mui/material'
 import clsx from 'clsx'
 import PageLink from 'next/link'
@@ -24,7 +24,7 @@ const useStyles = makeStyles({ name: 'CartItem' })((theme) => ({
     gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
     columnGap: theme.spacings.sm,
     alignItems: 'baseline',
-    ...theme.typography.body1,
+    ...typography(theme, 'body1'),
     marginBottom: theme.spacings.lg,
     marginTop: theme.spacings.md,
     [theme.breakpoints.up('sm')]: {
@@ -89,7 +89,7 @@ const useStyles = makeStyles({ name: 'CartItem' })((theme) => ({
     marginTop: '-5%',
   },
   itemName: {
-    ...theme.typography.subtitle1,
+    ...typography(theme, 'subtitle1'),
     fontWeight: theme.typography.fontWeightBold,
     gridArea: 'itemName',
     color: theme.palette.text.primary,
@@ -98,7 +98,7 @@ const useStyles = makeStyles({ name: 'CartItem' })((theme) => ({
     maxWidth: 'max-content',
   },
   itemNameWithOptions: {
-    ...theme.typography.subtitle1,
+    ...typography(theme, 'subtitle1'),
     fontWeight: theme.typography.fontWeightBold,
     alignSelf: 'flex-end',
   },

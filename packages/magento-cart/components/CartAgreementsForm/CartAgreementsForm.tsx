@@ -20,7 +20,7 @@ const useStyles = makeStyles({ name: 'CartAgreements' })((theme) => ({
     paddingTop: theme.spacings.sm,
   },
   formInner: {
-    ...theme.typography.body1,
+    ...typography(theme, 'body1'),
     display: 'inline-block',
   },
   formControlRoot: {

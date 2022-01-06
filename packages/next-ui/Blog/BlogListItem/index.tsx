@@ -3,7 +3,7 @@ import PageLink from 'next/link'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
-import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
+import { makeStyles, typography, useMergedClasses } from '../../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'BlogListItem' })((theme) => ({
   item: {
@@ -36,7 +36,7 @@ const useStyles = makeStyles({ name: 'BlogListItem' })((theme) => ({
     background: theme.palette.background.paper,
   },
   title: {
-    ...theme.typography.h3,
+    ...typography(theme, 'h3'),
   },
 }))
 

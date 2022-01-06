@@ -20,12 +20,10 @@ export const useStyles = makeStyles({ name: 'TextSwatchData' })((theme) => ({
   sizesmall: {},
   storeLabel: {
     gridArea: 'label',
-    // fontWeight: theme.typography.fontWeightMedium,
   },
   value: {
     gridArea: 'value',
     justifySelf: 'end',
-    // ...theme.typography.body1,
     margin: 'auto 0',
   },
   delivery: {

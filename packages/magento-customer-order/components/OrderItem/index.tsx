@@ -1,6 +1,6 @@
 import { Image } from '@graphcommerce/image'
 import { Money } from '@graphcommerce/magento-store'
-import { responsiveVal, makeStyles } from '@graphcommerce/next-ui'
+import { responsiveVal, makeStyles, typography } from '@graphcommerce/next-ui'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React from 'react'
@@ -17,11 +17,11 @@ const useStyles = makeStyles({ name: 'OrderItem' })((theme) => ({
       "picture itemName itemName itemName"
       "picture itemOptions itemOptions itemOptions"
       "picture itemPrice quantity rowPrice"
-        `,
+    `,
     gridTemplateColumns: `${rowImageSize} repeat(3, 1fr)`,
     columnGap: theme.spacings.sm,
     alignItems: 'baseline',
-    ...theme.typography.body1,
+    ...typography(theme, 'body1'),
     marginBottom: theme.spacings.lg,
     marginTop: theme.spacings.md,
     [theme.breakpoints.up('sm')]: {
@@ -81,7 +81,7 @@ const useStyles = makeStyles({ name: 'OrderItem' })((theme) => ({
     height: '100%',
   },
   itemName: {
-    ...theme.typography.h5,
+    ...typography(theme, 'h5'),
     fontWeight: 500,
     gridArea: 'itemName',
     color: theme.palette.text.primary,

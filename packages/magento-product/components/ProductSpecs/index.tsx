@@ -5,13 +5,14 @@ import {
   UseStyles,
   makeStyles,
   useMergedClasses,
+  typography,
 } from '@graphcommerce/next-ui'
 import React from 'react'
 import { ProductSpecsFragment } from './ProductSpecs.gql'
 
 const useStyles = makeStyles()((theme) => ({
   root: {
-    ...theme.typography.subtitle1,
+    ...typography(theme, 'subtitle1'),
   },
   sectionHeaderWrapper: {
     marginBottom: theme.spacings.md,

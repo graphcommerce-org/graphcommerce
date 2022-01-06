@@ -1,6 +1,6 @@
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
-import { FormRow, InputCheckmark, makeStyles } from '@graphcommerce/next-ui'
+import { FormRow, InputCheckmark, makeStyles, typography } from '@graphcommerce/next-ui'
 import { useFormCompose, useFormPersist, useFormValidFields } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
 import { TextField, Typography } from '@mui/material'
@@ -11,7 +11,7 @@ type MollieIssuerOptionsProps = PaymentOptionsProps & { label: string }
 
 const useStyles = makeStyles({ name: 'MollieIssuerOptions' })((theme) => ({
   root: {
-    ...theme.typography.body2,
+    ...typography(theme, 'body2'),
     paddingLeft: theme.spacings.xs,
     margin: 0,
   },

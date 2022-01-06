@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { makeStyles, useMergedClasses } from '../Styles/tssReact'
+import { makeStyles, typography, useMergedClasses } from '../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'UspListItem' })((theme) => ({
   root: {
@@ -12,7 +12,7 @@ const useStyles = makeStyles({ name: 'UspListItem' })((theme) => ({
     gridTemplateColumns: `${responsiveVal(32, 38)} auto`,
     gap: theme.spacings.xs,
     '& > p': {
-      ...theme.typography.body2,
+      ...typography(theme, 'body2'),
     },
   },
   icon: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles({ name: 'UspListItem' })((theme) => ({
   },
   smallCopy: {
     '& > p': {
-      ...theme.typography.body2,
+      ...typography(theme, 'body2'),
     },
   },
   smallIcons: {

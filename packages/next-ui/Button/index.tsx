@@ -1,7 +1,7 @@
 import { Button as MuiButton, ButtonClassKey as MuiButtonClassKey } from '@mui/material'
 import clsx from 'clsx'
 import React from 'react'
-import { makeStyles, useMergedClasses } from '../Styles/tssReact'
+import { makeStyles, typography, useMergedClasses } from '../Styles/tssReact'
 
 type BaseButtonProps = Omit<Parameters<typeof MuiButton>['0'], 'variant' | 'classes'> & {
   variant?: 'text' | 'outlined' | 'contained' | 'pill' | 'pill-link'
@@ -50,7 +50,7 @@ const useStyles = makeStyles({ name: 'MuiPillButton' })((theme) => ({
     [theme.breakpoints.up('md')]: {
       // manually match MuiButton and containedPrimary styles
       textTransform: 'none',
-      ...theme.typography.body2,
+      ...typography(theme, 'body2'),
       fontWeight: 400,
       borderRadius: '99em',
       boxShadow: theme.shadows[6],

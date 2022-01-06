@@ -1,8 +1,7 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { Scroller, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { ProductListLink, ProductListParams } from '@graphcommerce/magento-product'
-import { UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
-import React from 'react'
+import { UseStyles, makeStyles, useMergedClasses, typography } from '@graphcommerce/next-ui'
 import { CategoryChildrenFragment } from './CategoryChildren.gql'
 
 const useStyles = makeStyles({ name: 'CategoryChildren' })((theme) => ({
@@ -19,7 +18,7 @@ const useStyles = makeStyles({ name: 'CategoryChildren' })((theme) => ({
     display: 'block',
     marginRight: `${theme.spacings.xxs}`,
     marginLeft: `${theme.spacings.xxs}`,
-    ...theme.typography.h6,
+    ...typography(theme, 'h6'),
     position: 'relative',
     paddingBottom: 8,
     '&:before': {
