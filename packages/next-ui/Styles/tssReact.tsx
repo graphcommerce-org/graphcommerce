@@ -3,7 +3,14 @@ import type { EmotionCache } from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
 import { Theme } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { createMakeStyles, createWithStyles, CSSObject, useMergedClasses } from 'tss-react'
+import {
+  createMakeStyles,
+  createWithStyles,
+  CSSObject,
+  useMergedClasses,
+  getTssDefaultEmotionCache,
+  TssCacheProvider,
+} from 'tss-react'
 
 export { useMergedClasses }
 
@@ -60,6 +67,10 @@ export function emotionCache() {
 }
 
 /** Provider that is supposed to be used in your `pages/_app.tsx` */
-export function EmotionProvider(props: { children: React.ReactNode }) {
-  return <CacheProvider value={emotionCache()} {...props} />
+export function EmotionProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <CacheProvider value={emotionCache()}>
+      <TssCacheProvider value={getTssDefaultEmotionCache()}>{children}</TssCacheProvider>
+    </CacheProvider>
+  )
 }
