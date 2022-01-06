@@ -1,13 +1,17 @@
 import { SvgImageSimple, iconHeart } from '@graphcommerce/next-ui'
 import { Chip, ChipProps, makeStyles, Theme } from '@material-ui/core'
-import React, { useState, useEffect, useContext } from 'react'
-import { useQuery, useMutation } from "@apollo/client";
-import { AddProductToWishlistDocument, RemoveProductFromWishlistDocument } from "@graphcommerce/magento-wishlist"
-import { CustomerContext } from "@graphcommerce/magento-customer";
+import React, { useState, useEffect } from 'react'
+import { useQuery, useMutation } from '@apollo/client'
+import {
+  AddProductToWishlistDocument,
+  RemoveProductFromWishlistDocument,
+} from '@graphcommerce/magento-wishlist'
+import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
+import { GetIsInWishlistsDocument } from '@graphcommerce/magento-wishlist'
 
 // sku is optional in Magento schema
 export type ProductWishlistChipProps = {
-  sku: string|null|undefined
+  sku: string | null | undefined
 } & ChipProps
 
 const useStyles = makeStyles(
@@ -28,7 +32,7 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
   const { sku, ...chipProps } = props
   const classes = useStyles()
 
-  const [inWishlist, setInWishlist] = useState(false);
+  const [inWishlist, setInWishlist] = useState(false)
 
   useEffect(() => {
     let wishlist = getWishlistStorage()
@@ -37,8 +41,13 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
     }
   })
 
-  const customer = useContext(CustomerContext);
+  const { data: token } = useQuery(CustomerTokenDocument)
+  const isLoggedIn = token?.customerToken && token?.customerToken.valid
 
+  // Prevent multiple fetches of wishlist during page render
+  const { refetch } = useQuery(GetIsInWishlistsDocument, {
+    skip: true,
+  })
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
 
@@ -47,25 +56,27 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
 
     let wishlist = getWishlistStorage()
 
-    // Add or remove wishlist icon depending on current wishlist state
     if (wishlist.includes(sku)) {
-      if (customer.loggedIn) {
-        // Persist to db storage when user session is available
-        let wishlistItemsInSession = customer.customer.wishlists[0]?.items_v2?.items || []
-        let item = wishlistItemsInSession.find(element => element?.product?.sku == sku)
+      if (isLoggedIn) {
+        // Needs refetch instead of fetch, otherwise add/remove of same item directly fails
+        const wishlistQuery = refetch()
+        wishlistQuery.then((wishlistData) => {
+          let wishlistItemsInSession =
+            wishlistData.data?.customer?.wishlists[0]?.items_v2?.items || []
 
-        if (item?.id) {
-          removeWishlistItem({variables: {wishlistItemId: item.id}})
-        }
+          let item = wishlistItemsInSession.find((element) => element?.product?.sku == sku)
+          if (item?.id) {
+            removeWishlistItem({ variables: { wishlistItemId: item.id } })
+          }
+        })
       }
 
-      wishlist = wishlist.filter(itemSku => itemSku !== sku )
+      wishlist = wishlist.filter((itemSku) => itemSku !== sku)
       setInWishlist(false)
-    }
-    else {
-      if (customer.loggedIn && sku) {
+    } else {
+      if (isLoggedIn && sku) {
         // Persist to db storage when user session is available
-        addWishlistItem({variables: {sku: sku}})
+        addWishlistItem({ variables: { sku: sku } })
       }
 
       wishlist.push(sku)
@@ -84,7 +95,13 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
       variant='outlined'
       key={sku}
       onClick={handleClick}
-      icon={<SvgImageSimple src={iconHeart} size='small' className={inWishlist ? classes.iconHeartActive : classes.iconHeart} />}
+      icon={
+        <SvgImageSimple
+          src={iconHeart}
+          size='small'
+          className={inWishlist ? classes.iconHeartActive : classes.iconHeart}
+        />
+      }
       color='default'
       size='small'
       {...chipProps}
