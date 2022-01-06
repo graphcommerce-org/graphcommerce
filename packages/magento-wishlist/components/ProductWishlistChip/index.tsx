@@ -78,7 +78,6 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
       }
 
       wishlist.push(sku)
-      setInWishlist(true)
     }
 
     localStorage.setItem('guest-wishlist', JSON.stringify(wishlist))
