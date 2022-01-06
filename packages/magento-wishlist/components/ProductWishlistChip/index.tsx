@@ -81,11 +81,11 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
       setInWishlist(true)
     }
 
-    localStorage.setItem('wishlist', JSON.stringify(wishlist))
+    localStorage.setItem('guest-wishlist', JSON.stringify(wishlist))
   }
 
   const getWishlistStorage = () => {
-    return JSON.parse(localStorage.getItem('wishlist') || '[]')
+    return JSON.parse(localStorage.getItem('guest-wishlist') || '[]')
   }
 
   const chip = (
