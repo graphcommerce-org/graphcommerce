@@ -9,10 +9,7 @@ import {
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { GetIsInWishlistsDocument } from '@graphcommerce/magento-wishlist'
 
-// sku is optional in Magento schema
-export type ProductWishlistChipProps = {
-  sku: string | null | undefined
-} & ChipProps
+export type ProductWishlistChipProps = ProductWishlistChipFragment & ChipProps
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
