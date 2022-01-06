@@ -1,6 +1,6 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { UseStyles } from '@graphcommerce/next-ui/Styles'
-import { makeStyles, useMergedClasses } from '@graphcommerce/next-ui/Styles/tssReact'
+import { makeStyles, typography, useMergedClasses } from '@graphcommerce/next-ui/Styles/tssReact'
 import clsx from 'clsx'
 import { m, MotionProps } from 'framer-motion'
 import React, { useState } from 'react'

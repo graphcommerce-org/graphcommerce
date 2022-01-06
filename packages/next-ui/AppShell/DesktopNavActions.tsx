@@ -6,7 +6,7 @@ const useStyles = makeStyles({ name: 'DesktopNavActions' })((theme) => ({
     display: 'none',
     [theme.breakpoints.up('md')]: {
       display: 'grid',
-      pointerEvents: 'none !important',
+      pointerEvents: 'none !important' as 'none',
       '& > *': {
         pointerEvents: 'all',
       },

@@ -8,6 +8,7 @@ import {
   SvgImageSimple,
   ToggleButton,
   makeStyles,
+  typography,
 } from '@graphcommerce/next-ui'
 import {
   Controller,

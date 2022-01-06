@@ -1,8 +1,10 @@
-import { withStyles } from '@graphcommerce/next-ui'
+import { typography, withStyles } from '@graphcommerce/next-ui'
 import RichText from '.'
 
 const RichTextDoubleSpread = withStyles(RichText, (theme) => ({
-  h2: theme.typography.h4,
+  h2: {
+    ...typography(theme, 'h4'),
+  },
   paragraph: {
     [theme.breakpoints.up('sm')]: {
       columnCount: 2,

@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import { UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
+import { UseStyles, makeStyles, useMergedClasses, typography } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Typography } from '@mui/material'
 import clsx from 'clsx'
@@ -22,10 +22,7 @@ const useStyles = makeStyles({ name: 'SignupNewsletter' })((theme) => ({
     marginTop: theme.spacings.sm,
     borderRadius: 4,
     gridTemplateColumns: '1fr',
-    gridTemplateAreas: `
-        "a"
-        "b"
-      `,
+    gridTemplateAreas: `"a" "b"`,
     justifyItems: 'start',
     [theme.breakpoints.up('sm')]: {
       gridTemplateAreas: `"a b c"`,
