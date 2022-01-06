@@ -8,6 +8,7 @@ import {
 } from '@graphcommerce/magento-wishlist'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { GetIsInWishlistsDocument } from '@graphcommerce/magento-wishlist'
+import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
 
 export type ProductWishlistChipProps = ProductWishlistChipFragment & ChipProps
 
@@ -41,7 +42,7 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
   const { data: token } = useQuery(CustomerTokenDocument)
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
 
-  // Prevent multiple fetches of wishlist during page render
+  // Prevent multiple fetches of wishlist during page render (for logged in users)
   const { refetch } = useQuery(GetIsInWishlistsDocument, {
     skip: true,
   })
@@ -80,11 +81,11 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
       setInWishlist(true)
     }
 
-    localStorage.wishlist = JSON.stringify(wishlist)
+    localStorage.setItem('wishlist', JSON.stringify(wishlist))
   }
 
   const getWishlistStorage = () => {
-    return localStorage?.wishlist ? JSON.parse(localStorage?.wishlist) : []
+    return JSON.parse(localStorage.getItem('wishlist') || '[]')
   }
 
   const chip = (
