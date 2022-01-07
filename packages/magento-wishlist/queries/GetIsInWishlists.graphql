@@ -1,6 +1,6 @@
-mutation removeProductFromWishlist($wishlistItemId: ID!) {
-  removeProductsFromWishlist(wishlistId: 0, wishlistItemsIds: [$wishlistItemId]) {
-    wishlist {
+query GetIsInWishlists {
+  customer {
+    wishlists {
       id
       items_count
       items_v2 {

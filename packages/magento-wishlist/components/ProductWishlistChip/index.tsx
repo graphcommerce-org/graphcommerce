@@ -29,62 +29,70 @@ const useStyles = makeStyles(
 export default function ProductWishlistChip(props: ProductWishlistChipProps) {
   const { sku, ...chipProps } = props
   const classes = useStyles()
-
   const [inWishlist, setInWishlist] = useState(false)
-
-  useEffect(() => {
-    let wishlist = getWishlistStorage()
-    if (wishlist.includes(sku)) {
-      setInWishlist(true)
-    }
-  })
 
   const { data: token } = useQuery(CustomerTokenDocument)
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
+  const GUEST_WISHLIST = 'guest-wishlist'
 
-  // Prevent multiple fetches of wishlist during page render (for logged in users)
-  const { refetch } = useQuery(GetIsInWishlistsDocument, {
-    skip: true,
+  const { data: GetCustomerWishlistData, loading } = useQuery(GetIsInWishlistsDocument, {
+    skip: !isLoggedIn,
   })
+
+  // Mark as active when product is available in either customer or guest wishlist
+  useEffect(() => {
+    if (isLoggedIn && !loading && !inWishlist) {
+      const inWishlistTest =
+        GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items.map(
+          (item) => item?.product?.sku,
+        ) || []
+      if (inWishlistTest.includes(sku)) {
+        setInWishlist(true)
+      }
+    } else if (!isLoggedIn && !inWishlist) {
+      let wishlist = JSON.parse(localStorage.getItem(GUEST_WISHLIST) || '[]')
+      if (wishlist.includes(sku)) {
+        setInWishlist(true)
+      }
+    }
+  })
+
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
     e.preventDefault()
 
-    let wishlist = getWishlistStorage()
+    if (isLoggedIn) {
+      if (inWishlist) {
+        let wishlistItemsInSession =
+          GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items || []
 
-    if (wishlist.includes(sku)) {
-      if (isLoggedIn) {
-        // Needs refetch instead of fetch, otherwise add/remove of same item directly fails
-        const wishlistQuery = refetch()
-        wishlistQuery.then((wishlistData) => {
-          let wishlistItemsInSession =
-            wishlistData.data?.customer?.wishlists[0]?.items_v2?.items || []
+        let item = wishlistItemsInSession.find((element) => element?.product?.sku == sku)
 
-          let item = wishlistItemsInSession.find((element) => element?.product?.sku == sku)
-          if (item?.id) {
-            removeWishlistItem({ variables: { wishlistItemId: item.id } })
-          }
+        if (item?.id) {
+          removeWishlistItem({ variables: { wishlistItemId: item.id } }).then(() => {
+            setInWishlist(false)
+          })
+        }
+      } else if (sku) {
+        addWishlistItem({ variables: { sku: sku } }).then(() => {
+          setInWishlist(true)
         })
       }
-
-      wishlist = wishlist.filter((itemSku) => itemSku !== sku)
-      setInWishlist(false)
     } else {
-      if (isLoggedIn && sku) {
-        // Persist to db storage when user session is available
-        addWishlistItem({ variables: { sku: sku } })
+      let wishlist = JSON.parse(localStorage.getItem(GUEST_WISHLIST) || '[]')
+
+      if (inWishlist) {
+        wishlist = wishlist.filter((itemSku) => itemSku !== sku)
+        localStorage.setItem(GUEST_WISHLIST, JSON.stringify(wishlist))
+        setInWishlist(false)
+      } else {
+        wishlist.push(sku)
+        localStorage.setItem(GUEST_WISHLIST, JSON.stringify(wishlist))
+        setInWishlist(true)
       }
-
-      wishlist.push(sku)
     }
-
-    localStorage.setItem('guest-wishlist', JSON.stringify(wishlist))
-  }
-
-  const getWishlistStorage = () => {
-    return JSON.parse(localStorage.getItem('guest-wishlist') || '[]')
   }
 
   const chip = (
