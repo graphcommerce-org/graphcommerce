@@ -58,19 +58,13 @@ export function typography(theme: Theme, key: keyof Theme['typography']): CSSObj
   return theme.typography[key] as CSSObject
 }
 
-let cache: EmotionCache | undefined
-
-/** Creates a single instance of the `@emotion/cache` that is shared between server and client */
-export function emotionCache() {
-  if (!cache) cache = createCache({ key: 'css', prepend: true })
-  return cache
+let muiCache: EmotionCache | undefined
+export const createMuiCache = () => {
+  muiCache = createCache({ key: 'mui', prepend: true })
+  return muiCache
 }
 
 /** Provider that is supposed to be used in your `pages/_app.tsx` */
 export function EmotionProvider({ children }: { children: React.ReactNode }) {
-  return (
-    <CacheProvider value={emotionCache()}>
-      <TssCacheProvider value={getTssDefaultEmotionCache()}>{children}</TssCacheProvider>
-    </CacheProvider>
-  )
+  return <CacheProvider value={muiCache ?? createMuiCache()}>{children}</CacheProvider>
 }
