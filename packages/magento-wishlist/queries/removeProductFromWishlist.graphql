@@ -1,17 +1,7 @@
 mutation removeProductFromWishlist($wishlistItemId: ID!) {
   removeProductsFromWishlist(wishlistId: 0, wishlistItemsIds: [$wishlistItemId]) {
     wishlist {
-      id
-      items_count
-      items_v2 {
-        items {
-          id
-          product {
-            uid
-            sku
-          }
-        }
-      }
+      ...WishlistSummaryFragment
     }
   }
 }
