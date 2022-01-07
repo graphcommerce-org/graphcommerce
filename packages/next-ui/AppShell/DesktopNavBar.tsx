@@ -14,7 +14,8 @@ import { MenuProps } from './Menu'
 const useStyles = makeStyles({ name: 'DesktopNavBar' })((theme) => ({
   container: {
     minWidth: 200,
-    flex: 1,
+    display: 'grid',
+    alignItems: 'center',
     position: 'relative',
     pointerEvents: 'all',
     [theme.breakpoints.down('md')]: {
@@ -22,38 +23,37 @@ const useStyles = makeStyles({ name: 'DesktopNavBar' })((theme) => ({
     },
   },
   scroller: {
+    gridArea: `1 / 1 / 1 / 4`,
     display: 'grid',
-    columnGap: 40,
-    padding: '0 40px',
-    minHeight: 40,
+    columnGap: theme.spacings.sm,
+    padding: `0 ${theme.spacings.sm}`,
     gridAutoColumns: 'min-content',
   },
-  prevNextBtnWrapper: {
-    position: 'absolute',
-    top: 0,
-  },
   left: {
+    gridArea: `1 / 1 / 1 / 1`,
     left: 0,
   },
   right: {
+    gridArea: `1 / 3 / 1 / 3`,
     right: 0,
   },
   prevNextBtn: {
     pointerEvents: 'all',
-    background: theme.palette.background.default,
+
     boxShadow: 'none',
     height: 48,
-    [theme.breakpoints.down('md')]: {
-      display: 'none',
-    },
   },
   prevBtn: {
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
+    backgroundColor: 'transparent',
+    backgroundImage: `linear-gradient(to left, rgba(255,255,255,0) 0%, ${theme.palette.background.default} 35%)`,
   },
   nextBtn: {
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
+    backgroundColor: 'transparent',
+    backgroundImage: `linear-gradient(to right, rgba(255,255,255,0) 0%, ${theme.palette.background.default} 35%)`,
   },
   link: {
     whiteSpace: 'nowrap',
@@ -116,7 +116,7 @@ export default function DesktopNavBar(props: MenuTabsProps) {
           ))}
         </Scroller>
 
-        <m.div className={clsx(classes.prevNextBtnWrapper, classes.left)}>
+        <m.div className={classes.left}>
           <ScrollerButton
             direction='left'
             size='small'
@@ -126,7 +126,7 @@ export default function DesktopNavBar(props: MenuTabsProps) {
           </ScrollerButton>
         </m.div>
 
-        <m.div className={clsx(classes.prevNextBtnWrapper, classes.right)}>
+        <m.div className={classes.right}>
           <ScrollerButton
             direction='right'
             size='small'
