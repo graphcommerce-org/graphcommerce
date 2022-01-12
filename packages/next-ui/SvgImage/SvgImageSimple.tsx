@@ -19,9 +19,8 @@ const useStyles = makeStyles({ name: 'SvgImageSimple' })({
     stroke: 'currentColor',
   },
   sizeInherit: {
-    width: '1em',
-    height: '1em',
-    fontSize: 'inherit',
+    width: '1.3em',
+    height: '1.3em',
   },
   sizeXs: {
     width: responsiveVal(11, 13),
@@ -52,28 +51,19 @@ const useStyles = makeStyles({ name: 'SvgImageSimple' })({
   inverted: {},
 })
 
-type SvgImageSimpleProps = Omit<ImageProps, 'fixed'> & {
-  /** The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size. */
-  size?: 'default' | 'inherit' | 'xxl' | 'xl' | 'large' | 'medium' | 'small' | 'xs'
-  fill?: boolean
-  muted?: boolean
-  inverted?: boolean
-}
+type SvgImageSimpleProps = JSX.IntrinsicElements['svg'] &
+  Pick<ImageProps, 'src'> & {
+    /** The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size. */
+    size?: 'default' | 'inherit' | 'xxl' | 'xl' | 'large' | 'medium' | 'small' | 'xs'
+    fill?: boolean
+    muted?: boolean
+    inverted?: boolean
+  }
 
 const SvgImageSimple = forwardRef<SVGSVGElement, SvgImageSimpleProps>((props, ref) => {
-  const {
-    style,
-    className,
-    size = 'medium',
-    muted,
-    inverted,
-    fill,
-    layout = 'fixed',
-    ...imageProps
-  } = props
+  let { className, size = 'inherit', muted, inverted, fill, src, ...imageProps } = props
   const { classes } = useStyles()
 
-  let { src } = imageProps
   let staticSrc = ''
   if (isStaticImport(src)) staticSrc = (isStaticRequire(src) ? src.default : src).src
   src = typeof src === 'string' ? src : staticSrc
@@ -89,7 +79,7 @@ const SvgImageSimple = forwardRef<SVGSVGElement, SvgImageSimpleProps>((props, re
         inverted && classes.inverted,
       )}
       aria-hidden='true'
-      style={style}
+      {...imageProps}
     >
       <use href={`${src}#icon`} />
     </svg>

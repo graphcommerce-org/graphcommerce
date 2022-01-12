@@ -8,6 +8,7 @@ import {
   LayoutOverlayVariant,
   SvgImageSimple,
   LayoutTitle,
+  LinkOrButton,
 } from '@graphcommerce/next-ui'
 import { Container, Button } from '@mui/material'
 import { motion } from 'framer-motion'
@@ -31,9 +32,13 @@ function MultiStack() {
         noAlign
         primary={
           <Link href={`/multi-stack/${variant}/${page + 1}`} passHref>
-            <Button variant='pill-link' endIcon={<SvgImageSimple src={iconChevronRight} />}>
+            <LinkOrButton
+              color='secondary'
+              button={{ variant: 'pill' }}
+              endIcon={<SvgImageSimple src={iconChevronRight} />}
+            >
               {page + 1}
-            </Button>
+            </LinkOrButton>
           </Link>
         }
       >

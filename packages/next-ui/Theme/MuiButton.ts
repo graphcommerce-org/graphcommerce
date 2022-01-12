@@ -115,7 +115,7 @@ export const MuiButtonPill: ButtonVariants = [
   },
   {
     props: { variant: 'pill', color: 'inherit' },
-    style: { backgroundColor: 'inherit' },
+    style: ({ theme }) => ({ backgroundColor: theme.palette.background.paper }),
   },
   {
     props: { variant: 'pill', disabled: true },

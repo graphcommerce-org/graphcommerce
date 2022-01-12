@@ -357,7 +357,8 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
         ...(variantSm === 'bottom' && sizeSm === 'full' && { minHeight: 'calc(100vh - 56px)' }),
       },
       [theme.breakpoints.up('md')]: {
-        ...(variantMd === 'bottom' && sizeMd === 'full' && { minHeight: '100vh' }),
+        ...(variantMd === 'bottom' &&
+          sizeMd === 'full' && { minHeight: `calc(100vh - ${theme.appShell.headerHeightMd})` }),
         ...(sizeMd === 'full' && { minWidth: 'max(600px, 50vw)' }),
       },
     }),

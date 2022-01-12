@@ -131,7 +131,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
               size='medium'
               variant='pill'
               color='secondary'
-              endIcon={<SvgImageSimple src={iconChevronRight} inverted />}
+              endIcon={<SvgImageSimple src={iconChevronRight} />}
             >
               View shopping cart
             </Button>

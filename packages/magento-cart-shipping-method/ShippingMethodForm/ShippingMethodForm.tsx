@@ -15,6 +15,7 @@ import {
   useMergedClasses,
 } from '@graphcommerce/next-ui'
 import { Controller, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
+import { t } from '@lingui/macro'
 import { FormControl, Alert } from '@mui/material'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
@@ -143,12 +144,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
                 ),
               }}
             >
-              <SvgImageSimple
-                src={iconChevronLeft}
-                alt='chevron left'
-                size='small'
-                loading='eager'
-              />
+              <SvgImageSimple src={iconChevronLeft} size='small' aria-label={t`Scroll Left`} />
             </ScrollerButton>
           </m.div>
 
@@ -224,12 +220,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
                 ),
               }}
             >
-              <SvgImageSimple
-                src={iconChevronRight}
-                alt='chevron right'
-                size='small'
-                loading='eager'
-              />
+              <SvgImageSimple src={iconChevronRight} size='small' aria-label={t`Scroll Right`} />
             </ScrollerButton>
           </m.div>
         </ScrollerProvider>

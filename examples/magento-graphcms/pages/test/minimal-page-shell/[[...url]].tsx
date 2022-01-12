@@ -1,5 +1,11 @@
 import { PageOptions, usePageContext } from '@graphcommerce/framer-next-pages'
-import { LayoutHeader, iconPerson, Stepper, LayoutTitle } from '@graphcommerce/next-ui'
+import {
+  LayoutHeader,
+  iconPerson,
+  Stepper,
+  LayoutTitle,
+  LinkOrButton,
+} from '@graphcommerce/next-ui'
 import { Container, Divider, List, ListItem, Button } from '@mui/material'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
@@ -41,18 +47,18 @@ export function AppShellDemo(props: AppShellDemoProps) {
   if (withPrimary)
     primaryAction = (
       <PageLink href={`${baseUrl}/with-primary-navigated`} passHref>
-        <Button variant='pill-link' color='secondary'>
+        <LinkOrButton color='secondary' button={{ variant: 'pill' }}>
           Navigate
-        </Button>
+        </LinkOrButton>
       </PageLink>
     )
 
   if (withStepper && step < 3) {
     primaryAction = (
       <PageLink href={`${baseUrl}/with-stepper-${step + 1}`} passHref>
-        <Button variant='pill-link' color='secondary'>
+        <LinkOrButton color='secondary' button={{ variant: 'pill' }}>
           Navigate
-        </Button>
+        </LinkOrButton>
       </PageLink>
     )
   }

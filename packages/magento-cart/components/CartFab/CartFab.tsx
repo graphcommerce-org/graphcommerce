@@ -20,6 +20,9 @@ import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
 
 const useStyles = makeStyles({ name: 'CartFab' })((theme) => ({
   fab: {
+    // todo: replace with size="responsive"
+    width: responsiveVal(42, 56),
+    height: responsiveVal(42, 56),
     [theme.breakpoints.down('md')]: {
       backgroundColor: `${theme.palette.background.paper} !important`,
     },
@@ -63,7 +66,8 @@ function CartFabContent(props: CartFabContentProps) {
   const paper1 = alpha(theme.palette.background.paper, 1)
   const backgroundColor = useTransform(scrollY, [0, 60], [paper0, paper1])
 
-  const cartIcon = icon ?? <SvgImageSimple src={iconShoppingBag} loading='eager' size='large' />
+  const cartIcon = icon ?? <SvgImageSimple src={iconShoppingBag} size='large' />
+
   return (
     <>
       <PageLink href='/cart' passHref>

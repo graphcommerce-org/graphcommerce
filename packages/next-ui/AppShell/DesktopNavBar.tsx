@@ -30,10 +30,18 @@ const useStyles = makeStyles({ name: 'DesktopNavBar' })((theme) => ({
     gridAutoColumns: 'min-content',
   },
   left: {
-    gridArea: `1 / 1 / 1 / 1`,
+    gridArea: `1 / 1 / 1 / 2`,
+    pointerEvents: 'none',
+    '& > *': {
+      pointerEvents: 'all',
+    },
   },
   right: {
-    gridArea: `1 / 3 / 1 / 3`,
+    gridArea: `1 / 3 / 1 / 4`,
+    pointerEvents: 'none',
+    '& > *': {
+      pointerEvents: 'all',
+    },
   },
   prevNextBtn: {
     pointerEvents: 'all',

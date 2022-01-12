@@ -54,8 +54,9 @@ const useStyles = makeStyles({ name: 'LayoutHeaderContent' })((theme) => ({
     // columnGap: theme.spacings.xs,
 
     height: theme.appShell.headerHeightSm,
+    padding: `0 ${theme.page.horizontal}`,
+
     [theme.breakpoints.up('md')]: {
-      padding: `0 ${theme.page.horizontal}`,
       height: theme.appShell.appBarHeightMd,
     },
   },

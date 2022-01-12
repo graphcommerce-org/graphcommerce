@@ -15,7 +15,7 @@ import React, { useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
 import apolloClient from '../../lib/apolloClient'
 
-const variants = ['text', 'outlined', 'contained', 'pill', 'pill-link'] as const
+const variants = ['text', 'outlined', 'contained', 'pill'] as const
 const sizes = ['small', 'medium', 'large'] as const
 const colors = ['inherit', 'primary', 'secondary'] as const
 

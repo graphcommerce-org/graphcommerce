@@ -25,7 +25,7 @@ function IndexPage(props: PageProps) {
           <Button
             color='secondary'
             variant='text'
-            endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
+            endIcon={<SvgImageSimple src={iconChevronRight} />}
           >
             Start developing now
           </Button>

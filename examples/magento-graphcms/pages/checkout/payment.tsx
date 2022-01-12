@@ -58,9 +58,9 @@ function PaymentPage() {
                 <PaymentMethodButton
                   type='submit'
                   color='secondary'
-                  variant='pill-link'
+                  variant='pill'
                   display='inline'
-                  endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
+                  endIcon={<SvgImageSimple src={iconChevronRight} size='small' />}
                 >
                   <Trans>Pay</Trans>
                 </PaymentMethodButton>

@@ -20,12 +20,12 @@ import {
   iconChevronRight,
   SvgImageSimple,
   LayoutOverlayHeader,
+  LinkOrButton,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Button, Container, NoSsr } from '@mui/material'
+import { Container, NoSsr } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
-import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../components/Layout'
 import apolloClient from '../lib/apolloClient'
 
@@ -52,14 +52,13 @@ function CartPage() {
           primary={
             hasItems && (
               <PageLink href='/checkout' passHref>
-                <Button
+                <LinkOrButton
+                  button={{ variant: 'pill', disabled: !hasItems }}
                   color='secondary'
-                  variant='pill-link'
-                  disabled={!hasItems}
-                  endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
+                  endIcon={<SvgImageSimple src={iconChevronRight} />}
                 >
                   <Trans>Next</Trans>
-                </Button>
+                </LinkOrButton>
               </PageLink>
             )
           }
@@ -125,7 +124,7 @@ function CartPage() {
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'checkout',
   Layout: LayoutOverlay,
-  layoutProps: { variantMd: 'right', variantSm: 'bottom', sizeMd: 'floating', justifyMd: 'start' },
+  layoutProps: { variantMd: 'bottom', variantSm: 'bottom' },
 }
 CartPage.pageOptions = pageOptions
 

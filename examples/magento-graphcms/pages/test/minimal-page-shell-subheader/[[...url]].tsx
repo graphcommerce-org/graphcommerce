@@ -14,7 +14,13 @@ import {
 } from '@graphcommerce/magento-product'
 import { SearchDocument, SearchQuery } from '@graphcommerce/magento-search'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellSticky, LayoutTitle, LayoutHeader, makeStyles } from '@graphcommerce/next-ui'
+import {
+  AppShellSticky,
+  LayoutTitle,
+  LayoutHeader,
+  makeStyles,
+  LinkOrButton,
+} from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { Box, Container, Typography, Button } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -46,9 +52,9 @@ function MinimalAppShellSubheader(props: Props) {
       <LayoutHeader
         primary={
           <PageLink href='/test/minimal-page-shell' passHref>
-            <Button color='secondary' variant='pill-link' size='small'>
-              Next
-            </Button>
+            <LinkOrButton color='secondary' button={{ variant: 'pill' }}>
+              Navigate
+            </LinkOrButton>
           </PageLink>
         }
       >

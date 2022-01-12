@@ -99,10 +99,18 @@ export default function MenuFab(props: MenuFabProps) {
         className={classes.menuFab}
       >
         {closeIcon ?? (
-          <SvgImageSimple src={iconClose} inverted style={{ display: openEl ? 'block' : 'none' }} />
+          <SvgImageSimple
+            src={iconClose}
+            size='medium'
+            style={{ display: openEl ? 'block' : 'none' }}
+          />
         )}
         {menuIcon ?? (
-          <SvgImageSimple src={iconMenu} inverted style={{ display: openEl ? 'none' : 'block' }} />
+          <SvgImageSimple
+            src={iconMenu}
+            size='medium'
+            style={{ display: openEl ? 'none' : 'block' }}
+          />
         )}
       </Fab>
       <m.div className={classes.shadow} style={{ opacity: shadowOpacity }} />

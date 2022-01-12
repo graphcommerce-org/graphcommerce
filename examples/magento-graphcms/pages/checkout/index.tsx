@@ -16,6 +16,7 @@ import {
   Stepper,
   SvgImageSimple,
   LayoutTitle,
+  LinkOrButton,
 } from '@graphcommerce/next-ui'
 import { ComposedForm, ComposedSubmit } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
@@ -46,16 +47,22 @@ function ShippingPage() {
           <ComposedSubmit
             onSubmitSuccessful={onSubmitSuccessful}
             render={({ buttonState, submit, error }) => (
-              <Button
-                type='submit'
+              <LinkOrButton
+                button={{
+                  type: 'submit',
+                  variant: 'pill',
+                  endIcon: <SvgImageSimple src={iconChevronRight} />,
+                }}
+                loading={
+                  buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)
+                    ? true
+                    : undefined
+                }
                 color='secondary'
-                variant='pill-link'
-                loading={buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)}
                 onClick={submit}
-                endIcon={<SvgImageSimple src={iconChevronRight} inverted size='small' />}
               >
                 <Trans>Next</Trans>
-              </Button>
+              </LinkOrButton>
             )}
           />
         }
@@ -101,11 +108,14 @@ function ShippingPage() {
                         size='large'
                         loading={
                           buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)
+                            ? true
+                            : undefined
                         }
+                        loadingPosition='end'
                         onClick={submit}
                       >
                         <Trans>Next</Trans>
-                        <SvgImageSimple src={iconChevronRight} inverted />
+                        <SvgImageSimple src={iconChevronRight} />
                       </Button>
                     </FormActions>
                     <ApolloCartErrorAlert

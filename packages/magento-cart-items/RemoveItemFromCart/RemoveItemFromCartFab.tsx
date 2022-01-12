@@ -25,7 +25,7 @@ export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
         type='submit'
         disabled={formState.isSubmitting}
       >
-        <SvgImageSimple src={iconClose} inverted />
+        <SvgImageSimple src={iconClose} />
       </Fab>
       <ApolloCartErrorSnackbar error={error} />
     </form>

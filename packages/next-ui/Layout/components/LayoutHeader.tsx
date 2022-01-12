@@ -107,7 +107,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
   if (divider || primary || secondary) floatingSm = false
 
   const close = showClose && <LayoutHeaderClose />
-  const back = showBack && <LayoutHeaderBack variant={floatingSm ? 'pill' : 'pill-link'} />
+  const back = showBack && <LayoutHeaderBack breakpoint={floatingSm ? 'xs' : undefined} />
 
   let left = secondary
   let right = primary
