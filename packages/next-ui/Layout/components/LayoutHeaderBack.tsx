@@ -32,8 +32,11 @@ export default function LayoutHeaderBack(props: BackProps) {
   const backIcon = <SvgImageSimple src={iconChevronLeft} />
   const canClickBack = backSteps > 0 && router.asPath !== prevUp?.href
 
+  let label = t`Back`
+  if (up?.href === prevRouter?.asPath && up?.title) label = up.title
+  if (prevUp?.href === prevRouter?.asPath && prevUp?.title) label = prevUp.title
+
   if (canClickBack) {
-    const label = up?.href === prevRouter?.asPath ? up?.title : t`Back`
     return (
       <LinkOrButton
         onClick={() => router.back()}
