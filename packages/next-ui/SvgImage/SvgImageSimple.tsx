@@ -19,6 +19,8 @@ const useStyles = makeStyles({ name: 'SvgImageSimple' })({
     stroke: 'currentColor',
   },
   sizeInherit: {
+    width: '1em',
+    height: '1em',
     fontSize: 'inherit',
   },
   sizeXs: {

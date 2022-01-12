@@ -1,14 +1,12 @@
 import {
   ApolloErrorFullPage,
   ApolloErrorAlertProps,
-  Button,
   iconPerson,
   SvgImageSimple,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
+import { Button } from '@mui/material'
 import PageLink from 'next/link'
-import React from 'react'
-
 import { useExtractCustomerErrors } from '../../hooks/useExtractCustomerErrors'
 
 type ApolloCustomerErrorFullPageProps = {

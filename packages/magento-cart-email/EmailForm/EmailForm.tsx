@@ -9,10 +9,10 @@ import {
   SignUpFormInline,
   useFormIsEmailAvailable,
 } from '@graphcommerce/magento-customer'
-import { AnimatedRow, Button, FormDiv, FormRow, makeStyles } from '@graphcommerce/next-ui'
+import { AnimatedRow, FormDiv, FormRow, makeStyles } from '@graphcommerce/next-ui'
 import { emailPattern, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { CircularProgress, TextField, Typography, Alert } from '@mui/material'
+import { CircularProgress, TextField, Typography, Alert, Button } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import EmailHelperList from '../EmailHelperList'

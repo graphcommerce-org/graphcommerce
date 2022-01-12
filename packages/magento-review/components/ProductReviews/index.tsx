@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client'
 import {
-  Button,
   Pagination,
   responsiveVal,
   StarRatingField,
@@ -9,7 +8,7 @@ import {
   useMergedClasses,
   typography,
 } from '@graphcommerce/next-ui'
-import { Typography } from '@mui/material'
+import { Typography, Button } from '@mui/material'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import ProductReviewChip from '../ProductReviewChip'

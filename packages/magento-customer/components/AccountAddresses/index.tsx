@@ -1,5 +1,4 @@
 import {
-  Button,
   FullPageMessage,
   SectionContainer,
   iconHome,
@@ -7,10 +6,9 @@ import {
   makeStyles,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Skeleton } from '@mui/material'
+import { Skeleton, Button } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
 import AccountAddress from '../AccountAddress'
 import { AccountAddressesFragment } from './AccountAddresses.gql'
 

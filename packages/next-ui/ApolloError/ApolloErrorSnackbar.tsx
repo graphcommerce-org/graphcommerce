@@ -1,6 +1,6 @@
 import { ApolloError } from '@apollo/client'
 import { Trans } from '@lingui/macro'
-import Button from '../Button'
+import { Button } from '@mui/material'
 import MessageSnackbar from '../Snackbar/MessageSnackbar'
 import { MessageSnackbarImplProps } from '../Snackbar/MessageSnackbarImpl'
 

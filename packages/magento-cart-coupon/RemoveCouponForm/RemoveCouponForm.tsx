@@ -3,12 +3,10 @@ import {
   UseStyles,
   SvgImageSimple,
   iconCancelAlt,
-  Button,
   makeStyles,
   useMergedClasses,
 } from '@graphcommerce/next-ui'
-import { lighten } from '@mui/material'
-import React from 'react'
+import { lighten, Button } from '@mui/material'
 import { CouponFragment } from '../Api/Coupon.gql'
 import { RemoveCouponFormDocument } from './RemoveCouponForm.gql'
 

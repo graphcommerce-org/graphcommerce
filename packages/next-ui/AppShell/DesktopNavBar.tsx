@@ -13,7 +13,7 @@ import { MenuProps } from './Menu'
 
 const useStyles = makeStyles({ name: 'DesktopNavBar' })((theme) => ({
   container: {
-    minWidth: 200,
+    width: '100%',
     display: 'grid',
     alignItems: 'center',
     position: 'relative',
@@ -31,11 +31,9 @@ const useStyles = makeStyles({ name: 'DesktopNavBar' })((theme) => ({
   },
   left: {
     gridArea: `1 / 1 / 1 / 1`,
-    left: 0,
   },
   right: {
     gridArea: `1 / 3 / 1 / 3`,
-    right: 0,
   },
   prevNextBtn: {
     pointerEvents: 'all',

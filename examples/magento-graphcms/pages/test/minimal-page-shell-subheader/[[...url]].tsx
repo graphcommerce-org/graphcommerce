@@ -14,15 +14,9 @@ import {
 } from '@graphcommerce/magento-product'
 import { SearchDocument, SearchQuery } from '@graphcommerce/magento-search'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  AppShellSticky,
-  LayoutTitle,
-  Button,
-  LayoutHeader,
-  makeStyles,
-} from '@graphcommerce/next-ui'
+import { AppShellSticky, LayoutTitle, LayoutHeader, makeStyles } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
-import { Box, Container, Typography } from '@mui/material'
+import { Box, Container, Typography, Button } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'

@@ -13,7 +13,7 @@ import { Trans } from '@lingui/macro'
 import { Button, Typography } from '@mui/material'
 import clsx from 'clsx'
 import { AnimatePresence, m } from 'framer-motion'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import ApplyCouponForm from '../ApplyCouponForm/ApplyCouponForm'
 import RemoveCouponForm from '../RemoveCouponForm/RemoveCouponForm'
 import { GetCouponDocument } from './GetCoupon.gql'
@@ -29,6 +29,7 @@ const useStyles = makeStyles({ name: 'CouponAccordion' })((theme) => ({
     overflow: 'hidden',
   },
   button: {
+    justifyContent: 'space-between',
     padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
     width: '100%',
 
@@ -62,6 +63,9 @@ const useStyles = makeStyles({ name: 'CouponAccordion' })((theme) => ({
       background: 'transparent',
     },
   },
+  endIcon: {
+    display: 'inherit',
+  },
 }))
 
 export type CouponAccordionProps = UseStyles<typeof useStyles>
@@ -86,10 +90,11 @@ export default function CouponAccordion(props: CouponAccordionProps) {
             [classes.buttonOpen]: !coupon && open,
             [classes.disabled]: coupon,
           })}
+          classes={{ endIcon: classes.endIcon }}
           endIcon={
             <>
-              {!coupon && open && <SvgImageSimple src={iconChevronUp} />}
-              {!coupon && !open && <SvgImageSimple src={iconChevronDown} />}
+              {!coupon && open && <SvgImageSimple src={iconChevronUp} size='large' />}
+              {!coupon && !open && <SvgImageSimple src={iconChevronDown} size='large' />}
             </>
           }
         >

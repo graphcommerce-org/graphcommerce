@@ -1,7 +1,7 @@
 import { useGo, usePageContext } from '@graphcommerce/framer-next-pages'
 import { Trans } from '@lingui/macro'
+import { Button } from '@mui/material'
 import React from 'react'
-import Button from '../../Button'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { makeStyles } from '../../Styles/tssReact'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'

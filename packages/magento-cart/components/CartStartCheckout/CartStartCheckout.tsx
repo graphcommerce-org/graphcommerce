@@ -1,6 +1,7 @@
 import { Money } from '@graphcommerce/magento-store'
-import { Button, iconChevronRight, SvgImageSimple, makeStyles } from '@graphcommerce/next-ui'
+import { iconChevronRight, SvgImageSimple, makeStyles } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
+import { Button } from '@mui/material'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'

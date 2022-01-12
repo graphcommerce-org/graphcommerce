@@ -1,7 +1,7 @@
 import RichTextHero from '@graphcommerce/graphcms-ui/RichText/RichTextHero'
-import { Button, HeroBanner } from '@graphcommerce/next-ui'
+import { HeroBanner } from '@graphcommerce/next-ui'
+import { Button } from '@mui/material'
 import PageLink from 'next/link'
-import React from 'react'
 import { RowHeroBannerFragment } from './RowHeroBanner.gql'
 
 export default function RowHeroBanner(props: RowHeroBannerFragment) {

@@ -3,14 +3,13 @@ import { ApolloCartErrorAlert, useFormGqlMutationCart } from '@graphcommerce/mag
 import { Money, MoneyProps } from '@graphcommerce/magento-store'
 import {
   Button,
-  ButtonProps,
   MessageSnackbar,
   TextInputNumber,
   iconChevronRight,
   SvgImageSimple,
   makeStyles,
 } from '@graphcommerce/next-ui'
-import { Divider, Typography } from '@mui/material'
+import { Divider, Typography, ButtonProps } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'

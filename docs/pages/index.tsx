@@ -1,13 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import {
-  Button,
-  iconChevronRight,
-  LayoutHeader,
-  SvgImageSimple,
-  LayoutTitle,
-} from '@graphcommerce/next-ui'
+import { iconChevronRight, LayoutHeader, SvgImageSimple, LayoutTitle } from '@graphcommerce/next-ui'
+import { Button } from '@mui/material'
 import Link from 'next/link'
-import React from 'react'
 import { LayoutFull, LayoutFullProps } from '../components/Layout/LayoutFull'
 import PageLayout, { LayoutProps } from '../components/Layout/PageLayout'
 import { sanitizeDirectoryTree } from '../components/SidebarMenu/sanitizeDirectoryTree'

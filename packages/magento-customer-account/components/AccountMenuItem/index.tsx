@@ -1,7 +1,5 @@
 import { ImageProps } from '@graphcommerce/image'
 import {
-  Button,
-  ButtonProps,
   UseStyles,
   responsiveVal,
   iconChevronRight,
@@ -9,6 +7,8 @@ import {
   makeStyles,
   useMergedClasses,
   typography,
+  Button,
+  ButtonProps,
 } from '@graphcommerce/next-ui'
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import clsx from 'clsx'

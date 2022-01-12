@@ -1,12 +1,6 @@
-import {
-  AnimatedRow,
-  Button,
-  SectionContainer,
-  responsiveVal,
-  makeStyles,
-} from '@graphcommerce/next-ui'
+import { AnimatedRow, SectionContainer, responsiveVal, makeStyles } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Skeleton } from '@mui/material'
+import { Skeleton, Button } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React, { useState } from 'react'
 import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'

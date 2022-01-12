@@ -21,6 +21,7 @@
     "@graphcommerce/graphql": "^2.105.13",
     "@graphcommerce/image": "^2.105.13",
     "@lingui/macro": "^3.13.0",
+    "@mui/lab": "^5.0.0-alpha.63",
     "@mui/material": "^5.2.7",
     "clsx": "^1.1.1",
     "framer-motion": "^5.5.5",

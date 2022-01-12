@@ -13,7 +13,6 @@ import { ConfigurableCartItem } from '@graphcommerce/magento-product-configurabl
 import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AnimatedRow,
-  Button,
   GetStaticProps,
   iconShoppingBag,
   Stepper,
@@ -23,7 +22,7 @@ import {
   LayoutOverlayHeader,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Container, NoSsr } from '@mui/material'
+import { Button, Container, NoSsr } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
@@ -126,7 +125,7 @@ function CartPage() {
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'checkout',
   Layout: LayoutOverlay,
-  layoutProps: { variantMd: 'bottom', variantSm: 'bottom' },
+  layoutProps: { variantMd: 'right', variantSm: 'bottom', sizeMd: 'floating', justifyMd: 'start' },
 }
 CartPage.pageOptions = pageOptions
 

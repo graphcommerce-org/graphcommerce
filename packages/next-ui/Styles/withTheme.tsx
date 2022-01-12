@@ -1,5 +1,4 @@
 import { css, Theme, ThemeProvider } from '@mui/material'
-import { CSSObject } from 'tss-react'
 import { typography } from './tssReact'
 
 /**

@@ -1,5 +1,6 @@
-import { FullPageMessage, SvgImageSimple, iconShoppingBag, Button } from '@graphcommerce/next-ui'
+import { FullPageMessage, SvgImageSimple, iconShoppingBag } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
+import { Button } from '@mui/material'
 import Link from 'next/link'
 import React from 'react'
 

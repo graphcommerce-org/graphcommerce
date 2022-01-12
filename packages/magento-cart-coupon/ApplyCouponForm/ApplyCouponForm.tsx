@@ -1,14 +1,13 @@
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
 import {
-  Button,
   responsiveVal,
+  Button,
   UseStyles,
   makeStyles,
   useMergedClasses,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { FormControl, TextField } from '@mui/material'
-import React from 'react'
 import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
 
 const useStyles = makeStyles()((theme) => ({

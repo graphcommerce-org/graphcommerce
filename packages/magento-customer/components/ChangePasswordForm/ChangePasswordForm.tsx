@@ -1,16 +1,14 @@
 import {
-  Button,
   Form,
   FormActions,
   FormRow,
   MessageSnackbar,
   FormDivider,
+  Button,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans, t } from '@lingui/macro'
 import { TextField } from '@mui/material'
-import React from 'react'
-
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
   ChangePasswordDocument,

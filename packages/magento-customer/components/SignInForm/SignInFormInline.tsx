@@ -3,7 +3,7 @@ import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
 import { TextField } from '@mui/material'
 import PageLink from 'next/link'
-import React, { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 import { SignInDocument, SignInMutationVariables } from './SignIn.gql'
 
 const useStyles = makeStyles({ name: 'SignInFormInline' })((theme) => ({

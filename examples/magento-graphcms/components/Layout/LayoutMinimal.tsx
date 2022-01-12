@@ -5,7 +5,7 @@ import { Footer } from './Footer'
 import Logo from './Logo'
 
 export type LayoutMinimalProps = Omit<DefaultPageQuery, 'pages'> &
-  Omit<LayoutDefaultProps, 'header' | 'footer'>
+  Omit<LayoutDefaultProps, 'header' | 'footer' | 'cartFab' | 'noSticky'>
 
 export function LayoutMinimal(props: LayoutMinimalProps) {
   const { footer, menu, children, ...uiProps } = props

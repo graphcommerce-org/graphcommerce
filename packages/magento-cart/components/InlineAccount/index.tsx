@@ -1,13 +1,10 @@
 import { useQuery } from '@apollo/client'
-import { SignUpFormInline } from '@graphcommerce/magento-customer'
 import {
+  SignUpFormInline,
   CustomerTokenDocument,
   IsEmailAvailableDocument,
-} from '@graphcommerce/magento-customer/hooks'
-import { makeStyles } from '@graphcommerce/next-ui'
-import Button from '@graphcommerce/next-ui/Button'
-import FormRow from '@graphcommerce/next-ui/Form/FormRow'
-import { useMergedClasses, UseStyles } from '@graphcommerce/next-ui/Styles'
+} from '@graphcommerce/magento-customer'
+import { makeStyles, Button, FormRow, useMergedClasses, UseStyles } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'

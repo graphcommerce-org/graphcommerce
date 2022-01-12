@@ -1,6 +1,6 @@
+import { Button, ButtonProps } from '@mui/material'
 import clsx from 'clsx'
 import React, { FormEvent } from 'react'
-import Button, { ButtonProps } from '../Button'
 import { UseStyles } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { makeStyles, useMergedClasses } from '../Styles/tssReact'

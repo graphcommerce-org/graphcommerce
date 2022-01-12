@@ -21,7 +21,6 @@ import {
 import { phonePattern } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
 import { TextField } from '@mui/material'
-import React from 'react'
 import { GetBillingAddressDocument } from './GetBillingAddress.gql'
 import { SetBillingAddressOnCartDocument } from './SetBillingAddressOnCart.gql'
 

@@ -1,10 +1,9 @@
 import { useUp, usePrevUp, usePageContext } from '@graphcommerce/framer-next-pages'
 import { usePrevPageRouter } from '@graphcommerce/framer-next-pages/hooks/usePrevPageRouter'
 import { t } from '@lingui/macro'
+import { Button, ButtonProps } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
-import Button, { ButtonProps } from '../../Button'
 import SvgImageSimple from '../../SvgImage/SvgImageSimple'
 import { iconChevronLeft } from '../../icons'
 

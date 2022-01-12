@@ -1,6 +1,12 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
-import { responsiveVal, breakpointVal, typography } from '@graphcommerce/next-ui'
+import {
+  responsiveVal,
+  breakpointVal,
+  typography,
+  MuiButtonPill,
+  MuiButtonResponsive,
+} from '@graphcommerce/next-ui'
 import { createTheme, Theme, alpha } from '@mui/material'
 import { Components, PaletteOptions } from '@mui/material/styles'
 import shadows from './shadows'
@@ -245,54 +251,27 @@ const createOverrides = (theme: Theme): Components => ({
       },
     ],
   },
-  MuiButton: {
-    defaultProps: {
-      color: 'inherit',
-    },
-    styleOverrides: {
-      root: {
-        textTransform: 'none',
-        ...typography(theme, 'body2'),
-        fontWeight: 400,
-        padding: `${responsiveVal(8, 10)} ${responsiveVal(16, 20)}`,
-      },
-      sizeLarge: {
-        padding: `${responsiveVal(10, 15)} ${responsiveVal(30, 60)}`,
-        ...typography(theme, 'body1'),
-        fontWeight: 500,
-      },
-      iconSizeLarge: {
-        '& > :first-of-type': { fontSize: 24 },
-      },
-      endIcon: {
-        marginLeft: 0,
-      },
-      contained: {
-        backgroundColor: theme.palette.background.paper,
-        color: theme.palette.text.primary,
 
-        '&:hover': {
-          background: undefined,
+  MuiButton: {
+    defaultProps: { color: 'inherit' },
+    variants: [
+      ...MuiButtonResponsive,
+      ...MuiButtonPill,
+      {
+        props: { variant: 'contained', color: 'inherit' },
+        style: { backgroundColor: 'inherit' },
+      },
+      {
+        props: { variant: 'outlined' },
+        style: {
+          borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
         },
-        '&:focus': {
-          background: undefined,
-        },
       },
-      containedPrimary: {
-        fontWeight: 500,
-        color: theme.palette.primary.contrastText,
+      {
+        props: { variant: 'text' },
+        style: { borderRadius: '99em' },
       },
-      containedSecondary: {
-        fontWeight: 500,
-        color: theme.palette.secondary.contrastText,
-      },
-      outlined: {
-        borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
-      },
-      text: {
-        padding: `${responsiveVal(8, 10)} ${responsiveVal(12, 22)}`,
-      },
-    },
+    ],
   },
 
   MuiFab: {
@@ -324,27 +303,22 @@ const createOverrides = (theme: Theme): Components => ({
     },
   },
 
-  MuiInputLabel: {
+  MuiTextField: {
     styleOverrides: {
       root: {
-        '&$focused:not($error)': {
+        '& label.Mui-focused': {
           color: theme.palette.secondary.main,
         },
-      },
-    },
-  },
-
-  MuiOutlinedInput: {
-    styleOverrides: {
-      root: {
-        borderRadius: responsiveVal(theme.shape.borderRadius * 1.5, theme.shape.borderRadius * 2),
-        '&$focused $notchedOutline': {
-          borderColor: theme.palette.divider,
-          borderWidth: 1,
+        '& .MuiOutlinedInput-root': {
+          borderRadius: responsiveVal(theme.shape.borderRadius * 1.5, theme.shape.borderRadius * 2),
+          '& fieldset': {
+            borderColor: theme.palette.divider,
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: theme.palette.divider,
+            borderWidth: 1,
+          },
         },
-      },
-      notchedOutline: {
-        borderColor: theme.palette.divider,
       },
     },
   },
@@ -397,13 +371,13 @@ const createOverrides = (theme: Theme): Components => ({
     styleOverrides: {
       colorPrimary: {
         color: theme.palette.text.disabled,
-        '&$checked': {
+        '&.Mui-checked': {
           color: theme.palette.primary.main,
         },
       },
       colorSecondary: {
         color: theme.palette.text.disabled,
-        '&$checked': {
+        '&.Mui-checked': {
           color: theme.palette.secondary.main,
         },
       },
@@ -413,11 +387,11 @@ const createOverrides = (theme: Theme): Components => ({
   MuiSwitch: {
     styleOverrides: {
       track: {
-        '$colorPrimary + &': {
+        '.Mui-colorPrimary + &': {
           backgroundColor: theme.palette.primary,
           borderRadius: 30,
         },
-        '$checked$colorPrimary + &': {
+        '.Mui-checked.Mui-colorPrimary + &': {
           opacity: 1,
           backgroundColor: theme.palette.primary,
           borderRadius: 30,

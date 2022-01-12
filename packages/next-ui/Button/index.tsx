@@ -1,155 +1,33 @@
-import { Button as MuiButton, ButtonClassKey as MuiButtonClassKey } from '@mui/material'
-import clsx from 'clsx'
-import React from 'react'
-import { makeStyles, typography, useMergedClasses } from '../Styles/tssReact'
+/* eslint-disable react/forbid-foreign-prop-types */
+import { LoadingButton, LoadingButtonProps } from '@mui/lab'
+import PropTypes, { Requireable } from 'prop-types'
 
-type BaseButtonProps = Omit<Parameters<typeof MuiButton>['0'], 'variant' | 'classes'> & {
-  variant?: 'text' | 'outlined' | 'contained' | 'pill' | 'pill-link'
+/**
+ * This is temporary until Material UI solves that the variant proptype is not:
+ *
+ * ```ts
+ * variant: PropTypes.oneOf(['contained', 'outlined', 'text'])
+ * ```
+ *
+ * It should be something like
+ *
+ * ```ts
+ * variant: PropTypes.oneOfType([
+ *   PropTypes.oneOf(['contained', 'outlined', 'text']),
+ *   PropTypes.string,
+ * ]),
+ * ```
+ *
+ * https://github.com/mui-org/material-ui/blob/master/packages/mui-lab/src/LoadingButton/LoadingButton.js#L269
+ */
+type LoadingButtonPropTypes = typeof LoadingButton & { propTypes: Record<string, Requireable<any>> }
+if (process.env.NODE_ENV !== 'production' && (LoadingButton as LoadingButtonPropTypes).propTypes) {
+  ;(LoadingButton as LoadingButtonPropTypes).propTypes.variant = PropTypes.oneOfType([
+    (LoadingButton as LoadingButtonPropTypes).propTypes.variant,
+    PropTypes.string,
+  ])
 }
 
-type ButtonClassKey =
-  | 'pill'
-  | 'pillLink'
-  | 'pillPrimary'
-  | 'pillSecondary'
-  | 'pillSizeLarge'
-  | 'pillSizeSmall'
-  | 'pillNoElevation'
-  | 'withStartIcon'
-  | 'startIconText'
-  | 'loading'
-
-type ClassKeys = ButtonClassKey | MuiButtonClassKey
-
-export type ButtonProps = BaseButtonProps & {
-  classes?: { [index in ClassKeys]?: string }
-  loading?: boolean
-  text?: Text
-}
-
-const useStyles = makeStyles({ name: 'MuiPillButton' })((theme) => ({
-  root: {},
-  label: {},
-  disabled: {},
-  withStartIcon: {
-    [theme.breakpoints.down('md')]: {
-      height: 40,
-      width: 40,
-      textAlign: 'center',
-      minWidth: 'unset',
-      borderRadius: 99,
-      '& > span > .MuiButton-startIcon': {
-        margin: 'unset',
-      },
-    },
-  },
-  pill: {
-    borderRadius: '99em',
-  },
-  pillLink: {
-    [theme.breakpoints.up('md')]: {
-      // manually match MuiButton and containedPrimary styles
-      textTransform: 'none',
-      ...typography(theme, 'body2'),
-      fontWeight: 400,
-      borderRadius: '99em',
-      boxShadow: theme.shadows[6],
-      backgroundColor: theme.palette.background.paper,
-      color: theme.palette.text.primary,
-      '&:hover': {
-        background: theme.palette.background.paper,
-      },
-    },
-  },
-  pillPrimary: {
-    [theme.breakpoints.up('md')]: {
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.primary.contrastText,
-      '&:hover': {
-        background: theme.palette.primary.dark,
-      },
-    },
-  },
-  pillSecondary: {
-    [theme.breakpoints.up('md')]: {
-      backgroundColor: theme.palette.secondary.main,
-      color: theme.palette.secondary.contrastText,
-      '&:hover': {
-        background: theme.palette.secondary.dark,
-      },
-    },
-  },
-  pillSizeLarge: {},
-  pillSizeSmall: {},
-  pillNoElevation: {
-    /* disableElevation does not stop adding box shadow on active... ?! */
-    '&:active': {
-      boxShadow: 'none',
-    },
-  },
-  startIconText: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'unset',
-    },
-  },
-  loading: {
-    '& svg': {
-      stroke: theme.palette.text.disabled,
-    },
-  },
-}))
-
-export default React.forwardRef<any, ButtonProps>((props, ref) => {
-  const { classes = {}, ...baseProps } = props
-  const { variant, color, size, className, children, loading, disabled, text, ...buttonProps } =
-    baseProps
-  const {
-    pill,
-    pillPrimary,
-    pillSecondary,
-    pillSizeLarge,
-    pillSizeSmall,
-    pillLink,
-    ...buttonClasses
-  } = classes
-
-  const pillClasses = useMergedClasses(useStyles().classes, props.classes)
-
-  const variantMap = {
-    pill: 'contained',
-    'pill-link': 'text',
-  }
-
-  const withIcon = typeof buttonProps.startIcon !== 'undefined'
-  const content = <>{loading ? <>Loading</> : children}</>
-
-  return (
-    <MuiButton
-      {...buttonProps}
-      classes={buttonClasses}
-      color={color}
-      variant={variantMap[variant ?? ''] ?? variant}
-      size={size}
-      ref={ref}
-      disabled={loading || disabled}
-      className={clsx(
-        {
-          [pillClasses.pill]: variant?.startsWith('pill'),
-          [pillClasses.pillLink]: variant === 'pill-link',
-          [pillClasses.pillPrimary]: variant?.startsWith('pill') && color === 'primary',
-          [pillClasses.pillSecondary]: variant?.startsWith('pill') && color === 'secondary',
-          [pillClasses.pillSizeLarge]: variant?.startsWith('pill') && size === 'large',
-          [pillClasses.pillSizeSmall]: variant?.startsWith('pill') && size === 'small',
-          [pillClasses.pillNoElevation]: buttonProps.disableElevation,
-          [pillClasses.loading]: loading,
-          [pillClasses.withStartIcon]: withIcon,
-        },
-        className,
-      )}
-    >
-      {withIcon && <span className={pillClasses.startIconText}>{content}</span>}
-      {!withIcon && content}
-    </MuiButton>
-  )
-})
+export type ButtonProps = LoadingButtonProps
+export { LoadingButton }
+export default LoadingButton

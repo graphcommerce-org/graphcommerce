@@ -1,6 +1,5 @@
-import { Typography } from '@mui/material'
+import { Typography, Button } from '@mui/material'
 import React from 'react'
-import Button from '../../../Button'
 import { UseStyles } from '../../../Styles'
 import { makeStyles, useMergedClasses } from '../../../Styles/tssReact'
 

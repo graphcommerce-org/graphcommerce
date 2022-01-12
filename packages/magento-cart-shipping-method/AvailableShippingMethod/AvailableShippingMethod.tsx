@@ -15,12 +15,10 @@ import { AvailableShippingMethodFragment } from './AvailableShippingMethod.gql'
 
 const useStyles = makeStyles({ name: 'AvailableShippingMethod' })((theme) => ({
   root: {
+    ...typography(theme, 'body2'),
     textAlign: 'left',
     justifyContent: 'space-between',
     alignItems: 'normal',
-  },
-  label: {
-    ...typography(theme, 'body2'),
     display: 'grid',
     gridTemplate: `
       "title      amount"
@@ -99,7 +97,7 @@ const AvailableShippingMethod = React.forwardRef<any, AvailableShippingMethodPro
         )}
 
         {error_message ? (
-          <FormHelperText className={errorMessage} disabled>
+          <FormHelperText className={errorMessage} disabled={!available} variant='standard'>
             {error_message}
           </FormHelperText>
         ) : (

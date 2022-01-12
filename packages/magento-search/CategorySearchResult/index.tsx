@@ -1,5 +1,4 @@
 import {
-  Button,
   Highlight,
   iconChevronRight,
   SvgImageSimple,
@@ -7,6 +6,7 @@ import {
   makeStyles,
   useMergedClasses,
 } from '@graphcommerce/next-ui'
+import { Button } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { CategorySearchResultFragment } from './CategorySearchResult.gql'
