@@ -259,7 +259,7 @@ const createOverrides = (theme: Theme): Components => ({
       ...MuiButtonPill,
       {
         props: { variant: 'contained', color: 'inherit' },
-        style: { backgroundColor: 'inherit' },
+        style: { backgroundColor: theme.palette.background.paper },
       },
       {
         props: { variant: 'outlined' },
