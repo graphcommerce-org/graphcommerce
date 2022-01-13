@@ -4,9 +4,6 @@
   "sideEffects": false,
   "main": "index.ts",
   "prettier": "@graphcommerce/prettier-config-pwa",
-  "browserslist": [
-    "extends @graphcommerce/browserslist-config-pwa"
-  ],
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",
     "parserOptions": {
@@ -14,7 +11,6 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/browserslist-config-pwa": "^3.0.3",
     "@graphcommerce/eslint-config-pwa": "^3.1.10",
     "@graphcommerce/prettier-config-pwa": "^3.0.5",
     "@graphcommerce/typescript-config-pwa": "^3.1.2",

@@ -32,9 +32,6 @@
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
-  "browserslist": [
-    "extends @graphcommerce/browserslist-config-pwa"
-  ],
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",
     "parserOptions": {
@@ -42,7 +39,6 @@
     }
   },
   "dependencies": {
-    "@graphcommerce/browserslist-config-pwa": "^3.0.3",
     "@graphcommerce/eslint-config-pwa": "^3.1.10",
     "@graphcommerce/prettier-config-pwa": "^3.0.5",
     "@playwright/test": "^1.17.2",

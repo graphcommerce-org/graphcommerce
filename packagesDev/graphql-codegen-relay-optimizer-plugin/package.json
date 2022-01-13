@@ -39,9 +39,6 @@
     "prepack": "yarn build"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
-  "browserslist": [
-    "extends @graphcommerce/browserslist-config-pwa"
-  ],
   "eslint": {
     "extends": "@graphcommerce/eslint-config-pwa"
   },

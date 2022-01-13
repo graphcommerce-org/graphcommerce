@@ -21,9 +21,6 @@
     "typescript": "^4.5.4"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
-  "browserslist": [
-    "extends @graphcommerce/browserslist-config-pwa"
-  ],
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",
     "parserOptions": {

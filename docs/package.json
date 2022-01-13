@@ -17,7 +17,6 @@
     "react-syntax-highlighter": "^15.4.5"
   },
   "devDependencies": {
-    "@graphcommerce/browserslist-config-pwa": "^3.0.2",
     "@graphcommerce/eslint-config-pwa": "^3.1.5",
     "@graphcommerce/prettier-config-pwa": "^3.0.4",
     "@graphcommerce/typescript-config-pwa": "^3.1.1",
@@ -27,9 +26,6 @@
     "typescript": "^4.5.4"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
-  "browserslist": [
-    "extends @graphcommerce/browserslist-config-pwa"
-  ],
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",
     "parserOptions": {
