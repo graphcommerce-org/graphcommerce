@@ -1,36 +1,19 @@
-import { Logo as NextLogo, LogoProps as CoreLogoProps, makeStyles } from '@graphcommerce/next-ui'
-import { useTheme } from '@mui/material'
-import clsx from 'clsx'
+import { Logo as LogoBase } from '@graphcommerce/next-ui'
 import svgLogo from './graphcommerce.svg'
 
-type LogoProps = Omit<CoreLogoProps, 'image'>
-
-const useStyles = makeStyles({ name: 'Logo' })((theme) => ({
-  logo: {
-    width: 'auto',
-    height: 20,
-    pointerEvents: 'all',
-    paddingLeft: 10,
-    [theme.breakpoints.up('md')]: {
-      height: 28,
-      paddingLeft: 0,
-      marginTop: -2,
-    },
-  },
-  dark: {
-    filter: 'invert(50%) brightness(200%)',
-  },
-}))
-
-export default function Logo(props: LogoProps) {
-  const { classes } = useStyles()
-  const inverted = useTheme().palette.mode === 'dark'
-
+export default function Logo() {
   return (
-    <NextLogo
-      {...props}
-      classes={{ logo: clsx(classes.logo, inverted && classes.dark) }}
-      image={{ alt: 'logo', src: svgLogo, unoptimized: true }}
+    <LogoBase
+      sx={(theme) => ({
+        '& .GcLogo-logo': {
+          width: 'auto',
+          height: { xs: '16px', md: '28px' },
+          paddingLeft: { xs: '10px', md: 0 },
+          marginTop: { xs: 0, md: '-5px' },
+          fitler: theme.palette.mode === 'dark' ? 'invert(100%)' : 'invert(0%)',
+        },
+      })}
+      image={{ alt: 'GraphCommerce Logo', src: svgLogo, unoptimized: true }}
     />
   )
 }

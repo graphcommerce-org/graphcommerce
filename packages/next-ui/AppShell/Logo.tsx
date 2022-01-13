@@ -1,43 +1,80 @@
 import { Image, ImageProps } from '@graphcommerce/image'
+import {
+  generateUtilityClass,
+  generateUtilityClasses,
+  styled,
+  SxProps,
+  Theme,
+  unstable_composeClasses as composeClasses,
+} from '@mui/material'
+import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
-import { UseStyles } from '../Styles'
-import { makeStyles, useMergedClasses } from '../Styles/tssReact'
+import { forwardRef } from 'react'
 
-const useStyles = makeStyles({ name: 'Logo' })((theme) => ({
-  logo: {},
-  parent: {
-    height: '100%',
-    width: 'max-content',
+/** We're creating some boilerplate */
+const name = 'GcLogo'
+type LogoClassKey = 'logo' | 'parent'
+const logoClasses = generateUtilityClasses<LogoClassKey>(name, ['logo', 'parent'])
+
+type LogoClasses = Record<LogoClassKey, string>
+type LogoClassProps = { classes?: Partial<LogoClasses> }
+
+const getLogoUtilityClass = (slot: string) => generateUtilityClass(name, slot)
+
+const useUtilityClasses = ({ classes }: LogoClassProps) =>
+  composeClasses({ logo: ['logo'], parent: ['parent'] }, getLogoUtilityClass, classes)
+
+/** Creating styled components */
+const LogoContainer = styled('div', {
+  name,
+  slot: 'parent',
+  overridesResolver: (_props, styles) => styles.parent,
+})(({ theme }) => ({
+  height: '100%',
+  width: 'max-content',
+  display: 'flex',
+  alignItems: 'center',
+  margin: '0 auto',
+  justifyContent: 'center',
+  pointerEvents: 'all',
+  [theme.breakpoints.up('md')]: {
     display: 'flex',
-    alignItems: 'center',
-    margin: '0 auto',
-    justifyContent: 'center',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-      margin: 'unset',
-      justifyContent: 'left',
-    },
+    margin: 'unset',
+    justifyContent: 'left',
   },
 }))
 
-export type LogoProps = { href?: `/${string}`; image: ImageProps } & UseStyles<typeof useStyles>
+export type LogoProps = {
+  href?: `/${string}`
+  image: ImageProps
+  sx?: SxProps<Theme>
+} & LogoClassProps
 
-export default function Logo(props: LogoProps) {
-  const { href, image } = props
+export const Logo = forwardRef((props: LogoProps) => {
+  const { href = '/', image, sx } = props
   const router = useRouter()
-  const classes = useMergedClasses(useStyles().classes, props.classes)
+
+  const classes = useUtilityClasses(props)
+
+  const img = (
+    <Image
+      layout='fixed'
+      loading='eager'
+      {...image}
+      className={clsx(classes?.logo, image.className)}
+    />
+  )
 
   return router.asPath === '/' ? (
-    <div className={classes.parent}>
-      <Image layout='fixed' loading='eager' {...image} className={classes.logo} />
-    </div>
+    <LogoContainer sx={sx} className={classes.parent}>
+      {img}
+    </LogoContainer>
   ) : (
-    <PageLink href={href ?? '/'} passHref>
-      <a className={classes.parent} aria-label='Logo'>
-        <Image layout='fixed' loading='eager' {...image} className={classes.logo} />
-      </a>
+    <PageLink href={href} passHref>
+      <LogoContainer as='a' sx={sx} className={classes.parent}>
+        {img}
+      </LogoContainer>
     </PageLink>
   )
-}
+})
