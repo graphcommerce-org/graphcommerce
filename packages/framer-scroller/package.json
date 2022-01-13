@@ -19,7 +19,7 @@
     "@graphcommerce/framer-utils": "^2.103.21",
     "@graphcommerce/image": "^2.105.13",
     "@graphcommerce/next-ui": "^3.23.1",
-    "@mui/material": "^5.2.7",
+    "@mui/material": "^5.2.8",
     "popmotion": "11.0.3"
   },
   "devDependencies": {
@@ -27,7 +27,7 @@
     "@graphcommerce/eslint-config-pwa": "^3.1.10",
     "@graphcommerce/prettier-config-pwa": "^3.0.5",
     "@graphcommerce/typescript-config-pwa": "^3.1.2",
-    "@playwright/test": "^1.17.1"
+    "@playwright/test": "^1.17.2"
   },
   "peerDependencies": {
     "clsx": "^1.1.1",

@@ -21,7 +21,7 @@
     "postinstall": "yarn prepack"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.6",
+    "@apollo/client": "^3.5.7",
     "@graphcommerce/browserslist-config-pwa": "^3.0.3",
     "@graphcommerce/eslint-config-pwa": "^3.1.10",
     "@graphcommerce/framer-next-pages": "^2.109.2",
@@ -68,28 +68,27 @@
     "@graphcommerce/react-hook-form": "^2.104.7",
     "@graphcommerce/typescript-config-pwa": "^3.1.2",
     "@graphql-codegen/cli": "^2.3.1",
-    "@graphql-mesh/cli": "^0.47.0",
+    "@graphql-mesh/cli": "^0.48.0",
     "@lingui/macro": "^3.13.0",
-    "@mui/material": "^5.2.7",
-    "@playwright/test": "^1.17.1",
+    "@mui/material": "^5.2.8",
+    "@playwright/test": "^1.17.2",
     "apollo3-cache-persist": "^0.13.0",
     "clsx": "^1.1.1",
     "concurrently": "^7.0.0",
-    "dotenv": "^10.0.0",
-    "framer-motion": "^5.5.5",
+    "dotenv": "^11.0.0",
+    "framer-motion": "^5.6.0",
     "graphql": "^16.2.0",
     "graphql-tag": "^2.12.6",
-    "next": "^12.0.7",
+    "next": "^12.0.8",
     "next-pwa": "^5.4.4",
-    "next-sitemap": "^1.6.237",
+    "next-sitemap": "^1.9.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "schema-dts": "^1.0.0",
-    "sharp": "^0.29.3",
-    "tss-react": "^3.3.1"
+    "sharp": "^0.29.3"
   },
   "resolutions": {
-    "csstype": "^3.0.10"
+    "@graphql-typed-document-node/core": "3.1.1"
   },
   "devDependencies": {
     "@lingui/cli": "^3.13.0",

@@ -20,10 +20,10 @@
     "@graphcommerce/eslint-config-pwa": "^3.1.10",
     "@graphcommerce/prettier-config-pwa": "^3.0.5",
     "@graphcommerce/typescript-config-pwa": "^3.1.2",
-    "@playwright/test": "^1.17.1"
+    "@playwright/test": "^1.17.2"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.6",
+    "@apollo/client": "^3.5.7",
     "@graphcommerce/framer-scroller": "^1.2.4",
     "@graphcommerce/graphql": "^2.105.13",
     "@graphcommerce/image": "^2.105.13",
@@ -32,10 +32,10 @@
     "@graphcommerce/next-ui": "^3.23.1",
     "@graphcommerce/react-hook-form": "^2.104.7",
     "@lingui/macro": "^3.13.0",
-    "@mui/material": "^5.2.7",
+    "@mui/material": "^5.2.8",
     "clsx": "^1.1.1",
-    "framer-motion": "^5.5.5",
-    "next": "^12.0.7",
+    "framer-motion": "^5.6.0",
+    "next": "^12.0.8",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "type-fest": "^2.9.0"

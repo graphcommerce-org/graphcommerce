@@ -17,7 +17,7 @@
     "@graphcommerce/eslint-config-pwa": "^3.1.10",
     "@graphcommerce/prettier-config-pwa": "^3.0.5",
     "@graphcommerce/typescript-config-pwa": "^3.1.2",
-    "@playwright/test": "^1.17.1",
+    "@playwright/test": "^1.17.2",
     "react": "^17.0.1"
   },
   "dependencies": {
@@ -28,7 +28,7 @@
     "@graphcommerce/magento-product-simple": "^3.2.39",
     "@graphcommerce/magento-product-virtual": "^3.2.39",
     "@lingui/macro": "^3.13.0",
-    "next": "^12.0.7",
+    "next": "^12.0.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }

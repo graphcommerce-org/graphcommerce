@@ -18,10 +18,10 @@
     "@graphcommerce/eslint-config-pwa": "^3.1.10",
     "@graphcommerce/prettier-config-pwa": "^3.0.5",
     "@graphcommerce/typescript-config-pwa": "^3.1.2",
-    "@playwright/test": "^1.17.1"
+    "@playwright/test": "^1.17.2"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.6",
+    "@apollo/client": "^3.5.7",
     "@graphcommerce/graphql-codegen-near-operation-file": "^2.103.19",
     "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "^2.102.20",
     "@graphql-codegen/add": "^3.1.1",

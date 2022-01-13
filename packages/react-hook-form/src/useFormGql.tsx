@@ -65,7 +65,6 @@ export function useFormGql<Q, V>(
       if (typeof diff(form.getValues(), formValues) === 'undefined')
         form.reset(formValues as UnpackNestedValue<DeepPartial<V>>)
 
-      // @ts-expect-error For some reason it is not accepting the value here
       await onValid(formValues, event)
     }, onInvalid)
 
