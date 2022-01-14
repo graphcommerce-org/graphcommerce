@@ -167,17 +167,19 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       },
       subtitle1: {
         ...breakpointVal('fontSize', 16, 19, breakpoints),
-        fontWeight: 400,
+        fontWeight: 450,
+        fontVariationSettings: "'wght' 460",
         lineHeight: 1.7,
       },
       fontWeightBold: 600,
       body1: {
-        ...breakpointVal('fontSize', 16, 18, breakpoints),
+        ...breakpointVal('fontSize', 15, 18, breakpoints),
         lineHeight: 1.7,
       },
       subtitle2: {
         ...breakpointVal('fontSize', 14, 16, breakpoints),
-        fontWeight: 600,
+        fontWeight: 500,
+        fontVariationSettings: "'wght' 520",
         lineHeight: 1.7,
       },
       body2: {
@@ -250,6 +252,14 @@ const createOverrides = (theme: Theme): Components => ({
         },
       },
     ],
+  },
+
+  MuiInputBase: {
+    styleOverrides: {
+      root: {
+        fontSize: '16px', // https://css-tricks.com/16px-or-larger-text-prevents-ios-form-zoom/
+      },
+    },
   },
 
   MuiButton: {
