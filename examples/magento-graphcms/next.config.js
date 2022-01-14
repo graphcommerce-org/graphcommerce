@@ -3,7 +3,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { PerformanceObserver, performance } = require('perf_hooks')
 const withYarn1Workspaces = require('@graphcommerce/next-config').withYarn1Scopes()
-// const { StatsWriterPlugin } = require('webpack-stats-plugin')
 
 require('dotenv').config()
 
@@ -40,7 +39,6 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
     disableOptimizedLoading: true,
-    esmExternals: false,
   },
   pwa: {
     dest: 'public',
@@ -59,12 +57,9 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // webpack: (config, { isServer }) => {
-  //   if (!isServer) {
-  //     config.plugins.push(new StatsWriterPlugin({ filename: 'stats.json', stats: 'verbose' }))
-  //   }
-  //   return config
-  // },
+  webpack: (config) => {
+    config.optimization.providedExports = true
+  },
 }
 
 module.exports = withPWA(withYarn1Workspaces(nextConfig))
