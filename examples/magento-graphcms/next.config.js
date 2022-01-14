@@ -59,6 +59,7 @@ const nextConfig = {
   },
   webpack: (config) => {
     config.optimization.providedExports = true
+    return config
   },
 }
 
