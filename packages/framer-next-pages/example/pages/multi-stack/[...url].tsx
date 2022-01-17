@@ -11,7 +11,7 @@ import {
   LinkOrButton,
 } from '@graphcommerce/next-ui'
 import { Container, Button } from '@mui/material'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticProps } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -63,7 +63,7 @@ function MultiStack() {
           {expanded ? 'collapse' : 'expand'}
         </button>
         <StackDebug />
-        <motion.div
+        <m.div
           style={{ fontFamily: 'sans-serif', overflow: 'hidden' }}
           variants={{
             collapsed: { height: 60 },
@@ -73,7 +73,7 @@ function MultiStack() {
           animate={expanded ? 'expanded' : 'collapsed'}
         >
           <Grid />
-        </motion.div>
+        </m.div>
         <div style={{ height: 2000 }}>hoi</div>
       </Container>
     </>
