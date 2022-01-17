@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.163.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.162.1...@graphcommerce/graphcommerce@2.163.0) (2022-01-17)
+
+
+### Features
+
+* manifest and favicon ([a82202c](https://github.com/ho-nl/m2-pwa/commit/a82202c0e572f005cbcfca815936af9356eb2767))
+
+
+
+
+
 ## [2.162.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.162.0...@graphcommerce/graphcommerce@2.162.1) (2022-01-04)
 
 

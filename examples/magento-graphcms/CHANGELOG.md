@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.144.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.143.1...@graphcommerce/magento-graphcms@2.144.0) (2022-01-17)
+
+
+### Features
+
+* manifest and favicon ([a82202c](https://github.com/ho-nl/m2-pwa/commit/a82202c0e572f005cbcfca815936af9356eb2767))
+
+
+
+
+
 # [2.143.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.142.2...@graphcommerce/magento-graphcms@2.143.0) (2022-01-04)
 
 
