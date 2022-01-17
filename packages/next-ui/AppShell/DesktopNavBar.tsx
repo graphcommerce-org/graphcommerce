@@ -67,7 +67,6 @@ const useStyles = makeStyles({ name: 'DesktopNavBar' })((theme) => ({
     '&:hover': {
       textDecoration: 'none',
     },
-    fontWeight: theme.typography.fontWeightBold,
     paddingTop: 6,
   },
   line: {
@@ -105,7 +104,7 @@ export default function DesktopNavBar(props: MenuTabsProps) {
           {menu.map(({ href, children, ...linkProps }) => (
             <PageLink key={href.toString()} href={href} {...linkProps} passHref>
               <Link
-                variant='subtitle1'
+                variant='h6'
                 {...LinkProps}
                 className={clsx(classes.link, LinkProps?.className)}
                 underline='hover'
