@@ -2,15 +2,19 @@
   "name": "GraphCommerce",
   "short_name": "GraphCommerce",
   "display": "standalone",
-  "theme_color": "#13e4ad",
+  "theme_color": "#000000",
   "background_color": "#FFFFFF",
   "start_url": "/",
   "icons": [
     {
-      "src": "/manifest/icon.png",
+      "src": "/manifest/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/manifest/favicon-512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
