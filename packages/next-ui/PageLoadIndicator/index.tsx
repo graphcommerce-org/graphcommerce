@@ -1,41 +1,41 @@
 import { LinearProgress, Fade } from '@mui/material'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
-import { makeStyles } from '../Styles/tssReact'
+import { useEffect, useState } from 'react'
 
-const useStyles = makeStyles({ name: 'PageLoadIndicator' })((theme) => ({
-  progress: {
-    position: 'fixed',
-    width: '100%',
-    top: 0,
-    height: 3,
-    marginBottom: -3,
-    zIndex: theme.zIndex.tooltip,
-  },
-}))
-
+/**
+ * Creates a [LinearProgress](https://mui.com/components/progress/#linear) animation when the route
+ * is about to change until it has changed.
+ */
 export function PageLoadIndicator() {
-  const router = useRouter()
-  const { classes } = useStyles()
+  const { events } = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
     const show = () => setLoading(true)
     const hide = () => setLoading(false)
-    router.events.on('routeChangeStart', show)
-    router.events.on('routeChangeComplete', hide)
-    router.events.on('routeChangeError', hide)
+    events.on('routeChangeStart', show)
+    events.on('routeChangeComplete', hide)
+    events.on('routeChangeError', hide)
 
     return () => {
-      router.events.off('routeChangeStart', show)
-      router.events.off('routeChangeComplete', hide)
-      router.events.off('routeChangeError', hide)
+      events.off('routeChangeStart', show)
+      events.off('routeChangeComplete', hide)
+      events.off('routeChangeError', hide)
     }
-  }, [router.events])
+  }, [events])
 
   return (
     <Fade in={loading}>
-      <LinearProgress className={classes.progress} />
+      <LinearProgress
+        sx={{
+          position: 'fixed',
+          width: '100%',
+          top: 0,
+          height: 3,
+          marginBottom: -3,
+          zIndex: 'tooltip',
+        }}
+      />
     </Fade>
   )
 }

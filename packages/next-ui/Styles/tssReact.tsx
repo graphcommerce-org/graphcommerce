@@ -3,14 +3,7 @@ import type { EmotionCache } from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
 import { Theme } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import {
-  createMakeStyles,
-  createWithStyles,
-  CSSObject,
-  useMergedClasses,
-  getTssDefaultEmotionCache,
-  TssCacheProvider,
-} from 'tss-react'
+import { createMakeStyles, createWithStyles, CSSObject, useMergedClasses } from 'tss-react'
 
 export { useMergedClasses }
 
