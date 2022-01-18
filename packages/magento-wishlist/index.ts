@@ -1,4 +1,5 @@
 export * from './components'
+export * from './hooks'
 
 export * from './queries/WishlistProducts.gql'
 export * from './queries/addProductToWishlist.gql'

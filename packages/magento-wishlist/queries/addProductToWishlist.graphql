@@ -1,5 +1,10 @@
-mutation addProductToWishlist($sku: String!) {
-  addProductsToWishlist(wishlistId: 0, wishlistItems: [{ sku: $sku, quantity: 1 }]) {
+type WishlistItemInput {
+  sku: String!
+  quantity: Int!
+}
+
+mutation addProductToWishlist($input: [WishlistItemInput!]!) {
+  addProductsToWishlist(wishlistId: 0, wishlistItems: $input) {
     wishlist {
       ...WishlistSummaryFragment
     }

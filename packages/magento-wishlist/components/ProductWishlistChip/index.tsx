@@ -76,7 +76,7 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
           })
         }
       } else if (sku) {
-        addWishlistItem({ variables: { sku: sku } }).then(() => {
+        addWishlistItem({ variables: { input: { sku: sku, quantity: 1 } } }).then(() => {
           setInWishlist(true)
         })
       }
