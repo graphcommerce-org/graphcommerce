@@ -19,29 +19,34 @@ export type LinkOrButtonProps = {
   Omit<LinkProps, 'color' | 'sx'> & Pick<ButtonProps, 'endIcon' | 'startIcon' | 'color' | 'loading'>
 >
 
-type RefElement = HTMLButtonElement & HTMLAnchorElement
-
 /** Renders a Link until the breakpoint is reached and will then render a button. */
-export const LinkOrButton = React.forwardRef<RefElement, LinkOrButtonProps>((props, ref) => {
+export const LinkOrButton = React.forwardRef<
+  HTMLButtonElement & HTMLAnchorElement,
+  LinkOrButtonProps
+>((props, ref) => {
   const {
+    // Own created props
     breakpoint = 'md',
     button,
     link,
-    loading,
 
+    // Shared props
+    loading,
     children,
     startIcon,
     endIcon,
     color,
-
     ...sharedProps
   } = props
+
+  const buttonRef = useForkRef(ref, useRef(null))
+  const linkRef = useForkRef(ref, useRef(null))
 
   return (
     <>
       <Button
         sx={{ display: { xs: 'none', [breakpoint]: 'inline-flex' }, ...button?.sx }}
-        ref={useForkRef<HTMLButtonElement>(ref, useRef(null))}
+        ref={buttonRef}
         startIcon={startIcon}
         endIcon={endIcon}
         color={color}
@@ -58,7 +63,7 @@ export const LinkOrButton = React.forwardRef<RefElement, LinkOrButtonProps>((pro
           alignItems: 'center',
           ...link?.sx,
         }}
-        ref={useForkRef<HTMLAnchorElement>(ref, useRef(null))}
+        ref={linkRef}
         color={loading ? 'text.disabled' : color}
         underline='none'
         aria-disabled={loading}
