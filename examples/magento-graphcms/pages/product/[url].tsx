@@ -17,17 +17,21 @@ import {
 } from '@graphcommerce/magento-product-simple'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, JsonLd, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
+import {
+  GetStaticProps,
+  JsonLd,
+  SchemaDts,
+  LayoutTitle,
+  LayoutHeader,
+} from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import React from 'react'
-import { Product } from 'schema-dts'
 import { ProductPageDocument, ProductPageQuery } from '../../components/GraphQL/ProductPage.gql'
 import { LayoutFull, LayoutFullProps } from '../../components/Layout'
 import { RowProduct } from '../../components/Row'
 import RowRenderer from '../../components/Row/RowRenderer'
 import Usps from '../../components/Usps'
-import apolloClient from '../../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
 
@@ -54,7 +58,7 @@ function ProductSimple(props: Props) {
           {product.name}
         </LayoutTitle>
       </LayoutHeader>
-      <JsonLd<Product>
+      <JsonLd<SchemaDts.Product>
         item={{
           '@context': 'https://schema.org',
           ...jsonLdProduct(product),
@@ -113,15 +117,15 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = (locale: string) =>
-    getProductStaticPaths(apolloClient(locale), locale, 'SimpleProduct')
+    getProductStaticPaths(graphqlSsrClient(locale), locale, 'SimpleProduct')
   const paths = (await Promise.all(locales.map(path))).flat(1)
 
   return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
 
   const urlKey = params?.url ?? '??'
 

@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/client'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { useQuery } from '@graphcommerce/graphql'
 import { ApolloCustomerErrorFullPage, EditAddressForm } from '@graphcommerce/magento-customer'
 import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -12,11 +12,11 @@ import {
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Box, Container, NoSsr , Skeleton } from '@mui/material'
+import { Box, Container, NoSsr, Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
-import apolloClient from '../../../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -97,7 +97,7 @@ EditAddressPage.pageOptions = pageOptions
 export default EditAddressPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
   return {

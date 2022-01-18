@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/client'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { useQuery } from '@graphcommerce/graphql'
 import { ApolloCustomerErrorFullPage } from '@graphcommerce/magento-customer'
 import {
   useOrderCardItemImages,
@@ -20,7 +20,7 @@ import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
-import apolloClient from '../../../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -91,8 +91,8 @@ OrderDetailPage.pageOptions = pageOptions
 export default OrderDetailPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
   const config = client.query({ query: StoreConfigDocument })
 
   const countryRegions = staticClient.query({

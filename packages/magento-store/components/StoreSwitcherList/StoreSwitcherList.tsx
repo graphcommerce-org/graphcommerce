@@ -32,7 +32,7 @@ type Store = NonNullable<NonNullable<StoreSwitcherListQuery['availableStores']>[
 export type StoreSwitcherListProps = { locale: string | undefined } & StoreSwitcherListQuery &
   UseStyles<typeof useStyles>
 
-export default function StoreSwitcherList(props: StoreSwitcherListProps) {
+export function StoreSwitcherList(props: StoreSwitcherListProps) {
   const { availableStores, locale } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
 

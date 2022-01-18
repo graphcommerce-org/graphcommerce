@@ -4,7 +4,7 @@ import { GetStaticProps } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import { LayoutFull, LayoutFullProps } from '../../components/Layout'
-import apolloClient from '../../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 import { AppShellDemo } from './minimal-page-shell/[[...url]]'
 
 type Props = { url: string } & DefaultPageQuery
@@ -38,8 +38,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
   const url = (params?.url ?? ['index']).join('/') ?? ''
 
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({

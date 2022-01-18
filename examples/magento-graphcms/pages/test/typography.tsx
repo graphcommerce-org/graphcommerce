@@ -6,7 +6,7 @@ import { Typography, Container } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
-import apolloClient from '../../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
@@ -116,8 +116,8 @@ TypographyOverview.pageOptions = {
 export default TypographyOverview
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({

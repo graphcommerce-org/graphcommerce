@@ -3,7 +3,7 @@ import { FlagAvatar, UseStyles, makeStyles, useMergedClasses } from '@graphcomme
 import { Button } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
-import { StoreConfigDocument } from '../StoreConfig.gql'
+import { StoreConfigDocument } from '../../StoreConfig.gql'
 
 const useStyles = makeStyles({ name: 'StoreSwitcherButton' })({
   avatar: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles({ name: 'StoreSwitcherButton' })({
 
 export type StoreSwitcherButtonProps = UseStyles<typeof useStyles>
 
-export default function StoreSwitcherButton(props: StoreSwitcherButtonProps) {
+export function StoreSwitcherButton(props: StoreSwitcherButtonProps) {
   const config = useQuery(StoreConfigDocument)
   const country = config.data?.storeConfig?.locale?.split('_')?.[1]?.toLowerCase() ?? ''
   const classes = useMergedClasses(useStyles().classes, props.classes)

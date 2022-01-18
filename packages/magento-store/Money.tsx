@@ -5,7 +5,7 @@ import { StoreConfigDocument } from './StoreConfig.gql'
 
 export type MoneyProps = MoneyFragment & { round?: boolean }
 
-export default function Money({ currency, value, round = false }: MoneyProps) {
+export function Money({ currency, value, round = false }: MoneyProps) {
   const { data: config } = useQuery(StoreConfigDocument)
   const locale = config?.storeConfig?.locale
 

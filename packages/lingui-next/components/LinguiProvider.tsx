@@ -8,7 +8,7 @@ type LinguiProviderProps = Omit<I18nProviderProps, 'i18n'> & {
   children: React.ReactNode
   loader: MessageLoader
   ssrLoader: SyncMessageLoader
-  locale?: string
+  locale: string
 }
 
 i18n.loadLocaleData({
@@ -17,11 +17,11 @@ i18n.loadLocaleData({
   en: { plurals: en },
 })
 
-export default function LinguiProvider(props: LinguiProviderProps) {
+export function LinguiProvider(props: LinguiProviderProps) {
   const { loader, ssrLoader, locale, ...i18nProviderPRops } = props
 
   useMemo(() => {
-    const localeOnly = locale?.split('-')?.[0] ?? 'en'
+    const localeOnly = locale?.split('-')[0]
     const data = globalThis.document?.getElementById('lingui')
 
     if (data?.lang === localeOnly && data.textContent) {

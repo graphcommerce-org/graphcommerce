@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/client'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { useQuery } from '@graphcommerce/graphql'
 import { ApolloCustomerErrorFullPage, CustomerDocument } from '@graphcommerce/magento-customer'
 import {
   ProductReviewProductNameDocument,
@@ -19,7 +19,7 @@ import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
-import apolloClient from '../../../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -109,7 +109,7 @@ AccountReviewsAddPage.pageOptions = pageOptions
 export default AccountReviewsAddPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
+  const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
   return {

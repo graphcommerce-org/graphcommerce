@@ -13,7 +13,7 @@ import {
 import { Box, Container, Typography, Divider, styled } from '@mui/material'
 import React, { useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
-import apolloClient from '../../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 const variants = ['text', 'outlined', 'contained', 'pill'] as const
 const sizes = ['small', 'medium', 'large'] as const
@@ -127,7 +127,7 @@ ButtonsPage.pageOptions = pageOptions
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const client = apolloClient(locale, true)
+  const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
   return {

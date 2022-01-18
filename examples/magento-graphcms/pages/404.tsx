@@ -8,7 +8,7 @@ import PageLink from 'next/link'
 import React from 'react'
 import { DefaultPageDocument, DefaultPageQuery } from '../components/GraphQL/DefaultPage.gql'
 import { LayoutFull, LayoutFullProps } from '../components/Layout'
-import apolloClient from '../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
 
@@ -67,8 +67,8 @@ RouteNotFoundPage.pageOptions = {
 export default RouteNotFoundPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
   const page = staticClient.query({

@@ -19,7 +19,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import { LayoutFullProps, LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
-import apolloClient from '../../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
@@ -102,8 +102,8 @@ OrderSuccessPage.pageOptions = pageOptions
 export default OrderSuccessPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,

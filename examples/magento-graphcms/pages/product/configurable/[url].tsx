@@ -21,22 +21,22 @@ import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   JsonLd,
-  LayoutTitle,
   LayoutHeader,
+  LayoutTitle,
   makeStyles,
+  SchemaDts,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
-import { Product } from 'schema-dts'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import { LayoutFull, LayoutFullProps } from '../../../components/Layout'
 import { RowProduct } from '../../../components/Row'
 import RowRenderer from '../../../components/Row/RowRenderer'
 import Usps from '../../../components/Usps'
-import apolloClient from '../../../lib/apolloClient'
+import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = ProductPageQuery & ConfigurableProductPageQuery
 
@@ -72,7 +72,7 @@ function ProductConfigurable(props: Props) {
           {product.name}
         </LayoutTitle>
       </LayoutHeader>
-      <JsonLd<Product>
+      <JsonLd<SchemaDts.Product>
         item={{
           '@context': 'https://schema.org',
           ...jsonLdProduct(product),
@@ -150,15 +150,15 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = (locale: string) =>
-    getProductStaticPaths(apolloClient(locale), locale, 'ConfigurableProduct')
+    getProductStaticPaths(graphqlSsrClient(locale), locale, 'ConfigurableProduct')
   const paths = (await Promise.all(locales.map(path))).flat(1)
 
   return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
 
   const urlKey = params?.url ?? '??'
 

@@ -5,7 +5,7 @@ import { GetStaticProps, LayoutTitle, LayoutHeader } from '@graphcommerce/next-u
 import SidebarGallery from '@graphcommerce/next-ui/FramerScroller/components/SidebarGallery'
 import React from 'react'
 import { LayoutFull, LayoutFullProps } from '../../components/Layout'
-import apolloClient from '../../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = ProductListQuery
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
@@ -85,8 +85,8 @@ TestSlider.pageOptions = {
 export default TestSlider
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
 

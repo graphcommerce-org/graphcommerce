@@ -31,7 +31,7 @@ import React from 'react'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import { LayoutFull, LayoutFullProps } from '../../components/Layout'
 import ProductListItems from '../../components/ProductListItems/ProductListItems'
-import apolloClient from '../../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
 
@@ -122,12 +122,12 @@ export const getStaticPaths: GetPageStaticPaths = async () => {
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
   const [search = '', query = []] = extractUrlQuery(params)
 
-  const client = apolloClient(locale, true)
+  const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
 
   const rootCategory = (await conf).data.storeConfig?.root_category_uid ?? ''
-  const staticClient = apolloClient(locale)
+  const staticClient = graphqlSsrClient(locale)
   const page = staticClient.query({
     query: DefaultPageDocument,
     variables: { url: 'search', rootCategory },

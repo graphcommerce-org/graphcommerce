@@ -38,7 +38,7 @@ import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
-import apolloClient from '../../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
@@ -155,8 +155,8 @@ PaymentPage.pageOptions = pageOptions
 export default PaymentPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
 

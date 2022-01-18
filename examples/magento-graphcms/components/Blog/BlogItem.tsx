@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { BlogListItem } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'

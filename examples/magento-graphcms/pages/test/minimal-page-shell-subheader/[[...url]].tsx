@@ -22,13 +22,12 @@ import {
   LinkOrButton,
 } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
-import { Box, Container, Typography, Button } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
-import React from 'react'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 import { LayoutMinimal, LayoutMinimalProps } from '../../../components/Layout'
-import apolloClient from '../../../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = DefaultPageQuery &
   SearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
@@ -101,12 +100,12 @@ export const getStaticPaths: GetPageStaticPaths = async () => {
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
   const [search = '', query = []] = extractUrlQuery(params)
 
-  const client = apolloClient(locale, true)
+  const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
 
   const rootCategory = (await conf).data.storeConfig?.root_category_uid ?? ''
-  const staticClient = apolloClient(locale)
+  const staticClient = graphqlSsrClient(locale)
   const page = staticClient.query({
     query: DefaultPageDocument,
     variables: { url: 'minimal-page-shell-subheader', rootCategory },
@@ -122,14 +121,14 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const products =
     search && search.length > 2
-      ? client.query({
+      ? staticClient.query({
           query: SearchDocument,
           variables: mergeDeep(productListParams, {
             categoryUid: rootCategory,
             search,
           }),
         })
-      : client.query({
+      : staticClient.query({
           query: ProductListDocument,
           variables: mergeDeep(productListParams, {
             categoryUid: rootCategory,

@@ -1,4 +1,4 @@
-import { SvgImageSimple, iconStar , makeStyles } from '@graphcommerce/next-ui'
+import { SvgImageSimple, iconStar, makeStyles } from '@graphcommerce/next-ui'
 import { Chip, ChipProps } from '@mui/material'
 import React from 'react'
 

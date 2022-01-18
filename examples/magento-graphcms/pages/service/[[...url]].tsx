@@ -9,7 +9,7 @@ import { PagesStaticPathsDocument } from '../../components/GraphQL/PagesStaticPa
 import { LayoutFullProps } from '../../components/Layout'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components/Layout/LayoutOverlay'
 import RowRenderer from '../../components/Row/RowRenderer'
-import apolloClient from '../../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = DefaultPageQuery
 type RouteProps = { url: string[] }
@@ -55,7 +55,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = async (locale: string) => {
-    const client = apolloClient(locale)
+    const client = graphqlSharedClient(locale)
     const { data } = await client.query({
       query: PagesStaticPathsDocument,
       variables: {
@@ -72,8 +72,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const url = params?.url ? `service/${params?.url.join('/')}` : `service`
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,

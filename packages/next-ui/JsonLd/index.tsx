@@ -1,7 +1,8 @@
 import Head from 'next/head'
-import React from 'react'
 import { jsonLdScriptProps } from 'react-schemaorg'
 import { Thing, WithContext } from 'schema-dts'
+
+export * as SchemaDts from 'schema-dts'
 
 export type JsonLdProps<T extends Thing> = {
   item: WithContext<T>

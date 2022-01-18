@@ -16,7 +16,7 @@ import BlogTitle from '../../../components/Blog/BlogTitle'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 import { LayoutFull, LayoutFullProps } from '../../../components/Layout'
 import RowRenderer from '../../../components/Row/RowRenderer'
-import apolloClient from '../../../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
 
@@ -60,7 +60,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.VERCEL_ENV !== 'production') return { paths: [], fallback: 'blocking' }
 
   const responses = locales.map(async (locale) => {
-    const staticClient = apolloClient(locale)
+    const staticClient = graphqlSsrClient(locale)
     const BlogPostPaths = staticClient.query({ query: BlogPostTaggedPathsDocument })
     const { pages } = (await BlogPostPaths).data
     return (
@@ -79,8 +79,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const urlKey = params?.url ?? '??'
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
   const limit = 99
   const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({

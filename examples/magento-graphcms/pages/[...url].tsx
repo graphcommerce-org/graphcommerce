@@ -34,7 +34,6 @@ import {
 } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import React from 'react'
 import Asset from '../components/Asset'
 import { CategoryPageDocument, CategoryPageQuery } from '../components/GraphQL/CategoryPage.gql'
 import { LayoutFull, LayoutFullProps } from '../components/Layout'
@@ -42,7 +41,7 @@ import ProductListItems from '../components/ProductListItems/ProductListItems'
 import useProductListStyles from '../components/ProductListItems/useProductListStyles'
 import RowProduct from '../components/Row/RowProduct'
 import RowRenderer from '../components/Row/RowRenderer'
-import apolloClient from '../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
 
@@ -150,7 +149,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   // Disable getStaticPaths while in development mode
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  const path = (loc: string) => getCategoryStaticPaths(apolloClient(loc), loc)
+  const path = (loc: string) => getCategoryStaticPaths(graphqlSsrClient(loc), loc)
   const paths = (await Promise.all(locales.map(path))).flat(1)
   return { paths, fallback: 'blocking' }
 }
@@ -159,11 +158,11 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const [url, query] = extractUrlQuery(params)
   if (!url || !query) return { notFound: true }
 
-  const client = apolloClient(locale, true)
+  const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
 
-  const staticClient = apolloClient(locale)
+  const staticClient = graphqlSsrClient(locale)
   const categoryPage = staticClient.query({
     query: CategoryPageDocument,
     variables: { url, rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '' },

@@ -11,7 +11,7 @@ import { BlogListDocument, BlogListQuery } from '../../../components/Blog/BlogLi
 import { BlogPathsDocument, BlogPathsQuery } from '../../../components/Blog/BlogPaths.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 import { LayoutFull, LayoutFullProps } from '../../../components/Layout'
-import apolloClient from '../../../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
 
@@ -67,7 +67,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const responses = locales.map(async (locale) => {
-    const staticClient = apolloClient(locale)
+    const staticClient = graphqlSsrClient(locale)
     const blogPosts = staticClient.query({ query: BlogPathsDocument })
     const total = Math.ceil((await blogPosts).data.pagesConnection.aggregate.count / pageSize)
     const pages: string[] = []
@@ -82,8 +82,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const skip = Math.abs((Number(params?.page ?? '1') - 1) * pageSize)
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
   const defaultPage = staticClient.query({
     query: DefaultPageDocument,

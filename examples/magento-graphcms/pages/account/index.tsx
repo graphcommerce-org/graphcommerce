@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/client'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { useQuery } from '@graphcommerce/graphql'
 import {
   AddressSingleLine,
   ApolloCustomerErrorFullPage,
@@ -33,7 +33,7 @@ import { Container, NoSsr } from '@mui/material'
 import React from 'react'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
-import apolloClient from '../../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
@@ -180,8 +180,8 @@ AccountIndexPage.pageOptions = pageOptions
 export default AccountIndexPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const staticClient = apolloClient(locale)
-  const client = apolloClient(locale, true)
+  const staticClient = graphqlSsrClient(locale)
+  const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
   const page = staticClient.query({

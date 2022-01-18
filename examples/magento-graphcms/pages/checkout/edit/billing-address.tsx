@@ -7,7 +7,7 @@ import { Container, NoSsr } from '@mui/material'
 import React from 'react'
 import { DefaultPageDocument } from '../../../components/GraphQL/DefaultPage.gql'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
-import apolloClient from '../../../lib/apolloClient'
+import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -46,9 +46,9 @@ EditBillingAddress.pageOptions = pageOptions
 export default EditBillingAddress
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
+  const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
-  const staticClient = apolloClient(locale)
+  const staticClient = graphqlSsrClient(locale)
 
   const page = staticClient.query({
     query: DefaultPageDocument,

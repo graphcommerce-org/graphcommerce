@@ -9,7 +9,7 @@ type PageMetaProps = Pick<NextPageMetaProps, 'title' | 'metaDescription' | 'meta
   canonical?: string
 }
 
-export default function PageMeta(props: PageMetaProps) {
+export function PageMeta(props: PageMetaProps) {
   const { title, canonical = '', ...pageMetaProps } = props
   const config = useQuery(StoreConfigDocument)
 

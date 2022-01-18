@@ -1,6 +1,5 @@
 import { useTheme } from '@mui/material'
 import Head from 'next/head'
-import React from 'react'
 
 export type GlobalHeadProps = { name: string }
 
