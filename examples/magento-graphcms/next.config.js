@@ -39,6 +39,7 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
     disableOptimizedLoading: true,
+    esmExternals: false,
   },
   pwa: {
     dest: 'public',
