@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.24.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.24.0...@graphcommerce/next-ui@3.24.1) (2022-01-18)
+
+
+### Bug Fixes
+
+* favicon and manifest ([304d6dd](https://github.com/ho-nl/m2-pwa/commit/304d6dd7769d349b02b06dfdfdc3f9d22a4af081))
+
+
+
+
+
 # [3.24.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.23.1...@graphcommerce/next-ui@3.24.0) (2022-01-17)
 
 

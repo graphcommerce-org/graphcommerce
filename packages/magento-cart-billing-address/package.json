@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-cart-billing-address",
-  "version": "2.107.40",
+  "version": "2.107.41",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -24,10 +24,10 @@
     "@graphcommerce/framer-next-pages": "^2.109.2",
     "@graphcommerce/graphql": "^2.105.13",
     "@graphcommerce/image": "^2.105.13",
-    "@graphcommerce/magento-cart": "^3.9.5",
-    "@graphcommerce/magento-customer": "^3.6.37",
-    "@graphcommerce/magento-store": "^3.4.5",
-    "@graphcommerce/next-ui": "^3.24.0",
+    "@graphcommerce/magento-cart": "^3.9.6",
+    "@graphcommerce/magento-customer": "^3.6.38",
+    "@graphcommerce/magento-store": "^3.4.6",
+    "@graphcommerce/next-ui": "^3.24.1",
     "@graphcommerce/react-hook-form": "^2.104.7",
     "@lingui/macro": "^3.13.0",
     "@material-ui/core": "^4.12.3",
