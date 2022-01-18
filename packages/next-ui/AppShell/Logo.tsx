@@ -51,7 +51,7 @@ export type LogoProps = {
   sx?: SxProps<Theme>
 } & LogoClassProps
 
-export const Logo = forwardRef((props: LogoProps) => {
+export const Logo = forwardRef<HTMLDivElement, LogoProps>((props, ref) => {
   const { href = '/', image, sx } = props
   const router = useRouter()
 
@@ -67,12 +67,12 @@ export const Logo = forwardRef((props: LogoProps) => {
   )
 
   return router.asPath === '/' ? (
-    <LogoContainer sx={sx} className={classes.parent}>
+    <LogoContainer ref={ref} sx={sx} className={classes.parent}>
       {img}
     </LogoContainer>
   ) : (
     <PageLink href={href} passHref>
-      <LogoContainer as='a' sx={sx} className={classes.parent}>
+      <LogoContainer ref={ref} as='a' sx={sx} className={classes.parent}>
         {img}
       </LogoContainer>
     </PageLink>
