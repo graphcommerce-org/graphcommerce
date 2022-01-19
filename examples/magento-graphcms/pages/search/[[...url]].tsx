@@ -1,4 +1,3 @@
-import { mergeDeep } from '@apollo/client/utilities'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   ProductListCount,
@@ -27,10 +26,8 @@ import { AppShellSticky, GetStaticProps, LayoutTitle, LayoutHeader } from '@grap
 import { t, Trans } from '@lingui/macro'
 import { Container, Hidden } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import React from 'react'
-import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import { LayoutFull, LayoutFullProps } from '../../components/Layout'
-import ProductListItems from '../../components/ProductListItems/ProductListItems'
+import { LayoutFull, LayoutFullProps, ProductListItems } from '../../components'
+import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
@@ -145,16 +142,11 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     search && search.length > 2
       ? staticClient.query({
           query: SearchDocument,
-          variables: mergeDeep(productListParams, {
-            categoryUid: rootCategory,
-            search,
-          }),
+          variables: { ...productListParams, categoryUid: rootCategory, search },
         })
       : staticClient.query({
           query: ProductListDocument,
-          variables: mergeDeep(productListParams, {
-            categoryUid: rootCategory,
-          }),
+          variables: { ...productListParams, categoryUid: rootCategory },
         })
 
   return {

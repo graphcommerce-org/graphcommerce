@@ -8,10 +8,8 @@ import {
 } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import React from 'react'
-import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import { LayoutOverlay, LayoutOverlayProps } from '../../components/Layout/LayoutOverlay'
-import RowRenderer from '../../components/Row/RowRenderer'
+import { LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
+import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }

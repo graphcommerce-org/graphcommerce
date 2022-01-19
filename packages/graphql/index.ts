@@ -10,3 +10,4 @@ export * from './typePolicies'
 export * from './createCacheReviver'
 
 export * from './apollo'
+export * from './types'

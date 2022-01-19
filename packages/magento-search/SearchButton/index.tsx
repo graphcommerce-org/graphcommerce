@@ -1,7 +1,7 @@
 import {
   iconSearch,
   responsiveVal,
-  SvgImageSimple,
+  SvgIcon,
   UseStyles,
   makeStyles,
   useMergedClasses,
@@ -45,7 +45,7 @@ export default function SearchButton(props: SearchButtonProps) {
       InputLabelProps={{ shrink: false }}
       InputProps={{
         readOnly: true,
-        endAdornment: <SvgImageSimple src={iconSearch} size='medium' />,
+        endAdornment: <SvgIcon src={iconSearch} size='medium' />,
         classes: { root: classes.inputRoot },
         ...InputProps,
       }}

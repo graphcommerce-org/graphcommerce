@@ -1,4 +1,4 @@
-import { responsiveVal, iconOrderBefore, SvgImageSimple, makeStyles } from '@graphcommerce/next-ui'
+import { responsiveVal, iconOrderBefore, SvgIcon, makeStyles } from '@graphcommerce/next-ui'
 import { darken, lighten, Typography } from '@mui/material'
 import React from 'react'
 
@@ -39,7 +39,7 @@ export default function ProductSidebarDelivery() {
 
   return (
     <div className={classes.root}>
-      <SvgImageSimple className={classes.image} src={iconOrderBefore} size='small' />
+      <SvgIcon className={classes.image} src={iconOrderBefore} size='small' />
       <Typography className={classes.title} variant='body2' component='div'>
         Order before 22:00
       </Typography>

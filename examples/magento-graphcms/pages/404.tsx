@@ -1,13 +1,13 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { SearchForm } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, Separator, icon404, SvgImageSimple } from '@graphcommerce/next-ui'
+import { GetStaticProps, Separator, icon404, SvgIcon } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Box, Container, Typography, Link } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
-import { DefaultPageDocument, DefaultPageQuery } from '../components/GraphQL/DefaultPage.gql'
-import { LayoutFull, LayoutFullProps } from '../components/Layout'
+import { LayoutFull, LayoutFullProps } from '../components'
+import { DefaultPageDocument, DefaultPageQuery } from '../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
@@ -34,7 +34,7 @@ function RouteNotFoundPage() {
       <PageMeta title='Page not found' metaRobots={['noindex']} />
       <Container maxWidth='sm'>
         <Box textAlign='center' mt={16} mb={16}>
-          <SvgImageSimple src={icon404} size='xxl' />
+          <SvgIcon src={icon404} size='xxl' />
           <Typography variant='h3' component='h1' gutterBottom>
             <Trans>Whoops our bad...</Trans>
           </Typography>

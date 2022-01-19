@@ -48,7 +48,7 @@ export type BlogListItemProps = UseStyles<typeof useStyles> & {
   title: string
 }
 
-export default function BlogListItem(props: BlogListItemProps) {
+export function BlogListItem(props: BlogListItemProps) {
   const { asset, url, date, locale, title } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
 

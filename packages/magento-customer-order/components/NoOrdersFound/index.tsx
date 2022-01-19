@@ -1,8 +1,7 @@
 import { IconHeader, iconBox, makeStyles } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
-import React from 'react'
+import { Trans } from '@lingui/macro'
 
-const useStyles = makeStyles({ name: 'AccountLatestOrder' })((theme) => ({
+const useStyles = makeStyles({ name: 'NoOrdersFound' })((theme) => ({
   noOrdersContainer: {
     marginTop: theme.spacings.sm,
   },
@@ -13,7 +12,9 @@ export default function NoOrdersFound() {
 
   return (
     <div className={classes.noOrdersContainer}>
-      <IconHeader src={iconBox} title={t`No orders found`} alt='no order' size='small' />
+      <IconHeader src={iconBox} size='small'>
+        <Trans>No orders found</Trans>
+      </IconHeader>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { Logo as LogoBase } from '@graphcommerce/next-ui'
 import svgLogo from './graphcommerce.svg'
 
-export default function Logo() {
+export function Logo() {
   return (
     <LogoBase
       sx={(theme) => ({

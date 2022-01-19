@@ -6,7 +6,7 @@ import { t, Trans } from '@lingui/macro'
 import { Box, Container, Link, NoSsr, Button } from '@mui/material'
 import router, { useRouter } from 'next/router'
 import React from 'react'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../../components/Layout/LayoutOverlay'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>

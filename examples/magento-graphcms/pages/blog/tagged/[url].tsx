@@ -2,20 +2,20 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
-import React from 'react'
-import BlogList from '../../../components/Blog'
-import BlogAuthor from '../../../components/Blog/BlogAuthor'
-import BlogHeader from '../../../components/Blog/BlogHeader'
 import {
+  BlogAuthor,
+  BlogHeader,
+  BlogList,
+  BlogPostTaggedPathsDocument,
   BlogListTaggedDocument,
   BlogListTaggedQuery,
-} from '../../../components/Blog/BlogListTagged.gql'
-import { BlogPostTaggedPathsDocument } from '../../../components/Blog/BlogPostTaggedPaths.gql'
-import BlogTags from '../../../components/Blog/BlogTags'
-import BlogTitle from '../../../components/Blog/BlogTitle'
-import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
-import { LayoutFull, LayoutFullProps } from '../../../components/Layout'
-import RowRenderer from '../../../components/Row/RowRenderer'
+  BlogTags,
+  BlogTitle,
+  LayoutFull,
+  LayoutFullProps,
+  RowRenderer,
+} from '../../../components'
+import { DefaultPageDocument, DefaultPageQuery } from '../../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
@@ -90,7 +90,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
     },
   })
-
   const blogPosts = staticClient.query({
     query: BlogListTaggedDocument,
     variables: { currentUrl: [`blog/tagged/${urlKey}`], first: limit, tagged: params?.url },

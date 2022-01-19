@@ -15,13 +15,12 @@ import {
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
-import { LayoutFullProps } from '../components/Layout'
-import { LayoutOverlay, LayoutOverlayProps } from '../components/Layout/LayoutOverlay'
+import { LayoutOverlay, LayoutOverlayProps } from '../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 type RouteProps = { country?: string[] }
 type Props = StoreSwitcherListQuery
-type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props, RouteProps>
 
 function StoresIndexPage({ availableStores }: Props) {
   const { locale } = useRouter()

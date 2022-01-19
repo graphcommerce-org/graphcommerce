@@ -28,7 +28,7 @@ import {
   iconId,
   LayoutHeader,
   Stepper,
-  SvgImageSimple,
+  SvgIcon,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { ComposedForm } from '@graphcommerce/react-hook-form'
@@ -36,8 +36,8 @@ import { t, Trans } from '@lingui/macro'
 import { CircularProgress, Container, Dialog, Divider, NoSsr } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
-import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
-import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
+import { LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
@@ -60,7 +60,7 @@ function PaymentPage() {
                   color='secondary'
                   variant='pill'
                   display='inline'
-                  endIcon={<SvgImageSimple src={iconChevronRight} size='small' />}
+                  endIcon={<SvgIcon src={iconChevronRight} size='small' />}
                 >
                   <Trans>Pay</Trans>
                 </PaymentMethodButton>
@@ -130,7 +130,7 @@ function PaymentPage() {
                         color='secondary'
                         variant='pill'
                         size='large'
-                        endIcon={<SvgImageSimple src={iconChevronRight} inverted />}
+                        endIcon={<SvgIcon src={iconChevronRight} inverted />}
                       >
                         <Trans>Place order</Trans>
                       </PaymentMethodButton>

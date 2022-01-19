@@ -3,7 +3,7 @@ import {
   iconShoppingBag,
   responsiveVal,
   StyledBadge,
-  SvgImageSimple,
+  SvgIcon,
   useScrollY,
   UseStyles,
   makeStyles,
@@ -66,7 +66,7 @@ function CartFabContent(props: CartFabContentProps) {
   const paper1 = alpha(theme.palette.background.paper, 1)
   const backgroundColor = useTransform(scrollY, [0, 60], [paper0, paper1])
 
-  const cartIcon = icon ?? <SvgImageSimple src={iconShoppingBag} size='large' />
+  const cartIcon = icon ?? <SvgIcon src={iconShoppingBag} size='large' />
 
   return (
     <>

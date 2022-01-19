@@ -3,7 +3,7 @@ import {
   UseStyles,
   responsiveVal,
   iconChevronRight,
-  SvgImageSimple,
+  SvgIcon,
   makeStyles,
   useMergedClasses,
   typography,
@@ -85,14 +85,14 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
     >
       <ListItem disableGutters>
         <ListItemIcon className={classes.icon}>
-          <SvgImageSimple src={iconSrc} size='large' muted />
+          <SvgIcon src={iconSrc} size='large' muted />
         </ListItemIcon>
         <ListItemText
           classes={{ secondary: classes.secondary, primary: classes.primary }}
           primary={title}
           secondary={subtitle}
         />
-        {endIcon ?? <SvgImageSimple src={iconChevronRight} />}
+        {endIcon ?? <SvgIcon src={iconChevronRight} />}
       </ListItem>
     </Button>
   )

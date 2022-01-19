@@ -9,16 +9,15 @@ import {
   iconSadFace,
   LayoutHeader,
   Stepper,
-  SvgImageSimple,
+  SvgIcon,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Button, Box, Container, NoSsr } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
-import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
-import { LayoutFullProps, LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
+import { LayoutFullProps, LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
@@ -54,7 +53,7 @@ function OrderSuccessPage() {
           {!hasCartId && (
             <FullPageMessage
               title={t`You have not placed an order`}
-              icon={<SvgImageSimple src={iconSadFace} size='xxl' />}
+              icon={<SvgIcon src={iconSadFace} size='xxl' />}
               button={
                 <Link href='/' passHref>
                   <Button variant='pill' color='secondary' size='large'>

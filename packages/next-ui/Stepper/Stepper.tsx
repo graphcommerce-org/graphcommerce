@@ -26,7 +26,7 @@ export type StepperProps = {
   currentStep: number
 } & UseStyles<typeof useStyles>
 
-export default function Stepper(props: StepperProps) {
+export function Stepper(props: StepperProps) {
   const { steps, currentStep } = props
   let { classes } = useStyles()
   classes = useMergedClasses(classes, props.classes)

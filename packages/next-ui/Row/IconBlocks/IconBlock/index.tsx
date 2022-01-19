@@ -32,7 +32,7 @@ export type IconBlockProps = UseStyles<typeof useStyles> & {
   href?: string
 }
 
-const IconBlock = React.forwardRef<HTMLAnchorElement, IconBlockProps>((props, ref) => {
+export const IconBlock = React.forwardRef<HTMLAnchorElement, IconBlockProps>((props, ref) => {
   const { title, children, icon, href } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
 
@@ -56,5 +56,3 @@ const IconBlock = React.forwardRef<HTMLAnchorElement, IconBlockProps>((props, re
 
   return <div className={classes.block}>{content}</div>
 })
-
-export default IconBlock

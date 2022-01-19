@@ -8,12 +8,12 @@ import {
   iconStar,
   LayoutOverlayHeader,
   LayoutTitle,
-  SvgImageSimple,
+  SvgIcon,
   GetStaticProps,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
@@ -52,7 +52,7 @@ function AccountReviewsPage() {
           {((customer?.reviews && customer?.reviews.items.length < 1) || !customer?.reviews) && (
             <FullPageMessage
               title={t`You haven't placed any reviews yet`}
-              icon={<SvgImageSimple src={iconStar} size='xxl' />}
+              icon={<SvgIcon src={iconStar} size='xxl' />}
             >
               <Trans>Discover our collection and write your first review!</Trans>
             </FullPageMessage>

@@ -6,7 +6,7 @@ import {
   MessageSnackbar,
   TextInputNumber,
   iconChevronRight,
-  SvgImageSimple,
+  SvgIcon,
   makeStyles,
 } from '@graphcommerce/next-ui'
 import { Divider, Typography, ButtonProps } from '@mui/material'
@@ -90,7 +90,7 @@ export default function ProductAddToCart(
               size='medium'
               variant='pill'
               color='secondary'
-              endIcon={<SvgImageSimple src={iconChevronRight} />}
+              endIcon={<SvgIcon src={iconChevronRight} />}
             >
               View shopping cart
             </Button>

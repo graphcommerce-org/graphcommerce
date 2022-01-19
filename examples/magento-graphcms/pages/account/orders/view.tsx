@@ -19,7 +19,7 @@ import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
@@ -57,7 +57,9 @@ function OrderDetailPage() {
       <Container maxWidth='md'>
         <NoSsr>
           {(!orderId || !order) && (
-            <IconHeader src={iconBox} title={t`Order not found`} size='large' />
+            <IconHeader src={iconBox} size='large'>
+              <Trans>Order not found</Trans>
+            </IconHeader>
           )}
 
           <LayoutTitle icon={iconBox}>

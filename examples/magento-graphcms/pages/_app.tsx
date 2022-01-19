@@ -7,9 +7,9 @@ import { CssAndFramerMotionProvider, PageLoadIndicator } from '@graphcommerce/ne
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { AppProps } from 'next/app'
 import { useEffect, useState } from 'react'
-import { lightTheme, darkTheme } from '../components/Theme/ThemedProvider'
+import { lightTheme, darkTheme } from '../components'
 import { GraphQLProvider } from '../lib/graphql/GraphQLProvider'
-import { I18nProvider } from '../locales/TranslationProvider'
+import { I18nProvider } from '../lib/i18n/I18nProvider'
 
 export default function ThemedApp(props: AppProps) {
   const { router } = props

@@ -5,7 +5,7 @@ import {
   iconChevronRight,
   responsiveVal,
   SectionContainer,
-  SvgImageSimple,
+  SvgIcon,
   UseStyles,
   makeStyles,
   useMergedClasses,
@@ -95,7 +95,7 @@ export default function CartItemSummary(props: OrderSummaryProps) {
         <div className={classes.imageScrollerContainer}>
           <ScrollerProvider scrollSnapAlign='start'>
             <ScrollerButton direction='left' className={clsx(classes.prevNext, classes.prev)}>
-              <SvgImageSimple src={iconChevronLeft} />
+              <SvgIcon src={iconChevronLeft} />
             </ScrollerButton>
             <div className={classes.scrollerContainer}>
               <Scroller className={classes.scroller}>
@@ -118,7 +118,7 @@ export default function CartItemSummary(props: OrderSummaryProps) {
               </Scroller>
             </div>
             <ScrollerButton direction='right' className={clsx(classes.prevNext, classes.next)}>
-              <SvgImageSimple src={iconChevronRight} />
+              <SvgIcon src={iconChevronRight} />
             </ScrollerButton>
           </ScrollerProvider>
         </div>

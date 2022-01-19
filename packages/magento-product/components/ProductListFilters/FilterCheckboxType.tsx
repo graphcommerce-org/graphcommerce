@@ -2,7 +2,7 @@ import { cloneDeep } from '@apollo/client/utilities'
 import {
   useChipMenuStyles,
   iconCancelAlt,
-  SvgImageSimple,
+  SvgIcon,
   useMergedClasses,
   UseStyles,
 } from '@graphcommerce/next-ui'
@@ -58,7 +58,7 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
               }
             : undefined
         }
-        deleteIcon={isActive ? <SvgImageSimple src={iconCancelAlt} size='small' /> : undefined}
+        deleteIcon={isActive ? <SvgIcon src={iconCancelAlt} size='small' /> : undefined}
         label={label}
         clickable
         {...chipProps}

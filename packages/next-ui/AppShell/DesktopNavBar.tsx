@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import { makeStyles, useMergedClasses } from '../Styles/tssReact'
-import SvgImageSimple from '../SvgImage/SvgImageSimple'
+import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 import { MenuProps } from './Menu'
 
@@ -127,7 +127,7 @@ export default function DesktopNavBar(props: MenuTabsProps) {
             size='small'
             classes={{ root: clsx(classes.prevNextBtn, classes.prevBtn) }}
           >
-            {iconScrollerBtnLeft ?? <SvgImageSimple src={iconChevronLeft} />}
+            {iconScrollerBtnLeft ?? <SvgIcon src={iconChevronLeft} />}
           </ScrollerButton>
         </m.div>
 
@@ -137,7 +137,7 @@ export default function DesktopNavBar(props: MenuTabsProps) {
             size='small'
             classes={{ root: clsx(classes.prevNextBtn, classes.nextBtn) }}
           >
-            {iconScrollerBtnRight ?? <SvgImageSimple src={iconChevronRight} />}
+            {iconScrollerBtnRight ?? <SvgIcon src={iconChevronRight} />}
           </ScrollerButton>
         </m.div>
       </div>
@@ -147,7 +147,7 @@ export default function DesktopNavBar(props: MenuTabsProps) {
           size='small'
           className={clsx(classes.prevNext, classes.prev)}
         >
-          <SvgImageSimple src={iconChevronLeft} />
+          <SvgIcon src={iconChevronLeft} />
         </ScrollerButton>
 
         <ScrollerButton
@@ -155,7 +155,7 @@ export default function DesktopNavBar(props: MenuTabsProps) {
           size='small'
           className={clsx(classes.prevNext, classes.next)}
         >
-          <SvgImageSimple src={iconChevronRight} />
+          <SvgIcon src={iconChevronRight} />
         </ScrollerButton> */}
     </ScrollerProvider>
   )

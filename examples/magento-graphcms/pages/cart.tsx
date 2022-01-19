@@ -18,7 +18,7 @@ import {
   Stepper,
   LayoutTitle,
   iconChevronRight,
-  SvgImageSimple,
+  SvgIcon,
   LayoutOverlayHeader,
   LinkOrButton,
 } from '@graphcommerce/next-ui'
@@ -26,8 +26,8 @@ import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
-import { LayoutOverlay, LayoutOverlayProps } from '../components/Layout'
-import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
+import { LayoutOverlay, LayoutOverlayProps } from '../components'
+import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -55,7 +55,7 @@ function CartPage() {
                 <LinkOrButton
                   button={{ variant: 'pill', disabled: !hasItems }}
                   color='secondary'
-                  endIcon={<SvgImageSimple src={iconChevronRight} />}
+                  endIcon={<SvgIcon src={iconChevronRight} />}
                 >
                   <Trans>Next</Trans>
                 </LinkOrButton>

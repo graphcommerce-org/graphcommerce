@@ -1,8 +1,7 @@
 import { LayoutDefault, LayoutDefaultProps } from '@graphcommerce/next-ui'
-import React from 'react'
-import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
+import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { Footer } from './Footer'
-import Logo from './Logo'
+import { Logo } from './Logo'
 
 export type LayoutMinimalProps = Omit<DefaultPageQuery, 'pages'> &
   Omit<LayoutDefaultProps, 'header' | 'footer' | 'cartFab' | 'noSticky'>

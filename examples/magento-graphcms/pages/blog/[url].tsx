@@ -2,16 +2,19 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { BlogTitle, GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
-import React from 'react'
-import BlogList from '../../components/Blog'
-import BlogAuthor from '../../components/Blog/BlogAuthor'
-import BlogHeader from '../../components/Blog/BlogHeader'
-import { BlogListDocument, BlogListQuery } from '../../components/Blog/BlogList.gql'
-import { BlogPostPathsDocument } from '../../components/Blog/BlogPostPaths.gql'
-import BlogTags from '../../components/Blog/BlogTags'
-import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import { LayoutFull, LayoutFullProps } from '../../components/Layout'
-import RowRenderer from '../../components/Row/RowRenderer'
+import {
+  BlogAuthor,
+  BlogHeader,
+  BlogList,
+  BlogListDocument,
+  BlogListQuery,
+  BlogPostPathsDocument,
+  BlogTags,
+  LayoutFull,
+  LayoutFullProps,
+  RowRenderer,
+} from '../../components'
+import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }

@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material'
 import React from 'react'
-import Row from '../Row'
+import { Row } from '../Row'
 import { UseStyles } from '../Styles'
 import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 
@@ -27,7 +27,7 @@ export type ContainerWithHeaderProps = {
   children: React.ReactNode
 } & UseStyles<typeof useStyles>
 
-export default function ContainerWithHeader(props: ContainerWithHeaderProps) {
+export function ContainerWithHeader(props: ContainerWithHeaderProps) {
   const { title, rightArea, children } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
 

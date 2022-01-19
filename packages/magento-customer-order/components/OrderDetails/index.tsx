@@ -9,7 +9,7 @@ import {
   SectionContainer,
   responsiveVal,
   iconInvoice,
-  SvgImageSimple,
+  SvgIcon,
   makeStyles,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
@@ -235,7 +235,7 @@ export default function OrderDetails(props: OrderDetailsProps) {
                 {invoices && invoices?.length > 0 && (
                   <div className={classes.iconContainer}>
                     <div className={classes.invoice}>
-                      <SvgImageSimple src={iconInvoice} size='small' />
+                      <SvgIcon src={iconInvoice} size='small' />
                       {invoices?.[0]?.number}
                     </div>
                   </div>

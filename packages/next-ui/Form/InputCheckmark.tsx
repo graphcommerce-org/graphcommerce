@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
 import { makeStyles } from '../Styles/tssReact'
-import SvgImageSimple from '../SvgImage/SvgImageSimple'
+import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconCheckmark } from '../icons'
 
 export type InputCheckmarkProps = PropsWithChildren<{ show?: boolean; select?: boolean }>
@@ -21,13 +21,13 @@ const useStyles = makeStyles({ name: 'InputCheckmark' })({
  * ;<InputCheckmark valid>Fallback things</InputCheckmark>
  * ```
  */
-export default function InputCheckmark(props: InputCheckmarkProps) {
+export function InputCheckmark(props: InputCheckmarkProps) {
   const { show: valid, children, select = false } = props
   const { classes } = useStyles()
 
   if (!valid) return <>{children}</>
   return (
-    <SvgImageSimple
+    <SvgIcon
       src={iconCheckmark}
       className={clsx(classes.iconCheckmark, select && classes.select)}
     />

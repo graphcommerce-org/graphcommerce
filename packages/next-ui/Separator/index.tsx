@@ -15,7 +15,7 @@ const useStyles = makeStyles({ name: 'Separator' })((theme) => ({
   },
 }))
 
-export default function Separator(props: DividedLinksProps) {
+export function Separator(props: DividedLinksProps) {
   const { color, icon } = props
   let { classes } = useStyles()
   classes = useMergedClasses(classes, props.classes)

@@ -1,7 +1,7 @@
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
 import {
   UseStyles,
-  SvgImageSimple,
+  SvgIcon,
   iconCancelAlt,
   makeStyles,
   useMergedClasses,
@@ -38,7 +38,7 @@ export default function RemoveCouponForm(props: CartCouponProps) {
         variant='text'
         color='secondary'
         className={classes.inlineCoupon}
-        endIcon={<SvgImageSimple src={iconCancelAlt} />}
+        endIcon={<SvgIcon src={iconCancelAlt} />}
       >
         {applied_coupons?.[0]?.code}
       </Button>

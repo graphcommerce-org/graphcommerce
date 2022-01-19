@@ -11,16 +11,16 @@ import {
   MenuFabSecondaryItem,
   MenuProps,
   PlaceholderFab,
-  SvgImageSimple,
+  SvgIcon,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Fab, useTheme } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useCallback } from 'react'
-import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
+import { useCallback } from 'react'
+import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { Footer } from './Footer'
-import Logo from './Logo'
+import { Logo } from './Logo'
 
 export type LayoutFullProps = Omit<
   DefaultPageQuery & Omit<LayoutDefaultProps, 'footer'>,
@@ -71,7 +71,7 @@ export function LayoutFull(props: LayoutFullProps) {
             )}
             <PageLink href='/service' passHref>
               <Fab aria-label={t`Account`} size='large' color='inherit'>
-                <SvgImageSimple src={iconCustomerService} size='large' />
+                <SvgIcon src={iconCustomerService} size='large' />
               </Fab>
             </PageLink>
             <CustomerFab guestHref='/account/signin' authHref='/account' />
@@ -89,7 +89,7 @@ export function LayoutFull(props: LayoutFullProps) {
           <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>
             <Trans>Account</Trans>
           </CustomerMenuFabItem>
-          <MenuFabSecondaryItem icon={<SvgImageSimple src={iconCustomerService} />} href='/service'>
+          <MenuFabSecondaryItem icon={<SvgIcon src={iconCustomerService} />} href='/service'>
             <Trans>Customer Service</Trans>
           </MenuFabSecondaryItem>
         </MenuFab>

@@ -20,7 +20,7 @@ export type BlogHeaderProps = UseStyles<typeof useStyles> & {
   asset?: React.ReactNode
 }
 
-export default function BlogHeader(props: BlogHeaderProps) {
+export function BlogHeader(props: BlogHeaderProps) {
   const { asset } = props
   const { classes } = useStyles()
 

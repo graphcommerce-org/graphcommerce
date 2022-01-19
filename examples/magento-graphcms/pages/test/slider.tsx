@@ -1,10 +1,8 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
-import SidebarGallery from '@graphcommerce/next-ui/FramerScroller/components/SidebarGallery'
-import React from 'react'
-import { LayoutFull, LayoutFullProps } from '../../components/Layout'
+import { GetStaticProps, LayoutTitle, LayoutHeader, SidebarGallery } from '@graphcommerce/next-ui'
+import { LayoutFull, LayoutFullProps } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = ProductListQuery

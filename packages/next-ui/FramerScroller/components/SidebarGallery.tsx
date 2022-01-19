@@ -12,12 +12,12 @@ import { Fab, useTheme, alpha } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
-import Row from '../../Row'
+import { Row } from '../../Row'
 import { UseStyles } from '../../Styles'
 import { classesPicker } from '../../Styles/classesPicker'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
-import SvgImageSimple from '../../SvgImage/SvgImageSimple'
+import { SvgIcon } from '../../SvgIcon/SvgIcon'
 import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../../icons'
 
 type StyleProps = {
@@ -173,7 +173,7 @@ export type SidebarGalleryProps = {
   routeHash?: string
 } & UseStyles<typeof useStyles>
 
-export default function SidebarGallery(props: SidebarGalleryProps) {
+export function SidebarGallery(props: SidebarGalleryProps) {
   const { sidebar, images, aspectRatio = [1, 1], routeHash = 'gallery' } = props
 
   const router = useRouter()
@@ -265,11 +265,7 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
                 onMouseUp={toggle}
                 aria-label='Toggle Fullscreen'
               >
-                {!zoomed ? (
-                  <SvgImageSimple src={iconFullscreen} />
-                ) : (
-                  <SvgImageSimple src={iconFullscreenExit} />
-                )}
+                {!zoomed ? <SvgIcon src={iconFullscreen} /> : <SvgIcon src={iconFullscreenExit} />}
               </Fab>
             </m.div>
             <div className={classes.centerLeft}>
@@ -279,7 +275,7 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
                 size='small'
                 className={classes.sliderButtons}
               >
-                <SvgImageSimple src={iconChevronLeft} />
+                <SvgIcon src={iconChevronLeft} />
               </ScrollerButton>
             </div>
             <div className={classes.centerRight}>
@@ -289,7 +285,7 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
                 size='small'
                 className={classes.sliderButtons}
               >
-                <SvgImageSimple src={iconChevronRight} />
+                <SvgIcon src={iconChevronRight} />
               </ScrollerButton>
             </div>
 

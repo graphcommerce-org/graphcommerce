@@ -1,0 +1,35 @@
+import { UpsellProductsFragment } from '@graphcommerce/magento-product'
+import {
+  SidebarSlider,
+  RenderType,
+  responsiveVal,
+  SidebarSliderProps,
+} from '@graphcommerce/next-ui'
+import { Typography } from '@mui/material'
+import { productListRenderer } from '../../../ProductListItems/productListRenderer'
+import { RowProductFragment } from '../RowProduct.gql'
+
+type UpsellsProps = RowProductFragment &
+  UpsellProductsFragment &
+  Pick<SidebarSliderProps, 'classes'>
+
+export function Upsells(props: UpsellsProps) {
+  const { title, upsell_products, classes } = props
+
+  if (!upsell_products || upsell_products.length === 0) return null
+
+  return (
+    <SidebarSlider classes={classes} sidebar={<Typography variant='h2'>{title}</Typography>}>
+      {upsell_products?.map((item) =>
+        item ? (
+          <RenderType
+            key={item.uid ?? ''}
+            renderer={productListRenderer}
+            sizes={responsiveVal(200, 400)}
+            {...item}
+          />
+        ) : null,
+      )}
+    </SidebarSlider>
+  )
+}

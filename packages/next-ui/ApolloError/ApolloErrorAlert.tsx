@@ -1,8 +1,7 @@
 import { ApolloError } from '@apollo/client'
 import { AlertProps, Alert } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
-import React from 'react'
-import AnimatedRow from '../AnimatedRow'
+import { AnimatedRow } from '../AnimatedRow'
 import { makeStyles } from '../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'ApolloErrorAlert' })((theme) => ({

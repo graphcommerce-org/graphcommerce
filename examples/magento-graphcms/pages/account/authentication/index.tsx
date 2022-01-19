@@ -16,8 +16,8 @@ import {
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
 import React from 'react'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 

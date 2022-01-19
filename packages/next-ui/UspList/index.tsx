@@ -22,7 +22,7 @@ export type UspListProps = UseStyles<typeof useStyles> & {
   size?: 'normal' | 'small'
 }
 
-export default function UspList(props: UspListProps) {
+export function UspList(props: UspListProps) {
   const { children, size } = props
   const { classes } = useStyles()
 

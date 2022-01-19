@@ -39,7 +39,7 @@ export type UspListItemProps = UseStyles<typeof useStyles> & {
   size?: string
 }
 
-export default function UspListItem(props: UspListItemProps) {
+export function UspListItem(props: UspListItemProps) {
   const { text, icon, size = 'normal' } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
 

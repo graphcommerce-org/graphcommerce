@@ -13,7 +13,7 @@ const useStyles = makeStyles({ name: 'FormHeader' })((theme) => ({
 export type FormHeaderProps = TypographyProps &
   UseStyles<typeof useStyles> & { children: React.ReactNode }
 
-export default function FormHeader(props: FormHeaderProps) {
+export function FormHeader(props: FormHeaderProps) {
   const { children, ...typographyProps } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
 

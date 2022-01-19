@@ -2,7 +2,7 @@ import { FlagAvatar, UseStyles, makeStyles, useMergedClasses } from '@graphcomme
 import { List, ListItem, ListItemText, Collapse, ListItemAvatar } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
-import { localeToStore, storeToLocale } from '../localeToStore'
+import { localeToStore, storeToLocale } from '../../localeToStore'
 import { StoreSwitcherListQuery } from './StoreSwitcherList.gql'
 
 const useStyles = makeStyles({ name: 'StoreSwitcherList' })((theme) => ({

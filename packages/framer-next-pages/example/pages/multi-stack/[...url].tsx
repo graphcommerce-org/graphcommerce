@@ -6,7 +6,7 @@ import {
   LayoutOverlay,
   LayoutOverlayProps,
   LayoutOverlayVariant,
-  SvgImageSimple,
+  SvgIcon,
   LayoutTitle,
   LinkOrButton,
 } from '@graphcommerce/next-ui'
@@ -35,7 +35,7 @@ function MultiStack() {
             <LinkOrButton
               color='secondary'
               button={{ variant: 'pill' }}
-              endIcon={<SvgImageSimple src={iconChevronRight} />}
+              endIcon={<SvgIcon src={iconChevronRight} />}
             >
               {page + 1}
             </LinkOrButton>

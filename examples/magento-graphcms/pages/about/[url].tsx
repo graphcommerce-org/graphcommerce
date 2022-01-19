@@ -2,10 +2,8 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
-import React from 'react'
-import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import { LayoutFull, LayoutFullProps } from '../../components/Layout'
-import RowRenderer from '../../components/Row/RowRenderer'
+import { RowRenderer, LayoutFull, LayoutFullProps } from '../../components'
+import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = DefaultPageQuery

@@ -31,8 +31,8 @@ import {
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
 import React from 'react'
-import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
-import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
+import { LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>

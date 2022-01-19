@@ -6,7 +6,7 @@ export type AnimatedRowProps = Omit<
   'layout' | 'initial' | 'animate' | 'exit' | 'transition'
 >
 
-export default function AnimatedRow(props: AnimatedRowProps) {
+export function AnimatedRow(props: AnimatedRowProps) {
   return (
     <m.div
       {...props}

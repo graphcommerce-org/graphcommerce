@@ -11,14 +11,14 @@ import {
   iconBox,
   LayoutOverlayHeader,
   LayoutTitle,
-  SvgImageSimple,
+  SvgIcon,
   GetStaticProps,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
@@ -62,7 +62,7 @@ function AccountReviewsAddPage() {
     return (
       <FullPageMessage
         title={t`Product could not be found`}
-        icon={<SvgImageSimple src={iconBox} size='xxl' />}
+        icon={<SvgIcon src={iconBox} size='xxl' />}
       >
         <Trans>Try a different product</Trans>
       </FullPageMessage>

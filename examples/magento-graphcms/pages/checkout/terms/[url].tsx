@@ -1,14 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import {
-  CartAgreementsDocument,
-  CartAgreementsQuery,
-} from '@graphcommerce/magento-cart/components/CartAgreementsForm/CartAgreements.gql'
+import { CartAgreementsDocument, CartAgreementsQuery } from '@graphcommerce/magento-cart'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import React from 'react'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = { agreement: NonNullable<NonNullable<CartAgreementsQuery['checkoutAgreements']>[0]> }
@@ -46,6 +42,7 @@ function TermsPage(props: Props) {
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'left',
   Layout: LayoutOverlay,
+  layoutProps: {},
 }
 TermsPage.pageOptions = pageOptions
 

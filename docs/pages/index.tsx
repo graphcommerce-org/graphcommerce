@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { iconChevronRight, LayoutHeader, SvgImageSimple, LayoutTitle } from '@graphcommerce/next-ui'
+import { iconChevronRight, LayoutHeader, SvgIcon, LayoutTitle } from '@graphcommerce/next-ui'
 import { Button } from '@mui/material'
 import Link from 'next/link'
 import { LayoutFull, LayoutFullProps } from '../components/Layout/LayoutFull'
@@ -22,11 +22,7 @@ function IndexPage(props: PageProps) {
           Setup your <i>Progressive Web App</i> (PWA) within 5 minutes using GraphCommerce.
         </p>
         <Link href='/read/1-1/getting-started/introduction' passHref>
-          <Button
-            color='secondary'
-            variant='text'
-            endIcon={<SvgImageSimple src={iconChevronRight} />}
-          >
+          <Button color='secondary' variant='text' endIcon={<SvgIcon src={iconChevronRight} />}>
             Start developing now
           </Button>
         </Link>

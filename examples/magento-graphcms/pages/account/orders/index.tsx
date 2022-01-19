@@ -11,15 +11,15 @@ import {
   GetStaticProps,
   iconBox,
   LayoutOverlayHeader,
-  SvgImageSimple,
+  SvgIcon,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -70,7 +70,7 @@ function AccountOrdersPage() {
           {customer?.orders && customer.orders.items.length < 1 && (
             <FullPageMessage
               title={t`You have no orders yet`}
-              icon={<SvgImageSimple src={iconBox} size='xxl' />}
+              icon={<SvgIcon src={iconBox} size='xxl' />}
             >
               <Trans>Discover our collection and place your first order!</Trans>
             </FullPageMessage>

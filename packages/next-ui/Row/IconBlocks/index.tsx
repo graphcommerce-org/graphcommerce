@@ -1,11 +1,11 @@
 import { Typography } from '@mui/material'
 import React from 'react'
-import Row from '..'
+import { Row } from '..'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
 
-const useStyles = makeStyles({ name: 'ServiceOptions' })((theme) => ({
+const useStyles = makeStyles({ name: 'IconBlocks' })((theme) => ({
   container: {
     maxWidth: 820,
   },
@@ -38,7 +38,7 @@ export type ServiceOptionsProps = UseStyles<typeof useStyles> & {
   children: React.ReactNode
 }
 
-export default function ServiceOptions(props: ServiceOptionsProps) {
+export function IconBlocks(props: ServiceOptionsProps) {
   const { title, children } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
 

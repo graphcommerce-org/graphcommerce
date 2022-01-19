@@ -3,7 +3,7 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   LayoutTitle,
   responsiveVal,
-  SvgImageSimple,
+  SvgIcon,
   iconChevronRight,
   iconBox,
   GetStaticProps,
@@ -12,8 +12,8 @@ import {
 } from '@graphcommerce/next-ui'
 import { Box, Container, Typography, Divider, styled } from '@mui/material'
 import React, { useState } from 'react'
-import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 const variants = ['text', 'outlined', 'contained', 'pill'] as const
 const sizes = ['small', 'medium', 'large'] as const
@@ -22,11 +22,11 @@ const colors = ['inherit', 'primary', 'secondary'] as const
 const propVariants: Record<string, ButtonProps> = {
   Default: {},
   'With start icon': {
-    startIcon: <SvgImageSimple key='icon' src={iconBox} size='inherit' />,
+    startIcon: <SvgIcon key='icon' src={iconBox} size='inherit' />,
     loadingPosition: 'start',
   },
   'With end icon': {
-    endIcon: <SvgImageSimple key='icon' src={iconChevronRight} size='inherit' />,
+    endIcon: <SvgIcon key='icon' src={iconChevronRight} size='inherit' />,
     loadingPosition: 'end',
   },
 }

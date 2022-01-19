@@ -14,7 +14,7 @@ import {
   iconChevronRight,
   LayoutHeader,
   Stepper,
-  SvgImageSimple,
+  SvgIcon,
   LayoutTitle,
   LinkOrButton,
 } from '@graphcommerce/next-ui'
@@ -22,9 +22,8 @@ import { ComposedForm, ComposedSubmit } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
-import React from 'react'
-import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
-import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
+import { LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
@@ -51,7 +50,7 @@ function ShippingPage() {
                 button={{
                   type: 'submit',
                   variant: 'pill',
-                  endIcon: <SvgImageSimple src={iconChevronRight} />,
+                  endIcon: <SvgIcon src={iconChevronRight} />,
                 }}
                 loading={
                   buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)
@@ -115,7 +114,7 @@ function ShippingPage() {
                         onClick={submit}
                       >
                         <Trans>Next</Trans>
-                        <SvgImageSimple src={iconChevronRight} />
+                        <SvgIcon src={iconChevronRight} />
                       </Button>
                     </FormActions>
                     <ApolloCartErrorAlert

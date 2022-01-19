@@ -4,7 +4,7 @@ import {
   StyledBadge,
   UseStyles,
   iconPerson,
-  SvgImageSimple,
+  SvgIcon,
   makeStyles,
   useMergedClasses,
 } from '@graphcommerce/next-ui'
@@ -49,7 +49,7 @@ function CustomerMenuFabItemContent(props: CustomerMenuFabItemProps) {
           variant='dot'
           classes={{ colorError: classes.colorError, badge: classes.badge }}
         >
-          {icon ?? <SvgImageSimple src={iconPerson} />}
+          {icon ?? <SvgIcon src={iconPerson} />}
         </StyledBadge>
       }
       href={requireAuth ? guestHref : authHref}

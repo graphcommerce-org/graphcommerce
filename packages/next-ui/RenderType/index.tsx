@@ -27,7 +27,7 @@ export type TypeRenderer<
  * A simple array with renderers but with strict typing that validates of the provided Renderer is
  * actually able to render the Type
  */
-export default function RenderType<
+export function RenderType<
   T extends TypeObject,
   A extends Record<string, unknown> = Record<string, unknown>,
 >(props: { renderer: TypeRenderer<T, A> } & FilterTypeByTypename<T, T['__typename']> & A) {

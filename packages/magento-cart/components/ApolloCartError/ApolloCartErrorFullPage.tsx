@@ -3,7 +3,7 @@ import {
   ApolloErrorFullPage,
   ApolloErrorFullPageProps,
   iconSadFace,
-  SvgImageSimple,
+  SvgIcon,
 } from '@graphcommerce/next-ui'
 import { Button } from '@mui/material'
 import { useClearCurrentCartId } from '../../hooks/useClearCurrentCartId'
@@ -20,7 +20,7 @@ export function ApolloCartErrorFullPage(props: ApolloCartErrorFullPageProps) {
   return (
     <ApolloErrorFullPage
       error={error}
-      icon={<SvgImageSimple src={iconSadFace} size='xxl' />}
+      icon={<SvgIcon src={iconSadFace} size='xxl' />}
       button={action}
       {...passedProps}
     />

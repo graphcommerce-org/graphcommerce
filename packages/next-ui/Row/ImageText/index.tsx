@@ -1,5 +1,5 @@
 import React from 'react'
-import Row from '..'
+import { Row } from '..'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { makeStyles, typography, useMergedClasses } from '../../Styles/tssReact'
@@ -61,7 +61,7 @@ export type ImageTextProps = UseStyles<typeof useStyles> & {
   children: React.ReactNode
 }
 
-export default function ImageText(props: ImageTextProps) {
+export function ImageText(props: ImageTextProps) {
   const { item, children } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
 

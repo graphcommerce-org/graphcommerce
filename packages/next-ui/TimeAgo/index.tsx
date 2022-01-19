@@ -3,7 +3,7 @@ export type TimeAgoProps = {
   locale?: string
 }
 
-export default function TimeAgo(props: TimeAgoProps) {
+export function TimeAgo(props: TimeAgoProps) {
   const { date, locale = 'en' } = props
   const msPerMinute = 60 * 1000
   const msPerHour = msPerMinute * 60

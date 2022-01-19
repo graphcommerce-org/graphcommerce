@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client'
 import {
   iconPerson,
   StyledBadge,
-  SvgImageSimple,
+  SvgIcon,
   UseStyles,
   makeStyles,
   useMergedClasses,
@@ -46,7 +46,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
           variant='dot'
           classes={{ colorError: classes.colorError }}
         >
-          {icon ?? <SvgImageSimple src={iconPerson} size='large' />}
+          {icon ?? <SvgIcon src={iconPerson} size='large' />}
         </StyledBadge>
       </Fab>
     </PageLink>

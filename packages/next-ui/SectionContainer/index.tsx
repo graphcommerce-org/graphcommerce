@@ -1,6 +1,6 @@
 import clsx from 'clsx'
-import React, { PropsWithChildren } from 'react'
-import SectionHeader, { SectionHeaderProps } from '../SectionHeader'
+import { PropsWithChildren } from 'react'
+import { SectionHeader, SectionHeaderProps } from '../SectionHeader'
 import { UseStyles } from '../Styles'
 import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 
@@ -23,7 +23,7 @@ export type SectionContainerProps = PropsWithChildren<{ borderBottom?: boolean }
   UseStyles<typeof useStyles> &
   SectionHeaderProps
 
-export default function SectionContainer(props: SectionContainerProps) {
+export function SectionContainer(props: SectionContainerProps) {
   const { children, borderBottom } = props
   let { classes } = useStyles()
   classes = useMergedClasses(classes, props.classes)

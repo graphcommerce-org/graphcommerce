@@ -1,0 +1,7 @@
+fragment Asset on Asset @injectable {
+  url
+  width
+  height
+  mimeType
+  size
+}

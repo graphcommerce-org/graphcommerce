@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.5.7",
+    "@graphcommerce/graphql": "^2.105.13",
     "@graphcommerce/image": "^2.105.13",
     "@graphcommerce/next-ui": "^3.23.1",
     "@mui/material": "^5.2.8",

@@ -6,7 +6,7 @@ import React, { useEffect } from 'react'
 import { UseStyles } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { makeStyles, typography, useMergedClasses } from '../Styles/tssReact'
-import SvgImageSimple from '../SvgImage/SvgImageSimple'
+import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconMenu, iconClose } from '../icons'
 import { MenuProps } from './Menu'
 import { useFabAnimation } from './useFabAnimation'
@@ -99,18 +99,10 @@ export default function MenuFab(props: MenuFabProps) {
         className={classes.menuFab}
       >
         {closeIcon ?? (
-          <SvgImageSimple
-            src={iconClose}
-            size='medium'
-            style={{ display: openEl ? 'block' : 'none' }}
-          />
+          <SvgIcon src={iconClose} size='medium' style={{ display: openEl ? 'block' : 'none' }} />
         )}
         {menuIcon ?? (
-          <SvgImageSimple
-            src={iconMenu}
-            size='medium'
-            style={{ display: openEl ? 'none' : 'block' }}
-          />
+          <SvgIcon src={iconMenu} size='medium' style={{ display: openEl ? 'none' : 'block' }} />
         )}
       </Fab>
       <m.div className={classes.shadow} style={{ opacity: shadowOpacity }} />

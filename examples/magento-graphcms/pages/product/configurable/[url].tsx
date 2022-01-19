@@ -31,11 +31,8 @@ import { Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
-import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
-import { LayoutFull, LayoutFullProps } from '../../../components/Layout'
-import { RowProduct } from '../../../components/Row'
-import RowRenderer from '../../../components/Row/RowRenderer'
-import Usps from '../../../components/Usps'
+import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
+import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = ProductPageQuery & ConfigurableProductPageQuery

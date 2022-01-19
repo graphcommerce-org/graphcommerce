@@ -1,0 +1,27 @@
+import { RichTextHeadingStrongStroked, Asset } from '@graphcommerce/graphcms-ui'
+import { SpecialBanner } from '@graphcommerce/next-ui'
+import { Link } from '@mui/material'
+import PageLink from 'next/link'
+import { RowSpecialBannerFragment } from './RowSpecialBanner.gql'
+
+type RowSpecialBannerProps = RowSpecialBannerFragment
+
+export function RowSpecialBanner(props: RowSpecialBannerProps) {
+  const { copy, asset, topic, pageLinks } = props
+
+  return (
+    <SpecialBanner
+      topic={topic}
+      asset={asset && <Asset asset={asset} sizes='50vw' />}
+      pageLinks={pageLinks.map((pageLink) => (
+        <PageLink href={pageLink.url} key={pageLink.url}>
+          <Link underline='always' href={pageLink.url} title={pageLink.title}>
+            {pageLink.title}
+          </Link>
+        </PageLink>
+      ))}
+    >
+      <RichTextHeadingStrongStroked {...copy} />
+    </SpecialBanner>
+  )
+}

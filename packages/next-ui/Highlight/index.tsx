@@ -1,4 +1,4 @@
-export default function Highlight(props: { text: string; highlight: string }) {
+export function Highlight(props: { text: string; highlight: string }) {
   const { text, highlight } = props
   const start = text.toLocaleLowerCase().indexOf(highlight.toLocaleLowerCase())
 

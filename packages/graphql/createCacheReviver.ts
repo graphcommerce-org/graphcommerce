@@ -1,7 +1,7 @@
 import { ApolloCache, ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import { mergeDeep } from '@apollo/client/utilities'
 import { LocalStorageWrapper, CachePersistor } from 'apollo3-cache-persist'
-import { TypedTypePolicies } from './generated/types'
+import type { TypedTypePolicies } from './generated/types'
 import { MigrateCache, migrateCacheHandler } from './migrateCache'
 import { getTypePoliciesVersion } from './typePolicies'
 

@@ -1,7 +1,5 @@
 import { Container, styled } from '@mui/material'
 
-const Row = styled(Container)(({ theme }) => ({ marginBottom: theme.spacings.xxl }), {
-  // name: 'Row',
-})
-
-export default Row
+export const Row = styled(Container, { name: 'Row' })(({ theme }) => ({
+  marginBottom: theme.spacings.xxl,
+}))

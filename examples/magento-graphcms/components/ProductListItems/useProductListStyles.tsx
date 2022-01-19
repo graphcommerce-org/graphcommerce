@@ -1,6 +1,6 @@
 import { makeStyles } from '@graphcommerce/next-ui'
 
-const useProductListStyles = makeStyles({ name: 'ProductList' })((theme) => ({
+export const useProductListStyles = makeStyles({ name: 'ProductList' })((theme) => ({
   productList: {
     [theme.breakpoints.up('xl')]: {
       '& > :nth-of-type(7n + 3)': {
@@ -18,5 +18,3 @@ const useProductListStyles = makeStyles({ name: 'ProductList' })((theme) => ({
     },
   },
 }))
-
-export default useProductListStyles

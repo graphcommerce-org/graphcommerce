@@ -2,7 +2,7 @@ import { ContainerProps } from '@mui/material'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
-import ColumnTwo from '../ColumnTwo'
+import { ColumnTwo } from '../ColumnTwo'
 
 type StyleProps = { nodeLength: boolean }
 
@@ -30,7 +30,7 @@ export type ColumnTwoSpreadProps = Omit<ContainerProps, 'children'> &
     colTwoContent: React.ReactNode
   }
 
-export default function ColumnTwoSpread(props: ColumnTwoSpreadProps) {
+export function ColumnTwoSpread(props: ColumnTwoSpreadProps) {
   const { nodeLength, ...colProps } = props
   const classes = useMergedClasses(useStyles({ nodeLength }).classes, props.classes)
   return <ColumnTwo {...colProps} classes={classes} />

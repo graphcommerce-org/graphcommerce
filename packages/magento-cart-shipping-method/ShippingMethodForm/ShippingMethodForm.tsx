@@ -9,7 +9,7 @@ import {
   FormRow,
   iconChevronLeft,
   iconChevronRight,
-  SvgImageSimple,
+  SvgIcon,
   UseStyles,
   makeStyles,
   useMergedClasses,
@@ -144,7 +144,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
                 ),
               }}
             >
-              <SvgImageSimple src={iconChevronLeft} size='small' aria-label={t`Scroll Left`} />
+              <SvgIcon src={iconChevronLeft} size='small' aria-label={t`Scroll Left`} />
             </ScrollerButton>
           </m.div>
 
@@ -220,7 +220,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
                 ),
               }}
             >
-              <SvgImageSimple src={iconChevronRight} size='small' aria-label={t`Scroll Right`} />
+              <SvgIcon src={iconChevronRight} size='small' aria-label={t`Scroll Right`} />
             </ScrollerButton>
           </m.div>
         </ScrollerProvider>

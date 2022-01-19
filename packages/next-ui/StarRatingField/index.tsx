@@ -2,7 +2,7 @@ import { RatingProps, Rating } from '@mui/material'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import { makeStyles, useMergedClasses } from '../Styles/tssReact'
-import SvgImageSimple from '../SvgImage/SvgImageSimple'
+import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconStar } from '../icons'
 
 export type StarRatingFieldProps = {
@@ -24,7 +24,7 @@ const useStyles = makeStyles({ name: 'StarRatingField' })((theme) => ({
   },
 }))
 
-export default function StarRatingField(props: StarRatingFieldProps) {
+export function StarRatingField(props: StarRatingFieldProps) {
   const { id, onChange = () => {}, ...ratingProps } = props
   let { classes } = useStyles()
   classes = useMergedClasses(classes, props.classes)
@@ -34,8 +34,8 @@ export default function StarRatingField(props: StarRatingFieldProps) {
       name={`star-rating-${id}`}
       max={5}
       size='small'
-      emptyIcon={<SvgImageSimple src={iconStar} size='large' className={classes.iconStarEmpty} />}
-      icon={<SvgImageSimple src={iconStar} size='large' className={classes.iconStar} />}
+      emptyIcon={<SvgIcon src={iconStar} size='large' className={classes.iconStarEmpty} />}
+      icon={<SvgIcon src={iconStar} size='large' className={classes.iconStar} />}
       onChange={(event, value) => {
         onChange(id ?? '', value ?? 0)
       }}

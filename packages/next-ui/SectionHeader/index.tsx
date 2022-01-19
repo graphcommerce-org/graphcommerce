@@ -37,7 +37,7 @@ export type SectionHeaderProps = {
     | { labelLeft?: React.ReactNode; labelRight: React.ReactNode }
   )
 
-export default function SectionHeader(props: SectionHeaderProps) {
+export function SectionHeader(props: SectionHeaderProps) {
   const {
     labelLeft,
     labelRight,

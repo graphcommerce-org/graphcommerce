@@ -6,12 +6,12 @@ import {
   LayoutTitle,
   LinkOrButton,
 } from '@graphcommerce/next-ui'
-import { Container, Divider, List, ListItem, Button } from '@mui/material'
+import { Container, Divider, List, ListItem } from '@mui/material'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import { LayoutMinimal, LayoutMinimalProps } from '../../../components/Layout'
+import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
 
 type AppShellDemoProps = {
   baseUrl: string

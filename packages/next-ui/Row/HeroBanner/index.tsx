@@ -1,7 +1,7 @@
 import { ContainerProps, useTheme, useMediaQuery } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
-import Row from '..'
+import { Row } from '..'
 import { useScrollY } from '../../Layout/hooks/useScrollY'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
@@ -71,7 +71,7 @@ export type HeroBannerProps = UseStyles<typeof useStyles> &
     children: React.ReactNode
   }
 
-export default function HeroBanner(props: HeroBannerProps) {
+export function HeroBanner(props: HeroBannerProps) {
   const { pageLinks, videoSrc, children, ...containerProps } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
   const theme = useTheme()

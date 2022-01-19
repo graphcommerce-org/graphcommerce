@@ -1,5 +1,5 @@
 import { ApolloCartErrorSnackbar, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { iconClose, SvgImageSimple } from '@graphcommerce/next-ui'
+import { iconClose, SvgIcon } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { Fab } from '@mui/material'
 import React from 'react'
@@ -25,7 +25,7 @@ export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
         type='submit'
         disabled={formState.isSubmitting}
       >
-        <SvgImageSimple src={iconClose} />
+        <SvgIcon src={iconClose} />
       </Fab>
       <ApolloCartErrorSnackbar error={error} />
     </form>

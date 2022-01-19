@@ -1,6 +1,6 @@
 import React from 'react'
-import Row from '..'
-import SectionContainer from '../../SectionContainer'
+import { Row } from '..'
+import { SectionContainer } from '../../SectionContainer'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { makeStyles, typography, useMergedClasses } from '../../Styles/tssReact'

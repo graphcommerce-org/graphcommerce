@@ -4,7 +4,7 @@ import {
   iconChevronDown,
   iconChevronUp,
   responsiveVal,
-  SvgImageSimple,
+  SvgIcon,
   UseStyles,
   makeStyles,
   useMergedClasses,
@@ -93,8 +93,8 @@ export default function CouponAccordion(props: CouponAccordionProps) {
           classes={{ endIcon: classes.endIcon }}
           endIcon={
             <>
-              {!coupon && open && <SvgImageSimple src={iconChevronUp} size='large' />}
-              {!coupon && !open && <SvgImageSimple src={iconChevronDown} size='large' />}
+              {!coupon && open && <SvgIcon src={iconChevronUp} size='large' />}
+              {!coupon && !open && <SvgIcon src={iconChevronDown} size='large' />}
             </>
           }
         >

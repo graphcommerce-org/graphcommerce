@@ -1,6 +1,6 @@
 import { ContainerProps } from '@mui/material'
 import React from 'react'
-import Row from '..'
+import { Row } from '..'
 import { UseStyles } from '../../Styles'
 import { makeStyles, typography, useMergedClasses } from '../../Styles/tssReact'
 
@@ -50,7 +50,7 @@ export type ColumnThreeProps = UseStyles<typeof useStyles> &
     colThreeContent: React.ReactNode
   }
 
-export default function ColumnThree(props: ColumnThreeProps) {
+export function ColumnThree(props: ColumnThreeProps) {
   const { colOneContent, colTwoContent, colThreeContent, ...containerProps } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
 

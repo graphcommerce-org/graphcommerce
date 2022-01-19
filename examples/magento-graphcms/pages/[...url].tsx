@@ -1,5 +1,5 @@
-import { mergeDeep } from '@apollo/client/utilities'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { Asset } from '@graphcommerce/graphcms-ui'
 import {
   CategoryChildren,
   CategoryDescription,
@@ -34,13 +34,15 @@ import {
 } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import Asset from '../components/Asset'
-import { CategoryPageDocument, CategoryPageQuery } from '../components/GraphQL/CategoryPage.gql'
-import { LayoutFull, LayoutFullProps } from '../components/Layout'
-import ProductListItems from '../components/ProductListItems/ProductListItems'
-import useProductListStyles from '../components/ProductListItems/useProductListStyles'
-import RowProduct from '../components/Row/RowProduct'
-import RowRenderer from '../components/Row/RowRenderer'
+import {
+  LayoutFull,
+  LayoutFullProps,
+  ProductListItems,
+  useProductListStyles,
+  RowProduct,
+  RowRenderer,
+} from '../components'
+import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
@@ -174,10 +176,11 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const products = staticClient.query({
     query: ProductListDocument,
-    variables: mergeDeep(productListParams, {
-      filters: { category_uid: { eq: await categoryUid } },
+    variables: {
+      ...productListParams,
+      filters: { ...productListParams.filters, category_uid: { eq: await categoryUid } },
       categoryUid: await categoryUid,
-    }),
+    },
   })
 
   // assertAllowedParams(await params, (await products).data)

@@ -15,8 +15,8 @@ import { t, Trans } from '@lingui/macro'
 import { Box, Container, NoSsr, Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -64,7 +64,9 @@ function EditAddressPage() {
           <SectionContainer labelLeft={t`Edit address`}>
             {!address && !loading && (
               <Box marginTop={3}>
-                <IconHeader src={iconAddresses} title={t`Address not found`} size='small' />
+                <IconHeader src={iconAddresses} size='small'>
+                  <Trans>Address not found</Trans>
+                </IconHeader>
               </Box>
             )}
 

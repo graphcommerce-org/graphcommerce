@@ -1,7 +1,7 @@
 import { Badge } from '@mui/material'
 import { typography, withStyles } from '../Styles/tssReact'
 
-const StyledBadge = withStyles(Badge, (theme) => ({
+export const StyledBadge = withStyles(Badge, (theme) => ({
   colorError: {},
 
   badge: {
@@ -18,5 +18,3 @@ const StyledBadge = withStyles(Badge, (theme) => ({
     },
   },
 }))
-
-export default StyledBadge

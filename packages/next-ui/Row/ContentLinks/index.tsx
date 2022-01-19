@@ -23,7 +23,7 @@ export type ContentLinksProps = UseStyles<typeof useStyles> & {
   children: React.ReactNode
 }
 
-export default function ContentLinks(props: ContentLinksProps) {
+export function ContentLinks(props: ContentLinksProps) {
   const { title, children } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
 

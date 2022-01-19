@@ -25,8 +25,8 @@ import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { Box, Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
-import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
-import { LayoutMinimal, LayoutMinimalProps } from '../../../components/Layout'
+import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
+import { DefaultPageDocument, DefaultPageQuery } from '../../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = DefaultPageQuery &

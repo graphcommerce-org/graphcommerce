@@ -4,8 +4,7 @@ import { UseStyles } from '../../Styles'
 import { classesPicker } from '../../Styles/classesPicker'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
-import { SvgImageProps } from '../../SvgImage'
-import SvgImageSimple from '../../SvgImage/SvgImageSimple'
+import { SvgIcon, SvgIconProps } from '../../SvgIcon/SvgIcon'
 
 const useStyles = makeStyles({ name: 'Title' })((theme) => ({
   container: {
@@ -36,14 +35,14 @@ const useStyles = makeStyles({ name: 'Title' })((theme) => ({
     marginTop: theme.spacings.xl,
   },
   containerGutterBottom: {
-    marginBottom: theme.spacings.lg,
+    marginBottom: theme.spacings.xl,
   },
   typography: {},
 }))
 
 export type TitleProps = {
   children: React.ReactNode
-  icon?: SvgImageProps['src']
+  icon?: SvgIconProps['src']
   size?: 'small' | 'medium'
   variant?: TypographyProps['variant']
   gutterTop?: boolean
@@ -64,7 +63,7 @@ export const LayoutTitle = React.forwardRef<HTMLDivElement, TitleProps>((props, 
 
   return (
     <div {...className('container')}>
-      {icon && <SvgImageSimple src={icon} size={small ? 'large' : 'xl'} />}
+      {icon && <SvgIcon src={icon} size={small ? 'large' : 'xl'} />}
       <Typography
         ref={ref}
         variant={variant || (small ? 'h6' : 'h3')}

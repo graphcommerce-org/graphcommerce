@@ -2,7 +2,7 @@ import { Fab, Snackbar, SnackbarContent, SnackbarProps, Portal, lighten } from '
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import { makeStyles, typography, useMergedClasses } from '../Styles/tssReact'
-import SvgImageSimple from '../SvgImage/SvgImageSimple'
+import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconClose, iconCheckmark, iconSadFace } from '../icons'
 
 type Size = 'normal' | 'wide'
@@ -162,7 +162,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
           message={
             <>
               <div className={classes.children}>
-                <SvgImageSimple src={icon} size='large' />
+                <SvgIcon src={icon} size='large' />
                 <div>{children}</div>
               </div>
               {action && (
@@ -171,7 +171,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
                 </div>
               )}
               <Fab className={classes.close} aria-label='Close' size='small' onClick={hideSnackbar}>
-                <SvgImageSimple src={iconClose} />
+                <SvgIcon src={iconClose} />
               </Fab>
             </>
           }

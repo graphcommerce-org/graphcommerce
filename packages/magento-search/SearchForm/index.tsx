@@ -3,7 +3,7 @@ import {
   UseStyles,
   iconClose,
   iconSearch,
-  SvgImageSimple,
+  SvgIcon,
   makeStyles,
   useMergedClasses,
 } from '@graphcommerce/next-ui'
@@ -54,7 +54,7 @@ export default function SearchForm(props: SearchFormProps) {
 
   const endAdornment = !watch('search') ? (
     <IconButton size='small'>
-      <SvgImageSimple src={iconSearch} />
+      <SvgIcon src={iconSearch} />
     </IconButton>
   ) : (
     <>
@@ -64,7 +64,7 @@ export default function SearchForm(props: SearchFormProps) {
         </div>
       )}
       <IconButton onClick={handleReset} size='small'>
-        <SvgImageSimple src={iconClose} />
+        <SvgIcon src={iconClose} />
       </IconButton>
     </>
   )

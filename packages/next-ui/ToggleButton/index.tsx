@@ -39,7 +39,7 @@ export type ToggleButtonProps = Omit<ButtonProps, 'onClick' | 'onChange'> & {
   onChange?: (e: FormEvent<HTMLButtonElement>, v: any) => void
 } & UseStyles<typeof useStyles>
 
-const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
+export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
   const {
     children,
     className,
@@ -92,5 +92,3 @@ const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
     </Button>
   )
 })
-
-export default ToggleButton

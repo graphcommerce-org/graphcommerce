@@ -3,7 +3,7 @@ import {
   iconChevronLeft,
   iconChevronRight,
   responsiveVal,
-  SvgImageSimple,
+  SvgIcon,
   useMergedClasses,
   useScrollY,
   UseStyles,
@@ -138,7 +138,7 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
     <m.div className={classes.wrapper} ref={wrapperRef}>
       <ScrollerProvider scrollSnapAlign='none'>
         <ScrollerButton direction='left' className={classes.sliderPrev} size='small'>
-          <SvgImageSimple src={iconChevronLeft} />
+          <SvgIcon src={iconChevronLeft} />
         </ScrollerButton>
         <div className={clsx(classes.container, isSticky && classes.containerSticky)}>
           <Scroller
@@ -150,7 +150,7 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
           <m.div className={classes.shadow} style={{ opacity }} />
         </div>
         <ScrollerButton direction='right' className={classes.sliderNext} size='small'>
-          <SvgImageSimple src={iconChevronRight} />
+          <SvgIcon src={iconChevronRight} />
         </ScrollerButton>
       </ScrollerProvider>
     </m.div>

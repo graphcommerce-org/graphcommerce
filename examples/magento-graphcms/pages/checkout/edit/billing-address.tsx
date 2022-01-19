@@ -5,8 +5,8 @@ import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@gra
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
 import React from 'react'
-import { DefaultPageDocument } from '../../../components/GraphQL/DefaultPage.gql'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import { DefaultPageDocument } from '../../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>

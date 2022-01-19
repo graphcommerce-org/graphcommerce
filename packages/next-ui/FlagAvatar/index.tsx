@@ -2,7 +2,7 @@ import { Avatar, AvatarProps } from '@mui/material'
 
 export type FlagAvatarProps = { country: string } & Omit<AvatarProps, 'src'>
 
-export default function FlagAvatar(props: FlagAvatarProps) {
+export function FlagAvatar(props: FlagAvatarProps) {
   const { country, ...avatarProps } = props
 
   return (

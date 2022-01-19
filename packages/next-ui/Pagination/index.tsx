@@ -3,7 +3,7 @@ import usePagination from '@mui/material/usePagination'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import { makeStyles, typography, useMergedClasses } from '../Styles/tssReact'
-import SvgImageSimple from '../SvgImage/SvgImageSimple'
+import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 
 const useStyles = makeStyles({ name: 'Pagination' })((theme) => ({
@@ -52,7 +52,7 @@ export type PagePaginationProps = {
  *
  * Read more: https://ahrefs.com/blog/rel-prev-next-pagination/
  */
-export default function Pagination(props: PagePaginationProps) {
+export function Pagination(props: PagePaginationProps) {
   const { count, page, renderLink, classes: styles, ...paginationProps } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
 
@@ -74,7 +74,7 @@ export default function Pagination(props: PagePaginationProps) {
       aria-label='Previous page'
       className={classes.fab}
     >
-      <SvgImageSimple src={iconChevronLeft} />
+      <SvgIcon src={iconChevronLeft} />
     </Fab>
   )
 
@@ -86,7 +86,7 @@ export default function Pagination(props: PagePaginationProps) {
       aria-label='Next page'
       className={classes.fab}
     >
-      <SvgImageSimple src={iconChevronRight} />
+      <SvgIcon src={iconChevronRight} />
     </Fab>
   )
 

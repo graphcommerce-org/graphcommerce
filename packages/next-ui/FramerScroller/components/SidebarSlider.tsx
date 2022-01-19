@@ -4,12 +4,12 @@ import {
   ScrollerPageCounter,
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
-import React, { ReactNode } from 'react'
-import Row from '../../Row'
+import { ReactNode } from 'react'
+import { Row } from '../../Row'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
-import SvgImageSimple from '../../SvgImage/SvgImageSimple'
+import { SvgIcon } from '../../SvgIcon/SvgIcon'
 import { iconChevronLeft, iconChevronRight } from '../../icons'
 
 const useStyles = makeStyles({ name: 'SidebarSlider' })((theme) => ({
@@ -59,7 +59,7 @@ export type SidebarSliderProps = { children: ReactNode; sidebar: ReactNode } & U
   typeof useStyles
 >
 
-export default function SidebarSlider(props: SidebarSliderProps) {
+export function SidebarSlider(props: SidebarSliderProps) {
   const { children, sidebar } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
 
@@ -78,12 +78,12 @@ export default function SidebarSlider(props: SidebarSliderProps) {
             </Scroller>
             <div className={classes.centerLeft}>
               <ScrollerButton direction='left' className={classes.sliderButtons}>
-                <SvgImageSimple src={iconChevronLeft} />
+                <SvgIcon src={iconChevronLeft} />
               </ScrollerButton>
             </div>
             <div className={classes.centerRight}>
               <ScrollerButton direction='right' className={classes.sliderButtons}>
-                <SvgImageSimple src={iconChevronRight} />
+                <SvgIcon src={iconChevronRight} />
               </ScrollerButton>
             </div>
           </div>

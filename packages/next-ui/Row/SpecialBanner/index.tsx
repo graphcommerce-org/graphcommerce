@@ -1,5 +1,5 @@
 import { ContainerProps, Typography } from '@mui/material'
-import Row from '..'
+import { Row } from '..'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { makeStyles, typography, useMergedClasses } from '../../Styles/tssReact'
@@ -87,7 +87,7 @@ export type SpecialBannerProps = UseStyles<typeof useStyles> &
     children: React.ReactNode
   }
 
-export default function SpecialBanner(props: SpecialBannerProps) {
+export function SpecialBanner(props: SpecialBannerProps) {
   const { asset, topic, pageLinks, children, ...containerProps } = props
   let { classes } = useStyles()
   classes = useMergedClasses(classes, props.classes)

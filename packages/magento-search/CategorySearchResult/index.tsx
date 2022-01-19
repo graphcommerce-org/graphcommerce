@@ -1,7 +1,7 @@
 import {
   Highlight,
   iconChevronRight,
-  SvgImageSimple,
+  SvgIcon,
   UseStyles,
   makeStyles,
   useMergedClasses,
@@ -50,7 +50,7 @@ export default function CategorySearchResult(props: CategorySearchResultProps) {
         variant='contained'
         className={classes.categoryButton}
         disableElevation
-        endIcon={<SvgImageSimple src={iconChevronRight} size='small' />}
+        endIcon={<SvgIcon src={iconChevronRight} size='small' />}
       >
         <div>
           {catProps?.breadcrumbs?.map((breadcrumb) => (

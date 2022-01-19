@@ -1,9 +1,10 @@
+import { Image } from '@graphcommerce/image'
 import { StoreSwitcherButton } from '@graphcommerce/magento-store'
-import { Footer as FooterBase, SocialIcon } from '@graphcommerce/next-ui'
+import { Footer as FooterBase } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Button, IconButton, Link } from '@mui/material'
 import PageLink from 'next/link'
-import { FooterQueryFragment } from '../GraphQL/FooterQueryFragment.gql'
+import { FooterQueryFragment } from './FooterQueryFragment.gql'
 
 export type FooterProps = FooterQueryFragment
 
@@ -24,13 +25,7 @@ export function Footer(props: FooterProps) {
                 edge='start'
               >
                 {link.asset ? (
-                  <SocialIcon
-                    src={link.asset.url}
-                    width={24}
-                    height={24}
-                    alt={link.title}
-                    size='small'
-                  />
+                  <Image src={link.asset.url} width={24} height={24} alt={link.title} />
                 ) : (
                   link.title
                 )}

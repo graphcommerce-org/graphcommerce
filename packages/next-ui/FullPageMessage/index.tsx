@@ -40,7 +40,7 @@ export type FullPageMessageProps = {
   disableMargin?: boolean
 } & UseStyles<typeof useStyles>
 
-export default function FullPageMessage(props: FullPageMessageProps) {
+export function FullPageMessage(props: FullPageMessageProps) {
   const { icon, title, children, button, altButton, disableMargin = false } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
 

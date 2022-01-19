@@ -6,11 +6,16 @@ import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-import BlogList from '../../../components/Blog'
-import { BlogListDocument, BlogListQuery } from '../../../components/Blog/BlogList.gql'
-import { BlogPathsDocument, BlogPathsQuery } from '../../../components/Blog/BlogPaths.gql'
-import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
-import { LayoutFull, LayoutFullProps } from '../../../components/Layout'
+import {
+  BlogList,
+  BlogListDocument,
+  BlogListQuery,
+  BlogPathsDocument,
+  BlogPathsQuery,
+  LayoutFull,
+  LayoutFullProps,
+} from '../../../components'
+import { DefaultPageDocument, DefaultPageQuery } from '../../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }

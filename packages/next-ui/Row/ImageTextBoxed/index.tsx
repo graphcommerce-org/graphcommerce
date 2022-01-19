@@ -1,5 +1,5 @@
 import React from 'react'
-import Row from '..'
+import { Row } from '..'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { makeStyles, typography, useMergedClasses } from '../../Styles/tssReact'
@@ -59,7 +59,7 @@ export type ImageTextBoxedProps = UseStyles<typeof useStyles> & {
   item?: React.ReactNode
 }
 
-export default function ImageTextBoxed(props: ImageTextBoxedProps) {
+export function ImageTextBoxed(props: ImageTextBoxedProps) {
   const { children, item } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
 

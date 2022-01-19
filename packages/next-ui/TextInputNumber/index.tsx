@@ -11,7 +11,7 @@ import React, { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } fro
 import { UseStyles } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { makeStyles, useMergedClasses } from '../Styles/tssReact'
-import SvgImageSimple from '../SvgImage/SvgImageSimple'
+import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconMin, iconPlus } from '../icons'
 
 const useStyles = makeStyles({ name: 'TextInputNumber' })({
@@ -48,7 +48,7 @@ function isOutlined(props: TextFieldProps): props is OutlinedTextFieldProps {
   return props.variant === 'outlined'
 }
 
-export default function TextInputNumber(props: TextInputNumberProps) {
+export function TextInputNumber(props: TextInputNumberProps) {
   const { DownProps = {}, UpProps = {}, inputProps = {}, inputRef, ...textFieldProps } = props
   let { classes } = useStyles()
   classes = useMergedClasses(classes, props.classes)
@@ -131,7 +131,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             className={clsx(classes.button, DownProps.className)}
             {...DownProps}
           >
-            {DownProps.children ?? <SvgImageSimple src={iconMin} size='small' />}
+            {DownProps.children ?? <SvgIcon src={iconMin} size='small' />}
           </IconButton>
         ),
         endAdornment: (
@@ -147,7 +147,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             className={clsx(classes.button, UpProps.className)}
             {...UpProps}
           >
-            {UpProps.children ?? <SvgImageSimple src={iconPlus} size='small' />}
+            {UpProps.children ?? <SvgIcon src={iconPlus} size='small' />}
           </IconButton>
         ),
       }}

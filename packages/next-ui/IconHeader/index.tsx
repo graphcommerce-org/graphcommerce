@@ -2,8 +2,7 @@ import { Typography } from '@mui/material'
 import clsx from 'clsx'
 import { UseStyles } from '../Styles'
 import { makeStyles, typography, useMergedClasses } from '../Styles/tssReact'
-import { SvgImageProps } from '../SvgImage'
-import SvgImageSimple from '../SvgImage/SvgImageSimple'
+import { SvgIcon, SvgIconProps } from '../SvgIcon/SvgIcon'
 
 // TODO: remove all occurrences. deprecated component
 
@@ -40,28 +39,24 @@ const useStyles = makeStyles({ name: 'IconHeader' })((theme) => ({
 export type IconHeaderSize = 'small' | 'medium' | 'large'
 
 type IconHeaderProps = {
-  title: string
+  children: React.ReactNode
   size?: IconHeaderSize
-  iconSize?: number
-  iconSizeMobile?: number
   noMargin?: boolean
   stayInline?: boolean
   ellipsis?: boolean
-} & Pick<SvgImageProps, 'src' | 'alt'> &
+} & Pick<SvgIconProps, 'src'> &
   UseStyles<typeof useStyles>
 
 type IconHeaderHeadings = 'h2' | 'h4' | 'h5'
 
-export default function IconHeader(props: IconHeaderProps) {
+export function IconHeader(props: IconHeaderProps) {
   const {
-    title,
+    children,
     size = 'large',
     stayInline = false,
     noMargin = false,
     ellipsis = false,
-    iconSize,
-    iconSizeMobile,
-    ...svgImageProps
+    src,
   } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
 
@@ -74,7 +69,7 @@ export default function IconHeader(props: IconHeaderProps) {
   return (
     <div className={clsx(classes.container, !noMargin && classes.margin)}>
       <div className={clsx(classes.innerContainer, !stayInline && classes.breakColumnsDesktop)}>
-        <SvgImageSimple {...svgImageProps} />
+        <SvgIcon src={src} />
         <Typography
           variant={variants[size]}
           component='h2'
@@ -83,7 +78,7 @@ export default function IconHeader(props: IconHeaderProps) {
             size === 'medium' && classes.mediumFontWeight,
           )}
         >
-          {title}
+          {children}
         </Typography>
       </div>
     </div>

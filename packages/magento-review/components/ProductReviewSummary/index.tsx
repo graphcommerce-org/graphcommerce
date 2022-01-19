@@ -1,10 +1,4 @@
-import {
-  SvgImageSimple,
-  iconStar,
-  UseStyles,
-  makeStyles,
-  useMergedClasses,
-} from '@graphcommerce/next-ui'
+import { SvgIcon, iconStar, UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
 import React from 'react'
 import { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'
 
@@ -45,19 +39,19 @@ export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
   return (
     <div className={classes.root}>
       <div>
-        <SvgImageSimple src={iconStar} size='xs' className={classes.iconStarDisabled} />
-        <SvgImageSimple src={iconStar} size='xs' className={classes.iconStarDisabled} />
-        <SvgImageSimple src={iconStar} size='xs' className={classes.iconStarDisabled} />
-        <SvgImageSimple src={iconStar} size='xs' className={classes.iconStarDisabled} />
-        <SvgImageSimple src={iconStar} size='xs' className={classes.iconStarDisabled} />
+        <SvgIcon src={iconStar} size='xs' className={classes.iconStarDisabled} />
+        <SvgIcon src={iconStar} size='xs' className={classes.iconStarDisabled} />
+        <SvgIcon src={iconStar} size='xs' className={classes.iconStarDisabled} />
+        <SvgIcon src={iconStar} size='xs' className={classes.iconStarDisabled} />
+        <SvgIcon src={iconStar} size='xs' className={classes.iconStarDisabled} />
       </div>
       <div className={classes.rating} style={{ width: `${rating_summary}%` }}>
         <div>
-          <SvgImageSimple src={iconStar} size='xs' className={classes.iconStar} />
-          <SvgImageSimple src={iconStar} size='xs' className={classes.iconStar} />
-          <SvgImageSimple src={iconStar} size='xs' className={classes.iconStar} />
-          <SvgImageSimple src={iconStar} size='xs' className={classes.iconStar} />
-          <SvgImageSimple src={iconStar} size='xs' className={classes.iconStar} />
+          <SvgIcon src={iconStar} size='xs' className={classes.iconStar} />
+          <SvgIcon src={iconStar} size='xs' className={classes.iconStar} />
+          <SvgIcon src={iconStar} size='xs' className={classes.iconStar} />
+          <SvgIcon src={iconStar} size='xs' className={classes.iconStar} />
+          <SvgIcon src={iconStar} size='xs' className={classes.iconStar} />
         </div>
       </div>
     </div>

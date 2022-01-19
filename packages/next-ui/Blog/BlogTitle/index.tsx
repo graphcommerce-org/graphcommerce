@@ -1,26 +1,15 @@
+import { Box } from '@mui/material'
 import React from 'react'
 import { LayoutTitle } from '../../Layout'
-import { UseStyles } from '../../Styles'
-import { makeStyles } from '../../Styles/tssReact'
 
-const useStyles = makeStyles({ name: 'BlogTitle' })({
-  wrapper: {
-    maxWidth: 800,
-    margin: `0 auto`,
-  },
-})
+export type BlogTitleProps = Pick<React.ComponentProps<typeof Box>, 'sx' | 'children'>
 
-export type BlogTitleProps = UseStyles<typeof useStyles> & {
-  title: string
-}
-
-export default function BlogTitle(props: BlogTitleProps) {
-  const { title } = props
-  const { classes } = useStyles()
+export function BlogTitle(props: BlogTitleProps) {
+  const { sx, children } = props
 
   return (
-    <div className={classes.wrapper}>
-      <LayoutTitle variant='h1'>{title}</LayoutTitle>
-    </div>
+    <Box sx={{ maxWidth: 800, margin: '0 auto', ...sx }}>
+      <LayoutTitle variant='h1'>{children}</LayoutTitle>
+    </Box>
   )
 }

@@ -1,5 +1,5 @@
 import { ContainerProps } from '@mui/material'
-import Row from '..'
+import { Row } from '..'
 import { UseStyles } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
@@ -67,7 +67,7 @@ export type ParagraphWithSidebarSlideProps = UseStyles<typeof useStyles> &
     children: React.ReactNode
   }
 
-export default function ParagraphWithSidebarSlide(props: ParagraphWithSidebarSlideProps) {
+export function ParagraphWithSidebarSlide(props: ParagraphWithSidebarSlideProps) {
   const { background, slidingItems, children, ...containerProps } = props
   let { classes } = useStyles()
   classes = useMergedClasses(classes, props.classes)

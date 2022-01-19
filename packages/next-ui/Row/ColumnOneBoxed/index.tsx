@@ -1,7 +1,6 @@
 import { ContainerProps } from '@mui/material'
-import React from 'react'
-import Row from '..'
-import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
+import { Row } from '..'
+import { makeStyles } from '../../Styles/tssReact'
 
 const useStyles = makeStyles({ name: 'ColumnOneBoxed' })((theme) => ({
   boxed: {
@@ -13,7 +12,7 @@ const useStyles = makeStyles({ name: 'ColumnOneBoxed' })((theme) => ({
   },
 }))
 
-export default function ColumnOneBoxed(props: ContainerProps) {
+export function ColumnOneBoxed(props: ContainerProps) {
   const { children } = props
   const { classes } = useStyles()
 

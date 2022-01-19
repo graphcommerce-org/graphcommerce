@@ -9,7 +9,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { createTheme, Theme, alpha } from '@mui/material'
 import { Components, PaletteOptions } from '@mui/material/styles'
-import shadows from './shadows'
+import { shadows } from './shadows'
 
 const breakpoints = {
   xs: 0,

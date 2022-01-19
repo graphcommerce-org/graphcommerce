@@ -26,11 +26,8 @@ import {
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import { ProductPageDocument, ProductPageQuery } from '../../components/GraphQL/ProductPage.gql'
-import { LayoutFull, LayoutFullProps } from '../../components/Layout'
-import { RowProduct } from '../../components/Row'
-import RowRenderer from '../../components/Row/RowRenderer'
-import Usps from '../../components/Usps'
+import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../components'
+import { ProductPageDocument, ProductPageQuery } from '../../graphql/ProductPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }

@@ -1,5 +1,5 @@
 import React from 'react'
-import Row from '..'
+import { Row } from '..'
 import { UseStyles } from '../../Styles'
 import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
 
@@ -38,7 +38,7 @@ export type ColumnTwoWithTopProps = UseStyles<typeof useStyles> & {
   right: React.ReactNode
 }
 
-export default function ColumnTwoWithTop(props: ColumnTwoWithTopProps) {
+export function ColumnTwoWithTop(props: ColumnTwoWithTopProps) {
   const { top, left, right } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
 

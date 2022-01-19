@@ -20,6 +20,15 @@
     "prepack:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack",
     "postinstall": "yarn prepack"
   },
+  "scripts_local": {
+    "dev": "yarn concurrently -k -n codegen,next 'yarn codegen-base -w' 'yarn next dev'",
+    "codegen": "yarn mesh build --require dotenv/config && NEXT_PUBLIC_GRAPHQL_ENDPOINT=.mesh/schema.graphql yarn codegen-base",
+    "build": "yarn codegen && yarn next build && yarn next-sitemap",
+    "start": "next start",
+    "tsc:lint": "yarn tsc --noEmit -p .",
+    "lingui": "NODE_ENV=development lingui extract",
+    "codegen-base": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 yarn graphql-codegen --require dotenv/config"
+  },
   "dependencies": {
     "@graphcommerce/eslint-config-pwa": "^3.1.10",
     "@graphcommerce/framer-next-pages": "^2.109.2",
