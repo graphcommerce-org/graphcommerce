@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.40](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.5.39...@graphcommerce/magento-search@3.5.40) (2022-01-20)
+
+
+### Bug Fixes
+
+* search result label translation ([7e14ff5](https://github.com/ho-nl/m2-pwa/commit/7e14ff5548d86bc6b4f7afd51c259c0b833878f7))
+
+
+
+
+
 ## [3.5.39](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-search@3.5.38...@graphcommerce/magento-search@3.5.39) (2022-01-20)
 
 
