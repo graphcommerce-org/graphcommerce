@@ -59,8 +59,8 @@ export default function SearchForm(props: SearchFormProps) {
         <div className={classes.totalProducts}>
           {totalResults > 0 && (
             <div className={classes.totalProducts}>
-              {totalResults === 1 && <Trans>{totalResults} result</Trans>}
-              {totalResults > 1 && <Trans>{totalResults} results</Trans>}
+              {totalResults} {totalResults === 1 && <Trans>result</Trans>}
+              {totalResults > 1 && <Trans>results</Trans>}
             </div>
           )}
         </div>

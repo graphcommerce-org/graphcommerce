@@ -381,3 +381,9 @@ msgstr "terug gestuurd"
 
 msgid "shipped"
 msgstr "verzonden"
+
+msgid "result"
+msgstr "resultaat"
+
+msgid "results"
+msgstr "resultaten"
