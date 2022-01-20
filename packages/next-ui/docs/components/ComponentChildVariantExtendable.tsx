@@ -6,7 +6,7 @@ import { ComponentProps } from 'react'
 
 // To be able to select children from the consuming side, we define the classes.
 // Minimal utility to convert the classes to selectors. Hover over `selectors` to see what it means.
-const { name, classes, selectors } = componentSlots('MyComponent', ['child'] as const)
+const { componentName, classes, selectors } = componentSlots('MyComponent', ['child'] as const)
 
 // Props that are used in our styled elements to render different CSS
 type MyComponentStyleProps = { variant?: 'cool' | 'supercool' }
@@ -22,8 +22,8 @@ declare module '@mui/material/styles/components' {
 
 // We're creating a new styled('div') component and apply our styles to it.
 const Root = styled('div', {
-  name,
-  target: name, // Adds a class name `MyComponent` to the div.
+  name: componentName,
+  target: componentName, // Adds a class name `MyComponent` to the div.
   overridesResolver: (_, styles) => styles.root, // Allows for exstensibility. find the correct entry in theme.components.MyComponent.styleOverrides
 })<MyComponentStyleProps>(({ theme }) => ({
   // Styles are added
@@ -34,7 +34,7 @@ const Root = styled('div', {
 // ---- Child component ----
 
 const Child = styled('div', {
-  name,
+  name: componentName,
   slot: 'child', // A slot is used as we do not want to receive style overrides from theme.components.MyComponent.variants.
   target: classes.child, // Mandatory for children, adds a class name `MyComponent-child` so it can be styled from the outside.
   overridesResolver: (_, styles) => styles.child,

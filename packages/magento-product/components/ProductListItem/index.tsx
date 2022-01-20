@@ -1,131 +1,32 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import {
-  makeStyles,
-  responsiveVal,
-  typography,
-  useMergedClasses,
-  UseStyles,
-} from '@graphcommerce/next-ui'
-import { ButtonBase, Typography } from '@mui/material'
+import { responsiveVal, componentSlots } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
+import { ButtonBase, Typography, Box, styled, SxProps, Theme } from '@mui/material'
+import { SystemStyleObject } from '@mui/system'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
-import React, { PropsWithChildren, useCallback } from 'react'
+import React, { PropsWithChildren, useMemo } from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { useProductLink } from '../../hooks/useProductLink'
 import ProductListPrice from '../ProductListPrice'
 
-const useStyles = makeStyles<StyleProps>({ name: 'ProductListItem' })(
-  (theme, { aspectRatio = [4, 3] }) => ({
-    buttonBase: {
-      display: 'block',
-    },
-    item: {
-      position: 'relative',
-      height: '100%',
-    },
-    title: {
-      display: 'inline',
-      color: theme.palette.text.primary,
-      overflowWrap: 'break-word',
-      wordBreak: 'break-all',
-      maxWidth: '100%',
-      marginRight: responsiveVal(3, 5),
-      gridArea: 'title',
-      fontWeight: theme.typography.fontWeightBold,
-    },
-    itemTitleContainer: {
-      display: 'grid',
-      gridTemplateColumns: 'unset',
-      alignItems: 'baseline',
-      marginTop: theme.spacings.xs,
-      columnGap: 4,
-      gridTemplateAreas: `
-        "title title"
-        "subtitle price"
-      `,
-      justifyContent: 'space-between',
-      [theme.breakpoints.up('md')]: {
-        gridTemplateAreas: `"title subtitle price"`,
-        gridTemplateColumns: 'auto auto 1fr',
-      },
-    },
-    subtitle: {
-      gridArea: 'subtitle',
-    },
-    price: {
-      gridArea: 'price',
-      textAlign: 'right',
-      [theme.breakpoints.up('sm')]: {
-        justifySelf: 'flex-end',
-      },
-    },
-    overlayItems: {
-      display: 'grid',
-      gridTemplateAreas: `
-        "topLeft topRight"
-        "bottomLeft bottomRight"
-      `,
-      position: 'absolute',
-      top: 0,
-      width: '100%',
-      height: '100%',
-      gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-      gridTemplateRows: 'repeat(2, minmax(0, 1fr))',
-      padding: responsiveVal(8, 12),
-      color: theme.palette.text.primary,
-    },
-    cellAlignRight: {
-      justifySelf: 'end',
-      textAlign: 'right',
-    },
-    cellAlignBottom: {
-      alignSelf: 'flex-end',
-    },
-    overlayItem: {
-      '& div': {
-        gap: 0,
-        // whiteSpace: 'nowrap',
-      },
-    },
-    imageContainer: {
-      display: 'block',
-      height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
-      position: 'relative',
-      paddingTop: `calc(100% / ${aspectRatio[0]} * ${aspectRatio[1]})`,
-      background: theme.palette.background.image, // theme specific,
-      borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
-    },
-    placeholder: {
-      display: 'flex',
-      textAlign: 'center',
-      height: '100%',
-      justifyContent: 'center',
-      alignItems: 'center',
-      color: theme.palette.background.default,
-      fontWeight: 600,
-      userSelect: 'none',
-    },
-    image: {
-      objectFit: 'contain',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-    },
-    link: {
-      textDecoration: 'underline',
-    },
-    discount: {
-      ...typography(theme, 'caption'),
-      background: theme.palette.text.primary,
-      fontWeight: theme.typography.fontWeightBold,
-      border: `1px solid ${theme.palette.divider}`,
-      padding: '0px 6px',
-      color: theme.palette.background.default,
-      display: 'inline-block',
-    },
-  }),
-)
+const { componentName, classes, selectors } = componentSlots('ProductListItem', [
+  'item',
+  'title',
+  'titleContainer',
+  'subtitle',
+  'price',
+  'overlayItems',
+  'topLeft',
+  'topRight',
+  'bottomLeft',
+  'bottomRight',
+  'imageContainer',
+  'placeholder',
+  'image',
+  'discount',
+] as const)
 
 export type OverlayAreaKeys = 'topLeft' | 'bottomLeft' | 'topRight' | 'bottomRight'
 
@@ -143,7 +44,9 @@ type BaseProps = PropsWithChildren<
     Pick<ImageProps, 'loading' | 'sizes' | 'dontReportWronglySizedImages'>
 >
 
-export type ProductListItemProps = BaseProps & UseStyles<typeof useStyles>
+export type ProductListItemProps = BaseProps & { sx?: SxProps<Theme> }
+
+const StyledImage = styled(Image)({})
 
 export default function ProductListItem(props: ProductListItemProps) {
   const {
@@ -160,64 +63,190 @@ export default function ProductListItem(props: ProductListItemProps) {
     loading,
     sizes,
     dontReportWronglySizedImages,
-    aspectRatio,
+    aspectRatio = [4, 3],
+    sx = [],
   } = props
-
-  const classes = useMergedClasses(useStyles({ aspectRatio, imageOnly }).classes, props.classes)
 
   const productLink = useProductLink(props)
   const discount = Math.floor(price_range.minimum_price.discount?.percent_off ?? 0)
   const { locale } = useRouter()
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const format = useCallback(
-    new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: 1 }).format,
-    [],
+  const formatter = useMemo(
+    () => new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: 1 }),
+    [locale],
   )
 
   return (
     <PageLink href={productLink} passHref>
-      <ButtonBase classes={{ root: clsx(classes.buttonBase, classes.item) }} component='a'>
-        <div className={classes.imageContainer}>
+      <ButtonBase
+        component='a'
+        sx={[
+          (theme) => ({
+            display: 'block',
+            position: 'relative',
+            height: '100%',
+            borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+          }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+        className={componentName}
+      >
+        <Box
+          sx={(theme) => ({
+            display: 'grid',
+            bgcolor: 'background.image',
+            borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+            padding: responsiveVal(8, 12),
+            '& > picture': {
+              gridArea: `1 / 1 / 3 / 3`,
+              margin: `calc(${responsiveVal(8, 12)} * -1)`,
+            },
+          })}
+          className={classes.imageContainer}
+        >
           {small_image ? (
-            <Image
+            <StyledImage
               layout='fill'
+              width={1}
+              height={1}
               sizes={sizes}
               dontReportWronglySizedImages={dontReportWronglySizedImages}
               src={small_image.url ?? ''}
               alt={small_image.label ?? ''}
               className={classes.image}
               loading={loading}
+              sx={{ objectFit: 'contain', aspectRatio: `${aspectRatio[0] / aspectRatio[1]}` }}
             />
           ) : (
-            <div className={clsx(classes.placeholder, classes.image)}>NO IMAGE</div>
+            <Box
+              sx={{
+                gridArea: `1 / 1 / 3 / 3`,
+                typography: 'caption',
+                display: 'flex',
+                textAlign: 'center',
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+                color: 'background.default',
+                userSelect: 'none',
+              }}
+              className={clsx(classes.placeholder, classes.image)}
+            >
+              <Trans>No Image</Trans>
+            </Box>
           )}
 
           {!imageOnly && (
-            <div className={classes.overlayItems}>
-              <div className={classes.overlayItem}>
-                {discount > 0 && <div className={classes.discount}>{format(discount / -100)}</div>}
+            <>
+              <Box
+                sx={{
+                  gridArea: `1 / 1 / 2 / 2`,
+                  zIndex: 1,
+                }}
+                className={classes.topLeft}
+              >
+                {discount > 0 && (
+                  <Box
+                    className={classes.discount}
+                    sx={{
+                      typography: 'caption',
+                      bgcolor: 'text.primary',
+                      fontWeight: 'fontWeightBold',
+                      border: 1,
+                      borderColor: 'divider',
+                      padding: '0px 6px',
+                      color: 'background.default',
+                      display: 'inline-block',
+                    }}
+                  >
+                    {formatter.format(discount / -100)}
+                  </Box>
+                )}
                 {topLeft}
-              </div>
-              <div className={clsx(classes.overlayItem, classes.cellAlignRight)}>{topRight}</div>
-              <div className={clsx(classes.overlayItem, classes.cellAlignBottom)}>{bottomLeft}</div>
-              <div className={clsx(classes.cellAlignBottom, classes.cellAlignRight)}>
+              </Box>
+              <Box
+                sx={{
+                  justifySelf: 'end',
+                  textAlign: 'right',
+                  gridArea: `1 / 2 / 2 / 3`,
+                  zIndex: 1,
+                }}
+                className={classes.topLeft}
+              >
+                {topRight}
+              </Box>
+              <Box
+                sx={{
+                  alignSelf: 'flex-end',
+                  gridArea: `2 / 1 / 3 / 2`,
+                  zIndex: 1,
+                }}
+                className={classes.bottomLeft}
+              >
+                {bottomLeft}
+              </Box>
+              <Box
+                sx={{
+                  textAlign: 'right',
+                  alignSelf: 'flex-end',
+                  gridArea: `2 / 2 / 3 / 3`,
+                  zIndex: 1,
+                  justifySelf: 'end',
+                }}
+                className={classes.bottomRight}
+              >
                 {bottomRight}
-              </div>
-            </div>
+              </Box>
+            </>
           )}
-        </div>
+        </Box>
 
         {!imageOnly && (
           <>
-            <div className={classes.itemTitleContainer}>
-              <Typography component='h2' variant='subtitle1' className={classes.title}>
+            <Box
+              className={classes.titleContainer}
+              sx={(theme) => ({
+                display: 'grid',
+                alignItems: 'baseline',
+                marginTop: theme.spacings.xs,
+                columnGap: 1,
+                gridTemplateAreas: {
+                  xs: `"title title" "subtitle price"`,
+                  md: `"title subtitle price"`,
+                },
+                gridTemplateColumns: { xs: 'unset', md: 'auto auto 1fr' },
+                justifyContent: 'space-between',
+              })}
+            >
+              <Typography
+                component='h2'
+                variant='subtitle1'
+                sx={{
+                  display: 'inline',
+                  color: 'text.primary',
+                  overflowWrap: 'break-word',
+                  wordBreak: 'break-all',
+                  maxWidth: '100%',
+                  gridArea: 'title',
+                  fontWeight: 'fontWeightBold',
+                }}
+                className={classes.title}
+              >
                 {name}
               </Typography>
-              <div className={classes.subtitle}>{subTitle}</div>
+              <Box sx={{ gridArea: 'subtitle' }} className={classes.subtitle}>
+                {subTitle}
+              </Box>
 
-              <ProductListPrice {...price_range.minimum_price} classes={{ root: classes.price }} />
-            </div>
+              <ProductListPrice
+                {...price_range.minimum_price}
+                sx={{
+                  gridArea: 'price',
+                  textAlign: 'right',
+                  justifySelf: { sm: 'flex-end' },
+                }}
+              />
+            </Box>
             {children}
           </>
         )}
@@ -225,3 +254,5 @@ export default function ProductListItem(props: ProductListItemProps) {
     </PageLink>
   )
 }
+
+ProductListItem.selectors = { ...selectors, ...ProductListPrice.selectors }

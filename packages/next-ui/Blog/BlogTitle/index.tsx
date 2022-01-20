@@ -5,10 +5,10 @@ import { LayoutTitle } from '../../Layout'
 export type BlogTitleProps = Pick<React.ComponentProps<typeof Box>, 'sx' | 'children'>
 
 export function BlogTitle(props: BlogTitleProps) {
-  const { sx, children } = props
+  const { sx = [], children } = props
 
   return (
-    <Box sx={{ maxWidth: 800, margin: '0 auto', ...sx }}>
+    <Box sx={[{ maxWidth: 800, margin: '0 auto' }, ...(Array.isArray(sx) ? sx : [sx])]}>
       <LayoutTitle variant='h1'>{children}</LayoutTitle>
     </Box>
   )

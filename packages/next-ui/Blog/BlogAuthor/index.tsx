@@ -10,7 +10,7 @@ export type BlogAuthorProps = {
 }
 
 export function BlogAuthor(props: BlogAuthorProps) {
-  const { author, date, sx } = props
+  const { author, date, sx = [] } = props
 
   const { locale } = useRouter()
   const formatter = useMemo(
@@ -20,14 +20,16 @@ export function BlogAuthor(props: BlogAuthorProps) {
 
   return (
     <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'left',
-        maxWidth: 800,
-        margin: `0 auto`,
-        marginBottom: (theme) => theme.spacings.md,
-        ...sx,
-      }}
+      sx={[
+        {
+          display: 'flex',
+          justifyContent: 'left',
+          maxWidth: 800,
+          margin: `0 auto`,
+          marginBottom: (theme) => theme.spacings.md,
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
       <Chip
         sx={{

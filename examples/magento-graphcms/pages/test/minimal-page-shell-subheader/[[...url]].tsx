@@ -15,7 +15,7 @@ import {
 import { SearchDocument, SearchQuery } from '@graphcommerce/magento-search'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellSticky,
+  StickyBelowHeader,
   LayoutTitle,
   LayoutHeader,
   makeStyles,
@@ -42,7 +42,7 @@ const useStyles = makeStyles()({
   },
 })
 
-function MinimalAppShellSubheader(props: Props) {
+function MinimalLayoutSubheader(props: Props) {
   const { params, products, filters, filterTypes } = props
   const { classes } = useStyles()
 
@@ -70,22 +70,22 @@ function MinimalAppShellSubheader(props: Props) {
           </Box>
         </LayoutTitle>
 
-        <AppShellSticky>
+        <StickyBelowHeader>
           <ProductListFiltersContainer>
             <ProductListSort sort_fields={products?.sort_fields} />
             <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
           </ProductListFiltersContainer>
-        </AppShellSticky>
+        </StickyBelowHeader>
       </Container>
     </ProductListParamsProvider>
   )
 }
 
-MinimalAppShellSubheader.pageOptions = {
+MinimalLayoutSubheader.pageOptions = {
   Layout: LayoutMinimal,
 } as PageOptions
 
-export default MinimalAppShellSubheader
+export default MinimalLayoutSubheader
 
 export const getStaticPaths: GetPageStaticPaths = async () => {
   // Disable getStaticPaths while in development mode

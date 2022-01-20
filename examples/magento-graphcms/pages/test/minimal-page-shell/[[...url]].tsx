@@ -13,11 +13,11 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
 
-type AppShellDemoProps = {
+type LayoutDemoProps = {
   baseUrl: string
 }
 
-export function AppShellDemo(props: AppShellDemoProps) {
+export function LayoutDemo(props: LayoutDemoProps) {
   const { baseUrl } = props
 
   const queryParams = useRouter().asPath.split('/')
@@ -270,7 +270,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
 }
 
 function MinimalPageShellDemo() {
-  return <AppShellDemo baseUrl='/test/minimal-page-shell' />
+  return <LayoutDemo baseUrl='/test/minimal-page-shell' />
 }
 
 const pageOptions: PageOptions<LayoutMinimalProps> = {

@@ -5,22 +5,22 @@ import { GetStaticPaths } from 'next'
 import { LayoutFull, LayoutFullProps } from '../../components'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { AppShellDemo } from './minimal-page-shell/[[...url]]'
+import { LayoutDemo } from './minimal-page-shell/[[...url]]'
 
 type Props = { url: string } & DefaultPageQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
-function AppShellTestIndex() {
-  return <AppShellDemo baseUrl='/test' />
+function TestOverview() {
+  return <LayoutDemo baseUrl='/test' />
 }
 
-AppShellTestIndex.pageOptions = {
+TestOverview.pageOptions = {
   Layout: LayoutFull,
 } as PageOptions
 
-export default AppShellTestIndex
+export default TestOverview
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {

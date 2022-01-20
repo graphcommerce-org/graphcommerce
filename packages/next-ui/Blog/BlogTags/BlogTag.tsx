@@ -8,12 +8,19 @@ type BlogTagsProps = {
 }
 
 export function BlogTag(props: BlogTagsProps) {
-  const { url, title, sx } = props
+  const { url, title, sx = [] } = props
   return (
     <PageLink href={`/${url}`} passHref>
       <Chip
         label={title}
-        sx={{ marginRight: '8px', borderRadius: '4px', fontSize: '14px', ...sx }}
+        sx={[
+          {
+            marginRight: '8px',
+            borderRadius: '4px',
+            fontSize: '14px',
+          },
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
       />
     </PageLink>
   )

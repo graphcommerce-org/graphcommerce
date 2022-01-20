@@ -1,15 +1,11 @@
-export * from './AppShellSticky'
+export * from './StickyBelowHeader'
 export * from './DesktopNavActions'
-
 export * from './DesktopNavBar'
 export * from './DesktopNavBarItem'
 export * from './FixedFab'
-
+export * from './GlobalHead'
 export * from './Logo'
-export * from './Menu'
 export * from './MenuFab'
-export { default as MenuFab } from './MenuFab'
 export * from './MenuFabSecondaryItem'
 export * from './PlaceholderFab'
-export * from './GlobalHead'
 export * from './useFabAnimation'

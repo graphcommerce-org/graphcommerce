@@ -48,9 +48,13 @@ export type MenuFabProps = {
   closeIcon?: React.ReactNode
 }
 
-const { name, classes, selectors } = componentSlots('MenuFab', ['fab', 'shadow', 'menu'] as const)
+const { componentName, classes, selectors } = componentSlots('MenuFab', [
+  'fab',
+  'shadow',
+  'menu',
+] as const)
 
-export default function MenuFab(props: MenuFabProps) {
+export function MenuFab(props: MenuFabProps) {
   const { children, secondary, search, menuIcon, closeIcon } = props
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
@@ -77,7 +81,7 @@ export default function MenuFab(props: MenuFabProps) {
         },
       })}
       style={{ scale, opacity }}
-      className={name}
+      className={componentName}
     >
       <Fab
         color='inherit'

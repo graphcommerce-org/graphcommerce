@@ -9,7 +9,7 @@ export type FooterProps = {
   copyright?: React.ReactElement
 } & Omit<ContainerProps, 'children'>
 
-const { name, classes, selectors } = componentSlots('Footer', [
+const { componentName, classes, selectors } = componentSlots('Footer', [
   'social',
   'storeSwitcher',
   'support',
@@ -51,7 +51,7 @@ export function Footer(props: FooterProps) {
         },
       })}
       maxWidth={false}
-      className={name}
+      className={componentName}
       {...containerProps}
     >
       <Box

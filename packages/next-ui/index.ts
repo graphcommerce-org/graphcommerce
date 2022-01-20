@@ -1,6 +1,6 @@
 export * from './AnimatedRow'
 export * from './ApolloError'
-export * from './AppShell'
+export * from './LayoutParts'
 export * from './Blog/BlogAuthor'
 export * from './Blog/BlogContent'
 export * from './Blog/BlogHeader'

@@ -7,26 +7,18 @@ import {
   TextInputNumber,
   iconChevronRight,
   SvgIcon,
-  makeStyles,
+  componentSlots,
 } from '@graphcommerce/next-ui'
-import { Divider, Typography, ButtonProps } from '@mui/material'
+import { Divider, Typography, ButtonProps, Box } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
 
-const useStyles = makeStyles({ name: 'AddToCart' })((theme) => ({
-  button: {
-    marginTop: theme.spacings.sm,
-    width: '100%',
-  },
-  price: {
-    fontWeight: theme.typography.fontWeightBold,
-    margin: `${theme.spacings.sm} 0`,
-  },
-  divider: {
-    margin: `${theme.spacings.xs} 0`,
-  },
-}))
+const { componentName, classes, selectors } = componentSlots('ProductAddToCart', [
+  'button',
+  'price',
+  'divider',
+] as const)
 
 export type AddToCartProps = React.ComponentProps<typeof ProductAddToCart>
 
@@ -38,7 +30,7 @@ export default function ProductAddToCart(
     children?: React.ReactNode
   } & Omit<ButtonProps, 'type' | 'name'>,
 ) {
-  const { name, children, variables, price, ...buttonProps } = props
+  const { name, children, variables, price, sx, ...buttonProps } = props
 
   const form = useFormGqlMutationCart(ProductAddToCartDocument, {
     defaultValues: { ...variables },
@@ -46,13 +38,19 @@ export default function ProductAddToCart(
 
   const { handleSubmit, formState, error, muiRegister, required } = form
   const submitHandler = handleSubmit(() => {})
-  const { classes } = useStyles()
 
   return (
-    <form onSubmit={submitHandler} noValidate>
-      <Divider className={classes.divider} />
+    <Box component='form' onSubmit={submitHandler} noValidate className={componentName} sx={sx}>
+      <Divider className={classes.divider} sx={(theme) => ({ margin: `${theme.spacings.xs} 0` })} />
 
-      <Typography variant='h4' className={classes.price}>
+      <Typography
+        variant='h4'
+        className={classes.price}
+        sx={(theme) => ({
+          fontWeight: theme.typography.fontWeightBold,
+          margin: `${theme.spacings.sm} 0`,
+        })}
+      >
         <Money {...price} />
       </Typography>
 
@@ -69,11 +67,15 @@ export default function ProductAddToCart(
       {children}
       <Button
         type='submit'
-        classes={{ root: classes.button }}
+        className={classes.button}
         loading={formState.isSubmitting}
         color='primary'
         variant='pill'
         size='large'
+        sx={(theme) => ({
+          marginTop: theme.spacings.sm,
+          width: '100%',
+        })}
         {...buttonProps}
       >
         Add to Cart
@@ -101,6 +103,7 @@ export default function ProductAddToCart(
           <strong>{name}</strong>&nbsp;has been added to your shopping cart!
         </>
       </MessageSnackbar>
-    </form>
+    </Box>
   )
 }
+ProductAddToCart.selectors = selectors

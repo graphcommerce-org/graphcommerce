@@ -11,7 +11,7 @@ export type MenuTabsProps = {
   iconRight?: SvgIconProps['src']
 } & Pick<BoxProps, 'sx'>
 
-const { name, classes, selectors } = componentSlots('DesktopNavBar', [
+const { componentName, classes, selectors } = componentSlots('DesktopNavBar', [
   'scroller',
   'leftWrapper',
   'rightWrapper',
@@ -20,20 +20,22 @@ const { name, classes, selectors } = componentSlots('DesktopNavBar', [
 ] as const)
 
 export function DesktopNavBar(props: MenuTabsProps) {
-  const { children, iconLeft, iconRight, sx } = props
+  const { children, iconLeft, iconRight, sx = [] } = props
 
   return (
     <ScrollerProvider scrollSnapAlign='none'>
       <Box
-        className={name}
-        sx={{
-          width: '100%',
-          display: { xs: 'none', md: 'grid' },
-          alignItems: 'center',
-          position: 'relative',
-          pointerEvents: 'all',
-          ...sx,
-        }}
+        className={componentName}
+        sx={[
+          {
+            width: '100%',
+            display: { xs: 'none', md: 'grid' },
+            alignItems: 'center',
+            position: 'relative',
+            pointerEvents: 'all',
+          },
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
       >
         <Scroller
           hideScrollbar

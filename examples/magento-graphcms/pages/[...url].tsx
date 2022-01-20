@@ -25,7 +25,7 @@ import {
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellSticky,
+  StickyBelowHeader,
   LayoutTitle,
   LayoutHeader,
   GetStaticProps,
@@ -108,7 +108,7 @@ function CategoryPage(props: Props) {
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
-          <AppShellSticky>
+          <StickyBelowHeader>
             <ProductListFiltersContainer>
               <ProductListSort
                 sort_fields={products?.sort_fields}
@@ -116,7 +116,7 @@ function CategoryPage(props: Props) {
               />
               <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
             </ProductListFiltersContainer>
-          </AppShellSticky>
+          </StickyBelowHeader>
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />
             <ProductListItems

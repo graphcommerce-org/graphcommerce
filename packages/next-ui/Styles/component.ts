@@ -30,10 +30,10 @@ export type ExtendableComponent<
 }
 
 export function componentSlots<Name extends string, ClassNames extends ReadonlyArray<string>>(
-  name: Name,
+  componentName: Name,
   slotNames: ClassNames,
 ) {
-  const classes = classesObj(name, slotNames)
+  const classes = classesObj(componentName, slotNames)
   const selectors = toSelectors(classes)
-  return { name, classes, selectors }
+  return { componentName, classes, selectors }
 }

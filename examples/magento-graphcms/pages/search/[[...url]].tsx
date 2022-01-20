@@ -22,7 +22,12 @@ import {
   SearchQuery,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellSticky, GetStaticProps, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
+import {
+  StickyBelowHeader,
+  GetStaticProps,
+  LayoutTitle,
+  LayoutHeader,
+} from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, Hidden } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -83,12 +88,12 @@ function SearchResultPage(props: Props) {
       {noSearchResults && <NoSearchResults search={search} />}
       {products && products.items && products?.items?.length > 0 && (
         <ProductListParamsProvider value={params}>
-          <AppShellSticky>
+          <StickyBelowHeader>
             <ProductListFiltersContainer>
               <ProductListSort sort_fields={products?.sort_fields} />
               <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
             </ProductListFiltersContainer>
-          </AppShellSticky>
+          </StickyBelowHeader>
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />
             <ProductListItems items={products?.items} loadingEager={1} />
