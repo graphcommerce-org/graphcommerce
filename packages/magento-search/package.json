@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-search",
-  "version": "3.5.38",
+  "version": "3.5.39",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [

@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-graphcms",
-  "version": "2.144.1",
+  "version": "2.144.2",
   "private": true,
   "sideEffects": false,
   "engines": {
@@ -59,7 +59,7 @@
     "@graphcommerce/magento-product-simple": "^3.2.41",
     "@graphcommerce/magento-product-virtual": "^3.2.41",
     "@graphcommerce/magento-review": "^2.111.36",
-    "@graphcommerce/magento-search": "^3.5.38",
+    "@graphcommerce/magento-search": "^3.5.39",
     "@graphcommerce/magento-store": "^3.4.6",
     "@graphcommerce/mollie-magento-payment": "^2.106.41",
     "@graphcommerce/next-config": "^2.109.4",
