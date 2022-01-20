@@ -17,7 +17,7 @@ const useStyles = makeStyles({ name: 'DesktopNavActions' })((theme) => ({
   },
 }))
 
-export default function DesktopNavActions(props: { children?: React.ReactNode }) {
+export function DesktopNavActions(props: { children?: React.ReactNode }) {
   const { children } = props
   const { classes } = useStyles()
   return <div className={classes.actions}>{children}</div>

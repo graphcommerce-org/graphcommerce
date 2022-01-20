@@ -9,12 +9,13 @@ import {
   iconCustomerService,
   MenuFab,
   MenuFabSecondaryItem,
-  MenuProps,
   PlaceholderFab,
   SvgIcon,
+  DesktopNavItem,
+  MenuFabItem,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Fab, useTheme } from '@mui/material'
+import { Fab } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
@@ -32,30 +33,7 @@ export function LayoutFull(props: LayoutFullProps) {
 
   const router = useRouter()
   const onSearchStart = useCallback(() => router.push('/search'), [router])
-  const theme = useTheme()
   const menuItemsIncludeInMenu = menu?.items?.filter((items) => items?.include_in_menu === 1)
-
-  const menuProps: MenuProps = {
-    menu: [
-      ...(menuItemsIncludeInMenu?.map((item) => ({
-        href: `/${item?.url_path}`,
-        children: item?.name?.toLowerCase().includes('sale') ? (
-          <span
-            style={{
-              textTransform: 'uppercase',
-              letterSpacing: 0.3,
-              color: theme.palette.primary.main,
-            }}
-          >
-            {item.name}
-          </span>
-        ) : (
-          item?.name ?? ''
-        ),
-      })) ?? []),
-      { href: '/blog', children: t`Blog` },
-    ],
-  }
 
   return (
     <LayoutDefault
@@ -64,7 +42,29 @@ export function LayoutFull(props: LayoutFullProps) {
       header={
         <>
           <Logo />
-          <DesktopNavBar {...menuProps} />
+          <DesktopNavBar>
+            {menuItemsIncludeInMenu?.map((item) => {
+              const highLight = item?.name?.toLowerCase().includes('sale')
+              return (
+                <DesktopNavItem
+                  key={item?.uid}
+                  href={`/${item?.url_path}`}
+                  sx={{
+                    ...(highLight && {
+                      textTransform: 'uppercase',
+                      letterSpacing: 0.3,
+                      color: 'primary.main',
+                    }),
+                  }}
+                >
+                  {item?.name}
+                </DesktopNavItem>
+              )
+            })}
+            <DesktopNavItem href='/blog'>
+              <Trans>Blog</Trans>
+            </DesktopNavItem>
+          </DesktopNavBar>
           <DesktopNavActions>
             {!router.pathname.startsWith('/search') && (
               <SearchButton onClick={onSearchStart} label=' ' />
@@ -83,15 +83,42 @@ export function LayoutFull(props: LayoutFullProps) {
       cartFab={<CartFab />}
       menuFab={
         <MenuFab
-          {...menuProps}
-          search={<SearchButton onClick={onSearchStart} label=' ' fullWidth />}
+          search={<SearchButton onClick={onSearchStart} label={t`Search...`} fullWidth />}
+          secondary={
+            <>
+              <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>
+                <Trans>Account</Trans>
+              </CustomerMenuFabItem>
+              <MenuFabSecondaryItem icon={<SvgIcon src={iconCustomerService} />} href='/service'>
+                <Trans>Customer Service</Trans>
+              </MenuFabSecondaryItem>
+            </>
+          }
         >
-          <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>
-            <Trans>Account</Trans>
-          </CustomerMenuFabItem>
-          <MenuFabSecondaryItem icon={<SvgIcon src={iconCustomerService} />} href='/service'>
-            <Trans>Customer Service</Trans>
-          </MenuFabSecondaryItem>
+          <MenuFabItem href='/'>
+            <Trans>Home</Trans>
+          </MenuFabItem>
+          {menuItemsIncludeInMenu?.map((item) => {
+            const highLight = item?.name?.toLowerCase().includes('sale')
+            return (
+              <MenuFabItem
+                key={item?.uid}
+                href={`/${item?.url_path}`}
+                sx={{
+                  ...(highLight && {
+                    textTransform: 'uppercase',
+                    letterSpacing: 0.3,
+                    color: 'primary.main',
+                  }),
+                }}
+              >
+                {item?.name}
+              </MenuFabItem>
+            )
+          })}
+          <MenuFabItem href='/blog'>
+            <Trans>Blog</Trans>
+          </MenuFabItem>
         </MenuFab>
       }
     >

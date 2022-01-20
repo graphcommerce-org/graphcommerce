@@ -1,6 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
 import { GetStaticPaths } from 'next'
 import {
   BlogAuthor,
@@ -38,7 +39,9 @@ function BlogPage(props: Props) {
       <Row>
         <PageMeta title={title} metaDescription={title} canonical={page.url} />
 
-        <BlogTitle title={`Tagged in: ${title}`} />
+        <BlogTitle>
+          <Trans>Tagged in: ${title}</Trans>
+        </BlogTitle>
 
         {page.author ? <BlogAuthor author={page.author} date={page.date} /> : null}
         {page.asset ? <BlogHeader asset={page.asset} /> : null}

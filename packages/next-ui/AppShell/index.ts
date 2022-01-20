@@ -1,8 +1,8 @@
-export { default as AppShellSticky } from './AppShellSticky'
-export { default as DesktopNavActions } from './DesktopNavActions'
+export * from './AppShellSticky'
+export * from './DesktopNavActions'
 
 export * from './DesktopNavBar'
-export { default as DesktopNavBar } from './DesktopNavBar'
+export * from './DesktopNavBarItem'
 export * from './FixedFab'
 
 export * from './Logo'

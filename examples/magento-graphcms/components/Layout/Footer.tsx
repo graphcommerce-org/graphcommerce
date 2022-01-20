@@ -13,27 +13,24 @@ export function Footer(props: FooterProps) {
 
   return (
     <FooterBase
-      socialLinks={
-        <>
-          {footer?.socialLinks?.map((link) => (
-            <PageLink key={link.title} href={link.url} passHref>
-              <IconButton
-                color='inherit'
-                size='small'
-                disableRipple
-                disableFocusRipple
-                edge='start'
-              >
-                {link.asset ? (
-                  <Image src={link.asset.url} width={24} height={24} alt={link.title} />
-                ) : (
-                  link.title
-                )}
-              </IconButton>
-            </PageLink>
-          ))}
-        </>
-      }
+      socialLinks={footer?.socialLinks?.map((link) => (
+        <PageLink key={link.title} href={link.url} passHref>
+          <IconButton color='inherit' size='small' edge='start'>
+            {link.asset ? (
+              <Image
+                layout='fill'
+                src={link.asset.url}
+                width={24}
+                height={24}
+                unoptimized
+                alt={link.title}
+              />
+            ) : (
+              link.title
+            )}
+          </IconButton>
+        </PageLink>
+      ))}
       storeSwitcher={<StoreSwitcherButton />}
       customerService={
         <PageLink href='/service' passHref>

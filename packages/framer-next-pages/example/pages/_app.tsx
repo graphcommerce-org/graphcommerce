@@ -38,6 +38,7 @@ const theme = createTheme({
 export default function MyApp(props: AppPropsType<Router> & { Component: PageComponent }) {
   return (
     <LinguiProvider
+      locale='en'
       loader={async () => Promise.resolve({ messages: {} })}
       ssrLoader={() => ({ messages: {} })}
     >

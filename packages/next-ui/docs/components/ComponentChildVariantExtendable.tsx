@@ -1,10 +1,12 @@
-import { ExtendableComponent, toSelectors } from '@graphcommerce/next-ui'
+import { ExtendableComponent, componentSlots } from '@graphcommerce/next-ui'
 import { styled } from '@mui/material'
 import { ComponentProps } from 'react'
 
 // ---- Setup ----
 
-const name = 'MyComponent'
+// To be able to select children from the consuming side, we define the classes.
+// Minimal utility to convert the classes to selectors. Hover over `selectors` to see what it means.
+const { name, classes, selectors } = componentSlots('MyComponent', ['child'] as const)
 
 // Props that are used in our styled elements to render different CSS
 type MyComponentStyleProps = { variant?: 'cool' | 'supercool' }
@@ -15,12 +17,6 @@ declare module '@mui/material/styles/components' {
     MyComponent?: ExtendableComponent<MyComponentStyleProps, 'root' | 'child'>
   }
 }
-
-// To be able to select children from the consuming side, we define the classes.
-export const classes = { child: `${name}-child` } as const
-
-// Minimal utility to convert the classes to selectors. Hover over `selectors` to see what it means.
-export const selectors = toSelectors(classes)
 
 // ---- Root component ----
 
@@ -63,3 +59,5 @@ export function MyComponent(props: MyComponentProps) {
     </Root>
   )
 }
+
+MyComponent.selectors = selectors

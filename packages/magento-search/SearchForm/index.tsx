@@ -60,7 +60,8 @@ export default function SearchForm(props: SearchFormProps) {
     <>
       {totalResults > 0 && (
         <div className={classes.totalProducts}>
-          <Plural value={totalResults} zero='' one='# result' other='# results' />
+          {totalResults === 1 && <Trans>{totalResults} result</Trans>}
+          {totalResults > 1 && <Trans>{totalResults} results</Trans>}
         </div>
       )}
       <IconButton onClick={handleReset} size='small'>

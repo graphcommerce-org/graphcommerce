@@ -17,13 +17,13 @@ type AppShellStickyBaseProps = {
   children: React.ReactNode
 }
 
-type AppShellStickyProps = AppShellStickyBaseProps & UseStyles<typeof useStyles>
+export type AppShellStickyProps = AppShellStickyBaseProps & UseStyles<typeof useStyles>
 
 /*
  - makes the children sticky to the parent container
  - determines top offset based on header height dynamically
 */
-export default function AppShellSticky(props: AppShellStickyProps) {
+export function AppShellSticky(props: AppShellStickyProps) {
   const { children } = props
   const classes = useMergedClasses(useStyles().classes, props.classes)
 
