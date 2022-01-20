@@ -1,6 +1,6 @@
 import { FormRow, UseStyles, iconClose, iconSearch, SvgImageSimple } from '@graphcommerce/next-ui'
 import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@graphcommerce/react-hook-form'
-import { t, Plural } from '@lingui/macro'
+import { t, Plural, Trans } from '@lingui/macro'
 import { IconButton, makeStyles, TextField, TextFieldProps, Theme } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -57,7 +57,12 @@ export default function SearchForm(props: SearchFormProps) {
     <>
       {totalResults > 0 && (
         <div className={classes.totalProducts}>
-          <Plural value={totalResults} zero='' one='# result' other='# results' />
+          {totalResults > 0 && (
+            <div className={classes.totalProducts}>
+              {totalResults === 1 && <Trans>{totalResults} result</Trans>}
+              {totalResults > 1 && <Trans>{totalResults} results</Trans>}
+            </div>
+          )}
         </div>
       )}
       <IconButton onClick={handleReset} size='small'>
