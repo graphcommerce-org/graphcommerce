@@ -56,5 +56,3 @@ declare module '@mui/material/styles/createTheme' {
     shape: { borderRadius: number }
   }
 }
-
-function createGraphCommerceTheme() {}

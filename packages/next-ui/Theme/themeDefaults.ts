@@ -1,8 +1,21 @@
+import { BreakpointsOptions, experimental_sx, SxProps, Theme, ThemeOptions } from '@mui/material'
 import { Shadows } from '@mui/material/styles/shadows'
+
+import { SetRequired } from 'type-fest'
 
 // https://material.io/design/environment/elevation.html#default-elevations
 
-export const shadows: Shadows = [
+const breakpoints: SetRequired<BreakpointsOptions, 'values'> = {
+  values: {
+    xs: 0,
+    sm: 600,
+    md: 960,
+    lg: 1536,
+    xl: 1920,
+  },
+}
+
+const shadows: Shadows = [
   /* 0 */ 'none',
   /* 1 */ `0px 0px 1.5px hsl(0deg 0% 0% / 0.15),0px 0.5px 0.6px hsl(0deg 0% 0% / 0.06),0px 1.4px 1.8px -1.5px hsl(0deg 0% 0% / 0.09)`,
   /* 2 */ `0px 0px 1.5px hsl(0deg 0% 0% / 0.15),0px 0.5px 0.6px hsl(0deg 0% 0% / 0.06),0px 2.6px 3.3px -1.5px hsl(0deg 0% 0% / 0.09)`,
@@ -29,3 +42,10 @@ export const shadows: Shadows = [
   /* 23 */ 'none',
   /* 24 */ `0px 0px 1.5px hsl(0deg 0% 0% / 0.15),0px 0.5px 0.6px hsl(0deg 0% 0% / 0.05),0px 3.9px 5px -0.4px hsl(0deg 0% 0% / 0.07),0px 8.1px 10.3px -0.7px hsl(0deg 0% 0% / 0.08),0px 15.8px 20.1px -1.1px hsl(0deg 0% 0% / 0.1),0px 30px 38.3px -1.5px hsl(0deg 0% 0% / 0.11)`,
 ]
+
+export const themeBaseDefaults = {
+  breakpoints,
+  shadows,
+}
+
+export const sx = (props: SxProps<Theme>) => experimental_sx<Theme>(props)

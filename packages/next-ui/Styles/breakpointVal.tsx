@@ -1,5 +1,3 @@
-import { Interpolation } from '@mui/material'
-
 export function breakpointVal(
   property: string,
   min: number,
