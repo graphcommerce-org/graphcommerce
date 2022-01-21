@@ -29,9 +29,9 @@ export default function ThemedApp(props: Omit<AppPropsType, 'pageProps'> & AppPr
   useEffect(() => document.getElementById('jss-server-side')?.remove(), [])
 
   // Hack for the demo to allow using darkmode without any fancy darkmode toggles
-  const [darkMode, setDarkMode] = useState(asPath.includes('dark'))
+  const [darkMode, setDarkMode] = useState(asPath.includes('darkmode'))
   useEffect(() => {
-    setDarkMode(asPath.includes('dark'))
+    setDarkMode(asPath.includes('darkmode'))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
