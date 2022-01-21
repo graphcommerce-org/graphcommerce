@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.144.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.144.5...@graphcommerce/magento-graphcms@2.144.6) (2022-01-21)
+
+
+### Bug Fixes
+
+* prevent layout from breaking when url has params ([9197bf7](https://github.com/ho-nl/m2-pwa/commit/9197bf72c5c3e422d70741cadbc40b19a1ae4936))
+* rename dark to darkmode ([3d83669](https://github.com/ho-nl/m2-pwa/commit/3d83669f2fcce057f088e407cdce8345d0e0c485))
+
+
+
+
+
 ## [2.144.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.144.4...@graphcommerce/magento-graphcms@2.144.5) (2022-01-21)
 
 

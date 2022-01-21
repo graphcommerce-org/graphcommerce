@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.24.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.24.2...@graphcommerce/next-ui@3.24.3) (2022-01-21)
+
+
+### Bug Fixes
+
+* prevent layout from breaking when url has params ([9197bf7](https://github.com/ho-nl/m2-pwa/commit/9197bf72c5c3e422d70741cadbc40b19a1ae4936))
+
+
+
+
+
 ## [3.24.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.24.1...@graphcommerce/next-ui@3.24.2) (2022-01-21)
 
 
