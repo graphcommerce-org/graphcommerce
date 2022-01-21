@@ -27,7 +27,7 @@ export function GlobalHead(props: GlobalHeadProps) {
       <meta name='format-detection' content='telephone=no' key='format-detection' />
       <meta name='mobile-web-app-capable' content='yes' key='mobile-web-app-capable' />
       <link rel='icon' href='/favicon.ico' sizes='any' />
-      <link rel='icon' href='/manifest/favicon.svg' type='image/svg+xml' />
+      <link rel='icon' href='/favicon.svg' type='image/svg+xml' />
       <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
       <link rel='manifest' href='/manifest.webmanifest' key='manifest' />
     </Head>
