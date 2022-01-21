@@ -131,7 +131,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
     divider: !!divider,
   })
 
-  return (
+  return children ? (
     <div {...className('sticky')}>
       <LayoutHeaderContent
         left={left}
@@ -144,5 +144,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
         {children}
       </LayoutHeaderContent>
     </div>
+  ) : (
+    <></>
   )
 }

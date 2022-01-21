@@ -140,7 +140,7 @@ export default function MenuFab(props: MenuFabProps) {
             <ListItem
               button
               dense
-              selected={router.asPath === '/'}
+              selected={router.asPath.split('?')[0] === '/'}
               classes={{ root: classes.menuItem }}
             >
               <ListItemText classes={{ primary: classes.menuItemText }}>Home</ListItemText>

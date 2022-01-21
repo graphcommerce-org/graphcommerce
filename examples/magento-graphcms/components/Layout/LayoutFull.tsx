@@ -60,7 +60,7 @@ export function LayoutFull(props: LayoutFullProps) {
   return (
     <LayoutDefault
       {...uiProps}
-      noSticky={router.asPath === '/'}
+      noSticky={router.asPath.split('?')[0] === '/'}
       header={
         <>
           <Logo />

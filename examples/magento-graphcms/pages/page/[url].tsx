@@ -40,7 +40,7 @@ function CmsPage(props: Props) {
       />
 
       <LayoutHeader floatingMd floatingSm>
-        {router.pathname !== '/' && (
+        {router.pathname.split('?')[0] !== '/' && (
           <LayoutTitle component='span' size='small'>
             {title}
           </LayoutTitle>

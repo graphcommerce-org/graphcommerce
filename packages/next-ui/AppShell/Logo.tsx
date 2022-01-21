@@ -32,7 +32,7 @@ export default function Logo(props: LogoProps) {
   const router = useRouter()
   const classes = useStyles(props)
 
-  return router.asPath === '/' ? (
+  return router.asPath.split('?')[0] === '/' ? (
     <div className={classes.parent}>
       <Image layout='fixed' loading='eager' {...image} className={classes.logo} />
     </div>
