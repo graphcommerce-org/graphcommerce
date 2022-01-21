@@ -1,31 +1,25 @@
 import { ApolloError } from '@apollo/client'
-import { AlertProps, Alert } from '@mui/material'
+import { AlertProps, Alert, Box, SxProps, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import { AnimatedRow } from '../AnimatedRow'
-import { makeStyles } from '../Styles/tssReact'
+import { componentSlots } from '../Styles/component'
 
-const useStyles = makeStyles({ name: 'ApolloErrorAlert' })((theme) => ({
-  alerts: {},
-  alert: {
-    paddingTop: `calc(${theme.spacings.xxs} / 2)`,
-    paddingBottom: `calc(${theme.spacings.xxs} / 2)`,
-  },
-}))
+const { componentName, classes, selectors } = componentSlots('ApolloErrorAlert', ['alert'] as const)
 
 export type ApolloErrorAlertProps = {
   error?: ApolloError
   graphqlErrorAlertProps?: Omit<AlertProps, 'severity'>
   networkErrorAlertProps?: Omit<AlertProps, 'severity'>
+  sx?: SxProps<Theme>
 }
 export default function ApolloErrorAlert(props: ApolloErrorAlertProps) {
-  const { classes } = useStyles()
-  const { error, graphqlErrorAlertProps, networkErrorAlertProps } = props
+  const { error, graphqlErrorAlertProps, networkErrorAlertProps, sx } = props
 
   return (
     <AnimatePresence initial={false}>
       {error && (
         <AnimatedRow key='alerts'>
-          <div className={classes.alerts}>
+          <Box sx={sx} className={componentName}>
             <AnimatePresence initial={false}>
               {error.graphQLErrors.map((e, index) => (
                 // eslint-disable-next-line react/no-array-index-key
@@ -39,17 +33,26 @@ export default function ApolloErrorAlert(props: ApolloErrorAlertProps) {
               ))}
               {error.networkError && (
                 <AnimatedRow key='networkError'>
-                  <div className={classes.alert} key='networkError'>
+                  <Box
+                    sx={{
+                      paddingTop: theme.spacings.xxs,
+                      paddingBottom: theme.spacings.xxs,
+                    }}
+                    className={classes.alert}
+                    key='networkError'
+                  >
                     <Alert severity='error' {...networkErrorAlertProps}>
                       Network Error: {error.networkError.message}
                     </Alert>
-                  </div>
+                  </Box>
                 </AnimatedRow>
               )}
             </AnimatePresence>
-          </div>
+          </Box>
         </AnimatedRow>
       )}
     </AnimatePresence>
   )
 }
+
+ApolloErrorAlert.selectors = selectors

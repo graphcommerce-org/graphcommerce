@@ -1,93 +1,43 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { FilterEqualTypeInput } from '@graphcommerce/graphql'
-import { ChipMenu, ChipMenuProps, responsiveVal, makeStyles } from '@graphcommerce/next-ui'
-import { Checkbox, ListItem, ListItemSecondaryAction, ListItemText } from '@mui/material'
+import { ChipMenu, ChipMenuProps, responsiveVal, componentSlots } from '@graphcommerce/next-ui'
+import {
+  Box,
+  Checkbox,
+  ListItem,
+  ListItemSecondaryAction,
+  ListItemText,
+  listItemTextClasses,
+} from '@mui/material'
 import clsx from 'clsx'
-import React from 'react'
 import { SetRequired } from 'type-fest'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import ProductListLink from '../ProductListLink/ProductListLink'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
+const { componentName, classes, selectors } = componentSlots('FilterEqual', [
+  'listItem',
+  'listItemInnerContainer',
+  'checkbox',
+  'linkContainer',
+  'button',
+  'resetButton',
+  'filterAmount',
+  'filterLabel',
+  'isColor',
+  'isActive',
+] as const)
+
 export type FilterIn = SetRequired<Omit<FilterEqualTypeInput, 'eq'>, 'in'>
 
-type FilterEqualTypeProps = NonNullable<
-  NonNullable<ProductListFiltersFragment['aggregations']>[0]
-> &
-  Omit<ChipMenuProps, 'selected'>
+type Filter = NonNullable<NonNullable<ProductListFiltersFragment['aggregations']>[number]>
 
-const useStyles = makeStyles({ name: 'FilterEqual' })((theme) => ({
-  root: {},
-  listItem: {
-    padding: `0 ${theme.spacings.xxs} 0`,
-    display: 'block',
-    '&:not(:nth-last-of-type(-n+2)) > div': {
-      borderBottom: `1px solid ${theme.palette.divider}`,
-    },
-  },
-  listItemInnerContainer: {
-    width: '100%',
-    paddingTop: responsiveVal(0, 3),
-    paddingBottom: theme.spacings.xxs,
-    '& > div': {
-      display: 'inline-block',
-      [theme.breakpoints.down('md')]: {
-        maxWidth: '72%',
-      },
-    },
-  },
-  checkbox: {
-    padding: 0,
-    margin: '-10px 0 0 0',
-    float: 'right',
-  },
-  linkContainer: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(2, 1fr)',
-    columnGap: responsiveVal(2, 16),
-    minWidth: 0,
-    [theme.breakpoints.down('md')]: {
-      gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-    },
-  },
-  button: {
-    float: 'right',
-    marginTop: theme.spacings.xxs,
-    marginRight: theme.spacings.xxs,
-    textDecoration: 'none',
-  },
-  resetButton: {
-    // background: theme.palette.grey['100'],
-    marginRight: theme.spacings.xxs,
-  },
-  filterAmount: {
-    color: theme.palette.grey[500],
-    marginLeft: 4,
-    fontSize: theme.typography.pxToRem(11),
-    display: 'inline',
-  },
-  filterLabel: {
-    display: 'inline',
-    overflow: 'hidden',
-    whiteSpace: 'break-spaces',
-  },
-  isColor: {
-    border: `1px solid ${theme.palette.divider}`,
-    '& > *': {
-      opacity: 0,
-    },
-  },
-  isActive: {
-    border: `1px solid ${theme.palette.primary.main}`,
-    boxShadow: `inset 0 0 0 4px ${theme.palette.background.paper}`,
-  },
-}))
+type FilterEqualTypeProps = Filter & Omit<ChipMenuProps, 'selected'>
 
 export default function FilterEqualType(props: FilterEqualTypeProps) {
-  const { attribute_code, count, label, options, ...chipProps } = props
+  const { attribute_code, count, label, options, __typename, ...chipProps } = props
   const { params } = useProductListParamsContext()
-  const { classes } = useStyles()
   const replaceRoute = useProductListLinkReplace({ scroll: false })
 
   const currentFilter: FilterEqualTypeInput = cloneDeep(params.filters[attribute_code]) ?? {
@@ -117,18 +67,26 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
       selected={currentLabels.length > 0}
       selectedLabel={currentLabels.length > 0 ? currentLabels.join(', ') : undefined}
       onDelete={currentLabels.length > 0 ? removeFilter : undefined}
-      className={classes.root}
+      className={componentName}
     >
-      <div className={classes.linkContainer}>
+      <Box
+        className={classes.linkContainer}
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { xs: 'repeat(2, minmax(0, 1fr))', md: 'repeat(2, 1fr)' },
+          columnGap: responsiveVal(2, 16),
+          minWidth: 0,
+        }}
+      >
         {options?.map((option) => {
           if (!option?.value) return null
           const labelId = `filter-equal-${attribute_code}-${option?.value}`
           const filters = cloneDeep(params.filters)
-          let isColor = false
-
-          if (label?.toLowerCase().includes('color')) {
-            isColor = true
-          }
+          const isColor = !!attribute_code?.toLowerCase().includes('color')
+          const isActive =
+            isColor && currentFilter.in?.includes(option?.value) && isColor
+              ? classes.isActive
+              : false
 
           if (currentFilter.in?.includes(option.value)) {
             filters[attribute_code] = {
@@ -151,12 +109,47 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
               color='inherit'
               link={{ replace: anyFilterActive }}
             >
-              <ListItem dense className={classes.listItem}>
-                <div className={classes.listItemInnerContainer}>
+              <ListItem
+                dense
+                className={classes.listItem}
+                sx={(theme) => ({
+                  padding: `0 ${theme.spacings.xxs} 0`,
+                  display: 'block',
+                  '&:not(:nth-last-of-type(-n+2)) > div': {
+                    borderBottom: `1px solid ${theme.palette.divider}`,
+                  },
+                })}
+              >
+                <Box
+                  className={classes.listItemInnerContainer}
+                  sx={(theme) => ({
+                    width: '100%',
+                    paddingTop: responsiveVal(0, 3),
+                    paddingBottom: theme.spacings.xxs,
+                    '& > div': {
+                      display: 'inline-block',
+                      [theme.breakpoints.down('md')]: {
+                        maxWidth: '72%',
+                      },
+                    },
+                  })}
+                >
                   <ListItemText
                     primary={option?.label}
-                    classes={{ primary: classes.filterLabel, secondary: classes.filterAmount }}
                     secondary={`(${option?.count})`}
+                    sx={(theme) => ({
+                      [`& .${listItemTextClasses.primary}`]: {
+                        display: 'inline',
+                        overflow: 'hidden',
+                        whiteSpace: 'break-spaces',
+                      },
+                      [`& .${listItemTextClasses.secondary}`]: {
+                        color: theme.palette.grey[500],
+                        marginLeft: `4px`,
+                        fontSize: theme.typography.pxToRem(11),
+                        display: 'inline',
+                      },
+                    })}
                   />
                   <ListItemSecondaryAction>
                     <Checkbox
@@ -170,10 +163,27 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
                       className={clsx(
                         classes.checkbox,
                         isColor && classes.isColor,
-                        currentFilter.in?.includes(option?.value) && isColor
-                          ? classes.isActive
-                          : false,
+                        isActive && classes.isActive,
                       )}
+                      sx={[
+                        {
+                          padding: 0,
+                          margin: '-10px 0 0 0',
+                          float: 'right',
+                        },
+                        isColor && {
+                          border: 1,
+                          borderColor: 'divider',
+                          '& > *': {
+                            opacity: 0,
+                          },
+                        },
+                        isActive &&
+                          ((theme) => ({
+                            border: `1px solid ${theme.palette.primary.main}`,
+                            boxShadow: `inset 0 0 0 4px ${theme.palette.background.paper}`,
+                          })),
+                      ]}
                       style={
                         isColor
                           ? { background: `${option?.label}`, color: `${option?.label}` }
@@ -181,12 +191,14 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
                       }
                     />
                   </ListItemSecondaryAction>
-                </div>
+                </Box>
               </ListItem>
             </ProductListLink>
           )
         })}
-      </div>
+      </Box>
     </ChipMenu>
   )
 }
+
+FilterEqualType.selectors = selectors

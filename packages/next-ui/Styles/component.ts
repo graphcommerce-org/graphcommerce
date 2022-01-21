@@ -20,12 +20,8 @@ const toSelectors = <O extends Record<string, string>>(
   return Object.fromEntries(mapped)
 }
 
-export type ExtendableComponent<
-  StyleProps extends Record<string, unknown>,
-  ClassKeys extends string,
-> = {
+export type ExtendableComponent<StyleProps extends Record<string, unknown>> = {
   defaultProps?: Partial<StyleProps>
-  styleOverrides?: Partial<OverridesStyleRules<ClassKeys>>
   variants?: { props: Partial<StyleProps>; style: Interpolation<{ theme: Theme }> }[]
 }
 

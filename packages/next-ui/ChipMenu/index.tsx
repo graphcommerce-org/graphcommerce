@@ -1,85 +1,57 @@
-import { Chip, ChipProps, Menu } from '@mui/material'
+import {
+  Chip,
+  ChipProps,
+  Menu,
+  MenuProps,
+  menuClasses,
+  SxProps,
+  Theme,
+  Button,
+} from '@mui/material'
 import clsx from 'clsx'
 import React, { PropsWithChildren, useState } from 'react'
 import { SectionHeader } from '../SectionHeader'
-import { UseStyles } from '../Styles'
+import { componentSlots } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconChevronDown, iconChevronUp, iconCancelAlt } from '../icons'
 
-export const useChipMenuStyles = makeStyles({ name: 'ChipMenu' })((theme) => ({
-  chip: {
-    background: `${theme.palette.background.default} !important`,
-  },
-  chipSelected: {
-    borderColor: theme.palette.text.primary,
-    color: theme.palette.text.primary,
-    '&:hover': {
-      background: `${theme.palette.background.default} !important`,
-      borderColor: theme.palette.divider,
-    },
-    '&:focus': {
-      background: `${theme.palette.background.paper} !important`,
-    },
-  },
-  menuPaper: {
-    minWidth: responsiveVal(200, 560),
-    maxWidth: 560,
-    marginTop: theme.spacings.xxs,
-    padding: `${theme.spacings.xs} ${theme.spacings.xs}`,
-    [theme.breakpoints.down('sm')]: {
-      minWidth: 0,
-      width: '100%',
-      maxWidth: `calc(100% - (${theme.page.horizontal} * 2))`,
-      margin: '0 auto',
-      marginTop: '8px',
-    },
-  },
-  iconCancel: {
-    stroke: `none !important`,
-    fill: `${theme.palette.text.primary} !important`,
-  },
-  menuList: {
-    padding: 0,
-    '&:focus': {
-      outline: 'none',
-    },
-  },
-  sectionHeaderWrapper: {
-    marginTop: 10,
-  },
-}))
+const { componentName, classes, selectors } = componentSlots('FilterEqual', ['chip'] as const)
 
 export type ChipMenuProps = PropsWithChildren<Omit<ChipProps, 'children'>> & {
   selectedLabel?: React.ReactNode
   selected: boolean
   onClose?: () => void
   labelRight?: React.ReactNode
-} & UseStyles<typeof useChipMenuStyles>
+  sx?: SxProps<Theme>
+  menuProps?: Partial<MenuProps>
+}
 
 export function ChipMenu(props: ChipMenuProps) {
-  const { children, selected, onDelete, label, labelRight, onClose, selectedLabel, ...chipProps } =
-    props
+  const {
+    children,
+    selected,
+    onDelete,
+    label,
+    labelRight,
+    onClose,
+    selectedLabel,
+    menuProps,
+    ...chipProps
+  } = props
 
   const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
-  const classes = useMergedClasses(useChipMenuStyles().classes, props.classes)
 
-  let deleteIcon = selected ? (
-    <div>
-      <SvgIcon src={iconCancelAlt} className={classes.iconCancel} size='medium' />
-    </div>
-  ) : (
-    <SvgIcon src={iconChevronDown} size='medium' />
-  )
+  let deleteIcon = <SvgIcon src={iconChevronDown} size='medium' />
+  if (selected) deleteIcon = <SvgIcon src={iconCancelAlt} size='medium' fillIcon />
   if (openEl) deleteIcon = <SvgIcon src={iconChevronUp} size='medium' />
 
-  const selectedAndMenuHidden = selected && !openEl && selectedLabel
+  const selectedAndMenuHidden = selected && !openEl && !!selectedLabel
 
   return (
     <>
       <Chip
-        color={selected || openEl ? 'primary' : 'default'}
+        color='default'
         clickable
         onDelete={onDelete || ((event) => setOpenEl(event.currentTarget.parentElement))}
         onClick={(event) => {
@@ -91,9 +63,27 @@ export function ChipMenu(props: ChipMenuProps) {
         className={clsx(
           classes.chip,
           chipProps.className,
-          selectedAndMenuHidden && classes.chipSelected,
+          selectedAndMenuHidden && 'MuiChip-selected',
         )}
+        sx={[
+          {
+            bgcolor: 'background.default',
+          },
+          selectedAndMenuHidden &&
+            ((theme) => ({
+              borderColor: 'text.primary',
+              color: 'text.primary',
+              '&:hover': {
+                background: `${theme.palette.background.default} !important`,
+                borderColor: `${theme.palette.divider} !important`,
+              },
+              '&:focus': {
+                background: `${theme.palette.background.paper} !important`,
+              },
+            })),
+        ]}
       />
+
       <Menu
         anchorEl={openEl}
         open={!!openEl}
@@ -103,16 +93,36 @@ export function ChipMenu(props: ChipMenuProps) {
         }}
         anchorPosition={{ top: 6, left: 0 }}
         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-        classes={{ paper: classes.menuPaper, list: classes.menuList }}
+        {...menuProps}
+        sx={[
+          (theme) => ({
+            marginTop: theme.spacings.xxs,
+            [`& .${menuClasses.list}`]: {
+              padding: 0,
+              '&:focus': { outline: 'none' },
+            },
+            [`& .${menuClasses.paper}`]: {
+              minWidth: responsiveVal(200, 560),
+              maxWidth: 560,
+              padding: `0 ${theme.spacings.xs} ${theme.spacings.xs}`,
+              margin: 0,
+              [theme.breakpoints.down('sm')]: {
+                minWidth: 0,
+                width: '100%',
+                maxWidth: `calc(100% - (${theme.page.horizontal} * 2))`,
+                margin: '0 auto',
+              },
+            },
+          }),
+          // eslint-disable-next-line no-nested-ternary
+          ...(menuProps?.sx ? (Array.isArray(menuProps.sx) ? menuProps.sx : [menuProps.sx]) : []),
+        ]}
       >
-        <SectionHeader
-          labelLeft={label ?? ''}
-          labelRight={labelRight ?? ''}
-          usePadding
-          classes={{ sectionHeaderWrapper: classes.sectionHeaderWrapper }}
-        />
+        <SectionHeader labelLeft={label ?? ''} labelRight={labelRight ?? ''} usePadding />
         {children}
       </Menu>
     </>
   )
 }
+
+ChipMenu.selectors = selectors

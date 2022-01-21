@@ -1,3 +1,4 @@
+import { styled } from '@mui/material'
 import { HTMLMotionProps, m } from 'framer-motion'
 import { ReactHTML } from 'react'
 
@@ -6,9 +7,11 @@ export type AnimatedRowProps = Omit<
   'layout' | 'initial' | 'animate' | 'exit' | 'transition'
 >
 
+const StyledDiv = styled(m.div)()
+
 export function AnimatedRow(props: AnimatedRowProps) {
   return (
-    <m.div
+    <StyledDiv
       {...props}
       layout
       initial={{ opacity: 0, height: 0 }}

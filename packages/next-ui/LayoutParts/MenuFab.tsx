@@ -103,10 +103,10 @@ export function MenuFab(props: MenuFabProps) {
         className={classes.fab}
       >
         {closeIcon ?? (
-          <SvgIcon src={iconClose} size='medium' style={{ display: openEl ? 'block' : 'none' }} />
+          <SvgIcon src={iconClose} size='medium' sx={{ display: openEl ? 'block' : 'none' }} />
         )}
         {menuIcon ?? (
-          <SvgIcon src={iconMenu} size='medium' style={{ display: openEl ? 'none' : 'block' }} />
+          <SvgIcon src={iconMenu} size='medium' sx={{ display: openEl ? 'none' : 'block' }} />
         )}
       </Fab>
       <MotionDiv

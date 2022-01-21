@@ -8,7 +8,7 @@ import {
   useMergedClasses,
   UseStyles,
 } from '@graphcommerce/next-ui'
-import { Mark, Slider } from '@mui/material'
+import { Box, Mark, Slider } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
@@ -147,7 +147,13 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
         </>
       }
     >
-      <div className={classes.container}>
+      <Box
+        sx={(theme) => ({
+          padding: `${theme.spacings.xxs} ${theme.spacings.xxs} !important`,
+          width: '100%',
+        })}
+        className={classes.container}
+      >
         <Slider
           min={min}
           max={max}
@@ -166,7 +172,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
           valueLabelDisplay='off'
           className={classes.slider}
         />
-      </div>
+      </Box>
     </ChipMenu>
   )
 }

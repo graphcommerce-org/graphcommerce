@@ -328,9 +328,10 @@ const createOverrides = (theme: Theme): Components => ({
       },
       deleteIcon: {
         color: theme.palette.text.primary,
+        // display: 'flex',
       },
       deleteIconOutlinedColorPrimary: {
-        color: theme.palette.primary.main,
+        // color: theme.palette.primary.main,
       },
     },
   },

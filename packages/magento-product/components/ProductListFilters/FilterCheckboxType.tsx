@@ -8,7 +8,6 @@ import {
 } from '@graphcommerce/next-ui'
 import { Chip, ChipProps } from '@mui/material'
 import clsx from 'clsx'
-import React from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import ProductListLink from '../ProductListLink/ProductListLink'
@@ -24,7 +23,7 @@ export type FilterCheckboxTypeProps = NonNullable<
 export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props
   const { params } = useProductListParamsContext()
-  const classes = useMergedClasses(useChipMenuStyles().classes, props.classes)
+  // const classes = useMergedClasses(useChipMenuStyles().classes, props.classes)
   const currentFilter = params.filters[attribute_code]
   const replaceRoute = useProductListLinkReplace({ scroll: false })
 
@@ -62,7 +61,7 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
         label={label}
         clickable
         {...chipProps}
-        className={clsx(classes.chip, isActive && classes.chipSelected, chipProps.className)}
+        // className={clsx(classes.chip, isActive && classes.chipSelected, chipProps.className)}
       />
     </ProductListLink>
   )

@@ -68,6 +68,10 @@ export function isStaticImport(src: string | StaticImport): src is StaticImport 
   return typeof src === 'object' && (isStaticRequire(src) || isStaticImageData(src))
 }
 
+export function srcToString(src: StaticImport | string) {
+  return isStaticImport(src) ? (isStaticRequire(src) ? src.default : src).src : src
+}
+
 // sort smallest to largest
 const allSizes = [...configDeviceSizes, ...configImageSizes]
 configDeviceSizes.sort((a, b) => a - b)

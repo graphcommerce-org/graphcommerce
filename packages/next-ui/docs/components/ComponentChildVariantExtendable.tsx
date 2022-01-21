@@ -14,7 +14,7 @@ type MyComponentStyleProps = { variant?: 'cool' | 'supercool' }
 // Expose the component to be exendable in your theme.components
 declare module '@mui/material/styles/components' {
   interface Components {
-    MyComponent?: ExtendableComponent<MyComponentStyleProps, 'root' | 'child'>
+    MyComponent?: ExtendableComponent<MyComponentStyleProps>
   }
 }
 
@@ -24,7 +24,6 @@ declare module '@mui/material/styles/components' {
 const Root = styled('div', {
   name: componentName,
   target: componentName, // Adds a class name `MyComponent` to the div.
-  overridesResolver: (_, styles) => styles.root, // Allows for exstensibility. find the correct entry in theme.components.MyComponent.styleOverrides
 })<MyComponentStyleProps>(({ theme }) => ({
   // Styles are added
   display: 'flex',
@@ -37,7 +36,6 @@ const Child = styled('div', {
   name: componentName,
   slot: 'child', // A slot is used as we do not want to receive style overrides from theme.components.MyComponent.variants.
   target: classes.child, // Mandatory for children, adds a class name `MyComponent-child` so it can be styled from the outside.
-  overridesResolver: (_, styles) => styles.child,
 })<MyComponentStyleProps>(({ theme, variant }) => ({
   backgroundColor: theme.palette.primary.main,
   width: 100,

@@ -1,41 +1,23 @@
-import { Typography, TypographyProps } from '@mui/material'
+import { Box, Typography, TypographyProps, SxProps, Theme } from '@mui/material'
 import clsx from 'clsx'
 import React from 'react'
-import { UseStyles } from '../Styles'
+import { componentSlots, UseStyles } from '../Styles'
 import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 
-const useStyles = makeStyles({ name: 'SectionHeader' })((theme) => ({
-  sectionHeaderSidePadding: {
-    paddingLeft: theme.spacings.xxs,
-    paddingRight: theme.spacings.xxs,
-  },
-  sectionHeaderWrapper: {
-    position: 'relative',
-    '&:focus': {
-      outline: 'none',
-    },
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: theme.spacings.sm,
-    marginBottom: theme.spacings.xxs,
-  },
-  labelLeft: {},
-  labelRight: {
-    color: theme.palette.text.primary,
-    lineHeight: 1,
-  },
-}))
+const { componentName, classes, selectors } = componentSlots('SectionHeader', [
+  'left',
+  'right',
+] as const)
 
 export type SectionHeaderProps = {
   variantLeft?: TypographyProps['variant']
   variantRight?: TypographyProps['variant']
   usePadding?: boolean
-} & UseStyles<typeof useStyles> &
-  (
-    | { labelLeft: React.ReactNode; labelRight?: React.ReactNode }
-    | { labelLeft?: React.ReactNode; labelRight: React.ReactNode }
-  )
+  sx?: SxProps<Theme>
+} & (
+  | { labelLeft: React.ReactNode; labelRight?: React.ReactNode }
+  | { labelLeft?: React.ReactNode; labelRight: React.ReactNode }
+)
 
 export function SectionHeader(props: SectionHeaderProps) {
   const {
@@ -44,19 +26,34 @@ export function SectionHeader(props: SectionHeaderProps) {
     usePadding,
     variantLeft = 'overline',
     variantRight = 'body2',
+    sx = [],
   } = props
-  let { classes } = useStyles()
-  classes = useMergedClasses(classes, props.classes)
 
   return (
-    <div
-      className={clsx({
-        [classes.sectionHeaderWrapper]: true,
-        [classes.sectionHeaderSidePadding]: usePadding,
-      })}
+    <Box
+      className={componentName}
+      sx={[
+        (theme) => ({
+          position: 'relative',
+          '&:focus': {
+            outline: 'none',
+          },
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginTop: theme.spacings.sm,
+          marginBottom: theme.spacings.xxs,
+        }),
+        usePadding === true &&
+          ((theme) => ({
+            paddingLeft: theme.spacings.xxs,
+            paddingRight: theme.spacings.xxs,
+          })),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
       <Typography
-        className={classes.labelLeft}
+        className={classes.left}
         variant={variantLeft}
         color='textSecondary'
         component='div'
@@ -65,14 +62,15 @@ export function SectionHeader(props: SectionHeaderProps) {
       </Typography>
       {labelRight && (
         <Typography
-          className={classes.labelRight}
+          className={classes.right}
           variant={variantRight}
           color='textSecondary'
           component='div'
+          sx={{ color: 'text.primary', lineHeight: 1 }}
         >
           {labelRight}
         </Typography>
       )}
-    </div>
+    </Box>
   )
 }
