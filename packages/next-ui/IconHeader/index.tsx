@@ -1,40 +1,9 @@
-import { Typography } from '@mui/material'
+import { Box, SxProps, Theme, Typography } from '@mui/material'
 import clsx from 'clsx'
-import { UseStyles } from '../Styles'
-import { makeStyles, typography, useMergedClasses } from '../Styles/tssReact'
+import { componentSlots } from '../Styles'
 import { SvgIcon, SvgIconProps } from '../SvgIcon/SvgIcon'
 
 // TODO: remove all occurrences. deprecated component
-
-const useStyles = makeStyles({ name: 'IconHeader' })((theme) => ({
-  container: {
-    ...typography(theme, 'subtitle1'),
-    textAlign: 'center',
-  },
-  innerContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 4,
-  },
-  breakColumnsDesktop: {
-    [theme.breakpoints.up('md')]: {
-      display: 'unset',
-    },
-  },
-  margin: {
-    marginTop: theme.spacings.sm,
-    marginBottom: theme.spacings.sm,
-  },
-  ellipsis: {
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  },
-  mediumFontWeight: {
-    fontWeight: 700,
-  },
-}))
 
 export type IconHeaderSize = 'small' | 'medium' | 'large'
 
@@ -44,10 +13,19 @@ type IconHeaderProps = {
   noMargin?: boolean
   stayInline?: boolean
   ellipsis?: boolean
-} & Pick<SvgIconProps, 'src'> &
-  UseStyles<typeof useStyles>
+  sx?: SxProps<Theme>
+} & Pick<SvgIconProps, 'src'>
 
 type IconHeaderHeadings = 'h2' | 'h4' | 'h5'
+
+const { componentName, classes, selectors } = componentSlots('IconHeader', [
+  'container',
+  'innerContainer',
+  'breakColumnsDesktop',
+  'margin',
+  'ellipsis',
+  'mediumFontWeight',
+] as const)
 
 export function IconHeader(props: IconHeaderProps) {
   const {
@@ -57,8 +35,8 @@ export function IconHeader(props: IconHeaderProps) {
     noMargin = false,
     ellipsis = false,
     src,
+    sx = [],
   } = props
-  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   const variants: Record<IconHeaderSize, IconHeaderHeadings> = {
     small: 'h5',
@@ -67,8 +45,32 @@ export function IconHeader(props: IconHeaderProps) {
   }
 
   return (
-    <div className={clsx(classes.container, !noMargin && classes.margin)}>
-      <div className={clsx(classes.innerContainer, !stayInline && classes.breakColumnsDesktop)}>
+    <Box
+      className={componentName}
+      sx={[
+        {
+          typography: 'subtitle1',
+          textAlign: 'center',
+        },
+        !noMargin &&
+          ((theme) => ({
+            marginTop: theme.spacings.sm,
+            marginBottom: theme.spacings.sm,
+          })),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      <Box
+        className={clsx(classes.innerContainer, !stayInline && classes.breakColumnsDesktop)}
+        sx={[
+          {
+            display: { xs: 'flex', md: stayInline ? 'flex' : 'unset' },
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 4,
+          },
+        ]}
+      >
         <SvgIcon src={src} />
         <Typography
           variant={variants[size]}
@@ -77,10 +79,20 @@ export function IconHeader(props: IconHeaderProps) {
             ellipsis && classes.ellipsis,
             size === 'medium' && classes.mediumFontWeight,
           )}
+          sx={[
+            ellipsis && {
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            },
+            size === 'medium' && { fontWeight: 'bold' },
+          ]}
         >
           {children}
         </Typography>
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
+
+IconHeader.selectors = selectors
