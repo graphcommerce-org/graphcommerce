@@ -2,7 +2,7 @@ import { ApolloError } from '@apollo/client'
 import { AlertProps, Alert, Box, SxProps, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import { AnimatedRow } from '../AnimatedRow'
-import { componentSlots } from '../Styles/component'
+import { componentSlots } from '../Styles/componentSlots'
 
 const { componentName, classes, selectors } = componentSlots('ApolloErrorAlert', ['alert'] as const)
 

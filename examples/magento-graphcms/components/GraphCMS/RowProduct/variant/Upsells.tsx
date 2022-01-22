@@ -9,17 +9,15 @@ import { Typography } from '@mui/material'
 import { productListRenderer } from '../../../ProductListItems/productListRenderer'
 import { RowProductFragment } from '../RowProduct.gql'
 
-type UpsellsProps = RowProductFragment &
-  UpsellProductsFragment &
-  Pick<SidebarSliderProps, 'classes'>
+type UpsellsProps = RowProductFragment & UpsellProductsFragment & Pick<SidebarSliderProps, 'sx'>
 
 export function Upsells(props: UpsellsProps) {
-  const { title, upsell_products, classes } = props
+  const { title, upsell_products, sx } = props
 
   if (!upsell_products || upsell_products.length === 0) return null
 
   return (
-    <SidebarSlider classes={classes} sidebar={<Typography variant='h2'>{title}</Typography>}>
+    <SidebarSlider sx={sx} sidebar={<Typography variant='h2'>{title}</Typography>}>
       {upsell_products?.map((item) =>
         item ? (
           <RenderType

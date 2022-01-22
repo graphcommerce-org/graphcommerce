@@ -1,7 +1,7 @@
 import { Box, Link, LinkProps } from '@mui/material'
 import PageLink, { LinkProps as PageLinkProps } from 'next/link'
 import { useRouter } from 'next/router'
-import { componentSlots } from '../Styles/component'
+import { componentSlots } from '../Styles/componentSlots'
 
 const { componentName, classes, selectors } = componentSlots('DesktopNavItem', ['line'] as const)
 

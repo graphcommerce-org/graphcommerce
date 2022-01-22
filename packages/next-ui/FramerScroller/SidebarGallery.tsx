@@ -8,23 +8,16 @@ import {
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
 import { clientSize, useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Fab, useTheme, alpha, Box } from '@mui/material'
-import { styled } from '@mui/system'
+import { Fab, useTheme, alpha, Box, styled } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
-import { Row } from '../../Row'
-import { componentSlots } from '../../Styles'
-import { classesPicker } from '../../Styles/classesPicker'
-import { responsiveVal } from '../../Styles/responsiveVal'
-import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
-import { SvgIcon } from '../../SvgIcon/SvgIcon'
-import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../../icons'
-
-type StyleProps = {
-  aspectRatio: [number, number]
-  clientHeight: number
-}
+import { Row } from '../Row'
+import { componentSlots } from '../Styles'
+import { classesPicker } from '../Styles/classesPicker'
+import { responsiveVal } from '../Styles/responsiveVal'
+import { SvgIcon } from '../SvgIcon/SvgIcon'
+import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../icons'
 
 const MotionBox = styled(m.div)({})
 
@@ -114,7 +107,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   return (
     <ScrollerProvider scrollSnapAlign='center'>
-      <Row maxWidth={false} disableGutters>
+      <Row maxWidth={false} disableGutters className={componentName}>
         <MotionBox
           layout
           {...className('root')}
@@ -346,3 +339,5 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     </ScrollerProvider>
   )
 }
+
+SidebarGallery.selectors = selectors

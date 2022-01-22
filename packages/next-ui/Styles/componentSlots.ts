@@ -1,5 +1,4 @@
 import { Interpolation, Theme } from '@mui/material'
-import { OverridesStyleRules } from '@mui/material/styles/overrides'
 
 function classesObj<Name extends string, ClassNames extends ReadonlyArray<string>>(
   name: Name,

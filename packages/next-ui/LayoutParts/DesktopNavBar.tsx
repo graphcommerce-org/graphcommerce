@@ -1,7 +1,7 @@
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { Box, BoxProps } from '@mui/material'
 import React from 'react'
-import { componentSlots } from '../Styles/component'
+import { componentSlots } from '../Styles/componentSlots'
 import { SvgIcon, SvgIconProps } from '../SvgIcon/SvgIcon'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 

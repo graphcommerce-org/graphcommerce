@@ -2,7 +2,7 @@ import { ImageProps, srcToString } from '@graphcommerce/image'
 import { experimental_sx, styled } from '@mui/material'
 import clsx from 'clsx'
 import { ComponentProps, forwardRef } from 'react'
-import { ExtendableComponent } from '../Styles/component'
+import { ExtendableComponent } from '../Styles/componentSlots'
 import { responsiveVal as rv } from '../Styles/responsiveVal'
 
 const name = 'SvgIcon'
