@@ -77,7 +77,7 @@ function Index() {
             <ScrollerButton direction='right'>→</ScrollerButton>
           </m.div>
           <ScrollerDots
-            style={{
+            sx={{
               position: 'absolute',
               bottom: 0,
               zIndex: 2,

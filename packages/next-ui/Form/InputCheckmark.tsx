@@ -1,18 +1,8 @@
-import clsx from 'clsx'
-import React, { PropsWithChildren } from 'react'
-import { makeStyles } from '../Styles/tssReact'
+import { SvgIconProps } from '@mui/material'
 import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconCheckmark } from '../icons'
 
-export type InputCheckmarkProps = PropsWithChildren<{ show?: boolean; select?: boolean }>
-const useStyles = makeStyles({ name: 'InputCheckmark' })({
-  iconCheckmark: {
-    stroke: '#01D26A',
-  },
-  select: {
-    marginRight: 15,
-  },
-})
+export type InputCheckmarkProps = { show?: boolean; select?: boolean } & Omit<SvgIconProps, 'src'>
 
 /**
  * When the `valid` prop is passed it will render a CheckIcon, else it will render children.
@@ -22,14 +12,14 @@ const useStyles = makeStyles({ name: 'InputCheckmark' })({
  * ```
  */
 export function InputCheckmark(props: InputCheckmarkProps) {
-  const { show: valid, children, select = false } = props
-  const { classes } = useStyles()
+  const { show, children, select = false } = props
 
-  if (!valid) return <>{children}</>
+  if (!show) return <>{children}</>
   return (
     <SvgIcon
       src={iconCheckmark}
-      className={clsx(classes.iconCheckmark, select && classes.select)}
+      className='InputCheckmark'
+      sx={[{ stroke: '#01D26A' }, select && { marginRight: 15 }]}
     />
   )
 }

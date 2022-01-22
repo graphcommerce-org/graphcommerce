@@ -1,47 +1,51 @@
-import { Typography } from '@mui/material'
+import { Box, SxProps, Theme, Typography } from '@mui/material'
 import React from 'react'
 import { Row } from '../Row'
-import { UseStyles } from '../Styles'
-import { makeStyles, useMergedClasses } from '../Styles/tssReact'
+import { componentSlots } from '../Styles'
 
-const useStyles = makeStyles({ name: 'ContainerWithHeader' })((theme) => ({
-  head: {
-    display: 'grid',
-    justifyContent: 'space-between',
-    gridTemplateColumns: 'auto auto',
-    alignItems: 'end',
-    marginBottom: theme.spacings.md,
-  },
-  title: {
-    lineHeight: 1,
-    textTransform: 'uppercase',
-  },
-  right: {
-    lineHeight: 1,
-  },
-}))
+const { componentName, selectors, classes } = componentSlots('ContainerWithHeader', [
+  'head',
+  'title',
+  'right',
+] as const)
 
 export type ContainerWithHeaderProps = {
   title: string
   rightArea: React.ReactNode
   children: React.ReactNode
-} & UseStyles<typeof useStyles>
+  sx?: SxProps<Theme>
+}
 
 export function ContainerWithHeader(props: ContainerWithHeaderProps) {
-  const { title, rightArea, children } = props
-  const classes = useMergedClasses(useStyles().classes, props.classes)
+  const { title, rightArea, children, sx } = props
 
   return (
-    <Row>
-      <div className={classes.head}>
-        <Typography variant='h5' component='h2' className={classes.title}>
+    <Row className={componentName} sx={sx}>
+      <Box
+        className={classes.head}
+        sx={(theme) => ({
+          display: 'grid',
+          justifyContent: 'space-between',
+          gridTemplateColumns: 'auto auto',
+          alignItems: 'end',
+          marginBottom: theme.spacings.md,
+        })}
+      >
+        <Typography
+          variant='h5'
+          component='h2'
+          className={classes.title}
+          sx={{ lineHeight: 1, textTransform: 'uppercase' }}
+        >
           {title}
         </Typography>
         <Typography component='div' variant='subtitle1' className={classes.right}>
           {rightArea}
         </Typography>
-      </div>
+      </Box>
       {children}
     </Row>
   )
 }
+
+ContainerWithHeader.selectors = selectors

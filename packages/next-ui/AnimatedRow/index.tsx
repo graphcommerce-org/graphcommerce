@@ -7,7 +7,7 @@ export type AnimatedRowProps = Omit<
   'layout' | 'initial' | 'animate' | 'exit' | 'transition'
 >
 
-const StyledDiv = styled(m.div)()
+const StyledDiv = styled(m.div)({})
 
 export function AnimatedRow(props: AnimatedRowProps) {
   return (
