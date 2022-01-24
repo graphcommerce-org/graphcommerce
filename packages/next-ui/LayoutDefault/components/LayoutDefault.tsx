@@ -56,6 +56,7 @@ const useStyles = makeStyles(
 
 export type LayoutDefaultProps = {
   className?: string
+  beforeHeader?: React.ReactNode
   header: React.ReactNode
   footer: React.ReactNode
   menuFab?: React.ReactNode
@@ -65,7 +66,7 @@ export type LayoutDefaultProps = {
 } & UseStyles<typeof useStyles>
 
 export function LayoutDefault(props: LayoutDefaultProps) {
-  const { children, header, footer, menuFab, cartFab, noSticky, className } = props
+  const { children, header, beforeHeader, footer, menuFab, cartFab, noSticky, className } = props
   const classes = useStyles(props)
 
   const offset = useScrollOffset().y
@@ -74,6 +75,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
   return (
     <div className={clsx(classes.root, className)}>
       <LayoutProvider scroll={scrollWithOffset}>
+        {beforeHeader}
         <header className={clsx(classes.header, !noSticky && classes.headerSticky)}>
           {header}
         </header>
