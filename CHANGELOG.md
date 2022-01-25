@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.164.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.163.6...@graphcommerce/graphcommerce@2.164.0) (2022-01-25)
+
+
+### Features
+
+* add beforeHeader prop ([00501ef](https://github.com/ho-nl/m2-pwa/commit/00501efab97fae2469f783751702db95e4e2c93e))
+* remove fixed fap and position cart with parent sticky ([bfd8adf](https://github.com/ho-nl/m2-pwa/commit/bfd8adf1372f77e6b27f6e0482ec03762d9148e4))
+
+
+
+
+
 ## [2.163.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.163.5...@graphcommerce/graphcommerce@2.163.6) (2022-01-21)
 
 
