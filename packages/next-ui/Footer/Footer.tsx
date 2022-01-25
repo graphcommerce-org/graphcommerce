@@ -1,6 +1,6 @@
 import { ContainerProps, Container, Box } from '@mui/material'
 import React from 'react'
-import { componentSlots } from '../Styles'
+import { extendableComponent } from '../Styles'
 
 export type FooterProps = {
   storeSwitcher?: React.ReactNode
@@ -9,7 +9,7 @@ export type FooterProps = {
   copyright?: React.ReactElement
 } & Omit<ContainerProps, 'children'>
 
-const { componentName, classes, selectors } = componentSlots('Footer', [
+const { componentName, classes, selectors } = extendableComponent('Footer', [
   'social',
   'storeSwitcher',
   'support',

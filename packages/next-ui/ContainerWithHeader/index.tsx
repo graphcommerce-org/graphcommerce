@@ -1,9 +1,9 @@
 import { Box, SxProps, Theme, Typography } from '@mui/material'
 import React from 'react'
 import { Row } from '../Row'
-import { componentSlots } from '../Styles'
+import { extendableComponent } from '../Styles'
 
-const { componentName, selectors, classes } = componentSlots('ContainerWithHeader', [
+const { componentName, selectors, classes } = extendableComponent('ContainerWithHeader', [
   'head',
   'title',
   'right',

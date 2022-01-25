@@ -13,7 +13,7 @@ import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
 import { Row } from '../Row'
-import { componentSlots } from '../Styles'
+import { extendableComponent } from '../Styles'
 import { classesPicker } from '../Styles/classesPicker'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { SvgIcon } from '../SvgIcon/SvgIcon'
@@ -21,7 +21,7 @@ import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit }
 
 const MotionBox = styled(m.div)({})
 
-const { classes, selectors, componentName } = componentSlots('SidebarGallery', [
+const { classes, selectors, componentName } = extendableComponent('SidebarGallery', [
   'root',
   'rootZoomed',
   'scrollerContainer',

@@ -1,5 +1,9 @@
 import { capitalize, Interpolation, Theme } from '@mui/material'
-import clsx from 'clsx'
+
+export type ExtendableComponent<StyleProps extends Record<string, unknown>> = {
+  defaultProps?: Partial<StyleProps>
+  variants?: { props: Partial<StyleProps>; style: Interpolation<{ theme: Theme }> }[]
+}
 
 function slotClasses<Name extends string, ClassNames extends ReadonlyArray<string>>(
   name: Name,
@@ -20,12 +24,13 @@ const slotSelectorsMap = <O extends Record<string, string>>(
   return Object.fromEntries(mapped)
 }
 
-export type ExtendableComponent<StyleProps extends Record<string, unknown>> = {
-  defaultProps?: Partial<StyleProps>
-  variants?: { props: Partial<StyleProps>; style: Interpolation<{ theme: Theme }> }[]
-}
-
-export function componentSlots<
+/**
+ * Utility function to:
+ *
+ * - Define slots
+ * - Generate state css classes.
+ */
+export function extendableComponent<
   ComponentStyleProps extends Record<string, boolean | string | undefined>,
   Name extends string = string,
   ClassNames extends ReadonlyArray<string> = ReadonlyArray<string>,

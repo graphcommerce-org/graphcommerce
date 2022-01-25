@@ -12,7 +12,7 @@ import { m } from 'framer-motion'
 import PageLink, { LinkProps as PageLinkProps } from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
-import { componentSlots } from '../Styles/componentSlots'
+import { extendableComponent } from '../Styles/extendableComponent'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconMenu, iconClose } from '../icons'
@@ -48,7 +48,7 @@ export type MenuFabProps = {
   closeIcon?: React.ReactNode
 }
 
-const { componentName, classes, selectors } = componentSlots('MenuFab', [
+const { componentName, classes, selectors } = extendableComponent('MenuFab', [
   'fab',
   'shadow',
   'menu',

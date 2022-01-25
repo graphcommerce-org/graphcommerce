@@ -2,9 +2,11 @@ import { ApolloError } from '@apollo/client'
 import { AlertProps, Alert, Box, SxProps, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import { AnimatedRow } from '../AnimatedRow'
-import { componentSlots } from '../Styles/componentSlots'
+import { extendableComponent } from '../Styles/extendableComponent'
 
-const { componentName, classes, selectors } = componentSlots('ApolloErrorAlert', ['alert'] as const)
+const { componentName, classes, selectors } = extendableComponent('ApolloErrorAlert', [
+  'alert',
+] as const)
 
 export type ApolloErrorAlertProps = {
   error?: ApolloError

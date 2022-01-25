@@ -1,9 +1,9 @@
 import { Money } from '@graphcommerce/magento-store'
-import { componentSlots } from '@graphcommerce/next-ui'
+import { extendableComponent } from '@graphcommerce/next-ui'
 import { Typography, TypographyProps, Box } from '@mui/material'
 import { ProductListPriceFragment } from './ProductListPrice.gql'
 
-const { componentName, classes, selectors } = componentSlots('ProductListPrice', [
+const { componentName, classes, selectors } = extendableComponent('ProductListPrice', [
   'discountPrice',
 ] as const)
 

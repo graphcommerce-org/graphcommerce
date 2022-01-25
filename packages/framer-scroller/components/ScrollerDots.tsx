@@ -1,5 +1,5 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { componentSlots } from '@graphcommerce/next-ui/Styles'
+import { extendableComponent } from '@graphcommerce/next-ui/Styles'
 import { Fab, FabProps, styled, SxProps, Theme } from '@mui/material'
 import { m } from 'framer-motion'
 import React from 'react'
@@ -14,7 +14,7 @@ export type DotsProps = {
   sx?: SxProps<Theme>
 }
 
-const { componentName, classes } = componentSlots('ScrollerDots', ['dot', 'circle'] as const)
+const { componentName, classes } = extendableComponent('ScrollerDots', ['dot', 'circle'] as const)
 
 const ScrollerDots = m(
   React.forwardRef<HTMLDivElement, DotsProps>((props, ref) => {

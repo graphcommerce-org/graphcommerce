@@ -1,6 +1,6 @@
 import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
-import { componentSlots } from '../../Styles'
+import { extendableComponent } from '../../Styles'
 import LayoutHeaderBack, { useShowBack } from './LayoutHeaderBack'
 import LayoutHeaderClose, { useShowClose } from './LayoutHeaderClose'
 import LayoutHeaderContent, { ContentProps } from './LayoutHeaderContent'
@@ -36,7 +36,10 @@ type ComponentStyleProps = {
   floatingMd: boolean
 }
 
-const { selectors, stateClasses } = componentSlots<ComponentStyleProps>('LayoutHeader', [] as const)
+const { selectors, stateClasses } = extendableComponent<ComponentStyleProps>(
+  'LayoutHeader',
+  [] as const,
+)
 
 export function LayoutHeader(props: LayoutHeaderProps) {
   const { children, divider, primary, secondary, noAlign = false, switchPoint, sx = [] } = props

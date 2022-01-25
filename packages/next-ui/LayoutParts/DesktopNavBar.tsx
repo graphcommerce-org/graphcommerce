@@ -1,7 +1,7 @@
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { Box, BoxProps } from '@mui/material'
 import React from 'react'
-import { componentSlots } from '../Styles/componentSlots'
+import { extendableComponent } from '../Styles/extendableComponent'
 import { SvgIcon, SvgIconProps } from '../SvgIcon/SvgIcon'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 
@@ -11,7 +11,7 @@ export type MenuTabsProps = {
   iconRight?: SvgIconProps['src']
 } & Pick<BoxProps, 'sx'>
 
-const { componentName, classes, selectors } = componentSlots('DesktopNavBar', [
+const { componentName, classes, selectors } = extendableComponent('DesktopNavBar', [
   'scroller',
   'leftWrapper',
   'rightWrapper',

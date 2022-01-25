@@ -1,9 +1,11 @@
 import { Box, Link, LinkProps } from '@mui/material'
 import PageLink, { LinkProps as PageLinkProps } from 'next/link'
 import { useRouter } from 'next/router'
-import { componentSlots } from '../Styles/componentSlots'
+import { extendableComponent } from '../Styles/extendableComponent'
 
-const { componentName, classes, selectors } = componentSlots('DesktopNavItem', ['line'] as const)
+const { componentName, classes, selectors } = extendableComponent('DesktopNavItem', [
+  'line',
+] as const)
 
 export type DesktopNavItemProps = LinkProps & Pick<PageLinkProps, 'href'>
 

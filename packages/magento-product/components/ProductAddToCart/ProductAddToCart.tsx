@@ -7,14 +7,14 @@ import {
   TextInputNumber,
   iconChevronRight,
   SvgIcon,
-  componentSlots,
+  extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Divider, Typography, ButtonProps, Box } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
 
-const { componentName, classes, selectors } = componentSlots('ProductAddToCart', [
+const { componentName, classes, selectors } = extendableComponent('ProductAddToCart', [
   'button',
   'price',
   'divider',

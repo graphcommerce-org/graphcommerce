@@ -1,22 +1,13 @@
-import {
-  Chip,
-  ChipProps,
-  Menu,
-  MenuProps,
-  menuClasses,
-  SxProps,
-  Theme,
-  Button,
-} from '@mui/material'
+import { Chip, ChipProps, Menu, MenuProps, menuClasses, SxProps, Theme } from '@mui/material'
 import clsx from 'clsx'
 import React, { PropsWithChildren, useState } from 'react'
 import { SectionHeader } from '../SectionHeader'
-import { componentSlots } from '../Styles'
+import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconChevronDown, iconChevronUp, iconCancelAlt } from '../icons'
 
-const { componentName, classes, selectors } = componentSlots('FilterEqual', ['chip'] as const)
+const { classes, selectors } = extendableComponent('FilterEqual', ['chip'] as const)
 
 export type ChipMenuProps = PropsWithChildren<Omit<ChipProps, 'children'>> & {
   selectedLabel?: React.ReactNode

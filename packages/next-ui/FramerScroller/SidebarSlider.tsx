@@ -7,12 +7,12 @@ import {
 import { Box, SxProps, Theme } from '@mui/material'
 import { ReactNode } from 'react'
 import { Row } from '../Row'
-import { componentSlots } from '../Styles/componentSlots'
+import { extendableComponent } from '../Styles/extendableComponent'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 
-const { componentName, classes, selectors } = componentSlots('SidebarSlider', [
+const { componentName, classes, selectors } = extendableComponent('SidebarSlider', [
   'root',
   'sidebar',
   'scrollerContainer',

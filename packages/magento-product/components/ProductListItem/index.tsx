@@ -1,5 +1,5 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import { responsiveVal, componentSlots } from '@graphcommerce/next-ui'
+import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { ButtonBase, Typography, Box, styled, SxProps, Theme } from '@mui/material'
 import { SystemStyleObject } from '@mui/system'
@@ -11,7 +11,7 @@ import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { useProductLink } from '../../hooks/useProductLink'
 import ProductListPrice from '../ProductListPrice'
 
-const { componentName, classes, selectors } = componentSlots('ProductListItem', [
+const { componentName, classes, selectors } = extendableComponent('ProductListItem', [
   'item',
   'title',
   'titleContainer',

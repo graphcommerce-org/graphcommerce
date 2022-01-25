@@ -1,10 +1,8 @@
 import { Box, Typography, TypographyProps, SxProps, Theme } from '@mui/material'
-import clsx from 'clsx'
 import React from 'react'
-import { componentSlots, UseStyles } from '../Styles'
-import { makeStyles, useMergedClasses } from '../Styles/tssReact'
+import { extendableComponent } from '../Styles'
 
-const { componentName, classes, selectors } = componentSlots('SectionHeader', [
+const { componentName, classes, selectors } = extendableComponent('SectionHeader', [
   'left',
   'right',
 ] as const)
@@ -74,3 +72,5 @@ export function SectionHeader(props: SectionHeaderProps) {
     </Box>
   )
 }
+
+SectionHeader.selectors = selectors

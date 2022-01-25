@@ -1,9 +1,9 @@
-import { responsiveVal, componentSlots } from '@graphcommerce/next-ui'
+import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Plural } from '@lingui/macro'
 import { Box, Divider, SxProps, Theme, Typography } from '@mui/material'
 import { ProductListCountFragment } from './ProductListCount.gql'
 
-const { componentName, classes, selectors } = componentSlots('ProductListCount', [
+const { componentName, classes, selectors } = extendableComponent('ProductListCount', [
   'line',
   'count',
 ] as const)

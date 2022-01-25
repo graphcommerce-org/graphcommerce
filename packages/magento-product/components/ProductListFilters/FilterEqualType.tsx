@@ -1,6 +1,6 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { FilterEqualTypeInput } from '@graphcommerce/graphql'
-import { ChipMenu, ChipMenuProps, responsiveVal, componentSlots } from '@graphcommerce/next-ui'
+import { ChipMenu, ChipMenuProps, responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
 import {
   Box,
   Checkbox,
@@ -16,7 +16,7 @@ import { useProductListParamsContext } from '../../hooks/useProductListParamsCon
 import ProductListLink from '../ProductListLink/ProductListLink'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
-const { componentName, classes, selectors } = componentSlots('FilterEqual', [
+const { componentName, classes, selectors } = extendableComponent('FilterEqual', [
   'listItem',
   'listItemInnerContainer',
   'checkbox',

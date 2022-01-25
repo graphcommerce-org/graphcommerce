@@ -1,6 +1,6 @@
 import { Box, SxProps, Theme, Typography } from '@mui/material'
 import clsx from 'clsx'
-import { componentSlots } from '../Styles'
+import { extendableComponent } from '../Styles'
 import { SvgIcon, SvgIconProps } from '../SvgIcon/SvgIcon'
 
 // TODO: remove all occurrences. deprecated component
@@ -18,7 +18,7 @@ type IconHeaderProps = {
 
 type IconHeaderHeadings = 'h2' | 'h4' | 'h5'
 
-const { componentName, classes, selectors } = componentSlots('IconHeader', [
+const { componentName, classes, selectors } = extendableComponent('IconHeader', [
   'container',
   'innerContainer',
   'breakColumnsDesktop',
