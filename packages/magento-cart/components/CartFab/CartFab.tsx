@@ -18,12 +18,20 @@ import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    fab: {
+    placeholderFab: {
       width: responsiveVal(42, 56),
       height: responsiveVal(42, 56),
       [theme.breakpoints.down('sm')]: {
         backgroundColor: `${theme.palette.background.paper} !important`,
       },
+    },
+    cartFab: {
+      float: 'right',
+      boxShadow: 'none',
+      width: responsiveVal(42, 56),
+      height: responsiveVal(42, 56),
+      pointerEvents: 'all',
+      color: theme.palette.text.primary,
     },
     shadow: {
       pointerEvents: 'none',
@@ -74,7 +82,7 @@ function CartFabContent(props: CartFabContentProps) {
           aria-label={t`Cart`}
           color='inherit'
           size='large'
-          classes={{ root: classes.fab }}
+          classes={{ root: classes.placeholderFab }}
           style={{ backgroundColor }}
         >
           {total_quantity > 0 ? (
@@ -102,6 +110,7 @@ function CartFabContent(props: CartFabContentProps) {
  * product to the cart. This would mean that it would immediately start executing this query.
  */
 export default function CartFab(props: CartFabProps) {
+  const classes = useStyles(props)
   const { data } = useCartQuery(CartFabDocument, {
     fetchPolicy: 'cache-only',
     nextFetchPolicy: 'cache-first',
@@ -109,10 +118,10 @@ export default function CartFab(props: CartFabProps) {
   const qty = data?.cart?.total_quantity ?? 0
 
   return (
-    <FixedFab>
+    <Fab color='inherit' aria-label='Open Menu' size='medium' className={classes.cartFab}>
       <NoSsr fallback={<CartFabContent {...props} total_quantity={0} />}>
         <CartFabContent total_quantity={qty} {...props} />
       </NoSsr>
-    </FixedFab>
+    </Fab>
   )
 }

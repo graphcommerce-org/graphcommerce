@@ -1,10 +1,12 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { makeStyles, Theme } from '@material-ui/core'
+import zIndex from '@material-ui/core/styles/zIndex'
 import clsx from 'clsx'
 import { useTransform, useViewportScroll } from 'framer-motion'
 import React from 'react'
+import { callbackify } from 'util'
 import LayoutProvider from '../../Layout/components/LayoutProvider'
-import { UseStyles } from '../../Styles'
+import { responsiveVal, UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -19,7 +21,23 @@ const useStyles = makeStyles(
       background: theme.palette.background.default,
     },
     hideFabsOnVirtualKeyboardOpen: {
+      width: '100%',
+      height: 0,
+      zIndex: 1,
+      [theme.breakpoints.up('sm')]: {
+        padding: `0 ${theme.page.horizontal}`,
+        position: 'sticky',
+        marginTop: `calc(${theme.appShell.headerHeightMd} * -1 + calc(${responsiveVal(
+          42,
+          56,
+        )} / 2))`,
+        top: `calc(${theme.appShell.headerHeightMd} / 2 - 28px)`,
+      },
       [theme.breakpoints.down('sm')]: {
+        position: 'fixed',
+        top: 'unset',
+        bottom: `calc(20px + ${responsiveVal(42, 56)})`,
+        padding: `0 20px`,
         '@media (max-height: 530px)': {
           display: 'none',
         },
@@ -79,13 +97,11 @@ export function LayoutDefault(props: LayoutDefaultProps) {
         <header className={clsx(classes.header, !noSticky && classes.headerSticky)}>
           {header}
         </header>
-        <div>
-          <div className={classes.hideFabsOnVirtualKeyboardOpen}>
-            {menuFab}
-            {cartFab}
-          </div>
-          {children}
+        <div className={classes.hideFabsOnVirtualKeyboardOpen}>
+          {menuFab}
+          {cartFab}
         </div>
+        <div>{children}</div>
         <div>{footer}</div>
       </LayoutProvider>
     </div>
