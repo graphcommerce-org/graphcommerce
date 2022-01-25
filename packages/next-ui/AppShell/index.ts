@@ -3,7 +3,6 @@ export { default as DesktopNavActions } from './DesktopNavActions'
 
 export * from './DesktopNavBar'
 export { default as DesktopNavBar } from './DesktopNavBar'
-export { default as FixedFab } from './FixedFab'
 
 export { default as Logo } from './Logo'
 export * from './Logo'
