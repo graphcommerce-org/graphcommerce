@@ -22,18 +22,10 @@ import { useFabAnimation } from './useFabAnimation'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     menuWrapper: {
-      position: 'fixed',
-      zIndex: 99,
       left: theme.page.horizontal,
       [theme.breakpoints.down('sm')]: {
-        top: 'unset',
-        left: 20,
-        bottom: 20,
         transform: 'none !important',
         opacity: '1 !important',
-      },
-      [theme.breakpoints.up('md')]: {
-        top: `calc(${theme.appShell.headerHeightMd} / 2 - 28px)`,
       },
     },
     menuFab: {
