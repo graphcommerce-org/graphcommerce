@@ -21,9 +21,11 @@ const useStyles = makeStyles(
       background: theme.palette.background.default,
     },
     hideFabsOnVirtualKeyboardOpen: {
+      display: 'flex',
+      justifyContent: 'space-between',
       width: '100%',
       height: 0,
-      zIndex: 1,
+      zIndex: 2,
       [theme.breakpoints.up('sm')]: {
         padding: `0 ${theme.page.horizontal}`,
         position: 'sticky',

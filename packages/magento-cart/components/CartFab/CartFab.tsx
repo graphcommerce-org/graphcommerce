@@ -26,7 +26,6 @@ const useStyles = makeStyles(
       },
     },
     cartFab: {
-      float: 'right',
       boxShadow: 'none',
       width: responsiveVal(42, 56),
       height: responsiveVal(42, 56),
