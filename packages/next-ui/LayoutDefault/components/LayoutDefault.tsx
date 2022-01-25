@@ -45,6 +45,7 @@ const useStyles = makeStyles(
         },
       },
     },
+
     header: {
       zIndex: theme.zIndex.appBar - 1,
       display: 'flex',
@@ -64,6 +65,7 @@ const useStyles = makeStyles(
         width: '100%',
       },
     },
+
     headerSticky: {
       [theme.breakpoints.down('sm')]: {
         position: 'sticky',
