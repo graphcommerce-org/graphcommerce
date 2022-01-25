@@ -1,10 +1,8 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { makeStyles, Theme } from '@material-ui/core'
-import zIndex from '@material-ui/core/styles/zIndex'
 import clsx from 'clsx'
 import { useTransform, useViewportScroll } from 'framer-motion'
 import React from 'react'
-import { callbackify } from 'util'
 import LayoutProvider from '../../Layout/components/LayoutProvider'
 import { responsiveVal, UseStyles } from '../../Styles'
 

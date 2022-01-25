@@ -1,5 +1,4 @@
 import {
-  FixedFab,
   iconShoppingBag,
   responsiveVal,
   StyledBadge,
@@ -8,7 +7,7 @@ import {
   UseStyles,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
-import { alpha, darken, Fab, FabProps, makeStyles, NoSsr, Theme, useTheme } from '@material-ui/core'
+import { alpha, Fab, FabProps, makeStyles, NoSsr, Theme, useTheme } from '@material-ui/core'
 import { m, useTransform } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
