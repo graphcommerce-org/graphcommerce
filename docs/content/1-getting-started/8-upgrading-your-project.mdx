@@ -10,13 +10,10 @@ To upgrade your project we need to:
 
 Instructions:
 
-1. `yarn list --pattern @graphcommerce/next-ui` to find currently installed
-   package. We need this later, write it down somewhere.  
+1. Find the currrent version of `@graphcommerce/next-ui` in your package.json  
    _Note: We're using `@graphcommerce/next-ui` here, because that package is
-   almost guaranteed to be updated with every release._
-2. Find the latest version of
-   (`@graphcommerce/next-ui`)[https://github.com/ho-nl/m2-pwa/blob/master/packages/next-ui/package.json#L3].
-   We need this later, write it down somewhere.
+   almost guaranteed to be updated with every release, but the only reason we're
+   selecting it is because we want to find the version that is installed._
 3. Run `yarn upgrade-interactive --latest` in the root of your project. And
    upgrade all packages to the latest version.
 4. If you haven't already, make sure you have a copy of the GraphCommerce repo
@@ -26,8 +23,9 @@ Instructions:
    git clone git@github.com:ho-nl/m2-pwa.git graphcommerce
    cd graphcommerce
    ```
-5. `git diff "@graphcommerce/next-ui@OLD_VERSION".."@graphcommerce/next-ui@NEW_VERSION" examples`
-6. Manually traverse the diff and apply changes to your project.
+5. `git diff "@graphcommerce/next-ui@OLD_VERSION".."@" examples/magento-graphcms`
+6. To get a pretty print of the diff https://diffy.org/: 
+7. Manually traverse the diff and apply changes to your project.
 
 ## Future tools
 
