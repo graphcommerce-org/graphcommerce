@@ -3,14 +3,14 @@ import React from 'react'
 import { extendableComponent, responsiveVal } from '../../Styles'
 import { SvgIcon, SvgIconProps } from '../../SvgIcon/SvgIcon'
 
-type OwnerProps = {
+type OwnerState = {
   size?: 'small' | 'medium'
   gutterTop?: boolean
   gutterBottom?: boolean
 }
 
 const parts = ['root', 'title', 'icon'] as const
-const { withState } = extendableComponent<OwnerProps, 'LayoutTitle', typeof parts>(
+const { withState } = extendableComponent<OwnerState, 'LayoutTitle', typeof parts>(
   'LayoutTitle',
   parts,
 )
@@ -21,7 +21,7 @@ export type TitleProps = {
   variant?: TypographyProps['variant']
   component?: React.ElementType
   sx?: SxProps<Theme>
-} & OwnerProps
+} & OwnerState
 
 export const LayoutTitle = React.forwardRef<HTMLDivElement, TitleProps>((props, ref) => {
   const { children, icon, size = 'medium', component, variant, sx = [] } = props
@@ -39,7 +39,7 @@ export const LayoutTitle = React.forwardRef<HTMLDivElement, TitleProps>((props, 
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: 6,
+          gap: `6px`,
           flexFlow: 'unset',
           [theme.breakpoints.up('md')]: {
             flexFlow: 'column',

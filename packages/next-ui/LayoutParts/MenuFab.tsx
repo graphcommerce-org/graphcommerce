@@ -7,6 +7,7 @@ import {
   ListItemText,
   Menu,
   styled,
+  Box,
 } from '@mui/material'
 import { m } from 'framer-motion'
 import PageLink, { LinkProps as PageLinkProps } from 'next/link'
@@ -54,6 +55,8 @@ const { componentName, classes, selectors } = extendableComponent('MenuFab', [
   'menu',
 ] as const)
 
+const fabIconSize = responsiveVal(42, 56) // @todo generalize this
+
 export function MenuFab(props: MenuFabProps) {
   const { children, secondary, search, menuIcon, closeIcon } = props
   const router = useRouter()
@@ -68,91 +71,88 @@ export function MenuFab(props: MenuFabProps) {
   }, [router])
 
   return (
-    <MotionDiv
-      sx={(theme) => ({
-        position: 'fixed',
-        zIndex: 99,
-        top: { xs: 'unset', md: `calc(${theme.appShell.headerHeightMd} / 2 - 28px)` },
-        left: { xs: 20, md: theme.page.horizontal },
-        bottom: { xs: 20, md: 'unset' },
-        [theme.breakpoints.down('md')]: {
-          opacity: '1 !important',
-          transform: 'none !important',
-        },
-      })}
-      style={{ scale, opacity }}
-      className={componentName}
-    >
-      <Fab
-        color='inherit'
-        aria-label='Open Menu'
-        size='medium'
-        onClick={(event) => setOpenEl(event.currentTarget)}
-        sx={(theme) => ({
-          boxShadow: 'none',
-          '&:hover, &:focus': {
-            boxShadow: 'none',
-            background: theme.palette.text.primary,
-          },
-          background: theme.palette.text.primary,
-          width: responsiveVal(42, 56),
-          height: responsiveVal(42, 56),
-          pointerEvents: 'all',
-          color: theme.palette.background.paper,
-        })}
-        className={classes.fab}
-      >
-        {closeIcon ?? (
-          <SvgIcon src={iconClose} size='medium' sx={{ display: openEl ? 'block' : 'none' }} />
-        )}
-        {menuIcon ?? (
-          <SvgIcon src={iconMenu} size='medium' sx={{ display: openEl ? 'none' : 'block' }} />
-        )}
-      </Fab>
+    <Box sx={{ width: fabIconSize, height: fabIconSize }}>
       <MotionDiv
         sx={(theme) => ({
-          pointerEvents: 'none',
-          borderRadius: '99em',
-          position: 'absolute',
-          height: '100%',
-          width: '100%',
-          boxShadow: theme.shadows[6],
-          top: 0,
-          [theme.breakpoints.down('md')]: { opacity: '1 !important' },
+          [theme.breakpoints.down('md')]: {
+            opacity: '1 !important',
+            transform: 'none !important',
+          },
         })}
-        className={classes.shadow}
-        style={{ opacity: shadowOpacity }}
-      />
-
-      <Menu
-        anchorEl={openEl}
-        open={!!openEl}
-        onClose={() => setOpenEl(null)}
-        disableScrollLock
-        transitionDuration={{ appear: 175, enter: 175, exit: 175 }}
-        PaperProps={{
-          sx: (theme) => ({
-            backgroundColor: theme.palette.background.paper,
-            color: theme.palette.text.primary,
-            minWidth: responsiveVal(200, 280),
-            marginTop: 12,
-            [theme.breakpoints.down('md')]: {
-              marginTop: `calc((${responsiveVal(42, 56)} + 12px) * -1)`,
-            },
-          }),
-        }}
-        className={classes.menu}
+        style={{ scale, opacity }}
+        className={componentName}
       >
-        {search && (
-          <List>
-            <ListItem dense>{search}</ListItem>
-          </List>
-        )}
-        <List>{children}</List>
-        <Divider variant='middle' />
-        <List component='div'>{secondary}</List>
-      </Menu>
-    </MotionDiv>
+        <Fab
+          color='inherit'
+          aria-label='Open Menu'
+          size='medium'
+          onClick={(event) => setOpenEl(event.currentTarget)}
+          sx={(theme) => ({
+            boxShadow: 'none',
+            '&:hover, &:focus': {
+              boxShadow: 'none',
+              background: theme.palette.text.primary,
+            },
+            background: theme.palette.text.primary,
+            width: fabIconSize,
+            height: fabIconSize,
+            pointerEvents: 'all',
+            color: theme.palette.background.paper,
+          })}
+          className={classes.fab}
+        >
+          {closeIcon ?? (
+            <SvgIcon src={iconClose} size='medium' sx={{ display: openEl ? 'block' : 'none' }} />
+          )}
+          {menuIcon ?? (
+            <SvgIcon src={iconMenu} size='medium' sx={{ display: openEl ? 'none' : 'block' }} />
+          )}
+        </Fab>
+        <MotionDiv
+          sx={(theme) => ({
+            pointerEvents: 'none',
+            borderRadius: '99em',
+            position: 'absolute',
+            height: '100%',
+            width: '100%',
+            boxShadow: theme.shadows[6],
+            top: 0,
+            [theme.breakpoints.down('md')]: { opacity: '1 !important' },
+          })}
+          className={classes.shadow}
+          style={{ opacity: shadowOpacity }}
+        />
+
+        <Menu
+          anchorEl={openEl}
+          open={!!openEl}
+          onClose={() => setOpenEl(null)}
+          disableScrollLock
+          transitionDuration={{ appear: 175, enter: 175, exit: 175 }}
+          PaperProps={{
+            sx: (theme) => ({
+              backgroundColor: theme.palette.background.paper,
+              color: theme.palette.text.primary,
+              minWidth: responsiveVal(200, 280),
+              marginTop: 12,
+              [theme.breakpoints.down('md')]: {
+                marginTop: `calc((${fabIconSize} + 12px) * -1)`,
+              },
+            }),
+          }}
+          className={classes.menu}
+        >
+          {search && (
+            <List>
+              <ListItem dense>{search}</ListItem>
+            </List>
+          )}
+          <List>{children}</List>
+          <Divider variant='middle' />
+          <List component='div'>{secondary}</List>
+        </Menu>
+      </MotionDiv>
+    </Box>
   )
 }
 MenuFab.selectors = selectors

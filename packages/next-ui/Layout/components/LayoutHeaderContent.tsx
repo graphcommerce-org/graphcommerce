@@ -15,7 +15,7 @@ export type LayoutHeaderContentProps = FloatingProps & {
   sxBg?: SxProps<Theme>
 }
 
-type OwnerProps = {
+type OwnerState = {
   floatingSm: boolean
   floatingMd: boolean
   scrolled: boolean
@@ -23,7 +23,7 @@ type OwnerProps = {
 }
 
 const parts = ['bg', 'content', 'left', 'center', 'right', 'divider'] as const
-const { withState } = extendableComponent<OwnerProps, 'LayoutHeaderContent', typeof parts>(
+const { withState } = extendableComponent<OwnerState, 'LayoutHeaderContent', typeof parts>(
   'LayoutHeaderContent',
   parts,
 )

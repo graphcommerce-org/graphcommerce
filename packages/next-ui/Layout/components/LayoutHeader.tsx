@@ -36,10 +36,10 @@ type ComponentStyleProps = {
   floatingMd: boolean
 }
 
-const { componentName, selectors, withState } = extendableComponent<
-  ComponentStyleProps,
-  'LayoutHeader'
->('LayoutHeader', [] as const)
+const { selectors, withState } = extendableComponent<ComponentStyleProps, 'LayoutHeader'>(
+  'LayoutHeader',
+  ['root'] as const,
+)
 
 export function LayoutHeader(props: LayoutHeaderProps) {
   const { children, divider, primary, secondary, noAlign = false, switchPoint, sx = [] } = props
