@@ -1,10 +1,8 @@
-import { ToggleButtonGroupProps as ToggleButtonGroupPropsBase } from '@mui/material'
-import { capitalize } from '@mui/material/utils'
+import { Box, ToggleButtonGroupProps as ToggleButtonGroupPropsBase } from '@mui/material'
 import clsx from 'clsx'
-import React, { PropsWithoutRef } from 'react'
+import React from 'react'
 import { isFragment } from 'react-is'
-import { UseStyles } from '../Styles'
-import { makeStyles, useMergedClasses } from '../Styles/tssReact'
+import { extendableComponent } from '../Styles'
 
 function isValueSelected(value: string, candidate: string | string[]) {
   if (candidate === undefined || value === undefined) return false
@@ -12,28 +10,13 @@ function isValueSelected(value: string, candidate: string | string[]) {
   return value === candidate
 }
 
-type StyleProps = { minWidth?: number }
+type OwnerState = Pick<ToggleButtonGroupPropsBase, 'orientation' | 'size'>
 
-const useStyles = makeStyles<StyleProps>({ name: 'ToggleButtonGroup' })(
-  (theme, { minWidth = 200 }) => ({
-    root: {
-      display: 'grid',
-      gridTemplateColumns: `repeat(auto-fit, minmax(${minWidth}px, 1fr))`,
-      gap: `calc(${theme.spacings.xxs} * 2)`,
-    },
-    vertical: {
-      gridAutoFlow: 'column',
-    },
-    grouped: {},
-    groupedHorizontal: {},
-    groupedVertical: {},
-  }),
-)
+const name = 'ToggleButtonGroup' as const
+const slots = ['root', 'button'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof slots>(name, slots)
 
-export type ToggleButtonGroupProps = Omit<PropsWithoutRef<ToggleButtonGroupPropsBase>, 'size'> & {
-  required?: boolean
-} & StyleProps &
-  UseStyles<typeof useStyles>
+export type ToggleButtonGroupProps = ToggleButtonGroupPropsBase & { required?: boolean }
 
 const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGroupProps>((props, ref) => {
   const {
@@ -43,13 +26,15 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGroupProp
     required = false,
     onChange,
     orientation = 'horizontal',
-    minWidth,
     value,
+    size = 'large',
+    sx = [],
     ...other
   } = props
 
-  const classes = useMergedClasses(useStyles({ minWidth }).classes, props.classes)
+  const classes = withState({ orientation, size })
 
+  /* eslint-disable @typescript-eslint/no-unsafe-argument */
   const handleChange = (event, buttonValue) => {
     if (!onChange) return
 
@@ -72,9 +57,29 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGroupProp
   }
 
   return (
-    <div
+    <Box
       role='group'
-      className={clsx(classes.root, { [classes.vertical]: orientation === 'vertical' }, className)}
+      className={clsx(classes.root, className)}
+      sx={[
+        (theme) => ({
+          display: 'grid',
+          rowGap: theme.spacings.xxs,
+          columnGap: theme.spacings.xs,
+          '&.orientationVertical': {
+            gridAutoFlow: 'column',
+          },
+          '&.sizeSmall.orientationHorizontal': {
+            gridTemplateColumns: `repeat(auto-fill, minmax(60px, 1fr))`,
+          },
+          '&.sizeMedium.orientationHorizontal': {
+            gridTemplateColumns: 'repeat(2, 1fr)',
+          },
+          '&.sizeLarge.orientationHorizontal': {
+            gridTemplateColumns: 'repeat(2, 1fr)',
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       ref={ref}
       {...other}
     >
@@ -93,11 +98,7 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGroupProp
         }
 
         return React.cloneElement(child, {
-          className: clsx(
-            classes.grouped,
-            classes[`grouped${capitalize(orientation)}`],
-            child.props.className,
-          ),
+          className: clsx(classes.button, child.props.className),
           onChange: exclusive ? handleExclusiveChange : handleChange,
           selected:
             child.props.selected === undefined
@@ -105,7 +106,7 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGroupProp
               : child.props.selected,
         })
       })}
-    </div>
+    </Box>
   )
 })
 

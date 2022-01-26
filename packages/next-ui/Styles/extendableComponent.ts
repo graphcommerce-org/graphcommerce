@@ -32,7 +32,7 @@ export const slotSelectorsMap = <O extends Record<string, string>>(
  * - Generate state css classes.
  */
 export function extendableComponent<
-  ComponentStyleProps extends Record<string, boolean | string | undefined>,
+  ComponentStyleProps extends Record<string, boolean | string | number | undefined>,
   Name extends string = string,
   ClassNames extends ReadonlyArray<string> = ReadonlyArray<string>,
 >(componentName: Name, slotNames: ClassNames) {
@@ -41,16 +41,16 @@ export function extendableComponent<
 
   const withState = (state: ComponentStyleProps) => {
     const stateClas = Object.fromEntries(
-      Object.entries(classes).map(([slot, className]) => {
-        const mapped = Object.entries(state)
-          .map(([key, value]) => {
-            if (typeof value === 'boolean' && value === true) return key
-            if (typeof value === 'string' && value.length > 0) return `${key}${capitalize(value)}`
-            return ''
-          })
-          .filter(Boolean)
+      Object.entries<string>(classes).map(([slot, className]) => {
+        const mapped = Object.entries(state).map(([key, value]) => {
+          if (typeof value === 'boolean' && value === true) return key
+          if (typeof value === 'string' && value.length > 0) return `${key}${capitalize(value)}`
+          if (typeof value === 'number' && value > 0) return `${key}${value}`
+          return ''
+        })
 
-        return [slot, `${className} ${mapped.join(' ')}`]
+        if (className) mapped.unshift(className)
+        return [slot, mapped.filter(Boolean).join(' ')]
       }),
     ) as {
       [P in ClassNames[number]]: `${Name}-${P} ${string}`

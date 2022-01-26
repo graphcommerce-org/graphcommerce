@@ -8,7 +8,7 @@ type ConfigurableOption = NonNullable<
 >
 export type ConfigurableOptionValue = NonNullable<NonNullable<ConfigurableOption['values']>[0]>
 
-export type SwatchSize = 'small' | 'large'
+export type SwatchSize = 'small' | 'medium' | 'large'
 
 export type SwatchDataProps = ConfigurableOptionValue & {
   size?: SwatchSize

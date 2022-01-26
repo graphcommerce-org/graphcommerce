@@ -27,7 +27,7 @@ const useStyles = makeStyles({ name: 'SignUpFormInline' })((theme) => ({
 }))
 
 type SignUpFormInlineProps = Pick<SignUpMutationVariables, 'email'> & {
-  helperList?: React.ReactNode
+  children?: React.ReactNode
   firstname?: string
   lastname?: string
   onSubmitted?: () => void
@@ -35,7 +35,7 @@ type SignUpFormInlineProps = Pick<SignUpMutationVariables, 'email'> & {
 
 export default function SignUpFormInline({
   email,
-  helperList,
+  children,
   firstname,
   lastname,
   onSubmitted = () => {},
@@ -91,7 +91,7 @@ export default function SignUpFormInline({
 
       <FormRow key='signup-submit'>
         <FormRow className={classes.buttonFormRow}>
-          <div>{helperList}</div>
+          <div>{children}</div>
           <div className={classes.buttonContainer}>
             <Button
               fullWidth

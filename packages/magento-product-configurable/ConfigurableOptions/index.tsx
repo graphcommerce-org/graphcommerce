@@ -3,42 +3,33 @@ import {
   SectionHeader,
   ToggleButton,
   ToggleButtonGroup,
-  makeStyles,
+  extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Controller, FieldErrors, UseControllerProps } from '@graphcommerce/react-hook-form'
 import { BaseTextFieldProps, FormHelperText } from '@mui/material'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import { SwatchTypeRenderer, SwatchSize } from '../Swatches'
-import ColorSwatchData from '../Swatches/ColorSwatchData'
-import ImageSwatchData from '../Swatches/ImageSwatchData'
-import TextSwatchData from '../Swatches/TextSwatchData'
+import { ColorSwatchData } from '../Swatches/ColorSwatchData'
+import { ImageSwatchData } from '../Swatches/ImageSwatchData'
+import { TextSwatchData } from '../Swatches/TextSwatchData'
 
-export type ConfigurableOptionsProps = {
+export type ConfigurableOptionsInputProps = {
   sku: string
   errors?: FieldErrors
+  size?: SwatchSize
 } & UseControllerProps<any> &
   Pick<BaseTextFieldProps, 'FormHelperTextProps' | 'helperText'> & {
     optionEndLabels?: Record<string, React.ReactNode>
   }
 
-export const useStyles = makeStyles({ name: 'ConfigurableOptions' })((theme) => ({
-  toggleButtonGroup: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(2, 1fr)',
-    gap: theme.spacings.xs,
-  },
-  button: {
-    minHeight: theme.spacings.lg,
-  },
-  helperText: {
-    position: 'absolute',
-  },
-}))
-
 const renderer: SwatchTypeRenderer = { TextSwatchData, ImageSwatchData, ColorSwatchData }
 
-export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps) {
+const compName = 'ConfigurableOptionsInput' as const
+const slots = ['buttonGroup', 'button', 'helperText'] as const
+const { classes } = extendableComponent(compName, slots)
+
+export default function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
   const {
     sku,
     FormHelperTextProps,
@@ -47,11 +38,11 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
     errors,
     helperText,
     optionEndLabels,
+    size = 'large',
     ...controlProps
   } = props
 
   const { options, selection, select, getVariants } = useConfigurableContext(sku)
-  const { classes } = useStyles()
 
   return (
     <>
@@ -80,7 +71,6 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                   defaultValue={selection[attribute_code] ?? ''}
                   required
                   exclusive
-                  minWidth={100}
                   onChange={(_, val: string | number) => {
                     onChange(val)
                     select((prev) => ({ ...prev, [attribute_code]: val } as Selected))
@@ -88,7 +78,8 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                   ref={ref}
                   onBlur={onBlur}
                   value={value}
-                  classes={{ root: classes.toggleButtonGroup }}
+                  className={classes.buttonGroup}
+                  size={size}
                 >
                   {option?.values?.map((val) => {
                     if (!val?.uid || !option.attribute_code) return null
@@ -113,20 +104,28 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                         name={inputName}
                         className={classes.button}
                         disabled={!itemVariant}
+                        size={size}
                       >
                         <RenderType
                           renderer={renderer}
                           {...val}
                           {...swatch_data}
                           price={itemVariant?.product?.price_range.minimum_price.final_price}
-                          size={'large' as SwatchSize}
+                          size={size}
                         />
                       </ToggleButton>
                     )
                   })}
                 </ToggleButtonGroup>
                 {error && (
-                  <FormHelperText error {...FormHelperTextProps} className={classes.helperText}>
+                  <FormHelperText
+                    error
+                    {...FormHelperTextProps}
+                    className={classes.helperText}
+                    sx={{
+                      position: 'absolute',
+                    }}
+                  >
                     {`${option.label} is ${errorHelperText?.type}`}
                   </FormHelperText>
                 )}

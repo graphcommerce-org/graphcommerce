@@ -1,44 +1,23 @@
 import { Button, ButtonProps } from '@mui/material'
 import clsx from 'clsx'
 import React, { FormEvent } from 'react'
-import { UseStyles } from '../Styles'
+import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { makeStyles, useMergedClasses } from '../Styles/tssReact'
-
-type StyleProps = { selected?: boolean; color?: ButtonProps['color'] }
-
-export const useStyles = makeStyles<StyleProps>({ name: 'ToggleButton' })(
-  (theme, { color = 'default' }) => ({
-    /* Styles applied to the root element. */
-    root: {
-      borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
-      border: `1px solid ${theme.palette.divider}`,
-      background: theme.palette.background.paper,
-      '&$disabled': {
-        borderWidth: 2,
-      },
-      '&:hover': {},
-      '&$selected': {},
-    },
-    disabled: {},
-    selected: {
-      border: `1px solid ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
-      boxShadow: `inset 0 0 0 1px ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
-    },
-    /* Styles applied to the `label` wrapper element. */
-    label: {},
-    sizeSmall: {},
-    sizeLarge: {
-      padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
-    },
-  }),
-)
 
 export type ToggleButtonProps = Omit<ButtonProps, 'onClick' | 'onChange'> & {
   selected?: boolean
   onClick?: (e: FormEvent<HTMLButtonElement>, v: any) => void
   onChange?: (e: FormEvent<HTMLButtonElement>, v: any) => void
-} & UseStyles<typeof useStyles>
+}
+
+type OwnerState = Pick<ButtonProps, 'size' | 'disabled'> & { selected?: boolean }
+
+const compName = 'ToggleButton' as const
+const slots = ['root', 'button', 'helperText'] as const
+const { withState } = extendableComponent<OwnerState, typeof compName, typeof slots>(
+  compName,
+  slots,
+)
 
 export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
   const {
@@ -50,11 +29,11 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
     selected,
     size = 'medium',
     value,
-    color,
+    color = 'default',
+    sx = [],
     ...other
   } = props
-  let { classes } = useStyles({ color, selected })
-  classes = useMergedClasses(classes, props.classes)
+  const classes = withState({ size, selected, disabled })
 
   const handleChange = (event: FormEvent<HTMLButtonElement>) => onChange?.(event, value)
 
@@ -68,16 +47,7 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
 
   return (
     <Button
-      className={clsx(
-        classes.root,
-        {
-          [classes.disabled]: disabled,
-          [classes.selected]: selected,
-          [classes.sizeLarge]: size === 'large',
-          [classes.sizeSmall]: size === 'small',
-        },
-        className,
-      )}
+      className={clsx(classes.root, className)}
       variant='outlined'
       disabled={disabled}
       ref={ref}
@@ -88,6 +58,32 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
       size={size}
       {...other}
       classes={classes}
+      sx={[
+        (theme) => ({
+          borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+          border: 1,
+          borderColor: 'divider',
+          bgcolor: 'background.paper',
+
+          '&.disabled': {
+            borderWidth: 2,
+          },
+
+          '&.selected': {
+            border: `1px solid ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
+            boxShadow: `inset 0 0 0 1px ${
+              theme.palette[color]?.main ?? theme.palette.primary.main
+            }`,
+          },
+          ':not(&.sizeSmall)': {
+            padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
+          },
+          '&.sizeSmall': {
+            aspectRatio: `4/3`,
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
       {children}
     </Button>
