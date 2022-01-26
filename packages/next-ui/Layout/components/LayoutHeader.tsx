@@ -3,11 +3,11 @@ import React from 'react'
 import { extendableComponent } from '../../Styles'
 import LayoutHeaderBack, { useShowBack } from './LayoutHeaderBack'
 import LayoutHeaderClose, { useShowClose } from './LayoutHeaderClose'
-import LayoutHeaderContent, { ContentProps } from './LayoutHeaderContent'
+import LayoutHeaderContent, { LayoutHeaderContentProps } from './LayoutHeaderContent'
 import { FloatingProps } from './LayoutHeadertypes'
 
 export type LayoutHeaderProps = FloatingProps &
-  Omit<ContentProps, 'left' | 'right'> & {
+  Omit<LayoutHeaderContentProps, 'left' | 'right'> & {
     /**
      * Button to display on the left side of the title
      *
@@ -36,10 +36,10 @@ type ComponentStyleProps = {
   floatingMd: boolean
 }
 
-const { selectors, stateClasses } = extendableComponent<ComponentStyleProps>(
-  'LayoutHeader',
-  [] as const,
-)
+const { componentName, selectors, withState } = extendableComponent<
+  ComponentStyleProps,
+  'LayoutHeader'
+>('LayoutHeader', [] as const)
 
 export function LayoutHeader(props: LayoutHeaderProps) {
   const { children, divider, primary, secondary, noAlign = false, switchPoint, sx = [] } = props
@@ -67,7 +67,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
 
   if (!left && !right && !children) return null
 
-  const rootClasses = stateClasses({
+  const classes = withState({
     floatingSm,
     floatingMd,
     noAlign,
@@ -77,7 +77,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
 
   return (
     <Box
-      className={rootClasses}
+      className={classes.root}
       sx={[
         (theme) => ({
           zIndex: children ? theme.zIndex.appBar : theme.zIndex.appBar - 2,
