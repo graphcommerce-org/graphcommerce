@@ -13,6 +13,7 @@ export const useStyles = makeStyles<StyleProps>({ name: 'ToggleButton' })(
     root: {
       borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
       border: `1px solid ${theme.palette.divider}`,
+      background: theme.palette.background.paper,
       '&$disabled': {
         borderWidth: 2,
       },
