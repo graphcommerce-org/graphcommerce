@@ -8,23 +8,15 @@ import {
 } from '@mui/material'
 import clsx from 'clsx'
 import React, { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
-import { UseStyles } from '../Styles'
+import { extendableComponent, UseStyles } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconMin, iconPlus } from '../icons'
 
 const useStyles = makeStyles({ name: 'TextInputNumber' })({
-  quantity: {
-    width: responsiveVal(80, 120),
-    backgroundColor: 'inherit',
-  },
-  quantityInput: {
-    textAlign: 'center',
-    '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
-      appearance: 'none',
-    },
-  },
+  quantity: {},
+  quantityInput: {},
   button: {},
   adornedEnd: {
     paddingRight: responsiveVal(7, 14),
@@ -47,6 +39,11 @@ export type TextInputNumberProps = Omit<TextFieldProps, 'type'> & {
 function isOutlined(props: TextFieldProps): props is OutlinedTextFieldProps {
   return props.variant === 'outlined'
 }
+
+type OwnerState = { size?: 'small' | 'medium' }
+const name = 'TextInputNumber' as const
+const slots = ['quantity', 'quantityInput'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof slots>(name, slots)
 
 export function TextInputNumber(props: TextInputNumberProps) {
   const { DownProps = {}, UpProps = {}, inputProps = {}, inputRef, ...textFieldProps } = props
@@ -112,6 +109,10 @@ export function TextInputNumber(props: TextInputNumberProps) {
       type='number'
       inputRef={forkRef}
       className={clsx(textFieldProps.className, classes.quantity)}
+      sx={{
+        width: responsiveVal(80, 120),
+        backgroundColor: 'inherit',
+      }}
       autoComplete='off'
       label={' '}
       id='quantity-input'
@@ -128,8 +129,8 @@ export function TextInputNumber(props: TextInputNumberProps) {
             // disabled={textFieldProps.disabled || disabled === 'min'}
             tabIndex={-1}
             color='inherit'
-            className={clsx(classes.button, DownProps.className)}
             {...DownProps}
+            className={clsx(classes.button, DownProps.className)}
           >
             {DownProps.children ?? <SvgIcon src={iconMin} size='small' />}
           </IconButton>
@@ -144,8 +145,8 @@ export function TextInputNumber(props: TextInputNumberProps) {
             // disabled={textFieldProps.disabled || disabled === 'max'}
             tabIndex={-1}
             color='inherit'
-            className={clsx(classes.button, UpProps.className)}
             {...UpProps}
+            className={clsx(classes.button, UpProps.className)}
           >
             {UpProps.children ?? <SvgIcon src={iconPlus} size='small' />}
           </IconButton>
@@ -157,6 +158,12 @@ export function TextInputNumber(props: TextInputNumberProps) {
       }}
       inputProps={{
         ...inputProps,
+        sx: {
+          textAlign: 'center',
+          '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
+            appearance: 'none',
+          },
+        },
         className: clsx(inputProps?.className, classes.quantityInput),
       }}
     />

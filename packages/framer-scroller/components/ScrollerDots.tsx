@@ -5,7 +5,6 @@ import { m } from 'framer-motion'
 import React from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
-import { useWatchItems } from '../hooks/useWatchItems'
 
 const MotionBox = styled(m.div)({})
 

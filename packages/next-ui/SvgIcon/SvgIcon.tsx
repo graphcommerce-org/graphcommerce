@@ -28,7 +28,7 @@ const Svg = styled('svg', {
       userSelect: 'none',
       width: '1.3em',
       height: '1.3em',
-      strokeWidth: 2.1,
+      strokeWidth: 1.8,
       strokeLinecap: 'square',
       strokeLinejoin: 'miter',
       fill: 'none',

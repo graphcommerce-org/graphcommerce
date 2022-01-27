@@ -38,7 +38,7 @@ import {
   LayoutFull,
   LayoutFullProps,
   ProductListItems,
-  useProductListStyles,
+  sxLargeItem,
   RowProduct,
   RowRenderer,
 } from '../components'
@@ -58,7 +58,6 @@ type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function CategoryPage(props: Props) {
   const { categories, products, filters, params, filterTypes, pages } = props
-  const { classes: productListClasses } = useProductListStyles()
 
   const category = categories?.items?.[0]
   if (!category || !products || !params || !filters || !filterTypes) return null
@@ -119,11 +118,7 @@ function CategoryPage(props: Props) {
           </StickyBelowHeader>
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />
-            <ProductListItems
-              items={products?.items}
-              classes={productListClasses}
-              loadingEager={1}
-            />
+            <ProductListItems items={products?.items} loadingEager={1} sx={sxLargeItem} />
             <ProductListPagination page_info={products?.page_info} />
           </Container>
         </ProductListParamsProvider>

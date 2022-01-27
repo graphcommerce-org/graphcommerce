@@ -1,5 +1,5 @@
-import { mergeDeep } from '@apollo/client/utilities'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { mergeDeep } from '@graphcommerce/graphql'
 import {
   extractUrlQuery,
   FilterTypes,
@@ -14,13 +14,7 @@ import {
 } from '@graphcommerce/magento-product'
 import { SearchDocument, SearchQuery } from '@graphcommerce/magento-search'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  StickyBelowHeader,
-  LayoutTitle,
-  LayoutHeader,
-  makeStyles,
-  LinkOrButton,
-} from '@graphcommerce/next-ui'
+import { StickyBelowHeader, LayoutTitle, LayoutHeader, LinkOrButton } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { Box, Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -35,16 +29,8 @@ type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props, RouteProps>
 
-// for testing only
-const useStyles = makeStyles()({
-  longContent: {
-    height: 2000,
-  },
-})
-
 function MinimalLayoutSubheader(props: Props) {
   const { params, products, filters, filterTypes } = props
-  const { classes } = useStyles()
 
   return (
     <ProductListParamsProvider value={params}>
@@ -61,7 +47,7 @@ function MinimalLayoutSubheader(props: Props) {
           Minimal UI
         </Typography>
       </LayoutHeader>
-      <Container maxWidth='md' className={classes.longContent}>
+      <Container maxWidth='md' sx={{ height: '2000px' }}>
         <LayoutTitle>
           <Box textAlign='center' mb={3}>
             <Typography variant='h2' component='h2'>
@@ -111,29 +97,10 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     variables: { url: 'minimal-page-shell-subheader', rootCategory },
   })
 
-  const productListParams = parseParams(
-    `minimal-page-shell-subheader${search.length > 2 ? `/${search}` : search}`,
-    query,
-    await filterTypes,
-  )
-
-  if (!productListParams) return { notFound: true }
-
-  const products =
-    search && search.length > 2
-      ? staticClient.query({
-          query: SearchDocument,
-          variables: mergeDeep(productListParams, {
-            categoryUid: rootCategory,
-            search,
-          }),
-        })
-      : staticClient.query({
-          query: ProductListDocument,
-          variables: mergeDeep(productListParams, {
-            categoryUid: rootCategory,
-          }),
-        })
+  const products = staticClient.query({
+    query: ProductListDocument,
+    variables: { categoryUid: rootCategory },
+  })
 
   return {
     props: {

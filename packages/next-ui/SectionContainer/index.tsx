@@ -1,38 +1,40 @@
-import clsx from 'clsx'
+import { Box } from '@mui/material'
 import { PropsWithChildren } from 'react'
 import { SectionHeader, SectionHeaderProps } from '../SectionHeader'
-import { UseStyles } from '../Styles'
-import { makeStyles, useMergedClasses } from '../Styles/tssReact'
+import { extendableComponent } from '../Styles'
 
-const useStyles = makeStyles({ name: 'SectionContainer' })((theme) => ({
-  sectionContainer: {},
-  sectionHeaderSidePadding: {},
-  sectionHeaderWrapper: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
-    paddingBottom: theme.spacings.xxs,
-    marginBottom: theme.spacings.xxs,
-  },
-  labelLeft: {},
-  labelRight: {},
-  borderBottom: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
-  },
-}))
+export type SectionContainerProps = PropsWithChildren<OwnerState> & SectionHeaderProps
 
-export type SectionContainerProps = PropsWithChildren<{ borderBottom?: boolean }> &
-  UseStyles<typeof useStyles> &
-  SectionHeaderProps
+type OwnerState = { borderBottom?: boolean }
+const name = 'SectionContainer' as const
+const slots = ['root'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof slots>(name, slots)
 
 export function SectionContainer(props: SectionContainerProps) {
-  const { children, borderBottom } = props
-  let { classes } = useStyles()
-  classes = useMergedClasses(classes, props.classes)
-  const { sectionContainer, borderBottom: borderBottomClass, ...passClasses } = classes
+  const { children, borderBottom, sx = [], ...sectionHeaderProps } = props
+  const classes = withState({ borderBottom })
 
   return (
-    <div className={clsx(sectionContainer, { [borderBottomClass]: borderBottom })}>
-      <SectionHeader {...props} classes={passClasses} />
+    <Box
+      className={classes.root}
+      sx={[
+        (theme) => ({
+          '&.borderBottom': {
+            borderBottom: `1px solid ${theme.palette.divider}`,
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      <SectionHeader
+        {...sectionHeaderProps}
+        sx={(theme) => ({
+          borderBottom: `1px solid ${theme.palette.divider}`,
+          paddingBottom: theme.spacings.xxs,
+          marginBottom: theme.spacings.xxs,
+        })}
+      />
       {children}
-    </div>
+    </Box>
   )
 }

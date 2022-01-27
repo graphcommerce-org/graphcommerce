@@ -1,6 +1,4 @@
 import { useElementScroll } from '@graphcommerce/framer-utils'
-import { UseStyles } from '@graphcommerce/next-ui'
-import { makeStyles, useMergedClasses } from '@graphcommerce/next-ui/Styles/tssReact'
 import { Fab, FabProps } from '@mui/material'
 import { m, useSpring, useTransform } from 'framer-motion'
 import React from 'react'
@@ -8,23 +6,13 @@ import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 import { SnapPositionDirection } from '../types'
 
-const useStyles = makeStyles()((theme) => ({
-  root: {
-    [theme.breakpoints.down('md')]: {
-      display: 'none',
-    },
-  },
-}))
-
 export type ScrollerButtonProps = {
   direction: SnapPositionDirection
-} & FabProps &
-  UseStyles<typeof useStyles>
+} & FabProps
 
 const ScrollerFab = m(
   React.forwardRef<HTMLDivElement, ScrollerButtonProps>((props, ref) => {
-    const { direction, ...buttonProps } = props
-    const classes = useMergedClasses(useStyles().classes, props.classes)
+    const { direction, sx = [], ...buttonProps } = props
 
     const { getSnapPosition, scrollerRef } = useScrollerContext()
     const scrollTo = useScrollTo()
@@ -48,9 +36,9 @@ const ScrollerFab = m(
           type='button'
           {...buttonProps}
           onClick={handleClick}
-          classes={{ ...classes, ...buttonProps.classes }}
           aria-label={direction}
           size='small'
+          sx={[{ display: { xs: 'none', md: 'flex' } }, ...(Array.isArray(sx) ? sx : [sx])]}
         />
       </m.div>
     )

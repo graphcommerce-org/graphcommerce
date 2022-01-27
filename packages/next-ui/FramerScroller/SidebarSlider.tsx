@@ -77,7 +77,7 @@ export function SidebarSlider(props: SidebarSliderProps) {
               <ScrollerButton
                 direction='left'
                 className={classes.sliderButtons}
-                sx={{ display: { xs: 'none', md: 'block' } }}
+                sx={{ display: { xs: 'none', md: 'flex' } }}
               >
                 <SvgIcon src={iconChevronLeft} />
               </ScrollerButton>

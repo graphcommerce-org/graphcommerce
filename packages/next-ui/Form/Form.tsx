@@ -1,4 +1,4 @@
-import { Box, darken, lighten, styled, experimental_sx, Theme } from '@mui/material'
+import { darken, lighten, styled, experimental_sx, Theme } from '@mui/material'
 import { responsiveVal } from '../Styles/responsiveVal'
 
 type FormStyleProps = {
@@ -6,16 +6,14 @@ type FormStyleProps = {
   background?: 'secondary' | 'default'
 }
 
-const styles = ({
-  theme,
-  contained = false,
-  background = 'default',
-}: { theme: Theme } & FormStyleProps) =>
+const styles = ({ theme, contained = false, background }: { theme: Theme } & FormStyleProps) =>
   experimental_sx([
     {
       display: 'grid',
       alignItems: 'center',
       padding: `${theme.spacings.xxs} 0`,
+    },
+    background === 'default' && {
       background:
         theme.palette.mode === 'light'
           ? darken(theme.palette.background.default, 0.03)

@@ -14,14 +14,13 @@ export type LayoutDefaultProps = {
   children?: React.ReactNode
   noSticky?: boolean
   sx?: SxProps<Theme>
-} & OwnerProps
+} & OwnerState
 
-type OwnerProps = {
+type OwnerState = {
   noSticky?: boolean
 }
-
 const parts = ['root', 'fabs', 'header', 'children', 'footer'] as const
-const { withState } = extendableComponent<OwnerProps, 'LayoutDefault', typeof parts>(
+const { withState } = extendableComponent<OwnerState, 'LayoutDefault', typeof parts>(
   'LayoutDefault',
   parts,
 )

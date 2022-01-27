@@ -1,52 +1,65 @@
-import clsx from 'clsx'
-import React from 'react'
-import { UseStyles } from '../Styles'
+import { Box, SxProps, Theme } from '@mui/material'
+import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { makeStyles, typography, useMergedClasses } from '../Styles/tssReact'
 
-const useStyles = makeStyles({ name: 'UspListItem' })((theme) => ({
-  root: {
-    display: 'grid',
-    gridAutoFlow: 'column',
-    alignItems: 'center',
-    gridTemplateColumns: `${responsiveVal(32, 38)} auto`,
-    gap: theme.spacings.xs,
-    '& > p': {
-      ...typography(theme, 'body2'),
-    },
-  },
-  icon: {
-    display: 'flex',
-
-    '& > * > img': {
-      display: 'block',
-    },
-  },
-  smallCopy: {
-    '& > p': {
-      ...typography(theme, 'body2'),
-    },
-  },
-  smallIcons: {
-    gridTemplateColumns: `${responsiveVal(10, 14)} auto`,
-    gap: theme.spacings.xxs,
-  },
-}))
-
-export type UspListItemProps = UseStyles<typeof useStyles> & {
+export type UspListItemProps = {
   text: React.ReactNode
   icon?: React.ReactNode
-  size?: string
-}
+  sx?: SxProps<Theme>
+} & OwnerState
+
+type OwnerState = { size?: 'small' | 'medium' }
+const name = 'UspListItem' as const
+const slots = ['root', 'icon', 'text'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof slots>(name, slots)
 
 export function UspListItem(props: UspListItemProps) {
-  const { text, icon, size = 'normal' } = props
-  const classes = useMergedClasses(useStyles().classes, props.classes)
+  const { text, icon, size = 'medium', sx = [] } = props
+  const classes = withState({ size })
 
   return (
-    <li className={clsx(classes.root, size === 'small' && classes.smallIcons)}>
-      <div className={classes.icon}>{icon}</div>
-      <div className={clsx(size === 'small' && classes.smallCopy)}>{text}</div>
-    </li>
+    <Box
+      component='li'
+      className={classes.root}
+      sx={[
+        (theme) => ({
+          display: 'grid',
+          gridAutoFlow: 'column',
+          alignItems: 'center',
+          gridTemplateColumns: `${responsiveVal(32, 38)} auto`,
+          gap: theme.spacings.xs,
+          '& > p': {
+            typography: 'body2',
+          },
+          '&.sizeSmall': {
+            gridTemplateColumns: `${responsiveVal(10, 14)} auto`,
+            gap: theme.spacings.xxs,
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      <Box
+        className={classes.icon}
+        sx={{
+          display: 'flex',
+          '& > * > img': {
+            display: 'block',
+          },
+        }}
+      >
+        {icon}
+      </Box>
+      <Box
+        className={classes.text}
+        sx={{
+          '&.sizeSmall > p': {
+            typography: 'body2',
+          },
+        }}
+      >
+        {text}
+      </Box>
+    </Box>
   )
 }

@@ -1,3 +1,5 @@
+export { mergeDeep } from '@apollo/client/utilities'
+
 export {
   useQuery,
   useMutation,

@@ -23,7 +23,6 @@ import {
   JsonLd,
   LayoutHeader,
   LayoutTitle,
-  makeStyles,
   SchemaDts,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
@@ -37,19 +36,12 @@ import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/grap
 
 type Props = ProductPageQuery & ConfigurableProductPageQuery
 
-const useStyles = makeStyles({ name: 'ProductConfigurable' })((theme) => ({
-  prePrice: {
-    color: theme.palette.text.disabled,
-  },
-}))
-
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function ProductConfigurable(props: Props) {
   const { products, usps, typeProducts, sidebarUsps, pages } = props
-  const { classes } = useStyles()
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
@@ -81,7 +73,7 @@ function ProductConfigurable(props: Props) {
         <ProductPageMeta {...product} />
         <ProductPageGallery {...product}>
           <div>
-            <Typography component='span' variant='body2' className={classes.prePrice}>
+            <Typography component='span' variant='body2' color='text.disabled'>
               <Trans>As low as</Trans>&nbsp;
               <Money {...product.price_range.minimum_price.regular_price} />
             </Typography>

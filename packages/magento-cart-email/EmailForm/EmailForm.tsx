@@ -12,10 +12,9 @@ import {
 import { AnimatedRow, FormDiv, FormRow, makeStyles } from '@graphcommerce/next-ui'
 import { emailPattern, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { CircularProgress, TextField, Typography, Alert, Button } from '@mui/material'
+import { CircularProgress, TextField, Typography, Alert, Button, Box } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
-import EmailHelperList from '../EmailHelperList'
 import { CartEmailDocument } from './CartEmail.gql'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
 
@@ -29,10 +28,10 @@ const useStyles = makeStyles({ name: 'EmailForm' })(() => ({
   },
 }))
 
-export type EmailFormProps = Pick<UseFormComposeOptions, 'step'>
+export type EmailFormProps = Pick<UseFormComposeOptions, 'step'> & { children?: React.ReactNode }
 
 export default function EmailForm(props: EmailFormProps) {
-  const { step } = props
+  const { step, children } = props
   const { classes } = useStyles()
   const [expand, setExpand] = useState(false)
 
@@ -78,12 +77,12 @@ export default function EmailForm(props: EmailFormProps) {
   if (formState.isSubmitting) endAdornment = <CircularProgress />
 
   return (
-    <FormDiv contained>
+    <FormDiv contained background='default'>
       <AnimatePresence initial={false}>
         <AnimatedRow key='emailform'>
           <form noValidate onSubmit={submit}>
             <FormRow>
-              <Typography variant='h5' gutterBottom>
+              <Typography variant='h5' component='h2' gutterBottom>
                 <Trans>Login or create an account</Trans>
               </Typography>
             </FormRow>
@@ -120,13 +119,9 @@ export default function EmailForm(props: EmailFormProps) {
 
         {mode === 'signup' && expand && (
           <AnimatedRow key='inline-signup'>
-            <SignUpFormInline
-              helperList={
-                <EmailHelperList key='signup-helper-list' classes={{ root: classes.helperList }} />
-              }
-              key='signup-form-inline'
-              email={watch('email')}
-            />
+            <SignUpFormInline key='signup-form-inline' email={watch('email')}>
+              {children}
+            </SignUpFormInline>
           </AnimatedRow>
         )}
 
@@ -137,10 +132,8 @@ export default function EmailForm(props: EmailFormProps) {
             </Alert>
           </FormRow>
         )}
-        {mode !== 'session-expired' && ((mode !== 'signup' && expand) || !expand) && (
-          <AnimatedRow key='email-helperlist'>
-            <EmailHelperList />
-          </AnimatedRow>
+        {children && mode !== 'session-expired' && ((mode !== 'signup' && expand) || !expand) && (
+          <AnimatedRow key='email-helperlist'>{children}</AnimatedRow>
         )}
       </AnimatePresence>
     </FormDiv>

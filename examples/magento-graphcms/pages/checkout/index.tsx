@@ -20,7 +20,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { ComposedForm, ComposedSubmit } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
-import { Container, NoSsr } from '@mui/material'
+import { Container, NoSsr, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
@@ -85,7 +85,27 @@ function ShippingPage() {
                 <Trans>Shipping</Trans>
               </LayoutTitle>
 
-              <EmailForm step={1} />
+              <EmailForm step={1}>
+                <Typography
+                  variant='body2'
+                  component='ul'
+                  sx={(theme) => ({
+                    paddingLeft: theme.spacings.xs,
+                  })}
+                >
+                  <li>
+                    <Trans>
+                      E-mail address of existing customers will be recognized, sign in is optional.
+                    </Trans>
+                  </li>
+                  <li>
+                    <Trans>Fill in password fields to create an account.</Trans>
+                  </li>
+                  <li>
+                    <Trans>Leave passwords fields empty to order as guest.</Trans>
+                  </li>
+                </Typography>
+              </EmailForm>
 
               <ShippingAddressForm step={2} />
 
@@ -112,9 +132,9 @@ function ShippingPage() {
                         }
                         loadingPosition='end'
                         onClick={submit}
+                        endIcon={<SvgIcon src={iconChevronRight} />}
                       >
                         <Trans>Next</Trans>
-                        <SvgIcon src={iconChevronRight} />
                       </Button>
                     </FormActions>
                     <ApolloCartErrorAlert

@@ -237,11 +237,6 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 direction='left'
                 size='small'
                 className={classes.sliderButtons}
-                sx={{
-                  [theme.breakpoints.down('md')]: {
-                    display: 'none',
-                  },
-                }}
               >
                 <SvgIcon src={iconChevronLeft} />
               </ScrollerButton>

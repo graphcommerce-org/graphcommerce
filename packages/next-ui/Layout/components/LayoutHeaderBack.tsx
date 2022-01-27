@@ -29,7 +29,7 @@ export default function LayoutHeaderBack(props: BackProps) {
   const prevUp = usePrevUp()
   const { backSteps } = usePageContext()
 
-  const backIcon = <SvgIcon src={iconChevronLeft} />
+  const backIcon = <SvgIcon src={iconChevronLeft} size='medium' />
   const canClickBack = backSteps > 0 && router.asPath !== prevUp?.href
 
   let label = t`Back`

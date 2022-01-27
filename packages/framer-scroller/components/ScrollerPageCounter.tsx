@@ -1,27 +1,18 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { UseStyles } from '@graphcommerce/next-ui/Styles'
-import { makeStyles, typography, useMergedClasses } from '@graphcommerce/next-ui/Styles/tssReact'
-import clsx from 'clsx'
-import { m, MotionProps } from 'framer-motion'
+import { styled, SxProps, Theme } from '@mui/material'
+import { m } from 'framer-motion'
 import React, { useState } from 'react'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 import { useWatchItems } from '../hooks/useWatchItems'
 
-const useStyles = makeStyles({ name: 'SliderPageCounter' })((theme) => ({
-  pageCounter: {
-    ...typography(theme, 'h4'),
-  },
-}))
+const MotionDiv = styled(m.div)({})
 
-export type SliderPageCounterProps = MotionProps &
-  React.PropsWithoutRef<React.HTMLProps<HTMLDivElement>> &
-  UseStyles<typeof useStyles>
+export type SliderPageCounterProps = {
+  sx?: SxProps<Theme>
+}
 
 const ScrollerPageCounter = React.forwardRef<HTMLDivElement, SliderPageCounterProps>(
-  (props, ref) => {
-    const { className, ...divProps } = props
-    const classes = useMergedClasses(useStyles().classes, props.classes)
-
+  ({ sx = [] }, ref) => {
     const { items } = useScrollerContext()
 
     const [current, setCurrent] = useState(1)
@@ -37,9 +28,9 @@ const ScrollerPageCounter = React.forwardRef<HTMLDivElement, SliderPageCounterPr
     })
 
     return (
-      <m.div ref={ref} {...divProps} className={clsx(classes.pageCounter, className)}>
+      <MotionDiv ref={ref} sx={[{ typography: 'h4' }, ...(Array.isArray(sx) ? sx : [sx])]}>
         <span>{String(current).padStart(2, '0')}</span> — {String(count).padStart(2, '0')}
-      </m.div>
+      </MotionDiv>
     )
   },
 )
