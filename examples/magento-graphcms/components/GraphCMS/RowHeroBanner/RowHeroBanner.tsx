@@ -1,5 +1,5 @@
-import { RichTextHero } from '@graphcommerce/graphcms-ui'
-import { HeroBanner } from '@graphcommerce/next-ui'
+import { RichText, RichTextHero } from '@graphcommerce/graphcms-ui'
+import { breakpointVal, HeroBanner } from '@graphcommerce/next-ui'
 import { Button } from '@mui/material'
 import PageLink from 'next/link'
 import { RowHeroBannerFragment } from './RowHeroBanner.gql'
@@ -18,7 +18,27 @@ export function RowHeroBanner(props: RowHeroBannerFragment) {
       ))}
       videoSrc={heroAsset.url}
     >
-      <RichTextHero {...copy} />
+      <RichText
+        {...copy}
+        sxRenderer={{
+          'heading-one': (theme) => ({
+            textTransform: 'uppercase' as const,
+            maxWidth: '70%',
+            textAlign: 'center' as const,
+            margin: 0,
+            marginBottom: theme.spacings.md,
+            ...breakpointVal('fontSize', 36, 82, theme.breakpoints.values),
+            [theme.breakpoints.up('md')]: {
+              textAlign: 'left',
+              maxWidth: '100%',
+            },
+            '& strong': {
+              WebkitTextFillColor: 'transparent',
+              WebkitTextStroke: `1.2px #fff`,
+            },
+          }),
+        }}
+      />
     </HeroBanner>
   )
 }

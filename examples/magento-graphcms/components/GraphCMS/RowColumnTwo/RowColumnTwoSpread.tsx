@@ -1,4 +1,4 @@
-import { Node, RichTextColumns, getNodeLength } from '@graphcommerce/graphcms-ui'
+import { Node, getNodeLength, RichText } from '@graphcommerce/graphcms-ui'
 import { ColumnTwoSpread } from '@graphcommerce/next-ui'
 import { RowColumnTwoFragment } from './RowColumnTwo.gql'
 
@@ -20,8 +20,28 @@ export function RowColumnTwoSpread(props: RowColumnTwoFragment) {
     <ColumnTwoSpread
       {...props}
       nodeLength={getNodeLength(colOne.raw as Node) >= getNodeLength(colTwo.raw as Node) ?? false}
-      colOneContent={<RichTextColumns {...colOne} columnCount={getColumnCount(props, 1)} />}
-      colTwoContent={<RichTextColumns {...colTwo} columnCount={getColumnCount(props, 2)} />}
+      colOneContent={
+        <RichText
+          {...colOne}
+          sxRenderer={{
+            paragraph: (theme) => ({
+              columnCount: { xs: 1, md: getColumnCount(props, 1) },
+              columnGap: theme.spacings.md,
+            }),
+          }}
+        />
+      }
+      colTwoContent={
+        <RichText
+          {...colTwo}
+          sxRenderer={{
+            paragraph: (theme) => ({
+              columnCount: { xs: 1, md: getColumnCount(props, 2) },
+              columnGap: theme.spacings.md,
+            }),
+          }}
+        />
+      }
     />
   )
 }

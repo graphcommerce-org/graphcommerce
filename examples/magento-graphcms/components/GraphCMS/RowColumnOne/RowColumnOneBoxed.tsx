@@ -3,11 +3,11 @@ import { ColumnOneBoxed } from '@graphcommerce/next-ui'
 import { RowColumnOneProps } from './RowColumnOne'
 
 export function RowColumnOneBoxed(props: RowColumnOneProps) {
-  const { colOne, richTextOneClasses } = props
+  const { colOne, richTextOne } = props
 
   return (
     <ColumnOneBoxed>
-      <RichText {...colOne} classes={richTextOneClasses} />
+      <RichText {...colOne} {...richTextOne} />
     </ColumnOneBoxed>
   )
 }

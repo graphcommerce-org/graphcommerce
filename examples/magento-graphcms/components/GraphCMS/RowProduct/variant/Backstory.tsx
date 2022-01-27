@@ -1,4 +1,4 @@
-import { RichTextParagraphStrongStroked, Asset } from '@graphcommerce/graphcms-ui'
+import { Asset, RichText } from '@graphcommerce/graphcms-ui'
 import { ProductListItemsFragment } from '@graphcommerce/magento-product'
 import { ParagraphWithSidebarSlide, RenderType } from '@graphcommerce/next-ui'
 import { useTheme } from '@mui/material'
@@ -29,7 +29,24 @@ export function Backstory(props: BackstoryProps) {
         />
       }
     >
-      {productCopy?.raw && <RichTextParagraphStrongStroked {...productCopy} />}
+      {productCopy?.raw && (
+        <RichText
+          {...productCopy}
+          sxRenderer={{
+            paragraph: {
+              typography: { xs: 'body2', md: 'h3' },
+              textTransform: 'uppercase' as const,
+              maxWidth: '100%',
+              fontWeight: 600,
+              textAlign: 'left' as const,
+              '& strong': {
+                color: 'transparent',
+                WebkitTextStroke: '1.2px #fff',
+              },
+            },
+          }}
+        />
+      )}
     </ParagraphWithSidebarSlide>
   )
 }

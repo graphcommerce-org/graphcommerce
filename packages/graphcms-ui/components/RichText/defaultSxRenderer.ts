@@ -1,7 +1,7 @@
-import { UseStyles, responsiveVal, makeStyles } from '@graphcommerce/next-ui'
+import { SxRenderer } from './types'
 
-export const useRichTextStyles = makeStyles({ name: 'RichText' })((theme) => ({
-  root: {
+export const defaultSxRenderer: SxRenderer = {
+  all: {
     '&:empty': {
       display: 'none',
     },
@@ -11,59 +11,55 @@ export const useRichTextStyles = makeStyles({ name: 'RichText' })((theme) => ({
     marginBottom: '1em',
     wordBreak: 'break-word',
   },
-  h1: {
+  'heading-one': {
     marginTop: '0.5em',
     marginBottom: '0.5em',
   },
-  h2: {
-    marginTop: '0.5em',
-    marginBottom: '0.5em',
-    '&:first-of-type': { marginTop: 0 },
-  },
-  h3: {
+  'heading-two': {
     marginTop: '0.5em',
     marginBottom: '0.5em',
     '&:first-of-type': { marginTop: 0 },
   },
-  h4: {
-    marginTop: responsiveVal(11, 30),
-    marginBottom: responsiveVal(11, 30),
+  'heading-three': {
+    marginTop: '0.5em',
+    marginBottom: '0.5em',
     '&:first-of-type': { marginTop: 0 },
   },
-  h5: {
-    marginTop: responsiveVal(7, 20),
-    marginBottom: responsiveVal(7, 20),
+  'heading-four': {
+    marginTop: '0.5em',
+    marginBottom: '0.5em',
     '&:first-of-type': { marginTop: 0 },
   },
-  h6: {
+  'heading-five': {
+    marginTop: '0.5em',
+    marginBottom: '0.5em',
     '&:first-of-type': { marginTop: 0 },
   },
-  asset: {
+  image: {
     width: '100%',
     height: 'auto',
   },
-  blockQuote: {
+  video: {
+    width: '100%',
+    height: 'auto',
+  },
+  'block-quote': (theme) => ({
     paddingLeft: theme.spacings.sm,
     margin: `${theme.spacings.md} 0`,
-  },
-  ol: {
+  }),
+  'bulleted-list': {
     marginBottom: '1em',
   },
-  ul: {
+  'numbered-list': {
     marginBottom: '1em',
   },
-  strong: {},
-  italic: {},
-  underlined: {},
   code: {
     width: 'fit-content',
     maxWidth: '100%',
     padding: 5,
     overflow: 'scroll',
   },
-  iframe: {},
-  aspectContainer: {},
-  table: {
+  table: (theme) => ({
     display: 'table',
     width: '100%',
     borderSpacing: '2px',
@@ -100,9 +96,8 @@ export const useRichTextStyles = makeStyles({ name: 'RichText' })((theme) => ({
         '& p': {},
       },
     },
-  },
+  }),
   link: {
     wordBreak: 'break-word',
   },
-}))
-export type UseRichTextStyles = UseStyles<typeof useRichTextStyles>
+}

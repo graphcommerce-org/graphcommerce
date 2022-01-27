@@ -1,17 +1,17 @@
-import { RichText, UseRichTextStyles } from '@graphcommerce/graphcms-ui'
+import { RichText, RichTextProps } from '@graphcommerce/graphcms-ui'
 import { ColumnOne } from '@graphcommerce/next-ui'
 import type { RowColumnOneFragment } from './RowColumnOne.gql'
 
 export type RowColumnOneProps = RowColumnOneFragment & {
-  richTextOneClasses?: UseRichTextStyles['classes']
+  richTextOne?: Omit<RichTextProps, 'raw'>
 }
 
 export function RowColumnOne(props: RowColumnOneProps) {
-  const { colOne, richTextOneClasses } = props
+  const { colOne, richTextOne } = props
 
   return (
     <ColumnOne>
-      <RichText {...colOne} classes={richTextOneClasses} />
+      <RichText {...colOne} {...richTextOne} />
     </ColumnOne>
   )
 }

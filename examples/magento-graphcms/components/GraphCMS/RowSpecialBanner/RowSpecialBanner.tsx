@@ -1,5 +1,5 @@
-import { RichTextHeadingStrongStroked, Asset } from '@graphcommerce/graphcms-ui'
-import { SpecialBanner } from '@graphcommerce/next-ui'
+import { RichText, Asset } from '@graphcommerce/graphcms-ui'
+import { breakpointVal, SpecialBanner } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
 import PageLink from 'next/link'
 import { RowSpecialBannerFragment } from './RowSpecialBanner.gql'
@@ -21,7 +21,21 @@ export function RowSpecialBanner(props: RowSpecialBannerProps) {
         </PageLink>
       ))}
     >
-      <RichTextHeadingStrongStroked {...copy} />
+      <RichText
+        {...copy}
+        sxRenderer={{
+          'heading-one': (theme) => ({
+            textTransform: 'uppercase' as const,
+            color: 'text.primary',
+            ...breakpointVal('fontSize', 36, 82, theme.breakpoints.values),
+            '& strong': {
+              // https://github.com/rsms/inter/issues/292#issuecomment-674993644
+              color: 'background.default',
+              textShadow: `1.2px 0 0 ${theme.palette.text.primary},0 1.2px 0 ${theme.palette.text.primary},-1.2px 0 0 ${theme.palette.text.primary},0 -1.2px 0 ${theme.palette.text.primary}`,
+            },
+          }),
+        }}
+      />
     </SpecialBanner>
   )
 }
