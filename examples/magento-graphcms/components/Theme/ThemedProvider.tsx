@@ -7,6 +7,7 @@ import {
   MuiButtonPill,
   MuiButtonResponsive,
   themeBaseDefaults,
+  MuiSnackbar,
 } from '@graphcommerce/next-ui'
 import { createTheme, Theme, alpha } from '@mui/material'
 import { Components, PaletteOptions } from '@mui/material/styles'
@@ -371,6 +372,8 @@ const createOverrides = (theme: Theme): Components => ({
       },
     },
   },
+
+  MuiSnackbar: { variants: MuiSnackbar },
 
   MuiAvatar: {
     styleOverrides: {

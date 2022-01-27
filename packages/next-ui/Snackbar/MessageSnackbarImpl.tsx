@@ -1,94 +1,43 @@
-import { Fab, Snackbar, SnackbarContent, SnackbarProps, Portal, lighten } from '@mui/material'
-import clsx from 'clsx'
+import {
+  Fab,
+  Snackbar,
+  SnackbarContent,
+  SnackbarProps,
+  Portal,
+  lighten,
+  Box,
+  SxProps,
+  Theme,
+} from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { makeStyles, typography, useMergedClasses } from '../Styles/tssReact'
+import { extendableComponent } from '../Styles'
 import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconClose, iconCheckmark, iconSadFace } from '../icons'
 
 type Size = 'normal' | 'wide'
 type Variant = 'contained' | 'pill'
 
-const useStyles = makeStyles({ name: 'MessageSnackbar' })((theme) => ({
-  snackbarRoot: {},
-  anchorOriginBottomCenter: {
-    left: 0,
-    right: 0,
-    transform: 'unset',
-    bottom: 0,
-    pointerEvents: 'none',
-    [theme.breakpoints.up('md')]: {
-      padding: `${theme.page.vertical} ${theme.page.horizontal}`,
-    },
-  },
-  root: {
-    pointerEvents: 'all',
-    padding: `16px ${theme.page.horizontal}px max(16px, env(safe-area-inset-bottom))`,
-  },
-  rootPill: {
-    backgroundColor: theme.palette.background.paper,
-    color: theme.palette.text.primary,
-    [theme.breakpoints.up('md')]: {
-      borderRadius: '99em',
-    },
-  },
-  rootPillLarge: {},
-  rootPillSeverityInfo: {},
-  rootPillSeverityError: {},
-  message: {
-    width: '100%',
-    padding: theme.spacings.xxs,
-    display: 'grid',
-    alignItems: 'center',
-    gap: theme.spacings.xs,
-    gridTemplate: `
-        "children close"
-        "action   action"
-      `,
-    gridTemplateColumns: '1fr auto',
-    [theme.breakpoints.up('md')]: {
-      gridTemplate: `"children action close"`,
-      gridTemplateColumns: 'auto auto auto',
-    },
-  },
-  children: {
-    display: 'flex',
-    columnGap: 10,
-    gridArea: 'children',
-    ...typography(theme, 'subtitle1'),
-    fontWeight: 400,
-  },
-  actionButton: {
-    gridArea: 'action',
-    '&:hover, &:focus': {
-      backgroundColor: 'transparent',
-    },
-    [theme.breakpoints.down('md')]: {
-      '& .MuiPillButton-pill': {
-        width: '100%',
-      },
-    },
-  },
-  close: {
-    backgroundColor: lighten(theme.palette.background.paper, 0.1),
-  },
-  sticky: {
-    position: 'sticky',
-  },
-}))
-
 export type MessageSnackbarImplProps = Omit<
   SnackbarProps,
   'autoHideDuration' | 'anchorOrigin' | 'color'
 > & {
   autoHide?: boolean
-  sticky?: boolean
-  variant?: Variant
-  size?: Size
-  severity?: 'success' | 'info' | 'warning' | 'error'
   action?: React.ReactNode
   children?: React.ReactNode
   onClose?: () => void
+  sx?: SxProps<Theme>
+} & OwnerState
+
+type OwnerState = {
+  sticky?: boolean
+  size?: Size
+  severity?: 'success' | 'info' | 'warning' | 'error'
+  variant?: Variant
 }
+
+const name = 'MessageSnackbarImpl' as const
+const slots = ['root', 'content', 'children', 'actionButton', 'close'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof slots>(name, slots)
 
 export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false)
@@ -104,11 +53,11 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
     children,
     onClose,
     severity = 'info',
+    sx,
     ...snackbarProps
   } = props
 
-  let { classes } = useStyles()
-  classes = useMergedClasses(classes, props.classes)
+  const classes = withState({ sticky, size, severity, variant })
 
   useEffect(() => {
     setShowSnackbar(!!open)
@@ -117,19 +66,6 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
   const hideSnackbar = () => {
     setShowSnackbar(false)
     onClose?.()
-  }
-
-  const clsxBonus = (base: string) => {
-    const Size = size[0].toUpperCase() + size.slice(1)
-    const Severity = severity[0].toUpperCase() + severity.slice(1)
-    const Variant = variant[0].toUpperCase() + variant.slice(1)
-
-    return clsx(
-      classes[base],
-      classes[`${base}${Variant}`],
-      classes[`${base}${Variant}Size${Size}`],
-      classes[`${base}${Variant}Severity${Severity}`],
-    )
   }
 
   let icon = iconCheckmark
@@ -143,34 +79,61 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         open={showSnackbar}
         autoHideDuration={autoHide ? 6000 : null}
-        classes={{
-          root: classes.snackbarRoot,
-          anchorOriginBottomCenter: clsx(
-            classes.anchorOriginBottomCenter,
-            sticky && classes.sticky,
-          ),
-        }}
+        className={classes.root}
+        sx={sx}
         onClose={hideSnackbar}
       >
         <SnackbarContent
           elevation={12}
-          classes={{
-            root: clsxBonus('root'),
-            message: clsxBonus('message'),
-            action: clsxBonus('action'),
-          }}
+          className={classes.content}
+          sx={(theme) => ({
+            '&.variantPill': {
+              backgroundColor: theme.palette.background.paper,
+              color: theme.palette.text.primary,
+              [theme.breakpoints.up('md')]: {
+                borderRadius: '99em',
+              },
+              padding: theme.spacings.xxs,
+            },
+            '& .MuiSnackbarContent-message': {
+              width: '100%',
+              padding: 0,
+              display: 'grid',
+              alignItems: 'center',
+              gap: theme.spacings.xxs,
+              gridTemplate: {
+                xs: `"icon children close" "action action action"`,
+                md: '"icon children action close"',
+              },
+              gridTemplateColumns: {
+                xs: 'min-content 1fr auto',
+                md: 'min-content 1fr max-content auto',
+              },
+              typography: 'subtitle1',
+              '&.SvgIcon': {
+                gridArea: 'children',
+              },
+            },
+          })}
           message={
             <>
-              <div className={classes.children}>
-                <SvgIcon src={icon} size='large' />
-                <div>{children}</div>
-              </div>
+              <SvgIcon src={icon} size='large' />
+              <Box gridArea='children'>{children}</Box>
+              {/* </Box> */}
               {action && (
-                <div className={classes.actionButton} onClick={hideSnackbar}>
+                <Box className={classes.actionButton} onClick={hideSnackbar} gridArea='action'>
                   {action}
-                </div>
+                </Box>
               )}
-              <Fab className={classes.close} aria-label='Close' size='small' onClick={hideSnackbar}>
+              <Fab
+                className={classes.close}
+                aria-label='Close'
+                size='small'
+                onClick={hideSnackbar}
+                sx={(theme) => ({
+                  backgroundColor: lighten(theme.palette.background.paper, 0.1),
+                })}
+              >
                 <SvgIcon src={iconClose} />
               </Fab>
             </>
