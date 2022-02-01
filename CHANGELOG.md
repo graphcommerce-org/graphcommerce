@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.164.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.164.1...@graphcommerce/graphcommerce@2.164.2) (2022-02-01)
+
+
+### Bug Fixes
+
+* make DesktopNavActions stylable ([db31369](https://github.com/ho-nl/m2-pwa/commit/db3136931d2ace1bfb6e7fecad0e01758aa2b397))
+
+
+
+
+
 # [2.164.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.163.6...@graphcommerce/graphcommerce@2.164.0) (2022-01-25)
 
 

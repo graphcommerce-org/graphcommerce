@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.25.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.25.0...@graphcommerce/next-ui@3.25.1) (2022-02-01)
+
+
+### Bug Fixes
+
+* make DesktopNavActions stylable ([db31369](https://github.com/ho-nl/m2-pwa/commit/db3136931d2ace1bfb6e7fecad0e01758aa2b397))
+
+
+
+
+
 # [3.25.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.24.3...@graphcommerce/next-ui@3.25.0) (2022-01-25)
 
 
