@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-cart-checkout",
-  "version": "2.107.45",
+  "version": "2.107.46",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -25,7 +25,7 @@
     "@graphcommerce/image": "^2.105.13",
     "@graphcommerce/magento-cart": "^3.10.1",
     "@graphcommerce/magento-cart-coupon": "^2.109.40",
-    "@graphcommerce/magento-cart-items": "^2.110.45",
+    "@graphcommerce/magento-cart-items": "^2.110.46",
     "@graphcommerce/magento-customer": "^3.6.42",
     "@graphcommerce/magento-store": "^3.4.10",
     "@graphcommerce/next-ui": "^3.25.1",

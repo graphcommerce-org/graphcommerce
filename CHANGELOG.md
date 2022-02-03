@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.164.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.164.2...@graphcommerce/graphcommerce@2.164.3) (2022-02-03)
+
+
+### Bug Fixes
+
+* Allow style overrides for product page description ([4651293](https://github.com/ho-nl/m2-pwa/commit/4651293b5940f5c4f472f4a3aa679a42852f6615))
+
+
+
+
+
 ## [2.164.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.164.1...@graphcommerce/graphcommerce@2.164.2) (2022-02-01)
 
 

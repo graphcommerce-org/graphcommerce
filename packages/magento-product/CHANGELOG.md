@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.8.11](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.8.10...@graphcommerce/magento-product@3.8.11) (2022-02-03)
+
+
+### Bug Fixes
+
+* Allow style overrides for product page description ([4651293](https://github.com/ho-nl/m2-pwa/commit/4651293b5940f5c4f472f4a3aa679a42852f6615))
+
+
+
+
+
 # [3.8.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product@3.7.29...@graphcommerce/magento-product@3.8.0) (2022-01-03)
 
 
