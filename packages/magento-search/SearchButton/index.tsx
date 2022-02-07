@@ -1,46 +1,24 @@
-import {
-  iconSearch,
-  responsiveVal,
-  SvgIcon,
-  UseStyles,
-  makeStyles,
-  useMergedClasses,
-} from '@graphcommerce/next-ui'
+import { iconSearch, responsiveVal, SvgIcon, extendableComponent } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
 import { TextField, TextFieldProps } from '@mui/material'
-import clsx from 'clsx'
-import React from 'react'
 
-const useStyles = makeStyles({ name: 'SearchButton' })((theme) => ({
-  root: {
-    marginRight: theme.spacings.xxs,
-    width: responsiveVal(64, 172),
-    '& fieldset': {
-      border: `1px solid ${theme.palette.divider}`,
-    },
-    [theme.breakpoints.down('md')]: {
-      width: '100%',
-      marginRight: 0,
-    },
-  },
-  inputRoot: {},
-  fullWidth: {
-    width: '100%',
-    marginRight: 0,
-  },
-}))
+export type SearchButtonProps = TextFieldProps
 
-export type SearchButtonProps = UseStyles<typeof useStyles> & TextFieldProps
+type OwnerState = { fullWidth?: boolean }
+const name = 'SearchButton' as const
+const parts = ['root', 'inputRoot'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export default function SearchButton(props: SearchButtonProps) {
-  const { InputProps, label = 'Search...', fullWidth = false, ...textFieldProps } = props
-  const classes = useMergedClasses(useStyles().classes, props.classes)
+  const { InputProps, label, fullWidth = false, sx = [], ...textFieldProps } = props
+  const classes = withState({ fullWidth })
 
   return (
     <TextField
       variant='outlined'
       size='small'
-      className={clsx(classes.root, fullWidth && classes.fullWidth)}
-      label={label}
+      className={classes.root}
+      label={label ?? <Trans>Search...</Trans>}
       id='search-input'
       InputLabelProps={{ shrink: false }}
       InputProps={{
@@ -50,6 +28,24 @@ export default function SearchButton(props: SearchButtonProps) {
         ...InputProps,
       }}
       {...textFieldProps}
+      sx={[
+        (theme) => ({
+          marginRight: theme.spacings.xxs,
+          width: responsiveVal(64, 172),
+          '& fieldset': {
+            border: `1px solid ${theme.palette.divider}`,
+          },
+          [theme.breakpoints.down('md')]: {
+            width: '100%',
+            marginRight: 0,
+          },
+          '&.fullWidth': {
+            width: '100%',
+            marginRight: 0,
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     />
   )
 }

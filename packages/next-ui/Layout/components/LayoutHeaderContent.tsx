@@ -15,18 +15,10 @@ export type LayoutHeaderContentProps = FloatingProps & {
   sxBg?: SxProps<Theme>
 }
 
-type OwnerState = {
-  floatingSm: boolean
-  floatingMd: boolean
-  scrolled: boolean
-  divider: boolean
-}
-
+type OwnerState = { floatingSm: boolean; floatingMd: boolean; scrolled: boolean; divider: boolean }
+const name = 'LayoutHeaderContent' as const
 const parts = ['bg', 'content', 'left', 'center', 'right', 'divider'] as const
-const { withState } = extendableComponent<OwnerState, 'LayoutHeaderContent', typeof parts>(
-  'LayoutHeaderContent',
-  parts,
-)
+const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export default function LayoutHeaderContent(props: LayoutHeaderContentProps) {
   const ref = useRef<HTMLDivElement>(null)
