@@ -1,51 +1,49 @@
+import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { Row } from '..'
 import { SectionContainer } from '../../SectionContainer'
-import { UseStyles } from '../../Styles'
+import { extendableComponent } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
-import { makeStyles, typography, useMergedClasses } from '../../Styles/tssReact'
 
-const useStyles = makeStyles<StyleProps>({ name: 'ButtonLinkList' })(
-  (theme, { containsBigLinks }) => ({
-    container: {
-      maxWidth: 820,
-    },
-    h1: {
-      textAlign: 'center',
-      ...typography(theme, 'h2'),
-    },
-    overline: {
-      display: 'block',
-      padding: `${theme.spacings.xs} 0`,
-      borderBottom: `1px solid ${theme.palette.divider}`,
-    },
-    links: {
-      display: 'grid',
-      gridTemplateColumns: containsBigLinks
-        ? undefined
-        : `repeat(auto-fill, minmax(${responsiveVal(210, 350)}, 1fr))`,
-      columnGap: theme.spacings.sm,
-    },
-  }),
-)
-
-type StyleProps = {
-  containsBigLinks: boolean
-}
-
-export type ButtonLinkListProps = UseStyles<typeof useStyles> & {
+export type ButtonLinkListProps = {
   title: string
   children: React.ReactNode
-} & StyleProps
+  sx?: SxProps<Theme>
+} & OwnerState
+
+type OwnerState = { containsBigLinks: boolean }
+
+const compName = 'ButtonLinkList' as const
+const slots = ['root', 'links'] as const
+const { withState } = extendableComponent<OwnerState, typeof compName, typeof slots>(
+  compName,
+  slots,
+)
 
 export function ButtonLinkList(props: ButtonLinkListProps) {
-  const { title, children, containsBigLinks } = props
-  const classes = useMergedClasses(useStyles({ containsBigLinks }).classes, props.classes)
+  const { title, children, containsBigLinks, sx = [] } = props
+
+  const classes = withState({ containsBigLinks })
 
   return (
-    <Row maxWidth='md' className={classes.container}>
+    <Row
+      maxWidth='md'
+      className={classes.root}
+      sx={[{ maxWidth: 820 }, ...(Array.isArray(sx) ? sx : [sx])]}
+    >
       <SectionContainer labelLeft={title}>
-        <div className={classes.links}>{children}</div>
+        <Box
+          className={classes.links}
+          sx={(theme) => ({
+            display: 'grid',
+            columnGap: theme.spacings.sm,
+            '&:not(.containsBigLinks)': {
+              gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(210, 350)}, 1fr))`,
+            },
+          })}
+        >
+          {children}
+        </Box>
       </SectionContainer>
     </Row>
   )

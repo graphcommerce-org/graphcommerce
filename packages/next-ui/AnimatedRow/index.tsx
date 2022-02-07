@@ -1,11 +1,11 @@
-import { styled } from '@mui/material'
+import { styled, SxProps, Theme } from '@mui/material'
 import { HTMLMotionProps, m } from 'framer-motion'
 import { ReactHTML } from 'react'
 
 export type AnimatedRowProps = Omit<
   ReactHTML['div'] & HTMLMotionProps<'div'>,
   'layout' | 'initial' | 'animate' | 'exit' | 'transition'
->
+> & { sx?: SxProps<Theme> }
 
 const StyledDiv = styled(m.div)({})
 

@@ -1,55 +1,47 @@
-import { Typography } from '@mui/material'
+import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { Row } from '..'
-import { UseStyles } from '../../Styles'
+import { extendableComponent } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
-import { makeStyles, useMergedClasses } from '../../Styles/tssReact'
 
-const useStyles = makeStyles({ name: 'IconBlocks' })((theme) => ({
-  container: {
-    maxWidth: 820,
-  },
-  title: {
-    marginBottom: `${theme.spacings.md}`,
-  },
-  optionsWrapper: {
-    display: 'grid',
-    gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
-    gap: `${theme.spacings.sm}`,
-  },
-  block: {
-    display: 'grid',
-    gridAutoFlow: 'row',
-    justifyItems: 'center',
-    gap: `${theme.spacings.xs}`,
-    border: `1px solid ${theme.palette.divider}`,
-    padding: `${theme.spacings.sm}`,
-    borderRadius: '6px',
-    cursor: 'pointer',
-    textAlign: 'center',
-  },
-  wrapper: {
-    paddingTop: `${theme.spacings.lg}`,
-  },
-}))
-
-export type ServiceOptionsProps = UseStyles<typeof useStyles> & {
+export type IconBlocksProps = {
   title: string
   children: React.ReactNode
+  sx?: SxProps<Theme>
 }
 
-export function IconBlocks(props: ServiceOptionsProps) {
-  const { title, children } = props
-  const classes = useMergedClasses(useStyles().classes, props.classes)
+const compName = 'IconBlocks' as const
+const slots = ['container', 'title', 'optionsWrapper', 'block', 'wrapper'] as const
+const { classes } = extendableComponent(compName, slots)
+
+export function IconBlocks(props: IconBlocksProps) {
+  const { title, children, sx = [] } = props
 
   return (
-    <Row className={classes.container}>
-      <div className={classes.wrapper}>
-        <Typography variant='h5' className={classes.title}>
+    <Row className={classes.container} sx={[{ maxWidth: 820 }, ...(Array.isArray(sx) ? sx : [sx])]}>
+      <Box
+        className={classes.wrapper}
+        sx={(theme) => ({
+          paddingTop: `${theme.spacings.lg}`,
+        })}
+      >
+        <Box
+          className={classes.title}
+          sx={(theme) => ({ typography: 'h5', marginBottom: `${theme.spacings.md}` })}
+        >
           {title}
-        </Typography>
-        <div className={classes.optionsWrapper}>{children}</div>
-      </div>
+        </Box>
+        <Box
+          className={classes.optionsWrapper}
+          sx={(theme) => ({
+            display: 'grid',
+            gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
+            gap: `${theme.spacings.sm}`,
+          })}
+        >
+          {children}
+        </Box>
+      </Box>
     </Row>
   )
 }

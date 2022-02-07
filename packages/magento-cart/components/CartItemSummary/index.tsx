@@ -6,72 +6,36 @@ import {
   responsiveVal,
   SectionContainer,
   SvgIcon,
-  UseStyles,
-  makeStyles,
-  useMergedClasses,
+  extendableComponent,
 } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
-import { Divider } from '@mui/material'
+import { Trans } from '@lingui/macro'
+import { Box, Divider, SxProps, Theme } from '@mui/material'
 import clsx from 'clsx'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
 import CartTotals from '../CartTotals/CartTotals'
 import { CartItemSummaryDocument } from './GetCartItemSummary.gql'
 
-const useStyles = makeStyles({ name: 'CartItemSummary' })((theme) => ({
-  root: {
-    padding: `${theme.spacings.sm} ${theme.spacings.sm}`,
-    border: `1px ${theme.palette.divider} solid`,
-    borderRadius: 4,
-  },
-  imageScrollerContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: theme.spacings.sm,
-    position: 'relative',
-  },
-  image: {
-    borderRadius: '50%',
-    marginRight: theme.spacings.xs,
-    border: `1px solid ${theme.palette.divider}`,
-    padding: responsiveVal(5, 10),
-    width: `${responsiveVal(48, 96)} !important`,
-    height: `${responsiveVal(48, 96)} !important`,
-    display: 'block',
-  },
-  scrollerContainer: {
-    padding: 1,
-  },
-  scroller: {},
-  prevNext: {
-    position: 'absolute',
-    top: '50%',
-    transform: 'translateY(-50%)',
-    zIndex: 2,
-  },
-  prev: {
-    left: 8,
-  },
-  next: {
-    right: 8,
-  },
-  costContainer: {
-    background: theme.palette.background.default,
-    padding: 0,
-  },
-  sectionHeaderWrapper: {
-    marginTop: 0,
-  },
-  divider: {
-    margin: `${theme.spacings.xs} 0 ${theme.spacings.xs} 0`,
-  },
-}))
+const name = 'CartItemSummary' as const
+const slots = [
+  'root',
+  'imageScrollerContainer',
+  'image',
+  'scrollerContainer',
+  'scroller',
+  'prevNext',
+  'prev',
+  'next',
+  'costContainer',
+  'sectionHeaderWrapper',
+  'divider',
+] as const
+const { classes } = extendableComponent(name, slots)
 
-type OrderSummaryProps = UseStyles<typeof useStyles>
+type OrderSummaryProps = { sx?: SxProps<Theme> }
 
 export default function CartItemSummary(props: OrderSummaryProps) {
-  const classes = useMergedClasses(useStyles().classes, props.classes)
-
+  const { sx = [] } = props
   const { data } = useCartQuery(CartItemSummaryDocument, { allowUrl: true })
 
   if (!data?.cart) return null
@@ -79,12 +43,20 @@ export default function CartItemSummary(props: OrderSummaryProps) {
   const items = data?.cart.items
 
   return (
-    <div className={classes.root}>
+    <Box
+      className={classes.root}
+      sx={[
+        (theme) => ({
+          padding: `${theme.spacings.sm} ${theme.spacings.sm}`,
+          border: `1px ${theme.palette.divider} solid`,
+          borderRadius: 4,
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       <SectionContainer
-        classes={{
-          sectionHeaderWrapper: classes.sectionHeaderWrapper,
-        }}
-        labelLeft={t`Order summary`}
+        sx={{ '& .SectionHeader': { mt: 0 } }}
+        labelLeft={<Trans>Order summary</Trans>}
         // labelRight={
         //   <PageLink href='/download' passHref>
         //     <Link color='secondary'>Download invoice</Link>
@@ -92,12 +64,30 @@ export default function CartItemSummary(props: OrderSummaryProps) {
         // }
         variantLeft='h6'
       >
-        <div className={classes.imageScrollerContainer}>
+        <Box
+          className={classes.imageScrollerContainer}
+          sx={(theme) => ({
+            display: 'flex',
+            alignItems: 'center',
+            gap: theme.spacings.sm,
+            position: 'relative',
+          })}
+        >
           <ScrollerProvider scrollSnapAlign='start'>
-            <ScrollerButton direction='left' className={clsx(classes.prevNext, classes.prev)}>
+            <ScrollerButton
+              direction='left'
+              className={clsx(classes.prevNext, classes.prev)}
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                zIndex: 2,
+                left: 8,
+              }}
+            >
               <SvgIcon src={iconChevronLeft} />
             </ScrollerButton>
-            <div className={classes.scrollerContainer}>
+            <Box className={classes.scrollerContainer} sx={{ padding: '1px' }}>
               <Scroller className={classes.scroller}>
                 {items?.map((item) => (
                   <React.Fragment key={item?.uid}>
@@ -109,22 +99,52 @@ export default function CartItemSummary(props: OrderSummaryProps) {
                         className={classes.image}
                         layout='fill'
                         sizes={responsiveVal(48, 96)}
+                        sx={(theme) => ({
+                          borderRadius: '50%',
+                          marginRight: theme.spacings.xs,
+                          border: `1px solid ${theme.palette.divider}`,
+                          padding: responsiveVal(5, 10),
+                          width: `${responsiveVal(48, 96)} !important`,
+                          height: `${responsiveVal(48, 96)} !important`,
+                          display: 'block',
+                        })}
                       />
                     ) : (
-                      <div />
+                      <Box />
                     )}
                   </React.Fragment>
                 ))}
               </Scroller>
-            </div>
-            <ScrollerButton direction='right' className={clsx(classes.prevNext, classes.next)}>
+            </Box>
+            <ScrollerButton
+              direction='right'
+              className={clsx(classes.prevNext, classes.next)}
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                zIndex: 2,
+                right: 8,
+              }}
+            >
               <SvgIcon src={iconChevronRight} />
             </ScrollerButton>
           </ScrollerProvider>
-        </div>
-        <Divider classes={{ root: classes.divider }} />
-        <CartTotals classes={{ costsContainer: classes.costContainer }} />
+        </Box>
+        <Divider
+          classes={{ root: classes.divider }}
+          sx={(theme) => ({
+            margin: `${theme.spacings.xs} 0 ${theme.spacings.xs} 0`,
+          })}
+        />
+        <CartTotals
+          classes={{ costsContainer: classes.costContainer }}
+          sx={(theme) => ({
+            background: theme.palette.background.default,
+            padding: 0,
+          })}
+        />
       </SectionContainer>
-    </div>
+    </Box>
   )
 }

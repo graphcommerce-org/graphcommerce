@@ -1,58 +1,71 @@
-import { Typography, Button } from '@mui/material'
+import { Typography, Button, SxProps, Theme, Box } from '@mui/material'
 import React from 'react'
-import { UseStyles } from '../../../Styles'
-import { makeStyles, useMergedClasses } from '../../../Styles/tssReact'
+import { extendableComponent } from '../../../Styles'
 
-const useStyles = makeStyles({ name: 'IconBlock' })((theme) => ({
-  block: {
-    border: `1px solid ${theme.palette.divider}`,
-    padding: `${theme.spacings.sm}`,
-    borderRadius: '6px',
-    textAlign: 'center',
-    color: theme.palette.text.primary,
-    '& > * > *': {
-      display: 'grid',
-      gridAutoFlow: 'row',
-      justifyItems: 'center',
-      gap: `${theme.spacings.xxs}`,
-    },
-  },
-  link: {
-    textDecoration: 'none',
-  },
-  title: {
-    fontWeight: theme.typography.fontWeightBold,
-  },
-}))
-
-export type IconBlockProps = UseStyles<typeof useStyles> & {
+export type IconBlockProps = {
   title: string
   icon: React.ReactNode
   children: React.ReactNode
   href?: string
+  sx?: SxProps<Theme>
 }
 
+const name = 'IconBlock' as const
+const slots = ['block', 'link', 'title'] as const
+const { classes } = extendableComponent(name, slots)
+
 export const IconBlock = React.forwardRef<HTMLAnchorElement, IconBlockProps>((props, ref) => {
-  const { title, children, icon, href } = props
-  const classes = useMergedClasses(useStyles().classes, props.classes)
+  const { title, children, icon, href, sx = [] } = props
 
   const content = (
     <>
       {icon}
-      <Typography variant='subtitle1' className={classes.title}>
+      <Typography
+        variant='subtitle1'
+        className={classes.title}
+        sx={(theme) => ({ fontWeight: theme.typography.fontWeightBold })}
+      >
         {title}
       </Typography>
       {children}
     </>
   )
 
+  const blockSx: SxProps<Theme> = [
+    (theme) => ({
+      border: `1px solid ${theme.palette.divider}`,
+      padding: `${theme.spacings.sm}`,
+      borderRadius: '6px',
+      textAlign: 'center',
+      color: theme.palette.text.primary,
+      '& > * > *': {
+        display: 'grid',
+        gridAutoFlow: 'row',
+        justifyItems: 'center',
+        gap: `${theme.spacings.xxs}`,
+      },
+    }),
+    ...(Array.isArray(sx) ? sx : [sx]),
+  ]
+
   if (href) {
     return (
-      <Button href={href} variant='text' color='primary' className={classes.block} ref={ref}>
+      <Button
+        href={href}
+        variant='text'
+        color='primary'
+        className={classes.block}
+        ref={ref}
+        sx={blockSx}
+      >
         <div>{content}</div>
       </Button>
     )
   }
 
-  return <div className={classes.block}>{content}</div>
+  return (
+    <Box className={classes.block} sx={blockSx}>
+      {content}
+    </Box>
+  )
 })

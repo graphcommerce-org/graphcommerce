@@ -2,7 +2,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
-import { useForkRef } from '@mui/material'
+import { useForkRef, styled, SxProps, Theme } from '@mui/material'
 import { LoaderValue, VALID_LOADERS } from 'next/dist/server/image-config'
 import Head from 'next/head'
 import type { ImageLoaderProps, ImageLoader } from 'next/image'
@@ -214,7 +214,7 @@ export type ImageProps = IntrisincImage & {
   dontReportWronglySizedImages?: boolean
   width?: number
   height?: number
-  pictureProps?: JSX.IntrinsicElements['picture']
+  pictureProps?: JSX.IntrinsicElements['picture'] & { sx?: SxProps<Theme> }
   /**
    * Possible values:
    *
@@ -230,7 +230,12 @@ export type ImageProps = IntrisincImage & {
   placeholder?: PlaceholderValue
   /** Size the image is rendered on mobile */
   sizes?: SizesString | SizesRecord
+
+  sx?: SxProps<Theme>
 }
+
+const Img = styled('img')({})
+const Picture = styled('picture')({})
 
 const Image = React.forwardRef<HTMLImageElement, ImageProps>(
   (
@@ -440,7 +445,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     return (
       <>
         {unoptimized ? (
-          <img
+          <Img
             ref={combinedRef}
             {...imgProps}
             loading={loading ?? 'lazy'}
@@ -451,7 +456,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
             style={style}
           />
         ) : (
-          <picture {...pictureProps}>
+          <Picture {...pictureProps}>
             <source media='(-webkit-min-device-pixel-ratio: 2.5)' srcSet={srcSet3x} sizes={sizes} />
             <source media='(-webkit-min-device-pixel-ratio: 1.5)' srcSet={srcSet2x} sizes={sizes} />
             <source
@@ -459,7 +464,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
               srcSet={srcSet1x}
               sizes={sizes}
             />
-            <img
+            <Img
               ref={combinedRef}
               {...imgProps}
               src={src}
@@ -471,7 +476,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
               data-nimg
               decoding='async'
             />
-          </picture>
+          </Picture>
         )}
         {loading === 'eager' && (
           <Head>

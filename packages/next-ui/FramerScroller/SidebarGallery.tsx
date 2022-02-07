@@ -14,22 +14,19 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
 import { Row } from '../Row'
 import { extendableComponent } from '../Styles'
-import { classesPicker } from '../Styles/classesPicker'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../icons'
 
 const MotionBox = styled(m.div)({})
 
-const { classes, selectors, componentName } = extendableComponent('SidebarGallery', [
+type OwnerState = { zoomed: boolean }
+const name = 'SidebarGallery' as const
+const parts = [
   'root',
-  'rootZoomed',
   'scrollerContainer',
-  'scrollerContainerZoomed',
   'scroller',
-  'scrollerZoomed',
   'sidebarWrapper',
-  'sidebarWrapperZoomed',
   'sidebar',
   'bottomCenter',
   'sliderButtons',
@@ -38,7 +35,12 @@ const { classes, selectors, componentName } = extendableComponent('SidebarGaller
   'centerLeft',
   'centerRight',
   'dots',
-] as const)
+] as const
+const { withState, selectors, componentName } = extendableComponent<
+  OwnerState,
+  typeof name,
+  typeof parts
+>(name, parts)
 
 export type SidebarGalleryProps = {
   sidebar: React.ReactNode
@@ -78,7 +80,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     }
   }
 
-  const className = classesPicker(classes, { zoomed })
+  const classes = withState({ zoomed })
   const theme = useTheme()
   const windowRef = useRef(typeof window !== 'undefined' ? window : null)
 
@@ -110,7 +112,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
       <Row maxWidth={false} disableGutters className={componentName}>
         <MotionBox
           layout
-          {...className('root')}
+          className={classes.root}
           sx={[
             {
               willChange: 'transform',
@@ -137,7 +139,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
         >
           <MotionBox
             layout
-            {...className('scrollerContainer')}
+            className={classes.scrollerContainer}
             sx={[
               {
                 willChange: 'transform',
@@ -159,7 +161,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
             }}
           >
             <Scroller
-              {...className('scroller')}
+              className={classes.scroller}
               hideScrollbar
               onMouseDown={onMouseDownScroller}
               onMouseUp={onMouseUpScroller}
@@ -288,7 +290,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
           </MotionBox>
 
           <Box
-            {...className('sidebarWrapper')}
+            className={classes.sidebarWrapper}
             sx={[
               {
                 boxSizing: 'content-box',
@@ -316,7 +318,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
           >
             <MotionBox
               layout
-              {...className('sidebar')}
+              className={classes.sidebar}
               sx={{
                 boxSizing: 'border-box',
                 width: '100%',

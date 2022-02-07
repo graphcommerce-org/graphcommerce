@@ -7,9 +7,10 @@ const ScrollerDiv = styled(m.div)({})
 
 const Scroller = forwardRef<HTMLDivElement, ScrollableProps & { sx?: SxProps<Theme> }>(
   (props, forwardedRef) => {
-    const { sx, ...scrollerProps } = props
+    const { sx = [], ...scrollerProps } = props
     const scroller = useScroller<'div'>({ grid: true, ...scrollerProps }, forwardedRef)
-    return <ScrollerDiv {...scroller} sx={sx} />
+
+    return <ScrollerDiv {...scroller} sx={[scroller.sx, ...(Array.isArray(sx) ? sx : [sx])]} />
   },
 )
 Scroller.displayName = 'Scroller'

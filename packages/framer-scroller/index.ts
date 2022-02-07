@@ -18,6 +18,6 @@ export * from './components/ScrollerProvider'
 export { default as ScrollerProvider } from './components/ScrollerProvider'
 
 export * from './hooks/useScrollerContext'
-export * from './hooks/useScroller'
+// export * from './hooks/useScroller'
 export * from './hooks/useScrollTo'
 export * from './hooks/useWatchItems'

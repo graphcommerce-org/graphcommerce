@@ -5,43 +5,13 @@ import {
   ScrollerProvider,
   ScrollerButton,
 } from '@graphcommerce/framer-scroller'
-import { makeStyles } from '@graphcommerce/next-ui'
-import { Typography } from '@mui/material'
-import clsx from 'clsx'
+import { Box, styled, Typography } from '@mui/material'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'
 
-const useStyles = makeStyles({ name: 'Index' })({
-  container: {
-    position: 'relative',
-    background: '#ededed',
-    width: '100%',
-    height: 400,
-  },
-  containerResizes: {
-    width: 600,
-    height: 800,
-  },
-  scroller: {
-    width: '100%',
-    height: '100%',
-    gridAutoColumns: `100%`,
-    gridTemplateRows: `100%`,
-    '& *': {
-      userSelect: 'none',
-      userDrag: 'none',
-      WebkitUserDrag: 'none',
-    },
-  },
-  slide: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
+const MotionDiv = styled(m.div)({})
 
 function Index() {
-  const { classes } = useStyles()
   const [expand, setExpand] = useState(true)
 
   return (
@@ -50,10 +20,10 @@ function Index() {
         Basic slider
       </Typography>
 
-      <div style={{ position: 'relative' }}>
+      <Box sx={{ position: 'relative' }}>
         <ScrollerProvider>
           <Scroller
-            style={{
+            sx={{
               gridTemplateRows: `100%`,
               marginBottom: 20,
               rowGap: 20,
@@ -61,21 +31,21 @@ function Index() {
               height: 400,
             }}
           >
-            <div style={{ background: '#eee', userSelect: 'none' }}>item1</div>
-            <div style={{ background: '#eee', userSelect: 'none' }}>item2</div>
-            <div style={{ background: '#eee', userSelect: 'none' }}>item3</div>
-            <div style={{ background: '#eee', userSelect: 'none' }}>item4</div>
-            <div style={{ background: '#eee', userSelect: 'none' }}>item5</div>
-            <div style={{ background: '#eee', userSelect: 'none' }}>item6</div>
-            <div style={{ background: '#eee', userSelect: 'none' }}>item7</div>
+            <Box sx={{ background: '#eee', userSelect: 'none' }}>item1</Box>
+            <Box sx={{ background: '#eee', userSelect: 'none' }}>item2</Box>
+            <Box sx={{ background: '#eee', userSelect: 'none' }}>item3</Box>
+            <Box sx={{ background: '#eee', userSelect: 'none' }}>item4</Box>
+            <Box sx={{ background: '#eee', userSelect: 'none' }}>item5</Box>
+            <Box sx={{ background: '#eee', userSelect: 'none' }}>item6</Box>
+            <Box sx={{ background: '#eee', userSelect: 'none' }}>item7</Box>
           </Scroller>
 
-          <m.div style={{ position: 'absolute', left: 10, top: 'calc(50% - 28px)', zIndex: 2 }}>
+          <MotionDiv sx={{ position: 'absolute', left: 10, top: 'calc(50% - 28px)', zIndex: 2 }}>
             <ScrollerButton direction='left'>←</ScrollerButton>
-          </m.div>
-          <m.div style={{ position: 'absolute', right: 10, top: 'calc(50% - 28px)', zIndex: 2 }}>
+          </MotionDiv>
+          <MotionDiv sx={{ position: 'absolute', right: 10, top: 'calc(50% - 28px)', zIndex: 2 }}>
             <ScrollerButton direction='right'>→</ScrollerButton>
-          </m.div>
+          </MotionDiv>
           <ScrollerDots
             sx={{
               position: 'absolute',
@@ -87,7 +57,7 @@ function Index() {
             }}
           />
         </ScrollerProvider>
-      </div>
+      </Box>
 
       <Typography variant='h4' component='h2'>
         Expandable Image Slider{' '}
@@ -96,22 +66,49 @@ function Index() {
         </button>
       </Typography>
       <ScrollerProvider>
-        <m.div layout className={clsx(classes.container, expand && classes.containerResizes)}>
-          <m.div
+        <MotionDiv
+          layout
+          sx={[
+            {
+              position: 'relative',
+              background: '#ededed',
+              width: '100%',
+              height: 400,
+            },
+            expand && {
+              width: 600,
+              height: 800,
+            },
+          ]}
+        >
+          <MotionDiv
             layout
-            style={{ position: 'absolute', left: 10, top: 'calc(50% - 28px)', zIndex: 2 }}
+            sx={{ position: 'absolute', left: 10, top: 'calc(50% - 28px)', zIndex: 2 }}
           >
             <ScrollerButton direction='left'>←</ScrollerButton>
-          </m.div>
-          <m.div
+          </MotionDiv>
+          <MotionDiv
             layout
-            style={{ position: 'absolute', right: 10, top: 'calc(50% - 28px)', zIndex: 2 }}
+            sx={{ position: 'absolute', right: 10, top: 'calc(50% - 28px)', zIndex: 2 }}
           >
             <ScrollerButton direction='right'>→</ScrollerButton>
-          </m.div>
+          </MotionDiv>
 
-          <Scroller hideScrollbar className={classes.scroller}>
-            <div key='img' className={classes.slide}>
+          <Scroller
+            hideScrollbar
+            sx={{
+              width: '100%',
+              height: '100%',
+              gridAutoColumns: `100%`,
+              gridTemplateRows: `100%`,
+              '& *': {
+                userSelect: 'none',
+                userDrag: 'none',
+                WebkitUserDrag: 'none',
+              },
+            }}
+          >
+            <Box key='img' sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <MotionImageAspect
                 layout
                 src='https://backend.reachdigital.dev/media/catalog/product/cache/63405d393cd2d0278e3cc8b45744d4a7/1/0/1042_1_3.jpg'
@@ -120,26 +117,26 @@ function Index() {
                 sizes='2000px'
                 dontReportWronglySizedImages
               />
-            </div>
-            <m.div key={1}>
-              <m.div layout style={{ width: 300 }}>
+            </Box>
+            <MotionDiv key={1}>
+              <MotionDiv layout sx={{ width: 300 }}>
                 item 1
-              </m.div>
-            </m.div>
-            <m.div key={2}>item 2</m.div>
-            <m.div key={3}>item 3</m.div>
-            <m.div key={4}>item 4</m.div>
-            <m.div key={5}>item 5</m.div>
-            <m.div key={6}>item 6</m.div>
-            <m.div key={7}>item 7</m.div>
-            <m.div key={8}>item 8</m.div>
-            <m.div key={9}>item 9</m.div>
-            <m.div key={10}>item 10</m.div>
+              </MotionDiv>
+            </MotionDiv>
+            <MotionDiv key={2}>item 2</MotionDiv>
+            <MotionDiv key={3}>item 3</MotionDiv>
+            <MotionDiv key={4}>item 4</MotionDiv>
+            <MotionDiv key={5}>item 5</MotionDiv>
+            <MotionDiv key={6}>item 6</MotionDiv>
+            <MotionDiv key={7}>item 7</MotionDiv>
+            <MotionDiv key={8}>item 8</MotionDiv>
+            <MotionDiv key={9}>item 9</MotionDiv>
+            <MotionDiv key={10}>item 10</MotionDiv>
           </Scroller>
 
-          <m.div
+          <MotionDiv
             layout='position'
-            style={{
+            sx={{
               position: 'absolute',
               bottom: 0,
               zIndex: 2,
@@ -149,8 +146,8 @@ function Index() {
             }}
           >
             <ScrollerDots layout />
-          </m.div>
-        </m.div>
+          </MotionDiv>
+        </MotionDiv>
       </ScrollerProvider>
     </>
   )

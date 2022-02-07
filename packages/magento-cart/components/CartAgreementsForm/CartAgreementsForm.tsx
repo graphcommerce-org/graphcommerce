@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { FormDiv, makeStyles, typography } from '@graphcommerce/next-ui'
+import { extendableComponent, FormDiv } from '@graphcommerce/next-ui'
 import {
   Controller,
   useForm,
@@ -8,37 +8,34 @@ import {
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/macro'
-import { Checkbox, FormControl, FormControlLabel, FormHelperText, Link } from '@mui/material'
+import {
+  Box,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  Link,
+  SxProps,
+  Theme,
+} from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { CartAgreementsDocument } from './CartAgreements.gql'
 
-export type CartAgreementsFormProps = Pick<UseFormComposeOptions, 'step'>
+export type CartAgreementsFormProps = Pick<UseFormComposeOptions, 'step'> & { sx?: SxProps<Theme> }
 
-const useStyles = makeStyles({ name: 'CartAgreements' })((theme) => ({
-  formDiv: {
-    paddingTop: theme.spacings.sm,
-  },
-  formInner: {
-    ...typography(theme, 'body1'),
-    display: 'inline-block',
-  },
-  formControlRoot: {
-    display: 'block',
-  },
-  manualCheck: {
-    padding: `9px 0`,
-  },
-}))
+const name = 'CartAgreementsForm' as const
+const slots = ['formDiv', 'formInner', 'formControlRoot', 'manualCheck'] as const
+const { classes } = extendableComponent(name, slots)
 
 export default function CartAgreementsForm(props: CartAgreementsFormProps) {
   const { step } = props
   const { data } = useQuery(CartAgreementsDocument)
-  const { classes } = useStyles()
 
   // sort conditions so checkboxes will be placed first
   const sortedAgreements = data?.checkoutAgreements
     ? [...data.checkoutAgreements].sort((a, b) =>
+        // eslint-disable-next-line no-nested-ternary
         a?.mode === 'MANUAL' ? -1 : b?.mode === 'MANUAL' ? 1 : 0,
       )
     : []
@@ -54,9 +51,9 @@ export default function CartAgreementsForm(props: CartAgreementsFormProps) {
   useFormCompose({ form, step, submit, key: 'PaymentAgreementsForm' })
 
   return (
-    <FormDiv classes={{ root: classes.formDiv }}>
+    <FormDiv className={classes.form} sx={(theme) => ({ pt: theme.spacings.md })}>
       <form noValidate onSubmit={submit} name='cartAgreements'>
-        <div className={classes.formInner}>
+        <Box className={classes.formInner} sx={{ typography: 'body1', display: 'inline-block' }}>
           {data?.checkoutAgreements &&
             sortedAgreements?.map((agreement) => {
               if (!agreement) return null
@@ -75,7 +72,8 @@ export default function CartAgreementsForm(props: CartAgreementsFormProps) {
                       }) => (
                         <FormControl
                           error={!!formState.errors[String(agreement.agreement_id)]}
-                          classes={{ root: classes.formControlRoot }}
+                          className={classes.formControlRoot}
+                          sx={{ display: 'block' }}
                         >
                           <FormControlLabel
                             control={<Checkbox color='secondary' required />}
@@ -97,18 +95,18 @@ export default function CartAgreementsForm(props: CartAgreementsFormProps) {
                       )}
                     />
                   ) : (
-                    <div className={classes.manualCheck}>
+                    <Box className={classes.manualCheck} sx={{ padding: `9px 0` }}>
                       <PageLink href={href} passHref>
                         <Link color='secondary' underline='hover'>
                           {agreement.checkbox_text}
                         </Link>
                       </PageLink>
-                    </div>
+                    </Box>
                   )}
                 </React.Fragment>
               )
             })}
-        </div>
+        </Box>
       </form>
     </FormDiv>
   )

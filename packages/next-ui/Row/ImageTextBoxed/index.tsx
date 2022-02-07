@@ -1,74 +1,78 @@
+import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { Row } from '..'
-import { UseStyles } from '../../Styles'
+import { extendableComponent } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
-import { makeStyles, typography, useMergedClasses } from '../../Styles/tssReact'
 
-const useStyles = makeStyles({ name: 'ImageTextBoxed' })((theme) => ({
-  wrapper: {
-    display: 'grid',
-    border: `1px solid ${theme.palette.divider}`,
-    justifyItems: 'center',
-    columnGap: `${theme.spacings.lg}`,
-    padding: 0,
-    [theme.breakpoints.up('md')]: {
-      background: 'none',
-      gridTemplateColumns: '1fr auto',
-      columnGap: `${theme.spacings.lg}`,
-    },
-    borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
-    overflow: 'hidden',
-  },
-  asset: {
-    height: '100%',
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      height: '100%',
-      width: responsiveVal(100, 600),
-    },
-    '& img': {
-      height: '100% !important',
-      width: '100% !important',
-      objectFit: `cover`,
-    },
-  },
-  copy: {
-    padding: `${theme.spacings.lg} 0`,
-    color: theme.palette.text.primary,
-    maxWidth: '80%',
-    display: 'grid',
-    alignContent: 'center',
-    [theme.breakpoints.up('md')]: {
-      maxWidth: '70%',
-    },
-    '& > *': {
-      maxWidth: 'max-content',
-    },
-  },
-  url: {
-    ...typography(theme, 'body2'),
-    [theme.breakpoints.up('md')]: {
-      ...typography(theme, 'h4'),
-    },
-    color: theme.palette.text.primary,
-  },
-}))
-
-export type ImageTextBoxedProps = UseStyles<typeof useStyles> & {
+export type ImageTextBoxedProps = {
   children: React.ReactNode
   item?: React.ReactNode
+  sx?: SxProps<Theme>
 }
 
+const name = 'ImageTextBoxed' as const
+const slots = ['root', 'wrapper', 'asset', 'copy'] as const
+const { classes } = extendableComponent(name, slots)
+
 export function ImageTextBoxed(props: ImageTextBoxedProps) {
-  const { children, item } = props
-  const classes = useMergedClasses(useStyles().classes, props.classes)
+  const { children, item, sx = [] } = props
 
   return (
-    <Row>
-      <div className={classes.wrapper}>
-        <div className={classes.copy}>{children}</div>
-        <div className={classes.asset}>{item}</div>
-      </div>
+    <Row className={classes.root} sx={sx}>
+      <Box
+        className={classes.wrapper}
+        sx={(theme) => ({
+          display: 'grid',
+          border: `1px solid ${theme.palette.divider}`,
+          justifyItems: 'center',
+          columnGap: `${theme.spacings.lg}`,
+          padding: 0,
+          [theme.breakpoints.up('md')]: {
+            background: 'none',
+            gridTemplateColumns: '1fr auto',
+            columnGap: `${theme.spacings.lg}`,
+          },
+          borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+          overflow: 'hidden',
+        })}
+      >
+        <Box
+          className={classes.copy}
+          sx={(theme) => ({
+            padding: `${theme.spacings.lg} 0`,
+            color: theme.palette.text.primary,
+            maxWidth: '80%',
+            display: 'grid',
+            alignContent: 'center',
+            [theme.breakpoints.up('md')]: {
+              maxWidth: '70%',
+            },
+            '& > *': {
+              maxWidth: 'max-content',
+            },
+          })}
+        >
+          {children}
+        </Box>
+        <Box
+          className={classes.asset}
+          sx={(theme) => ({
+            height: '100%',
+            width: '100%',
+            [theme.breakpoints.up('md')]: {
+              height: '100%',
+              width: responsiveVal(100, 600),
+            },
+            '& img': {
+              height: '100% !important',
+              width: '100% !important',
+              objectFit: `cover`,
+            },
+          })}
+        >
+          {item}
+        </Box>
+      </Box>
     </Row>
   )
 }

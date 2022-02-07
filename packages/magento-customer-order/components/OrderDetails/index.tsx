@@ -13,17 +13,14 @@ import {
   makeStyles,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Skeleton } from '@mui/material'
+import { Box, experimental_sx, Skeleton, styled, Theme } from '@mui/material'
 import clsx from 'clsx'
 import React from 'react'
 import TrackingLink from '../TrackingLink'
 import { OrderDetailsFragment } from './OrderDetails.gql'
 
 const useStyles = makeStyles({ name: 'OrderDetails' })((theme) => ({
-  sectionContainer: {
-    marginTop: theme.spacings.sm,
-    marginBottom: theme.spacings.sm,
-  },
+  sectionContainer: {},
   orderDetailsInnerContainer: {
     display: 'grid',
     gridColumnGap: theme.spacings.sm,
@@ -36,14 +33,7 @@ const useStyles = makeStyles({ name: 'OrderDetails' })((theme) => ({
       gridTemplateColumns: 'repeat(2, 1fr)',
     },
   },
-  orderDetailTitle: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
-    fontWeight: 'bold',
-    display: 'block',
-    width: '100%',
-    paddingBottom: responsiveVal(2, 8),
-    marginBottom: theme.spacings.xs,
-  },
+  orderDetailTitle: {},
   totalsContainer: {
     padding: `${theme.spacings.xxs} 0`,
   },
@@ -78,6 +68,17 @@ const useStyles = makeStyles({ name: 'OrderDetails' })((theme) => ({
 export type OrderDetailsProps = Partial<OrderDetailsFragment> & {
   loading?: boolean
 }
+
+const OrderDetailTitle = styled('span')(
+  experimental_sx<Theme>((theme) => ({
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    fontWeight: 'bold',
+    display: 'block',
+    width: '100%',
+    paddingBottom: responsiveVal(2, 8),
+    marginBottom: theme.spacings.xs,
+  })),
+)
 
 export default function OrderDetails(props: OrderDetailsProps) {
   const {
@@ -120,7 +121,9 @@ export default function OrderDetails(props: OrderDetailsProps) {
     return (
       <SectionContainer
         labelLeft='Order details'
-        classes={{ sectionContainer: classes.sectionContainer }}
+        sx={(theme) => ({
+          '& .SectionHeader': { marginTop: theme.spacings.sm, marginBottom: theme.spacings.sm },
+        })}
         borderBottom
       >
         <div className={classes.orderDetailsInnerContainer}>
@@ -184,17 +187,19 @@ export default function OrderDetails(props: OrderDetailsProps) {
   return (
     <SectionContainer
       labelLeft='Order details'
-      classes={{ sectionContainer: classes.sectionContainer }}
       borderBottom
+      sx={(theme) => ({
+        '& .SectionHeader': { marginTop: theme.spacings.sm, marginBottom: theme.spacings.sm },
+      })}
     >
       <div className={classes.orderDetailsInnerContainer}>
         <div>
-          <span className={classes.orderDetailTitle}>Order number</span>
+          <OrderDetailTitle>Order number</OrderDetailTitle>
           <div>{number}</div>
         </div>
 
         <div>
-          <span className={classes.orderDetailTitle}>Order status</span>
+          <OrderDetailTitle>Order status</OrderDetailTitle>
           <div>
             Ordered: {order_date && dateFormatter.format(new Date(order_date))}
             {/* Shipped */}
@@ -202,7 +207,7 @@ export default function OrderDetails(props: OrderDetailsProps) {
         </div>
 
         <div>
-          <span className={classes.orderDetailTitle}>Shipping method</span>
+          <OrderDetailTitle>Shipping method</OrderDetailTitle>
           <div>
             <div>{shipping_method ?? ''}</div>
 
@@ -220,7 +225,7 @@ export default function OrderDetails(props: OrderDetailsProps) {
         </div>
 
         <div>
-          <span className={classes.orderDetailTitle}>Payment method</span>
+          <OrderDetailTitle>Payment method</OrderDetailTitle>
           <div>
             {payment_methods && payment_methods.length < 1 && (
               <div>
@@ -246,7 +251,7 @@ export default function OrderDetails(props: OrderDetailsProps) {
         </div>
 
         <div>
-          <span className={classes.orderDetailTitle}>Shipping address</span>
+          <OrderDetailTitle>Shipping address</OrderDetailTitle>
           <div>
             <div>
               {shipping_address?.firstname} {shipping_address?.lastname}
@@ -262,7 +267,7 @@ export default function OrderDetails(props: OrderDetailsProps) {
         </div>
 
         <div>
-          <span className={classes.orderDetailTitle}>Billing address</span>
+          <OrderDetailTitle>Billing address</OrderDetailTitle>
           <div>
             <div>
               {billing_address?.firstname} {billing_address?.lastname}
