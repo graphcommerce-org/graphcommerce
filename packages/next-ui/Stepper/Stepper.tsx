@@ -1,44 +1,49 @@
+import { Box, SxProps } from '@mui/material'
 import clsx from 'clsx'
-import React from 'react'
-import { UseStyles } from '../Styles'
+import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { makeStyles, useMergedClasses } from '../Styles/tssReact'
-
-const useStyles = makeStyles({ name: 'Stepper' })((theme) => ({
-  root: {
-    marginTop: '-2px',
-    display: 'grid',
-    gridAutoFlow: 'column',
-    gap: responsiveVal(8, 12),
-    // padding: `0 ${theme.page.horizontal}`,
-  },
-  step: {
-    height: responsiveVal(2, 3),
-    background: theme.palette.divider,
-  },
-  current: {
-    background: theme.palette.secondary.main,
-  },
-}))
 
 export type StepperProps = {
   steps: number
   currentStep: number
-} & UseStyles<typeof useStyles>
+  sx?: SxProps<Theme>
+}
+
+const name = 'Stepper' as const
+const slots = ['root', 'step', 'activeStep'] as const
+const { classes } = extendableComponent(name, slots)
 
 export function Stepper(props: StepperProps) {
-  const { steps, currentStep } = props
-  let { classes } = useStyles()
-  classes = useMergedClasses(classes, props.classes)
+  const { steps, currentStep, sx = [] } = props
 
   return (
-    <div className={classes.root}>
+    <Box
+      className={classes.root}
+      sx={[
+        (theme) => ({
+          marginTop: '-2px',
+          display: 'grid',
+          gridAutoFlow: 'column',
+          gap: theme.spacings.xxs,
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       {[...Array(steps).keys()].map((step: number) => (
-        <div
-          className={clsx(classes.step, { [classes.current]: currentStep - 1 >= step })}
+        <Box
+          sx={[
+            {
+              height: responsiveVal(2, 3),
+              bgcolor: 'divider',
+            },
+            currentStep - 1 >= step && {
+              bgcolor: 'secondary.main',
+            },
+          ]}
+          className={clsx(classes.step, currentStep - 1 >= step && classes.activeStep)}
           key={step}
         />
       ))}
-    </div>
+    </Box>
   )
 }

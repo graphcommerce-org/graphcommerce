@@ -2,29 +2,18 @@ import {
   IconButton,
   IconButtonProps,
   OutlinedTextFieldProps,
+  SxProps,
   TextField,
   TextFieldProps,
   useForkRef,
+  Theme,
 } from '@mui/material'
 import clsx from 'clsx'
 import React, { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
-import { extendableComponent, UseStyles } from '../Styles'
+import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { makeStyles, useMergedClasses } from '../Styles/tssReact'
 import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconMin, iconPlus } from '../icons'
-
-const useStyles = makeStyles({ name: 'TextInputNumber' })({
-  quantity: {},
-  quantityInput: {},
-  button: {},
-  adornedEnd: {
-    paddingRight: responsiveVal(7, 14),
-  },
-  adornedStart: {
-    paddingLeft: responsiveVal(7, 14),
-  },
-})
 
 export type IconButtonPropsOmit = Omit<
   IconButtonProps,
@@ -34,7 +23,8 @@ export type IconButtonPropsOmit = Omit<
 export type TextInputNumberProps = Omit<TextFieldProps, 'type'> & {
   DownProps?: IconButtonPropsOmit
   UpProps?: IconButtonPropsOmit
-} & UseStyles<typeof useStyles>
+  sx?: SxProps<Theme>
+}
 
 function isOutlined(props: TextFieldProps): props is OutlinedTextFieldProps {
   return props.variant === 'outlined'
@@ -42,13 +32,20 @@ function isOutlined(props: TextFieldProps): props is OutlinedTextFieldProps {
 
 type OwnerState = { size?: 'small' | 'medium' }
 const name = 'TextInputNumber' as const
-const slots = ['quantity', 'quantityInput'] as const
+const slots = ['quantity', 'quantityInput', 'button'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof slots>(name, slots)
 
 export function TextInputNumber(props: TextInputNumberProps) {
-  const { DownProps = {}, UpProps = {}, inputProps = {}, inputRef, ...textFieldProps } = props
-  let { classes } = useStyles()
-  classes = useMergedClasses(classes, props.classes)
+  const {
+    DownProps = {},
+    UpProps = {},
+    inputProps = {},
+    inputRef,
+    sx = [],
+    ...textFieldProps
+  } = props
+
+  const classes = withState({})
 
   const ref = useRef<HTMLInputElement>(null)
   const forkRef = useForkRef<HTMLInputElement>(ref, inputRef as Ref<HTMLInputElement>)
@@ -94,25 +91,21 @@ export function TextInputNumber(props: TextInputNumberProps) {
     setTimeout(() => ref.current && updateDisabled(ref.current))
   }, [ref, inputProps.min, inputProps.max])
 
-  if (!textFieldProps.InputProps) textFieldProps.InputProps = {}
-  if (isOutlined(textFieldProps)) {
-    textFieldProps.InputProps.classes = {
-      ...textFieldProps.InputProps?.classes,
-      adornedEnd: classes.adornedEnd,
-      adornedStart: classes.adornedStart,
-    }
-  }
-
+  console.log(isOutlined(textFieldProps))
   return (
     <TextField
       {...textFieldProps}
       type='number'
       inputRef={forkRef}
       className={clsx(textFieldProps.className, classes.quantity)}
-      sx={{
-        width: responsiveVal(80, 120),
-        backgroundColor: 'inherit',
-      }}
+      sx={[
+        {
+          width: responsiveVal(80, 120),
+          backgroundColor: 'inherit',
+        },
+
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       autoComplete='off'
       label={' '}
       id='quantity-input'
@@ -158,12 +151,14 @@ export function TextInputNumber(props: TextInputNumberProps) {
       }}
       inputProps={{
         ...inputProps,
-        sx: {
-          textAlign: 'center',
-          '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
-            appearance: 'none',
+        sx: [
+          {
+            textAlign: 'center',
+            '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
+              appearance: 'none',
+            },
           },
-        },
+        ],
         className: clsx(inputProps?.className, classes.quantityInput),
       }}
     />
