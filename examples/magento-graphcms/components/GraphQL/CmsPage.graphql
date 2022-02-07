@@ -1,8 +1,0 @@
-query CmsPage($url: String!, $urlKey: String!, $rootCategory: String!) {
-  ...MenuQueryFragment
-  ...FooterQueryFragment
-  ...PageContentQueryFragment
-
-  # Cms data
-  ...CmsPageQueryFragment
-}

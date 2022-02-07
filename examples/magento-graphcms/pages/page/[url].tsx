@@ -1,13 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { CmsPageContent } from '@graphcommerce/magento-cms'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { LayoutHeader, GetStaticProps, MetaRobots, LayoutTitle } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.gql'
-import { DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
+import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import { LayoutFull, LayoutFullProps } from '../../components/Layout'
 import RowProduct from '../../components/Row/RowProduct'
 import RowRenderer from '../../components/Row/RowRenderer'
@@ -15,17 +13,17 @@ import apolloClient from '../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
 
-type Props = DefaultPageQuery & CmsPageQuery & ProductListQuery
+type Props = DefaultPageQuery & ProductListQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 export type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function CmsPage(props: Props) {
   const router = useRouter()
-  const { cmsPage, pages, products } = props
+  const { pages, products } = props
   const page = pages?.[0]
 
-  const title = page?.title ?? cmsPage?.title ?? ''
+  const title = page?.title ?? ''
 
   const product = products?.items?.[0]
   const metaRobots = page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]
@@ -33,8 +31,8 @@ function CmsPage(props: Props) {
   return (
     <>
       <PageMeta
-        title={page?.metaTitle ?? cmsPage?.meta_title ?? title ?? ''}
-        metaDescription={page?.metaDescription ?? cmsPage?.meta_description ?? ''}
+        title={page?.metaTitle ?? title ?? ''}
+        metaDescription={page?.metaDescription ?? ''}
         metaRobots={metaRobots}
         canonical={page?.url}
       />
@@ -49,7 +47,7 @@ function CmsPage(props: Props) {
 
       {router.pathname !== '/' && <LayoutTitle variant='h1'>{title}</LayoutTitle>}
 
-      {pages?.[0] ? (
+      {pages?.[0] && (
         <RowRenderer
           content={pages?.[0].content}
           renderer={{
@@ -58,8 +56,6 @@ function CmsPage(props: Props) {
             ),
           }}
         />
-      ) : (
-        <CmsPageContent {...cmsPage} />
       )}
     </>
   )
@@ -89,13 +85,15 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
 
   const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
-    query: CmsPageDocument,
+    query: DefaultPageDocument,
     variables: {
       url: `page/${urlKey}`,
       urlKey,
       rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
     },
   })
+
+  if (!(await page).data.pages?.[0]) return { notFound: true }
 
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
   const categoryUid = String((await conf).data.storeConfig?.root_category_uid ?? '')
