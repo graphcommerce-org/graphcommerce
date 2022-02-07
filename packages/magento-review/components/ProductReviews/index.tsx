@@ -78,7 +78,6 @@ const useStyles = makeStyles({ name: 'ProductReviews' })((theme) => ({
   },
   writeReviewButton: {
     [theme.breakpoints.down('sm')]: {
-      padding: '8px 16px 8px',
       whiteSpace: 'nowrap',
     },
   },

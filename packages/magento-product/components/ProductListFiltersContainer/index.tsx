@@ -29,9 +29,6 @@ const useStyles = makeStyles({ name: 'ProductListFiltersContainer' })((theme) =>
       maxWidth: 'unset',
       margin: `0 calc(${theme.page.horizontal} * -1)`,
     },
-    [theme.breakpoints.down('sm')]: {
-      textAlign: 'center',
-    },
   },
   container: {
     position: 'relative',

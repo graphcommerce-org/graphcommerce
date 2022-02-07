@@ -1,4 +1,4 @@
-import { RichText, RichTextHero } from '@graphcommerce/graphcms-ui'
+import { RichText } from '@graphcommerce/graphcms-ui'
 import { breakpointVal, HeroBanner } from '@graphcommerce/next-ui'
 import { Button } from '@mui/material'
 import PageLink from 'next/link'

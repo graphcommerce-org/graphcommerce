@@ -1,16 +1,11 @@
 import { RichText } from '@graphcommerce/graphcms-ui'
 import { Image } from '@graphcommerce/image'
-import { ImageText, typography, withStyles } from '@graphcommerce/next-ui'
+import { ImageText } from '@graphcommerce/next-ui'
 import { Typography, useTheme } from '@mui/material'
 import { RowProductFragment } from '../RowProduct.gql'
 import { ProductFeatureMediaFragment } from './ProductFeatureMedia.gql'
 
 type FeatureProps = RowProductFragment & ProductFeatureMediaFragment
-
-const RichTextFeature = withStyles(RichText, (theme) => ({
-  h2: { ...typography(theme, 'h1') },
-  paragraph: { ...typography(theme, 'subtitle1') },
-}))
 
 export function Feature(props: FeatureProps) {
   const { productCopy, title, media_gallery } = props
@@ -43,7 +38,15 @@ export function Feature(props: FeatureProps) {
           {title}
         </Typography>
       )}
-      {productCopy?.raw && <RichTextFeature {...productCopy} />}
+      {productCopy?.raw && (
+        <RichText
+          {...productCopy}
+          sxRenderer={{
+            'heading-two': { typography: 'h1' },
+            paragraph: { typography: 'subtitle1' },
+          }}
+        />
+      )}
     </ImageText>
   )
 }

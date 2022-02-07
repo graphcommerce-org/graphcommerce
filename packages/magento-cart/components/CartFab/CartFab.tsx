@@ -61,7 +61,7 @@ function CartFabContent(props: CartFabContentProps) {
           sx={(theme) => ({
             width: fabIconSize,
             height: fabIconSize,
-            [theme.breakpoints.down('sm')]: {
+            [theme.breakpoints.down('md')]: {
               backgroundColor: `${theme.palette.background.paper} !important`,
             },
           })}
@@ -85,7 +85,7 @@ function CartFabContent(props: CartFabContentProps) {
           width: '100%',
           boxShadow: theme.shadows[6],
           top: 0,
-          [theme.breakpoints.down('sm')]: {
+          [theme.breakpoints.down('md')]: {
             opacity: '1 !important',
           },
         })}
