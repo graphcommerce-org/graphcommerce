@@ -44,7 +44,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             minHeight: '-webkit-fill-available',
           },
           display: 'grid',
-          gridTemplateRows: `auto 1fr auto`,
+          gridTemplateRows: `auto auto 1fr auto`,
           gridTemplateColumns: '100%',
           background: theme.palette.background.default,
         }),
@@ -75,7 +75,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
               width: '100%',
             },
             '&.sticky': {
-              [theme.breakpoints.down('sm')]: {
+              [theme.breakpoints.down('md')]: {
                 position: 'sticky',
                 top: 0,
               },
@@ -99,7 +99,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
                 marginTop: `calc(${theme.appShell.headerHeightMd} * -1 + calc(${fabIconSize} / 2))`,
                 top: `calc(${theme.appShell.headerHeightMd} / 2 - 28px)`,
               },
-              [theme.breakpoints.down('sm')]: {
+              [theme.breakpoints.down('md')]: {
                 position: 'fixed',
                 top: 'unset',
                 bottom: `calc(20px + ${fabIconSize})`,
