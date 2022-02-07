@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.165.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.164.3...@graphcommerce/graphcommerce@2.165.0) (2022-02-07)
+
+
+### Features
+
+* get cms pages from graphcms instead of Magento ([cd32634](https://github.com/ho-nl/m2-pwa/commit/cd32634e24b7d4b514c7e6df9a5301a39b700d6c))
+
+
+
+
+
 ## [2.164.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.164.2...@graphcommerce/graphcommerce@2.164.3) (2022-02-03)
 
 

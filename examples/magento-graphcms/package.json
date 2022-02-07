@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-graphcms",
-  "version": "2.144.9",
+  "version": "2.145.0",
   "private": true,
   "sideEffects": false,
   "engines": {
