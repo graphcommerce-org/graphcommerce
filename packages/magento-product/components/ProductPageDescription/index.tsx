@@ -2,6 +2,7 @@ import { ColumnTwoWithTop, ColumnTwoWithTopProps, UseStyles } from '@graphcommer
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 import { ProductPageDescriptionFragment } from './ProductPageDescription.gql'
+import decode from 'decode-html'
 
 const useStyles = makeStyles((theme: Theme) => ({
   /* nested styles because we don't know beforehand which elements the description contains */
@@ -10,11 +11,11 @@ const useStyles = makeStyles((theme: Theme) => ({
       marginTop: 0,
     },
     '& p, & li': {
-      ...theme.typography.body1,
+      // ...theme.typography.body1,
       fontWeight: 400,
 
       [theme.breakpoints.up('md')]: {
-        ...theme.typography.h3,
+        // ...theme.typography.h3,
         fontWeight: 400,
         '@supports (font-variation-settings: normal)': {
           fontVariationSettings: "'wght' 420",
@@ -33,7 +34,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-export type ProductPageDescriptionProps = UseStyles<typeof useStyles> & ProductPageDescriptionFragment &
+export type ProductPageDescriptionProps = UseStyles<typeof useStyles> &
+  ProductPageDescriptionFragment &
   Omit<ColumnTwoWithTopProps, 'top' | 'left'>
 
 export default function ProductPageDescription(props: ProductPageDescriptionProps) {
@@ -52,11 +54,12 @@ export default function ProductPageDescription(props: ProductPageDescriptionProp
           <div
             className={classes.description}
             // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: description.html }}
+            style={{ minWidth: '90%' }}
+            dangerouslySetInnerHTML={{ __html: decode(description.html) }}
           />
         )
       }
-      right={right}
+      right={''}
     />
   )
 }

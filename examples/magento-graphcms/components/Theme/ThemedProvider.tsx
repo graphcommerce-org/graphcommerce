@@ -17,9 +17,9 @@ const breakpoints = {
 const lightPalette: PaletteOptions = {
   type: 'light',
   primary: {
-    main: '#FF4A55',
+    main: '#2c88c9',
     contrastText: '#FFFFFF',
-    dark: '#F33642',
+    dark: '#2c88c9',
   },
   secondary: {
     main: '#006BFF',
@@ -48,9 +48,9 @@ const lightPalette: PaletteOptions = {
 const darkPalette: PaletteOptions = {
   type: 'dark',
   primary: {
-    main: '#62C7B0',
+    main: '#2c88c9',
     contrastText: '#ffffff',
-    dark: '#62C7B0',
+    dark: '#2c88c9',
   },
   secondary: {
     main: '#62C7B0',
@@ -58,8 +58,8 @@ const darkPalette: PaletteOptions = {
     contrastText: '#ffffff',
   },
   background: {
-    default: '#001727',
-    paper: '#15293B',
+    default: '#151e28',
+    paper: '#151e28',
     image: '#ffffff',
   },
   divider: '#ffffff30',
@@ -85,7 +85,7 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
     },
     shadows,
     shape: {
-      borderRadius: 4,
+      borderRadius: 0,
     },
     typography: {
       fontFamily:

@@ -1,7 +1,7 @@
 import { Logo as NextLogo, LogoProps as CoreLogoProps } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
-import svgLogo from './graphcommerce.svg'
+import svgLogo from './hrs-white-logo.svg'
 
 type LogoProps = Omit<CoreLogoProps, 'image'>
 

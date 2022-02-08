@@ -2,6 +2,7 @@ import { UseStyles } from '@graphcommerce/next-ui'
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { CategoryDescriptionFragment } from './CategoryDescription.gql'
+import decode from 'decode-html'
 
 type CategoryDescriptionProps = Omit<CategoryDescriptionFragment, 'uid'> &
   JSX.IntrinsicElements['div'] &
@@ -32,6 +33,11 @@ export default function CategoryDescription(props: CategoryDescriptionProps) {
 
   return description ? (
     // eslint-disable-next-line react/no-danger
-    <div {...divProps} className={classes.root} dangerouslySetInnerHTML={{ __html: description }} />
+    <div
+      {...divProps}
+      className={classes.root}
+      style={{ minWidth: '90%' }}
+      dangerouslySetInnerHTML={{ __html: decode(description) }}
+    />
   ) : null
 }
