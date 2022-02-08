@@ -1,5 +1,5 @@
 query ProductReviewProductName($sku: String!) {
-  products(filter: { sku: { eq: $sku } }) {
+  products(search: $sku, pageSize: 1) {
     items {
       __typename
       uid
