@@ -7,8 +7,8 @@ export type SectionContainerProps = PropsWithChildren<OwnerState> & SectionHeade
 
 type OwnerState = { borderBottom?: boolean }
 const name = 'SectionContainer' as const
-const slots = ['root'] as const
-const { withState } = extendableComponent<OwnerState, typeof name, typeof slots>(name, slots)
+const parts = ['root'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function SectionContainer(props: SectionContainerProps) {
   const { children, borderBottom, sx = [], ...sectionHeaderProps } = props

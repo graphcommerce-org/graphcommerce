@@ -11,8 +11,8 @@ export type IconBlocksProps = {
 }
 
 const compName = 'IconBlocks' as const
-const slots = ['container', 'title', 'optionsWrapper', 'block', 'wrapper'] as const
-const { classes } = extendableComponent(compName, slots)
+const parts = ['container', 'title', 'optionsWrapper', 'block', 'wrapper'] as const
+const { classes } = extendableComponent(compName, parts)
 
 export function IconBlocks(props: IconBlocksProps) {
   const { title, children, sx = [] } = props

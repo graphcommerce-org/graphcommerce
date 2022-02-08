@@ -9,8 +9,8 @@ import { SetMolliePaymentMethodIssuerOnCartDocument } from './SetMolliePaymentMe
 type MollieIssuerOptionsProps = PaymentOptionsProps & { label: string }
 
 const compName = 'MollieIssuerOptions' as const
-const slots = ['root', 'list'] as const
-const { classes } = extendableComponent(compName, slots)
+const parts = ['root', 'list'] as const
+const { classes } = extendableComponent(compName, parts)
 
 export default function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
   const { mollie_available_issuers = [] } = props

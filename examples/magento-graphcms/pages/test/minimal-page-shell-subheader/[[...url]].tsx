@@ -12,7 +12,7 @@ import {
   ProductListParamsProvider,
   ProductListSort,
 } from '@graphcommerce/magento-product'
-import { SearchDocument, SearchQuery } from '@graphcommerce/magento-search'
+import { SearchQuery } from '@graphcommerce/magento-search'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { StickyBelowHeader, LayoutTitle, LayoutHeader, LinkOrButton } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
@@ -84,8 +84,6 @@ export const getStaticPaths: GetPageStaticPaths = async () => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const [search = '', query = []] = extractUrlQuery(params)
-
   const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
@@ -101,6 +99,11 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     query: ProductListDocument,
     variables: { categoryUid: rootCategory },
   })
+
+  const [url, query] = extractUrlQuery(params)
+  if (!url || !query) return { notFound: true }
+  const productListParams = parseParams(url, query, await filterTypes)
+  if (!productListParams) return { notFound: true }
 
   return {
     props: {

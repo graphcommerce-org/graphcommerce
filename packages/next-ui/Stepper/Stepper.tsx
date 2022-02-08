@@ -10,8 +10,8 @@ export type StepperProps = {
 }
 
 const name = 'Stepper' as const
-const slots = ['root', 'step', 'activeStep'] as const
-const { classes } = extendableComponent(name, slots)
+const parts = ['root', 'step', 'activeStep'] as const
+const { classes } = extendableComponent(name, parts)
 
 export function Stepper(props: StepperProps) {
   const { steps, currentStep, sx = [] } = props

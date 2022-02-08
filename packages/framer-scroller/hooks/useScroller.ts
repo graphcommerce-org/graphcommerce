@@ -32,8 +32,8 @@ type OwnerProps = {
   canGrab: boolean
 }
 const name = 'Scroller' as const
-const slots = ['root'] as const
-const { withState } = extendableComponent<OwnerProps, typeof name, typeof slots>(name, slots)
+const parts = ['root'] as const
+const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 
 /** Make any HTML */
 export function useScroller<TagName extends keyof ReactHTML = 'div'>(

@@ -14,10 +14,10 @@ export type ButtonLinkListProps = {
 type OwnerState = { containsBigLinks: boolean }
 
 const compName = 'ButtonLinkList' as const
-const slots = ['root', 'links'] as const
-const { withState } = extendableComponent<OwnerState, typeof compName, typeof slots>(
+const parts = ['root', 'links'] as const
+const { withState } = extendableComponent<OwnerState, typeof compName, typeof parts>(
   compName,
-  slots,
+  parts,
 )
 
 export function ButtonLinkList(props: ButtonLinkListProps) {

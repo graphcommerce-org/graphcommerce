@@ -13,8 +13,8 @@ function isValueSelected(value: string, candidate: string | string[]) {
 type OwnerState = Pick<ToggleButtonGroupPropsBase, 'orientation' | 'size'>
 
 const name = 'ToggleButtonGroup' as const
-const slots = ['root', 'button'] as const
-const { withState } = extendableComponent<OwnerState, typeof name, typeof slots>(name, slots)
+const parts = ['root', 'button'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export type ToggleButtonGroupProps = ToggleButtonGroupPropsBase & { required?: boolean }
 

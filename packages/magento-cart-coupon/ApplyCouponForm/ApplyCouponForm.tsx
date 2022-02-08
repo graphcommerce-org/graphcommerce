@@ -1,37 +1,37 @@
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
-import {
-  responsiveVal,
-  Button,
-  UseStyles,
-  makeStyles,
-  useMergedClasses,
-} from '@graphcommerce/next-ui'
+import { responsiveVal, Button, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { FormControl, TextField } from '@mui/material'
+import { Box, FormControl, SxProps, TextField, Theme } from '@mui/material'
 import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
 
-const useStyles = makeStyles()((theme) => ({
-  couponForm: {
-    display: 'grid',
-    alignItems: 'center',
-    gridTemplateColumns: `1fr minmax(min-content, ${responsiveVal(70, 140)})`,
-    gridColumnGap: theme.spacings.sm,
-  },
-  button: {
-    whiteSpace: 'nowrap',
-  },
-}))
+export type ApplyCouponFormProps = { sx?: SxProps<Theme> }
 
-export type ApplyCouponFormProps = UseStyles<typeof useStyles>
+const name = 'ApplyCouponForm' as const
+const parts = ['couponForm', 'button'] as const
+const { classes } = extendableComponent(name, parts)
 
 export default function ApplyCouponForm(props: ApplyCouponFormProps) {
+  const { sx = [] } = props
   const form = useFormGqlMutationCart(ApplyCouponFormDocument)
   const { handleSubmit, muiRegister, formState, required, error } = form
   const submitHandler = handleSubmit(() => {})
-  const classes = useMergedClasses(useStyles().classes, props.classes)
 
   return (
-    <form onSubmit={submitHandler} noValidate className={classes.couponForm}>
+    <Box
+      component='form'
+      onSubmit={submitHandler}
+      noValidate
+      className={classes.couponForm}
+      sx={[
+        (theme) => ({
+          display: 'grid',
+          alignItems: 'center',
+          gridTemplateColumns: `1fr minmax(min-content, ${responsiveVal(70, 140)})`,
+          gridColumnGap: theme.spacings.sm,
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       <TextField
         variant='outlined'
         type='text'
@@ -48,12 +48,13 @@ export default function ApplyCouponForm(props: ApplyCouponFormProps) {
           loading={formState.isSubmitting}
           color='secondary'
           variant='pill'
+          sx={{ whiteSpace: 'nowrap' }}
         >
           <Trans>Apply</Trans>
         </Button>
       </FormControl>
 
       <ApolloCartErrorAlert error={error} />
-    </form>
+    </Box>
   )
 }

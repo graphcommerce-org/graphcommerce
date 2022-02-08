@@ -30,8 +30,8 @@ type OwnerProps = {
 }
 
 const name = 'ShippingMethodForm' as const
-const slots = ['root', 'alert', 'buttonRoot', 'buttonContainer', 'scrollerRoot'] as const
-const { withState } = extendableComponent<OwnerProps, typeof name, typeof slots>(name, slots)
+const parts = ['root', 'alert', 'buttonRoot', 'buttonContainer', 'scrollerRoot'] as const
+const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 
 export default function ShippingMethodForm(props: ShippingMethodFormProps) {
   const { step } = props

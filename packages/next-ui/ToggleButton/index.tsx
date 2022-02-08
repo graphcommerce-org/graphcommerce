@@ -13,10 +13,10 @@ export type ToggleButtonProps = Omit<ButtonProps, 'onClick' | 'onChange'> & {
 type OwnerState = Pick<ButtonProps, 'size' | 'disabled'> & { selected?: boolean }
 
 const compName = 'ToggleButton' as const
-const slots = ['root', 'button', 'helperText'] as const
-const { withState } = extendableComponent<OwnerState, typeof compName, typeof slots>(
+const parts = ['root', 'button', 'helperText'] as const
+const { withState } = extendableComponent<OwnerState, typeof compName, typeof parts>(
   compName,
-  slots,
+  parts,
 )
 
 export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {

@@ -4,8 +4,8 @@ import { Row } from '..'
 import { extendableComponent } from '../../Styles'
 
 const compName = 'ColumnThree' as const
-const slots = ['root', 'colOne', 'colTwo', 'colThree'] as const
-const { classes } = extendableComponent(compName, slots)
+const parts = ['root', 'colOne', 'colTwo', 'colThree'] as const
+const { classes } = extendableComponent(compName, parts)
 
 export type ColumnThreeProps = Omit<ContainerProps, 'children'> & {
   colOneContent: React.ReactNode

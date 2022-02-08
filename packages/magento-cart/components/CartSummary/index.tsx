@@ -16,8 +16,8 @@ export type CartSummaryProps = {
 type OwnerState = { editable?: boolean }
 
 const compName = 'CartSummary' as const
-const slots = ['root', 'detailsContainer', 'sectionHeaderWrapper'] as const
-const { classes } = extendableComponent<OwnerState, typeof compName, typeof slots>(compName, slots)
+const parts = ['root', 'detailsContainer', 'sectionHeaderWrapper'] as const
+const { classes } = extendableComponent<OwnerState, typeof compName, typeof parts>(compName, parts)
 
 export default function CartSummary(props: CartSummaryProps) {
   const { children, editable } = props

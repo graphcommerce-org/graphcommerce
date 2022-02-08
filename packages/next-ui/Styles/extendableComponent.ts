@@ -16,7 +16,7 @@ export function slotClasses<Name extends string, ClassNames extends ReadonlyArra
 }
 
 /** Maps incoming classes to a selectors that can be used to extend the component */
-export const slotSelectorsMap = <O extends Record<string, string>>(
+export const partselectorsMap = <O extends Record<string, string>>(
   obj: O,
 ): {
   [P in keyof O]: `& .${O[P]}`
@@ -28,7 +28,7 @@ export const slotSelectorsMap = <O extends Record<string, string>>(
 /**
  * Utility function to:
  *
- * - Define slots
+ * - Define parts
  * - Generate state css classes.
  */
 export function extendableComponent<
@@ -37,7 +37,7 @@ export function extendableComponent<
   ClassNames extends ReadonlyArray<string> = ReadonlyArray<string>,
 >(componentName: Name, slotNames: ClassNames) {
   const classes = slotClasses(componentName, slotNames)
-  const slotSelectors = slotSelectorsMap(classes)
+  const partselectors = partselectorsMap(classes)
 
   const withState = (state: ComponentStyleProps) => {
     const stateClas = Object.fromEntries(
@@ -64,7 +64,7 @@ export function extendableComponent<
     classes,
     selectors: {
       // ...stateSelectors,
-      ...slotSelectors,
+      ...partselectors,
     },
     withState,
   }

@@ -1,27 +1,31 @@
-import { AnimatedRow, makeStyles } from '@graphcommerce/next-ui'
+import { AnimatedRow, extendableComponent } from '@graphcommerce/next-ui'
+import { Box, SxProps, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import { PaymentMethodOptionsProps } from '../Api/PaymentMethod'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
-const useStyles = makeStyles({ name: 'PaymentMethodOptions' })((theme) => ({
-  root: {
-    marginBottom: theme.spacings.sm,
-  },
-}))
+const name = 'PaymentMethodOptions' as const
+const parts = ['root'] as const
+const { classes } = extendableComponent(name, parts)
 
-export default function PaymentMethodOptions(props: PaymentMethodOptionsProps) {
+export default function PaymentMethodOptions(
+  props: PaymentMethodOptionsProps & { sx?: SxProps<Theme> },
+) {
+  const { sx = [], ...optionsProps } = props
   const { selectedMethod, selectedModule } = usePaymentMethodContext()
-  const { classes } = useStyles()
 
   return (
-    <div className={classes.root}>
+    <Box
+      className={classes.root}
+      sx={[(theme) => ({ marginBottom: theme.spacings.sm }), ...(Array.isArray(sx) ? sx : [sx])]}
+    >
       <AnimatePresence initial={false}>
         {selectedModule && selectedMethod && (
           <AnimatedRow key={selectedMethod.code}>
-            <selectedModule.PaymentOptions {...selectedMethod} {...props} />
+            <selectedModule.PaymentOptions {...selectedMethod} {...optionsProps} />
           </AnimatedRow>
         )}
       </AnimatePresence>
-    </div>
+    </Box>
   )
 }

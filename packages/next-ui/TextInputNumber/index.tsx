@@ -32,8 +32,8 @@ function isOutlined(props: TextFieldProps): props is OutlinedTextFieldProps {
 
 type OwnerState = { size?: 'small' | 'medium' }
 const name = 'TextInputNumber' as const
-const slots = ['quantity', 'quantityInput', 'button'] as const
-const { withState } = extendableComponent<OwnerState, typeof name, typeof slots>(name, slots)
+const parts = ['quantity', 'quantityInput', 'button'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function TextInputNumber(props: TextInputNumberProps) {
   const {

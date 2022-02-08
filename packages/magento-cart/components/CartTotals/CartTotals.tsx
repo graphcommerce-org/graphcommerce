@@ -11,7 +11,7 @@ export type CartTotalsProps = OwnerProps & { sx?: SxProps<Theme> }
 
 type OwnerProps = { containerMargin?: boolean }
 const name = 'CartTotals' as const
-const slots = [
+const parts = [
   'costsContainer',
   'costsDivider',
   'costsRow',
@@ -20,7 +20,7 @@ const slots = [
   'costsTax',
   'money',
 ] as const
-const { withState } = extendableComponent<OwnerProps, typeof name, typeof slots>(name, slots)
+const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 
 /**
  * ⚠️ WARNING: The current CartTotals rely heavily on how Magento is configured. It kinda works for

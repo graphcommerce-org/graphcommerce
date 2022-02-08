@@ -14,8 +14,8 @@ export type BlogListItemProps = {
 }
 
 const name = 'BlogListItem' as const
-const slots = ['item', 'date', 'asset', 'title'] as const
-const { classes } = extendableComponent(name, slots)
+const parts = ['item', 'date', 'asset', 'title'] as const
+const { classes } = extendableComponent(name, parts)
 
 export function BlogListItem(props: BlogListItemProps) {
   const { asset, url, date, locale, title, sx = [] } = props

@@ -7,8 +7,8 @@ export type DividedLinksProps = {
 } & Pick<TypographyProps, 'color' | 'sx'>
 
 const name = 'Separator' as const
-const slots = ['root'] as const
-const { classes } = extendableComponent(name, slots)
+const parts = ['root'] as const
+const { classes } = extendableComponent(name, parts)
 
 export function Separator(props: DividedLinksProps) {
   const { color, icon, sx = [] } = props

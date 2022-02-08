@@ -34,8 +34,8 @@ enum OverlayPosition {
 }
 
 const name = 'LayoutOverlayBase' as const
-const slots = ['scroller', 'backdrop', 'overlay', 'overlayPane', 'beforeOverlay'] as const
-const { withState } = extendableComponent<StyleProps, typeof name, typeof slots>(name, slots)
+const parts = ['scroller', 'backdrop', 'overlay', 'overlayPane', 'beforeOverlay'] as const
+const { withState } = extendableComponent<StyleProps, typeof name, typeof parts>(name, parts)
 
 const MotionDiv = styled(m.div)({})
 

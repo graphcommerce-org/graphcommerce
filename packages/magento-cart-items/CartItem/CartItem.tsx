@@ -2,151 +2,109 @@ import { Image } from '@graphcommerce/image'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart'
 import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
-import { UseStyles, responsiveVal, makeStyles, typography } from '@graphcommerce/next-ui'
-import { Badge, Link } from '@mui/material'
-import clsx from 'clsx'
+import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
+import { Badge, Box, Link, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
-import React, { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 import { CartItemFragment } from '../Api/CartItem.gql'
 import RemoveItemFromCartFab from '../RemoveItemFromCart/RemoveItemFromCartFab'
 import UpdateItemQuantity from '../UpdateItemQuantity/UpdateItemQuantity'
 
 const rowImageSize = responsiveVal(70, 125)
 
-const useStyles = makeStyles({ name: 'CartItem' })((theme) => ({
-  root: {
-    display: 'grid',
-    gridTemplate: `
-      "picture itemName itemName itemName"
-      "picture itemOptions itemOptions itemOptions"
-      "picture itemPrice quantity rowPrice"
-    `,
-    gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
-    columnGap: theme.spacings.sm,
-    alignItems: 'baseline',
-    ...typography(theme, 'body1'),
-    marginBottom: theme.spacings.lg,
-    marginTop: theme.spacings.md,
-    [theme.breakpoints.up('sm')]: {
-      gridTemplate: `
-        "picture itemName itemName itemName itemName"
-        "picture itemOptions itemPrice quantity rowPrice"
-      `,
-      gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(75px, 1fr)`,
-      marginBottom: theme.spacings.md,
-    },
-  },
-  itemWithoutOptions: {
-    display: 'grid',
-    gridTemplate: `
-      "picture itemName itemName itemName"
-      "picture itemPrice quantity rowPrice"`,
-    alignItems: 'center',
-    gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
-    [theme.breakpoints.up('sm')]: {
-      gridTemplate: `
-        "picture itemName itemPrice quantity rowPrice"
-      `,
-      gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(75px, 1fr)`,
-    },
-  },
-  picture: {
-    gridArea: 'picture',
-    width: rowImageSize,
-    height: rowImageSize,
-    padding: responsiveVal(5, 10),
-    border: `1px solid ${theme.palette.divider}`,
-    borderRadius: '50%',
-    alignSelf: 'center',
-  },
-  badge: {
-    '& > button': {
-      background: theme.palette.background.paper,
-      '&:hover, &:active, &:visited': {
-        background: theme.palette.background.paper,
-      },
-      [theme.breakpoints.down('md')]: {
-        width: 30,
-        height: 30,
-        minHeight: 'unset',
-      },
-    },
-  },
-  productLink: {
-    display: 'block',
-    width: '100%',
-    borderRadius: '50%',
-    overflow: 'hidden',
-  },
-  image: {
-    gridColumn: 1,
-    backgroundColor: theme.palette.background.image,
-    objectFit: 'cover',
-    display: 'block',
-    width: '110% !important',
-    height: '110% !important',
-    marginLeft: '-5%',
-    marginTop: '-5%',
-  },
-  itemName: {
-    ...typography(theme, 'subtitle1'),
-    fontWeight: theme.typography.fontWeightBold,
-    gridArea: 'itemName',
-    color: theme.palette.text.primary,
-    textDecoration: 'none',
-    flexWrap: 'nowrap',
-    maxWidth: 'max-content',
-  },
-  itemNameWithOptions: {
-    ...typography(theme, 'subtitle1'),
-    fontWeight: theme.typography.fontWeightBold,
-    alignSelf: 'flex-end',
-  },
-  itemPrice: {
-    gridArea: 'itemPrice',
-    textAlign: 'left',
-    color: theme.palette.text.secondary,
-    alignSelf: 'center',
-    [theme.breakpoints.up('sm')]: {
-      alignSelf: 'flex-start',
-    },
-  },
-  quantity: {
-    gridArea: 'quantity',
-    justifySelf: 'right',
-    transform: 'translateY(0)',
-    [theme.breakpoints.up('sm')]: {
-      transform: 'translateY(-6px)',
-    },
-  },
-  rowPrice: {
-    gridArea: 'rowPrice',
-    textAlign: 'right',
-    alignSelf: 'center',
-    [theme.breakpoints.up('sm')]: {
-      alignSelf: 'flex-start',
-    },
-  },
-  cellNoOptions: {
-    textAlign: 'left',
-  },
-}))
+export type CartItemProps = PropsWithChildren<CartItemFragment> & {
+  sx?: SxProps<Theme>
+} & OwnerState
 
-export type CartItemProps = PropsWithChildren<CartItemFragment> &
-  UseStyles<typeof useStyles> & { withOptions?: boolean }
+type OwnerState = { withOptions?: boolean }
+const compName = 'CartItem' as const
+const parts = [
+  'item',
+  'picture',
+  'badge',
+  'productLink',
+  'image',
+  'itemName',
+  'itemPrice',
+  'quantity',
+  'rowPrice',
+] as const
+const { withState } = extendableComponent<OwnerState, typeof compName, typeof parts>(
+  compName,
+  parts,
+)
 
 export default function CartItem(props: CartItemProps) {
-  const { product, uid, prices, quantity, children, withOptions } = props
+  const { product, uid, prices, quantity, children, withOptions = true, sx = [] } = props
   const { name } = product
-  const { classes } = useStyles()
   const productLink = useProductLink(product)
   const inclTaxes = useDisplayInclTax()
 
+  const classes = withState({ withOptions })
+
   return (
-    <div className={clsx(classes.root, !withOptions && classes.itemWithoutOptions)}>
+    <Box
+      className={classes.item}
+      sx={[
+        (theme) => ({
+          display: 'grid',
+          gridTemplate: `
+            "picture itemName itemName itemName"
+            "picture itemOptions itemOptions itemOptions"
+            "picture itemPrice quantity rowPrice"`,
+          gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
+          columnGap: theme.spacings.sm,
+          alignItems: 'baseline',
+          typography: 'body1',
+          marginBottom: theme.spacings.lg,
+          marginTop: theme.spacings.md,
+          [theme.breakpoints.up('sm')]: {
+            gridTemplate: `
+              "picture itemName itemName itemName itemName"
+              "picture itemOptions itemPrice quantity rowPrice"`,
+            gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(75px, 1fr)`,
+            marginBottom: theme.spacings.md,
+          },
+
+          '&:not(.withOptions)': {
+            display: 'grid',
+            gridTemplate: `
+            "picture itemName itemName itemName"
+            "picture itemPrice quantity rowPrice"`,
+            alignItems: 'center',
+            gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
+            [theme.breakpoints.up('sm')]: {
+              gridTemplate: `
+              "picture itemName itemPrice quantity rowPrice"
+            `,
+              gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(75px, 1fr)`,
+            },
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       <Badge
         color='default'
-        badgeContent={<RemoveItemFromCartFab uid={uid} className={classes.badge} />}
+        badgeContent={
+          <RemoveItemFromCartFab
+            uid={uid}
+            className={classes.badge}
+            sx={(theme) => ({
+              '& > button': {
+                background: theme.palette.background.paper,
+                '&:hover, &:active, &:visited': {
+                  background: theme.palette.background.paper,
+                },
+                [theme.breakpoints.down('md')]: {
+                  width: 30,
+                  height: 30,
+                  minHeight: 'unset',
+                },
+              },
+            })}
+          />
+        }
         component='div'
         className={classes.picture}
         overlap='circular'
@@ -154,9 +112,22 @@ export default function CartItem(props: CartItemProps) {
           vertical: 'top',
           horizontal: 'left',
         }}
+        sx={(theme) => ({
+          gridArea: 'picture',
+          width: rowImageSize,
+          height: rowImageSize,
+          padding: responsiveVal(5, 10),
+          border: `1px solid ${theme.palette.divider}`,
+          borderRadius: '50%',
+          alignSelf: 'center',
+        })}
       >
         <PageLink href={productLink}>
-          <a className={classes.productLink}>
+          <Box
+            component='a'
+            className={classes.productLink}
+            sx={{ display: 'block', width: '100%', borderRadius: '50%', overflow: 'hidden' }}
+          >
             {product?.thumbnail?.url && (
               <Image
                 src={product.thumbnail.url ?? ''}
@@ -164,23 +135,56 @@ export default function CartItem(props: CartItemProps) {
                 alt={product.thumbnail.label ?? product.name ?? ''}
                 sizes={responsiveVal(70, 125)}
                 className={classes.image}
+                sx={(theme) => ({
+                  gridColumn: 1,
+                  backgroundColor: theme.palette.background.image,
+                  objectFit: 'cover',
+                  display: 'block',
+                  width: '110% !important',
+                  height: '110% !important',
+                  marginLeft: '-5%',
+                  marginTop: '-5%',
+                })}
               />
             )}
-          </a>
+          </Box>
         </PageLink>
       </Badge>
 
       <PageLink href={productLink}>
         <Link
           variant='body1'
-          className={clsx(classes.itemName, withOptions && classes.itemNameWithOptions)}
+          className={classes.itemName}
           underline='hover'
+          sx={(theme) => ({
+            typgrapht: 'subtitle1',
+            fontWeight: theme.typography.fontWeightBold,
+            gridArea: 'itemName',
+            color: theme.palette.text.primary,
+            textDecoration: 'none',
+            flexWrap: 'nowrap',
+            maxWidth: 'max-content',
+            '&:not(.withOptions)': {
+              alignSelf: 'flex-end',
+            },
+          })}
         >
           {name}
         </Link>
       </PageLink>
 
-      <div className={classes.itemPrice}>
+      <Box
+        className={classes.itemPrice}
+        sx={(theme) => ({
+          gridArea: 'itemPrice',
+          textAlign: 'left',
+          color: theme.palette.text.secondary,
+          alignSelf: 'center',
+          [theme.breakpoints.up('sm')]: {
+            alignSelf: 'flex-start',
+          },
+        })}
+      >
         {inclTaxes ? (
           <Money
             value={(prices?.row_total_including_tax?.value ?? 0) / quantity}
@@ -189,17 +193,37 @@ export default function CartItem(props: CartItemProps) {
         ) : (
           <Money {...prices?.price} />
         )}
-      </div>
+      </Box>
 
-      <div className={classes.quantity}>
+      <Box
+        className={classes.quantity}
+        sx={(theme) => ({
+          gridArea: 'quantity',
+          justifySelf: 'right',
+          transform: 'translateY(0)',
+          [theme.breakpoints.up('sm')]: {
+            transform: 'translateY(-6px)',
+          },
+        })}
+      >
         <UpdateItemQuantity uid={uid} quantity={quantity} />
-      </div>
+      </Box>
 
-      <div className={classes.rowPrice}>
+      <Box
+        className={classes.rowPrice}
+        sx={(theme) => ({
+          gridArea: 'rowPrice',
+          textAlign: 'right',
+          alignSelf: 'center',
+          [theme.breakpoints.up('sm')]: {
+            alignSelf: 'flex-start',
+          },
+        })}
+      >
         <Money {...(inclTaxes ? prices?.row_total_including_tax : prices?.row_total)} /> <br />
-      </div>
+      </Box>
 
       {children}
-    </div>
+    </Box>
   )
 }

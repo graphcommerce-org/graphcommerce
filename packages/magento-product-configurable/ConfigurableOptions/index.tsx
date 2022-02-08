@@ -26,8 +26,8 @@ export type ConfigurableOptionsInputProps = {
 const renderer: SwatchTypeRenderer = { TextSwatchData, ImageSwatchData, ColorSwatchData }
 
 const compName = 'ConfigurableOptionsInput' as const
-const slots = ['buttonGroup', 'button', 'helperText'] as const
-const { classes } = extendableComponent(compName, slots)
+const parts = ['buttonGroup', 'button', 'helperText'] as const
+const { classes } = extendableComponent(compName, parts)
 
 export default function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
   const {

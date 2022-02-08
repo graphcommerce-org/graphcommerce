@@ -10,8 +10,8 @@ export type ContentLinksProps = {
 }
 
 const compName = 'ContentLinks' as const
-const slots = ['root', 'scroller', 'title'] as const
-const { classes } = extendableComponent(compName, slots)
+const parts = ['root', 'scroller', 'title'] as const
+const { classes } = extendableComponent(compName, parts)
 
 export function ContentLinks(props: ContentLinksProps) {
   const { title, children } = props

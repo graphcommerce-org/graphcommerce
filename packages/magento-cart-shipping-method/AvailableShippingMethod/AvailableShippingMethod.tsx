@@ -14,8 +14,8 @@ type OwnerProps = {
   error?: boolean
 }
 const name = 'AvailableShippingMethod' as const
-const slots = ['root', 'title', 'additional', 'error', 'amount'] as const
-const { withState } = extendableComponent<OwnerProps, typeof name, typeof slots>(name, slots)
+const parts = ['root', 'title', 'additional', 'error', 'amount'] as const
+const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 
 const AvailableShippingMethod = React.forwardRef<any, AvailableShippingMethodProps>(
   (props, ref) => {

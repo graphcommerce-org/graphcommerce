@@ -13,8 +13,8 @@ export type HeroBannerProps = ContainerProps & {
 }
 
 const compName = 'HeroBanner' as const
-const slots = ['root', 'wrapper', 'copy', 'asset', 'animated', 'video'] as const
-const { classes } = extendableComponent(compName, slots)
+const parts = ['root', 'wrapper', 'copy', 'asset', 'animated', 'video'] as const
+const { classes } = extendableComponent(compName, parts)
 
 const MotionDiv = styled(m.div)({})
 

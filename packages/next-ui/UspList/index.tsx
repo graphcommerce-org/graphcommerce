@@ -7,8 +7,8 @@ export type UspListProps = OwnerState & {
 
 type OwnerState = { size?: 'small' | 'medium' }
 const name = 'UspList' as const
-const slots = ['root'] as const
-const { withState } = extendableComponent<OwnerState, typeof name, typeof slots>(name, slots)
+const parts = ['root'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function UspList(props: UspListProps) {
   const { children, size } = props

@@ -7,8 +7,8 @@ type CartItemOptionsListProps = ConfigurableCartItemFragment & {
 }
 
 const name = 'ColorSwatchData' as const
-const slots = ['root', 'option'] as const
-const { classes } = extendableComponent(name, slots)
+const parts = ['root', 'option'] as const
+const { classes } = extendableComponent(name, parts)
 
 export default function OptionsList(props: CartItemOptionsListProps) {
   const { configurable_options, sx = [] } = props

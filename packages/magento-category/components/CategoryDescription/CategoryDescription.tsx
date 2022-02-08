@@ -1,32 +1,38 @@
-import { UseStyles, makeStyles, useMergedClasses, typography } from '@graphcommerce/next-ui'
+import { extendableComponent } from '@graphcommerce/next-ui'
+import { Box, SxProps, Theme } from '@mui/material'
 import { CategoryDescriptionFragment } from './CategoryDescription.gql'
 
-type CategoryDescriptionProps = Omit<CategoryDescriptionFragment, 'uid'> &
-  JSX.IntrinsicElements['div'] &
-  UseStyles<typeof useStyles>
+type CategoryDescriptionProps = Omit<CategoryDescriptionFragment, 'uid'> & { sx?: SxProps<Theme> }
 
-const useStyles = makeStyles({ name: 'CategoryDescription' })((theme) => ({
-  root: {
-    gridArea: 'description',
-    margin: `0 auto ${theme.spacings.sm}`,
-    padding: `0 ${theme.page.horizontal}`,
-    textAlign: 'center',
-    [theme.breakpoints.up('md')]: {
-      maxWidth: '50%',
-    },
-    [theme.breakpoints.up('xl')]: {
-      maxWidth: '30%',
-    },
-    ...typography(theme, 'subtitle1'),
-  },
-}))
+const cmpName = 'CategoryDescription' as const
+const parts = ['root'] as const
+const { classes } = extendableComponent(cmpName, parts)
 
 export default function CategoryDescription(props: CategoryDescriptionProps) {
-  const { name, description, display_mode, ...divProps } = props
-  const classes = useMergedClasses(useStyles().classes, props.classes)
+  const { name, description, display_mode, sx = [], ...divProps } = props
 
   return description ? (
     // eslint-disable-next-line react/no-danger
-    <div {...divProps} className={classes.root} dangerouslySetInnerHTML={{ __html: description }} />
+    <Box
+      {...divProps}
+      className={classes.root}
+      dangerouslySetInnerHTML={{ __html: description }}
+      sx={[
+        (theme) => ({
+          gridArea: 'description',
+          margin: `0 auto ${theme.spacings.sm}`,
+          padding: `0 ${theme.page.horizontal}`,
+          textAlign: 'center',
+          [theme.breakpoints.up('md')]: {
+            maxWidth: '50%',
+          },
+          [theme.breakpoints.up('xl')]: {
+            maxWidth: '30%',
+          },
+          typography: 'subtitle1',
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    />
   ) : null
 }

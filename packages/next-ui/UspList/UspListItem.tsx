@@ -10,8 +10,8 @@ export type UspListItemProps = {
 
 type OwnerState = { size?: 'small' | 'medium' }
 const name = 'UspListItem' as const
-const slots = ['root', 'icon', 'text'] as const
-const { withState } = extendableComponent<OwnerState, typeof name, typeof slots>(name, slots)
+const parts = ['root', 'icon', 'text'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function UspListItem(props: UspListItemProps) {
   const { text, icon, size = 'medium', sx = [] } = props

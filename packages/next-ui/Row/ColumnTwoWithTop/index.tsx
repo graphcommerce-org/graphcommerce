@@ -10,8 +10,8 @@ export type ColumnTwoWithTopProps = ContainerProps & {
 }
 
 const compName = 'ColumnTwoWithTop' as const
-const slots = ['root', 'colOne', 'colTwo'] as const
-const { classes } = extendableComponent(compName, slots)
+const parts = ['root', 'colOne', 'colTwo'] as const
+const { classes } = extendableComponent(compName, parts)
 
 export function ColumnTwoWithTop(props: ColumnTwoWithTopProps) {
   const { left, right, top, sx = [], ...containerProps } = props

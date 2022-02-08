@@ -9,8 +9,8 @@ export type StarRatingFieldProps = {
 } & Omit<RatingProps, 'id' | 'onChange'>
 
 const name = 'StarRatingField' as const
-const slots = ['root', 'startEmpty', 'starFull'] as const
-const { classes } = extendableComponent(name, slots)
+const parts = ['root', 'startEmpty', 'starFull'] as const
+const { classes } = extendableComponent(name, parts)
 
 export function StarRatingField(props: StarRatingFieldProps) {
   const { id, onChange = () => {}, ...ratingProps } = props

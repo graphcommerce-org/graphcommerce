@@ -10,8 +10,8 @@ type ColorSwatchDataProps = ColorSwatchDataFragment &
 
 type OwnerState = Pick<SwatchDataProps, 'size'>
 const name = 'ColorSwatchData' as const
-const slots = ['root', 'color', 'label'] as const
-const { withState } = extendableComponent<OwnerState, typeof name, typeof slots>(name, slots)
+const parts = ['root', 'color', 'label'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function ColorSwatchData(props: ColorSwatchDataProps) {
   const { value, store_label, size, sx } = props

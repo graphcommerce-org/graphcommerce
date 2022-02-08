@@ -3,8 +3,8 @@ import { Row } from '..'
 import { extendableComponent } from '../../Styles'
 
 const compName = 'ColumnOneBoxed' as const
-const slots = ['root', 'boxed'] as const
-const { classes } = extendableComponent(compName, slots)
+const parts = ['root', 'boxed'] as const
+const { classes } = extendableComponent(compName, parts)
 
 export function ColumnOneBoxed(props: ContainerProps) {
   const { children } = props

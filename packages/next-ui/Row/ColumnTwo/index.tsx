@@ -9,8 +9,8 @@ export type ColumnTwoProps = Omit<ContainerProps, 'children'> & {
 }
 
 const compName = 'ColumnTwo' as const
-const slots = ['root', 'colOne', 'colTwo'] as const
-const { classes } = extendableComponent(compName, slots)
+const parts = ['root', 'colOne', 'colTwo'] as const
+const { classes } = extendableComponent(compName, parts)
 
 export function ColumnTwo(props: ColumnTwoProps) {
   const { colOneContent, colTwoContent, sx = [], ...containerProps } = props

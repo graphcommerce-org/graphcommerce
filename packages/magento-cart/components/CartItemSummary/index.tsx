@@ -17,7 +17,7 @@ import CartTotals from '../CartTotals/CartTotals'
 import { CartItemSummaryDocument } from './GetCartItemSummary.gql'
 
 const name = 'CartItemSummary' as const
-const slots = [
+const parts = [
   'root',
   'imageScrollerContainer',
   'image',
@@ -30,7 +30,7 @@ const slots = [
   'sectionHeaderWrapper',
   'divider',
 ] as const
-const { classes } = extendableComponent(name, slots)
+const { classes } = extendableComponent(name, parts)
 
 type OrderSummaryProps = { sx?: SxProps<Theme> }
 

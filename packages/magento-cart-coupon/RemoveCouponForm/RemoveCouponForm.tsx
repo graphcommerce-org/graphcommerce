@@ -1,48 +1,42 @@
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
-import {
-  UseStyles,
-  SvgIcon,
-  iconCancelAlt,
-  makeStyles,
-  useMergedClasses,
-} from '@graphcommerce/next-ui'
-import { lighten, Button } from '@mui/material'
+import { SvgIcon, iconCancelAlt, extendableComponent } from '@graphcommerce/next-ui'
+import { lighten, Button, Box, SxProps, Theme } from '@mui/material'
 import { CouponFragment } from '../Api/Coupon.gql'
 import { RemoveCouponFormDocument } from './RemoveCouponForm.gql'
 
-const useStyles = makeStyles({ name: 'RemoveCouponForm' })((theme) => ({
-  inlineCoupon: {
-    fontWeight: 600,
-    background: lighten(theme.palette.secondary.light, theme.palette.action.hoverOpacity),
-    '& svg': {
-      stroke: 'transparent',
-      fill: theme.palette.secondary.main,
-    },
-  },
-}))
+export type RemoveCouponFormProps = CouponFragment & { sx?: SxProps<Theme> }
 
-export type CartCouponProps = CouponFragment & UseStyles<typeof useStyles>
+const name = 'RemoveCouponForm' as const
+const parts = ['root', 'button'] as const
+const { classes } = extendableComponent(name, parts)
 
-export default function RemoveCouponForm(props: CartCouponProps) {
-  const { applied_coupons } = props
-  const classes = useMergedClasses(useStyles().classes, props.classes)
+export default function RemoveCouponForm(props: RemoveCouponFormProps) {
+  const { applied_coupons, sx } = props
   const form = useFormGqlMutationCart(RemoveCouponFormDocument)
 
   const { handleSubmit, error } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
-    <form onSubmit={submitHandler} noValidate>
+    <Box component='form' onSubmit={submitHandler} noValidate className={classes.root} sx={sx}>
       <Button
         type='submit'
         variant='text'
         color='secondary'
-        className={classes.inlineCoupon}
+        className={classes.button}
         endIcon={<SvgIcon src={iconCancelAlt} />}
+        sx={(theme) => ({
+          fontWeight: 600,
+          background: lighten(theme.palette.secondary.light, theme.palette.action.hoverOpacity),
+          '& svg': {
+            stroke: 'transparent',
+            fill: theme.palette.secondary.main,
+          },
+        })}
       >
         {applied_coupons?.[0]?.code}
       </Button>
       <ApolloCartErrorAlert error={error} />
-    </form>
+    </Box>
   )
 }

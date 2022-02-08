@@ -1,62 +1,42 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { Scroller, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { ProductListLink, ProductListParams } from '@graphcommerce/magento-product'
-import { UseStyles, makeStyles, useMergedClasses, typography } from '@graphcommerce/next-ui'
+import { extendableComponent } from '@graphcommerce/next-ui'
+import { Box, SxProps, Theme } from '@mui/material'
 import { CategoryChildrenFragment } from './CategoryChildren.gql'
-
-const useStyles = makeStyles({ name: 'CategoryChildren' })((theme) => ({
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginBottom: theme.spacings.sm,
-  },
-  scroller: {
-    gridAutoColumns: `max-content`,
-  },
-  link: {
-    whiteSpace: 'nowrap',
-    display: 'block',
-    marginRight: `${theme.spacings.xxs}`,
-    marginLeft: `${theme.spacings.xxs}`,
-    ...typography(theme, 'h6'),
-    position: 'relative',
-    paddingBottom: 8,
-    '&:before': {
-      content: '""',
-      width: 40,
-      height: 2,
-      background: theme.palette.primary.main,
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      margin: '0 auto',
-      opacity: 0,
-      transition: 'opacity .2s ease, bottom .2s ease',
-      bottom: 0,
-    },
-    '&:hover': {
-      '&:before': {
-        opacity: 1,
-        bottom: 5,
-      },
-    },
-  },
-}))
 
 type CategoryChildrenProps = Omit<CategoryChildrenFragment, 'uid'> & {
   params: ProductListParams
-} & UseStyles<typeof useStyles>
+  sx?: SxProps<Theme>
+}
+
+const name = 'CategoryChildren' as const
+const parts = ['container', 'scroller', 'link'] as const
+const { classes } = extendableComponent(name, parts)
 
 export default function CategoryChildren(props: CategoryChildrenProps) {
-  const { children, params } = props
-  const classes = useMergedClasses(useStyles().classes, props.classes)
+  const { children, params, sx = [] } = props
 
   if (!children || children.length === 0) return null
 
   return (
     <ScrollerProvider scrollSnapAlign='none'>
-      <div className={classes.container}>
-        <Scroller className={classes.scroller} hideScrollbar>
+      <Box
+        className={classes.container}
+        sx={[
+          (theme) => ({
+            display: 'flex',
+            justifyContent: 'center',
+            marginBottom: theme.spacings.sm,
+          }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      >
+        <Scroller
+          className={classes.scroller}
+          hideScrollbar
+          sx={{ gridAutoColumns: `max-content` }}
+        >
           {children.map((cat) => {
             if (!cat?.url_path || !cat.name) return null
 
@@ -71,13 +51,41 @@ export default function CategoryChildren(props: CategoryChildrenProps) {
                 color='inherit'
                 {...linkParams}
                 className={classes.link}
+                sx={(theme) => ({
+                  whiteSpace: 'nowrap',
+                  display: 'block',
+                  marginRight: `${theme.spacings.xxs}`,
+                  marginLeft: `${theme.spacings.xxs}`,
+                  typography: 'h6',
+                  position: 'relative',
+                  paddingBottom: 8,
+                  '&:before': {
+                    content: '""',
+                    width: 40,
+                    height: 2,
+                    background: theme.palette.primary.main,
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    margin: '0 auto',
+                    opacity: 0,
+                    transition: 'opacity .2s ease, bottom .2s ease',
+                    bottom: 0,
+                  },
+                  '&:hover': {
+                    '&:before': {
+                      opacity: 1,
+                      bottom: 5,
+                    },
+                  },
+                })}
               >
                 {cat.name}
               </ProductListLink>
             )
           })}
         </Scroller>
-      </div>
+      </Box>
     </ScrollerProvider>
   )
 }

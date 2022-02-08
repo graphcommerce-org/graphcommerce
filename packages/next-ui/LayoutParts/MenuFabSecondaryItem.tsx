@@ -12,8 +12,8 @@ export type FabMenuSecondaryItemProps = {
 }
 
 const compName = 'MenuFabSecondaryItem' as const
-const slots = ['root', 'icon', 'text'] as const
-const { classes } = extendableComponent(compName, slots)
+const parts = ['root', 'icon', 'text'] as const
+const { classes } = extendableComponent(compName, parts)
 
 export function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
   const { href, children, icon, sx = [] } = props

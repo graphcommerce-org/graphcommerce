@@ -9,8 +9,8 @@ export type BlogHeaderProps = {
 }
 
 const name = 'BlogHeader' as const
-const slots = ['header', 'asset'] as const
-const { classes } = extendableComponent(name, slots)
+const parts = ['header', 'asset'] as const
+const { classes } = extendableComponent(name, parts)
 
 export function BlogHeader(props: BlogHeaderProps) {
   const { asset, sx = [] } = props

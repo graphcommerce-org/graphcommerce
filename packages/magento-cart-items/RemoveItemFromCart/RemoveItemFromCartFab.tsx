@@ -1,7 +1,7 @@
 import { ApolloCartErrorSnackbar, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { iconClose, SvgIcon } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
-import { Fab } from '@mui/material'
+import { Box, Fab, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import {
   RemoveItemFromCartDocument,
@@ -9,7 +9,7 @@ import {
 } from './RemoveItemFromCart.gql'
 
 export type RemoveItemFromCartProps = Omit<RemoveItemFromCartMutationVariables, 'cartId'> &
-  Omit<JSX.IntrinsicElements['form'], 'onSubmit' | 'noValidate'>
+  Omit<JSX.IntrinsicElements['form'], 'onSubmit' | 'noValidate'> & { sx?: SxProps<Theme> }
 
 export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
   const { uid, ...formProps } = props
@@ -18,7 +18,7 @@ export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
   const submitHandler = handleSubmit(() => {})
 
   return (
-    <form noValidate onSubmit={submitHandler} {...formProps}>
+    <Box component='form' noValidate onSubmit={submitHandler} {...formProps}>
       <Fab
         aria-label={t`Remove Product`}
         size='small'
@@ -28,6 +28,6 @@ export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
         <SvgIcon src={iconClose} />
       </Fab>
       <ApolloCartErrorSnackbar error={error} />
-    </form>
+    </Box>
   )
 }

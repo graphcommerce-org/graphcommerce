@@ -11,8 +11,8 @@ export type IconBlockProps = {
 }
 
 const name = 'IconBlock' as const
-const slots = ['block', 'link', 'title'] as const
-const { classes } = extendableComponent(name, slots)
+const parts = ['block', 'link', 'title'] as const
+const { classes } = extendableComponent(name, parts)
 
 export const IconBlock = React.forwardRef<HTMLAnchorElement, IconBlockProps>((props, ref) => {
   const { title, children, icon, href, sx = [] } = props

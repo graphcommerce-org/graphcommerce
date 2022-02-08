@@ -8,8 +8,8 @@ type ImageSwatchDataProps = ImageSwatchDataFragment & SwatchDataProps & { sx?: S
 
 type OwnerState = Pick<SwatchDataProps, 'size'>
 const name = 'ColorSwatchData' as const
-const slots = ['root', 'image', 'label'] as const
-const { withState } = extendableComponent<OwnerState, typeof name, typeof slots>(name, slots)
+const parts = ['root', 'image', 'label'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function ImageSwatchData(props: ImageSwatchDataProps) {
   const { value, thumbnail, store_label, size, sx = [] } = props

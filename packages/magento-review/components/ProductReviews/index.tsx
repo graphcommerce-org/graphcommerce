@@ -124,7 +124,7 @@ export default function ProductReviews(props: ProductReviewsProps) {
       <Box
         className={classes.container}
         sx={[
-          () => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }),
+          (theme) => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }),
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       >

@@ -130,7 +130,7 @@ function PaymentPage() {
                         color='secondary'
                         variant='pill'
                         size='large'
-                        endIcon={<SvgIcon src={iconChevronRight} inverted />}
+                        endIcon={<SvgIcon src={iconChevronRight} />}
                       >
                         <Trans>Place order</Trans>
                       </PaymentMethodButton>

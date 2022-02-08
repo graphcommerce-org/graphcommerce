@@ -34,8 +34,8 @@ type ConfigurableProductAddToCartProps = {
 }
 
 const compName = 'ConfigurableOptionsInput' as const
-const slots = ['form', 'button', 'finalPrice', 'quantity', 'divider'] as const
-const { classes } = extendableComponent(compName, slots)
+const parts = ['form', 'button', 'finalPrice', 'quantity', 'divider'] as const
+const { classes } = extendableComponent(compName, parts)
 
 export default function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
   const { name, children, variables, optionEndLabels, optionsProps, ...buttonProps } = props

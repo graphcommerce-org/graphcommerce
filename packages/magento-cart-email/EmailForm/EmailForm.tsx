@@ -9,30 +9,34 @@ import {
   SignUpFormInline,
   useFormIsEmailAvailable,
 } from '@graphcommerce/magento-customer'
-import { AnimatedRow, FormDiv, FormRow, makeStyles } from '@graphcommerce/next-ui'
+import { AnimatedRow, extendableComponent, FormDiv, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { CircularProgress, TextField, Typography, Alert, Button, Box } from '@mui/material'
+import {
+  CircularProgress,
+  TextField,
+  Typography,
+  Alert,
+  Button,
+  SxProps,
+  Theme,
+} from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import { CartEmailDocument } from './CartEmail.gql'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
 
-const useStyles = makeStyles({ name: 'EmailForm' })(() => ({
-  helperList: {
-    marginBottom: 0,
-  },
-  formRow: {
-    paddingTop: 0,
-    paddingBottom: 0,
-  },
-}))
+export type EmailFormProps = Pick<UseFormComposeOptions, 'step'> & {
+  children?: React.ReactNode
+  sx?: SxProps<Theme>
+}
 
-export type EmailFormProps = Pick<UseFormComposeOptions, 'step'> & { children?: React.ReactNode }
+const name = 'EmailForm' as const
+const parts = ['root', 'formRow'] as const
+const { classes } = extendableComponent(name, parts)
 
 export default function EmailForm(props: EmailFormProps) {
-  const { step, children } = props
-  const { classes } = useStyles()
+  const { step, children, sx } = props
   const [expand, setExpand] = useState(false)
 
   useMergeCustomerCart()
@@ -77,7 +81,7 @@ export default function EmailForm(props: EmailFormProps) {
   if (formState.isSubmitting) endAdornment = <CircularProgress />
 
   return (
-    <FormDiv contained background='default'>
+    <FormDiv contained background='default' className={classes.root} sx={sx}>
       <AnimatePresence initial={false}>
         <AnimatedRow key='emailform'>
           <form noValidate onSubmit={submit}>
@@ -86,7 +90,7 @@ export default function EmailForm(props: EmailFormProps) {
                 <Trans>Login or create an account</Trans>
               </Typography>
             </FormRow>
-            <FormRow className={classes.formRow}>
+            <FormRow className={classes.formRow} sx={{ py: 0 }}>
               <TextField
                 variant='outlined'
                 type='email'

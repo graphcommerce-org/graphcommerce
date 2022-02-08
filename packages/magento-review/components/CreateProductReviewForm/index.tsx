@@ -24,7 +24,7 @@ type CreateProductReviewFormProps = {
 }
 
 const name = 'CreateProductReviewForm' as const
-const slots = [
+const parts = [
   'root',
   'ratingContainer',
   'rating',
@@ -33,7 +33,7 @@ const slots = [
   'cancelButton',
   'formActions',
 ] as const
-const { classes } = extendableComponent(name, slots)
+const { classes } = extendableComponent(name, parts)
 
 export default function CreateProductReviewForm(props: CreateProductReviewFormProps) {
   const { sku, nickname, sx = [] } = props

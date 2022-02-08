@@ -8,8 +8,8 @@ type TextSwatchDataProps = TextSwatchDataFragment & SwatchDataProps & { sx?: SxP
 
 type OwnerState = Pick<SwatchDataProps, 'size'>
 const name = 'TextSwatchData' as const
-const slots = ['root', 'value', 'price', 'label', 'storeLabel'] as const
-const { withState } = extendableComponent<OwnerState, typeof name, typeof slots>(name, slots)
+const parts = ['root', 'value', 'price', 'label', 'storeLabel'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function TextSwatchData(props: TextSwatchDataProps) {
   const { store_label, size = 'medium', price, value, sx = [] } = props

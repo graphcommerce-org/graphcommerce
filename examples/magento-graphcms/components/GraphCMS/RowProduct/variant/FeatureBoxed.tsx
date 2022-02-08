@@ -1,16 +1,11 @@
 import { RichText } from '@graphcommerce/graphcms-ui'
 import { Image } from '@graphcommerce/image'
-import { ImageTextBoxed, responsiveVal, typography, withStyles } from '@graphcommerce/next-ui'
+import { ImageTextBoxed, responsiveVal } from '@graphcommerce/next-ui'
 import { Typography, useTheme } from '@mui/material'
 import { RowProductFragment } from '../RowProduct.gql'
 import { ProductFeatureMediaBoxedFragment } from './ProductFeatureMediaBoxed.gql'
 
 type FeatureBoxedProps = RowProductFragment & ProductFeatureMediaBoxedFragment
-
-const RichTextFeatureBoxed = withStyles(RichText, (theme) => ({
-  h2: { ...typography(theme, 'h1') },
-  paragraph: { ...typography(theme, 'subtitle1') },
-}))
 
 export function FeatureBoxed(props: FeatureBoxedProps) {
   const { productCopy, title, media_gallery } = props
@@ -42,7 +37,15 @@ export function FeatureBoxed(props: FeatureBoxedProps) {
           {title}
         </Typography>
       )}
-      {productCopy?.raw && <RichTextFeatureBoxed {...productCopy} />}
+      {productCopy?.raw && (
+        <RichText
+          {...productCopy}
+          sxRenderer={{
+            'heading-two': { typography: 'h1' },
+            paragraph: { typography: 'subtitle1' },
+          }}
+        />
+      )}
     </ImageTextBoxed>
   )
 }

@@ -36,8 +36,8 @@ type OwnerState = {
 }
 
 const name = 'MessageSnackbarImpl' as const
-const slots = ['root', 'content', 'children', 'actionButton', 'close'] as const
-const { withState } = extendableComponent<OwnerState, typeof name, typeof slots>(name, slots)
+const parts = ['root', 'content', 'children', 'actionButton', 'close'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false)

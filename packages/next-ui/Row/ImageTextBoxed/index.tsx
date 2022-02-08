@@ -11,8 +11,8 @@ export type ImageTextBoxedProps = {
 }
 
 const name = 'ImageTextBoxed' as const
-const slots = ['root', 'wrapper', 'asset', 'copy'] as const
-const { classes } = extendableComponent(name, slots)
+const parts = ['root', 'wrapper', 'asset', 'copy'] as const
+const { classes } = extendableComponent(name, parts)
 
 export function ImageTextBoxed(props: ImageTextBoxedProps) {
   const { children, item, sx = [] } = props
