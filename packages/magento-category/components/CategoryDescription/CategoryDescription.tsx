@@ -36,7 +36,7 @@ export default function CategoryDescription(props: CategoryDescriptionProps) {
     <div
       {...divProps}
       className={classes.root}
-      style={{ minWidth: '90%' }}
+      style={{ maxWidth: '95%' }}
       dangerouslySetInnerHTML={{ __html: decode(description) }}
     />
   ) : null
