@@ -1,5 +1,5 @@
 import { LazyMotion } from 'framer-motion'
-import { EmotionProvider } from '../Styles/tssReact'
+import { EmotionProvider } from '../Styles/'
 
 export type GraphCommerceProviderProps = {
   children: React.ReactNode
