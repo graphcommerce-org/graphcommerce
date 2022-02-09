@@ -2,7 +2,7 @@ import {
   extendableComponent,
   iconShoppingBag,
   responsiveVal,
-  StyledBadge,
+  DesktopHeaderBadge,
   SvgIcon,
   useScrollY,
 } from '@graphcommerce/next-ui'
@@ -67,9 +67,9 @@ function CartFabContent(props: CartFabContentProps) {
           })}
         >
           {total_quantity > 0 ? (
-            <StyledBadge color='primary' variant='dot'>
+            <DesktopHeaderBadge color='primary' variant='dot' overlap='circular'>
               {cartIcon}
-            </StyledBadge>
+            </DesktopHeaderBadge>
           ) : (
             cartIcon
           )}

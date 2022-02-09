@@ -3,33 +3,20 @@ import {
   OrderCard,
   useOrderCardItemImages,
 } from '@graphcommerce/magento-customer-order'
-import { Pagination, SectionContainer, makeStyles, typography } from '@graphcommerce/next-ui'
+import { Pagination, SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Link } from '@mui/material'
+import { Box, Link, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { AccountOrdersFragment } from './AccountOrders.gql'
 
-export type AccountOrdersProps = AccountOrdersFragment
+export type AccountOrdersProps = AccountOrdersFragment & { sx?: SxProps<Theme> }
 
-const useStyles = makeStyles({ name: 'AccountOrders' })((theme) => ({
-  ordersContainer: {
-    ...typography(theme, 'body2'),
-    marginBottom: theme.spacings.md,
-  },
-  olderOrdersContainer: {
-    [theme.breakpoints.up('md')]: {
-      marginTop: theme.spacings.lg,
-      marginBottom: theme.spacings.lg,
-    },
-    marginTop: theme.spacings.md,
-    marginBottom: theme.spacings.md,
-  },
-}))
+const parts = ['root', 'older'] as const
+const { classes } = extendableComponent('AccountOrders', parts)
 
 export default function AccountOrders(props: AccountOrdersProps) {
-  const { orders } = props
-  const { classes } = useStyles()
+  const { orders, sx = [] } = props
   const amountLatestOrders = 2
   const images = useOrderCardItemImages(orders)
 
@@ -48,7 +35,16 @@ export default function AccountOrders(props: AccountOrdersProps) {
     : orders?.items
 
   return (
-    <div className={classes.ordersContainer}>
+    <Box
+      className={classes.root}
+      sx={[
+        (theme) => ({
+          typography: 'body2',
+          marginBottom: theme.spacings.md,
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       {isFirstPage && (
         <SectionContainer labelLeft={<Trans>Latest orders</Trans>}>
           {latestOrders?.map(
@@ -62,7 +58,15 @@ export default function AccountOrders(props: AccountOrdersProps) {
         ((isFirstPage && orders?.items?.length >= amountLatestOrders + 1) || !isFirstPage) && (
           <SectionContainer
             labelLeft={<Trans>Older</Trans>}
-            classes={{ sectionContainer: classes.olderOrdersContainer }}
+            className={classes.older}
+            sx={(theme) => ({
+              [theme.breakpoints.up('md')]: {
+                marginTop: theme.spacings.lg,
+                marginBottom: theme.spacings.lg,
+              },
+              marginTop: theme.spacings.md,
+              marginBottom: theme.spacings.md,
+            })}
           >
             {olderOrders?.map(
               (order) => order && <OrderCard key={order.number} {...order} images={images} />,
@@ -81,6 +85,6 @@ export default function AccountOrders(props: AccountOrdersProps) {
           </PageLink>
         )}
       />
-    </div>
+    </Box>
   )
 }

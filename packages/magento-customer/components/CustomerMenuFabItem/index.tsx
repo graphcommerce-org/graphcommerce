@@ -1,56 +1,38 @@
 import { useQuery } from '@apollo/client'
 import {
   MenuFabSecondaryItem,
-  StyledBadge,
-  UseStyles,
+  DesktopHeaderBadge,
   iconPerson,
   SvgIcon,
-  makeStyles,
-  useMergedClasses,
 } from '@graphcommerce/next-ui'
-import { NoSsr } from '@mui/material'
+import { NoSsr, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from '../../hooks'
-
-const useStyles = makeStyles()((theme) => ({
-  colorError: {
-    backgroundColor: theme.palette.grey['500'],
-  },
-  badge: {
-    top: 3,
-    right: 3,
-    padding: 3,
-    [theme.breakpoints.up('md')]: {
-      top: 5,
-      right: 7,
-      padding: 4,
-    },
-  },
-}))
 
 type CustomerMenuFabItemProps = CustomerTokenQuery & {
   icon?: React.ReactNode
   children: React.ReactNode
   authHref: string
   guestHref: string
-} & UseStyles<typeof useStyles>
+  sx?: SxProps<Theme>
+}
 
 function CustomerMenuFabItemContent(props: CustomerMenuFabItemProps) {
-  const { customerToken, icon, children, guestHref, authHref } = props
-  const classes = useMergedClasses(useStyles().classes, props.classes)
+  const { customerToken, icon, children, guestHref, authHref, sx = [] } = props
   const requireAuth = Boolean(!customerToken || !customerToken.valid)
 
   return (
     <MenuFabSecondaryItem
+      sx={sx}
       icon={
-        <StyledBadge
+        <DesktopHeaderBadge
           badgeContent={customerToken?.token ? 1 : 0}
           color={customerToken?.valid ? 'primary' : 'error'}
           variant='dot'
-          classes={{ colorError: classes.colorError, badge: classes.badge }}
+          overlap='circular'
         >
           {icon ?? <SvgIcon src={iconPerson} />}
-        </StyledBadge>
+        </DesktopHeaderBadge>
       }
       href={requireAuth ? guestHref : authHref}
     >

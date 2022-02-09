@@ -10,18 +10,45 @@ import {
   responsiveVal,
   iconInvoice,
   SvgIcon,
-  makeStyles,
+  extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Box, experimental_sx, Skeleton, styled, Theme } from '@mui/material'
-import clsx from 'clsx'
-import React from 'react'
+import { experimental_sx, Skeleton, styled, SxProps, Theme } from '@mui/material'
 import TrackingLink from '../TrackingLink'
 import { OrderDetailsFragment } from './OrderDetails.gql'
 
-const useStyles = makeStyles({ name: 'OrderDetails' })((theme) => ({
-  sectionContainer: {},
-  orderDetailsInnerContainer: {
+export type OrderDetailsProps = Partial<OrderDetailsFragment> & {
+  loading?: boolean
+  sx?: SxProps<Theme>
+}
+
+const componentName = 'OrderDetails' as const
+const parts = [
+  'sectionContainer',
+  'orderDetailTitle',
+  'orderDetailsInnerContainer',
+  'totalsContainer',
+  'totalsRow',
+  'totalsDivider',
+  'totalsVat',
+  'iconContainer',
+  'invoice',
+] as const
+const { classes } = extendableComponent(componentName, parts)
+
+const OrderDetailTitle = styled('span', { target: classes.orderDetailTitle })(
+  experimental_sx<Theme>((theme) => ({
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    fontWeight: 'bold',
+    display: 'block',
+    width: '100%',
+    paddingBottom: responsiveVal(2, 8),
+    marginBottom: theme.spacings.xs,
+  })),
+)
+
+const OrderDetailsInnerContainer = styled('span', { target: classes.orderDetailsInnerContainer })(
+  experimental_sx<Theme>((theme) => ({
     display: 'grid',
     gridColumnGap: theme.spacings.sm,
     gridRowGap: theme.spacings.lg,
@@ -32,51 +59,51 @@ const useStyles = makeStyles({ name: 'OrderDetails' })((theme) => ({
       gridRowGap: theme.spacings.md,
       gridTemplateColumns: 'repeat(2, 1fr)',
     },
-  },
-  orderDetailTitle: {},
-  totalsContainer: {
+  })),
+)
+
+const TotalsContainer = styled('span', { target: classes.totalsContainer })(
+  experimental_sx<Theme>((theme) => ({
     padding: `${theme.spacings.xxs} 0`,
-  },
-  totalsRow: {
+  })),
+)
+
+const TotalsRow = styled('span', { target: classes.totalsRow })(
+  experimental_sx<Theme>({
     display: 'flex',
     justifyContent: 'space-between',
     padding: '4px 0',
-  },
-  totalsDivider: {
+  }),
+)
+const TotalsDivider = styled('span', { target: classes.totalsDivider })(
+  experimental_sx<Theme>((theme) => ({
     height: 1,
     width: '100%',
     background: theme.palette.divider,
     margin: `${theme.spacings.xxs} 0`,
-  },
-  totalsVat: {
+  })),
+)
+
+const TotalsVat = styled(TotalsRow, { target: classes.totalsVat })(
+  experimental_sx<Theme>((theme) => ({
     fontWeight: 'bold',
     padding: `${theme.spacings.xxs} 0`,
-  },
-  iconContainer: {
+  })),
+)
+const IconContainer = styled(TotalsRow, { target: classes.iconContainer })(
+  experimental_sx<Theme>({
     marginLeft: '-6px',
     '& > div': {
       padding: '4px 0',
     },
-  },
-  invoice: {
+  }),
+)
+
+const Invoice = styled(TotalsRow, { target: classes.invoice })(
+  experimental_sx<Theme>((theme) => ({
     display: 'flex',
     alignItems: 'center',
     color: theme.palette.primary.main,
-  },
-}))
-
-export type OrderDetailsProps = Partial<OrderDetailsFragment> & {
-  loading?: boolean
-}
-
-const OrderDetailTitle = styled('span')(
-  experimental_sx<Theme>((theme) => ({
-    borderBottom: `1px solid ${theme.palette.divider}`,
-    fontWeight: 'bold',
-    display: 'block',
-    width: '100%',
-    paddingBottom: responsiveVal(2, 8),
-    marginBottom: theme.spacings.xs,
   })),
 )
 
@@ -93,8 +120,8 @@ export default function OrderDetails(props: OrderDetailsProps) {
     invoices,
     loading,
     carrier,
+    sx = [],
   } = props
-  const { classes } = useStyles()
 
   const { data: config } = useQuery(StoreConfigDocument)
   const locale = config?.storeConfig?.locale?.replace('_', '-')
@@ -121,12 +148,15 @@ export default function OrderDetails(props: OrderDetailsProps) {
     return (
       <SectionContainer
         labelLeft='Order details'
-        sx={(theme) => ({
-          '& .SectionHeader': { marginTop: theme.spacings.sm, marginBottom: theme.spacings.sm },
-        })}
+        sx={[
+          (theme) => ({
+            '& .SectionHeader': { marginTop: theme.spacings.sm, marginBottom: theme.spacings.sm },
+          }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
         borderBottom
       >
-        <div className={classes.orderDetailsInnerContainer}>
+        <OrderDetailsInnerContainer>
           <div>
             <Skeleton height={100} />
           </div>
@@ -145,41 +175,41 @@ export default function OrderDetails(props: OrderDetailsProps) {
           <div>
             <Skeleton height={100} />
           </div>
-        </div>
+        </OrderDetailsInnerContainer>
 
-        <div className={classes.totalsContainer}>
-          <div className={classes.totalsRow}>
+        <TotalsContainer>
+          <TotalsRow>
             <div>Products</div>
             <div>
               <Skeleton width={72} />
             </div>
-          </div>
+          </TotalsRow>
 
           {total?.discounts?.map((discount) => (
-            <div key={`discount-${discount?.label}`} className={classes.totalsRow}>
+            <TotalsRow key={`discount-${discount?.label}`}>
               <div>{discount?.label}</div>
               <div>
                 <Skeleton width={72} />
               </div>
-            </div>
+            </TotalsRow>
           ))}
 
-          <div className={classes.totalsRow}>
+          <TotalsRow>
             <div>Shipping</div>
             <div>
               <Skeleton width={72} />
             </div>
-          </div>
+          </TotalsRow>
 
-          <div className={classes.totalsDivider} />
+          <TotalsDivider />
 
-          <div className={clsx(classes.totalsRow, classes.totalsVat)}>
+          <TotalsVat>
             <div>Total (incl. VAT)</div>
             <div>
               <Skeleton width={72} />
             </div>
-          </div>
-        </div>
+          </TotalsVat>
+        </TotalsContainer>
       </SectionContainer>
     )
   }
@@ -188,18 +218,25 @@ export default function OrderDetails(props: OrderDetailsProps) {
     <SectionContainer
       labelLeft='Order details'
       borderBottom
-      sx={(theme) => ({
-        '& .SectionHeader': { marginTop: theme.spacings.sm, marginBottom: theme.spacings.sm },
-      })}
+      sx={[
+        (theme) => ({
+          '& .SectionHeader': { marginTop: theme.spacings.sm, marginBottom: theme.spacings.sm },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
-      <div className={classes.orderDetailsInnerContainer}>
+      <OrderDetailsInnerContainer>
         <div>
-          <OrderDetailTitle>Order number</OrderDetailTitle>
+          <OrderDetailTitle>
+            <Trans>Order number</Trans>
+          </OrderDetailTitle>
           <div>{number}</div>
         </div>
 
         <div>
-          <OrderDetailTitle>Order status</OrderDetailTitle>
+          <OrderDetailTitle>
+            <Trans>Order status</Trans>
+          </OrderDetailTitle>
           <div>
             Ordered: {order_date && dateFormatter.format(new Date(order_date))}
             {/* Shipped */}
@@ -207,7 +244,9 @@ export default function OrderDetails(props: OrderDetailsProps) {
         </div>
 
         <div>
-          <OrderDetailTitle>Shipping method</OrderDetailTitle>
+          <OrderDetailTitle>
+            <Trans>Shipping method</Trans>
+          </OrderDetailTitle>
           <div>
             <div>{shipping_method ?? ''}</div>
 
@@ -215,9 +254,9 @@ export default function OrderDetails(props: OrderDetailsProps) {
               <>
                 <div>{shipments?.[0]?.tracking && shipments?.[0]?.tracking?.[0]?.title}</div>
                 {shipments?.[0]?.tracking?.[0] && (
-                  <div className={classes.iconContainer}>
+                  <IconContainer>
                     <TrackingLink {...shipments?.[0].tracking?.[0]} />
-                  </div>
+                  </IconContainer>
                 )}
               </>
             )}
@@ -225,7 +264,9 @@ export default function OrderDetails(props: OrderDetailsProps) {
         </div>
 
         <div>
-          <OrderDetailTitle>Payment method</OrderDetailTitle>
+          <OrderDetailTitle>
+            <Trans>Payment method</Trans>
+          </OrderDetailTitle>
           <div>
             {payment_methods && payment_methods.length < 1 && (
               <div>
@@ -238,12 +279,12 @@ export default function OrderDetails(props: OrderDetailsProps) {
                 <div>{payment_methods[0].name}</div>
 
                 {invoices && invoices?.length > 0 && (
-                  <div className={classes.iconContainer}>
-                    <div className={classes.invoice}>
+                  <IconContainer>
+                    <Invoice>
                       <SvgIcon src={iconInvoice} size='small' />
                       {invoices?.[0]?.number}
-                    </div>
-                  </div>
+                    </Invoice>
+                  </IconContainer>
                 )}
               </>
             )}
@@ -251,7 +292,9 @@ export default function OrderDetails(props: OrderDetailsProps) {
         </div>
 
         <div>
-          <OrderDetailTitle>Shipping address</OrderDetailTitle>
+          <OrderDetailTitle>
+            <Trans>Shipping address</Trans>
+          </OrderDetailTitle>
           <div>
             <div>
               {shipping_address?.firstname} {shipping_address?.lastname}
@@ -267,7 +310,9 @@ export default function OrderDetails(props: OrderDetailsProps) {
         </div>
 
         <div>
-          <OrderDetailTitle>Billing address</OrderDetailTitle>
+          <OrderDetailTitle>
+            <Trans>Billing address</Trans>
+          </OrderDetailTitle>
           <div>
             <div>
               {billing_address?.firstname} {billing_address?.lastname}
@@ -281,30 +326,30 @@ export default function OrderDetails(props: OrderDetailsProps) {
             </div>
           </div>
         </div>
-      </div>
+      </OrderDetailsInnerContainer>
 
-      <div className={classes.totalsContainer}>
-        <div className={classes.totalsRow}>
+      <TotalsContainer>
+        <TotalsRow>
           <div>
             <Trans>Products</Trans>
           </div>
           <div>
             <Money {...total?.subtotal} />
           </div>
-        </div>
+        </TotalsRow>
 
         {total?.discounts?.map((discount) => (
-          <div key={`discount-${discount?.label}`} className={classes.totalsRow}>
+          <TotalsRow key={`discount-${discount?.label}`}>
             <div>{discount?.label}</div>
             <div>
               {discount?.amount && (
                 <Money {...discount.amount} value={(discount.amount.value ?? 0) * -1} />
               )}
             </div>
-          </div>
+          </TotalsRow>
         ))}
 
-        <div className={classes.totalsRow}>
+        <TotalsRow>
           <div>
             <Trans>Shipping</Trans>
           </div>
@@ -312,19 +357,19 @@ export default function OrderDetails(props: OrderDetailsProps) {
             <Money {...total?.total_shipping} />
           </div>
           <div>{carrier}</div>
-        </div>
+        </TotalsRow>
 
-        <div className={classes.totalsDivider} />
+        <TotalsDivider />
 
-        <div className={clsx(classes.totalsRow, classes.totalsVat)}>
+        <TotalsVat>
           <div>
             <Trans>Grand Total</Trans>
           </div>
           <div>
             <Money {...total?.grand_total} />
           </div>
-        </div>
-      </div>
+        </TotalsVat>
+      </TotalsContainer>
     </SectionContainer>
   )
 }

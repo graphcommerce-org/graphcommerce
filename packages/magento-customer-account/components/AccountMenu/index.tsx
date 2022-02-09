@@ -1,21 +1,20 @@
-import { UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
-import { List } from '@mui/material'
+import { extendableComponent } from '@graphcommerce/next-ui'
+import { List, SxProps, Theme } from '@mui/material'
 import React from 'react'
 
-const useStyles = makeStyles({ name: 'AccountMenu' })((theme) => ({
-  root: {
-    marginBottom: theme.spacings.lg,
-  },
-}))
+type AccountMenuProps = { children: React.ReactNode; sx?: SxProps<Theme> }
 
-type AccountMenuProps = UseStyles<typeof useStyles> & { children: React.ReactNode }
+const { classes } = extendableComponent('AccountMenu', ['root'] as const)
 
 export default function AccountMenu(props: AccountMenuProps) {
-  const { children } = props
-  const classes = useMergedClasses(useStyles().classes, props.classes)
+  const { children, sx = [] } = props
 
   return (
-    <List classes={classes} disablePadding>
+    <List
+      classes={classes}
+      disablePadding
+      sx={[(theme) => ({ marginBottom: theme.spacings.lg }), ...(Array.isArray(sx) ? sx : [sx])]}
+    >
       {children}
     </List>
   )

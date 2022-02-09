@@ -1,60 +1,58 @@
-import { makeStyles, typography } from '@graphcommerce/next-ui'
+import { extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Link } from '@mui/material'
+import { Box, Link, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
-import React from 'react'
 import AddressMultiLine from '../AddressMultiLine'
 import DeleteCustomerAddressForm from '../DeleteCustomerAddressForm'
 import UpdateDefaultAddressForm from '../UpdateDefaultAddressForm'
 import { AccountAddressFragment } from './AccountAddress.gql'
 
-export type AccountAddressProps = AccountAddressFragment
+export type AccountAddressProps = AccountAddressFragment & { sx?: SxProps<Theme> }
 
-const useStyles = makeStyles({ name: 'AccountAddress' })((theme) => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    paddingTop: theme.spacings.md,
-    paddingBottom: theme.spacings.md,
-    ...typography(theme, 'body2'),
-  },
-  address: {
-    '& > span': {
-      display: 'block',
-    },
-  },
-  switches: {
-    paddingTop: theme.spacings.xxs,
-  },
-  actions: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    flexDirection: 'column',
-    textAlign: 'right',
-  },
-}))
+const name = 'AccountAddress'
+const parts = ['root', 'address', 'switches', 'actions'] as const
+const { classes } = extendableComponent(name, parts)
 
 export default function AccountAddress(props: AccountAddressProps) {
-  const { id } = props
-  const { classes } = useStyles()
+  const { id, sx = [], ...addressProps } = props
 
   return (
-    <div className={classes.root}>
-      <div className={classes.address}>
-        <AddressMultiLine {...props} />
+    <Box
+      className={classes.root}
+      sx={[
+        (theme) => ({
+          display: 'flex',
+          justifyContent: 'space-between',
+          paddingTop: theme.spacings.md,
+          paddingBottom: theme.spacings.md,
+          typography: 'body2',
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      <Box className={classes.address} sx={{ '& > span': { display: 'block' } }}>
+        <AddressMultiLine id={id} {...addressProps} />
 
-        <div className={classes.switches}>
-          <UpdateDefaultAddressForm {...props} />
-        </div>
-      </div>
-      <div className={classes.actions}>
+        <Box className={classes.switches} sx={(theme) => ({ paddingTop: theme.spacings.xxs })}>
+          <UpdateDefaultAddressForm id={id} {...addressProps} />
+        </Box>
+      </Box>
+      <Box
+        className={classes.actions}
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          flexDirection: 'column',
+          textAlign: 'right',
+        }}
+      >
         <PageLink href={`/account/addresses/edit?addressId=${id}`} passHref>
           <Link color='primary' underline='hover'>
             <Trans>Edit</Trans>
           </Link>
         </PageLink>
         <DeleteCustomerAddressForm addressId={id ?? undefined} />
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
