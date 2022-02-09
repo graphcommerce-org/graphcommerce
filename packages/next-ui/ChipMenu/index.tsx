@@ -1,5 +1,4 @@
 import { Chip, ChipProps, Menu, MenuProps, menuClasses, SxProps, Theme } from '@mui/material'
-import clsx from 'clsx'
 import React, { PropsWithChildren, useState } from 'react'
 import { SectionHeader } from '../SectionHeader'
 import { extendableComponent } from '../Styles'
@@ -51,15 +50,11 @@ export function ChipMenu(props: ChipMenuProps) {
         deleteIcon={deleteIcon}
         {...chipProps}
         label={selectedLabel ?? label}
-        className={clsx(
-          classes.chip,
-          chipProps.className,
-          selectedAndMenuHidden && 'MuiChip-selected',
-        )}
+        className={`${classes.chip} ${chipProps.className ?? ''} ${
+          selectedAndMenuHidden ? 'MuiChip-selected' : ''
+        }`}
         sx={[
-          {
-            bgcolor: 'background.default',
-          },
+          { bgcolor: 'background.default' },
           selectedAndMenuHidden &&
             ((theme) => ({
               borderColor: 'text.primary',

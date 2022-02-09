@@ -1,5 +1,4 @@
 import { Box, ToggleButtonGroupProps as ToggleButtonGroupPropsBase } from '@mui/material'
-import clsx from 'clsx'
 import React from 'react'
 import { isFragment } from 'react-is'
 import { extendableComponent } from '../Styles'
@@ -59,7 +58,7 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGroupProp
   return (
     <Box
       role='group'
-      className={clsx(classes.root, className)}
+      className={`${classes.root} ${className ?? ''}`}
       sx={[
         (theme) => ({
           display: 'grid',
@@ -98,7 +97,7 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGroupProp
         }
 
         return React.cloneElement(child, {
-          className: clsx(classes.button, child.props.className),
+          className: `${classes.button} ${child.props.className ?? ''}`,
           onChange: exclusive ? handleExclusiveChange : handleChange,
           selected:
             child.props.selected === undefined

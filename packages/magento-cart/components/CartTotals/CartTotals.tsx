@@ -2,7 +2,6 @@ import { Money } from '@graphcommerce/magento-store'
 import { AnimatedRow, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Box, Divider, lighten, SxProps, Theme } from '@mui/material'
-import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import { useCartQuery, useDisplayInclTax } from '../../hooks'
 import { GetCartTotalsDocument } from './GetCartTotals.gql'
@@ -132,7 +131,7 @@ export default function CartTotals(props: CartTotalsProps) {
         {!inclTax &&
           prices?.applied_taxes?.map((tax) => (
             <AnimatedRow
-              className={clsx(classes.costsRow)}
+              className={classes.costsRow}
               key={`excl${tax?.label}`}
               sx={{ display: 'flex', justifyContent: 'space-between', typography: 'subtitle1' }}
             >
@@ -149,7 +148,7 @@ export default function CartTotals(props: CartTotalsProps) {
 
         {prices?.grand_total && (
           <AnimatedRow
-            className={clsx(classes.costsRow, classes.costsGrandTotal)}
+            className={`${classes.costsRow} ${classes.costsGrandTotal}`}
             key='grand_total'
             sx={(theme) => ({
               display: 'flex',
@@ -171,7 +170,7 @@ export default function CartTotals(props: CartTotalsProps) {
         {inclTax &&
           prices?.applied_taxes?.map((tax) => (
             <AnimatedRow
-              className={clsx(classes.costsRow, classes.costsTax)}
+              className={`${classes.costsRow} ${classes.costsTax}`}
               key={`incl${tax?.label}`}
               sx={{
                 display: 'flex',

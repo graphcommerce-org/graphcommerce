@@ -1,5 +1,4 @@
 import { Box, SxProps, Theme } from '@mui/material'
-import clsx from 'clsx'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
 
@@ -40,7 +39,7 @@ export function Stepper(props: StepperProps) {
               bgcolor: 'secondary.main',
             },
           ]}
-          className={clsx(classes.step, currentStep - 1 >= step && classes.activeStep)}
+          className={`${classes.step} ${currentStep - 1 >= step ? classes.activeStep : ''}`}
           key={step}
         />
       ))}

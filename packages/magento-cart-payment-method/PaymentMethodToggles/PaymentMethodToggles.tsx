@@ -18,7 +18,6 @@ import {
 } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/macro'
 import { Box, FormControl, FormHelperText, SxProps, Theme } from '@mui/material'
-import clsx from 'clsx'
 import { useEffect } from 'react'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
@@ -190,14 +189,12 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
           </FormControl>
 
           <Box
-            className={clsx(classes.buttonContainer, classes.buttonContainerRight)}
+            className={`${classes.buttonContainer} ${classes.buttonContainerRight}`}
             sx={{ position: 'absolute', right: 0, top: 0, zIndex: 2, height: '100%' }}
           >
             <ScrollerButton
               direction='right'
-              classes={{
-                root: clsx(classes.buttonRoot, classes.rightButtonRoot),
-              }}
+              className={`${classes.buttonRoot} ${classes.rightButtonRoot}`}
               sx={(theme) => ({
                 background: theme.palette.background.paper,
                 borderRadius: 0,

@@ -1,5 +1,4 @@
 import { Box, SxProps, Theme, Typography } from '@mui/material'
-import clsx from 'clsx'
 import { extendableComponent } from '../Styles'
 import { SvgIcon, SvgIconProps } from '../SvgIcon/SvgIcon'
 
@@ -61,7 +60,7 @@ export function IconHeader(props: IconHeaderProps) {
       ]}
     >
       <Box
-        className={clsx(classes.innerContainer, !stayInline && classes.breakColumnsDesktop)}
+        className={`${classes.innerContainer} ${!stayInline ? classes.breakColumnsDesktop : ''}`}
         sx={[
           {
             display: { xs: 'flex', md: stayInline ? 'flex' : 'unset' },
@@ -75,10 +74,9 @@ export function IconHeader(props: IconHeaderProps) {
         <Typography
           variant={variants[size]}
           component='h2'
-          className={clsx(
-            ellipsis && classes.ellipsis,
-            size === 'medium' && classes.mediumFontWeight,
-          )}
+          className={`${ellipsis ? classes.ellipsis : ''} ${
+            size === 'medium' ? classes.mediumFontWeight : ''
+          }`}
           sx={[
             ellipsis && {
               whiteSpace: 'nowrap',

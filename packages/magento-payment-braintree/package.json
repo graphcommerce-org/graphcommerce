@@ -30,7 +30,6 @@
     "@lingui/macro": "^3.13.2",
     "@mui/material": "^5.4.1",
     "braintree-web": "^3.85.2",
-    "clsx": "^1.1.1",
     "framer-motion": "^6.2.4",
     "next": "^12.0.10",
     "react": "^17.0.2",

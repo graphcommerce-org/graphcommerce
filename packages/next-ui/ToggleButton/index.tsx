@@ -1,5 +1,4 @@
 import { Button, ButtonProps } from '@mui/material'
-import clsx from 'clsx'
 import React, { FormEvent } from 'react'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
@@ -47,7 +46,7 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
 
   return (
     <Button
-      className={clsx(classes.root, className)}
+      className={`${classes.root} ${className ?? ''}`}
       variant='outlined'
       disabled={disabled}
       ref={ref}

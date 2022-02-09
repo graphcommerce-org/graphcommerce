@@ -8,8 +8,7 @@ import {
   useForkRef,
   Theme,
 } from '@mui/material'
-import clsx from 'clsx'
-import React, { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { SvgIcon } from '../SvgIcon/SvgIcon'
@@ -96,7 +95,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
       {...textFieldProps}
       type='number'
       inputRef={forkRef}
-      className={clsx(textFieldProps.className, classes.quantity)}
+      className={`${textFieldProps.className ?? ''} ${classes.quantity}`}
       sx={[
         {
           width: responsiveVal(80, 120),
@@ -122,7 +121,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
             tabIndex={-1}
             color='inherit'
             {...DownProps}
-            className={clsx(classes.button, DownProps.className)}
+            className={`${classes.button} ${DownProps.className ?? ''}`}
           >
             {DownProps.children ?? <SvgIcon src={iconMin} size='small' />}
           </IconButton>
@@ -138,7 +137,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
             tabIndex={-1}
             color='inherit'
             {...UpProps}
-            className={clsx(classes.button, UpProps.className)}
+            className={`${classes.button} ${UpProps.className ?? ''}`}
           >
             {UpProps.children ?? <SvgIcon src={iconPlus} size='small' />}
           </IconButton>
@@ -158,7 +157,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
             },
           },
         ],
-        className: clsx(inputProps?.className, classes.quantityInput),
+        className: `${inputProps?.className ?? ''} ${classes.quantityInput}`,
       }}
     />
   )

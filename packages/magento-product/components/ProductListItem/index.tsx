@@ -2,8 +2,6 @@ import { Image, ImageProps } from '@graphcommerce/image'
 import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { ButtonBase, Typography, Box, styled, SxProps, Theme } from '@mui/material'
-import { SystemStyleObject } from '@mui/system'
-import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { PropsWithChildren, useMemo } from 'react'
@@ -130,7 +128,7 @@ export default function ProductListItem(props: ProductListItemProps) {
                 color: 'background.default',
                 userSelect: 'none',
               }}
-              className={clsx(classes.placeholder, classes.image)}
+              className={`${classes.placeholder} ${classes.image}`}
             >
               <Trans>No Image</Trans>
             </Box>

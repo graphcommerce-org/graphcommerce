@@ -3,7 +3,6 @@ import { StoreConfigDocument, Money } from '@graphcommerce/magento-store'
 import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Box, Button, styled, SxProps, Theme } from '@mui/material'
 import Skeleton from '@mui/material/Skeleton'
-import clsx from 'clsx'
 import PageLink from 'next/link'
 import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import OrderCardItemImage from '../OrderCardItemImage'
@@ -169,7 +168,7 @@ export default function OrderCard(props: OrderCardProps) {
               )}
             </Box>
           </Box>
-          <Box className={clsx(classes.orderRow, classes.tracking)} sx={{ textAlign: 'center' }}>
+          <Box className={`${classes.orderRow} ${classes.tracking}`} sx={{ textAlign: 'center' }}>
             {shipments?.[0]?.tracking?.[0] && <TrackingLink {...shipments?.[0].tracking?.[0]} />}
           </Box>
         </OrderContainer>

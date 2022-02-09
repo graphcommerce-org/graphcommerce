@@ -1,7 +1,6 @@
 import { Image, ImageProps } from '@graphcommerce/image'
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
-import clsx from 'clsx'
 import { m } from 'framer-motion'
 import { forwardRef } from 'react'
 
@@ -59,9 +58,9 @@ const MotionImageAspect = m(
         {...props}
         layout='fill'
         ref={ref}
-        className={clsx(classes.image, props.className)}
+        className={`${classes.image} ${props.className ?? ''}`}
         pictureProps={{
-          className: clsx(classes.picture, props.pictureProps?.className),
+          className: `${classes.picture} ${props.pictureProps?.className ?? ''}`,
           style: { ...props.style, aspectRatio: `${props.width} / ${props.height}` },
         }}
       />

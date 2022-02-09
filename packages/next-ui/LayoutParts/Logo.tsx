@@ -1,13 +1,11 @@
 import { Image, ImageProps } from '@graphcommerce/image'
 import {
   generateUtilityClass,
-  generateUtilityClasses,
   styled,
   SxProps,
   Theme,
   unstable_composeClasses as composeClasses,
 } from '@mui/material'
-import clsx from 'clsx'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import { forwardRef } from 'react'
@@ -15,7 +13,6 @@ import { forwardRef } from 'react'
 /** We're creating some boilerplate */
 const name = 'GcLogo'
 type LogoClassKey = 'logo' | 'parent'
-const logoClasses = generateUtilityClasses<LogoClassKey>(name, ['logo', 'parent'])
 
 type LogoClasses = Record<LogoClassKey, string>
 type LogoClassProps = { classes?: Partial<LogoClasses> }
@@ -62,7 +59,7 @@ export const Logo = forwardRef<HTMLDivElement, LogoProps>((props, ref) => {
       layout='fixed'
       loading='eager'
       {...image}
-      className={clsx(classes?.logo, image.className)}
+      className={`${image.className} ${classes?.logo ?? ''}`}
     />
   )
 

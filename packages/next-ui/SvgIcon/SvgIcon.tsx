@@ -1,6 +1,5 @@
 import { ImageProps, srcToString } from '@graphcommerce/image'
 import { Box, SxProps, Theme } from '@mui/material'
-import clsx from 'clsx'
 import { ComponentProps, forwardRef } from 'react'
 import { ExtendableComponent } from '../Styles/extendableComponent'
 import { responsiveVal as rv } from '../Styles/responsiveVal'
@@ -31,7 +30,7 @@ export const SvgIcon = forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => {
       component='svg'
       ref={ref}
       aria-hidden='true'
-      className={clsx(name, className)}
+      className={`${name} ${className}`}
       {...svgProps}
       sx={[
         {

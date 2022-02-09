@@ -10,7 +10,6 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Box, Divider, SxProps, Theme } from '@mui/material'
-import clsx from 'clsx'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
 import CartTotals from '../CartTotals/CartTotals'
@@ -75,7 +74,7 @@ export default function CartItemSummary(props: OrderSummaryProps) {
           <ScrollerProvider scrollSnapAlign='start'>
             <ScrollerButton
               direction='left'
-              className={clsx(classes.prevNext, classes.prev)}
+              className={`${classes.prevNext} ${classes.prev}`}
               sx={{
                 position: 'absolute',
                 top: '50%',
@@ -117,7 +116,7 @@ export default function CartItemSummary(props: OrderSummaryProps) {
             </Box>
             <ScrollerButton
               direction='right'
-              className={clsx(classes.prevNext, classes.next)}
+              className={`${(classes.prevNext, classes.next)}`}
               sx={{
                 position: 'absolute',
                 top: '50%',

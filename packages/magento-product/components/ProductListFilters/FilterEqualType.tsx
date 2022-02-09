@@ -8,14 +8,18 @@ import {
   ListItemText,
   listItemTextClasses,
 } from '@mui/material'
-import clsx from 'clsx'
 import { SetRequired } from 'type-fest'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import ProductListLink from '../ProductListLink/ProductListLink'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
-const { componentName, classes, selectors } = extendableComponent('FilterEqual', [
+type OwnerState = {
+  isColor: boolean
+  isActive: boolean
+}
+const componentName = 'FilterEqual' as const
+const parts = [
   'listItem',
   'listItemInnerContainer',
   'checkbox',
@@ -26,7 +30,13 @@ const { componentName, classes, selectors } = extendableComponent('FilterEqual',
   'filterLabel',
   'isColor',
   'isActive',
-] as const)
+] as const
+
+const { classes, selectors, withState } = extendableComponent<
+  OwnerState,
+  typeof componentName,
+  typeof parts
+>(componentName, parts)
 
 export type FilterIn = SetRequired<Omit<FilterEqualTypeInput, 'eq'>, 'in'>
 
@@ -82,11 +92,9 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
           const labelId = `filter-equal-${attribute_code}-${option?.value}`
           const filters = cloneDeep(params.filters)
           const isColor = !!attribute_code?.toLowerCase().includes('color')
-          const isActive =
-            isColor && currentFilter.in?.includes(option?.value) && isColor
-              ? classes.isActive
-              : false
+          const isActive = Boolean(isColor && currentFilter.in?.includes(option?.value) && isColor)
 
+          const cls = withState({ isColor, isActive })
           if (currentFilter.in?.includes(option.value)) {
             filters[attribute_code] = {
               ...currentFilter,
@@ -110,7 +118,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
             >
               <ListItem
                 dense
-                className={classes.listItem}
+                className={cls.listItem}
                 sx={(theme) => ({
                   padding: `0 ${theme.spacings.xxs} 0`,
                   display: 'block',
@@ -120,7 +128,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
                 })}
               >
                 <Box
-                  className={classes.listItemInnerContainer}
+                  className={cls.listItemInnerContainer}
                   sx={(theme) => ({
                     width: '100%',
                     paddingTop: responsiveVal(0, 3),
@@ -159,11 +167,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
                       color='primary'
                       disableRipple
                       inputProps={{ 'aria-labelledby': labelId }}
-                      className={clsx(
-                        classes.checkbox,
-                        isColor && classes.isColor,
-                        isActive && classes.isActive,
-                      )}
+                      className={cls.checkbox}
                       sx={[
                         {
                           padding: 0,
