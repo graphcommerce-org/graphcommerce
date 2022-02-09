@@ -1,4 +1,4 @@
-import { mergeDeep } from '@apollo/client/utilities'
+import { mergeDeep } from './apollo'
 import type { TypedTypePolicies } from './generated/types'
 
 export const mergeTypePolicies = (policies: TypedTypePolicies[]): TypedTypePolicies =>

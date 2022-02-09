@@ -1,4 +1,4 @@
-import { ApolloError } from '@apollo/client'
+import { ApolloError } from '@graphcommerce/graphql'
 import React, { useContext, useEffect } from 'react'
 import { isFormGqlOperation } from '../useFormGqlMutation'
 import { composedFormContext } from './context'

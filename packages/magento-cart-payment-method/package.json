@@ -19,7 +19,6 @@
     "@playwright/test": "^1.17.2"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.7",
     "@graphcommerce/framer-scroller": "^1.2.4",
     "@graphcommerce/graphql": "^2.105.13",
     "@graphcommerce/image": "^2.105.13",

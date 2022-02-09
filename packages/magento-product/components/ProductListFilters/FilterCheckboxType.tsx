@@ -1,4 +1,4 @@
-import { cloneDeep } from '@apollo/client/utilities'
+import { cloneDeep } from '@graphcommerce/graphql'
 import { iconCancelAlt, SvgIcon } from '@graphcommerce/next-ui'
 import { Chip, ChipProps, SxProps } from '@mui/material'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'

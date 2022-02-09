@@ -9,7 +9,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.7",
     "@emotion/babel-preset-css-prop": "^11.2.0",
     "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.7.1",

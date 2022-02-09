@@ -1,5 +1,4 @@
-import { useQuery } from '@apollo/client'
-import { cloneDeep } from '@apollo/client/utilities'
+import { useQuery, cloneDeep } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps } from '@graphcommerce/next-ui'
 import { ListItem, ListItemText } from '@mui/material'

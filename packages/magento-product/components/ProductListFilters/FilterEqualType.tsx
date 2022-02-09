@@ -1,5 +1,4 @@
-import { cloneDeep } from '@apollo/client/utilities'
-import { FilterEqualTypeInput } from '@graphcommerce/graphql'
+import { cloneDeep, FilterEqualTypeInput } from '@graphcommerce/graphql'
 import { ChipMenu, ChipMenuProps, responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
 import {
   Box,

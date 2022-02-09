@@ -1,4 +1,4 @@
-import { MutationHookOptions, TypedDocumentNode, useMutation } from '@apollo/client'
+import { MutationHookOptions, TypedDocumentNode, useMutation } from '@graphcommerce/graphql'
 import { useForm, UseFormReturn } from 'react-hook-form'
 import { useFormGql, UseFormGqlMethods, UseFormGraphQlOptions } from './useFormGql'
 import { useFormMuiRegister, UseMuiFormRegister } from './useFormMuiRegister'

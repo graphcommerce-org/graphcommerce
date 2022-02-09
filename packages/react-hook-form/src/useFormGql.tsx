@@ -5,7 +5,7 @@ import {
   useApolloClient,
   MutationTuple,
   ApolloError,
-} from '@apollo/client'
+} from '@graphcommerce/graphql'
 import { UseFormProps, UseFormReturn, UnpackNestedValue, DeepPartial } from 'react-hook-form'
 import diff from './diff'
 import { useGqlDocumentHandler, UseGqlDocumentHandler } from './useGqlDocumentHandler'

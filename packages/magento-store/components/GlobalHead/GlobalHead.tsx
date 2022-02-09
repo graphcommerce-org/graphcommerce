@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@graphcommerce/graphql'
 import {
   GlobalHead as GlobalHeadBase,
   GlobalHeadProps as GlobalHeadPropsBase,

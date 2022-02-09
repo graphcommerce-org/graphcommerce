@@ -20,7 +20,6 @@
     "@types/braintree-web": "^3.75.16"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.7",
     "@graphcommerce/graphql": "^2.105.13",
     "@graphcommerce/image": "^2.105.13",
     "@graphcommerce/magento-cart": "^3.9.4",

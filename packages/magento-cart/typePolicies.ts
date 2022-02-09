@@ -1,4 +1,4 @@
-import { ApolloCache, NormalizedCacheObject } from '@apollo/client'
+import { ApolloCache, NormalizedCacheObject } from '@graphcommerce/graphql'
 import type { QueryCartArgs, ShippingCartAddress, TypedTypePolicies } from '@graphcommerce/graphql'
 import { CartPrices } from '@graphcommerce/graphql/generated/types'
 import { CartFabDocument } from './components/CartFab/CartFab.gql'

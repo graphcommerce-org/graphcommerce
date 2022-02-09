@@ -1,5 +1,5 @@
 import { ParsedUrlQuery } from 'querystring'
-import { NormalizedCacheObject } from '@apollo/client'
+import { NormalizedCacheObject } from '@graphcommerce/graphql'
 import { UpPage } from '@graphcommerce/framer-next-pages/types'
 import { GetStaticProps as GetStaticPropsNext } from 'next'
 

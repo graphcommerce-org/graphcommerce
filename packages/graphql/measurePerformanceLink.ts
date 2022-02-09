@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { ApolloLink } from '@apollo/client/core'
+import { ApolloLink } from '@apollo/client'
 
 const slowOperationThreshold = 1000
 const slowResolverThreshold = 300

@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@graphcommerce/graphql'
 import React, { useMemo } from 'react'
 import { MoneyFragment } from './Money.gql'
 import { StoreConfigDocument } from './StoreConfig.gql'

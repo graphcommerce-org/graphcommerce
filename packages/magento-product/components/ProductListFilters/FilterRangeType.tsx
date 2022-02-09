@@ -1,5 +1,4 @@
-import { cloneDeep } from '@apollo/client/utilities'
-import { FilterRangeTypeInput } from '@graphcommerce/graphql'
+import { cloneDeep, FilterRangeTypeInput } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
 import { Box, Mark, Slider } from '@mui/material'

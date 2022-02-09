@@ -1,4 +1,4 @@
-import { useApolloClient } from '@apollo/client'
+import { useApolloClient } from '@graphcommerce/graphql'
 import { useCartQuery, useCurrentCartId } from '@graphcommerce/magento-cart'
 import { useCallback } from 'react'
 import { UseCartLockDocument } from './UseCartLock.gql'

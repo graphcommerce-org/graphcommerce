@@ -1,4 +1,4 @@
-import { ApolloError } from '@apollo/client'
+import { ApolloError } from '@graphcommerce/graphql'
 import { Trans } from '@lingui/macro'
 import { Button } from '@mui/material'
 import { MessageSnackbar } from '../Snackbar/MessageSnackbar'

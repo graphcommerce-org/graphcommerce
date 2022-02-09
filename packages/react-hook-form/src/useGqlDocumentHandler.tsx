@@ -1,4 +1,4 @@
-import { TypedDocumentNode } from '@apollo/client'
+import { TypedDocumentNode } from '@graphcommerce/graphql'
 import {
   DefinitionNode,
   OperationDefinitionNode,

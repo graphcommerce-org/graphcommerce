@@ -1,4 +1,4 @@
-import { setContext } from '@apollo/client/link/context'
+import { setContext } from '@graphcommerce/graphql'
 import { localeToStore } from '../localeToStore'
 
 /** Apollo link to set the store header in the context */

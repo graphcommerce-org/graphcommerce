@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@apollo/client'
+import { useMutation, useQuery } from '@graphcommerce/graphql'
 import { CustomerTokenDocument, useExtractCustomerErrors } from '@graphcommerce/magento-customer'
 import { useEffect } from 'react'
 import { CustomerCartDocument } from './CustomerCart.gql'

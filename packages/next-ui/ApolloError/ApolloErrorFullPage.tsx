@@ -1,4 +1,4 @@
-import { ApolloError } from '@apollo/client'
+import { ApolloError } from '@graphcommerce/graphql'
 import { AlertProps } from '@mui/material'
 import { FullPageMessage, FullPageMessageProps } from '../FullPageMessage'
 import ApolloErrorAlert from './ApolloErrorAlert'

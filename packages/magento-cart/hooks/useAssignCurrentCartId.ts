@@ -1,4 +1,4 @@
-import { useApolloClient } from '@apollo/client'
+import { useApolloClient } from '@graphcommerce/graphql'
 import { useCallback } from 'react'
 import { CurrentCartIdDocument } from './CurrentCartId.gql'
 

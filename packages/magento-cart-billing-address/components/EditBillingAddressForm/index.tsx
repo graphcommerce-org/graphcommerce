@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@graphcommerce/graphql'
 import { useHistoryGo } from '@graphcommerce/framer-next-pages'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import {

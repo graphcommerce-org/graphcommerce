@@ -5,7 +5,7 @@ import {
   QueryLazyOptions,
   TypedDocumentNode,
   useLazyQuery,
-} from '@apollo/client'
+} from '@graphcommerce/graphql'
 import { useEffect, useRef } from 'react'
 import { Promisable } from 'type-fest'
 
