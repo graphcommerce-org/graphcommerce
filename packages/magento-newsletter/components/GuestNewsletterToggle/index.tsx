@@ -1,8 +1,16 @@
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
-import { Form, makeStyles } from '@graphcommerce/next-ui'
+import { Form } from '@graphcommerce/next-ui'
 import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { FormControl, FormControlLabel, FormHelperText, Switch, SwitchProps } from '@mui/material'
+import {
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  Switch,
+  SwitchProps,
+  SxProps,
+  Theme,
+} from '@mui/material'
 import React from 'react'
 import { GetCartEmailDocument } from '../SignupNewsletter/GetCartEmail.gql'
 import {
@@ -11,17 +19,10 @@ import {
   GuestNewsletterToggleMutationVariables,
 } from './GuestNewsletterToggle.gql'
 
-export type GuestNewsletterToggleProps = SwitchProps
-
-const useStyles = makeStyles()(() => ({
-  labelRoot: {
-    marginRight: 0,
-  },
-}))
+export type GuestNewsletterToggleProps = SwitchProps & { sx?: SxProps<Theme> }
 
 export default function GuestNewsletterToggle(props: GuestNewsletterToggleProps) {
-  const { ...switchProps } = props
-  const { classes } = useStyles()
+  const { sx = [], ...switchProps } = props
 
   const email =
     useCartQuery(GetCartEmailDocument, { allowUrl: true }).data?.cart?.email ?? undefined
@@ -37,7 +38,7 @@ export default function GuestNewsletterToggle(props: GuestNewsletterToggleProps)
   if (formState.isSubmitted) return <Switch color='primary' {...switchProps} checked disabled />
 
   return (
-    <Form noValidate>
+    <Form noValidate sx={sx}>
       <input type='hidden' {...register('email')} value={email} />
       <Controller
         name='isSubscribed'
@@ -45,7 +46,7 @@ export default function GuestNewsletterToggle(props: GuestNewsletterToggleProps)
         render={({ field: { onChange, value, name: controlName, ref, onBlur } }) => (
           <FormControl error={!!formState.errors.isSubscribed}>
             <FormControlLabel
-              classes={{ root: classes.labelRoot }}
+              sx={{ marginRight: 0 }}
               label=''
               control={<Switch color='primary' {...switchProps} />}
               checked={value}

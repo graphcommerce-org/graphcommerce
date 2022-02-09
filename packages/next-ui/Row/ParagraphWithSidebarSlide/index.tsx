@@ -10,7 +10,7 @@ export type ParagraphWithSidebarSlideProps = ContainerProps & {
 }
 
 const name = 'ParagraphWithSidebarSlide' as const
-const parts = ['root', 'wrapper', 'asset', 'copy'] as const
+const parts = ['root', 'wrapper', 'asset', 'backstory', 'copy'] as const
 const { classes } = extendableComponent(name, parts)
 
 export function ParagraphWithSidebarSlide(props: ParagraphWithSidebarSlideProps) {

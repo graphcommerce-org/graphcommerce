@@ -1,13 +1,6 @@
 import { cloneDeep } from '@apollo/client/utilities'
-import {
-  useChipMenuStyles,
-  iconCancelAlt,
-  SvgIcon,
-  useMergedClasses,
-  UseStyles,
-} from '@graphcommerce/next-ui'
-import { Chip, ChipProps } from '@mui/material'
-import clsx from 'clsx'
+import { iconCancelAlt, SvgIcon } from '@graphcommerce/next-ui'
+import { Chip, ChipProps, SxProps } from '@mui/material'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import ProductListLink from '../ProductListLink/ProductListLink'
@@ -17,13 +10,11 @@ import { ProductListFiltersFragment } from './ProductListFilters.gql'
 export type FilterCheckboxTypeProps = NonNullable<
   NonNullable<ProductListFiltersFragment['aggregations']>[0]
 > &
-  Omit<ChipProps, 'selected'> &
-  UseStyles<typeof useChipMenuStyles>
+  Omit<ChipProps, 'selected'> & { sx?: SxProps<Theme> }
 
 export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props
   const { params } = useProductListParamsContext()
-  // const classes = useMergedClasses(useChipMenuStyles().classes, props.classes)
   const currentFilter = params.filters[attribute_code]
   const replaceRoute = useProductListLinkReplace({ scroll: false })
 
@@ -43,7 +34,6 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
       link={{ scroll: false, replace: true }}
     >
       <Chip
-        variant='outlined'
         color={isActive ? undefined : 'default'}
         onDelete={
           isActive
@@ -61,7 +51,6 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
         label={label}
         clickable
         {...chipProps}
-        // className={clsx(classes.chip, isActive && classes.chipSelected, chipProps.className)}
       />
     </ProductListLink>
   )

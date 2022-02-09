@@ -91,7 +91,6 @@ export function TextInputNumber(props: TextInputNumberProps) {
     setTimeout(() => ref.current && updateDisabled(ref.current))
   }, [ref, inputProps.min, inputProps.max])
 
-  console.log(isOutlined(textFieldProps))
   return (
     <TextField
       {...textFieldProps}

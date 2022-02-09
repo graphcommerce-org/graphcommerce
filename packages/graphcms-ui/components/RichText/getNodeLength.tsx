@@ -1,6 +1,7 @@
-import { isElementNode, isTextNode, Node } from './RichText'
+import { isElementNode, isTextNode } from './RichText'
+import { ElementOrTextNode } from './types'
 
-export function getNodeLength(node: Node): number {
+export function getNodeLength(node: ElementOrTextNode): number {
   if (isElementNode(node))
     return node.children.map(getNodeLength).reduce<number>((prev, curr) => prev + curr, 0)
 

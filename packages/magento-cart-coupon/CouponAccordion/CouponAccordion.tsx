@@ -64,6 +64,7 @@ export default function CouponAccordion(props: CouponAccordionProps) {
             justifyContent: 'space-between',
             padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
             width: '100%',
+            borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
 
             '& .MuiButton-label': {
               display: 'flex',

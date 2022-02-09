@@ -11,7 +11,7 @@ export type SpecialBannerProps = ContainerProps & {
 }
 
 const name = 'SpecialBanner' as const
-const parts = ['root', 'wrapper', 'asset', 'topic', 'links', 'textContainer'] as const
+const parts = ['root', 'wrapper', 'copy', 'asset', 'topic', 'links', 'textContainer'] as const
 const { classes } = extendableComponent(name, parts)
 
 export function SpecialBanner(props: SpecialBannerProps) {

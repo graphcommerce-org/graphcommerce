@@ -1,13 +1,7 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { FilterRangeTypeInput } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
-import {
-  ChipMenu,
-  ChipMenuProps,
-  makeStyles,
-  useMergedClasses,
-  UseStyles,
-} from '@graphcommerce/next-ui'
+import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
 import { Box, Mark, Slider } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
@@ -17,37 +11,14 @@ import { ProductListFiltersFragment } from './ProductListFilters.gql'
 type FilterRangeTypeProps = NonNullable<
   NonNullable<ProductListFiltersFragment['aggregations']>[0]
 > &
-  Omit<ChipMenuProps, 'selected'> &
-  UseStyles<typeof useStyles>
+  Omit<ChipMenuProps, 'selected'>
 
 const sliderThumbWidth = 28
-const useStyles = makeStyles({ name: 'FilterRangeType' })((theme) => ({
-  container: {
-    padding: `${theme.spacings.xxs} ${theme.spacings.xxs} !important`,
-    width: '100%',
-  },
-  slider: {
-    maxWidth: `calc(100% - ${sliderThumbWidth}px)`,
-    margin: `${theme.spacings.xxs} auto`,
-    display: 'block',
-    paddingBottom: 32,
-    '& .MuiSlider-rail': {
-      height: 4,
-      borderRadius: 10,
-    },
-    '& .MuiSlider-track': {
-      height: 4,
-    },
-    '& .MuiSlider-thumb': {
-      width: sliderThumbWidth,
-      height: sliderThumbWidth,
-    },
-  },
-}))
+
+const { classes } = extendableComponent('FilterRangeType', ['root', 'container', 'slider'] as const)
 
 export default function FilterRangeType(props: FilterRangeTypeProps) {
   const { attribute_code, label, options, ...chipProps } = props
-  const classes = useMergedClasses(useStyles().classes, props.classes)
   const { params } = useProductListParamsContext()
   const replaceRoute = useProductListLinkReplace({ scroll: false })
 
@@ -139,6 +110,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
       selected={!!currentLabel}
       {...chipProps}
       onDelete={currentLabel ? resetFilter : undefined}
+      className={classes.root}
       labelRight={
         <>
           <Money round value={value[0]} />
@@ -171,6 +143,23 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
           }}
           valueLabelDisplay='off'
           className={classes.slider}
+          sx={(theme) => ({
+            maxWidth: `calc(100% - ${sliderThumbWidth}px)`,
+            margin: `${theme.spacings.xxs} auto`,
+            display: 'block',
+            paddingBottom: 32,
+            '& .MuiSlider-rail': {
+              height: 4,
+              borderRadius: 10,
+            },
+            '& .MuiSlider-track': {
+              height: 4,
+            },
+            '& .MuiSlider-thumb': {
+              width: sliderThumbWidth,
+              height: sliderThumbWidth,
+            },
+          })}
         />
       </Box>
     </ChipMenu>

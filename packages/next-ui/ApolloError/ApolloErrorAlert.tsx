@@ -36,10 +36,10 @@ export default function ApolloErrorAlert(props: ApolloErrorAlertProps) {
               {error.networkError && (
                 <AnimatedRow key='networkError'>
                   <Box
-                    sx={{
+                    sx={(theme) => ({
                       paddingTop: theme.spacings.xxs,
                       paddingBottom: theme.spacings.xxs,
-                    }}
+                    })}
                     className={classes.alert}
                     key='networkError'
                   >

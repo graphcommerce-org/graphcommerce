@@ -1,6 +1,6 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
-import { responsiveVal, breakpointVal, typography } from '@graphcommerce/next-ui'
+import { responsiveVal, breakpointVal } from '@graphcommerce/next-ui'
 import { createTheme, Theme, alpha } from '@mui/material'
 import { Components, PaletteOptions } from '@mui/material/styles'
 import shadows from './shadows'
@@ -254,13 +254,13 @@ const createOverrides = (theme: Theme): Components => ({
     styleOverrides: {
       root: {
         textTransform: 'none',
-        ...typography(theme, 'body2'),
+        ...theme.typography.body2,
         fontWeight: 400,
         padding: `${responsiveVal(8, 10)} ${responsiveVal(16, 20)}`,
       },
       sizeLarge: {
         padding: `${responsiveVal(10, 15)} ${responsiveVal(30, 60)}`,
-        ...typography(theme, 'body1'),
+        ...theme.typography.body1,
         fontWeight: 500,
       },
       iconSizeLarge: {
@@ -365,13 +365,13 @@ const createOverrides = (theme: Theme): Components => ({
         height: responsiveVal(32, 40),
         paddingLeft: responsiveVal(4, 8),
         paddingRight: responsiveVal(4, 8),
-        ...typography(theme, 'body2'),
+        ...theme.typography.body2,
       },
       sizeSmall: {
         height: responsiveVal(26, 30),
         paddingLeft: responsiveVal(3, 6),
         paddingRight: responsiveVal(3, 6),
-        ...typography(theme, 'caption'),
+        ...theme.typography.caption,
       },
       outlined: {
         borderColor: theme.palette.divider,

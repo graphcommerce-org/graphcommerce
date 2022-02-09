@@ -41,11 +41,7 @@ export default function SignInForm(props: SignInFormProps) {
           InputProps={{
             endAdornment: (
               <PageLink href='/account/forgot-password' key='forgot-password' passHref>
-                <Link
-                  className={classes.forgotPass}
-                  underline='hover'
-                  sx={{ whiteSpace: 'nowrap' }}
-                >
+                <Link underline='hover' sx={{ whiteSpace: 'nowrap' }}>
                   <Trans>Forgot password?</Trans>
                 </Link>
               </PageLink>

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../components/LayoutOverlay'
 
-export type LayoutOverlayState = Omit<LayoutOverlayProps, 'children' | 'classes'>
+export type LayoutOverlayState = Omit<LayoutOverlayProps, 'children' | 'sx'>
 
 function useQueryState<T extends ParsedUrlQuery>(builder: (query: T) => T) {
   const { query, replace } = useRouter()

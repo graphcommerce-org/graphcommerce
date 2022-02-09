@@ -1,4 +1,4 @@
-import { Box, SxProps } from '@mui/material'
+import { Box, SxProps, Theme } from '@mui/material'
 import clsx from 'clsx'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'

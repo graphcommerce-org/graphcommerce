@@ -6,7 +6,7 @@ import PageLink from 'next/link'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 
 export type CartStartCheckoutProps = CartStartCheckoutFragment & {
-  children: React.ReactNode
+  children?: React.ReactNode
   sx?: SxProps<Theme>
 }
 

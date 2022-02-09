@@ -25,7 +25,7 @@ import { CartAgreementsDocument } from './CartAgreements.gql'
 export type CartAgreementsFormProps = Pick<UseFormComposeOptions, 'step'> & { sx?: SxProps<Theme> }
 
 const name = 'CartAgreementsForm' as const
-const parts = ['formDiv', 'formInner', 'formControlRoot', 'manualCheck'] as const
+const parts = ['form', 'formInner', 'formControlRoot', 'manualCheck'] as const
 const { classes } = extendableComponent(name, parts)
 
 export default function CartAgreementsForm(props: CartAgreementsFormProps) {

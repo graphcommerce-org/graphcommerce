@@ -15,10 +15,7 @@ export default function AccountReviews(props: AccountReviewsProps) {
 
   if (loading) {
     return (
-      <Box
-        className={classes.reviewsContainer}
-        sx={(theme) => ({ marginBottom: theme.spacings.md })}
-      >
+      <Box className={classes.root} sx={(theme) => ({ marginBottom: theme.spacings.md })}>
         <SectionContainer labelLeft='Latest'>
           <Skeleton height={196} />
           <Skeleton height={196} />
@@ -27,7 +24,7 @@ export default function AccountReviews(props: AccountReviewsProps) {
     )
   }
   return (
-    <Box className={classes.reviewsContainer} sx={(theme) => ({ marginBottom: theme.spacings.md })}>
+    <Box className={classes.root} sx={(theme) => ({ marginBottom: theme.spacings.md })}>
       <SectionContainer labelLeft='Latest'>
         {latestReviews?.map(
           (review) => review && <CustomerReview key={review.created_at} {...review} />,

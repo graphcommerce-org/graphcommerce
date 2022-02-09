@@ -21,7 +21,7 @@ export default function CategorySearchResult(props: CategorySearchResultProps) {
       <Button
         fullWidth
         variant='contained'
-        className={classes.categoryButton}
+        className={classes.root}
         disableElevation
         endIcon={<SvgIcon src={iconChevronRight} size='small' />}
         sx={[

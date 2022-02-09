@@ -1,28 +1,21 @@
-import { UseStyles, makeStyles, useMergedClasses } from '@graphcommerce/next-ui'
-import { Typography } from '@mui/material'
-import React from 'react'
+import { extendableComponent } from '@graphcommerce/next-ui'
+import { SxProps, Theme, Typography } from '@mui/material'
 import { ProductShortDescriptionFragment } from './ProductShortDescription.gql'
 
-const useStyles = makeStyles({ name: 'ProductShortDescription' })({
-  root: {
-    '& > p': {
-      marginTop: 0,
-    },
-  },
-})
+type ProductShortDescriptionProps = ProductShortDescriptionFragment & { sx?: SxProps<Theme> }
 
-type ProductShortDescriptionProps = ProductShortDescriptionFragment & UseStyles<typeof useStyles>
+const { classes } = extendableComponent('ProductShortDescription', ['description'] as const)
 
 export default function ProductShortDescription(props: ProductShortDescriptionProps) {
-  const { short_description } = props
-  const classes = useMergedClasses(useStyles().classes, props.classes)
+  const { short_description, sx = [] } = props
 
   return (
     <Typography
       variant='body1'
       component='div'
-      classes={{ root: classes.root }}
+      className={classes.description}
       dangerouslySetInnerHTML={{ __html: short_description?.html ?? '' }}
+      sx={[{ '& > p': { marginTop: 0 } }, ...(Array.isArray(sx) ? sx : [sx])]}
     />
   )
 }

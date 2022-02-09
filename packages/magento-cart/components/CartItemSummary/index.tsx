@@ -26,7 +26,6 @@ const parts = [
   'prevNext',
   'prev',
   'next',
-  'costContainer',
   'sectionHeaderWrapper',
   'divider',
 ] as const
@@ -138,7 +137,6 @@ export default function CartItemSummary(props: OrderSummaryProps) {
           })}
         />
         <CartTotals
-          classes={{ costsContainer: classes.costContainer }}
           sx={(theme) => ({
             background: theme.palette.background.default,
             padding: 0,

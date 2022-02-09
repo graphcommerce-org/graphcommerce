@@ -103,9 +103,7 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
           >
             <ScrollerButton
               direction='left'
-              classes={{
-                root: clsx(classes.buttonRoot, classes.leftButtonRoot),
-              }}
+              className={(classes.buttonRoot, classes.leftButtonRoot)}
               sx={(theme) => ({
                 background: theme.palette.background.paper,
                 borderRadius: 0,

@@ -3,7 +3,6 @@
 import {
   responsiveVal,
   breakpointVal,
-  typography,
   MuiButtonPill,
   MuiButtonResponsive,
   themeBaseDefaults,
@@ -308,13 +307,13 @@ const createOverrides = (theme: Theme): Components => ({
         height: responsiveVal(32, 40),
         paddingLeft: responsiveVal(4, 8),
         paddingRight: responsiveVal(4, 8),
-        ...typography(theme, 'body2'),
+        ...theme.typography.body2,
       },
       sizeSmall: {
         height: responsiveVal(26, 30),
         paddingLeft: responsiveVal(3, 6),
         paddingRight: responsiveVal(3, 6),
-        ...typography(theme, 'caption'),
+        ...theme.typography.caption,
       },
       outlined: {
         borderColor: theme.palette.divider,

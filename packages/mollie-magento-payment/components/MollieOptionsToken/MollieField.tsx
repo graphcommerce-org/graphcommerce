@@ -120,14 +120,13 @@ export default function MollieField(props: MollieFieldProps) {
           inputProps: { component: IframeField },
         }}
         InputLabelProps={{
-          sx: () => ({
+          sx: (theme) => ({
             background:
               theme.palette.mode === 'light'
                 ? theme.palette.secondary.light
                 : theme.palette.background.paper,
           }),
           shrink: true,
-          classes: { root: classes.label },
         }}
       />
     </mollieFieldContext.Provider>

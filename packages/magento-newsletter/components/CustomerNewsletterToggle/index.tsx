@@ -1,23 +1,24 @@
 import { useQuery } from '@apollo/client'
 import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
-import { makeStyles, useMergedClasses, UseStyles } from '@graphcommerce/next-ui'
 import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { FormControl, FormControlLabel, FormHelperText, Switch, SwitchProps } from '@mui/material'
+import {
+  Box,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  Switch,
+  SwitchProps,
+  SxProps,
+  Theme,
+} from '@mui/material'
 import React from 'react'
 import { GetCustomerNewsletterToggleDocument } from './GetCustomerNewsLetterToggle.gql'
 import { UpdateNewsletterSubscriptionDocument } from './UpdateNewsletterSubscription.gql'
 
-export type CustomerNewsletterToggleProps = SwitchProps & UseStyles<typeof useStyles>
-
-const useStyles = makeStyles()(() => ({
-  labelRoot: {
-    marginRight: 0,
-  },
-}))
+export type CustomerNewsletterToggleProps = SwitchProps & { sx?: SxProps<Theme> }
 
 export default function CustomerNewsletterToggle(props: CustomerNewsletterToggleProps) {
-  const { disabled, ...switchProps } = props
-  const classes = useMergedClasses(useStyles().classes, props.classes)
+  const { disabled, sx = [], ...switchProps } = props
 
   const { loading, data } = useQuery(GetCustomerNewsletterToggleDocument, { ssr: false })
   const form = useFormGqlMutation(UpdateNewsletterSubscriptionDocument, {
@@ -34,14 +35,14 @@ export default function CustomerNewsletterToggle(props: CustomerNewsletterToggle
   if (disabled || loading) return <Switch disabled color='primary' {...switchProps} />
 
   return (
-    <form noValidate>
+    <Box component='form' onSubmit={submit} noValidate sx={sx}>
       <Controller
         name='isSubscribed'
         control={control}
         render={({ field: { onChange, value, name: controlName, ref, onBlur } }) => (
           <FormControl error={!!formState.errors.isSubscribed}>
             <FormControlLabel
-              classes={{ root: classes.labelRoot }}
+              sx={{ marginRight: 0 }}
               label=''
               control={<Switch color='primary' {...switchProps} />}
               checked={value}
@@ -58,6 +59,6 @@ export default function CustomerNewsletterToggle(props: CustomerNewsletterToggle
       />
 
       <ApolloCustomerErrorAlert error={error} />
-    </form>
+    </Box>
   )
 }

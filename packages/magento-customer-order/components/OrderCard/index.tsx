@@ -134,14 +134,14 @@ export default function OrderCard(props: OrderCardProps) {
           >
             <Box
               className={classes.images}
-              sx={{
+              sx={(theme) => ({
                 display: 'grid',
                 gridAutoFlow: 'column',
                 gap: theme.spacings.xxs,
                 padding: theme.spacings.xxs,
                 width: responsiveVal(75, 125),
                 height: responsiveVal(75, 125),
-              }}
+              })}
             >
               {items
                 ?.slice(0, maxItemsInRow)

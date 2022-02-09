@@ -1,5 +1,5 @@
 import { ThemeProvider, Typography, useTheme } from '@mui/material'
-import { MyComponent as ComponentChild, selectors } from '../components/ComponentChild'
+import { MyComponent as ComponentChild } from '../components/ComponentChild'
 import { MyComponent as ComponentChildVariant } from '../components/ComponentChildVariant'
 import { MyComponent as ComponentChildVariantExtendable } from '../components/ComponentChildVariantExtendable'
 import { MyComponent as ComponentStylable } from '../components/ComponentStylable'

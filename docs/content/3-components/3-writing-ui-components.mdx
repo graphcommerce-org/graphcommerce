@@ -22,7 +22,6 @@ Below is a full typescript example:
 
 ```tsx
 import { Button, makeStyles, Theme, Typography } from '@mui/material'
-import { UseStyles } from '@graphcommerce/next-ui'
 
 const useStyles = makeStyles((theme: Theme) => ({
   myComponentRoot: {
@@ -30,13 +29,22 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-export type MyComponentProps = React.PropsWithChildren<
-  UseStyles<typeof useStyles>
->
+export type MyComponentProps = { sx?: SxProps<Theme> }
 
 function MyComponent(props: MyComponentProps) {
-  const classes = useMergedClasses(useStyles().classes, props.classes)
-  return <div className={classes.myComponentRoot}>{children}</div>
+  const { sx = [] } = props
+  return (
+    <Box
+      sx={[
+        {
+          width: 100,
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      {children}
+    </Box>
+  )
 }
 ```
 

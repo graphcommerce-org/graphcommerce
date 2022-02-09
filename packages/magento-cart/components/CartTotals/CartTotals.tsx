@@ -12,7 +12,7 @@ export type CartTotalsProps = OwnerProps & { sx?: SxProps<Theme> }
 type OwnerProps = { containerMargin?: boolean }
 const name = 'CartTotals' as const
 const parts = [
-  'costsContainer',
+  'root',
   'costsDivider',
   'costsRow',
   'costsGrandTotal',
@@ -49,7 +49,7 @@ export default function CartTotals(props: CartTotalsProps) {
 
   return (
     <AnimatedRow
-      className={classes.costsContainer}
+      className={classes.root}
       sx={[
         (theme) => ({
           borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
@@ -59,7 +59,7 @@ export default function CartTotals(props: CartTotalsProps) {
               : lighten(theme.palette.background.default, 0.15),
           padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
 
-          '&.containerMarginTop': {
+          '&.containerMargin': {
             marginTop: theme.spacings.md,
           },
         }),
