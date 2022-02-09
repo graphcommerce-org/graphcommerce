@@ -24,18 +24,13 @@ export default function UpdateDefaultAddressForm(props: AccountAddressProps) {
 
   const form = useFormGqlMutation(
     UpdateDefaultAddressDocument,
-    {
-      mode: 'onChange',
-      defaultValues,
-    },
+    { mode: 'onChange', defaultValues },
     { errorPolicy: 'all' },
   )
 
   const { handleSubmit, control, error, reset, formState } = form
 
-  const submit = handleSubmit(() => {
-    //
-  })
+  const submit = handleSubmit(() => {})
   useFormAutoSubmit({ form, submit })
 
   useEffect(() => {

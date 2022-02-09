@@ -24,7 +24,7 @@ export function UsingBasic() {
       <ComponentChild
         sx={{
           backgroundColor: 'secondary.main',
-          [selectors.child]: {
+          [ComponentChild.selectors.child]: {
             backgroundColor: 'secondary.dark',
           },
         }}

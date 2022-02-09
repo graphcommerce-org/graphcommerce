@@ -7,7 +7,6 @@ import {
 } from '@graphcommerce/next-ui/LayoutOverlay/test/LayoutOverlayDemo'
 import { useForm, useFormAutoSubmit } from '@graphcommerce/react-hook-form'
 import { capitalize, Container, Hidden, Typography } from '@mui/material'
-import React from 'react'
 
 type Size = 'Sm' | 'Md'
 

@@ -1,5 +1,5 @@
 import { ImageProps, srcToString } from '@graphcommerce/image'
-import { Box } from '@mui/material'
+import { Box, SxProps, Theme } from '@mui/material'
 import clsx from 'clsx'
 import { ComponentProps, forwardRef } from 'react'
 import { ExtendableComponent } from '../Styles/extendableComponent'
@@ -20,11 +20,11 @@ declare module '@mui/material/styles/components' {
 
 export type SvgIconProps = StyleProps &
   Pick<ImageProps, 'src'> &
-  Pick<ComponentProps<typeof Svg>, 'sx' | 'className'>
+  Pick<ComponentProps<'svg'>, 'className'> & { sx?: SxProps<Theme> }
 
 /** SvgIcon component is supposed to be used in combination with `icons` */
 export const SvgIcon = forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => {
-  const { className, src, size, fillIcon, ...svgProps } = props
+  const { className, src, size, fillIcon, sx = [], ...svgProps } = props
 
   return (
     <Box
@@ -51,6 +51,7 @@ export const SvgIcon = forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => {
         size === 'xl' && { width: rv(38, 62), height: rv(38, 62), strokeWidth: 1.1 },
         size === 'xxl' && { width: rv(96, 148), height: rv(96, 148), strokeWidth: 0.8 },
         fillIcon === true && { fill: 'currentColor', stroke: `none` },
+        ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
       <use href={`${srcToString(src)}#icon`} />
