@@ -5,12 +5,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "command": "yarn codegen-run",
-      "name": "Run yarn codegen-run",
-      "request": "launch",
-      "type": "node-terminal"
-    },
-    {
       "command": "npx playwright test",
       "name": "Playwright",
       "request": "launch",
