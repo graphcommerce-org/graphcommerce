@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.165.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.165.0...@graphcommerce/graphcommerce@2.165.1) (2022-02-09)
+
+
+### Bug Fixes
+
+* change breakpoints down in footer component ([9ec181c](https://github.com/ho-nl/m2-pwa/commit/9ec181cc44f6b73450645b3b8a3ab57fd1a68d2e))
+
+
+
+
+
 # [2.165.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.164.3...@graphcommerce/graphcommerce@2.165.0) (2022-02-07)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.25.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.25.1...@graphcommerce/next-ui@3.25.2) (2022-02-09)
+
+
+### Bug Fixes
+
+* change breakpoints down in footer component ([9ec181c](https://github.com/ho-nl/m2-pwa/commit/9ec181cc44f6b73450645b3b8a3ab57fd1a68d2e))
+
+
+
+
+
 ## [3.25.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.25.0...@graphcommerce/next-ui@3.25.1) (2022-02-01)
 
 
