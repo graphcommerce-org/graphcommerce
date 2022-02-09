@@ -15,7 +15,7 @@ const useStyles = makeStyles(
       display: 'grid',
       gap: theme.spacings.xs,
       alignItems: 'center',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         paddingTop: theme.spacings.lg,
         paddingBottom: theme.spacings.lg,
         justifyItems: 'center',
@@ -43,7 +43,7 @@ const useStyles = makeStyles(
       gridArea: 'links',
       ...theme.typography.body2,
       gap: theme.spacings.sm,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         gridAutoFlow: 'row',
         textAlign: 'center',
         gap: 8,
@@ -52,7 +52,7 @@ const useStyles = makeStyles(
     support: {
       gridArea: 'support',
       justifySelf: 'flex-end',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         justifySelf: 'center',
       },
     },
@@ -65,14 +65,14 @@ const useStyles = makeStyles(
       '& > *': {
         minWidth: 'min-content',
       },
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         gap: `0 ${theme.spacings.sm}`,
       },
     },
     storeSwitcher: {
       gridArea: 'switcher',
       justifySelf: 'end',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         justifySelf: 'center',
       },
     },
