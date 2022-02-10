@@ -46,7 +46,7 @@ export default function CartStartCheckout(props: CartStartCheckoutProps) {
             className={classes.checkoutButtonTotal}
             sx={(theme) => ({
               paddingRight: theme.spacings.xxs,
-              '& ~ span.MuiButton-endIcon': { marginLeft: 6 },
+              '& ~ span.MuiButton-endIcon': { marginLeft: '6px' },
             })}
           >
             <Trans>Start Checkout</Trans>

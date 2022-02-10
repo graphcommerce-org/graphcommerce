@@ -18,7 +18,7 @@ export default function MDXWrapper({ children }) {
         '& pre': {
           background: theme.palette.background.image,
           display: 'inline-block',
-          padding: 20,
+          padding: '20px',
           maxWidth: '100%',
         },
       })}

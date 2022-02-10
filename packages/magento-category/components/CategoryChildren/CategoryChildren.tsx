@@ -58,7 +58,7 @@ export default function CategoryChildren(props: CategoryChildrenProps) {
                   marginLeft: `${theme.spacings.xxs}`,
                   typography: 'h6',
                   position: 'relative',
-                  paddingBottom: 8,
+                  paddingBottom: '8px',
                   '&:before': {
                     content: '""',
                     width: 40,

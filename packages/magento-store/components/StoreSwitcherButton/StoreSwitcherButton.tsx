@@ -21,7 +21,7 @@ export function StoreSwitcherButton(props: StoreSwitcherButtonProps) {
         <FlagAvatar
           country={country}
           className={classes.avatar}
-          sx={{ height: 20, width: 20, marginRight: 10 }}
+          sx={{ height: 20, width: 20, marginRight: '10px' }}
         />
         {config.data?.storeConfig?.store_name} - {config.data?.storeConfig?.base_currency_code}
       </Button>

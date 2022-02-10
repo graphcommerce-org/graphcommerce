@@ -146,7 +146,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
             maxWidth: `calc(100% - ${sliderThumbWidth}px)`,
             margin: `${theme.spacings.xxs} auto`,
             display: 'block',
-            paddingBottom: 32,
+            paddingBottom: '32px',
             '& .MuiSlider-rail': {
               height: 4,
               borderRadius: 10,

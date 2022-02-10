@@ -11,7 +11,7 @@ const name = 'MyComponent'
 const Root = styled('div', {
   name, // Name of the component we are building, so 'MyComponent' in this example
 })(({ theme }) => ({
-  padding: 3,
+  padding: '3px',
   display: 'flex',
   color: theme.palette.text.primary,
 }))

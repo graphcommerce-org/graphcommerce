@@ -35,7 +35,7 @@ function SheetDemo() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth={false}>
-        <form style={{ paddingTop: 100 }} onSubmit={submit}>
+        <form style={{ paddingTop: '100px' }} onSubmit={submit}>
           {sizes.map((size) => (
             <div key={size}>
               <Typography variant='subtitle1'>{size}</Typography>

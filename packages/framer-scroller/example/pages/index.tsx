@@ -25,7 +25,7 @@ function Index() {
           <Scroller
             sx={{
               gridTemplateRows: `100%`,
-              marginBottom: 20,
+              marginBottom: '20px',
               rowGap: 20,
               columnGap: 20,
               height: 400,

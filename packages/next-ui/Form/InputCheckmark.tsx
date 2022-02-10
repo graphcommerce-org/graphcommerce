@@ -19,7 +19,7 @@ export function InputCheckmark(props: InputCheckmarkProps) {
     <SvgIcon
       src={iconCheckmark}
       className='InputCheckmark'
-      sx={[{ stroke: '#01D26A' }, select && { marginRight: 15 }]}
+      sx={[{ stroke: '#01D26A' }, select && { marginRight: '15px' }]}
     />
   )
 }

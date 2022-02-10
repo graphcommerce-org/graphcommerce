@@ -5,7 +5,7 @@ import React from 'react'
 
 // We're creating a new styled('div') component and apply our styles to it.
 const Root = styled('div')(({ theme }) => ({
-  padding: 3,
+  padding: '3px',
   display: 'flex',
   color: theme.palette.text.primary,
 }))

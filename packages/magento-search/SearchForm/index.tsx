@@ -57,7 +57,7 @@ export default function SearchForm(props: SearchFormProps) {
           sx={(theme) => ({
             minWidth: 'max-content',
             color: theme.palette.text.disabled,
-            paddingRight: 7,
+            paddingRight: '7px',
           })}
         >
           {totalResults === 1 && <Trans>{totalResults} result</Trans>}

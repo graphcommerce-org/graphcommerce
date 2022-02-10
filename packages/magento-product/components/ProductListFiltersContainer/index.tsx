@@ -129,7 +129,7 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
             sx={(theme) => ({
               paddingLeft: theme.page.horizontal,
               paddingRight: theme.page.horizontal,
-              paddingBottom: 1,
+              paddingBottom: '1px',
               [theme.breakpoints.up('md')]: {
                 borderRadius: '99em',
                 paddingLeft: '6px',

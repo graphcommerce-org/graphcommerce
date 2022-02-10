@@ -134,7 +134,7 @@ export function MenuFab(props: MenuFabProps) {
               backgroundColor: theme.palette.background.paper,
               color: theme.palette.text.primary,
               minWidth: responsiveVal(200, 280),
-              marginTop: 12,
+              marginTop: '12px',
               [theme.breakpoints.down('md')]: {
                 marginTop: `calc((${fabIconSize} + 12px) * -1)`,
               },

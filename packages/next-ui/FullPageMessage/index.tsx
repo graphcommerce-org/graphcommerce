@@ -64,7 +64,7 @@ export function FullPageMessage(props: FullPageMessageProps) {
         <Box className={classes.button} sx={(theme) => ({ marginTop: theme.spacings.sm })}>
           {button}
         </Box>
-        <Box className={classes.altButton} sx={{ marginTop: 6 }}>
+        <Box className={classes.altButton} sx={{ marginTop: '6px' }}>
           {altButton}
         </Box>
       </Container>

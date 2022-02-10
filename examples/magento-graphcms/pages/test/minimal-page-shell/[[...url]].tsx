@@ -94,7 +94,7 @@ export function LayoutDemo(props: LayoutDemoProps) {
         {isMinimal || isSheet || withIcon || withTitle ? titleComponent : undefined}
       </LayoutHeader>
 
-      <Container maxWidth='md' style={{ paddingTop: 50 }}>
+      <Container maxWidth='md' style={{ paddingTop: '50px' }}>
         {/* <LayoutTitle icon={withIcon ? iconPerson : undefined}>{title}</LayoutTitle> */}
 
         {/* {isSheet && !primaryAction && (

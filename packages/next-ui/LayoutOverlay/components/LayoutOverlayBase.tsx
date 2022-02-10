@@ -342,14 +342,14 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
                   borderRadius: `${theme.shape.borderRadius * 3}px`,
                 },
                 '&.variantSmLeft.sizeSmFull': {
-                  paddingBottom: 1,
+                  paddingBottom: '1px',
                   minHeight: '100vh',
                   '@supports (-webkit-touch-callout: none)': {
                     minHeight: '-webkit-fill-available',
                   },
                 },
                 '&.variantSmRight.sizeSmFull': {
-                  paddingBottom: 1,
+                  paddingBottom: '1px',
                   minHeight: '100vh',
                   scrollSnapAlign: 'end',
                   '@supports (-webkit-touch-callout: none)': {
@@ -366,14 +366,14 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
                   minHeight: `calc(100vh - ${theme.appShell.headerHeightMd})`,
                 },
                 '&.sizeMdFull.variantMdLeft': {
-                  paddingBottom: 1,
+                  paddingBottom: '1px',
                   minHeight: '100vh',
                   '@supports (-webkit-touch-callout: none)': {
                     minHeight: '-webkit-fill-available',
                   },
                 },
                 '&.sizeMdFull.variantMdRight': {
-                  paddingBottom: 1,
+                  paddingBottom: '1px',
                   minHeight: '100vh',
                   scrollSnapAlign: 'end',
                   '@supports (-webkit-touch-callout: none)': {

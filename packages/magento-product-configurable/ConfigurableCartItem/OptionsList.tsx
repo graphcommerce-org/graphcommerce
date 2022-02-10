@@ -21,7 +21,7 @@ export default function OptionsList(props: CartItemOptionsListProps) {
           gridArea: 'itemOptions',
           cursor: 'default',
           marginLeft: 0,
-          paddingBottom: 4,
+          paddingBottom: '4px',
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

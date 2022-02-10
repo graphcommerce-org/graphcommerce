@@ -122,7 +122,7 @@ export default function OrderItems(props: OrderItemsProps) {
           sx={(theme) => ({
             margin: `${theme.spacings.xs} auto 0 auto`,
             textAlign: 'center',
-            '& a': { padding: 8 },
+            '& a': { padding: '8px' },
           })}
         >
           <Button variant='text' color='primary' onClick={() => setExpanded(!expanded)}>
