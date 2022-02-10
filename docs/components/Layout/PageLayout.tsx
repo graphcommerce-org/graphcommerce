@@ -1,10 +1,10 @@
 import { responsiveVal } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import React from 'react'
-import { DirectoryTree } from '../../util/files'
+import { ContentTree } from '../../util/files'
 import SidebarMenu from '../SidebarMenu'
 
-export type LayoutProps = { menuData: DirectoryTree; children: React.ReactNode }
+export type LayoutProps = { menuData: ContentTree; children: React.ReactNode }
 
 export default function Layout(props: LayoutProps) {
   const { menuData, children } = props
@@ -25,7 +25,7 @@ export default function Layout(props: LayoutProps) {
           borderRight: `1px solid ${theme.palette.divider}`,
         })}
       >
-        <SidebarMenu tree={menuData} />
+        <SidebarMenu menuData={menuData} />
       </Box>
       <Box
         sx={(theme) => ({

@@ -1,44 +1,77 @@
 import fs from 'fs'
 import path from 'path'
 
-export type DirectoryTree = [string, string[]][]
+type FolderType = { type?: 'file' | 'folder' }
+type Fields = { path: string; name: string }
+type FileTree = FolderType & Fields & { children?: FileTree[] }
 
-export const getAbsoluteFilePath = (file: string) => path.join(process.cwd(), file)
+export type ContentTree = Fields & { children?: ContentTree[] }
 
-export const getFilesInDir = (dir: string): string[] => {
-  const dirPath = getAbsoluteFilePath(dir)
-
-  if (!fs.existsSync(dirPath)) {
-    console.error(`[files.getFilesInDir]: dir "${dirPath}" not found`)
-    return []
+async function dirTree(dir: string, clean: (path: string) => string): Promise<FileTree> {
+  const stats = await fs.promises.lstat(dir)
+  const info: Partial<FileTree> = {
+    path: clean(dir),
+    name: path.basename(dir),
   }
 
-  const filenames = fs.readdirSync(dirPath)
+  if (stats.isDirectory()) {
+    info.type = 'folder'
+    info.children = await Promise.all(
+      (await fs.promises.readdir(dir)).map((child) => dirTree(`${dir}/${child}`, clean)),
+    )
+  } else {
+    info.type = 'file'
+  }
 
-  return filenames
+  return info as FileTree
 }
 
-export const getDirectoryTree = (
-  directory: string,
-  options?: { includeFilesAsKeys: string },
-): DirectoryTree => {
-  const filenames = getFilesInDir(directory)
-  const filteredFilenames = options?.includeFilesAsKeys
-    ? filenames
-    : filenames.filter((filename: string) => !filename.includes('.'))
-
-  const tree: [string, string[]][] = []
-
-  filteredFilenames.forEach((dirName: string) => {
-    const currentDir = path.join(process.cwd(), `${directory}/${dirName}`)
-    const files = fs.readdirSync(currentDir)
-
-    const dirContents: [string, string[]] = [
-      dirName,
-      files.sort((a, b) => a.localeCompare(b, 'nl', { numeric: true })),
-    ]
-    tree.push(dirContents)
-  })
-
+// Replace the path of the parent with the path of the child having index.mdx as name and remove from children.
+// Do this recursively for each child.
+// Remove type from tree
+function hoistIndex(tree: FileTree): false | ContentTree {
+  if (tree.type === 'folder') {
+    const index = tree.children?.find((child) => child.name === 'index.mdx')
+    if (index) {
+      tree.path = index.path
+      tree.children = tree.children?.filter((child) => child !== index)
+      tree.children?.map((child) => hoistIndex(child))
+    }
+  }
+  if (!tree.children) return false
+  delete tree.type
   return tree
 }
+
+export async function getDirectoryTree(dir: string): Promise<false | ContentTree> {
+  const absDir = path.join(process.cwd(), dir)
+
+  const clean = (p: string) => {
+    let relDir = path.relative(absDir, p)
+    relDir = relDir.replace('index.mdx', '')
+    relDir = relDir.endsWith('/') ? relDir.slice(0, -1) : relDir
+    return relDir
+  }
+
+  const tree = await dirTree(absDir, clean)
+  tree.name = 'Docs'
+
+  return hoistIndex(tree)
+}
+
+export async function getDirectoryPaths(dir: string) {
+  const menuData = await getDirectoryTree(dir)
+
+  const paths: string[] = []
+  const addPathsFromTree = (tree: ContentTree) => {
+    paths.push(tree.path)
+    if (tree.children?.length) {
+      tree.children.forEach((child) => addPathsFromTree(child))
+    }
+  }
+  if (menuData) addPathsFromTree(menuData)
+
+  return paths
+}
+
+export function sluggify(path: string) {}

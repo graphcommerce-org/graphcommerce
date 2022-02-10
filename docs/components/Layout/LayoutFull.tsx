@@ -7,7 +7,7 @@ import {
   MenuFabItem,
 } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
-import Logo from '../AppShell/Logo'
+import { Logo } from './Logo'
 
 export type LayoutFullProps = Omit<
   LayoutDefaultProps,

@@ -47,7 +47,7 @@ export default function OrderItems(props: OrderItemsProps) {
         >
           <Box
             className={classes.skeletonOrderItem}
-            sx={() => ({
+            sx={(theme) => ({
               marginTop: theme.spacings.xxs,
               marginBottom: theme.spacings.xxs,
             })}
@@ -56,7 +56,7 @@ export default function OrderItems(props: OrderItemsProps) {
           </Box>
           <Box
             className={classes.skeletonOrderItem}
-            sx={() => ({
+            sx={(theme) => ({
               marginTop: theme.spacings.xxs,
               marginBottom: theme.spacings.xxs,
             })}
@@ -65,7 +65,7 @@ export default function OrderItems(props: OrderItemsProps) {
           </Box>
           <Box
             className={classes.skeletonOrderItem}
-            sx={() => ({
+            sx={(theme) => ({
               marginTop: theme.spacings.xxs,
               marginBottom: theme.spacings.xxs,
             })}

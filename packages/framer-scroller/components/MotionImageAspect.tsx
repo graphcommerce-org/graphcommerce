@@ -1,12 +1,9 @@
 import { Image, ImageProps } from '@graphcommerce/image'
-import { extendableComponent } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import { m } from 'framer-motion'
 import { forwardRef } from 'react'
 
 export type MotionImageAspectProps = Omit<ImageProps, 'layout' | 'unoptimized'>
-
-const { classes } = extendableComponent('ScrollerDots', ['root', 'image', 'picture'] as const)
 
 /**
  * - Renders an image with the given aspect ratio
@@ -18,7 +15,7 @@ const { classes } = extendableComponent('ScrollerDots', ['root', 'image', 'pictu
 const MotionImageAspect = m(
   forwardRef<HTMLImageElement, MotionImageAspectProps>((props, ref) => (
     <Box
-      className={classes.root}
+      className='MotionImageAspect'
       sx={{
         position: 'relative',
 
@@ -58,9 +55,10 @@ const MotionImageAspect = m(
         {...props}
         layout='fill'
         ref={ref}
-        className={`${classes.image} ${props.className ?? ''}`}
+        className={props.className}
         pictureProps={{
-          className: `${classes.picture} ${props.pictureProps?.className ?? ''}`,
+          ...props.pictureProps,
+          className: props.pictureProps?.className,
           style: { ...props.style, aspectRatio: `${props.width} / ${props.height}` },
         }}
       />

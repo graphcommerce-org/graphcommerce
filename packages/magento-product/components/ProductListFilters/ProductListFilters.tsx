@@ -1,5 +1,4 @@
 import { ChipMenuProps } from '@graphcommerce/next-ui'
-import React from 'react'
 import { FilterTypes } from '../ProductListItems/filterTypes'
 import FilterCheckboxType from './FilterCheckboxType'
 import FilterEqualType from './FilterEqualType'

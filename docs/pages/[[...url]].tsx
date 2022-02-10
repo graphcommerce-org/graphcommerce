@@ -1,15 +1,15 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { iconChevronRight, LayoutHeader, SvgIcon, LayoutTitle } from '@graphcommerce/next-ui'
 import { Button } from '@mui/material'
+import { GetStaticPaths } from 'next'
 import Link from 'next/link'
 import { LayoutFull, LayoutFullProps } from '../components/Layout/LayoutFull'
 import PageLayout, { LayoutProps } from '../components/Layout/PageLayout'
-import { sanitizeDirectoryTree } from '../components/SidebarMenu/sanitizeDirectoryTree'
-import { getDirectoryTree } from '../util/files'
+import { ContentTree, getDirectoryPaths, getDirectoryTree } from '../util/files'
 
-type PageProps = LayoutProps
+type Props = LayoutProps
 
-function IndexPage(props: PageProps) {
+function IndexPage(props: Props) {
   const { menuData } = props
 
   return (
@@ -38,12 +38,19 @@ IndexPage.pageOptions = pageOptions
 
 export default IndexPage
 
-export const getStaticProps = () => {
-  const documentationTree = getDirectoryTree('content')
+export const getStaticPaths: GetStaticPaths<{ url: string[] }> = async () => {
+  const paths = await getDirectoryPaths('content')
 
   return {
-    props: {
-      menuData: sanitizeDirectoryTree(documentationTree),
-    },
+    fallback: 'blocking',
+    paths: paths.map((p) => ({ params: { url: p.split('/') } })),
+  }
+}
+
+export const getStaticProps = async () => {
+  const menuData = await getDirectoryTree('content')
+
+  return {
+    props: { menuData },
   }
 }
