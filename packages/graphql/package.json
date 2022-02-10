@@ -28,7 +28,7 @@
     "@graphql-codegen/typescript": "^2.4.3",
     "@graphql-codegen/typescript-apollo-client-helpers": "^2.1.10",
     "@graphql-codegen/typescript-document-nodes": "2.2.3",
-    "@graphql-codegen/typescript-operations": "2.2.4",
+    "@graphql-codegen/typescript-operations": "2.3.0",
     "apollo3-cache-persist": "^0.14.0",
     "graphql": "^16.3.0"
   }
