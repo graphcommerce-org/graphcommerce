@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.10.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.9.8...@graphcommerce/magento-cart@3.10.0) (2022-01-25)
+
+
+### Features
+
+* remove fixed fap and position cart with parent sticky ([bfd8adf](https://github.com/ho-nl/m2-pwa/commit/bfd8adf1372f77e6b27f6e0482ec03762d9148e4))
+
+
+
+
+
 # [3.9.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart@3.8.29...@graphcommerce/magento-cart@3.9.0) (2022-01-03)
 
 

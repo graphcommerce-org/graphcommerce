@@ -3,6 +3,140 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.165.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.165.0...@graphcommerce/graphcommerce@2.165.1) (2022-02-09)
+
+
+### Bug Fixes
+
+* change breakpoints down in footer component ([9ec181c](https://github.com/ho-nl/m2-pwa/commit/9ec181cc44f6b73450645b3b8a3ab57fd1a68d2e))
+
+
+
+
+
+# [2.165.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.164.3...@graphcommerce/graphcommerce@2.165.0) (2022-02-07)
+
+
+### Features
+
+* get cms pages from graphcms instead of Magento ([cd32634](https://github.com/ho-nl/m2-pwa/commit/cd32634e24b7d4b514c7e6df9a5301a39b700d6c))
+
+
+
+
+
+## [2.164.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.164.2...@graphcommerce/graphcommerce@2.164.3) (2022-02-03)
+
+
+### Bug Fixes
+
+* Allow style overrides for product page description ([4651293](https://github.com/ho-nl/m2-pwa/commit/4651293b5940f5c4f472f4a3aa679a42852f6615))
+
+
+
+
+
+## [2.164.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.164.1...@graphcommerce/graphcommerce@2.164.2) (2022-02-01)
+
+
+### Bug Fixes
+
+* make DesktopNavActions stylable ([db31369](https://github.com/ho-nl/m2-pwa/commit/db3136931d2ace1bfb6e7fecad0e01758aa2b397))
+
+
+
+
+
+# [2.164.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.163.6...@graphcommerce/graphcommerce@2.164.0) (2022-01-25)
+
+
+### Features
+
+* add beforeHeader prop ([00501ef](https://github.com/ho-nl/m2-pwa/commit/00501efab97fae2469f783751702db95e4e2c93e))
+* remove fixed fap and position cart with parent sticky ([bfd8adf](https://github.com/ho-nl/m2-pwa/commit/bfd8adf1372f77e6b27f6e0482ec03762d9148e4))
+
+
+
+
+
+## [2.163.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.163.5...@graphcommerce/graphcommerce@2.163.6) (2022-01-21)
+
+
+### Bug Fixes
+
+* prevent layout from breaking when url has params ([9197bf7](https://github.com/ho-nl/m2-pwa/commit/9197bf72c5c3e422d70741cadbc40b19a1ae4936))
+* rename dark to darkmode ([3d83669](https://github.com/ho-nl/m2-pwa/commit/3d83669f2fcce057f088e407cdce8345d0e0c485))
+
+
+
+
+
+## [2.163.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.163.4...@graphcommerce/graphcommerce@2.163.5) (2022-01-21)
+
+
+### Bug Fixes
+
+* darkMode logo ([80455ab](https://github.com/ho-nl/m2-pwa/commit/80455ab1deaad97b3fb92eeebc846e41f39da18f))
+
+
+
+
+
+## [2.163.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.163.3...@graphcommerce/graphcommerce@2.163.4) (2022-01-21)
+
+
+### Bug Fixes
+
+* favicon.svg path ([fefe20b](https://github.com/ho-nl/m2-pwa/commit/fefe20bd1d8392b9d39632c6335395dd4931af2f))
+
+
+
+
+
+## [2.163.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.163.2...@graphcommerce/graphcommerce@2.163.3) (2022-01-20)
+
+
+### Bug Fixes
+
+* search result label translation ([7e14ff5](https://github.com/ho-nl/m2-pwa/commit/7e14ff5548d86bc6b4f7afd51c259c0b833878f7))
+
+
+
+
+
+## [2.163.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.163.1...@graphcommerce/graphcommerce@2.163.2) (2022-01-20)
+
+
+### Bug Fixes
+
+* search result label ([a55fdc0](https://github.com/ho-nl/m2-pwa/commit/a55fdc07e3aeb57d3b3a2cb0378ecb227ebf23a2))
+
+
+
+
+
+## [2.163.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.163.0...@graphcommerce/graphcommerce@2.163.1) (2022-01-18)
+
+
+### Bug Fixes
+
+* favicon and manifest ([304d6dd](https://github.com/ho-nl/m2-pwa/commit/304d6dd7769d349b02b06dfdfdc3f9d22a4af081))
+
+
+
+
+
+# [2.163.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.162.1...@graphcommerce/graphcommerce@2.163.0) (2022-01-17)
+
+
+### Features
+
+* manifest and favicon ([a82202c](https://github.com/ho-nl/m2-pwa/commit/a82202c0e572f005cbcfca815936af9356eb2767))
+
+
+
+
+
 ## [2.162.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.162.0...@graphcommerce/graphcommerce@2.162.1) (2022-01-04)
 
 

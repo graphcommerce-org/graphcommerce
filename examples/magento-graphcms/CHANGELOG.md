@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.145.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.144.9...@graphcommerce/magento-graphcms@2.145.0) (2022-02-07)
+
+
+### Features
+
+* get cms pages from graphcms instead of Magento ([cd32634](https://github.com/ho-nl/m2-pwa/commit/cd32634e24b7d4b514c7e6df9a5301a39b700d6c))
+
+
+
+
+
+## [2.144.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.144.5...@graphcommerce/magento-graphcms@2.144.6) (2022-01-21)
+
+
+### Bug Fixes
+
+* prevent layout from breaking when url has params ([9197bf7](https://github.com/ho-nl/m2-pwa/commit/9197bf72c5c3e422d70741cadbc40b19a1ae4936))
+* rename dark to darkmode ([3d83669](https://github.com/ho-nl/m2-pwa/commit/3d83669f2fcce057f088e407cdce8345d0e0c485))
+
+
+
+
+
+## [2.144.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.144.4...@graphcommerce/magento-graphcms@2.144.5) (2022-01-21)
+
+
+### Bug Fixes
+
+* darkMode logo ([80455ab](https://github.com/ho-nl/m2-pwa/commit/80455ab1deaad97b3fb92eeebc846e41f39da18f))
+
+
+
+
+
+## [2.144.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.144.2...@graphcommerce/magento-graphcms@2.144.3) (2022-01-20)
+
+
+### Bug Fixes
+
+* search result label translation ([7e14ff5](https://github.com/ho-nl/m2-pwa/commit/7e14ff5548d86bc6b4f7afd51c259c0b833878f7))
+
+
+
+
+
+## [2.144.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.144.0...@graphcommerce/magento-graphcms@2.144.1) (2022-01-18)
+
+
+### Bug Fixes
+
+* favicon and manifest ([304d6dd](https://github.com/ho-nl/m2-pwa/commit/304d6dd7769d349b02b06dfdfdc3f9d22a4af081))
+
+
+
+
+
+# [2.144.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.143.1...@graphcommerce/magento-graphcms@2.144.0) (2022-01-17)
+
+
+### Features
+
+* manifest and favicon ([a82202c](https://github.com/ho-nl/m2-pwa/commit/a82202c0e572f005cbcfca815936af9356eb2767))
+
+
+
+
+
 # [2.143.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.142.2...@graphcommerce/magento-graphcms@2.143.0) (2022-01-04)
 
 

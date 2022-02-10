@@ -3,6 +3,84 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.25.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.25.1...@graphcommerce/next-ui@3.25.2) (2022-02-09)
+
+
+### Bug Fixes
+
+* change breakpoints down in footer component ([9ec181c](https://github.com/ho-nl/m2-pwa/commit/9ec181cc44f6b73450645b3b8a3ab57fd1a68d2e))
+
+
+
+
+
+## [3.25.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.25.0...@graphcommerce/next-ui@3.25.1) (2022-02-01)
+
+
+### Bug Fixes
+
+* make DesktopNavActions stylable ([db31369](https://github.com/ho-nl/m2-pwa/commit/db3136931d2ace1bfb6e7fecad0e01758aa2b397))
+
+
+
+
+
+# [3.25.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.24.3...@graphcommerce/next-ui@3.25.0) (2022-01-25)
+
+
+### Features
+
+* add beforeHeader prop ([00501ef](https://github.com/ho-nl/m2-pwa/commit/00501efab97fae2469f783751702db95e4e2c93e))
+* remove fixed fap and position cart with parent sticky ([bfd8adf](https://github.com/ho-nl/m2-pwa/commit/bfd8adf1372f77e6b27f6e0482ec03762d9148e4))
+
+
+
+
+
+## [3.24.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.24.2...@graphcommerce/next-ui@3.24.3) (2022-01-21)
+
+
+### Bug Fixes
+
+* prevent layout from breaking when url has params ([9197bf7](https://github.com/ho-nl/m2-pwa/commit/9197bf72c5c3e422d70741cadbc40b19a1ae4936))
+
+
+
+
+
+## [3.24.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.24.1...@graphcommerce/next-ui@3.24.2) (2022-01-21)
+
+
+### Bug Fixes
+
+* favicon.svg path ([fefe20b](https://github.com/ho-nl/m2-pwa/commit/fefe20bd1d8392b9d39632c6335395dd4931af2f))
+
+
+
+
+
+## [3.24.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.24.0...@graphcommerce/next-ui@3.24.1) (2022-01-18)
+
+
+### Bug Fixes
+
+* favicon and manifest ([304d6dd](https://github.com/ho-nl/m2-pwa/commit/304d6dd7769d349b02b06dfdfdc3f9d22a4af081))
+
+
+
+
+
+# [3.24.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.23.1...@graphcommerce/next-ui@3.24.0) (2022-01-17)
+
+
+### Features
+
+* manifest and favicon ([a82202c](https://github.com/ho-nl/m2-pwa/commit/a82202c0e572f005cbcfca815936af9356eb2767))
+
+
+
+
+
 ## [3.23.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.23.0...@graphcommerce/next-ui@3.23.1) (2022-01-04)
 
 

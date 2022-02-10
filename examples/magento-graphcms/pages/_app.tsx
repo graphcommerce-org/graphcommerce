@@ -16,9 +16,9 @@ export default function ThemedApp(props: AppProps) {
   const { locale = 'en', asPath } = router
 
   // Hack for the demo to allow using darkmode without any fancy darkmode toggles
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(asPath.includes('darkmode'))
   useEffect(() => {
-    setDarkMode(asPath.includes('dark'))
+    setDarkMode(asPath.includes('darkmode'))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
