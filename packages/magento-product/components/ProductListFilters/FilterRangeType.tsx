@@ -1,7 +1,7 @@
 import { cloneDeep, FilterRangeTypeInput } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
-import { Box, Mark, Slider } from '@mui/material'
+import { Box, Slider } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
@@ -22,7 +22,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
   const replaceRoute = useProductListLinkReplace({ scroll: false })
 
   // eslint-disable-next-line no-case-declarations
-  const marks: { [index: number]: Mark } = {}
+  const marks: { [index: number]: { value: number; label?: React.ReactNode } } = {}
   const paramValues = params.filters[attribute_code]
 
   const [min, maxish] = options
