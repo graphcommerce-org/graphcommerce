@@ -74,7 +74,7 @@
     "@graphcommerce/prettier-config-pwa": "^3.0.5",
     "@graphcommerce/react-hook-form": "^2.104.7",
     "@graphcommerce/typescript-config-pwa": "^3.1.2",
-    "@graphql-codegen/cli": "^2.6.1",
+    "@graphql-codegen/cli": "^2.5.0",
     "@graphql-mesh/cli": "^0.50.0",
     "@lingui/macro": "^3.13.2",
     "@mui/material": "^5.4.1",
