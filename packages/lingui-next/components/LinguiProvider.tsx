@@ -11,6 +11,7 @@ type LinguiProviderProps = Omit<I18nProviderProps, 'i18n'> & {
   locale: string
 }
 
+// todo: Load these plurals with a loader, however dynamic imports doesn't support tree shaking so loading them dynamically will load all locales.
 i18n.loadLocaleData({
   nl: { plurals: nl },
   fr: { plurals: fr },
