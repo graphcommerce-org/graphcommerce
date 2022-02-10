@@ -97,21 +97,12 @@ export function SpecialBanner(props: SpecialBannerProps) {
             className={classes.textContainer}
             sx={(theme) => ({
               maxWidth: '70%',
-              [theme.breakpoints.up('md')]: {
-                maxWidth: '100%',
-              },
+              [theme.breakpoints.up('md')]: { maxWidth: '100%' },
             })}
           >
             {children}
           </Box>
-          <Box
-            className={classes.links}
-            sx={(theme) => ({
-              typography: 'body2',
-              [theme.breakpoints.up('md')]: { typography: 'h4' },
-              '& > *': { color: theme.palette.text.primary },
-            })}
-          >
+          <Box className={classes.links} sx={{ typography: { xs: 'body2', md: 'h4' } }}>
             {pageLinks}
           </Box>
         </Box>

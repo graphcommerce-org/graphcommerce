@@ -15,7 +15,7 @@ export function RowSpecialBanner(props: RowSpecialBannerProps) {
       asset={asset && <Asset asset={asset} sizes='50vw' />}
       pageLinks={pageLinks.map((pageLink) => (
         <PageLink href={pageLink.url} key={pageLink.url}>
-          <Link underline='always' href={pageLink.url} title={pageLink.title}>
+          <Link underline='always' href={pageLink.url} title={pageLink.title} color='inherit'>
             {pageLink.title}
           </Link>
         </PageLink>
@@ -24,10 +24,11 @@ export function RowSpecialBanner(props: RowSpecialBannerProps) {
       <RichText
         {...copy}
         sxRenderer={{
-          'heading-one': (theme) => ({
+          'heading-two': (theme) => ({
             textTransform: 'uppercase' as const,
             color: 'text.primary',
             ...breakpointVal('fontSize', 36, 82, theme.breakpoints.values),
+            marginBottom: 0,
             '& strong': {
               // https://github.com/rsms/inter/issues/292#issuecomment-674993644
               color: 'background.default',
