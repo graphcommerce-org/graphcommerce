@@ -1,9 +1,12 @@
+import { EmotionJSX } from '@emotion/react/types/jsx-namespace'
 import createEmotionServer from '@emotion/server/create-instance'
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import type NextDocument from 'next/document'
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import type { DocumentContext, DocumentInitialProps } from 'next/document'
 import { createMuiCache } from './EmotionProvider'
+
+export type EmotionCacheProps = { emotionStyleTags: EmotionJSX.Element[] }
 
 export function withEmotionCache(Document: typeof NextDocument): typeof NextDocument {
   return class DocumentWithEmotionCache extends Document {
@@ -23,9 +26,9 @@ export function withEmotionCache(Document: typeof NextDocument): typeof NextDocu
           />
         ))
 
-      const props: DocumentInitialProps = {
+      const props: DocumentInitialProps & EmotionCacheProps = {
         ...initialProps,
-        head: [...emotionStyleTags, ...(initialProps.head ?? [])],
+        emotionStyleTags,
       }
       return props
     }
