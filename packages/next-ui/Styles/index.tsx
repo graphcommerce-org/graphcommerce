@@ -8,7 +8,8 @@ export type UseStyles<T extends (...args: never[]) => unknown> = {
 }
 
 export * from './breakpointVal'
-export * from './responsiveVal'
-export * from './withTheme'
-export * from './tssReact'
+export * from './EmotionProvider'
 export * from './extendableComponent'
+export * from './responsiveVal'
+export * from './withEmotionCache'
+export * from './withTheme'

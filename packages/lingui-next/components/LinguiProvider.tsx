@@ -43,9 +43,9 @@ export function LinguiProvider(props: LinguiProviderProps) {
           } catch (e) {
             if (process.env.NODE_ENV !== 'production')
               throw new Error(
-                `Can not find the .po file for the locale '${localeOnly}'. Possible reasons:
-- If you've added a new locale, please run 'yarn lingui:extact' to generate the .po file.
-- Make sure the passed load function is correct.`,
+                `Could not load locale. Can't find the .po file for the locale '${localeOnly}'. Possible reasons:
+- You have configured a new locale in the .env and there is no .po file for it. Please run 'yarn lingui:extact' to generate the .po file or duplicate an existing one.
+- The load function you passed to is incorrect.`,
               )
             if (process.env.NODE_ENV === 'production') console.error(e)
           }

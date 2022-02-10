@@ -1,4 +1,4 @@
-import { Box, Link, SxProps, Theme } from '@mui/material'
+import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
@@ -35,7 +35,7 @@ export function BlogListItem(props: BlogListItemProps) {
           gridTemplateRows: `${responsiveVal(140, 220)} auto auto`,
           alignContent: 'start',
           color: theme.palette.text.primary,
-          gap: theme.spacings.sm,
+          gap: theme.spacings.xxs,
           marginBottom: theme.spacings.sm,
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
@@ -84,14 +84,10 @@ export function BlogListItem(props: BlogListItemProps) {
       </Box>
 
       <PageLink href={`/${url}`} passHref>
-        <Link
-          href={`/${url}`}
-          className={classes.title}
-          sx={{ typography: 'h3' }}
-          color='inherit'
-          underline='hover'
-        >
-          <Box component='h2'>{title}</Box>
+        <Link href={`/${url}`} className={classes.title} color='inherit' underline='hover'>
+          <Typography component='h2' variant='h4'>
+            {title}
+          </Typography>
         </Link>
       </PageLink>
     </Box>
