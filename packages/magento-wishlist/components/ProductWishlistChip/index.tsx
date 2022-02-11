@@ -10,7 +10,13 @@ import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { GetIsInWishlistsDocument } from '@graphcommerce/magento-wishlist'
 import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
 
-export type ProductWishlistChipProps = ProductWishlistChipFragment & ChipProps
+type ProductWishlistSettings = {
+  display?: 'guest' | 'customer'
+}
+
+export type ProductWishlistChipProps = ProductWishlistChipFragment &
+  ChipProps &
+  ProductWishlistSettings
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -27,9 +33,10 @@ const useStyles = makeStyles(
 )
 
 export default function ProductWishlistChip(props: ProductWishlistChipProps) {
-  const { sku, ...chipProps } = props
+  const { display, sku, ...chipProps } = props
   const classes = useStyles()
   const [inWishlist, setInWishlist] = useState(false)
+  const [displayWishlist, setDisplayWishlist] = useState(true)
 
   const { data: token } = useQuery(CustomerTokenDocument)
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
@@ -39,8 +46,14 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
     skip: !isLoggedIn,
   })
 
-  // Mark as active when product is available in either customer or guest wishlist
   useEffect(() => {
+    // Do not display wishlist UI to guests when configured as customer only
+    if (display === 'customer' && !isLoggedIn) {
+      setDisplayWishlist(false)
+      return
+    }
+
+    // Mark as active when product is available in either customer or guest wishlist
     if (isLoggedIn && !loading && !inWishlist) {
       const inWishlistTest =
         GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items.map(
@@ -113,5 +126,5 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
     />
   )
 
-  return chip
+  return displayWishlist ? chip : null
 }
