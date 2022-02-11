@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.25.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.25.2...@graphcommerce/next-ui@3.25.3) (2022-02-11)
+
+
+### Bug Fixes
+
+* Removal of default style where H2 and H3 get converted to H4, style wise. ([68772ec](https://github.com/ho-nl/m2-pwa/commit/68772eccbb3d8c1f1ecd59cf0e47f3435a9f1d55))
+
+
+
+
+
 ## [3.25.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@3.25.1...@graphcommerce/next-ui@3.25.2) (2022-02-09)
 
 
