@@ -1,13 +1,14 @@
 import RichText from '@graphcommerce/graphcms-ui/RichText'
 import { ColumnOneBoxed } from '@graphcommerce/next-ui'
-import { RowColumnOneProps } from '.'
+import React from 'react'
+import { RowColumnOneFragment } from '.'
 
-function RowColumnOneBoxed(props: RowColumnOneProps) {
-  const { colOne, richTextOneClasses } = props
+function RowColumnOneBoxed(props: RowColumnOneFragment) {
+  const { colOne} = props
 
   return (
     <ColumnOneBoxed>
-      <RichText {...colOne} classes={richTextOneClasses} />
+      <RichText {...colOne} />
     </ColumnOneBoxed>
   )
 }
