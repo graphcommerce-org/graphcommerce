@@ -11,9 +11,6 @@ const useStyles = makeStyles(
       display: `grid`,
       gridTemplateColumns: `1fr`,
       gridTemplateAreas: `"one" "two"`,
-      '& h2, & h3': {
-        ...theme.typography.h4,
-      },
       [theme.breakpoints.up('sm')]: {
         gridTemplateColumns: `1fr 1fr`,
         gridTemplateAreas: `"one two"`,

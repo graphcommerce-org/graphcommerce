@@ -1,14 +1,14 @@
 import RichText from '@graphcommerce/graphcms-ui/RichText'
 import { ColumnOneCentered } from '@graphcommerce/next-ui'
 import React from 'react'
-import type { RowColumnOneProps } from '.'
+import { RowColumnOneFragment } from './RowColumnOne.gql'
 
-function RowColumnOneCentered(props: RowColumnOneProps) {
-  const { colOne, richTextOneClasses } = props
+function RowColumnOneCentered(props: RowColumnOneFragment) {
+  const { colOne } = props
 
   return (
     <ColumnOneCentered>
-      <RichText {...colOne} classes={richTextOneClasses} />
+      <RichText {...colOne} />
     </ColumnOneCentered>
   )
 }
