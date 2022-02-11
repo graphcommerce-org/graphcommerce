@@ -4,7 +4,7 @@ import React from 'react'
 import { RowColumnOneFragment } from './RowColumnOne.gql'
 
 export default function RowColumnOne(props: RowColumnOneFragment) {
-  const { colOne, richTextOneClasses } = props
+  const { colOne } = props
 
   return (
     <ColumnOne>
