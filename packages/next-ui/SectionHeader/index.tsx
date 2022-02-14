@@ -2,7 +2,8 @@ import { Box, Typography, TypographyProps, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../Styles'
 
-const { componentName, classes, selectors } = extendableComponent('SectionHeader', [
+const { classes, selectors } = extendableComponent('SectionHeader', [
+  'root',
   'left',
   'right',
 ] as const)
@@ -29,7 +30,7 @@ export function SectionHeader(props: SectionHeaderProps) {
 
   return (
     <Box
-      className={componentName}
+      className={classes.root}
       sx={[
         (theme) => ({
           position: 'relative',

@@ -9,7 +9,8 @@ export type FooterProps = {
   copyright?: React.ReactElement
 } & Omit<ContainerProps, 'children'>
 
-const { componentName, classes, selectors } = extendableComponent('Footer', [
+const { classes, selectors } = extendableComponent('Footer', [
+  'root',
   'social',
   'storeSwitcher',
   'support',
@@ -51,7 +52,7 @@ export function Footer(props: FooterProps) {
         },
       })}
       maxWidth={false}
-      className={componentName}
+      className={classes.root}
       {...containerProps}
     >
       <Box

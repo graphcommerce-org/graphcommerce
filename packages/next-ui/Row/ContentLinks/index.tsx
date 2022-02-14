@@ -20,7 +20,7 @@ export function ContentLinks(props: ContentLinksProps) {
     <Container
       className={classes.root}
       maxWidth={false}
-      sx={(theme) => ({ marginBottom: `${theme.spacings.lg}` })}
+      sx={(theme) => ({ marginBottom: `${theme.spacings.md}` })}
     >
       <ScrollerProvider scrollSnapAlign='none'>
         <Scroller

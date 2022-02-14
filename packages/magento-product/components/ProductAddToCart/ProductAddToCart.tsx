@@ -14,7 +14,8 @@ import PageLink from 'next/link'
 import React from 'react'
 import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
 
-const { componentName, classes, selectors } = extendableComponent('ProductAddToCart', [
+const { classes, selectors } = extendableComponent('ProductAddToCart', [
+  'root',
   'button',
   'price',
   'divider',
@@ -40,7 +41,7 @@ export default function ProductAddToCart(
   const submitHandler = handleSubmit(() => {})
 
   return (
-    <Box component='form' onSubmit={submitHandler} noValidate className={componentName} sx={sx}>
+    <Box component='form' onSubmit={submitHandler} noValidate className={classes.root} sx={sx}>
       <Divider className={classes.divider} sx={(theme) => ({ margin: `${theme.spacings.xs} 0` })} />
 
       <Typography

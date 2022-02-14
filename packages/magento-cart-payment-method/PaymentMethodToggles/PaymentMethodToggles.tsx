@@ -137,7 +137,7 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                     gridTemplateRows: `100%`,
                     gap: responsiveVal(4, 8),
                     height: responsiveVal(60, 85),
-                    borderRadius: 5,
+                    borderRadius: '5px',
                   }}
                 >
                   {methods?.map((pm) => {

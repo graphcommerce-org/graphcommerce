@@ -21,7 +21,7 @@ export default function ProductListPagination({
       count={page_info?.total_pages}
       page={page_info?.current_page ?? 1}
       renderLink={(page: number, icon: React.ReactNode, btnProps: any) => (
-        <ProductListLink {...btnProps} {...params} currentPage={btnProps.page}>
+        <ProductListLink {...btnProps} {...params} currentPage={btnProps.page} color='inherit'>
           {icon}
         </ProductListLink>
       )}

@@ -14,7 +14,7 @@ const { classes } = extendableComponent(compName, parts)
 
 export default function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
   const { mollie_available_issuers = [] } = props
-  const { code, step, Container, label, title } = props
+  const { code, step, Container, label, title = '' } = props
 
   const form = useFormGqlMutationCart(SetMolliePaymentMethodIssuerOnCartDocument, {
     mode: 'onChange',

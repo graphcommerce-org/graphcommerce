@@ -3,9 +3,7 @@ import PageLink, { LinkProps as PageLinkProps } from 'next/link'
 import { useRouter } from 'next/router'
 import { extendableComponent } from '../Styles/extendableComponent'
 
-const { componentName, classes, selectors } = extendableComponent('DesktopNavItem', [
-  'line',
-] as const)
+const { classes, selectors } = extendableComponent('DesktopNavItem', ['root', 'line'] as const)
 
 export type DesktopNavItemProps = LinkProps & Pick<PageLinkProps, 'href'>
 
@@ -16,7 +14,7 @@ export function DesktopNavItem(props: DesktopNavItemProps) {
   return (
     <PageLink href={href} passHref>
       <Link
-        className={componentName}
+        className={classes.root}
         variant='h6'
         color='text.primary'
         underline='none'

@@ -78,11 +78,7 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
             paddingRight: theme.spacings.xs,
           })}
         >
-          <SvgIcon
-            src={iconSrc}
-            size='large'
-            sx={(theme) => ({ color: theme.palette.text.disabled })}
-          />
+          <SvgIcon src={iconSrc} size='large' />
         </ListItemIcon>
         <ListItemText
           primaryTypographyProps={{ sx: { typography: 'subtitle1' } }}

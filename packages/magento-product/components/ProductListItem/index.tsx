@@ -9,7 +9,8 @@ import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { useProductLink } from '../../hooks/useProductLink'
 import ProductListPrice from '../ProductListPrice'
 
-const { componentName, classes, selectors } = extendableComponent('ProductListItem', [
+const { classes, selectors } = extendableComponent('ProductListItem', [
+  'root',
   'item',
   'title',
   'titleContainer',
@@ -87,7 +88,7 @@ export default function ProductListItem(props: ProductListItemProps) {
           }),
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
-        className={componentName}
+        className={classes.root}
       >
         <Box
           sx={(theme) => ({

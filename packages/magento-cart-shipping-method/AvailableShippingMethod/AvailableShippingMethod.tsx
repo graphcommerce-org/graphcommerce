@@ -100,7 +100,7 @@ const AvailableShippingMethod = React.forwardRef<any, AvailableShippingMethodPro
           children && (
             <Box
               className={classes.additional}
-              sx={{ typography: 'body1', gridArea: 'additional' }}
+              sx={{ typography: 'body2', gridArea: 'additional' }}
             >
               {children}
             </Box>

@@ -149,7 +149,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
             paddingBottom: '32px',
             '& .MuiSlider-rail': {
               height: 4,
-              borderRadius: 10,
+              borderRadius: '10px',
             },
             '& .MuiSlider-track': {
               height: 4,

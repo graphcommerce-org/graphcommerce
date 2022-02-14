@@ -19,7 +19,7 @@ export const MuiSlider = (theme: Theme): Components['MuiSlider'] => ({
   //   {
   //     props: { size: 'large' },
   //     style: {
-  //       '& .MuiSlider-rail': { height: 4, borderRadius: 2 },
+  //       '& .MuiSlider-rail': { height: 4, borderRadius: '2px' },
   //       '& .MuiSlider-track': { height: 4 },
   //       '& .MuiSlider-thumb': { width: 28, height: 28 },
   //     },

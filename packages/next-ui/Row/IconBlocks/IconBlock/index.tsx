@@ -38,7 +38,7 @@ export const IconBlock = React.forwardRef<HTMLAnchorElement, IconBlockProps>((pr
       borderRadius: '6px',
       textAlign: 'center',
       color: theme.palette.text.primary,
-      '& > * > *': {
+      '& > *': {
         display: 'grid',
         gridAutoFlow: 'row',
         justifyItems: 'center',

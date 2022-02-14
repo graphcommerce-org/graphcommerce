@@ -16,7 +16,7 @@ type OrderCardProps = Partial<OrderCardFragment> & {
   sx?: SxProps<Theme>
 }
 
-const componentName = 'NoOrdersFound' as const
+const componentName = 'OrderCard' as const
 const parts = [
   'orderContainer',
   'orderRow',
@@ -31,13 +31,9 @@ const { classes } = extendableComponent(componentName, parts)
 
 const OrderContainer = styled(Box, { name: componentName, target: classes.orderContainer })(
   ({ theme }) => ({
-    [theme.breakpoints.up('sm')]: {
-      padding: theme.spacings.md,
-    },
+    padding: theme.spacings.sm,
     display: 'grid',
     justifyContent: 'center',
-    paddingTop: theme.spacings.lg,
-    paddingBottom: theme.spacings.lg,
     width: '100%',
   }),
 )
@@ -98,9 +94,7 @@ export default function OrderCard(props: OrderCardProps) {
             boxShadow: 'none',
             marginTop: theme.spacings.xxs,
             borderBottom: `1px solid ${theme.palette.divider}`,
-            '&:hover': {
-              background: 'none',
-            },
+            '&:hover': { background: 'none' },
           }),
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}

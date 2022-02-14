@@ -30,7 +30,7 @@ export const SvgIcon = forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => {
       component='svg'
       ref={ref}
       aria-hidden='true'
-      className={`${name} ${className}`}
+      className={`${name} ${className ?? ''}`}
       {...svgProps}
       sx={[
         {

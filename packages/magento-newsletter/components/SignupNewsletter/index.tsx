@@ -37,7 +37,7 @@ export default function SignupNewsletter(props: SignupNewsletterProps) {
           padding: theme.spacings.sm,
           typgraphy: 'body1',
           marginTop: theme.spacings.sm,
-          borderRadius: 4,
+          borderRadius: '4px',
           gridTemplateColumns: '1fr',
           gridTemplateAreas: `"a" "b"`,
           justifyItems: 'start',

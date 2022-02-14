@@ -4,6 +4,7 @@ type OrderStateLabelInlineProps = OrderStateLabelProps
 
 export default function OrderStateLabelInline(props: OrderStateLabelInlineProps) {
   const { sx = [] } = props
+
   return (
     <OrderStateLabel
       {...props}
@@ -12,7 +13,7 @@ export default function OrderStateLabelInline(props: OrderStateLabelInlineProps)
           fontStyle: 'normal',
           display: 'inline-block',
           padding: `0 6px`,
-          borderRadius: 3,
+          borderRadius: '3px',
           fontWeight: 'normal',
           background: `${theme.palette.secondary.main}20`,
 

@@ -36,7 +36,7 @@ export default function CartItemOptionDropdown(props: CartItemOptionDropdownProp
         sx={(theme) => ({
           padding: `${theme.spacings.xxs} ${theme.spacings.xxs}`,
           border: `1px solid ${theme.palette.divider}`,
-          borderRadius: 8,
+          borderRadius: '8px',
           minWidth: 120,
           '&:before': {
             borderBottom: 'none',

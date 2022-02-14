@@ -5,6 +5,7 @@ import {
   ListItem,
   ListItemProps,
   ListItemText,
+  ListItemButton,
   Menu,
   styled,
   Box,
@@ -19,26 +20,6 @@ import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconMenu, iconClose } from '../icons'
 import { useFabAnimation } from './useFabAnimation'
 
-export type MenuFabItemProps = Omit<ListItemProps<'div'>, 'href' | 'button'> &
-  Pick<PageLinkProps, 'href'>
-
-export function MenuFabItem(props: MenuFabItemProps) {
-  const { href, children, sx, ...listItemProps } = props
-  const hrefString = href.toString()
-  const { asPath } = useRouter()
-  const active = hrefString === '/' ? asPath === hrefString : asPath.startsWith(hrefString)
-
-  return (
-    <PageLink key={href.toString()} href={href} passHref>
-      <ListItem button dense selected={active} {...listItemProps}>
-        <ListItemText sx={{ typography: 'h4' }} disableTypography>
-          {children}
-        </ListItemText>
-      </ListItem>
-    </PageLink>
-  )
-}
-
 const MotionDiv = styled(m.div)({})
 
 export type MenuFabProps = {
@@ -49,7 +30,8 @@ export type MenuFabProps = {
   closeIcon?: React.ReactNode
 }
 
-const { componentName, classes, selectors } = extendableComponent('MenuFab', [
+const { classes, selectors } = extendableComponent('MenuFab', [
+  'root',
   'fab',
   'shadow',
   'menu',
@@ -73,6 +55,7 @@ export function MenuFab(props: MenuFabProps) {
   return (
     <Box sx={{ width: fabIconSize, height: fabIconSize }}>
       <MotionDiv
+        className={classes.root}
         sx={(theme) => ({
           [theme.breakpoints.down('md')]: {
             opacity: '1 !important',
@@ -80,7 +63,6 @@ export function MenuFab(props: MenuFabProps) {
           },
         })}
         style={{ scale, opacity }}
-        className={componentName}
       >
         <Fab
           color='inherit'
@@ -141,15 +123,12 @@ export function MenuFab(props: MenuFabProps) {
             }),
           }}
           className={classes.menu}
+          MenuListProps={{ dense: true }}
         >
-          {search && (
-            <List>
-              <ListItem dense>{search}</ListItem>
-            </List>
-          )}
-          <List>{children}</List>
-          <Divider variant='middle' />
-          <List component='div'>{secondary}</List>
+          {search && <ListItem dense>{search}</ListItem>}
+          {children}
+          <Divider variant='middle' sx={{ my: '6px' }} />
+          {secondary}
         </Menu>
       </MotionDiv>
     </Box>

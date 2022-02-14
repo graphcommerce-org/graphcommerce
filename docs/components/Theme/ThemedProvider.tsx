@@ -356,12 +356,12 @@ const createOverrides = (theme: Theme): Components => ({
       track: {
         '.Mui-colorPrimary + &': {
           backgroundColor: theme.palette.primary,
-          borderRadius: 30,
+          borderRadius: '30px',
         },
         '.Mui-checked.Mui-colorPrimary + &': {
           opacity: 1,
           backgroundColor: theme.palette.primary,
-          borderRadius: 30,
+          borderRadius: '30px',
         },
       },
       thumb: {

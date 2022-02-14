@@ -45,18 +45,10 @@ export function LayoutFull(props: LayoutFullProps) {
           <DesktopNavBar>
             {menuItemsIncludeInMenu?.map((item) => {
               const highLight = item?.name?.toLowerCase().includes('sale')
+                ? { textTransform: 'uppercase', letterSpacing: 0.3, color: 'primary.main' }
+                : {}
               return (
-                <DesktopNavItem
-                  key={item?.uid}
-                  href={`/${item?.url_path}`}
-                  sx={{
-                    ...(highLight && {
-                      textTransform: 'uppercase',
-                      letterSpacing: 0.3,
-                      color: 'primary.main',
-                    }),
-                  }}
-                >
+                <DesktopNavItem key={item?.uid} href={`/${item?.url_path}`} sx={highLight}>
                   {item?.name}
                 </DesktopNavItem>
               )
@@ -100,18 +92,10 @@ export function LayoutFull(props: LayoutFullProps) {
           </MenuFabItem>
           {menuItemsIncludeInMenu?.map((item) => {
             const highLight = item?.name?.toLowerCase().includes('sale')
+              ? { textTransform: 'uppercase', letterSpacing: 0.3, color: 'primary.main' }
+              : {}
             return (
-              <MenuFabItem
-                key={item?.uid}
-                href={`/${item?.url_path}`}
-                sx={{
-                  ...(highLight && {
-                    textTransform: 'uppercase',
-                    letterSpacing: 0.3,
-                    color: 'primary.main',
-                  }),
-                }}
-              >
+              <MenuFabItem key={item?.uid} href={`/${item?.url_path}`} sx={highLight}>
                 {item?.name}
               </MenuFabItem>
             )

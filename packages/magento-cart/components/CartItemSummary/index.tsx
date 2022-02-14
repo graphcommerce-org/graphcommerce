@@ -47,7 +47,7 @@ export default function CartItemSummary(props: OrderSummaryProps) {
         (theme) => ({
           padding: `${theme.spacings.sm} ${theme.spacings.sm}`,
           border: `1px ${theme.palette.divider} solid`,
-          borderRadius: 4,
+          borderRadius: '4px',
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

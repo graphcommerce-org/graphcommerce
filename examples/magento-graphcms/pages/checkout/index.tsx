@@ -89,9 +89,7 @@ function ShippingPage() {
                 <Typography
                   variant='body2'
                   component='ul'
-                  sx={(theme) => ({
-                    paddingLeft: theme.spacings.xs,
-                  })}
+                  sx={(theme) => ({ pl: theme.spacings.xs, mt: theme.spacings.xxs })}
                 >
                   <li>
                     <Trans>

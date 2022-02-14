@@ -6,7 +6,8 @@ import { ComponentProps } from 'react'
 
 // To be able to select children from the consuming side, we define the classes.
 // Minimal utility to convert the classes to selectors. Hover over `selectors` to see what it means.
-const { componentName, classes, selectors } = extendableComponent('MyComponent', ['child'] as const)
+const componentName = 'MyComponent' as const
+const { classes, selectors } = extendableComponent(componentName, ['root', 'child'] as const)
 
 // Props that are used in our styled elements to render different CSS
 type MyComponentStyleProps = { variant?: 'cool' | 'supercool' }
@@ -16,6 +17,7 @@ type MyComponentStyleProps = { variant?: 'cool' | 'supercool' }
 // We're creating a new styled('div') component and apply our styles to it.
 const Root = styled('div', {
   name: componentName,
+  target: classes.root,
 })<MyComponentStyleProps>(({ theme }) => ({
   // Styles are added
   display: 'flex',

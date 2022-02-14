@@ -13,7 +13,8 @@ export type DotsProps = {
   sx?: SxProps<Theme>
 }
 
-const { componentName, classes } = extendableComponent('ScrollerDots', ['dot', 'circle'] as const)
+const componentName = 'ScrollerDots'
+const { classes } = extendableComponent(componentName, ['root', 'dot', 'circle'] as const)
 
 const ScrollerDots = m(
   React.forwardRef<HTMLDivElement, DotsProps>((props, ref) => {
@@ -26,7 +27,7 @@ const ScrollerDots = m(
     return (
       <MotionBox
         {...containerProps}
-        className={componentName}
+        className={classes.root}
         ref={ref}
         sx={[
           {

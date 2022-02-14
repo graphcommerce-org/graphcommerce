@@ -3,7 +3,8 @@ import React from 'react'
 import { Row } from '../Row'
 import { extendableComponent } from '../Styles'
 
-const { componentName, selectors, classes } = extendableComponent('ContainerWithHeader', [
+const { selectors, classes } = extendableComponent('ContainerWithHeader', [
+  'root',
   'head',
   'title',
   'right',
@@ -20,7 +21,7 @@ export function ContainerWithHeader(props: ContainerWithHeaderProps) {
   const { title, rightArea, children, sx } = props
 
   return (
-    <Row className={componentName} sx={sx}>
+    <Row className={classes.root} sx={sx}>
       <Box
         className={classes.head}
         sx={(theme) => ({

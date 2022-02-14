@@ -12,8 +12,9 @@ import { responsiveVal } from '../Styles/responsiveVal'
 import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 
-const { componentName, classes, selectors } = extendableComponent('SidebarSlider', [
+const { classes, selectors } = extendableComponent('SidebarSlider', [
   'root',
+  'grid',
   'sidebar',
   'scrollerContainer',
   'scroller',
@@ -28,10 +29,10 @@ export function SidebarSlider(props: SidebarSliderProps) {
   const { children, sidebar, sx } = props
 
   return (
-    <Row maxWidth={false} disableGutters className={componentName} sx={sx}>
+    <Row maxWidth={false} disableGutters className={classes.root} sx={sx}>
       <ScrollerProvider scrollSnapAlign='start'>
         <Box
-          className={classes.root}
+          className={classes.grid}
           sx={{
             display: 'grid',
             gridTemplateColumns: 'minmax(150px, 25%) 1fr',

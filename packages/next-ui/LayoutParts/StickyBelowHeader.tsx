@@ -13,6 +13,10 @@ export function StickyBelowHeader(props: StickyBelowHeaderProps) {
         position: 'sticky',
         top: { xs: theme.appShell.headerHeightSm, md: `${theme.page.vertical} !important` },
         zIndex: 96,
+        pointerEvents: 'none',
+        '& > *': {
+          pointerEvents: 'auto',
+        },
       })}
       maxWidth={false}
       {...props}

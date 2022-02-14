@@ -13,7 +13,7 @@ export type PagePaginationProps = {
 } & Omit<PaginationProps, 'count' | 'defaultPage' | 'page' | 'renderItem'>
 
 const parts = ['root', 'button', 'icon'] as const
-const { classes } = extendableComponent('LayoutHeaderContent', parts)
+const { classes } = extendableComponent('Pagination', parts)
 
 /**
  * Rel="prev" and rel="next" are deprecated by Google.
@@ -41,7 +41,7 @@ export function Pagination(props: PagePaginationProps) {
       aria-label='Previous page'
       className={classes.button}
     >
-      <SvgIcon src={iconChevronLeft} className={classes.icon} size='small' />
+      <SvgIcon src={iconChevronLeft} className={classes.icon} size='medium' />
     </IconButton>
   )
 
@@ -53,7 +53,7 @@ export function Pagination(props: PagePaginationProps) {
       aria-label='Next page'
       className={classes.button}
     >
-      <SvgIcon src={iconChevronRight} className={classes.icon} size='small' />
+      <SvgIcon src={iconChevronRight} className={classes.icon} size='medium' />
     </IconButton>
   )
 

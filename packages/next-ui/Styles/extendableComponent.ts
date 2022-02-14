@@ -60,7 +60,6 @@ export function extendableComponent<
   }
 
   return {
-    componentName,
     classes,
     selectors: {
       // ...stateSelectors,

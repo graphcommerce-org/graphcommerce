@@ -11,7 +11,8 @@ export type MenuTabsProps = {
   iconRight?: SvgIconProps['src']
 } & Pick<BoxProps, 'sx'>
 
-const { componentName, classes, selectors } = extendableComponent('DesktopNavBar', [
+const { classes, selectors } = extendableComponent('DesktopNavBar', [
+  'root',
   'scroller',
   'leftWrapper',
   'rightWrapper',
@@ -25,7 +26,7 @@ export function DesktopNavBar(props: MenuTabsProps) {
   return (
     <ScrollerProvider scrollSnapAlign='none'>
       <Box
-        className={componentName}
+        className={classes.root}
         sx={[
           {
             width: '100%',

@@ -68,7 +68,7 @@ function RenderElement(element: ElementNode & AdditionalProps) {
 
   if (Component) {
     return (
-      <Component {...props} sx={sx}>
+      <Component {...props} sx={[sxRenderer.all, ...(Array.isArray(sx) ? sx : [sx])]}>
         <RenderChildren childNodes={children} sxRenderer={sxRenderer} renderers={renderers} />
       </Component>
     )

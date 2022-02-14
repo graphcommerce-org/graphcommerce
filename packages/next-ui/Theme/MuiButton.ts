@@ -14,30 +14,31 @@ export const MuiButtonResponsive: ButtonVariants = [
     props: {},
     style: ({ theme }) => ({
       textTransform: 'none',
-      ...theme.typography.body2,
       fontWeight: 500,
     }),
   },
   {
     props: { size: 'small' },
-    style: {
+    style: ({ theme }) => ({
+      ...theme.typography.body2,
       padding: `${responsiveVal(3, 5)} ${responsiveVal(9, 15)}`,
       '& .MuiLoadingButton-loadingIndicatorEnd': { right: responsiveVal(9, 15) },
       '& .MuiLoadingButton-loadingIndicatorStart': { left: responsiveVal(9, 15) },
-    },
+    }),
   },
   {
     props: { size: 'medium' },
-    style: {
+    style: ({ theme }) => ({
+      ...theme.typography.body1,
       padding: `${responsiveVal(8, 11)} ${responsiveVal(16, 24)}`,
       '& .MuiLoadingButton-loadingIndicatorEnd': { right: responsiveVal(16, 24) },
       '& .MuiLoadingButton-loadingIndicatorStart': { left: responsiveVal(16, 24) },
-    },
+    }),
   },
   {
     props: { size: 'large' },
     style: ({ theme }) => ({
-      ...theme.typography.body1,
+      ...theme.typography.subtitle1,
       fontWeight: theme.typography.fontWeightBold,
       padding: `${responsiveVal(10, 15)} ${responsiveVal(30, 60)}`,
       '& .MuiLoadingButton-loadingIndicatorEnd': { right: responsiveVal(30, 60) },

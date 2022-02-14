@@ -23,6 +23,7 @@ const MotionBox = styled(m.div)({})
 type OwnerState = { zoomed: boolean }
 const name = 'SidebarGallery' as const
 const parts = [
+  'row',
   'root',
   'scrollerContainer',
   'scroller',
@@ -36,11 +37,10 @@ const parts = [
   'centerRight',
   'dots',
 ] as const
-const { withState, selectors, componentName } = extendableComponent<
-  OwnerState,
-  typeof name,
-  typeof parts
->(name, parts)
+const { withState, selectors } = extendableComponent<OwnerState, typeof name, typeof parts>(
+  name,
+  parts,
+)
 
 export type SidebarGalleryProps = {
   sidebar: React.ReactNode
@@ -109,7 +109,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   return (
     <ScrollerProvider scrollSnapAlign='center'>
-      <Row maxWidth={false} disableGutters className={componentName}>
+      <Row maxWidth={false} disableGutters className={classes.row}>
         <MotionBox
           layout
           className={classes.root}

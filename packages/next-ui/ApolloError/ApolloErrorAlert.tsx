@@ -4,9 +4,7 @@ import { AnimatePresence } from 'framer-motion'
 import { AnimatedRow } from '../AnimatedRow'
 import { extendableComponent } from '../Styles/extendableComponent'
 
-const { componentName, classes, selectors } = extendableComponent('ApolloErrorAlert', [
-  'alert',
-] as const)
+const { classes, selectors } = extendableComponent('ApolloErrorAlert', ['root', 'alert'] as const)
 
 export type ApolloErrorAlertProps = {
   error?: ApolloError
@@ -21,7 +19,7 @@ export default function ApolloErrorAlert(props: ApolloErrorAlertProps) {
     <AnimatePresence initial={false}>
       {error && (
         <AnimatedRow key='alerts'>
-          <Box sx={sx} className={componentName}>
+          <Box sx={sx} className={classes.root}>
             <AnimatePresence initial={false}>
               {error.graphQLErrors.map((e, index) => (
                 // eslint-disable-next-line react/no-array-index-key

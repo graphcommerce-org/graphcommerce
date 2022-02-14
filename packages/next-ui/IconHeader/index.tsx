@@ -17,7 +17,8 @@ type IconHeaderProps = {
 
 type IconHeaderHeadings = 'h2' | 'h4' | 'h5'
 
-const { componentName, classes, selectors } = extendableComponent('IconHeader', [
+const { classes, selectors } = extendableComponent('IconHeader', [
+  'root',
   'container',
   'innerContainer',
   'breakColumnsDesktop',
@@ -45,7 +46,7 @@ export function IconHeader(props: IconHeaderProps) {
 
   return (
     <Box
-      className={componentName}
+      className={classes.root}
       sx={[
         {
           typography: 'subtitle1',

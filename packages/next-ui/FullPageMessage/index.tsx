@@ -13,7 +13,7 @@ export type FullPageMessageProps = {
   sx?: SxProps<Theme>
 }
 
-const { componentName, classes, selectors } = extendableComponent('FullPageMessage', [
+const { classes, selectors } = extendableComponent('FullPageMessage', [
   'root',
   'innerContainer',
   'subject',
@@ -27,7 +27,7 @@ export function FullPageMessage(props: FullPageMessageProps) {
 
   return (
     <Box
-      className={componentName}
+      className={classes.root}
       sx={[
         (theme) => ({
           alignItems: 'center',
