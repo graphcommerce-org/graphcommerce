@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.145.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.145.1...@graphcommerce/magento-graphcms@2.145.2) (2022-02-11)
+
+
+### Bug Fixes
+
+* Import of RowColumnOneFragement fixed. ([a3e0956](https://github.com/ho-nl/m2-pwa/commit/a3e09569b8e9cecec1d0d4fa6d63cff279583670))
+* removal of non existing prop. ([8802ab2](https://github.com/ho-nl/m2-pwa/commit/8802ab2f4c9b5463629bcf78875d2f181b8559a1))
+* Removal of UseRichTextStyles passed as prop. This is already handled in de <RichText /> component. ([3803dd8](https://github.com/ho-nl/m2-pwa/commit/3803dd88c5f29be57030026547b2948188551bdb))
+* Removal of UseRichTextStyles passed as prop. This is already handled in de <RichText /> component. ([ae2681b](https://github.com/ho-nl/m2-pwa/commit/ae2681bf95dcc640933b2d872626236cd7b25ceb))
+
+
+
+
+
 # [2.145.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.144.9...@graphcommerce/magento-graphcms@2.145.0) (2022-02-07)
 
 

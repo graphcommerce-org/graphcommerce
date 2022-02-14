@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.165.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.165.2...@graphcommerce/graphcommerce@2.165.3) (2022-02-11)
+
+
+### Bug Fixes
+
+* Import of RowColumnOneFragement fixed. ([a3e0956](https://github.com/ho-nl/m2-pwa/commit/a3e09569b8e9cecec1d0d4fa6d63cff279583670))
+* Removal of default style where H2 and H3 get converted to H4, style wise. ([68772ec](https://github.com/ho-nl/m2-pwa/commit/68772eccbb3d8c1f1ecd59cf0e47f3435a9f1d55))
+* removal of non existing prop. ([8802ab2](https://github.com/ho-nl/m2-pwa/commit/8802ab2f4c9b5463629bcf78875d2f181b8559a1))
+* Removal of UseRichTextStyles passed as prop. This is already handled in de <RichText /> component. ([3803dd8](https://github.com/ho-nl/m2-pwa/commit/3803dd88c5f29be57030026547b2948188551bdb))
+* Removal of UseRichTextStyles passed as prop. This is already handled in de <RichText /> component. ([ae2681b](https://github.com/ho-nl/m2-pwa/commit/ae2681bf95dcc640933b2d872626236cd7b25ceb))
+
+
+
+
+
 ## [2.165.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/graphcommerce@2.165.0...@graphcommerce/graphcommerce@2.165.1) (2022-02-09)
 
 

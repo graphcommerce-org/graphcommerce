@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-newsletter",
-  "version": "1.1.46",
+  "version": "1.1.47",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -17,9 +17,9 @@
   },
   "dependencies": {
     "@graphcommerce/graphql": "^2.105.13",
-    "@graphcommerce/magento-cart": "^3.10.2",
-    "@graphcommerce/magento-customer": "^3.6.43",
-    "@graphcommerce/next-ui": "^3.25.2",
+    "@graphcommerce/magento-cart": "^3.10.3",
+    "@graphcommerce/magento-customer": "^3.6.44",
+    "@graphcommerce/next-ui": "^3.25.3",
     "@graphcommerce/react-hook-form": "^2.104.7",
     "@lingui/macro": "^3.13.2",
     "@mui/material": "^5.4.1",

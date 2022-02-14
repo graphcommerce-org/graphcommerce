@@ -27,9 +27,6 @@ export function ColumnTwo(props: ColumnTwoProps) {
           display: `grid`,
           gridTemplateColumns: `1fr`,
           gridTemplateAreas: `"one" "two"`,
-          '& h2, & h3': {
-            typographty: 'h4',
-          },
           [theme.breakpoints.up('sm')]: {
             gridTemplateColumns: `1fr 1fr`,
             gridTemplateAreas: `"one two"`,
