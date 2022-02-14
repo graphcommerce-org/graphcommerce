@@ -76,16 +76,18 @@ export function LayoutFull(props: LayoutFullProps) {
       menuFab={
         <MenuFab
           search={<SearchButton onClick={onSearchStart} label={t`Search...`} fullWidth />}
-          secondary={
-            <>
-              <CustomerMenuFabItem guestHref='/account/signin' authHref='/account'>
-                <Trans>Account</Trans>
-              </CustomerMenuFabItem>
-              <MenuFabSecondaryItem icon={<SvgIcon src={iconCustomerService} />} href='/service'>
-                <Trans>Customer Service</Trans>
-              </MenuFabSecondaryItem>
-            </>
-          }
+          secondary={[
+            <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
+              <Trans>Account</Trans>
+            </CustomerMenuFabItem>,
+            <MenuFabSecondaryItem
+              key='service'
+              icon={<SvgIcon src={iconCustomerService} />}
+              href='/service'
+            >
+              <Trans>Customer Service</Trans>
+            </MenuFabSecondaryItem>,
+          ]}
         >
           <MenuFabItem href='/'>
             <Trans>Home</Trans>

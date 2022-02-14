@@ -1,17 +1,5 @@
-import {
-  Divider,
-  Fab,
-  List,
-  ListItem,
-  ListItemProps,
-  ListItemText,
-  ListItemButton,
-  Menu,
-  styled,
-  Box,
-} from '@mui/material'
+import { Divider, Fab, ListItem, Menu, styled, Box } from '@mui/material'
 import { m } from 'framer-motion'
-import PageLink, { LinkProps as PageLinkProps } from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import { extendableComponent } from '../Styles/extendableComponent'
@@ -125,10 +113,16 @@ export function MenuFab(props: MenuFabProps) {
           className={classes.menu}
           MenuListProps={{ dense: true }}
         >
-          {search && <ListItem dense>{search}</ListItem>}
-          {children}
-          <Divider variant='middle' sx={{ my: '6px' }} />
-          {secondary}
+          {[
+            search ? (
+              <ListItem key='search' dense sx={{ mb: '6px' }}>
+                {search}
+              </ListItem>
+            ) : null,
+            ...React.Children.toArray(children),
+            <Divider key='divider' variant='middle' sx={{ my: '6px' }} />,
+            ...React.Children.toArray(secondary),
+          ]}
         </Menu>
       </MotionDiv>
     </Box>
