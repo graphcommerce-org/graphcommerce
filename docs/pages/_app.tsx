@@ -5,12 +5,12 @@ import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 import { CssAndFramerMotionProvider, GlobalHead, PageLoadIndicator } from '@graphcommerce/next-ui'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { AppProps } from 'next/app'
-import { darkTheme } from '../components/Theme/ThemedProvider'
+import { lightTheme } from '../components/theme'
 
 export default function ThemedApp(props: AppProps) {
   return (
     <CssAndFramerMotionProvider>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={lightTheme}>
         {/* <GoogleAnalyticsScript /> */}
         {/* <GoogleRecaptchaV3Script /> */}
         {/* <GoogleTagManagerScript /> */}

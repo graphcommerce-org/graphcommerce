@@ -31,7 +31,7 @@ if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
   throw Error('Please specify NEXT_PUBLIC_GRAPHQL_ENDPOINT in your .env')
 }
 
-/** @type {import('next/dist/server/config-shared').NextConfig} */
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   rewrites() {
     return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
