@@ -7,7 +7,7 @@ export default function useRenderCount() {
   return (
     <input
       style={{
-        borderRadius: 6,
+        borderRadius: '6px',
         padding: 0,
         border: 0,
         height: 20,

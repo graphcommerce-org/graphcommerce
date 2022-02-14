@@ -1,27 +1,30 @@
-import { useQuery } from '@apollo/client'
-import { iconPerson, StyledBadge, SvgImageSimple, UseStyles } from '@graphcommerce/next-ui'
+import { useQuery } from '@graphcommerce/graphql'
+import {
+  iconPerson,
+  DesktopHeaderBadge,
+  SvgIcon,
+  extendableComponent,
+} from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
-import { Fab, FabProps as FabPropsType, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from '../../hooks'
-
-const useStyles = makeStyles((theme: Theme) => ({
-  colorError: {
-    backgroundColor: theme.palette.grey['500'],
-  },
-}))
 
 type CustomerFabContentProps = CustomerTokenQuery & {
   icon?: React.ReactNode
   authHref: string
   guestHref: string
   FabProps?: Omit<FabPropsType, 'children'>
-} & UseStyles<typeof useStyles>
+  sx?: SxProps<Theme>
+}
+
+const name = 'CustomerFab'
+const parts = ['root'] as const
+const { classes } = extendableComponent(name, parts)
 
 function CustomerFabContent(props: CustomerFabContentProps) {
-  const { customerToken, icon, guestHref, authHref, FabProps } = props
-  const classes = useStyles(props)
+  const { customerToken, icon, guestHref, authHref, FabProps, sx } = props
   const requireAuth = Boolean(!customerToken || !customerToken.valid)
 
   return (
@@ -31,16 +34,18 @@ function CustomerFabContent(props: CustomerFabContentProps) {
         data-test-id='customer-fab'
         aria-label={t`Account`}
         size='large'
+        className={classes.root}
         {...FabProps}
+        sx={sx}
       >
-        <StyledBadge
+        <DesktopHeaderBadge
           badgeContent={customerToken?.token ? 1 : 0}
           color={customerToken?.valid ? 'primary' : 'error'}
           variant='dot'
-          classes={{ colorError: classes.colorError }}
+          overlap='circular'
         >
-          {icon ?? <SvgImageSimple src={iconPerson} size='large' />}
-        </StyledBadge>
+          {icon ?? <SvgIcon src={iconPerson} size='large' />}
+        </DesktopHeaderBadge>
       </Fab>
     </PageLink>
   )

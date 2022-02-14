@@ -1,11 +1,6 @@
-import { Container, styled } from '@material-ui/core'
+import { Container, styled } from '@mui/material'
 
-const ColumnOne = styled(Container)(
-  ({ theme }) => ({
-    maxWidth: 820,
-    marginBottom: theme.spacings.lg,
-  }),
-  { name: 'ColumnOne' },
-)
-
-export default ColumnOne
+export const ColumnOne = styled(Container, { name: 'ColumnOne' })(({ theme }) => ({
+  maxWidth: 820,
+  marginBottom: theme.spacings.lg,
+}))

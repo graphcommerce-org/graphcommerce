@@ -1,22 +1,14 @@
-import { FormRow, UseStyles, iconClose, iconSearch, SvgImageSimple } from '@graphcommerce/next-ui'
+import {
+  FormRow,
+  iconClose,
+  iconSearch,
+  SvgIcon,
+  extendableComponent,
+} from '@graphcommerce/next-ui'
 import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@graphcommerce/react-hook-form'
-import { t, Plural, Trans } from '@lingui/macro'
-import { IconButton, makeStyles, TextField, TextFieldProps, Theme } from '@material-ui/core'
+import { t, Trans } from '@lingui/macro'
+import { Box, IconButton, SxProps, TextField, TextFieldProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
-import React from 'react'
-
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    totalProducts: {
-      minWidth: 'max-content',
-      color: theme.palette.grey[500],
-      paddingRight: 7,
-    },
-  }),
-  {
-    name: 'SearchIndexPage',
-  },
-)
 
 export type SearchFormProps = {
   totalResults?: number
@@ -24,11 +16,15 @@ export type SearchFormProps = {
   urlHandle?: string
   autoFocus?: boolean
   textFieldProps?: TextFieldProps
-} & UseStyles<typeof useStyles>
+  sx?: SxProps<Theme>
+}
+
+const name = 'SearchForm' as const
+const parts = ['root', 'totalProducts'] as const
+const { classes } = extendableComponent(name, parts)
 
 export default function SearchForm(props: SearchFormProps) {
-  const { totalResults = 0, search = '', urlHandle = 'search', textFieldProps } = props
-  const classes = useStyles(props)
+  const { totalResults = 0, search = '', urlHandle = 'search', textFieldProps, sx = [] } = props
   const router = useRouter()
 
   const form = useForm({ mode: 'onChange', defaultValues: { search } })
@@ -51,28 +47,33 @@ export default function SearchForm(props: SearchFormProps) {
 
   const endAdornment = !watch('search') ? (
     <IconButton size='small'>
-      <SvgImageSimple src={iconSearch} />
+      <SvgIcon src={iconSearch} />
     </IconButton>
   ) : (
     <>
       {totalResults > 0 && (
-        <div className={classes.totalProducts}>
-          {totalResults > 0 && (
-            <div className={classes.totalProducts}>
-              {totalResults} {totalResults === 1 && <Trans>result</Trans>}
-              {totalResults > 1 && <Trans>results</Trans>}
-            </div>
-          )}
-        </div>
+        <Box
+          className={classes.totalProducts}
+          sx={(theme) => ({
+            minWidth: 'max-content',
+            color: theme.palette.text.disabled,
+            paddingRight: '7px',
+          })}
+        >
+          {totalResults === 1 && <Trans>{totalResults} result</Trans>}
+          {totalResults > 1 && <Trans>{totalResults} results</Trans>}
+        </Box>
       )}
       <IconButton onClick={handleReset} size='small'>
-        <SvgImageSimple src={iconClose} />
+        <SvgIcon src={iconClose} />
       </IconButton>
     </>
   )
 
   return (
-    <form
+    <Box
+      className={classes.root}
+      component='form'
       noValidate
       onSubmit={submit}
       onChange={() => {
@@ -81,6 +82,7 @@ export default function SearchForm(props: SearchFormProps) {
           router.replace(`/search`)
         }
       }}
+      sx={sx}
     >
       <FormRow>
         <TextField
@@ -95,6 +97,6 @@ export default function SearchForm(props: SearchFormProps) {
           {...textFieldProps}
         />
       </FormRow>
-    </form>
+    </Box>
   )
 }

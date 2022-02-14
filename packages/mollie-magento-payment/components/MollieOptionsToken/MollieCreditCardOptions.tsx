@@ -1,11 +1,11 @@
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@graphcommerce/graphql'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { FormRow } from '@graphcommerce/next-ui'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
-import { Typography } from '@material-ui/core'
-import { Alert } from '@material-ui/lab'
+import { Trans } from '@lingui/macro'
+import { Typography, Alert } from '@mui/material'
 import Script from 'next/script'
 import React, { useEffect, useState } from 'react'
 import { Mollie } from '../../Mollie'
@@ -14,7 +14,7 @@ import { SetMolliePaymentMethodTokenOnCartDocument } from './SetMolliePaymentMet
 import { mollieContext, MollieContext } from './mollieContext'
 
 export default function MollieCreditCardOptions(props: PaymentOptionsProps) {
-  const { code, step, Container, title } = props
+  const { code, step, Container, title = '' } = props
   const [loaded, setLoaded] = useState<boolean>(false)
   const [mollie, setMollie] = useState<MollieContext>(undefined)
   const conf = useQuery(StoreConfigDocument)
@@ -63,7 +63,7 @@ export default function MollieCreditCardOptions(props: PaymentOptionsProps) {
       <Script src='https://js.mollie.com/v1/mollie.js' onLoad={() => setLoaded(true)} />
       <mollieContext.Provider value={mollie}>
         <Typography variant='h5' component='span'>
-          Pay with {title}
+          <Trans>Pay with {title}</Trans>
         </Typography>
         <form onSubmit={submit} noValidate>
           <FormRow>

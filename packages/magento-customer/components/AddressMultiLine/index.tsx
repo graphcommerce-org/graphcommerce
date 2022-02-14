@@ -1,6 +1,6 @@
 import { useFindCountry } from '@graphcommerce/magento-store'
-import { UseStyles } from '@graphcommerce/next-ui'
-import { makeStyles, Typography } from '@material-ui/core'
+import { extendableComponent } from '@graphcommerce/next-ui'
+import { SxProps, Theme, Typography } from '@mui/material'
 import { CustomerAddressFragment } from '../CreateCustomerAddressForm/CustomerAddress.gql'
 
 // exports.getEuMembers = function()
@@ -12,9 +12,11 @@ import { CustomerAddressFragment } from '../CreateCustomerAddressForm/CustomerAd
 // 	return exports.getEuMembers().indexOf(code.toUpperCase()) != -1;
 // };
 
-const useStyles = makeStyles({ title: {} }, { name: 'AddressMultiLine' })
+type AddressMultiLineProps = CustomerAddressFragment & { sx?: SxProps<Theme> }
 
-type AddressMultiLineProps = CustomerAddressFragment & UseStyles<typeof useStyles>
+const name = 'AddressMultiLine'
+const parts = ['root', 'title'] as const
+const { classes } = extendableComponent(name, parts)
 
 export default function AddressMultiLine(props: AddressMultiLineProps) {
   const {
@@ -29,14 +31,14 @@ export default function AddressMultiLine(props: AddressMultiLineProps) {
     city,
     postcode,
     country_code,
+    sx = [],
   } = props
   const countryName = useFindCountry(country_code)?.full_name_locale ?? country_code
 
   const regionName = typeof region === 'string' ? region : region?.region
-  const classes = useStyles(props)
 
   return (
-    <Typography variant='body1' component='div'>
+    <Typography variant='body1' component='div' className={classes.root} sx={sx}>
       <div className={classes.title}>
         <div>{company}</div>
         <div>

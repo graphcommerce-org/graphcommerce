@@ -11,18 +11,18 @@
     "prepack": "yarn build"
   },
   "dependencies": {
-    "@lingui/loader": "^3.13.0",
+    "@lingui/loader": "^3.13.2",
     "js-yaml-loader": "^1.2.2",
-    "next": "^12.0.7",
+    "next": "^12.0.10",
     "next-transpile-modules": "^9.0.0",
-    "type-fest": "^2.8.0",
-    "webpack": "^5.65.0"
+    "type-fest": "^2.11.2",
+    "webpack": "^5.68.0"
   },
   "files": [
     "dist",
     "src"
   ],
   "devDependencies": {
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.5"
   }
 }

@@ -1,17 +1,4 @@
-import { makeStyles, Theme, ThemeProvider } from '@material-ui/core'
-
-const useStyles = makeStyles(
-  {
-    // These theme specific styles are copied from
-    // https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/CssBaseline/CssBaseline.js#L18-L24
-    root: (theme: Theme) => ({
-      color: theme.palette.text.primary,
-      ...theme.typography.body1,
-      backgroundColor: theme.palette.background.default,
-    }),
-  },
-  { name: 'Theme' },
-)
+import { css, Theme, ThemeProvider } from '@mui/material'
 
 /**
  * It will provide a theme for the underlying tree and will set the color/font and backgroundColor
@@ -38,14 +25,18 @@ const useStyles = makeStyles(
  * export default withTheme(MyPage, darkTheme)
  * ```
  */
-export function withTheme<P extends { className?: string }>(Component: React.FC<P>, theme: Theme) {
-  return (props: P) => {
-    const classes = useStyles(theme)
-
-    return (
-      <ThemeProvider theme={theme}>
-        <Component {...props} className={classes.root} />
-      </ThemeProvider>
-    )
-  }
+export function withTheme(Component: React.FC<{ className?: string }>, theme: Theme) {
+  return (props: Record<string, unknown>) => (
+    <ThemeProvider theme={theme}>
+      <Component
+        {...props}
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        css={css({
+          color: theme.palette.text.primary,
+          backgroundColor: theme.palette.background.default,
+          ...(theme.typography.body1 as any),
+        })}
+      />
+    </ThemeProvider>
+  )
 }

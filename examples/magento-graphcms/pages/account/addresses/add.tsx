@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/client'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCustomerErrorFullPage,
   CreateCustomerAddressForm,
@@ -15,10 +15,9 @@ import {
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Container, NoSsr } from '@material-ui/core'
-import React from 'react'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
-import apolloClient from '../../../lib/apolloClient'
+import { Container, NoSsr } from '@mui/material'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = AccountDashboardAddressesQuery
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -72,7 +71,7 @@ AddNewAddressPage.pageOptions = pageOptions
 export default AddNewAddressPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
   return {

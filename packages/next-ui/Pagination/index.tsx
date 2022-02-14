@@ -1,59 +1,28 @@
-import { Fab, makeStyles, Theme, Typography } from '@material-ui/core'
-import { PaginationProps, usePagination } from '@material-ui/lab'
+import { PaginationProps, Box, SxProps, Theme, IconButton } from '@mui/material'
+import usePagination, { UsePaginationItem } from '@mui/material/usePagination'
 import React from 'react'
-import { UseStyles } from '../Styles'
-import SvgImageSimple from '../SvgImage/SvgImageSimple'
+import { extendableComponent } from '../Styles'
+import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconChevronLeft, iconChevronRight } from '../icons'
-
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    margin: '0 auto',
-    marginTop: theme.spacings.lg,
-    marginBottom: theme.spacings.lg,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 6,
-    '& .Mui-disabled': {
-      background: 'none',
-    },
-  },
-  pagination: {
-    gridArea: 'pagination',
-    justifyContent: 'center',
-    display: 'grid',
-    gridAutoFlow: 'column',
-    alignItems: 'center',
-    marginBottom: theme.spacings.xxl,
-    [theme.breakpoints.up('md')]: {
-      marginBottom: theme.spacings.lg,
-    },
-    ...theme.typography.body1,
-    '& > *': {
-      whiteSpace: 'nowrap',
-      boxShadow: 'none',
-    },
-  },
-  fab: {
-    color: theme.palette.text.primary,
-  },
-}))
 
 export type PagePaginationProps = {
   count: number
   page: number
-  renderLink: (page: number, icon: React.ReactNode, btnProps: any) => React.ReactNode
-} & Omit<PaginationProps, 'count' | 'defaultPage' | 'page' | 'renderItem'> &
-  UseStyles<typeof useStyles>
+  renderLink: (page: number, icon: React.ReactNode, btnProps: UsePaginationItem) => React.ReactNode
+  sx?: SxProps<Theme>
+} & Omit<PaginationProps, 'count' | 'defaultPage' | 'page' | 'renderItem'>
+
+const parts = ['root', 'button', 'icon'] as const
+const { classes } = extendableComponent('Pagination', parts)
 
 /**
  * Rel="prev" and rel="next" are deprecated by Google.
  *
  * Read more: https://ahrefs.com/blog/rel-prev-next-pagination/
  */
-export default function Pagination(props: PagePaginationProps) {
+export function Pagination(props: PagePaginationProps) {
   const { count, page, renderLink, classes: styles, ...paginationProps } = props
-  const classes = useStyles(props)
+
   const { items } = usePagination({
     count,
     defaultPage: 1,
@@ -65,36 +34,50 @@ export default function Pagination(props: PagePaginationProps) {
   const nextBtnProps = items[items.length - 1]
 
   const chevronLeft = (
-    <Fab
+    <IconButton
       size='medium'
       disabled={page === 1}
       color='inherit'
       aria-label='Previous page'
-      className={classes.fab}
+      className={classes.button}
     >
-      <SvgImageSimple src={iconChevronLeft} />
-    </Fab>
+      <SvgIcon src={iconChevronLeft} className={classes.icon} size='medium' />
+    </IconButton>
   )
 
   const chevronRight = (
-    <Fab
+    <IconButton
       size='medium'
       disabled={page === count}
       color='inherit'
       aria-label='Next page'
-      className={classes.fab}
+      className={classes.button}
     >
-      <SvgImageSimple src={iconChevronRight} />
-    </Fab>
+      <SvgIcon src={iconChevronRight} className={classes.icon} size='medium' />
+    </IconButton>
   )
 
   return (
-    <div className={classes.root}>
+    <Box
+      className={classes.root}
+      sx={(theme) => ({
+        margin: '0 auto',
+        marginTop: theme.spacings.lg,
+        marginBottom: theme.spacings.lg,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '6px',
+        '& .Mui-disabled': {
+          background: 'none',
+        },
+      })}
+    >
       {page === 1 ? chevronLeft : renderLink(page - 1, chevronLeft, prevBtnProps)}
 
-      <Typography variant='body1'>Page {`${page} of ${Math.max(1, count)}`}</Typography>
+      <Box typography='body1'>Page {`${page} of ${Math.max(1, count)}`}</Box>
 
       {page === count ? chevronRight : renderLink(page + 1, chevronRight, nextBtnProps)}
-    </div>
+    </Box>
   )
 }

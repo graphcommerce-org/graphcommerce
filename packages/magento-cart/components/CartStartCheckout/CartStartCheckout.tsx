@@ -1,55 +1,56 @@
 import { Money } from '@graphcommerce/magento-store'
-import { Button, iconChevronRight, SvgImageSimple } from '@graphcommerce/next-ui'
+import { iconChevronRight, SvgIcon, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Box, Button, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
-import React, { PropsWithChildren } from 'react'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    checkoutButtonContainer: {
-      textAlign: 'center',
-    },
-    checkoutButton: {
-      marginTop: theme.spacings.md,
-      marginBottom: theme.spacings.lg,
-    },
-    checkoutButtonIcon: {
-      marginLeft: 0,
-    },
-    checkoutButtonTotal: {
-      paddingRight: theme.spacings.xxs,
-      '& ~ span.MuiButton-endIcon': {
-        marginLeft: 6,
-      },
-    },
-    checkoutMoney: {},
-  }),
-  { name: 'Cart' },
-)
+export type CartStartCheckoutProps = CartStartCheckoutFragment & {
+  children?: React.ReactNode
+  sx?: SxProps<Theme>
+}
 
-export type CartStartCheckoutProps = PropsWithChildren<CartStartCheckoutFragment>
+const name = 'CartStartCheckout' as const
+const parts = [
+  'checkoutButtonContainer',
+  'checkoutButton',
+  'checkoutButtonTotal',
+  'checkoutMoney',
+] as const
+const { classes } = extendableComponent(name, parts)
 
 export default function CartStartCheckout(props: CartStartCheckoutProps) {
-  const { prices, children } = props
+  const { prices, children, sx = [] } = props
 
   const hasTotals = (prices?.grand_total?.value ?? 0) > 0
-  const classes = useStyles()
   return (
-    <div className={classes.checkoutButtonContainer}>
+    <Box
+      className={classes.checkoutButtonContainer}
+      sx={[{ textAlign: 'center' }, ...(Array.isArray(sx) ? sx : [sx])]}
+    >
       <PageLink href='/checkout' passHref>
         <Button
           variant='pill'
           color='secondary'
           size='large'
           className={classes.checkoutButton}
-          endIcon={<SvgImageSimple src={iconChevronRight} inverted />}
+          endIcon={<SvgIcon src={iconChevronRight} />}
           disabled={!hasTotals}
+          sx={(theme) => ({
+            marginTop: theme.spacings.md,
+            marginBottom: theme.spacings.lg,
+          })}
         >
-          <span className={classes.checkoutButtonTotal}>
+          <Box
+            component='span'
+            className={classes.checkoutButtonTotal}
+            sx={(theme) => ({
+              paddingRight: theme.spacings.xxs,
+              '& ~ span.MuiButton-endIcon': { marginLeft: '6px' },
+            })}
+          >
             <Trans>Start Checkout</Trans>
-          </span>{' '}
+          </Box>{' '}
           {hasTotals && (
             <span className={classes.checkoutMoney}>
               <Money {...prices?.grand_total} />
@@ -58,6 +59,6 @@ export default function CartStartCheckout(props: CartStartCheckoutProps) {
         </Button>
       </PageLink>
       {children}
-    </div>
+    </Box>
   )
 }

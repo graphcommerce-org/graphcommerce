@@ -1,23 +1,34 @@
-import { ContainerProps, Theme, makeStyles, Container } from '@material-ui/core'
+import { ContainerProps, Container, Box } from '@mui/material'
 import React from 'react'
-import { UseStyles } from '../Styles'
+import { extendableComponent } from '../Styles'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    footer: {
-      gridTemplateColumns: '5fr 3fr',
-      gridTemplateAreas: `
-        'social switcher'
-        'links support'
-      `,
-      borderTop: `1px solid ${theme.palette.divider}`,
-      padding: `${theme.page.vertical} ${theme.page.horizontal}`,
-      display: 'grid',
-      gap: theme.spacings.xs,
-      alignItems: 'center',
-      [theme.breakpoints.down('sm')]: {
-        paddingTop: theme.spacings.lg,
-        paddingBottom: theme.spacings.lg,
+export type FooterProps = {
+  storeSwitcher?: React.ReactNode
+  socialLinks?: React.ReactNode
+  customerService?: React.ReactNode
+  copyright?: React.ReactElement
+} & Omit<ContainerProps, 'children'>
+
+const { classes, selectors } = extendableComponent('Footer', [
+  'root',
+  'social',
+  'storeSwitcher',
+  'support',
+  'copyright',
+] as const)
+
+export function Footer(props: FooterProps) {
+  const { socialLinks, storeSwitcher, customerService, copyright, ...containerProps } = props
+
+  return (
+    <Container
+      sx={(theme) => ({
+        gridTemplateColumns: '5fr 3fr',
+        borderTop: `1px solid ${theme.palette.divider}`,
+        display: 'grid',
+        alignItems: 'center',
+
+        padding: `${theme.spacings.lg} ${theme.page.horizontal} ${theme.page.vertical}`,
         justifyItems: 'center',
         gridTemplateAreas: `
           'switcher switcher'
@@ -26,77 +37,83 @@ const useStyles = makeStyles(
           'links links'
         `,
         gap: theme.spacings.md,
-        '& > *': {
-          maxWidth: 'max-content',
+        '& > *': { maxWidth: 'max-content' },
+
+        [theme.breakpoints.up('sm')]: {
+          gridTemplateAreas: `
+            'social switcher'
+            'links support'
+          `,
+          justifyItems: 'start',
+          padding: `${theme.page.vertical} ${theme.page.horizontal}`,
+          gridTemplateColumns: 'auto auto',
+          gridTemplateRows: 'auto',
+          justifyContent: 'space-between',
         },
-      },
-      [theme.breakpoints.up('md')]: {
-        gridTemplateColumns: 'auto auto',
-        gridTemplateRows: 'auto',
-        justifyContent: 'space-between',
-      },
-    },
-    copyright: {
-      display: 'grid',
-      gridAutoFlow: 'column',
-      alignContent: 'center',
-      gridArea: 'links',
-      ...theme.typography.body2,
-      gap: theme.spacings.sm,
-      [theme.breakpoints.down('sm')]: {
-        gridAutoFlow: 'row',
-        textAlign: 'center',
-        gap: 8,
-      },
-    },
-    support: {
-      gridArea: 'support',
-      justifySelf: 'flex-end',
-      [theme.breakpoints.down('sm')]: {
-        justifySelf: 'center',
-      },
-    },
-    social: {
-      display: 'grid',
-      justifyContent: 'start',
-      gridAutoFlow: 'column',
-      gridArea: 'social',
-      gap: `0 ${theme.spacings.xs}`,
-      '& > *': {
-        minWidth: 'min-content',
-      },
-      [theme.breakpoints.down('sm')]: {
-        gap: `0 ${theme.spacings.sm}`,
-      },
-    },
-    storeSwitcher: {
-      gridArea: 'switcher',
-      justifySelf: 'end',
-      [theme.breakpoints.down('sm')]: {
-        justifySelf: 'center',
-      },
-    },
-  }),
-  { name: 'Footer' },
-)
-
-export type FooterProps = UseStyles<typeof useStyles> & {
-  storeSwitcher?: React.ReactNode
-  socialLinks?: React.ReactElement
-  customerService?: React.ReactNode
-  copyright?: React.ReactElement
-} & Omit<ContainerProps, 'children'>
-
-export function Footer(props: FooterProps) {
-  const { socialLinks, storeSwitcher, customerService, copyright, ...containerProps } = props
-  const classes = useStyles(props)
-
-  return (
-    <Container maxWidth={false} className={classes.footer} {...containerProps}>
-      <div className={classes.social}>{socialLinks}</div>
-      <div className={classes.storeSwitcher}>{storeSwitcher}</div>
-      <div className={classes.support}>{customerService}</div>
-      <div className={classes.copyright}>{copyright}</div>
+      })}
+      maxWidth={false}
+      className={classes.root}
+      {...containerProps}
+    >
+      <Box
+        sx={(theme) => ({
+          display: 'grid',
+          justifyContent: 'start',
+          gridAutoFlow: 'column',
+          gridArea: 'social',
+          gap: { xs: `0 ${theme.spacings.xs}`, md: `0 ${theme.spacings.sm}` },
+          '& > *': {
+            minWidth: 'min-content',
+          },
+        })}
+        className={classes.social}
+      >
+        {socialLinks}
+      </Box>
+      <Box
+        sx={(theme) => ({
+          gridArea: 'switcher',
+          justifySelf: 'end',
+          [theme.breakpoints.down('sm')]: {
+            justifySelf: 'center',
+          },
+        })}
+        className={classes.storeSwitcher}
+      >
+        {storeSwitcher}
+      </Box>
+      <Box
+        sx={(theme) => ({
+          gridArea: 'support',
+          justifySelf: 'flex-end',
+          [theme.breakpoints.down('sm')]: {
+            justifySelf: 'center',
+          },
+        })}
+        className={classes.support}
+      >
+        {customerService}
+      </Box>
+      <Box
+        sx={(theme) => ({
+          typography: 'body2',
+          display: 'grid',
+          gridAutoFlow: 'column',
+          alignContent: 'center',
+          gridArea: 'links',
+          gap: theme.spacings.sm,
+          [theme.breakpoints.down('sm')]: {
+            gridAutoFlow: 'row',
+            textAlign: 'center',
+            gap: `8px`,
+          },
+        })}
+        className={classes.copyright}
+      >
+        {copyright}
+      </Box>
     </Container>
   )
 }
+
+Footer.selectors = selectors

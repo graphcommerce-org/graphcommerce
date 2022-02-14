@@ -1,33 +1,34 @@
-import { makeStyles, Theme, Typography, TypographyProps } from '@material-ui/core'
+import { Box, Typography, TypographyProps } from '@mui/material'
 import React from 'react'
-import { UseStyles } from '../Styles'
+import { extendableComponent } from '../Styles'
 
 export type DividedLinksProps = {
   icon?: React.ReactNode
-} & Pick<TypographyProps, 'color'> &
-  UseStyles<typeof useStyles>
+} & Pick<TypographyProps, 'color' | 'sx'>
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      display: 'inline',
-      padding: `0 ${theme.spacings.xxs} 0 ${theme.spacings.xxs}`,
-    },
-  }),
-  { name: 'Separator' },
-)
+const name = 'Separator' as const
+const parts = ['root'] as const
+const { classes } = extendableComponent(name, parts)
 
-export default function Separator(props: DividedLinksProps) {
-  const { color, icon } = props
-  const classes = useStyles(props)
+export function Separator(props: DividedLinksProps) {
+  const { color, icon, sx = [] } = props
 
   return (
-    <div className={classes.root}>
+    <Box
+      className={classes.root}
+      sx={[
+        (theme) => ({
+          display: 'inline',
+          padding: `0 ${theme.spacings.xxs} 0 ${theme.spacings.xxs}`,
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       {icon ?? (
         <Typography component='span' variant='body1' color={color}>
           |
         </Typography>
       )}
-    </div>
+    </Box>
   )
 }

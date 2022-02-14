@@ -1,42 +1,34 @@
 import { Image } from '@graphcommerce/image'
-import { makeStyles } from '@material-ui/core'
-import clsx from 'clsx'
-import React from 'react'
+import { extendableComponent } from '@graphcommerce/next-ui'
+import { Box, SxProps, Theme } from '@mui/material'
 import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
 
-export type OrderCardItemImageProps = Omit<OrderCardItemImageFragment, 'uid'>
+export type OrderCardItemImageProps = Omit<OrderCardItemImageFragment, 'uid'> & {
+  sx?: SxProps<Theme>
+}
 
-const useStyles = makeStyles(
-  {
-    image: {
-      width: 88,
-      height: 88,
-    },
-    placeholder: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-  },
-  { name: 'OrderCardItemImage' },
-)
+const componentName = 'OrderCardItemImage' as const
+const parts = ['image', 'placeholder'] as const
+const { classes } = extendableComponent(componentName, parts)
 
 export default function OrderCardItemImage(props: OrderCardItemImageProps) {
-  const { thumbnail } = props
-  const classes = useStyles()
+  const { thumbnail, sx = [] } = props
+
+  const sxx: SxProps<Theme> = [{ width: 88, height: 88 }, ...(Array.isArray(sx) ? sx : [sx])]
 
   return (
     <>
       {thumbnail ? (
         <Image
           alt={thumbnail?.label ?? ''}
-          width={64}
-          height={64}
+          width={88}
+          height={88}
           src={thumbnail?.url ?? ''}
           className={classes.image}
+          sx={sxx}
         />
       ) : (
-        <div className={clsx(classes.placeholder, classes.image)} />
+        <Box className={classes.placeholder} sx={sxx} />
       )}
     </>
   )

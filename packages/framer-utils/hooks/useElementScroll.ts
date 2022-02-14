@@ -13,11 +13,10 @@ interface ScrollMotionValues {
   yMax: MotionValue<number>
 }
 
-const setProgress = (offset: number, maxOffset: number, value: MotionValue) => {
-  value.set(!offset || !maxOffset ? 0 : offset / maxOffset)
-}
-
-export function useElementScroll(ref?: RefObject<HTMLElement | undefined>): ScrollMotionValues {
+export function useElementScroll(
+  ref?: RefObject<HTMLElement | undefined>,
+  noScroll = 0,
+): ScrollMotionValues {
   const values = useConstant<ScrollMotionValues>(() => ({
     x: motionValue(0),
     y: motionValue(0),
@@ -31,22 +30,23 @@ export function useElementScroll(ref?: RefObject<HTMLElement | undefined>): Scro
     const element = ref?.current
     if (!element) return () => {}
 
-    const updater = () => {
-      if (!element) return
+    const setProgress = (offset: number, maxOffset: number, value: MotionValue) => {
+      value.set(!offset && !maxOffset ? noScroll : offset / maxOffset)
+    }
 
+    const updater = () => {
       sync.read(() => {
-        values.x.set(element.scrollLeft)
-        values.y.set(element.scrollTop)
-        values.xMax.set(element.scrollWidth - element.offsetWidth)
-        values.yMax.set(element.scrollHeight - element.offsetHeight)
+        const { scrollLeft, scrollTop, scrollWidth, scrollHeight, offsetWidth, offsetHeight } =
+          element
+
+        values.x.set(scrollLeft)
+        values.y.set(scrollTop)
+        values.xMax.set(scrollWidth - offsetWidth)
+        values.yMax.set(scrollHeight - offsetHeight)
 
         // Set 0-1 progress
-        setProgress(element.scrollLeft, element.scrollWidth - element.offsetWidth, values.xProgress)
-        setProgress(
-          element.scrollTop,
-          element.scrollHeight - element.offsetHeight,
-          values.yProgress,
-        )
+        setProgress(scrollLeft, scrollWidth - offsetWidth, values.xProgress)
+        setProgress(scrollTop, scrollHeight - offsetHeight, values.yProgress)
       })
     }
 
@@ -59,7 +59,7 @@ export function useElementScroll(ref?: RefObject<HTMLElement | undefined>): Scro
       element.removeEventListener('scroll', updater)
       ro.disconnect()
     }
-  }, [ref, values.x, values.xMax, values.xProgress, values.y, values.yMax, values.yProgress])
+  }, [noScroll, ref, values])
 
   return values
 }

@@ -4,6 +4,5 @@ export default CmsPage
 
 export const config = { unstable_JsPreload: false }
 
-export const getStaticProps: GetPageStaticProps = async ({ locale, ...rest }) => {
-  return getCmsPageStaticProps({ params: { url: 'home' }, locale, ...rest })
-}
+export const getStaticProps: GetPageStaticProps = async ({ locale, ...rest }) =>
+  getCmsPageStaticProps({ params: { url: 'home' }, locale, ...rest })

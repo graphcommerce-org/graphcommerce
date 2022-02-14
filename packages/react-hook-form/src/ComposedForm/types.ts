@@ -1,4 +1,4 @@
-import { ApolloError } from '@apollo/client'
+import { ApolloError } from '@graphcommerce/graphql'
 import { FieldValues, FormState, UseFormReturn } from 'react-hook-form'
 import { SetOptional } from 'type-fest'
 

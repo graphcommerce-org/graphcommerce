@@ -2,26 +2,25 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
-import React from 'react'
-import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import { LayoutFull, LayoutFullProps } from '../../components/Layout'
-import apolloClient from '../../lib/apolloClient'
-import { AppShellDemo } from './minimal-page-shell/[[...url]]'
+import { LayoutFull, LayoutFullProps } from '../../components'
+import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
+import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { LayoutDemo } from './minimal-page-shell/[[...url]]'
 
 type Props = { url: string } & DefaultPageQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
-function AppShellTestIndex() {
-  return <AppShellDemo baseUrl='/test' />
+function TestOverview() {
+  return <LayoutDemo baseUrl='/test' />
 }
 
-AppShellTestIndex.pageOptions = {
+TestOverview.pageOptions = {
   Layout: LayoutFull,
 } as PageOptions
 
-export default AppShellTestIndex
+export default TestOverview
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
@@ -39,8 +38,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
   const url = (params?.url ?? ['index']).join('/') ?? ''
 
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({

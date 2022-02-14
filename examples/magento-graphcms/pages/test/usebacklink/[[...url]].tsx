@@ -1,8 +1,7 @@
 import { PageOptions, useHistoryLink } from '@graphcommerce/framer-next-pages'
-import { Link } from '@material-ui/core'
+import { Link } from '@mui/material'
 import PageLink from 'next/link'
-import React from 'react'
-import { LayoutMinimal, LayoutMinimalProps } from '../../../components/Layout'
+import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
 
 function BackLinkDemo() {
   const { href, onClick } = useHistoryLink({ href: '/test/usebacklink/cart' })
@@ -12,14 +11,14 @@ function BackLinkDemo() {
     <>
       <div>
         <PageLink href={href} passHref>
-          <Link onClick={onClick} color='primary'>
+          <Link onClick={onClick} color='primary' underline='hover'>
             Cart
           </Link>
         </PageLink>
       </div>
       <div>
         <PageLink href={hrefb} passHref>
-          <Link color='primary' onClick={onClickB}>
+          <Link color='primary' onClick={onClickB} underline='hover'>
             Shipping
           </Link>
         </PageLink>

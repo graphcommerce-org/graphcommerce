@@ -1,47 +1,24 @@
-import { makeStyles, Theme } from '@material-ui/core'
-import clsx from 'clsx'
+import { Button, ButtonProps } from '@mui/material'
 import React, { FormEvent } from 'react'
-import Button, { ButtonProps } from '../Button'
-import { UseStyles } from '../Styles'
+import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-
-type StyleProps = { selected?: boolean; color?: ButtonProps['color'] }
-
-export const useStyles = makeStyles(
-  (theme: Theme) => ({
-    /* Styles applied to the root element. */
-    root: {
-      borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
-      border: `1px solid ${theme.palette.divider}`,
-      '&$disabled': {
-        borderWidth: 2,
-      },
-      '&:hover': {},
-      '&$selected': {},
-    },
-    disabled: {},
-    selected: ({ color = 'default' }: StyleProps) => ({
-      border: `1px solid ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
-      boxShadow: `inset 0 0 0 1px ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
-    }),
-    /* Styles applied to the `label` wrapper element. */
-    label: {},
-    sizeSmall: {},
-    sizeLarge: {
-      padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
-    },
-  }),
-  { name: 'ToggleButton' },
-)
 
 export type ToggleButtonProps = Omit<ButtonProps, 'onClick' | 'onChange'> & {
   selected?: boolean
   onClick?: (e: FormEvent<HTMLButtonElement>, v: any) => void
   onChange?: (e: FormEvent<HTMLButtonElement>, v: any) => void
-} & UseStyles<typeof useStyles>
+}
 
-const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
-  const { root, selected: selectedClass, sizeLarge, sizeSmall, ...classes } = useStyles(props)
+type OwnerState = Pick<ButtonProps, 'size' | 'disabled'> & { selected?: boolean }
+
+const compName = 'ToggleButton' as const
+const parts = ['root', 'button', 'helperText'] as const
+const { withState } = extendableComponent<OwnerState, typeof compName, typeof parts>(
+  compName,
+  parts,
+)
+
+export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
   const {
     children,
     className,
@@ -51,9 +28,11 @@ const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
     selected,
     size = 'medium',
     value,
-    color,
+    color = 'default',
+    sx = [],
     ...other
   } = props
+  const classes = withState({ size, selected, disabled })
 
   const handleChange = (event: FormEvent<HTMLButtonElement>) => onChange?.(event, value)
 
@@ -67,16 +46,7 @@ const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
 
   return (
     <Button
-      className={clsx(
-        root,
-        {
-          [classes.disabled]: disabled,
-          [selectedClass]: selected,
-          [sizeLarge]: size === 'large',
-          [sizeSmall]: size === 'small',
-        },
-        className,
-      )}
+      className={`${classes.root} ${className ?? ''}`}
       variant='outlined'
       disabled={disabled}
       ref={ref}
@@ -87,10 +57,34 @@ const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
       size={size}
       {...other}
       classes={classes}
+      sx={[
+        (theme) => ({
+          borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+          border: 1,
+          borderColor: 'divider',
+          bgcolor: 'background.paper',
+
+          '&.disabled': {
+            borderWidth: 2,
+          },
+
+          '&.selected': {
+            border: `1px solid ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
+            boxShadow: `inset 0 0 0 1px ${
+              theme.palette[color]?.main ?? theme.palette.primary.main
+            }`,
+          },
+          ':not(&.sizeSmall)': {
+            padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
+          },
+          '&.sizeSmall': {
+            aspectRatio: `4/3`,
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
       {children}
     </Button>
   )
 })
-
-export default ToggleButton

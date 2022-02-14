@@ -1,11 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
-import SidebarGallery from '@graphcommerce/next-ui/FramerScroller/components/SidebarGallery'
-import React from 'react'
-import { LayoutFull, LayoutFullProps } from '../../components/Layout'
-import apolloClient from '../../lib/apolloClient'
+import { GetStaticProps, LayoutTitle, LayoutHeader, SidebarGallery } from '@graphcommerce/next-ui'
+import { LayoutFull, LayoutFullProps } from '../../components'
+import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = ProductListQuery
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
@@ -85,8 +83,8 @@ TestSlider.pageOptions = {
 export default TestSlider
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
 

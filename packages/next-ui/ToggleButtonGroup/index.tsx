@@ -1,10 +1,7 @@
-import { makeStyles, Theme } from '@material-ui/core'
-import { capitalize } from '@material-ui/core/utils'
-import { ToggleButtonGroupProps } from '@material-ui/lab'
-import clsx from 'clsx'
-import React, { PropsWithoutRef } from 'react'
+import { Box, ToggleButtonGroupProps as ToggleButtonGroupPropsBase } from '@mui/material'
+import React from 'react'
 import { isFragment } from 'react-is'
-import { UseStyles } from '../Styles'
+import { extendableComponent } from '../Styles'
 
 function isValueSelected(value: string, candidate: string | string[]) {
   if (candidate === undefined || value === undefined) return false
@@ -12,32 +9,15 @@ function isValueSelected(value: string, candidate: string | string[]) {
   return value === candidate
 }
 
-export type ToggleButtonPropsBase = Omit<PropsWithoutRef<ToggleButtonGroupProps>, 'size'> & {
-  required?: boolean
-  minWidth?: number
-}
+type OwnerState = Pick<ToggleButtonGroupPropsBase, 'orientation' | 'size'>
 
-export const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: ({ minWidth = 200 }: ToggleButtonPropsBase) => ({
-      display: 'grid',
-      gridTemplateColumns: `repeat(auto-fit, minmax(${minWidth}px, 1fr))`,
-      gap: `calc(${theme.spacings.xxs} * 2)`,
-    }),
-    vertical: {
-      gridAutoFlow: 'column',
-    },
-    grouped: {},
-    groupedHorizontal: {},
-    groupedVertical: {},
-  }),
-  { name: 'ToggleButtonGroup' },
-)
+const name = 'ToggleButtonGroup' as const
+const parts = ['root', 'button'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
-export type ToggleButtonProps = ToggleButtonPropsBase & UseStyles<typeof useStyles>
+export type ToggleButtonGroupProps = ToggleButtonGroupPropsBase & { required?: boolean }
 
-const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonProps>((props, ref) => {
-  const classes = useStyles(props)
+const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGroupProps>((props, ref) => {
   const {
     children,
     className,
@@ -45,11 +25,15 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonProps>((p
     required = false,
     onChange,
     orientation = 'horizontal',
-    minWidth,
     value,
+    size = 'large',
+    sx = [],
     ...other
   } = props
 
+  const classes = withState({ orientation, size })
+
+  /* eslint-disable @typescript-eslint/no-unsafe-argument */
   const handleChange = (event, buttonValue) => {
     if (!onChange) return
 
@@ -72,9 +56,29 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonProps>((p
   }
 
   return (
-    <div
+    <Box
       role='group'
-      className={clsx(classes.root, { [classes.vertical]: orientation === 'vertical' }, className)}
+      className={`${classes.root} ${className ?? ''}`}
+      sx={[
+        (theme) => ({
+          display: 'grid',
+          rowGap: theme.spacings.xxs,
+          columnGap: theme.spacings.xs,
+          '&.orientationVertical': {
+            gridAutoFlow: 'column',
+          },
+          '&.sizeSmall.orientationHorizontal': {
+            gridTemplateColumns: `repeat(auto-fill, minmax(60px, 1fr))`,
+          },
+          '&.sizeMedium.orientationHorizontal': {
+            gridTemplateColumns: 'repeat(2, 1fr)',
+          },
+          '&.sizeLarge.orientationHorizontal': {
+            gridTemplateColumns: 'repeat(2, 1fr)',
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       ref={ref}
       {...other}
     >
@@ -93,11 +97,7 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonProps>((p
         }
 
         return React.cloneElement(child, {
-          className: clsx(
-            classes.grouped,
-            classes[`grouped${capitalize(orientation)}`],
-            child.props.className,
-          ),
+          className: `${classes.button} ${child.props.className ?? ''}`,
           onChange: exclusive ? handleExclusiveChange : handleChange,
           selected:
             child.props.selected === undefined
@@ -105,8 +105,8 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonProps>((p
               : child.props.selected,
         })
       })}
-    </div>
+    </Box>
   )
 })
 
-export default ToggleButtonGroup
+export { ToggleButtonGroup }

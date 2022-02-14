@@ -1,42 +1,21 @@
-import { List, ListItem, ListItemText, ListSubheader, makeStyles, Theme } from '@material-ui/core'
-import PageLink from 'next/link'
-import { useRouter } from 'next/router'
+import { List, ListSubheader } from '@mui/material'
 import React from 'react'
-import { FileNameUrlKeyPair } from './sanitizeDirectoryTree'
+import { ContentTree } from '../../util/files'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    listItem: {
-      paddingTop: 0,
-      paddingBottom: 0,
-    },
-    listItemText: {
-      ...theme.typography.caption,
-    },
-  }),
-  {
-    name: 'SidebarMenu',
-  },
-)
-
-export default function SidebarMenu(props) {
-  const { tree } = props
-  const classes = useStyles()
-  const router = useRouter()
+type SidebarMenuProps = { menuData: ContentTree }
+export default function SidebarMenu(props: SidebarMenuProps) {
+  const { menuData } = props
 
   return (
     <List component='nav' disablePadding>
-      {tree.map(([dirName, filenames]: [string, FileNameUrlKeyPair[]]) => (
-        <React.Fragment key={dirName}>
+      {menuData?.children?.map(({ name, children, path }) => (
+        <React.Fragment key={name}>
           <ListSubheader component='div' disableSticky>
-            {dirName}
+            {name}
           </ListSubheader>
-          {filenames.map(({ name, urlKey }: FileNameUrlKeyPair) => (
-            <PageLink href={urlKey} key={urlKey} passHref>
-              <ListItem button className={classes.listItem} selected={router.asPath === urlKey}>
-                <ListItemText primary={<span className={classes.listItemText}>{name}</span>} />
-              </ListItem>
-            </PageLink>
+
+          {children?.map((child) => (
+            <SidebarMenu key={child.name} menuData={child} />
           ))}
         </React.Fragment>
       ))}

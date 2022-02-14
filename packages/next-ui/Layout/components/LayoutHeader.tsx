@@ -1,13 +1,13 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
-import { classesPicker } from '../../Styles/classesPicker'
+import { extendableComponent } from '../../Styles'
 import LayoutHeaderBack, { useShowBack } from './LayoutHeaderBack'
 import LayoutHeaderClose, { useShowClose } from './LayoutHeaderClose'
-import LayoutHeaderContent, { ContentProps } from './LayoutHeaderContent'
+import LayoutHeaderContent, { LayoutHeaderContentProps } from './LayoutHeaderContent'
 import { FloatingProps } from './LayoutHeadertypes'
 
 export type LayoutHeaderProps = FloatingProps &
-  Omit<ContentProps, 'left' | 'right'> & {
+  Omit<LayoutHeaderContentProps, 'left' | 'right'> & {
     /**
      * Button to display on the left side of the title
      *
@@ -24,79 +24,25 @@ export type LayoutHeaderProps = FloatingProps &
     secondary?: React.ReactNode
 
     noAlign?: boolean
+
+    sx?: SxProps<Theme>
   }
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    sticky: {
-      zIndex: theme.zIndex.appBar,
-      position: 'sticky',
-      pointerEvents: 'none',
+type ComponentStyleProps = {
+  noAlign: boolean
+  divider: boolean
+  children: boolean
+  floatingSm: boolean
+  floatingMd: boolean
+}
 
-      [theme.breakpoints.up('md')]: {
-        top: 0,
-        height: theme.appShell.appBarHeightMd,
-        marginTop: `calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5)`,
-        marginBottom: `calc(${theme.appShell.appBarHeightMd} * -1 - calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5))`,
-      },
-    },
-    stickyNoChildren: {
-      zIndex: theme.zIndex.appBar - 2,
-    },
-    stickyVisibleSm: {
-      [theme.breakpoints.down('sm')]: {
-        top: 0,
-        marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
-        height: theme.appShell.headerHeightSm,
-      },
-    },
-    stickyFloatingSm: {
-      [theme.breakpoints.down('sm')]: {
-        top: 0,
-        marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
-        height: theme.appShell.headerHeightSm,
-      },
-    },
-    stickyFloatingMd: {
-      [theme.breakpoints.up('md')]: {
-        top: `calc(${theme.appShell.headerHeightMd} + calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5))`,
-      },
-    },
-    stickyNoAlign: {
-      [theme.breakpoints.down('sm')]: {
-        position: 'sticky',
-        left: 0,
-        right: 0,
-        top: 0,
-        marginTop: 0,
-        height: theme.appShell.headerHeightSm,
-        marginBottom: `calc(${theme.appShell.headerHeightSm} * -1)`,
-      },
-      [theme.breakpoints.up('md')]: {
-        position: 'sticky',
-        left: 0,
-        right: 0,
-        top: 0,
-        marginTop: 0,
-        height: theme.appShell.appBarHeightMd,
-        marginBottom: `calc(${theme.appShell.appBarHeightMd} * -1)`,
-      },
-    },
-    stickyDivider: {
-      [theme.breakpoints.down('sm')]: {
-        marginBottom: 0,
-      },
-      [theme.breakpoints.up('md')]: {
-        marginBottom: 0,
-      },
-    },
-  }),
-  { name: 'LayoutHeader' },
+const { selectors, withState } = extendableComponent<ComponentStyleProps, 'LayoutHeader'>(
+  'LayoutHeader',
+  ['root'] as const,
 )
 
 export function LayoutHeader(props: LayoutHeaderProps) {
-  const { children, divider, primary, secondary, noAlign, switchPoint } = props
-  const classes = useStyles(props)
+  const { children, divider, primary, secondary, noAlign = false, switchPoint, sx = [] } = props
   const showBack = useShowBack()
   const showClose = useShowClose()
 
@@ -109,7 +55,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
   if (divider || primary || secondary) floatingSm = false
 
   const close = showClose && <LayoutHeaderClose />
-  const back = showBack && <LayoutHeaderBack variant={floatingSm ? 'pill' : 'pill-link'} />
+  const back = showBack && <LayoutHeaderBack breakpoint={floatingSm ? 'xs' : undefined} />
 
   let left = secondary
   let right = primary
@@ -121,18 +67,66 @@ export function LayoutHeader(props: LayoutHeaderProps) {
 
   if (!left && !right && !children) return null
 
-  const className = classesPicker(classes, {
+  const classes = withState({
     floatingSm,
     floatingMd,
-    visibleSm: !floatingSm,
-    visibleMd: !floatingMd,
-    noChildren: !children,
     noAlign,
+    children: !!children,
     divider: !!divider,
   })
 
-  return children ? (
-    <div {...className('sticky')}>
+  return (
+    <Box
+      className={classes.root}
+      sx={[
+        (theme) => ({
+          zIndex: children ? theme.zIndex.appBar : theme.zIndex.appBar - 2,
+          position: 'sticky',
+          pointerEvents: 'none',
+
+          [theme.breakpoints.down('md')]: {
+            top: 0,
+            marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
+            height: theme.appShell.headerHeightSm,
+            '&.noAlign': {
+              position: 'sticky',
+              left: 0,
+              right: 0,
+              top: 0,
+              marginTop: 0,
+              height: theme.appShell.headerHeightSm,
+              marginBottom: `calc(${theme.appShell.headerHeightSm} * -1)`,
+            },
+            '&.divider': {
+              marginBottom: 0,
+            },
+          },
+
+          [theme.breakpoints.up('md')]: {
+            top: 0,
+            height: theme.appShell.appBarHeightMd,
+            marginTop: `calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5)`,
+            marginBottom: `calc(${theme.appShell.appBarHeightMd} * -1 - calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5))`,
+            '&.floatingMd': {
+              top: `calc(${theme.appShell.headerHeightMd} + calc((${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5))`,
+            },
+            '&.noAlign': {
+              position: 'sticky',
+              left: 0,
+              right: 0,
+              top: 0,
+              marginTop: 0,
+              height: theme.appShell.appBarHeightMd,
+              marginBottom: `calc(${theme.appShell.appBarHeightMd} * -1)`,
+            },
+            '&.divider': {
+              marginBottom: 0,
+            },
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       <LayoutHeaderContent
         left={left}
         right={right}
@@ -143,8 +137,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
       >
         {children}
       </LayoutHeaderContent>
-    </div>
-  ) : (
-    <></>
+    </Box>
   )
 }
+LayoutHeader.selectors = selectors

@@ -1,4 +1,4 @@
-import { ApolloCache, NormalizedCacheObject } from '@apollo/client'
+import { ApolloCache, NormalizedCacheObject } from './apollo'
 
 export type MigrateCache = (
   oldCache: ApolloCache<NormalizedCacheObject>,

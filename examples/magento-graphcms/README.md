@@ -35,33 +35,31 @@ In all code samples below, replace the following fields:
 
 ### 2) Update your package.json
 
-Replace
+Delete scripts and rename scripts_local to scripts.
+
+Before:
 
 ```json
 {
   "name": "@graphcommerce/magento-graphcms",
   "version": "2.124.0",
   "scripts": {
-    // ...other scripts, keep these
-    "codegen-base": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 yarn graphql-codegen --require dotenv/config -c codegen.mono.yml",
-    "prepack": "concurrently 'yarn prepack:1' 'yarn prepack:2' 'yarn prepack:3'",
-    "prepack:1": "yarn workspace @graphcommerce/next-config prepack",
-    "prepack:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack",
-    "prepack:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack",
-    "postinstall": "yarn prepack"
+    // ... monorepoo scripts, start, build, dev, ...
+  },
+  "scripts_local": {
+    // ... start, build, dev, ...
   }
 }
 ```
 
-With:
+After
 
 ```json
 {
   "name": "@my-company/my-project",
   "version": "0.0.0",
   "scripts": {
-    // ...other scripts, keep these
-    "codegen-base": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 node -r dotenv/config node_modules/.bin/graphql-codegen"
+    // ... start, build, dev, ...
   }
 }
 ```

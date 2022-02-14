@@ -1,14 +1,13 @@
 import { useUp, usePrevUp, usePageContext } from '@graphcommerce/framer-next-pages'
+import { usePrevPageRouter } from '@graphcommerce/framer-next-pages/hooks/usePrevPageRouter'
 import { t } from '@lingui/macro'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
-import Button, { ButtonProps } from '../../Button'
-import SvgImageSimple from '../../SvgImage/SvgImageSimple'
+import { LinkOrButton, LinkOrButtonProps } from '../../Button/LinkOrButton'
+import { SvgIcon } from '../../SvgIcon/SvgIcon'
 import { iconChevronLeft } from '../../icons'
-import { usePrevPageRouter } from '@graphcommerce/framer-next-pages/hooks/usePrevPageRouter'
 
-export type BackProps = Omit<ButtonProps, 'onClick' | 'children'>
+export type BackProps = Omit<LinkOrButtonProps, 'onClick' | 'children'>
 
 export function useShowBack() {
   const router = useRouter()
@@ -30,30 +29,40 @@ export default function LayoutHeaderBack(props: BackProps) {
   const prevUp = usePrevUp()
   const { backSteps } = usePageContext()
 
-  const backIcon = <SvgImageSimple src={iconChevronLeft} />
+  const backIcon = <SvgIcon src={iconChevronLeft} size='medium' />
   const canClickBack = backSteps > 0 && router.asPath !== prevUp?.href
 
+  let label = t`Back`
+  if (up?.href === prevRouter?.asPath && up?.title) label = up.title
+  if (prevUp?.href === prevRouter?.asPath && prevUp?.title) label = prevUp.title
+
   if (canClickBack) {
-    const label = up?.href === prevRouter?.asPath ? up?.title : t`Back`
     return (
-      <Button
+      <LinkOrButton
         onClick={() => router.back()}
-        variant='pill-link'
+        button={{ variant: 'pill' }}
+        color='inherit'
         startIcon={backIcon}
         aria-label={label}
         {...props}
       >
         {label}
-      </Button>
+      </LinkOrButton>
     )
   }
 
   if (up?.href && up.href !== router.asPath)
     return (
       <PageLink href={up.href} passHref>
-        <Button variant='pill-link' startIcon={backIcon} aria-label={up.title} {...props}>
+        <LinkOrButton
+          button={{ variant: 'pill' }}
+          startIcon={backIcon}
+          aria-label={up.title}
+          color='inherit'
+          {...props}
+        >
           {up.title}
-        </Button>
+        </LinkOrButton>
       </PageLink>
     )
 

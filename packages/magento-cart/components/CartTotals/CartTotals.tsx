@@ -1,56 +1,25 @@
 import { Money } from '@graphcommerce/magento-store'
-import { AnimatedRow, responsiveVal, UseStyles } from '@graphcommerce/next-ui'
+import { AnimatedRow, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Divider, lighten, makeStyles, Theme } from '@material-ui/core'
-import clsx from 'clsx'
+import { Box, Divider, lighten, SxProps, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
-import React from 'react'
 import { useCartQuery, useDisplayInclTax } from '../../hooks'
 import { GetCartTotalsDocument } from './GetCartTotals.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    costsContainer: {
-      borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
-      background:
-        theme.palette.type === 'light'
-          ? '#FFE10820'
-          : lighten(theme.palette.background.default, 0.15),
-      padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
-    },
-    containerMarginTop: {
-      marginTop: theme.spacings.md,
-    },
-    costsDivider: {
-      margin: `1em 0`,
-    },
-    costsRow: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      ...theme.typography.subtitle1,
-    },
-    costsGrandTotal: {
-      fontWeight: theme.typography.fontWeightBold,
-      color: theme.palette.primary.main,
-    },
-    costsDiscount: {
-      fontWeight: theme.typography.fontWeightBold,
-    },
-    costsDiscountSub: {
-      fontWeight: theme.typography.fontWeightBold,
-    },
-    costsTax: {
-      color: theme.palette.text.disabled,
-      paddingTop: 0,
-    },
-    money: {
-      whiteSpace: 'nowrap',
-    },
-  }),
-  { name: 'CartTotals' },
-)
+export type CartTotalsProps = OwnerProps & { sx?: SxProps<Theme> }
 
-export type CartTotalsProps = { containerMargin?: boolean } & UseStyles<typeof useStyles>
+type OwnerProps = { containerMargin?: boolean }
+const name = 'CartTotals' as const
+const parts = [
+  'root',
+  'costsDivider',
+  'costsRow',
+  'costsGrandTotal',
+  'costsDiscountSub',
+  'costsTax',
+  'money',
+] as const
+const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 
 /**
  * ⚠️ WARNING: The current CartTotals rely heavily on how Magento is configured. It kinda works for
@@ -60,12 +29,13 @@ export type CartTotalsProps = { containerMargin?: boolean } & UseStyles<typeof u
  */
 export default function CartTotals(props: CartTotalsProps) {
   const { data } = useCartQuery(GetCartTotalsDocument, { allowUrl: true })
-  const classes = useStyles(props)
+  const { containerMargin, sx = [] } = props
+
+  const classes = withState({ containerMargin })
   const inclTax = useDisplayInclTax()
 
   if (!data?.cart) return null
 
-  const { containerMargin } = props
   const { shipping_addresses, prices } = data.cart
   const shippingMethod = shipping_addresses?.[0]?.selected_shipping_method
 
@@ -78,40 +48,41 @@ export default function CartTotals(props: CartTotalsProps) {
 
   return (
     <AnimatedRow
-      className={clsx(
-        containerMargin ? classes.containerMarginTop : undefined,
-        classes.costsContainer,
-      )}
+      className={classes.root}
+      sx={[
+        (theme) => ({
+          borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
+          background:
+            theme.palette.mode === 'light'
+              ? '#FFE10820'
+              : lighten(theme.palette.background.default, 0.15),
+          padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
+
+          '&.containerMargin': {
+            marginTop: theme.spacings.md,
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       key='total-costs'
     >
       <AnimatePresence initial={false}>
         {prices?.subtotal_including_tax && (
-          <AnimatedRow className={classes.costsRow} key='subtotal'>
-            <div>
+          <AnimatedRow
+            className={classes.costsRow}
+            key='subtotal'
+            sx={{ display: 'flex', justifyContent: 'space-between', typography: 'subtitle1' }}
+          >
+            <Box>
               <Trans>Products</Trans>
-            </div>
-            <div className={classes.money}>
+            </Box>
+            <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
               <Money
                 {...(inclTax ? prices.subtotal_including_tax : prices.subtotal_excluding_tax)}
               />
-            </div>
+            </Box>
           </AnimatedRow>
         )}
-
-        {/* {prices?.discounts && prices.discounts.length > 1 && (
-          <AnimatedRow className={clsx(classes.costsRow, classes.costsDiscount)} key='discount'>
-            <div>Product discount</div>
-            <div className={classes.money}>
-              <Money
-                currency={prices.subtotal_with_discount_excluding_tax?.currency}
-                value={
-                  (prices.subtotal_excluding_tax?.value ?? 0) * -1 -
-                  (prices.subtotal_with_discount_excluding_tax?.value ?? 0) * -1
-                }
-              />
-            </div>
-          </AnimatedRow>
-        )} */}
 
         {prices?.discounts?.map((discount) => {
           const value = inclTax
@@ -123,74 +94,98 @@ export default function CartTotals(props: CartTotalsProps) {
 
           return (
             <AnimatedRow
-              className={clsx(classes.costsRow, classes.costsDiscountSub)}
+              sx={(theme) => ({
+                fontWeight: theme.typography.fontWeightBold,
+              })}
               key={discount?.label}
             >
-              <div>{discount?.label}</div>
-              <div className={classes.money}>
+              <Box>{discount?.label}</Box>
+              <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
                 {discount?.amount && <Money {...discount.amount} value={value} />}
-              </div>
+              </Box>
             </AnimatedRow>
           )
         })}
 
         {shippingMethod && (
-          <AnimatedRow className={classes.costsRow} key='shippingMethod'>
-            <div>
+          <AnimatedRow
+            className={classes.costsRow}
+            key='shippingMethod'
+            sx={{ display: 'flex', justifyContent: 'space-between', typography: 'subtitle1' }}
+          >
+            <Box>
               <Trans>
                 Shipping ({shippingMethod.carrier_title} {shippingMethod.method_title})
               </Trans>
-            </div>
-            <div className={classes.money}>
+            </Box>
+            <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
               <Money
                 {...(inclTax
                   ? shippingMethodPrices?.price_incl_tax
                   : shippingMethodPrices?.price_excl_tax)}
               />
-            </div>
+            </Box>
           </AnimatedRow>
         )}
 
         {!inclTax &&
           prices?.applied_taxes?.map((tax) => (
-            <AnimatedRow className={clsx(classes.costsRow)} key={`excl${tax?.label}`}>
-              <div>{tax?.label}</div>
-              <div className={classes.money}>
+            <AnimatedRow
+              className={classes.costsRow}
+              key={`excl${tax?.label}`}
+              sx={{ display: 'flex', justifyContent: 'space-between', typography: 'subtitle1' }}
+            >
+              <Box>{tax?.label}</Box>
+              <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
                 <Money {...tax?.amount} />
-              </div>
+              </Box>
             </AnimatedRow>
           ))}
 
         <AnimatedRow key='divider'>
-          <Divider className={classes.costsDivider} />
+          <Divider className={classes.costsDivider} sx={{ margin: `1em 0` }} />
         </AnimatedRow>
 
         {prices?.grand_total && (
           <AnimatedRow
-            className={clsx(classes.costsRow, classes.costsGrandTotal)}
+            className={`${classes.costsRow} ${classes.costsGrandTotal}`}
             key='grand_total'
+            sx={(theme) => ({
+              display: 'flex',
+              justifyContent: 'space-between',
+              typography: 'subtitle1',
+              fontWeight: theme.typography.fontWeightBold,
+              color: theme.palette.primary.main,
+            })}
           >
-            <div>
+            <Box>
               <Trans>Grand total</Trans>
-            </div>
-            <div className={classes.money}>
+            </Box>
+            <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
               <Money {...prices.grand_total} />
-            </div>
+            </Box>
           </AnimatedRow>
         )}
 
         {inclTax &&
           prices?.applied_taxes?.map((tax) => (
             <AnimatedRow
-              className={clsx(classes.costsRow, classes.costsTax)}
+              className={`${classes.costsRow} ${classes.costsTax}`}
               key={`incl${tax?.label}`}
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                typography: 'subtitle1',
+                color: 'text.disabled',
+                paddingTop: 0,
+              }}
             >
-              <div>
+              <Box>
                 <Trans>Including {tax?.label}</Trans>
-              </div>
-              <div className={classes.money}>
+              </Box>
+              <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
                 <Money {...tax?.amount} />
-              </div>
+              </Box>
             </AnimatedRow>
           ))}
       </AnimatePresence>

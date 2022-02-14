@@ -1,34 +1,32 @@
-import { SvgImageSimple, iconLocation } from '@graphcommerce/next-ui'
+import { SvgIcon, iconLocation } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { TrackingLinkFragment } from './TrackingLink.gql'
 
-export type TrackingLinkProps = TrackingLinkFragment
-
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    trackingLink: {
-      display: 'flex',
-      alignItems: 'center',
-      color: theme.palette.primary.main,
-    },
-  }),
-  { name: 'TrackingLink' },
-)
+export type TrackingLinkProps = TrackingLinkFragment & { sx?: SxProps<Theme> }
 
 export default function TrackingLink(props: TrackingLinkProps) {
-  const { number } = props
-  const classes = useStyles()
+  const { number, sx = [] } = props
 
   return (
-    <div className={classes.trackingLink}>
+    <Box
+      className='TrackingLink-root'
+      sx={[
+        (theme) => ({
+          display: 'flex',
+          alignItems: 'center',
+          color: theme.palette.primary.main,
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       {number && (
         <>
-          <SvgImageSimple src={iconLocation} size='small' />
+          <SvgIcon src={iconLocation} size='small' />
           <Trans>Follow order</Trans>
         </>
       )}
-    </div>
+    </Box>
   )
 }

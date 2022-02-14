@@ -1,41 +1,18 @@
 import {
   IconButton,
   IconButtonProps,
-  makeStyles,
   OutlinedTextFieldProps,
+  SxProps,
   TextField,
   TextFieldProps,
   useForkRef,
-} from '@material-ui/core'
-import clsx from 'clsx'
-import React, { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
-import { UseStyles } from '../Styles'
+  Theme,
+} from '@mui/material'
+import { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
+import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-import SvgImageSimple from '../SvgImage/SvgImageSimple'
+import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconMin, iconPlus } from '../icons'
-
-const useStyles = makeStyles(
-  {
-    quantity: {
-      width: responsiveVal(80, 120),
-      backgroundColor: 'inherit',
-    },
-    quantityInput: {
-      textAlign: 'center',
-      '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
-        appearance: 'none',
-      },
-    },
-    button: {},
-    adornedEnd: {
-      paddingRight: responsiveVal(7, 14),
-    },
-    adornedStart: {
-      paddingLeft: responsiveVal(7, 14),
-    },
-  },
-  { name: 'TextInputNumber' },
-)
 
 export type IconButtonPropsOmit = Omit<
   IconButtonProps,
@@ -45,15 +22,30 @@ export type IconButtonPropsOmit = Omit<
 export type TextInputNumberProps = Omit<TextFieldProps, 'type'> & {
   DownProps?: IconButtonPropsOmit
   UpProps?: IconButtonPropsOmit
-} & UseStyles<typeof useStyles>
+  sx?: SxProps<Theme>
+}
 
 function isOutlined(props: TextFieldProps): props is OutlinedTextFieldProps {
   return props.variant === 'outlined'
 }
 
-export default function TextInputNumber(props: TextInputNumberProps) {
-  const { DownProps = {}, UpProps = {}, inputProps = {}, inputRef, ...textFieldProps } = props
-  const classes = useStyles(props)
+type OwnerState = { size?: 'small' | 'medium' }
+const name = 'TextInputNumber' as const
+const parts = ['quantity', 'quantityInput', 'button'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
+
+export function TextInputNumber(props: TextInputNumberProps) {
+  const {
+    DownProps = {},
+    UpProps = {},
+    inputProps = {},
+    inputRef,
+    sx = [],
+    ...textFieldProps
+  } = props
+
+  const classes = withState({})
+
   const ref = useRef<HTMLInputElement>(null)
   const forkRef = useForkRef<HTMLInputElement>(ref, inputRef as Ref<HTMLInputElement>)
 
@@ -98,21 +90,20 @@ export default function TextInputNumber(props: TextInputNumberProps) {
     setTimeout(() => ref.current && updateDisabled(ref.current))
   }, [ref, inputProps.min, inputProps.max])
 
-  if (!textFieldProps.InputProps) textFieldProps.InputProps = {}
-  if (isOutlined(textFieldProps)) {
-    textFieldProps.InputProps.classes = {
-      ...textFieldProps.InputProps?.classes,
-      adornedEnd: classes.adornedEnd,
-      adornedStart: classes.adornedStart,
-    }
-  }
-
   return (
     <TextField
       {...textFieldProps}
       type='number'
       inputRef={forkRef}
-      className={clsx(textFieldProps.className, classes.quantity)}
+      className={`${textFieldProps.className ?? ''} ${classes.quantity}`}
+      sx={[
+        {
+          width: responsiveVal(80, 120),
+          backgroundColor: 'inherit',
+        },
+
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       autoComplete='off'
       label={' '}
       id='quantity-input'
@@ -127,12 +118,12 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             onPointerDown={() => setDirection('down')}
             onPointerUp={stop}
             // disabled={textFieldProps.disabled || disabled === 'min'}
-            tabIndex='-1'
+            tabIndex={-1}
             color='inherit'
-            className={clsx(classes.button, DownProps.className)}
             {...DownProps}
+            className={`${classes.button} ${DownProps.className ?? ''}`}
           >
-            {DownProps.children ?? <SvgImageSimple src={iconMin} size='small' />}
+            {DownProps.children ?? <SvgIcon src={iconMin} size='small' />}
           </IconButton>
         ),
         endAdornment: (
@@ -143,12 +134,12 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             onPointerDown={() => setDirection('up')}
             onPointerUp={() => setDirection(null)}
             // disabled={textFieldProps.disabled || disabled === 'max'}
-            tabIndex='-1'
+            tabIndex={-1}
             color='inherit'
-            className={clsx(classes.button, UpProps.className)}
             {...UpProps}
+            className={`${classes.button} ${UpProps.className ?? ''}`}
           >
-            {UpProps.children ?? <SvgImageSimple src={iconPlus} size='small' />}
+            {UpProps.children ?? <SvgIcon src={iconPlus} size='small' />}
           </IconButton>
         ),
       }}
@@ -158,7 +149,15 @@ export default function TextInputNumber(props: TextInputNumberProps) {
       }}
       inputProps={{
         ...inputProps,
-        className: clsx(inputProps?.className, classes.quantityInput),
+        sx: [
+          {
+            textAlign: 'center',
+            '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
+              appearance: 'none',
+            },
+          },
+        ],
+        className: `${inputProps?.className ?? ''} ${classes.quantityInput}`,
       }}
     />
   )

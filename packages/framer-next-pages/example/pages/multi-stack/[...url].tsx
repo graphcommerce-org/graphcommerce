@@ -2,16 +2,16 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   LayoutHeader,
-  Button,
   iconChevronRight,
   LayoutOverlay,
   LayoutOverlayProps,
   LayoutOverlayVariant,
-  SvgImageSimple,
+  SvgIcon,
   LayoutTitle,
+  LinkOrButton,
 } from '@graphcommerce/next-ui'
-import { Container } from '@material-ui/core'
-import { motion } from 'framer-motion'
+import { Container, Button } from '@mui/material'
+import { m } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticProps } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -32,9 +32,13 @@ function MultiStack() {
         noAlign
         primary={
           <Link href={`/multi-stack/${variant}/${page + 1}`} passHref>
-            <Button variant='pill-link' endIcon={<SvgImageSimple src={iconChevronRight} />}>
+            <LinkOrButton
+              color='secondary'
+              button={{ variant: 'pill' }}
+              endIcon={<SvgIcon src={iconChevronRight} />}
+            >
               {page + 1}
-            </Button>
+            </LinkOrButton>
           </Link>
         }
       >
@@ -59,7 +63,7 @@ function MultiStack() {
           {expanded ? 'collapse' : 'expand'}
         </button>
         <StackDebug />
-        <motion.div
+        <m.div
           style={{ fontFamily: 'sans-serif', overflow: 'hidden' }}
           variants={{
             collapsed: { height: 60 },
@@ -69,7 +73,7 @@ function MultiStack() {
           animate={expanded ? 'expanded' : 'collapsed'}
         >
           <Grid />
-        </motion.div>
+        </m.div>
         <div style={{ height: 2000 }}>hoi</div>
       </Container>
     </>

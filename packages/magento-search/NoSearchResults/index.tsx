@@ -1,32 +1,36 @@
-import { UseStyles } from '@graphcommerce/next-ui'
-import { makeStyles, Theme, Typography } from '@material-ui/core'
-import React from 'react'
+import { extendableComponent } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
+import { Box, SxProps, Theme, Typography } from '@mui/material'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    container: {
-      marginTop: theme.spacings.md,
-      marginBottom: theme.spacings.sm,
-      textAlign: 'center',
-    },
-  }),
-  {
-    name: 'NoSearchResults',
-  },
-)
+export type NoSearchResultsProps = { search: string; sx?: SxProps<Theme> }
 
-export type NoSearchResultsProps = { search: string } & UseStyles<typeof useStyles>
+const name = 'NoSearchResults' as const
+const parts = ['root'] as const
+const { classes } = extendableComponent(name, parts)
 
 export default function NoSearchResults(props: NoSearchResultsProps) {
-  const { search } = props
-  const classes = useStyles(props)
+  const { search, sx = [] } = props
+
+  const term = `'${search}'`
 
   return (
-    <div className={classes.container}>
+    <Box
+      className={classes.root}
+      sx={[
+        (theme) => ({
+          marginTop: theme.spacings.md,
+          marginBottom: theme.spacings.sm,
+          textAlign: 'center',
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       <Typography variant='h5' align='center'>
-        We couldn&apos;t find any results for {`'${search}'`}
+        <Trans>We couldn&apos;t find any results for {term}</Trans>
       </Typography>
-      <p>Try a different search</p>
-    </div>
+      <p>
+        <Trans>Try a different search</Trans>
+      </p>
+    </Box>
   )
 }

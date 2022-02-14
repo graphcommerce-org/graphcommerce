@@ -1,7 +1,6 @@
-import { ApolloError } from '@apollo/client'
-import { AlertProps } from '@material-ui/lab'
-import React from 'react'
-import FullPageMessage, { FullPageMessageProps } from '../FullPageMessage'
+import { ApolloError } from '@graphcommerce/graphql'
+import { AlertProps } from '@mui/material'
+import { FullPageMessage, FullPageMessageProps } from '../FullPageMessage'
 import ApolloErrorAlert from './ApolloErrorAlert'
 
 export type ApolloErrorFullPageProps = {

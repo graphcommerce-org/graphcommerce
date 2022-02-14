@@ -1,4 +1,4 @@
-import { ApolloError } from '@apollo/client'
+import { ApolloError } from '@graphcommerce/graphql'
 import type { GraphQLError } from 'graphql'
 
 export type ErrorCategory =

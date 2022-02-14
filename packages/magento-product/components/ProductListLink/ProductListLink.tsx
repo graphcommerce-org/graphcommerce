@@ -1,4 +1,4 @@
-import { Link, LinkProps } from '@material-ui/core'
+import { Link, LinkProps } from '@mui/material'
 import PageLink, { LinkProps as PageLinkProps } from 'next/link'
 import React, { PropsWithChildren } from 'react'
 import { useProductListLink } from '../../hooks/useProductListLink'
@@ -42,7 +42,7 @@ const ProductListLink = React.forwardRef<HTMLAnchorElement, ProductListLinkProps
       {noLink ? (
         children
       ) : (
-        <Link rel={rel} {...linkProps} ref={ref} onClick={updateParams}>
+        <Link rel={rel} {...linkProps} ref={ref} onClick={updateParams} underline='hover'>
           {children}
         </Link>
       )}

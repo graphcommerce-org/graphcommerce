@@ -1,63 +1,75 @@
-import { SvgImageSimple, iconStar, UseStyles } from '@graphcommerce/next-ui'
-import { makeStyles, Theme } from '@material-ui/core'
-import React from 'react'
+import { SvgIcon, iconStar, extendableComponent } from '@graphcommerce/next-ui'
+import { Box, SxProps, Theme } from '@mui/material'
 import { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'
 
-export type ProductReviewSummaryProps = ProductReviewSummaryFragment & UseStyles<typeof useStyles>
+export type ProductReviewSummaryProps = ProductReviewSummaryFragment & { sx?: SxProps<Theme> }
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      width: 'max-content',
-      position: 'relative',
-      '& > div': {
-        lineHeight: 0,
-      },
-    },
-    rating: {
-      position: 'absolute',
-      top: 0,
-      overflow: 'hidden',
-      '& > div': {
-        whiteSpace: 'nowrap',
-      },
-    },
-    iconStar: {
-      stroke: 'none',
-      fill: '#FFDA1C',
-    },
-    iconStarDisabled: {
-      stroke: 'none',
-      fill: theme.palette.grey[300],
-    },
-  }),
-  { name: 'ProductListReviewSummary' },
-)
+const name = 'ProductReviewSummary' as const
+const parts = ['root', 'rating', 'iconStar', 'iconStarDisabled'] as const
+const { classes } = extendableComponent(name, parts)
 
 export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
-  const { rating_summary } = props
-  const classes = useStyles(props)
+  const { rating_summary, sx = [] } = props
 
   if (!rating_summary) return null
 
+  const disabledStar = (
+    <SvgIcon
+      src={iconStar}
+      size='xs'
+      className={classes.iconStarDisabled}
+      sx={(theme) => ({ stroke: 'none', fill: theme.palette.grey[300] })}
+    />
+  )
+
+  const star = (
+    <SvgIcon
+      src={iconStar}
+      size='xs'
+      className={classes.iconStar}
+      sx={{ stroke: 'none', fill: '#FFDA1C' }}
+    />
+  )
+
   return (
-    <div className={classes.root}>
+    <Box
+      className={classes.root}
+      sx={[
+        {
+          width: 'max-content',
+          position: 'relative',
+          '& > div': {
+            lineHeight: 0,
+          },
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       <div>
-        <SvgImageSimple src={iconStar} size='xs' className={classes.iconStarDisabled} />
-        <SvgImageSimple src={iconStar} size='xs' className={classes.iconStarDisabled} />
-        <SvgImageSimple src={iconStar} size='xs' className={classes.iconStarDisabled} />
-        <SvgImageSimple src={iconStar} size='xs' className={classes.iconStarDisabled} />
-        <SvgImageSimple src={iconStar} size='xs' className={classes.iconStarDisabled} />
+        {disabledStar}
+        {disabledStar}
+        {disabledStar}
+        {disabledStar}
+        {disabledStar}
       </div>
-      <div className={classes.rating} style={{ width: `${rating_summary}%` }}>
+      <Box
+        className={classes.rating}
+        style={{ width: `${rating_summary}%` }}
+        sx={{
+          position: 'absolute',
+          top: 0,
+          overflow: 'hidden',
+          '& > div': { whiteSpace: 'nowrap' },
+        }}
+      >
         <div>
-          <SvgImageSimple src={iconStar} size='xs' className={classes.iconStar} />
-          <SvgImageSimple src={iconStar} size='xs' className={classes.iconStar} />
-          <SvgImageSimple src={iconStar} size='xs' className={classes.iconStar} />
-          <SvgImageSimple src={iconStar} size='xs' className={classes.iconStar} />
-          <SvgImageSimple src={iconStar} size='xs' className={classes.iconStar} />
+          {star}
+          {star}
+          {star}
+          {star}
+          {star}
         </div>
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }

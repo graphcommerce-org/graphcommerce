@@ -4,17 +4,16 @@ import '../demo.css'
 import { PageComponent, FramerNextPages } from '@graphcommerce/framer-next-pages'
 import { LinguiProvider } from '@graphcommerce/lingui-next'
 import { responsiveVal } from '@graphcommerce/next-ui'
-import { createTheme, CssBaseline } from '@material-ui/core'
-import { ThemeProvider } from '@material-ui/styles'
+import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
 import { LazyMotion } from 'framer-motion'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
-import dynamic from 'next/dynamic'
 import { Router } from 'next/router'
 import React from 'react'
 
-const Fallback = dynamic(() => import('./[url]'), { ssr: false })
-
 const theme = createTheme({
+  shape: {
+    borderRadius: 4,
+  },
   spacings: {
     xxs: responsiveVal(10, 16),
     xs: responsiveVal(12, 20),
@@ -38,7 +37,11 @@ const theme = createTheme({
 
 export default function MyApp(props: AppPropsType<Router> & { Component: PageComponent }) {
   return (
-    <LinguiProvider loader={async () => ({ messages: {} })}>
+    <LinguiProvider
+      locale='en'
+      loader={async () => Promise.resolve({ messages: {} })}
+      ssrLoader={() => ({ messages: {} })}
+    >
       <LazyMotion features={async () => (await import('../components/lazyMotion')).default}>
         <ThemeProvider theme={theme}>
           <CssBaseline />

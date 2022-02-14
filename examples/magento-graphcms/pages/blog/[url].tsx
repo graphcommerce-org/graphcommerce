@@ -2,17 +2,20 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { BlogTitle, GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
-import React from 'react'
-import BlogList from '../../components/Blog'
-import BlogAuthor from '../../components/Blog/BlogAuthor'
-import BlogHeader from '../../components/Blog/BlogHeader'
-import { BlogListDocument, BlogListQuery } from '../../components/Blog/BlogList.gql'
-import { BlogPostPathsDocument } from '../../components/Blog/BlogPostPaths.gql'
-import BlogTags from '../../components/Blog/BlogTags'
-import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import { LayoutFull, LayoutFullProps } from '../../components/Layout'
-import RowRenderer from '../../components/Row/RowRenderer'
-import apolloClient from '../../lib/apolloClient'
+import {
+  BlogAuthor,
+  BlogHeader,
+  BlogList,
+  BlogListDocument,
+  BlogListQuery,
+  BlogPostPathsDocument,
+  BlogTags,
+  LayoutFull,
+  LayoutFullProps,
+  RowRenderer,
+} from '../../components'
+import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
+import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
 
@@ -34,7 +37,7 @@ function BlogPage(props: Props) {
       <Row>
         <PageMeta title={title} metaDescription={title} canonical={page.url} />
 
-        <BlogTitle title={title} />
+        <BlogTitle>{title}</BlogTitle>
 
         {page.author ? <BlogAuthor author={page.author} date={page.date} /> : null}
         {page.asset ? <BlogHeader asset={page.asset} /> : null}
@@ -56,7 +59,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.VERCEL_ENV !== 'production') return { paths: [], fallback: 'blocking' }
 
   const responses = locales.map(async (locale) => {
-    const staticClient = apolloClient(locale)
+    const staticClient = graphqlSsrClient(locale)
     const BlogPostPaths = staticClient.query({ query: BlogPostPathsDocument })
     const { pages } = (await BlogPostPaths).data
     return (
@@ -72,8 +75,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const urlKey = params?.url ?? '??'
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
   const limit = 4
   const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({

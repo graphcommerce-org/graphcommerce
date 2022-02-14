@@ -1,4 +1,4 @@
-import { Theme, useMediaQuery } from '@material-ui/core'
+import { Theme, useMediaQuery } from '@mui/material'
 import { PanInfo } from 'framer-motion'
 import { inertia, InertiaOptions } from 'popmotion'
 import { scrollSnapTypeDirection } from '../utils/scrollSnapTypeDirection'
@@ -21,7 +21,7 @@ export const useVelocitySnapTo = (
 ) => {
   const { disableSnap, enableSnap, register, getScrollSnapPositions, scrollSnap } =
     useScrollerContext()
-  const direction = useMediaQuery<Theme>((theme) => theme.breakpoints.down('sm'))
+  const direction = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
     ? scrollSnapTypeDirection(scrollSnap.scrollSnapTypeSm)
     : scrollSnapTypeDirection(scrollSnap.scrollSnapTypeMd)
 

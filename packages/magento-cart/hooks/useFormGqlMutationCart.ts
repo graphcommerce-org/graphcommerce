@@ -1,4 +1,4 @@
-import { MutationHookOptions, TypedDocumentNode } from '@apollo/client'
+import { MutationHookOptions, TypedDocumentNode } from '@graphcommerce/graphql'
 import {
   useFormGqlMutation,
   UseFormGqlMutationReturn,

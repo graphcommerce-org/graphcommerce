@@ -18,17 +18,19 @@ import {
 } from '@graphcommerce/magento-product-grouped'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, JsonLd, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
-import { Typography } from '@material-ui/core'
+import {
+  GetStaticProps,
+  JsonLd,
+  LayoutTitle,
+  LayoutHeader,
+  SchemaDts,
+} from '@graphcommerce/next-ui'
+import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import { Product } from 'schema-dts'
-import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
-import { LayoutFull, LayoutFullProps } from '../../../components/Layout'
-import { RowProduct } from '../../../components/Row'
-import RowRenderer from '../../../components/Row/RowRenderer'
-import Usps from '../../../components/Usps'
-import apolloClient from '../../../lib/apolloClient'
+import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
+import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
+import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
 
@@ -55,7 +57,7 @@ function ProductGrouped(props: Props) {
           {product.name}
         </LayoutTitle>
       </LayoutHeader>
-      <JsonLd<Product>
+      <JsonLd<SchemaDts.Product>
         item={{
           '@context': 'https://schema.org',
           ...jsonLdProduct(product),
@@ -122,15 +124,15 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = (locale: string) =>
-    getProductStaticPaths(apolloClient(locale), locale, 'GroupedProduct')
+    getProductStaticPaths(graphqlSsrClient(locale), locale, 'GroupedProduct')
   const paths = (await Promise.all(locales.map(path))).flat(1)
 
   return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
 
   const urlKey = params?.url ?? '??'
 

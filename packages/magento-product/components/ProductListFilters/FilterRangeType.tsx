@@ -1,8 +1,7 @@
-import { cloneDeep } from '@apollo/client/utilities'
-import { FilterRangeTypeInput } from '@graphcommerce/graphql'
+import { cloneDeep, FilterRangeTypeInput } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
-import { ChipMenu, ChipMenuProps } from '@graphcommerce/next-ui'
-import { makeStyles, Mark, Slider, Theme } from '@material-ui/core'
+import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
+import { Box, Slider } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
@@ -14,47 +13,16 @@ type FilterRangeTypeProps = NonNullable<
   Omit<ChipMenuProps, 'selected'>
 
 const sliderThumbWidth = 28
-const useFilterRangeType = makeStyles(
-  (theme: Theme) => ({
-    container: {
-      padding: `${theme.spacings.xxs} ${theme.spacings.xxs} !important`,
-      width: '100%',
-    },
-    slider: {
-      maxWidth: `calc(100% - ${sliderThumbWidth}px)`,
-      margin: `${theme.spacings.xxs} auto`,
-      display: 'block',
-      paddingBottom: 32,
-      '& .MuiSlider-rail': {
-        color: theme.palette.text.disabled,
-        height: 4,
-        borderRadius: 10,
-      },
-      '& .MuiSlider-track': {
-        color: theme.palette.primary.main,
-        height: 4,
-      },
-      '& .MuiSlider-thumb': {
-        width: sliderThumbWidth,
-        height: sliderThumbWidth,
-        marginLeft: `-${sliderThumbWidth * 0.5}px`,
-        marginTop: `-${sliderThumbWidth * 0.5}px`,
-        background: theme.palette.background.default,
-        boxShadow: theme.shadows[6],
-      },
-    },
-  }),
-  { name: 'FilterRangeType' },
-)
+
+const { classes } = extendableComponent('FilterRangeType', ['root', 'container', 'slider'] as const)
 
 export default function FilterRangeType(props: FilterRangeTypeProps) {
   const { attribute_code, label, options, ...chipProps } = props
-  const classes = useFilterRangeType(props)
   const { params } = useProductListParamsContext()
   const replaceRoute = useProductListLinkReplace({ scroll: false })
 
   // eslint-disable-next-line no-case-declarations
-  const marks: { [index: number]: Mark } = {}
+  const marks: { [index: number]: { value: number; label?: React.ReactNode } } = {}
   const paramValues = params.filters[attribute_code]
 
   const [min, maxish] = options
@@ -141,6 +109,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
       selected={!!currentLabel}
       {...chipProps}
       onDelete={currentLabel ? resetFilter : undefined}
+      className={classes.root}
       labelRight={
         <>
           <Money round value={value[0]} />
@@ -149,7 +118,13 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
         </>
       }
     >
-      <div className={classes.container}>
+      <Box
+        sx={(theme) => ({
+          padding: `${theme.spacings.xxs} ${theme.spacings.xxs} !important`,
+          width: '100%',
+        })}
+        className={classes.container}
+      >
         <Slider
           min={min}
           max={max}
@@ -167,8 +142,25 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
           }}
           valueLabelDisplay='off'
           className={classes.slider}
+          sx={(theme) => ({
+            maxWidth: `calc(100% - ${sliderThumbWidth}px)`,
+            margin: `${theme.spacings.xxs} auto`,
+            display: 'block',
+            paddingBottom: '32px',
+            '& .MuiSlider-rail': {
+              height: 4,
+              borderRadius: '10px',
+            },
+            '& .MuiSlider-track': {
+              height: 4,
+            },
+            '& .MuiSlider-thumb': {
+              width: sliderThumbWidth,
+              height: sliderThumbWidth,
+            },
+          })}
         />
-      </div>
+      </Box>
     </ChipMenu>
   )
 }

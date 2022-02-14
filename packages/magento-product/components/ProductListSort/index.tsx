@@ -1,8 +1,7 @@
-import { useQuery } from '@apollo/client'
-import { cloneDeep } from '@apollo/client/utilities'
+import { useQuery, cloneDeep } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps } from '@graphcommerce/next-ui'
-import { ListItem, ListItemText } from '@material-ui/core'
+import { ListItem, ListItemText } from '@mui/material'
 import React from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
@@ -53,17 +52,20 @@ export default function ProductListSort(props: ProductListSortProps) {
             key={option?.value ?? ''}
             dense
             selected={option?.value === currentSort}
-            component={React.memo((chipProps) => (
-              <ProductListLink
-                {...chipProps}
-                {...linkParams}
-                color='inherit'
-                underline='none'
-                link={{ scroll: false, replace: true }}
-              />
-            ))}
+            component={React.memo(
+              React.forwardRef<HTMLAnchorElement>((chipProps, ref) => (
+                <ProductListLink
+                  {...chipProps}
+                  {...linkParams}
+                  ref={ref}
+                  color='inherit'
+                  underline='none'
+                  link={{ scroll: false, replace: true }}
+                />
+              )),
+            )}
           >
-            <ListItemText secondary>{option?.label}</ListItemText>
+            <ListItemText>{option?.label}</ListItemText>
           </ListItem>
         )
       })}

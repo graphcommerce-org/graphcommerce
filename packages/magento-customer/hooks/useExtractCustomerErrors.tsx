@@ -1,4 +1,4 @@
-import { ApolloError, useApolloClient } from '@apollo/client'
+import { ApolloError, useApolloClient } from '@graphcommerce/graphql'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { t } from '@lingui/macro'
 import { useEffect } from 'react'

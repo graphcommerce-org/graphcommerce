@@ -18,30 +18,23 @@ import {
 } from '@graphcommerce/magento-product-configurable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, JsonLd, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
+import {
+  GetStaticProps,
+  JsonLd,
+  LayoutHeader,
+  LayoutTitle,
+  SchemaDts,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
-import { Product } from 'schema-dts'
-import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
-import { LayoutFull, LayoutFullProps } from '../../../components/Layout'
-import { RowProduct } from '../../../components/Row'
-import RowRenderer from '../../../components/Row/RowRenderer'
-import Usps from '../../../components/Usps'
-import apolloClient from '../../../lib/apolloClient'
+import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
+import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
+import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = ProductPageQuery & ConfigurableProductPageQuery
-
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    prePrice: {
-      color: theme.palette.text.disabled,
-    },
-  }),
-  { name: 'ProductConfigurable' },
-)
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
@@ -49,7 +42,6 @@ type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function ProductConfigurable(props: Props) {
   const { products, usps, typeProducts, sidebarUsps, pages } = props
-  const classes = useStyles()
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
@@ -69,7 +61,7 @@ function ProductConfigurable(props: Props) {
           {product.name}
         </LayoutTitle>
       </LayoutHeader>
-      <JsonLd<Product>
+      <JsonLd<SchemaDts.Product>
         item={{
           '@context': 'https://schema.org',
           ...jsonLdProduct(product),
@@ -81,7 +73,7 @@ function ProductConfigurable(props: Props) {
         <ProductPageMeta {...product} />
         <ProductPageGallery {...product}>
           <div>
-            <Typography component='span' variant='body2' className={classes.prePrice}>
+            <Typography component='span' variant='body2' color='text.disabled'>
               <Trans>As low as</Trans>&nbsp;
               <Money {...product.price_range.minimum_price.regular_price} />
             </Typography>
@@ -103,7 +95,7 @@ function ProductConfigurable(props: Props) {
             optionEndLabels={{
               size: (
                 <PageLink href='/modal/product/global/size' passHref>
-                  <Link color='primary'>
+                  <Link color='primary' underline='hover'>
                     <Trans>Which size is right?</Trans>
                   </Link>
                 </PageLink>
@@ -147,15 +139,15 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = (locale: string) =>
-    getProductStaticPaths(apolloClient(locale), locale, 'ConfigurableProduct')
+    getProductStaticPaths(graphqlSsrClient(locale), locale, 'ConfigurableProduct')
   const paths = (await Promise.all(locales.map(path))).flat(1)
 
   return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
 
   const urlKey = params?.url ?? '??'
 

@@ -1,50 +1,45 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { UseStyles } from '@graphcommerce/next-ui'
-import { Fab, FabProps, makeStyles, Theme } from '@material-ui/core'
-import clsx from 'clsx'
-import { HTMLMotionProps, m } from 'framer-motion'
+import { extendableComponent } from '@graphcommerce/next-ui/Styles'
+import { Fab, FabProps, styled, SxProps, Theme } from '@mui/material'
+import { m } from 'framer-motion'
 import React from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    dots: {
-      width: 'fit-content',
-      display: 'grid',
-      gridAutoFlow: 'column',
-      padding: `0 6px`,
-      borderRadius: '99em',
-    },
-    dot: {
-      boxShadow: 'none',
-      background: 'transparent',
-    },
-    circle: {
-      borderRadius: '99em',
-      width: 10,
-      height: 10,
-      background: theme.palette.text.primary,
-    },
-  }),
-  { name: 'ScrollerDots' },
-)
+const MotionBox = styled(m.div)({})
 
 export type DotsProps = {
   fabProps?: Omit<FabProps, 'onClick' | 'children'>
-} & HTMLMotionProps<'div'> &
-  UseStyles<typeof useStyles>
+  sx?: SxProps<Theme>
+}
+
+const componentName = 'ScrollerDots'
+const { classes } = extendableComponent(componentName, ['root', 'dot', 'circle'] as const)
 
 const ScrollerDots = m(
   React.forwardRef<HTMLDivElement, DotsProps>((props, ref) => {
-    const { fabProps, classes: _classes, ...containerProps } = props
-    const { dots, dot, circle, ...classes } = useStyles(props)
+    const { fabProps, sx = [], ...containerProps } = props
+
     const { items, getScrollSnapPositions } = useScrollerContext()
     const itemsArr = useMotionValueValue(items, (v) => v)
     const scrollTo = useScrollTo()
 
     return (
-      <m.div {...containerProps} className={clsx(dots, containerProps?.className)} ref={ref}>
+      <MotionBox
+        {...containerProps}
+        className={classes.root}
+        ref={ref}
+        sx={[
+          {
+            width: 'fit-content',
+            display: 'grid',
+            gridAutoFlow: 'column',
+            padding: `0 6px`,
+            borderRadius: '99em',
+          },
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      >
         {itemsArr.map((item, idx) => (
           <Fab
             // eslint-disable-next-line react/no-array-index-key
@@ -57,18 +52,29 @@ const ScrollerDots = m(
               // eslint-disable-next-line @typescript-eslint/no-floating-promises
               scrollTo({ x: positions.x[idx] ?? 0, y: positions.y[idx] ?? 0 })
             }}
-            className={clsx(dot, props.className)}
-            classes={classes}
+            className={classes.dot}
             aria-label={`img-${idx}`}
+            sx={{
+              boxShadow: 'none',
+              background: 'transparent',
+            }}
           >
-            <m.div className={circle} style={{ opacity: item.opacity }} />
+            <MotionBox
+              className={classes.circle}
+              sx={(theme) => ({
+                borderRadius: '99em',
+                width: 10,
+                height: 10,
+                background: theme.palette.text.primary,
+              })}
+              style={{ opacity: item.opacity }}
+            />
           </Fab>
         ))}
-      </m.div>
+      </MotionBox>
     )
   }),
 )
-
-ScrollerDots.displayName = 'ScrollerDots'
+ScrollerDots.displayName = componentName
 
 export default ScrollerDots

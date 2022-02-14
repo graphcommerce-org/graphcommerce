@@ -1,4 +1,4 @@
-import { ApolloClient, useApolloClient } from '@apollo/client'
+import { ApolloClient, useApolloClient } from '@graphcommerce/graphql'
 import braintree, { Client } from 'braintree-web'
 import { useRef } from 'react'
 import { UseBraintreeDocument } from './UseBraintree.gql'

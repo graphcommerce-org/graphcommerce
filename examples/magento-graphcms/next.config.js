@@ -31,7 +31,7 @@ if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
   throw Error('Please specify NEXT_PUBLIC_GRAPHQL_ENDPOINT in your .env')
 }
 
-/** @type {import('next/dist/server/config-shared').NextConfig} */
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   rewrites() {
     return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
@@ -53,10 +53,13 @@ const nextConfig = {
     locales: Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES)),
     defaultLocale: Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES))[0],
   },
-  inlineImageLimit: false,
   productionBrowserSourceMaps: true,
   eslint: {
     ignoreDuringBuilds: true,
+  },
+  webpack: (config) => {
+    config.optimization.providedExports = true
+    return config
   },
 }
 

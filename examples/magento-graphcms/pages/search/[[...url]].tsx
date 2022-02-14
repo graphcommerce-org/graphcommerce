@@ -1,4 +1,3 @@
-import { mergeDeep } from '@apollo/client/utilities'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   ProductListCount,
@@ -23,16 +22,18 @@ import {
   SearchQuery,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppShellSticky, GetStaticProps, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
+import {
+  StickyBelowHeader,
+  GetStaticProps,
+  LayoutTitle,
+  LayoutHeader,
+} from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Container, Hidden } from '@material-ui/core'
+import { Container, Hidden } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import React from 'react'
-import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import { LayoutFull, LayoutFullProps } from '../../components/Layout'
-import ProductListItems from '../../components/ProductListItems/ProductListItems'
-import useProductListStyles from '../../components/ProductListItems/useProductListStyles'
-import apolloClient from '../../lib/apolloClient'
+import { LayoutFull, LayoutFullProps, ProductListItems } from '../../components'
+import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
+import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
 
@@ -44,7 +45,6 @@ type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function SearchResultPage(props: Props) {
   const { products, categories, params, filters, filterTypes } = props
-  const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
   const search = params.url.split('/')[1]
   const totalSearchResults = (categories?.items?.length ?? 0) + (products?.total_count ?? 0)
   const noSearchResults = search && (!products || (products.items && products?.items?.length <= 0))
@@ -66,7 +66,7 @@ function SearchResultPage(props: Props) {
         </LayoutTitle>
       </LayoutHeader>
 
-      <Hidden implementation='css' smDown>
+      <Hidden implementation='css' mdDown>
         <LayoutTitle gutterBottom={false} gutterTop={false}>
           {search ? <Trans>Results for &lsquo;{search}&rsquo;</Trans> : <Trans>All products</Trans>}
         </LayoutTitle>
@@ -88,19 +88,15 @@ function SearchResultPage(props: Props) {
       {noSearchResults && <NoSearchResults search={search} />}
       {products && products.items && products?.items?.length > 0 && (
         <ProductListParamsProvider value={params}>
-          <AppShellSticky>
+          <StickyBelowHeader>
             <ProductListFiltersContainer>
               <ProductListSort sort_fields={products?.sort_fields} />
               <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
             </ProductListFiltersContainer>
-          </AppShellSticky>
+          </StickyBelowHeader>
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />
-            <ProductListItems
-              items={products?.items}
-              classes={productListClasses}
-              loadingEager={1}
-            />
+            <ProductListItems items={products?.items} loadingEager={1} />
             <ProductListPagination page_info={products?.page_info} />
           </Container>
         </ProductListParamsProvider>
@@ -128,12 +124,12 @@ export const getStaticPaths: GetPageStaticPaths = async () => {
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
   const [search = '', query = []] = extractUrlQuery(params)
 
-  const client = apolloClient(locale, true)
+  const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
 
   const rootCategory = (await conf).data.storeConfig?.root_category_uid ?? ''
-  const staticClient = apolloClient(locale)
+  const staticClient = graphqlSsrClient(locale)
   const page = staticClient.query({
     query: DefaultPageDocument,
     variables: { url: 'search', rootCategory },
@@ -151,16 +147,11 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     search && search.length > 2
       ? staticClient.query({
           query: SearchDocument,
-          variables: mergeDeep(productListParams, {
-            categoryUid: rootCategory,
-            search,
-          }),
+          variables: { ...productListParams, categoryUid: rootCategory, search },
         })
       : staticClient.query({
           query: ProductListDocument,
-          variables: mergeDeep(productListParams, {
-            categoryUid: rootCategory,
-          }),
+          variables: { ...productListParams, categoryUid: rootCategory },
         })
 
   return {

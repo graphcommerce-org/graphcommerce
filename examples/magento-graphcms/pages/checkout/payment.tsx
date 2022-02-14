@@ -28,17 +28,17 @@ import {
   iconId,
   LayoutHeader,
   Stepper,
-  SvgImageSimple,
+  SvgIcon,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { ComposedForm } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
-import { CircularProgress, Container, Dialog, Divider, NoSsr } from '@material-ui/core'
+import { CircularProgress, Container, Dialog, Divider, NoSsr } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
-import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
-import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
-import apolloClient from '../../lib/apolloClient'
+import { LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
+import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
@@ -58,9 +58,9 @@ function PaymentPage() {
                 <PaymentMethodButton
                   type='submit'
                   color='secondary'
-                  variant='pill-link'
+                  variant='pill'
                   display='inline'
-                  endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
+                  endIcon={<SvgIcon src={iconChevronRight} size='small' />}
                 >
                   <Trans>Pay</Trans>
                 </PaymentMethodButton>
@@ -130,7 +130,7 @@ function PaymentPage() {
                         color='secondary'
                         variant='pill'
                         size='large'
-                        endIcon={<SvgImageSimple src={iconChevronRight} inverted />}
+                        endIcon={<SvgIcon src={iconChevronRight} />}
                       >
                         <Trans>Place order</Trans>
                       </PaymentMethodButton>
@@ -155,8 +155,8 @@ PaymentPage.pageOptions = pageOptions
 export default PaymentPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
 

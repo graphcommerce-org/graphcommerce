@@ -17,14 +17,14 @@ export default function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProp
   const form = useFormGqlMutationCart(PaymentMethodPlaceOrderNoopDocument, { mode: 'onChange' })
 
   const { handleSubmit, data, error } = form
-  const router = useRouter()
+  const { push } = useRouter()
 
   useEffect(() => {
     if (!data?.placeOrder?.order || error || !cartId) return
     clearCurrentCartId()
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    router.push({ pathname: '/checkout/success', query: { cartId } })
-  }, [cartId, clearCurrentCartId, data?.placeOrder?.order, error, router])
+    push({ pathname: '/checkout/success', query: { cartId } })
+  }, [cartId, clearCurrentCartId, data?.placeOrder?.order, error, push])
 
   const submit = handleSubmit(() => {})
 

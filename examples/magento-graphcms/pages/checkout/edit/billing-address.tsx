@@ -3,11 +3,11 @@ import { EditBillingAddressForm } from '@graphcommerce/magento-cart-billing-addr
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Container, NoSsr } from '@material-ui/core'
+import { Container, NoSsr } from '@mui/material'
 import React from 'react'
-import { DefaultPageDocument } from '../../../components/GraphQL/DefaultPage.gql'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
-import apolloClient from '../../../lib/apolloClient'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import { DefaultPageDocument } from '../../../graphql/DefaultPage.gql'
+import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -46,9 +46,9 @@ EditBillingAddress.pageOptions = pageOptions
 export default EditBillingAddress
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
+  const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
-  const staticClient = apolloClient(locale)
+  const staticClient = graphqlSsrClient(locale)
 
   const page = staticClient.query({
     query: DefaultPageDocument,

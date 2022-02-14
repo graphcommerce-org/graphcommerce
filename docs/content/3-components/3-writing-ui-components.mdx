@@ -21,8 +21,7 @@ https://material-ui.com/styles/advanced/#makestyles
 Below is a full typescript example:
 
 ```tsx
-import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
-import { UseStyles } from '@graphcommerce/next-ui'
+import { Button, makeStyles, Theme, Typography } from '@mui/material'
 
 const useStyles = makeStyles((theme: Theme) => ({
   myComponentRoot: {
@@ -30,13 +29,22 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-export type MyComponentProps = React.PropsWithChildren<
-  UseStyles<typeof useStyles>
->
+export type MyComponentProps = { sx?: SxProps<Theme> }
 
 function MyComponent(props: MyComponentProps) {
-  const classes = useStyles(props)
-  return <div className={classes.myComponentRoot}>{children}</div>
+  const { sx = [] } = props
+  return (
+    <Box
+      sx={[
+        {
+          width: 100,
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      {children}
+    </Box>
+  )
 }
 ```
 
@@ -105,7 +113,7 @@ type MyWrappingComponentProps = React.PropsWithChildren<
 >
 
 function MyWrappingComponent(props: MyWrappingComponentProps) {
-  const classes = useStyles(props)
+  const classes = useMergedClasses(useStyles().classes, props.classes)
   return (
     <div className={classes.myWrappingComponentRoot}>
       <MyComponent classes={classes}>{children}</MyComponent>

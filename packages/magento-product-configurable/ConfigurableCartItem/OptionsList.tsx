@@ -1,114 +1,46 @@
-import { responsiveVal } from '@graphcommerce/next-ui'
-import { makeStyles, Theme } from '@material-ui/core'
-import React from 'react'
+import { extendableComponent } from '@graphcommerce/next-ui'
+import { Box, SxProps, Theme } from '@mui/material'
 import { ConfigurableCartItemFragment } from './ConfigurableCartItem.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    optionsList: {
-      gridArea: 'itemOptions',
-      cursor: 'default',
-      marginLeft: 0,
-      paddingBottom: 4,
-    },
-    option: {
-      color: theme.palette.text.secondary,
-      textDecoration: 'underline',
-      marginRight: theme.spacings.xs,
-      paddingBottom: 1,
-      display: 'inline',
-    },
-    menuPaper: {
-      minWidth: responsiveVal(200, 560),
-      maxWidth: 560,
-      marginTop: -8,
-      padding: `${theme.spacings.xs} ${theme.spacings.xs}`,
-      [theme.breakpoints.down('xs')]: {
-        minWidth: 0,
-        width: '100%',
-        maxWidth: `calc(100% - (${theme.page.horizontal}px * 2))`,
-        margin: '0 auto',
-        marginTop: '8px',
-      },
-    },
-    menuList: {
-      padding: 0,
-      '&:focus': {
-        outline: 'none',
-      },
-    },
-    menuTitle: {
-      ...theme.typography.h5,
-      paddingBottom: theme.spacings.xxs,
-      marginBottom: theme.spacings.xxs,
-      borderBottom: `1px solid ${theme.palette.divider}`,
-    },
-    menuContent: {
-      display: 'flex',
-    },
-    saveChangesWrap: {
-      alignSelf: 'center',
-    },
-    saveChangesButton: {
-      padding: '10px 20px',
-      fontWeight: theme.typography.fontWeightBold,
-      boxShadow: theme.shadows[3],
-    },
-  }),
-  { name: 'CartItemOptionsList' },
-)
+type CartItemOptionsListProps = ConfigurableCartItemFragment & {
+  sx?: SxProps<Theme>
+}
 
-type CartItemOptionsListProps = ConfigurableCartItemFragment
+const name = 'ColorSwatchData' as const
+const parts = ['root', 'option'] as const
+const { classes } = extendableComponent(name, parts)
 
 export default function OptionsList(props: CartItemOptionsListProps) {
-  const { configurable_options } = props
-  const classes = useStyles()
-  // const [anchorEl, setAnchorEl] = useState<HTMLDivElement>()
-
-  // const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-  //   setAnchorEl(event.currentTarget)
-  // }
-
-  // const handleClose = () => {
-  //   setAnchorEl(undefined)
-  // }
-
-  // const handleChange = () => {
-  //   //
-  // }
+  const { configurable_options, sx = [] } = props
 
   return (
-    <>
-      <div className={classes.optionsList} /* onClick={handleClick}*/>
-        {configurable_options &&
-          configurable_options.map((option) => (
-            <div key={option?.configurable_product_option_uid} className={classes.option}>
-              {option?.value_label}
-            </div>
-          ))}
-      </div>
-
-      {/* <Menu
-        anchorEl={anchorEl}
-        open={!!anchorEl}
-        onClose={handleClose}
-        getContentAnchorEl={null} // https://github.com/mui-org/material-ui/issues/7961#issuecomment-326116559
-        variant='selectedMenu'
-        anchorPosition={{ top: 6, left: 0 }}
-        anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-        classes={{ paper: classes.menuPaper, list: classes.menuList }}
-      >
-        <div className={classes.menuTitle}>Edit product</div>
-        <div className={classes.menuContent}>
-          <CartItemOptionDropdown label='Color' onChange={handleChange} />
-          <CartItemOptionDropdown label='Size' onChange={handleChange} />
-          <div className={classes.saveChangesWrap}>
-            <Button variant='pill' className={classes.saveChangesButton}>
-              Save changes
-            </Button>
-          </div>
-        </div>
-      </Menu> */}
-    </>
+    <Box
+      className={classes.root}
+      sx={[
+        {
+          gridArea: 'itemOptions',
+          cursor: 'default',
+          marginLeft: 0,
+          paddingBottom: '4px',
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      {configurable_options &&
+        configurable_options.map((option) => (
+          <Box
+            key={option?.configurable_product_option_uid}
+            className={classes.option}
+            sx={(theme) => ({
+              color: 'text.secondary',
+              textDecoration: 'underline',
+              marginRight: theme.spacings.xs,
+              display: 'inline',
+            })}
+          >
+            {option?.value_label}
+          </Box>
+        ))}
+    </Box>
   )
 }

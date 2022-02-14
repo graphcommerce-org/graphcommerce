@@ -4,71 +4,28 @@ import {
   iconChevronDown,
   iconChevronUp,
   responsiveVal,
-  SvgImageSimple,
-  UseStyles,
+  SvgIcon,
+  extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
-import clsx from 'clsx'
+import { Box, Button, styled, SxProps, Theme, Typography } from '@mui/material'
 import { AnimatePresence, m } from 'framer-motion'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import ApplyCouponForm from '../ApplyCouponForm/ApplyCouponForm'
 import RemoveCouponForm from '../RemoveCouponForm/RemoveCouponForm'
 import { GetCouponDocument } from './GetCoupon.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    accordion: {
-      '&:before': {
-        background: 'none',
-      },
-      boxShadow: 'none',
-      border: `1px solid ${theme.palette.divider}`,
-      borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
-      overflow: 'hidden',
-    },
-    button: {
-      padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
-      width: '100%',
+export type CouponAccordionProps = { sx?: SxProps<Theme> }
 
-      '& .MuiButton-label': {
-        display: 'flex',
-        justifyContent: 'flex-start',
-        '& span:last-child': {
-          marginLeft: 'auto',
-        },
-      },
-      '& > span': {
-        display: 'inline',
-        '& > h6': {
-          textAlign: 'left',
-          marginRight: theme.spacings.sm,
-        },
-      },
-    },
-    couponFormWrap: {
-      background: 'rgba(0,0,0,0.04)',
-      padding: `0 ${theme.spacings.sm} ${theme.spacings.xs}`,
-    },
-    buttonOpen: {
-      background: 'rgba(0,0,0,0.04)',
-      borderBottomLeftRadius: 0,
-      borderBottomRightRadius: 0,
-    },
-    disabled: {
-      cursor: 'default',
-      '&:hover': {
-        background: 'transparent',
-      },
-    },
-  }),
-  { name: 'CouponAccordion' },
-)
+type OwnerState = { open: boolean; disabled: boolean }
+const name = 'CouponAccordion' as const
+const parts = ['accordion', 'button', 'couponFormWrap'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
-export type CouponAccordionProps = UseStyles<typeof useStyles>
+const MotionDiv = styled(m.div)({})
 
 export default function CouponAccordion(props: CouponAccordionProps) {
-  const classes = useStyles(props)
+  const { sx = [] } = props
   const { data } = useCartQuery(GetCouponDocument)
   const [open, setOpen] = useState<boolean>(false)
 
@@ -76,21 +33,74 @@ export default function CouponAccordion(props: CouponAccordionProps) {
 
   const coupon = data?.cart?.applied_coupons?.[0]?.code
 
+  const classes = withState({
+    open: Boolean(!coupon && open),
+    disabled: Boolean(coupon),
+  })
+
   return (
     <AnimatedRow key='discount-codes'>
-      <m.div className={classes.accordion}>
+      <MotionDiv
+        className={classes.accordion}
+        sx={[
+          (theme) => ({
+            '&:before': {
+              background: 'none',
+            },
+            boxShadow: 'none',
+            border: `1px solid ${theme.palette.divider}`,
+            borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
+            overflow: 'hidden',
+          }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      >
         <Button
           component={coupon ? 'div' : 'button'}
           onClick={() => setOpen(!open)}
           disableRipple={!!coupon}
-          className={clsx(classes.button, {
-            [classes.buttonOpen]: !coupon && open,
-            [classes.disabled]: coupon,
+          className={classes.button}
+          sx={(theme) => ({
+            justifyContent: 'space-between',
+            padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
+            width: '100%',
+            borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
+
+            '& .MuiButton-label': {
+              display: 'flex',
+              justifyContent: 'flex-start',
+              '& span:last-of-type': {
+                marginLeft: 'auto',
+              },
+            },
+            '& > span': {
+              display: 'inline',
+              '& > h6': {
+                textAlign: 'left',
+                marginRight: theme.spacings.sm,
+              },
+            },
+
+            '&.open': {
+              background: 'rgba(0,0,0,0.04)',
+              borderBottomLeftRadius: 0,
+              borderBottomRightRadius: 0,
+            },
+            '&.disabled': {
+              cursor: 'default',
+              '&:hover': {
+                background: 'transparent',
+              },
+            },
           })}
           endIcon={
             <>
-              {!coupon && open && <SvgImageSimple src={iconChevronUp} />}
-              {!coupon && !open && <SvgImageSimple src={iconChevronDown} />}
+              {!coupon && open && (
+                <SvgIcon src={iconChevronUp} size='large' sx={{ display: 'inherit' }} />
+              )}
+              {!coupon && !open && (
+                <SvgIcon src={iconChevronDown} size='large' sx={{ display: 'inherit' }} />
+              )}
             </>
           }
         >
@@ -114,13 +124,19 @@ export default function CouponAccordion(props: CouponAccordionProps) {
         <AnimatePresence>
           {open && !coupon && (
             <AnimatedRow key='discount-codes-form-wrap'>
-              <div className={classes.couponFormWrap}>
+              <Box
+                className={classes.couponFormWrap}
+                sx={(theme) => ({
+                  background: 'rgba(0,0,0,0.04)',
+                  padding: `0 ${theme.spacings.sm} ${theme.spacings.xs}`,
+                })}
+              >
                 <ApplyCouponForm />
-              </div>
+              </Box>
             </AnimatedRow>
           )}
         </AnimatePresence>
-      </m.div>
+      </MotionDiv>
     </AnimatedRow>
   )
 }

@@ -1,80 +1,51 @@
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument, Money } from '@graphcommerce/magento-store'
-import { responsiveVal } from '@graphcommerce/next-ui'
-import { Button, makeStyles, Theme } from '@material-ui/core'
-import Skeleton from '@material-ui/lab/Skeleton'
-import clsx from 'clsx'
+import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
+import { Box, Button, styled, SxProps, Theme } from '@mui/material'
+import Skeleton from '@mui/material/Skeleton'
 import PageLink from 'next/link'
-import React from 'react'
 import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import OrderCardItemImage from '../OrderCardItemImage'
 import OrderStateLabel from '../OrderStateLabel'
 import TrackingLink from '../TrackingLink'
 import { OrderCardFragment } from './OrderCard.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    orderContainer: {
-      [theme.breakpoints.up('sm')]: {
-        padding: theme.spacings.md,
-      },
-      display: 'grid',
-      justifyContent: 'center',
-      paddingTop: theme.spacings.lg,
-      paddingBottom: theme.spacings.lg,
-      width: '100%',
-    },
-    orderRow: {
-      margin: `0 auto calc(${theme.spacings.xxs} * .5) auto`,
-      display: 'flex',
-      gap: theme.spacings.xxs,
-    },
-    orderMoney: {
-      fontWeight: 'bold',
-    },
-    orderProducts: {
-      display: 'flex',
-      justifyContent: 'center',
-      flexWrap: 'wrap',
-    },
-    images: {
-      display: 'grid',
-      gridAutoFlow: 'column',
-      gap: theme.spacings.xxs,
-      padding: theme.spacings.xxs,
-      width: responsiveVal(75, 125),
-      height: responsiveVal(75, 125),
-    },
-    placeholder: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: 88,
-      height: 88,
-    },
-    buttonRoot: {
-      width: '100%',
-      boxShadow: 'none',
-      marginTop: theme.spacings.xxs,
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      '&:hover': {
-        background: 'none',
-      },
-    },
-    tracking: {
-      textAlign: 'center',
-    },
-  }),
-  { name: 'OrderCard' },
-)
-
 type OrderCardProps = Partial<OrderCardFragment> & {
   loading?: boolean
-} & { images?: UseOrderCardItemImages }
+  images?: UseOrderCardItemImages
+  sx?: SxProps<Theme>
+}
+
+const componentName = 'OrderCard' as const
+const parts = [
+  'orderContainer',
+  'orderRow',
+  'orderMoney',
+  'orderProducts',
+  'images',
+  'placeholder',
+  'buttonRoot',
+  'tracking',
+] as const
+const { classes } = extendableComponent(componentName, parts)
+
+const OrderContainer = styled(Box, { name: componentName, target: classes.orderContainer })(
+  ({ theme }) => ({
+    padding: theme.spacings.sm,
+    display: 'grid',
+    justifyContent: 'center',
+    width: '100%',
+  }),
+)
+
+const OrderRow = styled(Box, { name: componentName, target: classes.orderRow })(({ theme }) => ({
+  margin: `0 auto calc(${theme.spacings.xxs} * .5) auto`,
+  display: 'flex',
+  gap: theme.spacings.xxs,
+}))
 
 export default function OrderCard(props: OrderCardProps) {
-  const { number, shipments, total, items, order_date, images, loading } = props
-  const classes = useStyles()
+  const { number, shipments, total, items, order_date, images, loading, sx = [] } = props
 
   const { data: config } = useQuery(StoreConfigDocument)
   const locale = config?.storeConfig?.locale?.replace('_', '-')
@@ -90,35 +61,53 @@ export default function OrderCard(props: OrderCardProps) {
 
   if (loading) {
     return (
-      <div className={classes.orderContainer}>
-        <div className={classes.orderRow}>
-          <Skeleton variant='text' width={192} />
-        </div>
-        <div className={classes.orderRow}>
-          <Skeleton variant='text' width={280} />
-        </div>
-        <div className={clsx(classes.orderProducts, classes.orderRow)}>
-          <Skeleton variant='rect' width={88} height={88} />
-        </div>
-        <div className={classes.orderRow}>
-          <Skeleton variant='text' width={228} />
-        </div>
-      </div>
+      <Box sx={sx}>
+        <OrderContainer className={classes.orderContainer}>
+          <OrderRow>
+            <Skeleton variant='text' width={192} />
+          </OrderRow>
+          <OrderRow>
+            <Skeleton variant='text' width={280} />
+          </OrderRow>
+          <Box
+            className={classes.orderProducts}
+            sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}
+          >
+            <Skeleton variant='rectangular' width={88} height={88} />
+          </Box>
+          <OrderRow>
+            <Skeleton variant='text' width={228} />
+          </OrderRow>
+        </OrderContainer>
+      </Box>
     )
   }
 
   return (
     <PageLink href={`/account/orders/view?orderId=${number}`} passHref>
-      <Button variant='contained' classes={{ root: classes.buttonRoot }}>
-        <div className={classes.orderContainer}>
-          <div className={classes.orderRow}>
-            <span className={classes.orderMoney}>
+      <Button
+        variant='contained'
+        className={classes.buttonRoot}
+        sx={[
+          (theme) => ({
+            width: '100%',
+            boxShadow: 'none',
+            marginTop: theme.spacings.xxs,
+            borderBottom: `1px solid ${theme.palette.divider}`,
+            '&:hover': { background: 'none' },
+          }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      >
+        <OrderContainer className={classes.orderContainer}>
+          <OrderRow>
+            <Box component='span' className={classes.orderMoney} sx={{ fontWeight: 'bold' }}>
               <Money {...total?.grand_total} />
-            </span>
+            </Box>
             <span>{dateFormatter.format(new Date(order_date ?? ''))}</span>
             <span>#{number}</span>
-          </div>
-          <div className={classes.orderRow}>
+          </OrderRow>
+          <OrderRow>
             <OrderStateLabel
               items={items}
               renderer={{
@@ -131,9 +120,22 @@ export default function OrderCard(props: OrderCardProps) {
                 Partial: () => <span>Your order has been partially processed</span>,
               }}
             />
-          </div>
-          <div className={clsx(classes.orderProducts)}>
-            <div className={classes.images}>
+          </OrderRow>
+          <Box
+            className={classes.orderProducts}
+            sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}
+          >
+            <Box
+              className={classes.images}
+              sx={(theme) => ({
+                display: 'grid',
+                gridAutoFlow: 'column',
+                gap: theme.spacings.xxs,
+                padding: theme.spacings.xxs,
+                width: responsiveVal(75, 125),
+                height: responsiveVal(75, 125),
+              })}
+            >
               {items
                 ?.slice(0, maxItemsInRow)
                 .map(
@@ -147,14 +149,23 @@ export default function OrderCard(props: OrderCardProps) {
                     ),
                 )}
               {totalItems > maxItemsInRow && (
-                <div className={classes.placeholder}>{`+${totalItems - maxItemsInRow}`}</div>
+                <Box
+                  className={classes.placeholder}
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: 88,
+                    height: 88,
+                  }}
+                >{`+${totalItems - maxItemsInRow}`}</Box>
               )}
-            </div>
-          </div>
-          <div className={clsx(classes.orderRow, classes.tracking)}>
+            </Box>
+          </Box>
+          <Box className={`${classes.orderRow} ${classes.tracking}`} sx={{ textAlign: 'center' }}>
             {shipments?.[0]?.tracking?.[0] && <TrackingLink {...shipments?.[0].tracking?.[0]} />}
-          </div>
-        </div>
+          </Box>
+        </OrderContainer>
       </Button>
     </PageLink>
   )

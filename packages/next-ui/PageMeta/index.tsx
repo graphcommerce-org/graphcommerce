@@ -22,7 +22,7 @@ export type PageMetaProps = {
   metaRobots?: MetaRobotsAll | MetaRobots[]
 }
 
-export default function PageMeta(props: PageMetaProps) {
+export function PageMeta(props: PageMetaProps) {
   const { active } = usePageContext()
   const { title, canonical, metaDescription, metaRobots = ['all'] } = props
 

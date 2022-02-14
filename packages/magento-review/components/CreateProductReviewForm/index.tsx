@@ -1,66 +1,42 @@
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@graphcommerce/graphql'
 import { ProductReviewRatingInput } from '@graphcommerce/graphql'
 import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
 import {
-  Button,
   Form,
-  UseStyles,
   responsiveVal,
   FormActions,
   FormRow,
   StarRatingField,
+  extendableComponent,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { Box, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
-import { Alert } from '@material-ui/lab'
+import { Box, TextField, Typography, Alert, Button, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CreateProductReviewDocument } from './CreateProductReview.gql'
 import { ProductReviewRatingsMetadataDocument } from './ProductReviewRatingsMetadata.gql'
-
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    ratingContainer: {
-      marginBottom: theme.spacings.xxs,
-    },
-    rating: {
-      paddingBottom: 'unset',
-      gridTemplateColumns: `minmax(${responsiveVal(60, 80)}, 0.1fr) max-content`,
-      alignItems: 'center',
-    },
-    ratingLabel: {
-      fontWeight: 'normal',
-      justifySelf: 'left',
-    },
-    submitButton: {
-      width: responsiveVal(200, 250),
-      height: responsiveVal(40, 50),
-    },
-    cancelButton: {
-      display: 'block',
-      maxWidth: 'max-content',
-      margin: '0 auto',
-    },
-    formActions: {
-      gridAutoFlow: 'row',
-      gap: 8,
-      marginTop: theme.spacings.xxs,
-    },
-  }),
-  {
-    name: 'CreateProductReviewForm',
-  },
-)
 
 type CreateProductReviewFormProps = {
   sku: string
   nickname?: string
-} & UseStyles<typeof useStyles>
+  sx?: SxProps<Theme>
+}
+
+const name = 'CreateProductReviewForm' as const
+const parts = [
+  'root',
+  'ratingContainer',
+  'rating',
+  'ratingLabel',
+  'submitButton',
+  'cancelButton',
+  'formActions',
+] as const
+const { classes } = extendableComponent(name, parts)
 
 export default function CreateProductReviewForm(props: CreateProductReviewFormProps) {
-  const { sku, nickname } = props
-  const classes = useStyles(props)
+  const { sku, nickname, sx = [] } = props
   const router = useRouter()
   const [ratings, setRatings] = useState<ProductReviewRatingInput[]>([])
 
@@ -112,7 +88,7 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
   }
 
   return (
-    <Form onSubmit={submitHandler} noValidate>
+    <Form onSubmit={submitHandler} noValidate className={classes.root}>
       <FormRow>
         <TextField
           variant='outlined'
@@ -129,10 +105,31 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
         />
       </FormRow>
 
-      <div className={classes.ratingContainer}>
+      <Box
+        className={classes.ratingContainer}
+        sx={(theme) => ({
+          marginBottom: theme.spacings.xxs,
+        })}
+      >
         {data?.productReviewRatingsMetadata?.items?.map((prrvm) => (
-          <FormRow key={prrvm?.id} className={classes.rating}>
-            <Typography variant='h5' component='span' className={classes.ratingLabel}>
+          <FormRow
+            key={prrvm?.id}
+            className={classes.rating}
+            sx={{
+              paddingBottom: 'unset',
+              gridTemplateColumns: `minmax(${responsiveVal(60, 80)}, 0.1fr) max-content`,
+              alignItems: 'center',
+            }}
+          >
+            <Typography
+              variant='h5'
+              component='span'
+              className={classes.ratingLabel}
+              sx={{
+                fontWeight: 'normal',
+                justifySelf: 'left',
+              }}
+            >
               {prrvm?.name}
             </Typography>
             {prrvm && (
@@ -168,7 +165,7 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
             )}
           </FormRow>
         ))}
-      </div>
+      </Box>
 
       <FormRow>
         <TextField
@@ -195,27 +192,43 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
           disabled={formState.isSubmitting}
           multiline
           rows={8}
-          rowsMax={8}
+          maxRows={8}
         />
       </FormRow>
 
-      <FormActions className={classes.formActions}>
+      <FormActions
+        className={classes.formActions}
+        sx={(theme) => ({
+          gridAutoFlow: 'row',
+          gap: 8,
+          marginTop: theme.spacings.xxs,
+        })}
+      >
         <Button
           variant='pill'
           color='primary'
           type='submit'
           size='medium'
           className={classes.submitButton}
+          sx={{
+            width: responsiveVal(200, 250),
+            height: responsiveVal(40, 50),
+          }}
         >
-          Submit review
+          <Trans>Submit review</Trans>
         </Button>
         <Button
           variant='text'
           color='primary'
           onClick={() => router.back()}
           className={classes.cancelButton}
+          sx={{
+            display: 'block',
+            maxWidth: 'max-content',
+            margin: '0 auto',
+          }}
         >
-          Cancel
+          <Trans>Cancel</Trans>
         </Button>
       </FormActions>
 

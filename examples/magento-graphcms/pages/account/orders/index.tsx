@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/client'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { useQuery } from '@graphcommerce/graphql'
 import { ApolloCustomerErrorFullPage } from '@graphcommerce/magento-customer'
 import {
   AccountDashboardOrdersDocument,
@@ -11,15 +11,15 @@ import {
   GetStaticProps,
   iconBox,
   LayoutOverlayHeader,
-  SvgImageSimple,
+  SvgIcon,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Container, NoSsr } from '@material-ui/core'
+import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
-import apolloClient from '../../../lib/apolloClient'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -70,7 +70,7 @@ function AccountOrdersPage() {
           {customer?.orders && customer.orders.items.length < 1 && (
             <FullPageMessage
               title={t`You have no orders yet`}
-              icon={<SvgImageSimple src={iconBox} size='xxl' />}
+              icon={<SvgIcon src={iconBox} size='xxl' />}
             >
               <Trans>Discover our collection and place your first order!</Trans>
             </FullPageMessage>
@@ -91,7 +91,7 @@ AccountOrdersPage.pageOptions = pageOptions
 export default AccountOrdersPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
+  const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
   return {

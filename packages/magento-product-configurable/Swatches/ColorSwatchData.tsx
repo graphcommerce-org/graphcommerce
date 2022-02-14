@@ -1,42 +1,46 @@
-import { UseStyles, responsiveVal } from '@graphcommerce/next-ui'
-import { makeStyles } from '@material-ui/core'
-import clsx from 'clsx'
+import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
+import { Box, SxProps, Theme } from '@mui/material'
 import { ColorSwatchDataFragment } from './ColorSwatchData.gql'
 import { SwatchDataProps } from '.'
 
-export const useStyles = makeStyles(
-  {
-    root: {
-      margin: '0 auto',
-      height: responsiveVal(22, 30),
-      width: responsiveVal(22, 30),
-      borderRadius: '50%',
-    },
-    sizeSmall: {
-      height: responsiveVal(8, 12),
-      width: responsiveVal(8, 12),
-      marginTop: responsiveVal(2, 4),
-    },
-  },
-  { name: 'ColorSwatchData' },
-)
+type ColorSwatchDataProps = ColorSwatchDataFragment &
+  SwatchDataProps & {
+    sx?: SxProps<Theme>
+  }
 
-type ColorSwatchDataProps = ColorSwatchDataFragment & SwatchDataProps & UseStyles<typeof useStyles>
+type OwnerState = Pick<SwatchDataProps, 'size'>
+const name = 'ColorSwatchData' as const
+const parts = ['root', 'color', 'label'] as const
+const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
-export default function ColorSwatchData(props: ColorSwatchDataProps) {
-  const classes = useStyles(props)
-  const { value, store_label, size } = props
+export function ColorSwatchData(props: ColorSwatchDataProps) {
+  const { value, store_label, size, sx } = props
+  const classes = withState({ size })
 
   return (
-    <div>
-      <div
-        className={clsx({
-          [classes.root]: true,
-          [classes.sizeSmall]: size === 'small',
-        })}
+    <Box className={classes.root} sx={sx}>
+      <Box
+        className={classes.color}
         style={{ backgroundColor: value ?? undefined }}
+        sx={[
+          {
+            margin: '0 auto',
+            height: responsiveVal(22, 30),
+            width: responsiveVal(22, 30),
+            borderRadius: '50%',
+            '&.sizeSmall': {
+              height: responsiveVal(8, 12),
+              width: responsiveVal(8, 12),
+              marginTop: responsiveVal(2, 4),
+            },
+          },
+        ]}
       />
-      <span>{size !== 'small' && store_label}</span>
-    </div>
+      {size !== 'small' && (
+        <Box component='span' className={classes.label}>
+          {store_label}
+        </Box>
+      )}
+    </Box>
   )
 }

@@ -1,30 +1,16 @@
-import { useQuery } from '@apollo/client'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import { FormRow, Button, FormActions } from '@graphcommerce/next-ui'
+import { Button, FormRow, FormActions } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { FormControl, Link, makeStyles, TextField } from '@material-ui/core'
-import { Alert } from '@material-ui/lab'
+import { Box, FormControl, Link, SxProps, TextField, Theme } from '@mui/material'
 import PageLink from 'next/link'
-import React from 'react'
-import { CustomerTokenDocument } from '../../hooks'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { SignInDocument } from './SignIn.gql'
 
-const useStyles = makeStyles(
-  {
-    forgotPass: {
-      whiteSpace: 'nowrap',
-    },
-  },
-  { name: 'SignIn' },
-)
-
-type SignInFormProps = { email: string }
+type SignInFormProps = { email: string; sx?: SxProps<Theme> }
 
 export default function SignInForm(props: SignInFormProps) {
-  const { email } = props
-  const classes = useStyles()
+  const { email, sx } = props
   const form = useFormGqlMutation(
     SignInDocument,
     { defaultValues: { email } },
@@ -39,7 +25,7 @@ export default function SignInForm(props: SignInFormProps) {
   const submitHandler = handleSubmit(() => {})
 
   return (
-    <form onSubmit={submitHandler} noValidate>
+    <Box component='form' onSubmit={submitHandler} noValidate sx={sx}>
       <FormRow>
         <TextField
           key='password'
@@ -55,7 +41,7 @@ export default function SignInForm(props: SignInFormProps) {
           InputProps={{
             endAdornment: (
               <PageLink href='/account/forgot-password' key='forgot-password' passHref>
-                <Link className={classes.forgotPass}>
+                <Link underline='hover' sx={{ whiteSpace: 'nowrap' }}>
                   <Trans>Forgot password?</Trans>
                 </Link>
               </PageLink>
@@ -81,6 +67,6 @@ export default function SignInForm(props: SignInFormProps) {
           </Button>
         </FormControl>
       </FormActions>
-    </form>
+    </Box>
   )
 }

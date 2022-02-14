@@ -1,13 +1,13 @@
 /* eslint-disable no-empty-pattern */
+import { getOperationName } from '@graphcommerce/graphql'
+import { test as base, Page } from '@playwright/test'
 import {
   ApolloClient,
   FetchResult,
   InMemoryCache,
   NormalizedCacheObject,
   TypedDocumentNode,
-} from '@apollo/client'
-import { getOperationName } from '@apollo/client/utilities'
-import { test as base, Page } from '@playwright/test'
+} from '../apollo'
 
 type ApolloClientTest = {
   apolloClient: ApolloClient<NormalizedCacheObject>

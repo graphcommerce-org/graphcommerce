@@ -6,9 +6,6 @@
     "dev": "tsc -W"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
-  "browserslist": [
-    "extends @graphcommerce/browserslist-config-pwa"
-  ],
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",
     "parserOptions": {
@@ -19,21 +16,19 @@
     "@graphcommerce/framer-utils": "^2.103.21",
     "@graphcommerce/image": "^2.105.13",
     "@graphcommerce/next-ui": "^3.25.3",
-    "@material-ui/core": "^4.12.3",
+    "@mui/material": "^5.4.1",
     "popmotion": "11.0.3"
   },
   "devDependencies": {
-    "@graphcommerce/browserslist-config-pwa": "^3.0.3",
     "@graphcommerce/eslint-config-pwa": "^3.1.10",
     "@graphcommerce/prettier-config-pwa": "^3.0.5",
     "@graphcommerce/typescript-config-pwa": "^3.1.2",
-    "@playwright/test": "^1.17.1"
+    "@playwright/test": "^1.18.1"
   },
   "peerDependencies": {
-    "clsx": "^1.1.1",
-    "framer-motion": "^5.4.5",
+    "framer-motion": "^6.2.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "type-fest": "^2.8.0"
+    "type-fest": "^2.11.2"
   }
 }

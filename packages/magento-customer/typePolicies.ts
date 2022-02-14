@@ -1,4 +1,4 @@
-import { FieldPolicy } from '@apollo/client'
+import { FieldPolicy } from '@graphcommerce/graphql'
 import { CustomerToken, MigrateCache, Mutation, TypedTypePolicies } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from './hooks/CustomerToken.gql'
 import { IsEmailAvailableDocument } from './hooks/IsEmailAvailable.gql'

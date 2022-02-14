@@ -14,17 +14,17 @@ import {
   iconChevronRight,
   LayoutHeader,
   Stepper,
-  SvgImageSimple,
+  SvgIcon,
   LayoutTitle,
+  LinkOrButton,
 } from '@graphcommerce/next-ui'
 import { ComposedForm, ComposedSubmit } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
-import { Container, NoSsr } from '@material-ui/core'
+import { Container, NoSsr, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import React from 'react'
-import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
-import { LayoutMinimal, LayoutMinimalProps } from '../../components/Layout'
-import apolloClient from '../../lib/apolloClient'
+import { LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
+import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
@@ -46,16 +46,22 @@ function ShippingPage() {
           <ComposedSubmit
             onSubmitSuccessful={onSubmitSuccessful}
             render={({ buttonState, submit, error }) => (
-              <Button
-                type='submit'
+              <LinkOrButton
+                button={{
+                  type: 'submit',
+                  variant: 'pill',
+                  endIcon: <SvgIcon src={iconChevronRight} />,
+                }}
+                loading={
+                  buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)
+                    ? true
+                    : undefined
+                }
                 color='secondary'
-                variant='pill-link'
-                loading={buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)}
                 onClick={submit}
-                endIcon={<SvgImageSimple src={iconChevronRight} inverted size='small' />}
               >
                 <Trans>Next</Trans>
-              </Button>
+              </LinkOrButton>
             )}
           />
         }
@@ -79,7 +85,25 @@ function ShippingPage() {
                 <Trans>Shipping</Trans>
               </LayoutTitle>
 
-              <EmailForm step={1} />
+              <EmailForm step={1}>
+                <Typography
+                  variant='body2'
+                  component='ul'
+                  sx={(theme) => ({ pl: theme.spacings.xs, mt: theme.spacings.xxs })}
+                >
+                  <li>
+                    <Trans>
+                      E-mail address of existing customers will be recognized, sign in is optional.
+                    </Trans>
+                  </li>
+                  <li>
+                    <Trans>Fill in password fields to create an account.</Trans>
+                  </li>
+                  <li>
+                    <Trans>Leave passwords fields empty to order as guest.</Trans>
+                  </li>
+                </Typography>
+              </EmailForm>
 
               <ShippingAddressForm step={2} />
 
@@ -101,11 +125,14 @@ function ShippingPage() {
                         size='large'
                         loading={
                           buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)
+                            ? true
+                            : undefined
                         }
+                        loadingPosition='end'
                         onClick={submit}
+                        endIcon={<SvgIcon src={iconChevronRight} />}
                       >
                         <Trans>Next</Trans>
-                        <SvgImageSimple src={iconChevronRight} inverted />
                       </Button>
                     </FormActions>
                     <ApolloCartErrorAlert
@@ -132,9 +159,9 @@ ShippingPage.pageOptions = pageOptions
 export default ShippingPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
+  const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
-  const staticClient = apolloClient(locale)
+  const staticClient = graphqlSsrClient(locale)
 
   const page = staticClient.query({
     query: DefaultPageDocument,

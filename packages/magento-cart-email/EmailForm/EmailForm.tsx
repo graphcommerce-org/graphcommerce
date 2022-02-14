@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/client'
+import { useMutation } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorAlert,
   useCartQuery,
@@ -9,35 +9,34 @@ import {
   SignUpFormInline,
   useFormIsEmailAvailable,
 } from '@graphcommerce/magento-customer'
-import { AnimatedRow, Button, FormDiv, FormRow } from '@graphcommerce/next-ui'
+import { AnimatedRow, extendableComponent, FormDiv, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { CircularProgress, makeStyles, TextField, Typography } from '@material-ui/core'
-import { Alert } from '@material-ui/lab'
+import {
+  CircularProgress,
+  TextField,
+  Typography,
+  Alert,
+  Button,
+  SxProps,
+  Theme,
+} from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
-import EmailHelperList from '../EmailHelperList'
 import { CartEmailDocument } from './CartEmail.gql'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
 
-const useStyles = makeStyles(
-  () => ({
-    helperList: {
-      marginBottom: 0,
-    },
-    formRow: {
-      paddingTop: 0,
-      paddingBottom: 0,
-    },
-  }),
-  { name: 'EmailForm' },
-)
+export type EmailFormProps = Pick<UseFormComposeOptions, 'step'> & {
+  children?: React.ReactNode
+  sx?: SxProps<Theme>
+}
 
-export type EmailFormProps = Pick<UseFormComposeOptions, 'step'>
+const name = 'EmailForm' as const
+const parts = ['root', 'formRow'] as const
+const { classes } = extendableComponent(name, parts)
 
 export default function EmailForm(props: EmailFormProps) {
-  const { step } = props
-  const classes = useStyles()
+  const { step, children, sx } = props
   const [expand, setExpand] = useState(false)
 
   useMergeCustomerCart()
@@ -82,16 +81,16 @@ export default function EmailForm(props: EmailFormProps) {
   if (formState.isSubmitting) endAdornment = <CircularProgress />
 
   return (
-    <FormDiv contained>
+    <FormDiv contained background='default' className={classes.root} sx={sx}>
       <AnimatePresence initial={false}>
         <AnimatedRow key='emailform'>
           <form noValidate onSubmit={submit}>
             <FormRow>
-              <Typography variant='h5' gutterBottom>
+              <Typography variant='h5' component='h2' gutterBottom>
                 <Trans>Login or create an account</Trans>
               </Typography>
             </FormRow>
-            <FormRow className={classes.formRow}>
+            <FormRow className={classes.formRow} sx={{ py: 0 }}>
               <TextField
                 variant='outlined'
                 type='email'
@@ -124,13 +123,9 @@ export default function EmailForm(props: EmailFormProps) {
 
         {mode === 'signup' && expand && (
           <AnimatedRow key='inline-signup'>
-            <SignUpFormInline
-              helperList={
-                <EmailHelperList key='signup-helper-list' classes={{ root: classes.helperList }} />
-              }
-              key='signup-form-inline'
-              email={watch('email')}
-            />
+            <SignUpFormInline key='signup-form-inline' email={watch('email')}>
+              {children}
+            </SignUpFormInline>
           </AnimatedRow>
         )}
 
@@ -141,10 +136,8 @@ export default function EmailForm(props: EmailFormProps) {
             </Alert>
           </FormRow>
         )}
-        {mode !== 'session-expired' && ((mode !== 'signup' && expand) || !expand) && (
-          <AnimatedRow key='email-helperlist'>
-            <EmailHelperList />
-          </AnimatedRow>
+        {children && mode !== 'session-expired' && ((mode !== 'signup' && expand) || !expand) && (
+          <AnimatedRow key='email-helperlist'>{children}</AnimatedRow>
         )}
       </AnimatePresence>
     </FormDiv>

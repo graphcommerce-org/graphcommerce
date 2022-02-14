@@ -1,6 +1,5 @@
-import { UseStyles } from '@graphcommerce/next-ui'
-import { makeStyles, Theme } from '@material-ui/core'
-import clsx from 'clsx'
+import { extendableComponent } from '@graphcommerce/next-ui'
+import { Box, SxProps, Theme } from '@mui/material'
 import { OrderStateLabelFragment } from './OrderStateLabel.gql'
 
 type OrderState =
@@ -20,45 +19,21 @@ type OrderStateRenderer = Record<
 
 export type OrderStateLabelProps = {
   renderer: OrderStateRenderer
-} & OrderStateLabelPropsBase &
-  UseStyles<typeof useStyles>
+  sx?: SxProps<Theme>
+} & OrderStateLabelPropsBase
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    orderStatus: {
-      fontStyle: 'italic',
-      fontWeight: 'normal',
-    },
-    orderStateOrdered: {
-      color: theme.palette.secondary.main,
-    },
-    orderStateInvoiced: {
-      color: theme.palette.secondary.main,
-    },
-    orderStateRefunded: {
-      color: theme.palette.primary.main,
-    },
-    orderStateShipped: {
-      color: theme.palette.success.main,
-      fontStyle: 'normal',
-      fontWeight: 600,
-    },
-    orderStateCanceled: {
-      color: theme.palette.primary.main,
-    },
-    orderStateReturned: {
-      color: theme.palette.secondary.main,
-    },
-    orderStatePartial: {
-      color: theme.palette.secondary.main,
-    },
-  }),
-  { name: 'OrderStateLabel' },
+type OwnerState = {
+  orderState: OrderState
+}
+const componentName = 'OrderStateLabel' as const
+const parts = ['root'] as const
+const { withState } = extendableComponent<OwnerState, typeof componentName, typeof parts>(
+  componentName,
+  parts,
 )
 
 export default function OrderStateLabel(props: OrderStateLabelProps) {
-  const { items, renderer, ...orderProps } = props
-  const classes = useStyles(props)
+  const { items, renderer, sx = [], ...orderProps } = props
 
   let orderState: OrderState = 'Partial'
   if (items?.every((item) => item?.quantity_ordered === item?.quantity_invoiced))
@@ -74,9 +49,44 @@ export default function OrderStateLabel(props: OrderStateLabelProps) {
 
   const StateLabel = renderer[orderState]
 
+  const classes = withState({ orderState })
+
   return (
-    <span className={clsx(classes.orderStatus, classes?.[`orderState${orderState}`])}>
+    <Box
+      component='span'
+      className={classes.root}
+      sx={[
+        (theme) => ({
+          fontStyle: 'italic',
+          fontWeight: 'normal',
+          '&.orderStateOrdered': {
+            color: theme.palette.secondary.main,
+          },
+          '&.orderStateInvoiced': {
+            color: theme.palette.secondary.main,
+          },
+          '&.orderStateRefunded': {
+            color: theme.palette.primary.main,
+          },
+          '&.orderStateShipped': {
+            color: theme.palette.success.main,
+            fontStyle: 'normal',
+            fontWeight: 600,
+          },
+          '&.orderStateCanceled': {
+            color: theme.palette.primary.main,
+          },
+          '&.orderStateReturned': {
+            color: theme.palette.secondary.main,
+          },
+          '&.orderStatePartial': {
+            color: theme.palette.secondary.main,
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       <StateLabel items={items} {...orderProps} />
-    </span>
+    </Box>
   )
 }

@@ -1,23 +1,22 @@
-import { IconHeader, iconBox } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
-import { makeStyles, Theme } from '@material-ui/core'
-import React from 'react'
+import { IconHeader, iconBox, extendableComponent } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
+import { Box, SxProps, Theme } from '@mui/material'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    noOrdersContainer: {
-      marginTop: theme.spacings.sm,
-    },
-  }),
-  { name: 'AccountLatestOrder' },
-)
+const parts = ['root'] as const
+const { classes } = extendableComponent('NoOrdersFound', parts)
 
-export default function NoOrdersFound() {
-  const classes = useStyles()
+type NoOrdersFoundProps = { sx?: SxProps<Theme> }
 
+export default function NoOrdersFound(props: NoOrdersFoundProps) {
+  const { sx = [] } = props
   return (
-    <div className={classes.noOrdersContainer}>
-      <IconHeader src={iconBox} title={t`No orders found`} alt='no order' size='small' />
-    </div>
+    <Box
+      className={classes.root}
+      sx={[(theme) => ({ marginTop: theme.spacings.sm }), ...(Array.isArray(sx) ? sx : [sx])]}
+    >
+      <IconHeader src={iconBox} size='small'>
+        <Trans>No orders found</Trans>
+      </IconHeader>
+    </Box>
   )
 }

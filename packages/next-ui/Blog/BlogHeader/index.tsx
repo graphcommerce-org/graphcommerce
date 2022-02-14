@@ -1,33 +1,36 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
-import { UseStyles } from '../../Styles'
+import { extendableComponent } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    header: {
-      maxWidth: 800,
-      margin: `0 auto`,
-      marginBottom: theme.spacings.md,
-    },
-    asset: {
-      '& img': {
-        borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
-      },
-    },
-  }),
-  { name: 'BlogHeader' },
-)
-
-export type BlogHeaderProps = UseStyles<typeof useStyles> & {
+export type BlogHeaderProps = {
+  sx?: SxProps<Theme>
   asset?: React.ReactNode
 }
 
-export default function BlogHeader(props: BlogHeaderProps) {
-  const { asset } = props
-  const classes = useStyles()
+const name = 'BlogHeader' as const
+const parts = ['header', 'asset'] as const
+const { classes } = extendableComponent(name, parts)
+
+export function BlogHeader(props: BlogHeaderProps) {
+  const { asset, sx = [] } = props
 
   return (
-    <div className={classes.header}>{asset && <div className={classes.asset}>{asset}</div>}</div>
+    <Box
+      className={classes.header}
+      sx={[
+        (theme) => ({
+          maxWidth: 800,
+          margin: `0 auto`,
+          marginBottom: theme.spacings.md,
+          '& img': {
+            borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      {asset}
+    </Box>
   )
 }

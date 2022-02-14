@@ -1,4 +1,4 @@
-import { LazyQueryHookOptions, TypedDocumentNode } from '@apollo/client'
+import { LazyQueryHookOptions, TypedDocumentNode } from '@graphcommerce/graphql'
 import { useForm } from 'react-hook-form'
 import { useFormGql, UseFormGraphQlOptions } from './useFormGql'
 import { UseFormGqlMutationReturn } from './useFormGqlMutation'

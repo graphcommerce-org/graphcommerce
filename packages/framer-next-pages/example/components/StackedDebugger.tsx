@@ -13,7 +13,7 @@ export default function StackDebug() {
       <code
         style={{
           display: 'block',
-          // marginLeft: -60,
+          // marginLeft: '-60px',
           paddingBlock: 20,
           textAlign: 'center',
         }}
@@ -42,7 +42,7 @@ export default function StackDebug() {
                 height: 100,
                 borderBottom: '1px solid #efefef',
                 boxSizing: 'border-box',
-                padding: 6,
+                padding: '6px',
                 width: 40,
                 textAlign: 'center',
                 lineHeight: `28px`,

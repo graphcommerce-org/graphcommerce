@@ -1,47 +1,23 @@
-import { ColumnTwoWithTop, ColumnTwoWithTopProps, UseStyles } from '@graphcommerce/next-ui'
-import { makeStyles, Theme, Typography } from '@material-ui/core'
-import React from 'react'
+import {
+  ColumnTwoWithTop,
+  ColumnTwoWithTopProps,
+  extendableComponent,
+} from '@graphcommerce/next-ui'
+import { Box, SxProps, Theme, Typography } from '@mui/material'
 import { ProductPageDescriptionFragment } from './ProductPageDescription.gql'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  /* nested styles because we don't know beforehand which elements the description contains */
-  description: {
-    '& p:first-of-type': {
-      marginTop: 0,
-    },
-    '& p, & li': {
-      ...theme.typography.body1,
-      fontWeight: 400,
+export type ProductPageDescriptionProps = ProductPageDescriptionFragment &
+  Omit<ColumnTwoWithTopProps, 'top' | 'left'> & { sx?: SxProps<Theme> }
 
-      [theme.breakpoints.up('md')]: {
-        ...theme.typography.h3,
-        fontWeight: 400,
-        '@supports (font-variation-settings: normal)': {
-          fontVariationSettings: "'wght' 420",
-        },
-      },
-    },
-    '& ul': {
-      padding: 0,
-      margin: 0,
-      display: 'inline',
-      listStyleType: 'none',
-    },
-    '& li': {
-      display: 'inline',
-    },
-  },
-}))
-
-export type ProductPageDescriptionProps = UseStyles<typeof useStyles> & ProductPageDescriptionFragment &
-  Omit<ColumnTwoWithTopProps, 'top' | 'left'>
+const { classes } = extendableComponent('ProductPageDescription', ['root', 'description'] as const)
 
 export default function ProductPageDescription(props: ProductPageDescriptionProps) {
-  const classes = useStyles(props)
-  const { description, name, right } = props
+  const { description, name, right, sx = [] } = props
 
   return (
     <ColumnTwoWithTop
+      className={classes.root}
+      sx={sx}
       top={
         <Typography variant='h1' component='h2'>
           {name}
@@ -49,10 +25,35 @@ export default function ProductPageDescription(props: ProductPageDescriptionProp
       }
       left={
         description && (
-          <div
+          <Box
             className={classes.description}
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: description.html }}
+            sx={(theme) => ({
+              '& p:first-of-type': {
+                marginTop: 0,
+              },
+              '& p, & li': {
+                typography: 'body1',
+                fontWeight: 400,
+                [theme.breakpoints.up('md')]: {
+                  typography: 'h3',
+                  fontWeight: 400,
+                  '@supports (font-variation-settings: normal)': {
+                    fontVariationSettings: "'wght' 420",
+                  },
+                },
+              },
+              '& ul': {
+                padding: 0,
+                margin: 0,
+                display: 'inline',
+                listStyleType: 'none',
+              },
+              '& li': {
+                display: 'inline',
+              },
+            })}
           />
         )
       }

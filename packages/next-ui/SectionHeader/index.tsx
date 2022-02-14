@@ -1,63 +1,58 @@
-import { makeStyles, Theme, Typography, TypographyProps } from '@material-ui/core'
-import clsx from 'clsx'
+import { Box, Typography, TypographyProps, SxProps, Theme } from '@mui/material'
 import React from 'react'
-import { UseStyles } from '../Styles'
+import { extendableComponent } from '../Styles'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    sectionHeaderSidePadding: {
-      paddingLeft: theme.spacings.xxs,
-      paddingRight: theme.spacings.xxs,
-    },
-    sectionHeaderWrapper: {
-      position: 'relative',
-      '&:focus': {
-        outline: 'none',
-      },
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginTop: theme.spacings.sm,
-      marginBottom: theme.spacings.xxs,
-    },
-    labelLeft: {},
-    labelRight: {
-      color: theme.palette.text.primary,
-      lineHeight: 1,
-    },
-  }),
-  { name: 'SectionHeader' },
-)
+const { classes, selectors } = extendableComponent('SectionHeader', [
+  'root',
+  'left',
+  'right',
+] as const)
 
 export type SectionHeaderProps = {
   variantLeft?: TypographyProps['variant']
   variantRight?: TypographyProps['variant']
   usePadding?: boolean
-} & UseStyles<typeof useStyles> &
-  (
-    | { labelLeft: React.ReactNode; labelRight?: React.ReactNode }
-    | { labelLeft?: React.ReactNode; labelRight: React.ReactNode }
-  )
+  sx?: SxProps<Theme>
+} & (
+  | { labelLeft: React.ReactNode; labelRight?: React.ReactNode }
+  | { labelLeft?: React.ReactNode; labelRight: React.ReactNode }
+)
 
-export default function SectionHeader(props: SectionHeaderProps) {
+export function SectionHeader(props: SectionHeaderProps) {
   const {
     labelLeft,
     labelRight,
     usePadding,
     variantLeft = 'overline',
     variantRight = 'body2',
+    sx = [],
   } = props
-  const classes = useStyles(props)
 
   return (
-    <div
-      className={clsx({
-        [classes.sectionHeaderWrapper]: true,
-        [classes.sectionHeaderSidePadding]: usePadding,
-      })}
+    <Box
+      className={classes.root}
+      sx={[
+        (theme) => ({
+          position: 'relative',
+          '&:focus': {
+            outline: 'none',
+          },
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginTop: theme.spacings.sm,
+          marginBottom: theme.spacings.xxs,
+        }),
+        usePadding === true &&
+          ((theme) => ({
+            paddingLeft: theme.spacings.xxs,
+            paddingRight: theme.spacings.xxs,
+          })),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
       <Typography
-        className={classes.labelLeft}
+        className={classes.left}
         variant={variantLeft}
         color='textSecondary'
         component='div'
@@ -66,14 +61,17 @@ export default function SectionHeader(props: SectionHeaderProps) {
       </Typography>
       {labelRight && (
         <Typography
-          className={classes.labelRight}
+          className={classes.right}
           variant={variantRight}
           color='textSecondary'
           component='div'
+          sx={{ color: 'text.primary', lineHeight: 1 }}
         >
           {labelRight}
         </Typography>
       )}
-    </div>
+    </Box>
   )
 }
+
+SectionHeader.selectors = selectors

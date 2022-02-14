@@ -1,124 +1,35 @@
 import { Image } from '@graphcommerce/image'
 import { Money } from '@graphcommerce/magento-store'
-import { responsiveVal } from '@graphcommerce/next-ui'
-import { makeStyles, Theme } from '@material-ui/core'
-import clsx from 'clsx'
+import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
+import { Box } from '@mui/material'
 import PageLink from 'next/link'
-import React from 'react'
 import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
 import { OrderItemFragment } from './OrderItem.gql'
 
 type OrderItemProps = OrderItemFragment & Omit<OrderCardItemImageFragment, 'uid'>
 
 const rowImageSize = responsiveVal(70, 125)
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      display: 'grid',
-      gridTemplate: `
-      "picture itemName itemName itemName"
-      "picture itemOptions itemOptions itemOptions"
-      "picture itemPrice quantity rowPrice"
-        `,
-      gridTemplateColumns: `${rowImageSize} repeat(3, 1fr)`,
-      columnGap: theme.spacings.sm,
-      alignItems: 'baseline',
-      ...theme.typography.body1,
-      marginBottom: theme.spacings.lg,
-      marginTop: theme.spacings.md,
-      [theme.breakpoints.up('sm')]: {
-        gridTemplate: `
-        "picture itemName itemName itemName itemName"
-        "picture itemOptions itemPrice quantity rowPrice"
-      `,
-        gridTemplateColumns: `${rowImageSize} 4fr 1fr 1fr minmax(75px, 1fr)`,
-        marginBottom: theme.spacings.md,
-      },
-    },
-    itemWithoutOptions: {
-      display: 'grid',
-      gridTemplate: `
-      "picture itemName itemName itemName"
-      "picture itemPrice quantity rowPrice"`,
-      alignItems: 'center',
-      gridTemplateColumns: `${rowImageSize} repeat(3, 1fr)`,
-      [theme.breakpoints.up('sm')]: {
-        gridTemplate: `
-        "picture itemName itemPrice quantity rowPrice"
-      `,
-        gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(75px, 1fr)`,
-      },
-    },
-    picture: {
-      gridArea: 'picture',
-      width: rowImageSize,
-      height: rowImageSize,
-      padding: responsiveVal(5, 10),
-      border: `1px solid rgba(0,0,0,0.15)`,
-      borderRadius: '50%',
-    },
-    pictureSpacing: {
-      overflow: 'hidden',
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      position: 'relative',
-      alignItems: 'center',
-      flexShrink: 0,
-      userSelect: 'none',
-      borderRadius: '50%',
-      justifyContent: 'center',
-      backgroundColor: 'rgb(248,248,248)',
-    },
-    image: {
-      gridColumn: 1,
-      backgroundColor: theme.palette.background.image,
-      objectFit: 'cover',
-      display: 'block',
-      transform: 'scale(1.1)',
-    },
-    productLink: {
-      display: 'block',
-      width: '100%',
-      height: '100%',
-    },
-    itemName: {
-      ...theme.typography.h5,
-      fontWeight: 500,
-      gridArea: 'itemName',
-      color: theme.palette.text.primary,
-      textDecoration: 'none',
-      flexWrap: 'nowrap',
-      maxWidth: 'max-content',
-    },
-    itemNameWithOptions: {
-      alignSelf: 'flex-end',
-    },
-    itemPrice: {
-      gridArea: 'itemPrice',
-      textAlign: 'left',
-      color: theme.palette.text.disabled,
-    },
-    quantity: {
-      gridArea: 'quantity',
-      justifySelf: 'center',
-    },
-    rowPrice: {
-      gridArea: 'rowPrice',
-      textAlign: 'right',
-    },
-    optionsList: {
-      gridArea: 'itemOptions',
-      cursor: 'default',
-    },
-    option: {
-      color: theme.palette.grey['500'],
-      marginRight: theme.spacings.xs,
-      paddingBottom: 1,
-      display: 'inline',
-    },
-  }),
-  { name: 'OrderItem' },
+
+type OwnerState = { hasOptions: boolean }
+const componentName = 'OrderItem' as const
+const parts = [
+  'root',
+  'itemWithoutOptions',
+  'picture',
+  'pictureSpacing',
+  'image',
+  'productLink',
+  'itemName',
+  'itemNameWithOptions',
+  'itemPrice',
+  'quantity',
+  'rowPrice',
+  'optionsList',
+  'option',
+] as const
+const { withState } = extendableComponent<OwnerState, typeof componentName, typeof parts>(
+  componentName,
+  parts,
 )
 
 export default function OrderItem(props: OrderItemProps) {
@@ -130,17 +41,86 @@ export default function OrderItem(props: OrderItemProps) {
     product_name,
     thumbnail,
   } = props
-  const classes = useStyles()
   const productLink = `/product/${product_url_key}`
 
-  const hasOptions = selected_options && selected_options.length >= 1
+  const hasOptions = Boolean(selected_options && selected_options.length >= 1)
+
+  const classes = withState({ hasOptions })
 
   return (
-    <div className={clsx(classes.root, !hasOptions && classes.itemWithoutOptions)}>
-      <div className={classes.picture}>
-        <PageLink href={productLink}>
-          <a className={classes.productLink}>
-            <div className={classes.pictureSpacing}>
+    <Box
+      className={classes.root}
+      sx={(theme) => ({
+        display: 'grid',
+        gridTemplate: `
+          "picture itemName itemName itemName"
+          "picture itemOptions itemOptions itemOptions"
+          "picture itemPrice quantity rowPrice"
+        `,
+        gridTemplateColumns: `${rowImageSize} repeat(3, 1fr)`,
+        columnGap: theme.spacings.sm,
+        alignItems: 'baseline',
+        typography: 'body1',
+        marginBottom: theme.spacings.lg,
+        marginTop: theme.spacings.md,
+        [theme.breakpoints.up('sm')]: {
+          gridTemplate: `
+            "picture itemName itemName itemName itemName"
+            "picture itemOptions itemPrice quantity rowPrice"
+          `,
+          gridTemplateColumns: `${rowImageSize} 4fr 1fr 1fr minmax(75px, 1fr)`,
+          marginBottom: theme.spacings.md,
+        },
+
+        '&:not(.hasOptions)': {
+          display: 'grid',
+          gridTemplate: `
+            "picture itemName itemName itemName"
+            "picture itemPrice quantity rowPrice"`,
+          alignItems: 'center',
+          gridTemplateColumns: `${rowImageSize} repeat(3, 1fr)`,
+          [theme.breakpoints.up('sm')]: {
+            gridTemplate: `
+              "picture itemName itemPrice quantity rowPrice"
+            `,
+            gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(75px, 1fr)`,
+          },
+        },
+      })}
+    >
+      <Box
+        className={classes.picture}
+        sx={{
+          gridArea: 'picture',
+          width: rowImageSize,
+          height: rowImageSize,
+          padding: responsiveVal(5, 10),
+          border: `1px solid rgba(0,0,0,0.15)`,
+          borderRadius: '50%',
+        }}
+      >
+        <PageLink href={productLink} passHref>
+          <Box
+            component='a'
+            className={classes.productLink}
+            sx={{ display: 'block', width: '100%', height: '100%' }}
+          >
+            <Box
+              className={classes.pictureSpacing}
+              sx={() => ({
+                overflow: 'hidden',
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                position: 'relative',
+                alignItems: 'center',
+                flexShrink: 0,
+                userSelect: 'none',
+                borderRadius: '50%',
+                justifyContent: 'center',
+                backgroundColor: 'rgb(248,248,248)',
+              })}
+            >
               {thumbnail?.url && thumbnail?.label && (
                 <Image
                   alt={thumbnail?.label ?? ''}
@@ -148,41 +128,82 @@ export default function OrderItem(props: OrderItemProps) {
                   height={86}
                   src={thumbnail?.url ?? ''}
                   className={classes.image}
+                  sx={(theme) => ({
+                    gridColumn: 1,
+                    backgroundColor: theme.palette.background.image,
+                    objectFit: 'cover',
+                    display: 'block',
+                    transform: 'scale(1.1)',
+                  })}
                 />
               )}
-            </div>
-          </a>
+            </Box>
+          </Box>
         </PageLink>
-      </div>
+      </Box>
 
-      <PageLink href={productLink}>
-        <a className={clsx(classes.itemName, hasOptions && classes.itemNameWithOptions)}>
+      <PageLink href={productLink} passHref>
+        <Box
+          component='a'
+          className={classes.itemName}
+          sx={(theme) => ({
+            typography: 'h5',
+            fontWeight: 500,
+            gridArea: 'itemName',
+            color: theme.palette.text.primary,
+            textDecoration: 'none',
+            flexWrap: 'nowrap',
+            maxWidth: 'max-content',
+            '&.hasOptions': {
+              alignSelf: 'flex-end',
+            },
+          })}
+        >
           {product_name}
-        </a>
+        </Box>
       </PageLink>
 
-      <div className={classes.itemPrice}>
+      <Box
+        className={classes.itemPrice}
+        sx={(theme) => ({
+          gridArea: 'itemPrice',
+          textAlign: 'left',
+          color: theme.palette.text.disabled,
+        })}
+      >
         <Money {...product_sale_price} />
-      </div>
+      </Box>
 
-      <div className={classes.quantity}>{`${quantity_ordered}x`}</div>
+      <Box
+        className={classes.quantity}
+        sx={{ gridArea: 'quantity', justifySelf: 'center' }}
+      >{`${quantity_ordered}x`}</Box>
 
-      <div className={classes.rowPrice}>
+      <Box className={classes.rowPrice} sx={{ gridArea: 'rowPrice', textAlign: 'right' }}>
         <Money
           currency={product_sale_price.currency}
           value={(product_sale_price.value ?? 0) * (quantity_ordered ?? 1)}
         />
-      </div>
+      </Box>
 
       {hasOptions && (
-        <div className={classes.optionsList}>
+        <Box className={classes.optionsList} sx={{ gridArea: 'itemOptions', cursor: 'default' }}>
           {selected_options?.map((option) => (
-            <div key={option?.label} className={classes.option}>
+            <Box
+              key={option?.label}
+              className={classes.option}
+              sx={(theme) => ({
+                color: theme.palette.grey['500'],
+                marginRight: theme.spacings.xs,
+                paddingBottom: '1px',
+                display: 'inline',
+              })}
+            >
               {option?.value}
-            </div>
+            </Box>
           ))}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   )
 }

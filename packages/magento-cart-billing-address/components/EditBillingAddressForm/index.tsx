@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@graphcommerce/graphql'
 import { useHistoryGo } from '@graphcommerce/framer-next-pages'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import {
@@ -14,30 +14,20 @@ import {
   FormDivider,
   FormRow,
   InputCheckmark,
-  UseStyles,
 } from '@graphcommerce/next-ui'
 import { phonePattern } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
-import { makeStyles, TextField } from '@material-ui/core'
-import React from 'react'
+import { SxProps, TextField, Theme } from '@mui/material'
 import { GetBillingAddressDocument } from './GetBillingAddress.gql'
 import { SetBillingAddressOnCartDocument } from './SetBillingAddressOnCart.gql'
 
-const useStyles = makeStyles(
-  () => ({
-    editActions: {
-      paddingBottom: 0,
-    },
-  }),
-  { name: 'EditBillingAddressForm' },
-)
-
-export type EditBillingAddressFormProps = UseStyles<typeof useStyles>
+export type EditBillingAddressFormProps = { sx?: SxProps<Theme> }
 
 export default function EditBillingAddressForm(props: EditBillingAddressFormProps) {
+  const { sx } = props
   const countriesData = useQuery(CountryRegionsDocument).data
   const address = useCartQuery(GetBillingAddressDocument)?.data?.cart?.billing_address
-  const classes = useStyles(props)
+
   const goToCheckout = useHistoryGo({ href: '/checkout/payment' })
 
   const form = useFormGqlMutationCart(SetBillingAddressOnCartDocument, {
@@ -71,7 +61,7 @@ export default function EditBillingAddressForm(props: EditBillingAddressFormProp
 
   return (
     <>
-      <Form onSubmit={submitHandler} noValidate>
+      <Form onSubmit={submitHandler} noValidate sx={sx}>
         <NameFields form={form} prefix />
         <AddressFields form={form} />
 
@@ -94,7 +84,7 @@ export default function EditBillingAddressForm(props: EditBillingAddressFormProp
 
         <FormDivider />
 
-        <FormActions classes={{ root: classes.editActions }}>
+        <FormActions sx={{ paddingBottom: 0 }}>
           <Button
             type='submit'
             variant='contained'

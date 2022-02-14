@@ -1,77 +1,78 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
-import Row from '..'
-import { UseStyles } from '../../Styles'
+import { Row } from '..'
+import { extendableComponent } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    wrapper: {
-      display: 'grid',
-      border: `1px solid ${theme.palette.divider}`,
-      justifyItems: 'center',
-      columnGap: `${theme.spacings.lg}`,
-      padding: 0,
-      [theme.breakpoints.up('md')]: {
-        background: 'none',
-        gridTemplateColumns: '1fr auto',
-        columnGap: `${theme.spacings.lg}`,
-      },
-      borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
-      overflow: 'hidden',
-    },
-    asset: {
-      height: '100%',
-      width: '100%',
-      [theme.breakpoints.up('md')]: {
-        height: '100%',
-        width: responsiveVal(100, 600),
-      },
-      '& img': {
-        height: '100% !important',
-        width: '100% !important',
-        objectFit: `cover`,
-      },
-    },
-    copy: {
-      padding: `${theme.spacings.lg} 0`,
-      color: theme.palette.text.primary,
-      maxWidth: '80%',
-      display: 'grid',
-      alignContent: 'center',
-      [theme.breakpoints.up('md')]: {
-        maxWidth: '70%',
-      },
-      '& > *': {
-        maxWidth: 'max-content',
-      },
-    },
-    url: {
-      ...theme.typography.body2,
-      [theme.breakpoints.up('md')]: {
-        ...theme.typography.h4,
-      },
-      color: theme.palette.text.primary,
-    },
-  }),
-  { name: 'ImageTextBoxed' },
-)
-
-export type ImageTextBoxedProps = UseStyles<typeof useStyles> & {
+export type ImageTextBoxedProps = {
   children: React.ReactNode
   item?: React.ReactNode
+  sx?: SxProps<Theme>
 }
 
-export default function ImageTextBoxed(props: ImageTextBoxedProps) {
-  const { children, item } = props
-  const classes = useStyles(props)
+const name = 'ImageTextBoxed' as const
+const parts = ['root', 'wrapper', 'asset', 'copy'] as const
+const { classes } = extendableComponent(name, parts)
+
+export function ImageTextBoxed(props: ImageTextBoxedProps) {
+  const { children, item, sx = [] } = props
 
   return (
-    <Row>
-      <div className={classes.wrapper}>
-        <div className={classes.copy}>{children}</div>
-        <div className={classes.asset}>{item}</div>
-      </div>
+    <Row className={classes.root} sx={sx}>
+      <Box
+        className={classes.wrapper}
+        sx={(theme) => ({
+          display: 'grid',
+          border: `1px solid ${theme.palette.divider}`,
+          justifyItems: 'center',
+          columnGap: `${theme.spacings.lg}`,
+          padding: 0,
+          [theme.breakpoints.up('md')]: {
+            background: 'none',
+            gridTemplateColumns: '1fr auto',
+            columnGap: `${theme.spacings.lg}`,
+          },
+          borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+          overflow: 'hidden',
+        })}
+      >
+        <Box
+          className={classes.copy}
+          sx={(theme) => ({
+            padding: `${theme.spacings.lg} 0`,
+            color: theme.palette.text.primary,
+            maxWidth: '80%',
+            display: 'grid',
+            alignContent: 'center',
+            [theme.breakpoints.up('md')]: {
+              maxWidth: '70%',
+            },
+            '& > *': {
+              maxWidth: 'max-content',
+            },
+          })}
+        >
+          {children}
+        </Box>
+        <Box
+          className={classes.asset}
+          sx={(theme) => ({
+            height: '100%',
+            width: '100%',
+            [theme.breakpoints.up('md')]: {
+              height: '100%',
+              width: responsiveVal(100, 600),
+            },
+            '& img': {
+              height: '100% !important',
+              width: '100% !important',
+              objectFit: `cover`,
+            },
+          })}
+        >
+          {item}
+        </Box>
+      </Box>
     </Row>
   )
 }

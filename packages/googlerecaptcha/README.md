@@ -11,4 +11,4 @@ This package makes it easy to add Google Recaptcha v3 to GraphCommerce
 3. Add `recaptchaLink` to your Apollo Client.
    [example](../../examples/magento-graphcms/lib/createApolloClient.ts)
 4. Add `X-Recaptcha` header to your `.meshrc.yml`.
-   [example](../../examples/magento-graphcms/lib/createApolloClient.ts)
+   [example](../../examples/magento-graphcms/.meshrc.yml)

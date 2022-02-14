@@ -1,8 +1,8 @@
 import { ProductListItemsBase, ProductItemsGridProps } from '@graphcommerce/magento-product'
-import renderers from './renderers'
+import { productListRenderer } from './productListRenderer'
 
 export type ProductListItemsProps = Omit<ProductItemsGridProps, 'renderers'>
 
-export default function ProductListItems(props: ProductListItemsProps) {
-  return <ProductListItemsBase renderers={renderers} {...props} />
+export function ProductListItems(props: ProductListItemsProps) {
+  return <ProductListItemsBase renderers={productListRenderer} {...props} />
 }

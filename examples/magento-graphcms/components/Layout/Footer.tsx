@@ -1,10 +1,10 @@
+import { Image } from '@graphcommerce/image'
 import { StoreSwitcherButton } from '@graphcommerce/magento-store'
-import { Button, Footer as FooterBase, SocialIcon } from '@graphcommerce/next-ui'
+import { Footer as FooterBase } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { IconButton, Link } from '@material-ui/core'
+import { Button, IconButton, Link } from '@mui/material'
 import PageLink from 'next/link'
-import React from 'react'
-import { FooterQueryFragment } from '../GraphQL/FooterQueryFragment.gql'
+import { FooterQueryFragment } from './FooterQueryFragment.gql'
 
 export type FooterProps = FooterQueryFragment
 
@@ -13,37 +13,28 @@ export function Footer(props: FooterProps) {
 
   return (
     <FooterBase
-      socialLinks={
-        <>
-          {footer?.socialLinks?.map((link) => (
-            <PageLink key={link.title} href={link.url} passHref>
-              <IconButton
-                color='inherit'
-                size='small'
-                disableRipple
-                disableFocusRipple
-                edge='start'
-              >
-                {link.asset ? (
-                  <SocialIcon
-                    src={link.asset.url}
-                    width={24}
-                    height={24}
-                    alt={link.title}
-                    size='small'
-                  />
-                ) : (
-                  link.title
-                )}
-              </IconButton>
-            </PageLink>
-          ))}
-        </>
-      }
+      socialLinks={footer?.socialLinks?.map((link) => (
+        <PageLink key={link.title} href={link.url} passHref>
+          <IconButton color='inherit' size='small' edge='start'>
+            {link.asset ? (
+              <Image
+                layout='fill'
+                src={link.asset.url}
+                width={24}
+                height={24}
+                unoptimized
+                alt={link.title}
+              />
+            ) : (
+              link.title
+            )}
+          </IconButton>
+        </PageLink>
+      ))}
       storeSwitcher={<StoreSwitcherButton />}
       customerService={
         <PageLink href='/service' passHref>
-          <Button variant='pill' color='default'>
+          <Button variant='pill'>
             <Trans>Customer Service</Trans>
           </Button>
         </PageLink>

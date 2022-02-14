@@ -1,4 +1,4 @@
-import { gql, ApolloClient, NormalizedCacheObject } from '@apollo/client'
+import { gql, ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import { Exact } from '@graphcommerce/graphql'
 import { AllFilterInputTypes, FilterTypes } from './filterTypes'
 

@@ -1,9 +1,7 @@
 import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
-import { makeStyles, TextField, Theme } from '@material-ui/core'
-import { Alert } from '@material-ui/lab'
-import React from 'react'
+import { TextField, Alert, SxProps, Theme } from '@mui/material'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
   ForgotPasswordDocument,
@@ -11,18 +9,8 @@ import {
   ForgotPasswordMutationVariables,
 } from './ForgotPassword.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    alert: {
-      marginTop: theme.spacings.md,
-      marginBottom: theme.spacings.sm,
-    },
-  }),
-  { name: 'ForgotPasswordForm' },
-)
-
-export default function ForgotPasswordForm() {
-  const classes = useStyles()
+export default function ForgotPasswordForm(props: { sx?: SxProps<Theme> }) {
+  const { sx = [] } = props
   const form = useFormGqlMutation<ForgotPasswordMutation, ForgotPasswordMutationVariables>(
     ForgotPasswordDocument,
   )
@@ -31,14 +19,21 @@ export default function ForgotPasswordForm() {
 
   if (formState.isSubmitSuccessful && data) {
     return (
-      <Alert severity='success' variant='standard' className={classes.alert}>
+      <Alert
+        severity='success'
+        variant='standard'
+        sx={(theme) => ({
+          marginTop: theme.spacings.md,
+          marginBottom: theme.spacings.sm,
+        })}
+      >
         <Trans>We've send a password reset link to your email address!</Trans>
       </Alert>
     )
   }
 
   return (
-    <Form onSubmit={submitHandler} noValidate>
+    <Form onSubmit={submitHandler} noValidate sx={sx}>
       <FormRow>
         <TextField
           variant='outlined'

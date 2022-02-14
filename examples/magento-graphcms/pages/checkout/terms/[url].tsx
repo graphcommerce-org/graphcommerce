@@ -1,15 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import {
-  CartAgreementsDocument,
-  CartAgreementsQuery,
-} from '@graphcommerce/magento-cart/components/CartAgreementsForm/CartAgreements.gql'
+import { CartAgreementsDocument, CartAgreementsQuery } from '@graphcommerce/magento-cart'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { Container, Typography } from '@material-ui/core'
+import { Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import React from 'react'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
-import apolloClient from '../../../lib/apolloClient'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = { agreement: NonNullable<NonNullable<CartAgreementsQuery['checkoutAgreements']>[0]> }
 type RouteProps = { url: string }
@@ -46,6 +42,7 @@ function TermsPage(props: Props) {
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'left',
   Layout: LayoutOverlay,
+  layoutProps: {},
 }
 TermsPage.pageOptions = pageOptions
 
@@ -57,7 +54,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
   /** Call apolloClient to fetch locale specific agreements from Magento. */
   const path = async (locale: string) => {
-    const client = apolloClient(locale)
+    const client = graphqlSharedClient(locale)
     const { data } = await client.query({ query: CartAgreementsDocument })
     return (data.checkoutAgreements ?? []).map((agreement) => ({
       locale,
@@ -71,8 +68,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
   const agreements = await staticClient.query({ query: CartAgreementsDocument })

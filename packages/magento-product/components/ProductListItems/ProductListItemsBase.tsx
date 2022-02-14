@@ -1,33 +1,8 @@
-import { RenderType, UseStyles, responsiveVal } from '@graphcommerce/next-ui'
-import { Theme, makeStyles } from '@material-ui/core'
-import clsx from 'clsx'
-import React from 'react'
+import { RenderType, responsiveVal } from '@graphcommerce/next-ui'
+import { Box, BoxProps } from '@mui/material'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { ProductListItemProps } from '../ProductListItem'
 import { ProductListItemRenderer } from './renderer'
-
-export const useStyles = makeStyles(
-  (theme: Theme) => ({
-    productList: {
-      display: 'grid',
-      gridColumnGap: theme.spacings.md,
-      gridRowGap: theme.spacings.md,
-    },
-    productListsmall: {
-      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
-    },
-    productListnormal: {
-      gridTemplateColumns: `repeat(2, 1fr)`,
-      [theme.breakpoints.up('md')]: {
-        gridTemplateColumns: `repeat(3, 1fr)`,
-      },
-      [theme.breakpoints.up('lg')]: {
-        gridTemplateColumns: `repeat(4, 1fr)`,
-      },
-    },
-  }),
-  { name: 'ProductList' },
-)
 
 export type ProductItemsGridProps = {
   items?:
@@ -37,14 +12,29 @@ export type ProductItemsGridProps = {
   renderers: ProductListItemRenderer
   loadingEager?: number
   size?: 'normal' | 'small'
-} & UseStyles<typeof useStyles>
+  sx?: BoxProps['sx']
+}
 
 export default function ProductListItemsBase(props: ProductItemsGridProps) {
-  const { items, renderers, loadingEager = 0, size = 'normal', ...divProps } = props
-  const classes = useStyles(props)
+  const { items, sx = [], renderers, loadingEager = 0, size = 'normal' } = props
 
   return (
-    <div {...divProps} className={clsx(classes.productList, classes[`productList${size}`])}>
+    <Box
+      sx={[
+        (theme) => ({
+          display: 'grid',
+          gridColumnGap: theme.spacings.md,
+          gridRowGap: theme.spacings.md,
+        }),
+        size === 'small' && {
+          gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
+        },
+        size === 'normal' && {
+          gridTemplateColumns: { xs: `repeat(2, 1fr)`, md: `repeat(3, 1fr)`, lg: `repeat(4, 1fr)` },
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       {items?.map((item, idx) =>
         item ? (
           <RenderType
@@ -61,6 +51,6 @@ export default function ProductListItemsBase(props: ProductItemsGridProps) {
           />
         ) : null,
       )}
-    </div>
+    </Box>
   )
 }

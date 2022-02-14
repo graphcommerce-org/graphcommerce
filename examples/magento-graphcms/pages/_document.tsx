@@ -1,19 +1,17 @@
 // import { GoogleTagManagerNoScript } from '@graphcommerce/googletagmanager'
-import { linguiWrapGetInitialProps, MessageLoader } from '@graphcommerce/lingui-next'
-import Document from '@graphcommerce/next-ui/Page/Document'
-import { Head, Html, Main, NextScript } from 'next/document'
+import { withLingui } from '@graphcommerce/lingui-next'
+import { EmotionCacheProps, withEmotionCache } from '@graphcommerce/next-ui'
+import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
 
-const loader: MessageLoader = (locale) => import(`../locales/${locale}.po`)
-
-export default class ThemedDocument extends Document {
-  static getInitialProps = linguiWrapGetInitialProps(Document.getInitialProps, loader)
-
+class Document extends NextDocument<EmotionCacheProps> {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          {/* Inject MUI styles first to match with the prepend: true configuration. */}
+          {this.props.emotionStyleTags}
+        </Head>
         <body>
-          {/* <GoogleTagManagerNoScript /> */}
           <Main />
           <NextScript />
         </body>
@@ -21,3 +19,5 @@ export default class ThemedDocument extends Document {
     )
   }
 }
+
+export default withLingui(withEmotionCache(Document), (locale) => import(`../locales/${locale}.po`))

@@ -1,34 +1,17 @@
-import { Button } from '@graphcommerce/next-ui'
+import { Button, extendableComponent } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { makeStyles, TextField, Theme } from '@material-ui/core'
+import { Box, SxProps, TextField, Theme } from '@mui/material'
 import PageLink from 'next/link'
-import React, { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 import { SignInDocument, SignInMutationVariables } from './SignIn.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    form: {
-      display: 'grid',
-      alignItems: 'center',
-      gridRowGap: theme.spacings.sm,
-      gridColumnGap: theme.spacings.xs,
-      gridTemplateColumns: '1fr',
-      [theme.breakpoints.up('sm')]: {
-        gridTemplateColumns: '5fr 1fr',
-      },
-    },
-    button: {
-      minWidth: 'max-content',
-    },
-  }),
-  { name: 'SignInFormInline' },
-)
+type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'> & { sx?: SxProps<Theme> }
 
-type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'>
+const { classes } = extendableComponent('SignInFormInline', ['form', 'button'] as const)
 
-export default function SignInFormInline({ email }: PropsWithChildren<InlineSignInFormProps>) {
-  const classes = useStyles()
+export default function SignInFormInline(props: PropsWithChildren<InlineSignInFormProps>) {
+  const { email, sx = [] } = props
   const form = useFormGqlMutation(
     SignInDocument,
     { defaultValues: { email } },
@@ -38,7 +21,25 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
   const submitHandler = handleSubmit(() => {})
 
   return (
-    <form onSubmit={submitHandler} noValidate className={classes.form}>
+    <Box
+      component='form'
+      onSubmit={submitHandler}
+      noValidate
+      className={classes.form}
+      sx={[
+        (theme) => ({
+          display: 'grid',
+          alignItems: 'center',
+          gridRowGap: theme.spacings.sm,
+          gridColumnGap: theme.spacings.xs,
+          gridTemplateColumns: '1fr',
+          [theme.breakpoints.up('sm')]: {
+            gridTemplateColumns: '5fr 1fr',
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       <TextField
         variant='outlined'
         type='password'
@@ -54,16 +55,21 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
         InputProps={{
           endAdornment: (
             <PageLink href='/account/forgot-password' key='forgot-password' passHref>
-              <Button color='secondary' variant='text' className={classes.button}>
-                Forgot password?
+              <Button
+                color='secondary'
+                variant='text'
+                className={classes.button}
+                sx={{ minWidth: 'max-content' }}
+              >
+                <Trans>Forgot password?</Trans>
               </Button>
             </PageLink>
           ),
         }}
       />
       <Button type='submit' loading={formState.isSubmitting} color='secondary' variant='pill'>
-        Sign in
+        <Trans>Sign in</Trans>
       </Button>
-    </form>
+    </Box>
   )
 }

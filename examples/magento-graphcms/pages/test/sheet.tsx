@@ -6,8 +6,7 @@ import {
   useLayoutState,
 } from '@graphcommerce/next-ui/LayoutOverlay/test/LayoutOverlayDemo'
 import { useForm, useFormAutoSubmit } from '@graphcommerce/react-hook-form'
-import { capitalize, Container, Hidden, Typography } from '@material-ui/core'
-import React from 'react'
+import { capitalize, Container, Hidden, Typography } from '@mui/material'
 
 type Size = 'Sm' | 'Md'
 
@@ -27,7 +26,7 @@ function SheetDemo() {
     <>
       <LayoutOverlayHeader switchPoint={0}>
         <LayoutTitle size='small'>
-          <Hidden smDown>
+          <Hidden mdDown>
             Overlay Md {variantMd} {justifyMd} {sizeMd}
           </Hidden>
           <Hidden smUp>
@@ -36,7 +35,7 @@ function SheetDemo() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth={false}>
-        <form style={{ paddingTop: 100 }} onSubmit={submit}>
+        <form style={{ paddingTop: '100px' }} onSubmit={submit}>
           {sizes.map((size) => (
             <div key={size}>
               <Typography variant='subtitle1'>{size}</Typography>

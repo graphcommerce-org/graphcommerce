@@ -12,7 +12,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: fregante/setup-git-user@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
           node-version: 14
           registry-url: 'https://registry.npmjs.org'
@@ -20,8 +20,7 @@ jobs:
       - uses: bahmutov/npm-install@v1
         with:
           useRollingCache: true
-      - run: yarn lerna publish --conventional-commits --create-release github --yes
+      - name: Create Release Pull Request
+        uses: changesets/action@v1
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

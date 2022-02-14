@@ -1,13 +1,13 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ResetPasswordForm } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Button, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Box, Container, Link, NoSsr } from '@material-ui/core'
+import { Box, Container, Link, NoSsr, Button } from '@mui/material'
 import router, { useRouter } from 'next/router'
 import React from 'react'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../../components/Layout/LayoutOverlay'
-import apolloClient from '../../../../lib/apolloClient'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
+import { graphqlSsrClient, graphqlSharedClient } from '../../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -56,7 +56,7 @@ function CustomerAccountCreatePasswordPage() {
                 <p>
                   <Trans>
                     You can now
-                    <Link color='primary' href='/account/signin'>
+                    <Link color='primary' href='/account/signin' underline='hover'>
                       sign in again
                     </Link>
                     .
@@ -84,7 +84,7 @@ CustomerAccountCreatePasswordPage.pageOptions = pageOptions
 export default CustomerAccountCreatePasswordPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
+  const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
   return {

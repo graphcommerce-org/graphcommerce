@@ -1,34 +1,9 @@
-import { Chip, makeStyles, Theme } from '@material-ui/core'
-import PageLink from 'next/link'
-import React from 'react'
+import { styled } from '@mui/material'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    wrapper: {
-      maxWidth: 800,
-      margin: `0 auto`,
-      marginBottom: theme.spacings.sm,
-    },
-    tag: {
-      marginRight: 8,
-      borderRadius: 4,
-      fontSize: 14,
-    },
-  }),
-  { name: 'BlogTitle' },
-)
+export const BlogTags = styled('div')(({ theme }) => ({
+  maxWidth: 800,
+  margin: `0 auto`,
+  marginBottom: theme.spacings.sm,
+}))
 
-export default function BlogTitle(props) {
-  const { relatedPages } = props
-  const classes = useStyles()
-
-  return (
-    <div className={classes.wrapper}>
-      {relatedPages.map((page) => (
-        <PageLink key={page.url} href={`/${page.url}`} passHref>
-          <Chip label={page.title} className={classes.tag} />
-        </PageLink>
-      ))}
-    </div>
-  )
-}
+export * from './BlogTag'

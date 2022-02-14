@@ -1,6 +1,6 @@
 import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { FormControl, FormControlLabel, FormHelperText, Switch } from '@material-ui/core'
+import { FormControl, FormControlLabel, FormHelperText, Switch } from '@mui/material'
 import React, { useEffect, useMemo } from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import { UpdateDefaultAddressDocument } from '../AccountAddresses/UpdateDefaultAddress.gql'
@@ -24,18 +24,13 @@ export default function UpdateDefaultAddressForm(props: AccountAddressProps) {
 
   const form = useFormGqlMutation(
     UpdateDefaultAddressDocument,
-    {
-      mode: 'onChange',
-      defaultValues,
-    },
+    { mode: 'onChange', defaultValues },
     { errorPolicy: 'all' },
   )
 
   const { handleSubmit, control, error, reset, formState } = form
 
-  const submit = handleSubmit(() => {
-    //
-  })
+  const submit = handleSubmit(() => {})
   useFormAutoSubmit({ form, submit })
 
   useEffect(() => {

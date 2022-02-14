@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCustomerErrorAlert,
   SignInForm,
@@ -14,86 +14,88 @@ import {
   FormActions,
   FormRow,
   LayoutTitle,
+  extendableComponent,
 } from '@graphcommerce/next-ui'
 import { emailPattern, useFormPersist } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { CircularProgress, Link, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
+import { Box, CircularProgress, Link, SxProps, TextField, Theme, Typography } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import router from 'next/router'
-import React from 'react'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    titleContainer: {
-      ...theme.typography.body1,
-      marginBottom: theme.spacings.xs,
-    },
-  }),
-  { name: 'AccountSignInUpForm' },
-)
+type AccountSignInUpFormProps = { sx?: SxProps<Theme> }
 
-export default function AccountSignInUpForm() {
+const parts = ['root', 'titleContainer'] as const
+const { classes } = extendableComponent('AccountSignInUpForm', parts)
+
+export default function AccountSignInUpForm(props: AccountSignInUpFormProps) {
+  const { sx = [] } = props
   const customerToken = useQuery(CustomerTokenDocument)
   const customerQuery = useQuery(CustomerDocument, {
     ssr: false,
     skip: typeof customerToken.data === 'undefined',
   })
 
-  const { email, firstname } = customerQuery.data?.customer ?? {}
+  const { email, firstname = '' } = customerQuery.data?.customer ?? {}
   const { mode, form, autoSubmitting, submit } = useFormIsEmailAvailable({ email })
   const { formState, muiRegister, required, watch, error } = form
   const disableFields = formState.isSubmitting && !autoSubmitting
-  const classes = useStyles()
 
   useFormPersist({ form, name: 'IsEmailAvailable' })
 
+  const titleContainerSx: SxProps<Theme> = (theme) => ({
+    typography: 'body1',
+    marginBottom: theme.spacings.xs,
+  })
+
   return (
-    <FormDiv>
+    <FormDiv sx={sx} className={classes.root}>
       {mode === 'email' && (
-        <div className={classes.titleContainer} key='email'>
+        <Box className={classes.titleContainer} key='email' sx={titleContainerSx}>
           <LayoutTitle variant='h2' gutterBottom={false}>
             <Trans>Sign in or create an account!</Trans>
           </LayoutTitle>
           <Typography variant='h6' align='center'>
             <Trans>Fill in your e-mail to login or create an account</Trans>
           </Typography>
-        </div>
+        </Box>
       )}
 
       {mode === 'signin' && (
-        <div className={classes.titleContainer} key='signin'>
+        <Box className={classes.titleContainer} key='signin' sx={titleContainerSx}>
           <LayoutTitle variant='h2' gutterBottom={false}>
             <Trans>Welcome back!</Trans>
           </LayoutTitle>
           <Typography variant='h6' align='center'>
             <Trans>Fill in your password</Trans>
           </Typography>
-        </div>
+        </Box>
       )}
 
       {mode === 'signup' && (
-        <div className={classes.titleContainer} key='signup'>
+        <Box className={classes.titleContainer} key='signup' sx={titleContainerSx}>
           <LayoutTitle variant='h2' gutterBottom={false}>
             <Trans>Create account!</Trans>
           </LayoutTitle>
           <Typography variant='h6' align='center'>
             <Trans>Create a password and tell us your name</Trans>
           </Typography>
-        </div>
+        </Box>
       )}
 
       {mode === 'signedin' && (
-        <div className={classes.titleContainer} key='signup'>
+        <Box className={classes.titleContainer} key='signup' sx={titleContainerSx}>
           <LayoutTitle variant='h2' gutterBottom={false}>
             <Trans>Hi {firstname}! You're now logged in!</Trans>
           </LayoutTitle>
           <Typography variant='h6' align='center'>
-            <Trans>You can view</Trans>{' '}
-            <PageLink href='/account' passHref>
-              <Link>your account here</Link>
-            </PageLink>
-            .
+            <Trans>
+              You can view{' '}
+              <PageLink href='/account' passHref>
+                <Link underline='hover'>your account here</Link>
+              </PageLink>
+              .
+            </Trans>
           </Typography>
 
           <FormActions>
@@ -101,18 +103,18 @@ export default function AccountSignInUpForm() {
               <Trans>Continue shopping</Trans>
             </Button>
           </FormActions>
-        </div>
+        </Box>
       )}
 
       {mode === 'session-expired' && (
-        <div className={classes.titleContainer} key='email'>
+        <Box className={classes.titleContainer} key='email' sx={titleContainerSx}>
           <LayoutTitle variant='h2' gutterBottom={false}>
             <Trans>Your session is expired</Trans>
           </LayoutTitle>
           <Typography variant='h6' align='center'>
             <Trans>Login to continue shopping</Trans>
           </Typography>
-        </div>
+        </Box>
       )}
 
       <AnimatePresence>

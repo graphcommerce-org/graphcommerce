@@ -1,7 +1,6 @@
 import { i18n, Messages } from '@lingui/core'
 import { I18nProvider, I18nProviderProps } from '@lingui/react'
 import { nl, en, fr } from 'make-plural/plurals'
-import { useRouter } from 'next/router'
 import React, { useMemo } from 'react'
 import { MessageLoader, SyncMessageLoader } from '../types'
 
@@ -9,20 +8,21 @@ type LinguiProviderProps = Omit<I18nProviderProps, 'i18n'> & {
   children: React.ReactNode
   loader: MessageLoader
   ssrLoader: SyncMessageLoader
-  locale?: string
+  locale: string
 }
 
+// todo: Load these plurals with a loader, however dynamic imports doesn't support tree shaking so loading them dynamically will load all locales.
 i18n.loadLocaleData({
   nl: { plurals: nl },
   fr: { plurals: fr },
   en: { plurals: en },
 })
 
-export default function LinguiProvider(props: LinguiProviderProps) {
+export function LinguiProvider(props: LinguiProviderProps) {
   const { loader, ssrLoader, locale, ...i18nProviderPRops } = props
 
   useMemo(() => {
-    const localeOnly = locale?.split('-')?.[0] ?? 'en'
+    const localeOnly = locale?.split('-')[0]
     const data = globalThis.document?.getElementById('lingui')
 
     if (data?.lang === localeOnly && data.textContent) {
@@ -44,16 +44,18 @@ export default function LinguiProvider(props: LinguiProviderProps) {
           } catch (e) {
             if (process.env.NODE_ENV !== 'production')
               throw new Error(
-                `Can not find the .po file for the locale '${localeOnly}'. Possible reasons:
-- If you've added a new locale, please run 'yarn lingui:extact' to generate the .po file.
-- Make sure the passed load function is correct.`,
+                `Could not load locale. Can't find the .po file for the locale '${localeOnly}'. Possible reasons:
+- You have configured a new locale in the .env and there is no .po file for it. Please run 'yarn lingui:extact' to generate the .po file or duplicate an existing one.
+- The load function you passed to is incorrect.`,
               )
             if (process.env.NODE_ENV === 'production') console.error(e)
           }
         })()
       }
     }
-  }, [locale, loader])
+    // We dont want to call this when the loader/ssrLoader changes, because it will cause a re-render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locale])
 
   return <I18nProvider i18n={i18n} {...i18nProviderPRops} />
 }

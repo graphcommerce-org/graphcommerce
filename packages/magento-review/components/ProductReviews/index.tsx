@@ -1,92 +1,39 @@
-import { useQuery } from '@apollo/client'
-import { Button, Pagination, responsiveVal, StarRatingField } from '@graphcommerce/next-ui'
-import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { useQuery } from '@graphcommerce/graphql'
+import {
+  Pagination,
+  responsiveVal,
+  StarRatingField,
+  extendableComponent,
+} from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
+import { Typography, Button, Box, SxProps, Theme } from '@mui/material'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import ProductReviewChip from '../ProductReviewChip'
 import { ProductReviewsFragment } from './ProductReviews.gql'
 import { ProductReviewsPageDocument } from './ProductReviewsPage.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    review: {
-      display: 'grid',
-      gap: theme.spacings.sm,
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      padding: `${theme.spacings.md} 0`,
-      ...theme.typography.body1,
-    },
-    title: {
-      display: 'grid',
-      gridAutoFlow: 'column',
-      justifyContent: 'start',
-      gap: theme.spacings.xs,
-      alignItems: 'center',
-    },
-    meta: {
-      color: theme.palette.text.disabled,
-      display: 'grid',
-      gridAutoFlow: 'column',
-      justifyContent: 'space-between',
-    },
-    nickname: {
-      ...theme.typography.body2,
-    },
-    date: {
-      ...theme.typography.body2,
-    },
-    reviewsBottomContainer: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      marginTop: theme.spacings.sm,
-    },
-    paginationRoot: {
-      margin: `0 -16px 0`,
-    },
-    paginationButton: {
-      padding: 0,
-      minWidth: 'unset',
-      borderRadius: '100%',
-      '& > .MuiButton-label': {
-        padding: 0,
-      },
-    },
-    ratingRow: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      gap: theme.spacings.sm,
-      color: theme.palette.text.disabled,
-      ...theme.typography.body2,
-    },
-    rating: {
-      display: 'grid',
-      gridAutoFlow: 'column',
-      gridTemplateColumns: '0.4fr 0.6fr',
-      justifyContent: 'space-between',
-      marginRight: theme.spacings.xxs,
-      rowGap: responsiveVal(8, 16),
-      gap: 8,
-      alignItems: 'center',
-    },
-    writeReviewButton: {
-      [theme.breakpoints.down('xs')]: {
-        padding: '8px 16px 8px',
-        whiteSpace: 'nowrap',
-      },
-    },
-    container: {
-      marginTop: `calc(${theme.spacings.xxs} * -1)`,
-    },
-  }),
-  { name: 'ProductReviews' },
-)
+export type ProductReviewsProps = ProductReviewsFragment & { sx?: SxProps<Theme> }
 
-export type ProductReviewsProps = ProductReviewsFragment
+const name = 'ProductReviews' as const
+const parts = [
+  'review',
+  'title',
+  'meta',
+  'nickname',
+  'date',
+  'reviewsBottomContainer',
+  'paginationRoot',
+  'paginationButton',
+  'ratingRow',
+  'rating',
+  'writeReviewButton',
+  'container',
+] as const
+const { classes } = extendableComponent(name, parts)
 
 export default function ProductReviews(props: ProductReviewsProps) {
-  const { reviews, url_key, sku } = props
-  const classes = useStyles()
+  const { reviews, url_key, sku, sx = [] } = props
   const config = 'en_US'
   const locale = config.replace('_', '-')
 
@@ -118,10 +65,28 @@ export default function ProductReviews(props: ProductReviewsProps) {
   }
 
   const actions = (
-    <div className={classes.reviewsBottomContainer}>
+    <Box
+      className={classes.reviewsBottomContainer}
+      sx={(theme) => ({
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: theme.spacings.sm,
+      })}
+    >
       <Link href={`/account/reviews/add?sku=${sku}`} passHref>
-        <Button variant='pill' color='primary' size='medium' className={classes.writeReviewButton}>
-          Write a review
+        <Button
+          variant='pill'
+          color='primary'
+          size='medium'
+          className={classes.writeReviewButton}
+          sx={(theme) => ({
+            [theme.breakpoints.down('sm')]: {
+              whiteSpace: 'nowrap',
+            },
+          })}
+        >
+          <Trans>Write a review</Trans>
         </Button>
       </Link>
 
@@ -130,67 +95,167 @@ export default function ProductReviews(props: ProductReviewsProps) {
           count={total_pages ?? 1}
           page={current_page ?? 1}
           classes={{ root: classes.paginationRoot }}
+          sx={{
+            margin: `0 -16px 0`,
+          }}
           renderLink={(p: number, icon: React.ReactNode) => (
-            <Button onClick={() => setPage(p)} className={classes.paginationButton}>
+            <Button
+              onClick={() => setPage(p)}
+              className={classes.paginationButton}
+              sx={{
+                padding: 0,
+                minWidth: 'unset',
+                borderRadius: '100%',
+                '& > .MuiButton-label': {
+                  padding: 0,
+                },
+              }}
+            >
               {icon}
             </Button>
           )}
         />
       )}
-    </div>
+    </Box>
   )
 
   if (reviews?.items.length === 0) {
     return (
-      <div className={classes.container}>
-        <div className={classes.review}>
-          <div className={classes.title}>
+      <Box
+        className={classes.container}
+        sx={[
+          (theme) => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      >
+        <Box
+          className={classes.review}
+          sx={(theme) => ({
+            display: 'grid',
+            gap: theme.spacings.sm,
+            borderBottom: `1px solid ${theme.palette.divider}`,
+            padding: `${theme.spacings.md} 0`,
+            typography: 'body1',
+          })}
+        >
+          <Box
+            className={classes.title}
+            sx={(theme) => ({
+              display: 'grid',
+              gridAutoFlow: 'column',
+              justifyContent: 'start',
+              gap: theme.spacings.xs,
+              alignItems: 'center',
+            })}
+          >
             <Typography variant='subtitle1'>Be the first to write a review!</Typography>
-          </div>
-        </div>
+          </Box>
+        </Box>
         {actions}
-      </div>
+      </Box>
     )
   }
 
   return (
-    <div className={classes.container}>
+    <Box
+      className={classes.container}
+      sx={[
+        (theme) => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       {!loading &&
         myReviews.items.map((review) => (
-          <div key={review?.summary} className={classes.review}>
-            <div className={classes.title}>
+          <Box
+            key={review?.summary}
+            className={classes.review}
+            sx={(theme) => ({
+              display: 'grid',
+              gap: theme.spacings.sm,
+              borderBottom: `1px solid ${theme.palette.divider}`,
+              padding: `${theme.spacings.md} 0`,
+              typography: 'body1',
+            })}
+          >
+            <Box
+              className={classes.title}
+              sx={(theme) => ({
+                display: 'grid',
+                gridAutoFlow: 'column',
+                justifyContent: 'start',
+                gap: theme.spacings.xs,
+                alignItems: 'center',
+              })}
+            >
               <ProductReviewChip rating={review?.average_rating} size='small' />
               <Typography component='h3' variant='h5'>
                 {review?.summary}
               </Typography>
-            </div>
+            </Box>
             <Typography variant='body1'>{review?.text}</Typography>
 
             {(review?.ratings_breakdown ?? 0) > 1 && (
-              <div className={classes.ratingRow}>
+              <Box
+                className={classes.ratingRow}
+                sx={(theme) => ({
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: theme.spacings.sm,
+                  color: theme.palette.text.disabled,
+                  typography: 'body2',
+                })}
+              >
                 {review?.ratings_breakdown.map((ratingBreakdown) => (
-                  <div key={`rating-${ratingBreakdown?.value}`} className={classes.rating}>
+                  <Box
+                    key={`rating-${ratingBreakdown?.value}`}
+                    className={classes.rating}
+                    sx={(theme) => ({
+                      display: 'grid',
+                      gridAutoFlow: 'column',
+                      gridTemplateColumns: '0.4fr 0.6fr',
+                      justifyContent: 'space-between',
+                      marginRight: theme.spacings.xxs,
+                      rowGap: responsiveVal(8, 16),
+                      gap: 8,
+                      alignItems: 'center',
+                    })}
+                  >
                     <span>{ratingBreakdown?.name}</span>
                     <StarRatingField
                       readOnly
                       size='small'
                       defaultValue={Number(ratingBreakdown?.value ?? 0)}
                     />
-                  </div>
+                  </Box>
                 ))}
-              </div>
+              </Box>
             )}
 
-            <div className={classes.meta}>
-              <div className={classes.nickname}>Written by {review?.nickname}</div>
-              <time className={classes.date} dateTime={review?.created_at}>
+            <Box
+              className={classes.meta}
+              sx={(theme) => ({
+                color: theme.palette.text.disabled,
+                display: 'grid',
+                gridAutoFlow: 'column',
+                justifyContent: 'space-between',
+              })}
+            >
+              <Box className={classes.nickname} sx={{ typography: 'body2' }}>
+                Written by {review?.nickname}
+              </Box>
+              <Box
+                component='time'
+                className={classes.date}
+                dateTime={review?.created_at}
+                sx={{ typography: 'body2' }}
+              >
                 {review?.created_at &&
                   formatter.format(new Date(review?.created_at.replace(/-/g, '/')))}
-              </time>
-            </div>
-          </div>
+              </Box>
+            </Box>
+          </Box>
         ))}
       {actions}
-    </div>
+    </Box>
   )
 }

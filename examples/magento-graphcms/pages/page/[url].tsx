@@ -4,12 +4,9 @@ import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { LayoutHeader, GetStaticProps, MetaRobots, LayoutTitle } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
-import React from 'react'
-import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import { LayoutFull, LayoutFullProps } from '../../components/Layout'
-import RowProduct from '../../components/Row/RowProduct'
-import RowRenderer from '../../components/Row/RowRenderer'
-import apolloClient from '../../lib/apolloClient'
+import { LayoutFullProps, RowRenderer, RowProduct, LayoutFull } from '../../components'
+import { DefaultPageQuery, DefaultPageDocument } from '../../graphql/DefaultPage.gql'
+import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
 
@@ -80,8 +77,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const urlKey = params?.url ?? '??'
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({

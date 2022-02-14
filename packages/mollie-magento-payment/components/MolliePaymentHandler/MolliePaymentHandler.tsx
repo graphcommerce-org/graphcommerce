@@ -1,5 +1,5 @@
 import { ApolloCartErrorFullPage, useClearCurrentCartId } from '@graphcommerce/magento-cart'
-import { Button, Dialog } from '@material-ui/core'
+import { Button, Dialog } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { useMolliePaymentTokenHandler } from '../../hooks/useMolliePaymentTokenHandler'

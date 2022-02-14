@@ -1,44 +1,29 @@
-import { AnimatedRow, Button, SectionContainer, responsiveVal } from '@graphcommerce/next-ui'
+import {
+  AnimatedRow,
+  SectionContainer,
+  responsiveVal,
+  extendableComponent,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { makeStyles, Theme } from '@material-ui/core'
-import { Skeleton } from '@material-ui/lab'
+import { Skeleton, Button, Box, SxProps, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import OrderItem from '../OrderItem'
 import { OrderItemsFragment } from './OrderItems.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    sectionContainer: {
-      marginTop: theme.spacings.md,
-      marginBottom: theme.spacings.md,
-    },
-    orderItemsInnerContainer: {
-      borderBottom: `1px solid ${theme.palette.divider}`,
-    },
-    skeletonOrderItem: {
-      marginTop: theme.spacings.xxs,
-      marginBottom: theme.spacings.xxs,
-    },
-    viewAllButton: {
-      margin: `${theme.spacings.xs} auto 0 auto`,
-      textAlign: 'center',
-      '& a': {
-        padding: 8,
-      },
-    },
-  }),
-  { name: 'OrderItems' },
-)
-
-export type OrderItemsProps = OrderItemsFragment & { loading?: boolean } & {
+export type OrderItemsProps = OrderItemsFragment & {
+  loading?: boolean
   images?: UseOrderCardItemImages
+  sx?: SxProps<Theme>
 }
 
+const componentName = 'OrderItems' as const
+const parts = ['root', 'orderItemsInnerContainer', 'skeletonOrderItem', 'viewAllButton'] as const
+const { classes } = extendableComponent(componentName, parts)
+
 export default function OrderItems(props: OrderItemsProps) {
-  const { images, items, loading } = props
-  const classes = useStyles()
+  const { images, items, loading, sx = [] } = props
   const [expanded, setExpanded] = useState<boolean>(false)
   const maxItemsAboveFold = 4
 
@@ -47,19 +32,47 @@ export default function OrderItems(props: OrderItemsProps) {
       <SectionContainer
         labelLeft={<Trans>Ordered items</Trans>}
         /* endLabel='SHIPPED'*/
-        classes={{ sectionContainer: classes.sectionContainer }}
+        className={classes.root}
+        sx={[
+          (theme) => ({
+            marginTop: theme.spacings.md,
+            marginBottom: theme.spacings.md,
+          }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
       >
-        <div className={classes.orderItemsInnerContainer}>
-          <div className={classes.skeletonOrderItem}>
+        <Box
+          className={classes.orderItemsInnerContainer}
+          sx={(theme) => ({ borderBottom: `1px solid ${theme.palette.divider}` })}
+        >
+          <Box
+            className={classes.skeletonOrderItem}
+            sx={(theme) => ({
+              marginTop: theme.spacings.xxs,
+              marginBottom: theme.spacings.xxs,
+            })}
+          >
             <Skeleton height={responsiveVal(70, 125)} />
-          </div>
-          <div className={classes.skeletonOrderItem}>
+          </Box>
+          <Box
+            className={classes.skeletonOrderItem}
+            sx={(theme) => ({
+              marginTop: theme.spacings.xxs,
+              marginBottom: theme.spacings.xxs,
+            })}
+          >
             <Skeleton height={responsiveVal(70, 125)} />
-          </div>
-          <div className={classes.skeletonOrderItem}>
+          </Box>
+          <Box
+            className={classes.skeletonOrderItem}
+            sx={(theme) => ({
+              marginTop: theme.spacings.xxs,
+              marginBottom: theme.spacings.xxs,
+            })}
+          >
             <Skeleton height={responsiveVal(70, 125)} />
-          </div>
-        </div>
+          </Box>
+        </Box>
       </SectionContainer>
     )
   }
@@ -68,9 +81,19 @@ export default function OrderItems(props: OrderItemsProps) {
     <SectionContainer
       labelLeft={<Trans>Ordered items</Trans>}
       /* endLabel='SHIPPED'*/
-      classes={{ sectionContainer: classes.sectionContainer }}
+      className={classes.root}
+      sx={[
+        (theme) => ({
+          marginTop: theme.spacings.md,
+          marginBottom: theme.spacings.md,
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
-      <div className={classes.orderItemsInnerContainer}>
+      <Box
+        className={classes.orderItemsInnerContainer}
+        sx={(theme) => ({ borderBottom: `1px solid ${theme.palette.divider}` })}
+      >
         <AnimatePresence initial={false}>
           {items?.slice(0, maxItemsAboveFold).map((orderItem) => (
             <AnimatedRow key={`orderItem-${orderItem?.id}`}>
@@ -91,14 +114,21 @@ export default function OrderItems(props: OrderItemsProps) {
                 </AnimatedRow>
               ))}
         </AnimatePresence>
-      </div>
+      </Box>
 
       {items && maxItemsAboveFold < items?.length && (
-        <div className={classes.viewAllButton}>
+        <Box
+          className={classes.viewAllButton}
+          sx={(theme) => ({
+            margin: `${theme.spacings.xs} auto 0 auto`,
+            textAlign: 'center',
+            '& a': { padding: '8px' },
+          })}
+        >
           <Button variant='text' color='primary' onClick={() => setExpanded(!expanded)}>
             {expanded ? <Trans>View less items</Trans> : <Trans>View all items</Trans>}
           </Button>
-        </div>
+        </Box>
       )}
     </SectionContainer>
   )

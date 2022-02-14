@@ -2,4 +2,4 @@ import { LayoutOverlayProps as LayoutOverlayBaseProps } from '@graphcommerce/nex
 
 export { LayoutOverlay } from '@graphcommerce/next-ui'
 
-export type LayoutOverlayProps = Omit<LayoutOverlayBaseProps, 'classes'>
+export type LayoutOverlayProps = Omit<LayoutOverlayBaseProps, 'classes' | 'className'>

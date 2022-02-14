@@ -1,49 +1,31 @@
-import { Button, Form, FormRow } from '@graphcommerce/next-ui'
+import { Button, extendableComponent, Form, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { makeStyles, TextField, Theme } from '@material-ui/core'
+import { Box, TextField } from '@mui/material'
 import React, { PropsWithChildren } from 'react'
 import { SignUpMutationVariables, SignUpMutation, SignUpDocument } from './SignUp.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    buttonFormRow: {
-      padding: 0,
-      [theme.breakpoints.up('sm')]: {
-        gridTemplateColumns: 'minmax(200px, 3.5fr) 1fr',
-      },
-    },
-    form: {
-      padding: 0,
-    },
-    row: {
-      padding: 0,
-    },
-    button: {
-      minWidth: 'max-content',
-    },
-    buttonContainer: {
-      alignSelf: 'center',
-    },
-  }),
-  { name: 'SignUpFormInline' },
-)
-
 type SignUpFormInlineProps = Pick<SignUpMutationVariables, 'email'> & {
-  helperList?: React.ReactNode
+  children?: React.ReactNode
   firstname?: string
   lastname?: string
   onSubmitted?: () => void
 }
 
+const { classes } = extendableComponent('SignUpFormInline', [
+  'form',
+  'buttonFormRow',
+  'row',
+  'buttonContainer',
+] as const)
+
 export default function SignUpFormInline({
   email,
-  helperList,
+  children,
   firstname,
   lastname,
   onSubmitted = () => {},
 }: PropsWithChildren<SignUpFormInlineProps>) {
-  const classes = useStyles()
   const form = useFormGqlMutation<
     SignUpMutation,
     SignUpMutationVariables & { confirmPassword?: string }
@@ -61,8 +43,8 @@ export default function SignUpFormInline({
   const watchPassword = watch('password')
 
   return (
-    <Form onSubmit={submitHandler} noValidate classes={{ root: classes.form }}>
-      <FormRow key='inline-signup' classes={{ root: classes.row }}>
+    <Form onSubmit={submitHandler} noValidate className={classes.form} sx={{ padding: 0 }}>
+      <FormRow key='inline-signup' className={classes.row} sx={{ padding: 0 }}>
         <TextField
           variant='outlined'
           type='password'
@@ -93,9 +75,17 @@ export default function SignUpFormInline({
       </FormRow>
 
       <FormRow key='signup-submit'>
-        <FormRow classes={{ root: classes.buttonFormRow }}>
-          <div>{helperList}</div>
-          <div className={classes.buttonContainer}>
+        <FormRow
+          className={classes.buttonFormRow}
+          sx={(theme) => ({
+            padding: 0,
+            [theme.breakpoints.up('sm')]: {
+              gridTemplateColumns: 'minmax(200px, 3.5fr) 1fr',
+            },
+          })}
+        >
+          <div>{children}</div>
+          <Box className={classes.buttonContainer} sx={{ alignSelf: 'center' }}>
             <Button
               fullWidth
               type='submit'
@@ -105,7 +95,7 @@ export default function SignUpFormInline({
             >
               Create Account
             </Button>
-          </div>
+          </Box>
         </FormRow>
       </FormRow>
     </Form>

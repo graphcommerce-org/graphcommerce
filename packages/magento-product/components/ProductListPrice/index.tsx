@@ -1,36 +1,36 @@
 import { Money } from '@graphcommerce/magento-store'
-import { UseStyles } from '@graphcommerce/next-ui'
-import { makeStyles, Theme, Typography } from '@material-ui/core'
-import React from 'react'
+import { extendableComponent } from '@graphcommerce/next-ui'
+import { Typography, TypographyProps, Box } from '@mui/material'
 import { ProductListPriceFragment } from './ProductListPrice.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {},
-    discount: {
-      textDecoration: 'line-through',
-      color: theme.palette.text.disabled,
-      display: 'inline',
-      marginRight: 8,
-    },
-  }),
-  { name: 'ProductListPrice' },
-)
+const { classes, selectors } = extendableComponent('ProductListPrice', [
+  'root',
+  'discountPrice',
+] as const)
 
-type ProductListPriceProps = ProductListPriceFragment & UseStyles<typeof useStyles>
+type ProductListPriceProps = ProductListPriceFragment & Pick<TypographyProps, 'sx'>
 
 export default function ProductListPrice(props: ProductListPriceProps) {
-  const { regular_price, final_price } = props
-  const classes = useStyles(props)
+  const { regular_price, final_price, sx } = props
 
   return (
-    <Typography component='div' variant='body1' className={classes.root}>
+    <Typography component='div' variant='body1' className={classes.root} sx={sx}>
       {regular_price.value !== final_price.value && (
-        <div className={classes.discount}>
+        <Box
+          component='span'
+          sx={{
+            textDecoration: 'line-through',
+            color: 'text.disabled',
+            marginRight: '8px',
+          }}
+          className={classes.discountPrice}
+        >
           <Money {...regular_price} />
-        </div>
+        </Box>
       )}
       <Money {...final_price} />
     </Typography>
   )
 }
+
+ProductListPrice.selectors = selectors

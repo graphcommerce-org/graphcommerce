@@ -1,7 +1,7 @@
 import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { assertFormGqlOperation, Controller, UseFormReturn } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
-import { MenuItem, TextField } from '@material-ui/core'
+import { MenuItem, TextField } from '@mui/material'
 import React from 'react'
 
 type NameFieldValues = {

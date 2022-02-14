@@ -1,29 +1,20 @@
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
-import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
+import { extendableComponent, FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { useFormCompose, useFormPersist, useFormValidFields } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { makeStyles, TextField, Theme, Typography } from '@material-ui/core'
-import React from 'react'
+import { Box, TextField, Typography } from '@mui/material'
 import { SetMolliePaymentMethodIssuerOnCartDocument } from './SetMolliePaymentMethodIssuerOnCart.gql'
 
 type MollieIssuerOptionsProps = PaymentOptionsProps & { label: string }
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      ...theme.typography.body2,
-      paddingLeft: theme.spacings.xs,
-      margin: 0,
-    },
-  }),
-  { name: 'MollieIssuerOptions' },
-)
+const compName = 'MollieIssuerOptions' as const
+const parts = ['root', 'list'] as const
+const { classes } = extendableComponent(compName, parts)
 
 export default function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
   const { mollie_available_issuers = [] } = props
-  const { code, step, Container, label, title } = props
-  const classes = useStyles()
+  const { code, step, Container, label, title = '' } = props
 
   const form = useFormGqlMutationCart(SetMolliePaymentMethodIssuerOnCartDocument, {
     mode: 'onChange',
@@ -40,7 +31,7 @@ export default function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
   return (
     <Container>
       <Typography variant='h5' component='span'>
-        Pay with {title}
+        <Trans>Pay with {title}</Trans>
       </Typography>
       <form onSubmit={submit} noValidate>
         <FormRow>
@@ -71,7 +62,7 @@ export default function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
               // return (
               //   <MenuItem key={issuer.code} value={issuer.code}>
               //     <ListItemIcon>
-              //       <SvgImageSimple src={issuer.svg} alt={issuer.name} size='small' />
+              //       <SvgIcon src={issuer.svg} alt={issuer.name} size='small' />
               //     </ListItemIcon>
               //     <Typography variant='inherit'>{issuer.name}</Typography>
               //   </MenuItem>
@@ -79,7 +70,15 @@ export default function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
             })}
           </TextField>
         </FormRow>
-        <ul className={classes.root}>
+        <Box
+          component='ul'
+          className={classes.list}
+          sx={(theme) => ({
+            typography: 'body2',
+            paddingLeft: theme.spacings.xs,
+            margin: 0,
+          })}
+        >
           <li>
             <Trans>Choose your bank, and place your order.</Trans>
           </li>
@@ -91,7 +90,7 @@ export default function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
               As soon as the payment is completed, you will automatically return to the webshop.
             </Trans>
           </li>
-        </ul>
+        </Box>
       </form>
     </Container>
   )

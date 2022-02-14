@@ -1,5 +1,5 @@
 import { usePageContext } from '@graphcommerce/framer-next-pages'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { PropsWithChildren } from 'react'
 
 export default function StackedDrawer(props: PropsWithChildren<{ variant: 'left' | 'right' }>) {
@@ -9,7 +9,7 @@ export default function StackedDrawer(props: PropsWithChildren<{ variant: 'left'
   const offset = variant === 'right' ? depth * 40 : depth * -40
 
   return (
-    <motion.div
+    <m.div
       style={{
         boxSizing: 'border-box',
         position: 'absolute',
@@ -42,6 +42,6 @@ export default function StackedDrawer(props: PropsWithChildren<{ variant: 'left'
       transition={{ ease: 'easeInOut' }}
     >
       {children}
-    </motion.div>
+    </m.div>
   )
 }

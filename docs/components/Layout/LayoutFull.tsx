@@ -1,13 +1,13 @@
 import {
   DesktopNavBar,
+  DesktopNavItem,
   LayoutDefault,
   LayoutDefaultProps,
   MenuFab,
-  MenuProps,
+  MenuFabItem,
 } from '@graphcommerce/next-ui'
-import { Container } from '@material-ui/core'
-import React from 'react'
-import Logo from '../AppShell/Logo'
+import { Container } from '@mui/material'
+import { Logo } from './Logo'
 
 export type LayoutFullProps = Omit<
   LayoutDefaultProps,
@@ -17,18 +17,22 @@ export type LayoutFullProps = Omit<
 export function LayoutFull(props: LayoutFullProps) {
   const { children } = props
 
-  const menuProps: MenuProps = { menu: [{ href: '/', children: `Documentation` }] }
-
   return (
     <LayoutDefault
       header={
         <>
           <Logo />
-          <DesktopNavBar {...menuProps} />
+          <DesktopNavBar>
+            <DesktopNavItem href='/'>Documentation</DesktopNavItem>
+          </DesktopNavBar>
         </>
       }
       footer={<Container>&copy; GraphCommerce</Container>}
-      menuFab={<MenuFab {...menuProps} />}
+      menuFab={
+        <MenuFab>
+          <MenuFabItem href='/'>Documentation</MenuFabItem>
+        </MenuFab>
+      }
     >
       {children}
     </LayoutDefault>

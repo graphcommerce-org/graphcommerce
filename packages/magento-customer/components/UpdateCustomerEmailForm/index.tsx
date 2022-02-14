@@ -8,8 +8,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
-import { TextField } from '@material-ui/core'
-import React from 'react'
+import { TextField } from '@mui/material'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
   UpdateCustomerEmailDocument,

@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core'
+import { css } from '@emotion/react'
 import { m, useIsPresent } from 'framer-motion'
 import React from 'react'
 import type { PageItem } from '../types'
@@ -14,24 +14,9 @@ export function scrollPos(idx: number): { x: number; y: number } {
   return scroll ? JSON.parse(scroll) : { x: 0, y: 0 }
 }
 
-const useStyles = makeStyles(
-  {
-    page: {
-      left: 0,
-      right: 0,
-      minHeight: '100vh',
-      '@supports (-webkit-touch-callout: none)': {
-        height: '-webkit-fill-available',
-      },
-    },
-  },
-  { name: 'FramerNextPage' },
-)
-
 export default function Page(props: PageProps) {
   const { active, historyIdx, children } = props
   const isPresent = useIsPresent()
-  const classes = useStyles()
 
   /** The active Page doesn't get any special treatment */
   let top: number | undefined
@@ -49,7 +34,17 @@ export default function Page(props: PageProps) {
   const zIndex = active ? 1 : undefined
 
   return (
-    <m.div className={classes.page} style={{ position, top, zIndex }}>
+    <m.div
+      style={{ position, top, zIndex }}
+      css={css({
+        left: 0,
+        right: 0,
+        minHeight: '100vh',
+        '@supports (-webkit-touch-callout: none)': {
+          height: '-webkit-fill-available',
+        },
+      })}
+    >
       {children}
     </m.div>
   )

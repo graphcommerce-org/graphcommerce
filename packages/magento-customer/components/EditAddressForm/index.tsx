@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@graphcommerce/graphql'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import {
   Button,
@@ -10,30 +10,19 @@ import {
 } from '@graphcommerce/next-ui'
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
-import { makeStyles, TextField } from '@material-ui/core'
+import { SxProps, TextField, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
-import React from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import AddressFields from '../AddressFields'
 import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import NameFields from '../NameFields'
 import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
 
-const useStyles = makeStyles(
-  () => ({
-    editActions: {
-      paddingBottom: 0,
-    },
-  }),
-  { name: 'EditAddressForm' },
-)
-
-type EditAddressFormProps = { address?: AccountAddressFragment }
+type EditAddressFormProps = { address?: AccountAddressFragment; sx?: SxProps<Theme> }
 
 export default function EditAddressForm(props: EditAddressFormProps) {
   const countries = useQuery(CountryRegionsDocument).data?.countries
-  const { address } = props
-  const classes = useStyles()
+  const { address, sx } = props
   const router = useRouter()
 
   const form = useFormGqlMutation(
@@ -85,7 +74,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
 
   return (
     <>
-      <Form onSubmit={submitHandler} noValidate>
+      <Form onSubmit={submitHandler} noValidate sx={sx}>
         <NameFields form={form} prefix />
         <AddressFields form={form} />
 
@@ -108,7 +97,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
 
         <FormDivider />
 
-        <FormActions classes={{ root: classes.editActions }}>
+        <FormActions sx={{ paddingBottom: 0 }}>
           <Button
             type='submit'
             variant='contained'

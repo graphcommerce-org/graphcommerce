@@ -13,22 +13,21 @@ import { ConfigurableCartItem } from '@graphcommerce/magento-product-configurabl
 import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   AnimatedRow,
-  Button,
   GetStaticProps,
   iconShoppingBag,
   Stepper,
   LayoutTitle,
   iconChevronRight,
-  SvgImageSimple,
+  SvgIcon,
   LayoutOverlayHeader,
+  LinkOrButton,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Container, NoSsr } from '@material-ui/core'
+import { Container, NoSsr } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
-import React from 'react'
-import { LayoutOverlay, LayoutOverlayProps } from '../components/Layout'
-import apolloClient from '../lib/apolloClient'
+import { LayoutOverlay, LayoutOverlayProps } from '../components'
+import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -53,14 +52,13 @@ function CartPage() {
           primary={
             hasItems && (
               <PageLink href='/checkout' passHref>
-                <Button
+                <LinkOrButton
+                  button={{ variant: 'pill', disabled: !hasItems }}
                   color='secondary'
-                  variant='pill-link'
-                  disabled={!hasItems}
-                  endIcon={<SvgImageSimple src={iconChevronRight} size='small' inverted />}
+                  endIcon={<SvgIcon src={iconChevronRight} />}
                 >
                   <Trans>Next</Trans>
-                </Button>
+                </LinkOrButton>
               </PageLink>
             )
           }
@@ -133,7 +131,7 @@ CartPage.pageOptions = pageOptions
 export default CartPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
+  const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
   return {

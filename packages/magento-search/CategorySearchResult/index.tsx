@@ -1,60 +1,50 @@
-import {
-  Button,
-  Highlight,
-  iconChevronRight,
-  SvgImageSimple,
-  UseStyles,
-} from '@graphcommerce/next-ui'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Highlight, iconChevronRight, SvgIcon, extendableComponent } from '@graphcommerce/next-ui'
+import { Button, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
 import { CategorySearchResultFragment } from './CategorySearchResult.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    categoryButton: {
-      background: theme.palette.background.default,
-      padding: `${theme.spacings.xs} 18px ${theme.spacings.xs} 14px`,
-      display: 'flex',
-      justifyContent: 'space-between',
-      minWidth: '100%',
-      maxWidth: 'unset',
-      borderRadius: '0',
-      '&:not(&:last-child)': {
-        borderBottom: `1px solid ${theme.palette.divider}`,
-      },
-      '&:focus': {
-        boxShadow: 'none',
-      },
-      '&:hover': {
-        background: theme.palette.background.paper,
-      },
-    },
-    totalProducts: {
-      minWidth: 'max-content',
-      paddingRight: 7,
-    },
-  }),
-  {
-    name: 'CategorySearchResult',
-  },
-)
+export type CategorySearchResultProps = Omit<CategorySearchResultFragment, 'uid'> & {
+  search?: string
+  sx?: SxProps<Theme>
+}
 
-export type CategorySearchResultProps = Omit<CategorySearchResultFragment, 'uid'> &
-  UseStyles<typeof useStyles> & { search?: string }
+const name = 'CategorySearchResult' as const
+const parts = ['root'] as const
+const { classes } = extendableComponent(name, parts)
 
 export default function CategorySearchResult(props: CategorySearchResultProps) {
-  const { search = '', ...catProps } = props
-  const classes = useStyles(props)
+  const { search = '', sx = [], ...catProps } = props
 
   return (
     <PageLink href={`/${catProps?.url_path ?? ''}`}>
       <Button
         fullWidth
         variant='contained'
-        className={classes.categoryButton}
+        className={classes.root}
         disableElevation
-        endIcon={<SvgImageSimple src={iconChevronRight} size='small' />}
+        endIcon={<SvgIcon src={iconChevronRight} size='small' />}
+        sx={[
+          (theme) => ({
+            background: theme.palette.background.default,
+            padding: `${theme.spacings.xs} 18px ${theme.spacings.xs} 14px`,
+            display: 'flex',
+            justifyContent: 'space-between',
+            minWidth: '100%',
+            maxWidth: 'unset',
+            borderRadius: '0',
+            '&:not(&:last-of-type)': {
+              borderBottom: `1px solid ${theme.palette.divider}`,
+            },
+            '&:focus': {
+              boxShadow: 'none',
+            },
+            '&:hover': {
+              background: theme.palette.background.paper,
+            },
+          }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
       >
         <div>
           {catProps?.breadcrumbs?.map((breadcrumb) => (

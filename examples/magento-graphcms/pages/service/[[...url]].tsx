@@ -1,15 +1,12 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { Container } from '@material-ui/core'
+import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import React from 'react'
-import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
-import { PagesStaticPathsDocument } from '../../components/GraphQL/PagesStaticPaths.gql'
-import { LayoutFullProps } from '../../components/Layout'
-import { LayoutOverlay, LayoutOverlayProps } from '../../components/Layout/LayoutOverlay'
-import RowRenderer from '../../components/Row/RowRenderer'
-import apolloClient from '../../lib/apolloClient'
+import { LayoutOverlay, LayoutOverlayProps, LayoutFullProps, RowRenderer } from '../../components'
+import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
+import { PagesStaticPathsDocument } from '../../graphql/PagesStaticPaths.gql'
+import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = DefaultPageQuery
 type RouteProps = { url: string[] }
@@ -55,7 +52,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = async (locale: string) => {
-    const client = apolloClient(locale)
+    const client = graphqlSharedClient(locale)
     const { data } = await client.query({
       query: PagesStaticPathsDocument,
       variables: {
@@ -72,8 +69,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const url = params?.url ? `service/${params?.url.join('/')}` : `service`
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,

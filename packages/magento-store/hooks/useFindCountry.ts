@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@graphcommerce/graphql'
 import { CountryRegionsDocument, CountryRegionsQuery } from '../queries/CountryRegions.gql'
 
 export function useFindCountry(

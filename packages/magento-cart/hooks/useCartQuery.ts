@@ -1,4 +1,4 @@
-import { useQuery, TypedDocumentNode, QueryHookOptions } from '@apollo/client'
+import { useQuery, TypedDocumentNode, QueryHookOptions } from '@graphcommerce/graphql'
 import { useRouter } from 'next/router'
 import { useCurrentCartId } from './useCurrentCartId'
 

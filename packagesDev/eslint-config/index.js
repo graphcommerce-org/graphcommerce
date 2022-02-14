@@ -66,6 +66,7 @@ module.exports = {
     'react/jsx-key': ['error', { checkFragmentShorthand: true }],
     'react/jsx-no-duplicate-props': ['error', { ignoreCase: false }],
     'react/require-default-props': 'off',
+    'react/destructuring-assignment': 'off',
 
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-unsafe-assignment': 'off',
@@ -102,6 +103,8 @@ module.exports = {
 
     // Remove when fixed: https://github.com/airbnb/javascript/pull/2501/files
     'react/function-component-definition': 'off',
+
+    'prefer-const': ['error', { destructuring: 'all' }],
   },
   overrides: [
     {

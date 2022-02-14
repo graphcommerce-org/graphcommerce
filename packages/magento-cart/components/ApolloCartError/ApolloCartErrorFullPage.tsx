@@ -1,12 +1,11 @@
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import {
   ApolloErrorFullPage,
-  Button,
   ApolloErrorFullPageProps,
   iconSadFace,
-  SvgImageSimple,
+  SvgIcon,
 } from '@graphcommerce/next-ui'
-import React from 'react'
+import { Button } from '@mui/material'
 import { useClearCurrentCartId } from '../../hooks/useClearCurrentCartId'
 
 export type ApolloCartErrorFullPageProps = Omit<ApolloErrorFullPageProps, 'icon'>
@@ -21,7 +20,7 @@ export function ApolloCartErrorFullPage(props: ApolloCartErrorFullPageProps) {
   return (
     <ApolloErrorFullPage
       error={error}
-      icon={<SvgImageSimple src={iconSadFace} size='xxl' />}
+      icon={<SvgIcon src={iconSadFace} size='xxl' />}
       button={action}
       {...passedProps}
     />

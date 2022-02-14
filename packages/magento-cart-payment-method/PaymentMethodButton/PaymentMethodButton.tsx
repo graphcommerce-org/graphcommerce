@@ -1,7 +1,6 @@
 import { ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
 import { Button, ButtonProps } from '@graphcommerce/next-ui'
 import { ComposedSubmit, ComposedSubmitRenderComponentProps } from '@graphcommerce/react-hook-form'
-import React from 'react'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
 export type PaymentMethodButtonProps = ButtonProps & { display?: 'inline' | 'block' }

@@ -6,9 +6,6 @@
     "node": "14.x"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
-  "browserslist": [
-    "extends @graphcommerce/browserslist-config-pwa"
-  ],
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",
     "parserOptions": {
@@ -16,18 +13,16 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/browserslist-config-pwa": "^3.0.3",
     "@graphcommerce/eslint-config-pwa": "^3.1.10",
     "@graphcommerce/prettier-config-pwa": "^3.0.5",
     "@graphcommerce/typescript-config-pwa": "^3.1.2",
-    "@playwright/test": "^1.17.1"
+    "@playwright/test": "^1.18.1"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.6",
-    "graphql": "^16.2.0",
+    "graphql": "^16.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-hook-form": "7.22.5",
-    "type-fest": "^2.8.0"
+    "react-hook-form": "7.26.1",
+    "type-fest": "^2.11.2"
   }
 }

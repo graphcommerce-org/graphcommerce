@@ -1,23 +1,18 @@
-import { cloneDeep } from '@apollo/client/utilities'
-import { useChipMenuStyles, iconCancelAlt, SvgImageSimple } from '@graphcommerce/next-ui'
-import { Chip, ChipProps } from '@material-ui/core'
-import clsx from 'clsx'
-import React from 'react'
+import { cloneDeep } from '@graphcommerce/graphql'
+import { iconCancelAlt, SvgIcon } from '@graphcommerce/next-ui'
+import { Chip, ChipProps, SxProps, Theme } from '@mui/material'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import ProductListLink from '../ProductListLink/ProductListLink'
 import { FilterIn } from './FilterEqualType'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
-export type FilterCheckboxTypeProps = NonNullable<
-  NonNullable<ProductListFiltersFragment['aggregations']>[0]
-> &
-  Omit<ChipProps, 'selected'>
+type Filter = NonNullable<NonNullable<ProductListFiltersFragment['aggregations']>[number]>
+export type FilterCheckboxTypeProps = Filter & Omit<ChipProps, 'selected'> & { sx?: SxProps<Theme> }
 
 export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props
   const { params } = useProductListParamsContext()
-  const classes = useChipMenuStyles(props)
   const currentFilter = params.filters[attribute_code]
   const replaceRoute = useProductListLinkReplace({ scroll: false })
 
@@ -37,7 +32,6 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
       link={{ scroll: false, replace: true }}
     >
       <Chip
-        variant='outlined'
         color={isActive ? undefined : 'default'}
         onDelete={
           isActive
@@ -51,11 +45,10 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
               }
             : undefined
         }
-        deleteIcon={isActive ? <SvgImageSimple src={iconCancelAlt} size='small' /> : undefined}
+        deleteIcon={isActive ? <SvgIcon src={iconCancelAlt} size='small' /> : undefined}
         label={label}
         clickable
         {...chipProps}
-        className={clsx(classes.chip, isActive && classes.chipSelected, chipProps.className)}
       />
     </ProductListLink>
   )

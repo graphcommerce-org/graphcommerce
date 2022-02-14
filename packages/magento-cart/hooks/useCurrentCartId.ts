@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client'
+import { useQuery } from '@graphcommerce/graphql'
 import { CurrentCartIdDocument } from './CurrentCartId.gql'
 
 export function useCurrentCartId() {

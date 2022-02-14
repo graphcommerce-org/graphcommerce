@@ -1,4 +1,4 @@
 {
-  "presets": ["next/babel"],
+  "presets": [["next/babel", { "preset-react": { "importSource": "@emotion/react" } }]],
   "plugins": ["macros"]
 }

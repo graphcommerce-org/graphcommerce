@@ -11,19 +11,16 @@
     "@graphcommerce/framer-next-pages": "^2.109.2",
     "@graphcommerce/next-config": "^2.109.4",
     "@graphcommerce/next-ui": "^3.25.3",
-    "framer-motion": "^5.5.5",
-    "next": "^12.0.7",
+    "framer-motion": "^6.2.4",
+    "next": "^12.0.10",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.5"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
-  "browserslist": [
-    "extends @graphcommerce/browserslist-config-pwa"
-  ],
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",
     "parserOptions": {

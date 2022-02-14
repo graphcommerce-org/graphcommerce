@@ -3,19 +3,20 @@ import { Money } from '@graphcommerce/magento-store'
 import {
   AnimatedRow,
   Button,
+  extendableComponent,
   iconChevronRight,
   MessageSnackbar,
-  SvgImageSimple,
+  SvgIcon,
   TextInputNumber,
 } from '@graphcommerce/next-ui'
-import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
-import { Alert } from '@material-ui/lab'
+import { Trans } from '@lingui/macro'
+import { Divider, Typography, Alert, Box } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import cheapestVariant from '../ConfigurableContext/cheapestVariant'
-import ConfigurableOptionsInput from '../ConfigurableOptions'
+import ConfigurableOptionsInput, { ConfigurableOptionsInputProps } from '../ConfigurableOptions'
 import {
   ConfigurableProductAddToCartDocument,
   ConfigurableProductAddToCartMutationVariables,
@@ -26,35 +27,19 @@ type ConfigurableProductAddToCartProps = {
   name: string
   optionEndLabels?: Record<string, React.ReactNode>
   children?: React.ReactNode
+  optionsProps?: Omit<
+    ConfigurableOptionsInputProps,
+    'name' | 'sku' | 'control' | 'rules' | 'errors' | 'optionEndLabels'
+  >
 }
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    form: {
-      width: '100%',
-    },
-    button: {
-      marginTop: theme.spacings.sm,
-      marginBottom: theme.spacings.sm,
-      width: '100%',
-    },
-    finalPrice: {
-      marginTop: theme.spacings.sm,
-    },
-    quantity: {
-      marginTop: theme.spacings.sm,
-    },
-    divider: {
-      margin: `${theme.spacings.sm} 0`,
-    },
-  }),
-  { name: 'ConfigurableProductAddToCart' },
-)
+const compName = 'ConfigurableOptionsInput' as const
+const parts = ['form', 'button', 'finalPrice', 'quantity', 'divider'] as const
+const { classes } = extendableComponent(compName, parts)
 
 export default function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
-  const { name, children, variables, optionEndLabels, ...buttonProps } = props
+  const { name, children, variables, optionEndLabels, optionsProps, ...buttonProps } = props
   const { getUids, getVariants, selection } = useConfigurableContext(variables.sku)
-  const classes = useStyles()
 
   const form = useFormGqlMutationCart(ConfigurableProductAddToCartDocument, {
     defaultValues: { ...variables },
@@ -69,8 +54,14 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
   const submitHandler = handleSubmit(() => {})
 
   return (
-    <form onSubmit={submitHandler} noValidate className={classes.form}>
-      <Divider className={classes.divider} />
+    <Box
+      component='form'
+      onSubmit={submitHandler}
+      noValidate
+      className={classes.form}
+      sx={{ width: '100%' }}
+    >
+      <Divider className={classes.divider} sx={(theme) => ({ margin: `${theme.spacings.sm} 0` })} />
       <ConfigurableOptionsInput
         name='selectedOptions'
         sku={variables.sku}
@@ -78,6 +69,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         rules={{ required: required.selectedOptions }}
         errors={formState.errors.selectedOptions}
         optionEndLabels={optionEndLabels}
+        {...optionsProps}
       />
       <TextInputNumber
         variant='outlined'
@@ -89,9 +81,15 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         // disabled={loading}
         size='small'
         className={classes.quantity}
+        sx={(theme) => ({ marginTop: theme.spacings.sm })}
       />
-      <Divider className={classes.divider} />
-      <Typography component='div' variant='h3' className={classes.finalPrice}>
+      <Divider className={classes.divider} sx={(theme) => ({ margin: `${theme.spacings.sm} 0` })} />
+      <Typography
+        component='div'
+        variant='h3'
+        className={classes.finalPrice}
+        sx={(theme) => ({ marginTop: theme.spacings.sm })}
+      >
         <Money
           {...cheapestVariant(getVariants(selection))?.product?.price_range.minimum_price
             .final_price}
@@ -104,8 +102,13 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         color='primary'
         variant='pill'
         size='large'
-        classes={{ root: classes.button }}
+        className={classes.button}
         {...buttonProps}
+        sx={(theme) => ({
+          marginTop: theme.spacings.sm,
+          marginBottom: theme.spacings.sm,
+          width: '100%',
+        })}
       >
         Add to Cart
       </Button>
@@ -134,17 +137,17 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
               size='medium'
               variant='pill'
               color='secondary'
-              endIcon={<SvgImageSimple src={iconChevronRight} inverted />}
+              endIcon={<SvgIcon src={iconChevronRight} />}
             >
               View shopping cart
             </Button>
           </PageLink>
         }
       >
-        <>
+        <Trans>
           <strong>{name}</strong>&nbsp;has been added to your shopping cart!
-        </>
+        </Trans>
       </MessageSnackbar>
-    </form>
+    </Box>
   )
 }

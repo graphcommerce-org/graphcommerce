@@ -1,78 +1,8 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
-import { makeStyles, Theme } from '@material-ui/core'
-import clsx from 'clsx'
+import { Box, SxProps, Theme } from '@mui/material'
 import { useTransform, useViewportScroll } from 'framer-motion'
-import React from 'react'
 import LayoutProvider from '../../Layout/components/LayoutProvider'
-import { responsiveVal, UseStyles } from '../../Styles'
-
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      minHeight: '100vh',
-      '@supports (-webkit-touch-callout: none)': {
-        minHeight: '-webkit-fill-available',
-      },
-      display: 'grid',
-      gridTemplateRows: `auto 1fr auto`,
-      gridTemplateColumns: '100%',
-      background: theme.palette.background.default,
-    },
-    hideFabsOnVirtualKeyboardOpen: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      width: '100%',
-      height: 0,
-      zIndex: 2,
-      [theme.breakpoints.up('sm')]: {
-        padding: `0 ${theme.page.horizontal}`,
-        position: 'sticky',
-        marginTop: `calc(${theme.appShell.headerHeightMd} * -1 + calc(${responsiveVal(
-          42,
-          56,
-        )} / 2))`,
-        top: `calc(${theme.appShell.headerHeightMd} / 2 - 28px)`,
-      },
-      [theme.breakpoints.down('sm')]: {
-        position: 'fixed',
-        top: 'unset',
-        bottom: `calc(20px + ${responsiveVal(42, 56)})`,
-        padding: `0 20px`,
-        '@media (max-height: 530px)': {
-          display: 'none',
-        },
-      },
-    },
-
-    header: {
-      zIndex: theme.zIndex.appBar - 1,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: theme.appShell.headerHeightSm,
-      pointerEvents: 'none',
-      '& > *': {
-        pointerEvents: 'all',
-      },
-      [theme.breakpoints.up('md')]: {
-        height: theme.appShell.headerHeightMd,
-        padding: `0 ${theme.page.horizontal} 0`,
-        top: 0,
-        display: 'flex',
-        justifyContent: 'left',
-        width: '100%',
-      },
-    },
-
-    headerSticky: {
-      [theme.breakpoints.down('sm')]: {
-        position: 'sticky',
-        top: 0,
-      },
-    },
-  }),
-  { name: 'LayoutDefault' },
-)
+import { extendableComponent, responsiveVal } from '../../Styles'
 
 export type LayoutDefaultProps = {
   className?: string
@@ -83,29 +13,110 @@ export type LayoutDefaultProps = {
   cartFab?: React.ReactNode
   children?: React.ReactNode
   noSticky?: boolean
-} & UseStyles<typeof useStyles>
+  sx?: SxProps<Theme>
+} & OwnerState
+
+type OwnerState = {
+  noSticky?: boolean
+}
+const parts = ['root', 'fabs', 'header', 'children', 'footer'] as const
+const { withState } = extendableComponent<OwnerState, 'LayoutDefault', typeof parts>(
+  'LayoutDefault',
+  parts,
+)
 
 export function LayoutDefault(props: LayoutDefaultProps) {
-  const { children, header, beforeHeader, footer, menuFab, cartFab, noSticky, className } = props
-  const classes = useStyles(props)
+  const { children, header, beforeHeader, footer, menuFab, cartFab, noSticky, sx = [] } = props
 
   const offset = useScrollOffset().y
   const scrollWithOffset = useTransform(useViewportScroll().scrollY, (y) => y + offset)
 
+  const classes = withState({ noSticky })
+  const fabIconSize = responsiveVal(42, 56) // @todo generalize this
+
   return (
-    <div className={clsx(classes.root, className)}>
+    <Box
+      className={classes.root}
+      sx={[
+        (theme) => ({
+          minHeight: '100vh',
+          '@supports (-webkit-touch-callout: none)': {
+            minHeight: '-webkit-fill-available',
+          },
+          display: 'grid',
+          gridTemplateRows: `auto auto 1fr auto`,
+          gridTemplateColumns: '100%',
+          background: theme.palette.background.default,
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       <LayoutProvider scroll={scrollWithOffset}>
         {beforeHeader}
-        <header className={clsx(classes.header, !noSticky && classes.headerSticky)}>
+        <Box
+          component='header'
+          className={classes.header}
+          sx={(theme) => ({
+            zIndex: theme.zIndex.appBar - 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: theme.appShell.headerHeightSm,
+            pointerEvents: 'none',
+            '& > *': {
+              pointerEvents: 'all',
+            },
+            [theme.breakpoints.up('md')]: {
+              height: theme.appShell.headerHeightMd,
+              padding: `0 ${theme.page.horizontal} 0`,
+              top: 0,
+              display: 'flex',
+              justifyContent: 'left',
+              width: '100%',
+            },
+            '&.sticky': {
+              [theme.breakpoints.down('md')]: {
+                position: 'sticky',
+                top: 0,
+              },
+            },
+          })}
+        >
           {header}
-        </header>
-        <div className={classes.hideFabsOnVirtualKeyboardOpen}>
-          {menuFab}
-          {cartFab}
-        </div>
-        <div>{children}</div>
-        <div>{footer}</div>
+        </Box>
+        {(menuFab || cartFab) && (
+          <Box
+            className={classes.fabs}
+            sx={(theme) => ({
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+              height: 0,
+              zIndex: 2,
+              [theme.breakpoints.up('sm')]: {
+                padding: `0 ${theme.page.horizontal}`,
+                position: 'sticky',
+                marginTop: `calc(${theme.appShell.headerHeightMd} * -1 + calc(${fabIconSize} / 2))`,
+                top: `calc(${theme.appShell.headerHeightMd} / 2 - 28px)`,
+              },
+              [theme.breakpoints.down('md')]: {
+                position: 'fixed',
+                top: 'unset',
+                bottom: `calc(20px + ${fabIconSize})`,
+                padding: `0 20px`,
+                '@media (max-height: 530px)': {
+                  display: 'none',
+                },
+              },
+            })}
+          >
+            {menuFab}
+            {cartFab}
+          </Box>
+        )}
+        <div className={classes.children}>{children}</div>
+        <div className={classes.footer}>{footer}</div>
       </LayoutProvider>
-    </div>
+    </Box>
   )
 }

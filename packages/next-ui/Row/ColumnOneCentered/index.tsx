@@ -1,6 +1,5 @@
-import { ContainerProps, styled } from '@material-ui/core'
-import React from 'react'
-import ColumnOne from '../ColumnOne'
+import { ContainerProps, styled } from '@mui/material'
+import { ColumnOne } from '../ColumnOne'
 
 const Wrapper = styled('div')(({ theme }) => ({
   marginBottom: theme.spacings.lg,
@@ -11,7 +10,7 @@ const Wrapper = styled('div')(({ theme }) => ({
   position: 'relative',
 }))
 
-export default function ColumnOneCentered(props: ContainerProps) {
+export function ColumnOneCentered(props: ContainerProps) {
   const { children } = props
 
   return (

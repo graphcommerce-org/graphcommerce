@@ -1,79 +1,83 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
-import Row from '..'
-import { UseStyles } from '../../Styles'
+import { Row } from '..'
+import { extendableComponent } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    wrapper: {
-      display: 'grid',
-      background:
-        theme.palette.type === 'light'
-          ? theme.palette.background.image
-          : theme.palette.background.paper,
-      justifyItems: 'center',
-      columnGap: theme.spacings.lg,
-      paddingTop: theme.spacings.lg,
-      paddingBottom: theme.spacings.lg,
-      [theme.breakpoints.up('md')]: {
-        paddingTop: 0,
-        paddingBottom: 0,
-        background: 'none',
-        gridTemplateColumns: '1fr 1fr',
-      },
-      borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
-    },
-    asset: {
-      height: '100%',
-      width: '100%',
-      '& img': {
-        height: '100%',
-        width: '100%',
-        objectFit: 'cover',
-        borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
-      },
-    },
-    copy: {
-      marginTop: theme.spacings.lg,
-      color: theme.palette.text.primary,
-      maxWidth: '80%',
-      display: 'grid',
-      alignContent: 'center',
-      [theme.breakpoints.up('md')]: {
-        maxWidth: '70%',
-        marginTop: 0,
-      },
-      '& > *': {
-        maxWidth: 'max-content',
-      },
-    },
-    url: {
-      ...theme.typography.body2,
-      [theme.breakpoints.up('md')]: {
-        ...theme.typography.h4,
-      },
-      color: theme.palette.text.primary,
-    },
-  }),
-  { name: 'ImageText' },
-)
-
-export type ImageTextProps = UseStyles<typeof useStyles> & {
+export type ImageTextProps = {
   item?: React.ReactNode
   children: React.ReactNode
+  sx?: SxProps<Theme>
 }
 
-export default function ImageText(props: ImageTextProps) {
-  const { item, children } = props
-  const classes = useStyles(props)
+const name = 'ImageText' as const
+const parts = ['root', 'wrapper', 'asset', 'copy'] as const
+const { classes } = extendableComponent(name, parts)
+
+export function ImageText(props: ImageTextProps) {
+  const { item, children, sx } = props
 
   return (
-    <Row maxWidth={false}>
-      <Row className={classes.wrapper}>
-        <div className={classes.asset}>{item}</div>
-        <div className={classes.copy}>{children}</div>
-      </Row>{' '}
+    <Row maxWidth={false} className={classes.root} sx={sx}>
+      <Box
+        className={classes.wrapper}
+        sx={(theme) => ({
+          display: 'grid',
+          background:
+            theme.palette.mode === 'light'
+              ? theme.palette.background.image
+              : theme.palette.background.paper,
+          justifyItems: 'center',
+          columnGap: theme.spacings.lg,
+          paddingTop: theme.spacings.lg,
+          paddingBottom: theme.spacings.lg,
+          [theme.breakpoints.up('md')]: {
+            paddingTop: 0,
+            paddingBottom: 0,
+            background: 'none',
+            gridTemplateColumns: '1fr 1fr',
+          },
+          borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
+        })}
+      >
+        <Box
+          className={classes.asset}
+          sx={(theme) => ({
+            height: '100%',
+            width: '100%',
+            '& img': {
+              height: '100%',
+              width: '100%',
+              objectFit: 'cover',
+              borderRadius: responsiveVal(
+                theme.shape.borderRadius * 2,
+                theme.shape.borderRadius * 3,
+              ),
+            },
+          })}
+        >
+          {item}
+        </Box>
+        <Box
+          className={classes.copy}
+          sx={(theme) => ({
+            marginTop: theme.spacings.lg,
+            color: theme.palette.text.primary,
+            maxWidth: '80%',
+            display: 'grid',
+            alignContent: 'center',
+            [theme.breakpoints.up('md')]: {
+              maxWidth: '70%',
+              marginTop: 0,
+            },
+            '& > *': {
+              maxWidth: 'max-content',
+            },
+          })}
+        >
+          {children}
+        </Box>
+      </Box>
     </Row>
   )
 }

@@ -1,17 +1,23 @@
 import { PageOptions, usePageContext } from '@graphcommerce/framer-next-pages'
-import { LayoutHeader, Button, iconPerson, Stepper, LayoutTitle } from '@graphcommerce/next-ui'
-import { Container, Divider, List, ListItem } from '@material-ui/core'
+import {
+  LayoutHeader,
+  iconPerson,
+  Stepper,
+  LayoutTitle,
+  LinkOrButton,
+} from '@graphcommerce/next-ui'
+import { Container, Divider, List, ListItem } from '@mui/material'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import { LayoutMinimal, LayoutMinimalProps } from '../../../components/Layout'
+import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
 
-type AppShellDemoProps = {
+type LayoutDemoProps = {
   baseUrl: string
 }
 
-export function AppShellDemo(props: AppShellDemoProps) {
+export function LayoutDemo(props: LayoutDemoProps) {
   const { baseUrl } = props
 
   const queryParams = useRouter().asPath.split('/')
@@ -41,18 +47,18 @@ export function AppShellDemo(props: AppShellDemoProps) {
   if (withPrimary)
     primaryAction = (
       <PageLink href={`${baseUrl}/with-primary-navigated`} passHref>
-        <Button variant='pill-link' color='secondary'>
+        <LinkOrButton color='secondary' button={{ variant: 'pill' }}>
           Navigate
-        </Button>
+        </LinkOrButton>
       </PageLink>
     )
 
   if (withStepper && step < 3) {
     primaryAction = (
       <PageLink href={`${baseUrl}/with-stepper-${step + 1}`} passHref>
-        <Button variant='pill-link' color='secondary'>
+        <LinkOrButton color='secondary' button={{ variant: 'pill' }}>
           Navigate
-        </Button>
+        </LinkOrButton>
       </PageLink>
     )
   }
@@ -88,7 +94,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
         {isMinimal || isSheet || withIcon || withTitle ? titleComponent : undefined}
       </LayoutHeader>
 
-      <Container maxWidth='md' style={{ paddingTop: 50 }}>
+      <Container maxWidth='md' style={{ paddingTop: '50px' }}>
         {/* <LayoutTitle icon={withIcon ? iconPerson : undefined}>{title}</LayoutTitle> */}
 
         {/* {isSheet && !primaryAction && (
@@ -264,7 +270,7 @@ export function AppShellDemo(props: AppShellDemoProps) {
 }
 
 function MinimalPageShellDemo() {
-  return <AppShellDemo baseUrl='/test/minimal-page-shell' />
+  return <LayoutDemo baseUrl='/test/minimal-page-shell' />
 }
 
 const pageOptions: PageOptions<LayoutMinimalProps> = {

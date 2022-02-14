@@ -1,32 +1,19 @@
-import { ApolloProvider, useQuery } from '@apollo/client'
 import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 // import { GoogleAnalyticsScript } from '@graphcommerce/googleanalytics'
 // import { GoogleRecaptchaV3Script } from '@graphcommerce/googlerecaptcha'
 // import { GoogleTagManagerScript } from '@graphcommerce/googletagmanager'
-import { LinguiProvider } from '@graphcommerce/lingui-next'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { AppProps, GlobalHead, PageLoadIndicator } from '@graphcommerce/next-ui'
-import { CssBaseline, ThemeProvider } from '@material-ui/core'
-import { LazyMotion } from 'framer-motion'
-import { AppPropsType } from 'next/dist/shared/lib/utils'
-import React, { useEffect, useState } from 'react'
-import { lightTheme, darkTheme } from '../components/Theme/ThemedProvider'
-import apolloClient from '../lib/apolloClientBrowser'
+import { GlobalHead } from '@graphcommerce/magento-store'
+import { CssAndFramerMotionProvider, PageLoadIndicator } from '@graphcommerce/next-ui'
+import { CssBaseline, ThemeProvider } from '@mui/material'
+import { AppProps } from 'next/app'
+import { useEffect, useState } from 'react'
+import { lightTheme, darkTheme } from '../components/theme'
+import { GraphQLProvider } from '../lib/graphql/GraphQLProvider'
+import { I18nProvider } from '../lib/i18n/I18nProvider'
 
-export type PageRendererProps = Omit<AppPropsType, 'router'> & {
-  Layout: React.ComponentType<AppPropsType>
-  layoutProps: any
-}
-
-const Head = () => (
-  <GlobalHead name={useQuery(StoreConfigDocument).data?.storeConfig?.website_name ?? ''} />
-)
-
-export default function ThemedApp(props: Omit<AppPropsType, 'pageProps'> & AppProps) {
-  const { pageProps, router } = props
-  const { locale, asPath } = router
-
-  useEffect(() => document.getElementById('jss-server-side')?.remove(), [])
+export default function ThemedApp(props: AppProps) {
+  const { router } = props
+  const { locale = 'en', asPath } = router
 
   // Hack for the demo to allow using darkmode without any fancy darkmode toggles
   const [darkMode, setDarkMode] = useState(asPath.includes('darkmode'))
@@ -35,33 +22,21 @@ export default function ThemedApp(props: Omit<AppPropsType, 'pageProps'> & AppPr
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const client = apolloClient(locale, true, pageProps.apolloState)
-
   return (
-    <LazyMotion
-      features={async () => (await import('@graphcommerce/next-ui/Page/framerFeatures')).default}
-      strict
-    >
-      {/* <GoogleAnalyticsScript /> */}
-      {/* <GoogleRecaptchaV3Script /> */}
-      {/* <GoogleTagManagerScript /> */}
-      <LinguiProvider
-        key={locale}
-        locale={locale}
-        loader={(l) => import(`../locales/${l}.po`)}
-        ssrLoader={(l) =>
-          typeof window === 'undefined' ? require(`../locales/${l}.po`) : { messages: {} }
-        }
-      >
-        <ApolloProvider client={client}>
+    <CssAndFramerMotionProvider>
+      <I18nProvider key={locale} locale={locale}>
+        <GraphQLProvider {...props}>
           <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-            <Head />
+            {/* <GoogleAnalyticsScript /> */}
+            {/* <GoogleRecaptchaV3Script /> */}
+            {/* <GoogleTagManagerScript /> */}
+            <GlobalHead />
             <CssBaseline />
             <PageLoadIndicator />
             <FramerNextPages {...props} />
           </ThemeProvider>
-        </ApolloProvider>
-      </LinguiProvider>
-    </LazyMotion>
+        </GraphQLProvider>
+      </I18nProvider>
+    </CssAndFramerMotionProvider>
   )
 }

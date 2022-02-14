@@ -13,16 +13,14 @@ import {
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Container, NoSsr } from '@material-ui/core'
+import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
-import React from 'react'
-import { LayoutFullProps } from '../components/Layout'
-import { LayoutOverlay, LayoutOverlayProps } from '../components/Layout/LayoutOverlay'
-import apolloClient from '../lib/apolloClient'
+import { LayoutOverlay, LayoutOverlayProps } from '../components'
+import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 type RouteProps = { country?: string[] }
 type Props = StoreSwitcherListQuery
-type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props, RouteProps>
 
 function StoresIndexPage({ availableStores }: Props) {
   const { locale } = useRouter()
@@ -61,8 +59,8 @@ StoresIndexPage.pageOptions = pageOptions
 export default StoresIndexPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
   const stores = staticClient.query({ query: StoreSwitcherListDocument })

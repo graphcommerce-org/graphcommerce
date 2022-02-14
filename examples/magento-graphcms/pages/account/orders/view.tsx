@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/client'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { useQuery } from '@graphcommerce/graphql'
 import { ApolloCustomerErrorFullPage } from '@graphcommerce/magento-customer'
 import {
   useOrderCardItemImages,
@@ -16,11 +16,11 @@ import {
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Container, NoSsr } from '@material-ui/core'
+import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components/Layout/LayoutOverlay'
-import apolloClient from '../../../lib/apolloClient'
+import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -57,7 +57,9 @@ function OrderDetailPage() {
       <Container maxWidth='md'>
         <NoSsr>
           {(!orderId || !order) && (
-            <IconHeader src={iconBox} title={t`Order not found`} size='large' />
+            <IconHeader src={iconBox} size='large'>
+              <Trans>Order not found</Trans>
+            </IconHeader>
           )}
 
           <LayoutTitle icon={iconBox}>
@@ -91,8 +93,8 @@ OrderDetailPage.pageOptions = pageOptions
 export default OrderDetailPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
   const config = client.query({ query: StoreConfigDocument })
 
   const countryRegions = staticClient.query({

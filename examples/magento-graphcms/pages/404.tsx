@@ -1,14 +1,14 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { SearchForm } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, Separator, icon404, SvgImageSimple } from '@graphcommerce/next-ui'
+import { GetStaticProps, Separator, icon404, SvgIcon } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Box, Container, Typography, Link } from '@material-ui/core'
+import { Box, Container, Typography, Link } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
-import { DefaultPageDocument, DefaultPageQuery } from '../components/GraphQL/DefaultPage.gql'
-import { LayoutFull, LayoutFullProps } from '../components/Layout'
-import apolloClient from '../lib/apolloClient'
+import { LayoutFull, LayoutFullProps } from '../components'
+import { DefaultPageDocument, DefaultPageQuery } from '../graphql/DefaultPage.gql'
+import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
 
@@ -18,12 +18,12 @@ type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
 function RouteNotFoundPage() {
   const links = [
     <PageLink key={0} passHref href='/'>
-      <Link color='primary'>
+      <Link color='primary' underline='hover'>
         <Trans>Store home</Trans>
       </Link>
     </PageLink>,
     <PageLink key={1} passHref href='/account'>
-      <Link color='primary'>
+      <Link color='primary' underline='hover'>
         <Trans>Account</Trans>
       </Link>
     </PageLink>,
@@ -34,7 +34,7 @@ function RouteNotFoundPage() {
       <PageMeta title='Page not found' metaRobots={['noindex']} />
       <Container maxWidth='sm'>
         <Box textAlign='center' mt={16} mb={16}>
-          <SvgImageSimple src={icon404} size='xxl' />
+          <SvgIcon src={icon404} size='xxl' />
           <Typography variant='h3' component='h1' gutterBottom>
             <Trans>Whoops our bad...</Trans>
           </Typography>
@@ -67,8 +67,8 @@ RouteNotFoundPage.pageOptions = {
 export default RouteNotFoundPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
   const page = staticClient.query({

@@ -1,15 +1,14 @@
-import { useQuery } from '@apollo/client'
+import { Asset } from '@graphcommerce/graphcms-ui'
+import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { BlogListItem } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Typography, useTheme } from '@material-ui/core'
-import React from 'react'
-import Asset from '../Asset'
+import { Typography, useTheme } from '@mui/material'
 import { BlogItemFragment } from './BlogItem.gql'
 
 type BlogItemProps = BlogItemFragment
 
-export default function BlogItem(props: BlogItemProps) {
+export function BlogItem(props: BlogItemProps) {
   const { title, url, asset, date } = props
 
   const { data: config } = useQuery(StoreConfigDocument)

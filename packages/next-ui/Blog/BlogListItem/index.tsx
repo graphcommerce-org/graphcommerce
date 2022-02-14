@@ -1,58 +1,24 @@
-import { Link, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
-import { UseStyles } from '../../Styles'
+import { extendableComponent } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    item: {
-      display: 'grid',
-      gridTemplateRows: `${responsiveVal(140, 220)} auto auto`,
-      alignContent: 'start',
-      color: theme.palette.text.primary,
-      gap: theme.spacings.sm,
-      marginBottom: theme.spacings.sm,
-    },
-    date: {
-      display: 'inline-block',
-      textDecoration: 'none',
-      color: theme.palette.text.secondary,
-    },
-    asset: {
-      display: 'grid',
-      overflow: 'hidden',
-      height: '100%',
-      width: '100%',
-      borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
-      '& img': {
-        height: '100% !important',
-        objectFit: 'cover',
-      },
-      '& p': {
-        alignSelf: 'center',
-        justifySelf: 'center',
-      },
-      background: theme.palette.background.paper,
-    },
-    title: {
-      ...theme.typography.h3,
-    },
-  }),
-  { name: 'BlogListItem' },
-)
-
-export type BlogListItemProps = UseStyles<typeof useStyles> & {
+export type BlogListItemProps = {
   asset: React.ReactNode
   url: string
   date: string
   locale: string
   title: string
+  sx?: SxProps<Theme>
 }
 
-export default function BlogListItem(props: BlogListItemProps) {
-  const { asset, url, date, locale, title } = props
-  const classes = useStyles(props)
+const name = 'BlogListItem' as const
+const parts = ['item', 'date', 'asset', 'title'] as const
+const { classes } = extendableComponent(name, parts)
+
+export function BlogListItem(props: BlogListItemProps) {
+  const { asset, url, date, locale, title, sx = [] } = props
 
   const formatter = new Intl.DateTimeFormat(locale, {
     year: 'numeric',
@@ -61,24 +27,69 @@ export default function BlogListItem(props: BlogListItemProps) {
   })
 
   return (
-    <div className={classes.item}>
+    <Box
+      className={classes.item}
+      sx={[
+        (theme) => ({
+          display: 'grid',
+          gridTemplateRows: `${responsiveVal(140, 220)} auto auto`,
+          alignContent: 'start',
+          color: theme.palette.text.primary,
+          gap: theme.spacings.xxs,
+          marginBottom: theme.spacings.sm,
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       <PageLink href={`/${url}`} passHref>
-        <Link color='inherit'>
-          <div className={classes.asset}>{asset}</div>
+        <Link color='inherit' underline='hover'>
+          <Box
+            className={classes.asset}
+            sx={(theme) => ({
+              display: 'grid',
+              overflow: 'hidden',
+              height: '100%',
+              width: '100%',
+              borderRadius: responsiveVal(
+                theme.shape.borderRadius * 2,
+                theme.shape.borderRadius * 3,
+              ),
+              '& img': {
+                height: '100% !important',
+                objectFit: 'cover',
+              },
+              '& p': {
+                alignSelf: 'center',
+                justifySelf: 'center',
+              },
+              background: theme.palette.background.paper,
+            })}
+          >
+            {asset}
+          </Box>
         </Link>
       </PageLink>
 
-      <time className={classes.date} dateTime={date}>
+      <Box
+        component='time'
+        className={classes.date}
+        dateTime={date}
+        sx={(theme) => ({
+          display: 'inline-block',
+          textDecoration: 'none',
+          color: theme.palette.text.secondary,
+        })}
+      >
         {formatter.format(new Date(date))}
-      </time>
+      </Box>
 
       <PageLink href={`/${url}`} passHref>
-        <Link href={`/${url}`} className={classes.title} color='inherit'>
-          <Typography component='h2' variant='h4' color='inherit'>
+        <Link href={`/${url}`} className={classes.title} color='inherit' underline='hover'>
+          <Typography component='h2' variant='h4'>
             {title}
           </Typography>
         </Link>
       </PageLink>
-    </div>
+    </Box>
   )
 }

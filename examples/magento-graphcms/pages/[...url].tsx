@@ -1,5 +1,5 @@
-import { mergeDeep } from '@apollo/client/utilities'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { Asset } from '@graphcommerce/graphcms-ui'
 import {
   CategoryChildren,
   CategoryDescription,
@@ -25,24 +25,25 @@ import {
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellSticky,
+  StickyBelowHeader,
   LayoutTitle,
   LayoutHeader,
   GetStaticProps,
   MetaRobots,
   PageMeta,
 } from '@graphcommerce/next-ui'
-import { Container } from '@material-ui/core'
+import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import React from 'react'
-import Asset from '../components/Asset'
-import { CategoryPageDocument, CategoryPageQuery } from '../components/GraphQL/CategoryPage.gql'
-import { LayoutFull, LayoutFullProps } from '../components/Layout'
-import ProductListItems from '../components/ProductListItems/ProductListItems'
-import useProductListStyles from '../components/ProductListItems/useProductListStyles'
-import RowProduct from '../components/Row/RowProduct'
-import RowRenderer from '../components/Row/RowRenderer'
-import apolloClient from '../lib/apolloClient'
+import {
+  LayoutFull,
+  LayoutFullProps,
+  ProductListItems,
+  sxLargeItem,
+  RowProduct,
+  RowRenderer,
+} from '../components'
+import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
+import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
 
@@ -57,7 +58,6 @@ type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
 function CategoryPage(props: Props) {
   const { categories, products, filters, params, filterTypes, pages } = props
-  const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
 
   const category = categories?.items?.[0]
   if (!category || !products || !params || !filters || !filterTypes) return null
@@ -107,7 +107,7 @@ function CategoryPage(props: Props) {
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
-          <AppShellSticky>
+          <StickyBelowHeader>
             <ProductListFiltersContainer>
               <ProductListSort
                 sort_fields={products?.sort_fields}
@@ -115,14 +115,10 @@ function CategoryPage(props: Props) {
               />
               <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
             </ProductListFiltersContainer>
-          </AppShellSticky>
+          </StickyBelowHeader>
           <Container maxWidth={false}>
             <ProductListCount total_count={products?.total_count} />
-            <ProductListItems
-              items={products?.items}
-              classes={productListClasses}
-              loadingEager={1}
-            />
+            <ProductListItems items={products?.items} loadingEager={1} sx={sxLargeItem} />
             <ProductListPagination page_info={products?.page_info} />
           </Container>
         </ProductListParamsProvider>
@@ -150,7 +146,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   // Disable getStaticPaths while in development mode
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  const path = (loc: string) => getCategoryStaticPaths(apolloClient(loc), loc)
+  const path = (loc: string) => getCategoryStaticPaths(graphqlSsrClient(loc), loc)
   const paths = (await Promise.all(locales.map(path))).flat(1)
   return { paths, fallback: 'blocking' }
 }
@@ -159,11 +155,11 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const [url, query] = extractUrlQuery(params)
   if (!url || !query) return { notFound: true }
 
-  const client = apolloClient(locale, true)
+  const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
 
-  const staticClient = apolloClient(locale)
+  const staticClient = graphqlSsrClient(locale)
   const categoryPage = staticClient.query({
     query: CategoryPageDocument,
     variables: { url, rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '' },
@@ -175,10 +171,11 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const products = staticClient.query({
     query: ProductListDocument,
-    variables: mergeDeep(productListParams, {
-      filters: { category_uid: { eq: await categoryUid } },
+    variables: {
+      ...productListParams,
+      filters: { ...productListParams.filters, category_uid: { eq: await categoryUid } },
       categoryUid: await categoryUid,
-    }),
+    },
   })
 
   // assertAllowedParams(await params, (await products).data)

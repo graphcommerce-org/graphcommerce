@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/client'
+import { useMutation } from '@graphcommerce/graphql'
 import { t } from '@lingui/macro'
 import { CreateEmptyCartDocument } from './CreateEmptyCart.gql'
 import { useAssignCurrentCartId } from './useAssignCurrentCartId'
