@@ -39,7 +39,12 @@ export function RowProduct(props: RowProductProps) {
 
   if (!variant) return null
 
-  const RenderType = mergedRenderer[variant]
+  const RenderType =
+    mergedRenderer?.[variant] ??
+    (() => {
+      if (process.env.NODE_ENV !== 'production') return <>renderer for {variant} not found</>
+      return null
+    })
 
   return <RenderType {...RowProductProps} />
 }
