@@ -1,5 +1,7 @@
 {
   "name": "@graphcommerce/magento-cart-payment-method",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
   "version": "3.0.0",
   "sideEffects": false,
   "engines": {

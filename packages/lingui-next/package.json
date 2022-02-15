@@ -1,5 +1,7 @@
 {
   "name": "@graphcommerce/lingui-next",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
   "version": "2.0.0",
   "sideEffects": false,
   "scripts": {

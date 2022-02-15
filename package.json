@@ -1,6 +1,7 @@
 {
   "name": "@graphcommerce/graphcommerce",
-  "homepage": "https://graphcommerce.org/",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
   "version": "2.165.3",
   "private": true,
   "workspaces": [

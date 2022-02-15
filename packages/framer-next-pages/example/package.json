@@ -1,5 +1,7 @@
 {
   "name": "@graphcommerce/framer-next-pages-example",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
   "private": true,
   "version": "3.0.0",
   "scripts": {
