@@ -2,7 +2,7 @@
   "name": "@graphcommerce/lighthouse",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "private": true,
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -13,9 +13,9 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^4.0.0",
-    "@graphcommerce/prettier-config-pwa": "^4.0.0",
-    "@graphcommerce/typescript-config-pwa": "^4.0.0",
+    "@graphcommerce/eslint-config-pwa": "^4.0.1",
+    "@graphcommerce/prettier-config-pwa": "^4.0.1",
+    "@graphcommerce/typescript-config-pwa": "^4.0.1",
     "@playwright/test": "^1.18.1"
   }
 }

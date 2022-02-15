@@ -1,5 +1,59 @@
 # Change Log
 
+## 3.0.1
+
+### Patch Changes
+
+- [`0cbaa878b`](https://github.com/ho-nl/m2-pwa/commit/0cbaa878b8a844d5abbeb1797b625a33130e6514)
+  Thanks [@paales](https://github.com/paales)! - Added homepage and repository package.json files,
+  so that the packages link to back to the website and repository
+- Updated dependencies
+  [[`0cbaa878b`](https://github.com/ho-nl/m2-pwa/commit/0cbaa878b8a844d5abbeb1797b625a33130e6514)]:
+  - @graphcommerce/framer-next-pages@3.0.1
+  - @graphcommerce/googleanalytics@2.0.1
+  - @graphcommerce/googlerecaptcha@2.0.1
+  - @graphcommerce/googletagmanager@2.0.1
+  - @graphcommerce/graphcms-ui@3.0.1
+  - @graphcommerce/graphql@3.0.1
+  - @graphcommerce/graphql-mesh@4.0.1
+  - @graphcommerce/image@3.0.1
+  - @graphcommerce/lingui-next@2.0.1
+  - @graphcommerce/magento-cart@4.0.1
+  - @graphcommerce/magento-cart-billing-address@3.0.1
+  - @graphcommerce/magento-cart-checkout@3.0.1
+  - @graphcommerce/magento-cart-coupon@3.0.1
+  - @graphcommerce/magento-cart-email@3.0.1
+  - @graphcommerce/magento-cart-items@3.0.1
+  - @graphcommerce/magento-cart-payment-method@3.0.1
+  - @graphcommerce/magento-cart-shipping-address@3.0.1
+  - @graphcommerce/magento-cart-shipping-method@3.0.1
+  - @graphcommerce/magento-category@4.0.1
+  - @graphcommerce/magento-cms@4.0.1
+  - @graphcommerce/magento-customer@4.0.1
+  - @graphcommerce/magento-customer-account@3.0.1
+  - @graphcommerce/magento-customer-order@3.0.1
+  - @graphcommerce/magento-graphql@3.0.1
+  - @graphcommerce/magento-newsletter@2.0.1
+  - @graphcommerce/magento-payment-braintree@3.0.1
+  - @graphcommerce/magento-payment-included@3.0.1
+  - @graphcommerce/magento-product@4.0.1
+  - @graphcommerce/magento-product-bundle@4.0.1
+  - @graphcommerce/magento-product-configurable@4.0.1
+  - @graphcommerce/magento-product-downloadable@4.0.1
+  - @graphcommerce/magento-product-grouped@3.0.1
+  - @graphcommerce/magento-product-simple@4.0.1
+  - @graphcommerce/magento-product-virtual@4.0.1
+  - @graphcommerce/magento-review@3.0.1
+  - @graphcommerce/magento-search@4.0.1
+  - @graphcommerce/magento-store@4.0.1
+  - @graphcommerce/mollie-magento-payment@3.0.1
+  - @graphcommerce/next-ui@4.0.1
+  - @graphcommerce/react-hook-form@3.0.1
+  - @graphcommerce/eslint-config-pwa@4.0.1
+  - @graphcommerce/next-config@3.0.1
+  - @graphcommerce/prettier-config-pwa@4.0.1
+  - @graphcommerce/typescript-config-pwa@4.0.1
+
 ## 3.0.0
 
 ### Major Changes
