@@ -8,8 +8,8 @@ export type MenuFabItemProps = Omit<ListItemButtonProps<'a'>, 'href' | 'button'>
 export function MenuFabItem(props: MenuFabItemProps) {
   const { href, children, sx = [], ...listItemProps } = props
   const hrefString = href.toString()
-  const { asPath } = useRouter()
-  const active = hrefString === '/' ? asPath === hrefString : asPath.startsWith(hrefString)
+  const path = useRouter().asPath.split('?')[0]
+  const active = hrefString === '/' ? path === hrefString : path.startsWith(hrefString)
 
   return (
     <PageLink key={href.toString()} href={href} passHref>

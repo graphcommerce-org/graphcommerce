@@ -63,7 +63,7 @@ export const Logo = forwardRef<HTMLDivElement, LogoProps>((props, ref) => {
     />
   )
 
-  return router.asPath === '/' ? (
+  return router.asPath.split('?')[0] === '/' ? (
     <LogoContainer ref={ref} sx={sx} className={classes.parent}>
       {img}
     </LogoContainer>
