@@ -17,15 +17,15 @@ jobs:
           node-version: 14
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
-      - uses: bahmutov/npm-install@v1
-        with:
-          useRollingCache: true
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
-          publish: yarn changeset publish && git push --follow-tags
+          publish: |
+            npm install --no-package-lock --no-save @changesets/cli;
+            npx changeset version;
+            git push --follow-tags
           commit: 'ci(changesets): versions updated'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
