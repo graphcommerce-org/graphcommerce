@@ -7,7 +7,7 @@ import {
   useScrollY,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
-import { alpha, Fab, FabProps, NoSsr, styled, useTheme, Box } from '@mui/material'
+import { alpha, Fab, FabProps, NoSsr, styled, useTheme, Box, SxProps, Theme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
@@ -17,6 +17,7 @@ import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
 
 export type CartFabProps = {
   icon?: React.ReactNode
+  sx?: SxProps<Theme>
 }
 
 type CartFabContentProps = CartFabProps & CartTotalQuantityFragment
@@ -32,7 +33,7 @@ const MotionFab = m(
 const { classes } = extendableComponent('CartFab', ['root', 'cart', 'shadow'] as const)
 
 function CartFabContent(props: CartFabContentProps) {
-  const { total_quantity, icon, ...fabProps } = props
+  const { total_quantity, icon, sx = [], ...fabProps } = props
 
   const theme2 = useTheme()
   const scrollY = useScrollY()
@@ -48,7 +49,10 @@ function CartFabContent(props: CartFabContentProps) {
   return (
     <Box
       className={classes.root}
-      sx={{ position: 'relative', width: fabIconSize, height: fabIconSize }}
+      sx={[
+        { position: 'relative', width: fabIconSize, height: fabIconSize },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
       <PageLink href='/cart' passHref>
         <MotionFab
