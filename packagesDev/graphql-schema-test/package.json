@@ -2,7 +2,7 @@
   "name": "@graphcommerce/graphql-schema-test",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "private": true,
   "sideEffects": false,
   "engines": {
@@ -16,9 +16,9 @@
     }
   },
   "dependencies": {
-    "@graphcommerce/eslint-config-pwa": "^4.0.0",
-    "@graphcommerce/graphql": "^3.0.0",
-    "@graphcommerce/prettier-config-pwa": "^4.0.0",
-    "@graphcommerce/typescript-config-pwa": "^4.0.0"
+    "@graphcommerce/eslint-config-pwa": "^4.0.1",
+    "@graphcommerce/graphql": "^3.0.1",
+    "@graphcommerce/prettier-config-pwa": "^4.0.1",
+    "@graphcommerce/typescript-config-pwa": "^4.0.1"
   }
 }

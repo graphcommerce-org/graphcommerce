@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-store",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,15 +12,15 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^4.0.0",
-    "@graphcommerce/prettier-config-pwa": "^4.0.0",
-    "@graphcommerce/typescript-config-pwa": "^4.0.0",
+    "@graphcommerce/eslint-config-pwa": "^4.0.1",
+    "@graphcommerce/prettier-config-pwa": "^4.0.1",
+    "@graphcommerce/typescript-config-pwa": "^4.0.1",
     "@playwright/test": "^1.18.1"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "^3.0.0",
-    "@graphcommerce/image": "^3.0.0",
-    "@graphcommerce/next-ui": "^4.0.0",
+    "@graphcommerce/graphql": "^3.0.1",
+    "@graphcommerce/image": "^3.0.1",
+    "@graphcommerce/next-ui": "^4.0.1",
     "@lingui/macro": "^3.13.2",
     "@mui/material": "^5.4.1",
     "next": "^12.0.10",
