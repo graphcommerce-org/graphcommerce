@@ -1,5 +1,4 @@
 import { useUp, usePrevUp, usePageContext } from '@graphcommerce/framer-next-pages'
-import { usePrevPageRouter } from '@graphcommerce/framer-next-pages/hooks/usePrevPageRouter'
 import { t } from '@lingui/macro'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -10,31 +9,31 @@ import { iconChevronLeft } from '../../icons'
 export type BackProps = Omit<LinkOrButtonProps, 'onClick' | 'children'>
 
 export function useShowBack() {
-  const router = useRouter()
+  const path = useRouter().asPath.split('?')[0]
   const up = useUp()
   const prevUp = usePrevUp()
   const { backSteps } = usePageContext()
 
-  const canClickBack = backSteps > 0 && router.asPath !== prevUp?.href
+  const canClickBack = backSteps > 0 && path !== prevUp?.href
 
   if (canClickBack) return true
-  if (up?.href && up.href !== router.asPath) return true
+  if (up?.href && up.href !== path) return true
   return false
 }
 
 export default function LayoutHeaderBack(props: BackProps) {
   const router = useRouter()
+  const path = router.asPath.split('?')[0]
   const up = useUp()
-  const prevRouter = usePrevPageRouter()
   const prevUp = usePrevUp()
   const { backSteps } = usePageContext()
 
   const backIcon = <SvgIcon src={iconChevronLeft} size='medium' />
-  const canClickBack = backSteps > 0 && router.asPath !== prevUp?.href
+  const canClickBack = backSteps > 0 && path !== prevUp?.href
 
   let label = t`Back`
-  if (up?.href === prevRouter?.asPath && up?.title) label = up.title
-  if (prevUp?.href === prevRouter?.asPath && prevUp?.title) label = prevUp.title
+  if (up?.href === path && up?.title) label = up.title
+  if (prevUp?.href === path && prevUp?.title) label = prevUp.title
 
   if (canClickBack) {
     return (
@@ -51,7 +50,7 @@ export default function LayoutHeaderBack(props: BackProps) {
     )
   }
 
-  if (up?.href && up.href !== router.asPath)
+  if (up?.href && up.href !== path)
     return (
       <PageLink href={up.href} passHref>
         <LinkOrButton
