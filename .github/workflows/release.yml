@@ -24,6 +24,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
+          title: 'ci(changesets): versions updated'
           commit: 'ci(changesets): versions updated'
           publish: 'yarn release'
         env:
