@@ -134,10 +134,10 @@ the ones you don't want to use.
 - `yarn codegen` Converts all .graphql files to typescript files
 - `yarn dev` Run the app
 
-> Not building? View [common build errors]() and how to fix them.
-
 Visit the development environment running at http://localhost:3000  
 Visit the GraphQL Playground running http://localhost:3000/api/graphql
+
+> No success? View the [common build errors]()
 
 # Next steps
 
