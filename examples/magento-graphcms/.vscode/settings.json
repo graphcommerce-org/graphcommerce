@@ -8,5 +8,8 @@
   "editor.wordBasedSuggestions": false,
   "javascript.suggest.names": false,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "files.exclude": { ".yarn": true, "**/.next": true }
+  "files.exclude": { ".yarn": true, "**/.next": true },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

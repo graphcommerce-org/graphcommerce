@@ -33,6 +33,7 @@ generates:
       #- '.packages/mollie-magento-payment/**/*.graphqls'
     documents:
       - 'components/**/*.graphql'
+      - 'graphql/**/*.graphql'
       - 'node_modules/@graphcommerce/**/*.graphql'
     plugins:
       - '@graphcommerce/graphql-codegen-relay-optimizer-plugin'

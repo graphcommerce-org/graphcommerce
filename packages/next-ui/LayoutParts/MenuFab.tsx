@@ -1,4 +1,4 @@
-import { Divider, Fab, ListItem, Menu, styled, Box } from '@mui/material'
+import { Divider, Fab, ListItem, Menu, styled, Box, SxProps, Theme } from '@mui/material'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
@@ -16,10 +16,11 @@ export type MenuFabProps = {
   search?: React.ReactNode
   menuIcon?: React.ReactNode
   closeIcon?: React.ReactNode
+  sx?: SxProps<Theme>
 }
 
 const { classes, selectors } = extendableComponent('MenuFab', [
-  'root',
+  'wrapper',
   'fab',
   'shadow',
   'menu',
@@ -28,7 +29,7 @@ const { classes, selectors } = extendableComponent('MenuFab', [
 const fabIconSize = responsiveVal(42, 56) // @todo generalize this
 
 export function MenuFab(props: MenuFabProps) {
-  const { children, secondary, search, menuIcon, closeIcon } = props
+  const { children, secondary, search, menuIcon, closeIcon, sx = [] } = props
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
@@ -41,9 +42,9 @@ export function MenuFab(props: MenuFabProps) {
   }, [router])
 
   return (
-    <Box sx={{ width: fabIconSize, height: fabIconSize }}>
+    <Box sx={[{ width: fabIconSize, height: fabIconSize }, ...(Array.isArray(sx) ? sx : [sx])]}>
       <MotionDiv
-        className={classes.root}
+        className={classes.wrapper}
         sx={(theme) => ({
           [theme.breakpoints.down('md')]: {
             opacity: '1 !important',
