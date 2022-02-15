@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/react-hook-form",
-  "version": "2.104.7",
+  "version": "3.0.0",
   "sideEffects": false,
   "engines": {
     "node": "14.x"
@@ -13,9 +13,9 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^3.1.10",
-    "@graphcommerce/prettier-config-pwa": "^3.0.5",
-    "@graphcommerce/typescript-config-pwa": "^3.1.2",
+    "@graphcommerce/eslint-config-pwa": "^4.0.0",
+    "@graphcommerce/prettier-config-pwa": "^4.0.0",
+    "@graphcommerce/typescript-config-pwa": "^4.0.0",
     "@playwright/test": "^1.18.1"
   },
   "dependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/next-ui",
-  "version": "3.25.3",
+  "version": "4.0.0",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -14,11 +14,11 @@
     "@emotion/react": "^11.7.1",
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.6.0",
-    "@graphcommerce/framer-next-pages": "^2.109.2",
-    "@graphcommerce/framer-scroller": "^1.2.12",
-    "@graphcommerce/framer-utils": "^2.103.21",
-    "@graphcommerce/graphql": "^2.105.13",
-    "@graphcommerce/image": "^2.105.13",
+    "@graphcommerce/framer-next-pages": "^3.0.0",
+    "@graphcommerce/framer-scroller": "^2.0.0",
+    "@graphcommerce/framer-utils": "^3.0.0",
+    "@graphcommerce/graphql": "^3.0.0",
+    "@graphcommerce/image": "^3.0.0",
     "@lingui/macro": "^3.13.2",
     "@mui/base": "^5.0.0-alpha.68",
     "@mui/lab": "^5.0.0-alpha.68",
@@ -34,9 +34,9 @@
     "type-fest": "^2.11.2"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^3.1.10",
-    "@graphcommerce/prettier-config-pwa": "^3.0.5",
-    "@graphcommerce/typescript-config-pwa": "^3.1.2",
+    "@graphcommerce/eslint-config-pwa": "^4.0.0",
+    "@graphcommerce/prettier-config-pwa": "^4.0.0",
+    "@graphcommerce/typescript-config-pwa": "^4.0.0",
     "@playwright/test": "^1.18.1",
     "@types/react-is": "^17.0.3",
     "graphql-tag": "2.12.6",

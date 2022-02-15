@@ -1,123 +1,117 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 3.0.0
+
+### Major Changes
+
+- [#1258](https://github.com/ho-nl/m2-pwa/pull/1258)
+  [`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05)
+  Thanks [@paales](https://github.com/paales)! - Upgraded to Material UI 5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05)]:
+  - @graphcommerce/graphql@3.0.0
+  - @graphcommerce/image@3.0.0
+  - @graphcommerce/magento-graphql@3.0.0
+  - @graphcommerce/magento-store@4.0.0
+  - @graphcommerce/next-ui@4.0.0
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.105.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-order@2.105.6...@graphcommerce/magento-customer-order@2.105.7) (2021-12-03)
 
-
 ### Bug Fixes
 
-* make sure that pill link buttons get the right background color etc. ([c142b31](https://github.com/ho-nl/m2-pwa/commit/c142b31552417d2296341785994e2f7b35462793))
-* spacing of LayoutTItle ([7afcd31](https://github.com/ho-nl/m2-pwa/commit/7afcd3163d16e902cf2ff7917f56ee6a8798f55b))
-
-
-
-
+- make sure that pill link buttons get the right background color etc.
+  ([c142b31](https://github.com/ho-nl/m2-pwa/commit/c142b31552417d2296341785994e2f7b35462793))
+- spacing of LayoutTItle
+  ([7afcd31](https://github.com/ho-nl/m2-pwa/commit/7afcd3163d16e902cf2ff7917f56ee6a8798f55b))
 
 # [2.105.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-order@2.104.20...@graphcommerce/magento-customer-order@2.105.0) (2021-11-12)
 
-
 ### Features
 
-* added tons of translations ([9bb0ac7](https://github.com/ho-nl/m2-pwa/commit/9bb0ac709b58df6ea6141e92e4923a5ca9ae2963))
-
-
-
-
+- added tons of translations
+  ([9bb0ac7](https://github.com/ho-nl/m2-pwa/commit/9bb0ac709b58df6ea6141e92e4923a5ca9ae2963))
 
 # [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-order@2.103.8...@graphcommerce/magento-customer-order@2.104.0) (2021-11-02)
 
-
 ### Features
 
-* darkTheme ([3ed6647](https://github.com/ho-nl/m2-pwa/commit/3ed664714670315bc9f20542549724f66cb5052d))
-
-
-
-
+- darkTheme
+  ([3ed6647](https://github.com/ho-nl/m2-pwa/commit/3ed664714670315bc9f20542549724f66cb5052d))
 
 ## [2.103.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-order@2.103.3...@graphcommerce/magento-customer-order@2.103.4) (2021-10-28)
 
-
 ### Bug Fixes
 
-* External SVG's can't have alt tags ([1b1414a](https://github.com/ho-nl/m2-pwa/commit/1b1414a782d55d3acf7b0e6bcaa50f2ad5f18f39))
-
-
-
-
+- External SVG's can't have alt tags
+  ([1b1414a](https://github.com/ho-nl/m2-pwa/commit/1b1414a782d55d3acf7b0e6bcaa50f2ad5f18f39))
 
 ## [2.103.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-order@2.103.2...@graphcommerce/magento-customer-order@2.103.3) (2021-10-28)
 
-
 ### Bug Fixes
 
-* build, remove unused imports ([af6d72c](https://github.com/ho-nl/m2-pwa/commit/af6d72c6e70f670effb4d9e0c1fd883bf771f99d))
-* remove double icons ([1654e34](https://github.com/ho-nl/m2-pwa/commit/1654e3441911f3c7c1600357f8f8e3032f5ee729))
-* SvgImage to SvgImageSimple ([e556c72](https://github.com/ho-nl/m2-pwa/commit/e556c720b299efed185c1d7c3a9b718190d90052))
-* update SvgImage to SvgImageSimple ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
-
-
-
-
+- build, remove unused imports
+  ([af6d72c](https://github.com/ho-nl/m2-pwa/commit/af6d72c6e70f670effb4d9e0c1fd883bf771f99d))
+- remove double icons
+  ([1654e34](https://github.com/ho-nl/m2-pwa/commit/1654e3441911f3c7c1600357f8f8e3032f5ee729))
+- SvgImage to SvgImageSimple
+  ([e556c72](https://github.com/ho-nl/m2-pwa/commit/e556c720b299efed185c1d7c3a9b718190d90052))
+- update SvgImage to SvgImageSimple
+  ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
 
 # [2.103.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-order@2.102.31...@graphcommerce/magento-customer-order@2.103.0) (2021-10-27)
 
-
 ### Features
 
-* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
-
-
-
-
+- **nextjs:** upgraded to nextjs 12
+  ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
 
 ## [2.102.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-order@2.102.6...@graphcommerce/magento-customer-order@2.102.7) (2021-09-30)
 
-
 ### Bug Fixes
 
-* with the latest version of graphql codegen the preresovled types inlined Maybe, make sure we reflect that ([7cb27b0](https://github.com/ho-nl/m2-pwa/commit/7cb27b04cbe31bee5ef4000d408f08bc9ac505c5))
-
-
-
-
+- with the latest version of graphql codegen the preresovled types inlined Maybe, make sure we
+  reflect that
+  ([7cb27b0](https://github.com/ho-nl/m2-pwa/commit/7cb27b04cbe31bee5ef4000d408f08bc9ac505c5))
 
 ## [2.102.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer-order@2.102.0...@graphcommerce/magento-customer-order@2.102.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/magento-customer-order
 
-
-
-
-
 # 2.102.0 (2021-09-27)
-
 
 ### Bug Fixes
 
-* customer-order folder structure ([b7fabd1](https://github.com/ho-nl/m2-pwa/commit/b7fabd12014b2925d0b89c21f58e9974ce1c8b40))
-* make separate queries folder, create injectable for account and inject reviews ([5d82a5d](https://github.com/ho-nl/m2-pwa/commit/5d82a5d9162f687c2678cce215b77eedbaf1669e))
-* **my-account-order:** show carrier in order details ([45f2a1e](https://github.com/ho-nl/m2-pwa/commit/45f2a1e265e8dbe4e1e76fe8dbedb3b40ba693fa))
-* **my-account-orders:** order item row image too large ([dfc7611](https://github.com/ho-nl/m2-pwa/commit/dfc76111e6bd7c33c616881892adcd29c18f907d))
-* **order-details:** show shipping method ([36964a8](https://github.com/ho-nl/m2-pwa/commit/36964a85efa358cb4987f881b72598e48a2278f4))
-* **orders:** show order number ([b2d9f27](https://github.com/ho-nl/m2-pwa/commit/b2d9f2758cb29966965964eca58d91896654e68b))
-
+- customer-order folder structure
+  ([b7fabd1](https://github.com/ho-nl/m2-pwa/commit/b7fabd12014b2925d0b89c21f58e9974ce1c8b40))
+- make separate queries folder, create injectable for account and inject reviews
+  ([5d82a5d](https://github.com/ho-nl/m2-pwa/commit/5d82a5d9162f687c2678cce215b77eedbaf1669e))
+- **my-account-order:** show carrier in order details
+  ([45f2a1e](https://github.com/ho-nl/m2-pwa/commit/45f2a1e265e8dbe4e1e76fe8dbedb3b40ba693fa))
+- **my-account-orders:** order item row image too large
+  ([dfc7611](https://github.com/ho-nl/m2-pwa/commit/dfc76111e6bd7c33c616881892adcd29c18f907d))
+- **order-details:** show shipping method
+  ([36964a8](https://github.com/ho-nl/m2-pwa/commit/36964a85efa358cb4987f881b72598e48a2278f4))
+- **orders:** show order number
+  ([b2d9f27](https://github.com/ho-nl/m2-pwa/commit/b2d9f2758cb29966965964eca58d91896654e68b))
 
 ### Features
 
-* renamed all packages to use [@graphcommerce](https://github.com/graphcommerce) instead of [@reachdigital](https://github.com/reachdigital) ([491e4ce](https://github.com/ho-nl/m2-pwa/commit/491e4cec9a2686472dac36b79f999257c0811ffe))
-* upgraded to nextjs 11 ([0053beb](https://github.com/ho-nl/m2-pwa/commit/0053beb7ef597c190add7264256a0eaec35868da))
-
+- renamed all packages to use [@graphcommerce](https://github.com/graphcommerce) instead of
+  [@reachdigital](https://github.com/reachdigital)
+  ([491e4ce](https://github.com/ho-nl/m2-pwa/commit/491e4cec9a2686472dac36b79f999257c0811ffe))
+- upgraded to nextjs 11
+  ([0053beb](https://github.com/ho-nl/m2-pwa/commit/0053beb7ef597c190add7264256a0eaec35868da))
 
 ### Reverts
 
-* Revert "chore: upgrade @apollo/client" ([55ff24e](https://github.com/ho-nl/m2-pwa/commit/55ff24ede0e56c85b8095edadadd1ec5e0b1b8d2))
-
-
-
-
+- Revert "chore: upgrade @apollo/client"
+  ([55ff24e](https://github.com/ho-nl/m2-pwa/commit/55ff24ede0e56c85b8095edadadd1ec5e0b1b8d2))
 
 # Change Log
 
