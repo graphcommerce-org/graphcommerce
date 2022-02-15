@@ -1,148 +1,123 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 3.0.0
+
+### Major Changes
+
+- [#1258](https://github.com/ho-nl/m2-pwa/pull/1258)
+  [`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05)
+  Thanks [@paales](https://github.com/paales)! - Upgraded to Material UI 5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05)]:
+  - @graphcommerce/framer-utils@3.0.0
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.109.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.109.1...@graphcommerce/framer-next-pages@2.109.2) (2022-01-04)
 
-
 ### Bug Fixes
 
-* regression where close button didn't work ([5bf57b4](https://github.com/ho-nl/m2-pwa/commit/5bf57b470ab7c013fbe0a896792fcb316a454aa4))
-
-
-
-
+- regression where close button didn't work
+  ([5bf57b4](https://github.com/ho-nl/m2-pwa/commit/5bf57b470ab7c013fbe0a896792fcb316a454aa4))
 
 # [2.109.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.108.11...@graphcommerce/framer-next-pages@2.109.0) (2022-01-03)
 
-
 ### Features
 
-* **framer-next-pages:** reduce rerenders when navigating to a new page ([5cf3301](https://github.com/ho-nl/m2-pwa/commit/5cf330130bb3527057da015e3c4a6fa295d7262e))
-
-
-
-
+- **framer-next-pages:** reduce rerenders when navigating to a new page
+  ([5cf3301](https://github.com/ho-nl/m2-pwa/commit/5cf330130bb3527057da015e3c4a6fa295d7262e))
 
 ## [2.108.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.108.9...@graphcommerce/framer-next-pages@2.108.10) (2021-12-23)
 
-
 ### Bug Fixes
 
-* **framer-next-pages:** closing is janky, caused by setting pointer-events to none, trying without resetting the pointerevents ([9247fa3](https://github.com/ho-nl/m2-pwa/commit/9247fa312926416802abd68ea04b1e6b52531f2c))
-
-
-
-
+- **framer-next-pages:** closing is janky, caused by setting pointer-events to none, trying without
+  resetting the pointerevents
+  ([9247fa3](https://github.com/ho-nl/m2-pwa/commit/9247fa312926416802abd68ea04b1e6b52531f2c))
 
 ## [2.108.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.108.7...@graphcommerce/framer-next-pages@2.108.8) (2021-12-21)
 
-
 ### Bug Fixes
 
-* **graphql:** make sure we're passing the correct store code to the schema endpoint ([39753f2](https://github.com/ho-nl/m2-pwa/commit/39753f2117ce7ba79dab035c4134e642829e7f18))
-* make sure we're remounting when the store changes ([10756e3](https://github.com/ho-nl/m2-pwa/commit/10756e3eb252f8a91d84534ae024edb382a4ea0d))
-
-
-
-
+- **graphql:** make sure we're passing the correct store code to the schema endpoint
+  ([39753f2](https://github.com/ho-nl/m2-pwa/commit/39753f2117ce7ba79dab035c4134e642829e7f18))
+- make sure we're remounting when the store changes
+  ([10756e3](https://github.com/ho-nl/m2-pwa/commit/10756e3eb252f8a91d84534ae024edb382a4ea0d))
 
 ## [2.108.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.108.6...@graphcommerce/framer-next-pages@2.108.7) (2021-12-20)
 
-
 ### Bug Fixes
 
-* animations would run on background page, make sure animations are not running when page is not active ([2fcf4b8](https://github.com/ho-nl/m2-pwa/commit/2fcf4b8a853108147477e3a67c7ea202abb2842f))
-
-
-
-
+- animations would run on background page, make sure animations are not running when page is not
+  active
+  ([2fcf4b8](https://github.com/ho-nl/m2-pwa/commit/2fcf4b8a853108147477e3a67c7ea202abb2842f))
 
 ## [2.108.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.108.2...@graphcommerce/framer-next-pages@2.108.3) (2021-12-15)
 
-
 ### Bug Fixes
 
-* **framer-next-pages:** make sure the cancellation of loading the fallback doesn't show an error ([3470461](https://github.com/ho-nl/m2-pwa/commit/34704612c7b19a61a8309967b982e5f04c0fe8b2))
-
-
-
-
+- **framer-next-pages:** make sure the cancellation of loading the fallback doesn't show an error
+  ([3470461](https://github.com/ho-nl/m2-pwa/commit/34704612c7b19a61a8309967b982e5f04c0fe8b2))
 
 ## [2.108.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.108.1...@graphcommerce/framer-next-pages@2.108.2) (2021-12-13)
 
-
 ### Bug Fixes
 
-* make sure we're using the correct variant ([7fff606](https://github.com/ho-nl/m2-pwa/commit/7fff606390bc63c14cd8c033fbe5138226517869))
-
-
-
-
+- make sure we're using the correct variant
+  ([7fff606](https://github.com/ho-nl/m2-pwa/commit/7fff606390bc63c14cd8c033fbe5138226517869))
 
 # [2.108.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.107.5...@graphcommerce/framer-next-pages@2.108.0) (2021-12-03)
 
-
 ### Bug Fixes
 
-* **framer-next-pages:** do no throw error when framer next pages is recreated ([6c4665b](https://github.com/ho-nl/m2-pwa/commit/6c4665b4a00adb1c1d770c458a590f4360be83d8))
-* make sure the fallback loads during idle timing to prevent jank ([dd888e2](https://github.com/ho-nl/m2-pwa/commit/dd888e27b94091233d74ddba1023310b09910f0f))
-* make sure the overlay becomes visible, even if the overlay is scrolled ([1738c98](https://github.com/ho-nl/m2-pwa/commit/1738c982ea84ec2b93daa824c4b8c86ab2a3f5ed))
-* make sure the overlays are rendered correctly on mobile ([48f7050](https://github.com/ho-nl/m2-pwa/commit/48f705060e99b997f5b1db03ccc49f1051a1ed8f))
-* minHeight of page on iOS is sometimes less high than expected ([8a0bc23](https://github.com/ho-nl/m2-pwa/commit/8a0bc234d153d974ac415369483ddabfb5e7fb0c))
-* spacing of LayoutTItle ([7afcd31](https://github.com/ho-nl/m2-pwa/commit/7afcd3163d16e902cf2ff7917f56ee6a8798f55b))
-
+- **framer-next-pages:** do no throw error when framer next pages is recreated
+  ([6c4665b](https://github.com/ho-nl/m2-pwa/commit/6c4665b4a00adb1c1d770c458a590f4360be83d8))
+- make sure the fallback loads during idle timing to prevent jank
+  ([dd888e2](https://github.com/ho-nl/m2-pwa/commit/dd888e27b94091233d74ddba1023310b09910f0f))
+- make sure the overlay becomes visible, even if the overlay is scrolled
+  ([1738c98](https://github.com/ho-nl/m2-pwa/commit/1738c982ea84ec2b93daa824c4b8c86ab2a3f5ed))
+- make sure the overlays are rendered correctly on mobile
+  ([48f7050](https://github.com/ho-nl/m2-pwa/commit/48f705060e99b997f5b1db03ccc49f1051a1ed8f))
+- minHeight of page on iOS is sometimes less high than expected
+  ([8a0bc23](https://github.com/ho-nl/m2-pwa/commit/8a0bc234d153d974ac415369483ddabfb5e7fb0c))
+- spacing of LayoutTItle
+  ([7afcd31](https://github.com/ho-nl/m2-pwa/commit/7afcd3163d16e902cf2ff7917f56ee6a8798f55b))
 
 ### Features
 
-* **framer-next-pages:** automatically create a fallback page when there is no page to render. ([f18a804](https://github.com/ho-nl/m2-pwa/commit/f18a804a228901431f848927844dd9cd324170c1))
-
-
-
-
+- **framer-next-pages:** automatically create a fallback page when there is no page to render.
+  ([f18a804](https://github.com/ho-nl/m2-pwa/commit/f18a804a228901431f848927844dd9cd324170c1))
 
 ## [2.107.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.107.2...@graphcommerce/framer-next-pages@2.107.3) (2021-11-02)
 
-
 ### Bug Fixes
 
-* **framer-next-pages:** prevent back button loop when previous page is the up page of the previous page ([cbdde83](https://github.com/ho-nl/m2-pwa/commit/cbdde83790337bdf4c5f03c907ca6e6e02792e70))
-
-
-
-
+- **framer-next-pages:** prevent back button loop when previous page is the up page of the previous
+  page ([cbdde83](https://github.com/ho-nl/m2-pwa/commit/cbdde83790337bdf4c5f03c907ca6e6e02792e70))
 
 # [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.106.12...@graphcommerce/framer-next-pages@2.107.0) (2021-10-27)
 
-
 ### Features
 
-* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
-
-
-
-
+- **nextjs:** upgraded to nextjs 12
+  ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
 
 ## [2.106.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.106.0...@graphcommerce/framer-next-pages@2.106.2) (2021-09-27)
 
-
 ### Bug Fixes
 
-* ignore example directories when publishing ([620cbb2](https://github.com/ho-nl/m2-pwa/commit/620cbb2d8e68b727b8593e2e45702c4d12276d92))
-* versions ([b8b306c](https://github.com/ho-nl/m2-pwa/commit/b8b306c8f3a13415e441d0593c638ae2a3731cd6))
-
-
-
-
+- ignore example directories when publishing
+  ([620cbb2](https://github.com/ho-nl/m2-pwa/commit/620cbb2d8e68b727b8593e2e45702c4d12276d92))
+- versions
+  ([b8b306c](https://github.com/ho-nl/m2-pwa/commit/b8b306c8f3a13415e441d0593c638ae2a3731cd6))
 
 ## [2.106.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-next-pages@2.106.0...@graphcommerce/framer-next-pages@2.106.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/framer-next-pages
-
-
-
-
 
 # Change Log
 
@@ -159,8 +134,7 @@ All notable changes to this project will be documented in this file. See
   ([59f7b20](https://github.com/ho-nl/m2-pwa/commit/59f7b2047194c3506037fc88d791302c7c4a1a69))
 - edit billing address updating state
   ([ecd9f48](https://github.com/ho-nl/m2-pwa/commit/ecd9f48ce313d8e7a698c06ff29b88231dc50168))
-- **framer-next-pages:** back navigation renders the wrong page, items were
-  reversed
+- **framer-next-pages:** back navigation renders the wrong page, items were reversed
   ([7168fc1](https://github.com/ho-nl/m2-pwa/commit/7168fc1d1daa3920ae401dda0029e35a253068ec))
 - **framer-next-pages:** backSteps returns NaN
   ([31ac95a](https://github.com/ho-nl/m2-pwa/commit/31ac95a75fb166efdc2d52d0aa0e40e45290e6bb))
@@ -174,8 +148,7 @@ All notable changes to this project will be documented in this file. See
   ([4870925](https://github.com/ho-nl/m2-pwa/commit/4870925554cfee3ac94209719d9464b82fce9cc5))
 - **framer-next-pages:** overlay offset fixes
   ([1b45cc8](https://github.com/ho-nl/m2-pwa/commit/1b45cc85412c17a4a02ae6a3bad23808def6cbfc))
-- **framer-next-pages:** prevent unessary rerender when navigating back to a
-  previous page
+- **framer-next-pages:** prevent unessary rerender when navigating back to a previous page
   ([a5568d0](https://github.com/ho-nl/m2-pwa/commit/a5568d00a034ef0686bd36b548af1def93ad1522))
 - **framer-next-pages:** router proxy couldn’t fall back to home
   ([7644698](https://github.com/ho-nl/m2-pwa/commit/76446981898e7573148ad71d496ef5bafc1232b8))
@@ -187,11 +160,9 @@ All notable changes to this project will be documented in this file. See
   ([c2fb164](https://github.com/ho-nl/m2-pwa/commit/c2fb164b342770089b787378a3f79529c36d2152))
 - **framer-sheet:** left/rigth sheet is a little higher than the page
   ([4c4679d](https://github.com/ho-nl/m2-pwa/commit/4c4679d00de1e3306aa0587ad9f9f10df8e2324a))
-- **framer-sheet:** make opacity animation of SheetBackdrop less jarring when
-  dragging fast
+- **framer-sheet:** make opacity animation of SheetBackdrop less jarring when dragging fast
   ([f25b7ce](https://github.com/ho-nl/m2-pwa/commit/f25b7ce2a16a621799a434704ed77b59089808cb))
-- **framer-sheet:** make sure the left/right drawer have more space / better
-  scrollbar
+- **framer-sheet:** make sure the left/right drawer have more space / better scrollbar
   ([226387a](https://github.com/ho-nl/m2-pwa/commit/226387a5e7b9b8a93f9516c97879be959b8072dc))
 - ignore md files from triggering version updates
   ([4f98392](https://github.com/ho-nl/m2-pwa/commit/4f9839250b3a32d3070da5290e5efcc5e2243fba))
@@ -216,16 +187,13 @@ All notable changes to this project will be documented in this file. See
   ([f0b44b4](https://github.com/ho-nl/m2-pwa/commit/f0b44b44a3c4976a35ca3235e305bd5f281f78d7))
 - **framer-next-pages:** added SheetBackdrop component
   ([4981744](https://github.com/ho-nl/m2-pwa/commit/4981744a8bc5f74a0b7d510e0000d3070b388c79))
-- **framer-next-pages:** added useCloseOverlay hook to close multiple steps at
-  once
+- **framer-next-pages:** added useCloseOverlay hook to close multiple steps at once
   ([55b7473](https://github.com/ho-nl/m2-pwa/commit/55b74730e64060c20072bf10f34d346964edc51f))
-- **framer-next-pages:** added usePageRouter().go(-2) functionality to close
-  overlays
+- **framer-next-pages:** added usePageRouter().go(-2) functionality to close overlays
   ([cb177e7](https://github.com/ho-nl/m2-pwa/commit/cb177e7266939b3a6a4f04c03852f024fd2dca3e))
 - **framer-next-pages:** animate drag indicator when resizing height
   ([5b687d1](https://github.com/ho-nl/m2-pwa/commit/5b687d1cf5a04dfa2f499d1335404cd41992a7aa))
-- **framer-next-pages:** animate the SheetBackdrop based on the y-value of the
-  sheet
+- **framer-next-pages:** animate the SheetBackdrop based on the y-value of the sheet
   ([96af2d4](https://github.com/ho-nl/m2-pwa/commit/96af2d4dcab87f952f9d3621a7cce9099f9310f6))
 - **framer-next-pages:** base sheet on container height
   ([b8293e3](https://github.com/ho-nl/m2-pwa/commit/b8293e3762892529d39d3e12032d0450166ae79e))
@@ -237,8 +205,7 @@ All notable changes to this project will be documented in this file. See
   ([7604fc0](https://github.com/ho-nl/m2-pwa/commit/7604fc037d76cefda711b7b6ccb40f14c1ef4c8e))
 - **framer-next-pages:** move example to @graphcommerce/next-config
   ([b801856](https://github.com/ho-nl/m2-pwa/commit/b801856d370804616a986a6a66ba88ae4f193b4b))
-- **framer-next-pages:** usePageDirection to determine which direction the user
-  is navigating
+- **framer-next-pages:** usePageDirection to determine which direction the user is navigating
   ([6769b90](https://github.com/ho-nl/m2-pwa/commit/6769b909486cbcc8bf58d83d13e0ef1b84a7389d))
 - **framer-next-pages:** working on new sheet component
   ([cc6fb11](https://github.com/ho-nl/m2-pwa/commit/cc6fb11b22db59276a3ea32493bf340c02850a2c))
@@ -246,8 +213,7 @@ All notable changes to this project will be documented in this file. See
   ([2cc164e](https://github.com/ho-nl/m2-pwa/commit/2cc164eac4b5022cfdf347a83ea559e26103063f))
 - **framer-sheet:** created separate package that can be implemented
   ([69cc8ce](https://github.com/ho-nl/m2-pwa/commit/69cc8ce3237125335524728a70f4dae050032108))
-- **framer-utils:** created framer-utils and implemented for framer-sheet and
-  framer-next-pages
+- **framer-utils:** created framer-utils and implemented for framer-sheet and framer-next-pages
   ([788bf28](https://github.com/ho-nl/m2-pwa/commit/788bf282d4a38ec5e78ab7244065c540dfc132a1))
 - **image:** introduced completely rewritten Image component
   ([e3413b3](https://github.com/ho-nl/m2-pwa/commit/e3413b3a57392d6571ea64cb8d9c8dca05ea31df))
@@ -265,8 +231,8 @@ All notable changes to this project will be documented in this file. See
   ([9094551](https://github.com/ho-nl/m2-pwa/commit/909455146d159a839fa72046c15332fc763f315f))
 - **playwright:** added new playwright package to enable browser testing
   ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
-- renamed all packages to use [@graphcommerce](https://github.com/graphcommerce)
-  instead of [@reachdigital](https://github.com/reachdigital)
+- renamed all packages to use [@graphcommerce](https://github.com/graphcommerce) instead of
+  [@reachdigital](https://github.com/reachdigital)
   ([491e4ce](https://github.com/ho-nl/m2-pwa/commit/491e4cec9a2686472dac36b79f999257c0811ffe))
 - upgraded to nextjs 11
   ([0053beb](https://github.com/ho-nl/m2-pwa/commit/0053beb7ef597c190add7264256a0eaec35868da))
@@ -335,8 +301,7 @@ All notable changes to this project will be documented in this file. See
 
 - back button behavior
   ([59f7b20](https://github.com/ho-nl/m2-pwa/commit/59f7b2047194c3506037fc88d791302c7c4a1a69))
-- **framer-next-pages:** back navigation renders the wrong page, items were
-  reversed
+- **framer-next-pages:** back navigation renders the wrong page, items were reversed
   ([7168fc1](https://github.com/ho-nl/m2-pwa/commit/7168fc1d1daa3920ae401dda0029e35a253068ec))
 - **framer-next-pages:** backSteps returns NaN
   ([31ac95a](https://github.com/ho-nl/m2-pwa/commit/31ac95a75fb166efdc2d52d0aa0e40e45290e6bb))

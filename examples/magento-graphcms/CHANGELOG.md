@@ -1,1175 +1,1015 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 3.0.0
+
+### Major Changes
+
+- [#1258](https://github.com/ho-nl/m2-pwa/pull/1258)
+  [`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05)
+  Thanks [@paales](https://github.com/paales)! - Upgraded to Material UI 5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05)]:
+  - @graphcommerce/framer-next-pages@3.0.0
+  - @graphcommerce/googleanalytics@2.0.0
+  - @graphcommerce/googlerecaptcha@2.0.0
+  - @graphcommerce/googletagmanager@2.0.0
+  - @graphcommerce/graphcms-ui@3.0.0
+  - @graphcommerce/graphql@3.0.0
+  - @graphcommerce/graphql-mesh@4.0.0
+  - @graphcommerce/image@3.0.0
+  - @graphcommerce/lingui-next@2.0.0
+  - @graphcommerce/magento-cart@4.0.0
+  - @graphcommerce/magento-cart-billing-address@3.0.0
+  - @graphcommerce/magento-cart-checkout@3.0.0
+  - @graphcommerce/magento-cart-coupon@3.0.0
+  - @graphcommerce/magento-cart-email@3.0.0
+  - @graphcommerce/magento-cart-items@3.0.0
+  - @graphcommerce/magento-cart-payment-method@3.0.0
+  - @graphcommerce/magento-cart-shipping-address@3.0.0
+  - @graphcommerce/magento-cart-shipping-method@3.0.0
+  - @graphcommerce/magento-category@4.0.0
+  - @graphcommerce/magento-cms@4.0.0
+  - @graphcommerce/magento-customer@4.0.0
+  - @graphcommerce/magento-customer-account@3.0.0
+  - @graphcommerce/magento-customer-order@3.0.0
+  - @graphcommerce/magento-graphql@3.0.0
+  - @graphcommerce/magento-newsletter@2.0.0
+  - @graphcommerce/magento-payment-braintree@3.0.0
+  - @graphcommerce/magento-payment-included@3.0.0
+  - @graphcommerce/magento-product@4.0.0
+  - @graphcommerce/magento-product-bundle@4.0.0
+  - @graphcommerce/magento-product-configurable@4.0.0
+  - @graphcommerce/magento-product-downloadable@4.0.0
+  - @graphcommerce/magento-product-grouped@3.0.0
+  - @graphcommerce/magento-product-simple@4.0.0
+  - @graphcommerce/magento-product-virtual@4.0.0
+  - @graphcommerce/magento-review@3.0.0
+  - @graphcommerce/magento-search@4.0.0
+  - @graphcommerce/magento-store@4.0.0
+  - @graphcommerce/mollie-magento-payment@3.0.0
+  - @graphcommerce/next-ui@4.0.0
+  - @graphcommerce/react-hook-form@3.0.0
+  - @graphcommerce/eslint-config-pwa@4.0.0
+  - @graphcommerce/next-config@3.0.0
+  - @graphcommerce/typescript-config-pwa@4.0.0
+  - @graphcommerce/prettier-config-pwa@4.0.0
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.145.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.145.1...@graphcommerce/magento-graphcms@2.145.2) (2022-02-11)
 
-
 ### Bug Fixes
 
-* Import of RowColumnOneFragement fixed. ([a3e0956](https://github.com/ho-nl/m2-pwa/commit/a3e09569b8e9cecec1d0d4fa6d63cff279583670))
-* removal of non existing prop. ([8802ab2](https://github.com/ho-nl/m2-pwa/commit/8802ab2f4c9b5463629bcf78875d2f181b8559a1))
-* Removal of UseRichTextStyles passed as prop. This is already handled in de <RichText /> component. ([3803dd8](https://github.com/ho-nl/m2-pwa/commit/3803dd88c5f29be57030026547b2948188551bdb))
-* Removal of UseRichTextStyles passed as prop. This is already handled in de <RichText /> component. ([ae2681b](https://github.com/ho-nl/m2-pwa/commit/ae2681bf95dcc640933b2d872626236cd7b25ceb))
-
-
-
-
+- Import of RowColumnOneFragement fixed.
+  ([a3e0956](https://github.com/ho-nl/m2-pwa/commit/a3e09569b8e9cecec1d0d4fa6d63cff279583670))
+- removal of non existing prop.
+  ([8802ab2](https://github.com/ho-nl/m2-pwa/commit/8802ab2f4c9b5463629bcf78875d2f181b8559a1))
+- Removal of UseRichTextStyles passed as prop. This is already handled in de <RichText /> component.
+  ([3803dd8](https://github.com/ho-nl/m2-pwa/commit/3803dd88c5f29be57030026547b2948188551bdb))
+- Removal of UseRichTextStyles passed as prop. This is already handled in de <RichText /> component.
+  ([ae2681b](https://github.com/ho-nl/m2-pwa/commit/ae2681bf95dcc640933b2d872626236cd7b25ceb))
 
 # [2.145.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.144.9...@graphcommerce/magento-graphcms@2.145.0) (2022-02-07)
 
-
 ### Features
 
-* get cms pages from graphcms instead of Magento ([cd32634](https://github.com/ho-nl/m2-pwa/commit/cd32634e24b7d4b514c7e6df9a5301a39b700d6c))
-
-
-
-
+- get cms pages from graphcms instead of Magento
+  ([cd32634](https://github.com/ho-nl/m2-pwa/commit/cd32634e24b7d4b514c7e6df9a5301a39b700d6c))
 
 ## [2.144.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.144.5...@graphcommerce/magento-graphcms@2.144.6) (2022-01-21)
 
-
 ### Bug Fixes
 
-* prevent layout from breaking when url has params ([9197bf7](https://github.com/ho-nl/m2-pwa/commit/9197bf72c5c3e422d70741cadbc40b19a1ae4936))
-* rename dark to darkmode ([3d83669](https://github.com/ho-nl/m2-pwa/commit/3d83669f2fcce057f088e407cdce8345d0e0c485))
-
-
-
-
+- prevent layout from breaking when url has params
+  ([9197bf7](https://github.com/ho-nl/m2-pwa/commit/9197bf72c5c3e422d70741cadbc40b19a1ae4936))
+- rename dark to darkmode
+  ([3d83669](https://github.com/ho-nl/m2-pwa/commit/3d83669f2fcce057f088e407cdce8345d0e0c485))
 
 ## [2.144.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.144.4...@graphcommerce/magento-graphcms@2.144.5) (2022-01-21)
 
-
 ### Bug Fixes
 
-* darkMode logo ([80455ab](https://github.com/ho-nl/m2-pwa/commit/80455ab1deaad97b3fb92eeebc846e41f39da18f))
-
-
-
-
+- darkMode logo
+  ([80455ab](https://github.com/ho-nl/m2-pwa/commit/80455ab1deaad97b3fb92eeebc846e41f39da18f))
 
 ## [2.144.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.144.2...@graphcommerce/magento-graphcms@2.144.3) (2022-01-20)
 
-
 ### Bug Fixes
 
-* search result label translation ([7e14ff5](https://github.com/ho-nl/m2-pwa/commit/7e14ff5548d86bc6b4f7afd51c259c0b833878f7))
-
-
-
-
+- search result label translation
+  ([7e14ff5](https://github.com/ho-nl/m2-pwa/commit/7e14ff5548d86bc6b4f7afd51c259c0b833878f7))
 
 ## [2.144.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.144.0...@graphcommerce/magento-graphcms@2.144.1) (2022-01-18)
 
-
 ### Bug Fixes
 
-* favicon and manifest ([304d6dd](https://github.com/ho-nl/m2-pwa/commit/304d6dd7769d349b02b06dfdfdc3f9d22a4af081))
-
-
-
-
+- favicon and manifest
+  ([304d6dd](https://github.com/ho-nl/m2-pwa/commit/304d6dd7769d349b02b06dfdfdc3f9d22a4af081))
 
 # [2.144.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.143.1...@graphcommerce/magento-graphcms@2.144.0) (2022-01-17)
 
-
 ### Features
 
-* manifest and favicon ([a82202c](https://github.com/ho-nl/m2-pwa/commit/a82202c0e572f005cbcfca815936af9356eb2767))
-
-
-
-
+- manifest and favicon
+  ([a82202c](https://github.com/ho-nl/m2-pwa/commit/a82202c0e572f005cbcfca815936af9356eb2767))
 
 # [2.143.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.142.2...@graphcommerce/magento-graphcms@2.143.0) (2022-01-04)
 
-
 ### Bug Fixes
 
-* pages would be blank because the locale couldn't properly be loaded ([5fe9ecd](https://github.com/ho-nl/m2-pwa/commit/5fe9ecd204c3f9efddcf95d54464b1b931ef682e))
-
+- pages would be blank because the locale couldn't properly be loaded
+  ([5fe9ecd](https://github.com/ho-nl/m2-pwa/commit/5fe9ecd204c3f9efddcf95d54464b1b931ef682e))
 
 ### Features
 
-* introduced a withTheme hoc to allow theming per route ([55e3fc1](https://github.com/ho-nl/m2-pwa/commit/55e3fc178b385d0ccdc19a5c09a7887be5db14dc))
-
-
-
-
+- introduced a withTheme hoc to allow theming per route
+  ([55e3fc1](https://github.com/ho-nl/m2-pwa/commit/55e3fc178b385d0ccdc19a5c09a7887be5db14dc))
 
 # [2.142.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.141.21...@graphcommerce/magento-graphcms@2.142.0) (2022-01-03)
 
-
 ### Bug Fixes
 
-* make sure spacing of category is only collapsed when there are no child categories or description ([7b6b313](https://github.com/ho-nl/m2-pwa/commit/7b6b3139e9b9db6f7cb96d32a8e9f6ad8ec10612))
-
+- make sure spacing of category is only collapsed when there are no child categories or description
+  ([7b6b313](https://github.com/ho-nl/m2-pwa/commit/7b6b3139e9b9db6f7cb96d32a8e9f6ad8ec10612))
 
 ### Features
 
-* add support for minimal overlay size ([96e508a](https://github.com/ho-nl/m2-pwa/commit/96e508a94e23fe5b3ec523cddeb19b7b70f50034))
-* added support for more positioning options for the overlay ([79eae9e](https://github.com/ho-nl/m2-pwa/commit/79eae9eb39513f5611103c4c745c3db99b11f15a))
-* faster development api, doesn't continuously restart by using a loopback and assuming the graphql API is available over http ([28fbb0f](https://github.com/ho-nl/m2-pwa/commit/28fbb0f38efc5fd52da8536c9a798d39fa9ceec2))
-* **framer-next-pages:** reduce rerenders when navigating to a new page ([5cf3301](https://github.com/ho-nl/m2-pwa/commit/5cf330130bb3527057da015e3c4a6fa295d7262e))
-* when cloning a new project make sure we also have a settings.json ([49644c9](https://github.com/ho-nl/m2-pwa/commit/49644c907f891849fcdd3c1fa37e7c9727168bf3))
-
-
-
-
+- add support for minimal overlay size
+  ([96e508a](https://github.com/ho-nl/m2-pwa/commit/96e508a94e23fe5b3ec523cddeb19b7b70f50034))
+- added support for more positioning options for the overlay
+  ([79eae9e](https://github.com/ho-nl/m2-pwa/commit/79eae9eb39513f5611103c4c745c3db99b11f15a))
+- faster development api, doesn't continuously restart by using a loopback and assuming the graphql
+  API is available over http
+  ([28fbb0f](https://github.com/ho-nl/m2-pwa/commit/28fbb0f38efc5fd52da8536c9a798d39fa9ceec2))
+- **framer-next-pages:** reduce rerenders when navigating to a new page
+  ([5cf3301](https://github.com/ho-nl/m2-pwa/commit/5cf330130bb3527057da015e3c4a6fa295d7262e))
+- when cloning a new project make sure we also have a settings.json
+  ([49644c9](https://github.com/ho-nl/m2-pwa/commit/49644c907f891849fcdd3c1fa37e7c9727168bf3))
 
 ## [2.141.21](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.141.20...@graphcommerce/magento-graphcms@2.141.21) (2021-12-24)
 
-
 ### Bug Fixes
 
-* make sure the filters are aligned properly on mobile ([4bfe978](https://github.com/ho-nl/m2-pwa/commit/4bfe978f095c1b9867608c138eccf3227b18d4e9))
-* make sure the search results have the proper translation ([dc32280](https://github.com/ho-nl/m2-pwa/commit/dc32280daec17f15b42289f5ecd237b5ca5e5eed))
-
-
-
-
+- make sure the filters are aligned properly on mobile
+  ([4bfe978](https://github.com/ho-nl/m2-pwa/commit/4bfe978f095c1b9867608c138eccf3227b18d4e9))
+- make sure the search results have the proper translation
+  ([dc32280](https://github.com/ho-nl/m2-pwa/commit/dc32280daec17f15b42289f5ecd237b5ca5e5eed))
 
 ## [2.141.20](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.141.19...@graphcommerce/magento-graphcms@2.141.20) (2021-12-23)
 
-
 ### Bug Fixes
 
-* **framer-next-pages:** closing is janky, caused by setting pointer-events to none, trying without resetting the pointerevents ([9247fa3](https://github.com/ho-nl/m2-pwa/commit/9247fa312926416802abd68ea04b1e6b52531f2c))
-
-
-
-
+- **framer-next-pages:** closing is janky, caused by setting pointer-events to none, trying without
+  resetting the pointerevents
+  ([9247fa3](https://github.com/ho-nl/m2-pwa/commit/9247fa312926416802abd68ea04b1e6b52531f2c))
 
 ## [2.141.17](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.141.16...@graphcommerce/magento-graphcms@2.141.17) (2021-12-22)
 
-
 ### Bug Fixes
 
-* darkmode would not initialize properly ([2aef061](https://github.com/ho-nl/m2-pwa/commit/2aef0618eedda4302cf83eca23092ed4c1d22bca))
-
-
-
-
+- darkmode would not initialize properly
+  ([2aef061](https://github.com/ho-nl/m2-pwa/commit/2aef0618eedda4302cf83eca23092ed4c1d22bca))
 
 ## [2.141.13](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.141.12...@graphcommerce/magento-graphcms@2.141.13) (2021-12-21)
 
-
 ### Bug Fixes
 
-* **graphql:** make sure we're passing the correct store code to the schema endpoint ([39753f2](https://github.com/ho-nl/m2-pwa/commit/39753f2117ce7ba79dab035c4134e642829e7f18))
-* make sure bundlesize action can run ([64c9f68](https://github.com/ho-nl/m2-pwa/commit/64c9f68f82a573fa704d929d4132e320cb361ffa))
-* make sure the homepage doesn't have a topbar when navigating from overlay to home ([f71f151](https://github.com/ho-nl/m2-pwa/commit/f71f151ae7a0129ae9d9f3f6a106453d79c1a4bb))
-* make sure we're remounting when the store changes ([10756e3](https://github.com/ho-nl/m2-pwa/commit/10756e3eb252f8a91d84534ae024edb382a4ea0d))
-
-
-
-
+- **graphql:** make sure we're passing the correct store code to the schema endpoint
+  ([39753f2](https://github.com/ho-nl/m2-pwa/commit/39753f2117ce7ba79dab035c4134e642829e7f18))
+- make sure bundlesize action can run
+  ([64c9f68](https://github.com/ho-nl/m2-pwa/commit/64c9f68f82a573fa704d929d4132e320cb361ffa))
+- make sure the homepage doesn't have a topbar when navigating from overlay to home
+  ([f71f151](https://github.com/ho-nl/m2-pwa/commit/f71f151ae7a0129ae9d9f3f6a106453d79c1a4bb))
+- make sure we're remounting when the store changes
+  ([10756e3](https://github.com/ho-nl/m2-pwa/commit/10756e3eb252f8a91d84534ae024edb382a4ea0d))
 
 ## [2.141.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.141.9...@graphcommerce/magento-graphcms@2.141.10) (2021-12-20)
 
-
 ### Bug Fixes
 
-* positioning of product review overlay should be left ([0c43bb1](https://github.com/ho-nl/m2-pwa/commit/0c43bb1b585bb05f2d717420735c9cccb433dc5b))
-
-
-
-
+- positioning of product review overlay should be left
+  ([0c43bb1](https://github.com/ho-nl/m2-pwa/commit/0c43bb1b585bb05f2d717420735c9cccb433dc5b))
 
 ## [2.141.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.141.8...@graphcommerce/magento-graphcms@2.141.9) (2021-12-20)
 
-
 ### Bug Fixes
 
-* blog images were to large ([c832b2b](https://github.com/ho-nl/m2-pwa/commit/c832b2b921f41fbb9a4767fa786200a57e1fcb59))
-
-
-
-
+- blog images were to large
+  ([c832b2b](https://github.com/ho-nl/m2-pwa/commit/c832b2b921f41fbb9a4767fa786200a57e1fcb59))
 
 ## [2.141.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.141.7...@graphcommerce/magento-graphcms@2.141.8) (2021-12-20)
 
-
 ### Bug Fixes
 
-* make sure analytics only tracks once on page load ([94def43](https://github.com/ho-nl/m2-pwa/commit/94def43db7075b6b039696612547c6b6ff7c7c6e))
-* make sure we're not loading gogole properties when keys are not given ([8636715](https://github.com/ho-nl/m2-pwa/commit/8636715d61985e0919208ffb64354c3ebb43ed01))
-
-
-
-
+- make sure analytics only tracks once on page load
+  ([94def43](https://github.com/ho-nl/m2-pwa/commit/94def43db7075b6b039696612547c6b6ff7c7c6e))
+- make sure we're not loading gogole properties when keys are not given
+  ([8636715](https://github.com/ho-nl/m2-pwa/commit/8636715d61985e0919208ffb64354c3ebb43ed01))
 
 ## [2.141.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.141.6...@graphcommerce/magento-graphcms@2.141.7) (2021-12-20)
 
-
 ### Reverts
 
-* Revert "fix: build" ([71df800](https://github.com/ho-nl/m2-pwa/commit/71df8009744e606b0753cb4c5e7fe3c3c11d3416))
-
-
-
-
+- Revert "fix: build"
+  ([71df800](https://github.com/ho-nl/m2-pwa/commit/71df8009744e606b0753cb4c5e7fe3c3c11d3416))
 
 ## [2.141.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.141.0...@graphcommerce/magento-graphcms@2.141.1) (2021-12-17)
 
-
 ### Bug Fixes
 
-* darkMode fixes ([7d33d45](https://github.com/ho-nl/m2-pwa/commit/7d33d452ec801632565839b2fdfef0bc4959c14a))
-
-
-
-
+- darkMode fixes
+  ([7d33d45](https://github.com/ho-nl/m2-pwa/commit/7d33d452ec801632565839b2fdfef0bc4959c14a))
 
 # [2.141.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.140.1...@graphcommerce/magento-graphcms@2.141.0) (2021-12-17)
 
-
 ### Bug Fixes
 
-* added various translations ([66c089d](https://github.com/ho-nl/m2-pwa/commit/66c089dc458e2d7b9f0318b2e14d88cb0e6effc8))
-* darkmode handling ([e1c8cf9](https://github.com/ho-nl/m2-pwa/commit/e1c8cf9561d4bd96bec8ca8bb2696e0e12406795))
-* make sure the orders overview and view are shared ([b8b2347](https://github.com/ho-nl/m2-pwa/commit/b8b2347ebd1c42e8a804ddcab255c41ce5deb819))
-
+- added various translations
+  ([66c089d](https://github.com/ho-nl/m2-pwa/commit/66c089dc458e2d7b9f0318b2e14d88cb0e6effc8))
+- darkmode handling
+  ([e1c8cf9](https://github.com/ho-nl/m2-pwa/commit/e1c8cf9561d4bd96bec8ca8bb2696e0e12406795))
+- make sure the orders overview and view are shared
+  ([b8b2347](https://github.com/ho-nl/m2-pwa/commit/b8b2347ebd1c42e8a804ddcab255c41ce5deb819))
 
 ### Features
 
-* **googleanalytics:** created pacakge to support Google Analytics ([308b6df](https://github.com/ho-nl/m2-pwa/commit/308b6df1f216d2bc726c770a9ead039bd114a995))
-
-
-
-
+- **googleanalytics:** created pacakge to support Google Analytics
+  ([308b6df](https://github.com/ho-nl/m2-pwa/commit/308b6df1f216d2bc726c770a9ead039bd114a995))
 
 ## [2.140.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.140.0...@graphcommerce/magento-graphcms@2.140.1) (2021-12-16)
 
-
 ### Bug Fixes
 
-* simplify ButtonLinkList and made  more flexible ([e01cc82](https://github.com/ho-nl/m2-pwa/commit/e01cc825b87abf81d1cb8f9dc976f674b9e8e6d3))
-
-
-
-
+- simplify ButtonLinkList and made more flexible
+  ([e01cc82](https://github.com/ho-nl/m2-pwa/commit/e01cc825b87abf81d1cb8f9dc976f674b9e8e6d3))
 
 # [2.140.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.139.9...@graphcommerce/magento-graphcms@2.140.0) (2021-12-15)
 
-
 ### Bug Fixes
 
-* logo invert ([2c56128](https://github.com/ho-nl/m2-pwa/commit/2c561280e41149ad986fae31df2da8d9f2846962))
-
+- logo invert
+  ([2c56128](https://github.com/ho-nl/m2-pwa/commit/2c561280e41149ad986fae31df2da8d9f2846962))
 
 ### Features
 
-* darkTheme set ([2513bba](https://github.com/ho-nl/m2-pwa/commit/2513bba71dddb9664c135eafd9f3d7b8c5ae0681))
-
-
-
-
+- darkTheme set
+  ([2513bba](https://github.com/ho-nl/m2-pwa/commit/2513bba71dddb9664c135eafd9f3d7b8c5ae0681))
 
 ## [2.139.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.139.8...@graphcommerce/magento-graphcms@2.139.9) (2021-12-15)
 
-
 ### Bug Fixes
 
-* issue where multiple versions of graphql-typed-document-node were used causing build errors ([bd61212](https://github.com/ho-nl/m2-pwa/commit/bd61212d321290239e79ba5e2691c061b21dd422))
-* removed unused postinstall-postinstall package ([365cb32](https://github.com/ho-nl/m2-pwa/commit/365cb32077e7e2e22c1fc0a89eaf3a8ed9d75581))
-
-
-
-
+- issue where multiple versions of graphql-typed-document-node were used causing build errors
+  ([bd61212](https://github.com/ho-nl/m2-pwa/commit/bd61212d321290239e79ba5e2691c061b21dd422))
+- removed unused postinstall-postinstall package
+  ([365cb32](https://github.com/ho-nl/m2-pwa/commit/365cb32077e7e2e22c1fc0a89eaf3a8ed9d75581))
 
 ## [2.139.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.139.7...@graphcommerce/magento-graphcms@2.139.8) (2021-12-13)
 
-
 ### Bug Fixes
 
-* make sure we're using the correct variant ([7fff606](https://github.com/ho-nl/m2-pwa/commit/7fff606390bc63c14cd8c033fbe5138226517869))
-
-
-
-
+- make sure we're using the correct variant
+  ([7fff606](https://github.com/ho-nl/m2-pwa/commit/7fff606390bc63c14cd8c033fbe5138226517869))
 
 ## [2.139.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.139.5...@graphcommerce/magento-graphcms@2.139.6) (2021-12-06)
 
-
 ### Bug Fixes
 
-* bugs ([f7fac90](https://github.com/ho-nl/m2-pwa/commit/f7fac906b4563559ed382165983cde4271f65d01))
-
-
-
-
+- bugs ([f7fac90](https://github.com/ho-nl/m2-pwa/commit/f7fac906b4563559ed382165983cde4271f65d01))
 
 ## [2.139.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.139.0...@graphcommerce/magento-graphcms@2.139.1) (2021-12-03)
 
-
 ### Bug Fixes
 
-* search page ([85cf721](https://github.com/ho-nl/m2-pwa/commit/85cf72130bce4c3d2c392a3745adf05bca8618b1))
-
-
-
-
+- search page
+  ([85cf721](https://github.com/ho-nl/m2-pwa/commit/85cf72130bce4c3d2c392a3745adf05bca8618b1))
 
 # [2.139.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.138.1...@graphcommerce/magento-graphcms@2.139.0) (2021-12-03)
 
-
 ### Bug Fixes
 
-* make sure that pill link buttons get the right background color etc. ([c142b31](https://github.com/ho-nl/m2-pwa/commit/c142b31552417d2296341785994e2f7b35462793))
-* make the headerHeight properly configurable ([c39c942](https://github.com/ho-nl/m2-pwa/commit/c39c942a62a9bb9687ea553be28e37fb49a6b065))
-* missing CssBaseline ([d2a7126](https://github.com/ho-nl/m2-pwa/commit/d2a7126295b99b0446dc31b0cf7c60671a18f976))
-* spacing of LayoutTItle ([7afcd31](https://github.com/ho-nl/m2-pwa/commit/7afcd3163d16e902cf2ff7917f56ee6a8798f55b))
-
+- make sure that pill link buttons get the right background color etc.
+  ([c142b31](https://github.com/ho-nl/m2-pwa/commit/c142b31552417d2296341785994e2f7b35462793))
+- make the headerHeight properly configurable
+  ([c39c942](https://github.com/ho-nl/m2-pwa/commit/c39c942a62a9bb9687ea553be28e37fb49a6b065))
+- missing CssBaseline
+  ([d2a7126](https://github.com/ho-nl/m2-pwa/commit/d2a7126295b99b0446dc31b0cf7c60671a18f976))
+- spacing of LayoutTItle
+  ([7afcd31](https://github.com/ho-nl/m2-pwa/commit/7afcd3163d16e902cf2ff7917f56ee6a8798f55b))
 
 ### Features
 
-* **framer-scroller-sheet:** created package replacing the framer-sheet package ([f9f2e91](https://github.com/ho-nl/m2-pwa/commit/f9f2e9101191f5cb5c4514ceb9534ddeb2476763))
-* **framer-scroller:** get the scrollSnapAlign from the element instead of the body ([ec8c24e](https://github.com/ho-nl/m2-pwa/commit/ec8c24e6d457a3ed1c055b27d7b94be5ed4b6f2c))
-* refactor page shell ([594bdb3](https://github.com/ho-nl/m2-pwa/commit/594bdb32927b797208b2a295bc0db9f9ceb94676))
-* test for scroll snap on body ([12870f6](https://github.com/ho-nl/m2-pwa/commit/12870f60089792f31a1394237079c4fbda86d33c))
-
-
-
-
+- **framer-scroller-sheet:** created package replacing the framer-sheet package
+  ([f9f2e91](https://github.com/ho-nl/m2-pwa/commit/f9f2e9101191f5cb5c4514ceb9534ddeb2476763))
+- **framer-scroller:** get the scrollSnapAlign from the element instead of the body
+  ([ec8c24e](https://github.com/ho-nl/m2-pwa/commit/ec8c24e6d457a3ed1c055b27d7b94be5ed4b6f2c))
+- refactor page shell
+  ([594bdb3](https://github.com/ho-nl/m2-pwa/commit/594bdb32927b797208b2a295bc0db9f9ceb94676))
+- test for scroll snap on body
+  ([12870f6](https://github.com/ho-nl/m2-pwa/commit/12870f60089792f31a1394237079c4fbda86d33c))
 
 # [2.138.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.137.2...@graphcommerce/magento-graphcms@2.138.0) (2021-12-01)
 
-
 ### Bug Fixes
 
-* comma ([a8c2db8](https://github.com/ho-nl/m2-pwa/commit/a8c2db887c9da5bb9a81bc97003f64ef097fb4d4))
-* default borderRadius ([f816d7a](https://github.com/ho-nl/m2-pwa/commit/f816d7a4d4a7c76254b21bf129652d8a7c42ca4f))
-* fontWeights ([7172527](https://github.com/ho-nl/m2-pwa/commit/71725272fe9f0b854d918ae357a668f641bfe8e5))
-* ios zoom bug when using search. Fontsize should always be > 16 ([22abcd4](https://github.com/ho-nl/m2-pwa/commit/22abcd499b152448b3c38f84325debe07d2b9a68))
-* remove Tagmanager, add Recaptcha back ([db1518d](https://github.com/ho-nl/m2-pwa/commit/db1518d8a97ffd2f1f826b85f1162036812762f2))
-* slightly darker bg ([bd210b0](https://github.com/ho-nl/m2-pwa/commit/bd210b0f4a89149c2e912d4e4ce96f3500c22be6))
-
+- comma ([a8c2db8](https://github.com/ho-nl/m2-pwa/commit/a8c2db887c9da5bb9a81bc97003f64ef097fb4d4))
+- default borderRadius
+  ([f816d7a](https://github.com/ho-nl/m2-pwa/commit/f816d7a4d4a7c76254b21bf129652d8a7c42ca4f))
+- fontWeights
+  ([7172527](https://github.com/ho-nl/m2-pwa/commit/71725272fe9f0b854d918ae357a668f641bfe8e5))
+- ios zoom bug when using search. Fontsize should always be > 16
+  ([22abcd4](https://github.com/ho-nl/m2-pwa/commit/22abcd499b152448b3c38f84325debe07d2b9a68))
+- remove Tagmanager, add Recaptcha back
+  ([db1518d](https://github.com/ho-nl/m2-pwa/commit/db1518d8a97ffd2f1f826b85f1162036812762f2))
+- slightly darker bg
+  ([bd210b0](https://github.com/ho-nl/m2-pwa/commit/bd210b0f4a89149c2e912d4e4ce96f3500c22be6))
 
 ### Features
 
-* add title to login form ([563157b](https://github.com/ho-nl/m2-pwa/commit/563157bc7059d0b10d8e93c71b918b816ca45943))
-* borderRadius based on theme.shape.borderRadius ([7c34937](https://github.com/ho-nl/m2-pwa/commit/7c349376cd41a131c628324c299106fdb7e60484))
-* breakpointVal ([0294503](https://github.com/ho-nl/m2-pwa/commit/029450343051cf6995babad9f9b42c7e6ad1094e))
-* closeable menu ([5f94bb5](https://github.com/ho-nl/m2-pwa/commit/5f94bb5644ce1058ec705a8acced71ba2ba95e04))
-* icon for 404 ([ff32915](https://github.com/ho-nl/m2-pwa/commit/ff3291578719cb7105d1045d68a78952b27da7fe))
-* introduce borderRadius ([183afbc](https://github.com/ho-nl/m2-pwa/commit/183afbc8ee269f6694c372b06afdf41302f86c09))
-* responsiveTyp ([6108b61](https://github.com/ho-nl/m2-pwa/commit/6108b6148e76ddbbe2db1614f10aaf88423db5ca))
-* variable font weights ([bfd8142](https://github.com/ho-nl/m2-pwa/commit/bfd8142b96742efd1208556e3c48de382d8d8ceb))
-
-
-
-
+- add title to login form
+  ([563157b](https://github.com/ho-nl/m2-pwa/commit/563157bc7059d0b10d8e93c71b918b816ca45943))
+- borderRadius based on theme.shape.borderRadius
+  ([7c34937](https://github.com/ho-nl/m2-pwa/commit/7c349376cd41a131c628324c299106fdb7e60484))
+- breakpointVal
+  ([0294503](https://github.com/ho-nl/m2-pwa/commit/029450343051cf6995babad9f9b42c7e6ad1094e))
+- closeable menu
+  ([5f94bb5](https://github.com/ho-nl/m2-pwa/commit/5f94bb5644ce1058ec705a8acced71ba2ba95e04))
+- icon for 404
+  ([ff32915](https://github.com/ho-nl/m2-pwa/commit/ff3291578719cb7105d1045d68a78952b27da7fe))
+- introduce borderRadius
+  ([183afbc](https://github.com/ho-nl/m2-pwa/commit/183afbc8ee269f6694c372b06afdf41302f86c09))
+- responsiveTyp
+  ([6108b61](https://github.com/ho-nl/m2-pwa/commit/6108b6148e76ddbbe2db1614f10aaf88423db5ca))
+- variable font weights
+  ([bfd8142](https://github.com/ho-nl/m2-pwa/commit/bfd8142b96742efd1208556e3c48de382d8d8ceb))
 
 ## [2.137.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.137.1...@graphcommerce/magento-graphcms@2.137.2) (2021-11-27)
 
-
 ### Bug Fixes
 
-* correct footer button color ([8cfe444](https://github.com/ho-nl/m2-pwa/commit/8cfe44434a8c37075470927b176c7dabcb9e06ab))
-* nice shadow palette ([8aee834](https://github.com/ho-nl/m2-pwa/commit/8aee8341045320389d794ec127a83c8861a17b2c))
-* reset MuiButton shadow to default ([c0d2ea7](https://github.com/ho-nl/m2-pwa/commit/c0d2ea7601cb16f3443e978b4a0076330317768a))
-* shadows ([bddd006](https://github.com/ho-nl/m2-pwa/commit/bddd0063f520f62ae5f7d1323cdf6a79ec341ac2))
-* shadows ([877f431](https://github.com/ho-nl/m2-pwa/commit/877f4312a1fd4e2fed7375ea7ef1208549c7d892))
-* softer shadows ([7b6664f](https://github.com/ho-nl/m2-pwa/commit/7b6664f8b16ada8f65113bd1f990735b91356650))
-
-
-
-
+- correct footer button color
+  ([8cfe444](https://github.com/ho-nl/m2-pwa/commit/8cfe44434a8c37075470927b176c7dabcb9e06ab))
+- nice shadow palette
+  ([8aee834](https://github.com/ho-nl/m2-pwa/commit/8aee8341045320389d794ec127a83c8861a17b2c))
+- reset MuiButton shadow to default
+  ([c0d2ea7](https://github.com/ho-nl/m2-pwa/commit/c0d2ea7601cb16f3443e978b4a0076330317768a))
+- shadows
+  ([bddd006](https://github.com/ho-nl/m2-pwa/commit/bddd0063f520f62ae5f7d1323cdf6a79ec341ac2))
+- shadows
+  ([877f431](https://github.com/ho-nl/m2-pwa/commit/877f4312a1fd4e2fed7375ea7ef1208549c7d892))
+- softer shadows
+  ([7b6664f](https://github.com/ho-nl/m2-pwa/commit/7b6664f8b16ada8f65113bd1f990735b91356650))
 
 # [2.137.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.136.0...@graphcommerce/magento-graphcms@2.137.0) (2021-11-22)
 
-
 ### Bug Fixes
 
-* consistent mapping ([0b838d0](https://github.com/ho-nl/m2-pwa/commit/0b838d084b0f85c132f49b8d5360c9ecba40054a))
-* revert to SvgImageSimple ([b247c6b](https://github.com/ho-nl/m2-pwa/commit/b247c6b96979bc313e597a8ffe1275b73f38bd6a))
-* use fragment types ([0a06309](https://github.com/ho-nl/m2-pwa/commit/0a0630916e191c59eed402904b9ace6b87831bd8))
-
+- consistent mapping
+  ([0b838d0](https://github.com/ho-nl/m2-pwa/commit/0b838d084b0f85c132f49b8d5360c9ecba40054a))
+- revert to SvgImageSimple
+  ([b247c6b](https://github.com/ho-nl/m2-pwa/commit/b247c6b96979bc313e597a8ffe1275b73f38bd6a))
+- use fragment types
+  ([0a06309](https://github.com/ho-nl/m2-pwa/commit/0a0630916e191c59eed402904b9ace6b87831bd8))
 
 ### Features
 
-* add ReviewSummary component ([b823669](https://github.com/ho-nl/m2-pwa/commit/b823669d32e92238d05cac181c3453a13da49601))
-* style all rating components from ThemedProvider ([bfc7b41](https://github.com/ho-nl/m2-pwa/commit/bfc7b415cb42d1cad4b61644a1c60a6772ebe6b3))
-* use Rating component ([ec54f45](https://github.com/ho-nl/m2-pwa/commit/ec54f4522adb2d330bbdecc2ce032f86f13fb7a6))
-
-
-
-
+- add ReviewSummary component
+  ([b823669](https://github.com/ho-nl/m2-pwa/commit/b823669d32e92238d05cac181c3453a13da49601))
+- style all rating components from ThemedProvider
+  ([bfc7b41](https://github.com/ho-nl/m2-pwa/commit/bfc7b415cb42d1cad4b61644a1c60a6772ebe6b3))
+- use Rating component
+  ([ec54f45](https://github.com/ho-nl/m2-pwa/commit/ec54f4522adb2d330bbdecc2ce032f86f13fb7a6))
 
 # [2.136.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.135.1...@graphcommerce/magento-graphcms@2.136.0) (2021-11-16)
 
-
 ### Features
 
-* legal pages should render as cms page ([8bbd195](https://github.com/ho-nl/m2-pwa/commit/8bbd195bd178c443b0f2afb8abe52503666ead36))
-
-
-
-
+- legal pages should render as cms page
+  ([8bbd195](https://github.com/ho-nl/m2-pwa/commit/8bbd195bd178c443b0f2afb8abe52503666ead36))
 
 # [2.135.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.134.1...@graphcommerce/magento-graphcms@2.135.0) (2021-11-12)
 
-
 ### Bug Fixes
 
-* even more translations ([1a1f988](https://github.com/ho-nl/m2-pwa/commit/1a1f98837c704b978f6b42b619d9c52f540b2d48))
-
+- even more translations
+  ([1a1f988](https://github.com/ho-nl/m2-pwa/commit/1a1f98837c704b978f6b42b619d9c52f540b2d48))
 
 ### Features
 
-* added tons of translations ([9bb0ac7](https://github.com/ho-nl/m2-pwa/commit/9bb0ac709b58df6ea6141e92e4923a5ca9ae2963))
-
-
-
-
+- added tons of translations
+  ([9bb0ac7](https://github.com/ho-nl/m2-pwa/commit/9bb0ac709b58df6ea6141e92e4923a5ca9ae2963))
 
 ## [2.134.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.134.0...@graphcommerce/magento-graphcms@2.134.1) (2021-11-12)
 
-
 ### Bug Fixes
 
-* **account-orders:** empty orders page ([196df0e](https://github.com/ho-nl/m2-pwa/commit/196df0e4ed0e1931a4e6092cc273b70fe26f62c9))
-
-
-
-
+- **account-orders:** empty orders page
+  ([196df0e](https://github.com/ho-nl/m2-pwa/commit/196df0e4ed0e1931a4e6092cc273b70fe26f62c9))
 
 # [2.134.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.133.3...@graphcommerce/magento-graphcms@2.134.0) (2021-11-12)
 
-
 ### Bug Fixes
 
-* back to light theme ([c2d71d2](https://github.com/ho-nl/m2-pwa/commit/c2d71d219680a02eb535c46e15d76af2d1aceab0))
-* checkbox primary color ([a80b097](https://github.com/ho-nl/m2-pwa/commit/a80b0973e3f058236389b69b882bce39a063e898))
-* clean up themeProvider ([6868e71](https://github.com/ho-nl/m2-pwa/commit/6868e71b59a637be8229a2ab49791dd324e02bb9))
-* design ([a095309](https://github.com/ho-nl/m2-pwa/commit/a095309bb3d77228985e08e30f626cd26e878f57))
-* design darkTheme ([9fef7d1](https://github.com/ho-nl/m2-pwa/commit/9fef7d1b12243267761a92b2d3f1ce7254932c81))
-* disable casting for category video's ([8a15770](https://github.com/ho-nl/m2-pwa/commit/8a157704cbd030def66bb15cc70d843818037cdb))
-* disabled svg color ([590e2aa](https://github.com/ho-nl/m2-pwa/commit/590e2aa558c7e6363207cfcbc71a06bde8ca686a))
-* hex for darktheme paper value, so calculations can be made ([c93bb22](https://github.com/ho-nl/m2-pwa/commit/c93bb22ba287c85ad5c27fd5f13d82dbb9a7d16f))
-* icon style ([6b9fea9](https://github.com/ho-nl/m2-pwa/commit/6b9fea9112206bb38b419e8257ad1b2b3fad74b6))
-* MuiChip defaults ([a8ca2c0](https://github.com/ho-nl/m2-pwa/commit/a8ca2c0a90298b0479e864c056958cd49977a7cf))
-* pagination color not primary ([c4e6d4f](https://github.com/ho-nl/m2-pwa/commit/c4e6d4f35d2df7a93fe045bde6c015fbcc5e5089))
-* perfect sized xl image tiles ([9421828](https://github.com/ho-nl/m2-pwa/commit/94218283b266d80dd47349a0538cec08126ed000))
-* remove hiding recaptcha from themeProvider, add to component ([6a49f77](https://github.com/ho-nl/m2-pwa/commit/6a49f77ef9fd22ea66e7acd1322c65ac6426fd3b))
-* remove review/add back button ([d5818e8](https://github.com/ho-nl/m2-pwa/commit/d5818e86268272ed1816c2621eb0def54aacc6bd))
-* searchButton styling ([846e0cd](https://github.com/ho-nl/m2-pwa/commit/846e0cdb76eec7c5baf5fbfc4c501f99ebe59bf5))
-* text color iconBlock and styling ([0f2b0a8](https://github.com/ho-nl/m2-pwa/commit/0f2b0a896b11eafb79ea045c44f0115649a2040e))
-
+- back to light theme
+  ([c2d71d2](https://github.com/ho-nl/m2-pwa/commit/c2d71d219680a02eb535c46e15d76af2d1aceab0))
+- checkbox primary color
+  ([a80b097](https://github.com/ho-nl/m2-pwa/commit/a80b0973e3f058236389b69b882bce39a063e898))
+- clean up themeProvider
+  ([6868e71](https://github.com/ho-nl/m2-pwa/commit/6868e71b59a637be8229a2ab49791dd324e02bb9))
+- design
+  ([a095309](https://github.com/ho-nl/m2-pwa/commit/a095309bb3d77228985e08e30f626cd26e878f57))
+- design darkTheme
+  ([9fef7d1](https://github.com/ho-nl/m2-pwa/commit/9fef7d1b12243267761a92b2d3f1ce7254932c81))
+- disable casting for category video's
+  ([8a15770](https://github.com/ho-nl/m2-pwa/commit/8a157704cbd030def66bb15cc70d843818037cdb))
+- disabled svg color
+  ([590e2aa](https://github.com/ho-nl/m2-pwa/commit/590e2aa558c7e6363207cfcbc71a06bde8ca686a))
+- hex for darktheme paper value, so calculations can be made
+  ([c93bb22](https://github.com/ho-nl/m2-pwa/commit/c93bb22ba287c85ad5c27fd5f13d82dbb9a7d16f))
+- icon style
+  ([6b9fea9](https://github.com/ho-nl/m2-pwa/commit/6b9fea9112206bb38b419e8257ad1b2b3fad74b6))
+- MuiChip defaults
+  ([a8ca2c0](https://github.com/ho-nl/m2-pwa/commit/a8ca2c0a90298b0479e864c056958cd49977a7cf))
+- pagination color not primary
+  ([c4e6d4f](https://github.com/ho-nl/m2-pwa/commit/c4e6d4f35d2df7a93fe045bde6c015fbcc5e5089))
+- perfect sized xl image tiles
+  ([9421828](https://github.com/ho-nl/m2-pwa/commit/94218283b266d80dd47349a0538cec08126ed000))
+- remove hiding recaptcha from themeProvider, add to component
+  ([6a49f77](https://github.com/ho-nl/m2-pwa/commit/6a49f77ef9fd22ea66e7acd1322c65ac6426fd3b))
+- remove review/add back button
+  ([d5818e8](https://github.com/ho-nl/m2-pwa/commit/d5818e86268272ed1816c2621eb0def54aacc6bd))
+- searchButton styling
+  ([846e0cd](https://github.com/ho-nl/m2-pwa/commit/846e0cdb76eec7c5baf5fbfc4c501f99ebe59bf5))
+- text color iconBlock and styling
+  ([0f2b0a8](https://github.com/ho-nl/m2-pwa/commit/0f2b0a896b11eafb79ea045c44f0115649a2040e))
 
 ### Features
 
-* hide recaptcha badge ([18d232d](https://github.com/ho-nl/m2-pwa/commit/18d232d7bbd42575630896fb291d57ed43a2c93d))
-* provide all (different type of) overlays with the default background color ([111fe71](https://github.com/ho-nl/m2-pwa/commit/111fe718fbfddbeef452829e08b574ca46d51345))
-* remove svg stroke definitions, set all to currentColor ([189814f](https://github.com/ho-nl/m2-pwa/commit/189814f822d111c8adc6be1fff65c9a4a4c50c65))
-
-
-
-
+- hide recaptcha badge
+  ([18d232d](https://github.com/ho-nl/m2-pwa/commit/18d232d7bbd42575630896fb291d57ed43a2c93d))
+- provide all (different type of) overlays with the default background color
+  ([111fe71](https://github.com/ho-nl/m2-pwa/commit/111fe718fbfddbeef452829e08b574ca46d51345))
+- remove svg stroke definitions, set all to currentColor
+  ([189814f](https://github.com/ho-nl/m2-pwa/commit/189814f822d111c8adc6be1fff65c9a4a4c50c65))
 
 ## [2.133.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.133.2...@graphcommerce/magento-graphcms@2.133.3) (2021-11-12)
 
-
 ### Bug Fixes
 
-* **minimal-page-shell:** hide logo on mobile minimal page shell ([75f743b](https://github.com/ho-nl/m2-pwa/commit/75f743bad0a0a24826e0836a8af58f5c9589d7db))
-
-
-
-
+- **minimal-page-shell:** hide logo on mobile minimal page shell
+  ([75f743b](https://github.com/ho-nl/m2-pwa/commit/75f743bad0a0a24826e0836a8af58f5c9589d7db))
 
 # [2.133.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.132.3...@graphcommerce/magento-graphcms@2.133.0) (2021-11-11)
 
-
 ### Features
 
-* lingui configuration and integration greatly simplified and fixed ssr ([d8ec22a](https://github.com/ho-nl/m2-pwa/commit/d8ec22a80295af854a4cf6f357c4fb137c5b550d))
-
-
-
-
+- lingui configuration and integration greatly simplified and fixed ssr
+  ([d8ec22a](https://github.com/ho-nl/m2-pwa/commit/d8ec22a80295af854a4cf6f357c4fb137c5b550d))
 
 ## [2.132.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.132.2...@graphcommerce/magento-graphcms@2.132.3) (2021-11-09)
 
-
 ### Bug Fixes
 
-* lingui locales ([738dc33](https://github.com/ho-nl/m2-pwa/commit/738dc336c1590c9deed9b575ecb147f3848a681a))
-
-
-
-
+- lingui locales
+  ([738dc33](https://github.com/ho-nl/m2-pwa/commit/738dc336c1590c9deed9b575ecb147f3848a681a))
 
 ## [2.132.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.132.1...@graphcommerce/magento-graphcms@2.132.2) (2021-11-09)
 
-
 ### Bug Fixes
 
-* **search-button:** add label for accessibility score ([1871e5b](https://github.com/ho-nl/m2-pwa/commit/1871e5b0b264ae4c98ebf3af1d074bb23d4dbbd8))
-
-
-
-
+- **search-button:** add label for accessibility score
+  ([1871e5b](https://github.com/ho-nl/m2-pwa/commit/1871e5b0b264ae4c98ebf3af1d074bb23d4dbbd8))
 
 ## [2.132.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.132.0...@graphcommerce/magento-graphcms@2.132.1) (2021-11-09)
 
-
 ### Bug Fixes
 
-* **full-page-shell-header:** always show logo ([80c760a](https://github.com/ho-nl/m2-pwa/commit/80c760ade6fde88765cd8f13181f61ee70db1081))
-
-
-
-
+- **full-page-shell-header:** always show logo
+  ([80c760a](https://github.com/ho-nl/m2-pwa/commit/80c760ade6fde88765cd8f13181f61ee70db1081))
 
 # [2.132.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.131.11...@graphcommerce/magento-graphcms@2.132.0) (2021-11-09)
 
-
 ### Bug Fixes
 
-* make sure the translations are ran ([9d77807](https://github.com/ho-nl/m2-pwa/commit/9d7780711fc1d66884a7465e18d175a6a1d40abb))
-
+- make sure the translations are ran
+  ([9d77807](https://github.com/ho-nl/m2-pwa/commit/9d7780711fc1d66884a7465e18d175a6a1d40abb))
 
 ### Features
 
-* added dutch translations ([59a4fd9](https://github.com/ho-nl/m2-pwa/commit/59a4fd9d170d9454c443b4723fdf5da0196cec7d))
-* added translations to all pages ([8cf4ecd](https://github.com/ho-nl/m2-pwa/commit/8cf4ecd5db5edfec04ab205aa49f5de433d26579))
-* string localization with [@lingui](https://github.com/lingui) ([0fa6071](https://github.com/ho-nl/m2-pwa/commit/0fa6071d8a5d37a7b81133731986c77d3c5068a0))
-
-
-
-
+- added dutch translations
+  ([59a4fd9](https://github.com/ho-nl/m2-pwa/commit/59a4fd9d170d9454c443b4723fdf5da0196cec7d))
+- added translations to all pages
+  ([8cf4ecd](https://github.com/ho-nl/m2-pwa/commit/8cf4ecd5db5edfec04ab205aa49f5de433d26579))
+- string localization with [@lingui](https://github.com/lingui)
+  ([0fa6071](https://github.com/ho-nl/m2-pwa/commit/0fa6071d8a5d37a7b81133731986c77d3c5068a0))
 
 ## [2.131.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.131.9...@graphcommerce/magento-graphcms@2.131.10) (2021-11-08)
 
-
 ### Bug Fixes
 
-* build ([4b469a8](https://github.com/ho-nl/m2-pwa/commit/4b469a8eb9545c3bcae6f80b2b96cc18d45c2490))
-
-
-
-
+- build ([4b469a8](https://github.com/ho-nl/m2-pwa/commit/4b469a8eb9545c3bcae6f80b2b96cc18d45c2490))
 
 ## [2.131.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.131.8...@graphcommerce/magento-graphcms@2.131.9) (2021-11-08)
 
-
 ### Bug Fixes
 
-* error typos ([d3f5357](https://github.com/ho-nl/m2-pwa/commit/d3f5357ffd840fb236db4e40cb52a324752591fb))
-* **row-product:** additional props ([2b706a3](https://github.com/ho-nl/m2-pwa/commit/2b706a3d438b3fc227a8d2250d0996fed08475c3))
-
-
-
-
+- error typos
+  ([d3f5357](https://github.com/ho-nl/m2-pwa/commit/d3f5357ffd840fb236db4e40cb52a324752591fb))
+- **row-product:** additional props
+  ([2b706a3](https://github.com/ho-nl/m2-pwa/commit/2b706a3d438b3fc227a8d2250d0996fed08475c3))
 
 ## [2.131.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.131.3...@graphcommerce/magento-graphcms@2.131.4) (2021-11-04)
 
-
 ### Bug Fixes
 
-* Checkout button margin consistency ([9fcf7e7](https://github.com/ho-nl/m2-pwa/commit/9fcf7e7d96172448b2d2911771d6bf70ab976594))
-
-
-
-
+- Checkout button margin consistency
+  ([9fcf7e7](https://github.com/ho-nl/m2-pwa/commit/9fcf7e7d96172448b2d2911771d6bf70ab976594))
 
 ## [2.131.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.131.2...@graphcommerce/magento-graphcms@2.131.3) (2021-11-04)
 
-
 ### Bug Fixes
 
-* **blog-item:** image sizes ([1d15c3c](https://github.com/ho-nl/m2-pwa/commit/1d15c3cfc8002fc1b5af1c977199e70130a6bbd4))
-
-
-
-
+- **blog-item:** image sizes
+  ([1d15c3c](https://github.com/ho-nl/m2-pwa/commit/1d15c3cfc8002fc1b5af1c977199e70130a6bbd4))
 
 ## [2.131.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.131.1...@graphcommerce/magento-graphcms@2.131.2) (2021-11-03)
 
-
 ### Bug Fixes
 
-* various accessibility improvements ([47481a9](https://github.com/ho-nl/m2-pwa/commit/47481a9a882ba87968de6dd797557b0b275d75fb))
-
-
-
-
+- various accessibility improvements
+  ([47481a9](https://github.com/ho-nl/m2-pwa/commit/47481a9a882ba87968de6dd797557b0b275d75fb))
 
 ## [2.131.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.131.0...@graphcommerce/magento-graphcms@2.131.1) (2021-11-03)
 
-
 ### Bug Fixes
 
-* logo shouldnt invert, because it depends on the logo if it can be inverted. ([8426b09](https://github.com/ho-nl/m2-pwa/commit/8426b09688c7c77f45f912c56684ad1f378fc263))
-
-
-
-
+- logo shouldnt invert, because it depends on the logo if it can be inverted.
+  ([8426b09](https://github.com/ho-nl/m2-pwa/commit/8426b09688c7c77f45f912c56684ad1f378fc263))
 
 # [2.131.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.130.0...@graphcommerce/magento-graphcms@2.131.0) (2021-11-03)
 
-
 ### Bug Fixes
 
-* **full-page-shell:** show logo on mobile ([abe2af7](https://github.com/ho-nl/m2-pwa/commit/abe2af7001ce9a31ba67a9fa326c50a07fe86135))
-* **logo:** correct props propagation ([968025b](https://github.com/ho-nl/m2-pwa/commit/968025bc0bed4843cce7d11c0ef2740edb2ea02b))
-
+- **full-page-shell:** show logo on mobile
+  ([abe2af7](https://github.com/ho-nl/m2-pwa/commit/abe2af7001ce9a31ba67a9fa326c50a07fe86135))
+- **logo:** correct props propagation
+  ([968025b](https://github.com/ho-nl/m2-pwa/commit/968025bc0bed4843cce7d11c0ef2740edb2ea02b))
 
 ### Features
 
-* **next-ui:** introducing footer component ([a98129b](https://github.com/ho-nl/m2-pwa/commit/a98129b935b9fd45e985f958a60a4ad6b21c880c))
-
-
-
-
+- **next-ui:** introducing footer component
+  ([a98129b](https://github.com/ho-nl/m2-pwa/commit/a98129b935b9fd45e985f958a60a4ad6b21c880c))
 
 # [2.130.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.129.3...@graphcommerce/magento-graphcms@2.130.0) (2021-11-03)
 
-
 ### Bug Fixes
 
-* add x-recaptcha header to apollo link context when using mutations ([380fe52](https://github.com/ho-nl/m2-pwa/commit/380fe52ebd283df034d8a2c6a4f6a3713955bdd3))
-* remove useless check for cartId ([3ed24ab](https://github.com/ho-nl/m2-pwa/commit/3ed24ab18c8a8be882f03111a50790e25f894053))
-* solve issue where headers weren't properly passed to the backend. ([b481630](https://github.com/ho-nl/m2-pwa/commit/b48163028b063cb2cb17870da230019e7f95c58e))
-* **use-form-gql:** context type ([f355495](https://github.com/ho-nl/m2-pwa/commit/f3554951697fe394a76dd75ecf119f038f8d9bbc))
-
+- add x-recaptcha header to apollo link context when using mutations
+  ([380fe52](https://github.com/ho-nl/m2-pwa/commit/380fe52ebd283df034d8a2c6a4f6a3713955bdd3))
+- remove useless check for cartId
+  ([3ed24ab](https://github.com/ho-nl/m2-pwa/commit/3ed24ab18c8a8be882f03111a50790e25f894053))
+- solve issue where headers weren't properly passed to the backend.
+  ([b481630](https://github.com/ho-nl/m2-pwa/commit/b48163028b063cb2cb17870da230019e7f95c58e))
+- **use-form-gql:** context type
+  ([f355495](https://github.com/ho-nl/m2-pwa/commit/f3554951697fe394a76dd75ecf119f038f8d9bbc))
 
 ### Features
 
-* google recaptcha v3 integration ([a9fcc16](https://github.com/ho-nl/m2-pwa/commit/a9fcc16f93951e61378c99a2e183e2d754da1d50))
-
-
-
-
+- google recaptcha v3 integration
+  ([a9fcc16](https://github.com/ho-nl/m2-pwa/commit/a9fcc16f93951e61378c99a2e183e2d754da1d50))
 
 ## [2.129.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.129.0...@graphcommerce/magento-graphcms@2.129.1) (2021-11-02)
 
-
 ### Bug Fixes
 
-* RemoveCoupon Button and fix pill-link style to match buttons ([6838812](https://github.com/ho-nl/m2-pwa/commit/68388123773fb4f79a3e4b1beb7ecca601d7748e))
-
-
-
-
+- RemoveCoupon Button and fix pill-link style to match buttons
+  ([6838812](https://github.com/ho-nl/m2-pwa/commit/68388123773fb4f79a3e4b1beb7ecca601d7748e))
 
 # [2.129.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.128.6...@graphcommerce/magento-graphcms@2.129.0) (2021-11-02)
 
-
 ### Bug Fixes
 
-* darkMode ([c7573de](https://github.com/ho-nl/m2-pwa/commit/c7573de6bb80643b26931c35ac61735539e7fbf0))
-* darkTheme ([df3d326](https://github.com/ho-nl/m2-pwa/commit/df3d326126446c1b92f8e46eff0533bbbe35604f))
-* darkTheme ([a12786f](https://github.com/ho-nl/m2-pwa/commit/a12786f33cf09e974cceb8592ec98439ccbc3fad))
-* darkTheme ([d0517af](https://github.com/ho-nl/m2-pwa/commit/d0517af5a788532c48f567ee3e840986efa26a67))
-* darkTheme ([ae017c1](https://github.com/ho-nl/m2-pwa/commit/ae017c1a1e82f86ee5eb2f67106dac8174950c45))
-* darkTheme, prevent cart total color overlap ([9d4d7aa](https://github.com/ho-nl/m2-pwa/commit/9d4d7aa20ec05f13662efccce99dee10e462bf18))
-* disable google font but keep example ([6daeb07](https://github.com/ho-nl/m2-pwa/commit/6daeb07961581584d19173bc81dea60df3bb5fbf))
-* minimal fontsize > 16px to prevent ios form input zoom ([1324f34](https://github.com/ho-nl/m2-pwa/commit/1324f343b3e9bbbe87ea8b85201ac65fa157c642))
-* no more zoom on ios when focus on inputs ([d9e2dc5](https://github.com/ho-nl/m2-pwa/commit/d9e2dc5569822e106599207cb9120964df5263a0))
-* remove text='bold', make contained button text stronger by default ([cd277c9](https://github.com/ho-nl/m2-pwa/commit/cd277c9f434a4a765eac372467e5a05c822d5512))
-* ReviewChip should only differ from default MuiChip in product grid ([c22a029](https://github.com/ho-nl/m2-pwa/commit/c22a0291afbbc03099fd0487421ff9fd31caf226))
-* transparent MuiChip mobile ([a86d25f](https://github.com/ho-nl/m2-pwa/commit/a86d25ff0dab502f4e42c1a62f72b546bc7375ce))
-
+- darkMode
+  ([c7573de](https://github.com/ho-nl/m2-pwa/commit/c7573de6bb80643b26931c35ac61735539e7fbf0))
+- darkTheme
+  ([df3d326](https://github.com/ho-nl/m2-pwa/commit/df3d326126446c1b92f8e46eff0533bbbe35604f))
+- darkTheme
+  ([a12786f](https://github.com/ho-nl/m2-pwa/commit/a12786f33cf09e974cceb8592ec98439ccbc3fad))
+- darkTheme
+  ([d0517af](https://github.com/ho-nl/m2-pwa/commit/d0517af5a788532c48f567ee3e840986efa26a67))
+- darkTheme
+  ([ae017c1](https://github.com/ho-nl/m2-pwa/commit/ae017c1a1e82f86ee5eb2f67106dac8174950c45))
+- darkTheme, prevent cart total color overlap
+  ([9d4d7aa](https://github.com/ho-nl/m2-pwa/commit/9d4d7aa20ec05f13662efccce99dee10e462bf18))
+- disable google font but keep example
+  ([6daeb07](https://github.com/ho-nl/m2-pwa/commit/6daeb07961581584d19173bc81dea60df3bb5fbf))
+- minimal fontsize > 16px to prevent ios form input zoom
+  ([1324f34](https://github.com/ho-nl/m2-pwa/commit/1324f343b3e9bbbe87ea8b85201ac65fa157c642))
+- no more zoom on ios when focus on inputs
+  ([d9e2dc5](https://github.com/ho-nl/m2-pwa/commit/d9e2dc5569822e106599207cb9120964df5263a0))
+- remove text='bold', make contained button text stronger by default
+  ([cd277c9](https://github.com/ho-nl/m2-pwa/commit/cd277c9f434a4a765eac372467e5a05c822d5512))
+- ReviewChip should only differ from default MuiChip in product grid
+  ([c22a029](https://github.com/ho-nl/m2-pwa/commit/c22a0291afbbc03099fd0487421ff9fd31caf226))
+- transparent MuiChip mobile
+  ([a86d25f](https://github.com/ho-nl/m2-pwa/commit/a86d25ff0dab502f4e42c1a62f72b546bc7375ce))
 
 ### Features
 
-* darkTheme ([968f4f1](https://github.com/ho-nl/m2-pwa/commit/968f4f1360417bf7daa36454c19e6bc5cf53ae90))
-* darkTheme ([3ed6647](https://github.com/ho-nl/m2-pwa/commit/3ed664714670315bc9f20542549724f66cb5052d))
-* easier theme switching and theme dependend button contained backgroundColor ([6ae8565](https://github.com/ho-nl/m2-pwa/commit/6ae856546f139b9ff36d8d9bae1ea47f58981f7c))
-* Mui true Pagination based on Fab ([572fa7b](https://github.com/ho-nl/m2-pwa/commit/572fa7b031b58b6ffdab60c4a50407a53202fa34))
-
-
-
-
+- darkTheme
+  ([968f4f1](https://github.com/ho-nl/m2-pwa/commit/968f4f1360417bf7daa36454c19e6bc5cf53ae90))
+- darkTheme
+  ([3ed6647](https://github.com/ho-nl/m2-pwa/commit/3ed664714670315bc9f20542549724f66cb5052d))
+- easier theme switching and theme dependend button contained backgroundColor
+  ([6ae8565](https://github.com/ho-nl/m2-pwa/commit/6ae856546f139b9ff36d8d9bae1ea47f58981f7c))
+- Mui true Pagination based on Fab
+  ([572fa7b](https://github.com/ho-nl/m2-pwa/commit/572fa7b031b58b6ffdab60c4a50407a53202fa34))
 
 ## [2.128.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.128.5...@graphcommerce/magento-graphcms@2.128.6) (2021-11-02)
 
-
 ### Bug Fixes
 
-* break back button loop ([be2e5ae](https://github.com/ho-nl/m2-pwa/commit/be2e5aefa1e409a97c1ebf94173f4da7ea25386b))
-* **framer-next-pages:** prevent back button loop when previous page is the up page of the previous page ([cbdde83](https://github.com/ho-nl/m2-pwa/commit/cbdde83790337bdf4c5f03c907ca6e6e02792e70))
-* remove up from sheet shell pages ([9fd48e3](https://github.com/ho-nl/m2-pwa/commit/9fd48e34ade47daaff2298d3ff710119a9c6f7b2))
-* **service:** undefined cannot be serialized as json ([7a3d494](https://github.com/ho-nl/m2-pwa/commit/7a3d494a53c6126c66b314227f3894d3bdefb456))
-* typings product pages ([4ac24fc](https://github.com/ho-nl/m2-pwa/commit/4ac24fcba90f98c63181c339634e71bb91d78ebd))
-
-
-
-
+- break back button loop
+  ([be2e5ae](https://github.com/ho-nl/m2-pwa/commit/be2e5aefa1e409a97c1ebf94173f4da7ea25386b))
+- **framer-next-pages:** prevent back button loop when previous page is the up page of the previous
+  page ([cbdde83](https://github.com/ho-nl/m2-pwa/commit/cbdde83790337bdf4c5f03c907ca6e6e02792e70))
+- remove up from sheet shell pages
+  ([9fd48e3](https://github.com/ho-nl/m2-pwa/commit/9fd48e34ade47daaff2298d3ff710119a9c6f7b2))
+- **service:** undefined cannot be serialized as json
+  ([7a3d494](https://github.com/ho-nl/m2-pwa/commit/7a3d494a53c6126c66b314227f3894d3bdefb456))
+- typings product pages
+  ([4ac24fc](https://github.com/ho-nl/m2-pwa/commit/4ac24fcba90f98c63181c339634e71bb91d78ebd))
 
 ## [2.128.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.128.4...@graphcommerce/magento-graphcms@2.128.5) (2021-11-02)
 
-
 ### Bug Fixes
 
-* make sure graphql files are generated for projects ([bc1cf81](https://github.com/ho-nl/m2-pwa/commit/bc1cf8154f1f158934f42d757e26956ed738f128))
-
-
-
-
+- make sure graphql files are generated for projects
+  ([bc1cf81](https://github.com/ho-nl/m2-pwa/commit/bc1cf8154f1f158934f42d757e26956ed738f128))
 
 ## [2.128.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.128.2...@graphcommerce/magento-graphcms@2.128.3) (2021-11-01)
 
-
 ### Bug Fixes
 
-* category page design fixs ([d3fccc2](https://github.com/ho-nl/m2-pwa/commit/d3fccc2a86106b854e9a1fd89040a248fe20c99a))
-
-
-
-
+- category page design fixs
+  ([d3fccc2](https://github.com/ho-nl/m2-pwa/commit/d3fccc2a86106b854e9a1fd89040a248fe20c99a))
 
 ## [2.128.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.128.1...@graphcommerce/magento-graphcms@2.128.2) (2021-10-29)
 
-
 ### Bug Fixes
 
-* spacing of title on category landing on mobile ([8ed3550](https://github.com/ho-nl/m2-pwa/commit/8ed35502fd231d1d6a8e0a282f8961335d9dead3))
-
-
-
-
+- spacing of title on category landing on mobile
+  ([8ed3550](https://github.com/ho-nl/m2-pwa/commit/8ed35502fd231d1d6a8e0a282f8961335d9dead3))
 
 ## [2.128.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.128.0...@graphcommerce/magento-graphcms@2.128.1) (2021-10-28)
 
-
 ### Bug Fixes
 
-* External SVG's can't have alt tags ([1b1414a](https://github.com/ho-nl/m2-pwa/commit/1b1414a782d55d3acf7b0e6bcaa50f2ad5f18f39))
-* sadFace size ([b75dd19](https://github.com/ho-nl/m2-pwa/commit/b75dd19dd49ff95d5f99305637b6687171ebb7d5))
-
-
-
-
+- External SVG's can't have alt tags
+  ([1b1414a](https://github.com/ho-nl/m2-pwa/commit/1b1414a782d55d3acf7b0e6bcaa50f2ad5f18f39))
+- sadFace size
+  ([b75dd19](https://github.com/ho-nl/m2-pwa/commit/b75dd19dd49ff95d5f99305637b6687171ebb7d5))
 
 # [2.128.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.127.2...@graphcommerce/magento-graphcms@2.128.0) (2021-10-28)
 
-
 ### Bug Fixes
 
-* back to using SvgImage for CMS icons ([5c187f6](https://github.com/ho-nl/m2-pwa/commit/5c187f63a1b9cc06e4aa168fae245da3eced7184))
-* base icon size on responsiveVal ([3bbd2a7](https://github.com/ho-nl/m2-pwa/commit/3bbd2a7be4853b284f90603056ae8990e5d62040))
-* blog title size ([9c44d03](https://github.com/ho-nl/m2-pwa/commit/9c44d0349af28192f3f9d7f360b08b0370d3e437))
-* build ([25582a4](https://github.com/ho-nl/m2-pwa/commit/25582a496039c704e75bb969d4fa06c13ee6267d))
-* build, remove unused imports ([af6d72c](https://github.com/ho-nl/m2-pwa/commit/af6d72c6e70f670effb4d9e0c1fd883bf771f99d))
-* colorSecondary for MuiCheckbox ([13a5c5e](https://github.com/ho-nl/m2-pwa/commit/13a5c5e8b8c30eabaafc909b325692d93d65c97b))
-* Correct image sizes fixes layout shift ([30e04ba](https://github.com/ho-nl/m2-pwa/commit/30e04baec1674403be934dbae81e278af72f2382))
-* footer mobile vertical spacing ([a75028e](https://github.com/ho-nl/m2-pwa/commit/a75028e982497fdd74c6d1d51a8ca24e2e1a849c))
-* invert icon on checkout button ([169168d](https://github.com/ho-nl/m2-pwa/commit/169168d1a597ac02a97b1cb160c3c5c0fb0db12a))
-* keep original review chip for now ([9664cd9](https://github.com/ho-nl/m2-pwa/commit/9664cd90801c6776e1c694eec8f393118810a792))
-* max size Swipable ([d980711](https://github.com/ho-nl/m2-pwa/commit/d9807118b7a370f4f8662e55155fda55f420fc9a))
-* remove double icons ([1654e34](https://github.com/ho-nl/m2-pwa/commit/1654e3441911f3c7c1600357f8f8e3032f5ee729))
-* remove unused /view/ about route ([2ea8eb9](https://github.com/ho-nl/m2-pwa/commit/2ea8eb909d25840fde19470f3c5f9b0045178f2f))
-* remove wishlist from mobile menu ([ac003bf](https://github.com/ho-nl/m2-pwa/commit/ac003bf6d4630c88d5684771c2991ec70f4c7a04))
-* revert fontsizes ([0606a44](https://github.com/ho-nl/m2-pwa/commit/0606a44ecda9f1a743f9954e7bd53d20ddfe5802))
-* small design changes ([d9936e9](https://github.com/ho-nl/m2-pwa/commit/d9936e90baab3694066d73216c9ad2941fdbaaa8))
-* smaller logo ([a50196a](https://github.com/ho-nl/m2-pwa/commit/a50196a67941d92b860865740f7cee2ac10ccee9))
-* softer gray ([536fc52](https://github.com/ho-nl/m2-pwa/commit/536fc5257ecbca9db926d59164e1fa1c94627bed))
-* subtitles ([9ef1d8b](https://github.com/ho-nl/m2-pwa/commit/9ef1d8b9079c50340015e482fe6f1bf577610269))
-* SvgImage to SvgImageSimple ([e556c72](https://github.com/ho-nl/m2-pwa/commit/e556c720b299efed185c1d7c3a9b718190d90052))
-* SvgImage to SvgImageSimple ([793fac7](https://github.com/ho-nl/m2-pwa/commit/793fac769f045d283817fe47fbed77d38d282f3c))
-* typo ([b235112](https://github.com/ho-nl/m2-pwa/commit/b235112871815f3e44376eb2186dcd4cd6aef26b))
-* update SvgImage to SvgImageSimple ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
-
+- back to using SvgImage for CMS icons
+  ([5c187f6](https://github.com/ho-nl/m2-pwa/commit/5c187f63a1b9cc06e4aa168fae245da3eced7184))
+- base icon size on responsiveVal
+  ([3bbd2a7](https://github.com/ho-nl/m2-pwa/commit/3bbd2a7be4853b284f90603056ae8990e5d62040))
+- blog title size
+  ([9c44d03](https://github.com/ho-nl/m2-pwa/commit/9c44d0349af28192f3f9d7f360b08b0370d3e437))
+- build ([25582a4](https://github.com/ho-nl/m2-pwa/commit/25582a496039c704e75bb969d4fa06c13ee6267d))
+- build, remove unused imports
+  ([af6d72c](https://github.com/ho-nl/m2-pwa/commit/af6d72c6e70f670effb4d9e0c1fd883bf771f99d))
+- colorSecondary for MuiCheckbox
+  ([13a5c5e](https://github.com/ho-nl/m2-pwa/commit/13a5c5e8b8c30eabaafc909b325692d93d65c97b))
+- Correct image sizes fixes layout shift
+  ([30e04ba](https://github.com/ho-nl/m2-pwa/commit/30e04baec1674403be934dbae81e278af72f2382))
+- footer mobile vertical spacing
+  ([a75028e](https://github.com/ho-nl/m2-pwa/commit/a75028e982497fdd74c6d1d51a8ca24e2e1a849c))
+- invert icon on checkout button
+  ([169168d](https://github.com/ho-nl/m2-pwa/commit/169168d1a597ac02a97b1cb160c3c5c0fb0db12a))
+- keep original review chip for now
+  ([9664cd9](https://github.com/ho-nl/m2-pwa/commit/9664cd90801c6776e1c694eec8f393118810a792))
+- max size Swipable
+  ([d980711](https://github.com/ho-nl/m2-pwa/commit/d9807118b7a370f4f8662e55155fda55f420fc9a))
+- remove double icons
+  ([1654e34](https://github.com/ho-nl/m2-pwa/commit/1654e3441911f3c7c1600357f8f8e3032f5ee729))
+- remove unused /view/ about route
+  ([2ea8eb9](https://github.com/ho-nl/m2-pwa/commit/2ea8eb909d25840fde19470f3c5f9b0045178f2f))
+- remove wishlist from mobile menu
+  ([ac003bf](https://github.com/ho-nl/m2-pwa/commit/ac003bf6d4630c88d5684771c2991ec70f4c7a04))
+- revert fontsizes
+  ([0606a44](https://github.com/ho-nl/m2-pwa/commit/0606a44ecda9f1a743f9954e7bd53d20ddfe5802))
+- small design changes
+  ([d9936e9](https://github.com/ho-nl/m2-pwa/commit/d9936e90baab3694066d73216c9ad2941fdbaaa8))
+- smaller logo
+  ([a50196a](https://github.com/ho-nl/m2-pwa/commit/a50196a67941d92b860865740f7cee2ac10ccee9))
+- softer gray
+  ([536fc52](https://github.com/ho-nl/m2-pwa/commit/536fc5257ecbca9db926d59164e1fa1c94627bed))
+- subtitles
+  ([9ef1d8b](https://github.com/ho-nl/m2-pwa/commit/9ef1d8b9079c50340015e482fe6f1bf577610269))
+- SvgImage to SvgImageSimple
+  ([e556c72](https://github.com/ho-nl/m2-pwa/commit/e556c720b299efed185c1d7c3a9b718190d90052))
+- SvgImage to SvgImageSimple
+  ([793fac7](https://github.com/ho-nl/m2-pwa/commit/793fac769f045d283817fe47fbed77d38d282f3c))
+- typo ([b235112](https://github.com/ho-nl/m2-pwa/commit/b235112871815f3e44376eb2186dcd4cd6aef26b))
+- update SvgImage to SvgImageSimple
+  ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
 
 ### Features
 
-* add routing for /about pages ([6127333](https://github.com/ho-nl/m2-pwa/commit/6127333ed628a561af8b930f4ef5aa299587d0d1))
-* adjust font sizes, bring back h1 as usable style ([6ea3886](https://github.com/ho-nl/m2-pwa/commit/6ea3886f188d8a5567f20292b8ddc6f2877e1ccf))
-* Bring back descriptions ([75f372b](https://github.com/ho-nl/m2-pwa/commit/75f372b9f7c959ac60d436d6c9f469da46820693))
-* button sizes ([8a5126e](https://github.com/ho-nl/m2-pwa/commit/8a5126e05244cab49b4386948e96e260eaa39cf2))
-* cleanup grid, add visual star chip ([0571569](https://github.com/ho-nl/m2-pwa/commit/057156937f603bc399f5f8f8ac2837ff5cfaef28))
-* dynamic icons, update SvgImage uses to SvgImageSimple ([3d3cc0e](https://github.com/ho-nl/m2-pwa/commit/3d3cc0e0336fcde1cce6ba19705f82c1edf9bfc6))
-* enable use of both small and medium chips in design ([4536f96](https://github.com/ho-nl/m2-pwa/commit/4536f96b031734a71faf7c10f94aa5d5da90b9a8))
-* full width category pages ([5f5c264](https://github.com/ho-nl/m2-pwa/commit/5f5c26487e7264fdbbf38ca51c7c453c7f5b6a17))
-* responsive social icons ([aea4c9f](https://github.com/ho-nl/m2-pwa/commit/aea4c9fa245b3dd1357667d015af7f3d86fa9b6a))
-* SALE color is primary ([91ca1d8](https://github.com/ho-nl/m2-pwa/commit/91ca1d8a1d8c4c573747a19175f46953e9bcf7de))
-* set correct font sizes ([9317448](https://github.com/ho-nl/m2-pwa/commit/9317448c94a9fb4408dfbcaa320adccc363964d0))
-* typography, add heading1 styling for cms h2's ([36437f8](https://github.com/ho-nl/m2-pwa/commit/36437f860bd2cdbdbece720ae10873da9fdb02d6))
-
-
-
-
+- add routing for /about pages
+  ([6127333](https://github.com/ho-nl/m2-pwa/commit/6127333ed628a561af8b930f4ef5aa299587d0d1))
+- adjust font sizes, bring back h1 as usable style
+  ([6ea3886](https://github.com/ho-nl/m2-pwa/commit/6ea3886f188d8a5567f20292b8ddc6f2877e1ccf))
+- Bring back descriptions
+  ([75f372b](https://github.com/ho-nl/m2-pwa/commit/75f372b9f7c959ac60d436d6c9f469da46820693))
+- button sizes
+  ([8a5126e](https://github.com/ho-nl/m2-pwa/commit/8a5126e05244cab49b4386948e96e260eaa39cf2))
+- cleanup grid, add visual star chip
+  ([0571569](https://github.com/ho-nl/m2-pwa/commit/057156937f603bc399f5f8f8ac2837ff5cfaef28))
+- dynamic icons, update SvgImage uses to SvgImageSimple
+  ([3d3cc0e](https://github.com/ho-nl/m2-pwa/commit/3d3cc0e0336fcde1cce6ba19705f82c1edf9bfc6))
+- enable use of both small and medium chips in design
+  ([4536f96](https://github.com/ho-nl/m2-pwa/commit/4536f96b031734a71faf7c10f94aa5d5da90b9a8))
+- full width category pages
+  ([5f5c264](https://github.com/ho-nl/m2-pwa/commit/5f5c26487e7264fdbbf38ca51c7c453c7f5b6a17))
+- responsive social icons
+  ([aea4c9f](https://github.com/ho-nl/m2-pwa/commit/aea4c9fa245b3dd1357667d015af7f3d86fa9b6a))
+- SALE color is primary
+  ([91ca1d8](https://github.com/ho-nl/m2-pwa/commit/91ca1d8a1d8c4c573747a19175f46953e9bcf7de))
+- set correct font sizes
+  ([9317448](https://github.com/ho-nl/m2-pwa/commit/9317448c94a9fb4408dfbcaa320adccc363964d0))
+- typography, add heading1 styling for cms h2's
+  ([36437f8](https://github.com/ho-nl/m2-pwa/commit/36437f860bd2cdbdbece720ae10873da9fdb02d6))
 
 # [2.127.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.126.0...@graphcommerce/magento-graphcms@2.127.0) (2021-10-27)
 
-
 ### Bug Fixes
 
-* revert back to babel build for smaller (but slower) builds ([9a127fb](https://github.com/ho-nl/m2-pwa/commit/9a127fb3495070db28d4046e258792988be15f00))
-
+- revert back to babel build for smaller (but slower) builds
+  ([9a127fb](https://github.com/ho-nl/m2-pwa/commit/9a127fb3495070db28d4046e258792988be15f00))
 
 ### Features
 
-* enable swcMinify for faster builds ([5c54f2b](https://github.com/ho-nl/m2-pwa/commit/5c54f2bc13e702be3bd24e4642299d58148f895a))
-* **graphql:** log the graphql operation and variables when an error occurs ([65a7700](https://github.com/ho-nl/m2-pwa/commit/65a77000c0f212eaaa984b2930f57234c90dfdb8))
-* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
-
-
-
-
+- enable swcMinify for faster builds
+  ([5c54f2b](https://github.com/ho-nl/m2-pwa/commit/5c54f2bc13e702be3bd24e4642299d58148f895a))
+- **graphql:** log the graphql operation and variables when an error occurs
+  ([65a7700](https://github.com/ho-nl/m2-pwa/commit/65a77000c0f212eaaa984b2930f57234c90dfdb8))
+- **nextjs:** upgraded to nextjs 12
+  ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
 
 # [2.126.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.125.3...@graphcommerce/magento-graphcms@2.126.0) (2021-10-25)
 
-
 ### Features
 
-* prepare for yarn 3 usage (not actually migrated because vercel doesn't support yarn 3) ([41734be](https://github.com/ho-nl/m2-pwa/commit/41734beaa016bf4c3487b3fbd5a402d8024e173f))
-
-
-
-
+- prepare for yarn 3 usage (not actually migrated because vercel doesn't support yarn 3)
+  ([41734be](https://github.com/ho-nl/m2-pwa/commit/41734beaa016bf4c3487b3fbd5a402d8024e173f))
 
 # [2.125.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.124.0...@graphcommerce/magento-graphcms@2.125.0) (2021-10-21)
 
-
 ### Bug Fixes
 
-* **graphql-mesh:** use a build mesh for production environments ([cd2f318](https://github.com/ho-nl/m2-pwa/commit/cd2f3189383fa9d304bd367334e3f47ca4aa6100))
-
+- **graphql-mesh:** use a build mesh for production environments
+  ([cd2f318](https://github.com/ho-nl/m2-pwa/commit/cd2f3189383fa9d304bd367334e3f47ca4aa6100))
 
 ### Features
 
-* **graphql-mesh:** remove the api project and use a single project 🎉👩‍👩‍👦‍👦 ([ea4ad03](https://github.com/ho-nl/m2-pwa/commit/ea4ad0397d4ff289ef3b3253593fb0914c8c5246))
-
-
-
-
+- **graphql-mesh:** remove the api project and use a single project 🎉👩‍👩‍👦‍👦
+  ([ea4ad03](https://github.com/ho-nl/m2-pwa/commit/ea4ad0397d4ff289ef3b3253593fb0914c8c5246))
 
 # [2.124.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.123.8...@graphcommerce/magento-graphcms@2.124.0) (2021-10-20)
 
-
 ### Features
 
-* **graphql-mesh:** simplified the handler to use less code in the project ([f62b752](https://github.com/ho-nl/m2-pwa/commit/f62b75249492f40c5972deede529a25a17c8a617))
-
-
-
-
+- **graphql-mesh:** simplified the handler to use less code in the project
+  ([f62b752](https://github.com/ho-nl/m2-pwa/commit/f62b75249492f40c5972deede529a25a17c8a617))
 
 ## [2.123.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.123.7...@graphcommerce/magento-graphcms@2.123.8) (2021-10-20)
 
-
 ### Bug Fixes
 
-* spacing below the footer is not nessesary with the new layout ([ffe0ab9](https://github.com/ho-nl/m2-pwa/commit/ffe0ab98823c1f035fcb7d98d147c871cc8a5b91))
-
-
-
-
+- spacing below the footer is not nessesary with the new layout
+  ([ffe0ab9](https://github.com/ho-nl/m2-pwa/commit/ffe0ab98823c1f035fcb7d98d147c871cc8a5b91))
 
 ## [2.123.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.123.5...@graphcommerce/magento-graphcms@2.123.6) (2021-10-19)
 
-
 ### Bug Fixes
 
-* **next-config:** move the @apollo/client __DEV__ env to next-config ([fb1df3f](https://github.com/ho-nl/m2-pwa/commit/fb1df3fe4edbf769afb4149c7beced70bb948be5))
-
-
-
-
+- **next-config:** move the @apollo/client **DEV** env to next-config
+  ([fb1df3f](https://github.com/ho-nl/m2-pwa/commit/fb1df3fe4edbf769afb4149c7beced70bb948be5))
 
 ## [2.123.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.123.0...@graphcommerce/magento-graphcms@2.123.1) (2021-10-19)
 
-
 ### Bug Fixes
 
-* productCopy error ([95a8dbf](https://github.com/ho-nl/m2-pwa/commit/95a8dbf6fa48910ace728da4a200a3847a582899))
-
-
-
-
+- productCopy error
+  ([95a8dbf](https://github.com/ho-nl/m2-pwa/commit/95a8dbf6fa48910ace728da4a200a3847a582899))
 
 # [2.123.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.122.2...@graphcommerce/magento-graphcms@2.123.0) (2021-10-19)
 
-
 ### Features
 
-* **framer-scroller:** better defaults so the Scroller doesn't look broken when providing no props ([b177ce9](https://github.com/ho-nl/m2-pwa/commit/b177ce9570abb9ccfd4eb5cc34e43d157bb4e81a))
-
-
-
-
+- **framer-scroller:** better defaults so the Scroller doesn't look broken when providing no props
+  ([b177ce9](https://github.com/ho-nl/m2-pwa/commit/b177ce9570abb9ccfd4eb5cc34e43d157bb4e81a))
 
 ## [2.122.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.122.0...@graphcommerce/magento-graphcms@2.122.1) (2021-10-18)
 
-
 ### Bug Fixes
 
-* graphql-mesh missing inmemory lru ([6c71c25](https://github.com/ho-nl/m2-pwa/commit/6c71c256911072ace19037616e0ce2ab478bf070))
-
-
-
-
+- graphql-mesh missing inmemory lru
+  ([6c71c25](https://github.com/ho-nl/m2-pwa/commit/6c71c256911072ace19037616e0ce2ab478bf070))
 
 # [2.122.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.121.11...@graphcommerce/magento-graphcms@2.122.0) (2021-10-18)
 
-
 ### Bug Fixes
 
-* **row-product:** import row-product-fragment ([9baca83](https://github.com/ho-nl/m2-pwa/commit/9baca8378b1a19fab8eda98548ed498f8ea69e24))
-* **row-product:** render correct product items ([91509a7](https://github.com/ho-nl/m2-pwa/commit/91509a78de775cd059f67a256dc0107a06a765d8))
-
+- **row-product:** import row-product-fragment
+  ([9baca83](https://github.com/ho-nl/m2-pwa/commit/9baca8378b1a19fab8eda98548ed498f8ea69e24))
+- **row-product:** render correct product items
+  ([91509a7](https://github.com/ho-nl/m2-pwa/commit/91509a78de775cd059f67a256dc0107a06a765d8))
 
 ### Features
 
-* **graphcms:** combined multiple models to bypass model creation limit ([fd6dc14](https://github.com/ho-nl/m2-pwa/commit/fd6dc140cb60c5733dab2e0a43b5df2059e0c739))
-* **row-product:** actually render something ([fba6811](https://github.com/ho-nl/m2-pwa/commit/fba6811d2880cb38196f579fbd1423dfb323654f))
-* **row-product:** allow to render row product variants ([c391c09](https://github.com/ho-nl/m2-pwa/commit/c391c093bc638d14d0630cc441bfc43aca11a51e))
-
-
-
-
+- **graphcms:** combined multiple models to bypass model creation limit
+  ([fd6dc14](https://github.com/ho-nl/m2-pwa/commit/fd6dc140cb60c5733dab2e0a43b5df2059e0c739))
+- **row-product:** actually render something
+  ([fba6811](https://github.com/ho-nl/m2-pwa/commit/fba6811d2880cb38196f579fbd1423dfb323654f))
+- **row-product:** allow to render row product variants
+  ([c391c09](https://github.com/ho-nl/m2-pwa/commit/c391c093bc638d14d0630cc441bfc43aca11a51e))
 
 ## [2.121.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.121.9...@graphcommerce/magento-graphcms@2.121.10) (2021-10-13)
 
-
 ### Bug Fixes
 
-* removed useless backFallbackHref declarations on pages ([5906be2](https://github.com/ho-nl/m2-pwa/commit/5906be224dcd1f7c25ec9b6f3c654944fb42b147))
-
-
-
-
+- removed useless backFallbackHref declarations on pages
+  ([5906be2](https://github.com/ho-nl/m2-pwa/commit/5906be224dcd1f7c25ec9b6f3c654944fb42b147))
 
 ## [2.121.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.121.4...@graphcommerce/magento-graphcms@2.121.5) (2021-10-12)
 
-
 ### Bug Fixes
 
-* **account-signin-page:** remove back button ([47d09b1](https://github.com/ho-nl/m2-pwa/commit/47d09b1f497320a1d1c6a9d9493a490ac2189782))
-* **forgot-password-page:** hide back button ([a64c9a4](https://github.com/ho-nl/m2-pwa/commit/a64c9a449afed033280c46d740a2ee81c89cbeef))
-
-
-
-
+- **account-signin-page:** remove back button
+  ([47d09b1](https://github.com/ho-nl/m2-pwa/commit/47d09b1f497320a1d1c6a9d9493a490ac2189782))
+- **forgot-password-page:** hide back button
+  ([a64c9a4](https://github.com/ho-nl/m2-pwa/commit/a64c9a449afed033280c46d740a2ee81c89cbeef))
 
 ## [2.121.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.121.3...@graphcommerce/magento-graphcms@2.121.4) (2021-10-11)
 
-
 ### Bug Fixes
 
-* **downloadable-product:** import fix ([9efc08c](https://github.com/ho-nl/m2-pwa/commit/9efc08c0c38f71429388bcd42c39865135e898b4))
-* **product-pages:** remove top spacing short descriptions ([7ba7d32](https://github.com/ho-nl/m2-pwa/commit/7ba7d321d8eaf1d323047b87c6c086e9445f5263))
-
-
-
-
+- **downloadable-product:** import fix
+  ([9efc08c](https://github.com/ho-nl/m2-pwa/commit/9efc08c0c38f71429388bcd42c39865135e898b4))
+- **product-pages:** remove top spacing short descriptions
+  ([7ba7d32](https://github.com/ho-nl/m2-pwa/commit/7ba7d321d8eaf1d323047b87c6c086e9445f5263))
 
 # [2.121.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.120.0...@graphcommerce/magento-graphcms@2.121.0) (2021-10-08)
 
-
 ### Features
 
-* made empty success page when no cart is present and removed backbuttons ([1e29450](https://github.com/ho-nl/m2-pwa/commit/1e294500f9f1f2cfeab0de8bd8211ee517af5d8c))
-
-
-
-
+- made empty success page when no cart is present and removed backbuttons
+  ([1e29450](https://github.com/ho-nl/m2-pwa/commit/1e294500f9f1f2cfeab0de8bd8211ee517af5d8c))
 
 # [2.120.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.18...@graphcommerce/magento-graphcms@2.120.0) (2021-10-08)
 
-
 ### Features
 
-* **row-service-options:** show email and telephone number ([8291b25](https://github.com/ho-nl/m2-pwa/commit/8291b25b6e408c480eedbc5aa1353a99785e4df5))
-
-
-
-
+- **row-service-options:** show email and telephone number
+  ([8291b25](https://github.com/ho-nl/m2-pwa/commit/8291b25b6e408c480eedbc5aa1353a99785e4df5))
 
 ## [2.119.18](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.17...@graphcommerce/magento-graphcms@2.119.18) (2021-10-07)
 
-
 ### Bug Fixes
 
-* make sure if no payment method is filled in we get an error shown ([a203e57](https://github.com/ho-nl/m2-pwa/commit/a203e570caad0732427a178e8e8b10b4a15d676b))
-
-
-
-
+- make sure if no payment method is filled in we get an error shown
+  ([a203e57](https://github.com/ho-nl/m2-pwa/commit/a203e570caad0732427a178e8e8b10b4a15d676b))
 
 ## [2.119.17](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.16...@graphcommerce/magento-graphcms@2.119.17) (2021-10-07)
 
-
 ### Bug Fixes
 
-* replace __DEV__ with proper variable for optimizing the bundle size ([9b03209](https://github.com/ho-nl/m2-pwa/commit/9b032095f618846d132c00b8dc14fbb1b09c6ed8))
-* try to define the __DEV__ variable for better tree shaking ([465125d](https://github.com/ho-nl/m2-pwa/commit/465125dff36ac4d269f74ce3598d5257c3c1d801))
-
-
-
-
+- replace **DEV** with proper variable for optimizing the bundle size
+  ([9b03209](https://github.com/ho-nl/m2-pwa/commit/9b032095f618846d132c00b8dc14fbb1b09c6ed8))
+- try to define the **DEV** variable for better tree shaking
+  ([465125d](https://github.com/ho-nl/m2-pwa/commit/465125dff36ac4d269f74ce3598d5257c3c1d801))
 
 ## [2.119.16](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.15...@graphcommerce/magento-graphcms@2.119.16) (2021-10-06)
 
-
 ### Bug Fixes
 
-* remove default orientation ([2260d03](https://github.com/ho-nl/m2-pwa/commit/2260d0312196a46171580d00d0ade4a3e7efa9e7))
-
-
-
-
+- remove default orientation
+  ([2260d03](https://github.com/ho-nl/m2-pwa/commit/2260d0312196a46171580d00d0ade4a3e7efa9e7))
 
 ## [2.119.15](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.14...@graphcommerce/magento-graphcms@2.119.15) (2021-10-06)
 
-
 ### Bug Fixes
 
-* **cart-fab:** box shadow in safari ([4eb316d](https://github.com/ho-nl/m2-pwa/commit/4eb316dd0f2ab7ee2806a3acdb306af1eb72854b))
-
-
-
-
+- **cart-fab:** box shadow in safari
+  ([4eb316d](https://github.com/ho-nl/m2-pwa/commit/4eb316dd0f2ab7ee2806a3acdb306af1eb72854b))
 
 ## [2.119.13](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.12...@graphcommerce/magento-graphcms@2.119.13) (2021-10-04)
 
-
 ### Bug Fixes
 
-* **blog:** use app shell title ([987bb15](https://github.com/ho-nl/m2-pwa/commit/987bb157c4064141b1c2978935e66cf47ae24ff0))
-* **checkout-success:** go back to empty cart ([17af765](https://github.com/ho-nl/m2-pwa/commit/17af76504084e90d5a57ab42788155bcace3187d))
-* **checkout-success:** remove clear current cart id ([aa15065](https://github.com/ho-nl/m2-pwa/commit/aa150655e1ee4dc70f0330cf6a7b58e9a00d1ac0))
-
-
-
-
+- **blog:** use app shell title
+  ([987bb15](https://github.com/ho-nl/m2-pwa/commit/987bb157c4064141b1c2978935e66cf47ae24ff0))
+- **checkout-success:** go back to empty cart
+  ([17af765](https://github.com/ho-nl/m2-pwa/commit/17af76504084e90d5a57ab42788155bcace3187d))
+- **checkout-success:** remove clear current cart id
+  ([aa15065](https://github.com/ho-nl/m2-pwa/commit/aa150655e1ee4dc70f0330cf6a7b58e9a00d1ac0))
 
 ## [2.119.12](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.11...@graphcommerce/magento-graphcms@2.119.12) (2021-10-04)
 
-
 ### Bug Fixes
 
-* **full-page-shell:** header height consistency on mobile ([a18f7a3](https://github.com/ho-nl/m2-pwa/commit/a18f7a3f22b6b1b8e7029d17b2086827bcee48f2))
-* **sheet-shell:** mobile border bottom overlaps text ([54a50d3](https://github.com/ho-nl/m2-pwa/commit/54a50d335ade33a97d2c33ce68d62bfcc37f8f2e))
-
-
-
-
+- **full-page-shell:** header height consistency on mobile
+  ([a18f7a3](https://github.com/ho-nl/m2-pwa/commit/a18f7a3f22b6b1b8e7029d17b2086827bcee48f2))
+- **sheet-shell:** mobile border bottom overlaps text
+  ([54a50d3](https://github.com/ho-nl/m2-pwa/commit/54a50d335ade33a97d2c33ce68d62bfcc37f8f2e))
 
 ## [2.119.11](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.10...@graphcommerce/magento-graphcms@2.119.11) (2021-10-04)
 
-
 ### Bug Fixes
 
-* **service:** align title ([c1d749c](https://github.com/ho-nl/m2-pwa/commit/c1d749c0ed6c8600085afd2d102c61771e2afc70))
-
-
-
-
+- **service:** align title
+  ([c1d749c](https://github.com/ho-nl/m2-pwa/commit/c1d749c0ed6c8600085afd2d102c61771e2afc70))
 
 ## [2.119.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.8...@graphcommerce/magento-graphcms@2.119.9) (2021-09-30)
 
-
 ### Bug Fixes
 
-* dependency cycle issues causes release version issues ([f9d82e3](https://github.com/ho-nl/m2-pwa/commit/f9d82e3bf152acaf90f9d5328bc3d020ca1c53d8))
-
-
-
-
+- dependency cycle issues causes release version issues
+  ([f9d82e3](https://github.com/ho-nl/m2-pwa/commit/f9d82e3bf152acaf90f9d5328bc3d020ca1c53d8))
 
 ## [2.119.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.2...@graphcommerce/magento-graphcms@2.119.3) (2021-09-29)
 
-
 ### Bug Fixes
 
-* make sure the mollie module doesn't start with magento- to prevent building from node moduels ([ed406b9](https://github.com/ho-nl/m2-pwa/commit/ed406b9f56bd8cb5df0463cc50e4b1e9a728d4ca))
-
-
-
-
+- make sure the mollie module doesn't start with magento- to prevent building from node moduels
+  ([ed406b9](https://github.com/ho-nl/m2-pwa/commit/ed406b9f56bd8cb5df0463cc50e4b1e9a728d4ca))
 
 ## [2.119.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.119.1...@graphcommerce/magento-graphcms@2.119.2) (2021-09-29)
 
-
 ### Bug Fixes
 
-* when deploying from inside the monorepo we need to build the other packages as well ([93b2491](https://github.com/ho-nl/m2-pwa/commit/93b2491d8b17bdd03962db532def4a91b35019f6))
-
-
-
-
+- when deploying from inside the monorepo we need to build the other packages as well
+  ([93b2491](https://github.com/ho-nl/m2-pwa/commit/93b2491d8b17bdd03962db532def4a91b35019f6))
 
 # [2.119.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.118.0...@graphcommerce/magento-graphcms@2.119.0) (2021-09-28)
 
-
 ### Features
 
-* created withYarn1Scopes functionality so we don't rely on actual workspaces ([7e491ca](https://github.com/ho-nl/m2-pwa/commit/7e491ca2276028a8587f6cd88b98ee451755c3d0))
-
-
-
-
+- created withYarn1Scopes functionality so we don't rely on actual workspaces
+  ([7e491ca](https://github.com/ho-nl/m2-pwa/commit/7e491ca2276028a8587f6cd88b98ee451755c3d0))
 
 # [2.118.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.117.4...@graphcommerce/magento-graphcms@2.118.0) (2021-09-28)
 
-
 ### Bug Fixes
 
-* add to cart button ([8a69454](https://github.com/ho-nl/m2-pwa/commit/8a69454b1372a563020e1ef1b7c50363b8d29717))
-
+- add to cart button
+  ([8a69454](https://github.com/ho-nl/m2-pwa/commit/8a69454b1372a563020e1ef1b7c50363b8d29717))
 
 ### Features
 
-* check if NEXT_PUBLIC_GRAPHQL_ENDPOINT exists ([71460bd](https://github.com/ho-nl/m2-pwa/commit/71460bdc2abb524c24fed0a6d5d3651643ef9956))
-
-
-
-
+- check if NEXT_PUBLIC_GRAPHQL_ENDPOINT exists
+  ([71460bd](https://github.com/ho-nl/m2-pwa/commit/71460bdc2abb524c24fed0a6d5d3651643ef9956))
 
 ## [2.117.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.117.3...@graphcommerce/magento-graphcms@2.117.4) (2021-09-27)
 
-
 ### Bug Fixes
 
-* build packages before releasing ([c4761cf](https://github.com/ho-nl/m2-pwa/commit/c4761cf6d1810c140fd56f6eac8fca922f8c0edc))
-
-
-
-
+- build packages before releasing
+  ([c4761cf](https://github.com/ho-nl/m2-pwa/commit/c4761cf6d1810c140fd56f6eac8fca922f8c0edc))
 
 ## [2.117.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.117.2...@graphcommerce/magento-graphcms@2.117.3) (2021-09-27)
 
-
 ### Bug Fixes
 
-* add warnings to next.config.js when .env variables are missing ([d9dffec](https://github.com/ho-nl/m2-pwa/commit/d9dffec8ebc9cb1c70ca5591cad5e42c9bbe30e6))
-
-
-
-
+- add warnings to next.config.js when .env variables are missing
+  ([d9dffec](https://github.com/ho-nl/m2-pwa/commit/d9dffec8ebc9cb1c70ca5591cad5e42c9bbe30e6))
 
 ## [2.117.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.117.0...@graphcommerce/magento-graphcms@2.117.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/magento-graphcms
 
-
-
-
-
 # 2.117.0 (2021-09-27)
-
 
 ### Bug Fixes
 
-* added product description to all product types ([7c0fcf5](https://github.com/ho-nl/m2-pwa/commit/7c0fcf552f8a937e54fde209f0a351d6e342274b))
-
+- added product description to all product types
+  ([7c0fcf5](https://github.com/ho-nl/m2-pwa/commit/7c0fcf552f8a937e54fde209f0a351d6e342274b))
 
 ### Features
 
-* rename soxbase to magento-graphcms ([e363435](https://github.com/ho-nl/m2-pwa/commit/e3634350bffec27221f9b3d016789b2e5eda298d))
-
-
-
-
+- rename soxbase to magento-graphcms
+  ([e363435](https://github.com/ho-nl/m2-pwa/commit/e3634350bffec27221f9b3d016789b2e5eda298d))
 
 # Change Log
 
@@ -1444,8 +1284,7 @@ All notable changes to this project will be documented in this file. See
   ([931d7fd](https://github.com/ho-nl/m2-pwa/commit/931d7fdcf0faa9d2264899b72e564138215b6bd8))
 - replace captionOldOld with overline
   ([c19bc8a](https://github.com/ho-nl/m2-pwa/commit/c19bc8aee829432a8c72d0d4bc9d266110af65ab))
-- **theme:** make breakpoints more in line with default material ui, only make
-  lg/xl larger
+- **theme:** make breakpoints more in line with default material ui, only make lg/xl larger
   ([a061f5e](https://github.com/ho-nl/m2-pwa/commit/a061f5eda78a581d3ea0db1a8b071becd147667d))
 
 ### Features
@@ -1499,8 +1338,7 @@ All notable changes to this project will be documented in this file. See
 
 ### Bug Fixes
 
-- remove magento-category package from magento-product solving a circular
-  dependency
+- remove magento-category package from magento-product solving a circular dependency
   ([7379e6e](https://github.com/ho-nl/m2-pwa/commit/7379e6ede4829392b35008c17743181d9cac0636))
 
 # [2.104.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-graphcms@2.103.2...@graphcommerce/magento-graphcms@2.104.0) (2021-07-29)
@@ -1578,8 +1416,7 @@ All notable changes to this project will be documented in this file. See
   ([1eb2dc9](https://github.com/ho-nl/m2-pwa/commit/1eb2dc94f191f3fb29a470b06a21b1c3bab7744b))
 - **content-header:** icon sizes
   ([a037ec3](https://github.com/ho-nl/m2-pwa/commit/a037ec3dc3c87d54bb8aea0d2d6b78c05d9afc63))
-- demo
-  ([0f22408](https://github.com/ho-nl/m2-pwa/commit/0f22408a274721c949c6009362e46f7ffe3d2d90))
+- demo ([0f22408](https://github.com/ho-nl/m2-pwa/commit/0f22408a274721c949c6009362e46f7ffe3d2d90))
 - header spacing
   ([967573a](https://github.com/ho-nl/m2-pwa/commit/967573a12f3651f2be47e4630dab737ccf8bf498))
 - only cart should be fixed on scroll

@@ -1,187 +1,181 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 3.0.0
+
+### Major Changes
+
+- [#1258](https://github.com/ho-nl/m2-pwa/pull/1258)
+  [`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05)
+  Thanks [@paales](https://github.com/paales)! - Upgraded to Material UI 5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05)]:
+  - @graphcommerce/framer-scroller@2.0.0
+  - @graphcommerce/graphql@3.0.0
+  - @graphcommerce/image@3.0.0
+  - @graphcommerce/magento-cart@4.0.0
+  - @graphcommerce/magento-store@4.0.0
+  - @graphcommerce/next-ui@4.0.0
+  - @graphcommerce/react-hook-form@3.0.0
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [2.111.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.110.20...@graphcommerce/magento-cart-payment-method@2.111.0) (2021-11-12)
 
-
 ### Bug Fixes
 
-* even more translations ([1a1f988](https://github.com/ho-nl/m2-pwa/commit/1a1f98837c704b978f6b42b619d9c52f540b2d48))
-
+- even more translations
+  ([1a1f988](https://github.com/ho-nl/m2-pwa/commit/1a1f98837c704b978f6b42b619d9c52f540b2d48))
 
 ### Features
 
-* added tons of translations ([9bb0ac7](https://github.com/ho-nl/m2-pwa/commit/9bb0ac709b58df6ea6141e92e4923a5ca9ae2963))
-
-
-
-
+- added tons of translations
+  ([9bb0ac7](https://github.com/ho-nl/m2-pwa/commit/9bb0ac709b58df6ea6141e92e4923a5ca9ae2963))
 
 ## [2.110.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.110.6...@graphcommerce/magento-cart-payment-method@2.110.7) (2021-11-04)
 
-
 ### Bug Fixes
 
-* remove hardcoded fontSize ([e4e09e1](https://github.com/ho-nl/m2-pwa/commit/e4e09e11baeb8edeff634550b8cdb88571d96911))
-
-
-
-
+- remove hardcoded fontSize
+  ([e4e09e1](https://github.com/ho-nl/m2-pwa/commit/e4e09e11baeb8edeff634550b8cdb88571d96911))
 
 # [2.110.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.109.1...@graphcommerce/magento-cart-payment-method@2.110.0) (2021-11-02)
 
-
 ### Features
 
-* shipping methods scroller ([3cc4413](https://github.com/ho-nl/m2-pwa/commit/3cc441320d2a3dd003c499be358a118a17e528c3))
-
-
-
-
+- shipping methods scroller
+  ([3cc4413](https://github.com/ho-nl/m2-pwa/commit/3cc441320d2a3dd003c499be358a118a17e528c3))
 
 # [2.109.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.108.8...@graphcommerce/magento-cart-payment-method@2.109.0) (2021-11-02)
 
-
 ### Features
 
-* darkTheme ([968f4f1](https://github.com/ho-nl/m2-pwa/commit/968f4f1360417bf7daa36454c19e6bc5cf53ae90))
-
-
-
-
+- darkTheme
+  ([968f4f1](https://github.com/ho-nl/m2-pwa/commit/968f4f1360417bf7daa36454c19e6bc5cf53ae90))
 
 ## [2.108.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.108.3...@graphcommerce/magento-cart-payment-method@2.108.4) (2021-10-28)
 
-
 ### Bug Fixes
 
-* External SVG's can't have alt tags ([1b1414a](https://github.com/ho-nl/m2-pwa/commit/1b1414a782d55d3acf7b0e6bcaa50f2ad5f18f39))
-
-
-
-
+- External SVG's can't have alt tags
+  ([1b1414a](https://github.com/ho-nl/m2-pwa/commit/1b1414a782d55d3acf7b0e6bcaa50f2ad5f18f39))
 
 ## [2.108.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.108.2...@graphcommerce/magento-cart-payment-method@2.108.3) (2021-10-28)
 
-
 ### Bug Fixes
 
-* update SvgImage to SvgImageSimple ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
-
-
-
-
+- update SvgImage to SvgImageSimple
+  ([f116543](https://github.com/ho-nl/m2-pwa/commit/f116543730853fa9782abff0ccacee7032e85789))
 
 # [2.108.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.107.6...@graphcommerce/magento-cart-payment-method@2.108.0) (2021-10-27)
 
-
 ### Features
 
-* **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
-
-
-
-
+- **nextjs:** upgraded to nextjs 12
+  ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
 
 # [2.107.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.106.16...@graphcommerce/magento-cart-payment-method@2.107.0) (2021-10-19)
 
-
 ### Features
 
-* **framer-scroller:** better defaults so the Scroller doesn't look broken when providing no props ([b177ce9](https://github.com/ho-nl/m2-pwa/commit/b177ce9570abb9ccfd4eb5cc34e43d157bb4e81a))
-
-
-
-
+- **framer-scroller:** better defaults so the Scroller doesn't look broken when providing no props
+  ([b177ce9](https://github.com/ho-nl/m2-pwa/commit/b177ce9570abb9ccfd4eb5cc34e43d157bb4e81a))
 
 ## [2.106.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.106.4...@graphcommerce/magento-cart-payment-method@2.106.5) (2021-10-08)
 
-
 ### Bug Fixes
 
-*  make sure we can useCartLock on the success page ([139349a](https://github.com/ho-nl/m2-pwa/commit/139349a73836c0c58c5d8000a801c912dbe23b3b))
-
-
-
-
+- make sure we can useCartLock on the success page
+  ([139349a](https://github.com/ho-nl/m2-pwa/commit/139349a73836c0c58c5d8000a801c912dbe23b3b))
 
 ## [2.106.4](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.106.3...@graphcommerce/magento-cart-payment-method@2.106.4) (2021-10-07)
 
-
 ### Bug Fixes
 
-* make sure if no payment method is filled in we get an error shown ([a203e57](https://github.com/ho-nl/m2-pwa/commit/a203e570caad0732427a178e8e8b10b4a15d676b))
-
-
-
-
+- make sure if no payment method is filled in we get an error shown
+  ([a203e57](https://github.com/ho-nl/m2-pwa/commit/a203e570caad0732427a178e8e8b10b4a15d676b))
 
 # [2.106.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.105.11...@graphcommerce/magento-cart-payment-method@2.106.0) (2021-10-04)
 
-
 ### Features
 
-* sort payment methods by availability ([52f5d45](https://github.com/ho-nl/m2-pwa/commit/52f5d450a7a2fdec0c7eea9cd5d48336cb304138))
-
-
-
-
+- sort payment methods by availability
+  ([52f5d45](https://github.com/ho-nl/m2-pwa/commit/52f5d450a7a2fdec0c7eea9cd5d48336cb304138))
 
 ## [2.105.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.105.0...@graphcommerce/magento-cart-payment-method@2.105.1) (2021-09-27)
 
 **Note:** Version bump only for package @graphcommerce/magento-cart-payment-method
 
-
-
-
-
 # 2.105.0 (2021-09-27)
-
 
 ### Bug Fixes
 
-* **checkout:** purchaseorder and other build in methods wouldnt properly submit ([331cb8e](https://github.com/ho-nl/m2-pwa/commit/331cb8e2bed58c14cd41fceeab03e2cdfbe7e6a9))
-* do not use ToggleButtonGroup, only use the ToggleButton ([5172f70](https://github.com/ho-nl/m2-pwa/commit/5172f709ee26122b0a8700afb4325f23cb9ba9b9))
-* ignore md files from triggering version updates ([4f98392](https://github.com/ho-nl/m2-pwa/commit/4f9839250b3a32d3070da5290e5efcc5e2243fba))
-* implement next-ui barrel imports ([75bea70](https://github.com/ho-nl/m2-pwa/commit/75bea703dba898f18a2a1dfa3243ebd0a4e6f0e1))
-* paymentDone removed in favor of a more simple clearCart method ([5314f77](https://github.com/ho-nl/m2-pwa/commit/5314f7752c2f75a55dcd926bfc26607124561e5d))
-* playwright can't find the place order button ([b1fda5b](https://github.com/ho-nl/m2-pwa/commit/b1fda5b3e403dad621aba8ed895427f2166bc985))
-* **playwright:** checkout button was renamed ([09e5b79](https://github.com/ho-nl/m2-pwa/commit/09e5b79333708cfac04232d8071d1dad72968297))
-* rename NextButton to Button, change imports ([976adb0](https://github.com/ho-nl/m2-pwa/commit/976adb0bf906310d1efce888dcc9be1e28ce0f1b))
-
+- **checkout:** purchaseorder and other build in methods wouldnt properly submit
+  ([331cb8e](https://github.com/ho-nl/m2-pwa/commit/331cb8e2bed58c14cd41fceeab03e2cdfbe7e6a9))
+- do not use ToggleButtonGroup, only use the ToggleButton
+  ([5172f70](https://github.com/ho-nl/m2-pwa/commit/5172f709ee26122b0a8700afb4325f23cb9ba9b9))
+- ignore md files from triggering version updates
+  ([4f98392](https://github.com/ho-nl/m2-pwa/commit/4f9839250b3a32d3070da5290e5efcc5e2243fba))
+- implement next-ui barrel imports
+  ([75bea70](https://github.com/ho-nl/m2-pwa/commit/75bea703dba898f18a2a1dfa3243ebd0a4e6f0e1))
+- paymentDone removed in favor of a more simple clearCart method
+  ([5314f77](https://github.com/ho-nl/m2-pwa/commit/5314f7752c2f75a55dcd926bfc26607124561e5d))
+- playwright can't find the place order button
+  ([b1fda5b](https://github.com/ho-nl/m2-pwa/commit/b1fda5b3e403dad621aba8ed895427f2166bc985))
+- **playwright:** checkout button was renamed
+  ([09e5b79](https://github.com/ho-nl/m2-pwa/commit/09e5b79333708cfac04232d8071d1dad72968297))
+- rename NextButton to Button, change imports
+  ([976adb0](https://github.com/ho-nl/m2-pwa/commit/976adb0bf906310d1efce888dcc9be1e28ce0f1b))
 
 ### Features
 
-* **cart:** when a cart is not active anymore show a clear cart button ([5d04a14](https://github.com/ho-nl/m2-pwa/commit/5d04a14726c040b20b34c0b88f923aee1dff22e5))
-* coupon form on payment page ([a163961](https://github.com/ho-nl/m2-pwa/commit/a1639617be756b357177fcce255cf662c5314499))
-* **graphql:** introduced new graphql package that holds all generated files ([a3e7aa0](https://github.com/ho-nl/m2-pwa/commit/a3e7aa05540540533b5ced9a95f1f802ecbe499f))
-* **image:** introduced completely rewritten Image component ([e3413b3](https://github.com/ho-nl/m2-pwa/commit/e3413b3a57392d6571ea64cb8d9c8dca05ea31df))
-* implemented checkmo payment method ([18525b2](https://github.com/ho-nl/m2-pwa/commit/18525b2f4efe9bd0eea12a7a992d284f341e0c68))
-* implemented purchase order ([3a40033](https://github.com/ho-nl/m2-pwa/commit/3a40033cd4d6712a17bb9c41a8841ebf7aa2f025))
-* implemented the new mollie payment api ([a8b38a9](https://github.com/ho-nl/m2-pwa/commit/a8b38a9a45207e180f795e81bf5ac759f01a583d))
-* **mollie:** first version of mollie payment methods ([e2f7d78](https://github.com/ho-nl/m2-pwa/commit/e2f7d78e50a9afe928f1d8c478f946e03c63b0f2))
-* **mollie:** pay with credit card made working ([5cda84e](https://github.com/ho-nl/m2-pwa/commit/5cda84e0b9c54238ae6adaa34f9e2ad77a708508))
-* next.js 11 ([7d61407](https://github.com/ho-nl/m2-pwa/commit/7d614075a778f488045034f74be4f75b93f63c43))
-* only show free payment method when zero subtotal quote ([fd3ba86](https://github.com/ho-nl/m2-pwa/commit/fd3ba86d3060ebe7dc72ce27fca21464b46b4392))
-* **payment-agreements-form:** checkout agreements checkboxes ([13c8164](https://github.com/ho-nl/m2-pwa/commit/13c816499d220a2ce940672a95beca508b78ddc9))
-* **payments:** make PaymentMethodContext injectable ([68c664a](https://github.com/ho-nl/m2-pwa/commit/68c664adb7eb6eb86d7a819213deb87152392347))
-* **playwright:** added new playwright package to enable browser testing ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
-* **react-hook-form:** added buttonState to ComposedSubmit ([57e77c2](https://github.com/ho-nl/m2-pwa/commit/57e77c29f17720f7f3ee3b63be82779c0e5d8714))
-* renamed all packages to use [@graphcommerce](https://github.com/graphcommerce) instead of [@reachdigital](https://github.com/reachdigital) ([491e4ce](https://github.com/ho-nl/m2-pwa/commit/491e4cec9a2686472dac36b79f999257c0811ffe))
-* solve issue where the order couldn’t be submitted ([ec0d357](https://github.com/ho-nl/m2-pwa/commit/ec0d3579a1277976e2dc515f420996cf716f83a6))
-* upgraded to nextjs 11 ([0053beb](https://github.com/ho-nl/m2-pwa/commit/0053beb7ef597c190add7264256a0eaec35868da))
-* useFormMutationCart and simpler imports ([012f090](https://github.com/ho-nl/m2-pwa/commit/012f090e8f54d09f35d393c61ad1e2319f5a90ff))
-
+- **cart:** when a cart is not active anymore show a clear cart button
+  ([5d04a14](https://github.com/ho-nl/m2-pwa/commit/5d04a14726c040b20b34c0b88f923aee1dff22e5))
+- coupon form on payment page
+  ([a163961](https://github.com/ho-nl/m2-pwa/commit/a1639617be756b357177fcce255cf662c5314499))
+- **graphql:** introduced new graphql package that holds all generated files
+  ([a3e7aa0](https://github.com/ho-nl/m2-pwa/commit/a3e7aa05540540533b5ced9a95f1f802ecbe499f))
+- **image:** introduced completely rewritten Image component
+  ([e3413b3](https://github.com/ho-nl/m2-pwa/commit/e3413b3a57392d6571ea64cb8d9c8dca05ea31df))
+- implemented checkmo payment method
+  ([18525b2](https://github.com/ho-nl/m2-pwa/commit/18525b2f4efe9bd0eea12a7a992d284f341e0c68))
+- implemented purchase order
+  ([3a40033](https://github.com/ho-nl/m2-pwa/commit/3a40033cd4d6712a17bb9c41a8841ebf7aa2f025))
+- implemented the new mollie payment api
+  ([a8b38a9](https://github.com/ho-nl/m2-pwa/commit/a8b38a9a45207e180f795e81bf5ac759f01a583d))
+- **mollie:** first version of mollie payment methods
+  ([e2f7d78](https://github.com/ho-nl/m2-pwa/commit/e2f7d78e50a9afe928f1d8c478f946e03c63b0f2))
+- **mollie:** pay with credit card made working
+  ([5cda84e](https://github.com/ho-nl/m2-pwa/commit/5cda84e0b9c54238ae6adaa34f9e2ad77a708508))
+- next.js 11
+  ([7d61407](https://github.com/ho-nl/m2-pwa/commit/7d614075a778f488045034f74be4f75b93f63c43))
+- only show free payment method when zero subtotal quote
+  ([fd3ba86](https://github.com/ho-nl/m2-pwa/commit/fd3ba86d3060ebe7dc72ce27fca21464b46b4392))
+- **payment-agreements-form:** checkout agreements checkboxes
+  ([13c8164](https://github.com/ho-nl/m2-pwa/commit/13c816499d220a2ce940672a95beca508b78ddc9))
+- **payments:** make PaymentMethodContext injectable
+  ([68c664a](https://github.com/ho-nl/m2-pwa/commit/68c664adb7eb6eb86d7a819213deb87152392347))
+- **playwright:** added new playwright package to enable browser testing
+  ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
+- **react-hook-form:** added buttonState to ComposedSubmit
+  ([57e77c2](https://github.com/ho-nl/m2-pwa/commit/57e77c29f17720f7f3ee3b63be82779c0e5d8714))
+- renamed all packages to use [@graphcommerce](https://github.com/graphcommerce) instead of
+  [@reachdigital](https://github.com/reachdigital)
+  ([491e4ce](https://github.com/ho-nl/m2-pwa/commit/491e4cec9a2686472dac36b79f999257c0811ffe))
+- solve issue where the order couldn’t be submitted
+  ([ec0d357](https://github.com/ho-nl/m2-pwa/commit/ec0d3579a1277976e2dc515f420996cf716f83a6))
+- upgraded to nextjs 11
+  ([0053beb](https://github.com/ho-nl/m2-pwa/commit/0053beb7ef597c190add7264256a0eaec35868da))
+- useFormMutationCart and simpler imports
+  ([012f090](https://github.com/ho-nl/m2-pwa/commit/012f090e8f54d09f35d393c61ad1e2319f5a90ff))
 
 ### Reverts
 
-* Revert "chore: upgrade @apollo/client" ([55ff24e](https://github.com/ho-nl/m2-pwa/commit/55ff24ede0e56c85b8095edadadd1ec5e0b1b8d2))
-
-
-
-
+- Revert "chore: upgrade @apollo/client"
+  ([55ff24e](https://github.com/ho-nl/m2-pwa/commit/55ff24ede0e56c85b8095edadadd1ec5e0b1b8d2))
 
 # Change Log
 

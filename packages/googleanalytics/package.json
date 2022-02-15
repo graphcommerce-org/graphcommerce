@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/googleanalytics",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -10,9 +10,9 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^3.1.10",
-    "@graphcommerce/prettier-config-pwa": "^3.0.5",
-    "@graphcommerce/typescript-config-pwa": "^3.1.2",
+    "@graphcommerce/eslint-config-pwa": "^4.0.0",
+    "@graphcommerce/prettier-config-pwa": "^4.0.0",
+    "@graphcommerce/typescript-config-pwa": "^4.0.0",
     "@types/gtag.js": "^0.0.8"
   },
   "dependencies": {

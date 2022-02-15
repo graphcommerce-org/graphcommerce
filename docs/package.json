@@ -1,13 +1,13 @@
 {
   "name": "@graphcommerce/pwa-docs",
-  "version": "2.105.5",
+  "version": "3.0.0",
   "private": true,
   "sideEffects": false,
   "main": "index.js",
   "dependencies": {
-    "@graphcommerce/framer-next-pages": "^2.107.5",
-    "@graphcommerce/next-config": "^2.109.0",
-    "@graphcommerce/next-ui": "^3.17.1",
+    "@graphcommerce/framer-next-pages": "^3.0.0",
+    "@graphcommerce/next-config": "^3.0.0",
+    "@graphcommerce/next-ui": "^4.0.0",
     "@mui/material": "^5.4.1",
     "next": "^12.0.10",
     "next-mdx-remote": "^3.0.8",
@@ -16,9 +16,9 @@
     "react-syntax-highlighter": "^15.4.5"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^3.1.5",
-    "@graphcommerce/prettier-config-pwa": "^3.0.4",
-    "@graphcommerce/typescript-config-pwa": "^3.1.1",
+    "@graphcommerce/eslint-config-pwa": "^4.0.0",
+    "@graphcommerce/prettier-config-pwa": "^4.0.0",
+    "@graphcommerce/typescript-config-pwa": "^4.0.0",
     "@playwright/test": "^1.18.1",
     "eslint": "^8.8.0",
     "type-fest": "^2.11.2",

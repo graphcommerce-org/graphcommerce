@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/graphql-mesh",
-  "version": "3.2.11",
+  "version": "4.0.0",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -34,9 +34,9 @@
     "ts-tiny-invariant": "^1.0.5"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^3.1.10",
-    "@graphcommerce/prettier-config-pwa": "^3.0.5",
-    "@graphcommerce/typescript-config-pwa": "^3.1.2",
+    "@graphcommerce/eslint-config-pwa": "^4.0.0",
+    "@graphcommerce/prettier-config-pwa": "^4.0.0",
+    "@graphcommerce/typescript-config-pwa": "^4.0.0",
     "@playwright/test": "^1.18.1",
     "@types/micro-cors": "^0.1.2",
     "graphql-tag": "2.12.6",
