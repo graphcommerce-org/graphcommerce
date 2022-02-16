@@ -45,6 +45,7 @@ only install the dependencies. This is the quickest approach.
 - `mkdir my-project`
 - `cp -R graphcommerce/examples/magento-graphcms/. my-project`
 - `cd my-project`
+- `cp -R .env.example .env`
 - `rm CHANGELOG.md && touch CHANGELOG.md`
 - `rm -rf node_modules && rm -rf .next`
 
@@ -130,7 +131,7 @@ the ones you don't want to use.
 
 # Step 3: Start the development environment
 
-- `yarn install` Install the dependencies
+- `yarn` Install the dependencies
 - `yarn codegen` Converts all .graphql files to typescript files
 - `yarn dev` Run the app
 
