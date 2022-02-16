@@ -418,9 +418,6 @@ msgstr "Adresse d'expédition"
 msgid "Shipping method"
 msgstr "Méthode d'expédition"
 
-#~ msgid "Sign In"
-#~ msgstr "Identifiez-vous"
-
 msgid "Sign in"
 msgstr "Identifiez-vous"
 

@@ -61,9 +61,6 @@ msgstr "Terug naar home"
 msgid "Be the first to know about everything new!"
 msgstr "Wees de eerste die op de hoogte is van alles wat er nieuw is!"
 
-#~ msgid "Billing Address"
-#~ msgstr "Factuuradres"
-
 msgid "Billing address"
 msgstr "Factuuradres"
 
