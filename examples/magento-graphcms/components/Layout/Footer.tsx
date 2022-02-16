@@ -24,6 +24,9 @@ export function Footer(props: FooterProps) {
                 height={24}
                 unoptimized
                 alt={link.title}
+                sx={(theme) => ({
+                  filter: theme.palette.mode === 'dark' ? 'invert(100%)' : 'invert(0%)',
+                })}
               />
             ) : (
               link.title
