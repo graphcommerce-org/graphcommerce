@@ -16,12 +16,12 @@ to find resources to build more complex features on your own.
 - Change the Menu component's styling to a fullscreen overlay
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/F9TjjJ" width="480" style="min-width:100%; aspect-ratio: 9:6">
+ <img src="./../../public/images/a92.gif" width="480" style="min-width:100%; aspect-ratio: 9:6">
  <figcaption>Before customization</figcaption>
 </figure>
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/Rwr8Cd" width="480" style="min-width:100%; aspect-ratio: 9:6">
+ <img src="./../../public/images/i19.gif" width="480" style="min-width:100%; aspect-ratio: 9:6">
  <figcaption>After customization of the header</figcaption>
 </figure>
 
