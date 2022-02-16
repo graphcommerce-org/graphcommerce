@@ -1,5 +1,30 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- [#1273](https://github.com/ho-nl/m2-pwa/pull/1273)
+  [`8c4e4f7cd`](https://github.com/ho-nl/m2-pwa/commit/8c4e4f7cdd2fa4252788fbc9889d0803bba20eef)
+  Thanks [@paales](https://github.com/paales)! - Added darkmode support! ☀️🌑, adds a toggle to the
+  hamburger menu.
+
+### Patch Changes
+
+- [#1271](https://github.com/ho-nl/m2-pwa/pull/1271)
+  [`e0008d60d`](https://github.com/ho-nl/m2-pwa/commit/e0008d60d712603219129dd411d1985bf1ebbed1)
+  Thanks [@paales](https://github.com/paales)! - make sure the CartFab and MenuFab are stylable with
+  sx
+
+* [#1271](https://github.com/ho-nl/m2-pwa/pull/1271)
+  [`5d9f8320f`](https://github.com/ho-nl/m2-pwa/commit/5d9f8320ff9621d7357fbe01319ab0cafdf9095d)
+  Thanks [@paales](https://github.com/paales)! - prevent layout from breaking when url has params
+
+- [#1271](https://github.com/ho-nl/m2-pwa/pull/1271)
+  [`5082b8c81`](https://github.com/ho-nl/m2-pwa/commit/5082b8c8191cc3e0b4627678bf837af093513d57)
+  Thanks [@paales](https://github.com/paales)! - Prevent showing back button on homepage when query
+  parameter is present
+
 ## 4.0.1
 
 ### Patch Changes
