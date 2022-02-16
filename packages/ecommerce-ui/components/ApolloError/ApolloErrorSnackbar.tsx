@@ -1,14 +1,14 @@
 import { ApolloError } from '@graphcommerce/graphql'
+import { MessageSnackbar } from '@graphcommerce/next-ui/Snackbar/MessageSnackbar'
+import { MessageSnackbarImplProps } from '@graphcommerce/next-ui/Snackbar/MessageSnackbarImpl'
 import { Trans } from '@lingui/macro'
 import { Button } from '@mui/material'
-import { MessageSnackbar } from '../Snackbar/MessageSnackbar'
-import { MessageSnackbarImplProps } from '../Snackbar/MessageSnackbarImpl'
 
 export type ApolloErrorSnackbarProps = {
   error?: ApolloError
 } & Pick<MessageSnackbarImplProps, 'action' | 'onClose'>
 
-export default function ApolloErrorSnackbar(props: ApolloErrorSnackbarProps) {
+export function ApolloErrorSnackbar(props: ApolloErrorSnackbarProps) {
   const { error, action, ...passedProps } = props
 
   if (!error) return null

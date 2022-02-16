@@ -63,7 +63,7 @@ export default function SignInForm(props: SignInFormProps) {
             variant='contained'
             size='large'
           >
-            <Trans>Log In</Trans>
+            <Trans>Log in</Trans>
           </Button>
         </FormControl>
       </FormActions>

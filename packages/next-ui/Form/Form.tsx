@@ -30,6 +30,8 @@ const styles = ({ theme, contained = false, background }: { theme: Theme } & For
     },
   ])
 
-export const Form = styled('form')<FormStyleProps>(styles)
+export const Form = styled('form', {
+  shouldForwardProp: (prop) => prop !== 'contained',
+})<FormStyleProps>(styles)
 
 export const FormDiv = styled('div')<FormStyleProps>(styles)

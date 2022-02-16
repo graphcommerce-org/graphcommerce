@@ -1,5 +1,5 @@
+import { ApolloErrorSnackbarProps, ApolloErrorSnackbar } from '@graphcommerce/ecommerce-ui'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import { ApolloErrorSnackbarProps, ApolloErrorSnackbar } from '@graphcommerce/next-ui'
 import { Button } from '@mui/material'
 import React from 'react'
 import { useClearCurrentCartId } from '../../hooks/useClearCurrentCartId'

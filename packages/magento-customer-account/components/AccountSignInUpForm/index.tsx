@@ -89,13 +89,11 @@ export default function AccountSignInUpForm(props: AccountSignInUpFormProps) {
             <Trans>Hi {firstname}! You're now logged in!</Trans>
           </LayoutTitle>
           <Typography variant='h6' align='center'>
-            <Trans>
-              You can view{' '}
-              <PageLink href='/account' passHref>
-                <Link underline='hover'>your account here</Link>
-              </PageLink>
-              .
-            </Trans>
+            <PageLink href='/account' passHref>
+              <Link underline='hover'>
+                <Trans>View your account</Trans>
+              </Link>
+            </PageLink>
           </Typography>
 
           <FormActions>
@@ -112,7 +110,7 @@ export default function AccountSignInUpForm(props: AccountSignInUpFormProps) {
             <Trans>Your session is expired</Trans>
           </LayoutTitle>
           <Typography variant='h6' align='center'>
-            <Trans>Login to continue shopping</Trans>
+            <Trans>Log in to continue shopping</Trans>
           </Typography>
         </Box>
       )}

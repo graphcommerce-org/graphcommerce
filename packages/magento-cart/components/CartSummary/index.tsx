@@ -102,7 +102,7 @@ export default function CartSummary(props: CartSummaryProps) {
             <Box>
               <SectionContainer
                 variantLeft='h5'
-                labelLeft={t`Billing Address`}
+                labelLeft={t`Billing address`}
                 sx={{ '& .SectionHeader': { marginTop: 0, paddingBottom: '8px' } }}
                 labelRight={
                   editable ? (

@@ -94,10 +94,12 @@ export default function CartTotals(props: CartTotalsProps) {
 
           return (
             <AnimatedRow
-              sx={(theme) => ({
-                fontWeight: theme.typography.fontWeightBold,
-              })}
               key={discount?.label}
+              sx={(theme) => ({
+                display: 'flex',
+                justifyContent: 'space-between',
+                typography: 'subtitle1',
+              })}
             >
               <Box>{discount?.label}</Box>
               <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
@@ -154,7 +156,6 @@ export default function CartTotals(props: CartTotalsProps) {
               display: 'flex',
               justifyContent: 'space-between',
               typography: 'subtitle1',
-              fontWeight: theme.typography.fontWeightBold,
               color: theme.palette.primary.main,
             })}
           >
@@ -175,7 +176,7 @@ export default function CartTotals(props: CartTotalsProps) {
               sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                typography: 'subtitle1',
+                typography: 'body1',
                 color: 'text.disabled',
                 paddingTop: 0,
               }}

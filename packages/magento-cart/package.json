@@ -18,6 +18,7 @@
     "@playwright/test": "^1.18.1"
   },
   "dependencies": {
+    "@graphcommerce/ecommerce-ui": "^0.0.0",
     "@graphcommerce/framer-next-pages": "^3.0.1",
     "@graphcommerce/framer-scroller": "^2.0.1",
     "@graphcommerce/graphql": "^3.0.1",

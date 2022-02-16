@@ -36,7 +36,7 @@ export function ProductListCount(props: ProductCountProps) {
       <Divider component='div' className={classes.line} />
       <Typography variant='body2' color='text.disabled' className={classes.count}>
         {total_count === 0 && <Trans>no products</Trans>}
-        {total_count === 1 && <Trans>one products</Trans>}
+        {total_count === 1 && <Trans>one product</Trans>}
         {(total_count ?? 0) > 1 && <Trans>{total_count} products</Trans>}
       </Typography>
       <Divider component='div' className={classes.line} />

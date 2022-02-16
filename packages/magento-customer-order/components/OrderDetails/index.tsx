@@ -363,7 +363,7 @@ export default function OrderDetails(props: OrderDetailsProps) {
 
         <TotalsVat>
           <div>
-            <Trans>Grand Total</Trans>
+            <Trans>Grand total</Trans>
           </div>
           <div>
             <Money {...total?.grand_total} />

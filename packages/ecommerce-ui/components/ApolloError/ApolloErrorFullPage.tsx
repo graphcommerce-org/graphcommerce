@@ -1,7 +1,7 @@
 import { ApolloError } from '@graphcommerce/graphql'
+import { FullPageMessage, FullPageMessageProps } from '@graphcommerce/next-ui/FullPageMessage'
 import { AlertProps } from '@mui/material'
-import { FullPageMessage, FullPageMessageProps } from '../FullPageMessage'
-import ApolloErrorAlert from './ApolloErrorAlert'
+import { ApolloErrorAlert } from './ApolloErrorAlert'
 
 export type ApolloErrorFullPageProps = {
   error?: ApolloError
@@ -9,7 +9,7 @@ export type ApolloErrorFullPageProps = {
   networkErrorAlertProps?: Omit<AlertProps, 'severity'>
 } & Omit<FullPageMessageProps, 'title' | 'description'>
 
-export default function ApolloErrorFullPage(props: ApolloErrorFullPageProps) {
+export function ApolloErrorFullPage(props: ApolloErrorFullPageProps) {
   const {
     error,
     graphqlErrorAlertProps,

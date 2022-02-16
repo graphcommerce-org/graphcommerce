@@ -1,8 +1,8 @@
 import { ApolloError } from '@graphcommerce/graphql'
+import { AnimatedRow } from '@graphcommerce/next-ui/AnimatedRow'
+import { extendableComponent } from '@graphcommerce/next-ui/Styles/extendableComponent'
 import { AlertProps, Alert, Box, SxProps, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
-import { AnimatedRow } from '../AnimatedRow'
-import { extendableComponent } from '../Styles/extendableComponent'
 
 const { classes, selectors } = extendableComponent('ApolloErrorAlert', ['root', 'alert'] as const)
 
@@ -12,7 +12,7 @@ export type ApolloErrorAlertProps = {
   networkErrorAlertProps?: Omit<AlertProps, 'severity'>
   sx?: SxProps<Theme>
 }
-export default function ApolloErrorAlert(props: ApolloErrorAlertProps) {
+export function ApolloErrorAlert(props: ApolloErrorAlertProps) {
   const { error, graphqlErrorAlertProps, networkErrorAlertProps, sx } = props
 
   return (

@@ -1,0 +1,601 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2022-02-16 23:32+0100\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: es\n"
+
+# Translate from english to spanish
+
+msgid "<0>{name}</0> has been added to your shopping cart!"
+msgstr "<0>{name}</0> ha sido añadido a su carrito de compras!"
+
+msgid "Account"
+msgstr "Cuenta"
+
+msgid "Account Dashboard"
+msgstr "Panel de control de la cuenta"
+
+msgid "Add new address"
+msgstr "Añadir nueva dirección"
+
+msgid "Add review"
+msgstr "Añadir una reseña"
+
+msgid "Addition"
+msgstr "Adición"
+
+msgid "Address not found"
+msgstr "Dirección no encontrada"
+
+msgid "Addresses"
+msgstr "Direcciones"
+
+msgid "All products"
+msgstr "Todos los productos"
+
+msgid "Apply"
+msgstr "Aplicar"
+
+msgid "As low as"
+msgstr "Como más bajo que"
+
+msgid "As soon as the payment is completed, you will automatically return to the webshop."
+msgstr "Cuando el pago se haya completado, se le redirigirá automáticamente al sitio web."
+
+msgid "Authentication"
+msgstr "Autenticación"
+
+msgid "Back"
+msgstr "Atrás"
+
+msgid "Back to home"
+msgstr "Volver a la página principal"
+
+msgid "Be the first to know about everything new!"
+msgstr "Sé el primero en saber de todo lo nuevo!"
+
+msgid "Billing address"
+msgstr "Dirección de facturación"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Cart"
+msgstr "Carrito"
+
+msgid "Cart ({0})"
+msgstr "Carrito ({0})"
+
+msgid "Cart Items"
+msgstr "Artículos del carrito"
+
+msgid "Change password"
+msgstr "Cambiar contraseña"
+
+msgid "Checkout"
+msgstr "Pagar"
+
+msgid "Checkout summary"
+msgstr "Resumen de la compra"
+
+msgid "Choose your bank, and place your order."
+msgstr "Elija su banco y realice su pedido."
+
+msgid "City"
+msgstr "Ciudad"
+
+msgid "Close"
+msgstr "Cerrar"
+
+msgid "Complete the payment on your bank's website."
+msgstr "Complete el pago en el sitio web de su banco."
+
+msgid "Confirm Password"
+msgstr "Confirmar contraseña"
+
+msgid "Confirm new email"
+msgstr "Confirmar nuevo correo electrónico"
+
+msgid "Confirmation + Track & trace"
+msgstr "Confirmación + Seguimiento"
+
+msgid "Contact"
+msgstr "Contacto"
+
+msgid "Contact information"
+msgstr "Información de contacto"
+
+msgid "Continue"
+msgstr "Continuar"
+
+msgid "Continue shopping"
+msgstr "Continuar comprando"
+
+msgid "Country"
+msgstr "País"
+
+msgid "Create Account"
+msgstr "Crear cuenta"
+
+msgid "Create a password and tell us your name"
+msgstr "Crea una contraseña y nos cuentas tu nombre"
+
+msgid "Create account!"
+msgstr "Crear cuenta!"
+
+msgid "Create an account"
+msgstr "Crear una cuenta"
+
+msgid "Create new password"
+msgstr "Crear nueva contraseña"
+
+msgid "Current Password"
+msgstr "Contraseña actual"
+
+msgid "Customer Service"
+msgstr "Servicio al cliente"
+
+msgid "Delete this address"
+msgstr "Eliminar esta dirección"
+
+msgid "Discount code"
+msgstr "Código de descuento"
+
+msgid "Discover our collection and add items to your cart!"
+msgstr "Descubra nuestra colección y añada artículos a su carrito!"
+
+msgid "Discover our collection and place your first order!"
+msgstr "Descubra nuestra colección y realice su primera compra!"
+
+msgid "Discover our collection and write your first review!"
+msgstr "Descubra nuestra colección y escriba su primera reseña!"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Edit address"
+msgstr "Editar dirección"
+
+msgid "Edit billing address"
+msgstr "Editar dirección de facturación"
+
+msgid "Email"
+msgstr "Correo electrónico"
+
+msgid "Email address of existing customers will be recognized, sign in is optional."
+msgstr "La dirección de correo electrónico de los clientes existentes será reconocida, inicio de sesión es opcional."
+
+msgid "Emails don't match"
+msgstr "Los correos electrónicos no coinciden"
+
+msgid "Fill in password fields to create an account."
+msgstr "Rellene los campos de contraseña para crear una cuenta."
+
+msgid "Fill in your e-mail to login or create an account"
+msgstr "Rellene su correo electrónico para iniciar sesión o crear una cuenta"
+
+msgid "Fill in your new password, confirm it and click on the save button."
+msgstr "Rellene su nueva contraseña, confirme e introduzca el botón de guardar."
+
+msgid "Fill in your password"
+msgstr "Rellene su contraseña"
+
+msgid "First Name"
+msgstr "Nombre"
+
+msgid "Follow order"
+msgstr "Seguir pedido"
+
+msgid "Forgot password?"
+msgstr "¿Olvidó su contraseña?"
+
+msgid "Forgot your password?"
+msgstr "¿Olvidó su contraseña?"
+
+msgid "Free"
+msgstr "Gratis"
+
+msgid "Grand total"
+msgstr "Total"
+
+msgid "Have an account?"
+msgstr "¿Tiene una cuenta?"
+
+msgid "Hi {firstname}! You're now logged in!"
+msgstr "¡Hola {firstname}! Ya estás conectado!"
+
+msgid "Home"
+msgstr "Inicio"
+
+msgid "Housenumber"
+msgstr "Número de casa"
+
+msgid "Including {0}"
+msgstr "Incluyendo {0}"
+
+msgid "Invalid email address"
+msgstr "Dirección de correo electrónico no válida"
+
+msgid "Invalid phone number"
+msgstr "Número de teléfono no válido"
+
+msgid "Last Name"
+msgstr "Apellido"
+
+msgid "Latest orders"
+msgstr "Últimas compras"
+
+msgid "Leave password field empty to order as guest."
+msgstr "Dejar el campo de contraseña vacío para realizar la compra como invitado."
+
+msgid "Log in"
+msgstr "Iniciar sesión"
+
+msgid "Log in or create an account"
+msgstr "Iniciar sesión o crear una cuenta"
+
+msgid "Log in to continue shopping"
+msgstr "Iniciar sesión para continuar comprando"
+
+msgid "Mr"
+msgstr "Sr."
+
+msgid "Mrs"
+msgstr "Sra."
+
+msgid "Name"
+msgstr "Nombre"
+
+msgid "New Password"
+msgstr "Nueva contraseña"
+
+msgid "New email"
+msgstr "Nuevo correo electrónico"
+
+msgid "Newsletter"
+msgstr "Boletín"
+
+msgid "Next"
+msgstr "Siguiente"
+
+msgid "No Image"
+msgstr "Sin imagen"
+
+msgid "No account yet?"
+msgstr "¿No tiene una cuenta?"
+
+msgid "No orders found"
+msgstr "No se encontraron pedidos"
+
+msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
+msgstr "No hay problemas! Introduzca su dirección de correo electrónico y le enviaremos un correo electrónico con instrucciones para restablecer su contraseña."
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Older"
+msgstr "Anteriores"
+
+msgid "Or create an account"
+msgstr "O crear una cuenta"
+
+msgid "Or follow these links to get you back on track!"
+msgstr "O siga estos enlaces para volver a la pista!"
+
+msgid "Order #{orderId}"
+msgstr "Pedido #{orderId}"
+
+msgid "Order detail page for order #{orderId}"
+msgstr "Página de detalle del pedido para el pedido #{orderId}"
+
+msgid "Order not found"
+msgstr "Pedido no encontrado"
+
+msgid "Order number"
+msgstr "Número de pedido"
+
+msgid "Order status"
+msgstr "Estado del pedido"
+
+msgid "Order summary"
+msgstr "Resumen del pedido"
+
+msgid "Order view #{orderId}"
+msgstr "Vista del pedido #{orderId}"
+
+msgid "Ordered items"
+msgstr "Artículos pedidos"
+
+msgid "Orders"
+msgstr "Pedidos"
+
+msgid "Other"
+msgstr "Otro"
+
+msgid "Password"
+msgstr "Contraseña"
+
+msgid "Password must have at least 8 characters"
+msgstr "La contraseña debe tener al menos 8 caracteres"
+
+msgid "Passwords don't match"
+msgstr "Las contraseñas no coinciden"
+
+msgid "Pay"
+msgstr "Pagar"
+
+msgid "Pay with {title}"
+msgstr "Pagar con {title}"
+
+msgid "Payment"
+msgstr "Pago"
+
+msgid "Payment method"
+msgstr "Método de pago"
+
+msgid "Place order"
+msgstr "Realizar pedido"
+
+msgid "Please fill in your address to see shipping methods"
+msgstr "Por favor, rellene su dirección para ver los métodos de envío"
+
+msgid "Please provide a valid house number"
+msgstr "Por favor, proporcione un número de casa válido"
+
+msgid "Please reauthenticate and try again"
+msgstr "Por favor, vuelva a autenticarse y vuelva a intentarlo"
+
+msgid "Please select a payment method"
+msgstr "Por favor, seleccione un método de pago"
+
+msgid "Postcode"
+msgstr "Código postal"
+
+msgid "Prefix"
+msgstr "Prefijo"
+
+msgid "Product could not be found"
+msgstr "No se encontró el producto"
+
+msgid "Products"
+msgstr "Productos"
+
+msgid "Region"
+msgstr "Región"
+
+msgid "Remove Product"
+msgstr "Eliminar producto"
+
+msgid "Results for ‘{search}’"
+msgstr "Resultados para ‘{search}’"
+
+msgid "Reviews"
+msgstr "Comentarios"
+
+msgid "Save changes"
+msgstr "Guardar cambios"
+
+msgid "Save new password"
+msgstr "Guardar nueva contraseña"
+
+msgid "Scroll Left"
+msgstr "Desplazar a la izquierda"
+
+msgid "Scroll Right"
+msgstr "Desplazar a la derecha"
+
+msgid "Search"
+msgstr "Buscar"
+
+msgid "Search..."
+msgstr "Buscar..."
+
+msgid "Send password reset email"
+msgstr "Enviar correo electrónico para restablecer la contraseña"
+
+msgid "Set your new password"
+msgstr "Establecer su nueva contraseña"
+
+msgid "Shipping"
+msgstr "Envío"
+
+msgid "Shipping ({0} {1})"
+msgstr "Envío ({0} {1})"
+
+msgid "Shipping address"
+msgstr "Dirección de envío"
+
+msgid "Shipping method"
+msgstr "Método de envío"
+
+msgid "Sign in"
+msgstr "Iniciar sesión"
+
+msgid "Sign in or create an account!"
+msgstr "Iniciar sesión o crear una cuenta!"
+
+msgid "Sign in to your account"
+msgstr "Iniciar sesión en su cuenta"
+
+msgid "Sign out"
+msgstr "Cerrar sesión"
+
+msgid "Sign up for our newsletter and stay updated"
+msgstr "Regístrese para nuestro boletín y manténgase actualizado"
+
+msgid "Start Checkout"
+msgstr "Iniciar compra"
+
+msgid "Store home"
+msgstr "Inicio de la tienda"
+
+msgid "Street"
+msgstr "Calle"
+
+msgid "Submit review"
+msgstr "Enviar comentario"
+
+msgid "Subscribe to newsletter"
+msgstr "Suscribirse al boletín"
+
+msgid "Successfully changed password"
+msgstr "Contraseña cambiada correctamente"
+
+msgid "Successfully saved changes"
+msgstr "Cambios guardados correctamente"
+
+msgid "Successfully updated email"
+msgstr "Correo electrónico actualizado correctamente"
+
+msgid "Switch stores"
+msgstr "Cambiar tiendas"
+
+msgid "Switch to Dark Mode"
+msgstr "Cambiar a modo oscuro"
+
+msgid "Switch to Light Mode"
+msgstr "Cambiar a modo claro"
+
+msgid "Tagged in: {title}"
+msgstr "Etiquetado en: {title}"
+
+msgid "Telephone"
+msgstr "Teléfono"
+
+msgid "Thank you for your order!"
+msgstr "¡Gracias por su pedido!"
+
+msgid "Thank you! Your review was successfully submitted for approval"
+msgstr "¡Gracias! Su comentario se ha enviado correctamente para su aprobación"
+
+msgid "Try a different product"
+msgstr "Pruebe un producto diferente"
+
+msgid "Try a different search"
+msgstr "Pruebe una búsqueda diferente"
+
+msgid "Update your name"
+msgstr "Actualice su nombre"
+
+msgid "View all items"
+msgstr "Ver todos los artículos"
+
+msgid "View all your addresses"
+msgstr "Ver todas sus direcciones"
+
+msgid "View all your reviews"
+msgstr "Ver todos sus comentarios"
+
+msgid "View less items"
+msgstr "Ver menos artículos"
+
+msgid "View your account"
+msgstr "Ver su cuenta"
+
+msgid "We couldn't find any results for {term}"
+msgstr "No se encontraron resultados para {term}"
+
+msgid "We couldn't find the page you were looking for"
+msgstr "No se encontró la página que estaba buscando"
+
+msgid "We're processing your payment, this will take a few seconds."
+msgstr "Estamos procesando su pago, esto tardará unos segundos."
+
+msgid "We've send a password reset link to your email address!"
+msgstr "¡Le hemos enviado un enlace para restablecer la contraseña a su correo electrónico!"
+
+msgid "Welcome back!"
+msgstr "¡Bienvenido de nuevo!"
+
+msgid "Which size is right?"
+msgstr "¿Qué tamaño es correcto?"
+
+msgid "Whoops our bad..."
+msgstr "¡Vaya, algo malo sucedió..."
+
+msgid "Write a review"
+msgstr "Escribir un comentario"
+
+msgid "Written {0} reviews"
+msgstr "Escribir {0} comentarios"
+
+msgid "You are reviewing {0}"
+msgstr "Está revisando {0}"
+
+msgid "You can find your order history in your account!"
+msgstr "¡Puede encontrar el historial de sus pedidos en su cuenta!"
+
+msgid "You can now<0>sign in again</0>."
+msgstr "Ahora puede<0>iniciar sesión de nuevo</0>."
+
+msgid "You can track your order status and much more!"
+msgstr "¡Puede seguir el estado de su pedido y mucho más!"
+
+msgid "You have no addresses saved yet"
+msgstr "Aún no tiene direcciones guardadas"
+
+msgid "You have no orders yet"
+msgstr "Aún no tiene pedidos"
+
+msgid "You have not placed an order"
+msgstr "Aún no ha realizado un pedido"
+
+msgid "You have now successfully reset your password"
+msgstr "Ahora ha restablecido correctamente su contraseña"
+
+msgid "You have to agree in order to proceed"
+msgstr "Debe aceptar para proceder"
+
+msgid "You haven't placed any reviews yet"
+msgstr "Aún no ha escrito ningún comentario"
+
+msgid "You must sign in to continue"
+msgstr "Debe iniciar sesión para continuar"
+
+msgid "Your cart is empty"
+msgstr "Su carrito está vacío"
+
+msgid "Your session is expired"
+msgstr "Su sesión ha caducado"
+
+msgid "canceled"
+msgstr "cancelado"
+
+msgid "invoiced"
+msgstr "facturado"
+
+msgid "no products"
+msgstr "no hay productos"
+
+msgid "one product"
+msgstr "un producto"
+
+msgid "partially processed"
+msgstr "parcialmente procesado"
+
+msgid "processed"
+msgstr "procesado"
+
+msgid "refunded"
+msgstr "reembolsado"
+
+msgid "returned"
+msgstr "devuelto"
+
+msgid "shipped"
+msgstr "enviado"
+
+msgid "{totalResults} result"
+msgstr "{totalResults} resultado"
+
+msgid "{totalResults} results"
+msgstr "{totalResults} resultados"
+
+msgid "{total_count} products"
+msgstr "{total_count} productos"
