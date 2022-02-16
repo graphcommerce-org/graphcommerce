@@ -29,15 +29,32 @@ to find resources to build more complex features on your own.
 
 - In /components/Layout/LayoutFull.tsx, move `<Logo />` after
   `<DesktopNavBar>...</DesktopNavBar>`
-- Next the `<Logo />` component in a `<Box>` component:
+- Wrap the `<Logo />` component in a `<Box>` component:
 
 ```
   <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1, pointerEvents: 'none' }}>
+    <Logo />
+  </Box>
 ```
 
 - Add the import of 'Box' to the list of the `'@mui/material'` imports at the
   top of the file
 - Save the file to see your changes updated in real-time
+
+<figure>
+ <img src="https://cdn-std.droplr.net/files/acc_857465/FIIp20" width="480" style="min-width:100%; aspect-ratio: 9:6">
+ <figcaption>Reorder components</figcaption>
+</figure>
+
+### Remove DesktopNavBar
+
+- In /components/Layout/LayoutFull.tsx, remove the
+  `<DesktopNavBar>...</DesktopNavBar>` component.
+
+<figure>
+ <img src="https://cdn-std.droplr.net/files/acc_857465/yOJhXL" width="480" style="min-width:100%; aspect-ratio: 9:6">
+ <figcaption>Remove navigation</figcaption>
+</figure>
 
 ### Replace Search input with Search Fab
 
@@ -68,12 +85,12 @@ to find resources to build more complex features on your own.
   </PageLink>
 ```
 
-### Remove navigation
+<figure>
+ <img src="https://cdn-std.droplr.net/files/acc_857465/52xLji" width="480" style="min-width:100%; aspect-ratio: 9:6">
+ <figcaption>Replace search input with Search Fab, remove Customer Service Fab</figcaption>
+</figure>
 
-- In /components/Layout/LayoutFull.tsx, remove the
-  `<DesktopNavBar>...</DesktopNavBar>` component.
-
-### Make a local copy of the MenuFab component
+### Make a local copy of the [MenuFab](https://cdn-std.droplr.net/files/acc_857465/d3Pbx6) component
 
 - In /components/Layout/LayoutFull.tsx, remove `MenuFab` from the
   `'@graphcommerce/next-ui'` import
@@ -106,6 +123,11 @@ import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 ```
 
+<figure>
+ <img src="https://cdn-std.droplr.net/files/acc_857465/d3Pbx6" width="480" style="min-width:100%; aspect-ratio: 9:6">
+ <figcaption>Local copy of the MenuFab component with Fab scroll animation removed</figcaption>
+</figure>
+
 ### Change the Menu component's styling
 
 - In /components/Layout/MenuFab.tsx, change the `<Menu>` component's PaperProps
@@ -116,8 +138,8 @@ PaperProps={{
   sx: (theme) => ({
     width: '100vw',
     height: '100vh',
-    maxWidth: '100%',
-    maxHeight: '100%',
+    maxWidth: '100vw',
+    maxHeight: '100vh',
     backgroundColor: alpha(theme.palette.text.primary, 0.95),
     color: theme.palette.background.paper,
     display: 'flex',
@@ -132,9 +154,10 @@ PaperProps={{
 ```
 
 - Remove the `<Menu>` component's prop 'disableScrollLock`
-- Add a new prop to the `<Menu>` component:
+- Add a two props to the `<Menu>` component:
 
 ```
+marginThreshold={0}
 TransitionComponent={Fade}
 ```
 
@@ -150,6 +173,11 @@ TransitionComponent={Fade}
   ) : null,
 ```
 
+<figure>
+ <img src="https://cdn-std.droplr.net/files/acc_857465/KBDEW0" width="480" style="min-width:100%; aspect-ratio: 9:6">
+ <figcaption>Menu component with custom styling</figcaption>
+</figure>
+
 # Next steps
 
-- Learn more about GraphCommerce topics, by visiting the [Framework overview]()
+- ...
