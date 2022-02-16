@@ -70,6 +70,20 @@ You've completed the [Create a GraphCommerce app tutorial]().
  <figcaption>Change a component's style in your GraphCommerce app</figcaption>
 </figure>
 
+# Step 2: Make GraphQL changes
+
+You might want to make changes to a GraphQL query to fetch data for a specific
+need. For example, if you want to display a certain category property, then you
+can update a query.
+
+## Interactive GraphQL interface
+
+You can explore the Storefront API and run test queries in your GraphCommerce
+app. When you're running the GraphCommerce local development environment, you
+can visit the following URL to load the GraphQL Explorer:
+
+http://localhost:3000/api/graphql
+
 # Next steps
 
 - Learn how to [build a custom header]() in GraphCommerce
