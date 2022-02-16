@@ -81,14 +81,14 @@ function ShippingPage() {
                 >
                   <li>
                     <Trans>
-                      E-mail address of existing customers will be recognized, sign in is optional.
+                      Email address of existing customers will be recognized, sign in is optional.
                     </Trans>
                   </li>
                   <li>
                     <Trans>Fill in password fields to create an account.</Trans>
                   </li>
                   <li>
-                    <Trans>Leave passwords fields empty to order as guest.</Trans>
+                    <Trans>Leave password field empty to order as guest.</Trans>
                   </li>
                 </Typography>
               </EmailForm>

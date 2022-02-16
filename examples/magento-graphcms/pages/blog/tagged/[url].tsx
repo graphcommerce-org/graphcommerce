@@ -40,7 +40,7 @@ function BlogPage(props: Props) {
         <PageMeta title={title} metaDescription={title} canonical={page.url} />
 
         <BlogTitle>
-          <Trans>Tagged in: ${title}</Trans>
+          <Trans>Tagged in: {title}</Trans>
         </BlogTitle>
 
         {page.author ? <BlogAuthor author={page.author} date={page.date} /> : null}

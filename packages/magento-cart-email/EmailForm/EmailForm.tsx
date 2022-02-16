@@ -67,7 +67,7 @@ export default function EmailForm(props: EmailFormProps) {
   if (mode === 'signin') {
     endAdornment = (
       <Button color='secondary' style={{ whiteSpace: 'nowrap' }} onClick={() => setExpand(!expand)}>
-        {expand ? <Trans>Close</Trans> : <Trans>Sign In</Trans>}
+        {expand ? <Trans>Close</Trans> : <Trans>Sign in</Trans>}
       </Button>
     )
   }
@@ -87,7 +87,7 @@ export default function EmailForm(props: EmailFormProps) {
           <form noValidate onSubmit={submit}>
             <FormRow>
               <Typography variant='h5' component='h2' gutterBottom>
-                <Trans>Login or create an account</Trans>
+                <Trans>Log in or create an account</Trans>
               </Typography>
             </FormRow>
             <FormRow className={classes.formRow} sx={{ py: 0 }}>

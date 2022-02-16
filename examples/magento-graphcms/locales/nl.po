@@ -13,6 +13,9 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+msgid "<0>{name}</0> has been added to your shopping cart!"
+msgstr "<0>{name}</0> is toegevoegd aan uw winkelwagen!"
+
 msgid "Account"
 msgstr "Account"
 
@@ -24,6 +27,9 @@ msgstr "Voeg nieuw adres toe"
 
 msgid "Add review"
 msgstr "Voeg review toe"
+
+msgid "Addition"
+msgstr "Toevoeging"
 
 msgid "Address not found"
 msgstr "Adres niet gevonden"
@@ -55,11 +61,17 @@ msgstr "Terug naar home"
 msgid "Be the first to know about everything new!"
 msgstr "Wees de eerste die op de hoogte is van alles wat er nieuw is!"
 
+#~ msgid "Billing Address"
+#~ msgstr "Factuuradres"
+
 msgid "Billing address"
 msgstr "Factuuradres"
 
 msgid "Blog"
 msgstr "Blog"
+
+msgid "Cancel"
+msgstr "Annuleren"
 
 msgid "Cart"
 msgstr "Winkelwagen"
@@ -82,6 +94,9 @@ msgstr "Samenvatting"
 msgid "Choose your bank, and place your order."
 msgstr "Kies uw bank en plaats uw bestelling."
 
+msgid "City"
+msgstr "Plaats"
+
 msgid "Close"
 msgstr "Sluiten"
 
@@ -91,11 +106,20 @@ msgstr "Voltooi de betaling op uw bank's website."
 msgid "Confirm Password"
 msgstr "Bevestig wachtwoord"
 
+msgid "Confirm new email"
+msgstr "Bevestig nieuwe email"
+
+msgid "Confirmation + Track & trace"
+msgstr "Bevestiging + Track & trace"
+
 msgid "Contact"
 msgstr "Contact"
 
 msgid "Contact information"
 msgstr "Contactinformatie"
+
+msgid "Continue"
+msgstr "Doorgaan"
 
 msgid "Continue shopping"
 msgstr "Verder winkelen"
@@ -106,6 +130,15 @@ msgstr "Land"
 msgid "Create Account"
 msgstr "Maak account"
 
+msgid "Create a password and tell us your name"
+msgstr "Maak een wachtwoord en vertell ons uw naam"
+
+msgid "Create account!"
+msgstr "Maak account!"
+
+msgid "Create an account"
+msgstr "Maak een account"
+
 msgid "Create new password"
 msgstr "Maak een nieuw wachtwoord"
 
@@ -114,6 +147,9 @@ msgstr "Huidige wachtwoord"
 
 msgid "Customer Service"
 msgstr "Klantenservice"
+
+msgid "Delete this address"
+msgstr "Verwijder dit adres"
 
 msgid "Discount code"
 msgstr "Kortingscode"
@@ -127,6 +163,9 @@ msgstr "Ontdek onze collectie en plaats uw eerste bestelling!"
 msgid "Discover our collection and write your first review!"
 msgstr "Ontdek onze collectie en schrijf uw eerste review!"
 
+msgid "Edit"
+msgstr "Bewerk"
+
 msgid "Edit address"
 msgstr "Wijzig adres"
 
@@ -136,8 +175,29 @@ msgstr "Wijzig factuuradres"
 msgid "Email"
 msgstr "E-mail"
 
+msgid "Email address of existing customers will be recognized, sign in is optional."
+msgstr "E-mailadres van bestaande klanten wordt herkend, inloggen is optioneel."
+
+msgid "Emails don't match"
+msgstr "E-mailadressen komen niet overeen"
+
+msgid "Fill in password fields to create an account."
+msgstr "Vul wachtwoordvelden in om een account aan te maken."
+
+msgid "Fill in your e-mail to login or create an account"
+msgstr "Vul uw e-mailadres in om in te loggen of maak een account aan"
+
 msgid "Fill in your new password, confirm it and click on the save button."
 msgstr "Vul nieuwe wachtwoord in, bevestig en klik op de opslaan knop."
+
+msgid "Fill in your password"
+msgstr "Vul uw wachtwoord in"
+
+msgid "First Name"
+msgstr "Voornaam"
+
+msgid "Follow order"
+msgstr "Volg bestelling"
 
 msgid "Forgot password?"
 msgstr "Wachtwoord vergeten?"
@@ -145,8 +205,23 @@ msgstr "Wachtwoord vergeten?"
 msgid "Forgot your password?"
 msgstr "Wachtwoord vergeten?"
 
+msgid "Free"
+msgstr "Free"
+
 msgid "Grand total"
 msgstr "Totaal"
+
+msgid "Have an account?"
+msgstr "Heeft u al een account?"
+
+msgid "Hi {firstname}! You're now logged in!"
+msgstr "Hallo {firstname}! U bent nu ingelogd!"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Housenumber"
+msgstr "Huisnummer"
 
 msgid "Including {0}"
 msgstr "Inclusief {0}"
@@ -157,20 +232,38 @@ msgstr "Ongeldig e-mailadres"
 msgid "Invalid phone number"
 msgstr "Ongeldig telefoonnummer"
 
-msgid "Log In"
-msgstr "Inloggen"
+msgid "Last Name"
+msgstr "Achternaam"
 
-msgid "Login"
-msgstr "Inloggen"
+msgid "Latest orders"
+msgstr "Laatste bestellingen"
 
-msgid "Login or create an account"
+msgid "Leave password field empty to order as guest."
+msgstr "Leave password field empty to order as guest"
+
+msgid "Log in"
+msgstr "Log in"
+
+msgid "Log in or create an account"
 msgstr "Log in of maak een account aan"
+
+msgid "Log in to continue shopping"
+msgstr "Log in om verder te winkelen"
+
+msgid "Mr"
+msgstr "Dhr"
+
+msgid "Mrs"
+msgstr "Mvr"
 
 msgid "Name"
 msgstr "Naam"
 
 msgid "New Password"
 msgstr "Nieuw Wachtwoord"
+
+msgid "New email"
+msgstr "Nieuwe email"
 
 msgid "Newsletter"
 msgstr "Nieuwsbrief"
@@ -181,11 +274,20 @@ msgstr "Volgende"
 msgid "No Image"
 msgstr "Geen afbeelding"
 
+msgid "No account yet?"
+msgstr "Nog geen account?"
+
+msgid "No orders found"
+msgstr "Geen bestellingen gevonden"
+
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "Geen zorgen! Vul uw e-mailadres in en we sturen een email met instructies om het wachtwoord te resetten."
 
 msgid "Ok"
 msgstr "Ok"
+
+msgid "Older"
+msgstr "Ouder"
 
 msgid "Or create an account"
 msgstr "Of maak een accounts"
@@ -202,6 +304,15 @@ msgstr "Bestelling detailpagina voor bestelling #{orderId}"
 msgid "Order not found"
 msgstr "Bestelling niet gevonden"
 
+msgid "Order number"
+msgstr "Bestelnummer"
+
+msgid "Order status"
+msgstr "Bestelstatus"
+
+msgid "Order summary"
+msgstr "Besteloverzicht"
+
 msgid "Order view #{orderId}"
 msgstr "Bekijk bestelling #{orderId}"
 
@@ -210,6 +321,9 @@ msgstr "Bestelde items"
 
 msgid "Orders"
 msgstr "Bestellingen"
+
+msgid "Other"
+msgstr "Overige"
 
 msgid "Password"
 msgstr "Wachtwoord"
@@ -223,11 +337,23 @@ msgstr "Wachtwoorden komen niet overeen"
 msgid "Pay"
 msgstr "Betaal"
 
+msgid "Pay with {title}"
+msgstr "Betaal met {title}"
+
 msgid "Payment"
 msgstr "Betaling"
 
+msgid "Payment method"
+msgstr "Betalingsmethode"
+
 msgid "Place order"
 msgstr "Plaats bestelling"
+
+msgid "Please fill in your address to see shipping methods"
+msgstr "Vul uw adres in om verzendmethoden op te halen"
+
+msgid "Please provide a valid house number"
+msgstr "Vul een geldig huisnummer in"
 
 msgid "Please reauthenticate and try again"
 msgstr "Log in en probeer het opnieuw"
@@ -235,11 +361,20 @@ msgstr "Log in en probeer het opnieuw"
 msgid "Please select a payment method"
 msgstr "Selecteer een betaalmethode a.u.b."
 
+msgid "Postcode"
+msgstr "Postcode"
+
+msgid "Prefix"
+msgstr "Voorvoegsel"
+
 msgid "Product could not be found"
 msgstr "Product kan niet worden gevonden"
 
 msgid "Products"
 msgstr "Producten"
+
+msgid "Region"
+msgstr "Regio"
 
 msgid "Remove Product"
 msgstr "Verwijder product"
@@ -250,11 +385,23 @@ msgstr "Resultaten voor ‘{search}’"
 msgid "Reviews"
 msgstr "Reviews"
 
+msgid "Save changes"
+msgstr "Wijzigingen opslaan"
+
 msgid "Save new password"
 msgstr "Sla nieuw wachtwoord op"
 
+msgid "Scroll Left"
+msgstr "Scroll naar rechts"
+
+msgid "Scroll Right"
+msgstr "Scroll naar links"
+
 msgid "Search"
 msgstr "Zoeken"
+
+msgid "Search..."
+msgstr "Zoeken..."
 
 msgid "Send password reset email"
 msgstr "Stuur een wachtwoord reset e-email"
@@ -268,14 +415,17 @@ msgstr "Verzending"
 msgid "Shipping ({0} {1})"
 msgstr "Verzending ({0} {1})"
 
+msgid "Shipping address"
+msgstr "Verzendadres"
+
 msgid "Shipping method"
 msgstr "Verzendmethode"
 
-msgid "Sign In"
-msgstr "Inloggen"
-
 msgid "Sign in"
 msgstr "Inloggen"
+
+msgid "Sign in or create an account!"
+msgstr "Log in of maak een account aan!"
 
 msgid "Sign in to your account"
 msgstr "Inloggen"
@@ -283,11 +433,20 @@ msgstr "Inloggen"
 msgid "Sign out"
 msgstr "Uitloggen"
 
+msgid "Sign up for our newsletter and stay updated"
+msgstr "Abonneer u op onze nieuwsbrief en blijf op de hoogte"
+
 msgid "Start Checkout"
 msgstr "Afrekenen"
 
 msgid "Store home"
 msgstr "Winkel home"
+
+msgid "Street"
+msgstr "Straat"
+
+msgid "Submit review"
+msgstr "Verstuur review"
 
 msgid "Subscribe to newsletter"
 msgstr "Abonneer op de nieuwsbrief"
@@ -295,8 +454,23 @@ msgstr "Abonneer op de nieuwsbrief"
 msgid "Successfully changed password"
 msgstr "Wachtwoord aangepast"
 
+msgid "Successfully saved changes"
+msgstr "Wijzigingen succesvol opgeslagen"
+
+msgid "Successfully updated email"
+msgstr "Email succesvol bijgewerkt"
+
 msgid "Switch stores"
 msgstr "Verander winkel"
+
+msgid "Switch to Dark Mode"
+msgstr "Schakel naar donkere modus"
+
+msgid "Switch to Light Mode"
+msgstr "Schakel naar lichte modus"
+
+msgid "Tagged in: {title}"
+msgstr "Getagged in: {title}"
 
 msgid "Telephone"
 msgstr "Telefoon"
@@ -304,17 +478,35 @@ msgstr "Telefoon"
 msgid "Thank you for your order!"
 msgstr "Bedankt voor je bestelling!"
 
+msgid "Thank you! Your review was successfully submitted for approval"
+msgstr "Bedankt! Uw review is succesvol verstuurd voor goedkeuring"
+
 msgid "Try a different product"
 msgstr "Probeer een ander product"
 
+msgid "Try a different search"
+msgstr "Probeer een andere zoekopdracht"
+
 msgid "Update your name"
 msgstr "Wijzig naam"
+
+msgid "View all items"
+msgstr "Bekijk alle items"
 
 msgid "View all your addresses"
 msgstr "Bekijk alle adressen"
 
 msgid "View all your reviews"
 msgstr "Bekijk al je reviews"
+
+msgid "View less items"
+msgstr "Bekijk minder items"
+
+msgid "View your account"
+msgstr "Bekijk uw account"
+
+msgid "We couldn't find any results for {term}"
+msgstr "We konden geen resultaten vinden voor {term}"
 
 msgid "We couldn't find the page you were looking for"
 msgstr "We kunnen de pagina niet vinden waar u naar op zoek bent."
@@ -325,11 +517,17 @@ msgstr "Uw betaling wordt verwerkt, dit duurt een paar seconden"
 msgid "We've send a password reset link to your email address!"
 msgstr "Een wachtwoord reset link naar uw e-mailadres gestuurd"
 
+msgid "Welcome back!"
+msgstr "Welkom terug!"
+
 msgid "Which size is right?"
 msgstr "Wat is de juiste maat?"
 
 msgid "Whoops our bad..."
 msgstr "Oeps.."
+
+msgid "Write a review"
+msgstr "Schrijf een review"
 
 msgid "Written {0} reviews"
 msgstr "{0} reviews geschreven"
@@ -337,8 +535,17 @@ msgstr "{0} reviews geschreven"
 msgid "You are reviewing {0}"
 msgstr "U reviewt {0}"
 
+msgid "You can find your order history in your account!"
+msgstr "U kunt uw bestelgeschiedenis in uw account vinden!"
+
 msgid "You can now<0>sign in again</0>."
 msgstr "U kunt nu <0>opnieuw inloggen</0>"
+
+msgid "You can track your order status and much more!"
+msgstr "U kunt uw bestelstatus bijhouden en veel meer!"
+
+msgid "You have no addresses saved yet"
+msgstr "U heeft nog geen adressen opgeslagen"
 
 msgid "You have no orders yet"
 msgstr "Je hebt nog geen bestellingen"
@@ -361,11 +568,20 @@ msgstr "U moet inloggen om verder te gaan"
 msgid "Your cart is empty"
 msgstr "Je winkelwagen is leeg"
 
+msgid "Your session is expired"
+msgstr "Uw sessie is verlopen"
+
 msgid "canceled"
 msgstr "geannulleerd"
 
 msgid "invoiced"
 msgstr "gefactureerd"
+
+msgid "no products"
+msgstr "geen producten"
+
+msgid "one product"
+msgstr "één product"
 
 msgid "partially processed"
 msgstr "gedeeltelijk verwerkt"
@@ -382,8 +598,11 @@ msgstr "terug gestuurd"
 msgid "shipped"
 msgstr "verzonden"
 
-msgid "result"
-msgstr "resultaat"
+msgid "{totalResults} result"
+msgstr "{totalResults} resultaat"
 
-msgid "results"
-msgstr "resultaten"
+msgid "{totalResults} results"
+msgstr "{totalResults} resultaten"
+
+msgid "{total_count} products"
+msgstr "{total_count} producten"

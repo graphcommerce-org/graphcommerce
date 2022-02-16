@@ -9,6 +9,7 @@ import {
   SvgIcon,
   extendableComponent,
 } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
 import { Divider, Typography, ButtonProps, Box } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
@@ -100,9 +101,9 @@ export default function ProductAddToCart(
           </PageLink>
         }
       >
-        <>
-          <strong>{name}</strong>&nbsp;has been added to your shopping cart!
-        </>
+        <Trans>
+          <strong>{name}</strong> has been added to your shopping cart!
+        </Trans>
       </MessageSnackbar>
     </Box>
   )

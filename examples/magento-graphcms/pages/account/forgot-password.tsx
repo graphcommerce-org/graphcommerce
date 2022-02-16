@@ -58,7 +58,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
       size: 'max',
-      up: { href: '/account-signin', title: t`Sign In` },
+      up: { href: '/account-signin', title: t`Sign in` },
     },
   }
 }

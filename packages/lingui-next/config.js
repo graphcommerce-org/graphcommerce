@@ -20,7 +20,19 @@ function linguiNextConfig(config) {
         exclude: ['**/node_modules/!(@graphcommerce)/**'],
       },
     ],
-    extractors: [require.resolve('@lingui/cli/api/extractors/typescript')],
+    extractBabelOptions: {
+      presets: [
+        [
+          'next/babel',
+          {
+            'preset-react': {
+              runtime: 'automatic',
+              importSource: '@emotion/react',
+            },
+          },
+        ],
+      ],
+    },
     sourceLocale: 'en',
     ...otherConfig,
   }

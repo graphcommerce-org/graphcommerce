@@ -145,7 +145,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         }
       >
         <Trans>
-          <strong>{name}</strong>&nbsp;has been added to your shopping cart!
+          <strong>{name}</strong> has been added to your shopping cart!
         </Trans>
       </MessageSnackbar>
     </Box>
