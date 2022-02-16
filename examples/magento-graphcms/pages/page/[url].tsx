@@ -42,7 +42,7 @@ function CmsPage(props: Props) {
         )}
       </LayoutHeader>
 
-      {router.pathname !== '/' && <LayoutTitle variant='h1'>{title}</LayoutTitle>}
+      {router.pathname === '/' && <LayoutTitle variant='h1'>{title}</LayoutTitle>}
 
       {pages?.[0] && (
         <RowRenderer

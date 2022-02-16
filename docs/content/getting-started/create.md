@@ -15,7 +15,7 @@ After you've finished this tutorial, you'll have accomplished the following:
 - Generated a new project based on the magento-graphcms example
 
 <figure>
-  <video id="video2" width="480" style="min-width:100%; aspect-ratio: 9:6" controls>
+  <video width="480" style="min-width:100%; aspect-ratio: 9:6" controls>
     <source src="https://cdn-std.droplr.net/files/acc_857465/ZCLvZ7" type="video/mp4">
   Your browser does not support the video tag.
   </video>

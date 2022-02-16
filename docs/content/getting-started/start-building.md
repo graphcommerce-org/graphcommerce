@@ -23,3 +23,52 @@ latest release to get the benefits of performance, new components, and other
 best practices.
 
 You've completed the [Create a GraphCommerce app tutorial]().
+
+# Step 1: Make customizations
+
+### Add text
+
+- Make sure your development environment is running at http://localhost:3000
+- In /pages/page/[url].tsx, add:
+
+```
+  <Typography variant='h1' gutterBottom sx={{ textAlign: 'center' }}>
+    Hello
+  </Typography>
+```
+
+- Add `import { Typography } from '@mui/material'` to the list of imports
+- Save the file to see your changes updated in real-time
+
+<figure>
+ <img src="https://cdn-std.droplr.net/files/acc_857465/btnqBi" width="480" style="min-width:100%; aspect-ratio: 9:6">
+ <figcaption>Adding text to your GraphCommerce app</figcaption>
+</figure>
+
+### Change a component's style
+
+- After you've finished step 1, in /pages/page/[url].tsx find the following
+  code:
+
+```
+  <Typography variant='h1' gutterBottom sx={{ textAlign: 'center' }}>
+    Hello
+  </Typography>
+```
+
+- Make the background color red for the Hello text:
+
+```
+  <Typography variant='h1' gutterBottom sx={{ textAlign: 'center', backgroundColor: 'red' }}>
+    Hello
+  </Typography>
+```
+
+<figure>
+ <img src="https://cdn-std.droplr.net/files/acc_857465/F8EuHl" width="480" style="min-width:100%; aspect-ratio: 9:6">
+ <figcaption>Change a component's style in your GraphCommerce app</figcaption>
+</figure>
+
+# Next steps
+
+- Learn how to [build a custom header]() in GraphCommerce
