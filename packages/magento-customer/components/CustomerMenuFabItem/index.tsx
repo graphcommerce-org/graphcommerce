@@ -31,7 +31,7 @@ function CustomerMenuFabItemContent(props: CustomerMenuFabItemProps) {
           variant='dot'
           overlap='circular'
         >
-          {icon ?? <SvgIcon src={iconPerson} />}
+          {icon ?? <SvgIcon src={iconPerson} size='medium' />}
         </DesktopHeaderBadge>
       }
       href={requireAuth ? guestHref : authHref}

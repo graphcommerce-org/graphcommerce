@@ -13,6 +13,7 @@ import {
   SvgIcon,
   DesktopNavItem,
   MenuFabItem,
+  DarkLightModeMenuSecondaryItem,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Fab } from '@mui/material'
@@ -82,11 +83,12 @@ export function LayoutFull(props: LayoutFullProps) {
             </CustomerMenuFabItem>,
             <MenuFabSecondaryItem
               key='service'
-              icon={<SvgIcon src={iconCustomerService} />}
+              icon={<SvgIcon src={iconCustomerService} size='medium' />}
               href='/service'
             >
               <Trans>Customer Service</Trans>
             </MenuFabSecondaryItem>,
+            <DarkLightModeMenuSecondaryItem key='darkmode' />,
           ]}
         >
           <MenuFabItem href='/'>
