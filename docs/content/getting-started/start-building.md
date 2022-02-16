@@ -37,7 +37,8 @@ You've completed the [Create a GraphCommerce app tutorial]().
   </Typography>
 ```
 
-- Add `import { Typography } from '@mui/material'` to the list of imports
+- Add `import { Typography } from '@mui/material'` to the list of imports at the
+  top of the file
 - Save the file to see your changes updated in real-time
 
 <figure>

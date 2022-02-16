@@ -25,6 +25,11 @@ File structure of the graphcommerce-magento example
         └── Logo.tsx
         └── Footer.tsx
         └── LayoutFull.tsx
+    └── theme.ts
+    └── ...
+├── GraphQL
+    └── CategoryPage.graphql
+    └── PageLink.graphql
     └── ...
 ├── pages
     └── product
@@ -39,11 +44,8 @@ File structure of the graphcommerce-magento example
     └── ...
 ├── locales
     └── en.po
-    └── fr.po
     └── nl.po
     └── ...
-├── Theme
-    └── themeProvider.tsx
 ```
 
 # Components
@@ -173,32 +175,51 @@ called [GraphCMS]() is integrated.
 By default, the GraphQL Mesh endpoint runs on route /api/grapql. You can query
 both the Magento GraphQL schema and the GraphCMS GraphQL schema. Try out the
 GraphCommerce demo
-[GraphQL Explorer](https://graphcommerce.vercel.app/api/graphql).
+[GraphQL Explorer](https://graphcommerce.vercel.app/api/graphql) with the
+following example query:
+
+```
+query {
+  products(search: "sock", pageSize: 3) {
+    items {
+      url_key
+      }
+  }
+  availableStores {
+    store_name
+	store_code
+  }
+}
+```
 
 ## Query fragments
 
 Every component that requires data from Magento or GraphCMS has it's own
 `.graphql` file, containing a GraphQL query fragment. GraphQL Code Generator is
 used to convert query fragments to both the GraphQL document (query or mutation)
-and Typescript type definitions, both captured in `.gql(.ts)` files.
+and Typescript type definitions, both captured in `.gql(.ts)` files. `.gql(.ts)`
+are generated at build time.
 
-Pages run queries in the getStaticProps function and store the response as
-props. Most pages have a single page query, that combines multiple query
-fragments from components. These accumelating page queries are located in the
+Pages run queries in the getStaticProps function and pass the response as props.
+Pages have a single page query, that combines multiple query fragments from
+components. These accumelating page queries are located in the
 /components/GraphQL directory.
+
+With the use of fragments and GraphQL Mesh, GraphCommerce retrieves all data
+from both Magento and GraphCMS in a single GraphQL query. This improves
+performance.
 
 ```
 GraphQL queries in the graphcommerce-magento example
 
-├── components
-    └── GraphQL
-        └── CategoryPage.graphql
-        └── PageLink.graphql
-        └── DefaultPage.graphql
-        └── PagesStaticPaths.graphql
-        └── FooterQueryFragment.graphql
-        └── PageContentQueryFragment.graphql
-        └── ProductPage.graphql
+├── GraphQL
+    └── CategoryPage.graphql
+    └── PageLink.graphql
+    └── DefaultPage.graphql
+    └── PagesStaticPaths.graphql
+    └── FooterQueryFragment.graphql
+    └── PageContentQueryFragment.graphql
+    └── ProductPage.graphql
 ```
 
 # Next steps
