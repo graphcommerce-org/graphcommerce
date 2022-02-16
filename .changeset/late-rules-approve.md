@@ -10,4 +10,5 @@
 '@graphcommerce/magento-product-configurable': patch
 ---
 
-Fixed extraction of translations and updated various translations
+Fixed extraction of translations and updated various translations for english
+🇺🇸🇬🇧 and dutch 🇳🇱

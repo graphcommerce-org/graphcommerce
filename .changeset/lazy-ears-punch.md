@@ -2,4 +2,4 @@
 '@graphcommerce/magento-graphcms': minor
 ---
 
-Added french and german languages
+Added french 🇫🇷🥖 and german 🇩🇪🍻 languages
