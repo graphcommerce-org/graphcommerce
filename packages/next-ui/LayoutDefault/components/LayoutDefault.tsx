@@ -97,7 +97,10 @@ export function LayoutDefault(props: LayoutDefaultProps) {
                 padding: `0 ${theme.page.horizontal}`,
                 position: 'sticky',
                 marginTop: `calc(${theme.appShell.headerHeightMd} * -1 + calc(${fabIconSize} / 2))`,
-                top: `calc(${theme.appShell.headerHeightMd} / 2 - 28px)`,
+                top: `calc(${theme.appShell.headerHeightMd} / 2 - ${responsiveVal(
+                  42 / 2,
+                  56 / 2,
+                )})`,
               },
               [theme.breakpoints.down('md')]: {
                 position: 'fixed',
