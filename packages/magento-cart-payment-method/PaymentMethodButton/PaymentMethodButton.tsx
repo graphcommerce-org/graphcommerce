@@ -1,12 +1,12 @@
 import { ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
-import { Button, ButtonProps } from '@graphcommerce/next-ui'
+import { Button, ButtonProps, LinkOrButton, LinkOrButtonProps } from '@graphcommerce/next-ui'
 import { ComposedSubmit, ComposedSubmitRenderComponentProps } from '@graphcommerce/react-hook-form'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
-export type PaymentMethodButtonProps = ButtonProps & { display?: 'inline' | 'block' }
+export type PaymentMethodButtonProps = LinkOrButtonProps & { display?: 'inline' | 'block' }
 
 export function PaymentMethodButtonRenderer(
-  props: { buttonProps: ButtonProps } & ComposedSubmitRenderComponentProps,
+  props: { buttonProps: LinkOrButtonProps } & ComposedSubmitRenderComponentProps,
 ) {
   const { buttonProps, error, buttonState, submit } = props
   const { selectedMethod, selectedModule } = usePaymentMethodContext()
@@ -18,7 +18,7 @@ export function PaymentMethodButtonRenderer(
   return (
     <>
       {!PaymentButton || !selectedMethod?.code ? (
-        <Button
+        <LinkOrButton
           {...btnProps}
           onClick={submit}
           loading={buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)}
@@ -30,7 +30,7 @@ export function PaymentMethodButtonRenderer(
               (<em>{selectedMethod?.title}</em>)
             </>
           )}
-        </Button>
+        </LinkOrButton>
       ) : (
         <PaymentButton
           {...selectedMethod}

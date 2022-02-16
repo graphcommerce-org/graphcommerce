@@ -1,3 +1,4 @@
+import { ComposedForm } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   CartAgreementsForm,
@@ -31,7 +32,6 @@ import {
   SvgIcon,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { ComposedForm } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
 import { CircularProgress, Container, Dialog, Divider, NoSsr } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
@@ -58,9 +58,12 @@ function PaymentPage() {
                 <PaymentMethodButton
                   type='submit'
                   color='secondary'
-                  variant='pill'
+                  button={{
+                    variant: 'pill',
+                    size: 'medium',
+                    endIcon: <SvgIcon src={iconChevronRight} size='small' />,
+                  }}
                   display='inline'
-                  endIcon={<SvgIcon src={iconChevronRight} size='small' />}
                 >
                   <Trans>Pay</Trans>
                 </PaymentMethodButton>
@@ -128,8 +131,8 @@ function PaymentPage() {
                         key='button'
                         type='submit'
                         color='secondary'
-                        variant='pill'
-                        size='large'
+                        button={{ variant: 'pill', size: 'large' }}
+                        breakpoint='xs'
                         endIcon={<SvgIcon src={iconChevronRight} />}
                       >
                         <Trans>Place order</Trans>

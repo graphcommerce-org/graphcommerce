@@ -1,6 +1,7 @@
 import { ParsedUrlQuery } from 'querystring'
-import { NormalizedCacheObject } from '@graphcommerce/graphql'
 import { UpPage } from '@graphcommerce/framer-next-pages/types'
+// todo: remove references to GraphQL
+import { NormalizedCacheObject } from '@graphcommerce/graphql'
 import { GetStaticProps as GetStaticPropsNext } from 'next'
 
 type AnyObj = Record<string, unknown>

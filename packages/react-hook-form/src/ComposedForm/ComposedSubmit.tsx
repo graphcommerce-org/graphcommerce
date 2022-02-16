@@ -6,7 +6,7 @@ import { ComposedSubmitRenderComponentProps } from './types'
 
 export type ComposedSubmitProps = {
   onSubmitSuccessful?: () => void
-  render: React.FC<ComposedSubmitRenderComponentProps>
+  render(props: ComposedSubmitRenderComponentProps): React.ReactNode
 }
 
 export function mergeErrors(errors: ApolloError[]): ApolloError | undefined {

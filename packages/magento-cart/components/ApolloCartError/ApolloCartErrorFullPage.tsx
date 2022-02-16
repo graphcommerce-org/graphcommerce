@@ -1,10 +1,6 @@
+import { ApolloErrorFullPage, ApolloErrorFullPageProps } from '@graphcommerce/ecommerce-ui'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import {
-  ApolloErrorFullPage,
-  ApolloErrorFullPageProps,
-  iconSadFace,
-  SvgIcon,
-} from '@graphcommerce/next-ui'
+import { iconSadFace, SvgIcon } from '@graphcommerce/next-ui'
 import { Button } from '@mui/material'
 import { useClearCurrentCartId } from '../../hooks/useClearCurrentCartId'
 

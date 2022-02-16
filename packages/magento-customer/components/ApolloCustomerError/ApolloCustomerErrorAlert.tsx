@@ -1,8 +1,7 @@
-import { ApolloErrorAlert, ApolloErrorAlertProps } from '@graphcommerce/next-ui'
+import { ApolloErrorAlert, ApolloErrorAlertProps } from '@graphcommerce/ecommerce-ui'
 import { Trans } from '@lingui/macro'
 import { Link } from '@mui/material'
 import NextLink from 'next/link'
-import React from 'react'
 import { useExtractCustomerErrors } from '../../hooks/useExtractCustomerErrors'
 
 type MagentoErrorAlertProps = ApolloErrorAlertProps

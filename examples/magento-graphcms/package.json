@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.0.1",
+    "@graphcommerce/ecommerce-ui": "^0.0.0",
     "@graphcommerce/framer-next-pages": "^3.0.1",
     "@graphcommerce/googleanalytics": "^2.0.1",
     "@graphcommerce/googlerecaptcha": "^2.0.1",
@@ -74,7 +75,6 @@
     "@graphcommerce/next-config": "^3.0.1",
     "@graphcommerce/next-ui": "^4.1.0",
     "@graphcommerce/prettier-config-pwa": "^4.0.1",
-    "@graphcommerce/react-hook-form": "^3.0.1",
     "@graphcommerce/typescript-config-pwa": "^4.0.1",
     "@graphql-codegen/cli": "^2.5.0",
     "@graphql-mesh/cli": "^0.50.0",

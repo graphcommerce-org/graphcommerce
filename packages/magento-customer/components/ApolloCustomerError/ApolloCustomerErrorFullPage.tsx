@@ -1,9 +1,5 @@
-import {
-  ApolloErrorFullPage,
-  ApolloErrorAlertProps,
-  iconPerson,
-  SvgIcon,
-} from '@graphcommerce/next-ui'
+import { ApolloErrorFullPage, ApolloErrorAlertProps } from '@graphcommerce/ecommerce-ui'
+import { iconPerson, SvgIcon } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Button } from '@mui/material'
 import PageLink from 'next/link'

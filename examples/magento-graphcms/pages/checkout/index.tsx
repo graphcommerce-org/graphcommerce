@@ -1,3 +1,9 @@
+import {
+  ComposedSubmitButton,
+  ComposedSubmitLinkOrButton,
+  ComposedForm,
+  ComposedSubmit,
+} from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ApolloCartErrorAlert, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
 import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
@@ -6,19 +12,14 @@ import { ShippingAddressForm } from '@graphcommerce/magento-cart-shipping-addres
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  Button,
   FormActions,
   FormHeader,
   GetStaticProps,
   iconBox,
-  iconChevronRight,
   LayoutHeader,
   Stepper,
-  SvgIcon,
   LayoutTitle,
-  LinkOrButton,
 } from '@graphcommerce/next-ui'
-import { ComposedForm, ComposedSubmit } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -45,23 +46,10 @@ function ShippingPage() {
         primary={
           <ComposedSubmit
             onSubmitSuccessful={onSubmitSuccessful}
-            render={({ buttonState, submit, error }) => (
-              <LinkOrButton
-                button={{
-                  type: 'submit',
-                  variant: 'pill',
-                  endIcon: <SvgIcon src={iconChevronRight} />,
-                }}
-                loading={
-                  buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)
-                    ? true
-                    : undefined
-                }
-                color='secondary'
-                onClick={submit}
-              >
+            render={(renderProps) => (
+              <ComposedSubmitLinkOrButton {...renderProps}>
                 <Trans>Next</Trans>
-              </LinkOrButton>
+              </ComposedSubmitLinkOrButton>
             )}
           />
         }
@@ -115,32 +103,17 @@ function ShippingPage() {
 
               <ComposedSubmit
                 onSubmitSuccessful={onSubmitSuccessful}
-                render={({ buttonState, submit, error }) => (
-                  <>
-                    <FormActions>
-                      <Button
-                        type='submit'
-                        color='secondary'
-                        variant='pill'
-                        size='large'
-                        loading={
-                          buttonState.isSubmitting || (buttonState.isSubmitSuccessful && !error)
-                            ? true
-                            : undefined
-                        }
-                        loadingPosition='end'
-                        onClick={submit}
-                        endIcon={<SvgIcon src={iconChevronRight} />}
-                      >
-                        <Trans>Next</Trans>
-                      </Button>
-                    </FormActions>
-                    <ApolloCartErrorAlert
-                      key='error'
-                      error={buttonState.isSubmitting ? undefined : error}
-                    />
-                  </>
-                )}
+                render={(renderProps) => [
+                  <FormActions key='button'>
+                    <ComposedSubmitButton {...renderProps} size='large'>
+                      <Trans>Start Checkout</Trans>
+                    </ComposedSubmitButton>
+                  </FormActions>,
+                  <ApolloCartErrorAlert
+                    key='error'
+                    error={renderProps.buttonState.isSubmitting ? undefined : renderProps.error}
+                  />,
+                ]}
               />
             </>
           )}

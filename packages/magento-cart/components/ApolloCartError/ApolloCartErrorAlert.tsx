@@ -1,11 +1,10 @@
+import { ApolloErrorAlert, ApolloErrorAlertProps } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import { ApolloErrorAlert, ApolloErrorAlertProps } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { Button } from '@mui/material'
 import Link from 'next/link'
-import React from 'react'
 import { useClearCurrentCartId } from '../../hooks/useClearCurrentCartId'
 
 export type ApolloCartErrorAlertProps = ApolloErrorAlertProps

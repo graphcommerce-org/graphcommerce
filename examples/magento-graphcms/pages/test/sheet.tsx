@@ -1,3 +1,4 @@
+import { useForm, useFormAutoSubmit } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import {
@@ -5,7 +6,6 @@ import {
   LayoutOverlayState,
   useLayoutState,
 } from '@graphcommerce/next-ui/LayoutOverlay/test/LayoutOverlayDemo'
-import { useForm, useFormAutoSubmit } from '@graphcommerce/react-hook-form'
 import { capitalize, Container, Hidden, Typography } from '@mui/material'
 
 type Size = 'Sm' | 'Md'

@@ -1,4 +1,4 @@
-import { ButtonProps } from '@graphcommerce/next-ui/Button'
+import { LinkOrButtonProps } from '@graphcommerce/next-ui'
 import { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import React from 'react'
 import { AvailablePaymentMethodFragment } from './AvailablePaymentMethod/AvailablePaymentMethod.gql'
@@ -15,7 +15,7 @@ export type PaymentMethod = Partial<AvailablePaymentMethodFragment> &
 export type PaymentMethodOptionsProps = Pick<UseFormComposeOptions, 'step'> & {
   Container: React.FC
 }
-export type PaymentButtonProps = PaymentMethod & { buttonProps: ButtonProps }
+export type PaymentButtonProps = PaymentMethod & { buttonProps: LinkOrButtonProps }
 export type PaymentOptionsProps = PaymentMethod & PaymentMethodOptionsProps
 
 export type PaymentToggleProps = PaymentMethod
