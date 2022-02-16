@@ -103,17 +103,18 @@ function ShippingPage() {
 
               <ComposedSubmit
                 onSubmitSuccessful={onSubmitSuccessful}
-                render={(renderProps) => [
-                  <FormActions key='button'>
-                    <ComposedSubmitButton {...renderProps} size='large'>
-                      <Trans>Start Checkout</Trans>
-                    </ComposedSubmitButton>
-                  </FormActions>,
-                  <ApolloCartErrorAlert
-                    key='error'
-                    error={renderProps.buttonState.isSubmitting ? undefined : renderProps.error}
-                  />,
-                ]}
+                render={(renderProps) => (
+                  <>
+                    <FormActions>
+                      <ComposedSubmitButton {...renderProps} size='large'>
+                        <Trans>Start Checkout</Trans>
+                      </ComposedSubmitButton>
+                    </FormActions>
+                    <ApolloCartErrorAlert
+                      error={renderProps.buttonState.isSubmitting ? undefined : renderProps.error}
+                    />
+                  </>
+                )}
               />
             </>
           )}
