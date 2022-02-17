@@ -138,7 +138,7 @@ the ones you don't want to use.
 Visit the development environment running at http://localhost:3000  
 Visit the GraphQL Playground running http://localhost:3000/api/graphql
 
-> No success? View the [common build errors]()
+> No success? Take a look at [common build errors]()
 
 # Next steps
 
