@@ -24,9 +24,10 @@ It's important to realize that the style of a typography component is
 independent from the semantic underlying element. In the example above, the
 variant prop is used to render a `<h4>` semantic element with h1 styling.
 
-## Changing font styles and sizes
+## Changing font styles and font sizes
 
-Font styles are part of the global styles in /components/index.ts:
+Font styles are part of the global styles in /components/index.ts. Changes to
+font-size and other properties can be made here:
 
 ```
   h1: {
@@ -48,6 +49,25 @@ Font styles are part of the global styles in /components/index.ts:
     lineHeight: 1.55,
   },
   ...
+```
+
+In most other cases, styling within the context of a page or component is the
+better solution. The sx prop is used to overwrite the styling of a Typography
+component:
+
+```
+<Typography
+  variant='h3'
+  component='div'
+  gutterBottom
+  sx={{
+    h3: (theme) => ({
+      color: theme.palette.primary.main,
+    }),
+  }}
+>
+  {product.name}
+</Typography>
 ```
 
 ## Responsive font sizes
@@ -82,7 +102,6 @@ h1: {
   the `<head>` component:
 
 ```
-
  <Head>
   ...
   <link rel='preconnect' href='https://fonts.googleapis.com' />
