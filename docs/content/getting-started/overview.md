@@ -14,7 +14,7 @@ located in the /components or /pages directories.
 - The main layout component, which renders header, navigation and footer
 - A set of boilerplate pages, which handle url routing
 - Basic global styles in ThemeProvider.tsx provided by
-  [Mui](https://mui.com/customization/default-theme/)
+  [Mui ↗](https://mui.com/customization/default-theme/)
 - Interface translation files
 
 ```
@@ -75,64 +75,64 @@ also applies if you want to modify a component's [query fragment]().
 
 Local
 
-- /Asset - [Source]() | [Documentation]()
-- /Blog - [Source]() | [Documentation]()
-- /Layout - [Source]() | [Documentation]()
-- /Row - [Source]() | [Documentation]()
-- /Usps - [Source]() | [Documentation]()
+- /Asset - [Source ↗]() | [Documentation]()
+- /Blog - [Source ↗]() | [Documentation]()
+- /Layout - [Source ↗]() | [Documentation]()
+- /Row - [Source ↗]() | [Documentation]()
+- /Usps - [Source ↗]() | [Documentation]()
 
 Packages
 
-- @graphcommerce/browserslist-config-pwa - [Source]()
-- @graphcommerce/eslint-config-pwa - [Source]()
-- @graphcommerce/framer-next-pages - [Source]()
-- @graphcommerce/googleanalytics - [Source]()
-- @graphcommerce/googlerecaptcha - [Source]()
-- @graphcommerce/googletagmanager - [Source]()
-- @graphcommerce/graphcms-ui - [Source]()
-- @graphcommerce/graphql - [Source]()
-- @graphcommerce/graphql-mesh - [Source]()
-- @graphcommerce/image - [Source]()
-- @graphcommerce/lingui-next - [Source]()
-- @graphcommerce/magento-cart - [Source]()
-- @graphcommerce/magento-cart-billing-address - [Source]()
-- @graphcommerce/magento-cart-checkout - [Source]()
-- @graphcommerce/magento-cart-coupon - [Source]()
-- @graphcommerce/magento-cart-email - [Source]()
-- @graphcommerce/magento-cart-items - [Source]()
-- @graphcommerce/magento-cart-payment-method - [Source]()
-- @graphcommerce/magento-cart-shipping-address - [Source]()
-- @graphcommerce/magento-cart-shipping-method - [Source]()
-- @graphcommerce/magento-category - [Source]()
-- @graphcommerce/magento-cms - [Source]()
-- @graphcommerce/magento-customer - [Source]()
-- @graphcommerce/magento-customer-account - [Source]()
-- @graphcommerce/magento-customer-order - [Source]()
-- @graphcommerce/magento-graphql - [Source]()
-- @graphcommerce/magento-newsletter - [Source]()
-- @graphcommerce/magento-payment-included - [Source]()
-- @graphcommerce/magento-product - [Source]()
-- @graphcommerce/magento-product-bundle - [Source]()
-- @graphcommerce/magento-product-configurable - [Source]()
-- @graphcommerce/magento-product-downloadable - [Source]()
-- @graphcommerce/magento-product-grouped - [Source]()
-- @graphcommerce/magento-product-simple - [Source]()
-- @graphcommerce/magento-product-virtual - [Source]()
-- @graphcommerce/magento-review - [Source]()
-- @graphcommerce/magento-search - [Source]()
-- @graphcommerce/magento-store - [Source]()
-- @graphcommerce/next-config - [Source]()
-- @graphcommerce/next-ui - [Source]()
-- @graphcommerce/prettier-config-pwa - [Source]()
-- @graphcommerce/react-hook-form - [Source]()
-- @graphcommerce/typescript-config-pwa - [Source]()
+- @graphcommerce/browserslist-config-pwa - [Source ↗]()
+- @graphcommerce/eslint-config-pwa - [Source ↗]()
+- @graphcommerce/framer-next-pages - [Source ↗]()
+- @graphcommerce/googleanalytics - [Source ↗]()
+- @graphcommerce/googlerecaptcha - [Source ↗]()
+- @graphcommerce/googletagmanager - [Source ↗]()
+- @graphcommerce/graphcms-ui - [Source ↗]()
+- @graphcommerce/graphql - [Source ↗]()
+- @graphcommerce/graphql-mesh - [Source ↗]()
+- @graphcommerce/image - [Source ↗]()
+- @graphcommerce/lingui-next - [Source ↗]()
+- @graphcommerce/magento-cart - [Source ↗]()
+- @graphcommerce/magento-cart-billing-address - [Source ↗]()
+- @graphcommerce/magento-cart-checkout - [Source ↗]()
+- @graphcommerce/magento-cart-coupon - [Source ↗]()
+- @graphcommerce/magento-cart-email - [Source ↗]()
+- @graphcommerce/magento-cart-items - [Source ↗]()
+- @graphcommerce/magento-cart-payment-method - [Source ↗]()
+- @graphcommerce/magento-cart-shipping-address - [Source ↗]()
+- @graphcommerce/magento-cart-shipping-method - [Source ↗]()
+- @graphcommerce/magento-category - [Source ↗]()
+- @graphcommerce/magento-cms - [Source ↗]()
+- @graphcommerce/magento-customer - [Source ↗]()
+- @graphcommerce/magento-customer-account - [Source ↗]()
+- @graphcommerce/magento-customer-order - [Source ↗]()
+- @graphcommerce/magento-graphql - [Source ↗]()
+- @graphcommerce/magento-newsletter - [Source ↗]()
+- @graphcommerce/magento-payment-included - [Source ↗]()
+- @graphcommerce/magento-product - [Source ↗]()
+- @graphcommerce/magento-product-bundle - [Source ↗]()
+- @graphcommerce/magento-product-configurable - [Source ↗]()
+- @graphcommerce/magento-product-downloadable - [Source ↗]()
+- @graphcommerce/magento-product-grouped - [Source ↗]()
+- @graphcommerce/magento-product-simple - [Source ↗]()
+- @graphcommerce/magento-product-virtual - [Source ↗]()
+- @graphcommerce/magento-review - [Source ↗]()
+- @graphcommerce/magento-search - [Source ↗]()
+- @graphcommerce/magento-store - [Source ↗]()
+- @graphcommerce/next-config - [Source ↗]()
+- @graphcommerce/next-ui - [Source ↗]()
+- @graphcommerce/prettier-config-pwa - [Source ↗]()
+- @graphcommerce/react-hook-form - [Source ↗]()
+- @graphcommerce/typescript-config-pwa - [Source ↗]()
 
 # Pages
 
 GraphCommerce uses Next.js
-[file-based routing](https://nextjs.org/docs/routing/introduction), built on the
-concept of pages. A page is a React Component exported from a `.tsx` file in the
-/pages directory. When a file is added to the /pages directory, it's
+[file-based routing ↗](https://nextjs.org/docs/routing/introduction), built on
+the concept of pages. A page is a React Component exported from a `.tsx` file in
+the /pages directory. When a file is added to the /pages directory, it's
 automatically available as a route.
 
 All routes of the app contain a url segment that corresponds with a directory in
@@ -175,7 +175,7 @@ called [GraphCMS]() is integrated.
 By default, the GraphQL Mesh endpoint runs on route /api/grapql. You can query
 both the Magento GraphQL schema and the GraphCMS GraphQL schema. Try out the
 GraphCommerce demo
-[GraphQL Explorer](https://graphcommerce.vercel.app/api/graphql) with the
+[GraphQL Explorer ↗](https://graphcommerce.vercel.app/api/graphql) with the
 following example query:
 
 ```
@@ -226,4 +226,4 @@ GraphQL queries in the graphcommerce-magento example
 
 - [Get started]() with GraphCommerce and begin building a custom storefront.
 - You can explore the
-  [GraphCommerce demo storefront](https://graphcommerce.vercel.app/)
+  [GraphCommerce demo storefront ↗](https://graphcommerce.vercel.app/)

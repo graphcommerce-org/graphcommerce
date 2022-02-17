@@ -24,7 +24,7 @@ provides a full purchase journey out-of-the-box. It uses GraphCMS to enrich
 pages with multiple content components, like the homepage.
 
 The magento-graphcms example is styled using the Mui component library. You can
-start styling by making changes to the [themeProvider]().
+start styling by making changes to the [theme]().
 
 ## Features
 
@@ -42,7 +42,8 @@ GraphCommerce features include:
   commerce)
 - Passing Google Core Web Vitals audits
 - PWA features, like save on homescreen, custom icon
-- Serverless hosting with Vercel
+- Interface [translations]() EN, ES, FR, DE, NL
+- [Deployments to Vercel]()
 
 <figure>
   <video width="480" style="min-width:100%; aspect-ratio: 9:6" controls>

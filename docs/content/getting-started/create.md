@@ -24,7 +24,7 @@ After you've finished this tutorial, you'll have accomplished the following:
 
 ## Requirements
 
-You've familiarized yourself with [React](), [Next.js](), and [Mui]().
+You've familiarized yourself with [React ↗](), [Next.js ↗](), and [Mui ↗]().
 GraphCommerce is a frontend React framework that uses Next.js for server-side
 rendering.
 
