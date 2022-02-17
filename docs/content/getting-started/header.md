@@ -16,12 +16,12 @@ to find resources to build more complex features on your own.
 - Change the Menu component's styling to a fullscreen overlay
 
 <figure>
- <img src="./../../public/c10.gif" width="480" style="min-width:100%; aspect-ratio: 9:6">
+ <img src="./../../public/c10.gif" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
  <figcaption>Before customization</figcaption>
 </figure>
 
 <figure>
- <img src="./../../public/i82.gif" width="480" style="min-width:100%; aspect-ratio: 9:6">
+ <img src="./../../public/i82.gif" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
  <figcaption>After customization of the header</figcaption>
 </figure>
 
@@ -42,7 +42,7 @@ to find resources to build more complex features on your own.
 - Save the file to see your changes updated in real-time
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/a4ZvDM" width="480" style="min-width:100%; aspect-ratio: 9:6">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/a4ZvDM" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
  <figcaption>Reorder components</figcaption>
 </figure>
 
@@ -52,7 +52,7 @@ to find resources to build more complex features on your own.
   `<DesktopNavBar>...</DesktopNavBar>` component.
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/MeJs3V" width="480" style="min-width:100%; aspect-ratio: 9:6">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/MeJs3V" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
  <figcaption>Remove navigation</figcaption>
 </figure>
 
@@ -86,7 +86,7 @@ to find resources to build more complex features on your own.
 ```
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/Bvj6ze" width="480" style="min-width:100%; aspect-ratio: 9:6">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/Bvj6ze" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
  <figcaption>Replace search input with Search Fab, remove Customer Service Fab</figcaption>
 </figure>
 
@@ -124,7 +124,7 @@ import React, { useEffect } from 'react'
 ```
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/NY144K" width="480" style="min-width:100%; aspect-ratio: 9:6">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/NY144K" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
  <figcaption>Local copy of the MenuFab component with Fab scroll animation removed</figcaption>
 </figure>
 
@@ -174,10 +174,10 @@ TransitionComponent={Fade}
 ```
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/xooh2F" width="480" style="min-width:100%; aspect-ratio: 9:6">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/xooh2F" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
  <figcaption>Menu component with custom styling</figcaption>
 </figure>
 
 # Next steps
 
-- ...
+- Learn more about creating [styled components with the styled() utility]()

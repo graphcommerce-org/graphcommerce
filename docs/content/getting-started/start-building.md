@@ -42,7 +42,7 @@ You've completed the [Create a GraphCommerce app tutorial]().
 - Save the file to see your changes updated in real-time
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/btnqBi" width="480" style="min-width:100%; aspect-ratio: 9:6">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/btnqBi" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
  <figcaption>Adding text to your GraphCommerce app</figcaption>
 </figure>
 
@@ -66,7 +66,7 @@ You've completed the [Create a GraphCommerce app tutorial]().
 ```
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/F8EuHl" width="480" style="min-width:100%; aspect-ratio: 9:6">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/F8EuHl" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
  <figcaption>Change a component's style in your GraphCommerce app</figcaption>
 </figure>
 

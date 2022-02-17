@@ -47,7 +47,7 @@ msgstr "Empty cart!"
 - Refresh to see your changes updated
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/ipzm99" width="480" style="min-width:100%; aspect-ratio: 9:6; margin: 30px 0; box-shadow: 0 12px 60px 0 rgba(0,0,0,0.10)">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/ipzm99" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
  <figcaption>Make changes to translations. Refresh to see changes updated.</figcaption>
 </figure>
 
