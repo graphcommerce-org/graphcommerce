@@ -1,5 +1,5 @@
 import { SvgImageSimple, iconHeart } from '@graphcommerce/next-ui'
-import { Chip, ChipProps, makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme, IconButton, IconButtonProps } from '@material-ui/core'
 import React, { useState, useEffect } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
 import {
@@ -12,10 +12,11 @@ import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
 
 type ProductWishlistSettings = {
   display?: 'guest' | 'customer'
+  variant?: 'small' | 'medium'
 }
 
 export type ProductWishlistChipProps = ProductWishlistChipFragment &
-  ChipProps &
+  IconButtonProps &
   ProductWishlistSettings
 
 const useStyles = makeStyles(
@@ -28,13 +29,20 @@ const useStyles = makeStyles(
       stroke: '#AC2E2E',
       fill: '#AC2E2E',
     },
+    wishlistButton: {
+      boxShadow: theme.shadows[6],
+      '&:hover': {
+        background: 'none',
+      },
+    },
   }),
   { name: 'ProductWishlistChip' },
 )
 
 export default function ProductWishlistChip(props: ProductWishlistChipProps) {
-  const { display, sku, ...chipProps } = props
+  const { display, variant, sku } = props
   const classes = useStyles()
+
   const [inWishlist, setInWishlist] = useState(false)
   const [displayWishlist, setDisplayWishlist] = useState(true)
 
@@ -73,7 +81,7 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
 
-  const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
+  const handleClick = (e) => {
     e.preventDefault()
 
     if (isLoggedIn) {
@@ -108,23 +116,22 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
     }
   }
 
-  const chip = (
-    <Chip
-      variant='outlined'
-      key={sku}
-      onClick={handleClick}
-      icon={
+  const button = (
+    <>
+      <IconButton
+        key={sku}
+        onClick={handleClick}
+        size={variant || 'small'}
+        className={classes.wishlistButton}
+      >
         <SvgImageSimple
           src={iconHeart}
-          size='small'
+          size='medium'
           className={inWishlist ? classes.iconHeartActive : classes.iconHeart}
         />
-      }
-      color='default'
-      size='small'
-      {...chipProps}
-    />
+      </IconButton>
+    </>
   )
 
-  return displayWishlist ? chip : null
+  return displayWishlist ? button : null
 }
