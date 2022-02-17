@@ -16,6 +16,7 @@ import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
 import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
+import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 
 const { classes, selectors } = extendableComponent('ProductAddToCart', [
   'root',
@@ -69,21 +70,24 @@ export function ProductAddToCart(
         size='small'
       />
       {children}
-      <Button
-        type='submit'
-        className={classes.button}
-        loading={formState.isSubmitting}
-        color='primary'
-        variant='pill'
-        size='large'
-        sx={(theme) => ({
-          marginTop: theme.spacings.sm,
-          width: '100%',
-        })}
-        {...buttonProps}
-      >
-        <Trans>Add to Cart</Trans>
-      </Button>
+      <div>
+        <Button
+          type='submit'
+          className={classes.button}
+          loading={formState.isSubmitting}
+          color='primary'
+          variant='pill'
+          size='large'
+          sx={(theme) => ({
+            marginTop: theme.spacings.sm,
+            width: '100%',
+          })}
+          {...buttonProps}
+        >
+          <Trans>Add to Cart</Trans>
+        </Button>
+        <ProductWishlistChip sku={variables.sku} variant='medium' />
+      </div>
 
       <ApolloCartErrorAlert error={error} />
 

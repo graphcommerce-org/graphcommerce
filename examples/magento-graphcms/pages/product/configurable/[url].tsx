@@ -73,7 +73,6 @@ function ProductConfigurable(props: Props) {
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
         <ProductPageMeta {...product} />
         <ProductPageGallery {...product}>
-          <ProductWishlistChip sku={product.sku} />
           <div>
             <Typography component='span' variant='body2' color='text.disabled'>
               <Trans>As low as</Trans>&nbsp;

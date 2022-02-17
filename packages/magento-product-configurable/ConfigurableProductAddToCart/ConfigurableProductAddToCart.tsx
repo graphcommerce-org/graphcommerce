@@ -24,6 +24,7 @@ import {
   ConfigurableProductAddToCartDocument,
   ConfigurableProductAddToCartMutationVariables,
 } from './ConfigurableProductAddToCart.gql'
+import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 
 type ConfigurableProductAddToCartProps = {
   variables: Omit<ConfigurableProductAddToCartMutationVariables, 'cartId' | 'selectedOptions'>
@@ -99,22 +100,25 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         />
       </Typography>
       {children}
-      <Button
-        type='submit'
-        loading={formState.isSubmitting}
-        color='primary'
-        variant='pill'
-        size='large'
-        className={classes.button}
-        {...buttonProps}
-        sx={(theme) => ({
-          marginTop: theme.spacings.sm,
-          marginBottom: theme.spacings.sm,
-          width: '100%',
-        })}
-      >
-        <Trans>Add to Cart</Trans>
-      </Button>
+      <div>
+        <Button
+          type='submit'
+          loading={formState.isSubmitting}
+          color='primary'
+          variant='pill'
+          size='large'
+          className={classes.button}
+          {...buttonProps}
+          sx={(theme) => ({
+            marginTop: theme.spacings.sm,
+            marginBottom: theme.spacings.sm,
+            width: '100%',
+          })}
+        >
+          <Trans>Add to Cart</Trans>
+        </Button>
+        <ProductWishlistChip sku={variables.sku} variant='medium' />
+      </div>
 
       <ApolloCartErrorAlert error={error} />
 

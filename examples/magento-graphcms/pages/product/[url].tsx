@@ -67,7 +67,6 @@ function ProductSimple(props: Props) {
 
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
-        <ProductWishlistChip sku={product.sku} />
         <Typography variant='h2' component='div'>
           {product.name}
         </Typography>
