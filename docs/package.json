@@ -2,14 +2,14 @@
   "name": "@graphcommerce/docs",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "private": true,
   "sideEffects": false,
   "main": "index.js",
   "dependencies": {
-    "@graphcommerce/framer-next-pages": "^3.0.1",
-    "@graphcommerce/next-config": "^3.0.1",
-    "@graphcommerce/next-ui": "^4.0.1",
+    "@graphcommerce/framer-next-pages": "^3.0.2",
+    "@graphcommerce/next-config": "^3.0.2",
+    "@graphcommerce/next-ui": "^4.1.1",
     "@mui/material": "^5.4.2",
     "next": "^12.1.0",
     "next-mdx-remote": "^3.0.8",
@@ -18,7 +18,7 @@
     "react-syntax-highlighter": "^15.4.5"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^4.0.1",
+    "@graphcommerce/eslint-config-pwa": "^4.0.2",
     "@graphcommerce/prettier-config-pwa": "^4.0.1",
     "@graphcommerce/typescript-config-pwa": "^4.0.1",
     "eslint": "^8.9.0",

@@ -2,7 +2,7 @@
   "name": "@graphcommerce/graphql-mesh",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -36,7 +36,7 @@
     "ts-tiny-invariant": "^1.0.5"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^4.0.1",
+    "@graphcommerce/eslint-config-pwa": "^4.0.2",
     "@graphcommerce/prettier-config-pwa": "^4.0.1",
     "@graphcommerce/typescript-config-pwa": "^4.0.1",
     "@playwright/test": "^1.19.1",
