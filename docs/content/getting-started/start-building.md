@@ -72,18 +72,52 @@ You've completed the [Create a GraphCommerce app tutorial]().
 
 # Step 2: Make GraphQL changes
 
-You might want to make changes to a GraphQL query to fetch data for a specific
-need. For example, if you want to display a certain category property, then you
-can update a query.
+You might want to make changes to a GraphQL query to fetch data from Magento for
+a specific need. For example, if you want to display a certain category
+property, you need to modify a query.
 
 - In /graphql/CategoryPage.graphql, `...CategoryQueryFragment` is included as a
   fragment
-- In CategoryQueryFragment.graphql,
+- Open the fragment's file
+  /node_modules/@graphcommerce/magento-category/queries/CategoryQueryFragment.graphql,
+  and copy it's contents
+- In /graphql/CategoryPage.graphql, paste the contents of
+  `...CategoryQueryFragment` and add `children_count` property:
 
-  > To find the location of the fragment `...CategoryQueryFragment`, use your
-  > IDE's feature to search files by name (Vscode cmd/ctrl + Shift + o) and type
-  > `CategoryQueryFragment.graphql`. It's located in the directory:
-  > /node_modules/@graphcommerce/magento-category/queries/
+```
+query CategoryPage($url: String!, $rootCategory: String!) {
+  ...MenuQueryFragment
+  ...FooterQueryFragment
+  ...PageContentQueryFragment
+  ...CategoryQueryFragment
+
+  categories(filters: { url_path: { eq: $url } }) {
+    items {
+      uid
+      children_count
+      ...CategoryBreadcrumb
+      ...CategoryDescription
+      ...CategoryChildren
+      ...CategoryMeta
+      ...CategoryHeroNav
+    }
+  }
+}
+```
+
+- Save the file. /graphql/CategoryPage.gql.ts should be regenerated, and contain
+  the following addition:
+
+```
+{"kind":"Field","name":{"kind":"Name","value":"children_count"}}
+```
+
+- In /pages/[...url].tsx, show the children_count next to category title (3
+  occurrences):
+
+```
+{category?.name} - ({category?.children_count})
+```
 
 ## Interactive GraphQL interface
 
