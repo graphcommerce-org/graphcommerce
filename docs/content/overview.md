@@ -1,7 +1,7 @@
 # GraphCommerce
 
 GraphCommerce is a front-end framework used for building headless Magento
-e-commerce storefronts in React.js. It includes the structure, components, and
+e-commerce storefronts in React. It includes the structure, components, and
 tooling you need to get started so you can spend your time styling and designing
 high end e-commerce progressive web apps (PWA).
 
