@@ -27,7 +27,7 @@ variant prop is used to render a `<h4>` semantic element with h1 styling.
 ## Changing font styles and font sizes
 
 Font styles are part of the global styles in /components/index.ts. Changes to
-font-size and other properties can be made here:
+font-size and few other properties can be made here:
 
 ```
   h1: {
