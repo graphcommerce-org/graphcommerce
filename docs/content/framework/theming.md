@@ -69,9 +69,11 @@ Most components have props that define their look and feel. Most common are the
 ## Creating styled components with the styled() utility
 
 A simple way to style a component is by using the
-[sx prop ↗](https://mui.com/system/the-sx-prop/). A more advanced way is to use
-the [MUI styled() ↗](https://mui.com/system/styled/) utility for creating styled
-components:
+[sx prop ↗](https://mui.com/system/the-sx-prop/). To get familiar with the sx
+prop in your GraphCommerce app, refer to
+[start building a GraphCommerce custom storefront](). A more advanced way is to
+use the [MUI styled() ↗](https://mui.com/system/styled/) utility for creating
+styled components:
 
 ```
 import { styled } from '@mui/material'
@@ -134,6 +136,62 @@ remove this effect is to set it's value to 0:
   ...themeBaseDefaults,
   shape: { borderRadius: 0 },
   typography: {
+```
+
+## Adding an external CSS style sheet
+
+- In /pages/\_document.tsx, add your CSS `<link>` element as a child of the
+  `<Head>` component:
+
+```
+ <Head>
+  ...
+  <link
+    rel='stylesheet'
+    type='text/css'
+    media='all'
+    href='https://www.graphcommerce.org/pagebuilder.min.css'
+  />
+</Head>
+```
+
+- The external CSS file will affect the styling of all your app's pages
+
+## Styling a component with CSS from external style sheet
+
+- Add the fetch query to the `getStaticProps` function of a page
+
+```
+  const stylesheet = await (await fetch('https://www.graphcommerce.org/pagebuilder.min.css')).text()
+```
+
+- Pass the data as prop:
+
+```
+return { props: { ... stylesheet, }, }
+```
+
+- Specify its type:
+
+```
+function CategoryPage(props: Props & { stylesheet: string }) {
+
+```
+
+- Add it to the default function's props:
+
+```
+
+const { categories, products, ..., stylesheet } = props
+
+```
+
+- Use the sx prop to apply the styles
+
+```
+<CategoryDescription
+  description={category.description} sx={{ stylesheet, minWidth: '100vw' }}
+/>
 ```
 
 ## Lineair scaling with responsiveVal

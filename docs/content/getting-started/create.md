@@ -118,8 +118,17 @@ result in the storeview 'default' being loaded. GraphCommerce uses the browser
 language to determine which storeview to load. A url suffix will be added as a
 result, with the exception of the first option in the list.
 
-`NEXT_PUBLIC_SITE_URL`  
-Used in /public/sitemap.xml
+> If need to fetch a list of availble store_codes, run `yarn dev` when you
+> entered your `MAGENTO_ENDPOINT`. The app won't build, but the GraphQL explorer
+> will start at `http://localhost:3000/api/graphql`. Enter the following query:
+>
+> ```
+> query {
+>  availableStores {
+>   store_code
+>   store_name
+> }
+> ```
 
 ### Remove unused PSP's
 

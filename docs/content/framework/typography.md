@@ -98,8 +98,8 @@ h1: {
 
 ## Adding a custom font
 
-- In /pages/\_document.tsx, add your Google font `<link>` embeds as a child of
-  the `<head>` component:
+- In /pages/\_document.tsx, add your Google font `<link>` element as a child of
+  the `<Head>` component:
 
 ```
  <Head>

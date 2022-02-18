@@ -2,8 +2,8 @@
 
 ## Common build errors
 
-If any errors are detected during the build phase, a message is displayed.
-Common causes for such errors are as follows:
+If any errors are detected during the build phase, the console and browser will
+display an error message. Common causes for errors are:
 
 ```
 [next] 🕸️ - m2: Failed to generate schema: request to [...] failed, reason: connect ETIMEDOUT
@@ -55,3 +55,54 @@ Error: Interface field RoutableInterface.type expects type UrlRewriteEntityTypeE
 In the Magento store, a product attribute is configured with attribute_code
 'type'. Migrate the product information to a new attribute and remove the
 product attribute named 'type'.
+
+## Magento_Reviews module is disabled
+
+If the Magento_Review module is disabled in the Magento backend, the console and
+browser will display an error message:
+
+```
+GraphQLError: - Unknown field 'sku' on type 'ProductAttributeFilterInput'.
+
+  .../node_modules/@graphcommerce/magento-review/components/ProductReviews/ProductReviewProductName.graphql:2:22
+  1 | query ProductReviewProductName($sku: String!) {
+  2 |   products(filter: { sku: { eq: $sku } }) {
+    |                      ^
+  3 |     items {
+```
+
+Enable the
+[Magento_Review module ↗](https://magento.stackexchange.com/questions/87781/how-to-disable-magento-2-reviews).
+Next, remove all review components from pages:
+
+- In /components/ProductListItems/productListRenderer.tsx, remove the import:
+
+```
+import { ProductReviewSummary } from '@graphcommerce/magento-review'
+```
+
+- Remove the bottomLeft props:
+
+```
+`bottomLeft={<ProductReviewSummary {...props} />}`
+```
+
+- In /pages/product/configurable/[url].tsx and all other product pages, remove
+  the import:
+
+```
+import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
+```
+
+- Remove the data from the `<JsonLd>` component:
+
+```
+...jsonLdProductReview(product),
+
+```
+
+- Remove the `<ProductReviewChip>` component:
+
+```
+<ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' size='small' />
+```
