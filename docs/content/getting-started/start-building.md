@@ -132,3 +132,5 @@ http://localhost:3000/api/graphql
 
 - Learn how to [build a custom header](../getting-started/header.md) in
   GraphCommerce
+- Learn about the general concepts and file structure of the
+  [magento-graphcms example](../getting-started/overview.md)
