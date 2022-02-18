@@ -76,6 +76,15 @@ You might want to make changes to a GraphQL query to fetch data for a specific
 need. For example, if you want to display a certain category property, then you
 can update a query.
 
+- In /graphql/CategoryPage.graphql, `...CategoryQueryFragment` is included as a
+  fragment
+- In CategoryQueryFragment.graphql,
+
+  > To find the location of the fragment `...CategoryQueryFragment`, use your
+  > IDE's feature to search files by name (Vscode cmd/ctrl + Shift + o) and type
+  > `CategoryQueryFragment.graphql`. It's located in the directory:
+  > /node_modules/@graphcommerce/magento-category/queries/
+
 ## Interactive GraphQL interface
 
 You can explore the Storefront API and run test queries in your GraphCommerce
