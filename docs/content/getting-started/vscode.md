@@ -1,9 +1,13 @@
 # Visual Studio Code
 
-GraphCommerce is a front-end web development framework written in Typescript.
-This guide covers how to set up
-[Visual Studio Code ↗](https://code.visualstudio.com/) and install usefull
-extensions for an optimal development experience.
+GraphCommerce is a front-end web development framework written in Typescript,
+which is JavaScript with syntax for types.
+
+[Visual Studio Code ↗](https://code.visualstudio.com/) is a code editor
+redefined and optimized for building and debugging modern web applications such
+as GrahCommerce. Visual Studio Code is free and available on all platforms. This
+guide covers which usefull VS Code extensions to install for an optimal
+development experience.
 
 Recommended extensions
 
@@ -12,8 +16,8 @@ Recommended extensions
 - [Prettier ↗](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) -
   Opinionated code formatter
 - [GraphQL ↗](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql) -
-  Adds syntax highlighting, validation, and language features like go to
-  definition, hover information and autocompletion for GraphQL
+  Adds syntax highlighting, validation, hover information and autocompletion for
+  graphql files
 - [DotENV ↗](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv) -
   Adds support for dotenv file syntax
 - [JavaScript Booster ↗](https://marketplace.visualstudio.com/items?itemName=sburg.vscode-javascript-booster) -
