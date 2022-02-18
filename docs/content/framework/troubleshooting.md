@@ -12,7 +12,7 @@ display an error message. Common causes for errors are:
 Missing MAGENTO_ENDPOINT environment variable in your .env file
 
 ```
-🕸️ - m2: Failed to generate schema: invalid json response body at https://hawkridgesys.com/ reason: Unexpected '<'
+🕸️ - m2: Failed to generate schema: invalid json response body at [...] reason: Unexpected '<'
 ```
 
 MAGENTO_ENDPOINT environment variable is not pointing to a Magento graphql
