@@ -39,6 +39,5 @@ Optional extentions
 
 # Next steps
 
-- [Start building a GraphCommerce custom storefront]() by customizing text and
-  component styles, fetching data from server components, and making changes to
-  GraphQL queries.
+- [Get started](../getting-started/create.md) with GraphCommerce and begin
+  building a custom storefront.

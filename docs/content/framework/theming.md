@@ -1,9 +1,10 @@
 # Theming
 
-The GraphCommerce [magento-graphcms]() example and GraphCommerce components are
-built with [MUI ↗](https://mui.com/). MUI provides a robust, customizable, and
-accessible library of foundational and advanced components, enabling you to
-build your design system and develop React applications faster.
+The GraphCommerce [magento-graphcms](../getting-started/overview.md) example and
+GraphCommerce components are built with [MUI ↗](https://mui.com/). MUI provides
+a robust, customizable, and accessible library of foundational and advanced
+components, enabling you to build your design system and develop React
+applications faster.
 
 This guide covers how to customize the global look and feel of your application,
 as well as some common theming needs.
@@ -61,8 +62,8 @@ Most components have props that define their look and feel. Most common are the
   [MUI Button documentation ↗](https://mui.com/components/buttons/)
 - To learn which options are accepted by a prop, refer to component's API:
   [MUI Button API ↗](https://mui.com/api/button/). You can also use your IDE's
-  suggestions functionality. For [VS Code's]() IntelliSense feature, type
-  Ctrl+Space.
+  suggestions functionality. For [VS Code's](../getting-started/vscode.md)
+  IntelliSense feature, type Ctrl+Space.
 - It can be helpfull to learn how a component is styled, for example to explore
   how palette variables are used. Refer to the
   [MUI Button source code ↗](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Button/Button.js)
@@ -72,9 +73,10 @@ Most components have props that define their look and feel. Most common are the
 A simple way to style a component is by using the
 [sx prop ↗](https://mui.com/system/the-sx-prop/). To get familiar with the sx
 prop in your GraphCommerce app, refer to
-[start building a GraphCommerce custom storefront](). A more advanced way is to
-use the [MUI styled() ↗](https://mui.com/system/styled/) utility for creating
-styled components:
+[start building a GraphCommerce custom storefront](../getting-started/start-building.md).
+A more advanced way is to use the
+[MUI styled() ↗](https://mui.com/system/styled/) utility for creating styled
+components:
 
 ```
 import { styled } from '@mui/material'
@@ -204,7 +206,7 @@ width, 22px at 1280px window width.
 `responsiveVal` can be used to lineair scale almost all css properties,
 including width, borderRadius and margin. Performance-wise, font-size and
 line-height should not be scaled with responsiveVal. To learn more, look into
-[responsive font sizes]().
+[responsive font sizes](../framework/typography.md).
 
 ## Next steps
 

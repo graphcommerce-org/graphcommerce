@@ -180,4 +180,5 @@ TransitionComponent={Fade}
 
 # Next steps
 
-- Learn more about creating [styled components with the styled() utility]()
+- Learn more about creating
+  [styled components with the styled() utility](../framework/theming.md)

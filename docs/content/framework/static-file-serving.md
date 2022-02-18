@@ -40,4 +40,5 @@ features such as CDN-caching, srcset and viewport loading.
 - Learn more about
   [Next.js static file serving ↗](https://nextjs.org/docs/basic-features/static-file-serving)
   in the Next.js docs
-- Learn how to modify your GraphCommerce app's [favicon]()
+- Learn how to modify your GraphCommerce app's
+  [favicon](../framework/favicon.md)

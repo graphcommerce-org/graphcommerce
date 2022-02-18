@@ -10,21 +10,23 @@ high end e-commerce progressive web apps (PWA).
 ### Stack
 
 - Typescript
-- Reactjs
+- React
 - Nextjs
 - GraphQL
 - Mui
-- [More]()
+- Apollo
+- GraphQL Code Generator
+- Framer Motion
 
 ## Getting Started
 
-GraphCommerce offers a [magento-graphcms]() example that provides a full
-featured storefront. The example integrates with your Magento backend and
-provides a full purchase journey out-of-the-box. It uses GraphCMS to enrich
-pages with multiple content components, like the homepage.
+GraphCommerce offers a [magento-graphcms](./getting-started/overview.md) example
+that provides a full featured storefront. The example integrates with your
+Magento backend and provides a full purchase journey out-of-the-box. It uses
+GraphCMS to enrich pages with multiple content components, like the homepage.
 
 The magento-graphcms example is styled using the Mui component library. You can
-start styling by making changes to the [theme]().
+start styling by making changes to the [theme](./framework/theming.md).
 
 ## Features
 
@@ -36,14 +38,14 @@ GraphCommerce features include:
 - Optimized frontend performance, including bundling, image optimization, url
   prefetching and CDN caching
 - Hybrid Static Site Generation (SSG)
-- Optimized for [SEO](), including passing of accessibility audit, sitemap.xml,
-  canonicals, meta data etc.
+- Optimized for [SEO](./framework/seo.md), including passing of accessibility
+  audit, sitemap.xml, canonicals, meta data etc.
 - A GraphQL Mesh, which enables fetching data from multiple sources (composable
   commerce)
 - Passing Google Core Web Vitals audits
 - PWA features, like save on homescreen, custom icon
 - Interface [translations]() EN, ES, FR, DE, NL
-- [Deployments to Vercel]()
+- [Deployments to Vercel](./deployment.md)
 
 <figure>
   <video width="480" style="min-width:100%; aspect-ratio: 9:6" controls>
@@ -63,4 +65,5 @@ and boilerplate needed for building a custom storefront.
 
 ## Next steps
 
-- [Get started]() with GraphCommerce and begin building a custom storefront.
+- [Get started](./getting-started/create.md) with GraphCommerce and begin
+  building a custom storefront.

@@ -24,9 +24,11 @@ After you've finished this tutorial, you'll have accomplished the following:
 
 ## Requirements
 
-You've familiarized yourself with [React ↗](), [Next.js ↗](), and [Mui ↗]().
-GraphCommerce is a frontend React framework that uses Next.js for server-side
-rendering.
+You've familiarized yourself with
+[React ↗](https://reactjs.org/docs/getting-started.html),
+[Next.js ↗](https://nextjs.org/docs/getting-started), and
+[Mui ↗](https://mui.com/getting-started/installation/). GraphCommerce is a
+frontend React framework that uses Next.js for server-side rendering.
 
 ## Install dependencies
 
@@ -148,12 +150,12 @@ the ones you don't want to use.
 Visit the development environment running at http://localhost:3000  
 Visit the GraphQL Playground running http://localhost:3000/api/graphql
 
-> No success? Refer to [common build errors]()
+> No success? Refer to [common build errors](../framework/troubleshooting.md)
 
 # Next steps
 
-- Learn how to [Set up Visual Studio Code]() and install usefull extensions for
-  an optimal development experience
-- [Start building a GraphCommerce custom storefront]() by customizing text and
-  component styles, fetching data from server components, and making changes to
-  GraphQL queries.
+- Learn how to [Set up Visual Studio Code](../getting-started/vscode.md) and
+  install usefull extensions for an optimal development experience
+- [Start building a GraphCommerce custom storefront](../getting-started/start-building.md)
+  by customizing text and component styles, fetching data from server
+  components, and making changes to GraphQL queries.

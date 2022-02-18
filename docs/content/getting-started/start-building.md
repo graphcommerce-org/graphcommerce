@@ -1,7 +1,7 @@
 # Start building a GraphCommerce custom storefront
 
-Previously, you [created a new GraphCommerce app](). You're now ready to start
-building your GraphCommerce custom storefront.
+Previously, you [created a new GraphCommerce app](../getting-started/create.md).
+You're now ready to start building your GraphCommerce custom storefront.
 
 In this tutorial, you'll complete a series of tasks to add some specific
 functionality to your GraphCommerce app. Your final modification will be simple,
@@ -22,7 +22,8 @@ You're using the most recent version of GraphCommerce. We recommend using the
 latest release to get the benefits of performance, new components, and other
 best practices.
 
-You've completed the [Create a GraphCommerce app tutorial]().
+You've completed the
+[Create a GraphCommerce app tutorial](../getting-started/create.md).
 
 # Step 1: Make customizations
 
@@ -129,4 +130,5 @@ http://localhost:3000/api/graphql
 
 # Next steps
 
-- Learn how to [build a custom header]() in GraphCommerce
+- Learn how to [build a custom header](../getting-started/header.md) in
+  GraphCommerce

@@ -69,7 +69,8 @@ components. The most common way is by adding an sx prop: `sx={{color:'red'}}`.
 If you want to extend a component's behaviour or built your own, you can
 duplicate a `@graphcommerce/` component to your /components directory. You'll
 need to update all imports with the new location of your local component. This
-also applies if you want to modify a component's [query fragment]().
+also applies if you want to modify a component's or
+[page's query](../getting-started/start-building.md).
 
 ## Component overview
 
@@ -81,51 +82,74 @@ Local
 - /Row - [Source ↗]() | [Documentation]()
 - /Usps - [Source ↗]() | [Documentation]()
 
-Packages
+Packages (/node_modules directory)
 
-- @graphcommerce/browserslist-config-pwa - [Source ↗]()
-- @graphcommerce/eslint-config-pwa - [Source ↗]()
-- @graphcommerce/framer-next-pages - [Source ↗]()
-- @graphcommerce/googleanalytics - [Source ↗]()
-- @graphcommerce/googlerecaptcha - [Source ↗]()
-- @graphcommerce/googletagmanager - [Source ↗]()
-- @graphcommerce/graphcms-ui - [Source ↗]()
-- @graphcommerce/graphql - [Source ↗]()
-- @graphcommerce/graphql-mesh - [Source ↗]()
-- @graphcommerce/image - [Source ↗]()
-- @graphcommerce/lingui-next - [Source ↗]()
-- @graphcommerce/magento-cart - [Source ↗]()
-- @graphcommerce/magento-cart-billing-address - [Source ↗]()
-- @graphcommerce/magento-cart-checkout - [Source ↗]()
-- @graphcommerce/magento-cart-coupon - [Source ↗]()
-- @graphcommerce/magento-cart-email - [Source ↗]()
-- @graphcommerce/magento-cart-items - [Source ↗]()
-- @graphcommerce/magento-cart-payment-method - [Source ↗]()
-- @graphcommerce/magento-cart-shipping-address - [Source ↗]()
-- @graphcommerce/magento-cart-shipping-method - [Source ↗]()
-- @graphcommerce/magento-category - [Source ↗]()
-- @graphcommerce/magento-cms - [Source ↗]()
-- @graphcommerce/magento-customer - [Source ↗]()
-- @graphcommerce/magento-customer-account - [Source ↗]()
-- @graphcommerce/magento-customer-order - [Source ↗]()
-- @graphcommerce/magento-graphql - [Source ↗]()
-- @graphcommerce/magento-newsletter - [Source ↗]()
-- @graphcommerce/magento-payment-included - [Source ↗]()
-- @graphcommerce/magento-product - [Source ↗]()
-- @graphcommerce/magento-product-bundle - [Source ↗]()
-- @graphcommerce/magento-product-configurable - [Source ↗]()
-- @graphcommerce/magento-product-downloadable - [Source ↗]()
-- @graphcommerce/magento-product-grouped - [Source ↗]()
-- @graphcommerce/magento-product-simple - [Source ↗]()
-- @graphcommerce/magento-product-virtual - [Source ↗]()
-- @graphcommerce/magento-review - [Source ↗]()
-- @graphcommerce/magento-search - [Source ↗]()
-- @graphcommerce/magento-store - [Source ↗]()
-- @graphcommerce/next-config - [Source ↗]()
-- @graphcommerce/next-ui - [Source ↗]()
-- @graphcommerce/prettier-config-pwa - [Source ↗]()
-- @graphcommerce/react-hook-form - [Source ↗]()
-- @graphcommerce/typescript-config-pwa - [Source ↗]()
+- @graphcommerce/framer-next-pages -
+  [Source ↗](../../../packages/framer-next-pages/)
+- @graphcommerce/googleanalytics - [Source ↗](../../../packages/googleanalytics)
+- @graphcommerce/googlerecaptcha - [Source ↗](../../../packages/googlerecaptcha)
+- @graphcommerce/googletagmanager -
+  [Source ↗](../../../packages/googletagmanager)
+- @graphcommerce/graphcms-ui - [Source ↗](../../../packages/graphcms-ui/)
+- @graphcommerce/graphql - [Source ↗](../../../packages/graphql)
+- @graphcommerce/graphql-mesh - [Source ↗](../../../packages/graphql-mesh)
+- @graphcommerce/image - [Source ↗](../../../packages/image)
+- @graphcommerce/lingui-next - [Source ↗](../../../packages/lingui-next)
+- @graphcommerce/magento-cart - [Source ↗](../../../packages/magento-cart)
+- @graphcommerce/magento-cart-billing-address -
+  [Source ↗](../../../packages/magento-cart-billing-address)
+- @graphcommerce/magento-cart-checkout -
+  [Source ↗](../../../packages/magento-cart-checkout)
+- @graphcommerce/magento-cart-coupon -
+  [Source ↗](../../../packages/magento-cart-coupon)
+- @graphcommerce/magento-cart-email -
+  [Source ↗](../../../packages/magento-cart-email)
+- @graphcommerce/magento-cart-items -
+  [Source ↗](../../../packages/magento-cart-items)
+- @graphcommerce/magento-cart-payment-method -
+  [Source ↗](../../../packages/magento-cart-payment-method)
+- @graphcommerce/magento-cart-shipping-address -
+  [Source ↗](../../../packages/magento-cart-shipping-address)
+- @graphcommerce/magento-cart-shipping-method -
+  [Source ↗](../../../packages/magento-cart-shipping-method)
+- @graphcommerce/magento-category -
+  [Source ↗](../../../packages/magento-category)
+- @graphcommerce/magento-cms - [Source ↗](../../../packages/magento-cms)
+- @graphcommerce/magento-customer -
+  [Source ↗](../../../packages/magento-customer)
+- @graphcommerce/magento-customer-account -
+  [Source ↗](../../../packages/magento-customer-account)
+- @graphcommerce/magento-customer-order -
+  [Source ↗](../../../packages/magento-customer-order)
+- @graphcommerce/magento-graphql - [Source ↗](../../../packages/magento-graphql)
+- @graphcommerce/magento-newsletter -
+  [Source ↗](../../../packages/magento-newsletter)
+- @graphcommerce/magento-payment-included -
+  [Source ↗](../../../packages/magento-payment-included)
+- @graphcommerce/magento-product - [Source ↗](../../../packages/magento-product)
+- @graphcommerce/magento-product-bundle -
+  [Source ↗](../../../packages/magento-product-bundle)
+- @graphcommerce/magento-product-configurable -
+  [Source ↗](../../../packages/magento-product-configurable)
+- @graphcommerce/magento-product-downloadable -
+  [Source ↗](../../../packages/magento-product-downloadable)
+- @graphcommerce/magento-product-grouped -
+  [Source ↗](../../../packages/magento-product-grouped)
+- @graphcommerce/magento-product-simple -
+  [Source ↗](../../../packages/magento-product-simple)
+- @graphcommerce/magento-product-virtual -
+  [Source ↗](../../../packages/magento-product-virtual)
+- @graphcommerce/magento-review - [Source ↗](../../../packages/magento-review)
+- @graphcommerce/magento-search - [Source ↗](../../../packages/magento-search)
+- @graphcommerce/magento-store - [Source ↗](../../../packages/magento-store)
+
+- @graphcommerce/browserslist-config-pwa
+- @graphcommerce/eslint-config-pwa
+- @graphcommerce/next-config
+- @graphcommerce/next-ui
+- @graphcommerce/prettier-config-pwa
+- @graphcommerce/react-hook-form
+- @graphcommerce/typescript-config-pwa
 
 # Pages
 
@@ -170,7 +194,7 @@ Page structure of the graphcommerce-magento example
 GraphCommerce is built and optimized to use data coming from Magento's GraphQL
 API. GraphCommerce uses GraphQL Mesh, which adds the ability to add extra
 (micro)services as data sources. In the magento-graphcms example, a headless CMS
-called [GraphCMS]() is integrated.
+called [GraphCMS](../getting-started/../framework/graphcms.md) is integrated.
 
 By default, the GraphQL Mesh endpoint runs on route /api/grapql. You can query
 both the Magento GraphQL schema and the GraphCMS GraphQL schema. Try out the
@@ -224,6 +248,7 @@ GraphQL queries in the graphcommerce-magento example
 
 # Next steps
 
-- [Get started]() with GraphCommerce and begin building a custom storefront.
+- [Get started](../getting-started/create.md) with GraphCommerce and begin
+  building a custom storefront.
 - You can explore the
   [GraphCommerce demo storefront ↗](https://graphcommerce.vercel.app/)

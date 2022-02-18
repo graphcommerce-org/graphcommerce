@@ -2,7 +2,8 @@
 
 This guide provides information about using the Typography component and
 customzing your GraphCommerce storefront's typography. If your looking to learn
-about the `<Trans>` macro, head over to [translations]().
+about the `<Trans>` macro, head over to
+[translations](../framework/translations.md).
 
 ## Using the typography component
 
