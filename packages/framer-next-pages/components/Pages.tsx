@@ -94,7 +94,16 @@ export default function FramerNextPages(props: PagesProps) {
         // todo: implement fallback loading for up property
         // const up = items.current[0].PageComponent.pageOptions?.up?.href ?? '/'
         const up = '/'
-        const info = await (router as Router).getRouteInfo(up, up, {}, up, up, { shallow: false })
+        const info = await (router as Router).getRouteInfo(
+          up,
+          up,
+          {},
+          up,
+          up,
+          { shallow: false },
+          undefined,
+          false,
+        )
 
         const pageInfo = { asPath: up, pathname: up, locale: router.locale, query: {} }
         const Fallback = info.Component as PageComponent

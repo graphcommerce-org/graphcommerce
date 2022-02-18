@@ -3,15 +3,20 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
 import { useForkRef, styled, SxProps, Theme } from '@mui/material'
-import { LoaderValue, VALID_LOADERS } from 'next/dist/server/image-config'
+import {
+  ImageConfigComplete,
+  LoaderValue,
+  VALID_LOADERS,
+  imageConfigDefault,
+} from 'next/dist/server/image-config'
+import { ImageConfigContext } from 'next/dist/shared/lib/image-config-context'
 import Head from 'next/head'
 import type { ImageLoaderProps, ImageLoader } from 'next/image'
-import React, { useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useMemo, useRef } from 'react'
 import {
   akamaiLoader,
   cloudinaryLoader,
   configDeviceSizes,
-  configImageSizes,
   configLoader,
   configPath,
   DefaultImageLoaderProps,
@@ -72,12 +77,13 @@ export function srcToString(src: StaticImport | string) {
   return isStaticImport(src) ? (isStaticRequire(src) ? src.default : src).src : src
 }
 
-// sort smallest to largest
-const allSizes = [...configDeviceSizes, ...configImageSizes]
-configDeviceSizes.sort((a, b) => a - b)
-allSizes.sort((a, b) => a - b)
+// // sort smallest to largest
+// const allSizes = [...configDeviceSizes, ...configImageSizes]
+// configDeviceSizes.sort((a, b) => a - b)
+// allSizes.sort((a, b) => a - b)
 
 function getWidths(
+  config: ImageLoaderProps['config'],
   width: number | undefined,
   layout: LayoutValue,
   sizes = '',
@@ -94,12 +100,12 @@ function getWidths(
       const smallestRatio = Math.min(...percentSizes) * 0.01
 
       return {
-        widths: allSizes.filter((s) => s >= configDeviceSizes[0] * smallestRatio),
+        widths: config.allSizes.filter((s) => s >= configDeviceSizes[0] * smallestRatio),
         kind: 'w',
       }
     }
 
-    return { widths: allSizes, kind: 'w' }
+    return { widths: config.allSizes, kind: 'w' }
   }
   if (typeof width !== 'number' || layout === 'fill') {
     return { widths: configDeviceSizes, kind: 'w' }
@@ -116,7 +122,7 @@ function getWidths(
       // > something like a magnifying glass.
       // https://blog.twitter.com/engineering/en_us/topics/infrastructure/2019/capping-image-fidelity-on-ultra-high-resolution-devices.html
       [width, width * 2 /* , width * 3*/].map(
-        (w) => allSizes.find((p) => p >= w) || allSizes[allSizes.length - 1],
+        (w) => config.allSizes.find((p) => p >= w) || config.allSizes[config.allSizes.length - 1],
       ),
     ),
   ]
@@ -131,23 +137,17 @@ type GenImgAttrsData = {
   quality?: number
   sizes: string
   scale: number
+  config: ImageLoaderProps['config']
 }
 
-function generateSrcSet({
-  src,
-  layout,
-  width,
-  quality = 52,
-  sizes,
-  loader,
-  scale,
-}: GenImgAttrsData): string {
-  const { widths, kind } = getWidths(width, layout, sizes)
+function generateSrcSet(props: GenImgAttrsData): string {
+  const { src, layout, width, quality = 52, sizes, loader, scale, config } = props
+  const { widths, kind } = getWidths(config, width, layout, sizes)
 
   return widths
     .map(
       (w, i) =>
-        `${loader({ src, quality, width: w })} ${
+        `${loader({ src, quality, width: w, config })} ${
           kind === 'w' ? Math.round(w * scale) : i + 1
         }${kind}`,
     )
@@ -237,6 +237,9 @@ export type ImageProps = IntrisincImage & {
 const Img = styled('img')({})
 const Picture = styled('picture')({})
 
+// eslint-disable-next-line no-underscore-dangle
+const configEnv = process.env.__NEXT_IMAGE_OPTS as any as ImageConfigComplete
+
 const Image = React.forwardRef<HTMLImageElement, ImageProps>(
   (
     {
@@ -260,6 +263,14 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
   ) => {
     const ref = useRef<HTMLImageElement>(null)
     const combinedRef = useForkRef(ref, forwardedRef)
+
+    const configContext = useContext(ImageConfigContext)
+    const config: ImageLoaderProps['config'] = useMemo(() => {
+      const c = configEnv || configContext || imageConfigDefault
+      const allSizes = [...c.deviceSizes, ...c.imageSizes].sort((a, b) => a - b)
+      const deviceSizes = c.deviceSizes.sort((a, b) => a - b)
+      return { ...c, allSizes, deviceSizes }
+    }, [configContext])
 
     const sizesOrig =
       layout === 'fixed' && width && !sizesIncomming
@@ -433,9 +444,36 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
     if (src?.startsWith('data:') || src?.startsWith('blob:')) unoptimized = true
 
-    const srcSet3x = generateSrcSet({ src, layout, loader, quality, sizes, width, scale: 1.5 })
-    const srcSet2x = generateSrcSet({ src, layout, loader, quality, sizes, width, scale: 1 })
-    const srcSet1x = generateSrcSet({ src, layout, loader, quality, sizes, width, scale: 0.5 })
+    const srcSet3x = generateSrcSet({
+      config,
+      src,
+      layout,
+      loader,
+      quality,
+      sizes,
+      width,
+      scale: 1.5,
+    })
+    const srcSet2x = generateSrcSet({
+      config,
+      src,
+      layout,
+      loader,
+      quality,
+      sizes,
+      width,
+      scale: 1,
+    })
+    const srcSet1x = generateSrcSet({
+      config,
+      src,
+      layout,
+      loader,
+      quality,
+      sizes,
+      width,
+      scale: 0.5,
+    })
 
     if (layout !== 'fixed' && !style) style = {}
     if (layout === 'responsive') style = { ...style, width: '100%', height: 'auto' }
