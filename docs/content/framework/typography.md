@@ -123,7 +123,7 @@ typography: {
     fontFamily: 'Open Sans',
 ```
 
-## Next Steps
+## Next steps
 
 - Learn more about the
   [Typography component ↗](https://mui.com/components/typography/) in the MUI

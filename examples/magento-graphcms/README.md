@@ -76,7 +76,7 @@ Visit the GraphQL Playground running at http://localhost:3000/api/graphql
 
 ---
 
-## Next Steps
+## Next steps
 
 - Learn more about
   [getting started with GraphCommerce](../../docs/content/getting-started/create.md)

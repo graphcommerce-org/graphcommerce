@@ -37,7 +37,7 @@ Visit the GraphQL Playground running at http://localhost:3000/api/graphql
 
 ---
 
-## Next Steps
+## Next steps
 
 - Learn how to [Set up Visual Studio Code](../getting-started/vscode.md) and
   install usefull extensions
