@@ -96,6 +96,12 @@ Alright we've got it working.
 
 You can customize the backends by modifying the `.env` file
 
+### Get your own copy of our GraphCMS setup
+
+1. <a href="https://app.graphcms.com/clone/caddaa93cfa9436a9e76ae9c0f34d257"><img src="https://graphcms.com/button" alt="Clone project"/></a>
+2. Add the GraphCMS public url to your .env. You can find this via: Project
+   settings > API Access > Content API.
+
 ## Common issues
 
 <dl>

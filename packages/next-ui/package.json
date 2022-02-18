@@ -5,10 +5,13 @@
   "version": "4.1.0",
   "author": "",
   "license": "MIT",
-  "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start"
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
   },
   "dependencies": {
     "@emotion/babel-preset-css-prop": "^11.2.0",
@@ -20,6 +23,12 @@
     "@graphcommerce/framer-scroller": "^2.0.1",
     "@graphcommerce/framer-utils": "^3.0.1",
     "@graphcommerce/image": "^3.0.1",
+    "react-is": "^17.0.2",
+    "react-schemaorg": "^2.0.0",
+    "schema-dts": "^1.0.0",
+    "type-fest": "^2.11.2"
+  },
+  "peerDependencies": {
     "@lingui/macro": "^3.13.2",
     "@mui/base": "^5.0.0-alpha.68",
     "@mui/lab": "^5.0.0-alpha.68",
@@ -27,26 +36,14 @@
     "framer-motion": "^6.2.4",
     "next": "^12.0.10",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-is": "^17.0.2",
-    "react-schemaorg": "^2.0.0",
-    "schema-dts": "^1.0.0",
-    "type-fest": "^2.11.2"
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.0.1",
     "@graphcommerce/prettier-config-pwa": "^4.0.1",
     "@graphcommerce/typescript-config-pwa": "^4.0.1",
-    "@playwright/test": "^1.18.1",
+    "@playwright/test": "^1.19.1",
     "@types/react-is": "^17.0.3",
     "typescript": "^4.5.5"
-  },
-  "sideEffects": false,
-  "prettier": "@graphcommerce/prettier-config-pwa",
-  "eslintConfig": {
-    "extends": "@graphcommerce/eslint-config-pwa",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    }
   }
 }

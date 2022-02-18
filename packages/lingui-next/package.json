@@ -17,13 +17,14 @@
   "dependencies": {
     "@lingui/core": "^3.13.2",
     "@lingui/macro": "^3.13.2",
-    "@lingui/react": "^3.13.2"
+    "@lingui/react": "^3.13.2",
+    "babel-plugin-macros": "^3.1.0"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.0.1",
     "@graphcommerce/prettier-config-pwa": "^4.0.1",
     "@graphcommerce/typescript-config-pwa": "^4.0.1",
-    "@playwright/test": "^1.18.1"
+    "@playwright/test": "^1.19.1"
   },
   "peerDependencies": {
     "next": "^12.0.10",
