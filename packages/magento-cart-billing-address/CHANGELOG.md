@@ -1,5 +1,42 @@
 # Change Log
 
+## 3.0.2
+
+### Patch Changes
+
+- [#1276](https://github.com/ho-nl/m2-pwa/pull/1276)
+  [`ce09388e0`](https://github.com/ho-nl/m2-pwa/commit/ce09388e0d7ef33aee660612340f6fbae15ceec2)
+  Thanks [@paales](https://github.com/paales)! - We've moved lots of internal packages from
+  `dependencies` to `peerDependencies`. The result of this is that there will be significantly less
+  duplicate packages in the node_modules folders.
+
+* [#1276](https://github.com/ho-nl/m2-pwa/pull/1276)
+  [`52a45bba4`](https://github.com/ho-nl/m2-pwa/commit/52a45bba4dc6dd6df3c81f5023df7d23ed8a534d)
+  Thanks [@paales](https://github.com/paales)! - Upgraded to
+  [NextJS 12.1](https://nextjs.org/blog/next-12-1)! This is just for compatibility, but we'll be
+  implementing
+  [On-demand Incremental Static Regeneration](https://nextjs.org/blog/next-12-1#on-demand-incremental-static-regeneration-beta)
+  soon.
+
+  This will greatly reduce the requirement to rebuid stuff and we'll add a management UI on the
+  frontend to be able to revalidate pages manually.
+
+* Updated dependencies
+  [[`381e4c86a`](https://github.com/ho-nl/m2-pwa/commit/381e4c86a8321ce96e1fa5c7d3c0a0c0ff3e02c7),
+  [`ce09388e0`](https://github.com/ho-nl/m2-pwa/commit/ce09388e0d7ef33aee660612340f6fbae15ceec2),
+  [`e7c8e2756`](https://github.com/ho-nl/m2-pwa/commit/e7c8e2756d637cbcd2e793d62ef5721d35d9fa7b),
+  [`b08a8eb1d`](https://github.com/ho-nl/m2-pwa/commit/b08a8eb1d024b9d3e7712ef034029151670db275),
+  [`52a45bba4`](https://github.com/ho-nl/m2-pwa/commit/52a45bba4dc6dd6df3c81f5023df7d23ed8a534d),
+  [`5a4809b1a`](https://github.com/ho-nl/m2-pwa/commit/5a4809b1a705aa32f620f520085df48ee25f9949)]:
+  - @graphcommerce/framer-next-pages@3.0.2
+  - @graphcommerce/magento-cart@4.1.1
+  - @graphcommerce/magento-customer@4.1.1
+  - @graphcommerce/next-ui@4.1.1
+  - @graphcommerce/react-hook-form@3.0.2
+  - @graphcommerce/graphql@3.0.2
+  - @graphcommerce/image@3.0.2
+  - @graphcommerce/magento-store@4.0.2
+
 ## 3.0.1
 
 ### Patch Changes

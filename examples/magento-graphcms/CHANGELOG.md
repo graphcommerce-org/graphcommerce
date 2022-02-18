@@ -1,5 +1,97 @@
 # Change Log
 
+## 3.2.0
+
+### Minor Changes
+
+- [#1274](https://github.com/ho-nl/m2-pwa/pull/1274)
+  [`d8bc94f26`](https://github.com/ho-nl/m2-pwa/commit/d8bc94f269c7f5194b68093eb2ed0997b088871b)
+  Thanks [@paales](https://github.com/paales)! - Added french 🇫🇷🥖 and german 🇩🇪🍻 languages
+
+* [#1274](https://github.com/ho-nl/m2-pwa/pull/1274)
+  [`43a6a76f9`](https://github.com/ho-nl/m2-pwa/commit/43a6a76f9fcb966fa87c4a991bec40a54a6c8265)
+  Thanks [@paales](https://github.com/paales)! - Added spanish 🇪🇸 translation
+
+### Patch Changes
+
+- [#1274](https://github.com/ho-nl/m2-pwa/pull/1274)
+  [`381e4c86a`](https://github.com/ho-nl/m2-pwa/commit/381e4c86a8321ce96e1fa5c7d3c0a0c0ff3e02c7)
+  Thanks [@paales](https://github.com/paales)! - Moved `ApolloErrorAlert`, `ApolloErrorFullPage` and
+  `ApolloErrorSnackbar` to the ecommerce-ui package.
+
+  Created `ComposedSubmitButton` and `ComposedSubmitLinkOrButton` to reduce complexity from
+  `magento-graphcms` example.
+
+  Removed dependency an `@graphcommerce/react-hook-form` from `magento-graphcms` example.
+
+  Added dependency `@graphcommerce/ecommerce-ui` from `magento-graphcms` example.
+
+* [#1276](https://github.com/ho-nl/m2-pwa/pull/1276)
+  [`ce09388e0`](https://github.com/ho-nl/m2-pwa/commit/ce09388e0d7ef33aee660612340f6fbae15ceec2)
+  Thanks [@paales](https://github.com/paales)! - We've moved lots of internal packages from
+  `dependencies` to `peerDependencies`. The result of this is that there will be significantly less
+  duplicate packages in the node_modules folders.
+
+- [#1276](https://github.com/ho-nl/m2-pwa/pull/1276)
+  [`52a45bba4`](https://github.com/ho-nl/m2-pwa/commit/52a45bba4dc6dd6df3c81f5023df7d23ed8a534d)
+  Thanks [@paales](https://github.com/paales)! - Upgraded to
+  [NextJS 12.1](https://nextjs.org/blog/next-12-1)! This is just for compatibility, but we'll be
+  implementing
+  [On-demand Incremental Static Regeneration](https://nextjs.org/blog/next-12-1#on-demand-incremental-static-regeneration-beta)
+  soon.
+
+  This will greatly reduce the requirement to rebuid stuff and we'll add a management UI on the
+  frontend to be able to revalidate pages manually.
+
+- Updated dependencies
+  [[`381e4c86a`](https://github.com/ho-nl/m2-pwa/commit/381e4c86a8321ce96e1fa5c7d3c0a0c0ff3e02c7),
+  [`351347afe`](https://github.com/ho-nl/m2-pwa/commit/351347afeae5bd837408d46c7593bcf5473dc621),
+  [`ce09388e0`](https://github.com/ho-nl/m2-pwa/commit/ce09388e0d7ef33aee660612340f6fbae15ceec2),
+  [`e7c8e2756`](https://github.com/ho-nl/m2-pwa/commit/e7c8e2756d637cbcd2e793d62ef5721d35d9fa7b),
+  [`b08a8eb1d`](https://github.com/ho-nl/m2-pwa/commit/b08a8eb1d024b9d3e7712ef034029151670db275),
+  [`52a45bba4`](https://github.com/ho-nl/m2-pwa/commit/52a45bba4dc6dd6df3c81f5023df7d23ed8a534d),
+  [`5a4809b1a`](https://github.com/ho-nl/m2-pwa/commit/5a4809b1a705aa32f620f520085df48ee25f9949)]:
+  - @graphcommerce/ecommerce-ui@1.0.0
+  - @graphcommerce/framer-next-pages@3.0.2
+  - @graphcommerce/magento-cart@4.1.1
+  - @graphcommerce/magento-cart-payment-method@3.0.2
+  - @graphcommerce/magento-customer@4.1.1
+  - @graphcommerce/next-ui@4.1.1
+  - @graphcommerce/googleanalytics@2.0.2
+  - @graphcommerce/googlerecaptcha@2.0.2
+  - @graphcommerce/googletagmanager@2.0.2
+  - @graphcommerce/graphcms-ui@3.0.2
+  - @graphcommerce/graphql@3.0.2
+  - @graphcommerce/graphql-mesh@4.0.2
+  - @graphcommerce/image@3.0.2
+  - @graphcommerce/lingui-next@2.1.0
+  - @graphcommerce/magento-cart-billing-address@3.0.2
+  - @graphcommerce/magento-cart-checkout@3.0.2
+  - @graphcommerce/magento-cart-coupon@3.0.2
+  - @graphcommerce/magento-cart-email@3.0.2
+  - @graphcommerce/magento-cart-items@3.0.2
+  - @graphcommerce/magento-cart-shipping-address@3.0.2
+  - @graphcommerce/magento-cart-shipping-method@3.0.2
+  - @graphcommerce/magento-category@4.0.2
+  - @graphcommerce/magento-cms@4.0.2
+  - @graphcommerce/magento-customer-account@3.0.2
+  - @graphcommerce/magento-customer-order@3.0.2
+  - @graphcommerce/magento-graphql@3.0.2
+  - @graphcommerce/magento-newsletter@2.0.2
+  - @graphcommerce/magento-payment-braintree@3.0.2
+  - @graphcommerce/magento-payment-included@3.0.2
+  - @graphcommerce/magento-product@4.0.2
+  - @graphcommerce/magento-product-bundle@4.0.2
+  - @graphcommerce/magento-product-configurable@4.0.2
+  - @graphcommerce/magento-product-downloadable@4.0.2
+  - @graphcommerce/magento-product-grouped@3.0.2
+  - @graphcommerce/magento-product-simple@4.0.2
+  - @graphcommerce/magento-product-virtual@4.0.2
+  - @graphcommerce/magento-review@3.0.2
+  - @graphcommerce/magento-search@4.0.2
+  - @graphcommerce/magento-store@4.0.2
+  - @graphcommerce/mollie-magento-payment@3.0.2
+
 ## 3.1.0
 
 ### Minor Changes
