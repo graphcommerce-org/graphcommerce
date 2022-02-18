@@ -148,7 +148,7 @@ the ones you don't want to use.
 - `yarn dev` Run the app
 
 Visit the development environment running at http://localhost:3000  
-Visit the GraphQL Playground running http://localhost:3000/api/graphql
+Visit the GraphQL Playground running at http://localhost:3000/api/graphql
 
 > No success? Refer to [common build errors](../framework/troubleshooting.md)
 
