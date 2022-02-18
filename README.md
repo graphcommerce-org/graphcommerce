@@ -18,56 +18,16 @@
 GraphCommerce is an open source front-end framework for building headless
 Magento e-commerce storefronts in React.
 
-Take a look at the GraphCommerce
-[demo store](https://graphcommerce.vercel.app/nl-nl) or set up your local
-development environment with the instructions below.
-
 ---
 
-# Getting Started
+# Development setup
 
-### Download the example
+## This guide covers how to set up a local development environment, to contribute to the development of the GraphCommerce framework. This is not the starting point for (commercial) projects.
 
-- `git clone https://github.com/ho-nl/m2-pwa graphcommerce`
-- `mkdir my-project`
-- `cp -R graphcommerce/examples/magento-graphcms/. my-project`
-- `cd my-project`
-- `cp -R .env.example .env`
-- `rm CHANGELOG.md && touch CHANGELOG.md`
-- `rm -rf node_modules && rm -rf .next`
+## Installation
 
-### Update package.json
-
-Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
-`scripts`
-
-Before:
-
-```json
-{
-  "name": "@graphcommerce/magento-graphcms",
-  "scripts": {
-    // ... monorepo scripts, start, build, dev, ...
-  },
-  "scripts_local": {
-    // ... start, build, dev, ...
-  }
-}
-```
-
-After
-
-```json
-{
-  "name": "@my-company/my-project",
-  "scripts": {
-    // ... start, build, dev, ...
-  }
-}
-```
-
-## Start the development environment
-
+- `git clone git@github.com:ho-nl/m2-pwa.git graphcommerce`
+- `cd graphcommerce/examples/magento-graphcms`
 - `yarn` Install the dependencies
 - `yarn codegen` Converts all .graphql files to typescript files
 - `yarn dev` Run the app
@@ -79,8 +39,6 @@ Visit the GraphQL Playground running at http://localhost:3000/api/graphql
 
 ## Next Steps
 
-- Learn more about
-  [getting started with GraphCommerce](./docs/content/getting-started/create.md)
-- [Start building a GraphCommerce custom storefront](./docs/content/getting-started/start-building.md)
-  by customizing text and component styles, fetching data from server
-  components, and making changes to GraphQL queries
+- Learn how to [Set up Visual Studio Code](../getting-started/vscode.md) and
+  install usefull extensions
+- Read the documentation. [Start here](../getting-started/overview.md)
