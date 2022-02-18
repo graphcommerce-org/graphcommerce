@@ -36,7 +36,7 @@ GraphCommerce features include:
 - Optimized frontend performance, including bundling, image optimization, url
   prefetching and CDN caching
 - Hybrid Static Site Generation (SSG)
-- Optimized for SEO, including passing of accessibility audit, sitemap.xml,
+- Optimized for [SEO](), including passing of accessibility audit, sitemap.xml,
   canonicals, meta data etc.
 - A GraphQL Mesh, which enables fetching data from multiple sources (composable
   commerce)
@@ -57,7 +57,7 @@ GraphCommerce features include:
 
 GraphCommerce accelerates the Magento front-end development process by using a
 carefully chosen, industry standard, tech stack. It includes Magento-specific
-React components, pages and utilities for ecommerce. They're accessible,
+React components, pages and utilities for e-commerce. They're accessible,
 performant, and ready for use. They also help to reduce the initial complexity
 and boilerplate needed for building a custom storefront.
 

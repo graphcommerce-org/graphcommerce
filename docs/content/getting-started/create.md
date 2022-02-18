@@ -151,6 +151,8 @@ Visit the GraphQL Playground running http://localhost:3000/api/graphql
 
 # Next steps
 
+- Learn how to [Set up Visual Studio Code]() and install usefull extensions for
+  an optimal development experience
 - [Start building a GraphCommerce custom storefront]() by customizing text and
   component styles, fetching data from server components, and making changes to
   GraphQL queries.

@@ -61,7 +61,8 @@ Most components have props that define their look and feel. Most common are the
   [MUI Button documentation ↗](https://mui.com/components/buttons/)
 - To learn which options are accepted by a prop, refer to component's API:
   [MUI Button API ↗](https://mui.com/api/button/). You can also use your IDE's
-  suggestions functionality. For Vscode's IntelliSense feature, type Ctrl+Space.
+  suggestions functionality. For [VS Code's]() IntelliSense feature, type
+  Ctrl+Space.
 - It can be helpfull to learn how a component is styled, for example to explore
   how palette variables are used. Refer to the
   [MUI Button source code ↗](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Button/Button.js)
