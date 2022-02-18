@@ -1,50 +1,52 @@
-# GraphCommerce with Magento GraphCMS
+<p align="center">
+    <a href="https://www.graphcommerce.org/"><img src="./public/favicon.svg" alt="GraphCommerce Logo"/></a>
+</p>
+<p align="center">
+    <a href="https://www.npmjs.com/package/@graphcommerce/graphcommerce"><img src="https://img.shields.io/npm/v/@graphcommerce/graphcommerce.svg?sanitize=true" alt="Version"></a>
+    <a href="https://github.com/ho-nl/graphcommerce/blob/main/LICENSE.md"><img src="https://img.shields.io/npm/l/@graphcommerce/graphcommerce.svg?sanitize=true" alt="License"></a>
+    <a href="https://npmcharts.com/compare/@graphcommerce/graphcommerce?minimal=true"><img src="https://img.shields.io/npm/dm/@graphcommerce/graphcommerce.svg?sanitize=true" alt="Downloads"></a>
+ </p>
 
-This example integrates with Magento and GraphCMS.
+<div align="center">
 
-## Commands
+📚 [Docs](https://graphcommerce.org/docs) | 🗣
+[Slack](https://join.slack.com/t/graphcommerce/shared_invite/zt-11rmgq1ad-F~0daNtKcSvtcC4eQRzjeQ)
+| 📝 [Changelog](./CHANGELOG.md)
 
-- `yarn dev`
-  - Frontend: http://localhost:3000
-  - GraphQL Playground: http://localhost:3000/api/graphql
-- `yarn build`: Create production build
-- `yarn lingui:extact`: Extract all translations from the project
-- `yarn tsc:lint`: Lint the installation with TypeScript
+</div>
 
-Take a look at the [package.json](./package.json) for all commands.
+GraphCommerce is an open source front-end framework for building headless
+Magento e-commerce storefronts in React.
 
-## Creating your own project based on this example (once)
+Take a look at the GraphCommerce [demo store](https://graphcommerce.vercel.app/)
+or set up your local development environment with the instructions below.
 
-Note: We currently do not have a oneliner command to create a complete project.
-See [Create project cli command](https://github.com/ho-nl/m2-pwa/issues/1174) to
-keep updated on the progress.
+---
 
-In all code samples below, replace the following fields:
+# Getting Started
 
-- `my-project` below for your project-name
-- `my-company` below for your company-name
-
-### 1) Download the example.
+### Download the example
 
 - `git clone https://github.com/ho-nl/m2-pwa graphcommerce`
 - `mkdir my-project`
 - `cp -R graphcommerce/examples/magento-graphcms/. my-project`
 - `cd my-project`
+- `cp -R .env.example .env`
 - `rm CHANGELOG.md && touch CHANGELOG.md`
 - `rm -rf node_modules && rm -rf .next`
 
-### 2) Update your package.json
+### Update package.json
 
-Delete scripts and rename scripts_local to scripts.
+Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
+`scripts`
 
 Before:
 
 ```json
 {
   "name": "@graphcommerce/magento-graphcms",
-  "version": "2.124.0",
   "scripts": {
-    // ... monorepoo scripts, start, build, dev, ...
+    // ... monorepo scripts, start, build, dev, ...
   },
   "scripts_local": {
     // ... start, build, dev, ...
@@ -57,57 +59,27 @@ After
 ```json
 {
   "name": "@my-company/my-project",
-  "version": "0.0.0",
   "scripts": {
     // ... start, build, dev, ...
   }
 }
 ```
 
-### 3) Remove mollie related code
+## Start the development environment
 
-The example has mollie integrated, but you probably don't have mollie installed.
+- `yarn` Install the dependencies
+- `yarn codegen` Converts all .graphql files to typescript files
+- `yarn dev` Run the app
 
-- Remove `"@graphcommerce/mollie-magento-payment"` from package.json
-- Remove all mollie references from `pages/checkout/payment.tsx`
+Visit the development environment running at http://localhost:3000  
+Visit the GraphQL Playground running at http://localhost:3000/api/graphql
 
-### 4) Done
+---
 
-Alright, we're done! 🎉 You now have a completely separate installation for your
-project.
+## Next Steps
 
-You probably want to commit your project right now:
-
-```bash
-git init && git add . && git commit -m "initial commit"
-```
-
-## Setting up the project
-
-1. `yarn install`
-2. `cp .env.example .env`: You can modify the GraphQL endpoints here.
-3. `yarn codegen`: Converts all the GraphQl files to TypeScript files. This
-   should run without errors.
-4. `yarn dev`
-   - http://localhost:3000/api/graphql should show the GraphQL Playground
-   - http://localhost:3000 should show the website
-
-Alright we've got it working.
-
-You can customize the backends by modifying the `.env` file
-
-### Get your own copy of our GraphCMS setup
-
-1. <a href="https://app.graphcms.com/clone/caddaa93cfa9436a9e76ae9c0f34d257"><img src="https://graphcms.com/button" alt="Clone project"/></a>
-2. Add the GraphCMS public url to your .env. You can find this via: Project
-   settings > API Access > Content API.
-
-## Common issues
-
-<dl>
-  <dt>Failed to generate schema: invalid json response body at
-https://your-magento-backend.com/graphql reason: Unexpected token E in JSON at
-position 0</dt>
-  <dd>This probabaly isn't an error with GraphCommerce. The Magento backend isn't responding with a valid GraphQL response You can probably find the Magento exception in the Magneto logs.</dd>
-</dl>
-````
+- Learn more about
+  [getting started with GraphCommerce](../../docs/content/getting-started/create.md)
+- [Start building a GraphCommerce custom storefront](../../docs/content/getting-started/start-building.md)
+  by customizing text and component styles, fetching data from server
+  components, and making changes to GraphQL queries
