@@ -250,5 +250,3 @@ GraphQL queries in the graphcommerce-magento example
 
 - [Get started](../getting-started/create.md) with GraphCommerce and begin
   building a custom storefront.
-- You can explore the
-  [GraphCommerce demo storefront ↗](https://graphcommerce.vercel.app/)
