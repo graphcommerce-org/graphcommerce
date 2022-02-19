@@ -38,29 +38,13 @@ or set up your local development environment with the instructions below.
 ### Update package.json
 
 Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
-`scripts`
+`scripts`:
 
-Before:
-
-```json
-{
-  "name": "@graphcommerce/magento-graphcms",
-  "scripts": {
-    // ... monorepo scripts, start, build, dev, ...
-  },
-  "scripts_local": {
-    // ... start, build, dev, ...
-  }
-}
 ```
-
-After
-
-```json
 {
   "name": "@my-company/my-project",
   "scripts": {
-    // ... start, build, dev, ...
+    ...
   }
 }
 ```
