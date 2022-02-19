@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://www.graphcommerce.org/"><img src="./examples/magento-graphcms/public/favicon.svg" alt="GraphCommerce Logo"/></a>
+    <a href="https://www.graphcommerce.org/"><img src="./public/favicon.svg" alt="GraphCommerce Logo"/></a>
 </p>
 <p align="center">
     <a href="https://www.npmjs.com/package/@graphcommerce/graphcommerce"><img src="https://img.shields.io/npm/v/@graphcommerce/graphcommerce.svg?sanitize=true" alt="Version"></a>
@@ -18,16 +18,39 @@
 GraphCommerce is an open source front-end framework for building headless
 Magento e-commerce storefronts in React.
 
+Take a look at the GraphCommerce [demo store](https://graphcommerce.vercel.app/)
+or set up your local development environment with the instructions below.
+
 ---
 
-# Development setup
+# Getting Started
 
-## This guide covers how to set up a local development environment, to contribute to the development of the GraphCommerce framework. This is not the starting point for (commercial) projects.
+### Download the example
 
-## Installation
+- `git clone https://github.com/ho-nl/m2-pwa graphcommerce`
+- `mkdir my-project`
+- `cp -R graphcommerce/examples/magento-graphcms/. my-project`
+- `cd my-project`
+- `cp -R .env.example .env`
+- `rm CHANGELOG.md && touch CHANGELOG.md`
+- `rm -rf node_modules && rm -rf .next`
 
-- `git clone git@github.com:ho-nl/m2-pwa.git graphcommerce`
-- `cd graphcommerce/examples/magento-graphcms`
+### Update package.json
+
+Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
+`scripts`:
+
+```
+{
+  "name": "@my-company/my-project",
+  "scripts": {
+    ...
+  }
+}
+```
+
+## Start the development environment
+
 - `yarn` Install the dependencies
 - `yarn codegen` Converts all .graphql files to typescript files
 - `yarn dev` Run the app
@@ -39,6 +62,7 @@ Visit the GraphQL Playground running at http://localhost:3000/api/graphql
 
 ## Next steps
 
-- Learn how to [Set up Visual Studio Code](../getting-started/vscode.md) and
-  install usefull extensions
-- Read the documentation. [Start here](../getting-started/overview.md)
+- Learn more about
+  [getting started with GraphCommerce](./docs/content/getting-started/create.md)
+- Learn about the general concepts and file structure of the
+  [magento-graphcms example](./docs/content/getting-started/overview.md)
