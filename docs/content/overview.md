@@ -33,19 +33,20 @@ start styling by making changes to the [theme](./framework/theming.md).
 GraphCommerce features include:
 
 - App-like e-commerce UI
-- Magento e-commerce component libary, like, cart, search, layered navigation
-  and pages like category, product, account, checkout
+- Magento e-commerce component libary including cart, search, layered navigation
+  components and category, product, account, checkout pages
 - Optimized frontend performance, including bundling, image optimization, CDN
   caching
 - Predictive url pefetching and caching
 - Hybrid Static Site Generation (SSG)
-- Optimized for [SEO](./framework/seo.md), including accessibility, sitemap.xml,
-  canonicals, meta data etc.
+- [SEO](./framework/seo.md) optimized, including accessibility, sitemap.xml,
+  canonicals, meta data
 - Data fetching of multiple sources with the included GraphQL Mesh (composable
   commerce)
 - Passing Google Core Web Vitals audits
 - PWA out-of-the-box
-- Interface [translations]() EN, ES, FR, DE, NL
+- Magento multi language support, a store switcher component and framework
+  [translations]() EN, ES, FR, DE, NL
 - [Deployments to Vercel](./deployment.md)
 
 <figure>
