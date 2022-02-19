@@ -62,7 +62,7 @@ Visit the GraphQL Playground running at http://localhost:3000/api/graphql
 
 ## Next steps
 
-- Learn more about
-  [getting started with GraphCommerce](../../docs/content/getting-started/create.md)
 - Learn about the general concepts and file structure of the
   [magento-graphcms example](../getting-started/overview.md)
+- Learn more about
+  [getting started with GraphCommerce](../../docs/content/getting-started/create.md)
