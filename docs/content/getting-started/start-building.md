@@ -1,7 +1,7 @@
 # Start building a GraphCommerce custom storefront
 
 Previously, you [created a new GraphCommerce app](../getting-started/create.md).
-You're now ready to start building your GraphCommerce custom storefront.
+You're now ready to start working on your GraphCommerce custom storefront.
 
 In this tutorial, you'll complete a series of tasks to add some specific
 functionality to your GraphCommerce app. Your final modification will be simple,

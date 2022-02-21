@@ -17,7 +17,7 @@ located in the /components or /pages directories.
 - A minimal set of components you would most likelely modify for your project
 - The main layout component, which renders header, navigation and footer
 - A set of boilerplate pages, which handle url routing
-- Basic global styles in ThemeProvider.tsx provided by
+- Basic global styles in theme.ts provided by
   [Mui ↗](https://mui.com/customization/default-theme/)
 - Interface translation files
 
