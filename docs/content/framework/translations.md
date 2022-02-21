@@ -8,7 +8,7 @@ introduction to how translations works in your graphCommerce app.
 All available interface translations are stored as .po files in the /locales
 directory.
 
-```po
+```
 Example of /locales/es.po
 
 ...
@@ -39,7 +39,7 @@ component:
 
 - In /locales/en.po, find the msgid `Your cart is empty` and change the msgstr:
 
-```po
+```
 msgid "Your cart is empty"
 msgstr "Empty cart!"
 ```

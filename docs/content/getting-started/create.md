@@ -115,7 +115,7 @@ result, with the exception of the first option in the list.
 > entered your `MAGENTO_ENDPOINT`. The app won't build, but the GraphQL explorer
 > will start at `http://localhost:3000/api/graphql`. Enter the following query:
 >
-> ```json
+> ```graphql {3-4} showLineNumbers
 > query {
 >   availableStores {
 >     store_code

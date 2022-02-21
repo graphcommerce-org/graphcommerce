@@ -184,7 +184,7 @@ the /pages directory. Magento category routes are handled by the
 result, the category url structure of the app matches your default Magento
 frontend 1-on-1.
 
-```txt
+```
 Page structure of the graphcommerce-magento example
 
 ├── pages
@@ -221,7 +221,7 @@ GraphCommerce demo
 [GraphQL Explorer ↗](https://graphcommerce.vercel.app/api/graphql) with the
 following example query:
 
-```
+```graphql
 query {
   products(search: "sock", pageSize: 3) {
     items {
@@ -252,7 +252,7 @@ With the use of fragments and GraphQL Mesh, GraphCommerce retrieves all data
 from both Magento and GraphCMS in a single GraphQL query. This improves
 performance.
 
-```txt
+```
 GraphQL queries in the graphcommerce-magento example
 
 ├── GraphQL
