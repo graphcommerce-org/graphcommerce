@@ -81,7 +81,7 @@ const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
       component='h1'
       variant='h2'
       {...props}
-      sx={{ mt: '2em', mb: '1em', '&:first-of-type': { mt: 0 } }}
+      sx={{ mt: '2em', mb: '1em', '&:first-of-type': { mt: '1em' } }}
     />
   ),
   h2: ({ ref, ...props }) => (

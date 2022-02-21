@@ -1,5 +1,5 @@
 import { iconChevronDown, iconChevronUp, SvgIcon } from '@graphcommerce/next-ui'
-import { Collapse, List, ListItemButton, ListItemText } from '@mui/material'
+import { Box, Collapse, List, ListItemButton, ListItemText } from '@mui/material'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
@@ -13,7 +13,7 @@ function FileLink(props: FileNode & { level: number }) {
 
   return (
     <NextLink href={`/${url}`} passHref>
-      <ListItemButton component='a' sx={{ pl: indent }} selected={active}>
+      <ListItemButton component='a' sx={{ pl: indent, borderRadius: 2 }} selected={active} dense>
         <ListItemText>{matter.menu ?? name}</ListItemText>
       </ListItemButton>
     </NextLink>
@@ -53,7 +53,7 @@ export function MenuList(props: FileOrFolderNode & { level?: number }) {
   if (hasChildren) {
     return (
       <>
-        <ListItemButton onClick={handleClick} sx={{ pl: indent }}>
+        <ListItemButton onClick={handleClick} sx={{ pl: indent, borderRadius: 2 }} dense>
           <ListItemText>{name}</ListItemText>
           {open ? <SvgIcon src={iconChevronUp} /> : <SvgIcon src={iconChevronDown} />}
         </ListItemButton>
@@ -80,11 +80,18 @@ export default function SidebarMenu(props: FileNode) {
   const { childNodes, type, ...link } = props
 
   return (
-    <List component='nav' disablePadding>
-      <FileLink type={type} {...link} level={0} />
-      {childNodes?.map((tree) => (
-        <MenuList key={tree.path} {...tree} />
-      ))}
-    </List>
+    <Box
+      sx={{
+        padding: 2,
+        borderRight: (theme) => `1px solid ${theme.palette.divider}`,
+      }}
+    >
+      <List component='nav' disablePadding sx={{}}>
+        <FileLink type={type} {...link} level={0} />
+        {childNodes?.map((tree) => (
+          <MenuList key={tree.path} {...tree} />
+        ))}
+      </List>
+    </Box>
   )
 }

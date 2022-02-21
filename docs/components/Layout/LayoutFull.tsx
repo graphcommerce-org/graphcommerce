@@ -21,7 +21,7 @@ export function LayoutFull(props: LayoutFullProps) {
   return (
     <LayoutDefault
       header={<Logo />}
-      footer={<Container>&copy; GraphCommerce</Container>}
+      footer=''
       menuFab={
         <MenuFab>
           <MenuFabItem href='/'>Documentation</MenuFabItem>
@@ -32,6 +32,7 @@ export function LayoutFull(props: LayoutFullProps) {
           display: 'grid',
           gridAutoFlow: 'column',
           gridTemplateColumns: `${responsiveVal(300, 320)} 1fr`,
+          borderTop: (theme) => `1px solid ${theme.palette.divider}`,
         },
       }}
     >
