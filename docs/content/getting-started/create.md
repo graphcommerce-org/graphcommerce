@@ -31,9 +31,9 @@ frontend React framework that uses Next.js for server-side rendering.
 
 ## Install dependencies
 
-If you want to test a GraphCommerce app using a pre-configured Magento demo
-store and a pre-configured GraphCMS project with demo content, then you need to
-only install the dependencies. This is the quickest approach.
+If you want to test a GraphCommerce storefront using a pre-configured Magento
+demo store and a pre-configured GraphCMS project with demo content, then you
+need to only install the dependencies. This is the quickest approach.
 
 - Install and use node 14: `nvm install 14 && nvm use 14`
 - Install yarn: `npm install --global yarn`
@@ -64,13 +64,13 @@ Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
 }
 ```
 
-# Step 2: Modify API credentials and dependencies
+# Step 2: Magento and GraphCMS API keys
 
-> By default, the .env file is connected to a demo Magento store and a GraphCMS
-> project. It uses demo api keys. If you want to test your GraphCommerce app
+> By default, the .env file is configured with API keys from a demo Magento
+> store and a demo GraphCMS project. If you want to test your GraphCommerce app
 > using the demo store, then you can start the development environment. Only
-> proceed with the following steps if you want to develop a GraphCommerce app
-> using your own Magento store and/or GraphCMS project.
+> proceed with the following steps if you want to develop a GraphCommerce
+> storefront using your own Magento store and/or GraphCMS project.
 
 ### Requirements
 
@@ -79,7 +79,7 @@ and/or GraphCMS project, you'll need:
 
 - Magento 2.4.3 - Clean install, or a production or development environment
 - GraphCMS - A GraphCMS project with the required schema.
-  [Clone demo GraphCMS project](https://app.graphcms.com/clone/caddaa93cfa9436a9e76ae9c0F34d257)
+  [Clone the demo GraphCMS project](https://app.graphcms.com/clone/caddaa93cfa9436a9e76ae9c0F34d257)
   as your starting point.
 
 ### Configuration

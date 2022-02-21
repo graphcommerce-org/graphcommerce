@@ -5,10 +5,10 @@ project.
 
 ## How environment variables work
 
-You can store environment variables in the .env file in your GraphCommerce app
-root directory. Any variable from .env files that isn't prefixed with
-`NEXT_PUBLIC` is treated as a server runtime variable. These variables are not
-exposed to the browser.
+You can store environment variables in the .env file in your GraphCommerce root
+directory. Any variable from .env files that isn't prefixed with `NEXT_PUBLIC`
+is treated as a server runtime variable. These variables are not exposed to the
+browser.
 
 Environment variables will be loaded into `process.env`, allowing you to use
 them in Next.js data fetching methods and API routes:

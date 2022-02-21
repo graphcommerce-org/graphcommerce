@@ -72,7 +72,7 @@ Most components have props that define their look and feel. Most common are the
 
 A simple way to style a component is by using the
 [sx prop ↗](https://mui.com/system/the-sx-prop/). To get familiar with the sx
-prop in your GraphCommerce app, refer to
+prop in your GraphCommerce storefront, refer to
 [start building a GraphCommerce custom storefront](../getting-started/start-building.md).
 A more advanced way is to use the
 [MUI styled() ↗](https://mui.com/system/styled/) utility for creating styled
@@ -133,7 +133,7 @@ sx={{ backgroundImage: `url(/images/stripes.svg)` }}
 
 All components that render content with a border-radius, except for pill buttons
 and circular buttons, are dependent of the value of `shape`. A simple way to
-remove this effect is to set it's value to 0:
+remove this effect is to set its value to 0:
 
 ```
   ...themeBaseDefaults,

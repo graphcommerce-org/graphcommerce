@@ -1,7 +1,7 @@
 # Deploy a Graphcommerce app with Vercel
 
-Congratulations, you are ready to deploy your GraphCommerce app to production.
-The fastest way to deploy your GraphCommerce app is with
+Congratulations, you are ready to deploy your GraphCommerce storefront to
+production. The fastest way to deploy your GraphCommerce app is with
 [Vercel ↗](https://vercel.com/).
 
 Vercel allows for automatic deployments on every branch push and merges onto the

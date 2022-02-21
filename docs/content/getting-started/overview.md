@@ -1,7 +1,7 @@
 # GraphCommerce magento-graphcms example overview
 
 GraphCommerce offers a magento-graphcms example that provides an approachable
-path to building GraphCommerce custom e-commerce storefront. This guide
+path to building GraphCommerce custom Magento e-commerce storefront. This guide
 describes what's included in the magento-graphcms example and how you can begin
 exploring it.
 
@@ -22,9 +22,12 @@ File structure of the graphcommerce-magento example
 
 ├── components
     └── Layout
-        └── Logo.tsx
         └── Footer.tsx
         └── LayoutFull.tsx
+    └── GraphCMS
+        └── Asset
+        └── RowHeroBanner
+        └── RowQuote
     └── theme.ts
     └── ...
 ├── GraphQL
@@ -151,6 +154,18 @@ Packages (/node_modules directory/)
 - @graphcommerce/react-hook-form
 - @graphcommerce/typescript-config-pwa
 
+# GraphCMS
+
+GraphCMS is integrated as a Content Management System. It is used to store all
+static content and provides a user-friendly interface for managing it.
+
+The magento-graphcms example offers a number of components to render this
+content in different ways, for example in the form of a page-wide hero banner, a
+list of USPs or grid of text columns.
+
+To [get started](./create.md) with the magento-graphcms example, cloning the
+demo GraphCMS project GraphQL schema and its content is recommended.
+
 # Pages
 
 GraphCommerce uses Next.js
@@ -218,7 +233,7 @@ query {
 
 ## Query fragments
 
-Every component that requires data from Magento or GraphCMS has it's own
+Every component that requires data from Magento or GraphCMS has its own
 `.graphql` file, containing a GraphQL query fragment. GraphQL Code Generator is
 used to convert query fragments to both the GraphQL document (query or mutation)
 and Typescript type definitions, both captured in `.gql(.ts)` files. `.gql(.ts)`
