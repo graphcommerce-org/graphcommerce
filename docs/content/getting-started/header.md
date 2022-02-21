@@ -119,8 +119,8 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
   ```ts
   const MotionDiv = styled('div')({})
   ```
-- Remove the style={{...}} prop from both the `<MotionDiv>` components to remove
-  the Fab scroll animation
+- Remove the `style={{...}}` prop from both the `<MotionDiv>` components to
+  remove the Fab scroll animation
 - Remove `const { opacity, scale, shadowOpacity } = useFabAnimation()`
 
 - Update all imports:
