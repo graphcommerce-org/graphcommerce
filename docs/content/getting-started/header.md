@@ -1,3 +1,7 @@
+---
+menu: Build a custom header
+---
+
 # Build a custom header in GraphCommerce
 
 Previously, you created a GraphCommerce app and started building your custom

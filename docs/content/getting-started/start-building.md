@@ -1,3 +1,7 @@
+---
+menu: Customize a storefront
+---
+
 # Start building a GraphCommerce custom storefront
 
 Previously, you [created a new GraphCommerce app](../getting-started/create.md).

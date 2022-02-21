@@ -1,3 +1,7 @@
+---
+menu: GraphCMS
+---
+
 # GraphCMS
 
 GraphCMS is integrated as a Content Management System. It is used to store all

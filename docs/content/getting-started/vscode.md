@@ -1,3 +1,7 @@
+---
+menu: Setup VS Code
+---
+
 # Visual Studio Code
 
 GraphCommerce is a front-end web development framework written in Typescript,

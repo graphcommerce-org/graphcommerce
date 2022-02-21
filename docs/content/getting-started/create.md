@@ -1,3 +1,7 @@
+---
+menu: Create a custom storefront
+---
+
 # Create a GraphCommerce storefront
 
 You're ready to create a GraphCommerce storefront. You want to set up your

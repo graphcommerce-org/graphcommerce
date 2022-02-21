@@ -1,3 +1,7 @@
+---
+menu: SEO
+---
+
 # SEO
 
 ## Page Meta data
