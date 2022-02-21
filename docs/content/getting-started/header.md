@@ -42,7 +42,7 @@ to find resources to build more complex features on your own.
 - Save the file to see your changes updated in real-time
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/a4ZvDM" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/v0jqud" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
  <figcaption>Reorder components</figcaption>
 </figure>
 
@@ -52,7 +52,7 @@ to find resources to build more complex features on your own.
   `<DesktopNavBar>...</DesktopNavBar>` component.
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/MeJs3V" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/S1BIyc" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
  <figcaption>Remove navigation</figcaption>
 </figure>
 
@@ -86,7 +86,7 @@ to find resources to build more complex features on your own.
 ```
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/Bvj6ze" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/7eadNI" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
  <figcaption>Replace search input with Search Fab, remove Customer Service Fab</figcaption>
 </figure>
 
@@ -124,7 +124,7 @@ import React, { useEffect } from 'react'
 ```
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/NY144K" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0"/>
+ <img src="https://cdn-std.droplr.net/files/acc_857465/O1iBQ4" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0"/>
  <figcaption>Local copy of the MenuFab component with Fab scroll animation removed</figcaption>
 </figure>
 
@@ -174,7 +174,7 @@ TransitionComponent={Fade}
 ```
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/xooh2F" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/RyXlBV" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
  <figcaption>Menu component with custom styling</figcaption>
 </figure>
 
