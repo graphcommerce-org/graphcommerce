@@ -13,6 +13,7 @@ import {
   TableCell,
   TableContainer,
   Paper,
+  Box,
 } from '@mui/material'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
@@ -22,7 +23,7 @@ import { useRouter } from 'next/router'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypePrism from 'rehype-prism-plus'
 import rehypeSlug from 'rehype-slug'
-import remarkGfm from 'remark-gfm' // Tables, footnotes, strikethrough, task lists, literal URLs.
+import remarkGfm from 'remark-gfm'
 import { SetRequired } from 'type-fest'
 import { LayoutFull, LayoutFullProps } from '../components/Layout/LayoutFull'
 import { LayoutProps } from '../components/Layout/PageLayout'
@@ -143,19 +144,36 @@ const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
       ]}
     />
   ),
+  pre: ({ ref, ...props }) => (
+    <Box
+      component='pre'
+      {...props}
+      sx={{
+        fontFamily: `Menlo, Monaco, Consolas, 'Andale Mono', 'Ubuntu Mono', 'Courier New', monospace`,
+        borderRadius: 1.5,
+
+        "&:not([class*='language-'])": {
+          backgroundColor: (theme) => [alpha(theme.palette.text.primary, 0.08), '!important'],
+          p: '1em',
+        },
+        '&:[class*="language-"]': {
+          backgroundImage: 'linear-gradient(to bottom, #002641 75%, #003c67)',
+        },
+      }}
+    />
+  ),
   code: ({ ref, ...props }) => (
-    <Typography
-      variant='body1'
+    <Box
       component='code'
       {...props}
       sx={{
-        borderRadius: 1.5,
-        pt: 0.1,
-        pb: 0.3,
-        pl: 1,
-        pr: 1,
-        backgroundColor: (theme) => [alpha(theme.palette.text.primary, 0.08), '!important'],
         "&:not([class*='language-'])": {
+          typography: 'body2',
+          fontFamily: `Menlo, Monaco, Consolas, 'Andale Mono', 'Ubuntu Mono', 'Courier New', monospace`,
+          borderRadius: 1.5,
+          pt: 0.1,
+          pb: 0.3,
+          px: 0.7,
           backgroundColor: (theme) => [alpha(theme.palette.text.primary, 0.08), '!important'],
         },
       }}
@@ -200,6 +218,7 @@ function IndexPage(props: Props) {
             maxWidth: '100%',
             mb: 8,
             mt: 8,
+            aspectRatio: '16 / 9',
           },
           '& img, & video': {
             display: 'block',

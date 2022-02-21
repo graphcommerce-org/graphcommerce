@@ -8,7 +8,7 @@ introduction to how translations works in your graphCommerce app.
 All available interface translations are stored as .po files in the /locales
 directory.
 
-```
+```txt
 Example of /locales/es.po
 
 ...
@@ -37,14 +37,14 @@ component:
 
 ## Customize translations
 
-- In /locales/en.po, find the msgid `Your cart is empty` and change the msgstr:
+In /locales/en.po, find the msgid `Your cart is empty` and change the msgstr:
 
-```
+```txt
 msgid "Your cart is empty"
 msgstr "Empty cart!"
 ```
 
-- Refresh to see your changes updated
+Refresh to see your changes updated
 
 <figure>
  <img src="https://cdn-std.droplr.net/files/acc_857465/ipzm99" />
@@ -70,7 +70,7 @@ import { t, Trans } from '@lingui/macro'
 
 Add the msgid and translation to the translation files:
 
-```
+```txt
 Example of /locales/es.po
 
 ...
@@ -79,7 +79,7 @@ msgid "Call us now"
 msgstr "Llámanos ahora"
 ```
 
-## Passing {values} to translations
+## Passing `{values}` to translations
 
 You can pass values in msgid's:
 
@@ -92,7 +92,7 @@ You can pass values in msgid's:
 
 The syntax in the translation files:
 
-```
+```txt
 Example of /locales/en.po
 
 ...
