@@ -6,7 +6,9 @@ import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypePrism from 'rehype-prism-plus'
+import rehypeSlug from 'rehype-slug'
 import { SetRequired } from 'type-fest'
 import { LayoutFull, LayoutFullProps } from '../components/Layout/LayoutFull'
 import { LayoutProps } from '../components/Layout/PageLayout'
@@ -35,6 +37,8 @@ type GetStatic = GetStaticProps<Props, Param>
 function relativeUrl(href: string[], currentHref: string[]): string[] {
   if (href[0].startsWith('http') || href[0].startsWith('/')) return href
 
+  if (href[0].startsWith('#')) return [...currentHref, href[0]]
+
   if (href[0] === 'readme') return relativeUrl(['', ...href.slice(1)], currentHref)
 
   if (href[0] === '..') {
@@ -49,7 +53,7 @@ function relativeUrl(href: string[], currentHref: string[]): string[] {
 }
 
 function RelativeLink(props: Omit<JSX.IntrinsicElements['a'], 'ref'>) {
-  const asPath = useRouter().asPath?.split('?')[0]
+  const asPath = useRouter().asPath?.split('?')[0].split('#')[0]
   const { href = '', children, ...otherProps } = props
 
   let newUrl = href.replace('.mdx', '')
@@ -165,6 +169,7 @@ function IndexPage(props: Props) {
       <Container
         maxWidth='md'
         sx={{
+          position: 'relative',
           '& figure': {
             display: 'block',
             margin: '0 auto',
@@ -184,7 +189,7 @@ function IndexPage(props: Props) {
             mb: '1em !important',
           },
           '& figure > figcaption': {
-            textAlign: 'left',
+            paddingLeft: '1em',
             marginTop: '1em',
             typography: 'caption',
             color: 'text.secondary',
@@ -195,6 +200,21 @@ function IndexPage(props: Props) {
             mb: 5,
           },
           '& figure > p': { display: 'none' },
+
+          '& .icon.icon-link': {
+            background: 'url(/link.svg) no-repeat',
+            backgroundSize: 'contain',
+            display: 'inline-block',
+            verticalAlign: 'middle',
+            fontSize: '0.8em',
+            mr: '0.2em',
+            width: '1.1em',
+            height: '1.2em',
+            ml: `calc(-0.2em - 1.2em)`,
+            opacity: 0.0,
+          },
+          '& h1:hover .icon.icon-link, & h2:hover .icon.icon-link, & h3:hover .icon.icon-link, & h4:hover .icon.icon-link, & h5:hover .icon.icon-link, & h6:hover .icon.icon-link':
+            { opacity: 0.5 },
         }}
       >
         <MDXRemote {...source} components={mdxComponents} />
@@ -234,7 +254,10 @@ export const getStaticProps: GetStatic = async ({ params }) => {
   // todo: https://github.com/rehypejs/rehype/blob/main/doc/plugins.md#list-of-plugins
   // todo: https://github.com/remarkjs/remark/blob/main/doc/plugins.md#list-of-plugins
   const source = (await serialize(res, {
-    mdxOptions: { format: 'detect', rehypePlugins: [rehypePrism] },
+    mdxOptions: {
+      format: 'detect',
+      rehypePlugins: [rehypePrism, rehypeSlug, rehypeAutolinkHeadings],
+    },
     parseFrontmatter: true,
   })) as MDXSource
 
