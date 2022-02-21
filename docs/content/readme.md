@@ -1,7 +1,7 @@
 ---
 menu: Overview
 order: Getting started,Framework
-metaTitle: GraphCommerce front-end framework for Magento
+metaTitle: React.js front-end framework for Magento - GraphCommerce
 metaDescription:
   'GraphCommerce is a front-end framework used for building headless Magento
   e-commerce storefronts in React.js.'
