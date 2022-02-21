@@ -52,6 +52,7 @@ function RelativeLink(props: JSX.IntrinsicElements['a']) {
 
   if (newUrl.startsWith('/packages') || newUrl.startsWith('/examples')) {
     newUrl = `https://github.com/ho-nl/m2-pwa/tree/master${newUrl}`
+  }
 
   const isExternal = newUrl.startsWith('http')
 
