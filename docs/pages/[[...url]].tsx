@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta } from '@graphcommerce/next-ui'
-import { Container, Divider, Typography, Link } from '@mui/material'
+import { Container, Divider, Typography, Link, alpha } from '@mui/material'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -77,19 +77,24 @@ function RelativeLink(props: Omit<JSX.IntrinsicElements['a'], 'ref'>) {
 
 const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
   h1: ({ ref, ...props }) => (
-    <Typography component='h1' variant='h2' {...props} sx={{ mb: '1em' }} />
+    <Typography
+      component='h1'
+      variant='h2'
+      {...props}
+      sx={{ mt: '2em', mb: '1em', '&:first-of-type': { mt: 0 } }}
+    />
   ),
   h2: ({ ref, ...props }) => (
-    <Typography component='h2' variant='h3' {...props} sx={{ mt: '1em', mb: '0.5em' }} />
+    <Typography component='h2' variant='h3' {...props} sx={{ mt: '2em', mb: '0.5em' }} />
   ),
   h3: ({ ref, ...props }) => (
-    <Typography component='h3' variant='h4' {...props} sx={{ mt: '1em', mb: '0.5em' }} />
+    <Typography component='h3' variant='h4' {...props} sx={{ mt: '2em', mb: '0.5em' }} />
   ),
   h4: ({ ref, ...props }) => <Typography component='h4' variant='h5' {...props} sx={{}} />,
   h5: ({ ref, ...props }) => <Typography component='h5' variant='h6' {...props} sx={{}} />,
   h6: ({ ref, ...props }) => <Typography component='h6' variant='subtitle1' {...props} sx={{}} />,
   p: ({ ref, ...props }) => (
-    <Typography variant='body1' {...props} sx={{ mt: '1em', mb: '0.5em' }} />
+    <Typography variant='body1' {...props} sx={{ mt: '0.5em', mb: '0.5em' }} />
   ),
   // img: ({ ref, src, ...props }) => {
   //   if (!src) return null
@@ -103,7 +108,35 @@ const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
       variant='body1'
       component='blockquote'
       {...props}
-      sx={{ mt: '1em', mb: '0.5em', fontStyle: 'italic', borderLeft: '4px solid', pl: '1em' }}
+      sx={[
+        (theme) => ({
+          display: 'inline-block',
+          mt: '1em',
+          mb: '0.5em',
+          fontStyle: 'italic',
+          pl: 2,
+          pr: 2,
+          borderRadius: 2,
+          backgroundColor: alpha(theme.palette.primary.main, 0.1),
+          border: `1px solid ${theme.palette.primary.main}`,
+          boxShadow: 4,
+        }),
+      ]}
+    />
+  ),
+  code: ({ ref, ...props }) => (
+    <Typography
+      variant='body1'
+      component='code'
+      {...props}
+      sx={{
+        borderRadius: 1.5,
+        pt: 0.1,
+        pb: 0.3,
+        pl: 1,
+        pr: 1,
+        backgroundColor: (theme) => [alpha(theme.palette.text.primary, 0.08), '!important'],
+      }}
     />
   ),
   a: RelativeLink,
@@ -139,13 +172,23 @@ function IndexPage(props: Props) {
             display: 'block',
             margin: '0 auto',
             maxWidth: '100%',
-            boxShadow: 16,
-            borderRadius: 3,
+            boxShadow: '0 0px 40px 0 rgba(0,0,0,0.15)',
+          },
+          '& pre': {
+            borderRadius: 2,
+            mt: '1em !important',
+            mb: '1em !important',
           },
           '& figure > figcaption': {
-            textAlign: 'center',
+            textAlign: 'left',
             marginTop: '1em',
             typography: 'caption',
+            color: 'text.secondary',
+          },
+          '& hr': {
+            m: 0,
+            mt: 5,
+            mb: 5,
           },
           '& figure > p': { display: 'none' },
         }}
