@@ -98,6 +98,14 @@ const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
   hr: ({ ref, ...props }) => (
     <Divider {...props} variant='middle' sx={(theme) => ({ my: theme.spacings.md })} />
   ),
+  blockquote: ({ ref, ...props }) => (
+    <Typography
+      variant='body1'
+      component='blockquote'
+      {...props}
+      sx={{ mt: '1em', mb: '0.5em', fontStyle: 'italic', borderLeft: '4px solid', pl: '1em' }}
+    />
+  ),
   a: RelativeLink,
 }
 
