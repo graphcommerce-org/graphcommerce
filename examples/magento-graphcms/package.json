@@ -80,7 +80,7 @@
     "@mui/material": "^5.4.2",
     "concurrently": "^7.0.0",
     "dotenv": "^16.0.0",
-    "framer-motion": "^6.2.6",
+    "framer-motion": "^6.2.7",
     "next": "^12.1.0",
     "next-pwa": "^5.4.4",
     "next-sitemap": "^2.4.3",
