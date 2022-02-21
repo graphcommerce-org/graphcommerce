@@ -219,6 +219,7 @@ function IndexPage(props: Props) {
             mb: 8,
             mt: 8,
             aspectRatio: '16 / 9',
+            width: '100%',
           },
           '& img, & video': {
             display: 'block',
