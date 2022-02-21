@@ -156,8 +156,8 @@ const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
           backgroundColor: (theme) => [alpha(theme.palette.text.primary, 0.08), '!important'],
           p: '1em',
         },
-        '&:[class*="language-"]': {
-          backgroundImage: 'linear-gradient(to bottom, #002641 75%, #003c67)',
+        "&[class*='language-']": {
+          backgroundImage: 'linear-gradient(to top, #003c6780, #00264180 )',
         },
       }}
     />
@@ -167,8 +167,8 @@ const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
       component='code'
       {...props}
       sx={{
+        fontSize: '0.85em',
         "&:not([class*='language-'])": {
-          typography: 'body2',
           fontFamily: `Menlo, Monaco, Consolas, 'Andale Mono', 'Ubuntu Mono', 'Courier New', monospace`,
           borderRadius: 1.5,
           pt: 0.1,
