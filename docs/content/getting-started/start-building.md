@@ -43,9 +43,14 @@ You've completed the
 - Save the file to see your changes updated in real-time
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/btnqBi" />
- <figcaption>Adding text to your GraphCommerce app</figcaption>
+
+https://user-images.githubusercontent.com/1251986/154980151-2039c027-c31f-4b99-86f2-8c2420053da8.mp4
+
+  <video width="100%" controls>
+    <source src="https://user-images.githubusercontent.com/1251986/154980151-2039c027-c31f-4b99-86f2-8c2420053da8.mp4" type="video/mp4"/>
+  </video>
 </figure>
+
 
 ### Change a component's style
 
@@ -67,8 +72,13 @@ You've completed the
 ```
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/F8EuHl" aspect-ratio="16 / 9" />
- <figcaption>Change a component's style in your GraphCommerce app</figcaption>
+
+https://user-images.githubusercontent.com/1251986/154980686-3d2bf587-16d7-412b-b05f-8b0f7b40cbfd.mp4
+
+  <video width="100%" controls>
+    <source src="https://user-images.githubusercontent.com/1251986/154980686-3d2bf587-16d7-412b-b05f-8b0f7b40cbfd.mp4" type="video/mp4"/>
+  </video>
+   <figcaption>Change a component's style in your GraphCommerce app</figcaption>
 </figure>
 
 # Step 2: Make GraphQL changes
