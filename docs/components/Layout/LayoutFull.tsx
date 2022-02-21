@@ -33,6 +33,7 @@ export function LayoutFull(props: LayoutFullProps) {
             p: 0,
           },
           '& header a, & header > div': {
+            backgroundColor: theme.palette.background.paper,
             [theme.breakpoints.up('md')]: {
               borderRight: `1px solid ${theme.palette.divider}`,
               width: `${responsiveVal(300, 320)}`,

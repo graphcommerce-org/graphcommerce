@@ -82,6 +82,7 @@ export default function SidebarMenu(props: FileNode) {
   return (
     <Box
       sx={{
+        backgroundColor: (theme) => theme.palette.background.paper,
         padding: 2,
         borderRight: (theme) => `1px solid ${theme.palette.divider}`,
       }}
