@@ -94,7 +94,7 @@ const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
   h5: ({ ref, ...props }) => <Typography component='h5' variant='h6' {...props} sx={{}} />,
   h6: ({ ref, ...props }) => <Typography component='h6' variant='subtitle1' {...props} sx={{}} />,
   p: ({ ref, ...props }) => (
-    <Typography variant='body1' {...props} sx={{ mt: '0.5em', mb: '0.5em' }} />
+    <Typography variant='body1' {...props} sx={{ mt: '0.5em', mb: '1em' }} />
   ),
   // img: ({ ref, src, ...props }) => {
   //   if (!src) return null
@@ -114,8 +114,9 @@ const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
           mt: '1em',
           mb: '0.5em',
           fontStyle: 'italic',
-          pl: 2,
-          pr: 2,
+          pl: '1em',
+          pr: '1em',
+          pt: '0.5em',
           borderRadius: 2,
           backgroundColor: alpha(theme.palette.primary.main, 0.1),
           border: `1px solid ${theme.palette.primary.main}`,
@@ -136,6 +137,9 @@ const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
         pl: 1,
         pr: 1,
         backgroundColor: (theme) => [alpha(theme.palette.text.primary, 0.08), '!important'],
+        "&:not([class*='language-'])": {
+          backgroundColor: (theme) => [alpha(theme.palette.text.primary, 0.08), '!important'],
+        },
       }}
     />
   ),

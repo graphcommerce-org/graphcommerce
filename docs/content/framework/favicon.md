@@ -1,4 +1,4 @@
-## Favicon
+# Favicon
 
 GraphCommerce offers a
 [magento-graphcms example](../getting-started/overview.md) that provides an
