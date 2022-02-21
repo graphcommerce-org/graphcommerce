@@ -48,15 +48,14 @@ GraphCommerce features include:
   caching
 - Predictive url pefetching and caching
 - Hybrid Static Site Generation (SSG)
-- [SEO](./framework/seo.md) optimized, including accessibility, sitemap.xml,
-  canonicals, meta data
+- SEO optimized, including accessibility, sitemap.xml, canonicals, meta data
 - Data fetching of multiple sources with the included GraphQL Mesh (composable
   commerce)
 - Passing Google Core Web Vitals audits
 - PWA out-of-the-box
 - Magento multi language support, a store switcher component and framework
-  [translations]() EN, ES, FR, DE, NL
-- [Deployments to Vercel](./framework/deployment.md)
+  translations EN, ES, FR, DE, NL
+- Deployments to Vercel
 
 <figure>
 
