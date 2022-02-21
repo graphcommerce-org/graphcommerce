@@ -184,7 +184,7 @@ the /pages directory. Magento category routes are handled by the
 result, the category url structure of the app matches your default Magento
 frontend 1-on-1.
 
-```
+```txt
 Page structure of the graphcommerce-magento example
 
 ├── pages

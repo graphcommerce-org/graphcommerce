@@ -33,7 +33,7 @@ are located in the /components or /pages directories.
   [Mui ↗](https://mui.com/customization/default-theme/)
 - Interface translation files
 
-```
+```txt
 File structure of the graphcommerce-magento example
 
 ├── components

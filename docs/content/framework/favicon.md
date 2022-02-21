@@ -10,7 +10,7 @@ for a correct favicon and touch icon.
 
 Favicons can be found in the /public directory:
 
-```
+```txt
 /public/favicon.ico
 /public/favicon.svg
 /public/apple-touch-icon.png
