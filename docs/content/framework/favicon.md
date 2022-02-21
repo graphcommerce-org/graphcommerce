@@ -29,7 +29,7 @@ You can use the GraphCommerce
 to simplify the process of making correct favicons.
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/8wbzEN" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0"/>
+ <img src="https://cdn-std.droplr.net/files/acc_857465/8wbzEN" />
  <figcaption>Favicon sketch template</figcaption>
 </figure>
 

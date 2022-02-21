@@ -27,6 +27,7 @@ async function dirTree(dir: string, root: string): Promise<FileOrFolderNode> {
   let name = path.basename(dir)
   name = name.replace('.mdx', '')
   name = name.replace('.md', '')
+  name = name.replace(/-/g, ' ').replace(/^./, (x) => x.toUpperCase())
 
   const filePath = path.relative(root, dir)
 
@@ -63,12 +64,12 @@ function hoistIndex(tree: FileOrFolderNode): FileOrFolderNode {
   if (newTree.type === 'folder') {
     const index = newTree.childNodes?.find(
       (child) =>
-        child.path.endsWith('index.mdx') ||
-        (child.path.endsWith('index.md') && child.type === 'file'),
+        child.path.endsWith('readme.mdx') ||
+        (child.path.endsWith('readme.md') && child.type === 'file'),
     ) as FileNode | undefined
 
     if (index) {
-      newTree = { ...index, url: index.url.slice(0, -6) }
+      newTree = { ...index, name: tree.name, url: index.url.slice(0, -7) }
       newTree.childNodes = tree.childNodes?.filter((child) => child !== index)
 
       const order = index.matter?.order
@@ -110,7 +111,7 @@ export async function getDirectoryPaths(dir: string) {
 /**
  * Recursively traverse the tree and return the aggregated path of of each node.
  *
- * Each URL segment should reference a path (except for the index.md/index.mdx file)
+ * Each URL segment should reference a path (except for the readme.md/readme.mdx file)
  */
 export function urlToPath(url: string[], node: FileOrFolderNode): string | false {
   if (node.childNodes?.length) {

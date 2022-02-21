@@ -103,7 +103,7 @@ const AnimatedButton = styled(Button, { name: 'animatedButton' })(({ theme }) =>
 ```
 
 <figure>
- <img src="./../../public/h39.gif" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
+ <img src="./../../public/h39.gif" />
  <figcaption>Example of a styled component</figcaption>
 </figure>
 

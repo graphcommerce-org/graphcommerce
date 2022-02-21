@@ -43,7 +43,7 @@ You've completed the
 - Save the file to see your changes updated in real-time
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/btnqBi" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/btnqBi" />
  <figcaption>Adding text to your GraphCommerce app</figcaption>
 </figure>
 
@@ -67,7 +67,7 @@ You've completed the
 ```
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/F8EuHl" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/F8EuHl" aspect-ratio="16 / 9" />
  <figcaption>Change a component's style in your GraphCommerce app</figcaption>
 </figure>
 

@@ -50,7 +50,7 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 - Save the file to see your changes updated in real-time
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/v0jqud" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/v0jqud" />
  <figcaption>Reorder components</figcaption>
 </figure>
 
@@ -60,7 +60,7 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
   `<DesktopNavBar>...</DesktopNavBar>` component.
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/S1BIyc" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/S1BIyc" />
  <figcaption>Remove navigation</figcaption>
 </figure>
 
@@ -94,7 +94,7 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 ```
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/7eadNI" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/7eadNI" />
  <figcaption>Replace search input with Search Fab, remove Customer Service Fab</figcaption>
 </figure>
 
@@ -132,7 +132,7 @@ import React, { useEffect } from 'react'
 ```
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/O1iBQ4" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0"/>
+ <img src="https://cdn-std.droplr.net/files/acc_857465/O1iBQ4" />
  <figcaption>Local copy of the MenuFab component with Fab scroll animation removed</figcaption>
 </figure>
 
@@ -182,7 +182,7 @@ TransitionComponent={Fade}
 ```
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/RyXlBV" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/RyXlBV" />
  <figcaption>Menu component with custom styling</figcaption>
 </figure>
 

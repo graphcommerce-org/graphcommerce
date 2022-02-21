@@ -1,5 +1,5 @@
 ---
-menu: Getting Started
+menu: Overview
 ---
 
 # GraphCommerce magento-graphcms example overview

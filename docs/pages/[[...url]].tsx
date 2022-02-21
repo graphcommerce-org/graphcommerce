@@ -1,12 +1,14 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Image } from '@graphcommerce/image'
 import { LayoutTitle, PageMeta } from '@graphcommerce/next-ui'
-import { Container, Divider, Typography } from '@mui/material'
+import { Box, Container, Divider, Typography } from '@mui/material'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { SetRequired } from 'type-fest'
+import { Figure } from '../components/Figure'
 import { LayoutFull, LayoutFullProps } from '../components/Layout/LayoutFull'
 import { LayoutProps } from '../components/Layout/PageLayout'
 import { getDirectoryPaths, getDirectoryTree, getFileContents, urlToPath } from '../lib/files'
@@ -16,8 +18,57 @@ type Props = LayoutProps & { source: MDXSource }
 type Param = { url: string[] }
 type GetStatic = GetStaticProps<Props, Param>
 
+/**
+ * Handle relative hrefs
+ *
+ * - If a link doesn't start with a slash OR it starts with './' it should replace the latest slug
+ *   with the new path
+ * - If a link starts with a slash it shouldn't be relative
+ * - If a link starts with '../' it should move one segment up.
+ * - If a link starts with '../../' it should move two segments up, so this should be recursive
+ */
+function relativeUrl(href: string[], currentHref: string[]): string[] {
+  if (href[0].startsWith('http') || href[0].startsWith('/')) return href
+
+  if (href[0] === 'readme') return relativeUrl(['', ...href.slice(1)], currentHref)
+
+  if (href[0] === '..') {
+    return relativeUrl(href.slice(1), currentHref.slice(0, -1))
+  }
+
+  if (href[0] === '.') {
+    return ['', ...currentHref.slice(0, -1), ...href.slice(1)]
+  }
+
+  return relativeUrl(['.', ...href], currentHref)
+}
+
+function RelativeLink(props: JSX.IntrinsicElements['a']) {
+  const asPath = useRouter().asPath?.split('?')[0]
+  const { href = '', children, ...otherProps } = props
+
+  let newUrl = href.replace('.mdx', '')
+  newUrl = newUrl.replace('.md', '')
+
+  newUrl = relativeUrl(newUrl.split('/'), asPath.split('/').slice(1)).join('/')
+  console.log(href, newUrl)
+
+  if (!newUrl.startsWith('/') && !newUrl.startsWith('http')) newUrl = `/${newUrl}`
+  if (newUrl.endsWith('/')) newUrl = newUrl.slice(0, -1)
+
+  return (
+    <Link href={newUrl}>
+      <a {...otherProps}>{children}</a>
+    </Link>
+  )
+}
+
 const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
-  h1: ({ ref, children, ...props }) => <LayoutTitle variant='h2'>{children}</LayoutTitle>,
+  h1: ({ ref, children, ...props }) => (
+    <Typography component='h1' variant='h2' sx={{ mb: '0.5em' }}>
+      {children}
+    </Typography>
+  ),
   h2: ({ ref, ...props }) => (
     <Typography component='h2' variant='h3' {...props} sx={{ mt: '1em', mb: '0.5em' }} />
   ),
@@ -35,11 +86,7 @@ const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
   hr: ({ ref, ...props }) => (
     <Divider {...props} variant='middle' sx={(theme) => ({ my: theme.spacings.md })} />
   ),
-  a: ({ href, children, ...otherProps }) => (
-    <Link href={href ?? ''}>
-      <a {...otherProps}>{children}</a>
-    </Link>
-  ),
+  a: RelativeLink,
 }
 
 function IndexPage(props: Props) {
@@ -49,7 +96,31 @@ function IndexPage(props: Props) {
   return (
     <>
       <PageMeta title={title} metaDescription={metaDescription} />
-      <Container maxWidth='md'>
+      <Container
+        maxWidth='md'
+        sx={{
+          '& figure': {
+            display: 'block',
+            margin: '0 auto',
+            maxWidth: '100%',
+          },
+          '& img': {
+            display: 'block',
+            margin: '0 auto',
+            maxWidth: '100%',
+          },
+          '& figure > figcaption': {
+            textAlign: 'center',
+            textTransform: 'uppercase',
+            fontSize: '0.75em',
+            fontWeight: 'bold',
+            letterSpacing: '0.1em',
+            color: '#828282',
+            marginTop: '0.5em',
+          },
+          '& figure > p': { display: 'none' },
+        }}
+      >
         <MDXRemote {...source} components={mdxComponents} />
       </Container>
     </>

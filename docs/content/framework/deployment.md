@@ -13,7 +13,7 @@ Production Branch of your GitHub project:
   repository access
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/e62La4" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/e62La4"/>
 </figure>
 - Set the Environment Variables from your .env file:
 
@@ -36,7 +36,7 @@ NEXT_PUBLIC_SITE_URL="https://graphcommerce-example.vercel.app/"
 ```
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/gkuuby" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/gkuuby"/>
 </figure>
 
 - Hit the "Deploy" button

@@ -58,7 +58,7 @@ GraphCommerce features include:
 - PWA out-of-the-box
 - Magento multi language support, a store switcher component and framework
   [translations]() EN, ES, FR, DE, NL
-- [Deployments to Vercel](./deployment.md)
+- [Deployments to Vercel](./framework/deployment.md)
 
 <figure>
 
