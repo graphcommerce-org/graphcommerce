@@ -58,7 +58,7 @@ need to only install the dependencies. This is the quickest approach.
 Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
 `scripts`:
 
-```
+```json
 {
   "name": "@my-company/my-project",
   "scripts": {

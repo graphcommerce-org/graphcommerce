@@ -39,10 +39,17 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
   `<DesktopNavBar>...</DesktopNavBar>`
 - Wrap the `<Logo />` component in a `<Box>` component:
 
-```
-  <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1, pointerEvents: 'none' }}>
-    <Logo />
-  </Box>
+```tsx
+<Box
+  sx={{
+    display: 'flex',
+    justifyContent: 'center',
+    flexGrow: 1,
+    pointerEvents: 'none',
+  }}
+>
+  <Logo />
+</Box>
 ```
 
 - Add the import of 'Box' to the list of the `'@mui/material'` imports at the
@@ -69,12 +76,12 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 - In /components/Layout/LayoutFull.tsx, replace
   `<SearchButton onClick={onSearchStart} label=' ' />` with:
 
-```
-  <PageLink href='/search' passHref>
-    <Fab aria-label={t`Search`} size='large' color='inherit'>
-      <SvgIcon src={iconSearch} size='large' />
-    </Fab>
-  </PageLink>
+```tsx
+<PageLink href='/search' passHref>
+  <Fab aria-label={t`Search`} size='large' color='inherit'>
+    <SvgIcon src={iconSearch} size='large' />
+  </Fab>
+</PageLink>
 ```
 
 - Add `iconSearch` to the excisting imports from `'@graphcommerce/next-ui'` at
@@ -85,12 +92,12 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 - In /components/Layout/LayoutFull.tsx, remove the Customer Service floating
   action button by removing it completely:
 
-```
-  <PageLink href='/service' passHref>
-    <Fab aria-label={t`Account`} size='large' color='inherit'>
-      <SvgIcon src={iconCustomerService} size='large' />
-    </Fab>
-  </PageLink>
+```tsx
+<PageLink href='/service' passHref>
+  <Fab aria-label={t`Account`} size='large' color='inherit'>
+    <SvgIcon src={iconCustomerService} size='large' />
+  </Fab>
+</PageLink>
 ```
 
 <figure>
@@ -109,7 +116,7 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
   and move it to the directory /components/Layout/MenuFab.tsx
 - In /components/Layout/MenuFab.tsx, change
   `const MotionDiv = styled(m.div)({})` to:
-  ```
+  ```ts
   const MotionDiv = styled('div')({})
   ```
 - Remove the style={{...}} prop from both the `<MotionDiv>` components to remove
@@ -118,7 +125,7 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 
 - Update all imports:
 
-```
+```tsx
 import {
   extendableComponent,
   responsiveVal,
@@ -141,7 +148,7 @@ import React, { useEffect } from 'react'
 - In /components/Layout/MenuFab.tsx, change the `<Menu>` component's PaperProps
   prop to:
 
-```
+```tsx
 PaperProps={{
   sx: (theme) => ({
     width: '100vw',
@@ -164,7 +171,7 @@ PaperProps={{
 - Remove the `<Menu>` component's prop 'disableScrollLock`
 - Add a two props to the `<Menu>` component:
 
-```
+```tsx
 marginThreshold={0}
 TransitionComponent={Fade}
 ```
@@ -173,7 +180,7 @@ TransitionComponent={Fade}
   top of the file
 - Remove the search component by removing:
 
-```
+```tsx
   search ? (
     <ListItem key='search' dense sx={{ mb: '6px', borderColor: 'red' }}>
       {search}

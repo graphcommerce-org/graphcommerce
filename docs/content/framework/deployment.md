@@ -13,11 +13,12 @@ Production Branch of your GitHub project:
   repository access
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/e62La4"/>
+  <img src="https://cdn-std.droplr.net/files/acc_857465/e62La4"/>
 </figure>
+
 - Set the Environment Variables from your .env file:
 
-```
+```bash
 GRAPHCMS_URL
 MAGENTO_ENDPOINT
 IMAGE_DOMAINS
@@ -30,7 +31,7 @@ NEXT_PUBLIC_DISPLAY_INCL_TAX
   `https://graphcommerce-example.vercel.app`. Add this domain as the GraphQL and
   Public site url Environment Variables:
 
-```
+```bash
 NEXT_PUBLIC_GRAPHQL_ENDPOINT="https://graphcommerce-example.vercel.app/api/graphql"
 NEXT_PUBLIC_SITE_URL="https://graphcommerce-example.vercel.app/"
 ```

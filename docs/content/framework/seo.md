@@ -6,8 +6,8 @@ Page meta data is handled by the `'@graphcommerce/magento-store/PageMeta.tsx'`
 component. Depending on the page, the props that are passed are static or
 dynamic (functional page titles are hardcoded).
 
-```
-Example from /cart.tsx
+```tsx
+// Example from /cart.tsx
 
 <PageMeta
   title={t`Cart (${data?.cart?.total_quantity ?? 0})`}
@@ -19,8 +19,8 @@ Example from /cart.tsx
 
 Dynamic example
 
-```
-Example from /product/[url].tsx
+```tsx
+// Example from /product/[url].tsx
 
 <PageMeta
   title={page?.metaTitle ?? title ?? ''}

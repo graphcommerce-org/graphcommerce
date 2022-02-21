@@ -17,6 +17,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-syntax-highlighter": "^15.4.5",
+    "rehype-highlight": "^5.0.2",
     "to-vfile": "^7.2.3",
     "type-fest": "^2.11.2",
     "vfile-matter": "^3.0.1"

@@ -15,7 +15,7 @@ The global styles or your GraphCommerce app are located in /components/theme.ts.
 To customize the app with your preferred colors, change the primary, secondary
 and text colors. Save the file to see your changes updated in real-time:
 
-```
+```json
   primary: {
     main: '#FF4A55',
     contrastText: '#FFFFFF',
@@ -49,7 +49,7 @@ affected by your changes. For example, search for occurances of
 Most components have props that define their look and feel. Most common are the
 `color` and `variant` props:
 
-```
+```tsx
 <Button
   ...
   color='primary'
@@ -78,25 +78,25 @@ A more advanced way is to use the
 [MUI styled() ↗](https://mui.com/system/styled/) utility for creating styled
 components:
 
-```
+```tsx
 import { styled } from '@mui/material'
+
+const AnimatedButton = styled(Button, { name: 'animatedButton' })(
+  ({ theme }) => ({
+    '@keyframes pulse': {
+      '0%': {
+        boxShadow: `0 0 0 0 ${theme.palette.primary.main}`,
+      },
+      '100%': {
+        boxShadow: `0 0 0 15px ${theme.palette.background.default}`,
+      },
+    },
+    animation: 'pulse 1.5s infinite',
+  }),
+)
 ```
 
-```
-const AnimatedButton = styled(Button, { name: 'animatedButton' })(({ theme }) => ({
-  '@keyframes pulse': {
-    '0%': {
-      boxShadow: `0 0 0 0 ${theme.palette.primary.main}`,
-    },
-    '100%': {
-      boxShadow: `0 0 0 15px ${theme.palette.background.default}`,
-    },
-  },
-  animation: 'pulse 1.5s infinite',
-}))
-```
-
-```
+```tsx
 <AnimatedButton color='primary' variant='contained'>
   <Trans>About Us</Trans>
 </AnimatedButton>
@@ -111,8 +111,12 @@ const AnimatedButton = styled(Button, { name: 'animatedButton' })(({ theme }) =>
 
 To overwrite a component's hover state, add the sx prop:
 
-```
-<Button color='primary' variant='contained' sx={{ '&&:hover': { background: 'green' } }}>
+```tsx
+<Button
+  color='primary'
+  variant='contained'
+  sx={{ '&&:hover': { background: 'green' } }}
+>
   <Trans>Contact Us</Trans>
 </Button>
 ```
@@ -123,8 +127,8 @@ https://mui.com/customization/how-to-customize/#overriding-styles-with-class-nam
 
 - In /Layout/LayoutFull.tsx, add the sx prop to the `<LayoutDefault>` component:
 
-```
-sx={{ backgroundImage: `url(/images/stripes.svg)` }}
+```tsx
+<LayoutDefault sx={{ backgroundImage: `url(/images/stripes.svg)` }} />
 ```
 
 - Place your background image in the /public/images directory
@@ -135,7 +139,7 @@ All components that render content with a border-radius, except for pill buttons
 and circular buttons, are dependent of the value of `shape`. A simple way to
 remove this effect is to set its value to 0:
 
-```
+```tsx
   ...themeBaseDefaults,
   shape: { borderRadius: 0 },
   typography: {
@@ -146,8 +150,8 @@ remove this effect is to set its value to 0:
 - In /pages/\_document.tsx, add your CSS `<link>` element as a child of the
   `<Head>` component:
 
-```
- <Head>
+```tsx
+<Head>
   ...
   <link
     rel='stylesheet'
@@ -164,26 +168,28 @@ remove this effect is to set its value to 0:
 
 - Add the fetch query to the `getStaticProps` function of a page
 
-```
-  const stylesheet = await (await fetch('https://www.graphcommerce.org/pagebuilder.min.css')).text()
+```ts
+const stylesheet = await(
+  await fetch('https://www.graphcommerce.org/pagebuilder.min.css'),
+).text()
 ```
 
 - Pass the data as prop:
 
-```
-return { props: { ... stylesheet, }, }
+```ts
+return { props: { ...stylesheet } }
 ```
 
 - Specify its type:
 
-```
+```ts
 function CategoryPage(props: Props & { stylesheet: string }) {
 
 ```
 
 - Add it to the default function's props:
 
-```
+```ts
 
 const { categories, products, ..., stylesheet } = props
 
@@ -191,9 +197,10 @@ const { categories, products, ..., stylesheet } = props
 
 - Use the sx prop to apply the styles
 
-```
+```tsx
 <CategoryDescription
-  description={category.description} sx={{ stylesheet, minWidth: '100vw' }}
+  description={category.description}
+  sx={{ stylesheet, minWidth: '100vw' }}
 />
 ```
 

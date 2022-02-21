@@ -8,7 +8,7 @@ introduction to how translations works in your graphCommerce app.
 All available interface translations are stored as .po files in the /locales
 directory.
 
-```
+```po
 Example of /locales/es.po
 
 ...
@@ -28,7 +28,7 @@ The msgid is the message being translated. In
 you can see a the first msgid is passed as a propped, wrapped in the `<Trans>`
 component:
 
-```
+```tsx
 <FullPageMessage
   title={<Trans>Your cart is empty</Trans>}
   ...
@@ -39,7 +39,7 @@ component:
 
 - In /locales/en.po, find the msgid `Your cart is empty` and change the msgstr:
 
-```
+```po
 msgid "Your cart is empty"
 msgstr "Empty cart!"
 ```
@@ -56,7 +56,7 @@ msgstr "Empty cart!"
 If you're building a component, you can wrap the strings you want to translate
 in the `<Trans>` jsx macro:
 
-```
+```tsx
 <Typography variant='h3'>
   <Trans>Call us now</Trans>
 </Typography>
@@ -64,7 +64,7 @@ in the `<Trans>` jsx macro:
 
 Add Linqui to the component's imports:
 
-```
+```ts
 import { t, Trans } from '@lingui/macro'
 ```
 
@@ -83,7 +83,7 @@ msgstr "Llámanos ahora"
 
 You can pass values in msgid's:
 
-```
+```tsx
 <PageMeta
   title={t`Cart (${data?.cart?.total_quantity ?? 0})`}
   ...

@@ -13,15 +13,15 @@ browser.
 Environment variables will be loaded into `process.env`, allowing you to use
 them in Next.js data fetching methods and API routes:
 
-```
-/lib/graphql/GraphQLProvider.tsx
+```ts
+// /lib/graphql/GraphQLProvider.tsx
 
-...
+// ...
 new HttpLink({
   uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
   credentials: 'same-origin',
-}),
-...
+})
+// ...
 ```
 
 ## Public variables
@@ -29,13 +29,13 @@ new HttpLink({
 Expose environment variables to the browser by prefixing with `NEXT_PUBLIC`.
 These variables can be accessed in any component:
 
-```
+```bash
 # Google TagManager ID
 NEXT_PUBLIC_GTM_ID="GTM-000000"
 ```
 
-```
-/node_modules/@graphcommerce/googleanalytics/components/GoogleAnalyticsScript.tsx
+```tsx
+// /node_modules/@graphcommerce/googleanalytics/components/GoogleAnalyticsScript.tsx
 
 export default function GoogleAnalyticsScript() {
   const id = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS

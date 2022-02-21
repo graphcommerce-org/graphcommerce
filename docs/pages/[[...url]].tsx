@@ -6,6 +6,7 @@ import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import rehypeHighlight from 'rehype-highlight'
 import { SetRequired } from 'type-fest'
 import { LayoutFull, LayoutFullProps } from '../components/Layout/LayoutFull'
 import { LayoutProps } from '../components/Layout/PageLayout'
@@ -178,7 +179,7 @@ export const getStaticProps: GetStatic = async ({ params }) => {
   // todo: https://github.com/rehypejs/rehype/blob/main/doc/plugins.md#list-of-plugins
   // todo: https://github.com/remarkjs/remark/blob/main/doc/plugins.md#list-of-plugins
   const source = (await serialize(res, {
-    mdxOptions: { format: 'detect' },
+    mdxOptions: { format: 'detect', rehypePlugins: [() => rehypeHighlight({})] },
     parseFrontmatter: true,
   })) as MDXSource
 

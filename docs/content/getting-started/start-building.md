@@ -32,10 +32,10 @@ You've completed the
 - Make sure your development environment is running at http://localhost:3000
 - In /pages/page/[url].tsx, add:
 
-```
-  <Typography variant='h1' gutterBottom sx={{ textAlign: 'center' }}>
-    Hello
-  </Typography>
+```tsx
+<Typography variant='h1' gutterBottom sx={{ textAlign: 'center' }}>
+  Hello
+</Typography>
 ```
 
 - Add `import { Typography } from '@mui/material'` to the list of imports at the
@@ -51,24 +51,27 @@ https://user-images.githubusercontent.com/1251986/154980151-2039c027-c31f-4b99-8
   </video>
 </figure>
 
-
 ### Change a component's style
 
 - After you've finished step 1, in /pages/page/[url].tsx find the following
   code:
 
-```
-  <Typography variant='h1' gutterBottom sx={{ textAlign: 'center' }}>
-    Hello
-  </Typography>
+```tsx
+<Typography variant='h1' gutterBottom sx={{ textAlign: 'center' }}>
+  Hello
+</Typography>
 ```
 
 - Make the background color red for the Hello text:
 
-```
-  <Typography variant='h1' gutterBottom sx={{ textAlign: 'center', backgroundColor: 'red' }}>
-    Hello
-  </Typography>
+```tsx
+<Typography
+  variant='h1'
+  gutterBottom
+  sx={{ textAlign: 'center', backgroundColor: 'red' }}
+>
+  Hello
+</Typography>
 ```
 
 <figure>
@@ -119,14 +122,14 @@ query CategoryPage($url: String!, $rootCategory: String!) {
 - Save the file. /graphql/CategoryPage.gql.ts should be regenerated, and contain
   the following addition:
 
-```
-{"kind":"Field","name":{"kind":"Name","value":"children_count"}}
+```json
+{ "kind": "Field", "name": { "kind": "Name", "value": "children_count" } }
 ```
 
 - In /pages/[...url].tsx, show the children_count next to category title (3
   occurrences):
 
-```
+```tsx
 {category?.name} - ({category?.children_count})
 ```
 

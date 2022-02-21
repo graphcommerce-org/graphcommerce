@@ -21,7 +21,7 @@ located in the /components or /pages directories.
   [Mui ↗](https://mui.com/customization/default-theme/)
 - Interface translation files
 
-```
+```txt
 File structure of the graphcommerce-magento example
 
 ├── components
@@ -34,7 +34,7 @@ File structure of the graphcommerce-magento example
         └── RowQuote
     └── theme.ts
     └── ...
-├── GraphQL
+├── graphql
     └── CategoryPage.graphql
     └── PageLink.graphql
     └── ...
@@ -55,14 +55,14 @@ File structure of the graphcommerce-magento example
     └── ...
 ```
 
-# Components
+## Components
 
 The GraphCommerce magento-graphcms example provides a series of components that
 you can use as a starting point for development. These components query the
 Magento GraphQL API for efficient data-fetching. Most components have a .graphql
 file which contains the GraphQL query fragment.
 
-## Modifying components
+### Modifying components
 
 By default, the components that you would most likely modify are located in the
 `/components` directory. You can directly modify these components and customize
@@ -79,7 +79,7 @@ need to update all imports with the new location of your local component. This
 also applies if you want to modify a component's or
 [page's query](../getting-started/start-building.md).
 
-## Component overview
+### Component overview
 
 Local
 
@@ -158,7 +158,7 @@ Packages (/node_modules directory/)
 - @graphcommerce/react-hook-form
 - @graphcommerce/typescript-config-pwa
 
-# GraphCMS
+## GraphCMS
 
 GraphCMS is integrated as a Content Management System. It is used to store all
 static content and provides a user-friendly interface for managing it.
@@ -170,7 +170,7 @@ list of USPs or grid of text columns.
 To [get started](./create.md) with the magento-graphcms example, cloning the
 demo GraphCMS project GraphQL schema and its content is recommended.
 
-# Pages
+## Pages
 
 GraphCommerce uses Next.js
 [file-based routing ↗](https://nextjs.org/docs/routing/introduction), built on
@@ -184,7 +184,7 @@ the /pages directory. Magento category routes are handled by the
 result, the category url structure of the app matches your default Magento
 frontend 1-on-1.
 
-```
+```txt
 Page structure of the graphcommerce-magento example
 
 ├── pages
@@ -208,7 +208,7 @@ Page structure of the graphcommerce-magento example
 ├── switch-stores.tsx
 ```
 
-# GraphQL API
+## GraphQL API
 
 GraphCommerce is built and optimized to use data coming from Magento's GraphQL
 API. GraphCommerce uses GraphQL Mesh, which adds the ability to add extra
@@ -226,16 +226,16 @@ query {
   products(search: "sock", pageSize: 3) {
     items {
       url_key
-      }
+    }
   }
   availableStores {
     store_name
-	store_code
+    store_code
   }
 }
 ```
 
-## Query fragments
+### Query fragments
 
 Every component that requires data from Magento or GraphCMS has its own
 `.graphql` file, containing a GraphQL query fragment. GraphQL Code Generator is
@@ -252,7 +252,7 @@ With the use of fragments and GraphQL Mesh, GraphCommerce retrieves all data
 from both Magento and GraphCMS in a single GraphQL query. This improves
 performance.
 
-```
+```txt
 GraphQL queries in the graphcommerce-magento example
 
 ├── GraphQL
@@ -265,7 +265,7 @@ GraphQL queries in the graphcommerce-magento example
     └── ProductPage.graphql
 ```
 
-# Next steps
+## Next steps
 
 - [Get started](../getting-started/create.md) with GraphCommerce and begin
   building a custom storefront.
