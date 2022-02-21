@@ -1,6 +1,19 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta } from '@graphcommerce/next-ui'
-import { Container, Divider, Typography, Link, alpha } from '@mui/material'
+import {
+  Container,
+  Divider,
+  Typography,
+  Link,
+  alpha,
+  Table,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableContainer,
+  Paper,
+} from '@mui/material'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -9,6 +22,7 @@ import { useRouter } from 'next/router'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypePrism from 'rehype-prism-plus'
 import rehypeSlug from 'rehype-slug'
+import remarkGfm from 'remark-gfm' // Tables, footnotes, strikethrough, task lists, literal URLs.
 import { SetRequired } from 'type-fest'
 import { LayoutFull, LayoutFullProps } from '../components/Layout/LayoutFull'
 import { LayoutProps } from '../components/Layout/PageLayout'
@@ -148,6 +162,16 @@ const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
     />
   ),
   a: RelativeLink,
+  table: ({ ref, ...props }) => (
+    <TableContainer component={Paper} elevation={4}>
+      <Table {...props} />
+    </TableContainer>
+  ),
+  thead: ({ ref, ...props }) => <TableHead {...props} />,
+  tbody: ({ ref, ...props }) => <TableBody {...props} />,
+  tr: ({ ref, ...props }) => <TableRow {...props} />,
+  th: ({ ref, align, ...props }) => <TableCell {...props} />,
+  td: ({ ref, align, ...props }) => <TableCell {...props} />,
 }
 
 function IndexPage(props: Props) {
@@ -256,6 +280,7 @@ export const getStaticProps: GetStatic = async ({ params }) => {
   const source = (await serialize(res, {
     mdxOptions: {
       format: 'detect',
+      remarkPlugins: [remarkGfm],
       rehypePlugins: [rehypePrism, rehypeSlug, rehypeAutolinkHeadings],
     },
     parseFrontmatter: true,
