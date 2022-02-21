@@ -9,7 +9,13 @@ import { useRouter } from 'next/router'
 import { SetRequired } from 'type-fest'
 import { LayoutFull, LayoutFullProps } from '../components/Layout/LayoutFull'
 import { LayoutProps } from '../components/Layout/PageLayout'
-import { getDirectoryPaths, getDirectoryTree, getFileContents, urlToPath } from '../lib/files'
+import {
+  getDirectoryPaths,
+  getDirectoryTree,
+  getFileContents,
+  MatterFields,
+  urlToPath,
+} from '../lib/files'
 
 type MDXSource = SetRequired<MDXRemoteSerializeResult, 'frontmatter'>
 type Props = LayoutProps & { source: MDXSource }
@@ -69,10 +75,8 @@ function RelativeLink(props: JSX.IntrinsicElements['a']) {
 }
 
 const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
-  h1: ({ ref, children, ...props }) => (
-    <Typography component='h1' variant='h2' sx={{ mb: '0.5em' }}>
-      {children}
-    </Typography>
+  h1: ({ ref, ...props }) => (
+    <Typography component='h1' variant='h2' {...props} sx={{ mb: '1em' }} />
   ),
   h2: ({ ref, ...props }) => (
     <Typography component='h2' variant='h3' {...props} sx={{ mt: '1em', mb: '0.5em' }} />
@@ -83,7 +87,9 @@ const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
   h4: ({ ref, ...props }) => <Typography component='h4' variant='h5' {...props} sx={{}} />,
   h5: ({ ref, ...props }) => <Typography component='h5' variant='h6' {...props} sx={{}} />,
   h6: ({ ref, ...props }) => <Typography component='h6' variant='subtitle1' {...props} sx={{}} />,
-  p: ({ ref, ...props }) => <Typography variant='body1' {...props} sx={{}} />,
+  p: ({ ref, ...props }) => (
+    <Typography variant='body1' {...props} sx={{ mt: '1em', mb: '0.5em' }} />
+  ),
   // img: ({ ref, src, ...props }) => {
   //   if (!src) return null
   //   return <Image layout={!props.width ? 'intrinsic' : 'responsive'} src={src} {...props} />
@@ -96,11 +102,20 @@ const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
 
 function IndexPage(props: Props) {
   const { source } = props
-  const { title = '', metaDescription } = source.frontmatter
+  const { metaTitle, menu, metaDescription } = source.frontmatter as MatterFields
+  const prettyRoute = useRouter()
+    .asPath.split('?')[0]
+    .split('/')
+    .map((v) => v.replace(/-/g, ' ').replace(/^./, (x) => x.toUpperCase()))
+    .reverse()
+    .filter(Boolean)
 
   return (
     <>
-      <PageMeta title={title} metaDescription={metaDescription} />
+      <PageMeta
+        title={metaTitle ?? menu ?? prettyRoute.join(' - ')}
+        metaDescription={metaDescription}
+      />
       <Container
         maxWidth='md'
         sx={{

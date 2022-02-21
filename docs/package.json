@@ -13,7 +13,7 @@
     "@graphcommerce/next-ui": "^4.1.1",
     "@mui/material": "^5.4.2",
     "next": "^12.1.0",
-    "next-mdx-remote": "^4.0.0-rc.2",
+    "next-mdx-remote": "^4.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-syntax-highlighter": "^15.4.5",

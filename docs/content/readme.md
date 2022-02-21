@@ -1,8 +1,6 @@
 ---
 menu: Overview
-order:
-  - getting-started
-  - framework
+order: Getting started,Framework
 metaTitle: GraphCommerce front-end framework for Magento
 metaDescription:
   'GraphCommerce is a front-end framework used for building headless Magento

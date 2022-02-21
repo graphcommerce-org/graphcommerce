@@ -3,9 +3,11 @@ import path from 'path'
 import { toVFile as vfile } from 'to-vfile'
 import { matter } from 'vfile-matter'
 
-type MatterFields = {
+export type MatterFields = {
   menu?: string
-  order?: string[]
+  order?: string
+  metaTitle?: string
+  metaDescription?: string
 }
 
 type BaseFields = {
@@ -72,7 +74,7 @@ function hoistIndex(tree: FileOrFolderNode): FileOrFolderNode {
       newTree = { ...index, name: tree.name, url: index.url.slice(0, -7) }
       newTree.childNodes = tree.childNodes?.filter((child) => child !== index)
 
-      const order = index.matter?.order
+      const order = index.matter?.order?.split(',').map((x) => x.trim())
       if (order) {
         newTree.childNodes = newTree.childNodes?.sort((a, b) =>
           order.indexOf(a.name) === -1 ? 1 : order.indexOf(a.name) - order.indexOf(b.name),
