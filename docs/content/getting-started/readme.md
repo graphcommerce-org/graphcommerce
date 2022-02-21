@@ -252,7 +252,7 @@ With the use of fragments and GraphQL Mesh, GraphCommerce retrieves all data
 from both Magento and GraphCMS in a single GraphQL query. This improves
 performance.
 
-```
+```txt
 GraphQL queries in the graphcommerce-magento example
 
 ├── GraphQL

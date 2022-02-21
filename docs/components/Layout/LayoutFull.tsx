@@ -49,7 +49,7 @@ export function LayoutFull(props: LayoutFullProps) {
       ]}
     >
       {menuData && <SidebarMenu {...menuData} />}
-      <div>{children}</div>
+      <Box sx={{ mb: 15 }}>{children}</Box>
     </LayoutDefault>
   )
 }
