@@ -1,5 +1,5 @@
 import { iconChevronDown, iconChevronUp, SvgIcon } from '@graphcommerce/next-ui'
-import { Box, Collapse, List, ListItemButton, ListItemText } from '@mui/material'
+import { Box, Collapse, List, ListItemButton, ListItemText, darken } from '@mui/material'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
@@ -13,7 +13,16 @@ function FileLink(props: FileNode & { level: number }) {
 
   return (
     <NextLink href={`/${url}`} passHref>
-      <ListItemButton component='a' sx={{ pl: indent, borderRadius: 2 }} selected={active} dense>
+      <ListItemButton
+        component='a'
+        sx={{
+          pl: indent,
+          borderRadius: 2,
+          '&.Mui-selected': { color: (theme) => darken(theme.palette.primary.main, 0.01) },
+        }}
+        selected={active}
+        dense
+      >
         <ListItemText>{matter.menu ?? name}</ListItemText>
       </ListItemButton>
     </NextLink>
