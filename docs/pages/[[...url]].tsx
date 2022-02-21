@@ -1,10 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta } from '@graphcommerce/next-ui'
-import { Container, Divider, Typography } from '@mui/material'
+import { Container, Divider, Typography, Link } from '@mui/material'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
-import Link from 'next/link'
+import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import rehypeHighlight from 'rehype-highlight'
 import { SetRequired } from 'type-fest'
@@ -48,7 +48,7 @@ function relativeUrl(href: string[], currentHref: string[]): string[] {
   return relativeUrl(['.', ...href], currentHref)
 }
 
-function RelativeLink(props: JSX.IntrinsicElements['a']) {
+function RelativeLink(props: Omit<JSX.IntrinsicElements['a'], 'ref'>) {
   const asPath = useRouter().asPath?.split('?')[0]
   const { href = '', children, ...otherProps } = props
 
@@ -67,11 +67,11 @@ function RelativeLink(props: JSX.IntrinsicElements['a']) {
   if (newUrl.endsWith('/')) newUrl = newUrl.slice(0, -1)
 
   return (
-    <Link href={newUrl}>
-      <a {...otherProps} target={isExternal ? '_blank' : undefined}>
+    <PageLink href={newUrl} passHref>
+      <Link {...otherProps} target={isExternal ? '_blank' : undefined}>
         {children}
-      </a>
-    </Link>
+      </Link>
+    </PageLink>
   )
 }
 
@@ -132,20 +132,20 @@ function IndexPage(props: Props) {
             display: 'block',
             margin: '0 auto',
             maxWidth: '100%',
+            mb: 8,
+            mt: 8,
           },
-          '& img': {
+          '& img, & video': {
             display: 'block',
             margin: '0 auto',
             maxWidth: '100%',
+            boxShadow: 16,
+            borderRadius: 3,
           },
           '& figure > figcaption': {
             textAlign: 'center',
-            textTransform: 'uppercase',
-            fontSize: '0.75em',
-            fontWeight: 'bold',
-            letterSpacing: '0.1em',
-            color: '#828282',
-            marginTop: '0.5em',
+            marginTop: '1em',
+            typography: 'caption',
           },
           '& figure > p': { display: 'none' },
         }}
