@@ -11,12 +11,12 @@ high end e-commerce progressive web apps (PWA).
 
 ## Framework concepts and components
 
-| Concepts                                            | Customizing                   | Other                                   |
-| --------------------------------------------------- | ----------------------------- | --------------------------------------- |
-| [Static generation](./static-generation.md)         | [Theming](./theming.md)       | [Translations](./translations.md)       |
-| [Environment Variables](./environment-variables.md) | [Typography](./typography.md) | [Troubleshooting](./troubleshooting.md) |
-| [Deployment](./deployment.md)                       | [Favicon](./favicon.md)       |                                         |
-| [GraphCMS](./graphcms.md)                           | [SEO](./seo.md)               |                                         |
+| Concepts                                                       | Customizing                              | Other                                              |
+| -------------------------------------------------------------- | ---------------------------------------- | -------------------------------------------------- |
+| [Static generation](../framework/static-generation.md)         | [Theming](../framework/theming.md)       | [Translations](../framework/translations.md)       |
+| [Environment Variables](../framework/environment-variables.md) | [Typography](../framework/typography.md) | [Troubleshooting](../framework/troubleshooting.md) |
+| [Deployment](../framework/deployment.md)                       | [Favicon](../framework//favicon.md)      |                                                    |
+| [GraphCMS](../framework/graphcms.md)                           | [SEO](../framework/seo.md)               |                                                    |
 
 ## GraphCommerce project structure
 
@@ -69,5 +69,6 @@ File structure of the graphcommerce-magento example
 
 ## Next steps
 
-- Learn about [theming](./theming.md) a GraphCommerce storefront
-- Learn about [Static Generation (SSG)](./static-generation.md) in GraphCommerce
+- Learn about [theming](../framework/theming.md) a GraphCommerce storefront
+- Learn about [Static Generation (SSG)](../framework/static-generation.md) in
+  GraphCommerce
