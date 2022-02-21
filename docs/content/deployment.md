@@ -40,3 +40,6 @@ NEXT_PUBLIC_SITE_URL="https://graphcommerce-example.vercel.app/"
 </figure>
 
 - Hit the "Deploy" button
+- A custom domain can be configured in the Vercel Project Settings. Update the
+  `NEXT_PUBLIC_GRAPHQL_ENDPOINT` and `NEXT_PUBLIC_SITE_URL` variables
+  afterwards.
