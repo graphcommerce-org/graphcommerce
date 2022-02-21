@@ -1,3 +1,14 @@
+---
+menu: Docs
+order:
+  - getting-started
+  - framework
+metaTitle: GraphCommerce front-end framework for Magento
+metaDescription:
+  'GraphCommerce is a front-end framework used for building headless Magento
+  e-commerce storefronts in React.js.'
+---
+
 # GraphCommerce
 
 GraphCommerce is a front-end framework used for building headless Magento
@@ -50,11 +61,10 @@ GraphCommerce features include:
 - [Deployments to Vercel](./deployment.md)
 
 <figure>
-  <video width="480" style="min-width:100%; aspect-ratio: 9:6" controls>
-    <source src="https://cdn-std.droplr.net/files/acc_857465/ZCLvZ7" type="video/mp4">
-  Your browser does not support the video tag.
+  <video width="100%" controls>
+    <source src="https://cdn-std.droplr.net/files/acc_857465/ZCLvZ7" type="video/mp4"/>
   </video>
- <figcaption>GraphCommerce magento-graphcms example demo</figcaption>
+  <figcaption>GraphCommerce magento-graphcms example demo</figcaption>
 </figure>
 
 ## Build high-end Magento storefronts faster

@@ -1,3 +1,7 @@
+---
+menu: Roadmap
+---
+
 # Roadmap
 
 The following overview contains the status of items on the GraphCommerce roadmap

@@ -124,7 +124,7 @@ import React, { useEffect } from 'react'
 ```
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/NY144K" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
+ <img src="https://cdn-std.droplr.net/files/acc_857465/NY144K" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0"/>
  <figcaption>Local copy of the MenuFab component with Fab scroll animation removed</figcaption>
 </figure>
 

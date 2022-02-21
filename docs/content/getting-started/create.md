@@ -16,8 +16,7 @@ After you've finished this tutorial, you'll have accomplished the following:
 
 <figure>
   <video style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0" controls>
-    <source src="https://cdn-std.droplr.net/files/acc_857465/ZCLvZ7" type="video/mp4">
-  Your browser does not support the video tag.
+    <source src="https://cdn-std.droplr.net/files/acc_857465/ZCLvZ7" type="video/mp4" />
   </video>
  <figcaption>GraphCommerce magento-graphcms example demo</figcaption>
 </figure>
@@ -90,7 +89,7 @@ project, you need to update variables in the /.env file. The .env file contains
 useful information about your storefront.
 
 `MAGENTO_ENDPOINT=""`  
-Magento 2 API url, located at http://<magento2-server>/graphql.
+Magento 2 API url, located at `http://<magento2-server>/graphql`.
 
 `IMAGE_DOMAINS=",media.graphcms.com"`  
 Comma separated list of image domains. Add media.graphcms.com as default.

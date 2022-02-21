@@ -1,0 +1,5 @@
+# application
+**/public/workbox-*.js*
+**/public/sw.js*
+**/public/sitemap*.xml
+**/public/robots.txt

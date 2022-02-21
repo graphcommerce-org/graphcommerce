@@ -1,12 +1,12 @@
 import { responsiveVal } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import React from 'react'
-import { ContentTree } from '../../util/files'
+import { FileOrFolderNode } from '../../lib/files'
 import SidebarMenu from '../SidebarMenu'
 
-export type LayoutProps = { menuData: ContentTree; children: React.ReactNode }
+export type LayoutProps = { menuData: FileOrFolderNode }
 
-export default function Layout(props: LayoutProps) {
+export default function Layout(props: LayoutProps & { children: React.ReactNode }) {
   const { menuData, children } = props
 
   return (
