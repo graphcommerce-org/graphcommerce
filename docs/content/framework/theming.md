@@ -112,8 +112,7 @@ https://user-images.githubusercontent.com/1251986/155032870-ddecefe0-afb3-418c-a
  <figcaption>Example of a styled component</figcaption>
 </figure>
 
-
-## Overwriting components state styling
+## Overriding components state styling
 
 To overwrite a component's hover state, add the sx prop:
 
@@ -127,7 +126,9 @@ To overwrite a component's hover state, add the sx prop:
 </Button>
 ```
 
-https://mui.com/customization/how-to-customize/#overriding-styles-with-class-names
+> Learn more about
+> [overriding styles with class names ↗](https://mui.com/customization/how-to-customize/#overriding-styles-with-class-names)
+> in the MUI documentation
 
 ## Adding a background image
 
