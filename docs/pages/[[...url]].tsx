@@ -1,14 +1,12 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { Image } from '@graphcommerce/image'
-import { LayoutTitle, PageMeta } from '@graphcommerce/next-ui'
-import { Box, Container, Divider, Typography } from '@mui/material'
+import { PageMeta } from '@graphcommerce/next-ui'
+import { Container, Divider, Typography } from '@mui/material'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { SetRequired } from 'type-fest'
-import { Figure } from '../components/Figure'
 import { LayoutFull, LayoutFullProps } from '../components/Layout/LayoutFull'
 import { LayoutProps } from '../components/Layout/PageLayout'
 import { getDirectoryPaths, getDirectoryTree, getFileContents, urlToPath } from '../lib/files'
@@ -51,14 +49,20 @@ function RelativeLink(props: JSX.IntrinsicElements['a']) {
   newUrl = newUrl.replace('.md', '')
 
   newUrl = relativeUrl(newUrl.split('/'), asPath.split('/').slice(1)).join('/')
-  console.log(href, newUrl)
 
-  if (!newUrl.startsWith('/') && !newUrl.startsWith('http')) newUrl = `/${newUrl}`
+  if (newUrl.startsWith('/packages') || newUrl.startsWith('/examples')) {
+    newUrl = `https://github.com/ho-nl/m2-pwa/tree/master${newUrl}`
+
+  const isExternal = newUrl.startsWith('http')
+
+  if (!newUrl.startsWith('/') && !isExternal) newUrl = `/${newUrl}`
   if (newUrl.endsWith('/')) newUrl = newUrl.slice(0, -1)
 
   return (
     <Link href={newUrl}>
-      <a {...otherProps}>{children}</a>
+      <a {...otherProps} target={isExternal ? '_blank' : undefined}>
+        {children}
+      </a>
     </Link>
   )
 }
