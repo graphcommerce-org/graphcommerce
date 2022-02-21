@@ -32,7 +32,7 @@ export function LayoutFull(props: LayoutFullProps) {
           '& header': {
             p: 0,
           },
-          '& header a': {
+          '& header a, & header > div': {
             [theme.breakpoints.up('md')]: {
               borderRight: `1px solid ${theme.palette.divider}`,
               width: `${responsiveVal(300, 320)}`,
