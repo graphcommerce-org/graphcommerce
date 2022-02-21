@@ -16,13 +16,21 @@ to find resources to build more complex features on your own.
 - Change the Menu component's styling to a fullscreen overlay
 
 <figure>
- <img src="./../../public/c10.gif" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
- <figcaption>Before customization</figcaption>
+
+https://user-images.githubusercontent.com/1251986/154978614-8d2eaee1-d64b-4bae-a7d7-cfee2e9175d3.mp4
+
+  <video width="100%" controls>
+    <source src="https://user-images.githubusercontent.com/1251986/154978614-8d2eaee1-d64b-4bae-a7d7-cfee2e9175d3.mp4" type="video/mp4"/>
+  </video>
 </figure>
 
 <figure>
- <img src="./../../public/i82.gif" style="min-width:100%; aspect-ratio: 16:9; box-shadow: 0 10px 60px 0 rgba(0,0,0,0.10); margin: 30px 0">
- <figcaption>After customization of the header</figcaption>
+
+https://user-images.githubusercontent.com/1251986/154978287-8d282359-7fba-406a-b70b-64edc272e31c.mp4
+
+  <video width="100%" controls>
+    <source src="https://user-images.githubusercontent.com/1251986/154978287-8d282359-7fba-406a-b70b-64edc272e31c.mp4" type="video/mp4"/>
+  </video>
 </figure>
 
 ### Move and justify the logo
