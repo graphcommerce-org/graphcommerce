@@ -8,15 +8,18 @@ import {
   themeBaseDefaults,
   MuiSnackbar,
 } from '@graphcommerce/next-ui'
-import { createTheme, Theme, alpha } from '@mui/material'
+import { createTheme, Theme, alpha, darken, lighten } from '@mui/material'
 import { Components, PaletteOptions } from '@mui/material/styles'
+
+const main = '#85FFFD'
+const dark = '#CEFF99'
 
 const lightPalette: PaletteOptions = {
   mode: 'light',
   primary: {
-    main: '#FF4A55',
+    main: darken(main, 0.175),
     contrastText: '#FFFFFF',
-    dark: '#F33642',
+    dark,
   },
   secondary: {
     main: '#006BFF',
@@ -36,8 +39,8 @@ const lightPalette: PaletteOptions = {
     hoverOpacity: 0.16,
   },
   text: {
-    primary: '#24292f',
-    secondary: '#00000050',
+    primary: '#000000',
+    secondary: 'hsl(229, 16%, 71%)',
     disabled: '#00000030',
   },
 }
@@ -45,9 +48,9 @@ const lightPalette: PaletteOptions = {
 const darkPalette: PaletteOptions = {
   mode: 'dark',
   primary: {
-    main: '#62C7B0',
+    main,
     contrastText: '#ffffff',
-    dark: '#62C7B0',
+    dark,
   },
   secondary: {
     main: '#62C7B0',
@@ -56,8 +59,8 @@ const darkPalette: PaletteOptions = {
   },
   background: {
     default: '#001727',
-    paper: '#15293B',
-    image: '#ffffff',
+    paper: lighten('#001727', 0.03),
+    image: '#F8F8F8',
   },
   divider: '#ffffff30',
   success: {

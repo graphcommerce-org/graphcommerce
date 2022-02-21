@@ -7,9 +7,9 @@ export function Logo() {
       sx={{
         '& .GcLogo-logo': {
           width: 'auto',
-          height: { xs: '16px', md: '28px' },
-          paddingLeft: { xs: '10px', md: 0 },
-          marginTop: { xs: 0, md: '-5px' },
+          height: { xs: '24px', md: '36px' },
+          paddingLeft: { xs: '10px', md: '52px' },
+          marginTop: { xs: 0, md: '4px' },
           filter: (theme) => (theme.palette.mode === 'dark' ? 'invert(100%)' : 'invert(0%)'),
         },
       }}

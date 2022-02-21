@@ -5,7 +5,7 @@ import {
   MenuFabItem,
   responsiveVal,
 } from '@graphcommerce/next-ui'
-import { Container } from '@mui/material'
+import { Container, Box } from '@mui/material'
 import { FileNode } from '../../lib/files'
 import SidebarMenu from '../SidebarMenu'
 import { Logo } from './Logo'
@@ -27,14 +27,25 @@ export function LayoutFull(props: LayoutFullProps) {
           <MenuFabItem href='/'>Documentation</MenuFabItem>
         </MenuFab>
       }
-      sx={{
-        '& .LayoutDefault-children': {
-          display: 'grid',
-          gridAutoFlow: 'column',
-          gridTemplateColumns: `${responsiveVal(300, 320)} 1fr`,
-          borderTop: (theme) => `1px solid ${theme.palette.divider}`,
-        },
-      }}
+      sx={[
+        (theme) => ({
+          '& header': {
+            p: 0,
+          },
+          '& header a': {
+            [theme.breakpoints.up('md')]: {
+              borderRight: `1px solid ${theme.palette.divider}`,
+              width: `${responsiveVal(300, 320)}`,
+            },
+          },
+          '& .LayoutDefault-children': {
+            display: 'grid',
+            gridAutoFlow: 'column',
+            gridTemplateColumns: `${responsiveVal(300, 320)} 1fr`,
+            borderTop: `1px solid ${theme.palette.divider}`,
+          },
+        }),
+      ]}
     >
       {menuData && <SidebarMenu {...menuData} />}
       <div>{children}</div>
