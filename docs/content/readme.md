@@ -1,5 +1,5 @@
 ---
-menu: Docs
+menu: Overview
 order:
   - getting-started
   - framework

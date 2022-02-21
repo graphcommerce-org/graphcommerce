@@ -1,3 +1,7 @@
+---
+menu: Getting Started
+---
+
 # GraphCommerce magento-graphcms example overview
 
 GraphCommerce offers a magento-graphcms example that provides an approachable
