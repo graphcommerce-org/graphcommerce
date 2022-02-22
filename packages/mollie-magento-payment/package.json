@@ -31,7 +31,7 @@
     "@graphcommerce/magento-store": "^4.0.2",
     "@graphcommerce/next-ui": "^4.1.1",
     "@graphcommerce/react-hook-form": "^3.0.2",
-    "type-fest": "^2.11.2"
+    "type-fest": "^2.12.0"
   },
   "peerDependencies": {
     "@lingui/macro": "^3.13.2",

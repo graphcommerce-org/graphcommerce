@@ -6,6 +6,8 @@ import { CssAndFramerMotionProvider, GlobalHead, PageLoadIndicator } from '@grap
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { AppProps } from 'next/app'
 import { lightTheme } from '../components/theme'
+import '../components/prism.css'
+import '../components/rehype-prism-plus.css'
 
 export default function ThemedApp(props: AppProps) {
   return (
