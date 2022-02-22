@@ -87,12 +87,12 @@ function hoistIndex(tree: FileOrFolderNode): FileOrFolderNode {
   return newTree
 }
 
-export async function getDirectoryTree(dir: string): Promise<false | FileOrFolderNode> {
+export async function getDirectoryTree(dir: string): Promise<false | FileNode> {
   const absDir = path.join(process.cwd(), dir)
 
   const tree = await dirTree(absDir, absDir)
 
-  return hoistIndex(tree)
+  return hoistIndex(tree) as FileNode
 }
 
 export async function getDirectoryPaths(dir: string) {
@@ -100,7 +100,8 @@ export async function getDirectoryPaths(dir: string) {
 
   const paths: string[] = []
   const addPathsFromTree = (tree: FileOrFolderNode) => {
-    paths.push(tree.path)
+    if (tree.type === 'file') paths.push(tree.url)
+
     if (tree.childNodes?.length) {
       tree.childNodes.forEach((child) => addPathsFromTree(child))
     }

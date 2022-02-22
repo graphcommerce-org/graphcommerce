@@ -11,7 +11,7 @@
     "@graphcommerce/image": "^3.0.2",
     "@graphcommerce/next-config": "^3.0.2",
     "@graphcommerce/next-ui": "^4.1.1",
-    "@mui/material": "^5.4.2",
+    "@mui/material": "^5.4.3",
     "next": "^12.1.0",
     "next-mdx-remote": "^4.0.0",
     "react": "^17.0.2",
@@ -21,7 +21,7 @@
     "rehype-slug": "^5.0.1",
     "remark-gfm": "^3.0.1",
     "to-vfile": "^7.2.3",
-    "type-fest": "^2.11.2",
+    "type-fest": "^2.12.0",
     "vfile-matter": "^3.0.1"
   },
   "devDependencies": {

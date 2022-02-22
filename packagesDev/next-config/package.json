@@ -16,7 +16,7 @@
     "@lingui/loader": "^3.13.2",
     "js-yaml-loader": "^1.2.2",
     "next-transpile-modules": "^9.0.0",
-    "type-fest": "^2.11.2"
+    "type-fest": "^2.12.0"
   },
   "devDependencies": {
     "typescript": "^4.5.5",
