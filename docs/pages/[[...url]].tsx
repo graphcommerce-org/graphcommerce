@@ -180,8 +180,8 @@ const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
   ),
   a: RelativeLink,
   table: ({ ref, ...props }) => (
-    <TableContainer component={Paper} elevation={4}>
-      <Table {...props} />
+    <TableContainer component={Paper} elevation={4} sx={{ mb: 5 }}>
+      <Table {...props} size='small' aria-label='a dense table' />
     </TableContainer>
   ),
   thead: ({ ref, ...props }) => <TableHead {...props} />,
