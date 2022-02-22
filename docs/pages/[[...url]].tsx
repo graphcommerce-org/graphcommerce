@@ -26,7 +26,6 @@ import rehypeSlug from 'rehype-slug'
 import remarkGfm from 'remark-gfm'
 import { SetRequired } from 'type-fest'
 import { LayoutFull, LayoutFullProps } from '../components/Layout/LayoutFull'
-import { LayoutProps } from '../components/Layout/PageLayout'
 import {
   getDirectoryPaths,
   getDirectoryTree,
@@ -36,7 +35,7 @@ import {
 } from '../lib/files'
 
 type MDXSource = SetRequired<MDXRemoteSerializeResult, 'frontmatter'>
-type Props = LayoutProps & { source: MDXSource }
+type Props = { source: MDXSource }
 type Param = { url: string[] }
 type GetStatic = GetStaticProps<Props, Param>
 
