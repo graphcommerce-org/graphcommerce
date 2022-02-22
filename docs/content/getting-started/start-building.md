@@ -102,7 +102,7 @@ property, you need to modify a query.
 - In /graphql/CategoryPage.graphql, paste the contents of
   `...CategoryQueryFragment` and add `children_count` property:
 
-```
+```graphql
 query CategoryPage($url: String!, $rootCategory: String!) {
   ...MenuQueryFragment
   ...FooterQueryFragment

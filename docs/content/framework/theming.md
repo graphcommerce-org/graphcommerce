@@ -68,12 +68,36 @@ Most components have props that define their look and feel. Most common are the
   how palette variables are used. Refer to the
   [MUI Button source code ↗](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Button/Button.js)
 
-## Creating styled components with the styled() utility
+## Change a component's styling with the sx prop
 
 A simple way to style a component is by using the
-[sx prop ↗](https://mui.com/system/the-sx-prop/). To get familiar with the sx
+[sx prop ↗](https://mui.com/system/the-sx-prop/). To get started with the sx
 prop in your GraphCommerce storefront, refer to
 [start building a GraphCommerce custom storefront](../getting-started/start-building.md).
+
+### Accessing the theme
+
+To access the theme object, set an anonymous function as the value of the
+property:
+
+```tsx
+sx={{
+  borderRadius: 2,
+  backgroundColor: (theme) => theme.palette.primary.main,
+}}
+```
+
+To use the theme object for multiple property's:
+
+```tsx
+sx={(theme) => ({
+  borderRadius: `1px solid ${theme.palette.divider}`,
+  backgroundColor: theme.palette.primary.main,
+})}
+```
+
+## Creating styled components with the styled() utility
+
 A more advanced way is to use the
 [MUI styled() ↗](https://mui.com/system/styled/) utility for creating styled
 components:
