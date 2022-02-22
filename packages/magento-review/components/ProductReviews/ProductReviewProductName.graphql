@@ -1,9 +1,10 @@
-query ProductReviewProductName($sku: String!) {
-  products(filter: { sku: { eq: $sku } }) {
+query ProductReviewProductName($urlKey: String!) {
+  products(filter: { url_key: { eq: $urlKey } }) {
     items {
       __typename
       uid
       name
+      sku
     }
   }
 }
