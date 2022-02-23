@@ -35,7 +35,7 @@ import {
 } from '../lib/files'
 
 type MDXSource = SetRequired<MDXRemoteSerializeResult, 'frontmatter'>
-type Props = { source: MDXSource }
+type Props = { source: MDXSource } & LayoutFullProps
 type Param = { url: string[] }
 type GetStatic = GetStaticProps<Props, Param>
 

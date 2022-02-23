@@ -1,15 +1,24 @@
 import { iconChevronDown, iconChevronUp, SvgIcon } from '@graphcommerce/next-ui'
-import { Box, Collapse, List, ListItemButton, ListItemText, darken } from '@mui/material'
+import {
+  Box,
+  Collapse,
+  List,
+  ListItemButton,
+  ListItemText,
+  darken,
+  SxProps,
+  Theme,
+} from '@mui/material'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import type { FileOrFolderNode, FileNode } from '../../lib/files'
 
-function FileLink(props: FileNode & { level: number }) {
-  const { matter, url, name, level } = props
+function FileLink(props: FileNode & { level: number; selected: string }) {
+  const { matter, url, name, level, selected } = props
   const indent = Math.max(0, level + 1) * 2
 
-  const active = useRouter().asPath === `/${url}`
+  const active = selected === `/${url}`
 
   return (
     <NextLink href={`/${url}`} passHref>
@@ -38,20 +47,13 @@ function isSelected(node: FileOrFolderNode, asPath: string): boolean {
   return childNodes?.some((child) => isSelected(child, p)) ?? false
 }
 
-function useIsSelected() {
-  const { asPath } = useRouter()
-  return (node: FileOrFolderNode) => isSelected(node, asPath)
-}
+export function MenuList(props: FileOrFolderNode & { level?: number; selected: string }) {
+  const { name, childNodes, type, level = 0, selected } = props
 
-export function MenuList(props: FileOrFolderNode & { level?: number }) {
-  const { name, childNodes, type, level = 0 } = props
-  const router = useRouter()
-  const checkSelected = useIsSelected()
-
-  const [open, setOpen] = React.useState(checkSelected(props))
+  const [open, setOpen] = React.useState(isSelected(props, selected))
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => setOpen(checkSelected(props)), [router.asPath])
+  useEffect(() => setOpen(isSelected(props, selected)), [selected])
 
   const handleClick = () => setOpen(!open)
 
@@ -70,7 +72,7 @@ export function MenuList(props: FileOrFolderNode & { level?: number }) {
           <List component='div' disablePadding>
             {type === 'file' && <FileLink {...props} level={level + 1} />}
             {childNodes?.map((child) => (
-              <MenuList key={child.name} {...child} level={level + 1} />
+              <MenuList key={child.name} {...child} level={level + 1} selected={selected} />
             ))}
           </List>
         </Collapse>
@@ -85,23 +87,15 @@ export function MenuList(props: FileOrFolderNode & { level?: number }) {
   return null
 }
 
-export default function SidebarMenu(props: FileNode) {
-  const { childNodes, type, ...link } = props
+export default function SidebarMenu(props: FileNode & { sx?: SxProps<Theme>; selected: string }) {
+  const { childNodes, type, sx, selected, ...link } = props
 
   return (
-    <Box
-      sx={{
-        backgroundColor: (theme) => theme.palette.background.paper,
-        padding: 2,
-        borderRight: (theme) => `1px solid ${theme.palette.divider}`,
-      }}
-    >
-      <List component='nav' disablePadding sx={{}}>
-        <FileLink type={type} {...link} level={0} />
-        {childNodes?.map((tree) => (
-          <MenuList key={tree.path} {...tree} />
-        ))}
-      </List>
-    </Box>
+    <List component='nav' disablePadding sx={sx}>
+      <FileLink type={type} {...link} level={0} selected={selected} />
+      {childNodes?.map((tree) => (
+        <MenuList key={tree.path} {...tree} selected={selected} />
+      ))}
+    </List>
   )
 }
