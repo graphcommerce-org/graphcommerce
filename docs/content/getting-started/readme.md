@@ -149,8 +149,9 @@ The magento-graphcms example offers a number of components to render this
 content in different ways, for example in the form of a page-wide hero banner, a
 list of USPs or grid of text columns.
 
-To [get started](./create.md) with the magento-graphcms example, cloning the
-demo GraphCMS project GraphQL schema and its content is recommended.
+To [get started](../getting-started/create.md) with the magento-graphcms
+example, cloning the demo GraphCMS project GraphQL schema and its content is
+recommended.
 
 ## Pages
 
