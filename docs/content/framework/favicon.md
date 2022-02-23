@@ -5,7 +5,7 @@ GraphCommerce offers a
 approachable path to building GraphCommerce custom e-commerce storefront.
 
 Included in the magento-graphcms example, is a
-[well-founded implementation ↗](<(https://medium.com/web-dev-survey-from-kyoto/favicon-nightmare-how-to-maintain-sanity-7628bfc39918)>)
+[well-founded implementation ↗](https://medium.com/web-dev-survey-from-kyoto/favicon-nightmare-how-to-maintain-sanity-7628bfc39918)
 for a correct favicon and touch icon.
 
 Favicons can be found in the /public directory:
