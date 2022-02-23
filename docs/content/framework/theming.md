@@ -130,9 +130,10 @@ const AnimatedButton = styled(Button, { name: 'animatedButton' })(
 
 https://user-images.githubusercontent.com/1251986/155032870-ddecefe0-afb3-418c-af3d-91d8bc435dff.mp4
 
-  <video width="100%" controls>
-    <source src="https://user-images.githubusercontent.com/1251986/155032870-ddecefe0-afb3-418c-af3d-91d8bc435dff.mp4" type="video/mp4"/>
-  </video>
+<video width="100%" controls autoplay={'true'} muted>
+<source src="https://user-images.githubusercontent.com/1251986/155032870-ddecefe0-afb3-418c-af3d-91d8bc435dff.mp4" type="video/mp4"/>
+</video>
+
  <figcaption>Example of a styled component</figcaption>
 </figure>
 

@@ -14,6 +14,17 @@ e-commerce storefronts in React. It includes the structure, components, and
 tooling you need to get started so you can spend your time styling and designing
 high end e-commerce progressive web apps (PWA).
 
+<figure>
+
+https://user-images.githubusercontent.com/1251986/154977573-4015e77c-43e7-481e-ab97-60c365c6b746.mp4
+
+<video width="100%" controls autoplay={'true'} muted>
+<source src="https://user-images.githubusercontent.com/1251986/154977573-4015e77c-43e7-481e-ab97-60c365c6b746.mp4" type="video/mp4"/>
+</video>
+
+  <figcaption>GraphCommerce magento-graphcms example demo</figcaption>
+</figure>
+
 ---
 
 ### Stack
@@ -56,16 +67,6 @@ GraphCommerce features include:
 - Magento multi language support, a store switcher component and framework
   translations EN, ES, FR, DE, NL
 - Deployments to Vercel
-
-<figure>
-
-https://user-images.githubusercontent.com/1251986/154977573-4015e77c-43e7-481e-ab97-60c365c6b746.mp4
-
-  <video width="100%" controls>
-    <source src="https://user-images.githubusercontent.com/1251986/154977573-4015e77c-43e7-481e-ab97-60c365c6b746.mp4" type="video/mp4"/>
-  </video>
-  <figcaption>GraphCommerce magento-graphcms example demo</figcaption>
-</figure>
 
 ## Build high-end Magento storefronts faster
 
