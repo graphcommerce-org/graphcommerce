@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { LayoutOverlay, LayoutOverlayProps } from '@graphcommerce/next-ui'
+import { LayoutOverlay, LayoutOverlayProps, PageMeta } from '@graphcommerce/next-ui'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import SidebarMenu from '../../components/SidebarMenu'
@@ -18,7 +18,12 @@ export default function MenuPage(props: Props) {
   const { menuData } = props
   const url = (useRouter().query.url as Param['url'] | undefined)?.join('/') ?? ''
 
-  return <SidebarMenu {...menuData} selected={`/${url}`} />
+  return (
+    <>
+      <PageMeta title='GraphCommerce Documentation' />
+      <SidebarMenu {...menuData} selected={`/${url}`} />
+    </>
+  )
 }
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
