@@ -151,6 +151,7 @@ const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
       sx={{
         fontFamily: `Menlo, Monaco, Consolas, 'Andale Mono', 'Ubuntu Mono', 'Courier New', monospace`,
         borderRadius: 1.5,
+        maxWidth: (theme) => `calc(100vw - ${theme.page.horizontal} * 2)`,
 
         "&:not([class*='language-'])": {
           backgroundColor: (theme) => [alpha(theme.palette.text.primary, 0.08), '!important'],
