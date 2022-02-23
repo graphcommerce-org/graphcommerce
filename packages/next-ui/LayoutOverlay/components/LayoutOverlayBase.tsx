@@ -25,6 +25,7 @@ export type LayoutOverlayBaseProps = {
   children?: React.ReactNode
   className?: string
   sx?: SxProps<Theme>
+  sxBackdrop?: SxProps<Theme>
 } & StyleProps
 
 enum OverlayPosition {
@@ -50,6 +51,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
     justifySm = 'stretch',
     justifyMd = 'stretch',
     sx = [],
+    sxBackdrop = [],
   } = props
 
   const { scrollerRef, snap } = useScrollerContext()
@@ -104,6 +106,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
 
     const resize = () => {
       if (positions.open.visible.get() !== 1) return
+
       scroller.scrollLeft = positions.open.x.get()
       scroller.scrollTop = positions.open.y.get()
     }
@@ -187,7 +190,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
             WebkitTapHighlightColor: 'transparent',
             willChange: 'opacity',
           },
-          ...(Array.isArray(sx) ? sx : [sx]),
+          ...(Array.isArray(sxBackdrop) ? sxBackdrop : [sxBackdrop]),
         ]}
       />
       <Scroller
@@ -195,62 +198,65 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
         grid={false}
         hideScrollbar
         onClick={onClickAway}
-        sx={(theme) => ({
-          display: 'grid',
-          '&.canGrab': {
-            cursor: 'default',
-          },
-          '&.mdSnapDirInline': {
-            overflow: 'auto',
-          },
-
-          height: '100vh',
-          '@supports (-webkit-touch-callout: none)': {
-            height: '-webkit-fill-available',
-          },
-
-          [theme.breakpoints.down('md')]: {
-            '&.variantSmLeft': {
-              gridTemplate: `"overlay beforeOverlay"`,
-              borderTopRightRadius: theme.shape.borderRadius * 3,
-              borderBottomRightRadius: theme.shape.borderRadius * 3,
+        sx={[
+          (theme) => ({
+            display: 'grid',
+            '&.canGrab': {
+              cursor: 'default',
             },
-            '&.variantSmRight': {
-              gridTemplate: `"beforeOverlay overlay"`,
-              borderTopLeftRadius: theme.shape.borderRadius * 3,
-              borderBottomLeftRadius: theme.shape.borderRadius * 3,
+            '&.mdSnapDirInline': {
+              overflow: 'auto',
             },
-            '&.variantSmBottom': {
-              borderTopLeftRadius: theme.shape.borderRadius * 3,
-              borderTopRightRadius: theme.shape.borderRadius * 3,
-              gridTemplate: `"beforeOverlay" "overlay"`,
-              height: '100vh',
-              '@supports (-webkit-touch-callout: none)': {
-                height: '-webkit-fill-available',
+
+            height: '100vh',
+            '@supports (-webkit-touch-callout: none)': {
+              height: '-webkit-fill-available',
+            },
+
+            [theme.breakpoints.down('md')]: {
+              '&.variantSmLeft': {
+                gridTemplate: `"overlay beforeOverlay"`,
+                borderTopRightRadius: theme.shape.borderRadius * 3,
+                borderBottomRightRadius: theme.shape.borderRadius * 3,
               },
-            },
-          },
-          [theme.breakpoints.up('md')]: {
-            '&.variantMdLeft': {
-              gridTemplate: `"overlay beforeOverlay"`,
-              borderTopRightRadius: theme.shape.borderRadius * 4,
-              borderBottomRightRadius: theme.shape.borderRadius * 4,
-            },
-            '&.variantMdRight': {
-              gridTemplate: `"beforeOverlay overlay"`,
-              borderTopLeftRadius: theme.shape.borderRadius * 4,
-              borderBottomLeftRadius: theme.shape.borderRadius * 4,
-            },
-            '&.variantMdBottom': {
-              borderTopLeftRadius: theme.shape.borderRadius * 4,
-              borderTopRightRadius: theme.shape.borderRadius * 4,
-              [theme.breakpoints.up('md')]: {
+              '&.variantSmRight': {
+                gridTemplate: `"beforeOverlay overlay"`,
+                borderTopLeftRadius: theme.shape.borderRadius * 3,
+                borderBottomLeftRadius: theme.shape.borderRadius * 3,
+              },
+              '&.variantSmBottom': {
+                borderTopLeftRadius: theme.shape.borderRadius * 3,
+                borderTopRightRadius: theme.shape.borderRadius * 3,
                 gridTemplate: `"beforeOverlay" "overlay"`,
                 height: '100vh',
+                '@supports (-webkit-touch-callout: none)': {
+                  height: '-webkit-fill-available',
+                },
               },
             },
-          },
-        })}
+            [theme.breakpoints.up('md')]: {
+              '&.variantMdLeft': {
+                gridTemplate: `"overlay beforeOverlay"`,
+                borderTopRightRadius: theme.shape.borderRadius * 4,
+                borderBottomRightRadius: theme.shape.borderRadius * 4,
+              },
+              '&.variantMdRight': {
+                gridTemplate: `"beforeOverlay overlay"`,
+                borderTopLeftRadius: theme.shape.borderRadius * 4,
+                borderBottomLeftRadius: theme.shape.borderRadius * 4,
+              },
+              '&.variantMdBottom': {
+                borderTopLeftRadius: theme.shape.borderRadius * 4,
+                borderTopRightRadius: theme.shape.borderRadius * 4,
+                [theme.breakpoints.up('md')]: {
+                  gridTemplate: `"beforeOverlay" "overlay"`,
+                  height: '100vh',
+                },
+              },
+            },
+          }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
       >
         <Box
           onClick={onClickAway}
