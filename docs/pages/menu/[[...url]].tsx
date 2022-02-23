@@ -22,8 +22,9 @@ export default function MenuPage(props: Props) {
 }
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
-  Layout: () => (
+  Layout: (props: LayoutOverlayProps) => (
     <LayoutOverlay
+      {...props}
       variantSm='bottom'
       variantMd='left'
       sizeMd='floating'
