@@ -139,6 +139,7 @@ const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
           backgroundColor: alpha(theme.palette.primary.main, 0.1),
           border: `1px solid ${theme.palette.primary.main}`,
           boxShadow: 4,
+          '&:first-of-type': { mt: '2em' },
         }),
       ]}
     />
