@@ -130,7 +130,7 @@ const AnimatedButton = styled(Button, { name: 'animatedButton' })(
 
 https://user-images.githubusercontent.com/1251986/155032870-ddecefe0-afb3-418c-af3d-91d8bc435dff.mp4
 
-<video width="100%" controls autoplay={'true'} muted>
+<video width="100%" controls autoPlay loop muted>
 <source src="https://user-images.githubusercontent.com/1251986/155032870-ddecefe0-afb3-418c-af3d-91d8bc435dff.mp4" type="video/mp4"/>
 </video>
 

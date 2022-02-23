@@ -23,7 +23,7 @@ high end e-commerce progressive web apps (PWA).
 
 https://user-images.githubusercontent.com/1251986/154977573-4015e77c-43e7-481e-ab97-60c365c6b746.mp4
 
-<video width="100%" controls autoplay={'true'} muted>
+<video width="100%" controls autoPlay loop muted>
 <source src="https://user-images.githubusercontent.com/1251986/154977573-4015e77c-43e7-481e-ab97-60c365c6b746.mp4" type="video/mp4"/>
 </video>
 

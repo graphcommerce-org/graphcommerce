@@ -13,6 +13,9 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  experimental: {
+    scrollRestoration: true,
+  },
 }
 
 module.exports = withYarn1Workspaces(nextConfig)

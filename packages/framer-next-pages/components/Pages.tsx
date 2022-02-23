@@ -15,6 +15,12 @@ function findPlainIdx(items: PageItem[]) {
 type PagesProps = Omit<AppPropsType<NextRouter>, 'pageProps' | 'Component'> & {
   Component: PageComponent
   pageProps?: { up?: UpPage | null }
+
+  /** Fallback URL that is loaded when there is no page available behind the current overlay */
+  fallback?: `/${string}`
+
+  /** The path to the route-file */
+  fallbackRoute?: `/${string}`
 }
 
 function getPageInfo(router: NextRouter) {
@@ -35,7 +41,7 @@ function getPageInfo(router: NextRouter) {
 // }
 
 export default function FramerNextPages(props: PagesProps) {
-  const { router, Component, pageProps: incomingProps } = props
+  const { router, Component, pageProps: incomingProps, fallback = '/', fallbackRoute = '/' } = props
 
   const items = useRef<PageItem[]>([])
   const idx = Number(global.window?.history.state?.idx ?? 0)
@@ -95,11 +101,11 @@ export default function FramerNextPages(props: PagesProps) {
         // const up = items.current[0].PageComponent.pageOptions?.up?.href ?? '/'
         const up = '/'
         const info = await (router as Router).getRouteInfo(
-          up,
-          up,
+          fallbackRoute,
+          fallback,
           {},
-          up,
-          up,
+          fallback,
+          fallback,
           { shallow: false },
           undefined,
           false,
@@ -132,7 +138,7 @@ export default function FramerNextPages(props: PagesProps) {
     return () => {
       if (cancel) cancelIdleCallback(cancel)
     }
-  }, [shouldLoadFb, router])
+  }, [shouldLoadFb, router, fallbackRoute, fallback])
 
   // Add the fallback if it is available
   if (fb && plainIdx === -1) renderItems = [fb, ...renderItems]

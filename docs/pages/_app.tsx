@@ -19,7 +19,7 @@ export default function ThemedApp(props: AppProps) {
         <GlobalHead name='GraphCommerce Docs' />
         <CssBaseline />
         <PageLoadIndicator />
-        <FramerNextPages {...props} />
+        <FramerNextPages {...props} fallbackRoute='/[[...url]]' />
       </ThemeProvider>
     </CssAndFramerMotionProvider>
   )
