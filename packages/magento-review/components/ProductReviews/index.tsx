@@ -33,7 +33,7 @@ const parts = [
 const { classes } = extendableComponent(name, parts)
 
 export default function ProductReviews(props: ProductReviewsProps) {
-  const { reviews, url_key, sku, sx = [] } = props
+  const { reviews, url_key, sx = [] } = props
   const config = 'en_US'
   const locale = config.replace('_', '-')
 
@@ -74,7 +74,7 @@ export default function ProductReviews(props: ProductReviewsProps) {
         marginTop: theme.spacings.sm,
       })}
     >
-      <Link href={`/account/reviews/add?sku=${sku}`} passHref>
+      <Link href={`/account/reviews/add?url_key=${url_key}`} passHref>
         <Button
           variant='pill'
           color='primary'

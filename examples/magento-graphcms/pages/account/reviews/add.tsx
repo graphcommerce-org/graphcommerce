@@ -17,7 +17,6 @@ import {
 import { t, Trans } from '@lingui/macro'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
-import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
@@ -26,14 +25,10 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 function AccountReviewsAddPage() {
   const router = useRouter()
   const { data: customerData, loading: customerLoading, error } = useQuery(CustomerDocument)
-  const { sku } = router.query
+  const urlKey = router.query.url_key as string
   const { data: productData, loading: productLoading } = useQuery(
     ProductReviewProductNameDocument,
-    {
-      variables: {
-        sku: sku as string,
-      },
-    },
+    { variables: { urlKey } },
   )
   const { data: storeConfigData, loading: loadingStoreConfig } = useQuery(StoreConfigDocument)
 
@@ -89,7 +84,7 @@ function AccountReviewsAddPage() {
 
       <Container maxWidth='md'>
         <CreateProductReviewForm
-          sku={(sku as string) ?? ''}
+          sku={product.sku ?? ''}
           nickname={customer ? `${customer?.firstname} ${customer?.lastname}` : undefined}
         />
       </Container>
