@@ -2,6 +2,11 @@
 menu: Customize a storefront
 ---
 
+> **Developer preview**  
+> This is a developer preview of GraphCommerce. The documentation will be
+> updated as GraphCommerce introduces
+> [new features and refines existing functionality](https://github.com/ho-nl/m2-pwa/releases).
+
 # Start building a GraphCommerce custom storefront
 
 Previously, you [created a new GraphCommerce app](../getting-started/create.md).
@@ -84,6 +89,7 @@ https://user-images.githubusercontent.com/1251986/154980151-2039c027-c31f-4b99-8
 https://user-images.githubusercontent.com/1251986/154980686-3d2bf587-16d7-412b-b05f-8b0f7b40cbfd.mp4
 
 <video width="100%" controls autoplay={'true'} muted>
+
 <source src="https://user-images.githubusercontent.com/1251986/154980686-3d2bf587-16d7-412b-b05f-8b0f7b40cbfd.mp4" type="video/mp4"/>
 </video>
 

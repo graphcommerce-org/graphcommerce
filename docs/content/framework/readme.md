@@ -2,6 +2,11 @@
 menu: Overview
 ---
 
+> **Developer preview**  
+> This is a developer preview of GraphCommerce. The documentation will be
+> updated as GraphCommerce introduces
+> [new features and refines existing functionality](https://github.com/ho-nl/m2-pwa/releases).
+
 # GraphCommerce framework overview
 
 GraphCommerce is a front-end framework used for building headless Magento
