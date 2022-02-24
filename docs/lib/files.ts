@@ -23,6 +23,13 @@ export type FileNode = BaseFields & { type?: 'file'; url: string; matter: Matter
 
 export type FileOrFolderNode = FolderNode | FileNode
 
+function toUrl(p: string) {
+  let url = p.replace('.mdx', '')
+  url = url.replace('.md', '')
+  url = url.endsWith('/') ? url.slice(0, -1) : url
+  return url
+}
+
 async function dirTree(dir: string, root: string): Promise<FileOrFolderNode> {
   const stats = await fs.promises.lstat(dir)
 
@@ -45,12 +52,7 @@ async function dirTree(dir: string, root: string): Promise<FileOrFolderNode> {
   }
 
   if (info.type === 'file') {
-    let url = path.relative(root, dir)
-    url = url.replace('.mdx', '')
-    url = url.replace('.md', '')
-    url = url.endsWith('/') ? url.slice(0, -1) : url
-
-    info.url = url
+    info.url = toUrl(path.relative(root, dir))
     info.matter = matter(await vfile.read(dir)).data.matter as Record<string, string>
   }
 
@@ -76,9 +78,11 @@ function hoistIndex(tree: FileOrFolderNode): FileOrFolderNode {
 
       const order = index.matter?.order?.split(',').map((x) => x.trim())
       if (order) {
-        newTree.childNodes = newTree.childNodes?.sort((a, b) =>
-          order.indexOf(a.name) === -1 ? 1 : order.indexOf(a.name) - order.indexOf(b.name),
-        )
+        newTree.childNodes = newTree.childNodes?.sort((a, b) => {
+          const aPath = toUrl(a.path.split('/').pop() as string)
+          const bPath = toUrl(b.path.split('/').pop() as string)
+          return order.indexOf(aPath) === -1 ? 1 : order.indexOf(aPath) - order.indexOf(bPath)
+        })
       }
 
       newTree.childNodes = newTree.childNodes?.map((child) => hoistIndex(child))
