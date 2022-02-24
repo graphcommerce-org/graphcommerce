@@ -75,7 +75,7 @@ styles.
 
 Others components are imported where needed , and can be recognized by their
 namespace `@graphcommerce/`. There are different ways to
-[customize styles](https://mui.com/customization/how-to-customize/) of importend
+[customize styles](https://mui.com/customization/how-to-customize/) of imported
 components. The most common way is by adding an sx prop: `sx={{color:'red'}}`.
 
 If you want to extend a component's behaviour or built your own, you can
