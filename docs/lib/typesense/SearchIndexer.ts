@@ -1,7 +1,7 @@
 import { ConditionalExcept, Get } from 'type-fest'
 import { CollectionFieldSchema } from 'typesense/lib/Typesense/Collection'
 import { CollectionCreateSchema } from 'typesense/lib/Typesense/Collections'
-import { Leaves } from './typescript-helpers'
+import { Leaves } from './Leaves'
 
 type FieldValues = Record<string, any>
 

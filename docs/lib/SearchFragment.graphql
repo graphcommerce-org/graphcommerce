@@ -1,5 +1,0 @@
-fragment SearchFragment on ProductInterface {
-  name
-  colors
-  activity
-}

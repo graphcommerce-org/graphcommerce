@@ -16,7 +16,7 @@ export const instantSearchProps = createInstantSearchProps<DocumentationDocument
   highlight_fields: 'content',
   highlight_full_fields: 'name',
   include_fields: 'name,url',
-  highlight_affix_num_tokens: 14,
+  // highlight_affix_num_tokens: ,
 })
 
 const useHits: SetReturnType<typeof useHitsBase, HitsRenderState<DocumentationDocument>> = (

@@ -1,5 +1,4 @@
 /* eslint-disable no-underscore-dangle */
-import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { SvgIcon, iconClose, iconSearch } from '@graphcommerce/next-ui'
 import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@graphcommerce/react-hook-form'
 import {
@@ -9,16 +8,16 @@ import {
   List,
   ListItemButton,
   ListItemText,
+  Divider,
   darken,
-  Container,
+  TextFieldProps,
 } from '@mui/material'
 import { Hit, HitAttributeSnippetResult } from 'instantsearch.js'
 import Link from 'next/link'
 import { InstantSearch, useSearchBox } from 'react-instantsearch-hooks'
-import { LayoutFullProps, LayoutFull } from '../components/Layout/LayoutFull'
 import { instantSearchProps, useHits } from '../lib/instantSearch'
 
-function Snippet(hit: Hit & { field: string }) {
+function Snippet(hit: Hit) {
   if (!hit._snippetResult) return null
 
   const snippets = Object.entries(hit._snippetResult)
@@ -29,7 +28,7 @@ function Snippet(hit: Hit & { field: string }) {
   return (
     <>
       {snippets.map((snip) => (
-        <span key={snip} dangerouslySetInnerHTML={{ __html: snip }} />
+        <Box component='span' key={snip} dangerouslySetInnerHTML={{ __html: snip }} sx={{}} />
       ))}
     </>
   )
@@ -67,7 +66,7 @@ function SearchBox() {
   )
 
   return (
-    <form onSubmit={submit}>
+    <Box component='form' onSubmit={submit} sx={{ mb: 2, overflow: 'hidden' }}>
       <TextField
         type='input'
         placeholder='Search...'
@@ -79,10 +78,11 @@ function SearchBox() {
       {isSearchStalled && <div>Searching...</div>}
 
       {query && (
-        <List>
+        <List dense>
           {hits.map((hit) => (
-            <Link key={hit.objectID} href={hit.url} passHref>
+            <Link key={hit.objectID} href={`/${hit.url}`} passHref>
               <ListItemButton
+                dense
                 component='a'
                 sx={{
                   borderRadius: 2,
@@ -93,23 +93,18 @@ function SearchBox() {
               </ListItemButton>
             </Link>
           ))}
+
+          <Divider variant='middle' sx={{ mt: 2 }} />
         </List>
       )}
-    </form>
+    </Box>
   )
 }
 
-export default function SearchPage() {
+export default function SearchForm(props: TextFieldProps) {
   return (
     <InstantSearch {...instantSearchProps}>
-      <Container maxWidth='md' sx={{ pt: 3 }}>
-        <SearchBox />
-      </Container>
+      <SearchBox {...props} />
     </InstantSearch>
   )
 }
-
-const pageOptions: PageOptions<LayoutFullProps> = {
-  Layout: LayoutFull,
-}
-SearchPage.pageOptions = pageOptions

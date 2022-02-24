@@ -1,6 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import path from 'path'
 import { remark } from 'remark'
+import remarkGfm from 'remark-gfm'
 import strip from 'strip-markdown'
 import { toVFile as vfile } from 'to-vfile'
 import { matter } from 'vfile-matter'
@@ -49,8 +50,8 @@ export class DocumentIndexer extends SearchIndexer<DocumentationDocument> {
     const menuData = await getDirectoryTree(this.#root)
     if (!menuData) return false
 
-    for (const path of paths) {
-      yield this.#loadDocument(findByUrl(path.split('/'), menuData))
+    for (const p of paths) {
+      yield this.#loadDocument(findByUrl(p.split('/'), menuData))
     }
 
     return true
