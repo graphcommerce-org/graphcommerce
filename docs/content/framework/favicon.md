@@ -1,8 +1,8 @@
 # Favicon
 
-GraphCommerce offers a
-[magento-graphcms example](../getting-started/overview.md) that provides an
-approachable path to building GraphCommerce custom e-commerce storefront.
+GraphCommerce offers a [magento-graphcms example](../getting-started/readme.md)
+that provides an approachable path to building GraphCommerce custom e-commerce
+storefront.
 
 Included in the magento-graphcms example, is a
 [well-founded implementation ↗](https://medium.com/web-dev-survey-from-kyoto/favicon-nightmare-how-to-maintain-sanity-7628bfc39918)

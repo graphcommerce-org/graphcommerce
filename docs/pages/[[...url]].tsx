@@ -73,6 +73,7 @@ function RelativeLink(props: Omit<JSX.IntrinsicElements['a'], 'ref'>) {
 
   let newUrl = href.replace('.mdx', '')
   newUrl = newUrl.replace('.md', '')
+  newUrl = newUrl.replace('readme', '')
 
   newUrl = relativeUrl(newUrl.split('/'), asPath.split('/').slice(1)).join('/')
 

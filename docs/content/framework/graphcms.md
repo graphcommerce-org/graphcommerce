@@ -12,7 +12,7 @@ menu: GraphCMS
 GraphCMS is integrated as a Content Management System. It is used to store all
 static content and provides a user-friendly interface for managing it.
 
-The [magento-graphcms example](./../getting-started/overview.md) offers a number
+The [magento-graphcms example](./../getting-started/readme.md) offers a number
 of components to render this content in different ways, for example in the form
 of a page-wide hero banner, a list of USPs or grid of text columns.
 

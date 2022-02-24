@@ -1,6 +1,6 @@
 # Theming
 
-The GraphCommerce [magento-graphcms](../getting-started/overview.md) example and
+The GraphCommerce [magento-graphcms](../getting-started/readme.md) example and
 GraphCommerce components are built with [MUI ↗](https://mui.com/). MUI provides
 a robust, customizable, and accessible library of foundational and advanced
 components, enabling you to build your design system and develop React
