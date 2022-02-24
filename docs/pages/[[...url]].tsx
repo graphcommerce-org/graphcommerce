@@ -13,6 +13,7 @@ import {
   TableCell,
   TableContainer,
   Paper,
+  darken,
   Box,
 } from '@mui/material'
 import { GetStaticPaths, GetStaticProps } from 'next'
@@ -211,7 +212,7 @@ function IndexPage(props: Props) {
       />
       <Container
         maxWidth='md'
-        sx={{
+        sx={(theme) => ({
           position: 'relative',
           '& figure': {
             display: 'block',
@@ -239,6 +240,20 @@ function IndexPage(props: Props) {
             typography: 'caption',
             color: 'text.secondary',
           },
+          '& details': {
+            width: '100%',
+            mt: '2em',
+            mb: '0.5em',
+            p: '1em',
+            borderRadius: 2,
+            backgroundColor: alpha(theme.palette.primary.dark, 0.1),
+            border: `1px solid ${theme.palette.primary.dark}`,
+            boxShadow: 4,
+            a: {
+              color: theme.palette.primary.dark,
+              textDecorationColor: theme.palette.primary.dark,
+            },
+          },
           '& hr': {
             m: 0,
             mt: 5,
@@ -260,7 +275,7 @@ function IndexPage(props: Props) {
           },
           '& h1:hover .icon.icon-link, & h2:hover .icon.icon-link, & h3:hover .icon.icon-link, & h4:hover .icon.icon-link, & h5:hover .icon.icon-link, & h6:hover .icon.icon-link':
             { opacity: 0.5 },
-        }}
+        })}
       >
         <MDXRemote {...source} components={mdxComponents} />
       </Container>

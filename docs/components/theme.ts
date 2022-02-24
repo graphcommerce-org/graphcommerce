@@ -19,7 +19,7 @@ const lightPalette: PaletteOptions = {
   primary: {
     main: darken(main, 0.175),
     contrastText: '#FFFFFF',
-    dark,
+    dark: darken(dark, 0.175),
   },
   secondary: {
     main: '#006BFF',
