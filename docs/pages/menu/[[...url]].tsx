@@ -2,6 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { LayoutOverlay, LayoutOverlayProps, PageMeta } from '@graphcommerce/next-ui'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
+import { Search } from '../../components/Search'
 import SidebarMenu from '../../components/SidebarMenu'
 import {
   FileNode,
@@ -21,6 +22,7 @@ export default function MenuPage(props: Props) {
   return (
     <>
       <PageMeta title='GraphCommerce Documentation' />
+      <Search />
       <SidebarMenu {...menuData} selected={`/${url}`} />
     </>
   )

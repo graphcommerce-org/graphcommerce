@@ -141,3 +141,24 @@ export function getFileContents(dir: string, filePath: string) {
     return false
   }
 }
+
+/**
+ * Recursively traverse the tree and return the aggregated path of of each node.
+ *
+ * Each URL segment should reference a path (except for the readme.md/readme.mdx file)
+ */
+export function findByUrl(url: string[], node: FileOrFolderNode): FileNode | false {
+  if (node.childNodes?.length) {
+    const child = node.childNodes?.reduce<FileNode | false>((prev, curr) => {
+      if (prev) return prev
+      const childPath = findByUrl(url, curr)
+      return childPath ?? prev
+    }, false)
+
+    if (child) return child
+  }
+
+  if (node.type === 'file' && node.url === url.join('/')) return node
+
+  return false
+}

@@ -1,14 +1,16 @@
 import {
   iconMenu,
+  iconSearch,
   LayoutDefault,
   LayoutDefaultProps,
   responsiveVal,
   SvgIcon,
 } from '@graphcommerce/next-ui'
-import { Box, Fab } from '@mui/material'
+import { Box, Fab, IconButton, TextField } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FileNode } from '../../lib/files'
+import { Search } from '../Search'
 import SidebarMenu from '../SidebarMenu'
 import { Logo } from './Logo'
 
@@ -32,7 +34,7 @@ export function LayoutFull(props: LayoutFullProps) {
         <Link href={`/menu${selected}`} passHref>
           <Fab
             sx={{
-              display: { sm: 'block', md: 'none' },
+              display: { sm: undefined, md: 'none' },
               backgroundColor: 'text.primary',
               color: 'background.paper',
               width: responsiveVal(42, 56),
@@ -76,6 +78,7 @@ export function LayoutFull(props: LayoutFullProps) {
           display: { xs: 'none', md: 'block' },
         }}
       >
+        <Search />
         {menuData && <SidebarMenu {...menuData} selected={selected} />}
       </Box>
       <Box sx={{ mb: 15 }}>{children}</Box>
