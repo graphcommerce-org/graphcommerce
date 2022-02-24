@@ -126,6 +126,54 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 ```
 
+<details>
+    <summary>Disabling Static Generation on production</summary>
+
+To disable or limit the amount of pages that are statically pre-redered, slice
+the paths array. This will reduce build-time:
+
+```tsx
+// Example from /pages/product/configurable/[url].tsx
+
+export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+  ...
+
+  return { paths: paths.slice(0, 10), fallback: 'blocking' }
+}
+```
+
+Pages that are not pre-rendered at build-time, will be rendered at run-time
+(on-demand).
+
+</details>
+
+## Incremental Static Regeneration
+
+Most pages have value for `revalidate` in the object that is returned by
+`getStaticProps`:
+
+```tsx
+// Example from /pages/product/configurable/[url].tsx
+
+return {
+  props: {
+    ...(await productPage).data,
+    ...(await typeProductPage).data,
+    apolloState: await conf.then(() => client.cache.extract()),
+    up,
+  },
+  revalidate: 60 * 20,
+}
+```
+
+When set, static pages will be regenerated at run-time (on-demand) every 20
+minutes.
+
+The initial request to the product page will show the cached page. After 20
+minutes, the regeneration of the page is triggered on the first following
+request. Once the page has been successfully generated, the cache will be
+invalidated and the updated product page is shown.
+
 ## Next steps
 
 - Learn more about
