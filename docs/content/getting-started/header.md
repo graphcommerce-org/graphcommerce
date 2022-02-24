@@ -1,5 +1,5 @@
 ---
-menu: Build a custom header
+menu: 3. Build a custom header
 ---
 
 > **Developer preview**  

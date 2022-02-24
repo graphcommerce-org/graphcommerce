@@ -1,5 +1,5 @@
 ---
-menu: Customize a storefront
+menu: 2. Customize a storefront
 ---
 
 > **Developer preview**  

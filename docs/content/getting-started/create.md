@@ -1,5 +1,5 @@
 ---
-menu: Create a custom storefront
+menu: 1. Create a custom storefront
 ---
 
 # Create a GraphCommerce storefront
