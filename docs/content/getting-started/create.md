@@ -45,6 +45,12 @@ need to only install the dependencies. This is the quickest approach.
 - Install and use node 14: `nvm install 14 && nvm use 14`
 - Install yarn: `npm install --global yarn`
 
+If you are using an Apple M1 chip, for anything under nvm v15, you will need to install node using Rosetta 2.
+You can do this by running the nvm installation commands inside the Rosetta 2 shell.
+
+- Run shell under Rosetta 2: `arch -x86_64 zsh`
+- Install yarn: `nvm install 14 && nvm use 14`
+
 # Step 1: Create a new GraphCommerce app
 
 ### Download the example
