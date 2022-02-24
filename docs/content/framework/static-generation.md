@@ -126,7 +126,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 ```
 
-<details>
+<details open>
     <summary>Disabling Static Generation on production</summary>
 
 To disable or limit the amount of pages that are statically pre-redered, slice
