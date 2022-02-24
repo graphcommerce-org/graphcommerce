@@ -32,7 +32,7 @@ export function LayoutFull(props: LayoutFullProps) {
         <Link href={`/menu${selected}`} passHref>
           <Fab
             sx={{
-              display: { sm: 'block', md: 'none' },
+              display: { sm: undefined, md: 'none' },
               backgroundColor: 'text.primary',
               color: 'background.paper',
               width: responsiveVal(42, 56),
