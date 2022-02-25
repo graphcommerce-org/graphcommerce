@@ -58,13 +58,13 @@ export function LayoutFull(props: LayoutFullProps) {
             backgroundColor: theme.palette.background.paper,
             [theme.breakpoints.up('md')]: {
               borderRight: `1px solid ${theme.palette.divider}`,
-              width: `${responsiveVal(300, 320)}`,
+              width: `${responsiveVal(320, 340)}`,
             },
           },
           '& .LayoutDefault-children': {
             display: 'grid',
             gridAutoFlow: 'column',
-            gridTemplateColumns: { xs: '1fe', md: `${responsiveVal(300, 320)} 1fr` },
+            gridTemplateColumns: { xs: '1fe', md: `${responsiveVal(320, 340)} 1fr` },
             borderTop: `1px solid ${theme.palette.divider}`,
           },
         }),
