@@ -41,7 +41,7 @@ Optional extentions
 - [Markdown Preview Github Styling ↗](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles)
 - [Yaml ↗](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
 
-# Next steps
+## Next steps
 
 - [Get started](../getting-started/create.md) with GraphCommerce and begin
   building a custom storefront.

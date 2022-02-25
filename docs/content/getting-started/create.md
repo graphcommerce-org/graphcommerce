@@ -11,7 +11,7 @@ In this tutorial, you'll create a GraphCommerce app locally to begin developing
 a full featured storefront. GraphCommerce is a front-end framework used for
 building headless Magento e-commerce PWA's.
 
-## What you'll learn
+### What you'll learn
 
 After you've finished this tutorial, you'll have accomplished the following:
 
@@ -28,7 +28,7 @@ After you've finished this tutorial, you'll have accomplished the following:
  <figcaption>GraphCommerce magento-graphcms example product page</figcaption>
 </figure>
 
-## Requirements
+### Requirements
 
 You've familiarized yourself with
 [React ↗](https://reactjs.org/docs/getting-started.html),
@@ -36,7 +36,7 @@ You've familiarized yourself with
 [Mui ↗](https://mui.com/getting-started/installation/). GraphCommerce is a
 frontend React framework that uses Next.js for server-side rendering.
 
-## Install dependencies
+### Install dependencies
 
 If you want to test a GraphCommerce storefront using a pre-configured Magento
 demo store and a pre-configured GraphCMS project with demo content, then you
@@ -45,7 +45,7 @@ need to only install the dependencies. This is the quickest approach.
 - Install and use node 14: `nvm install 14 && nvm use 14`
 - Install yarn: `npm install --global yarn`
 
-# Step 1: Create a new GraphCommerce app
+## Step 1: Create a new GraphCommerce app
 
 ### Download the example
 
@@ -70,7 +70,7 @@ Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
 }
 ```
 
-# Step 2: Magento and GraphCMS API keys
+## Step 2: Magento and GraphCMS API keys
 
 > By default, the .env file is configured with API keys from a demo Magento
 > store and a demo GraphCMS project. If you want to test your GraphCommerce app
@@ -131,7 +131,7 @@ the ones you don't want to use.
 - Remove `"@graphcommerce/[psp]"` from package.json
 - Remove all [psp] references from `pages/checkout/payment.tsx`
 
-# Step 3: Start the development environment
+## Step 3: Start the development environment
 
 - `yarn` Install the dependencies
 - `yarn codegen` Converts all .graphql files to typescript files
@@ -142,7 +142,7 @@ Visit the GraphQL Playground running at http://localhost:3000/api/graphql
 
 > No success? Refer to [common build errors](../framework/troubleshooting.md)
 
-# Next steps
+## Next steps
 
 - Learn how to [Set up Visual Studio Code](../getting-started/vscode.md) and
   install usefull extensions for an optimal development experience

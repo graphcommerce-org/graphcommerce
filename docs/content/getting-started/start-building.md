@@ -153,7 +153,7 @@ can visit the following URL to load the GraphQL Explorer:
 
 http://localhost:3000/api/graphql
 
-# Next steps
+## Next steps
 
 - Learn how to [build a custom header](../getting-started/header.md) in
   GraphCommerce
