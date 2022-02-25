@@ -3,7 +3,7 @@
   "changelog": ["@changesets/changelog-github", { "repo": "ho-nl/m2-pwa" }],
   "commit": false,
   "linked": [],
-  "access": "restricted",
+  "access": "public",
   "baseBranch": "master",
   "updateInternalDependencies": "patch",
   "ignore": []
