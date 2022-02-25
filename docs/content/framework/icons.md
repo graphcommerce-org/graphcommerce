@@ -41,7 +41,7 @@ Use the sx prop to customise the styling of an icon in a component:
 To replace an icon in a component, update the import and src prop of the
 `SvgIcon` component.
 
-For example, in /components/Layout/LayoutFull.tsx:
+In /components/Layout/LayoutFull.tsx:
 
 ```tsx
 ...
@@ -84,10 +84,28 @@ return (
 > └── brightness.svg
 > ```
 
-## Using a custom icon
+## Override with the icon prop
 
-An icon that you design yourself, must consist of paths without fills. The path
-must be wrapped in a `<symbol>` that has an attribute `id='icon'`:
+Some components offer a prop to override the icon. In
+/components/Layout/LayoutFull.tsx, you can add the `icon` prop to the
+`CustomerFab` component to change the icon:
+
+```tsx
+import iconUser from '@graphcommerce/next-ui/icons/user.svg'
+
+...
+<CustomerFab
+  guestHref='/account/signin'
+  authHref='/account'
+  icon={<SvgIcon src={iconUser} size='large' />}
+/>
+```
+
+## Icon SVG specifications
+
+To use a custom icon that you design yourself, the icon must consist of paths
+without fills. The path must be wrapped in a `<symbol>` that has an attribute
+`id='icon'`:
 
 ```svg
 // Example from /node_modules/@graphcommerce/next-ui/icons/chat.svg:
@@ -112,10 +130,9 @@ must be wrapped in a `<symbol>` that has an attribute `id='icon'`:
 </svg>
 ```
 
-In contrast to regular
-[static file serving](../framework/static-file-serving.md), icons can be placed
-in the same directory as a page or component and can be imported from there. The
-`<SvgIcon>` component will convert the relative path to an absolute path.
+Icons can be placed in the same directory as a page or component and can be
+imported from there (the `<SvgIcon>` component will convert the relative path to
+an absolute path)
 
 ```tsx
 ...
@@ -132,6 +149,67 @@ the [previous paragraph](#using-a-different-icon-from-the-icon-pack).
 
 > As a starting point, it's advised to open one of the included icons in your
 > design tool (for example, Sketch or Figma).
+
+## Using a different icon pack
+
+To override all or multiple icons with your own, add an icon override array to
+/theme.ts:
+
+```tsx
+// /components/theme.ts
+import customCartIcon from './my-custom-cart-icon.svg'
+
+...
+[iconShoppingBag, customCartIcon]
+```
+
+All icons must meet the svg specifications as described above
+
+<details>
+<summary>List of icons used</summary>
+
+iconSearch  
+iconPerson  
+iconChevronDown  
+iconChevronLeft  
+iconChevronRight  
+iconChevronUp  
+iconAddresses  
+iconHeart  
+iconLocation  
+iconInvoice  
+iconCustomerService  
+iconShoppingBag  
+iconFullscreenExit  
+iconChat  
+iconChevronBack  
+iconCancelAlt  
+iconEmail  
+iconCheckmark  
+iconArrowBack  
+iconArrowForward  
+iconMenu  
+iconMin  
+iconPhone  
+iconPlus  
+iconClose  
+iconFullscreen  
+iconOrderBefore  
+iconBox  
+iconHome  
+iconId  
+iconLock  
+iconNewspaper  
+iconSadFace  
+iconShutdown  
+iconParty  
+iconStar  
+iconEmailOutline  
+icon404  
+iconSun  
+iconMoon
+
+</details>
 
 ## Next steps
 
