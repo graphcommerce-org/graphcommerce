@@ -26,4 +26,6 @@ The following overview contains the status of items on the GraphCommerce roadmap
 
 ## Next steps
 
-- Refer to the [Changelog](../../CHANGELOG.md) to see what's new
+- Refer to the
+  [Changelog](https://github.com/ho-nl/m2-pwa/blob/master/CHANGELOG.md) to see
+  what's new
