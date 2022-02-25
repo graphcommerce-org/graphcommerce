@@ -155,12 +155,20 @@ const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
         borderRadius: 1.5,
         maxWidth: (theme) => `calc(100vw - ${theme.page.horizontal} * 2)`,
 
-        "&:not([class*='language-'])": {
-          backgroundColor: (theme) => [alpha(theme.palette.text.primary, 0.08), '!important'],
-          p: '1em',
-        },
+        // "&:not([class*='language-'])": {
+        //   backgroundColor: (theme) => [alpha(theme.palette.text.primary, 0.08), '!important'],
+        //   p: '1em',
+        // },
+
         "&[class*='language-']": {
           backgroundImage: 'linear-gradient(to top, #003c6780, #00264180 )',
+        },
+        '&.language-txt': {
+          background: 'none',
+          border: (theme) => `1px solid ${theme.palette.divider}`,
+          '& code': {
+            color: (theme) => [theme.palette.text.primary, '!important'],
+          },
         },
       }}
     />
@@ -273,6 +281,12 @@ function IndexPage(props: Props) {
             height: '1.2em',
             ml: `calc(-0.2em - 1.2em)`,
             opacity: 0.0,
+          },
+          '& .contains-task-list': {
+            padding: 0,
+            '& li': {
+              listStyle: 'none',
+            },
           },
           '& h1:hover .icon.icon-link, & h2:hover .icon.icon-link, & h3:hover .icon.icon-link, & h4:hover .icon.icon-link, & h5:hover .icon.icon-link, & h6:hover .icon.icon-link':
             { opacity: 0.5 },

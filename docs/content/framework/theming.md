@@ -172,7 +172,6 @@ and circular buttons, are dependent of the value of `shape`. A simple way to
 remove this effect is to set its value to 0:
 
 ```tsx
-  ...themeBaseDefaults,
   shape: { borderRadius: 0 },
   typography: {
 ```
