@@ -27,20 +27,19 @@ or set up your local development environment with the instructions below.
 
 ### Download the example
 
-- `git clone https://github.com/ho-nl/m2-pwa graphcommerce`
-- `mkdir my-project`
-- `cp -R graphcommerce/examples/magento-graphcms/. my-project`
-- `cd my-project`
-- `cp -R .env.example .env`
-- `rm CHANGELOG.md && touch CHANGELOG.md`
-- `rm -rf node_modules && rm -rf .next`
-
-### Update package.json
+1. `git clone ... graphcommerce`
+2. `mkdir my-project`
+3. `cp -R graphcommerce/examples/magento-graphcms/. my-project`
+4. `rm -rf graphcommerce`
+5. `cd my-project`
+6. `cp -R .env.example .env`
+7. `rm CHANGELOG.md && touch CHANGELOG.md`
+8. `rm -rf node_modules && rm -rf .next`
 
 Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
 `scripts`:
 
-```
+```json
 {
   "name": "@my-company/my-project",
   "scripts": {
