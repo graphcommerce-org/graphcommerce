@@ -89,12 +89,22 @@ the syntax by calculating the intermediate values (`fontSize` is a
 simplification of `breakpointVal`):
 
 ```tsx
+// Example from /components/theme.ts
+
 h1: {
   ...fontSize(28, 64),
   fontWeight: 700,
   fontVariationSettings: "'wght' 660",
   lineHeight: 1.22,
 },
+```
+
+To use breakpointVal in a component:
+
+```tsx
+sx={{
+  ...breakpointVal('fontSize', 36, 82, theme.breakpoints.values),
+}}
 ```
 
 ## Adding a custom font
