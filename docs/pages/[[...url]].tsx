@@ -303,6 +303,7 @@ function IndexPage(props: Props) {
             pb: 2,
             background: alpha(theme.palette.divider, 0.05),
             mb: 0,
+            mt: 8,
             borderTopLeftRadius: 10,
             borderTopRightRadius: 10,
             border: 0,
