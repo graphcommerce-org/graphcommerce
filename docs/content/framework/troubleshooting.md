@@ -60,3 +60,8 @@ Error: Interface field RoutableInterface.type expects type UrlRewriteEntityTypeE
 In the Magento store, a product attribute is configured with attribute_code
 'type'. Migrate the product information to a new attribute and remove the
 product attribute named 'type'.
+
+## Next steps
+
+- Learn how to [Set up Visual Studio Code](../getting-started/vscode.md) and
+  install usefull extensions for an optimal development experience

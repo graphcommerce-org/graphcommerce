@@ -55,3 +55,8 @@ modified by editing /next-sitemap.js. For example, view the
 
 Generating the robot.txt file is part of the static build proces. Use
 `yarn build` to initiate the build proces and to generate a new robots.txt file.
+
+## Next steps
+
+- Learn about [Static Generation (SSG)](../framework/static-generation.md) in
+  GraphCommerce

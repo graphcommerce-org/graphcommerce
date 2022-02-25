@@ -248,6 +248,7 @@ line-height should not be scaled with responsiveVal. To learn more, look into
 
 ## Next steps
 
+- Learn about [icons](../framework/icons.md) in GraphCommerce
 - Learn more about
   [customizing components ↗](https://mui.com/customization/how-to-customize/#overriding-styles-with-class-names)
   in the MUI documentation

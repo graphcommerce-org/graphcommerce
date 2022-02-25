@@ -23,3 +23,7 @@ The following overview contains the status of items on the GraphCommerce roadmap
 ## Future
 
 - [ ] `magento` example without GraphCMS dependency
+
+## Next steps
+
+- Refer to the [Changelog](../../CHANGELOG.md) to see what's new

@@ -49,3 +49,8 @@ Production Branch of your GitHub project:
 - A custom domain can be configured in the Vercel Project Settings. Update the
   `NEXT_PUBLIC_GRAPHQL_ENDPOINT` and `NEXT_PUBLIC_SITE_URL` variables
   afterwards.
+
+## Next steps
+
+- Learn about [Static Generation (SSG)](../framework/static-generation.md) in
+  GraphCommerce

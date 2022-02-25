@@ -296,6 +296,34 @@ function IndexPage(props: Props) {
               listStyle: 'none',
             },
           },
+          '& h2:last-of-type': {
+            pl: 3,
+            pr: 3,
+            pt: 2,
+            pb: 2,
+            background: alpha(theme.palette.divider, 0.05),
+            mb: 0,
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
+            border: 0,
+          },
+          '& ul:last-of-type': {
+            pl: 3,
+            pr: 3,
+            pt: 0,
+            pb: 3,
+            mt: 0,
+            background: alpha(theme.palette.divider, 0.05),
+            borderBottomLeftRadius: 10,
+            borderBottomRightRadius: 10,
+            '& li': {
+              listStyle: 'none',
+              '&:before': {
+                content: '"— "',
+                mr: 1,
+              },
+            },
+          },
           '& h1:hover .icon.icon-link, & h2:hover .icon.icon-link, & h3:hover .icon.icon-link, & h4:hover .icon.icon-link, & h5:hover .icon.icon-link, & h6:hover .icon.icon-link':
             { opacity: 0.5 },
         })}
