@@ -20,8 +20,8 @@ high end e-commerce progressive web apps (PWA).
 | -------------------------------------------------------------- | ---------------------------------------- | -------------------------------------------------- |
 | [Static generation](../framework/static-generation.md)         | [Theming](../framework/theming.md)       | [Translations](../framework/translations.md)       |
 | [Environment Variables](../framework/environment-variables.md) | [Typography](../framework/typography.md) | [Troubleshooting](../framework/troubleshooting.md) |
-| [Deployment](../framework/deployment.md)                       | [Favicon](../framework//favicon.md)      |                                                    |
-| [GraphCMS](../framework/graphcms.md)                           | [SEO](../framework/seo.md)               |                                                    |
+| [Deployment](../framework/deployment.md)                       | [Favicon](../framework/favicon.md)       | [SEO](../framework/seo.md)                         |
+| [GraphCMS](../framework/graphcms.md)                           | [Icons](../framework//icons.md)          |                                                    |
 
 ## GraphCommerce project structure
 

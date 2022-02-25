@@ -9,8 +9,8 @@ which is JavaScript with syntax for types.
 
 [Visual Studio Code ↗](https://code.visualstudio.com/) is a code editor
 redefined and optimized for building and debugging modern web applications such
-as GrahCommerce. Visual Studio Code is free and available on all platforms. This
-guide covers which usefull VS Code extensions to install for an optimal
+as GraphCommerce. Visual Studio Code is free and available on all platforms.
+This guide covers which usefull VS Code extensions to install for an optimal
 development experience.
 
 Recommended extensions
