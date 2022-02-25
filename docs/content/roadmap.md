@@ -9,16 +9,17 @@ The following overview contains the status of items on the GraphCommerce roadmap
 
 ## In progress
 
-- Framework updates (Mui5)
-- Documentation and installation guide
-- Quality improvements (Reduce components)
+- [x] Framework updates (Mui5)
+- [x] Translation updates (DE, NL, ES, FR)
+- [ ] Documentation and installation guide
+- [ ] Quality improvements (Reduce components, naming)
 
 ## Planned
 
-- Translation updates (DE, NL, ES, FR)
-- `magento` example without GraphCMS dependency
-- Algolia search integration
-- Checkout UI and accessibility improvements
-- Payment service provider integration (Stripe)
-- Adobe Commerce Pagebuilder support
-- Payment service provider integration (Adyen)
+- [ ] Search integration (external)
+- [ ] Checkout UI and accessibility improvements
+- [ ] Payment service provider integration
+
+## Future
+
+- [ ] `magento` example without GraphCMS dependency
