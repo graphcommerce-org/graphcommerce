@@ -1,3 +1,8 @@
+> **Developer preview**  
+> This is a developer preview of GraphCommerce. The documentation will be
+> updated as GraphCommerce introduces
+> [new features and refines existing functionality](https://github.com/ho-nl/m2-pwa/releases).
+
 # Icons
 
 The graphcommerce UI looks clean and minimalistic due to the use of icons. This
