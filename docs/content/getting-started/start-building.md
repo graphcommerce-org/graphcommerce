@@ -17,7 +17,7 @@ functionality to your GraphCommerce app. Your final modification will be simple,
 but you’ll learn where to find resources to build more complex features on your
 own.
 
-## What you'll learn
+### What you'll learn
 
 After you've finished this tutorial, you'll have accomplished the following:
 
@@ -25,7 +25,7 @@ After you've finished this tutorial, you'll have accomplished the following:
 - Fetched data from server components
 - Made changes to GraphQL queries
 
-## Requirements
+### Requirements
 
 You're using the most recent version of GraphCommerce. We recommend using the
 latest release to get the benefits of performance, new components, and other
@@ -34,7 +34,7 @@ best practices.
 You've completed the
 [Create a GraphCommerce app tutorial](../getting-started/create.md).
 
-# Step 1: Make customizations
+## Step 1: Make customizations
 
 ### Add text
 
@@ -96,7 +96,7 @@ https://user-images.githubusercontent.com/1251986/154980686-3d2bf587-16d7-412b-b
    <figcaption>Change a component's style in your GraphCommerce app</figcaption>
 </figure>
 
-# Step 2: Make GraphQL changes
+## Step 2: Make GraphQL changes
 
 You might want to make changes to a GraphQL query to fetch data from Magento for
 a specific need. For example, if you want to display a certain category
@@ -145,7 +145,7 @@ query CategoryPage($url: String!, $rootCategory: String!) {
 {category?.name} - ({category?.children_count})
 ```
 
-## Interactive GraphQL interface
+## Step 3: Interactive GraphQL interface
 
 You can explore the Storefront API and run test queries in your GraphCommerce
 app. When you're running the GraphCommerce local development environment, you
