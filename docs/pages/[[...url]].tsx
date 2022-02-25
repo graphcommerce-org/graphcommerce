@@ -99,20 +99,25 @@ const mdxComponents: React.ComponentProps<typeof MDXRemote>['components'] = {
   h1: ({ ref, ...props }) => (
     <Typography
       component='h1'
-      variant='h2'
+      variant='h1'
       {...props}
       sx={{ mt: '2em', mb: '1em', '&:first-of-type': { mt: '1em' } }}
     />
   ),
   h2: ({ ref, ...props }) => (
-    <Typography component='h2' variant='h3' {...props} sx={{ mt: '2em', mb: '0.5em' }} />
+    <Typography
+      component='h2'
+      variant='h2'
+      {...props}
+      sx={{ mt: '2em', mb: '0.5em', borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
+    />
   ),
   h3: ({ ref, ...props }) => (
-    <Typography component='h3' variant='h4' {...props} sx={{ mt: '2em', mb: '0.5em' }} />
+    <Typography component='h3' variant='h3' {...props} sx={{ mt: '2em', mb: '0.5em' }} />
   ),
-  h4: ({ ref, ...props }) => <Typography component='h4' variant='h5' {...props} sx={{}} />,
-  h5: ({ ref, ...props }) => <Typography component='h5' variant='h6' {...props} sx={{}} />,
-  h6: ({ ref, ...props }) => <Typography component='h6' variant='subtitle1' {...props} sx={{}} />,
+  h4: ({ ref, ...props }) => <Typography component='h4' variant='h4' {...props} sx={{}} />,
+  h5: ({ ref, ...props }) => <Typography component='h5' variant='h5' {...props} sx={{}} />,
+  h6: ({ ref, ...props }) => <Typography component='h6' variant='h6' {...props} sx={{}} />,
   p: ({ ref, ...props }) => (
     <Typography variant='body1' {...props} sx={{ mt: '0.5em', mb: '1em' }} />
   ),
@@ -237,6 +242,9 @@ function IndexPage(props: Props) {
             margin: '0 auto',
             maxWidth: '100%',
             boxShadow: '0 0px 40px 0 rgba(0,0,0,0.15)',
+          },
+          '& strong': {
+            fontVariationSettings: "'wght' 600",
           },
           '& pre': {
             borderRadius: 2,

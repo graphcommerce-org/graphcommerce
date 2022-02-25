@@ -14,7 +14,7 @@ e-commerce storefronts in React. It includes the structure, components, and
 tooling you need to get started so you can spend your time styling and designing
 high end e-commerce progressive web apps (PWA).
 
-## Framework concepts and components
+### Framework concepts and components
 
 | Concepts                                                       | Customizing                              | Other                                              |
 | -------------------------------------------------------------- | ---------------------------------------- | -------------------------------------------------- |

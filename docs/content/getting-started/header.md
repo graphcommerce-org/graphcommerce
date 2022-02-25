@@ -17,7 +17,7 @@ In this tutorial, you'll accomplish a series of tasks to add some specific
 functionality to your app. Your final app will be simple, but you'll learn where
 to find resources to build more complex features on your own.
 
-## After you've finished this tutorial, you'll have accomplished the following:
+### After you've finished this tutorial, you'll have accomplished the following:
 
 - Edited the layout component to remove components
 - Add a simplified search Icon button

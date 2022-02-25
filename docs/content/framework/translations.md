@@ -9,7 +9,7 @@ support for a language of your choosing.
 All available interface translations are stored as .po files in the /locales
 directory.
 
-```txt
+```ts
 Example of /locales/es.po
 
 ...
@@ -29,7 +29,7 @@ The msgid is the message being translated. In
 you can see a the first msgid is passed as a propped, wrapped in the `<Trans>`
 component:
 
-```tsx
+```ts
 <FullPageMessage
   title={<Trans>Your cart is empty</Trans>}
   ...
@@ -40,7 +40,7 @@ component:
 
 In /locales/en.po, find the msgid `Your cart is empty` and change the msgstr:
 
-```txt
+```ts
 msgid "Your cart is empty"
 msgstr "Empty cart!"
 ```
@@ -57,7 +57,7 @@ Refresh to see your changes updated
 If you're building a component, you can wrap the strings you want to translate
 in the `<Trans>` jsx macro:
 
-```tsx
+```ts
 <Typography variant='h3'>
   <Trans>Call us now</Trans>
 </Typography>
@@ -71,7 +71,7 @@ import { t, Trans } from '@lingui/macro'
 
 Add the msgid and translation to the translation files:
 
-```txt
+```ts
 Example of /locales/es.po
 
 ...
@@ -93,7 +93,7 @@ You can pass values in msgid's:
 
 The syntax in the translation files:
 
-```txt
+```ts
 Example of /locales/en.po
 
 ...
