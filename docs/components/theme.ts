@@ -133,7 +133,7 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       },
       fontWeightBold: 600,
       body1: {
-        ...fontSize(16, 18),
+        ...fontSize(15, 18),
         fontWeight: 370,
         fontVariationSettings: palette.mode === 'dark' ? "'wght' 450" : "'wght' 370",
         lineHeight: 1.7,
@@ -145,7 +145,7 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
         lineHeight: 1.7,
       },
       body2: {
-        ...fontSize(14, 17),
+        ...fontSize(13, 15),
         lineHeight: 1.7,
       },
       caption: {
