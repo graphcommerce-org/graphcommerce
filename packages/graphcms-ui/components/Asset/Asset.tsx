@@ -22,7 +22,16 @@ export function Asset(props: AssetProps) {
 
   if (isImage(asset)) {
     const { url, height, mimeType, size, width, ...assetProps } = removeNull(asset)
-    return <Image src={url} height={height} width={width} {...imgProps} {...assetProps} />
+    return (
+      <Image
+        src={url}
+        height={height}
+        width={width}
+        {...imgProps}
+        {...assetProps}
+        unoptimized={mimeType === 'image/svg+xml'}
+      />
+    )
   }
 
   if (asset.mimeType === 'video/mp4') {
