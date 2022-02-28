@@ -34,10 +34,10 @@ const ScrollerFab = m(
       <m.div ref={ref} style={{ scale, opacity: scale, willChange: 'scale, opacity', zIndex: 1 }}>
         <Fab
           type='button'
+          size='small'
           {...buttonProps}
           onClick={handleClick}
           aria-label={direction}
-          size='small'
           sx={[{ display: { xs: 'none', md: 'flex' } }, ...(Array.isArray(sx) ? sx : [sx])]}
         />
       </m.div>

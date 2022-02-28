@@ -1,6 +1,7 @@
 import {
   Scroller,
   ScrollerButton,
+  ScrollerButtonProps as ScrollerButtonPropsType,
   ScrollerPageCounter,
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
@@ -23,10 +24,15 @@ const { classes, selectors } = extendableComponent('SidebarSlider', [
   'centerRight',
 ] as const)
 
-export type SidebarSliderProps = { children: ReactNode; sidebar: ReactNode; sx?: SxProps<Theme> }
+export type SidebarSliderProps = {
+  children: ReactNode
+  sidebar: ReactNode
+  sx?: SxProps<Theme>
+  buttonSize?: ScrollerButtonPropsType['size']
+}
 
 export function SidebarSlider(props: SidebarSliderProps) {
-  const { children, sidebar, sx } = props
+  const { children, sidebar, sx, buttonSize } = props
 
   return (
     <Row maxWidth={false} disableGutters className={classes.root} sx={sx}>
@@ -79,6 +85,7 @@ export function SidebarSlider(props: SidebarSliderProps) {
                 direction='left'
                 className={classes.sliderButtons}
                 sx={{ display: { xs: 'none', md: 'flex' } }}
+                size={buttonSize}
               >
                 <SvgIcon src={iconChevronLeft} />
               </ScrollerButton>
@@ -93,7 +100,12 @@ export function SidebarSlider(props: SidebarSliderProps) {
                 top: `calc(50% - 28px)`,
               })}
             >
-              <ScrollerButton direction='right' className={classes.sliderButtons}>
+              <ScrollerButton
+                direction='right'
+                className={classes.sliderButtons}
+                sx={{ display: { xs: 'none', md: 'flex' } }}
+                size={buttonSize}
+              >
                 <SvgIcon src={iconChevronRight} />
               </ScrollerButton>
             </Box>
