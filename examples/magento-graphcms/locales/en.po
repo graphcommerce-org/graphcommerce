@@ -28,6 +28,9 @@ msgstr "Add new address"
 msgid "Add review"
 msgstr "Add review"
 
+msgid "Add to Cart"
+msgstr "Add to Cart"
+
 msgid "Addition"
 msgstr "Addition"
 
@@ -498,6 +501,9 @@ msgstr "View all your reviews"
 
 msgid "View less items"
 msgstr "View less items"
+
+msgid "View shopping cart"
+msgstr "View shopping cart"
 
 msgid "View your account"
 msgstr "View your account"

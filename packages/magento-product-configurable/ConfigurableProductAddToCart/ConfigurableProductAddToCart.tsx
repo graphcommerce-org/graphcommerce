@@ -110,7 +110,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
           width: '100%',
         })}
       >
-        Add to Cart
+        <Trans>Add to Cart</Trans>
       </Button>
 
       <ApolloCartErrorAlert error={error} />
@@ -139,7 +139,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
               color='secondary'
               endIcon={<SvgIcon src={iconChevronRight} />}
             >
-              View shopping cart
+              <Trans>View shopping cart</Trans>
             </Button>
           </PageLink>
         }

@@ -28,6 +28,9 @@ msgstr "Ajouter une nouvelle adresse"
 msgid "Add review"
 msgstr "Ajouter une évaluation"
 
+msgid "Add to Cart"
+msgstr "Ajouter au panier"
+
 msgid "Addition"
 msgstr "Addition"
 
@@ -498,6 +501,9 @@ msgstr "Voir toutes vos évaluations"
 
 msgid "View less items"
 msgstr "Voir moins d'articles"
+
+msgid "View shopping cart"
+msgstr "Voir le panier"
 
 msgid "View your account"
 msgstr "Voir votre compte"
