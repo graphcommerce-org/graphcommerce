@@ -1,6 +1,6 @@
 ---
-'@graphcommerce/docs': patch
-'@graphcommerce/image': patch
+'@graphcommerce/docs': minor
+'@graphcommerce/image': minor
 '@graphcommerce/next-ui': patch
 ---
 
