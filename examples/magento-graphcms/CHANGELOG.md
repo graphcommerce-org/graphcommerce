@@ -1,5 +1,74 @@
 # Change Log
 
+## 3.2.1
+
+### Patch Changes
+
+- [#1278](https://github.com/ho-nl/m2-pwa/pull/1278)
+  [`81ea406d5`](https://github.com/ho-nl/m2-pwa/commit/81ea406d54d6b5c662c030a7fea444abc4117a20)
+  Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Written documentation for GraphCommerce!
+  👩‍🏫🧑‍🏫📚📖
+
+* [#1280](https://github.com/ho-nl/m2-pwa/pull/1280)
+  [`bdd460c6f`](https://github.com/ho-nl/m2-pwa/commit/bdd460c6f09af148a96c55324012b8f53c3618f1)
+  Thanks [@paales](https://github.com/paales)! - Review forms now work by using the url_key of a
+  product instead of the SKU. Some backends do not support filtering by sku
+
+- [`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96)
+  Thanks [@paales](https://github.com/paales)! - made packages public
+
+* [#1278](https://github.com/ho-nl/m2-pwa/pull/1278)
+  [`81ea406d5`](https://github.com/ho-nl/m2-pwa/commit/81ea406d54d6b5c662c030a7fea444abc4117a20)
+  Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Upgraded dependencies to the latest version
+
+* Updated dependencies
+  [[`4bb963d75`](https://github.com/ho-nl/m2-pwa/commit/4bb963d7595b5ce6e3a4924cc2e3e8b0210cdcd6),
+  [`bdd460c6f`](https://github.com/ho-nl/m2-pwa/commit/bdd460c6f09af148a96c55324012b8f53c3618f1),
+  [`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96),
+  [`81ea406d5`](https://github.com/ho-nl/m2-pwa/commit/81ea406d54d6b5c662c030a7fea444abc4117a20),
+  [`3a719c88c`](https://github.com/ho-nl/m2-pwa/commit/3a719c88cad1eab58602de28c41adc0fc4827e1d),
+  [`5ffcb56bf`](https://github.com/ho-nl/m2-pwa/commit/5ffcb56bfcbe49ebeaf24f9341e819a145ab9a14)]:
+  - @graphcommerce/framer-next-pages@3.1.0
+  - @graphcommerce/magento-review@3.0.3
+  - @graphcommerce/ecommerce-ui@1.0.1
+  - @graphcommerce/googleanalytics@2.0.3
+  - @graphcommerce/googlerecaptcha@2.0.3
+  - @graphcommerce/googletagmanager@2.0.3
+  - @graphcommerce/graphcms-ui@3.0.3
+  - @graphcommerce/graphql@3.0.3
+  - @graphcommerce/graphql-mesh@4.0.3
+  - @graphcommerce/image@3.1.0
+  - @graphcommerce/lingui-next@2.1.1
+  - @graphcommerce/magento-cart@4.1.2
+  - @graphcommerce/magento-cart-billing-address@3.0.3
+  - @graphcommerce/magento-cart-checkout@3.0.3
+  - @graphcommerce/magento-cart-coupon@3.0.3
+  - @graphcommerce/magento-cart-email@3.0.3
+  - @graphcommerce/magento-cart-items@3.0.3
+  - @graphcommerce/magento-cart-payment-method@3.0.3
+  - @graphcommerce/magento-cart-shipping-address@3.0.3
+  - @graphcommerce/magento-cart-shipping-method@3.0.3
+  - @graphcommerce/magento-category@4.0.3
+  - @graphcommerce/magento-cms@4.0.3
+  - @graphcommerce/magento-customer@4.1.2
+  - @graphcommerce/magento-customer-account@3.0.3
+  - @graphcommerce/magento-customer-order@3.0.3
+  - @graphcommerce/magento-graphql@3.0.3
+  - @graphcommerce/magento-newsletter@2.0.3
+  - @graphcommerce/magento-payment-braintree@3.0.3
+  - @graphcommerce/magento-payment-included@3.0.3
+  - @graphcommerce/magento-product@4.0.3
+  - @graphcommerce/magento-product-bundle@4.0.3
+  - @graphcommerce/magento-product-configurable@4.0.3
+  - @graphcommerce/magento-product-downloadable@4.0.3
+  - @graphcommerce/magento-product-grouped@3.0.3
+  - @graphcommerce/magento-product-simple@4.0.3
+  - @graphcommerce/magento-product-virtual@4.0.3
+  - @graphcommerce/magento-search@4.0.3
+  - @graphcommerce/magento-store@4.0.3
+  - @graphcommerce/mollie-magento-payment@3.0.3
+  - @graphcommerce/next-ui@4.1.2
+
 ## 3.2.0
 
 ### Minor Changes

@@ -1,5 +1,22 @@
 # Change Log
 
+## 4.0.3
+
+### Patch Changes
+
+- [`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96)
+  Thanks [@paales](https://github.com/paales)! - made packages public
+
+* [#1278](https://github.com/ho-nl/m2-pwa/pull/1278)
+  [`81ea406d5`](https://github.com/ho-nl/m2-pwa/commit/81ea406d54d6b5c662c030a7fea444abc4117a20)
+  Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Upgraded dependencies to the latest version
+
+* Updated dependencies
+  [[`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96),
+  [`81ea406d5`](https://github.com/ho-nl/m2-pwa/commit/81ea406d54d6b5c662c030a7fea444abc4117a20)]:
+  - @graphcommerce/graphql@3.0.3
+  - @graphcommerce/magento-store@4.0.3
+
 ## 4.0.2
 
 ### Patch Changes

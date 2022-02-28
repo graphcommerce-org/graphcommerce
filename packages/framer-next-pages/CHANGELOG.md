@@ -1,5 +1,23 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- [#1281](https://github.com/ho-nl/m2-pwa/pull/1281)
+  [`4bb963d75`](https://github.com/ho-nl/m2-pwa/commit/4bb963d7595b5ce6e3a4924cc2e3e8b0210cdcd6)
+  Thanks [@paales](https://github.com/paales)! - Add an option the FramerNextPages component to
+  define a fallback and fallbackRoute.
+
+### Patch Changes
+
+- [`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96)
+  Thanks [@paales](https://github.com/paales)! - made packages public
+
+- Updated dependencies
+  [[`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96)]:
+  - @graphcommerce/framer-utils@3.0.3
+
 ## 3.0.2
 
 ### Patch Changes
