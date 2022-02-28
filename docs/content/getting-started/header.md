@@ -208,5 +208,7 @@ TransitionComponent={Fade}
 
 ## Next steps
 
+- Learn how to
+  [build a custom GraphCMS component](../getting-started/graphcms-component.md)
 - Learn more about creating
   [styled components with the styled() utility](../framework/theming.md)

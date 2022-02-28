@@ -222,10 +222,10 @@ query {
 ### Query fragments
 
 Every component that requires data from Magento or GraphCMS has its own
-`.graphql` file, containing a GraphQL query fragment. GraphQL Code Generator is
-used to convert query fragments to both the GraphQL document (query or mutation)
-and Typescript type definitions, both captured in `.gql(.ts)` files. `.gql(.ts)`
-are generated at build time.
+`.graphql` file, containing a GraphQL query fragment. GraphQL Code Generator
+(codegen) is used to convert query fragments to both the GraphQL document (query
+or mutation) and Typescript type definitions, both captured in `.gql(.ts)`
+files. `.gql(.ts)` are generated at build time.
 
 Pages run queries in the getStaticProps function and pass the response as props.
 Pages have a single page query, that combines multiple query fragments from
