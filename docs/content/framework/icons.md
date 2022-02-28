@@ -18,8 +18,22 @@ default strokeWidth, modify the value `theme.shape.strokeWidth` in
 ```ts
 // Example from /components/theme.ts
 
-...
-shape: { borderRadius: 4, strokeWidth: 1 },
+import { svgIconStrokeWidth } from '@graphcommerce/next-ui'
+
+const createOverrides = (theme: Theme): Components => ({
+  // ... other component styling
+
+  SvgIcon: {
+    variants: [
+      {
+        props: {},
+        style: {
+          strokeWidth: svgIconStrokeWidth(28, 148, 0.9, 0.4),
+        },
+      },
+    ],
+  },
+})
 ```
 
 To override the default color for all icons:
@@ -27,12 +41,20 @@ To override the default color for all icons:
 ```ts
 // Example from /components/theme.ts
 
-styleOverrides: {
-  ...
-  '& .SvgIcon': {
-    color: theme.palette.primary.main,
+const createOverrides = (theme: Theme): Components => ({
+  //... other component styling
+
+  SvgIcon: {
+    variants: [
+      {
+        props: {},
+        style: ({ theme }) => ({
+          color: theme.palette.primary.main,
+        }),
+      },
+    ],
   },
-},
+})
 ```
 
 Use the sx prop to customise the styling of an icon in a component:
@@ -162,10 +184,22 @@ To override all or multiple icons with your own, add an icon override array to
 
 ```tsx
 // /components/theme.ts
+import { iconCart, iconChat } from '@graphcommerce/next-ui'
 import customCartIcon from './my-custom-cart-icon.svg'
+import customChatIcon from './my-custom-chat-icon.svg'
 
-...
-[iconShoppingBag, customCartIcon]
+// ...
+const createOverrides = (theme: Theme): Components => ({
+  //... other component styling
+
+  SvgIcon: {
+    overrides: [
+      [iconCart, customCartIcon],
+      [iconChat, customChatIcon],
+    ],
+  },
+})
+// ...
 ```
 
 All icons must meet the svg specifications as described above

@@ -1,8 +1,17 @@
 import { capitalize, Interpolation, Theme } from '@mui/material'
-import React from 'react'
 
 export type ExtendableComponent<StyleProps extends Record<string, unknown>> = {
+  /**
+   * Allows you to override the props of a component globally
+   *
+   * @see https://mui.com/customization/theme-components/#adding-new-component-variants
+   */
   defaultProps?: Partial<StyleProps>
+  /**
+   * Allows you to define custom styling for a variant.
+   *
+   * @see https://mui.com/customization/theme-components/#adding-new-component-variants
+   */
   variants?: { props: Partial<StyleProps>; style: Interpolation<{ theme: Theme }> }[]
 }
 
