@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.0.3
+
+### Patch Changes
+
+- [`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96)
+  Thanks [@paales](https://github.com/paales)! - made packages public
+
+- Updated dependencies
+  [[`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96)]:
+  - @graphcommerce/graphql@3.0.3
+
 ## 2.0.2
 
 ### Patch Changes

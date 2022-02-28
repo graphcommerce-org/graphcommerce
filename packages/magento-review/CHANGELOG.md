@@ -1,5 +1,30 @@
 # Change Log
 
+## 3.0.3
+
+### Patch Changes
+
+- [#1280](https://github.com/ho-nl/m2-pwa/pull/1280)
+  [`bdd460c6f`](https://github.com/ho-nl/m2-pwa/commit/bdd460c6f09af148a96c55324012b8f53c3618f1)
+  Thanks [@paales](https://github.com/paales)! - Review forms now work by using the url_key of a
+  product instead of the SKU. Some backends do not support filtering by sku
+
+* [`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96)
+  Thanks [@paales](https://github.com/paales)! - made packages public
+
+* Updated dependencies
+  [[`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96),
+  [`81ea406d5`](https://github.com/ho-nl/m2-pwa/commit/81ea406d54d6b5c662c030a7fea444abc4117a20),
+  [`3a719c88c`](https://github.com/ho-nl/m2-pwa/commit/3a719c88cad1eab58602de28c41adc0fc4827e1d),
+  [`5ffcb56bf`](https://github.com/ho-nl/m2-pwa/commit/5ffcb56bfcbe49ebeaf24f9341e819a145ab9a14)]:
+  - @graphcommerce/graphql@3.0.3
+  - @graphcommerce/image@3.1.0
+  - @graphcommerce/magento-customer@4.1.2
+  - @graphcommerce/magento-product@4.0.3
+  - @graphcommerce/magento-store@4.0.3
+  - @graphcommerce/next-ui@4.1.2
+  - @graphcommerce/react-hook-form@3.0.3
+
 ## 3.0.2
 
 ### Patch Changes

@@ -1,5 +1,33 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- [#1284](https://github.com/ho-nl/m2-pwa/pull/1284)
+  [`5ffcb56bf`](https://github.com/ho-nl/m2-pwa/commit/5ffcb56bfcbe49ebeaf24f9341e819a145ab9a14)
+  Thanks [@paales](https://github.com/paales)! - SvgIcon is now more extenable and flexible:
+
+  - It will automatically calculate the stroke-width of the SVG based on the rendered size, allowing
+    for a more flexible use for icons.
+
+  - Make SvgIcon themable in your own Theme.
+
+  - Create overrides for components that will be used throughout the app.
+
+### Patch Changes
+
+- [`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96)
+  Thanks [@paales](https://github.com/paales)! - made packages public
+
+* [#1278](https://github.com/ho-nl/m2-pwa/pull/1278)
+  [`81ea406d5`](https://github.com/ho-nl/m2-pwa/commit/81ea406d54d6b5c662c030a7fea444abc4117a20)
+  Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Upgraded dependencies to the latest version
+
+* Updated dependencies
+  [[`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96)]:
+  - @graphcommerce/framer-utils@3.0.3
+
 ## 3.0.2
 
 ### Patch Changes
