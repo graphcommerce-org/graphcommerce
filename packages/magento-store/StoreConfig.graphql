@@ -19,6 +19,7 @@ query StoreConfig {
     category_url_suffix
     product_url_suffix
     secure_base_link_url
+    secure_base_url
 
     root_category_uid
 
