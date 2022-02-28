@@ -1,5 +1,5 @@
 ---
-menu: 4. Build a GraphCMS component
+menu: 5. Build a GraphCMS component
 ---
 
 > **Developer preview**  
@@ -7,7 +7,7 @@ menu: 4. Build a GraphCMS component
 > updated as GraphCommerce introduces
 > [new features and refines existing functionality](https://github.com/ho-nl/m2-pwa/releases).
 
-# Build a custom GraphCMS component
+# Build a GraphCMS component
 
 Previously, you created a GraphCommerce app and started building a custom
 header. You're now ready to build a GraphCMS component.
@@ -26,6 +26,16 @@ you'll learn where to find resources to build more complex features on your own.
 - Define the relationship between the Banner Model and Page Content field
 - Write a GraphQL query fragment and add it to the page query
 - Add the component to the page renderers
+
+### Requirements
+
+You've familiarized yourself with
+[React ↗](https://reactjs.org/docs/getting-started.html),
+[Next.js ↗](https://nextjs.org/docs/getting-started), and
+[Mui ↗](https://mui.com/getting-started/installation/). GraphCommerce is a
+frontend React framework that uses Next.js for server-side rendering.
+
+---
 
 ### Create the GraphCMS model
 

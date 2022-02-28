@@ -24,6 +24,16 @@ to find resources to build more complex features on your own.
 - Make a local copy of the MenuFab component and update it's imports
 - Change the Menu component's styling to a fullscreen overlay
 
+### Requirements
+
+You've familiarized yourself with
+[React ↗](https://reactjs.org/docs/getting-started.html),
+[Next.js ↗](https://nextjs.org/docs/getting-started), and
+[Mui ↗](https://mui.com/getting-started/installation/). GraphCommerce is a
+frontend React framework that uses Next.js for server-side rendering.
+
+---
+
 <figure>
 
 https://user-images.githubusercontent.com/1251986/154978614-8d2eaee1-d64b-4bae-a7d7-cfee2e9175d3.mp4
@@ -208,7 +218,6 @@ TransitionComponent={Fade}
 
 ## Next steps
 
-- Learn how to
-  [build a custom GraphCMS component](../getting-started/graphcms-component.md)
+- Learn how to [build pages](../getting-started/pages.md) in GraphCommerce
 - Learn more about creating
   [styled components with the styled() utility](../framework/theming.md)

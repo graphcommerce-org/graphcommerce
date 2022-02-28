@@ -1,6 +1,6 @@
 ---
 menu: Overview
-order: create,start-building,header,graphcms-component
+order: create,start-building,header,pages,graphcms-component
 ---
 
 > **Developer preview**  
