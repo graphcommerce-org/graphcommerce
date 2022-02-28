@@ -59,7 +59,7 @@ interface StaticRequire {
   default: StaticImageData
 }
 
-type StaticImport = StaticRequire | StaticImageData
+export type StaticImport = StaticRequire | StaticImageData
 
 export function isStaticRequire(src: StaticRequire | StaticImageData): src is StaticRequire {
   return (src as StaticRequire).default !== undefined

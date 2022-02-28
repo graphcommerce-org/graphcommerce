@@ -56,7 +56,6 @@ export function MenuFab(props: MenuFabProps) {
         <Fab
           color='inherit'
           aria-label='Open Menu'
-          size='medium'
           onClick={(event) => setOpenEl(event.currentTarget)}
           sx={(theme) => ({
             boxShadow: 'none',
@@ -73,10 +72,10 @@ export function MenuFab(props: MenuFabProps) {
           className={classes.fab}
         >
           {closeIcon ?? (
-            <SvgIcon src={iconClose} size='medium' sx={{ display: openEl ? 'block' : 'none' }} />
+            <SvgIcon src={iconClose} size='large' sx={{ display: openEl ? 'block' : 'none' }} />
           )}
           {menuIcon ?? (
-            <SvgIcon src={iconMenu} size='medium' sx={{ display: openEl ? 'none' : 'block' }} />
+            <SvgIcon src={iconMenu} size='large' sx={{ display: openEl ? 'none' : 'block' }} />
           )}
         </Fab>
         <MotionDiv
