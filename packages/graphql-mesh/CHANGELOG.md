@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.0.4
+
+### Patch Changes
+
+- [#1285](https://github.com/ho-nl/m2-pwa/pull/1285)
+  [`c85294ba6`](https://github.com/ho-nl/m2-pwa/commit/c85294ba6d742ce78c074559a1e95409b25a5017)
+  Thanks [@paales](https://github.com/paales)! - upgraded dependencies
+
+* [#1285](https://github.com/ho-nl/m2-pwa/pull/1285)
+  [`d9cd4acca`](https://github.com/ho-nl/m2-pwa/commit/d9cd4acca218018dd6e20f033875ef93919fb462)
+  Thanks [@paales](https://github.com/paales)! - fix: issue with graphql server creation
+
 ## 4.0.3
 
 ### Patch Changes

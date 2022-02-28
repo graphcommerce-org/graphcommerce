@@ -1,5 +1,36 @@
 # Change Log
 
+## 3.3.0
+
+### Minor Changes
+
+- [#1285](https://github.com/ho-nl/m2-pwa/pull/1285)
+  [`c8d5c4c20`](https://github.com/ho-nl/m2-pwa/commit/c8d5c4c20d6d4cc29b47a2e768fb517ad0c4cb26)
+  Thanks [@paales](https://github.com/paales)! - Added Italian locale 🍕🍝🇮🇹
+
+### Patch Changes
+
+- [#1285](https://github.com/ho-nl/m2-pwa/pull/1285)
+  [`c85294ba6`](https://github.com/ho-nl/m2-pwa/commit/c85294ba6d742ce78c074559a1e95409b25a5017)
+  Thanks [@paales](https://github.com/paales)! - upgraded dependencies
+
+* [#1285](https://github.com/ho-nl/m2-pwa/pull/1285)
+  [`8922b8792`](https://github.com/ho-nl/m2-pwa/commit/8922b879210e0c8bd86beccff3a168e69e6aaea4)
+  Thanks [@paales](https://github.com/paales)! - Updated locales with new translations
+
+* Updated dependencies
+  [[`ed9703b06`](https://github.com/ho-nl/m2-pwa/commit/ed9703b062d23ee01b1605ff9917c0ac3247fc25),
+  [`c85294ba6`](https://github.com/ho-nl/m2-pwa/commit/c85294ba6d742ce78c074559a1e95409b25a5017),
+  [`27368edbd`](https://github.com/ho-nl/m2-pwa/commit/27368edbdb0543658bf925cfa33b61de0e6dda38),
+  [`d9cd4acca`](https://github.com/ho-nl/m2-pwa/commit/d9cd4acca218018dd6e20f033875ef93919fb462)]:
+  - @graphcommerce/magento-store@4.1.0
+  - @graphcommerce/graphql-mesh@4.0.4
+  - @graphcommerce/magento-product@4.0.4
+  - @graphcommerce/magento-product-configurable@4.0.4
+  - @graphcommerce/magento-review@3.0.4
+  - @graphcommerce/next-ui@4.1.3
+  - @graphcommerce/graphcms-ui@3.0.4
+
 ## 3.2.1
 
 ### Patch Changes

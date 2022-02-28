@@ -1,5 +1,39 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- [#1285](https://github.com/ho-nl/m2-pwa/pull/1285)
+  [`ed9703b06`](https://github.com/ho-nl/m2-pwa/commit/ed9703b062d23ee01b1605ff9917c0ac3247fc25)
+  Thanks [@paales](https://github.com/paales)! - Added the ability to configure `defaultProps` for
+  the <Money/> component.
+
+  ```ts
+  // For example in examples/magento-graphcms/theme.ts
+
+  const createOverrides = (theme: Theme): Components => ({
+    Money: {
+      defaultProps: {
+        round: true,
+        formatOptions: {
+          style: 'decimal',
+        },
+      },
+    },
+  })
+  ```
+
+### Patch Changes
+
+- [#1285](https://github.com/ho-nl/m2-pwa/pull/1285)
+  [`c85294ba6`](https://github.com/ho-nl/m2-pwa/commit/c85294ba6d742ce78c074559a1e95409b25a5017)
+  Thanks [@paales](https://github.com/paales)! - upgraded dependencies
+
+- Updated dependencies
+  [[`c85294ba6`](https://github.com/ho-nl/m2-pwa/commit/c85294ba6d742ce78c074559a1e95409b25a5017)]:
+  - @graphcommerce/next-ui@4.1.3
+
 ## 4.0.3
 
 ### Patch Changes

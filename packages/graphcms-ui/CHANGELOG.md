@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.0.4
+
+### Patch Changes
+
+- [#1285](https://github.com/ho-nl/m2-pwa/pull/1285)
+  [`27368edbd`](https://github.com/ho-nl/m2-pwa/commit/27368edbdb0543658bf925cfa33b61de0e6dda38)
+  Thanks [@paales](https://github.com/paales)! - Make sure svg icons from graphcms aren't actually
+  processed by the next image optimization
+- Updated dependencies
+  [[`c85294ba6`](https://github.com/ho-nl/m2-pwa/commit/c85294ba6d742ce78c074559a1e95409b25a5017)]:
+  - @graphcommerce/next-ui@4.1.3
+
 ## 3.0.3
 
 ### Patch Changes

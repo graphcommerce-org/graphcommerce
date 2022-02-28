@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.0.4
+
+### Patch Changes
+
+- [#1285](https://github.com/ho-nl/m2-pwa/pull/1285)
+  [`16d77b280`](https://github.com/ho-nl/m2-pwa/commit/16d77b2806e49e376d06bc0d578d38eb724b0c17)
+  Thanks [@paales](https://github.com/paales)! - allow scroller button to be overwritten
+
+- Updated dependencies
+  [[`c85294ba6`](https://github.com/ho-nl/m2-pwa/commit/c85294ba6d742ce78c074559a1e95409b25a5017)]:
+  - @graphcommerce/next-ui@4.1.3
+
 ## 2.0.3
 
 ### Patch Changes
