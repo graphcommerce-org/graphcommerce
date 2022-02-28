@@ -78,7 +78,7 @@ const Svg = styled('svg', { name, target: name })(() => [
  * @see https://graphcommerce-docs.vercel.app/framework/icons
  */
 export const SvgIcon = forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => {
-  const { src, size, fillIcon, className } = props
+  const { src, size, fillIcon, className, ...svgProps } = props
 
   const srcWithOverride =
     (useTheme().components?.SvgIcon?.overrides ?? []).find(
@@ -88,7 +88,12 @@ export const SvgIcon = forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => {
   const classes = withState({ size, fillIcon })
 
   return (
-    <Svg ref={ref} aria-hidden='true' className={`${classes.root} ${className ?? ''}`}>
+    <Svg
+      ref={ref}
+      aria-hidden='true'
+      className={`${classes.root} ${className ?? ''}`}
+      {...svgProps}
+    >
       <use href={`${srcToString(srcWithOverride)}#icon`} />
     </Svg>
   )
