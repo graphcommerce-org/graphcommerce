@@ -80,7 +80,7 @@ export default function ProductAddToCart(
         })}
         {...buttonProps}
       >
-        Add to Cart
+        <Trans>Add to Cart</Trans>
       </Button>
 
       <ApolloCartErrorAlert error={error} />
@@ -89,14 +89,14 @@ export default function ProductAddToCart(
         open={!formState.isSubmitting && formState.isSubmitSuccessful && !error?.message}
         variant='pill'
         action={
-          <PageLink href='/cart'>
+          <PageLink href='/cart' passHref>
             <Button
               size='medium'
               variant='pill'
               color='secondary'
               endIcon={<SvgIcon src={iconChevronRight} />}
             >
-              View shopping cart
+              <Trans>View shopping cart</Trans>
             </Button>
           </PageLink>
         }

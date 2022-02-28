@@ -28,6 +28,9 @@ msgstr "Voeg nieuw adres toe"
 msgid "Add review"
 msgstr "Voeg review toe"
 
+msgid "Add to Cart"
+msgstr "In winkelwagen"
+
 msgid "Addition"
 msgstr "Toevoeging"
 
@@ -498,6 +501,9 @@ msgstr "Bekijk al je reviews"
 
 msgid "View less items"
 msgstr "Bekijk minder items"
+
+msgid "View shopping cart"
+msgstr "Bekijk winkelwagen"
 
 msgid "View your account"
 msgstr "Bekijk uw account"

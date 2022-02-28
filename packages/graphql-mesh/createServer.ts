@@ -23,6 +23,7 @@ export async function createServer(mesh: Promise<MeshInstance>, path: string) {
   const apolloServer = new ApolloServer({
     context: ({ req }) => req,
     introspection: true,
+    ...meshInstance,
     plugins: [
       ApolloServerPluginLandingPageGraphQLPlayground({
         // @ts-expect-error https://github.com/graphql/graphql-playground/issues/1289
@@ -31,7 +32,6 @@ export async function createServer(mesh: Promise<MeshInstance>, path: string) {
       // @ts-expect-error apolloTracingPlugin is not officially supported anymore
       apolloTracingPlugin(),
     ],
-    ...meshInstance,
   })
   await apolloServer.start()
 

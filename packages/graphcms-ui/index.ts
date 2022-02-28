@@ -1,2 +1,2 @@
 export * from './components/RichText'
-export * from './components/Asset'
+export * from './components/Asset/Asset'

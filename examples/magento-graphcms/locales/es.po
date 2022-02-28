@@ -6,8 +6,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: es\n"
-
-# Translate from english to spanish
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
 
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> ha sido añadido a su carrito de compras!"
@@ -23,6 +27,9 @@ msgstr "Añadir nueva dirección"
 
 msgid "Add review"
 msgstr "Añadir una reseña"
+
+msgid "Add to Cart"
+msgstr "Añadir al carrito"
 
 msgid "Addition"
 msgstr "Adición"
@@ -494,6 +501,9 @@ msgstr "Ver todos sus comentarios"
 
 msgid "View less items"
 msgstr "Ver menos artículos"
+
+msgid "View shopping cart"
+msgstr "Ver carrito de compras"
 
 msgid "View your account"
 msgstr "Ver su cuenta"

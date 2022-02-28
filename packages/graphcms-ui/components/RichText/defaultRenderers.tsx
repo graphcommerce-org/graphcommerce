@@ -1,6 +1,6 @@
 import { Box, Typography, Link } from '@mui/material'
 import PageLink from 'next/link'
-import { Asset } from '../Asset'
+import { Asset } from '../Asset/Asset'
 import { Renderers } from './types'
 
 export const defaultRenderers: Renderers = {
