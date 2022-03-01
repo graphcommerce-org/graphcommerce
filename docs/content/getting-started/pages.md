@@ -21,7 +21,8 @@ learn where to find resources to build more complex features on your own.
 
 - Create a new route
 - Add the page GraphQL queries required to render the layout (header, footer)
-- Add GraphCMS content to a page
+- Use getStaticProps to fetch GraphCMS data
+- Use getStaticPaths to provide a list of all urls to pre-render
 
 ### Requirements
 
@@ -67,7 +68,7 @@ import {
 } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = DefaultPageQuery
-type RouteProps = { url: string[] }
+type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
 
@@ -81,7 +82,8 @@ AboutUs.pageOptions = {
 
 export default AboutUs
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const { locale } = context
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 
@@ -104,18 +106,15 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
 }
 ```
 
-In the `getStaticProps` function, the query `StoreConfigDocument` is used to
-fetch information about the Magento storeview. Then, the query
-`DefaultPageDocument` is used to fetch the data required to render the menu,
-footer and page content.
+- Visiting http://localhost:3000/about/about-us will output:
 
-In this example, the url variable is empty and the error handling is disabled.
-As a result, the page will not throw an error when this route (/about/about-us)
-does not excist as an entry in GraphCMS. The page only renders client-side,
-since the page is missing the function `getStaticPaths`.
+<figure>
+ <img src="https://cdn-std.droplr.net/files/acc_857465/xdI9be" />
+  <figcaption>Page with page layout (header, footer)</figcaption>
+</figure>
 
-```graphql
-Example from /graphql/DefaultPage.graphql
+```tsx
+// Example from /graphql/DefaultPage.graphql (DefaultPageDocument)
 
 query DefaultPage($url: String!, $rootCategory: String!) {
   ...MenuQueryFragment
@@ -124,10 +123,18 @@ query DefaultPage($url: String!, $rootCategory: String!) {
 }
 ```
 
-<figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/xdI9be" />
-  <figcaption>Page with page layout (header, footer)</figcaption>
-</figure>
+In the `getStaticProps` function, the query `StoreConfigDocument` is used to
+fetch information about the Magento storeview. Then, the query
+`DefaultPageDocument` is used to fetch the data required to render the menu,
+footer and page content.
+
+In this example, the url variable is empty. As a result, the
+`...PageContentQueryFragment` will have no result when trying to fetch a
+GraphCMS page with URL `''`.
+
+The function `getStaticProps` is used to fetch data, meaning content is rendered
+on the server. Review the page's source code and search for `About Us` to
+validate that this string (currently hard-coded) is part of the source code.
 
 ### Add GraphCMS content to the page
 
@@ -157,7 +164,7 @@ function AboutUs({ pages }: Props) {
 
 <figure>
  <img src="https://cdn-std.droplr.net/files/acc_857465/PIOjzB" />
-  <figcaption>Fetch page content from GraphCMS (client-side, no SSG)</figcaption>
+  <figcaption>Fetch page content from GraphCMS</figcaption>
 </figure>
 
 <figure>
@@ -165,41 +172,19 @@ function AboutUs({ pages }: Props) {
   <figcaption>GraphCMS entry</figcaption>
 </figure>
 
-### Add static generation (SSG) with getStaticPaths
+### Add pre-rendering with getStaticPaths
 
-- Rename `/about/about-us.tsx` to `about/[url].tsx`
-- In about/[url].tsx, replace the getStaticProps function with the following:
+- Rename `/about/about-us.tsx` to `/about/[url].tsx`
+- In /about/[url].tsx, replace the getStaticProps function with the following:
 
 ```tsx
-// eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.NODE_ENV === 'development')
-    return { paths: [], fallback: 'blocking' }
+export const getStaticPaths: GetPageStaticPaths = (context) => ({
+  paths: [],
+  fallback: 'blocking',
+})
 
-  const path = async (locale: string) => {
-    const client = graphqlSharedClient(locale)
-    const { data } = await client.query({
-      query: PagesStaticPathsDocument,
-      variables: {
-        first: process.env.VERCEL_ENV !== 'production' ? 1 : 1000,
-        urlStartsWith: 'about',
-      },
-    })
-    return data.pages.map((page) => ({
-      params: { url: page.url.split('/').slice(1) },
-      locale,
-    }))
-  }
-  const paths = (await Promise.all(locales.map(path))).flat(1)
-
-  return { paths, fallback: 'blocking' }
-}
-
-export const getStaticProps: GetPageStaticProps = async ({
-  locale,
-  params,
-}) => {
-  const aboutUrl = params?.url ? `about/${params?.url}` : `about`
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const { locale, params } = context
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 
@@ -207,11 +192,11 @@ export const getStaticProps: GetPageStaticProps = async ({
   const page = staticClient.query({
     query: DefaultPageDocument,
     variables: {
-      url: aboutUrl,
+      url: `about/${params?.url}`,
       rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
     },
   })
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+  // if (!(await page).data.pages?.[0]) return { notFound: true }
   return {
     props: {
       ...(await page).data,
@@ -221,6 +206,63 @@ export const getStaticProps: GetPageStaticProps = async ({
   }
 }
 ```
+
+By renaming the file to `/about/[url].tsx`, all routes starting with /about/
+will be handled by the file (dynamic routing). Pages that have dynamic routes
+need a list of paths to be statically generated.
+
+All paths specified by a function called `getStaticPaths` will be statically
+pre-redered at build-time.
+
+In the example above, the array with paths is empty. The required getStaticPaths
+function is there, but no url's are pre-rendered. Because getStaticPaths has the
+option `fallback: 'blocking'`, the paths that have not been pre-rendered at
+built-time will not result in a 404:
+
+> From the
+> [getStaticPaths API reference ↗](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths):
+> If fallback is 'blocking', new paths not returned by getStaticPaths will wait
+> for the HTML to be generated, identical to SSR (hence why blocking), and then
+> be cached for future requests so it only happens once per path.
+
+### Pre-render all /about/ pages from GraphCMS
+
+- In /about/[url].tsx, replace the getStaticPaths function with the following:
+
+```tsx
+export const getStaticPaths: GetPageStaticPaths = async (context) => {
+  const { locales = [] } = context
+  // if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
+
+  const path = async (locale: string) => {
+    const client = graphqlSharedClient(locale)
+    const { data } = await client.query({
+      query: PagesStaticPathsDocument,
+      variables: {
+        first: 10,
+        urlStartsWith: 'about',
+      },
+    })
+    return data.pages.map((page) => ({
+      params: { url: page.url.split('/').slice(1)[0] },
+      locale,
+    }))
+  }
+  const paths = (await Promise.all(locales.map(path))).flat(1)
+
+  return { paths, fallback: 'blocking' }
+}
+```
+
+Test the static build process by running it locally:
+
+- `cd /examples/magento-graphcms/` Navigate to the project directory
+- `yarn build` Start static build process
+
+<figure>
+ <img src="https://cdn-std.droplr.net/files/acc_857465/AAOnX2" />
+  <figcaption>Successful pre-render of the about/about-us page</figcaption>
+</figure>
 
 ## Next steps
 
