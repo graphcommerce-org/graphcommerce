@@ -8,9 +8,11 @@ import {
   iconChevronRight,
   SvgIcon,
   extendableComponent,
+  AnimatedRow,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Divider, Typography, ButtonProps, Box } from '@mui/material'
+import { Divider, Typography, ButtonProps, Box, Alert } from '@mui/material'
+import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
 import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
@@ -38,7 +40,7 @@ export default function ProductAddToCart(
     defaultValues: { ...variables },
   })
 
-  const { handleSubmit, formState, error, muiRegister, required } = form
+  const { handleSubmit, formState, error, muiRegister, required, data } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
@@ -85,8 +87,21 @@ export default function ProductAddToCart(
 
       <ApolloCartErrorAlert error={error} />
 
+      <AnimatePresence initial={false}>
+        {data?.addProductsToCart?.user_errors.map((e) => (
+          <AnimatedRow key={e?.code}>
+            <Alert severity='error'>{e?.message}</Alert>
+          </AnimatedRow>
+        ))}
+      </AnimatePresence>
+
       <MessageSnackbar
-        open={!formState.isSubmitting && formState.isSubmitSuccessful && !error?.message}
+        open={
+          !formState.isSubmitting &&
+          formState.isSubmitSuccessful &&
+          !error?.message &&
+          !data?.addProductsToCart?.user_errors?.length
+        }
         variant='pill'
         action={
           <PageLink href='/cart' passHref>
