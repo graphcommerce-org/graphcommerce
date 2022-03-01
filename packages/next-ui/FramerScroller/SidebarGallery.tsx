@@ -8,7 +8,7 @@ import {
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
 import { clientSize, useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Fab, useTheme, alpha, Box, styled } from '@mui/material'
+import { Fab, useTheme, alpha, Box, styled, SxProps, Theme } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
@@ -47,10 +47,17 @@ export type SidebarGalleryProps = {
   images: MotionImageAspectProps[]
   aspectRatio?: [number, number]
   routeHash?: string
+  sx?: SxProps<Theme>
 }
 
 export function SidebarGallery(props: SidebarGalleryProps) {
-  const { sidebar, images, aspectRatio: [width, height] = [1, 1], routeHash = 'gallery' } = props
+  const {
+    sidebar,
+    images,
+    aspectRatio: [width, height] = [1, 1],
+    sx,
+    routeHash = 'gallery',
+  } = props
 
   const router = useRouter()
   const prevRoute = usePrevPageRouter()
@@ -109,7 +116,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   return (
     <ScrollerProvider scrollSnapAlign='center'>
-      <Row maxWidth={false} disableGutters className={classes.row}>
+      <Row maxWidth={false} disableGutters className={classes.row} sx={sx}>
         <MotionBox
           layout
           className={classes.root}

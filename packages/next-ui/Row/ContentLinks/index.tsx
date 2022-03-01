@@ -14,13 +14,18 @@ const parts = ['root', 'scroller', 'title'] as const
 const { classes } = extendableComponent(compName, parts)
 
 export function ContentLinks(props: ContentLinksProps) {
-  const { title, children } = props
+  const { title, children, sx = [] } = props
 
   return (
     <Container
       className={classes.root}
       maxWidth={false}
-      sx={(theme) => ({ marginBottom: `${theme.spacings.md}` })}
+      sx={[
+        (theme) => ({
+          marginBottom: `${theme.spacings.md}`,
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
       <ScrollerProvider scrollSnapAlign='none'>
         <Scroller
