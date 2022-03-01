@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.1.4
+
+### Patch Changes
+
+- [#1287](https://github.com/ho-nl/m2-pwa/pull/1287)
+  [`d17f97d3a`](https://github.com/ho-nl/m2-pwa/commit/d17f97d3a786c33a99a10e4e949251c52fdbbdac)
+  Thanks [@paales](https://github.com/paales)! - Allow passing sx prop to SidebarGallery and
+  ContentLinks
+
 ## 4.1.3
 
 ### Patch Changes
