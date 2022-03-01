@@ -249,12 +249,31 @@ export const getStaticPaths: GetPageStaticPaths = async (context) => {
     }))
   }
   const paths = (await Promise.all(locales.map(path))).flat(1)
-
+  // console.log(paths)
   return { paths, fallback: 'blocking' }
 }
 ```
 
-Test the static build process by running it locally:
+The PagesStaticPathsDocument query is used to fetch all pages from GraphCMS that
+have a URL starting with 'about'. The locale options from the context object are
+used to create an array:
+
+```txt
+// Terminal output for console.log(paths), upon refreshing the page
+
+[
+  { params: { url: 'about-us' }, locale: 'en-us' },
+  { params: { url: 'about-us' }, locale: 'nl' },
+  { params: { url: 'about-us' }, locale: 'fr-be' },
+  { params: { url: 'about-us' }, locale: 'nl-be' },
+  { params: { url: 'about-us' }, locale: 'en-gb' },
+  { params: { url: 'about-us' }, locale: 'en-ca' },
+]
+```
+
+## Build your local environment
+
+You can test the static build process by running it locally:
 
 - `cd /examples/magento-graphcms/` Navigate to the project directory
 - `yarn build` Start static build process
