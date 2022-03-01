@@ -14,13 +14,13 @@ import { Components, PaletteOptions } from '@mui/material/styles'
 const lightPalette: PaletteOptions = {
   mode: 'light',
   primary: {
-    main: '#FF4A55',
-    contrastText: '#FFFFFF',
-    dark: '#F33642',
+    main: '#ff4a55',
+    contrastText: '#ffffff',
+    dark: '#f33642',
   },
   secondary: {
-    main: '#006BFF',
-    light: '#D1E4FF',
+    main: '#006bff',
+    light: '#d1e4ff',
     contrastText: '#ffffff',
   },
   background: {
@@ -30,7 +30,7 @@ const lightPalette: PaletteOptions = {
   },
   divider: '#00000015',
   success: {
-    main: '#01D26A',
+    main: '#01d26a',
   },
   action: {
     hoverOpacity: 0.16,

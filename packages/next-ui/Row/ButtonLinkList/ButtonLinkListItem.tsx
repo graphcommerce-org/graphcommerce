@@ -13,7 +13,7 @@ const ButtonItem = styled(Button)(({ theme }) => ({
   borderBottom: `1px solid ${theme.palette.divider}`,
   borderRadius: 0,
   justifyContent: 'space-between',
-  ...theme.typography.body1,
+  typography: 'body1',
 }))
 
 export function ButtonLinkListItem(props: ButtonLinkProps) {
