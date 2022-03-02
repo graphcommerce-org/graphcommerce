@@ -18,39 +18,49 @@ const { classes, selectors } = extendableComponent('Footer', [
 ] as const)
 
 export function Footer(props: FooterProps) {
-  const { socialLinks, storeSwitcher, customerService, copyright, ...containerProps } = props
+  const {
+    socialLinks,
+    storeSwitcher,
+    customerService,
+    copyright,
+    sx = [],
+    ...containerProps
+  } = props
 
   return (
     <Container
-      sx={(theme) => ({
-        gridTemplateColumns: '5fr 3fr',
-        borderTop: `1px solid ${theme.palette.divider}`,
-        display: 'grid',
-        alignItems: 'center',
+      sx={[
+        (theme) => ({
+          gridTemplateColumns: '5fr 3fr',
+          borderTop: `1px solid ${theme.palette.divider}`,
+          display: 'grid',
+          alignItems: 'center',
 
-        padding: `${theme.spacings.lg} ${theme.page.horizontal} ${theme.page.vertical}`,
-        justifyItems: 'center',
-        gridTemplateAreas: `
+          padding: `${theme.spacings.lg} ${theme.page.horizontal} ${theme.page.vertical}`,
+          justifyItems: 'center',
+          gridTemplateAreas: `
           'switcher switcher'
           'support support'
           'social social'
           'links links'
         `,
-        gap: theme.spacings.md,
-        '& > *': { maxWidth: 'max-content' },
+          gap: theme.spacings.md,
+          '& > *': { maxWidth: 'max-content' },
 
-        [theme.breakpoints.up('sm')]: {
-          gridTemplateAreas: `
+          [theme.breakpoints.up('sm')]: {
+            gridTemplateAreas: `
             'social switcher'
             'links support'
           `,
-          justifyItems: 'start',
-          padding: `${theme.page.vertical} ${theme.page.horizontal}`,
-          gridTemplateColumns: 'auto auto',
-          gridTemplateRows: 'auto',
-          justifyContent: 'space-between',
-        },
-      })}
+            justifyItems: 'start',
+            padding: `${theme.page.vertical} ${theme.page.horizontal}`,
+            gridTemplateColumns: 'auto auto',
+            gridTemplateRows: 'auto',
+            justifyContent: 'space-between',
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       maxWidth={false}
       className={classes.root}
       {...containerProps}
