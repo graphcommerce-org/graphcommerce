@@ -1,5 +1,25 @@
 # Change Log
 
+## 4.1.5
+
+### Patch Changes
+
+- [#1290](https://github.com/ho-nl/m2-pwa/pull/1290)
+  [`47ae012c1`](https://github.com/ho-nl/m2-pwa/commit/47ae012c10f5762f99019ec38409177632377a98)
+  Thanks [@paales](https://github.com/paales)! - `withTheme` didn’t apply styles correcty
+
+* [#1290](https://github.com/ho-nl/m2-pwa/pull/1290)
+  [`39e28a4cd`](https://github.com/ho-nl/m2-pwa/commit/39e28a4cd6cdfaa4fc6dc4500ae86c14f7069150)
+  Thanks [@paales](https://github.com/paales)! - Allow background color on header
+
+- [#1289](https://github.com/ho-nl/m2-pwa/pull/1289)
+  [`ec8026cc5`](https://github.com/ho-nl/m2-pwa/commit/ec8026cc5a5be8d97a6e5dbf208808154fa1d618)
+  Thanks [@LaurensFranken](https://github.com/LaurensFranken)! - add sx prop to UspsList component
+
+* [#1290](https://github.com/ho-nl/m2-pwa/pull/1290)
+  [`35672d8e8`](https://github.com/ho-nl/m2-pwa/commit/35672d8e87011bf4eb049f449e86e851fc91a525)
+  Thanks [@paales](https://github.com/paales)! - Footer didn't accept sx prop
+
 ## 4.1.4
 
 ### Patch Changes
