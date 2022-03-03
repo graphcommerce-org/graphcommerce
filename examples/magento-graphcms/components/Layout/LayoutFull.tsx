@@ -1,6 +1,6 @@
 import { CartFab } from '@graphcommerce/magento-cart'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
-import { SearchButton } from '@graphcommerce/magento-search'
+import { SearchLink } from '@graphcommerce/magento-search'
 import {
   DesktopNavActions,
   DesktopNavBar,
@@ -19,7 +19,6 @@ import { t, Trans } from '@lingui/macro'
 import { Fab } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
-import { useCallback } from 'react'
 import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
 import { Footer } from './Footer'
 import { Logo } from './Logo'
@@ -33,7 +32,6 @@ export function LayoutFull(props: LayoutFullProps) {
   const { footer, menu = {}, children, ...uiProps } = props
 
   const router = useRouter()
-  const onSearchStart = useCallback(() => router.push('/search'), [router])
   const menuItemsIncludeInMenu = menu?.items?.filter((items) => items?.include_in_menu === 1)
 
   return (
@@ -59,9 +57,7 @@ export function LayoutFull(props: LayoutFullProps) {
             </DesktopNavItem>
           </DesktopNavBar>
           <DesktopNavActions>
-            {!router.pathname.startsWith('/search') && (
-              <SearchButton onClick={onSearchStart} label=' ' />
-            )}
+            {!router.pathname.startsWith('/search') && <SearchLink href='/search' />}
             <PageLink href='/service' passHref>
               <Fab aria-label={t`Account`} size='large' color='inherit'>
                 <SvgIcon src={iconCustomerService} size='large' />
@@ -76,7 +72,11 @@ export function LayoutFull(props: LayoutFullProps) {
       cartFab={<CartFab />}
       menuFab={
         <MenuFab
-          search={<SearchButton onClick={onSearchStart} label={t`Search...`} fullWidth />}
+          search={
+            <SearchLink href='/search' sx={{ width: '100%' }}>
+              <Trans>Search...</Trans>
+            </SearchLink>
+          }
           secondary={[
             <CustomerMenuFabItem key='account' guestHref='/account/signin' authHref='/account'>
               <Trans>Account</Trans>

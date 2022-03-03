@@ -23,7 +23,7 @@ const name = 'SearchForm' as const
 const parts = ['root', 'totalProducts'] as const
 const { classes } = extendableComponent(name, parts)
 
-export default function SearchForm(props: SearchFormProps) {
+export function SearchForm(props: SearchFormProps) {
   const { totalResults = 0, search = '', urlHandle = 'search', textFieldProps, sx = [] } = props
   const router = useRouter()
 

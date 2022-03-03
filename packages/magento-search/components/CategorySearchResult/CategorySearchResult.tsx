@@ -13,11 +13,11 @@ const name = 'CategorySearchResult' as const
 const parts = ['root'] as const
 const { classes } = extendableComponent(name, parts)
 
-export default function CategorySearchResult(props: CategorySearchResultProps) {
+export function CategorySearchResult(props: CategorySearchResultProps) {
   const { search = '', sx = [], ...catProps } = props
 
   return (
-    <PageLink href={`/${catProps?.url_path ?? ''}`}>
+    <PageLink href={`/${catProps?.url_path ?? ''}`} passHref>
       <Button
         fullWidth
         variant='contained'
