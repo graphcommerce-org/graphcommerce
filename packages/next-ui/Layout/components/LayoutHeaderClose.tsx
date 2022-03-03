@@ -1,5 +1,6 @@
 import { useGo, usePageContext } from '@graphcommerce/framer-next-pages'
 import { Trans } from '@lingui/macro'
+import { Box } from '@mui/material'
 import { LinkOrButton } from '../../Button/LinkOrButton'
 import { IconSvg } from '../../IconSvg'
 import { iconClose } from '../../icons'
@@ -19,10 +20,12 @@ export default function LayoutHeaderClose() {
       color='inherit'
       onClick={onClick}
       aria-label='Close'
-      startIcon={<IconSvg src={iconClose} />}
+      startIcon={<IconSvg src={iconClose} size='medium' />}
       // className={classes.close}
     >
-      <Trans>Close</Trans>
+      <Box component='span' sx={{ display: { xs: 'none', md: 'inline' } }}>
+        <Trans>Close</Trans>
+      </Box>
     </LinkOrButton>
   )
 }

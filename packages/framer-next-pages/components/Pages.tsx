@@ -107,7 +107,7 @@ export default function FramerNextPages(props: PagesProps) {
           fallback,
           fallback,
           { shallow: false },
-          undefined,
+          router.locale,
           false,
         )
 
@@ -128,7 +128,22 @@ export default function FramerNextPages(props: PagesProps) {
 
         cancel = requestIdleCallback(() => setFallback(fbItem))
       } catch (e) {
-        // Loading failed, we do nothing.
+        if (process.env.NODE_ENV !== 'production') {
+          console.log(
+            `%cTurn on "Preseve log on navigation" to see the error`,
+            'color: blue; font-family:sans-serif; font-size: 20px',
+          )
+
+          console.error(
+            `@graphcommerce/framer-next-pages encountered loading the fallback.
+This happens because the currently configured fallback '${fallback}'
+or fallbackRoute '${fallbackRoute}' isn't correct.
+
+Please make sure the fallbackRoute matches the filename of the index page you want to load. e.g. '/[...url]'
+and pass it as a param in <FramerNextPages fallbackRoute='/[...url]' /> in your _app.tsx file.
+`,
+          )
+        }
       }
     }
 

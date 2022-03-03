@@ -33,6 +33,7 @@ export function useScrollTo() {
             },
             onComplete,
             onStop: onComplete,
+            duration: 500,
           }),
         )
       } else onComplete()

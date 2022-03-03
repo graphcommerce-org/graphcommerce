@@ -1,5 +1,6 @@
 import { useUp, usePrevUp, usePageContext } from '@graphcommerce/framer-next-pages'
 import { t } from '@lingui/macro'
+import { Box } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import { LinkOrButton, LinkOrButtonProps } from '../../Button/LinkOrButton'
@@ -45,7 +46,9 @@ export default function LayoutHeaderBack(props: BackProps) {
         aria-label={label}
         {...props}
       >
-        {label}
+        <Box component='span' sx={{ display: { xs: 'none', md: 'inline' } }}>
+          {label}
+        </Box>
       </LinkOrButton>
     )
   }
@@ -60,7 +63,9 @@ export default function LayoutHeaderBack(props: BackProps) {
           color='inherit'
           {...props}
         >
-          {up.title}
+          <Box component='span' sx={{ display: { xs: 'none', md: 'inline' } }}>
+            {up.title}
+          </Box>
         </LinkOrButton>
       </PageLink>
     )

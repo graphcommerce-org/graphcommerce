@@ -86,7 +86,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
         >
           {header}
         </Box>
-        {(menuFab || cartFab) && (
+        {menuFab || cartFab ? (
           <Box
             className={classes.fabs}
             sx={(theme) => ({
@@ -115,6 +115,8 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             {menuFab}
             {cartFab}
           </Box>
+        ) : (
+          <div />
         )}
         <div className={classes.children}>{children}</div>
         <div className={classes.footer}>{footer}</div>

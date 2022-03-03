@@ -342,7 +342,9 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
                  * can't change this value with JS as that causes much jank
                  */
                 '&.sizeSmFull, &.sizeSmMinimal': { paddingBottom: 56 },
-                '&.variantSmBottom.sizeSmFull': { minHeight: 'calc(100vh - 56px)' },
+                '&.variantSmBottom.sizeSmFull': {
+                  minHeight: `calc(100vh - ${theme.appShell.headerHeightSm} * 0.5)`,
+                },
 
                 '&.variantSmBottom': {
                   borderTopLeftRadius: `${theme.shape.borderRadius * 4}px`,
@@ -373,7 +375,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
                 },
 
                 '&.sizeMdFull.variantMdBottom': {
-                  minHeight: `calc(100vh - ${theme.appShell.headerHeightMd})`,
+                  minHeight: `calc(100vh + ${theme.appShell.headerHeightMd} - (${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * 0.5)`,
                 },
                 '&.sizeMdFull.variantMdLeft': {
                   paddingBottom: '1px',
