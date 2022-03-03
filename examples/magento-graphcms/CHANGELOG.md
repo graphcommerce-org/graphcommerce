@@ -1,5 +1,38 @@
 # Change Log
 
+## 3.3.1
+
+### Patch Changes
+
+- [#1292](https://github.com/ho-nl/m2-pwa/pull/1292)
+  [`5a1ba9e66`](https://github.com/ho-nl/m2-pwa/commit/5a1ba9e664abbac89c4f5f71f7d6d6ed1aefa5c0)
+  Thanks [@paales](https://github.com/paales)! - Renamed SvgIcon to IconSvg to prevent collisions
+  with MUI
+
+* [#1292](https://github.com/ho-nl/m2-pwa/pull/1292)
+  [`63f9b56eb`](https://github.com/ho-nl/m2-pwa/commit/63f9b56eb68ba790567ff1427e599fd2c3c8f1ee)
+  Thanks [@paales](https://github.com/paales)! - added responsive size to the Fab component
+
+* Updated dependencies
+  [[`5a1ba9e66`](https://github.com/ho-nl/m2-pwa/commit/5a1ba9e664abbac89c4f5f71f7d6d6ed1aefa5c0),
+  [`990df655b`](https://github.com/ho-nl/m2-pwa/commit/990df655b73b469718d6cb5837ee65dfe2ad6a1d),
+  [`63f9b56eb`](https://github.com/ho-nl/m2-pwa/commit/63f9b56eb68ba790567ff1427e599fd2c3c8f1ee)]:
+  - @graphcommerce/ecommerce-ui@1.0.2
+  - @graphcommerce/magento-cart@4.1.3
+  - @graphcommerce/magento-cart-coupon@3.0.4
+  - @graphcommerce/magento-cart-items@3.0.4
+  - @graphcommerce/magento-cart-payment-method@3.0.4
+  - @graphcommerce/magento-cart-shipping-method@3.0.4
+  - @graphcommerce/magento-customer@4.1.3
+  - @graphcommerce/magento-customer-account@3.0.4
+  - @graphcommerce/magento-customer-order@3.0.4
+  - @graphcommerce/magento-product@4.0.5
+  - @graphcommerce/magento-product-configurable@4.0.5
+  - @graphcommerce/magento-review@3.0.5
+  - @graphcommerce/magento-search@4.1.0
+  - @graphcommerce/mollie-magento-payment@3.0.4
+  - @graphcommerce/next-ui@4.2.0
+
 ## 3.3.0
 
 ### Minor Changes

@@ -1,5 +1,26 @@
 # Change Log
 
+## 4.1.3
+
+### Patch Changes
+
+- [#1292](https://github.com/ho-nl/m2-pwa/pull/1292)
+  [`5a1ba9e66`](https://github.com/ho-nl/m2-pwa/commit/5a1ba9e664abbac89c4f5f71f7d6d6ed1aefa5c0)
+  Thanks [@paales](https://github.com/paales)! - Renamed SvgIcon to IconSvg to prevent collisions
+  with MUI
+
+* [#1292](https://github.com/ho-nl/m2-pwa/pull/1292)
+  [`63f9b56eb`](https://github.com/ho-nl/m2-pwa/commit/63f9b56eb68ba790567ff1427e599fd2c3c8f1ee)
+  Thanks [@paales](https://github.com/paales)! - added responsive size to the Fab component
+
+* Updated dependencies
+  [[`5a1ba9e66`](https://github.com/ho-nl/m2-pwa/commit/5a1ba9e664abbac89c4f5f71f7d6d6ed1aefa5c0),
+  [`990df655b`](https://github.com/ho-nl/m2-pwa/commit/990df655b73b469718d6cb5837ee65dfe2ad6a1d),
+  [`63f9b56eb`](https://github.com/ho-nl/m2-pwa/commit/63f9b56eb68ba790567ff1427e599fd2c3c8f1ee)]:
+  - @graphcommerce/ecommerce-ui@1.0.2
+  - @graphcommerce/magento-customer@4.1.3
+  - @graphcommerce/next-ui@4.2.0
+
 ## 4.1.2
 
 ### Patch Changes

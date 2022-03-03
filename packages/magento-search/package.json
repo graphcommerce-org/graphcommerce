@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-search",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.0.3",
+  "version": "4.1.0",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -20,7 +20,7 @@
   "dependencies": {
     "@graphcommerce/graphql": "^3.0.3",
     "@graphcommerce/image": "^3.1.0",
-    "@graphcommerce/next-ui": "^4.1.2",
+    "@graphcommerce/next-ui": "^4.2.0",
     "@graphcommerce/react-hook-form": "^3.0.3",
     "type-fest": "^2.12.0"
   },
