@@ -1,4 +1,10 @@
-import { iconSearch, responsiveVal, SvgIcon, extendableComponent } from '@graphcommerce/next-ui'
+import {
+  iconSearch,
+  responsiveVal,
+  SvgIcon,
+  extendableComponent,
+  useFabSize,
+} from '@graphcommerce/next-ui'
 import { Link, LinkProps } from '@mui/material'
 import PageLink from 'next/link'
 import { SetRequired } from 'type-fest'
@@ -19,6 +25,8 @@ const { classes } = extendableComponent(name, parts)
 export function SearchLink(props: SearchLinknProps) {
   const { href, sx = [], children, ...linkProps } = props
 
+  const fabSize = useFabSize('responsive')
+
   return (
     <PageLink href={href} passHref>
       <Link
@@ -28,7 +36,7 @@ export function SearchLink(props: SearchLinknProps) {
           (theme) => ({
             justifySelf: 'center',
             // @todo make abstract, this is the size of a responsive Fab minus the icon size, divided by 2.
-            marginRight: responsiveVal(42 / 4, 56 / 4),
+            marginRight: `calc(${fabSize} / 4)`,
             width: responsiveVal(64, 172),
             borderRadius: 2,
             typography: 'body2',

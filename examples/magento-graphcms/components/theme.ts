@@ -7,6 +7,7 @@ import {
   MuiButtonResponsive,
   themeBaseDefaults,
   MuiSnackbar,
+  MuiFabSizes,
 } from '@graphcommerce/next-ui'
 import { createTheme, Theme, alpha } from '@mui/material'
 import { Components, PaletteOptions } from '@mui/material/styles'
@@ -269,6 +270,8 @@ const createOverrides = (theme: Theme): Components => ({
         textTransform: 'none',
       },
     },
+
+    variants: [...MuiFabSizes],
   },
 
   MuiTextField: {

@@ -1,0 +1,69 @@
+import { ComponentsVariants, FabProps, Theme, useTheme } from '@mui/material'
+import { responsiveVal } from '../Styles'
+
+type FabSize = NonNullable<FabProps['size']>
+
+type FabSizes = {
+  [key in FabSize]: string
+}
+
+/** Expose the component to be exendable in your theme.components */
+declare module '@mui/material/styles/components' {
+  interface Components {
+    /**
+     * @todo We would rather use MuiFab to override these fields, but I can't get it to work,
+     *   getting 'Subsequent property declarations must have the same type.'
+     */
+    MuiFabExtra?: {
+      sizes?: Partial<FabSizes>
+    }
+  }
+}
+
+const defaultSizes: FabSizes = {
+  /**
+   * Default values picked from MUI:
+   * https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Fab/Fab.js
+   */
+  small: '40px',
+  medium: '48px',
+  large: '56px',
+  responsive: responsiveVal(40, 56),
+}
+
+function fabSize(size: FabSize, theme: Theme) {
+  return theme.components?.MuiFabExtra?.sizes?.[size] ?? defaultSizes[size]
+}
+
+export const useFabSize = (size: FabSize) => {
+  const theme = useTheme()
+  return fabSize(size, theme)
+}
+
+declare module '@mui/material/Fab' {
+  interface FabPropsSizeOverrides {
+    responsive: true
+  }
+}
+
+function fabWidthHeight(size: FabSize, theme: Theme) {
+  return {
+    width: fabSize(size, theme),
+    height: fabSize(size, theme),
+  }
+}
+
+type FabVariants = NonNullable<ComponentsVariants['MuiFab']>
+
+const sizes: FabSize[] = ['small', 'medium', 'large', 'responsive']
+
+/**
+ * This defines the sizes for the added responsive variant.
+ *
+ * To override the sizes, please do not add variant declarations direcly, but modify
+ * `yourTheme.components.MuiFabExtra.sizes` instead.
+ */
+export const MuiFabSizes: FabVariants = sizes.map((size) => ({
+  props: { size },
+  style: ({ theme }) => fabWidthHeight(size, theme),
+}))

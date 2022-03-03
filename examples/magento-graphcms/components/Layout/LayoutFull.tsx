@@ -64,6 +64,7 @@ export function LayoutFull(props: LayoutFullProps) {
               </Fab>
             </PageLink>
             <CustomerFab guestHref='/account/signin' authHref='/account' />
+            {/* The placeholder exists because the CartFab is sticky but we want to reserve the space for the <CartFab /> */}
             <PlaceholderFab />
           </DesktopNavActions>
         </>

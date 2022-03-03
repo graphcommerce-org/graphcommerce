@@ -1,10 +1,10 @@
 import {
   extendableComponent,
   iconShoppingBag,
-  responsiveVal,
   DesktopHeaderBadge,
   SvgIcon,
   useScrollY,
+  useFabSize,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { alpha, Fab, FabProps, NoSsr, styled, useTheme, Box, SxProps, Theme } from '@mui/material'
@@ -44,7 +44,7 @@ function CartFabContent(props: CartFabContentProps) {
   const backgroundColor = useTransform(scrollY, [0, 10], [paper0, paper1])
 
   const cartIcon = icon ?? <SvgIcon src={iconShoppingBag} size='large' />
-  const fabIconSize = responsiveVal(42, 56) // @todo generalize this
+  const fabIconSize = useFabSize('responsive')
 
   return (
     <Box
@@ -60,11 +60,9 @@ function CartFabContent(props: CartFabContentProps) {
           {...fabProps}
           aria-label={t`Cart`}
           color='inherit'
-          size='large'
+          size='responsive'
           style={{ backgroundColor }}
           sx={(theme) => ({
-            width: fabIconSize,
-            height: fabIconSize,
             [theme.breakpoints.down('md')]: {
               backgroundColor: `${theme.palette.background.paper} !important`,
             },

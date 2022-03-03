@@ -1,12 +1,11 @@
 import {
   iconMenu,
-  iconSearch,
   LayoutDefault,
   LayoutDefaultProps,
   responsiveVal,
   SvgIcon,
 } from '@graphcommerce/next-ui'
-import { Box, Fab, IconButton, TextField } from '@mui/material'
+import { Box, Fab } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FileNode } from '../../lib/files'
@@ -33,12 +32,11 @@ export function LayoutFull(props: LayoutFullProps) {
       menuFab={
         <Link href={`/menu${selected}`} passHref>
           <Fab
+            size='responsive'
             sx={{
               display: { sm: undefined, md: 'none' },
               backgroundColor: 'text.primary',
               color: 'background.paper',
-              width: responsiveVal(42, 56),
-              height: responsiveVal(42, 56),
               '&:hover, &:focus': {
                 boxShadow: 'none',
                 backgroundColor: 'text.primary',
