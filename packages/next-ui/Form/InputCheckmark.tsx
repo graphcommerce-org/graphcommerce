@@ -1,8 +1,11 @@
-import { IconSvgProps } from '@mui/material'
-import { IconSvg } from '../IconSvg'
+import { IconSvg, IconSvgProps } from '../IconSvg'
 import { iconCheckmark } from '../icons'
 
-export type InputCheckmarkProps = { show?: boolean; select?: boolean } & Omit<IconSvgProps, 'src'>
+export type InputCheckmarkProps = {
+  show?: boolean
+  select?: boolean
+  children?: React.ReactNode
+} & Omit<IconSvgProps, 'src'>
 
 /**
  * When the `valid` prop is passed it will render a CheckIcon, else it will render children.
