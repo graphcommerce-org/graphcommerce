@@ -18,7 +18,7 @@ import {
   Stepper,
   LayoutTitle,
   iconChevronRight,
-  SvgIcon,
+  IconSvg,
   LayoutOverlayHeader,
   LinkOrButton,
 } from '@graphcommerce/next-ui'
@@ -55,7 +55,7 @@ function CartPage() {
                 <LinkOrButton
                   button={{ variant: 'pill', disabled: !hasItems }}
                   color='secondary'
-                  endIcon={<SvgIcon src={iconChevronRight} />}
+                  endIcon={<IconSvg src={iconChevronRight} />}
                 >
                   <Trans>Next</Trans>
                 </LinkOrButton>

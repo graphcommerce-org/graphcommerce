@@ -1,4 +1,4 @@
-import { iconChevronDown, iconChevronUp, SvgIcon } from '@graphcommerce/next-ui'
+import { iconChevronDown, iconChevronUp, IconSvg } from '@graphcommerce/next-ui'
 import {
   Box,
   Collapse,
@@ -66,7 +66,7 @@ export function MenuList(props: FileOrFolderNode & { level?: number; selected: s
       <>
         <ListItemButton onClick={handleClick} sx={{ pl: indent, borderRadius: 2 }} dense>
           <ListItemText>{name}</ListItemText>
-          {open ? <SvgIcon src={iconChevronUp} /> : <SvgIcon src={iconChevronDown} />}
+          {open ? <IconSvg src={iconChevronUp} /> : <IconSvg src={iconChevronDown} />}
         </ListItemButton>
         <Collapse in={open} timeout='auto' unmountOnExit>
           <List component='div' disablePadding>

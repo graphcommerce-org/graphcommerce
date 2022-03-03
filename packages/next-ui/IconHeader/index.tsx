@@ -1,6 +1,6 @@
 import { Box, SxProps, Theme, Typography } from '@mui/material'
+import { IconSvg, IconSvgProps } from '../IconSvg'
 import { extendableComponent } from '../Styles'
-import { SvgIcon, SvgIconProps } from '../SvgIcon/SvgIcon'
 
 // TODO: remove all occurrences. deprecated component
 
@@ -13,7 +13,7 @@ type IconHeaderProps = {
   stayInline?: boolean
   ellipsis?: boolean
   sx?: SxProps<Theme>
-} & Pick<SvgIconProps, 'src'>
+} & Pick<IconSvgProps, 'src'>
 
 type IconHeaderHeadings = 'h2' | 'h4' | 'h5'
 
@@ -71,7 +71,7 @@ export function IconHeader(props: IconHeaderProps) {
           },
         ]}
       >
-        <SvgIcon src={src} />
+        <IconSvg src={src} />
         <Typography
           variant={variants[size]}
           component='h2'

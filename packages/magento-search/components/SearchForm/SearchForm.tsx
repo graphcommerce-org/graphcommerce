@@ -2,7 +2,7 @@ import {
   FormRow,
   iconClose,
   iconSearch,
-  SvgIcon,
+  IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@graphcommerce/react-hook-form'
@@ -47,7 +47,7 @@ export function SearchForm(props: SearchFormProps) {
 
   const endAdornment = !watch('search') ? (
     <IconButton size='small'>
-      <SvgIcon src={iconSearch} />
+      <IconSvg src={iconSearch} />
     </IconButton>
   ) : (
     <>
@@ -65,7 +65,7 @@ export function SearchForm(props: SearchFormProps) {
         </Box>
       )}
       <IconButton onClick={handleReset} size='small'>
-        <SvgIcon src={iconClose} />
+        <IconSvg src={iconClose} />
       </IconButton>
     </>
   )

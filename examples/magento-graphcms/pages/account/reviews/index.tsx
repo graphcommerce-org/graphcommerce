@@ -8,7 +8,7 @@ import {
   iconStar,
   LayoutOverlayHeader,
   LayoutTitle,
-  SvgIcon,
+  IconSvg,
   GetStaticProps,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
@@ -52,7 +52,7 @@ function AccountReviewsPage() {
           {((customer?.reviews && customer?.reviews.items.length < 1) || !customer?.reviews) && (
             <FullPageMessage
               title={t`You haven't placed any reviews yet`}
-              icon={<SvgIcon src={iconStar} size='xxl' />}
+              icon={<IconSvg src={iconStar} size='xxl' />}
             >
               <Trans>Discover our collection and write your first review!</Trans>
             </FullPageMessage>

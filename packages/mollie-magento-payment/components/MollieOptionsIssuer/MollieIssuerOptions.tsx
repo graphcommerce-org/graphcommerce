@@ -62,7 +62,7 @@ export default function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
               // return (
               //   <MenuItem key={issuer.code} value={issuer.code}>
               //     <ListItemIcon>
-              //       <SvgIcon src={issuer.svg} alt={issuer.name} size='small' />
+              //       <IconSvg src={issuer.svg} alt={issuer.name} size='small' />
               //     </ListItemIcon>
               //     <Typography variant='inherit'>{issuer.name}</Typography>
               //   </MenuItem>

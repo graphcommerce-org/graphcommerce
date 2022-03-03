@@ -1,5 +1,5 @@
 import { cloneDeep } from '@graphcommerce/graphql'
-import { iconCancelAlt, SvgIcon } from '@graphcommerce/next-ui'
+import { iconCancelAlt, IconSvg } from '@graphcommerce/next-ui'
 import { Chip, ChipProps, SxProps, Theme } from '@mui/material'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
@@ -45,7 +45,7 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
               }
             : undefined
         }
-        deleteIcon={isActive ? <SvgIcon src={iconCancelAlt} size='small' /> : undefined}
+        deleteIcon={isActive ? <IconSvg src={iconCancelAlt} size='small' /> : undefined}
         label={label}
         clickable
         {...chipProps}

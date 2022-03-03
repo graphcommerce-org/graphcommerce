@@ -1,4 +1,4 @@
-import { SvgIcon, iconStar } from '@graphcommerce/next-ui'
+import { IconSvg, iconStar } from '@graphcommerce/next-ui'
 import { Chip, ChipProps } from '@mui/material'
 import React from 'react'
 
@@ -32,7 +32,7 @@ export default function ProductReviewChip(props: ProductReviewChipProps) {
       variant='outlined'
       clickable={!!reviewSectionId}
       onClick={handleClick}
-      icon={<SvgIcon src={iconStar} size='small' sx={{ stroke: '#FFDA1C', fill: '#FFDA1C' }} />}
+      icon={<IconSvg src={iconStar} size='small' sx={{ stroke: '#FFDA1C', fill: '#FFDA1C' }} />}
       color='default'
       size='small'
       label={`${normalizedRating}/5`}

@@ -1,8 +1,8 @@
 import { PaginationProps, Box, SxProps, Theme, IconButton } from '@mui/material'
 import usePagination, { UsePaginationItem } from '@mui/material/usePagination'
 import React from 'react'
+import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
-import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 
 export type PagePaginationProps = {
@@ -41,7 +41,7 @@ export function Pagination(props: PagePaginationProps) {
       aria-label='Previous page'
       className={classes.button}
     >
-      <SvgIcon src={iconChevronLeft} className={classes.icon} size='medium' />
+      <IconSvg src={iconChevronLeft} className={classes.icon} size='medium' />
     </IconButton>
   )
 
@@ -53,7 +53,7 @@ export function Pagination(props: PagePaginationProps) {
       aria-label='Next page'
       className={classes.button}
     >
-      <SvgIcon src={iconChevronRight} className={classes.icon} size='medium' />
+      <IconSvg src={iconChevronRight} className={classes.icon} size='medium' />
     </IconButton>
   )
 

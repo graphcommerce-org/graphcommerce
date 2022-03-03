@@ -1,5 +1,5 @@
 import { Money } from '@graphcommerce/magento-store'
-import { iconChevronRight, SvgIcon, extendableComponent } from '@graphcommerce/next-ui'
+import { iconChevronRight, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Box, Button, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
@@ -34,7 +34,7 @@ export default function CartStartCheckout(props: CartStartCheckoutProps) {
           color='secondary'
           size='large'
           className={classes.checkoutButton}
-          endIcon={<SvgIcon src={iconChevronRight} />}
+          endIcon={<IconSvg src={iconChevronRight} />}
           disabled={!hasTotals}
           sx={(theme) => ({
             marginTop: theme.spacings.md,

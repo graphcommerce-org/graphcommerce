@@ -5,7 +5,7 @@ import {
   iconChevronRight,
   responsiveVal,
   SectionContainer,
-  SvgIcon,
+  IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
@@ -83,7 +83,7 @@ export default function CartItemSummary(props: OrderSummaryProps) {
                 left: 8,
               }}
             >
-              <SvgIcon src={iconChevronLeft} />
+              <IconSvg src={iconChevronLeft} />
             </ScrollerButton>
             <Box className={classes.scrollerContainer} sx={{ padding: '1px' }}>
               <Scroller className={classes.scroller}>
@@ -125,7 +125,7 @@ export default function CartItemSummary(props: OrderSummaryProps) {
                 right: 8,
               }}
             >
-              <SvgIcon src={iconChevronRight} />
+              <IconSvg src={iconChevronRight} />
             </ScrollerButton>
           </ScrollerProvider>
         </Box>

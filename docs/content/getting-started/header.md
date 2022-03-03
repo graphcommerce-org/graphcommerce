@@ -102,7 +102,7 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 ```tsx
 <PageLink href='/search' passHref>
   <Fab aria-label={t`Search`} size='large' color='inherit'>
-    <SvgIcon src={iconSearch} size='large' />
+    <IconSvg src={iconSearch} size='large' />
   </Fab>
 </PageLink>
 ```
@@ -118,7 +118,7 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 ```tsx
 <PageLink href='/service' passHref>
   <Fab aria-label={t`Account`} size='large' color='inherit'>
-    <SvgIcon src={iconCustomerService} size='large' />
+    <IconSvg src={iconCustomerService} size='large' />
   </Fab>
 </PageLink>
 ```
@@ -154,7 +154,7 @@ import {
   responsiveVal,
   iconClose,
   iconMenu,
-  SvgIcon,
+  IconSvg,
 } from '@graphcommerce/next-ui'
 import { styled, Box, Fab, Menu, ListItem, Divider, alpha } from '@mui/material'
 import { useRouter } from 'next/router'

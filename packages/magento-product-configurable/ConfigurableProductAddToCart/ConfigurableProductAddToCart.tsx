@@ -6,7 +6,7 @@ import {
   extendableComponent,
   iconChevronRight,
   MessageSnackbar,
-  SvgIcon,
+  IconSvg,
   TextInputNumber,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
@@ -137,7 +137,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
               size='medium'
               variant='pill'
               color='secondary'
-              endIcon={<SvgIcon src={iconChevronRight} />}
+              endIcon={<IconSvg src={iconChevronRight} />}
             >
               <Trans>View shopping cart</Trans>
             </Button>

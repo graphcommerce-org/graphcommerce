@@ -1,4 +1,4 @@
-import { iconChevronRight, LinkOrButton, LinkOrButtonProps, SvgIcon } from '@graphcommerce/next-ui'
+import { iconChevronRight, LinkOrButton, LinkOrButtonProps, IconSvg } from '@graphcommerce/next-ui'
 import { ComposedSubmitRenderComponentProps } from '@graphcommerce/react-hook-form'
 import { forwardRef } from 'react'
 
@@ -17,7 +17,7 @@ export const ComposedSubmitLinkOrButton = forwardRef<
       ref={ref}
       button={{
         variant: 'pill',
-        endIcon: <SvgIcon src={iconChevronRight} />,
+        endIcon: <IconSvg src={iconChevronRight} />,
         ...button,
         type: 'submit',
       }}

@@ -23,7 +23,7 @@ import { svgIconStrokeWidth } from '@graphcommerce/next-ui'
 const createOverrides = (theme: Theme): Components => ({
   // ... other component styling
 
-  SvgIcon: {
+  IconSvg: {
     variants: [
       {
         props: {},
@@ -44,7 +44,7 @@ To override the default color for all icons:
 const createOverrides = (theme: Theme): Components => ({
   //... other component styling
 
-  SvgIcon: {
+  IconSvg: {
     variants: [
       {
         props: {},
@@ -60,13 +60,13 @@ const createOverrides = (theme: Theme): Components => ({
 Use the sx prop to customise the styling of an icon in a component:
 
 ```tsx
-<SvgIcon src={iconCustomerService} size='large' sx={{ strokeWidth: '0.8px' }} />
+<IconSvg src={iconCustomerService} size='large' sx={{ strokeWidth: '0.8px' }} />
 ```
 
 ## Using a different icon from the icon pack
 
 To replace an icon in a component, update the import and src prop of the
-`SvgIcon` component.
+`IconSvg` component.
 
 In /components/Layout/LayoutFull.tsx:
 
@@ -76,7 +76,7 @@ import iconCustomerService from '@graphcommerce/next-ui'
 
 ...
 return (
-  <SvgIcon src={iconCustomerService} size='large' />
+  <IconSvg src={iconCustomerService} size='large' />
 )
 ```
 
@@ -88,7 +88,7 @@ import iconSupport from '@graphcommerce/next-ui/icons/support.svg'
 
 ...
 return (
-  <SvgIcon src={iconSupport} size='large' />
+  <IconSvg src={iconSupport} size='large' />
 )
 ```
 
@@ -124,7 +124,7 @@ import iconUser from '@graphcommerce/next-ui/icons/user.svg'
 <CustomerFab
   guestHref='/account/signin'
   authHref='/account'
-  icon={<SvgIcon src={iconUser} size='large' />}
+  icon={<IconSvg src={iconUser} size='large' />}
 />
 ```
 
@@ -158,7 +158,7 @@ without fills. The path must be wrapped in a `<symbol>` that has an attribute
 ```
 
 Icons can be placed in the same directory as a page or component and can be
-imported from there (the `<SvgIcon>` component will convert the relative path to
+imported from there (the `<IconSvg>` component will convert the relative path to
 an absolute path)
 
 ```tsx
@@ -167,7 +167,7 @@ import customIcon from './my-custom-icon.svg'
 
 ...
 return (
-  <SvgIcon src={iconSucustomIconpport} size='large' />
+  <IconSvg src={iconSucustomIconpport} size='large' />
 )
 ```
 
@@ -192,7 +192,7 @@ import customChatIcon from './my-custom-chat-icon.svg'
 const createOverrides = (theme: Theme): Components => ({
   //... other component styling
 
-  SvgIcon: {
+  IconSvg: {
     overrides: [
       [iconCart, customCartIcon],
       [iconChat, customChatIcon],

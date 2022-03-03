@@ -3,7 +3,7 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   LayoutTitle,
   responsiveVal,
-  SvgIcon,
+  IconSvg,
   iconChevronRight,
   iconBox,
   GetStaticProps,
@@ -22,11 +22,11 @@ const colors = ['inherit', 'primary', 'secondary'] as const
 const propVariants: Record<string, ButtonProps> = {
   Default: {},
   'With start icon': {
-    startIcon: <SvgIcon key='icon' src={iconBox} size='inherit' />,
+    startIcon: <IconSvg key='icon' src={iconBox} size='inherit' />,
     loadingPosition: 'start',
   },
   'With end icon': {
-    endIcon: <SvgIcon key='icon' src={iconChevronRight} size='inherit' />,
+    endIcon: <IconSvg key='icon' src={iconChevronRight} size='inherit' />,
     loadingPosition: 'end',
   },
 }

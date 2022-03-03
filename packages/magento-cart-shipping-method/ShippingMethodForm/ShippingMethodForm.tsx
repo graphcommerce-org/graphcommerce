@@ -9,7 +9,7 @@ import {
   FormRow,
   iconChevronLeft,
   iconChevronRight,
-  SvgIcon,
+  IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Controller, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
@@ -107,7 +107,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
                 },
               }}
             >
-              <SvgIcon src={iconChevronLeft} size='small' aria-label={t`Scroll Left`} />
+              <IconSvg src={iconChevronLeft} size='small' aria-label={t`Scroll Left`} />
             </ScrollerButton>
           </Box>
 
@@ -224,7 +224,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
               }}
               className={classes.buttonRoot}
             >
-              <SvgIcon src={iconChevronRight} size='small' aria-label={t`Scroll Right`} />
+              <IconSvg src={iconChevronRight} size='small' aria-label={t`Scroll Right`} />
             </ScrollerButton>
           </Box>
         </ScrollerProvider>

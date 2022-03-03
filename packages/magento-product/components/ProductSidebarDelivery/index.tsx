@@ -1,7 +1,7 @@
 import {
   responsiveVal,
   iconOrderBefore,
-  SvgIcon,
+  IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Box, darken, lighten, Typography } from '@mui/material'
@@ -31,7 +31,7 @@ export default function ProductSidebarDelivery() {
         borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
       })}
     >
-      <SvgIcon
+      <IconSvg
         className={classes.image}
         src={iconOrderBefore}
         size='small'

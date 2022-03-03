@@ -5,7 +5,7 @@ import {
   iconChevronLeft,
   iconChevronRight,
   responsiveVal,
-  SvgIcon,
+  IconSvg,
   ToggleButton,
   extendableComponent,
 } from '@graphcommerce/next-ui'
@@ -117,7 +117,7 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                 borderBottomLeftRadius: 4,
               })}
             >
-              <SvgIcon src={iconChevronLeft} size='small' />
+              <IconSvg src={iconChevronLeft} size='small' />
             </ScrollerButton>
           </Box>
 
@@ -209,7 +209,7 @@ export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                 borderBottomRightRadius: 4,
               })}
             >
-              <SvgIcon src={iconChevronRight} size='small' />
+              <IconSvg src={iconChevronRight} size='small' />
             </ScrollerButton>
           </Box>
         </ScrollerProvider>

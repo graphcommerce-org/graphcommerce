@@ -9,9 +9,9 @@ import {
   Theme,
 } from '@mui/material'
 import { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
+import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconMin, iconPlus } from '../icons'
 
 export type IconButtonPropsOmit = Omit<
@@ -123,7 +123,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
             {...DownProps}
             className={`${classes.button} ${DownProps.className ?? ''}`}
           >
-            {DownProps.children ?? <SvgIcon src={iconMin} size='small' />}
+            {DownProps.children ?? <IconSvg src={iconMin} size='small' />}
           </IconButton>
         ),
         endAdornment: (
@@ -139,7 +139,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
             {...UpProps}
             className={`${classes.button} ${UpProps.className ?? ''}`}
           >
-            {UpProps.children ?? <SvgIcon src={iconPlus} size='small' />}
+            {UpProps.children ?? <IconSvg src={iconPlus} size='small' />}
           </IconButton>
         ),
       }}

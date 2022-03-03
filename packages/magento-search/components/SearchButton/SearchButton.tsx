@@ -1,4 +1,4 @@
-import { iconSearch, responsiveVal, SvgIcon, extendableComponent } from '@graphcommerce/next-ui'
+import { iconSearch, responsiveVal, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { TextField, TextFieldProps } from '@mui/material'
 
@@ -27,7 +27,7 @@ export function SearchButton(props: SearchButtonProps) {
       InputLabelProps={{ shrink: false }}
       InputProps={{
         readOnly: true,
-        endAdornment: <SvgIcon src={iconSearch} size='medium' />,
+        endAdornment: <IconSvg src={iconSearch} size='medium' />,
         classes: { root: classes.inputRoot },
         ...InputProps,
       }}

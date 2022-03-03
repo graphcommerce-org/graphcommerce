@@ -2,9 +2,9 @@ import { Divider, Fab, ListItem, Menu, styled, Box, SxProps, Theme } from '@mui/
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
+import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles/extendableComponent'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { useFabSize } from '../Theme'
 import { iconMenu, iconClose } from '../icons'
 import { useFabAnimation } from './useFabAnimation'
@@ -71,10 +71,10 @@ export function MenuFab(props: MenuFabProps) {
           className={classes.fab}
         >
           {closeIcon ?? (
-            <SvgIcon src={iconClose} size='large' sx={{ display: openEl ? 'block' : 'none' }} />
+            <IconSvg src={iconClose} size='large' sx={{ display: openEl ? 'block' : 'none' }} />
           )}
           {menuIcon ?? (
-            <SvgIcon src={iconMenu} size='large' sx={{ display: openEl ? 'none' : 'block' }} />
+            <IconSvg src={iconMenu} size='large' sx={{ display: openEl ? 'none' : 'block' }} />
           )}
         </Fab>
         <MotionDiv

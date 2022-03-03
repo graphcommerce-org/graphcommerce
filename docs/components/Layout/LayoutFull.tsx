@@ -3,7 +3,7 @@ import {
   LayoutDefault,
   LayoutDefaultProps,
   responsiveVal,
-  SvgIcon,
+  IconSvg,
 } from '@graphcommerce/next-ui'
 import { Box, Fab } from '@mui/material'
 import Link from 'next/link'
@@ -43,7 +43,7 @@ export function LayoutFull(props: LayoutFullProps) {
               },
             }}
           >
-            <SvgIcon src={iconMenu} size='medium' />
+            <IconSvg src={iconMenu} size='medium' />
           </Fab>
         </Link>
       }

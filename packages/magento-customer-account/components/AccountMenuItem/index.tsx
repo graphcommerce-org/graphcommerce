@@ -2,7 +2,7 @@ import { ImageProps } from '@graphcommerce/image'
 import {
   responsiveVal,
   iconChevronRight,
-  SvgIcon,
+  IconSvg,
   Button,
   ButtonProps,
   extendableComponent,
@@ -78,7 +78,7 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
             paddingRight: theme.spacings.xs,
           })}
         >
-          <SvgIcon src={iconSrc} size='large' />
+          <IconSvg src={iconSrc} size='large' />
         </ListItemIcon>
         <ListItemText
           primaryTypographyProps={{ sx: { typography: 'subtitle1' } }}
@@ -92,7 +92,7 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
           primary={title}
           secondary={subtitle}
         />
-        {endIcon ?? <SvgIcon src={iconChevronRight} />}
+        {endIcon ?? <IconSvg src={iconChevronRight} />}
       </ListItem>
     </Button>
   )

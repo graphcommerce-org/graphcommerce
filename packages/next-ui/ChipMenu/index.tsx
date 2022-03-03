@@ -1,9 +1,9 @@
 import { Chip, ChipProps, Menu, MenuProps, menuClasses, SxProps, Theme } from '@mui/material'
 import React, { PropsWithChildren, useState } from 'react'
+import { IconSvg } from '../IconSvg'
 import { SectionHeader } from '../SectionHeader'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconChevronDown, iconChevronUp, iconCancelAlt } from '../icons'
 
 const { classes, selectors } = extendableComponent('FilterEqual', ['chip'] as const)
@@ -32,9 +32,9 @@ export function ChipMenu(props: ChipMenuProps) {
 
   const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
 
-  let deleteIcon = <SvgIcon src={iconChevronDown} size='medium' />
-  if (selected) deleteIcon = <SvgIcon src={iconCancelAlt} size='medium' fillIcon />
-  if (openEl) deleteIcon = <SvgIcon src={iconChevronUp} size='medium' />
+  let deleteIcon = <IconSvg src={iconChevronDown} size='medium' />
+  if (selected) deleteIcon = <IconSvg src={iconCancelAlt} size='medium' fillIcon />
+  if (openEl) deleteIcon = <IconSvg src={iconChevronUp} size='medium' />
 
   const selectedAndMenuHidden = selected && !openEl && !!selectedLabel
 

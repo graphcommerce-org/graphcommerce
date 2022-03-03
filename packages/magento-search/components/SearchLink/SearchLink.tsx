@@ -1,7 +1,7 @@
 import {
   iconSearch,
   responsiveVal,
-  SvgIcon,
+  IconSvg,
   extendableComponent,
   useFabSize,
 } from '@graphcommerce/next-ui'
@@ -58,7 +58,7 @@ export function SearchLink(props: SearchLinknProps) {
         {...linkProps}
       >
         <div className={classes.text}>{children ?? <>&nbsp;</>}</div>
-        <SvgIcon
+        <IconSvg
           src={iconSearch}
           className={classes.svg}
           sx={{ color: 'text.primary', fontSize: '1.4em' }}

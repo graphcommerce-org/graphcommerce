@@ -10,8 +10,8 @@ import {
   Theme,
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
+import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
-import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconClose, iconCheckmark, iconSadFace } from '../icons'
 
 type Size = 'normal' | 'wide'
@@ -110,14 +110,14 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
                 md: 'min-content 1fr max-content auto',
               },
               typography: 'subtitle1',
-              '&.SvgIcon': {
+              '&.IconSvg': {
                 gridArea: 'children',
               },
             },
           })}
           message={
             <>
-              <SvgIcon src={icon} size='large' />
+              <IconSvg src={icon} size='large' />
               <Box gridArea='children'>{children}</Box>
               {/* </Box> */}
               {action && (
@@ -134,7 +134,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
                   backgroundColor: lighten(theme.palette.background.paper, 0.1),
                 })}
               >
-                <SvgIcon src={iconClose} />
+                <IconSvg src={iconClose} />
               </Fab>
             </>
           }

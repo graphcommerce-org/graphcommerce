@@ -1,4 +1,4 @@
-import { Highlight, iconChevronRight, SvgIcon, extendableComponent } from '@graphcommerce/next-ui'
+import { Highlight, iconChevronRight, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { Button, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
@@ -23,7 +23,7 @@ export function CategorySearchResult(props: CategorySearchResultProps) {
         variant='contained'
         className={classes.root}
         disableElevation
-        endIcon={<SvgIcon src={iconChevronRight} size='small' />}
+        endIcon={<IconSvg src={iconChevronRight} size='small' />}
         sx={[
           (theme) => ({
             background: theme.palette.background.default,

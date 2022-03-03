@@ -11,7 +11,7 @@ import {
   GetStaticProps,
   iconBox,
   LayoutOverlayHeader,
-  SvgIcon,
+  IconSvg,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
@@ -70,7 +70,7 @@ function AccountOrdersPage() {
           {customer?.orders && customer.orders.items.length < 1 && (
             <FullPageMessage
               title={t`You have no orders yet`}
-              icon={<SvgIcon src={iconBox} size='xxl' />}
+              icon={<IconSvg src={iconBox} size='xxl' />}
             >
               <Trans>Discover our collection and place your first order!</Trans>
             </FullPageMessage>

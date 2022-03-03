@@ -2,7 +2,7 @@ import {
   extendableComponent,
   iconShoppingBag,
   DesktopHeaderBadge,
-  SvgIcon,
+  IconSvg,
   useScrollY,
   useFabSize,
 } from '@graphcommerce/next-ui'
@@ -43,7 +43,7 @@ function CartFabContent(props: CartFabContentProps) {
   const paper1 = alpha(theme2.palette.background.paper, 1)
   const backgroundColor = useTransform(scrollY, [0, 10], [paper0, paper1])
 
-  const cartIcon = icon ?? <SvgIcon src={iconShoppingBag} size='large' />
+  const cartIcon = icon ?? <IconSvg src={iconShoppingBag} size='large' />
   const fabIconSize = useFabSize('responsive')
 
   return (

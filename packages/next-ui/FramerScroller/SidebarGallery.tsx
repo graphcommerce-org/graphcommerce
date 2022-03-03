@@ -12,10 +12,10 @@ import { Fab, useTheme, alpha, Box, styled, SxProps, Theme } from '@mui/material
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
+import { IconSvg } from '../IconSvg'
 import { Row } from '../Row'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../icons'
 
 const MotionBox = styled(m.div)({})
@@ -227,7 +227,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   boxShadow: theme.shadows[6],
                 }}
               >
-                {!zoomed ? <SvgIcon src={iconFullscreen} /> : <SvgIcon src={iconFullscreenExit} />}
+                {!zoomed ? <IconSvg src={iconFullscreen} /> : <IconSvg src={iconFullscreenExit} />}
               </Fab>
             </MotionBox>
             <Box
@@ -247,7 +247,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 size='small'
                 className={classes.sliderButtons}
               >
-                <SvgIcon src={iconChevronLeft} />
+                <IconSvg src={iconChevronLeft} />
               </ScrollerButton>
             </Box>
             <Box
@@ -266,7 +266,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 size='small'
                 className={classes.sliderButtons}
               >
-                <SvgIcon src={iconChevronRight} />
+                <IconSvg src={iconChevronRight} />
               </ScrollerButton>
             </Box>
 

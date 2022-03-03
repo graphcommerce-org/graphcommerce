@@ -2,7 +2,7 @@ import {
   iconChevronRight,
   LinkOrButton,
   LinkOrButtonProps,
-  SvgIcon,
+  IconSvg,
   Button,
   ButtonProps,
 } from '@graphcommerce/next-ui'
@@ -23,7 +23,7 @@ export const ComposedSubmitButton = forwardRef<HTMLButtonElement, ComposedSubmit
         ref={ref}
         color='secondary'
         variant='pill'
-        endIcon={<SvgIcon src={iconChevronRight} />}
+        endIcon={<IconSvg src={iconChevronRight} />}
         type='submit'
         {...otherProps}
         loading={loading}

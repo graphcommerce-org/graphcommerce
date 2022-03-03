@@ -1,6 +1,6 @@
 import { RatingProps, Rating } from '@mui/material'
+import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
-import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconStar } from '../icons'
 
 export type StarRatingFieldProps = {
@@ -22,7 +22,7 @@ export function StarRatingField(props: StarRatingFieldProps) {
       max={5}
       size='small'
       emptyIcon={
-        <SvgIcon
+        <IconSvg
           src={iconStar}
           size='large'
           className={classes.startEmpty}
@@ -30,7 +30,7 @@ export function StarRatingField(props: StarRatingFieldProps) {
         />
       }
       icon={
-        <SvgIcon
+        <IconSvg
           src={iconStar}
           size='large'
           className={classes.starFull}

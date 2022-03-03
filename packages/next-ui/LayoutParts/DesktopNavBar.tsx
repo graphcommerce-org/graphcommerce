@@ -1,14 +1,14 @@
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { Box, BoxProps } from '@mui/material'
 import React from 'react'
+import { IconSvg, IconSvgProps } from '../IconSvg'
 import { extendableComponent } from '../Styles/extendableComponent'
-import { SvgIcon, SvgIconProps } from '../SvgIcon/SvgIcon'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 
 export type MenuTabsProps = {
   children: React.ReactNode
-  iconLeft?: SvgIconProps['src']
-  iconRight?: SvgIconProps['src']
+  iconLeft?: IconSvgProps['src']
+  iconRight?: IconSvgProps['src']
 } & Pick<BoxProps, 'sx'>
 
 const { classes, selectors } = extendableComponent('DesktopNavBar', [
@@ -74,7 +74,7 @@ export function DesktopNavBar(props: MenuTabsProps) {
             size='small'
             className={classes.left}
           >
-            <SvgIcon src={iconLeft ?? iconChevronLeft} />
+            <IconSvg src={iconLeft ?? iconChevronLeft} />
           </ScrollerButton>
         </Box>
 
@@ -103,7 +103,7 @@ export function DesktopNavBar(props: MenuTabsProps) {
             size='small'
             className={classes.right}
           >
-            <SvgIcon src={iconRight ?? iconChevronRight} />
+            <IconSvg src={iconRight ?? iconChevronRight} />
           </ScrollerButton>
         </Box>
       </Box>

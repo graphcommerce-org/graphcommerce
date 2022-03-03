@@ -10,7 +10,7 @@ import {
   MenuFab,
   MenuFabSecondaryItem,
   PlaceholderFab,
-  SvgIcon,
+  IconSvg,
   DesktopNavItem,
   MenuFabItem,
   DarkLightModeMenuSecondaryItem,
@@ -60,7 +60,7 @@ export function LayoutFull(props: LayoutFullProps) {
             {!router.pathname.startsWith('/search') && <SearchLink href='/search' />}
             <PageLink href='/service' passHref>
               <Fab aria-label={t`Account`} size='large' color='inherit'>
-                <SvgIcon src={iconCustomerService} size='large' />
+                <IconSvg src={iconCustomerService} size='large' />
               </Fab>
             </PageLink>
             <CustomerFab guestHref='/account/signin' authHref='/account' />
@@ -84,7 +84,7 @@ export function LayoutFull(props: LayoutFullProps) {
             </CustomerMenuFabItem>,
             <MenuFabSecondaryItem
               key='service'
-              icon={<SvgIcon src={iconCustomerService} size='medium' />}
+              icon={<IconSvg src={iconCustomerService} size='medium' />}
               href='/service'
             >
               <Trans>Customer Service</Trans>
