@@ -257,7 +257,7 @@ function IndexPage(props: Props) {
             typography: 'caption',
             color: 'text.secondary',
           },
-          '& details': {
+          '& > details': {
             width: '100%',
             mt: '2em',
             mb: '0.5em',
@@ -269,6 +269,16 @@ function IndexPage(props: Props) {
             a: {
               color: theme.palette.primary.dark,
               textDecorationColor: theme.palette.primary.dark,
+            },
+          },
+          '& > div > details': {
+            h3: {
+              ...theme.typography.h3,
+              display: 'inline-block',
+            },
+            a: {
+              color: theme.palette.text.primary,
+              textDecorationColor: theme.palette.text.primary,
             },
           },
           '& hr': {
