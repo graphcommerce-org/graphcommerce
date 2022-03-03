@@ -272,6 +272,9 @@ function IndexPage(props: Props) {
             },
           },
           '& > div > details': {
+            summary: {
+              mb: 1,
+            },
             h3: {
               ...theme.typography.h3,
               display: 'inline-block',
