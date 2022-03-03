@@ -1,5 +1,25 @@
 # Change Log
 
+## 4.2.1
+
+### Patch Changes
+
+- [#1294](https://github.com/ho-nl/m2-pwa/pull/1294)
+  [`19f33e0aa`](https://github.com/ho-nl/m2-pwa/commit/19f33e0aaf4e3121edd444926d08b6459d3ef400)
+  Thanks [@paales](https://github.com/paales)! - Make sure the minHeight of overlays always have the
+  correct height, even if the content changes size
+
+* [#1294](https://github.com/ho-nl/m2-pwa/pull/1294)
+  [`aea787542`](https://github.com/ho-nl/m2-pwa/commit/aea787542484a0480a48031fcc4a9a5566c6bfc7)
+  Thanks [@paales](https://github.com/paales)! - Make sure the labels of LayoutHeaderBack/Close
+  aren’t rendered on mobile
+
+* Updated dependencies
+  [[`4e28c8afd`](https://github.com/ho-nl/m2-pwa/commit/4e28c8afd9cead3577dd0eff97b5c44ba4c1c862),
+  [`afb993244`](https://github.com/ho-nl/m2-pwa/commit/afb993244aabc8135ce54a79743cbf63bc5677d3)]:
+  - @graphcommerce/framer-scroller@2.0.5
+  - @graphcommerce/framer-next-pages@3.1.1
+
 ## 4.2.0
 
 ### Minor Changes
