@@ -11,7 +11,7 @@ import {
   iconBox,
   LayoutOverlayHeader,
   LayoutTitle,
-  SvgIcon,
+  IconSvg,
   GetStaticProps,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
@@ -57,7 +57,7 @@ function AccountReviewsAddPage() {
     return (
       <FullPageMessage
         title={t`Product could not be found`}
-        icon={<SvgIcon src={iconBox} size='xxl' />}
+        icon={<IconSvg src={iconBox} size='xxl' />}
       >
         <Trans>Try a different product</Trans>
       </FullPageMessage>

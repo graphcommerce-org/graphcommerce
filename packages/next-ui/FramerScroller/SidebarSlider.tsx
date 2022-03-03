@@ -7,10 +7,10 @@ import {
 } from '@graphcommerce/framer-scroller'
 import { Box, SxProps, Theme } from '@mui/material'
 import { ReactNode } from 'react'
+import { IconSvg } from '../IconSvg'
 import { Row } from '../Row'
 import { extendableComponent } from '../Styles/extendableComponent'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { SvgIcon } from '../SvgIcon/SvgIcon'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 
 const { classes, selectors } = extendableComponent('SidebarSlider', [
@@ -87,7 +87,7 @@ export function SidebarSlider(props: SidebarSliderProps) {
                 sx={{ display: { xs: 'none', md: 'flex' } }}
                 size={buttonSize}
               >
-                <SvgIcon src={iconChevronLeft} />
+                <IconSvg src={iconChevronLeft} />
               </ScrollerButton>
             </Box>
             <Box
@@ -106,7 +106,7 @@ export function SidebarSlider(props: SidebarSliderProps) {
                 sx={{ display: { xs: 'none', md: 'flex' } }}
                 size={buttonSize}
               >
-                <SvgIcon src={iconChevronRight} />
+                <IconSvg src={iconChevronRight} />
               </ScrollerButton>
             </Box>
           </Box>

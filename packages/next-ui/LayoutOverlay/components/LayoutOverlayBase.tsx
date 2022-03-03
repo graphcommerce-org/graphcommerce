@@ -336,8 +336,12 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
               [theme.breakpoints.down('md')]: {
                 minWidth: '80vw',
 
+                /**
+                 * The top bar on Google Chrome is about 56 pixels high. If we do not provide this
+                 * padding we'll run into the issue that the user can't scroll to the bottom. We
+                 * can't change this value with JS as that causes much jank
+                 */
                 '&.sizeSmFull, &.sizeSmMinimal': { paddingBottom: 56 },
-
                 '&.variantSmBottom.sizeSmFull': { minHeight: 'calc(100vh - 56px)' },
 
                 '&.variantSmBottom': {

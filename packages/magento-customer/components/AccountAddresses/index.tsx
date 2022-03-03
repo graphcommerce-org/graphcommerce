@@ -2,7 +2,7 @@ import {
   FullPageMessage,
   SectionContainer,
   iconHome,
-  SvgIcon,
+  IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
@@ -57,7 +57,7 @@ export default function AccountAddresses(props: AccountAddressesProps) {
       {((addresses && addresses.length === 0) || !addresses) && (
         <FullPageMessage
           title={<Trans>You have no addresses saved yet</Trans>}
-          icon={<SvgIcon src={iconHome} size='xxl' />}
+          icon={<IconSvg src={iconHome} size='xxl' />}
           button={
             <Link href='/account/addresses/add' passHref>
               <Button size='large' variant='contained' color='primary'>

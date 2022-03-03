@@ -1,5 +1,5 @@
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
-import { SvgIcon, iconCancelAlt, extendableComponent } from '@graphcommerce/next-ui'
+import { IconSvg, iconCancelAlt, extendableComponent } from '@graphcommerce/next-ui'
 import { lighten, Button, Box, SxProps, Theme } from '@mui/material'
 import { CouponFragment } from '../Api/Coupon.gql'
 import { RemoveCouponFormDocument } from './RemoveCouponForm.gql'
@@ -24,7 +24,7 @@ export default function RemoveCouponForm(props: RemoveCouponFormProps) {
         variant='text'
         color='secondary'
         className={classes.button}
-        endIcon={<SvgIcon src={iconCancelAlt} />}
+        endIcon={<IconSvg src={iconCancelAlt} />}
         sx={(theme) => ({
           fontWeight: 600,
           background: lighten(theme.palette.secondary.light, theme.palette.action.hoverOpacity),

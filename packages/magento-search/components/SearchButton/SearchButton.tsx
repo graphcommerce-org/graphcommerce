@@ -1,4 +1,4 @@
-import { iconSearch, responsiveVal, SvgIcon, extendableComponent } from '@graphcommerce/next-ui'
+import { iconSearch, responsiveVal, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { TextField, TextFieldProps } from '@mui/material'
 
@@ -9,7 +9,11 @@ const name = 'SearchButton' as const
 const parts = ['root', 'inputRoot'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
-export default function SearchButton(props: SearchButtonProps) {
+/**
+ * @deprecated The use of `SearchButton` is not advised. It will import lots of things from
+ *   `@mui/material`. Use the <SearchLink /> component instead.
+ */
+export function SearchButton(props: SearchButtonProps) {
   const { InputProps, label, fullWidth = false, sx = [], ...textFieldProps } = props
   const classes = withState({ fullWidth })
 
@@ -23,7 +27,7 @@ export default function SearchButton(props: SearchButtonProps) {
       InputLabelProps={{ shrink: false }}
       InputProps={{
         readOnly: true,
-        endAdornment: <SvgIcon src={iconSearch} size='medium' />,
+        endAdornment: <IconSvg src={iconSearch} size='medium' />,
         classes: { root: classes.inputRoot },
         ...InputProps,
       }}

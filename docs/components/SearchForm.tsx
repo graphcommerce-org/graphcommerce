@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { SvgIcon, iconClose, iconSearch } from '@graphcommerce/next-ui'
+import { IconSvg, iconClose, iconSearch } from '@graphcommerce/next-ui'
 import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@graphcommerce/react-hook-form'
 import {
   Box,
@@ -49,7 +49,7 @@ function SearchBox() {
 
   const endAdornment = !query ? (
     <IconButton size='small'>
-      <SvgIcon src={iconSearch} />
+      <IconSvg src={iconSearch} />
     </IconButton>
   ) : (
     <>
@@ -60,7 +60,7 @@ function SearchBox() {
         </Box>
       )}
       <IconButton onClick={() => resetField('query')} size='small'>
-        <SvgIcon src={iconClose} />
+        <IconSvg src={iconClose} />
       </IconButton>
     </>
   )

@@ -1,2 +1,2 @@
-export * from './SvgIcon'
+export * from './IconSvg'
 export * from './svgIconStrokeWidth'

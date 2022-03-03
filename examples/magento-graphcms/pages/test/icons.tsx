@@ -2,9 +2,9 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   LayoutTitle,
-  SvgIcon,
+  IconSvg,
   GetStaticProps,
-  SvgIconProps,
+  IconSvgProps,
   svgIconStrokeWidth,
   iconPhone,
 } from '@graphcommerce/next-ui'
@@ -13,7 +13,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
-const propVariants: Record<string, SvgIconProps> = {
+const propVariants: Record<string, IconSvgProps> = {
   Default: {
     src: iconPhone,
   },
@@ -57,37 +57,37 @@ export default function IconsPage() {
       {Object.entries(propVariants).map(([propVariant, props]) => (
         // eslint-disable-next-line react/no-array-index-key
         <React.Fragment key={propVariant}>
-          <SvgIcon {...props} style={{ fontSize: size }} ref={ref} />
+          <IconSvg {...props} style={{ fontSize: size }} ref={ref} />
 
           <Typography variant='h1' sx={{ mt: 8 }}>
-            {propVariant} <SvgIcon {...props} />
+            {propVariant} <IconSvg {...props} />
           </Typography>
           <Typography variant='h2' sx={{ mt: 8 }}>
             {propVariant}
-            <SvgIcon {...props} />
+            <IconSvg {...props} />
           </Typography>
           <Typography variant='h3' sx={{ mt: 8 }}>
-            {propVariant} <SvgIcon {...props} />
+            {propVariant} <IconSvg {...props} />
           </Typography>
           <Typography variant='h4' sx={{ mt: 8 }}>
             {propVariant}
-            <SvgIcon {...props} />
+            <IconSvg {...props} />
           </Typography>
           <Typography variant='h5' sx={{ mt: 8 }}>
             {propVariant}
-            <SvgIcon {...props} />
+            <IconSvg {...props} />
           </Typography>
           <Typography variant='h6' sx={{ mt: 8 }}>
             {propVariant}
-            <SvgIcon {...props} />
+            <IconSvg {...props} />
           </Typography>
           <Typography variant='subtitle1' sx={{ mt: 8 }}>
             {propVariant}
-            <SvgIcon {...props} />
+            <IconSvg {...props} />
           </Typography>
           <Typography variant='body1'>
             {propVariant}
-            <SvgIcon {...props} />
+            <IconSvg {...props} />
           </Typography>
         </React.Fragment>
       ))}

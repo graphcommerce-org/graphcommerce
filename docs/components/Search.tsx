@@ -1,4 +1,4 @@
-import { iconSearch, SvgIcon } from '@graphcommerce/next-ui'
+import { iconSearch, IconSvg } from '@graphcommerce/next-ui'
 import { IconButton, TextField, TextFieldProps } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
@@ -11,7 +11,7 @@ function SearchButton(props: TextFieldProps) {
       placeholder='Search...'
       InputProps={
         <IconButton size='small'>
-          <SvgIcon src={iconSearch} />
+          <IconSvg src={iconSearch} />
         </IconButton>
       }
       sx={{ width: '100%', mb: 2 }}

@@ -1,15 +1,7 @@
-export { default as SearchDivider } from './SearchDivider'
-
-export { default as NoSearchResults } from './NoSearchResults'
-export * from './NoSearchResults'
-
-export { default as CategorySearchResult } from './CategorySearchResult'
-export * from './CategorySearchResult'
-
-export { default as SearchForm } from './SearchForm'
-export * from './SearchForm'
-
-export { default as SearchButton } from './SearchButton'
-export * from './SearchButton'
-
+export * from './components/SearchDivider/SearchDivider'
+export * from './components/NoSearchResults/NoSearchResults'
+export * from './components/CategorySearchResult/CategorySearchResult'
+export * from './components/SearchForm/SearchForm'
+export * from './components/SearchLink/SearchLink'
 export * from './Search.gql'
+export * from './components/SearchButton/SearchButton'

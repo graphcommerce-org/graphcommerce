@@ -2,9 +2,10 @@ import { Divider, Fab, ListItem, Menu, styled, Box, SxProps, Theme } from '@mui/
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
+import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles/extendableComponent'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { SvgIcon } from '../SvgIcon/SvgIcon'
+import { useFabSize } from '../Theme'
 import { iconMenu, iconClose } from '../icons'
 import { useFabAnimation } from './useFabAnimation'
 
@@ -26,8 +27,6 @@ const { classes, selectors } = extendableComponent('MenuFab', [
   'menu',
 ] as const)
 
-const fabIconSize = responsiveVal(42, 56) // @todo generalize this
-
 export function MenuFab(props: MenuFabProps) {
   const { children, secondary, search, menuIcon, closeIcon, sx = [] } = props
   const router = useRouter()
@@ -40,6 +39,7 @@ export function MenuFab(props: MenuFabProps) {
     router.events.on('routeChangeStart', clear)
     return () => router.events.off('routeChangeStart', clear)
   }, [router])
+  const fabIconSize = useFabSize('responsive')
 
   return (
     <Box sx={[{ width: fabIconSize, height: fabIconSize }, ...(Array.isArray(sx) ? sx : [sx])]}>
@@ -57,6 +57,7 @@ export function MenuFab(props: MenuFabProps) {
           color='inherit'
           aria-label='Open Menu'
           onClick={(event) => setOpenEl(event.currentTarget)}
+          size='responsive'
           sx={(theme) => ({
             boxShadow: 'none',
             '&:hover, &:focus': {
@@ -64,18 +65,16 @@ export function MenuFab(props: MenuFabProps) {
               background: theme.palette.text.primary,
             },
             background: theme.palette.text.primary,
-            width: fabIconSize,
-            height: fabIconSize,
             pointerEvents: 'all',
             color: theme.palette.background.paper,
           })}
           className={classes.fab}
         >
           {closeIcon ?? (
-            <SvgIcon src={iconClose} size='large' sx={{ display: openEl ? 'block' : 'none' }} />
+            <IconSvg src={iconClose} size='large' sx={{ display: openEl ? 'block' : 'none' }} />
           )}
           {menuIcon ?? (
-            <SvgIcon src={iconMenu} size='large' sx={{ display: openEl ? 'none' : 'block' }} />
+            <IconSvg src={iconMenu} size='large' sx={{ display: openEl ? 'none' : 'block' }} />
           )}
         </Fab>
         <MotionDiv

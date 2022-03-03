@@ -1,8 +1,12 @@
-import { Fab, FabProps, styled } from '@mui/material'
+import { Fab, FabProps } from '@mui/material'
 
-export const PlaceholderFab = styled((props: Omit<FabProps, 'children'>) => (
-  <Fab {...props}>
-    {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
-    <></>
-  </Fab>
-))({ visibility: 'hidden', pointerEvents: 'none' })
+export function PlaceholderFab(props: Omit<FabProps, 'children'>) {
+  const { sx = [] } = props
+  return (
+    <Fab
+      size='responsive'
+      {...props}
+      sx={[{ visibility: 'hidden', pointerEvents: 'none' }, ...(Array.isArray(sx) ? sx : [sx])]}
+    />
+  )
+}

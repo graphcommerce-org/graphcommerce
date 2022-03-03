@@ -4,7 +4,7 @@ import {
   iconChevronDown,
   iconChevronUp,
   responsiveVal,
-  SvgIcon,
+  IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
@@ -96,10 +96,10 @@ export default function CouponAccordion(props: CouponAccordionProps) {
           endIcon={
             <>
               {!coupon && open && (
-                <SvgIcon src={iconChevronUp} size='large' sx={{ display: 'inherit' }} />
+                <IconSvg src={iconChevronUp} size='large' sx={{ display: 'inherit' }} />
               )}
               {!coupon && !open && (
-                <SvgIcon src={iconChevronDown} size='large' sx={{ display: 'inherit' }} />
+                <IconSvg src={iconChevronDown} size='large' sx={{ display: 'inherit' }} />
               )}
             </>
           }

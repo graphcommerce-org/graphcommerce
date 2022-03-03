@@ -9,7 +9,7 @@ import {
   iconSadFace,
   LayoutHeader,
   Stepper,
-  SvgIcon,
+  IconSvg,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
@@ -53,7 +53,7 @@ function OrderSuccessPage() {
           {!hasCartId && (
             <FullPageMessage
               title={t`You have not placed an order`}
-              icon={<SvgIcon src={iconSadFace} size='xxl' />}
+              icon={<IconSvg src={iconSadFace} size='xxl' />}
               button={
                 <Link href='/' passHref>
                   <Button variant='pill' color='secondary' size='large'>

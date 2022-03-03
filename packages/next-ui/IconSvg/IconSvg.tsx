@@ -1,11 +1,11 @@
 import { ImageProps, srcToString, StaticImport } from '@graphcommerce/image'
-import { styled, SxProps, Theme, useTheme } from '@mui/material'
+import { styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
 import { ComponentProps, forwardRef } from 'react'
 import { extendableComponent, ExtendableComponent } from '../Styles/extendableComponent'
 import { responsiveVal as rv } from '../Styles/responsiveVal'
 import { svgIconStrokeWidth } from './svgIconStrokeWidth'
 
-const name = 'SvgIcon'
+const name = 'IconSvg'
 const parts = ['root'] as const
 type StyleProps = {
   size?: 'default' | 'inherit' | 'xxl' | 'xl' | 'large' | 'medium' | 'small' | 'xs'
@@ -16,7 +16,7 @@ const { withState } = extendableComponent<StyleProps, typeof name, typeof parts>
 /** Expose the component to be exendable in your theme.components */
 declare module '@mui/material/styles/components' {
   interface Components {
-    SvgIcon?: ExtendableComponent<StyleProps> & {
+    IconSvg?: ExtendableComponent<StyleProps> & {
       /**
        * To override an icon with your own icon, provide the original src and the replacement src.
        *
@@ -36,7 +36,7 @@ declare module '@mui/material/styles/components' {
   }
 }
 
-export type SvgIconProps = StyleProps &
+export type IconSvgProps = StyleProps &
   Pick<ImageProps, 'src'> &
   Pick<ComponentProps<'svg'>, 'className' | 'style'> & { sx?: SxProps<Theme> }
 
@@ -73,15 +73,15 @@ const Svg = styled('svg', { name, target: name })(() => [
 ])
 
 /**
- * SvgIcon component is supposed to be used in combination with `icons`
+ * IconSvg component is supposed to be used in combination with `icons`
  *
  * @see https://graphcommerce-docs.vercel.app/framework/icons
  */
-export const SvgIcon = forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => {
-  const { src, size, fillIcon, className, ...svgProps } = props
+export const IconSvg = forwardRef<SVGSVGElement, IconSvgProps>((props, ref) => {
+  const { src, size, fillIcon, className, ...svgProps } = useThemeProps({ props, name })
 
   const srcWithOverride =
-    (useTheme().components?.SvgIcon?.overrides ?? []).find(
+    (useTheme().components?.IconSvg?.overrides ?? []).find(
       ([overrideSrc]) => overrideSrc === src,
     )?.[1] ?? src
 
@@ -98,4 +98,7 @@ export const SvgIcon = forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => {
     </Svg>
   )
 })
-SvgIcon.displayName = 'SvgIcon'
+IconSvg.displayName = 'IconSvg'
+
+/** @deprecated SvgIcon is renamed to IconSvg, no API changes */
+export const SvgIcon = IconSvg

@@ -2,7 +2,7 @@ import {
   FormRow,
   iconClose,
   iconSearch,
-  SvgIcon,
+  IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@graphcommerce/react-hook-form'
@@ -23,7 +23,7 @@ const name = 'SearchForm' as const
 const parts = ['root', 'totalProducts'] as const
 const { classes } = extendableComponent(name, parts)
 
-export default function SearchForm(props: SearchFormProps) {
+export function SearchForm(props: SearchFormProps) {
   const { totalResults = 0, search = '', urlHandle = 'search', textFieldProps, sx = [] } = props
   const router = useRouter()
 
@@ -47,7 +47,7 @@ export default function SearchForm(props: SearchFormProps) {
 
   const endAdornment = !watch('search') ? (
     <IconButton size='small'>
-      <SvgIcon src={iconSearch} />
+      <IconSvg src={iconSearch} />
     </IconButton>
   ) : (
     <>
@@ -65,7 +65,7 @@ export default function SearchForm(props: SearchFormProps) {
         </Box>
       )}
       <IconButton onClick={handleReset} size='small'>
-        <SvgIcon src={iconClose} />
+        <IconSvg src={iconClose} />
       </IconButton>
     </>
   )

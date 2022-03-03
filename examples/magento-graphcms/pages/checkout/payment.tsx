@@ -29,7 +29,7 @@ import {
   iconId,
   LayoutHeader,
   Stepper,
-  SvgIcon,
+  IconSvg,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
@@ -61,7 +61,7 @@ function PaymentPage() {
                   button={{
                     variant: 'pill',
                     size: 'medium',
-                    endIcon: <SvgIcon src={iconChevronRight} size='small' />,
+                    endIcon: <IconSvg src={iconChevronRight} size='small' />,
                   }}
                   display='inline'
                 >
@@ -133,7 +133,7 @@ function PaymentPage() {
                         color='secondary'
                         button={{ variant: 'pill', size: 'large' }}
                         breakpoint='xs'
-                        endIcon={<SvgIcon src={iconChevronRight} />}
+                        endIcon={<IconSvg src={iconChevronRight} />}
                       >
                         <Trans>Place order</Trans>
                       </PaymentMethodButton>

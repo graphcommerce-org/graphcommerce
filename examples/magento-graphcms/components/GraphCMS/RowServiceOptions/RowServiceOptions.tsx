@@ -5,7 +5,7 @@ import {
   iconChat,
   iconEmail,
   iconPhone,
-  SvgIcon,
+  IconSvg,
 } from '@graphcommerce/next-ui'
 import PageLink from 'next/link'
 import { RowServiceOptionsFragment } from './RowServiceOptions.gql'
@@ -26,9 +26,9 @@ export function RowServiceOptions(props: RowServiceOptionsProps) {
               title={serviceOption.title}
               icon={
                 <>
-                  {iconTitle === 'e-mail' && <SvgIcon src={iconEmail} size='large' />}
-                  {iconTitle === 'phone' && <SvgIcon src={iconPhone} size='large' />}
-                  {iconTitle === 'chat' && <SvgIcon src={iconChat} size='large' />}
+                  {iconTitle === 'e-mail' && <IconSvg src={iconEmail} size='large' />}
+                  {iconTitle === 'phone' && <IconSvg src={iconPhone} size='large' />}
+                  {iconTitle === 'chat' && <IconSvg src={iconChat} size='large' />}
                 </>
               }
             >

@@ -1,4 +1,4 @@
-import { SvgIcon, iconStar, extendableComponent } from '@graphcommerce/next-ui'
+import { IconSvg, iconStar, extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'
 
@@ -14,7 +14,7 @@ export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
   if (!rating_summary) return null
 
   const disabledStar = (
-    <SvgIcon
+    <IconSvg
       src={iconStar}
       size='xs'
       className={classes.iconStarDisabled}
@@ -23,7 +23,7 @@ export default function ProductReviewSummary(props: ProductReviewSummaryProps) {
   )
 
   const star = (
-    <SvgIcon
+    <IconSvg
       src={iconStar}
       size='xs'
       className={classes.iconStar}

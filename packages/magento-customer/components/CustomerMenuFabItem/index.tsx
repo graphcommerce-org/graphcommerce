@@ -3,7 +3,7 @@ import {
   MenuFabSecondaryItem,
   DesktopHeaderBadge,
   iconPerson,
-  SvgIcon,
+  IconSvg,
 } from '@graphcommerce/next-ui'
 import { NoSsr, SxProps, Theme } from '@mui/material'
 import React from 'react'
@@ -31,7 +31,7 @@ function CustomerMenuFabItemContent(props: CustomerMenuFabItemProps) {
           variant='dot'
           overlap='circular'
         >
-          {icon ?? <SvgIcon src={iconPerson} size='medium' />}
+          {icon ?? <IconSvg src={iconPerson} size='medium' />}
         </DesktopHeaderBadge>
       }
       href={requireAuth ? guestHref : authHref}

@@ -8,7 +8,7 @@ const name = 'NoSearchResults' as const
 const parts = ['root'] as const
 const { classes } = extendableComponent(name, parts)
 
-export default function NoSearchResults(props: NoSearchResultsProps) {
+export function NoSearchResults(props: NoSearchResultsProps) {
   const { search, sx = [] } = props
 
   const term = `'${search}'`

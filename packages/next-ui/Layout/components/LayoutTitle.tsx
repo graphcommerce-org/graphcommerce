@@ -1,7 +1,7 @@
 import { Box, SxProps, Theme, Typography, TypographyProps } from '@mui/material'
 import React from 'react'
+import { IconSvg, IconSvgProps } from '../../IconSvg'
 import { extendableComponent, responsiveVal } from '../../Styles'
-import { SvgIcon, SvgIconProps } from '../../SvgIcon/SvgIcon'
 
 type OwnerState = {
   size?: 'small' | 'medium'
@@ -17,7 +17,7 @@ const { withState } = extendableComponent<OwnerState, 'LayoutTitle', typeof part
 
 export type TitleProps = {
   children: React.ReactNode
-  icon?: SvgIconProps['src']
+  icon?: IconSvgProps['src']
   variant?: TypographyProps['variant']
   component?: React.ElementType
   sx?: SxProps<Theme>
@@ -69,7 +69,7 @@ export const LayoutTitle = React.forwardRef<HTMLDivElement, TitleProps>((props, 
       ]}
     >
       {icon && (
-        <SvgIcon src={icon} size={size === 'small' ? 'large' : 'xl'} className={classes.icon} />
+        <IconSvg src={icon} size={size === 'small' ? 'large' : 'xl'} className={classes.icon} />
       )}
       <Typography
         ref={ref}

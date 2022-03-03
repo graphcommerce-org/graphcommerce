@@ -3,7 +3,7 @@ import { t } from '@lingui/macro'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import { LinkOrButton, LinkOrButtonProps } from '../../Button/LinkOrButton'
-import { SvgIcon } from '../../SvgIcon/SvgIcon'
+import { IconSvg } from '../../IconSvg'
 import { iconChevronLeft } from '../../icons'
 
 export type BackProps = Omit<LinkOrButtonProps, 'onClick' | 'children'>
@@ -28,7 +28,7 @@ export default function LayoutHeaderBack(props: BackProps) {
   const prevUp = usePrevUp()
   const { backSteps } = usePageContext()
 
-  const backIcon = <SvgIcon src={iconChevronLeft} size='medium' />
+  const backIcon = <IconSvg src={iconChevronLeft} size='medium' />
   const canClickBack = backSteps > 0 && path !== prevUp?.href
 
   let label = t`Back`

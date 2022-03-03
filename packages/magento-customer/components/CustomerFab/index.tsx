@@ -2,7 +2,7 @@ import { useQuery } from '@graphcommerce/graphql'
 import {
   iconPerson,
   DesktopHeaderBadge,
-  SvgIcon,
+  IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
@@ -44,7 +44,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
           variant='dot'
           overlap='circular'
         >
-          {icon ?? <SvgIcon src={iconPerson} size='large' />}
+          {icon ?? <IconSvg src={iconPerson} size='large' />}
         </DesktopHeaderBadge>
       </Fab>
     </PageLink>
