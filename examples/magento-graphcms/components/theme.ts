@@ -193,6 +193,7 @@ const createOverrides = (theme: Theme): Components => ({
       },
       img: {
         filter: 'brightness(1.03)',
+        willChange: 'filter',
       },
     },
   },
