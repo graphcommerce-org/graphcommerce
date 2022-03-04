@@ -1,5 +1,21 @@
 # Change Log
 
+## 3.3.2
+
+### Patch Changes
+
+- [#1296](https://github.com/ho-nl/m2-pwa/pull/1296)
+  [`8473123fa`](https://github.com/ho-nl/m2-pwa/commit/8473123fa7d3f3eb1d282d9b4205c803a88010ea)
+  Thanks [@paales](https://github.com/paales)! - implement handling for canonical URLs based on
+  NEXT_PUBLIC_SITE_URL
+
+- Updated dependencies
+  [[`a9cff2ce6`](https://github.com/ho-nl/m2-pwa/commit/a9cff2ce63fce5b86e9fd6bf63c10c782326d50e),
+  [`8473123fa`](https://github.com/ho-nl/m2-pwa/commit/8473123fa7d3f3eb1d282d9b4205c803a88010ea),
+  [`50e205c51`](https://github.com/ho-nl/m2-pwa/commit/50e205c51f4d0d67d41d22fd70e8ed9a0996489e)]:
+  - @graphcommerce/next-ui@4.2.2
+  - @graphcommerce/magento-store@4.1.1
+
 ## 3.3.1
 
 ### Patch Changes
