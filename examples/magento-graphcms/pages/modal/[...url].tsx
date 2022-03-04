@@ -1,10 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   MetaRobots,
   LayoutOverlayHeader,
   LayoutTitle,
+  PageMeta,
 } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -38,7 +39,6 @@ function ModalPage(props: Props) {
         title={page.metaTitle ?? ''}
         metaDescription={page.metaDescription}
         metaRobots={metaRobots ?? ['noindex']}
-        canonical={page.url}
       />
       <Box pt={4}>
         <LayoutTitle>{page.title}</LayoutTitle>

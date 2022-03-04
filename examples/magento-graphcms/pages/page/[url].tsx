@@ -1,7 +1,13 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { LayoutHeader, GetStaticProps, MetaRobots, LayoutTitle } from '@graphcommerce/next-ui'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import {
+  PageMeta,
+  LayoutHeader,
+  GetStaticProps,
+  MetaRobots,
+  LayoutTitle,
+} from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import { LayoutFullProps, RowRenderer, RowProduct, LayoutFull } from '../../components'
@@ -31,7 +37,7 @@ function CmsPage(props: Props) {
         title={page?.metaTitle ?? title ?? ''}
         metaDescription={page?.metaDescription ?? ''}
         metaRobots={metaRobots}
-        canonical={page?.url}
+        canonical={`/${page?.url}`}
       />
 
       <LayoutHeader floatingMd floatingSm>

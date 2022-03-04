@@ -1,5 +1,12 @@
 import { usePageContext } from '@graphcommerce/framer-next-pages'
+import {
+  resolveHref,
+  getDomainLocale,
+  addBasePath,
+  addLocale,
+} from 'next/dist/shared/lib/router/router'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 // https://developers.google.com/search/docs/advanced/robots/robots_meta_tag#directives
 export type MetaRobots =
@@ -15,19 +22,60 @@ export type MetaRobots =
   | `max-video-preview:${number}`
 type MetaRobotsAll = ['all' | 'none']
 
+type Canonical = `http://${string}` | `https://${string}` | `/${string}` | string
+
 export type PageMetaProps = {
   title: string
-  canonical?: `http://${string}` | `https://${string}` | string
+  canonical?: Canonical
   metaDescription?: string
   metaRobots?: MetaRobotsAll | MetaRobots[]
 }
 
+export function useCanonical(incomming?: Canonical) {
+  const router = useRouter()
+  let canonical = incomming
+
+  if (!canonical) return canonical
+
+  if (canonical?.startsWith('/')) {
+    if (!process.env.NEXT_PUBLIC_SITE_URL) {
+      if (process.env.NODE_ENV !== 'production') {
+        throw Error('NEXT_PUBLIC_SITE_URL is not defined in .env')
+      }
+    }
+
+    let [href, as] = resolveHref(router, canonical, true)
+
+    const curLocale = router.locale
+
+    // Copied from here https://github.com/vercel/next.js/blob/canary/packages/next/client/link.tsx#L313-L327
+    const localeDomain =
+      router &&
+      router.isLocaleDomain &&
+      getDomainLocale(as, curLocale, router && router.locales, router && router.domainLocales)
+
+    href = localeDomain || addBasePath(addLocale(as, curLocale, router && router.defaultLocale))
+
+    canonical = `${process.env.NEXT_PUBLIC_SITE_URL}${href}`
+  }
+
+  if (canonical && !(canonical ?? 'http').startsWith('http')) {
+    if (process.env.NODE_ENV !== 'production') {
+      throw new Error(
+        `canonical must start with '/', 'http://' or 'https://', '${canonical}' given`,
+      )
+    }
+    canonical = undefined
+  }
+
+  return canonical
+}
+
 export function PageMeta(props: PageMetaProps) {
   const { active } = usePageContext()
-  const { title, canonical, metaDescription, metaRobots = ['all'] } = props
+  const { title, canonical: canonicalBare, metaDescription, metaRobots = ['all'] } = props
 
-  if (!(canonical ?? 'http').startsWith('http'))
-    throw new Error(`canonical must start with http:// or https://, '${canonical}' given`)
+  const canonical = useCanonical(canonicalBare)
 
   if (!active) return null
   return (
