@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.0.5
+
+### Patch Changes
+
+- [#1294](https://github.com/ho-nl/m2-pwa/pull/1294)
+  [`4e28c8afd`](https://github.com/ho-nl/m2-pwa/commit/4e28c8afd9cead3577dd0eff97b5c44ba4c1c862)
+  Thanks [@paales](https://github.com/paales)! - set the duration of useScrollTo to 500 for the x
+  direction
+
+- Updated dependencies
+  [[`19f33e0aa`](https://github.com/ho-nl/m2-pwa/commit/19f33e0aaf4e3121edd444926d08b6459d3ef400),
+  [`aea787542`](https://github.com/ho-nl/m2-pwa/commit/aea787542484a0480a48031fcc4a9a5566c6bfc7)]:
+  - @graphcommerce/next-ui@4.2.1
+
 ## 2.0.4
 
 ### Patch Changes

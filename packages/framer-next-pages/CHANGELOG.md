@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.1.1
+
+### Patch Changes
+
+- [#1294](https://github.com/ho-nl/m2-pwa/pull/1294)
+  [`afb993244`](https://github.com/ho-nl/m2-pwa/commit/afb993244aabc8135ce54a79743cbf63bc5677d3)
+  Thanks [@paales](https://github.com/paales)! - Make sure the fallback handles localization
+  properly
+
 ## 3.1.0
 
 ### Minor Changes
