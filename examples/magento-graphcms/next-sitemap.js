@@ -7,7 +7,16 @@ const PUBLIC_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || DEV_SITE_URL
 module.exports = {
   siteUrl: isProduction ? PUBLIC_SITE_URL : DEV_SITE_URL,
   generateRobotsTxt: true,
-  exclude: ['*/account*', '*/cart*', '*/checkout*', '*/test/*', '/test/*'],
+  exclude: [
+    '*/account*',
+    '*/cart*',
+    '*/checkout*',
+    '*/test/*',
+    '/test/*',
+    '*/404',
+    '*/no-route',
+    '*/home',
+  ],
   robotsTxtOptions: {
     policies: [
       { userAgent: '*', disallow: '/' },
