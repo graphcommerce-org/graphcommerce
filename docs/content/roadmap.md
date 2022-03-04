@@ -10,19 +10,19 @@ The following overview contains the status of items on the GraphCommerce roadmap
 ## In progress
 
 - [x] Framework updates (Mui5)
-- [x] Translation updates (DE, NL, ES, FR)
+- [x] Translation updates (DE, NL, ES, FR, IT)
 - [ ] Documentation and installation guide
 - [ ] Quality improvements (Reduce components, naming)
 
 ## Planned
 
-- [ ] Search integration (external)
+- [ ] Search integration (external service)
 - [ ] Checkout UI and accessibility improvements
 - [ ] Payment service provider integration
 
 ## Future
 
-- [ ] `magento` example without GraphCMS dependency
+- [ ] `magento` example without GraphCMS
 
 ## Next steps
 

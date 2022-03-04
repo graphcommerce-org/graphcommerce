@@ -1,5 +1,9 @@
 ---
 menu: Static Site Generation (SSG)
+metaTitle: Static Site Generation with Nextjs ecommerce framework GraphCommerce
+metaDescription:
+  'GraphCommerce is a nextjs Magento framework. GraphCommerce offers Static Site
+  Generation for Magento nextjs PWA out-of-the-box.'
 ---
 
 > **Developer preview**  
@@ -174,12 +178,44 @@ minutes, the regeneration of the page is triggered on the first following
 request. Once the page has been successfully generated, the cache will be
 invalidated and the updated product page is shown.
 
+## FAQ
+
+<div>
+<details>
+<summary>When is GraphCommerce a suitable Nextjs ecommerce solution?</summary>
+
+### When is GraphCommerce a suitable Nextjs ecommerce solution?
+
+GraphCommerce is a suitable Nextjs ecommerce solution if your e-commerce store
+is already running on Magento Open Source or Adobe Commerce. A Nextjs Magento
+stack offers interesting features like Static Site Generation (SSG), which will
+improve Magento catalog performance. Nextjs Magento is also a great combination
+if you are looking to migrate to Magento.
+
+</details>
+
+<details>
+<summary>What are the advantages of a Nextjs React Magento stack?</summary>
+
+### What are the advantages of a Nextjs React Magento stack?
+
+Nextjs React Magento is considered newer web technology, offering a modern
+approach to e-commerce development. React can be viewed as the industry standard
+for large scale web apps. Next.js adds the ability for Static Site Generation (a
+form of Server-side Rendering), enabling indexing by search engines.
+GraphCommerce is a framework that combines Nextjs, React and Magento, and
+simplifies building Magento Nextjs PWA's.
+
+</details>
+</div>
+
 ## Next steps
 
+- Learn more about [building pages](../getting-started/pages.md) in
+  GraphCommerce
+- Learn more about [Static File Serving](../framework/static-file-serving.md)
 - Learn more about
   [getStaticProps ↗](https://nextjs.org/docs/basic-features/data-fetching/get-static-props)
-  in the Next.js documentation
-- Learn more about
+  or
   [getStaticPaths ↗](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths)
   in the Next.js documentation
-- Learn more about [Static File Serving](../framework/static-file-serving.md)

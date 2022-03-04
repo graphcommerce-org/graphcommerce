@@ -71,7 +71,7 @@ GraphCommerce features include:
 - Passing Google Core Web Vitals audits
 - PWA out-of-the-box
 - Magento multi language support, a store switcher component and framework
-  translations EN, ES, FR, DE, NL
+  translations EN, ES, FR, DE, NL, IT
 - Deployments to Vercel
 
 ## Build high-end Magento storefronts faster
@@ -87,7 +87,8 @@ and boilerplate needed for building a custom storefront.
 <div>
 <details>
 <summary>Is GraphCommerce a Magento PWA theme?</summary>
-<h3>Is GraphCommerce a Magento PWA theme?</h3>
+
+### Is GraphCommerce a Magento PWA theme?
 
 GraphCommerce is not a Magento PWA theme, nor is it a Magento 2 PWA extension. A
 Magento theme is tightly integrated in the Magento codebase, where a
@@ -102,7 +103,8 @@ the regular Magento frontend (theme and extensions) can be decommissioned.
 
 <details>
 <summary>Is GraphCommerce a PWA Studio Magento 2 alternative?</summary>
-<h3>Is GraphCommerce a PWA Studio Magento 2 alternative?</h3>
+
+### Is GraphCommerce a PWA Studio Magento 2 alternative?
 
 Yes, GraphCommerce is suitable as an alternative to Magento 2 PWA Studio.
 GraphCommerce is built with modern, open source javascript frameworks and
@@ -110,8 +112,8 @@ libraries. Unlike PWA Studio for Magento 2, it features an app-like e-commerce
 user interface, Hybrid Static Site Generation (SSG) and has the ability to fetch
 data from multiple sources (composable commerce).
 [Get started](./getting-started/create.md) with GraphCommerce if you're looking
-for a PWA Studio Magento 2 alternative and would like to start fresh with
-Magento PWA development.
+for a PWA Studio Magento 2 alternative and would like to start with Magento PWA
+development.
 
 </details>
 </div>
