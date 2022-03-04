@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutOverlay, LayoutOverlayProps, LayoutFullProps, RowRenderer } from '../../components'
@@ -22,7 +22,7 @@ function ServicePage({ pages }: Props) {
         title={title}
         metaDescription={title}
         metaRobots={['noindex']}
-        canonical={pages?.[0]?.url ?? ''}
+        canonical={pages?.[0]?.url ? `/${pages[0].url}` : undefined}
       />
       <LayoutOverlayHeader>
         <LayoutTitle component='span' size='small'>

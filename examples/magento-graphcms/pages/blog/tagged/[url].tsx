@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta, GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { GetStaticPaths } from 'next'
 import {
@@ -37,7 +37,7 @@ function BlogPage(props: Props) {
         <LayoutTitle size='small'>{title}</LayoutTitle>
       </LayoutHeader>
       <Row>
-        <PageMeta title={title} metaDescription={title} canonical={page.url} />
+        <PageMeta title={title} metaDescription={title} canonical={`/${page.url}`} />
 
         <BlogTitle>
           <Trans>Tagged in: {title}</Trans>

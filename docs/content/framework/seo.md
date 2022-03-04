@@ -6,9 +6,10 @@ menu: SEO
 
 ## Page Meta data
 
-Page meta data is handled by the `'@graphcommerce/magento-store/PageMeta.tsx'`
-component. Depending on the page, the props that are passed are static or
-dynamic (functional page titles are hardcoded).
+Page meta data is handled by the
+`import { PageMeta } from '@graphcommerce/next-ui'` component. Depending on the
+page, the props that are passed are static or dynamic (functional page titles
+are hardcoded).
 
 ```tsx
 // Example from /cart.tsx
@@ -30,7 +31,7 @@ Dynamic example
   title={page?.metaTitle ?? title ?? ''}
   metaDescription={page?.metaDescription ?? ''}
   metaRobots={metaRobots}
-  canonical={page?.url}
+  canonical={`/${page?.url}`}
 />
 ```
 
