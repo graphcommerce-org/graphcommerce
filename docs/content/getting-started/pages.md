@@ -1,5 +1,6 @@
 ---
 menu: 4. Build pages
+metaTitle: Build pages
 ---
 
 > **Developer preview**  

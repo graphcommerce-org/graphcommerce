@@ -1,5 +1,6 @@
 ---
 menu: 3. Build a custom header
+metaTitle: Build a custom header
 ---
 
 > **Developer preview**  

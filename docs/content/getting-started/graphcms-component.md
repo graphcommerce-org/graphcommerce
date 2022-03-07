@@ -1,5 +1,6 @@
 ---
 menu: 5. Build a GraphCMS component
+metaTitle: Build a GraphCMS component
 ---
 
 > **Developer preview**  

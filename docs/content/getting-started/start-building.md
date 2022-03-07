@@ -1,5 +1,6 @@
 ---
 menu: 2. Customize a storefront
+metaTitle: Customize a storefront
 ---
 
 > **Developer preview**  
