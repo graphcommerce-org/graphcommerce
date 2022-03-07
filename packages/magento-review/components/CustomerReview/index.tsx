@@ -1,6 +1,4 @@
-import { useQuery } from '@graphcommerce/graphql'
 import { Image } from '@graphcommerce/image'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'

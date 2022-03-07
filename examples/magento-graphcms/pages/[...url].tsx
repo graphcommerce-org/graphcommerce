@@ -23,7 +23,7 @@ import {
   ProductListQuery,
   ProductListSort,
 } from '@graphcommerce/magento-product'
-import { MagentoEnv, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv } from '@graphcommerce/magento-store'
 import {
   StickyBelowHeader,
   LayoutTitle,
@@ -43,7 +43,7 @@ import {
   RowRenderer,
 } from '../components'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
 
@@ -155,11 +155,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const [url, query] = extractUrlQuery(params)
   if (!url || !query) return { notFound: true }
 
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-  const filterTypes = getFilterTypes(client)
-
   const staticClient = graphqlSsrClient(locale)
+  const filterTypes = getFilterTypes(staticClient)
   const categoryPage = staticClient.query({
     query: CategoryPageDocument,
     variables: {

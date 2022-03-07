@@ -5,7 +5,7 @@ import {
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { AddressFields, CustomerDocument, NameFields } from '@graphcommerce/magento-customer'
-import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import { Form, FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import {
   phonePattern,

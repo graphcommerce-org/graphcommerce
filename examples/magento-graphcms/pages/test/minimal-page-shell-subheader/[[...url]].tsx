@@ -1,5 +1,4 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { mergeDeep } from '@graphcommerce/graphql'
 import {
   extractUrlQuery,
   FilterTypes,
@@ -13,7 +12,7 @@ import {
   ProductListSort,
 } from '@graphcommerce/magento-product'
 import { SearchQuery } from '@graphcommerce/magento-search'
-import { MagentoEnv, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv } from '@graphcommerce/magento-store'
 import { StickyBelowHeader, LayoutTitle, LayoutHeader, LinkOrButton } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { Box, Container, Typography } from '@mui/material'

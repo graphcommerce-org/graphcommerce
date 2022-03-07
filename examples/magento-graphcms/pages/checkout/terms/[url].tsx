@@ -1,6 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { CartAgreementsDocument, CartAgreementsQuery } from '@graphcommerce/magento-cart'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'

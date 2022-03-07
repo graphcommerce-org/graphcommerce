@@ -1,10 +1,4 @@
-import { useQuery } from '@graphcommerce/graphql'
-import {
-  StoreConfigDocument,
-  Money,
-  useFindCountry,
-  useFindRegion,
-} from '@graphcommerce/magento-store'
+import { Money, useFindCountry, useFindRegion } from '@graphcommerce/magento-store'
 import {
   SectionContainer,
   responsiveVal,
