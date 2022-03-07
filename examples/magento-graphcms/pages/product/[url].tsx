@@ -16,6 +16,7 @@ import {
   SimpleProductPageQuery,
 } from '@graphcommerce/magento-product-simple'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
+import { MagentoEnv } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   JsonLd,

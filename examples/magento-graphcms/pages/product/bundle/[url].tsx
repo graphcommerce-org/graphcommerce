@@ -16,6 +16,7 @@ import {
   BundleProductPageQuery,
 } from '@graphcommerce/magento-product-bundle'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
+import { MagentoEnv } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   JsonLd,

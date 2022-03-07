@@ -17,7 +17,7 @@ import {
   GroupedProductPageQuery,
 } from '@graphcommerce/magento-product-grouped'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   JsonLd,

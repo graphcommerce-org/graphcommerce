@@ -1,5 +1,5 @@
 import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv } from '@graphcommerce/magento-store'
 import { GetStaticPathsResult } from 'next'
 import {
   GetCategoryStaticPathsDocument,
@@ -12,8 +12,7 @@ const getCategoryStaticPaths = async (
   client: ApolloClient<NormalizedCacheObject>,
   locale: string,
 ) => {
-  const rootCategory =
-    (await client.query({ query: StoreConfigDocument })).data.storeConfig?.root_category_uid ?? ''
+  const rootCategory = (process.env as MagentoEnv).ROOT_CATEGORY
 
   const { data } = await client.query({
     query: GetCategoryStaticPathsDocument,

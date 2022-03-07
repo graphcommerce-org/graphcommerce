@@ -17,7 +17,7 @@ import {
   ConfigurableProductPageQuery,
 } from '@graphcommerce/magento-product-configurable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
-import { Money } from '@graphcommerce/magento-store'
+import { Money, MagentoEnv } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   JsonLd,

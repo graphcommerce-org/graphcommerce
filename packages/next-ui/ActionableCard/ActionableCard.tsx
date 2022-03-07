@@ -58,7 +58,6 @@ export function ActionableCard(props: ActionableCardProps) {
   return (
     <Box>
       {image && <Image {...image} />}
-      {isActionMenu && <ActionableCardMenu actions={actions} />}
       hoi
       {price && <Typography variant='h6'>{price}</Typography>}
     </Box>

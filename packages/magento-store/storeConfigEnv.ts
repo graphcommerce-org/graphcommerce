@@ -1,4 +1,3 @@
-import type {} from 'process'
 import { StoreConfigEnvQuery } from './StoreConfigEnv.gql'
 
 type StoreConfig = Required<NonNullable<StoreConfigEnvQuery['_storeConfig']>>
