@@ -1,6 +1,12 @@
 ---
 menu: Overview
 order: create,start-building,header,pages,graphcms-component
+metaTitle:
+  Start your Reactjs Ecommerce project with the GraphCommerce React Magento 2
+  Template
+metaDescription:
+  'Overview of the magento-graphcms example, the GraphCommerce reactjs ecommerce
+  template for Magento storefronts'
 ---
 
 > **Developer preview**  
@@ -248,6 +254,39 @@ GraphQL queries in the graphcommerce-magento example
     └── PageContentQueryFragment.graphql
     └── ProductPage.graphql
 ```
+
+## FAQ
+
+<div>
+<details>
+<summary>What are the benefits of choosing GraphCommerce for a react ecommerce project?</summary>
+
+### What are the benefits of choosing GraphCommerce for a reactjs ecommerce project?
+
+React is a very suitable framework for magento reactjs ecommerce projects.
+Magento 2 is a well established, widely used open source e-commerce solution.
+GraphCommerce brings the best of both, and includes the structure, components,
+and tooling you need to get started with react ecommerce. Using GraphCommerce
+minimizes the development effort required to launch a full featured reactjs
+e-commerce storefront with features like cart, search, layered navigation and
+category, product, account, checkout pages.
+
+</details>
+
+<details>
+<summary> Why use the GraphCommerce magento reactjs ecommerce template</summary>
+
+### Why use the GraphCommerce magento-graphcms reactjs ecommerce template
+
+The GraphCommerce magento-graphcms template contains all needed components like
+cart, search and layered navigation for a full-featured e-commerce storefront.
+It's easy to customize and includes the structure, components, and tooling you
+need to get started. With the extensive documentation, it is more efficient to
+understand and customize the template for your next react magento 2 project,
+than to start from scratch.
+
+</details>
+</div>
 
 ## Next steps
 
