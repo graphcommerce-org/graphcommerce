@@ -22,10 +22,10 @@ export const defaultRenderers: Renderers = {
     <Box component='iframe' title='embedded content' loading='lazy' {...props} />
   ),
   image: ({ src, width, height, title, mimeType }) => (
-    <Asset asset={{ url: src, alt: title, width, height, mimeType }} />
+    <Asset asset={{ url: src, width, height, mimeType }} alt={title} />
   ),
   video: ({ src, width, height, title, mimeType }) => (
-    <Asset asset={{ url: src, alt: title, width, height, mimeType }} />
+    <Asset asset={{ url: src, width, height, mimeType }} alt={title} />
   ),
   link: ({ href, ...props }) => (
     <PageLink href={href} passHref>

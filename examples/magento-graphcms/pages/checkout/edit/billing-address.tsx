@@ -54,7 +54,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     query: DefaultPageDocument,
     variables: {
       url: `checkout`,
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+      rootCategory: (process.env as MagentoEnv).ROOT_CATEGORY,
     },
   })
 

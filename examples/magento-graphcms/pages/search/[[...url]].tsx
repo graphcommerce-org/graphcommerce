@@ -128,7 +128,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
 
-  const rootCategory = (await conf).data.storeConfig?.root_category_uid ?? ''
+  const rootCategory = (process.env as MagentoEnv).ROOT_CATEGORY
   const staticClient = graphqlSsrClient(locale)
   const page = staticClient.query({
     query: DefaultPageDocument,

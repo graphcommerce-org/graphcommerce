@@ -1,8 +1,8 @@
-import { useQuery } from '@graphcommerce/graphql'
 import { FlagAvatar, extendableComponent } from '@graphcommerce/next-ui'
 import { Button, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
-import { StoreConfigDocument } from '../../StoreConfig.gql'
+import { useRouter } from 'next/router'
+import { MagentoEnv } from '../../storeConfigEnv'
 
 export type StoreSwitcherButtonProps = { sx?: SxProps<Theme> }
 
@@ -12,8 +12,9 @@ const { classes } = extendableComponent(name, parts)
 
 export function StoreSwitcherButton(props: StoreSwitcherButtonProps) {
   const { sx } = props
-  const config = useQuery(StoreConfigDocument)
-  const country = config.data?.storeConfig?.locale?.split('_')?.[1]?.toLowerCase() ?? ''
+
+  const { locale } = useRouter()
+  const country = locale?.split('_')?.[1]?.toLowerCase() ?? ''
 
   return (
     <PageLink href='/switch-stores' passHref>
@@ -23,7 +24,8 @@ export function StoreSwitcherButton(props: StoreSwitcherButtonProps) {
           className={classes.avatar}
           sx={{ height: 20, width: 20, marginRight: '10px' }}
         />
-        {config.data?.storeConfig?.store_name} - {config.data?.storeConfig?.base_currency_code}
+        {(process.env as MagentoEnv).NEXT_PUBLIC_STORE_NAME} -{' '}
+        {(process.env as MagentoEnv).NEXT_PUBLIC_CURRENCY_CODE}
       </Button>
     </PageLink>
   )

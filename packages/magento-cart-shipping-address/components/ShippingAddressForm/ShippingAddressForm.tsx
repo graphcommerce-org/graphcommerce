@@ -17,6 +17,7 @@ import {
 import { t, Trans } from '@lingui/macro'
 import { TextField } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from './GetAddresses.gql'
@@ -28,11 +29,10 @@ export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'>
 export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   const { step } = props
   const { data: cartQuery } = useCartQuery(GetAddressesDocument)
-  const { data: config } = useQuery(StoreConfigDocument)
   const { data: countriesData } = useQuery(CountryRegionsDocument)
   const { data: customerQuery } = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
-
-  const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase()
+  const { locale } = useRouter()
+  const shopCountry = locale?.split('-')?.[1].toUpperCase()
 
   const currentAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const currentCustomer = customerQuery?.customer

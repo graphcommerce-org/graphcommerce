@@ -1,9 +1,8 @@
-import { useQuery } from '@graphcommerce/graphql'
 import {
   PageMeta as NextPageMeta,
   PageMetaProps as NextPageMetaProps,
 } from '@graphcommerce/next-ui'
-import { StoreConfigDocument } from './StoreConfig.gql'
+import { MagentoEnv } from './storeConfigEnv'
 
 type PageMetaProps = Pick<NextPageMetaProps, 'title' | 'metaDescription' | 'metaRobots'> & {
   canonical?: string
@@ -11,12 +10,11 @@ type PageMetaProps = Pick<NextPageMetaProps, 'title' | 'metaDescription' | 'meta
 
 export function PageMeta(props: PageMetaProps) {
   const { title, canonical, ...pageMetaProps } = props
-  const config = useQuery(StoreConfigDocument)
 
-  const prefix = config.data?.storeConfig?.title_prefix ?? ''
-  const separator = config.data?.storeConfig?.title_separator ?? ''
-  const defaultTitle = config.data?.storeConfig?.default_title ?? ''
-  const suffix = config.data?.storeConfig?.title_suffix ?? ''
+  const prefix = (process.env as MagentoEnv).NEXT_PUBLIC_TITLE_PREFIX
+  const separator = (process.env as MagentoEnv).NEXT_PUBLIC_TITLE_SEPARATOR
+  const defaultTitle = (process.env as MagentoEnv).NEXT_PUBLIC_DEFAULT_TITLE
+  const suffix = (process.env as MagentoEnv).NEXT_PUBLIC_TITLE_SUFFIX
 
   let pageTitle = prefix ?? ''
   if (title ?? defaultTitle) pageTitle += ` ${title ?? defaultTitle}`

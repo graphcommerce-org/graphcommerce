@@ -90,7 +90,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     query: DefaultPageDocument,
     variables: {
       url: `blog/${urlKey}`,
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+      rootCategory: (process.env as MagentoEnv).ROOT_CATEGORY,
     },
   })
 

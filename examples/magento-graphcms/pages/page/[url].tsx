@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   PageMeta,
   LayoutHeader,
@@ -83,22 +83,20 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const urlKey = params?.url ?? '??'
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 
-  const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,
     variables: {
       url: `page/${urlKey}`,
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+      rootCategory: (process.env as MagentoEnv).ROOT_CATEGORY,
     },
   })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
 
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
-  const categoryUid = String((await conf).data.storeConfig?.root_category_uid ?? '')
+  const categoryUid = (process.env as MagentoEnv).ROOT_CATEGORY
   const productList = staticClient.query({
     query: ProductListDocument,
     variables: { categoryUid, pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
@@ -109,7 +107,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       ...(await page).data,
       ...(await productList).data,
       up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }

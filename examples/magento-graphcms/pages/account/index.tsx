@@ -30,6 +30,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
@@ -42,8 +43,7 @@ function AccountIndexPage() {
     fetchPolicy: 'cache-and-network',
     ssr: false,
   })
-  const { data: config } = useQuery(StoreConfigDocument)
-  const locale = config?.storeConfig?.locale?.replace('_', '-')
+  const { locale } = useRouter()
 
   const customer = data?.customer
   const address =
@@ -188,7 +188,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     query: DefaultPageDocument,
     variables: {
       url: 'account',
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+      rootCategory: (process.env as MagentoEnv).ROOT_CATEGORY,
     },
   })
 

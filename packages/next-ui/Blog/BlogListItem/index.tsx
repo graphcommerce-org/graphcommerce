@@ -1,5 +1,6 @@
 import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import PageLink from 'next/link'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
@@ -8,7 +9,8 @@ export type BlogListItemProps = {
   asset: React.ReactNode
   url: string
   date: string
-  locale: string
+  /** @deprecated Not used anymore, locale is automatically resolved. */
+  locale?: string
   title: string
   sx?: SxProps<Theme>
 }
@@ -18,7 +20,14 @@ const parts = ['item', 'date', 'asset', 'title'] as const
 const { classes } = extendableComponent(name, parts)
 
 export function BlogListItem(props: BlogListItemProps) {
-  const { asset, url, date, locale, title, sx = [] } = props
+  const { asset, url, date, title, sx = [] } = props
+  const { locale } = useRouter()
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (props.locale) {
+      console.warn(`${name} component does not support locale prop.`)
+    }
+  }
 
   const formatter = new Intl.DateTimeFormat(locale, {
     year: 'numeric',

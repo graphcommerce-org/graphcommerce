@@ -3,6 +3,7 @@ import { Image } from '@graphcommerce/image'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
+import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { CustomerReviewFragment } from './CustomerReview.gql'
 import filledStar from './review_star_filled.svg'
@@ -27,8 +28,7 @@ export default function CustomerReview(props: CustomerReviewProps) {
   const valuePerStar = maxAverageRating / totalStars
   const totalFilledStars = (average_rating / maxAverageRating / valuePerStar) * 100
 
-  const { data: config } = useQuery(StoreConfigDocument)
-  const locale = config?.storeConfig?.locale?.replace('_', '-')
+  const locale = useRouter().locale?.replace('_', '-')
 
   const dateFormatter = useMemo(
     () => new Intl.DateTimeFormat(locale, { year: 'numeric', month: 'long', day: 'numeric' }),

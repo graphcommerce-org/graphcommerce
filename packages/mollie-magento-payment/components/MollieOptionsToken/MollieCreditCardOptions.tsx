@@ -1,13 +1,12 @@
-import { useQuery } from '@graphcommerce/graphql'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { FormRow } from '@graphcommerce/next-ui'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
 import { Typography, Alert } from '@mui/material'
+import { useRouter } from 'next/router'
 import Script from 'next/script'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Mollie } from '../../Mollie'
 import MollieField from './MollieField'
 import { SetMolliePaymentMethodTokenOnCartDocument } from './SetMolliePaymentMethodTokenOnCart.gql'
@@ -17,7 +16,7 @@ export default function MollieCreditCardOptions(props: PaymentOptionsProps) {
   const { code, step, Container, title = '' } = props
   const [loaded, setLoaded] = useState<boolean>(false)
   const [mollie, setMollie] = useState<MollieContext>(undefined)
-  const conf = useQuery(StoreConfigDocument)
+  const { locale } = useRouter()
 
   const form = useFormGqlMutationCart(SetMolliePaymentMethodTokenOnCartDocument, {
     mode: 'onChange',
@@ -45,7 +44,7 @@ export default function MollieCreditCardOptions(props: PaymentOptionsProps) {
 
     // @ts-expect-error window.Mollie is not defined in TS
     const mollieInstance = (window.Mollie as Mollie)('pfl_Ah5xUV4c6z', {
-      locale: conf.data?.storeConfig?.locale ?? 'en_US',
+      locale: locale ?? 'en_US',
       testmode: true,
     })
 
@@ -56,7 +55,7 @@ export default function MollieCreditCardOptions(props: PaymentOptionsProps) {
       expiryDate: mollieInstance.createComponent('expiryDate'),
       verificationCode: mollieInstance.createComponent('verificationCode'),
     })
-  }, [conf.data?.storeConfig?.locale, loaded, mollie])
+  }, [locale, loaded, mollie])
 
   return (
     <Container>

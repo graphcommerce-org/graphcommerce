@@ -23,7 +23,7 @@ import {
   ProductListQuery,
   ProductListSort,
 } from '@graphcommerce/magento-product'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   StickyBelowHeader,
   LayoutTitle,
@@ -162,8 +162,12 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const staticClient = graphqlSsrClient(locale)
   const categoryPage = staticClient.query({
     query: CategoryPageDocument,
-    variables: { url, rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '' },
+    variables: {
+      url,
+      rootCategory: (process.env as MagentoEnv).ROOT_CATEGORY,
+    },
   })
+
   const categoryUid = categoryPage.then((res) => res.data.categories?.items?.[0]?.uid ?? '')
 
   const productListParams = parseParams(url, query, await filterTypes)
@@ -195,7 +199,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await products).data,
       filterTypes: await filterTypes,
       params: productListParams,
-      apolloState: await conf.then(() => client.cache.extract()),
       up,
     },
     revalidate: 60 * 20,

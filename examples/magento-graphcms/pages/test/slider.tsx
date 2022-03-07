@@ -89,7 +89,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const conf = client.query({ query: StoreConfigDocument })
 
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
-  const categoryUid = String((await conf).data.storeConfig?.root_category_uid ?? '')
+  const categoryUid = String((process.env as MagentoEnv).ROOT_CATEGORY)
   const productList = staticClient.query({
     query: ProductListDocument,
     variables: { categoryUid, pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },

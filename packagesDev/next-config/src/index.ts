@@ -111,8 +111,8 @@ export function withYarn1Workspaces(modules: string[] = []): (config: NextConfig
   } catch (e) {
     infoJson = execSync('yarn list info --json', { encoding: 'utf-8' })
     try {
-      mkdirSync('.next/cache/', { recursive: true })
-      writeFileSync(cacheKey, infoJson)
+      // mkdirSync('.next/cache/', { recursive: true })
+      // writeFileSync(cacheKey, infoJson)
     } catch (er) {
       // do nothing
     }

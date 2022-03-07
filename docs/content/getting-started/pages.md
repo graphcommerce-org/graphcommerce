@@ -93,7 +93,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     query: DefaultPageDocument,
     variables: {
       url: '',
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+      rootCategory: (process.env as MagentoEnv).ROOT_CATEGORY,
     },
   })
   // if (!(await page).data.pages?.[0]) return { notFound: true }
@@ -148,7 +148,7 @@ const page = staticClient.query({
   query: DefaultPageDocument,
   variables: {
     url: 'about/about-us',
-    rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+    rootCategory: (process.env as MagentoEnv).ROOT_CATEGORY,
   },
 })
 ```
@@ -194,7 +194,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     query: DefaultPageDocument,
     variables: {
       url: `about/${params?.url}`,
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+      rootCategory: (process.env as MagentoEnv).ROOT_CATEGORY,
     },
   })
   // if (!(await page).data.pages?.[0]) return { notFound: true }

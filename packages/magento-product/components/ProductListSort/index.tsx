@@ -1,5 +1,5 @@
-import { useQuery, cloneDeep } from '@graphcommerce/graphql'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { cloneDeep } from '@graphcommerce/graphql'
+import { MagentoEnv } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps } from '@graphcommerce/next-ui'
 import { ListItem, ListItemText } from '@mui/material'
 import React from 'react'
@@ -15,8 +15,7 @@ export default function ProductListSort(props: ProductListSortProps) {
   const { sort_fields, total_count, ...filterMenuProps } = props
   const { params } = useProductListParamsContext()
   const replaceRoute = useProductListLinkReplace()
-  const { data: storeConfigQuery } = useQuery(StoreConfigDocument)
-  const defaultSort = storeConfigQuery?.storeConfig?.catalog_default_sort_by
+  const defaultSort = (process.env as MagentoEnv).NEXT_PUBLIC_CATALOG_DEFAULT_SORT_BY
 
   const [currentSort = defaultSort] = Object.keys(params.sort)
   const currentOption = sort_fields?.options?.find((option) => option?.value === currentSort)

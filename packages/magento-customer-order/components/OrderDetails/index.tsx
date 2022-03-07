@@ -14,6 +14,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { experimental_sx, Skeleton, styled, SxProps, Theme } from '@mui/material'
+import { useRouter } from 'next/router'
 import TrackingLink from '../TrackingLink'
 import { OrderDetailsFragment } from './OrderDetails.gql'
 
@@ -123,9 +124,7 @@ export default function OrderDetails(props: OrderDetailsProps) {
     sx = [],
   } = props
 
-  const { data: config } = useQuery(StoreConfigDocument)
-  const locale = config?.storeConfig?.locale?.replace('_', '-')
-
+  const { locale } = useRouter()
   const dateFormatter = new Intl.DateTimeFormat(locale, {
     year: 'numeric',
     month: 'long',

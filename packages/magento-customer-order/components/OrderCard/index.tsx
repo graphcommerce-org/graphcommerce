@@ -1,9 +1,9 @@
-import { useQuery } from '@graphcommerce/graphql'
-import { StoreConfigDocument, Money } from '@graphcommerce/magento-store'
+import { Money } from '@graphcommerce/magento-store'
 import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Box, Button, styled, SxProps, Theme } from '@mui/material'
 import Skeleton from '@mui/material/Skeleton'
 import PageLink from 'next/link'
+import { useRouter } from 'next/router'
 import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import OrderCardItemImage from '../OrderCardItemImage'
 import OrderStateLabel from '../OrderStateLabel'
@@ -47,8 +47,7 @@ const OrderRow = styled(Box, { name: componentName, target: classes.orderRow })(
 export default function OrderCard(props: OrderCardProps) {
   const { number, shipments, total, items, order_date, images, loading, sx = [] } = props
 
-  const { data: config } = useQuery(StoreConfigDocument)
-  const locale = config?.storeConfig?.locale?.replace('_', '-')
+  const { locale } = useRouter()
 
   const dateFormatter = new Intl.DateTimeFormat(locale, {
     year: 'numeric',

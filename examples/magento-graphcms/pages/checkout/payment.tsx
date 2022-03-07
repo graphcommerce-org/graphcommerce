@@ -18,7 +18,7 @@ import {
 } from '@graphcommerce/magento-cart-payment-method'
 import { braintree, braintree_local_payment } from '@graphcommerce/magento-payment-braintree'
 import { included_methods } from '@graphcommerce/magento-payment-included'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { mollie_methods } from '@graphcommerce/mollie-magento-payment'
 import {
   FormActions,
@@ -158,16 +158,13 @@ PaymentPage.pageOptions = pageOptions
 export default PaymentPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
-
-  const conf = client.query({ query: StoreConfigDocument })
 
   const page = staticClient.query({
     query: DefaultPageDocument,
     variables: {
       url: `checkout/payment`,
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+      rootCategory: (process.env as MagentoEnv).ROOT_CATEGORY,
     },
   })
 
@@ -175,7 +172,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     props: {
       ...(await page).data,
       up: { href: '/checkout', title: 'Shipping' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
   }
 }

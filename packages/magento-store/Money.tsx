@@ -1,13 +1,14 @@
-import { useQuery } from '@graphcommerce/graphql'
 import { ExtendableComponent } from '@graphcommerce/next-ui'
 import { useThemeProps } from '@mui/material'
+import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { MoneyFragment } from './Money.gql'
-import { StoreConfigDocument } from './StoreConfig.gql'
 
 type OverridableProps = {
+  // eslint-disable-next-line react/no-unused-prop-types
   round?: boolean
   /** @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#parameters */
+  // eslint-disable-next-line react/no-unused-prop-types
   formatOptions?: Intl.NumberFormatOptions
 }
 
@@ -25,8 +26,7 @@ declare module '@mui/material/styles/components' {
 export function Money(props: MoneyProps) {
   const { currency, value, round = false, formatOptions } = useThemeProps({ name, props })
 
-  const { data: config } = useQuery(StoreConfigDocument)
-  const locale = config?.storeConfig?.locale
+  const { locale } = useRouter()
 
   const digits = round && (value ?? 0) % 1 === 0
 
@@ -35,11 +35,11 @@ export function Money(props: MoneyProps) {
 
     return new Intl.NumberFormat(locale.replace('_', '-'), {
       style: 'currency',
-      currency: currency ?? config?.storeConfig?.base_currency_code ?? '',
+      currency: currency ?? undefined,
       ...(digits && { minimumFractionDigits: 0 }),
       ...formatOptions,
     })
-  }, [config?.storeConfig?.base_currency_code, currency, digits, formatOptions, locale])
+  }, [currency, digits, formatOptions, locale])
 
   if (!numberFormatter || !value) return null
 

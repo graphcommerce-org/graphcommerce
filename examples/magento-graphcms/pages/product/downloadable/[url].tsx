@@ -140,7 +140,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     variables: {
       url: 'product/global',
       urlKey,
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+      rootCategory: (process.env as MagentoEnv).ROOT_CATEGORY,
     },
   })
   const typeProductPage = staticClient.query({

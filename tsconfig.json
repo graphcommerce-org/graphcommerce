@@ -4,6 +4,7 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    "**/*.mjs",
     "**/next.config.js",
     "**/index.js",
     "cssTransform.js",

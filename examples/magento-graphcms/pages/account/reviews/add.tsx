@@ -5,7 +5,7 @@ import {
   ProductReviewProductNameDocument,
   CreateProductReviewForm,
 } from '@graphcommerce/magento-review'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   FullPageMessage,
   iconBox,
@@ -18,7 +18,7 @@ import { t, Trans } from '@lingui/macro'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -30,21 +30,15 @@ function AccountReviewsAddPage() {
     ProductReviewProductNameDocument,
     { variables: { urlKey } },
   )
-  const { data: storeConfigData, loading: loadingStoreConfig } = useQuery(StoreConfigDocument)
 
-  const storeConfig = storeConfigData?.storeConfig
   const customer = customerData?.customer
   const product = productData?.products?.items?.[0]
 
-  if (
-    !storeConfig?.product_reviews_enabled ||
-    productLoading ||
-    loadingStoreConfig ||
-    customerLoading
-  )
-    return <div />
+  if ((process.env as MagentoEnv).NEXT_PUBLIC_REVIEWS_ENABLED !== '1') return null
 
-  if (error && !customer && !storeConfig.allow_guests_to_write_product_reviews)
+  if (productLoading || customerLoading) return null
+
+  if (error && !customer && (process.env as MagentoEnv).NEXT_PUBLIC_REVIEWS_GUEST !== '1')
     return (
       <ApolloCustomerErrorFullPage
         error={error}

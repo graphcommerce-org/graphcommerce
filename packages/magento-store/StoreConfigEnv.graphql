@@ -1,0 +1,19 @@
+query StoreConfigEnv {
+  _storeConfig: storeConfig {
+    NEXT_PUBLIC_REVIEWS_ENABLED: product_reviews_enabled
+    NEXT_PUBLIC_REVIEWS_GUEST: allow_guests_to_write_product_reviews
+    NEXT_PUBLIC_CATALOG_DEFAULT_SORT_BY: catalog_default_sort_by
+    NEXT_PUBLIC_WEIGHT_UNIT: weight_unit
+
+    NEXT_PUBLIC_TITLE_PREFIX: title_prefix
+    NEXT_PUBLIC_TITLE_SEPARATOR: title_separator
+    NEXT_PUBLIC_TITLE_SUFFIX: title_suffix
+    NEXT_PUBLIC_DEFAULT_TITLE: default_title
+    NEXT_PUBLIC_WEBSITE_NAME: website_name
+
+    NEXT_PUBLIC_CURRENCY_CODE: base_currency_code
+    NEXT_PUBLIC_STORE_NAME: store_name
+
+    ROOT_CATEGORY: root_category_uid
+  }
+}

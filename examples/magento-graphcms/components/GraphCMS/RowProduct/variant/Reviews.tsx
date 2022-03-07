@@ -1,19 +1,16 @@
-import { useQuery } from '@graphcommerce/graphql'
 import { ProductReviews, ProductReviewsProps } from '@graphcommerce/magento-review'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv } from '@graphcommerce/magento-store'
 import { Row, SectionContainer } from '@graphcommerce/next-ui'
 import { RowProductFragment } from '../RowProduct.gql'
 
 type ReviewsProps = RowProductFragment & Partial<ProductReviewsProps>
 
 export function Reviews(props: ReviewsProps) {
+  if ((process.env as MagentoEnv).NEXT_PUBLIC_PRODUCT_REVIEWS_ENABLED !== '1') return null
+
   const { title, reviews, url_key, review_count, sku } = props
 
-  const { data, loading } = useQuery(StoreConfigDocument)
-
-  if (!reviews || loading) return null
-
-  if (!data?.storeConfig?.product_reviews_enabled) return null
+  if (!reviews) return null
 
   return (
     <Row maxWidth='md' id='reviews'>

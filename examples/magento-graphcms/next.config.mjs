@@ -1,12 +1,16 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { PerformanceObserver, performance } = require('perf_hooks')
-const withYarn1Workspaces = require('@graphcommerce/next-config').withYarn1Scopes()
+import perf_hooks from 'perf_hooks'
+import { withMagentoConfig } from '@graphcommerce/magento-store/storeConfig.mjs'
+import { withYarn1Scopes } from '@graphcommerce/next-config'
+import dotenv from 'dotenv'
+import withPWA from 'next-pwa'
 
-require('dotenv').config()
+const { PerformanceObserver, performance } = perf_hooks
 
-const withPWA = require('next-pwa')
+dotenv.config()
+await withMagentoConfig()
 
 const obs = new PerformanceObserver((entryList) => {
   entryList.getEntries().forEach((item) => {
@@ -30,6 +34,8 @@ if (
 if (!process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
   throw Error('Please specify NEXT_PUBLIC_GRAPHQL_ENDPOINT in your .env')
 }
+
+console.log(process.env)
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -63,4 +69,6 @@ const nextConfig = {
   },
 }
 
-module.exports = withPWA(withYarn1Workspaces(nextConfig))
+const res = withPWA(withYarn1Scopes()(nextConfig))
+
+export default res

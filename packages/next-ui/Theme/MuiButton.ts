@@ -5,6 +5,9 @@ declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
     pill: true
   }
+  interface ButtonPropsColorOverrides {
+    paper: true
+  }
 }
 
 type ButtonVariants = NonNullable<ComponentsVariants['MuiButton']>
@@ -70,6 +73,7 @@ export const MuiButtonResponsive: ButtonVariants = [
     },
   },
 ]
+
 
 export const MuiButtonPill: ButtonVariants = [
   {

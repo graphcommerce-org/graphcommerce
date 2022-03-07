@@ -15,7 +15,7 @@ function isImage(asset: AssetFragment): asset is ImageAsset {
 
 type AssetProps = {
   asset: AssetFragment
-} & Omit<ImageProps, 'src' | 'width' | 'height' | 'alt'>
+} & Omit<ImageProps, 'src' | 'width' | 'height'>
 
 export function Asset(props: AssetProps) {
   const { asset, ...imgProps } = props

@@ -13,7 +13,7 @@ import {
   ProductListSort,
 } from '@graphcommerce/magento-product'
 import { SearchQuery } from '@graphcommerce/magento-search'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { StickyBelowHeader, LayoutTitle, LayoutHeader, LinkOrButton } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { Box, Container, Typography } from '@mui/material'
@@ -85,10 +85,9 @@ export const getStaticPaths: GetPageStaticPaths = async () => {
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
   const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
 
-  const rootCategory = (await conf).data.storeConfig?.root_category_uid ?? ''
+  const rootCategory = (process.env as MagentoEnv).ROOT_CATEGORY
   const staticClient = graphqlSsrClient(locale)
   const page = staticClient.query({
     query: DefaultPageDocument,
@@ -113,7 +112,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       filterTypes: await filterTypes,
       params: productListParams,
       up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 1,
   }
