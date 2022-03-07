@@ -41,7 +41,7 @@ frontend React framework that uses Next.js for server-side rendering.
 ### Create the GraphCMS model
 
 - Login to GraphCMS, navigate to the Schema and add a new Model called "Banner"
-- Add a Single line text field called "Identity" and configure the following:
+- Add a single line text field called "Identity" and configure the following:
 
 <figure>
  <img src="https://cdn-std.droplr.net/files/acc_857465/6UGrfK" />
@@ -135,7 +135,7 @@ fragment Banner on Banner {
 
 - After saving the file, a new file Banner.gql.ts should be
   [created automatically](../getting-started/readme.md#query-fragments). Take a
-  look at the file's contents. It should export a type `BannerFragment`.
+  look at the file's contents. It should export the type `BannerFragment`.
 
 ### Add the query fragment to the page query fragments
 

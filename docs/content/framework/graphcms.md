@@ -27,7 +27,7 @@ GraphCMS project with the required schema.
 as your starting point. Update the variable in the /.env file:
 
 `GRAPHCMS_URL=""`  
-GraphCMS API url. Once logged in, copy it from Project Settings > Api Access >
+GraphCMS API URL. Once logged in, copy it from Project Settings > Api Access >
 Content API
 
 ## Adding content to pages

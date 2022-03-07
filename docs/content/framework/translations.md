@@ -1,7 +1,7 @@
 # Translations
 
 GraphCommerces uses Linqui for interface translations. This guide provides an
-introduction to how translations works in your graphCommerce app and how to add
+introduction to how translations work in your graphCommerce app and how to add
 support for a language of your choosing.
 
 ## How translations work

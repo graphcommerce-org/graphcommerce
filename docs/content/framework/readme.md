@@ -12,7 +12,7 @@ menu: Overview
 GraphCommerce is a front-end framework used for building headless Magento
 e-commerce storefronts in React. It includes the structure, components, and
 tooling you need to get started so you can spend your time styling and designing
-high end e-commerce progressive web apps (PWA).
+high-end e-commerce progressive web apps (PWA).
 
 ### Framework concepts and components
 
@@ -28,12 +28,12 @@ high end e-commerce progressive web apps (PWA).
 When you create a GraphCommerce app, the GraphCommerce
 [magento-graphcms example](../getting-started/readme.md) comes with a basic file
 structure of a GraphCommerce project that's integrated with Magento and
-GraphCMS. Most of the files that you'll work with in your GraphCommerce project
+GraphCMS. Most of the files that you'll work within your GraphCommerce project
 are located in the /components or /pages directories.
 
-- A minimal set of components you would most likelely modify for your project
-- The main layout component, which renders header, navigation and footer
-- A set of boilerplate pages, which handle url routing
+- A minimal set of components you would most likely modify for your project
+- The main layout component, which renders header, navigation, and footer
+- A set of boilerplate pages, which handle URL routing
 - Basic global styles in theme.ts provided by
   [Mui ↗](https://mui.com/customization/default-theme/)
 - Interface translation files

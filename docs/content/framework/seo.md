@@ -42,8 +42,8 @@ GraphCommerce uses
 the sitemap, which is located in the directory /public/sitemap.xml. For example,
 view the [demo sitemap.xml ↗](https://graphcommerce.vercel.app/sitemap.xml)
 
-Generating the sitemap.xml file is part of the static build proces. Use
-`yarn build` to initiate the build proces and to generate a new sitemap.xml
+Generating the sitemap.xml file is part of the static build process. Use
+`yarn build` to initiate the build process and to generate a new sitemap.xml
 file.
 
 Sitemap generation uses the `NEXT_PUBLIC_SITE_URL` variable in your .env fil.
@@ -54,8 +54,9 @@ GraphCommerce creates a /robots.txt file on build time. Its contents can be
 modified by editing /next-sitemap.js. For example, view the
 [demo robots.txt ↗](https://graphcommerce.vercel.app/robots.txt)
 
-Generating the robot.txt file is part of the static build proces. Use
-`yarn build` to initiate the build proces and to generate a new robots.txt file.
+Generating the robot.txt file is part of the static build process. Use
+`yarn build` to initiate the build process and to generate a new robots.txt
+file.
 
 ## Next steps
 

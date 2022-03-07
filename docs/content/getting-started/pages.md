@@ -23,7 +23,7 @@ learn where to find resources to build more complex features on your own.
 - Create a new route
 - Add the page GraphQL queries required to render the layout (header, footer)
 - Use getStaticProps to fetch GraphCMS data
-- Use getStaticPaths to provide a list of all urls to pre-render
+- Use getStaticPaths to provide a list of all URLs to pre-render
 
 ### Requirements
 
@@ -129,7 +129,7 @@ fetch information about the Magento storeview. Then, the query
 `DefaultPageDocument` is used to fetch the data required to render the menu,
 footer and page content.
 
-In this example, the url variable is empty. As a result, the
+In this example, the URL variable is empty. As a result, the
 `...PageContentQueryFragment` will have no result when trying to fetch a
 GraphCMS page with URL `''`.
 
@@ -213,10 +213,10 @@ will be handled by the file (dynamic routing). Pages that have dynamic routes
 need a list of paths to be statically generated.
 
 All paths specified by a function called `getStaticPaths` will be statically
-pre-redered at build-time.
+pre-rendered at build-time.
 
 In the example above, the array with paths is empty. The required getStaticPaths
-function is there, but no url's are pre-rendered. Because getStaticPaths has the
+function is there, but no URLs are pre-rendered. Because getStaticPaths has the
 option `fallback: 'blocking'`, the paths that have not been pre-rendered at
 built-time will not result in a 404:
 

@@ -34,7 +34,7 @@ Production Branch of your GitHub project:
 - Vercel will auto assign a domain to your project. In this example, the Github
   project repository name is `graphcommerce-example`, so the domain will be
   `https://graphcommerce-example.vercel.app`. Add this domain as the GraphQL and
-  Public site url Environment Variables:
+  Public site URL Environment Variables:
 
   ```bash
   NEXT_PUBLIC_GRAPHQL_ENDPOINT="https://graphcommerce-example.vercel.app/api/graphql"

@@ -16,24 +16,24 @@ those images in the /public directory.
 ### Best practices
 
 - Don't rename the /public directory as it's the only directory used to serve
-  static files. You can add subdirectory's, like /public/docs
+  static files. You can add subdirectories, like /public/docs
 
 ## CSS background images
 
 CSS background images are common assets you would place in the /public
-directory. It's a good practices to limit these to .svg images.
+directory. It's a good practice to limit these to .svg images.
 
 If you need to use a .jpg file as part of the design, place them in the /public
 directory but render them with the `'@graphcommerce/image'` [Image component]().
 This will benefit performance, due to the component's features such as
-CDN-caching, srcset and viewport loading.
+CDN-caching, srcset, and viewport loading.
 
 ## Images
 
 Images that are part of a page or component's content (for example, product
-images), should be always rendered with the `'@graphcommerce/image'`
+images), should always be rendered with the `'@graphcommerce/image'`
 [Image component](). This will benefit performance, due to the component's
-features such as CDN-caching, srcset and viewport loading.
+features such as CDN-caching, srcset, and viewport loading.
 
 ## Next steps
 

@@ -9,7 +9,7 @@ You're ready to create a GraphCommerce storefront. You want to set up your
 development environment so that you can begin development.
 
 In this tutorial, you'll create a GraphCommerce app locally to begin developing
-a full featured storefront. GraphCommerce is a front-end framework used for
+a full-featured storefront. GraphCommerce is a front-end framework used for
 building headless Magento e-commerce PWA's.
 
 ### What you'll learn
@@ -35,7 +35,7 @@ You've familiarized yourself with
 [React ↗](https://reactjs.org/docs/getting-started.html),
 [Next.js ↗](https://nextjs.org/docs/getting-started), and
 [Mui ↗](https://mui.com/getting-started/installation/). GraphCommerce is a
-frontend React framework that uses Next.js for server-side rendering.
+front-end React framework that uses Next.js for server-side rendering.
 
 ### Install dependencies
 
@@ -99,19 +99,19 @@ useful information about your storefront.
 Magento 2 API url, located at `http://<magento2-server>/graphql`.
 
 `IMAGE_DOMAINS=",media.graphcms.com"`  
-Comma separated list of image domains. Add media.graphcms.com as default.
+Comma-separated list of image domains. Add media.graphcms.com as default.
 
 `GRAPHCMS_URL=""`  
 GraphCMS API url. Once logged in, copy it from Project Settings > Api Access >
 Content API
 
 `NEXT_PUBLIC_LOCALE_STORES='{"en": "en_US", "nl": "default"}'`  
-List of routes and store_codes. In above example, adding url suffix /nl/ would
-result in the storeview 'default' being loaded. GraphCommerce uses the browser
-language to determine which storeview to load. A url suffix will be added as a
-result, with the exception of the first option in the list.
+List of routes and store_codes. In the above example, adding URL suffix /nl/
+would result in the storeview 'default' is loaded. GraphCommerce uses the
+browser language to determine which storeview to load. A URL suffix will be
+added as a result, with the exception of the first option in the list.
 
-> If need to fetch a list of availble store_codes, run `yarn dev` when you
+> If need to fetch a list of available store_codes, run `yarn dev` when you
 > entered your `MAGENTO_ENDPOINT`. The app won't build, but the GraphQL explorer
 > will start at `http://localhost:3000/api/graphql`. Enter the following query:
 >

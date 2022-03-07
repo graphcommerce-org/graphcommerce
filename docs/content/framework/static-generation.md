@@ -72,7 +72,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
 
 Pages that have dynamic routes need a list of paths to be statically generated.
 All paths specified by a function called `getStaticPaths` will be statically
-pre-redered at build-time.
+pre-rendered at build-time.
 
 For example, `getStaticPaths` runs the ProductStaticPaths query to fetch a list
 of all configurable product paths:
@@ -201,7 +201,7 @@ if you are looking to migrate to Magento.
 
 Nextjs React Magento is considered newer web technology, offering a modern
 approach to e-commerce development. React can be viewed as the industry standard
-for large scale web apps. Next.js adds the ability for Static Site Generation (a
+for large-scale web apps. Next.js adds the ability for Static Site Generation (a
 form of Server-side Rendering), enabling indexing by search engines.
 GraphCommerce is a framework that combines Nextjs, React and Magento, and
 simplifies building Magento Nextjs PWA's.

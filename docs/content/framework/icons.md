@@ -5,7 +5,7 @@
 
 # Icons
 
-The graphcommerce UI looks clean and minimalistic due to the use of icons. This
+The GraphCommerce UI looks clean and minimalistic due to the use of icons. This
 guide covers how to customize the look of icons, how to use different icons in
 components and how to add your own.
 

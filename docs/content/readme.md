@@ -3,7 +3,7 @@ menu: Overview
 order: getting-started,framework
 metaTitle: Start React, Next.js Magento PWA development here - GraphCommerce
 metaDescription:
-  'GraphCommerce is the open source PWA Studio Magento 2 alternative.
+  'GraphCommerce is the open-source PWA Studio Magento 2 alternative.
   GraphCommerce is a full-featured PWA storefront, not a Magento 2 PWA
   extension.'
 ---
@@ -18,7 +18,7 @@ metaDescription:
 GraphCommerce is a front-end framework used for building headless Magento
 e-commerce storefronts in React. It includes the structure, components, and
 tooling you need to get started so you can spend your time styling and designing
-high end e-commerce progressive web apps (PWA).
+high-end e-commerce progressive web apps (PWA).
 
 <figure>
 
@@ -47,7 +47,7 @@ https://user-images.githubusercontent.com/1251986/154977573-4015e77c-43e7-481e-a
 ## Getting Started
 
 GraphCommerce offers a [magento-graphcms](./getting-started/readme.md) example
-that provides a full featured storefront. The example integrates with your
+that provides a full-featured storefront. The example integrates with your
 Magento backend and provides a full purchase journey out-of-the-box. It uses
 GraphCMS to enrich pages with multiple content components, like the homepage.
 
@@ -59,18 +59,18 @@ start styling by making changes to the [theme](./framework/theming.md).
 GraphCommerce features include:
 
 - App-like e-commerce UI
-- Magento e-commerce component libary including cart, search, layered navigation
-  components and category, product, account, checkout pages
-- Optimized frontend performance, including bundling, image optimization, CDN
+- Magento e-commerce component library including cart, search, layered
+  navigation components and category, product, account, checkout pages
+- Optimized front-end performance, including bundling, image optimization, CDN
   caching
-- Predictive url pefetching and caching
+- Predictive URL prefetching and caching
 - Hybrid Static Site Generation (SSG)
-- SEO optimized, including accessibility, sitemap.xml, canonicals, meta data
+- SEO optimized, including accessibility, sitemap.xml, canonicals, metadata
 - Data fetching from multiple sources with the included GraphQL Mesh (composable
   commerce)
 - Passing Google Core Web Vitals audits
 - PWA out-of-the-box
-- Magento multi language support, a store switcher component and framework
+- Magento multi-language support, a store switcher component, and framework
   translations EN, ES, FR, DE, NL, IT
 - Deployments to Vercel
 
@@ -78,7 +78,7 @@ GraphCommerce features include:
 
 GraphCommerce accelerates the Magento front-end development process by using a
 carefully chosen, industry standard, tech stack. It includes Magento-specific
-React components, pages and utilities for e-commerce. They're accessible,
+React components, pages, and utilities for e-commerce. They're accessible,
 performant, and ready for use. They also help to reduce the initial complexity
 and boilerplate needed for building a custom storefront.
 
@@ -97,7 +97,7 @@ GraphCommerce storefront runs as a separate application.
 GraphCommerce can be deployed on the same or a different server than the Magento
 backend is hosted on. All data is fetched from the Magento 2 GraphQL API. Once
 you finish GraphCommerce Magento PWA development and you are ready to launch,
-the regular Magento frontend (theme and extensions) can be decommissioned.
+the regular Magento front-end (theme and extensions) can be decommissioned.
 
 </details>
 
@@ -107,7 +107,7 @@ the regular Magento frontend (theme and extensions) can be decommissioned.
 ### Is GraphCommerce a PWA Studio Magento 2 alternative?
 
 Yes, GraphCommerce is suitable as an alternative to Magento 2 PWA Studio.
-GraphCommerce is built with modern, open source javascript frameworks and
+GraphCommerce is built with modern, open-source javascript frameworks and
 libraries. Unlike PWA Studio for Magento 2, it features an app-like e-commerce
 user interface, Hybrid Static Site Generation (SSG) and has the ability to fetch
 data from multiple sources (composable commerce).

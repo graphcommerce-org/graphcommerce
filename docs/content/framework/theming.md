@@ -35,7 +35,7 @@ and text colors. Save the file to see your changes updated in real-time:
 ```
 
 You can search through your codebase to discover which component will be
-affected by your changes. For example, search for occurances of
+affected by your changes. For example, search for occurrences of
 `theme.palette.primary.main`.
 
 ### Best practices
@@ -60,11 +60,11 @@ Most components have props that define their look and feel. Most common are the
 
 - Learn about a component's features in the MUI documentation:
   [MUI Button documentation ↗](https://mui.com/components/buttons/)
-- To learn which options are accepted by a prop, refer to component's API:
+- To learn which options are accepted by a prop, refer to the component's API:
   [MUI Button API ↗](https://mui.com/api/button/). You can also use your IDE's
   suggestions functionality. For [VS Code's](../getting-started/vscode.md)
   IntelliSense feature, type Ctrl+Space.
-- It can be helpfull to learn how a component is styled, for example to explore
+- It can be helpful to learn how a component is styled, for example, to explore
   how palette variables are used. Refer to the
   [MUI Button source code ↗](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Button/Button.js)
 
@@ -168,7 +168,7 @@ To overwrite a component's hover state, add the sx prop:
 ## Customizing default border-radius
 
 All components that render content with a border-radius, except for pill buttons
-and circular buttons, are dependent of the value of `shape`. A simple way to
+and circular buttons, are dependent on the value of `shape`. A simple way to
 remove this effect is to set its value to 0:
 
 ```tsx
@@ -241,9 +241,9 @@ The helper function `responsiveVal` offers lineair scaling based on the viewport
 width. For example: `responsiveVal(16, 22)` will render 16px at 320px window
 width, 22px at 1280px window width.
 
-`responsiveVal` can be used to lineair scale almost all css properties,
-including width, borderRadius and margin. Performance-wise, font-size and
-line-height should not be scaled with responsiveVal. To learn more, look into
+`responsiveVal` can be used to linear scale almost all CSS properties, including
+width, borderRadius and margin. Performance-wise, font-size and line-height
+should not be scaled with responsiveVal. To learn more, look into
 [responsive font sizes](../framework/typography.md).
 
 ## Next steps

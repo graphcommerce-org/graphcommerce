@@ -23,12 +23,12 @@ exploring it.
 
 ## How it works
 
-Most of the files that you'll work with in your GraphCommerce project are
+Most of the files that you'll work on within your GraphCommerce project are
 located in the /components or /pages directories.
 
-- A minimal set of components you would most likelely modify for your project
-- The main layout component, which renders header, navigation and footer
-- A set of boilerplate pages, which handle url routing
+- A minimal set of components you would most likely modify for your project
+- The main layout component, which renders header, navigation, and footer
+- A set of boilerplate pages, which handle URL routing
 - Basic global styles in theme.ts provided by
   [Mui ↗](https://mui.com/customization/default-theme/)
 - Interface translation files
@@ -72,7 +72,7 @@ File structure of the graphcommerce-magento example
 The GraphCommerce magento-graphcms example provides a series of components that
 you can use as a starting point for development. These components query the
 Magento GraphQL API for efficient data-fetching. Most components have a .graphql
-file which contains the GraphQL query fragment.
+file that contains the GraphQL query fragment.
 
 ### Modifying components
 
@@ -80,12 +80,12 @@ By default, the components that you would most likely modify are located in the
 `/components` directory. You can directly modify these components and customize
 styles.
 
-Others components are imported where needed , and can be recognized by their
+Others components are imported where needed, and can be recognized by their
 namespace `@graphcommerce/`. There are different ways to
 [customize styles](https://mui.com/customization/how-to-customize/) of importend
 components. The most common way is by adding an sx prop: `sx={{color:'red'}}`.
 
-If you want to extend a component's behaviour or built your own, you can
+If you want to extend a component's behavior or built your own, you can
 duplicate a `@graphcommerce/` component to your /components directory. You'll
 need to update all imports with the new location of your local component. This
 also applies if you want to modify a component's or
@@ -168,10 +168,10 @@ the concept of pages. A page is a React Component exported from a `.tsx` file in
 the /pages directory. When a file is added to the /pages directory, it's
 automatically available as a route.
 
-All routes of the app contain a url segment that corresponds with a directory in
+All routes of the app contain a URL segment that corresponds with a directory in
 the /pages directory. Magento category routes are handled by the
-`/pages/[...url].tsx` page and therefore do not contain a url segment. As a
-result, the category url structure of the app matches your default Magento
+`/pages/[...url].tsx` page and therefore do not contain a URL segment. As a
+result, the category URL structure of the app matches your default Magento
 frontend 1-on-1.
 
 ```txt
@@ -235,7 +235,7 @@ files. `.gql(.ts)` are generated at build time.
 
 Pages run queries in the getStaticProps function and pass the response as props.
 Pages have a single page query, that combines multiple query fragments from
-components. These accumelating page queries are located in the
+components. These accumulating page queries are located in the
 /components/GraphQL directory.
 
 With the use of fragments and GraphQL Mesh, GraphCommerce retrieves all data
@@ -279,10 +279,10 @@ category, product, account, checkout pages.
 ### Why use the GraphCommerce magento-graphcms reactjs ecommerce template
 
 The GraphCommerce magento-graphcms template contains all needed components like
-cart, search and layered navigation for a full-featured e-commerce storefront.
+cart, search, and layered navigation for a full-featured e-commerce storefront.
 It's easy to customize and includes the structure, components, and tooling you
 need to get started. With the extensive documentation, it is more efficient to
-understand and customize the template for your next react magento 2 project,
+understand and customize the template for your next react Magento 2 project,
 than to start from scratch.
 
 </details>

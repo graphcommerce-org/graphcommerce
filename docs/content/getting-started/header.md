@@ -22,7 +22,7 @@ to find resources to build more complex features on your own.
 
 - Edited the layout component to remove components
 - Add a simplified search Icon button
-- Make a local copy of the MenuFab component and update it's imports
+- Make a local copy of the MenuFab component and update its imports
 - Change the Menu component's styling to a fullscreen overlay
 
 ### Requirements
@@ -108,7 +108,7 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 </PageLink>
 ```
 
-- Add `iconSearch` to the excisting imports from `'@graphcommerce/next-ui'` at
+- Add `iconSearch` to the existing imports from `'@graphcommerce/next-ui'` at
   the top of the file
 
 ### Remove Customer Service Fab
