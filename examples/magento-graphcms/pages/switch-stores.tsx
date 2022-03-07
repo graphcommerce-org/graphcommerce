@@ -1,7 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   PageMeta,
-  StoreConfigDocument,
   StoreSwitcherList,
   StoreSwitcherListDocument,
   StoreSwitcherListQuery,
@@ -16,7 +15,7 @@ import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 type RouteProps = { country?: string[] }
 type Props = StoreSwitcherListQuery
@@ -59,16 +58,12 @@ StoresIndexPage.pageOptions = pageOptions
 export default StoresIndexPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
-
-  const conf = client.query({ query: StoreConfigDocument })
   const stores = staticClient.query({ query: StoreSwitcherListDocument })
 
   return {
     props: {
       ...(await stores).data,
-      apolloState: await conf.then(() => client.cache.extract()),
     },
   }
 }

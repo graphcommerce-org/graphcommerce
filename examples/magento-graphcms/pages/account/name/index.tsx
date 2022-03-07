@@ -5,7 +5,7 @@ import {
   ChangeNameForm,
   CustomerDocument,
 } from '@graphcommerce/magento-customer'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   iconId,
@@ -15,9 +15,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
-import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -77,16 +75,10 @@ AccountNamePage.pageOptions = pageOptions
 
 export default AccountNamePage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-      variantMd: 'bottom',
-      size: 'max',
-      up: { href: '/account', title: 'Account' },
-    },
-  }
-}
+export const getStaticProps: GetPageStaticProps = async ({ locale }) => ({
+  props: {
+    variantMd: 'bottom',
+    size: 'max',
+    up: { href: '/account', title: 'Account' },
+  },
+})

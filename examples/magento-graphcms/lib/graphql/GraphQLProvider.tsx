@@ -19,7 +19,6 @@ import {
 } from '@graphcommerce/magento-customer'
 import { magentoTypePolicies } from '@graphcommerce/magento-graphql'
 import { createStoreLink } from '@graphcommerce/magento-store'
-import { ApolloStateProps } from '@graphcommerce/next-ui'
 import { AppProps } from 'next/app'
 import { useMemo } from 'react'
 
@@ -69,7 +68,7 @@ type GraphQLProviderProps = {
  * - It also is able to revive the cache from a previous visit.
  */
 export function GraphQLProvider({ children, router, pageProps }: GraphQLProviderProps) {
-  const state = (pageProps as Partial<ApolloStateProps>).apolloState
+  const state = pageProps.apolloState as NormalizedCacheObject | undefined
 
   const client = useMemo(() => {
     const cache = createCache()

@@ -5,22 +5,18 @@ import {
   ProductReviewProductNameDocument,
   CreateProductReviewForm,
 } from '@graphcommerce/magento-review'
-import { MagentoEnv, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv, PageMeta } from '@graphcommerce/magento-store'
 import {
   FullPageMessage,
   iconBox,
   LayoutOverlayHeader,
   LayoutTitle,
   IconSvg,
-  GetStaticProps,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
-
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountReviewsAddPage() {
   const router = useRouter()
@@ -96,14 +92,3 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
 AccountReviewsAddPage.pageOptions = pageOptions
 
 export default AccountReviewsAddPage
-
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-  }
-}

@@ -63,10 +63,7 @@ import {
   DefaultPageQuery,
 } from '../../graphql/DefaultPage.gql'
 import { PagesStaticPathsDocument } from '../../graphql/PagesStaticPaths.gql'
-import {
-  graphqlSsrClient,
-  graphqlSharedClient,
-} from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = DefaultPageQuery
 type RouteProps = { url: string }
@@ -85,10 +82,8 @@ export default AboutUs
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const { locale } = context
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 
-  const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,
     variables: {
@@ -100,7 +95,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   return {
     props: {
       ...(await page).data,
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }
@@ -186,10 +180,8 @@ export const getStaticPaths: GetPageStaticPaths = (context) => ({
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const { locale, params } = context
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 
-  const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,
     variables: {
@@ -201,7 +193,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   return {
     props: {
       ...(await page).data,
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }

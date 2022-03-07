@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -52,7 +52,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = async (locale: string) => {
-    const client = graphqlSharedClient(locale)
+    const client = graphqlSsrClient(locale)
     const { data } = await client.query({
       query: PagesStaticPathsDocument,
       variables: {
@@ -69,9 +69,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const url = params?.url ? `service/${params?.url.join('/')}` : `service`
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,
     variables: { url, rootCategory: (process.env as MagentoEnv).ROOT_CATEGORY },
@@ -85,7 +83,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     props: {
       ...(await page).data,
       up: isRoot ? null : { href: '/service', title: 'Customer Service' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }

@@ -21,7 +21,7 @@ import {
   SearchForm,
   SearchQuery,
 } from '@graphcommerce/magento-search'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv, PageMeta } from '@graphcommerce/magento-store'
 import {
   StickyBelowHeader,
   GetStaticProps,
@@ -125,7 +125,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const [search = '', query = []] = extractUrlQuery(params)
 
   const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
 
   const rootCategory = (process.env as MagentoEnv).ROOT_CATEGORY
@@ -161,7 +160,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       filterTypes: await filterTypes,
       params: productListParams,
       up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 1,
   }

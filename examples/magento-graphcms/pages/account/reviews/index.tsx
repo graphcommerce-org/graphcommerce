@@ -2,7 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { ApolloCustomerErrorFullPage } from '@graphcommerce/magento-customer'
 import { AccountDashboardReviewsDocument, AccountReviews } from '@graphcommerce/magento-review'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import {
   FullPageMessage,
   iconStar,
@@ -14,7 +14,6 @@ import {
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -80,14 +79,8 @@ AccountReviewsPage.pageOptions = pageOptions
 
 export default AccountReviewsPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-      up: { href: '/account', title: 'Account' },
-    },
-  }
-}
+export const getStaticProps: GetPageStaticProps = async ({ locale }) => ({
+  props: {
+    up: { href: '/account', title: 'Account' },
+  },
+})

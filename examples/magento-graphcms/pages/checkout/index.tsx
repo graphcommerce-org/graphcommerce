@@ -10,7 +10,7 @@ import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { EmailForm } from '@graphcommerce/magento-cart-email'
 import { ShippingAddressForm } from '@graphcommerce/magento-cart-shipping-address'
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import {
   FormActions,
   FormHeader,
@@ -25,7 +25,7 @@ import { Container, NoSsr, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
@@ -133,8 +133,6 @@ ShippingPage.pageOptions = pageOptions
 export default ShippingPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
   const staticClient = graphqlSsrClient(locale)
 
   const page = staticClient.query({
@@ -149,7 +147,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     props: {
       ...(await page).data,
       up: { href: '/cart', title: 'Cart' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
   }
 }

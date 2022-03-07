@@ -1,12 +1,12 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv } from '@graphcommerce/magento-store'
 import { LayoutHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { Typography, Container } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
@@ -116,10 +116,8 @@ TypographyOverview.pageOptions = {
 export default TypographyOverview
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 
-  const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,
     variables: {
@@ -132,7 +130,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     props: {
       ...(await page).data,
       up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
   }
 }

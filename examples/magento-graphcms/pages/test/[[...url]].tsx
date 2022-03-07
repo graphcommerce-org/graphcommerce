@@ -1,10 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv } from '@graphcommerce/magento-store'
 import { GetStaticProps } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import { LayoutFull, LayoutFullProps } from '../../components'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 import { LayoutDemo } from './minimal-page-shell/[[...url]]'
 
 type Props = { url: string } & DefaultPageQuery
@@ -37,11 +37,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
   const url = (params?.url ?? ['index']).join('/') ?? ''
-
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 
-  const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,
     variables: {
@@ -55,7 +52,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       url,
       up: url !== 'index' ? { href: '/', title: 'Home' } : null,
       ...(await page).data,
-      apolloState: await conf.then(() => client.cache.extract()),
     },
   }
 }

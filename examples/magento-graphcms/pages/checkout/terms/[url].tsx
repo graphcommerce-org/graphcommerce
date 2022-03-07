@@ -68,10 +68,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
   const agreements = await staticClient.query({ query: CartAgreementsDocument })
 
   const agreement = agreements.data.checkoutAgreements?.find(
@@ -84,7 +81,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     props: {
       variantMd: 'left',
       agreement,
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }

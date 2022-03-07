@@ -4,10 +4,10 @@ import { GetStaticProps as GetStaticPropsNext } from 'next'
 
 type AnyObj = Record<string, unknown>
 
-export type ApolloStateProps = { up?: UpPage | null }
+export type PageProps = { up?: UpPage | null }
 
 export type GetStaticProps<
   PL extends AnyObj,
   P extends AnyObj = AnyObj,
   Q extends ParsedUrlQuery = ParsedUrlQuery,
-> = GetStaticPropsNext<P & Omit<PL, 'children'> & ApolloStateProps, Q>
+> = GetStaticPropsNext<P & Omit<PL, 'children'> & PageProps, Q>

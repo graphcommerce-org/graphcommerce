@@ -61,7 +61,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     props: {
       ...(await page).data,
       up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }
@@ -163,7 +162,6 @@ return {
   props: {
     ...(await productPage).data,
     ...(await typeProductPage).data,
-    apolloState: await conf.then(() => client.cache.extract()),
     up,
   },
   revalidate: 60 * 20,

@@ -2,7 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { ApolloCustomerErrorFullPage, EditAddressForm } from '@graphcommerce/magento-customer'
 import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   iconAddresses,
@@ -14,9 +14,7 @@ import {
 import { t, Trans } from '@lingui/macro'
 import { Box, Container, NoSsr, Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
-import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -98,16 +96,10 @@ EditAddressPage.pageOptions = pageOptions
 
 export default EditAddressPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-      variantMd: 'bottom',
-      size: 'max',
-      up: { href: '/account/addresses', title: 'Addresses' },
-    },
-  }
-}
+export const getStaticProps: GetPageStaticProps = async ({ locale }) => ({
+  props: {
+    variantMd: 'bottom',
+    size: 'max',
+    up: { href: '/account/addresses', title: 'Addresses' },
+  },
+})

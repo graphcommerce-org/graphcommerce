@@ -131,12 +131,10 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 
   const urlKey = params?.url ?? '??'
 
-  const conf = client.query({ query: StoreConfigDocument })
   const productPage = staticClient.query({
     query: ProductPageDocument,
     variables: {
@@ -167,7 +165,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       ...(await productPage).data,
       ...(await typeProductPage).data,
-      apolloState: await conf.then(() => client.cache.extract()),
       up,
     },
     revalidate: 60 * 20,

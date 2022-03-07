@@ -12,7 +12,7 @@ import {
 } from '@graphcommerce/magento-customer-account'
 import { OrderStateLabelInline } from '@graphcommerce/magento-customer-order'
 import { CustomerNewsletterToggle } from '@graphcommerce/magento-newsletter'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv, PageMeta } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   iconBox,
@@ -31,10 +31,9 @@ import {
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
-import React from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
@@ -181,8 +180,6 @@ export default AccountIndexPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = graphqlSsrClient(locale)
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
 
   const page = staticClient.query({
     query: DefaultPageDocument,
@@ -196,7 +193,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     props: {
       ...(await page).data,
       up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }

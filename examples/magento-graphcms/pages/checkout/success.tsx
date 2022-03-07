@@ -1,7 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { CartItemSummary, CartSummary, InlineAccount } from '@graphcommerce/magento-cart'
 import { SignupNewsletter } from '@graphcommerce/magento-newsletter'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv, PageMeta } from '@graphcommerce/magento-store'
 import {
   FullPageMessage,
   GetStaticProps,
@@ -18,7 +18,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { LayoutFullProps, LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
@@ -101,9 +101,7 @@ OrderSuccessPage.pageOptions = pageOptions
 export default OrderSuccessPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,
     variables: {
@@ -116,7 +114,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     props: {
       ...(await page).data,
       up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
   }
 }

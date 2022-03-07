@@ -16,7 +16,6 @@ import {
   DownloadableProductPageQuery,
 } from '@graphcommerce/magento-product-downloadable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   JsonLd,
@@ -29,7 +28,7 @@ import { GetStaticPaths } from 'next'
 import React from 'react'
 import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
-import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
 
@@ -129,12 +128,10 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 
   const urlKey = params?.url ?? '??'
 
-  const conf = client.query({ query: StoreConfigDocument })
   const productPage = staticClient.query({
     query: ProductPageDocument,
     variables: {
@@ -165,7 +162,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       ...(await productPage).data,
       ...(await typeProductPage).data,
-      apolloState: await conf.then(() => client.cache.extract()),
       up,
     },
     revalidate: 60 * 20,

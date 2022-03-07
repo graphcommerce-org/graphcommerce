@@ -17,7 +17,7 @@ import {
   ConfigurableProductPageQuery,
 } from '@graphcommerce/magento-product-configurable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
-import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { Money } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   JsonLd,
@@ -32,7 +32,7 @@ import PageLink from 'next/link'
 import React from 'react'
 import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
-import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = ProductPageQuery & ConfigurableProductPageQuery
 
@@ -146,12 +146,10 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 
   const urlKey = params?.url ?? '??'
 
-  const conf = client.query({ query: StoreConfigDocument })
   const productPage = staticClient.query({
     query: ProductPageDocument,
     variables: {
@@ -183,7 +181,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       ...(await productPage).data,
       ...(await typeProductPage).data,
-      apolloState: await conf.then(() => client.cache.extract()),
       up,
     },
     revalidate: 60 * 20,

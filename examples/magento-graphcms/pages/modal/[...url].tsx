@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   MetaRobots,
@@ -11,7 +11,7 @@ import { Box, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
 import { DefaultPageDocument, DefaultPageQuery } from '../../graphql/DefaultPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
 
@@ -72,10 +72,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const urlKey = params?.url.join('/') ?? '??'
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 
-  const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,
     variables: {
@@ -89,7 +87,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   return {
     props: {
       ...(await page).data,
-      apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
       size: 'max',
     },

@@ -1,9 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutTitle, LayoutHeader, SidebarGallery } from '@graphcommerce/next-ui'
 import { LayoutFull, LayoutFullProps } from '../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = ProductListQuery
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
@@ -83,10 +83,7 @@ TestSlider.pageOptions = {
 export default TestSlider
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
-
-  const conf = client.query({ query: StoreConfigDocument })
 
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
   const categoryUid = String((process.env as MagentoEnv).ROOT_CATEGORY)
@@ -99,7 +96,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     props: {
       ...(await productList).data,
       up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
   }
 }

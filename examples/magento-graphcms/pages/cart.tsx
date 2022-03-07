@@ -10,10 +10,9 @@ import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
 import { CartItem, CartItems } from '@graphcommerce/magento-cart-items'
 import { ConfigurableCartItem } from '@graphcommerce/magento-product-configurable'
-import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { Money, PageMeta } from '@graphcommerce/magento-store'
 import {
   AnimatedRow,
-  GetStaticProps,
   iconShoppingBag,
   Stepper,
   LayoutTitle,
@@ -27,10 +26,6 @@ import { Container, NoSsr } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
-import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
-
-type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function CartPage() {
   const { data, error, loading } = useCartQuery(CartPageDocument, { returnPartialData: true })
@@ -129,14 +124,3 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
 CartPage.pageOptions = pageOptions
 
 export default CartPage
-
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-  }
-}

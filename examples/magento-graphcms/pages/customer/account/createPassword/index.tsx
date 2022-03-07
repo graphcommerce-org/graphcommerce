@@ -1,13 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ResetPasswordForm } from '@graphcommerce/magento-customer'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Box, Container, Link, NoSsr, Button } from '@mui/material'
 import router, { useRouter } from 'next/router'
-import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -83,16 +81,10 @@ CustomerAccountCreatePasswordPage.pageOptions = pageOptions
 
 export default CustomerAccountCreatePasswordPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-      variantMd: 'bottom',
-      size: 'max',
-      up: { href: '/account/signin', title: 'Sign in' },
-    },
-  }
-}
+export const getStaticProps: GetPageStaticProps = async ({ locale }) => ({
+  props: {
+    variantMd: 'bottom',
+    size: 'max',
+    up: { href: '/account/signin', title: 'Sign in' },
+  },
+})

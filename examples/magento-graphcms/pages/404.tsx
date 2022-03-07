@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { SearchForm } from '@graphcommerce/magento-search'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv, PageMeta } from '@graphcommerce/magento-store'
 import { GetStaticProps, Separator, icon404, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Box, Container, Typography, Link } from '@mui/material'
@@ -8,7 +8,7 @@ import PageLink from 'next/link'
 import React from 'react'
 import { LayoutFull, LayoutFullProps } from '../components'
 import { DefaultPageDocument, DefaultPageQuery } from '../graphql/DefaultPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
 
@@ -67,9 +67,7 @@ RouteNotFoundPage.pageOptions = {
 export default RouteNotFoundPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
 
   const page = staticClient.query({
     query: DefaultPageDocument,
@@ -83,7 +81,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     props: {
       ...(await page).data,
       up: { href: '/', title: 'Home' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }

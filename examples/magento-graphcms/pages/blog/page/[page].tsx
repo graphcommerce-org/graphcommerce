@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv } from '@graphcommerce/magento-store'
 import {
   PageMeta,
   GetStaticProps,
@@ -22,7 +22,7 @@ import {
   LayoutFullProps,
 } from '../../../components'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../graphql/DefaultPage.gql'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
 
@@ -93,9 +93,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const skip = Math.abs((Number(params?.page ?? '1') - 1) * pageSize)
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
   const defaultPage = staticClient.query({
     query: DefaultPageDocument,
     variables: {
@@ -120,7 +118,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       ...(await blogPaths).data,
       urlEntity: { relative_url: `blog` },
       up: { href: '/blog', title: 'Blog' },
-      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }

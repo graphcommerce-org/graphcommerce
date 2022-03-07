@@ -1,19 +1,16 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   LayoutTitle,
   responsiveVal,
   IconSvg,
   iconChevronRight,
   iconBox,
-  GetStaticProps,
   Button,
   ButtonProps,
 } from '@graphcommerce/next-ui'
 import { Box, Container, Typography, Divider, styled } from '@mui/material'
 import React, { useState } from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
-import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 const variants = ['text', 'outlined', 'contained', 'pill'] as const
 const sizes = ['small', 'medium', 'large'] as const
@@ -123,16 +120,3 @@ const pageOptions: PageOptions<LayoutMinimalProps> = {
   layoutProps: {},
 }
 ButtonsPage.pageOptions = pageOptions
-
-type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
-
-export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const client = graphqlSharedClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
-  return {
-    props: {
-      apolloState: await conf.then(() => client.cache.extract()),
-    },
-  }
-}

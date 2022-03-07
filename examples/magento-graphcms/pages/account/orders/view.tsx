@@ -7,7 +7,7 @@ import {
   OrderItems,
   OrderDetailPageDocument,
 } from '@graphcommerce/magento-customer-order'
-import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { CountryRegionsDocument, PageMeta } from '@graphcommerce/magento-store'
 import {
   IconHeader,
   GetStaticProps,
@@ -18,9 +18,8 @@ import {
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
-import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -93,18 +92,13 @@ OrderDetailPage.pageOptions = pageOptions
 export default OrderDetailPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
-  const config = client.query({ query: StoreConfigDocument })
 
-  const countryRegions = staticClient.query({
-    query: CountryRegionsDocument,
-  })
+  const countryRegions = staticClient.query({ query: CountryRegionsDocument })
 
   return {
     props: {
       ...(await countryRegions).data,
-      apolloState: await config.then(() => client.cache.extract()),
       variantMd: 'bottom',
       size: 'max',
       up: { href: '/account/orders', title: 'Orders' },

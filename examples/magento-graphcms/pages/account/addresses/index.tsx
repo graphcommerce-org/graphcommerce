@@ -2,7 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { AccountAddresses, ApolloCustomerErrorFullPage } from '@graphcommerce/magento-customer'
 import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
-import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { CountryRegionsDocument, PageMeta } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   iconAddresses,
@@ -11,9 +11,8 @@ import {
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
-import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -71,10 +70,7 @@ AccountAddressesPage.pageOptions = pageOptions
 export default AccountAddressesPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
-  const conf = client.query({ query: StoreConfigDocument })
-
   const countryRegions = staticClient.query({
     query: CountryRegionsDocument,
   })
@@ -82,7 +78,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await countryRegions).data,
-      apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
       up: { href: '/account', title: 'Account' },
     },

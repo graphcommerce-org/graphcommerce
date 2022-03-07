@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
-import { MagentoEnv, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { MagentoEnv } from '@graphcommerce/magento-store'
 import {
   PageMeta,
   LayoutHeader,
@@ -12,7 +12,7 @@ import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import { LayoutFullProps, RowRenderer, RowProduct, LayoutFull } from '../../components'
 import { DefaultPageQuery, DefaultPageDocument } from '../../graphql/DefaultPage.gql'
-import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 export const config = { unstable_JsPreload: false }
 
