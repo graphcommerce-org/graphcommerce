@@ -97,6 +97,7 @@ export function MenuFab(props: MenuFabProps) {
           open={!!openEl}
           onClose={() => setOpenEl(null)}
           disableScrollLock
+          disablePortal
           transitionDuration={{ appear: 175, enter: 175, exit: 175 }}
           PaperProps={{
             sx: (theme) => ({
