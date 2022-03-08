@@ -2,7 +2,7 @@
   "name": "@graphcommerce/next-ui",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.2.2",
+  "version": "4.2.3",
   "author": "",
   "license": "MIT",
   "sideEffects": false,

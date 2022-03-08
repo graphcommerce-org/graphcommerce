@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.2.3
+
+### Patch Changes
+
+- [#1299](https://github.com/ho-nl/m2-pwa/pull/1299)
+  [`e37caf437`](https://github.com/ho-nl/m2-pwa/commit/e37caf4376b304ab733d41f2b4fa8be2c35fd807)
+  Thanks [@paales](https://github.com/paales)! - Make sure Buttons and Fabs can have custom variants
+
 ## 4.2.2
 
 ### Patch Changes
