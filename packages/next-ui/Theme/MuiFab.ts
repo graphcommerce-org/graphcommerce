@@ -40,7 +40,7 @@ export const useFabSize = (size: FabSize) => {
   return fabSize(size, theme)
 }
 
-declare module '@mui/material/Fab' {
+declare module '@mui/material/Fab/Fab' {
   interface FabPropsSizeOverrides {
     responsive: true
   }

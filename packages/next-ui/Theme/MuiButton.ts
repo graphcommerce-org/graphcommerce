@@ -1,7 +1,7 @@
 import { ComponentsVariants } from '@mui/material'
 import { responsiveVal } from '../Styles/responsiveVal'
 
-declare module '@mui/material/Button' {
+declare module '@mui/material/Button/Button' {
   interface ButtonPropsVariantOverrides {
     pill: true
   }
