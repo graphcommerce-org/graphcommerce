@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.1.4
+
+### Patch Changes
+
+- [`29c967b09`](https://github.com/ho-nl/m2-pwa/commit/29c967b096ebc2e02049c0edc8614cc432c66187)
+  Thanks [@paales](https://github.com/paales)! - publish docs privately on npm so it can be used for
+  the docs website
+
 ## 3.1.3
 
 ### Patch Changes
