@@ -15,7 +15,7 @@
     "@graphcommerce/eslint-config-pwa": "^4.0.3",
     "@graphcommerce/prettier-config-pwa": "^4.0.2",
     "@graphcommerce/typescript-config-pwa": "^4.0.2",
-    "@playwright/test": "^1.19.1"
+    "@playwright/test": "^1.19.2"
   },
   "dependencies": {
     "@graphcommerce/framer-scroller": "^2.0.3",
