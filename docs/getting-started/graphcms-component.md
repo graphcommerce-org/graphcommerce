@@ -44,31 +44,41 @@ frontend React framework that uses Next.js for server-side rendering.
 - Add a single line text field called "Identity" and configure the following:
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/6UGrfK" alt="Adding a Single line text field" />
+
+![Adding a Single line text field](https://cdn-std.droplr.net/files/acc_857465/6UGrfK)
+
   <figcaption>Adding a Single line text field called "Identity"</figcaption>
 </figure>
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/TvNPoT" alt="Configuring of the 'Identity' field" />
+
+![Configuring of the 'Identity' field](https://cdn-std.droplr.net/files/acc_857465/TvNPoT)
+
    <figcaption>Configuring of the "Identity" field</figcaption>
 </figure>
 
 - Add an Asset field called "Image" and configure the following:
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/OdkckP" alt="Adding an Asset field called 'Image'"/>
+
+![Adding an Asset field called 'Image'](https://cdn-std.droplr.net/files/acc_857465/OdkckP)
+
    <figcaption>Adding an Asset field called "Image"</figcaption>
 </figure>
 
 - Add a Rich text field called "Copy" and configure the following:
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/C8nzzB" alt="Adding a Rich text field called 'copy'"/>
+
+![Adding a Rich text field called 'copy'](https://cdn-std.droplr.net/files/acc_857465/C8nzzB)
+
    <figcaption>Adding a Rich text field called "Copy"</figcaption>
 </figure>
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/j9kydr" alt="Configuring of the field"/>
+
+![Configuring of the field](https://cdn-std.droplr.net/files/acc_857465/j9kydr)
+
    <figcaption>Configuring of the "Copy" field</figcaption>
 </figure>
 
@@ -82,7 +92,9 @@ relationship between the Banner model and the Content field of the Page model.
   "Models to reference"
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/Dc4axA" alt="Models to reference"/>
+
+![Models to reference](https://cdn-std.droplr.net/files/acc_857465/Dc4axA)
+
    <figcaption>Adding the newly created Banner Model to "Models to reference"</figcaption>
 </figure>
 
@@ -90,7 +102,9 @@ relationship between the Banner model and the Content field of the Page model.
   the homepage:
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/lpa4x4" alt="Adding a new banner to the Homepage content entry"/>
+
+![Adding a new banner to the Homepage content entry](https://cdn-std.droplr.net/files/acc_857465/lpa4x4)
+
    <figcaption>Adding a new banner to the Homepage content entry</figcaption>
 </figure>
 
@@ -114,7 +128,9 @@ query {
 Should output the following. Make note that 'Banner' is listed as a typename.
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/G51mOD" alt="Validation of the addition to the GraphQL Schema"/>
+
+![Validation of the addition to the GraphQL Schema](https://cdn-std.droplr.net/files/acc_857465/G51mOD)
+
    <figcaption>Validation of the addition of "Banner" to the GraphQL Schema</figcaption>
 </figure>
 
@@ -226,12 +242,16 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
   matters:
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/ONwNJD" alt="An instance of the banner component rendering with content from GraphCMS" />
+
+![An instance of the banner component rendering with content from GraphCMS](https://cdn-std.droplr.net/files/acc_857465/ONwNJD)
+
    <figcaption>An instance of the banner component rendering with content from GraphCMS</figcaption>
 </figure>
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/bMsi6A" alt="Sort order matters" />
+
+![Sort order matters](https://cdn-std.droplr.net/files/acc_857465/bMsi6A)
+
    <figcaption>Sort order matters</figcaption>
 </figure>
 

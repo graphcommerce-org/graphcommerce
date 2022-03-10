@@ -48,7 +48,9 @@ msgstr "Empty cart!"
 Refresh to see your changes updated
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/ipzm99" alt="Make changes to translations" />
+
+![Make changes to translations](https://cdn-std.droplr.net/files/acc_857465/ipzm99)
+
  <figcaption>Make changes to translations. Refresh to see changes updated.</figcaption>
 </figure>
 

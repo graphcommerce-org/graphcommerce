@@ -18,7 +18,9 @@ Production Branch of your GitHub project:
   repository access
 
   <figure>
-    <img src="https://cdn-std.droplr.net/files/acc_857465/e62La4" alt="Configure Github App"/>
+
+  ![Configure Github App](https://cdn-std.droplr.net/files/acc_857465/e62La4)
+
   </figure>
 
 - Set the Environment Variables from your .env file:
@@ -42,7 +44,9 @@ Production Branch of your GitHub project:
   ```
 
   <figure>
-  <img src="https://cdn-std.droplr.net/files/acc_857465/gkuuby" alt="Add Environment Variables"/>
+
+![Add Environment Variables](https://cdn-std.droplr.net/files/acc_857465/gkuuby)
+
   </figure>
 
 - Hit the "Deploy" button
