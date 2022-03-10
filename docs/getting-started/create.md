@@ -86,7 +86,7 @@ and/or GraphCMS project, you'll need:
 
 - Magento 2.4.3 - Clean install, or a production or development environment
 - GraphCMS - A GraphCMS project with the required schema.
-  [Clone the demo GraphCMS project](https://app.graphcms.com/clone/caddaa93cfa9436a9e76ae9c0F34d257)
+  [Clone the demo GraphCMS project ↗](https://app.graphcms.com/clone/caddaa93cfa9436a9e76ae9c0F34d257)
   as your starting point.
 
 ### Configuration

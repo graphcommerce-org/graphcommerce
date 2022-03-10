@@ -23,7 +23,7 @@ by adding GraphCMS content to pages.
 
 To connect your GraphCommerce app to your GraphCMS project, you'll need a
 GraphCMS project with the required schema.
-[Clone the demo GraphCMS project](https://app.graphcms.com/clone/caddaa93cfa9436a9e76ae9c0F34d257)
+[Clone the demo GraphCMS project ↗](https://app.graphcms.com/clone/caddaa93cfa9436a9e76ae9c0F34d257)
 as your starting point. Update the variable in the /.env file:
 
 `GRAPHCMS_URL=""`  
