@@ -1,4 +1,4 @@
-import { Avatar, Box, Chip, SxProps } from '@mui/material'
+import { Avatar, Box, Chip, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { responsiveVal } from '../../Styles/responsiveVal'
@@ -6,7 +6,7 @@ import { responsiveVal } from '../../Styles/responsiveVal'
 export type BlogAuthorProps = {
   author: string
   date: string
-  sx?: SxProps
+  sx?: SxProps<Theme>
 }
 
 export function BlogAuthor(props: BlogAuthorProps) {
