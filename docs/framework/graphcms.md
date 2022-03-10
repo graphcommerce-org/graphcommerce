@@ -45,19 +45,19 @@ wish to add content to.
 For example, the content of the 'men' Page entry in GraphCMS:
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/qv7IAn"/>
+ <img src="https://cdn-std.droplr.net/files/acc_857465/qv7IAn" alt="Page entry in GraphCMS"/>
 </figure>
 
 Is used to add a`RowProduct (variant:Grid)` and a
 `RowProduct (variant:Backstory` component to: http://localhost:3000/men
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/1aSErQ" />
+ <img src="https://cdn-std.droplr.net/files/acc_857465/1aSErQ" alt="Content of the RowProduct component" />
   <figcaption>Content of the RowProduct (variant:Backstory component)</figcaption>
 </figure>
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/5Pkv37" />
+ <img src="https://cdn-std.droplr.net/files/acc_857465/5Pkv37" alt="Front-end render of the component" />
 </figure>
 
 ## Next steps

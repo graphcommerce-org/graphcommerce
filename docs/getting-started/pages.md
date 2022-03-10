@@ -110,7 +110,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
 - Visiting http://localhost:3000/about/about-us will output:
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/xdI9be" />
+ <img src="https://cdn-std.droplr.net/files/acc_857465/xdI9be" alt="Page with page layout (header, footer)" />
   <figcaption>Page with page layout (header, footer)</figcaption>
 </figure>
 
@@ -164,12 +164,12 @@ function AboutUs({ pages }: Props) {
 ```
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/PIOjzB" />
+ <img src="https://cdn-std.droplr.net/files/acc_857465/PIOjzB" alt="Fetch page content from GraphCMS" />
   <figcaption>Fetch page content from GraphCMS</figcaption>
 </figure>
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/XKo4ut" />
+ <img src="https://cdn-std.droplr.net/files/acc_857465/XKo4ut" alt="GraphCMS entry"/>
   <figcaption>GraphCMS entry</figcaption>
 </figure>
 
@@ -280,7 +280,7 @@ You can test the static build process by running it locally:
 - `yarn build` Start static build process
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/AAOnX2" />
+ <img src="https://cdn-std.droplr.net/files/acc_857465/AAOnX2" alt="Successful pre-render of the about/about-us page"/>
   <figcaption>Successful pre-render of the about/about-us page</figcaption>
 </figure>
 

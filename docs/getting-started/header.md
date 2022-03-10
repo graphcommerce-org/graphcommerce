@@ -81,7 +81,7 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 - Save the file to see your changes updated in real-time
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/v0jqud" />
+ <img src="https://cdn-std.droplr.net/files/acc_857465/v0jqud" alt="Reorder components" />
  <figcaption>Reorder components</figcaption>
 </figure>
 
@@ -91,7 +91,7 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
   `<DesktopNavBar>...</DesktopNavBar>` component.
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/S1BIyc" />
+ <img src="https://cdn-std.droplr.net/files/acc_857465/S1BIyc" alt="Remove navigation"/>
  <figcaption>Remove navigation</figcaption>
 </figure>
 
@@ -125,7 +125,7 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 ```
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/7eadNI" />
+ <img src="https://cdn-std.droplr.net/files/acc_857465/7eadNI" alt="Replace search input"/>
  <figcaption>Replace search input with Search Fab, remove Customer Service Fab</figcaption>
 </figure>
 
@@ -163,7 +163,7 @@ import React, { useEffect } from 'react'
 ```
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/O1iBQ4" />
+ <img src="https://cdn-std.droplr.net/files/acc_857465/O1iBQ4" alt="Local copy of the MenuFab component"/>
  <figcaption>Local copy of the MenuFab component with Fab scroll animation removed</figcaption>
 </figure>
 
@@ -213,7 +213,7 @@ TransitionComponent={Fade}
 ```
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/RyXlBV" />
+ <img src="https://cdn-std.droplr.net/files/acc_857465/RyXlBV" alt="Menu component with custom styling" />
  <figcaption>Menu component with custom styling</figcaption>
 </figure>
 

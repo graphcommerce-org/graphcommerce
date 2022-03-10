@@ -20,12 +20,12 @@ After you've finished this tutorial, you'll have accomplished the following:
 - Generated a new project based on the magento-graphcms example
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/fk82kF" />
+ <img src="https://cdn-std.droplr.net/files/acc_857465/fk82kF" alt="GraphCommerce magento-graphcms example category page" />
  <figcaption>GraphCommerce magento-graphcms example category page</figcaption>
 </figure>
 
 <figure>
- <img src="https://cdn-std.droplr.net/files/acc_857465/Fs7XWK" />
+ <img src="https://cdn-std.droplr.net/files/acc_857465/Fs7XWK" alt="GraphCommerce magento-graphcms example product page"/>
  <figcaption>GraphCommerce magento-graphcms example product page</figcaption>
 </figure>
 
