@@ -30,7 +30,6 @@
   },
   "peerDependencies": {
     "@lingui/macro": "^3.13.2",
-    "@mui/base": "^5.0.0-alpha.68",
     "@mui/lab": "^5.0.0-alpha.68",
     "@mui/material": "^5.4.1",
     "framer-motion": "^6.2.4",
