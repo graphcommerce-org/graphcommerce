@@ -17,11 +17,11 @@ Production Branch of your GitHub project:
   it's not showing up, click the 'Configure Github App' to grant Vercel
   repository access
 
-  <figure>
+<figure>
 
-  ![Configure Github App](https://cdn-std.droplr.net/files/acc_857465/e62La4)
+![Configure Github App](https://cdn-std.droplr.net/files/acc_857465/e62La4)
 
-  </figure>
+</figure>
 
 - Set the Environment Variables from your .env file:
 
@@ -43,11 +43,11 @@ Production Branch of your GitHub project:
   NEXT_PUBLIC_SITE_URL="https://graphcommerce-example.vercel.app/"
   ```
 
-  <figure>
+<figure>
 
 ![Add Environment Variables](https://cdn-std.droplr.net/files/acc_857465/gkuuby)
 
-  </figure>
+</figure>
 
 - Hit the "Deploy" button
 - A custom domain can be configured in the Vercel Project Settings. Update the
