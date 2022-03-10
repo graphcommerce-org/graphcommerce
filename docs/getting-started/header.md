@@ -39,7 +39,7 @@ frontend React framework that uses Next.js for server-side rendering.
 
 https://user-images.githubusercontent.com/1251986/154978614-8d2eaee1-d64b-4bae-a7d7-cfee2e9175d3.mp4
 
-<video width="100%" controls autoPlay loop muted>
+<video width="100%" controls autoPlay loop muted playsinline>
 <source src="https://user-images.githubusercontent.com/1251986/154978614-8d2eaee1-d64b-4bae-a7d7-cfee2e9175d3.mp4" type="video/mp4"/>
 </video>
 
@@ -50,7 +50,7 @@ https://user-images.githubusercontent.com/1251986/154978614-8d2eaee1-d64b-4bae-a
 
 https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-af49-6f36f3fa6609.mp4
 
-<video width="100%" controls autoPlay loop muted>
+<video width="100%" controls autoPlay loop muted playsinline>
 <source src="https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-af49-6f36f3fa6609.mp4" type="video/mp4"/>
 </video>
 

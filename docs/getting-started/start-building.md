@@ -56,7 +56,7 @@ You've completed the
 
 https://user-images.githubusercontent.com/1251986/154980151-2039c027-c31f-4b99-86f2-8c2420053da8.mp4
 
-<video width="100%" controls autoPlay loop muted>
+<video width="100%" controls autoPlay loop muted playsinline>
 <source src="https://user-images.githubusercontent.com/1251986/154980151-2039c027-c31f-4b99-86f2-8c2420053da8.mp4" type="video/mp4"/>
 </video>
 
@@ -89,7 +89,7 @@ https://user-images.githubusercontent.com/1251986/154980151-2039c027-c31f-4b99-8
 
 https://user-images.githubusercontent.com/1251986/154980686-3d2bf587-16d7-412b-b05f-8b0f7b40cbfd.mp4
 
-<video width="100%" controls autoPlay loop muted>
+<video width="100%" controls autoPlay loop muted playsinline>
 
 <source src="https://user-images.githubusercontent.com/1251986/154980686-3d2bf587-16d7-412b-b05f-8b0f7b40cbfd.mp4" type="video/mp4"/>
 </video>
