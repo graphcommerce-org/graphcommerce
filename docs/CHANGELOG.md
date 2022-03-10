@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.0.1
+
+### Patch Changes
+
+- [`2db82d114`](https://github.com/ho-nl/m2-pwa/commit/2db82d114ffd4b4860e5a31ce0f2cd170732bda6)
+  Thanks [@paales](https://github.com/paales)! - Docs improvements: add alt attribute to docs
+  images, markup external links, images as markdown, play video inline
+
 ## 4.0.0
 
 ### Major Changes
