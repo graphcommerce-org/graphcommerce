@@ -1,56 +1,11 @@
 {
   "name": "@graphcommerce/docs",
-  "homepage": "https://www.graphcommerce.org/",
-  "repository": "github:graphcommerce-org/graphcommerce",
+  "homepage": "https://www.graphcommerce.org/docs",
+  "repository": "github:graphcommerce-org/graphcommerce/docs",
   "version": "3.1.4",
-  "access": "restricted",
-  "sideEffects": false,
-  "main": "index.js",
-  "dependencies": {
-    "@graphcommerce/framer-next-pages": "^3.1.0",
-    "@graphcommerce/image": "^3.1.0",
-    "@graphcommerce/next-config": "^3.0.3",
-    "@graphcommerce/next-ui": "^4.2.2",
-    "@graphcommerce/react-hook-form": "^3.0.3",
-    "@mui/material": "^5.4.3",
-    "instantsearch.js": "^4.39.0",
-    "next": "^12.1.0",
-    "next-mdx-remote": "^4.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-instantsearch-hooks": "^6.22.0",
-    "rehype-autolink-headings": "^6.1.1",
-    "rehype-prism-plus": "^1.3.2",
-    "rehype-slug": "^5.0.1",
-    "remark": "^14.0.2",
-    "remark-gfm": "^3.0.1",
-    "strip-markdown": "^5.0.0",
-    "to-vfile": "^7.2.3",
-    "type-fest": "^2.12.0",
-    "typesense": "^1.2.1",
-    "typesense-instantsearch-adapter": "^2.4.0",
-    "vfile-matter": "^3.0.1"
-  },
+  "sideEffects": true,
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^4.0.4",
-    "@graphcommerce/prettier-config-pwa": "^4.0.2",
-    "@graphcommerce/typescript-config-pwa": "^4.0.2",
-    "eslint": "^8.10.0",
-    "typescript": "^4.5.5"
+    "@graphcommerce/prettier-config-pwa": "^4.0.2"
   },
-  "prettier": "@graphcommerce/prettier-config-pwa",
-  "eslintConfig": {
-    "extends": "@graphcommerce/eslint-config-pwa",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    }
-  },
-  "engines": {
-    "node": "14.x"
-  },
-  "scripts": {
-    "dev": "next dev -p 3002",
-    "build": "next build",
-    "start": "next start"
-  }
+  "prettier": "@graphcommerce/prettier-config-pwa"
 }
