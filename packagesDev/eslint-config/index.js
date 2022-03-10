@@ -51,14 +51,7 @@ module.exports = {
     'react/no-unescaped-entities': 'off',
     'no-console': [1, { allow: ['warn', 'error', 'info'] }],
     '@typescript-eslint/semi': 'off',
-    'spaced-comment': [
-      'error',
-      'always',
-      {
-        markers: ['/'],
-      },
-    ],
-
+    'spaced-comment': ['error', 'always', { markers: ['/'] }],
     'no-underscore-dangle': [
       'error',
       { allow: ['__typename', '__type', '_N_X', '_N_Y', '__N', '__NEXT'] },
