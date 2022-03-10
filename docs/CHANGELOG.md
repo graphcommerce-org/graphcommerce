@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- [`ef499815c`](https://github.com/ho-nl/m2-pwa/commit/ef499815cb1d1e040408ae697f8f3156b5478020)
+  Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Fix build breaking spacing
+
+### Patch Changes
+
+- [`12fc8166f`](https://github.com/ho-nl/m2-pwa/commit/12fc8166fd255db87862a08504a5a88552e41e08)
+  Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Fix build breaking spaces
+
 ## 4.0.1
 
 ### Patch Changes
