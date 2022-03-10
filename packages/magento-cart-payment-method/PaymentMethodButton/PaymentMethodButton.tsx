@@ -1,5 +1,5 @@
 import { ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
-import { Button, ButtonProps, LinkOrButton, LinkOrButtonProps } from '@graphcommerce/next-ui'
+import { LinkOrButton, LinkOrButtonProps } from '@graphcommerce/next-ui'
 import { ComposedSubmit, ComposedSubmitRenderComponentProps } from '@graphcommerce/react-hook-form'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 

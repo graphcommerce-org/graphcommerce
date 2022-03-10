@@ -36,9 +36,9 @@ export type FragmentRegistry = {
  * Used by `buildFragmentResolver` to build a mapping of fragmentNames to paths, importNames, and
  * other useful info
  */
-export function buildFragmentRegistry(
+export function buildFragmentRegistry<T>(
   { generateFilePath }: DocumentImportResolverOptions,
-  { documents, config }: Types.PresetFnArgs<{}>,
+  { documents, config }: Types.PresetFnArgs<T>,
   schemaObject: GraphQLSchema,
 ): FragmentRegistry {
   const baseVisitor = new BaseVisitor<RawConfig, NearOperationFileParsedConfig>(config, {

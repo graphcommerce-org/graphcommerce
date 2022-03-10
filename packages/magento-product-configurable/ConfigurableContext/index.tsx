@@ -7,10 +7,9 @@ import {
   Dispatch,
   SetStateAction,
   useMemo,
+  useCallback,
 } from 'react'
 import { ConfigurableProductFormFragment } from './ConfigurableProductForm.gql'
-
-// todo: fix dependency cycle
 import cheapestVariant from './cheapestVariant'
 
 type ConfigurableProductFormProps = ConfigurableProductFormFragment & { sku: string }
@@ -129,31 +128,36 @@ export default function ConfigurableContextProvider(
     [configurable_options, providedVariants],
   )
 
-  const getVariants: GetVariants = (options: Selected = {}) => traverseAttrTree(options, lookupTree)
+  const getVariants: GetVariants = useCallback(
+    (options: Selected = {}) => traverseAttrTree(options, lookupTree),
+    [lookupTree],
+  )
 
-  const getUids: GetUids = (options: Selected = {}) =>
-    (getVariants(options as unknown as Selected) ?? [])
-      .map((variant) => (variant?.attributes?.map((attr) => attr?.uid) ?? []) as string[])
-      .flat()
+  const getUids: GetUids = useCallback(
+    (options: Selected = {}) =>
+      (getVariants(options as unknown as Selected) ?? [])
+        .map((variant) => (variant?.attributes?.map((attr) => attr?.uid) ?? []) as string[])
+        .flat(),
+    [getVariants],
+  )
 
   const context = configurableContext(sku)
   const variants = getVariants(selection)
 
-  return (
-    <context.Provider
-      value={{
-        selection,
-        variants,
-        cheapest: cheapestVariant(variants),
-        select,
-        getVariants,
-        getUids,
-        options: configurable_options,
-      }}
-    >
-      {children}
-    </context.Provider>
+  const value = useMemo(
+    () => ({
+      selection,
+      variants,
+      cheapest: cheapestVariant(variants),
+      select,
+      getVariants,
+      getUids,
+      options: configurable_options,
+    }),
+    [configurable_options, getUids, getVariants, selection, variants],
   )
+
+  return <context.Provider value={value}>{children}</context.Provider>
 }
 
 export function useConfigurableContext(sku: string): ConfigurableContext {

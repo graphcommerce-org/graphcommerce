@@ -49,6 +49,7 @@ export default function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
               endAdornment: <InputCheckmark show={valid.issuer} select />,
             }}
           >
+            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
             <option value='' />
             {/* <MenuItem value='' /> */}
             {mollie_available_issuers?.map((issuer) => {

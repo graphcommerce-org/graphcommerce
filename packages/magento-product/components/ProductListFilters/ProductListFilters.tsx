@@ -52,7 +52,7 @@ export default function ProductListFilters(props: ProductFiltersProps) {
               />
             )
         }
-        console.log(
+        console.error(
           'Filter not recognized',
           aggregation.attribute_code,
           filterTypes[aggregation.attribute_code],

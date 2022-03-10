@@ -33,6 +33,7 @@ export function useLazyQueryPromise<Q, V>(
   }, [result])
 
   const queryLazily = (executeOptions?: QueryLazyOptions<V>) => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     execute(executeOptions)
     return new Promise<LazyQueryResult<Q, V>>((resolve) => {
       ref.current = resolve

@@ -33,14 +33,13 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGroupProp
 
   const classes = withState({ orientation, size })
 
-  /* eslint-disable @typescript-eslint/no-unsafe-argument */
-  const handleChange = (event, buttonValue) => {
+  const handleChange = (event: React.MouseEvent<HTMLElement, MouseEvent>, buttonValue: unknown) => {
     if (!onChange) return
 
-    const index = value && value.indexOf(buttonValue)
+    const index = Boolean(value) && (value.indexOf(buttonValue) as number)
     let newValue: string[]
 
-    if (value && index >= 0) {
+    if (value && index && index >= 0) {
       newValue = value.slice()
       newValue.splice(index, 1)
     } else {
@@ -49,7 +48,10 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGroupProp
     onChange(event, newValue)
   }
 
-  const handleExclusiveChange = (event, buttonValue) => {
+  const handleExclusiveChange = (
+    event: React.MouseEvent<HTMLElement, MouseEvent>,
+    buttonValue: unknown,
+  ) => {
     if (!onChange || value === buttonValue) return
     if (required) onChange(event, buttonValue)
     else onChange(event, value === buttonValue ? null : buttonValue)
@@ -101,7 +103,7 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGroupProp
           onChange: exclusive ? handleExclusiveChange : handleChange,
           selected:
             child.props.selected === undefined
-              ? isValueSelected(child.props.value, value)
+              ? isValueSelected(child.props.value as string, value as string | string[])
               : child.props.selected,
         })
       })}

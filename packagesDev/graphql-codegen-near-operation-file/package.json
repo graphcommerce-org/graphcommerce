@@ -34,6 +34,7 @@
     "@graphql-codegen/add": "^3.1.1",
     "@graphql-codegen/plugin-helpers": "^2.4.2",
     "@graphql-codegen/visitor-plugin-common": "^2.7.3",
+    "@graphql-tools/utils": "^8.6.2",
     "@types/parse-filepath": "^1.0.0",
     "graphql": "^16.3.0",
     "parse-filepath": "^1.0.2"

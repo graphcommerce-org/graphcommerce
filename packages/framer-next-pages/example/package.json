@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@graphcommerce/framer-next-pages": "^3.1.0",
+    "@graphcommerce/lingui-next": "^2.1.1",
     "@graphcommerce/next-config": "^3.0.3",
     "@graphcommerce/next-ui": "^4.2.0",
+    "@mui/material": "^5.5.0",
     "framer-motion": "^6.2.8",
     "next": "^12.1.0",
     "react": "^17.0.2",

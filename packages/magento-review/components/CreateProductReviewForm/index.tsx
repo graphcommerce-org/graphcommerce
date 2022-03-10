@@ -1,5 +1,4 @@
-import { useQuery } from '@graphcommerce/graphql'
-import { ProductReviewRatingInput } from '@graphcommerce/graphql'
+import { useQuery, ProductReviewRatingInput } from '@graphcommerce/graphql'
 import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
 import {
   Form,
@@ -88,7 +87,7 @@ export default function CreateProductReviewForm(props: CreateProductReviewFormPr
   }
 
   return (
-    <Form onSubmit={submitHandler} noValidate className={classes.root}>
+    <Form onSubmit={submitHandler} noValidate className={classes.root} sx={sx}>
       <FormRow>
         <TextField
           variant='outlined'

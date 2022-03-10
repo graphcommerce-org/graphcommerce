@@ -71,6 +71,7 @@
     "@graphcommerce/magento-search": "^4.1.0",
     "@graphcommerce/magento-store": "^4.1.1",
     "@graphcommerce/mollie-magento-payment": "^3.0.4",
+    "@graphcommerce/next-config": "^3.0.3",
     "@graphcommerce/next-ui": "^4.2.2",
     "@graphql-codegen/cli": "^2.6.2",
     "@graphql-mesh/cli": "^0.59.0",
@@ -89,7 +90,6 @@
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.0.4",
-    "@graphcommerce/next-config": "^3.0.3",
     "@graphcommerce/prettier-config-pwa": "^4.0.2",
     "@graphcommerce/typescript-config-pwa": "^4.0.2",
     "@lingui/cli": "^3.13.2",

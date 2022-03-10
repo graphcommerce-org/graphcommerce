@@ -63,7 +63,7 @@ export default function ComposedSubmit(props: ComposedSubmitProps) {
        * Todo: There might be a performance optimization by submitting multiple forms in parallel.
        */
       let canSubmit = true
-      for (const [, { submit, form, key }] of formsToSubmit) {
+      for (const [, { submit, form }] of formsToSubmit) {
         // eslint-disable-next-line no-await-in-loop
         if (canSubmit) await submit?.()
         // eslint-disable-next-line no-await-in-loop

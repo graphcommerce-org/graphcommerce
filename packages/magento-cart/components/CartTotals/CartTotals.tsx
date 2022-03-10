@@ -95,11 +95,11 @@ export default function CartTotals(props: CartTotalsProps) {
           return (
             <AnimatedRow
               key={discount?.label}
-              sx={(theme) => ({
+              sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 typography: 'subtitle1',
-              })}
+              }}
             >
               <Box>{discount?.label}</Box>
               <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>

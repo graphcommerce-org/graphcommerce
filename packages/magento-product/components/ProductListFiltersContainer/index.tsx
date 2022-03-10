@@ -33,7 +33,7 @@ const parts = [
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export default function ProductListFiltersContainer(props: ProductListFiltersContainerProps) {
-  const { children } = props
+  const { children, sx = [] } = props
   const scrollY = useScrollY()
 
   const [isSticky, setIsSticky] = useState<boolean>(false)
@@ -83,22 +83,25 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
     <MotionDiv
       className={classes.wrapper}
       ref={wrapperRef}
-      sx={(theme) => ({
-        display: 'flex',
-        justifyContent: 'center',
-        height: responsiveVal(44, 52),
-        marginBottom: theme.spacings.sm,
-        position: 'sticky',
-        top: theme.page.vertical,
-        zIndex: 9,
-        margin: '0 auto',
-        maxWidth: `calc(100% - 96px - ${theme.spacings.sm} * 2)`,
-        [theme.breakpoints.down('md')]: {
-          textAlign: 'center',
-          maxWidth: 'unset',
-          margin: `0 calc(${theme.page.horizontal} * -1)`,
-        },
-      })}
+      sx={[
+        (theme) => ({
+          display: 'flex',
+          justifyContent: 'center',
+          height: responsiveVal(44, 52),
+          marginBottom: theme.spacings.sm,
+          position: 'sticky',
+          top: theme.page.vertical,
+          zIndex: 9,
+          margin: '0 auto',
+          maxWidth: `calc(100% - 96px - ${theme.spacings.sm} * 2)`,
+          [theme.breakpoints.down('md')]: {
+            textAlign: 'center',
+            maxWidth: 'unset',
+            margin: `0 calc(${theme.page.horizontal} * -1)`,
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
       <ScrollerProvider scrollSnapAlign='none'>
         <ScrollerButton

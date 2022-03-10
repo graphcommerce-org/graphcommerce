@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { test, expect } from '@playwright/test'
+import { test } from '@playwright/test'
 
 test.describe('Authentication flow', () => {
   const generatedEmail = `playwright${Math.random().toString(36).substring(7)}@example.com`

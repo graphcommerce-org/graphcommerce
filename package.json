@@ -45,6 +45,7 @@
     "@changesets/cli": "^2.21.1",
     "@graphcommerce/eslint-config-pwa": "^4.0.0",
     "@graphcommerce/prettier-config-pwa": "^4.0.0",
+    "@playwright/test": "^1.19.2",
     "concurrently": "^7.0.0",
     "patch-package": "^6.4.3"
   },

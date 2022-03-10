@@ -122,7 +122,7 @@ export default function CartItem(props: CartItemProps) {
           alignSelf: 'center',
         })}
       >
-        <PageLink href={productLink}>
+        <PageLink href={productLink} passHref>
           <Box
             component='a'
             className={classes.productLink}
@@ -151,7 +151,7 @@ export default function CartItem(props: CartItemProps) {
         </PageLink>
       </Badge>
 
-      <PageLink href={productLink}>
+      <PageLink href={productLink} passHref>
         <Link
           variant='body1'
           className={classes.itemName}

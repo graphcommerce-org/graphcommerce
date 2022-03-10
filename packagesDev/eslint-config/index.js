@@ -33,7 +33,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['next.config.js', '**/__tests__/**', '**/_playwright/**'],
+        devDependencies: ['next.config.js', '**/__tests__/**', '**/_playwright/**', '**/*.d.ts'],
       },
     ],
     'import/order': ['warn', { alphabetize: { order: 'asc' } }],
@@ -69,6 +69,7 @@ module.exports = {
     '@typescript-eslint/restrict-template-expressions': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/naming-convention': 'off',
+    '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
     'no-plusplus': 0,
     'no-restricted-syntax': [
       'error',
@@ -86,6 +87,17 @@ module.exports = {
         selector: 'WithStatement',
         message:
           '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
+      },
+    ],
+    '@typescript-eslint/no-restricted-imports': [
+      'error',
+      {
+        paths: [
+          {
+            name: 'next/image',
+            message: "Please use `import { Image } from '@graphcommerce/image'` instead.",
+          },
+        ],
       },
     ],
 

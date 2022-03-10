@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import '@graphql-codegen/testing'
-
 import { Types } from '@graphql-codegen/plugin-helpers'
 import { buildSchema, parse, print, ASTNode } from 'graphql'
 import { plugin } from '..'
@@ -23,7 +21,6 @@ const testSchema = buildSchema(/* GraphQL */ `
   }
 `)
 
-// eslint-disable-next-line jest/expect-expect
 it('can be called', async () => {
   const testDocument = parse(/* GraphQL */ `
     query user {
@@ -35,7 +32,6 @@ it('can be called', async () => {
   await plugin(testSchema, [{ document: testDocument }], {})
 })
 
-// eslint-disable-next-line jest/expect-expect
 it('can be called with queries that include connection fragments', async () => {
   const testDocument = parse(/* GraphQL */ `
     query user {

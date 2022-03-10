@@ -49,6 +49,7 @@ function PaymentMethodOptions(props: PaymentOptionsProps) {
         },
         onPaymentStart: ({ paymentId }, next) => {
           // todo what should we do with the payment id?
+          // eslint-disable-next-line no-console
           console.log(paymentId)
           next()
         },

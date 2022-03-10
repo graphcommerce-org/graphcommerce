@@ -1,7 +1,6 @@
 import {
   IconButton,
   IconButtonProps,
-  OutlinedTextFieldProps,
   SxProps,
   TextField,
   TextFieldProps,
@@ -25,10 +24,6 @@ export type TextInputNumberProps = Omit<TextFieldProps, 'type'> & {
   sx?: SxProps<Theme>
 }
 
-function isOutlined(props: TextFieldProps): props is OutlinedTextFieldProps {
-  return props.variant === 'outlined'
-}
-
 type OwnerState = { size?: 'small' | 'medium' }
 const name = 'TextInputNumber' as const
 const parts = ['quantity', 'quantityInput', 'button'] as const
@@ -50,6 +45,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
   const forkRef = useForkRef<HTMLInputElement>(ref, inputRef as Ref<HTMLInputElement>)
 
   const [direction, setDirection] = useState<'up' | 'down' | 'runUp' | 'runDown' | null>(null)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [disabled, setDisabled] = useState<'min' | 'max' | null>(null)
 
   const stop = useCallback(() => setDirection(null), [])

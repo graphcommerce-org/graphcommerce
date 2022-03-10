@@ -30,7 +30,7 @@ export default function diff(item1: unknown, item2: unknown) {
         .map(([key, val]) => [key, diff(item1[key], val)])
         .filter((entry) => !!entry[1]),
     )
-    const entries = { ...entriesRight, ...entriesLeft }
+    const entries = { ...entriesRight, ...entriesLeft } as Record<string, unknown>
 
     return Object.keys(entries).length ? entries : undefined
   }

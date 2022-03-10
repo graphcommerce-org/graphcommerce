@@ -1,15 +1,16 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
-import { BraintreeError } from 'braintree-web'
+// import { BraintreeError } from 'braintree-web'
 import { BraintreePaymentMethodOptionsDocument } from '../../BraintreePaymentMethodOptions.gql'
 import { useBraintreeHostedFields } from '../../hooks/useBraintreeHostedFields'
 
-const errorTypes = ['CUSTOMER', 'MERCHANT', 'NETWORK', 'INTERNAL', 'UNKNOWN']
+// const errorTypes = ['CUSTOMER', 'MERCHANT', 'NETWORK', 'INTERNAL', 'UNKNOWN']
 
-function isBraintreeError(e: any | BraintreeError): e is BraintreeError {
-  return errorTypes.includes((e as BraintreeError).type)
-}
+// function isBraintreeError(e: any | BraintreeError): e is BraintreeError {
+//   return errorTypes.includes((e as BraintreeError).type)
+// }
 
 /** It sets the selected payment method on the cart. */
 function PaymentMethodOptions(props: PaymentOptionsProps) {

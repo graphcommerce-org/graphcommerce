@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-restricted-imports */
 /* eslint-disable prefer-const */
 /* eslint-disable no-param-reassign */
 /* eslint-disable @next/next/no-img-element */
@@ -26,7 +27,7 @@ import {
 
 if (typeof window === 'undefined') {
   // eslint-disable-next-line no-underscore-dangle
-  ;(global as any).__NEXT_IMAGE_IMPORTED = true
+  global.__NEXT_IMAGE_IMPORTED = true
 }
 
 export type { ImageLoaderProps, ImageLoader }
@@ -238,7 +239,7 @@ const Img = styled('img')({})
 const Picture = styled('picture')({})
 
 // eslint-disable-next-line no-underscore-dangle
-const configEnv = process.env.__NEXT_IMAGE_OPTS as any as ImageConfigComplete
+const configEnv = process.env.__NEXT_IMAGE_OPTS as unknown as ImageConfigComplete
 
 const Image = React.forwardRef<HTMLImageElement, ImageProps>(
   (
@@ -283,16 +284,16 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       if (process.env.NODE_ENV === 'production') return () => {}
       if (!ref.current || unoptimized || dontReportWronglySizedImages) return () => {}
 
-      function getContainedSize(img: HTMLImageElement) {
-        let ratio = img.naturalWidth / img.naturalHeight
-        let w = img.height * ratio
-        let h = img.height
-        if (w > img.width) {
-          w = img.width
-          h = img.width / ratio
-        }
-        return [w, h]
-      }
+      // function getContainedSize(img: HTMLImageElement) {
+      //   let ratio = img.naturalWidth / img.naturalHeight
+      //   let w = img.height * ratio
+      //   let h = img.height
+      //   if (w > img.width) {
+      //     w = img.width
+      //     h = img.width / ratio
+      //   }
+      //   return [w, h]
+      // }
 
       function reportSizes(img: HTMLImageElement) {
         let ratio: number

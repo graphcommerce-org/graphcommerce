@@ -1,5 +1,4 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { mergeDeep } from '@graphcommerce/graphql'
 import {
   extractUrlQuery,
   FilterTypes,

@@ -25,7 +25,7 @@ type IframeFieldProps = Omit<InputBaseComponentProps, 'onChange'> & {
   onChange: (event: { target: { name: string; value: string } }) => void
 }
 
-const IframeField = React.forwardRef<any, IframeFieldProps>((props, forwardedRef) => {
+const IframeField = React.forwardRef<HTMLInputElement, IframeFieldProps>((props, forwardedRef) => {
   const { name, onChange, onFocus, onBlur, ...otherProps } = props
   const internalRef = useRef<HTMLDivElement>(null)
   const forkRef = forwardedRef

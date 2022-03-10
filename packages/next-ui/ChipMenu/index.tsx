@@ -43,7 +43,9 @@ export function ChipMenu(props: ChipMenuProps) {
       <Chip
         color='default'
         clickable
-        onDelete={onDelete || ((event) => setOpenEl(event.currentTarget.parentElement))}
+        onDelete={
+          onDelete || ((event: React.MouseEvent) => setOpenEl(event.currentTarget.parentElement))
+        }
         onClick={(event) => {
           setOpenEl(event.currentTarget)
         }}

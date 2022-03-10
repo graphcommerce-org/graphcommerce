@@ -30,6 +30,7 @@ function isFragment(documentFile: Types.DocumentFile) {
 export const plugin: PluginFunction<RelayOptimizerPluginConfig> = (
   schema: GraphQLSchema,
   documents: Types.DocumentFile[],
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _config: RelayOptimizerPluginConfig,
 ) => {
   const isFrag = documents.every((d) => isFragment(d))

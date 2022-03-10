@@ -129,6 +129,7 @@ export default function FramerNextPages(props: PagesProps) {
         cancel = requestIdleCallback(() => setFallback(fbItem))
       } catch (e) {
         if (process.env.NODE_ENV !== 'production') {
+          // eslint-disable-next-line no-console
           console.log(
             `%cTurn on "Preseve log on navigation" to see the error`,
             'color: blue; font-family:sans-serif; font-size: 20px',

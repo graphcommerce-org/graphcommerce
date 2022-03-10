@@ -12,10 +12,10 @@ type ButtonVariants = NonNullable<ComponentsVariants['MuiButton']>
 export const MuiButtonResponsive: ButtonVariants = [
   {
     props: {},
-    style: ({ theme }) => ({
+    style: {
       textTransform: 'none',
       fontWeight: 500,
-    }),
+    },
   },
   {
     props: { size: 'small' },

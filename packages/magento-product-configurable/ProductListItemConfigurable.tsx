@@ -38,8 +38,9 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
     configurable_options
       ?.filter(
         (option) =>
-          params.filters[option?.attribute_code ?? ''] &&
-          isFilterTypeEqual(params.filters[option?.attribute_code ?? '']),
+          option?.attribute_code &&
+          params.filters[option.attribute_code] &&
+          isFilterTypeEqual(params.filters[option.attribute_code]),
       )
       .map((option) => {
         const filter = params.filters[option?.attribute_code ?? '']

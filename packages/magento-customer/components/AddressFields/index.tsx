@@ -20,6 +20,7 @@ type AddressFieldValues = {
   city?: string
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AddressFieldsProps = { form: UseFormReturn<any>; readOnly?: boolean }
 
 export default function AddressFields(props: AddressFieldsProps) {
@@ -143,6 +144,7 @@ export default function AddressFields(props: AddressFieldsProps) {
             endAdornment: <InputCheckmark show={valid.countryCode} select />,
           }}
         >
+          {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
           <option value='' />
           {countryList.map((c) => {
             if (!c?.two_letter_abbreviation) return null

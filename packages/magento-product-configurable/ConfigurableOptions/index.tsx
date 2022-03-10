@@ -18,6 +18,7 @@ export type ConfigurableOptionsInputProps = {
   sku: string
   errors?: FieldErrors
   size?: SwatchSize
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 } & UseControllerProps<any> &
   Pick<BaseTextFieldProps, 'FormHelperTextProps' | 'helperText'> & {
     optionEndLabels?: Record<string, React.ReactNode>

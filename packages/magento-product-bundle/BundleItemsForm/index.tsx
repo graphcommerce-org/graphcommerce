@@ -8,7 +8,7 @@ export default function BundleItemsForm(props: BundleItemsFormProps) {
     <>
       {items?.map((item) => {
         if (!item?.type) return null
-        const type = item.type as 'radio' | 'checkbox'
+        // const type = item.type as 'radio' | 'checkbox'
 
         return (
           <div key={item?.uid ?? ''}>

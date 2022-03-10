@@ -1,5 +1,5 @@
 import { useCartQuery } from '@graphcommerce/magento-cart'
-import React, { PropsWithChildren, useContext, useEffect, useState } from 'react'
+import React, { PropsWithChildren, useContext, useEffect, useMemo, useState } from 'react'
 import { PaymentMethod, PaymentMethodModules, PaymentModule } from '../Api/PaymentMethod'
 import { GetPaymentMethodContextDocument } from './GetPaymentMethodContext.gql'
 
@@ -53,25 +53,30 @@ export default function PaymentMethodContextProvider(props: PaymentMethodContext
         ) ?? []
 
       const loaded = (await Promise.all(promises)).flat(1).sort((a) => (a.preferred ? 1 : 0))
-      const sortedMethods = loaded.sort((a, b) =>
-        !modules?.[a?.code] ? 0 : !modules?.[b?.code] ? -1 : 1,
-      )
+      const sortedMethods = loaded.sort((a, b) => {
+        if (!modules?.[a?.code]) return 0
+        if (!modules?.[b?.code]) return -1
+        return 1
+      })
 
       setMethods(sortedMethods)
     })()
   }, [cartContext, modules])
 
+  const value = useMemo(
+    () => ({
+      methods,
+      selectedMethod,
+      setSelectedMethod,
+      modules,
+      selectedModule,
+      setSelectedModule,
+    }),
+    [methods, modules, selectedMethod, selectedModule],
+  )
+
   return (
-    <paymentMethodContext.Provider
-      value={{
-        methods,
-        selectedMethod,
-        setSelectedMethod,
-        modules,
-        selectedModule,
-        setSelectedModule,
-      }}
-    >
+    <paymentMethodContext.Provider value={value}>
       {Object.entries(modules).map(([method, module]) => {
         const { PaymentHandler } = module
         if (!PaymentHandler) return null

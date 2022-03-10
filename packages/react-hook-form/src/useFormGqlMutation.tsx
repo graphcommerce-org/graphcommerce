@@ -5,7 +5,9 @@ import { useFormMuiRegister, UseMuiFormRegister } from './useFormMuiRegister'
 import { useFormValidFields, UseFormValidReturn } from './useFormValidFields'
 
 export type UseFormGqlMutationReturn<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   Q extends Record<string, any> = Record<string, any>,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   V extends Record<string, any> = Record<string, any>,
 > = UseFormGqlMethods<Q, V> &
   UseFormReturn<V> & { muiRegister: UseMuiFormRegister<V>; valid: UseFormValidReturn<V> }
