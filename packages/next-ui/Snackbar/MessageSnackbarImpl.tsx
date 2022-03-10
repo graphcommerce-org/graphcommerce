@@ -1,4 +1,3 @@
-import { Portal } from '@mui/base'
 import {
   Fab,
   Snackbar,
@@ -8,6 +7,7 @@ import {
   Box,
   SxProps,
   Theme,
+  Portal
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { IconSvg } from '../IconSvg'
