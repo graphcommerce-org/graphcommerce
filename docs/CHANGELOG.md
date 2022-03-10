@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.0.0
+
+### Major Changes
+
+- [#1302](https://github.com/ho-nl/m2-pwa/pull/1302)
+  [`22ea2a0af`](https://github.com/ho-nl/m2-pwa/commit/22ea2a0af373dbd427e85f6ac82a074b1928a289)
+  Thanks [@paales](https://github.com/paales)! - Moved all rendering of docs to
+  https://www.graphcommerce.org/docs and use this only as a content package.
+
 ## 3.1.4
 
 ### Patch Changes
