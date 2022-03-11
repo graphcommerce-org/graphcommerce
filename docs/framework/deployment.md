@@ -19,7 +19,7 @@ Production Branch of your GitHub project:
 
 <figure>
 
-![Configure Github App](https://cdn-std.droplr.net/files/acc_857465/e62La4)
+![Configure Github App](https://user-images.githubusercontent.com/1251986/157830779-6d97d971-f3f3-4695-87d7-f8ab6277872f.jpg)
 
 </figure>
 
@@ -45,7 +45,7 @@ Production Branch of your GitHub project:
 
 <figure>
 
-![Add Environment Variables](https://cdn-std.droplr.net/files/acc_857465/gkuuby)
+![Add Environment Variables](https://user-images.githubusercontent.com/1251986/157830852-8fbdbe31-1fe7-42ff-9109-13f435435b9e.jpg)
 
 </figure>
 
