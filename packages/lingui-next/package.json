@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@lingui/core": "^3.13.2",
-    "@lingui/macro": "^3.13.2",
     "@lingui/react": "^3.13.2",
     "babel-plugin-macros": "^3.1.0"
   },
@@ -24,11 +23,14 @@
     "@graphcommerce/eslint-config-pwa": "^4.0.3",
     "@graphcommerce/prettier-config-pwa": "^4.0.2",
     "@graphcommerce/typescript-config-pwa": "^4.0.2",
-    "@playwright/test": "^1.19.1"
+    "@playwright/test": "^1.19.2",
+    "@lingui/conf": "^3.13.2"
   },
   "peerDependencies": {
+    "@lingui/macro": "^3.13.2",
     "next": "^12.0.10",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "make-plural": "^6.2.2"
   }
 }

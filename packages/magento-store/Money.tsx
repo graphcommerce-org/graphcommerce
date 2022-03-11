@@ -6,8 +6,10 @@ import { MoneyFragment } from './Money.gql'
 import { StoreConfigDocument } from './StoreConfig.gql'
 
 type OverridableProps = {
+  // eslint-disable-next-line react/no-unused-prop-types
   round?: boolean
   /** @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#parameters */
+  // eslint-disable-next-line react/no-unused-prop-types
   formatOptions?: Intl.NumberFormatOptions
 }
 

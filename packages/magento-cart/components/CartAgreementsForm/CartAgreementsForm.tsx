@@ -24,12 +24,12 @@ import { CartAgreementsDocument } from './CartAgreements.gql'
 
 export type CartAgreementsFormProps = Pick<UseFormComposeOptions, 'step'> & { sx?: SxProps<Theme> }
 
-const name = 'CartAgreementsForm' as const
+const componentName = 'CartAgreementsForm' as const
 const parts = ['form', 'formInner', 'formControlRoot', 'manualCheck'] as const
-const { classes } = extendableComponent(name, parts)
+const { classes } = extendableComponent(componentName, parts)
 
-export default function CartAgreementsForm(props: CartAgreementsFormProps) {
-  const { step } = props
+export function CartAgreementsForm(props: CartAgreementsFormProps) {
+  const { step, sx = [] } = props
   const { data } = useQuery(CartAgreementsDocument)
 
   // sort conditions so checkboxes will be placed first
@@ -51,7 +51,10 @@ export default function CartAgreementsForm(props: CartAgreementsFormProps) {
   useFormCompose({ form, step, submit, key: 'PaymentAgreementsForm' })
 
   return (
-    <FormDiv className={classes.form} sx={(theme) => ({ pt: theme.spacings.md })}>
+    <FormDiv
+      className={classes.form}
+      sx={[(theme) => ({ pt: theme.spacings.md }), ...(Array.isArray(sx) ? sx : [sx])]}
+    >
       <form noValidate onSubmit={submit} name='cartAgreements'>
         <Box className={classes.formInner} sx={{ typography: 'body1', display: 'inline-block' }}>
           {data?.checkoutAgreements &&

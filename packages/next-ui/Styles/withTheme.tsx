@@ -36,6 +36,7 @@ type WithSx = { sx?: SxProps<Theme> }
  * ```
  */
 export function withTheme<T>(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   Component: (value: T & WithSx) => React.ReactElement<any, any> | null,
   theme: Theme,
 ): React.FC<T & WithSx> {

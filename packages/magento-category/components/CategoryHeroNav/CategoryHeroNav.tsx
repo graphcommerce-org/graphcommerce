@@ -14,7 +14,7 @@ const cmpName = 'CategoryHeroNav' as const
 const parts = ['wrapper', 'categories', 'title', 'placeholder'] as const
 const { classes } = extendableComponent(cmpName, parts)
 
-export default function CategoryHeroNav({ children, title, asset, sx = [] }: CategoryHeroNavProps) {
+export function CategoryHeroNav({ children, title, asset, sx = [] }: CategoryHeroNavProps) {
   return (
     <Row
       className={classes.wrapper}

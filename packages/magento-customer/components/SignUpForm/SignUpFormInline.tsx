@@ -19,7 +19,7 @@ const { classes } = extendableComponent('SignUpFormInline', [
   'buttonContainer',
 ] as const)
 
-export default function SignUpFormInline({
+export function SignUpFormInline({
   email,
   children,
   firstname,

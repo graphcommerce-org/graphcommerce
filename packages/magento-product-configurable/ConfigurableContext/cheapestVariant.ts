@@ -1,4 +1,6 @@
-import { Variants } from '.'
+import { ConfigurableProductFormFragment } from './ConfigurableProductForm.gql'
+
+type Variants = NonNullable<ConfigurableProductFormFragment['variants']>
 
 export default function cheapestVariant(variants: Variants): Variants[0] {
   if (!variants.length) return null

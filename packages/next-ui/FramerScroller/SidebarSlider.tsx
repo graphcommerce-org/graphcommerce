@@ -8,7 +8,7 @@ import {
 import { Box, SxProps, Theme } from '@mui/material'
 import { ReactNode } from 'react'
 import { IconSvg } from '../IconSvg'
-import { Row } from '../Row'
+import { Row } from '../Row/Row'
 import { extendableComponent } from '../Styles/extendableComponent'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { iconChevronLeft, iconChevronRight } from '../icons'

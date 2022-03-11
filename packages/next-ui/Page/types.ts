@@ -1,6 +1,7 @@
 import { ParsedUrlQuery } from 'querystring'
 import { UpPage } from '@graphcommerce/framer-next-pages/types'
 // todo: remove references to GraphQL
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { NormalizedCacheObject } from '@graphcommerce/graphql'
 import { GetStaticProps as GetStaticPropsNext } from 'next'
 

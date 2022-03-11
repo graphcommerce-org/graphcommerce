@@ -17,8 +17,8 @@ const name = 'AvailableShippingMethod' as const
 const parts = ['root', 'title', 'additional', 'error', 'amount'] as const
 const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 
-const AvailableShippingMethod = React.forwardRef<any, AvailableShippingMethodProps>(
-  (props, ref) => {
+export const AvailableShippingMethod = React.forwardRef(
+  (props: AvailableShippingMethodProps, ref) => {
     const {
       amount,
       available,
@@ -110,5 +110,3 @@ const AvailableShippingMethod = React.forwardRef<any, AvailableShippingMethodPro
     )
   },
 )
-
-export default AvailableShippingMethod

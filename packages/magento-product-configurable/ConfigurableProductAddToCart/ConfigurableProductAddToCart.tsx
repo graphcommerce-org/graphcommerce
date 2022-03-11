@@ -14,9 +14,12 @@ import { Divider, Typography, Alert, Box } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
-import { Selected, useConfigurableContext } from '../ConfigurableContext'
+import { Selected, useConfigurableContext } from '../ConfigurableContext/ConfigurableContext'
 import cheapestVariant from '../ConfigurableContext/cheapestVariant'
-import ConfigurableOptionsInput, { ConfigurableOptionsInputProps } from '../ConfigurableOptions'
+import {
+  ConfigurableOptionsInput,
+  ConfigurableOptionsInputProps,
+} from '../ConfigurableOptions/ConfigurableOptions'
 import {
   ConfigurableProductAddToCartDocument,
   ConfigurableProductAddToCartMutationVariables,
@@ -37,7 +40,7 @@ const compName = 'ConfigurableOptionsInput' as const
 const parts = ['form', 'button', 'finalPrice', 'quantity', 'divider'] as const
 const { classes } = extendableComponent(compName, parts)
 
-export default function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
+export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
   const { name, children, variables, optionEndLabels, optionsProps, ...buttonProps } = props
   const { getUids, getVariants, selection } = useConfigurableContext(variables.sku)
 

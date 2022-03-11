@@ -1,30 +1,12 @@
-export * from './CartFab/CartFab'
-export { default as CartFab } from './CartFab/CartFab'
-
-export * from './CartStartCheckout/CartStartCheckout'
-export { default as CartStartCheckout } from './CartStartCheckout/CartStartCheckout'
-
-export * from './CartTotals/CartTotals'
-export { default as CartTotals } from './CartTotals/CartTotals'
-
-export { default as EmptyCart } from './EmptyCart/EmptyCart'
-
 export * from './ApolloCartError'
-
-export * from './CartSummary'
-export { default as CartSummary } from './CartSummary'
-
-export { default as CartItemSummary } from './CartItemSummary'
-
-export * from './InlineAccount'
-export { default as InlineAccount } from './InlineAccount'
-
-export * from './CartAddressMultiLine'
-export { default as CartAddressMultiLine } from './CartAddressMultiLine'
-
-export * from './CartAddressSingleLine'
-export { default as CartAddressSingleLine } from './CartAddressSingleLine'
-
-export * from './CartAgreementsForm/CartAgreementsForm'
-export { default as CartAgreementsForm } from './CartAgreementsForm/CartAgreementsForm'
+export * from './CartAddressMultiLine/CartAddressMultiLine'
+export * from './CartAddressSingleLine/CartAddressSingleLine'
 export * from './CartAgreementsForm/CartAgreements.gql'
+export * from './CartAgreementsForm/CartAgreementsForm'
+export * from './CartFab/CartFab'
+export * from './CartItemSummary/CartItemSummary'
+export * from './CartStartCheckout/CartStartCheckout'
+export * from './CartSummary/CartSummary'
+export * from './CartTotals/CartTotals'
+export * from './EmptyCart/EmptyCart'
+export * from './InlineAccount/InlineAccount'

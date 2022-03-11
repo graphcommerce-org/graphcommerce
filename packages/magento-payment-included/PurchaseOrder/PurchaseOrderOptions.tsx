@@ -4,10 +4,9 @@ import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { useFormCompose, useFormValidFields } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
 import { TextField, Typography } from '@mui/material'
-import React from 'react'
 import { PurchaseOrderOptionsDocument } from './PurchaseOrderOptions.gql'
 
-function PurchaseOrderOptions(props: PaymentOptionsProps) {
+export function PurchaseOrderOptions(props: PaymentOptionsProps) {
   const { code, step, selected, Container, title = '' } = props
   const poNumber = selected?.purchase_order_number ?? undefined
 
@@ -45,5 +44,3 @@ function PurchaseOrderOptions(props: PaymentOptionsProps) {
     </Container>
   )
 }
-
-export default PurchaseOrderOptions

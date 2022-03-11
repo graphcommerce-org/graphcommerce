@@ -10,7 +10,7 @@ type ApolloCustomerErrorFullPageProps = {
   signUpHref: string
 } & ApolloErrorAlertProps
 
-export default function ApolloCustomerErrorFullPage(props: ApolloCustomerErrorFullPageProps) {
+export function ApolloCustomerErrorFullPage(props: ApolloCustomerErrorFullPageProps) {
   const { signInHref, signUpHref } = props
   const { error, unauthorized } = useExtractCustomerErrors(props)
 

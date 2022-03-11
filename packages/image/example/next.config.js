@@ -2,7 +2,7 @@
 
 const withGraphCommerce = require('@graphcommerce/next-config').withYarn1Workspaces()
 
-/** @type {import('next/dist/next-server/server/config').NextConfig} */
+/** @type {import('next').NextConfig} */
 const config = {
   images: {
     domains: ['upload.wikimedia.org', 'backend.reachdigital.dev'],

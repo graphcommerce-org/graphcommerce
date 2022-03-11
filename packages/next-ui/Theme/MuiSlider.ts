@@ -14,6 +14,7 @@ import { Components, Theme } from '@mui/material'
 //   }
 // }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const MuiSlider = (theme: Theme): Components['MuiSlider'] => ({
   // variants: [
   //   {

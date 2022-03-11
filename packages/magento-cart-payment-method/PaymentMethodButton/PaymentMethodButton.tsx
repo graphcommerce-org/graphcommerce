@@ -1,11 +1,11 @@
 import { ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
-import { Button, ButtonProps, LinkOrButton, LinkOrButtonProps } from '@graphcommerce/next-ui'
+import { LinkOrButton, LinkOrButtonProps } from '@graphcommerce/next-ui'
 import { ComposedSubmit, ComposedSubmitRenderComponentProps } from '@graphcommerce/react-hook-form'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
 export type PaymentMethodButtonProps = LinkOrButtonProps & { display?: 'inline' | 'block' }
 
-export function PaymentMethodButtonRenderer(
+function PaymentMethodButtonRenderer(
   props: { buttonProps: LinkOrButtonProps } & ComposedSubmitRenderComponentProps,
 ) {
   const { buttonProps, error, buttonState, submit } = props
@@ -45,7 +45,7 @@ export function PaymentMethodButtonRenderer(
   )
 }
 
-export default function PaymentMethodButton(props: PaymentMethodButtonProps) {
+export function PaymentMethodButton(props: PaymentMethodButtonProps) {
   const { display, ...buttonProps } = props
 
   return (

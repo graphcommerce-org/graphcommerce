@@ -5,7 +5,6 @@ import React, { useMemo } from 'react'
 import { pageRouterContext } from '../context/pageRouterContext'
 import { PageItem } from '../types'
 
-// eslint-disable-next-line react/jsx-no-useless-fragment
 const NoLayout: React.FC = ({ children }) => <>{children}</>
 
 export type PageRendererProps = Omit<AppPropsType, 'router'> & {

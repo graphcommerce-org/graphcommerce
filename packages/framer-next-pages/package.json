@@ -18,12 +18,13 @@
     "@graphcommerce/eslint-config-pwa": "^4.0.3",
     "@graphcommerce/prettier-config-pwa": "^4.0.2",
     "@graphcommerce/typescript-config-pwa": "^4.0.2",
-    "@playwright/test": "^1.19.1"
+    "@playwright/test": "^1.19.2"
   },
   "peerDependencies": {
     "framer-motion": "^6.2.4",
     "next": "^12.1.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "@emotion/react": "^11.8.2"
   }
 }

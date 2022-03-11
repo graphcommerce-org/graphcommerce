@@ -103,7 +103,7 @@ IconsPage.pageOptions = pageOptions
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
-export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
+export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 

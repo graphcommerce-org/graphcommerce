@@ -27,7 +27,7 @@ const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>
  *
  * @see https://github.com/magento/magento2/issues/33848
  */
-export default function CartTotals(props: CartTotalsProps) {
+export function CartTotals(props: CartTotalsProps) {
   const { data } = useCartQuery(GetCartTotalsDocument, { allowUrl: true })
   const { containerMargin, sx = [] } = props
 
@@ -95,11 +95,11 @@ export default function CartTotals(props: CartTotalsProps) {
           return (
             <AnimatedRow
               key={discount?.label}
-              sx={(theme) => ({
+              sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 typography: 'subtitle1',
-              })}
+              }}
             >
               <Box>{discount?.label}</Box>
               <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>

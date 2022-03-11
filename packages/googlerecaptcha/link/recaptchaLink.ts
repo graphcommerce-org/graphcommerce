@@ -11,7 +11,9 @@ export const recaptchaLink = setContext(async (operation, context) => {
   const recaptchaKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_V3_SITE_KEY
   if (!recaptchaKey || !globalThis.grecaptcha || !isMutation(operation)) return context
 
-  await new Promise<void>(globalThis.grecaptcha?.ready)
+  await new Promise<void>((resolve) => {
+    globalThis.grecaptcha?.ready(resolve)
+  })
 
   const token = await globalThis.grecaptcha.execute(recaptchaKey, { action: 'submit' })
 

@@ -1,1 +1,1 @@
-export { default as GoogleAnalyticsScript } from './GoogleAnalyticsScript'
+export * from './GoogleAnalyticsScript'

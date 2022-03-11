@@ -26,7 +26,7 @@ const { classes, selectors } = extendableComponent('ProductAddToCart', [
 
 export type AddToCartProps = React.ComponentProps<typeof ProductAddToCart>
 
-export default function ProductAddToCart(
+export function ProductAddToCart(
   props: Pick<ProductInterface, 'name'> & {
     variables: Omit<ProductAddToCartMutationVariables, 'cartId'>
     name: string

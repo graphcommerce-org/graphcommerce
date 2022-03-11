@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { PerformanceObserver, performance } = require('perf_hooks')
 const withYarn1Workspaces = require('@graphcommerce/next-config').withYarn1Scopes()

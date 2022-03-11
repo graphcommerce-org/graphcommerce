@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { debounce } from '@mui/material'
 import { useCallback, useEffect, useState } from 'react'
 import { FieldPath, FieldValues, UseFormReturn } from 'react-hook-form'
@@ -73,7 +74,7 @@ export function useFormAutoSubmit<Form extends UseFormReturn<V>, V = FieldValues
     if (canSubmit && (force || shouldSubmit)) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       submitDebounced()
-      return submitDebounced.clear
+      return () => submitDebounced.clear()
     }
     return () => {}
   }, [canSubmit, force, shouldSubmit, submitDebounced])

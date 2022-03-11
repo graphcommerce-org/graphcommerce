@@ -1,5 +1,4 @@
-import { useMutation } from '@graphcommerce/graphql'
-import { PaymentStatusEnum } from '@graphcommerce/graphql'
+import { useMutation , PaymentStatusEnum } from '@graphcommerce/graphql'
 import { useClearCurrentCartId, useCurrentCartId } from '@graphcommerce/magento-cart'
 import { useCartLock, usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
 import { useRouter } from 'next/router'

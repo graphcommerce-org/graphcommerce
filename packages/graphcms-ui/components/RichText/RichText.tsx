@@ -10,7 +10,7 @@ import {
   ElementNode,
 } from './types'
 
-const RenderText = ({ classes, text, ...textProps }: TextNode) => {
+function RenderText({ classes, text, ...textProps }: TextNode) {
   let result = <>{text}</>
   if (textProps.bold) result = <strong>{result}</strong>
   if (textProps.italic) result = <em>{result}</em>

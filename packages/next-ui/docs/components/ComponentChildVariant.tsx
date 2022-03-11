@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { styled } from '@mui/material'
 import { ComponentProps } from 'react'

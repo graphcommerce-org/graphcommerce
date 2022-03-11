@@ -14,7 +14,7 @@ export function RowSpecialBanner(props: RowSpecialBannerProps) {
       topic={topic}
       asset={asset && <Asset asset={asset} sizes='50vw' />}
       pageLinks={pageLinks.map((pageLink) => (
-        <PageLink href={pageLink.url} key={pageLink.url}>
+        <PageLink href={pageLink.url} key={pageLink.url} passHref>
           <Link underline='always' href={pageLink.url} title={pageLink.title} color='inherit'>
             {pageLink.title}
           </Link>

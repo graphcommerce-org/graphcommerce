@@ -14,7 +14,7 @@ import { useMollieContext } from './mollieContext'
 type MollieFieldContext = [ComponentFieldState, Dispatch<SetStateAction<ComponentFieldState>>]
 const mollieFieldContext = React.createContext(undefined as unknown as MollieFieldContext)
 
-const InputComponent = (props) => {
+function InputComponent(props) {
   const { component, inputRef, ...other } = props
   const Component = component as typeof IframeField
   return <Component {...other} ref={inputRef} />
@@ -25,7 +25,7 @@ type IframeFieldProps = Omit<InputBaseComponentProps, 'onChange'> & {
   onChange: (event: { target: { name: string; value: string } }) => void
 }
 
-const IframeField = React.forwardRef<any, IframeFieldProps>((props, forwardedRef) => {
+const IframeField = React.forwardRef<HTMLInputElement, IframeFieldProps>((props, forwardedRef) => {
   const { name, onChange, onFocus, onBlur, ...otherProps } = props
   const internalRef = useRef<HTMLDivElement>(null)
   const forkRef = forwardedRef
@@ -98,7 +98,7 @@ type MollieFieldProps = {
   isSubmitted?: boolean
 } & TextFieldProps
 
-export default function MollieField(props: MollieFieldProps) {
+export  function MollieField(props: MollieFieldProps) {
   const { isSubmitted = false, label, ...fieldProps } = props
 
   const [state, setState] = useState<ComponentFieldState>({

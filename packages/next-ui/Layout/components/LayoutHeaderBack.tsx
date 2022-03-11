@@ -22,7 +22,7 @@ export function useShowBack() {
   return false
 }
 
-export default function LayoutHeaderBack(props: BackProps) {
+export function LayoutHeaderBack(props: BackProps) {
   const router = useRouter()
   const path = router.asPath.split('?')[0]
   const up = useUp()

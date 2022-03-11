@@ -12,7 +12,6 @@ const mesh = fastDev ? undefined : await (await import('./mesh')).default
 export function meshLink(locale: string) {
   if (!mesh) throw Error('Mesh not available')
   return ApolloLink.from([
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     new SchemaLink({ ...mesh, context: { headers: { store: localeToStore(locale) } } }),
   ])
 }

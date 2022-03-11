@@ -16,7 +16,7 @@ const sliderThumbWidth = 28
 
 const { classes } = extendableComponent('FilterRangeType', ['root', 'container', 'slider'] as const)
 
-export default function FilterRangeType(props: FilterRangeTypeProps) {
+export function FilterRangeType(props: FilterRangeTypeProps) {
   const { attribute_code, label, options, ...chipProps } = props
   const { params } = useProductListParamsContext()
   const replaceRoute = useProductListLinkReplace({ scroll: false })

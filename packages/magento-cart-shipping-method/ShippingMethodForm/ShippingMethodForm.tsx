@@ -15,7 +15,7 @@ import {
 import { Controller, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
 import { FormControl, Alert, Box } from '@mui/material'
-import AvailableShippingMethod from '../AvailableShippingMethod/AvailableShippingMethod'
+import { AvailableShippingMethod } from '../AvailableShippingMethod/AvailableShippingMethod'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
 import {
   ShippingMethodFormDocument,
@@ -33,7 +33,7 @@ const name = 'ShippingMethodForm' as const
 const parts = ['root', 'alert', 'buttonRoot', 'buttonContainer', 'scrollerRoot'] as const
 const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 
-export default function ShippingMethodForm(props: ShippingMethodFormProps) {
+export function ShippingMethodForm(props: ShippingMethodFormProps) {
   const { step } = props
   const { data: cartQuery } = useCartQuery(GetShippingMethodsDocument)
 

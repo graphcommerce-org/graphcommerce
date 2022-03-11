@@ -1,3 +1,4 @@
-export { default as ProductListItemBundle } from './ProductListItemBundle'
-export { default as BundleItemsForm } from './BundleItemsForm'
+export * from './ProductListItemBundle'
+export * from './BundleItemsForm/BundleItemsForm'
+export * from './BundleCartItem/BundleCartItem'
 export * from './BundleProductPage.gql'

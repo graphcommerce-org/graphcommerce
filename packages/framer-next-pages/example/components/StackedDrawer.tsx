@@ -2,7 +2,7 @@ import { usePageContext } from '@graphcommerce/framer-next-pages'
 import { m } from 'framer-motion'
 import { PropsWithChildren } from 'react'
 
-export default function StackedDrawer(props: PropsWithChildren<{ variant: 'left' | 'right' }>) {
+export function StackedDrawer(props: PropsWithChildren<{ variant: 'left' | 'right' }>) {
   const { children, variant } = props
   const { depth } = usePageContext()
 

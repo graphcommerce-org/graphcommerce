@@ -1,9 +1,9 @@
 /* eslint-disable no-empty-pattern */
-import { getOperationName } from '@graphcommerce/graphql'
 import { test as base, Page } from '@playwright/test'
 import {
   ApolloClient,
   FetchResult,
+  getOperationName,
   InMemoryCache,
   NormalizedCacheObject,
   TypedDocumentNode,

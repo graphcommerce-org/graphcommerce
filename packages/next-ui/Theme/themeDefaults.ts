@@ -1,4 +1,4 @@
-import { BreakpointsOptions, experimental_sx, SxProps, Theme, ThemeOptions } from '@mui/material'
+import { BreakpointsOptions, experimental_sx, SxProps, Theme } from '@mui/material'
 import { Shadows } from '@mui/material/styles/shadows'
 
 import { SetRequired } from 'type-fest'

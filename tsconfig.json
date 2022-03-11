@@ -1,15 +1,5 @@
 {
   "extends": "@graphcommerce/typescript-config-pwa/nextjs.json",
   "exclude": ["**/node_modules", "**/.*/"],
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "**/next.config.js",
-    "**/index.js",
-    "cssTransform.js",
-    "examples/graphcommerce/next-sitemap.js",
-    "graphql.config.js",
-    "**/*.d.ts",
-    "examples/magento-graphcms/lingui.config.js"
-  ]
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.d.ts"]
 }

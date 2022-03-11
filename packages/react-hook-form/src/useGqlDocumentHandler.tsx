@@ -53,6 +53,7 @@ export type DeepIsRequired<V> = {
 }
 
 type DeepStringify<V> = {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   [k in keyof V]?: V[k] extends (infer U)[]
     ? string[]
     : V[k] extends Record<string, unknown>
@@ -125,7 +126,9 @@ export function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>): UseGqlD
   function encodeItem(enc: FieldTypes, val: unknown) {
     if (Array.isArray(enc)) return [encodeItem(enc[0], val)]
     if (val && typeof val === 'object') {
-      return Object.fromEntries(Object.entries(val).map(([key, v]) => [key, heuristicEncode(v)]))
+      return Object.fromEntries(
+        Object.entries(val).map(([key, v]) => [key, heuristicEncode(v as string)]),
+      )
     }
     if (enc === 'Boolean') return Boolean(val)
     if (enc === 'Float' || enc === 'Int') return Number(val)
@@ -134,7 +137,7 @@ export function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>): UseGqlD
 
   function encode(variables: { [k in keyof V]?: DeepStringify<V[k]> }, enc = encoding) {
     return Object.fromEntries(
-      Object.entries(variables).map(([key, val]) => [key, encodeItem(enc[key], val)]),
+      Object.entries(variables).map(([key, val]) => [key, encodeItem(enc[key] as FieldTypes, val)]),
     ) as V
   }
 

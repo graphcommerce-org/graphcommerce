@@ -36,10 +36,10 @@ const parts = ['root'] as const
 const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 
 /** Make any HTML */
-export function useScroller<TagName extends keyof ReactHTML = 'div'>(
-  props: ScrollableProps<TagName>,
-  forwardedRef: React.ForwardedRef<any>,
-) {
+export function useScroller<
+  TagName extends keyof ReactHTML = 'div',
+  E extends HTMLElement = HTMLElement,
+>(props: ScrollableProps<TagName>, forwardedRef: React.ForwardedRef<E>) {
   const { hideScrollbar = false, children, grid = false, ...divProps } = props
 
   const { scrollSnap, scrollerRef, enableSnap, disableSnap, snap, registerChildren } =
@@ -106,7 +106,7 @@ export function useScroller<TagName extends keyof ReactHTML = 'div'>(
     snapToVelocity(info)
   }
 
-  const ref: React.RefCallback<HTMLElement> = (el) => {
+  const ref: React.RefCallback<E> = (el) => {
     // @ts-expect-error current is assignable
     scrollerRef.current = el ?? undefined
     if (typeof forwardedRef === 'function') forwardedRef(el)

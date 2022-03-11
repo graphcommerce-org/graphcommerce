@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const linguiNextConfig = require('@graphcommerce/lingui-next/config')

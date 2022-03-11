@@ -1,7 +1,6 @@
-import React from 'react'
 import { ProductVideoFragment } from './ProductVideo.gql'
 
-export default function ProductVideo(props: ProductVideoFragment) {
+export function ProductVideo(props: ProductVideoFragment) {
   const { video_content } = props
 
   if (!video_content?.video_url) return null

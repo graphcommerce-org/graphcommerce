@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     browser: true,
-    es6: true,
+    es2022: true,
     node: true,
   },
   extends: [
@@ -29,54 +29,17 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', '@next/eslint-plugin-next'],
   rules: {
-    '@next/next/no-html-link-for-pages': 'off',
-    'import/no-extraneous-dependencies': [
-      'error',
-      {
-        devDependencies: ['next.config.js', '**/__tests__/**', '**/_playwright/**'],
-      },
-    ],
-    'import/order': ['warn', { alphabetize: { order: 'asc' } }],
-    'import/prefer-default-export': 'off',
-    'no-param-reassign': ['error', { props: false }],
-    'jsx-a11y/anchor-is-valid': 'off',
+    // eslint
     'default-case': 'off',
-    '@typescript-eslint/indent': 'off',
-    'react/jsx-one-expression-per-line': 'off',
-    'react/prop-types': 'off',
-    'react/jsx-props-no-spreading': 'off',
-    'react/react-in-jsx-scope': 'off',
-    'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
-    'react-hooks/exhaustive-deps': ['error', { additionalHooks: '(useIsomorphicLayoutEffect)' }],
-    'react/no-unescaped-entities': 'off',
+    'no-plusplus': 'off',
+    'no-param-reassign': ['error', { props: false }],
     'no-console': [1, { allow: ['warn', 'error', 'info'] }],
-    '@typescript-eslint/semi': 'off',
-    'spaced-comment': [
-      'error',
-      'always',
-      {
-        markers: ['/'],
-      },
-    ],
-
+    'spaced-comment': ['error', 'always', { markers: ['/'] }],
+    'prefer-const': ['error', { destructuring: 'all' }],
     'no-underscore-dangle': [
       'error',
       { allow: ['__typename', '__type', '_N_X', '_N_Y', '__N', '__NEXT'] },
     ],
-    'react/jsx-key': ['error', { checkFragmentShorthand: true }],
-    'react/jsx-no-duplicate-props': ['error', { ignoreCase: false }],
-    'react/require-default-props': 'off',
-    'react/destructuring-assignment': 'off',
-
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-unsafe-assignment': 'off',
-    '@typescript-eslint/no-unsafe-call': 'off',
-    '@typescript-eslint/no-unsafe-member-access': 'off',
-    '@typescript-eslint/no-unsafe-return': 'off',
-    '@typescript-eslint/restrict-template-expressions': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/naming-convention': 'off',
-    'no-plusplus': 0,
     'no-restricted-syntax': [
       'error',
       {
@@ -96,22 +59,69 @@ module.exports = {
       },
     ],
 
-    // Remove when fixed: https://github.com/react-hook-form/react-hook-form/issues/2887
-    '@typescript-eslint/unbound-method': 'off',
-
+    // plugin:import/recommended & plugin:import/typescript
+    'import/prefer-default-export': 'off',
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['next.config.js', '**/__tests__/**', '**/_playwright/**', '**/*.d.ts'],
+      },
+    ],
+    'import/order': ['warn', { alphabetize: { order: 'asc' } }],
     'import/no-relative-packages': 'error',
 
-    // Remove when fixed: https://github.com/airbnb/javascript/pull/2501/files
+    // next
+    '@next/next/no-html-link-for-pages': 'off',
+
+    // jsx-a11y
+    'jsx-a11y/anchor-is-valid': 'off',
+
+    // react
+    'react/jsx-one-expression-per-line': 'off',
+    'react/prop-types': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'react/no-unescaped-entities': 'off',
+    'react/require-default-props': 'off',
+    'react/destructuring-assignment': 'off',
+    'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
+    'react-hooks/exhaustive-deps': ['error', { additionalHooks: '(useIsomorphicLayoutEffect)' }],
+    'react/jsx-key': ['error', { checkFragmentShorthand: true }],
+    'react/jsx-no-duplicate-props': ['error', { ignoreCase: false }],
     'react/function-component-definition': 'off',
 
-    'prefer-const': ['error', { destructuring: 'all' }],
+    // typescript
+    '@typescript-eslint/indent': 'off',
+    '@typescript-eslint/semi': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unsafe-return': 'off',
+    '@typescript-eslint/restrict-template-expressions': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/naming-convention': 'off',
+    '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
+    '@typescript-eslint/no-restricted-imports': [
+      'error',
+      {
+        paths: [
+          {
+            name: 'next/image',
+            message: "Please use `import { Image } from '@graphcommerce/image'` instead.",
+          },
+        ],
+      },
+    ],
   },
   overrides: [
     {
-      files: ['*.ts'],
-      rules: {
-        'import/prefer-default-export': 'off',
-      },
+      files: ['*.tsx'],
+      rules: { 'import/no-default-export': ['error'] },
+    },
+    {
+      files: ['**/pages/**/*.tsx'],
+      rules: { 'import/no-default-export': 'off' },
     },
     {
       files: ['generated/*'],

@@ -1,8 +1,7 @@
 import { Typography, Container } from '@mui/material'
-import React from 'react'
 import { CmsPageContentFragment } from './CmsPageContent.gql'
 
-export default function CmsPageContent(props: CmsPageContentFragment) {
+export function CmsPageContent(props: CmsPageContentFragment) {
   const { content_heading, content } = props
   return (
     <Container>

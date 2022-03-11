@@ -8,7 +8,7 @@ const cmpName = 'CategoryDescription' as const
 const parts = ['root'] as const
 const { classes } = extendableComponent(cmpName, parts)
 
-export default function CategoryDescription(props: CategoryDescriptionProps) {
+export function CategoryDescription(props: CategoryDescriptionProps) {
   const { name, description, display_mode, sx = [], ...divProps } = props
 
   return description ? (

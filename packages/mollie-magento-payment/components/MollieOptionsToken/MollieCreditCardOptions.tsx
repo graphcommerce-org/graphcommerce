@@ -9,11 +9,11 @@ import { Typography, Alert } from '@mui/material'
 import Script from 'next/script'
 import React, { useEffect, useState } from 'react'
 import { Mollie } from '../../Mollie'
-import MollieField from './MollieField'
+import { MollieField } from './MollieField'
 import { SetMolliePaymentMethodTokenOnCartDocument } from './SetMolliePaymentMethodTokenOnCart.gql'
 import { mollieContext, MollieContext } from './mollieContext'
 
-export default function MollieCreditCardOptions(props: PaymentOptionsProps) {
+export function MollieCreditCardOptions(props: PaymentOptionsProps) {
   const { code, step, Container, title = '' } = props
   const [loaded, setLoaded] = useState<boolean>(false)
   const [mollie, setMollie] = useState<MollieContext>(undefined)

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function GoogleTagManagerNoScript() {
+export function GoogleTagManagerNoScript() {
   if (!process.env.NEXT_PUBLIC_GTM_ID) return null
 
   return (

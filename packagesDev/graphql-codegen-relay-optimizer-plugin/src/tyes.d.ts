@@ -3,7 +3,7 @@ declare module 'relay-compiler/lib/core/Schema' {
 }
 
 declare module 'relay-compiler/lib/core/IRPrinter' {
-  export function print(schema: import('relay-compiler').Schema, document: any): string
+  export function print(schema: import('relay-compiler').Schema, document: unknown): string
 }
 
 declare module 'relay-compiler/lib/core/CompilerContext' {

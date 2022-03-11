@@ -6,7 +6,7 @@ import { useExtractCustomerErrors } from '../../hooks/useExtractCustomerErrors'
 
 type MagentoErrorAlertProps = ApolloErrorAlertProps
 
-export default function ApolloCustomerErrorAlert(props: MagentoErrorAlertProps) {
+export function ApolloCustomerErrorAlert(props: MagentoErrorAlertProps) {
   const { error, unauthorized } = useExtractCustomerErrors(props)
 
   const action = unauthorized && (

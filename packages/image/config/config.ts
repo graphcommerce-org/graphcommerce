@@ -1,4 +1,5 @@
 import { ImageConfigComplete, imageConfigDefault } from 'next/dist/server/image-config'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { ImageLoaderProps } from 'next/image'
 
 export type DefaultImageLoaderProps = ImageLoaderProps & { root: string }

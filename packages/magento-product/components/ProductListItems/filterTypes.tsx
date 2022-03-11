@@ -21,7 +21,7 @@ export type ProductListParams = Exact<{
 
 type AnyFilterType = FilterEqualTypeInput | FilterMatchTypeInput | FilterRangeTypeInput | undefined
 
-export function isFilterTypeEqual(filter: AnyFilterType): filter is FilterEqualTypeInput {
+export function isFilterTypeEqual(filter?: unknown): filter is FilterEqualTypeInput {
   return Boolean(
     filter && ((filter as FilterEqualTypeInput).eq || (filter as FilterEqualTypeInput).in),
   )

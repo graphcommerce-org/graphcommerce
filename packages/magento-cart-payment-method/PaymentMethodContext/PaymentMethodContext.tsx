@@ -1,15 +1,15 @@
 import { useCartQuery } from '@graphcommerce/magento-cart'
-import React, { PropsWithChildren, useContext, useEffect, useState } from 'react'
+import React, { PropsWithChildren, useContext, useEffect, useMemo, useState } from 'react'
 import { PaymentMethod, PaymentMethodModules, PaymentModule } from '../Api/PaymentMethod'
 import { GetPaymentMethodContextDocument } from './GetPaymentMethodContext.gql'
 
 type PaymentMethodContextProps = {
   methods: PaymentMethod[]
   selectedMethod?: PaymentMethod
-  setSelectedMethod(method: PaymentMethod | undefined): void
+  setSelectedMethod: (method: PaymentMethod | undefined) => void
   modules: PaymentMethodModules
   selectedModule?: PaymentModule
-  setSelectedModule(module: PaymentModule | undefined): void
+  setSelectedModule: (module: PaymentModule | undefined) => void
 }
 
 const paymentMethodContext = React.createContext<PaymentMethodContextProps>({
@@ -22,7 +22,7 @@ paymentMethodContext.displayName = 'PaymentMethodContext'
 
 type PaymentMethodContextProviderProps = PropsWithChildren<{ modules: PaymentMethodModules }>
 
-export default function PaymentMethodContextProvider(props: PaymentMethodContextProviderProps) {
+export function PaymentMethodContextProvider(props: PaymentMethodContextProviderProps) {
   const { modules, children } = props
 
   const context = useCartQuery(GetPaymentMethodContextDocument)
@@ -53,25 +53,30 @@ export default function PaymentMethodContextProvider(props: PaymentMethodContext
         ) ?? []
 
       const loaded = (await Promise.all(promises)).flat(1).sort((a) => (a.preferred ? 1 : 0))
-      const sortedMethods = loaded.sort((a, b) =>
-        !modules?.[a?.code] ? 0 : !modules?.[b?.code] ? -1 : 1,
-      )
+      const sortedMethods = loaded.sort((a, b) => {
+        if (!modules?.[a?.code]) return 0
+        if (!modules?.[b?.code]) return -1
+        return 1
+      })
 
       setMethods(sortedMethods)
     })()
   }, [cartContext, modules])
 
+  const value = useMemo(
+    () => ({
+      methods,
+      selectedMethod,
+      setSelectedMethod,
+      modules,
+      selectedModule,
+      setSelectedModule,
+    }),
+    [methods, modules, selectedMethod, selectedModule],
+  )
+
   return (
-    <paymentMethodContext.Provider
-      value={{
-        methods,
-        selectedMethod,
-        setSelectedMethod,
-        modules,
-        selectedModule,
-        setSelectedModule,
-      }}
-    >
+    <paymentMethodContext.Provider value={value}>
       {Object.entries(modules).map(([method, module]) => {
         const { PaymentHandler } = module
         if (!PaymentHandler) return null

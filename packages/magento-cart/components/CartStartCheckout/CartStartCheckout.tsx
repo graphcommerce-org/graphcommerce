@@ -19,7 +19,7 @@ const parts = [
 ] as const
 const { classes } = extendableComponent(name, parts)
 
-export default function CartStartCheckout(props: CartStartCheckoutProps) {
+export function CartStartCheckout(props: CartStartCheckoutProps) {
   const { prices, children, sx = [] } = props
 
   const hasTotals = (prices?.grand_total?.value ?? 0) > 0

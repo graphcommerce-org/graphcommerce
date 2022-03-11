@@ -1,2 +1,2 @@
-export { default as CustomerNewsletterToggle } from './CustomerNewsletterToggle'
-export { default as SignupNewsletter } from './SignupNewsletter'
+export * from './CustomerNewsletterToggle/CustomerNewsletterToggle'
+export * from './SignupNewsletter/SignupNewsletter'

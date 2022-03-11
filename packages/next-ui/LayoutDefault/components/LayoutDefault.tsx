@@ -1,8 +1,8 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { Box, SxProps, Theme } from '@mui/material'
 import { useTransform, useViewportScroll } from 'framer-motion'
-import LayoutProvider from '../../Layout/components/LayoutProvider'
-import { extendableComponent, responsiveVal } from '../../Styles'
+import { LayoutProvider } from '../../Layout/components/LayoutProvider'
+import { extendableComponent } from '../../Styles'
 import { useFabSize } from '../../Theme'
 
 export type LayoutDefaultProps = {
@@ -27,7 +27,17 @@ const { withState } = extendableComponent<OwnerState, 'LayoutDefault', typeof pa
 )
 
 export function LayoutDefault(props: LayoutDefaultProps) {
-  const { children, header, beforeHeader, footer, menuFab, cartFab, noSticky, sx = [] } = props
+  const {
+    children,
+    header,
+    beforeHeader,
+    footer,
+    menuFab,
+    cartFab,
+    noSticky,
+    className,
+    sx = [],
+  } = props
 
   const offset = useScrollOffset().y
   const scrollWithOffset = useTransform(useViewportScroll().scrollY, (y) => y + offset)
@@ -38,7 +48,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
 
   return (
     <Box
-      className={classes.root}
+      className={`${classes.root} ${className ?? ''}`}
       sx={[
         (theme) => ({
           minHeight: '100vh',

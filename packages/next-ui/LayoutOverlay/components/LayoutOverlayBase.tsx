@@ -4,7 +4,7 @@ import { useElementScroll, useIsomorphicLayoutEffect } from '@graphcommerce/fram
 import { Box, styled, SxProps, Theme } from '@mui/material'
 import { m, useDomEvent, useMotionValue, usePresence, useTransform } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
-import LayoutProvider from '../../Layout/components/LayoutProvider'
+import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { extendableComponent } from '../../Styles'
 import { useOverlayPosition } from '../hooks/useOverlayPosition'
 

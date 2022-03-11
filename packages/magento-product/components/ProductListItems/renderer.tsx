@@ -1,10 +1,10 @@
 import { TypeRenderer } from '@graphcommerce/next-ui'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
-import ProductListItem from '../ProductListItem'
+import { ProductListItem } from '../ProductListItem/ProductListItem'
 
 export type ProductListItemRenderer = TypeRenderer<ProductListItemFragment>
 
-const renderer: ProductListItemRenderer = {
+export const renderer: ProductListItemRenderer = {
   SimpleProduct: ProductListItem,
   ConfigurableProduct: ProductListItem,
   BundleProduct: ProductListItem,
@@ -12,5 +12,3 @@ const renderer: ProductListItemRenderer = {
   DownloadableProduct: ProductListItem,
   GroupedProduct: ProductListItem,
 }
-
-export default renderer

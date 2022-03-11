@@ -118,6 +118,7 @@ export function withYarn1Workspaces(modules: string[] = []): (config: NextConfig
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const workspaceInfo = JSON.parse(JSON.parse(infoJson).data) as WorkspaceInfo
 
   const requestedPackages = [

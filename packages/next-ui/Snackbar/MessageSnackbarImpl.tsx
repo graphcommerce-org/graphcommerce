@@ -1,4 +1,3 @@
-import { Portal } from '@mui/base'
 import {
   Fab,
   Snackbar,
@@ -8,6 +7,7 @@ import {
   Box,
   SxProps,
   Theme,
+  Portal,
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { IconSvg } from '../IconSvg'
@@ -39,6 +39,7 @@ const name = 'MessageSnackbarImpl' as const
 const parts = ['root', 'content', 'children', 'actionButton', 'close'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
+// eslint-disable-next-line import/no-default-export
 export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false)
 

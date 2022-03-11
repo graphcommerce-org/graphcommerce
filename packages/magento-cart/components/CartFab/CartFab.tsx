@@ -25,6 +25,7 @@ type CartFabContentProps = CartFabProps & CartTotalQuantityFragment
 const MotionDiv = styled(m.div)({})
 
 const MotionFab = m(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   React.forwardRef<any, Omit<FabProps, 'style' | 'onDrag'>>((props, ref) => (
     <Fab {...props} ref={ref} />
   )),
@@ -107,7 +108,7 @@ function CartFabContent(props: CartFabContentProps) {
  * immediately start fetching. Why? There is a time between creating a cart and adding the first
  * product to the cart. This would mean that it would immediately start executing this query.
  */
-export default function CartFab(props: CartFabProps) {
+export function CartFab(props: CartFabProps) {
   const { data } = useCartQuery(CartFabDocument, {
     fetchPolicy: 'cache-only',
     nextFetchPolicy: 'cache-first',

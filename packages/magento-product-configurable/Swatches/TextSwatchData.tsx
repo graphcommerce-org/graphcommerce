@@ -2,7 +2,7 @@ import { Money } from '@graphcommerce/magento-store'
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { TextSwatchDataFragment } from './TextSwatchData.gql'
-import { SwatchDataProps } from '.'
+import { SwatchDataProps } from './types'
 
 type TextSwatchDataProps = TextSwatchDataFragment & SwatchDataProps & { sx?: SxProps<Theme> }
 

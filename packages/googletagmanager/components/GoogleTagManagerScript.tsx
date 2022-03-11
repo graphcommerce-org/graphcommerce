@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 import Script from 'next/script'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 
-export default function GoogleTagManagerScript() {
+export function GoogleTagManagerScript() {
   const id = process.env.NEXT_PUBLIC_GTM_ID
 
   if (process.env.NODE_ENV !== 'production' && !id)

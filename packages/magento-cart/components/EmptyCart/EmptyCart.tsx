@@ -5,7 +5,7 @@ import Link from 'next/link'
 import React from 'react'
 
 type EmptyCartProps = { children?: React.ReactNode }
-export default function EmptyCart(props: EmptyCartProps) {
+export function EmptyCart(props: EmptyCartProps) {
   const { children } = props
 
   return (

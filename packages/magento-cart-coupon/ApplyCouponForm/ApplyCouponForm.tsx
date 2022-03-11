@@ -10,7 +10,7 @@ const name = 'ApplyCouponForm' as const
 const parts = ['couponForm', 'button'] as const
 const { classes } = extendableComponent(name, parts)
 
-export default function ApplyCouponForm(props: ApplyCouponFormProps) {
+export function ApplyCouponForm(props: ApplyCouponFormProps) {
   const { sx = [] } = props
   const form = useFormGqlMutationCart(ApplyCouponFormDocument)
   const { handleSubmit, muiRegister, formState, required, error } = form

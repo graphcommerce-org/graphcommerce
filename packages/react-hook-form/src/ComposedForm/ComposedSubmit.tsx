@@ -18,7 +18,7 @@ export function mergeErrors(errors: ApolloError[]): ApolloError | undefined {
   })
 }
 
-export default function ComposedSubmit(props: ComposedSubmitProps) {
+export function ComposedSubmit(props: ComposedSubmitProps) {
   const { render: Render, onSubmitSuccessful } = props
   const [formContext, dispatch] = useContext(composedFormContext)
   const { formState, buttonState, isCompleting, forms } = formContext
@@ -63,7 +63,7 @@ export default function ComposedSubmit(props: ComposedSubmitProps) {
        * Todo: There might be a performance optimization by submitting multiple forms in parallel.
        */
       let canSubmit = true
-      for (const [, { submit, form, key }] of formsToSubmit) {
+      for (const [, { submit, form }] of formsToSubmit) {
         // eslint-disable-next-line no-await-in-loop
         if (canSubmit) await submit?.()
         // eslint-disable-next-line no-await-in-loop

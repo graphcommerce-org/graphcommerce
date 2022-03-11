@@ -1,7 +1,5 @@
-export { default as AccountLatestOrder } from './AccountLatestOrder'
-export { default as AccountMenu } from './AccountMenu'
-export { default as AccountMenuItem } from './AccountMenuItem'
-export { default as AccountOrders } from './AccountOrders'
-export { default as AccountSignInUpForm } from './AccountSignInUpForm'
-
-export * from './AccountOrders'
+export * from './AccountLatestOrder/AccountLatestOrder'
+export * from './AccountMenu/AccountMenu'
+export * from './AccountMenuItem/AccountMenuItem'
+export * from './AccountSignInUpForm/AccountSignInUpForm'
+export * from './AccountOrders/AccountOrders'

@@ -10,7 +10,7 @@ const name = 'RemoveCouponForm' as const
 const parts = ['root', 'button'] as const
 const { classes } = extendableComponent(name, parts)
 
-export default function RemoveCouponForm(props: RemoveCouponFormProps) {
+export function RemoveCouponForm(props: RemoveCouponFormProps) {
   const { applied_coupons, sx } = props
   const form = useFormGqlMutationCart(RemoveCouponFormDocument)
 

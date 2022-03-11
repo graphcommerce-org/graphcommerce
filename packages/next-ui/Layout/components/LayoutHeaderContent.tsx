@@ -20,7 +20,7 @@ const name = 'LayoutHeaderContent' as const
 const parts = ['bg', 'content', 'left', 'center', 'right', 'divider'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
-export default function LayoutHeaderContent(props: LayoutHeaderContentProps) {
+export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
   const ref = useRef<HTMLDivElement>(null)
 
   const {

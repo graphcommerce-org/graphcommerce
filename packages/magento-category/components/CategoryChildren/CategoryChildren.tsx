@@ -14,7 +14,7 @@ const name = 'CategoryChildren' as const
 const parts = ['container', 'scroller', 'link'] as const
 const { classes } = extendableComponent(name, parts)
 
-export default function CategoryChildren(props: CategoryChildrenProps) {
+export function CategoryChildren(props: CategoryChildrenProps) {
   const { children, params, sx = [] } = props
 
   if (!children || children.length === 0) return null

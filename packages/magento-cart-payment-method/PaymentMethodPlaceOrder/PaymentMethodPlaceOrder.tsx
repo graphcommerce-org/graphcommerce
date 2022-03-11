@@ -3,7 +3,7 @@ import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodCo
 
 export type PaymentMethodPlaceOrderProps = Pick<UseFormComposeOptions, 'step'>
 
-export default function PaymentMethodPlaceOrder(props: PaymentMethodPlaceOrderProps) {
+export function PaymentMethodPlaceOrder(props: PaymentMethodPlaceOrderProps) {
   const { step } = props
   const { selectedMethod, selectedModule } = usePaymentMethodContext()
 

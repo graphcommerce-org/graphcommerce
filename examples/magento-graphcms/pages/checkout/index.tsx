@@ -37,7 +37,10 @@ function ShippingPage() {
   const cartExists = typeof cartData?.cart !== 'undefined'
   const router = useRouter()
 
-  const onSubmitSuccessful = () => router.push('/checkout/payment')
+  const onSubmitSuccessful = () => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    router.push('/checkout/payment')
+  }
 
   return (
     <ComposedForm>

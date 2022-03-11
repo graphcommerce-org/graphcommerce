@@ -10,7 +10,7 @@ export type ScrollerButtonProps = {
   direction: SnapPositionDirection
 } & FabProps
 
-const ScrollerFab = m(
+export const ScrollerButton = m(
   React.forwardRef<HTMLDivElement, ScrollerButtonProps>((props, ref) => {
     const { direction, sx = [], ...buttonProps } = props
 
@@ -44,6 +44,4 @@ const ScrollerFab = m(
     )
   }),
 )
-ScrollerFab.displayName = 'ScrollerFab'
-
-export default ScrollerFab
+ScrollerButton.displayName = 'ScrollerButton'

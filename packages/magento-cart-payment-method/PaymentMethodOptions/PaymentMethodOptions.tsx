@@ -8,9 +8,7 @@ const name = 'PaymentMethodOptions' as const
 const parts = ['root'] as const
 const { classes } = extendableComponent(name, parts)
 
-export default function PaymentMethodOptions(
-  props: PaymentMethodOptionsProps & { sx?: SxProps<Theme> },
-) {
+export function PaymentMethodOptions(props: PaymentMethodOptionsProps & { sx?: SxProps<Theme> }) {
   const { sx = [], ...optionsProps } = props
   const { selectedMethod, selectedModule } = usePaymentMethodContext()
 

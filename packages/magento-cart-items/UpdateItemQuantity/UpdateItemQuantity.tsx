@@ -9,7 +9,7 @@ import {
 
 export type UpdateItemQuantityProps = Omit<UpdateItemQuantityMutationVariables, 'cartId'>
 
-export default function UpdateItemQuantity(props: UpdateItemQuantityProps) {
+export function UpdateItemQuantity(props: UpdateItemQuantityProps) {
   const { uid, quantity } = props
   const form = useFormGqlMutationCart(UpdateItemQuantityDocument, {
     defaultValues: { uid, quantity },

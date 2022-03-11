@@ -1,10 +1,10 @@
-import { Chip, SxProps } from '@mui/material'
+import { Chip, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 
 type BlogTagsProps = {
   url: string
   title: string
-  sx?: SxProps
+  sx?: SxProps<Theme>
 }
 
 export function BlogTag(props: BlogTagsProps) {

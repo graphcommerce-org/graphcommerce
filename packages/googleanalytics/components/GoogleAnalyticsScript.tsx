@@ -1,6 +1,6 @@
 import Script from 'next/script'
 
-export default function GoogleAnalyticsScript() {
+export function GoogleAnalyticsScript() {
   const id = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS
 
   if (process.env.NODE_ENV !== 'production' && !id)
