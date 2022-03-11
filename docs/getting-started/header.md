@@ -82,7 +82,7 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 
 <figure>
 
-![Reorder components](https://cdn-std.droplr.net/files/acc_857465/v0jqud)
+![Reorder components](https://user-images.githubusercontent.com/1251986/157832587-f222dce8-b1e9-486d-8758-22d692811b26.png)
 
  <figcaption>Reorder components</figcaption>
 </figure>
@@ -94,7 +94,7 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 
 <figure>
 
-![Remove navigation](https://cdn-std.droplr.net/files/acc_857465/S1BIyc)
+![Remove navigation](https://user-images.githubusercontent.com/1251986/157832638-b0197914-a8c9-4f01-a4f3-c40a6eae39e9.png)
 
  <figcaption>Remove navigation</figcaption>
 </figure>
@@ -130,7 +130,7 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 
 <figure>
 
-![Replace search input](https://cdn-std.droplr.net/files/acc_857465/7eadNI)
+![Replace search input](https://user-images.githubusercontent.com/1251986/157832688-f16e3097-77a6-4c03-899a-1cebc0bc2db8.png)
 
  <figcaption>Replace search input with Search Fab, remove Customer Service Fab</figcaption>
 </figure>
@@ -170,7 +170,7 @@ import React, { useEffect } from 'react'
 
 <figure>
 
-![Local copy of the MenuFab component](https://cdn-std.droplr.net/files/acc_857465/O1iBQ4)
+![Local copy of the MenuFab component](https://user-images.githubusercontent.com/1251986/157832754-3766f92c-ffd7-48ed-8cb8-09e1cccfc044.png)
 
  <figcaption>Local copy of the MenuFab component with Fab scroll animation removed</figcaption>
 </figure>
@@ -222,7 +222,7 @@ TransitionComponent={Fade}
 
 <figure>
 
-![Menu component with custom styling](https://cdn-std.droplr.net/files/acc_857465/RyXlBV)
+![Menu component with custom styling](https://user-images.githubusercontent.com/1251986/157832794-711774b6-8bde-4166-bec7-d2de542fc184.png)
 
  <figcaption>Menu component with custom styling</figcaption>
 </figure>
