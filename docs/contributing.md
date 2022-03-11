@@ -40,7 +40,7 @@ File structure of GraphCommerce
 
 ### Formatting and Linting
 
-GraphComerce uses ESLint for linting and Prettier for code formatting.
+GraphCommerce uses ESLint for linting and Prettier for code formatting.
 
 Install the [recommended VS Code extensions](../docs/getting-started/vscode.md)
 
@@ -72,7 +72,6 @@ Install the [recommended VS Code extensions](../docs/getting-started/vscode.md)
 4. When you are ready to merge your PR, please select the `Squash and Merge`
   option. This helps reduce the commit noise in the Git repository.
 
-### Releases
 
 ## Next steps
 
