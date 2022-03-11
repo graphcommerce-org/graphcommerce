@@ -111,7 +111,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
 
 <figure>
 
-![Page with page layout (header, footer)](https://cdn-std.droplr.net/files/acc_857465/xdI9be)
+![Page with page layout (header, footer)](https://user-images.githubusercontent.com/1251986/157832869-44b7fc7a-d5f7-4779-a017-869718e679aa.png)
 
   <figcaption>Page with page layout (header, footer)</figcaption>
 </figure>
@@ -167,14 +167,14 @@ function AboutUs({ pages }: Props) {
 
 <figure>
 
-![Fetch page content from GraphCMS](https://cdn-std.droplr.net/files/acc_857465/PIOjzB)
+![Fetch page content from GraphCMS](https://user-images.githubusercontent.com/1251986/157832923-a2b47e92-ae7c-4557-bc54-a0b04e0d6d7e.png)
 
   <figcaption>Fetch page content from GraphCMS</figcaption>
 </figure>
 
 <figure>
 
-![GraphCMS entry](https://cdn-std.droplr.net/files/acc_857465/XKo4ut)
+![GraphCMS entry](https://user-images.githubusercontent.com/1251986/157832975-dc56d48c-a1ef-41d9-9f7c-67d2f19250e4.png)
 
   <figcaption>GraphCMS entry</figcaption>
 </figure>
@@ -287,7 +287,7 @@ You can test the static build process by running it locally:
 
 <figure>
 
-![Successful pre-render of the about/about-us page](https://cdn-std.droplr.net/files/acc_857465/AAOnX2)
+![Successful pre-render of the about/about-us page](https://user-images.githubusercontent.com/1251986/157833023-e15b2d1c-1d04-49d2-89c9-75fb0edfce85.jpg)
 
   <figcaption>Successful pre-render of the about/about-us page</figcaption>
 </figure>
