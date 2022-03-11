@@ -59,20 +59,6 @@ Install the [recommended VS Code extensions](../docs/getting-started/vscode.md)
   <figcaption>Select minor bump when running `yarn changeset`</figcaption>
 </figure>
 
-- Check if your changeset is detected
-
-<figure>
-
-![Github changeset detected](https://user-images.githubusercontent.com/1251986/157868587-a761fde9-b0ec-418d-9e43-2e6375f37358.jpg)
-    
-  <figcaption>Changeset detected on the PR github page</figcaption>
-</figure>
-
-
-4. When you are ready to merge your PR, please select the `Squash and Merge`
-  option. This helps reduce the commit noise in the Git repository.
-
-
 ## Next steps
 
 - Discuss your ideas and learnings in the
