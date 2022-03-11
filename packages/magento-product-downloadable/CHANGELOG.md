@@ -1,15 +1,25 @@
 # Change Log
 
+## 4.0.4
+
+### Patch Changes
+
+- [#1307](https://github.com/ho-nl/m2-pwa/pull/1307) [`bd10506d3`](https://github.com/ho-nl/m2-pwa/commit/bd10506d32fdbc91d01dadc29a12ebd1e0943655) Thanks [@paales](https://github.com/paales)! - All default exports are now named exports internally and all `index.tsx` are renamed to the component name.
+
+* [#1307](https://github.com/ho-nl/m2-pwa/pull/1307) [`27cb1f2d8`](https://github.com/ho-nl/m2-pwa/commit/27cb1f2d8dbfb8f1b301ce56fb6a2b6c1fc6a5ef) Thanks [@paales](https://github.com/paales)! - upgrade dependencies
+
+* Updated dependencies [[`bd10506d3`](https://github.com/ho-nl/m2-pwa/commit/bd10506d32fdbc91d01dadc29a12ebd1e0943655), [`27cb1f2d8`](https://github.com/ho-nl/m2-pwa/commit/27cb1f2d8dbfb8f1b301ce56fb6a2b6c1fc6a5ef)]:
+  - @graphcommerce/graphql@3.0.4
+  - @graphcommerce/magento-cart@4.1.4
+  - @graphcommerce/magento-product@4.0.6
+
 ## 4.0.3
 
 ### Patch Changes
 
-- [`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96)
-  Thanks [@paales](https://github.com/paales)! - made packages public
+- [`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96) Thanks [@paales](https://github.com/paales)! - made packages public
 
-- Updated dependencies
-  [[`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96),
-  [`81ea406d5`](https://github.com/ho-nl/m2-pwa/commit/81ea406d54d6b5c662c030a7fea444abc4117a20)]:
+- Updated dependencies [[`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96), [`81ea406d5`](https://github.com/ho-nl/m2-pwa/commit/81ea406d54d6b5c662c030a7fea444abc4117a20)]:
   - @graphcommerce/graphql@3.0.3
   - @graphcommerce/magento-cart@4.1.2
   - @graphcommerce/magento-product@4.0.3
@@ -18,29 +28,13 @@
 
 ### Patch Changes
 
-- [#1276](https://github.com/ho-nl/m2-pwa/pull/1276)
-  [`ce09388e0`](https://github.com/ho-nl/m2-pwa/commit/ce09388e0d7ef33aee660612340f6fbae15ceec2)
-  Thanks [@paales](https://github.com/paales)! - We've moved lots of internal packages from
-  `dependencies` to `peerDependencies`. The result of this is that there will be significantly less
-  duplicate packages in the node_modules folders.
+- [#1276](https://github.com/ho-nl/m2-pwa/pull/1276) [`ce09388e0`](https://github.com/ho-nl/m2-pwa/commit/ce09388e0d7ef33aee660612340f6fbae15ceec2) Thanks [@paales](https://github.com/paales)! - We've moved lots of internal packages from `dependencies` to `peerDependencies`. The result of this is that there will be significantly less duplicate packages in the node_modules folders.
 
-* [#1276](https://github.com/ho-nl/m2-pwa/pull/1276)
-  [`52a45bba4`](https://github.com/ho-nl/m2-pwa/commit/52a45bba4dc6dd6df3c81f5023df7d23ed8a534d)
-  Thanks [@paales](https://github.com/paales)! - Upgraded to
-  [NextJS 12.1](https://nextjs.org/blog/next-12-1)! This is just for compatibility, but we'll be
-  implementing
-  [On-demand Incremental Static Regeneration](https://nextjs.org/blog/next-12-1#on-demand-incremental-static-regeneration-beta)
-  soon.
+* [#1276](https://github.com/ho-nl/m2-pwa/pull/1276) [`52a45bba4`](https://github.com/ho-nl/m2-pwa/commit/52a45bba4dc6dd6df3c81f5023df7d23ed8a534d) Thanks [@paales](https://github.com/paales)! - Upgraded to [NextJS 12.1](https://nextjs.org/blog/next-12-1)! This is just for compatibility, but we'll be implementing [On-demand Incremental Static Regeneration](https://nextjs.org/blog/next-12-1#on-demand-incremental-static-regeneration-beta) soon.
 
-  This will greatly reduce the requirement to rebuid stuff and we'll add a management UI on the
-  frontend to be able to revalidate pages manually.
+  This will greatly reduce the requirement to rebuid stuff and we'll add a management UI on the frontend to be able to revalidate pages manually.
 
-* Updated dependencies
-  [[`381e4c86a`](https://github.com/ho-nl/m2-pwa/commit/381e4c86a8321ce96e1fa5c7d3c0a0c0ff3e02c7),
-  [`ce09388e0`](https://github.com/ho-nl/m2-pwa/commit/ce09388e0d7ef33aee660612340f6fbae15ceec2),
-  [`b08a8eb1d`](https://github.com/ho-nl/m2-pwa/commit/b08a8eb1d024b9d3e7712ef034029151670db275),
-  [`52a45bba4`](https://github.com/ho-nl/m2-pwa/commit/52a45bba4dc6dd6df3c81f5023df7d23ed8a534d),
-  [`5a4809b1a`](https://github.com/ho-nl/m2-pwa/commit/5a4809b1a705aa32f620f520085df48ee25f9949)]:
+* Updated dependencies [[`381e4c86a`](https://github.com/ho-nl/m2-pwa/commit/381e4c86a8321ce96e1fa5c7d3c0a0c0ff3e02c7), [`ce09388e0`](https://github.com/ho-nl/m2-pwa/commit/ce09388e0d7ef33aee660612340f6fbae15ceec2), [`b08a8eb1d`](https://github.com/ho-nl/m2-pwa/commit/b08a8eb1d024b9d3e7712ef034029151670db275), [`52a45bba4`](https://github.com/ho-nl/m2-pwa/commit/52a45bba4dc6dd6df3c81f5023df7d23ed8a534d), [`5a4809b1a`](https://github.com/ho-nl/m2-pwa/commit/5a4809b1a705aa32f620f520085df48ee25f9949)]:
   - @graphcommerce/magento-cart@4.1.1
   - @graphcommerce/graphql@3.0.2
   - @graphcommerce/magento-product@4.0.2
@@ -49,11 +43,8 @@
 
 ### Patch Changes
 
-- [`0cbaa878b`](https://github.com/ho-nl/m2-pwa/commit/0cbaa878b8a844d5abbeb1797b625a33130e6514)
-  Thanks [@paales](https://github.com/paales)! - Added homepage and repository package.json files,
-  so that the packages link to back to the website and repository
-- Updated dependencies
-  [[`0cbaa878b`](https://github.com/ho-nl/m2-pwa/commit/0cbaa878b8a844d5abbeb1797b625a33130e6514)]:
+- [`0cbaa878b`](https://github.com/ho-nl/m2-pwa/commit/0cbaa878b8a844d5abbeb1797b625a33130e6514) Thanks [@paales](https://github.com/paales)! - Added homepage and repository package.json files, so that the packages link to back to the website and repository
+- Updated dependencies [[`0cbaa878b`](https://github.com/ho-nl/m2-pwa/commit/0cbaa878b8a844d5abbeb1797b625a33130e6514)]:
   - @graphcommerce/graphql@3.0.1
   - @graphcommerce/magento-cart@4.0.1
   - @graphcommerce/magento-product@4.0.1
@@ -62,34 +53,28 @@
 
 ### Major Changes
 
-- [#1258](https://github.com/ho-nl/m2-pwa/pull/1258)
-  [`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05)
-  Thanks [@paales](https://github.com/paales)! - Upgraded to Material UI 5
+- [#1258](https://github.com/ho-nl/m2-pwa/pull/1258) [`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05) Thanks [@paales](https://github.com/paales)! - Upgraded to Material UI 5
 
 ### Patch Changes
 
-- Updated dependencies
-  [[`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05)]:
+- Updated dependencies [[`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05)]:
   - @graphcommerce/graphql@3.0.0
   - @graphcommerce/magento-cart@4.0.0
   - @graphcommerce/magento-product@4.0.0
 
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [3.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product-downloadable@3.1.31...@graphcommerce/magento-product-downloadable@3.2.0) (2021-11-12)
 
 ### Features
 
-- added tons of translations
-  ([9bb0ac7](https://github.com/ho-nl/m2-pwa/commit/9bb0ac709b58df6ea6141e92e4923a5ca9ae2963))
+- added tons of translations ([9bb0ac7](https://github.com/ho-nl/m2-pwa/commit/9bb0ac709b58df6ea6141e92e4923a5ca9ae2963))
 
 # [3.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product-downloadable@3.0.37...@graphcommerce/magento-product-downloadable@3.1.0) (2021-10-27)
 
 ### Features
 
-- **nextjs:** upgraded to nextjs 12
-  ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+- **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
 
 ## [3.0.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product-downloadable@3.0.0...@graphcommerce/magento-product-downloadable@3.0.1) (2021-09-27)
 
@@ -99,54 +84,35 @@ All notable changes to this project will be documented in this file. See
 
 ### Bug Fixes
 
-- ignore md files from triggering version updates
-  ([4f98392](https://github.com/ho-nl/m2-pwa/commit/4f9839250b3a32d3070da5290e5efcc5e2243fba))
-- product specs on product pages
-  ([098798a](https://github.com/ho-nl/m2-pwa/commit/098798aec353a8a571928faae02a303fed395977))
-- remove conflicting files
-  ([0c17ae4](https://github.com/ho-nl/m2-pwa/commit/0c17ae46be62b775ac83b35f11c532ce2d9401a3))
-- yarn workspace packages hot reload
-  ([d03fc9f](https://github.com/ho-nl/m2-pwa/commit/d03fc9fdda3486476761786f2b56a934cc92befc))
+- ignore md files from triggering version updates ([4f98392](https://github.com/ho-nl/m2-pwa/commit/4f9839250b3a32d3070da5290e5efcc5e2243fba))
+- product specs on product pages ([098798a](https://github.com/ho-nl/m2-pwa/commit/098798aec353a8a571928faae02a303fed395977))
+- remove conflicting files ([0c17ae4](https://github.com/ho-nl/m2-pwa/commit/0c17ae46be62b775ac83b35f11c532ce2d9401a3))
+- yarn workspace packages hot reload ([d03fc9f](https://github.com/ho-nl/m2-pwa/commit/d03fc9fdda3486476761786f2b56a934cc92befc))
 
 ### Features
 
-- barrel files for magento-product pages
-  ([c8fdcf2](https://github.com/ho-nl/m2-pwa/commit/c8fdcf2f5b98821dffe2c47f5ea4e1847bd3bb1e))
-- created stacked-pages package
-  ([d86008e](https://github.com/ho-nl/m2-pwa/commit/d86008ee659ccb25b194a41d624b394a1ddbd088))
-- **graphql:** introduced new graphql package that holds all generated files
-  ([a3e7aa0](https://github.com/ho-nl/m2-pwa/commit/a3e7aa05540540533b5ced9a95f1f802ecbe499f))
-- groundwork for complete reimplementation of product pages
-  ([b224da8](https://github.com/ho-nl/m2-pwa/commit/b224da8273eb5c8173ad30d006391b2291331623))
-- introduced magento-product-types package
-  ([1a0932b](https://github.com/ho-nl/m2-pwa/commit/1a0932b5d882608dcf8fd2e3b17ee9868f5f5776))
-- **magento-graphql:** added core magentoTypePolicies
-  ([bdf15d0](https://github.com/ho-nl/m2-pwa/commit/bdf15d0d3c04e88339a8385d76f3b1ab9589fde3))
-- next.js 11
-  ([7d61407](https://github.com/ho-nl/m2-pwa/commit/7d614075a778f488045034f74be4f75b93f63c43))
-- **playwright:** added new playwright package to enable browser testing
-  ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
-- renamed all packages to use [@graphcommerce](https://github.com/graphcommerce) instead of
-  [@reachdigital](https://github.com/reachdigital)
-  ([491e4ce](https://github.com/ho-nl/m2-pwa/commit/491e4cec9a2686472dac36b79f999257c0811ffe))
-- upgrade to node 14
-  ([d079a75](https://github.com/ho-nl/m2-pwa/commit/d079a751e9bfd8dc7f5009d2c9f31c336a0c96ab))
-- upgraded to nextjs 11
-  ([0053beb](https://github.com/ho-nl/m2-pwa/commit/0053beb7ef597c190add7264256a0eaec35868da))
+- barrel files for magento-product pages ([c8fdcf2](https://github.com/ho-nl/m2-pwa/commit/c8fdcf2f5b98821dffe2c47f5ea4e1847bd3bb1e))
+- created stacked-pages package ([d86008e](https://github.com/ho-nl/m2-pwa/commit/d86008ee659ccb25b194a41d624b394a1ddbd088))
+- **graphql:** introduced new graphql package that holds all generated files ([a3e7aa0](https://github.com/ho-nl/m2-pwa/commit/a3e7aa05540540533b5ced9a95f1f802ecbe499f))
+- groundwork for complete reimplementation of product pages ([b224da8](https://github.com/ho-nl/m2-pwa/commit/b224da8273eb5c8173ad30d006391b2291331623))
+- introduced magento-product-types package ([1a0932b](https://github.com/ho-nl/m2-pwa/commit/1a0932b5d882608dcf8fd2e3b17ee9868f5f5776))
+- **magento-graphql:** added core magentoTypePolicies ([bdf15d0](https://github.com/ho-nl/m2-pwa/commit/bdf15d0d3c04e88339a8385d76f3b1ab9589fde3))
+- next.js 11 ([7d61407](https://github.com/ho-nl/m2-pwa/commit/7d614075a778f488045034f74be4f75b93f63c43))
+- **playwright:** added new playwright package to enable browser testing ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
+- renamed all packages to use [@graphcommerce](https://github.com/graphcommerce) instead of [@reachdigital](https://github.com/reachdigital) ([491e4ce](https://github.com/ho-nl/m2-pwa/commit/491e4cec9a2686472dac36b79f999257c0811ffe))
+- upgrade to node 14 ([d079a75](https://github.com/ho-nl/m2-pwa/commit/d079a751e9bfd8dc7f5009d2c9f31c336a0c96ab))
+- upgraded to nextjs 11 ([0053beb](https://github.com/ho-nl/m2-pwa/commit/0053beb7ef597c190add7264256a0eaec35868da))
 
 ## 2.0.8 (2020-10-28)
 
 ### Bug Fixes
 
-- make sure themes extensions are found
-  ([5aa18db](https://github.com/ho-nl/m2-pwa/commit/5aa18db514fd2e2f50681367e39523f8e742ece0))
+- make sure themes extensions are found ([5aa18db](https://github.com/ho-nl/m2-pwa/commit/5aa18db514fd2e2f50681367e39523f8e742ece0))
 
 ### Features
 
-- added generated graphql.ts files
-  ([3e44415](https://github.com/ho-nl/m2-pwa/commit/3e44415b018e74b502e9e98479aa5e84041f337d))
-- split into packages
-  ([2ee7fd6](https://github.com/ho-nl/m2-pwa/commit/2ee7fd6c0056f467d114f04d92c6c0ddf622d151))
+- added generated graphql.ts files ([3e44415](https://github.com/ho-nl/m2-pwa/commit/3e44415b018e74b502e9e98479aa5e84041f337d))
+- split into packages ([2ee7fd6](https://github.com/ho-nl/m2-pwa/commit/2ee7fd6c0056f467d114f04d92c6c0ddf622d151))
 
 ### BREAKING CHANGES
 
@@ -154,26 +120,22 @@ All notable changes to this project will be documented in this file. See
 
 # Change Log
 
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product-downloadable@2.101.10...@graphcommerce/magento-product-downloadable@2.102.0) (2021-08-12)
 
 ### Features
 
-- upgraded to nextjs 11
-  ([0053beb](https://github.com/ho-nl/m2-pwa/commit/0053beb7ef597c190add7264256a0eaec35868da))
+- upgraded to nextjs 11 ([0053beb](https://github.com/ho-nl/m2-pwa/commit/0053beb7ef597c190add7264256a0eaec35868da))
 
 # [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product-downloadable@2.100.19...@graphcommerce/magento-product-downloadable@2.101.0) (2021-07-26)
 
 ### Features
 
-- **playwright:** added new playwright package to enable browser testing
-  ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
+- **playwright:** added new playwright package to enable browser testing ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
 
 ## [2.100.11](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-product-downloadable@2.100.10...@graphcommerce/magento-product-downloadable@2.100.11) (2021-07-20)
 
 ### Bug Fixes
 
-- ignore md files from triggering version updates
-  ([4f98392](https://github.com/ho-nl/m2-pwa/commit/4f9839250b3a32d3070da5290e5efcc5e2243fba))
+- ignore md files from triggering version updates ([4f98392](https://github.com/ho-nl/m2-pwa/commit/4f9839250b3a32d3070da5290e5efcc5e2243fba))

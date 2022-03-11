@@ -1,26 +1,31 @@
 # Change Log
 
+## 4.0.5
+
+### Patch Changes
+
+- [#1307](https://github.com/ho-nl/m2-pwa/pull/1307) [`bd10506d3`](https://github.com/ho-nl/m2-pwa/commit/bd10506d32fdbc91d01dadc29a12ebd1e0943655) Thanks [@paales](https://github.com/paales)! - All default exports are now named exports internally and all `index.tsx` are renamed to the component name.
+
+* [#1307](https://github.com/ho-nl/m2-pwa/pull/1307) [`27cb1f2d8`](https://github.com/ho-nl/m2-pwa/commit/27cb1f2d8dbfb8f1b301ce56fb6a2b6c1fc6a5ef) Thanks [@paales](https://github.com/paales)! - upgrade dependencies
+
+* Updated dependencies [[`7f71a9eaa`](https://github.com/ho-nl/m2-pwa/commit/7f71a9eaaea7de6ca3fab7cbb55049f1b1cd6427)]:
+  - @graphcommerce/prettier-config-pwa@4.0.3
+
 ## 4.0.4
 
 ### Patch Changes
 
-- [#1285](https://github.com/ho-nl/m2-pwa/pull/1285)
-  [`c85294ba6`](https://github.com/ho-nl/m2-pwa/commit/c85294ba6d742ce78c074559a1e95409b25a5017)
-  Thanks [@paales](https://github.com/paales)! - upgraded dependencies
+- [#1285](https://github.com/ho-nl/m2-pwa/pull/1285) [`c85294ba6`](https://github.com/ho-nl/m2-pwa/commit/c85294ba6d742ce78c074559a1e95409b25a5017) Thanks [@paales](https://github.com/paales)! - upgraded dependencies
 
 ## 4.0.3
 
 ### Patch Changes
 
-- [`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96)
-  Thanks [@paales](https://github.com/paales)! - made packages public
+- [`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96) Thanks [@paales](https://github.com/paales)! - made packages public
 
-* [#1278](https://github.com/ho-nl/m2-pwa/pull/1278)
-  [`81ea406d5`](https://github.com/ho-nl/m2-pwa/commit/81ea406d54d6b5c662c030a7fea444abc4117a20)
-  Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Upgraded dependencies to the latest version
+* [#1278](https://github.com/ho-nl/m2-pwa/pull/1278) [`81ea406d5`](https://github.com/ho-nl/m2-pwa/commit/81ea406d54d6b5c662c030a7fea444abc4117a20) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Upgraded dependencies to the latest version
 
-* Updated dependencies
-  [[`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96)]:
+* Updated dependencies [[`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96)]:
   - @graphcommerce/prettier-config-pwa@4.0.2
   - @graphcommerce/typescript-config-pwa@4.0.2
 
@@ -28,32 +33,18 @@
 
 ### Patch Changes
 
-- [#1276](https://github.com/ho-nl/m2-pwa/pull/1276)
-  [`ce09388e0`](https://github.com/ho-nl/m2-pwa/commit/ce09388e0d7ef33aee660612340f6fbae15ceec2)
-  Thanks [@paales](https://github.com/paales)! - We've moved lots of internal packages from
-  `dependencies` to `peerDependencies`. The result of this is that there will be significantly less
-  duplicate packages in the node_modules folders.
+- [#1276](https://github.com/ho-nl/m2-pwa/pull/1276) [`ce09388e0`](https://github.com/ho-nl/m2-pwa/commit/ce09388e0d7ef33aee660612340f6fbae15ceec2) Thanks [@paales](https://github.com/paales)! - We've moved lots of internal packages from `dependencies` to `peerDependencies`. The result of this is that there will be significantly less duplicate packages in the node_modules folders.
 
-* [#1276](https://github.com/ho-nl/m2-pwa/pull/1276)
-  [`52a45bba4`](https://github.com/ho-nl/m2-pwa/commit/52a45bba4dc6dd6df3c81f5023df7d23ed8a534d)
-  Thanks [@paales](https://github.com/paales)! - Upgraded to
-  [NextJS 12.1](https://nextjs.org/blog/next-12-1)! This is just for compatibility, but we'll be
-  implementing
-  [On-demand Incremental Static Regeneration](https://nextjs.org/blog/next-12-1#on-demand-incremental-static-regeneration-beta)
-  soon.
+* [#1276](https://github.com/ho-nl/m2-pwa/pull/1276) [`52a45bba4`](https://github.com/ho-nl/m2-pwa/commit/52a45bba4dc6dd6df3c81f5023df7d23ed8a534d) Thanks [@paales](https://github.com/paales)! - Upgraded to [NextJS 12.1](https://nextjs.org/blog/next-12-1)! This is just for compatibility, but we'll be implementing [On-demand Incremental Static Regeneration](https://nextjs.org/blog/next-12-1#on-demand-incremental-static-regeneration-beta) soon.
 
-  This will greatly reduce the requirement to rebuid stuff and we'll add a management UI on the
-  frontend to be able to revalidate pages manually.
+  This will greatly reduce the requirement to rebuid stuff and we'll add a management UI on the frontend to be able to revalidate pages manually.
 
 ## 4.0.1
 
 ### Patch Changes
 
-- [`0cbaa878b`](https://github.com/ho-nl/m2-pwa/commit/0cbaa878b8a844d5abbeb1797b625a33130e6514)
-  Thanks [@paales](https://github.com/paales)! - Added homepage and repository package.json files,
-  so that the packages link to back to the website and repository
-- Updated dependencies
-  [[`0cbaa878b`](https://github.com/ho-nl/m2-pwa/commit/0cbaa878b8a844d5abbeb1797b625a33130e6514)]:
+- [`0cbaa878b`](https://github.com/ho-nl/m2-pwa/commit/0cbaa878b8a844d5abbeb1797b625a33130e6514) Thanks [@paales](https://github.com/paales)! - Added homepage and repository package.json files, so that the packages link to back to the website and repository
+- Updated dependencies [[`0cbaa878b`](https://github.com/ho-nl/m2-pwa/commit/0cbaa878b8a844d5abbeb1797b625a33130e6514)]:
   - @graphcommerce/prettier-config-pwa@4.0.1
   - @graphcommerce/typescript-config-pwa@4.0.1
 
@@ -61,40 +52,33 @@
 
 ### Major Changes
 
-- [#1258](https://github.com/ho-nl/m2-pwa/pull/1258)
-  [`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05)
-  Thanks [@paales](https://github.com/paales)! - Upgraded to Material UI 5
+- [#1258](https://github.com/ho-nl/m2-pwa/pull/1258) [`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05) Thanks [@paales](https://github.com/paales)! - Upgraded to Material UI 5
 
 ### Patch Changes
 
-- Updated dependencies
-  [[`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05)]:
+- Updated dependencies [[`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05)]:
   - @graphcommerce/typescript-config-pwa@4.0.0
   - @graphcommerce/prettier-config-pwa@4.0.0
 
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [3.1.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/eslint-config-pwa@3.1.4...@graphcommerce/eslint-config-pwa@3.1.5) (2021-11-12)
 
 ### Bug Fixes
 
-- eslint doesn't start properly
-  ([3e01cfb](https://github.com/ho-nl/m2-pwa/commit/3e01cfb89ef73de2b520399c9428b88114844b02))
+- eslint doesn't start properly ([3e01cfb](https://github.com/ho-nl/m2-pwa/commit/3e01cfb89ef73de2b520399c9428b88114844b02))
 
 # [3.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/eslint-config-pwa@3.0.8...@graphcommerce/eslint-config-pwa@3.1.0) (2021-10-21)
 
 ### Features
 
-- **graphql-mesh:** remove the api project and use a single project 🎉👩‍👩‍👦‍👦
-  ([ea4ad03](https://github.com/ho-nl/m2-pwa/commit/ea4ad0397d4ff289ef3b3253593fb0914c8c5246))
+- **graphql-mesh:** remove the api project and use a single project 🎉👩‍👩‍👦‍👦 ([ea4ad03](https://github.com/ho-nl/m2-pwa/commit/ea4ad0397d4ff289ef3b3253593fb0914c8c5246))
 
 ## [3.0.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/eslint-config-pwa@3.0.2...@graphcommerce/eslint-config-pwa@3.0.3) (2021-09-28)
 
 ### Bug Fixes
 
-- eslint not working
-  ([68c76b3](https://github.com/ho-nl/m2-pwa/commit/68c76b3f4bc1f7dbf490b331e72f0d91afc634bf))
+- eslint not working ([68c76b3](https://github.com/ho-nl/m2-pwa/commit/68c76b3f4bc1f7dbf490b331e72f0d91afc634bf))
 
 ## [3.0.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/eslint-config-pwa@3.0.0...@graphcommerce/eslint-config-pwa@3.0.1) (2021-09-27)
 
@@ -104,53 +88,33 @@ All notable changes to this project will be documented in this file. See
 
 ### Bug Fixes
 
-- [@typescript-eslint](https://github.com/typescript-eslint) package not found
-  ([09ccae0](https://github.com/ho-nl/m2-pwa/commit/09ccae09605e0bab83a2168677e9752d16b24e9d))
-- disable prefer-default-export for ts files as they are usually libraries
-  ([7c91b32](https://github.com/ho-nl/m2-pwa/commit/7c91b32d008ffdf1651d5255891f602f7b27e534))
-- **eslint-config:** allow console.info
-  ([ea55b1d](https://github.com/ho-nl/m2-pwa/commit/ea55b1d3fe08bacae8044fb111c74c5497e5a591))
-- ignore md files from triggering version updates
-  ([4f98392](https://github.com/ho-nl/m2-pwa/commit/4f9839250b3a32d3070da5290e5efcc5e2243fba))
-- make eslint config compatible with eslint-config-prettier@8.0.0
-  ([a4978f9](https://github.com/ho-nl/m2-pwa/commit/a4978f968c0115279e2cb7457d4502f70d7d05d4))
-- move back to yarn 1.19.1
-  ([ce36c53](https://github.com/ho-nl/m2-pwa/commit/ce36c53b94c0f834b5e4da5e0d7e3b2bb02754bf))
-- playwright.ts files error
-  ([4296f64](https://github.com/ho-nl/m2-pwa/commit/4296f648b11ea2a01e220cc0cbe1f6114e83e747))
-- remove cyclic dependencies
-  ([8a59389](https://github.com/ho-nl/m2-pwa/commit/8a5938943a97634cce57c68bb369c6e77e7a0288))
-- remove unused property from eslint config ignorePatterns
-  ([a8a7af1](https://github.com/ho-nl/m2-pwa/commit/a8a7af1754542bd5b445e54642e563ac6c386913))
+- [@typescript-eslint](https://github.com/typescript-eslint) package not found ([09ccae0](https://github.com/ho-nl/m2-pwa/commit/09ccae09605e0bab83a2168677e9752d16b24e9d))
+- disable prefer-default-export for ts files as they are usually libraries ([7c91b32](https://github.com/ho-nl/m2-pwa/commit/7c91b32d008ffdf1651d5255891f602f7b27e534))
+- **eslint-config:** allow console.info ([ea55b1d](https://github.com/ho-nl/m2-pwa/commit/ea55b1d3fe08bacae8044fb111c74c5497e5a591))
+- ignore md files from triggering version updates ([4f98392](https://github.com/ho-nl/m2-pwa/commit/4f9839250b3a32d3070da5290e5efcc5e2243fba))
+- make eslint config compatible with eslint-config-prettier@8.0.0 ([a4978f9](https://github.com/ho-nl/m2-pwa/commit/a4978f968c0115279e2cb7457d4502f70d7d05d4))
+- move back to yarn 1.19.1 ([ce36c53](https://github.com/ho-nl/m2-pwa/commit/ce36c53b94c0f834b5e4da5e0d7e3b2bb02754bf))
+- playwright.ts files error ([4296f64](https://github.com/ho-nl/m2-pwa/commit/4296f648b11ea2a01e220cc0cbe1f6114e83e747))
+- remove cyclic dependencies ([8a59389](https://github.com/ho-nl/m2-pwa/commit/8a5938943a97634cce57c68bb369c6e77e7a0288))
+- remove unused property from eslint config ignorePatterns ([a8a7af1](https://github.com/ho-nl/m2-pwa/commit/a8a7af1754542bd5b445e54642e563ac6c386913))
 
 ### Features
 
-- added eslint-plugin-next to have more linting
-  ([599c9f0](https://github.com/ho-nl/m2-pwa/commit/599c9f0ff7c07cae3791d6bda819beabaed82f4e))
-- created stacked-pages package
-  ([d86008e](https://github.com/ho-nl/m2-pwa/commit/d86008ee659ccb25b194a41d624b394a1ddbd088))
-- **eslint:** no-relative-packages, prevent importing other packages by relative paths
-  ([b3d23b0](https://github.com/ho-nl/m2-pwa/commit/b3d23b0217f808bb251ecaf67ccc618f9a10eefe))
-- **framer-next-pages:** enable dragging when the content isn’t scrollable
-  ([3df9115](https://github.com/ho-nl/m2-pwa/commit/3df9115d3fbf72dbe547780f0bc6ce80e42b9e47))
-- next.js 11
-  ([7d61407](https://github.com/ho-nl/m2-pwa/commit/7d614075a778f488045034f74be4f75b93f63c43))
-- **playwright:** added new playwright package to enable browser testing
-  ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
-- renamed all packages to use [@graphcommerce](https://github.com/graphcommerce) instead of
-  [@reachdigital](https://github.com/reachdigital)
-  ([491e4ce](https://github.com/ho-nl/m2-pwa/commit/491e4cec9a2686472dac36b79f999257c0811ffe))
-- upgrade to node 14
-  ([d079a75](https://github.com/ho-nl/m2-pwa/commit/d079a751e9bfd8dc7f5009d2c9f31c336a0c96ab))
-- use official nextjs image endpoint
-  ([0e76ab4](https://github.com/ho-nl/m2-pwa/commit/0e76ab4cece15d4d6f192cb938588a34abaebe8a))
+- added eslint-plugin-next to have more linting ([599c9f0](https://github.com/ho-nl/m2-pwa/commit/599c9f0ff7c07cae3791d6bda819beabaed82f4e))
+- created stacked-pages package ([d86008e](https://github.com/ho-nl/m2-pwa/commit/d86008ee659ccb25b194a41d624b394a1ddbd088))
+- **eslint:** no-relative-packages, prevent importing other packages by relative paths ([b3d23b0](https://github.com/ho-nl/m2-pwa/commit/b3d23b0217f808bb251ecaf67ccc618f9a10eefe))
+- **framer-next-pages:** enable dragging when the content isn’t scrollable ([3df9115](https://github.com/ho-nl/m2-pwa/commit/3df9115d3fbf72dbe547780f0bc6ce80e42b9e47))
+- next.js 11 ([7d61407](https://github.com/ho-nl/m2-pwa/commit/7d614075a778f488045034f74be4f75b93f63c43))
+- **playwright:** added new playwright package to enable browser testing ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
+- renamed all packages to use [@graphcommerce](https://github.com/graphcommerce) instead of [@reachdigital](https://github.com/reachdigital) ([491e4ce](https://github.com/ho-nl/m2-pwa/commit/491e4cec9a2686472dac36b79f999257c0811ffe))
+- upgrade to node 14 ([d079a75](https://github.com/ho-nl/m2-pwa/commit/d079a751e9bfd8dc7f5009d2c9f31c336a0c96ab))
+- use official nextjs image endpoint ([0e76ab4](https://github.com/ho-nl/m2-pwa/commit/0e76ab4cece15d4d6f192cb938588a34abaebe8a))
 
 ## 2.0.8 (2020-10-28)
 
 ### Features
 
-- split into packages
-  ([2ee7fd6](https://github.com/ho-nl/m2-pwa/commit/2ee7fd6c0056f467d114f04d92c6c0ddf622d151))
+- split into packages ([2ee7fd6](https://github.com/ho-nl/m2-pwa/commit/2ee7fd6c0056f467d114f04d92c6c0ddf622d151))
 
 ### BREAKING CHANGES
 
@@ -160,19 +124,15 @@ All notable changes to this project will be documented in this file. See
 
 ### Features
 
-- **eslint:** no-relative-packages, prevent importing other packages by relative paths
-  ([b3d23b0](https://github.com/ho-nl/m2-pwa/commit/b3d23b0217f808bb251ecaf67ccc618f9a10eefe))
+- **eslint:** no-relative-packages, prevent importing other packages by relative paths ([b3d23b0](https://github.com/ho-nl/m2-pwa/commit/b3d23b0217f808bb251ecaf67ccc618f9a10eefe))
 
 # [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/eslint-config-pwa@2.100.10...@graphcommerce/eslint-config-pwa@2.101.0) (2021-07-26)
 
 ### Bug Fixes
 
-- ignore md files from triggering version updates
-  ([4f98392](https://github.com/ho-nl/m2-pwa/commit/4f9839250b3a32d3070da5290e5efcc5e2243fba))
-- playwright.ts files error
-  ([4296f64](https://github.com/ho-nl/m2-pwa/commit/4296f648b11ea2a01e220cc0cbe1f6114e83e747))
+- ignore md files from triggering version updates ([4f98392](https://github.com/ho-nl/m2-pwa/commit/4f9839250b3a32d3070da5290e5efcc5e2243fba))
+- playwright.ts files error ([4296f64](https://github.com/ho-nl/m2-pwa/commit/4296f648b11ea2a01e220cc0cbe1f6114e83e747))
 
 ### Features
 
-- **playwright:** added new playwright package to enable browser testing
-  ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
+- **playwright:** added new playwright package to enable browser testing ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))

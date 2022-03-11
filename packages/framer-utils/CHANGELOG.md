@@ -1,58 +1,48 @@
 # Change Log
 
+## 3.0.4
+
+### Patch Changes
+
+- [#1307](https://github.com/ho-nl/m2-pwa/pull/1307) [`bd10506d3`](https://github.com/ho-nl/m2-pwa/commit/bd10506d32fdbc91d01dadc29a12ebd1e0943655) Thanks [@paales](https://github.com/paales)! - All default exports are now named exports internally and all `index.tsx` are renamed to the component name.
+
+* [#1307](https://github.com/ho-nl/m2-pwa/pull/1307) [`27cb1f2d8`](https://github.com/ho-nl/m2-pwa/commit/27cb1f2d8dbfb8f1b301ce56fb6a2b6c1fc6a5ef) Thanks [@paales](https://github.com/paales)! - upgrade dependencies
+
 ## 3.0.3
 
 ### Patch Changes
 
-- [`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96)
-  Thanks [@paales](https://github.com/paales)! - made packages public
+- [`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96) Thanks [@paales](https://github.com/paales)! - made packages public
 
 ## 3.0.2
 
 ### Patch Changes
 
-- [#1276](https://github.com/ho-nl/m2-pwa/pull/1276)
-  [`ce09388e0`](https://github.com/ho-nl/m2-pwa/commit/ce09388e0d7ef33aee660612340f6fbae15ceec2)
-  Thanks [@paales](https://github.com/paales)! - We've moved lots of internal packages from
-  `dependencies` to `peerDependencies`. The result of this is that there will be significantly less
-  duplicate packages in the node_modules folders.
+- [#1276](https://github.com/ho-nl/m2-pwa/pull/1276) [`ce09388e0`](https://github.com/ho-nl/m2-pwa/commit/ce09388e0d7ef33aee660612340f6fbae15ceec2) Thanks [@paales](https://github.com/paales)! - We've moved lots of internal packages from `dependencies` to `peerDependencies`. The result of this is that there will be significantly less duplicate packages in the node_modules folders.
 
-* [#1276](https://github.com/ho-nl/m2-pwa/pull/1276)
-  [`52a45bba4`](https://github.com/ho-nl/m2-pwa/commit/52a45bba4dc6dd6df3c81f5023df7d23ed8a534d)
-  Thanks [@paales](https://github.com/paales)! - Upgraded to
-  [NextJS 12.1](https://nextjs.org/blog/next-12-1)! This is just for compatibility, but we'll be
-  implementing
-  [On-demand Incremental Static Regeneration](https://nextjs.org/blog/next-12-1#on-demand-incremental-static-regeneration-beta)
-  soon.
+* [#1276](https://github.com/ho-nl/m2-pwa/pull/1276) [`52a45bba4`](https://github.com/ho-nl/m2-pwa/commit/52a45bba4dc6dd6df3c81f5023df7d23ed8a534d) Thanks [@paales](https://github.com/paales)! - Upgraded to [NextJS 12.1](https://nextjs.org/blog/next-12-1)! This is just for compatibility, but we'll be implementing [On-demand Incremental Static Regeneration](https://nextjs.org/blog/next-12-1#on-demand-incremental-static-regeneration-beta) soon.
 
-  This will greatly reduce the requirement to rebuid stuff and we'll add a management UI on the
-  frontend to be able to revalidate pages manually.
+  This will greatly reduce the requirement to rebuid stuff and we'll add a management UI on the frontend to be able to revalidate pages manually.
 
 ## 3.0.1
 
 ### Patch Changes
 
-- [`0cbaa878b`](https://github.com/ho-nl/m2-pwa/commit/0cbaa878b8a844d5abbeb1797b625a33130e6514)
-  Thanks [@paales](https://github.com/paales)! - Added homepage and repository package.json files,
-  so that the packages link to back to the website and repository
+- [`0cbaa878b`](https://github.com/ho-nl/m2-pwa/commit/0cbaa878b8a844d5abbeb1797b625a33130e6514) Thanks [@paales](https://github.com/paales)! - Added homepage and repository package.json files, so that the packages link to back to the website and repository
 
 ## 3.0.0
 
 ### Major Changes
 
-- [#1258](https://github.com/ho-nl/m2-pwa/pull/1258)
-  [`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05)
-  Thanks [@paales](https://github.com/paales)! - Upgraded to Material UI 5
+- [#1258](https://github.com/ho-nl/m2-pwa/pull/1258) [`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05) Thanks [@paales](https://github.com/paales)! - Upgraded to Material UI 5
 
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.103.6](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-utils@2.103.5...@graphcommerce/framer-utils@2.103.6) (2021-10-09)
 
 ### Bug Fixes
 
-- clientSize.x was incorrect
-  ([39d12c4](https://github.com/ho-nl/m2-pwa/commit/39d12c4b583b7806f943dbd08c31b2dd940cc74b))
+- clientSize.x was incorrect ([39d12c4](https://github.com/ho-nl/m2-pwa/commit/39d12c4b583b7806f943dbd08c31b2dd940cc74b))
 
 ## [2.103.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-utils@2.103.0...@graphcommerce/framer-utils@2.103.1) (2021-09-27)
 
@@ -62,67 +52,48 @@ All notable changes to this project will be documented in this file. See
 
 ### Bug Fixes
 
-- bottom sheet is not properly sized when scrolled
-  ([93a1dc4](https://github.com/ho-nl/m2-pwa/commit/93a1dc40c37de74a8223657add77c51d51a24d92))
-- **framer-sheet:** bottom sheet does not resize properly
-  ([2ae89db](https://github.com/ho-nl/m2-pwa/commit/2ae89dbd651acba10f40ac68956213dd744e2247))
-- **framer-utils:** reading of values didn't happen at the right moment, causing unnessary layout
-  reflows
-  ([b119262](https://github.com/ho-nl/m2-pwa/commit/b119262ffb2907a215f9f37f12ef6cf6f62fadcd))
-- **framer-utils:** state wasn't directly set when initializing useMotionValueValue
-  ([3560456](https://github.com/ho-nl/m2-pwa/commit/35604562a4a39fef3b5dc4c0305ce0753608d9e8))
-- ignore md files from triggering version updates
-  ([4f98392](https://github.com/ho-nl/m2-pwa/commit/4f9839250b3a32d3070da5290e5efcc5e2243fba))
+- bottom sheet is not properly sized when scrolled ([93a1dc4](https://github.com/ho-nl/m2-pwa/commit/93a1dc40c37de74a8223657add77c51d51a24d92))
+- **framer-sheet:** bottom sheet does not resize properly ([2ae89db](https://github.com/ho-nl/m2-pwa/commit/2ae89dbd651acba10f40ac68956213dd744e2247))
+- **framer-utils:** reading of values didn't happen at the right moment, causing unnessary layout reflows ([b119262](https://github.com/ho-nl/m2-pwa/commit/b119262ffb2907a215f9f37f12ef6cf6f62fadcd))
+- **framer-utils:** state wasn't directly set when initializing useMotionValueValue ([3560456](https://github.com/ho-nl/m2-pwa/commit/35604562a4a39fef3b5dc4c0305ce0753608d9e8))
+- ignore md files from triggering version updates ([4f98392](https://github.com/ho-nl/m2-pwa/commit/4f9839250b3a32d3070da5290e5efcc5e2243fba))
 
 ### Features
 
-- **content-header:** text buttons on mobile - pill buttons on desktop
-  ([1438838](https://github.com/ho-nl/m2-pwa/commit/1438838fbd2aac1e3510368f2a657314ebd05d2d))
-- **framer-utils:** created framer-utils and implemented for framer-sheet and framer-next-pages
-  ([788bf28](https://github.com/ho-nl/m2-pwa/commit/788bf282d4a38ec5e78ab7244065c540dfc132a1))
-- **playwright:** added new playwright package to enable browser testing
-  ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
-- renamed all packages to use [@graphcommerce](https://github.com/graphcommerce) instead of
-  [@reachdigital](https://github.com/reachdigital)
-  ([491e4ce](https://github.com/ho-nl/m2-pwa/commit/491e4cec9a2686472dac36b79f999257c0811ffe))
+- **content-header:** text buttons on mobile - pill buttons on desktop ([1438838](https://github.com/ho-nl/m2-pwa/commit/1438838fbd2aac1e3510368f2a657314ebd05d2d))
+- **framer-utils:** created framer-utils and implemented for framer-sheet and framer-next-pages ([788bf28](https://github.com/ho-nl/m2-pwa/commit/788bf282d4a38ec5e78ab7244065c540dfc132a1))
+- **playwright:** added new playwright package to enable browser testing ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
+- renamed all packages to use [@graphcommerce](https://github.com/graphcommerce) instead of [@reachdigital](https://github.com/reachdigital) ([491e4ce](https://github.com/ho-nl/m2-pwa/commit/491e4cec9a2686472dac36b79f999257c0811ffe))
 
 # Change Log
 
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.102.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-utils@2.102.4...@graphcommerce/framer-utils@2.102.5) (2021-09-01)
 
 ### Bug Fixes
 
-- **framer-utils:** reading of values didn't happen at the right moment, causing unnessary layout
-  reflows
-  ([b119262](https://github.com/ho-nl/m2-pwa/commit/b119262ffb2907a215f9f37f12ef6cf6f62fadcd))
-- **framer-utils:** state wasn't directly set when initializing useMotionValueValue
-  ([3560456](https://github.com/ho-nl/m2-pwa/commit/35604562a4a39fef3b5dc4c0305ce0753608d9e8))
+- **framer-utils:** reading of values didn't happen at the right moment, causing unnessary layout reflows ([b119262](https://github.com/ho-nl/m2-pwa/commit/b119262ffb2907a215f9f37f12ef6cf6f62fadcd))
+- **framer-utils:** state wasn't directly set when initializing useMotionValueValue ([3560456](https://github.com/ho-nl/m2-pwa/commit/35604562a4a39fef3b5dc4c0305ce0753608d9e8))
 
 ## [2.102.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-utils@2.102.1...@graphcommerce/framer-utils@2.102.2) (2021-08-04)
 
 ### Bug Fixes
 
-- bottom sheet is not properly sized when scrolled
-  ([93a1dc4](https://github.com/ho-nl/m2-pwa/commit/93a1dc40c37de74a8223657add77c51d51a24d92))
+- bottom sheet is not properly sized when scrolled ([93a1dc4](https://github.com/ho-nl/m2-pwa/commit/93a1dc40c37de74a8223657add77c51d51a24d92))
 
 # [2.102.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-utils@2.101.1...@graphcommerce/framer-utils@2.102.0) (2021-07-26)
 
 ### Features
 
-- **playwright:** added new playwright package to enable browser testing
-  ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
+- **playwright:** added new playwright package to enable browser testing ([6f49ec7](https://github.com/ho-nl/m2-pwa/commit/6f49ec7595563775b96ebf21c27e39da1282e8d9))
 
 # [2.101.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-utils@2.100.10...@graphcommerce/framer-utils@2.101.0) (2021-07-20)
 
 ### Bug Fixes
 
-- ignore md files from triggering version updates
-  ([4f98392](https://github.com/ho-nl/m2-pwa/commit/4f9839250b3a32d3070da5290e5efcc5e2243fba))
+- ignore md files from triggering version updates ([4f98392](https://github.com/ho-nl/m2-pwa/commit/4f9839250b3a32d3070da5290e5efcc5e2243fba))
 
 ### Features
 
-- **content-header:** text buttons on mobile - pill buttons on desktop
-  ([1438838](https://github.com/ho-nl/m2-pwa/commit/1438838fbd2aac1e3510368f2a657314ebd05d2d))
+- **content-header:** text buttons on mobile - pill buttons on desktop ([1438838](https://github.com/ho-nl/m2-pwa/commit/1438838fbd2aac1e3510368f2a657314ebd05d2d))
