@@ -148,7 +148,9 @@ export function ProductReviews(props: ProductReviewsProps) {
               alignItems: 'center',
             })}
           >
-            <Typography variant='subtitle1'>Be the first to write a review!</Typography>
+            <Typography variant='subtitle1'>
+              <Trans>Be the first to write a review!</Trans>
+            </Typography>
           </Box>
         </Box>
         {actions}
@@ -241,7 +243,7 @@ export function ProductReviews(props: ProductReviewsProps) {
               })}
             >
               <Box className={classes.nickname} sx={{ typography: 'body2' }}>
-                Written by {review?.nickname}
+                <Trans>Written by</Trans> {review?.nickname}
               </Box>
               <Box
                 component='time'
