@@ -69,7 +69,7 @@ Install the [recommended VS Code extensions](../docs/getting-started/vscode.md)
 </figure>
 
 
-- When you are ready to merge your PR, please select the `Squash and Merge`
+4. When you are ready to merge your PR, please select the `Squash and Merge`
   option. This helps reduce the commit noise in the Git repository.
 
 ### Releases
