@@ -49,7 +49,7 @@ Refresh to see your changes updated
 
 <figure>
 
-![Make changes to translations](https://cdn-std.droplr.net/files/acc_857465/ipzm99)
+![Make changes to translations](https://user-images.githubusercontent.com/1251986/157833515-c4637c6a-e406-4756-9e50-a6963b840abf.jpg)
 
  <figcaption>Make changes to translations. Refresh to see changes updated.</figcaption>
 </figure>
