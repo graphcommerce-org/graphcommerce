@@ -45,14 +45,14 @@ frontend React framework that uses Next.js for server-side rendering.
 
 <figure>
 
-![Adding a Single line text field](https://cdn-std.droplr.net/files/acc_857465/6UGrfK)
+![Adding a Single line text field]()
 
   <figcaption>Adding a Single line text field called "Identity"</figcaption>
 </figure>
 
 <figure>
 
-![Configuring of the 'Identity' field](https://cdn-std.droplr.net/files/acc_857465/TvNPoT)
+![Configuring of the 'Identity' field](https://user-images.githubusercontent.com/1251986/157831852-c96c03e7-f1f0-4746-a853-35807a6b9385.png)
 
    <figcaption>Configuring of the "Identity" field</figcaption>
 </figure>
@@ -61,7 +61,7 @@ frontend React framework that uses Next.js for server-side rendering.
 
 <figure>
 
-![Adding an Asset field called 'Image'](https://cdn-std.droplr.net/files/acc_857465/OdkckP)
+![Adding an Asset field called 'Image'](https://user-images.githubusercontent.com/1251986/157831896-43556722-d9eb-41b9-80da-0a4e7b7fd067.png)
 
    <figcaption>Adding an Asset field called "Image"</figcaption>
 </figure>
@@ -70,14 +70,14 @@ frontend React framework that uses Next.js for server-side rendering.
 
 <figure>
 
-![Adding a Rich text field called 'copy'](https://cdn-std.droplr.net/files/acc_857465/C8nzzB)
+![Adding a Rich text field called 'copy'](https://user-images.githubusercontent.com/1251986/157831937-1c2293d4-a23b-477b-9185-a2a7556f5808.png)
 
    <figcaption>Adding a Rich text field called "Copy"</figcaption>
 </figure>
 
 <figure>
 
-![Configuring of the field](https://cdn-std.droplr.net/files/acc_857465/j9kydr)
+![Configuring of the field](https://user-images.githubusercontent.com/1251986/157831989-f3dcdfd1-376d-4e77-b0da-fc7a055e9f90.png)
 
    <figcaption>Configuring of the "Copy" field</figcaption>
 </figure>
@@ -93,7 +93,7 @@ relationship between the Banner model and the Content field of the Page model.
 
 <figure>
 
-![Models to reference](https://cdn-std.droplr.net/files/acc_857465/Dc4axA)
+![Models to reference](https://user-images.githubusercontent.com/1251986/157832067-1d164761-677e-4553-88af-c969c99b7055.png)
 
    <figcaption>Adding the newly created Banner Model to "Models to reference"</figcaption>
 </figure>
@@ -103,7 +103,7 @@ relationship between the Banner model and the Content field of the Page model.
 
 <figure>
 
-![Adding a new banner to the Homepage content entry](https://cdn-std.droplr.net/files/acc_857465/lpa4x4)
+![Adding a new banner to the Homepage content entry](https://user-images.githubusercontent.com/1251986/157832145-0594e382-bf59-47c3-9520-17ea9916b654.png)
 
    <figcaption>Adding a new banner to the Homepage content entry</figcaption>
 </figure>
@@ -129,7 +129,7 @@ Should output the following. Make note that 'Banner' is listed as a typename.
 
 <figure>
 
-![Validation of the addition to the GraphQL Schema](https://cdn-std.droplr.net/files/acc_857465/G51mOD)
+![Validation of the addition to the GraphQL Schema](https://user-images.githubusercontent.com/1251986/157832194-178f9d47-b1b4-4d74-8dae-13ae44841769.png)
 
    <figcaption>Validation of the addition of "Banner" to the GraphQL Schema</figcaption>
 </figure>
@@ -243,14 +243,14 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
 
 <figure>
 
-![An instance of the banner component rendering with content from GraphCMS](https://cdn-std.droplr.net/files/acc_857465/ONwNJD)
+![An instance of the banner component rendering with content from GraphCMS](https://user-images.githubusercontent.com/1251986/157832263-ee06b20e-acac-4f68-89f2-4377199b7fa4.png)
 
    <figcaption>An instance of the banner component rendering with content from GraphCMS</figcaption>
 </figure>
 
 <figure>
 
-![Sort order matters](https://cdn-std.droplr.net/files/acc_857465/bMsi6A)
+![Sort order matters](https://user-images.githubusercontent.com/1251986/157832323-8a61dcea-c198-45d1-9c81-55ebd0cc03be.jpg)
 
    <figcaption>Sort order matters</figcaption>
 </figure>
