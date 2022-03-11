@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.2.0
+
+### Minor Changes
+
+- [`2eaf3f7c7`](https://github.com/ho-nl/m2-pwa/commit/2eaf3f7c77b20da78a167b9fdb641cdd26a17e21)
+  Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Upload images to github
+
 ## 4.1.0
 
 ### Minor Changes
