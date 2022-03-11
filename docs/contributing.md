@@ -50,16 +50,18 @@ Install the [recommended VS Code extensions](../docs/getting-started/vscode.md)
 2. Add your changes
 3. Add a changeset
 
-- Run 'yarn changeset' and select minor bump. Commit the changeset that is created.
+- Run 'yarn changeset' and select minor bump. Commit the changeset that is
+  created.
 
 <figure>
 
 ![yarn changeset](https://user-images.githubusercontent.com/1251986/157868337-0fa27e88-cf35-4e38-a59c-72c72ef6b054.jpg)
-  
+
   <figcaption>Select minor bump when running `yarn changeset`</figcaption>
 </figure>
 
 ## Next steps
 
-- Discuss your ideas and learnings in the
-  [Slack community ↗](https://join.slack.com/t/graphcommerce/shared_invite/zt-11rmgq1ad-F~0daNtKcSvtcC4eQRzjeQ)
+- Discuss your ideas and learnings in the public
+  [ Slack community. ↗](https://join.slack.com/t/graphcommerce/shared_invite/zt-11rmgq1ad-F~0daNtKcSvtcC4eQRzjeQ)
+  chat
