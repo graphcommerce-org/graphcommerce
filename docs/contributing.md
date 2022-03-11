@@ -46,15 +46,20 @@ Install the [recommended VS Code extensions](../docs/getting-started/vscode.md)
 
 ### Contributing
 
-1. Create a pull request. This PR can stay open until you are ready to merge.
+1. Create a pull request. The PR can stay open until you are ready to merge.
 2. Add your changes
-3. Commit a changeset
+3. Add a changeset
 
 - Run 'yarn changeset'
 
 ![yarn changeset]()
 
 - Select 'minor bump'
+
+![Github changeset detected]()
+
+- When you are ready to merge your PR, please select the `Squash and Merge`
+  option. This helps reduce the commit noise in the Git repository.
 
 ### Releases
 
