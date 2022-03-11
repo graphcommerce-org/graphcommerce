@@ -46,7 +46,7 @@ For example, the content of the 'men' Page entry in GraphCMS:
 
 <figure>
 
-![Page entry in GraphCMS](https://cdn-std.droplr.net/files/acc_857465/qv7IAn)
+![Page entry in GraphCMS](https://user-images.githubusercontent.com/1251986/157831167-706b54e8-ab25-4e67-882d-dd9595e87d5a.png)
 
 </figure>
 
@@ -55,14 +55,14 @@ Is used to add a`RowProduct (variant:Grid)` and a
 
 <figure>
 
-![Content of the RowProduct component](https://cdn-std.droplr.net/files/acc_857465/1aSErQ)
+![Content of the RowProduct component](https://user-images.githubusercontent.com/1251986/157831230-1fe5967f-7f7e-44e4-a908-8a52c8836f95.png)
 
   <figcaption>Content of the RowProduct (variant:Backstory component)</figcaption>
 </figure>
 
 <figure>
 
-![Front-end render of the component](https://cdn-std.droplr.net/files/acc_857465/5Pkv37)
+![Front-end render of the component](https://user-images.githubusercontent.com/1251986/157831382-51ebc3e2-85f7-4041-9d9f-c4982c73a825.png)
 
 </figure>
 
