@@ -1,0 +1,64 @@
+# Contributing to GraphCommerce
+
+**Requirements**
+
+- Install and use node 14: `nvm install 14 && nvm use 14`
+- Install yarn: `npm install --global yarn`
+
+### Download GraphCommerce
+
+1. `git clone ... graphcommerce`
+2. `cd graphcommerce/examples/magento-graphcms/`
+3. `cp -R .env.example .env`
+
+**Start the development environment**
+
+- `yarn` Install the dependencies
+- `yarn codegen` Converts all .graphql files to typescript files
+- `yarn dev` Run the app
+
+Visit the dev environment at http://localhost:3000.
+
+### Making changes
+
+```txt
+File structure of GraphCommerce
+
+├── docs
+├── examples
+    └── magento-graphcms
+├── packages
+```
+
+- To make changes to the magento-graphcms template, edit the files in
+  examples/magento-graphcms.
+
+- To modify GraphCommerce framework, components, edit the files in
+  packages/graphcommerce.
+
+- To make changes to the docs, edit the files in docs
+
+### Formatting and Linting
+
+GraphComerce uses ESLint for linting and Prettier for code formatting.
+
+Install the [recommended VS Code extensions](../docs/getting-started/vscode.md)
+
+### Contributing
+
+1. Create a pull request. This PR can stay open until you are ready to merge.
+2. Add your changes
+3. Commit a changeset
+
+- Run 'yarn changeset'
+
+![yarn changeset]()
+
+- Select 'minor bump'
+
+### Releases
+
+## Next steps
+
+- Discuss your ideas and learnings in the
+  [Slack community ↗](https://join.slack.com/t/graphcommerce/shared_invite/zt-11rmgq1ad-F~0daNtKcSvtcC4eQRzjeQ)
