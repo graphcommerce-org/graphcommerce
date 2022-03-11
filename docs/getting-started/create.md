@@ -21,14 +21,14 @@ After you've finished this tutorial, you'll have accomplished the following:
 
 <figure>
 
-![GraphCommerce magento-graphcms example category page](https://cdn-std.droplr.net/files/acc_857465/fk82kF)
+![GraphCommerce magento-graphcms example category page](https://user-images.githubusercontent.com/1251986/157831693-7ef3a2fb-779c-406e-8dd6-b984135ec58c.png)
 
  <figcaption>GraphCommerce magento-graphcms example category page</figcaption>
 </figure>
 
 <figure>
 
-![GraphCommerce magento-graphcms example product page](https://cdn-std.droplr.net/files/acc_857465/Fs7XWK)
+![GraphCommerce magento-graphcms example product page](https://user-images.githubusercontent.com/1251986/157831746-461cd0cf-8671-4780-bafc-ae853f3f93da.png)
 
  <figcaption>GraphCommerce magento-graphcms example product page</figcaption>
 </figure>
