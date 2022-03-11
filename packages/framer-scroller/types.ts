@@ -28,19 +28,19 @@ export type ScrollerContext = {
   snap: MotionValue<boolean>
 
   /** @private */
-  enableSnap(): void
+  enableSnap: () => void
   /** @private */
-  disableSnap(): void
+  disableSnap: () => void
   /** @private */
-  register(controls: PlaybackControls): void
+  register: (controls: PlaybackControls) => void
   /** @private */
-  stop(): void
+  stop: () => void
   /** @private */
-  getSnapPosition(direction: SnapPositionDirection): Point
+  getSnapPosition: (direction: SnapPositionDirection) => Point
   /** @private */
-  getScrollSnapPositions(): Record<Axis, number[]>
+  getScrollSnapPositions: () => Record<Axis, number[]>
   /** @private */
-  registerChildren(children: React.ReactNode): void
+  registerChildren: (children: React.ReactNode) => void
 }
 
 export type ScrollSnapTypeSingle = 'none' | 'block' | 'inline' | 'x' | 'y' | 'both'

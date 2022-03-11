@@ -5,12 +5,12 @@ import { CustomerDocument } from './Customer.gql'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { IsEmailAvailableDocument } from './IsEmailAvailable.gql'
 
-type useFormIsEmailAvailableProps = {
+export type UseFormIsEmailAvailableProps = {
   email?: string | null
   onSubmitted?: (data: { email: string }) => void
 }
 
-export default function useFormIsEmailAvailable(props: useFormIsEmailAvailableProps) {
+export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
   const { email, onSubmitted } = props
   const { data: token } = useQuery(CustomerTokenDocument)
   const customerQuery = useQuery(CustomerDocument, {

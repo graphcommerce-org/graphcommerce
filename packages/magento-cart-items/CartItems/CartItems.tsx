@@ -9,7 +9,7 @@ export type CartItemRenderer = TypeRenderer<NonNullable<NonNullable<CartItemsFra
 
 export type CartProps = { renderer: CartItemRenderer }
 
-export default function CartItems(props: CartProps) {
+export function CartItems(props: CartProps) {
   const { data } = useCartQuery(CartItemsQueryDocument)
   const { renderer } = props
 

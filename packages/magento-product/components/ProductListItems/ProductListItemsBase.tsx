@@ -1,7 +1,7 @@
 import { RenderType, responsiveVal } from '@graphcommerce/next-ui'
 import { Box, BoxProps } from '@mui/material'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
-import { ProductListItemProps } from '../ProductListItem'
+import { ProductListItemProps } from '../ProductListItem/ProductListItem'
 import { ProductListItemRenderer } from './renderer'
 
 export type ProductItemsGridProps = {
@@ -15,7 +15,7 @@ export type ProductItemsGridProps = {
   sx?: BoxProps['sx']
 }
 
-export default function ProductListItemsBase(props: ProductItemsGridProps) {
+export function ProductListItemsBase(props: ProductItemsGridProps) {
   const { items, sx = [], renderers, loadingEager = 0, size = 'normal' } = props
 
   return (

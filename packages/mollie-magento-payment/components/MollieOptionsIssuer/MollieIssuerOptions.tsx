@@ -12,7 +12,7 @@ const compName = 'MollieIssuerOptions' as const
 const parts = ['root', 'list'] as const
 const { classes } = extendableComponent(compName, parts)
 
-export default function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
+export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
   const { mollie_available_issuers = [] } = props
   const { code, step, Container, label, title = '' } = props
 

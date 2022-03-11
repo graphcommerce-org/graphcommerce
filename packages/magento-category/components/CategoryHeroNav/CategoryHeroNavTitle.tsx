@@ -7,7 +7,7 @@ type CategoryHeroNavTitleProps = {
   sx?: SxProps<Theme>
 }
 
-export default function CategoryHeroNavTitle(props: CategoryHeroNavTitleProps) {
+export function CategoryHeroNavTitle(props: CategoryHeroNavTitleProps) {
   const { children, sx = [] } = props
 
   return (

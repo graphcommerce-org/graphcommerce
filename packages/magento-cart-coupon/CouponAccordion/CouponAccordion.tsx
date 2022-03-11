@@ -11,8 +11,8 @@ import { Trans } from '@lingui/macro'
 import { Box, Button, styled, SxProps, Theme, Typography } from '@mui/material'
 import { AnimatePresence, m } from 'framer-motion'
 import { useState } from 'react'
-import ApplyCouponForm from '../ApplyCouponForm/ApplyCouponForm'
-import RemoveCouponForm from '../RemoveCouponForm/RemoveCouponForm'
+import { ApplyCouponForm } from '../ApplyCouponForm/ApplyCouponForm'
+import { RemoveCouponForm } from '../RemoveCouponForm/RemoveCouponForm'
 import { GetCouponDocument } from './GetCoupon.gql'
 
 export type CouponAccordionProps = { sx?: SxProps<Theme> }
@@ -24,7 +24,7 @@ const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>
 
 const MotionDiv = styled(m.div)({})
 
-export default function CouponAccordion(props: CouponAccordionProps) {
+export function CouponAccordion(props: CouponAccordionProps) {
   const { sx = [] } = props
   const { data } = useCartQuery(GetCouponDocument)
   const [open, setOpen] = useState<boolean>(false)

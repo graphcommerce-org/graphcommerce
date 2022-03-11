@@ -1,7 +1,7 @@
-export { default as CategoryChildren } from './components/CategoryChildren/CategoryChildren'
-export { default as CategoryDescription } from './components/CategoryDescription/CategoryDescription'
-export { default as CategoryHeroNav } from './components/CategoryHeroNav/CategoryHeroNav'
-export { default as CategoryHeroNavTitle } from './components/CategoryHeroNav/CategoryHeroNavTitle'
-export { default as CategoryMeta } from './components/CategoryMeta/CategoryMeta'
+export * from './components/CategoryChildren/CategoryChildren'
+export * from './components/CategoryDescription/CategoryDescription'
+export * from './components/CategoryHeroNav/CategoryHeroNav'
+export * from './components/CategoryHeroNav/CategoryHeroNavTitle'
+export * from './components/CategoryMeta/CategoryMeta'
 
 export * from './queries/getCategoryStaticPaths'

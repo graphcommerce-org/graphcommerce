@@ -1,7 +1,6 @@
 import { ProductListParams } from '@graphcommerce/magento-product'
 import { PageMeta } from '@graphcommerce/magento-store'
 import { PageMetaProps } from '@graphcommerce/next-ui'
-import React from 'react'
 import { CategoryMetaFragment } from './CategoryMeta.gql'
 
 type CategoryMetaProps = CategoryMetaFragment &
@@ -9,7 +8,7 @@ type CategoryMetaProps = CategoryMetaFragment &
     params?: ProductListParams
   }
 
-export default function CategoryMeta(props: CategoryMetaProps) {
+export function CategoryMeta(props: CategoryMetaProps) {
   const { name, meta_title, meta_description, params, ...pageMetaProps } = props
   const anyFilterActive = Object.keys(params?.filters ?? {}).length > 0
 

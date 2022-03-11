@@ -5,7 +5,7 @@ import { ScrollableProps, useScroller } from '../hooks/useScroller'
 
 const ScrollerDiv = styled(m.div)({})
 
-const Scroller = forwardRef<HTMLDivElement, ScrollableProps & { sx?: SxProps<Theme> }>(
+export const Scroller = forwardRef<HTMLDivElement, ScrollableProps & { sx?: SxProps<Theme> }>(
   (props, forwardedRef) => {
     const { sx = [], ...scrollerProps } = props
     const scroller = useScroller<'div', HTMLDivElement>(
@@ -17,5 +17,3 @@ const Scroller = forwardRef<HTMLDivElement, ScrollableProps & { sx?: SxProps<The
   },
 )
 Scroller.displayName = 'Scroller'
-
-export default Scroller

@@ -62,7 +62,7 @@ function useObserveItems(scrollerRef: ReactHtmlRefObject, items: MotionValue<Ite
   }, [items, observe])
 }
 
-export default function ScrollerProvider(props: ScrollerProviderProps) {
+export function ScrollerProvider(props: ScrollerProviderProps) {
   const scrollerRef = useRef<HTMLDivElement>()
   const cancels = useRef<PlaybackControls[]>([])
 

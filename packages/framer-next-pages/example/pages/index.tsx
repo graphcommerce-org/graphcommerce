@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next'
-import Grid from '../components/Grid'
-import StackDebug from '../components/StackedDebugger'
+import { Grid } from '../components/Grid'
+import { StackDebug } from '../components/StackedDebugger'
 
 type IndexProps = { title: string }
 

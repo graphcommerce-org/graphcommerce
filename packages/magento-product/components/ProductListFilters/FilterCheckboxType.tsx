@@ -3,14 +3,14 @@ import { iconCancelAlt, IconSvg } from '@graphcommerce/next-ui'
 import { Chip, ChipProps, SxProps, Theme } from '@mui/material'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
-import ProductListLink from '../ProductListLink/ProductListLink'
+import { ProductListLink } from '../ProductListLink/ProductListLink'
 import { FilterIn } from './FilterEqualType'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 type Filter = NonNullable<NonNullable<ProductListFiltersFragment['aggregations']>[number]>
 export type FilterCheckboxTypeProps = Filter & Omit<ChipProps, 'selected'> & { sx?: SxProps<Theme> }
 
-export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
+export function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props
   const { params } = useProductListParamsContext()
   const currentFilter = params.filters[attribute_code]

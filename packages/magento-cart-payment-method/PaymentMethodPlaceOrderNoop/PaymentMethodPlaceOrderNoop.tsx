@@ -9,7 +9,7 @@ import { useEffect } from 'react'
 import { PaymentPlaceOrderProps } from '../Api/PaymentMethod'
 import { PaymentMethodPlaceOrderNoopDocument } from './PaymentMethodPlaceOrderNoop.gql'
 
-export default function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProps) {
+export function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProps) {
   const { step, code } = props
   const clearCurrentCartId = useClearCurrentCartId()
 

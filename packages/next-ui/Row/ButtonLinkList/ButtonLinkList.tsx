@@ -1,9 +1,9 @@
 import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
-import { Row } from '..'
-import { SectionContainer } from '../../SectionContainer'
+import { SectionContainer } from '../../SectionContainer/SectionContainer'
 import { extendableComponent } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
+import { Row } from '../Row'
 
 export type ButtonLinkListProps = {
   title: string

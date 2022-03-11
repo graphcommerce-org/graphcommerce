@@ -14,7 +14,7 @@ export function scrollPos(idx: number): { x: number; y: number } {
   return scroll ? JSON.parse(scroll) : { x: 0, y: 0 }
 }
 
-export default function Page(props: PageProps) {
+export function Page(props: PageProps) {
   const { active, historyIdx, children } = props
   const isPresent = useIsPresent()
 

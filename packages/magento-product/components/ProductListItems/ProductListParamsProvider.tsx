@@ -2,7 +2,7 @@ import { PropsWithChildren, useState, useEffect, useMemo } from 'react'
 import { productListParamsContext } from '../../context/productListParamsContext'
 import { ProductListParams } from './filterTypes'
 
-export default function ProductListParamsProvider({
+export function ProductListParamsProvider({
   children,
   value,
 }: PropsWithChildren<{ value: ProductListParams }>) {

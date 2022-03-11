@@ -3,15 +3,15 @@ import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation, useFormPersist } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
 import { FormControlLabel, Switch, TextField } from '@mui/material'
-import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
-import NameFields from '../NameFields'
+import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
+import { NameFields } from '../NameFields/NameFields'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 
 type SignUpFormProps = {
   email?: string
 }
 
-export default function SignUpForm(props: SignUpFormProps) {
+export function SignUpForm(props: SignUpFormProps) {
   const { email } = props
   const form = useFormGqlMutation<
     SignUpMutation,

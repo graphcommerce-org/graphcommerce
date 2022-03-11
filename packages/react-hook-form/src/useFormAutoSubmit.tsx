@@ -74,7 +74,7 @@ export function useFormAutoSubmit<Form extends UseFormReturn<V>, V = FieldValues
     if (canSubmit && (force || shouldSubmit)) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       submitDebounced()
-      return submitDebounced.clear
+      return () => submitDebounced.clear()
     }
     return () => {}
   }, [canSubmit, force, shouldSubmit, submitDebounced])

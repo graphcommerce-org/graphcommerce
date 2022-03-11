@@ -11,7 +11,7 @@ export type SliderPageCounterProps = {
   sx?: SxProps<Theme>
 }
 
-const ScrollerPageCounter = React.forwardRef<HTMLDivElement, SliderPageCounterProps>(
+export const ScrollerPageCounter = React.forwardRef<HTMLDivElement, SliderPageCounterProps>(
   ({ sx = [] }, ref) => {
     const { items } = useScrollerContext()
 
@@ -34,5 +34,3 @@ const ScrollerPageCounter = React.forwardRef<HTMLDivElement, SliderPageCounterPr
     )
   },
 )
-
-export default ScrollerPageCounter

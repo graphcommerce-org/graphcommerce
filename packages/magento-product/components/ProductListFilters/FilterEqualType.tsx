@@ -11,7 +11,7 @@ import {
 import { SetRequired } from 'type-fest'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
-import ProductListLink from '../ProductListLink/ProductListLink'
+import { ProductListLink } from '../ProductListLink/ProductListLink'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 type OwnerState = {
@@ -44,7 +44,7 @@ type Filter = NonNullable<NonNullable<ProductListFiltersFragment['aggregations']
 
 type FilterEqualTypeProps = Filter & Omit<ChipMenuProps, 'selected'>
 
-export default function FilterEqualType(props: FilterEqualTypeProps) {
+export function FilterEqualType(props: FilterEqualTypeProps) {
   const { attribute_code, count, label, options, __typename, ...chipProps } = props
   const { params } = useProductListParamsContext()
   const replaceRoute = useProductListLinkReplace({ scroll: false })

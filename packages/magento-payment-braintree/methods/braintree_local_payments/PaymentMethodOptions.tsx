@@ -7,7 +7,7 @@ import { useBraintreeLocalPayment } from '../../hooks/useBraintreeLocalPayment'
 import { BraintreeLocalPaymentsCartDocument } from './BraintreeLocalPaymentsCart.gql'
 
 /** It sets the selected payment method on the cart. */
-function PaymentMethodOptions(props: PaymentOptionsProps) {
+export function PaymentMethodOptions(props: PaymentOptionsProps) {
   const localPaymentPromise = useBraintreeLocalPayment()
 
   const { code, step, child } = props
@@ -78,5 +78,3 @@ function PaymentMethodOptions(props: PaymentOptionsProps) {
     </form>
   )
 }
-
-export default PaymentMethodOptions

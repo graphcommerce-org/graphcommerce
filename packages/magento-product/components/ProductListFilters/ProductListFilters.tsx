@@ -1,15 +1,15 @@
 import { ChipMenuProps } from '@graphcommerce/next-ui'
 import { FilterTypes } from '../ProductListItems/filterTypes'
-import FilterCheckboxType from './FilterCheckboxType'
-import FilterEqualType from './FilterEqualType'
-import FilterRangeType from './FilterRangeType'
+import { FilterCheckboxType } from './FilterCheckboxType'
+import { FilterEqualType } from './FilterEqualType'
+import { FilterRangeType } from './FilterRangeType'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 export type ProductFiltersProps = ProductListFiltersFragment & {
   filterTypes: FilterTypes
 } & Omit<ChipMenuProps, 'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete'>
 
-export default function ProductListFilters(props: ProductFiltersProps) {
+export function ProductListFilters(props: ProductFiltersProps) {
   const { aggregations, filterTypes, ...chipMenuProps } = props
 
   return (

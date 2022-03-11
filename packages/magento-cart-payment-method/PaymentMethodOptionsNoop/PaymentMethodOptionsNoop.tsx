@@ -4,7 +4,7 @@ import { PaymentOptionsProps } from '../Api/PaymentMethod'
 import { PaymentMethodOptionsNoopDocument } from './PaymentMethodOptionsNoop.gql'
 
 /** It sets the selected payment method on the cart. */
-function PaymentMethodOptionsNoop(props: PaymentOptionsProps) {
+export function PaymentMethodOptionsNoop(props: PaymentOptionsProps) {
   const { code, step } = props
 
   /**
@@ -26,5 +26,3 @@ function PaymentMethodOptionsNoop(props: PaymentOptionsProps) {
     </form>
   )
 }
-
-export default PaymentMethodOptionsNoop

@@ -1,8 +1,8 @@
-import OrderStateLabel, { OrderStateLabelProps } from '.'
+import { OrderStateLabel, OrderStateLabelProps } from './OrderStateLabel'
 
 type OrderStateLabelInlineProps = OrderStateLabelProps
 
-export default function OrderStateLabelInline(props: OrderStateLabelInlineProps) {
+export function OrderStateLabelInline(props: OrderStateLabelInlineProps) {
   const { sx = [] } = props
 
   return (

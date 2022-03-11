@@ -2,7 +2,7 @@ import { Image } from '@graphcommerce/image'
 import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { ImageSwatchDataFragment } from './ImageSwatchData.gql'
-import { SwatchDataProps } from '.'
+import { SwatchDataProps } from './types'
 
 type ImageSwatchDataProps = ImageSwatchDataFragment & SwatchDataProps & { sx?: SxProps<Theme> }
 

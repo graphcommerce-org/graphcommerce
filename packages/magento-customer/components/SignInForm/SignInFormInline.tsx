@@ -10,7 +10,7 @@ type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'> & { sx?: 
 
 const { classes } = extendableComponent('SignInFormInline', ['form', 'button'] as const)
 
-export default function SignInFormInline(props: PropsWithChildren<InlineSignInFormProps>) {
+export function SignInFormInline(props: PropsWithChildren<InlineSignInFormProps>) {
   const { email, sx = [] } = props
   const form = useFormGqlMutation(
     SignInDocument,

@@ -5,7 +5,7 @@ import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodCo
 
 export type PaymentMethodButtonProps = LinkOrButtonProps & { display?: 'inline' | 'block' }
 
-export function PaymentMethodButtonRenderer(
+function PaymentMethodButtonRenderer(
   props: { buttonProps: LinkOrButtonProps } & ComposedSubmitRenderComponentProps,
 ) {
   const { buttonProps, error, buttonState, submit } = props
@@ -45,7 +45,7 @@ export function PaymentMethodButtonRenderer(
   )
 }
 
-export default function PaymentMethodButton(props: PaymentMethodButtonProps) {
+export function PaymentMethodButton(props: PaymentMethodButtonProps) {
   const { display, ...buttonProps } = props
 
   return (

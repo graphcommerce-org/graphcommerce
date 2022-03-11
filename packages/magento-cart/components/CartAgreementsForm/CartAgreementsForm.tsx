@@ -28,7 +28,7 @@ const componentName = 'CartAgreementsForm' as const
 const parts = ['form', 'formInner', 'formControlRoot', 'manualCheck'] as const
 const { classes } = extendableComponent(componentName, parts)
 
-export default function CartAgreementsForm(props: CartAgreementsFormProps) {
+export function CartAgreementsForm(props: CartAgreementsFormProps) {
   const { step, sx = [] } = props
   const { data } = useQuery(CartAgreementsDocument)
 

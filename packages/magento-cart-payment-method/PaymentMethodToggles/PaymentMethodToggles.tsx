@@ -47,7 +47,7 @@ const parts = [
 ] as const
 const { classes } = extendableComponent(cmpName, parts)
 
-export default function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
+export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
   const { step, sx = [] } = props
   const { methods, selectedMethod, setSelectedMethod, setSelectedModule, modules } =
     usePaymentMethodContext()

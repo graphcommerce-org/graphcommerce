@@ -35,7 +35,7 @@ const name = 'EmailForm' as const
 const parts = ['root', 'formRow'] as const
 const { classes } = extendableComponent(name, parts)
 
-export default function EmailForm(props: EmailFormProps) {
+export function EmailForm(props: EmailFormProps) {
   const { step, children, sx } = props
   const [expand, setExpand] = useState(false)
 

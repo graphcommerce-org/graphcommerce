@@ -7,7 +7,7 @@ import {
 } from '@graphcommerce/magento-product'
 import React from 'react'
 import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
-import SwatchList from './SwatchList'
+import { SwatchList } from './SwatchList'
 
 export type ProductListItemConfigurableActionProps = ProductListItemConfigurableFragment & {
   variant?: NonNullable<ProductListItemConfigurableFragment['variants']>[0]
@@ -19,7 +19,7 @@ export type ProdustListItemConfigurableProps = ProductListItemConfigurableFragme
     swatchLocations?: Record<OverlayAreaKeys, string[]>
   }
 
-export default function ProductListItemConfigurable(props: ProdustListItemConfigurableProps) {
+export function ProductListItemConfigurable(props: ProdustListItemConfigurableProps) {
   const {
     Actions,
     variants,

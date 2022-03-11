@@ -25,7 +25,7 @@ import { SetShippingBillingAddressDocument } from './SetShippingBillingAddress.g
 
 export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'>
 
-export default function ShippingAddressForm(props: ShippingAddressFormProps) {
+export function ShippingAddressForm(props: ShippingAddressFormProps) {
   const { step } = props
   const { data: cartQuery } = useCartQuery(GetAddressesDocument)
   const { data: config } = useQuery(StoreConfigDocument)

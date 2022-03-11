@@ -13,7 +13,7 @@ import { useBraintreeHostedFields } from '../../hooks/useBraintreeHostedFields'
 // }
 
 /** It sets the selected payment method on the cart. */
-function PaymentMethodOptions(props: PaymentOptionsProps) {
+export function PaymentMethodOptions(props: PaymentOptionsProps) {
   const { code, step, Container } = props
   const hosted = useBraintreeHostedFields()
 
@@ -63,5 +63,3 @@ function PaymentMethodOptions(props: PaymentOptionsProps) {
     </Container>
   )
 }
-
-export default PaymentMethodOptions

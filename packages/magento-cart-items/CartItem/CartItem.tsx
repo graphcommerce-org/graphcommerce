@@ -7,8 +7,8 @@ import { Badge, Box, Link, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import { PropsWithChildren } from 'react'
 import { CartItemFragment } from '../Api/CartItem.gql'
-import RemoveItemFromCartFab from '../RemoveItemFromCart/RemoveItemFromCartFab'
-import UpdateItemQuantity from '../UpdateItemQuantity/UpdateItemQuantity'
+import { RemoveItemFromCartFab } from '../RemoveItemFromCart/RemoveItemFromCartFab'
+import { UpdateItemQuantity } from '../UpdateItemQuantity/UpdateItemQuantity'
 
 const rowImageSize = responsiveVal(70, 125)
 
@@ -34,7 +34,7 @@ const { withState } = extendableComponent<OwnerState, typeof compName, typeof pa
   parts,
 )
 
-export default function CartItem(props: CartItemProps) {
+export function CartItem(props: CartItemProps) {
   const { product, uid, prices, quantity, children, withOptions = true, sx = [] } = props
   const { name } = product
   const productLink = useProductLink(product)

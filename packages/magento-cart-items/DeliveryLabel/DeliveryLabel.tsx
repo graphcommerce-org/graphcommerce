@@ -8,7 +8,7 @@ const name = 'DeliveryLabel' as const
 const parts = ['root', 'labelContainer', 'label', 'popover'] as const
 const { classes } = extendableComponent(name, parts)
 
-export default function DeliveryLabel(props: DeliveryLabelProps) {
+export function DeliveryLabel(props: DeliveryLabelProps) {
   const { sx = [] } = props
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
 

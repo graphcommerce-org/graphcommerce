@@ -18,7 +18,7 @@ export function mergeErrors(errors: ApolloError[]): ApolloError | undefined {
   })
 }
 
-export default function ComposedSubmit(props: ComposedSubmitProps) {
+export function ComposedSubmit(props: ComposedSubmitProps) {
   const { render: Render, onSubmitSuccessful } = props
   const [formContext, dispatch] = useContext(composedFormContext)
   const { formState, buttonState, isCompleting, forms } = formContext

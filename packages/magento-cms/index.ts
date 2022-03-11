@@ -1,1 +1,1 @@
-export { default as CmsPageContent } from './CmsPageContent'
+export * from './CmsPageContent'

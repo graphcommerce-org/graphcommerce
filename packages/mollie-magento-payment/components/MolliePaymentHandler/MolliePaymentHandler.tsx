@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { useMolliePaymentTokenHandler } from '../../hooks/useMolliePaymentTokenHandler'
 
-export default function MolliePaymentHandler() {
+export function MolliePaymentHandler() {
   const { error } = useMolliePaymentTokenHandler()
   const clear = useClearCurrentCartId()
   const router = useRouter()

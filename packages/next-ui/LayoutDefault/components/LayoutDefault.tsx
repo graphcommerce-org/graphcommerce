@@ -1,7 +1,7 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { Box, SxProps, Theme } from '@mui/material'
 import { useTransform, useViewportScroll } from 'framer-motion'
-import LayoutProvider from '../../Layout/components/LayoutProvider'
+import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { extendableComponent } from '../../Styles'
 import { useFabSize } from '../../Theme'
 

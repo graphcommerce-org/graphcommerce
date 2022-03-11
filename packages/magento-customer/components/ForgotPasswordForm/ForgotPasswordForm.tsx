@@ -2,14 +2,14 @@ import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
 import { TextField, Alert, SxProps, Theme } from '@mui/material'
-import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
+import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
   ForgotPasswordDocument,
   ForgotPasswordMutation,
   ForgotPasswordMutationVariables,
 } from './ForgotPassword.gql'
 
-export default function ForgotPasswordForm(props: { sx?: SxProps<Theme> }) {
+export function ForgotPasswordForm(props: { sx?: SxProps<Theme> }) {
   const { sx = [] } = props
   const form = useFormGqlMutation<ForgotPasswordMutation, ForgotPasswordMutationVariables>(
     ForgotPasswordDocument,

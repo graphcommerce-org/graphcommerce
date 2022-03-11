@@ -10,7 +10,7 @@ const compName = 'CartItem' as const
 const parts = ['root', 'label', 'select'] as const
 const { classes } = extendableComponent(compName, parts)
 
-export default function CartItemOptionDropdown(props: CartItemOptionDropdownProps) {
+export function CartItemOptionDropdown(props: CartItemOptionDropdownProps) {
   const { onChange, label, sx = [] } = props
 
   return (

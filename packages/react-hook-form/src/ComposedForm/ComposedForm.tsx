@@ -4,7 +4,7 @@ import { composedFormReducer } from './reducer'
 
 export type ComposedFormProps = { children?: React.ReactNode }
 
-export default function ComposedForm(props: ComposedFormProps) {
+export function ComposedForm(props: ComposedFormProps) {
   const { children } = props
 
   const [state, dispatch] = useReducer(composedFormReducer, {

@@ -9,14 +9,14 @@ import {
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans, t } from '@lingui/macro'
 import { TextField } from '@mui/material'
-import ApolloCustomerErrorAlert from '../ApolloCustomerError/ApolloCustomerErrorAlert'
+import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
   ChangePasswordDocument,
   ChangePasswordMutation,
   ChangePasswordMutationVariables,
 } from './ChangePassword.gql'
 
-export default function ChangePasswordForm() {
+export function ChangePasswordForm() {
   const form = useFormGqlMutation<
     ChangePasswordMutation,
     ChangePasswordMutationVariables & { confirmPassword?: string }

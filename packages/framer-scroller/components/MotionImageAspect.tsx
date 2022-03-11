@@ -12,7 +12,7 @@ export type MotionImageAspectProps = Omit<ImageProps, 'layout' | 'unoptimized'>
  * Note: We have a fallback for Safari 14 which doesn't yet support aspect-ratio, this causes a
  * problem when the layout is animated. Should be fixed in Safari 15
  */
-const MotionImageAspect = m(
+export const MotionImageAspect = m(
   forwardRef<HTMLImageElement, MotionImageAspectProps>((props, ref) => (
     <Box
       className='MotionImageAspect'
@@ -67,5 +67,3 @@ const MotionImageAspect = m(
 )
 
 MotionImageAspect.displayName = 'MotionImageAspect'
-
-export default MotionImageAspect

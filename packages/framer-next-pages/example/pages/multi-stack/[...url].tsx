@@ -16,8 +16,8 @@ import { GetStaticPathsResult, GetStaticProps } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import Grid from '../../components/Grid'
-import StackDebug from '../../components/StackedDebugger'
+import { Grid } from '../../components/Grid'
+import { StackDebug } from '../../components/StackedDebugger'
 
 function MultiStack() {
   const [expanded, setExpanded] = useState(true)

@@ -1,5 +1,5 @@
 import { ApolloError } from '@graphcommerce/graphql'
-import { FullPageMessage, FullPageMessageProps } from '@graphcommerce/next-ui/FullPageMessage'
+import { FullPageMessage, FullPageMessageProps } from '@graphcommerce/next-ui'
 import { AlertProps } from '@mui/material'
 import { ApolloErrorAlert } from './ApolloErrorAlert'
 

@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { MolliePlaceOrderDocument } from './MolliePlaceOrder.gql'
 
-export default function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
+export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
   const { step, code } = props
   const router = useRouter()
   const cartId = useCurrentCartId()

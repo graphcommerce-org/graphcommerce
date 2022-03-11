@@ -6,10 +6,10 @@ import { GetPaymentMethodContextDocument } from './GetPaymentMethodContext.gql'
 type PaymentMethodContextProps = {
   methods: PaymentMethod[]
   selectedMethod?: PaymentMethod
-  setSelectedMethod(method: PaymentMethod | undefined): void
+  setSelectedMethod: (method: PaymentMethod | undefined) => void
   modules: PaymentMethodModules
   selectedModule?: PaymentModule
-  setSelectedModule(module: PaymentModule | undefined): void
+  setSelectedModule: (module: PaymentModule | undefined) => void
 }
 
 const paymentMethodContext = React.createContext<PaymentMethodContextProps>({
@@ -22,7 +22,7 @@ paymentMethodContext.displayName = 'PaymentMethodContext'
 
 type PaymentMethodContextProviderProps = PropsWithChildren<{ modules: PaymentMethodModules }>
 
-export default function PaymentMethodContextProvider(props: PaymentMethodContextProviderProps) {
+export function PaymentMethodContextProvider(props: PaymentMethodContextProviderProps) {
   const { modules, children } = props
 
   const context = useCartQuery(GetPaymentMethodContextDocument)

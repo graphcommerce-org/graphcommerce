@@ -10,7 +10,7 @@ export function useShowClose() {
   return !!overlayGroup
 }
 
-export default function LayoutHeaderClose() {
+export function LayoutHeaderClose() {
   const { closeSteps } = usePageContext()
   const onClick = useGo(closeSteps * -1)
 

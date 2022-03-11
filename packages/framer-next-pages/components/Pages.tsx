@@ -5,7 +5,7 @@ import { NextRouter, Router } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 import { pageContext } from '../context/pageContext'
 import type { PageComponent, PageItem, UpPage } from '../types'
-import Page from './Page'
+import { Page } from './Page'
 import { PageRenderer } from './PageRenderer'
 
 function findPlainIdx(items: PageItem[]) {
@@ -40,7 +40,7 @@ function getPageInfo(router: NextRouter) {
 //   return url
 // }
 
-export default function FramerNextPages(props: PagesProps) {
+export function FramerNextPages(props: PagesProps) {
   const { router, Component, pageProps: incomingProps, fallback = '/', fallbackRoute = '/' } = props
 
   const items = useRef<PageItem[]>([])

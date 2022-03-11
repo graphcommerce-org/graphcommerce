@@ -9,7 +9,7 @@ function usePostcardClass(asPath: string) {
   return `${styles.postCard} ${asPath === router.asPath && styles.postCardActive}`
 }
 
-export default function PostCardGrid() {
+export function Grid() {
   return (
     <div className={styles.postCardGridWrapper}>
       <div className={styles.postCardGrid}>
