@@ -50,13 +50,24 @@ Install the [recommended VS Code extensions](../docs/getting-started/vscode.md)
 2. Add your changes
 3. Add a changeset
 
-- Run 'yarn changeset'
+- Run 'yarn changeset' and select minor bump. Commit the changeset that is created.
 
-![yarn changeset]()
+<figure>
 
-- Select 'minor bump'
+![yarn changeset](https://user-images.githubusercontent.com/1251986/157868337-0fa27e88-cf35-4e38-a59c-72c72ef6b054.jpg)
+  
+  <figcaption>Select minor bump when running `yarn changeset`</figcaption>
+</figure>
 
-![Github changeset detected]()
+- Check if your changeset is detected
+
+<figure>
+
+![Github changeset detected](https://user-images.githubusercontent.com/1251986/157868587-a761fde9-b0ec-418d-9e43-2e6375f37358.jpg)
+    
+  <figcaption>Changeset detected on the PR github page</figcaption>
+</figure>
+
 
 - When you are ready to merge your PR, please select the `Squash and Merge`
   option. This helps reduce the commit noise in the Git repository.
