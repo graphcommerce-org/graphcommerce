@@ -30,7 +30,7 @@ to simplify the process of making correct favicons.
 
 <figure>
 
-![Favicon sketch template](https://cdn-std.droplr.net/files/acc_857465/8wbzEN)
+![Favicon sketch template](https://user-images.githubusercontent.com/1251986/157831064-c786d4dc-5f9c-4f8a-a665-7e513990d6aa.png)
 
  <figcaption>Favicon sketch template</figcaption>
 </figure>
