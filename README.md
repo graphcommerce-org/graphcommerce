@@ -60,6 +60,11 @@ Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
 Visit the development environment running at http://localhost:3000  
 Visit the GraphQL Playground running at http://localhost:3000/api/graphql
 
+## Contributing to GraphCommerce
+
+Learn how to
+[contribute to GraphCommerce](https://github.com/ho-nl/m2-pwa/blob/master/docs/contributing.md)
+
 ---
 
 ## Next steps
