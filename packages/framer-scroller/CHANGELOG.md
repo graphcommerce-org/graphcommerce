@@ -1,43 +1,43 @@
 # Change Log
 
+## 2.0.6
+
+### Patch Changes
+
+- [#1307](https://github.com/ho-nl/m2-pwa/pull/1307) [`bd10506d3`](https://github.com/ho-nl/m2-pwa/commit/bd10506d32fdbc91d01dadc29a12ebd1e0943655) Thanks [@paales](https://github.com/paales)! - All default exports are now named exports internally and all `index.tsx` are renamed to the component name.
+
+* [#1307](https://github.com/ho-nl/m2-pwa/pull/1307) [`27cb1f2d8`](https://github.com/ho-nl/m2-pwa/commit/27cb1f2d8dbfb8f1b301ce56fb6a2b6c1fc6a5ef) Thanks [@paales](https://github.com/paales)! - upgrade dependencies
+
+* Updated dependencies [[`3d63b39f7`](https://github.com/ho-nl/m2-pwa/commit/3d63b39f7e330d1827a32dba782667d7b21adaba), [`bd10506d3`](https://github.com/ho-nl/m2-pwa/commit/bd10506d32fdbc91d01dadc29a12ebd1e0943655), [`27cb1f2d8`](https://github.com/ho-nl/m2-pwa/commit/27cb1f2d8dbfb8f1b301ce56fb6a2b6c1fc6a5ef)]:
+  - @graphcommerce/next-ui@4.2.4
+  - @graphcommerce/framer-utils@3.0.4
+  - @graphcommerce/image@3.1.1
+
 ## 2.0.5
 
 ### Patch Changes
 
-- [#1294](https://github.com/ho-nl/m2-pwa/pull/1294)
-  [`4e28c8afd`](https://github.com/ho-nl/m2-pwa/commit/4e28c8afd9cead3577dd0eff97b5c44ba4c1c862)
-  Thanks [@paales](https://github.com/paales)! - set the duration of useScrollTo to 500 for the x
-  direction
+- [#1294](https://github.com/ho-nl/m2-pwa/pull/1294) [`4e28c8afd`](https://github.com/ho-nl/m2-pwa/commit/4e28c8afd9cead3577dd0eff97b5c44ba4c1c862) Thanks [@paales](https://github.com/paales)! - set the duration of useScrollTo to 500 for the x direction
 
-- Updated dependencies
-  [[`19f33e0aa`](https://github.com/ho-nl/m2-pwa/commit/19f33e0aaf4e3121edd444926d08b6459d3ef400),
-  [`aea787542`](https://github.com/ho-nl/m2-pwa/commit/aea787542484a0480a48031fcc4a9a5566c6bfc7)]:
+- Updated dependencies [[`19f33e0aa`](https://github.com/ho-nl/m2-pwa/commit/19f33e0aaf4e3121edd444926d08b6459d3ef400), [`aea787542`](https://github.com/ho-nl/m2-pwa/commit/aea787542484a0480a48031fcc4a9a5566c6bfc7)]:
   - @graphcommerce/next-ui@4.2.1
 
 ## 2.0.4
 
 ### Patch Changes
 
-- [#1285](https://github.com/ho-nl/m2-pwa/pull/1285)
-  [`16d77b280`](https://github.com/ho-nl/m2-pwa/commit/16d77b2806e49e376d06bc0d578d38eb724b0c17)
-  Thanks [@paales](https://github.com/paales)! - allow scroller button to be overwritten
+- [#1285](https://github.com/ho-nl/m2-pwa/pull/1285) [`16d77b280`](https://github.com/ho-nl/m2-pwa/commit/16d77b2806e49e376d06bc0d578d38eb724b0c17) Thanks [@paales](https://github.com/paales)! - allow scroller button to be overwritten
 
-- Updated dependencies
-  [[`c85294ba6`](https://github.com/ho-nl/m2-pwa/commit/c85294ba6d742ce78c074559a1e95409b25a5017)]:
+- Updated dependencies [[`c85294ba6`](https://github.com/ho-nl/m2-pwa/commit/c85294ba6d742ce78c074559a1e95409b25a5017)]:
   - @graphcommerce/next-ui@4.1.3
 
 ## 2.0.3
 
 ### Patch Changes
 
-- [`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96)
-  Thanks [@paales](https://github.com/paales)! - made packages public
+- [`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96) Thanks [@paales](https://github.com/paales)! - made packages public
 
-- Updated dependencies
-  [[`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96),
-  [`81ea406d5`](https://github.com/ho-nl/m2-pwa/commit/81ea406d54d6b5c662c030a7fea444abc4117a20),
-  [`3a719c88c`](https://github.com/ho-nl/m2-pwa/commit/3a719c88cad1eab58602de28c41adc0fc4827e1d),
-  [`5ffcb56bf`](https://github.com/ho-nl/m2-pwa/commit/5ffcb56bfcbe49ebeaf24f9341e819a145ab9a14)]:
+- Updated dependencies [[`973ff8645`](https://github.com/ho-nl/m2-pwa/commit/973ff86452a70ade9f4db13fdda6e963d7220e96), [`81ea406d5`](https://github.com/ho-nl/m2-pwa/commit/81ea406d54d6b5c662c030a7fea444abc4117a20), [`3a719c88c`](https://github.com/ho-nl/m2-pwa/commit/3a719c88cad1eab58602de28c41adc0fc4827e1d), [`5ffcb56bf`](https://github.com/ho-nl/m2-pwa/commit/5ffcb56bfcbe49ebeaf24f9341e819a145ab9a14)]:
   - @graphcommerce/framer-utils@3.0.3
   - @graphcommerce/image@3.1.0
   - @graphcommerce/next-ui@4.1.2
@@ -46,28 +46,13 @@
 
 ### Patch Changes
 
-- [#1276](https://github.com/ho-nl/m2-pwa/pull/1276)
-  [`ce09388e0`](https://github.com/ho-nl/m2-pwa/commit/ce09388e0d7ef33aee660612340f6fbae15ceec2)
-  Thanks [@paales](https://github.com/paales)! - We've moved lots of internal packages from
-  `dependencies` to `peerDependencies`. The result of this is that there will be significantly less
-  duplicate packages in the node_modules folders.
+- [#1276](https://github.com/ho-nl/m2-pwa/pull/1276) [`ce09388e0`](https://github.com/ho-nl/m2-pwa/commit/ce09388e0d7ef33aee660612340f6fbae15ceec2) Thanks [@paales](https://github.com/paales)! - We've moved lots of internal packages from `dependencies` to `peerDependencies`. The result of this is that there will be significantly less duplicate packages in the node_modules folders.
 
-* [#1276](https://github.com/ho-nl/m2-pwa/pull/1276)
-  [`52a45bba4`](https://github.com/ho-nl/m2-pwa/commit/52a45bba4dc6dd6df3c81f5023df7d23ed8a534d)
-  Thanks [@paales](https://github.com/paales)! - Upgraded to
-  [NextJS 12.1](https://nextjs.org/blog/next-12-1)! This is just for compatibility, but we'll be
-  implementing
-  [On-demand Incremental Static Regeneration](https://nextjs.org/blog/next-12-1#on-demand-incremental-static-regeneration-beta)
-  soon.
+* [#1276](https://github.com/ho-nl/m2-pwa/pull/1276) [`52a45bba4`](https://github.com/ho-nl/m2-pwa/commit/52a45bba4dc6dd6df3c81f5023df7d23ed8a534d) Thanks [@paales](https://github.com/paales)! - Upgraded to [NextJS 12.1](https://nextjs.org/blog/next-12-1)! This is just for compatibility, but we'll be implementing [On-demand Incremental Static Regeneration](https://nextjs.org/blog/next-12-1#on-demand-incremental-static-regeneration-beta) soon.
 
-  This will greatly reduce the requirement to rebuid stuff and we'll add a management UI on the
-  frontend to be able to revalidate pages manually.
+  This will greatly reduce the requirement to rebuid stuff and we'll add a management UI on the frontend to be able to revalidate pages manually.
 
-* Updated dependencies
-  [[`381e4c86a`](https://github.com/ho-nl/m2-pwa/commit/381e4c86a8321ce96e1fa5c7d3c0a0c0ff3e02c7),
-  [`ce09388e0`](https://github.com/ho-nl/m2-pwa/commit/ce09388e0d7ef33aee660612340f6fbae15ceec2),
-  [`e7c8e2756`](https://github.com/ho-nl/m2-pwa/commit/e7c8e2756d637cbcd2e793d62ef5721d35d9fa7b),
-  [`52a45bba4`](https://github.com/ho-nl/m2-pwa/commit/52a45bba4dc6dd6df3c81f5023df7d23ed8a534d)]:
+* Updated dependencies [[`381e4c86a`](https://github.com/ho-nl/m2-pwa/commit/381e4c86a8321ce96e1fa5c7d3c0a0c0ff3e02c7), [`ce09388e0`](https://github.com/ho-nl/m2-pwa/commit/ce09388e0d7ef33aee660612340f6fbae15ceec2), [`e7c8e2756`](https://github.com/ho-nl/m2-pwa/commit/e7c8e2756d637cbcd2e793d62ef5721d35d9fa7b), [`52a45bba4`](https://github.com/ho-nl/m2-pwa/commit/52a45bba4dc6dd6df3c81f5023df7d23ed8a534d)]:
   - @graphcommerce/next-ui@4.1.1
   - @graphcommerce/framer-utils@3.0.2
   - @graphcommerce/image@3.0.2
@@ -76,11 +61,8 @@
 
 ### Patch Changes
 
-- [`0cbaa878b`](https://github.com/ho-nl/m2-pwa/commit/0cbaa878b8a844d5abbeb1797b625a33130e6514)
-  Thanks [@paales](https://github.com/paales)! - Added homepage and repository package.json files,
-  so that the packages link to back to the website and repository
-- Updated dependencies
-  [[`0cbaa878b`](https://github.com/ho-nl/m2-pwa/commit/0cbaa878b8a844d5abbeb1797b625a33130e6514)]:
+- [`0cbaa878b`](https://github.com/ho-nl/m2-pwa/commit/0cbaa878b8a844d5abbeb1797b625a33130e6514) Thanks [@paales](https://github.com/paales)! - Added homepage and repository package.json files, so that the packages link to back to the website and repository
+- Updated dependencies [[`0cbaa878b`](https://github.com/ho-nl/m2-pwa/commit/0cbaa878b8a844d5abbeb1797b625a33130e6514)]:
   - @graphcommerce/framer-utils@3.0.1
   - @graphcommerce/image@3.0.1
   - @graphcommerce/next-ui@4.0.1
@@ -89,191 +71,151 @@
 
 ### Major Changes
 
-- [#1258](https://github.com/ho-nl/m2-pwa/pull/1258)
-  [`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05)
-  Thanks [@paales](https://github.com/paales)! - Upgraded to Material UI 5
+- [#1258](https://github.com/ho-nl/m2-pwa/pull/1258) [`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05) Thanks [@paales](https://github.com/paales)! - Upgraded to Material UI 5
 
 ### Patch Changes
 
-- Updated dependencies
-  [[`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05)]:
+- Updated dependencies [[`ad36382a4`](https://github.com/ho-nl/m2-pwa/commit/ad36382a4d55d83d9e47b7eb6a02671a2a631a05)]:
   - @graphcommerce/framer-utils@3.0.0
   - @graphcommerce/image@3.0.0
   - @graphcommerce/next-ui@4.0.0
 
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [1.2.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.25...@graphcommerce/framer-scroller@1.2.0) (2022-01-03)
 
 ### Bug Fixes
 
-- make sure the useVelocitySnapTo resolves completely
-  ([9d13fcb](https://github.com/ho-nl/m2-pwa/commit/9d13fcbf63ef8c0a964b9bd81accb6259a693c5c))
+- make sure the useVelocitySnapTo resolves completely ([9d13fcb](https://github.com/ho-nl/m2-pwa/commit/9d13fcbf63ef8c0a964b9bd81accb6259a693c5c))
 
 ### Features
 
-- **framer-next-pages:** reduce rerenders when navigating to a new page
-  ([5cf3301](https://github.com/ho-nl/m2-pwa/commit/5cf330130bb3527057da015e3c4a6fa295d7262e))
+- **framer-next-pages:** reduce rerenders when navigating to a new page ([5cf3301](https://github.com/ho-nl/m2-pwa/commit/5cf330130bb3527057da015e3c4a6fa295d7262e))
 
 ## [1.1.24](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.23...@graphcommerce/framer-scroller@1.1.24) (2021-12-23)
 
 ### Bug Fixes
 
-- **framer-next-pages:** closing is janky, caused by setting pointer-events to none, trying without
-  resetting the pointerevents
-  ([9247fa3](https://github.com/ho-nl/m2-pwa/commit/9247fa312926416802abd68ea04b1e6b52531f2c))
+- **framer-next-pages:** closing is janky, caused by setting pointer-events to none, trying without resetting the pointerevents ([9247fa3](https://github.com/ho-nl/m2-pwa/commit/9247fa312926416802abd68ea04b1e6b52531f2c))
 
 ## [1.1.22](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.21...@graphcommerce/framer-scroller@1.1.22) (2021-12-22)
 
 ### Bug Fixes
 
-- **framer-scroller:** make sure the first gallery dot is selected initially
-  ([a2ed37b](https://github.com/ho-nl/m2-pwa/commit/a2ed37bd2c17eef46c0ee4cf8219a141b2e054b4))
+- **framer-scroller:** make sure the first gallery dot is selected initially ([a2ed37b](https://github.com/ho-nl/m2-pwa/commit/a2ed37bd2c17eef46c0ee4cf8219a141b2e054b4))
 
 ## [1.1.21](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.20...@graphcommerce/framer-scroller@1.1.21) (2021-12-22)
 
 ### Bug Fixes
 
-- **framer-scroller:** height of the gallery item isn't high enough
-  ([0e84ba3](https://github.com/ho-nl/m2-pwa/commit/0e84ba3ecb8928870fdc0459a1c6c30fde372d91))
-- **framer-scroller:** make sure the actual image will scale instead of the container
-  ([8d55630](https://github.com/ho-nl/m2-pwa/commit/8d55630a93cff91ac37e426bbe9f1b25b001556c))
-- **framer-scroller:** would throw ssr warning
-  ([a3db078](https://github.com/ho-nl/m2-pwa/commit/a3db0781d2433809c0bd4cb6ba37af79b611f3c4))
+- **framer-scroller:** height of the gallery item isn't high enough ([0e84ba3](https://github.com/ho-nl/m2-pwa/commit/0e84ba3ecb8928870fdc0459a1c6c30fde372d91))
+- **framer-scroller:** make sure the actual image will scale instead of the container ([8d55630](https://github.com/ho-nl/m2-pwa/commit/8d55630a93cff91ac37e426bbe9f1b25b001556c))
+- **framer-scroller:** would throw ssr warning ([a3db078](https://github.com/ho-nl/m2-pwa/commit/a3db0781d2433809c0bd4cb6ba37af79b611f3c4))
 
 ## [1.1.20](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.19...@graphcommerce/framer-scroller@1.1.20) (2021-12-22)
 
 ### Bug Fixes
 
-- **framer-scroller:** gallery didn't align images in the center
-  ([0cf6066](https://github.com/ho-nl/m2-pwa/commit/0cf60669b2547d2c421eb07c1ba23d7718df74aa))
-- **framer-scroller:** offaxis scroll was allowed on safari
-  ([4ece409](https://github.com/ho-nl/m2-pwa/commit/4ece409fabad7e686d491cc6bc1682c4507f2d3b))
+- **framer-scroller:** gallery didn't align images in the center ([0cf6066](https://github.com/ho-nl/m2-pwa/commit/0cf60669b2547d2c421eb07c1ba23d7718df74aa))
+- **framer-scroller:** offaxis scroll was allowed on safari ([4ece409](https://github.com/ho-nl/m2-pwa/commit/4ece409fabad7e686d491cc6bc1682c4507f2d3b))
 
 ## [1.1.17](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.16...@graphcommerce/framer-scroller@1.1.17) (2021-12-21)
 
 ### Bug Fixes
 
-- **framer-scroller:** apply will change only when animating
-  ([77fee92](https://github.com/ho-nl/m2-pwa/commit/77fee92c0eb70691b699e1f6ba378ec16c534975))
+- **framer-scroller:** apply will change only when animating ([77fee92](https://github.com/ho-nl/m2-pwa/commit/77fee92c0eb70691b699e1f6ba378ec16c534975))
 
 ## [1.1.14](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.13...@graphcommerce/framer-scroller@1.1.14) (2021-12-20)
 
 ### Bug Fixes
 
-- **framer-scroller:** remove jank from scroller when opening
-  ([c618bf2](https://github.com/ho-nl/m2-pwa/commit/c618bf290bd580fe5eb45663c44843dd751e00ed))
+- **framer-scroller:** remove jank from scroller when opening ([c618bf2](https://github.com/ho-nl/m2-pwa/commit/c618bf290bd580fe5eb45663c44843dd751e00ed))
 
 ## [1.1.10](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.9...@graphcommerce/framer-scroller@1.1.10) (2021-12-17)
 
 ### Bug Fixes
 
-- **framer-scroller:** make sure we're not throwing only warning when there are no children
-  ([001c7d9](https://github.com/ho-nl/m2-pwa/commit/001c7d9a00e447d44134c00bd77505e52cf0f9d4))
+- **framer-scroller:** make sure we're not throwing only warning when there are no children ([001c7d9](https://github.com/ho-nl/m2-pwa/commit/001c7d9a00e447d44134c00bd77505e52cf0f9d4))
 
 ## [1.1.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.7...@graphcommerce/framer-scroller@1.1.8) (2021-12-15)
 
 ### Bug Fixes
 
-- scroller should not snap to off-axis while dragging and direction isn't set to both
-  ([9118bfc](https://github.com/ho-nl/m2-pwa/commit/9118bfcb1eb9ade5f144167e47e0c26724ce832f))
+- scroller should not snap to off-axis while dragging and direction isn't set to both ([9118bfc](https://github.com/ho-nl/m2-pwa/commit/9118bfcb1eb9ade5f144167e47e0c26724ce832f))
 
 ## [1.1.5](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.4...@graphcommerce/framer-scroller@1.1.5) (2021-12-06)
 
 ### Bug Fixes
 
-- Accessibility, SEO
-  ([a258837](https://github.com/ho-nl/m2-pwa/commit/a258837476d94d20d33e13a4c4f950fff57f7dca))
+- Accessibility, SEO ([a258837](https://github.com/ho-nl/m2-pwa/commit/a258837476d94d20d33e13a4c4f950fff57f7dca))
 
 ## [1.1.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.1.1...@graphcommerce/framer-scroller@1.1.2) (2021-12-03)
 
 ### Bug Fixes
 
-- height of scroller isn't correct
-  ([8d847ad](https://github.com/ho-nl/m2-pwa/commit/8d847ad210cfe00bf88386912d97233402e16b81))
+- height of scroller isn't correct ([8d847ad](https://github.com/ho-nl/m2-pwa/commit/8d847ad210cfe00bf88386912d97233402e16b81))
 
 # [1.1.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.0.4...@graphcommerce/framer-scroller@1.1.0) (2021-12-03)
 
 ### Bug Fixes
 
-- **framer-scroller:** do not scroll in the direction that is not being scrolled when dragging and
-  thus delaying the reset to snap
-  ([3198eed](https://github.com/ho-nl/m2-pwa/commit/3198eed7977039f712784ee6c17031d7efb20c25))
-- **framer-scroller:** recursively find snapPoints for deeply nested children
-  ([2203f00](https://github.com/ho-nl/m2-pwa/commit/2203f00a97bb4e4b381acad1d86b177105874d1f))
-- **framer-scroller:** set the scrollTop when switching snap
-  ([8bd35a2](https://github.com/ho-nl/m2-pwa/commit/8bd35a2ebf5d10b44d04048c6360c7ac770221cf))
-- make sure the overlay becomes visible, even if the overlay is scrolled
-  ([1738c98](https://github.com/ho-nl/m2-pwa/commit/1738c982ea84ec2b93daa824c4b8c86ab2a3f5ed))
-- make sure the overlays are rendered correctly on mobile
-  ([48f7050](https://github.com/ho-nl/m2-pwa/commit/48f705060e99b997f5b1db03ccc49f1051a1ed8f))
-- make the headerHeight properly configurable
-  ([c39c942](https://github.com/ho-nl/m2-pwa/commit/c39c942a62a9bb9687ea553be28e37fb49a6b065))
+- **framer-scroller:** do not scroll in the direction that is not being scrolled when dragging and thus delaying the reset to snap ([3198eed](https://github.com/ho-nl/m2-pwa/commit/3198eed7977039f712784ee6c17031d7efb20c25))
+- **framer-scroller:** recursively find snapPoints for deeply nested children ([2203f00](https://github.com/ho-nl/m2-pwa/commit/2203f00a97bb4e4b381acad1d86b177105874d1f))
+- **framer-scroller:** set the scrollTop when switching snap ([8bd35a2](https://github.com/ho-nl/m2-pwa/commit/8bd35a2ebf5d10b44d04048c6360c7ac770221cf))
+- make sure the overlay becomes visible, even if the overlay is scrolled ([1738c98](https://github.com/ho-nl/m2-pwa/commit/1738c982ea84ec2b93daa824c4b8c86ab2a3f5ed))
+- make sure the overlays are rendered correctly on mobile ([48f7050](https://github.com/ho-nl/m2-pwa/commit/48f705060e99b997f5b1db03ccc49f1051a1ed8f))
+- make the headerHeight properly configurable ([c39c942](https://github.com/ho-nl/m2-pwa/commit/c39c942a62a9bb9687ea553be28e37fb49a6b065))
 
 ### Features
 
-- **framer-scroller-sheet:** created package replacing the framer-sheet package
-  ([f9f2e91](https://github.com/ho-nl/m2-pwa/commit/f9f2e9101191f5cb5c4514ceb9534ddeb2476763))
-- **framer-scroller:** find the direction of the scroller and set proper values
-  ([631e24c](https://github.com/ho-nl/m2-pwa/commit/631e24c5c7ff67b49f83390789e8dadcb07eca04))
-- **framer-scroller:** get the scrollSnapAlign from the element instead of the body
-  ([ec8c24e](https://github.com/ho-nl/m2-pwa/commit/ec8c24e6d457a3ed1c055b27d7b94be5ed4b6f2c))
-- **framer-scroller:** provide promise with scrollTo
-  ([cbe59d9](https://github.com/ho-nl/m2-pwa/commit/cbe59d9e753cc2ab76b2de048139e0319f08d035))
-- **framer-scroller:** split the grid functionality from the scroller
-  ([81307ea](https://github.com/ho-nl/m2-pwa/commit/81307ea2652bf31a1f94e8db72af4ee161bdca2e))
+- **framer-scroller-sheet:** created package replacing the framer-sheet package ([f9f2e91](https://github.com/ho-nl/m2-pwa/commit/f9f2e9101191f5cb5c4514ceb9534ddeb2476763))
+- **framer-scroller:** find the direction of the scroller and set proper values ([631e24c](https://github.com/ho-nl/m2-pwa/commit/631e24c5c7ff67b49f83390789e8dadcb07eca04))
+- **framer-scroller:** get the scrollSnapAlign from the element instead of the body ([ec8c24e](https://github.com/ho-nl/m2-pwa/commit/ec8c24e6d457a3ed1c055b27d7b94be5ed4b6f2c))
+- **framer-scroller:** provide promise with scrollTo ([cbe59d9](https://github.com/ho-nl/m2-pwa/commit/cbe59d9e753cc2ab76b2de048139e0319f08d035))
+- **framer-scroller:** split the grid functionality from the scroller ([81307ea](https://github.com/ho-nl/m2-pwa/commit/81307ea2652bf31a1f94e8db72af4ee161bdca2e))
 
 ## [1.0.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@1.0.1...@graphcommerce/framer-scroller@1.0.2) (2021-11-03)
 
 ### Bug Fixes
 
-- various accessibility improvements
-  ([47481a9](https://github.com/ho-nl/m2-pwa/commit/47481a9a882ba87968de6dd797557b0b275d75fb))
+- various accessibility improvements ([47481a9](https://github.com/ho-nl/m2-pwa/commit/47481a9a882ba87968de6dd797557b0b275d75fb))
 
 ## [0.4.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@0.4.1...@graphcommerce/framer-scroller@0.4.2) (2021-10-29)
 
 ### Bug Fixes
 
-- spacing of title on category landing on mobile
-  ([8ed3550](https://github.com/ho-nl/m2-pwa/commit/8ed35502fd231d1d6a8e0a282f8961335d9dead3))
+- spacing of title on category landing on mobile ([8ed3550](https://github.com/ho-nl/m2-pwa/commit/8ed35502fd231d1d6a8e0a282f8961335d9dead3))
 
 # [0.4.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@0.3.3...@graphcommerce/framer-scroller@0.4.0) (2021-10-27)
 
 ### Features
 
-- **nextjs:** upgraded to nextjs 12
-  ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
+- **nextjs:** upgraded to nextjs 12 ([9331bc8](https://github.com/ho-nl/m2-pwa/commit/9331bc801f6419522115cc47d291d49d608d5a90))
 
 # [0.3.0](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@0.2.11...@graphcommerce/framer-scroller@0.3.0) (2021-10-19)
 
 ### Features
 
-- **framer-scroller:** better defaults so the Scroller doesn't look broken when providing no props
-  ([b177ce9](https://github.com/ho-nl/m2-pwa/commit/b177ce9570abb9ccfd4eb5cc34e43d157bb4e81a))
+- **framer-scroller:** better defaults so the Scroller doesn't look broken when providing no props ([b177ce9](https://github.com/ho-nl/m2-pwa/commit/b177ce9570abb9ccfd4eb5cc34e43d157bb4e81a))
 
 ## [0.2.9](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@0.2.8...@graphcommerce/framer-scroller@0.2.9) (2021-10-11)
 
 ### Bug Fixes
 
-- **framer-scroller:** dots should have a background
-  ([8f2e1a1](https://github.com/ho-nl/m2-pwa/commit/8f2e1a1ffc9de3369938fe2f9e9f25f592739d8d))
+- **framer-scroller:** dots should have a background ([8f2e1a1](https://github.com/ho-nl/m2-pwa/commit/8f2e1a1ffc9de3369938fe2f9e9f25f592739d8d))
 
 ## [0.2.8](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@0.2.7...@graphcommerce/framer-scroller@0.2.8) (2021-10-09)
 
 ### Bug Fixes
 
-- **framer-scroller:** pan snap does not work on mobile
-  ([660f242](https://github.com/ho-nl/m2-pwa/commit/660f242a38558669fa896a74e14cafdd85069d57))
+- **framer-scroller:** pan snap does not work on mobile ([660f242](https://github.com/ho-nl/m2-pwa/commit/660f242a38558669fa896a74e14cafdd85069d57))
 
 ## [0.2.2](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@0.2.0...@graphcommerce/framer-scroller@0.2.2) (2021-09-27)
 
 ### Bug Fixes
 
-- ignore example directories when publishing
-  ([620cbb2](https://github.com/ho-nl/m2-pwa/commit/620cbb2d8e68b727b8593e2e45702c4d12276d92))
-- versions
-  ([b8b306c](https://github.com/ho-nl/m2-pwa/commit/b8b306c8f3a13415e441d0593c638ae2a3731cd6))
+- ignore example directories when publishing ([620cbb2](https://github.com/ho-nl/m2-pwa/commit/620cbb2d8e68b727b8593e2e45702c4d12276d92))
+- versions ([b8b306c](https://github.com/ho-nl/m2-pwa/commit/b8b306c8f3a13415e441d0593c638ae2a3731cd6))
 
 ## [0.2.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@0.2.0...@graphcommerce/framer-scroller@0.2.1) (2021-09-27)
 
@@ -283,65 +225,42 @@ All notable changes to this project will be documented in this file. See
 
 ### Bug Fixes
 
-- **framer-scroller:** center the prev/next buttons on the gallery
-  ([234dc37](https://github.com/ho-nl/m2-pwa/commit/234dc37fc46f723410e9a844bbcb33cfe5d8a588))
-- **framer-scroller:** check if the ref exists instead of throwing an exception
-  ([9cdfa0d](https://github.com/ho-nl/m2-pwa/commit/9cdfa0dd749c59159ce8f6f53dbabbcdddab049c))
-- **framer-slider:** prev/next buttons don't always show up correctly
-  ([ba2510e](https://github.com/ho-nl/m2-pwa/commit/ba2510ea659344a2d71957eed396f4e5ce536a8c))
-- make sure we can actually observe items
-  ([4767b2a](https://github.com/ho-nl/m2-pwa/commit/4767b2a1bb23fc6d2e445c10c96da0a666212c55))
+- **framer-scroller:** center the prev/next buttons on the gallery ([234dc37](https://github.com/ho-nl/m2-pwa/commit/234dc37fc46f723410e9a844bbcb33cfe5d8a588))
+- **framer-scroller:** check if the ref exists instead of throwing an exception ([9cdfa0d](https://github.com/ho-nl/m2-pwa/commit/9cdfa0dd749c59159ce8f6f53dbabbcdddab049c))
+- **framer-slider:** prev/next buttons don't always show up correctly ([ba2510e](https://github.com/ho-nl/m2-pwa/commit/ba2510ea659344a2d71957eed396f4e5ce536a8c))
+- make sure we can actually observe items ([4767b2a](https://github.com/ho-nl/m2-pwa/commit/4767b2a1bb23fc6d2e445c10c96da0a666212c55))
 
 ### Features
 
-- **framer-scroller:** created an MotionImageAspect component to properly center and handle scorller
-  resizes
-  ([2eb117e](https://github.com/ho-nl/m2-pwa/commit/2eb117e6c135ea8e009c91f854e9f9ef8e7375c5))
-- **framer-scroller:** implemented the scroller on all pages
-  ([73fb518](https://github.com/ho-nl/m2-pwa/commit/73fb518eff74edb2b3212e892b3d8cc2b088011b))
-- **framer-scroller:** option to hide scrollbar
-  ([f6a8329](https://github.com/ho-nl/m2-pwa/commit/f6a8329d2f761956a9d7bdc5243de336aa2e5ad4))
-- **framer-scroller:** package to implement scroll-snap handling with JS
-  ([b3a279f](https://github.com/ho-nl/m2-pwa/commit/b3a279f8b4acb2b9de99004efe0459c534786bdd))
-- **framer-scroller:** pagination dots
-  ([6a5557d](https://github.com/ho-nl/m2-pwa/commit/6a5557d10d08661662eb476c5fe2296b558c1cb5))
-- renamed all packages to use [@graphcommerce](https://github.com/graphcommerce) instead of
-  [@reachdigital](https://github.com/reachdigital)
-  ([491e4ce](https://github.com/ho-nl/m2-pwa/commit/491e4cec9a2686472dac36b79f999257c0811ffe))
+- **framer-scroller:** created an MotionImageAspect component to properly center and handle scorller resizes ([2eb117e](https://github.com/ho-nl/m2-pwa/commit/2eb117e6c135ea8e009c91f854e9f9ef8e7375c5))
+- **framer-scroller:** implemented the scroller on all pages ([73fb518](https://github.com/ho-nl/m2-pwa/commit/73fb518eff74edb2b3212e892b3d8cc2b088011b))
+- **framer-scroller:** option to hide scrollbar ([f6a8329](https://github.com/ho-nl/m2-pwa/commit/f6a8329d2f761956a9d7bdc5243de336aa2e5ad4))
+- **framer-scroller:** package to implement scroll-snap handling with JS ([b3a279f](https://github.com/ho-nl/m2-pwa/commit/b3a279f8b4acb2b9de99004efe0459c534786bdd))
+- **framer-scroller:** pagination dots ([6a5557d](https://github.com/ho-nl/m2-pwa/commit/6a5557d10d08661662eb476c5fe2296b558c1cb5))
+- renamed all packages to use [@graphcommerce](https://github.com/graphcommerce) instead of [@reachdigital](https://github.com/reachdigital) ([491e4ce](https://github.com/ho-nl/m2-pwa/commit/491e4cec9a2686472dac36b79f999257c0811ffe))
 
 # Change Log
 
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [0.1.1](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/framer-scroller@0.1.0...@graphcommerce/framer-scroller@0.1.1) (2021-09-01)
 
 ### Bug Fixes
 
-- **framer-slider:** prev/next buttons don't always show up correctly
-  ([ba2510e](https://github.com/ho-nl/m2-pwa/commit/ba2510ea659344a2d71957eed396f4e5ce536a8c))
-- make sure we can actually observe items
-  ([4767b2a](https://github.com/ho-nl/m2-pwa/commit/4767b2a1bb23fc6d2e445c10c96da0a666212c55))
+- **framer-slider:** prev/next buttons don't always show up correctly ([ba2510e](https://github.com/ho-nl/m2-pwa/commit/ba2510ea659344a2d71957eed396f4e5ce536a8c))
+- make sure we can actually observe items ([4767b2a](https://github.com/ho-nl/m2-pwa/commit/4767b2a1bb23fc6d2e445c10c96da0a666212c55))
 
 # 0.1.0 (2021-09-01)
 
 ### Bug Fixes
 
-- **framer-scroller:** center the prev/next buttons on the gallery
-  ([234dc37](https://github.com/ho-nl/m2-pwa/commit/234dc37fc46f723410e9a844bbcb33cfe5d8a588))
-- **framer-scroller:** check if the ref exists instead of throwing an exception
-  ([9cdfa0d](https://github.com/ho-nl/m2-pwa/commit/9cdfa0dd749c59159ce8f6f53dbabbcdddab049c))
+- **framer-scroller:** center the prev/next buttons on the gallery ([234dc37](https://github.com/ho-nl/m2-pwa/commit/234dc37fc46f723410e9a844bbcb33cfe5d8a588))
+- **framer-scroller:** check if the ref exists instead of throwing an exception ([9cdfa0d](https://github.com/ho-nl/m2-pwa/commit/9cdfa0dd749c59159ce8f6f53dbabbcdddab049c))
 
 ### Features
 
-- **framer-scroller:** created an MotionImageAspect component to properly center and handle scorller
-  resizes
-  ([2eb117e](https://github.com/ho-nl/m2-pwa/commit/2eb117e6c135ea8e009c91f854e9f9ef8e7375c5))
-- **framer-scroller:** implemented the scroller on all pages
-  ([73fb518](https://github.com/ho-nl/m2-pwa/commit/73fb518eff74edb2b3212e892b3d8cc2b088011b))
-- **framer-scroller:** option to hide scrollbar
-  ([f6a8329](https://github.com/ho-nl/m2-pwa/commit/f6a8329d2f761956a9d7bdc5243de336aa2e5ad4))
-- **framer-scroller:** package to implement scroll-snap handling with JS
-  ([b3a279f](https://github.com/ho-nl/m2-pwa/commit/b3a279f8b4acb2b9de99004efe0459c534786bdd))
-- **framer-scroller:** pagination dots
-  ([6a5557d](https://github.com/ho-nl/m2-pwa/commit/6a5557d10d08661662eb476c5fe2296b558c1cb5))
+- **framer-scroller:** created an MotionImageAspect component to properly center and handle scorller resizes ([2eb117e](https://github.com/ho-nl/m2-pwa/commit/2eb117e6c135ea8e009c91f854e9f9ef8e7375c5))
+- **framer-scroller:** implemented the scroller on all pages ([73fb518](https://github.com/ho-nl/m2-pwa/commit/73fb518eff74edb2b3212e892b3d8cc2b088011b))
+- **framer-scroller:** option to hide scrollbar ([f6a8329](https://github.com/ho-nl/m2-pwa/commit/f6a8329d2f761956a9d7bdc5243de336aa2e5ad4))
+- **framer-scroller:** package to implement scroll-snap handling with JS ([b3a279f](https://github.com/ho-nl/m2-pwa/commit/b3a279f8b4acb2b9de99004efe0459c534786bdd))
+- **framer-scroller:** pagination dots ([6a5557d](https://github.com/ho-nl/m2-pwa/commit/6a5557d10d08661662eb476c5fe2296b558c1cb5))
