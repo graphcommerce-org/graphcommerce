@@ -18,10 +18,13 @@ to create a bug report.
 
 ### Feature requests
 
-Feature requests are welcome. But take a moment to find out whether your idea
+Feature requests are welcome. Please take a moment to find out whether your idea
 fits with the scope and aims of the project. It's up to you to make a strong
-case to convince us of the merits of this feature. Please provide as much detail
-and context as possible.
+case to convince us of the merits of this feature.
+
+Provide as much detail and context as possible. Use the
+[feature request template ↗](https://github.com/graphcommerce-org/graphcommerce/issues/new/choose)
+to create a feature request.
 
 ## Pull requests
 
