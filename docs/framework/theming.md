@@ -66,7 +66,7 @@ Most components have props that define their look and feel. Most common are the
   IntelliSense feature, type Ctrl+Space.
 - It can be helpful to learn how a component is styled, for example, to explore
   how palette variables are used. Refer to the
-  [MUI Button source code ↗](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Button/Button.js)
+  [MUI Button source code ↗](https://github.com/mui/material-ui/blob/main/packages/mui-material/src/Button/Button.js)
 
 ## Change a component's styling with the sx prop
 
@@ -255,4 +255,4 @@ should not be scaled with responsiveVal. To learn more, look into
 - Take a look at MUI's
   [Default Theme object ↗](https://mui.com/customization/default-theme/)
 - Learn more about a component's default styles by looking them up in the
-  [MUI repository ↗](https://github.com/mui/material-ui/tree/master/packages/mui-material/src)
+  [MUI repository ↗](https://github.com/mui/material-ui/tree/main/packages/mui-material/src)

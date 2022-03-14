@@ -5,7 +5,7 @@
   <a aria-label="License" href="https://www.npmjs.com/package/@graphcommerce/magento-graphcms">
     <img alt="" src="https://img.shields.io/npm/v/@graphcommerce/magento-graphcms?style=for-the-badge">
   </a>
-  <a aria-label="License" href="https://github.com/graphcommerce-org/graphcommerce/blob/master/LICENSE.md">
+  <a aria-label="License" href="https://github.com/graphcommerce-org/graphcommerce/blob/main/LICENSE.md">
     <img alt="" src="https://img.shields.io/badge/License-ELv2-green?style=for-the-badge">
   </a>
 </p>
@@ -63,13 +63,13 @@ Visit the GraphQL Playground running at http://localhost:3000/api/graphql
 ## Contributing to GraphCommerce
 
 Learn how to
-[contribute to GraphCommerce](https://github.com/graphcommerce-org/graphcommerce/blob/master/docs/contributing.md)
+[contribute to GraphCommerce](https://github.com/graphcommerce-org/graphcommerce/blob/main/docs/contributing.md)
 
 ---
 
 ## Next steps
 
 - Learn about the general concepts and file structure of the
-  [magento-graphcms example](https://github.com/graphcommerce-org/graphcommerce/blob/master/docs/getting-started/readme.md)
+  [magento-graphcms example](https://github.com/graphcommerce-org/graphcommerce/blob/main/docs/getting-started/readme.md)
 - Learn more about
-  [getting started with GraphCommerce](https://github.com/graphcommerce-org/graphcommerce/blob/master/docs/getting-started/create.md)
+  [getting started with GraphCommerce](https://github.com/graphcommerce-org/graphcommerce/blob/main/docs/getting-started/create.md)
