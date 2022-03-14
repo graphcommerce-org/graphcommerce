@@ -1,6 +1,6 @@
 ---
 menu: Overview
-order: getting-started,framework
+order: getting-started,framework, contributing, roadmap
 metaTitle: Start React, Next.js Magento PWA development here - GraphCommerce
 metaDescription:
   'GraphCommerce is the open-source PWA Studio Magento 2 alternative.
