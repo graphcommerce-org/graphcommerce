@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.3.4
+
+### Patch Changes
+
+- [#1312](https://github.com/ho-nl/m2-pwa/pull/1312) [`45f6351c2`](https://github.com/ho-nl/m2-pwa/commit/45f6351c2e19806205d98429d301f477221a04ca) Thanks [@paales](https://github.com/paales)! - Now graphql-codegen always uses the generated graphql-mesh even when in development mode.
+
+* [#1312](https://github.com/ho-nl/m2-pwa/pull/1312) [`4e1fd4d9f`](https://github.com/ho-nl/m2-pwa/commit/4e1fd4d9fda2109de378be7e39382f7014a7ab54) Thanks [@paales](https://github.com/paales)! - upgraded dependencies
+
+* Updated dependencies [[`4e1fd4d9f`](https://github.com/ho-nl/m2-pwa/commit/4e1fd4d9fda2109de378be7e39382f7014a7ab54)]:
+  - @graphcommerce/graphql-mesh@4.0.6
+  - @graphcommerce/next-ui@4.2.5
+
 ## 3.3.3
 
 ### Patch Changes
