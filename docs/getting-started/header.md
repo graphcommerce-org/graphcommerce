@@ -101,8 +101,8 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 
 ### Replace Search input with Search Fab
 
-- In /components/Layout/LayoutFull.tsx, replace
-  `<SearchButton onClick={onSearchStart} label=' ' />` with:
+- In /components/Layout/LayoutFull.tsx, replace `<SearchLink href='/search' />`
+  with:
 
 ```tsx
 <PageLink href='/search' passHref>
@@ -144,11 +144,6 @@ https://user-images.githubusercontent.com/1251986/154979091-89c72d68-c62f-451c-a
 
 - Make a copy of /node_modules/@graphcommerce/next-ui/LayoutParts/MenuFab.tsx
   and move it to the directory /components/Layout/MenuFab.tsx
-- In /components/Layout/MenuFab.tsx, change
-  `const MotionDiv = styled(m.div)({})` to:
-  ```ts
-  const MotionDiv = styled('div')({})
-  ```
 - Remove the `style={{...}}` prop from both the `<MotionDiv>` components to
   remove the Fab scroll animation
 - Remove `const { opacity, scale, shadowOpacity } = useFabAnimation()`
