@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.4.0
+
+### Minor Changes
+
+- [#1320](https://github.com/graphcommerce-org/graphcommerce/pull/1320) [`2ecac6e06`](https://github.com/graphcommerce-org/graphcommerce/commit/2ecac6e06ad19257acfd18e9042c5f81f66b476e) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Sort order, add link to create feature request
+
 ## 4.3.0
 
 ### Minor Changes
