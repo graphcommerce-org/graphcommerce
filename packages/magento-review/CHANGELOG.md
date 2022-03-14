@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.7
+
+### Patch Changes
+
+- [#1310](https://github.com/graphcommerce-org/graphcommerce/pull/1310) [`bcae21cfa`](https://github.com/graphcommerce-org/graphcommerce/commit/bcae21cfafe5bf8e0768f9b52028e0e3195cd3b7) Thanks [@LaurensFranken](https://github.com/LaurensFranken)! - Make texts in product reviews component translatable
+
 ## 3.0.6
 
 ### Patch Changes
