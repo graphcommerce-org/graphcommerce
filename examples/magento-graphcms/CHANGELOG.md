@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.3.5
+
+### Patch Changes
+
+- [#1316](https://github.com/graphcommerce-org/graphcommerce/pull/1316) [`6a8c84fb9`](https://github.com/graphcommerce-org/graphcommerce/commit/6a8c84fb910b9e23cdb08825b87c238510484f4a) Thanks [@paales](https://github.com/paales)! - Renamed all repository references to the [new repository](https://github.com/graphcommerce-org/graphcommerce).
+
+* [#1314](https://github.com/graphcommerce-org/graphcommerce/pull/1314) [`6474d1215`](https://github.com/graphcommerce-org/graphcommerce/commit/6474d1215f6cbd2e227bdc0304893522797003ec) Thanks [@paales](https://github.com/paales)! - sometimes after an upgrade .gql.ts files were still present causing typescript errors and making the editor slow
+
 ## 3.3.4
 
 ### Patch Changes
