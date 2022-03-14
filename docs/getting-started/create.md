@@ -54,7 +54,7 @@ need to only install the dependencies. This is the quickest approach.
 
 ### Download the example
 
-1. `git clone ... graphcommerce`
+1. `git clone git@github.com:graphcommerce-org/graphcommerce.git graphcommerce`
 2. `mkdir my-project`
 3. `cp -R graphcommerce/examples/magento-graphcms/. my-project`
 4. `rm -rf graphcommerce`

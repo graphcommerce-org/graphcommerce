@@ -5,7 +5,7 @@ menu: GraphCMS
 > **Developer preview**  
 > This is a developer preview of GraphCommerce. The documentation will be
 > updated as GraphCommerce introduces
-> [new features and refines existing functionality](https://github.com/ho-nl/m2-pwa/releases).
+> [new features and refines existing functionality](https://github.com/graphcommerce-org/graphcommerce/releases).
 
 # GraphCMS
 

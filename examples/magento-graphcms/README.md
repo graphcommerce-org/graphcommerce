@@ -5,7 +5,7 @@
   <a aria-label="License" href="https://www.npmjs.com/package/@graphcommerce/magento-graphcms">
     <img alt="" src="https://img.shields.io/npm/v/@graphcommerce/magento-graphcms?style=for-the-badge">
   </a>
-  <a aria-label="License" href="https://github.com/ho-nl/m2-pwa/blob/master/LICENSE.md">
+  <a aria-label="License" href="https://github.com/graphcommerce-org/graphcommerce/blob/master/LICENSE.md">
     <img alt="" src="https://img.shields.io/badge/License-ELv2-green?style=for-the-badge">
   </a>
 </p>
@@ -30,7 +30,7 @@ or set up your local development environment with the instructions below.
 
 ### Download the example
 
-1. `git clone ... graphcommerce`
+1. `git clone git@github.com:graphcommerce-org/graphcommerce.git graphcommerce`
 2. `mkdir my-project`
 3. `cp -R graphcommerce/examples/magento-graphcms/. my-project`
 4. `rm -rf graphcommerce`
@@ -63,13 +63,13 @@ Visit the GraphQL Playground running at http://localhost:3000/api/graphql
 ## Contributing to GraphCommerce
 
 Learn how to
-[contribute to GraphCommerce](https://github.com/ho-nl/m2-pwa/blob/master/docs/contributing.md)
+[contribute to GraphCommerce](https://github.com/graphcommerce-org/graphcommerce/blob/master/docs/contributing.md)
 
 ---
 
 ## Next steps
 
 - Learn about the general concepts and file structure of the
-  [magento-graphcms example](https://github.com/ho-nl/m2-pwa/blob/master/docs/getting-started/readme.md)
+  [magento-graphcms example](https://github.com/graphcommerce-org/graphcommerce/blob/master/docs/getting-started/readme.md)
 - Learn more about
-  [getting started with GraphCommerce](https://github.com/ho-nl/m2-pwa/blob/master/docs/getting-started/create.md)
+  [getting started with GraphCommerce](https://github.com/graphcommerce-org/graphcommerce/blob/master/docs/getting-started/create.md)
