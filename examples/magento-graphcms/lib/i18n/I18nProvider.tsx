@@ -1,9 +1,7 @@
 import { LinguiProvider } from '@graphcommerce/lingui-next'
+import { LinguiProviderProps } from '@graphcommerce/lingui-next/components/LinguiProvider'
 
-type I18nProviderProps = {
-  locale: string
-  children: React.ReactNode
-}
+type I18nProviderProps = Pick<LinguiProviderProps, 'locale' | 'children'>
 
 /**
  * Reason for it to exist: We're loading the translations from a relative path, this a good thing.

@@ -4,7 +4,7 @@ import { nl, en, fr } from 'make-plural/plurals'
 import React, { useMemo } from 'react'
 import { MessageLoader, SyncMessageLoader } from '../types'
 
-type LinguiProviderProps = Omit<I18nProviderProps, 'i18n'> & {
+export type LinguiProviderProps = Omit<I18nProviderProps, 'i18n'> & {
   children: React.ReactNode
   loader: MessageLoader
   ssrLoader: SyncMessageLoader
