@@ -1,8 +1,9 @@
 # Contributing to GraphCommerce
 
-Want to get involved? There are plenty of ways you can help. Please take a
-moment to review this guide to make the contribution process easy and effective
-for everyone involved.
+Looking to contribute something to GraphCommerce? Here's how you can help.
+
+Please take a moment to review this document in order to make the contribution
+process easy and effective for everyone involved.
 
 ### Bug reports
 
@@ -17,10 +18,10 @@ to create a bug report.
 
 ### Feature requests
 
-Feature requests are welcome. Please take your time to document the feature as
-much as possible - it is up to you to convince the project's maintainers of the
-merits of this feature, and its alignment with the scope and goals of the
-project.
+Feature requests are welcome. But take a moment to find out whether your idea
+fits with the scope and aims of the project. It's up to you to make a strong
+case to convince us of the merits of this feature. Please provide as much detail
+and context as possible.
 
 ## Pull requests
 
@@ -71,8 +72,16 @@ the [recommended VS Code extensions](../docs/getting-started/vscode.md)
   <figcaption>Select minor bump when running `yarn changeset`</figcaption>
 </figure>
 
+**Sign the Contributor License Agreement**
+
+Please make sure you have signed our [Contributor License Agreement](). We are
+not asking you to assign copyright to us, but to give us the right to distribute
+your code without restriction. We ask this of all contributors in order to
+assure our users of the origin and continuing existence of the code. You only
+need to sign the CLA once.
+
 ## Next steps
 
-- Discuss your ideas and learnings in the public
+- Discuss your ideas in the public
   [ Slack community. ↗](https://join.slack.com/t/graphcommerce/shared_invite/zt-11rmgq1ad-F~0daNtKcSvtcC4eQRzjeQ)
   chat
