@@ -56,6 +56,14 @@ File structure of GraphCommerce
 GraphCommerce uses ESLint for linting and Prettier for code formatting. Install
 the [recommended VS Code extensions](../docs/getting-started/vscode.md)
 
+### Contributor License Agreement
+
+Please make sure you have signed our [Contributor License Agreement](). We are
+not asking you to assign copyright to us, but to give us the right to distribute
+your code without restriction. We ask this of all contributors in order to
+assure our users of the origin and continuing existence of the code. You only
+need to sign the CLA once.
+
 ### Creating a pull request
 
 1. Create a pull request. The PR can stay open until you are ready to merge.
@@ -71,14 +79,6 @@ the [recommended VS Code extensions](../docs/getting-started/vscode.md)
 
   <figcaption>Select minor bump when running `yarn changeset`</figcaption>
 </figure>
-
-**Sign the Contributor License Agreement**
-
-Please make sure you have signed our [Contributor License Agreement](). We are
-not asking you to assign copyright to us, but to give us the right to distribute
-your code without restriction. We ask this of all contributors in order to
-assure our users of the origin and continuing existence of the code. You only
-need to sign the CLA once.
 
 ## Next steps
 
