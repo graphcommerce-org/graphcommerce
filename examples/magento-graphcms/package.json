@@ -10,12 +10,12 @@
   },
   "scripts": {
     "dev": "yarn concurrently -k -n codegen,next 'yarn codegen-base -w' 'yarn next dev'",
-    "codegen": "yarn mesh build && NEXT_PUBLIC_GRAPHQL_ENDPOINT=.mesh/schema.graphql yarn codegen-base",
+    "codegen": "yarn mesh build && yarn codegen-base",
     "build": "yarn codegen && yarn next build && yarn next-sitemap",
     "start": "next start",
     "tsc:lint": "yarn tsc --noEmit -p .",
     "lingui": "NODE_ENV=development lingui extract",
-    "codegen-base": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 yarn graphql-codegen -c codegen.mono.yml",
+    "codegen-base": "NEXT_PUBLIC_GRAPHQL_ENDPOINT=.mesh/schema.graphql yarn graphql-codegen -c ../../scripts/codegen.magento-graphcms.yml",
     "prepack": "concurrently 'yarn prepack:1' 'yarn prepack:2' 'yarn prepack:3'",
     "prepack:1": "yarn workspace @graphcommerce/next-config prepack",
     "prepack:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack",
@@ -24,12 +24,12 @@
   },
   "scripts_local": {
     "dev": "yarn concurrently -k -n codegen,next 'yarn codegen-base -w' 'yarn next dev'",
-    "codegen": "yarn mesh build && NEXT_PUBLIC_GRAPHQL_ENDPOINT=.mesh/schema.graphql yarn codegen-base",
+    "codegen": "yarn mesh build && yarn codegen-base",
     "build": "yarn codegen && yarn next build && yarn next-sitemap",
     "start": "next start",
     "tsc:lint": "yarn tsc --noEmit -p .",
     "lingui": "NODE_ENV=development lingui extract",
-    "codegen-base": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 yarn graphql-codegen"
+    "codegen-base": "NEXT_PUBLIC_GRAPHQL_ENDPOINT=.mesh/schema.graphql yarn graphql-codegen"
   },
   "dependencies": {
     "@graphcommerce/ecommerce-ui": "^1.0.3",
@@ -95,7 +95,7 @@
     "@lingui/cli": "^3.13.2",
     "@types/node": "^17.0.21",
     "@types/react": "^17.0.40",
-    "eslint": "^8.10.0",
+    "eslint": "^8.11.0",
     "typescript": "^4.6.2"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",

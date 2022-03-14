@@ -1,4 +1,3 @@
-# yaml-language-server: $schema=https://unpkg.com/@graphql-mesh/types@0.49.0/config-schema.json
 sources:
   - name: graphcms
     handler:

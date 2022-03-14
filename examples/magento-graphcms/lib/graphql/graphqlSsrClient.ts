@@ -7,7 +7,7 @@ const fastDev =
   process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT?.includes('localhost')
 
 // Do not import the mesh when we're running in fastDev mode.
-const mesh = fastDev ? undefined : await (await import('./mesh')).default
+const mesh = fastDev ? undefined : await (await import('../../.mesh/index')).getBuiltMesh()
 
 export function meshLink(locale: string) {
   if (!mesh) throw Error('Mesh not available')
@@ -65,6 +65,10 @@ export function graphqlSsrClient(locale?: string | undefined) {
   return graphqlClient(locale, false)
 }
 
+/**
+ * Any queries made with the graphqlSharedClient will be send to the browser and injected in the
+ * browser's cache.
+ */
 export function graphqlSharedClient(locale?: string | undefined) {
   return graphqlClient(locale, true)
 }

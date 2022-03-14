@@ -1,4 +1,5 @@
-# todo: make `../../node_modules/@graphcommerce` some env variable or resolve dynamically'
+# todo: make `../../node_modules/@graphcommerce` some env variable or resolve dynamically
+# Codegen for examples/magento-graphcms
 generates:
   # Generate a types file
   ../../node_modules/@graphcommerce/graphql/generated/types.ts:
@@ -25,8 +26,6 @@ generates:
       - '../../packagesDev/**/*.graphqls'
     plugins:
       - fragment-matcher
-    config:
-      apolloClientVersion: 3
   # Generate .gql.ts files for each GraphQL file
   ../../:
     schema:
@@ -53,3 +52,5 @@ generates:
       skipTypename: true
       dedupeOperationSuffix: true
       content: '/* eslint-disable */'
+watchConfig:
+  usePolling: false
