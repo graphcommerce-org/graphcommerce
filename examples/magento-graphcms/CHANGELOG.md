@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.3.5
+
+### Patch Changes
+
+- [#1314](https://github.com/ho-nl/m2-pwa/pull/1314) [`6474d1215`](https://github.com/ho-nl/m2-pwa/commit/6474d1215f6cbd2e227bdc0304893522797003ec) Thanks [@paales](https://github.com/paales)! - sometimes after an upgrade .gql.ts files were still present causing typescript errors and making the editor slow
+
 ## 3.3.4
 
 ### Patch Changes
