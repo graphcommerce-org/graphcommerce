@@ -80,7 +80,7 @@ function ProductBundle(props: Props) {
         <Usps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
 
-      <ProductPageDescription {...product} right={<Usps usps={usps} />} />
+      <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
 
       {pages?.[0] && (
         <RowRenderer
