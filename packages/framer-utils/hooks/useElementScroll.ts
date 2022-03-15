@@ -39,14 +39,17 @@ export function useElementScroll(
         const { scrollLeft, scrollTop, scrollWidth, scrollHeight, offsetWidth, offsetHeight } =
           element
 
+        const xMax = Math.min(0, scrollWidth - offsetWidth)
+        const yMax = Math.min(0, scrollHeight - offsetHeight)
+
         values.x.set(scrollLeft)
         values.y.set(scrollTop)
-        values.xMax.set(scrollWidth - offsetWidth)
-        values.yMax.set(scrollHeight - offsetHeight)
+        values.xMax.set(xMax)
+        values.yMax.set(yMax)
 
         // Set 0-1 progress
-        setProgress(scrollLeft, scrollWidth - offsetWidth, values.xProgress)
-        setProgress(scrollTop, scrollHeight - offsetHeight, values.yProgress)
+        setProgress(scrollLeft, xMax, values.xProgress)
+        setProgress(scrollTop, yMax, values.yProgress)
       })
     }
 
