@@ -35,23 +35,22 @@ export function Footer(props: FooterProps) {
           borderTop: `1px solid ${theme.palette.divider}`,
           display: 'grid',
           alignItems: 'center',
-
           padding: `${theme.spacings.lg} ${theme.page.horizontal} ${theme.page.vertical}`,
           justifyItems: 'center',
           gridTemplateAreas: `
-          'switcher switcher'
-          'support support'
-          'social social'
-          'links links'
-        `,
-          gap: theme.spacings.md,
+            'switcher switcher'
+            'support support'
+            'social social'
+            'links links'
+          `,
+          gap: theme.spacings.sm,
           '& > *': { maxWidth: 'max-content' },
 
           [theme.breakpoints.up('sm')]: {
             gridTemplateAreas: `
-            'social switcher'
-            'links support'
-          `,
+              'social switcher'
+              'links support'
+            `,
             justifyItems: 'start',
             padding: `${theme.page.vertical} ${theme.page.horizontal}`,
             gridTemplateColumns: 'auto auto',
