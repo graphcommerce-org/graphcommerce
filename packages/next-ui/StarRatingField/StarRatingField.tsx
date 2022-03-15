@@ -25,16 +25,16 @@ export function StarRatingField(props: StarRatingFieldProps) {
         <IconSvg
           src={iconStar}
           size='large'
-          className={classes.startEmpty}
-          sx={{ fill: '#FFDA1C', stroke: 'none', margin: '0 3px' }}
+          className={classes.starFull}
+          sx={(theme) => ({ fill: theme.palette.divider, stroke: 'none', margin: '0 3px' })}
         />
       }
       icon={
         <IconSvg
           src={iconStar}
           size='large'
-          className={classes.starFull}
-          sx={(theme) => ({ fill: theme.palette.divider, stroke: 'none', margin: '0 3px' })}
+          className={classes.startEmpty}
+          sx={{ fill: '#FFDA1C', stroke: 'none', margin: '0 3px' }}
         />
       }
       onChange={(event, value) => {
