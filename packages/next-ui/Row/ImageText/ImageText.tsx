@@ -29,7 +29,7 @@ export function ImageText(props: ImageTextProps) {
               : theme.palette.background.paper,
           justifyItems: 'center',
           columnGap: theme.spacings.lg,
-          paddingTop: theme.spacings.lg,
+          marginTop: theme.spacings.lg,
           paddingBottom: theme.spacings.lg,
           [theme.breakpoints.up('md')]: {
             paddingTop: 0,
