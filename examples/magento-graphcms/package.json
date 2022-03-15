@@ -34,6 +34,7 @@
   "dependencies": {
     "@graphcommerce/ecommerce-ui": "^1.0.3",
     "@graphcommerce/framer-next-pages": "^3.1.2",
+    "@graphcommerce/framer-scroller": "^2.0.6",
     "@graphcommerce/googleanalytics": "^2.0.4",
     "@graphcommerce/googlerecaptcha": "^2.0.4",
     "@graphcommerce/googletagmanager": "^2.0.4",
