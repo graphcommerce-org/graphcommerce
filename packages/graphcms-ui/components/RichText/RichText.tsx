@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import { SxProps, Theme } from '@mui/material'
 import { defaultRenderers } from './defaultRenderers'
 import { defaultSxRenderer } from './defaultSxRenderer'
@@ -10,13 +11,22 @@ import {
   ElementNode,
 } from './types'
 
-function RenderText({ classes, text, ...textProps }: TextNode) {
-  let result = <>{text}</>
-  if (textProps.bold) result = <strong>{result}</strong>
-  if (textProps.italic) result = <em>{result}</em>
-  if (textProps.underlined) result = <em>{result}</em>
+function RenderText({ text, renderers, sxRenderer, ...textProps }: TextNode & AdditionalProps) {
+  let type: 'bold' | 'italic' | 'underlined' | undefined
+  if (textProps.bold) type = 'bold'
+  if (textProps.italic) type = 'italic'
+  if (textProps.underlined) type = 'underlined'
 
-  return result
+  if (!type) return <>{text}</>
+
+  const Component = renderers[type]
+  const sx = sxRenderer?.[type] ?? []
+
+  return (
+    <Component type={type} sx={sx}>
+      {text}
+    </Component>
+  )
 }
 
 export function isTextNode(node: ElementOrTextNode): node is TextNode {

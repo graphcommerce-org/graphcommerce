@@ -39,4 +39,7 @@ export const defaultRenderers: Renderers = {
   table_row: (props) => <Box component='tr' {...props} />,
   table_cell: (props) => <Box component='td' {...props} />,
   code: (props) => <Box component='code' {...props} />,
+  bold: (props) => <Box component='strong' fontWeight='bold' {...props} />,
+  italic: (props) => <Box component='em' fontStyle='italic' {...props} />,
+  underlined: (props) => <Box component='span' {...props} />,
 }

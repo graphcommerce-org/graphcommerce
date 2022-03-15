@@ -22,6 +22,9 @@ type BaseElementTypes =
   | 'table_row'
   | 'table_cell'
   | 'code'
+  | 'bold'
+  | 'italic'
+  | 'underlined'
 
 type SimpleElement = {
   children: ElementOrTextNode[]

@@ -100,4 +100,7 @@ export const defaultSxRenderer: SxRenderer = {
   link: {
     wordBreak: 'break-word',
   },
+  underlined: {
+    textDecoration: 'underline',
+  },
 }
