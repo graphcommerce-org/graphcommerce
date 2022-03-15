@@ -1,8 +1,10 @@
+import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Divider, Fab, ListItem, Menu, styled, Box, SxProps, Theme } from '@mui/material'
-import { m } from 'framer-motion'
+import { m, useTransform } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import { IconSvg } from '../IconSvg'
+import { useScrollY } from '../Layout/hooks/useScrollY'
 import { extendableComponent } from '../Styles/extendableComponent'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { useFabSize } from '../Theme'
@@ -20,12 +22,16 @@ export type MenuFabProps = {
   sx?: SxProps<Theme>
 }
 
-const { classes, selectors } = extendableComponent('MenuFab', [
-  'wrapper',
-  'fab',
-  'shadow',
-  'menu',
-] as const)
+const name = 'MenuFab'
+const parts = ['wrapper', 'fab', 'shadow', 'menu'] as const
+type OwnerState = {
+  scrolled: boolean
+}
+
+const { selectors, withState } = extendableComponent<OwnerState, typeof name, typeof parts>(
+  name,
+  parts,
+)
 
 export function MenuFab(props: MenuFabProps) {
   const { children, secondary, search, menuIcon, closeIcon, sx = [] } = props
@@ -33,6 +39,8 @@ export function MenuFab(props: MenuFabProps) {
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
   const { opacity, scale, shadowOpacity } = useFabAnimation()
+  const scrollY = useScrollY()
+  const scrolled = useMotionValueValue(scrollY, (y) => y > 10)
 
   useEffect(() => {
     const clear = () => setOpenEl(null)
@@ -41,8 +49,15 @@ export function MenuFab(props: MenuFabProps) {
   }, [router])
   const fabIconSize = useFabSize('responsive')
 
+  const classes = withState({ scrolled })
+
   return (
-    <Box sx={[{ width: fabIconSize, height: fabIconSize }, ...(Array.isArray(sx) ? sx : [sx])]}>
+    <Box
+      sx={[
+        { position: 'relative', width: fabIconSize, height: fabIconSize },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       <MotionDiv
         className={classes.wrapper}
         sx={(theme) => ({
