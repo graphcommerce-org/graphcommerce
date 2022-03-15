@@ -1,10 +1,11 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
 import { Fab, FabProps, styled, SxProps, Theme } from '@mui/material'
-import { m } from 'framer-motion'
+import { m, useSpring } from 'framer-motion'
 import React from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
+import { ScrollerDot } from './ScrollerDot'
 
 const MotionBox = styled(m.div)({})
 
@@ -20,9 +21,8 @@ export const ScrollerDots = m(
   React.forwardRef<HTMLDivElement, DotsProps>((props, ref) => {
     const { fabProps, sx = [], ...containerProps } = props
 
-    const { items, getScrollSnapPositions } = useScrollerContext()
+    const { items } = useScrollerContext()
     const itemsArr = useMotionValueValue(items, (v) => v)
-    const scrollTo = useScrollTo()
 
     return (
       <MotionBox
@@ -41,35 +41,8 @@ export const ScrollerDots = m(
         ]}
       >
         {itemsArr.map((item, idx) => (
-          <Fab
-            // eslint-disable-next-line react/no-array-index-key
-            key={idx}
-            color='inherit'
-            size='small'
-            {...fabProps}
-            onClick={() => {
-              const positions = getScrollSnapPositions()
-              // eslint-disable-next-line @typescript-eslint/no-floating-promises
-              scrollTo({ x: positions.x[idx] ?? 0, y: positions.y[idx] ?? 0 })
-            }}
-            className={classes.dot}
-            aria-label={`img-${idx}`}
-            sx={{
-              boxShadow: 'none',
-              background: 'transparent',
-            }}
-          >
-            <MotionBox
-              className={classes.circle}
-              sx={(theme) => ({
-                borderRadius: '99em',
-                width: 10,
-                height: 10,
-                background: theme.palette.text.primary,
-              })}
-              style={{ opacity: item.opacity }}
-            />
-          </Fab>
+          // eslint-disable-next-line react/no-array-index-key
+          <ScrollerDot key={idx} {...item} idx={idx} />
         ))}
       </MotionBox>
     )
