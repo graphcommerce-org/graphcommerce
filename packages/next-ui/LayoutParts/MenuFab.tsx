@@ -1,6 +1,17 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Divider, Fab, ListItem, Menu, styled, Box, SxProps, Theme } from '@mui/material'
-import { m, useTransform } from 'framer-motion'
+import {
+  Divider,
+  Fab,
+  ListItem,
+  Menu,
+  styled,
+  Box,
+  SxProps,
+  Theme,
+  FabProps,
+  MenuProps as MenuPropsType,
+} from '@mui/material'
+import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import { IconSvg } from '../IconSvg'
@@ -20,7 +31,8 @@ export type MenuFabProps = {
   menuIcon?: React.ReactNode
   closeIcon?: React.ReactNode
   sx?: SxProps<Theme>
-}
+  MenuProps?: MenuPropsType
+} & Pick<FabProps, 'color' | 'size' | 'variant'>
 
 const name = 'MenuFab'
 const parts = ['wrapper', 'fab', 'shadow', 'menu'] as const
@@ -28,13 +40,19 @@ type OwnerState = {
   scrolled: boolean
 }
 
-const { selectors, withState } = extendableComponent<OwnerState, typeof name, typeof parts>(
-  name,
-  parts,
-)
+const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function MenuFab(props: MenuFabProps) {
-  const { children, secondary, search, menuIcon, closeIcon, sx = [] } = props
+  const {
+    children,
+    secondary,
+    search,
+    menuIcon,
+    closeIcon,
+    sx = [],
+    MenuProps,
+    ...fabProps
+  } = props
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
@@ -86,6 +104,7 @@ export function MenuFab(props: MenuFabProps) {
             color: theme.palette.background.paper,
           })}
           className={classes.fab}
+          {...fabProps}
         >
           {closeIcon ?? (
             <IconSvg src={iconClose} size='large' sx={{ display: openEl ? 'block' : 'none' }} />
@@ -129,6 +148,7 @@ export function MenuFab(props: MenuFabProps) {
           }}
           className={classes.menu}
           MenuListProps={{ dense: true }}
+          {...MenuProps}
         >
           {[
             search ? (
@@ -145,4 +165,3 @@ export function MenuFab(props: MenuFabProps) {
     </Box>
   )
 }
-MenuFab.selectors = selectors

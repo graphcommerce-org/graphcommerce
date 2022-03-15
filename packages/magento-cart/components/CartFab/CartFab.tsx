@@ -18,7 +18,7 @@ import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
 export type CartFabProps = {
   icon?: React.ReactNode
   sx?: SxProps<Theme>
-}
+} & Pick<FabProps, 'color' | 'size' | 'variant'>
 
 type CartFabContentProps = CartFabProps & CartTotalQuantityFragment
 
@@ -58,7 +58,6 @@ function CartFabContent(props: CartFabContentProps) {
       <PageLink href='/cart' passHref>
         <MotionFab
           className={classes.cart}
-          {...fabProps}
           aria-label={t`Cart`}
           color='inherit'
           size='responsive'
@@ -68,6 +67,7 @@ function CartFabContent(props: CartFabContentProps) {
               backgroundColor: `${theme.palette.background.paper} !important`,
             },
           })}
+          {...fabProps}
         >
           {total_quantity > 0 ? (
             <DesktopHeaderBadge color='primary' variant='dot' overlap='circular'>
@@ -86,7 +86,7 @@ function CartFabContent(props: CartFabContentProps) {
           position: 'absolute',
           height: '100%',
           width: '100%',
-          boxShadow: theme.shadows[6],
+          boxShadow: 6,
           top: 0,
           [theme.breakpoints.down('md')]: {
             opacity: '1 !important',
