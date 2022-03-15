@@ -83,6 +83,23 @@ function RenderElement(element: ElementNode & AdditionalProps) {
 
 export type RichTextProps = { raw: ElementNode } & {
   renderers?: Partial<Renderers>
+  /**
+   * Allows you to theme all the types of components
+   *
+   * ```tsx
+   * function MyComponent()f {
+   *   return <RichText
+   *     sxRenderer={{
+   *       paragraph: (theme) => ({
+   *         columnCount: { xs: 1, md: getColumnCount(props, 2) },
+   *         columnGap: theme.spacings.md,
+   *       }),
+   *       //other props here
+   *     }}
+   *   />
+   * }
+   * ```
+   */
   sxRenderer?: SxRenderer
 }
 
