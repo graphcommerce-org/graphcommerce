@@ -10,7 +10,7 @@ type PageMetaProps = Pick<NextPageMetaProps, 'title' | 'metaDescription' | 'meta
 }
 
 export function PageMeta(props: PageMetaProps) {
-  const { title, canonical, ...pageMetaProps } = props
+  const { title, ...pageMetaProps } = props
   const config = useQuery(StoreConfigDocument)
 
   const prefix = config.data?.storeConfig?.title_prefix ?? ''
@@ -23,11 +23,5 @@ export function PageMeta(props: PageMetaProps) {
   if (separator && suffix) pageTitle += ` ${separator}`
   if (suffix) pageTitle += ` ${suffix}`
 
-  return (
-    <NextPageMeta
-      title={pageTitle ?? ''}
-      canonical={canonical ? `/${canonical}` : canonical}
-      {...pageMetaProps}
-    />
-  )
+  return <NextPageMeta title={pageTitle ?? ''} {...pageMetaProps} />
 }

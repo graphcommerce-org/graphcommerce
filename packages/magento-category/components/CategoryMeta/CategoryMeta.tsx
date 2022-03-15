@@ -17,7 +17,7 @@ export function CategoryMeta(props: CategoryMetaProps) {
       title={meta_title ?? name ?? ''}
       metaDescription={meta_description ?? undefined}
       metaRobots={anyFilterActive ? ['noindex'] : undefined}
-      canonical={`${params?.url}${
+      canonical={`/${params?.url}${
         (params?.currentPage ?? 1) > 1 ? `/q/page/${params?.currentPage}` : ''
       }`}
       {...pageMetaProps}
