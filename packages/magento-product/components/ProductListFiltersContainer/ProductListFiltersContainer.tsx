@@ -108,7 +108,7 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
           direction='left'
           className={classes.sliderPrev}
           size='small'
-          sx={{ position: 'absolute', top: 2, left: 2, zIndex: 10 }}
+          sx={{ position: 'absolute', top: 4, left: 2, zIndex: 10 }}
         >
           <IconSvg src={iconChevronLeft} />
         </ScrollerButton>
@@ -166,7 +166,7 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
           direction='right'
           className={classes.sliderNext}
           size='small'
-          sx={{ position: 'absolute', top: 2, right: 2, zIndex: 10 }}
+          sx={{ position: 'absolute', top: 4, right: 2, zIndex: 10 }}
         >
           <IconSvg src={iconChevronRight} />
         </ScrollerButton>
