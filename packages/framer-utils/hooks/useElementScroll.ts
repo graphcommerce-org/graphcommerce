@@ -30,17 +30,13 @@ export function useElementScroll(
     const element = ref?.current
     if (!element) return () => {}
 
-    const setProgress = (offset: number, maxOffset: number, value: MotionValue) => {
-      value.set(!offset && !maxOffset ? noScroll : offset / maxOffset)
-    }
-
     const updater = () => {
       sync.read(() => {
         const { scrollLeft, scrollTop, scrollWidth, scrollHeight, offsetWidth, offsetHeight } =
           element
 
-        const xMax = Math.min(0, scrollWidth - offsetWidth)
-        const yMax = Math.min(0, scrollHeight - offsetHeight)
+        const xMax = Math.max(0, scrollWidth - offsetWidth)
+        const yMax = Math.max(0, scrollHeight - offsetHeight)
 
         values.x.set(scrollLeft)
         values.y.set(scrollTop)
@@ -48,8 +44,8 @@ export function useElementScroll(
         values.yMax.set(yMax)
 
         // Set 0-1 progress
-        setProgress(scrollLeft, xMax, values.xProgress)
-        setProgress(scrollTop, yMax, values.yProgress)
+        values.xProgress.set(!scrollLeft && !xMax ? noScroll : scrollLeft / xMax)
+        values.yProgress.set(!scrollTop && !yMax ? noScroll : scrollTop / yMax)
       })
     }
 
