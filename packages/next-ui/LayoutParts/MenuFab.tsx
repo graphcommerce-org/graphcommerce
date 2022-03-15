@@ -69,6 +69,8 @@ export function MenuFab(props: MenuFabProps) {
         style={{ scale, opacity }}
       >
         <Fab
+          // todo: replace color='inverted' and remove styles here when Fab color is extendable
+          // https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Fab/Fab.js#L193-L202
           color='inherit'
           aria-label='Open Menu'
           onClick={(event) => setOpenEl(event.currentTarget)}

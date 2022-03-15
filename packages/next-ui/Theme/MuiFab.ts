@@ -44,6 +44,11 @@ declare module '@mui/material/Fab/Fab' {
   interface FabPropsSizeOverrides {
     responsive: true
   }
+  // todo: Wait for the color prop to be exendable and then add inverted
+  // https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Fab/Fab.js#L193-L202
+  // interface FabPropsColorOverrides {
+  //   inverted: true
+  // }
 }
 
 function fabWidthHeight(size: FabSize, theme: Theme) {
@@ -67,3 +72,19 @@ export const MuiFabSizes: FabVariants = sizes.map((size) => ({
   props: { size },
   style: ({ theme }) => fabWidthHeight(size, theme),
 }))
+
+// todo: Wait for the color prop to be exendable and add tho theme.
+// https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Fab/Fab.js#L193-L202
+// export const MuiFabInverted: FabVariants = [
+//   {
+//     props: { color: 'inverted' },
+//     style: ({ theme }) => ({
+//       boxShadow: 'none',
+//       '&:hover, &:focus': {
+//         background: theme.palette.text.primary,
+//       },
+//       background: theme.palette.text.primary,
+//       color: theme.palette.background.paper,
+//     }),
+//   },
+// ]
