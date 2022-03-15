@@ -138,6 +138,7 @@ export function MenuFab(props: MenuFabProps) {
           PaperProps={{
             sx: (theme) => ({
               backgroundColor: theme.palette.background.paper,
+              backgroundImage: 'unset',
               color: theme.palette.text.primary,
               minWidth: responsiveVal(200, 280),
               marginTop: '12px',
