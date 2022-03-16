@@ -111,14 +111,14 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
 
             '&.floatingSm': {
               [theme.breakpoints.down('md')]: {
-                padding: `0 ${theme.spacings.md}`,
+                padding: `0 ${theme.page.horizontal}`,
                 background: 'none',
                 pointerEvents: 'none',
               },
             },
             '&.floatingMd': {
               [theme.breakpoints.up('md')]: {
-                padding: `0 ${theme.spacings.md}`,
+                padding: `0 ${theme.page.horizontal}`,
                 background: 'none',
                 pointerEvents: 'none',
               },
