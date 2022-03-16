@@ -110,6 +110,10 @@ module.exports = {
             name: 'next/image',
             message: "Please use `import { Image } from '@graphcommerce/image'` instead.",
           },
+          {
+            name: '@mui/system',
+            message: "Please use `@mui/material'` instead.",
+          },
         ],
       },
     ],
