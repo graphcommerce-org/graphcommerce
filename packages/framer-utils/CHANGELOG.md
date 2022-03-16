@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.5
+
+### Patch Changes
+
+- [#1322](https://github.com/graphcommerce-org/graphcommerce/pull/1322) [`bec88d0d7`](https://github.com/graphcommerce-org/graphcommerce/commit/bec88d0d70b679e15150917df89986ecee5b39a6) Thanks [@paales](https://github.com/paales)! - ScrollerButton is rendered while it shouldn’t because there is a rounding error in scroll and offset values
+
 ## 3.0.4
 
 ### Patch Changes
