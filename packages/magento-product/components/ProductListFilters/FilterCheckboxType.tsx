@@ -8,7 +8,8 @@ import { FilterIn } from './FilterEqualType'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 type Filter = NonNullable<NonNullable<ProductListFiltersFragment['aggregations']>[number]>
-export type FilterCheckboxTypeProps = Filter & Omit<ChipProps, 'selected'> & { sx?: SxProps<Theme> }
+export type FilterCheckboxTypeProps = Filter &
+  Omit<ChipProps<'button'>, 'selected' | 'onDelete' | 'component'> & { sx?: SxProps<Theme> }
 
 export function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props
@@ -32,7 +33,8 @@ export function FilterCheckboxType(props: FilterCheckboxTypeProps) {
       link={{ scroll: false, replace: true }}
     >
       <Chip
-        color={isActive ? undefined : 'default'}
+        component='button'
+        color={isActive ? 'primary' : 'default'}
         onDelete={
           isActive
             ? () => {

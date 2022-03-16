@@ -1,11 +1,6 @@
 import { useQuery } from '@graphcommerce/graphql'
-import {
-  MenuFabSecondaryItem,
-  DesktopHeaderBadge,
-  iconPerson,
-  IconSvg,
-} from '@graphcommerce/next-ui'
-import { NoSsr, SxProps, Theme } from '@mui/material'
+import { MenuFabSecondaryItem, iconPerson, IconSvg } from '@graphcommerce/next-ui'
+import { Badge, NoSsr, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { CustomerTokenDocument, CustomerTokenQuery } from '../../hooks'
 
@@ -25,14 +20,14 @@ function CustomerMenuFabItemContent(props: CustomerMenuFabItemProps) {
     <MenuFabSecondaryItem
       sx={sx}
       icon={
-        <DesktopHeaderBadge
+        <Badge
           badgeContent={customerToken?.token ? 1 : 0}
           color={customerToken?.valid ? 'primary' : 'error'}
           variant='dot'
           overlap='circular'
         >
           {icon ?? <IconSvg src={iconPerson} size='medium' />}
-        </DesktopHeaderBadge>
+        </Badge>
       }
       href={requireAuth ? guestHref : authHref}
     >

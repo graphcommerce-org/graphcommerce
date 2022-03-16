@@ -84,11 +84,7 @@ function ProductConfigurable(props: Props) {
 
           <ProductShortDescription short_description={product?.short_description} />
 
-          <ProductReviewChip
-            rating={product.rating_summary}
-            reviewSectionId='reviews'
-            size='small'
-          />
+          <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           <ConfigurableProductAddToCart
             variables={{ sku: product.sku ?? '', quantity: 1 }}
             name={product.name ?? ''}
@@ -107,7 +103,7 @@ function ProductConfigurable(props: Props) {
           <Usps usps={sidebarUsps} size='small' />
         </ProductPageGallery>
 
-        <ProductPageDescription {...product} right={<Usps usps={usps} />} />
+        <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
 
         {pages?.[0] && (
           <RowRenderer

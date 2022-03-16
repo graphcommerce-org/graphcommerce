@@ -37,7 +37,16 @@ export function useCanonical(incomming?: Canonical) {
 
   if (!canonical) return canonical
 
-  if (canonical?.startsWith('/')) {
+  if (!canonical.startsWith('http') && !canonical.startsWith('/')) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn(
+        `canonical is relative (${canonical}), a canonical must start with '/', 'http://' or 'https://'`,
+      )
+    }
+    canonical = `/${canonical}`
+  }
+
+  if (canonical.startsWith('/')) {
     if (!process.env.NEXT_PUBLIC_SITE_URL) {
       if (process.env.NODE_ENV !== 'production') {
         throw Error('NEXT_PUBLIC_SITE_URL is not defined in .env')
@@ -59,7 +68,7 @@ export function useCanonical(incomming?: Canonical) {
     canonical = `${process.env.NEXT_PUBLIC_SITE_URL}${href}`
   }
 
-  if (canonical && !(canonical ?? 'http').startsWith('http')) {
+  if (!canonical.startsWith('http')) {
     if (process.env.NODE_ENV !== 'production') {
       throw new Error(
         `canonical must start with '/', 'http://' or 'https://', '${canonical}' given`,

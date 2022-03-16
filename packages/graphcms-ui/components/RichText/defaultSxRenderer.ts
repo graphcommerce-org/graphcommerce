@@ -5,7 +5,12 @@ export const defaultSxRenderer: SxRenderer = {
     '&:empty': {
       display: 'none',
     },
-    '&:last-of-type': { marginBottom: 0 },
+  },
+  first: {
+    marginTop: 0,
+  },
+  last: {
+    marginBottom: 0,
   },
   paragraph: {
     marginBottom: '1em',
@@ -18,22 +23,18 @@ export const defaultSxRenderer: SxRenderer = {
   'heading-two': {
     marginTop: '0.5em',
     marginBottom: '0.5em',
-    '&:first-of-type': { marginTop: 0 },
   },
   'heading-three': {
     marginTop: '0.5em',
     marginBottom: '0.5em',
-    '&:first-of-type': { marginTop: 0 },
   },
   'heading-four': {
     marginTop: '0.5em',
     marginBottom: '0.5em',
-    '&:first-of-type': { marginTop: 0 },
   },
   'heading-five': {
     marginTop: '0.5em',
     marginBottom: '0.5em',
-    '&:first-of-type': { marginTop: 0 },
   },
   image: {
     width: '100%',
@@ -99,5 +100,8 @@ export const defaultSxRenderer: SxRenderer = {
   }),
   link: {
     wordBreak: 'break-word',
+  },
+  underlined: {
+    textDecoration: 'underline',
   },
 }

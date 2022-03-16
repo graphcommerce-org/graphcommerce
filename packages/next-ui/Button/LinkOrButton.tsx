@@ -42,34 +42,46 @@ export const LinkOrButton = React.forwardRef<
   const buttonRef = useForkRef(ref, useRef(null))
   const linkRef = useForkRef(ref, useRef(null))
 
+  const buttonSx = button?.sx ?? []
+  const linkSx = link?.sx ?? []
   return (
     <>
       <Button
-        sx={{ display: { xs: 'none', [breakpoint]: 'inline-flex' }, ...button?.sx }}
-        ref={buttonRef}
         startIcon={startIcon}
         endIcon={endIcon}
-        color={color}
-        loading={loading}
         {...sharedProps}
         {...button}
+        ref={buttonRef}
+        color={color}
+        loading={loading}
+        sx={[
+          {
+            display: {
+              xs: 'none',
+              [breakpoint]: 'inline-flex',
+            },
+          },
+          ...(Array.isArray(buttonSx) ? buttonSx : [buttonSx]),
+        ]}
       >
         {children}
       </Button>
 
       <Link
-        sx={{
-          display: { xs: 'inline-flex', [breakpoint]: 'none' },
-          alignItems: 'center',
-          ...link?.sx,
-        }}
         ref={linkRef}
-        color={loading ? 'text.disabled' : color}
         underline='none'
-        aria-disabled={loading}
         variant='body2'
         {...sharedProps}
         {...link}
+        color={loading ? 'text.disabled' : color}
+        aria-disabled={loading}
+        sx={[
+          {
+            display: { xs: 'inline-flex', [breakpoint]: 'none' },
+            alignItems: 'center',
+          },
+          ...(Array.isArray(linkSx) ? linkSx : [linkSx]),
+        ]}
       >
         {startIcon}
         <span>{children}</span>

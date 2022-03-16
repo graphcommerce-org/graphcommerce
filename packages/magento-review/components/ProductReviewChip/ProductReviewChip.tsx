@@ -6,7 +6,7 @@ export type ProductReviewChipProps = {
   rating?: number
   reviewSectionId?: string
   max?: number
-} & ChipProps
+} & ChipProps<'button'>
 
 export function ProductReviewChip(props: ProductReviewChipProps) {
   const { rating, reviewSectionId = '', max = 5, ...chipProps } = props
@@ -15,7 +15,7 @@ export function ProductReviewChip(props: ProductReviewChipProps) {
 
   const normalizedRating = Math.round(rating / (10 / max)) / 10
 
-  const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     const element = document.getElementById(reviewSectionId)
     e.preventDefault()
     if (!element) return
@@ -29,12 +29,13 @@ export function ProductReviewChip(props: ProductReviewChipProps) {
 
   const chip = (
     <Chip
+      component='button'
       variant='outlined'
       clickable={!!reviewSectionId}
       onClick={handleClick}
-      icon={<IconSvg src={iconStar} size='small' sx={{ stroke: '#FFDA1C', fill: '#FFDA1C' }} />}
+      icon={<IconSvg src={iconStar} sx={{ stroke: '#FFDA1C', fill: '#FFDA1C' }} />}
       color='default'
-      size='small'
+      size='medium'
       label={`${normalizedRating}/5`}
       {...chipProps}
     />

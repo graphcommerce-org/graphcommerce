@@ -45,6 +45,7 @@ export function Feature(props: FeatureProps) {
             'heading-two': { typography: 'h1' },
             paragraph: { typography: 'subtitle1' },
           }}
+          withMargin
         />
       )}
     </ImageText>

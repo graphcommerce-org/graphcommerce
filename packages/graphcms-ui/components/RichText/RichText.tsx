@@ -1,22 +1,59 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import { SxProps, Theme } from '@mui/material'
 import { defaultRenderers } from './defaultRenderers'
 import { defaultSxRenderer } from './defaultSxRenderer'
 import {
   AdditionalProps,
   Renderers,
+  Renderer,
   SxRenderer,
   TextNode,
   ElementOrTextNode,
   ElementNode,
+  SimpleElement,
 } from './types'
 
-function RenderText({ classes, text, ...textProps }: TextNode) {
-  let result = <>{text}</>
-  if (textProps.bold) result = <strong>{result}</strong>
-  if (textProps.italic) result = <em>{result}</em>
-  if (textProps.underlined) result = <em>{result}</em>
+const sxArr = (sxAny?: SxProps<Theme> | false) => {
+  if (!sxAny) return []
+  return Array.isArray(sxAny) ? sxAny : [sxAny]
+}
 
-  return result
+function useRenderProps(
+  { first, last, sxRenderer }: Pick<AdditionalProps, 'first' | 'last' | 'sxRenderer'>,
+  type?: ElementNode['type'],
+) {
+  if (!type) return []
+  const sx: SxProps<Theme> = sxRenderer?.[type] ?? []
+
+  return [
+    ...sxArr(sxRenderer.all),
+    ...sxArr(sx),
+    ...sxArr(first && sxRenderer.first),
+    ...sxArr(last && sxRenderer.last),
+  ]
+}
+
+function RenderText({
+  text,
+  renderers,
+  sxRenderer,
+  first,
+  last,
+  ...textProps
+}: TextNode & AdditionalProps) {
+  let type: 'bold' | 'italic' | 'underlined' | undefined
+
+  if (textProps.bold) type = 'bold'
+  if (textProps.italic) type = 'italic'
+  if (textProps.underlined) type = 'underlined'
+
+  const sx = useRenderProps({ first, last, sxRenderer }, type)
+
+  if (!type) return <>{text}</>
+
+  const Component: Renderer<SimpleElement> = renderers[type]
+
+  return <Component sx={sx}>{text}</Component>
 }
 
 export function isTextNode(node: ElementOrTextNode): node is TextNode {
@@ -46,29 +83,37 @@ function RenderNode(node: ElementOrTextNode & AdditionalProps) {
 
 function RenderChildren({
   childNodes,
+  noMargin,
   ...props
-}: { childNodes: ElementNode['children'] } & AdditionalProps) {
+}: { childNodes: ElementNode['children']; noMargin?: boolean } & AdditionalProps) {
   return (
     <>
       {childNodes.map((node, key) => (
-        // Since we don't know any unique identifiers of the element and since this doesn't rerender often this is fine.
-        // eslint-disable-next-line react/no-array-index-key
-        <RenderNode {...node} {...props} key={key} />
+        <RenderNode
+          {...node}
+          {...props}
+          // Since we don't know any unique identifiers of the element and since this doesn't rerender often this is fine.
+          // eslint-disable-next-line react/no-array-index-key
+          key={key}
+          first={noMargin && key === 0}
+          last={noMargin && key === childNodes.length - 1}
+        />
       ))}
     </>
   )
 }
 
 function RenderElement(element: ElementNode & AdditionalProps) {
-  const { type, children, sxRenderer, renderers, ...props } = element
+  const { type, children, sxRenderer, renderers, first, last, ...props } = element
 
   // todo: this has the any type, could be improved
-  const Component = renderers[type]
-  const sx = sxRenderer?.[type] ?? []
+  const Component: Renderer<SimpleElement> = renderers[type]
+
+  const sx = useRenderProps({ first, last, sxRenderer }, type)
 
   if (Component) {
     return (
-      <Component {...props} sx={[sxRenderer.all, ...(Array.isArray(sx) ? sx : [sx])]}>
+      <Component {...props} sx={sx}>
         <RenderChildren childNodes={children} sxRenderer={sxRenderer} renderers={renderers} />
       </Component>
     )
@@ -81,12 +126,7 @@ function RenderElement(element: ElementNode & AdditionalProps) {
   return <RenderChildren childNodes={children} sxRenderer={sxRenderer} renderers={renderers} />
 }
 
-export type RichTextProps = { raw: ElementNode } & {
-  renderers?: Partial<Renderers>
-  sxRenderer?: SxRenderer
-}
-
-export function mergeSxRenderer(base: SxRenderer, sxRenderer?: SxRenderer) {
+function mergeSxRenderer(base: SxRenderer, sxRenderer?: SxRenderer) {
   if (!sxRenderer) return base
 
   return Object.fromEntries(
@@ -106,12 +146,38 @@ export function mergeSxRenderer(base: SxRenderer, sxRenderer?: SxRenderer) {
   ) as SxRenderer
 }
 
-export function RichText({ raw, sxRenderer, renderers }: RichTextProps) {
+export type RichTextProps = { raw: ElementNode } & {
+  renderers?: Partial<Renderers>
+  /**
+   * Allows you to theme all the types of components
+   *
+   * ```tsx
+   * function MyComponent()f {
+   *   return <RichText
+   *     sxRenderer={{
+   *       paragraph: (theme) => ({
+   *         columnCount: { xs: 1, md: getColumnCount(props, 2) },
+   *         columnGap: theme.spacings.md,
+   *       }),
+   *       //other props here
+   *     }}
+   *   />
+   * }
+   * ```
+   */
+  sxRenderer?: SxRenderer
+
+  /** By default the component will render the first and last element without any margins */
+  withMargin?: boolean
+}
+
+export function RichText({ raw, sxRenderer, renderers, withMargin = false }: RichTextProps) {
   return (
     <RenderChildren
       childNodes={raw.children}
       sxRenderer={mergeSxRenderer(defaultSxRenderer, sxRenderer)}
       renderers={{ ...defaultRenderers, ...renderers }}
+      noMargin={!withMargin}
     />
   )
 }

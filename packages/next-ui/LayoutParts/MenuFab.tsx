@@ -1,8 +1,21 @@
-import { Divider, Fab, ListItem, Menu, styled, Box, SxProps, Theme } from '@mui/material'
+import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import {
+  Divider,
+  Fab,
+  ListItem,
+  Menu,
+  styled,
+  Box,
+  SxProps,
+  Theme,
+  FabProps,
+  MenuProps as MenuPropsType,
+} from '@mui/material'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import { IconSvg } from '../IconSvg'
+import { useScrollY } from '../Layout/hooks/useScrollY'
 import { extendableComponent } from '../Styles/extendableComponent'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { useFabSize } from '../Theme'
@@ -18,21 +31,34 @@ export type MenuFabProps = {
   menuIcon?: React.ReactNode
   closeIcon?: React.ReactNode
   sx?: SxProps<Theme>
+  MenuProps?: MenuPropsType
+} & Pick<FabProps, 'color' | 'size' | 'variant'>
+
+const name = 'MenuFab'
+const parts = ['wrapper', 'fab', 'shadow', 'menu'] as const
+type OwnerState = {
+  scrolled: boolean
 }
 
-const { classes, selectors } = extendableComponent('MenuFab', [
-  'wrapper',
-  'fab',
-  'shadow',
-  'menu',
-] as const)
+const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function MenuFab(props: MenuFabProps) {
-  const { children, secondary, search, menuIcon, closeIcon, sx = [] } = props
+  const {
+    children,
+    secondary,
+    search,
+    menuIcon,
+    closeIcon,
+    sx = [],
+    MenuProps,
+    ...fabProps
+  } = props
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
   const { opacity, scale, shadowOpacity } = useFabAnimation()
+  const scrollY = useScrollY()
+  const scrolled = useMotionValueValue(scrollY, (y) => y > 10)
 
   useEffect(() => {
     const clear = () => setOpenEl(null)
@@ -41,8 +67,15 @@ export function MenuFab(props: MenuFabProps) {
   }, [router])
   const fabIconSize = useFabSize('responsive')
 
+  const classes = withState({ scrolled })
+
   return (
-    <Box sx={[{ width: fabIconSize, height: fabIconSize }, ...(Array.isArray(sx) ? sx : [sx])]}>
+    <Box
+      sx={[
+        { position: 'relative', width: fabIconSize, height: fabIconSize },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       <MotionDiv
         className={classes.wrapper}
         sx={(theme) => ({
@@ -54,6 +87,8 @@ export function MenuFab(props: MenuFabProps) {
         style={{ scale, opacity }}
       >
         <Fab
+          // todo: replace color='inverted' and remove styles here when Fab color is extendable
+          // https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Fab/Fab.js#L193-L202
           color='inherit'
           aria-label='Open Menu'
           onClick={(event) => setOpenEl(event.currentTarget)}
@@ -69,6 +104,7 @@ export function MenuFab(props: MenuFabProps) {
             color: theme.palette.background.paper,
           })}
           className={classes.fab}
+          {...fabProps}
         >
           {closeIcon ?? (
             <IconSvg src={iconClose} size='large' sx={{ display: openEl ? 'block' : 'none' }} />
@@ -102,6 +138,7 @@ export function MenuFab(props: MenuFabProps) {
           PaperProps={{
             sx: (theme) => ({
               backgroundColor: theme.palette.background.paper,
+              backgroundImage: 'unset',
               color: theme.palette.text.primary,
               minWidth: responsiveVal(200, 280),
               marginTop: '12px',
@@ -112,6 +149,7 @@ export function MenuFab(props: MenuFabProps) {
           }}
           className={classes.menu}
           MenuListProps={{ dense: true }}
+          {...MenuProps}
         >
           {[
             search ? (
@@ -128,4 +166,3 @@ export function MenuFab(props: MenuFabProps) {
     </Box>
   )
 }
-MenuFab.selectors = selectors

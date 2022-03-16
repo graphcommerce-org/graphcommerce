@@ -341,7 +341,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
                  * padding we'll run into the issue that the user can't scroll to the bottom. We
                  * can't change this value with JS as that causes much jank
                  */
-                '&.sizeSmFull, &.sizeSmMinimal': { paddingBottom: 56 },
+                '&.sizeSmFull, &.sizeSmMinimal': { paddingBottom: '56px' },
                 '&.variantSmBottom.sizeSmFull': {
                   minHeight: `calc(100vh - ${theme.appShell.headerHeightSm} * 0.5)`,
                 },

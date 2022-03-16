@@ -110,9 +110,9 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           marginBottom: theme.spacings.xxs,
         })}
       >
-        {data?.productReviewRatingsMetadata?.items?.map((prrvm) => (
+        {data?.productReviewRatingsMetadata?.items?.map((item) => (
           <FormRow
-            key={prrvm?.id}
+            key={item?.id}
             className={classes.rating}
             sx={{
               paddingBottom: 'unset',
@@ -121,7 +121,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
             }}
           >
             <Typography
-              variant='h5'
+              variant='subtitle1'
               component='span'
               className={classes.ratingLabel}
               sx={{
@@ -129,11 +129,11 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
                 justifySelf: 'left',
               }}
             >
-              {prrvm?.name}
+              {item?.name}
             </Typography>
-            {prrvm && (
+            {item && (
               <StarRatingField
-                id={prrvm?.id ?? ''}
+                id={item?.id ?? ''}
                 size='large'
                 onChange={(id, value) => {
                   const productReviewRatingInputValue =
@@ -190,8 +190,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           helperText={formState.errors.text?.message}
           disabled={formState.isSubmitting}
           multiline
-          rows={8}
-          maxRows={8}
+          minRows={4}
         />
       </FormRow>
 

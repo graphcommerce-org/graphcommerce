@@ -22,8 +22,11 @@ type BaseElementTypes =
   | 'table_row'
   | 'table_cell'
   | 'code'
+  | 'bold'
+  | 'italic'
+  | 'underlined'
 
-type SimpleElement = {
+export type SimpleElement = {
   children: ElementOrTextNode[]
   type: LiteralUnion<BaseElementTypes, string>
 }
@@ -72,8 +75,8 @@ export type ElementNode = SimpleElement | LinkElement | ImageElement | VideoElem
 export type ElementOrTextNode = ElementNode | TextNode
 
 type RendererBase = { sx?: SxProps<Theme>; children?: React.ReactNode }
-type Renderer<P extends ElementNode> = (
-  props: Omit<P, 'children'> & RendererBase,
+export type Renderer<P extends ElementNode> = (
+  props: Omit<P, 'children' | 'type'> & RendererBase,
 ) => React.ReactElement | null
 
 export type Renderers = {
@@ -86,7 +89,12 @@ export type Renderers = {
 }
 
 export type SxRenderer = {
-  [k in keyof Renderers | 'all']?: SxProps<Theme>
+  [k in keyof Renderers | 'all' | 'first' | 'last']?: SxProps<Theme>
 }
 
-export type AdditionalProps = { renderers: Renderers; sxRenderer: SxRenderer }
+export type AdditionalProps = {
+  renderers: Renderers
+  sxRenderer: SxRenderer
+  first?: boolean
+  last?: boolean
+}

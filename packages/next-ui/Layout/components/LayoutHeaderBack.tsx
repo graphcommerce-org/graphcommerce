@@ -1,10 +1,11 @@
 import { useUp, usePrevUp, usePageContext } from '@graphcommerce/framer-next-pages'
 import { t } from '@lingui/macro'
-import { Box } from '@mui/material'
+import { Box, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import { LinkOrButton, LinkOrButtonProps } from '../../Button/LinkOrButton'
 import { IconSvg } from '../../IconSvg'
+import { responsiveVal } from '../../Styles'
 import { iconChevronLeft } from '../../icons'
 
 export type BackProps = Omit<LinkOrButtonProps, 'onClick' | 'children'>
@@ -21,6 +22,19 @@ export function useShowBack() {
   if (up?.href && up.href !== path) return true
   return false
 }
+
+const buttonSx: SxProps<Theme> = (theme) => ({
+  '&:not(.Mui-disabled)': { boxShadow: 6 },
+  [theme.breakpoints.down('md')]: {
+    minWidth: 'auto',
+    paddingLeft: responsiveVal(8, 11),
+    paddingRight: responsiveVal(8, 11),
+    '& .MuiButton-startIcon': {
+      marginRight: 0,
+      marginLeft: 0,
+    },
+  },
+})
 
 export function LayoutHeaderBack(props: BackProps) {
   const router = useRouter()
@@ -40,7 +54,7 @@ export function LayoutHeaderBack(props: BackProps) {
     return (
       <LinkOrButton
         onClick={() => router.back()}
-        button={{ variant: 'pill' }}
+        button={{ variant: 'pill', sx: buttonSx }}
         color='inherit'
         startIcon={backIcon}
         aria-label={label}
@@ -57,7 +71,7 @@ export function LayoutHeaderBack(props: BackProps) {
     return (
       <PageLink href={up.href} passHref>
         <LinkOrButton
-          button={{ variant: 'pill' }}
+          button={{ variant: 'pill', sx: buttonSx }}
           startIcon={backIcon}
           aria-label={up.title}
           color='inherit'

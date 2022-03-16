@@ -76,7 +76,7 @@ function ProductSimple(props: Props) {
           dangerouslySetInnerHTML={{ __html: product?.short_description?.html ?? '' }}
         />
 
-        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' size='small' />
+        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
         <ProductAddToCart
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
@@ -88,7 +88,7 @@ function ProductSimple(props: Props) {
         <Usps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
 
-      <ProductPageDescription {...product} right={<Usps usps={usps} />} />
+      <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
 
       {pages?.[0] && (
         <RowRenderer

@@ -68,7 +68,7 @@ function ProductBundle(props: Props) {
         <Typography variant='h3' component='div'>
           {product.name}
         </Typography>
-        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' size='small' />
+        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
         <ProductAddToCart
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
@@ -80,7 +80,7 @@ function ProductBundle(props: Props) {
         <Usps usps={sidebarUsps} size='small' />
       </ProductPageGallery>
 
-      <ProductPageDescription {...product} right={<Usps usps={usps} />} />
+      <ProductPageDescription {...product} right={<Usps usps={usps} />} fontSize='responsive' />
 
       {pages?.[0] && (
         <RowRenderer

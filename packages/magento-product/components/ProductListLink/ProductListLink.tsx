@@ -43,7 +43,7 @@ export const ProductListLink = React.forwardRef<HTMLAnchorElement, ProductListLi
         {noLink ? (
           children
         ) : (
-          <Link rel={rel} {...linkProps} ref={ref} onClick={updateParams} underline='hover'>
+          <Link rel={rel} underline='hover' {...linkProps} ref={ref} onClick={updateParams}>
             {children}
           </Link>
         )}

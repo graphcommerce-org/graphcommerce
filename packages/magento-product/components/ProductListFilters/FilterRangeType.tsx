@@ -1,6 +1,7 @@
 import { cloneDeep, FilterRangeTypeInput } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
 import { Box, Slider } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
@@ -11,8 +12,6 @@ type FilterRangeTypeProps = NonNullable<
   NonNullable<ProductListFiltersFragment['aggregations']>[0]
 > &
   Omit<ChipMenuProps, 'selected'>
-
-const sliderThumbWidth = 28
 
 const { classes } = extendableComponent('FilterRangeType', ['root', 'container', 'slider'] as const)
 
@@ -79,16 +78,16 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
 
     if (from === min && to !== max)
       currentLabel = (
-        <>
-          {'Below '} <Money round value={Number(currentFilter?.to)} />
-        </>
+        <Trans>
+          Below <Money round value={Number(currentFilter?.to)} />
+        </Trans>
       )
 
     if (from !== min && to === max)
       currentLabel = (
-        <>
-          {'Above '} <Money round value={Number(currentFilter?.from)} />
-        </>
+        <Trans>
+          Above <Money round value={Number(currentFilter?.from)} />
+        </Trans>
       )
 
     if (from !== min && to !== max)
@@ -128,6 +127,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
         <Slider
           min={min}
           max={max}
+          size='large'
           aria-labelledby='range-slider'
           value={value}
           onChange={(e, newValue) => {
@@ -142,23 +142,6 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
           }}
           valueLabelDisplay='off'
           className={classes.slider}
-          sx={(theme) => ({
-            maxWidth: `calc(100% - ${sliderThumbWidth}px)`,
-            margin: `${theme.spacings.xxs} auto`,
-            display: 'block',
-            paddingBottom: '32px',
-            '& .MuiSlider-rail': {
-              height: 4,
-              borderRadius: '10px',
-            },
-            '& .MuiSlider-track': {
-              height: 4,
-            },
-            '& .MuiSlider-thumb': {
-              width: sliderThumbWidth,
-              height: sliderThumbWidth,
-            },
-          })}
         />
       </Box>
     </ChipMenu>

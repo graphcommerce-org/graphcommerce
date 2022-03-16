@@ -44,6 +44,7 @@ export function FeatureBoxed(props: FeatureBoxedProps) {
             'heading-two': { typography: 'h1' },
             paragraph: { typography: 'subtitle1' },
           }}
+          withMargin
         />
       )}
     </ImageTextBoxed>

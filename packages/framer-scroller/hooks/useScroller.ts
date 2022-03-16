@@ -30,6 +30,7 @@ type OwnerProps = {
   isPanning: boolean
   hideScrollbar: boolean
   canGrab: boolean
+  grid: boolean
 }
 const name = 'Scroller' as const
 const parts = ['root'] as const
@@ -117,6 +118,7 @@ export function useScroller<
   const mdSnapDir = scrollSnapTypeDirection(scrollSnap.scrollSnapTypeMd)
 
   const classes = withState({
+    grid,
     smSnapDir,
     smGridDir: grid && smSnapDir,
     mdSnapDir,
@@ -128,7 +130,7 @@ export function useScroller<
   })
 
   const sx: SxProps<Theme> = (theme) => ({
-    '& *': {
+    '&.grid *': {
       userSelect: 'none',
       userDrag: 'none',
       WebkitUserDrag: 'none',
