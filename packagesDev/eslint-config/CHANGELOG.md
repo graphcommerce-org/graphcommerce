@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- [#1330](https://github.com/graphcommerce-org/graphcommerce/pull/1330) [`872f1c2d0`](https://github.com/graphcommerce-org/graphcommerce/commit/872f1c2d028ddb62e1b7d9c261a6d68379842d86) Thanks [@paales](https://github.com/paales)! - Add rule: '@mui/system' import is restricted from being used. Please use `@mui/material'` instead.
+
 ## 4.0.6
 
 ### Patch Changes
