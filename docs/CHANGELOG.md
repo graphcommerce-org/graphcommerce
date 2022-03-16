@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.4.2
+
+### Patch Changes
+
+- [#1332](https://github.com/graphcommerce-org/graphcommerce/pull/1332) [`8c65a1499`](https://github.com/graphcommerce-org/graphcommerce/commit/8c65a1499200476e962112177060b7e74ae5d500) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - add installation video, update license
+
 ## 4.4.1
 
 ### Patch Changes
