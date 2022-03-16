@@ -24,6 +24,8 @@ Magento e-commerce storefronts in React.
 Take a look at the GraphCommerce [demo store](https://graphcommerce.vercel.app/)
 or set up your local development environment with the instructions below.
 
+https://user-images.githubusercontent.com/1251986/158570386-ea831ae4-f6b8-4776-81b3-d7b121afee9f.mp4
+
 ---
 
 # Getting Started
