@@ -8,6 +8,7 @@ import {
   themeBaseDefaults,
   MuiSnackbar,
   MuiFabSizes,
+  MuiSlider,
 } from '@graphcommerce/next-ui'
 import { createTheme, Theme, alpha } from '@mui/material'
 import { Components, PaletteOptions } from '@mui/material/styles'
@@ -376,7 +377,7 @@ const createOverrides = (theme: Theme): Components => ({
     },
   },
 
-  MuiSnackbar: { variants: MuiSnackbar },
+  MuiSnackbar: { variants: [...MuiSnackbar] },
 
   MuiAvatar: {
     styleOverrides: {
@@ -386,17 +387,7 @@ const createOverrides = (theme: Theme): Components => ({
     },
   },
 
-  MuiSlider: {
-    styleOverrides: {
-      rail: {
-        color: theme.palette.text.disabled,
-      },
-      thumb: {
-        background: theme.palette.background.default,
-        boxShadow: theme.shadows[6],
-      },
-    },
-  },
+  MuiSlider: { variants: [...MuiSlider] },
 })
 
 export const lightTheme = createThemeWithPalette(lightPalette)
