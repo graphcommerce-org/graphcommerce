@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.4.1
+
+### Patch Changes
+
+- [#1324](https://github.com/graphcommerce-org/graphcommerce/pull/1324) [`73d07c6bb`](https://github.com/graphcommerce-org/graphcommerce/commit/73d07c6bbf630a92e44a2b2baf14200eb6900db5) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Update docs, add new graphcms media url
+
 ## 4.4.0
 
 ### Minor Changes

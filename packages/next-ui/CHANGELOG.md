@@ -1,5 +1,37 @@
 # Change Log
 
+## 4.3.0
+
+### Minor Changes
+
+- [#1322](https://github.com/graphcommerce-org/graphcommerce/pull/1322) [`0298a0de1`](https://github.com/graphcommerce-org/graphcommerce/commit/0298a0de1d13e543c4124a6a099297b4e27e2b05) Thanks [@paales](https://github.com/paales)! - Added `<Slider size='large' />` and made styling with variants
+
+* [#1322](https://github.com/graphcommerce-org/graphcommerce/pull/1322) [`3326742a0`](https://github.com/graphcommerce-org/graphcommerce/commit/3326742a0dceb45f0cac4741ca09dc4d4f09ad90) Thanks [@paales](https://github.com/paales)! - Added ‘scrolled’ state to MenuFab to allow for extra styling: `'&.scrolled': {}`
+
+- [#1322](https://github.com/graphcommerce-org/graphcommerce/pull/1322) [`7a3799bfc`](https://github.com/graphcommerce-org/graphcommerce/commit/7a3799bfc107f26aa9991a91db5f228e3476f4aa) Thanks [@paales](https://github.com/paales)! - Make CartFab and MenuFab’s color, size and variant passable by props
+
+### Patch Changes
+
+- [#1322](https://github.com/graphcommerce-org/graphcommerce/pull/1322) [`5266388ea`](https://github.com/graphcommerce-org/graphcommerce/commit/5266388eaffda41592623ef7a3ddbbe03c8e0dad) Thanks [@paales](https://github.com/paales)! - make sure there is no background on darkmode above the image in ImageText
+
+* [#1322](https://github.com/graphcommerce-org/graphcommerce/pull/1322) [`9b35403d9`](https://github.com/graphcommerce-org/graphcommerce/commit/9b35403d9dbb2606ac7cf3bb641a0f9cc3d8a2ba) Thanks [@paales](https://github.com/paales)! - MenuFab darkmode doesn’t need elevationcolor
+
+- [#1322](https://github.com/graphcommerce-org/graphcommerce/pull/1322) [`815132ea4`](https://github.com/graphcommerce-org/graphcommerce/commit/815132ea43937b4b84b59ec9974ac593cb4eb456) Thanks [@paales](https://github.com/paales)! - Make sure canonicals don’t report about double slashes and add warning when incorrect URL is passed
+
+* [#1322](https://github.com/graphcommerce-org/graphcommerce/pull/1322) [`9a77f88ed`](https://github.com/graphcommerce-org/graphcommerce/commit/9a77f88ed26cbecdae9a135c3cb234a5b7ecf4df) Thanks [@paales](https://github.com/paales)! - Reduce footer spacing
+
+- [#1322](https://github.com/graphcommerce-org/graphcommerce/pull/1322) [`0eeaad304`](https://github.com/graphcommerce-org/graphcommerce/commit/0eeaad30461b1d5b486438f0287fa76d49429044) Thanks [@paales](https://github.com/paales)! - LayoutHeaderBack should be a round button on mobile
+
+* [#1322](https://github.com/graphcommerce-org/graphcommerce/pull/1322) [`bc5213547`](https://github.com/graphcommerce-org/graphcommerce/commit/bc52135471479c83d989449dad24798112e898f4) Thanks [@paales](https://github.com/paales)! - make sure LinkOrButton sx props do not break styling
+
+- [#1322](https://github.com/graphcommerce-org/graphcommerce/pull/1322) [`3f1912f55`](https://github.com/graphcommerce-org/graphcommerce/commit/3f1912f553318d5888f8af2b841918ef4ae96a84) Thanks [@paales](https://github.com/paales)! - Button in MessageSnackbarImpl wasn't full width
+
+* [#1322](https://github.com/graphcommerce-org/graphcommerce/pull/1322) [`b6c68cda8`](https://github.com/graphcommerce-org/graphcommerce/commit/b6c68cda8836a1d0c78ef351899cec9ec1037385) Thanks [@paales](https://github.com/paales)! - LayoutOverlay had a very large spacing below the content
+
+* Updated dependencies [[`1e2a07141`](https://github.com/graphcommerce-org/graphcommerce/commit/1e2a071414154600430e6dcf0513d86ab78e0b28), [`d91359871`](https://github.com/graphcommerce-org/graphcommerce/commit/d91359871b023a9f0d305b37353c1ee2d0912248), [`bec88d0d7`](https://github.com/graphcommerce-org/graphcommerce/commit/bec88d0d70b679e15150917df89986ecee5b39a6)]:
+  - @graphcommerce/framer-scroller@2.1.0
+  - @graphcommerce/framer-utils@3.0.5
+
 ## 4.2.5
 
 ### Patch Changes
