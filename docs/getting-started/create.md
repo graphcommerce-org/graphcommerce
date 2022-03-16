@@ -63,8 +63,6 @@ https://user-images.githubusercontent.com/1251986/158647122-dc57002f-a9c2-4661-a
   <figcaption>GraphCommerce installation</figcaption>
 </figure>
 
-<figure>
-
 ### Download the example
 
 1. `git clone git@github.com:graphcommerce-org/graphcommerce.git graphcommerce`
