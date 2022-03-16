@@ -1,4 +1,4 @@
-import { ComponentsVariants, experimental_sx as sx } from '@mui/material'
+import { ComponentsVariants, darken, experimental_sx as sx } from '@mui/material'
 import { responsiveVal } from '../Styles'
 
 declare module '@mui/material/Chip/Chip' {
@@ -56,6 +56,12 @@ export const MuiChip: ChipVariants = [
         boxShadow: 'none',
       },
       '& .MuiChip-deleteIcon': {
+        color: theme.palette.text.primary,
+      },
+      '&.MuiChip-clickable:hover': {
+        backgroundColor: darken(theme.palette.background.default, 0.05),
+      },
+      '& .MuiChip-deleteIcon:hover': {
         color: theme.palette.text.primary,
       },
     }),
