@@ -1,5 +1,6 @@
 export * from './DarkLightModeThemeProvider'
 export * from './MuiButton'
+export * from './MuiChip'
 export * from './MuiFab'
 export * from './MuiSlider'
 export * from './MuiSnackbar'

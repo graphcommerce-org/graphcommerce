@@ -68,7 +68,7 @@ function ProductBundle(props: Props) {
         <Typography variant='h3' component='div'>
           {product.name}
         </Typography>
-        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' size='small' />
+        <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
         <ProductAddToCart
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}

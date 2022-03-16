@@ -178,7 +178,7 @@ export function ProductReviews(props: ProductReviewsProps) {
                 alignItems: 'center',
               })}
             >
-              <ProductReviewChip rating={review?.average_rating} size='small' />
+              <ProductReviewChip rating={review?.average_rating} />
               <Typography component='h3' variant='h5'>
                 {review?.summary}
               </Typography>

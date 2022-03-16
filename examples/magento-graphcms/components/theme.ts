@@ -9,6 +9,7 @@ import {
   MuiSnackbar,
   MuiFabSizes,
   MuiSlider,
+  MuiChip,
 } from '@graphcommerce/next-ui'
 import { createTheme, Theme, alpha } from '@mui/material'
 import { Components, PaletteOptions } from '@mui/material/styles'
@@ -305,40 +306,7 @@ const createOverrides = (theme: Theme): Components => ({
   },
 
   MuiChip: {
-    styleOverrides: {
-      root: {
-        boxShadow: 'unset !important',
-        borderRadius: '99em',
-        height: responsiveVal(32, 40),
-        paddingLeft: responsiveVal(4, 8),
-        paddingRight: responsiveVal(4, 8),
-        ...theme.typography.body2,
-      },
-      sizeSmall: {
-        height: responsiveVal(26, 30),
-        paddingLeft: responsiveVal(3, 6),
-        paddingRight: responsiveVal(3, 6),
-        ...theme.typography.caption,
-      },
-      outlined: {
-        borderColor: theme.palette.divider,
-      },
-      label: {
-        paddingLeft: responsiveVal(6, 10),
-        paddingRight: responsiveVal(6, 10),
-      },
-      labelSmall: {
-        paddingLeft: responsiveVal(6, 8),
-        paddingRight: responsiveVal(6, 8),
-      },
-      deleteIcon: {
-        color: theme.palette.text.primary,
-        // display: 'flex',
-      },
-      deleteIconOutlinedColorPrimary: {
-        // color: theme.palette.primary.main,
-      },
-    },
+    variants: [...MuiChip],
   },
 
   MuiCheckbox: {

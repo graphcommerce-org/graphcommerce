@@ -13,8 +13,6 @@ type FilterRangeTypeProps = NonNullable<
 > &
   Omit<ChipMenuProps, 'selected'>
 
-const sliderThumbWidth = 28
-
 const { classes } = extendableComponent('FilterRangeType', ['root', 'container', 'slider'] as const)
 
 export function FilterRangeType(props: FilterRangeTypeProps) {

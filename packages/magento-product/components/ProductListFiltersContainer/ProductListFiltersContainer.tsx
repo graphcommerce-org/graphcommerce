@@ -87,7 +87,6 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
         (theme) => ({
           display: 'flex',
           justifyContent: 'center',
-          height: responsiveVal(44, 52),
           marginBottom: theme.spacings.sm,
           position: 'sticky',
           top: theme.page.vertical,
@@ -124,6 +123,8 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
               background: theme.palette.background.default,
               borderRadius: '99em',
             },
+            display: 'grid',
+            alignItems: 'center',
           })}
         >
           <Scroller

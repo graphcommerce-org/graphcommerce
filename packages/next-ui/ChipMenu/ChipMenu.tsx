@@ -8,7 +8,7 @@ import { iconChevronDown, iconChevronUp, iconCancelAlt } from '../icons'
 
 const { classes, selectors } = extendableComponent('FilterEqual', ['chip'] as const)
 
-export type ChipMenuProps = PropsWithChildren<Omit<ChipProps, 'children'>> & {
+export type ChipMenuProps = PropsWithChildren<Omit<ChipProps<'button'>, 'children'>> & {
   selectedLabel?: React.ReactNode
   selected: boolean
   onClose?: () => void
@@ -41,35 +41,21 @@ export function ChipMenu(props: ChipMenuProps) {
   return (
     <>
       <Chip
-        color='default'
+        component='button'
+        size='responsive'
+        color={selectedAndMenuHidden ? 'primary' : 'default'}
         clickable
         onDelete={
-          onDelete || ((event: React.MouseEvent) => setOpenEl(event.currentTarget.parentElement))
+          onDelete ||
+          ((event: React.MouseEvent<HTMLButtonElement>) =>
+            setOpenEl(event.currentTarget.parentElement))
         }
-        onClick={(event) => {
+        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
           setOpenEl(event.currentTarget)
         }}
         deleteIcon={deleteIcon}
         {...chipProps}
         label={selectedLabel ?? label}
-        className={`${classes.chip} ${chipProps.className ?? ''} ${
-          selectedAndMenuHidden ? 'MuiChip-selected' : ''
-        }`}
-        sx={[
-          { bgcolor: 'background.default' },
-          selectedAndMenuHidden &&
-            ((theme) => ({
-              borderColor: 'text.primary',
-              color: 'text.primary',
-              '&:hover': {
-                background: `${theme.palette.background.default} !important`,
-                borderColor: `${theme.palette.divider} !important`,
-              },
-              '&:focus': {
-                background: `${theme.palette.background.paper} !important`,
-              },
-            })),
-        ]}
       />
 
       <Menu
