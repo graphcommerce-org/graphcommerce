@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.8
+
+### Patch Changes
+
+- [#1328](https://github.com/graphcommerce-org/graphcommerce/pull/1328) [`f44443619`](https://github.com/graphcommerce-org/graphcommerce/commit/f44443619eda9eba8f16beb6ffb462d6511fbfb2) Thanks [@paales](https://github.com/paales)! - Another shot at fixing the graphql-mesh version
+
 ## 4.0.7
 
 ### Patch Changes

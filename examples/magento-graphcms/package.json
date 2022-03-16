@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-graphcms",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.4.1",
+  "version": "3.4.2",
   "private": true,
   "sideEffects": false,
   "engines": {
@@ -40,7 +40,7 @@
     "@graphcommerce/googletagmanager": "^2.0.4",
     "@graphcommerce/graphcms-ui": "^3.0.6",
     "@graphcommerce/graphql": "^3.0.4",
-    "@graphcommerce/graphql-mesh": "^4.0.7",
+    "@graphcommerce/graphql-mesh": "^4.0.8",
     "@graphcommerce/image": "^3.1.1",
     "@graphcommerce/lingui-next": "^2.1.2",
     "@graphcommerce/magento-cart": "^4.2.0",
