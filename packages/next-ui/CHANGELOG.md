@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.3.1
+
+### Patch Changes
+
+- [#1326](https://github.com/graphcommerce-org/graphcommerce/pull/1326) [`df0b3e7d5`](https://github.com/graphcommerce-org/graphcommerce/commit/df0b3e7d5f5fee963731a999cb3a8891580cb6fe) Thanks [@paales](https://github.com/paales)! - Latest version of GraphQL Mesh is broken, reverting to older version
+
 ## 4.3.0
 
 ### Minor Changes
