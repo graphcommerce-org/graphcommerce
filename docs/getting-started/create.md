@@ -52,6 +52,19 @@ need to only install the dependencies. This is the quickest approach.
 
 ## Step 1: Create a new GraphCommerce app
 
+<figure>
+
+https://user-images.githubusercontent.com/1251986/158647122-dc57002f-a9c2-4661-a0a0-28a868ecf2f8.mp4
+
+<video width="100%" controls autoPlay loop muted playsInline>
+<source src="https://user-images.githubusercontent.com/1251986/158647122-dc57002f-a9c2-4661-a0a0-28a868ecf2f8.mp4" type="video/mp4"/>
+</video>
+
+  <figcaption>GraphCommerce installation</figcaption>
+</figure>
+
+<figure>
+
 ### Download the example
 
 1. `git clone git@github.com:graphcommerce-org/graphcommerce.git graphcommerce`
