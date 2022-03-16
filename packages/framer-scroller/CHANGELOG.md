@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.1
+
+### Patch Changes
+
+- [#1330](https://github.com/graphcommerce-org/graphcommerce/pull/1330) [`b7ce24fbc`](https://github.com/graphcommerce-org/graphcommerce/commit/b7ce24fbc1fbebf913faf8f5ad0bf1a126cb56d2) Thanks [@paales](https://github.com/paales)! - cyclic dependency issue with next-ui
+
 ## 2.1.0
 
 ### Minor Changes
