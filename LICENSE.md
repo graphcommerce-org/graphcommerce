@@ -1,4 +1,4 @@
-Copyright 2021-present GraphCommerce.
+Copyright 2020-present GraphCommerce.
 
 Source code in this repository is covered by the Elastic License 2.0. The
 default throughout the repository is a license under the Elastic License 2.0,
