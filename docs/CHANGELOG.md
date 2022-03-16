@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.4.3
+
+### Patch Changes
+
+- [#1334](https://github.com/graphcommerce-org/graphcommerce/pull/1334) [`d1a06dd8e`](https://github.com/graphcommerce-org/graphcommerce/commit/d1a06dd8e060986a4d652c9d5e46d9d1a161a7d1) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - fix installation video
+
 ## 4.4.2
 
 ### Patch Changes
