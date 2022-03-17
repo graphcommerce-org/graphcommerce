@@ -88,7 +88,7 @@ Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
 To order to be able to connect your GraphCommerce app to your Magento backend
 and/or GraphCMS project, you'll need:
 
-- Magento 2.4.3 - Clean install, or a production or a development environment
+- Magento 2.4.3 - Clean install, a production or a development environment
 - GraphCMS - A GraphCMS project with the required schema.
   [Clone the demo GraphCMS project ↗](https://app.graphcms.com/clone/caddaa93cfa9436a9e76ae9c0F34d257)
   as your starting point.
