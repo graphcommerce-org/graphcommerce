@@ -13,7 +13,7 @@ as GraphCommerce. Visual Studio Code is free and available on all platforms.
 This guide covers which useful VS Code extensions to install for an optimal
 development experience.
 
-Must have extensions
+Required extensions
 
 - [ESLint ↗](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) -
   Linter tool for identifying and reporting on patterns in JavaScript
