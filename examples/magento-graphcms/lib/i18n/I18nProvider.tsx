@@ -1,5 +1,4 @@
-import { LinguiProvider } from '@graphcommerce/lingui-next'
-import { LinguiProviderProps } from '@graphcommerce/lingui-next/components/LinguiProvider'
+import { LinguiProvider, LinguiProviderProps } from '@graphcommerce/lingui-next'
 
 type I18nProviderProps = Pick<LinguiProviderProps, 'locale' | 'children'>
 
