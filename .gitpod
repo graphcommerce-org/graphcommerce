@@ -10,4 +10,4 @@ tasks:
       rm -rf node_modules && rm -rf .next
       yarn
       yarn codegen
-    command: cd my-project && npm run dev
+    command: cd /workspace/graphcommerce/my-project && npm run dev
