@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.3
+
+### Patch Changes
+
+- [#1337](https://github.com/graphcommerce-org/graphcommerce/pull/1337) [`4456db1bb`](https://github.com/graphcommerce-org/graphcommerce/commit/4456db1bb5c5c03870f1b7d55ddd6645dfaca3c6) Thanks [@paales](https://github.com/paales)! - Make sure the LinguiProviderProps are exported
+
 ## 2.1.2
 
 ### Patch Changes
