@@ -1,0 +1,13 @@
+tasks:
+  - before: nvm install 14
+    init: |
+      mkdir my-project
+      cp -R examples/magento-graphcms/. my-project
+      cd my-project
+      jq 'del(.scripts) | with_entries( if .key | contains("scripts_local") then .key |= sub("scripts_local";"scripts") else . end)' package.json > _.json && mv _.json package.json
+      cp -R .env.example .env
+      rm CHANGELOG.md && touch CHANGELOG.md
+      rm -rf node_modules && rm -rf .next
+      yarn
+      yarn codegen
+    command: cd my-project && npm run dev
