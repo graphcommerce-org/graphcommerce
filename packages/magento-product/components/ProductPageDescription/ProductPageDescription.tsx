@@ -11,7 +11,7 @@ import { ProductPageDescriptionFragment } from './ProductPageDescription.gql'
 export type ProductPageDescriptionProps = ProductPageDescriptionFragment &
   Omit<ColumnTwoWithTopProps, 'top' | 'left'> & {
     sx?: SxProps<Theme>
-    fontSize: 'responsive' | Variant
+    fontSize?: 'responsive' | Variant
   }
 
 const componentName = 'ProductPageDescription'

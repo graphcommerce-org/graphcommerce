@@ -1,5 +1,6 @@
-fragment ProductCustomizable on CustomizableProductInterface {
+fragment ProductCustomizable on CustomizableProductInterface @injectable {
   options {
+    uid
     __typename
     ...CustomizableAreaOption
     ...CustomizableCheckboxOption
