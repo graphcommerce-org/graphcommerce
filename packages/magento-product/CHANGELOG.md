@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.1.1
+
+### Patch Changes
+
+- [#1337](https://github.com/graphcommerce-org/graphcommerce/pull/1337) [`bc5966129`](https://github.com/graphcommerce-org/graphcommerce/commit/bc5966129351a641db4deb3b4f04fe942c06f16b) Thanks [@paales](https://github.com/paales)! - Make sure any new types added to CustomizableProductInterface can be added and don’t immediately crash any query
+
+* [#1337](https://github.com/graphcommerce-org/graphcommerce/pull/1337) [`645986e30`](https://github.com/graphcommerce-org/graphcommerce/commit/645986e306a38d3bb5a284ba04a9004060c592e6) Thanks [@paales](https://github.com/paales)! - make sure the fontSize isn’t required for ProductPageDescription
+
 ## 4.1.0
 
 ### Minor Changes
