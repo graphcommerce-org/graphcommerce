@@ -1606,6 +1606,57 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@graphcommerce/eslint-config-pwa@4.0.6":
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/eslint-config-pwa/-/eslint-config-pwa-4.0.6.tgz#b16ec5fa2e4efe54b8763b059c4913522cc743db"
+  integrity sha512-i/0PgrlGMFmjpwfKu10h2larc3xz2tnkeDOBoi4Q0G4GuCdJ1SovDLrUxAPiF+t6t2GNOAbYMa4qJUZFaDcWzQ==
+  dependencies:
+    "@graphcommerce/prettier-config-pwa" "^4.0.4"
+    "@graphcommerce/typescript-config-pwa" "^4.0.2"
+    "@next/eslint-plugin-next" "^12.1.0"
+    "@typescript-eslint/eslint-plugin" "^5.14.0"
+    "@typescript-eslint/parser" "^5.14.0"
+    eslint-config-airbnb "^19.0.4"
+    eslint-config-airbnb-typescript "^16.1.2"
+    eslint-config-prettier "^8.5.0"
+    eslint-import-resolver-webpack "^0.13.2"
+    eslint-plugin-import "^2.25.4"
+    eslint-plugin-jsx-a11y "^6.5.1"
+    eslint-plugin-react "^7.29.4"
+    eslint-plugin-react-hooks "^4.3.0"
+
+"@graphcommerce/framer-scroller@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/framer-scroller/-/framer-scroller-2.1.0.tgz#24dc69eb10ccd7980ac960d244c9bce5b6584012"
+  integrity sha512-5Q6sZYk7W2dZq48WKEkwKdEKObL9Dmh6JKD31ssZsnEGkty5KXW2NKk8k8TfP20R+W86NsJB0g3FZNfcYF3gNQ==
+  dependencies:
+    "@graphcommerce/framer-utils" "^3.0.5"
+    "@graphcommerce/image" "^3.1.1"
+    "@graphcommerce/next-ui" "^4.3.0"
+
+"@graphcommerce/lingui-next@2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/lingui-next/-/lingui-next-2.1.2.tgz#e66f1084502d8e77d33c64197ffb1f767c8445ed"
+  integrity sha512-s4hUiuSOtqJD40zRgZ05KN5W1tFr4EJ1FJk4EKFad+CZW0U2XdGdJK9KsVQkQk8iE5O09NeOXh3/Bng/SZnG5Q==
+  dependencies:
+    "@lingui/core" "^3.13.2"
+    "@lingui/react" "^3.13.2"
+    babel-plugin-macros "^3.1.0"
+
+"@graphcommerce/magento-product@4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@graphcommerce/magento-product/-/magento-product-4.1.0.tgz#019e7bf26a3f4195cd4ddd71f7e2bb6276537fbd"
+  integrity sha512-IbzWNRRmmnR4bIIExy7IQ2yKCSZ2BCbo1Zivo9A5IzoSikrkv6rjGqcPM2CS3Xd1SJUL5VjHb8lpOlJg5KSZXw==
+  dependencies:
+    "@graphcommerce/framer-scroller" "^2.1.0"
+    "@graphcommerce/graphql" "^3.0.4"
+    "@graphcommerce/image" "^3.1.1"
+    "@graphcommerce/magento-cart" "^4.2.0"
+    "@graphcommerce/magento-store" "^4.1.3"
+    "@graphcommerce/next-ui" "^4.3.0"
+    schema-dts "^1.1.0"
+    type-fest "^2.12.0"
+
 "@graphql-codegen/add@3.1.1":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/add/-/add-3.1.1.tgz#e161ff1c7cdf74ce20b32f75f640f9592b9a18ca"
@@ -5109,9 +5160,9 @@ combined-stream@^1.0.8:
     delayed-stream "~1.0.0"
 
 commander@*:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-9.0.0.tgz#86d58f24ee98126568936bd1d3574e0308a99a40"
-  integrity sha512-JJfP2saEKbQqvW+FI93OYUB4ByV5cizMpFMiiJI8xDbBvQvSkIk0VvQdn1CZ8mqAO8Loq2h0gYTYtDFUZUeERw==
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-9.1.0.tgz#a6b263b2327f2e188c6402c42623327909f2dbec"
+  integrity sha512-i0/MaqBtdbnJ4XQs4Pmyb+oFQl+q0lsAmokVUH92SlSw4fkeAcG3bVon+Qt7hmtF+u3Het6o4VgrcY3qAoEB6w==
 
 commander@8.3.0:
   version "8.3.0"
@@ -5744,9 +5795,9 @@ ejs@^3.1.6:
     jake "^10.6.1"
 
 electron-to-chromium@^1.4.84:
-  version "1.4.86"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.86.tgz#90fe4a9787f48d6522957213408e08a8126b2ebc"
-  integrity sha512-EVTZ+igi8x63pK4bPuA95PXIs2b2Cowi3WQwI9f9qManLiZJOD1Lash1J3W4TvvcUCcIR4o/rgi9o8UicXSO+w==
+  version "1.4.87"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.87.tgz#1aeacfa50b2fbf3ecf50a78fbebd8f259d4fe208"
+  integrity sha512-EXXTtDHFUKdFVkCnhauU7Xp8wmFC1ZG6GK9a1BeI2vvNhy61IwfNPo/CRexhf7mh4ajxAHJPind62BzpzVUeuQ==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
@@ -5903,7 +5954,7 @@ eslint-config-airbnb-base@^15.0.0:
     object.entries "^1.1.5"
     semver "^6.3.0"
 
-eslint-config-airbnb-typescript@^16.1.3:
+eslint-config-airbnb-typescript@^16.1.2, eslint-config-airbnb-typescript@^16.1.3:
   version "16.1.3"
   resolved "https://registry.yarnpkg.com/eslint-config-airbnb-typescript/-/eslint-config-airbnb-typescript-16.1.3.tgz#ad2cfc66a3c29ba8a589938788fb838a8ece1469"
   integrity sha512-Pxv+dnXuzyXsjKefl1THWMN7eJ7pALU05L7UyW/WmJ2FKlwsKpBE4Z8KSv5Fz+4R6Kvu7kLFYqkXdkg4wsZUow==
