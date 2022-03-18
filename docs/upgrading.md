@@ -102,7 +102,11 @@ After you've finished this guide, you'll have accomplished the following:
 ## What has happened?
 
 > `git apply --reject` will try and apply all the diffs to your project and if
-> it isn't able to do so, it will create for _each_ file and apply all your
+> it isn't able to do so, it will create a `.rej` file for _each_ file that it
+> couldn't apply the changes to.
+>
+> `git` expects you to manually apply the changes in the `.rej` files to your
+> project.
 
 ## Resolving package.json issues
 
@@ -121,7 +125,7 @@ We want to have the latest `dependencies`, `devDependencies` and `scripts` from
 It might be that you have installed additional local dependencies, you can keep
 those.
 
-```
+```bash
 rm yarn.lock
 yarn
 yarn codegen
@@ -145,7 +149,7 @@ Make sure all .rej files are deleted (`find . -type f -name '*.rej' -delete`)
 
 Tip: make a commit
 
-```
+```bash
 git commit -am"refactor: processed manual .rej files"
 ```
 
@@ -159,4 +163,6 @@ If the above commands are working correctly you should now have a working
 project. Validate if everything looks right, especially the parts that have
 manual changes.
 
-Commit your latest changes, push and see if it deploys.
+You are done with the upgrade! 🎉
+
+Commit, push and deploy!
