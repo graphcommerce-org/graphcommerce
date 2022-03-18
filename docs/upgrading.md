@@ -27,7 +27,8 @@ After you've finished this guide, you'll have accomplished the following:
 
 ## Create an apply a patch file
 
-1. Get the version of your project  
+1. Get the version of **your own project**
+
    In your local package.json you'll find something like this:
 
    ```json
@@ -69,6 +70,7 @@ After you've finished this guide, you'll have accomplished the following:
 
    ```bash
    mv changes.patch ../your-project-root
+   cd ../your-project-root
    ```
 
    You should now have a changes.patch file in the root of your project.
@@ -89,8 +91,29 @@ After you've finished this guide, you'll have accomplished the following:
    Tip: create an intermediate commit
 
    ```bash
+   rm changes.patch
    git commit -am"refactor: applied patches"
    ```
+
+## Resolving package.json issues
+
+If you've got a package.json.rej file and the diff is very large, it might be
+easier to manually update the file.
+
+We want to have the latest `dependencies`, `devDependencies` and `scripts` from
+`graphcommerce/examples/magento-example/package.json`.
+
+- Replace your local `dependencies` with the example `dependencies`
+- Replace your local `devDependencies` with the example `devDependencies`
+- Replace your local `scripts` with the example `scripts_local`
+
+It might be that you have installed additional local dependencies, you can keep
+those.
+
+```
+rm yarn.lock
+yarn
+```
 
 ## Resolving patch conflicts
 
@@ -111,23 +134,9 @@ Afterwards, detete all .rej files
 find . -type f -name '*.rej' -delete
 ```
 
-## Resolving package.json issues
-
-If you've got a package.json.rej file and the diff is very large, it might be
-easier to manually update the file.
-
-Copy the following keys from `graphcommerce/examples/your-example/package.json`
-to your local package.json:
-
-- `dependencies` AND keep your own added local dependencies
-- `devDependencies` AND keep your own added local devDependencies
-- `scripts_local` -> `scripts` AND keep your own added local scripts
-
 ## Installing dependencies
 
 ```bash
-rm yarn.lock
-yarn
 yarn codegen
 yarn dev
 ```
