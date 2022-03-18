@@ -42,7 +42,8 @@ After you've finished this guide, you'll have accomplished the following:
 
    We need the version of `@graphcommerce/next-ui` later.
 
-2. Create a checkout of the GraphCommerce project
+2. Create a clone of the `https://github.com/graphcommerce-org/graphcommerce`
+   repo.
 
    ```bash
    git clone git@github.com:graphcommerce-org/graphcommerce.git
@@ -53,21 +54,16 @@ After you've finished this guide, you'll have accomplished the following:
 
 3. Create a patch from the example
 
-   Replace `OLD_VERSION` in the command below with the version you the version
-   number you found in the package.json file:
+   Replace `OLD_VERSION` in the command below with the version number of
+   `@graphcommerce/next-ui` you just looked up:
 
    ```bash
    git diff --unified=0 --relative=examples/magento-graphcms "@graphcommerce/next-ui@OLD_VERSION" examples/magento-graphcms ':!examples/magento-graphcms/CHANGELOG.md' > changes.patch
    ```
 
-   It should look something like:
-
-   ```bash
-   git diff --unified=0 --relative=examples/magento-graphcms "@graphcommerce/next-ui@4.2.0" examples/magento-graphcms ':!examples/magento-graphcms/CHANGELOG.md' > changes.patch
-   ```
-
-   If you run this command you should have a changes.patch file in root of the
-   `graphcommerce` repo.
+   Run the above command (with OLD_VERSION replaced with something like `1.2.3`)
+   in the `graphcommerce` repo. you should have a changes.patch file in root of
+   the `graphcommerce` repo.
 
 4. Move the file to your project's root directory
 
