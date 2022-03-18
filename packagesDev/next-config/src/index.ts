@@ -51,6 +51,18 @@ function extendConfig(nextConfig: NextConfig): NextConfig {
         topLevelAwait: true,
       }
 
+      config.snapshot = {
+        ...(config.snapshot ?? {}),
+        managedPaths: [/^(.+?[\\/]node_modules[\\/])(?!@graphcommerce)/],
+      }
+
+      // `config.watchOptions.ignored = ['**/.git/**', '**/node_modules/**', '**/.next/**']
+      // Replace the '**/node_modules/**' with a regex that excludes node_modules except @graphcommerce
+      config.watchOptions = {
+        ...(config.watchOptions ?? {}),
+        ignored: ['**/.git/**', '**/node_modules/!(@graphcommerce)**', '**/.next/**'],
+      }
+
       return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config
     },
   }
