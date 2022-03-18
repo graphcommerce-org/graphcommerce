@@ -79,6 +79,8 @@ After you've finished this guide, you'll have accomplished the following:
 
 5. Apply the patch to your project
 
+   Make sure your working directory is clean (except for the changes.patch file)
+
    ```bash
    git apply --unidiff-zero --reject --ignore-whitespace --exclude=README.md changes.patch
    ```
