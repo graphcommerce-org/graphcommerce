@@ -59,7 +59,7 @@ After you've finished this guide, you'll have accomplished the following:
    `@graphcommerce/next-ui` you just looked up:
 
    ```bash
-   git diff --unified=1 --relative=examples/magento-graphcms "@graphcommerce/next-ui@OLD_VERSION" examples/magento-graphcms ':!examples/magento-graphcms/CHANGELOG.md' > changes.patch
+   git diff --relative=examples/magento-graphcms "@graphcommerce/next-ui@OLD_VERSION" examples/magento-graphcms ':!examples/magento-graphcms/CHANGELOG.md' > changes.patch
    ```
 
    Run the above command (with OLD_VERSION replaced with something like `1.2.3`)
@@ -71,6 +71,12 @@ After you've finished this guide, you'll have accomplished the following:
    ```bash
    mv changes.patch ../your-project-root
    cd ../your-project-root
+   ```
+
+   Tip: create a separate branch
+
+   ```bash
+   git checkout -b my-upgrade
    ```
 
    You should now have a changes.patch file in the root of your project.
@@ -86,14 +92,17 @@ After you've finished this guide, you'll have accomplished the following:
 
    You should now have all the changes from the example applied to your project.
 
-   Run `git status`
-
    Tip: create an intermediate commit
 
    ```bash
-   rm changes.patch
    git commit -am"refactor: applied patches"
+      rm changes.patch
    ```
+
+## What has happened?
+
+> `git apply --reject` will try and apply all the diffs to your project and if
+> it isn't able to do so, it will create for _each_ file and apply all your
 
 ## Resolving package.json issues
 
@@ -103,7 +112,9 @@ easier to manually update the file.
 We want to have the latest `dependencies`, `devDependencies` and `scripts` from
 `graphcommerce/examples/magento-example/package.json`.
 
-- Replace your local `dependencies` with the example `dependencies`
+- Replace your local `dependencies` with the example `dependencies` (and
+  [remove PSPs](./getting-started/create.md#remove-unused-psps) your backend
+  doesn't support)
 - Replace your local `devDependencies` with the example `devDependencies`
 - Replace your local `scripts` with the example `scripts_local`
 
@@ -113,6 +124,8 @@ those.
 ```
 rm yarn.lock
 yarn
+yarn codegen
+rm package.json.rej
 ```
 
 ## Resolving patch conflicts
@@ -128,19 +141,22 @@ All the '.rej' files **must** be handled manually by:
   want the changes. (recommended)
 - Discarding the .rej file because you've modified the project already.
 
-Afterwards, detete all .rej files
+Make sure all .rej files are deleted (`find . -type f -name '*.rej' -delete`)
 
-```bash
-find . -type f -name '*.rej' -delete
+Tip: make a commit
+
+```
+git commit -am"refactor: processed manual .rej files"
 ```
 
-## Installing dependencies
+## Running and validating your project
 
-```bash
-yarn codegen
-yarn dev
-```
+- `yarn codegen` should run without errors
+- `yarn tsc:lint` should run without errors
+- `yarn dev` should run without errors
 
-If everything is applied correctly you should now have a working shop again.
+If the above commands are working correctly you should now have a working
+project. Validate if everything looks right, especially the parts that have
+manual changes.
 
-## Validating your project
+Commit your latest changes, push and see if it deploys.
