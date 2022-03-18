@@ -11,7 +11,7 @@ The following overview contains the status of items on the GraphCommerce roadmap
 
 - [x] Framework updates (Mui5)
 - [x] Translation updates (DE, NL, ES, FR, IT)
-- [ ] Documentation and installation guide
+- [x] Documentation and installation guide
 - [ ] Quality improvements (Reduce components, naming)
 
 ## Planned

@@ -102,7 +102,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await page).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
   }
 }
 ```
@@ -209,7 +208,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await page).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
   }
 }
 ```

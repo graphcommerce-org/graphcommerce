@@ -71,7 +71,7 @@ https://user-images.githubusercontent.com/1251986/158647122-dc57002f-a9c2-4661-a
 4. `rm -rf graphcommerce`
 5. `cd my-project`
 6. `cp -R .env.example .env`
-7. `rm CHANGELOG.md && touch CHANGELOG.md`
+7. `rm CHANGELOG.md`
 8. `rm -rf node_modules && rm -rf .next`
 
 Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
@@ -99,7 +99,7 @@ Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
 To order to be able to connect your GraphCommerce app to your Magento backend
 and/or GraphCMS project, you'll need:
 
-- Magento 2.4.3 - Clean install, or a production or development environment
+- Magento 2.4.3 - Clean install, a production or a development environment
 - GraphCMS - A GraphCMS project with the required schema.
   [Clone the demo GraphCMS project ↗](https://app.graphcms.com/clone/caddaa93cfa9436a9e76ae9c0F34d257)
   as your starting point.
@@ -142,7 +142,7 @@ added as a result, with the exception of the first option in the list.
 ### Remove unused PSP's
 
 The example has Payment Service Providers integrated (Mollie, Braintree). Remove
-the ones you don't want to use.
+the ones your Magento backend doesn't support.
 
 - Remove `"@graphcommerce/[psp]"` from package.json
 - Remove all [psp] references from `pages/checkout/payment.tsx`
@@ -156,7 +156,8 @@ the ones you don't want to use.
 Visit the development environment running at http://localhost:3000  
 Visit the GraphQL Playground running at http://localhost:3000/api/graphql
 
-> No success? Refer to [common build errors](../framework/troubleshooting.md)
+> No success? Refer to [common build errors](../framework/troubleshooting.md) or
+> ask your question in the public [Slack community ↗](https://join.slack.com/t/graphcommerce/shared_invite/zt-11rmgq1ad-F~0daNtKcSvtcC4eQRzjeQ) chat
 
 ## Next steps
 

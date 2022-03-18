@@ -40,7 +40,7 @@ https://user-images.githubusercontent.com/1251986/154977573-4015e77c-43e7-481e-a
 - Nextjs
 - GraphQL
 - Mui
-- Apollo
+- Apollo Client
 - GraphQL Code Generator
 - Framer Motion
 
