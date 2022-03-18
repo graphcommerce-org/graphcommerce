@@ -26,11 +26,11 @@
     "@graphql-codegen/fragment-matcher": "3.2.1",
     "@graphql-codegen/introspection": "2.1.1",
     "@graphql-codegen/schema-ast": "2.4.1",
-    "@graphql-codegen/typed-document-node": "2.2.7",
-    "@graphql-codegen/typescript": "2.4.7",
-    "@graphql-codegen/typescript-apollo-client-helpers": "2.1.14",
-    "@graphql-codegen/typescript-document-nodes": "2.2.7",
-    "@graphql-codegen/typescript-operations": "2.3.4",
+    "@graphql-codegen/typed-document-node": "2.2.8",
+    "@graphql-codegen/typescript": "2.4.8",
+    "@graphql-codegen/typescript-apollo-client-helpers": "2.1.15",
+    "@graphql-codegen/typescript-document-nodes": "2.2.8",
+    "@graphql-codegen/typescript-operations": "2.3.5",
     "apollo3-cache-persist": "^0.14.0",
     "graphql": "^16.3.0"
   }

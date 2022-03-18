@@ -39,7 +39,9 @@ function extendConfig(nextConfig: NextConfig): NextConfig {
       config.module?.rules?.push({ test: /\.ya?ml$/, use: 'js-yaml-loader' })
 
       // To properly properly treeshake @apollo/client we need to define the __DEV__ property
-      config.plugins = [new DefinePlugin({ __DEV__: options.dev }), ...(config.plugins ?? [])]
+      if (!options.isServer) {
+        config.plugins = [new DefinePlugin({ __DEV__: options.dev }), ...(config.plugins ?? [])]
+      }
 
       // @lingui .po file support
       config.module?.rules?.push({ test: /\.po/, use: '@lingui/loader' })
