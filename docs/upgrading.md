@@ -58,7 +58,7 @@ After you've finished this guide, you'll have accomplished the following:
    `@graphcommerce/next-ui` you just looked up:
 
    ```bash
-   git diff --unified=0 --relative=examples/magento-graphcms "@graphcommerce/next-ui@OLD_VERSION" examples/magento-graphcms ':!examples/magento-graphcms/CHANGELOG.md' > changes.patch
+   git diff --unified=1 --relative=examples/magento-graphcms "@graphcommerce/next-ui@OLD_VERSION" examples/magento-graphcms ':!examples/magento-graphcms/CHANGELOG.md' > changes.patch
    ```
 
    Run the above command (with OLD_VERSION replaced with something like `1.2.3`)
@@ -76,12 +76,21 @@ After you've finished this guide, you'll have accomplished the following:
 5. Apply the patch to your project
 
    Make sure your working directory is clean (except for the changes.patch file)
+   and run:
 
    ```bash
-   git apply --unidiff-zero --reject --ignore-whitespace --exclude=README.md changes.patch
+   git apply --reject --ignore-whitespace --exclude=README.md changes.patch
    ```
 
    You should now have all the changes from the example applied to your project.
+
+   Run `git status`
+
+   Tip: create an intermediate commit
+
+   ```bash
+   git commit -am"refactor: applied patches"
+   ```
 
 ## Resolving patch conflicts
 
@@ -90,11 +99,17 @@ your modifications. You'll see something like `Rejected hunk #2` in the cli. The
 above command will create rejection files like `Component.ts.rej` for each hunk
 it couldn't apply.
 
-All the '.rej' files must be handled manually by:
+All the '.rej' files **must** be handled manually by:
 
-- Manually applying the .rej file to the original file because you want the
-  changes.
+- Manually applying the diff in the .rej file to the original file because you
+  want the changes. (recommended)
 - Discarding the .rej file because you've modified the project already.
+
+Afterwards, detete all .rej files
+
+```bash
+find . -type f -name '*.rej' -delete
+```
 
 ## Resolving package.json issues
 
