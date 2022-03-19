@@ -11,3 +11,17 @@ tasks:
       yarn
       yarn codegen
     command: cd /workspace/graphcommerce/my-project && npm run dev
+vscode:
+  extensions:
+    - dbaeumer.vscode-eslint
+    - esbenp.prettier-vscode
+    - GraphQL.vscode-graphql
+    - mikestead.DotENV
+    - mrorz.language-gettext
+    - Equinusocio.vsc-material-theme
+    - Equinusocio.vsc-material-theme-icons
+    - IBM.output-colorizer
+    - naumovs.color-highlight
+    - cschleiden.vscode-github-actions
+    - bierner.markdown-preview-github-styles
+    - redhat.vscode-yaml
