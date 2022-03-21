@@ -19,7 +19,14 @@ export function RemoveCouponForm(props: RemoveCouponFormProps) {
 
   return (
     <Box className={classes.root} sx={sx}>
-      <Chip label={applied_coupons?.[0]?.code} onDelete={submitHandler} size='responsive' />
+      <Chip
+        label={applied_coupons?.[0]?.code}
+        onDelete={submitHandler}
+        size='responsive'
+        sx={(theme) => ({
+          ...theme.typography.overline,
+        })}
+      />
       <ApolloCartErrorAlert error={error} />
     </Box>
   )
