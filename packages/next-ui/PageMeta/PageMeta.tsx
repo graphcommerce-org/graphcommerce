@@ -65,12 +65,12 @@ export function useCanonical(incomming?: Canonical) {
 
     href = localeDomain || addBasePath(addLocale(as, curLocale, router && router.defaultLocale))
 
-    let siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-    if (siteUrl.endsWith('/')) {
+    let siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+    if (siteUrl && siteUrl.endsWith('/')) {
       siteUrl = siteUrl.slice(0, -1)
     }
 
-    canonical = `${process.env.NEXT_PUBLIC_SITE_URL}${href}`
+    canonical = `${siteUrl}${href}`
   }
 
   if (!canonical.startsWith('http')) {
