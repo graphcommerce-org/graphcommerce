@@ -1,16 +1,14 @@
 tasks:
   - before: nvm install 14
     init: |
-      mkdir my-project
-      cp -R examples/magento-graphcms/. my-project
-      cd my-project
+      cd examples/magento-graphcms
       jq 'del(.scripts) | with_entries( if .key | contains("scripts_local") then .key |= sub("scripts_local";"scripts") else . end)' package.json > _.json && mv _.json package.json
       cp -R .env.example .env
-      rm CHANGELOG.md && touch CHANGELOG.md
+      rm CHANGELOG.md
       rm -rf node_modules && rm -rf .next
       yarn
       yarn codegen
-    command: cd /workspace/graphcommerce/my-project && npm run dev
+    command: cd /workspace/graphcommerce/examples/magento-graphcms && npm run dev
 vscode:
   extensions:
     - dbaeumer.vscode-eslint
