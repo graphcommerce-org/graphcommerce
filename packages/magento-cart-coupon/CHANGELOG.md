@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.0.6
+
+### Patch Changes
+
+- [#1345](https://github.com/graphcommerce-org/graphcommerce/pull/1345) [`eee3c867d`](https://github.com/graphcommerce-org/graphcommerce/commit/eee3c867d0c56401b4290862917a2e34cea92ffe) Thanks [@NickdeK](https://github.com/NickdeK)! - Changed active coupon element to Chip and fixed alignment.
+
+- Updated dependencies [[`b76d0892a`](https://github.com/graphcommerce-org/graphcommerce/commit/b76d0892a11bd916aefd46ba72c2da00e38ce45b)]:
+  - @graphcommerce/next-ui@4.3.2
+
 ## 3.0.5
 
 ### Patch Changes

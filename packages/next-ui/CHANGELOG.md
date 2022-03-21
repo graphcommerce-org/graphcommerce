@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.3.2
+
+### Patch Changes
+
+- [#1343](https://github.com/graphcommerce-org/graphcommerce/pull/1343) [`b76d0892a`](https://github.com/graphcommerce-org/graphcommerce/commit/b76d0892a11bd916aefd46ba72c2da00e38ce45b) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Canonicals could contain a double slash in the URL
+
 ## 4.3.1
 
 ### Patch Changes
