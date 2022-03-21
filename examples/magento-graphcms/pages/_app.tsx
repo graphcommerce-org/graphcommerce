@@ -1,4 +1,5 @@
 import { FramerNextPages } from '@graphcommerce/framer-next-pages'
+import { GoogleRecaptchaProvider } from '@graphcommerce/googlerecaptcha'
 // import { GoogleAnalyticsScript } from '@graphcommerce/googleanalytics'
 // import { GoogleRecaptchaV3Script } from '@graphcommerce/googlerecaptcha'
 // import { GoogleTagManagerScript } from '@graphcommerce/googletagmanager'
@@ -24,12 +25,13 @@ export default function ThemedApp(props: AppProps) {
         <GraphQLProvider {...props}>
           <DarkLightModeThemeProvider light={lightTheme} dark={darkTheme}>
             {/* <GoogleAnalyticsScript /> */}
-            {/* <GoogleRecaptchaV3Script /> */}
             {/* <GoogleTagManagerScript /> */}
             <GlobalHead />
             <CssBaseline />
             <PageLoadIndicator />
-            <FramerNextPages {...props} />
+            <GoogleRecaptchaProvider>
+              <FramerNextPages {...props} />
+            </GoogleRecaptchaProvider>
           </DarkLightModeThemeProvider>
         </GraphQLProvider>
       </I18nProvider>

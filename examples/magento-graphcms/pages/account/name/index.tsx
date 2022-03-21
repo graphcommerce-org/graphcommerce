@@ -1,4 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCustomerErrorFullPage,
@@ -15,13 +16,14 @@ import {
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
-import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountNamePage() {
+  useGoogleRecaptcha()
+
   const { loading, data, error } = useQuery(CustomerDocument)
   const customer = data?.customer
 

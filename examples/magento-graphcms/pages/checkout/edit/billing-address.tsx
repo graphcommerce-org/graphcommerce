@@ -1,10 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import { EditBillingAddressForm } from '@graphcommerce/magento-cart-billing-address'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
-import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { DefaultPageDocument } from '../../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -13,6 +13,7 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function EditBillingAddress() {
+  useGoogleRecaptcha()
   return (
     <>
       <PageMeta title={t`Edit billing address`} metaRobots={['noindex', 'nofollow']} />

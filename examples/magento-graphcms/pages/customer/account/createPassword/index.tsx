@@ -1,17 +1,18 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import { ResetPasswordForm } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Box, Container, Link, NoSsr, Button } from '@mui/material'
 import router, { useRouter } from 'next/router'
-import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
 import { graphqlSharedClient } from '../../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function CustomerAccountCreatePasswordPage() {
+  useGoogleRecaptcha()
   const { token, success } = useRouter().query
 
   if (typeof token !== 'undefined' && success === 'undefined') return null

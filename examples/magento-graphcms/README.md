@@ -32,14 +32,13 @@ https://user-images.githubusercontent.com/1251986/158570386-ea831ae4-f6b8-4776-8
 
 ### Download the example
 
-1. `git clone git@github.com:graphcommerce-org/graphcommerce.git graphcommerce`
+1. `git clone git@github.com:graphcommerce-org/graphcommerce.git`
 2. `mkdir my-project`
 3. `cp -R graphcommerce/examples/magento-graphcms/. my-project`
-4. `rm -rf graphcommerce`
-5. `cd my-project`
-6. `cp -R .env.example .env`
-7. `rm CHANGELOG.md && touch CHANGELOG.md`
-8. `rm -rf node_modules && rm -rf .next`
+4. `cd my-project`
+5. `cp -R .env.example .env`
+6. `rm CHANGELOG.md`
+7. `rm -rf node_modules && rm -rf .next`
 
 Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
 `scripts`:
