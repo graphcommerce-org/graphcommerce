@@ -77,6 +77,7 @@ function CategoryPage(props: Props) {
           title={page?.metaTitle ?? ''}
           metaDescription={page?.metaDescription ?? ''}
           metaRobots={page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]}
+          canonical={page?.url ? `/${page?.url}` : undefined}
         />
       ) : (
         <CategoryMeta params={params} {...category} />
