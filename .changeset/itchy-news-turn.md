@@ -1,5 +1,6 @@
 ---
 '@graphcommerce/next-ui': patch
+"@graphcommerce/magento-graphcms": patch
 ---
 
-Fix canonicals
+Canonicals could contain a double slash in the URL
