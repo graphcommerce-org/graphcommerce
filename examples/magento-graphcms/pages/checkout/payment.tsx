@@ -1,5 +1,6 @@
 import { ComposedForm } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import {
   CartAgreementsForm,
   CartSummary,
@@ -43,6 +44,7 @@ import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphql
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
 function PaymentPage() {
+  useGoogleRecaptcha()
   const cartId = useCurrentCartId()
   const { locked } = useCartLock()
 

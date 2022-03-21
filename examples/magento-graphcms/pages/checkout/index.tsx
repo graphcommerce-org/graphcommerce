@@ -5,6 +5,7 @@ import {
   ComposedSubmit,
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import { ApolloCartErrorAlert, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
 import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { EmailForm } from '@graphcommerce/magento-cart-email'
@@ -31,6 +32,7 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
 
 function ShippingPage() {
+  useGoogleRecaptcha()
   const { data: cartData } = useCartQuery(ShippingPageDocument, {
     returnPartialData: true,
   })

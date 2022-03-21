@@ -1,4 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import { useQuery } from '@graphcommerce/graphql'
 import { ApolloCustomerErrorFullPage, EditAddressForm } from '@graphcommerce/magento-customer'
 import { AccountDashboardAddressesDocument } from '@graphcommerce/magento-customer-account'
@@ -14,7 +15,6 @@ import {
 import { t, Trans } from '@lingui/macro'
 import { Box, Container, NoSsr, Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
-import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
@@ -22,6 +22,8 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function EditAddressPage() {
   const router = useRouter()
+  useGoogleRecaptcha()
+
   const { addressId } = router.query
 
   const { data, loading, error } = useQuery(AccountDashboardAddressesDocument, {

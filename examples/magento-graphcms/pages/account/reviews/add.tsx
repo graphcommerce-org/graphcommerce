@@ -1,4 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import { useQuery } from '@graphcommerce/graphql'
 import { ApolloCustomerErrorFullPage, CustomerDocument } from '@graphcommerce/magento-customer'
 import {
@@ -23,6 +24,8 @@ import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountReviewsAddPage() {
+  useGoogleRecaptcha()
+
   const router = useRouter()
   const { data: customerData, loading: customerLoading, error } = useQuery(CustomerDocument)
   const urlKey = router.query.url_key as string
