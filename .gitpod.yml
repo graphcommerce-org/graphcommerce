@@ -21,6 +21,5 @@ vscode:
     - Equinusocio.vsc-material-theme-icons
     - IBM.output-colorizer
     - naumovs.color-highlight
-    - cschleiden.vscode-github-actions
     - bierner.markdown-preview-github-styles
     - redhat.vscode-yaml
