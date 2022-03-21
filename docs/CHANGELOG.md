@@ -1,5 +1,15 @@
 # Change Log
 
+## 4.5.0
+
+### Minor Changes
+
+- [#1341](https://github.com/graphcommerce-org/graphcommerce/pull/1341) [`a06c86706`](https://github.com/graphcommerce-org/graphcommerce/commit/a06c86706c8b76ce91cfa1e526fe16aa20c53991) Thanks [@paales](https://github.com/paales)! - Added upgrade instructions
+
+### Patch Changes
+
+- [#1338](https://github.com/graphcommerce-org/graphcommerce/pull/1338) [`a8886ce4c`](https://github.com/graphcommerce-org/graphcommerce/commit/a8886ce4c059e85b83158b4bc1d8e2f04626d49f) Thanks [@paales](https://github.com/paales)! - Docs improvements
+
 ## 4.4.3
 
 ### Patch Changes

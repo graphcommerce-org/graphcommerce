@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- [#1341](https://github.com/graphcommerce-org/graphcommerce/pull/1341) [`47a03c6c7`](https://github.com/graphcommerce-org/graphcommerce/commit/47a03c6c764cb1f544d3de3af52456608694a9d7) Thanks [@paales](https://github.com/paales)! - Files in node_modules/@graphcommerce will now also be watched and won’t be cached
+
+### Patch Changes
+
+- [#1341](https://github.com/graphcommerce-org/graphcommerce/pull/1341) [`2e29c5852`](https://github.com/graphcommerce-org/graphcommerce/commit/2e29c585247d356e3027be92beb7815f2070c855) Thanks [@paales](https://github.com/paales)! - upgrade dependencies
+
 ## 3.0.4
 
 ### Patch Changes

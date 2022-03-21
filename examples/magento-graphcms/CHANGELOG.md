@@ -1,5 +1,18 @@
 # Change Log
 
+## 3.4.3
+
+### Patch Changes
+
+- [#1341](https://github.com/graphcommerce-org/graphcommerce/pull/1341) [`2e29c5852`](https://github.com/graphcommerce-org/graphcommerce/commit/2e29c585247d356e3027be92beb7815f2070c855) Thanks [@paales](https://github.com/paales)! - upgrade dependencies
+
+- Updated dependencies [[`47a03c6c7`](https://github.com/graphcommerce-org/graphcommerce/commit/47a03c6c764cb1f544d3de3af52456608694a9d7), [`2e29c5852`](https://github.com/graphcommerce-org/graphcommerce/commit/2e29c585247d356e3027be92beb7815f2070c855)]:
+  - @graphcommerce/next-config@3.1.0
+  - @graphcommerce/googleanalytics@2.0.5
+  - @graphcommerce/googlerecaptcha@2.0.5
+  - @graphcommerce/graphql@3.0.5
+  - @graphcommerce/graphql-mesh@4.0.9
+
 ## 3.4.2
 
 ### Patch Changes
