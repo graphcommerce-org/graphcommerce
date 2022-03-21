@@ -65,14 +65,13 @@ https://user-images.githubusercontent.com/1251986/158647122-dc57002f-a9c2-4661-a
 
 ### Download the example
 
-1. `git clone git@github.com:graphcommerce-org/graphcommerce.git graphcommerce`
+1. `git clone git@github.com:graphcommerce-org/graphcommerce.git`
 2. `mkdir my-project`
 3. `cp -R graphcommerce/examples/magento-graphcms/. my-project`
-4. `rm -rf graphcommerce`
-5. `cd my-project`
-6. `cp -R .env.example .env`
-7. `rm CHANGELOG.md`
-8. `rm -rf node_modules && rm -rf .next`
+4. `cd my-project`
+5. `cp -R .env.example .env`
+6. `rm CHANGELOG.md`
+7. `rm -rf node_modules && rm -rf .next`
 
 Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
 `scripts`:
@@ -157,7 +156,9 @@ Visit the development environment running at http://localhost:3000
 Visit the GraphQL Playground running at http://localhost:3000/api/graphql
 
 > No success? Refer to [common build errors](../framework/troubleshooting.md) or
-> ask your question in the public [Slack community ↗](https://join.slack.com/t/graphcommerce/shared_invite/zt-11rmgq1ad-F~0daNtKcSvtcC4eQRzjeQ) chat
+> ask your question in the public
+> [Slack community ↗](https://join.slack.com/t/graphcommerce/shared_invite/zt-11rmgq1ad-F~0daNtKcSvtcC4eQRzjeQ)
+> chat
 
 ## Next steps
 
