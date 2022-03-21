@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [#1344](https://github.com/graphcommerce-org/graphcommerce/pull/1344) [`5ab19683c`](https://github.com/graphcommerce-org/graphcommerce/commit/5ab19683ca4e1ff78c21dbe09b73aeea43ef3b64) Thanks [@paales](https://github.com/paales)! - Added Google reCAPTCHA conditional loading to make it fully compatible, but load the reCAPTCHA only on pages with forms.
+
 ## 2.0.5
 
 ### Patch Changes

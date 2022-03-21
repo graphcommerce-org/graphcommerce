@@ -1,5 +1,20 @@
 # Change Log
 
+## 3.5.0
+
+### Minor Changes
+
+- [#1344](https://github.com/graphcommerce-org/graphcommerce/pull/1344) [`5ab19683c`](https://github.com/graphcommerce-org/graphcommerce/commit/5ab19683ca4e1ff78c21dbe09b73aeea43ef3b64) Thanks [@paales](https://github.com/paales)! - Added Google reCAPTCHA conditional loading to make it fully compatible, but load the reCAPTCHA only on pages with forms.
+
+### Patch Changes
+
+- [#1343](https://github.com/graphcommerce-org/graphcommerce/pull/1343) [`b76d0892a`](https://github.com/graphcommerce-org/graphcommerce/commit/b76d0892a11bd916aefd46ba72c2da00e38ce45b) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Canonicals could contain a double slash in the URL
+
+- Updated dependencies [[`b76d0892a`](https://github.com/graphcommerce-org/graphcommerce/commit/b76d0892a11bd916aefd46ba72c2da00e38ce45b), [`5ab19683c`](https://github.com/graphcommerce-org/graphcommerce/commit/5ab19683ca4e1ff78c21dbe09b73aeea43ef3b64), [`eee3c867d`](https://github.com/graphcommerce-org/graphcommerce/commit/eee3c867d0c56401b4290862917a2e34cea92ffe)]:
+  - @graphcommerce/next-ui@4.3.2
+  - @graphcommerce/googlerecaptcha@2.1.0
+  - @graphcommerce/magento-cart-coupon@3.0.6
+
 ## 3.4.3
 
 ### Patch Changes
