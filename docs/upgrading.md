@@ -108,3 +108,7 @@ package.json file, run the following to install the latest packages:
 - `yarn` Install the dependencies
 - `yarn codegen` Converts all .graphql files to typescript files
 - `yarn dev` Run the app
+
+## Next steps
+
+- Learn how to [contribute to GraphCommerce](./contributing.md)
