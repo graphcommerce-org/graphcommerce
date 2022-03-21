@@ -1,6 +1,6 @@
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
-import { IconSvg, iconCancelAlt, extendableComponent } from '@graphcommerce/next-ui'
-import { lighten, Button, Box, SxProps, Theme } from '@mui/material'
+import { extendableComponent } from '@graphcommerce/next-ui'
+import { Box, SxProps, Theme, Chip } from '@mui/material'
 import { CouponFragment } from '../Api/Coupon.gql'
 import { RemoveCouponFormDocument } from './RemoveCouponForm.gql'
 
@@ -18,24 +18,15 @@ export function RemoveCouponForm(props: RemoveCouponFormProps) {
   const submitHandler = handleSubmit(() => {})
 
   return (
-    <Box component='form' onSubmit={submitHandler} noValidate className={classes.root} sx={sx}>
-      <Button
-        type='submit'
-        variant='text'
-        color='secondary'
-        className={classes.button}
-        endIcon={<IconSvg src={iconCancelAlt} />}
+    <Box className={classes.root} sx={sx}>
+      <Chip
+        label={applied_coupons?.[0]?.code}
+        onDelete={submitHandler}
+        size='responsive'
         sx={(theme) => ({
-          fontWeight: 600,
-          background: lighten(theme.palette.secondary.light, theme.palette.action.hoverOpacity),
-          '& svg': {
-            stroke: 'transparent',
-            fill: theme.palette.secondary.main,
-          },
+          ...theme.typography.overline,
         })}
-      >
-        {applied_coupons?.[0]?.code}
-      </Button>
+      />
       <ApolloCartErrorAlert error={error} />
     </Box>
   )

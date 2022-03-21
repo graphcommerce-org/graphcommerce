@@ -62,6 +62,7 @@ export function CouponAccordion(props: CouponAccordionProps) {
           className={classes.button}
           sx={(theme) => ({
             justifyContent: 'space-between',
+            gap: theme.spacings.sm,
             padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
             width: '100%',
             borderRadius: responsiveVal(theme.shape.borderRadius * 3, theme.shape.borderRadius * 4),
@@ -88,6 +89,7 @@ export function CouponAccordion(props: CouponAccordionProps) {
             },
             '&.disabled': {
               cursor: 'default',
+              justifyContent: 'flex-start',
               '&:hover': {
                 background: 'transparent',
               },
