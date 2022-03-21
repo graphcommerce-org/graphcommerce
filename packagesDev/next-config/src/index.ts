@@ -39,7 +39,9 @@ function extendConfig(nextConfig: NextConfig): NextConfig {
       config.module?.rules?.push({ test: /\.ya?ml$/, use: 'js-yaml-loader' })
 
       // To properly properly treeshake @apollo/client we need to define the __DEV__ property
-      config.plugins = [new DefinePlugin({ __DEV__: options.dev }), ...(config.plugins ?? [])]
+      if (!options.isServer) {
+        config.plugins = [new DefinePlugin({ __DEV__: options.dev }), ...(config.plugins ?? [])]
+      }
 
       // @lingui .po file support
       config.module?.rules?.push({ test: /\.po/, use: '@lingui/loader' })
@@ -47,6 +49,18 @@ function extendConfig(nextConfig: NextConfig): NextConfig {
       config.experiments = {
         layers: true,
         topLevelAwait: true,
+      }
+
+      config.snapshot = {
+        ...(config.snapshot ?? {}),
+        managedPaths: [/^(.+?[\\/]node_modules[\\/])(?!@graphcommerce)/],
+      }
+
+      // `config.watchOptions.ignored = ['**/.git/**', '**/node_modules/**', '**/.next/**']
+      // Replace the '**/node_modules/**' with a regex that excludes node_modules except @graphcommerce
+      config.watchOptions = {
+        ...(config.watchOptions ?? {}),
+        ignored: ['**/.git/**', '**/node_modules/!(@graphcommerce)**', '**/.next/**'],
       }
 
       return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config
