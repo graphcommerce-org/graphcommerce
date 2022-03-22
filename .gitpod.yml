@@ -4,7 +4,6 @@ tasks:
       cd examples/magento-graphcms
       cp -R .env.example .env
       url=$(gp url 3000) sed -i "s|NEXT_PUBLIC_GRAPHQL_ENDPOINT=\"http://localhost:3000|NEXT_PUBLIC_GRAPHQL_ENDPOINT=\"$url|g" .env
-      rm CHANGELOG.md
       yarn
       yarn codegen
     command: cd /workspace/graphcommerce/examples/magento-graphcms && npm run dev
