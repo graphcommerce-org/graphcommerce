@@ -15,7 +15,7 @@ dependencies, while keeping your customizations.
 - Incorporated all the latest changes in your project, while keeping your
   customizations
 
-## Create and apply a patch file
+## Step 1: Creating and applying a patch file
 
 1. In package.json, find your version:
 
@@ -55,17 +55,7 @@ dependencies, while keeping your customizations.
    git apply --reject --ignore-whitespace --exclude=README.md changes.patch
    ```
 
-6. Resolve any [issues](#resolving-issues)
-
-7. Run and validate your local environment:
-
-- `yarn codegen` should run without errors
-- `yarn tsc:lint` should run without errors
-- `yarn dev` should run without errors
-
-8. Commit, push and deploy
-
-## Resolving issues
+## Step 2: Resolving issues
 
 ### Resolving package.json issues
 
@@ -113,6 +103,12 @@ you commit, make sure to delete all the .rej files:
 ```bash
 find . -type f -name '*.rej' -delete
 ```
+
+After resolving the diff issues, run and validate your local environment:
+
+- `yarn codegen` should run without errors
+- `yarn tsc:lint` should run without errors
+- `yarn dev` should run without errors
 
 ## Next steps
 
