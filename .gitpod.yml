@@ -1,13 +1,11 @@
 tasks:
   - before: nvm install 14
     init: |
-      yarn
       cd examples/magento-graphcms
-      jq 'del(.scripts) | with_entries( if .key | contains("scripts_local") then .key |= sub("scripts_local";"scripts") else . end)' package.json > _.json && mv _.json package.json
       cp -R .env.example .env
       url=$(gp url 3000) sed -i "s|NEXT_PUBLIC_GRAPHQL_ENDPOINT=\"http://localhost:3000|NEXT_PUBLIC_GRAPHQL_ENDPOINT=\"$url|g" .env
       rm CHANGELOG.md
-      rm -rf node_modules && rm -rf .next
+      yarn
       yarn codegen
     command: cd /workspace/graphcommerce/examples/magento-graphcms && npm run dev
 vscode:
