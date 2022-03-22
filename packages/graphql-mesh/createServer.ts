@@ -18,10 +18,14 @@ export async function getMesh(config: unknown): Promise<MeshInstance> {
   return getGraphQLMesh(await processConfig(config as YamlConfig.Config, { dir: process.cwd() }))
 }
 
-export async function createServer(mesh: Promise<MeshInstance>, path: string) {
+export async function createServer(
+  mesh: Promise<MeshInstance<Record<string, unknown>>>,
+  path: string,
+) {
   const meshInstance = await mesh
+
   const apolloServer = new ApolloServer({
-    context: ({ req }) => req,
+    context: ({ req }) => ({ ...req, ...meshInstance.meshContext }),
     introspection: true,
     ...meshInstance,
     plugins: [

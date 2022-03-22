@@ -21,3 +21,11 @@ sources:
           X-ReCaptcha: "{context.headers['x-recaptcha']}"
           Preview-Version: "{context.headers['preview-version']}"
           Content-Currency: "{context.headers['content-currency']}"
+additionalTypeDefs: |
+  extend type ProductImage {
+    width: Int
+    height: Int
+    mimeType: String
+  }
+additionalResolvers:
+  - ./resolvers.ts
