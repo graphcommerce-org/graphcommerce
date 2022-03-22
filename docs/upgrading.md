@@ -48,13 +48,14 @@ dependencies, while keeping your customizations.
 4. Move the `changes.patch` file from the /upgrade directory to the root of your
    project.
 
-5. Apply the patch to your project (It's advised to apply on a new branch):
+5. Apply the patch to your project (It's recommended to apply changes on a new
+   branch):
 
    ```bash
    git apply --reject --ignore-whitespace --exclude=README.md changes.patch
    ```
 
-6. Resolve any issues
+6. Resolve any [issues](#resolving-issues)
 
 7. Run and validate your local environment:
 
@@ -66,29 +67,6 @@ dependencies, while keeping your customizations.
 
 ## Resolving issues
 
-When you run `git apply ...` (step 4), git will try and apply all the diffs from
-the patch file to your project files. When applying a diff fails, a `.rej` file
-will be created for _each_ file that could not be upgraded.
-
-It can very well be that some files can't be updated automatically, because of
-modifications you made. The CLI will show you the location of these files, as
-well as the number of hunks:
-
-```
-Applying patch pages/_app.tsx with 2 rejects...
-Rejected hunk #1.
-Rejected hunk #2.
-```
-
-It's recommended to review all suggested changes using VS code's build in
-functionality, or any other diff tool. Apply the suggested diffs you want.
-Discard the .rej files of those you don't want. Before you commit, make sure to
-delete all th .rej files:
-
-```bash
-find . -type f -name '*.rej' -delete
-```
-
 ### Resolving package.json issues
 
 If running the upgrade steps results in a `package.json.rej` file and the diff
@@ -96,7 +74,8 @@ is large, it can be easier to manually update the `package.json` file:
 
 1. Replace your local `dependencies` with the example's `dependencies` (and
    [remove PSP's](./getting-started/create.md#remove-unused-psps) your backend
-   doesn't support)
+   doesn't support). The example is located in the
+   /upgrade/examples/magento-graphcms directory.
 2. Replace your local `devDependencies` with the example's `devDependencies`
 3. Replace your local `scripts` with the example's `scripts_local`
 
@@ -108,6 +87,32 @@ package.json file, run the following to install the latest packages:
 - `yarn` Install the dependencies
 - `yarn codegen` Converts all .graphql files to typescript files
 - `yarn dev` Run the app
+
+### Resolving diff issues
+
+When you run `git apply ...` (step 4), git will try and apply all the diffs from
+the patch file to your project files. When applying a diff fails, a
+[reject ↗](https://git-scm.com/docs/git-apply#Documentation/git-apply.txt---reject)
+`.rej` file will be created for _each_ file that could not be upgraded.
+
+It can very well be that some files can't be updated automatically, because of
+modifications you made. The CLI will show you the location of these files, as
+well as the number of hunks:
+
+```
+Applying patch pages/_app.tsx with 2 rejects...
+Rejected hunk #1.
+Rejected hunk #2.
+```
+
+The suggested changes have to be reviewed _manually_ (a diff tool can provide
+insight, but won't be able to apply diffs). Manually apply the suggested changes
+you want. Discard the .rej files of the suggested changes you don't want. Before
+you commit, make sure to delete all the .rej files:
+
+```bash
+find . -type f -name '*.rej' -delete
+```
 
 ## Next steps
 
