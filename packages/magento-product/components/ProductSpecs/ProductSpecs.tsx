@@ -20,7 +20,7 @@ export function ProductSpecs(props: ProductSpecsProps) {
   return (
     <Row
       className={classes.root}
-      sx={[{ typographt: 'subtitle1' }, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={[{ typography: 'subtitle1' }, ...(Array.isArray(sx) ? sx : [sx])]}
     >
       <SectionContainer
         labelLeft={title}
