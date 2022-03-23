@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://www.graphcommerce.org/"><img src="./public/favicon.svg" alt="GraphCommerce Logo"/></a>
+    <a href="https://www.graphcommerce.org/"><img src="https://graphcommerce.vercel.app/favicon.svg" alt="GraphCommerce Logo"/></a>
 </p>
 <p align="center">
   <a aria-label="License" href="https://www.npmjs.com/package/@graphcommerce/magento-graphcms">
@@ -8,6 +8,9 @@
   <a aria-label="License" href="https://github.com/graphcommerce-org/graphcommerce/blob/main/LICENSE.md">
     <img alt="" src="https://img.shields.io/badge/License-ELv2-green?style=for-the-badge">
   </a>
+  <a aria-label="Vercel logo" href="https://vercel.com?utm_source=graphcommerce&utm_campaign=oss">
+    <img src="https://img.shields.io/badge/POWERED%20BY%20Vercel-000000.svg?style=for-the-badge&logo=Vercel&labelColor=000">
+  </a>  
 </p>
 
 <div align="center">
