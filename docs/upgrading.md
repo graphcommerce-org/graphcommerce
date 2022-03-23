@@ -1,168 +1,116 @@
 > **Developer preview**  
 > This is a developer preview of GraphCommerce. The documentation will be
 > updated as GraphCommerce introduces
-> [new features and refines existing functionality](https://github.com/graphcommerce-org/graphcommerce/releases).
+> [new features and refines existing functionality](https://github.com/graphcommerce-org/graphcommerce/releases)
 
 # Upgrading
 
-We are going to upgrade your project to the latest version, for all the new
-features and fixes that we've made. We can automate most of this process, but
-there are some manual steps involved.
+This guide describes how to upgrade your GraphCommerce project files and its
+dependencies, while keeping your customizations.
 
-We try to keep changes to the examples minimal as possible, but sometimes this
-is inevitable. 95% of the changes are made inside the @graphcommerce packages,
-but for some changes we need to make changes in the example to get everything
-working.
-
-To upgrade your project to the latest version we need to do a few steps:
-
-## What you'll do
-
-After you've finished this guide, you'll have accomplished the following:
+### After you've finished this upgrading guide, you'll have accomplished the following:
 
 - Created a changes.patch file and applied it to your project
 - Upgraded all dependencies to the latest version
-- Incorporated all latest changes in your project while maintaining all your
+- Incorporated all the latest changes in your project, while keeping your
   customizations
 
-## Create an apply a patch file
+## Step 1: Creating and applying a patch file
 
-1. Get the version of **your own project**
+1. In package.json, find your version:
 
-   In your local package.json you'll find something like this:
+```json
+// Example from package.json
 
-   ```json
-   {
-     "dependencies": {
-       //...
-       "@graphcommerce/next-ui": "^4.2.0"
-       //...
-     }
-   }
-   ```
+{
+  "dependencies": {
+    //...
+    "@graphcommerce/next-ui": "^4.2.0"
+    //...
+  }
+}
+```
 
-   We need the version of `@graphcommerce/next-ui` later.
-
-2. Create a clone of the `https://github.com/graphcommerce-org/graphcommerce`
-   repo.
+2. Download a fresh copy of the repository:
 
    ```bash
-   git clone git@github.com:graphcommerce-org/graphcommerce.git
+   git clone git@github.com:graphcommerce-org/graphcommerce.git upgrade
    ```
 
-   Or if you have a local copy already available, make sure that you are on the
-   latest commit of the `main` branch.
-
-3. Create a patch from the example
-
-   Replace `OLD_VERSION` in the command below with the version number of
-   `@graphcommerce/next-ui` you just looked up:
+3. Navigate to the /upgrade directory you've just created. Run the following
+   command, but replace `OLD_VERSION` with your version of
+   `@graphcommerce/next-ui`:
 
    ```bash
    git diff --relative=examples/magento-graphcms "@graphcommerce/next-ui@OLD_VERSION" examples/magento-graphcms ':!examples/magento-graphcms/CHANGELOG.md' > changes.patch
    ```
 
-   Run the above command (with OLD_VERSION replaced with something like `1.2.3`)
-   in the `graphcommerce` repo. you should have a changes.patch file in root of
-   the `graphcommerce` repo.
+4. Move the `changes.patch` file from the /upgrade directory to the root of your
+   project.
 
-4. Move the file to your project's root directory
-
-   ```bash
-   mv changes.patch ../your-project-root
-   cd ../your-project-root
-   ```
-
-   Tip: create a separate branch
-
-   ```bash
-   git checkout -b my-upgrade
-   ```
-
-   You should now have a changes.patch file in the root of your project.
-
-5. Apply the patch to your project
-
-   Make sure your working directory is clean (except for the changes.patch file)
-   and run:
+5. Apply the patch to your project (It's recommended to apply changes on a new
+   branch):
 
    ```bash
    git apply --reject --ignore-whitespace --exclude=README.md changes.patch
    ```
 
-   You should now have all the changes from the example applied to your project.
+## Step 2: Resolving issues
 
-   Tip: create an intermediate commit
+### Resolving package.json issues
 
-   ```bash
-   git commit -am"refactor: applied patches"
-      rm changes.patch
-   ```
+If running the upgrade steps results in a `package.json.rej` file and the diff
+is large, it can be easier to manually update the `package.json` file.
 
-## What has happened?
+Compare your local /package.json with the example's
+`/upgrade/examples/magento-graphcms/package.json` you just downloaded and:
 
-> `git apply --reject` will try and apply all the diffs to your project and if
-> it isn't able to do so, it will create a `.rej` file for _each_ file that it
-> couldn't apply the changes to.
->
-> `git` expects you to manually apply the changes in the `.rej` files to your
-> project.
+1. Replace your local `dependencies` with the example's `dependencies`. Keep any
+   additional installed local dependencies and
+   [remove PSP's](./getting-started/create.md#remove-unused-psps) your backend
+   doesn't support.
+2. Replace your local `devDependencies` with the example's `devDependencies`
+3. Replace your local `scripts` with the example's `scripts_local`
 
-## Resolving package.json issues
+After updating the package.json file, run the following to install the latest
+packages:
 
-If you've got a package.json.rej file and the diff is very large, it might be
-easier to manually update the file.
+- `rm yarn.lock && yarn` Remove lock and install the dependencies
+- `yarn codegen` Converts all .graphql files to typescript files
+- `yarn dev` Run the app
 
-We want to have the latest `dependencies`, `devDependencies` and `scripts` from
-`graphcommerce/examples/magento-example/package.json`.
+### Resolving diff issues
 
-- Replace your local `dependencies` with the example `dependencies` (and
-  [remove PSPs](./getting-started/create.md#remove-unused-psps) your backend
-  doesn't support)
-- Replace your local `devDependencies` with the example `devDependencies`
-- Replace your local `scripts` with the example `scripts_local`
+When you run `git apply ...` (step 4), git will try and apply all the diffs from
+the patch file to your project files. When applying a diff fails, a
+[reject ↗](https://git-scm.com/docs/git-apply#Documentation/git-apply.txt---reject)
+`.rej` file will be created for _each_ file that could not be upgraded.
 
-It might be that you have installed additional local dependencies, you can keep
-those.
+It can very well be that some files can't be updated automatically, because of
+modifications you made. The CLI will show you the location of these files, as
+well as the number of hunks:
 
-```bash
-rm yarn.lock
-yarn
-yarn codegen
-rm package.json.rej
+```
+Applying patch pages/_app.tsx with 2 rejects...
+Rejected hunk #1.
+Rejected hunk #2.
 ```
 
-## Resolving patch conflicts
-
-It can very wel be that some files can't be updated automatically, because of
-your modifications. You'll see something like `Rejected hunk #2` in the cli. The
-above command will create rejection files like `Component.ts.rej` for each hunk
-it couldn't apply.
-
-All the '.rej' files **must** be handled manually by:
-
-- Manually applying the diff in the .rej file to the original file because you
-  want the changes. (recommended)
-- Discarding the .rej file because you've modified the project already.
-
-Make sure all .rej files are deleted (`find . -type f -name '*.rej' -delete`)
-
-Tip: make a commit
+The suggested changes have to be reviewed _manually_ (a diff tool can provide
+insight, but won't be able to apply diffs). Manually apply the suggested changes
+you want. Discard the .rej files of the suggested changes you don't want. Before
+you commit, make sure to delete all the .rej files:
 
 ```bash
-git commit -am"refactor: processed manual .rej files"
+find . -type f -name '*.rej' -delete
 ```
 
-## Running and validating your project
+After resolving the diff issues, run and validate your local environment:
 
 - `yarn codegen` should run without errors
 - `yarn tsc:lint` should run without errors
 - `yarn dev` should run without errors
 
-If the above commands are working correctly you should now have a working
-project. Validate if everything looks right, especially the parts that have
-manual changes.
+## Next steps
 
-You are done with the upgrade! 🎉
-
-Commit, push and deploy!
+- Learn how to [contribute to GraphCommerce](./contributing.md)
