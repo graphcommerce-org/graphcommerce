@@ -60,21 +60,22 @@ dependencies, while keeping your customizations.
 ### Resolving package.json issues
 
 If running the upgrade steps results in a `package.json.rej` file and the diff
-is large, it can be easier to manually update the `package.json` file:
+is large, it can be easier to manually update the `package.json` file.
 
-1. Replace your local `dependencies` with the example's `dependencies` (and
+Compare your local /package.json with the example's
+`/upgrade/examples/magento-graphcms/package.json` you just downloaded and:
+
+1. Replace your local `dependencies` with the example's `dependencies`. Keep any
+   additional installed local dependencies and
    [remove PSP's](./getting-started/create.md#remove-unused-psps) your backend
-   doesn't support). The example is located in the
-   /upgrade/examples/magento-graphcms directory.
+   doesn't support.
 2. Replace your local `devDependencies` with the example's `devDependencies`
 3. Replace your local `scripts` with the example's `scripts_local`
 
-Keep any additional installed local dependencies. After updating the
-package.json file, run the following to install the latest packages:
+After updating the package.json file, run the following to install the latest
+packages:
 
-- `rm package.json.rej` remove diff file
-- `rm yarn.lock`
-- `yarn` Install the dependencies
+- `rm yarn.lock && yarn` Remove lock and install the dependencies
 - `yarn codegen` Converts all .graphql files to typescript files
 - `yarn dev` Run the app
 
