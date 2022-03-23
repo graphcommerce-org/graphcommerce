@@ -71,7 +71,7 @@ https://user-images.githubusercontent.com/1251986/158647122-dc57002f-a9c2-4661-a
 4. `cd my-project`
 5. `cp -R .env.example .env`
 6. `rm CHANGELOG.md`
-7. `rm -rf node_modules && rm -rf .next`
+7. `rm -r node_modules && rm -r .next`
 
 Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
 `scripts`:
