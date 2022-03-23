@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.5.1
+
+### Patch Changes
+
+- [#1348](https://github.com/graphcommerce-org/graphcommerce/pull/1348) [`3f454bf5b`](https://github.com/graphcommerce-org/graphcommerce/commit/3f454bf5ba6339ffebead0818fb9bdfeb40d6063) Thanks [@paales](https://github.com/paales)! - Make sure all versions are pinned so that we don’t accidently install mismatched versions
+
 ## 3.5.0
 
 ### Minor Changes

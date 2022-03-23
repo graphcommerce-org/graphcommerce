@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-graphcms",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.5.0",
+  "version": "3.5.1",
   "private": true,
   "sideEffects": false,
   "engines": {
