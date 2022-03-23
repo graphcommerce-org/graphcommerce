@@ -188,7 +188,7 @@ msgid "Fill in your e-mail to login or create an account"
 msgstr "Vul uw e-mailadres in om in te loggen of maak een account aan"
 
 msgid "Fill in your new password, confirm it and click on the save button."
-msgstr "Vul nieuwe wachtwoord in, bevestig en klik op de opslaan knop."
+msgstr "Vul uw nieuwe wachtwoord in, bevestig het en klik op de opslaan knop."
 
 msgid "Fill in your password"
 msgstr "Vul uw wachtwoord in"
