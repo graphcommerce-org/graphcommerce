@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://www.graphcommerce.org/"><img src="./public/favicon.svg" alt="GraphCommerce Logo"/></a>
+    <a href="https://www.graphcommerce.org/"><img src="https://graphcommerce.vercel.app/favicon.svg" alt="GraphCommerce Logo"/></a>
 </p>
 <p align="center">
   <a aria-label="License" href="https://www.npmjs.com/package/@graphcommerce/magento-graphcms">
