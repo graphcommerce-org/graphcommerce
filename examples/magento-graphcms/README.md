@@ -8,7 +8,7 @@
   <a aria-label="License" href="https://github.com/graphcommerce-org/graphcommerce/blob/main/LICENSE.md">
     <img alt="" src="https://img.shields.io/badge/License-ELv2-green?style=for-the-badge">
   </a>
-  <a aria-label="Vercel logo" href="https://vercel.com">
+  <a aria-label="Vercel logo" href="https://vercel.com?utm_source=[graphcommerce]&utm_campaign=oss">
     <img src="https://img.shields.io/badge/POWERED%20BY%20Vercel-000000.svg?style=for-the-badge&logo=Vercel&labelColor=000">
   </a>  
 </p>
