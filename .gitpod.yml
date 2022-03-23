@@ -1,0 +1,17 @@
+tasks:
+  - before: nvm install 14
+    init: |
+      cd examples/magento-graphcms
+      cp -R .env.example .env
+      url=$(gp url 3000) sed -i "s|NEXT_PUBLIC_GRAPHQL_ENDPOINT=\"http://localhost:3000|NEXT_PUBLIC_GRAPHQL_ENDPOINT=\"$url|g" .env
+      yarn
+      yarn codegen
+    command: cd /workspace/graphcommerce/examples/magento-graphcms && npm run dev
+vscode:
+  extensions:
+    - dbaeumer.vscode-eslint
+    - esbenp.prettier-vscode
+    - GraphQL.vscode-graphql
+    - mikestead.DotENV
+    - mrorz.language-gettext
+    - redhat.vscode-yaml
