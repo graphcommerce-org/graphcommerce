@@ -24,7 +24,7 @@ const parts = ['root', 'iconHeart', 'iconHeartActive', 'wishlistButton'] as cons
 const { classes } = extendableComponent(name, parts)
 
 export default function ProductWishlistChip(props: ProductWishlistChipProps) {
-  const { display, variant, sku } = props
+  const { display, variant, sku, sx = [] } = props
 
   const [inWishlist, setInWishlist] = useState(false)
   const [displayWishlist, setDisplayWishlist] = useState(true)
@@ -41,7 +41,7 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
       sx={(theme) => ({ stroke: '#AC2E2E' })}
     />
   )
-  
+
   const activeHeart = (
     <IconSvg
       src={iconHeart}
@@ -124,6 +124,7 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
         onClick={handleClick}
         size={variant || 'small'}
         className={classes.wishlistButton}
+        sx={[...(Array.isArray(sx) ? sx : [sx])]}
       >
         {inWishlist ? activeHeart : heart}
       </IconButton>
