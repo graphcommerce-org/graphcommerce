@@ -27,7 +27,7 @@ export function MolliePaymentHandler() {
           </Button>
         }
       >
-        If you've successfully paid your order, the order <strong>will</strong> come through, but
+        If you’ve successfully paid your order, the order <strong>will</strong> come through, but
         there is a communication error with the website.
       </ApolloCartErrorFullPage>
     </Dialog>

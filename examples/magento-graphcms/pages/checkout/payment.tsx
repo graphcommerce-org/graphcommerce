@@ -87,7 +87,7 @@ function PaymentPage() {
                   icon={<CircularProgress />}
                   title='Processing your payment'
                 >
-                  <Trans>We're processing your payment, this will take a few seconds.</Trans>
+                  <Trans>We’re processing your payment, this will take a few seconds.</Trans>
                 </FullPageMessage>
               </Dialog>
 

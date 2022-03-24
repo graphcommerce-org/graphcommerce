@@ -38,6 +38,7 @@ export function RowRenderer(props: PageProps) {
   const mergedRenderer = { ...defaultRenderer, ...renderer } as ContentTypeRenderer
 
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {content?.map((item) => (
         <RenderType renderer={mergedRenderer} key={item.id} {...item} />

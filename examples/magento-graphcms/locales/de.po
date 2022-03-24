@@ -100,7 +100,7 @@ msgstr "Stadt"
 msgid "Close"
 msgstr "Schließen"
 
-msgid "Complete the payment on your bank's website."
+msgid "Complete the payment on your bank’s website."
 msgstr "Führen Sie die Zahlung auf Ihrer Bank-Website aus."
 
 msgid "Confirm Password"
@@ -214,7 +214,7 @@ msgstr "Gesamtsumme"
 msgid "Have an account?"
 msgstr "Haben Sie ein Konto?"
 
-msgid "Hi {firstname}! You're now logged in!"
+msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Hallo {firstname}! Sie sind jetzt angemeldet!"
 
 msgid "Home"
@@ -514,10 +514,10 @@ msgstr "Wir konnten keine Ergebnisse für {term} finden"
 msgid "We couldn't find the page you were looking for"
 msgstr "Wir konnten die Seite nicht finden, die Sie suchen"
 
-msgid "We're processing your payment, this will take a few seconds."
+msgid "We’re processing your payment, this will take a few seconds."
 msgstr "Wir bearbeiten Ihre Zahlung, dies dauert ein paar Sekunden."
 
-msgid "We've send a password reset link to your email address!"
+msgid "We’ve send a password reset link to your email address!"
 msgstr "Wir haben Ihnen einen Link zum Zurücksetzen Ihres Passworts per E-Mail geschickt!"
 
 msgid "Welcome back!"

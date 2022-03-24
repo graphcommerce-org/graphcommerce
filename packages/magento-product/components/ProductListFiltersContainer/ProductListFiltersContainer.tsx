@@ -2,7 +2,6 @@ import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/frame
 import {
   iconChevronLeft,
   iconChevronRight,
-  responsiveVal,
   IconSvg,
   useScrollY,
   extendableComponent,

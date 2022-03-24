@@ -100,7 +100,7 @@ msgstr "Plaats"
 msgid "Close"
 msgstr "Sluiten"
 
-msgid "Complete the payment on your bank's website."
+msgid "Complete the payment on your bank’s website."
 msgstr "Voltooi de betaling op uw bank's website."
 
 msgid "Confirm Password"
@@ -188,7 +188,7 @@ msgid "Fill in your e-mail to login or create an account"
 msgstr "Vul uw e-mailadres in om in te loggen of maak een account aan"
 
 msgid "Fill in your new password, confirm it and click on the save button."
-msgstr "Vul nieuwe wachtwoord in, bevestig en klik op de opslaan knop."
+msgstr "Vul uw nieuwe wachtwoord in, bevestig het en klik op de opslaan knop."
 
 msgid "Fill in your password"
 msgstr "Vul uw wachtwoord in"
@@ -214,7 +214,7 @@ msgstr "Totaal"
 msgid "Have an account?"
 msgstr "Heeft u al een account?"
 
-msgid "Hi {firstname}! You're now logged in!"
+msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Hallo {firstname}! U bent nu ingelogd!"
 
 msgid "Home"
@@ -514,10 +514,10 @@ msgstr "We konden geen resultaten vinden voor {term}"
 msgid "We couldn't find the page you were looking for"
 msgstr "We kunnen de pagina niet vinden waar u naar op zoek bent."
 
-msgid "We're processing your payment, this will take a few seconds."
+msgid "We’re processing your payment, this will take a few seconds."
 msgstr "Uw betaling wordt verwerkt, dit duurt een paar seconden"
 
-msgid "We've send a password reset link to your email address!"
+msgid "We’ve send a password reset link to your email address!"
 msgstr "Een wachtwoord reset link naar uw e-mailadres gestuurd"
 
 msgid "Welcome back!"

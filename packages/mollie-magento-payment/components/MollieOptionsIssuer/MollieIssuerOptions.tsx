@@ -84,7 +84,7 @@ export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
             <Trans>Choose your bank, and place your order.</Trans>
           </li>
           <li>
-            <Trans>Complete the payment on your bank's website.</Trans>
+            <Trans>Complete the payment on your bank’s website.</Trans>
           </li>
           <li>
             <Trans>

@@ -9,7 +9,7 @@ import { Link, LinkProps } from '@mui/material'
 import PageLink from 'next/link'
 import { SetRequired } from 'type-fest'
 
-export type SearchLinknProps = SetRequired<LinkProps, 'href'>
+export type SearchLinkProps = SetRequired<Pick<LinkProps, 'href' | 'sx' | 'children'>, 'href'>
 
 const name = 'SearchLink' as const
 const parts = ['root', 'text', 'svg'] as const
@@ -22,7 +22,7 @@ const { classes } = extendableComponent(name, parts)
  * const MyComponent = () => <SearchLink href='/search' />
  * ```
  */
-export function SearchLink(props: SearchLinknProps) {
+export function SearchLink(props: SearchLinkProps) {
   const { href, sx = [], children, ...linkProps } = props
 
   const fabSize = useFabSize('responsive')
