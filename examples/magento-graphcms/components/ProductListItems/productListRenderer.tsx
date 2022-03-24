@@ -6,6 +6,7 @@ import { ProductListItemGrouped } from '@graphcommerce/magento-product-grouped'
 import { ProductListItemSimple } from '@graphcommerce/magento-product-simple'
 import { ProductListItemVirtual } from '@graphcommerce/magento-product-virtual'
 import { ProductReviewSummary } from '@graphcommerce/magento-review'
+import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 import { Typography, TypographyProps } from '@mui/material'
 
 const Subtitle = (props: TypographyProps) => (
@@ -19,6 +20,7 @@ export const productListRenderer: ProductListItemRenderer = {
       subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
       bottomLeft={<ProductReviewSummary {...props} />}
+      topRight={<ProductWishlistChip {...props} />}
     />
   ),
   ConfigurableProduct: (props) => (
@@ -33,6 +35,7 @@ export const productListRenderer: ProductListItemRenderer = {
         bottomRight: ['dominant_color'],
       }}
       bottomLeft={<ProductReviewSummary {...props} />}
+      topRight={<ProductWishlistChip {...props} />}
     />
   ),
   BundleProduct: (props) => (
@@ -41,6 +44,7 @@ export const productListRenderer: ProductListItemRenderer = {
       subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
       bottomLeft={<ProductReviewSummary {...props} />}
+      topRight={<ProductWishlistChip {...props} />}
     />
   ),
   VirtualProduct: (props) => (
@@ -49,6 +53,7 @@ export const productListRenderer: ProductListItemRenderer = {
       subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
       bottomLeft={<ProductReviewSummary {...props} />}
+      topRight={<ProductWishlistChip {...props} />}
     />
   ),
   DownloadableProduct: (props) => (
@@ -57,6 +62,7 @@ export const productListRenderer: ProductListItemRenderer = {
       subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
       bottomLeft={<ProductReviewSummary {...props} />}
+      topRight={<ProductWishlistChip {...props} />}
     />
   ),
   GroupedProduct: (props) => (
@@ -65,6 +71,7 @@ export const productListRenderer: ProductListItemRenderer = {
       subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
       bottomLeft={<ProductReviewSummary {...props} />}
+      topRight={<ProductWishlistChip {...props} />}
     />
   ),
   // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
