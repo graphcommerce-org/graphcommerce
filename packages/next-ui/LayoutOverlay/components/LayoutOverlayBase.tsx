@@ -372,7 +372,7 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
                 },
 
                 '&.variantSmBottom': {
-                  borderTopLeftRadius: `${theme.shape.borderRadius * 4}px`,
+                  borderTopLeftRadius: `${theme.shape.borderRadius * 3}px`,
                   borderTopRightRadius: `${theme.shape.borderRadius * 3}px`,
                 },
                 '&.sizeSmFloating': {
