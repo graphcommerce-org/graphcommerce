@@ -110,7 +110,6 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
       {children}
       <Box
         sx={(theme) => ({
-          margin: `${theme.spacings.sm} 0`,
           display: 'flex',
           alignItems: 'center',
           columnGap: theme.spacings.xs,
