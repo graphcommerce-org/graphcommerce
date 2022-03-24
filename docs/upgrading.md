@@ -21,17 +21,17 @@ dependencies, while keeping your customizations.
 
 1. In package.json, find your version:
 
-```json
-// Example from package.json
+   ```json
+   // Example from package.json
 
-{
-  "dependencies": {
-    //...
-    "@graphcommerce/next-ui": "^4.2.0"
-    //...
-  }
-}
-```
+   {
+     "dependencies": {
+       //...
+       "@graphcommerce/next-ui": "^4.2.0"
+       //...
+     }
+   }
+   ```
 
 2. Download a fresh copy of the repository:
 
