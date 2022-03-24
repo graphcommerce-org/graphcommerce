@@ -71,7 +71,6 @@ function ProductDownloadable(props: Props) {
 
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
-        <ProductWishlistChip sku={product.sku} />
         <Typography variant='h3' component='div'>
           {product.name}
         </Typography>
@@ -83,6 +82,7 @@ function ProductDownloadable(props: Props) {
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
           price={product.price_range.minimum_price.regular_price}
+          additionalButtons={<ProductWishlistChip sku={product.sku} />}
         >
           <ProductSidebarDelivery />
         </ProductAddToCart>

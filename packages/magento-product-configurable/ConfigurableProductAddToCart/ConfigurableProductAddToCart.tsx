@@ -24,25 +24,33 @@ import {
   ConfigurableProductAddToCartDocument,
   ConfigurableProductAddToCartMutationVariables,
 } from './ConfigurableProductAddToCart.gql'
-import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 
 type ConfigurableProductAddToCartProps = {
   variables: Omit<ConfigurableProductAddToCartMutationVariables, 'cartId' | 'selectedOptions'>
   name: string
   optionEndLabels?: Record<string, React.ReactNode>
   children?: React.ReactNode
+  additionalButtons?: React.ReactNode
   optionsProps?: Omit<
     ConfigurableOptionsInputProps,
-    'name' | 'sku' | 'control' | 'rules' | 'errors' | 'optionEndLabels'
+    'name' | 'sku' | 'control' | 'rules' | 'errors' | 'optionEndLabels' | 'additionalButtons'
   >
 }
 
 const compName = 'ConfigurableOptionsInput' as const
-const parts = ['form', 'button', 'finalPrice', 'quantity', 'divider'] as const
+const parts = ['form', 'button', 'finalPrice', 'quantity', 'divider', 'buttonWrapper'] as const
 const { classes } = extendableComponent(compName, parts)
 
 export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
-  const { name, children, variables, optionEndLabels, optionsProps, ...buttonProps } = props
+  const {
+    name,
+    children,
+    variables,
+    optionEndLabels,
+    optionsProps,
+    additionalButtons,
+    ...buttonProps
+  } = props
   const { getUids, getVariants, selection } = useConfigurableContext(variables.sku)
 
   const form = useFormGqlMutationCart(ConfigurableProductAddToCartDocument, {
@@ -100,7 +108,15 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         />
       </Typography>
       {children}
-      <div>
+      <Box
+        sx={(theme) => ({
+          margin: `${theme.spacings.sm} 0`,
+          display: 'flex',
+          alignItems: 'center',
+          columnGap: theme.spacings.xs,
+        })}
+        className={classes.buttonWrapper}
+      >
         <Button
           type='submit'
           loading={formState.isSubmitting}
@@ -117,8 +133,8 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         >
           <Trans>Add to Cart</Trans>
         </Button>
-        <ProductWishlistChip sku={variables.sku} variant='medium' />
-      </div>
+        {additionalButtons}
+      </Box>
 
       <ApolloCartErrorAlert error={error} />
 

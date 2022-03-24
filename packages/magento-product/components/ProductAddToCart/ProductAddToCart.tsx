@@ -23,6 +23,7 @@ const { classes, selectors } = extendableComponent('ProductAddToCart', [
   'button',
   'price',
   'divider',
+  'buttonWrapper',
 ] as const)
 
 export type AddToCartProps = React.ComponentProps<typeof ProductAddToCart>
@@ -32,10 +33,11 @@ export function ProductAddToCart(
     variables: Omit<ProductAddToCartMutationVariables, 'cartId'>
     name: string
     price: MoneyProps
+    additionalButtons?: React.ReactNode
     children?: React.ReactNode
   } & Omit<ButtonProps, 'type' | 'name'>,
 ) {
-  const { name, children, variables, price, sx, ...buttonProps } = props
+  const { name, children, variables, price, sx, additionalButtons, ...buttonProps } = props
 
   const form = useFormGqlMutationCart(ProductAddToCartDocument, {
     defaultValues: { ...variables },
@@ -70,7 +72,15 @@ export function ProductAddToCart(
         size='small'
       />
       {children}
-      <div>
+      <Box
+        sx={(theme) => ({
+          margin: `${theme.spacings.sm} 0`,
+          display: 'flex',
+          alignItems: 'center',
+          columnGap: theme.spacings.xs,
+        })}
+        className={classes.buttonWrapper}
+      >
         <Button
           type='submit'
           className={classes.button}
@@ -86,8 +96,8 @@ export function ProductAddToCart(
         >
           <Trans>Add to Cart</Trans>
         </Button>
-        <ProductWishlistChip sku={variables.sku} variant='medium' />
-      </div>
+        {additionalButtons}
+      </Box>
 
       <ApolloCartErrorAlert error={error} />
 

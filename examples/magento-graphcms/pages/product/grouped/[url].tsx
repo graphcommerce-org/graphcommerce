@@ -69,7 +69,6 @@ function ProductGrouped(props: Props) {
 
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
-        <ProductWishlistChip sku={product.sku} />
         <Typography variant='h3' component='div'>
           {product.name}
         </Typography>
@@ -88,6 +87,7 @@ function ProductGrouped(props: Props) {
                       variables={{ sku: item.product.sku ?? '', quantity: item.qty || 1 }}
                       name={product.name ?? ''}
                       price={product.price_range.minimum_price.regular_price}
+                      additionalButtons={<ProductWishlistChip sku={product.sku} />}
                     >
                       <ProductSidebarDelivery />
                     </ProductAddToCart>
