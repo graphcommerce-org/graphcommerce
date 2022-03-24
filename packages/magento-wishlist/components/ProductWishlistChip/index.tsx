@@ -1,5 +1,5 @@
-import { SvgImageSimple, iconHeart } from '@graphcommerce/next-ui'
-import { makeStyles, Theme, IconButton, IconButtonProps } from '@material-ui/core'
+import { IconSvg, iconHeart, extendableComponent } from '@graphcommerce/next-ui'
+import { SxProps, Theme, IconButton, IconButtonProps } from '@mui/material'
 import React, { useState, useEffect } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
 import {
@@ -17,31 +17,14 @@ type ProductWishlistSettings = {
 
 export type ProductWishlistChipProps = ProductWishlistChipFragment &
   IconButtonProps &
-  ProductWishlistSettings
+  ProductWishlistSettings & { sx?: SxProps<Theme> }
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    iconHeart: {
-      stroke: '#AC2E2E',
-      fill: '#FFF',
-    },
-    iconHeartActive: {
-      stroke: '#AC2E2E',
-      fill: '#AC2E2E',
-    },
-    wishlistButton: {
-      boxShadow: theme.shadows[6],
-      '&:hover': {
-        background: 'none',
-      },
-    },
-  }),
-  { name: 'ProductWishlistChip' },
-)
+const name = 'ProductWishlistChip' as const
+const parts = ['root', 'iconHeart', 'iconHeartActive', 'wishlistButton'] as const
+const { classes } = extendableComponent(name, parts)
 
 export default function ProductWishlistChip(props: ProductWishlistChipProps) {
   const { display, variant, sku } = props
-  const classes = useStyles()
 
   const [inWishlist, setInWishlist] = useState(false)
   const [displayWishlist, setDisplayWishlist] = useState(true)
@@ -49,6 +32,24 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
   const { data: token } = useQuery(CustomerTokenDocument)
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
   const GUEST_WISHLIST = 'guest-wishlist'
+
+  const heart = (
+    <IconSvg
+      src={iconHeart}
+      size='medium'
+      className={classes.iconHeart}
+      sx={(theme) => ({ stroke: '#AC2E2E' })}
+    />
+  )
+  
+  const activeHeart = (
+    <IconSvg
+      src={iconHeart}
+      size='medium'
+      className={classes.iconHeartActive}
+      sx={{ stroke: '#AC2E2E', fill: '#AC2E2E' }}
+    />
+  )
 
   const { data: GetCustomerWishlistData, loading } = useQuery(GetIsInWishlistsDocument, {
     skip: !isLoggedIn,
@@ -124,11 +125,7 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
         size={variant || 'small'}
         className={classes.wishlistButton}
       >
-        <SvgImageSimple
-          src={iconHeart}
-          size='medium'
-          className={inWishlist ? classes.iconHeartActive : classes.iconHeart}
-        />
+        {inWishlist ? activeHeart : heart}
       </IconButton>
     </>
   )
