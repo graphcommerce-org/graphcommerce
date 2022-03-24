@@ -7,6 +7,7 @@ import {
   LayoutDefault,
   LayoutDefaultProps,
   iconCustomerService,
+  iconHeart,
   MenuFab,
   MenuFabSecondaryItem,
   PlaceholderFab,
@@ -63,6 +64,11 @@ export function LayoutFull(props: LayoutFullProps) {
                 <IconSvg src={iconCustomerService} size='large' />
               </Fab>
             </PageLink>
+            <PageLink href='/wishlist' passHref>
+              <Fab aria-label={t`Wishlist`} size='large' color='inherit'>
+                <IconSvg src={iconHeart} size='large' />
+              </Fab>
+            </PageLink>
             <CustomerFab guestHref='/account/signin' authHref='/account' />
             {/* The placeholder exists because the CartFab is sticky but we want to reserve the space for the <CartFab /> */}
             <PlaceholderFab />
@@ -88,6 +94,13 @@ export function LayoutFull(props: LayoutFullProps) {
               href='/service'
             >
               <Trans>Customer Service</Trans>
+            </MenuFabSecondaryItem>,
+            <MenuFabSecondaryItem
+              key='wishlist'
+              icon={<IconSvg src={iconHeart} size='medium' />}
+              href='/wishlist'
+            >
+              <Trans>Wishlist</Trans>
             </MenuFabSecondaryItem>,
             <DarkLightModeMenuSecondaryItem key='darkmode' />,
           ]}
