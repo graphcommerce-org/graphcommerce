@@ -12,6 +12,7 @@ import {
   GetIsInWishlistsDocument,
 } from '@graphcommerce/magento-wishlist'
 import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
+import { t } from '@lingui/macro'
 
 type ProductWishlistSettings = {
   display?: 'guest' | 'customer'
@@ -127,6 +128,8 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
         size={variant || 'small'}
         className={classes.wishlistButton}
         sx={[...(Array.isArray(sx) ? sx : [sx])]}
+        title={inWishlist ? t`Remove from wishlist` : t`Add to wishlist`}
+        aria-label={inWishlist ? t`Remove from wishlist` : t`Add to wishlist`}
       >
         {inWishlist ? activeHeart : heart}
       </IconButton>
