@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.5.2
+
+### Patch Changes
+
+- [#1354](https://github.com/graphcommerce-org/graphcommerce/pull/1354) [`90fa8d8b9`](https://github.com/graphcommerce-org/graphcommerce/commit/90fa8d8b90e2a3b33cdbb178a87094888c7befdd) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Small fixes to docs
+
 ## 4.5.1
 
 ### Patch Changes
