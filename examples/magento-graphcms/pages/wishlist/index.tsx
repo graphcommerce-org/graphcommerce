@@ -3,29 +3,27 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
-  SheetShellHeader,
-  Title,
   iconHeart,
   FullPageMessage,
-  SvgImageSimple,
   Button,
+  LayoutTitle,
+  IconSvg,
+  LayoutOverlayHeader,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
 import React, { useState, useEffect } from 'react'
-import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
-import apolloClient from '../../lib/apolloClient'
 import Link from 'next/link'
 
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { GetWishlistProductsDocument } from '@graphcommerce/magento-wishlist'
 import { GetGuestWishlistProductsDocument } from '@graphcommerce/magento-wishlist'
-import ProductListItems from '../../components/ProductListItems/ProductListItems'
-import useProductListStyles from '../../components/ProductListItems/useProductListStyles'
+import { ProductListItems } from '../../components/ProductListItems/ProductListItems'
+import { sxLargeItem, LayoutOverlay, LayoutOverlayProps } from '../../components'
+import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = any
-type GetPageStaticProps = GetStaticProps<FullPageShellProps>
+type Props = Record<string, unknown>
+type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function WishlistPage(props: Props) {
   const { data: token } = useQuery(CustomerTokenDocument)
@@ -72,10 +70,6 @@ function WishlistPage(props: Props) {
     wishlistItems = productGuestItems?.products?.items
   }
 
-  productListClasses = useProductListStyles({
-    count: wishlistItems?.length ?? 0,
-  })
-
   if (loadingGuestItems || loadingCustomerItems) {
     return null
   }
@@ -84,17 +78,17 @@ function WishlistPage(props: Props) {
     <>
       <PageMeta title={t`Wishlist`} metaDescription={t`Wishlist`} metaRobots={['noindex']} />
       <NoSsr>
-        <SheetShellHeader>
-          <Title component='span' size='small'>
+        <LayoutOverlayHeader>
+          <LayoutTitle component='span' size='small'>
             <Trans>Wishlist</Trans>
-          </Title>
-        </SheetShellHeader>
+          </LayoutTitle>
+        </LayoutOverlayHeader>
 
         <Container maxWidth='md'>
           {wishlistItems === undefined || wishlistItems.length == 0 ? (
             <FullPageMessage
               title={t`Your wishlist is empty`}
-              icon={<SvgImageSimple src={iconHeart} size='xxl' />}
+              icon={<IconSvg src={iconHeart} size='xxl' />}
               button={
                 <Link href='/' passHref>
                   <Button variant='contained' color='primary' size='large'>
@@ -109,13 +103,9 @@ function WishlistPage(props: Props) {
             <>
               <FullPageMessage
                 title={t`Wishlist`}
-                icon={<SvgImageSimple src={iconHeart} size='xl' />}
+                icon={<IconSvg src={iconHeart} size='xl' />}
               ></FullPageMessage>
-              <ProductListItems
-                items={wishlistItems}
-                classes={productListClasses}
-                loadingEager={1}
-              />
+              <ProductListItems items={wishlistItems} loadingEager={1} sx={sxLargeItem} />
             </>
           )}
         </Container>
@@ -124,23 +114,22 @@ function WishlistPage(props: Props) {
   )
 }
 
-const pageOptions: PageOptions<SheetShellProps> = {
+const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'bottom',
-  SharedComponent: SheetShell,
+  Layout: LayoutOverlay,
+  layoutProps: { variantMd: 'bottom', variantSm: 'bottom' },
 }
 WishlistPage.pageOptions = pageOptions
 
 export default WishlistPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(locale, true)
+  const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
-      variant: 'bottom',
-      size: 'max',
     },
   }
 }
