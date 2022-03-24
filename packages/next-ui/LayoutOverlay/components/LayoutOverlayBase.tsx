@@ -357,7 +357,7 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
               pointerEvents: 'all',
               backgroundColor: theme.palette.background.paper,
               boxShadow: theme.shadows[24],
-              // scrollSnapAlign: 'end',
+              scrollSnapAlign: 'end',
               [theme.breakpoints.down('md')]: {
                 minWidth: '80vw',
 
