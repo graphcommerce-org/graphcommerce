@@ -1,10 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-
-import { WishlistProductsDocument } from '@graphcommerce/magento-wishlist'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  AppShellTitle,
   GetStaticProps,
   SheetShellHeader,
   Title,
@@ -15,11 +12,15 @@ import {
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@material-ui/core'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
 import Link from 'next/link'
+
+import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
+import { GetWishlistProductsDocument } from '@graphcommerce/magento-wishlist'
+import { GetGuestWishlistProductsDocument } from '@graphcommerce/magento-wishlist'
 import ProductListItems from '../../components/ProductListItems/ProductListItems'
 import useProductListStyles from '../../components/ProductListItems/useProductListStyles'
 
@@ -27,42 +28,73 @@ type Props = any
 type GetPageStaticProps = GetStaticProps<FullPageShellProps>
 
 function WishlistPage(props: Props) {
-  // let guestWishlistItems = process.browser ? localStorage?.wishlist : '[]'
-  // guestWishlistItems = JSON.parse(guestWishlistItems)
+  const { data: token } = useQuery(CustomerTokenDocument)
+  const isLoggedIn = token?.customerToken && token?.customerToken.valid
+  const GUEST_WISHLIST = 'guest-wishlist'
 
-  // const { data, loading, error } = useQuery(WishlistProductsDocument, {
-  //   fetchPolicy: 'cache-and-network',
-  //   ssr: false,
-  //   variables: {
-  //     filters: { sku: { in: guestWishlistItems } },
-  //   },
-  // })
-  // const productListClasses = useProductListStyles({ count: data?.products?.items?.length ?? 0 })
-  // const totalWishlistProducts = data?.products?.items?.length ?? 0
+  let wishlistItems, productListClasses
+  const [wishlistGuestItems, setWishlistGuestItems] = useState([])
 
-  const totalWishlistProducts = null
+  useEffect(() => {
+    wishlistItems = JSON.parse(localStorage.getItem(GUEST_WISHLIST) || '[]')
+    if (wishlistGuestItems.length == 0) {
+      if (wishlistItems.length) {
+        setWishlistGuestItems(wishlistItems)
+      }
+    }
+  })
 
-  // if (loading) return <div />
-  // if (error) return <div>oops</div>
+  const { data: GetCustomerWishlistData, loading: loadingCustomerItems } = useQuery(
+    GetWishlistProductsDocument,
+    {
+      skip: !isLoggedIn,
+      ssr: false,
+    },
+  )
+
+  const { data: productGuestItems, loading: loadingGuestItems } = useQuery(
+    GetGuestWishlistProductsDocument,
+    {
+      ssr: false,
+      variables: {
+        filters: { sku: { in: wishlistGuestItems } },
+      },
+      skip: wishlistGuestItems.length == 0,
+    },
+  )
+
+  if (isLoggedIn) {
+    wishlistItems =
+      GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items.map(
+        (item) => item?.product,
+      ) || []
+  } else {
+    wishlistItems = productGuestItems?.products?.items
+  }
+
+  productListClasses = useProductListStyles({
+    count: wishlistItems?.length ?? 0,
+  })
+
+  if (loadingGuestItems || loadingCustomerItems) {
+    return null
+  } else {
+    console.log()
+    console.dir(wishlistItems)
+  }
 
   return (
     <>
       <PageMeta title={t`Wishlist`} metaDescription={t`Wishlist`} metaRobots={['noindex']} />
+      <NoSsr>
+        <SheetShellHeader>
+          <Title component='span' size='small'>
+            <Trans>Wishlist</Trans>
+          </Title>
+        </SheetShellHeader>
 
-      <SheetShellHeader>
-        <Title component='span' size='small'>
-          <Trans>Wishlist</Trans>
-        </Title>
-      </SheetShellHeader>
-
-      <Container maxWidth='md'>
-        <NoSsr>
-          {/* <ProductListItems
-            items={data?.products?.items}
-            classes={productListClasses}
-            loadingEager={1}
-          /> */}
-          {totalWishlistProducts === null ? (
+        <Container maxWidth='md'>
+          {wishlistItems === undefined || wishlistItems.length == 0 ? (
             <FullPageMessage
               title={t`Your wishlist is empty`}
               icon={<SvgImageSimple src={iconHeart} size='xxl' />}
@@ -77,10 +109,20 @@ function WishlistPage(props: Props) {
               <Trans>Discover our collection and add items to your wishlist!</Trans>
             </FullPageMessage>
           ) : (
-            ''
+            <>
+              <FullPageMessage
+                title={t`Wishlist`}
+                icon={<SvgImageSimple src={iconHeart} size='xl' />}
+              ></FullPageMessage>
+              <ProductListItems
+                items={wishlistItems}
+                classes={productListClasses}
+                loadingEager={1}
+              />
+            </>
           )}
-        </NoSsr>
-      </Container>
+        </Container>
+      </NoSsr>
     </>
   )
 }
