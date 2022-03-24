@@ -17,6 +17,7 @@ export type InputCheckmarkProps = {
 export function InputCheckmark(props: InputCheckmarkProps) {
   const { show, children, select = false } = props
 
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (!show) return <>{children}</>
   return (
     <IconSvg
