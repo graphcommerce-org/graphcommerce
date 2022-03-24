@@ -2,9 +2,39 @@ import { motionValue, MotionValue } from 'framer-motion'
 import { useEffect } from 'react'
 import { clientSize } from '../utils/clientSize'
 import { useConstant } from './useConstant'
+import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 
 export type UseClientSizeReturn = { x: MotionValue<string>; y: MotionValue<string> }
 export type UseClientSizeOptions = { x?: string; y?: string }
+
+export const clientSizeCssVar = {
+  y: `var(--client-size-y, 100vh)`,
+  x: `var(--client-size-x, 100vh)`,
+}
+
+let watching = false
+
+export function useClientSizeCssVar() {
+  useIsomorphicLayoutEffect(() => {
+    if (watching === true) return () => {}
+
+    const recalc = () => {
+      if (typeof window !== 'undefined') {
+        const { x, y } = clientSize
+        document.body.style.setProperty('--client-size-x', `${x.get()}px`)
+        document.body.style.setProperty('--client-size-y', `${y.get()}px`)
+      }
+    }
+    recalc()
+    watching = true
+    const reset = clientSize.y.onChange(recalc)
+
+    return () => {
+      watching = false
+      reset()
+    }
+  }, [])
+}
 
 /**
  * Get the clientSize x|y as a motionValue

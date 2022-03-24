@@ -1,4 +1,4 @@
-import { css } from '@emotion/react'
+import { clientSizeCssVar } from '@graphcommerce/framer-utils'
 import { m, useIsPresent } from 'framer-motion'
 import React from 'react'
 import type { PageItem } from '../types'
@@ -34,17 +34,7 @@ export function Page(props: PageProps) {
   const zIndex = active ? 1 : undefined
 
   return (
-    <m.div
-      style={{ position, top, zIndex }}
-      css={css({
-        left: 0,
-        right: 0,
-        minHeight: '100vh',
-        '@supports (-webkit-touch-callout: none)': {
-          height: '-webkit-fill-available',
-        },
-      })}
-    >
+    <m.div style={{ position, top, zIndex, minHeight: clientSizeCssVar.y, left: 0, right: 0 }}>
       {children}
     </m.div>
   )
