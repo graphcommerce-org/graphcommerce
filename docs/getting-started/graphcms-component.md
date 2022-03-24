@@ -49,7 +49,7 @@ frontend React framework that uses Next.js for server-side rendering.
 
 <figure>
 
-![Adding a Single line text field]()
+![Adding a Single line text field](https://user-images.githubusercontent.com/1251986/159904004-cf774bd1-da01-4478-ac6e-b1567f9bafc7.png)
 
   <figcaption>Adding a Single line text field called "Identity"</figcaption>
 </figure>
