@@ -25,7 +25,6 @@ import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import { CartEmailDocument } from './CartEmail.gql'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
-import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
 
 export type EmailFormProps = Pick<UseFormComposeOptions, 'step'> & {
   children?: React.ReactNode
@@ -41,7 +40,6 @@ export function EmailForm(props: EmailFormProps) {
   const [expand, setExpand] = useState(false)
 
   useMergeCustomerCart()
-  useMergeGuestWishlistWithCustomer()
 
   const [setGuestEmailOnCart] = useMutation(SetGuestEmailOnCartDocument)
   const { data: cartData } = useCartQuery(CartEmailDocument)
