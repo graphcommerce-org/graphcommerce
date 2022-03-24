@@ -78,9 +78,6 @@ function WishlistPage(props: Props) {
 
   if (loadingGuestItems || loadingCustomerItems) {
     return null
-  } else {
-    console.log()
-    console.dir(wishlistItems)
   }
 
   return (
