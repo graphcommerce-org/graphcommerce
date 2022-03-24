@@ -7,3 +7,5 @@ export * from './queries/addProductToWishlist.gql'
 export * from './queries/removeProductFromWishlist.gql'
 export * from './queries/WishlistSummaryFragment.gql'
 export * from './queries/GetIsInWishlists.gql'
+
+export const GUEST_WISHLIST_STORAGE_NAME = 'guest-wishlist'

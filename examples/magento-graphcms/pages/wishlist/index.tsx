@@ -16,7 +16,10 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import { GetWishlistProductsDocument } from '@graphcommerce/magento-wishlist'
+import {
+  GUEST_WISHLIST_STORAGE_NAME,
+  GetWishlistProductsDocument,
+} from '@graphcommerce/magento-wishlist'
 import { GetGuestWishlistProductsDocument } from '@graphcommerce/magento-wishlist'
 import { ProductListItems } from '../../components/ProductListItems/ProductListItems'
 import { sxLargeItem, LayoutOverlay, LayoutOverlayProps } from '../../components'
@@ -28,13 +31,12 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 function WishlistPage(props: Props) {
   const { data: token } = useQuery(CustomerTokenDocument)
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
-  const GUEST_WISHLIST = 'guest-wishlist'
 
   let wishlistItems, productListClasses
   const [wishlistGuestItems, setWishlistGuestItems] = useState([])
 
   useEffect(() => {
-    wishlistItems = JSON.parse(localStorage.getItem(GUEST_WISHLIST) || '[]')
+    wishlistItems = JSON.parse(localStorage.getItem(GUEST_WISHLIST_STORAGE_NAME) || '[]')
     if (wishlistGuestItems.length == 0) {
       if (wishlistItems.length) {
         setWishlistGuestItems(wishlistItems)

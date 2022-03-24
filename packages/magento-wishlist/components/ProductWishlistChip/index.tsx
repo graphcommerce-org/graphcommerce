@@ -7,7 +7,10 @@ import {
   RemoveProductFromWishlistDocument,
 } from '@graphcommerce/magento-wishlist'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import { GetIsInWishlistsDocument } from '@graphcommerce/magento-wishlist'
+import {
+  GUEST_WISHLIST_STORAGE_NAME,
+  GetIsInWishlistsDocument,
+} from '@graphcommerce/magento-wishlist'
 import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
 
 type ProductWishlistSettings = {
@@ -31,7 +34,6 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
 
   const { data: token } = useQuery(CustomerTokenDocument)
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
-  const GUEST_WISHLIST = 'guest-wishlist'
 
   const heart = (
     <IconSvg
@@ -72,7 +74,7 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
         setInWishlist(true)
       }
     } else if (!isLoggedIn && !inWishlist) {
-      let wishlist = JSON.parse(localStorage.getItem(GUEST_WISHLIST) || '[]')
+      let wishlist = JSON.parse(localStorage.getItem(GUEST_WISHLIST_STORAGE_NAME) || '[]')
       if (wishlist.includes(sku)) {
         setInWishlist(true)
       }
@@ -103,15 +105,15 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
         })
       }
     } else {
-      let wishlist = JSON.parse(localStorage.getItem(GUEST_WISHLIST) || '[]')
+      let wishlist = JSON.parse(localStorage.getItem(GUEST_WISHLIST_STORAGE_NAME) || '[]')
 
       if (inWishlist) {
         wishlist = wishlist.filter((itemSku) => itemSku !== sku)
-        localStorage.setItem(GUEST_WISHLIST, JSON.stringify(wishlist))
+        localStorage.setItem(GUEST_WISHLIST_STORAGE_NAME, JSON.stringify(wishlist))
         setInWishlist(false)
       } else {
         wishlist.push(sku)
-        localStorage.setItem(GUEST_WISHLIST, JSON.stringify(wishlist))
+        localStorage.setItem(GUEST_WISHLIST_STORAGE_NAME, JSON.stringify(wishlist))
         setInWishlist(true)
       }
     }
