@@ -364,6 +364,9 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
               scrollSnapAlign: 'end',
               [theme.breakpoints.down('md')]: {
                 minWidth: '80vw',
+                '&:not(.sizeMdFull)': {
+                  width: 'max-content',
+                },
 
                 '&.variantSmBottom.sizeSmFull': {
                   minHeight: `calc(${clientSizeCssVar.y} - ${smSpacingTop})`,
@@ -389,6 +392,9 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
               [theme.breakpoints.up('md')]: {
                 '&.sizeMdFull': {
                   minWidth: 'max(600px, 50vw)',
+                },
+                '&:not(.sizeMdFull)': {
+                  width: 'max-content',
                 },
 
                 '&.sizeMdFull.variantMdBottom': {

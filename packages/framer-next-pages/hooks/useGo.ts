@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 
 export function useGo(delta: number) {
-  const { push, back } = useRouter()
+  const { push } = useRouter()
   return () => {
     if (delta >= 0) {
       console.error(`Called .go(${delta}), only negative numbers are allowed. Redirecting to home`)
@@ -10,7 +10,6 @@ export function useGo(delta: number) {
       return
     }
 
-    const deltaAbs = Math.abs(delta)
-    for (let i = 0; i < deltaAbs; i++) back()
+    window.history.go(delta)
   }
 }

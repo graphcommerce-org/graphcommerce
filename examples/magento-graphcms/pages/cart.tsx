@@ -47,76 +47,71 @@ function CartPage() {
         metaDescription={t`Cart Items`}
         metaRobots={['noindex']}
       />
-      <NoSsr>
-        <LayoutOverlayHeader
-          primary={
-            hasItems && (
-              <PageLink href='/checkout' passHref>
-                <LinkOrButton
-                  button={{ variant: 'pill', disabled: !hasItems }}
-                  color='secondary'
-                  endIcon={<IconSvg src={iconChevronRight} />}
-                >
-                  <Trans>Next</Trans>
-                </LinkOrButton>
-              </PageLink>
-            )
-          }
-          divider={
-            hasItems && (
-              <Container maxWidth='md'>
-                <Stepper currentStep={1} steps={3} />
-              </Container>
-            )
-          }
-        >
-          <LayoutTitle size='small' component='span' icon={hasItems ? iconShoppingBag : undefined}>
-            {hasItems ? (
-              <>
-                Cart Total: <Money {...data?.cart?.prices?.grand_total} />
-              </>
-            ) : (
-              <>Cart</>
-            )}
-          </LayoutTitle>
-        </LayoutOverlayHeader>
-        <Container maxWidth='md'>
-          <AnimatePresence initial={false}>
-            {hasItems ? (
-              <>
-                <AnimatedRow key='quick-checkout'>
-                  <LayoutTitle icon={iconShoppingBag}>
-                    Cart Total: <Money {...data?.cart?.prices?.grand_total} />
-                  </LayoutTitle>
-                </AnimatedRow>
-                <CartItems
-                  items={data?.cart?.items}
-                  id={data?.cart?.id ?? ''}
-                  key='cart'
-                  renderer={{
-                    BundleCartItem: CartItem,
-                    ConfigurableCartItem,
-                    DownloadableCartItem: CartItem,
-                    SimpleCartItem: CartItem,
-                    VirtualCartItem: CartItem,
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore GiftCardProduct is only available in Commerce
-                    GiftCardCartItem: CartItem,
-                  }}
-                />
-                <CouponAccordion key='couponform' />
-                <CartTotals containerMargin />
-                <ApolloCartErrorAlert error={error} />
-                <AnimatedRow key='checkout-button'>
-                  <CartStartCheckout {...data?.cart} />
-                </AnimatedRow>
-              </>
-            ) : (
-              <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
-            )}
-          </AnimatePresence>
-        </Container>
-      </NoSsr>
+      <LayoutOverlayHeader
+        primary={
+          <PageLink href='/checkout' passHref>
+            <LinkOrButton
+              button={{ variant: 'pill', disabled: !hasItems }}
+              link={{ 'aria-disabled': true }}
+              color='secondary'
+              endIcon={<IconSvg src={iconChevronRight} />}
+            >
+              <Trans>Next</Trans>
+            </LinkOrButton>
+          </PageLink>
+        }
+        divider={
+          <Container maxWidth='md'>
+            <Stepper currentStep={hasItems ? 1 : 0} steps={3} />
+          </Container>
+        }
+      >
+        <LayoutTitle size='small' component='span' icon={hasItems ? iconShoppingBag : undefined}>
+          {hasItems ? (
+            <>
+              Cart Total: <Money {...data?.cart?.prices?.grand_total} />
+            </>
+          ) : (
+            <>Cart</>
+          )}
+        </LayoutTitle>
+      </LayoutOverlayHeader>
+      <Container maxWidth='md'>
+        <AnimatePresence initial={false}>
+          {hasItems ? (
+            <>
+              <AnimatedRow key='quick-checkout'>
+                <LayoutTitle icon={iconShoppingBag}>
+                  Cart Total: <Money {...data?.cart?.prices?.grand_total} />
+                </LayoutTitle>
+              </AnimatedRow>
+              <CartItems
+                items={data?.cart?.items}
+                id={data?.cart?.id ?? ''}
+                key='cart'
+                renderer={{
+                  BundleCartItem: CartItem,
+                  ConfigurableCartItem,
+                  DownloadableCartItem: CartItem,
+                  SimpleCartItem: CartItem,
+                  VirtualCartItem: CartItem,
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore GiftCardProduct is only available in Commerce
+                  GiftCardCartItem: CartItem,
+                }}
+              />
+              <CouponAccordion key='couponform' />
+              <CartTotals containerMargin />
+              <ApolloCartErrorAlert error={error} />
+              <AnimatedRow key='checkout-button'>
+                <CartStartCheckout {...data?.cart} />
+              </AnimatedRow>
+            </>
+          ) : (
+            <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
+          )}
+        </AnimatePresence>
+      </Container>
     </>
   )
 }
