@@ -26,7 +26,14 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
   return (
     <Box
       className={classes.checkoutButtonContainer}
-      sx={[{ textAlign: 'center' }, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={[
+        (theme) => ({
+          textAlign: 'center',
+          marginTop: theme.spacings.md,
+          marginBottom: theme.spacings.md,
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
       <PageLink href='/checkout' passHref>
         <Button
@@ -36,10 +43,6 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
           className={classes.checkoutButton}
           endIcon={<IconSvg src={iconChevronRight} />}
           disabled={!hasTotals}
-          sx={(theme) => ({
-            marginTop: theme.spacings.md,
-            marginBottom: theme.spacings.lg,
-          })}
         >
           <Box
             component='span'

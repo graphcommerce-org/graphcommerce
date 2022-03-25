@@ -1,11 +1,15 @@
 import { useGo, usePageContext, useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
-import { useElementScroll, useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
-import { Box, styled, SxProps, Theme } from '@mui/material'
+import {
+  clientSizeCssVar,
+  useElementScroll,
+  useIsomorphicLayoutEffect,
+} from '@graphcommerce/framer-utils'
+import { Box, styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
 import { m, useDomEvent, useMotionValue, usePresence, useTransform } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
-import { extendableComponent } from '../../Styles'
+import { ExtendableComponent, extendableComponent } from '../../Styles'
 import { useOverlayPosition } from '../hooks/useOverlayPosition'
 
 export type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
@@ -21,12 +25,18 @@ type StyleProps = {
   justifyMd?: LayoutOverlayAlign
 }
 
+type OverridableProps = {
+  mdSpacingTop?: (theme: Theme) => string
+  smSpacingTop?: (theme: Theme) => string
+}
+
 export type LayoutOverlayBaseProps = {
   children?: React.ReactNode
   className?: string
   sx?: SxProps<Theme>
   sxBackdrop?: SxProps<Theme>
-} & StyleProps
+} & StyleProps &
+  OverridableProps
 
 enum OverlayPosition {
   UNOPENED = -1,
@@ -38,9 +48,22 @@ const name = 'LayoutOverlayBase' as const
 const parts = ['scroller', 'backdrop', 'overlay', 'overlayPane', 'beforeOverlay'] as const
 const { withState } = extendableComponent<StyleProps, typeof name, typeof parts>(name, parts)
 
+/** Expose the component to be exendable in your theme.components */
+declare module '@mui/material/styles/components' {
+  interface Components {
+    LayoutOverlayBase?: Pick<ExtendableComponent<OverridableProps & StyleProps>, 'defaultProps'>
+  }
+}
+
 const MotionDiv = styled(m.div)({})
 
-export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
+const clearScrollLock = () => {
+  document.body.style.overflow = ''
+}
+
+export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
+  const props = useThemeProps({ name, props: incommingProps })
+
   const {
     children,
     variantSm,
@@ -54,6 +77,14 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
     sxBackdrop = [],
   } = props
 
+  const th = useTheme()
+  const mdSpacingTop = (
+    props.mdSpacingTop ?? ((theme) => `calc(${theme.appShell.headerHeightMd} * 0.5)`)
+  )(th)
+  const smSpacingTop = (
+    props.smSpacingTop ?? ((theme) => `calc(${theme.appShell.headerHeightSm} * 0.5)`)
+  )(th)
+
   const { scrollerRef, snap } = useScrollerContext()
   const positions = useOverlayPosition()
   const scrollTo = useScrollTo()
@@ -65,24 +96,20 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
 
   const position = useMotionValue<OverlayPosition>(OverlayPosition.UNOPENED)
 
-  const classes = withState({
-    variantSm,
-    variantMd,
-    sizeSm,
-    sizeMd,
-    justifySm,
-    justifyMd,
-  })
+  const classes = withState({ variantSm, variantMd, sizeSm, sizeMd, justifySm, justifyMd })
 
   const overlayRef = useRef<HTMLDivElement>(null)
 
   const scroll = useElementScroll(scrollerRef)
 
+  // When the component is mounted, we need to set the initial position of the overlay.
   useIsomorphicLayoutEffect(() => {
     const scroller = scrollerRef.current
-    if (!scroller || !isPresent) return
+    if (!scroller || !isPresent) return undefined
 
     const open = { x: positions.open.x.get(), y: positions.open.y.get() }
+
+    document.body.style.overflow = 'hidden'
 
     if (direction === 1 && position.get() !== OverlayPosition.OPENED) {
       scroller.scrollLeft = positions.closed.x.get()
@@ -97,6 +124,8 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
       scroller.scrollLeft = open.x
       scroller.scrollTop = open.y
     }
+
+    return clearScrollLock
   }, [direction, isPresent, position, positions, scrollTo, scrollerRef])
 
   // Make sure the overlay stays open when resizing the window.
@@ -121,6 +150,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
   useEffect(() => {
     if (isPresent) return
     position.set(OverlayPosition.CLOSED)
+    clearScrollLock()
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     scrollTo({
       x: positions.closed.x.get(),
@@ -132,6 +162,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
   const closeOverlay = useCallback(() => {
     if (position.get() !== OverlayPosition.OPENED) return
     position.set(OverlayPosition.CLOSED)
+    clearScrollLock()
     close()
   }, [close, position])
 
@@ -170,11 +201,15 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
     [closeOverlay, scrollerRef, snap],
   )
 
+  const pointerEvents = useTransform(position, (p) =>
+    p === OverlayPosition.CLOSED ? 'none' : 'auto',
+  )
+
   return (
     <>
       <MotionDiv
         className={classes.backdrop}
-        style={{ opacity: positions.open.visible }}
+        style={{ opacity: positions.open.visible, pointerEvents }}
         sx={[
           {
             zIndex: -1,
@@ -198,8 +233,10 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
         grid={false}
         hideScrollbar
         onClick={onClickAway}
+        style={{ pointerEvents }}
         sx={[
           (theme) => ({
+            overscrollBehavior: 'contain',
             display: 'grid',
             '&.canGrab': {
               cursor: 'default',
@@ -208,10 +245,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
               overflow: 'auto',
             },
 
-            height: '100vh',
-            '@supports (-webkit-touch-callout: none)': {
-              height: '-webkit-fill-available',
-            },
+            height: clientSizeCssVar.y,
 
             [theme.breakpoints.down('md')]: {
               '&.variantSmLeft': {
@@ -228,10 +262,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
                 borderTopLeftRadius: theme.shape.borderRadius * 3,
                 borderTopRightRadius: theme.shape.borderRadius * 3,
                 gridTemplate: `"beforeOverlay" "overlay"`,
-                height: '100vh',
-                '@supports (-webkit-touch-callout: none)': {
-                  height: '-webkit-fill-available',
-                },
+                height: clientSizeCssVar.y,
               },
             },
             [theme.breakpoints.up('md')]: {
@@ -250,7 +281,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
                 borderTopRightRadius: theme.shape.borderRadius * 4,
                 [theme.breakpoints.up('md')]: {
                   gridTemplate: `"beforeOverlay" "overlay"`,
-                  height: '100vh',
+                  height: clientSizeCssVar.y,
                 },
               },
             },
@@ -273,10 +304,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
                 width: '100vw',
               },
               '&.variantSmBottom': {
-                height: '100vh',
-                '@supports (-webkit-touch-callout: none)': {
-                  height: '-webkit-fill-available',
-                },
+                height: clientSizeCssVar.y,
               },
             },
             [theme.breakpoints.up('md')]: {
@@ -284,7 +312,7 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
                 width: '100vw',
               },
               '&.variantMdBottom': {
-                height: '100vh',
+                height: clientSizeCssVar.y,
               },
             },
           })}
@@ -297,14 +325,15 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
             pointerEvents: 'none',
             gridArea: 'overlay',
             scrollSnapAlign: 'start',
+            scrollSnapStop: 'always',
 
             [theme.breakpoints.down('md')]: {
               justifyContent: justifySm,
               alignItems: justifySm,
 
               '&.variantSmBottom': {
-                marginTop: `calc(${theme.appShell.headerHeightSm} * 0.5 * -1)`,
-                paddingTop: `calc(${theme.appShell.headerHeightSm} * 0.5)`,
+                marginTop: `calc(${smSpacingTop} * -1)`,
+                paddingTop: smSpacingTop,
               },
 
               '&.sizeSmFloating': {
@@ -316,8 +345,8 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
               alignItems: justifyMd,
 
               '&.variantMdBottom': {
-                marginTop: `calc(${theme.appShell.headerHeightMd} + (${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * 0.5)`,
-                paddingTop: `calc(${theme.appShell.headerHeightMd} + (${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * -0.5)`,
+                paddingTop: mdSpacingTop,
+                marginTop: `calc(${mdSpacingTop} * -1)`,
                 display: 'grid',
               },
               '&.sizeMdFloating': {
@@ -332,22 +361,16 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
               pointerEvents: 'all',
               backgroundColor: theme.palette.background.paper,
               boxShadow: theme.shadows[24],
-              // scrollSnapAlign: 'end',
+              scrollSnapAlign: 'end',
               [theme.breakpoints.down('md')]: {
                 minWidth: '80vw',
 
-                /**
-                 * The top bar on Google Chrome is about 56 pixels high. If we do not provide this
-                 * padding we'll run into the issue that the user can't scroll to the bottom. We
-                 * can't change this value with JS as that causes much jank
-                 */
-                '&.sizeSmFull, &.sizeSmMinimal': { paddingBottom: '56px' },
                 '&.variantSmBottom.sizeSmFull': {
-                  minHeight: `calc(100vh - ${theme.appShell.headerHeightSm} * 0.5)`,
+                  minHeight: `calc(${clientSizeCssVar.y} - ${smSpacingTop})`,
                 },
 
                 '&.variantSmBottom': {
-                  borderTopLeftRadius: `${theme.shape.borderRadius * 4}px`,
+                  borderTopLeftRadius: `${theme.shape.borderRadius * 3}px`,
                   borderTopRightRadius: `${theme.shape.borderRadius * 3}px`,
                 },
                 '&.sizeSmFloating': {
@@ -355,18 +378,12 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
                 },
                 '&.variantSmLeft.sizeSmFull': {
                   paddingBottom: '1px',
-                  minHeight: '100vh',
-                  '@supports (-webkit-touch-callout: none)': {
-                    minHeight: '-webkit-fill-available',
-                  },
+                  minHeight: clientSizeCssVar.y,
                 },
                 '&.variantSmRight.sizeSmFull': {
                   paddingBottom: '1px',
-                  minHeight: '100vh',
+                  minHeight: clientSizeCssVar.y,
                   scrollSnapAlign: 'end',
-                  '@supports (-webkit-touch-callout: none)': {
-                    minHeight: '-webkit-fill-available',
-                  },
                 },
               },
               [theme.breakpoints.up('md')]: {
@@ -375,22 +392,16 @@ export function LayoutOverlayBase(props: LayoutOverlayBaseProps) {
                 },
 
                 '&.sizeMdFull.variantMdBottom': {
-                  minHeight: `calc(100vh + ${theme.appShell.headerHeightMd} - (${theme.appShell.appBarHeightMd} - ${theme.appShell.appBarInnerHeightMd}) * 0.5)`,
+                  minHeight: `calc(${clientSizeCssVar.y} - ${mdSpacingTop})`,
                 },
                 '&.sizeMdFull.variantMdLeft': {
                   paddingBottom: '1px',
-                  minHeight: '100vh',
-                  '@supports (-webkit-touch-callout: none)': {
-                    minHeight: '-webkit-fill-available',
-                  },
+                  minHeight: clientSizeCssVar.y,
                 },
                 '&.sizeMdFull.variantMdRight': {
                   paddingBottom: '1px',
-                  minHeight: '100vh',
+                  minHeight: clientSizeCssVar.y,
                   scrollSnapAlign: 'end',
-                  '@supports (-webkit-touch-callout: none)': {
-                    minHeight: '-webkit-fill-available',
-                  },
                 },
 
                 '&.variantMdBottom': {

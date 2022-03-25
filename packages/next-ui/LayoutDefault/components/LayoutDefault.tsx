@@ -116,7 +116,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
                 top: 'unset',
                 bottom: `calc(20px + ${fabIconSize})`,
                 padding: `0 20px`,
-                '@media (max-height: 530px)': {
+                '@media (max-height: 530px) and (orientation: portrait)': {
                   display: 'none',
                 },
               },
