@@ -5,7 +5,7 @@ import {
   useElementScroll,
   useIsomorphicLayoutEffect,
 } from '@graphcommerce/framer-utils'
-import { Box, GlobalStyles, styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
+import { Box, styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
 import { m, useDomEvent, useMotionValue, usePresence, useTransform } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
@@ -57,6 +57,10 @@ declare module '@mui/material/styles/components' {
 
 const MotionDiv = styled(m.div)({})
 
+const clearScrollLock = () => {
+  document.body.style.overflow = ''
+}
+
 export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
   const props = useThemeProps({ name, props: incommingProps })
 
@@ -92,24 +96,20 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
 
   const position = useMotionValue<OverlayPosition>(OverlayPosition.UNOPENED)
 
-  const classes = withState({
-    variantSm,
-    variantMd,
-    sizeSm,
-    sizeMd,
-    justifySm,
-    justifyMd,
-  })
+  const classes = withState({ variantSm, variantMd, sizeSm, sizeMd, justifySm, justifyMd })
 
   const overlayRef = useRef<HTMLDivElement>(null)
 
   const scroll = useElementScroll(scrollerRef)
 
+  // When the component is mounted, we need to set the initial position of the overlay.
   useIsomorphicLayoutEffect(() => {
     const scroller = scrollerRef.current
-    if (!scroller || !isPresent) return
+    if (!scroller || !isPresent) return undefined
 
     const open = { x: positions.open.x.get(), y: positions.open.y.get() }
+
+    document.body.style.overflow = 'hidden'
 
     if (direction === 1 && position.get() !== OverlayPosition.OPENED) {
       scroller.scrollLeft = positions.closed.x.get()
@@ -124,6 +124,8 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
       scroller.scrollLeft = open.x
       scroller.scrollTop = open.y
     }
+
+    return clearScrollLock
   }, [direction, isPresent, position, positions, scrollTo, scrollerRef])
 
   // Make sure the overlay stays open when resizing the window.
@@ -148,6 +150,7 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
   useEffect(() => {
     if (isPresent) return
     position.set(OverlayPosition.CLOSED)
+    clearScrollLock()
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     scrollTo({
       x: positions.closed.x.get(),
@@ -159,6 +162,7 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
   const closeOverlay = useCallback(() => {
     if (position.get() !== OverlayPosition.OPENED) return
     position.set(OverlayPosition.CLOSED)
+    clearScrollLock()
     close()
   }, [close, position])
 
@@ -197,18 +201,15 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
     [closeOverlay, scrollerRef, snap],
   )
 
+  const pointerEvents = useTransform(position, (p) =>
+    p === OverlayPosition.CLOSED ? 'none' : 'auto',
+  )
+
   return (
     <>
-      <GlobalStyles
-        styles={{
-          body: {
-            overflow: 'hidden',
-          },
-        }}
-      />
       <MotionDiv
         className={classes.backdrop}
-        style={{ opacity: positions.open.visible }}
+        style={{ opacity: positions.open.visible, pointerEvents }}
         sx={[
           {
             zIndex: -1,
@@ -232,8 +233,10 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
         grid={false}
         hideScrollbar
         onClick={onClickAway}
+        style={{ pointerEvents }}
         sx={[
           (theme) => ({
+            overscrollBehavior: 'contain',
             display: 'grid',
             '&.canGrab': {
               cursor: 'default',
@@ -322,6 +325,7 @@ export function LayoutOverlayBase(incommingProps: LayoutOverlayBaseProps) {
             pointerEvents: 'none',
             gridArea: 'overlay',
             scrollSnapAlign: 'start',
+            scrollSnapStop: 'always',
 
             [theme.breakpoints.down('md')]: {
               justifyContent: justifySm,
