@@ -19,11 +19,12 @@ import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import {
   GUEST_WISHLIST_STORAGE_NAME,
   GetWishlistProductsDocument,
+  WishlistItems,
 } from '@graphcommerce/magento-wishlist'
 import { GetGuestWishlistProductsDocument } from '@graphcommerce/magento-wishlist'
-import { ProductListItems } from '../../components/ProductListItems/ProductListItems'
-import { sxLargeItem, LayoutOverlay, LayoutOverlayProps } from '../../components'
+import { LayoutOverlay, LayoutOverlayProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { AnimatePresence } from 'framer-motion'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -107,7 +108,11 @@ function WishlistPage(props: Props) {
                 title={t`Wishlist`}
                 icon={<IconSvg src={iconHeart} size='xl' />}
               ></FullPageMessage>
-              <ProductListItems items={wishlistItems} loadingEager={1} sx={sxLargeItem} />
+              <Container maxWidth='md'>
+                <AnimatePresence initial={false}>
+                  <WishlistItems items={wishlistItems} />
+                </AnimatePresence>
+              </Container>
             </>
           )}
         </Container>
