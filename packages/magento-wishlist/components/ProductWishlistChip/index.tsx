@@ -16,7 +16,6 @@ import { t } from '@lingui/macro'
 
 type ProductWishlistSettings = {
   display?: 'guest' | 'customer'
-  variant?: 'small' | 'medium'
 }
 
 export type ProductWishlistChipProps = ProductWishlistChipFragment &
@@ -28,7 +27,7 @@ const parts = ['root', 'iconHeart', 'iconHeartActive', 'wishlistButton'] as cons
 const { classes } = extendableComponent(name, parts)
 
 export default function ProductWishlistChip(props: ProductWishlistChipProps) {
-  const { display, variant, sku, sx = [] } = props
+  const { display, sku, sx = [] } = props
 
   const [inWishlist, setInWishlist] = useState(false)
   const [displayWishlist, setDisplayWishlist] = useState(true)
@@ -125,7 +124,7 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
       <IconButton
         key={sku}
         onClick={handleClick}
-        size={variant || 'small'}
+        size='small'
         className={classes.wishlistButton}
         sx={[...(Array.isArray(sx) ? sx : [sx])]}
         title={inWishlist ? t`Remove from wishlist` : t`Add to wishlist`}
