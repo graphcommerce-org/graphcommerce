@@ -6,11 +6,18 @@ import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Badge, Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import PageLink from 'next/link'
 import { WishlistItemFragment } from './ProductWishlistItem.gql'
-
+import React from 'react'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { iconChevronDown, IconSvg } from '@graphcommerce/next-ui'
+import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
+import { useQuery, useMutation } from '@apollo/client'
+import {
+  GUEST_WISHLIST_STORAGE_NAME,
+  GetIsInWishlistsDocument,
+  RemoveProductFromWishlistDocument,
+} from '@graphcommerce/magento-wishlist'
 
 import { useState } from 'react'
 
@@ -41,14 +48,47 @@ export default function WishlistItem(props: WishlistItemProps) {
   const productLink = useProductLink(item)
   const inclTaxes = useDisplayInclTax()
 
-  const options = ['Remove']
+  const { data: token } = useQuery(CustomerTokenDocument)
+  const isLoggedIn = token?.customerToken && token?.customerToken.valid
+
+  const { data: GetCustomerWishlistData, loading } = useQuery(GetIsInWishlistsDocument, {
+    skip: !isLoggedIn,
+  })
+
+  const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
+
+  const options = [
+    {
+      id: 'remove',
+      label: 'Remove',
+    },
+  ]
 
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
-  const handleClose = () => {
+
+  const sku = item.sku
+  const handleClose = (event) => {
+    if (event.target.id == 'remove') {
+      if (isLoggedIn) {
+        let wishlistItemsInSession =
+          GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items || []
+
+        let item = wishlistItemsInSession.find((element) => element?.product?.sku == sku)
+
+        if (item?.id) {
+          removeWishlistItem({ variables: { wishlistItemId: item.id } })
+        }
+      } else {
+        let wishlist = JSON.parse(localStorage.getItem(GUEST_WISHLIST_STORAGE_NAME) || '[]')
+
+        wishlist = wishlist.filter((itemSku) => itemSku !== sku)
+        localStorage.setItem(GUEST_WISHLIST_STORAGE_NAME, JSON.stringify(wishlist))
+      }
+    }
     setAnchorEl(null)
   }
 
@@ -212,8 +252,8 @@ export default function WishlistItem(props: WishlistItemProps) {
         }}
       >
         {options.map((option) => (
-          <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-            {option}
+          <MenuItem key={option.id} id={option.id} onClick={handleClose}>
+            {option.label}
           </MenuItem>
         ))}
       </Menu>
