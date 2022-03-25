@@ -1,8 +1,8 @@
 import { useGo, usePageContext } from '@graphcommerce/framer-next-pages'
-import { Trans } from '@lingui/macro'
-import { Box } from '@mui/material'
-import { LinkOrButton } from '../../Button/LinkOrButton'
-import { IconSvg } from '../../IconSvg'
+import { Fab } from '@mui/material'
+import { useState } from 'react'
+import { IconSvg, useIconSvgSize } from '../../IconSvg'
+import { useFabSize } from '../../Theme'
 import { iconClose } from '../../icons'
 
 export function useShowClose() {
@@ -12,20 +12,24 @@ export function useShowClose() {
 
 export function LayoutHeaderClose() {
   const { closeSteps } = usePageContext()
-  const onClick = useGo(closeSteps * -1)
+  const [disabled, setDisabled] = useState(false)
+  const go = useGo(closeSteps * -1)
+  const onClick = () => {
+    setDisabled(true)
+    go()
+  }
+
+  const fabSize = useFabSize('responsive')
+  const svgSize = useIconSvgSize('large')
 
   return (
-    <LinkOrButton
-      button={{ type: 'button', variant: 'pill' }}
-      color='inherit'
+    <Fab
       onClick={onClick}
-      aria-label='Close'
-      startIcon={<IconSvg src={iconClose} size='medium' />}
-      // className={classes.close}
+      sx={{ boxShadow: 'none', marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)` }}
+      size='responsive'
+      disabled={disabled}
     >
-      <Box component='span' sx={{ display: { xs: 'none', md: 'inline' } }}>
-        <Trans>Close</Trans>
-      </Box>
-    </LinkOrButton>
+      <IconSvg src={iconClose} size='large' />
+    </Fab>
   )
 }
