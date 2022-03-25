@@ -72,7 +72,7 @@ export default function WishlistItem(props: WishlistItemProps) {
               "picture itemName itemName itemName IconMenu"
               "picture itemName itemName itemName itemPrice"`,
             gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(75px, 1fr)`,
-            paddingBottom: theme.spacings.lrg,
+            paddingBottom: theme.spacings.lg,
           },
           borderBottom: `1px solid ${theme.palette.divider}`,
 
