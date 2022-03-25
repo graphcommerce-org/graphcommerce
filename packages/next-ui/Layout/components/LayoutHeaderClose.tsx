@@ -25,7 +25,11 @@ export function LayoutHeaderClose() {
   return (
     <Fab
       onClick={onClick}
-      sx={{ boxShadow: 'none', marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)` }}
+      sx={{
+        boxShadow: 'none',
+        marginLeft: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+        marginRight: `calc((${fabSize} - ${svgSize}) * -0.5)`,
+      }}
       size='responsive'
       disabled={disabled}
     >
