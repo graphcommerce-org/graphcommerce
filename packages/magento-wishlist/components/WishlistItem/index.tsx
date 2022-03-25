@@ -6,7 +6,7 @@ import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Badge, Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import PageLink from 'next/link'
 import { WishlistItemFragment } from './ProductWishlistItem.gql'
-import React from 'react'
+import { useState } from 'react'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
@@ -18,8 +18,6 @@ import {
   GetIsInWishlistsDocument,
   RemoveProductFromWishlistDocument,
 } from '@graphcommerce/magento-wishlist'
-
-import { useState } from 'react'
 
 const rowImageSize = responsiveVal(70, 125)
 
@@ -56,6 +54,7 @@ export default function WishlistItem(props: WishlistItemProps) {
   })
 
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
+  const [itemVisible, setItemVisible] = useState(true)
 
   const options = [
     {
@@ -87,9 +86,14 @@ export default function WishlistItem(props: WishlistItemProps) {
 
         wishlist = wishlist.filter((itemSku) => itemSku !== sku)
         localStorage.setItem(GUEST_WISHLIST_STORAGE_NAME, JSON.stringify(wishlist))
+        setItemVisible(false)
       }
     }
     setAnchorEl(null)
+  }
+
+  if (!itemVisible) {
+    return null
   }
 
   return (
