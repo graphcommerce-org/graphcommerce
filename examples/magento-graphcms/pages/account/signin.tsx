@@ -28,7 +28,7 @@ function AccountSignInPage() {
             <Trans>Sign in</Trans>
           </LayoutTitle>
         </LayoutOverlayHeader>
-        <Container maxWidth='sm'>
+        <Container maxWidth='md'>
           <AccountSignInUpForm />
         </Container>
       </NoSsr>

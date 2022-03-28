@@ -1,22 +1,30 @@
+import { useQuery } from '@graphcommerce/graphql'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation, useFormPersist } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
-import { FormControlLabel, Switch, TextField } from '@mui/material'
-import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
+import { Alert, FormControlLabel, Switch, TextField } from '@mui/material'
+import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError/ApolloCustomerErrorSnackbar'
 import { NameFields } from '../NameFields/NameFields'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
+import { SignUpConfirmDocument } from './SignUpConfirm.gql'
 
-type SignUpFormProps = {
-  email?: string
-}
+type SignUpFormProps = { email: string }
+
+const requireEmailValidation = process.env.CUSTOMER_REQUIRE_EMAIL_CONFIRMATION === '1'
 
 export function SignUpForm(props: SignUpFormProps) {
   const { email } = props
+
+  const storeConfig = useQuery(StoreConfigDocument).data?.storeConfig
+
+  const Mutation = requireEmailValidation ? SignUpConfirmDocument : SignUpDocument
+
   const form = useFormGqlMutation<
     SignUpMutation,
     SignUpMutationVariables & { confirmPassword?: string }
-  >(SignUpDocument, { defaultValues: { email } }, { errorPolicy: 'all' })
+  >(Mutation, { defaultValues: { email } }, { errorPolicy: 'all' })
 
   const { muiRegister, handleSubmit, required, watch, formState, error } = form
   const [remainingError, inputError] = graphqlErrorByCategory({ category: 'graphql-input', error })
@@ -25,6 +33,14 @@ export function SignUpForm(props: SignUpFormProps) {
   const watchPassword = watch('password')
 
   useFormPersist({ form, name: 'SignUp', exclude: ['password', 'confirmPassword'] })
+
+  if (requireEmailValidation && form.formState.isSubmitSuccessful) {
+    return (
+      <Alert>
+        <Trans>Please check your inbox to validate your email ({email})</Trans>
+      </Alert>
+    )
+  }
 
   return (
     <form onSubmit={submitHandler} noValidate>
@@ -39,7 +55,10 @@ export function SignUpForm(props: SignUpFormProps) {
           required={required.password}
           {...muiRegister('password', {
             required: required.password,
-            minLength: { value: 8, message: t`Password must have at least 8 characters` },
+            minLength: {
+              value: Number(storeConfig?.minimum_password_length ?? 8),
+              message: t`Password must have at least 8 characters`,
+            },
           })}
           helperText={formState.errors.password?.message || inputError?.message}
           disabled={formState.isSubmitting}
@@ -69,7 +88,7 @@ export function SignUpForm(props: SignUpFormProps) {
         label={<Trans>Subscribe to newsletter</Trans>}
       />
 
-      <ApolloCustomerErrorAlert error={remainingError} />
+      <ApolloCustomerErrorSnackbar error={remainingError} />
 
       <FormActions>
         <Button

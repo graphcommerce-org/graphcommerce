@@ -27,7 +27,7 @@ export function ApolloErrorSnackbar(props: ApolloErrorSnackbarProps) {
       }
     >
       <>
-        {error.graphQLErrors.map((e) => e.message)}
+        {error.graphQLErrors.map((e) => e.message).join(', ')}
         {error.networkError && <>Network Error: {error.networkError.message}</>}
       </>
     </MessageSnackbar>

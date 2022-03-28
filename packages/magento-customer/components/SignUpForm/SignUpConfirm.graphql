@@ -1,4 +1,4 @@
-mutation SignUp(
+mutation SignUpConfirm(
   $email: String!
   $password: String!
   $prefix: String!
@@ -12,7 +12,4 @@ mutation SignUp(
   $dateOfBirth: String
 ) {
   ...CreateCustomerMutationFragment
-  generateCustomerToken(email: $email, password: $password) {
-    token
-  }
 }
