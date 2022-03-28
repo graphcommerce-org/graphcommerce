@@ -27,9 +27,9 @@ export const defaultRenderers: Renderers = {
   video: ({ src, width, height, title, mimeType }) => (
     <Asset asset={{ url: src, alt: title, width, height, mimeType }} />
   ),
-  link: ({ href, ...props }) => (
+  link: ({ href, openInNewTab, ...props }) => (
     <PageLink href={href} passHref>
-      <Link underline='hover' {...props} />
+      <Link underline='hover' {...props} target={openInNewTab ? '_blank' : undefined} />
     </PageLink>
   ),
   table: (props) => <Box component='table' {...props} />,
