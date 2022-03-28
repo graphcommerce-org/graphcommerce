@@ -141,7 +141,7 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                   }}
                 >
                   {methods?.map((pm) => {
-                    const buttonValue = `${pm.code}___${pm.child}`
+                    const buttonValue = pm.child ? `${pm.code}___${pm.child}` : pm.code
                     return (
                       <ToggleButton
                         name={name}

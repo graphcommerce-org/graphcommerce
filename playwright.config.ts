@@ -20,7 +20,7 @@ const config: PlaywrightTestConfig = {
     baseURL: process.env.URL || 'http://localhost:3000',
   },
 
-  timeout: process.env.URL ? 60000 : 0,
+  timeout: 2 * 60 * 1000,
 }
 
 export default config

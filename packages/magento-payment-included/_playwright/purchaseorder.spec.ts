@@ -21,7 +21,7 @@ test('place order', async ({ page, productURL }) => {
   await page.click('button[value=flatrate-flatrate]')
   await page.click('button:has-text("Next")')
 
-  await page.click('button[value=purchaseorder___]')
+  await page.click('button[value=purchaseorder]')
 
   await page.click('input[name="poNumber"]')
   await page.fill('input[name="poNumber"]', '1234567890')

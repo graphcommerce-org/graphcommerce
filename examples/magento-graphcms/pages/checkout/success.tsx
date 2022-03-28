@@ -16,7 +16,7 @@ import { t, Trans } from '@lingui/macro'
 import { Button, Box, Container, NoSsr } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { LayoutFullProps, LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { LayoutFull, LayoutFullProps, LayoutMinimalProps } from '../../components'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -24,7 +24,7 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
 
 function OrderSuccessPage() {
-  const hasCartId = !!useRouter().query.cartId
+  const hasCartId = !!useRouter().query.cart_id
 
   return (
     <>
@@ -35,11 +35,13 @@ function OrderSuccessPage() {
       />
       <LayoutHeader
         divider={
-          hasCartId ? (
-            <Container maxWidth={false}>
-              <Stepper steps={3} currentStep={3} />
-            </Container>
-          ) : undefined
+          <>
+            {hasCartId && (
+              <Container maxWidth={false}>
+                <Stepper steps={3} currentStep={3} />
+              </Container>
+            )}
+          </>
         }
       >
         {hasCartId && (
@@ -93,7 +95,7 @@ function OrderSuccessPage() {
 }
 
 const pageOptions: PageOptions<LayoutMinimalProps> = {
-  Layout: LayoutMinimal,
+  Layout: LayoutFull,
   sharedKey: () => 'checkout',
 }
 OrderSuccessPage.pageOptions = pageOptions

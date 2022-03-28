@@ -9,6 +9,8 @@ const APOLLO_CACHE_VERSION = 'apollo-cache-version'
 
 let persistor: CachePersistor<NormalizedCacheObject> | undefined
 
+export const persistCache = () => persistor?.persist()
+
 /** Revives the cache from the localStorage if it is available. */
 export function createCacheReviver(
   client: ApolloClient<NormalizedCacheObject>,

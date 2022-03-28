@@ -46,7 +46,7 @@ type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 function PaymentPage() {
   useGoogleRecaptcha()
   const cartId = useCurrentCartId()
-  const { locked } = useCartLock()
+  const [{ locked }] = useCartLock()
 
   return (
     <ComposedForm>
@@ -81,7 +81,7 @@ function PaymentPage() {
               </LayoutTitle>
             </LayoutHeader>
             <Container maxWidth='md'>
-              <Dialog open={locked} fullWidth>
+              <Dialog open={!!locked} fullWidth>
                 <FullPageMessage
                   disableMargin
                   icon={<CircularProgress />}

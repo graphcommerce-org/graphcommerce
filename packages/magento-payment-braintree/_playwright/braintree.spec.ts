@@ -21,7 +21,7 @@ test('place order', async ({ page, productURL }) => {
   await page.click('button[value=flatrate-flatrate]')
   await page.click('button:has-text("Next")')
 
-  await page.click('button[value=braintree___]')
+  await page.click('button[value=braintree]')
 
   await page.click('button:has-text("Credit Card")')
 

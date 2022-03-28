@@ -1,4 +1,4 @@
-import { ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
+import { ApolloCartErrorSnackbar } from '@graphcommerce/magento-cart'
 import { LinkOrButton, LinkOrButtonProps } from '@graphcommerce/next-ui'
 import { ComposedSubmit, ComposedSubmitRenderComponentProps } from '@graphcommerce/react-hook-form'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
@@ -65,7 +65,7 @@ export function PaymentMethodButton(props: PaymentMethodButtonProps) {
         ) : (
           <>
             {button}
-            <ApolloCartErrorAlert key='error' error={errorVal} />
+            <ApolloCartErrorSnackbar key='error' error={errorVal} />
           </>
         )
       }}

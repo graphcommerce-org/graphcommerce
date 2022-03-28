@@ -9,6 +9,7 @@ export type LayoutProviderProps = {
 
 export function LayoutProvider(props: LayoutProviderProps) {
   const { children, scroll } = props
+
   return (
     <layoutContext.Provider value={useMemo(() => ({ scroll }), [scroll])}>
       {children}

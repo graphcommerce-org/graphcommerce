@@ -1,6 +1,5 @@
-import { ParsedUrlQuery } from 'querystring'
-import { useRouter } from 'next/router'
 import { useCallback } from 'react'
+import { useUrlQuery } from '../../useUrlQuery/useUrlQuery'
 import { LayoutOverlay, LayoutOverlayProps } from '../components/LayoutOverlay'
 
 export type LayoutOverlayState = Omit<
@@ -8,19 +7,8 @@ export type LayoutOverlayState = Omit<
   'children' | 'sx' | 'sxBackdrop' | 'mdSpacingTop' | 'smSpacingTop'
 >
 
-function useQueryState<T extends ParsedUrlQuery>(builder: (query: T) => T) {
-  const { query, replace } = useRouter()
-  const queryState = builder(query as T)
-
-  const setRouterQuery = (partialQuery: T) => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    replace({ query: { ...queryState, ...partialQuery } }, undefined, { shallow: true })
-  }
-  return [queryState, setRouterQuery] as const
-}
-
 export function useLayoutState() {
-  const [routerQuery, setRouterQuery] = useQueryState<LayoutOverlayState>(
+  const [routerQuery, setRouterQuery] = useUrlQuery<LayoutOverlayState>(
     useCallback(
       ({ sizeMd, sizeSm, justifyMd, justifySm, variantMd, variantSm }) => ({
         sizeMd,
