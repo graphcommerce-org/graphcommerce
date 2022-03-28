@@ -12,7 +12,7 @@ const test = base.extend<{ productURL: ProductUrls }>({
   productURL: async ({ apolloClient, baseURL }, use) => {
     const query = await apolloClient.query({
       query: ProductStaticPathsDocument,
-      variables: { currentPage: 1, pageSize: 1000 },
+      variables: { currentPage: 1, pageSize: 300 },
     })
 
     const productUrls: Partial<Omit<ProductUrls, 'all'>> = {}

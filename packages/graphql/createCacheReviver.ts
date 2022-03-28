@@ -7,6 +7,8 @@ import { getTypePoliciesVersion } from './typePolicies'
 const APOLLO_CACHE_PERSIST = 'apollo-cache-persist'
 const APOLLO_CACHE_VERSION = 'apollo-cache-version'
 
+let persistor: CachePersistor<NormalizedCacheObject> | undefined
+
 /** Revives the cache from the localStorage if it is available. */
 export function createCacheReviver(
   client: ApolloClient<NormalizedCacheObject>,
@@ -18,10 +20,12 @@ export function createCacheReviver(
   let state = incommingState
   const typePoliciesVersion = getTypePoliciesVersion(policies)
 
+  if (persistor) return
+
   if (typeof window !== 'undefined') {
     try {
       const { cache } = client
-      const persistor = new CachePersistor({
+      persistor = new CachePersistor({
         cache,
         storage: new LocalStorageWrapper(window.localStorage),
         maxSize: false,
