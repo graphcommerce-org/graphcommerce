@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- [#1360](https://github.com/graphcommerce-org/graphcommerce/pull/1360) [`829b8690b`](https://github.com/graphcommerce-org/graphcommerce/commit/829b8690bc5d0a46e596299e4120e9837a9f179c) Thanks [@paales](https://github.com/paales)! - Add a clientSizeCssVar that will change when the viewport changes size, as a better alternative for 100vh and in preparation for 100dvh
+
 ## 3.0.5
 
 ### Patch Changes

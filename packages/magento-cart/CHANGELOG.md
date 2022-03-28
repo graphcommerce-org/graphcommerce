@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.2.1
+
+### Patch Changes
+
+- [#1360](https://github.com/graphcommerce-org/graphcommerce/pull/1360) [`829b8690b`](https://github.com/graphcommerce-org/graphcommerce/commit/829b8690bc5d0a46e596299e4120e9837a9f179c) Thanks [@paales](https://github.com/paales)! - Move margins in CartStartCheckout to parent element, for better rendering on the sheet
+
+- Updated dependencies [[`829b8690b`](https://github.com/graphcommerce-org/graphcommerce/commit/829b8690bc5d0a46e596299e4120e9837a9f179c), [`49a2d6617`](https://github.com/graphcommerce-org/graphcommerce/commit/49a2d661712e1787fba46c6195f7b559189e23d9), [`c9f7ac026`](https://github.com/graphcommerce-org/graphcommerce/commit/c9f7ac026b49047eca05be208b515f364e21571c), [`f67da3cfb`](https://github.com/graphcommerce-org/graphcommerce/commit/f67da3cfbe2dcf5ea23519d088c5aa0074029182), [`218766869`](https://github.com/graphcommerce-org/graphcommerce/commit/218766869f7468c067a590857c942f3819f8add4), [`0e5ee7ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/0e5ee7ba89698e5e711001e846ed182528060cba), [`829b8690b`](https://github.com/graphcommerce-org/graphcommerce/commit/829b8690bc5d0a46e596299e4120e9837a9f179c), [`829b8690b`](https://github.com/graphcommerce-org/graphcommerce/commit/829b8690bc5d0a46e596299e4120e9837a9f179c)]:
+  - @graphcommerce/framer-scroller@2.1.2
+  - @graphcommerce/next-ui@4.4.0
+  - @graphcommerce/framer-next-pages@3.1.3
+  - @graphcommerce/magento-customer@4.1.6
+
 ## 4.2.0
 
 ### Minor Changes
