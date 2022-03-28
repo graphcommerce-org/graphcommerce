@@ -18,9 +18,15 @@ export async function waitForGraphQlResponse<Q, V>(
   docOrName: string | TypedDocumentNode<Q, V>,
 ): Promise<FetchResult<Q>> {
   const name = typeof docOrName === 'string' ? docOrName : getOperationName(docOrName)
-  const response = await page.waitForResponse(
-    (r) => r.request().postDataJSON()?.operationName === name,
-  )
+
+  const response = await page.waitForResponse((r) => {
+    try {
+      return r.request().postDataJSON()?.operationName === name
+    } catch (e) {
+      return false
+    }
+  })
+
   return (await response?.json()) as FetchResult<Q>
 }
 
