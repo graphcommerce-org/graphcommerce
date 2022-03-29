@@ -18,8 +18,9 @@
     "@graphcommerce/magento-product-configurable": "^4.0.6",
     "@graphcommerce/prettier-config-pwa": "^4.0.3",
     "@graphcommerce/typescript-config-pwa": "^4.0.2",
-    "@playwright/test": "^1.19.2",
-    "@types/braintree-web": "^3.75.19"
+    "@playwright/test": "^1.20.1",
+    "@types/braintree-web": "^3.75.19",
+    "type-fest": "2.12.1"
   },
   "dependencies": {
     "@graphcommerce/graphql": "^3.0.4",
@@ -29,8 +30,7 @@
     "@graphcommerce/magento-store": "^4.1.2",
     "@graphcommerce/next-ui": "^4.2.4",
     "@graphcommerce/react-hook-form": "^3.0.4",
-    "braintree-web": "^3.85.2",
-    "type-fest": "^2.12.0"
+    "braintree-web": "^3.85.2"
   },
   "peerDependencies": {
     "@lingui/macro": "^3.13.2",
