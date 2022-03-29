@@ -33,17 +33,7 @@ function OrderSuccessPage() {
         metaDescription={t`Ordered items`}
         metaRobots={['noindex']}
       />
-      <LayoutHeader
-        divider={
-          <>
-            {hasCartId && (
-              <Container maxWidth={false}>
-                <Stepper steps={3} currentStep={3} />
-              </Container>
-            )}
-          </>
-        }
-      >
+      <LayoutHeader floatingMd>
         {hasCartId && (
           <LayoutTitle size='small' icon={iconParty}>
             <Trans>Thank you for your order!</Trans>
