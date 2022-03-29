@@ -13,7 +13,7 @@ const parts = ['root', 'list'] as const
 const { classes } = extendableComponent(compName, parts)
 
 export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
-  const { mollie_available_issuers = [] } = props
+  const { mollie_available_issuers = [], selected } = props
   const { code, step, Container, label, title = '' } = props
 
   const form = useFormGqlMutationCart(SetMolliePaymentMethodIssuerOnCartDocument, {

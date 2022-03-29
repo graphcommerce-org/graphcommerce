@@ -19,12 +19,11 @@ const successStatusses: PaymentStatusEnum[] = ['AUTHORIZED', 'COMPLETED', 'PAID'
 export function MolliePaymentHandler() {
   const router = useRouter()
   const method = usePaymentMethodContext()
-  const cart_id = useCurrentCartId()
   const clear = useClearCurrentCartId()
 
   const isMollie = method.selectedMethod?.code.startsWith('mollie_methods')
 
-  const [{ mollie_payment_token, locked, cart_id: lockedCartId }] = useCartLockWithToken()
+  const [lockState] = useCartLockWithToken()
 
   const [handle, handleResult] = useMutation(MolliePaymentHandlerDocument)
   const [recoverCart, recoverResult] = useMutation(MollieRecoverCartDocument)
@@ -32,43 +31,37 @@ export function MolliePaymentHandler() {
   const { called, error, data } = handleResult
 
   useEffect(() => {
-    if (!mollie_payment_token || called || error || locked)
-      return // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     ;(async () => {
-      try {
-        const result = await handle({ variables: { mollie_payment_token } })
+      if (lockState.locked && lockState.redirecting) return
 
-        const paymentStatus = result.data?.mollieProcessTransaction?.paymentStatus
-        const returnedCartId = result.data?.mollieProcessTransaction?.cart?.id
+      if (!lockState.mollie_payment_token) return
+      if (called || error) return
 
-        if (result.errors || !paymentStatus) return
+      const result = await handle({
+        variables: { mollie_payment_token: lockState.mollie_payment_token },
+      })
 
-        if (successStatusses.includes(paymentStatus)) {
-          clear()
-          // eslint-disable-next-line @typescript-eslint/no-floating-promises
-          await router.push({ pathname: '/checkout/success', query: { cart_id } })
-        } else if (returnedCartId) {
-          // eslint-disable-next-line @typescript-eslint/no-floating-promises
-          router.replace('/checkout/payment')
-        }
-      } catch (e) {
-        const cartId = cart_id ?? lockedCartId
-        if (!cartId) return
-        await recoverCart({ variables: { cartId } })
+      const paymentStatus = result.data?.mollieProcessTransaction?.paymentStatus
+      let returnedCartId = result.data?.mollieProcessTransaction?.cart?.id
+
+      if (paymentStatus === 'OPEN' && lockState.cart_id) {
+        const res = await recoverCart({ variables: { cartId: lockState.cart_id } })
+        returnedCartId = res.data?.mollieRestoreCart?.cart.id
+      }
+
+      if (result.errors || !paymentStatus) return
+
+      if (successStatusses.includes(paymentStatus)) {
+        clear()
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        await router.push({ pathname: '/checkout/success', query: { cart_id: lockState.cart_id } })
+      } else if (returnedCartId) {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        router.replace('/checkout/payment')
       }
     })()
-  }, [
-    called,
-    cart_id,
-    clear,
-    error,
-    handle,
-    locked,
-    lockedCartId,
-    mollie_payment_token,
-    recoverCart,
-    router,
-  ])
+  }, [called, clear, error, handle, lockState, recoverCart, router])
 
   const paymentStatus = data?.mollieProcessTransaction?.paymentStatus
   if (paymentStatus)

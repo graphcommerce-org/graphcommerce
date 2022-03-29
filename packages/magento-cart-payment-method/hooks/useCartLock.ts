@@ -1,7 +1,7 @@
 import { useCurrentCartId } from '@graphcommerce/magento-cart'
 import { useUrlQuery } from '@graphcommerce/next-ui'
 
-type CartLockState = {
+export type CartLockState = {
   cart_id?: string
   locked?: string
 }
@@ -15,12 +15,12 @@ type CartLockState = {
 export function useCartLock<E extends Record<string, string | undefined>>() {
   const currentCartId = useCurrentCartId()
 
-  const [state, setState] = useUrlQuery<CartLockState & E>((params) => params)
+  const [queryState, setRouterQuery] = useUrlQuery<CartLockState & E>((params) => params)
 
   const lock = (params: CartLockState & E) => {
     if (!currentCartId) return
-    setState({ locked: '1', cart_id: currentCartId, ...params })
+    setRouterQuery({ locked: '1', cart_id: currentCartId, ...params })
   }
 
-  return [state, lock] as const
+  return [queryState, lock] as const
 }
