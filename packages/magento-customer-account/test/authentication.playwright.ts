@@ -17,9 +17,7 @@ test.describe('Authentication flow', () => {
   const generatedEmail = `playwright${Math.random().toString(36).substring(7)}@example.com`
 
   test('It can create an account', async ({ page }) => {
-    await page.goto('/')
-
-    await Promise.all([page.waitForNavigation(), await page.click('#customer-fab')])
+    await page.goto('/account/signin')
 
     const email = page.locator('input[name="email"]')
     await email.click()
