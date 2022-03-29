@@ -10,7 +10,7 @@ import { useState } from 'react'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import { iconChevronDown, IconSvg } from '@graphcommerce/next-ui'
+import { iconEllypsis, IconSvg } from '@graphcommerce/next-ui'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { useQuery, useMutation } from '@apollo/client'
 import {
@@ -103,7 +103,8 @@ export default function WishlistItem(props: WishlistItemProps) {
         (theme) => ({
           display: 'grid',
           gridTemplate: `
-            "picture itemName itemName itemName IconMenu"
+            "picture itemName itemName itemName iconMenu"
+            "picture itemOptions itemOptions itemOptions"
             "picture itemName itemName itemName itemPrice"`,
           gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
           columnGap: theme.spacings.sm,
@@ -113,8 +114,8 @@ export default function WishlistItem(props: WishlistItemProps) {
           paddingTop: theme.spacings.md,
           [theme.breakpoints.up('sm')]: {
             gridTemplate: `
-              "picture itemName itemName itemName IconMenu"
-              "picture itemName itemName itemName itemPrice"`,
+              "picture itemName itemName itemName iconMenu"
+              "picture itemOptions itemOptions itemPrice itemPrice"`,
             gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(75px, 1fr)`,
             paddingBottom: theme.spacings.lg,
           },
@@ -123,13 +124,13 @@ export default function WishlistItem(props: WishlistItemProps) {
           '&:not(.withOptions)': {
             display: 'grid',
             gridTemplate: `
-            "picture itemName itemName IconMenu"
+            "picture itemName itemName iconMenu"
             "picture itemName itemName itemPrice"`,
             alignItems: 'center',
             gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
             [theme.breakpoints.up('sm')]: {
               gridTemplate: `
-              "picture itemName itemName itemName IconMenu"
+              "picture itemName itemName itemName iconMenu"
               "picture itemName itemName itemName itemPrice"
             `,
               gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(75px, 1fr)`,
@@ -152,7 +153,6 @@ export default function WishlistItem(props: WishlistItemProps) {
           width: rowImageSize,
           height: rowImageSize,
           padding: responsiveVal(5, 10),
-          border: `1px solid ${theme.palette.divider}`,
           alignSelf: 'center',
         })}
       >
@@ -207,7 +207,15 @@ export default function WishlistItem(props: WishlistItemProps) {
         </Link>
       </PageLink>
 
-      <Typography component='div' variant='body1' className={classes.root} sx={sx}>
+      <Typography
+        component='div'
+        variant='body1'
+        className={classes.root}
+        sx={[
+          (theme) => ({ gridArea: 'itemPrice', marginLeft: 'auto' }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      >
         {item.price_range.minimum_price.regular_price.value !==
           item.price_range.minimum_price.final_price.value && (
           <Box
@@ -233,12 +241,14 @@ export default function WishlistItem(props: WishlistItemProps) {
         aria-haspopup='true'
         onClick={handleClick}
         sx={(theme) => ({
-          gridArea: 'IconMenu',
-          width: '40px',
+          gridArea: 'iconMenu',
           alignSelf: 'flex-start',
+          padding: '0',
+          marginLeft: 'auto',
+          borderRadius: '0',
         })}
       >
-        <IconSvg src={iconChevronDown} size='medium' />
+        <IconSvg src={iconEllypsis} size='medium' />
       </IconButton>
       <Menu
         id='long-menu'
@@ -250,8 +260,8 @@ export default function WishlistItem(props: WishlistItemProps) {
         onClose={handleClose}
         PaperProps={{
           style: {
-            maxHeight: 40 * 4.5,
-            width: '15ch',
+            maxHeight: 65,
+            justifyContent: 'center',
           },
         }}
       >
