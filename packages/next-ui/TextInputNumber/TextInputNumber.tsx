@@ -42,7 +42,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
   const classes = withState({})
 
   const ref = useRef<HTMLInputElement>(null)
-  const forkRef = useForkRef<HTMLInputElement>(ref, inputRef as Ref<HTMLInputElement>)
+  const forkRef = useForkRef(ref, inputRef as Ref<HTMLInputElement>)
 
   const [direction, setDirection] = useState<'up' | 'down' | 'runUp' | 'runDown' | null>(null)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

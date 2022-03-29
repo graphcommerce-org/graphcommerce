@@ -13,15 +13,15 @@
     "@graphcommerce/framer-scroller": "^2.1.2",
     "@graphcommerce/image": "^3.1.1",
     "@graphcommerce/next-config": "^3.0.4",
-    "@graphcommerce/next-ui": "^4.4.0",
+    "@graphcommerce/next-ui": "^4.2.4",
     "@mui/material": "^5.5.0",
     "framer-motion": "^6.2.8",
-    "next": "^12.1.0",
+    "next": "^12.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^4.6.2"
+    "typescript": "4.6.3"
   }
 }

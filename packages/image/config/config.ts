@@ -1,4 +1,4 @@
-import { ImageConfigComplete, imageConfigDefault } from 'next/dist/server/image-config'
+import { ImageConfigComplete, imageConfigDefault } from 'next/dist/shared/lib/image-config'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { ImageLoaderProps } from 'next/image'
 
