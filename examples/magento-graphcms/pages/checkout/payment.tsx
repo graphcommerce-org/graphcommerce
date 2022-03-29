@@ -130,6 +130,7 @@ function PaymentPage() {
 
                     <FormActions>
                       <PaymentMethodButton
+                        id='place-order'
                         key='button'
                         type='submit'
                         color='secondary'

@@ -19,7 +19,7 @@ test.describe('Authentication flow', () => {
   test('It can create an account', async ({ page }) => {
     await page.goto('/')
 
-    await Promise.all([page.waitForNavigation(), await page.click('[data-test-id=customer-fab]')])
+    await Promise.all([page.waitForNavigation(), await page.click('#customer-fab')])
 
     const email = page.locator('input[name="email"]')
     await email.click()
@@ -43,7 +43,7 @@ test.describe('Authentication flow', () => {
     await lastname.fill('Test')
 
     // Click button:has-text("Maak account")
-    const createAccount = page.locator('[data-test-id=create-account]')
+    const createAccount = page.locator('#create-account')
     await createAccount.click()
 
     const result = await Promise.race([

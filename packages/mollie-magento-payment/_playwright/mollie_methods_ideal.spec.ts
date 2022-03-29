@@ -20,8 +20,7 @@ const goToPayment = async (page: Page, apolloClient: ApolloClient<NormalizedCach
   await fillShippingAddressForm(page)
 
   await page.click('button[value=flatrate-flatrate]')
-  await page.pause()
-  await page.click('button:has-text("Next")')
+  await page.click('#next')
 
   // Fill in the agreements
   await fillCartAgreementsForm(page, apolloClient)
@@ -37,7 +36,7 @@ const selectIdeal = async (page: Page) => {
 type Statuses = 'paid' | 'failed' | 'canceled' | 'open' | 'expired'
 
 const placeOrder = async (page: Page, status: Statuses) => {
-  await Promise.all([page.waitForNavigation(), page.click('button[name="placeOrder"]')])
+  await Promise.all([page.waitForNavigation(), page.click('#place-order')])
 
   await page.click(`input[name="final_state"][value=${status}]`)
   await Promise.all([page.waitForNavigation(), page.click('.footer button')])

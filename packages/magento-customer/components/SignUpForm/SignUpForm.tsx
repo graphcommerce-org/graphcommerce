@@ -93,7 +93,7 @@ export function SignUpForm(props: SignUpFormProps) {
       <FormActions>
         <Button
           type='submit'
-          data-test-id='create-account'
+          id='create-account'
           variant='contained'
           color='primary'
           size='large'

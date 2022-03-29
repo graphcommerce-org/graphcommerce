@@ -111,7 +111,7 @@ function ShippingPage() {
                 render={(renderProps) => (
                   <>
                     <FormActions>
-                      <ComposedSubmitButton {...renderProps} size='large'>
+                      <ComposedSubmitButton {...renderProps} size='large' id='next'>
                         <Trans>Next</Trans>
                       </ComposedSubmitButton>
                     </FormActions>
