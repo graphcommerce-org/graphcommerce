@@ -1,4 +1,4 @@
-fragment CustomerInfo on Customer @injectable {
+fragment CustomerInfo on Customer {
   default_billing
   default_shipping
   addresses {
