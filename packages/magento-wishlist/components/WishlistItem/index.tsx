@@ -110,14 +110,13 @@ export default function WishlistItem(props: WishlistItemProps) {
           columnGap: theme.spacings.sm,
           alignItems: 'baseline',
           typography: 'body1',
-          paddingBottom: theme.spacings.md,
-          paddingTop: theme.spacings.md,
+          paddingBottom: theme.spacings.sm,
+          paddingTop: theme.spacings.sm,
           [theme.breakpoints.up('sm')]: {
             gridTemplate: `
               "picture itemName itemName itemName iconMenu"
               "picture itemOptions itemOptions itemPrice itemPrice"`,
             gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(75px, 1fr)`,
-            paddingBottom: theme.spacings.lg,
           },
           borderBottom: `1px solid ${theme.palette.divider}`,
 
