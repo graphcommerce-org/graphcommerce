@@ -6,7 +6,7 @@ import { addConfigurableProductToCart } from '@graphcommerce/magento-product-con
 import { test } from '@graphcommerce/magento-product/test/productURL.fixture'
 import { expect } from '@playwright/test'
 
-test.only('banktransfer', async ({ page, productURL, apolloClient }) => {
+test('banktransfer', async ({ page, productURL, apolloClient }) => {
   await addConfigurableProductToCart(page, productURL.ConfigurableProduct)
   await goToPayment(page, apolloClient)
 
