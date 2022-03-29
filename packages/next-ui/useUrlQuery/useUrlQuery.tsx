@@ -8,6 +8,7 @@ export function useUrlQuery<T extends ParsedUrlQuery>(builder: (query: T) => T =
 
   const setRouterQuery = useCallback(
     (partialQuery: T) => {
+      if (JSON.stringify(queryState) === JSON.stringify(partialQuery)) return
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       replace({ query: { ...queryState, ...partialQuery } }, undefined, { shallow: true })
     },
