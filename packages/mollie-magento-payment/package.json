@@ -31,7 +31,7 @@
     "@graphcommerce/magento-cart-payment-method": "^3.0.5",
     "@graphcommerce/magento-store": "^4.1.2",
     "@graphcommerce/next-ui": "^4.4.0",
-    "@graphcommerce/react-hook-form": "^3.0.4",
+    "@graphcommerce/react-hook-form": "^3.0.4"
   },
   "peerDependencies": {
     "@lingui/macro": "^3.13.2",
