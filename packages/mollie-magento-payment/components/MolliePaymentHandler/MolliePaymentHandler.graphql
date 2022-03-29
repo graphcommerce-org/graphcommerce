@@ -1,0 +1,8 @@
+mutation MolliePaymentHandler($mollie_payment_token: String!) {
+  mollieProcessTransaction(input: { payment_token: $mollie_payment_token }) {
+    cart {
+      id
+    }
+    paymentStatus
+  }
+}

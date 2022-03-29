@@ -66,7 +66,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                   {agreement.mode === 'MANUAL' ? (
                     <Controller
                       defaultValue=''
-                      name={String(agreement.agreement_id)}
+                      name={`agreement[${agreement.agreement_id}]`}
                       control={control}
                       rules={{ required: t`You have to agree in order to proceed` }}
                       render={({

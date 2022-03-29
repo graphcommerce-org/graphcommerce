@@ -1,0 +1,16 @@
+import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import { Page } from '@playwright/test'
+import { CartAgreementsDocument } from '../components/CartAgreementsForm/CartAgreements.gql'
+
+export async function fillCartAgreementsForm(
+  page: Page,
+  client: ApolloClient<NormalizedCacheObject>,
+) {
+  const res = (await client.query({ query: CartAgreementsDocument })).data
+
+  for await (const agreement of res.checkoutAgreements ?? []) {
+    if (!agreement?.agreement_id || agreement?.mode === 'AUTO') continue
+
+    await page.locator(`input[name="agreement\\[${agreement.agreement_id}\\]"]`).click()
+  }
+}

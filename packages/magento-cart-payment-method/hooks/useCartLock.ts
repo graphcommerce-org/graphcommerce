@@ -1,7 +1,10 @@
-import { useApolloClient } from '@graphcommerce/graphql'
-import { useCartQuery, useCurrentCartId } from '@graphcommerce/magento-cart'
-import { useCallback } from 'react'
-import { UseCartLockDocument } from './UseCartLock.gql'
+import { useCurrentCartId } from '@graphcommerce/magento-cart'
+import { useUrlQuery } from '@graphcommerce/next-ui'
+
+export type CartLockState = {
+  cart_id?: string
+  locked?: string
+}
 
 /**
  * Locking a cart might is usefull in the following cases: We want to disable cart modifications
@@ -9,25 +12,15 @@ import { UseCartLockDocument } from './UseCartLock.gql'
  *
  * Todo: Block all operations on the cart while the cart is being blocked.
  */
-export function useCartLock() {
-  const { cache } = useApolloClient()
-  const cartId = useCurrentCartId()
+export function useCartLock<E extends Record<string, string | undefined>>() {
+  const currentCartId = useCurrentCartId()
 
-  const locked = useCartQuery(UseCartLockDocument, { allowUrl: true }).data?.cart?.locked ?? false
+  const [queryState, setRouterQuery] = useUrlQuery<CartLockState & E>((params) => params)
 
-  const lock = useCallback(
-    (locking: boolean) => {
-      if (!cartId) return
+  const lock = (params: CartLockState & E) => {
+    if (!currentCartId) return
+    setRouterQuery({ locked: '1', cart_id: currentCartId, ...params })
+  }
 
-      cache.writeQuery({
-        query: UseCartLockDocument,
-        data: { cart: { __typename: 'Cart', id: cartId, locked: locking } },
-        variables: { cartId },
-        broadcast: true,
-      })
-    },
-    [cache, cartId],
-  )
-
-  return { locked, lock }
+  return [queryState, lock] as const
 }

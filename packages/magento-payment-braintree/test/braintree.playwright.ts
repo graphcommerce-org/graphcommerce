@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { waitForGraphQlResponse } from '@graphcommerce/graphql/_playwright/apolloClient.fixture'
+import { waitForGraphQlResponse } from '@graphcommerce/graphql/test/apolloClient.fixture'
 import { PaymentMethodPlaceOrderNoopDocument } from '@graphcommerce/magento-cart-payment-method/PaymentMethodPlaceOrderNoop/PaymentMethodPlaceOrderNoop.gql'
-import { fillShippingAddressForm } from '@graphcommerce/magento-cart-shipping-address/_playwright/fillShippingAddressForm'
-import { addConfigurableProductToCart } from '@graphcommerce/magento-product-configurable/_playwright/addConfigurableProductToCart'
-import { test } from '@graphcommerce/magento-product/_playwright/productURL.fixture'
+import { fillShippingAddressForm } from '@graphcommerce/magento-cart-shipping-address/test/fillShippingAddressForm'
+import { addConfigurableProductToCart } from '@graphcommerce/magento-product-configurable/test/addConfigurableProductToCart'
+import { test } from '@graphcommerce/magento-product/test/productURL.fixture'
 import { expect } from '@playwright/test'
 
 test('place order', async ({ page, productURL }) => {
@@ -19,9 +19,9 @@ test('place order', async ({ page, productURL }) => {
   await fillShippingAddressForm(page)
 
   await page.click('button[value=flatrate-flatrate]')
-  await page.click('button:has-text("Next")')
+  await page.click('#next')
 
-  await page.click('button[value=braintree___]')
+  await page.click('button[value=braintree]')
 
   await page.click('button:has-text("Credit Card")')
 
@@ -40,7 +40,7 @@ test('place order', async ({ page, productURL }) => {
   await expirationFrame?.fill('input[name="expiration"]', '102022')
 
   // Click button:has-text("Pay (Credit Card)")
-  await page.click('button[name="placeOrder"]')
+  await page.click('#place-order')
 
   const result = await waitForGraphQlResponse(page, PaymentMethodPlaceOrderNoopDocument)
   expect(result.errors).toBeUndefined()
