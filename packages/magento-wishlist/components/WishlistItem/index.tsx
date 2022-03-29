@@ -248,7 +248,13 @@ export default function WishlistItem(props: WishlistItemProps) {
           borderRadius: '0',
         })}
       >
-        <IconSvg src={iconEllypsis} size='medium' />
+        <IconSvg
+          src={iconEllypsis}
+          size='medium'
+          sx={(theme) => ({
+            fill: theme.palette.text.primary,
+          })}
+        />
       </IconButton>
       <Menu
         id='long-menu'
