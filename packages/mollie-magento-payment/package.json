@@ -2,7 +2,7 @@
   "name": "@graphcommerce/mollie-magento-payment",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "sideEffects": false,
   "engines": {
     "node": "14.x"
@@ -15,9 +15,9 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^4.0.5",
+    "@graphcommerce/eslint-config-pwa": "^4.1.2",
     "@graphcommerce/magento-cart-shipping-address": "^3.0.4",
-    "@graphcommerce/magento-product": "^4.0.6",
+    "@graphcommerce/magento-product": "^4.1.2",
     "@graphcommerce/magento-product-configurable": "^4.0.6",
     "@graphcommerce/prettier-config-pwa": "^4.0.3",
     "@graphcommerce/typescript-config-pwa": "^4.0.2",
@@ -26,10 +26,10 @@
   "dependencies": {
     "@graphcommerce/graphql": "^3.0.4",
     "@graphcommerce/image": "^3.1.1",
-    "@graphcommerce/magento-cart": "^4.1.4",
+    "@graphcommerce/magento-cart": "^4.2.1",
     "@graphcommerce/magento-cart-payment-method": "^3.0.5",
     "@graphcommerce/magento-store": "^4.1.2",
-    "@graphcommerce/next-ui": "^4.2.4",
+    "@graphcommerce/next-ui": "^4.4.0",
     "@graphcommerce/react-hook-form": "^3.0.4",
     "type-fest": "^2.12.0"
   },
