@@ -23,7 +23,7 @@ import {
   LinkOrButton,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Container, NoSsr } from '@mui/material'
+import { Container } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
