@@ -6,14 +6,11 @@ import { addConfigurableProductToCart } from '@graphcommerce/magento-product-con
 import { test } from '@graphcommerce/magento-product/test/productURL.fixture'
 import { expect } from '@playwright/test'
 
-test('place order', async ({ page, productURL, apolloClient }) => {
+test.only('banktransfer', async ({ page, productURL, apolloClient }) => {
   await addConfigurableProductToCart(page, productURL.ConfigurableProduct)
   await goToPayment(page, apolloClient)
 
-  await page.click('button[value=purchaseorder]')
-
-  await page.click('input[name="poNumber"]')
-  await page.fill('input[name="poNumber"]', '1234567890')
+  await page.click('button[value=banktransfer]')
 
   const waitForPlaceOrder = waitForGraphQlResponse(page, PaymentMethodPlaceOrderNoopDocument)
 
