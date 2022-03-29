@@ -45,7 +45,7 @@ test.describe('mollie creditcard place order', () => {
   //   expect(await page.locator('text=Back to home').innerText()).toBeDefined()
   // })
 
-  test.only('PAID', async ({ page, productURL, apolloClient }) => {
+  test('PAID', async ({ page, productURL, apolloClient }) => {
     await addConfigurableProductToCart(page, productURL.ConfigurableProduct)
     await goToPayment(page, apolloClient)
     await selectCreditCard(page)
