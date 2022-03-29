@@ -1,14 +1,12 @@
-import { FieldPolicy , CustomerToken, MigrateCache, Mutation, TypedTypePolicies } from '@graphcommerce/graphql'
+import {
+  FieldPolicy,
+  CustomerToken,
+  MigrateCache,
+  Mutation,
+  TypedTypePolicies,
+} from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from './hooks/CustomerToken.gql'
 import { IsEmailAvailableDocument } from './hooks/IsEmailAvailable.gql'
-
-const revokeCustomerToken: FieldPolicy<Mutation['revokeCustomerToken']> = {
-  merge(_existing, incoming, options) {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    options.cache.reset()
-    return incoming
-  },
-}
 
 const TOKEN_EXPIRATION_MS = 60 * 60 * 1000
 
@@ -74,7 +72,7 @@ const createCustomer: FieldPolicy<Mutation['createCustomer']> = {
 
 export const customerTypePolicies: TypedTypePolicies = {
   // Query: { fields: { customer } },
-  Mutation: { fields: { generateCustomerToken, revokeCustomerToken, createCustomer } },
+  Mutation: { fields: { generateCustomerToken, createCustomer } },
   CustomerToken: { fields: { valid } },
 }
 

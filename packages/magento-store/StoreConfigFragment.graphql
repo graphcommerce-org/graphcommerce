@@ -1,0 +1,29 @@
+fragment StoreConfigFragment on StoreConfig @injectable {
+  website_name
+  store_code
+  store_name
+
+  locale
+  base_currency_code
+  default_display_currency_code
+
+  title_suffix
+  title_prefix
+  title_separator
+  default_title
+
+  cms_home_page
+
+  catalog_default_sort_by
+  category_url_suffix
+  product_url_suffix
+  secure_base_link_url
+  secure_base_url
+
+  root_category_uid
+
+  weight_unit
+
+  product_reviews_enabled
+  allow_guests_to_write_product_reviews
+}

@@ -1,5 +1,25 @@
 # Change Log
 
+## 3.5.2
+
+### Patch Changes
+
+- [#1364](https://github.com/graphcommerce-org/graphcommerce/pull/1364) [`9b0233513`](https://github.com/graphcommerce-org/graphcommerce/commit/9b0233513e33b373d3b287c71fabe568a2111a3d) Thanks [@paales](https://github.com/paales)! - An anchor tag in a rich text field can have a openInNewTab prop
+
+* [#1353](https://github.com/graphcommerce-org/graphcommerce/pull/1353) [`0e5ee7ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/0e5ee7ba89698e5e711001e846ed182528060cba) Thanks [@paales](https://github.com/paales)! - Eslint: enable rules that were previously disabled and make fixes
+
+* Updated dependencies [[`829b8690b`](https://github.com/graphcommerce-org/graphcommerce/commit/829b8690bc5d0a46e596299e4120e9837a9f179c), [`49a2d6617`](https://github.com/graphcommerce-org/graphcommerce/commit/49a2d661712e1787fba46c6195f7b559189e23d9), [`c9f7ac026`](https://github.com/graphcommerce-org/graphcommerce/commit/c9f7ac026b49047eca05be208b515f364e21571c), [`f67da3cfb`](https://github.com/graphcommerce-org/graphcommerce/commit/f67da3cfbe2dcf5ea23519d088c5aa0074029182), [`218766869`](https://github.com/graphcommerce-org/graphcommerce/commit/218766869f7468c067a590857c942f3819f8add4), [`0e5ee7ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/0e5ee7ba89698e5e711001e846ed182528060cba), [`5fa60655c`](https://github.com/graphcommerce-org/graphcommerce/commit/5fa60655c85ff3b3debe663b94450cbff5c52520), [`829b8690b`](https://github.com/graphcommerce-org/graphcommerce/commit/829b8690bc5d0a46e596299e4120e9837a9f179c), [`829b8690b`](https://github.com/graphcommerce-org/graphcommerce/commit/829b8690bc5d0a46e596299e4120e9837a9f179c), [`829b8690b`](https://github.com/graphcommerce-org/graphcommerce/commit/829b8690bc5d0a46e596299e4120e9837a9f179c), [`59c71d6bf`](https://github.com/graphcommerce-org/graphcommerce/commit/59c71d6bf094ea27074b5d91efa79e1c9392445b)]:
+  - @graphcommerce/framer-scroller@2.1.2
+  - @graphcommerce/next-ui@4.4.0
+  - @graphcommerce/framer-next-pages@3.1.3
+  - @graphcommerce/graphcms-ui@3.0.7
+  - @graphcommerce/magento-customer@4.1.6
+  - @graphcommerce/magento-customer-account@3.0.6
+  - @graphcommerce/magento-product@4.1.2
+  - @graphcommerce/magento-search@4.1.2
+  - @graphcommerce/mollie-magento-payment@3.0.6
+  - @graphcommerce/magento-cart@4.2.1
+
 ## 3.5.1
 
 ### Patch Changes

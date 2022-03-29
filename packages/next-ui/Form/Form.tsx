@@ -34,4 +34,6 @@ export const Form = styled('form', {
   shouldForwardProp: (prop) => prop !== 'contained',
 })<FormStyleProps>(styles)
 
-export const FormDiv = styled('div')<FormStyleProps>(styles)
+export const FormDiv = styled('div', {
+  shouldForwardProp: (prop) => prop !== 'contained',
+})<FormStyleProps>(styles)

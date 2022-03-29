@@ -1,0 +1,21 @@
+fragment CreateCustomerMutationFragment on Mutation {
+  createCustomer(
+    input: {
+      email: $email
+      password: $password
+      prefix: $prefix
+      firstname: $firstname
+      middlename: $middlename
+      lastname: $lastname
+      suffix: $suffix
+      taxvat: $taxvat
+      gender: $gender
+      is_subscribed: $isSubscribed
+      date_of_birth: $dateOfBirth
+    }
+  ) {
+    customer {
+      ...CustomerInfo
+    }
+  }
+}

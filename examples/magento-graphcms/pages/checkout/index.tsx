@@ -111,8 +111,8 @@ function ShippingPage() {
                 render={(renderProps) => (
                   <>
                     <FormActions>
-                      <ComposedSubmitButton {...renderProps} size='large'>
-                        <Trans>Start Checkout</Trans>
+                      <ComposedSubmitButton {...renderProps} size='large' id='next'>
+                        <Trans>Next</Trans>
                       </ComposedSubmitButton>
                     </FormActions>
                     <ApolloCartErrorAlert

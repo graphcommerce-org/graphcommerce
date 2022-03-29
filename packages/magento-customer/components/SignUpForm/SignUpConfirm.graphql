@@ -1,0 +1,15 @@
+mutation SignUpConfirm(
+  $email: String!
+  $password: String!
+  $prefix: String!
+  $firstname: String!
+  $middlename: String
+  $lastname: String!
+  $suffix: String
+  $taxvat: String
+  $gender: Int
+  $isSubscribed: Boolean = false
+  $dateOfBirth: String
+) {
+  ...CreateCustomerMutationFragment
+}

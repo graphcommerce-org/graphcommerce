@@ -1,6 +1,8 @@
+import { useQuery } from '@graphcommerce/graphql'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, extendableComponent, Form, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { t, Trans } from '@lingui/macro'
 import { Box, TextField } from '@mui/material'
 import React, { PropsWithChildren } from 'react'
 import { SignUpMutationVariables, SignUpMutation, SignUpDocument } from './SignUp.gql'
@@ -42,6 +44,10 @@ export function SignUpFormInline({
   const submitHandler = handleSubmit(onSubmitted)
   const watchPassword = watch('password')
 
+  const minPasswordLength = Number(
+    useQuery(StoreConfigDocument).data?.storeConfig?.minimum_password_length ?? 8,
+  )
+
   return (
     <Form onSubmit={submitHandler} noValidate className={classes.form} sx={{ padding: 0 }}>
       <FormRow key='inline-signup' className={classes.row} sx={{ padding: 0 }}>
@@ -54,7 +60,13 @@ export function SignUpFormInline({
           autoComplete='new-password'
           id='new-password'
           required={required.password}
-          {...muiRegister('password', { required: required.password })}
+          {...muiRegister('password', {
+            required: required.password,
+            minLength: {
+              value: minPasswordLength,
+              message: t`Password must have at least 8 characters`,
+            },
+          })}
           helperText={error?.message}
           disabled={formState.isSubmitting}
         />

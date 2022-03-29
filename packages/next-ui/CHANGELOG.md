@@ -1,5 +1,33 @@
 # Change Log
 
+## 4.4.0
+
+### Minor Changes
+
+- [#1363](https://github.com/graphcommerce-org/graphcommerce/pull/1363) [`f67da3cfb`](https://github.com/graphcommerce-org/graphcommerce/commit/f67da3cfbe2dcf5ea23519d088c5aa0074029182) Thanks [@paales](https://github.com/paales)! - Export useIconSvgSize from IconSvg so that other components can use it's size
+
+### Patch Changes
+
+- [#1360](https://github.com/graphcommerce-org/graphcommerce/pull/1360) [`49a2d6617`](https://github.com/graphcommerce-org/graphcommerce/commit/49a2d661712e1787fba46c6195f7b559189e23d9) Thanks [@paales](https://github.com/paales)! - Make sure Cart and menu isn’t hidden on landscape
+
+* [#1363](https://github.com/graphcommerce-org/graphcommerce/pull/1363) [`218766869`](https://github.com/graphcommerce-org/graphcommerce/commit/218766869f7468c067a590857c942f3819f8add4) Thanks [@paales](https://github.com/paales)! - Use a Fab for the LayoutHeaderClose so it isn't as obtrusive on desktop
+
+- [#1353](https://github.com/graphcommerce-org/graphcommerce/pull/1353) [`0e5ee7ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/0e5ee7ba89698e5e711001e846ed182528060cba) Thanks [@paales](https://github.com/paales)! - Eslint: enable rules that were previously disabled and make fixes
+
+* [#1360](https://github.com/graphcommerce-org/graphcommerce/pull/1360) [`829b8690b`](https://github.com/graphcommerce-org/graphcommerce/commit/829b8690bc5d0a46e596299e4120e9837a9f179c) Thanks [@paales](https://github.com/paales)! - Lots of fixes for LayoutOverlay:
+
+  - When interacting with an overlay it causes browser resizes on mobile and causing a janky experience.
+  - Allow interaction with the previous layer after it has been closed, instead of waiting for the actual route to complete.
+  - Allow scrolling to the the bottom in the overlay when the height is just a bit higher than the window.
+  - Allow sheet positioning for bottom for the overlay: mdSpacingTop, smSpacingTop.
+  - Add scrollSnapStop:always to the actual overlay pane, so that when scrolling up it will not just close the overlay. Requiring a second swipe to close the overlay.
+  - Remove spacing on the bottom of the overlay that was introduced for Android, not nessesary anymore because of the clientSizeCssVar.y
+
+* Updated dependencies [[`829b8690b`](https://github.com/graphcommerce-org/graphcommerce/commit/829b8690bc5d0a46e596299e4120e9837a9f179c), [`c9f7ac026`](https://github.com/graphcommerce-org/graphcommerce/commit/c9f7ac026b49047eca05be208b515f364e21571c), [`829b8690b`](https://github.com/graphcommerce-org/graphcommerce/commit/829b8690bc5d0a46e596299e4120e9837a9f179c), [`0e5ee7ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/0e5ee7ba89698e5e711001e846ed182528060cba), [`829b8690b`](https://github.com/graphcommerce-org/graphcommerce/commit/829b8690bc5d0a46e596299e4120e9837a9f179c)]:
+  - @graphcommerce/framer-scroller@2.1.2
+  - @graphcommerce/framer-next-pages@3.1.3
+  - @graphcommerce/framer-utils@3.1.0
+
 ## 4.3.2
 
 ### Patch Changes
