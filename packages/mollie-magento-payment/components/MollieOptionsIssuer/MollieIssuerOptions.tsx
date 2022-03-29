@@ -51,7 +51,6 @@ export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
           >
             {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
             <option value='' />
-            {/* <MenuItem value='' /> */}
             {mollie_available_issuers?.map((issuer) => {
               if (!issuer?.code || !issuer.name) return null
 
@@ -60,25 +59,13 @@ export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
                   {issuer.name}
                 </option>
               )
-              // return (
-              //   <MenuItem key={issuer.code} value={issuer.code}>
-              //     <ListItemIcon>
-              //       <IconSvg src={issuer.svg} alt={issuer.name} size='small' />
-              //     </ListItemIcon>
-              //     <Typography variant='inherit'>{issuer.name}</Typography>
-              //   </MenuItem>
-              // )
             })}
           </TextField>
         </FormRow>
         <Box
           component='ul'
           className={classes.list}
-          sx={(theme) => ({
-            typography: 'body2',
-            paddingLeft: theme.spacings.xs,
-            margin: 0,
-          })}
+          sx={(theme) => ({ typography: 'body2', paddingLeft: theme.spacings.xs, margin: 0 })}
         >
           <li>
             <Trans>Choose your bank, and place your order.</Trans>

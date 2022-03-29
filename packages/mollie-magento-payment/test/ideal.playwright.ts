@@ -6,7 +6,7 @@ import { fillCartAgreementsForm } from '@graphcommerce/magento-cart/test/fillCar
 import { addConfigurableProductToCart } from '@graphcommerce/magento-product-configurable/test/addConfigurableProductToCart'
 import { test } from '@graphcommerce/magento-product/test/productURL.fixture'
 import { expect, Page } from '@playwright/test'
-import { UseMolliePaymentTokenHandlerDocument } from '../hooks/UseMolliePaymentTokenHandler.gql'
+import { MolliePaymentHandlerDocument } from '../components/MolliePaymentHandler/MolliePaymentHandler.gql'
 
 const goToPayment = async (page: Page, apolloClient: ApolloClient<NormalizedCacheObject>) => {
   await page.locator('a:has-text("View shopping cart")').click()
@@ -41,7 +41,7 @@ const placeOrder = async (page: Page, status: Statuses) => {
   await page.click(`input[name="final_state"][value=${status}]`)
   await Promise.all([page.waitForNavigation(), page.click('.footer button')])
 
-  const result = await waitForGraphQlResponse(page, UseMolliePaymentTokenHandlerDocument)
+  const result = await waitForGraphQlResponse(page, MolliePaymentHandlerDocument)
   expect(result.errors).toBeUndefined()
   expect(result.data?.mollieProcessTransaction?.paymentStatus).toBe(status.toUpperCase())
 }

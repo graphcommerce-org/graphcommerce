@@ -12,9 +12,8 @@ import { MolliePlaceOrderDocument } from './MolliePlaceOrder.gql'
 
 export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
   const { step, code } = props
-  const router = useRouter()
+  const { push } = useRouter()
   const cartId = useCurrentCartId()
-  const clear = useClearCurrentCartId()
   const [, lock] = useCartLockWithToken()
 
   const form = useFormGqlMutationCart(MolliePlaceOrderDocument, { mode: 'onChange' })
@@ -41,19 +40,9 @@ export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
     if (redirectUrl && mollie_payment_token) {
       lock({ mollie_payment_token })
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.push(redirectUrl)
+      push(redirectUrl)
     }
-
-    // When we're coming back from the payment gateway
-    // if (!redirectUrl && mollie_payment_token) {
-    //   clear()
-    //   // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    //   router.push({
-    //     pathname: '/checkout/success',
-    //     query: { cartId, molliePaymentToken: mollie_payment_token },
-    //   })
-    // }
-  }, [cartId, clear, data?.placeOrder?.order, error, lock, router])
+  }, [cartId, data?.placeOrder?.order, error, lock, push])
 
   useFormCompose({ form, step, submit, key: `PaymentMethodPlaceOrder_${code}` })
 
