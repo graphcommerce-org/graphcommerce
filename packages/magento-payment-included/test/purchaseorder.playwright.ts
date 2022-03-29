@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { waitForGraphQlResponse } from '@graphcommerce/graphql/_playwright/apolloClient.fixture'
+import { waitForGraphQlResponse } from '@graphcommerce/graphql/test/apolloClient.fixture'
 import { PaymentMethodPlaceOrderNoopDocument } from '@graphcommerce/magento-cart-payment-method/PaymentMethodPlaceOrderNoop/PaymentMethodPlaceOrderNoop.gql'
-import { fillShippingAddressForm } from '@graphcommerce/magento-cart-shipping-address/_playwright/fillShippingAddressForm'
-import { addConfigurableProductToCart } from '@graphcommerce/magento-product-configurable/_playwright/addConfigurableProductToCart'
-import { test } from '@graphcommerce/magento-product/_playwright/productURL.fixture'
+import { fillShippingAddressForm } from '@graphcommerce/magento-cart-shipping-address/test/fillShippingAddressForm'
+import { addConfigurableProductToCart } from '@graphcommerce/magento-product-configurable/test/addConfigurableProductToCart'
+import { test } from '@graphcommerce/magento-product/test/productURL.fixture'
 import { expect } from '@playwright/test'
 
 test('place order', async ({ page, productURL }) => {
@@ -19,7 +19,7 @@ test('place order', async ({ page, productURL }) => {
   await fillShippingAddressForm(page)
 
   await page.click('button[value=flatrate-flatrate]')
-  await page.click('button:has-text("Next")')
+  await page.click('#next')
 
   await page.click('button[value=purchaseorder]')
 
@@ -28,7 +28,7 @@ test('place order', async ({ page, productURL }) => {
 
   const [, , placeOrder] = await Promise.all([
     page.waitForNavigation(),
-    page.click('button[name="placeOrder"]'),
+    page.click('#place-order'),
     waitForGraphQlResponse(page, PaymentMethodPlaceOrderNoopDocument),
   ])
 

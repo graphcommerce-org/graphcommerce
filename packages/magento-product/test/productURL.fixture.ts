@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { test as base } from '@graphcommerce/graphql/_playwright/apolloClient.fixture'
+import { test as base } from '@graphcommerce/graphql/test/apolloClient.fixture'
 import { ProductStaticPathsDocument } from '../components/ProductStaticPaths/ProductStaticPaths.gql'
 import { ProductTypenames } from '../components/ProductStaticPaths/getProductStaticPaths'
 import { productLink } from '../hooks/useProductLink'

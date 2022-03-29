@@ -1,7 +1,7 @@
 import { PlaywrightTestConfig, devices } from '@playwright/test'
 
 const config: PlaywrightTestConfig = {
-  testMatch: ['**/_playwright/**.spec.ts'],
+  testMatch: ['**/*.playwright.ts'],
   projects: [
     {
       name: 'android',

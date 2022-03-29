@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
-import { waitForGraphQlResponse } from '@graphcommerce/graphql/_playwright/apolloClient.fixture'
-import { fillShippingAddressForm } from '@graphcommerce/magento-cart-shipping-address/_playwright/fillShippingAddressForm'
-import { fillCartAgreementsForm } from '@graphcommerce/magento-cart/_playwright/fillCartAgreementsForm'
-import { addConfigurableProductToCart } from '@graphcommerce/magento-product-configurable/_playwright/addConfigurableProductToCart'
-import { test } from '@graphcommerce/magento-product/_playwright/productURL.fixture'
+import { waitForGraphQlResponse } from '@graphcommerce/graphql/test/apolloClient.fixture'
+import { fillShippingAddressForm } from '@graphcommerce/magento-cart-shipping-address/test/fillShippingAddressForm'
+import { fillCartAgreementsForm } from '@graphcommerce/magento-cart/test/fillCartAgreementsForm'
+import { addConfigurableProductToCart } from '@graphcommerce/magento-product-configurable/test/addConfigurableProductToCart'
+import { test } from '@graphcommerce/magento-product/test/productURL.fixture'
 import { expect, Page } from '@playwright/test'
 import { UseMolliePaymentTokenHandlerDocument } from '../hooks/UseMolliePaymentTokenHandler.gql'
 
@@ -52,6 +52,15 @@ test.describe('mollie ideal place order', () => {
     await goToPayment(page, apolloClient)
     await selectIdeal(page)
     await placeOrder(page, 'canceled')
+    await placeOrder(page, 'paid')
+    expect(await page.locator('text=Back to home').innerText()).toBeDefined()
+  })
+
+  test('OPEN', async ({ page, productURL, apolloClient }) => {
+    await addConfigurableProductToCart(page, productURL.ConfigurableProduct)
+    await goToPayment(page, apolloClient)
+    await selectIdeal(page)
+    await placeOrder(page, 'open')
     await placeOrder(page, 'paid')
     expect(await page.locator('text=Back to home').innerText()).toBeDefined()
   })
