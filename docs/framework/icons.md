@@ -76,7 +76,7 @@ In /components/Layout/LayoutFull.tsx:
 
 ```tsx
 ...
-import iconCustomerService from '@graphcommerce/next-ui'
+import { iconCustomerService } from '@graphcommerce/next-ui'
 
 ...
 return (
