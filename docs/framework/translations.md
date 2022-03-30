@@ -71,15 +71,30 @@ Add Linqui to the component's imports:
 import { t, Trans } from '@lingui/macro'
 ```
 
-Add the msgid and translation to the translation files:
+Run `yarn lingui`. All new (missing) translations will be added to translations
+files:
+
+```tsx
+//Example terminal output
+
+┌─────────────┬─────────────┬─────────┐
+│ Language    │ Total count │ Missing │
+├─────────────┼─────────────┼─────────┤
+│ en (source) │     208     │    -    │
+│ nl          │     208     │    1    │
+│ es          │     208     │    1    │
+└─────────────┴─────────────┴─────────┘
+```
+
+Edit the translations files to add your translation:
 
 ```ts
-Example of /locales/es.po
+//Example from /locales/es.po
 
 ...
 
 msgid "Call us now"
-msgstr "Llámanos ahora"
+msgstr ""
 ```
 
 ## Passing `{values}` to translations
@@ -96,7 +111,7 @@ You can pass values in msgid's:
 The syntax in the translation files:
 
 ```ts
-Example of /locales/en.po
+//Example from /locales/en.po
 
 ...
 
