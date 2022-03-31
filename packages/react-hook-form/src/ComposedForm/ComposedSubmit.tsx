@@ -46,46 +46,50 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
      * If we have forms that are have errors, we don't need to actually submit anything yet. We can
      * trigger the submission of the invalid forms and highlight the errors in those forms.
      */
-    let formsToSubmit = formEntries.filter(
-      ([, f]) => Object.keys(f.form?.formState.errors ?? {}).length > 0,
-    )
+    dispatch({ type: 'SUBMIT' })
 
-    // We have no errors and no invalid forms, this means we can submit everything.
-    if (!formsToSubmit.length) {
-      formsToSubmit = formEntries
-    } else if (process.env.NODE_ENV !== 'production') {
-      console.log('[ComposedForm] Found forms with errors, triggering validation...')
-      console.log(
-        Object.fromEntries(formsToSubmit.map(([, { key, form }]) => [key, form?.formState.errors])),
-      )
+    const invalidKeys: string[] = []
+    for (const [, { form, key }] of formEntries) {
+      // eslint-disable-next-line no-await-in-loop
+      const result = await form?.trigger()
+      if (result === false) invalidKeys.push(key)
     }
 
-    dispatch({ type: 'SUBMIT' })
+    let formsToProcess = formEntries
+    if (invalidKeys.length === 0) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.log(
+          '[ComposedForm] All forms are valid, submitting...',
+          formsToProcess.map(([, { key }]) => key),
+        )
+      }
+    } else {
+      formsToProcess = formEntries.filter(([, { key }]) => invalidKeys.includes(key))
+      if (process.env.NODE_ENV !== 'production') {
+        console.log(
+          '[ComposedForm] Found invalid forms, triggering error messages by submitting...',
+          Object.fromEntries(
+            formsToProcess.map(([, { key, form }]) => [
+              key,
+              `Invalid fields ${(form?.formState.errors
+                ? Object.keys(form.formState.errors)
+                : []
+              ).join(', ')}`,
+            ]),
+          ),
+        )
+      }
+    }
 
     try {
       /**
        * We're executing these steps all in sequence, since certain forms can depend on other forms
        * in the backend.
-       *
-       * Todo: There might be a performance optimization by submitting multiple forms in parallel.
        */
-      let canSubmit = true
-      for (const [, { submit, form, key }] of formsToSubmit) {
+      for (const [, { submit, key }] of formsToProcess) {
         try {
           // eslint-disable-next-line no-await-in-loop
-          if (canSubmit) await submit?.()
-          // eslint-disable-next-line no-await-in-loop
-          if (!canSubmit) await form?.trigger()
-          if (form && isFormGqlOperation(form) && form.error) {
-            if (process.env.NODE_ENV !== 'production') {
-              console.error(
-                `[ComposedForm] The form ${key} has an ApolloError, only triggering the validation for the next forms.`,
-                form.error,
-              )
-            }
-            canSubmit = false
-          } else if (process.env.NODE_ENV !== 'production')
-            console.log(`[ComposedForm] Submit triggered ${key}`)
+          await submit?.()
         } catch (e) {
           if (process.env.NODE_ENV !== 'production') {
             console.error(
