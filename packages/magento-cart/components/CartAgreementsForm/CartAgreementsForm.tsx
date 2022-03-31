@@ -44,7 +44,9 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
 
   const { handleSubmit, formState, control } = form
 
-  const submit = handleSubmit(() => {})
+  const submit = handleSubmit((values) => {
+    console.log(values)
+  })
 
   useFormPersist({ form, name: 'PaymentAgreementsForm' })
 
@@ -68,10 +70,12 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                       defaultValue=''
                       name={`agreement[${agreement.agreement_id}]`}
                       control={control}
-                      rules={{ required: t`You have to agree in order to proceed` }}
+                      rules={{
+                        required: t`You have to agree in order to proceed`,
+                      }}
                       render={({
                         field: { onChange, value, name, ref, onBlur },
-                        fieldState: { error },
+                        fieldState: { error, invalid },
                       }) => (
                         <FormControl
                           error={!!formState.errors[String(agreement.agreement_id)]}
@@ -79,7 +83,17 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                           sx={{ display: 'block' }}
                         >
                           <FormControlLabel
-                            control={<Checkbox color='secondary' required />}
+                            control={
+                              <Checkbox
+                                color='secondary'
+                                required
+                                checked={!!value}
+                                name={name}
+                                inputRef={ref}
+                                onBlur={onBlur}
+                                onChange={(e) => onChange(e)}
+                              />
+                            }
                             label={
                               <PageLink href={href} passHref>
                                 <Link color='secondary' underline='hover'>
@@ -87,13 +101,8 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                                 </Link>
                               </PageLink>
                             }
-                            checked={!!value}
-                            inputRef={ref}
-                            onBlur={onBlur}
-                            name={name}
-                            onChange={(e) => onChange(e as React.ChangeEvent<HTMLInputElement>)}
                           />
-                          {error?.message && <FormHelperText>{error.message}</FormHelperText>}
+                          {error?.message && <FormHelperText error>{error.message}</FormHelperText>}
                         </FormControl>
                       )}
                     />

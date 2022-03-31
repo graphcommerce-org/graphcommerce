@@ -16,7 +16,7 @@ import {
   UseFormComposeOptions,
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
-import { t } from '@lingui/macro'
+import { select, t } from '@lingui/macro'
 import { Box, FormControl, FormHelperText, SxProps, Theme } from '@mui/material'
 import { useEffect } from 'react'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
@@ -54,7 +54,6 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
 
   const form = useForm<{ code: string; paymentMethod?: string }>({
     mode: 'onChange',
-    defaultValues: { code: selectedMethod?.code },
   })
   useFormPersist({ form, name: 'PaymentMethodToggle' })
 
@@ -63,6 +62,10 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
   const submitHandler = handleSubmit(() => {})
 
   useFormCompose({ form, step, submit: submitHandler, key: 'PaymentMethodToggles' })
+
+  useEffect(() => {
+    if (selectedMethod?.code) setValue('code', selectedMethod.code)
+  }, [selectedMethod?.code, setValue])
 
   const paymentMethod = watch('paymentMethod')
   useEffect(() => {

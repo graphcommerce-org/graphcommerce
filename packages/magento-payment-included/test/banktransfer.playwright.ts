@@ -19,5 +19,5 @@ test('banktransfer', async ({ page, productURL, apolloClient }) => {
   expect((await waitForPlaceOrder).errors).toBeUndefined()
   expect((await waitForPlaceOrder).data?.placeOrder?.order.order_number).toBeDefined()
 
-  expect(await page.locator('text=Back to home').innerText()).toBeDefined()
+  expect(await page.locator('#back-to-home').innerText()).toBeDefined()
 })

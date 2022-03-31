@@ -9,7 +9,7 @@ import { expect } from '@playwright/test'
 test('place order', async ({ page, productURL }) => {
   await addConfigurableProductToCart(page, productURL.ConfigurableProduct)
 
-  await page.click('a:has-text("View shopping cart")')
+  await page.click('#view-shopping-cart-button')
 
   await page.click('a[href="/checkout"]:last-of-type')
 
