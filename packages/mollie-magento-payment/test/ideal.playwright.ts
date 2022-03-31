@@ -33,7 +33,7 @@ test.describe('mollie ideal place order', () => {
     await selectIdeal(page)
     await placeOrder(page, 'canceled')
     await placeOrder(page, 'paid')
-    expect(await page.locator('text=Back to home').innerText()).toBeDefined()
+    expect(await page.locator('#back-to-home').innerText()).toBeDefined()
   })
 
   test('OPEN', async ({ page, productURL, apolloClient }) => {
@@ -42,7 +42,7 @@ test.describe('mollie ideal place order', () => {
     await selectIdeal(page)
     await placeOrder(page, 'open')
     await placeOrder(page, 'paid')
-    expect(await page.locator('text=Back to home').innerText()).toBeDefined()
+    expect(await page.locator('#back-to-home').innerText()).toBeDefined()
   })
 
   test('PAID', async ({ page, productURL, apolloClient }) => {
@@ -50,7 +50,7 @@ test.describe('mollie ideal place order', () => {
     await goToPayment(page, apolloClient)
     await selectIdeal(page)
     await placeOrder(page, 'paid')
-    expect(await page.locator('text=Back to home').innerText()).toBeDefined()
+    expect(await page.locator('#back-to-home').innerText()).toBeDefined()
   })
 
   test('Pressed back', async ({ page, productURL, apolloClient }) => {
@@ -65,6 +65,6 @@ test.describe('mollie ideal place order', () => {
     expect(await page.locator('text=Payment failed with status: OPEN').innerText()).toBeDefined()
 
     await placeOrder(page, 'paid')
-    expect(await page.locator('text=Back to home').innerText()).toBeDefined()
+    expect(await page.locator('#back-to-home').innerText()).toBeDefined()
   })
 })

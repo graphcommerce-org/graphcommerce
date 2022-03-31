@@ -7,9 +7,7 @@ import { expect, Page } from '@playwright/test'
 import { MolliePaymentHandlerDocument } from '../components/MolliePaymentHandler/MolliePaymentHandler.gql'
 
 const selectCreditCard = async (page: Page) => {
-  await page.click('button[value=mollie_methods_creditcard]')
-
-  // Select Rabobank
+  await page.locator('button[value=mollie_methods_creditcard]').click()
 }
 
 type Statuses = 'paid' | 'failed' | 'canceled' | 'open' | 'expired'
@@ -18,8 +16,8 @@ const placeOrder = async (page: Page, status: Statuses) => {
   await Promise.all([page.waitForNavigation(), page.click('#place-order')])
 
   await page.pause()
-  // await page.click(`input[name="final_state"][value=${status}]`)
-  // await Promise.all([page.waitForNavigation(), page.click('.footer button')])
+  await page.click(`input[name="final_state"][value=${status}]`)
+  await Promise.all([page.waitForNavigation(), page.click('.footer button')])
 
   const result = await waitForGraphQlResponse(page, MolliePaymentHandlerDocument)
   expect(result.errors).toBeUndefined()
@@ -33,7 +31,7 @@ test.describe('mollie creditcard place order', () => {
   //   await selectCreditCard(page)
   //   await placeOrder(page, 'canceled')
   //   await placeOrder(page, 'paid')
-  //   expect(await page.locator('text=Back to home').innerText()).toBeDefined()
+  //   expect(await page.locator('#back-to-home').innerText()).toBeDefined()
   // })
 
   // test('OPEN', async ({ page, productURL, apolloClient }) => {
@@ -42,7 +40,7 @@ test.describe('mollie creditcard place order', () => {
   //   await selectIdeal(page)
   //   await placeOrder(page, 'open')
   //   await placeOrder(page, 'paid')
-  //   expect(await page.locator('text=Back to home').innerText()).toBeDefined()
+  //   expect(await page.locator('#back-to-home').innerText()).toBeDefined()
   // })
 
   test('PAID', async ({ page, productURL, apolloClient }) => {
@@ -50,7 +48,7 @@ test.describe('mollie creditcard place order', () => {
     await goToPayment(page, apolloClient)
     await selectCreditCard(page)
     await placeOrder(page, 'paid')
-    expect(await page.locator('text=Back to home').innerText()).toBeDefined()
+    expect(await page.locator('#back-to-home').innerText()).toBeDefined()
   })
 
   // test('Pressed back', async ({ page, productURL, apolloClient }) => {
@@ -65,6 +63,6 @@ test.describe('mollie creditcard place order', () => {
   //   expect(await page.locator('text=Payment failed with status: OPEN').innerText()).toBeDefined()
 
   //   await placeOrder(page, 'paid')
-  //   expect(await page.locator('text=Back to home').innerText()).toBeDefined()
+  //   expect(await page.locator('#back-to-home').innerText()).toBeDefined()
   // })
 })
