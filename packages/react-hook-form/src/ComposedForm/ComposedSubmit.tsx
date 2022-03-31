@@ -51,7 +51,14 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
     )
 
     // We have no errors and no invalid forms, this means we can submit everything.
-    if (!formsToSubmit.length) formsToSubmit = formEntries
+    if (!formsToSubmit.length) {
+      formsToSubmit = formEntries
+    } else if (process.env.NODE_ENV !== 'production') {
+      console.log('[ComposedForm] Found forms with errors, triggering validation...')
+      console.log(
+        Object.fromEntries(formsToSubmit.map(([, { key, form }]) => [key, form?.formState.errors])),
+      )
+    }
 
     dispatch({ type: 'SUBMIT' })
 
@@ -63,18 +70,30 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
        * Todo: There might be a performance optimization by submitting multiple forms in parallel.
        */
       let canSubmit = true
-      for (const [, { submit, form }] of formsToSubmit) {
-        // eslint-disable-next-line no-await-in-loop
-        if (canSubmit) await submit?.()
-        // eslint-disable-next-line no-await-in-loop
-        if (!canSubmit) await form?.trigger()
-        if (form && isFormGqlOperation(form) && form.error) {
-          // console.log(
-          //   key,
-          //   form?.formState.isValid,
-          //   form && (isFormGqlOperation(form) ? form.error : undefined),
-          // )
-          canSubmit = false
+      for (const [, { submit, form, key }] of formsToSubmit) {
+        try {
+          // eslint-disable-next-line no-await-in-loop
+          if (canSubmit) await submit?.()
+          // eslint-disable-next-line no-await-in-loop
+          if (!canSubmit) await form?.trigger()
+          if (form && isFormGqlOperation(form) && form.error) {
+            if (process.env.NODE_ENV !== 'production') {
+              console.error(
+                `[ComposedForm] The form ${key} has an ApolloError, only triggering the validation for the next forms.`,
+                form.error,
+              )
+            }
+            canSubmit = false
+          } else if (process.env.NODE_ENV !== 'production')
+            console.log(`[ComposedForm] Submit triggered ${key}`)
+        } catch (e) {
+          if (process.env.NODE_ENV !== 'production') {
+            console.error(
+              `[ComposedForm] The form ${key} has thrown an Error during submission, halting submissions`,
+              e,
+            )
+          }
+          throw e
         }
       }
       dispatch({ type: 'SUBMITTING' })
