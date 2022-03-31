@@ -109,7 +109,7 @@ function PaymentPage() {
 
                     <PaymentMethodOptions
                       key='options'
-                      step={2}
+                      step={3}
                       Container={React.memo(({ children }) => (
                         <FormDiv contained background='secondary'>
                           {children}
@@ -124,7 +124,7 @@ function PaymentPage() {
 
                     <CouponAccordion key='coupon' />
 
-                    <CartAgreementsForm step={3} key='agreements' />
+                    <CartAgreementsForm step={2} key='agreements' />
 
                     <PaymentMethodPlaceOrder key='placeorder' step={4} />
 
