@@ -142,6 +142,9 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                 >
                   {methods?.map((pm) => {
                     const buttonValue = pm.child ? `${pm.code}___${pm.child}` : pm.code
+
+                    if (process.env.NODE_ENV === 'production' && !modules?.[pm.code]) return null
+
                     return (
                       <ToggleButton
                         name={name}
