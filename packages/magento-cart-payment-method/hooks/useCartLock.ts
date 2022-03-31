@@ -1,9 +1,10 @@
 import { useCurrentCartId } from '@graphcommerce/magento-cart'
 import { useUrlQuery } from '@graphcommerce/next-ui'
+import { useState } from 'react'
 
 export type CartLockState = {
-  cart_id?: string
-  locked?: string
+  cart_id: string | null
+  locked: string | null
 }
 
 /**
@@ -12,15 +13,31 @@ export type CartLockState = {
  *
  * Todo: Block all operations on the cart while the cart is being blocked.
  */
-export function useCartLock<E extends Record<string, string | undefined>>() {
+export function useCartLock<E extends CartLockState>() {
   const currentCartId = useCurrentCartId()
+  const [justLocked, setJustLocked] = useState(false)
+  const [queryState, setRouterQuery] = useUrlQuery<E>()
 
-  const [queryState, setRouterQuery] = useUrlQuery<CartLockState & E>((params) => params)
-
-  const lock = (params: CartLockState & E) => {
+  const lock = (params: Omit<E, 'locked' | 'cart_id'>) => {
     if (!currentCartId) return
-    setRouterQuery({ locked: '1', cart_id: currentCartId, ...params })
+    setJustLocked(true)
+    setRouterQuery({
+      locked: '1',
+      cart_id: currentCartId,
+      ...params,
+    } as E)
   }
 
-  return [queryState, lock] as const
+  const unlock = (params: Omit<E, 'locked' | 'cart_id'>) => {
+    setRouterQuery({ cart_id: null, locked: null, ...params } as E)
+    return queryState
+  }
+
+  const resulting: Omit<E, 'locked'> & { locked: boolean; justLocked: boolean } = {
+    ...queryState,
+    locked: queryState.locked === '1',
+    justLocked,
+  }
+
+  return [resulting, lock, unlock] as const
 }

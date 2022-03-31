@@ -33,7 +33,7 @@ export function MolliePaymentHandler() {
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     ;(async () => {
-      if (lockState.locked && lockState.redirecting) return
+      if (lockState.locked && lockState.justLocked) return
 
       if (!lockState.mollie_payment_token) return
       if (called || error) return
