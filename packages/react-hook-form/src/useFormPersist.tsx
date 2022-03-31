@@ -1,3 +1,4 @@
+import { persistCache } from '@graphcommerce/graphql'
 import { useEffect } from 'react'
 import {
   FieldValues,
@@ -5,22 +6,29 @@ import {
   Path,
   FieldPathValue,
   UnpackNestedValue,
+  FieldPath,
 } from 'react-hook-form'
 
-export type UseFormPersistOptions<V> = {
-  /** Instance of current form */
-  form: UseFormReturn<V>
+export type UseFormPersistOptions<
+  TFieldValues extends FieldValues = FieldValues,
+  TContext = any,
+> = {
+  /** Instance of current form, used to watch value */
+  form: UseFormReturn<TFieldValues, TContext>
 
   /** Name of the key how it will be stored in the storage. */
   name: string
 
   /**
-   * SessionStorage: Will not be avaiable when the user returns later (recommended). localStorage:
-   * Will be available when the user returns later.
+   * - `sessionStorage`: Will not be avaiable when the user returns later (recommended).
+   * - `localStorage`: Will be available when the user returns later.
    */
   storage?: 'sessionStorage' | 'localStorage'
 
-  exclude?: string[]
+  /** Exclude sensitive data from the storage like passwords. */
+  exclude?: FieldPath<TFieldValues>[]
+
+  persist?: FieldPath<TFieldValues>[]
 }
 
 /**
@@ -28,15 +36,23 @@ export type UseFormPersistOptions<V> = {
  * dirty fields when the form is initialized
  */
 export function useFormPersist<V>(options: UseFormPersistOptions<V>) {
-  const { form, name, storage = 'sessionStorage', exclude = [] } = options
+  const { form, name, storage = 'sessionStorage', exclude = [], persist = [] } = options
   const { setValue, watch, formState } = form
 
   const dirtyFieldKeys = Object.keys(formState.dirtyFields) as Path<V>[]
-  const valuesJson = JSON.stringify(
-    Object.fromEntries(
-      dirtyFieldKeys.filter((f) => !exclude.includes(f)).map((field) => [field, watch(field)]),
-    ),
+
+  // Get all dirty field values and exclude sensitive data
+  const newValues = Object.fromEntries(
+    dirtyFieldKeys.filter((f) => !exclude.includes(f)).map((field) => [field, watch(field)]),
   )
+
+  // Amend the values with the values that should always be persisted
+  persist.forEach((persistKey) => {
+    const value = watch(persistKey)
+    if (value) newValues[persistKey] = value
+  })
+
+  const valuesJson = JSON.stringify(newValues)
 
   // Restore changes
   useEffect(() => {
@@ -51,7 +67,12 @@ export function useFormPersist<V>(options: UseFormPersistOptions<V>) {
           Path<V>,
           UnpackNestedValue<FieldPathValue<V, Path<V>>>,
         ][]
-        entries.forEach((entry) => setValue(...entry, { shouldDirty: true, shouldValidate: true }))
+        entries.forEach(([entryName, value]) =>
+          setValue(entryName, value, {
+            shouldDirty: true,
+            shouldValidate: true,
+          }),
+        )
       }
     } catch {
       //
