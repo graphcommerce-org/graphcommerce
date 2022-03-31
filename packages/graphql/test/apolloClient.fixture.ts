@@ -33,9 +33,9 @@ export async function waitForGraphQlResponse<Q, V>(
 const test = base.extend<ApolloClientTest>({
   apolloClient: async ({}, use) => {
     const client = new ApolloClient({
-      uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT || 'http://localhost:3000/api/graphql',
+      uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
       credentials: 'same-origin',
-      cache: new InMemoryCache({}),
+      cache: new InMemoryCache(),
     })
     await use(client)
   },
