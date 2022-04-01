@@ -1,5 +1,26 @@
 # Change Log
 
+## 4.2.0
+
+### Minor Changes
+
+- [#1368](https://github.com/graphcommerce-org/graphcommerce/pull/1368) [`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a) Thanks [@paales](https://github.com/paales)! - Add a feature to set CUSTOMER_REQUIRE_EMAIL_CONFIRMATION in the env
+
+### Patch Changes
+
+- [#1369](https://github.com/graphcommerce-org/graphcommerce/pull/1369) [`ae6449502`](https://github.com/graphcommerce-org/graphcommerce/commit/ae64495024a455bbe5188588604368c1542840c9) Thanks [@paales](https://github.com/paales)! - Upgraded dependencies
+
+* [#1362](https://github.com/graphcommerce-org/graphcommerce/pull/1362) [`6213f0b0f`](https://github.com/graphcommerce-org/graphcommerce/commit/6213f0b0f5f53d622b993d9f7ea96cbbeb5bd670) Thanks [@timhofman](https://github.com/timhofman)! - persistence layer not purged at logout
+
+* Updated dependencies [[`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a), [`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a), [`ae6449502`](https://github.com/graphcommerce-org/graphcommerce/commit/ae64495024a455bbe5188588604368c1542840c9), [`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a), [`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a)]:
+  - @graphcommerce/graphql@3.0.6
+  - @graphcommerce/next-ui@4.5.0
+  - @graphcommerce/ecommerce-ui@1.0.4
+  - @graphcommerce/image@3.1.2
+  - @graphcommerce/magento-graphql@3.0.5
+  - @graphcommerce/magento-store@4.1.4
+  - @graphcommerce/react-hook-form@3.0.6
+
 ## 4.1.6
 
 ### Patch Changes

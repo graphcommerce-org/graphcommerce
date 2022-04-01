@@ -1,5 +1,23 @@
 # Change Log
 
+## 4.5.0
+
+### Minor Changes
+
+- [#1368](https://github.com/graphcommerce-org/graphcommerce/pull/1368) [`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a) Thanks [@paales](https://github.com/paales)! - Added a new <ErrorSnackbar /> component to more easily create an error snackbar.
+
+### Patch Changes
+
+- [#1368](https://github.com/graphcommerce-org/graphcommerce/pull/1368) [`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a) Thanks [@paales](https://github.com/paales)! - <FormDiv contained/> would throw an error that contained isn't a recognized prop
+
+* [#1369](https://github.com/graphcommerce-org/graphcommerce/pull/1369) [`ae6449502`](https://github.com/graphcommerce-org/graphcommerce/commit/ae64495024a455bbe5188588604368c1542840c9) Thanks [@paales](https://github.com/paales)! - Upgraded dependencies
+
+* Updated dependencies [[`ae6449502`](https://github.com/graphcommerce-org/graphcommerce/commit/ae64495024a455bbe5188588604368c1542840c9)]:
+  - @graphcommerce/framer-next-pages@3.1.4
+  - @graphcommerce/framer-scroller@2.1.3
+  - @graphcommerce/framer-utils@3.1.1
+  - @graphcommerce/image@3.1.2
+
 ## 4.4.0
 
 ### Minor Changes

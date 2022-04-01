@@ -1,5 +1,19 @@
 # Change Log
 
+## 3.0.6
+
+### Patch Changes
+
+- [#1368](https://github.com/graphcommerce-org/graphcommerce/pull/1368) [`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a) Thanks [@paales](https://github.com/paales)! - playwright waitForGraphQlResponse shouldn’t crash on non-graphql responses
+
+* [#1369](https://github.com/graphcommerce-org/graphcommerce/pull/1369) [`ae6449502`](https://github.com/graphcommerce-org/graphcommerce/commit/ae64495024a455bbe5188588604368c1542840c9) Thanks [@paales](https://github.com/paales)! - Upgraded dependencies
+
+- [#1368](https://github.com/graphcommerce-org/graphcommerce/pull/1368) [`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a) Thanks [@paales](https://github.com/paales)! - Do not recreate client cache when initialized once, fixes issue where the localStorage wasn't updated yet when a new page is loaded.
+
+- Updated dependencies [[`ae6449502`](https://github.com/graphcommerce-org/graphcommerce/commit/ae64495024a455bbe5188588604368c1542840c9)]:
+  - @graphcommerce/graphql-codegen-near-operation-file@3.0.9
+  - @graphcommerce/graphql-codegen-relay-optimizer-plugin@3.0.6
+
 ## 3.0.5
 
 ### Patch Changes
