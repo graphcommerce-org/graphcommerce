@@ -1,6 +1,13 @@
 import { useQuery } from '@apollo/client'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import {
+  GUEST_WISHLIST_STORAGE_NAME,
+  GetWishlistProductsDocument,
+  WishlistItems,
+  GetGuestWishlistProductsDocument,
+} from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
   iconHeart,
@@ -12,19 +19,12 @@ import {
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
-import React, { useState, useEffect } from 'react'
+import { AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import React, { useState, useEffect } from 'react'
 
-import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import {
-  GUEST_WISHLIST_STORAGE_NAME,
-  GetWishlistProductsDocument,
-  WishlistItems,
-} from '@graphcommerce/magento-wishlist'
-import { GetGuestWishlistProductsDocument } from '@graphcommerce/magento-wishlist'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { AnimatePresence } from 'framer-motion'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -33,7 +33,8 @@ function WishlistPage(props: Props) {
   const { data: token } = useQuery(CustomerTokenDocument)
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
 
-  let wishlistItems, productListClasses
+  let wishlistItems
+  let productListClasses
   const [wishlistGuestItems, setWishlistGuestItems] = useState([])
 
   useEffect(() => {
@@ -104,10 +105,7 @@ function WishlistPage(props: Props) {
             </FullPageMessage>
           ) : (
             <>
-              <FullPageMessage
-                title={t`Wishlist`}
-                icon={<IconSvg src={iconHeart} size='xl' />}
-              ></FullPageMessage>
+              <FullPageMessage title={t`Wishlist`} icon={<IconSvg src={iconHeart} size='xl' />} />
               <Container maxWidth='md'>
                 <AnimatePresence initial={false}>
                   <WishlistItems items={wishlistItems} />
