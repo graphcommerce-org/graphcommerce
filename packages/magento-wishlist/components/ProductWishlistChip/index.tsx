@@ -40,7 +40,7 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
       src={iconHeart}
       size='medium'
       className={classes.iconHeart}
-      sx={(theme) => ({ stroke: '#AC2E2E' })}
+      sx={(theme) => ({ color: '#AC2E2E' })}
     />
   )
 
@@ -49,7 +49,7 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
       src={iconHeart}
       size='medium'
       className={classes.iconHeartActive}
-      sx={{ stroke: '#AC2E2E', fill: '#AC2E2E' }}
+      sx={{ color: '#AC2E2E', fill: 'currentcolor' }}
     />
   )
 
