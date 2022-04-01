@@ -152,6 +152,7 @@ the ones your Magento backend doesn't support.
 
 - Remove `"@graphcommerce/[psp]"` from package.json
 - Remove all [psp] references from `pages/checkout/payment.tsx`
+- Currently these are: `[@graphcommerce/mollie-magento-payment, @graphcommerce/magento-payment-braintree]`
 
 ## Step 3: Start the development environment
 
