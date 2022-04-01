@@ -1,6 +1,7 @@
 import { CartFab } from '@graphcommerce/magento-cart'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { SearchLink } from '@graphcommerce/magento-search'
+import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import {
   DesktopNavActions,
   DesktopNavBar,
@@ -64,11 +65,7 @@ export function LayoutFull(props: LayoutFullProps) {
                 <IconSvg src={iconCustomerService} size='large' />
               </Fab>
             </PageLink>
-            <PageLink href='/wishlist' passHref>
-              <Fab aria-label={t`Wishlist`} size='large' color='inherit'>
-                <IconSvg src={iconHeart} size='large' />
-              </Fab>
-            </PageLink>
+            <WishlistFab icon={<IconSvg src={iconHeart} size='large' />} />
             <CustomerFab guestHref='/account/signin' authHref='/account' />
             {/* The placeholder exists because the CartFab is sticky but we want to reserve the space for the <CartFab /> */}
             <PlaceholderFab />
@@ -95,13 +92,9 @@ export function LayoutFull(props: LayoutFullProps) {
             >
               <Trans>Customer Service</Trans>
             </MenuFabSecondaryItem>,
-            <MenuFabSecondaryItem
-              key='wishlist'
-              icon={<IconSvg src={iconHeart} size='medium' />}
-              href='/wishlist'
-            >
+            <WishlistMenuFabItem key='wishlist' icon={<IconSvg src={iconHeart} size='medium' />}>
               <Trans>Wishlist</Trans>
-            </MenuFabSecondaryItem>,
+            </WishlistMenuFabItem>,
             <DarkLightModeMenuSecondaryItem key='darkmode' />,
           ]}
         >

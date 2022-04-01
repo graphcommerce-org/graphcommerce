@@ -1,3 +1,5 @@
 export { default as ProductWishlistChip } from './ProductWishlistChip'
 export { default as WishlistItems } from './WishlistItems'
 export { default as WishlistItem } from './WishlistItem'
+export * from './WishlistFab/WishlistFab'
+export * from './WishlistMenuFabItem/WishlistMenuFabItem'
