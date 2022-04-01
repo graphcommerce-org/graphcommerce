@@ -17,6 +17,7 @@ import {
 } from '@graphcommerce/magento-product-bundle'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
   JsonLd,
@@ -29,7 +30,6 @@ import { GetStaticPaths } from 'next'
 import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
-import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 
 export const config = { unstable_JsPreload: false }
 
@@ -66,7 +66,6 @@ function ProductBundle(props: Props) {
       />
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
-        <ProductWishlistChip sku={product.sku} />
         <Typography variant='h3' component='div'>
           {product.name}
         </Typography>
