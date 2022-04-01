@@ -105,7 +105,9 @@ function WishlistPage(props: Props) {
             </FullPageMessage>
           ) : (
             <>
-              <FullPageMessage title={t`Wishlist`} icon={<IconSvg src={iconHeart} size='xl' />} />
+              <LayoutTitle icon={iconHeart}>
+                <Trans>Wishlist</Trans>
+              </LayoutTitle>
               <Container maxWidth='md'>
                 <AnimatePresence initial={false}>
                   <WishlistItems items={wishlistItems} />
