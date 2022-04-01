@@ -15,7 +15,7 @@ import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
 import { t } from '@lingui/macro'
 
 type ProductWishlistSettings = {
-  display?: 'guest' | 'customer'
+  hideForGuest?: true | false
 }
 
 export type ProductWishlistChipProps = ProductWishlistChipFragment &
@@ -27,7 +27,7 @@ const parts = ['root', 'iconHeart', 'iconHeartActive', 'wishlistButton'] as cons
 const { classes } = extendableComponent(name, parts)
 
 export default function ProductWishlistChip(props: ProductWishlistChipProps) {
-  const { display, sku, sx = [] } = props
+  const { hideForGuest, sku, sx = [] } = props
 
   const [inWishlist, setInWishlist] = useState(false)
   const [displayWishlist, setDisplayWishlist] = useState(true)
@@ -59,7 +59,7 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
 
   useEffect(() => {
     // Do not display wishlist UI to guests when configured as customer only
-    if (display === 'customer' && !isLoggedIn) {
+    if (hideForGuest && !isLoggedIn) {
       setDisplayWishlist(false)
       return
     }
@@ -135,5 +135,5 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
     </>
   )
 
-  return displayWishlist ? button : null
+  return !hideForGuest || isLoggedIn ? button : null
 }
