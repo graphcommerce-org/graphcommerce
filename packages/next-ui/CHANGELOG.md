@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.5.1
+
+### Patch Changes
+
+- [#1378](https://github.com/graphcommerce-org/graphcommerce/pull/1378) [`b610a6e40`](https://github.com/graphcommerce-org/graphcommerce/commit/b610a6e4049e8c9e8b5d2aeff31b8e1bfc24abe5) Thanks [@paales](https://github.com/paales)! - Pin all versions internally so we can’t end up in an unfixable state for the user
+
+- Updated dependencies [[`b610a6e40`](https://github.com/graphcommerce-org/graphcommerce/commit/b610a6e4049e8c9e8b5d2aeff31b8e1bfc24abe5)]:
+  - @graphcommerce/framer-next-pages@3.1.5
+  - @graphcommerce/framer-scroller@2.1.4
+  - @graphcommerce/image@3.1.3
+
 ## 4.5.0
 
 ### Minor Changes
