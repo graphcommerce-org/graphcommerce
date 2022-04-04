@@ -1,6 +1,7 @@
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import React, { PropsWithChildren, useContext, useEffect, useMemo, useState } from 'react'
 import { PaymentMethod, PaymentMethodModules, PaymentModule } from '../Api/PaymentMethod'
+import { useCartLock } from '../hooks'
 import { GetPaymentMethodContextDocument } from './GetPaymentMethodContext.gql'
 
 type PaymentMethodContextProps = {
@@ -69,11 +70,9 @@ export function PaymentMethodContextProvider(props: PaymentMethodContextProvider
 
   return (
     <paymentMethodContext.Provider value={value}>
-      {Object.entries(modules).map(([method, module]) => {
-        const { PaymentHandler } = module
-        if (!PaymentHandler) return null
-        return <PaymentHandler key={method} />
-      })}
+      {Object.entries(modules).map(([code, module]) =>
+        module.PaymentHandler ? <module.PaymentHandler key={code} code={code} /> : null,
+      )}
       {children}
     </paymentMethodContext.Provider>
   )

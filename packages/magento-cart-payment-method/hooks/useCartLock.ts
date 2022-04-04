@@ -5,6 +5,7 @@ import { useState } from 'react'
 export type CartLockState = {
   cart_id: string | null
   locked: string | null
+  method: string | null
 }
 
 /**

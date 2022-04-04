@@ -20,6 +20,7 @@ import { select, t } from '@lingui/macro'
 import { Box, FormControl, FormHelperText, SxProps, Theme } from '@mui/material'
 import { useEffect } from 'react'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
+import { useCartLock } from '../hooks/useCartLock'
 
 export type PaymentMethodTogglesProps = Pick<UseFormComposeOptions, 'step'> & {
   sx?: SxProps<Theme>
@@ -52,7 +53,12 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
   const { methods, selectedMethod, setSelectedMethod, setSelectedModule, modules } =
     usePaymentMethodContext()
 
-  const form = useForm<{ code: string; paymentMethod?: string }>()
+  const [lockState] = useCartLock()
+  const form = useForm<{ code: string; paymentMethod?: string }>({
+    defaultValues: {
+      code: lockState.method,
+    },
+  })
   useFormPersist({ form, name: 'PaymentMethodToggle' })
 
   const { control, handleSubmit, watch, register, setValue, formState } = form
