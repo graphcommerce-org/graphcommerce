@@ -19,12 +19,12 @@
     "@types/grecaptcha": "^3.0.4"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "^3.0.6"
+    "@graphcommerce/graphql": "3.0.6"
   },
   "peerDependencies": {
-    "next": "^12.0.10",
+    "next": "12.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "@mui/material": "^5.4.1"
+    "@mui/material": "5.5.3"
   }
 }
