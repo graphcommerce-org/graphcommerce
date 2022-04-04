@@ -20,7 +20,6 @@ export function MollieCreditCardOptions(props: PaymentOptionsProps) {
   const conf = useQuery(StoreConfigDocument)
 
   const form = useFormGqlMutationCart(SetMolliePaymentMethodTokenOnCartDocument, {
-    mode: 'onChange',
     defaultValues: { code },
     onBeforeSubmit: async (variables) => {
       const result = await mollie?.createToken()

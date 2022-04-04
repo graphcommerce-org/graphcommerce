@@ -14,7 +14,7 @@ export function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProps) {
   const clearCurrentCartId = useClearCurrentCartId()
 
   const cartId = useCurrentCartId()
-  const form = useFormGqlMutationCart(PaymentMethodPlaceOrderNoopDocument, { mode: 'onChange' })
+  const form = useFormGqlMutationCart(PaymentMethodPlaceOrderNoopDocument)
 
   const { handleSubmit, data, error } = form
   const { push } = useRouter()

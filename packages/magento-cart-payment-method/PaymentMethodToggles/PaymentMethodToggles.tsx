@@ -52,9 +52,7 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
   const { methods, selectedMethod, setSelectedMethod, setSelectedModule, modules } =
     usePaymentMethodContext()
 
-  const form = useForm<{ code: string; paymentMethod?: string }>({
-    mode: 'onChange',
-  })
+  const form = useForm<{ code: string; paymentMethod?: string }>()
   useFormPersist({ form, name: 'PaymentMethodToggle' })
 
   const { control, handleSubmit, watch, register, setValue, formState } = form

@@ -1,8 +1,4 @@
-import {
-  useClearCurrentCartId,
-  useCurrentCartId,
-  useFormGqlMutationCart,
-} from '@graphcommerce/magento-cart'
+import { useCurrentCartId, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { useRouter } from 'next/router'
@@ -16,7 +12,7 @@ export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
   const cartId = useCurrentCartId()
   const [, lock] = useCartLockWithToken()
 
-  const form = useFormGqlMutationCart(MolliePlaceOrderDocument, { mode: 'onChange' })
+  const form = useFormGqlMutationCart(MolliePlaceOrderDocument)
 
   const { handleSubmit, data, error, register, setValue } = form
 

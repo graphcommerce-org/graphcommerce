@@ -40,7 +40,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
       )
     : []
 
-  const form = useForm({ mode: 'onChange' })
+  const form = useForm()
 
   const { handleSubmit, formState, control } = form
 
