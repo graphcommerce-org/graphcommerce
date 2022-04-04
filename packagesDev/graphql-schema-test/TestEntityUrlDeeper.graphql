@@ -1,5 +1,0 @@
-fragment TestEntityUrlDeeper on EntityUrl {
-  id
-  relative_url
-  type
-}

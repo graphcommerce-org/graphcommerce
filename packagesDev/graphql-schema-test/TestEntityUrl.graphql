@@ -1,4 +1,0 @@
-fragment TestEntityUrl on EntityUrl {
-  ...TestEntityUrlDeeper
-  redirectCode
-}

@@ -1,6 +1,0 @@
-query TestResolveUrl($urlKey: String!) {
-  urlResolver(url: $urlKey) {
-    ...TestEntityUrl
-    canonical_url
-  }
-}
