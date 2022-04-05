@@ -150,8 +150,8 @@ List of routes and store_codes:
 The example has Payment Service Providers integrated (Mollie, Braintree). Remove
 the ones your Magento backend doesn't support.
 
-- Remove `"@graphcommerce/[psp]"` from package.json
-- Remove all [psp] references from `pages/checkout/payment.tsx`
+- Remove Payment Service integrations from package.json: `@graphcommerce/mollie-magento-payment` and/or `@graphcommerce/magento-payment-braintree`
+- Remove Payment Service references from `pages/checkout/payment.tsx`
 
 ## Step 3: Start the development environment
 
