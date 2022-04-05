@@ -207,8 +207,8 @@ marginThreshold={0}
 TransitionComponent={Fade}
 ```
 
-- Add the import of 'Fade' to the list of the `'@mui/material'` imports at the
-  top of the file
+- Add the import of 'alpha' and 'Fade' to the list of the `'@mui/material'`
+  imports at the top of the file
 - Remove the search component by removing:
 
 ```tsx
