@@ -15,7 +15,7 @@ const sizes: Size[] = ['Sm', 'Md']
 function SheetDemo() {
   const [layout, setLayout] = useLayoutState()
 
-  const form = useForm<LayoutOverlayState>({ defaultValues: layout })
+  const form = useForm<LayoutOverlayState>({ defaultValues: layout, mode: 'onChange' })
   const { register } = form
   const { variantMd, variantSm, justifyMd, justifySm, sizeMd, sizeSm } = layout
 

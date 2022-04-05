@@ -1,9 +1,8 @@
+import { useCurrentCartId, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import {
-  useClearCurrentCartId,
-  useCurrentCartId,
-  useFormGqlMutationCart,
-} from '@graphcommerce/magento-cart'
-import { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
+  PaymentPlaceOrderProps,
+  usePaymentMethodContext,
+} from '@graphcommerce/magento-cart-payment-method'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
@@ -15,8 +14,9 @@ export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
   const { push } = useRouter()
   const cartId = useCurrentCartId()
   const [, lock] = useCartLockWithToken()
+  const { selectedMethod } = usePaymentMethodContext()
 
-  const form = useFormGqlMutationCart(MolliePlaceOrderDocument, { mode: 'onChange' })
+  const form = useFormGqlMutationCart(MolliePlaceOrderDocument)
 
   const { handleSubmit, data, error, register, setValue } = form
 
@@ -25,9 +25,11 @@ export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
     // current.searchParams.append('locked', '1')
     current.searchParams.set('cart_id', cartId ?? '')
     current.searchParams.set('mollie_payment_token', 'PAYMENT_TOKEN')
+    current.searchParams.set('method', selectedMethod?.code ?? '')
+    current.searchParams.set('locked', '1')
     const replaced = current.toString().replace('PAYMENT_TOKEN', '{{payment_token}}')
     setValue('returnUrl', replaced)
-  }, [cartId, setValue])
+  }, [cartId, selectedMethod?.code, setValue])
 
   const submit = handleSubmit(() => {})
 
@@ -38,11 +40,15 @@ export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
 
     // When redirecting to the payment gateway
     if (redirectUrl && mollie_payment_token) {
-      lock({ mollie_payment_token })
+      lock({
+        mollie_payment_token,
+        method: selectedMethod?.code ?? null,
+      })
+
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       push(redirectUrl)
     }
-  }, [cartId, data?.placeOrder?.order, error, lock, push])
+  }, [cartId, data?.placeOrder?.order, error, lock, push, selectedMethod?.code])
 
   useFormCompose({ form, step, submit, key: `PaymentMethodPlaceOrder_${code}` })
 

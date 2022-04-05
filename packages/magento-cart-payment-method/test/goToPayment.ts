@@ -7,9 +7,8 @@ export const goToPayment = async (
   page: Page,
   apolloClient: ApolloClient<NormalizedCacheObject>,
 ) => {
-  await page.locator('a:has-text("View shopping cart")').click()
-
-  await page.locator('text=Start Checkout').click()
+  await page.locator('#view-shopping-cart-button').click()
+  await page.locator('#cart-start-checkout').click()
 
   const email = page.locator('input[name="email"]')
   await email.click()

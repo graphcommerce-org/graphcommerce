@@ -1,70 +1,91 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { waitForGraphQlResponse } from '@graphcommerce/graphql/test/apolloClient.fixture'
-import { goToPayment } from '@graphcommerce/magento-cart-payment-method/test/goToPayment'
+import { goToPayment, selectPaymentMethod } from '@graphcommerce/magento-cart-payment-method/test'
 import { addConfigurableProductToCart } from '@graphcommerce/magento-product-configurable/test/addConfigurableProductToCart'
 import { test } from '@graphcommerce/magento-product/test/productURL.fixture'
-import { expect, Page } from '@playwright/test'
-import { MolliePaymentHandlerDocument } from '../components/MolliePaymentHandler/MolliePaymentHandler.gql'
+import { expect } from '@playwright/test'
+import { handleOffsitePayment, placeOrderOffsite, selectIssuer } from './utils'
 
-const selectIdeal = async (page: Page) => {
-  await page.click('button[value=mollie_methods_ideal]')
+const method = 'mollie_methods_ideal'
 
-  // Select Rabobank
-  await page.selectOption('select[name="issuer"]', 'ideal_RABONL2U')
-}
-
-type Statuses = 'paid' | 'failed' | 'canceled' | 'open' | 'expired'
-
-const placeOrder = async (page: Page, status: Statuses) => {
-  await Promise.all([page.waitForNavigation(), page.click('#place-order')])
-
-  await page.click(`input[name="final_state"][value=${status}]`)
-  await Promise.all([page.waitForNavigation(), page.click('.footer button')])
-
-  const result = await waitForGraphQlResponse(page, MolliePaymentHandlerDocument)
-  expect(result.errors).toBeUndefined()
-  expect(result.data?.mollieProcessTransaction?.paymentStatus).toBe(status.toUpperCase())
-}
-
-test.describe('mollie ideal place order', () => {
-  test('CANCELED', async ({ page, productURL, apolloClient }) => {
+test.describe(method, () => {
+  test('Should be able to place an order and return on the success page', async ({
+    page,
+    productURL,
+    apolloClient,
+  }) => {
     await addConfigurableProductToCart(page, productURL.ConfigurableProduct)
     await goToPayment(page, apolloClient)
-    await selectIdeal(page)
-    await placeOrder(page, 'canceled')
-    await placeOrder(page, 'paid')
-    expect(await page.locator('text=Back to home').innerText()).toBeDefined()
+    await selectPaymentMethod(page, method)
+
+    await selectIssuer(page, 'ideal_RABONL2U')
+    await placeOrderOffsite(page, 'paid')
+    expect(await page.locator('#back-to-home').innerText()).toBeDefined()
   })
 
-  test('OPEN', async ({ page, productURL, apolloClient }) => {
+  test("Should not allow submission when all fields aren't filled yet", async ({
+    page,
+    productURL,
+    apolloClient,
+  }) => {
     await addConfigurableProductToCart(page, productURL.ConfigurableProduct)
     await goToPayment(page, apolloClient)
-    await selectIdeal(page)
-    await placeOrder(page, 'open')
-    await placeOrder(page, 'paid')
-    expect(await page.locator('text=Back to home').innerText()).toBeDefined()
+    await selectPaymentMethod(page, method)
+    await page.click('#place-order')
+
+    await expect(page.locator('select[name="issuer"]')).toHaveAttribute('aria-invalid', 'true')
   })
 
-  test('PAID', async ({ page, productURL, apolloClient }) => {
+  test('Should be possible to cancel an order and then place the order', async ({
+    page,
+    productURL,
+    apolloClient,
+  }) => {
     await addConfigurableProductToCart(page, productURL.ConfigurableProduct)
     await goToPayment(page, apolloClient)
-    await selectIdeal(page)
-    await placeOrder(page, 'paid')
-    expect(await page.locator('text=Back to home').innerText()).toBeDefined()
+    await selectPaymentMethod(page, method)
+    await selectIssuer(page, 'ideal_RABONL2U')
+    await placeOrderOffsite(page, 'canceled')
+    await placeOrderOffsite(page, 'paid')
+    expect(await page.locator('#back-to-home').innerText()).toBeDefined()
   })
 
-  test('Pressed back', async ({ page, productURL, apolloClient }) => {
+  test('Should be possible to press back on the payment gateway and then place the order', async ({
+    page,
+    productURL,
+    apolloClient,
+  }) => {
     await addConfigurableProductToCart(page, productURL.ConfigurableProduct)
     await goToPayment(page, apolloClient)
-    await selectIdeal(page)
+    await selectPaymentMethod(page, method)
+    await selectIssuer(page, 'ideal_RABONL2U')
     await Promise.all([page.waitForNavigation(), page.click('#place-order')])
 
-    await page.pause()
     await page.goBack()
 
     expect(await page.locator('text=Payment failed with status: OPEN').innerText()).toBeDefined()
 
-    await placeOrder(page, 'paid')
-    expect(await page.locator('text=Back to home').innerText()).toBeDefined()
+    await placeOrderOffsite(page, 'paid')
+    expect(await page.locator('#back-to-home').innerText()).toBeDefined()
+  })
+
+  test('Should be possible to place the order even though there is a completely separate session', async ({
+    page,
+    productURL,
+    apolloClient,
+    context,
+  }) => {
+    await addConfigurableProductToCart(page, productURL.ConfigurableProduct)
+    await goToPayment(page, apolloClient)
+    await selectPaymentMethod(page, method)
+    await selectIssuer(page, 'ideal_RABONL2U')
+    await Promise.all([page.waitForNavigation(), page.click('#place-order')])
+
+    const page2 = await context.newPage()
+    await Promise.all([page2.waitForNavigation(), page2.goto(page.url())])
+    await page.close()
+
+    await handleOffsitePayment(page2, 'paid')
+
+    expect(await page.locator('#back-to-home').innerText()).toBeDefined()
   })
 })

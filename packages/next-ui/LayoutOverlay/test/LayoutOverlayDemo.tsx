@@ -1,4 +1,3 @@
-import { useCallback } from 'react'
 import { useUrlQuery } from '../../useUrlQuery/useUrlQuery'
 import { LayoutOverlay, LayoutOverlayProps } from '../components/LayoutOverlay'
 
@@ -8,19 +7,7 @@ export type LayoutOverlayState = Omit<
 >
 
 export function useLayoutState() {
-  const [routerQuery, setRouterQuery] = useUrlQuery<LayoutOverlayState>(
-    useCallback(
-      ({ sizeMd, sizeSm, justifyMd, justifySm, variantMd, variantSm }) => ({
-        sizeMd,
-        sizeSm,
-        justifyMd,
-        justifySm,
-        variantMd,
-        variantSm,
-      }),
-      [],
-    ),
-  )
+  const [routerQuery, setRouterQuery] = useUrlQuery<LayoutOverlayState>()
 
   return [routerQuery, setRouterQuery] as const
 }

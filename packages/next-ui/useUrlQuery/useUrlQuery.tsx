@@ -1,19 +1,23 @@
-import { ParsedUrlQuery } from 'querystring'
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 
-export function useUrlQuery<T extends ParsedUrlQuery>(builder: (query: T) => T = (query) => query) {
+export function useUrlQuery<T extends Record<string, string | null>>() {
   const { query, replace } = useRouter()
-  const queryState = builder(query as T)
 
   const setRouterQuery = useCallback(
-    (partialQuery: T) => {
-      if (JSON.stringify(queryState) === JSON.stringify(partialQuery)) return
+    (incomming: T) => {
+      const current = Object.fromEntries(new URLSearchParams(window.location.search).entries())
+      const newQuery = Object.fromEntries(
+        Object.entries({ ...current, ...incomming }).filter(([, value]) => value !== null),
+      )
+
+      if (JSON.stringify(current) === JSON.stringify(newQuery)) return
+
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      replace({ query: { ...queryState, ...partialQuery } }, undefined, { shallow: true })
+      replace({ query: newQuery }, undefined, { shallow: true })
     },
-    [queryState, replace],
+    [replace],
   )
 
-  return [queryState, setRouterQuery] as const
+  return [query as T, setRouterQuery] as const
 }

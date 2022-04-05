@@ -1,10 +1,9 @@
 import { PaymentStatusEnum, useMutation } from '@graphcommerce/graphql'
+import { ApolloCartErrorFullPage, useClearCurrentCartId } from '@graphcommerce/magento-cart'
 import {
-  ApolloCartErrorFullPage,
-  useClearCurrentCartId,
-  useCurrentCartId,
-} from '@graphcommerce/magento-cart'
-import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
+  PaymentHandlerProps,
+  usePaymentMethodContext,
+} from '@graphcommerce/magento-cart-payment-method'
 import { ErrorSnackbar } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Button, Dialog } from '@mui/material'
@@ -16,14 +15,14 @@ import { MollieRecoverCartDocument } from './MollieRecoverCart.gql'
 
 const successStatusses: PaymentStatusEnum[] = ['AUTHORIZED', 'COMPLETED', 'PAID', 'SHIPPING']
 
-export function MolliePaymentHandler() {
+export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
   const router = useRouter()
   const method = usePaymentMethodContext()
   const clear = useClearCurrentCartId()
 
-  const isMollie = method.selectedMethod?.code.startsWith('mollie_methods')
-
   const [lockState] = useCartLockWithToken()
+
+  const isActive = method.selectedMethod?.code === code || lockState.method === code
 
   const [handle, handleResult] = useMutation(MolliePaymentHandlerDocument)
   const [recoverCart, recoverResult] = useMutation(MollieRecoverCartDocument)
@@ -33,7 +32,8 @@ export function MolliePaymentHandler() {
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     ;(async () => {
-      if (lockState.locked && lockState.redirecting) return
+      if (!isActive) return
+      if (lockState.locked && lockState.justLocked) return
 
       if (!lockState.mollie_payment_token) return
       if (called || error) return
@@ -61,7 +61,7 @@ export function MolliePaymentHandler() {
         router.replace('/checkout/payment')
       }
     })()
-  }, [called, clear, error, handle, lockState, recoverCart, router])
+  }, [called, clear, error, handle, isActive, lockState, recoverCart, router])
 
   const paymentStatus = data?.mollieProcessTransaction?.paymentStatus
   if (paymentStatus)

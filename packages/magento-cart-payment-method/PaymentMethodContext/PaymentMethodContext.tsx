@@ -20,7 +20,7 @@ const paymentMethodContext = React.createContext<PaymentMethodContextProps>({
 })
 paymentMethodContext.displayName = 'PaymentMethodContext'
 
-type PaymentMethodContextProviderProps = PropsWithChildren<{ modules: PaymentMethodModules }>
+export type PaymentMethodContextProviderProps = PropsWithChildren<{ modules: PaymentMethodModules }>
 
 export function PaymentMethodContextProvider(props: PaymentMethodContextProviderProps) {
   const { modules, children } = props
@@ -32,36 +32,28 @@ export function PaymentMethodContextProvider(props: PaymentMethodContextProvider
   const [selectedMethod, setSelectedMethod] = useState<PaymentMethod>()
   const [selectedModule, setSelectedModule] = useState<PaymentModule>()
 
+  const availableMethods = useMemo(() => {
+    const allMethods = cartContext?.available_payment_methods ?? []
+    const free = allMethods.find((method) => method?.code === 'free')
+
+    return free ? [free] : allMethods
+  }, [cartContext?.available_payment_methods])
+
   // Expand the payment methods
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    if (!cartContext) return // eslint-disable-next-line @typescript-eslint/no-floating-promises
     ;(async () => {
-      if (!cartContext) return
-
-      const freeMethod = cartContext.available_payment_methods?.find(
-        (method) => method?.code === 'free',
+      const promises = availableMethods.map(async (method) =>
+        method
+          ? modules[method.code]?.expandMethods?.(method, cartContext) ?? [{ ...method, child: '' }]
+          : Promise.resolve([]),
       )
 
-      const promises =
-        [...(freeMethod ? [freeMethod] : cartContext.available_payment_methods ?? [])].map(
-          async (method) =>
-            method
-              ? modules?.[method.code]?.expandMethods?.(method, cartContext) ?? [
-                  { ...method, child: '' },
-                ]
-              : Promise.resolve([]),
-        ) ?? []
-
       const loaded = (await Promise.all(promises)).flat(1).sort((a) => (a.preferred ? 1 : 0))
-      const sortedMethods = loaded.sort((a, b) => {
-        if (!modules?.[a?.code]) return 0
-        if (!modules?.[b?.code]) return -1
-        return 1
-      })
 
-      setMethods(sortedMethods)
+      setMethods(loaded)
     })()
-  }, [cartContext, modules])
+  }, [availableMethods, cartContext, modules])
 
   const value = useMemo(
     () => ({
@@ -77,11 +69,9 @@ export function PaymentMethodContextProvider(props: PaymentMethodContextProvider
 
   return (
     <paymentMethodContext.Provider value={value}>
-      {Object.entries(modules).map(([method, module]) => {
-        const { PaymentHandler } = module
-        if (!PaymentHandler) return null
-        return <PaymentHandler key={method} />
-      })}
+      {Object.entries(modules).map(([code, module]) =>
+        module.PaymentHandler ? <module.PaymentHandler key={code} code={code} /> : null,
+      )}
       {children}
     </paymentMethodContext.Provider>
   )

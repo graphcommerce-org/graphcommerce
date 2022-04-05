@@ -71,7 +71,7 @@ function OrderSuccessPage() {
 
               <Box textAlign='center' m={8}>
                 <Link href='/' passHref>
-                  <Button color='secondary' variant='pill' size='large'>
+                  <Button color='secondary' variant='pill' size='large' id='back-to-home'>
                     <Trans>Back to home</Trans>
                   </Button>
                 </Link>

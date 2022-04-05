@@ -16,7 +16,7 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
   document: TypedDocumentNode<Q, V>,
   options: QueryHookOptions<Q, Omit<V, 'cartId'>> & { allowUrl?: boolean } = {},
 ) {
-  const { allowUrl = false, ...queryOptions } = options
+  const { allowUrl = true, ...queryOptions } = options
 
   const router = useRouter()
   const currentCartId = useCurrentCartId()

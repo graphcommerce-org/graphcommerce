@@ -37,6 +37,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
     >
       <PageLink href='/checkout' passHref>
         <Button
+          id='cart-start-checkout'
           variant='pill'
           color='secondary'
           size='large'
