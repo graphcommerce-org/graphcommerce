@@ -88,6 +88,7 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
        */
       for (const [, { submit, key }] of formsToProcess) {
         try {
+          console.log(`[ComposedForm] Submitting ${key}`)
           // eslint-disable-next-line no-await-in-loop
           await submit?.()
         } catch (e) {

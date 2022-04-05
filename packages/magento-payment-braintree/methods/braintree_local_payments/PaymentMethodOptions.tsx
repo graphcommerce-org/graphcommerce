@@ -1,5 +1,8 @@
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
+import {
+  PaymentOptionsProps,
+  usePaymentMethodContext,
+} from '@graphcommerce/magento-cart-payment-method'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { useEffect } from 'react'
 import { BraintreePaymentMethodOptionsDocument } from '../../BraintreePaymentMethodOptions.gql'
@@ -63,10 +66,11 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
   const { code, step, child } = props
   const paymentType = child as StartPaymentOptions['paymentType']
   const { data: cartData } = useCartQuery(BraintreeLocalPaymentsCartDocument)
-  const [{ locked, justLocked }, lock, unlock] = useBraintreeCartLock()
+  const [lockState, lock, unlock] = useBraintreeCartLock()
+  const { selectedMethod } = usePaymentMethodContext()
 
   useEffect(() => {
-    if (locked && !justLocked) {
+    if (lockState.locked && !lockState.justLocked) {
       const params = unlock({ payment_id: null })
 
       //     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -79,7 +83,7 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
       //       }
       //     })()
     }
-  }, [justLocked, locked, unlock])
+  }, [lockState.justLocked, lockState.locked, unlock])
 
   /**
    * In the this folder you'll also find a PaymentMethodOptionsNoop.graphql document that is
@@ -90,9 +94,10 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
     onBeforeSubmit: async () => {
       if (!cartData?.cart?.id) throw Error('Cart id is missing')
       if (!paymentType) throw Error('Could not resolve payment type')
+      if (!selectedMethod?.code) throw Error('Selected method not found')
       const options = validateAndBuildStartPaymentParams(cartData)
 
-      lock({ payment_id: null })
+      lock({ payment_id: null, method: selectedMethod?.code })
 
       const localPayment = await localPaymentPromise
       try {
@@ -104,7 +109,7 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
             url: window.location.href,
           },
           onPaymentStart: ({ paymentId }, next) => {
-            lock({ payment_id: paymentId })
+            lock({ payment_id: paymentId, method: selectedMethod?.code })
             next()
           },
         })

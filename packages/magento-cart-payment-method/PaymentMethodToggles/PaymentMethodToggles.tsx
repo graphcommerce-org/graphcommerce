@@ -54,11 +54,10 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
     usePaymentMethodContext()
 
   const [lockState] = useCartLock()
-  const form = useForm<{ code: string; paymentMethod?: string }>({
-    defaultValues: {
-      code: lockState.method,
-    },
+  const form = useForm<{ code: string | null; paymentMethod?: string }>({
+    defaultValues: { code: lockState.method },
   })
+
   useFormPersist({ form, name: 'PaymentMethodToggle' })
 
   const { control, handleSubmit, watch, register, setValue, formState } = form

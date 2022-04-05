@@ -29,8 +29,8 @@ export function useCartLock<E extends CartLockState>() {
     } as E)
   }
 
-  const unlock = (params: Omit<E, 'locked' | 'cart_id'>) => {
-    setRouterQuery({ cart_id: null, locked: null, ...params } as E)
+  const unlock = (params: Omit<E, 'locked' | 'cart_id' | 'method'>) => {
+    setRouterQuery({ cart_id: null, locked: null, method: null, ...params } as E)
     return queryState
   }
 
