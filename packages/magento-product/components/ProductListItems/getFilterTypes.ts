@@ -1,4 +1,4 @@
-import { gql, ApolloClient, NormalizedCacheObject , Exact } from '@graphcommerce/graphql'
+import { gql, ApolloClient, NormalizedCacheObject, Exact } from '@graphcommerce/graphql'
 import { AllFilterInputTypes, FilterTypes } from './filterTypes'
 
 const allFilterInputTypes: AllFilterInputTypes[] = [
@@ -42,7 +42,7 @@ export async function getFilterTypes(
 
   ;(await filterInputTypes).data?.__type.inputFields.forEach(({ name, type }) => {
     if (!allFilterInputTypes.includes(type.name))
-      throw new Error(`filter ${name} with FilterTypeInput ${type.name} not implemented`)
+      console.warn(`filter ${name} with FilterTypeInput ${type.name} not implemented`)
     typeMap[name] = type.name
   })
 
