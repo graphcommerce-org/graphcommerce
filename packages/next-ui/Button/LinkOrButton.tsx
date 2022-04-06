@@ -14,6 +14,7 @@ export type LinkOrButtonProps = {
   button?: ButtonProps
   link?: LinkProps
   breakpoint?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  disabled?: boolean
 } & SharedProperties<
   Omit<ButtonProps, 'sx'>,
   Omit<LinkProps, 'color' | 'sx'> & Pick<ButtonProps, 'endIcon' | 'startIcon' | 'color' | 'loading'>
@@ -29,6 +30,7 @@ export const LinkOrButton = React.forwardRef<
     breakpoint = 'md',
     button,
     link,
+    disabled,
 
     // Shared props
     loading,
@@ -54,6 +56,7 @@ export const LinkOrButton = React.forwardRef<
         ref={buttonRef}
         color={color}
         loading={loading}
+        disabled={disabled}
         sx={[
           {
             display: {
@@ -80,6 +83,12 @@ export const LinkOrButton = React.forwardRef<
             display: { xs: 'inline-flex', [breakpoint]: 'none' },
             alignItems: 'center',
           },
+          typeof disabled !== 'undefined' &&
+            disabled && {
+              opacity: 0.5,
+              filter: 'grayscale(1)',
+              pointerEvents: 'none',
+            },
           ...(Array.isArray(linkSx) ? linkSx : [linkSx]),
         ]}
       >
