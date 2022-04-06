@@ -290,7 +290,7 @@ msgid "Older"
 msgstr "Ouder"
 
 msgid "Or create an account"
-msgstr "Of maak een accounts"
+msgstr "Of maak een account"
 
 msgid "Or follow these links to get you back on track!"
 msgstr "Of klik op één van deze links om weer op het pad te komen!"
