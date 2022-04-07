@@ -16,7 +16,6 @@ import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
 import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
-import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 
 const { classes, selectors } = extendableComponent('ProductAddToCart', [
   'root',
