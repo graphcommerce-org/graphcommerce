@@ -88,6 +88,7 @@ export function ProductAddToCart(
           size='large'
           sx={(theme) => ({
             marginTop: theme.spacings.sm,
+            marginBottom: theme.spacings.sm,
             width: '100%',
           })}
           {...buttonProps}
