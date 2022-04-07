@@ -33,7 +33,7 @@ type ConfigurableProductAddToCartProps = {
   additionalButtons?: React.ReactNode
   optionsProps?: Omit<
     ConfigurableOptionsInputProps,
-    'name' | 'sku' | 'control' | 'rules' | 'errors' | 'optionEndLabels' | 'additionalButtons'
+    'name' | 'sku' | 'control' | 'rules' | 'errors' | 'optionEndLabels'
   >
 }
 
