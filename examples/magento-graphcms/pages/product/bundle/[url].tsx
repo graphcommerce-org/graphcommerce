@@ -74,15 +74,7 @@ function ProductBundle(props: Props) {
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
           price={product.price_range.minimum_price.regular_price}
-          additionalButtons={
-            <ProductWishlistChip
-              sku={product.sku}
-              sx={(theme) => ({
-                padding: theme.spacings.xxs,
-                boxShadow: theme.shadows[6],
-              })}
-            />
-          }
+          additionalButtons={<ProductWishlistChip sku={product.sku} variant='shadow' />}
         >
           <ProductSidebarDelivery />
         </ProductAddToCart>

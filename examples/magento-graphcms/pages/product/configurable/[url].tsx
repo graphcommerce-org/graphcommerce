@@ -18,6 +18,7 @@ import {
 } from '@graphcommerce/magento-product-configurable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
   JsonLd,
@@ -33,7 +34,6 @@ import React from 'react'
 import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
-import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 
 type Props = ProductPageQuery & ConfigurableProductPageQuery
 
@@ -98,15 +98,7 @@ function ProductConfigurable(props: Props) {
                 </PageLink>
               ),
             }}
-            additionalButtons={
-              <ProductWishlistChip
-                sku={product.sku}
-                sx={(theme) => ({
-                  padding: theme.spacings.xxs,
-                  boxShadow: theme.shadows[6],
-                })}
-              />
-            }
+            additionalButtons={<ProductWishlistChip sku={product.sku} variant='shadow' />}
           >
             <ProductSidebarDelivery />
           </ConfigurableProductAddToCart>

@@ -18,6 +18,7 @@ import {
 } from '@graphcommerce/magento-product-grouped'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
   JsonLd,
@@ -31,7 +32,6 @@ import React from 'react'
 import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
-import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 
 export const config = { unstable_JsPreload: false }
 
@@ -87,15 +87,7 @@ function ProductGrouped(props: Props) {
                       variables={{ sku: item.product.sku ?? '', quantity: item.qty || 1 }}
                       name={product.name ?? ''}
                       price={product.price_range.minimum_price.regular_price}
-                      additionalButtons={
-                        <ProductWishlistChip
-                          sku={product.sku}
-                          sx={(theme) => ({
-                            padding: theme.spacings.xxs,
-                            boxShadow: theme.shadows[6],
-                          })}
-                        />
-                      }
+                      additionalButtons={<ProductWishlistChip sku={product.sku} variant='shadow' />}
                     >
                       <ProductSidebarDelivery />
                     </ProductAddToCart>

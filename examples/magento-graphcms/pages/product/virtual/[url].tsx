@@ -17,6 +17,7 @@ import {
 } from '@graphcommerce/magento-product-virtual'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
   JsonLd,
@@ -30,7 +31,6 @@ import React from 'react'
 import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
-import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 
 export const config = { unstable_JsPreload: false }
 
@@ -79,15 +79,7 @@ function ProductVirtual(props: Props) {
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
           price={product.price_range.minimum_price.regular_price}
-          additionalButtons={
-            <ProductWishlistChip
-              sku={product.sku}
-              sx={(theme) => ({
-                padding: theme.spacings.xxs,
-                boxShadow: theme.shadows[6],
-              })}
-            />
-          }
+          additionalButtons={<ProductWishlistChip sku={product.sku} variant='shadow' />}
         >
           <ProductSidebarDelivery />
         </ProductAddToCart>

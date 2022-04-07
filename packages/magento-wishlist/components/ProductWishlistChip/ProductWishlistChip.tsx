@@ -14,6 +14,7 @@ import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
 
 type ProductWishlistSettings = {
   hideForGuest?: true | false
+  variant?: 'default' | 'shadow'
 }
 
 export type ProductWishlistChipProps = ProductWishlistChipFragment &
@@ -25,7 +26,7 @@ const parts = ['root', 'iconHeart', 'iconHeartActive', 'wishlistButton'] as cons
 const { classes } = extendableComponent(name, parts)
 
 export function ProductWishlistChip(props: ProductWishlistChipProps) {
-  const { hideForGuest, sku, sx = [] } = props
+  const { variant, hideForGuest, sku, sx = [] } = props
 
   const [inWishlist, setInWishlist] = useState(false)
   const [displayWishlist, setDisplayWishlist] = useState(true)
@@ -123,7 +124,13 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
       onClick={handleClick}
       size='small'
       className={classes.wishlistButton}
-      sx={[...(Array.isArray(sx) ? sx : [sx])]}
+      sx={[
+        (theme) => ({
+          padding: theme.spacings.xxs,
+          boxShadow: variant === 'shadow' ? theme.shadows[6] : 'none',
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       title={inWishlist ? t`Remove from wishlist` : t`Add to wishlist`}
       aria-label={inWishlist ? t`Remove from wishlist` : t`Add to wishlist`}
     >
@@ -132,4 +139,9 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
   )
 
   return !hideForGuest || isLoggedIn ? button : null
+}
+
+ProductWishlistChip.defaultProps = {
+  variant: 'default',
+  hideForGuest: false,
 }
