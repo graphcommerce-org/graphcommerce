@@ -1,12 +1,12 @@
 import { AnimatedRow, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
-import { WishlistItem } from '..'
 import { WishlistItemFragment } from '../WishlistItem/ProductWishlistItem.gql'
+import { WishlistItem } from '../WishlistItem/WishlistItem'
 
 export type WishlistProps = { items?: [WishlistItemFragment] }
 
-export default function WishlistItems(props: WishlistProps) {
+export function WishlistItems(props: WishlistProps) {
   const { items } = props
 
   return (

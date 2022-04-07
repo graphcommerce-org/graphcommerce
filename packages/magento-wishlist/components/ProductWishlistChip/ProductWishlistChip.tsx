@@ -1,18 +1,16 @@
-import { IconSvg, iconHeart, extendableComponent } from '@graphcommerce/next-ui'
-import { SxProps, Theme, IconButton, IconButtonProps } from '@mui/material'
-import React, { useState, useEffect } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
+import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import {
   AddProductToWishlistDocument,
   RemoveProductFromWishlistDocument,
-} from '@graphcommerce/magento-wishlist'
-import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import {
   GUEST_WISHLIST_STORAGE_NAME,
   GetIsInWishlistsDocument,
 } from '@graphcommerce/magento-wishlist'
-import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
+import { IconSvg, iconHeart, extendableComponent } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
+import { SxProps, Theme, IconButton, IconButtonProps } from '@mui/material'
+import React, { useState, useEffect } from 'react'
+import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
 
 type ProductWishlistSettings = {
   hideForGuest?: true | false
@@ -26,7 +24,7 @@ const name = 'ProductWishlistChip' as const
 const parts = ['root', 'iconHeart', 'iconHeartActive', 'wishlistButton'] as const
 const { classes } = extendableComponent(name, parts)
 
-export default function ProductWishlistChip(props: ProductWishlistChipProps) {
+export function ProductWishlistChip(props: ProductWishlistChipProps) {
   const { hideForGuest, sku, sx = [] } = props
 
   const [inWishlist, setInWishlist] = useState(false)
@@ -74,7 +72,7 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
         setInWishlist(true)
       }
     } else if (!isLoggedIn && !inWishlist) {
-      let wishlist = JSON.parse(localStorage.getItem(GUEST_WISHLIST_STORAGE_NAME) || '[]')
+      const wishlist = JSON.parse(localStorage.getItem(GUEST_WISHLIST_STORAGE_NAME) || '[]')
       if (wishlist.includes(sku)) {
         setInWishlist(true)
       }
@@ -89,10 +87,10 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
 
     if (isLoggedIn) {
       if (inWishlist) {
-        let wishlistItemsInSession =
+        const wishlistItemsInSession =
           GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items || []
 
-        let item = wishlistItemsInSession.find((element) => element?.product?.sku == sku)
+        const item = wishlistItemsInSession.find((element) => element?.product?.sku == sku)
 
         if (item?.id) {
           removeWishlistItem({ variables: { wishlistItemId: item.id } }).then(() => {
@@ -100,7 +98,7 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
           })
         }
       } else if (sku) {
-        addWishlistItem({ variables: { input: { sku: sku, quantity: 1 } } }).then(() => {
+        addWishlistItem({ variables: { input: { sku, quantity: 1 } } }).then(() => {
           setInWishlist(true)
         })
       }
@@ -120,19 +118,17 @@ export default function ProductWishlistChip(props: ProductWishlistChipProps) {
   }
 
   const button = (
-    <>
-      <IconButton
-        key={sku}
-        onClick={handleClick}
-        size='small'
-        className={classes.wishlistButton}
-        sx={[...(Array.isArray(sx) ? sx : [sx])]}
-        title={inWishlist ? t`Remove from wishlist` : t`Add to wishlist`}
-        aria-label={inWishlist ? t`Remove from wishlist` : t`Add to wishlist`}
-      >
-        {inWishlist ? activeHeart : heart}
-      </IconButton>
-    </>
+    <IconButton
+      key={sku}
+      onClick={handleClick}
+      size='small'
+      className={classes.wishlistButton}
+      sx={[...(Array.isArray(sx) ? sx : [sx])]}
+      title={inWishlist ? t`Remove from wishlist` : t`Add to wishlist`}
+      aria-label={inWishlist ? t`Remove from wishlist` : t`Add to wishlist`}
+    >
+      {inWishlist ? activeHeart : heart}
+    </IconButton>
   )
 
   return !hideForGuest || isLoggedIn ? button : null

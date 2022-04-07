@@ -1,23 +1,22 @@
+import { useQuery, useMutation } from '@apollo/client'
 import { Image } from '@graphcommerce/image'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart'
+import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
-import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
-import { Badge, Box, Link, SxProps, Theme, Typography } from '@mui/material'
-import PageLink from 'next/link'
-import { WishlistItemFragment } from './ProductWishlistItem.gql'
-import { useState } from 'react'
-import IconButton from '@mui/material/IconButton'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
-import { iconEllypsis, IconSvg } from '@graphcommerce/next-ui'
-import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import { useQuery, useMutation } from '@apollo/client'
 import {
   GUEST_WISHLIST_STORAGE_NAME,
   GetIsInWishlistsDocument,
   RemoveProductFromWishlistDocument,
 } from '@graphcommerce/magento-wishlist'
+import { responsiveVal, extendableComponent, iconEllypsis, IconSvg } from '@graphcommerce/next-ui'
+import { Badge, Box, Link, SxProps, Theme, Typography } from '@mui/material'
+import IconButton from '@mui/material/IconButton'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import PageLink from 'next/link'
+import { useState } from 'react'
+import { WishlistItemFragment } from './ProductWishlistItem.gql'
 
 const rowImageSize = responsiveVal(70, 125)
 
@@ -41,7 +40,7 @@ const parts = [
 ] as const
 const { classes } = extendableComponent<OwnerState, typeof compName, typeof parts>(compName, parts)
 
-export default function WishlistItem(props: WishlistItemProps) {
+export function WishlistItem(props: WishlistItemProps) {
   const { item, sx = [] } = props
   const productLink = useProductLink(item)
   const inclTaxes = useDisplayInclTax()
@@ -69,14 +68,14 @@ export default function WishlistItem(props: WishlistItemProps) {
     setAnchorEl(event.currentTarget)
   }
 
-  const sku = item.sku
+  const { sku } = item
   const handleClose = (event) => {
     if (event.target.id == 'remove') {
       if (isLoggedIn) {
-        let wishlistItemsInSession =
+        const wishlistItemsInSession =
           GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items || []
 
-        let item = wishlistItemsInSession.find((element) => element?.product?.sku == sku)
+        const item = wishlistItemsInSession.find((element) => element?.product?.sku == sku)
 
         if (item?.id) {
           removeWishlistItem({ variables: { wishlistItemId: item.id } })
