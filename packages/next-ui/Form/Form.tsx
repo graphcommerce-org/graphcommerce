@@ -31,9 +31,9 @@ const styles = ({ theme, contained = false, background }: { theme: Theme } & For
   ])
 
 export const Form = styled('form', {
-  shouldForwardProp: (prop) => prop !== 'contained',
+  shouldForwardProp: (prop) => prop !== 'contained' && prop !== 'sx',
 })<FormStyleProps>(styles)
 
 export const FormDiv = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'contained',
+  shouldForwardProp: (prop) => prop !== 'contained' && prop !== 'sx',
 })<FormStyleProps>(styles)
