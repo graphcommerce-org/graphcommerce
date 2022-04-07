@@ -1,10 +1,10 @@
 import { useMutation, useQuery } from '@apollo/client'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import { useEffect } from 'react'
 import {
   GUEST_WISHLIST_STORAGE_NAME,
   AddProductToWishlistDocument,
 } from '@graphcommerce/magento-wishlist'
+import { useEffect } from 'react'
 
 /** Merge guest wishlist items to customer session upon login */
 export function useMergeGuestWishlistWithCustomer() {
@@ -16,16 +16,16 @@ export function useMergeGuestWishlistWithCustomer() {
   useEffect(() => {
     if (!isLoggedIn) return
 
-    let wishlist = JSON.parse(localStorage.getItem(GUEST_WISHLIST_STORAGE_NAME) || '[]')
+    const wishlist = JSON.parse(localStorage.getItem(GUEST_WISHLIST_STORAGE_NAME) || '[]')
 
     if (!wishlist.length) return
 
-    let payload = wishlist.map((item) => ({
+    const payload = wishlist.map((item) => ({
       sku: item,
       quantity: 1,
     }))
 
-    localStorage.setItem(GUEST_WISHLIST_STORAGE_NAME, JSON.stringify([]))
+    localStorage.removeItem(GUEST_WISHLIST_STORAGE_NAME)
     addWishlistItem({ variables: { input: payload } })
   })
 }
