@@ -176,7 +176,7 @@ type SizesString =
   | `max(${string})`
   | `clamp(${string})`
 type SizesRecord = Record<number, SizesString>
-type Sizes = SizesString | SizesRecord | undefined
+export type Sizes = SizesString | SizesRecord | undefined
 
 function isSizesRecord(sizes?: Sizes): sizes is SizesRecord {
   return typeof sizes === 'object'
