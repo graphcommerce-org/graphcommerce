@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/client'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { useQuery } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {

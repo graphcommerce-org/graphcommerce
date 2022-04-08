@@ -1,4 +1,4 @@
-import { useQuery, useMutation } from '@apollo/client'
+import { useQuery, useMutation } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import {
   AddProductToWishlistDocument,

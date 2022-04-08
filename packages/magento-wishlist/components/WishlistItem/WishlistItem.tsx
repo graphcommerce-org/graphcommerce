@@ -1,4 +1,4 @@
-import { useQuery, useMutation } from '@apollo/client'
+import { useQuery, useMutation } from '@graphcommerce/graphql'
 import { Image } from '@graphcommerce/image'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
