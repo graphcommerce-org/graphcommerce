@@ -1,6 +1,6 @@
 ---
-'@graphcommerce/magento-product-configurable': minor
-'@graphcommerce/next-ui': minor
+'@graphcommerce/magento-product-configurable': patch
+'@graphcommerce/next-ui': patch
 ---
 
-Added some customizability to the ConfigurableOptions component. Some of the new props that are new in this PR include the layout and the content that is being displayed in the options themselves.
+ConfigurableOptions size=small didn't render correctly when label were to large. The buttons will now just wrap instead of trying to be on a grid when the size=small.

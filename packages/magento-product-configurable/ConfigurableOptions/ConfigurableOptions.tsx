@@ -13,19 +13,11 @@ import { ColorSwatchData } from '../Swatches/ColorSwatchData'
 import { ImageSwatchData } from '../Swatches/ImageSwatchData'
 import { TextSwatchData } from '../Swatches/TextSwatchData'
 import { SwatchTypeRenderer, SwatchSize } from '../Swatches/types'
-import { ConfigurableOptionsLayout, ContentOptions } from './types'
 
 export type ConfigurableOptionsInputProps = {
   sku: string
   errors?: FieldErrors
   size?: SwatchSize
-  //
-  /**
-   * The masonry layout is an early adopted layout that is not yet fully supported by all browsers.
-   * Use with caution.
-   */
-  layout?: ConfigurableOptionsLayout
-  content?: ContentOptions[]
   sx?: SxProps
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 } & UseControllerProps<any> &
@@ -49,8 +41,6 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
     helperText,
     optionEndLabels,
     size = 'large',
-    layout,
-    content,
     sx,
     ...controlProps
   } = props
@@ -93,7 +83,6 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
                   value={value}
                   className={classes.buttonGroup}
                   size={size}
-                  layout={layout}
                   sx={sx}
                 >
                   {option?.values?.map((val) => {
@@ -126,7 +115,6 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
                           {...val}
                           {...swatch_data}
                           price={itemVariant?.product?.price_range.minimum_price.final_price}
-                          content={content}
                           size={size}
                         />
                       </ToggleButton>

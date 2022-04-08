@@ -19,13 +19,7 @@ export function TextSwatchData(props: TextSwatchDataProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
-        () => ({
-          width: '100%',
-          height: '100%',
-        }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+      sx={[{ width: '100%', height: '100%' }, ...(Array.isArray(sx) ? sx : [sx])]}
     >
       {size !== 'small' ? (
         <>
@@ -35,63 +29,46 @@ export function TextSwatchData(props: TextSwatchDataProps) {
               flex: 1,
               justifyContent: 'space-between',
               alignItems: 'center',
+              flexWrap: 'wrap',
             }}
           >
-            {(!content || content?.includes('value')) && (
-              <Box
-                className={classes.label}
-                sx={{
-                  typography: 'subtitle2',
-                  marginRight: '5px',
-                }}
-              >
-                {value}
-              </Box>
-            )}
+            <Box
+              className={classes.label}
+              sx={{
+                typography: 'subtitle2',
+                marginRight: '5px',
+              }}
+            >
+              {value}
+            </Box>
 
-            {(!content || content?.includes('price')) && (
-              <Box
-                className={classes.value}
-                sx={{
-                  typography: 'body2',
-                  justifySelf: 'end',
-                  margin: 'auto 0',
-                }}
-              >
-                <Money {...price} />
-              </Box>
-            )}
+            <Box
+              className={classes.value}
+              sx={{
+                typography: 'body2',
+                justifySelf: 'end',
+                margin: 'auto 0',
+              }}
+            >
+              <Money {...price} />
+            </Box>
           </Box>
 
-          {size === 'large' &&
-            store_label !== value &&
-            (!content || content?.includes('description')) && (
-              <Box
-                className={classes.storeLabel}
-                sx={{
-                  typography: 'body2',
-                  textAlign: 'left',
-                  color: 'text.disabled',
-                }}
-              >
-                {store_label}
-              </Box>
-            )}
+          {size === 'large' && store_label !== value && (
+            <Box
+              className={classes.storeLabel}
+              sx={{
+                typography: 'body2',
+                textAlign: 'left',
+                color: 'text.disabled',
+              }}
+            >
+              {store_label}
+            </Box>
+          )}
         </>
       ) : (
-        <Box
-          sx={{
-            typography: 'subtitle2',
-            whiteSpace: 'nowrap',
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          {value ?? store_label}
-        </Box>
+        <Box sx={{ typography: 'subtitle2', whiteSpace: 'nowrap' }}>{value ?? store_label}</Box>
       )}
     </Box>
   )
