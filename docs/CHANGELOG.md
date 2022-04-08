@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.5.5
+
+### Patch Changes
+
+- [#1374](https://github.com/graphcommerce-org/graphcommerce/pull/1374) [`180cc0f43`](https://github.com/graphcommerce-org/graphcommerce/commit/180cc0f43bd22ac140cb50c015f7eecc85f7e911) Thanks [@timhofman](https://github.com/timhofman)! - header styling doc steps breaks page due to missing import
+
+* [#1375](https://github.com/graphcommerce-org/graphcommerce/pull/1375) [`451ece476`](https://github.com/graphcommerce-org/graphcommerce/commit/451ece476b6413206ca1afdf39bedb59f72d6547) Thanks [@FrankHarland](https://github.com/FrankHarland)! - Specify PSP's so its easier to check when upgrade what one should remove
+
 ## 4.5.4
 
 ### Patch Changes
