@@ -1,5 +1,6 @@
 import { MoneyProps } from '@graphcommerce/magento-store'
 import { TypeRenderer } from '@graphcommerce/next-ui'
+import { ContentOptions } from '../ConfigurableOptions/types'
 import { ProductListItemConfigurableFragment } from '../ProductListItemConfigurable.gql'
 import { SwatchDataFragment } from './SwatchData.gql'
 
@@ -13,6 +14,7 @@ export type SwatchSize = 'small' | 'medium' | 'large'
 export type SwatchDataProps = ConfigurableOptionValue & {
   size?: SwatchSize
   price?: MoneyProps
+  content?: ContentOptions[]
 }
 
 export type SwatchTypeRenderer = TypeRenderer<SwatchDataFragment, SwatchDataProps>

@@ -10,7 +10,9 @@ export type ToggleButtonProps = Omit<ButtonProps, 'onClick' | 'onChange'> & {
   onChange?: (e: FormEvent<HTMLButtonElement>, v: any) => void
 }
 
-type OwnerState = Pick<ButtonProps, 'size' | 'disabled'> & { selected?: boolean }
+type OwnerState = Pick<ButtonProps, 'size' | 'disabled'> & {
+  selected?: boolean
+}
 
 const compName = 'ToggleButton' as const
 const parts = ['root', 'button', 'helperText'] as const
@@ -64,6 +66,8 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
           border: 1,
           borderColor: 'divider',
           bgcolor: 'background.paper',
+          marginRight: '10px',
+          marginBottom: '10px',
 
           '&.disabled': {
             borderWidth: 2,

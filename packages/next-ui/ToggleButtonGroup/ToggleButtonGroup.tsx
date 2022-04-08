@@ -15,7 +15,13 @@ const name = 'ToggleButtonGroup' as const
 const parts = ['root', 'button'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
-export type ToggleButtonGroupProps = ToggleButtonGroupPropsBase & { required?: boolean }
+export type ToggleButtonGroupProps = ToggleButtonGroupPropsBase & {
+  required?: boolean
+  layout?: {
+    gridType: 'grid' | 'masonry'
+    columns?: number | 'auto-fill'
+  }
+}
 
 const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGroupProps>((props, ref) => {
   const {
@@ -28,6 +34,7 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGroupProp
     value,
     size = 'large',
     sx = [],
+    layout,
     ...other
   } = props
 
@@ -62,23 +69,52 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGroupProp
       role='group'
       className={`${classes.root} ${className ?? ''}`}
       sx={[
-        (theme) => ({
-          display: 'grid',
-          rowGap: theme.spacings.xxs,
-          columnGap: theme.spacings.xs,
-          '&.orientationVertical': {
-            gridAutoFlow: 'column',
-          },
-          '&.sizeSmall.orientationHorizontal': {
-            gridTemplateColumns: `repeat(auto-fill, minmax(60px, 1fr))`,
-          },
-          '&.sizeMedium.orientationHorizontal': {
-            gridTemplateColumns: 'repeat(2, 1fr)',
-          },
-          '&.sizeLarge.orientationHorizontal': {
-            gridTemplateColumns: 'repeat(2, 1fr)',
-          },
-        }),
+        (theme) => {
+          const columns = layout?.columns ?? 2
+          switch (layout?.gridType) {
+            case 'masonry': {
+              return {
+                display: 'grid',
+                // rowGap: theme.spacings.xxs,
+                // columnGap: theme.spacings.xs,
+                gridTemplateColumns: `repeat(${columns}, 1fr)`,
+                gridTemplateRows: `masonry`,
+                rowGap: theme.spacings.xxs,
+                columnGap: theme.spacings.xs,
+                '&.orientationVertical': {
+                  gridAutoFlow: 'column',
+                },
+                '&.sizeSmall.orientationHorizontal': {
+                  gridTemplateColumns: `repeat(${columns}, minmax(60px, 1fr))`,
+                },
+                '&.sizeMedium.orientationHorizontal': {
+                  gridTemplateColumns: `repeat(${columns}, 1fr)`,
+                },
+                '&.sizeLarge.orientationHorizontal': {
+                  gridTemplateColumns: `repeat(${columns}, 1fr)`,
+                },
+              }
+            }
+            default:
+              return {
+                display: 'grid',
+                rowGap: theme.spacings.xxs,
+                columnGap: theme.spacings.xs,
+                '&.orientationVertical': {
+                  gridAutoFlow: 'column',
+                },
+                '&.sizeSmall.orientationHorizontal': {
+                  gridTemplateColumns: `repeat(${columns}, minmax(60px, 1fr))`,
+                },
+                '&.sizeMedium.orientationHorizontal': {
+                  gridTemplateColumns: `repeat(${columns}, 1fr)`,
+                },
+                '&.sizeLarge.orientationHorizontal': {
+                  gridTemplateColumns: `repeat(${columns}, 1fr)`,
+                },
+              }
+          }
+        },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       ref={ref}

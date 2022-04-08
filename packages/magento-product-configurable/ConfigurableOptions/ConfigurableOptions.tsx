@@ -6,18 +6,27 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Controller, FieldErrors, UseControllerProps } from '@graphcommerce/react-hook-form'
-import { BaseTextFieldProps, FormHelperText } from '@mui/material'
+import { BaseTextFieldProps, FormHelperText, SxProps } from '@mui/material'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext/ConfigurableContext'
 import { ColorSwatchData } from '../Swatches/ColorSwatchData'
 import { ImageSwatchData } from '../Swatches/ImageSwatchData'
 import { TextSwatchData } from '../Swatches/TextSwatchData'
 import { SwatchTypeRenderer, SwatchSize } from '../Swatches/types'
+import { ConfigurableOptionsLayout, ContentOptions } from './types'
 
 export type ConfigurableOptionsInputProps = {
   sku: string
   errors?: FieldErrors
   size?: SwatchSize
+  //
+  /**
+   * The masonry layout is an early adopted layout that is not yet fully supported by all browsers.
+   * Use with caution.
+   */
+  layout?: ConfigurableOptionsLayout
+  content?: ContentOptions[]
+  sx?: SxProps
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 } & UseControllerProps<any> &
   Pick<BaseTextFieldProps, 'FormHelperTextProps' | 'helperText'> & {
@@ -40,6 +49,9 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
     helperText,
     optionEndLabels,
     size = 'large',
+    layout,
+    content,
+    sx,
     ...controlProps
   } = props
 
@@ -81,6 +93,8 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
                   value={value}
                   className={classes.buttonGroup}
                   size={size}
+                  layout={layout}
+                  sx={sx}
                 >
                   {option?.values?.map((val) => {
                     if (!val?.uid || !option.attribute_code) return null
@@ -112,6 +126,7 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
                           {...val}
                           {...swatch_data}
                           price={itemVariant?.product?.price_range.minimum_price.final_price}
+                          content={content}
                           size={size}
                         />
                       </ToggleButton>
