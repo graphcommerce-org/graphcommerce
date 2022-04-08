@@ -35,7 +35,6 @@ export function TextSwatchData(props: TextSwatchDataProps) {
               flex: 1,
               justifyContent: 'space-between',
               alignItems: 'center',
-              // flexWrap: 'wrap',
             }}
           >
             {(!content || content?.includes('value')) && (
