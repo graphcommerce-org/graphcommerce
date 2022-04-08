@@ -8,6 +8,7 @@ import {
   CategoryMeta,
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
+import PageBuilder from '@graphcommerce/magento-pagebuilder/lib'
 import {
   extractUrlQuery,
   FilterTypes,
@@ -32,7 +33,7 @@ import {
   MetaRobots,
   PageMeta,
 } from '@graphcommerce/next-ui'
-import { Container } from '@mui/material'
+import { Container, NoSsr } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutFull,
@@ -104,7 +105,10 @@ function CategoryPage(props: Props) {
           >
             {category?.name}
           </LayoutTitle>
-          <CategoryDescription description={category.description} />
+          <NoSsr>
+            <PageBuilder html={category.description} />
+          </NoSsr>
+          {/* <CategoryDescription description={category.description} /> */}
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
           <StickyBelowHeader>
