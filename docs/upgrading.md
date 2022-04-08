@@ -1,7 +1,11 @@
+<div data-nosnippet>
+
 > **Developer preview**  
 > This is a developer preview of GraphCommerce. The documentation will be
 > updated as GraphCommerce introduces
-> [new features and refines existing functionality](https://github.com/graphcommerce-org/graphcommerce/releases)
+> [new features and refines existing functionality](https://github.com/graphcommerce-org/graphcommerce/releases).
+
+</div>
 
 # Upgrading
 
@@ -19,17 +23,17 @@ dependencies, while keeping your customizations.
 
 1. In package.json, find your version:
 
-```json
-// Example from package.json
+   ```json
+   // Example from package.json
 
-{
-  "dependencies": {
-    //...
-    "@graphcommerce/next-ui": "^4.2.0"
-    //...
-  }
-}
-```
+   {
+     "dependencies": {
+       //...
+       "@graphcommerce/next-ui": "4.2.0"
+       //...
+     }
+   }
+   ```
 
 2. Download a fresh copy of the repository:
 

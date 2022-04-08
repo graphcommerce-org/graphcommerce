@@ -9,16 +9,14 @@ The following overview contains the status of items on the GraphCommerce roadmap
 
 ## In progress
 
-- [x] Framework updates (Mui5)
-- [x] Translation updates (DE, NL, ES, FR, IT)
-- [x] Documentation and installation guide
-- [ ] Quality improvements (Reduce components, naming)
+- [ ] Adyen payment service (Braintree, Mollie, Klarna, Paypal already
+      implemented)
+- [ ] Wishlist
 
 ## Planned
 
-- [ ] Search integration (external service)
-- [ ] Checkout UI and accessibility improvements
-- [ ] Payment service provider integration
+- [ ] Buckaroo payment service
+- [ ] Multisafepay payment service
 
 ## Future
 

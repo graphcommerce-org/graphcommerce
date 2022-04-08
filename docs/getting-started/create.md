@@ -71,7 +71,7 @@ https://user-images.githubusercontent.com/1251986/158647122-dc57002f-a9c2-4661-a
 4. `cd my-project`
 5. `cp -R .env.example .env`
 6. `rm CHANGELOG.md`
-7. `rm -rf node_modules && rm -rf .next`
+7. `rm -r node_modules && rm -r .next`
 
 Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
 `scripts`:
@@ -110,22 +110,29 @@ project, you need to update variables in the /.env file. The .env file contains
 useful information about your storefront.
 
 `MAGENTO_ENDPOINT=""`  
-Magento 2 API url, located at `http://<magento2-server>/graphql`.
+Magento 2 API URL, located at `http://<magento2-server>/graphql`.
 
 `IMAGE_DOMAINS=",media.graphcms.com"`  
 Comma-separated list of image domains. Add media.graphcms.com as default.
 
 `GRAPHCMS_URL=""`  
-GraphCMS API url. Once logged in, copy it from Project Settings > Api Access >
+GraphCMS API URL. Once logged in, copy it from Project Settings > Api Access >
 Content API
 
-`NEXT_PUBLIC_LOCALE_STORES='{"en": "en_US", "nl": "default"}'`  
-List of routes and store_codes. In the above example, adding URL suffix /nl/
-would result in the storeview 'default' is loaded. GraphCommerce uses the
-browser language to determine which storeview to load. A URL suffix will be
-added as a result, with the exception of the first option in the list.
+`NEXT_PUBLIC_LOCALE_STORES='{"en-us": "default", "en-ca": "canada"}'`  
+List of routes and store_codes:
 
-> If need to fetch a list of available store_codes, run `yarn dev` when you
+- When the user switches to the Canadian storeview, the suffix /en-ca is added
+  to the URL.
+- The first storeview in the object is loaded by default. No suffix is added to
+  the URL.
+- The key (en-ca) is used to load the storeview
+  [translation](../framework/translations.md)
+- When a users' browser language matches a storeviews' locale
+  (`Admin > Store > Configuration > General > General > Locale`), the user is
+  automatically redirected to the corresponding storeview.
+
+> If you need to fetch a list of available store_codes, run `yarn dev` when you
 > entered your `MAGENTO_ENDPOINT`. The app won't build, but the GraphQL explorer
 > will start at `http://localhost:3000/api/graphql`. Enter the following query:
 >
@@ -143,8 +150,8 @@ added as a result, with the exception of the first option in the list.
 The example has Payment Service Providers integrated (Mollie, Braintree). Remove
 the ones your Magento backend doesn't support.
 
-- Remove `"@graphcommerce/[psp]"` from package.json
-- Remove all [psp] references from `pages/checkout/payment.tsx`
+- Remove Payment Service integrations from package.json: `@graphcommerce/mollie-magento-payment` and/or `@graphcommerce/magento-payment-braintree`
+- Remove Payment Service references from `pages/checkout/payment.tsx`
 
 ## Step 3: Start the development environment
 

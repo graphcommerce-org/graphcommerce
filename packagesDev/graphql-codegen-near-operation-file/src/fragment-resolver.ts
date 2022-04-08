@@ -107,7 +107,10 @@ export function buildFragmentRegistry<T>(
           prev[fragment.name.value] &&
           print(fragment) !== print(prev[fragment.name.value].node)
         ) {
-          duplicateFragmentNames.push(fragment.name.value)
+          duplicateFragmentNames.push(
+            `${prev[fragment.name.value]} ${prev[fragment.name.value].filePath}`,
+          )
+          duplicateFragmentNames.push(`${fragment.name.value} ${fragment.loc?.source.name}`)
         }
 
         prev[fragment.name.value] = {
@@ -124,7 +127,8 @@ export function buildFragmentRegistry<T>(
 
   if (duplicateFragmentNames.length) {
     throw new Error(
-      `Multiple fragments with the name(s) "${duplicateFragmentNames.join(', ')}" were found.`,
+      `Multiple definitions of the same fragment found at:
+${duplicateFragmentNames.join('\n')}\n\n`,
     )
   }
 

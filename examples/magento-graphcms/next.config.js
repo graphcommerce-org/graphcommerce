@@ -4,7 +4,7 @@
 const { PerformanceObserver, performance } = require('perf_hooks')
 const withYarn1Workspaces = require('@graphcommerce/next-config').withYarn1Scopes()
 
-require('dotenv').config()
+require('dotenv').config({ path: `${__dirname}/.env` })
 
 const withPWA = require('next-pwa')
 
@@ -63,4 +63,5 @@ const nextConfig = {
   },
 }
 
+/** @type {import('next').NextConfig} */
 module.exports = withPWA(withYarn1Workspaces(nextConfig))

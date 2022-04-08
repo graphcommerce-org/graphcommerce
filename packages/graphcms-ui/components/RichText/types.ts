@@ -43,6 +43,7 @@ type LinkElement = {
   type: 'link'
   children: ElementOrTextNode[]
   href: string
+  openInNewTab?: boolean
 }
 
 type ImageElement = {

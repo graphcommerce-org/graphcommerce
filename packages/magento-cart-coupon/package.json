@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cart-coupon",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.0.6",
+  "version": "3.0.8",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,24 +12,24 @@
     }
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^4.0.5",
-    "@graphcommerce/prettier-config-pwa": "^4.0.3",
+    "@graphcommerce/eslint-config-pwa": "^4.1.4",
+    "@graphcommerce/prettier-config-pwa": "^4.0.5",
     "@graphcommerce/typescript-config-pwa": "^4.0.2",
-    "@playwright/test": "^1.19.2"
+    "@playwright/test": "^1.20.1"
   },
   "dependencies": {
-    "@graphcommerce/graphql": "^3.0.4",
-    "@graphcommerce/image": "^3.1.1",
-    "@graphcommerce/magento-cart": "^4.1.4",
-    "@graphcommerce/magento-store": "^4.1.2",
-    "@graphcommerce/next-ui": "^4.3.2",
-    "@graphcommerce/react-hook-form": "^3.0.4"
+    "@graphcommerce/graphql": "3.0.7",
+    "@graphcommerce/image": "3.1.3",
+    "@graphcommerce/magento-cart": "4.2.3",
+    "@graphcommerce/magento-store": "4.1.5",
+    "@graphcommerce/next-ui": "4.5.1",
+    "@graphcommerce/react-hook-form": "3.0.7"
   },
   "peerDependencies": {
     "@lingui/macro": "^3.13.2",
-    "@mui/material": "^5.4.1",
+    "@mui/material": "5.5.3",
     "framer-motion": "^6.2.4",
-    "next": "^12.0.10",
+    "next": "12.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }

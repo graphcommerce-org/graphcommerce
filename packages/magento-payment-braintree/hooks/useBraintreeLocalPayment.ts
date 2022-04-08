@@ -12,7 +12,7 @@ type StartPaymentPayload = {
 type LocalPayment = {
   closeWindow(): void
   focusWindow(): void
-  hasTokenizationParams(): void
+  hasTokenizationParams(): boolean
   startPayment(options: StartPaymentOptions): Promise<StartPaymentPayload>
   teardown(): Promise<void>
   tokenize(params: {

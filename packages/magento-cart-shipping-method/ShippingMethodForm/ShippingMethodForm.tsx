@@ -54,7 +54,6 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
     ShippingMethodFormMutationVariables & { carrierMethod?: string }
   >(ShippingMethodFormDocument, {
     defaultValues: { carrierMethod, carrier, method },
-    mode: 'onChange',
   })
 
   const { handleSubmit, control, setValue, register, required, error } = form

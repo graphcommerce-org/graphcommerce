@@ -40,6 +40,19 @@ export type IconSvgProps = StyleProps &
   Pick<ImageProps, 'src'> &
   Pick<ComponentProps<'svg'>, 'className' | 'style'> & { sx?: SxProps<Theme> }
 
+export const sizes = {
+  xs: rv(11, 13),
+  small: rv(12, 16),
+  medium: rv(22, 24),
+  large: rv(24, 28),
+  xl: rv(38, 62),
+  xxl: rv(96, 148),
+} as const
+
+export function useIconSvgSize(size: keyof typeof sizes) {
+  return sizes[size]
+}
+
 const Svg = styled('svg', { name, target: name })(() => [
   {
     userSelect: 'none',
@@ -58,12 +71,12 @@ const Svg = styled('svg', { name, target: name })(() => [
 
     strokeWidth: svgIconStrokeWidth(28, 148, 1.4, 0.8),
 
-    '&.sizeXs': { fontSize: rv(11, 13) },
-    '&.sizeSmall': { fontSize: rv(12, 16) },
-    '&.sizeMedium': { fontSize: rv(22, 24) },
-    '&.sizeLarge': { fontSize: rv(24, 28) },
-    '&.sizeXl': { fontSize: rv(38, 62) },
-    '&.sizeXxl': { fontSize: rv(96, 148) },
+    '&.sizeXs': { fontSize: sizes.xs },
+    '&.sizeSmall': { fontSize: sizes.small },
+    '&.sizeMedium': { fontSize: sizes.medium },
+    '&.sizeLarge': { fontSize: sizes.large },
+    '&.sizeXl': { fontSize: sizes.xl },
+    '&.sizeXxl': { fontSize: sizes.xxl },
 
     '&.fillIcon': {
       fill: 'currentColor',

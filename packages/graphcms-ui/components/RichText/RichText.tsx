@@ -121,7 +121,7 @@ function RenderElement(element: ElementNode & AdditionalProps) {
 
   if (process.env.NODE_ENV !== 'production') {
     console.error(element)
-    throw Error(`RichText: Unknown Element: ${element.type}`)
+    throw Error(`RichText: Unknown Element: ${type}`)
   }
   return <RenderChildren childNodes={children} sxRenderer={sxRenderer} renderers={renderers} />
 }

@@ -156,6 +156,7 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         action={
           <PageLink href='/cart' passHref>
             <Button
+              id='view-shopping-cart-button'
               size='medium'
               variant='pill'
               color='secondary'

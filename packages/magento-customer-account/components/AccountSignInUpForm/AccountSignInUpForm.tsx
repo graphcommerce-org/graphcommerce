@@ -86,7 +86,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
       {mode === 'signedin' && (
         <Box className={classes.titleContainer} key='signup' sx={titleContainerSx}>
           <LayoutTitle variant='h2' gutterBottom={false}>
-            <Trans>Hi {firstname}! You're now logged in!</Trans>
+            <Trans>Hi {firstname}! You’re now logged in!</Trans>
           </LayoutTitle>
           <Typography variant='h6' align='center'>
             <PageLink href='/account' passHref>

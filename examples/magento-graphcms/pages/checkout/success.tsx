@@ -16,7 +16,7 @@ import { t, Trans } from '@lingui/macro'
 import { Button, Box, Container, NoSsr } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { LayoutFullProps, LayoutMinimal, LayoutMinimalProps } from '../../components'
+import { LayoutFull, LayoutFullProps, LayoutMinimalProps } from '../../components'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -24,7 +24,7 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props>
 
 function OrderSuccessPage() {
-  const hasCartId = !!useRouter().query.cartId
+  const hasCartId = !!useRouter().query.cart_id
 
   return (
     <>
@@ -33,15 +33,7 @@ function OrderSuccessPage() {
         metaDescription={t`Ordered items`}
         metaRobots={['noindex']}
       />
-      <LayoutHeader
-        divider={
-          hasCartId ? (
-            <Container maxWidth={false}>
-              <Stepper steps={3} currentStep={3} />
-            </Container>
-          ) : undefined
-        }
-      >
+      <LayoutHeader floatingMd>
         {hasCartId && (
           <LayoutTitle size='small' icon={iconParty}>
             <Trans>Thank you for your order!</Trans>
@@ -79,7 +71,7 @@ function OrderSuccessPage() {
 
               <Box textAlign='center' m={8}>
                 <Link href='/' passHref>
-                  <Button color='secondary' variant='pill' size='large'>
+                  <Button color='secondary' variant='pill' size='large' id='back-to-home'>
                     <Trans>Back to home</Trans>
                   </Button>
                 </Link>
@@ -93,7 +85,7 @@ function OrderSuccessPage() {
 }
 
 const pageOptions: PageOptions<LayoutMinimalProps> = {
-  Layout: LayoutMinimal,
+  Layout: LayoutFull,
   sharedKey: () => 'checkout',
 }
 OrderSuccessPage.pageOptions = pageOptions

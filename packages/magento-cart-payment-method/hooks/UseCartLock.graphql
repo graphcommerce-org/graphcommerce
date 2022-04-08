@@ -1,7 +1,0 @@
-query UseCartLock($cartId: String!) {
-  cart(cart_id: $cartId) @client {
-    __typename
-    id
-    locked
-  }
-}

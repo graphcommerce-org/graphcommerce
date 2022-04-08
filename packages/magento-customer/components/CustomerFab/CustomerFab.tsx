@@ -31,7 +31,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
     <PageLink href={requireAuth ? guestHref : authHref} passHref>
       <Fab
         color='inherit'
-        data-test-id='customer-fab'
+        id='account'
         aria-label={t`Account`}
         size='large'
         className={classes.root}

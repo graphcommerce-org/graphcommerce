@@ -46,7 +46,7 @@ type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 function PaymentPage() {
   useGoogleRecaptcha()
   const cartId = useCurrentCartId()
-  const { locked } = useCartLock()
+  const [{ locked }] = useCartLock()
 
   return (
     <ComposedForm>
@@ -81,13 +81,13 @@ function PaymentPage() {
               </LayoutTitle>
             </LayoutHeader>
             <Container maxWidth='md'>
-              <Dialog open={locked} fullWidth>
+              <Dialog open={!!locked} fullWidth>
                 <FullPageMessage
                   disableMargin
                   icon={<CircularProgress />}
                   title='Processing your payment'
                 >
-                  <Trans>We're processing your payment, this will take a few seconds.</Trans>
+                  <Trans>We’re processing your payment, this will take a few seconds.</Trans>
                 </FullPageMessage>
               </Dialog>
 
@@ -109,7 +109,7 @@ function PaymentPage() {
 
                     <PaymentMethodOptions
                       key='options'
-                      step={2}
+                      step={3}
                       Container={React.memo(({ children }) => (
                         <FormDiv contained background='secondary'>
                           {children}
@@ -124,12 +124,13 @@ function PaymentPage() {
 
                     <CouponAccordion key='coupon' />
 
-                    <CartAgreementsForm step={3} key='agreements' />
+                    <CartAgreementsForm step={2} key='agreements' />
 
                     <PaymentMethodPlaceOrder key='placeorder' step={4} />
 
                     <FormActions>
                       <PaymentMethodButton
+                        id='place-order'
                         key='button'
                         type='submit'
                         color='secondary'

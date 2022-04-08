@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.0.7
+
+### Patch Changes
+
+- [#1378](https://github.com/graphcommerce-org/graphcommerce/pull/1378) [`22ff9df16`](https://github.com/graphcommerce-org/graphcommerce/commit/22ff9df1677742ae8e07d9b7e5b12fbb487580dc) Thanks [@paales](https://github.com/paales)! - upgrade to latest versions of packages
+
+## 3.0.6
+
+### Patch Changes
+
+- [#1369](https://github.com/graphcommerce-org/graphcommerce/pull/1369) [`ae6449502`](https://github.com/graphcommerce-org/graphcommerce/commit/ae64495024a455bbe5188588604368c1542840c9) Thanks [@paales](https://github.com/paales)! - Upgraded dependencies
+
 ## 3.0.5
 
 ### Patch Changes

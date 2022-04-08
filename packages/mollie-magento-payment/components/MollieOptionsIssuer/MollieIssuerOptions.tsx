@@ -6,18 +6,15 @@ import { Trans } from '@lingui/macro'
 import { Box, TextField, Typography } from '@mui/material'
 import { SetMolliePaymentMethodIssuerOnCartDocument } from './SetMolliePaymentMethodIssuerOnCart.gql'
 
-type MollieIssuerOptionsProps = PaymentOptionsProps & { label: string }
+type MollieIssuerOptionsProps = PaymentOptionsProps & { label: string; children?: React.ReactNode }
 
 const compName = 'MollieIssuerOptions' as const
-const parts = ['root', 'list'] as const
-const { classes } = extendableComponent(compName, parts)
 
 export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
-  const { mollie_available_issuers = [] } = props
+  const { mollie_available_issuers = [], children } = props
   const { code, step, Container, label, title = '' } = props
 
   const form = useFormGqlMutationCart(SetMolliePaymentMethodIssuerOnCartDocument, {
-    mode: 'onChange',
     defaultValues: { code },
   })
 
@@ -25,7 +22,13 @@ export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
   const submit = handleSubmit(() => {})
   const valid = useFormValidFields(form, required)
 
-  useFormPersist({ form, name: `PaymentMethodOptions_${code}` })
+  // Since the issuer isn't retrievable from Magento we persist this value.
+  useFormPersist({
+    form,
+    name: `PaymentMethodOptions_${code}`,
+    persist: ['issuer'],
+    storage: 'localStorage',
+  })
   useFormCompose({ form, step, submit, key: `PaymentMethodOptions_${code}` })
 
   return (
@@ -44,14 +47,15 @@ export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
             helperText={formState.isSubmitted && formState.errors.issuer?.message}
             label={label}
             required={required.issuer}
-            {...muiRegister('issuer', { required: required.issuer })}
+            {...muiRegister('issuer', {
+              required: { value: required.issuer, message: 'Please provide an issuer' },
+            })}
             InputProps={{
               endAdornment: <InputCheckmark show={valid.issuer} select />,
             }}
           >
             {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
             <option value='' />
-            {/* <MenuItem value='' /> */}
             {mollie_available_issuers?.map((issuer) => {
               if (!issuer?.code || !issuer.name) return null
 
@@ -60,39 +64,11 @@ export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
                   {issuer.name}
                 </option>
               )
-              // return (
-              //   <MenuItem key={issuer.code} value={issuer.code}>
-              //     <ListItemIcon>
-              //       <IconSvg src={issuer.svg} alt={issuer.name} size='small' />
-              //     </ListItemIcon>
-              //     <Typography variant='inherit'>{issuer.name}</Typography>
-              //   </MenuItem>
-              // )
             })}
           </TextField>
         </FormRow>
-        <Box
-          component='ul'
-          className={classes.list}
-          sx={(theme) => ({
-            typography: 'body2',
-            paddingLeft: theme.spacings.xs,
-            margin: 0,
-          })}
-        >
-          <li>
-            <Trans>Choose your bank, and place your order.</Trans>
-          </li>
-          <li>
-            <Trans>Complete the payment on your bank's website.</Trans>
-          </li>
-          <li>
-            <Trans>
-              As soon as the payment is completed, you will automatically return to the webshop.
-            </Trans>
-          </li>
-        </Box>
       </form>
+      {children}
     </Container>
   )
 }

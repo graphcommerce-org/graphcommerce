@@ -19,6 +19,8 @@ export type PaymentButtonProps = PaymentMethod & { buttonProps: LinkOrButtonProp
 export type PaymentOptionsProps = PaymentMethod & PaymentMethodOptionsProps
 
 export type PaymentToggleProps = PaymentMethod
+export type PaymentHandlerProps = { code: string }
+
 export type ExpandPaymentMethods = (
   available: AvailablePaymentMethodFragment,
   context: PaymentMethodContextFragment,
@@ -32,7 +34,7 @@ export interface PaymentModule {
   PaymentButton?: React.VFC<PaymentButtonProps>
   PaymentToggle?: React.VFC<PaymentToggleProps>
   expandMethods?: ExpandPaymentMethods
-  PaymentHandler?: React.VFC
+  PaymentHandler?: React.VFC<PaymentHandlerProps>
 }
 
 export type PaymentMethodModules = { [code: string]: PaymentModule }

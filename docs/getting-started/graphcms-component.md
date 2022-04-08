@@ -3,10 +3,14 @@ menu: 5. Build a GraphCMS component
 metaTitle: Build a GraphCMS component
 ---
 
+<div data-nosnippet>
+
 > **Developer preview**  
 > This is a developer preview of GraphCommerce. The documentation will be
 > updated as GraphCommerce introduces
 > [new features and refines existing functionality](https://github.com/graphcommerce-org/graphcommerce/releases).
+
+</div>
 
 # Build a GraphCMS component
 
@@ -45,7 +49,7 @@ frontend React framework that uses Next.js for server-side rendering.
 
 <figure>
 
-![Adding a Single line text field]()
+![Adding a Single line text field](https://user-images.githubusercontent.com/1251986/159904004-cf774bd1-da01-4478-ac6e-b1567f9bafc7.png)
 
   <figcaption>Adding a Single line text field called "Identity"</figcaption>
 </figure>

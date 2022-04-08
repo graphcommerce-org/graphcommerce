@@ -1,9 +1,8 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
-import { Fab, FabProps, styled, SxProps, Theme } from '@mui/material'
-import { m, useSpring } from 'framer-motion'
+import { FabProps, styled, SxProps, Theme } from '@mui/material'
+import { m } from 'framer-motion'
 import React from 'react'
-import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 import { ScrollerDot } from './ScrollerDot'
 

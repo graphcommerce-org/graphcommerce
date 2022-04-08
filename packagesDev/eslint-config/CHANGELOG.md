@@ -1,5 +1,28 @@
 # Change Log
 
+## 4.1.4
+
+### Patch Changes
+
+- [#1378](https://github.com/graphcommerce-org/graphcommerce/pull/1378) [`b610a6e40`](https://github.com/graphcommerce-org/graphcommerce/commit/b610a6e4049e8c9e8b5d2aeff31b8e1bfc24abe5) Thanks [@paales](https://github.com/paales)! - Pin all versions internally so we can’t end up in an unfixable state for the user
+
+## 4.1.3
+
+### Patch Changes
+
+- [#1369](https://github.com/graphcommerce-org/graphcommerce/pull/1369) [`ae6449502`](https://github.com/graphcommerce-org/graphcommerce/commit/ae64495024a455bbe5188588604368c1542840c9) Thanks [@paales](https://github.com/paales)! - Upgraded dependencies
+
+* [#1368](https://github.com/graphcommerce-org/graphcommerce/pull/1368) [`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a) Thanks [@paales](https://github.com/paales)! - Moved playwright test folders around, do not complain about dev dependencies
+
+* Updated dependencies [[`ae6449502`](https://github.com/graphcommerce-org/graphcommerce/commit/ae64495024a455bbe5188588604368c1542840c9)]:
+  - @graphcommerce/prettier-config-pwa@4.0.5
+
+## 4.1.2
+
+### Patch Changes
+
+- [#1353](https://github.com/graphcommerce-org/graphcommerce/pull/1353) [`0e5ee7ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/0e5ee7ba89698e5e711001e846ed182528060cba) Thanks [@paales](https://github.com/paales)! - Eslint: enable rules that were previously disabled and make fixes
+
 ## 4.1.1
 
 ### Patch Changes

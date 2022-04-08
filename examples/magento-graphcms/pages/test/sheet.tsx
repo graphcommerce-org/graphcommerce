@@ -1,6 +1,6 @@
 import { useForm, useFormAutoSubmit } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { LayoutOverlayHeader, LayoutTitle, responsiveVal } from '@graphcommerce/next-ui'
 import {
   LayoutOverlayDemo,
   LayoutOverlayState,
@@ -15,7 +15,7 @@ const sizes: Size[] = ['Sm', 'Md']
 function SheetDemo() {
   const [layout, setLayout] = useLayoutState()
 
-  const form = useForm<LayoutOverlayState>({ defaultValues: layout })
+  const form = useForm<LayoutOverlayState>({ defaultValues: layout, mode: 'onChange' })
   const { register } = form
   const { variantMd, variantSm, justifyMd, justifySm, sizeMd, sizeSm } = layout
 
@@ -34,7 +34,7 @@ function SheetDemo() {
           </Hidden>
         </LayoutTitle>
       </LayoutOverlayHeader>
-      <Container maxWidth={false}>
+      <Container maxWidth={false} sx={{ minWidth: responsiveVal(250, 500) }}>
         <form style={{ paddingTop: '100px' }} onSubmit={submit}>
           {sizes.map((size) => (
             <div key={size}>

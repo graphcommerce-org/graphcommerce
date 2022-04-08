@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.0.9
+
+### Patch Changes
+
+- [#1369](https://github.com/graphcommerce-org/graphcommerce/pull/1369) [`ae6449502`](https://github.com/graphcommerce-org/graphcommerce/commit/ae64495024a455bbe5188588604368c1542840c9) Thanks [@paales](https://github.com/paales)! - Upgraded dependencies
+
+## 3.0.8
+
+### Patch Changes
+
+- [#1356](https://github.com/graphcommerce-org/graphcommerce/pull/1356) [`9f2de0f7b`](https://github.com/graphcommerce-org/graphcommerce/commit/9f2de0f7b0fe8f20fd3ac70ddcd9616c28e2f68e) Thanks [@timhofman](https://github.com/timhofman)! - Include filepath when when duplicate fragments are found
+
 ## 3.0.7
 
 ### Patch Changes

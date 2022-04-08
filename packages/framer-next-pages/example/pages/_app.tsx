@@ -20,8 +20,8 @@ const theme = createTheme({
     sm: responsiveVal(14, 30),
     md: responsiveVal(16, 50),
     lg: responsiveVal(24, 80),
-    xl: responsiveVal(80, 160),
-    xxl: responsiveVal(100, 220),
+    xl: responsiveVal(40, 100),
+    xxl: responsiveVal(80, 160),
   },
   page: {
     horizontal: responsiveVal(10, 30),

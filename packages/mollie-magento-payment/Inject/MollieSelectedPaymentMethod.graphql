@@ -1,6 +1,0 @@
-fragment MollieSelectedPaymentMethod on SelectedPaymentMethod
-@inject(into: ["SelectedPaymentMethod"]) {
-  mollie_meta {
-    image
-  }
-}

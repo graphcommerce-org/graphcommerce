@@ -27,7 +27,7 @@ export function ForgotPasswordForm(props: { sx?: SxProps<Theme> }) {
           marginBottom: theme.spacings.sm,
         })}
       >
-        <Trans>We've send a password reset link to your email address!</Trans>
+        <Trans>We’ve send a password reset link to your email address!</Trans>
       </Alert>
     )
   }

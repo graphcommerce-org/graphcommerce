@@ -119,6 +119,7 @@ export function ProductAddToCart(
         action={
           <PageLink href='/cart' passHref>
             <Button
+              id='view-shopping-cart-button'
               size='medium'
               variant='pill'
               color='secondary'

@@ -74,7 +74,7 @@ export function InlineAccount(props: InlineAccountProps) {
               })}
             >
               <div>
-                <Typography variant='h4' className={classes.title} sx={{ paddingBottom: 8 }}>
+                <Typography variant='h4' className={classes.title} sx={{ paddingBottom: '8px' }}>
                   {title ?? <Trans>No account yet?</Trans>}
                 </Typography>
                 {description ?? <Trans>You can track your order status and much more!</Trans>}

@@ -2,10 +2,10 @@
   "name": "@graphcommerce/docs",
   "homepage": "https://www.graphcommerce.org/docs",
   "repository": "github:graphcommerce-org/graphcommerce/docs",
-  "version": "4.5.1",
+  "version": "4.5.4",
   "sideEffects": true,
   "devDependencies": {
-    "@graphcommerce/prettier-config-pwa": "^4.0.2"
+    "@graphcommerce/prettier-config-pwa": "^4.0.5"
   },
   "prettier": "@graphcommerce/prettier-config-pwa"
 }

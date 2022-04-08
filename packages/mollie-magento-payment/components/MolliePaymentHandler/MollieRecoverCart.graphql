@@ -1,0 +1,7 @@
+mutation MollieRecoverCart($cartId: String!) {
+  mollieRestoreCart(input: { cart_id: $cartId }) {
+    cart {
+      id
+    }
+  }
+}

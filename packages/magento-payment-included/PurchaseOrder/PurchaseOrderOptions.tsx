@@ -11,7 +11,6 @@ export function PurchaseOrderOptions(props: PaymentOptionsProps) {
   const poNumber = selected?.purchase_order_number ?? undefined
 
   const form = useFormGqlMutationCart(PurchaseOrderOptionsDocument, {
-    mode: 'onChange',
     defaultValues: { code, poNumber },
   })
   const { handleSubmit, muiRegister, formState, required } = form

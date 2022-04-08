@@ -5,11 +5,11 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { useForkRef, styled, SxProps, Theme } from '@mui/material'
 import {
-  ImageConfigComplete,
   LoaderValue,
   VALID_LOADERS,
+  ImageConfigComplete,
   imageConfigDefault,
-} from 'next/dist/server/image-config'
+} from 'next/dist/shared/lib/image-config'
 import { ImageConfigContext } from 'next/dist/shared/lib/image-config-context'
 import Head from 'next/head'
 import type { ImageLoaderProps, ImageLoader } from 'next/image'
@@ -176,7 +176,7 @@ type SizesString =
   | `max(${string})`
   | `clamp(${string})`
 type SizesRecord = Record<number, SizesString>
-type Sizes = SizesString | SizesRecord | undefined
+export type Sizes = SizesString | SizesRecord | undefined
 
 function isSizesRecord(sizes?: Sizes): sizes is SizesRecord {
   return typeof sizes === 'object'

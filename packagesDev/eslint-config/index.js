@@ -64,7 +64,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['next.config.js', '**/__tests__/**', '**/_playwright/**', '**/*.d.ts'],
+        devDependencies: ['next.config.js', '**/test/**', '**/*.d.ts'],
       },
     ],
     'import/order': ['warn', { alphabetize: { order: 'asc' } }],
@@ -77,16 +77,12 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': 'off',
 
     // react
-    'react/jsx-one-expression-per-line': 'off',
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/react-in-jsx-scope': 'off',
-    'react/no-unescaped-entities': 'off',
     'react/require-default-props': 'off',
-    'react/destructuring-assignment': 'off',
     'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
     'react-hooks/exhaustive-deps': ['error', { additionalHooks: '(useIsomorphicLayoutEffect)' }],
-    'react/jsx-key': ['error', { checkFragmentShorthand: true }],
     'react/jsx-no-duplicate-props': ['error', { ignoreCase: false }],
     'react/function-component-definition': 'off',
 

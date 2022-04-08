@@ -1,5 +1,49 @@
 # Change Log
 
+## 3.1.1
+
+### Patch Changes
+
+- [#1378](https://github.com/graphcommerce-org/graphcommerce/pull/1378) [`b610a6e40`](https://github.com/graphcommerce-org/graphcommerce/commit/b610a6e4049e8c9e8b5d2aeff31b8e1bfc24abe5) Thanks [@paales](https://github.com/paales)! - Pin all versions internally so we can’t end up in an unfixable state for the user
+
+- Updated dependencies [[`b610a6e40`](https://github.com/graphcommerce-org/graphcommerce/commit/b610a6e4049e8c9e8b5d2aeff31b8e1bfc24abe5), [`22ff9df16`](https://github.com/graphcommerce-org/graphcommerce/commit/22ff9df1677742ae8e07d9b7e5b12fbb487580dc)]:
+  - @graphcommerce/graphql@3.0.7
+  - @graphcommerce/image@3.1.3
+  - @graphcommerce/magento-cart@4.2.3
+  - @graphcommerce/magento-cart-payment-method@3.0.7
+  - @graphcommerce/magento-store@4.1.5
+  - @graphcommerce/next-ui@4.5.1
+  - @graphcommerce/react-hook-form@3.0.7
+
+## 3.1.0
+
+### Minor Changes
+
+- [#1368](https://github.com/graphcommerce-org/graphcommerce/pull/1368) [`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a) Thanks [@paales](https://github.com/paales)! - Fix issue where the cart couldn't be properly restored when a payment was cancelled
+
+### Patch Changes
+
+- [#1369](https://github.com/graphcommerce-org/graphcommerce/pull/1369) [`ae6449502`](https://github.com/graphcommerce-org/graphcommerce/commit/ae64495024a455bbe5188588604368c1542840c9) Thanks [@paales](https://github.com/paales)! - Upgraded dependencies
+
+- Updated dependencies [[`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a), [`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a), [`ae6449502`](https://github.com/graphcommerce-org/graphcommerce/commit/ae64495024a455bbe5188588604368c1542840c9), [`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a), [`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a), [`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a)]:
+  - @graphcommerce/graphql@3.0.6
+  - @graphcommerce/next-ui@4.5.0
+  - @graphcommerce/image@3.1.2
+  - @graphcommerce/magento-cart@4.2.2
+  - @graphcommerce/magento-cart-payment-method@3.0.6
+  - @graphcommerce/magento-store@4.1.4
+  - @graphcommerce/react-hook-form@3.0.6
+
+## 3.0.6
+
+### Patch Changes
+
+- [#1353](https://github.com/graphcommerce-org/graphcommerce/pull/1353) [`0e5ee7ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/0e5ee7ba89698e5e711001e846ed182528060cba) Thanks [@paales](https://github.com/paales)! - Eslint: enable rules that were previously disabled and make fixes
+
+- Updated dependencies [[`49a2d6617`](https://github.com/graphcommerce-org/graphcommerce/commit/49a2d661712e1787fba46c6195f7b559189e23d9), [`f67da3cfb`](https://github.com/graphcommerce-org/graphcommerce/commit/f67da3cfbe2dcf5ea23519d088c5aa0074029182), [`218766869`](https://github.com/graphcommerce-org/graphcommerce/commit/218766869f7468c067a590857c942f3819f8add4), [`0e5ee7ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/0e5ee7ba89698e5e711001e846ed182528060cba), [`829b8690b`](https://github.com/graphcommerce-org/graphcommerce/commit/829b8690bc5d0a46e596299e4120e9837a9f179c), [`829b8690b`](https://github.com/graphcommerce-org/graphcommerce/commit/829b8690bc5d0a46e596299e4120e9837a9f179c)]:
+  - @graphcommerce/next-ui@4.4.0
+  - @graphcommerce/magento-cart@4.2.1
+
 ## 3.0.5
 
 ### Patch Changes

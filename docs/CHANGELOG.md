@@ -1,5 +1,23 @@
 # Change Log
 
+## 4.5.4
+
+### Patch Changes
+
+- [#1378](https://github.com/graphcommerce-org/graphcommerce/pull/1378) [`b610a6e40`](https://github.com/graphcommerce-org/graphcommerce/commit/b610a6e4049e8c9e8b5d2aeff31b8e1bfc24abe5) Thanks [@paales](https://github.com/paales)! - Pin all versions internally so we can’t end up in an unfixable state for the user
+
+## 4.5.3
+
+### Patch Changes
+
+- [#1373](https://github.com/graphcommerce-org/graphcommerce/pull/1373) [`48cb78229`](https://github.com/graphcommerce-org/graphcommerce/commit/48cb782299a9efecffbe338e2954af03293e27c8) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Update docs, translations
+
+## 4.5.2
+
+### Patch Changes
+
+- [#1354](https://github.com/graphcommerce-org/graphcommerce/pull/1354) [`90fa8d8b9`](https://github.com/graphcommerce-org/graphcommerce/commit/90fa8d8b90e2a3b33cdbb178a87094888c7befdd) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Small fixes to docs
+
 ## 4.5.1
 
 ### Patch Changes

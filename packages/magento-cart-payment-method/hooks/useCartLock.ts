@@ -1,7 +1,12 @@
-import { useApolloClient } from '@graphcommerce/graphql'
-import { useCartQuery, useCurrentCartId } from '@graphcommerce/magento-cart'
-import { useCallback } from 'react'
-import { UseCartLockDocument } from './UseCartLock.gql'
+import { useCurrentCartId } from '@graphcommerce/magento-cart'
+import { useUrlQuery } from '@graphcommerce/next-ui'
+import { useState } from 'react'
+
+export type CartLockState = {
+  cart_id: string | null
+  locked: string | null
+  method: string | null
+}
 
 /**
  * Locking a cart might is usefull in the following cases: We want to disable cart modifications
@@ -9,25 +14,31 @@ import { UseCartLockDocument } from './UseCartLock.gql'
  *
  * Todo: Block all operations on the cart while the cart is being blocked.
  */
-export function useCartLock() {
-  const { cache } = useApolloClient()
-  const cartId = useCurrentCartId()
+export function useCartLock<E extends CartLockState>() {
+  const currentCartId = useCurrentCartId()
+  const [justLocked, setJustLocked] = useState(false)
+  const [queryState, setRouterQuery] = useUrlQuery<E>()
 
-  const locked = useCartQuery(UseCartLockDocument, { allowUrl: true }).data?.cart?.locked ?? false
+  const lock = (params: Omit<E, 'locked' | 'cart_id'>) => {
+    if (!currentCartId) return
+    setJustLocked(true)
+    setRouterQuery({
+      locked: '1',
+      cart_id: currentCartId,
+      ...params,
+    } as E)
+  }
 
-  const lock = useCallback(
-    (locking: boolean) => {
-      if (!cartId) return
+  const unlock = (params: Omit<E, 'locked' | 'cart_id' | 'method'>) => {
+    setRouterQuery({ cart_id: null, locked: null, method: null, ...params } as E)
+    return queryState
+  }
 
-      cache.writeQuery({
-        query: UseCartLockDocument,
-        data: { cart: { __typename: 'Cart', id: cartId, locked: locking } },
-        variables: { cartId },
-        broadcast: true,
-      })
-    },
-    [cache, cartId],
-  )
+  const resulting: Omit<E, 'locked'> & { locked: boolean; justLocked: boolean } = {
+    ...queryState,
+    locked: queryState.locked === '1',
+    justLocked,
+  }
 
-  return { locked, lock }
+  return [resulting, lock, unlock] as const
 }

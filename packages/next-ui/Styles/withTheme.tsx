@@ -41,7 +41,7 @@ export function withTheme<T>(
   theme: Theme,
 ): React.FC<T & WithSx> {
   return (data: T & WithSx) => {
-    const sx = data.sx ?? []
+    const { sx = [] } = data
     return (
       <ThemeProvider theme={theme}>
         <Component

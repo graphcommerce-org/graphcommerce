@@ -1,5 +1,43 @@
 # Change Log
 
+## 4.0.8
+
+### Patch Changes
+
+- [#1378](https://github.com/graphcommerce-org/graphcommerce/pull/1378) [`b610a6e40`](https://github.com/graphcommerce-org/graphcommerce/commit/b610a6e4049e8c9e8b5d2aeff31b8e1bfc24abe5) Thanks [@paales](https://github.com/paales)! - Pin all versions internally so we can’t end up in an unfixable state for the user
+
+- Updated dependencies [[`b610a6e40`](https://github.com/graphcommerce-org/graphcommerce/commit/b610a6e4049e8c9e8b5d2aeff31b8e1bfc24abe5), [`22ff9df16`](https://github.com/graphcommerce-org/graphcommerce/commit/22ff9df1677742ae8e07d9b7e5b12fbb487580dc)]:
+  - @graphcommerce/graphql@3.0.7
+  - @graphcommerce/image@3.1.3
+  - @graphcommerce/magento-cart@4.2.3
+  - @graphcommerce/magento-cart-items@3.0.7
+  - @graphcommerce/magento-category@4.0.7
+  - @graphcommerce/magento-customer@4.2.1
+  - @graphcommerce/magento-product@4.1.4
+  - @graphcommerce/magento-product-simple@4.0.6
+  - @graphcommerce/magento-store@4.1.5
+  - @graphcommerce/next-ui@4.5.1
+  - @graphcommerce/react-hook-form@3.0.7
+
+## 4.0.7
+
+### Patch Changes
+
+- [#1369](https://github.com/graphcommerce-org/graphcommerce/pull/1369) [`ae6449502`](https://github.com/graphcommerce-org/graphcommerce/commit/ae64495024a455bbe5188588604368c1542840c9) Thanks [@paales](https://github.com/paales)! - Upgraded dependencies
+
+- Updated dependencies [[`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a), [`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a), [`ae6449502`](https://github.com/graphcommerce-org/graphcommerce/commit/ae64495024a455bbe5188588604368c1542840c9), [`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a), [`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a), [`6213f0b0f`](https://github.com/graphcommerce-org/graphcommerce/commit/6213f0b0f5f53d622b993d9f7ea96cbbeb5bd670), [`892018809`](https://github.com/graphcommerce-org/graphcommerce/commit/8920188093d0422ec50580e408dc28ac5f93e46a)]:
+  - @graphcommerce/graphql@3.0.6
+  - @graphcommerce/next-ui@4.5.0
+  - @graphcommerce/image@3.1.2
+  - @graphcommerce/magento-cart@4.2.2
+  - @graphcommerce/magento-cart-items@3.0.6
+  - @graphcommerce/magento-category@4.0.6
+  - @graphcommerce/magento-customer@4.2.0
+  - @graphcommerce/magento-product@4.1.3
+  - @graphcommerce/magento-product-simple@4.0.5
+  - @graphcommerce/magento-store@4.1.4
+  - @graphcommerce/react-hook-form@3.0.6
+
 ## 4.0.6
 
 ### Patch Changes

@@ -16,10 +16,11 @@ import {
   UseFormComposeOptions,
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
-import { t } from '@lingui/macro'
+import { select, t } from '@lingui/macro'
 import { Box, FormControl, FormHelperText, SxProps, Theme } from '@mui/material'
 import { useEffect } from 'react'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
+import { useCartLock } from '../hooks/useCartLock'
 
 export type PaymentMethodTogglesProps = Pick<UseFormComposeOptions, 'step'> & {
   sx?: SxProps<Theme>
@@ -52,10 +53,11 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
   const { methods, selectedMethod, setSelectedMethod, setSelectedModule, modules } =
     usePaymentMethodContext()
 
-  const form = useForm<{ code: string; paymentMethod?: string }>({
-    mode: 'onChange',
-    defaultValues: { code: selectedMethod?.code },
+  const [lockState] = useCartLock()
+  const form = useForm<{ code: string | null; paymentMethod?: string }>({
+    defaultValues: { code: lockState.method },
   })
+
   useFormPersist({ form, name: 'PaymentMethodToggle' })
 
   const { control, handleSubmit, watch, register, setValue, formState } = form
@@ -63,6 +65,10 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
   const submitHandler = handleSubmit(() => {})
 
   useFormCompose({ form, step, submit: submitHandler, key: 'PaymentMethodToggles' })
+
+  useEffect(() => {
+    if (selectedMethod?.code) setValue('code', selectedMethod.code)
+  }, [selectedMethod?.code, setValue])
 
   const paymentMethod = watch('paymentMethod')
   useEffect(() => {
@@ -141,7 +147,10 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                   }}
                 >
                   {methods?.map((pm) => {
-                    const buttonValue = `${pm.code}___${pm.child}`
+                    const buttonValue = pm.child ? `${pm.code}___${pm.child}` : pm.code
+
+                    if (process.env.NODE_ENV === 'production' && !modules?.[pm.code]) return null
+
                     return (
                       <ToggleButton
                         name={name}

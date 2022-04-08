@@ -1,4 +1,5 @@
-import { AnimatePresence } from 'framer-motion'
+import { clientSizeCssVar, useClientSizeCssVar } from '@graphcommerce/framer-utils'
+import { AnimatePresence, m } from 'framer-motion'
 import { requestIdleCallback, cancelIdleCallback } from 'next/dist/client/request-idle-callback'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import { NextRouter, Router } from 'next/router'
@@ -43,6 +44,7 @@ function getPageInfo(router: NextRouter) {
 export function FramerNextPages(props: PagesProps) {
   const { router, Component, pageProps: incomingProps, fallback = '/', fallbackRoute = '/' } = props
 
+  useClientSizeCssVar()
   const items = useRef<PageItem[]>([])
   const idx = Number(global.window?.history.state?.idx ?? 0)
   const prevHistory = useRef<number>(-1)
@@ -185,6 +187,9 @@ and pass it as a param in <FramerNextPages fallbackRoute='/[...url]' /> in your 
 
   return (
     <AnimatePresence initial={false}>
+      <m.div
+        style={{ position: 'absolute', top: 0, minHeight: clientSizeCssVar.y, left: 0, right: 0 }}
+      />
       {renderItems.map((item, itemIdx) => {
         const { historyIdx, sharedKey, overlayGroup } = item
         const active = itemIdx === renderItems.length - 1

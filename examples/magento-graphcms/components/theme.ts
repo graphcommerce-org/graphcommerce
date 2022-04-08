@@ -278,20 +278,11 @@ const createOverrides = (theme: Theme): Components => ({
   },
 
   MuiTextField: {
+    defaultProps: { color: 'secondary' },
     styleOverrides: {
       root: {
-        '& label.Mui-focused': {
-          color: theme.palette.secondary.main,
-        },
         '& .MuiOutlinedInput-root': {
           borderRadius: responsiveVal(theme.shape.borderRadius * 1.5, theme.shape.borderRadius * 2),
-          '& fieldset': {
-            borderColor: theme.palette.divider,
-          },
-          '&.Mui-focused fieldset': {
-            borderColor: theme.palette.divider,
-            borderWidth: 1,
-          },
         },
       },
     },
