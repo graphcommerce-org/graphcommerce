@@ -76,19 +76,17 @@ export const LinkOrButton = React.forwardRef<
         variant='body2'
         {...sharedProps}
         {...link}
-        color={loading ? 'text.disabled' : color}
-        aria-disabled={loading}
+        color={loading || disabled ? 'action.disabled' : color}
+        aria-disabled={loading || disabled}
         sx={[
           {
             display: { xs: 'inline-flex', [breakpoint]: 'none' },
             alignItems: 'center',
           },
-          typeof disabled !== 'undefined' &&
-            disabled && {
-              opacity: 0.5,
-              filter: 'grayscale(1)',
-              pointerEvents: 'none',
-            },
+          !!disabled && ((theme)=>({
+            opacity: theme.palette.action.disabledOpacity,
+            pointerEvents: 'none'
+          })),
           ...(Array.isArray(linkSx) ? linkSx : [linkSx]),
         ]}
       >
