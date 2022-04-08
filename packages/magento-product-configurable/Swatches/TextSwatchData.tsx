@@ -8,7 +8,7 @@ type TextSwatchDataProps = TextSwatchDataFragment & SwatchDataProps & { sx?: SxP
 
 type OwnerState = Pick<SwatchDataProps, 'size'>
 const name = 'TextSwatchData' as const
-const parts = ['root', 'value', 'price', 'label', 'storeLabel'] as const
+const parts = ['root', 'value', 'price', 'label', 'storeLabel', 'content'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function TextSwatchData(props: TextSwatchDataProps) {
@@ -19,51 +19,47 @@ export function TextSwatchData(props: TextSwatchDataProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
-        (theme) => ({
-          display: 'grid',
-          width: '100%',
-          textAlign: 'start',
-          gridColumnGap: theme.spacings.sm,
-
-          '&:not(.sizeSmall)': {
-            gridTemplateAreas: `
-              "label value"
-              "delivery delivery"
-            `,
-          },
-        }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+      sx={[{ width: '100%', height: '100%' }, ...(Array.isArray(sx) ? sx : [sx])]}
     >
       {size !== 'small' ? (
         <>
           <Box
-            className={classes.label}
-            sx={{
-              typography: 'subtitle2',
-              gridArea: 'label',
+            style={{
+              display: 'flex',
+              flex: 1,
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
             }}
           >
-            {value}
+            <Box
+              className={classes.label}
+              sx={{
+                typography: 'subtitle2',
+                marginRight: '5px',
+              }}
+            >
+              {value}
+            </Box>
+
+            <Box
+              className={classes.value}
+              sx={{
+                typography: 'body2',
+                justifySelf: 'end',
+                margin: 'auto 0',
+              }}
+            >
+              <Money {...price} />
+            </Box>
           </Box>
-          <Box
-            className={classes.value}
-            sx={{
-              typography: 'body2',
-              gridArea: 'value',
-              justifySelf: 'end',
-              margin: 'auto 0',
-            }}
-          >
-            <Money {...price} />
-          </Box>
+
           {size === 'large' && store_label !== value && (
             <Box
               className={classes.storeLabel}
               sx={{
                 typography: 'body2',
-                gridArea: 'delivery',
+                textAlign: 'left',
                 color: 'text.disabled',
               }}
             >

@@ -6,7 +6,7 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Controller, FieldErrors, UseControllerProps } from '@graphcommerce/react-hook-form'
-import { BaseTextFieldProps, FormHelperText } from '@mui/material'
+import { BaseTextFieldProps, FormHelperText, SxProps } from '@mui/material'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext/ConfigurableContext'
 import { ColorSwatchData } from '../Swatches/ColorSwatchData'
@@ -18,6 +18,7 @@ export type ConfigurableOptionsInputProps = {
   sku: string
   errors?: FieldErrors
   size?: SwatchSize
+  sx?: SxProps
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 } & UseControllerProps<any> &
   Pick<BaseTextFieldProps, 'FormHelperTextProps' | 'helperText'> & {
@@ -40,6 +41,7 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
     helperText,
     optionEndLabels,
     size = 'large',
+    sx,
     ...controlProps
   } = props
 
@@ -81,6 +83,7 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
                   value={value}
                   className={classes.buttonGroup}
                   size={size}
+                  sx={sx}
                 >
                   {option?.values?.map((val) => {
                     if (!val?.uid || !option.attribute_code) return null

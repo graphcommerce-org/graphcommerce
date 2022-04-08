@@ -60,7 +60,6 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
       classes={classes}
       sx={[
         (theme) => ({
-          borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
           border: 1,
           borderColor: 'divider',
           bgcolor: 'background.paper',
@@ -76,10 +75,15 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
             }`,
           },
           ':not(&.sizeSmall)': {
+            borderRadius: responsiveVal(theme.shape.borderRadius * 2, theme.shape.borderRadius * 3),
             padding: `${theme.spacings.xxs} ${theme.spacings.xs}`,
           },
           '&.sizeSmall': {
-            aspectRatio: `4/3`,
+            borderRadius: responsiveVal(
+              theme.shape.borderRadius * 1,
+              theme.shape.borderRadius * 1.5,
+            ),
+            padding: `8px 12px`,
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
