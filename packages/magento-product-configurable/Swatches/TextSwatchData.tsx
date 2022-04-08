@@ -12,7 +12,7 @@ const parts = ['root', 'value', 'price', 'label', 'storeLabel', 'content'] as co
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function TextSwatchData(props: TextSwatchDataProps) {
-  const { store_label, size = 'medium', price, value, content, sx = [] } = props
+  const { store_label, size = 'medium', price, value, sx = [] } = props
 
   const classes = withState({ size })
 
