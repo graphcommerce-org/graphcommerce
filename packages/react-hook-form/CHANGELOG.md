@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- [#1379](https://github.com/graphcommerce-org/graphcommerce/pull/1379) [`104abd14e`](https://github.com/graphcommerce-org/graphcommerce/commit/104abd14e1585ef0d8de77937d25156b8fa1e201) Thanks [@paales](https://github.com/paales)! - useFormPersist no accepts a persist array to persist values even if they aren’t dirty anymore
+
+* [#1379](https://github.com/graphcommerce-org/graphcommerce/pull/1379) [`2a125b1f9`](https://github.com/graphcommerce-org/graphcommerce/commit/2a125b1f98bb9272d96c3577f21d6c984caad892) Thanks [@paales](https://github.com/paales)! - ComposedSubmit uses the result of form.trigger() method to check if fomrs are valid before atempting to submit any form in the composition
+
 ## 3.0.7
 
 ### Patch Changes

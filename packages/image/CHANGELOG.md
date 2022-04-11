@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.4
+
+### Patch Changes
+
+- [#1387](https://github.com/graphcommerce-org/graphcommerce/pull/1387) [`0e425e85e`](https://github.com/graphcommerce-org/graphcommerce/commit/0e425e85ee8fed280349317ee0440c7bceea5823) Thanks [@NickdeK](https://github.com/NickdeK)! - Export Sizes type to be used for passing Sizes prop
+
 ## 3.1.3
 
 ### Patch Changes

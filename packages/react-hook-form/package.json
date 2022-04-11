@@ -2,7 +2,7 @@
   "name": "@graphcommerce/react-hook-form",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.0.7",
+  "version": "3.1.0",
   "sideEffects": false,
   "engines": {
     "node": "14.x"

@@ -1,5 +1,50 @@
 # Change Log
 
+## 3.5.5
+
+### Patch Changes
+
+- [#1379](https://github.com/graphcommerce-org/graphcommerce/pull/1379) [`803b0082d`](https://github.com/graphcommerce-org/graphcommerce/commit/803b0082d720a7f17bebfde4cdf96cc63b91de4a) Thanks [@paales](https://github.com/paales)! - Input should have a focus color so it is clear which fields have errors when focused
+
+* [#1379](https://github.com/graphcommerce-org/graphcommerce/pull/1379) [`b8d04130a`](https://github.com/graphcommerce-org/graphcommerce/commit/b8d04130a1b1cb8fc85308939235140288744465) Thanks [@paales](https://github.com/paales)! - Removed unused trigger: onChange for useForm handler
+
+- [#1384](https://github.com/graphcommerce-org/graphcommerce/pull/1384) [`16659f251`](https://github.com/graphcommerce-org/graphcommerce/commit/16659f251f503c023892b76018733c3dacf49d34) Thanks [@carlocarels90](https://github.com/carlocarels90)! - use a correct translation
+
+- Updated dependencies [[`3c801f45c`](https://github.com/graphcommerce-org/graphcommerce/commit/3c801f45c7df55131acf30ae2fe0d2344830d480), [`b8d04130a`](https://github.com/graphcommerce-org/graphcommerce/commit/b8d04130a1b1cb8fc85308939235140288744465), [`7c1b45348`](https://github.com/graphcommerce-org/graphcommerce/commit/7c1b45348bcf99a0dd16d2079893680c5cb6ffc9), [`3192fab82`](https://github.com/graphcommerce-org/graphcommerce/commit/3192fab82560e2211dfcacadc3b0b305260527d8), [`0e425e85e`](https://github.com/graphcommerce-org/graphcommerce/commit/0e425e85ee8fed280349317ee0440c7bceea5823), [`8a354d1cd`](https://github.com/graphcommerce-org/graphcommerce/commit/8a354d1cd4757497ddfc9b1969a0addbc8ff616b), [`6ebe9d12d`](https://github.com/graphcommerce-org/graphcommerce/commit/6ebe9d12db9fcaa2af67a475e64a08d63e232b46), [`9b3488c6a`](https://github.com/graphcommerce-org/graphcommerce/commit/9b3488c6a03cc09a647f43f6a8b36d96e97e5bb8)]:
+  - @graphcommerce/next-ui@4.6.0
+  - @graphcommerce/magento-cart@4.2.4
+  - @graphcommerce/magento-cart-payment-method@3.1.0
+  - @graphcommerce/magento-cart-shipping-method@3.0.8
+  - @graphcommerce/magento-payment-included@3.0.7
+  - @graphcommerce/mollie-magento-payment@3.2.0
+  - @graphcommerce/magento-product-configurable@4.0.9
+  - @graphcommerce/image@3.1.4
+  - @graphcommerce/magento-product@4.1.5
+  - @graphcommerce/ecommerce-ui@1.0.6
+  - @graphcommerce/framer-scroller@2.1.5
+  - @graphcommerce/graphcms-ui@3.0.10
+  - @graphcommerce/magento-cart-billing-address@3.0.7
+  - @graphcommerce/magento-cart-checkout@3.0.7
+  - @graphcommerce/magento-cart-coupon@3.0.9
+  - @graphcommerce/magento-cart-email@3.0.7
+  - @graphcommerce/magento-cart-items@3.0.8
+  - @graphcommerce/magento-cart-shipping-address@3.0.7
+  - @graphcommerce/magento-category@4.0.8
+  - @graphcommerce/magento-customer@4.2.2
+  - @graphcommerce/magento-customer-account@3.1.2
+  - @graphcommerce/magento-customer-order@3.0.8
+  - @graphcommerce/magento-newsletter@2.0.7
+  - @graphcommerce/magento-payment-braintree@3.0.7
+  - @graphcommerce/magento-review@3.1.3
+  - @graphcommerce/magento-search@4.1.5
+  - @graphcommerce/magento-store@4.1.6
+  - @graphcommerce/magento-product-bundle@4.0.7
+  - @graphcommerce/magento-product-downloadable@4.0.7
+  - @graphcommerce/magento-product-grouped@3.0.7
+  - @graphcommerce/magento-product-simple@4.0.7
+  - @graphcommerce/magento-product-virtual@4.0.7
+  - @graphcommerce/magento-cms@4.0.7
+
 ## 3.5.4
 
 ### Patch Changes

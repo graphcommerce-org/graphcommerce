@@ -1,5 +1,21 @@
 # Change Log
 
+## 4.6.0
+
+### Minor Changes
+
+- [#1386](https://github.com/graphcommerce-org/graphcommerce/pull/1386) [`3c801f45c`](https://github.com/graphcommerce-org/graphcommerce/commit/3c801f45c7df55131acf30ae2fe0d2344830d480) Thanks [@FrankHarland](https://github.com/FrankHarland)! - feat: add disabled support to LinkOrButton component
+
+### Patch Changes
+
+- [#1388](https://github.com/graphcommerce-org/graphcommerce/pull/1388) [`3192fab82`](https://github.com/graphcommerce-org/graphcommerce/commit/3192fab82560e2211dfcacadc3b0b305260527d8) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - ConfigurableOptions size=small didn't render correctly when label were to large. The buttons will now just wrap instead of trying to be on a grid when the size=small.
+
+* [#1385](https://github.com/graphcommerce-org/graphcommerce/pull/1385) [`8a354d1cd`](https://github.com/graphcommerce-org/graphcommerce/commit/8a354d1cd4757497ddfc9b1969a0addbc8ff616b) Thanks [@NickdeK](https://github.com/NickdeK)! - Prevent sx prop from being passed to form element
+
+* Updated dependencies [[`0e425e85e`](https://github.com/graphcommerce-org/graphcommerce/commit/0e425e85ee8fed280349317ee0440c7bceea5823)]:
+  - @graphcommerce/image@3.1.4
+  - @graphcommerce/framer-scroller@2.1.5
+
 ## 4.5.1
 
 ### Patch Changes
