@@ -7,7 +7,10 @@ import { heading } from './ContentTypes/Heading'
 import { html } from './ContentTypes/Html'
 import { image } from './ContentTypes/Image'
 import { row } from './ContentTypes/Row'
+import { tabItem } from './ContentTypes/TabItem'
+import { tabs } from './ContentTypes/Tabs'
 import { text } from './ContentTypes/Text/index'
+import { video } from './ContentTypes/Video'
 
 const contentTypesConfig = {
   row,
@@ -16,8 +19,8 @@ const contentTypesConfig = {
   image,
   heading,
   text,
-  // tabs,
-  // 'tab-item': tabItem,
+  tabs,
+  'tab-item': tabItem,
   buttons,
   'button-item': buttonItem,
   // block,
@@ -25,7 +28,7 @@ const contentTypesConfig = {
   // products,
   html,
   divider,
-  // video,
+  video,
   // map,
   // banner,
   // slider,

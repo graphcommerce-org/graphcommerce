@@ -211,6 +211,7 @@ export const Row: RowContentType['component'] = (props) => {
           marginRight: undefined,
           display: 'grid',
           justifyContent: undefined,
+          backgroundColor,
         }}
       >
         {imageProps.desktopImage && (
@@ -218,7 +219,7 @@ export const Row: RowContentType['component'] = (props) => {
             src={imageProps.desktopImage}
             layout='fill'
             sizes='100vw'
-            sx={{ backgroundColor }}
+            sx={{}}
             pictureProps={{ sx: { gridArea: '1 / 1' } }}
           />
         )}
@@ -235,6 +236,7 @@ export const Row: RowContentType['component'] = (props) => {
     )
   }
 
+  // console.log(imageProps)
   if (appearance === 'full-width') {
     return (
       <Box
@@ -246,18 +248,25 @@ export const Row: RowContentType['component'] = (props) => {
           marginRight: undefined,
           display: 'grid',
           justifyContent: undefined,
+          backgroundColor,
         }}
       >
         {imageProps.desktopImage && (
-          <Image
-            src={imageProps.desktopImage}
-            layout='fill'
-            sizes='100vw'
-            sx={{
-              backgroundColor,
-            }}
-            pictureProps={{ sx: { gridArea: '1 / 1' } }}
-          />
+          <Box sx={{ gridArea: '1 / 1', position: 'relative' }}>
+            <Image
+              src={imageProps.desktopImage}
+              layout='fill'
+              sizes='100vw'
+              sx={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+            />
+          </Box>
         )}
 
         {videoOverlay}
@@ -265,7 +274,6 @@ export const Row: RowContentType['component'] = (props) => {
           maxWidth='lg'
           sx={[
             {
-              backgroundColor,
               gridArea: '1 / 1',
             },
             !!imageProps.desktopImage && { zIndex: 1 },
@@ -278,13 +286,13 @@ export const Row: RowContentType['component'] = (props) => {
   }
 
   return (
-    <Container className='Row contained' maxWidth='lg' sx={{ display: 'grid' }}>
+    <Container className='Row contained' maxWidth='lg' sx={{ display: 'grid', backgroundColor }}>
       {imageProps.desktopImage && (
         <Image
           src={imageProps.desktopImage}
           layout='fill'
           sizes='100vw'
-          sx={{ backgroundColor, objectFit: imageProps.backgroundSize as string }}
+          sx={{ objectFit: imageProps.backgroundSize as string }}
           pictureProps={{ sx: { gridArea: '1/1', minHeight: 0 } }}
         />
       )}
@@ -293,7 +301,6 @@ export const Row: RowContentType['component'] = (props) => {
         sx={[
           dynamicStyles,
           {
-            backgroundColor,
             gridArea: '1 / 1',
           },
           !!imageProps.desktopImage && { zIndex: 1 },
