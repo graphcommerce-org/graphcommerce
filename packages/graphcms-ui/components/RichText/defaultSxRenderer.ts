@@ -2,7 +2,7 @@ import { SxRenderer } from './types'
 
 export const defaultSxRenderer: SxRenderer = {
   all: {
-    '&:empty': {
+    '&:empty:not(iframe)': {
       display: 'none',
     },
   },
@@ -104,4 +104,5 @@ export const defaultSxRenderer: SxRenderer = {
   underlined: {
     textDecoration: 'underline',
   },
+  iframe: {},
 }
