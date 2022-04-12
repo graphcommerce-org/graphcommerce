@@ -1,3 +1,5 @@
+import { banner } from './ContentTypes/Banner'
+import { block } from './ContentTypes/Block'
 import { buttonItem } from './ContentTypes/ButtonItem'
 import { buttons } from './ContentTypes/Buttons'
 import { column } from './ContentTypes/Column'
@@ -7,6 +9,7 @@ import { heading } from './ContentTypes/Heading'
 import { html } from './ContentTypes/Html'
 import { image } from './ContentTypes/Image'
 import { row } from './ContentTypes/Row'
+import { slider } from './ContentTypes/Slider'
 import { tabItem } from './ContentTypes/TabItem'
 import { tabs } from './ContentTypes/Tabs'
 import { text } from './ContentTypes/Text/index'
@@ -23,17 +26,16 @@ const contentTypesConfig = {
   'tab-item': tabItem,
   buttons,
   'button-item': buttonItem,
-  // block,
+  block,
   // dynamic_block,
   // products,
   html,
   divider,
   video,
   // map,
-  // banner,
-  // slider,
-  // // Slide is just a banner wrapped inside a slider
-  // slide,
+  banner,
+  slider,
+  slide: banner,
 }
 
 /** Retrieve a content types configuration */

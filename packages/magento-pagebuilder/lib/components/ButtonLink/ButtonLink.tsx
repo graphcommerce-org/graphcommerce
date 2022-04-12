@@ -2,29 +2,29 @@
 import { useApolloClient, useQuery } from '@graphcommerce/graphql'
 import { productLink, ProductLinkProps } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Button, ButtonProps } from '@mui/material'
+import { Button, ButtonProps, SxProps, Theme } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { arrayOf, oneOf, string, bool } from 'prop-types'
-import React, { useCallback } from 'react'
+import React from 'react'
 import { RouteDocument } from '../../Route.gql'
-import resolveLinkProps from '../../resolveLinkProps'
-import { extractAdvancedProps } from '../../utils'
-import { ButtonItemContentType } from './types'
+import { ButtonLinkProps } from './getButtonLinkProps'
 
-/**
- * Page Builder ButtonItem component.
- *
- * This component is part of the Page Builder / PWA integration. It can be consumed without Page Builder.
- */
-export const ButtonItem: ButtonItemContentType['component'] = (props) => {
-  const [cssProps, cssClasses, isHidden, additional] = extractAdvancedProps(props)
+type ButtonLinkComponentProps = ButtonLinkProps & {
+  sx?: SxProps<Theme>
+}
 
+function isButton(props: any): props is ButtonLinkComponentProps {
+  return (props as ButtonLinkComponentProps)?.link !== undefined
+}
+
+export function ButtonLink(props: ButtonLinkComponentProps) {
   const config = useQuery(StoreConfigDocument).data?.storeConfig
   const client = useApolloClient()
   const { locale, push } = useRouter()
 
-  const { buttonType, link, openInNewTab = false, buttonText, linkType } = additional
+  if (!isButton(props)) return null
+
+  const { buttonType, link, openInNewTab = false, buttonText, linkType, sx } = props
 
   const buttonProps: ButtonProps<'a'> = {
     // onClick: handleClick,
@@ -58,7 +58,7 @@ export const ButtonItem: ButtonItemContentType['component'] = (props) => {
 
   return (
     <Link href={link ?? ''} passHref>
-      <Button component='a' sx={cssProps} {...buttonProps} onClick={handleClick}>
+      <Button component='a' sx={sx} {...buttonProps} onClick={handleClick}>
         {buttonText}
       </Button>
     </Link>

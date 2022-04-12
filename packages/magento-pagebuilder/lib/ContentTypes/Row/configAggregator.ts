@@ -1,3 +1,4 @@
+import { getMediaBackgroundProps } from '../../components/MediaBackground/getMediaBackgroundProps'
 import {
   getAdvanced,
   getBackgroundImages,
@@ -23,19 +24,11 @@ export const configAggregator: RowContentType['configAggregator'] = (node, props
     minHeight: containsDynamicBlock ? undefined : dataNode?.style.minHeight,
     ...getVerticalAlignment(dataNode),
     backgroundColor: dataNode?.style.backgroundColor,
-    ...getBackgroundImages(dataNode),
+    ...getMediaBackgroundProps(dataNode),
     enableParallax: dataNode.getAttribute('data-enable-parallax') === '1',
     parallaxSpeed: Number(dataNode.getAttribute('data-parallax-speed')),
     backgroundType: dataNode.getAttribute('data-background-type'),
-    videoSrc: dataNode.getAttribute('data-video-src'),
-    videoFallbackSrc: dataNode.getAttribute('data-video-fallback-src'),
-    videoLoop: dataNode.getAttribute('data-video-loop') === 'true',
-    videoPlayOnlyVisible: dataNode.getAttribute('data-video-play-only-visible') === 'true',
-    videoLazyLoading: dataNode.getAttribute('data-video-lazy-load') === 'true',
-    videoOverlayColor:
-      props.appearance === 'full-width' || props.appearance === 'full-bleed'
-        ? childNode && childNode.getAttribute('data-video-overlay-color')
-        : childNode && childNode.getAttribute('data-video-overlay-color'),
+
     ...getAdvanced(dataNode),
     ...getMediaQueries(dataNode),
   }

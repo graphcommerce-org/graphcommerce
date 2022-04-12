@@ -1,9 +1,5 @@
-import {
-  getAdvanced,
-  getBackgroundImages,
-  getVerticalAlignment,
-  getMediaQueries,
-} from '../../utils'
+import { getImageBackgroundProps } from '../../components/MediaBackground/getImageBackgroundProps'
+import { getAdvanced, getVerticalAlignment, getMediaQueries } from '../../utils'
 import { ColumnContentType } from './types'
 
 export const configAggregator: ColumnContentType['configAggregator'] = (node) => ({
@@ -12,6 +8,6 @@ export const configAggregator: ColumnContentType['configAggregator'] = (node) =>
   backgroundColor: node.style.backgroundColor,
   ...getMediaQueries(node),
   ...getAdvanced(node),
-  ...getBackgroundImages(node),
+  ...getImageBackgroundProps(node),
   ...getVerticalAlignment(node),
 })

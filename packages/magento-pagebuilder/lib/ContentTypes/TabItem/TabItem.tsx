@@ -1,9 +1,6 @@
 import { Box } from '@mui/material'
-import {
-  extractBackgroundImagesProps,
-  extractAdvancedProps,
-  verticalAlignmentToFlex,
-} from '../../utils'
+import { extractImageBackgroundProps } from '../../components/MediaBackground/extractImageBackgroundProps'
+import { extractAdvancedProps, verticalAlignmentToFlex } from '../../utils'
 import { TabItemContentType } from './types'
 
 /**
@@ -13,7 +10,7 @@ import { TabItemContentType } from './types'
  */
 export const TabItem: TabItemContentType['component'] = (props) => {
   const [cssProps, cssClasses, isHidden, additional] = extractAdvancedProps(props)
-  const [imageProps, additional2] = extractBackgroundImagesProps(additional)
+  const [imageProps, additional2] = extractImageBackgroundProps(additional)
 
   const { minHeight, verticalAlignment, backgroundColor, tabName, children } = additional2
 

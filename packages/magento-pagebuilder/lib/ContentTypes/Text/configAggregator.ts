@@ -1,6 +1,7 @@
 import { getAdvanced } from '../../utils'
+import { TextContentType } from './types'
 
-export default (node) => ({
+export const configAggregator: TextContentType['configAggregator'] = (node) => ({
   content: node.innerHTML,
   ...getAdvanced(node),
 })

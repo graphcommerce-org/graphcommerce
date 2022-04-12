@@ -7,8 +7,6 @@ export const configAggregator: VideoContentType['configAggregator'] = (node: HTM
   const wrapper = node.querySelector('[data-element="wrapper"]')
   // const headerElements = node.querySelectorAll<HTMLDivElement>('ul[data-element=navigation] > *')
 
-  console.log(node)
-
   return {
     url: (iframe && iframe.getAttribute('src')) || (video && video.getAttribute('src')) || null,
     autoplay: !!(video && video.getAttribute('autoplay') === 'true'),

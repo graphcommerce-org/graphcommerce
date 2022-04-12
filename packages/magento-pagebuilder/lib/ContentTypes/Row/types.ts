@@ -1,23 +1,14 @@
+import { MediaBackgroundProps } from '../../components/MediaBackground/getMediaBackgroundProps'
 import { ContentType, ContentTypeConfig } from '../../types'
-import { AdvancedProps, BackgroundImages, VerticalAlignment } from '../../utils'
+import { AdvancedProps, VerticalAlignment } from '../../utils'
 
 type RowConfig = ContentTypeConfig<'row'> & {
   appearance: 'contained' | 'full-width' | 'full-bleed'
 }
 
-export type VideoProps = {
-  videoSrc: string | null
-  videoFallbackSrc: string | null
-  videoLoop: boolean
-  videoPlayOnlyVisible: boolean
-  videoLazyLoading: boolean
-  videoOverlayColor: string | null
-}
-
 type RowProps = AdvancedProps &
   VerticalAlignment &
-  VideoProps &
-  BackgroundImages & {
+  MediaBackgroundProps & {
     enableParallax: boolean
     parallaxSpeed: number
     backgroundType: 'video' | string | null

@@ -1,13 +1,8 @@
 import { Box, SxProps, Theme } from '@mui/material'
-import React, { useEffect, useState, useRef } from 'react'
-import {
-  extractAdvancedProps,
-  extractBackgroundImagesProps,
-  verticalAlignmentToFlex,
-} from '../../utils'
+import React, { useRef } from 'react'
+import { extractImageBackgroundProps } from '../../components/MediaBackground/extractImageBackgroundProps'
+import { extractAdvancedProps } from '../../utils'
 import { ColumnContentType } from './types'
-
-const { matchMedia } = globalThis
 
 /**
  * Page Builder Column component.
@@ -16,7 +11,7 @@ const { matchMedia } = globalThis
  */
 export const Column: ColumnContentType['component'] = (incomming) => {
   const [cssProps, cssClasses, isHidden, additional] = extractAdvancedProps(incomming)
-  const [imageProps, props] = extractBackgroundImagesProps(additional)
+  const [imageProps, props] = extractImageBackgroundProps(additional)
 
   const columnElement = useRef(null)
   const { backgroundColor, children, minHeight, verticalAlignment, width, appearance } = props

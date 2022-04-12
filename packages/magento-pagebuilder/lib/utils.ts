@@ -1,66 +1,8 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import React from 'react'
 
 export function isHTMLElement(node: Node): node is HTMLElement {
   return node instanceof HTMLElement
-}
-
-export type BackgroundImages = {
-  mobileImage: string | null
-  desktopImage: string | null
-} & Pick<
-  React.CSSProperties,
-  'backgroundSize' | 'backgroundPosition' | 'backgroundAttachment' | 'backgroundRepeat'
->
-
-/* eslint-disable @typescript-eslint/no-use-before-define */
-/** Retrieve background images from a master format node */
-export function getBackgroundImages(node: HTMLElement): BackgroundImages {
-  const images = node.getAttribute('data-background-images')
-  const response = {
-    desktopImage: null,
-    mobileImage: null,
-    backgroundSize: node.style.backgroundSize,
-    backgroundPosition: node.style.backgroundPosition,
-    backgroundAttachment: node.style.backgroundAttachment,
-    backgroundRepeat: node.style.backgroundRepeat || 'repeat',
-  }
-
-  if (images) {
-    const imagesStructure = JSON.parse(images.replace(/\\"/g, '"'))
-    if (imagesStructure.desktop_image) {
-      response.desktopImage = imagesStructure.desktop_image
-    }
-    if (imagesStructure.mobile_image) {
-      response.mobileImage = imagesStructure.mobile_image
-    }
-  }
-
-  return response
-}
-
-export function extractBackgroundImagesProps<P extends BackgroundImages>(
-  props: P,
-): [Partial<BackgroundImages>, Omit<P, keyof BackgroundImages>] {
-  const {
-    mobileImage,
-    desktopImage,
-    backgroundSize,
-    backgroundRepeat,
-    backgroundAttachment,
-    backgroundPosition,
-    ...remaining
-  } = props
-  return [
-    stripEmpty({
-      mobileImage,
-      desktopImage,
-      backgroundSize,
-      backgroundRepeat,
-      backgroundAttachment,
-      backgroundPosition,
-    }),
-    remaining,
-  ]
 }
 
 const alignmentToFlex = {
@@ -104,7 +46,7 @@ export type AdvancedProps = PaddingProps &
   CssClassesProps &
   IsHiddenProps
 
-function stripEmpty<T extends Record<string, unknown>>(obj: T): Partial<T> {
+export function stripEmpty<T extends Record<string, unknown>>(obj: T): Partial<T> {
   return Object.entries(obj).reduce((acc, [key, value]) => {
     if (value !== undefined && value !== null && value !== '') {
       acc[key] = value
@@ -285,7 +227,7 @@ export function cssToJSXStyle(style: string): React.CSSProperties {
  * @param {Array} mediaQueries
  * @returns {{ mediaQueries: { media: string; style: string } }}
  */
-export function getMediaQueries(node) {
+export function getMediaQueries(node: HTMLElement) {
   const response = []
   const dataset = Object.keys(node.dataset)
 

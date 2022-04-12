@@ -1,9 +1,5 @@
-import {
-  getAdvanced,
-  getBackgroundImages,
-  getVerticalAlignment,
-  getMediaQueries,
-} from '../../utils'
+import { getImageBackgroundProps } from '../../components/MediaBackground/getImageBackgroundProps'
+import { getAdvanced, getVerticalAlignment, getMediaQueries } from '../../utils'
 import { TabItemContentType } from './types'
 
 export const configAggregator: TabItemContentType['configAggregator'] = (node) => ({
@@ -11,7 +7,7 @@ export const configAggregator: TabItemContentType['configAggregator'] = (node) =
   minHeight: node.style.minHeight,
   ...getVerticalAlignment(node),
   backgroundColor: node.style.backgroundColor,
-  ...getBackgroundImages(node),
+  ...getImageBackgroundProps(node),
   ...getAdvanced(node),
   ...getMediaQueries(node),
 })

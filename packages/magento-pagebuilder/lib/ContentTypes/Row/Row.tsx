@@ -2,42 +2,16 @@
 import { Image } from '@graphcommerce/image'
 import { Box, Container, SxProps, Theme, useMediaQuery } from '@mui/material'
 import React, { useEffect, useRef, useState, CSSProperties } from 'react'
-import {
-  extractAdvancedProps,
-  extractBackgroundImagesProps,
-  verticalAlignmentToFlex,
-} from '../../utils'
+import { MediaBackground } from '../../components/MediaBackground/MediaBackground'
+import { extractImageBackgroundProps } from '../../components/MediaBackground/extractImageBackgroundProps'
+import { extractVideoBackgroundProps } from '../../components/MediaBackground/extractVideoBackgroundProps'
+import { extractAdvancedProps, verticalAlignmentToFlex } from '../../utils'
 import defaultClasses from './row.module.css'
-import { RowContentType, VideoProps } from './types'
+import { RowContentType } from './types'
 
 const { matchMedia } = globalThis
 
 const classes = {}
-
-export function extractVideoProps<P extends VideoProps>(
-  props: P,
-): [VideoProps, Omit<P, keyof VideoProps>] {
-  const {
-    videoSrc,
-    videoFallbackSrc,
-    videoLazyLoading,
-    videoLoop,
-    videoOverlayColor,
-    videoPlayOnlyVisible,
-    ...remaining
-  } = props
-  return [
-    {
-      videoSrc,
-      videoFallbackSrc,
-      videoLazyLoading,
-      videoLoop,
-      videoOverlayColor,
-      videoPlayOnlyVisible,
-    },
-    remaining,
-  ]
-}
 
 /**
  * Page Builder Row component.
@@ -50,8 +24,8 @@ export const Row: RowContentType['component'] = (props) => {
   //   const classes = useStyle(defaultClasses, props.classes)
 
   const [cssProps, cssClasses, isHidden, additional] = extractAdvancedProps(props)
-  const [imageProps, additional2] = extractBackgroundImagesProps(additional)
-  const [videoProps, additional3] = extractVideoProps(additional2)
+  const [imageProps, additional2] = extractImageBackgroundProps(additional)
+  const [videoProps, additional3] = extractVideoBackgroundProps(additional2)
 
   const {
     appearance,
@@ -191,15 +165,6 @@ export const Row: RowContentType['component'] = (props) => {
   //     videoLazyLoading,
   //   ])
 
-  const videoOverlay = videoProps.videoOverlayColor ? (
-    <Box
-      sx={{
-        gridArea: '1 / 1',
-        backgroundColor: videoProps.videoOverlayColor,
-      }}
-    />
-  ) : null
-
   if (appearance === 'full-bleed') {
     return (
       <Box
@@ -214,17 +179,7 @@ export const Row: RowContentType['component'] = (props) => {
           backgroundColor,
         }}
       >
-        {imageProps.desktopImage && (
-          <Image
-            src={imageProps.desktopImage}
-            layout='fill'
-            sizes='100vw'
-            sx={{}}
-            pictureProps={{ sx: { gridArea: '1 / 1' } }}
-          />
-        )}
-
-        {videoOverlay}
+        <MediaBackground {...props} sx={{ gridArea: '1 / 1' }} />
 
         <Container
           maxWidth='lg'
@@ -251,25 +206,20 @@ export const Row: RowContentType['component'] = (props) => {
           backgroundColor,
         }}
       >
-        {imageProps.desktopImage && (
-          <Box sx={{ gridArea: '1 / 1', position: 'relative' }}>
-            <Image
-              src={imageProps.desktopImage}
-              layout='fill'
-              sizes='100vw'
-              sx={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-              }}
-            />
-          </Box>
-        )}
+        <Box sx={{ gridArea: '1 / 1', position: 'relative' }}>
+          <MediaBackground
+            {...props}
+            sx={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          />
+        </Box>
 
-        {videoOverlay}
         <Container
           maxWidth='lg'
           sx={[
@@ -287,16 +237,7 @@ export const Row: RowContentType['component'] = (props) => {
 
   return (
     <Container className='Row contained' maxWidth='lg' sx={{ display: 'grid', backgroundColor }}>
-      {imageProps.desktopImage && (
-        <Image
-          src={imageProps.desktopImage}
-          layout='fill'
-          sizes='100vw'
-          sx={{ objectFit: imageProps.backgroundSize as string }}
-          pictureProps={{ sx: { gridArea: '1/1', minHeight: 0 } }}
-        />
-      )}
-      {videoOverlay}
+      <MediaBackground {...props} sx={{ gridArea: '1/1', minHeight: 0 }} />
       <Box
         sx={[
           dynamicStyles,
