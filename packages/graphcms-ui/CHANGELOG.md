@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.11
+
+### Patch Changes
+
+- [#1392](https://github.com/graphcommerce-org/graphcommerce/pull/1392) [`123d441ac`](https://github.com/graphcommerce-org/graphcommerce/commit/123d441acb74706d08e453abae4a6a8dad3130e0) Thanks [@carlocarels90](https://github.com/carlocarels90)! - add missing fields to the iframe renderer
+
 ## 3.0.10
 
 ### Patch Changes
