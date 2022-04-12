@@ -69,7 +69,9 @@ type VideoElement = {
 type IframeElement = {
   type: 'iframe'
   children: ElementOrTextNode[]
-  src: string
+  url: string
+  width?: number
+  height?: number
 }
 
 export type ElementNode = SimpleElement | LinkElement | ImageElement | VideoElement | IframeElement
