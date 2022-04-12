@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.5.6
+
+### Patch Changes
+
+- Updated dependencies [[`123d441ac`](https://github.com/graphcommerce-org/graphcommerce/commit/123d441acb74706d08e453abae4a6a8dad3130e0)]:
+  - @graphcommerce/graphcms-ui@3.0.11
+
 ## 3.5.5
 
 ### Patch Changes
