@@ -1,9 +1,7 @@
-import { Image as ImageBase } from '@graphcommerce/image'
 import { Box } from '@mui/material'
-import React from 'react'
-import resolveLinkProps from '../../resolveLinkProps'
 import { extractAdvancedProps, extractBorderProps } from '../../utils'
 import { ImageContentType } from './types'
+
 /**
  * Page Builder Image component.
  *

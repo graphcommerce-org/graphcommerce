@@ -35,19 +35,11 @@ const renderContentType = (Component, data) => (
   </Component>
 )
 
-/**
- * Create an instance of a content type component based on configuration
- *
- * @class
- * @param data
- * @returns {any}
- */
-const ContentTypeFactory = ({ data }) => {
+/** Create an instance of a content type component based on configuration */
+export const ContentTypeFactory = ({ data }) => {
   const { isHidden, ...props } = data
 
-  if (isHidden) {
-    return null
-  }
+  if (isHidden) return null
 
   const contentTypeConfig = getContentTypeConfig(props.contentType)
   if (contentTypeConfig && contentTypeConfig.component) {
@@ -61,5 +53,3 @@ const ContentTypeFactory = ({ data }) => {
 
   return null
 }
-
-export default ContentTypeFactory

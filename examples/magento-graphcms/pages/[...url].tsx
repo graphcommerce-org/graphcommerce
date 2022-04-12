@@ -2,13 +2,12 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Asset } from '@graphcommerce/graphcms-ui'
 import {
   CategoryChildren,
-  CategoryDescription,
   CategoryHeroNav,
   CategoryHeroNavTitle,
   CategoryMeta,
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
-import PageBuilder from '@graphcommerce/magento-pagebuilder/lib'
+import { PageBuilder } from '@graphcommerce/magento-pagebuilder'
 import {
   extractUrlQuery,
   FilterTypes,

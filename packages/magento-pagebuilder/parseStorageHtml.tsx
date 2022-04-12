@@ -120,7 +120,7 @@ export const convertToInlineStyles = (document: HTMLElement | Document) => {
   })
 }
 
-const parseStorageHtml = (htmlStr: string) => {
+export const parseStorageHtml = (htmlStr: string) => {
   const container = new DOMParser().parseFromString(htmlStr, 'text/html')
 
   const stageContentType = createContentTypeObject('root-container')
@@ -130,5 +130,3 @@ const parseStorageHtml = (htmlStr: string) => {
 
   return walk(container.body, stageContentType)
 }
-
-export default parseStorageHtml
