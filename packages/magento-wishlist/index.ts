@@ -8,4 +8,6 @@ export * from './queries/RemoveProductFromWishlist.gql'
 export * from './queries/WishlistSummaryFragment.gql'
 export * from './queries/GetIsInWishlists.gql'
 
+export * from './typePolicies'
+
 export const GUEST_WISHLIST_STORAGE_NAME = 'guest-wishlist'
