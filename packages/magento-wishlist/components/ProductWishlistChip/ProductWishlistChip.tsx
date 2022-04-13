@@ -74,14 +74,12 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
     }
 
     // Mark as active when product is available in either customer or guest wishlist
-    if (isLoggedIn && !loading && !inWishlist) {
+    if (isLoggedIn && !loading) {
       const inWishlistTest =
         GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items.map(
           (item) => item?.product?.sku,
         ) || []
-      if (inWishlistTest.includes(sku)) {
-        setInWishlist(true)
-      }
+      setInWishlist(inWishlistTest.includes(sku))
     } else if (!isLoggedIn) {
       const inWishlistTest = guestWishlistData?.guestWishlist?.items.map((item) => item?.sku) || []
       setInWishlist(inWishlistTest.includes(sku))
@@ -102,14 +100,10 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
         const item = wishlistItemsInSession.find((element) => element?.product?.sku == sku)
 
         if (item?.id) {
-          removeWishlistItem({ variables: { wishlistItemId: item.id } }).then(() => {
-            setInWishlist(false)
-          })
+          removeWishlistItem({ variables: { wishlistItemId: item.id } })
         }
       } else if (sku) {
-        addWishlistItem({ variables: { input: { sku, quantity: 1 } } }).then(() => {
-          setInWishlist(true)
-        })
+        addWishlistItem({ variables: { input: { sku, quantity: 1 } } })
       }
     } else if (inWishlist) {
       cache.modify({
