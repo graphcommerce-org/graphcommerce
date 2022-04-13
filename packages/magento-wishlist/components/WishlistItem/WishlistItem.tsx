@@ -1,11 +1,10 @@
-import { useQuery, useMutation } from '@graphcommerce/graphql'
+import { useQuery, useMutation, useApolloClient } from '@graphcommerce/graphql'
 import { Image } from '@graphcommerce/image'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import {
-  GUEST_WISHLIST_STORAGE_NAME,
   GetIsInWishlistsDocument,
   RemoveProductFromWishlistDocument,
 } from '@graphcommerce/magento-wishlist'
@@ -44,6 +43,7 @@ export function WishlistItem(props: WishlistItemProps) {
   const { item, sx = [] } = props
   const productLink = useProductLink(item)
   const inclTaxes = useDisplayInclTax()
+  const { cache } = useApolloClient()
 
   const { data: token } = useQuery(CustomerTokenDocument)
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
@@ -81,11 +81,15 @@ export function WishlistItem(props: WishlistItemProps) {
           removeWishlistItem({ variables: { wishlistItemId: item.id } })
         }
       } else {
-        let wishlist = JSON.parse(localStorage.getItem(GUEST_WISHLIST_STORAGE_NAME) || '[]')
-
-        wishlist = wishlist.filter((itemSku) => itemSku !== sku)
-        localStorage.setItem(GUEST_WISHLIST_STORAGE_NAME, JSON.stringify(wishlist))
-        setItemVisible(false)
+        cache.modify({
+          id: cache.identify({ __typename: 'GuestWishlist' }),
+          fields: {
+            items(existingItems = []) {
+              const items = existingItems.filter((guestItem) => guestItem.sku !== sku)
+              return items
+            },
+          },
+        })
       }
     }
     setAnchorEl(null)

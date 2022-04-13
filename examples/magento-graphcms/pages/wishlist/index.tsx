@@ -3,10 +3,10 @@ import { useQuery } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  GUEST_WISHLIST_STORAGE_NAME,
   GetWishlistProductsDocument,
   WishlistItems,
   GetGuestWishlistProductsDocument,
+  GuestWishlistDocument,
 } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
@@ -34,18 +34,8 @@ function WishlistPage(props: Props) {
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
 
   let wishlistItems
-  let productListClasses
-  const [wishlistGuestItems, setWishlistGuestItems] = useState([])
 
-  useEffect(() => {
-    wishlistItems = JSON.parse(localStorage.getItem(GUEST_WISHLIST_STORAGE_NAME) || '[]')
-    if (wishlistGuestItems.length == 0) {
-      if (wishlistItems.length) {
-        setWishlistGuestItems(wishlistItems)
-      }
-    }
-  })
-
+  /** Get customer wishlist from session */
   const { data: GetCustomerWishlistData, loading: loadingCustomerItems } = useQuery(
     GetWishlistProductsDocument,
     {
@@ -54,14 +44,24 @@ function WishlistPage(props: Props) {
     },
   )
 
+  /** Get guest wishlist items from cache and hydrate with catalog data */
+  const { data: guestWishlistData, loading: loadingGuestWishlistData } = useQuery(
+    GuestWishlistDocument,
+    {
+      ssr: false,
+      skip: isLoggedIn === true,
+    },
+  )
+  const guestData = guestWishlistData?.guestWishlist?.items.map((item) => item?.sku) || []
+
   const { data: productGuestItems, loading: loadingGuestItems } = useQuery(
     GetGuestWishlistProductsDocument,
     {
       ssr: false,
       variables: {
-        filters: { sku: { in: wishlistGuestItems } },
+        filters: { sku: { in: guestData } },
       },
-      skip: wishlistGuestItems.length == 0,
+      skip: loadingGuestWishlistData || guestData.length === 0,
     },
   )
 
@@ -89,7 +89,7 @@ function WishlistPage(props: Props) {
         </LayoutOverlayHeader>
 
         <Container maxWidth='md'>
-          {wishlistItems === undefined || wishlistItems.length == 0 ? (
+          {wishlistItems === undefined || wishlistItems.length === 0 ? (
             <FullPageMessage
               title={t`Your wishlist is empty`}
               icon={<IconSvg src={iconHeart} size='xxl' />}
