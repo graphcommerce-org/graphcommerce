@@ -120,19 +120,17 @@ export function OrderCard(props: OrderCardProps) {
               }}
             />
           </OrderRow>
-          <Box
-            className={classes.orderProducts}
-            sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}
-          >
+          <Box className={classes.orderProducts}>
             <Box
               className={classes.images}
               sx={(theme) => ({
                 display: 'grid',
                 gridAutoFlow: 'column',
                 gap: theme.spacings.xxs,
+                gridTemplateColumns: 'repeat(auto-fit, 88px)',
+                placeContent: 'center',
+                placeItems: 'center',
                 padding: theme.spacings.xxs,
-                width: responsiveVal(75, 125),
-                height: responsiveVal(75, 125),
               })}
             >
               {items
