@@ -3,7 +3,6 @@ import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import {
   AddProductToWishlistDocument,
   RemoveProductFromWishlistDocument,
-  GUEST_WISHLIST_STORAGE_NAME,
   GetIsInWishlistsDocument,
   GuestWishlistDocument,
 } from '@graphcommerce/magento-wishlist'
