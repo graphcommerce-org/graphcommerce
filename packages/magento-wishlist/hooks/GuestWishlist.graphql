@@ -1,0 +1,9 @@
+query GuestWishlist {
+  guestWishlist @client {
+    __typename
+    items {
+      __typename
+      sku
+    }
+  }
+}

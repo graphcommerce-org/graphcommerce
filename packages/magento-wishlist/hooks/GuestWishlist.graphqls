@@ -1,0 +1,11 @@
+extend type Query {
+  guestWishlist: GuestWishlist
+}
+
+type GuestWishlist {
+  items: [GuestWishlistItem!]!
+}
+
+type GuestWishlistItem {
+  sku: String!
+}
