@@ -1,10 +1,11 @@
-import { useQuery, useMutation } from '@graphcommerce/graphql'
+import { useQuery, useMutation, useApolloClient } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import {
   AddProductToWishlistDocument,
   RemoveProductFromWishlistDocument,
   GUEST_WISHLIST_STORAGE_NAME,
   GetIsInWishlistsDocument,
+  GuestWishlistDocument,
 } from '@graphcommerce/magento-wishlist'
 import { IconSvg, iconHeart, extendableComponent } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
@@ -34,6 +35,8 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
   const { data: token } = useQuery(CustomerTokenDocument)
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
 
+  const { cache } = useApolloClient()
+
   const heart = (
     <IconSvg
       src={iconHeart}
@@ -56,6 +59,14 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
     skip: !isLoggedIn,
   })
 
+  const { data: guestWishlistData, loading: loadingGuestWishlistData } = useQuery(
+    GuestWishlistDocument,
+    {
+      ssr: false,
+      skip: isLoggedIn === true,
+    },
+  )
+
   useEffect(() => {
     // Do not display wishlist UI to guests when configured as customer only
     if (hideForGuest && !isLoggedIn) {
@@ -72,11 +83,9 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
       if (inWishlistTest.includes(sku)) {
         setInWishlist(true)
       }
-    } else if (!isLoggedIn && !inWishlist) {
-      const wishlist = JSON.parse(localStorage.getItem(GUEST_WISHLIST_STORAGE_NAME) || '[]')
-      if (wishlist.includes(sku)) {
-        setInWishlist(true)
-      }
+    } else if (!isLoggedIn) {
+      const inWishlistTest = guestWishlistData?.guestWishlist?.items.map((item) => item?.sku) || []
+      setInWishlist(inWishlistTest.includes(sku))
     }
   })
 
@@ -103,18 +112,28 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
           setInWishlist(true)
         })
       }
+    } else if (inWishlist) {
+      cache.modify({
+        id: cache.identify({ __typename: 'GuestWishlist' }),
+        fields: {
+          items(existingItems = []) {
+            const items = existingItems.filter((item) => item.sku !== sku)
+            return items
+          },
+        },
+      })
     } else {
-      let wishlist = JSON.parse(localStorage.getItem(GUEST_WISHLIST_STORAGE_NAME) || '[]')
-
-      if (inWishlist) {
-        wishlist = wishlist.filter((itemSku) => itemSku !== sku)
-        localStorage.setItem(GUEST_WISHLIST_STORAGE_NAME, JSON.stringify(wishlist))
-        setInWishlist(false)
-      } else {
-        wishlist.push(sku)
-        localStorage.setItem(GUEST_WISHLIST_STORAGE_NAME, JSON.stringify(wishlist))
-        setInWishlist(true)
-      }
+      /** Merging of wishlist items is done by policy, see typePolicies.ts */
+      cache.writeQuery({
+        query: GuestWishlistDocument,
+        data: {
+          guestWishlist: {
+            __typename: 'GuestWishlist',
+            items: [{ __typename: 'GuestWishlistItem', sku }],
+          },
+        },
+        broadcast: true,
+      })
     }
   }
 
