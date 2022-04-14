@@ -1,8 +1,8 @@
-import { useMutation, useQuery } from '@apollo/client'
+import { useMutation, useQuery, useApolloClient } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import {
-  GUEST_WISHLIST_STORAGE_NAME,
   AddProductToWishlistDocument,
+  GuestWishlistDocument,
 } from '@graphcommerce/magento-wishlist'
 import { useEffect } from 'react'
 
@@ -10,13 +10,21 @@ import { useEffect } from 'react'
 export function useMergeGuestWishlistWithCustomer() {
   const { data: token } = useQuery(CustomerTokenDocument)
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
+  const { cache } = useApolloClient()
+
+  const { data: guestWishlistData, loading: loadingGuestWishlistData } = useQuery(
+    GuestWishlistDocument,
+    {
+      ssr: false,
+    },
+  )
 
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
 
   useEffect(() => {
     if (!isLoggedIn) return
 
-    const wishlist = JSON.parse(localStorage.getItem(GUEST_WISHLIST_STORAGE_NAME) || '[]')
+    const wishlist = guestWishlistData?.guestWishlist?.items.map((item) => item?.sku) || []
 
     if (!wishlist.length) return
 
@@ -25,7 +33,9 @@ export function useMergeGuestWishlistWithCustomer() {
       quantity: 1,
     }))
 
-    localStorage.removeItem(GUEST_WISHLIST_STORAGE_NAME)
+    cache.evict({
+      id: cache.identify({ __typename: 'GuestWishlist' }),
+    })
     addWishlistItem({ variables: { input: payload } })
   })
 }
