@@ -5,6 +5,7 @@ import {
   RemoveProductFromWishlistDocument,
   GetIsInWishlistsDocument,
   GuestWishlistDocument,
+  useWishlistEnabled,
 } from '@graphcommerce/magento-wishlist'
 import { IconSvg, iconHeart, extendableComponent } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
@@ -35,6 +36,12 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
 
   const { cache } = useApolloClient()
+
+  const isWishlistEnabled = useWishlistEnabled()
+
+  if (!isWishlistEnabled) {
+    return null
+  }
 
   const heart = (
     <IconSvg

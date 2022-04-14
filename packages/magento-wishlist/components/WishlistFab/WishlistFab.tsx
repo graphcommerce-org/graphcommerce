@@ -1,6 +1,10 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import { GetIsInWishlistsDocument, GuestWishlistDocument } from '@graphcommerce/magento-wishlist'
+import {
+  GetIsInWishlistsDocument,
+  GuestWishlistDocument,
+  useWishlistEnabled,
+} from '@graphcommerce/magento-wishlist'
 import { iconHeart, DesktopHeaderBadge, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
@@ -69,9 +73,15 @@ function WishlistFabContent(props: WishlistFabContentProps) {
 }
 
 export function WishlistFab(props: WishlistFabContentProps) {
+  const isWishlistEnabled = useWishlistEnabled()
+
   return (
-    <NoSsr fallback={<WishlistFabContent {...props} />}>
-      <WishlistFabContent {...props} />
-    </NoSsr>
+    <>
+      {isWishlistEnabled && (
+        <NoSsr fallback={<WishlistFabContent {...props} />}>
+          <WishlistFabContent {...props} />
+        </NoSsr>
+      )}
+    </>
   )
 }
