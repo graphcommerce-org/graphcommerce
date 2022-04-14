@@ -1,11 +1,10 @@
-import { useMutation, useQuery, useApolloClient } from '@graphcommerce/graphql'
+import { useQuery } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import {
   GuestWishlistDocument,
   GetWishlistProductsDocument,
   GetGuestWishlistProductsDocument,
 } from '@graphcommerce/magento-wishlist'
-import { useEffect } from 'react'
 
 /** Merge guest wishlist items to customer session upon login */
 export function useWishlistItems() {
