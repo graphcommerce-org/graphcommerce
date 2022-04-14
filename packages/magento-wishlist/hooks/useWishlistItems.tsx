@@ -6,7 +6,6 @@ import {
   GetGuestWishlistProductsDocument,
 } from '@graphcommerce/magento-wishlist'
 
-/** Merge guest wishlist items to customer session upon login */
 export function useWishlistItems() {
   const { data: token } = useQuery(CustomerTokenDocument)
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
