@@ -70,12 +70,12 @@ export function WishlistItem(props: WishlistItemProps) {
 
   const { sku } = item
   const handleClose = (event) => {
-    if (event.target.id == 'remove') {
+    if (event.target.id === 'remove') {
       if (isLoggedIn) {
         const wishlistItemsInSession =
           GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items || []
 
-        const item = wishlistItemsInSession.find((element) => element?.product?.sku == sku)
+        const item = wishlistItemsInSession.find((element) => element?.product?.sku === sku)
 
         if (item?.id) {
           removeWishlistItem({ variables: { wishlistItemId: item.id } })
