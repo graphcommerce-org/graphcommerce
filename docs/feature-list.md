@@ -56,15 +56,16 @@ Magento Open Source full feature list, extracted from Adobe Commerce
 - [x] Take full control of URLs with URL rewrites.
 - [x] Enable detailed search results by automatically adding structured data
       markup to product pages.
-- [x] Deliver a full search engine indexable Progressive Web App — [^1]
+- [x] Deliver a full search engine indexable Progressive Web App —
+      [GraphCommerce feature]
 - [x] Take full control of the Google Sitemap by exluding segments or paths. —
-      [^1]
+      [GraphCommerce feature]
 - [x] Benefit from correct search engine indexing with the accurate default
-      canonical configuration — [^1]
+      canonical configuration — [GraphCommerce feature]
 - [x] Deliver a PageSpeed Insights optimized experience: Scoring 100/100 for
-      Best practices, Accessibility and SEO. — [^1]
+      Best practices, Accessibility and SEO. — [GraphCommerce feature]
 - [x] Deliver a Lighthouse audit validated Progressive Web App, passing all PWA
-      checks. — [^1]
+      checks. — [GraphCommerce feature]
 
 ### Site management
 
@@ -112,14 +113,15 @@ Magento Open Source full feature list, extracted from Adobe Commerce
 - [ ] Peregrine contains custom React hooks to provide logic to UI components
 - [x] Decrease time to market using the multi-language storefront.
 - [x] Give marketers control with GraphCMS to manage content and layouts on
-      GraphCommerce-powered storefronts. — [^1]
+      GraphCommerce-powered storefronts. — [GraphCommerce feature]
 - [x] Build PWA experiences using open standards including React, Next.js, and
-      Typescript. — [^1]
+      Typescript. — [GraphCommerce feature]
 - [x] Boost developer productivity with real-time, guided development with
-      Typescript. — [^1]
-- [x] Integrate PWA experiences with Adobe Commerce using GraphQL API. — [^1]
+      Typescript. — [GraphCommerce feature]
+- [x] Integrate PWA experiences with Adobe Commerce using GraphQL API. —
+      [GraphCommerce feature]
 - [x] Extend and customize PWA capabilities with the GraphCommerce framework. —
-      [^1]
+      [GraphCommerce feature]
 - [ ] Deliver personalized, headless customers experiences powered by AEM
       utilizing components from the Venia reference storefront
 
@@ -127,7 +129,8 @@ Magento Open Source full feature list, extracted from Adobe Commerce
 
 - [x] Create simple, configurable (e.g., choose size, color, etc.), bundled, and
       grouped products.
-- [ ] Offer virtual products like memberships, services and warranties.
+- [ ] Offer virtual products like memberships, services and warranties. —
+      [@todo]
 - [ ] Include downloadable/digital products with samples.
 - [ ] Allow customer-personalized products (e.g., upload images and text for
       monogramming).
@@ -326,13 +329,13 @@ Customer loyalty
 - [x] Benefit from faster indexing and incremental index updates for fresher
       site content and better performance.
 - [x] Minify JavaScript, CSS and HTML and compress images to reduce file size
-      for faster loading. — [^1]
+      for faster loading. — [GraphCommerce feature]
 - [x] Cache all JavaScript and CSS on first page viewed to minimize content that
-      must be downloaded for subsequent pages. — [^1]
+      must be downloaded for subsequent pages. — [GraphCommerce feature]
 - [x] Speed access to product, customer, and order management views with faster
       admin rendering.
 - [x] Store media files on a separate database server or content delivery
-      network (CDN) for faster page load times. — [^1]
+      network (CDN) for faster page load times. — [GraphCommerce feature]
 - [x] Archive orders after a configurable time period to increase store
       performance.
 - [ ] Use the included Performance Toolkit to measure and optimize site speed.
@@ -345,10 +348,10 @@ Customer loyalty
       read operations.
 - [x] Enable large teams of admin users to make concurrent order and product
       updates.
-- [x] Accelerate site performance with integrated static pre-building (SSG). —
-      [^1]
+- [x] Accelerate site performance with integrated static pre-building (SSG). — —
+      [GraphCommerce feature]
 - [x] Accelerate site performance with image compression, srcset, and edge CDN
-      level caching. — [^1]
+      level caching. — [GraphCommerce feature]
 
 ### Layout and theming
 
@@ -357,7 +360,7 @@ Customer loyalty
 - [x] Customize an inherited base theme to easily createvariations for
       countries, brands, and campaigns.
 - [x] Leverage Google's MUI pattern library to enable faster and more consistent
-      theme development. — [^1]
+      theme development. — [GraphCommerce feature]
 - [ ] Use CSS preprocessing for easier site maintenance.
 - [ ] Reduce frontend coding complexity with clear separation of the
       presentation layer and business logic.
@@ -477,7 +480,3 @@ Customer loyalty
 - Refer to the
   [Changelog](https://github.com/graphcommerce-org/graphcommerce/releases) to
   see what's new
-
----
-
-[^1]: GraphCommerce feature
