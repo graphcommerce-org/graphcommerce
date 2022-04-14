@@ -48,6 +48,8 @@ function WishlistFabContent(props: WishlistFabContentProps) {
     activeWishlist = wishlist.length > 0
   }
 
+  const wishlistIcon = icon ?? <IconSvg src={iconHeart} size='large' />
+
   return (
     <PageLink href='/wishlist' passHref>
       <Fab
@@ -59,14 +61,13 @@ function WishlistFabContent(props: WishlistFabContentProps) {
         {...FabProps}
         sx={sx}
       >
-        <DesktopHeaderBadge
-          badgeContent={activeWishlist ? 1 : 0}
-          color='primary'
-          variant='dot'
-          overlap='circular'
-        >
-          {icon ?? <IconSvg src={iconHeart} size='large' />}
-        </DesktopHeaderBadge>
+        {activeWishlist ? (
+          <DesktopHeaderBadge color='primary' variant='dot' overlap='circular'>
+            {wishlistIcon}
+          </DesktopHeaderBadge>
+        ) : (
+          wishlistIcon
+        )}
       </Fab>
     </PageLink>
   )
@@ -78,7 +79,7 @@ export function WishlistFab(props: WishlistFabContentProps) {
   return (
     <>
       {isWishlistEnabled && (
-        <NoSsr fallback={<WishlistFabContent {...props} />}>
+        <NoSsr>
           <WishlistFabContent {...props} />
         </NoSsr>
       )}
