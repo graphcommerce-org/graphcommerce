@@ -73,6 +73,10 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
       return
     }
 
+    if (!sku) {
+      return
+    }
+
     // Mark as active when product is available in either customer or guest wishlist
     if (isLoggedIn && !loading) {
       const inWishlistTest =
@@ -92,6 +96,10 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
   const handleClick = (e) => {
     e.preventDefault()
 
+    if (!sku) {
+      return
+    }
+
     if (isLoggedIn) {
       if (inWishlist) {
         const wishlistItemsInSession =
@@ -102,7 +110,7 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
         if (item?.id) {
           removeWishlistItem({ variables: { wishlistItemId: item.id } })
         }
-      } else if (sku) {
+      } else {
         addWishlistItem({ variables: { input: { sku, quantity: 1 } } })
       }
     } else if (inWishlist) {
