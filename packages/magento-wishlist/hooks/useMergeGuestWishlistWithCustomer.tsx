@@ -35,7 +35,13 @@ export function useMergeGuestWishlistWithCustomer() {
 
     if (!validatedItems.length) return
 
-    const wishlist = validatedItems.map((item) => item?.sku) || []
+    /** Magento schema defines product sku as optional, wishlist sku as mandatory = type mismatch */
+    const wishlist = validatedItems.reduce((result: string[], item) => {
+      if (item?.sku !== null && item?.sku !== undefined) {
+        result.push(item.sku)
+      }
+      return result
+    }, [])
 
     if (!wishlist.length) return
 
