@@ -1,4 +1,5 @@
-import { cloneDeep, FilterRangeTypeInput } from '@graphcommerce/graphql'
+import { cloneDeep } from '@graphcommerce/graphql'
+import type { FilterRangeTypeInput } from '@graphcommerce/graphql-mesh'
 import { Money } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'

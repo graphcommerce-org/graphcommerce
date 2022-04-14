@@ -1,6 +1,6 @@
 import { ApolloError } from '@apollo/client'
-import { FieldValues, FormState, UseFormReturn } from 'react-hook-form'
-import { SetOptional } from 'type-fest'
+import type { FieldValues, FormState, UseFormReturn } from 'react-hook-form'
+import type { SetOptional } from 'type-fest'
 
 export type UseFormComposeOptions<V extends FieldValues = FieldValues> = {
   /** The form that is used to submit */

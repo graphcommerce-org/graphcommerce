@@ -4,13 +4,11 @@ generates:
   # Generate a types file
   ../../node_modules/@graphcommerce/graphql/generated/types.ts:
     schema:
-      - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
+      - '../../packages/graphql-mesh/.mesh/schema.graphql'
       - '**/*.graphqls'
       - '../../packages/magento-*/**/*.graphqls'
-      - '../../packages/mollie-magento-payment/**/*.graphqls'
       - '../../packagesDev/**/*.graphqls'
     plugins:
-      - typescript
       - typescript-apollo-client-helpers
       - add
     config:
@@ -19,20 +17,18 @@ generates:
   # Generate a fragments.json
   ../../node_modules/@graphcommerce/graphql/generated/fragments.json:
     schema:
-      - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
+      - '../../packages/graphql-mesh/.mesh/schema.graphql'
       - '**/*.graphqls'
       - '../../packages/magento-*/**/*.graphqls'
-      - '../../packages/mollie-magento-payment/**/*.graphqls'
       - '../../packagesDev/**/*.graphqls'
     plugins:
       - fragment-matcher
   # Generate .gql.ts files for each GraphQL file
   ../../:
     schema:
-      - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
+      - '../../packages/graphql-mesh/.mesh/schema.graphql'
       - '**/*.graphqls'
       - '../../packages/magento-*/**/*.graphqls'
-      - '../../packages/mollie-magento-payment/**/*.graphqls'
       - '../../packagesDev/**/*.graphqls'
     documents:
       - '**/*.graphql'
@@ -46,7 +42,7 @@ generates:
     preset: '@graphcommerce/graphql-codegen-near-operation-file'
     presetConfig:
       extension: .gql.ts
-      baseTypesPath: ~@graphcommerce/graphql
+      baseTypesPath: ~@graphcommerce/graphql-mesh
       injectables: true
     config:
       skipTypename: true

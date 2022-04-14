@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@graphcommerce/graphql": "3.0.7",
+    "@graphcommerce/graphql-mesh": "4.0.11",
     "@graphcommerce/image": "3.1.4",
     "@graphcommerce/magento-graphql": "3.0.6",
     "@graphcommerce/magento-store": "4.1.6",

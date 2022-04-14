@@ -9,6 +9,7 @@ export async function fillCartAgreementsForm(
   const res = (await client.query({ query: CartAgreementsDocument })).data
 
   for await (const agreement of res.checkoutAgreements ?? []) {
+    // eslint-disable-next-line no-continue
     if (!agreement?.agreement_id || agreement?.mode === 'AUTO') continue
 
     await page.locator(`input[name="agreement\\[${agreement.agreement_id}\\]"]`).click()

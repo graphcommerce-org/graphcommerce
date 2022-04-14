@@ -1,26 +1,28 @@
 {
-  "name": "@graphcommerce/graphql-mesh",
+  "name": "@graphcommerce/cli",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.0.11",
+  "version": "0.0.0",
   "author": "",
   "license": "MIT",
-  "main": "index.ts",
+  "scripts": {
+    "dev": "tsc --preserveWatchOutput --watch --sourceMap --outDir dist",
+    "build": "tsc --target es5 --outDir dist",
+    "prepack": "yarn build"
+  },
+  "bin": {
+    "mesh": "dist/bin/mesh.js",
+    "gql-mesh": "dist/bin/mesh.js",
+    "graphql-mesh": "dist/bin/mesh.js",
+    "gql-gen": "dist/bin/codegen.js",
+    "graphql-codegen": "dist/bin/codegen.js",
+    "graphql-code-generator": "dist/bin/codegen.js"
+  },
   "dependencies": {
+    "@graphql-codegen/cli": "2.6.2",
     "@graphql-mesh/cli": "0.66.1",
-    "@graphql-mesh/config": "0.33.4",
-    "@graphql-mesh/graphql": "0.23.1",
-    "@graphql-mesh/merger-stitching": "0.15.32",
-    "@graphql-mesh/runtime": "0.33.8",
-    "@graphql-mesh/store": "0.7.1",
-    "@graphql-mesh/transform-cache": "0.11.39",
-    "@graphql-mesh/transform-federation": "0.8.39",
-    "@graphql-mesh/transform-filter-schema": "0.14.39",
     "@graphql-mesh/types": "0.70.1",
-    "@graphql-mesh/utils": "0.33.1",
-    "@graphql-yoga/node": "^2.2.1",
-    "graphql": "^16.3.0",
-    "next": "12.1.4"
+    "@graphql-mesh/utils": "0.33.1"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.4",

@@ -45,6 +45,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
   const { handleSubmit, formState, control } = form
 
   const submit = handleSubmit((values) => {
+    // eslint-disable-next-line no-console
     console.log(values)
   })
 
@@ -75,7 +76,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                       }}
                       render={({
                         field: { onChange, value, name, ref, onBlur },
-                        fieldState: { error, invalid },
+                        fieldState: { error },
                       }) => (
                         <FormControl
                           error={!!formState.errors[String(agreement.agreement_id)]}

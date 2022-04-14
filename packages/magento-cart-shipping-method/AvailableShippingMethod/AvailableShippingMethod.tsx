@@ -3,7 +3,7 @@ import { ToggleButton, ToggleButtonProps, extendableComponent } from '@graphcomm
 import { Trans } from '@lingui/macro'
 import { Box, FormHelperText } from '@mui/material'
 import React from 'react'
-import { SetOptional } from 'type-fest'
+import type { SetOptional } from 'type-fest'
 import { AvailableShippingMethodFragment } from './AvailableShippingMethod.gql'
 
 export type AvailableShippingMethodProps = SetOptional<AvailableShippingMethodFragment, 'amount'> &

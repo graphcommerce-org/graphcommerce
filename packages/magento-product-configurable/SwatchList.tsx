@@ -1,11 +1,11 @@
-import { Maybe } from '@graphcommerce/graphql'
+import type { Maybe } from '@graphcommerce/graphql-mesh'
 import { RenderType } from '@graphcommerce/next-ui'
 import React from 'react'
-import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
+import type { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
 import { ColorSwatchData } from './Swatches/ColorSwatchData'
 import { ImageSwatchData } from './Swatches/ImageSwatchData'
 import { TextSwatchData } from './Swatches/TextSwatchData'
-import { SwatchSize, SwatchTypeRenderer } from './Swatches/types'
+import { SwatchSize, type SwatchTypeRenderer } from './Swatches/types'
 
 type SwatchListProps = {
   attributes: string[]
