@@ -7,6 +7,7 @@ import {
   WishlistItems,
   GetGuestWishlistProductsDocument,
   GuestWishlistDocument,
+  useWishlistItems,
 } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
@@ -21,7 +22,6 @@ import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import React, { useState, useEffect } from 'react'
 
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
@@ -30,51 +30,9 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function WishlistPage(props: Props) {
-  const { data: token } = useQuery(CustomerTokenDocument)
-  const isLoggedIn = token?.customerToken && token?.customerToken.valid
+  const wishlistItemsData = useWishlistItems()
 
-  let wishlistItems
-
-  /** Get customer wishlist from session */
-  const { data: GetCustomerWishlistData, loading: loadingCustomerItems } = useQuery(
-    GetWishlistProductsDocument,
-    {
-      skip: !isLoggedIn,
-      ssr: false,
-    },
-  )
-
-  /** Get guest wishlist items from cache and hydrate with catalog data */
-  const { data: guestWishlistData, loading: loadingGuestWishlistData } = useQuery(
-    GuestWishlistDocument,
-    {
-      ssr: false,
-      skip: isLoggedIn === true,
-    },
-  )
-  const guestData = guestWishlistData?.guestWishlist?.items.map((item) => item?.sku) || []
-
-  const { data: productGuestItems, loading: loadingGuestItems } = useQuery(
-    GetGuestWishlistProductsDocument,
-    {
-      ssr: false,
-      variables: {
-        filters: { sku: { in: guestData } },
-      },
-      skip: loadingGuestWishlistData || guestData.length === 0,
-    },
-  )
-
-  if (isLoggedIn) {
-    wishlistItems =
-      GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items.map(
-        (item) => item?.product,
-      ) || []
-  } else {
-    wishlistItems = productGuestItems?.products?.items
-  }
-
-  if (loadingGuestItems || loadingCustomerItems) {
+  if (wishlistItemsData.loading) {
     return null
   }
 
@@ -89,32 +47,32 @@ function WishlistPage(props: Props) {
         </LayoutOverlayHeader>
 
         <Container maxWidth='md'>
-          {wishlistItems === undefined || wishlistItems.length === 0 ? (
-            <FullPageMessage
-              title={t`Your wishlist is empty`}
-              icon={<IconSvg src={iconHeart} size='xxl' />}
-              button={
-                <Link href='/' passHref>
-                  <Button variant='contained' color='primary' size='large'>
-                    <Trans>Continue shopping</Trans>
-                  </Button>
-                </Link>
-              }
-            >
-              <Trans>Discover our collection and add items to your wishlist!</Trans>
-            </FullPageMessage>
-          ) : (
-            <>
-              <LayoutTitle icon={iconHeart}>
-                <Trans>Wishlist</Trans>
-              </LayoutTitle>
-              <Container maxWidth='md'>
-                <AnimatePresence initial={false}>
-                  <WishlistItems items={wishlistItems} />
-                </AnimatePresence>
-              </Container>
-            </>
-          )}
+          <AnimatePresence initial={false}>
+            {wishlistItemsData.items.length === 0 ? (
+              <FullPageMessage
+                title={t`Your wishlist is empty`}
+                icon={<IconSvg src={iconHeart} size='xxl' />}
+                button={
+                  <Link href='/' passHref>
+                    <Button variant='contained' color='primary' size='large'>
+                      <Trans>Continue shopping</Trans>
+                    </Button>
+                  </Link>
+                }
+              >
+                <Trans>Discover our collection and add items to your wishlist!</Trans>
+              </FullPageMessage>
+            ) : (
+              <>
+                <LayoutTitle icon={iconHeart}>
+                  <Trans>Wishlist</Trans>
+                </LayoutTitle>
+                <Container maxWidth='md'>
+                  <WishlistItems items={wishlistItemsData.items} />
+                </Container>
+              </>
+            )}
+          </AnimatePresence>
         </Container>
       </NoSsr>
     </>
