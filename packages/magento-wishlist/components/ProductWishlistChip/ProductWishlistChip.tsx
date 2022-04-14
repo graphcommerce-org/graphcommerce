@@ -97,7 +97,7 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
       const inWishlistTest = guestWishlistData?.guestWishlist?.items.map((item) => item?.sku) || []
       setInWishlist(inWishlistTest.includes(sku))
     }
-  })
+  }, [hideForGuest, isLoggedIn, sku, loading, GetCustomerWishlistData, guestWishlistData])
 
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
