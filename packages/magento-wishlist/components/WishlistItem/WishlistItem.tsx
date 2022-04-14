@@ -119,7 +119,7 @@ export function WishlistItem(props: WishlistItemProps) {
             gridTemplate: `
               "picture itemName itemName itemName iconMenu"
               "picture itemOptions itemOptions itemPrice itemPrice"`,
-            gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(75px, 1fr)`,
+            gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(120px, 1fr)`,
           },
           borderBottom: `1px solid ${theme.palette.divider}`,
 
@@ -135,7 +135,7 @@ export function WishlistItem(props: WishlistItemProps) {
               "picture itemName itemName itemName iconMenu"
               "picture itemName itemName itemName itemPrice"
             `,
-              gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(75px, 1fr)`,
+              gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(120px, 1fr)`,
             },
           },
         }),
