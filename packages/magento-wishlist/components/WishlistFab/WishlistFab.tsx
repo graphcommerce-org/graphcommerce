@@ -1,9 +1,6 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import {
-  GUEST_WISHLIST_STORAGE_NAME,
-  GetIsInWishlistsDocument,
-} from '@graphcommerce/magento-wishlist'
+import { GetIsInWishlistsDocument, GuestWishlistDocument } from '@graphcommerce/magento-wishlist'
 import { iconHeart, DesktopHeaderBadge, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
@@ -30,10 +27,21 @@ function WishlistFabContent(props: WishlistFabContentProps) {
     skip: !isLoggedIn,
   })
 
+  const { data: guestWishlistData, loading: loadingGuestWishlistData } = useQuery(
+    GuestWishlistDocument,
+    {
+      ssr: false,
+      skip: isLoggedIn === true,
+    },
+  )
+
   let activeWishlist = false
   if (isLoggedIn) {
     const wishlistItemCount = GetCustomerWishlistData?.customer?.wishlists[0]?.items_count || 0
     activeWishlist = wishlistItemCount > 0
+  } else {
+    const wishlist = guestWishlistData?.guestWishlist?.items || []
+    activeWishlist = wishlist.length > 0
   }
 
   return (

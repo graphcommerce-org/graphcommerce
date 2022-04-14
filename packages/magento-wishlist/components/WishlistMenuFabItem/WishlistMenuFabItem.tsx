@@ -1,9 +1,6 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import {
-  GUEST_WISHLIST_STORAGE_NAME,
-  GetIsInWishlistsDocument,
-} from '@graphcommerce/magento-wishlist'
+import { GetIsInWishlistsDocument, GuestWishlistDocument } from '@graphcommerce/magento-wishlist'
 import { MenuFabSecondaryItem, iconHeart, IconSvg } from '@graphcommerce/next-ui'
 import { Badge, NoSsr, SxProps, Theme } from '@mui/material'
 import React from 'react'
@@ -21,15 +18,24 @@ function WishlistMenuFabItemContent(props: WishlistMenuFabItemProps) {
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
 
   const { data: GetCustomerWishlistData, loading } = useQuery(GetIsInWishlistsDocument, {
+    ssr: false,
     skip: !isLoggedIn,
   })
+
+  const { data: guestWishlistData, loading: loadingGuestWishlistData } = useQuery(
+    GuestWishlistDocument,
+    {
+      ssr: false,
+      skip: isLoggedIn === true,
+    },
+  )
 
   let activeWishlist
   if (isLoggedIn) {
     const wishlistItemCount = GetCustomerWishlistData?.customer?.wishlists[0]?.items_count || 0
     activeWishlist = wishlistItemCount > 0
   } else {
-    const wishlist = JSON.parse(localStorage.getItem(GUEST_WISHLIST_STORAGE_NAME) || '[]')
+    const wishlist = guestWishlistData?.guestWishlist?.items || []
     activeWishlist = wishlist.length > 0
   }
 
