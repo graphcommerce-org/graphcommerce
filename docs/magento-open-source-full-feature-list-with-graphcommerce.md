@@ -14,10 +14,8 @@ metaTitle: Magento Open Source + GraphCommerce® full feature list
 
 # Magento Open Source + GraphCommerce® full feature list
 
-<div data-nosnippet>
-
 Magento Open Source full feature list, extracted from Adobe Commerce
-[[PDF ↗]](https://www.atlantisdx.de/fileadmin/user_upload/PDF/Magento_Commerce_2.4.2_Full_Feature_List.pdf).
+[[PDF ↗]](https://drive.google.com/file/d/1S9u0DocJkRnK-Z_9wtKh4ilJM05FW50c/view?usp=sharing).
 
 <div className='tags'>
 
@@ -30,8 +28,6 @@ Magento Open Source full feature list, extracted from Adobe Commerce
 </div>
 
 Black checkbox is a feature unaffected by GraphCommerce
-
-</div>
 
 ### Promotions and pricing
 
