@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.9
+
+### Patch Changes
+
+- [#1397](https://github.com/graphcommerce-org/graphcommerce/pull/1397) [`4169b8c68`](https://github.com/graphcommerce-org/graphcommerce/commit/4169b8c686f682ff6e981b029f13abd87fd5f52a) Thanks [@FrankHarland](https://github.com/FrankHarland)! - fix: if recent order images > 1, images now actually show
+
 ## 3.0.8
 
 ### Patch Changes

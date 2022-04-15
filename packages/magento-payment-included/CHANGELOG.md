@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.2.5
+  - @graphcommerce/magento-cart-payment-method@3.1.1
+
 ## 3.0.7
 
 ### Patch Changes

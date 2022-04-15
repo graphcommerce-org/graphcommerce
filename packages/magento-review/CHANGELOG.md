@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.1.4
+
+### Patch Changes
+
+- Updated dependencies [[`4169b8c68`](https://github.com/graphcommerce-org/graphcommerce/commit/4169b8c686f682ff6e981b029f13abd87fd5f52a)]:
+  - @graphcommerce/magento-customer@4.2.3
+  - @graphcommerce/magento-product@4.1.6
+
 ## 3.1.3
 
 ### Patch Changes
