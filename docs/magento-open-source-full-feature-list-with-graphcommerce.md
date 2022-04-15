@@ -22,14 +22,14 @@ Magento Open Source full feature list, extracted from Adobe Commerce
 <div className='tags'>
 
 - [Feature] New, GraphCommerce unique feature.
-- [Enhanced] Feature is integrated in and thus replaced by GraphCommerce. Often
+- [Enhanced] Feature is replaced with a GraphCommerce implementation. Often
   enhanced.
 - [Todo] Magento Open Source feature not yet implemented in GraphCommerce.
 - [Commerce] Commercial feature, requires Adobe Commerce.
 
 </div>
 
-Black checkbox is a back-end feature, green checkbox is a front-end feature
+Black checkbox is a feature unaffected by GraphCommerce
 
 </div>
 
@@ -56,7 +56,7 @@ Black checkbox is a back-end feature, green checkbox is a front-end feature
 
 ### Search engine optimization
 
-- [x] Automatically generate a Google sitemap.
+- [x] Automatically generate a Google sitemap. — [Enhanced]
 - [x] Create search engine friendly URLs.
 - [x] Take full control of URLs with URL rewrites. — [Enhanced]
 - [x] Enable detailed search results by automatically adding structured data
