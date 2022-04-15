@@ -6,6 +6,7 @@ query GetWishlistProducts {
       items_v2 {
         items {
           id
+          ...WishlistItem
           product {
             uid
             sku

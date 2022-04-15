@@ -17,7 +17,7 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import PageLink from 'next/link'
 import { useState, PropsWithChildren } from 'react'
-import { WishlistItemFragment } from './WishlistItem.gql'
+import { WishlistItemFragment } from './WishlistItemProduct.gql'
 
 const rowImageSize = responsiveVal(70, 125)
 

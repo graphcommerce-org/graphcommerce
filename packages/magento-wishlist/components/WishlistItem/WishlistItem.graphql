@@ -1,11 +1,3 @@
-fragment WishlistItem on ProductInterface @injectable {
-  uid
-  ...ProductLink
-  name
-  url_key
-  thumbnail {
-    url
-    label
-  }
-  ...ProductListItem
+fragment WishlistItem on WishlistItemInterface @injectable {
+  id
 }
