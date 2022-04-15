@@ -1,13 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable react-hooks/rules-of-hooks */
-import {
-  useMutation,
-  useQuery,
-  useApolloClient,
-  GuestWishlist,
-  GuestWishlistItem,
-} from '@graphcommerce/graphql'
+import { useMutation, useQuery, useApolloClient } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import {
   AddProductToWishlistDocument,
@@ -42,11 +36,7 @@ export function useMergeGuestWishlistWithCustomer() {
   useEffect(() => {
     if (!isLoggedIn) return
 
-    console.log(guestDataSkus.length)
-
     if (!guestDataSkus.length) return
-
-    console.log(validatedItems.length)
 
     if (!validatedItems.length) {
       /** Only outdated items were found, purge them */
