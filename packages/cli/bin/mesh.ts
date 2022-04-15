@@ -38,11 +38,11 @@ const main = async () => {
     return additionalResolver
   })
 
+  if (!conf.additionalTypeDefs) conf.additionalTypeDefs = []
   // Add additionalTypeDefs
-  conf.additionalTypeDefs =
-    (conf.additionalTypeDefs ?? []) && Array.isArray(conf.additionalTypeDefs)
-      ? conf.additionalTypeDefs
-      : [conf.additionalTypeDefs]
+  conf.additionalTypeDefs = Array.isArray(conf.additionalTypeDefs)
+    ? conf.additionalTypeDefs
+    : [conf.additionalTypeDefs]
 
   conf.additionalTypeDefs.push('**/*.graphqls')
   if (isMonoRepo) {

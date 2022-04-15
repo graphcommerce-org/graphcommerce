@@ -5,7 +5,7 @@ import type { ProductListItemConfigurableFragment } from './ProductListItemConfi
 import { ColorSwatchData } from './Swatches/ColorSwatchData'
 import { ImageSwatchData } from './Swatches/ImageSwatchData'
 import { TextSwatchData } from './Swatches/TextSwatchData'
-import { SwatchSize, type SwatchTypeRenderer } from './Swatches/types'
+import { SwatchSize, SwatchTypeRenderer } from './Swatches/types'
 
 type SwatchListProps = {
   attributes: string[]
