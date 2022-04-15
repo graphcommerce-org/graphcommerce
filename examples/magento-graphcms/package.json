@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "yarn concurrently -k -n codegen,next 'yarn codegen-base -w' 'yarn next dev'",
-    "codegen": "yarn mesh build && find . -type f -name '*.gql.ts' -delete && yarn codegen-base",
+    "codegen": "node ../../packages/cli/dist/bin/mesh.js build && find . -type f -name '*.gql.ts' -delete && yarn codegen-base",
     "build": "yarn codegen && yarn next build && yarn next-sitemap",
     "start": "next start",
     "tsc:lint": "yarn tsc --noEmit -p .",
