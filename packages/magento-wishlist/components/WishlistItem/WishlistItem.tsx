@@ -16,14 +16,14 @@ import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import PageLink from 'next/link'
-import { useState } from 'react'
+import { useState, PropsWithChildren } from 'react'
 import { WishlistItemFragment } from './WishlistItem.gql'
 
 const rowImageSize = responsiveVal(70, 125)
 
-export type WishlistItemProps = WishlistItemFragment & {
+export type WishlistItemProps = PropsWithChildren<WishlistItemFragment> & {
   sx?: SxProps<Theme>
-}
+} & OwnerState
 
 type OwnerState = { withOptions?: boolean }
 const compName = 'WishlistItem' as const
@@ -41,7 +41,16 @@ const parts = [
 const { classes } = extendableComponent<OwnerState, typeof compName, typeof parts>(compName, parts)
 
 export function WishlistItem(props: WishlistItemProps) {
-  const { sku, name, url_key, price_range, small_image, __typename: productType, sx = [] } = props
+  const {
+    sku,
+    name,
+    url_key,
+    price_range,
+    small_image,
+    __typename: productType,
+    children,
+    sx = [],
+  } = props
   const productLink = useProductLink({ url_key, __typename: productType })
   const inclTaxes = useDisplayInclTax()
   const { cache } = useApolloClient()
@@ -280,6 +289,8 @@ export function WishlistItem(props: WishlistItemProps) {
           </MenuItem>
         ))}
       </Menu>
+
+      {children}
     </Box>
   )
 }

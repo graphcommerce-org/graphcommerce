@@ -9,6 +9,7 @@ import {
   GuestWishlistDocument,
   useWishlistItems,
   WishlistItem,
+  ConfigurableWishlistItem,
 } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
@@ -73,7 +74,7 @@ function WishlistPage(props: Props) {
                     items={wishlistItemsData.items}
                     renderer={{
                       BundleProduct: WishlistItem,
-                      ConfigurableProduct: WishlistItem,
+                      ConfigurableProduct: ConfigurableWishlistItem,
                       DownloadableProduct: WishlistItem,
                       SimpleProduct: WishlistItem,
                       VirtualProduct: WishlistItem,
