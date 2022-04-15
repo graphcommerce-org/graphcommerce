@@ -4,6 +4,7 @@ metaTitle: Magento Open Source + GraphCommerce® full feature list
 metaDescription:
   'Magento Open Source full feature list, extended with GraphCommerce unique
   features and features replaced or enhanced by GraphCommerce.'
+metaUrl: magento-open-source-full-feature-list-with-graphcommerce
 ---
 
 <div data-nosnippet>
