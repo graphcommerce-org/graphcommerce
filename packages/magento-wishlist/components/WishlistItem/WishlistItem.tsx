@@ -17,11 +17,11 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import PageLink from 'next/link'
 import { useState, PropsWithChildren } from 'react'
-import { WishlistItemFragment } from './WishlistItemProduct.gql'
+import { WishlistItemProductFragment } from './WishlistItemProduct.gql'
 
 const rowImageSize = responsiveVal(70, 125)
 
-export type WishlistItemProps = PropsWithChildren<WishlistItemFragment> & {
+export type WishlistItemProps = PropsWithChildren<WishlistItemProductFragment> & {
   sx?: SxProps<Theme>
 } & OwnerState
 
