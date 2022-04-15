@@ -20,7 +20,7 @@ export const productListRenderer: ProductListItemRenderer = {
       subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
       bottomLeft={<ProductReviewSummary {...props} />}
-      topRight={<ProductWishlistChip sku={props.sku} />}
+      topRight={<ProductWishlistChip {...props} />}
     />
   ),
   ConfigurableProduct: (props) => (
@@ -35,7 +35,7 @@ export const productListRenderer: ProductListItemRenderer = {
         bottomRight: ['dominant_color'],
       }}
       bottomLeft={<ProductReviewSummary {...props} />}
-      topRight={<ProductWishlistChip sku={props.sku} />}
+      topRight={<ProductWishlistChip {...props} />}
     />
   ),
   BundleProduct: (props) => (
@@ -44,7 +44,7 @@ export const productListRenderer: ProductListItemRenderer = {
       subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
       bottomLeft={<ProductReviewSummary {...props} />}
-      topRight={<ProductWishlistChip sku={props.sku} />}
+      topRight={<ProductWishlistChip {...props} />}
     />
   ),
   VirtualProduct: (props) => (
@@ -53,7 +53,7 @@ export const productListRenderer: ProductListItemRenderer = {
       subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
       bottomLeft={<ProductReviewSummary {...props} />}
-      topRight={<ProductWishlistChip sku={props.sku} />}
+      topRight={<ProductWishlistChip {...props} />}
     />
   ),
   DownloadableProduct: (props) => (
@@ -62,7 +62,7 @@ export const productListRenderer: ProductListItemRenderer = {
       subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
       bottomLeft={<ProductReviewSummary {...props} />}
-      topRight={<ProductWishlistChip sku={props.sku} />}
+      topRight={<ProductWishlistChip {...props} />}
     />
   ),
   GroupedProduct: (props) => (
@@ -71,7 +71,7 @@ export const productListRenderer: ProductListItemRenderer = {
       subTitle={<Subtitle>BY GC</Subtitle>}
       aspectRatio={[1, 1]}
       bottomLeft={<ProductReviewSummary {...props} />}
-      topRight={<ProductWishlistChip sku={props.sku} />}
+      topRight={<ProductWishlistChip {...props} />}
     />
   ),
   // // eslint-disable-next-line @typescript-eslint/ban-ts-comment

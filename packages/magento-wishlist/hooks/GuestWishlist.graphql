@@ -4,6 +4,8 @@ query GuestWishlist {
     items {
       __typename
       sku
+      selected_options
+      quantity
     }
   }
 }

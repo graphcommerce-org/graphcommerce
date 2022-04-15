@@ -2,6 +2,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useQuery, useMutation, useApolloClient } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
+import { Selected, useConfigurableContext } from '@graphcommerce/magento-product-configurable'
 import {
   AddProductToWishlistDocument,
   RemoveProductFromWishlistDocument,
@@ -21,7 +22,6 @@ type ProductWishlistSettings = {
 }
 
 export type ProductWishlistChipProps = ProductWishlistChipFragment &
-  IconButtonProps &
   ProductWishlistSettings & { sx?: SxProps<Theme> }
 
 const name = 'ProductWishlistChip' as const
@@ -29,7 +29,7 @@ const parts = ['root', 'iconHeart', 'iconHeartActive', 'wishlistButton'] as cons
 const { classes } = extendableComponent(name, parts)
 
 export function ProductWishlistChip(props: ProductWishlistChipProps) {
-  const { variant, hideForGuest, sku, sx = [] } = props
+  const { variant, hideForGuest, sku, __typename: productType, sx = [] } = props
 
   const [inWishlist, setInWishlist] = useState(false)
   const [displayWishlist, setDisplayWishlist] = useState(true)
@@ -102,11 +102,21 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
 
+  let context
+  if (productType === 'ConfigurableProduct' && sku) {
+    context = useConfigurableContext(sku)
+  }
+
   const handleClick = (e) => {
     e.preventDefault()
 
     if (!sku) {
       return
+    }
+
+    let selectedOptions: string[] = []
+    if (productType === 'ConfigurableProduct') {
+      selectedOptions = (Object as any).values(context.selection)
     }
 
     if (isLoggedIn) {
@@ -120,7 +130,9 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
           removeWishlistItem({ variables: { wishlistItemId: item.id } })
         }
       } else {
-        addWishlistItem({ variables: { input: { sku, quantity: 1 } } })
+        addWishlistItem({
+          variables: { input: { sku, quantity: 1, selected_options: selectedOptions } },
+        })
       }
     } else if (inWishlist) {
       cache.modify({
@@ -139,7 +151,14 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
         data: {
           guestWishlist: {
             __typename: 'GuestWishlist',
-            items: [{ __typename: 'GuestWishlistItem', sku }],
+            items: [
+              {
+                __typename: 'GuestWishlistItem',
+                sku,
+                quantity: 1,
+                selected_options: selectedOptions,
+              },
+            ],
           },
         },
         broadcast: true,

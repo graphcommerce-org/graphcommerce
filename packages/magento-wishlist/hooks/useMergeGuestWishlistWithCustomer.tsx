@@ -1,6 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useMutation, useQuery, useApolloClient } from '@graphcommerce/graphql'
+import {
+  useMutation,
+  useQuery,
+  useApolloClient,
+  GuestWishlist,
+  GuestWishlistItem,
+} from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import {
   AddProductToWishlistDocument,
@@ -19,42 +26,50 @@ export function useMergeGuestWishlistWithCustomer() {
     ssr: false,
   }).data?.guestWishlist
 
-  const guestData = guestWishlistData?.items.map((item) => item?.sku) || []
+  const guestDataSkus = guestWishlistData?.items.map((item) => item?.sku) || []
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const validatedItems =
     useQuery(GetGuestWishlistProductsDocument, {
       ssr: false,
       variables: {
-        filters: { sku: { in: guestData } },
+        filters: { sku: { in: guestDataSkus } },
       },
-      skip: guestData.length === 0,
-    }).data?.products?.items || []
+      skip: guestDataSkus.length === 0,
+    }).data?.products?.items?.map((item) => item?.sku) || []
 
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
 
   useEffect(() => {
     if (!isLoggedIn) return
 
-    if (!validatedItems.length) return
+    console.log(guestDataSkus.length)
 
-    /** Magento schema defines product sku as optional, wishlist sku as mandatory = type mismatch */
-    const wishlist = validatedItems.reduce((result: string[], item) => {
-      if (item?.sku !== null && item?.sku !== undefined) {
-        result.push(item.sku)
-      }
-      return result
-    }, [])
+    if (!guestDataSkus.length) return
+
+    console.log(validatedItems.length)
+
+    if (!validatedItems.length) {
+      /** Only outdated items were found, purge them */
+      cache.evict({
+        id: cache.identify({ __typename: 'GuestWishlist' }),
+      })
+      return
+    }
+
+    const wishlist =
+      guestWishlistData?.items.filter((item) => validatedItems.includes(item.sku)) || []
 
     if (!wishlist.length) return
 
     const payload = wishlist.map((item) => ({
-      sku: item,
-      quantity: 1,
+      sku: item.sku,
+      selected_options: item.selected_options,
+      quantity: item.quantity,
     }))
 
     cache.evict({
       id: cache.identify({ __typename: 'GuestWishlist' }),
     })
     addWishlistItem({ variables: { input: payload } })
-  }, [validatedItems, addWishlistItem, cache, isLoggedIn])
+  }, [guestWishlistData, guestDataSkus, validatedItems, addWishlistItem, cache, isLoggedIn])
 }
