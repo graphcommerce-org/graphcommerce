@@ -71,7 +71,6 @@ function WishlistPage(props: Props) {
                 </LayoutTitle>
                 <Container maxWidth='md'>
                   <WishlistItems
-                    items={wishlistItemsData.items}
                     renderer={{
                       BundleProduct: WishlistItem,
                       ConfigurableProduct: ConfigurableWishlistItem,
