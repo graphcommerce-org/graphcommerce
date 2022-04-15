@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cart-payment-method",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "sideEffects": false,
   "engines": {
     "node": "14.x"
@@ -25,7 +25,7 @@
     "@graphcommerce/framer-scroller": "2.1.5",
     "@graphcommerce/graphql": "3.0.7",
     "@graphcommerce/image": "3.1.4",
-    "@graphcommerce/magento-cart": "4.2.4",
+    "@graphcommerce/magento-cart": "4.2.5",
     "@graphcommerce/magento-store": "4.1.6",
     "@graphcommerce/next-ui": "4.6.0",
     "@graphcommerce/react-hook-form": "3.1.0"

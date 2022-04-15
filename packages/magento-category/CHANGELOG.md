@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.0.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-product@4.1.6
+
 ## 4.0.8
 
 ### Patch Changes

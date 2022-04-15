@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.2.5
+  - @graphcommerce/magento-cart-shipping-address@3.0.8
+
 ## 3.0.8
 
 ### Patch Changes

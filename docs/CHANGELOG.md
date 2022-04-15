@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.6.0
+
+### Minor Changes
+
+- [#1400](https://github.com/graphcommerce-org/graphcommerce/pull/1400) [`153cc079a`](https://github.com/graphcommerce-org/graphcommerce/commit/153cc079a69514297ef565b8190e230f184ec551) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Add feature list
+
+* [#1390](https://github.com/graphcommerce-org/graphcommerce/pull/1390) [`30d069a6a`](https://github.com/graphcommerce-org/graphcommerce/commit/30d069a6a50189ed2c1b8edcfa22657a3036c914) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Update roadmap
+
+### Patch Changes
+
+- [#1401](https://github.com/graphcommerce-org/graphcommerce/pull/1401) [`52f795098`](https://github.com/graphcommerce-org/graphcommerce/commit/52f795098675827c788b04cbcc81470612ee0211) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Roadmap
+
 ## 4.5.5
 
 ### Patch Changes
