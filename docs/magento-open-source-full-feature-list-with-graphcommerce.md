@@ -15,7 +15,7 @@ metaTitle: Magento Open Source + GraphCommerce® full feature list
 # Magento Open Source + GraphCommerce® full feature list
 
 Magento Open Source full feature list, extracted from Adobe Commerce
-[[PDF ↗]](https://drive.google.com/file/d/1S9u0DocJkRnK-Z_9wtKh4ilJM05FW50c/view?usp=sharing).
+[[PDF ↗]](https://drive.google.com/file/d/1S9u0DocJkRnK-Z_9wtKh4ilJM05FW50c).
 
 <div className='tags'>
 
