@@ -8,6 +8,7 @@ import {
   GetGuestWishlistProductsDocument,
   GuestWishlistDocument,
   useWishlistItems,
+  WishlistItem,
 } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
@@ -68,7 +69,19 @@ function WishlistPage(props: Props) {
                   <Trans>Wishlist</Trans>
                 </LayoutTitle>
                 <Container maxWidth='md'>
-                  <WishlistItems items={wishlistItemsData.items} />
+                  <WishlistItems
+                    items={wishlistItemsData.items}
+                    renderer={{
+                      BundleProduct: WishlistItem,
+                      ConfigurableProduct: WishlistItem,
+                      DownloadableProduct: WishlistItem,
+                      SimpleProduct: WishlistItem,
+                      VirtualProduct: WishlistItem,
+                      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                      // @ts-ignore GiftCardProduct is only available in Commerce
+                      GiftCardProduct: WishlistItem,
+                    }}
+                  />
                 </Container>
               </>
             )}

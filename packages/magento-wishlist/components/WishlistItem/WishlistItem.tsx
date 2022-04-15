@@ -17,12 +17,11 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import PageLink from 'next/link'
 import { useState } from 'react'
-import { WishlistItemFragment } from './ProductWishlistItem.gql'
+import { WishlistItemFragment } from './WishlistItem.gql'
 
 const rowImageSize = responsiveVal(70, 125)
 
-export type WishlistItemProps = {
-  item: WishlistItemFragment
+export type WishlistItemProps = WishlistItemFragment & {
   sx?: SxProps<Theme>
 }
 
@@ -42,8 +41,8 @@ const parts = [
 const { classes } = extendableComponent<OwnerState, typeof compName, typeof parts>(compName, parts)
 
 export function WishlistItem(props: WishlistItemProps) {
-  const { item, sx = [] } = props
-  const productLink = useProductLink(item)
+  const { sku, name, url_key, price_range, small_image, __typename: productType, sx = [] } = props
+  const productLink = useProductLink({ url_key, __typename: productType })
   const inclTaxes = useDisplayInclTax()
   const { cache } = useApolloClient()
 
@@ -70,7 +69,7 @@ export function WishlistItem(props: WishlistItemProps) {
     setAnchorEl(event.currentTarget)
   }
 
-  const { sku } = item
+  // const { sku } = item
   const handleClose = (event) => {
     if (event.target.id === 'remove') {
       if (isLoggedIn) {
@@ -166,11 +165,11 @@ export function WishlistItem(props: WishlistItemProps) {
             className={classes.productLink}
             sx={{ display: 'block', width: '100%', overflow: 'hidden' }}
           >
-            {item?.small_image?.url && (
+            {small_image?.url && (
               <Image
-                src={item.small_image.url ?? ''}
+                src={small_image.url ?? ''}
                 layout='fill'
-                alt={item.small_image.label ?? item.name ?? ''}
+                alt={small_image.label ?? name ?? ''}
                 sizes={responsiveVal(70, 125)}
                 className={classes.image}
                 sx={(theme) => ({
@@ -207,7 +206,7 @@ export function WishlistItem(props: WishlistItemProps) {
             },
           })}
         >
-          {item.name}
+          {name}
         </Link>
       </PageLink>
 
@@ -220,8 +219,8 @@ export function WishlistItem(props: WishlistItemProps) {
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       >
-        {item.price_range.minimum_price.regular_price.value !==
-          item.price_range.minimum_price.final_price.value && (
+        {price_range.minimum_price.regular_price.value !==
+          price_range.minimum_price.final_price.value && (
           <Box
             component='span'
             sx={{
@@ -231,10 +230,10 @@ export function WishlistItem(props: WishlistItemProps) {
             }}
             className={classes.discountPrice}
           >
-            <Money {...item.price_range.minimum_price.regular_price} />
+            <Money {...price_range.minimum_price.regular_price} />
           </Box>
         )}
-        <Money {...item.price_range.minimum_price.final_price} />
+        <Money {...price_range.minimum_price.final_price} />
       </Typography>
 
       <IconButton

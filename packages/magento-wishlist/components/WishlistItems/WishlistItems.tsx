@@ -1,22 +1,28 @@
+import { useWishlistItems } from '@graphcommerce/magento-wishlist'
 import { AnimatedRow, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import { AnimatePresence } from 'framer-motion'
-import React from 'react'
-import { WishlistItemFragment } from '../WishlistItem/ProductWishlistItem.gql'
-import { WishlistItem } from '../WishlistItem/WishlistItem'
+import { WishlistItemsFragment } from './WishlistItems.gql'
 
-export type WishlistProps = { items?: [WishlistItemFragment] }
+export type WishlistItemRenderer = TypeRenderer<
+  NonNullable<
+    NonNullable<NonNullable<NonNullable<WishlistItemsFragment['items_v2']>['items']>[0]>['product']
+  >
+>
+
+export type WishlistProps = { renderer: WishlistItemRenderer }
 
 export function WishlistItems(props: WishlistProps) {
-  const { items } = props
+  const { renderer } = props
+  const wishlistItemsData = useWishlistItems()
 
   return (
     <AnimatePresence initial={false}>
-      {items?.map((item) => {
+      {wishlistItemsData.items?.map((item) => {
         if (!item?.uid) return null
 
         return (
           <AnimatedRow key={item.uid}>
-            <WishlistItem item={item} />
+            <RenderType renderer={renderer} {...item} />
           </AnimatedRow>
         )
       })}
