@@ -73,7 +73,7 @@ function WishlistPage(props: Props) {
                   <WishlistItems
                     renderer={{
                       BundleProduct: WishlistItem,
-                      ConfigurableProduct: ConfigurableWishlistItem,
+                      ConfigurableProduct: WishlistItem,
                       DownloadableProduct: WishlistItem,
                       SimpleProduct: WishlistItem,
                       VirtualProduct: WishlistItem,

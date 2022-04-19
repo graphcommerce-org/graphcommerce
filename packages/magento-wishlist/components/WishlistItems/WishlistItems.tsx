@@ -1,9 +1,13 @@
 import { useWishlistItems } from '@graphcommerce/magento-wishlist'
 import { AnimatedRow, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import { AnimatePresence } from 'framer-motion'
-import { ProductTypesFragment } from './ProductTypes.gql'
+import { WishlistItemsFragment } from './WishlistItems.gql'
 
-export type WishlistItemRenderer = TypeRenderer<NonNullable<ProductTypesFragment>>
+export type WishlistItemRenderer = TypeRenderer<
+  NonNullable<
+    NonNullable<NonNullable<NonNullable<WishlistItemsFragment['items_v2']>['items']>[0]>['product']
+  >
+>
 
 export type WishlistProps = { renderer: WishlistItemRenderer }
 
