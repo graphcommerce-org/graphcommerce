@@ -1,7 +1,6 @@
 import { BreakpointsOptions, experimental_sx, SxProps, Theme } from '@mui/material'
 import { Shadows } from '@mui/material/styles/shadows'
-
-import { SetRequired } from 'type-fest'
+import type { SetRequired } from 'type-fest'
 
 // https://material.io/design/environment/elevation.html#default-elevations
 

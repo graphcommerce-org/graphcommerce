@@ -8,7 +8,6 @@ import {
   iconParty,
   iconSadFace,
   LayoutHeader,
-  Stepper,
   IconSvg,
   LayoutTitle,
 } from '@graphcommerce/next-ui'

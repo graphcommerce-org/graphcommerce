@@ -1,6 +1,6 @@
 import { Link, LinkProps, useForkRef } from '@mui/material'
 import React, { useRef } from 'react'
-import { ConditionalExcept } from 'type-fest'
+import type { ConditionalExcept } from 'type-fest'
 import { Button, ButtonProps } from './Button'
 
 type OmitNever<T extends Record<string, unknown>> = {
@@ -83,10 +83,11 @@ export const LinkOrButton = React.forwardRef<
             display: { xs: 'inline-flex', [breakpoint]: 'none' },
             alignItems: 'center',
           },
-          !!disabled && ((theme)=>({
-            opacity: theme.palette.action.disabledOpacity,
-            pointerEvents: 'none'
-          })),
+          !!disabled &&
+            ((theme) => ({
+              opacity: theme.palette.action.disabledOpacity,
+              pointerEvents: 'none',
+            })),
           ...(Array.isArray(linkSx) ? linkSx : [linkSx]),
         ]}
       >

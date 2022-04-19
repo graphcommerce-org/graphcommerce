@@ -7,7 +7,9 @@ const fastDev =
   process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT?.includes('localhost')
 
 // Do not import the mesh when we're running in fastDev mode.
-const mesh = fastDev ? undefined : await (await import('../../.mesh/index')).getBuiltMesh()
+const mesh = fastDev
+  ? undefined
+  : await import('@graphcommerce/graphql-mesh').then(({ getBuiltMesh }) => getBuiltMesh())
 
 export function meshLink(locale: string) {
   if (!mesh) throw Error('Mesh not available')

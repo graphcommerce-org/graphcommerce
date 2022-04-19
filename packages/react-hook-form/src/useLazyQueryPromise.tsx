@@ -7,7 +7,7 @@ import {
   useLazyQuery,
 } from '@apollo/client'
 import { useEffect, useRef } from 'react'
-import { Promisable } from 'type-fest'
+import type { Promisable } from 'type-fest'
 
 export type LazyQueryTuple<Q, V> = [
   (options?: QueryLazyOptions<V>) => Promisable<LazyQueryResult<Q, V>>,

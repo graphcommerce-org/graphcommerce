@@ -1,5 +1,5 @@
 import { SxProps, Theme } from '@mui/material'
-import { LiteralUnion } from 'type-fest'
+import type { LiteralUnion } from 'type-fest'
 
 type BaseElementTypes =
   | 'heading-one'

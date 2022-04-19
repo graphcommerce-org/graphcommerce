@@ -58,6 +58,7 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
     let formsToProcess = formEntries
     if (invalidKeys.length === 0) {
       if (process.env.NODE_ENV !== 'production') {
+        // eslint-disable-next-line no-console
         console.log(
           '[ComposedForm] All forms are valid, submitting...',
           formsToProcess.map(([, { key }]) => key),
@@ -66,6 +67,7 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
     } else {
       formsToProcess = formEntries.filter(([, { key }]) => invalidKeys.includes(key))
       if (process.env.NODE_ENV !== 'production') {
+        // eslint-disable-next-line no-console
         console.log(
           '[ComposedForm] Found invalid forms, triggering error messages by submitting...',
           Object.fromEntries(
@@ -88,6 +90,7 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
        */
       for (const [, { submit, key }] of formsToProcess) {
         try {
+          // eslint-disable-next-line no-console
           console.log(`[ComposedForm] Submitting ${key}`)
           // eslint-disable-next-line no-await-in-loop
           await submit?.()

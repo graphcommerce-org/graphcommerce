@@ -23,14 +23,16 @@
     "playwright": "npx playwright test --headed --project=chrome",
     "postinstall": "patch-package && yarn prepack",
     "release": "yarn changeset publish; git push --follow-tags",
-    "prepack": "concurrently 'yarn prepack:1' 'yarn prepack:2' 'yarn prepack:2'",
+    "prepack": "concurrently 'yarn prepack:1' 'yarn prepack:2' 'yarn prepack:3' 'yarn prepack:4'",
     "prepack:1": "yarn workspace @graphcommerce/next-config prepack",
     "prepack:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack",
     "prepack:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack",
-    "packages": "concurrently 'yarn packages:1' 'yarn packages:2' 'yarn packages:2'",
+    "prepack:4": "yarn workspace @graphcommerce/cli prepack",
+    "packages": "concurrently 'yarn packages:1' 'yarn packages:2' 'yarn packages:3' 'yarn packages:4'",
     "packages:1": "yarn workspace @graphcommerce/next-config dev",
     "packages:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file dev",
-    "packages:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin dev"
+    "packages:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin dev",
+    "packages:4": "yarn workspace @graphcommerce/cli dev"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -45,16 +47,19 @@
     "@changesets/cli": "2.22.0",
     "@graphcommerce/eslint-config-pwa": "^4.1.3",
     "@graphcommerce/prettier-config-pwa": "^4.0.5",
-    "@playwright/test": "^1.20.1",
     "concurrently": "7.1.0",
     "patch-package": "6.4.7"
   },
   "devDependencies": {
-    "@types/node": "17.0.23",
-    "@types/react": "17.0.43",
-    "@types/sharp": "0.30.1",
-    "eslint": "8.12.0",
+    "@playwright/test": "^1.21.1",
+    "@types/sharp": "0.30.2",
+    "@types/node": "16.11.7",
+    "@types/react": "17.0.44",
+    "eslint": "8.13.0",
     "prettier": "2.6.2",
     "typescript": "4.6.3"
+  },
+  "resolutions": {
+    "@types/react": "17.0.44"
   }
 }

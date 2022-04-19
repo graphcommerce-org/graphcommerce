@@ -1,14 +1,12 @@
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
-import { extendableComponent, FormRow, InputCheckmark } from '@graphcommerce/next-ui'
+import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { useFormCompose, useFormPersist, useFormValidFields } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { Box, TextField, Typography } from '@mui/material'
+import { TextField, Typography } from '@mui/material'
 import { SetMolliePaymentMethodIssuerOnCartDocument } from './SetMolliePaymentMethodIssuerOnCart.gql'
 
 type MollieIssuerOptionsProps = PaymentOptionsProps & { label: string; children?: React.ReactNode }
-
-const compName = 'MollieIssuerOptions' as const
 
 export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
   const { mollie_available_issuers = [], children } = props

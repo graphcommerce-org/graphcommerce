@@ -1,5 +1,5 @@
 import { ScrollerProvider, ScrollSnapType } from '@graphcommerce/framer-scroller'
-import { SetOptional } from 'type-fest'
+import type { SetOptional } from 'type-fest'
 import { LayoutOverlayBase, LayoutOverlayBaseProps } from './LayoutOverlayBase'
 
 export type { LayoutOverlayVariant } from './LayoutOverlayBase'

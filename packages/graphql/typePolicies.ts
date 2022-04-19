@@ -1,7 +1,7 @@
+import type { StrictTypedTypePolicies } from '@graphcommerce/graphql'
 import { mergeDeep } from './apollo'
-import type { TypedTypePolicies } from './generated/types'
 
-export const mergeTypePolicies = (policies: TypedTypePolicies[]): TypedTypePolicies =>
+export const mergeTypePolicies = (policies: StrictTypedTypePolicies[]): StrictTypedTypePolicies =>
   mergeDeep(...policies)
 
 const generateIdentifyer = (s: string) =>
@@ -14,5 +14,5 @@ const generateIdentifyer = (s: string) =>
     }, 0),
   ).toString()
 
-export const getTypePoliciesVersion = (policies: TypedTypePolicies[]) =>
+export const getTypePoliciesVersion = (policies: StrictTypedTypePolicies[]) =>
   generateIdentifyer(JSON.stringify(policies))

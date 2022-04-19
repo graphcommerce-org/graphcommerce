@@ -10,17 +10,13 @@
   },
   "scripts": {
     "dev": "yarn concurrently -k -n codegen,next 'yarn codegen-base -w' 'yarn next dev'",
-    "codegen": "yarn mesh build && find . -type f -name '*.gql.ts' -delete && yarn codegen-base",
+    "codegen": "node ../../packages/cli/dist/bin/mesh.js build && find . -type f -name '*.gql.ts' -delete && yarn codegen-base",
     "build": "yarn codegen && yarn next build && yarn next-sitemap",
     "start": "next start",
     "tsc:lint": "yarn tsc --noEmit -p .",
     "lingui": "NODE_ENV=development lingui extract",
-    "codegen-base": "NEXT_PUBLIC_GRAPHQL_ENDPOINT=.mesh/schema.graphql yarn graphql-codegen -c ../../scripts/codegen.magento-graphcms.yml",
-    "prepack": "concurrently 'yarn prepack:1' 'yarn prepack:2' 'yarn prepack:3'",
-    "prepack:1": "yarn workspace @graphcommerce/next-config prepack",
-    "prepack:2": "yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack",
-    "prepack:3": "yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack",
-    "postinstall": "yarn prepack"
+    "codegen-base": "yarn graphql-codegen -c ../../scripts/codegen.magento-graphcms.yml",
+    "postinstall": "concurrently 'yarn workspace @graphcommerce/next-config prepack' 'yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack' 'yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack' 'yarn workspace @graphcommerce/cli prepack'"
   },
   "scripts_local": {
     "dev": "yarn concurrently -k -n codegen,next 'yarn codegen-base -w' 'yarn next dev'",
@@ -29,9 +25,10 @@
     "start": "next start",
     "tsc:lint": "yarn tsc --noEmit -p .",
     "lingui": "NODE_ENV=development lingui extract",
-    "codegen-base": "NEXT_PUBLIC_GRAPHQL_ENDPOINT=.mesh/schema.graphql yarn graphql-codegen"
+    "codegen-base": "yarn graphql-codegen"
   },
   "dependencies": {
+    "@graphcommerce/cli": "0.0.0",
     "@graphcommerce/ecommerce-ui": "1.0.6",
     "@graphcommerce/framer-next-pages": "3.1.5",
     "@graphcommerce/framer-scroller": "2.1.5",
@@ -74,29 +71,28 @@
     "@graphcommerce/mollie-magento-payment": "3.2.1",
     "@graphcommerce/next-config": "3.1.2",
     "@graphcommerce/next-ui": "4.6.0",
-    "@graphql-codegen/cli": "2.6.2",
-    "@graphql-mesh/cli": "0.66.1",
     "@lingui/macro": "3.13.2",
-    "@mui/lab": "5.0.0-alpha.75",
-    "@mui/material": "5.5.3",
+    "@mui/lab": "5.0.0-alpha.78",
+    "@mui/material": "5.6.2",
     "concurrently": "7.1.0",
     "dotenv": "16.0.0",
-    "framer-motion": "6.2.8",
-    "next": "12.1.4",
-    "next-pwa": "5.4.6",
-    "next-sitemap": "2.5.17",
+    "framer-motion": "6.3.0",
+    "next": "12.1.5",
+    "next-pwa": "5.5.2",
+    "next-sitemap": "2.5.20",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "sharp": "0.30.3"
+    "sharp": "0.30.4"
+  },
+  "resolutions": {
+    "@types/react": "17.0.44"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.4",
     "@graphcommerce/prettier-config-pwa": "^4.0.5",
     "@graphcommerce/typescript-config-pwa": "^4.0.2",
     "@lingui/cli": "3.13.2",
-    "@types/node": "17.0.23",
-    "@types/react": "17.0.43",
-    "eslint": "8.12.0",
+    "eslint": "8.13.0",
     "typescript": "4.6.3"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
