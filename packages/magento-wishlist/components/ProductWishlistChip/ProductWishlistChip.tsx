@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useQuery, useMutation, useApolloClient } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import { Selected, useConfigurableContext } from '@graphcommerce/magento-product-configurable'
+import { useConfigurableContext } from '@graphcommerce/magento-product-configurable'
 import {
   AddProductToWishlistDocument,
   RemoveProductFromWishlistDocument,
@@ -12,8 +12,8 @@ import {
 } from '@graphcommerce/magento-wishlist'
 import { IconSvg, iconHeart, extendableComponent } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
-import { SxProps, Theme, IconButton, IconButtonProps } from '@mui/material'
-import React, { useState, useEffect } from 'react'
+import { SxProps, Theme, IconButton } from '@mui/material'
+import { useState, useEffect } from 'react'
 import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
 
 type ProductWishlistSettings = {
