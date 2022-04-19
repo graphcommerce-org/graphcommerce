@@ -84,6 +84,9 @@
     "react-dom": "17.0.2",
     "sharp": "0.30.4"
   },
+  "resolutions": {
+    "@types/react": "17.0.44"
+  },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.4",
     "@graphcommerce/prettier-config-pwa": "^4.0.5",
