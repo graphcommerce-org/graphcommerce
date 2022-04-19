@@ -11,6 +11,12 @@ account.
 - Add products with selected variants, like size and color, to wishlist
   (configurable product)
 
+## Roadmap
+
+- Wishlist overview: add to cart based on sku (simple, downloadable, virtual,
+  grouped)
+- Wishlist overview: add to cart with configurable options (see 'Remarks')
+
 ## Settings
 
 - Enable wishlist for logged in users only (for instance for B2B)
