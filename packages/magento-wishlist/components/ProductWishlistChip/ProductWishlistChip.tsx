@@ -17,9 +17,10 @@ import React, { useState, useEffect } from 'react'
 import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
 
 type ProductWishlistSettings = {
-  hideForGuest?: true | false
   variant?: 'default' | 'shadow'
 }
+
+const hideForGuest = process.env.NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST === '1'
 
 export type ProductWishlistChipProps = ProductWishlistChipFragment &
   ProductWishlistSettings & { sx?: SxProps<Theme> }
@@ -29,7 +30,7 @@ const parts = ['root', 'iconHeart', 'iconHeartActive', 'wishlistButton'] as cons
 const { classes } = extendableComponent(name, parts)
 
 export function ProductWishlistChip(props: ProductWishlistChipProps) {
-  const { variant, hideForGuest, sku, __typename: productType, sx = [] } = props
+  const { variant, sku, __typename: productType, sx = [] } = props
 
   const [inWishlist, setInWishlist] = useState(false)
   const [displayWishlist, setDisplayWishlist] = useState(true)
@@ -97,7 +98,7 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
       const inWishlistTest = guestWishlistData?.guestWishlist?.items.map((item) => item?.sku) || []
       setInWishlist(inWishlistTest.includes(sku))
     }
-  }, [hideForGuest, isLoggedIn, sku, loading, GetCustomerWishlistData, guestWishlistData])
+  }, [isLoggedIn, sku, loading, GetCustomerWishlistData, guestWishlistData])
 
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
@@ -191,5 +192,4 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
 
 ProductWishlistChip.defaultProps = {
   variant: 'default',
-  hideForGuest: false,
 }

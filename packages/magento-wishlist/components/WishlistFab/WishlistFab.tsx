@@ -21,6 +21,8 @@ const name = 'WishlistFab'
 const parts = ['root'] as const
 const { classes } = extendableComponent(name, parts)
 
+const hideForGuest = process.env.NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST === '1'
+
 function WishlistFabContent(props: WishlistFabContentProps) {
   const { icon, FabProps, sx } = props
 
@@ -76,9 +78,12 @@ function WishlistFabContent(props: WishlistFabContentProps) {
 export function WishlistFab(props: WishlistFabContentProps) {
   const isWishlistEnabled = useWishlistEnabled()
 
+  const { data: token } = useQuery(CustomerTokenDocument)
+  const isLoggedIn = token?.customerToken && token?.customerToken.valid
+
   return (
     <>
-      {isWishlistEnabled && (
+      {isWishlistEnabled && (!hideForGuest || isLoggedIn) && (
         <NoSsr>
           <WishlistFabContent {...props} />
         </NoSsr>

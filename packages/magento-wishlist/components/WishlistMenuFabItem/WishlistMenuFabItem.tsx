@@ -15,6 +15,8 @@ type WishlistMenuFabItemProps = {
   sx?: SxProps<Theme>
 }
 
+const hideForGuest = process.env.NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST === '1'
+
 function WishlistMenuFabItemContent(props: WishlistMenuFabItemProps) {
   const { icon, children, sx = [] } = props
 
@@ -66,9 +68,12 @@ function WishlistMenuFabItemContent(props: WishlistMenuFabItemProps) {
 export function WishlistMenuFabItem(props: WishlistMenuFabItemProps) {
   const isWishlistEnabled = useWishlistEnabled()
 
+  const { data: token } = useQuery(CustomerTokenDocument)
+  const isLoggedIn = token?.customerToken && token?.customerToken.valid
+
   return (
     <>
-      {isWishlistEnabled && (
+      {isWishlistEnabled && (!hideForGuest || isLoggedIn) && (
         <NoSsr fallback={<WishlistMenuFabItemContent {...props} />}>
           <WishlistMenuFabItemContent {...props} />
         </NoSsr>
