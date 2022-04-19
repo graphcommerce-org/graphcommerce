@@ -18,7 +18,7 @@
     "@graphcommerce/eslint-config-pwa": "^4.1.4",
     "@graphcommerce/prettier-config-pwa": "^4.0.5",
     "@graphcommerce/typescript-config-pwa": "^4.0.2",
-    "@graphcommerce/magento-cart-shipping-address": "3.0.7",
+    "@graphcommerce/magento-cart-shipping-address": "3.0.8",
     "@playwright/test": "^1.21.1",
     "type-fest": "^2.12.2"
   },
