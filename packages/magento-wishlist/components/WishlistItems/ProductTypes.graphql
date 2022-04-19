@@ -1,0 +1,3 @@
+fragment ProductTypes on ProductInterface {
+  __typename
+}
