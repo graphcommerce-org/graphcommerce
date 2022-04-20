@@ -1,5 +1,61 @@
 # Change Log
 
+## 3.6.0
+
+### Minor Changes
+
+- [#1399](https://github.com/graphcommerce-org/graphcommerce/pull/1399) [`fb277d8e1`](https://github.com/graphcommerce-org/graphcommerce/commit/fb277d8e1e3612c5e9cf890a30d19cfd1ff70542) Thanks [@paales](https://github.com/paales)! - Now using [@graphql-yoga](https://github.com/dotansimha/graphql-yoga) for GraphQL which has full support for [envelop](https://www.envelop.dev/) plugins.
+
+* [#1399](https://github.com/graphcommerce-org/graphcommerce/pull/1399) [`fb277d8e1`](https://github.com/graphcommerce-org/graphcommerce/commit/fb277d8e1e3612c5e9cf890a30d19cfd1ff70542) Thanks [@paales](https://github.com/paales)! - Added a new @graphcommerce/cli package to generate the mesh so it can be generated _inside_ the @graphcommerce/graphql-mesh package to allow for better future extensibility.
+
+### Patch Changes
+
+- [#1399](https://github.com/graphcommerce-org/graphcommerce/pull/1399) [`da0ae7d02`](https://github.com/graphcommerce-org/graphcommerce/commit/da0ae7d0236e4908ba0bf0fa16656be516e841d4) Thanks [@paales](https://github.com/paales)! - Updated dependencies
+
+- Updated dependencies [[`fb277d8e1`](https://github.com/graphcommerce-org/graphcommerce/commit/fb277d8e1e3612c5e9cf890a30d19cfd1ff70542), [`fb277d8e1`](https://github.com/graphcommerce-org/graphcommerce/commit/fb277d8e1e3612c5e9cf890a30d19cfd1ff70542), [`8652662cf`](https://github.com/graphcommerce-org/graphcommerce/commit/8652662cf9a8711d1c685d4f5cd788870a8242e2), [`da0ae7d02`](https://github.com/graphcommerce-org/graphcommerce/commit/da0ae7d0236e4908ba0bf0fa16656be516e841d4)]:
+  - @graphcommerce/cli@1.0.0
+  - @graphcommerce/graphql@3.1.0
+  - @graphcommerce/graphql-mesh@4.1.0
+  - @graphcommerce/graphcms-ui@3.0.12
+  - @graphcommerce/magento-cart@4.2.6
+  - @graphcommerce/magento-cart-payment-method@3.1.2
+  - @graphcommerce/magento-cart-shipping-method@3.0.10
+  - @graphcommerce/magento-customer@4.2.4
+  - @graphcommerce/magento-customer-order@3.0.10
+  - @graphcommerce/magento-graphql@3.0.7
+  - @graphcommerce/magento-payment-braintree@3.0.9
+  - @graphcommerce/magento-product@4.1.7
+  - @graphcommerce/magento-product-configurable@4.0.11
+  - @graphcommerce/magento-review@3.1.5
+  - @graphcommerce/magento-search@4.1.6
+  - @graphcommerce/magento-store@4.1.7
+  - @graphcommerce/mollie-magento-payment@3.2.2
+  - @graphcommerce/next-ui@4.6.1
+  - @graphcommerce/next-config@3.1.3
+  - @graphcommerce/ecommerce-ui@1.0.7
+  - @graphcommerce/framer-next-pages@3.1.6
+  - @graphcommerce/framer-scroller@2.1.6
+  - @graphcommerce/googlerecaptcha@2.1.3
+  - @graphcommerce/googletagmanager@2.0.7
+  - @graphcommerce/image@3.1.5
+  - @graphcommerce/lingui-next@2.1.6
+  - @graphcommerce/magento-cart-billing-address@3.0.9
+  - @graphcommerce/magento-cart-checkout@3.0.9
+  - @graphcommerce/magento-cart-coupon@3.0.11
+  - @graphcommerce/magento-cart-email@3.0.9
+  - @graphcommerce/magento-cart-items@3.0.10
+  - @graphcommerce/magento-cart-shipping-address@3.0.9
+  - @graphcommerce/magento-category@4.0.10
+  - @graphcommerce/magento-cms@4.0.8
+  - @graphcommerce/magento-customer-account@3.1.4
+  - @graphcommerce/magento-newsletter@2.0.9
+  - @graphcommerce/magento-payment-included@3.0.9
+  - @graphcommerce/magento-product-bundle@4.0.9
+  - @graphcommerce/magento-product-downloadable@4.0.9
+  - @graphcommerce/magento-product-grouped@3.0.9
+  - @graphcommerce/magento-product-simple@4.0.9
+  - @graphcommerce/magento-product-virtual@4.0.9
+
 ## 3.5.7
 
 ### Patch Changes
