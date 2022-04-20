@@ -11,6 +11,7 @@ import {
   RemoveProductFromWishlistDocument,
 } from '@graphcommerce/magento-wishlist'
 import { responsiveVal, extendableComponent, iconEllypsis, IconSvg } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
 import { Badge, Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
@@ -294,7 +295,7 @@ export function WishlistItem(props: WishlistItemProps) {
       >
         {options.map((option) => (
           <MenuItem key={option.id} id={option.id} onClick={handleClose}>
-            {option.label}
+            <Trans>{option.label}</Trans>
           </MenuItem>
         ))}
       </Menu>
