@@ -10,6 +10,7 @@ module.exports = {
   exclude: [
     '*/account*',
     '*/cart*',
+    '*/modal*',
     '*/checkout*',
     '*/test/*',
     '/test/*',
