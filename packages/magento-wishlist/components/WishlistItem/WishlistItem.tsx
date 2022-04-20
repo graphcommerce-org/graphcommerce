@@ -115,19 +115,21 @@ export function WishlistItem(props: WishlistItemProps) {
       className={classes.item}
       sx={[
         (theme) => ({
+          position: 'relative',
           display: 'grid',
           gridTemplate: `
             "picture itemName itemName iconMenu"
             "picture itemOptions itemOptions"
-            "picture itemName itemName itemPrice"
+            "picture itemQuantity itemQuantity itemPrice"
             "itemCartButton itemCartButton itemCartButton itemCartButton"`,
           gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
           columnGap: theme.spacings.sm,
           alignItems: 'baseline',
           typography: 'body1',
-          paddingBottom: theme.spacings.sm,
+          paddingBottom: theme.spacings.xl,
           paddingTop: theme.spacings.sm,
           [theme.breakpoints.up('sm')]: {
+            paddingBottom: theme.spacings.md,
             gridTemplate: `
               "picture itemName itemName itemName iconMenu"
               "picture itemQuantity itemOptions itemPrice itemPrice"
@@ -140,11 +142,13 @@ export function WishlistItem(props: WishlistItemProps) {
             display: 'grid',
             gridTemplate: `
             "picture itemName itemName iconMenu"
-            "picture itemName itemName itemPrice"
+            "picture itemQuantity itemPrice itemPrice"
             "itemCartButton itemCartButton itemCartButton itemCartButton"`,
             alignItems: 'center',
+            paddingBottom: theme.spacings.xl,
             gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
             [theme.breakpoints.up('sm')]: {
+              paddingBottom: theme.spacings.md,
               gridTemplate: `
               "picture itemName itemName itemName iconMenu"
               "picture itemQuantity itemQuantity itemQuantity itemPrice"

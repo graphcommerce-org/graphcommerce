@@ -49,18 +49,7 @@ export function ProductAddToCart(
   const submitHandler = handleSubmit(() => {})
 
   return (
-    <Box
-      component='form'
-      onSubmit={submitHandler}
-      noValidate
-      className={classes.root}
-      // sx={(theme) => ({
-      //   display: 'flex',
-      //   marginTop: theme.spacings.sm,
-      //   marginLeft: 'auto',
-      //   columnGap: theme.spacings.xs,
-      // })}
-    >
+    <Box component='form' onSubmit={submitHandler} noValidate className={classes.root}>
       <Box
         sx={(theme) => ({
           gridArea: 'itemQuantity',
@@ -76,9 +65,7 @@ export function ProductAddToCart(
           disabled={formState.isSubmitting}
           size='small'
           sx={(theme) => ({
-            gridArea: 'cartQuantity',
-            marginTop: theme.spacings.xxs,
-            marginBottom: theme.spacings.xxs,
+            alignSelf: 'flex-start',
           })}
         />
       </Box>
@@ -88,6 +75,9 @@ export function ProductAddToCart(
         sx={(theme) => ({
           gridArea: 'itemCartButton',
           alignSelf: 'flex-start',
+          position: 'absolute',
+          left: '0',
+          bottom: '-35px',
         })}
       >
         <Button
@@ -95,7 +85,7 @@ export function ProductAddToCart(
           className={classes.button}
           loading={formState.isSubmitting}
           color='primary'
-          variant='pill'
+          variant='text'
           size='medium'
           {...buttonProps}
         >
