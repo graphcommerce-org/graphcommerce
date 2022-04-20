@@ -56,7 +56,7 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
           variant='outlined'
           type='password'
           error={!!formState.errors.newPassword}
-          label='New password'
+          label={<Trans>New password</Trans>}
           required={required.newPassword}
           {...muiRegister('newPassword', { required: required.newPassword })}
           helperText={formState.errors.newPassword?.message}
@@ -68,7 +68,7 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
           variant='outlined'
           type='password'
           error={!!formState.errors.confirmPassword}
-          label='Confirm password'
+          label={<Trans>Confirm password</Trans>}
           required
           {...muiRegister('confirmPassword', {
             required: true,
@@ -89,7 +89,7 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
           variant='contained'
           size='large'
         >
-          Save new password
+          <Trans>Save new password</Trans>
         </Button>
       </FormActions>
     </Form>
