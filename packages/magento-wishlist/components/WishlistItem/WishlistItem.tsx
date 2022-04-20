@@ -17,6 +17,7 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import PageLink from 'next/link'
 import { useState, PropsWithChildren } from 'react'
+import { ProductAddToCart } from './ProductAddToCart'
 import { WishlistItemProductFragment } from './WishlistItemProduct.gql'
 
 const rowImageSize = responsiveVal(70, 125)
@@ -116,9 +117,10 @@ export function WishlistItem(props: WishlistItemProps) {
         (theme) => ({
           display: 'grid',
           gridTemplate: `
-            "picture itemName itemName itemName iconMenu"
-            "picture itemOptions itemOptions itemOptions"
-            "picture itemName itemName itemName itemPrice"`,
+            "picture itemName itemName iconMenu"
+            "picture itemOptions itemOptions"
+            "picture itemName itemName itemPrice"
+            "itemCartButton itemCartButton itemCartButton itemCartButton"`,
           gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
           columnGap: theme.spacings.sm,
           alignItems: 'baseline',
@@ -128,7 +130,8 @@ export function WishlistItem(props: WishlistItemProps) {
           [theme.breakpoints.up('sm')]: {
             gridTemplate: `
               "picture itemName itemName itemName iconMenu"
-              "picture itemOptions itemOptions itemPrice itemPrice"`,
+              "picture itemQuantity itemOptions itemPrice itemPrice"
+              "itemCartButton itemCartButton itemCartButton itemCartButton itemCartButton"`,
             gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(120px, 1fr)`,
           },
           borderBottom: `1px solid ${theme.palette.divider}`,
@@ -137,13 +140,15 @@ export function WishlistItem(props: WishlistItemProps) {
             display: 'grid',
             gridTemplate: `
             "picture itemName itemName iconMenu"
-            "picture itemName itemName itemPrice"`,
+            "picture itemName itemName itemPrice"
+            "itemCartButton itemCartButton itemCartButton itemCartButton"`,
             alignItems: 'center',
             gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
             [theme.breakpoints.up('sm')]: {
               gridTemplate: `
               "picture itemName itemName itemName iconMenu"
-              "picture itemName itemName itemName itemPrice"
+              "picture itemQuantity itemQuantity itemQuantity itemPrice"
+              "itemCartButton itemCartButton itemCartButton itemCartButton itemCartButton"
             `,
               gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(120px, 1fr)`,
             },
@@ -165,7 +170,7 @@ export function WishlistItem(props: WishlistItemProps) {
           width: rowImageSize,
           height: rowImageSize,
           padding: responsiveVal(5, 10),
-          alignSelf: 'center',
+          alignSelf: 'flex-start',
         })}
       >
         <PageLink href={productLink} passHref>
@@ -289,6 +294,12 @@ export function WishlistItem(props: WishlistItemProps) {
           </MenuItem>
         ))}
       </Menu>
+
+      <ProductAddToCart
+        variables={{ sku: sku ?? '', quantity: 1 }}
+        name={name ?? ''}
+        price={price_range.minimum_price.regular_price}
+      />
 
       {children}
     </Box>
