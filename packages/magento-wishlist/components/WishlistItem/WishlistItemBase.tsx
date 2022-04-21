@@ -75,7 +75,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
   const options = [
     {
       id: 'remove',
-      label: 'Remove',
+      label: 'Remove Product',
     },
   ]
 
