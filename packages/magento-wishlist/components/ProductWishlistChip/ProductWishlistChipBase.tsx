@@ -187,7 +187,3 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
 
   return !hideForGuest || isLoggedIn ? button : null
 }
-
-ProductWishlistChipBase.defaultProps = {
-  variant: 'default',
-}
