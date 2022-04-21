@@ -67,11 +67,11 @@ https://user-images.githubusercontent.com/1251986/158647122-dc57002f-a9c2-4661-a
 
 1. `git clone git@github.com:graphcommerce-org/graphcommerce.git`
 2. `mkdir my-project`
-3. `cp -R graphcommerce/examples/magento-graphcms/. my-project`
+3. `cp -R graphcommerce/examples/magento-graphcms/. my-project && rm -rf graphcommerce`
 4. `cd my-project`
 5. `cp -R .env.example .env`
 6. `rm CHANGELOG.md`
-7. `rm -r node_modules && rm -r .next`
+7. `rm -rf node_modules && rm -rf .next`
 
 Edit /package.json. Delete `"scripts": {...}` and rename `scripts_local` to
 `scripts`:
