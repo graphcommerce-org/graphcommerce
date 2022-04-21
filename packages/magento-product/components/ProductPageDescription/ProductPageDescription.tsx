@@ -27,7 +27,7 @@ export function ProductPageDescription(props: ProductPageDescriptionProps) {
       className={classes.root}
       sx={sx}
       top={
-        <Typography variant='h1' component='h2'>
+        <Typography variant='h1' component='h1'>
           {name}
         </Typography>
       }
