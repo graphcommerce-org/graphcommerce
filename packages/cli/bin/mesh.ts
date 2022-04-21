@@ -33,7 +33,7 @@ const main = async () => {
   conf.additionalResolvers = conf.additionalResolvers ?? []
 
   // Rewrite string directives
-  conf.additionalResolvers = conf.additionalResolvers.map((additionalResolver) => {
+  conf.additionalResolvers = conf.additionalResolvers?.map((additionalResolver) => {
     if (typeof additionalResolver === 'string') return `${relativePath}${additionalResolver}`
     return additionalResolver
   })
@@ -44,12 +44,12 @@ const main = async () => {
     ? conf.additionalTypeDefs
     : [conf.additionalTypeDefs]
 
-  conf.additionalTypeDefs.push('**/*.graphqls')
+  conf.additionalTypeDefs.push('../../**/*.graphqls')
   if (isMonoRepo) {
     conf.additionalTypeDefs.push('../../packages/magento-*/**/*.graphqls')
     conf.additionalTypeDefs.push('../../packagesDev/**/*.graphqls')
   } else {
-    conf.additionalTypeDefs.push('node_modules/@graphcommerce/**/*.graphqls')
+    conf.additionalTypeDefs.push('../../@graphcommerce/**/*.graphqls')
   }
 
   fs.writeFileSync(path.join(meshDir, '.meshrc.yml'), yaml.stringify(conf))
