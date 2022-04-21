@@ -21,6 +21,8 @@ type ProductWishlistSettings = {
 }
 
 const hideForGuest = process.env.NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST === '1'
+const ignoreProductWishlistStatus =
+  process.env.NEXT_PUBLIC_WISHLIST_IGNORE_PRODUCT_WISHLIST_STATUS === '1'
 
 export type ProductWishlistChipProps = ProductWishlistChipFragment &
   ProductWishlistSettings & { sx?: SxProps<Theme> }
@@ -121,7 +123,7 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
     }
 
     if (isLoggedIn) {
-      if (inWishlist) {
+      if (inWishlist && !ignoreProductWishlistStatus) {
         const wishlistItemsInSession =
           GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items || []
 
