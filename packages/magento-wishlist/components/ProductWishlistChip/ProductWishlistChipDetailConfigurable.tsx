@@ -5,11 +5,9 @@ export function ProductWishlistChipDetailConfigurable(props: ProductWishlistChip
   const { sku } = props
 
   let selectedOptions: string[] = []
-  let context
-
   if (sku) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    context = useConfigurableContext(sku)
+    const context = useConfigurableContext(sku)
     selectedOptions = (Object as any).values(context.selection)
   }
 

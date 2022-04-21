@@ -31,7 +31,6 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const { sku, selectedOptions = [], sx = [] } = props
 
   const [inWishlist, setInWishlist] = useState(false)
-  const [displayWishlist, setDisplayWishlist] = useState(true)
 
   const { data: token } = useQuery(CustomerTokenDocument)
   const isLoggedIn = token?.customerToken && token?.customerToken.valid
@@ -77,7 +76,6 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   useEffect(() => {
     // Do not display wishlist UI to guests when configured as customer only
     if (hideForGuest && !isLoggedIn) {
-      setDisplayWishlist(false)
       return
     }
 
