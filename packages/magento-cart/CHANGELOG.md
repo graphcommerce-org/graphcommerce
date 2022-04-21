@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.2.7
+
+### Patch Changes
+
+- [#1412](https://github.com/graphcommerce-org/graphcommerce/pull/1412) [`d8906cf4a`](https://github.com/graphcommerce-org/graphcommerce/commit/d8906cf4afbfc234aedd91a2c581f82623267357) Thanks [@FrankHarland](https://github.com/FrankHarland)! - add missing translation components
+
+- Updated dependencies [[`d8906cf4a`](https://github.com/graphcommerce-org/graphcommerce/commit/d8906cf4afbfc234aedd91a2c581f82623267357)]:
+  - @graphcommerce/magento-customer@4.2.5
+
 ## 4.2.6
 
 ### Patch Changes

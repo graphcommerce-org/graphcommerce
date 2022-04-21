@@ -1,5 +1,40 @@
 # Change Log
 
+## 3.6.1
+
+### Patch Changes
+
+- [#1410](https://github.com/graphcommerce-org/graphcommerce/pull/1410) [`6d1a1a64a`](https://github.com/graphcommerce-org/graphcommerce/commit/6d1a1a64a95b5444322a022a30f8353f3b3fd017) Thanks [@FrankHarland](https://github.com/FrankHarland)! - exclude /modal from sitemap
+
+* [#1414](https://github.com/graphcommerce-org/graphcommerce/pull/1414) [`be3467b41`](https://github.com/graphcommerce-org/graphcommerce/commit/be3467b4179aca333f3be653673458ad5f59277f) Thanks [@paales](https://github.com/paales)! - Fixed an error when running yarn codegen: Unable to find any GraphQL type definitions for the following pointers
+
+* Updated dependencies [[`d8906cf4a`](https://github.com/graphcommerce-org/graphcommerce/commit/d8906cf4afbfc234aedd91a2c581f82623267357), [`be3467b41`](https://github.com/graphcommerce-org/graphcommerce/commit/be3467b4179aca333f3be653673458ad5f59277f)]:
+  - @graphcommerce/magento-cart@4.2.7
+  - @graphcommerce/magento-customer@4.2.5
+  - @graphcommerce/cli@1.0.1
+  - @graphcommerce/magento-cart-billing-address@3.0.10
+  - @graphcommerce/magento-cart-checkout@3.0.10
+  - @graphcommerce/magento-cart-coupon@3.0.12
+  - @graphcommerce/magento-cart-email@3.0.10
+  - @graphcommerce/magento-cart-items@3.0.11
+  - @graphcommerce/magento-cart-payment-method@3.1.3
+  - @graphcommerce/magento-cart-shipping-address@3.0.10
+  - @graphcommerce/magento-cart-shipping-method@3.0.11
+  - @graphcommerce/magento-newsletter@2.0.10
+  - @graphcommerce/magento-payment-braintree@3.0.10
+  - @graphcommerce/magento-payment-included@3.0.10
+  - @graphcommerce/magento-product@4.1.8
+  - @graphcommerce/magento-product-bundle@4.0.10
+  - @graphcommerce/magento-product-configurable@4.0.12
+  - @graphcommerce/magento-product-downloadable@4.0.10
+  - @graphcommerce/magento-product-grouped@3.0.10
+  - @graphcommerce/magento-product-simple@4.0.10
+  - @graphcommerce/magento-product-virtual@4.0.10
+  - @graphcommerce/mollie-magento-payment@3.2.3
+  - @graphcommerce/magento-customer-account@3.1.5
+  - @graphcommerce/magento-review@3.1.6
+  - @graphcommerce/magento-category@4.0.11
+
 ## 3.6.0
 
 ### Minor Changes
