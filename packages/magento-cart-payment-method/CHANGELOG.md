@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.1.3
+
+### Patch Changes
+
+- Updated dependencies [[`d8906cf4a`](https://github.com/graphcommerce-org/graphcommerce/commit/d8906cf4afbfc234aedd91a2c581f82623267357)]:
+  - @graphcommerce/magento-cart@4.2.7
+
 ## 3.1.2
 
 ### Patch Changes

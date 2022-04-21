@@ -1,5 +1,11 @@
 # @graphcommerce/cli
 
+## 1.0.1
+
+### Patch Changes
+
+- [#1414](https://github.com/graphcommerce-org/graphcommerce/pull/1414) [`be3467b41`](https://github.com/graphcommerce-org/graphcommerce/commit/be3467b4179aca333f3be653673458ad5f59277f) Thanks [@paales](https://github.com/paales)! - Fixed an error when running yarn codegen: Unable to find any GraphQL type definitions for the following pointers
+
 ## 1.0.0
 
 ### Major Changes
