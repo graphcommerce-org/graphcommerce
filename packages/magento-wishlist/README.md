@@ -18,7 +18,7 @@ account.
 Add the following configuration to your env file
 
 ```
-NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST=1
+NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST="1"
 ```
 
 - Force add products to wishlist (only availble for logged in users)
@@ -30,19 +30,19 @@ Use this setting to force adding products to the wishlist, even when there
 already is a product with the same SKU in the wishlist.
 
 ```
-NEXT_PUBLIC_WISHLIST_IGNORE_PRODUCT_WISHLIST_STATUS=1
+NEXT_PUBLIC_WISHLIST_IGNORE_PRODUCT_WISHLIST_STATUS="1"
 ```
 
 ## Customizing wishlist styling
 
-- The ProductWishlistChip accepts SX props.
+- The ProductWishlistChip accepts SX props
+- Lister and detailpage use separate containing components to specificy context
+  specific styling
 - Fancy a different icon? See:
   https://www.graphcommerce.org/docs/framework/icons
 
 ## Roadmap
 
-- Wishlist overview: add to cart based on sku (simple, downloadable, virtual,
-  grouped)
 - Wishlist overview: add to cart with configurable options (see 'Remarks')
 
 ## Remarks
