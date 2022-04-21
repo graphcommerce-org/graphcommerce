@@ -18,7 +18,7 @@ import {
 } from '@graphcommerce/magento-product-grouped'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
+import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
   JsonLd,
@@ -87,7 +87,9 @@ function ProductGrouped(props: Props) {
                       variables={{ sku: item.product.sku ?? '', quantity: item.qty || 1 }}
                       name={product.name ?? ''}
                       price={product.price_range.minimum_price.regular_price}
-                      additionalButtons={<ProductWishlistChip variant='shadow' {...product} />}
+                      additionalButtons={
+                        <ProductWishlistChipDetail variant='shadow' {...product} />
+                      }
                     >
                       <ProductSidebarDelivery />
                     </ProductAddToCart>
