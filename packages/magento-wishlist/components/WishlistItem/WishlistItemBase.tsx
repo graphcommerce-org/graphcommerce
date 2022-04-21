@@ -66,7 +66,6 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
   })
 
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
-  const [itemVisible, setItemVisible] = useState(true)
 
   const options = [
     {
@@ -81,7 +80,6 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
     setAnchorEl(event.currentTarget)
   }
 
-  // const { sku } = item
   const handleClose = (event) => {
     if (event.target.id === 'remove') {
       if (isLoggedIn) {
@@ -106,10 +104,6 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
       }
     }
     setAnchorEl(null)
-  }
-
-  if (!itemVisible) {
-    return null
   }
 
   return (
