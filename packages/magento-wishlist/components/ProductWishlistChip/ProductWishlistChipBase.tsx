@@ -20,7 +20,7 @@ const ignoreProductWishlistStatus =
   process.env.NEXT_PUBLIC_WISHLIST_IGNORE_PRODUCT_WISHLIST_STATUS === '1'
 
 export type ProductWishlistChipProps = ProductWishlistChipFragment & { sx?: SxProps<Theme> } & {
-  selectedOptions?: []
+  selectedOptions?: string[]
 }
 
 const name = 'ProductWishlistChipBase' as const
