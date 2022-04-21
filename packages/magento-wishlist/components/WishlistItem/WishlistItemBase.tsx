@@ -23,9 +23,14 @@ import { WishlistItemProductFragment } from './WishlistItemProduct.gql'
 
 const rowImageSize = responsiveVal(70, 125)
 
+type OptionalProductWishlistParent = {
+  wishlistItemId?: string
+}
+
 export type WishlistItemBaseProps = PropsWithChildren<WishlistItemProductFragment> & {
   sx?: SxProps<Theme>
-} & OwnerState
+} & OwnerState &
+  OptionalProductWishlistParent
 
 type OwnerState = { withOptions?: boolean }
 const compName = 'WishlistItemBase' as const
@@ -52,6 +57,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
     __typename: productType,
     children,
     sx = [],
+    wishlistItemId,
   } = props
 
   const productLink = useProductLink({ url_key, __typename: productType })
@@ -83,13 +89,21 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
   const handleClose = (event) => {
     if (event.target.id === 'remove') {
       if (isLoggedIn) {
-        const wishlistItemsInSession =
-          GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items || []
+        let itemIdToDelete = wishlistItemId
 
-        const item = wishlistItemsInSession.find((element) => element?.product?.sku === sku)
+        /** When no internal ID is provided, fetch it by sku */
+        if (!itemIdToDelete) {
+          const wishlistItemsInSession =
+            GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items || []
 
-        if (item?.id) {
-          removeWishlistItem({ variables: { wishlistItemId: item.id } })
+          const item = wishlistItemsInSession.find((element) => element?.product?.sku === sku)
+          if (item?.id) {
+            itemIdToDelete = item.id
+          }
+        }
+
+        if (itemIdToDelete) {
+          removeWishlistItem({ variables: { wishlistItemId: itemIdToDelete } })
         }
       } else {
         cache.modify({

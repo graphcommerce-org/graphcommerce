@@ -15,14 +15,16 @@ export function WishlistItems(props: WishlistProps) {
   const { renderer } = props
   const wishlistItemsData = useWishlistItems()
 
+  /** Structure between guest and customer wishlist differs */
   return (
     <AnimatePresence initial={false}>
       {wishlistItemsData.items?.map((item) => {
-        if (!item?.uid) return null
+        if (!item?.uid && !item?.id) return null
 
+        const productData = item?.product ? item?.product : item
         return (
-          <AnimatedRow key={item.uid}>
-            <RenderType renderer={renderer} {...item} />
+          <AnimatedRow key={item.id || item.uid}>
+            <RenderType renderer={renderer} wishlistItemId={item.id || null} {...productData} />
           </AnimatedRow>
         )
       })}

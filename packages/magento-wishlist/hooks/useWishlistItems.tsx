@@ -43,10 +43,7 @@ export function useWishlistItems() {
   )
 
   if (isLoggedIn) {
-    wishlistItems =
-      GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items.map(
-        (item) => item?.product,
-      ) || []
+    wishlistItems = GetCustomerWishlistData?.customer?.wishlists[0]?.items_v2?.items
   } else {
     wishlistItems = productGuestItems?.products?.items || []
   }
