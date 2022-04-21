@@ -11,7 +11,7 @@ import {
   RemoveProductFromWishlistDocument,
 } from '@graphcommerce/magento-wishlist'
 import { responsiveVal, extendableComponent, iconEllypsis, IconSvg } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
 import { Badge, Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
@@ -71,13 +71,6 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
   })
 
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
-
-  const options = [
-    {
-      id: 'remove',
-      label: 'Remove Product',
-    },
-  ]
 
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
@@ -301,11 +294,9 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
           },
         }}
       >
-        {options.map((option) => (
-          <MenuItem key={option.id} id={option.id} onClick={handleClose}>
-            <Trans>{option.label}</Trans>
-          </MenuItem>
-        ))}
+        <MenuItem key='remove' id='remove' onClick={handleClose}>
+          <Trans>Remove Product</Trans>
+        </MenuItem>
       </Menu>
 
       {children}
