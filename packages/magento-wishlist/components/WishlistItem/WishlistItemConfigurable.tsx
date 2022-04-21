@@ -1,9 +1,9 @@
-import { ConfigurableWishlistItemFragment } from './ConfigurableWishlistItem.gql'
 import { WishlistItem, WishlistItemProps } from './WishlistItem'
 import { WishlistItemFragment } from './WishlistItem.gql'
+import { WishlistItemConfigurableFragment } from './WishlistItemConfigurable.gql'
 
-export function ConfigurableWishlistItem(
-  props: ConfigurableWishlistItemFragment & WishlistItemProps,
+export function WishlistItemConfigurable(
+  props: WishlistItemConfigurableFragment & WishlistItemProps,
 ) {
   const { configurable_options, ...wishlistItemProps } = props
 
