@@ -2,7 +2,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useQuery, useMutation, useApolloClient } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import { useConfigurableContext } from '@graphcommerce/magento-product-configurable'
 import {
   AddProductToWishlistDocument,
   RemoveProductFromWishlistDocument,
@@ -20,14 +19,16 @@ const hideForGuest = process.env.NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST === '1'
 const ignoreProductWishlistStatus =
   process.env.NEXT_PUBLIC_WISHLIST_IGNORE_PRODUCT_WISHLIST_STATUS === '1'
 
-export type ProductWishlistChipProps = ProductWishlistChipFragment & { sx?: SxProps<Theme> }
+export type ProductWishlistChipProps = ProductWishlistChipFragment & { sx?: SxProps<Theme> } & {
+  selectedOptions?: []
+}
 
 const name = 'ProductWishlistChipBase' as const
 const parts = ['root', 'wishlistIcon', 'wishlistIconActive', 'wishlistButton'] as const
 const { classes } = extendableComponent(name, parts)
 
 export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
-  const { sku, __typename: productType, sx = [] } = props
+  const { sku, selectedOptions = [], sx = [] } = props
 
   const [inWishlist, setInWishlist] = useState(false)
   const [displayWishlist, setDisplayWishlist] = useState(true)
@@ -100,23 +101,11 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
 
-  let context
-  // @todo: renderer per product type
-  if (productType === 'ConfigurableProduct' && sku) {
-    context = useConfigurableContext(sku)
-  }
-
   const handleClick = (e) => {
     e.preventDefault()
 
     if (!sku) {
       return
-    }
-
-    // @todo: renderer per product type
-    let selectedOptions: string[] = []
-    if (productType === 'ConfigurableProduct') {
-      selectedOptions = (Object as any).values(context.selection)
     }
 
     if (isLoggedIn) {

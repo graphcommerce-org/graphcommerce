@@ -1,4 +1,5 @@
 export * from './ProductWishlistChip/ProductWishlistChipDetail'
+export * from './ProductWishlistChip/ProductWishlistChipDetailConfigurable'
 export * from './ProductWishlistChip/ProductWishlistChip'
 export * from './ProductWishlistChip/ProductWishlistChipBase'
 export * from './WishlistItems/WishlistItems'
