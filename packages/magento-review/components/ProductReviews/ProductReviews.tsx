@@ -76,11 +76,9 @@ export function ProductReviews(props: ProductReviewsProps) {
     >
       <PageLink href={`/account/reviews/add?url_key=${url_key}`} passHref>
         <Button
-          component='a'
           variant='pill'
           color='primary'
           size='medium'
-          rel='nofollow'
           className={classes.writeReviewButton}
           sx={(theme) => ({
             [theme.breakpoints.down('sm')]: {
