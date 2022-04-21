@@ -28,7 +28,7 @@ export type ProductWishlistChipProps = ProductWishlistChipFragment &
   ProductWishlistSettings & { sx?: SxProps<Theme> }
 
 const name = 'ProductWishlistChip' as const
-const parts = ['root', 'iconHeart', 'iconHeartActive', 'wishlistButton'] as const
+const parts = ['root', 'wishlistIcon', 'wishlistIconActive', 'wishlistButton'] as const
 const { classes } = extendableComponent(name, parts)
 
 export function ProductWishlistChip(props: ProductWishlistChipProps) {
@@ -52,7 +52,7 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
     <IconSvg
       src={iconHeart}
       size='medium'
-      className={classes.iconHeart}
+      className={classes.wishlistIcon}
       sx={(theme) => ({ color: theme.palette.primary.main })}
     />
   )
@@ -61,7 +61,7 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
     <IconSvg
       src={iconHeart}
       size='medium'
-      className={classes.iconHeartActive}
+      className={classes.wishlistIconActive}
       sx={(theme) => ({ color: theme.palette.primary.main, fill: 'currentcolor' })}
     />
   )
