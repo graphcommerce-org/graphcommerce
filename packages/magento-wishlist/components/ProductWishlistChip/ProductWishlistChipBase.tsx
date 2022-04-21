@@ -16,23 +16,18 @@ import { SxProps, Theme, IconButton } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
 
-type ProductWishlistSettings = {
-  variant?: 'default' | 'shadow'
-}
-
 const hideForGuest = process.env.NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST === '1'
 const ignoreProductWishlistStatus =
   process.env.NEXT_PUBLIC_WISHLIST_IGNORE_PRODUCT_WISHLIST_STATUS === '1'
 
-export type ProductWishlistChipProps = ProductWishlistChipFragment &
-  ProductWishlistSettings & { sx?: SxProps<Theme> }
+export type ProductWishlistChipProps = ProductWishlistChipFragment & { sx?: SxProps<Theme> }
 
 const name = 'ProductWishlistChipBase' as const
 const parts = ['root', 'wishlistIcon', 'wishlistIconActive', 'wishlistButton'] as const
 const { classes } = extendableComponent(name, parts)
 
 export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
-  const { variant, sku, __typename: productType, sx = [] } = props
+  const { sku, __typename: productType, sx = [] } = props
 
   const [inWishlist, setInWishlist] = useState(false)
   const [displayWishlist, setDisplayWishlist] = useState(true)
@@ -180,7 +175,6 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
       sx={[
         (theme) => ({
           padding: theme.spacings.xxs,
-          boxShadow: variant === 'shadow' ? theme.shadows[6] : 'none',
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
