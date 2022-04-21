@@ -9,6 +9,7 @@ import {
   GuestWishlistDocument,
   useWishlistItems,
   WishlistItem,
+  WishlistItemBase,
   ConfigurableWishlistItem,
 } from '@graphcommerce/magento-wishlist'
 import {
@@ -72,14 +73,14 @@ function WishlistPage(props: Props) {
                 <Container maxWidth='md'>
                   <WishlistItems
                     renderer={{
-                      BundleProduct: WishlistItem,
-                      ConfigurableProduct: WishlistItem,
+                      BundleProduct: WishlistItemBase,
+                      ConfigurableProduct: WishlistItemBase,
                       DownloadableProduct: WishlistItem,
                       SimpleProduct: WishlistItem,
                       VirtualProduct: WishlistItem,
                       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                       // @ts-ignore GiftCardProduct is only available in Commerce
-                      GiftCardProduct: WishlistItem,
+                      GiftCardProduct: WishlistItemBase,
                     }}
                   />
                 </Container>

@@ -1,6 +1,7 @@
 export * from './ProductWishlistChip/ProductWishlistChip'
 export * from './WishlistItems/WishlistItems'
 export * from './WishlistItem/WishlistItem'
+export * from './WishlistItem/WishlistItemBase'
 export * from './WishlistItem/ConfigurableWishlistItem'
 export * from './WishlistFab/WishlistFab'
 export * from './WishlistMenuFabItem/WishlistMenuFabItem'
