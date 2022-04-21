@@ -308,12 +308,6 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
         ))}
       </Menu>
 
-      {/* <ProductAddToCart
-        variables={{ sku: sku ?? '', quantity: 1 }}
-        name={name ?? ''}
-        price={price_range.minimum_price.regular_price}
-      /> */}
-
       {children}
     </Box>
   )
