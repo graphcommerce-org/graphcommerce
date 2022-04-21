@@ -18,7 +18,6 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import PageLink from 'next/link'
 import { useState, PropsWithChildren } from 'react'
-import { ProductAddToCart } from './ProductAddToCart'
 import { WishlistItemProductFragment } from './WishlistItemProduct.gql'
 
 const rowImageSize = responsiveVal(70, 125)
