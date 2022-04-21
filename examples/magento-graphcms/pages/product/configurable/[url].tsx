@@ -91,7 +91,7 @@ function ProductConfigurable(props: Props) {
             optionEndLabels={{
               size: (
                 <PageLink href='/modal/product/global/size' passHref>
-                  <Link color='primary' underline='hover' rel='nofollow'>
+                  <Link color='primary' underline='hover'>
                     <Trans>Which size is right?</Trans>
                   </Link>
                 </PageLink>
