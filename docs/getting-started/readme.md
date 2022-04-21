@@ -7,6 +7,7 @@ metaTitle:
 metaDescription:
   'Overview of the magento-graphcms example, the GraphCommerce reactjs ecommerce
   template for Magento storefronts'
+metaUrl: getting-started/getting-started-with-magento-react-ecommerce
 ---
 
 <div data-nosnippet>

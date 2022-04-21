@@ -1,4 +1,5 @@
-import { gql, ApolloClient, NormalizedCacheObject, Exact } from '@graphcommerce/graphql'
+import { gql, ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import type { Exact } from '@graphcommerce/graphql-mesh'
 import { AllFilterInputTypes, FilterTypes } from './filterTypes'
 
 const allFilterInputTypes: AllFilterInputTypes[] = [

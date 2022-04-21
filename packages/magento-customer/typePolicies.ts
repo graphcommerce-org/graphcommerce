@@ -1,10 +1,5 @@
-import {
-  FieldPolicy,
-  CustomerToken,
-  MigrateCache,
-  Mutation,
-  TypedTypePolicies,
-} from '@graphcommerce/graphql'
+import type { FieldPolicy, MigrateCache, StrictTypedTypePolicies } from '@graphcommerce/graphql'
+import type { CustomerToken, Mutation } from '@graphcommerce/graphql-mesh'
 import { CustomerTokenDocument } from './hooks/CustomerToken.gql'
 import { IsEmailAvailableDocument } from './hooks/IsEmailAvailable.gql'
 
@@ -70,7 +65,7 @@ const createCustomer: FieldPolicy<Mutation['createCustomer']> = {
 //   return incoming
 // }
 
-export const customerTypePolicies: TypedTypePolicies = {
+export const customerTypePolicies: StrictTypedTypePolicies = {
   // Query: { fields: { customer } },
   Mutation: { fields: { generateCustomerToken, createCustomer } },
   CustomerToken: { fields: { valid } },

@@ -1,9 +1,9 @@
-import {
+import type {
   FilterEqualTypeInput,
   FilterMatchTypeInput,
   FilterRangeTypeInput,
   SortEnum,
-} from '@graphcommerce/graphql'
+} from '@graphcommerce/graphql-mesh'
 import { FilterTypes, ProductListParams } from './filterTypes'
 
 export function parseParams(

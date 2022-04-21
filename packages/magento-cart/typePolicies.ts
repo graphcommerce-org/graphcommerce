@@ -1,10 +1,10 @@
 import { ApolloCache, NormalizedCacheObject } from '@graphcommerce/graphql'
-import type { QueryCartArgs, ShippingCartAddress, TypedTypePolicies } from '@graphcommerce/graphql'
-import { CartPrices } from '@graphcommerce/graphql/generated/types'
+import type { StrictTypedTypePolicies } from '@graphcommerce/graphql'
+import type { CartPrices, QuerycartArgs, ShippingCartAddress } from '@graphcommerce/graphql-mesh'
 import { CartFabDocument } from './components/CartFab/CartFab.gql'
 import { CurrentCartIdDocument } from './hooks/CurrentCartId.gql'
 
-export const cartTypePolicies: TypedTypePolicies = {
+export const cartTypePolicies: StrictTypedTypePolicies = {
   CurrentCartId: { keyFields: [] },
   CartPrices: {
     merge: (exiting, incomming, { mergeObjects }) => mergeObjects(exiting, incomming),
@@ -29,7 +29,7 @@ export const cartTypePolicies: TypedTypePolicies = {
     fields: {
       currentCartId: (_, { toReference }) => toReference({ __typename: 'CurrentCartId' }),
       cart: (_, { args, toReference }) =>
-        toReference({ __typename: 'Cart', id: (args as QueryCartArgs)?.cart_id }),
+        toReference({ __typename: 'Cart', id: (args as QuerycartArgs)?.cart_id }),
     },
   },
 }

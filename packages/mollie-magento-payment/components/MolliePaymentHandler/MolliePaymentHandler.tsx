@@ -1,4 +1,5 @@
-import { PaymentStatusEnum, useMutation } from '@graphcommerce/graphql'
+import { useMutation } from '@graphcommerce/graphql'
+import { PaymentStatusEnum } from '@graphcommerce/graphql-mesh'
 import { ApolloCartErrorFullPage, useClearCurrentCartId } from '@graphcommerce/magento-cart'
 import {
   PaymentHandlerProps,

@@ -1,0 +1,45 @@
+{
+  "name": "@graphcommerce/cli",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "1.0.1",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsc --preserveWatchOutput --watch --sourceMap --outDir dist",
+    "build": "tsc --target es5 --outDir dist",
+    "prepack": "yarn build"
+  },
+  "bin": {
+    "mesh": "dist/bin/mesh.js",
+    "gql-mesh": "dist/bin/mesh.js",
+    "graphql-mesh": "dist/bin/mesh.js",
+    "gql-gen": "dist/bin/codegen.js",
+    "graphql-codegen": "dist/bin/codegen.js",
+    "graphql-code-generator": "dist/bin/codegen.js"
+  },
+  "dependencies": {
+    "@graphql-codegen/cli": "2.6.2",
+    "@graphql-mesh/cli": "0.67.4",
+    "@graphql-mesh/types": "0.70.5",
+    "@graphql-mesh/utils": "0.33.5"
+  },
+  "devDependencies": {
+    "@graphcommerce/eslint-config-pwa": "^4.1.5",
+    "@graphcommerce/prettier-config-pwa": "^4.0.6",
+    "@graphcommerce/typescript-config-pwa": "^4.0.2",
+    "@playwright/test": "^1.21.1",
+    "typescript": "4.6.3"
+  },
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslint": {
+    "extends": "@graphcommerce/eslint-config-pwa"
+  },
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  }
+}

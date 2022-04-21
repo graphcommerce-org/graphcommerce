@@ -3,7 +3,7 @@ import { createHash } from 'crypto'
 import { readFileSync, writeFileSync, mkdirSync } from 'fs'
 import withTranspileModules from 'next-transpile-modules'
 import { NextConfig } from 'next/dist/server/config-shared'
-import { PackageJson } from 'type-fest'
+import type { PackageJson } from 'type-fest'
 import { DefinePlugin, Configuration } from 'webpack'
 
 export type WorkspaceInfo = {

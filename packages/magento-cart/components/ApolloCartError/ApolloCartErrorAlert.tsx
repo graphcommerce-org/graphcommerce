@@ -2,7 +2,7 @@ import { ApolloErrorAlert, ApolloErrorAlertProps } from '@graphcommerce/ecommerc
 import { useQuery } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import { t } from '@lingui/macro'
+import { t, Trans } from '@lingui/macro'
 import { Button } from '@mui/material'
 import Link from 'next/link'
 import { useClearCurrentCartId } from '../../hooks/useClearCurrentCartId'
@@ -28,7 +28,9 @@ export function ApolloCartErrorAlert(props: ApolloCartErrorAlertProps) {
   action =
     authorizationError && clear ? (
       <Link href='/account/signin' passHref>
-        <Button>Sign in</Button>
+        <Button>
+          <Trans>Sign in</Trans>
+        </Button>
       </Link>
     ) : (
       action

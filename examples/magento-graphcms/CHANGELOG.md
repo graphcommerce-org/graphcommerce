@@ -1,5 +1,179 @@
 # Change Log
 
+## 3.6.1
+
+### Patch Changes
+
+- [#1410](https://github.com/graphcommerce-org/graphcommerce/pull/1410) [`6d1a1a64a`](https://github.com/graphcommerce-org/graphcommerce/commit/6d1a1a64a95b5444322a022a30f8353f3b3fd017) Thanks [@FrankHarland](https://github.com/FrankHarland)! - exclude /modal from sitemap
+
+* [#1414](https://github.com/graphcommerce-org/graphcommerce/pull/1414) [`be3467b41`](https://github.com/graphcommerce-org/graphcommerce/commit/be3467b4179aca333f3be653673458ad5f59277f) Thanks [@paales](https://github.com/paales)! - Fixed an error when running yarn codegen: Unable to find any GraphQL type definitions for the following pointers
+
+* Updated dependencies [[`d8906cf4a`](https://github.com/graphcommerce-org/graphcommerce/commit/d8906cf4afbfc234aedd91a2c581f82623267357), [`be3467b41`](https://github.com/graphcommerce-org/graphcommerce/commit/be3467b4179aca333f3be653673458ad5f59277f)]:
+  - @graphcommerce/magento-cart@4.2.7
+  - @graphcommerce/magento-customer@4.2.5
+  - @graphcommerce/cli@1.0.1
+  - @graphcommerce/magento-cart-billing-address@3.0.10
+  - @graphcommerce/magento-cart-checkout@3.0.10
+  - @graphcommerce/magento-cart-coupon@3.0.12
+  - @graphcommerce/magento-cart-email@3.0.10
+  - @graphcommerce/magento-cart-items@3.0.11
+  - @graphcommerce/magento-cart-payment-method@3.1.3
+  - @graphcommerce/magento-cart-shipping-address@3.0.10
+  - @graphcommerce/magento-cart-shipping-method@3.0.11
+  - @graphcommerce/magento-newsletter@2.0.10
+  - @graphcommerce/magento-payment-braintree@3.0.10
+  - @graphcommerce/magento-payment-included@3.0.10
+  - @graphcommerce/magento-product@4.1.8
+  - @graphcommerce/magento-product-bundle@4.0.10
+  - @graphcommerce/magento-product-configurable@4.0.12
+  - @graphcommerce/magento-product-downloadable@4.0.10
+  - @graphcommerce/magento-product-grouped@3.0.10
+  - @graphcommerce/magento-product-simple@4.0.10
+  - @graphcommerce/magento-product-virtual@4.0.10
+  - @graphcommerce/mollie-magento-payment@3.2.3
+  - @graphcommerce/magento-customer-account@3.1.5
+  - @graphcommerce/magento-review@3.1.6
+  - @graphcommerce/magento-category@4.0.11
+
+## 3.6.0
+
+### Minor Changes
+
+- [#1399](https://github.com/graphcommerce-org/graphcommerce/pull/1399) [`fb277d8e1`](https://github.com/graphcommerce-org/graphcommerce/commit/fb277d8e1e3612c5e9cf890a30d19cfd1ff70542) Thanks [@paales](https://github.com/paales)! - Now using [@graphql-yoga](https://github.com/dotansimha/graphql-yoga) for GraphQL which has full support for [envelop](https://www.envelop.dev/) plugins.
+
+* [#1399](https://github.com/graphcommerce-org/graphcommerce/pull/1399) [`fb277d8e1`](https://github.com/graphcommerce-org/graphcommerce/commit/fb277d8e1e3612c5e9cf890a30d19cfd1ff70542) Thanks [@paales](https://github.com/paales)! - Added a new @graphcommerce/cli package to generate the mesh so it can be generated _inside_ the @graphcommerce/graphql-mesh package to allow for better future extensibility.
+
+### Patch Changes
+
+- [#1399](https://github.com/graphcommerce-org/graphcommerce/pull/1399) [`da0ae7d02`](https://github.com/graphcommerce-org/graphcommerce/commit/da0ae7d0236e4908ba0bf0fa16656be516e841d4) Thanks [@paales](https://github.com/paales)! - Updated dependencies
+
+- Updated dependencies [[`fb277d8e1`](https://github.com/graphcommerce-org/graphcommerce/commit/fb277d8e1e3612c5e9cf890a30d19cfd1ff70542), [`fb277d8e1`](https://github.com/graphcommerce-org/graphcommerce/commit/fb277d8e1e3612c5e9cf890a30d19cfd1ff70542), [`8652662cf`](https://github.com/graphcommerce-org/graphcommerce/commit/8652662cf9a8711d1c685d4f5cd788870a8242e2), [`da0ae7d02`](https://github.com/graphcommerce-org/graphcommerce/commit/da0ae7d0236e4908ba0bf0fa16656be516e841d4)]:
+  - @graphcommerce/cli@1.0.0
+  - @graphcommerce/graphql@3.1.0
+  - @graphcommerce/graphql-mesh@4.1.0
+  - @graphcommerce/graphcms-ui@3.0.12
+  - @graphcommerce/magento-cart@4.2.6
+  - @graphcommerce/magento-cart-payment-method@3.1.2
+  - @graphcommerce/magento-cart-shipping-method@3.0.10
+  - @graphcommerce/magento-customer@4.2.4
+  - @graphcommerce/magento-customer-order@3.0.10
+  - @graphcommerce/magento-graphql@3.0.7
+  - @graphcommerce/magento-payment-braintree@3.0.9
+  - @graphcommerce/magento-product@4.1.7
+  - @graphcommerce/magento-product-configurable@4.0.11
+  - @graphcommerce/magento-review@3.1.5
+  - @graphcommerce/magento-search@4.1.6
+  - @graphcommerce/magento-store@4.1.7
+  - @graphcommerce/mollie-magento-payment@3.2.2
+  - @graphcommerce/next-ui@4.6.1
+  - @graphcommerce/next-config@3.1.3
+  - @graphcommerce/ecommerce-ui@1.0.7
+  - @graphcommerce/framer-next-pages@3.1.6
+  - @graphcommerce/framer-scroller@2.1.6
+  - @graphcommerce/googlerecaptcha@2.1.3
+  - @graphcommerce/googletagmanager@2.0.7
+  - @graphcommerce/image@3.1.5
+  - @graphcommerce/lingui-next@2.1.6
+  - @graphcommerce/magento-cart-billing-address@3.0.9
+  - @graphcommerce/magento-cart-checkout@3.0.9
+  - @graphcommerce/magento-cart-coupon@3.0.11
+  - @graphcommerce/magento-cart-email@3.0.9
+  - @graphcommerce/magento-cart-items@3.0.10
+  - @graphcommerce/magento-cart-shipping-address@3.0.9
+  - @graphcommerce/magento-category@4.0.10
+  - @graphcommerce/magento-cms@4.0.8
+  - @graphcommerce/magento-customer-account@3.1.4
+  - @graphcommerce/magento-newsletter@2.0.9
+  - @graphcommerce/magento-payment-included@3.0.9
+  - @graphcommerce/magento-product-bundle@4.0.9
+  - @graphcommerce/magento-product-downloadable@4.0.9
+  - @graphcommerce/magento-product-grouped@3.0.9
+  - @graphcommerce/magento-product-simple@4.0.9
+  - @graphcommerce/magento-product-virtual@4.0.9
+
+## 3.5.7
+
+### Patch Changes
+
+- Updated dependencies [[`4169b8c68`](https://github.com/graphcommerce-org/graphcommerce/commit/4169b8c686f682ff6e981b029f13abd87fd5f52a)]:
+  - @graphcommerce/magento-customer-order@3.0.9
+  - @graphcommerce/magento-customer@4.2.3
+  - @graphcommerce/magento-customer-account@3.1.3
+  - @graphcommerce/magento-cart@4.2.5
+  - @graphcommerce/magento-cart-billing-address@3.0.8
+  - @graphcommerce/magento-cart-checkout@3.0.8
+  - @graphcommerce/magento-cart-email@3.0.8
+  - @graphcommerce/magento-cart-items@3.0.9
+  - @graphcommerce/magento-cart-shipping-address@3.0.8
+  - @graphcommerce/magento-newsletter@2.0.8
+  - @graphcommerce/magento-product-configurable@4.0.10
+  - @graphcommerce/magento-review@3.1.4
+  - @graphcommerce/magento-cart-coupon@3.0.10
+  - @graphcommerce/magento-cart-payment-method@3.1.1
+  - @graphcommerce/magento-cart-shipping-method@3.0.9
+  - @graphcommerce/magento-payment-braintree@3.0.8
+  - @graphcommerce/magento-payment-included@3.0.8
+  - @graphcommerce/magento-product@4.1.6
+  - @graphcommerce/magento-product-bundle@4.0.8
+  - @graphcommerce/magento-product-downloadable@4.0.8
+  - @graphcommerce/magento-product-grouped@3.0.8
+  - @graphcommerce/magento-product-simple@4.0.8
+  - @graphcommerce/magento-product-virtual@4.0.8
+  - @graphcommerce/mollie-magento-payment@3.2.1
+  - @graphcommerce/magento-category@4.0.9
+
+## 3.5.6
+
+### Patch Changes
+
+- Updated dependencies [[`123d441ac`](https://github.com/graphcommerce-org/graphcommerce/commit/123d441acb74706d08e453abae4a6a8dad3130e0)]:
+  - @graphcommerce/graphcms-ui@3.0.11
+
+## 3.5.5
+
+### Patch Changes
+
+- [#1379](https://github.com/graphcommerce-org/graphcommerce/pull/1379) [`803b0082d`](https://github.com/graphcommerce-org/graphcommerce/commit/803b0082d720a7f17bebfde4cdf96cc63b91de4a) Thanks [@paales](https://github.com/paales)! - Input should have a focus color so it is clear which fields have errors when focused
+
+* [#1379](https://github.com/graphcommerce-org/graphcommerce/pull/1379) [`b8d04130a`](https://github.com/graphcommerce-org/graphcommerce/commit/b8d04130a1b1cb8fc85308939235140288744465) Thanks [@paales](https://github.com/paales)! - Removed unused trigger: onChange for useForm handler
+
+- [#1384](https://github.com/graphcommerce-org/graphcommerce/pull/1384) [`16659f251`](https://github.com/graphcommerce-org/graphcommerce/commit/16659f251f503c023892b76018733c3dacf49d34) Thanks [@carlocarels90](https://github.com/carlocarels90)! - use a correct translation
+
+- Updated dependencies [[`3c801f45c`](https://github.com/graphcommerce-org/graphcommerce/commit/3c801f45c7df55131acf30ae2fe0d2344830d480), [`b8d04130a`](https://github.com/graphcommerce-org/graphcommerce/commit/b8d04130a1b1cb8fc85308939235140288744465), [`7c1b45348`](https://github.com/graphcommerce-org/graphcommerce/commit/7c1b45348bcf99a0dd16d2079893680c5cb6ffc9), [`3192fab82`](https://github.com/graphcommerce-org/graphcommerce/commit/3192fab82560e2211dfcacadc3b0b305260527d8), [`0e425e85e`](https://github.com/graphcommerce-org/graphcommerce/commit/0e425e85ee8fed280349317ee0440c7bceea5823), [`8a354d1cd`](https://github.com/graphcommerce-org/graphcommerce/commit/8a354d1cd4757497ddfc9b1969a0addbc8ff616b), [`6ebe9d12d`](https://github.com/graphcommerce-org/graphcommerce/commit/6ebe9d12db9fcaa2af67a475e64a08d63e232b46), [`9b3488c6a`](https://github.com/graphcommerce-org/graphcommerce/commit/9b3488c6a03cc09a647f43f6a8b36d96e97e5bb8)]:
+  - @graphcommerce/next-ui@4.6.0
+  - @graphcommerce/magento-cart@4.2.4
+  - @graphcommerce/magento-cart-payment-method@3.1.0
+  - @graphcommerce/magento-cart-shipping-method@3.0.8
+  - @graphcommerce/magento-payment-included@3.0.7
+  - @graphcommerce/mollie-magento-payment@3.2.0
+  - @graphcommerce/magento-product-configurable@4.0.9
+  - @graphcommerce/image@3.1.4
+  - @graphcommerce/magento-product@4.1.5
+  - @graphcommerce/ecommerce-ui@1.0.6
+  - @graphcommerce/framer-scroller@2.1.5
+  - @graphcommerce/graphcms-ui@3.0.10
+  - @graphcommerce/magento-cart-billing-address@3.0.7
+  - @graphcommerce/magento-cart-checkout@3.0.7
+  - @graphcommerce/magento-cart-coupon@3.0.9
+  - @graphcommerce/magento-cart-email@3.0.7
+  - @graphcommerce/magento-cart-items@3.0.8
+  - @graphcommerce/magento-cart-shipping-address@3.0.7
+  - @graphcommerce/magento-category@4.0.8
+  - @graphcommerce/magento-customer@4.2.2
+  - @graphcommerce/magento-customer-account@3.1.2
+  - @graphcommerce/magento-customer-order@3.0.8
+  - @graphcommerce/magento-newsletter@2.0.7
+  - @graphcommerce/magento-payment-braintree@3.0.7
+  - @graphcommerce/magento-review@3.1.3
+  - @graphcommerce/magento-search@4.1.5
+  - @graphcommerce/magento-store@4.1.6
+  - @graphcommerce/magento-product-bundle@4.0.7
+  - @graphcommerce/magento-product-downloadable@4.0.7
+  - @graphcommerce/magento-product-grouped@3.0.7
+  - @graphcommerce/magento-product-simple@4.0.7
+  - @graphcommerce/magento-product-virtual@4.0.7
+  - @graphcommerce/magento-cms@4.0.7
+
 ## 3.5.4
 
 ### Patch Changes

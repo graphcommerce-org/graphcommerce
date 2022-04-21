@@ -1,4 +1,4 @@
-import { CountryCodeEnum } from '@graphcommerce/graphql'
+import type { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
 import { AddressMultiLine } from '@graphcommerce/magento-customer'
 import React from 'react'
 import { CartAddressFragment } from '../CartAddress/CartAddress.gql'

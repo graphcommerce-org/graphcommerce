@@ -1,5 +1,37 @@
 # Change Log
 
+## 4.6.2
+
+### Patch Changes
+
+- [#1404](https://github.com/graphcommerce-org/graphcommerce/pull/1404) [`58e2251f5`](https://github.com/graphcommerce-org/graphcommerce/commit/58e2251f586a276cdb5971c8511ada50fa00994c) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - order
+
+## 4.6.1
+
+### Patch Changes
+
+- [#1402](https://github.com/graphcommerce-org/graphcommerce/pull/1402) [`79032e8cd`](https://github.com/graphcommerce-org/graphcommerce/commit/79032e8cd6580a505df108a56052dd71a79e254c) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - metaUrls
+
+## 4.6.0
+
+### Minor Changes
+
+- [#1400](https://github.com/graphcommerce-org/graphcommerce/pull/1400) [`153cc079a`](https://github.com/graphcommerce-org/graphcommerce/commit/153cc079a69514297ef565b8190e230f184ec551) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Add feature list
+
+* [#1390](https://github.com/graphcommerce-org/graphcommerce/pull/1390) [`30d069a6a`](https://github.com/graphcommerce-org/graphcommerce/commit/30d069a6a50189ed2c1b8edcfa22657a3036c914) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Update roadmap
+
+### Patch Changes
+
+- [#1401](https://github.com/graphcommerce-org/graphcommerce/pull/1401) [`52f795098`](https://github.com/graphcommerce-org/graphcommerce/commit/52f795098675827c788b04cbcc81470612ee0211) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Roadmap
+
+## 4.5.5
+
+### Patch Changes
+
+- [#1374](https://github.com/graphcommerce-org/graphcommerce/pull/1374) [`180cc0f43`](https://github.com/graphcommerce-org/graphcommerce/commit/180cc0f43bd22ac140cb50c015f7eecc85f7e911) Thanks [@timhofman](https://github.com/timhofman)! - header styling doc steps breaks page due to missing import
+
+* [#1375](https://github.com/graphcommerce-org/graphcommerce/pull/1375) [`451ece476`](https://github.com/graphcommerce-org/graphcommerce/commit/451ece476b6413206ca1afdf39bedb59f72d6547) Thanks [@FrankHarland](https://github.com/FrankHarland)! - Specify PSP's so its easier to check when upgrade what one should remove
+
 ## 4.5.4
 
 ### Patch Changes

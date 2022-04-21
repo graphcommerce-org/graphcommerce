@@ -71,6 +71,7 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
 
   useEffect(() => {
     if (lockState.locked && !lockState.justLocked) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const params = unlock({ payment_id: null })
 
       //     // eslint-disable-next-line @typescript-eslint/no-floating-promises

@@ -7,7 +7,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Link, LinkProps } from '@mui/material'
 import PageLink from 'next/link'
-import { SetRequired } from 'type-fest'
+import type { SetRequired } from 'type-fest'
 
 export type SearchLinkProps = SetRequired<Pick<LinkProps, 'href' | 'sx' | 'children'>, 'href'>
 
