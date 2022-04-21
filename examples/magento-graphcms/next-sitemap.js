@@ -22,6 +22,8 @@ module.exports = {
     policies: [
       { userAgent: '*', disallow: '/' },
       { userAgent: 'Googlebot-Image', disallow: '/' },
+      { userAgent: 'AhrefsSiteAudit', allow: '/' },
+      { userAgent: 'AhrefsBot', allow: '/' },
     ],
   },
 }
