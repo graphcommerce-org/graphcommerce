@@ -106,6 +106,7 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
 
   let context
+  // @todo: renderer per product type
   if (productType === 'ConfigurableProduct' && sku) {
     context = useConfigurableContext(sku)
   }
@@ -117,6 +118,7 @@ export function ProductWishlistChip(props: ProductWishlistChipProps) {
       return
     }
 
+    // @todo: renderer per product type
     let selectedOptions: string[] = []
     if (productType === 'ConfigurableProduct') {
       selectedOptions = (Object as any).values(context.selection)
