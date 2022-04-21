@@ -10,7 +10,7 @@ import {
   useWishlistItems,
   WishlistItem,
   WishlistItemBase,
-  ConfigurableWishlistItem,
+  WishlistItemConfigurable,
 } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
