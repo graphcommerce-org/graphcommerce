@@ -7,5 +7,5 @@ export function ConfigurableWishlistItem(
 ) {
   const { configurable_options, ...wishlistItemProps } = props
 
-  return <WishlistItem {...wishlistItemProps} withOptions />
+  return <WishlistItem {...wishlistItemProps} />
 }
