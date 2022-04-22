@@ -10,8 +10,11 @@ account.
 - Add products to wishlist based on SKU (all producttypes)
 - Add products with selected variants, like size and color, to wishlist
   (configurable product)
+- Add products from wishlist to cart (simple, downloadable, virtual)
+- Enable/disable through Magento configuration item
+  'magento_wishlist_general_is_enabled'
 
-## Settings
+## Additional settings
 
 - Enable wishlist for logged in users only (for instance for B2B)
 
@@ -35,11 +38,12 @@ NEXT_PUBLIC_WISHLIST_IGNORE_PRODUCT_WISHLIST_STATUS="1"
 
 ## Customizing wishlist styling
 
-- The ProductWishlistChip accepts SX props
-- Lister and detailpage use separate containing components to specificy context
-  specific styling
+- The ProductWishlistChip accepts SX props (see ProductWishlistChip and
+  ProductWishlistChipDetail)
 - Fancy a different icon? See:
   https://www.graphcommerce.org/docs/framework/icons
+- Styleable through theme provider overMuiCssBaseline.styleOverrides (although
+  we do recommend to use the SX approach)
 
 ## Roadmap
 
