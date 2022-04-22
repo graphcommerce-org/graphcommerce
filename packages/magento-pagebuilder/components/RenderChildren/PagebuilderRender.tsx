@@ -2,7 +2,7 @@ import { ContentTypeConfigWithString } from '../../types'
 import { usePagebuilderContext } from './PagebuilderProvider'
 
 export function PagebuilderRender(props: { contentItem: ContentTypeConfigWithString }) {
-  const { getRenderType } = usePagebuilderContext()
+  const { getComponentByType: getRenderType } = usePagebuilderContext()
   const { contentItem } = props
 
   if (!contentItem) return null

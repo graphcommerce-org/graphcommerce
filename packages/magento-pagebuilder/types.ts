@@ -15,9 +15,10 @@ export type ConfigAggregator<
   R extends Record<string, unknown> = Record<string, unknown>,
 > = (node: HTMLElement, config: Config) => R
 
-export type ContentType<Config extends ContentTypeConfig, R extends Record<string, unknown>> = {
-  configAggregator: ConfigAggregator<Config, R>
-  component: React.FC<Config & R>
-}
+export type RenderComponent<T extends string = string> = React.FC<{
+  contentType: T
+  appearance: string | null
+  children: React.ReactNode
+}>
 
-export type GetRenderType = (contentType: string) => React.FC<{ children: React.ReactNode }>
+export type GetRenderComponent = (contentType: string) => RenderComponent

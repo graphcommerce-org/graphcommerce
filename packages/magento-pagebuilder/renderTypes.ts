@@ -9,6 +9,7 @@ import { Divider } from './ContentTypes/Divider/Divider'
 import { Heading } from './ContentTypes/Heading/Heading'
 import { Html } from './ContentTypes/Html/Html'
 import { Image } from './ContentTypes/Image/Image'
+import { RootContainer } from './ContentTypes/RootContainer/RootContainer'
 import { Row } from './ContentTypes/Row/Row'
 import { Slider } from './ContentTypes/Slider/Slider'
 import { TabItem } from './ContentTypes/TabItem/TabItem'
@@ -16,9 +17,10 @@ import { Tabs } from './ContentTypes/Tabs/Tabs'
 import { Text } from './ContentTypes/Text/Text'
 import { Video } from './ContentTypes/Video/Video'
 import { OnlyChildren } from './components/RenderChildren/OnlyChildren'
-import { ContentTypeConfig, GetRenderType } from './types'
+import { ContentTypeConfig, GetRenderComponent } from './types'
 
 const renderTypes = {
+  'root-container': RootContainer,
   row: Row,
   column: Column,
   'column-group': ColumnGroup,
@@ -44,7 +46,7 @@ const renderTypes = {
 export type RenderTypeKeys = keyof typeof renderTypes
 
 /** Retrieve a content types configuration */
-export const getRenderType: GetRenderType = (contentType: string) =>
+export const getComponentByType: GetRenderComponent = (contentType: string) =>
   renderTypes[contentType] ?? OnlyChildren
 
 /** Set content types configuration with new one */

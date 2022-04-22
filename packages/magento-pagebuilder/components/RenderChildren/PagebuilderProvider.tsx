@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react'
-import { GetRenderType } from '../../types'
+import { GetRenderComponent } from '../../types'
 
 type PagebuilderContext = {
-  getRenderType: GetRenderType
+  getComponentByType: GetRenderComponent
 }
 const pagebuilerContext = React.createContext(undefined as unknown as PagebuilderContext)
 
@@ -15,8 +15,8 @@ type PagebuilderContextProps = {
 } & PagebuilderContext
 
 export function PagebuilderProvider(props: PagebuilderContextProps) {
-  const { children, getRenderType } = props
-  const value = useMemo(() => ({ getRenderType }), [getRenderType])
+  const { children, getComponentByType } = props
+  const value = useMemo(() => ({ getComponentByType }), [getComponentByType])
   return <pagebuilerContext.Provider value={value}>{children}</pagebuilerContext.Provider>
 }
 
