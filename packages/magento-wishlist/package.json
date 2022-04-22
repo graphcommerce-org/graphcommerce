@@ -26,12 +26,12 @@
     "@graphcommerce/magento-product": "4.1.4",
     "@graphcommerce/magento-product-configurable": "4.0.8",
     "@graphcommerce/magento-store": "4.1.5",
-    "@graphcommerce/next-ui": "4.5.1",
-    "framer-motion": "^6.2.4"
+    "@graphcommerce/next-ui": "4.5.1"
   },
   "peerDependencies": {
     "@lingui/macro": "^3.13.2",
     "@mui/material": "^5.4.1",
+    "framer-motion": "^6.2.4",
     "next": "^12.0.10",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
