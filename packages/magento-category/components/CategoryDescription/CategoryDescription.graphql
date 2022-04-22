@@ -1,4 +1,4 @@
-fragment CategoryDescription on CategoryTree {
+fragment CategoryDescription on CategoryTree @injectable {
   uid
   description
   name

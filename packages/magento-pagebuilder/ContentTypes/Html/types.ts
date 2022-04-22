@@ -1,9 +1,8 @@
-import { HTMLContent } from '../../parser/parseChildrenHtml'
-import { ContentType, ContentTypeConfig } from '../../types'
+import { ContentType, ContentTypeConfig, ContentTypeConfigChildren } from '../../types'
 import { AdvancedProps } from '../../utils'
 
 export type HtmlConfig = ContentTypeConfig<'html'>
 
-export type HtmlProps = AdvancedProps & { content: HTMLContent }
+export type HtmlProps = AdvancedProps & { children: ContentTypeConfigChildren }
 
 export type HtmlContentType = ContentType<HtmlConfig, HtmlProps>

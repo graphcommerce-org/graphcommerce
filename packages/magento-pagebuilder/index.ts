@@ -1,1 +1,1 @@
-export * from './pagebuilder'
+export * from './components/CategoryPagebuilder/CategoryPagebuilder'

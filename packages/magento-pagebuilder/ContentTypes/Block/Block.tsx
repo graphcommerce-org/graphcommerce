@@ -1,6 +1,5 @@
 import { Box } from '@mui/material'
-import React from 'react'
-import { RenderChildren } from '../../components/RenderChildren/RenderChildren'
+import { PagebuilderRender } from '../../components/RenderChildren/PagebuilderRender'
 import { extractAdvancedProps } from '../../utils'
 import { BlockContentType } from './types'
 
@@ -18,7 +17,7 @@ export const Block: BlockContentType['component'] = (props) => {
 
   return (
     <Box style={cssProps} className={cssClasses.join(' ')}>
-      <RenderChildren content={richContent} />
+      <PagebuilderRender content={richContent} />
     </Box>
   )
 }

@@ -1,11 +1,11 @@
-import { HTMLContent } from '../../parser/parseChildrenHtml'
-import { ContentType, ContentTypeConfig } from '../../types'
+import { HTMLContent } from '../../parser/parseChildren'
+import { ContentType, ContentTypeConfig, ContentTypeConfigChildren } from '../../types'
 import { AdvancedProps } from '../../utils'
 
 type BlockConfig = ContentTypeConfig<'column-group'>
 
 export type ButtonProps = AdvancedProps & {
-  richContent: HTMLContent
+  children: ContentTypeConfigChildren
 }
 
 export type BlockContentType = ContentType<BlockConfig, ButtonProps>

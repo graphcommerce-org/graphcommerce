@@ -7,7 +7,7 @@ import {
   CategoryMeta,
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
-import { PageBuilder } from '@graphcommerce/magento-pagebuilder'
+import { CategoryPagebuilder } from '@graphcommerce/magento-pagebuilder'
 import {
   extractUrlQuery,
   FilterTypes,
@@ -104,9 +104,10 @@ function CategoryPage(props: Props) {
           >
             {category?.name}
           </LayoutTitle>
-          <NoSsr>
-            <PageBuilder html={category.description} />
-          </NoSsr>
+          <CategoryPagebuilder
+            pagebuilder={category.pagebuilder}
+            description={category.description}
+          />
           {/* <CategoryDescription description={category.description} /> */}
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
 

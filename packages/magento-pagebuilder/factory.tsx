@@ -1,32 +1,21 @@
 import React, { Suspense } from 'react'
 import customContentTypes from './ContentTypes/customContentTypes'
-import { getContentTypeConfig, setContentTypeConfig } from './config'
+import { getRenderType } from './renderTypes'
 
-/** Add custom content types */
-const addCustomContentTypes = (contentTypes) => {
-  for (const ContentType of contentTypes) {
-    const { component, configAggregator } = ContentType
-    if (!ContentType.name) {
-      ContentType.name = component.name
-    }
-    if (ContentType.name && component && configAggregator) {
-      setContentTypeConfig(ContentType.name, {
-        component,
-        configAggregator,
-      })
-    }
+/** Create an instance of a content type component based on configuration */
+export const ContentTypeFactory = ({ data }) => {
+  const { isHidden, ...props } = data
+
+  const Component = getRenderType(props.contentType)
+  if (Component) {
+    // const Component = renderContentType(contentTypeConfig.component, props)
+
+    return <Component {...props}>{Component}</Component>
   }
+
+  return null
 }
 
-addCustomContentTypes(customContentTypes)
-
-/**
- * Render a content type
- *
- * @param Component
- * @param data
- * @returns {any}
- */
 const renderContentType = (Component, data) => (
   <Component {...data}>
     {data.children.map((childTreeItem, i) => (
@@ -34,22 +23,3 @@ const renderContentType = (Component, data) => (
     ))}
   </Component>
 )
-
-/** Create an instance of a content type component based on configuration */
-export const ContentTypeFactory = ({ data }) => {
-  const { isHidden, ...props } = data
-
-  if (isHidden) return null
-
-  const contentTypeConfig = getContentTypeConfig(props.contentType)
-  if (contentTypeConfig && contentTypeConfig.component) {
-    const Component = renderContentType(contentTypeConfig.component, props)
-    const ComponentShimmer = contentTypeConfig.componentShimmer
-      ? renderContentType(contentTypeConfig.componentShimmer, props)
-      : ''
-
-    return <Suspense fallback={ComponentShimmer}>{Component}</Suspense>
-  }
-
-  return null
-}

@@ -2,10 +2,10 @@
 // import { getContentTypeConfig } from './config'
 
 import { JSDOM } from 'jsdom'
+import { ContentTypeKeys, getContentType } from '../parserTypes'
 import { ContentTypeConfig } from '../types'
 // eslint-disable-next-line import/no-cycle
 import { isHTMLElement } from '../utils'
-import { ContentTypeKeys, getContentType } from './contentTypes'
 import { detectPageBuilder } from './detectPageBuilder'
 
 const pbStyleAttribute = 'data-pb-style'

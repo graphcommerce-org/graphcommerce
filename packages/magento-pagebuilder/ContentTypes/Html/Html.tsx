@@ -1,4 +1,4 @@
-import { RenderChildren } from '../../components/RenderChildren/RenderChildren'
+import { PagebuilderRender } from '../../components/RenderChildren/PagebuilderRender'
 import { extractAdvancedProps } from '../../utils'
 import { HtmlContentType } from './types'
 
@@ -13,5 +13,5 @@ export const Html: HtmlContentType['component'] = (props) => {
 
   if (isHidden) return null
 
-  return <RenderChildren content={content} />
+  return <PagebuilderRender content={content} />
 }

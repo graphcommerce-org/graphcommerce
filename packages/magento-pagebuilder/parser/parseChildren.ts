@@ -1,14 +1,13 @@
 import { JSDOM } from 'jsdom'
+import { ContentTypeConfig, ContentTypeConfigChildren } from '../types'
 // eslint-disable-next-line import/no-cycle
 import { isHTMLElement } from '../utils'
 import { ContentTypeObject, convertToInlineStyles, createContentTypeObject, walk } from './parser'
 
-export type HTMLContent = Array<string | null | ContentTypeObject>
-
 const jsdom = new JSDOM().window
 
-export function parseChildrenHtml(node: HTMLElement) {
-  const content: HTMLContent = [...node.childNodes].map((childNode) => {
+export function parseChildren(node: HTMLElement) {
+  const content: ContentTypeConfigChildren = [...node.childNodes].map((childNode) => {
     if (isHTMLElement(childNode)) {
       if (childNode.classList.contains('block-static-block')) {
         const stageContentType = createContentTypeObject('root-container')
