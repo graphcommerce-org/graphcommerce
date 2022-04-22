@@ -1,6 +1,8 @@
 import React from 'react'
 
-export type ContentTypeConfigChildren = Array<string | null | ContentTypeConfig>
+export type ContentTypeConfigChildren = Array<ContentTypeConfigWithString>
+
+export type ContentTypeConfigWithString = string | null | ContentTypeConfig
 
 export type ContentTypeConfig<T extends string = string> = {
   contentType: T
@@ -18,4 +20,4 @@ export type ContentType<Config extends ContentTypeConfig, R extends Record<strin
   component: React.FC<Config & R>
 }
 
-export type GetRenderType = (contentType: string) => React.FC<ContentTypeConfig> | undefined
+export type GetRenderType = (contentType: string) => React.FC<{ children: React.ReactNode }>

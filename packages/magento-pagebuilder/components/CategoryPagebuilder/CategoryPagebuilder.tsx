@@ -3,6 +3,7 @@ import { CategoryDescription as CategoryDescriptionHtml } from '@graphcommerce/m
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { SxProps, Theme } from '@mui/material'
 import { getRenderType } from '../../renderTypes'
+import { ContentTypeConfig } from '../../types'
 import { PagebuilderProvider } from '../RenderChildren/PagebuilderProvider'
 import { PagebuilderRender } from '../RenderChildren/PagebuilderRender'
 import { CategoryPagebuilderFragment } from './CategoryPagebuilder.gql'
@@ -19,7 +20,7 @@ export function CategoryPagebuilder(props: CategoryPagebuilderProps) {
   if (pagebuilder)
     return (
       <PagebuilderProvider getRenderType={getRenderType}>
-        <PagebuilderRender {...pagebuilder} />
+        <PagebuilderRender contentItem={pagebuilder as ContentTypeConfig} />
       </PagebuilderProvider>
     )
   if (description) return <CategoryDescriptionHtml description={description} />

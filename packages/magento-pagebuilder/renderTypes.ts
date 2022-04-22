@@ -15,6 +15,7 @@ import { TabItem } from './ContentTypes/TabItem/TabItem'
 import { Tabs } from './ContentTypes/Tabs/Tabs'
 import { Text } from './ContentTypes/Text/Text'
 import { Video } from './ContentTypes/Video/Video'
+import { OnlyChildren } from './components/RenderChildren/OnlyChildren'
 import { ContentTypeConfig, GetRenderType } from './types'
 
 const renderTypes = {
@@ -43,7 +44,8 @@ const renderTypes = {
 export type RenderTypeKeys = keyof typeof renderTypes
 
 /** Retrieve a content types configuration */
-export const getRenderType: GetRenderType = (contentType: string) => renderTypes[contentType]
+export const getRenderType: GetRenderType = (contentType: string) =>
+  renderTypes[contentType] ?? OnlyChildren
 
 /** Set content types configuration with new one */
 export function setRenderType(contentType: string, config: React.FC<ContentTypeConfig>) {
