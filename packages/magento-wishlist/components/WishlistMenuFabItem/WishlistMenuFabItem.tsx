@@ -1,13 +1,11 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import {
-  GetIsInWishlistsDocument,
-  GuestWishlistDocument,
-  useWishlistEnabled,
-} from '@graphcommerce/magento-wishlist'
 import { MenuFabSecondaryItem, iconHeart, IconSvg } from '@graphcommerce/next-ui'
 import { Badge, NoSsr, SxProps, Theme } from '@mui/material'
 import React from 'react'
+import { useWishlistEnabled } from '../../hooks'
+import { GetIsInWishlistsDocument } from '../../queries/GetIsInWishlists.gql'
+import { GuestWishlistDocument } from '../../queries/GuestWishlist.gql'
 
 type WishlistMenuFabItemProps = {
   icon?: React.ReactNode

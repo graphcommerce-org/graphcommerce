@@ -1,6 +1,6 @@
-import { useWishlistItems } from '@graphcommerce/magento-wishlist'
 import { AnimatedRow, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import { AnimatePresence } from 'framer-motion'
+import { useWishlistItems } from '../../hooks'
 import { WishlistItemsFragment } from './WishlistItems.gql'
 
 export type WishlistItemRenderer = TypeRenderer<

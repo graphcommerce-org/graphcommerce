@@ -2,17 +2,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useQuery, useMutation, useApolloClient } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import {
-  AddProductToWishlistDocument,
-  RemoveProductFromWishlistDocument,
-  GetIsInWishlistsDocument,
-  GuestWishlistDocument,
-  useWishlistEnabled,
-} from '@graphcommerce/magento-wishlist'
 import { IconSvg, iconHeart, extendableComponent } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { SxProps, Theme, IconButton } from '@mui/material'
 import { useState, useEffect } from 'react'
+import { useWishlistEnabled } from '../../hooks'
+import { AddProductToWishlistDocument } from '../../queries/AddProductToWishlist.gql'
+import { GetIsInWishlistsDocument } from '../../queries/GetIsInWishlists.gql'
+import { GuestWishlistDocument } from '../../queries/GuestWishlist.gql'
+import { RemoveProductFromWishlistDocument } from '../../queries/RemoveProductFromWishlist.gql'
 import { ProductWishlistChipFragment } from './ProductWishlistChip.gql'
 
 const hideForGuest = process.env.NEXT_PUBLIC_WISHLIST_HIDE_FOR_GUEST === '1'

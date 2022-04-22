@@ -1,10 +1,8 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import {
-  GuestWishlistDocument,
-  GetWishlistProductsDocument,
-  GetGuestWishlistProductsDocument,
-} from '@graphcommerce/magento-wishlist'
+import { GetGuestWishlistProductsDocument } from '../queries/GetGuestWishlistProducts.gql'
+import { GetWishlistProductsDocument } from '../queries/GetWishlistProducts.gql'
+import { GuestWishlistDocument } from '../queries/GuestWishlist.gql'
 
 export function useWishlistItems() {
   const { data: token } = useQuery(CustomerTokenDocument)

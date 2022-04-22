@@ -1,5 +1,5 @@
 import { useConfigurableContext } from '@graphcommerce/magento-product-configurable'
-import { ProductWishlistChipBase, ProductWishlistChipProps } from '@graphcommerce/magento-wishlist'
+import { ProductWishlistChipBase, ProductWishlistChipProps } from './ProductWishlistChipBase'
 
 export function ProductWishlistChipDetailConfigurable(props: ProductWishlistChipProps) {
   const { sku } = props

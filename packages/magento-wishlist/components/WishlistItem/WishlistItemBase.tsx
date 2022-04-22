@@ -6,10 +6,6 @@ import { useDisplayInclTax } from '@graphcommerce/magento-cart'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
-import {
-  GetIsInWishlistsDocument,
-  RemoveProductFromWishlistDocument,
-} from '@graphcommerce/magento-wishlist'
 import { responsiveVal, extendableComponent, iconEllypsis, IconSvg } from '@graphcommerce/next-ui'
 import { Trans, t } from '@lingui/macro'
 import { Badge, Box, Link, SxProps, Theme, Typography } from '@mui/material'
@@ -18,6 +14,8 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import PageLink from 'next/link'
 import { useState, PropsWithChildren } from 'react'
+import { GetIsInWishlistsDocument } from '../../queries/GetIsInWishlists.gql'
+import { RemoveProductFromWishlistDocument } from '../../queries/RemoveProductFromWishlist.gql'
 import { WishlistItemProductFragment } from './WishlistItemProduct.gql'
 
 const rowImageSize = responsiveVal(70, 125)

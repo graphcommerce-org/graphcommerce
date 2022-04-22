@@ -1,4 +1,4 @@
-import { ProductWishlistChipBase, ProductWishlistChipProps } from '@graphcommerce/magento-wishlist'
+import { ProductWishlistChipBase, ProductWishlistChipProps } from './ProductWishlistChipBase'
 
 export function ProductWishlistChip(props: ProductWishlistChipProps) {
   return <ProductWishlistChipBase {...props} />

@@ -1,15 +1,13 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import {
-  GetIsInWishlistsDocument,
-  GuestWishlistDocument,
-  useWishlistEnabled,
-} from '@graphcommerce/magento-wishlist'
 import { iconHeart, DesktopHeaderBadge, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import React, { useEffect } from 'react'
+import { useWishlistEnabled } from '../../hooks'
+import { GetIsInWishlistsDocument } from '../../queries/GetIsInWishlists.gql'
+import { GuestWishlistDocument } from '../../queries/GuestWishlist.gql'
 
 type WishlistFabContentProps = {
   icon?: React.ReactNode

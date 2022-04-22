@@ -3,12 +3,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useMutation, useQuery, useApolloClient } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import {
-  AddProductToWishlistDocument,
-  GuestWishlistDocument,
-  GetGuestWishlistProductsDocument,
-} from '@graphcommerce/magento-wishlist'
 import { useEffect } from 'react'
+import { AddProductToWishlistDocument } from '../queries/AddProductToWishlist.gql'
+import { GetGuestWishlistProductsDocument } from '../queries/GetGuestWishlistProducts.gql'
+import { GuestWishlistDocument } from '../queries/GuestWishlist.gql'
 
 /** Merge guest wishlist items to customer session upon login */
 export function useMergeGuestWishlistWithCustomer() {
