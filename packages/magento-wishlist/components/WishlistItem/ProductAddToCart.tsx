@@ -4,7 +4,7 @@ import {
   ProductAddToCartDocument,
   ProductAddToCartMutationVariables,
 } from '@graphcommerce/magento-product'
-import { Money, MoneyProps } from '@graphcommerce/magento-store'
+import { MoneyProps } from '@graphcommerce/magento-store'
 import {
   Button,
   MessageSnackbar,
@@ -15,7 +15,7 @@ import {
   AnimatedRow,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Divider, Typography, ButtonProps, Box, Alert } from '@mui/material'
+import { ButtonProps, Box, Alert } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'

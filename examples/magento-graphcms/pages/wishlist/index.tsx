@@ -1,16 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { useQuery } from '@graphcommerce/graphql'
-import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  GetWishlistProductsDocument,
   WishlistItems,
-  GetGuestWishlistProductsDocument,
-  GuestWishlistDocument,
   useWishlistItems,
   WishlistItem,
   WishlistItemBase,
-  WishlistItemConfigurable,
 } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,

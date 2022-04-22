@@ -16,7 +16,7 @@ export type WishlistItemProps = PropsWithChildren<WishlistItemProductFragment> &
 } & OptionalProductWishlistParent
 
 export function WishlistItem(props: WishlistItemProps) {
-  const { sku, name, price_range, children } = props
+  const { sku, name, price_range } = props
 
   return (
     <WishlistItemBase {...props}>
