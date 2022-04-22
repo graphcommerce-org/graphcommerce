@@ -76,6 +76,7 @@ export function ProductReviews(props: ProductReviewsProps) {
     >
       <PageLink href={`/account/reviews/add?url_key=${url_key}`} passHref>
         <Button
+          LinkComponent='div'
           variant='pill'
           color='primary'
           size='medium'

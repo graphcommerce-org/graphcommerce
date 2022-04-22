@@ -16,9 +16,8 @@ export function StoreSwitcherButton(props: StoreSwitcherButtonProps) {
   const country = config.data?.storeConfig?.locale?.split('_')?.[1]?.toLowerCase() ?? ''
 
   return (
-    // eslint-disable-next-line @next/next/link-passhref
-    <PageLink href='/switch-stores'>
-      <Button variant='text' size='medium' className={classes.root} sx={sx}>
+    <PageLink href='/switch-stores' passHref>
+      <Button LinkComponent='div' variant='text' size='medium' className={classes.root} sx={sx}>
         <FlagAvatar
           country={country}
           className={classes.avatar}
