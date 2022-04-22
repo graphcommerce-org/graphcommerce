@@ -8,10 +8,11 @@ import {
   getCssClasses,
   getIsHidden,
   getMediaQueries,
+  stripEmpty,
 } from '../../utils'
 import { BannerContentType, ShowButton, ShowOverlay } from './types'
 
-export const configAggregator: BannerContentType['configAggregator'] = (node, props) => {
+export const bannerAggregator: BannerContentType['configAggregator'] = (node, props) => {
   const wrapperElement = node.querySelector<HTMLElement>('[data-element="wrapper"]')
   const overlayElement = node.querySelector<HTMLElement>('[data-element="overlay"]')
   const contentElement = node.querySelector<HTMLElement>('[data-element="content"]')
@@ -29,7 +30,7 @@ export const configAggregator: BannerContentType['configAggregator'] = (node, pr
       ? overlayElement.getAttribute('data-overlay-color')
       : null
 
-  return {
+  return stripEmpty({
     backgroundColor: wrapperElement.style.backgroundColor,
 
     ...getMediaBackgroundProps(wrapperElement),
@@ -51,5 +52,5 @@ export const configAggregator: BannerContentType['configAggregator'] = (node, pr
     minHeight: minHeightPaddingElement?.style.minHeight,
     ...getPadding(minHeightPaddingElement),
     ...getMediaQueries(minHeightPaddingElement),
-  }
+  })
 }

@@ -1,14 +1,9 @@
+import { getImageBackgroundProps } from '../../components/MediaBackground/getImageBackgroundProps'
 import { getMediaBackgroundProps } from '../../components/MediaBackground/getMediaBackgroundProps'
-import {
-  getAdvanced,
-  getBackgroundImages,
-  getVerticalAlignment,
-  getMediaQueries,
-  isHTMLElement,
-} from '../../utils'
+import { getAdvanced, getVerticalAlignment, getMediaQueries, isHTMLElement } from '../../utils'
 import { RowContentType } from './types'
 
-export const configAggregator: RowContentType['configAggregator'] = (node, props) => {
+export const rowAggregator: RowContentType['configAggregator'] = (node, props) => {
   const childNode = node.firstChild && isHTMLElement(node.firstChild) ? node.firstChild : null
 
   // Determine which node holds the data for the appearance
@@ -29,6 +24,7 @@ export const configAggregator: RowContentType['configAggregator'] = (node, props
     parallaxSpeed: Number(dataNode.getAttribute('data-parallax-speed')),
     backgroundType: dataNode.getAttribute('data-background-type'),
 
+    ...getImageBackgroundProps(dataNode),
     ...getAdvanced(dataNode),
     ...getMediaQueries(dataNode),
   }

@@ -1,8 +1,8 @@
 import { Banner } from './Banner'
-import { configAggregator } from './configAggregator'
+import { bannerAggregator } from './bannerAggregator'
 import { BannerContentType } from './types'
 
 export const banner: BannerContentType = {
-  configAggregator,
+  configAggregator: bannerAggregator,
   component: Banner,
 }

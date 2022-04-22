@@ -1,4 +1,4 @@
-import { RenderChildren } from '../../components/RenderChildren'
+import { RenderChildren } from '../../components/RenderChildren/RenderChildren'
 import { extractAdvancedProps } from '../../utils'
 import { HtmlContentType } from './types'
 

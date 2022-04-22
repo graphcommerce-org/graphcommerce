@@ -1,38 +1,38 @@
-/* eslint-disable no-bitwise */
 /* eslint-disable no-continue */
 // import { getContentTypeConfig } from './config'
 
-import { getContentTypeConfig } from './config'
-import { isHTMLElement } from './utils'
+import { JSDOM } from 'jsdom'
+import { ContentTypeConfig } from '../types'
+// eslint-disable-next-line import/no-cycle
+import { isHTMLElement } from '../utils'
+import { ContentTypeKeys, getContentType } from './contentTypes'
+import { detectPageBuilder } from './detectPageBuilder'
 
 const pbStyleAttribute = 'data-pb-style'
 const bodyId = 'html-body'
 
-export const createContentTypeObject = (type: string, node?: HTMLElement): ContentTypeObject => ({
+export const createContentTypeObject = (type: string, node?: HTMLElement): ContentTypeConfig => ({
   contentType: type,
   appearance: node ? node.getAttribute('data-appearance') : null,
   children: [],
 })
 
-export type ContentTypeObject = {
-  contentType: string
-  appearance: string | null
-  children: ContentTypeObject[]
-}
-
 /** Walk over tree nodes extracting each content types configuration */
-export const walk = (rootEl: Node, contentTypeStructureObj) => {
-  const tree = document.createTreeWalker(rootEl, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT)
+export const walk = (
+  rootEl: Node,
+  contentTypeStructureObj: ContentTypeConfig,
+  treeWalkerCb: (node: Node) => TreeWalker,
+) => {
+  const tree = treeWalkerCb(rootEl)
 
   let currentNode = tree.nextNode()
-
   while (currentNode) {
     if (!isHTMLElement(currentNode)) {
       currentNode = tree.nextNode()
       continue
     }
 
-    const contentType = currentNode.getAttribute('data-content-type')
+    const contentType = currentNode.getAttribute('data-content-type') as ContentTypeKeys
 
     if (!contentType) {
       currentNode = tree.nextNode()
@@ -40,11 +40,12 @@ export const walk = (rootEl: Node, contentTypeStructureObj) => {
     }
 
     const props = createContentTypeObject(contentType, currentNode)
-    const contentTypeConfig = getContentTypeConfig(contentType)
+    const aggregator = getContentType(contentType)
 
-    if (contentTypeConfig && typeof contentTypeConfig.configAggregator === 'function') {
+    if (aggregator && typeof aggregator === 'function') {
       try {
-        Object.assign(props, contentTypeConfig.configAggregator(currentNode, props))
+        const result = { ...props, ...aggregator(currentNode, props) }
+        contentTypeStructureObj.children.push(result)
       } catch (e) {
         console.error(`Failed to aggregate config for content type ${contentType}.`, e)
       }
@@ -54,12 +55,18 @@ export const walk = (rootEl: Node, contentTypeStructureObj) => {
       )
     }
 
-    contentTypeStructureObj.children.push(props)
-    walk(currentNode, props)
+    walk(currentNode, props, treeWalkerCb)
     currentNode = tree.nextSibling()
   }
 
   return contentTypeStructureObj
+}
+
+function isCssStyleRule(rule: CSSRule): rule is CSSStyleRule {
+  return (rule as CSSStyleRule).style !== null
+}
+function isCssMediaRule(rule: CSSRule): rule is CSSMediaRule {
+  return (rule as CSSMediaRule).media !== null
 }
 
 /** Convert styles block to inline styles. */
@@ -72,13 +79,13 @@ export const convertToInlineStyles = (document: HTMLElement | Document) => {
     const cssRules = Array.from(styleBlock.sheet?.cssRules ?? [])
 
     cssRules.forEach((rule) => {
-      if (rule instanceof CSSStyleRule) {
+      if (isCssStyleRule(rule)) {
         const selectors = rule.selectorText.split(',').map((selector) => selector.trim())
         selectors.forEach((selector) => {
           if (!styles[selector]) styles[selector] = []
           styles[selector].push(rule.style)
         })
-      } else if (rule instanceof CSSMediaRule) {
+      } else if (isCssMediaRule(rule)) {
         Array.from(rule.media).forEach((media) => {
           const mediaStyle = Array.from(rule.cssRules).map((cssRule) => ({
             selectors: cssRule.selectorText.split(',').map((selector) => selector.trim()),
@@ -120,13 +127,24 @@ export const convertToInlineStyles = (document: HTMLElement | Document) => {
   })
 }
 
-export const parseStorageHtml = (htmlStr: string) => {
-  const container = new DOMParser().parseFromString(htmlStr, 'text/html')
+export const parser = (htmlStr: string | null | undefined) => {
+  if (!detectPageBuilder(htmlStr)) return null
 
+  const jsdom = new JSDOM(`<!DOCTYPE html>${htmlStr}`)
+
+  // const { document } = jsdom.window
   const stageContentType = createContentTypeObject('root-container')
 
-  container.body.id = bodyId
-  convertToInlineStyles(container)
+  const { document } = jsdom.window
+  const { body } = jsdom.window.document
 
-  return walk(container.body, stageContentType)
+  body.id = bodyId
+
+  return walk(body, stageContentType, (rootEl) =>
+    document.createTreeWalker(
+      rootEl,
+      // eslint-disable-next-line no-bitwise
+      jsdom.window.NodeFilter.SHOW_ELEMENT | jsdom.window.NodeFilter.SHOW_TEXT,
+    ),
+  )
 }

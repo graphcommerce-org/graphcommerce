@@ -24,7 +24,7 @@ const getImageData = (imageNode: HTMLImageElement) => {
   }
 }
 
-export const configAggregator: ImageContentType['configAggregator'] = (node) => {
+export const imageAggregator: ImageContentType['configAggregator'] = (node) => {
   const link = node.querySelector('a')
   const figCaption = node.querySelector('figcaption')
   const desktop = node.querySelector<HTMLImageElement>('img[data-element=desktop_image]')

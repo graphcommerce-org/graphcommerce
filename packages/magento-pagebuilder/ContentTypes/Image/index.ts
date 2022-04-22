@@ -1,5 +1,5 @@
 import { Image } from './Image'
-import { configAggregator } from './configAggregator'
+import { imageAggregator } from './imageAggregator'
 import { ImageContentType } from './types'
 
-export const image: ImageContentType = { configAggregator, component: Image }
+export const image: ImageContentType = { configAggregator: imageAggregator, component: Image }

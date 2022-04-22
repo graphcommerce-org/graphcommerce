@@ -1,8 +1,8 @@
 import { Text } from './Text'
-import { configAggregator } from './configAggregator'
+import { textAggregator } from './textAggregator'
 import { TextContentType } from './types'
 
 export const text: TextContentType = {
-  configAggregator,
+  configAggregator: textAggregator,
   component: Text,
 }

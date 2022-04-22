@@ -2,7 +2,7 @@ import { getButtonLinkProps } from '../../components/ButtonLink/getButtonLinkPro
 import { getAdvanced, isHTMLElement } from '../../utils'
 import { ButtonItemContentType } from './types'
 
-export const configAggregator: ButtonItemContentType['configAggregator'] = (node) => {
+export const buttonItemAggregator: ButtonItemContentType['configAggregator'] = (node) => {
   const { firstChild } = node
 
   if (!firstChild || !isHTMLElement(firstChild))

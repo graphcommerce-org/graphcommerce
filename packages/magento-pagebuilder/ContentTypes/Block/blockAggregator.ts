@@ -1,8 +1,8 @@
+import { parseChildrenHtml } from '../../parser/parseChildrenHtml'
 import { getAdvanced } from '../../utils'
-import { parseChildrenHtml } from '../../utils/parseChildrenHtml'
 import { BlockContentType } from './types'
 
-export const configAggregator: BlockContentType['configAggregator'] = (node) => ({
+export const blockAggregator: BlockContentType['configAggregator'] = (node) => ({
   ...getAdvanced(node),
   richContent: parseChildrenHtml(node),
 })

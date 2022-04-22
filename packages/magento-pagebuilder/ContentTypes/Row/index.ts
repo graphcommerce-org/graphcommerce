@@ -1,5 +1,5 @@
 import { Row } from './Row'
-import { configAggregator } from './configAggregator'
+import { rowAggregator } from './rowAggregator'
 import { RowContentType } from './types'
 
-export const row: RowContentType = { configAggregator, component: Row }
+export const row: RowContentType = { configAggregator: rowAggregator, component: Row }

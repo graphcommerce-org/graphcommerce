@@ -1,5 +1,5 @@
 import { Slider } from './Slider'
-import { configAggregator } from './configAggregator'
+import { sliderAggregator } from './sliderAggregator'
 import { SliderContentType } from './types'
 
-export const slider: SliderContentType = { configAggregator, component: Slider }
+export const slider: SliderContentType = { configAggregator: sliderAggregator, component: Slider }

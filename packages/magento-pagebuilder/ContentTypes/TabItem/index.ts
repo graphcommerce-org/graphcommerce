@@ -1,5 +1,8 @@
 import { TabItem } from './TabItem'
-import { configAggregator } from './configAggregator'
+import { tabItemAggregator } from './tabItemAggregator'
 import { TabItemContentType } from './types'
 
-export const tabItem: TabItemContentType = { configAggregator, component: TabItem }
+export const tabItem: TabItemContentType = {
+  configAggregator: tabItemAggregator,
+  component: TabItem,
+}

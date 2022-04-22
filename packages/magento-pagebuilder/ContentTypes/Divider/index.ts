@@ -1,5 +1,8 @@
 import { Divider } from './Divider'
-import { configAggregator } from './configAggregator'
+import { dividerAggregator } from './dividerAggregator'
 import { DividerContentType } from './types'
 
-export const divider: DividerContentType = { configAggregator, component: Divider }
+export const divider: DividerContentType = {
+  configAggregator: dividerAggregator,
+  component: Divider,
+}

@@ -1,8 +1,8 @@
 import { Column } from './Column'
-import { configAggregator } from './configAggregator'
+import { columnAggregator } from './columnAggregator'
 import { ColumnContentType } from './types'
 
 export const column: ColumnContentType = {
-  configAggregator,
+  configAggregator: columnAggregator,
   component: Column,
 }

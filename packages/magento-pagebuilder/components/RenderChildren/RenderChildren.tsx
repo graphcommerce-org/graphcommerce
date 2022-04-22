@@ -1,6 +1,6 @@
 import React from 'react'
-import { ContentTypeFactory } from '../factory'
-import { HTMLContent } from '../utils/parseChildrenHtml'
+import { HTMLContent } from '../../parser/parseChildrenHtml'
+import { ContentTypeFactory } from '../../factory'
 
 export type RenderChildrenProps = {
   content: HTMLContent

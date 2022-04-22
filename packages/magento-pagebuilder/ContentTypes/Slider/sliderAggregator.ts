@@ -1,7 +1,7 @@
 import { getAdvanced, getMediaQueries } from '../../utils'
 import { SliderContentType } from './types'
 
-export const configAggregator: SliderContentType['configAggregator'] = (node) => ({
+export const sliderAggregator: SliderContentType['configAggregator'] = (node) => ({
   minHeight: node.style.minHeight,
   autoplay: node.getAttribute('data-autoplay') === 'true',
   fade: node.getAttribute('data-fade') === 'true',

@@ -1,9 +1,11 @@
+import { stripEmpty } from '../../utils'
+
 export type ButtonLinkType = 'product' | 'category' | 'page' | 'default'
 
 type Props = {
-  buttonText: string | null
+  buttonText?: string | null
   buttonType: 'primary' | 'secondary' | 'link'
-  link: string | null
+  link?: string | null
   linkType: ButtonLinkType
   openInNewTab: boolean
 }
@@ -25,7 +27,7 @@ export function getButtonLinkProps(node: HTMLElement): ButtonLinkProps {
 
   const isLink = linkElement.nodeName === 'A'
 
-  return {
+  return stripEmpty({
     buttonText: buttonElement.textContent,
     openInNewTab: linkElement.getAttribute('target') === '_blank',
     buttonType,
@@ -33,5 +35,5 @@ export function getButtonLinkProps(node: HTMLElement): ButtonLinkProps {
     linkType: isLink
       ? (linkElement.getAttribute('data-link-type') as ButtonLinkType) ?? 'default'
       : 'default',
-  }
+  })
 }

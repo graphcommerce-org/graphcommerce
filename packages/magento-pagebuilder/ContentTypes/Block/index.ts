@@ -1,8 +1,8 @@
 import { Block } from './Block'
-import { configAggregator } from './configAggregator'
+import { blockAggregator } from './blockAggregator'
 import { BlockContentType } from './types'
 
 export const block: BlockContentType = {
-  configAggregator,
+  configAggregator: blockAggregator,
   component: Block,
 }

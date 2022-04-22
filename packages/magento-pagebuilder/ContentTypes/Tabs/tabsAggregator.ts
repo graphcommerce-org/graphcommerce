@@ -1,7 +1,7 @@
 import { getAdvanced } from '../../utils'
 import { TabNavigationAlignment, TabsContentType } from './types'
 
-export const configAggregator: TabsContentType['configAggregator'] = (node) => {
+export const tabsAggregator: TabsContentType['configAggregator'] = (node) => {
   const headerElements = node.querySelectorAll<HTMLDivElement>('ul[data-element=navigation] > *')
 
   const contentEl = node.querySelector<HTMLElement>('div[data-element=content]')

@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import { RenderChildren } from '../../components/RenderChildren'
+import { RenderChildren } from '../../components/RenderChildren/RenderChildren'
 import { extractAdvancedProps } from '../../utils'
 import { BlockContentType } from './types'
 

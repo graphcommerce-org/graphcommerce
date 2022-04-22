@@ -1,7 +1,7 @@
 import { getAdvanced } from '../../utils'
 import { VideoContentType } from './types'
 
-export const configAggregator: VideoContentType['configAggregator'] = (node: HTMLElement) => {
+export const videoAggregator: VideoContentType['configAggregator'] = (node: HTMLElement) => {
   const iframe = node.querySelector('iframe')
   const video = node.querySelector('video')
   const wrapper = node.querySelector('[data-element="wrapper"]')

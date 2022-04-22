@@ -1,6 +1,6 @@
 import { getAdvanced } from '../../utils'
 
-export default (node) => {
+export const dynamicBlockAggregator = (node) => {
   const widgetBlock = node.childNodes[0]
 
   if (!widgetBlock || (widgetBlock && !widgetBlock.getAttribute('data-uids'))) {

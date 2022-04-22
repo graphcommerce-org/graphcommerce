@@ -1,5 +1,8 @@
 import { Heading } from './Heading'
-import { configAggregator } from './configAggregator'
+import { headingAggregator } from './headingAggregator'
 import { HeadingContentType } from './types'
 
-export const heading: HeadingContentType = { configAggregator, component: Heading }
+export const heading: HeadingContentType = {
+  configAggregator: headingAggregator,
+  component: Heading,
+}

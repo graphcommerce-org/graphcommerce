@@ -1,8 +1,8 @@
 import { ButtonItem } from './ButtonItem'
-import { configAggregator } from './configAggregator'
+import { buttonItemAggregator } from './buttonItemAggregator'
 import { ButtonItemContentType } from './types'
 
 export const buttonItem: ButtonItemContentType = {
-  configAggregator,
+  configAggregator: buttonItemAggregator,
   component: ButtonItem,
 }

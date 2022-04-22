@@ -1,0 +1,13 @@
+scalar PagebuilderAST
+extend type CategoryTree {
+  pagebuilder: PagebuilderAST
+}
+extend type ComplexTextValue {
+  pagebuilder: PagebuilderAST
+}
+extend type CmsBlock {
+  pagebuilder: PagebuilderAST
+}
+extend type CmsPage {
+  pagebuilder: PagebuilderAST
+}

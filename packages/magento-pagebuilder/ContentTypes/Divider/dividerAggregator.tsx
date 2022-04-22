@@ -1,7 +1,7 @@
 import { getAdvanced, isHTMLElement } from '../../utils'
 import { DividerContentType } from './types'
 
-export const configAggregator: DividerContentType['configAggregator'] = (node) => {
+export const dividerAggregator: DividerContentType['configAggregator'] = (node) => {
   const childNode = node.firstChild && isHTMLElement(node.firstChild) ? node.firstChild : null
   if (!childNode) throw Error('Divider must have a child node')
   return {

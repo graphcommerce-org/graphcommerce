@@ -1,6 +1,8 @@
+import { stripEmpty } from '../../utils'
+
 export type ImageBackgroundProps = {
-  mobileImage: string | null
-  desktopImage: string | null
+  mobileImage?: string | null
+  desktopImage?: string | null
 } & Pick<
   React.CSSProperties,
   'backgroundSize' | 'backgroundPosition' | 'backgroundAttachment' | 'backgroundRepeat'
@@ -28,5 +30,5 @@ export function getImageBackgroundProps(node: HTMLElement): ImageBackgroundProps
     }
   }
 
-  return response
+  return stripEmpty(response)
 }

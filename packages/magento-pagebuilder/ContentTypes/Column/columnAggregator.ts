@@ -2,7 +2,7 @@ import { getImageBackgroundProps } from '../../components/MediaBackground/getIma
 import { getAdvanced, getVerticalAlignment, getMediaQueries } from '../../utils'
 import { ColumnContentType } from './types'
 
-export const configAggregator: ColumnContentType['configAggregator'] = (node) => ({
+export const columnAggregator: ColumnContentType['configAggregator'] = (node) => ({
   minHeight: node.style.minHeight,
   width: node.style.width,
   backgroundColor: node.style.backgroundColor,

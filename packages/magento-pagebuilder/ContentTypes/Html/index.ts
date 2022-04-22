@@ -1,5 +1,5 @@
 import { Html } from './Html'
-import { configAggregator } from './configAggregator'
+import { htmlAggregator } from './htmlAggregator'
 import { HtmlContentType } from './types'
 
-export const html: HtmlContentType = { configAggregator, component: Html }
+export const html: HtmlContentType = { configAggregator: htmlAggregator, component: Html }

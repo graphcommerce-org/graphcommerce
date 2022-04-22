@@ -1,11 +1,15 @@
 import React from 'react'
 
-export type ContentTypeConfig<T extends string> = { contentType: T }
+export type ContentTypeConfig<T extends string = string> = {
+  contentType: T
+  appearance: string | null
+  children: ContentTypeConfig<string>[]
+}
 
-type ConfigAggregator<Config extends ContentTypeConfig<string>, R> = (
-  node: HTMLElement,
-  config: Config,
-) => R
+export type ConfigAggregator<
+  Config extends ContentTypeConfig<string> = ContentTypeConfig<string>,
+  R extends Record<string, unknown> = Record<string, unknown>,
+> = (node: HTMLElement, config: Config) => R
 
 export type ContentType<Config extends ContentTypeConfig<string>, R> = {
   configAggregator: ConfigAggregator<Config, R>

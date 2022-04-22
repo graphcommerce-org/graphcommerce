@@ -2,7 +2,7 @@
 import React from 'react'
 
 export function isHTMLElement(node: Node): node is HTMLElement {
-  return node instanceof HTMLElement
+  return node.nodeType === 1
 }
 
 const alignmentToFlex = {
@@ -18,7 +18,7 @@ export function getVerticalAlignment(node: HTMLElement): VerticalAlignment {
     verticalAlignment = flexToVerticalAlignment(node.style.justifyContent)
   }
 
-  return { verticalAlignment }
+  return stripEmpty({ verticalAlignment })
 }
 
 export type VerticalAlignment = {
@@ -46,13 +46,13 @@ export type AdvancedProps = PaddingProps &
   CssClassesProps &
   IsHiddenProps
 
-export function stripEmpty<T extends Record<string, unknown>>(obj: T): Partial<T> {
+export function stripEmpty<T extends Record<string, unknown>>(obj: T): T {
   return Object.entries(obj).reduce((acc, [key, value]) => {
     if (value !== undefined && value !== null && value !== '') {
       acc[key] = value
     }
     return acc
-  }, {})
+  }, {}) as T
 }
 
 /** Retrieve advanced props from content type node */
@@ -90,12 +90,12 @@ export type PaddingProps = Pick<
 
 /** Retrieve the padding from a content type node */
 export function getPadding(node: HTMLElement): PaddingProps {
-  return {
+  return stripEmpty({
     paddingTop: node.style.paddingTop,
     paddingRight: node.style.paddingRight,
     paddingBottom: node.style.paddingBottom,
     paddingLeft: node.style.paddingLeft,
-  }
+  })
 }
 
 export function extractPaddingProps<P extends PaddingProps>(
@@ -112,12 +112,12 @@ export type MarginProps = Pick<
 
 /** Retrieve the margin from a content type node */
 export function getMargin(node: HTMLElement): MarginProps {
-  return {
+  return stripEmpty({
     marginTop: node.style.marginTop,
     marginRight: node.style.marginRight,
     marginBottom: node.style.marginBottom,
     marginLeft: node.style.marginLeft,
-  }
+  })
 }
 
 export function extractMarginProps<P extends MarginProps>(
@@ -134,12 +134,12 @@ export type BorderProps = Pick<
 
 /** Retrieve the border from a content type node */
 export function getBorder(node: HTMLElement): BorderProps {
-  return {
+  return stripEmpty({
     border: node.style.borderStyle,
     borderColor: node.style.borderColor,
     borderWidth: node.style.borderWidth,
     borderRadius: node.style.borderRadius,
-  }
+  })
 }
 
 export function extractBorderProps<P extends BorderProps>(
@@ -153,9 +153,9 @@ export type TextAlignProps = Pick<React.CSSProperties, 'textAlign'>
 
 /** Retrieve the text align from a content type node */
 export function getTextAlign(node: HTMLElement): TextAlignProps {
-  return {
+  return stripEmpty({
     textAlign: node.style.textAlign as React.CSSProperties['textAlign'],
-  }
+  })
 }
 
 export function extractTextAlignProps<P extends TextAlignProps>(
@@ -171,9 +171,9 @@ export type CssClassesProps = {
 
 /** Retrieve the CSS classes from a content type node */
 export function getCssClasses(node: HTMLElement): CssClassesProps {
-  return {
+  return stripEmpty({
     cssClasses: node.getAttribute('class') ? node.getAttribute('class')?.split(' ') : [],
-  }
+  })
 }
 
 export function extractCssClassesProps<P extends CssClassesProps>(
@@ -242,5 +242,5 @@ export function getMediaQueries(node: HTMLElement) {
     })
   })
 
-  return { mediaQueries: response }
+  return stripEmpty({ mediaQueries: response })
 }

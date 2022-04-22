@@ -1,5 +1,5 @@
 import { Video } from './Video'
-import { configAggregator } from './configAggregator'
 import { VideoContentType } from './types'
+import { videoAggregator } from './videoAggregator'
 
-export const video: VideoContentType = { configAggregator, component: Video }
+export const video: VideoContentType = { configAggregator: videoAggregator, component: Video }
