@@ -78,7 +78,7 @@ export function EmailForm(props: EmailFormProps) {
           <form noValidate onSubmit={submit}>
             <FormRow>
               <Typography variant='h5' component='h2' gutterBottom>
-                <Trans>Personal details</Trans>
+                <Trans>Personal details</Trans> {/* @question: weghalen in stap1? */}
               </Typography>
             </FormRow>
             <FormRow className={classes.formRow} sx={{ py: 0 }}>

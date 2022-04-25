@@ -1,5 +1,5 @@
 import { iconHome, IconSvg, ActionCardList } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme, Link } from '@mui/material'
+import { Box, SxProps, Theme, Link, ButtonBase } from '@mui/material'
 import { FormEvent } from 'react'
 import { AccountAddressesFragment } from '../AccountAddresses/AccountAddresses.gql'
 
@@ -24,11 +24,19 @@ function ActionCard(props: ActionCardProps) {
     }
   }
 
+  // TODO
+  // 1. Selected state for Actioncard
+  // 2. In ActionCardList make other options dissapear
+  //  2.1 Change selected ActionCard primary action to 'Change'
+  //  2.2 Animations
+  // 3. Mutations for setting shipping/billing address
+
   return (
-    <Box
+    <ButtonBase
       onClick={(e) => {
         handleClick(e)
       }}
+      component='div'
       sx={[
         {
           display: 'grid',
@@ -40,6 +48,7 @@ function ActionCard(props: ActionCardProps) {
         "image secondaryAction additionalDetails"
         "additionalContent additionalContent additionalContent"
         `,
+          justifyContent: 'unset',
         },
         (theme) => ({
           background: theme.palette.background.paper,
@@ -55,7 +64,7 @@ function ActionCard(props: ActionCardProps) {
       {action && <Box sx={{ gridArea: 'action', textAlign: 'right' }}>{action}</Box>}
       {details && <Box sx={{ gridArea: 'details' }}>{details}</Box>}
       {secondaryAction && <Box sx={{ gridArea: 'secondaryAction' }}>{secondaryAction}</Box>}
-    </Box>
+    </ButtonBase>
   )
 }
 
@@ -69,9 +78,7 @@ export function CustomerAddressList(props: CustomerAddressListProps) {
 
   return (
     <ActionCardList>
-      
       {addresses.map((address, index) => (
-        {console.log(address)}
         <ActionCard
           onClick={() => {
             handleAddressSelect()
@@ -85,8 +92,13 @@ export function CustomerAddressList(props: CustomerAddressListProps) {
             </Box>
           }
           image={<IconSvg src={iconHome} size='large' />}
-          title='Frank Harland'
-          details={<Box>Kardoen 5, 2371DS Roelofarendsveen, Nederland</Box>}
+          title={`${address?.firstname} ${address?.lastname}`}
+          details={
+            <Box>
+              {address?.street?.join(' ')}, {address?.postcode}, {address?.city},{' '}
+              {address?.country_code}
+            </Box>
+          }
           secondaryAction={
             <Link underline='none' color='secondary'>
               Edit address
