@@ -1,6 +1,7 @@
 import { useQuery, cloneDeep } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
+import { t } from '@lingui/macro'
 import { ListItem, ListItemText, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
@@ -27,7 +28,7 @@ export function ProductListSort(props: ProductListSortProps) {
   const [currentSort = defaultSort] = Object.keys(params.sort)
   const currentOption = sort_fields?.options?.find((option) => option?.value === currentSort)
   const selected = currentSort !== defaultSort
-  const label = 'Sort By'
+  const label = t`Sort By`
 
   const removeFilter = () => {
     const linkParams = cloneDeep(params)
