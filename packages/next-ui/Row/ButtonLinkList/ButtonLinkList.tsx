@@ -1,6 +1,5 @@
-import { Box, SxProps, Theme } from '@mui/material'
+import { Box, SxProps, Theme, Typography } from '@mui/material'
 import React from 'react'
-import { SectionContainer } from '../../SectionContainer/SectionContainer'
 import { extendableComponent } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
 import { Row } from '../Row'
@@ -8,6 +7,7 @@ import { Row } from '../Row'
 export type ButtonLinkListProps = {
   title: string
   children: React.ReactNode
+  component?: React.ElementType
   sx?: SxProps<Theme>
 } & OwnerState
 
@@ -21,7 +21,7 @@ const { withState } = extendableComponent<OwnerState, typeof compName, typeof pa
 )
 
 export function ButtonLinkList(props: ButtonLinkListProps) {
-  const { title, children, containsBigLinks, sx = [] } = props
+  const { title, children, component, containsBigLinks, sx = [] } = props
 
   const classes = withState({ containsBigLinks })
 
@@ -31,20 +31,39 @@ export function ButtonLinkList(props: ButtonLinkListProps) {
       className={classes.root}
       sx={[{ maxWidth: 820 }, ...(Array.isArray(sx) ? sx : [sx])]}
     >
-      <SectionContainer labelLeft={title}>
-        <Box
-          className={classes.links}
-          sx={(theme) => ({
-            display: 'grid',
-            columnGap: theme.spacings.sm,
-            '&:not(.containsBigLinks)': {
-              gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(210, 350)}, 1fr))`,
+      <Box
+        sx={[
+          (theme) => ({
+            position: 'relative',
+            '&:focus': {
+              outline: 'none',
             },
-          })}
-        >
-          {children}
-        </Box>
-      </SectionContainer>
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginTop: theme.spacings.sm,
+            marginBottom: theme.spacings.xxs,
+            paddingBottom: theme.spacings.xxs,
+            borderBottom: `1px solid ${theme.palette.divider}`,
+          }),
+        ]}
+      >
+        <Typography variant='overline' color='textSecondary' component={component ?? 'span'}>
+          {title}
+        </Typography>
+      </Box>
+      <Box
+        className={classes.links}
+        sx={(theme) => ({
+          display: 'grid',
+          columnGap: theme.spacings.sm,
+          '&:not(.containsBigLinks)': {
+            gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(210, 350)}, 1fr))`,
+          },
+        })}
+      >
+        {children}
+      </Box>
     </Row>
   )
 }
