@@ -1,7 +1,7 @@
 import { useQuery, cloneDeep } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { ChipMenu, ChipMenuProps } from '@graphcommerce/next-ui'
-import { ListItem, ListItemText } from '@mui/material'
+import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
+import { ListItem, ListItemText, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
@@ -9,10 +9,16 @@ import { ProductListLink } from '../ProductListLink/ProductListLink'
 import { ProductListSortFragment } from './ProductListSort.gql'
 
 export type ProductListSortProps = ProductListSortFragment &
-  Omit<ChipMenuProps, 'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete'>
+  Omit<ChipMenuProps, 'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete'> & {
+    sx?: SxProps<Theme>
+  }
+
+const name = 'ProductListSort' as const
+const parts = ['menu', 'item', 'link'] as const
+const { classes } = extendableComponent(name, parts)
 
 export function ProductListSort(props: ProductListSortProps) {
-  const { sort_fields, total_count, ...filterMenuProps } = props
+  const { sort_fields, total_count, sx = [], ...filterMenuProps } = props
   const { params } = useProductListParamsContext()
   const replaceRoute = useProductListLinkReplace()
   const { data: storeConfigQuery } = useQuery(StoreConfigDocument)
@@ -33,12 +39,14 @@ export function ProductListSort(props: ProductListSortProps) {
 
   return (
     <ChipMenu
+      className={classes.menu}
       variant='outlined'
       selected={selected}
       label={label}
       {...filterMenuProps}
       selectedLabel={selected ? currentOption?.label ?? '' : label}
       onDelete={selected ? removeFilter : undefined}
+      sx={Array.isArray(sx) ? sx : [sx]}
     >
       {sort_fields?.options?.map((option) => {
         const linkParams = cloneDeep(params)
@@ -48,6 +56,7 @@ export function ProductListSort(props: ProductListSortProps) {
 
         return (
           <ListItem
+            className={classes.item}
             button
             key={option?.value ?? ''}
             dense
@@ -57,6 +66,7 @@ export function ProductListSort(props: ProductListSortProps) {
                 <ProductListLink
                   {...chipProps}
                   {...linkParams}
+                  className={classes.link}
                   ref={ref}
                   color='inherit'
                   underline='none'
