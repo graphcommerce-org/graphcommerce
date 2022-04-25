@@ -59,9 +59,9 @@ const main = async () => {
     conf.additionalTypeDefs.push('../../@graphcommerce/**/*.graphqls')
   }
 
-  if (isMonoRepo) {
-    console.log(yaml.stringify(conf))
-  }
+  // if (isMonoRepo) {
+  console.log(isMonoRepo, yaml.stringify(conf))
+  // }
 
   fs.writeFileSync(path.join(meshDir, '.meshrc.yml'), yaml.stringify(conf))
 
