@@ -98,9 +98,6 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                 else {
                     conf.additionalTypeDefs.push('../../@graphcommerce/**/*.graphqls');
                 }
-                // if (isMonoRepo) {
-                console.log(isMonoRepo, yaml_1.default.stringify(conf));
-                // }
                 fs_1.default.writeFileSync(path_1.default.join(meshDir, '.meshrc.yml'), yaml_1.default.stringify(conf));
                 (0, cli_1.graphqlMesh)(cli_1.DEFAULT_CLI_PARAMS, undefined, "".concat(meshDir, "/")).catch(function (e) {
                     return handleFatalError(e, new utils_1.DefaultLogger(cli_1.DEFAULT_CLI_PARAMS.initialLoggerPrefix));
