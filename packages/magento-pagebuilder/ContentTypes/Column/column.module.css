@@ -1,9 +1,0 @@
-.root {
-}
-
-@media only screen and (max-width: 768px) {
-    .root {
-        background-attachment: scroll !important;
-        flex-basis: 100%;
-    }
-}

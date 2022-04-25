@@ -1,4 +1,4 @@
-import { getAdvanced, getMediaQueries } from '../../utils'
+import { getAdvanced, getMediaQuery } from '../../utils'
 import { SliderContentType } from './types'
 
 export const sliderAggregator: SliderContentType['configAggregator'] = (node) => ({
@@ -12,5 +12,5 @@ export const sliderAggregator: SliderContentType['configAggregator'] = (node) =>
     ? Number(node.getAttribute('data-autoplay-speed'))
     : undefined,
   ...getAdvanced(node),
-  ...getMediaQueries(node),
+  ...getMediaQuery(node),
 })

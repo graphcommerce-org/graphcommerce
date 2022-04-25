@@ -3,6 +3,6 @@ import { AdvancedProps } from '../../utils'
 
 export type HtmlConfig = ContentTypeConfig<'html'>
 
-export type HtmlProps = AdvancedProps & { children: ContentTypeConfigChildren }
+export type HtmlProps = AdvancedProps & { content: ContentTypeConfigChildren }
 
 export type HtmlContentType = ContentType<HtmlConfig, HtmlProps>

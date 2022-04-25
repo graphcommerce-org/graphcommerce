@@ -17,7 +17,7 @@ export type BannerProps = AdvancedProps &
     content?: string
     showButton?: ShowButton
     showOverlay?: ShowOverlay
-    overlayColor?: string
+    overlayColor?: string | null
   }
 
 export type BannerContentType = ContentType<BannerConfig, BannerProps>

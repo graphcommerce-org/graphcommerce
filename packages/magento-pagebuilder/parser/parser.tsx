@@ -5,7 +5,7 @@ import { JSDOM } from 'jsdom'
 import { ContentTypeKeys, getContentType } from '../parserTypes'
 import { ContentTypeConfig } from '../types'
 // eslint-disable-next-line import/no-cycle
-import { isHTMLElement } from '../utils'
+import { getIsHidden, isHTMLElement } from '../utils'
 import { detectPageBuilder } from './detectPageBuilder'
 
 const pbStyleAttribute = 'data-pb-style'
@@ -45,7 +45,8 @@ export const walk = (
     if (aggregator && typeof aggregator === 'function') {
       try {
         const result = { ...props, ...aggregator(currentNode, props) }
-        contentTypeStructureObj.children.push(result)
+
+        if (!getIsHidden(currentNode)) contentTypeStructureObj.children.push(result)
       } catch (e) {
         console.error(`Failed to aggregate config for content type ${contentType}.`, e)
       }
@@ -63,17 +64,17 @@ export const walk = (
 }
 
 function isCssStyleRule(rule: CSSRule): rule is CSSStyleRule {
-  return (rule as CSSStyleRule).style !== null
+  return !!(rule as CSSStyleRule).style
 }
 function isCssMediaRule(rule: CSSRule): rule is CSSMediaRule {
-  return (rule as CSSMediaRule).media !== null
+  return !!(rule as CSSMediaRule).media
 }
 
 /** Convert styles block to inline styles. */
 export const convertToInlineStyles = (document: HTMLElement | Document) => {
   const styleBlocks = document.getElementsByTagName('style')
   const styles: Record<string, CSSStyleDeclaration[]> = {}
-  const mediaStyles: Record<string, unknown> = {}
+  const mediaStyles: Record<string, { selectors: string[]; css: string }[]> = {}
 
   ;[...styleBlocks].forEach((styleBlock) => {
     const cssRules = Array.from(styleBlock.sheet?.cssRules ?? [])
@@ -87,38 +88,36 @@ export const convertToInlineStyles = (document: HTMLElement | Document) => {
         })
       } else if (isCssMediaRule(rule)) {
         Array.from(rule.media).forEach((media) => {
-          const mediaStyle = Array.from(rule.cssRules).map((cssRule) => ({
-            selectors: cssRule.selectorText.split(',').map((selector) => selector.trim()),
-            css: cssRule.style.cssText,
-          }))
+          const mediaStyle = Array.from(rule.cssRules)
+            .filter(isCssStyleRule)
+            .map((cssRule) => ({
+              selectors: cssRule.selectorText.split(',').map((selector) => selector.trim()),
+              css: cssRule.style.cssText,
+            }))
           mediaStyles[media] = mediaStyle
         })
       }
     })
   })
 
-  Object.keys(mediaStyles).map((media, i) => {
+  Object.keys(mediaStyles).forEach((media, i) => {
     mediaStyles[media].forEach((style) => {
       style.selectors.forEach((selector) => {
         const element = document.querySelector(selector)
+
         if (element) {
           element.setAttribute(`data-media-${i}`, media)
-          const savedStyles = element.getAttribute(`data-media-style-${i}`)
-          // avoids overwriting previously saved styles
-          element.setAttribute(
-            `data-media-style-${i}`,
-            `${savedStyles ? `${savedStyles} ` : ''}${style.css}`,
-          )
+          const savedStyles = element.getAttribute(`data-media-style-${i}`) ?? ''
+
+          element.setAttribute(`data-media-style-${i}`, `${savedStyles} ${style.css}`)
         }
       })
     })
   })
 
   Object.keys(styles).forEach((selector) => {
-    const element = document.querySelector(selector)
-    if (!element) {
-      return
-    }
+    const element = document.querySelector<HTMLElement>(selector)
+    if (!element) return
 
     styles[selector].forEach((style) => {
       element.setAttribute('style', element.style.cssText + style.cssText)
@@ -139,6 +138,7 @@ export const parser = (htmlStr: string | null | undefined) => {
   const { body } = jsdom.window.document
 
   body.id = bodyId
+  convertToInlineStyles(jsdom.window.document)
 
   return walk(body, stageContentType, (rootEl) =>
     document.createTreeWalker(

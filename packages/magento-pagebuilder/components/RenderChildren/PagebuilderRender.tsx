@@ -2,7 +2,7 @@ import { ContentTypeConfigWithString } from '../../types'
 import { usePagebuilderContext } from './PagebuilderProvider'
 
 export function PagebuilderRender(props: { contentItem: ContentTypeConfigWithString }) {
-  const { getComponentByType: getRenderType } = usePagebuilderContext()
+  const { getComponentByType } = usePagebuilderContext()
   const { contentItem } = props
 
   if (!contentItem) return null
@@ -21,11 +21,12 @@ export function PagebuilderRender(props: { contentItem: ContentTypeConfigWithStr
     )
   }
 
-  const Render = getRenderType(contentItem.contentType)
+  const Render = getComponentByType(contentItem.contentType)
 
+  const { children, ...rest } = contentItem
   return (
-    <Render {...contentItem}>
-      {contentItem.children?.map((child, index) => (
+    <Render {...rest}>
+      {children?.map((child, index) => (
         // eslint-disable-next-line react/no-array-index-key
         <PagebuilderRender contentItem={child} key={index} />
       ))}

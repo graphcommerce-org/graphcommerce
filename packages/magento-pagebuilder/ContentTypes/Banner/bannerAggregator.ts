@@ -6,8 +6,7 @@ import {
   getPadding,
   getTextAlign,
   getCssClasses,
-  getIsHidden,
-  getMediaQueries,
+  getMediaQuery,
   stripEmpty,
 } from '../../utils'
 import { BannerContentType, ShowButton, ShowOverlay } from './types'
@@ -47,10 +46,10 @@ export const bannerAggregator: BannerContentType['configAggregator'] = (node, pr
 
     ...getCssClasses(node),
     ...getMargin(node),
-    ...getIsHidden(node),
+    ...getMediaQuery(node),
 
     minHeight: minHeightPaddingElement?.style.minHeight,
     ...getPadding(minHeightPaddingElement),
-    ...getMediaQueries(minHeightPaddingElement),
+    ...getMediaQuery(minHeightPaddingElement),
   })
 }

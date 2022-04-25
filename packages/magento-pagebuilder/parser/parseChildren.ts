@@ -1,8 +1,7 @@
 import { JSDOM } from 'jsdom'
-import { ContentTypeConfig, ContentTypeConfigChildren } from '../types'
-// eslint-disable-next-line import/no-cycle
+import { ContentTypeConfigChildren } from '../types'
 import { isHTMLElement } from '../utils'
-import { ContentTypeObject, convertToInlineStyles, createContentTypeObject, walk } from './parser'
+import { convertToInlineStyles, createContentTypeObject, walk } from './parser'
 
 const jsdom = new JSDOM().window
 

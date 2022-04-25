@@ -9,7 +9,7 @@ import { TabsContentType } from './types'
  * This component is part of the Page Builder / PWA integration. It can be consumed without Page Builder.
  */
 export const Tabs: TabsContentType['component'] = (props) => {
-  const [cssProps, cssClasses, isHidden, additional] = extractAdvancedProps(props)
+  const [cssProps, cssClasses, additional] = extractAdvancedProps(props)
 
   const { tabNavigationAlignment, minHeight, defaultIndex = 0, headers = [], children } = additional
 

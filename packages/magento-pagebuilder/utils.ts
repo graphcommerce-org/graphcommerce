@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
+import { SxProps, Theme } from '@mui/material'
 import React from 'react'
 
 export function isHTMLElement(node: Node): node is HTMLElement {
@@ -26,8 +27,8 @@ export type VerticalAlignment = {
 }
 
 /** Convert vertical alignment values to flex values */
-export function verticalAlignmentToFlex(alignment: string) {
-  return alignmentToFlex[alignment]
+export function verticalAlignmentToFlex(alignment: string | null) {
+  return alignmentToFlex[alignment ?? 'middle']
 }
 
 /** Convert flex to vertical alignment values */
@@ -44,7 +45,7 @@ export type AdvancedProps = PaddingProps &
   BorderProps &
   TextAlignProps &
   CssClassesProps &
-  IsHiddenProps
+  MediaQueryProps
 
 export function stripEmpty<T extends Record<string, unknown>>(obj: T): T {
   return Object.entries(obj).reduce((acc, [key, value]) => {
@@ -63,7 +64,7 @@ export function getAdvanced(node: HTMLElement): AdvancedProps {
     ...getBorder(node),
     ...getTextAlign(node),
     ...getCssClasses(node),
-    ...getIsHidden(node),
+    ...getMediaQuery(node),
   }
 }
 
@@ -73,14 +74,8 @@ export function extractAdvancedProps<P extends AdvancedProps>(props: P) {
   const [border, remainging3] = extractBorderProps(remainging2)
   const [textAlign, remainging4] = extractTextAlignProps(remainging3)
   const [cssClasses, remainging5] = extractCssClassesProps(remainging4)
-  const [isHidden, remainging6] = extractIsHiddenProps(remainging5)
 
-  return [
-    { ...padding, ...margin, ...border, ...textAlign },
-    cssClasses,
-    isHidden,
-    remainging6,
-  ] as const
+  return [{ ...padding, ...margin, ...border, ...textAlign }, cssClasses, remainging5] as const
 }
 
 export type PaddingProps = Pick<
@@ -183,22 +178,9 @@ export function extractCssClassesProps<P extends CssClassesProps>(
   return [cssClasses, remaining]
 }
 
-export type IsHiddenProps = {
-  isHidden: boolean
-}
-
 /** Retrieve if CSS display property is set to none from a content type node */
-export function getIsHidden(node: HTMLElement): IsHiddenProps {
-  return {
-    isHidden: node.style.display === 'none',
-  }
-}
-
-export function extractIsHiddenProps<P extends IsHiddenProps>(
-  props: P,
-): [boolean, Omit<P, keyof IsHiddenProps>] {
-  const { isHidden = false, ...remaining } = props
-  return [isHidden, remaining]
+export function getIsHidden(node: HTMLElement) {
+  return node.style.display === 'none'
 }
 
 /**
@@ -220,27 +202,25 @@ export function cssToJSXStyle(style: string): React.CSSProperties {
   return result
 }
 
-/**
- * Retrieve media queries from a master format node
- *
- * @param node
- * @param {Array} mediaQueries
- * @returns {{ mediaQueries: { media: string; style: string } }}
- */
-export function getMediaQueries(node: HTMLElement) {
-  const response = []
+export type MediaQueryProps = {
+  sx?: SxProps<Theme>
+}
+
+/** Retrieve media queries from a master format node */
+export function getMediaQuery(node: HTMLElement): MediaQueryProps {
+  const sx: SxProps<Theme> = []
   const dataset = Object.keys(node.dataset)
 
-  const medias = dataset.filter((key) => key.match(/media-/)).map((key) => node.dataset[key])
+  const medias = dataset.filter((key) => key.match(/media-/)).map((key) => node.dataset[key] ?? '')
+  const styles = dataset
+    .filter((key) => key.match(/mediaStyle/))
+    .map((key) => node.dataset[key] ?? '')
 
-  const styles = dataset.filter((key) => key.match(/mediaStyle/)).map((key) => node.dataset[key])
+  if (medias.length === 0) return {}
 
   medias.forEach((media, i) => {
-    response.push({
-      media,
-      style: cssToJSXStyle(styles[i]),
-    })
+    sx.push({ [media]: cssToJSXStyle(styles[i]) })
   })
 
-  return stripEmpty({ mediaQueries: response })
+  return { sx }
 }

@@ -1,5 +1,5 @@
 import { ContentType, ContentTypeConfig } from '../../types'
-import { AdvancedProps, BackgroundImages, VerticalAlignment } from '../../utils'
+import { AdvancedProps } from '../../utils'
 
 export type VideoConfig = ContentTypeConfig<'html'>
 

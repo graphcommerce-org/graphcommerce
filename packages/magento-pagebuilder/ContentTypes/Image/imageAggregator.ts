@@ -5,9 +5,10 @@ import {
   getMargin,
   getPadding,
   getTextAlign,
-  getMediaQueries,
+  getMediaQuery,
   isHTMLElement,
   BorderProps,
+  getAdvanced,
 } from '../../utils'
 import { ImageContentType, ImageProps } from './types'
 
@@ -70,12 +71,7 @@ export const imageAggregator: ImageContentType['configAggregator'] = (node) => {
   return {
     ...getImageProps(),
     openInNewTab: link?.getAttribute('target') === '_blank',
-    ...getPadding(node),
-    ...getMargin(node),
-    ...getCssClasses(node),
-    ...getTextAlign(node),
-    ...getIsHidden(node),
-    ...getMediaQueries(node),
+    ...getAdvanced(node),
     link: link?.getAttribute('href'),
     linkType: link?.getAttribute('data-link-type'),
   }

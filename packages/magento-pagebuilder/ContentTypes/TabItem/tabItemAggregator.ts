@@ -1,5 +1,5 @@
 import { getImageBackgroundProps } from '../../components/MediaBackground/getImageBackgroundProps'
-import { getAdvanced, getVerticalAlignment, getMediaQueries, stripEmpty } from '../../utils'
+import { getAdvanced, getVerticalAlignment, getMediaQuery, stripEmpty } from '../../utils'
 import { TabItemContentType } from './types'
 
 export const tabItemAggregator: TabItemContentType['configAggregator'] = (node) =>
@@ -10,5 +10,5 @@ export const tabItemAggregator: TabItemContentType['configAggregator'] = (node) 
     backgroundColor: node.style.backgroundColor,
     ...getImageBackgroundProps(node),
     ...getAdvanced(node),
-    ...getMediaQueries(node),
+    ...getMediaQuery(node),
   })

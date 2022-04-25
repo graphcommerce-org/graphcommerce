@@ -8,10 +8,15 @@ import { HtmlContentType } from './types'
  * This component is part of the Page Builder / PWA integration. It can be consumed without Page Builder.
  */
 export const Html: HtmlContentType['component'] = (props) => {
-  const [cssProps, cssClasses, isHidden, additional] = extractAdvancedProps(props)
+  const [cssProps, cssClasses, additional] = extractAdvancedProps(props)
   const { content } = additional
 
-  if (isHidden) return null
-
-  return <PagebuilderRender content={content} />
+  return (
+    <>
+      {content?.map((child, index) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <PagebuilderRender contentItem={child} key={index} />
+      ))}
+    </>
+  )
 }

@@ -9,7 +9,7 @@ import { ImageContentType } from './types'
  */
 export const Image: ImageContentType['component'] = (props) => {
   const [border, remaining] = extractBorderProps(props)
-  const [cssProps, cssClasses, isHidden, additional] = extractAdvancedProps(remaining)
+  const [cssProps, cssClasses, additional] = extractAdvancedProps(remaining)
 
   const classes = {}
   const {
@@ -20,13 +20,14 @@ export const Image: ImageContentType['component'] = (props) => {
     mobileImage,
     title,
     children,
+    sx = [],
   } = additional
 
   const figureStyles = cssProps
   const imageStyles = border
 
   // Don't render anything if there is no image to be rendered
-  if ((!desktopImage?.src && !mobileImage?.src) || isHidden) return null
+  if (!desktopImage?.src && !mobileImage?.src) return null
 
   const isSame = desktopImage?.src === mobileImage?.src
 
@@ -38,14 +39,17 @@ export const Image: ImageContentType['component'] = (props) => {
           src={desktopImage?.src}
           //   alt={altText}
           title={title || undefined}
-          sx={{
-            ...border,
-            objectFit: 'contain',
-            display: {
-              xs: isSame ? 'inline-block' : 'none',
-              md: 'inline-block',
+          sx={[
+            {
+              ...border,
+              objectFit: 'contain',
+              display: {
+                xs: isSame ? 'inline-block' : 'none',
+                md: 'inline-block',
+              },
             },
-          }}
+            ...(Array.isArray(sx) ? sx : [sx]),
+          ]}
         />
       )}
       {mobileImage?.src && !isSame && (

@@ -15,7 +15,7 @@ import { tabItemAggregator } from './ContentTypes/TabItem/tabItemAggregator'
 import { tabsAggregator } from './ContentTypes/Tabs/tabsAggregator'
 import { textAggregator } from './ContentTypes/Text/textAggregator'
 import { videoAggregator } from './ContentTypes/Video/videoAggregator'
-import { ConfigAggregator, ContentTypeConfig } from './types'
+import { ParseProps, ContentTypeConfig } from './types'
 
 type ContentTypes =
   | 'row'
@@ -62,6 +62,6 @@ export const contentTypes = {
 
 export type ContentTypeKeys = keyof typeof contentTypes
 
-export function getContentType(name: ContentTypeKeys): ConfigAggregator | undefined {
-  return contentTypes[name] as ConfigAggregator | undefined
+export function getContentType(name: ContentTypeKeys): ParseProps | undefined {
+  return contentTypes[name] as ParseProps | undefined
 }

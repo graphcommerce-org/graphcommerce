@@ -10,13 +10,13 @@ type Props = {
   openInNewTab: boolean
 }
 
-export type ButtonLinkProps = Props | undefined
+export type ButtonLinkProps = Partial<Props>
 
 export function getButtonLinkProps(node: HTMLElement): ButtonLinkProps {
   const linkElement = node.querySelector<HTMLElement>('a[data-element="link"]')
   const buttonElement = node.querySelector<HTMLElement>('[data-element="button"]') ?? linkElement
 
-  if (!linkElement || !buttonElement) return undefined
+  if (!linkElement || !buttonElement) return {}
 
   let buttonType: Props['buttonType'] = 'primary'
   if (buttonElement.classList.contains('pagebuilder-button-secondary')) {

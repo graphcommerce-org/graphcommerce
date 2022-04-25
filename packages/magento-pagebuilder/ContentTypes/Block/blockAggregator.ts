@@ -4,5 +4,5 @@ import { BlockContentType } from './types'
 
 export const blockAggregator: BlockContentType['configAggregator'] = (node) => ({
   ...getAdvanced(node),
-  children: parseChildren(node),
+  content: parseChildren(node),
 })

@@ -9,7 +9,7 @@ import { TabItemContentType } from './types'
  * This component is part of the Page Builder / PWA integration. It can be consumed without Page Builder.
  */
 export const TabItem: TabItemContentType['component'] = (props) => {
-  const [cssProps, cssClasses, isHidden, additional] = extractAdvancedProps(props)
+  const [cssProps, cssClasses, additional] = extractAdvancedProps(props)
   const [imageProps, additional2] = extractImageBackgroundProps(additional)
 
   const { minHeight, verticalAlignment, backgroundColor, tabName, children } = additional2

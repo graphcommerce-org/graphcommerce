@@ -24,12 +24,12 @@ export const Video: VideoContentType['component'] = (props) => {
   const [border, additional2] = extractBorderProps(additional)
   const [padding, additional3] = extractPaddingProps(additional2)
 
-  const { url, autoplay, muted, maxWidth, textAlign, isHidden, cssClasses } = additional3
+  const { url, autoplay, muted, maxWidth, textAlign, cssClasses } = additional3
 
-  if (!url || isHidden) return null
+  if (!url) return null
 
   return (
-    <Box sx={{ fontSize: '0', textAlign, ...margin }} className={cssClasses}>
+    <Box sx={{ fontSize: '0', textAlign, ...margin }} className={cssClasses?.join(' ')}>
       <Box sx={{ display: 'inline-block', width: '100%', maxWidth }}>
         <Box sx={{ ...border, ...padding, overflow: 'hidden' }}>
           <Box sx={{ overflow: 'hidden', paddingTop: `${100 / (16 / 9)}%`, position: 'relative' }}>
