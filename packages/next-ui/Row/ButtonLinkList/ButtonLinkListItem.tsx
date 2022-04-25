@@ -21,7 +21,7 @@ export function ButtonLinkListItem(props: ButtonLinkListItemProps) {
 
   return (
     <PageLink href={url} passHref>
-      <ButtonItem {...buttonProps} endIcon={endIcon}>
+      <ButtonItem {...buttonProps} endIcon={endIcon} LinkComponent='h3'>
         {children}
       </ButtonItem>
     </PageLink>
