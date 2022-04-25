@@ -22,7 +22,7 @@ import {
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
-import { Container, NoSsr, Typography } from '@mui/material'
+import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
@@ -78,25 +78,7 @@ function ShippingPage() {
                 <Trans>Shipping</Trans>
               </LayoutTitle>
 
-              <EmailForm step={1}>
-                <Typography
-                  variant='body2'
-                  component='ul'
-                  sx={(theme) => ({ pl: theme.spacings.xs, mt: theme.spacings.xxs })}
-                >
-                  <li>
-                    <Trans>
-                      Email address of existing customers will be recognized, sign in is optional.
-                    </Trans>
-                  </li>
-                  <li>
-                    <Trans>Fill in password fields to create an account.</Trans>
-                  </li>
-                  <li>
-                    <Trans>Leave password field empty to order as guest.</Trans>
-                  </li>
-                </Typography>
-              </EmailForm>
+              <EmailForm step={1} />
 
               <ShippingAddressForm step={2} />
 
