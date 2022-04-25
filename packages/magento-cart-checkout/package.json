@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cart-checkout",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.0.10",
+  "version": "3.0.11",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -22,7 +22,7 @@
     "@graphcommerce/image": "3.1.5",
     "@graphcommerce/magento-cart": "4.2.7",
     "@graphcommerce/magento-cart-coupon": "3.0.12",
-    "@graphcommerce/magento-cart-items": "3.0.11",
+    "@graphcommerce/magento-cart-items": "3.0.12",
     "@graphcommerce/magento-customer": "4.2.5",
     "@graphcommerce/magento-store": "4.1.7",
     "@graphcommerce/next-ui": "4.6.1",
