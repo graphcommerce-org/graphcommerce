@@ -18,7 +18,6 @@ export function StoreSwitcherButton(props: StoreSwitcherButtonProps) {
 
   return (
     <Button
-      LinkComponent='button'
       variant='text'
       size='medium'
       className={classes.root}
