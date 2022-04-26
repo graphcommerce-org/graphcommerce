@@ -76,7 +76,6 @@ export function ProductReviews(props: ProductReviewsProps) {
       })}
     >
       <Button
-        LinkComponent='button'
         variant='pill'
         color='primary'
         size='medium'
