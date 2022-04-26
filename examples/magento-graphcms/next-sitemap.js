@@ -29,7 +29,7 @@ module.exports = {
       changefreq: config.changefreq,
       priority: config.priority,
       lastmod: new Date().toISOString(),
-      alternateRefs: alternateRefs ?? [],
+      alternateRefs: alternateRefs.length === 0 ? null : alternateRefs,
     }
   },
 
