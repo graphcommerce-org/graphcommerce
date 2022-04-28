@@ -1,7 +1,8 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { ProductReviews, ProductReviewsProps } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Row, SectionContainer } from '@graphcommerce/next-ui'
+import { Row } from '@graphcommerce/next-ui'
+import { Box, Typography } from '@mui/material'
 import { RowProductFragment } from '../RowProduct.gql'
 
 type ReviewsProps = RowProductFragment & Partial<ProductReviewsProps>
@@ -17,20 +18,34 @@ export function Reviews(props: ReviewsProps) {
 
   return (
     <Row maxWidth='md' id='reviews'>
-      <SectionContainer
-        labelLeft={
-          <>
-            {title} ({review_count})
-          </>
-        }
+      <Box
+        sx={[
+          (theme) => ({
+            position: 'relative',
+            '&:focus': {
+              outline: 'none',
+            },
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginTop: theme.spacings.sm,
+            marginBottom: theme.spacings.xxs,
+            paddingBottom: theme.spacings.xxs,
+            borderBottom: `1px solid ${theme.palette.divider}`,
+          }),
+        ]}
       >
-        <ProductReviews
-          reviews={reviews}
-          url_key={url_key ?? ''}
-          sku={sku}
-          review_count={review_count ?? 0}
-        />
-      </SectionContainer>
+        <Typography variant='overline' color='textSecondary' component='h2'>
+          {title} ({review_count})
+        </Typography>
+      </Box>
+
+      <ProductReviews
+        reviews={reviews}
+        url_key={url_key ?? ''}
+        sku={sku}
+        review_count={review_count ?? 0}
+      />
     </Row>
   )
 }
