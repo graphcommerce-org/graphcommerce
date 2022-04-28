@@ -56,7 +56,6 @@
     "@graphcommerce/magento-customer-order": "3.0.10",
     "@graphcommerce/magento-graphql": "3.0.7",
     "@graphcommerce/magento-newsletter": "2.0.10",
-    "@graphcommerce/magento-pagebuilder": "0.0.0",
     "@graphcommerce/magento-payment-braintree": "3.0.10",
     "@graphcommerce/magento-payment-included": "3.0.10",
     "@graphcommerce/magento-product": "4.1.8",

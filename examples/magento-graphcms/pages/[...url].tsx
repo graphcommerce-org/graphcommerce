@@ -2,12 +2,12 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Asset } from '@graphcommerce/graphcms-ui'
 import {
   CategoryChildren,
+  CategoryDescription,
   CategoryHeroNav,
   CategoryHeroNavTitle,
   CategoryMeta,
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
-import { CategoryPagebuilder } from '@graphcommerce/magento-pagebuilder'
 import {
   extractUrlQuery,
   FilterTypes,
@@ -104,11 +104,7 @@ function CategoryPage(props: Props) {
           >
             {category?.name}
           </LayoutTitle>
-          <CategoryPagebuilder
-            pagebuilder={category.pagebuilder}
-            description={category.description}
-          />
-          {/* <CategoryDescription description={category.description} /> */}
+          <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
 
           <StickyBelowHeader>
