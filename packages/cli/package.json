@@ -20,9 +20,9 @@
   },
   "dependencies": {
     "@graphql-codegen/cli": "2.6.2",
-    "@graphql-mesh/cli": "0.67.4",
-    "@graphql-mesh/types": "0.70.5",
-    "@graphql-mesh/utils": "0.33.5"
+    "@graphql-mesh/cli": "0.68.4",
+    "@graphql-mesh/types": "0.71.3",
+    "@graphql-mesh/utils": "0.34.3"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "^4.1.5",
