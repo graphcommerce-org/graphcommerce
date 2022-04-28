@@ -34,7 +34,10 @@ export function Page(props: PageProps) {
   const zIndex = active ? 1 : undefined
 
   return (
-    <m.div style={{ position, top, zIndex, minHeight: clientSizeCssVar.y, left: 0, right: 0 }}>
+    <m.div
+      style={{ position, top, zIndex, minHeight: clientSizeCssVar.y, left: 0, right: 0 }}
+      data-nosnippet
+    >
       {children}
     </m.div>
   )
