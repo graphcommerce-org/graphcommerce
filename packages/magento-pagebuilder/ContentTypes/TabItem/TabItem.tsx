@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
-import { extractImageBackgroundProps } from '../../components/MediaBackground/extractImageBackgroundProps'
 import { extractAdvancedProps, verticalAlignmentToFlex } from '../../utils'
+import { extractImageBackgroundProps } from '../../components/MediaBackground/extractImageBackgroundProps'
 import { TabItemContentType } from './types'
 
 /**

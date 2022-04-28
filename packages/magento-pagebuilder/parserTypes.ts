@@ -1,4 +1,3 @@
-import { ValueOf } from 'type-fest'
 import { bannerAggregator } from './ContentTypes/Banner/bannerAggregator'
 import { blockAggregator } from './ContentTypes/Block/blockAggregator'
 import { buttonItemAggregator } from './ContentTypes/ButtonItem/buttonItemAggregator'

@@ -1,4 +1,4 @@
-fragment CmsPageContent on CmsPage {
+fragment CmsPageContent on CmsPage @injectable {
   content_heading
   content
 }

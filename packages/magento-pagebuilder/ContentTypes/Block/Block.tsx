@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import { PagebuilderRender } from '../../components/RenderChildren/PagebuilderRender'
+import { PagebuilderRender } from '../../components/Pagebuilder/PagebuilderRender'
 import { extractAdvancedProps } from '../../utils'
 import { BlockContentType } from './types'
 

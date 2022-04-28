@@ -16,7 +16,7 @@ import { TabItem } from './ContentTypes/TabItem/TabItem'
 import { Tabs } from './ContentTypes/Tabs/Tabs'
 import { Text } from './ContentTypes/Text/Text'
 import { Video } from './ContentTypes/Video/Video'
-import { OnlyChildren } from './components/RenderChildren/OnlyChildren'
+import { OnlyChildren } from './components/Pagebuilder/OnlyChildren'
 import { ContentTypeConfig, GetRenderComponent } from './types'
 
 const renderTypes = {
