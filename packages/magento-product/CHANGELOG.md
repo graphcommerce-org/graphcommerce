@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.9
+
+### Patch Changes
+
+- [#1419](https://github.com/graphcommerce-org/graphcommerce/pull/1419) [`a52a863f9`](https://github.com/graphcommerce-org/graphcommerce/commit/a52a863f9c69c6b3ae657dcce3bc9b14413ce125) Thanks [@NickdeK](https://github.com/NickdeK)! - Make ProductListSort stylable and translate "Sort By" string
+
 ## 4.1.8
 
 ### Patch Changes

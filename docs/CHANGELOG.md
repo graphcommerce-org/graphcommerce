@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.6.3
+
+### Patch Changes
+
+- [#1417](https://github.com/graphcommerce-org/graphcommerce/pull/1417) [`d57e4b782`](https://github.com/graphcommerce-org/graphcommerce/commit/d57e4b7828e9fed2cf6ac8164203b26a4427ef80) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Update installation instructions
+
 ## 4.6.2
 
 ### Patch Changes
