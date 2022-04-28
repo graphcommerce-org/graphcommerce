@@ -20,8 +20,8 @@
   },
   "dependencies": {
     "@graphcommerce/graphql": "3.1.0",
-    "@graphcommerce/magento-category": "4.0.11",
-    "@graphcommerce/magento-product": "4.1.8",
+    "@graphcommerce/magento-category": "4.0.12",
+    "@graphcommerce/magento-product": "4.1.9",
     "@graphcommerce/magento-cms": "4.0.8",
     "@graphcommerce/next-ui": "4.6.1",
     "@graphcommerce/react-hook-form": "3.1.1",
