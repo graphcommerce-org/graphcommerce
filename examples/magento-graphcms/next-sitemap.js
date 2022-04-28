@@ -11,7 +11,7 @@ module.exports = {
   generateRobotsTxt: true,
   // eslint-disable-next-line @typescript-eslint/require-await
   transform: async (config, path) => {
-    // remove all /storecode/ urls
+    // @todo: split into sitemap per language https://github.com/iamvishnusankar/next-sitemap/issues/370
     const locales = Object.keys(JSON.parse(PUBLIC_LOCALE_STORES))
     if (locales.some((locale) => path.includes(locale))) {
       return null
