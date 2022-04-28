@@ -4,6 +4,7 @@
   "extends": "@graphcommerce/typescript-config-pwa/node.json",
   "compilerOptions": {
     "noEmit": false,
-    "outDir": "dist"
+    "outDir": "dist",
+    "sourceMap": false
   }
 }

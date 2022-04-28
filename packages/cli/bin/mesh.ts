@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import fs, { read } from 'fs'
+import fs from 'fs'
 import path from 'path'
 import { exit } from 'process'
 import { graphqlMesh, DEFAULT_CLI_PARAMS } from '@graphql-mesh/cli'
@@ -22,7 +22,6 @@ export function handleFatalError(e: Error, logger: Logger = new DefaultLogger('â
 
 const root = process.cwd()
 const meshDir = path.dirname(require.resolve('@graphcommerce/graphql-mesh'))
-
 const relativePath = path.join(path.relative(meshDir, root), '/')
 
 const isMonoRepo = relativePath.startsWith('../../examples')
@@ -30,23 +29,31 @@ const isMonoRepo = relativePath.startsWith('../../examples')
 const main = async () => {
   const conf = (await findConfig({})) as YamlConfig.Config
 
+  // Rewrite additionalResolvers so we can use module resolution more easily
   conf.additionalResolvers = conf.additionalResolvers ?? []
-
-  // Rewrite string directives
   conf.additionalResolvers = conf.additionalResolvers?.map((additionalResolver) => {
-    if (typeof additionalResolver === 'string') return `${relativePath}${additionalResolver}`
-    return additionalResolver
+    if (typeof additionalResolver !== 'string') return additionalResolver
+
+    if (additionalResolver.startsWith('@'))
+      return path.relative(meshDir, require.resolve(additionalResolver))
+
+    return `${relativePath}${additionalResolver}`
   })
 
+  // Rewrite additionalTypeDefs so we can use module resolution more easily
   if (!conf.additionalTypeDefs) conf.additionalTypeDefs = []
-  // Add additionalTypeDefs
-  conf.additionalTypeDefs = Array.isArray(conf.additionalTypeDefs)
-    ? conf.additionalTypeDefs
-    : [conf.additionalTypeDefs]
+  conf.additionalTypeDefs = (
+    Array.isArray(conf.additionalTypeDefs) ? conf.additionalTypeDefs : [conf.additionalTypeDefs]
+  ).map((additionalTypeDef) => {
+    if (additionalTypeDef.startsWith('@'))
+      return path.relative(meshDir, require.resolve(additionalTypeDef))
+
+    return additionalTypeDef
+  })
 
   conf.additionalTypeDefs.push('../../**/*.graphqls')
   if (isMonoRepo) {
-    conf.additionalTypeDefs.push('../../packages/magento-*/**/*.graphqls')
+    conf.additionalTypeDefs.push('../../packages/**/*.graphqls')
     conf.additionalTypeDefs.push('../../packagesDev/**/*.graphqls')
   } else {
     conf.additionalTypeDefs.push('../../@graphcommerce/**/*.graphqls')

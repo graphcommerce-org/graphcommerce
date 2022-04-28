@@ -129,5 +129,11 @@ module.exports = {
         '@typescript-eslint/camelcase': 'off',
       },
     },
+    {
+      files: ['**/*.spec.ts', '**/*.spec.tsx'],
+      env: {
+        jest: true,
+      },
+    },
   ],
 }

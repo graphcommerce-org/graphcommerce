@@ -4,7 +4,7 @@ import React from 'react'
 import { IconSvg } from '../../IconSvg'
 import { iconChevronRight } from '../../icons'
 
-export type ButtonLinkProps = { url: string; endIcon?: React.ReactNode } & ButtonProps
+export type ButtonLinkListItemProps = { url: string; endIcon?: React.ReactNode } & ButtonProps
 
 const ButtonItem = styled(Button)(({ theme }) => ({
   color: theme.palette.text.primary,
@@ -16,7 +16,7 @@ const ButtonItem = styled(Button)(({ theme }) => ({
   typography: 'body1',
 }))
 
-export function ButtonLinkListItem(props: ButtonLinkProps) {
+export function ButtonLinkListItem(props: ButtonLinkListItemProps) {
   const { children, url, endIcon = <IconSvg src={iconChevronRight} />, ...buttonProps } = props
 
   return (

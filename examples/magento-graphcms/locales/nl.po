@@ -575,7 +575,7 @@ msgid "Your session is expired"
 msgstr "Uw sessie is verlopen"
 
 msgid "canceled"
-msgstr "geannulleerd"
+msgstr "geannuleerd"
 
 msgid "invoiced"
 msgstr "gefactureerd"
