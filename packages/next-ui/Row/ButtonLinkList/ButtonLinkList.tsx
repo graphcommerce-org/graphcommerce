@@ -21,7 +21,7 @@ const { withState } = extendableComponent<OwnerState, typeof compName, typeof pa
 )
 
 export function ButtonLinkList(props: ButtonLinkListProps) {
-  const { title, children, component, containsBigLinks, sx = [] } = props
+  const { title, children, component = 'span', containsBigLinks, sx = [] } = props
 
   const classes = withState({ containsBigLinks })
 
@@ -48,7 +48,7 @@ export function ButtonLinkList(props: ButtonLinkListProps) {
           }),
         ]}
       >
-        <Typography variant='overline' color='textSecondary' component={component ?? 'span'}>
+        <Typography variant='overline' color='textSecondary' component={component}>
           {title}
         </Typography>
       </Box>
