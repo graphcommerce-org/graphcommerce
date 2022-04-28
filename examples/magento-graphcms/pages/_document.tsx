@@ -10,6 +10,10 @@ class Document extends NextDocument<EmotionCacheProps> {
         <Head>
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
           {this.props.emotionStyleTags}
+          <meta
+            name='google-site-verification'
+            content='fPJENlAfrKg0LLRKJbBXRG7t-iZmk6vXRtn3wq-cMqY'
+          />
         </Head>
         <body>
           <Main />
