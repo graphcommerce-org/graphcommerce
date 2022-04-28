@@ -32,7 +32,7 @@ import {
   MetaRobots,
   PageMeta,
 } from '@graphcommerce/next-ui'
-import { Container, NoSsr } from '@mui/material'
+import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutFull,
