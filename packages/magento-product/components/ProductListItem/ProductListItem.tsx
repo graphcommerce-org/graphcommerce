@@ -43,7 +43,10 @@ type BaseProps = PropsWithChildren<
     Pick<ImageProps, 'loading' | 'sizes' | 'dontReportWronglySizedImages'>
 >
 
-export type ProductListItemProps = BaseProps & { sx?: SxProps<Theme> }
+export type ProductListItemProps = BaseProps & {
+  sx?: SxProps<Theme>
+  titleComponent?: React.ElementType
+}
 
 const StyledImage = styled(Image)({})
 
@@ -63,6 +66,7 @@ export function ProductListItem(props: ProductListItemProps) {
     sizes,
     dontReportWronglySizedImages,
     aspectRatio = [4, 3],
+    titleComponent = 'h2',
     sx = [],
   } = props
 
@@ -218,7 +222,7 @@ export function ProductListItem(props: ProductListItemProps) {
               })}
             >
               <Typography
-                component='h2'
+                component={titleComponent}
                 variant='subtitle1'
                 sx={{
                   display: 'inline',

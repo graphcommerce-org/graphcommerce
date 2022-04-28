@@ -12,11 +12,12 @@ export type ProductItemsGridProps = {
   renderers: ProductListItemRenderer
   loadingEager?: number
   size?: 'normal' | 'small'
+  titleComponent?: React.ElementType
   sx?: BoxProps['sx']
 }
 
 export function ProductListItemsBase(props: ProductItemsGridProps) {
-  const { items, sx = [], renderers, loadingEager = 0, size = 'normal' } = props
+  const { items, sx = [], renderers, loadingEager = 0, size = 'normal', titleComponent } = props
 
   return (
     <Box
@@ -47,6 +48,7 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
                 ? { 0: '100vw', 354: '50vw', 675: '30vw', 1255: '23vw', 1500: '337px' }
                 : { 0: '100vw', 367: '48vw', 994: '30vw', 1590: '23vw', 1920: '443px' }
             }
+            titleComponent={titleComponent}
             noReport
           />
         ) : null,
