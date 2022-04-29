@@ -6,8 +6,8 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "dev": "tsc --preserveWatchOutput --watch --sourceMap --outDir dist",
-    "build": "tsc --target es5 --outDir dist",
+    "dev": "tsc --preserveWatchOutput --watch --outDir dist",
+    "build": "tsc --outDir dist",
     "prepack": "yarn build"
   },
   "bin": {

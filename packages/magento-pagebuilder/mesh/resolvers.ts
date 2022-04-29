@@ -1,7 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import type { Resolvers } from '@graphcommerce/graphql-mesh'
+import type { Resolvers, MeshContext } from '@graphcommerce/graphql-mesh'
 import { detectPageBuilder } from '../parser/detectPageBuilder'
 import { parser } from '../parser/parser'
+
+function warnNoContent(
+  content: string | null | undefined,
+  requiredField: string,
+  type: string,
+  { logger }: MeshContext,
+): content is string | null {
+  if (!content) {
+    logger.warn(
+      `Can not process pagebuilder field, please also query the ${requiredField} on type ${type}`,
+    )
+    return false
+  }
+  return true
+}
 
 function nullIfPagebuilder(html: string | null | undefined): string | null {
   if (!html) return null
@@ -12,19 +27,31 @@ function nullIfPagebuilder(html: string | null | undefined): string | null {
 
 export const resolvers: Resolvers = {
   CmsPage: {
-    pagebuilder: ({ content }) => parser(content),
+    pagebuilder: ({ content }, _, ctx) => {
+      warnNoContent(content, 'content', 'CmsPage', ctx)
+      return parser(content)
+    },
     content: ({ content }) => nullIfPagebuilder(content),
   },
   CmsBlock: {
-    pagebuilder: ({ content }) => parser(content),
+    pagebuilder: ({ content }, _, ctx) => {
+      warnNoContent(content, 'content', 'CmsBlock', ctx)
+      return parser(content)
+    },
     content: ({ content }) => nullIfPagebuilder(content),
   },
   CategoryTree: {
-    pagebuilder: ({ description }) => parser(description),
+    pagebuilder: ({ description }, _, ctx) => {
+      warnNoContent(description, 'description', 'CategoryTree', ctx)
+      return parser(description)
+    },
     description: ({ description }) => nullIfPagebuilder(description),
   },
   ComplexTextValue: {
-    pagebuilder: ({ html }) => parser(html),
+    pagebuilder: ({ html }, _, ctx) => {
+      warnNoContent(html, 'html', 'ComplexTextValue', ctx)
+      return parser(html)
+    },
     html: ({ html }) => nullIfPagebuilder(html) ?? '',
   },
 }
