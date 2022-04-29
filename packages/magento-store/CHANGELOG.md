@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.1.8
+
+### Patch Changes
+
+- Updated dependencies [[`06f7bdff8`](https://github.com/graphcommerce-org/graphcommerce/commit/06f7bdff882396f2b0e1a2873fbb718c7b06fab4), [`100f4c38c`](https://github.com/graphcommerce-org/graphcommerce/commit/100f4c38c8fcda4bc6e0425e38028b550b60adc2)]:
+  - @graphcommerce/graphql-mesh@4.1.1
+  - @graphcommerce/graphql@3.1.1
+  - @graphcommerce/next-ui@4.6.2
+
 ## 4.1.7
 
 ### Patch Changes
