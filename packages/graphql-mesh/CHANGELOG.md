@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.1.1
+
+### Patch Changes
+
+- [#1427](https://github.com/graphcommerce-org/graphcommerce/pull/1427) [`06f7bdff8`](https://github.com/graphcommerce-org/graphcommerce/commit/06f7bdff882396f2b0e1a2873fbb718c7b06fab4) Thanks [@paales](https://github.com/paales)! - Use playground title provided by the config
+
+* [#1426](https://github.com/graphcommerce-org/graphcommerce/pull/1426) [`100f4c38c`](https://github.com/graphcommerce-org/graphcommerce/commit/100f4c38c8fcda4bc6e0425e38028b550b60adc2) Thanks [@paales](https://github.com/paales)! - Upgrade packages
+
 ## 4.1.0
 
 ### Minor Changes

@@ -1,5 +1,15 @@
 # Change Log
 
+## 4.0.9
+
+### Patch Changes
+
+- [#1394](https://github.com/graphcommerce-org/graphcommerce/pull/1394) [`b6b8bb5b3`](https://github.com/graphcommerce-org/graphcommerce/commit/b6b8bb5b31b0891ea24733de34a3bd5c0a9604e4) Thanks [@paales](https://github.com/paales)! - Made fragments injectable so they can be extended
+
+- Updated dependencies [[`100f4c38c`](https://github.com/graphcommerce-org/graphcommerce/commit/100f4c38c8fcda4bc6e0425e38028b550b60adc2)]:
+  - @graphcommerce/graphql@3.1.1
+  - @graphcommerce/magento-store@4.1.8
+
 ## 4.0.8
 
 ### Patch Changes

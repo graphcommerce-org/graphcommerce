@@ -1,5 +1,18 @@
 # Change Log
 
+## 3.1.6
+
+### Patch Changes
+
+- Updated dependencies [[`100f4c38c`](https://github.com/graphcommerce-org/graphcommerce/commit/100f4c38c8fcda4bc6e0425e38028b550b60adc2)]:
+  - @graphcommerce/graphql@3.1.1
+  - @graphcommerce/next-ui@4.6.2
+  - @graphcommerce/react-hook-form@3.1.2
+  - @graphcommerce/magento-customer@4.2.6
+  - @graphcommerce/magento-customer-order@3.0.11
+  - @graphcommerce/magento-store@4.1.8
+  - @graphcommerce/magento-graphql@3.0.8
+
 ## 3.1.5
 
 ### Patch Changes
