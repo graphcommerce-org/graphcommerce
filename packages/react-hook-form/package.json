@@ -22,8 +22,8 @@
     "type-fest": "^2.12.2"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.10",
-    "graphql": "16.3.0",
+    "@apollo/client": "^3.6.0",
+    "graphql": "16.4.0",
     "react-hook-form": "7.30.0"
   },
   "peerDependencies": {
