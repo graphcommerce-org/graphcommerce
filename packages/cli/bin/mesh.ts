@@ -37,6 +37,15 @@ const cliParams: GraphQLMeshCLIParams = {
 const tmpMesh = `_tmp_mesh_${Math.random().toString(36).substring(2, 15)}`
 const tmpMeshLocation = path.join(root, `.${tmpMesh}rc.yml`)
 
+function cleanup() {
+  try {
+    return fs.unlink(tmpMeshLocation)
+  } catch (e) {
+    // ignore
+  }
+  return undefined
+}
+
 const main = async () => {
   const conf = (await findConfig({})) as YamlConfig.Config
 
@@ -77,10 +86,10 @@ const main = async () => {
 
   await graphqlMesh({ ...cliParams, configName: tmpMesh })
 
-  await fs.unlink(tmpMeshLocation)
+  await cleanup()
 }
 
-process.on('SIGINT', () => fs.unlink(tmpMeshLocation))
-process.on('SIGTERM', () => fs.unlink(tmpMeshLocation))
+process.on('SIGINT', cleanup)
+process.on('SIGTERM', cleanup)
 
 main().catch((e) => handleFatalError(e, new DefaultLogger(DEFAULT_CLI_PARAMS.initialLoggerPrefix)))

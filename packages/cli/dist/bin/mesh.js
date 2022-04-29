@@ -36,6 +36,15 @@ const cliParams = {
 };
 const tmpMesh = `_tmp_mesh_${Math.random().toString(36).substring(2, 15)}`;
 const tmpMeshLocation = path_1.default.join(root, `.${tmpMesh}rc.yml`);
+function cleanup() {
+    try {
+        return fs_1.promises.unlink(tmpMeshLocation);
+    }
+    catch (e) {
+        // ignore
+    }
+    return undefined;
+}
 const main = async () => {
     const conf = (await (0, findConfig_1.findConfig)({}));
     // Rewrite additionalResolvers so we can use module resolution more easily
@@ -70,8 +79,8 @@ const main = async () => {
         conf.serve.playgroundTitle = 'GraphCommerce® Mesh';
     await fs_1.promises.writeFile(tmpMeshLocation, yaml_1.default.stringify(conf));
     await (0, cli_1.graphqlMesh)({ ...cliParams, configName: tmpMesh });
-    await fs_1.promises.unlink(tmpMeshLocation);
+    await cleanup();
 };
-process.on('SIGINT', () => fs_1.promises.unlink(tmpMeshLocation));
-process.on('SIGTERM', () => fs_1.promises.unlink(tmpMeshLocation));
+process.on('SIGINT', cleanup);
+process.on('SIGTERM', cleanup);
 main().catch((e) => handleFatalError(e, new utils_1.DefaultLogger(cli_1.DEFAULT_CLI_PARAMS.initialLoggerPrefix)));
