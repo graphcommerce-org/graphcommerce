@@ -4,6 +4,14 @@ const DEV_SITE_URL = process.env.VERCEL_URL || 'http://localhost:3000'
 const PUBLIC_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || DEV_SITE_URL
 const PUBLIC_LOCALE_STORES = process.env.NEXT_PUBLIC_LOCALE_STORES
 
+const indexableIfProduction =
+  isProduction && !process.env.VERCEL_URL.includes('vercel')
+    ? []
+    : [
+        { userAgent: '*', disallow: '/' },
+        { userAgent: 'Googlebot-Image', disallow: '/' },
+      ]
+
 /** @link https://github.com/iamvishnusankar/next-sitemap */
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
@@ -51,8 +59,7 @@ module.exports = {
   ],
   robotsTxtOptions: {
     policies: [
-      { userAgent: '*', disallow: '/' } /** Remove this line on production* */,
-      { userAgent: 'Googlebot-Image', disallow: '/' /** Remove this line on production * */ },
+      ...indexableIfProduction,
       { userAgent: '*', disallow: ['/switch-stores', '/search', '/account', '/cart', '/checkout'] },
       { userAgent: 'AhrefsSiteAudit', allow: '/' },
       { userAgent: 'AhrefsBot', allow: '/' },
