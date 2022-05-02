@@ -59,7 +59,12 @@ module.exports = {
   ],
   robotsTxtOptions: {
     policies: [
-      ...indexableIfProduction,
+      ...(isProduction && !process.env.VERCEL_URL.includes('vercel')
+    ? []
+    : [
+        { userAgent: '*', disallow: '/' },
+        { userAgent: 'Googlebot-Image', disallow: '/' },
+      ]),
       { userAgent: '*', disallow: ['/switch-stores', '/search', '/account', '/cart', '/checkout'] },
       { userAgent: 'AhrefsSiteAudit', allow: '/' },
       { userAgent: 'AhrefsBot', allow: '/' },
