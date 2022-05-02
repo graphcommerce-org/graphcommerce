@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.0.15
+
+### Patch Changes
+
+- Updated dependencies [[`f3d06dd83`](https://github.com/graphcommerce-org/graphcommerce/commit/f3d06dd836c9a76412b419d4d2c79bbd0ee92e04)]:
+  - @graphcommerce/magento-store@4.2.0
+  - @graphcommerce/next-ui@4.7.0
+  - @graphcommerce/magento-cart@4.2.10
+
 ## 3.0.14
 
 ### Patch Changes

@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-product-virtual",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.0.13",
+  "version": "4.0.14",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "@graphcommerce/graphql": "3.1.1",
-    "@graphcommerce/magento-cart": "4.2.9",
-    "@graphcommerce/magento-product": "4.1.11"
+    "@graphcommerce/magento-cart": "4.2.10",
+    "@graphcommerce/magento-product": "4.2.0"
   },
   "peerDependencies": {
     "@lingui/macro": "^3.13.2",
