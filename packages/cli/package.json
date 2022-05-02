@@ -2,7 +2,7 @@
   "name": "@graphcommerce/cli",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "",
   "license": "MIT",
   "scripts": {

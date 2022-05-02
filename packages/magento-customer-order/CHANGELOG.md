@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.0.12
+
+### Patch Changes
+
+- Updated dependencies [[`e58df7278`](https://github.com/graphcommerce-org/graphcommerce/commit/e58df727829a12941e7b2ae2159ee2233969493c), [`ba8cd4d34`](https://github.com/graphcommerce-org/graphcommerce/commit/ba8cd4d3480a7ec7e555b051cfd0fbc809c7aa12)]:
+  - @graphcommerce/magento-graphql@3.0.9
+  - @graphcommerce/graphql-mesh@4.1.2
+  - @graphcommerce/magento-store@4.1.9
+
 ## 3.0.11
 
 ### Patch Changes

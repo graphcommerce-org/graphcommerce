@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.2.5
+
+### Patch Changes
+
+- Updated dependencies [[`ba8cd4d34`](https://github.com/graphcommerce-org/graphcommerce/commit/ba8cd4d3480a7ec7e555b051cfd0fbc809c7aa12)]:
+  - @graphcommerce/graphql-mesh@4.1.2
+  - @graphcommerce/magento-cart@4.2.9
+  - @graphcommerce/magento-store@4.1.9
+  - @graphcommerce/magento-cart-payment-method@3.1.5
+
 ## 3.2.4
 
 ### Patch Changes
