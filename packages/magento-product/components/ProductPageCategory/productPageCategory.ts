@@ -13,5 +13,5 @@ export function productPageCategory(product?: ProductPageCategoryFragment | null
     const carryL = carry?.url_path?.split('/')?.length ?? 0
     const valueL = value?.url_path?.split('/')?.length ?? 0
     return carryL >= valueL ? carry : value
-  })
+  }, null)
 }

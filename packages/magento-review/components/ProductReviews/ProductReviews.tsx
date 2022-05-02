@@ -7,7 +7,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Typography, Button, Box, SxProps, Theme, Link } from '@mui/material'
-import PageLink from 'next/link'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { ProductReviewChip } from '../ProductReviewChip/ProductReviewChip'
 import { ProductReviewsFragment } from './ProductReviews.gql'
@@ -36,6 +36,7 @@ export function ProductReviews(props: ProductReviewsProps) {
   const { reviews, url_key, sx = [] } = props
   const config = 'en_US'
   const locale = config.replace('_', '-')
+  const router = useRouter()
 
   const [reviewPage, setPage] = useState<number>(1)
 
@@ -74,21 +75,20 @@ export function ProductReviews(props: ProductReviewsProps) {
         marginTop: theme.spacings.sm,
       })}
     >
-      <PageLink href={`/account/reviews/add?url_key=${url_key}`} passHref>
-        <Button
-          variant='pill'
-          color='primary'
-          size='medium'
-          className={classes.writeReviewButton}
-          sx={(theme) => ({
-            [theme.breakpoints.down('sm')]: {
-              whiteSpace: 'nowrap',
-            },
-          })}
-        >
-          <Trans>Write a review</Trans>
-        </Button>
-      </PageLink>
+      <Button
+        variant='pill'
+        color='primary'
+        size='medium'
+        className={classes.writeReviewButton}
+        onClick={() => router.push(`/account/reviews/add?url_key=${url_key}`)}
+        sx={(theme) => ({
+          [theme.breakpoints.down('sm')]: {
+            whiteSpace: 'nowrap',
+          },
+        })}
+      >
+        <Trans>Write a review</Trans>
+      </Button>
 
       {!!total_pages && total_pages > 1 && (
         <Pagination
