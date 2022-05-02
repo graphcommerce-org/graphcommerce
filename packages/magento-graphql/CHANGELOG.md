@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.9
+
+### Patch Changes
+
+- [#1429](https://github.com/graphcommerce-org/graphcommerce/pull/1429) [`e58df7278`](https://github.com/graphcommerce-org/graphcommerce/commit/e58df727829a12941e7b2ae2159ee2233969493c) Thanks [@paales](https://github.com/paales)! - type policies for Mollie shouldn’t be in the core package
+
 ## 3.0.8
 
 ### Patch Changes

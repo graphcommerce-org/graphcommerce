@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.2.9
+
+### Patch Changes
+
+- Updated dependencies [[`e58df7278`](https://github.com/graphcommerce-org/graphcommerce/commit/e58df727829a12941e7b2ae2159ee2233969493c)]:
+  - @graphcommerce/magento-graphql@3.0.9
+  - @graphcommerce/magento-customer@4.2.7
+  - @graphcommerce/magento-store@4.1.9
+
 ## 4.2.8
 
 ### Patch Changes

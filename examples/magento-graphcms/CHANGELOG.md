@@ -1,5 +1,43 @@
 # Change Log
 
+## 3.6.4
+
+### Patch Changes
+
+- [#1429](https://github.com/graphcommerce-org/graphcommerce/pull/1429) [`ba8cd4d34`](https://github.com/graphcommerce-org/graphcommerce/commit/ba8cd4d3480a7ec7e555b051cfd0fbc809c7aa12) Thanks [@paales](https://github.com/paales)! - mesh couldn’t be generated properly in a non-monorepo setup
+
+- Updated dependencies [[`e58df7278`](https://github.com/graphcommerce-org/graphcommerce/commit/e58df727829a12941e7b2ae2159ee2233969493c), [`ba8cd4d34`](https://github.com/graphcommerce-org/graphcommerce/commit/ba8cd4d3480a7ec7e555b051cfd0fbc809c7aa12)]:
+  - @graphcommerce/magento-graphql@3.0.9
+  - @graphcommerce/cli@1.0.3
+  - @graphcommerce/graphql-mesh@4.1.2
+  - @graphcommerce/magento-cart@4.2.9
+  - @graphcommerce/magento-customer@4.2.7
+  - @graphcommerce/magento-customer-account@3.1.7
+  - @graphcommerce/magento-customer-order@3.0.12
+  - @graphcommerce/magento-product@4.1.11
+  - @graphcommerce/magento-product-configurable@4.0.15
+  - @graphcommerce/magento-review@3.1.9
+  - @graphcommerce/magento-store@4.1.9
+  - @graphcommerce/mollie-magento-payment@3.2.5
+  - @graphcommerce/magento-cart-billing-address@3.0.12
+  - @graphcommerce/magento-cart-checkout@3.0.13
+  - @graphcommerce/magento-cart-coupon@3.0.14
+  - @graphcommerce/magento-cart-email@3.0.13
+  - @graphcommerce/magento-cart-items@3.0.14
+  - @graphcommerce/magento-cart-payment-method@3.1.5
+  - @graphcommerce/magento-cart-shipping-address@3.0.12
+  - @graphcommerce/magento-cart-shipping-method@3.0.13
+  - @graphcommerce/magento-newsletter@2.0.12
+  - @graphcommerce/magento-payment-braintree@3.0.12
+  - @graphcommerce/magento-payment-included@3.0.12
+  - @graphcommerce/magento-product-bundle@4.0.13
+  - @graphcommerce/magento-product-downloadable@4.0.13
+  - @graphcommerce/magento-product-grouped@3.0.13
+  - @graphcommerce/magento-product-simple@4.0.13
+  - @graphcommerce/magento-product-virtual@4.0.13
+  - @graphcommerce/magento-category@4.0.14
+  - @graphcommerce/magento-cms@4.0.10
+
 ## 3.6.3
 
 ### Patch Changes
