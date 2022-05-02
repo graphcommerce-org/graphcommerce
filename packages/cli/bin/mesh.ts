@@ -26,20 +26,19 @@ const relativePath = path.join(path.relative(meshDir, root), '/')
 
 const isMonoRepo = relativePath.startsWith('../../examples')
 
-const artifactsDir = path.join(path.relative(root, meshDir), '/.mesh')
-
 const cliParams: GraphQLMeshCLIParams = {
   ...DEFAULT_CLI_PARAMS,
-  artifactsDir,
   playgroundTitle: 'GraphCommerce® Mesh',
 }
 
 const tmpMesh = `_tmp_mesh_${Math.random().toString(36).substring(2, 15)}`
 const tmpMeshLocation = path.join(root, `.${tmpMesh}rc.yml`)
 
-function cleanup() {
+async function cleanup() {
   try {
-    return fs.unlink(tmpMeshLocation)
+    await fs.stat(tmpMeshLocation).then((r) => {
+      if (r.isFile()) return fs.unlink(tmpMeshLocation)
+    })
   } catch (e) {
     // ignore
   }
@@ -83,6 +82,11 @@ const main = async () => {
   if (!conf.serve.playgroundTitle) conf.serve.playgroundTitle = 'GraphCommerce® Mesh'
 
   await fs.writeFile(tmpMeshLocation, yaml.stringify(conf))
+
+  // Reexport the mesh to is can be used by packages
+  await fs.writeFile(`${meshDir}/.mesh.ts`, `export * from '${relativePath}.mesh'`, {
+    encoding: 'utf8',
+  })
 
   await graphqlMesh({ ...cliParams, configName: tmpMesh })
 

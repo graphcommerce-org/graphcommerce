@@ -28,17 +28,18 @@ const root = process.cwd();
 const meshDir = path_1.default.dirname(require.resolve('@graphcommerce/graphql-mesh'));
 const relativePath = path_1.default.join(path_1.default.relative(meshDir, root), '/');
 const isMonoRepo = relativePath.startsWith('../../examples');
-const artifactsDir = path_1.default.join(path_1.default.relative(root, meshDir), '/.mesh');
 const cliParams = {
     ...cli_1.DEFAULT_CLI_PARAMS,
-    artifactsDir,
     playgroundTitle: 'GraphCommerce® Mesh',
 };
 const tmpMesh = `_tmp_mesh_${Math.random().toString(36).substring(2, 15)}`;
 const tmpMeshLocation = path_1.default.join(root, `.${tmpMesh}rc.yml`);
-function cleanup() {
+async function cleanup() {
     try {
-        return fs_1.promises.unlink(tmpMeshLocation);
+        await fs_1.promises.stat(tmpMeshLocation).then((r) => {
+            if (r.isFile())
+                return fs_1.promises.unlink(tmpMeshLocation);
+        });
     }
     catch (e) {
         // ignore
@@ -78,6 +79,10 @@ const main = async () => {
     if (!conf.serve.playgroundTitle)
         conf.serve.playgroundTitle = 'GraphCommerce® Mesh';
     await fs_1.promises.writeFile(tmpMeshLocation, yaml_1.default.stringify(conf));
+    // Reexport the mesh to is can be used by packages
+    await fs_1.promises.writeFile(`${meshDir}/.mesh.ts`, `export * from '${relativePath}.mesh'`, {
+        encoding: 'utf8',
+    });
     await (0, cli_1.graphqlMesh)({ ...cliParams, configName: tmpMesh });
     await cleanup();
 };
