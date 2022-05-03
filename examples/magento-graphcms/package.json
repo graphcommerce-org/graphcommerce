@@ -14,7 +14,7 @@
     "build": "yarn codegen && yarn next build && yarn next-sitemap",
     "start": "next start",
     "tsc:lint": "yarn tsc --noEmit -p .",
-    "lingui": "NODE_ENV=development lingui extract",
+    "lingui": "NEXT_PUBLIC_LOCALE_STORES='{\"en\": \"en\", \"nl\": \"nl\", \"fr\": \"fr\", \"nl\": \"nl\", \"de\": \"de\", \"es\": \"es\", \"it\": \"it\"}' NODE_ENV=development lingui extract",
     "codegen-base": "yarn graphql-codegen -c ../../scripts/codegen.magento-graphcms.yml",
     "postinstall": "concurrently 'yarn workspace @graphcommerce/next-config prepack' 'yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack' 'yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack' 'yarn workspace @graphcommerce/cli prepack'"
   },

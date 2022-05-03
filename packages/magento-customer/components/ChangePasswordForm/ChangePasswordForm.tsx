@@ -45,7 +45,7 @@ export function ChangePasswordForm() {
           variant='outlined'
           type='password'
           error={!!formState.errors.newPassword}
-          label={<Trans>New Password</Trans>}
+          label={<Trans>New password</Trans>}
           required={required.newPassword}
           {...muiRegister('newPassword', { required: required.newPassword })}
           helperText={formState.errors.newPassword?.message}
@@ -56,7 +56,7 @@ export function ChangePasswordForm() {
           variant='outlined'
           type='password'
           error={!!formState.errors.confirmPassword}
-          label={<Trans>Confirm Password</Trans>}
+          label={<Trans>Confirm password</Trans>}
           required
           {...muiRegister('confirmPassword', {
             required: true,
