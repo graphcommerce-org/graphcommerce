@@ -5,7 +5,6 @@ import {
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { AddressFields, CustomerDocument, NameFields } from '@graphcommerce/magento-customer'
-import { CustomerAddressList } from '@graphcommerce/magento-customer/components/CustomerAddressList/CustomerAddressList'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Form, FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import {
@@ -92,33 +91,27 @@ export function ShippingAddressForm(props: ShippingAddressFormProps) {
   return (
     <Form onSubmit={submit} noValidate>
       <AnimatePresence initial={false}>
-        {currentCustomer?.addresses ? (
-          <CustomerAddressList addresses={currentCustomer.addresses} />
-        ) : (
-          <>
-            <NameFields form={form} key='name' readOnly={readOnly} />
-            <AddressFields form={form} key='addressfields' readOnly={readOnly} />
+        <NameFields form={form} key='name' readOnly={readOnly} />
+        <AddressFields form={form} key='addressfields' readOnly={readOnly} />
 
-            <FormRow key='telephone'>
-              <TextField
-                variant='outlined'
-                type='text'
-                error={!!formState.errors.telephone}
-                required={required.telephone}
-                label={<Trans>Telephone</Trans>}
-                {...muiRegister('telephone', {
-                  required: required.telephone,
-                  pattern: { value: phonePattern, message: t`Invalid phone number` },
-                })}
-                helperText={formState.isSubmitted && formState.errors.telephone?.message}
-                InputProps={{
-                  readOnly,
-                  endAdornment: <InputCheckmark show={valid.telephone} />,
-                }}
-              />
-            </FormRow>
-          </>
-        )}
+        <FormRow key='telephone'>
+          <TextField
+            variant='outlined'
+            type='text'
+            error={!!formState.errors.telephone}
+            required={required.telephone}
+            label={<Trans>Telephone</Trans>}
+            {...muiRegister('telephone', {
+              required: required.telephone,
+              pattern: { value: phonePattern, message: t`Invalid phone number` },
+            })}
+            helperText={formState.isSubmitted && formState.errors.telephone?.message}
+            InputProps={{
+              readOnly,
+              endAdornment: <InputCheckmark show={valid.telephone} />,
+            }}
+          />
+        </FormRow>
 
         <ApolloCartErrorAlert error={error} />
       </AnimatePresence>

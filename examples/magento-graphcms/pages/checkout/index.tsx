@@ -6,11 +6,14 @@ import {
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
+import { useQuery } from '@graphcommerce/graphql'
 import { ApolloCartErrorAlert, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
 import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { EmailForm } from '@graphcommerce/magento-cart-email'
 import { ShippingAddressForm } from '@graphcommerce/magento-cart-shipping-address'
+import { CustomerAddressForm } from '@graphcommerce/magento-cart-shipping-address/components/CustomerAddressForm/CustomerAddressForm'
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
+import { CustomerDocument } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   FormActions,
@@ -43,6 +46,9 @@ function ShippingPage() {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     router.push('/checkout/payment')
   }
+
+  const customerAddresses = useQuery(CustomerDocument)
+  const addresses = customerAddresses.data?.customer?.addresses
 
   return (
     <ComposedForm>
@@ -77,10 +83,15 @@ function ShippingPage() {
               <LayoutTitle icon={iconBox}>
                 <Trans>Shipping</Trans>
               </LayoutTitle>
-
-              <EmailForm step={1} />
-
-              <ShippingAddressForm step={2} />
+              {console.log(addresses)}
+              {addresses ? (
+                <CustomerAddressForm step={2} />
+              ) : (
+                <>
+                  <EmailForm step={1} />
+                  <ShippingAddressForm step={2} />
+                </>
+              )}
 
               <FormHeader variant='h5'>
                 <Trans>Shipping method</Trans>

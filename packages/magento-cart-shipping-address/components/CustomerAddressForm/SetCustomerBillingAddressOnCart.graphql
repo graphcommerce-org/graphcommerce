@@ -1,0 +1,11 @@
+mutation SetCustomerBillingAddressOnCart($cartId: String!, $customerAddressId: Int!) {
+  setBillingAddressOnCart(
+    input: { cart_id: $cartId, billing_address: { customer_address_id: $customerAddressId } }
+  ) {
+    cart {
+      id
+      __typename
+      ...BillingAddress
+    }
+  }
+}
