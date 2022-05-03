@@ -609,3 +609,9 @@ msgstr "{totalResults} resultaten"
 
 msgid "{total_count} products"
 msgstr "{total_count} producten"
+
+msgid "Select"
+msgstr "Selecteer"
+
+msgid "Change"
+msgstr "Verander"
