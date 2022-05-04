@@ -97,6 +97,11 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
   const [removeWishlistItem] = useMutation(RemoveProductFromWishlistDocument)
 
+  const preventAnimationBubble: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+  }
+
   const handleClick = (e) => {
     e.preventDefault()
 
@@ -155,6 +160,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
     <IconButton
       key={sku}
       onClick={handleClick}
+      onMouseDown={preventAnimationBubble}
       size='small'
       className={classes.wishlistButton}
       sx={[
