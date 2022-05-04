@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.7.1
+
+### Patch Changes
+
+- Updated dependencies [[`3c1c9ce2a`](https://github.com/graphcommerce-org/graphcommerce/commit/3c1c9ce2a947386515df019c31d697114a87dc07)]:
+  - @graphcommerce/magento-category@4.1.0
+  - @graphcommerce/magento-product-configurable@4.0.17
+
 ## 3.7.0
 
 ### Minor Changes
