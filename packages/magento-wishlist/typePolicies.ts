@@ -1,11 +1,4 @@
-import {
-  ApolloCache,
-  NormalizedCacheObject,
-  Mutation,
-  FieldPolicy,
-  TypedTypePolicies,
-  GuestWishlistItem,
-} from '@graphcommerce/graphql'
+import { TypedTypePolicies } from '@graphcommerce/graphql'
 
 export const wishlistTypePolicies: TypedTypePolicies = {
   GuestWishlist: {
