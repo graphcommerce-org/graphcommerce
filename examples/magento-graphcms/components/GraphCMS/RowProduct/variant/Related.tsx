@@ -24,6 +24,7 @@ export function Related(props: RelatedProps) {
             key={item.uid ?? ''}
             renderer={productListRenderer}
             sizes={responsiveVal(200, 400)}
+            titleComponent='h3'
             {...item}
           />
         ) : null,

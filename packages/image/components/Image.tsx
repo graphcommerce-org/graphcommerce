@@ -27,10 +27,12 @@ import {
 
 if (typeof window === 'undefined') {
   // eslint-disable-next-line no-underscore-dangle
-  global.__NEXT_IMAGE_IMPORTED = true
+  ;(global as any).__NEXT_IMAGE_IMPORTED = true
 }
 
 export type { ImageLoaderProps, ImageLoader }
+
+type ImageConfig = ImageConfigComplete & { allSizes: number[] }
 
 const DEFAULT_SIZES: SizesRecord = { 0: '100vw', 1200: '50vw' }
 
@@ -84,7 +86,7 @@ export function srcToString(src: StaticImport | string) {
 // allSizes.sort((a, b) => a - b)
 
 function getWidths(
-  config: ImageLoaderProps['config'],
+  config: ImageConfig,
   width: number | undefined,
   layout: LayoutValue,
   sizes = '',
@@ -138,7 +140,7 @@ type GenImgAttrsData = {
   quality?: number
   sizes: string
   scale: number
-  config: ImageLoaderProps['config']
+  config: ImageConfig
 }
 
 function generateSrcSet(props: GenImgAttrsData): string {
@@ -148,7 +150,7 @@ function generateSrcSet(props: GenImgAttrsData): string {
   return widths
     .map(
       (w, i) =>
-        `${loader({ src, quality, width: w, config })} ${
+        `${loader({ src, quality, width: w })} ${
           kind === 'w' ? Math.round(w * scale) : i + 1
         }${kind}`,
     )
@@ -266,7 +268,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     const combinedRef = useForkRef(ref, forwardedRef)
 
     const configContext = useContext(ImageConfigContext)
-    const config: ImageLoaderProps['config'] = useMemo(() => {
+    const config: ImageConfig = useMemo(() => {
       const c = configEnv || configContext || imageConfigDefault
       const allSizes = [...c.deviceSizes, ...c.imageSizes].sort((a, b) => a - b)
       const deviceSizes = c.deviceSizes.sort((a, b) => a - b)

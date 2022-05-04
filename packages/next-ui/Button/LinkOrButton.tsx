@@ -1,6 +1,6 @@
 import { Link, LinkProps, useForkRef } from '@mui/material'
 import React, { useRef } from 'react'
-import { ConditionalExcept } from 'type-fest'
+import type { ConditionalExcept } from 'type-fest'
 import { Button, ButtonProps } from './Button'
 
 type OmitNever<T extends Record<string, unknown>> = {
@@ -14,6 +14,7 @@ export type LinkOrButtonProps = {
   button?: ButtonProps
   link?: LinkProps
   breakpoint?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  disabled?: boolean
 } & SharedProperties<
   Omit<ButtonProps, 'sx'>,
   Omit<LinkProps, 'color' | 'sx'> & Pick<ButtonProps, 'endIcon' | 'startIcon' | 'color' | 'loading'>
@@ -29,6 +30,7 @@ export const LinkOrButton = React.forwardRef<
     breakpoint = 'md',
     button,
     link,
+    disabled,
 
     // Shared props
     loading,
@@ -54,6 +56,7 @@ export const LinkOrButton = React.forwardRef<
         ref={buttonRef}
         color={color}
         loading={loading}
+        disabled={disabled}
         sx={[
           {
             display: {
@@ -73,13 +76,18 @@ export const LinkOrButton = React.forwardRef<
         variant='body2'
         {...sharedProps}
         {...link}
-        color={loading ? 'text.disabled' : color}
-        aria-disabled={loading}
+        color={loading || disabled ? 'action.disabled' : color}
+        aria-disabled={loading || disabled}
         sx={[
           {
             display: { xs: 'inline-flex', [breakpoint]: 'none' },
             alignItems: 'center',
           },
+          !!disabled &&
+            ((theme) => ({
+              opacity: theme.palette.action.disabledOpacity,
+              pointerEvents: 'none',
+            })),
           ...(Array.isArray(linkSx) ? linkSx : [linkSx]),
         ]}
       >

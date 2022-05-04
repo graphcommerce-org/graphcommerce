@@ -16,11 +16,22 @@ export const defaultRenderers: Renderers = {
   'list-item': (props) => <Box component='li' {...props} />,
   'list-item-child': (props) => <Box component='span' {...props} />,
   'block-quote': (props) => <Box component='blockquote' {...props} />,
-  iframe: (props) => (
-    // todo add security attributes to iframe
-    // todo make iframe responsive (generic IFrame component?)
-    <Box component='iframe' title='embedded content' loading='lazy' {...props} />
-  ),
+  iframe: (props) => {
+    const { url, width, height, sx = [] } = props
+    return (
+      // todo add security attributes to iframe
+      // todo make iframe responsive (generic IFrame component?)
+      <Box
+        component='iframe'
+        src={url}
+        loading='lazy'
+        sx={[
+          { aspectRatio: `${width} / ${height}`, width: '100%' },
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      />
+    )
+  },
   image: ({ src, width, height, title, mimeType }) => (
     <Asset asset={{ url: src, alt: title, width, height, mimeType }} />
   ),

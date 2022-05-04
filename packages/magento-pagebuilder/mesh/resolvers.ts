@@ -1,0 +1,59 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import type { Resolvers, MeshContext } from '@graphcommerce/graphql-mesh'
+import { detectPageBuilder } from '../parser/detectPageBuilder'
+import { parser } from '../parser/parser'
+
+function warnNoContent(
+  content: string | null | undefined,
+  requiredField: string,
+  type: string,
+  { logger }: MeshContext,
+): content is string | null {
+  if (!content) {
+    logger.warn(
+      `Can not process pagebuilder field, please also query the ${requiredField} on type ${type}`,
+    )
+    return false
+  }
+  return true
+}
+
+function nullIfPagebuilder(html: string | null | undefined): string | null {
+  if (!html) return null
+  const pagebuilder = detectPageBuilder(html)
+  if (pagebuilder) return null
+  return html
+}
+
+export const resolvers: Resolvers = {
+  CmsPage: {
+    pagebuilder: ({ content }, _, ctx) => {
+      warnNoContent(content, 'content', 'CmsPage', ctx)
+      return parser(content)
+    },
+    content: ({ content }) => nullIfPagebuilder(content),
+  },
+  CmsBlock: {
+    pagebuilder: ({ content }, _, ctx) => {
+      warnNoContent(content, 'content', 'CmsBlock', ctx)
+      return parser(content)
+    },
+    content: ({ content }) => nullIfPagebuilder(content),
+  },
+  CategoryTree: {
+    pagebuilder: ({ description }, _, ctx) => {
+      warnNoContent(description, 'description', 'CategoryTree', ctx)
+      return parser(description)
+    },
+    description: ({ description }) => nullIfPagebuilder(description),
+  },
+  ComplexTextValue: {
+    pagebuilder: ({ html }, _, ctx) => {
+      warnNoContent(html, 'html', 'ComplexTextValue', ctx)
+      return parser(html)
+    },
+    html: ({ html }) => nullIfPagebuilder(html) ?? '',
+  },
+}
+
+export default { resolvers }

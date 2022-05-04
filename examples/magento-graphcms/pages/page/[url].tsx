@@ -37,7 +37,7 @@ function CmsPage(props: Props) {
         title={page?.metaTitle ?? title ?? ''}
         metaDescription={page?.metaDescription ?? ''}
         metaRobots={metaRobots}
-        canonical={`/${page?.url}`}
+        canonical={page?.url === 'page/home' ? '/' : `/${page?.url}`}
       />
 
       <LayoutHeader floatingMd floatingSm>

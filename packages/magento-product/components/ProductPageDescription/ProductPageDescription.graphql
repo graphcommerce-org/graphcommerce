@@ -2,6 +2,6 @@ fragment ProductPageDescription on ProductInterface {
   name
   ...ProductShortDescription
   description {
-    html
+    ...ComplexTextValue
   }
 }

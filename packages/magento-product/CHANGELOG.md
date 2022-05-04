@@ -1,5 +1,80 @@
 # Change Log
 
+## 4.1.11
+
+### Patch Changes
+
+- Updated dependencies [[`ba8cd4d34`](https://github.com/graphcommerce-org/graphcommerce/commit/ba8cd4d3480a7ec7e555b051cfd0fbc809c7aa12)]:
+  - @graphcommerce/graphql-mesh@4.1.2
+  - @graphcommerce/magento-cart@4.2.9
+  - @graphcommerce/magento-store@4.1.9
+
+## 4.1.10
+
+### Patch Changes
+
+- [#1394](https://github.com/graphcommerce-org/graphcommerce/pull/1394) [`b6b8bb5b3`](https://github.com/graphcommerce-org/graphcommerce/commit/b6b8bb5b31b0891ea24733de34a3bd5c0a9604e4) Thanks [@paales](https://github.com/paales)! - Made fragments injectable so they can be extended
+
+- Updated dependencies [[`06f7bdff8`](https://github.com/graphcommerce-org/graphcommerce/commit/06f7bdff882396f2b0e1a2873fbb718c7b06fab4), [`100f4c38c`](https://github.com/graphcommerce-org/graphcommerce/commit/100f4c38c8fcda4bc6e0425e38028b550b60adc2)]:
+  - @graphcommerce/graphql-mesh@4.1.1
+  - @graphcommerce/graphql@3.1.1
+  - @graphcommerce/next-ui@4.6.2
+  - @graphcommerce/magento-store@4.1.8
+  - @graphcommerce/magento-cart@4.2.8
+  - @graphcommerce/framer-scroller@2.1.7
+
+## 4.1.9
+
+### Patch Changes
+
+- [#1419](https://github.com/graphcommerce-org/graphcommerce/pull/1419) [`a52a863f9`](https://github.com/graphcommerce-org/graphcommerce/commit/a52a863f9c69c6b3ae657dcce3bc9b14413ce125) Thanks [@NickdeK](https://github.com/NickdeK)! - Make ProductListSort stylable and translate "Sort By" string
+
+## 4.1.8
+
+### Patch Changes
+
+- Updated dependencies [[`d8906cf4a`](https://github.com/graphcommerce-org/graphcommerce/commit/d8906cf4afbfc234aedd91a2c581f82623267357)]:
+  - @graphcommerce/magento-cart@4.2.7
+
+## 4.1.7
+
+### Patch Changes
+
+- [#1399](https://github.com/graphcommerce-org/graphcommerce/pull/1399) [`fb277d8e1`](https://github.com/graphcommerce-org/graphcommerce/commit/fb277d8e1e3612c5e9cf890a30d19cfd1ff70542) Thanks [@paales](https://github.com/paales)! - Now using [@graphql-yoga](https://github.com/dotansimha/graphql-yoga) for GraphQL which has full support for [envelop](https://www.envelop.dev/) plugins.
+
+* [#1399](https://github.com/graphcommerce-org/graphcommerce/pull/1399) [`fb277d8e1`](https://github.com/graphcommerce-org/graphcommerce/commit/fb277d8e1e3612c5e9cf890a30d19cfd1ff70542) Thanks [@paales](https://github.com/paales)! - Added a new @graphcommerce/cli package to generate the mesh so it can be generated _inside_ the @graphcommerce/graphql-mesh package to allow for better future extensibility.
+
+- [#1399](https://github.com/graphcommerce-org/graphcommerce/pull/1399) [`da0ae7d02`](https://github.com/graphcommerce-org/graphcommerce/commit/da0ae7d0236e4908ba0bf0fa16656be516e841d4) Thanks [@paales](https://github.com/paales)! - Updated dependencies
+
+- Updated dependencies [[`fb277d8e1`](https://github.com/graphcommerce-org/graphcommerce/commit/fb277d8e1e3612c5e9cf890a30d19cfd1ff70542), [`fb277d8e1`](https://github.com/graphcommerce-org/graphcommerce/commit/fb277d8e1e3612c5e9cf890a30d19cfd1ff70542), [`da0ae7d02`](https://github.com/graphcommerce-org/graphcommerce/commit/da0ae7d0236e4908ba0bf0fa16656be516e841d4)]:
+  - @graphcommerce/graphql@3.1.0
+  - @graphcommerce/graphql-mesh@4.1.0
+  - @graphcommerce/magento-cart@4.2.6
+  - @graphcommerce/magento-store@4.1.7
+  - @graphcommerce/next-ui@4.6.1
+  - @graphcommerce/framer-scroller@2.1.6
+  - @graphcommerce/image@3.1.5
+
+## 4.1.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.2.5
+
+## 4.1.5
+
+### Patch Changes
+
+- [#1381](https://github.com/graphcommerce-org/graphcommerce/pull/1381) [`9b3488c6a`](https://github.com/graphcommerce-org/graphcommerce/commit/9b3488c6a03cc09a647f43f6a8b36d96e97e5bb8) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Non blocking error handling
+
+- Updated dependencies [[`3c801f45c`](https://github.com/graphcommerce-org/graphcommerce/commit/3c801f45c7df55131acf30ae2fe0d2344830d480), [`b8d04130a`](https://github.com/graphcommerce-org/graphcommerce/commit/b8d04130a1b1cb8fc85308939235140288744465), [`3192fab82`](https://github.com/graphcommerce-org/graphcommerce/commit/3192fab82560e2211dfcacadc3b0b305260527d8), [`0e425e85e`](https://github.com/graphcommerce-org/graphcommerce/commit/0e425e85ee8fed280349317ee0440c7bceea5823), [`8a354d1cd`](https://github.com/graphcommerce-org/graphcommerce/commit/8a354d1cd4757497ddfc9b1969a0addbc8ff616b)]:
+  - @graphcommerce/next-ui@4.6.0
+  - @graphcommerce/magento-cart@4.2.4
+  - @graphcommerce/image@3.1.4
+  - @graphcommerce/framer-scroller@2.1.5
+  - @graphcommerce/magento-store@4.1.6
+
 ## 4.1.4
 
 ### Patch Changes

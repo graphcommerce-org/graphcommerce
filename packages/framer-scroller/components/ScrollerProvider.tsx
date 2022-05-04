@@ -106,12 +106,15 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
 
     stop()
 
-    // We're setting the current scrollLeft to prevent resetting the scroll position on Safari
+    // We're setting the current scrollLeft to prevent resetting the scroll position on Safari 14.
     const l = scrollerRef.current.scrollLeft
     const t = scrollerRef.current.scrollTop
     snap.set(true)
-    scrollerRef.current.scrollLeft = l
-    scrollerRef.current.scrollTop = t
+    requestAnimationFrame(() => {
+      if (!scrollerRef.current) return
+      scrollerRef.current.scrollLeft = l
+      scrollerRef.current.scrollTop = t
+    })
   }, [snap, stop])
 
   useObserveItems(scrollerRef, items)

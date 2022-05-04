@@ -2,11 +2,10 @@ generates:
   # Generate a types file
   node_modules/@graphcommerce/graphql/generated/types.ts:
     schema:
-      - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
+      - .mesh/schema.graphql
       - '**/*.graphqls'
       - node_modules/@graphcommerce/**/*.graphqls
     plugins:
-      - typescript
       - typescript-apollo-client-helpers
       - add
     config:
@@ -15,7 +14,7 @@ generates:
   # Generate a fragments.json
   node_modules/@graphcommerce/graphql/generated/fragments.json:
     schema:
-      - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
+      - .mesh/schema.graphql
       - '**/*.graphqls'
       - node_modules/@graphcommerce/**/*.graphqls
     plugins:
@@ -23,7 +22,7 @@ generates:
   # Generate .gql.ts files for each GraphQL file
   .:
     schema:
-      - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
+      - .mesh/schema.graphql
       - '**/*.graphqls'
       - node_modules/@graphcommerce/**/*.graphqls
     documents:
@@ -38,7 +37,7 @@ generates:
     preset: '@graphcommerce/graphql-codegen-near-operation-file'
     presetConfig:
       extension: .gql.ts
-      baseTypesPath: ~@graphcommerce/graphql
+      baseTypesPath: ~@graphcommerce/graphql-mesh/.mesh
       injectables: true
     config:
       skipTypename: true

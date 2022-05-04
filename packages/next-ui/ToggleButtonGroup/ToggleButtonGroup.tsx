@@ -63,19 +63,23 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGroupProp
       className={`${classes.root} ${className ?? ''}`}
       sx={[
         (theme) => ({
-          display: 'grid',
           rowGap: theme.spacings.xxs,
           columnGap: theme.spacings.xs,
           '&.orientationVertical': {
             gridAutoFlow: 'column',
           },
           '&.sizeSmall.orientationHorizontal': {
-            gridTemplateColumns: `repeat(auto-fill, minmax(60px, 1fr))`,
+            display: 'flex',
+            flexWrap: 'wrap',
+            rowGap: '8px',
+            columnGap: '8px',
           },
           '&.sizeMedium.orientationHorizontal': {
+            display: 'grid',
             gridTemplateColumns: 'repeat(2, 1fr)',
           },
           '&.sizeLarge.orientationHorizontal': {
+            display: 'grid',
             gridTemplateColumns: 'repeat(2, 1fr)',
           },
         }),

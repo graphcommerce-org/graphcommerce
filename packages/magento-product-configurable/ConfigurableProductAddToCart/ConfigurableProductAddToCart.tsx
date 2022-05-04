@@ -83,6 +83,7 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         optionEndLabels={optionEndLabels}
         {...optionsProps}
       />
+
       <TextInputNumber
         variant='outlined'
         error={formState.isSubmitted && !!formState.errors.quantity}

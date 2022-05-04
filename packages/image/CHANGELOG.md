@@ -1,5 +1,20 @@
 # Change Log
 
+## 3.1.5
+
+### Patch Changes
+
+- [#1399](https://github.com/graphcommerce-org/graphcommerce/pull/1399) [`da0ae7d02`](https://github.com/graphcommerce-org/graphcommerce/commit/da0ae7d0236e4908ba0bf0fa16656be516e841d4) Thanks [@paales](https://github.com/paales)! - Updated dependencies
+
+- Updated dependencies [[`da0ae7d02`](https://github.com/graphcommerce-org/graphcommerce/commit/da0ae7d0236e4908ba0bf0fa16656be516e841d4)]:
+  - @graphcommerce/framer-utils@3.1.2
+
+## 3.1.4
+
+### Patch Changes
+
+- [#1387](https://github.com/graphcommerce-org/graphcommerce/pull/1387) [`0e425e85e`](https://github.com/graphcommerce-org/graphcommerce/commit/0e425e85ee8fed280349317ee0440c7bceea5823) Thanks [@NickdeK](https://github.com/NickdeK)! - Export Sizes type to be used for passing Sizes prop
+
 ## 3.1.3
 
 ### Patch Changes

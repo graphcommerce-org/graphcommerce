@@ -1,4 +1,4 @@
-import { TypedDocumentNode } from '@apollo/client'
+import type { TypedDocumentNode } from '@apollo/client'
 import {
   DefinitionNode,
   OperationDefinitionNode,
@@ -12,8 +12,8 @@ import {
   OperationTypeNode,
 } from 'graphql'
 import { useMemo } from 'react'
-import { FieldValues } from 'react-hook-form'
-import { LiteralUnion } from 'type-fest'
+import type { FieldValues } from 'react-hook-form'
+import type { LiteralUnion } from 'type-fest'
 
 type Scalars = {
   ID: string

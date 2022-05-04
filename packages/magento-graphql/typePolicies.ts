@@ -1,11 +1,12 @@
-import { TypedTypePolicies } from '@graphcommerce/graphql'
+import { StrictTypedTypePolicies } from '@graphcommerce/graphql'
 
+/// /todooooo
 /**
  * By default we don't need to do anything for types with an `id` or without anything to identify.
  *
  * - https://www.apollographql.com/docs/react/caching/cache-configuration/#default-identifier-generation
  */
-export const magentoTypePolicies: TypedTypePolicies = {
+export const magentoTypePolicies: StrictTypedTypePolicies = {
   // AddBundleProductsToCartOutput: { keyFields: false },
   // AddConfigurableProductsToCartOutput: { keyFields: false },
   // AddDownloadableProductsToCartOutput: { keyFields: false },
@@ -147,9 +148,6 @@ export const magentoTypePolicies: TypedTypePolicies = {
   // LayerFilterItemInterface: { keyFields: false },
   MediaGalleryEntry: { keyFields: ['uid'] },
   // MediaGalleryInterface: { keyFields: false },
-  MollieIssuer: { keyFields: ['code'] },
-  // MolliePaymentMethodMeta: { keyFields: false },
-  // MollieTransactionOutput: { keyFields: false },
   // Money: { keyFields: false },
   Order: { keyFields: ['order_number'] },
   // OrderAddress: { keyFields: false },

@@ -33,6 +33,7 @@ export function BlogAuthor(props: BlogAuthorProps) {
     >
       <Chip
         sx={{
+          borderRadius: '99em',
           height: responsiveVal(44, 66),
           '& .MuiChip-label': {
             paddingLeft: responsiveVal(10, 14),

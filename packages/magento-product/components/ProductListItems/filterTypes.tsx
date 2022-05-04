@@ -1,4 +1,4 @@
-import {
+import type {
   Exact,
   Maybe,
   Scalars,
@@ -7,7 +7,7 @@ import {
   FilterEqualTypeInput,
   FilterMatchTypeInput,
   FilterRangeTypeInput,
-} from '@graphcommerce/graphql'
+} from '@graphcommerce/graphql-mesh'
 
 /** This is mainly based on ProductListQueryVariables */
 export type ProductListParams = Exact<{

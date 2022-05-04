@@ -1,4 +1,3 @@
-import { persistCache } from '@graphcommerce/graphql'
 import { useEffect } from 'react'
 import {
   FieldValues,
@@ -11,6 +10,7 @@ import {
 
 export type UseFormPersistOptions<
   TFieldValues extends FieldValues = FieldValues,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   TContext = any,
 > = {
   /** Instance of current form, used to watch value */

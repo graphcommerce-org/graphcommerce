@@ -64,7 +64,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['next.config.js', '**/test/**', '**/*.d.ts'],
+        devDependencies: ['next.config.js', '**/test/**', '**/*.d.ts', '**/*.spec.ts'],
       },
     ],
     'import/order': ['warn', { alphabetize: { order: 'asc' } }],
@@ -127,6 +127,12 @@ module.exports = {
       files: ['generated/*'],
       rules: {
         '@typescript-eslint/camelcase': 'off',
+      },
+    },
+    {
+      files: ['**/*.spec.ts', '**/*.spec.tsx'],
+      env: {
+        jest: true,
       },
     },
   ],

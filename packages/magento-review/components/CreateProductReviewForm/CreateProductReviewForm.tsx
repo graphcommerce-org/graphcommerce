@@ -1,4 +1,5 @@
-import { useQuery, ProductReviewRatingInput } from '@graphcommerce/graphql'
+import { useQuery } from '@graphcommerce/graphql'
+import { ProductReviewRatingInput } from '@graphcommerce/graphql-mesh'
 import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
 import {
   Form,

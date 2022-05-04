@@ -29,7 +29,7 @@ import {
 import { Trans } from '@lingui/macro'
 import { Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import PageLink from 'next/link'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { LayoutFull, LayoutFullProps, RowProduct, RowRenderer, Usps } from '../../../components'
 import { ProductPageDocument, ProductPageQuery } from '../../../graphql/ProductPage.gql'
@@ -47,6 +47,8 @@ function ProductConfigurable(props: Props) {
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
   const aggregations = typeProducts?.aggregations
+
+  const router = useRouter()
 
   if (
     product?.__typename !== 'ConfigurableProduct' ||
@@ -91,11 +93,17 @@ function ProductConfigurable(props: Props) {
             name={product.name ?? ''}
             optionEndLabels={{
               size: (
-                <PageLink href='/modal/product/global/size' passHref>
-                  <Link color='primary' underline='hover'>
-                    <Trans>Which size is right?</Trans>
-                  </Link>
-                </PageLink>
+                <Link
+                  component='button'
+                  color='primary'
+                  underline='hover'
+                  onClick={(e) => {
+                    e.preventDefault()
+                    return router.push('/modal/product/global/size')
+                  }}
+                >
+                  <Trans>Which size is right?</Trans>
+                </Link>
               ),
             }}
             additionalButtons={<ProductWishlistChipDetailConfigurable {...product} />}

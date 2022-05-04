@@ -2,7 +2,7 @@
   "name": "@graphcommerce/next-config",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.1.2",
+  "version": "3.1.4",
   "type": "commonjs",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -13,14 +13,14 @@
     "prepack": "yarn build"
   },
   "dependencies": {
-    "@lingui/loader": "^3.13.2",
+    "@lingui/loader": "^3.13.3",
     "js-yaml-loader": "^1.2.2",
     "next-transpile-modules": "^9.0.0",
-    "webpack": "^5.70.0"
+    "webpack": "^5.72.0"
   },
   "devDependencies": {
-    "typescript": "4.6.3",
-    "type-fest": "2.12.1"
+    "type-fest": "^2.12.2",
+    "typescript": "4.6.3"
   },
   "peerDependencies": {
     "next": "12.1.2",

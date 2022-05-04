@@ -9,14 +9,19 @@ The following overview contains the status of items on the GraphCommerce roadmap
 
 ## In progress
 
-- [ ] Adyen payment service (Braintree, Mollie, Klarna, Paypal already
-      implemented)
+- [ ] Adyen payment service (Braintree, Mollie, already implemented)
 - [ ] Wishlist
+- [ ] PageBuilder support
+- [ ] Fetch Magento image sizes (probe-image-size)
 
 ## Planned
 
 - [ ] Buckaroo payment service
 - [ ] Multisafepay payment service
+- [ ] Windows support
+- [ ] Postcode check integration
+- [ ] Pick up in store checkout integration
+- [ ] Store locator
 
 ## Future
 

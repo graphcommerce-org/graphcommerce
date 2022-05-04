@@ -1,6 +1,6 @@
 import { LocalStorageWrapper, CachePersistor } from 'apollo3-cache-persist'
 import { mergeDeep, ApolloCache, ApolloClient, NormalizedCacheObject } from './apollo'
-import type { TypedTypePolicies } from './generated/types'
+import type { StrictTypedTypePolicies } from './generated/types'
 import { MigrateCache, migrateCacheHandler } from './migrateCache'
 import { getTypePoliciesVersion } from './typePolicies'
 
@@ -15,7 +15,7 @@ export const persistCache = () => persistor?.persist()
 export function createCacheReviver(
   client: ApolloClient<NormalizedCacheObject>,
   createCache: () => ApolloCache<NormalizedCacheObject>,
-  policies: TypedTypePolicies[],
+  policies: StrictTypedTypePolicies[],
   migrations: MigrateCache[],
   incommingState: NormalizedCacheObject = {},
 ) {

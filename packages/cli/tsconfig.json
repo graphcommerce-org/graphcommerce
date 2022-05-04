@@ -1,0 +1,10 @@
+{
+  "exclude": ["**/node_modules", "**/.*/"],
+  "include": ["**/*.ts", "**/*.tsx"],
+  "extends": "@graphcommerce/typescript-config-pwa/node.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": "dist",
+    "sourceMap": false
+  }
+}

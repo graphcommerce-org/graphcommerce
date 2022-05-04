@@ -4,6 +4,7 @@ metaTitle: Static Site Generation with Nextjs ecommerce framework GraphCommerce
 metaDescription:
   'GraphCommerce is a nextjs Magento framework. GraphCommerce offers Static Site
   Generation for Magento nextjs PWA out-of-the-box.'
+metaUrl: framework/static-generation-nextjs-ecommerce
 ---
 
 <div data-nosnippet>

@@ -39,7 +39,9 @@ function BlogPage(props: Props) {
   return (
     <>
       <LayoutHeader floatingMd>
-        <LayoutTitle size='small'>{title}</LayoutTitle>
+        <LayoutTitle size='small' component='span'>
+          {title}
+        </LayoutTitle>
       </LayoutHeader>
       <Row>
         <PageMeta title={title} metaDescription={title} canonical={`/${page.url}`} />

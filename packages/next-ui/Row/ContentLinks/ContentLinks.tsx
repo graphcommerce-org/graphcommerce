@@ -37,7 +37,7 @@ export function ContentLinks(props: ContentLinksProps) {
             gridAutoColumns: `max-content`,
           })}
         >
-          <Typography variant='subtitle1' component='h3' className={classes.title}>
+          <Typography variant='subtitle1' component='h2' className={classes.title}>
             {title}
           </Typography>
           {children}

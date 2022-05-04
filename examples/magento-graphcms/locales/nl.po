@@ -131,7 +131,7 @@ msgid "Create Account"
 msgstr "Maak account"
 
 msgid "Create a password and tell us your name"
-msgstr "Maak een wachtwoord en vertell ons uw naam"
+msgstr "Maak een wachtwoord en vertel ons uw naam"
 
 msgid "Create account!"
 msgstr "Maak account!"
@@ -575,7 +575,7 @@ msgid "Your session is expired"
 msgstr "Uw sessie is verlopen"
 
 msgid "canceled"
-msgstr "geannulleerd"
+msgstr "geannuleerd"
 
 msgid "invoiced"
 msgstr "gefactureerd"

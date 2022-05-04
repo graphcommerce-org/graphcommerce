@@ -20,7 +20,7 @@ export function FeatureBoxed(props: FeatureBoxedProps) {
         item.__typename === 'ProductImage' &&
         item.url && (
           <Image
-            alt={item.label ?? ''}
+            alt={item.label || item.label === ' ' ? item.label : 'Product Image 3'}
             width={1532}
             height={1678}
             src={item.url}
