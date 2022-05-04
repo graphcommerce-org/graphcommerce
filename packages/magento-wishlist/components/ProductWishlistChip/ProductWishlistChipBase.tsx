@@ -102,7 +102,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
     e.stopPropagation()
   }
 
-  const handleClick = (e) => {
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
 
     if (!sku) {
