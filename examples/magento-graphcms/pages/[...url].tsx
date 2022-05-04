@@ -80,7 +80,11 @@ function CategoryPage(props: Props) {
           canonical={page?.url ? `/${page?.url}` : undefined}
         />
       ) : (
-        <CategoryMeta params={params} {...category} />
+        <CategoryMeta
+          params={params}
+          current_page={products?.page_info?.current_page}
+          {...category}
+        />
       )}
 
       <LayoutHeader floatingMd>
