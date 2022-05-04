@@ -55,9 +55,10 @@ export function useMergeGuestWishlistWithCustomer() {
       quantity: item.quantity,
     }))
 
-    cache.evict({
-      id: cache.identify({ __typename: 'GuestWishlist' }),
-    })
-    addWishlistItem({ variables: { input: payload } })
-  }, [guestWishlistData, guestDataSkus, validatedItems, addWishlistItem, cache, isLoggedIn])
+    addWishlistItem({ variables: { input: payload } }).then(() => 
+      cache.evict({
+        id: cache.identify({ __typename: 'GuestWishlist' }),
+      })
+    )
+  }, [isLoggedIn])
 }
