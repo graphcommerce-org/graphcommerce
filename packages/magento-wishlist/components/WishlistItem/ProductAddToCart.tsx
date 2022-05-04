@@ -1,4 +1,4 @@
-import { ProductInterface } from '@graphcommerce/graphql'
+import type { ProductInterface } from '@graphcommerce/graphql-mesh'
 import { ApolloCartErrorAlert, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import {
   ProductAddToCartDocument,
