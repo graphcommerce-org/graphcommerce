@@ -1,5 +1,5 @@
+import { Trans } from '@graphcommerce/lingui-next'
 import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
 import { Box, Divider, SxProps, Theme, Typography } from '@mui/material'
 import { ProductListCountFragment } from './ProductListCount.gql'
 

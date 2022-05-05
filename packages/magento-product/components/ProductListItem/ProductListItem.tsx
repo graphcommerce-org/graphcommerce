@@ -1,6 +1,6 @@
 import { Image, ImageProps } from '@graphcommerce/image'
+import { Trans } from '@graphcommerce/lingui-next'
 import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
 import { ButtonBase, Typography, Box, styled, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'

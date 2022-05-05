@@ -1,7 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { GetStaticPaths } from 'next'
 import {
   BlogAuthor,

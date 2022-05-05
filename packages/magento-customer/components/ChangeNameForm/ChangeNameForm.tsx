@@ -1,6 +1,6 @@
 import { Form, FormActions, FormDivider, MessageSnackbar, Button } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { NameFields } from '../NameFields/NameFields'
 import { UpdateCustomerNameDocument } from './UpdateCustomerName.gql'

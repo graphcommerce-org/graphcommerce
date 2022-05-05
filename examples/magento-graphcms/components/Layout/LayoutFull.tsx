@@ -1,3 +1,4 @@
+import { t, Trans } from '@graphcommerce/lingui-next'
 import { CartFab } from '@graphcommerce/magento-cart'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { SearchLink } from '@graphcommerce/magento-search'
@@ -17,7 +18,6 @@ import {
   MenuFabItem,
   DarkLightModeMenuSecondaryItem,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
 import { Fab } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'

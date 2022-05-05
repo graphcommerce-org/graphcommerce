@@ -15,7 +15,7 @@ import {
   IconSvg,
   LayoutOverlayHeader,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { t, Trans } from '@graphcommerce/lingui-next'
 import { Container, NoSsr } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import Link from 'next/link'

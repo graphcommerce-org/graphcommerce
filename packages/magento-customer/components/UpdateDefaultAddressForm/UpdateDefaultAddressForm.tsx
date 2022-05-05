@@ -1,5 +1,5 @@
 import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { FormControl, FormControlLabel, FormHelperText, Switch } from '@mui/material'
 import React, { useEffect, useMemo } from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'

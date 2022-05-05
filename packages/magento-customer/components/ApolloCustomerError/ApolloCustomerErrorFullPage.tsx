@@ -1,6 +1,6 @@
 import { ApolloErrorFullPage, ApolloErrorAlertProps } from '@graphcommerce/ecommerce-ui'
 import { iconPerson, IconSvg } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { Button } from '@mui/material'
 import PageLink from 'next/link'
 import { useExtractCustomerErrors } from '../../hooks/useExtractCustomerErrors'

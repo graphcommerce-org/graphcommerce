@@ -14,7 +14,7 @@ import {
   IconSvg,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { t, Trans } from '@graphcommerce/lingui-next'
 import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'

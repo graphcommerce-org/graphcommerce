@@ -1865,6 +1865,15 @@
     object-inspect "1.10.3"
     tslib "^2.0.0"
 
+"@graphql-mesh/cache-inmemory-lru@^0.6.18":
+  version "0.6.18"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/cache-inmemory-lru/-/cache-inmemory-lru-0.6.18.tgz#c92f25b4973b2779da6c79fcf1dc47095c91a91f"
+  integrity sha512-LnUN9mAwT18rj+CKpuhMfdMCr+/LLiB0emXh2ZbCzfcHY8BiE5K2QS+DLmYR4Ngte3kNRCFctbs4T15rCuLUZw==
+  dependencies:
+    "@graphql-mesh/types" "0.71.4"
+    "@graphql-mesh/utils" "0.34.4"
+    tslib "^2.3.1"
+
 "@graphql-mesh/cache-localforage@0.6.1":
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/cache-localforage/-/cache-localforage-0.6.1.tgz#1d48f235631f46adb3bfc03c09a83ca65a01a3f2"
@@ -2019,6 +2028,18 @@
     graphql-jit "0.7.3"
     tslib "^2.3.1"
 
+"@graphql-mesh/store@0.8.2":
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/store/-/store-0.8.2.tgz#76b8682e38160fabf512cc113053979fa360edc2"
+  integrity sha512-x7ga+4UfWZApe6vr99QEboI2AJ6TQfCDnJq9nuEXnBcXY689l8SzEy0kVPEPKD9yNJ6+74bwhg489VzY0hKDsA==
+  dependencies:
+    "@graphql-inspector/core" "3.1.2"
+    "@graphql-mesh/cross-helpers" "0.1.2"
+    "@graphql-mesh/types" "0.71.4"
+    "@graphql-mesh/utils" "0.34.4"
+    "@graphql-tools/utils" "8.6.9"
+    tslib "^2.3.1"
+
 "@graphql-mesh/store@0.8.4":
   version "0.8.4"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/store/-/store-0.8.4.tgz#60504e5fe548458dd49dcc53714b016f623f8809"
@@ -2080,6 +2101,18 @@
     micromatch "4.0.5"
     tslib "^2.3.1"
 
+"@graphql-mesh/types@0.71.4":
+  version "0.71.4"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.71.4.tgz#d6f8f0a0255c76deddda5c6a52c312c0efefb9b1"
+  integrity sha512-9qgILSkT6gG4YILWdpz0gAw2qbHgVerLs/mYV6cgN6HxwZz3tXaFeXq77Vdo6opFxF3O9aUoWmG1Jo6//y9bcA==
+  dependencies:
+    "@graphql-mesh/store" "0.8.2"
+    "@graphql-tools/delegate" "8.7.7"
+    "@graphql-tools/utils" "8.6.9"
+    "@graphql-typed-document-node/core" "3.1.1"
+    fetchache "0.1.2"
+    tslib "^2.3.1"
+
 "@graphql-mesh/types@0.72.1":
   version "0.72.1"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.72.1.tgz#5066fcbf385200de03854acf0e41843617640fdd"
@@ -2090,6 +2123,32 @@
     "@graphql-tools/utils" "8.6.9"
     "@graphql-typed-document-node/core" "3.1.1"
     fetchache "0.1.2"
+    tslib "^2.3.1"
+
+"@graphql-mesh/utils@0.34.4":
+  version "0.34.4"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/utils/-/utils-0.34.4.tgz#b0b495f8e88f57d4545bcc1cf4ea1d2c100b2b23"
+  integrity sha512-aCNzjlzp2y1NbA0eeITlWuc/3V0wToYO0HdSGeTJHOQN0AZzovlSPUnYbQN1xoJOBXZDaa2WW1lIWH8t5tEULA==
+  dependencies:
+    "@graphql-mesh/cross-helpers" "0.1.2"
+    "@graphql-mesh/string-interpolation" "0.1.0"
+    "@graphql-mesh/types" "0.71.4"
+    "@graphql-tools/delegate" "8.7.7"
+    "@graphql-tools/utils" "8.6.9"
+    "@graphql-typed-document-node/core" "3.1.1"
+    chalk "4.1.2"
+    cross-undici-fetch "0.3.1"
+    dayjs "1.11.1"
+    fetchache "0.1.2"
+    file-uri-to-path "2.0.0"
+    flatstr "1.0.12"
+    graphql-jit "0.7.3"
+    graphql-subscriptions "2.0.0"
+    is-url "1.2.4"
+    js-yaml "4.1.0"
+    lodash "4.17.21"
+    object-hash "3.0.0"
+    tiny-lru "8.0.2"
     tslib "^2.3.1"
 
 "@graphql-mesh/utils@0.34.6":
@@ -2787,16 +2846,7 @@
     loader-utils "^2.0.0"
     ramda "^0.27.1"
 
-"@lingui/macro@3.13.3":
-  version "3.13.3"
-  resolved "https://registry.yarnpkg.com/@lingui/macro/-/macro-3.13.3.tgz#699b60e6676c3c9e3c9eed6564155fc9e23d6aa8"
-  integrity sha512-nPldmgPGNfGTVW3TTkSZiaPI5jDQKwv/Hfmjzwo/VzfXpcjxoqz0oDGQBx8mbdKcMgpq+g6fV2Y5aCosTazdqg==
-  dependencies:
-    "@babel/runtime" "^7.11.2"
-    "@lingui/conf" "^3.13.3"
-    ramda "^0.27.1"
-
-"@lingui/react@^3.13.3":
+"@lingui/react@3.13.3", "@lingui/react@^3.13.3":
   version "3.13.3"
   resolved "https://registry.yarnpkg.com/@lingui/react/-/react-3.13.3.tgz#e68284b00a1096d112553bd74a361c17810478c5"
   integrity sha512-sCCI5xMcUY9b6w2lwbwy6iHpo1Fb9TDcjcHAD2KI5JueLH+WWQG66tIHiVAlSsQ+hmQ9Tt+f86H05JQEiDdIvg==
@@ -5095,6 +5145,18 @@ cross-spawn@^7.0.2, cross-spawn@^7.0.3:
     path-key "^3.1.0"
     shebang-command "^2.0.0"
     which "^2.0.1"
+
+cross-undici-fetch@0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/cross-undici-fetch/-/cross-undici-fetch-0.3.1.tgz#e8fc572822b192215b5e4ff21c0c6657497d533f"
+  integrity sha512-WMo0uGuTIeGw5y/aUEBwvMROJTsaCRyCxTFToERnd8RqJxRH8QgL42KzV++xmUIS9X1j6PqJHUWMPH2pn6M9mw==
+  dependencies:
+    abort-controller "^3.0.0"
+    form-data-encoder "^1.7.1"
+    formdata-node "^4.3.1"
+    node-fetch "^2.6.7"
+    undici "^5.0.0"
+    web-streams-polyfill "^3.2.0"
 
 cross-undici-fetch@^0.3.5:
   version "0.3.8"
@@ -11438,7 +11500,7 @@ unc-path-regex@^0.1.2:
   resolved "https://registry.yarnpkg.com/unc-path-regex/-/unc-path-regex-0.1.2.tgz#e73dd3d7b0d7c5ed86fbac6b0ae7d8c6a69d50fa"
   integrity sha1-5z3T17DXxe2G+6xrCufYxqadUPo=
 
-undici@^5.1.0:
+undici@^5.0.0, undici@^5.1.0:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/undici/-/undici-5.1.1.tgz#356427b0d1f032ca4cf85537b1e1694a52090438"
   integrity sha512-CmK9JzLSMGx+2msOao8LhkKn3J7eKo2M50v0KZQ2XbiHcGqLS1HiIj01ceIm3jbUYlspw/FTSb6nMdSNyvVyaQ==

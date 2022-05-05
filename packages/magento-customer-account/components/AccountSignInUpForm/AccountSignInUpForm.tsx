@@ -1,4 +1,5 @@
 import { useQuery } from '@graphcommerce/graphql'
+import { Trans } from '@graphcommerce/lingui-next'
 import {
   ApolloCustomerErrorAlert,
   SignInForm,
@@ -17,7 +18,6 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { emailPattern, useFormPersist } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
 import { Box, CircularProgress, Link, SxProps, TextField, Theme, Typography } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'

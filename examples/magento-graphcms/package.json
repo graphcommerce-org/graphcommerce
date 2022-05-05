@@ -72,7 +72,6 @@
     "@graphcommerce/mollie-magento-payment": "3.2.7",
     "@graphcommerce/next-config": "3.1.4",
     "@graphcommerce/next-ui": "4.7.1",
-    "@lingui/macro": "3.13.3",
     "@mui/lab": "5.0.0-alpha.79",
     "@mui/material": "5.6.3",
     "concurrently": "7.1.0",

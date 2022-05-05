@@ -3,7 +3,7 @@
 import { useQuery, useMutation, useApolloClient } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { IconSvg, iconHeart, extendableComponent } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
+import { t } from '@graphcommerce/lingui-next'
 import { SxProps, Theme, IconButton } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { useWishlistEnabled } from '../../hooks'

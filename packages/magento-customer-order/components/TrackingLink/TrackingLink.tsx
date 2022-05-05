@@ -1,5 +1,5 @@
+import { Trans } from '@graphcommerce/lingui-next'
 import { IconSvg, iconLocation } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
 import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { TrackingLinkFragment } from './TrackingLink.gql'

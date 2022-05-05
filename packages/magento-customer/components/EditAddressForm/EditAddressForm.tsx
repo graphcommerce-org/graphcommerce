@@ -9,7 +9,7 @@ import {
   InputCheckmark,
 } from '@graphcommerce/next-ui'
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
+import { t, Trans } from '@graphcommerce/lingui-next'
 import { SxProps, TextField, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'

@@ -1,6 +1,6 @@
 import { Button, extendableComponent } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { Box, SxProps, TextField, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import { PropsWithChildren } from 'react'

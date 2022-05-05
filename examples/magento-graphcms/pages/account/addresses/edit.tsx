@@ -12,7 +12,7 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { t, Trans } from '@graphcommerce/lingui-next'
 import { Box, Container, NoSsr, Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'

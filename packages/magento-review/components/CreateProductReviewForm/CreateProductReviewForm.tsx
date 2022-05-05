@@ -10,7 +10,7 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { Box, TextField, Typography, Alert, Button, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'

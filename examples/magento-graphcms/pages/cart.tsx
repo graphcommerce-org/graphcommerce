@@ -1,4 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { t, Trans } from '@graphcommerce/lingui-next'
 import {
   ApolloCartErrorAlert,
   CartStartCheckout,
@@ -22,7 +23,6 @@ import {
   LayoutOverlayHeader,
   LinkOrButton,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
 import { Container } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'

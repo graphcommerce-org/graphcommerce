@@ -1,7 +1,7 @@
 import { Image } from '@graphcommerce/image'
 import { StoreSwitcherButton } from '@graphcommerce/magento-store'
 import { Footer as FooterBase } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { Button, IconButton, Link } from '@mui/material'
 import PageLink from 'next/link'
 import { FooterQueryFragment } from './FooterQueryFragment.gql'

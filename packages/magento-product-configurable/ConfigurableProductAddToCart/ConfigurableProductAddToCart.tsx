@@ -1,3 +1,4 @@
+import { Trans } from '@graphcommerce/lingui-next'
 import { ApolloCartErrorAlert, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { Money } from '@graphcommerce/magento-store'
 import {
@@ -9,7 +10,6 @@ import {
   IconSvg,
   TextInputNumber,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
 import { Divider, Typography, Alert, Box } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
@@ -169,7 +169,7 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         }
       >
         <Trans>
-          <strong>{name}</strong> has been added to your shopping cart!
+          <strong key="name">{name}</strong> has been added to your shopping cart!
         </Trans>
       </MessageSnackbar>
     </Box>

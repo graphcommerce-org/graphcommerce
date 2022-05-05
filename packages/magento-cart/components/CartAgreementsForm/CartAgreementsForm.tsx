@@ -7,7 +7,7 @@ import {
   UseFormComposeOptions,
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
-import { t } from '@lingui/macro'
+import { t } from '@graphcommerce/lingui-next'
 import {
   Box,
   Checkbox,

@@ -11,7 +11,7 @@ import {
 } from '@graphcommerce/magento-customer'
 import { AnimatedRow, extendableComponent, FormDiv, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import {
   CircularProgress,
   TextField,

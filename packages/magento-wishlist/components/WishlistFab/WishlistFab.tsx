@@ -1,7 +1,7 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { iconHeart, DesktopHeaderBadge, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
+import { t } from '@graphcommerce/lingui-next'
 import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import React, { useEffect } from 'react'

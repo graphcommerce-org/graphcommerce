@@ -1,5 +1,5 @@
 import { useUp, usePrevUp, usePageContext } from '@graphcommerce/framer-next-pages'
-import { t } from '@lingui/macro'
+import { t } from '@graphcommerce/lingui-next'
 import { Box, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'

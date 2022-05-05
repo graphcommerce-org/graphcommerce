@@ -1,6 +1,6 @@
 import { Money } from '@graphcommerce/magento-store'
 import { ToggleButton, ToggleButtonProps, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { Box, FormHelperText } from '@mui/material'
 import React from 'react'
 import type { SetOptional } from 'type-fest'

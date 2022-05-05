@@ -1,5 +1,5 @@
 import { ApolloErrorAlert, ApolloErrorAlertProps } from '@graphcommerce/ecommerce-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { Link } from '@mui/material'
 import NextLink from 'next/link'
 import { useExtractCustomerErrors } from '../../hooks/useExtractCustomerErrors'

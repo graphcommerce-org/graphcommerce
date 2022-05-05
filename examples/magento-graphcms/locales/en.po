@@ -274,8 +274,8 @@ msgstr "Name"
 msgid "Navigate to item {0}"
 msgstr "Navigate to item {0}"
 
-#~ msgid "New Password"
-#~ msgstr "New Password"
+msgid "New Password"
+msgstr "New Password"
 
 msgid "New email"
 msgstr "New email"

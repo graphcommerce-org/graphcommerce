@@ -2,7 +2,7 @@ import { ApolloErrorAlert, ApolloErrorAlertProps } from '@graphcommerce/ecommerc
 import { useQuery } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import { t, Trans } from '@lingui/macro'
+import { t, Trans } from '@graphcommerce/lingui-next'
 import { Button } from '@mui/material'
 import Link from 'next/link'
 import { useClearCurrentCartId } from '../../hooks/useClearCurrentCartId'

@@ -5,7 +5,7 @@ import {
   IsEmailAvailableDocument,
 } from '@graphcommerce/magento-customer'
 import { Button, FormRow, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { Box, SxProps, TextField, Theme, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useCartQuery } from '../../hooks/useCartQuery'

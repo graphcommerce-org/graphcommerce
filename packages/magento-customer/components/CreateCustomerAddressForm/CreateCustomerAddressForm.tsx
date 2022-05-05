@@ -9,7 +9,7 @@ import {
   Button,
 } from '@graphcommerce/next-ui'
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans, t } from '@lingui/macro'
+import { Trans, t } from '@graphcommerce/lingui-next'
 import { TextField } from '@mui/material'
 import { useRouter } from 'next/router'
 import { AddressFields } from '../AddressFields/AddressFields'

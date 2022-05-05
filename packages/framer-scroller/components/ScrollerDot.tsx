@@ -1,6 +1,6 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { t } from '@graphcommerce/lingui-next'
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
-import { t } from '@lingui/macro'
 import { Fab, FabProps, styled } from '@mui/material'
 import { m } from 'framer-motion'
 import { useScrollTo } from '../hooks/useScrollTo'

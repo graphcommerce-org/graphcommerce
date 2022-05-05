@@ -1,4 +1,4 @@
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { Button } from '@mui/material'
 import { MessageSnackbar } from './MessageSnackbar'
 import { MessageSnackbarImplProps } from './MessageSnackbarImpl'

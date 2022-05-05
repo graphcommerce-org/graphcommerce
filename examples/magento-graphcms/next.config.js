@@ -40,6 +40,7 @@ const nextConfig = {
     scrollRestoration: true,
     disableOptimizedLoading: true,
     esmExternals: false,
+    emotion: { sourceMap: true },
   },
   pwa: {
     dest: 'public',

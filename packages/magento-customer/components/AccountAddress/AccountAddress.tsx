@@ -1,5 +1,5 @@
+import { Trans } from '@graphcommerce/lingui-next'
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
 import { Box, Link, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import { AddressMultiLine } from '../AddressMultiLine/AddressMultiLine'

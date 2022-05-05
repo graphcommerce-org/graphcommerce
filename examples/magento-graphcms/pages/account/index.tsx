@@ -28,7 +28,7 @@ import {
   LayoutTitle,
   LayoutHeader,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { t, Trans } from '@graphcommerce/lingui-next'
 import { Container, NoSsr } from '@mui/material'
 import React from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'

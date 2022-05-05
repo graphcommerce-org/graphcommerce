@@ -1,8 +1,8 @@
 import { Asset } from '@graphcommerce/graphcms-ui'
 import { useQuery } from '@graphcommerce/graphql'
+import { Trans } from '@graphcommerce/lingui-next'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { BlogListItem } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
 import { Typography, useTheme } from '@mui/material'
 import { BlogItemFragment } from './BlogItem.gql'
 

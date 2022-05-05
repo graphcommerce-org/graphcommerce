@@ -22,12 +22,12 @@
     "@graphcommerce/framer-scroller": "2.1.9",
     "@graphcommerce/graphql": "3.1.2",
     "@graphcommerce/image": "3.1.5",
+    "@graphcommerce/lingui-next": "2.1.7",
     "@graphcommerce/magento-product": "4.3.1",
     "@graphcommerce/magento-store": "4.2.1",
     "@graphcommerce/next-ui": "4.7.1"
   },
   "peerDependencies": {
-    "@lingui/macro": "^3.13.2",
     "@mui/material": "5.5.3",
     "next": "12.1.2",
     "react": "^17.0.2",

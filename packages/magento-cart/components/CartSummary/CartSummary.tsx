@@ -1,6 +1,6 @@
 import { useHistoryLink } from '@graphcommerce/framer-next-pages'
 import { SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { t, Trans } from '@graphcommerce/lingui-next'
 import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'

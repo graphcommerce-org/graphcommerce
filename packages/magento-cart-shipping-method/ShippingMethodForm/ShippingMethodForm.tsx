@@ -13,7 +13,7 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Controller, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
+import { t, Trans } from '@graphcommerce/lingui-next'
 import { FormControl, Alert, Box } from '@mui/material'
 import { AvailableShippingMethod } from '../AvailableShippingMethod/AvailableShippingMethod'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'

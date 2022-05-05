@@ -1,10 +1,10 @@
+import { Trans } from '@graphcommerce/lingui-next'
 import {
   AnimatedRow,
   SectionContainer,
   responsiveVal,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
 import { Skeleton, Button, Box, SxProps, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import { useState } from 'react'

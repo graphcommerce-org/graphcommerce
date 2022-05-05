@@ -6,7 +6,7 @@ import {
   houseNumberPattern,
   UseFormReturn,
 } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
+import { t, Trans } from '@graphcommerce/lingui-next'
 import { TextField } from '@mui/material'
 import React, { useMemo } from 'react'
 

@@ -1,3 +1,4 @@
+import { Trans } from '@graphcommerce/lingui-next'
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import {
   AnimatedRow,
@@ -7,7 +8,6 @@ import {
   IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
 import { Box, Button, styled, SxProps, Theme, Typography } from '@mui/material'
 import { AnimatePresence, m } from 'framer-motion'
 import { useState } from 'react'

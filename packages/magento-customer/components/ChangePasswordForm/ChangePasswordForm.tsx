@@ -1,3 +1,4 @@
+import { Trans, t } from '@graphcommerce/lingui-next'
 import {
   Form,
   FormActions,
@@ -7,7 +8,6 @@ import {
   Button,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans, t } from '@lingui/macro'
 import { TextField } from '@mui/material'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {

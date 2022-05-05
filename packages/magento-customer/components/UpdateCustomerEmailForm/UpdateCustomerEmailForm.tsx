@@ -1,3 +1,4 @@
+import { t, Trans } from '@graphcommerce/lingui-next'
 import {
   Button,
   Form,
@@ -7,7 +8,6 @@ import {
   MessageSnackbar,
 } from '@graphcommerce/next-ui'
 import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
 import { TextField } from '@mui/material'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {

@@ -21,7 +21,7 @@ import {
   Stepper,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { t, Trans } from '@graphcommerce/lingui-next'
 import { Container, NoSsr, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'

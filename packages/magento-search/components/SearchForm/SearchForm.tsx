@@ -1,3 +1,4 @@
+import { t, Trans } from '@graphcommerce/lingui-next'
 import {
   FormRow,
   iconClose,
@@ -6,7 +7,6 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
 import { Box, IconButton, SxProps, TextField, TextFieldProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 

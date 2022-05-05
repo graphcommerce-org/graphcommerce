@@ -19,11 +19,11 @@
   },
   "dependencies": {
     "@graphcommerce/graphql": "3.1.2",
+    "@graphcommerce/lingui-next": "2.1.7",
     "@graphcommerce/magento-cart": "4.2.11",
     "@graphcommerce/magento-product": "4.3.1"
   },
   "peerDependencies": {
-    "@lingui/macro": "^3.13.2",
     "next": "12.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

@@ -1,4 +1,5 @@
 import type { ProductInterface } from '@graphcommerce/graphql-mesh'
+import { Trans } from '@graphcommerce/lingui-next'
 import { ApolloCartErrorAlert, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { Money, MoneyProps } from '@graphcommerce/magento-store'
 import {
@@ -10,7 +11,6 @@ import {
   extendableComponent,
   AnimatedRow,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
 import { Divider, Typography, ButtonProps, Box, Alert } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'

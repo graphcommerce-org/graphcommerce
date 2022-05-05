@@ -11,7 +11,7 @@ import {
   IconSvg,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { t, Trans } from '@graphcommerce/lingui-next'
 import { Button, Box, Container, NoSsr } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'

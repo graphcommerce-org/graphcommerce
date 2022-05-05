@@ -1,5 +1,5 @@
 import { useMutation } from '@graphcommerce/graphql'
-import { t } from '@lingui/macro'
+import { t } from '@graphcommerce/lingui-next'
 import { CreateEmptyCartDocument } from './CreateEmptyCart.gql'
 import { useAssignCurrentCartId } from './useAssignCurrentCartId'
 import { useCurrentCartId } from './useCurrentCartId'

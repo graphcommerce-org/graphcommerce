@@ -1,4 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { t, Trans } from '@graphcommerce/lingui-next'
 import {
   ProductListCount,
   ProductListFilters,
@@ -28,7 +29,6 @@ import {
   LayoutTitle,
   LayoutHeader,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
 import { Container, Hidden } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutFull, LayoutFullProps, ProductListItems } from '../../components'

@@ -7,6 +7,7 @@
   "license": "MIT",
   "main": "index.ts",
   "dependencies": {
+    "@graphql-mesh/cache-inmemory-lru": "^0.6.18",
     "@graphql-mesh/config": "0.36.1",
     "@graphql-mesh/graphql": "0.25.2",
     "@graphql-mesh/merger-stitching": "0.15.45",

@@ -1,4 +1,5 @@
 import { useQuery } from '@graphcommerce/graphql'
+import { Trans } from '@graphcommerce/lingui-next'
 import {
   StoreConfigDocument,
   Money,
@@ -12,7 +13,6 @@ import {
   IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
 import { experimental_sx, Skeleton, styled, SxProps, Theme } from '@mui/material'
 import { TrackingLink } from '../TrackingLink/TrackingLink'
 import { OrderDetailsFragment } from './OrderDetails.gql'

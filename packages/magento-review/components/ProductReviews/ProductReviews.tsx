@@ -5,7 +5,7 @@ import {
   StarRatingField,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { Typography, Button, Box, SxProps, Theme, Link } from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'

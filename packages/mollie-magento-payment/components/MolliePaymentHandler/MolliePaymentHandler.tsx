@@ -6,7 +6,7 @@ import {
   usePaymentMethodContext,
 } from '@graphcommerce/magento-cart-payment-method'
 import { ErrorSnackbar } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { Button, Dialog } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'

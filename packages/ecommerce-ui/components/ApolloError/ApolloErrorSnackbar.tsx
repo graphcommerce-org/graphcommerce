@@ -1,6 +1,6 @@
 import { ApolloError } from '@graphcommerce/graphql'
+import { Trans } from '@graphcommerce/lingui-next'
 import { ErrorSnackbar, ErrorSnackbarProps } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
 import { Button } from '@mui/material'
 
 export type ApolloErrorSnackbarProps = {

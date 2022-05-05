@@ -1,6 +1,6 @@
+import { Trans } from '@graphcommerce/lingui-next'
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
 import { responsiveVal, Button, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
 import { Box, FormControl, SxProps, TextField, Theme } from '@mui/material'
 import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
 

@@ -1,11 +1,11 @@
 import { useQuery } from '@graphcommerce/graphql'
+import { t } from '@graphcommerce/lingui-next'
 import {
   iconPerson,
   DesktopHeaderBadge,
   IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
 import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'

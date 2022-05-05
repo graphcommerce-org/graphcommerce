@@ -1,7 +1,7 @@
 import { useQuery, cloneDeep } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { ListItem, ListItemText, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'

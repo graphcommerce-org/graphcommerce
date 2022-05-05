@@ -1,6 +1,6 @@
 import { ApolloErrorSnackbar } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { Button } from '@mui/material'
 import { DeleteCustomerAddressFormDocument } from './DeleteCustomerAddressForm.gql'
 

@@ -21,6 +21,7 @@
     "@graphcommerce/framer-next-pages": "3.2.1",
     "@graphcommerce/graphql": "3.1.2",
     "@graphcommerce/image": "3.1.5",
+    "@graphcommerce/lingui-next": "2.1.7",
     "@graphcommerce/magento-cart": "4.2.11",
     "@graphcommerce/magento-customer": "4.2.9",
     "@graphcommerce/magento-store": "4.2.1",
@@ -28,7 +29,6 @@
     "@graphcommerce/react-hook-form": "3.1.2"
   },
   "peerDependencies": {
-    "@lingui/macro": "^3.13.2",
     "@mui/material": "5.5.3",
     "framer-motion": "^6.2.4",
     "next": "12.1.2",

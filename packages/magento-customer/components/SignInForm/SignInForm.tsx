@@ -1,7 +1,7 @@
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { Button, FormRow, FormActions } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { Box, FormControl, Link, SxProps, TextField, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'

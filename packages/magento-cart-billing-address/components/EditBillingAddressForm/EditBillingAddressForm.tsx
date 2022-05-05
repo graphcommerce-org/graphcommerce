@@ -16,7 +16,7 @@ import {
   InputCheckmark,
 } from '@graphcommerce/next-ui'
 import { phonePattern } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
+import { t, Trans } from '@graphcommerce/lingui-next'
 import { SxProps, TextField, Theme } from '@mui/material'
 import { GetBillingAddressDocument } from './GetBillingAddress.gql'
 import { SetBillingAddressOnCartDocument } from './SetBillingAddressOnCart.gql'

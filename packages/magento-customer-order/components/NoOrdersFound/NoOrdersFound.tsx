@@ -1,5 +1,5 @@
+import { Trans } from '@graphcommerce/lingui-next'
 import { IconHeader, iconBox, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
 import { Box, SxProps, Theme } from '@mui/material'
 
 const parts = ['root'] as const

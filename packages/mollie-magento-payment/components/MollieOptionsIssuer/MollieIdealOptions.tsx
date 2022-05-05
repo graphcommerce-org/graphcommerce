@@ -1,5 +1,5 @@
 import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { Box } from '@mui/material'
 import { MollieIssuerOptions } from './MollieIssuerOptions'
 

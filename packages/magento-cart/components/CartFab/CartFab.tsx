@@ -6,7 +6,7 @@ import {
   useScrollY,
   useFabSize,
 } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
+import { t } from '@graphcommerce/lingui-next'
 import { alpha, Fab, FabProps, NoSsr, styled, useTheme, Box, SxProps, Theme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import PageLink from 'next/link'

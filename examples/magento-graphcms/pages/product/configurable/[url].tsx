@@ -26,7 +26,7 @@ import {
   LayoutTitle,
   SchemaDts,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'

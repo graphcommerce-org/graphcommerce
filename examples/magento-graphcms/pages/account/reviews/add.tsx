@@ -1,6 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import { useQuery } from '@graphcommerce/graphql'
+import { t, Trans } from '@graphcommerce/lingui-next'
 import { ApolloCustomerErrorFullPage, CustomerDocument } from '@graphcommerce/magento-customer'
 import {
   ProductReviewProductNameDocument,
@@ -15,7 +16,6 @@ import {
   IconSvg,
   GetStaticProps,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
@@ -70,7 +70,7 @@ function AccountReviewsAddPage() {
   return (
     <>
       <PageMeta
-        title={t`Add review`}
+        title={t`You are reviewing ${product?.name}`}
         metaDescription={t`You are reviewing ${product?.name}`}
         metaRobots={['noindex']}
       />
@@ -81,7 +81,7 @@ function AccountReviewsAddPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
 
-      <LayoutTitle variant='h1'>
+      <LayoutTitle>
         <Trans>You are reviewing {product?.name}</Trans>
       </LayoutTitle>
 

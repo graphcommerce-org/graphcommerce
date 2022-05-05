@@ -1,6 +1,6 @@
 import { ApolloError, useApolloClient } from '@graphcommerce/graphql'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import { t } from '@lingui/macro'
+import { t } from '@graphcommerce/lingui-next'
 import { useEffect } from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 

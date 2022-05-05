@@ -8,7 +8,7 @@ import {
   IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@graphcommerce/lingui-next'
 import { Box, Divider, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
