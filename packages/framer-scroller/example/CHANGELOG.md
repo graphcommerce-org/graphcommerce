@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.13
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/next-ui@4.7.1
+  - @graphcommerce/framer-scroller@2.1.9
+
 ## 3.0.12
 
 ### Patch Changes

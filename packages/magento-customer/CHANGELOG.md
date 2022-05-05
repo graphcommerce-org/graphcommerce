@@ -1,5 +1,19 @@
 # Change Log
 
+## 4.2.9
+
+### Patch Changes
+
+- [#1432](https://github.com/graphcommerce-org/graphcommerce/pull/1432) [`80e30bb77`](https://github.com/graphcommerce-org/graphcommerce/commit/80e30bb77015755fbc00a7935d590f80c1c1c18c) Thanks [@paales](https://github.com/paales)! - Updated translations
+
+- Updated dependencies [[`25ef6cf08`](https://github.com/graphcommerce-org/graphcommerce/commit/25ef6cf08c278105307d6f604b7135d637e9046c), [`80e30bb77`](https://github.com/graphcommerce-org/graphcommerce/commit/80e30bb77015755fbc00a7935d590f80c1c1c18c)]:
+  - @graphcommerce/graphql@3.1.2
+  - @graphcommerce/graphql-mesh@4.1.3
+  - @graphcommerce/ecommerce-ui@1.0.10
+  - @graphcommerce/magento-graphql@3.0.10
+  - @graphcommerce/magento-store@4.2.1
+  - @graphcommerce/next-ui@4.7.1
+
 ## 4.2.8
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.14
+
+### Patch Changes
+
+- Updated dependencies [[`99600dd09`](https://github.com/graphcommerce-org/graphcommerce/commit/99600dd091980dd9ef335c04d2efac0835c20b2f)]:
+  - @graphcommerce/framer-next-pages@3.2.1
+  - @graphcommerce/next-ui@4.7.1
+
 ## 3.0.13
 
 ### Patch Changes
