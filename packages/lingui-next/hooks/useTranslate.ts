@@ -2,7 +2,7 @@ import { i18n } from '@lingui/core'
 
 export type TransTemplateString = (
   literals: TemplateStringsArray,
-  ...placeholders: ReadonlyArray<string | undefined>[]
+  ...placeholders: ReadonlyArray<string | number | undefined | null>
 ) => string
 
 export const t: TransTemplateString = (literals, ...placeholders) => {

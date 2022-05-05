@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
+import { t, Trans } from '@graphcommerce/lingui-next'
 import { ApolloCustomerErrorFullPage } from '@graphcommerce/magento-customer'
 import {
   useOrderCardItemImages,
@@ -15,7 +16,6 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@graphcommerce/lingui-next'
 import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -26,11 +26,11 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function OrderDetailPage() {
   const router = useRouter()
-  const { orderId } = router.query
+  const orderId = router.query.orderId as string
 
   const { data, loading, error } = useQuery(OrderDetailPageDocument, {
     fetchPolicy: 'cache-and-network',
-    variables: { orderNumber: orderId as string },
+    variables: { orderNumber: orderId },
     ssr: false,
   })
   const images = useOrderCardItemImages(data?.customer?.orders)
