@@ -18,6 +18,7 @@ import {
 } from '@graphcommerce/magento-product-configurable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { ProductWishlistChipDetailConfigurable } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
   JsonLd,
@@ -105,6 +106,7 @@ function ProductConfigurable(props: Props) {
                 </Link>
               ),
             }}
+            additionalButtons={<ProductWishlistChipDetailConfigurable {...product} />}
           >
             <ProductSidebarDelivery />
           </ConfigurableProductAddToCart>

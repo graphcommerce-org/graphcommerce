@@ -19,6 +19,7 @@ import {
 } from '@graphcommerce/magento-customer'
 import { magentoTypePolicies } from '@graphcommerce/magento-graphql'
 import { createStoreLink } from '@graphcommerce/magento-store'
+import { wishlistTypePolicies } from '@graphcommerce/magento-wishlist'
 import { ApolloStateProps } from '@graphcommerce/next-ui'
 import { AppProps } from 'next/app'
 import { useMemo } from 'react'
@@ -27,7 +28,7 @@ import { useMemo } from 'react'
  * This is a list of type policies which are used to influence how cache is handled.
  * https://www.apollographql.com/docs/react/caching/cache-field-behavior/
  */
-const policies = [magentoTypePolicies, cartTypePolicies, customerTypePolicies]
+const policies = [magentoTypePolicies, cartTypePolicies, customerTypePolicies, wishlistTypePolicies]
 
 /**
  * To upgrade the local storage to a new version when the app is updated, but the client isn't yet,

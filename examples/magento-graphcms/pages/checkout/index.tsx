@@ -27,12 +27,15 @@ import { useRouter } from 'next/router'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
 
 function ShippingPage() {
   useGoogleRecaptcha()
+  useMergeGuestWishlistWithCustomer()
+
   const { data: cartData } = useCartQuery(ShippingPageDocument, {
     returnPartialData: true,
   })

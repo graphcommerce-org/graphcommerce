@@ -68,6 +68,7 @@
     "@graphcommerce/magento-review": "3.2.0",
     "@graphcommerce/magento-search": "4.1.8",
     "@graphcommerce/magento-store": "4.2.0",
+    "@graphcommerce/magento-wishlist": "0.0.0",
     "@graphcommerce/mollie-magento-payment": "3.2.6",
     "@graphcommerce/next-config": "3.1.4",
     "@graphcommerce/next-ui": "4.7.0",

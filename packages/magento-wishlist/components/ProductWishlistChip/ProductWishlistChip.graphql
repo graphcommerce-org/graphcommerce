@@ -1,0 +1,4 @@
+fragment ProductWishlistChip on ProductInterface {
+  __typename
+  sku
+}

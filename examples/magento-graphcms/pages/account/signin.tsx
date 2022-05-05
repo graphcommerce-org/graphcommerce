@@ -8,12 +8,14 @@ import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountSignInPage() {
   useMergeCustomerCart()
   useGoogleRecaptcha()
+  useMergeGuestWishlistWithCustomer()
 
   return (
     <>

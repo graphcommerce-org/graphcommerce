@@ -1,6 +1,10 @@
 import type { ProductInterface } from '@graphcommerce/graphql-mesh'
 import { ApolloCartErrorAlert, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { Money, MoneyProps } from '@graphcommerce/magento-store'
+import {
+  ProductAddToCartDocument,
+  ProductAddToCartMutationVariables,
+} from '@graphcommerce/magento-product'
+import { MoneyProps } from '@graphcommerce/magento-store'
 import {
   Button,
   MessageSnackbar,
@@ -11,11 +15,10 @@ import {
   AnimatedRow,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Divider, Typography, ButtonProps, Box, Alert } from '@mui/material'
+import { ButtonProps, Box, Alert } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
-import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
 
 const { classes, selectors } = extendableComponent('ProductAddToCart', [
   'root',
@@ -46,56 +49,48 @@ export function ProductAddToCart(
   const submitHandler = handleSubmit(() => {})
 
   return (
-    <Box component='form' onSubmit={submitHandler} noValidate className={classes.root} sx={sx}>
-      <Divider className={classes.divider} sx={(theme) => ({ margin: `${theme.spacings.xs} 0` })} />
-
-      <Typography
-        variant='h4'
-        className={classes.price}
-        sx={(theme) => ({
-          fontWeight: theme.typography.fontWeightBold,
-          margin: `${theme.spacings.sm} 0`,
-        })}
-      >
-        <Money {...price} />
-      </Typography>
-
-      <TextInputNumber
-        variant='outlined'
-        error={formState.isSubmitted && !!formState.errors.quantity}
-        required={required.quantity}
-        inputProps={{ min: 1 }}
-        {...muiRegister('quantity', { required: required.quantity })}
-        helperText={formState.isSubmitted && formState.errors.quantity}
-        disabled={formState.isSubmitting}
-        size='small'
-      />
-      {children}
+    <Box component='form' onSubmit={submitHandler} noValidate className={classes.root}>
       <Box
         sx={(theme) => ({
-          display: 'flex',
-          alignItems: 'center',
-          columnGap: theme.spacings.xs,
+          gridArea: 'itemQuantity',
         })}
+      >
+        <TextInputNumber
+          variant='outlined'
+          error={formState.isSubmitted && !!formState.errors.quantity}
+          required={required.quantity}
+          inputProps={{ min: 1 }}
+          {...muiRegister('quantity', { required: required.quantity })}
+          helperText={formState.isSubmitted && formState.errors.quantity}
+          disabled={formState.isSubmitting}
+          size='small'
+          sx={(theme) => ({
+            alignSelf: 'flex-start',
+          })}
+        />
+      </Box>
+      {children}
+      <Box
         className={classes.buttonWrapper}
+        sx={(theme) => ({
+          gridArea: 'itemCartButton',
+          alignSelf: 'flex-start',
+          position: 'absolute',
+          left: '0',
+          bottom: '-35px',
+        })}
       >
         <Button
           type='submit'
           className={classes.button}
           loading={formState.isSubmitting}
           color='primary'
-          variant='pill'
-          size='large'
-          sx={(theme) => ({
-            marginTop: theme.spacings.sm,
-            marginBottom: theme.spacings.sm,
-            width: '100%',
-          })}
+          variant='text'
+          size='medium'
           {...buttonProps}
         >
           <Trans>Add to Cart</Trans>
         </Button>
-        {additionalButtons}
       </Box>
 
       <ApolloCartErrorAlert error={error} />

@@ -1,0 +1,13 @@
+type WishlistItemInput {
+  sku: String
+  quantity: Int!
+  selected_options: [ID]
+}
+
+mutation addProductToWishlist($input: [WishlistItemInput!]!) {
+  addProductsToWishlist(wishlistId: 0, wishlistItems: $input) {
+    wishlist {
+      ...WishlistSummaryFragment
+    }
+  }
+}

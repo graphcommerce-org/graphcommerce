@@ -17,6 +17,7 @@ import {
 } from '@graphcommerce/magento-product-downloadable'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
   JsonLd,
@@ -81,6 +82,7 @@ function ProductDownloadable(props: Props) {
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
           price={product.price_range.minimum_price.regular_price}
+          additionalButtons={<ProductWishlistChipDetail {...product} />}
         >
           <ProductSidebarDelivery />
         </ProductAddToCart>
