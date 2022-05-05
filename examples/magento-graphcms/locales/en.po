@@ -16,6 +16,9 @@ msgstr ""
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> has been added to your shopping cart!"
 
+msgid "Above <0/>"
+msgstr "Above <0/>"
+
 msgid "Account"
 msgstr "Account"
 
@@ -64,6 +67,12 @@ msgstr "Back to home"
 msgid "Be the first to know about everything new!"
 msgstr "Be the first to know about everything new!"
 
+msgid "Be the first to write a review!"
+msgstr "Be the first to write a review!"
+
+msgid "Below <0/>"
+msgstr "Below <0/>"
+
 msgid "Billing address"
 msgstr "Billing address"
 
@@ -103,11 +112,11 @@ msgstr "Close"
 msgid "Complete the payment on your bank’s website."
 msgstr "Complete the payment on your bank’s website."
 
-msgid "Confirm Password"
-msgstr "Confirm Password"
-
 msgid "Confirm new email"
 msgstr "Confirm new email"
+
+msgid "Confirm password"
+msgstr "Confirm password"
 
 msgid "Confirmation + Track & trace"
 msgstr "Confirmation + Track & trace"
@@ -223,6 +232,9 @@ msgstr "Home"
 msgid "Housenumber"
 msgstr "Housenumber"
 
+msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
+msgstr "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
+
 msgid "Including {0}"
 msgstr "Including {0}"
 
@@ -259,11 +271,17 @@ msgstr "Mrs"
 msgid "Name"
 msgstr "Name"
 
-msgid "New Password"
-msgstr "New Password"
+msgid "Navigate to item {0}"
+msgstr "Navigate to item {0}"
+
+#~ msgid "New Password"
+#~ msgstr "New Password"
 
 msgid "New email"
 msgstr "New email"
+
+msgid "New password"
+msgstr "New password"
 
 msgid "Newsletter"
 msgstr "Newsletter"
@@ -343,11 +361,17 @@ msgstr "Pay with {title}"
 msgid "Payment"
 msgstr "Payment"
 
+msgid "Payment failed with status: {paymentStatus}"
+msgstr "Payment failed with status: {paymentStatus}"
+
 msgid "Payment method"
 msgstr "Payment method"
 
 msgid "Place order"
 msgstr "Place order"
+
+msgid "Please check your inbox to validate your email ({email})"
+msgstr "Please check your inbox to validate your email ({email})"
 
 msgid "Please fill in your address to see shipping methods"
 msgstr "Please fill in your address to see shipping methods"
@@ -378,6 +402,9 @@ msgstr "Region"
 
 msgid "Remove Product"
 msgstr "Remove Product"
+
+msgid "Reset Cart and Return to home"
+msgstr "Reset Cart and Return to home"
 
 msgid "Results for ‘{search}’"
 msgstr "Results for ‘{search}’"
@@ -435,6 +462,9 @@ msgstr "Sign out"
 
 msgid "Sign up for our newsletter and stay updated"
 msgstr "Sign up for our newsletter and stay updated"
+
+msgid "Sort By"
+msgstr "Sort By"
 
 msgid "Start Checkout"
 msgstr "Start Checkout"
@@ -514,14 +544,14 @@ msgstr "We couldn't find any results for {term}"
 msgid "We couldn't find the page you were looking for"
 msgstr "We couldn't find the page you were looking for"
 
+msgid "Welcome back!"
+msgstr "Welcome back!"
+
 msgid "We’re processing your payment, this will take a few seconds."
 msgstr "We’re processing your payment, this will take a few seconds."
 
 msgid "We’ve send a password reset link to your email address!"
 msgstr "We’ve send a password reset link to your email address!"
-
-msgid "Welcome back!"
-msgstr "Welcome back!"
 
 msgid "Which size is right?"
 msgstr "Which size is right?"
@@ -531,6 +561,9 @@ msgstr "Whoops our bad..."
 
 msgid "Write a review"
 msgstr "Write a review"
+
+msgid "Written by"
+msgstr "Written by"
 
 msgid "Written {0} reviews"
 msgstr "Written {0} reviews"

@@ -36,7 +36,10 @@ export function Page(props: PageProps) {
   return (
     <m.div
       style={{ position, top, zIndex, minHeight: clientSizeCssVar.y, left: 0, right: 0 }}
-      data-nosnippet
+      // @ts-expect-error inert is not in the type definition yet
+      inert={!active ? true : undefined}
+      data-nosnippet={!active ? true : undefined}
+      aria-hidden={!active ? true : undefined}
     >
       {children}
     </m.div>

@@ -16,6 +16,9 @@ msgstr ""
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> is toegevoegd aan uw winkelwagen!"
 
+msgid "Above <0/>"
+msgstr "Boven <0/>"
+
 msgid "Account"
 msgstr "Account"
 
@@ -64,6 +67,12 @@ msgstr "Terug naar home"
 msgid "Be the first to know about everything new!"
 msgstr "Wees de eerste die op de hoogte is van alles wat er nieuw is!"
 
+msgid "Be the first to write a review!"
+msgstr "Wees de eerste die een review schrijft!"
+
+msgid "Below <0/>"
+msgstr "Onder <0/>"
+
 msgid "Billing address"
 msgstr "Factuuradres"
 
@@ -103,11 +112,11 @@ msgstr "Sluiten"
 msgid "Complete the payment on your bank’s website."
 msgstr "Voltooi de betaling op uw bank's website."
 
-msgid "Confirm Password"
-msgstr "Bevestig wachtwoord"
-
 msgid "Confirm new email"
 msgstr "Bevestig nieuwe email"
+
+msgid "Confirm password"
+msgstr "Bevestig wachtwoord"
 
 msgid "Confirmation + Track & trace"
 msgstr "Bevestiging + Track & trace"
@@ -223,6 +232,9 @@ msgstr "Home"
 msgid "Housenumber"
 msgstr "Huisnummer"
 
+msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
+msgstr "Als u uw bestelling succesvol heeft betaald, dan zal de bestelling <0>doorkomen</0>, maar er is een communicatiefout met de website."
+
 msgid "Including {0}"
 msgstr "Inclusief {0}"
 
@@ -259,11 +271,14 @@ msgstr "Mvr"
 msgid "Name"
 msgstr "Naam"
 
-msgid "New Password"
-msgstr "Nieuw Wachtwoord"
+msgid "Navigate to item {0}"
+msgstr "Navigeer naar item {0}"
 
 msgid "New email"
 msgstr "Nieuwe email"
+
+msgid "New password"
+msgstr "Nieuw wachtwoord"
 
 msgid "Newsletter"
 msgstr "Nieuwsbrief"
@@ -343,11 +358,17 @@ msgstr "Betaal met {title}"
 msgid "Payment"
 msgstr "Betaling"
 
+msgid "Payment failed with status: {paymentStatus}"
+msgstr "Betaling mislukt met status: {paymentStatus}"
+
 msgid "Payment method"
 msgstr "Betalingsmethode"
 
 msgid "Place order"
 msgstr "Plaats bestelling"
+
+msgid "Please check your inbox to validate your email ({email})"
+msgstr "Controleer uw inbox om uw e-mailadres te valideren ({email})"
 
 msgid "Please fill in your address to see shipping methods"
 msgstr "Vul uw adres in om verzendmethoden op te halen"
@@ -378,6 +399,9 @@ msgstr "Regio"
 
 msgid "Remove Product"
 msgstr "Verwijder product"
+
+msgid "Reset Cart and Return to home"
+msgstr "Reset winkelwagen en ga terug naar home"
 
 msgid "Results for ‘{search}’"
 msgstr "Resultaten voor ‘{search}’"
@@ -435,6 +459,9 @@ msgstr "Uitloggen"
 
 msgid "Sign up for our newsletter and stay updated"
 msgstr "Abonneer u op onze nieuwsbrief en blijf op de hoogte"
+
+msgid "Sort By"
+msgstr "Sorteer op"
 
 msgid "Start Checkout"
 msgstr "Afrekenen"
@@ -514,14 +541,14 @@ msgstr "We konden geen resultaten vinden voor {term}"
 msgid "We couldn't find the page you were looking for"
 msgstr "We kunnen de pagina niet vinden waar u naar op zoek bent."
 
+msgid "Welcome back!"
+msgstr "Welkom terug!"
+
 msgid "We’re processing your payment, this will take a few seconds."
 msgstr "Uw betaling wordt verwerkt, dit duurt een paar seconden"
 
 msgid "We’ve send a password reset link to your email address!"
 msgstr "Een wachtwoord reset link naar uw e-mailadres gestuurd"
-
-msgid "Welcome back!"
-msgstr "Welkom terug!"
 
 msgid "Which size is right?"
 msgstr "Wat is de juiste maat?"
@@ -531,6 +558,9 @@ msgstr "Oeps.."
 
 msgid "Write a review"
 msgstr "Schrijf een review"
+
+msgid "Written by"
+msgstr "Geschreven door"
 
 msgid "Written {0} reviews"
 msgstr "{0} reviews geschreven"

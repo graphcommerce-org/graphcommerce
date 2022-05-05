@@ -67,7 +67,7 @@ export function SignUpForm(props: SignUpFormProps) {
           variant='outlined'
           type='password'
           error={!!formState.errors.confirmPassword}
-          label={<Trans>Confirm Password</Trans>}
+          label={<Trans>Confirm password</Trans>}
           autoComplete='new-password'
           required
           {...muiRegister('confirmPassword', {

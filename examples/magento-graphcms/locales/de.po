@@ -16,6 +16,9 @@ msgstr ""
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> wurde zu Ihrem Warenkorb hinzugefügt!"
 
+msgid "Above <0/>"
+msgstr "Über <0/>"
+
 msgid "Account"
 msgstr "Konto"
 
@@ -64,6 +67,12 @@ msgstr "Zurück zur Startseite"
 msgid "Be the first to know about everything new!"
 msgstr "Werden Sie der Erste, der über alles Neues informiert!"
 
+msgid "Be the first to write a review!"
+msgstr "Schreiben Sie die erste Bewertung!"
+
+msgid "Below <0/>"
+msgstr "Unter <0/>"
+
 msgid "Billing address"
 msgstr "Rechnungsadresse"
 
@@ -103,11 +112,11 @@ msgstr "Schließen"
 msgid "Complete the payment on your bank’s website."
 msgstr "Führen Sie die Zahlung auf Ihrer Bank-Website aus."
 
-msgid "Confirm Password"
-msgstr "Passwort bestätigen"
-
 msgid "Confirm new email"
 msgstr "Neue E-Mail bestätigen"
+
+msgid "Confirm password"
+msgstr "Passwort bestätigen"
 
 msgid "Confirmation + Track & trace"
 msgstr "Bestätigung + Track & Trace"
@@ -223,6 +232,9 @@ msgstr "Startseite"
 msgid "Housenumber"
 msgstr "Hausnummer"
 
+msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
+msgstr "Wenn Sie Ihre Bestellung erfolgreich bezahlt haben, wird die Bestellung <0>durchgeführt</0>, aber es ist ein Kommunikationsfehler mit der Website."
+
 msgid "Including {0}"
 msgstr "Inklusive {0}"
 
@@ -259,11 +271,14 @@ msgstr "Frau"
 msgid "Name"
 msgstr "Name"
 
-msgid "New Password"
-msgstr "Neues Passwort"
+msgid "Navigate to item {0}"
+msgstr "Zum Artikel {0} navigieren"
 
 msgid "New email"
 msgstr "Neue E-Mail"
+
+msgid "New password"
+msgstr "Neues Passwort"
 
 msgid "Newsletter"
 msgstr "Newsletter"
@@ -343,11 +358,17 @@ msgstr "Mit {title} bezahlen"
 msgid "Payment"
 msgstr "Zahlung"
 
+msgid "Payment failed with status: {paymentStatus}"
+msgstr "Zahlung fehlgeschlagen mit Status: {paymentStatus}"
+
 msgid "Payment method"
 msgstr "Zahlungsmethode"
 
 msgid "Place order"
 msgstr "Bestellen"
+
+msgid "Please check your inbox to validate your email ({email})"
+msgstr "Bitte überprüfen Sie Ihr Postfach, um Ihre E-Mail-Adresse zu bestätigen ({email})"
 
 msgid "Please fill in your address to see shipping methods"
 msgstr "Bitte füllen Sie Ihre Adresse aus, um Versandarten zu sehen"
@@ -378,6 +399,9 @@ msgstr "Region"
 
 msgid "Remove Product"
 msgstr "Produkt entfernen"
+
+msgid "Reset Cart and Return to home"
+msgstr "Warenkorb zurücksetzen und zurück zur Startseite"
 
 msgid "Results for ‘{search}’"
 msgstr "Ergebnisse für ‘{search}’"
@@ -435,6 +459,9 @@ msgstr "Abmelden"
 
 msgid "Sign up for our newsletter and stay updated"
 msgstr "Abonnieren Sie unseren Newsletter und bleiben Sie auf dem Laufenden"
+
+msgid "Sort By"
+msgstr "Sortieren nach"
 
 msgid "Start Checkout"
 msgstr "Kasse starten"
@@ -514,14 +541,14 @@ msgstr "Wir konnten keine Ergebnisse für {term} finden"
 msgid "We couldn't find the page you were looking for"
 msgstr "Wir konnten die Seite nicht finden, die Sie suchen"
 
+msgid "Welcome back!"
+msgstr "Willkommen zurück!"
+
 msgid "We’re processing your payment, this will take a few seconds."
 msgstr "Wir bearbeiten Ihre Zahlung, dies dauert ein paar Sekunden."
 
 msgid "We’ve send a password reset link to your email address!"
 msgstr "Wir haben Ihnen einen Link zum Zurücksetzen Ihres Passworts per E-Mail geschickt!"
-
-msgid "Welcome back!"
-msgstr "Willkommen zurück!"
 
 msgid "Which size is right?"
 msgstr "Welche Größe ist richtig?"
@@ -531,6 +558,9 @@ msgstr "Ups, unsere Schuld..."
 
 msgid "Write a review"
 msgstr "Eine Bewertung schreiben"
+
+msgid "Written by"
+msgstr "Geschrieben von"
 
 msgid "Written {0} reviews"
 msgstr "Bewertungen geschrieben: {0}"
