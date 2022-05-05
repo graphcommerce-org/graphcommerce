@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.1.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/next-ui@4.7.1
+
 ## 2.1.8
 
 ### Patch Changes

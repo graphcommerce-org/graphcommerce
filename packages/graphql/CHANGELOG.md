@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.1.2
+
+### Patch Changes
+
+- [#1439](https://github.com/graphcommerce-org/graphcommerce/pull/1439) [`25ef6cf08`](https://github.com/graphcommerce-org/graphcommerce/commit/25ef6cf08c278105307d6f604b7135d637e9046c) Thanks [@paales](https://github.com/paales)! - Updated dependencies
+
+* [#1432](https://github.com/graphcommerce-org/graphcommerce/pull/1432) [`80e30bb77`](https://github.com/graphcommerce-org/graphcommerce/commit/80e30bb77015755fbc00a7935d590f80c1c1c18c) Thanks [@paales](https://github.com/paales)! - Updated translations
+
+* Updated dependencies [[`25ef6cf08`](https://github.com/graphcommerce-org/graphcommerce/commit/25ef6cf08c278105307d6f604b7135d637e9046c)]:
+  - @graphcommerce/graphql-codegen-near-operation-file@3.0.12
+
 ## 3.1.1
 
 ### Patch Changes

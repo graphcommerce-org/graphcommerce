@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.1
+
+### Patch Changes
+
+- [#1432](https://github.com/graphcommerce-org/graphcommerce/pull/1432) [`99600dd09`](https://github.com/graphcommerce-org/graphcommerce/commit/99600dd091980dd9ef335c04d2efac0835c20b2f) Thanks [@paales](https://github.com/paales)! - make sure the background isn’t visible to screen readers
+
 ## 3.2.0
 
 ### Minor Changes

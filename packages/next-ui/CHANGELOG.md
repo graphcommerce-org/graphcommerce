@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.7.1
+
+### Patch Changes
+
+- Updated dependencies [[`99600dd09`](https://github.com/graphcommerce-org/graphcommerce/commit/99600dd091980dd9ef335c04d2efac0835c20b2f)]:
+  - @graphcommerce/framer-next-pages@3.2.1
+  - @graphcommerce/framer-scroller@2.1.9
+
 ## 4.7.0
 
 ### Minor Changes

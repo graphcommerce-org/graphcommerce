@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.0.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/next-ui@4.7.1
+
 ## 3.0.11
 
 ### Patch Changes
