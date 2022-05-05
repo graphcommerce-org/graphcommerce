@@ -1,5 +1,21 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- [#1434](https://github.com/graphcommerce-org/graphcommerce/pull/1434) [`3c1c9ce2a`](https://github.com/graphcommerce-org/graphcommerce/commit/3c1c9ce2a947386515df019c31d697114a87dc07) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Add page number to meta title and description
+
+## 4.0.15
+
+### Patch Changes
+
+- Updated dependencies [[`f3d06dd83`](https://github.com/graphcommerce-org/graphcommerce/commit/f3d06dd836c9a76412b419d4d2c79bbd0ee92e04)]:
+  - @graphcommerce/magento-product@4.2.0
+  - @graphcommerce/magento-store@4.2.0
+  - @graphcommerce/next-ui@4.7.0
+  - @graphcommerce/framer-scroller@2.1.8
+
 ## 4.0.14
 
 ### Patch Changes

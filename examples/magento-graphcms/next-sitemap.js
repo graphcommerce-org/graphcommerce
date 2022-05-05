@@ -68,6 +68,7 @@ module.exports = {
       { userAgent: '*', disallow: ['/switch-stores', '/search', '/account', '/cart', '/checkout'] },
       { userAgent: 'AhrefsSiteAudit', allow: '/' },
       { userAgent: 'AhrefsBot', allow: '/' },
+      { userAgent: 'SiteAuditBot', allow: '/' },
     ],
   },
 }
