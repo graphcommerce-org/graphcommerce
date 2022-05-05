@@ -4,7 +4,7 @@ import { CacheProvider } from '@emotion/react'
 
 let muiCache: EmotionCache | undefined
 export const createMuiCache = () => {
-  muiCache = createCache({ key: 'mui', prepend: true })
+  muiCache = createCache({ key: 'mui' })
   return muiCache
 }
 
