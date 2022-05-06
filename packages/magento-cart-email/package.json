@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-cart-email",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "3.0.16",
+  "version": "3.0.17",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -20,9 +20,9 @@
   "dependencies": {
     "@graphcommerce/graphql": "3.1.2",
     "@graphcommerce/image": "3.1.5",
-    "@graphcommerce/magento-cart": "4.2.11",
-    "@graphcommerce/magento-customer": "4.2.9",
-    "@graphcommerce/magento-product": "4.3.1",
+    "@graphcommerce/magento-cart": "4.2.12",
+    "@graphcommerce/magento-customer": "4.2.10",
+    "@graphcommerce/magento-product": "4.3.2",
     "@graphcommerce/magento-store": "4.2.1",
     "@graphcommerce/next-ui": "4.7.1",
     "@graphcommerce/react-hook-form": "3.1.2"

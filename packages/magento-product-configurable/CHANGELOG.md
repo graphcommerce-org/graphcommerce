@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.1.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.2.12
+  - @graphcommerce/magento-customer@4.2.10
+  - @graphcommerce/magento-cart-items@3.0.18
+  - @graphcommerce/magento-product@4.3.2
+  - @graphcommerce/magento-product-simple@4.0.17
+  - @graphcommerce/magento-category@4.1.3
+
 ## 4.1.1
 
 ### Patch Changes

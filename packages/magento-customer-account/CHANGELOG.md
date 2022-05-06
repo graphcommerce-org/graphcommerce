@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.1.10
+
+### Patch Changes
+
+- Updated dependencies [[`7618f86da`](https://github.com/graphcommerce-org/graphcommerce/commit/7618f86da930929b10b6baf145646356b1bb3793)]:
+  - @graphcommerce/magento-graphql@3.0.11
+  - @graphcommerce/magento-customer@4.2.10
+  - @graphcommerce/magento-customer-order@3.0.15
+
 ## 3.1.9
 
 ### Patch Changes
