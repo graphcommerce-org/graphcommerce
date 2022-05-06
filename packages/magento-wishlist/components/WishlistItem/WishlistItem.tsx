@@ -23,7 +23,7 @@ export function WishlistItem(props: WishlistItemProps) {
       <ProductAddToCart
         variables={{ sku: sku ?? '', quantity: 1 }}
         name={name ?? ''}
-        price={price_range.minimum_price.regular_price}
+        price={price_range.minimum_price.final_price}
       />
     </WishlistItemBase>
   )
