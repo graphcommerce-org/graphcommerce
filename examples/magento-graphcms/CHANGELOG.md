@@ -1,5 +1,38 @@
 # Change Log
 
+## 3.7.4
+
+### Patch Changes
+
+- Updated dependencies [[`7618f86da`](https://github.com/graphcommerce-org/graphcommerce/commit/7618f86da930929b10b6baf145646356b1bb3793)]:
+  - @graphcommerce/magento-graphql@3.0.11
+  - @graphcommerce/magento-cart@4.2.12
+  - @graphcommerce/magento-customer@4.2.10
+  - @graphcommerce/magento-customer-account@3.1.10
+  - @graphcommerce/magento-customer-order@3.0.15
+  - @graphcommerce/magento-cart-billing-address@3.0.15
+  - @graphcommerce/magento-cart-checkout@3.0.17
+  - @graphcommerce/magento-cart-coupon@3.0.17
+  - @graphcommerce/magento-cart-email@3.0.17
+  - @graphcommerce/magento-cart-items@3.0.18
+  - @graphcommerce/magento-cart-payment-method@3.1.8
+  - @graphcommerce/magento-cart-shipping-address@3.0.15
+  - @graphcommerce/magento-cart-shipping-method@3.0.16
+  - @graphcommerce/magento-newsletter@2.0.15
+  - @graphcommerce/magento-payment-braintree@3.0.15
+  - @graphcommerce/magento-payment-included@3.0.15
+  - @graphcommerce/magento-product@4.3.2
+  - @graphcommerce/magento-product-bundle@4.0.17
+  - @graphcommerce/magento-product-configurable@4.1.2
+  - @graphcommerce/magento-product-downloadable@4.0.17
+  - @graphcommerce/magento-product-grouped@3.0.17
+  - @graphcommerce/magento-product-simple@4.0.17
+  - @graphcommerce/magento-product-virtual@4.0.17
+  - @graphcommerce/magento-wishlist@1.0.2
+  - @graphcommerce/mollie-magento-payment@3.2.8
+  - @graphcommerce/magento-review@3.2.3
+  - @graphcommerce/magento-category@4.1.3
+
 ## 3.7.3
 
 ### Patch Changes

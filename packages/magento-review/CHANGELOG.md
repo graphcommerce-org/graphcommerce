@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.2.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-customer@4.2.10
+  - @graphcommerce/magento-product@4.3.2
+
 ## 3.2.2
 
 ### Patch Changes
