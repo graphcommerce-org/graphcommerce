@@ -73,7 +73,7 @@ function ProductBundle(props: Props) {
         <ProductAddToCart
           variables={{ sku: product.sku ?? '', quantity: 1 }}
           name={product.name ?? ''}
-          price={product.price_range.minimum_price.regular_price}
+          price={product.price_range.minimum_price.final_price}
           additionalButtons={<ProductWishlistChipDetail {...product} />}
         >
           <ProductSidebarDelivery />
