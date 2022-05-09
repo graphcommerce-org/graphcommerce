@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.11
+
+### Patch Changes
+
+- [#1445](https://github.com/graphcommerce-org/graphcommerce/pull/1445) [`7618f86da`](https://github.com/graphcommerce-org/graphcommerce/commit/7618f86da930929b10b6baf145646356b1bb3793) Thanks [@timhofman](https://github.com/timhofman)! - remove Klarna type policies from typePolicies core
+
 ## 3.0.10
 
 ### Patch Changes

@@ -78,7 +78,7 @@ function ProductConfigurable(props: Props) {
           <div>
             <Typography component='span' variant='body2' color='text.disabled'>
               <Trans>As low as</Trans>&nbsp;
-              <Money {...product.price_range.minimum_price.regular_price} />
+              <Money {...product.price_range.minimum_price.final_price} />
             </Typography>
           </div>
           <Typography variant='h3' component='div' gutterBottom>

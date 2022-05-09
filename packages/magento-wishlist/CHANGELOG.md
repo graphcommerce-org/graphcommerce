@@ -1,5 +1,15 @@
 # @graphcommerce/magento-wishlist
 
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-cart@4.2.12
+  - @graphcommerce/magento-customer@4.2.10
+  - @graphcommerce/magento-product@4.3.2
+  - @graphcommerce/magento-product-configurable@4.1.2
+
 ## 1.0.1
 
 ### Patch Changes
