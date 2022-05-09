@@ -96,6 +96,17 @@ function StoryPage(props: Props) {
         </Box>
       )
     }
+    if (node.name === `video`) {
+      const { style, ...attr } = attribs
+
+      return (
+        <Box>
+          <video style={{ width: '100%' }} autoPlay muted loop playsInline disableRemotePlayback>
+            {!!node.children && !!node.children.length && domToReact(node.children, { replace })}
+          </video>
+        </Box>
+      )
+    }
     return false
   }
 
@@ -119,7 +130,7 @@ function StoryPage(props: Props) {
       <Container maxWidth={false} disableGutters>
         <StoryList storyList={storyList} current={page.url} />
         <div>
-          <style dangerouslySetInnerHTML={{ __html: `${webflowCss}` }} />
+          <style dangerouslySetInnerHTML={{ __html: `${webflowCss.split('===== */').pop()}` }} />
           {parseHtml(bodyContent as string, { replace })}
         </div>
       </Container>
