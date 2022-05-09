@@ -25,6 +25,9 @@ msgstr "Tableau de bord du compte"
 msgid "Add new address"
 msgstr "Ajouter une nouvelle adresse"
 
+msgid "New address"
+msgstr "Nouvelle adresse"
+
 msgid "Add review"
 msgstr "Ajouter une évaluation"
 
@@ -420,6 +423,9 @@ msgstr "Adresse d'expédition"
 
 msgid "Shipping method"
 msgstr "Méthode d'expédition"
+
+msgid "No shipping methods available"
+msgstr "Aucune méthode d'expédition disponible"
 
 msgid "Sign in"
 msgstr "Identifiez-vous"

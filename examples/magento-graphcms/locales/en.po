@@ -25,6 +25,9 @@ msgstr "Account Dashboard"
 msgid "Add new address"
 msgstr "Add new address"
 
+msgid "New address"
+msgstr "New address"
+
 msgid "Add review"
 msgstr "Add review"
 
@@ -420,6 +423,9 @@ msgstr "Shipping address"
 
 msgid "Shipping method"
 msgstr "Shipping method"
+
+msgid "No shipping methods available"
+msgstr "No shipping methods available"
 
 msgid "Sign in"
 msgstr "Sign in"

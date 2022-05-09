@@ -25,6 +25,9 @@ msgstr "Account overzicht"
 msgid "Add new address"
 msgstr "Voeg nieuw adres toe"
 
+msgid "New address"
+msgstr "Nieuw adres"
+
 msgid "Add review"
 msgstr "Voeg review toe"
 
@@ -420,6 +423,9 @@ msgstr "Verzendadres"
 
 msgid "Shipping method"
 msgstr "Verzendmethode"
+
+msgid "No shipping methods available"
+msgstr "Geen verzendmethoden beschikbaar"
 
 msgid "Sign in"
 msgstr "Inloggen"
