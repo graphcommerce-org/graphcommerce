@@ -1,0 +1,34 @@
+diff --git a/node_modules/@lingui/babel-plugin-extract-messages/index.js b/node_modules/@lingui/babel-plugin-extract-messages/index.js
+index 86d76c8..10e8fd7 100644
+--- a/node_modules/@lingui/babel-plugin-extract-messages/index.js
++++ b/node_modules/@lingui/babel-plugin-extract-messages/index.js
+@@ -179,10 +179,10 @@ function _default(_ref2) {
+       ImportDeclaration: function ImportDeclaration(path) {
+         var node = path.node;
+         var moduleName = node.source.value;
+-        if (!["@lingui/react", "@lingui/macro", "@lingui/core"].includes(moduleName)) return;
++        if (!["@lingui/react", "@lingui/macro", "@lingui/core", "@graphcommerce/lingui-next"].includes(moduleName)) return;
+         var importDeclarations = {};
+ 
+-        if (moduleName === "@lingui/react" || moduleName === "@lingui/macro") {
++        if (moduleName === "@lingui/react" || moduleName === "@lingui/macro" || moduleName === "@graphcommerce/lingui-next") {
+           node.specifiers.forEach(function (specifier) {
+             importDeclarations[specifier.imported.name] = specifier.local.name;
+           }); // Trans import might be missing if there's just Plural or similar macro.
+@@ -246,6 +246,7 @@ function _default(_ref2) {
+           id: path.node.arguments[0].value
+         };
+ 
++
+         if (!props.id) {
+           console.warn("Missing message ID, skipping.");
+           console.warn((0, _generator.default)(path.node).code);
+@@ -371,7 +372,7 @@ function _default(_ref2) {
+       var messages = file.get(MESSAGES);
+       var catalog = {};
+ 
+-      var baseName = _path.default.basename(filename);
++      var baseName = Math.random().toString(36).slice(2);
+ 
+       var catalogFilename = _path.default.join(targetDir, "".concat(baseName, ".json"));
+ 

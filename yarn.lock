@@ -2846,7 +2846,7 @@
     loader-utils "^2.0.0"
     ramda "^0.27.1"
 
-"@lingui/react@3.13.3", "@lingui/react@^3.13.3":
+"@lingui/react@^3.13.3":
   version "3.13.3"
   resolved "https://registry.yarnpkg.com/@lingui/react/-/react-3.13.3.tgz#e68284b00a1096d112553bd74a361c17810478c5"
   integrity sha512-sCCI5xMcUY9b6w2lwbwy6iHpo1Fb9TDcjcHAD2KI5JueLH+WWQG66tIHiVAlSsQ+hmQ9Tt+f86H05JQEiDdIvg==
