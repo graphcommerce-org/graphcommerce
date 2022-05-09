@@ -1,7 +1,7 @@
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { Button, FormRow, FormActions } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Box, FormControl, Link, SxProps, TextField, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
@@ -32,7 +32,7 @@ export function SignInForm(props: SignInFormProps) {
           variant='outlined'
           type='password'
           error={!!formState.errors.password || !!authError}
-          label={<Trans>Password</Trans>}
+          label={<Trans id='Password' />}
           autoFocus
           autoComplete='current-password'
           id='current-password'
@@ -42,7 +42,7 @@ export function SignInForm(props: SignInFormProps) {
             endAdornment: (
               <PageLink href='/account/forgot-password' key='forgot-password' passHref>
                 <Link underline='hover' sx={{ whiteSpace: 'nowrap' }}>
-                  <Trans>Forgot password?</Trans>
+                  <Trans id='Forgot password?' />
                 </Link>
               </PageLink>
             ),
@@ -63,7 +63,7 @@ export function SignInForm(props: SignInFormProps) {
             variant='contained'
             size='large'
           >
-            <Trans>Log in</Trans>
+            <Trans id='Log in' />
           </Button>
         </FormControl>
       </FormActions>

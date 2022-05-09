@@ -13,7 +13,8 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Controller, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { FormControl, Alert, Box } from '@mui/material'
 import { AvailableShippingMethod } from '../AvailableShippingMethod/AvailableShippingMethod'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
@@ -106,7 +107,11 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
                 },
               }}
             >
-              <IconSvg src={iconChevronLeft} size='small' aria-label={t`Scroll Left`} />
+              <IconSvg
+                src={iconChevronLeft}
+                size='small'
+                aria-label={i18n._(/* i18n */ `Scroll Left`)}
+              />
             </ScrollerButton>
           </Box>
 
@@ -171,7 +176,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
                         carrier_code='none'
                         carrier_title='No shipping methods available'
                       >
-                        <Trans>Please fill in your address to see shipping methods</Trans>
+                        <Trans id='Please fill in your address to see shipping methods' />
                       </AvailableShippingMethod>
                     )}
                   </Scroller>
@@ -223,7 +228,11 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
               }}
               className={classes.buttonRoot}
             >
-              <IconSvg src={iconChevronRight} size='small' aria-label={t`Scroll Right`} />
+              <IconSvg
+                src={iconChevronRight}
+                size='small'
+                aria-label={i18n._(/* i18n */ `Scroll Right`)}
+              />
             </ScrollerButton>
           </Box>
         </ScrollerProvider>

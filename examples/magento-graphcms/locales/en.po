@@ -25,14 +25,17 @@ msgstr "Account"
 msgid "Account Dashboard"
 msgstr "Account Dashboard"
 
+msgid "Add address"
+msgstr "Add address"
+
 msgid "Add new address"
 msgstr "Add new address"
 
-msgid "Add review"
-msgstr "Add review"
-
 msgid "Add to Cart"
 msgstr "Add to Cart"
+
+msgid "Add to wishlist"
+msgstr "Add to wishlist"
 
 msgid "Addition"
 msgstr "Addition"
@@ -49,8 +52,8 @@ msgstr "All products"
 msgid "Apply"
 msgstr "Apply"
 
-msgid "As low as"
-msgstr "As low as"
+msgid "As low as <0/>"
+msgstr "As low as <0/>"
 
 msgid "As soon as the payment is completed, you will automatically return to the webshop."
 msgstr "As soon as the payment is completed, you will automatically return to the webshop."
@@ -166,6 +169,9 @@ msgstr "Discount code"
 msgid "Discover our collection and add items to your cart!"
 msgstr "Discover our collection and add items to your cart!"
 
+msgid "Discover our collection and add items to your wishlist!"
+msgstr "Discover our collection and add items to your wishlist!"
+
 msgid "Discover our collection and place your first order!"
 msgstr "Discover our collection and place your first order!"
 
@@ -274,9 +280,6 @@ msgstr "Name"
 msgid "Navigate to item {0}"
 msgstr "Navigate to item {0}"
 
-#~ msgid "New Password"
-#~ msgstr "New Password"
-
 msgid "New email"
 msgstr "New email"
 
@@ -298,6 +301,9 @@ msgstr "No account yet?"
 msgid "No orders found"
 msgstr "No orders found"
 
+msgid "No payment information"
+msgstr "No payment information"
+
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "No worries! Enter your email address and we will send an email with instructions to reset your password."
 
@@ -316,9 +322,6 @@ msgstr "Or follow these links to get you back on track!"
 msgid "Order #{orderId}"
 msgstr "Order #{orderId}"
 
-msgid "Order detail page for order #{orderId}"
-msgstr "Order detail page for order #{orderId}"
-
 msgid "Order not found"
 msgstr "Order not found"
 
@@ -330,9 +333,6 @@ msgstr "Order status"
 
 msgid "Order summary"
 msgstr "Order summary"
-
-msgid "Order view #{orderId}"
-msgstr "Order view #{orderId}"
 
 msgid "Ordered items"
 msgstr "Ordered items"
@@ -402,6 +402,9 @@ msgstr "Region"
 
 msgid "Remove Product"
 msgstr "Remove Product"
+
+msgid "Remove from wishlist"
+msgstr "Remove from wishlist"
 
 msgid "Reset Cart and Return to home"
 msgstr "Reset Cart and Return to home"
@@ -526,9 +529,6 @@ msgstr "View all items"
 msgid "View all your addresses"
 msgstr "View all your addresses"
 
-msgid "View all your reviews"
-msgstr "View all your reviews"
-
 msgid "View less items"
 msgstr "View less items"
 
@@ -559,11 +559,14 @@ msgstr "Which size is right?"
 msgid "Whoops our bad..."
 msgstr "Whoops our bad..."
 
+msgid "Wishlist"
+msgstr "Wishlist"
+
 msgid "Write a review"
 msgstr "Write a review"
 
-msgid "Written by"
-msgstr "Written by"
+msgid "Written by {nickname}"
+msgstr "Written by {nickname}"
 
 msgid "Written {0} reviews"
 msgstr "Written {0} reviews"
@@ -606,6 +609,9 @@ msgstr "Your cart is empty"
 
 msgid "Your session is expired"
 msgstr "Your session is expired"
+
+msgid "Your wishlist is empty"
+msgstr "Your wishlist is empty"
 
 msgid "canceled"
 msgstr "canceled"

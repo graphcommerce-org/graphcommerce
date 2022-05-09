@@ -22,7 +22,8 @@ import {
   LayoutOverlayHeader,
   LinkOrButton,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
@@ -43,8 +44,8 @@ function CartPage() {
   return (
     <>
       <PageMeta
-        title={t`Cart (${data?.cart?.total_quantity ?? 0})`}
-        metaDescription={t`Cart Items`}
+        title={i18n._(/* i18n */ `Cart ({0})`, { 0: data?.cart?.total_quantity ?? 0 })}
+        metaDescription={i18n._(/* i18n */ `Cart Items`)}
         metaRobots={['noindex']}
       />
       <LayoutOverlayHeader
@@ -56,7 +57,7 @@ function CartPage() {
               color='secondary'
               endIcon={<IconSvg src={iconChevronRight} />}
             >
-              <Trans>Next</Trans>
+              <Trans id='Next' />
             </LinkOrButton>
           </PageLink>
         }

@@ -4,7 +4,7 @@ import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { FormRow } from '@graphcommerce/next-ui'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Typography, Alert } from '@mui/material'
 import Script from 'next/script'
 import React, { useEffect, useState } from 'react'
@@ -62,7 +62,7 @@ export function MollieCreditCardOptions(props: PaymentOptionsProps) {
       <Script src='https://js.mollie.com/v1/mollie.js' onLoad={() => setLoaded(true)} />
       <mollieContext.Provider value={mollie}>
         <Typography variant='h5' component='span'>
-          <Trans>Pay with {title}</Trans>
+          <Trans id='Pay with {title}' values={{ title }} />
         </Typography>
         <form onSubmit={submit} noValidate>
           <FormRow>

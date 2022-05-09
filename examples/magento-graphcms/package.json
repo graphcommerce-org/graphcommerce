@@ -14,7 +14,7 @@
     "build": "yarn codegen && yarn next build && yarn next-sitemap",
     "start": "next start",
     "tsc:lint": "yarn tsc --noEmit -p .",
-    "lingui": "NEXT_PUBLIC_LOCALE_STORES='{\"en\": \"en\", \"nl\": \"nl\", \"fr\": \"fr\", \"nl\": \"nl\", \"de\": \"de\", \"es\": \"es\", \"it\": \"it\"}' NODE_ENV=development lingui extract",
+    "lingui": "NEXT_PUBLIC_LOCALE_STORES='{\"en\": \"en\", \"nl\": \"nl\", \"fr\": \"fr\", \"nl\": \"nl\", \"de\": \"de\", \"es\": \"es\", \"it\": \"it\"}' NODE_ENV=development lingui extract --clean",
     "codegen-base": "yarn graphql-codegen -c ../../scripts/codegen.magento-graphcms.yml",
     "postinstall": "concurrently 'yarn workspace @graphcommerce/next-config prepack' 'yarn workspace @graphcommerce/graphql-codegen-near-operation-file prepack' 'yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin prepack' 'yarn workspace @graphcommerce/cli prepack'"
   },
@@ -72,7 +72,8 @@
     "@graphcommerce/mollie-magento-payment": "3.2.8",
     "@graphcommerce/next-config": "3.1.4",
     "@graphcommerce/next-ui": "4.7.1",
-    "@lingui/macro": "3.13.3",
+    "@lingui/react": "3.13.3",
+    "@lingui/core": "3.13.3",
     "@mui/lab": "5.0.0-alpha.79",
     "@mui/material": "5.6.3",
     "concurrently": "7.1.0",

@@ -17,7 +17,7 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { emailPattern, useFormPersist } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Link, SxProps, TextField, Theme, Typography } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
@@ -53,10 +53,10 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
       {mode === 'email' && (
         <Box className={classes.titleContainer} key='email' sx={titleContainerSx}>
           <LayoutTitle variant='h2' gutterBottom={false}>
-            <Trans>Sign in or create an account!</Trans>
+            <Trans id='Sign in or create an account!' />
           </LayoutTitle>
           <Typography variant='h6' align='center'>
-            <Trans>Fill in your e-mail to login or create an account</Trans>
+            <Trans id='Fill in your e-mail to login or create an account' />
           </Typography>
         </Box>
       )}
@@ -64,10 +64,10 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
       {mode === 'signin' && (
         <Box className={classes.titleContainer} key='signin' sx={titleContainerSx}>
           <LayoutTitle variant='h2' gutterBottom={false}>
-            <Trans>Welcome back!</Trans>
+            <Trans id='Welcome back!' />
           </LayoutTitle>
           <Typography variant='h6' align='center'>
-            <Trans>Fill in your password</Trans>
+            <Trans id='Fill in your password' />
           </Typography>
         </Box>
       )}
@@ -75,10 +75,10 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
       {mode === 'signup' && (
         <Box className={classes.titleContainer} key='signup' sx={titleContainerSx}>
           <LayoutTitle variant='h2' gutterBottom={false}>
-            <Trans>Create account!</Trans>
+            <Trans id='Create account!' />
           </LayoutTitle>
           <Typography variant='h6' align='center'>
-            <Trans>Create a password and tell us your name</Trans>
+            <Trans id='Create a password and tell us your name' />
           </Typography>
         </Box>
       )}
@@ -86,19 +86,19 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
       {mode === 'signedin' && (
         <Box className={classes.titleContainer} key='signup' sx={titleContainerSx}>
           <LayoutTitle variant='h2' gutterBottom={false}>
-            <Trans>Hi {firstname}! You’re now logged in!</Trans>
+            <Trans id='Hi {firstname}! You’re now logged in!' values={{ firstname }} />
           </LayoutTitle>
           <Typography variant='h6' align='center'>
             <PageLink href='/account' passHref>
               <Link underline='hover'>
-                <Trans>View your account</Trans>
+                <Trans id='View your account' />
               </Link>
             </PageLink>
           </Typography>
 
           <FormActions>
             <Button onClick={() => router.back()} variant='pill' color='secondary' size='large'>
-              <Trans>Continue shopping</Trans>
+              <Trans id='Continue shopping' />
             </Button>
           </FormActions>
         </Box>
@@ -107,10 +107,10 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
       {mode === 'session-expired' && (
         <Box className={classes.titleContainer} key='email' sx={titleContainerSx}>
           <LayoutTitle variant='h2' gutterBottom={false}>
-            <Trans>Your session is expired</Trans>
+            <Trans id='Your session is expired' />
           </LayoutTitle>
           <Typography variant='h6' align='center'>
-            <Trans>Log in to continue shopping</Trans>
+            <Trans id='Log in to continue shopping' />
           </Typography>
         </Box>
       )}
@@ -127,7 +127,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
                   autoComplete='email'
                   error={formState.isSubmitted && !!formState.errors.email}
                   helperText={formState.isSubmitted && formState.errors.email?.message}
-                  label={<Trans>Email</Trans>}
+                  label={<Trans id='Email' />}
                   required={required.email}
                   disabled={disableFields}
                   {...muiRegister('email', {
@@ -154,7 +154,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
                     color='primary'
                     size='large'
                   >
-                    <Trans>Continue</Trans>
+                    <Trans id='Continue' />
                   </Button>
                 </FormActions>
               </AnimatedRow>

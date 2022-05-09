@@ -1,7 +1,7 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { iconHeart, DesktopHeaderBadge, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
+import { i18n } from '@lingui/core'
 import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import React, { useEffect } from 'react'
@@ -55,7 +55,7 @@ function WishlistFabContent(props: WishlistFabContentProps) {
       <Fab
         color='inherit'
         data-test-id='wishlist-fab'
-        aria-label={t`Wishlist`}
+        aria-label={i18n._(/* i18n */ `Wishlist`)}
         size='large'
         className={classes.root}
         {...FabProps}

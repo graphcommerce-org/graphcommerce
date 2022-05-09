@@ -10,7 +10,7 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Box, TextField, Typography, Alert, Button, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -76,11 +76,11 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
     return (
       <>
         <Alert severity='success' variant='standard'>
-          <Trans>Thank you! Your review was successfully submitted for approval</Trans>
+          <Trans id='Thank you! Your review was successfully submitted for approval' />
         </Alert>
         <Box mt={6}>
           <Button variant='pill' color='secondary' size='large' onClick={() => router.back()}>
-            <Trans>Continue shopping</Trans>
+            <Trans id='Continue shopping' />
           </Button>
         </Box>
       </>
@@ -94,7 +94,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           variant='outlined'
           type='text'
           error={!!formState.errors.nickname || !!error}
-          label={<Trans>Name</Trans>}
+          label={<Trans id='Name' />}
           required={required.nickname}
           {...muiRegister('nickname', { required: required.nickname })}
           helperText={formState.errors.nickname?.message}
@@ -214,7 +214,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
             height: responsiveVal(40, 50),
           }}
         >
-          <Trans>Submit review</Trans>
+          <Trans id='Submit review' />
         </Button>
         <Button
           variant='text'
@@ -227,7 +227,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
             margin: '0 auto',
           }}
         >
-          <Trans>Cancel</Trans>
+          <Trans id='Cancel' />
         </Button>
       </FormActions>
 

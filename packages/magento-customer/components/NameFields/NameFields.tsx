@@ -1,6 +1,7 @@
 import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
 import { assertFormGqlOperation, Controller, UseFormReturn } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { MenuItem, TextField } from '@mui/material'
 import React from 'react'
 
@@ -19,7 +20,11 @@ type NameFieldProps = {
 }
 
 export function NameFields(props: NameFieldProps) {
-  const { prefix, form, readOnly, prefixes = [t`Mr`, t`Mrs`, t`Other`] } = props
+  const mr = i18n._(/* i18n */ `Mr`)
+  const mrs = i18n._(/* i18n */ `Mrs`)
+  const other = i18n._(/* i18n */ `Other`)
+
+  const { prefix, form, readOnly, prefixes = [mr, mrs, other] } = props
   assertFormGqlOperation<NameFieldValues>(form)
 
   const { control, formState, muiRegister, required, valid } = form
@@ -37,7 +42,7 @@ export function NameFields(props: NameFieldProps) {
                 variant='outlined'
                 select
                 error={!!fieldState.error}
-                label={<Trans>Prefix</Trans>}
+                label={<Trans id='Prefix' />}
                 required={!!required?.prefix}
                 helperText={fieldState.error?.message}
                 onChange={(e) => onChange(e.target.value)}
@@ -63,7 +68,7 @@ export function NameFields(props: NameFieldProps) {
         <TextField
           variant='outlined'
           type='text'
-          label={<Trans>First Name</Trans>}
+          label={<Trans id='First Name' />}
           required={!!required}
           error={!!formState.errors.firstname}
           helperText={formState.isSubmitted && formState.errors.firstname?.message}
@@ -77,7 +82,7 @@ export function NameFields(props: NameFieldProps) {
           variant='outlined'
           type='text'
           error={!!formState.errors.lastname}
-          label={<Trans>Last Name</Trans>}
+          label={<Trans id='Last Name' />}
           required={!!required?.lastname}
           helperText={formState.isSubmitted && formState.errors.lastname?.message}
           InputProps={{

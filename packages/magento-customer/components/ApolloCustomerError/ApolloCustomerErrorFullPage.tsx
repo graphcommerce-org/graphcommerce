@@ -1,6 +1,6 @@
 import { ApolloErrorFullPage, ApolloErrorAlertProps } from '@graphcommerce/ecommerce-ui'
 import { iconPerson, IconSvg } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 import PageLink from 'next/link'
 import { useExtractCustomerErrors } from '../../hooks/useExtractCustomerErrors'
@@ -22,7 +22,7 @@ export function ApolloCustomerErrorFullPage(props: ApolloCustomerErrorFullPagePr
         unauthorized ? (
           <PageLink href={signInHref} passHref>
             <Button variant='contained' color='primary' size='large'>
-              <Trans>Log in</Trans>
+              <Trans id='Log in' />
             </Button>
           </PageLink>
         ) : undefined
@@ -31,7 +31,7 @@ export function ApolloCustomerErrorFullPage(props: ApolloCustomerErrorFullPagePr
         unauthorized ? (
           <PageLink href={signUpHref} passHref>
             <Button variant='text' color='primary'>
-              <Trans>Or create an account</Trans>
+              <Trans id='Or create an account' />
             </Button>
           </PageLink>
         ) : undefined

@@ -2,7 +2,7 @@ import { Asset } from '@graphcommerce/graphcms-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { BlogListItem } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Typography, useTheme } from '@mui/material'
 import { BlogItemFragment } from './BlogItem.gql'
 
@@ -26,7 +26,7 @@ export function BlogItem(props: BlogItemProps) {
           />
         ) : (
           <Typography variant='body2'>
-            <Trans>No Image</Trans>
+            <Trans id='No Image' />
           </Typography>
         )
       }

@@ -1,6 +1,6 @@
 import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { TextField } from '@mui/material'
 import { useRouter } from 'next/router'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
@@ -44,7 +44,7 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
           variant='outlined'
           type='email'
           error={!!formState.errors.email}
-          label={<Trans>Email</Trans>}
+          label={<Trans id='Email' />}
           required={required.email}
           {...muiRegister('email', { required: required.email })}
           helperText={formState.errors.email?.message}
@@ -56,7 +56,7 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
           variant='outlined'
           type='password'
           error={!!formState.errors.newPassword}
-          label={<Trans>New password</Trans>}
+          label={<Trans id='New password' />}
           required={required.newPassword}
           {...muiRegister('newPassword', { required: required.newPassword })}
           helperText={formState.errors.newPassword?.message}
@@ -68,7 +68,7 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
           variant='outlined'
           type='password'
           error={!!formState.errors.confirmPassword}
-          label={<Trans>Confirm password</Trans>}
+          label={<Trans id='Confirm password' />}
           required
           {...muiRegister('confirmPassword', {
             required: true,
@@ -89,7 +89,7 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
           variant='contained'
           size='large'
         >
-          <Trans>Save new password</Trans>
+          <Trans id='Save new password' />
         </Button>
       </FormActions>
     </Form>

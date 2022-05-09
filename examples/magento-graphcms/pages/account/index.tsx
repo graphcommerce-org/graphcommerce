@@ -28,7 +28,8 @@ import {
   LayoutTitle,
   LayoutHeader,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Container, NoSsr } from '@mui/material'
 import React from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
@@ -66,19 +67,19 @@ function AccountIndexPage() {
   return (
     <>
       <PageMeta
-        title={t`Account`}
-        metaDescription={t`Account Dashboard`}
+        title={i18n._(/* i18n */ `Account`)}
+        metaDescription={i18n._(/* i18n */ `Account Dashboard`)}
         metaRobots={['noindex']}
       />
 
       <LayoutHeader>
         <LayoutTitle component='span' size='small' icon={iconPerson}>
-          <Trans>Account</Trans>
+          <Trans id='Account' />
         </LayoutTitle>
       </LayoutHeader>
 
       <LayoutTitle icon={iconPerson}>
-        <Trans>Account</Trans>
+        <Trans id='Account' />
       </LayoutTitle>
 
       <Container maxWidth='md'>
@@ -87,25 +88,25 @@ function AccountIndexPage() {
             <AccountMenuItem
               href='/account/name'
               iconSrc={iconId}
-              title={t`Name`}
+              title={i18n._(/* i18n */ `Name`)}
               subtitle={`${customer?.firstname} ${customer?.lastname}`}
             />
             <AccountMenuItem
               href='/account/contact'
               iconSrc={iconEmailOutline}
-              title={t`Contact`}
+              title={i18n._(/* i18n */ `Contact`)}
               subtitle={customer?.email}
             />
             <AccountMenuItem
               href='/account/authentication'
               iconSrc={iconLock}
-              title={t`Authentication`}
-              subtitle={t`Password`}
+              title={i18n._(/* i18n */ `Authentication`)}
+              subtitle={i18n._(/* i18n */ `Password`)}
             />
             <AccountMenuItem
               href='/account/orders'
               iconSrc={iconBox}
-              title={t`Orders`}
+              title={i18n._(/* i18n */ `Orders`)}
               subtitle={
                 latestOrder ? (
                   <>
@@ -117,13 +118,13 @@ function AccountIndexPage() {
                       <OrderStateLabelInline
                         items={latestOrder?.items}
                         renderer={{
-                          Ordered: () => <Trans>processed</Trans>,
-                          Invoiced: () => <Trans>invoiced</Trans>,
-                          Shipped: () => <Trans>shipped</Trans>,
-                          Refunded: () => <Trans>refunded</Trans>,
-                          Canceled: () => <Trans>canceled</Trans>,
-                          Returned: () => <Trans>returned</Trans>,
-                          Partial: () => <Trans>partially processed</Trans>,
+                          Ordered: () => <Trans id='processed' />,
+                          Invoiced: () => <Trans id='invoiced' />,
+                          Shipped: () => <Trans id='shipped' />,
+                          Refunded: () => <Trans id='refunded' />,
+                          Canceled: () => <Trans id='canceled' />,
+                          Returned: () => <Trans id='returned' />,
+                          Partial: () => <Trans id='partially processed' />,
                         }}
                       />
                     )}
@@ -134,21 +135,23 @@ function AccountIndexPage() {
             <AccountMenuItem
               href='/account/addresses'
               iconSrc={iconHome}
-              title={t`Addresses`}
+              title={<Trans id='Addresses' />}
               subtitle={address ? <AddressSingleLine {...address} /> : undefined}
             />
             {customer?.reviews.items.length !== 0 && (
               <AccountMenuItem
                 href='/account/reviews'
                 iconSrc={iconStar}
-                title={t`Reviews`}
-                subtitle={t`Written ${customer?.reviews.items.length} reviews`}
+                title={<Trans id='Reviews' />}
+                subtitle={
+                  <Trans id='Written {0} reviews' values={{ 0: customer?.reviews.items.length }} />
+                }
               />
             )}
             <AccountMenuItem
               iconSrc={iconNewspaper}
-              title={t`Newsletter`}
-              subtitle={t`Be the first to know about everything new!`}
+              title={<Trans id='Newsletter' />}
+              subtitle={<Trans id='Be the first to know about everything new!' />}
               endIcon={<CustomerNewsletterToggle color='primary' />}
             />
             <SignOutForm
@@ -159,7 +162,7 @@ function AccountIndexPage() {
                   loading={formState.isSubmitting}
                   type='submit'
                   disabled={loading}
-                  title={t`Sign out`}
+                  title={<Trans id='Sign out' />}
                   noBorderBottom
                 />
               )}

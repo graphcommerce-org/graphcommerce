@@ -29,7 +29,8 @@
     "@graphcommerce/next-ui": "4.7.1"
   },
   "peerDependencies": {
-    "@lingui/macro": "^3.13.2",
+    "@lingui/react": "^3.13.2",
+    "@lingui/core": "^3.13.2",
     "@mui/material": "^5.5.3",
     "framer-motion": "^6.2.4",
     "next": "^12.1.2",

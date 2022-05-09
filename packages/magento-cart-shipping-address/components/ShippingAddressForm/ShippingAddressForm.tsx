@@ -14,7 +14,8 @@ import {
   UseFormComposeOptions,
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { TextField } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
@@ -100,10 +101,10 @@ export function ShippingAddressForm(props: ShippingAddressFormProps) {
             type='text'
             error={!!formState.errors.telephone}
             required={required.telephone}
-            label={<Trans>Telephone</Trans>}
+            label={<Trans id='Telephone' />}
             {...muiRegister('telephone', {
               required: required.telephone,
-              pattern: { value: phonePattern, message: t`Invalid phone number` },
+              pattern: { value: phonePattern, message: i18n._(/* i18n */ `Invalid phone number`) },
             })}
             helperText={formState.isSubmitted && formState.errors.telephone?.message}
             InputProps={{

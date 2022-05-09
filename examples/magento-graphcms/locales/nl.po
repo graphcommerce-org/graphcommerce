@@ -25,14 +25,17 @@ msgstr "Account"
 msgid "Account Dashboard"
 msgstr "Account overzicht"
 
+msgid "Add address"
+msgstr "Adres toevoegen"
+
 msgid "Add new address"
 msgstr "Voeg nieuw adres toe"
 
-msgid "Add review"
-msgstr "Voeg review toe"
-
 msgid "Add to Cart"
 msgstr "In winkelwagen"
+
+msgid "Add to wishlist"
+msgstr "In verlanglijst"
 
 msgid "Addition"
 msgstr "Toevoeging"
@@ -49,8 +52,8 @@ msgstr "Alle producten"
 msgid "Apply"
 msgstr "Toepassen"
 
-msgid "As low as"
-msgstr "Vanaf"
+msgid "As low as <0/>"
+msgstr "Boven <0/>"
 
 msgid "As soon as the payment is completed, you will automatically return to the webshop."
 msgstr "Als de betaling is voltooid, keert u automatisch terug naar de webshop."
@@ -165,6 +168,9 @@ msgstr "Kortingscode"
 
 msgid "Discover our collection and add items to your cart!"
 msgstr "Ontdek onze collectie en voeg producten toe aan uw winkelwagen!"
+
+msgid "Discover our collection and add items to your wishlist!"
+msgstr "Ontdek onze collectie en voeg producten toe aan uw verlanglijst!"
 
 msgid "Discover our collection and place your first order!"
 msgstr "Ontdek onze collectie en plaats uw eerste bestelling!"
@@ -295,6 +301,9 @@ msgstr "Nog geen account?"
 msgid "No orders found"
 msgstr "Geen bestellingen gevonden"
 
+msgid "No payment information"
+msgstr "Geen betalingsinformatie"
+
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "Geen zorgen! Vul uw e-mailadres in en we sturen een email met instructies om het wachtwoord te resetten."
 
@@ -313,9 +322,6 @@ msgstr "Of klik op één van deze links om weer op het pad te komen!"
 msgid "Order #{orderId}"
 msgstr "Bestelling #{orderId}"
 
-msgid "Order detail page for order #{orderId}"
-msgstr "Bestelling detailpagina voor bestelling #{orderId}"
-
 msgid "Order not found"
 msgstr "Bestelling niet gevonden"
 
@@ -327,9 +333,6 @@ msgstr "Bestelstatus"
 
 msgid "Order summary"
 msgstr "Besteloverzicht"
-
-msgid "Order view #{orderId}"
-msgstr "Bekijk bestelling #{orderId}"
 
 msgid "Ordered items"
 msgstr "Bestelde items"
@@ -399,6 +402,9 @@ msgstr "Regio"
 
 msgid "Remove Product"
 msgstr "Verwijder product"
+
+msgid "Remove from wishlist"
+msgstr "Verwijder van verlanglijst"
 
 msgid "Reset Cart and Return to home"
 msgstr "Reset winkelwagen en ga terug naar home"
@@ -523,9 +529,6 @@ msgstr "Bekijk alle items"
 msgid "View all your addresses"
 msgstr "Bekijk alle adressen"
 
-msgid "View all your reviews"
-msgstr "Bekijk al je reviews"
-
 msgid "View less items"
 msgstr "Bekijk minder items"
 
@@ -556,11 +559,14 @@ msgstr "Wat is de juiste maat?"
 msgid "Whoops our bad..."
 msgstr "Oeps.."
 
+msgid "Wishlist"
+msgstr "Verlanglijst"
+
 msgid "Write a review"
 msgstr "Schrijf een review"
 
-msgid "Written by"
-msgstr "Geschreven door"
+msgid "Written by {nickname}"
+msgstr "Geschreven door {nickname}"
 
 msgid "Written {0} reviews"
 msgstr "{0} reviews geschreven"
@@ -603,6 +609,9 @@ msgstr "Je winkelwagen is leeg"
 
 msgid "Your session is expired"
 msgstr "Uw sessie is verlopen"
+
+msgid "Your wishlist is empty"
+msgstr "Uw verlanglijst is leeg"
 
 msgid "canceled"
 msgstr "geannuleerd"

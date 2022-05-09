@@ -26,7 +26,7 @@ import {
   LayoutTitle,
   SchemaDts,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
@@ -77,8 +77,10 @@ function ProductConfigurable(props: Props) {
         <ProductPageGallery {...product}>
           <div>
             <Typography component='span' variant='body2' color='text.disabled'>
-              <Trans>As low as</Trans>&nbsp;
-              <Money {...product.price_range.minimum_price.final_price} />
+              <Trans
+                id='As low as <0/>'
+                components={{ 0: <Money {...product.price_range.minimum_price.final_price} /> }}
+              />
             </Typography>
           </div>
           <Typography variant='h3' component='div' gutterBottom>
@@ -102,7 +104,7 @@ function ProductConfigurable(props: Props) {
                     return router.push('/modal/product/global/size')
                   }}
                 >
-                  <Trans>Which size is right?</Trans>
+                  <Trans id='Which size is right?' />
                 </Link>
               ),
             }}

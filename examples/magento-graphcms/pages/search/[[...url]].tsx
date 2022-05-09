@@ -28,7 +28,8 @@ import {
   LayoutTitle,
   LayoutHeader,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Container, Hidden } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutFull, LayoutFullProps, ProductListItems } from '../../components'
@@ -52,7 +53,11 @@ function SearchResultPage(props: Props) {
   return (
     <>
       <PageMeta
-        title={search ? t`Results for ‘${search}’` : t`Search`}
+        title={
+          search
+            ? i18n._(/* i18n */ `Results for ‘{search}’`, { search })
+            : i18n._(/* i18n */ `Search`)
+        }
         metaRobots={['noindex']}
         canonical='/search'
       />
@@ -68,7 +73,11 @@ function SearchResultPage(props: Props) {
 
       <Hidden implementation='css' mdDown>
         <LayoutTitle gutterBottom={false} gutterTop={false}>
-          {search ? <Trans>Results for &lsquo;{search}&rsquo;</Trans> : <Trans>All products</Trans>}
+          {search ? (
+            <Trans id='Results for &lsquo;{search}&rsquo;' values={{ search }} />
+          ) : (
+            <Trans id='All products' />
+          )}
         </LayoutTitle>
 
         <Container maxWidth='sm'>

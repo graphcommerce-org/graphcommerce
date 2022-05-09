@@ -1,6 +1,6 @@
 import { ApolloError, useApolloClient } from '@graphcommerce/graphql'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import { t } from '@lingui/macro'
+import { i18n } from '@lingui/core'
 import { useEffect } from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 
@@ -12,7 +12,7 @@ export function useExtractCustomerErrors({ error }: UseExtractErrors) {
     category: 'graphql-authorization',
     error,
     extract: false,
-    mask: t`You must sign in to continue`,
+    mask: i18n._(/* i18n */ `You must sign in to continue`),
   })
 
   useEffect(() => {

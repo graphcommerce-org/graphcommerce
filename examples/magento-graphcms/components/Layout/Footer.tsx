@@ -1,7 +1,7 @@
 import { Image } from '@graphcommerce/image'
 import { StoreSwitcherButton } from '@graphcommerce/magento-store'
 import { Footer as FooterBase } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Button, IconButton, Link } from '@mui/material'
 import PageLink from 'next/link'
 import { FooterQueryFragment } from './FooterQueryFragment.gql'
@@ -38,7 +38,7 @@ export function Footer(props: FooterProps) {
       customerService={
         <PageLink href='/service' passHref>
           <Button variant='pill'>
-            <Trans>Customer Service</Trans>
+            <Trans id='Customer Service' />
           </Button>
         </PageLink>
       }

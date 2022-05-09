@@ -14,7 +14,7 @@ import {
   extendableComponent,
   AnimatedRow,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { ButtonProps, Box, Alert } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
@@ -89,7 +89,7 @@ export function ProductAddToCart(
           size='medium'
           {...buttonProps}
         >
-          <Trans>Add to Cart</Trans>
+          <Trans id='Add to Cart' />
         </Button>
       </Box>
 
@@ -120,14 +120,16 @@ export function ProductAddToCart(
               color='secondary'
               endIcon={<IconSvg src={iconChevronRight} />}
             >
-              <Trans>View shopping cart</Trans>
+              <Trans id='View shopping cart' />
             </Button>
           </PageLink>
         }
       >
-        <Trans>
-          <strong>{name}</strong> has been added to your shopping cart!
-        </Trans>
+        <Trans
+          id='<0>{name}</0> has been added to your shopping cart!'
+          components={{ 0: <strong /> }}
+          values={{ name }}
+        />
       </MessageSnackbar>
     </Box>
   )

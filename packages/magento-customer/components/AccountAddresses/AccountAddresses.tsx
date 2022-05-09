@@ -5,7 +5,7 @@ import {
   IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Skeleton, Button, Box, Theme, SxProps } from '@mui/material'
 import Link from 'next/link'
 import { AccountAddress } from '../AccountAddress/AccountAddress'
@@ -46,7 +46,7 @@ export function AccountAddresses(props: AccountAddressesProps) {
             margin: `${theme.spacings.md} auto`,
           })}
         >
-          <Trans>Add new address</Trans>
+          <Trans id='Add new address' />
         </Button>
       </SectionContainer>
     )
@@ -56,12 +56,12 @@ export function AccountAddresses(props: AccountAddressesProps) {
     <>
       {((addresses && addresses.length === 0) || !addresses) && (
         <FullPageMessage
-          title={<Trans>You have no addresses saved yet</Trans>}
+          title={<Trans id='You have no addresses saved yet' />}
           icon={<IconSvg src={iconHome} size='xxl' />}
           button={
             <Link href='/account/addresses/add' passHref>
               <Button size='large' variant='contained' color='primary'>
-                <Trans>Add new address</Trans>
+                <Trans id='Add new address' />
               </Button>
             </Link>
           }
@@ -91,7 +91,7 @@ export function AccountAddresses(props: AccountAddressesProps) {
                 margin: `${theme.spacings.md} auto`,
               })}
             >
-              <Trans>Add new address</Trans>
+              <Trans id='Add new address' />
             </Button>
           </Link>
         </SectionContainer>

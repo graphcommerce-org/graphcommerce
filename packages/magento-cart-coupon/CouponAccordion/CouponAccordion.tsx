@@ -7,7 +7,7 @@ import {
   IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Box, Button, styled, SxProps, Theme, Typography } from '@mui/material'
 import { AnimatePresence, m } from 'framer-motion'
 import { useState } from 'react'
@@ -107,7 +107,7 @@ export function CouponAccordion(props: CouponAccordionProps) {
           }
         >
           <Typography variant='subtitle1'>
-            <Trans>Discount code</Trans>
+            <Trans id='Discount code' />
           </Typography>
           <AnimatePresence>
             {coupon && (

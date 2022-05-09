@@ -14,7 +14,8 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Container, NoSsr } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -41,22 +42,22 @@ function AccountNamePage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconId}>
-          <Trans>Name</Trans>
+          <Trans id='Name' />
         </LayoutTitle>
       </LayoutOverlayHeader>
       <NoSsr>
         <Container maxWidth='md'>
           <PageMeta
-            title={t`Name`}
-            metaDescription={t`Update your name`}
+            title={i18n._(/* i18n */ `Name`)}
+            metaDescription={i18n._(/* i18n */ `Update your name`)}
             metaRobots={['noindex']}
           />
 
           <LayoutTitle icon={iconId}>
-            <Trans>Name</Trans>
+            <Trans id='Name' />
           </LayoutTitle>
 
-          <SectionContainer labelLeft={t`Name`}>
+          <SectionContainer labelLeft={i18n._(/* i18n */ `Name`)}>
             {customer && (
               <ChangeNameForm
                 prefix={customer.prefix ?? ''}

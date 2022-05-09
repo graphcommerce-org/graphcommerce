@@ -7,7 +7,8 @@ import {
   Button,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans, t } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { TextField } from '@mui/material'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
@@ -32,7 +33,7 @@ export function ChangePasswordForm() {
           variant='outlined'
           type='password'
           error={!!formState.errors.currentPassword}
-          label={<Trans>Current Password</Trans>}
+          label={<Trans id='Current Password' />}
           required={required.currentPassword}
           {...muiRegister('currentPassword', { required: required.currentPassword })}
           helperText={formState.errors.currentPassword?.message}
@@ -45,7 +46,7 @@ export function ChangePasswordForm() {
           variant='outlined'
           type='password'
           error={!!formState.errors.newPassword}
-          label={<Trans>New password</Trans>}
+          label={<Trans id='New password' />}
           required={required.newPassword}
           {...muiRegister('newPassword', { required: required.newPassword })}
           helperText={formState.errors.newPassword?.message}
@@ -56,11 +57,11 @@ export function ChangePasswordForm() {
           variant='outlined'
           type='password'
           error={!!formState.errors.confirmPassword}
-          label={<Trans>Confirm password</Trans>}
+          label={<Trans id='Confirm password' />}
           required
           {...muiRegister('confirmPassword', {
             required: true,
-            validate: (value) => value === pass || t`Passwords don't match`,
+            validate: (value) => value === pass || i18n._(/* i18n */ `Passwords don't match`),
           })}
           helperText={formState.errors.confirmPassword?.message}
           disabled={formState.isSubmitting}
@@ -79,12 +80,12 @@ export function ChangePasswordForm() {
           variant='contained'
           size='large'
         >
-          <Trans>Save new password</Trans>
+          <Trans id='Save new password' />
         </Button>
       </FormActions>
 
       <MessageSnackbar sticky open={Boolean(formState.isSubmitSuccessful && data)}>
-        <Trans>Successfully changed password</Trans>
+        <Trans id='Successfully changed password' />
       </MessageSnackbar>
     </Form>
   )

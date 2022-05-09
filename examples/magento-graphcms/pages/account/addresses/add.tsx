@@ -14,7 +14,8 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Container, NoSsr } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -39,20 +40,20 @@ function AddNewAddressPage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconAddresses}>
-          <Trans>Addresses</Trans>
+          <Trans id='Addresses' />
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta
-          title='Add address'
-          metaDescription={t`Add new address`}
+          title={i18n._(/* i18n */ `Add address`)}
+          metaDescription={i18n._(/* i18n */ `Add new address`)}
           metaRobots={['noindex']}
         />
         <NoSsr>
           <LayoutTitle icon={iconAddresses}>
-            <Trans>Addresses</Trans>
+            <Trans id='Addresses' />
           </LayoutTitle>
-          <SectionContainer labelLeft={t`Add new address`}>
+          <SectionContainer labelLeft={<Trans id='Add new address' />}>
             <CreateCustomerAddressForm />
           </SectionContainer>
         </NoSsr>

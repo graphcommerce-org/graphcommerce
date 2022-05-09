@@ -3,7 +3,8 @@ import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation, useFormPersist } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Alert, FormControlLabel, Switch, TextField } from '@mui/material'
 import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError/ApolloCustomerErrorSnackbar'
 import { NameFields } from '../NameFields/NameFields'
@@ -37,7 +38,7 @@ export function SignUpForm(props: SignUpFormProps) {
   if (requireEmailValidation && form.formState.isSubmitSuccessful) {
     return (
       <Alert>
-        <Trans>Please check your inbox to validate your email ({email})</Trans>
+        <Trans id='Please check your inbox to validate your email ({email})' values={{ email }} />
       </Alert>
     )
   }
@@ -49,7 +50,7 @@ export function SignUpForm(props: SignUpFormProps) {
           variant='outlined'
           type='password'
           error={!!formState.errors.password || !!inputError}
-          label={<Trans>Password</Trans>}
+          label={<Trans id='Password' />}
           autoFocus
           autoComplete='new-password'
           required={required.password}
@@ -57,7 +58,7 @@ export function SignUpForm(props: SignUpFormProps) {
             required: required.password,
             minLength: {
               value: Number(storeConfig?.minimum_password_length ?? 8),
-              message: t`Password must have at least 8 characters`,
+              message: i18n._(/* i18n */ `Password must have at least 8 characters`),
             },
           })}
           helperText={formState.errors.password?.message || inputError?.message}
@@ -67,12 +68,13 @@ export function SignUpForm(props: SignUpFormProps) {
           variant='outlined'
           type='password'
           error={!!formState.errors.confirmPassword}
-          label={<Trans>Confirm password</Trans>}
+          label={<Trans id='Confirm password' />}
           autoComplete='new-password'
           required
           {...muiRegister('confirmPassword', {
             required: true,
-            validate: (value) => value === watchPassword || t`Passwords don't match`,
+            validate: (value) =>
+              value === watchPassword || i18n._(/* i18n */ `Passwords don't match`),
           })}
           helperText={formState.errors.confirmPassword?.message}
           disabled={formState.isSubmitting}
@@ -85,7 +87,7 @@ export function SignUpForm(props: SignUpFormProps) {
         control={<Switch color='primary' />}
         {...muiRegister('isSubscribed', { required: required.isSubscribed })}
         disabled={formState.isSubmitting}
-        label={<Trans>Subscribe to newsletter</Trans>}
+        label={<Trans id='Subscribe to newsletter' />}
       />
 
       <ApolloCustomerErrorSnackbar error={remainingError} />
@@ -99,7 +101,7 @@ export function SignUpForm(props: SignUpFormProps) {
           size='large'
           loading={formState.isSubmitting}
         >
-          <Trans>Create Account</Trans>
+          <Trans id='Create Account' />
         </Button>
       </FormActions>
     </form>
