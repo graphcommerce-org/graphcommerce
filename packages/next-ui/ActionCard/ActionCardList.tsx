@@ -37,6 +37,7 @@ export function ActionCardList(props: ActionCardListProps) {
 
   const handleChange = isMulti(props)
     ? (event: React.MouseEvent<HTMLElement, MouseEvent>, buttonValue: string) => {
+        console.log('aaaa')
         const { onChange } = props
 
         const index = Boolean(value) && value?.indexOf(buttonValue)
@@ -51,6 +52,7 @@ export function ActionCardList(props: ActionCardListProps) {
         onChange?.(event, newValue)
       }
     : (event: React.MouseEvent<HTMLElement, MouseEvent>, buttonValue: string) => {
+        console.log('aaaabbbbb')
         const { onChange } = props
 
         if (value === buttonValue) return

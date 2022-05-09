@@ -35,6 +35,8 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
 
   const shippingAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const billingAddress = cartQuery?.cart?.billing_address
+  console.clear()
+  console.log('shippingAddress', shippingAddress)
 
   const found = customerAddresses.data?.customer?.addresses?.find(
     (customerAddr) =>
@@ -51,12 +53,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
       ].filter((v) => !v).length === 0,
   )
 
-  const defaultShippingAddress = customerAddresses?.data?.customer?.addresses?.find(
-    (addr) => addr?.default_shipping === true,
-  )
-
-  const defaultCustomerAddressId =
-    found?.id ?? (shippingAddress ? -1 : defaultShippingAddress?.id ?? undefined)
+  console.log('found', found)
 
   const Mutation = isSameAddress(shippingAddress, billingAddress)
     ? SetCustomerShippingBillingAddressOnCartDocument
@@ -67,7 +64,8 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
   // }
 
   const form = useFormGqlMutationCart(Mutation, {
-    defaultValues: { customerAddressId: defaultCustomerAddressId },
+    // defaultValues: { customerAddressId: defaultCustomerAddressId },
+    mode: 'onChange',
   })
   const { handleSubmit, error, control, watch } = form
 
@@ -96,7 +94,9 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
                 <ActionCardList
                   required
                   value={String(value)}
-                  onChange={(event, incomming) => onChange(Number(incomming))}
+                  onChange={(event, incomming) => {
+                    onChange(Number(incomming))
+                  }}
                   error={formState.isSubmitted && !!fieldState.error}
                 >
                   {addresses.map((address) => (
@@ -118,6 +118,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
                           {address?.country_code}
                         </Box>
                       }
+                      onClick={onChange}
                       secondaryAction={
                         <Button
                           color='secondary'
