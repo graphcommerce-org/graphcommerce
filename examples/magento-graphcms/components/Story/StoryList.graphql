@@ -1,0 +1,5 @@
+query StoryList {
+  storyList: pages(where: { url_starts_with: "story/" }, orderBy: date_DESC) {
+    ...StoryItem
+  }
+}
