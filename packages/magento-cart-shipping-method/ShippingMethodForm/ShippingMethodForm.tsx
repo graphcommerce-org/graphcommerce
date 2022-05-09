@@ -66,168 +66,170 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
       <input type='hidden' {...register('carrier', { required: required.carrier })} />
       <input type='hidden' {...register('method', { required: required.method })} />
 
-      <FormRow
-        className={classes.root}
-        sx={(theme) => ({
-          marginTop: theme.spacings.xs,
-          position: 'relative',
-          padding: 0,
-        })}
-      >
-        <ScrollerProvider scrollSnapAlign='center'>
-          <Box
-            className={classes.buttonContainer}
-            sx={{
-              position: 'absolute',
-              left: 0,
-              zIndex: 2,
-              height: '100%',
-              '& > div': { height: '100%' },
-            }}
-          >
-            <ScrollerButton
-              direction='left'
-              className={classes.buttonRoot}
+      {sortedAvailableShippingMethods.length > 0 && (
+        <FormRow
+          className={classes.root}
+          sx={(theme) => ({
+            marginTop: theme.spacings.xs,
+            position: 'relative',
+            padding: 0,
+          })}
+        >
+          <ScrollerProvider scrollSnapAlign='center'>
+            <Box
+              className={classes.buttonContainer}
               sx={{
-                bgcolor: 'background.default',
-                borderRadius: 0,
-                width: '30px',
+                position: 'absolute',
+                left: 0,
+                zIndex: 2,
                 height: '100%',
-                boxShadow: 'none',
-                borderWidth: 1,
-                borderColor: 'divider',
-                '&:focus': {
-                  boxShadow: 'none',
-                },
-                borderTopLeftRadius: 4,
-                borderBottomLeftRadius: 4,
-                '&.itemCount1, &.itemCount2': {
-                  display: 'none',
-                },
+                '& > div': { height: '100%' },
               }}
             >
-              <IconSvg src={iconChevronLeft} size='small' aria-label={t`Scroll Left`} />
-            </ScrollerButton>
-          </Box>
+              <ScrollerButton
+                direction='left'
+                className={classes.buttonRoot}
+                sx={{
+                  bgcolor: 'background.default',
+                  borderRadius: 0,
+                  width: '30px',
+                  height: '100%',
+                  boxShadow: 'none',
+                  borderWidth: 1,
+                  borderColor: 'divider',
+                  '&:focus': {
+                    boxShadow: 'none',
+                  },
+                  borderTopLeftRadius: 4,
+                  borderBottomLeftRadius: 4,
+                  '&.itemCount1, &.itemCount2': {
+                    display: 'none',
+                  },
+                }}
+              >
+                <IconSvg src={iconChevronLeft} size='small' aria-label={t`Scroll Left`} />
+              </ScrollerButton>
+            </Box>
 
-          <FormControl>
-            <Controller
-              defaultValue={carrierMethod}
-              control={control}
-              name='carrierMethod'
-              rules={{ required: 'Please select a shipping method' }}
-              render={({ field: { onChange, value, onBlur }, fieldState: { invalid } }) => (
-                <>
-                  <Scroller
-                    className={classes.scrollerRoot}
-                    sx={[
-                      {
-                        gridTemplateRows: `100%`,
-                        gridTemplateColumns: `repeat(2, calc(50% - 20px))`,
-                        gap: `6px`,
-                        borderRadius: 0,
-                        padding: '1px 1px',
-                        '&:focus': {
-                          outline: 'unset',
+            <FormControl>
+              <Controller
+                defaultValue={carrierMethod}
+                control={control}
+                name='carrierMethod'
+                rules={{ required: 'Please select a shipping method' }}
+                render={({ field: { onChange, value, onBlur }, fieldState: { invalid } }) => (
+                  <>
+                    <Scroller
+                      className={classes.scrollerRoot}
+                      sx={[
+                        {
+                          gridTemplateRows: `100%`,
+                          gridTemplateColumns: `repeat(2, calc(50% - 20px))`,
+                          gap: `6px`,
+                          borderRadius: 0,
+                          padding: '1px 1px',
+                          '&:focus': {
+                            outline: 'unset',
+                          },
                         },
-                      },
-                      sortedAvailableShippingMethods.length === 2 && {
-                        gridTemplateColumns: `repeat(2, calc(50% - 4px))`,
-                      },
-                      sortedAvailableShippingMethods.length === 1 && {
-                        gridTemplateColumns: `repeat(2, calc(100% - 8px))`,
-                      },
-                    ]}
-                    hideScrollbar
-                    tabIndex={0}
-                  >
-                    {sortedAvailableShippingMethods.map((shippingMethod) => {
-                      if (!shippingMethod) return null
-                      const code = `${shippingMethod?.carrier_code}-${shippingMethod?.method_code}`
-                      return (
-                        <AvailableShippingMethod
-                          key={code}
-                          value={code}
-                          onChange={(_, val: string) => {
-                            onChange(val)
-                            setValue('carrier', val.split('-')?.[0])
-                            setValue('method', val.split('-')?.[1])
-
-                            // todo(paales): what if there are additional options to submit, shouldn't we wait for that or will those always come back from this mutation?
-                            // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                            submit()
-                          }}
-                          onBlur={onBlur}
-                          selected={value === code}
-                          {...shippingMethod}
-                        >
-                          Delivery from: Mon - Sat
-                        </AvailableShippingMethod>
-                      )
-                    })}
-                    {!currentAddress?.available_shipping_methods && (
-                      <AvailableShippingMethod
-                        available={false}
-                        carrier_code='none'
-                        carrier_title='No shipping methods available'
-                      >
-                        <Trans>Please fill in your address to see shipping methods</Trans>
-                      </AvailableShippingMethod>
-                    )}
-                  </Scroller>
-
-                  {invalid && currentAddress?.available_shipping_methods && (
-                    <Alert
-                      className={classes.alert}
-                      severity='error'
-                      sx={(theme) => ({
-                        marginTop: theme.spacings.xxs,
-                      })}
+                        sortedAvailableShippingMethods.length === 2 && {
+                          gridTemplateColumns: `repeat(2, calc(50% - 4px))`,
+                        },
+                        sortedAvailableShippingMethods.length === 1 && {
+                          gridTemplateColumns: `repeat(2, calc(100% - 8px))`,
+                        },
+                      ]}
+                      hideScrollbar
+                      tabIndex={0}
                     >
-                      Please select a shipping method
-                    </Alert>
-                  )}
-                </>
-              )}
-            />
-          </FormControl>
+                      {sortedAvailableShippingMethods.map((shippingMethod) => {
+                        if (!shippingMethod) return null
+                        const code = `${shippingMethod?.carrier_code}-${shippingMethod?.method_code}`
+                        return (
+                          <AvailableShippingMethod
+                            key={code}
+                            value={code}
+                            onChange={(_, val: string) => {
+                              onChange(val)
+                              setValue('carrier', val.split('-')?.[0])
+                              setValue('method', val.split('-')?.[1])
 
-          <Box
-            sx={{
-              position: 'absolute',
-              right: 0,
-              zIndex: 2,
-              height: '100%',
-              '& > div': { height: '100%' },
-            }}
-            className={classes.buttonContainer}
-          >
-            <ScrollerButton
-              direction='right'
+                              // todo(paales): what if there are additional options to submit, shouldn't we wait for that or will those always come back from this mutation?
+                              // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                              submit()
+                            }}
+                            onBlur={onBlur}
+                            selected={value === code}
+                            {...shippingMethod}
+                          >
+                            Delivery from: Mon - Sat
+                          </AvailableShippingMethod>
+                        )
+                      })}
+                      {!currentAddress?.available_shipping_methods && (
+                        <AvailableShippingMethod
+                          available={false}
+                          carrier_code='none'
+                          carrier_title={t`No shipping methods available`}
+                        >
+                          <Trans>Please fill in your address to see shipping methods</Trans>
+                        </AvailableShippingMethod>
+                      )}
+                    </Scroller>
+
+                    {invalid && currentAddress?.available_shipping_methods && (
+                      <Alert
+                        className={classes.alert}
+                        severity='error'
+                        sx={(theme) => ({
+                          marginTop: theme.spacings.xxs,
+                        })}
+                      >
+                        Please select a shipping method
+                      </Alert>
+                    )}
+                  </>
+                )}
+              />
+            </FormControl>
+
+            <Box
               sx={{
-                bgcolor: 'background.default',
-                borderRadius: 0,
-                width: '30px',
+                position: 'absolute',
+                right: 0,
+                zIndex: 2,
                 height: '100%',
-                boxShadow: 'none',
-                borderWidth: 1,
-                borderColor: 'divider',
-                '&:focus': {
-                  boxShadow: 'none',
-                },
-                borderTopRightRadius: 4,
-                borderBottomRightRadius: 4,
-                '&.itemCount1, &.itemCount2': {
-                  display: 'none',
-                },
+                '& > div': { height: '100%' },
               }}
-              className={classes.buttonRoot}
+              className={classes.buttonContainer}
             >
-              <IconSvg src={iconChevronRight} size='small' aria-label={t`Scroll Right`} />
-            </ScrollerButton>
-          </Box>
-        </ScrollerProvider>
-      </FormRow>
+              <ScrollerButton
+                direction='right'
+                sx={{
+                  bgcolor: 'background.default',
+                  borderRadius: 0,
+                  width: '30px',
+                  height: '100%',
+                  boxShadow: 'none',
+                  borderWidth: 1,
+                  borderColor: 'divider',
+                  '&:focus': {
+                    boxShadow: 'none',
+                  },
+                  borderTopRightRadius: 4,
+                  borderBottomRightRadius: 4,
+                  '&.itemCount1, &.itemCount2': {
+                    display: 'none',
+                  },
+                }}
+                className={classes.buttonRoot}
+              >
+                <IconSvg src={iconChevronRight} size='small' aria-label={t`Scroll Right`} />
+              </ScrollerButton>
+            </Box>
+          </ScrollerProvider>
+        </FormRow>
+      )}
 
       <ApolloCartErrorAlert error={error} />
     </Form>

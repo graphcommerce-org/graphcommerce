@@ -39,5 +39,6 @@ mutation UpdateCustomerAddress(
     }
   ) {
     id
+    ...CustomerAddress
   }
 }

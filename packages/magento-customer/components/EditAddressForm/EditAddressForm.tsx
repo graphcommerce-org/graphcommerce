@@ -1,3 +1,4 @@
+import { useGo, usePageContext } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import {
@@ -18,12 +19,18 @@ import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerE
 import { NameFields } from '../NameFields/NameFields'
 import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
 
-type EditAddressFormProps = { address?: AccountAddressFragment; sx?: SxProps<Theme> }
+type EditAddressFormProps = {
+  address?: AccountAddressFragment
+  sx?: SxProps<Theme>
+  onCompleteRoute?: string
+}
 
 export function EditAddressForm(props: EditAddressFormProps) {
   const countries = useQuery(CountryRegionsDocument).data?.countries
   const { address, sx } = props
-  const router = useRouter()
+
+  const { closeSteps } = usePageContext()
+  const onComplete = useGo(closeSteps * -1)
 
   const form = useFormGqlMutation(
     UpdateCustomerAddressDocument,
@@ -61,10 +68,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
           ...regionData,
         }
       },
-      onComplete: () => {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        router.push('/account/addresses')
-      },
+      onComplete,
     },
     { errorPolicy: 'all' },
   )

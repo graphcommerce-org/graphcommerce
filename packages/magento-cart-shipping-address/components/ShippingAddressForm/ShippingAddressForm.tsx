@@ -15,7 +15,7 @@ import {
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
-import { TextField } from '@mui/material'
+import { Button, TextField } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { isSameAddress } from '../../utils/isSameAddress'
@@ -44,6 +44,8 @@ export function ShippingAddressForm(props: ShippingAddressFormProps) {
   const Mutation = isSameAddress(shippingAddress, billingAddress)
     ? SetShippingBillingAddressDocument
     : SetShippingAddressDocument
+
+  // If address is an existing customer address then this form is rendered to add a new address so we don't want any default values.
 
   const form = useFormGqlMutationCart(Mutation, {
     defaultValues: {
@@ -93,7 +95,6 @@ export function ShippingAddressForm(props: ShippingAddressFormProps) {
       <AnimatePresence initial={false}>
         <NameFields form={form} key='name' readOnly={readOnly} />
         <AddressFields form={form} key='addressfields' readOnly={readOnly} />
-
         <FormRow key='telephone'>
           <TextField
             variant='outlined'
@@ -112,7 +113,6 @@ export function ShippingAddressForm(props: ShippingAddressFormProps) {
             }}
           />
         </FormRow>
-
         <ApolloCartErrorAlert error={error} />
       </AnimatePresence>
     </Form>

@@ -4,7 +4,7 @@ import React, { FormEvent } from 'react'
 
 type ActionCardProps = {
   sx?: SxProps<Theme>
-  title?: string
+  title?: string | React.ReactNode
   image?: React.ReactNode
   action?: React.ReactNode
   details?: React.ReactNode
@@ -32,14 +32,6 @@ export function ActionCard(props: ActionCardProps) {
     hidden,
     reset,
   } = props
-
-  // TODO
-  // 1. Selected state for Actioncard
-  // 2. In ActionCardList make other options dissapear
-  //  2.1 Change selected ActionCard primary action to 'Change'
-  //  2.2 Animations
-  // 3. Mutations for setting shipping/billing address
-  // 4. Statemanagement (geen usestate hier lijkt me maar form/local-storage dingen)
 
   const handleChange = (event: FormEvent<HTMLButtonElement>) => onChange?.(event, value)
   const handleClick = (event: FormEvent<HTMLButtonElement>) => {
@@ -78,11 +70,11 @@ export function ActionCard(props: ActionCardProps) {
           columnGap: theme.spacings.xxs,
           border: `1px solid ${theme.palette.divider}`,
           borderBottomColor: `transparent`,
-          '&:first-child': {
+          '&:first-of-type': {
             borderTopLeftRadius: theme.shape.borderRadius,
             borderTopRightRadius: theme.shape.borderRadius,
           },
-          '&:last-child': {
+          '&:last-of-type': {
             borderBottomLeftRadius: theme.shape.borderRadius,
             borderBottomRightRadius: theme.shape.borderRadius,
             borderBottom: `1px solid ${theme.palette.divider}`,
@@ -108,7 +100,7 @@ export function ActionCard(props: ActionCardProps) {
       {action && (
         <Box sx={{ gridArea: 'action', textAlign: 'right' }}>{!selected ? action : reset}</Box>
       )}
-      {details && <Box sx={{ gridArea: 'details' }}>{details}</Box>}
+      {details && <Box sx={{ gridArea: 'details', color: 'text.secondary' }}>{details}</Box>}
       {secondaryAction && <Box sx={{ gridArea: 'secondaryAction' }}>{secondaryAction}</Box>}
     </ButtonBase>
   )

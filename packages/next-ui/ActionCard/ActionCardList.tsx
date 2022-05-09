@@ -19,6 +19,7 @@ type Select = {
 type ActionCardListProps<SelectOrMulti = MultiSelect | Select> = {
   children?: React.ReactNode
   required?: boolean
+  error?: boolean
 } & SelectOrMulti
 
 function isMulti(props: ActionCardListProps): props is ActionCardListProps<MultiSelect> {
@@ -32,7 +33,7 @@ function isValueSelected(value: string, candidate: string | string[]) {
 }
 
 export function ActionCardList(props: ActionCardListProps) {
-  const { children, required, value } = props
+  const { children, required, value, error = false } = props
 
   const handleChange = isMulti(props)
     ? (event: React.MouseEvent<HTMLElement, MouseEvent>, buttonValue: string) => {
@@ -58,7 +59,31 @@ export function ActionCardList(props: ActionCardListProps) {
       }
 
   return (
-    <Box>
+    <Box
+      sx={[
+        error &&
+          ((theme) => ({
+            '& .ActionCard-root': {
+              borderLeft: 2,
+              borderRight: 2,
+              borderLeftColor: 'error.main',
+              borderRightColor: 'error.main',
+              paddingLeft: theme.spacings.xs,
+              paddingRight: theme.spacings.xs,
+            },
+            '& .ActionCard-root:first-of-type': {
+              borderTop: 2,
+              borderTopColor: 'error.main',
+              paddingTop: theme.spacings.xs,
+            },
+            '& .ActionCard-root:last-of-type': {
+              borderBottom: 2,
+              borderBottomColor: 'error.main',
+              paddingBottom: theme.spacings.xs,
+            },
+          })),
+      ]}
+    >
       {React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) return null
 

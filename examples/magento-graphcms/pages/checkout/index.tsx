@@ -27,6 +27,7 @@ import {
 import { t, Trans } from '@lingui/macro'
 import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
+import React from 'react'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
@@ -38,7 +39,10 @@ function ShippingPage() {
   useGoogleRecaptcha()
   const { data: cartData } = useCartQuery(ShippingPageDocument, {
     returnPartialData: true,
+    fetchPolicy: 'cache-and-network',
+    ssr: false,
   })
+
   const cartExists = typeof cartData?.cart !== 'undefined'
   const router = useRouter()
 
@@ -83,13 +87,14 @@ function ShippingPage() {
               <LayoutTitle icon={iconBox}>
                 <Trans>Shipping</Trans>
               </LayoutTitle>
-              {console.log(addresses)}
               {addresses ? (
-                <CustomerAddressForm step={2} />
+                <CustomerAddressForm step={2}>
+                  <ShippingAddressForm step={3} />
+                </CustomerAddressForm>
               ) : (
                 <>
                   <EmailForm step={1} />
-                  <ShippingAddressForm step={2} />
+                  <ShippingAddressForm step={3} />
                 </>
               )}
 
@@ -97,7 +102,7 @@ function ShippingPage() {
                 <Trans>Shipping method</Trans>
               </FormHeader>
 
-              <ShippingMethodForm step={3} />
+              <ShippingMethodForm step={4} />
 
               <ComposedSubmit
                 onSubmitSuccessful={onSubmitSuccessful}
