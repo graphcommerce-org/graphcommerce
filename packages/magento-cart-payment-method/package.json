@@ -4,9 +4,6 @@
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "3.1.8",
   "sideEffects": false,
-  "engines": {
-    "node": "14.x"
-  },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",
