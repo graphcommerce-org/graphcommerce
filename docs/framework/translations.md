@@ -26,7 +26,7 @@ msgstr "cancelado"
 
 The msgid is the message being translated. In
 /node_modules/@graphcommerce/magento-cart/components/EmptyCart/EmptyCart.tsx,
-you can see a the first msgid is passed as a the id prop to the `<Trans>`
+you can see that the first msgid is passed as a the id prop to the <Trans>
 component:
 
 ```tsx
@@ -65,7 +65,7 @@ in the `<Trans>` component:
 </Typography>
 ```
 
-If you need to have a string instead of a React component, you can use:
+To translate a string:
 
 ```tsx
 <PageMeta title={i18n._(/* i18n */ `Blog`)} />
@@ -80,7 +80,7 @@ import { Trans } from '@lingui/react'
 import { i18n } from '@lingui/core'
 ```
 
-## Automatically extracting all translations
+## Generating translation files with all translations
 
 Run `yarn lingui`. All new (missing) translations will be added to translations
 files:
@@ -195,7 +195,7 @@ msgstr ""
 
 ```
 
-5. Add your translations ins the newly created .po file. Run the app and use the
+5. Add your translations in the newly created .po file. Run the app and use the
    store switcher to navigate to your new storeview.
 
 > Tip: [Github copilot ↗](https://copilot.github.com/) provides very accurate
