@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/magento-wishlist",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [

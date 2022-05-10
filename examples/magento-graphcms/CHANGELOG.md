@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.8.2
+
+### Patch Changes
+
+- [#1454](https://github.com/graphcommerce-org/graphcommerce/pull/1454) [`7daa4bdb2`](https://github.com/graphcommerce-org/graphcommerce/commit/7daa4bdb2eb5132f057b34b03465704ad58f77bd) Thanks [@paales](https://github.com/paales)! - Add missing cart translations
+
+* [#1454](https://github.com/graphcommerce-org/graphcommerce/pull/1454) [`d38b58bb3`](https://github.com/graphcommerce-org/graphcommerce/commit/d38b58bb3499a8055e1a60ec416064811e7412ed) Thanks [@paales](https://github.com/paales)! - Make sure to keep casing when generating graphql documents to match graphql-mesh's casing.
+
+* Updated dependencies [[`d38b58bb3`](https://github.com/graphcommerce-org/graphcommerce/commit/d38b58bb3499a8055e1a60ec416064811e7412ed)]:
+  - @graphcommerce/magento-wishlist@1.0.5
+
 ## 3.8.1
 
 ### Patch Changes
