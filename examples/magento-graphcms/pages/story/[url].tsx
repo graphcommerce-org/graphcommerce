@@ -35,6 +35,7 @@ function StoryPage(props: Props) {
   const page = pages?.[0]
 
   const title = page?.title ?? ''
+  const css = webflowCss.split('===== */').pop()
 
   const metaRobots = page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]
 
@@ -129,10 +130,7 @@ function StoryPage(props: Props) {
 
       <Container maxWidth={false} disableGutters>
         <StoryList storyList={storyList} current={page.url} />
-        <div>
-          <style dangerouslySetInnerHTML={{ __html: `${webflowCss.split('===== */').pop()}` }} />
-          {parseHtml(bodyContent as string, { replace })}
-        </div>
+        <Box css={{ css }}>{parseHtml(bodyContent as string, { replace })}</Box>
       </Container>
     </>
   )
