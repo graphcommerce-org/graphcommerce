@@ -26,12 +26,12 @@ msgstr "cancelado"
 
 The msgid is the message being translated. In
 /node_modules/@graphcommerce/magento-cart/components/EmptyCart/EmptyCart.tsx,
-you can see a the first msgid is passed as a propped, wrapped in the `<Trans>`
+you can see a the first msgid is passed as a the id prop to the `<Trans>`
 component:
 
-```ts
+```tsx
 <FullPageMessage
-  title={<Trans>Your cart is empty</Trans>}
+  title={<Trans id="Your cart is empty" />}
   ...
 >
 ```
@@ -57,19 +57,30 @@ Refresh to see your changes updated
 ## Adding translations to custom component
 
 If you're building a component, you can wrap the strings you want to translate
-in the `<Trans>` jsx macro:
+in the `<Trans>` component:
 
-```ts
+```tsx
 <Typography variant='h3'>
-  <Trans>Call us now</Trans>
+  <Trans id='Call us now' />
 </Typography>
 ```
 
+If you need to have a string instead of a React component, you can use:
+
+```tsx
+<PageMeta title={i18n._(/* i18n */ `Blog`)} />
+```
+
+_The `/* i18n */` comment is required for `lingui extract` to work properly_
+
 Add Linqui to the component's imports:
 
-```ts
-import { t, Trans } from '@lingui/macro'
+```tsx
+import { Trans } from '@lingui/react'
+import { i18n } from '@lingui/core'
 ```
+
+## Automatically extracting all translations
 
 Run `yarn lingui`. All new (missing) translations will be added to translations
 files:
@@ -186,9 +197,10 @@ msgstr ""
 
 5. Add your translations ins the newly created .po file. Run the app and use the
    store switcher to navigate to your new storeview.
-   [Github copilot ↗](https://copilot.github.com/) provides very accurate
-   suggestions in VS Code with the
-   [Github copilot extention ↗](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot).
+
+> Tip: [Github copilot ↗](https://copilot.github.com/) provides very accurate
+> suggestions in VS Code with the
+> [Github copilot extention ↗](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot).
 
 ### Magento Locale codes
 

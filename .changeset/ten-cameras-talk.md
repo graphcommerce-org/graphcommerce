@@ -1,4 +1,5 @@
 ---
+'@graphcommerce/docs': patch
 '@graphcommerce/magento-graphcms': patch
 '@graphcommerce/ecommerce-ui': patch
 '@graphcommerce/framer-scroller': patch
