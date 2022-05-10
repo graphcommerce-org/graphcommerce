@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.2.3
+
+### Patch Changes
+
+- [#1448](https://github.com/graphcommerce-org/graphcommerce/pull/1448) [`c30893857`](https://github.com/graphcommerce-org/graphcommerce/commit/c3089385791291e812a48c2691a39a2325ee0439) Thanks [@timhofman](https://github.com/timhofman)! - correct price formatting when opting for decimal formatting
+
 ## 4.2.2
 
 ### Patch Changes

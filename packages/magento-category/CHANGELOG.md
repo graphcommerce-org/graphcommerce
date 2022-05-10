@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.1.5
+
+### Patch Changes
+
+- Updated dependencies [[`c30893857`](https://github.com/graphcommerce-org/graphcommerce/commit/c3089385791291e812a48c2691a39a2325ee0439)]:
+  - @graphcommerce/magento-store@4.2.3
+  - @graphcommerce/magento-product@4.3.4
+
 ## 4.1.4
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # @graphcommerce/magento-wishlist
 
+## 1.0.4
+
+### Patch Changes
+
+- [#1452](https://github.com/graphcommerce-org/graphcommerce/pull/1452) [`062c19664`](https://github.com/graphcommerce-org/graphcommerce/commit/062c19664689a0b8675e986806dbb243cfb6c063) Thanks [@paales](https://github.com/paales)! - Fix issue where the local graphql vscode plugin encountered a duplicate type
+
+- Updated dependencies [[`c30893857`](https://github.com/graphcommerce-org/graphcommerce/commit/c3089385791291e812a48c2691a39a2325ee0439)]:
+  - @graphcommerce/magento-store@4.2.3
+  - @graphcommerce/magento-cart@4.2.14
+  - @graphcommerce/magento-customer@4.2.12
+  - @graphcommerce/magento-product@4.3.4
+  - @graphcommerce/magento-product-configurable@4.1.4
+
 ## 1.0.3
 
 ### Patch Changes
