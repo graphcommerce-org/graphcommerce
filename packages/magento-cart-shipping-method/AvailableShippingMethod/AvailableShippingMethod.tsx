@@ -1,6 +1,6 @@
 import { Money } from '@graphcommerce/magento-store'
 import { ToggleButton, ToggleButtonProps, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Box, FormHelperText } from '@mui/material'
 import React from 'react'
 import type { SetOptional } from 'type-fest'
@@ -84,7 +84,7 @@ export const AvailableShippingMethod = React.forwardRef(
             },
           }}
         >
-          {amount?.value === 0 ? <Trans>Free</Trans> : <Money {...amount} />}
+          {amount?.value === 0 ? <Trans id='Free' /> : <Money {...amount} />}
         </Box>
 
         {error_message ? (

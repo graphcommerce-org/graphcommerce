@@ -11,7 +11,7 @@ import {
 } from '@graphcommerce/magento-customer'
 import { AnimatedRow, extendableComponent, FormDiv, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import {
   CircularProgress,
   TextField,
@@ -67,14 +67,14 @@ export function EmailForm(props: EmailFormProps) {
   if (mode === 'signin') {
     endAdornment = (
       <Button color='secondary' style={{ whiteSpace: 'nowrap' }} onClick={() => setExpand(!expand)}>
-        {expand ? <Trans>Close</Trans> : <Trans>Sign in</Trans>}
+        {expand ? <Trans id='Close' /> : <Trans id='Sign in' />}
       </Button>
     )
   }
   if (mode === 'signup') {
     endAdornment = (
       <Button color='secondary' style={{ whiteSpace: 'nowrap' }} onClick={() => setExpand(!expand)}>
-        {expand ? <Trans>Close</Trans> : <Trans>Create Account</Trans>}
+        {expand ? <Trans id='Close' /> : <Trans id='Create Account' />}
       </Button>
     )
   }
@@ -87,7 +87,7 @@ export function EmailForm(props: EmailFormProps) {
           <form noValidate onSubmit={submit}>
             <FormRow>
               <Typography variant='h5' component='h2' gutterBottom>
-                <Trans>Log in or create an account</Trans>
+                <Trans id='Log in or create an account' />
               </Typography>
             </FormRow>
             <FormRow className={classes.formRow} sx={{ py: 0 }}>
@@ -96,7 +96,7 @@ export function EmailForm(props: EmailFormProps) {
                 type='email'
                 error={formState.isSubmitted && !!formState.errors.email}
                 helperText={formState.isSubmitted && formState.errors.email?.message}
-                label={<Trans>Email</Trans>}
+                label={<Trans id='Email' />}
                 required={required.email}
                 {...muiRegister('email', {
                   required: required.email,
@@ -132,7 +132,7 @@ export function EmailForm(props: EmailFormProps) {
         {mode === 'session-expired' && (
           <FormRow>
             <Alert severity='error'>
-              <Trans>You must sign in to continue</Trans>
+              <Trans id='You must sign in to continue' />
             </Alert>
           </FormRow>
         )}

@@ -1,5 +1,5 @@
 import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Box, Divider, SxProps, Theme, Typography } from '@mui/material'
 import { ProductListCountFragment } from './ProductListCount.gql'
 
@@ -35,9 +35,9 @@ export function ProductListCount(props: ProductCountProps) {
     >
       <Divider component='div' className={classes.line} />
       <Typography variant='body2' color='text.disabled' className={classes.count}>
-        {total_count === 0 && <Trans>no products</Trans>}
-        {total_count === 1 && <Trans>one product</Trans>}
-        {(total_count ?? 0) > 1 && <Trans>{total_count} products</Trans>}
+        {total_count === 0 && <Trans id='no products' />}
+        {total_count === 1 && <Trans id='one product' />}
+        {(total_count ?? 0) > 1 && <Trans id='{total_count} products' values={{ total_count }} />}
       </Typography>
       <Divider component='div' className={classes.line} />
     </Box>

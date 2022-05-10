@@ -11,7 +11,8 @@ import {
   IconSvg,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Button, Box, Container, NoSsr } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -28,14 +29,14 @@ function OrderSuccessPage() {
   return (
     <>
       <PageMeta
-        title={t`Checkout summary`}
-        metaDescription={t`Ordered items`}
+        title={i18n._(/* i18n */ `Checkout summary`)}
+        metaDescription={i18n._(/* i18n */ `Ordered items`)}
         metaRobots={['noindex']}
       />
       <LayoutHeader floatingMd>
         {hasCartId && (
           <LayoutTitle size='small' icon={iconParty}>
-            <Trans>Thank you for your order!</Trans>
+            <Trans id='Thank you for your order!' />
           </LayoutTitle>
         )}
       </LayoutHeader>
@@ -43,23 +44,23 @@ function OrderSuccessPage() {
         <NoSsr>
           {!hasCartId && (
             <FullPageMessage
-              title={t`You have not placed an order`}
+              title={<Trans id='You have not placed an order' />}
               icon={<IconSvg src={iconSadFace} size='xxl' />}
               button={
                 <Link href='/' passHref>
                   <Button variant='pill' color='secondary' size='large'>
-                    <Trans>Continue shopping</Trans>
+                    <Trans id='Continue shopping' />
                   </Button>
                 </Link>
               }
             >
-              <Trans>Discover our collection and add items to your cart!</Trans>
+              <Trans id='Discover our collection and add items to your cart!' />
             </FullPageMessage>
           )}
           {hasCartId && (
             <>
               <LayoutTitle icon={iconParty}>
-                <Trans>Thank you for your order!</Trans>
+                <Trans id='Thank you for your order!' />
               </LayoutTitle>
               <CartSummary />
               <CartItemSummary />
@@ -71,7 +72,7 @@ function OrderSuccessPage() {
               <Box textAlign='center' m={8}>
                 <Link href='/' passHref>
                   <Button color='secondary' variant='pill' size='large' id='back-to-home'>
-                    <Trans>Back to home</Trans>
+                    <Trans id='Back to home' />
                   </Button>
                 </Link>
               </Box>

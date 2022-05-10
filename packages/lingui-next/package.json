@@ -27,7 +27,8 @@
     "@playwright/test": "^1.21.1"
   },
   "peerDependencies": {
-    "@lingui/macro": "^3.13.2",
+    "@lingui/react": "^3.13.2",
+    "@lingui/core": "^3.13.2",
     "make-plural": "^6.2.2",
     "next": "12.1.2",
     "react": "^17.0.2",

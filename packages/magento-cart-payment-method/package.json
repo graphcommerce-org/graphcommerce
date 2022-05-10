@@ -4,9 +4,6 @@
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "3.1.8",
   "sideEffects": false,
-  "engines": {
-    "node": "14.x"
-  },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",
@@ -32,7 +29,8 @@
     "@graphcommerce/react-hook-form": "3.1.2"
   },
   "peerDependencies": {
-    "@lingui/macro": "^3.13.2",
+    "@lingui/react": "^3.13.2",
+    "@lingui/core": "^3.13.2",
     "@mui/material": "5.5.3",
     "framer-motion": "^6.2.4",
     "next": "12.1.2",

@@ -6,7 +6,7 @@ import {
   usePaymentMethodContext,
 } from '@graphcommerce/magento-cart-payment-method'
 import { ErrorSnackbar } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Button, Dialog } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
@@ -68,7 +68,7 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
   if (paymentStatus)
     return (
       <ErrorSnackbar open>
-        <Trans>Payment failed with status: {paymentStatus}</Trans>
+        <Trans id='Payment failed with status: {paymentStatus}' />
       </ErrorSnackbar>
     )
 
@@ -90,14 +90,14 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
               router.push('/')
             }}
           >
-            <Trans>Reset Cart and Return to home</Trans>
+            <Trans id='Reset Cart and Return to home' />
           </Button>
         }
       >
-        <Trans>
-          If you’ve successfully paid your order, the order <strong>will</strong> come through, but
-          there is a communication error with the website.
-        </Trans>
+        <Trans
+          id='If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website.'
+          components={{ 0: <strong /> }}
+        />
       </ApolloCartErrorFullPage>
     </Dialog>
   )

@@ -1,6 +1,6 @@
 import { Image, ImageProps } from '@graphcommerce/image'
 import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { ButtonBase, Typography, Box, styled, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -135,7 +135,7 @@ export function ProductListItem(props: ProductListItemProps) {
               }}
               className={`${classes.placeholder} ${classes.image}`}
             >
-              <Trans>No Image</Trans>
+              <Trans id='No Image' />
             </Box>
           )}
 

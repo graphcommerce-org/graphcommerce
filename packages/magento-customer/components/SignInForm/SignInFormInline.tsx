@@ -1,6 +1,6 @@
 import { Button, extendableComponent } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Box, SxProps, TextField, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import { PropsWithChildren } from 'react'
@@ -44,7 +44,7 @@ export function SignInFormInline(props: PropsWithChildren<InlineSignInFormProps>
         variant='outlined'
         type='password'
         error={!!formState.errors.password || !!error?.message}
-        label={<Trans>Password</Trans>}
+        label={<Trans id='Password' />}
         autoFocus
         autoComplete='current-password'
         id='current-password'
@@ -61,14 +61,14 @@ export function SignInFormInline(props: PropsWithChildren<InlineSignInFormProps>
                 className={classes.button}
                 sx={{ minWidth: 'max-content' }}
               >
-                <Trans>Forgot password?</Trans>
+                <Trans id='Forgot password?' />
               </Button>
             </PageLink>
           ),
         }}
       />
       <Button type='submit' loading={formState.isSubmitting} color='secondary' variant='pill'>
-        <Trans>Sign in</Trans>
+        <Trans id='Sign in' />
       </Button>
     </Box>
   )

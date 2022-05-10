@@ -16,7 +16,7 @@ import {
   UseFormComposeOptions,
   useFormPersist,
 } from '@graphcommerce/react-hook-form'
-import { t } from '@lingui/macro'
+import { i18n } from '@lingui/core'
 import { Box, FormControl, FormHelperText, SxProps, Theme } from '@mui/material'
 import { useEffect } from 'react'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
@@ -132,7 +132,7 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
               defaultValue=''
               control={control}
               name='paymentMethod'
-              rules={{ required: t`Please select a payment method` }}
+              rules={{ required: i18n._(/* i18n */ `Please select a payment method`) }}
               render={({ field: { onChange, value, name, onBlur } }) => (
                 <Scroller
                   className={classes.scrollerRoot}

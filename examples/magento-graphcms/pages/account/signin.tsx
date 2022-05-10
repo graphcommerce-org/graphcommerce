@@ -3,12 +3,13 @@ import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import { useMergeCustomerCart } from '@graphcommerce/magento-cart'
 import { AccountSignInUpForm } from '@graphcommerce/magento-customer-account'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Container, NoSsr } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -20,14 +21,14 @@ function AccountSignInPage() {
   return (
     <>
       <PageMeta
-        title={t`Sign in`}
+        title={i18n._(/* i18n */ `Sign in`)}
         metaRobots={['noindex']}
-        metaDescription={t`Sign in to your account`}
+        metaDescription={i18n._(/* i18n */ `Sign in to your account`)}
       />
       <NoSsr>
         <LayoutOverlayHeader>
           <LayoutTitle size='small' component='span'>
-            <Trans>Sign in</Trans>
+            <Trans id='Sign in' />
           </LayoutTitle>
         </LayoutOverlayHeader>
         <Container maxWidth='md'>

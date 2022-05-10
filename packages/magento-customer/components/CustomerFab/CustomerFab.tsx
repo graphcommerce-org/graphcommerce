@@ -5,7 +5,7 @@ import {
   IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
+import { i18n } from '@lingui/core'
 import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import React from 'react'
@@ -32,7 +32,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
       <Fab
         color='inherit'
         id='account'
-        aria-label={t`Account`}
+        aria-label={i18n._(/* i18n */ `Account`)}
         size='large'
         className={classes.root}
         {...FabProps}

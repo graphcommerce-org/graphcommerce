@@ -1,5 +1,5 @@
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Box, SxProps, Theme, Typography } from '@mui/material'
 
 export type NoSearchResultsProps = { search: string; sx?: SxProps<Theme> }
@@ -26,10 +26,10 @@ export function NoSearchResults(props: NoSearchResultsProps) {
       ]}
     >
       <Typography variant='h5' align='center'>
-        <Trans>We couldn&apos;t find any results for {term}</Trans>
+        <Trans id="We couldn't find any results for {term}" values={{ term }} />
       </Typography>
       <p>
-        <Trans>Try a different search</Trans>
+        <Trans id='Try a different search' />
       </p>
     </Box>
   )

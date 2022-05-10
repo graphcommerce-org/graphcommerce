@@ -1,6 +1,6 @@
 import { Money } from '@graphcommerce/magento-store'
 import { iconChevronRight, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Box, Button, SxProps, Theme } from '@mui/material'
 import PageLink from 'next/link'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
@@ -53,7 +53,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
               '& ~ span.MuiButton-endIcon': { marginLeft: '6px' },
             })}
           >
-            <Trans>Start Checkout</Trans>
+            <Trans id='Start Checkout' />
           </Box>{' '}
           {hasTotals && (
             <span className={classes.checkoutMoney}>

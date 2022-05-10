@@ -12,6 +12,7 @@ import { EmailForm } from '@graphcommerce/magento-cart-email'
 import { ShippingAddressForm } from '@graphcommerce/magento-cart-shipping-address'
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
 import {
   FormActions,
   FormHeader,
@@ -21,13 +22,13 @@ import {
   Stepper,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Container, NoSsr, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { DefaultPageDocument } from '../../graphql/DefaultPage.gql'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
@@ -49,14 +50,14 @@ function ShippingPage() {
 
   return (
     <ComposedForm>
-      <PageMeta title={t`Checkout`} metaDescription={t`Cart Items`} metaRobots={['noindex']} />
+      <PageMeta title={i18n._(/* i18n */ `Checkout`)} metaRobots={['noindex']} />
       <LayoutHeader
         primary={
           <ComposedSubmit
             onSubmitSuccessful={onSubmitSuccessful}
             render={(renderProps) => (
               <ComposedSubmitLinkOrButton {...renderProps}>
-                <Trans>Next</Trans>
+                <Trans id='Next' />
               </ComposedSubmitLinkOrButton>
             )}
           />
@@ -68,7 +69,7 @@ function ShippingPage() {
         }
       >
         <LayoutTitle size='small' icon={iconBox}>
-          <Trans>Shipping</Trans>
+          <Trans id='Shipping' />
         </LayoutTitle>
       </LayoutHeader>
       <Container maxWidth='md'>
@@ -78,7 +79,7 @@ function ShippingPage() {
           {cartExists && (
             <>
               <LayoutTitle icon={iconBox}>
-                <Trans>Shipping</Trans>
+                <Trans id='Shipping' />
               </LayoutTitle>
 
               <EmailForm step={1}>
@@ -88,15 +89,13 @@ function ShippingPage() {
                   sx={(theme) => ({ pl: theme.spacings.xs, mt: theme.spacings.xxs })}
                 >
                   <li>
-                    <Trans>
-                      Email address of existing customers will be recognized, sign in is optional.
-                    </Trans>
+                    <Trans id='Email address of existing customers will be recognized, sign in is optional.' />
                   </li>
                   <li>
-                    <Trans>Fill in password fields to create an account.</Trans>
+                    <Trans id='Fill in password fields to create an account.' />
                   </li>
                   <li>
-                    <Trans>Leave password field empty to order as guest.</Trans>
+                    <Trans id='Leave password field empty to order as guest.' />
                   </li>
                 </Typography>
               </EmailForm>
@@ -104,7 +103,7 @@ function ShippingPage() {
               <ShippingAddressForm step={2} />
 
               <FormHeader variant='h5'>
-                <Trans>Shipping method</Trans>
+                <Trans id='Shipping method' />
               </FormHeader>
 
               <ShippingMethodForm step={3} />
@@ -115,7 +114,7 @@ function ShippingPage() {
                   <>
                     <FormActions>
                       <ComposedSubmitButton {...renderProps} size='large' id='next'>
-                        <Trans>Next</Trans>
+                        <Trans id='Next' />
                       </ComposedSubmitButton>
                     </FormActions>
                     <ApolloCartErrorAlert

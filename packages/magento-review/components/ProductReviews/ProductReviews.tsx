@@ -5,7 +5,7 @@ import {
   StarRatingField,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Typography, Button, Box, SxProps, Theme, Link } from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
@@ -87,7 +87,7 @@ export function ProductReviews(props: ProductReviewsProps) {
           },
         })}
       >
-        <Trans>Write a review</Trans>
+        <Trans id='Write a review' />
       </Button>
 
       {!!total_pages && total_pages > 1 && (
@@ -138,7 +138,7 @@ export function ProductReviews(props: ProductReviewsProps) {
             })}
           >
             <Typography variant='subtitle1'>
-              <Trans>Be the first to write a review!</Trans>
+              <Trans id='Be the first to write a review!' />
             </Typography>
           </Box>
         </Box>
@@ -232,7 +232,7 @@ export function ProductReviews(props: ProductReviewsProps) {
               })}
             >
               <Box className={classes.nickname} sx={{ typography: 'body2' }}>
-                <Trans>Written by</Trans> {review?.nickname}
+                <Trans id='Written by {nickname}' values={{ nickname: review?.nickname }} />
               </Box>
               <Box
                 component='time'

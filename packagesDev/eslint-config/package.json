@@ -21,8 +21,5 @@
   "peerDependencies": {
     "eslint": "^8.8.0"
   },
-  "sideEffects": false,
-  "engines": {
-    "node": "14.x"
-  }
+  "sideEffects": false
 }

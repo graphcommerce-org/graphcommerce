@@ -9,7 +9,7 @@ import {
   IconSvg,
   TextInputNumber,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Divider, Typography, Alert, Box } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
@@ -131,7 +131,7 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
             width: '100%',
           })}
         >
-          <Trans>Add to Cart</Trans>
+          <Trans id='Add to Cart' />
         </Button>
         {additionalButtons}
       </Box>
@@ -163,14 +163,16 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
               color='secondary'
               endIcon={<IconSvg src={iconChevronRight} />}
             >
-              <Trans>View shopping cart</Trans>
+              <Trans id='View shopping cart' />
             </Button>
           </PageLink>
         }
       >
-        <Trans>
-          <strong>{name}</strong> has been added to your shopping cart!
-        </Trans>
+        <Trans
+          id='<0>{name}</0> has been added to your shopping cart!'
+          components={{ 0: <strong /> }}
+          values={{ name }}
+        />
       </MessageSnackbar>
     </Box>
   )

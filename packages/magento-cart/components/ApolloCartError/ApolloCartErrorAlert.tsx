@@ -2,7 +2,8 @@ import { ApolloErrorAlert, ApolloErrorAlertProps } from '@graphcommerce/ecommerc
 import { useQuery } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 import Link from 'next/link'
 import { useClearCurrentCartId } from '../../hooks/useClearCurrentCartId'
@@ -22,14 +23,16 @@ export function ApolloCartErrorAlert(props: ApolloCartErrorAlertProps) {
   const [, authorizationError] = graphqlErrorByCategory({
     category: 'graphql-authorization',
     error,
-    mask: token?.token ? t`Please reauthenticate and try again` : t`You must sign in to continue`,
+    mask: token?.token
+      ? i18n._(/* i18n */ `Please reauthenticate and try again`)
+      : i18n._(/* i18n */ `You must sign in to continue`),
   })
 
   action =
     authorizationError && clear ? (
       <Link href='/account/signin' passHref>
         <Button>
-          <Trans>Sign in</Trans>
+          <Trans id='Sign in' />
         </Button>
       </Link>
     ) : (

@@ -6,7 +6,7 @@ import {
   useScrollY,
   useFabSize,
 } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
+import { i18n } from '@lingui/core'
 import { alpha, Fab, FabProps, NoSsr, styled, useTheme, Box, SxProps, Theme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import PageLink from 'next/link'
@@ -58,7 +58,7 @@ function CartFabContent(props: CartFabContentProps) {
       <PageLink href='/cart' passHref>
         <MotionFab
           className={classes.cart}
-          aria-label={t`Cart`}
+          aria-label={i18n._(/* i18n */ `Cart`)}
           color='inherit'
           size='responsive'
           style={{ backgroundColor }}

@@ -7,7 +7,8 @@ import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import { responsiveVal, extendableComponent, iconEllypsis, IconSvg } from '@graphcommerce/next-ui'
-import { Trans, t } from '@lingui/macro'
+import { Trans } from '@lingui/react'
+import { i18n } from '@lingui/core'
 import { Badge, Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
@@ -293,7 +294,7 @@ export function WishlistItemBase(props: WishlistItemBaseProps) {
         }}
       >
         <MenuItem key='remove' id='remove' onClick={handleClose}>
-          <Trans>Remove Product</Trans>
+          <Trans id='Remove Product' />
         </MenuItem>
       </Menu>
 

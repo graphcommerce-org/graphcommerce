@@ -1,5 +1,5 @@
 import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
 import { MollieIssuerOptions } from './MollieIssuerOptions'
 
@@ -11,15 +11,13 @@ export function MollieIdealOptions(props: PaymentOptionsProps) {
         sx={(theme) => ({ typography: 'body2', paddingLeft: theme.spacings.xs, margin: 0 })}
       >
         <li>
-          <Trans>Choose your bank, and place your order.</Trans>
+          <Trans id='Choose your bank, and place your order.' />
         </li>
         <li>
-          <Trans>Complete the payment on your bank’s website.</Trans>
+          <Trans id='Complete the payment on your bank’s website.' />
         </li>
         <li>
-          <Trans>
-            As soon as the payment is completed, you will automatically return to the webshop.
-          </Trans>
+          <Trans id='As soon as the payment is completed, you will automatically return to the webshop.' />
         </li>
       </Box>
     </MollieIssuerOptions>

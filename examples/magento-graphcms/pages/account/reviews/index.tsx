@@ -11,7 +11,8 @@ import {
   IconSvg,
   GetStaticProps,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Container, NoSsr } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -39,29 +40,25 @@ function AccountReviewsPage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconStar}>
-          <Trans>Orders</Trans>
+          <Trans id='Orders' />
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta
-          title={t`Reviews`}
-          metaDescription={t`View all your reviews`}
-          metaRobots={['noindex']}
-        />
+        <PageMeta title={i18n._(/* i18n */ `Reviews`)} metaRobots={['noindex']} />
         <NoSsr>
           {((customer?.reviews && customer?.reviews.items.length < 1) || !customer?.reviews) && (
             <FullPageMessage
-              title={t`You haven't placed any reviews yet`}
+              title={<Trans id="You haven't placed any reviews yet" />}
               icon={<IconSvg src={iconStar} size='xxl' />}
             >
-              <Trans>Discover our collection and write your first review!</Trans>
+              <Trans id='Discover our collection and write your first review!' />
             </FullPageMessage>
           )}
 
           {customer?.reviews && customer?.reviews.items.length > 1 && (
             <>
               <LayoutTitle icon={iconStar}>
-                <Trans>Reviews</Trans>
+                <Trans id='Reviews' />
               </LayoutTitle>
               {customer?.reviews && <AccountReviews {...customer?.reviews} loading={loading} />}
             </>

@@ -29,7 +29,8 @@
     "schema-dts": "^1.1.0"
   },
   "peerDependencies": {
-    "@lingui/macro": "^3.13.2",
+    "@lingui/react": "^3.13.2",
+    "@lingui/core": "^3.13.2",
     "@mui/material": "5.5.3",
     "next": "12.1.2",
     "react": "^17.0.2",

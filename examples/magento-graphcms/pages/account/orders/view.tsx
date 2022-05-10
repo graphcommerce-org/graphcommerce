@@ -15,7 +15,8 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Container, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -51,26 +52,25 @@ function OrderDetailPage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconBox}>
-          <Trans>Order #{orderId}</Trans>
+          <Trans id='Order #{orderId}' values={{ orderId }} />
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <NoSsr>
           {(!orderId || !order) && (
             <IconHeader src={iconBox} size='large'>
-              <Trans>Order not found</Trans>
+              <Trans id='Order not found' />
             </IconHeader>
           )}
 
           <LayoutTitle icon={iconBox}>
-            <Trans>Order #{orderId}</Trans>
+            <Trans id='Order #{orderId}' values={{ orderId }} />
           </LayoutTitle>
 
           {orderId && order && (
             <>
               <PageMeta
-                title={t`Order view #${orderId}`}
-                metaDescription={t`Order detail page for order #${orderId}`}
+                title={i18n._(/* i18n */ `Order #{orderId}`, { orderId })}
                 metaRobots={['noindex']}
               />
               <OrderItems {...order} loading={isLoading} images={images} />

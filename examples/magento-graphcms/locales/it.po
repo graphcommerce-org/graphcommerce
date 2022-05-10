@@ -25,14 +25,17 @@ msgstr "Account"
 msgid "Account Dashboard"
 msgstr "Dashboard Account"
 
+msgid "Add address"
+msgstr "Aggiungi indirizzo"
+
 msgid "Add new address"
 msgstr "Aggiungi nuovo indirizzo"
 
-msgid "Add review"
-msgstr "Aggiungi recensione"
-
 msgid "Add to Cart"
 msgstr "Aggiungi al carrello"
+
+msgid "Add to wishlist"
+msgstr "Aggiungi ai desideri"
 
 msgid "Addition"
 msgstr "Aggiunta"
@@ -49,8 +52,8 @@ msgstr "Tutti i prodotti"
 msgid "Apply"
 msgstr "Applica"
 
-msgid "As low as"
-msgstr "A partire da"
+msgid "As low as <0/>"
+msgstr "Al più basso di <0/>"
 
 msgid "As soon as the payment is completed, you will automatically return to the webshop."
 msgstr "Quando il pagamento è completato, torni automaticamente al negozio."
@@ -165,6 +168,9 @@ msgstr "Codice sconto"
 
 msgid "Discover our collection and add items to your cart!"
 msgstr "Scopri la nostra collezione e aggiungi articoli al tuo carrello!"
+
+msgid "Discover our collection and add items to your wishlist!"
+msgstr "Scopri la nostra collezione e aggiungi articoli ai tuoi desideri!"
 
 msgid "Discover our collection and place your first order!"
 msgstr "Scopri la nostra collezione e effettua il tuo primo ordine!"
@@ -295,6 +301,9 @@ msgstr "Non hai ancora un account?"
 msgid "No orders found"
 msgstr "Nessun ordine trovato"
 
+msgid "No payment information"
+msgstr "Nessuna informazione di pagamento"
+
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "Nessun problema! Inserisci il tuo indirizzo email e ti invieremo un'email con le istruzioni per reimpostare la tua password."
 
@@ -313,9 +322,6 @@ msgstr "O seguire questi link per riprendere il tuo percorso!"
 msgid "Order #{orderId}"
 msgstr "Ordine #{orderId}"
 
-msgid "Order detail page for order #{orderId}"
-msgstr "Pagina dettaglio ordine per l'ordine #{orderId}"
-
 msgid "Order not found"
 msgstr "Ordine non trovato"
 
@@ -327,9 +333,6 @@ msgstr "Stato ordine"
 
 msgid "Order summary"
 msgstr "Riepilogo ordine"
-
-msgid "Order view #{orderId}"
-msgstr "Visualizza ordine #{orderId}"
 
 msgid "Ordered items"
 msgstr "Articoli ordinati"
@@ -399,6 +402,9 @@ msgstr "Regione"
 
 msgid "Remove Product"
 msgstr "Rimuovi prodotto"
+
+msgid "Remove from wishlist"
+msgstr "Rimuovi dalla lista desideri"
 
 msgid "Reset Cart and Return to home"
 msgstr "Reset carrello e torna alla home"
@@ -523,9 +529,6 @@ msgstr "Visualizza tutti gli articoli"
 msgid "View all your addresses"
 msgstr "Visualizza tutti i tuoi indirizzi"
 
-msgid "View all your reviews"
-msgstr "Visualizza tutte le tue recensioni"
-
 msgid "View less items"
 msgstr "Visualizza meno articoli"
 
@@ -556,11 +559,14 @@ msgstr "Quale dimensione è giusta?"
 msgid "Whoops our bad..."
 msgstr "Ops, qualcosa è andato storto..."
 
+msgid "Wishlist"
+msgstr "Lista desideri"
+
 msgid "Write a review"
 msgstr "Scrivi una recensione"
 
-msgid "Written by"
-msgstr "Scritto da"
+msgid "Written by {nickname}"
+msgstr "Scritto da {nickname}"
 
 msgid "Written {0} reviews"
 msgstr "Scritto {0} recensioni"
@@ -603,6 +609,9 @@ msgstr "Il tuo carrello è vuoto"
 
 msgid "Your session is expired"
 msgstr "La tua sessione è scaduta"
+
+msgid "Your wishlist is empty"
+msgstr "La tua lista desideri è vuota"
 
 msgid "canceled"
 msgstr "annullato"

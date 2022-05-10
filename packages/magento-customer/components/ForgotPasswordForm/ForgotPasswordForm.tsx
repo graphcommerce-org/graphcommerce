@@ -1,6 +1,7 @@
 import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { TextField, Alert, SxProps, Theme } from '@mui/material'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import {
@@ -27,7 +28,7 @@ export function ForgotPasswordForm(props: { sx?: SxProps<Theme> }) {
           marginBottom: theme.spacings.sm,
         })}
       >
-        <Trans>We’ve send a password reset link to your email address!</Trans>
+        <Trans id='We’ve send a password reset link to your email address!' />
       </Alert>
     )
   }
@@ -39,11 +40,11 @@ export function ForgotPasswordForm(props: { sx?: SxProps<Theme> }) {
           variant='outlined'
           type='text'
           error={!!formState.errors.email}
-          label={<Trans>Email</Trans>}
+          label={<Trans id='Email' />}
           required={required.email}
           {...muiRegister('email', {
             required: required.email,
-            pattern: { value: emailPattern, message: t`Invalid email address` },
+            pattern: { value: emailPattern, message: i18n._(/* i18n */ `Invalid email address`) },
           })}
           helperText={formState.errors.email?.message}
           disabled={formState.isSubmitting}
@@ -60,7 +61,7 @@ export function ForgotPasswordForm(props: { sx?: SxProps<Theme> }) {
           variant='contained'
           size='large'
         >
-          <Trans>Send password reset email</Trans>
+          <Trans id='Send password reset email' />
         </Button>
       </FormActions>
     </Form>

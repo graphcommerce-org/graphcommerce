@@ -15,7 +15,8 @@ import {
   IconSvg,
   LayoutOverlayHeader,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Container, NoSsr } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
@@ -35,11 +36,11 @@ function WishlistPage(props: Props) {
 
   return (
     <>
-      <PageMeta title={t`Wishlist`} metaDescription={t`Wishlist`} metaRobots={['noindex']} />
+      <PageMeta title={i18n._(/* i18n */ `Wishlist`)} metaRobots={['noindex']} />
       <NoSsr>
         <LayoutOverlayHeader>
           <LayoutTitle component='span' size='small'>
-            <Trans>Wishlist</Trans>
+            <Trans id='Wishlist' />
           </LayoutTitle>
         </LayoutOverlayHeader>
 
@@ -47,22 +48,22 @@ function WishlistPage(props: Props) {
           <AnimatePresence initial={false}>
             {wishlistItemsData.items.length === 0 ? (
               <FullPageMessage
-                title={t`Your wishlist is empty`}
+                title={<Trans id='Your wishlist is empty' />}
                 icon={<IconSvg src={iconHeart} size='xxl' />}
                 button={
                   <Link href='/' passHref>
                     <Button variant='contained' color='primary' size='large'>
-                      <Trans>Continue shopping</Trans>
+                      <Trans id='Continue shopping' />
                     </Button>
                   </Link>
                 }
               >
-                <Trans>Discover our collection and add items to your wishlist!</Trans>
+                <Trans id='Discover our collection and add items to your wishlist!' />
               </FullPageMessage>
             ) : (
               <>
                 <LayoutTitle icon={iconHeart}>
-                  <Trans>Wishlist</Trans>
+                  <Trans id='Wishlist' />
                 </LayoutTitle>
                 <Container maxWidth='md'>
                   <WishlistItems

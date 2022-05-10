@@ -6,7 +6,8 @@ import {
   houseNumberPattern,
   UseFormReturn,
 } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { TextField } from '@mui/material'
 import React, { useMemo } from 'react'
 
@@ -58,7 +59,7 @@ export function AddressFields(props: AddressFieldsProps) {
           variant='outlined'
           type='text'
           error={!!formState.errors.street}
-          label={<Trans>Street</Trans>}
+          label={<Trans id='Street' />}
           autoComplete='address-line1'
           required={!!required?.street}
           {...muiRegister('street', { required: required?.street })}
@@ -72,12 +73,15 @@ export function AddressFields(props: AddressFieldsProps) {
           variant='outlined'
           type='text'
           error={!!formState.errors.houseNumber}
-          label={<Trans>Housenumber</Trans>}
+          label={<Trans id='Housenumber' />}
           autoComplete='address-line2'
           required={!!required?.houseNumber}
           {...muiRegister('houseNumber', {
             required: required?.houseNumber,
-            pattern: { value: houseNumberPattern, message: t`Please provide a valid house number` },
+            pattern: {
+              value: houseNumberPattern,
+              message: i18n._(/* i18n */ `Please provide a valid house number`),
+            },
           })}
           helperText={formState.isSubmitted && formState.errors.houseNumber?.message}
           InputProps={{
@@ -90,7 +94,7 @@ export function AddressFields(props: AddressFieldsProps) {
           type='text'
           error={!!formState.errors.addition}
           required={!!required?.addition}
-          label={<Trans>Addition</Trans>}
+          label={<Trans id='Addition' />}
           autoComplete='address-line3'
           {...muiRegister('addition', { required: required?.addition })}
           helperText={formState.isSubmitted && formState.errors.addition?.message}
@@ -106,7 +110,7 @@ export function AddressFields(props: AddressFieldsProps) {
           type='text'
           error={!!formState.errors.postcode}
           required={!!required?.postcode}
-          label={<Trans>Postcode</Trans>}
+          label={<Trans id='Postcode' />}
           {...muiRegister('postcode', { required: required?.postcode })}
           helperText={formState.isSubmitted && formState.errors.postcode?.message}
           InputProps={{
@@ -119,7 +123,7 @@ export function AddressFields(props: AddressFieldsProps) {
           type='text'
           error={!!formState.errors.city}
           required={!!required?.city}
-          label={<Trans>City</Trans>}
+          label={<Trans id='City' />}
           {...muiRegister('city', { required: required?.city })}
           helperText={formState.isSubmitted && formState.errors.city?.message}
           InputProps={{
@@ -135,7 +139,7 @@ export function AddressFields(props: AddressFieldsProps) {
           {...muiRegister('countryCode', { required: required.countryCode })}
           variant='outlined'
           error={!!formState.errors.countryCode}
-          label={<Trans>Country</Trans>}
+          label={<Trans id='Country' />}
           required={!!required?.countryCode}
           helperText={formState.errors.countryCode?.message}
           // onBlur={onBlur}
@@ -162,7 +166,7 @@ export function AddressFields(props: AddressFieldsProps) {
             SelectProps={{ native: true, displayEmpty: true }}
             variant='outlined'
             error={!!formState.errors.regionId}
-            label={<Trans>Region</Trans>}
+            label={<Trans id='Region' />}
             {...muiRegister('regionId', {
               required: true,
               shouldUnregister: true,

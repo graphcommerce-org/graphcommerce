@@ -4,7 +4,7 @@ import {
   responsiveVal,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Skeleton, Button, Box, SxProps, Theme } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
@@ -30,7 +30,7 @@ export function OrderItems(props: OrderItemsProps) {
   if (loading) {
     return (
       <SectionContainer
-        labelLeft={<Trans>Ordered items</Trans>}
+        labelLeft={<Trans id='Ordered items' />}
         /* endLabel='SHIPPED'*/
         className={classes.root}
         sx={[
@@ -79,7 +79,7 @@ export function OrderItems(props: OrderItemsProps) {
 
   return (
     <SectionContainer
-      labelLeft={<Trans>Ordered items</Trans>}
+      labelLeft={<Trans id='Ordered items' />}
       /* endLabel='SHIPPED'*/
       className={classes.root}
       sx={[
@@ -126,7 +126,7 @@ export function OrderItems(props: OrderItemsProps) {
           })}
         >
           <Button variant='text' color='primary' onClick={() => setExpanded(!expanded)}>
-            {expanded ? <Trans>View less items</Trans> : <Trans>View all items</Trans>}
+            {expanded ? <Trans id='View less items' /> : <Trans id='View all items' />}
           </Button>
         </Box>
       )}

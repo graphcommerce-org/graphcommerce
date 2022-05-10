@@ -3,7 +3,7 @@
 import { useQuery, useMutation, useApolloClient } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { IconSvg, iconHeart, extendableComponent } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
+import { i18n } from '@lingui/core'
 import { SxProps, Theme, IconButton } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { useWishlistEnabled } from '../../hooks'
@@ -169,8 +169,16 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
-      title={inWishlist ? t`Remove from wishlist` : t`Add to wishlist`}
-      aria-label={inWishlist ? t`Remove from wishlist` : t`Add to wishlist`}
+      title={
+        inWishlist
+          ? i18n._(/* i18n */ `Remove from wishlist`)
+          : i18n._(/* i18n */ `Add to wishlist`)
+      }
+      aria-label={
+        inWishlist
+          ? i18n._(/* i18n */ `Remove from wishlist`)
+          : i18n._(/* i18n */ `Add to wishlist`)
+      }
     >
       {inWishlist ? activeHeart : heart}
     </IconButton>

@@ -1,6 +1,6 @@
 import { ApolloError } from '@graphcommerce/graphql'
 import { ErrorSnackbar, ErrorSnackbarProps } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 
 export type ApolloErrorSnackbarProps = {
@@ -21,7 +21,7 @@ export function ApolloErrorSnackbar(props: ApolloErrorSnackbarProps) {
       action={
         action ?? (
           <Button size='medium' variant='pill' color='secondary'>
-            <Trans>Ok</Trans>
+            <Trans id='Ok' />
           </Button>
         )
       }

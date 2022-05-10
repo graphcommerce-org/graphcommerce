@@ -3,7 +3,8 @@ import { useGoogleRecaptcha } from '@graphcommerce/googlerecaptcha'
 import { EditBillingAddressForm } from '@graphcommerce/magento-cart-billing-address'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Container, NoSsr } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { DefaultPageDocument } from '../../../graphql/DefaultPage.gql'
@@ -16,16 +17,19 @@ function EditBillingAddress() {
   useGoogleRecaptcha()
   return (
     <>
-      <PageMeta title={t`Edit billing address`} metaRobots={['noindex', 'nofollow']} />
+      <PageMeta
+        title={i18n._(/* i18n */ `Edit billing address`)}
+        metaRobots={['noindex', 'nofollow']}
+      />
 
       <LayoutOverlayHeader>
         <LayoutTitle component='span' size='small'>
-          <Trans>Billing address</Trans>
+          <Trans id='Billing address' />
         </LayoutTitle>
       </LayoutOverlayHeader>
 
       <LayoutTitle variant='h1'>
-        <Trans>Billing address</Trans>
+        <Trans id='Billing address' />
       </LayoutTitle>
 
       <Container maxWidth='md'>

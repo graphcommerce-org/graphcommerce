@@ -9,7 +9,8 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/react'
 import { Container, NoSsr } from '@mui/material'
 import React from 'react'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
@@ -39,19 +40,19 @@ function AccountAddressesPage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconAddresses}>
-          <Trans>Addresses</Trans>
+          <Trans id='Addresses' />
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta
-          title={t`Addresses`}
-          metaDescription={t`View all your addresses`}
+          title={i18n._(/* i18n */ `Addresses`)}
+          metaDescription={i18n._(/* i18n */ `View all your addresses`)}
           metaRobots={['noindex']}
         />
         <NoSsr>
           {((customer?.addresses && customer.addresses.length > 1) || !customer?.addresses) && (
             <LayoutTitle icon={iconAddresses}>
-              <Trans>Addresses</Trans>
+              <Trans id='Addresses' />
             </LayoutTitle>
           )}
           <AccountAddresses {...data} loading={!data} addresses={customer?.addresses} />

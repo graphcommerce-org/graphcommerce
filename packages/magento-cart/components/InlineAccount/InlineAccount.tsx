@@ -5,7 +5,7 @@ import {
   IsEmailAvailableDocument,
 } from '@graphcommerce/magento-customer'
 import { Button, FormRow, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Box, SxProps, TextField, Theme, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useCartQuery } from '../../hooks/useCartQuery'
@@ -75,9 +75,9 @@ export function InlineAccount(props: InlineAccountProps) {
             >
               <div>
                 <Typography variant='h4' className={classes.title} sx={{ paddingBottom: '8px' }}>
-                  {title ?? <Trans>No account yet?</Trans>}
+                  {title ?? <Trans id='No account yet?' />}
                 </Typography>
-                {description ?? <Trans>You can track your order status and much more!</Trans>}
+                {description ?? <Trans id='You can track your order status and much more!' />}
               </div>
               <div>
                 {!toggled && (
@@ -89,7 +89,7 @@ export function InlineAccount(props: InlineAccountProps) {
                     className={classes.button}
                     sx={{ minWidth: 160 }}
                   >
-                    <Trans>Create an account</Trans>
+                    <Trans id='Create an account' />
                   </Button>
                 )}
               </div>
@@ -122,9 +122,9 @@ export function InlineAccount(props: InlineAccountProps) {
           <Box className={classes.innerContainer}>
             <div>
               <Typography variant='h4' className={classes.title}>
-                {title ?? <Trans>Have an account?</Trans>}
+                {title ?? <Trans id='Have an account?' />}
               </Typography>
-              {description ?? <Trans>You can find your order history in your account!</Trans>}
+              {description ?? <Trans id='You can find your order history in your account!' />}
             </div>
             <div>
               <Button
@@ -133,7 +133,7 @@ export function InlineAccount(props: InlineAccountProps) {
                 href={accountHref}
                 className={classes.button}
               >
-                <Trans>Account</Trans>
+                <Trans id='Account' />
               </Button>
             </div>
           </Box>

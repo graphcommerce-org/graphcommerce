@@ -1,6 +1,6 @@
 import { Form, FormActions, FormDivider, MessageSnackbar, Button } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { NameFields } from '../NameFields/NameFields'
 import { UpdateCustomerNameDocument } from './UpdateCustomerName.gql'
@@ -41,13 +41,13 @@ export function ChangeNameForm(props: ChangeNameFormProps) {
             size='large'
             loading={formState.isSubmitting}
           >
-            <Trans>Save changes</Trans>
+            <Trans id='Save changes' />
           </Button>
         </FormActions>
         <ApolloCustomerErrorAlert error={error} />
       </Form>
       <MessageSnackbar open={formState.isSubmitSuccessful && !error} variant='pill'>
-        <Trans>Successfully saved changes</Trans>
+        <Trans id='Successfully saved changes' />
       </MessageSnackbar>
     </>
   )
