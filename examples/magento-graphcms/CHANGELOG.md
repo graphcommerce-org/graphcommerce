@@ -1,5 +1,91 @@
 # Change Log
 
+## 3.8.0
+
+### Minor Changes
+
+- [#1451](https://github.com/graphcommerce-org/graphcommerce/pull/1451) [`5d22428db`](https://github.com/graphcommerce-org/graphcommerce/commit/5d22428db11bcd5ee70674c7acce7c07f0681a55) Thanks [@paales](https://github.com/paales)! - Switched to swc compiler, dev build times will be about 3 times faster!
+
+### Patch Changes
+
+- [#1444](https://github.com/graphcommerce-org/graphcommerce/pull/1444) [`3b623efdd`](https://github.com/graphcommerce-org/graphcommerce/commit/3b623efdd1d26cc533b707ad4ef08c00989539a1) Thanks [@timhofman](https://github.com/timhofman)! - Lowest product price was based on regular_price instead of final_price
+
+* [#1451](https://github.com/graphcommerce-org/graphcommerce/pull/1451) [`f698ff85d`](https://github.com/graphcommerce-org/graphcommerce/commit/f698ff85df6bb0922288471bb3c81856091b8061) Thanks [@paales](https://github.com/paales)! - Removed all occurences of @lingui/macro and moved to @lingui/macro / @lingui/core in preparation to move to swc.
+
+  Since we've removed @lingui/macro, all occurences need to be replaced with @lingui/core and @lingui/react.
+
+  All occurences of `<Trans>` and `t` need to be replaced:
+
+  ```tsx
+  import { Trans, t } from '@lingui/macro'
+
+  function MyComponent() {
+    const foo = 'bar'
+    return (
+      <div aria-label={t`Account ${foo}`}>
+        <Trans>My Translation {foo}</Trans>
+      </div>
+    )
+  }
+  ```
+
+  Needs to be replaced with:
+
+  ```tsx
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
+
+  function MyComponent() {
+    const foo = 'bar'
+    return (
+      <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
+      </div>
+    )
+  }
+  ```
+
+  [More examples for Trans](https://lingui.js.org/ref/macro.html#examples-of-jsx-macros) and [more examples for `t`](https://lingui.js.org/ref/macro.html#examples-of-js-macros)
+
+* Updated dependencies [[`50188e378`](https://github.com/graphcommerce-org/graphcommerce/commit/50188e378b4c77561ebc600958ea11cd114fa61a), [`3b623efdd`](https://github.com/graphcommerce-org/graphcommerce/commit/3b623efdd1d26cc533b707ad4ef08c00989539a1), [`f698ff85d`](https://github.com/graphcommerce-org/graphcommerce/commit/f698ff85df6bb0922288471bb3c81856091b8061)]:
+  - @graphcommerce/magento-cart-payment-method@3.1.9
+  - @graphcommerce/mollie-magento-payment@3.2.9
+  - @graphcommerce/magento-wishlist@1.0.3
+  - @graphcommerce/ecommerce-ui@1.0.11
+  - @graphcommerce/framer-scroller@2.1.10
+  - @graphcommerce/lingui-next@2.1.8
+  - @graphcommerce/magento-cart@4.2.13
+  - @graphcommerce/magento-cart-billing-address@3.0.16
+  - @graphcommerce/magento-cart-checkout@3.0.18
+  - @graphcommerce/magento-cart-coupon@3.0.18
+  - @graphcommerce/magento-cart-email@3.0.18
+  - @graphcommerce/magento-cart-items@3.0.19
+  - @graphcommerce/magento-cart-shipping-address@3.0.16
+  - @graphcommerce/magento-cart-shipping-method@3.0.17
+  - @graphcommerce/magento-category@4.1.4
+  - @graphcommerce/magento-cms@4.0.13
+  - @graphcommerce/magento-customer@4.2.11
+  - @graphcommerce/magento-customer-account@3.1.11
+  - @graphcommerce/magento-customer-order@3.0.16
+  - @graphcommerce/magento-newsletter@2.0.16
+  - @graphcommerce/magento-payment-braintree@3.0.16
+  - @graphcommerce/magento-payment-included@3.0.16
+  - @graphcommerce/magento-product@4.3.3
+  - @graphcommerce/magento-product-bundle@4.0.18
+  - @graphcommerce/magento-product-configurable@4.1.3
+  - @graphcommerce/magento-product-downloadable@4.0.18
+  - @graphcommerce/magento-product-grouped@3.0.18
+  - @graphcommerce/magento-product-simple@4.0.18
+  - @graphcommerce/magento-product-virtual@4.0.18
+  - @graphcommerce/magento-review@3.2.4
+  - @graphcommerce/magento-search@4.1.10
+  - @graphcommerce/magento-store@4.2.2
+  - @graphcommerce/next-ui@4.7.2
+  - @graphcommerce/graphql@3.1.3
+  - @graphcommerce/graphcms-ui@3.0.16
+  - @graphcommerce/googlerecaptcha@2.1.6
+  - @graphcommerce/magento-graphql@3.0.12
+
 ## 3.7.4
 
 ### Patch Changes

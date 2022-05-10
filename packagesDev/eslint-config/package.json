@@ -2,10 +2,10 @@
   "name": "@graphcommerce/eslint-config-pwa",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.1.6",
+  "version": "4.1.7",
   "main": "index.js",
   "dependencies": {
-    "@graphcommerce/typescript-config-pwa": "^4.0.2",
+    "@graphcommerce/typescript-config-pwa": "^4.0.3",
     "@next/eslint-plugin-next": "^12.1.5",
     "@typescript-eslint/eslint-plugin": "^5.21.0",
     "@typescript-eslint/parser": "^5.21.0",

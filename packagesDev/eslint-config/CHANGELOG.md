@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.1.7
+
+### Patch Changes
+
+- [#1451](https://github.com/graphcommerce-org/graphcommerce/pull/1451) [`50188e378`](https://github.com/graphcommerce-org/graphcommerce/commit/50188e378b4c77561ebc600958ea11cd114fa61a) Thanks [@paales](https://github.com/paales)! - Loosen node requirement
+
+- Updated dependencies [[`50188e378`](https://github.com/graphcommerce-org/graphcommerce/commit/50188e378b4c77561ebc600958ea11cd114fa61a)]:
+  - @graphcommerce/typescript-config-pwa@4.0.3
+
 ## 4.1.6
 
 ### Patch Changes

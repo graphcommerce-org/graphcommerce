@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.1.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/graphql@3.1.3
+
 ## 2.1.5
 
 ### Patch Changes
