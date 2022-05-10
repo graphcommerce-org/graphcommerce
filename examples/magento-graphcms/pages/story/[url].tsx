@@ -130,7 +130,12 @@ function StoryPage(props: Props) {
 
       <Container maxWidth={false} disableGutters>
         <StoryList storyList={storyList} current={page.url} />
-        <Box css={{ css }}>{parseHtml(bodyContent as string, { replace })}</Box>
+        <Box
+          css={{ css }}
+          sx={{ '& img': { verticalAlign: 'bottom', lineHeight: 0, filter: 'none' } }}
+        >
+          {parseHtml(bodyContent as string, { replace })}
+        </Box>
       </Container>
     </>
   )
