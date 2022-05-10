@@ -70,10 +70,10 @@ function CartPage() {
         <LayoutTitle size='small' component='span' icon={hasItems ? iconShoppingBag : undefined}>
           {hasItems ? (
             <>
-              Cart Total: <Money {...data?.cart?.prices?.grand_total} />
+              <Trans id='Cart Total' />: <Money {...data?.cart?.prices?.grand_total} />
             </>
           ) : (
-            <>Cart</>
+            <Trans id='Cart' />
           )}
         </LayoutTitle>
       </LayoutOverlayHeader>
@@ -83,7 +83,7 @@ function CartPage() {
             <>
               <AnimatedRow key='quick-checkout'>
                 <LayoutTitle icon={iconShoppingBag}>
-                  Cart Total: <Money {...data?.cart?.prices?.grand_total} />
+                  <Trans id='Cart Total' />: <Money {...data?.cart?.prices?.grand_total} />
                 </LayoutTitle>
               </AnimatedRow>
               <CartItems

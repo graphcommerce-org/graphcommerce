@@ -41,6 +41,7 @@ generates:
       injectables: true
     config:
       skipTypename: true
+      namingConvention: 'keep'
       dedupeOperationSuffix: true
       content: '/* eslint-disable */'
 watchConfig:
