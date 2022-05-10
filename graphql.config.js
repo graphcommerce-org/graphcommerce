@@ -13,10 +13,14 @@ module.exports = {
   projects: {
     MagentoGraphCms: {
       schema: [
-        'packages/graphql-mesh/.mesh/schema.graphql',
+        'examples/magento-graphcms/.mesh/schema.graphql',
         'packagesDev/graphql-codegen-near-operation-file/src/injectable.graphqls',
       ],
-      documents: ['examples/magento-graphcms/components/**/*.graphql', 'packages/**/*.graphql'],
+      documents: [
+        'examples/magento-graphcms/components/**/*.graphql',
+        'examples/magento-graphcms/graphql/**/*.graphql',
+        'packages/**/*.graphql',
+      ],
       extensions: {
         languageService: {
           useSchemaFileDefinitions: true,
