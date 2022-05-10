@@ -1,5 +1,14 @@
 # @graphcommerce/magento-pagebuilder
 
+## 1.0.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphcommerce/magento-category@4.1.5
+  - @graphcommerce/magento-cms@4.0.14
+  - @graphcommerce/magento-product@4.3.4
+
 ## 1.0.7
 
 ### Patch Changes

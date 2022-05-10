@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.2.10
+
+### Patch Changes
+
+- Updated dependencies [[`c30893857`](https://github.com/graphcommerce-org/graphcommerce/commit/c3089385791291e812a48c2691a39a2325ee0439)]:
+  - @graphcommerce/magento-store@4.2.3
+  - @graphcommerce/magento-cart@4.2.14
+  - @graphcommerce/magento-cart-payment-method@3.1.10
+
 ## 3.2.9
 
 ### Patch Changes

@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-customer",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "4.2.11",
+  "version": "4.2.12",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -23,7 +23,7 @@
     "@graphcommerce/graphql-mesh": "4.1.3",
     "@graphcommerce/image": "3.1.5",
     "@graphcommerce/magento-graphql": "3.0.12",
-    "@graphcommerce/magento-store": "4.2.2",
+    "@graphcommerce/magento-store": "4.2.3",
     "@graphcommerce/next-ui": "4.7.2",
     "@graphcommerce/react-hook-form": "3.1.3"
   },
