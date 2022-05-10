@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.13
+
+### Patch Changes
+
+- [#1451](https://github.com/graphcommerce-org/graphcommerce/pull/1451) [`50188e378`](https://github.com/graphcommerce-org/graphcommerce/commit/50188e378b4c77561ebc600958ea11cd114fa61a) Thanks [@paales](https://github.com/paales)! - Loosen node requirement
+
 ## 3.0.12
 
 ### Patch Changes
