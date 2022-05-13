@@ -10,7 +10,7 @@ account.
 - Add products to wishlist based on SKU (all producttypes)
 - Add products with selected variants, like size and color, to wishlist
   (configurable product)
-- Add products from wishlist to cart (simple, downloadable, virtual)
+- Add products from wishlist to cart (simple, virtual)
 - Enable/disable through Magento configuration item
   'magento_wishlist_general_is_enabled'
 
