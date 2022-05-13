@@ -73,7 +73,7 @@ function MenuPage({ categories, isRoot }: Props) {
               gridTemplate: '"nav items"/1fr 2fr',
               minWidth: '960px',
             },
-            '& > li:nth-child(1) > a': {
+            '& > li:nth-of-type(1) > a': {
               [theme.breakpoints.up('md')]: {
                 marginTop: theme.spacings.md,
               },
