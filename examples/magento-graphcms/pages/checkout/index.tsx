@@ -89,7 +89,7 @@ function ShippingPage() {
               </LayoutTitle>
               {addresses ? (
                 <CustomerAddressForm step={2}>
-                  <ShippingAddressForm step={3} />
+                  <ShippingAddressForm ignoreCache step={3} />
                 </CustomerAddressForm>
               ) : (
                 <>

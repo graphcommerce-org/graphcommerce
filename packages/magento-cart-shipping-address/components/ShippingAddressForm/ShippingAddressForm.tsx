@@ -23,10 +23,12 @@ import { GetAddressesDocument } from './GetAddresses.gql'
 import { SetShippingAddressDocument } from './SetShippingAddress.gql'
 import { SetShippingBillingAddressDocument } from './SetShippingBillingAddress.gql'
 
-export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'>
+export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'> & {
+  ignoreCache?: boolean
+}
 
 export function ShippingAddressForm(props: ShippingAddressFormProps) {
-  const { step } = props
+  const { step, ignoreCache = false } = props
   const { data: cartQuery } = useCartQuery(GetAddressesDocument)
   const { data: config } = useQuery(StoreConfigDocument)
   const { data: countriesData } = useQuery(CountryRegionsDocument)
@@ -48,21 +50,24 @@ export function ShippingAddressForm(props: ShippingAddressFormProps) {
   // If address is an existing customer address then this form is rendered to add a new address so we don't want any default values.
 
   const form = useFormGqlMutationCart(Mutation, {
-    defaultValues: {
-      // todo(paales): change to something more sustainable
-      firstname: currentAddress?.firstname ?? currentCustomer?.firstname ?? '',
-      lastname: currentAddress?.lastname ?? currentCustomer?.lastname ?? '',
-      telephone: currentAddress?.telephone !== '000 - 000 0000' ? currentAddress?.telephone : '',
-      city: currentAddress?.city ?? '',
-      company: currentAddress?.company ?? '',
-      postcode: currentAddress?.postcode ?? '',
-      street: currentAddress?.street?.[0] ?? '',
-      houseNumber: currentAddress?.street?.[1] ?? '',
-      addition: currentAddress?.street?.[2] ?? '',
-      regionId: currentAddress?.region?.region_id ?? null,
-      countryCode: currentCountryCode, // todo: replace by the default shipping country of the store + geoip,
-      saveInAddressBook: true,
-    },
+    defaultValues: ignoreCache
+      ? {}
+      : {
+          // todo(paales): change to something more sustainable
+          firstname: currentAddress?.firstname ?? currentCustomer?.firstname ?? '',
+          lastname: currentAddress?.lastname ?? currentCustomer?.lastname ?? '',
+          telephone:
+            currentAddress?.telephone !== '000 - 000 0000' ? currentAddress?.telephone : '',
+          city: currentAddress?.city ?? '',
+          company: currentAddress?.company ?? '',
+          postcode: currentAddress?.postcode ?? '',
+          street: currentAddress?.street?.[0] ?? '',
+          houseNumber: currentAddress?.street?.[1] ?? '',
+          addition: currentAddress?.street?.[2] ?? '',
+          regionId: currentAddress?.region?.region_id ?? null,
+          countryCode: currentCountryCode, // todo: replace by the default shipping country of the store + geoip,
+          saveInAddressBook: true,
+        },
     mode: 'onChange',
     onBeforeSubmit: (variables) => {
       const regionId = countriesData?.countries

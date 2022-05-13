@@ -42,6 +42,18 @@ export function ActionCard(props: ActionCardProps) {
     handleChange(event)
   }
 
+  const actionButtonStyles: SxProps = {
+    '& .MuiButton-root': {
+      '&.MuiButton-textSecondary': {
+        padding: '5px',
+        margin: '-5px',
+        '&:hover': {
+          background: 'none',
+        },
+      },
+    },
+  }
+
   return (
     <ButtonBase
       component='button'
@@ -98,10 +110,20 @@ export function ActionCard(props: ActionCardProps) {
       {image && <Box sx={{ gridArea: 'image', justifySelf: 'center', padding: 1 }}>{image}</Box>}
       {title && <Box sx={{ gridArea: 'title', fontWeight: 'bold' }}>{title}</Box>}
       {action && (
-        <Box sx={{ gridArea: 'action', textAlign: 'right' }}>{!selected ? action : reset}</Box>
+        <Box
+          sx={{
+            gridArea: 'action',
+            textAlign: 'right',
+            ...actionButtonStyles,
+          }}
+        >
+          {!selected ? action : reset}
+        </Box>
       )}
       {details && <Box sx={{ gridArea: 'details', color: 'text.secondary' }}>{details}</Box>}
-      {secondaryAction && <Box sx={{ gridArea: 'secondaryAction' }}>{secondaryAction}</Box>}
+      {secondaryAction && (
+        <Box sx={{ gridArea: 'secondaryAction', ...actionButtonStyles }}>{secondaryAction}</Box>
+      )}
     </ButtonBase>
   )
 }

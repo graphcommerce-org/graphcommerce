@@ -13,8 +13,7 @@ import {
   Controller,
 } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { Box, FormControl, Link, NoSsr } from '@mui/material'
-import PageLink from 'next/link'
+import { Box, FormControl, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { isSameAddress } from '../../utils/isSameAddress'
@@ -35,8 +34,6 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
 
   const shippingAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const billingAddress = cartQuery?.cart?.billing_address
-  console.clear()
-  console.log('shippingAddress', shippingAddress)
 
   const found = customerAddresses.data?.customer?.addresses?.find(
     (customerAddr) =>
@@ -52,8 +49,6 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
         customerAddr?.region?.region_code === shippingAddress?.region?.code,
       ].filter((v) => !v).length === 0,
   )
-
-  console.log('found', found)
 
   const Mutation = isSameAddress(shippingAddress, billingAddress)
     ? SetCustomerShippingBillingAddressOnCartDocument
@@ -74,7 +69,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
 
   const submit = customerAddressId === -1 ? async () => {} : handleSubmit(() => {})
 
-  // useFormPersist({ form, name: 'CustomerAddressForm' })
+  useFormPersist({ form, name: 'CustomerAddressForm' })
   useFormCompose({ form, step, submit, key: 'CustomerAddressForm' })
 
   if (customerAddresses.loading || !addresses || addresses.length === 0) return null
@@ -86,7 +81,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
         <FormControl>
           <Controller
             control={control}
-            defaultValue={0}
+            defaultValue={found && found.id ? found.id : 0}
             name='customerAddressId'
             rules={{ required: true }}
             render={({ field: { onChange, value }, fieldState, formState }) => (
@@ -104,11 +99,9 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
                       value={String(address?.id)}
                       key={address?.id}
                       action={
-                        <Box>
-                          <Button variant='text' color='secondary'>
-                            <Trans>Select</Trans>
-                          </Button>
-                        </Box>
+                        <Button disableRipple variant='text' color='secondary'>
+                          <Trans>Select</Trans>
+                        </Button>
                       }
                       image={<IconSvg src={iconHome} size='large' />}
                       title={`${address?.firstname} ${address?.lastname}`}
@@ -121,6 +114,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
                       onClick={onChange}
                       secondaryAction={
                         <Button
+                          disableRipple
                           color='secondary'
                           variant='text'
                           onClick={(e) => {
@@ -138,8 +132,9 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
                       selected={value === address?.id}
                       hidden={!!value && value !== address?.id}
                       reset={
-                        <Link
-                          underline='none'
+                        <Button
+                          disableRipple
+                          variant='text'
                           color='secondary'
                           onClick={(e) => {
                             e.preventDefault()
@@ -147,7 +142,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
                           }}
                         >
                           <Trans>Change</Trans>
-                        </Link>
+                        </Button>
                       }
                     />
                   ))}
@@ -160,16 +155,21 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
                     details={<Trans>Add new address</Trans>}
                     image={<IconSvg src={iconHome} size='large' />}
                     action={
-                      <Box>
-                        <Link href='#' underline='none' color='secondary'>
-                          <Trans>Select</Trans>
-                        </Link>
-                      </Box>
+                      <Button
+                        disableRipple
+                        variant='text'
+                        color='secondary'
+                        onClick={(e) => {
+                          e.preventDefault()
+                        }}
+                      >
+                        <Trans>Select</Trans>
+                      </Button>
                     }
                     reset={
-                      <Link
-                        href='#'
-                        underline='none'
+                      <Button
+                        disableRipple
+                        variant='text'
                         color='secondary'
                         onClick={(e) => {
                           e.preventDefault()
@@ -177,7 +177,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
                         }}
                       >
                         <Trans>Change</Trans>
-                      </Link>
+                      </Button>
                     }
                   />
                 </ActionCardList>
