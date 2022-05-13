@@ -1,0 +1,16 @@
+query MenuPage($urlKey: String, $rootCategory: String) {
+  categories(filters: { category_uid: { eq: $rootCategory }, url_path: { eq: $urlKey } }) {
+    items {
+      ...MenuItem
+      children {
+        uid
+        ...MenuItem
+
+        children {
+          uid
+          ...MenuItem
+        }
+      }
+    }
+  }
+}

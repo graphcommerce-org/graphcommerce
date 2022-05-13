@@ -1,0 +1,8 @@
+fragment CmsMenuQueryFragment on Query {
+  mainMenu: pageLinkList(where: { identity: "mainmenu" }) {
+    pageLinks {
+      title
+      url
+    }
+  }
+}
