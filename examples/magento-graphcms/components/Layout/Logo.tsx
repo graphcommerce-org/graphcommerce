@@ -9,6 +9,7 @@ export function Logo() {
           width: 'auto',
           height: { xs: '16px', md: '28px' },
           paddingLeft: { xs: '10px', md: 0 },
+          paddingRight: { xs: '10px', md: '20px' },
           marginTop: { xs: 0, md: '-5px' },
           filter: (theme) => (theme.palette.mode === 'dark' ? 'invert(100%)' : 'invert(0%)'),
         },

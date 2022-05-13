@@ -16,10 +16,12 @@ import {
   DesktopNavItem,
   MenuFabItem,
   DarkLightModeMenuSecondaryItem,
+  iconChevronDown,
+  iconChevronRight,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Fab } from '@mui/material'
+import { Box, Fab } from '@mui/material'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import { DefaultPageQuery } from '../../graphql/DefaultPage.gql'
@@ -45,16 +47,30 @@ export function LayoutFull(props: LayoutFullProps) {
         <>
           <Logo />
           <DesktopNavBar>
+            <DesktopNavItem href='/menu'>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                <Trans id='Products' />
+                <IconSvg src={iconChevronDown} />
+              </Box>
+            </DesktopNavItem>
+
             {menuItemsIncludeInMenu?.map((item) => {
-              const highLight = item?.name?.toLowerCase().includes('sale')
-                ? { textTransform: 'uppercase', letterSpacing: 0.3, color: 'primary.main' }
-                : {}
-              return (
-                <DesktopNavItem key={item?.uid} href={`/${item?.url_path}`} sx={highLight}>
-                  {item?.name}
-                </DesktopNavItem>
-              )
+              if (item?.name?.toLowerCase().includes('sale')) {
+                return (
+                  <DesktopNavItem
+                    key={item?.uid}
+                    href={`/${item?.url_path}`}
+                    sx={{ textTransform: 'uppercase', letterSpacing: 0.3, color: 'primary.main' }}
+                  >
+                    {item?.name}
+                  </DesktopNavItem>
+                )
+              }
+              return false
             })}
+            <DesktopNavItem href='#'>
+              <Trans id='Stories' />
+            </DesktopNavItem>
             <DesktopNavItem href='/blog'>
               <Trans id='Blog' />
             </DesktopNavItem>
@@ -102,16 +118,29 @@ export function LayoutFull(props: LayoutFullProps) {
           <MenuFabItem href='/'>
             <Trans id='Home' />
           </MenuFabItem>
+          <MenuFabItem href='/menu'>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <Trans id='Products' />
+              <IconSvg src={iconChevronRight} />
+            </Box>
+          </MenuFabItem>
           {menuItemsIncludeInMenu?.map((item) => {
-            const highLight = item?.name?.toLowerCase().includes('sale')
-              ? { textTransform: 'uppercase', letterSpacing: 0.3, color: 'primary.main' }
-              : {}
-            return (
-              <MenuFabItem key={item?.uid} href={`/${item?.url_path}`} sx={highLight}>
-                {item?.name}
-              </MenuFabItem>
-            )
+            if (item?.name?.toLowerCase().includes('sale')) {
+              return (
+                <MenuFabItem
+                  key={item?.uid}
+                  href={`/${item?.url_path}`}
+                  sx={{ textTransform: 'uppercase', letterSpacing: 0.3, color: 'primary.main' }}
+                >
+                  {item?.name}
+                </MenuFabItem>
+              )
+            }
+            return false
           })}
+          <MenuFabItem href='#'>
+            <Trans id='Stories' />
+          </MenuFabItem>
           <MenuFabItem href='/blog'>
             <Trans id='Blog' />
           </MenuFabItem>
