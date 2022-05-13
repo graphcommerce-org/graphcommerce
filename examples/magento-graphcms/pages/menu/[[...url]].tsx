@@ -15,7 +15,6 @@ import { useState } from 'react'
 import { LayoutFullProps } from '../../components'
 import { MenuItem } from '../../components/Menu/MenuItem'
 import { MenuPageQuery, MenuPageDocument } from '../../graphql/MenuPage.gql'
-import { PagesStaticPathsDocument } from '../../graphql/PagesStaticPaths.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = MenuPageQuery & { isRoot: boolean }
@@ -124,22 +123,11 @@ MenuPage.pageOptions = pageOptions
 
 export default MenuPage
 
+// eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
-
-  const path = async (locale: string) => {
-    const client = graphqlSsrClient(locale)
-    const { data } = await client.query({
-      query: PagesStaticPathsDocument,
-      variables: {
-        first: process.env.VERCEL_ENV !== 'production' ? 1 : 1000,
-        urlStartsWith: 'menu',
-      },
-    })
-    return data.pages.map((page) => ({ params: { url: page.url.split('/').slice(1) }, locale }))
-  }
-  const paths = (await Promise.all(locales.map(path))).flat(1)
-
+  const urls = [['']]
+  const paths = locales.map((locale) => urls.map((url) => ({ params: { url }, locale }))).flat(1)
   return { paths, fallback: 'blocking' }
 }
 
