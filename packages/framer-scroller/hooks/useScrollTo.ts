@@ -35,7 +35,7 @@ export function useScrollTo() {
               },
               onComplete,
               onStop: onComplete,
-              duration: 500,
+              duration: 0,
             }),
           )
         } else onComplete()
@@ -54,7 +54,7 @@ export function useScrollTo() {
               },
               onComplete,
               onStop: onComplete,
-              duration: 500,
+              duration: 0,
             }),
           )
         } else onComplete()
