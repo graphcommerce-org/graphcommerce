@@ -70,7 +70,7 @@ function WishlistPage(props: Props) {
                     renderer={{
                       BundleProduct: WishlistItemBase,
                       ConfigurableProduct: WishlistItemBase,
-                      DownloadableProduct: WishlistItem,
+                      DownloadableProduct: WishlistItemBase,
                       SimpleProduct: WishlistItem,
                       VirtualProduct: WishlistItem,
                       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
