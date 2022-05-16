@@ -13,7 +13,13 @@ export function SignInForm(props: SignInFormProps) {
   const { email, sx } = props
   const form = useFormGqlMutation(
     SignInDocument,
-    { defaultValues: { email } },
+    {
+      defaultValues: { email },
+      onBeforeSubmit: (values) => ({
+        ...values,
+        email,
+      }),
+    },
     { errorPolicy: 'all' },
   )
 
