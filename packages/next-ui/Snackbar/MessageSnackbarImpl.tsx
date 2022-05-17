@@ -64,9 +64,16 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
     setShowSnackbar(!!open)
   }, [open])
 
-  const hideSnackbar = () => {
+  const hideSnackbar = (e) => {
+    e.preventDefault()
+
     setShowSnackbar(false)
     onClose?.()
+  }
+
+  const preventAnimationBubble: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
   }
 
   let icon = iconCheckmark
@@ -131,6 +138,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
                 aria-label='Close'
                 size='small'
                 onClick={hideSnackbar}
+                onMouseDown={preventAnimationBubble}
                 sx={(theme) => ({
                   backgroundColor: lighten(theme.palette.background.paper, 0.1),
                 })}
