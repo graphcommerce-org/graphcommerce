@@ -94,6 +94,9 @@ msgstr "Panier ({0})"
 msgid "Cart Items"
 msgstr "Articles dans le panier"
 
+msgid "Cart Total"
+msgstr "Montant total du panier"
+
 msgid "Change password"
 msgstr "Changer le mot de passe"
 
@@ -342,6 +345,9 @@ msgstr "Commandes"
 
 msgid "Other"
 msgstr "Autre"
+
+msgid "Page {page} of {count}"
+msgstr "Page {page} de {count}"
 
 msgid "Password"
 msgstr "Mot de passe"

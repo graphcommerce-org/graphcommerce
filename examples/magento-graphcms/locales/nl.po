@@ -94,6 +94,9 @@ msgstr "Winkelwagen ({0})"
 msgid "Cart Items"
 msgstr "Winkelwagen items"
 
+msgid "Cart Total"
+msgstr "Winkelwagen totaal"
+
 msgid "Change password"
 msgstr "Wijzig wachtwoord"
 
@@ -342,6 +345,9 @@ msgstr "Bestellingen"
 
 msgid "Other"
 msgstr "Overige"
+
+msgid "Page {page} of {count}"
+msgstr "Pagina {page} van {count}"
 
 msgid "Password"
 msgstr "Wachtwoord"

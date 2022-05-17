@@ -94,6 +94,9 @@ msgstr "Carrito ({0})"
 msgid "Cart Items"
 msgstr "Artículos del carrito"
 
+msgid "Cart Total"
+msgstr "Carrito total"
+
 msgid "Change password"
 msgstr "Cambiar contraseña"
 
@@ -342,6 +345,9 @@ msgstr "Pedidos"
 
 msgid "Other"
 msgstr "Otro"
+
+msgid "Page {page} of {count}"
+msgstr "Página {page} de {count}"
 
 msgid "Password"
 msgstr "Contraseña"
