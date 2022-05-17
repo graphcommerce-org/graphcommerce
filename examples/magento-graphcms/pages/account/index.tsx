@@ -135,14 +135,14 @@ function AccountIndexPage() {
             <AccountMenuItem
               href='/account/addresses'
               iconSrc={iconHome}
-              title={<Trans id='Addresses' />}
+              title={i18n._(/* i18n */ `Addresses`)}
               subtitle={address ? <AddressSingleLine {...address} /> : undefined}
             />
             {customer?.reviews.items.length !== 0 && (
               <AccountMenuItem
                 href='/account/reviews'
                 iconSrc={iconStar}
-                title={<Trans id='Reviews' />}
+                title={i18n._(/* i18n */ `Reviews`)}
                 subtitle={
                   <Trans id='Written {0} reviews' values={{ 0: customer?.reviews.items.length }} />
                 }
@@ -150,7 +150,7 @@ function AccountIndexPage() {
             )}
             <AccountMenuItem
               iconSrc={iconNewspaper}
-              title={<Trans id='Newsletter' />}
+              title={i18n._(/* i18n */ `Newsletter`)}
               subtitle={<Trans id='Be the first to know about everything new!' />}
               endIcon={<CustomerNewsletterToggle color='primary' />}
             />
@@ -162,7 +162,7 @@ function AccountIndexPage() {
                   loading={formState.isSubmitting}
                   type='submit'
                   disabled={loading}
-                  title={<Trans id='Sign out' />}
+                  title={i18n._(/* i18n */ `Sign out`)}
                   noBorderBottom
                 />
               )}

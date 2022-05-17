@@ -12,7 +12,7 @@ import {
   UseFormComposeOptions,
   Controller,
 } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react'
 import { Box, FormControl, NoSsr } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -100,7 +100,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
                       key={address?.id}
                       action={
                         <Button disableRipple variant='text' color='secondary'>
-                          <Trans>Select</Trans>
+                          <Trans id='Select' />
                         </Button>
                       }
                       image={<IconSvg src={iconHome} size='large' />}
@@ -126,7 +126,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
                             )
                           }}
                         >
-                          <Trans>Edit address</Trans>
+                          <Trans id='Edit address' />
                         </Button>
                       }
                       selected={value === address?.id}
@@ -141,7 +141,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
                             onChange(null)
                           }}
                         >
-                          <Trans>Change</Trans>
+                          <Trans id='Change' />
                         </Button>
                       }
                     />
@@ -149,10 +149,10 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
                   <ActionCard
                     value='-1'
                     key='new-address'
-                    title={<Trans>New address</Trans>}
+                    title={<Trans id='New address' />}
                     selected={value === -1}
                     hidden={!!value && value !== -1}
-                    details={<Trans>Add new address</Trans>}
+                    details={<Trans id='Add new address' />}
                     image={<IconSvg src={iconHome} size='large' />}
                     action={
                       <Button
@@ -163,7 +163,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
                           e.preventDefault()
                         }}
                       >
-                        <Trans>Select</Trans>
+                        <Trans id='Select' />
                       </Button>
                     }
                     reset={
@@ -176,7 +176,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
                           onChange(null)
                         }}
                       >
-                        <Trans>Change</Trans>
+                        <Trans id='Change' />
                       </Button>
                     }
                   />

@@ -12,15 +12,7 @@ import {
 import { AnimatedRow, extendableComponent, FormDiv, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormCompose, UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import {
-  CircularProgress,
-  TextField,
-  Typography,
-  Alert,
-  Button,
-  SxProps,
-  Theme,
-} from '@mui/material'
+import { CircularProgress, TextField, Typography, Alert, Button } from '@mui/material'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import { CartEmailDocument } from './CartEmail.gql'
@@ -86,7 +78,7 @@ export function EmailForm(props: EmailFormProps) {
           <form noValidate onSubmit={submit}>
             <FormRow>
               <Typography variant='h5' component='h2' gutterBottom>
-                <Trans>Personal details</Trans> {/* @question: weghalen in stap1? */}
+                <Trans id='Personal details' />
               </Typography>
             </FormRow>
             <FormRow className={classes.formRow} sx={{ py: 0 }}>
