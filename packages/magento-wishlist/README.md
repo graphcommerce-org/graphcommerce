@@ -36,6 +36,13 @@ already is a product with the same SKU in the wishlist.
 NEXT_PUBLIC_WISHLIST_IGNORE_PRODUCT_WISHLIST_STATUS="1"
 ```
 
+- Display a MessageSnackbar message as feedback upon adding a product to the
+  wishlist
+
+```
+<ProductWishlistChip showFeedbackMessage {...props} />
+```
+
 ## Customizing wishlist styling
 
 - The ProductWishlistChip accepts SX props (see ProductWishlistChip and
