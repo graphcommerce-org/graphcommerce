@@ -1,9 +1,24 @@
 import { useMutation, useQuery, useApolloClient } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
-import { useEffect } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import { AddProductToWishlistDocument } from '../queries/AddProductToWishlist.gql'
 import { GetGuestWishlistProductsDocument } from '../queries/GetGuestWishlistProducts.gql'
 import { GuestWishlistDocument } from '../queries/GuestWishlist.gql'
+
+function useValidatedItems(guestDataSkus: string[]) {
+  const guestWishList = useQuery(GetGuestWishlistProductsDocument, {
+    ssr: false,
+    variables: {
+      filters: { sku: { in: guestDataSkus } },
+    },
+    skip: guestDataSkus.length === 0,
+  })
+  const items = useMemo(
+    () => guestWishList.data?.products?.items?.map((item) => item?.sku) || [],
+    [guestWishList.data?.products?.items],
+  )
+  return items
+}
 
 /** Merge guest wishlist items to customer session upon login */
 export function useMergeGuestWishlistWithCustomer() {
@@ -15,17 +30,37 @@ export function useMergeGuestWishlistWithCustomer() {
     ssr: false,
   }).data?.guestWishlist
 
-  const guestDataSkus = guestWishlistData?.items.map((item) => item?.sku) || []
-  const validatedItems =
-    useQuery(GetGuestWishlistProductsDocument, {
-      ssr: false,
-      variables: {
-        filters: { sku: { in: guestDataSkus } },
-      },
-      skip: guestDataSkus.length === 0,
-    }).data?.products?.items?.map((item) => item?.sku) || []
+  const guestDataSkus = useMemo(
+    () => guestWishlistData?.items.map((item) => item?.sku) || [],
+    [guestWishlistData?.items],
+  )
+
+  const validatedItems = useValidatedItems(guestDataSkus)
 
   const [addWishlistItem] = useMutation(AddProductToWishlistDocument)
+
+  const addWishlist = useCallback(
+    (
+      payload: {
+        sku: string
+        selected_options: (string | null)[] | null | undefined
+        quantity: number
+      }[],
+    ) =>
+      addWishlistItem({ variables: { input: payload } }).then(() =>
+        cache.evict({
+          id: cache.identify({ __typename: 'GuestWishlist' }),
+        }),
+      ),
+    [addWishlistItem, cache],
+  )
+
+  const purgeOutdatedItems = useCallback(() => {
+    /** Only outdated items were found, purge them */
+    cache.evict({
+      id: cache.identify({ __typename: 'GuestWishlist' }),
+    })
+  }, [cache])
 
   useEffect(() => {
     if (!isLoggedIn) return
@@ -33,10 +68,7 @@ export function useMergeGuestWishlistWithCustomer() {
     if (!guestDataSkus.length) return
 
     if (!validatedItems.length) {
-      /** Only outdated items were found, purge them */
-      cache.evict({
-        id: cache.identify({ __typename: 'GuestWishlist' }),
-      })
+      purgeOutdatedItems()
       return
     }
 
@@ -52,10 +84,13 @@ export function useMergeGuestWishlistWithCustomer() {
     }))
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    addWishlistItem({ variables: { input: payload } }).then(() =>
-      cache.evict({
-        id: cache.identify({ __typename: 'GuestWishlist' }),
-      }),
-    )
-  }, [isLoggedIn])
+    addWishlist(payload)
+  }, [
+    isLoggedIn,
+    validatedItems,
+    guestDataSkus,
+    addWishlist,
+    guestWishlistData?.items,
+    purgeOutdatedItems,
+  ])
 }

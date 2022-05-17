@@ -46,7 +46,7 @@ function WishlistPage(props: Props) {
 
         <Container maxWidth='md'>
           <AnimatePresence initial={false}>
-            {wishlistItemsData.items.length === 0 ? (
+            {!wishlistItemsData.items || wishlistItemsData.items?.length === 0 ? (
               <FullPageMessage
                 title={<Trans id='Your wishlist is empty' />}
                 icon={<IconSvg src={iconHeart} size='xxl' />}
