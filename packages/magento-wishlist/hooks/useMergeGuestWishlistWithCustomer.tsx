@@ -24,20 +24,18 @@ export function useMergeGuestWishlistWithCustomer() {
   useEffect(() => {
     if (!isLoggedIn || !guestSkus || guestSkus.length === 0) return
 
-    const clear = () => cache.evict({ id: cache.identify({ __typename: 'GuestWishlist' }) })
+    const clearGuestList = () =>
+      cache.evict({ id: cache.identify({ __typename: 'GuestWishlist' }) })
 
     if (guestProducts?.length === 0) {
-      clear()
-      return
+      clearGuestList()
+    } else {
+      const input = guestSkus
+        .filter((item) => guestProducts?.find((i) => i?.sku === item.sku))
+        .map(({ sku, selected_options, quantity }) => ({ sku, selected_options, quantity }))
+
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      if (input.length) addWishlistItem({ variables: { input } }).then(clearGuestList)
     }
-
-    const input = guestSkus
-      .filter((item) => guestProducts?.find((i) => i?.sku === item.sku))
-      .map(({ sku, selected_options, quantity }) => ({ sku, selected_options, quantity }))
-
-    if (!input.length) return
-
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    addWishlistItem({ variables: { input } }).then(clear)
   }, [addWishlistItem, cache, guestProducts, guestSkus, isLoggedIn])
 }
