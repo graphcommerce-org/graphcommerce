@@ -24,8 +24,10 @@ export function useMergeGuestWishlistWithCustomer() {
   useEffect(() => {
     if (!isLoggedIn || !guestSkus || guestSkus.length === 0) return
 
+    const clear = () => cache.evict({ id: cache.identify({ __typename: 'GuestWishlist' }) })
+
     if (guestProducts?.length === 0) {
-      cache.evict({ id: cache.identify({ __typename: 'GuestWishlist' }) })
+      clear()
       return
     }
 
@@ -36,8 +38,6 @@ export function useMergeGuestWishlistWithCustomer() {
     if (!input.length) return
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    addWishlistItem({ variables: { input } }).then(() =>
-      cache.evict({ id: cache.identify({ __typename: 'GuestWishlist' }) }),
-    )
+    addWishlistItem({ variables: { input } }).then(clear)
   }, [addWishlistItem, cache, guestProducts, guestSkus, isLoggedIn])
 }
