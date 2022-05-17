@@ -51,7 +51,12 @@ export function graphqlClient(
   // We're using the HttpLink for development environments so it doesn't have to reload the mesh on every dev change.
   if (fastDev) {
     const cache = createCache()
-    return new ApolloClient({ link: httpLink(cache, locale), cache, name: 'fastDev' })
+    return new ApolloClient({
+      link: httpLink(cache, locale),
+      cache,
+      name: 'fastDev',
+      ssrMode: typeof window === 'undefined',
+    })
   }
 
   // If the client isn't shared we create a new client.

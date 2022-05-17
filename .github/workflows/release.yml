@@ -14,7 +14,7 @@ jobs:
       - uses: fregante/setup-git-user@v1
       - uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 16
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
       - uses: bahmutov/npm-install@v1
