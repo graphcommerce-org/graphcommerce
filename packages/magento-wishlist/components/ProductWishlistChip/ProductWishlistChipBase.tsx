@@ -46,7 +46,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
       src={iconHeart}
       size='medium'
       className={classes.wishlistIcon}
-      sx={(theme) => ({ color: theme.palette.primary.main })}
+      // sx={(theme) => ({ color: theme.palette.primary.main })}
     />
   )
 
