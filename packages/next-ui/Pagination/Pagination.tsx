@@ -1,3 +1,4 @@
+import { Trans } from '@lingui/react'
 import { PaginationProps, Box, SxProps, Theme, IconButton } from '@mui/material'
 import usePagination, { UsePaginationItem } from '@mui/material/usePagination'
 import React from 'react'
@@ -75,7 +76,9 @@ export function Pagination(props: PagePaginationProps) {
     >
       {page === 1 ? chevronLeft : renderLink(page - 1, chevronLeft, prevBtnProps)}
 
-      <Box typography='body1'>Page {`${page} of ${Math.max(1, count)}`}</Box>
+      <Box typography='body1'>
+        <Trans id='Page {page} of {count}' values={{ page, count: Math.max(1, count) }} />
+      </Box>
 
       {page === count ? chevronRight : renderLink(page + 1, chevronRight, nextBtnProps)}
     </Box>
