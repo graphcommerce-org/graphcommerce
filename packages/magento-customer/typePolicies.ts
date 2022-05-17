@@ -67,7 +67,7 @@ const createCustomer: FieldPolicy<Mutation['createCustomer']> = {
 
 export const customerTypePolicies: StrictTypedTypePolicies = {
   // Query: { fields: { customer } },
-  Mutation: { fields: { generateCustomerToken, createCustomer } },
+  Mutation: { fields: { generateCustomerToken, createCustomer, createCustomerV2: createCustomer } },
   CustomerToken: { fields: { valid } },
 }
 
