@@ -88,25 +88,25 @@ function AccountIndexPage() {
             <AccountMenuItem
               href='/account/name'
               iconSrc={iconId}
-              title={i18n._(/* i18n */ `Name`)}
+              title={<Trans id='Name' />}
               subtitle={`${customer?.firstname} ${customer?.lastname}`}
             />
             <AccountMenuItem
               href='/account/contact'
               iconSrc={iconEmailOutline}
-              title={i18n._(/* i18n */ `Contact`)}
+              title={<Trans id='Contact' />}
               subtitle={customer?.email}
             />
             <AccountMenuItem
               href='/account/authentication'
               iconSrc={iconLock}
-              title={i18n._(/* i18n */ `Authentication`)}
-              subtitle={i18n._(/* i18n */ `Password`)}
+              title={<Trans id='Authentication' />}
+              subtitle={<Trans id='Password' />}
             />
             <AccountMenuItem
               href='/account/orders'
               iconSrc={iconBox}
-              title={i18n._(/* i18n */ `Orders`)}
+              title={<Trans id='Orders' />}
               subtitle={
                 latestOrder ? (
                   <>
@@ -135,14 +135,14 @@ function AccountIndexPage() {
             <AccountMenuItem
               href='/account/addresses'
               iconSrc={iconHome}
-              title={i18n._(/* i18n */ `Addresses`)}
+              title={<Trans id='Addresses' />}
               subtitle={address ? <AddressSingleLine {...address} /> : undefined}
             />
             {customer?.reviews.items.length !== 0 && (
               <AccountMenuItem
                 href='/account/reviews'
                 iconSrc={iconStar}
-                title={i18n._(/* i18n */ `Reviews`)}
+                title={<Trans id='Reviews' />}
                 subtitle={
                   <Trans id='Written {0} reviews' values={{ 0: customer?.reviews.items.length }} />
                 }
@@ -150,7 +150,7 @@ function AccountIndexPage() {
             )}
             <AccountMenuItem
               iconSrc={iconNewspaper}
-              title={i18n._(/* i18n */ `Newsletter`)}
+              title={<Trans id='Newsletter' />}
               subtitle={<Trans id='Be the first to know about everything new!' />}
               endIcon={<CustomerNewsletterToggle color='primary' />}
             />
@@ -162,7 +162,7 @@ function AccountIndexPage() {
                   loading={formState.isSubmitting}
                   type='submit'
                   disabled={loading}
-                  title={i18n._(/* i18n */ `Sign out`)}
+                  title={<Trans id='Sign out' />}
                   noBorderBottom
                 />
               )}

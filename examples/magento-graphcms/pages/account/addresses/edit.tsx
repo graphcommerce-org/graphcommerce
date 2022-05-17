@@ -60,7 +60,7 @@ function EditAddressPage() {
             <Trans id='Addresses' />
           </LayoutTitle>
 
-          <SectionContainer labelLeft={i18n._(/* i18n */ `Edit address`)}>
+          <SectionContainer labelLeft={<Trans id='Edit address' />}>
             {!address && !loading && (
               <Box marginTop={3}>
                 <IconHeader src={iconAddresses} size='small'>
