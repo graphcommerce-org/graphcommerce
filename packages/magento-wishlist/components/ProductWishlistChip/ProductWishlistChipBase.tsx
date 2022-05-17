@@ -37,7 +37,7 @@ export function ProductWishlistChipBase(props: ProductWishlistChipProps) {
     skip: !isLoggedIn,
   })
 
-  const { data: guestWishlistData, loading: loadingGuestWishlistData } = useQuery(
+  const { data: guestWishlistData } = useQuery(
     GuestWishlistDocument,
     {
       ssr: false,

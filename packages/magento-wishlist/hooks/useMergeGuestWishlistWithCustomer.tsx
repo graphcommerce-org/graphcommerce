@@ -1,6 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable react-hooks/rules-of-hooks */
 import { useMutation, useQuery, useApolloClient } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { useEffect } from 'react'
@@ -19,7 +16,6 @@ export function useMergeGuestWishlistWithCustomer() {
   }).data?.guestWishlist
 
   const guestDataSkus = guestWishlistData?.items.map((item) => item?.sku) || []
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const validatedItems =
     useQuery(GetGuestWishlistProductsDocument, {
       ssr: false,
@@ -55,10 +51,11 @@ export function useMergeGuestWishlistWithCustomer() {
       quantity: item.quantity,
     }))
 
-    addWishlistItem({ variables: { input: payload } }).then(() => 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    addWishlistItem({ variables: { input: payload } }).then(() =>
       cache.evict({
         id: cache.identify({ __typename: 'GuestWishlist' }),
-      })
+      }),
     )
   }, [isLoggedIn])
 }
